@@ -6,6 +6,8 @@ class User < ActiveRecord::Base
     },
     :storage => :s3,
     :s3_credentials => "#{RAILS_ROOT}/config/s3.yml",
-    :path => ":attachment/:id/:style.:extension",
-    :bucket => 'paperclip-demo'
+    :url => "/assets/users/:id/:style.:extension",
+    :path => ":assets/users/:id/:style.:extension",
+    # :path => ":attachment/:id/:style.:extension",
+    :bucket => 'thepista_desarrollo'
 end

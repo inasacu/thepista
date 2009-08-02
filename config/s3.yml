@@ -1,11 +1,17 @@
 development:
-  access_key_id: abc
-  secret_access_key: abc/efg
+  access_key_id: 1Z36VBYX179XC52VJWR2
+  secret_access_key: XB/iiMMjSyZM+bjG+l/8HxrAzGEPylcWu05Zd7/W
+  bucket: thepista_desarrollo
 
 test:
-  access_key_id: abc
-  secret_access_key: abc/efg
+  access_key_id: 1Z36VBYX179XC52VJWR2
+  secret_access_key: XB/iiMMjSyZM+bjG+l/8HxrAzGEPylcWu05Zd7/W
+  bucket: thepista_prueba
 
 production:
-  access_key_id: abc
-  secret_access_key: abc/efg
+  access_key_id: 1Z36VBYX179XC52VJWR2
+  secret_access_key: XB/iiMMjSyZM+bjG+l/8HxrAzGEPylcWu05Zd7/W
+  bucket: thepista_produccion
+
+
+# http://codetunes.com/2008/10/26/uploading-to-multiple-s3-buckets-with-paperclip-and-rails/
