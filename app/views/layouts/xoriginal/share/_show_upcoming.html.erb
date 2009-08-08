@@ -1,0 +1,34 @@
+<%  unless collections.empty?  
+  theUrl, theIcon = "", ""
+%>
+
+  <div class="header withedit"><h2><%= t(:upcoming_festival) %></h2>
+    <div>&nbsp;</div>
+  </div>
+
+  <% collections.each do |collection| %>
+
+    <div class="subheader clearfix">
+      <h3>
+        <div style="float: left;">&nbsp;</div>
+        <div style="float: right;"><div style="float: left;"><%= nice_day_of_week(collection.starts_at) %></div>
+      </h3>
+    </div>
+
+    <div class="box clearfix">
+      <table class="info_table" border="0" cellspacing="0">
+        <caption>&nbsp;</caption>
+        <tbody>
+      
+          <% 
+          theUrl = "#{collection.name} - #{collection.region} (#{collection.time_zone}). "
+          theIcon =  "festival.gif"
+        %>
+          <%= nav_show(image_tag(theIcon), 'festival', collection.id) %><%= view_spaces %>
+          <%= nav_show(theUrl, 'festival', collection.id) %>
+            
+        </tbody>
+      </table>
+    </div>
+  <% end %>
+<% end %>

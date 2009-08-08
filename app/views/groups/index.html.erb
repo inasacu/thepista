@@ -1,0 +1,17 @@
+<% title "Groups" %>
+
+<table>
+  <tr>
+    <th>Name</th>
+  </tr>
+  <% for groups in @groups %>
+    <tr>
+      <td><%=h groups.name %></td>
+      <td><%= link_to "Show", groups %></td>
+      <td><%= link_to "Edit", edit_groups_path(groups) %></td>
+      <td><%= link_to "Destroy", groups, :confirm => 'Are you sure?', :method => :delete %></td>
+    </tr>
+  <% end %>
+</table>
+
+<p><%= link_to "New Groups", new_groups_path %></p>

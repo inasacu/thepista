@@ -1,0 +1,53 @@
+<% search_controllers = ['user', 'group', 'schedule'] %>
+<% search = search_controllers.include?(get_the_controller) %>
+
+<% actions = ['index', 'list', 'show', 'sent', 'session', 'marker'] %>
+<% content_with_rail = actions.include?(get_the_action)  %>
+<% content_with_rail = !(controller.action_name == 'index' and controller.controller_name == 'home') %>
+<% is_home_index_url =  (controller.action_name == 'index' and controller.controller_name == 'home') %>
+<% is_home_index_url = true unless logged_in? %>
+
+	<%= stylesheet_link_tag 'thepista/thepista' %>
+	<%= stylesheet_link_tag 'thepista/mixx' %>
+	
+	<%= render :partial => '/layouts/main_nav' if logged_in? %>
+		
+		<div id="doc">
+			<div id="bd" class="clear">
+				<div class="content-header clear">
+					<%= render :partial => '/shared/content_flash_message' %>
+					
+					<% if search and logged_in? and use_solr? %>
+					<%= render :partial => '/shared/search' %>	
+					<%= render :partial => '/shared/alphabet_search' %>
+					<% end %>
+									
+				</div>
+							
+				<div class="content-wrap">
+					<div class="content">
+						
+						<% unless content_with_rail %>
+						<div class="content_with_rail">
+						<% end %>
+					
+						<%= render :partial => '/shared/content_tabs' unless is_action('search') %>
+																		
+						<%= yield %>
+
+						<%= render :partial => '/shared/content_pagination' %> 
+						
+						<% unless content_with_rail %>
+						</div>
+						<% end %>
+						
+					</div>
+				</div>
+
+				<%= render :partial => '/shared/content_rail' if is_home_index_url %>
+				
+			</div>
+
+			<hr>
+		</div>
+

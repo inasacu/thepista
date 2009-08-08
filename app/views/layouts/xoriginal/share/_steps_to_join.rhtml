@@ -1,0 +1,22 @@
+<tr>
+  <td>&nbsp;</td>
+  <td><div class="divider" style="">&nbsp;</div></td>
+</tr>
+
+<tr>
+  <td></td>
+  <td><div class="note" align='center'><h2>&nbsp;&nbsp;<%= is_controller('user') ? '' : link_to(t :no_account_yet, NEW_OPENID_URL) %></h2></div></td>
+</tr>
+
+<tr>
+  <td></td>
+  <td><div class="note" align='center'><h2>&nbsp;&nbsp;<%= is_controller('user') ? '' : "<a href='https://www.myopenid.com/account_recover_initiate'>#{t :recover_password }</a>" %></h2></div></td>
+</tr>
+
+<% if is_controller('user') %>
+  <tr>
+    <td></td>
+    <td><div class="note"><p><h3><a href='<%= NEW_OPENID_URL %>' target='_blank'>OpenID</a>
+    <%= t :single_identity %>&nbsp;&nbsp;<a href='<%= NEW_OPENID_URL %>' target='_blank'>myopenid.com</a>.</h3></div></td>
+  </tr>
+<% end %>

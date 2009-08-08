@@ -1,0 +1,28 @@
+<% form_for(@user, :html => { :multipart => true }) do |f| %>
+<%= f.error_messages %>
+
+<div id="form">
+	<div class="create_form">
+	
+	<div class="step clear" id="">
+	<ul>
+	
+	<h1>
+	<%= t(:edit_user) %>
+	</h1>
+
+	<%= render :partial => 'form', :locals => {:f => f, :current_user_flag => true} %>
+	
+	</ul>
+	</div>
+	<ul>
+		<li class="submit">
+			<%= f.submit t(:edit_user) %>
+		</li>
+	</ul>
+	
+	</div>
+	</div>
+<% end %>
+
+

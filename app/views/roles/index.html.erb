@@ -1,0 +1,50 @@
+<div class="block">
+  <div class="secondary-navigation">
+    <ul>
+      <li class="first active"><%= link_to 'List', roles_path %></li>
+      <li><%= link_to 'New', new_role_path %></li>
+    </ul>
+    <div class="clear"></div>
+  </div>          
+  <div class="content">          
+    <h2 class="title">All Roles</h2>
+    <div class="inner">
+      <table class="table">
+        <tr>             
+          <th class="first">ID</th>
+          <th>Name</th>
+          <th>Created at</th>
+          <th class="last">&nbsp;</th>
+        </tr>
+        <% @roles.each do |role| -%>
+        <tr>
+          <td>
+            <%= role.id %>
+          </td>
+          <td>
+            <%= link_to role.name, role_path(role) %>
+          </td>
+          <td>
+            <%= role.created_at %>
+          </td>
+          <td class="last">
+            <%= link_to 'show', role_path(role) %> |
+            <%= link_to 'edit', edit_role_path(role) %> |
+            <%= link_to 'destroy', role_path(role), :method => :delete, :confirm => 'Are you sure?' %>
+          </td>
+        </tr>          
+        <% end -%>
+      </table>
+      <div class="actions-bar">
+        <div class="actions">
+        </div>
+        
+        <%= will_paginate @role  %>
+        
+        <div class="clear"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<% content_for :sidebar, render(:partial => 'sidebar') -%>

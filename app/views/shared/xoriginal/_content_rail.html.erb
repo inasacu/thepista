@@ -1,0 +1,7 @@
+<div class="rail">
+<%= render :partial => '/shared/active_comment' if logged_in? %>
+	<%= render :partial => '/shared/active_help' unless logged_in? %>
+	<%#= render :partial => '/shared/search' if logged_in? %>
+	<%#= render :partial => '/shared/recent_activity' %>
+	<%#= render :partial => '/shared/top_active_users' %>
+</div>

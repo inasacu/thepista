@@ -1,0 +1,74 @@
+authlogic current_user nil
+
+With acl9 i use somethign like this: 
+def create 
+    @user_session = UserSession.new(params[:user_session]) 
+    if @user_session.save 
+      find_user_by_session_login 
+      if @user.has_role?(:disable) 
+        flash[:error] = I18n.t('user_session.error.disable') 
+        redirect_to logout_path 
+      else 
+        flash[:notice] = I18n.t('user_session.notice.login') 
+        redirect_back_or_default 
+      end 
+    else 
+      render :action => :new 
+    end 
+end 
+def find_user_by_session_login 
+    @user = User.find_by_login(@user_session.login) 
+end 
+
+
+routes.rb
+map.resource :account, :controller => "users"
+ map.resources :users
+ 
+ 
+topics_controller.rb
+  before_filter :require_user, :only => [:new, :edit, :create, :update]
+  
+ 
+ 
+ user.rb
+ attr_accessor 
+ 
+ 
+   acts_as_authentic do |c|
+    c.logged_in_timeout = CFG['logged_in_timeout']
+  end
+  
+ 
+ http://www.michaelhamrah.com/blog/index.php/2009/05/authlogic-and-openid-on-rails/
+class User < ActiveRecord::Base
+	acts_as_authentic do |c|
+		def attributes_to_save # :doc:
+		attrs_to_save = attributes.clone.delete_if do |k, v|
+		[ :persistence_token, :perishable_token, :single_access_token, :login_count,
+		:failed_login_count, :last_request_at, :current_login_at, :last_login_at, :current_login_ip, :last_login_ip, :created_at,
+		:updated_at, :lock_version].include?(k.to_sym)
+	end
+end
+
+
+
+class UsersController < ApplicationController
+  before_filter :require_no_user, :only => [:new, :create]
+  before_filter :require_user, :only => [:show, :edit, :update]
+  
+  
+    def create
+    @user = User.new(params[:user])
+    if @user.save
+      flash[:notice] = "Account registered!"
+      redirect_back_or_default account_url
+    else
+      render :action => :new
+    end
+  end
+  
+  
+  
+  
+  

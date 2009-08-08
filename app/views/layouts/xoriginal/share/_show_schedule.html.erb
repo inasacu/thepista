@@ -1,0 +1,75 @@
+<% if current_user.has_role?('member', group) %>
+
+<% upcoming_events = group.schedule_not_played %>
+<% previous_events = group.schedule_played %>
+<% upcoming_count = count_objects(upcoming_events) %>
+<% previous_count = count_objects(previous_events) %>
+
+<% unless (upcoming_events + previous_events) == 0 %>
+<div class="header withedit"><h2><%= t(:schedules) %></h2>
+  <div><%= nav_show(group.name, 'group', group.id) %></div>
+</div>
+<% end %>
+
+<% if upcoming_count > 0 %> 
+<div class="subheader clearfix">
+  <h3>
+    <div style="float: left;"><%= t(:has_group_schedules, :count => group.schedule_played.count) %></div>
+    <div style="float: right;"><div style="float: left;">&nbsp;</div>
+  </h3>
+</div>
+
+<div class="box clearfix">
+  <table class="info_table" border="0" cellspacing="0">
+    <caption><%= t(:has_group_schedules, :count => group.schedule_not_played.count) %></caption>
+    <tbody>
+      <% upcoming_events.each do |schedule| %>
+     
+   		<%= data_wrap(t(:schedule), nav_show(schedule.concept, 'schedule', schedule.id)) %> 
+        <%= data_wrap(t(:starts_at_match), nice_day_of_week(schedule.starts_at)) %>       
+        <%= data_wrap(t(:ends_at_match), nice_day_of_week(schedule.ends_at)) %>           
+        <%= data_wrap(t(:marker), nav_show(schedule.marker.name, 'marker', schedule.marker.id)) %> 
+        <%= data_wrap(t(:rosters) , list_objects(schedule.convocados)) unless schedule.convocados.empty? %>
+        <%= data_wrap(t(:last_minute) , list_objects(schedule.last_minute)) unless schedule.last_minute.empty? %>
+        <%= data_wrap(t(:no_shows) , list_objects(schedule.no_shows)) unless schedule.no_shows.empty? %>
+
+        <tr>
+          <td>&nbsp;</td>
+          <td><div class="divider" style="">&nbsp;</div></td>
+        </tr>
+      
+      <% end %>
+    </tbody>
+  </table>
+</div>
+<% end %>
+
+<% if previous_count > 0 %>
+<div class="subheader clearfix">
+  <h3>
+    <div style="float: left;"><%= t(:has_group_schedules, :count => group.schedule_played.count) %></div>
+    <div style="float: right;"><div style="float: left;">&nbsp;</div>
+  </h3>
+</div>
+
+<div class="box clearfix">
+  <table class="info_table" border="0" cellspacing="0">
+    <caption><%= t(:has_group_schedules, :count => group.schedule_played.count) %></caption>
+    <tbody>
+      <% previous_events.each do |schedule| %>      
+		<tr>
+		<td><div class="datawrap">
+				<%= nav_show(schedule.concept, 'schedule', schedule.id) %>:&nbsp;&nbsp;
+				<%= "#{schedule.group.name}     #{schedule.matches.first.group_score}  :  #{schedule.matches.first.invite_score}   " + 
+	        (schedule.is_invite? ? schedule.invite_group.name : schedule.group.second_team) %>
+		</div></td>
+		</tr>
+      
+      <% end %>
+    </tbody>
+  </table>
+</div>
+
+<% end %>
+
+<% end %>

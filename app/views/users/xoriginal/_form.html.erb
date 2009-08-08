@@ -1,0 +1,158 @@
+
+<%# if current_user_flag %>
+<!-- <li class="avatar clear">
+	<label for="user_avatar">
+		<%#= f.label t(:photo) %>		
+	</label>
+		<%#= f.file_field :photo %>
+		<span>
+			<%#= t(:photo_requirement) %>
+		</span>
+</li> -->
+<%# end %>
+	
+<li class="username">
+	<label for="entry-title"><%= :name %></label>
+	<%= f.text_field :name, :maxlength=> '32', :size=> '30', :class=> "textfield" %>
+</li>
+
+<% if current_user_flag %>
+<li class="username">
+	<label for="entry-title"><%= :description %></label>
+	<%= f.text_area :description, :cols => 40, :rows => 20, :class => 'textfield' %>		
+	<span>
+		<%= t :self_description_requirement %>
+	</span>
+</li>
+<% end %>
+
+<li class="username">
+	<label for="entry-title"><%= t :email %></label>
+	<%= f.text_field :email, :maxlength=> '32', :size=> '30', :class=> "textfield" %>
+	<span>
+		<%= t :visible_only_to_you_requirement %>
+	</span>	
+</li>
+
+<% if current_user_flag %>
+<li class="username">
+	<label for="entry-title"><%= t :dorsal %></label>
+	<%= f.text_field :dorsal, :maxlength=> '32', :size=> '30', :class=> "textfield" %>	
+	<span>
+		<%= t :dorsal_requirement %>
+	</span>
+</li>
+<% end %>
+
+<li class="username">
+	<label for="entry-title"><%= t :phone %></label>
+	<%= f.text_field :phone, :maxlength=> '32', :size=> '30', :class=> "textfield" %>
+	<span>
+		<%= t :phone_requirement %>
+	</span>
+</li>
+
+<% if current_user_flag %>
+<li class="username">
+	<label for="entry-title"><%= t :profile_position %></label>
+	<%= f.text_field :position, :maxlength=> '32', :size=> '30', :class=> "textfield" %>
+	<span>
+		<%= t :position_requirement %>
+	</span>
+</li>
+
+<li class="username">
+	<label for="entry-title"><%= t :profile_technical %></label>
+	<%= f.text_field :technical, :maxlength=> '5', :size=> '10', :class=> "textfield" %>	
+	<span>
+		<%= t :technical_level_requirement %>
+	</span>
+</li>
+
+<li class="username">
+	<label for="entry-title"><%= t :profile_physical %></label>
+	<%= f.text_field :physical,  :class=> "textfield" %>	
+	<span>
+		<%= t :physical_level_requirement %>
+	</span>
+</li>
+
+<li class="username">
+	<label for="user_username"><%= t :your_interest %></label>
+	<%= f.text_area  :interest, :cols => 40, :rows => 20, :class => 'textfield' %>		
+	<span>
+		<%= t :interest_requirement %>
+	</span>
+</li>
+
+<li class="inline">
+	<label for="user_gender"><%= t :gender %></label>
+	<select id="user_gender" name="user[gender]">
+	  <option value=""></option>
+	  <option value="M"><%= t :male %></option>
+	  <option value="F"><%= t :female %></option>
+	</select>
+</li>
+
+<li class="username">
+	<label for="user_username"><%= t :your_birthdate %></label>			
+		<%= date_select :user, :birth_at, :start_year => (Time.now.year.to_i - 70), :end_year => Time.now.year.to_i %>						
+	<span>
+		<%= t :birth_requirement %>
+	</span>
+</li>
+
+<li class="username">
+	<label for="entry-title"><%= t :default_available %></label>
+	<%= link_to(globalite_b(@user.default_available), :controller => "user", :action => "set_available", :id => @user.id) %>	
+	<span>
+		<%= t :available_requirement %>
+	</span>
+</li> 
+
+<li class="username">
+	<label for="entry-title"><%= t :message_notification %></label>
+	<%= link_to(globalite_b(@user.message_notification), :controller => "user", :action => "set_email", :id => @user.id) %>	
+	<span>
+		<%= t :message_notification_requirement %>
+	</span>
+</li>
+
+<li class="username">
+	<label for="entry-title"><%= t :private_phone %></label>
+	<%= link_to(globalite_b(@user.private_phone), :controller => "user", :action => "set_phone", :id => @user.id) %>	
+	<span>
+		<%= t :private_phone_requirement %>
+	</span>
+</li>
+
+<li class="username">
+	<label for="entry-title"><%= t :profile_private %></label>
+	<%= link_to(globalite_b(@user.private_profile), :controller => "user", :action => "set_profile", :id => @user.id) %>	
+	<span>
+		<%= t :private_option_requirement %>
+	</span>
+</li>
+<% end %>
+<li class="username">
+	<label for="entry-title"><%= t :t_zone %></label>
+	<%= f.time_zone_select :time_zone, ActiveSupport::TimeZone.us_zones %>
+	<span>
+		<%= t :time_zone_requirement %>
+	</span>
+</li>
+
+
+<% if current_user_flag and current_user.has_role?('maximo') %>
+<li class="username">
+	<label for="entry-title"><%= t :beta_code %></label>
+	<%= f.text_field :beta_code, :maxlength=> '50', :size=>'30', :class=>'inputtext' %>
+	<span>
+		<%= t :beta_code %>
+	</span>
+</li>
+<% end %>
+
+
+
+

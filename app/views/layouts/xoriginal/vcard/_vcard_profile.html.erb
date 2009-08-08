@@ -1,0 +1,13 @@
+<div id="vcard">
+	 <div id="vcard_photo">
+			<%= link_to image_tag(current_user.the_avatar), user_path(current_user) %>
+	 </div>   
+	
+	<%= render :partial => '/layouts/vcard/vcard_menu' %>
+	<%= render :partial => '/layouts/vcard/vcard_score' %>
+	
+	<div id="vcard_name"><p><%= user_link current_user %></p></div>
+		
+	<%= render :partial => '/layouts/vcard/vcard_notification' %>
+		
+</div>     <!-- end vcard-->

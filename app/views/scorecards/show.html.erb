@@ -1,0 +1,12 @@
+<% title "Scorecards" %>
+
+<p>
+  <strong>Name:</strong>
+  <%=h @scorecards.name %>
+</p>
+
+<p>
+  <%= link_to "Edit", edit_scorecards_path(@scorecards) %> |
+  <%= link_to "Destroy", @scorecards, :confirm => 'Are you sure?', :method => :delete %> |
+  <%= link_to "View All", scorecards_path %>
+</p>

@@ -1,0 +1,50 @@
+<% if flash[:notice] %>
+<div id="bd" class="clear">	
+	<div class="flash notice"><p><%= flash[:notice] %></p></div>	
+</div>
+<% end %>
+
+<% if flash[:message] %>
+<div id="bd" class="clear">	
+	<div class="flash message"><p><%= flash[:message] %></p></div>	
+</div>
+<% end %>
+
+<% if flash[:warning] %>
+<div id="bd" class="clear">	
+	<div class="flash warning"><p><%= flash[:warning] %></p></div>	
+</div>
+<% end %>
+
+<% if flash[:error] %>
+<div id="bd" class="clear">	
+	<div class="flash error"><p><%= flash[:error] %></p></div>	
+</div>
+<% end %>
+
+
+
+<!-- < if flash[:message] -%>
+<div id="welcome-message">
+	<p>
+		<strong>
+			Welcome to HayPista!
+		</strong>
+		Find people to play a sport with or a place where your friends can play at. Or
+		<a href="/site">
+			register now
+		</a>
+		to submit your own team here.
+	</p>
+</div>
+< end %>
+
+< if flash[:notice] -%>
+<div class="flash notice">
+	<p>
+		Mensaje de HayPista.
+	</p>
+</div>
+< end %> -->
+
+

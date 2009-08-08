@@ -1,0 +1,12 @@
+<% title "Markers" %>
+
+<p>
+  <strong>Name:</strong>
+  <%=h @markers.name %>
+</p>
+
+<p>
+  <%= link_to "Edit", edit_markers_path(@markers) %> |
+  <%= link_to "Destroy", @markers, :confirm => 'Are you sure?', :method => :delete %> |
+  <%= link_to "View All", markers_path %>
+</p>

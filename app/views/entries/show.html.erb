@@ -1,0 +1,12 @@
+<% title "Entries" %>
+
+<p>
+  <strong>Name:</strong>
+  <%=h @entries.name %>
+</p>
+
+<p>
+  <%= link_to "Edit", edit_entries_path(@entries) %> |
+  <%= link_to "Destroy", @entries, :confirm => 'Are you sure?', :method => :delete %> |
+  <%= link_to "View All", entries_path %>
+</p>

@@ -1,0 +1,133 @@
+# review peepcode-code-review.pdf
+# to access the configuration settings 
+# for the current environment with a simple lookup:
+
+# APP_CONFIG['flickr_api']['key']
+
+development: &non_production_settings
+    amazon_api:
+        key:    1Z36VBYX179XC52VJWR2
+        secret: XB/iiMMjSyZM+bjG+l/8HxrAzGEPylcWu05Zd7/W
+        
+        # key:                0697QGHEFH5XP3CBS1G2
+        # secret:             9VmgyGREmPAYxMrEGcjAzcajRSZrV3AaVsatRusk
+        salt:               b4d2438fda6abd1f165ffda8da6994c2a17a754ed413c416a21ba2b1c749c396364b600f119bdef224d9e8e80d33868b3d63f0f4a1fb6f5b46f9f6071dcb8115
+        port:               8888
+
+    flickr_api:
+        key:  
+
+    mailer:
+        address:            mail.haypista.com
+        port:               26
+        domain:             haypista.com
+        user_name:          support@haypista.com
+        password:           m9$@4_4_$9d@  
+        authentication:     plain
+
+    google_api:
+        key:                ABQIAAAACEstwoTkWwNQXJRd_oxlohQcuuUAALNd07C6qfGBYEYuSAyTnhR7YxsrQg3X4P7h718oyo40Ap6xiQ
+
+    id_selector:
+        key:                83abf7ddc4394233286c9210087dabf03b19a153
+
+    eventful_api:
+        key: SpWS33SH8TQBt5vN
+        user: raulpadilla
+        password: xxxxxxxxx
+   
+    facebook_api:
+        key:        3efeaac6005d43db4833eb0d279e0cd5
+        secret:     f38ffb563e602acb30526a57ebfdde21
+        
+    myspace_api:
+        key:        http://www.myspace.com/447648268
+        secret:     4386a09451af47e39ba9e6decd2df236
+    
+    rpx_api: 
+        key:   f7bbfeed95a9e71fe994397d496614da8972aa2c
+        realm: thepista-local
+        
+    windows_live_api:
+        key:    00000000440103DD
+        secret: YHStCmv8kwgRPNbPRWbR9ZqD8gGEsdw4
+         
+        # key:   f691e77bc974cf78eff72105e8bcf5d52f8ac227
+        # realm:  rpx-local
+
+test:
+    <<: *non_production_settings
+
+production:
+    amazon_api:
+        key:                0697QGHEFH5XP3CBS1G2
+        secret:             9VmgyGREmPAYxMrEGcjAzcajRSZrV3AaVsatRusk
+        salt:               b4d2438fda6abd1f165ffda8da6994c2a17a754ed413c416a21ba2b1c749c396364b600f119bdef224d9e8e80d33868b3d63f0f4a1fb6f5b46f9f6071dcb8115
+        port:               8888
+
+    flickr_api:
+        key:        
+
+
+    mailer:
+        address:            mail.haypista.com
+        port:               26
+        domain:             haypista.com
+        user_name:          support@haypista.com
+        password:           m9$@4_4_$9d@  
+        authentication:     plain
+
+    google_api:
+         # key:                ABQIAAAACEstwoTkWwNQXJRd_oxlohRJsBlthpMFqyH8uqiMijHv-RMFmBTkGqR7rVuhstoeKCeFz7pjFx3ieA             
+         # http://thepista.heroku.com/
+         key:                ABQIAAAACEstwoTkWwNQXJRd_oxlohSq-oAE0ua8qdLg2ooJ1gPBC3o68hSzsTAi3Ohp8MXoYZjPHRLMnqEGxw
+         
+
+    id_selector:
+        # This key is good for localhost:3000, signup for more at https://www.idselector.com/user/show_rp/424
+#        key:                4df3eddb4817e269496c50f999734d73ec2a2d06            # key for haypista.com
+        key:                03a4b26c05c47fb2806234cb3f3b91100e2aa667            key for zebra.haypista.com
+
+    eventful_api:
+        key: SpWS33SH8TQBt5vN
+        user: raulpadilla
+        password: xxxxx
+   
+    facebook_api:
+        key:        444c4a890b8b770dfe149bdd98981b0a
+        secret:     e6425a5b426fa550a57b027e4ffe2dd4
+        
+    myspace_api:
+        key:        http://www.myspace.com/447648268
+        secret:     4386a09451af47e39ba9e6decd2df236
+    
+    rpx_api: 
+        key:   59b7bd4a615a2c17439b6a4ca064a1d5f482944e
+        realm: thepista-heroku
+        
+    windows_live_api:
+        key:    00000000440103DE
+        secret: MHkNHhiifMRrwqwoaDSsh1PlQ9wVpWFq
+        
+        
+        
+        
+        # twitter details
+        # 
+        # twitter call back;
+        #        https://haypista.rpxnow.com/twitter/callback
+        
+        # #  Consumer key
+        # GJOLZyMIjjwJPzozcxTtAA
+        # # Consumer secret
+        # J6j907vz9xsA3ZLR4e8OEyVV1wpS45dqYDzcBS4yw
+        # # Request token URL
+        # http://twitter.com/oauth/request_token
+        # # Access token URL
+        # http://twitter.com/oauth/access_token
+        # # Authorize URL
+        # http://twitter.com/oauth/authorize
+        
+        
+
+    

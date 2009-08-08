@@ -1,0 +1,17 @@
+<% title "Forums" %>
+
+<table>
+  <tr>
+    <th>Name</th>
+  </tr>
+  <% for forums in @forums %>
+    <tr>
+      <td><%=h forums.name %></td>
+      <td><%= link_to "Show", forums %></td>
+      <td><%= link_to "Edit", edit_forums_path(forums) %></td>
+      <td><%= link_to "Destroy", forums, :confirm => 'Are you sure?', :method => :delete %></td>
+    </tr>
+  <% end %>
+</table>
+
+<p><%= link_to "New Forums", new_forums_path %></p>

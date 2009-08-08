@@ -1,0 +1,106 @@
+<% if logged_in? %>	
+
+<ul class="tabs-nav clear">	
+<% 
+	theController = controller.controller_name
+	theAction = controller.action_name
+	
+	controls = ['blogs', 'entries', 'comments'] 
+	actions = ['show','edit','third_party', 'recent_activity']
+
+    case theController     
+	when 'blogs', 'entries', 'comments' 
+		if @user %>	
+			<%= content_tag('li', link_to((@user == current_user ? t(:my_wall) : "#{t(:the_wall)} #{h(@user.name)}"), blog_path(@user.blog))) %>
+		    <%= content_tag('li', link_to(t(:recent_activities), :controller => 'users', :action => 'recent_activity')) %>		
+			<%= content_tag('li', user_link(t(:profile) , @user)) %>
+			<%= content_tag('li', link_to(t(:myopenid) , 
+							{:controller => 'users', :action => 'third_party', :id => @user.id})) if @user.can_modify?(current_user) and @user.openid_login %>
+		<% elsif @group %>
+			<% if current_user.is_member_of?(@group) %>
+			<%= content_tag('li', link_to("#{t(:the_wall)} #{h(@group.name)}", blog_path(@group.blog))) %>
+				<%= content_tag('li', group_link(@group)) %>
+		       	<%= content_tag('li', link_to(t(:users) , {:controller => 'groups', :action => 'team_list', :id => @group.id})) %>
+			<% end %>
+		<% end %>
+		
+<% when 'users'		
+		unless actions.include?(theAction) or controls.include?(theController) %>
+	        <%= content_tag('li', link_to(t(:my_user) , users_url)) %>
+		    <%#= content_tag('li', link_to(t(:users) , list_users_path)) %>
+			<%= content_tag('li', link_to("#{t(:the_wall)} #{h(current_user.name)}" , blog_path(current_user.blog))) %>
+			<%= content_tag('li', link_to(t(:recent_activities) , :controller => 'users', :action => 'recent_activity')) %>
+			
+	<% else %>
+		<%= content_tag('li', link_to((@user == current_user ? t(:my_wall) : "#{t(:the_wall)} #{h(@user.name)}"), blog_path(@user.blog))) %>
+	    <%= content_tag('li', link_to(t(:recent_activities), :controller => 'users', :action => 'recent_activity')) %>		
+		<%= content_tag('li', user_link(t(:profile) , @user)) %>
+		<%= content_tag('li', link_to(t(:myopenid) , 
+						{:controller => 'users', :action => 'third_party', :id => @user.id})) if @user.can_modify?(current_user) and @user.openid_login %>
+	<% end %>
+
+<% when 'groups' 	
+	unless is_action('show') or is_action('edit') or is_action('team list') %>
+        <%= content_tag('li', link_to(t(:my_group) , groups_url)) %>
+	    <%#= content_tag('li', link_to(t(:groups) , list_groups_path)) %>
+		<%= content_tag('li', link_to(t(:create_group) , new_group_url)) %>
+		
+<% else %>
+	<% if current_user.is_member_of?(@group) %>
+		<%= content_tag('li', link_to("#{t(:the_wall)} #{h(@group.name)}", blog_path(@group.blog))) %>
+		<%= content_tag('li', group_link(@group)) %>
+       	<%= content_tag('li', link_to(t(:users) , {:controller => 'groups', :action => 'team_list', :id => @group.id})) %>
+	<% end %>
+	
+<% end %>
+	
+<%  when 'schedules', 'matches', 'forums', 'topics', 'posts'
+	a = ['forums', 'topics', 'posts']
+		  unless is_action('show') or is_action('edit') or is_action('team roster') or is_action('team no show') or a.include?(theController) %>
+	        	<%= content_tag('li', link_to(t(:upcoming_schedule) , schedules_url)) %>					
+		        <%= content_tag('li', link_to(t(:previous_schedules) , list_schedules_path)) %>
+				<%= content_tag('li', link_to(t(:create_schedule) , new_schedule_url)) if current_user.is_manager? %>
+
+		<% else %>
+			<% if current_user.is_member_of?(@schedule.group) %>
+				<%= content_tag('li', schedule_link(@schedule)) %>
+				<%= content_tag('li', link_to("#{t(:forum)} #{@schedule.concept}", forum_path(@schedule.forum))) %>			
+			    <%= content_tag('li', link_to(t(:rosters) , 
+							:controller => 'schedules', :action => 'team_roster', :id => @schedule)) %>
+			    <%= content_tag('li', link_to(t(:no_shows) , 
+							:controller => 'schedules', :action => 'team_no_show', :id => @schedule)) unless @schedule.played? %>
+			<% end %>
+		<% end %>			
+			
+<%  when 'scorecards' %>
+        <%= content_tag('li', link_to(t(:my_scorecard) , '')) %>
+						
+<%  when 'announcements','classifieds', 'festivals', 'sports', 'types', 'roles', 'fees' %>
+        <%= content_tag('li', link_to(t("my_#{theController}"), '')) %>
+        <%= content_tag('li', link_to_controller_list(t("#{theController}"))) %>
+		<%= content_tag('li', link_to_new(T("create_#{theController}"))) %>
+
+<%  when 'invitations' %>
+        <%= content_tag('li', link_to_controller_action(t(:invitation))) %>
+		
+<% when 'payments' %>
+        <%= content_tag('li', link_to_controller(t(:my_debit))) %>
+        <%= content_tag('li', link_to_controller_action(t(:my_credit) , '')) %>
+        <%= content_tag('li', link_to_controller_list(t(:my_payment))) %>
+		<%= content_tag('li', link_to_new(t(:create_payment))) %>
+
+<%  when 'markers' %>		
+		<%= content_tag('li', link_to(t(:list_marker) , {:controller => 'markers', :action => 'show_list'})) if current_user.is_manager? %>		
+		<%= content_tag('li', link_to(t(:markers) , markers_url)) %>
+		<%= content_tag('li', link_to(t(:create_marker) , new_marker_url)) %>
+
+<%  when 'messages' %>
+		<%= list_link_with_active(t(:inbox) , messages_path) %>
+	  	<%= list_link_with_active(t(:sent_message) , sent_messages_path) %>
+	  	<%= list_link_with_active(t(:trash) , trash_messages_path) %>				
+		<%= content_tag('li', link_to(t(:create_message) , new_message_path)) %>
+				
+<%  end %>
+	
+</ul>
+<% end %>

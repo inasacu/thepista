@@ -1,0 +1,17 @@
+<% title "Markers" %>
+
+<table>
+  <tr>
+    <th>Name</th>
+  </tr>
+  <% for markers in @markers %>
+    <tr>
+      <td><%=h markers.name %></td>
+      <td><%= link_to "Show", markers %></td>
+      <td><%= link_to "Edit", edit_markers_path(markers) %></td>
+      <td><%= link_to "Destroy", markers, :confirm => 'Are you sure?', :method => :delete %></td>
+    </tr>
+  <% end %>
+</table>
+
+<p><%= link_to "New Markers", new_markers_path %></p>

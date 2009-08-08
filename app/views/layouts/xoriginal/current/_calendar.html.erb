@@ -1,0 +1,355 @@
+<%= stylesheet_link_tag 'editor', 'events', 'calendar/blue/style' %>
+<%= calendar_date_select_includes nil, :locale=> t(:calendar_language) %>
+
+<br/>
+<% @date = Time.now %>
+
+
+<div id="mini-calendar">
+<div class="calendars clearfix">
+<% previous_month = "<a href='#{@date.month-1}'  title = 'Previous Month'> #{image_tag('resultset_previous.png')}</a>"
+   next_month = "<a href='#{@date.month+1}' title = 'Next Month'> #{image_tag('resultset_next.png')}</a>"
+%>
+
+<%= calendar(:year => @date.year, :month => @date.month,  
+             :first_day_of_week => 1, 
+             :table_class => "calendar_helper", 
+             :previous_month_text => previous_month, 
+             :next_month_text => next_month)  do |d|
+    dayValue = "<a href='/calendars/#{d.year}/#{d.mon}/#{d.mday}' title = '#{d.year}/#{d.mon}/#{d.mday}'>#{d.mday}</a>"
+    if @listOfSpecialDays.include?(d)
+      dayValue
+        #[dayValue, {:class => "specialDay"}]        
+    #else
+        #[dayValue, {:class => "normalDay"}]
+    end    
+end
+%>
+
+</div>
+</div>
+<br/>
+
+
+<!--
+
+
+
+<div class="calendars clearfix">
+<= calendar({:year => @date.year, :month => @date.month, :first_day_of_week => 1, :month_name => 'calendarMonth', :table_class => 'calendar'}) do |d| 
+end %> 
+</div> 
+
+
+
+<div class="calendars clearfix">
+  <a href="/dashboard/2008/5"><= image_tag('resultset_previous.png') %></a>
+<a href="/dashboard/2008/7"><= image_tag('resultset_next.png') %></a>
+<= link_to_remote("Next", :icon => image_tag('resultset_previous.png'), :update => 'mini-calendar', :url => { :controller => "your_controller", :action => :nprev}) %>
+<= link_to_remote("Previous", :update => 'mini-calendar', :url => { :controller => "your_controller", :action => :nnext}) %>
+
+</div>
+<br/>
+
+
+
+<div id="mini-calendar">
+<div class="calendars clearfix">
+<= calendar(:year => @date.year, :month => @date.month, :table_class => "calendar_helper") do |d|
+  "<a href='/calendars/#{d.mday}/#{d.mon}/#{d.year}' title = '#{d.mday}/#{d.mon}/#{d.year}'>#{d.mday}</a>"
+  end 
+>
+
+</div>
+</div>
+<br/>
+
+
+
+cell_text, cell_attrs = block.call(cur)
+
+
+http://railsforum.com/viewtopic.php?id=94
+# first.upto(last) do |cur|
+#       cell_text, cell_attrs = block.call(cur)
+
+
+
+
+
+
+<div class="calendars clearfix">
+  < special_day = 2 %>
+<  calendar(:year => 2006, :month => 8, :class => 'special_day') { |d|
+      if d.mday % 2 == 0
+        [d.mday, {:class => 'special_day'}]
+      end
+    }
+   
+
+
+<div class="calendars clearfix">
+    < calendar({:year => @date.year, :month => @date.month}) do |d| 
+        cell_text = link_to ("#{d.mday}", :controller => "...then the rest of the code for the calendar.")
+      >
+   <= link_to "earlier", url_for (:overwrite_params => { :date => @date.last_month.strftime("%Y-%m")}) %>
+<= link_to "today", url_for (:overwrite_params => { :date => Date.today.strftime("%Y-%m")}) %>
+<= link_to "later", url_for (:overwrite_params => { :date => @date.next_month.strftime("%Y-%m")}) %>
+< end %>
+</div>
+<br/>
+
+
+    
+<div id="detail">
+<div style="margin-top: 5px; text-align: center;">
+  <table class="calendar" border="0" cellpadding="0" cellspacing="0">
+    <thead>
+      <tr class="monthName">
+        <th colspan="7">
+          <a href="/dashboard/2008/5">
+            <img alt="Resultset_previous" class="icon" src="../../images/resultset_previous.png?1217351749">
+          </a>
+          June 2008
+          <a href="/dashboard/2008/7">
+            <img alt="Resultset_next" class="icon" src="../../images/resultset_next.png?1217351749">
+          </a>
+        </th>
+      </tr>
+      <tr class="dayName">
+        <th>
+          Mon
+        </th>
+        <th>
+          Tue
+        </th>
+        <th>
+          Wed
+        </th>
+        <th>
+          Thu
+        </th>
+        <th>
+          Fri
+        </th>
+        <th>
+          Sat
+        </th>
+        <th>
+          Sun
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class="otherMonth">
+          26
+        </td>
+        <td class="otherMonth">
+          27
+        </td>
+        <td class="otherMonth">
+          28
+        </td>
+        <td class="otherMonth">
+          29
+        </td>
+        <td class="otherMonth">
+          30
+        </td>
+        <td class="otherMonth weekend">
+          31
+        </td>
+        <td class="day weekend">
+          1
+        </td>
+      </tr>
+      <tr>
+        <td class="day">
+          2
+        </td>
+        <td class="day">
+          3
+        </td>
+        <td class="day">
+          4
+        </td>
+        <td class="day">
+          5
+        </td>
+        <td class="day">
+          6
+        </td>
+        <td class="day weekend">
+          7
+        </td>
+        <td title="Minnesota" onmouseover="Element.update('day_detail', 'Jun 8
+                <br />
+                Minnesota | Agile Project Management')" class="day_with_event weekend">
+          8
+        </td>
+      </tr>
+      <tr>
+        <td title="Minnesota &amp; Colorado" onmouseover="Element.update('day_detail', 'Jun 9
+                <br />
+                Minnesota | Agile Project Management
+                <br />
+                Colorado | Test-Driven Development Rails Studio')" class="day_with_event">
+          9
+        </td>
+        <td title="Colorado &amp; Amsterdam" onmouseover="Element.update('day_detail', 'Jun 10
+                <br />
+                Colorado | Test-Driven Development Rails Studio
+                <br />
+                Amsterdam | Ruby en Rails')" class="day_with_event">
+          10
+        </td>
+        <td title="Colorado" onmouseover="Element.update('day_detail', 'Jun 11
+                <br />
+                Colorado | Test-Driven Development Rails Studio')" class="day_with_event">
+          11
+        </td>
+        <td title="Colorado" onmouseover="Element.update('day_detail', 'Jun 12
+                <br />
+                Colorado | Advanced Rails Studio')" class="day_with_event">
+          12
+        </td>
+        <td title="Colorado" onmouseover="Element.update('day_detail', 'Jun 13
+                <br />
+                Colorado | Advanced Rails Studio')" class="day_with_event">
+          13
+        </td>
+        <td title="Colorado" onmouseover="Element.update('day_detail', 'Jun 14
+                <br />
+                Colorado | Advanced Rails Studio')" class="day_with_event weekend">
+          14
+        </td>
+        <td class="day weekend">
+          15
+        </td>
+      </tr>
+      <tr>
+        <td title="Michigan" onmouseover="Element.update('day_detail', 'Jun 16
+                <br />
+                Michigan | Ruby Fundamentals')" class="day_with_event">
+          16
+        </td>
+        <td title="Michigan" onmouseover="Element.update('day_detail', 'Jun 17
+                <br />
+                Michigan | Ruby Fundamentals')" class="day_with_event">
+          17
+        </td>
+        <td title="Michigan" onmouseover="Element.update('day_detail', 'Jun 18
+                <br />
+                Michigan | Ruby Fundamentals')" class="day_with_event">
+          18
+        </td>
+        <td class="day">
+          19
+        </td>
+        <td title="Tokyo &amp; Sydney" onmouseover="Element.update('day_detail', 'Jun 20
+                <br />
+                Tokyo | RubyKaigi 2008
+                <br />
+                Sydney | Rails Camp 08')" class="day_with_event">
+          20
+        </td>
+        <td title="Tokyo &amp; Sydney" onmouseover="Element.update('day_detail', 'Jun 21
+                <br />
+                Tokyo | RubyKaigi 2008
+                <br />
+                Sydney | Rails Camp 08')" class="day_with_event weekend">
+          21
+        </td>
+        <td title="Tokyo &amp; Sydney" onmouseover="Element.update('day_detail', 'Jun 22
+                <br />
+                Tokyo | RubyKaigi 2008
+                <br />
+                Sydney | Rails Camp 08')" class="day_with_event weekend">
+          22
+        </td>
+      </tr>
+      <tr>
+        <td title="Sydney &amp; Michigan &amp; Michigan &amp; Colorado &amp; Michigan" onmouseover="Element.update('day_detail', 'Jun 23
+                <br />
+                Sydney | Rails Camp 08
+                <br />
+                Michigan | Ready for Rails Ruby Workshop
+                <br />
+                Michigan | Ruby on Rails Workshop
+                <br />
+                Colorado | Ruby on Rails TDD Bootcamp
+                <br />
+                Michigan | Sessions')" class="day_with_event">
+          23
+        </td>
+        <td title="Michigan &amp; Michigan &amp; Colorado &amp; Michigan" onmouseover="Element.update('day_detail', 'Jun 24
+                <br />
+                Michigan | Ready for Rails Ruby Workshop
+                <br />
+                Michigan | Ruby on Rails Workshop
+                <br />
+                Colorado | Ruby on Rails TDD Bootcamp
+                <br />
+                Michigan | Sessions')" class="day_with_event">
+          24
+        </td>
+        <td title="Michigan &amp; Colorado &amp; Michigan" onmouseover="Element.update('day_detail', 'Jun 25
+                <br />
+                Michigan | Ruby on Rails Workshop
+                <br />
+                Colorado | Ruby on Rails TDD Bootcamp
+                <br />
+                Michigan | Sessions')" class="day_with_event">
+          25
+        </td>
+        <td title="Michigan &amp; Colorado &amp; Michigan" onmouseover="Element.update('day_detail', 'Jun 26
+                <br />
+                Michigan | Ruby on Rails Workshop
+                <br />
+                Colorado | Ruby on Rails TDD Bootcamp
+                <br />
+                Michigan | Sessions')" class="day_with_event">
+          26
+        </td>
+        <td title="Michigan" onmouseover="Element.update('day_detail', 'Jun 27
+                <br />
+                Michigan | Ruby on Rails Workshop')" class="day_with_event">
+          27
+        </td>
+        <td class="day weekend">
+          28
+        </td>
+        <td class="day weekend">
+          29
+        </td>
+      </tr>
+      <tr>
+        <td class="day">
+          30
+        </td>
+        <td class="otherMonth">
+          1
+        </td>
+        <td class="otherMonth">
+          2
+        </td>
+        <td class="otherMonth">
+          3
+        </td>
+        <td class="otherMonth">
+          4
+        </td>
+        <td class="otherMonth weekend">
+          5
+        </td>
+        <td class="otherMonth weekend">
+          6
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div id="day_detail">
+</div>
+-->

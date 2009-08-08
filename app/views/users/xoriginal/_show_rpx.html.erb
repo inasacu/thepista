@@ -1,0 +1,66 @@
+<% if user.openid_login 
+	myOpenID = RPXNow.mappings(user.id, APP_CONFIG['rpx_api']['key'])
+%>
+
+<div class="header withedit"><h2><Your OpenIDs><%= t :your_openid  %></h2>
+	<div><%=RPXNow.popup_code("#{t(:add_openid)  }",APP_CONFIG['rpx_api']['realm'], rpx_token_sessions_url, :language=>'es')%>
+	</div>
+</div>
+
+<div class="subheader clearfix">
+	<h3>
+	<div style="float: left;">
+		<h2>
+			<% if myOpenID ength == 0 %>
+			<p><%= t :no_openid  %></p>
+			<% else %>
+			<p><%= t :yes_openid  %>:</p>
+			<% end %>
+		</h2></div>
+		<div style="float: right;"><div style="float: left;">&nbsp;</div>
+	</h3>
+</div>
+
+<div class="box clearfix">
+<table class="info_table" border="0" cellspacing="0">
+	<caption>&nbsp;</caption>
+	<tbody>
+
+		<% if ENV['RAILS_ENV'] == 'development' %> 
+		<tr>
+			<td class="label"><%= t :photo  %>:</td>
+			<td><div class="datawrap"><%=h @user.the_avatar %></div></td>
+		</tr>
+
+		<tr>
+			<td class="label"><%= t :email  %>:</td>
+			<td><div class="datawrap"><%=h @user.email %></div></td>
+		</tr>
+
+		<tr>
+			<td>&nbsp;</td>
+			<td><div class="divider" style="">&nbsp;</div></td>
+		</tr>
+		<% end %>
+
+		<% if myOpenID ength > 0 %>
+
+			<% myOpenID.each do |identifier| %>
+				<tr>
+				<td class="label"><%= t :myopenid  %></td>
+				<td><div class="datawrap">
+					<%= h identifier %>:&nbsp;&nbsp;
+					<%= link_to t(:destroy) , :controller => :rpx, :action => "remove_openid", :openid => identifier %></div></td>
+				</tr>
+			<% end %>
+			<tr>
+				<td>&nbsp;</td>
+				<td><div class="divider" style="">&nbsp;</div></td>
+			</tr>
+		<% end %>
+		</tbody>
+	</table>
+</div>
+<% end %>
+
+<!--<= render :partial => '/sessions/rpx_script' %>-->

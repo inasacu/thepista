@@ -1,0 +1,60 @@
+<%  unless schedules.empty? %>  
+	
+  <div id="partylist">
+
+  <div class="timeline">
+    <%= globalite_l("upcoming_#{thecontroller}") %>
+  </div>
+
+              
+  <div class="home_main_item clearfix">  
+    <div class="newsfeed_header clearfix">      
+      <div class="right_link">&nbsp;</div>
+    </div>
+  
+    <div id= "preference">            
+      <div class="one_liner_cluster clearfix"> 
+      
+        <%  theUrl, theIcon, theSport = "", "", "" %>
+      
+		<% schedules.each do |collection| 
+			theUrl = "#{collection.concept}"
+			theIcon = collection.sport.icon if !collection.sport.icon.nil?
+			theSport = "#{t :rosters }:  #{collection.convocados.count}" 
+		%>
+			
+          <div class="feed_date_header"><%= nice_day_of_week(collection.starts_at) %></div>
+          <div class="scoresleague_sm">&nbsp;</div>   
+          <div id="div_story" class="feed_item clearfix demote_off promote_off one_liner approve_friend">             
+            <div class="header_container clearfix" id="div_title">                
+              <h2 class="feed_story_header feedback_header">
+
+
+              	<%  if current_user.is_member_of?(collection.group)  %>               
+					<%= link_to image_tag(theIcon), :controller => 'schedules', :action => 'show', :id => collection %><%= view_spaces %>
+					<%= schedule_link collection %><%= "  -  #{group_link collection.group},   #{theSport}" %>
+						
+				<% else %>
+					<%= image_tag(theIcon) %><%= "  #{collection.concept}  -  #{group_link collection.group},   #{theSport}" %>
+					
+				<% end %>
+              </h2>
+            </div>             
+            <div class="header_container clearfix" id="div_title">                              
+              <% if (collection.starts_at != collection.starts_at.in_time_zone(Time.zone)) %>
+                <%= t(:your_schedule) %>&nbsp;<%= nice_day_of_week(collection.starts_at.in_time_zone(Time.zone)) %>              
+              <% end %>
+            </div>            
+          </div>
+      
+        <% end %>
+                                      
+      </div>
+    </div>               
+  </div>
+
+  <div class="bumper">&nbsp;</div>
+
+<% end %>
+
+

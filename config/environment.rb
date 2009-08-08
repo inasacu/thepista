@@ -19,7 +19,13 @@ Rails::Initializer.run do |config|
   # config.gem "hpricot", :version => '0.6', :source => "http://code.whytheluckystiff.net"
   # config.gem "sqlite3-ruby", :lib => "sqlite3"
   # config.gem "aws-s3", :lib => "aws/s3"
-
+  
+  config.gem "authlogic"
+  config.gem "will_paginate"
+  config.gem "authlogic-oid", :lib => "authlogic_openid"
+  config.gem "ruby-openid", :lib => "openid"
+  config.gem "be9-acl9", :source => "http://gems.github.com", :lib => "acl9"
+  
   # Only load the plugins named here, in the order given (default is alphabetical).
   # :all can be used as a placeholder for all plugins not explicitly named
   # config.plugins = [ :exception_notification, :ssl_requirement, :all ]
@@ -37,5 +43,63 @@ Rails::Initializer.run do |config|
 
   # The default locale is :en and all translations from config/locales/*.rb,yml are auto loaded.
   # config.i18n.load_path += Dir[Rails.root.join('my', 'locales', '*.{rb,yml}')]
-  # config.i18n.default_locale = :de
+  config.i18n.default_locale = :es
 end
+
+
+
+
+
+
+# this code from 
+# # http://gravityblast.com/
+# # a trick to show form error messages inside the auto generated forms, you can add the following lines in your environment.rb:
+# 
+# ActionView::Base.field_error_proc = Proc.new do |html_tag, instance| 
+#   if html_tag =~ /<label/
+#     %|<div class="fieldWithErrors">#{html_tag} <span class="error">#{[instance.error_message].join(', ')}</span></div>|
+#   else
+#     html_tag
+#   end
+# end
+
+
+################### original source
+# 
+# require 'solr_pagination'
+# 
+# 
+# # Can be 'object roles' or 'hardwired'
+# AUTHORIZATION_MIXIN = "object roles"
+# 
+# # The method your auth scheme uses to store the location to redirect back to
+# STORE_LOCATION_METHOD = :store_location
+# 
+# # global variables
+# # url to get users to signup
+# NEW_OPENID_URL = "https://www.myopenid.com/affiliate_signup?affiliate_id=1443"
+# CONTACT_RECIPIENT = 'support@haypista.com'
+# 
+# # Load custom config file for current environment
+# raw_config = File.read(RAILS_ROOT + "/config/config.yml")
+# APP_CONFIG = YAML.load(raw_config)[RAILS_ENV]
+# 
+# BASE_URL = 'https://rpxnow.com'
+# GRAVATAR_URL = 'http://en.gravatar.com/site/signup'
+# 
+# 
+# # Workaround to make ruby-openid work with Passenger, because these two don't always cooperate.
+# # http://groups.google.com/group/phusion-passenger/browse_thread/thread/30b8996f8a1b11f0/ba4cc76a5a08c37d? @@@ hl=en&lnk=gst&q=
+# OpenID::Util.logger = RAILS_DEFAULT_LOGGER
+# 
+# ExceptionNotifier.exception_recipients = %w(support@haypista.com)
+# 
+# 
+# config.action_mailer.delivery_method = :smtp
+# ActionMailer::Base.smtp_settings = {
+#   :address  => "smtp.someserver.net",
+#   :port  => 25,
+#   :user_name  => "someone@someserver.net",
+#   :password  => "mypass",
+#   :authentication  => :login
+# }

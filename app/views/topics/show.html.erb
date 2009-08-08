@@ -1,0 +1,12 @@
+<% title "Topics" %>
+
+<p>
+  <strong>Name:</strong>
+  <%=h @topics.name %>
+</p>
+
+<p>
+  <%= link_to "Edit", edit_topics_path(@topics) %> |
+  <%= link_to "Destroy", @topics, :confirm => 'Are you sure?', :method => :delete %> |
+  <%= link_to "View All", topics_path %>
+</p>

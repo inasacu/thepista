@@ -5,8 +5,8 @@
 # Make sure the secret is at least 30 characters and all random, 
 # no regular words or you'll be exposed to dictionary attacks.
 ActionController::Base.session = {
-  :key         => '_paperclip-demo_session',
-  :secret      => '6fd1d8fe9c8db91d1b5f56b3c7064c22c9aaa6da3f37dabf87966f88b7f1bc65f633fb48ac38d8b1fb010ecf389da1c90bde287efac3544799e77fb6088146e7'
+  :session_key => '_haypista_session_id',
+  :secret      => 'b4d2438fda6abd1f165ffda8da6994c2a17a754ed413c416a21ba2b1c749c396364b600f119bdef224d9e8e80d33868b3d63f0f4a1fb6f5b46f9f6071dcb8115'
 }
 
 # Use the database for sessions instead of the cookie-based default,

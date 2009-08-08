@@ -1,0 +1,64 @@
+<%= javascript_include_tag('jquery-1.3.1' ) %>
+
+<style type="text/css">
+	#status a{
+		float:right;
+		display:block;
+		list-style:none;
+		margin:0px;
+		padding:0px;
+		padding-right:8px;
+		font-size:10px;
+		color: lightgray;}
+	#status a:hover{
+		background:#5c75aa;
+	}
+	
+	.scorecard{
+		padding:2px;
+		font-size:11px;
+		color: darkblue;
+		text-align: right;
+	}
+
+</style>
+
+<table class="" border="0" cellpadding="0" cellspacing="2" width="100%">
+	<tbody>
+		<tr>
+			<td class="scorecard" align="left"><%= t(:select) %>:&nbsp;&nbsp;</td>
+			<td class="scorecard"><a rel="content" href="#select_all"><%= t(:check_all) %></a></td>
+			<td class="scorecard"><a rel="content" href="#select_none"><%= t(:check_none) %></a></td>
+			<td class="scorecard"><a rel="content" href="#invert_selection"><%= t(:check_invert) %></a></a></td>
+		</tr>
+	</tbody>
+</table>
+
+<script type="text/javascript">
+    $(document).ready( function() {
+       
+        // Select all
+        $("A[href='#select_all']").click( function() {
+            $("#" + $(this).attr('rel') + " INPUT[type='checkbox']").attr('checked', true);
+            return false;
+        });
+       
+        // Select none
+        $("A[href='#select_none']").click( function() {
+            $("#" + $(this).attr('rel') + " INPUT[type='checkbox']").attr('checked', false);
+            return false;
+        });
+       
+        // Invert selection
+        $("A[href='#invert_selection']").click( function() {
+            $("#" + $(this).attr('rel') + " INPUT[type='checkbox']").each( function() {
+                $(this).attr('checked', !$(this).attr('checked'));
+            });
+            return false;
+        }); 
+       
+    });
+</script><br/>
+
+	
+		

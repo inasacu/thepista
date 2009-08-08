@@ -1,0 +1,124 @@
+<% is_manager = @user.my_managers(current_user) %>
+
+<div id="partylist">
+	<br/>
+	<div class="partyrow">  
+		<table border="0" cellpadding="0" cellspacing="0" width="100%">
+			<tbody>
+				<tr>
+					<td class="tunaimage" width="100">
+					<%= link_to image_tag(@user.the_avatar, options={:style => "height: 75px; width: 75px;"}), user_path(@user) %>			    
+					</td>
+
+					<td class="info">
+						<table class="infotable" border="0" cellpadding="0" cellspacing="0" width="100%">
+							<tbody> 
+
+								<tr>
+									<td class="eventtitle" colspan="2">
+										<h3><%= h(@user.name) %></h3>
+
+										<div class="share_media" style="padding-top: 2px; color: gray;">
+											
+											<div class="owner_comment">
+												<span class="q"><%= h(@user.description) %></span>
+											</div>
+											
+										</div>
+									</td>
+								</tr>
+
+								<% if (@user.groups.count > 0) %>
+								<tr valign="top">
+									<td class="label"><%= t(:groups) %>:</td>
+									<td><%=  group_list(@user.groups) %></td>
+								</tr>
+								<% end %>
+
+								<tr valign="top">
+									<td class="label"><%= t :dorsal %>:</td>
+									<td><%= h(@user.dorsal) %></td>
+								</tr>
+
+								<tr valign="top">
+									<td class="label"><%= t :profile_position %>:</td>
+									<td><%= h(@user.position) %></td>
+								</tr>
+
+								<% unless @user.private_phone %>
+								<tr valign="top">
+									<td class="label"><%= t :phone %>:</td>
+									<td><%= h(@user.phone) %></td>
+								</tr>
+								<% end %>
+
+								<tr valign="top">
+									<td class="label"><%= t :default_available %>:</td>
+									<td><%= is_available @user %></td>
+								</tr>
+
+								<tr valign="top">
+									<td class="label"><%= t :default_email %>:</td>
+									<td><%= will_receive_email @user %></td>
+								</tr>
+
+								<tr valign="top">
+									<td class="label"><%= t :private_phone %>:</td>
+									<td><%= is_private_phone @user %></td>
+								</tr>
+
+								<tr valign="top">
+									<td class="label"><%= t :private_profile %>:</td>
+									<td><%= is_private_profile @user %></td>
+								</tr>	
+
+								<tr valign="top">
+									<td class="label"><%= t :show_openid %>:</td>
+									<td><%= show_openid @user %></td>
+								</tr>
+
+								<% unless @user.private_profile %>
+								<tr valign="top">
+									<td class="label"><%= t :profile_technical %>:</td>
+									<td><%= h(@user.technical) %></td>
+								</tr>
+
+								<tr valign="top">
+									<td class="label"><%= t :profile_physical %>:</td>
+									<td><%=h( @user.physical) %></td>
+								</tr>
+								<% end %>
+
+								<tr valign="top">
+									<td class="label"><%= t :gender %>:</td>
+									<td><%= @user.gender %></td>
+								</tr>
+
+								<tr valign="top">
+									<td class="label"><%= t :t_zone %>:</td>
+									<td><%= @user.time_zone %></td>
+								</tr>
+
+								<tr valign="top">
+									<td class="label"><%= t :user_last_login %>:</td>
+									<td><%= nice_day_of_week @user.last_logged_at %></td>
+								</tr>								 
+					
+							</tbody>
+						</table>
+					</td>
+
+			        <td class="actions" nowrap="nowrap">
+		        	<%= render :partial => '/layouts/share/general_action', :locals => {:collection => @user, :display_actions => true} %>
+					</td>
+						
+				</tr>              
+			</tbody>
+		</table>
+	</div>
+</div>
+
+<%= render :partial => '/users/petition', :locals => {:user => @user} %>
+
+
+

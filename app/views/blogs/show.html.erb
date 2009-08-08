@@ -1,0 +1,12 @@
+<% title "Blogs" %>
+
+<p>
+  <strong>Name:</strong>
+  <%=h @blogs.name %>
+</p>
+
+<p>
+  <%= link_to "Edit", edit_blogs_path(@blogs) %> |
+  <%= link_to "Destroy", @blogs, :confirm => 'Are you sure?', :method => :delete %> |
+  <%= link_to "View All", blogs_path %>
+</p>

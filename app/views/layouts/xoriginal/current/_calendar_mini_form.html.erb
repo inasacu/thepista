@@ -1,0 +1,59 @@
+<!-- https://projects.fslab.de/projects/cscl/browser/branches/0.5/app/views/timeorganizer_appointment/_calendar_mini_form.rhtml?rev=3151 -->
+
+<%= stylesheet_link_tag "timeorganizer" %>
+
+<script type="text/javascript">
+    function updateAppInfo(app_id,event) {        
+	    var topPixel = event.clientY - 120; 
+	    var leftPixel = event.clientX + 30; 
+		document.getElementById("app_info").style.top = topPixel + "px"; 
+		document.getElementById("app_info").style.left = leftPixel + "px"; 
+		document.getElementById("app_info").style.display = "block";      
+        var pars = '/timeorganizer_appointment/create_appointment_info/' + id;
+        var id =  app_id 
+        new Ajax.Updater(
+            'app_info',
+            '/timeorganizer_appointment/create_appointment_info/' + id,
+            {
+                method: 'GET',
+                parameters: pars
+             });       
+    }
+
+
+	function hideMouseOver() 
+	{ 
+        document.getElementById("app_info").innerHTML = ""; 
+		document.getElementById("app_info").style.top = "0px"; 
+		document.getElementById("app_info").style.left = "0px"; 
+	  	document.getElementById("app_info").style.display = "none"; 
+	}   
+</script>
+
+<div class="cal_smal">
+<% @year = Time.now.year
+   @month = Time.now.month
+%>
+
+<%= calendar({:year => @year, :month => @month, :first_day_of_week => 1, :month_name => 'calendarMonth', :table_class => 'calendar'}) do |d|
+  n = (link_to_remote( "#{d.mday}", {:url => {:action => 'new_in_calendar', :starts_at => d}, :update => 'appointment'},{ :title => ('new appointment') })  ).to_s + "<br>"  
+  cell_attrs = {:class => 'day'}
+  Schedule.find(:all).each do |e|
+    if e.starts_at.strftime("%Y-%m-%d") == d.to_s
+        n = (link_to_remote("#{d.mday}", {:url => {:action => 'show_appointment',:id => e}, :update => 'appointment'},{:onmouseover => "updateAppInfo(#{e.id},event)", :onmouseout=>'hideMouseOver()'})).to_s            
+        cell_attrs[:class] = 'normalDay'
+    end    
+  end
+  cell_text = n.to_s 
+  
+  
+  # generiert den Link der im Kalender steht als String.
+  
+  
+  
+  [cell_text, cell_attrs]
+end
+%>
+
+
+</div>

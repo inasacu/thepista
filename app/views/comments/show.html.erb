@@ -1,0 +1,12 @@
+<% title "Comments" %>
+
+<p>
+  <strong>Name:</strong>
+  <%=h @comments.name %>
+</p>
+
+<p>
+  <%= link_to "Edit", edit_comments_path(@comments) %> |
+  <%= link_to "Destroy", @comments, :confirm => 'Are you sure?', :method => :delete %> |
+  <%= link_to "View All", comments_path %>
+</p>

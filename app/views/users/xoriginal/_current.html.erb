@@ -1,0 +1,54 @@
+<% @users.each do |user| %>
+  <div id="partylist">          
+    <br/>
+    <div class="partyrow">  
+      <table border="0" cellpadding="0" cellspacing="0" width="100%">
+        <tbody>
+          <tr>
+            <td class="tunaimage" width="100">
+			<%= link_to(image_tag(user.the_avatar, options={:style => "height: 75px; width: 75px;"}), 
+						:controller => 'user', :action => 'show', :id => user.id) %>
+			</td>
+            
+            <td class="info">
+              <table class="infotable" border="0" cellpadding="0" cellspacing="0" width="100%">
+                <tbody>                      
+                  <tr>
+                    <td class="eventtitle" colspan="2">
+                      <h3><%= nav_show(user.name, 'user', user.id, 'etitle') %></h3>
+                    </td>
+                  </tr>
+                  
+                  <% if (user.groups.count > 0) %>
+                  <tr>
+                    <td class="label"><%= t(:groups) %>:</td>
+                    <td><%=  list_objects(user.groups) %></td>
+                  </tr>
+                  <% end %>
+
+                  <tr>
+                    <td class="label"><%= t :t_zone %>:</td>
+                    <td><%= user.time_zone %></td>
+                  </tr>
+
+                  <% if current_user.has_role?('maximo') %>
+                  <tr>
+                    <td class="label"><%= t :starts_at %>:</td>
+                    <td><%= nice_day_of_week(user.updated_at) %></td>
+                  </tr>
+                  <% end %>
+                      
+                </tbody>
+              </table>
+            </td>
+            
+            <%= render :partial => '/layouts/current/current_action', :locals => {:collection => user} %>
+       
+          </tr>              
+        </tbody>
+      </table>
+    </div>
+  </div> 
+<% end %>
+
+<!-- <= will_paginate @users %> -->

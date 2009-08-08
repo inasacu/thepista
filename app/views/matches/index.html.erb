@@ -1,0 +1,17 @@
+<% title "Matches" %>
+
+<table>
+  <tr>
+    <th>Name</th>
+  </tr>
+  <% for matches in @matches %>
+    <tr>
+      <td><%=h matches.name %></td>
+      <td><%= link_to "Show", matches %></td>
+      <td><%= link_to "Edit", edit_matches_path(matches) %></td>
+      <td><%= link_to "Destroy", matches, :confirm => 'Are you sure?', :method => :delete %></td>
+    </tr>
+  <% end %>
+</table>
+
+<p><%= link_to "New Matches", new_matches_path %></p>

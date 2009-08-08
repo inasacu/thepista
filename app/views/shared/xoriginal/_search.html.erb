@@ -1,0 +1,30 @@
+<style type="text/css">
+	#interests_form ul li { display: inline; }
+	#interests_form input.textfield { padding: 0.2em 0.3em; width: 244px; }
+	#interests_form ul li.submit { border: 0pt none ; margin: 0pt; padding: 0pt; }
+</style>
+
+<% search_by = "#{globalite_l("search_#{controller.controller_name}")}" %>
+
+<div id="search" style="">
+	<h3>
+		<br/>	
+		<% form_tag( { :action => 'search' }, { :method => 'get' } ) do %>
+		<div id="interests_form">
+			<ul>
+				<li>
+					<%= label_tag(:q, "#{search_by}:") %>  
+					<%= text_field_tag(:search, h(params[:search]), 
+									   :title => search_by, :class => 'textfield',
+									   :value => '', :onFocus => "this.select()") %>
+				</li>
+				<li class="submit">
+					<%= submit_tag t(:search), :name => nil %>
+				</li>
+			</ul>
+		</div>		
+		<% end -%>
+		
+		</h3>
+</div>
+

@@ -1,17 +1,15 @@
-<% form_for(@user, :html => { :multipart => true }) do |f| %>
-  <%= f.error_messages %>
+<div class="columns"> 
+	<div class="column left"> 
+		<%= render :partial => 'users/form_text_field', :locals => {:f => f} %>
+	</div>
+	<div class="column right"> 
+		<%= render :partial => 'users/form_check_field', :locals => {:f => f} %>		
+	</div>
+</div>	
 
-  <p>
-    <%= f.label :name %><br />
-    <%= f.text_field :name %>
-  </p>
-
-  <p>
-    <%= f.label 'Photo' %><br />
-    <%= f.file_field :photo %>
-  </p>
-    
-  <p>
-    <%= f.submit 'Create' %>
-  </p>
-<% end %>
+<div class="clear"></div> 
+        
+<div class="group navform">
+	<%= submit_tag @user.new_record? ? label_name(:create) : label_name(:edit), 
+			:class => "button" %> <%= I18n.t(:or) %> <%= link_to label_name(:cancel), users_path %>
+</div>

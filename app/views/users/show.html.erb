@@ -1,13 +1,168 @@
-<p>
-  <b>Name:</b>
-  <%=h @user.name %>
-</p>
+<div class="block">
 
-<% if @user.photo_file_name %>
-  <p><%= image_tag @user.photo.url %></p>
-<% else %>
-  <p>No photo for this user. <%= link_to 'Upload', edit_user_path(@user) %></p>
-<% end %>
+  <%= render :partial => 'shared/secondary_navigation' %>   
+  
+  <div class="content">
+    <div class="inner">
+		
+	<% if @user.photo_file_name %>
+	  <p><%= image_tag @user.photo.url %></p>
+	<% else %>
+	  <p>No photo for this user. <%= link_to 'Upload', edit_user_path(@user) %></p>
+	<% end %>
+	
+	<p>
+	  <b><%= label_name(:name) %>:</b>
+	  <%=h @user.name %>
+	</p>
 
-<%= link_to 'Edit', edit_user_path(@user) %> |
-<%= link_to 'Back', users_path %>
+	<p>
+	  <b><%= label_name(:language) %>:</b>
+	  <%=h @user.language %>
+	</p>
+
+	<% if @user.has_group? %>
+	<p>
+		<b><%= t(:groups) %>:</b>
+		<%=  group_list(@user.groups) %>
+	</p>
+	<% end %>
+
+	<p>
+	  <b><%= label_name(:time_zone) %>:</b>
+	  <%=h @user.time_zone %>
+	</p>
+
+	<p>
+	  <b><%= label_name(:phone) %>:</b>
+	  <%=h @user.phone %>
+	</p>
+
+	<p>
+	  <b><%= label_name(:default_email) %>:</b>
+	  <%=h @user.default_email %>
+	</p>
+
+	<p>
+	  <b><%= label_name(:default_available) %>:</b>
+	  <%=h @user.default_available %>
+	</p>
+
+	<p>
+	  <b><%= label_name(:position) %>:</b>
+	  <%=h @user.position %>
+	</p>
+
+	<p>
+	  <b><%= label_name(:dorsal) %>:</b>
+	  <%=h @user.dorsal %>
+	</p>
+
+	<p>
+	  <b><%= label_name(:technical) %>:</b>
+	  <%=h @user.technical %>
+	</p>
+
+	<p>
+	  <b><%= label_name(:physical) %>:</b>
+	  <%=h @user.physical %>
+	</p>
+
+	<p>
+	  <b><%= label_name(:private_phone) %>:</b>
+	  <%=h label_name(@user.private_phone) %>
+	</p>
+
+	<p>
+	  <b><%= label_name(:private_profile) %>:</b>
+	  <%=h label_name(@user.private_profile) %>
+	</p>
+
+	<p>
+	  <b><%= label_name(:description) %>:</b>
+	  <%=h @user.description %>
+	</p>
+
+	<p>
+	  <b><%= label_name(:gender) %>:</b>
+	  <%=h label_name(@user.gender) unless @user.gender.blank? %>
+	</p>
+
+	<p>
+	  <b><%= label_name(:birth_at) %>:</b>
+	  <%=h nice_day_of_week @user.birth_at %>
+	</p>
+
+
+	<p>
+	  <b><%= label_name(:last_login_at) %>:</b>
+	  <%=h nice_day_of_week @user.last_login_at %>
+	</p>
+
+
+	<!-- <p>
+	  <b><%#= label_name(:enable_comments) %>:</b>
+	  <%#=h @user.enable_comments %>
+	</p> -->
+
+
+	<!-- <p>
+	  <b><%#= label_name(:teammate_notification) %>:</b>
+	  <%#=h @user.teammate_notification %>
+	</p> -->
+
+	<!-- <p>
+	  <b><%#= label_name(:message_notification) %>:</b>
+	  <%#=h @user.message_notification %>
+	</p> -->
+
+	<!-- <p>
+	  <b><%#= label_name(:blog_comment_notification) %>:</b>
+	  <%#=h @user.blog_comment_notification %>
+	</p> -->
+
+	<!-- <p>
+	  <b><%#= label_name(:forum_comment_notification) %>:</b>
+	  <%#=h @user.forum_comment_notification %>
+	</p> -->
+
+	<p>
+	  <b><%= label_name(:login_count) %>:</b>
+	  <%=h @user.login_count %>
+	</p>
+
+	<p>
+	  <b><%= label_name(:last_request_at) %>:</b>
+	  <%=h nice_day_of_week @user.last_request_at %>
+	</p>
+
+	<p>
+	  <b><%= label_name(:last_login_at) %>:</b>
+	  <%=h nice_day_of_week @user.last_login_at %>
+	</p>
+
+	<p>
+	  <b><%= label_name(:current_login_at) %>:</b>
+	  <%=h nice_day_of_week @user.current_login_at %>
+	</p>
+
+	<p>
+	  <b><%= label_name(:last_login_ip) %>:</b>
+	  <%=h @user.last_login_ip %>
+	</p>
+
+	<p>
+	  <b><%= label_name(:current_login_ip) %>:</b>
+	  <%=h @user.current_login_ip %>
+	</p>
+		
+      <%= link_to label_name(:edit), edit_user_path(@user) %>
+	  <%#= render :partial => '/layouts/share/general_action', :locals => {:collection => @user, :display_actions => true} %>
+	  
+    </div>
+  </div>
+</div>
+
+<% content_for :sidebar, render(:partial => 'sidebar') -%>
+
+<%#= render :partial => '/users/petition', :locals => {:user => @user} %>

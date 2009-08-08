@@ -1,0 +1,17 @@
+<% title "Scorecards" %>
+
+<table>
+  <tr>
+    <th>Name</th>
+  </tr>
+  <% for scorecards in @scorecards %>
+    <tr>
+      <td><%=h scorecards.name %></td>
+      <td><%= link_to "Show", scorecards %></td>
+      <td><%= link_to "Edit", edit_scorecards_path(scorecards) %></td>
+      <td><%= link_to "Destroy", scorecards, :confirm => 'Are you sure?', :method => :delete %></td>
+    </tr>
+  <% end %>
+</table>
+
+<p><%= link_to "New Scorecards", new_scorecards_path %></p>

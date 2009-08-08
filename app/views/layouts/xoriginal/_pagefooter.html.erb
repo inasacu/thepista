@@ -1,0 +1,21 @@
+<div id="pagefooter" class="clearfix">
+
+  <div class="copyright">
+    <span title="">HayPista</span>
+    <span title=""> &copy;</span>
+    <span title=""><%= year_range(2007) %>.</span>
+    <span title=""></span>
+  </div>
+
+  <div class="f_links">
+    <ul class="footer_links" id="nav_unused_3">
+      <% if logged_in? %>
+        <li><%= link_to(t(:invite), :controller => 'invitation', :action => 'new') %></li>
+      <% end %>
+
+      <li><%= logged_in? ? link_to(t(:logout), site_logout_url, :method => :delete) :
+              link_to(t(:log_in), :controller => "site", :action => "index") %></li>
+    </ul>
+  </div>
+
+</div>

@@ -1,0 +1,12 @@
+<%  unless current_announcements.empty?  %>
+<div id="announcement">
+  <div style="display: block;" id="persistent_notification">
+    <div class="status">
+      <% for announcement in current_announcements %>
+        <h2><span id="status_title"><%=h announcement.message %></span></h2>
+      <% end %>
+      <%= link_to_remote "Hide this message", :url => "/javascripts/hide_announcement.js" %>
+    </div>
+  </div>
+</div>
+<% end %>

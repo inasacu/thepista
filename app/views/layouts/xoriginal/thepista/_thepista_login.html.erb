@@ -1,0 +1,27 @@
+<% unless @current_user %>
+	<div class="site">
+		<div id="shadow_box" class="standard_form">
+			<% form_tag session_path do -%>
+				<h1>
+					&nbsp;
+				</h1>
+				<label for="login">
+			<table id="login">
+			<tbody>
+				<tr>
+				<td>&nbsp;</td>
+				<td align="right">
+				<%=RPXNow.popup_code("#{t :sign_up } #{t :or } #{t :log_in }",APP_CONFIG['rpx_api']['realm'], rpx_token_sessions_url, :language=>'es') %>
+				</td>
+				</tr>				
+			</tbody>
+			</table>
+			<br>
+			</label>			
+			<label>&nbsp;</label>
+			<% end %>
+		</div>
+	</div>
+
+	<!--<= render :partial => '/sessions/rpx_script' %>-->
+<% end %>

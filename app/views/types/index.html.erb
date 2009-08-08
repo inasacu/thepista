@@ -1,0 +1,17 @@
+<% title "Types" %>
+
+<table>
+  <tr>
+    <th>Name</th>
+  </tr>
+  <% for types in @types %>
+    <tr>
+      <td><%=h types.name %></td>
+      <td><%= link_to "Show", types %></td>
+      <td><%= link_to "Edit", edit_types_path(types) %></td>
+      <td><%= link_to "Destroy", types, :confirm => 'Are you sure?', :method => :delete %></td>
+    </tr>
+  <% end %>
+</table>
+
+<p><%= link_to "New Types", new_types_path %></p>

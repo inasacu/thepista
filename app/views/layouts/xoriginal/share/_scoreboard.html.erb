@@ -1,0 +1,137 @@
+<style type="text/css">
+
+.leagueitemleft 
+{
+	width:30%;
+	vertical-align:top;
+	text-align:left;	
+	padding-left:10px;
+}
+
+.leagueheaderright  
+{
+	width:7%;
+	text-align:right;
+	font-weight:bold;
+}
+
+.leagueitemright 
+{
+	width:7%;
+	vertical-align:top;
+	text-align:right;
+}
+
+.leaguedisplayedteam
+{
+	/*background-color:#DDDDDD;*/
+	
+	width:30%;
+	text-align:left;
+	font-weight:bold;
+	padding-left:10px;
+	border-color: gray;	
+}
+
+.league_true
+{
+	background-color:#white;
+}
+
+.league_false
+{
+	background-color: #eeeeee;
+}
+</style>
+    
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+  <tbody> 
+    <tr>
+      <td class="leagueheaderright">&nbsp;</td>
+   <td class="leagueheaderright">&nbsp;</td>
+      <td class="leagueheaderright">&nbsp;</td>
+      <td class="leagueheaderright">&nbsp;</td>
+      <td class="leagueheaderright" title="<%= t(:points_full) %>"><%= t(:points) %></td>
+      <td class="leagueheaderright" title="<%= t(:games_played_full) %>"><%= t(:games_played) %></td>
+      <td class="leagueheaderright" title="<%= t(:games_won_full) %>"><%= t(:games_won) %></td>
+      <td class="leagueheaderright" title="<%= t(:games_tied_full) %>"><%= t(:games_tied) %></td>
+      <td class="leagueheaderright" title="<%= t(:games_lost_full) %>"><%= t(:games_lost) %></td>
+      <td class="leagueheaderright" title="<%= t(:percentage_full) %>"><%= t(:percentage) %></td>
+    </tr>
+        
+    <% first, user_id, swith = 0, 0, false
+    collection.each do |scorecard| 
+      
+      max_points = (scorecard.wins + scorecard.losses + scorecard.draws) * 3
+      coeficient = 0
+      coeficient = 100 *(scorecard.points.to_f/max_points.to_f) if (scorecard.played > 0)
+      
+    %>
+      <% if first != scorecard.group_id 
+        first = scorecard.group_id
+      %>
+<tr><td class="leagueheaderright">&nbsp;</td></tr>	
+	     
+        <tr class="leaguedisplayedteam"> 
+          <td class="leagueitemright">
+            <span id="">&nbsp;</span>
+          </td>   
+         
+          <td class="leagueheaderleft">                    
+            <%= nav_show(scorecard.group.name, 'group', scorecard.group_id) %>
+          </td>
+              
+          <td class="leagueheaderright">&nbsp;</td>
+          <td class="leagueheaderright">&nbsp;</td>
+          <td class="leagueitemright">&nbsp;</td>
+          <td class="leagueitemright">&nbsp;</td>
+          <td class="leagueitemright">&nbsp;</td>
+          <td class="leagueitemright">&nbsp;</td>
+          <td class="leagueitemright">&nbsp;</td>
+          <td class="leagueitemright">&nbsp;</td>
+          <td class="leagueitemright">&nbsp;</td>
+        </tr>
+       <tr>
+         <td class="leagueitemright">
+           <span id="">&nbsp;</span>
+         </td>
+       </tr>
+
+      <% end %>
+     	  
+  <% league = (swith = !swith and user_id != scorecard.user_id) %>
+  <tr class="league_<%= league %>">
+        <td class="leagueitemright">
+          <span id=""><%= scorecard.ranking %>&nbsp;&nbsp;</span>
+        </td>
+            
+        <td class="leagueitemleft">                    
+          <%= nav_show(scorecard.user.name, 'user', scorecard.user_id) %>
+        </td>
+            
+  <td class="leagueitemright">
+	<%= image_tag("table-arrow-bottom.gif") if (scorecard.ranking > scorecard.previous_ranking)  %>
+	<%= image_tag("table-arrow-top.gif") if (scorecard.ranking < scorecard.previous_ranking)  %>		
+	<%= image_tag("table-arrow-right.gif") if (scorecard.ranking == scorecard.previous_ranking)  %>
+  </td>	
+        <td class="leagueitemright">
+	<%= "-#{scorecard.ranking - scorecard.previous_ranking}" if (scorecard.ranking > scorecard.previous_ranking)  %>
+	<%= "+#{scorecard.previous_ranking - scorecard.ranking}" if (scorecard.ranking < scorecard.previous_ranking)  %>		
+	<%= "=" if (scorecard.ranking == scorecard.previous_ranking)  %>
+  </td>
+        <td class="leagueitemright"><%= scorecard.points %></td>
+        <td class="leagueitemright"><%= scorecard.played %></td>
+        <td class="leagueitemright"><%= scorecard.wins %></td>
+        <td class="leagueitemright"><%= scorecard.draws %></td>
+        <td class="leagueitemright"><%= scorecard.losses %></td>
+        <td class="leagueitemright"><%= sprintf( "%0.00f", coeficient) %><%= "%" %> </td>
+        <td class="leagueitemright">&nbsp;</td>
+      </tr>   
+
+     <% user_id = scorecard.user_id %>
+
+ <% end %>
+        
+  </tbody>
+</table>
+

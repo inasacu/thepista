@@ -1,0 +1,17 @@
+<% title "Entries" %>
+
+<table>
+  <tr>
+    <th>Name</th>
+  </tr>
+  <% for entries in @entries %>
+    <tr>
+      <td><%=h entries.name %></td>
+      <td><%= link_to "Show", entries %></td>
+      <td><%= link_to "Edit", edit_entries_path(entries) %></td>
+      <td><%= link_to "Destroy", entries, :confirm => 'Are you sure?', :method => :delete %></td>
+    </tr>
+  <% end %>
+</table>
+
+<p><%= link_to "New Entries", new_entries_path %></p>

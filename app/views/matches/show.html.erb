@@ -1,0 +1,12 @@
+<% title "Matches" %>
+
+<p>
+  <strong>Name:</strong>
+  <%=h @matches.name %>
+</p>
+
+<p>
+  <%= link_to "Edit", edit_matches_path(@matches) %> |
+  <%= link_to "Destroy", @matches, :confirm => 'Are you sure?', :method => :delete %> |
+  <%= link_to "View All", matches_path %>
+</p>

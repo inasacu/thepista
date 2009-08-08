@@ -1,0 +1,117 @@
+<% theController = get_the_controller 
+	display_actions ||= false
+%>
+  
+  <%  case theController
+      when 'invitation' %>
+        <%= nav_cancel(t(:destroy_invitation), 'invitation', collection.id) %>  
+
+  <%
+      when 'group' %>
+	
+        <% if current_user.is_member_of?(collection) %>
+          <%= link_to(t(:send_message_to_group), :controller => 'messages', :action => 'new', :group_id => collection.id) %> 
+          <%= link_to(t(:invitation_to_group) , :controller => 'invitation', :action => 'group', :id => collection.id) %>
+
+          <%= link_to(t(:leave_group), 
+						{:controller => 'teammate', :action => 'leave', :id => collection.id},
+            			:confirm => "#{t(:do_leave_group)} #{collection.name}?") if display_actions %>
+        <% else %>
+          <%= link_to(t(:join_group), {:controller => 'teammate', :action => 'join', :id => collection.id},
+            			:confirm => "#{t(:do_join_group)} #{collection.name}?") %>  
+        <% end %>
+
+        <% if current_user.is_manager_of?(collection) %> 
+			<%= link_to(t(:create_schedule), {:controller => 'schedules', :action => 'new', :id => collection.id})  %>                       
+          	<%= link_to(t(:edit_group), edit_group_path(collection))  if display_actions %>                  
+          	<%= nav_cancel(t(:destroy_group), 'groups', collection.id) if collection.has_schedule?(collection) if display_actions %>
+        <% end %>
+   
+
+  <%
+      when 'user' %>  
+			<% if collection.can_modify?(current_user) and display_actions %>
+		         <%= link_to(t(:edit_my_user), edit_user_path(collection)) %>	
+				<%= link_to(t(:get_your_gravatar), GRAVATAR_URL, :target => "_blank") if @user.missing_avatar %>
+			<% else %>
+			    <%= send_individual_email(collection.id) %>
+			<% end %>
+
+	<% current_user.groups.each do |group| %>
+
+		<% if collection.is_not_member_of?(group) and display_actions %> 
+	        <%= link_to("#{t(:add_to_group)} #{group.name}" , {:controller => 'teammate', :action => 'manage_join',
+           	:id => group.id, :teammate => collection.id},
+           	:confirm => "#{t(:manage_join_group)} #{collection.name} #{t(:to) } #{group.name}?") if current_user.is_manager_of?( group) %>
+
+		<% elsif current_user.is_manager_of?(group) and display_actions %> 
+					<%= link_to("#{t(:fire_from_group)} #{group.name}", {:controller => 'teammate', :action => 'fire', 
+						:id => group.id, :leave => collection.id},
+						:confirm => "#{t(:fire_from_group)} #{group.name} #{t(:to)} #{collection.name}?") %>
+
+				<% unless collection.is_sub_manager_of?(group) %>		
+					<%= link_to(t(:add_sub_manager) , {:controller => 'users', :action => 'set_sub_manager', 
+								:id => collection.id, :group => group.id},
+								:confirm => "#{t(:add_sub_manager)} #{t(:to) } #{collection.name} #{t(:to) } #{group.name}?")  %> 
+				<% else %>					
+					<%= link_to(t(:remove_sub_manager) , 
+							{:controller => 'users', :action => 'remove_sub_manager', :id => collection.id, :group => group.id}, 
+							:confirm => "#{t(:remove_sub_manager)} #{t(:to) } #{collection.name} #{t(:to) } #{group.name}?") if collection != current_user %>			
+				<% end %>
+
+				<% unless collection.is_subscriber_of?(group) %>
+					<%= link_to(t(:add_subscription), {:controller => 'users', :action => 'set_subscription', 
+						:id => collection.id, :group => group.id},
+						:confirm => "#{t(:add_subscription)} #{t(:to) } #{collection.name} #{t(:to) } #{group.name}?")  %> 	
+				<% else %>		
+					<%= link_to(t(:remove_subscription), {:controller => 'users', :action => 'remove_subscription', 
+						:id => collection.id, :group => group.id},
+						:confirm => "#{t(:remove_subscription) } #{t(:to) } #{collection.name} #{t(:to) } #{group.name}?")  %> 
+				<% end %>
+
+				<% unless collection.is_moderator_of?(group) %>
+					<%= link_to("#{t(:add_moderator)} #{group.name}" , {:controller => 'users', :action => 'set_moderator', 
+						:id => collection.id, :group => group.id},
+						:confirm => "#{t(:add_moderator)} #{t(:to) } #{collection.name} #{t(:to) } #{group.name}?")  %> 	
+				<% else %>		
+					<%= link_to("#{t(:remove_moderator)} #{group.name}" , {:controller => 'users', :action => 'remove_moderator', 
+						:id => collection.id, :group => group.id},
+						:confirm => "#{t(:remove_moderator)} #{t(:to) } #{collection.name} #{t(:to) } #{group.name}?")  %> 
+				<% end %>
+		<% end %>
+
+<% end %>
+		
+  <%
+      when 'schedule' %>  
+		<% if current_user.is_member_of?(collection.group)  and display_actions %> 
+			<%= link_to(t(:send_message_to_group), :controller => 'messages', :action => 'new', :group_id => collection.group.id) %>
+			<%= link_to(t(:invitation_to_schedule), :controller => 'invitation', 
+			:action => 'schedule', :id => collection.id) unless collection.ends_at < Time.now %>
+		<% end %>
+
+		<% if current_user.is_sub_manager_of?(collection.group) and display_actions %> 
+			<%= link_to(t(:send_pre_match), :controller => 'messages', :action => 'new', :schedule_id => collection.id) unless collection.played? %>
+		<% end %>
+
+		<% if current_user.is_manager_of?(collection.group) and display_actions %> 
+			<%= link_to(t(:create_schedule), {:controller => 'schedules', :action => 'new', :id => collection.id}) %>
+			<%= link_to(t(:edit_schedule), edit_schedule_path(collection)) %>                
+			<%= nav_cancel(t(:destroy_schedule), 'schedules', collection.id) if collection.not_played? %>
+			<%= link_to(t(:matches), edit_match_path(collection.id)) %>
+		<% end %>
+					
+  <%
+      when 'marker' %>                
+          <%= link_to(t(:edit_marker), edit_marker_path(collection)) if current_user.is_manager_of?(collection) %> 
+
+  <%
+      when 'fee' %>                    
+          <%= nav_edit(t(:edit_fee), 'fee', collection.id) %> 
+        <%= nav_cancel(t(:destroy_fee), 'fee', collection.id) %>    
+  <%
+      when 'payment' %>                  
+          <%= nav_edit(t(:edit_payment), 'payment', collection.id) %>
+        <%= nav_cancel(t(:destroy_payment), 'payment', collection.id) %>  
+
+  <% end %>

@@ -1,0 +1,12 @@
+<% title "Types" %>
+
+<p>
+  <strong>Name:</strong>
+  <%=h @types.name %>
+</p>
+
+<p>
+  <%= link_to "Edit", edit_types_path(@types) %> |
+  <%= link_to "Destroy", @types, :confirm => 'Are you sure?', :method => :delete %> |
+  <%= link_to "View All", types_path %>
+</p>

@@ -1,0 +1,17 @@
+<% title "Teammates" %>
+
+<table>
+  <tr>
+    <th>Name</th>
+  </tr>
+  <% for teammates in @teammates %>
+    <tr>
+      <td><%=h teammates.name %></td>
+      <td><%= link_to "Show", teammates %></td>
+      <td><%= link_to "Edit", edit_teammates_path(teammates) %></td>
+      <td><%= link_to "Destroy", teammates, :confirm => 'Are you sure?', :method => :delete %></td>
+    </tr>
+  <% end %>
+</table>
+
+<p><%= link_to "New Teammates", new_teammates_path %></p>

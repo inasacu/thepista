@@ -1,0 +1,12 @@
+<% title "Messages" %>
+
+<p>
+  <strong>Name:</strong>
+  <%=h @messages.name %>
+</p>
+
+<p>
+  <%= link_to "Edit", edit_messages_path(@messages) %> |
+  <%= link_to "Destroy", @messages, :confirm => 'Are you sure?', :method => :delete %> |
+  <%= link_to "View All", messages_path %>
+</p>

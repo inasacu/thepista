@@ -1,0 +1,12 @@
+<% title "Groups" %>
+
+<p>
+  <strong>Name:</strong>
+  <%=h @groups.name %>
+</p>
+
+<p>
+  <%= link_to "Edit", edit_groups_path(@groups) %> |
+  <%= link_to "Destroy", @groups, :confirm => 'Are you sure?', :method => :delete %> |
+  <%= link_to "View All", groups_path %>
+</p>

@@ -1,0 +1,108 @@
+
+<div class="header withedit"><h2><%= :description  %></h2>
+	<div><%= nav_edit(t :edit_user , 'user', @user.id) if current_user == @user %>&nbsp;</div>
+</div>
+
+<div class="box clearfix">
+<table class="info_table" border="0" cellspacing="0">              
+	<tbody>
+		<tr>
+			<td>
+				<table class="info_table" border="0" cellspacing="0">              
+					<tbody>
+			<%= data_wrap(t(:name) , @user.name) %>
+
+			<% if (@user.groups.count > 0) %>
+			<tr>
+				<td class="label"><%= :groups  %>:</td>
+				<td><%=  list_objects(@user.groups) %></td>
+			</tr>
+			<% end %>
+
+			<%= data_wrap(t :dorsal , @user.dorsal) %>
+
+			<%= data_wrap(t :profile_position , @user.position) %>
+
+			<%= data_wrap(t :phone , @user.phone) unless @user.private_phone %>
+
+			<tr>
+				<td class="label"><%= t :default_available  %>:</td>
+				<td><div class="datawrap">			
+					<% if current_user == @user or is_manager  %>
+					<%= link_to(globalite_b(@user.default_available), {:controller => "user", :action => "set_available", :id => @user.id},
+					:confirm => "#{ t :change_default_available } #{@user.name}?")  %>
+					<% else %>
+					<%= globalite_b(@user.default_available) %>
+					<% end %>                  
+				</div>
+			</td>
+		</tr>
+		<tr>
+			<td class="label"><%= t :default_email  %>:</td>
+			<td><div class="datawrap">
+				<% if current_user == @user or is_manager  %>
+				<%= link_to(globalite_b(@user.default_email), {:controller => "user", :action => "set_email", :id => @user.id},
+				:confirm => "#{t :change_default_email } #{@user.name}?")  %>
+				<% else %>
+				<%= globalite_b(@user.default_email) %>
+				<% end %>                  
+			</div>
+		</td>
+	</tr>
+	<tr>
+		<td class="label"><%= t :private_phone  %>:</td>
+		<td><div class="datawrap">
+			<% if current_user == @user or is_manager  %>
+			<%= link_to(globalite_b(@user.private_phone), {:controller => "user", :action => "set_phone", :id => @user.id},
+			:confirm => "#{t :change_private_phone } #{@user.name}?")  %>
+			<% else %>
+			<%= globalite_b(@user.default_email) %>
+			<% end %>                  
+		</div>
+	</td>
+</tr>
+<tr>
+	<td class="label"><%= t :private_profile  %>:</td>
+	<td><div class="datawrap">
+		<% if current_user == @user or is_manager  %>
+		<%= link_to(globalite_b(@user.private_profile), :controller => "user", :action => "set_profile", :id => @user.id) %>
+		<% else %>
+		<%= globalite_b(@user.default_email) %>
+		<% end %>                  
+	</div>
+</td>
+</tr>	
+<tr>
+	<td class="label"><%= t :show_openid  %>:</td>
+	<td><div class="datawrap">
+		<% if current_user == @user or is_manager  %>
+		<%= link_to(globalite_b(@user.openid_login), {:controller => "user", :action => "set_openid", :id => @user.id},
+		:confirm => "#{t :change_openid } #{@user.name}?")  %>
+		<% else %>
+		<%= globalite_b(@user.default_email) %>
+		<% end %>                  
+	</div>
+</td>
+</tr>
+
+<% unless @user.private_profile %>
+<%= data_wrap(:profile_technical , @user.technical) unless @user.private_profile %>
+<%= data_wrap(:profile_physical , @user.physical) unless @user.private_profile %>
+<% end %>
+
+
+</tbody>
+</table>
+
+</td>
+<td>
+	<div class="right">
+		<div class="picture"><%= image_tag(@user.the_avatar) %></div>
+	</div>
+	</td>
+	</tr>
+</tbody>
+</table> 
+
+
+</div>

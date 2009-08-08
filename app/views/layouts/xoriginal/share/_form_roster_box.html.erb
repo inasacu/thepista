@@ -1,0 +1,23 @@
+<% counter = 0 %>
+
+<tr class="text game">
+  <td class="label">&nbsp;</td>    
+  <td>    
+    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+      <tbody>
+          <% the_roster.each do |match| %>
+            <tr>
+              <td class="leagueheaderright"><%= counter += 1 %>.&nbsp;&nbsp;<%= nav_show("#{match.user_name}", 'user', match.user_id) %>  </td>
+              <td class="leagueheaderright"><%= nav_action(match.team_name(schedule), 'match', 'set_team', match.id, t(:change_group)) %></td>  
+              <td class="leagueheaderright"><%= nav_action(globalite_l(match.type_name), 'match', 'set_type', match.id) %></td>
+            </tr>
+          <% end %>
+      </tbody>
+    </table>    
+  </td>
+</tr>
+
+<tr>
+  <td>&nbsp;</td>
+  <td><div class="divider" style="">&nbsp;</div></td>
+</tr>

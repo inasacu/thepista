@@ -1,0 +1,19 @@
+<div class="home_main_item clearfix">
+  <div class="newsfeed_header clearfix">
+    <h2><%= t(:news) %></h2>
+    <div class="right_link"><a href=""><%= t(:preference) %></a></div>
+  </div>
+  <div id= "preference">            
+    <div class="one_liner_cluster clearfix">              
+      <div id="div_story" class="feed_item clearfix demote_off promote_off one_liner approve_friend">
+        <div class="feed_icon clearfix"><%= nav_show(image_tag('players.gif'), 'user', current_user.id) %></div>
+        <div class="feed_story_wrapper clearfix">
+          <div class="header_container clearfix" id="div_title">
+            <h2 class="feed_story_header feedback_header">
+              <%= nav_show(current_user.name, 'user', current_user.id) %>&nbsp;&nbsp;<%= t(:simple_note) %></h2>
+          </div>
+        </div>                
+      </div>
+    </div>
+  </div>
+</div>
