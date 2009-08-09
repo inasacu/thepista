@@ -1,18 +1,18 @@
 class TeammatesController < ApplicationController
   def index
-    @teammates = Teammates.all
+    @teammates = Teammate.paginate(:per_page => 10, :page => params[:page])
   end
   
   def show
-    @teammates = Teammates.find(params[:id])
+    @teammates = Teammate.find(params[:id])
   end
   
   def new
-    @teammates = Teammates.new
+    @teammates = Teammate.new
   end
   
   def create
-    @teammates = Teammates.new(params[:teammates])
+    @teammates = Teammate.new(params[:teammates])
     if @teammates.save
       flash[:notice] = "Successfully created teammates."
       redirect_to @teammates
@@ -22,11 +22,11 @@ class TeammatesController < ApplicationController
   end
   
   def edit
-    @teammates = Teammates.find(params[:id])
+    @teammates = Teammate.find(params[:id])
   end
   
   def update
-    @teammates = Teammates.find(params[:id])
+    @teammates = Teammate.find(params[:id])
     if @teammates.update_attributes(params[:teammates])
       flash[:notice] = "Successfully updated teammates."
       redirect_to @teammates
@@ -36,9 +36,10 @@ class TeammatesController < ApplicationController
   end
   
   def destroy
-    @teammates = Teammates.find(params[:id])
+    @teammates = Teammate.find(params[:id])
     @teammates.destroy
     flash[:notice] = "Successfully destroyed teammates."
     redirect_to teammates_url
   end
 end
+

@@ -1,18 +1,18 @@
 class ScorecardsController < ApplicationController
   def index
-    @scorecards = Scorecards.all
+    @scorecards = Scorecard.paginate(:per_page => 10, :page => params[:page])
   end
   
   def show
-    @scorecards = Scorecards.find(params[:id])
+    @scorecards = Scorecard.find(params[:id])
   end
   
   def new
-    @scorecards = Scorecards.new
+    @scorecards = Scorecard.new
   end
   
   def create
-    @scorecards = Scorecards.new(params[:scorecards])
+    @scorecards = Scorecard.new(params[:scorecards])
     if @scorecards.save
       flash[:notice] = "Successfully created scorecards."
       redirect_to @scorecards
@@ -22,11 +22,11 @@ class ScorecardsController < ApplicationController
   end
   
   def edit
-    @scorecards = Scorecards.find(params[:id])
+    @scorecards = Scorecard.find(params[:id])
   end
   
   def update
-    @scorecards = Scorecards.find(params[:id])
+    @scorecards = Scorecard.find(params[:id])
     if @scorecards.update_attributes(params[:scorecards])
       flash[:notice] = "Successfully updated scorecards."
       redirect_to @scorecards
@@ -36,9 +36,10 @@ class ScorecardsController < ApplicationController
   end
   
   def destroy
-    @scorecards = Scorecards.find(params[:id])
+    @scorecards = Scorecard.find(params[:id])
     @scorecards.destroy
     flash[:notice] = "Successfully destroyed scorecards."
     redirect_to scorecards_url
   end
 end
+

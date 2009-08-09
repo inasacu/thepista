@@ -1,5 +1,19 @@
-<% title "New Comments" %>
+<div class="block">
+  <div class="secondary-navigation">
+    <ul>
+      <li class="first"><%= link_to 'List', comments_path  %></li>
+      <li class="active"><%= link_to 'New', new_comment_path %></li>
+    </ul>
+    <div class="clear"></div>
+  </div>          
+  <div class="content">            
+    <h2 class="title">New Comment</h2>
+    <div class="inner">
+      <% form_for :comment, :url => comments_path, :html => { :class => :form } do |f| -%>
+        <%= render :partial => "form", :locals => {:f => f} %>
+      <% end -%>
+    </div>
+  </div>
+</div>
 
-<%= render :partial => 'form' %>
-
-<p><%= link_to "Back to List", comments_path %></p>
+<% content_for :sidebar, render(:partial => 'sidebar') -%>

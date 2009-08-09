@@ -1,12 +1,47 @@
-<% title "Entries" %>
+<div class="block">
+  <div class="secondary-navigation">
+    <ul>
+      <li class="first"><%= link_to 'List', entries_path  %></li>
+      <li><%= link_to 'New', new_entry_path %></li>
+      <li class="active"><%= link_to 'Show', entry_path %></li>
+    </ul>
+    <div class="clear"></div>
+  </div>          
+  <div class="content">
+    <div class="inner">
+      
+        <p>
+          <b>Blog_id:</b>
+          <%= @entry.blog_id %>
+        </p>
 
-<p>
-  <strong>Name:</strong>
-  <%=h @entries.name %>
-</p>
+        <p>
+          <b>User_id:</b>
+          <%= @entry.user_id %>
+        </p>
 
-<p>
-  <%= link_to "Edit", edit_entries_path(@entries) %> |
-  <%= link_to "Destroy", @entries, :confirm => 'Are you sure?', :method => :delete %> |
-  <%= link_to "View All", entries_path %>
-</p>
+        <p>
+          <b>Group_id:</b>
+          <%= @entry.group_id %>
+        </p>
+
+        <p>
+          <b>Title:</b>
+          <%= @entry.title %>
+        </p>
+
+        <p>
+          <b>Body:</b>
+          <%= @entry.body %>
+        </p>
+
+        <p>
+          <b>Comments_count:</b>
+          <%= @entry.comments_count %>
+        </p>
+      <%= link_to 'Edit', edit_entry_path(@entry) %>
+    </div>
+  </div>
+</div>
+
+<% content_for :sidebar, render(:partial => 'sidebar') -%>

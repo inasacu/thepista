@@ -1,8 +1,9 @@
 class CreateRoles < ActiveRecord::Migration
   def self.up
     create_table :roles_users, :id => false, :force => true  do |t|
-      t.integer   :user_id
-      t.integer   :role_id
+      t.integer     :user_id
+      t.integer     :role_id
+      t.datetime    :deleted_at
       t.timestamps
     end
 
@@ -10,9 +11,9 @@ class CreateRoles < ActiveRecord::Migration
       t.string    :name,                :limit => 40
       t.string    :authorizable_type,   :limit => 40
       t.integer   :authorizable_id
+      t.datetime  :deleted_at
       t.timestamps
     end
-    
     
     # insert into roles (id, name) values (7440, 'maximo')
     # insert into roles_users (user_id, role_id) values(2901, 7440)

@@ -1,18 +1,18 @@
 class MarkersController < ApplicationController
   def index
-    @markers = Markers.all
+    @markers = Marker.paginate(:per_page => 10, :page => params[:page])
   end
   
   def show
-    @markers = Markers.find(params[:id])
+    @markers = Marker.find(params[:id])
   end
   
   def new
-    @markers = Markers.new
+    @markers = Marker.new
   end
   
   def create
-    @markers = Markers.new(params[:markers])
+    @markers = Marker.new(params[:markers])
     if @markers.save
       flash[:notice] = "Successfully created markers."
       redirect_to @markers
@@ -22,11 +22,11 @@ class MarkersController < ApplicationController
   end
   
   def edit
-    @markers = Markers.find(params[:id])
+    @markers = Marker.find(params[:id])
   end
   
   def update
-    @markers = Markers.find(params[:id])
+    @markers = Marker.find(params[:id])
     if @markers.update_attributes(params[:markers])
       flash[:notice] = "Successfully updated markers."
       redirect_to @markers
@@ -36,7 +36,7 @@ class MarkersController < ApplicationController
   end
   
   def destroy
-    @markers = Markers.find(params[:id])
+    @markers = Marker.find(params[:id])
     @markers.destroy
     flash[:notice] = "Successfully destroyed markers."
     redirect_to markers_url

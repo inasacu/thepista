@@ -1,6 +1,6 @@
 <div class="block">
 
-  <%= render :partial => 'shared/secondary_navigation' %>   
+  <%= render :partial => 'secondary_navigation' %>   
   
   <div class="content">
     <div class="inner">
@@ -8,7 +8,7 @@
 	<% if @user.photo_file_name %>
 	  <p><%= image_tag @user.photo.url %></p>
 	<% else %>
-	  <p>No photo for this user. <%= link_to 'Upload', edit_user_path(@user) %></p>
+	  <p><%= label_name(:no_photo_for, get_the_controller) %>. <%= link_to label_name(:upload), edit_user_path(@user) %></p>
 	<% end %>
 	
 	<p>
@@ -156,7 +156,7 @@
 	  <%=h @user.current_login_ip %>
 	</p>
 		
-      <%= link_to label_name(:edit), edit_user_path(@user) %>
+      <%#= link_to label_name(:edit), edit_user_path(@user) %>
 	  <%#= render :partial => '/layouts/share/general_action', :locals => {:collection => @user, :display_actions => true} %>
 	  
     </div>

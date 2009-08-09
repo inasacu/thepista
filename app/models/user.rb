@@ -1,10 +1,4 @@
 class User < ActiveRecord::Base
-  
-  # be9 / acl9 
-  # Description:        Yet another role-based authorization system for Rails  edit
-  # Public Clone URL:   git://github.com/be9/acl9.git  
-  acts_as_authorization_object
-  
   acts_as_authentic do |c|    
     c.openid_required_fields = [:nickname, :email]
 
@@ -12,6 +6,9 @@ class User < ActiveRecord::Base
     validate_login_field :false    
   end
 
+  acts_as_solr :fields => [:name, :time_zone, :position] if use_solr?
+  #   acts_as_solr :if => proc{|record| record.is_active?} if use_solr?
+  
   has_attached_file :photo,
   :styles => {
     :thumb  => "80x80#",
@@ -30,16 +27,15 @@ class User < ActiveRecord::Base
     end
 
     def thumbnail
-      "default_avatar.jpg"
+      self.photo.url
     end
 
     def icon
-      "default_avatar.jpg"
+      self.photo.url
     end 
 
     def has_group?
-      #self.groups.count > 0
-      false
+      self.groups.count > 0
     end
 
 
@@ -56,8 +52,7 @@ class User < ActiveRecord::Base
     #   acts_as_authorizable
     #   acts_as_paranoid
     #   
-    #   # acts_as_solr :fields => [:name, :time_zone, :position], 
-    #   acts_as_solr :if => proc{|record| record.is_active?} if use_solr?
+
     #   
     #   include ActivityLogger
     #   include Authentication
@@ -100,7 +95,7 @@ class User < ActiveRecord::Base
     #   attr_accessible :birth_at, :interest, :gender, :description
     #   attr_accessible :openid_login, :provider
     # 
-    #   belongs_to  :identity_user, :class_name => 'User', :foreign_key => 'rpxnow_id'
+      belongs_to  :identity_user, :class_name => 'User', :foreign_key => 'rpxnow_id'
     # 
     #   # Paperclip
     #   # if production?
@@ -129,49 +124,53 @@ class User < ActiveRecord::Base
     #   
     #   attr_accessible :photo
     #   
-    #   has_and_belongs_to_many   :groups,         :join_table => "groups_users" , :order => "name"
-    #     
-    #   has_many    :addresses
-    #   has_many    :accounts
-    #   has_many    :payments
-    # 
-    #   has_many    :scorecards, :conditions => "user_id > 0 and played > 0 and archive = false", :order => "group_id"
-    # 
-    #   has_many    :fees
-    #   has_many    :invitations
-    #   has_many    :messages
-    #   has_many    :matches
-    # 
-    #   has_many    :teammates
-    #   has_many    :managers,
-    #     :through =>     :teammates,
-    #     :conditions =>  "teammates.status = 'accepted'",
-    #     :order =>       :name
-    # 
-    #   has_many    :requested_managers,
-    #     :through =>     :teammates,
-    #     :source =>      :manager,
-    #     :conditions =>  "teammates.status = 'requested'",
-    #     :order =>       "teammates.created_at"
-    #   
-    #   has_many    :pending_managers,
-    #     :through =>     :teammates,
-    #     :source =>      :manager,
-    #     :conditions =>  "teammates.status = 'pending'",
-    #     :order =>       "teammates.created_at"
-    #   
-    #   has_many    :pending_teams,
-    #     :through =>     :teammates,
-    #     :source =>      :group,
-    #     :conditions =>  "teammates.status = 'pending'",
-    #     :order =>       "teammates.created_at"
-    #   
-    #   with_options :class_name => "Message", :dependent => :destroy, :order => "created_at DESC" do |user|
-    #     user.has_many :_sent_messages, :foreign_key => "sender_id", :conditions => "sender_deleted_at IS NULL"
-    #     user.has_many :_received_messages, :foreign_key => "recipient_id", :conditions => "recipient_deleted_at IS NULL"
-    #   end         
-    #   
-    #   has_one     :blog  
+      has_and_belongs_to_many   :groups,         :join_table => "groups_users" , :order => "name"
+        
+      has_many    :addresses
+      has_many    :accounts
+      has_many    :payments
+    
+      has_many    :scorecards, :conditions => "user_id > 0 and played > 0 and archive = false", :order => "group_id"
+    
+      has_many    :fees
+      has_many    :invitations
+      has_many    :messages
+      has_many    :matches
+    
+      has_many    :teammates
+      has_many    :managers,
+        :through =>     :teammates,
+        :conditions =>  "teammates.status = 'accepted'",
+        :order =>       :name
+    
+      has_many    :requested_managers,
+        :through =>     :teammates,
+        :source =>      :manager,
+        :conditions =>  "teammates.status = 'requested'",
+        :order =>       "teammates.created_at"
+      
+      has_many    :pending_managers,
+        :through =>     :teammates,
+        :source =>      :manager,
+        :conditions =>  "teammates.status = 'pending'",
+        :order =>       "teammates.created_at"
+      
+      has_many    :pending_teams,
+        :through =>     :teammates,
+        :source =>      :group,
+        :conditions =>  "teammates.status = 'pending'",
+        :order =>       "teammates.created_at"
+      
+      with_options :class_name => "Message", :dependent => :destroy, :order => "created_at DESC" do |user|
+        user.has_many :_sent_messages, :foreign_key => "sender_id", :conditions => "sender_deleted_at IS NULL"
+        user.has_many :_received_messages, :foreign_key => "recipient_id", :conditions => "recipient_deleted_at IS NULL"
+      end         
+      
+      has_one     :blog  
+      
+      
+    after_update    :create_user_blog_details
+    
     #   has_many    :feeds
     #   
     #   has_many    :activities,
@@ -226,25 +225,25 @@ class User < ActiveRecord::Base
     #   def missing_avatar
     #     self.default_avatar.blank? or self.default_avatar == "default_avatar.jpg"
     #   end
-    #   
-    #   def my_groups
-    #     @my_groups = []
-    #     self.groups.each { |group| @my_groups << group.id }
-    #     return @my_groups
-    #   end
-    #   
-    #   def my_managers(user)
-    #     is_manager = false
-    #     self.groups.each{ |group| is_manager = user.is_manager_of?(group) } 
-    #     return is_manager
-    #   end
-    # 
-    #   def my_users
-    #     @my_users = []
-    #     self.groups.each do |group| ; group.users.each { |user| @my_users << user.id unless @my_users.include?(user.id) } ; end
-    #     return @my_users
-    #   end
-    #   
+      
+      def my_groups
+        @my_groups = []
+        self.groups.each { |group| @my_groups << group.id }
+        return @my_groups
+      end
+      
+      def my_managers(user)
+        is_manager = false
+        self.groups.each{ |group| is_manager = user.is_manager_of?(group) } 
+        return is_manager
+      end
+    
+      def my_users
+        @my_users = []
+        self.groups.each do |group| ; group.users.each { |user| @my_users << user.id unless @my_users.include?(user.id) } ; end
+        return @my_users
+      end
+      
     #   def self.previous(user, groups)
     #       find_by_sql(["select max(user_id) as id from groups_users where user_id < ? and group_id in (?)", user.id, groups])
     #   end 
@@ -256,41 +255,40 @@ class User < ActiveRecord::Base
     #   def admin?
     #     false
     #   end
-    #      
-    #   ## methods for acts_as_authorizable    
-    #   def my_members?(user)
-    #       membership = false
-    #     self.groups.each{ |group| membership = user.is_member_of?(group) unless membership } 
-    #     return membership
-    #   end
-    #   
-    #   def is_member_of?(group)
-    #     self.has_role?('member', group)
-    #   end
-    # 
-    #   def is_manager_of?(group)
-    #     self.has_role?('manager', group) or self.has_role?('creater', group)
-    #   end
-    # 
-    #   def is_sub_manager_of?(group)
-    #     self.has_role?('sub_manager', group) or self.has_role?('manager', group)
-    #   end
-    # 
-    #   def is_subscriber_of?(group)
-    #     self.has_role?('subscription', group) 
-    #   end
-    # 
-    #   def is_moderator_of?(group)
-    #     self.has_role?('moderator', group) 
-    #   end
-    #   
+         
+      ## methods for acts_as_authorizable    
+      def my_members?(user)
+          membership = false
+        self.groups.each{ |group| membership = user.is_member_of?(group) unless membership } 
+        return membership
+      end
+      
+      def is_member_of?(group)
+        self.has_role?('member', group)
+      end
+    
+      def is_manager_of?(group)
+        self.has_role?('manager', group) or self.has_role?('creater', group)
+      end
+    
+      def is_sub_manager_of?(group)
+        self.has_role?('sub_manager', group) or self.has_role?('manager', group)
+      end
+    
+      def is_subscriber_of?(group)
+        self.has_role?('subscription', group) 
+      end
+    
+      def is_moderator_of?(group)
+        self.has_role?('moderator', group) 
+      end
+      
     #   def self.is_novice?
     #     created_at == updated_at
     #   end
     # 
     def can_modify?(user)
-      # user == self or user.has_role?('maximo')
-      true
+      user == self or user.has_role?('maximo')
     end
     # 
     # 
@@ -310,75 +308,75 @@ class User < ActiveRecord::Base
     #   def is_user?(user)
     #     self == user
     #   end
-    # 
-    #   
-    #   ## messsage methods
-    #   def received_messages(page = 1)
-    #     _received_messages.paginate(:page => page, :per_page => MESSAGES_PER_PAGE)
-    #   end
-    # 
-    #   def sent_messages(page = 1)
-    #     _sent_messages.paginate(:page => page, :per_page => MESSAGES_PER_PAGE)
-    #   end
-    #   
-    #   def find_user_in_conversation(parent_id, exclude_self = true)
-    #     @recipients = []  
-    #     all_users = User.find_by_sql(["select * from users where id in " +
-    #                                 "(select distinct users.id from messages, users " + 
-    #                                   "where messages.parent_id = (select parent_id from messages where id = ?) " +
-    #                                   "and (messages.sender_id = users.id or messages.recipient_id = users.id)) " +
-    #                                   "order by name", parent_id])
-    # 
-    #     all_users.each { |user| @recipients << user unless @recipients.include?(user) or (user == self and exclude_self) }
-    #     return @recipients
-    #   end
-    #              
-    #    def find_message_in_conversation(message)
-    #      messages = []  
-    #      all_messages =  Message.find(:all, 
-    #                       :conditions => ["parent_id in (select parent_id from messages where messages.id = ?) " +
-    #                                      " and ((sender_id = #{self.id} and sender_deleted_at is null) " +
-    #                                      " or (recipient_id = #{self.id} and recipient_deleted_at is null))", message.id])
-    #      all_messages.each { |message| messages << message unless messages.include?(message) }
-    #      return messages
-    #    end
-    #     
-    #     
-    #    def parent_messages(parent_id)
-    #      conditions = [%(((recipient_id = :user AND recipient_deleted_at IS NULL) or (sender_id = :user AND sender_deleted_at IS NULL) and parent_id = :parent_id)),
-    #        { :user => id, :parent_id => parent_id }]     
-    #        parents = Message.find(:all, :conditions => conditions)
-    #      end
-    #     
-    #   def trashed_messages(page = 1)
-    #     conditions = [%((sender_id = :user AND sender_deleted_at > :t) OR
-    #                     (recipient_id = :user AND recipient_deleted_at > :t)),
-    #                   { :user => id, :t => TRASH_TIME_AGO }]
-    #     order = 'created_at DESC'
-    #     trashed = Message.paginate(:all, :conditions => conditions,
-    #                                      :order => order,
-    #                                      :page => page,
-    #                                      :per_page => MESSAGES_PER_PAGE)
-    #   end
-    # 
-    #   def recent_messages
-    #     Message.find(:all,
-    #                  :conditions => [%(recipient_id = ? AND
-    #                                    recipient_deleted_at IS NULL), id],
-    #                  :order => "created_at DESC",
-    #                  :limit => NUM_RECENT_MESSAGES)
-    #   end
-    #   
-    #   def has_unread_messages?
-    #     sql = %(recipient_id = :id
-    #             AND sender_id != :id
-    #             AND recipient_deleted_at IS NOT NULL
-    #             AND recipient_read_at IS NULL)
-    #     conditions = [sql, { :id => id }]
-    #     Message.count(:all, :conditions => conditions) > 0
-    #   end
-    #     
-    #     
+  
+    
+    ## messsage methods
+    def received_messages(page = 1)
+      _received_messages.paginate(:page => page, :per_page => MESSAGES_PER_PAGE)
+    end
+  
+    def sent_messages(page = 1)
+      _sent_messages.paginate(:page => page, :per_page => MESSAGES_PER_PAGE)
+    end
+    
+    def find_user_in_conversation(parent_id, exclude_self = true)
+      @recipients = []  
+      all_users = User.find_by_sql(["select * from users where id in " +
+                                  "(select distinct users.id from messages, users " + 
+                                    "where messages.parent_id = (select parent_id from messages where id = ?) " +
+                                    "and (messages.sender_id = users.id or messages.recipient_id = users.id)) " +
+                                    "order by name", parent_id])
+  
+      all_users.each { |user| @recipients << user unless @recipients.include?(user) or (user == self and exclude_self) }
+      return @recipients
+    end
+               
+     def find_message_in_conversation(message)
+       messages = []  
+       all_messages =  Message.find(:all, 
+                        :conditions => ["parent_id in (select parent_id from messages where messages.id = ?) " +
+                                       " and ((sender_id = #{self.id} and sender_deleted_at is null) " +
+                                       " or (recipient_id = #{self.id} and recipient_deleted_at is null))", message.id])
+       all_messages.each { |message| messages << message unless messages.include?(message) }
+       return messages
+     end
+      
+      
+     def parent_messages(parent_id)
+       conditions = [%(((recipient_id = :user AND recipient_deleted_at IS NULL) or (sender_id = :user AND sender_deleted_at IS NULL) and parent_id = :parent_id)),
+         { :user => id, :parent_id => parent_id }]     
+         parents = Message.find(:all, :conditions => conditions)
+       end
+      
+    def trashed_messages(page = 1)
+      conditions = [%((sender_id = :user AND sender_deleted_at > :t) OR
+                      (recipient_id = :user AND recipient_deleted_at > :t)),
+                    { :user => id, :t => TRASH_TIME_AGO }]
+      order = 'created_at DESC'
+      trashed = Message.paginate(:all, :conditions => conditions,
+                                       :order => order,
+                                       :page => page,
+                                       :per_page => MESSAGES_PER_PAGE)
+    end
+  
+    def recent_messages
+      Message.find(:all,
+                   :conditions => [%(recipient_id = ? AND
+                                     recipient_deleted_at IS NULL), id],
+                   :order => "created_at DESC",
+                   :limit => NUM_RECENT_MESSAGES)
+    end
+    
+    def has_unread_messages?
+      sql = %(recipient_id = :id
+              AND sender_id != :id
+              AND recipient_deleted_at IS NOT NULL
+              AND recipient_read_at IS NULL)
+      conditions = [sql, { :id => id }]
+      Message.count(:all, :conditions => conditions) > 0
+    end
+      
+      
     #   # match availability
     #   def self.available_schedule(schedule)
     #     find(:all, 
@@ -490,11 +488,11 @@ class User < ActiveRecord::Base
     #                                                 # ,
     #                                                 #                           :order => "group_id, users.name")
     #   end
-    #   
+      
     def page_mates(page = 1)                                 
       mates = User.paginate(:all, 
       :joins => "left join groups_users on users.id = groups_users.user_id",
-      :conditions => ["groups_users.group_id in (?)", self.groups],
+      :conditions => ["groups_users.group_id in (?) or users.id = ?", self.groups, self.id],
       :order => "name",
       :page => page, 
       :per_page => USERS_PER_PAGE)
@@ -589,34 +587,34 @@ class User < ActiveRecord::Base
     # 
     #     end
     #   end
-    #     
-    #   def create_user_blog_details
-    #     if Blog.find_by_user_id(self.id).nil?
-    #       blog = Blog.new
-    #       blog.user_id = self.id
-    #       blog.name = '...'
-    #       blog.description = '...'
-    #       blog.save!
-    #     end
-    # 
-    #     if Entry.find_by_user_id(self.id).nil?
-    #       entry = Entry.new
-    #       entry.blog_id = self.blog.id
-    #       entry.user_id = self.id
-    #       entry.title = '...'
-    #       entry.body = '...' 
-    #       entry.save!
-    #     end
-    # 
-    #     if Comment.find_by_user_id(self.id).nil?
-    #       comment = Comment.new
-    #       comment.entry_id = self.blog.entries.first.id
-    #       comment.user_id = self.id
-    #       comment.body = '...' 
-    #       comment.save!
-    #     end
-    #   end
-    #   
+        
+      def create_user_blog_details
+        if Blog.find_by_user_id(self.id).nil?
+          blog = Blog.new
+          blog.user_id = self.id
+          blog.name = '...'
+          blog.description = '...'
+          blog.save!
+        end
+    
+        if Entry.find_by_user_id(self.id).nil?
+          entry = Entry.new
+          entry.blog_id = self.blog.id
+          entry.user_id = self.id
+          entry.title = '...'
+          entry.body = '...' 
+          entry.save!
+        end
+    
+        if Comment.find_by_user_id(self.id).nil?
+          comment = Comment.new
+          comment.entry_id = self.blog.entries.first.id
+          comment.user_id = self.id
+          comment.body = '...' 
+          comment.save!
+        end
+      end
+      
     #   def get_gravatar
     #     theGravatar = Gravatar.new(self.email)
     #     if theGravatar.has_gravatar? and self.default_avatar != theGravatar.url

@@ -1,8 +1,28 @@
-<% form_for @topics do |f| %>
-  <%= f.error_messages %>
-  <p>
-    <%= f.label :name %><br />
-    <%= f.text_field :name %>
-  </p>
-  <p><%= f.submit "Submit" %></p>
-<% end %>
+
+  <div class="group">
+    <%= f.label :forum_id, "Forum_id", :class => :label %>
+    <%= f.text_field :forum_id, :class => 'text_field' %>
+    <span class="description">Ex: a simple text</span>
+  </div>
+
+  <div class="group">
+    <%= f.label :user_id, "User_id", :class => :label %>
+    <%= f.text_field :user_id, :class => 'text_field' %>
+    <span class="description">Ex: a simple text</span>
+  </div>
+
+  <div class="group">
+    <%= f.label :name, "Name", :class => :label %>
+    <%= f.text_field :name, :class => 'text_field' %>
+    <span class="description">Ex: a simple text</span>
+  </div>
+
+  <div class="group">
+    <%= f.label :posts_count, "Posts_count", :class => :label %>
+    <%= f.text_field :posts_count, :class => 'text_field' %>
+    <span class="description">Ex: a simple text</span>
+  </div>
+        
+<div class="group navform">
+  <input type="submit" class="button" value="Save &rarr;" /> or <%= link_to 'Cancel', topics_path %>
+</div>

@@ -1,18 +1,18 @@
 class GroupsController < ApplicationController
   def index
-    @groups = Groups.all
+    @groups = Group.paginate(:per_page => 10, :page => params[:page])
   end
   
   def show
-    @groups = Groups.find(params[:id])
+    @groups = Group.find(params[:id])
   end
   
   def new
-    @groups = Groups.new
+    @groups = Group.new
   end
   
   def create
-    @groups = Groups.new(params[:groups])
+    @groups = Group.new(params[:groups])
     if @groups.save
       flash[:notice] = "Successfully created groups."
       redirect_to @groups
@@ -22,11 +22,11 @@ class GroupsController < ApplicationController
   end
   
   def edit
-    @groups = Groups.find(params[:id])
+    @groups = Group.find(params[:id])
   end
   
   def update
-    @groups = Groups.find(params[:id])
+    @groups = Group.find(params[:id])
     if @groups.update_attributes(params[:groups])
       flash[:notice] = "Successfully updated groups."
       redirect_to @groups
@@ -36,7 +36,7 @@ class GroupsController < ApplicationController
   end
   
   def destroy
-    @groups = Groups.find(params[:id])
+    @groups = Group.find(params[:id])
     @groups.destroy
     flash[:notice] = "Successfully destroyed groups."
     redirect_to groups_url

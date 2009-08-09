@@ -16,6 +16,12 @@
     <%= f.text_field :authorizable_id, :class => 'text_field' %>
     <span class="description">Ex: a simple text</span>
   </div>
+
+  <div class="group">
+    <%= f.label :deleted_at, "Deleted_at", :class => :label %>
+    <%= f.datetime_select :deleted_at, :class => 'datetime_select' %>
+    <span class="description">Ex: a simple text</span>
+  </div>
         
 <div class="group navform">
   <input type="submit" class="button" value="Save &rarr;" /> or <%= link_to 'Cancel', roles_path %>

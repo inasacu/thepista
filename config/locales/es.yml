@@ -515,7 +515,11 @@ es:
      no_message: No tienes mensajes.   
      no_openid: No tienes cuentas associadas a tu OpenID.   
      no_payment: No tienes pagos   
-     no_petition_to_join_group: No hay peticiones para unirse a un equipo!   
+     no_petition_to_join_group: No hay peticiones para unirse a un equipo! 
+       
+     no_photo_for_user: Este jugador no tiene foto
+     no_photo_for_group: Este equipo no tiene foto
+         
      no_recent_activity: No hay actividades recientes   
      no_role: No tienes ningun papel   
      no_schedule: No tienes eventos para tu Equipo   
@@ -706,8 +710,8 @@ es:
      send_information: Manda un Detalles   
      send_invitation: Manda una Invitación   
      send_marker: Manda el URL del Centro Deportivo   
-     send_match: Manda el Resultado   
-     send_message: Manda Mensaje   
+     send_match: Manda el Resultado  
+     
      send_message_to_group: Manda un Mensaje   
      send_message_to_join: Manda una solicitud para unirte a   
      send_name: Manda un Nombre   
@@ -876,6 +880,7 @@ es:
      update_user: Actualiza tu perfil   
      update_venue: Actualiza el Centro Deportivo   
      updated: se ha actualizado correctamente.   
+     upload:  Subir
      url_group: Vincular a Equipo   
      use_at_discretion: Nueva opción para entrar.  Si tienes una cuenta entra con tu cuenta original.
      use_openid: O utiliza OpenID 
@@ -887,7 +892,7 @@ es:
      user_last_login: Última vez conectado   
      user_options:  Opciones de Usuario
      username_not_available: Nombre de usuario no esta disponible 
-     users_index:  Jugadores  
+     
      validate_openid: valida tu OpenID   
      venue: Centro Deportivo    
      Venue: Centro   
@@ -972,6 +977,11 @@ es:
      german:   Aleman
      italian:  Italiano
      
+     home_index: Inicio
+     
+     send_message: Manda Mensaje 
+          
+     users_index:  Jugadores  
      users_new:  Nuevo Jugador
      users_edit:  Modificar Jugador
      users_show: Mostrar Jugador

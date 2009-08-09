@@ -1,8 +1,160 @@
-<% form_for @groups do |f| %>
-  <%= f.error_messages %>
-  <p>
-    <%= f.label :name %><br />
-    <%= f.text_field :name %>
-  </p>
-  <p><%= f.submit "Submit" %></p>
-<% end %>
+
+  <div class="group">
+    <%= f.label :name, "Name", :class => :label %>
+    <%= f.text_field :name, :class => 'text_field' %>
+    <span class="description">Ex: a simple text</span>
+  </div>
+
+  <div class="group">
+    <%= f.label :second_team, "Second_team", :class => :label %>
+    <%= f.text_field :second_team, :class => 'text_field' %>
+    <span class="description">Ex: a simple text</span>
+  </div>
+
+  <div class="group">
+    <%= f.label :gameday_at, "Gameday_at", :class => :label %>
+    <%= f.datetime_select :gameday_at, :class => 'datetime_select' %>
+    <span class="description">Ex: a simple text</span>
+  </div>
+
+  <div class="group">
+    <%= f.label :technical, "Technical", :class => :label %>
+    <%= f.text_field :technical, :class => 'text_field' %>
+    <span class="description">Ex: a simple text</span>
+  </div>
+
+  <div class="group">
+    <%= f.label :physical, "Physical", :class => :label %>
+    <%= f.text_field :physical, :class => 'text_field' %>
+    <span class="description">Ex: a simple text</span>
+  </div>
+
+  <div class="group">
+    <%= f.label :private_profile, "Private_profile", :class => :label %>
+    <%= f.check_box :private_profile, :class => 'check_box' %>
+    <span class="description">Ex: a simple text</span>
+  </div>
+
+  <div class="group">
+    <%= f.label :default_available, "Default_available", :class => :label %>
+    <%= f.text_field :default_available, :class => 'text_field' %>
+    <span class="description">Ex: a simple text</span>
+  </div>
+
+  <div class="group">
+    <%= f.label :points_for_win, "Points_for_win", :class => :label %>
+    <%= f.text_field :points_for_win, :class => 'text_field' %>
+    <span class="description">Ex: a simple text</span>
+  </div>
+
+  <div class="group">
+    <%= f.label :points_for_draw, "Points_for_draw", :class => :label %>
+    <%= f.text_field :points_for_draw, :class => 'text_field' %>
+    <span class="description">Ex: a simple text</span>
+  </div>
+
+  <div class="group">
+    <%= f.label :points_for_lose, "Points_for_lose", :class => :label %>
+    <%= f.text_field :points_for_lose, :class => 'text_field' %>
+    <span class="description">Ex: a simple text</span>
+  </div>
+
+  <div class="group">
+    <%= f.label :time_zone, "Time_zone", :class => :label %>
+    <%= f.text_field :time_zone, :class => 'text_field' %>
+    <span class="description">Ex: a simple text</span>
+  </div>
+
+  <div class="group">
+    <%= f.label :sport_id, "Sport_id", :class => :label %>
+    <%= f.text_field :sport_id, :class => 'text_field' %>
+    <span class="description">Ex: a simple text</span>
+  </div>
+
+  <div class="group">
+    <%= f.label :marker_id, "Marker_id", :class => :label %>
+    <%= f.text_field :marker_id, :class => 'text_field' %>
+    <span class="description">Ex: a simple text</span>
+  </div>
+
+  <div class="group">
+    <%= f.label :description, "Description", :class => :label %>
+    <%= f.text_area :description, :class => 'text_area' %>
+    <span class="description">Ex: a simple text</span>
+  </div>
+
+  <div class="group">
+    <%= f.label :conditions, "Conditions", :class => :label %>
+    <%= f.text_area :conditions, :class => 'text_area' %>
+    <span class="description">Ex: a simple text</span>
+  </div>
+
+  <div class="group">
+    <%= f.label :player_limit, "Player_limit", :class => :label %>
+    <%= f.text_field :player_limit, :class => 'text_field' %>
+    <span class="description">Ex: a simple text</span>
+  </div>
+
+  <div class="group">
+    <%= f.label :blog_title, "Blog_title", :class => :label %>
+    <%= f.text_field :blog_title, :class => 'text_field' %>
+    <span class="description">Ex: a simple text</span>
+  </div>
+
+  <div class="group">
+    <%= f.label :entries_count, "Entries_count", :class => :label %>
+    <%= f.text_field :entries_count, :class => 'text_field' %>
+    <span class="description">Ex: a simple text</span>
+  </div>
+
+  <div class="group">
+    <%= f.label :comments_count, "Comments_count", :class => :label %>
+    <%= f.text_field :comments_count, :class => 'text_field' %>
+    <span class="description">Ex: a simple text</span>
+  </div>
+
+  <div class="group">
+    <%= f.label :enable_comments, "Enable_comments", :class => :label %>
+    <%= f.check_box :enable_comments, :class => 'check_box' %>
+    <span class="description">Ex: a simple text</span>
+  </div>
+
+  <div class="group">
+    <%= f.label :photo_file_name, "Photo_file_name", :class => :label %>
+    <%= f.text_field :photo_file_name, :class => 'text_field' %>
+    <span class="description">Ex: a simple text</span>
+  </div>
+
+  <div class="group">
+    <%= f.label :photo_content_type, "Photo_content_type", :class => :label %>
+    <%= f.text_field :photo_content_type, :class => 'text_field' %>
+    <span class="description">Ex: a simple text</span>
+  </div>
+
+  <div class="group">
+    <%= f.label :photo_file_size, "Photo_file_size", :class => :label %>
+    <%= f.text_field :photo_file_size, :class => 'text_field' %>
+    <span class="description">Ex: a simple text</span>
+  </div>
+
+  <div class="group">
+    <%= f.label :photo_updated_at, "Photo_updated_at", :class => :label %>
+    <%= f.datetime_select :photo_updated_at, :class => 'datetime_select' %>
+    <span class="description">Ex: a simple text</span>
+  </div>
+
+  <div class="group">
+    <%= f.label :archive, "Archive", :class => :label %>
+    <%= f.check_box :archive, :class => 'check_box' %>
+    <span class="description">Ex: a simple text</span>
+  </div>
+
+  <div class="group">
+    <%= f.label :deleted_at, "Deleted_at", :class => :label %>
+    <%= f.datetime_select :deleted_at, :class => 'datetime_select' %>
+    <span class="description">Ex: a simple text</span>
+  </div>
+        
+<div class="group navform">
+  <input type="submit" class="button" value="Save &rarr;" /> or <%= link_to 'Cancel', groups_path %>
+</div>

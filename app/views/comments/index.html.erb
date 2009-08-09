@@ -1,17 +1,50 @@
-<% title "Comments" %>
+<div class="block">
+  <div class="secondary-navigation">
+    <ul>
+      <li class="first active"><%= link_to 'List', comments_path %></li>
+      <li><%= link_to 'New', new_comment_path %></li>
+    </ul>
+    <div class="clear"></div>
+  </div>          
+  <div class="content">          
+    <h2 class="title">All Comments</h2>
+    <div class="inner">
+      <table class="table">
+        <tr>             
+          <th class="first">ID</th>
+          <th>Entry_id</th>
+          <th>Created at</th>
+          <th class="last">&nbsp;</th>
+        </tr>
+        <% @comments.each do |comment| -%>
+        <tr>
+          <td>
+            <%= comment.id %>
+          </td>
+          <td>
+            <%= link_to comment.entry_id, comment_path(comment) %>
+          </td>
+          <td>
+            <%= comment.created_at %>
+          </td>
+          <td class="last">
+            <%= link_to 'show', comment_path(comment) %> |
+            <%= link_to 'edit', edit_comment_path(comment) %> |
+            <%= link_to 'destroy', comment_path(comment), :method => :delete, :confirm => 'Are you sure?' %>
+          </td>
+        </tr>          
+        <% end -%>
+      </table>
+      <div class="actions-bar">
+        <div class="actions">
+        </div>
+        
+        <%= will_paginate @comment  %>
+        
+        <div class="clear"></div>
+      </div>
+    </div>
+  </div>
+</div>
 
-<table>
-  <tr>
-    <th>Name</th>
-  </tr>
-  <% for comments in @comments %>
-    <tr>
-      <td><%=h comments.name %></td>
-      <td><%= link_to "Show", comments %></td>
-      <td><%= link_to "Edit", edit_comments_path(comments) %></td>
-      <td><%= link_to "Destroy", comments, :confirm => 'Are you sure?', :method => :delete %></td>
-    </tr>
-  <% end %>
-</table>
-
-<p><%= link_to "New Comments", new_comments_path %></p>
+<% content_for :sidebar, render(:partial => 'sidebar') -%>

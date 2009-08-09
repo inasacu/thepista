@@ -2,7 +2,33 @@
 require 'digest/md5'
 
 module ApplicationHelper
-
+  
+  # site name
+  def app_name
+    "HayPista" if production?
+    "ThePista" unless production?  
+  end
+  
+  
+  # easy and clean link_to w/ <li>
+  def list_link_with_active(name, options = {}, html_options = {}, &block)
+    opts = {}
+    opts.merge!(:class => 'active') if current_page?(options)
+    content_tag(:li, link_to(name, options, html_options, &block), opts)
+  end
+  
+  def get_first_class
+    return "first active" if is_action('index')
+    return "first"    
+  end
+  
+  def get_active
+    return "active" unless is_action('index')
+    return ""
+  end
+  
+  
+  # I18n.t library methods
   def field_label_name(value, text="")
 	  text.insert(0, '_') unless text.blank?
     return I18n.t(:"#{ value.to_s.humanize.downcase.gsub(' ','_') }#{ text }")

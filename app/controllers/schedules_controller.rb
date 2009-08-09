@@ -1,44 +1,84 @@
 class SchedulesController < ApplicationController
+  # GET /schedules
+  # GET /schedules.xml
   def index
-    @schedules = Schedules.all
+    @schedules = Schedule.paginate(:per_page => 10, :page => params[:page])
+
+    respond_to do |format|
+      format.html # index.html.erb
+      format.xml  { render :xml => @schedules }
+    end
   end
-  
+
+  # GET /schedules/1
+  # GET /schedules/1.xml
   def show
-    @schedules = Schedules.find(params[:id])
+    @schedule = Schedule.find(params[:id])
+
+    respond_to do |format|
+      format.html # show.html.erb
+      format.xml  { render :xml => @schedule }
+    end
   end
-  
+
+  # GET /schedules/signup
+  # GET /schedules/signup.xml
+  def signup
+    @schedule = Schedule.new
+    respond_to do |format|
+      format.html # signup.html.erb
+      format.xml  { render :xml => @schedule }
+    end
+  end  
+
+  # GET /schedules/new
+  # GET /schedules/new.xml
   def new
-    @schedules = Schedules.new
-  end
-  
-  def create
-    @schedules = Schedules.new(params[:schedules])
-    if @schedules.save
-      flash[:notice] = "Successfully created schedules."
-      redirect_to @schedules
-    else
-      render :action => 'new'
+    @schedule = Schedule.new
+
+    respond_to do |format|
+      format.html # new.html.erb
+      format.xml  { render :xml => @schedule }
     end
   end
-  
+
+  # GET /schedules/1/edit
   def edit
-    @schedules = Schedules.find(params[:id])
+    @schedule = current_schedule
   end
-  
-  def update
-    @schedules = Schedules.find(params[:id])
-    if @schedules.update_attributes(params[:schedules])
-      flash[:notice] = "Successfully updated schedules."
-      redirect_to @schedules
-    else
-      render :action => 'edit'
+
+  # POST /schedules
+  # POST /schedules.xml
+  def create
+    @schedule = Schedule.new(params[:schedule])
+
+    @schedule.save do |result|
+      if result
+        # flash[:notice] = control_action_label('notice')
+        flash[:notice] = I18n.t(:successful_signup)
+        redirect_to root_url
+      else
+        render :action => 'signup'
+      end
     end
   end
-  
-  def destroy
-    @schedules = Schedules.find(params[:id])
-    @schedules.destroy
-    flash[:notice] = "Successfully destroyed schedules."
-    redirect_to schedules_url
+
+  # PUT /schedules/1
+  # PUT /schedules/1.xml
+  def update
+    @schedule = current_schedule
+
+    @schedule.attributes = params[:schedule]
+    @schedule.save do |result|
+      if result
+        # flash[:notice] = control_action_label('notice')
+        flash[:notice] = I18n.t(:successful_update)
+        redirect_to root_url
+      else
+        render :action => 'edit'
+      end
+    end
   end
 end
+
+

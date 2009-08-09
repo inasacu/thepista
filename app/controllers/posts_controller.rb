@@ -1,18 +1,18 @@
 class PostsController < ApplicationController
   def index
-    @posts = Posts.all
+    @posts = Post.paginate(:per_page => 10, :page => params[:page])
   end
   
   def show
-    @posts = Posts.find(params[:id])
+    @posts = Post.find(params[:id])
   end
   
   def new
-    @posts = Posts.new
+    @posts = Post.new
   end
   
   def create
-    @posts = Posts.new(params[:posts])
+    @posts = Post.new(params[:posts])
     if @posts.save
       flash[:notice] = "Successfully created posts."
       redirect_to @posts
@@ -22,11 +22,11 @@ class PostsController < ApplicationController
   end
   
   def edit
-    @posts = Posts.find(params[:id])
+    @posts = Post.find(params[:id])
   end
   
   def update
-    @posts = Posts.find(params[:id])
+    @posts = Post.find(params[:id])
     if @posts.update_attributes(params[:posts])
       flash[:notice] = "Successfully updated posts."
       redirect_to @posts
@@ -36,9 +36,10 @@ class PostsController < ApplicationController
   end
   
   def destroy
-    @posts = Posts.find(params[:id])
+    @posts = Post.find(params[:id])
     @posts.destroy
     flash[:notice] = "Successfully destroyed posts."
     redirect_to posts_url
   end
 end
+

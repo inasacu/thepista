@@ -1,27 +1,76 @@
-<% theController = get_the_controller 
-	display_actions ||= false
+<% 
+display_actions ||= false
+display_action = (is_controller(get_the_controller) and is_action('show'))
 %>
 
-
-
-
-
-
 <div class="block">
-  <h3><%= control_action_label %></h3>
-  <div class="content">
-    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-  </div>
+	<h3><%= control_action_label %></h3>
+	<div class="content">
+		<p>Options for controller.</p>
+	</div>
 </div>
 
+<% if @user %>
+
 <div class="block">
-  <h3><%= label_name(:user_options) %></h3>
-  <ul class="navigation">
-  <li><%#= link_to label_name(:edit), edit_user_path(@user) %></li>
-    <li><%#= link_to label_name(:send_messsage), edit_user_path(@user) %></li>
-  </ul>
+	<h3><%= label_name(get_the_controller, 'options') %></h3>
+	<ul class="navigation">
+		
+	<% if @user.can_modify?(current_user) %>		
+		<li><%= link_to label_name(:edit_my_user), edit_user_path(@user) %></li>
+	<% else %>
+		<li><%= link_to label_name(:send_message), new_message_path(@user) %></li>
+	<% end %>
+
+
+<% current_user.groups.each do |group| %>
+
+<% if @user.is_not_member_of?(group) and display_actions %> 
+
+<%= link_to("#{t(:add_to_group)} #{group.name}" , manage_join_path(:id => group.id, :teammate => @user.id),
+
+:confirm => "#{t(:manage_join_group)} #{@user.name} #{t(:to) } #{group.name}?") if current_user.is_manager_of?( group) %>
+
+<% elsif current_user.is_manager_of?(group) and display_actions %> 
+<%= link_to("#{t(:fire_from_group)} #{group.name}", {:controller => 'teammate', :action => 'fire', 
+:id => group.id, :leave => @user.id},
+:confirm => "#{t(:fire_from_group)} #{group.name} #{t(:to)} #{@user.name}?") %>
+
+<% unless @user.is_sub_manager_of?(group) %>		
+<%= link_to(t(:add_sub_manager) , {:controller => 'users', :action => 'set_sub_manager', 
+:id => @user.id, :group => group.id},
+:confirm => "#{t(:add_sub_manager)} #{t(:to) } #{@user.name} #{t(:to) } #{group.name}?")  %> 
+<% else %>					
+<%= link_to(t(:remove_sub_manager) , 
+{:controller => 'users', :action => 'remove_sub_manager', :id => @user.id, :group => group.id}, 
+:confirm => "#{t(:remove_sub_manager)} #{t(:to) } #{@user.name} #{t(:to) } #{group.name}?") if @user != current_user %>			
+<% end %>
+
+<% unless @user.is_subscriber_of?(group) %>
+<%= link_to(t(:add_subscription), {:controller => 'users', :action => 'set_subscription', 
+:id => @user.id, :group => group.id},
+:confirm => "#{t(:add_subscription)} #{t(:to) } #{@user.name} #{t(:to) } #{group.name}?")  %> 	
+<% else %>		
+<%= link_to(t(:remove_subscription), {:controller => 'users', :action => 'remove_subscription', 
+:id => @user.id, :group => group.id},
+:confirm => "#{t(:remove_subscription) } #{t(:to) } #{@user.name} #{t(:to) } #{group.name}?")  %> 
+<% end %>
+
+<% unless @user.is_moderator_of?(group) %>
+<%= link_to("#{t(:add_moderator)} #{group.name}" , {:controller => 'users', :action => 'set_moderator', 
+:id => @user.id, :group => group.id},
+:confirm => "#{t(:add_moderator)} #{t(:to) } #{@user.name} #{t(:to) } #{group.name}?")  %> 	
+<% else %>		
+<%= link_to("#{t(:remove_moderator)} #{group.name}" , {:controller => 'users', :action => 'remove_moderator', 
+:id => @user.id, :group => group.id},
+:confirm => "#{t(:remove_moderator)} #{t(:to) } #{@user.name} #{t(:to) } #{group.name}?")  %> 
+<% end %>
+<% end %>
+
+<% end %>
+
+	</ul>
+	
 </div>
 
-
-
-
+<% end %>

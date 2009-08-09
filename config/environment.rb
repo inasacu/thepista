@@ -48,20 +48,15 @@ end
 
 
 
-
-
-
-# this code from 
-# # http://gravityblast.com/
-# # a trick to show form error messages inside the auto generated forms, you can add the following lines in your environment.rb:
-# 
-# ActionView::Base.field_error_proc = Proc.new do |html_tag, instance| 
-#   if html_tag =~ /<label/
-#     %|<div class="fieldWithErrors">#{html_tag} <span class="error">#{[instance.error_message].join(', ')}</span></div>|
-#   else
-#     html_tag
-#   end
-# end
+# this code from http://gravityblast.com/
+# shows form error messages inside the auto generated forms 
+ActionView::Base.field_error_proc = Proc.new do |html_tag, instance| 
+  if html_tag =~ /<label/
+    %|<div class="fieldWithErrors">#{html_tag} <span class="error">#{[instance.error_message].join(', ')}</span></div>|
+  else
+    html_tag
+  end
+end
 
 
 ################### original source

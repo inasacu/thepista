@@ -1,18 +1,18 @@
 class TopicsController < ApplicationController
   def index
-    @topics = Topics.all
+    @topics = Topic.paginate(:per_page => 10, :page => params[:page])
   end
   
   def show
-    @topics = Topics.find(params[:id])
+    @topics = Topic.find(params[:id])
   end
   
   def new
-    @topics = Topics.new
+    @topics = Topic.new
   end
   
   def create
-    @topics = Topics.new(params[:topics])
+    @topics = Topic.new(params[:topics])
     if @topics.save
       flash[:notice] = "Successfully created topics."
       redirect_to @topics
@@ -22,11 +22,11 @@ class TopicsController < ApplicationController
   end
   
   def edit
-    @topics = Topics.find(params[:id])
+    @topics = Topic.find(params[:id])
   end
   
   def update
-    @topics = Topics.find(params[:id])
+    @topics = Topic.find(params[:id])
     if @topics.update_attributes(params[:topics])
       flash[:notice] = "Successfully updated topics."
       redirect_to @topics
@@ -36,7 +36,7 @@ class TopicsController < ApplicationController
   end
   
   def destroy
-    @topics = Topics.find(params[:id])
+    @topics = Topic.find(params[:id])
     @topics.destroy
     flash[:notice] = "Successfully destroyed topics."
     redirect_to topics_url

@@ -33,3 +33,7 @@ def allow_plugins?
 # allow_plugins? = false
 false
 end
+
+def use_solr?
+  false
+end

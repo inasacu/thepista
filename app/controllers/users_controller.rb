@@ -6,6 +6,8 @@ class UsersController < ApplicationController
   # GET /users.xml
   def index
     @users = User.paginate(:per_page => 10, :page => params[:page])
+    store_location
+    @users = current_user.page_mates(params[:page])
   
     respond_to do |format|
       format.html # index.html.erb

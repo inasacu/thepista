@@ -1,0 +1,44 @@
+<div class="secondary-navigation">
+
+<ul>
+
+<%
+	the_label = "" 
+	my_openid = false
+
+	user_access = ['login','logout','signup']
+	control_path = ['users', 'user_sessions'] 
+
+	the_controller = controller.controller_name
+	the_action = controller.action_name
+	
+	controls = ['blogs', 'entries', 'comments'] 
+	actions = ['show','edit','third_party', 'recent_activity']
+%>
+		
+<%
+
+	unless actions.include?(the_action) or controls.include?(the_controller) 
+		the_label = "#{label_name(:the_wall)} #{h(current_user.name)}"
+%>
+        <li class="<%= get_first_class %>">  <%= link_to(label_name(:my_user), users_url) %>  </li>		    
+		<li class="<%= get_active %>">  <%= link_to(the_label, blog_path(current_user.blog)) %>  </li>
+		<li class="<%= get_active %>">  <%= link_to(label_name(:recent_activities) , recent_activity_path) %>  </li>
+<% 		
+	else 
+		the_label = (@user == current_user ? label_name(:my_wall) : "#{t(:the_wall)} #{h(@user.name)}")	
+		#my_openid = (@user.can_modify?(current_user) and @user.openid_login)	
+%>
+		<li class="<%= get_first_class %>">  <%= link_to(the_label, blog_path(@user.blog)) %>  </li>
+		<li class="<%= get_active %>">  <%= link_to(label_name(:recent_activities), recent_activity_path) %>  </li>
+		<li class="<%= get_active %>">  <%= user_link (label_name(:profile), @user) %>  </li>
+		<!-- <li class="<%= get_active %>">  <%#= link_to(label_name(:myopenid) , my_openid_path(@user.id)) if my_openid %>  </li> -->
+<% 
+	end
+%>
+
+</ul>
+
+<div class="clear"></div>
+
+</div>

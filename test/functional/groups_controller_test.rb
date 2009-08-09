@@ -7,7 +7,7 @@ class GroupsControllerTest < ActionController::TestCase
   end
   
   def test_show
-    get :show, :id => Groups.first
+    get :show, :id => Groupfirst
     assert_template 'show'
   end
   
@@ -17,36 +17,36 @@ class GroupsControllerTest < ActionController::TestCase
   end
   
   def test_create_invalid
-    Groups.any_instance.stubs(:valid?).returns(false)
+    Groupany_instance.stubs(:valid?).returns(false)
     post :create
     assert_template 'new'
   end
   
   def test_create_valid
-    Groups.any_instance.stubs(:valid?).returns(true)
+    Groupany_instance.stubs(:valid?).returns(true)
     post :create
     assert_redirected_to groups_url(assigns(:groups))
   end
   
   def test_edit
-    get :edit, :id => Groups.first
+    get :edit, :id => Groupfirst
     assert_template 'edit'
   end
   
   def test_update_invalid
-    Groups.any_instance.stubs(:valid?).returns(false)
-    put :update, :id => Groups.first
+    Groupany_instance.stubs(:valid?).returns(false)
+    put :update, :id => Groupfirst
     assert_template 'edit'
   end
   
   def test_update_valid
-    Groups.any_instance.stubs(:valid?).returns(true)
-    put :update, :id => Groups.first
+    Groupany_instance.stubs(:valid?).returns(true)
+    put :update, :id => Groupfirst
     assert_redirected_to groups_url(assigns(:groups))
   end
   
   def test_destroy
-    groups = Groups.first
+    groups = Groupfirst
     delete :destroy, :id => groups
     assert_redirected_to groups_url
     assert !Groups.exists?(groups.id)

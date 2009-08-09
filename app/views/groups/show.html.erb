@@ -1,12 +1,147 @@
-<% title "Groups" %>
+<div class="block">
+  <div class="secondary-navigation">
+    <ul>
+      <li class="first"><%= link_to 'List', groups_path  %></li>
+      <li><%= link_to 'New', new_group_path %></li>
+      <li class="active"><%= link_to 'Show', group_path %></li>
+    </ul>
+    <div class="clear"></div>
+  </div>          
+  <div class="content">
+    <div class="inner">
+      
+        <p>
+          <b>Name:</b>
+          <%= @group.name %>
+        </p>
 
-<p>
-  <strong>Name:</strong>
-  <%=h @groups.name %>
-</p>
+        <p>
+          <b>Second_team:</b>
+          <%= @group.second_team %>
+        </p>
 
-<p>
-  <%= link_to "Edit", edit_groups_path(@groups) %> |
-  <%= link_to "Destroy", @groups, :confirm => 'Are you sure?', :method => :delete %> |
-  <%= link_to "View All", groups_path %>
-</p>
+        <p>
+          <b>Gameday_at:</b>
+          <%= @group.gameday_at %>
+        </p>
+
+        <p>
+          <b>Technical:</b>
+          <%= @group.technical %>
+        </p>
+
+        <p>
+          <b>Physical:</b>
+          <%= @group.physical %>
+        </p>
+
+        <p>
+          <b>Private_profile:</b>
+          <%= @group.private_profile %>
+        </p>
+
+        <p>
+          <b>Default_available:</b>
+          <%= @group.default_available %>
+        </p>
+
+        <p>
+          <b>Points_for_win:</b>
+          <%= @group.points_for_win %>
+        </p>
+
+        <p>
+          <b>Points_for_draw:</b>
+          <%= @group.points_for_draw %>
+        </p>
+
+        <p>
+          <b>Points_for_lose:</b>
+          <%= @group.points_for_lose %>
+        </p>
+
+        <p>
+          <b>Time_zone:</b>
+          <%= @group.time_zone %>
+        </p>
+
+        <p>
+          <b>Sport_id:</b>
+          <%= @group.sport_id %>
+        </p>
+
+        <p>
+          <b>Marker_id:</b>
+          <%= @group.marker_id %>
+        </p>
+
+        <p>
+          <b>Description:</b>
+          <%= @group.description %>
+        </p>
+
+        <p>
+          <b>Conditions:</b>
+          <%= @group.conditions %>
+        </p>
+
+        <p>
+          <b>Player_limit:</b>
+          <%= @group.player_limit %>
+        </p>
+
+        <p>
+          <b>Blog_title:</b>
+          <%= @group.blog_title %>
+        </p>
+
+        <p>
+          <b>Entries_count:</b>
+          <%= @group.entries_count %>
+        </p>
+
+        <p>
+          <b>Comments_count:</b>
+          <%= @group.comments_count %>
+        </p>
+
+        <p>
+          <b>Enable_comments:</b>
+          <%= @group.enable_comments %>
+        </p>
+
+        <p>
+          <b>Photo_file_name:</b>
+          <%= @group.photo_file_name %>
+        </p>
+
+        <p>
+          <b>Photo_content_type:</b>
+          <%= @group.photo_content_type %>
+        </p>
+
+        <p>
+          <b>Photo_file_size:</b>
+          <%= @group.photo_file_size %>
+        </p>
+
+        <p>
+          <b>Photo_updated_at:</b>
+          <%= @group.photo_updated_at %>
+        </p>
+
+        <p>
+          <b>Archive:</b>
+          <%= @group.archive %>
+        </p>
+
+        <p>
+          <b>Deleted_at:</b>
+          <%= @group.deleted_at %>
+        </p>
+      <%= link_to 'Edit', edit_group_path(@group) %>
+    </div>
+  </div>
+</div>
+
+<% content_for :sidebar, render(:partial => 'sidebar') -%>

@@ -1,8 +1,46 @@
-<% form_for @teammates do |f| %>
-  <%= f.error_messages %>
-  <p>
-    <%= f.label :name %><br />
-    <%= f.text_field :name %>
-  </p>
-  <p><%= f.submit "Submit" %></p>
-<% end %>
+
+  <div class="group">
+    <%= f.label :user_id, "User_id", :class => :label %>
+    <%= f.text_field :user_id, :class => 'text_field' %>
+    <span class="description">Ex: a simple text</span>
+  </div>
+
+  <div class="group">
+    <%= f.label :group_id, "Group_id", :class => :label %>
+    <%= f.text_field :group_id, :class => 'text_field' %>
+    <span class="description">Ex: a simple text</span>
+  </div>
+
+  <div class="group">
+    <%= f.label :manager_id, "Manager_id", :class => :label %>
+    <%= f.text_field :manager_id, :class => 'text_field' %>
+    <span class="description">Ex: a simple text</span>
+  </div>
+
+  <div class="group">
+    <%= f.label :status, "Status", :class => :label %>
+    <%= f.text_field :status, :class => 'text_field' %>
+    <span class="description">Ex: a simple text</span>
+  </div>
+
+  <div class="group">
+    <%= f.label :accepted_at, "Accepted_at", :class => :label %>
+    <%= f.datetime_select :accepted_at, :class => 'datetime_select' %>
+    <span class="description">Ex: a simple text</span>
+  </div>
+
+  <div class="group">
+    <%= f.label :teammate_code, "Teammate_code", :class => :label %>
+    <%= f.text_field :teammate_code, :class => 'text_field' %>
+    <span class="description">Ex: a simple text</span>
+  </div>
+
+  <div class="group">
+    <%= f.label :deleted_at, "Deleted_at", :class => :label %>
+    <%= f.datetime_select :deleted_at, :class => 'datetime_select' %>
+    <span class="description">Ex: a simple text</span>
+  </div>
+        
+<div class="group navform">
+  <input type="submit" class="button" value="Save &rarr;" /> or <%= link_to 'Cancel', teammates_path %>
+</div>

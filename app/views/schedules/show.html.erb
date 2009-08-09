@@ -1,12 +1,127 @@
-<% title "Schedules" %>
+<div class="block">
+  <div class="secondary-navigation">
+    <ul>
+      <li class="first"><%= link_to 'List', schedules_path  %></li>
+      <li><%= link_to 'New', new_schedule_path %></li>
+      <li class="active"><%= link_to 'Show', schedule_path %></li>
+    </ul>
+    <div class="clear"></div>
+  </div>          
+  <div class="content">
+    <div class="inner">
+      
+        <p>
+          <b>Concept:</b>
+          <%= @schedule.concept %>
+        </p>
 
-<p>
-  <strong>Name:</strong>
-  <%=h @schedules.name %>
-</p>
+        <p>
+          <b>Season:</b>
+          <%= @schedule.season %>
+        </p>
 
-<p>
-  <%= link_to "Edit", edit_schedules_path(@schedules) %> |
-  <%= link_to "Destroy", @schedules, :confirm => 'Are you sure?', :method => :delete %> |
-  <%= link_to "View All", schedules_path %>
-</p>
+        <p>
+          <b>Jornada:</b>
+          <%= @schedule.jornada %>
+        </p>
+
+        <p>
+          <b>Starts_at:</b>
+          <%= @schedule.starts_at %>
+        </p>
+
+        <p>
+          <b>Ends_at:</b>
+          <%= @schedule.ends_at %>
+        </p>
+
+        <p>
+          <b>Reminder_at:</b>
+          <%= @schedule.reminder_at %>
+        </p>
+
+        <p>
+          <b>Subscription_at:</b>
+          <%= @schedule.subscription_at %>
+        </p>
+
+        <p>
+          <b>Non_subscription_at:</b>
+          <%= @schedule.non_subscription_at %>
+        </p>
+
+        <p>
+          <b>Fee_per_game:</b>
+          <%= @schedule.fee_per_game %>
+        </p>
+
+        <p>
+          <b>Fee_per_pista:</b>
+          <%= @schedule.fee_per_pista %>
+        </p>
+
+        <p>
+          <b>Remind_before:</b>
+          <%= @schedule.remind_before %>
+        </p>
+
+        <p>
+          <b>Repeat_every:</b>
+          <%= @schedule.repeat_every %>
+        </p>
+
+        <p>
+          <b>Time_zone:</b>
+          <%= @schedule.time_zone %>
+        </p>
+
+        <p>
+          <b>Group_id:</b>
+          <%= @schedule.group_id %>
+        </p>
+
+        <p>
+          <b>Sport_id:</b>
+          <%= @schedule.sport_id %>
+        </p>
+
+        <p>
+          <b>Marker_id:</b>
+          <%= @schedule.marker_id %>
+        </p>
+
+        <p>
+          <b>Player_limit:</b>
+          <%= @schedule.player_limit %>
+        </p>
+
+        <p>
+          <b>Played:</b>
+          <%= @schedule.played %>
+        </p>
+
+        <p>
+          <b>Public:</b>
+          <%= @schedule.public %>
+        </p>
+
+        <p>
+          <b>Description:</b>
+          <%= @schedule.description %>
+        </p>
+
+        <p>
+          <b>Archive:</b>
+          <%= @schedule.archive %>
+        </p>
+
+        <p>
+          <b>Deleted_at:</b>
+          <%= @schedule.deleted_at %>
+        </p>
+      <%= link_to 'Edit', edit_schedule_path(@schedule) %>
+    </div>
+  </div>
+</div>
+
+<% content_for :sidebar, render(:partial => 'sidebar') -%>

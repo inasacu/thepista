@@ -30,7 +30,6 @@ script/generate themed  teammates teammate --layout=application --with_will_pagi
 script/generate themed  topics topic --layout=application --with_will_paginate
 
 
-
 script/generate themed albums album --layout=application --with_will_paginate
 gst
 

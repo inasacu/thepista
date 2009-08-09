@@ -11,7 +11,7 @@
     <link rel="home" href="http://www.haypista.com">
     <link rel="shortcut icon" type="image/ico" href="/favicon.ico">
     
-    <title>HayPista<%= " | #{current_user.name}" if current_user %></title>
+    <title><%= app_name %><%= " | #{current_user.name}" if current_user %></title>
 
 	<%= stylesheet_link_tag 'application' %>
 	<%= stylesheet_link_tag 'web_app_theme', 'themes/djime-cerulean/style' %>

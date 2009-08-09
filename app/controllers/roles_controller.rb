@@ -1,18 +1,18 @@
 class RolesController < ApplicationController
   def index
-    @roles = Roles.all
+    @roles = Role.paginate(:per_page => 10, :page => params[:page])
   end
   
   def show
-    @roles = Roles.find(params[:id])
+    @roles = Role.find(params[:id])
   end
   
   def new
-    @roles = Roles.new
+    @roles = Role.new
   end
   
   def create
-    @roles = Roles.new(params[:roles])
+    @roles = Role.new(params[:roles])
     if @roles.save
       flash[:notice] = "Successfully created roles."
       redirect_to @roles
@@ -22,11 +22,11 @@ class RolesController < ApplicationController
   end
   
   def edit
-    @roles = Roles.find(params[:id])
+    @roles = Role.find(params[:id])
   end
   
   def update
-    @roles = Roles.find(params[:id])
+    @roles = Role.find(params[:id])
     if @roles.update_attributes(params[:roles])
       flash[:notice] = "Successfully updated roles."
       redirect_to @roles
@@ -36,7 +36,7 @@ class RolesController < ApplicationController
   end
   
   def destroy
-    @roles = Roles.find(params[:id])
+    @roles = Role.find(params[:id])
     @roles.destroy
     flash[:notice] = "Successfully destroyed roles."
     redirect_to roles_url

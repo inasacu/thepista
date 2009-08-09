@@ -24,6 +24,11 @@
           <b>Authorizable_id:</b>
           <%= @role.authorizable_id %>
         </p>
+
+        <p>
+          <b>Deleted_at:</b>
+          <%= @role.deleted_at %>
+        </p>
       <%= link_to 'Edit', edit_role_path(@role) %>
     </div>
   </div>

@@ -1,8 +1,28 @@
-<% form_for @forums do |f| %>
-  <%= f.error_messages %>
-  <p>
-    <%= f.label :name %><br />
-    <%= f.text_field :name %>
-  </p>
-  <p><%= f.submit "Submit" %></p>
-<% end %>
+
+  <div class="group">
+    <%= f.label :name, "Name", :class => :label %>
+    <%= f.text_field :name, :class => 'text_field' %>
+    <span class="description">Ex: a simple text</span>
+  </div>
+
+  <div class="group">
+    <%= f.label :schedule_id, "Schedule_id", :class => :label %>
+    <%= f.text_field :schedule_id, :class => 'text_field' %>
+    <span class="description">Ex: a simple text</span>
+  </div>
+
+  <div class="group">
+    <%= f.label :topics_count, "Topics_count", :class => :label %>
+    <%= f.text_field :topics_count, :class => 'text_field' %>
+    <span class="description">Ex: a simple text</span>
+  </div>
+
+  <div class="group">
+    <%= f.label :description, "Description", :class => :label %>
+    <%= f.text_area :description, :class => 'text_area' %>
+    <span class="description">Ex: a simple text</span>
+  </div>
+        
+<div class="group navform">
+  <input type="submit" class="button" value="Save &rarr;" /> or <%= link_to 'Cancel', forums_path %>
+</div>

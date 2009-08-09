@@ -1,44 +1,32 @@
 class EntriesController < ApplicationController
-  def index
-    @entries = Entries.all
-  end
   
   def show
-    @entries = Entries.find(params[:id])
+    @blog = Blog.find(params[:blog_id])
+    @user = @blog.user unless @blog.user.nil?
+    @group = @blog.group unless @blog.group.nil?
+    @entry = @blog.entries.first
+    @comments = Comment.find(:all, 
+                      :conditions => ["entry_id = ? and created_at > ?",  @entry.id, User::TIME_AGO_FOR_MOSTLY_ACTIVE], 
+                      :order => 'created_at DESC')
   end
-  
+
   def new
-    @entries = Entries.new
+    @entry = Entry.new
+    @comment = Comment.new
   end
   
   def create
-    @entries = Entries.new(params[:entries])
-    if @entries.save
-      flash[:notice] = "Successfully created entries."
-      redirect_to @entries
-    else
-      render :action => 'new'
-    end
-  end
-  
-  def edit
-    @entries = Entries.find(params[:id])
-  end
-  
-  def update
-    @entries = Entries.find(params[:id])
-    if @entries.update_attributes(params[:entries])
-      flash[:notice] = "Successfully updated entries."
-      redirect_to @entries
-    else
-      render :action => 'edit'
-    end
-  end
-  
-  def destroy
-    @entries = Entries.find(params[:id])
-    @entries.destroy
-    flash[:notice] = "Successfully destroyed entries."
-    redirect_to entries_url
+    @blog = Blog.find(params[:id])
+    @entry = @blog.entries.first
+    
+    @comment = Comment.new(:body => params[:comment][:body], :entry_id => @entry.id, :user_id => current_user.id)
+    @comment.save!
+    
+    flash[:notice] = t(:comment_saved)
+    redirect_to :action => 'index', :blog_id => @blog.id
+    return 
+  rescue ActiveRecord::RecordInvalid  
+    flash[:error] = t(:comment_not_saved)
+    render :action => 'new'
   end
 end

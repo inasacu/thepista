@@ -1,7 +1,0 @@
-<div id="mainContent">
-	<% unless logged_in? %>																		
-			<%= yield %>
-	<% else %>
-		<%= render :partial => '/layouts/main_sub_content' %>
-	<% end %>
-</div> <!-- end mainContent -->
