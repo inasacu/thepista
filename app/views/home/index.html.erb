@@ -1,6 +1,6 @@
 <div class="block">
 
-  <%= render :partial => 'shared/secondary_navigation' %>   
+  <%= render :partial => 'secondary_navigation' %>   
   
   <div class="content">   
   
@@ -8,6 +8,7 @@
 	
     <div class="inner">
 	
+	<% if display %>
       <table class="table">
 	  
         <tr>             
@@ -40,6 +41,8 @@
       </table>
 	  <%#= render :partial => 'shared/action_bar', :locals => { :collection => @user } %>
 	  
+	<% end %>
+	
     </div>
 	
   </div>

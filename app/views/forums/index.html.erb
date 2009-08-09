@@ -28,9 +28,9 @@
             <%= forum.created_at %>
           </td>
           <td class="last">
-            <%= link_to 'show', forum_path(forum) %> |
-            <%= link_to 'edit', edit_forum_path(forum) %> |
-            <%= link_to 'destroy', forum_path(forum), :method => :delete, :confirm => 'Are you sure?' %>
+            <%= link_to label_name(:show), forum_path(forum) %> |
+            <%= link_to label_name(:edit), edit_forum_path(forum) %> |
+            <%= link_to label_name(:destroy), forum_path(forum), :method => :delete, :confirm => label_name(:are_you_sure) %>
           </td>
         </tr>          
         <% end -%>

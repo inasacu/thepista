@@ -28,9 +28,9 @@
             <%= comment.created_at %>
           </td>
           <td class="last">
-            <%= link_to 'show', comment_path(comment) %> |
-            <%= link_to 'edit', edit_comment_path(comment) %> |
-            <%= link_to 'destroy', comment_path(comment), :method => :delete, :confirm => 'Are you sure?' %>
+            <%= link_to label_name(:show), comment_path(comment) %> |
+            <%= link_to label_name(:edit), edit_comment_path(comment) %> |
+            <%= link_to label_name(:destroy), comment_path(comment), :method => :delete, :confirm => label_name(:are_you_sure) %>
           </td>
         </tr>          
         <% end -%>

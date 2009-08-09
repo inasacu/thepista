@@ -1,0 +1,148 @@
+<div class="secondary-navigation">
+
+<ul>
+	
+<% 
+if current_user 
+	the_label = "" 
+	my_openid = false
+
+	user_access = ['login','logout','signup']
+	control_path = ['users', 'user_sessions'] 
+
+	the_controller = controller.controller_name
+	the_action = controller.action_name
+	
+	controls = ['blogs', 'entries', 'comments'] 
+	actions = ['show','edit','third_party', 'recent_activity']
+%>
+		
+<%
+	# case to determine which controller is being used and which options to display in tabs...
+	case controller.controller_name
+	when 'users'
+		unless actions.include?(the_action) or controls.include?(the_controller) 
+			the_label = "#{label_name(:the_wall)} #{h('current_user.name')}"
+%>
+	        <li class="<%= get_first_class %>">  <%= link_to(label_name(:my_user), users_url) %>  </li>		    
+			<li class="<%= get_active %>">  <%#= link_to(the_label, blog_path(current_user.blog)) %>  </li>
+			<li class="<%= get_active %>">  <%= link_to(label_name(:recent_activities) , recent_activity_path) %>  </li>
+<% 		
+		else 
+			the_label = (@user == current_user ? label_name(:my_wall) : "#{t(:the_wall)} #{h(@user.name)}")	
+			#my_openid = (@user.can_modify?(current_user) and @user.openid_login)	
+%>
+			<li class="<%= get_first_class %>">  <%#= link_to(the_label, blog_path(@user.blog)) %>  </li>
+			<li class="<%= get_active %>">  <%= link_to(label_name(:recent_activities), recent_activity_path) %>  </li>
+			<li class="<%= get_active %>">  <%= user_link (label_name(:profile), @user) %>  </li>
+			<!-- <li class="<%= get_active %>">  <%#= link_to(label_name(:myopenid) , my_openid_path(@user.id)) if my_openid %>  </li> -->
+<% 
+		end
+
+	when 'groups' 	
+		unless is_action('show') or is_action('edit') or is_action('team list') 
+%>
+			<li class="<%= the_class %>">  <%= link_to(label_name(:my_group) , groups_url) %>  </li>
+			<li class="<%= the_class %>">  <%= link_to(label_name(:create_group) , new_group_url) %>  </li>
+<% 
+		else 
+			if current_user.is_member_of?(@group) 
+			the_label = "#{t(:the_wall)} #{h(@group.name)}"
+%>
+			<li class="<%= the_class %>">  <%= link_to(the_label, blog_path(@group.blog)) %>  </li>
+			<li class="<%= the_class %>">  <%= group_link @group %>  </li>
+			<li class="<%= the_class %>">  <%= link_to(label_name(:users) , team_list_path(@group.id)) %>  </li>
+<% 
+		end 
+	end
+	
+	when 'blogs', 'entries', 'comments' 
+		if @user 
+			the_label = (@user == current_user ? label_name(:my_wall) : "#{label_name(:the_wall)} #{h(@user.name)}")
+			my_openid = (@user.can_modify?(current_user) and @user.openid_login)			
+%>	
+			<%= list_link_with_active(the_label, blog_path(@user.blog), {:action => 'show'}) %>
+			
+			<li class="<%= the_class %>">  <%= link_to(the_label, blog_path(@user.blog)) %>  </li>
+		    <li class="<%= the_class %>">  <%= link_to(label_name(:recent_activities), recent_activity_path) %>  </li>		
+			<li class="<%= the_class %>">  <%= user_link(label_name(:profile) , @user) %>  </li>
+			<li class="<%= the_class %>">  <%= link_to(label_name(:myopenid) , my_openid_path(@user.id)) if my_openid %>  </li>
+
+<% 		
+		elsif @group 
+			if current_user.is_member_of?(@group) 
+				the_label = "#{label_name(:the_wall)} #{h(@group.name)}"
+%>
+				<li class="<%= the_class %>">  <%= link_to(the_label, blog_path(@group.blog)) %>  </li>
+				<li class="<%= the_class %>">  <%= group_link @group %>  </li>
+		       	<li class="<%= the_class %>">  <%= link_to(label_name(:users) , team_list_path(@group.id)) %>  </li>
+<% 
+			end  
+		end	
+
+	when 'schedules', 'matches', 'forums', 'topics', 'posts'
+		a = ['forums', 'topics', 'posts']
+		the_action = ['show', 'edit', 'team roster', 'team no show']
+		unless the_action.include?(get_the_action) or a.include?(the_controller) 
+%>
+	        <li class="<%= the_class %>">  <%= link_to(label_name(:upcoming_schedule) , schedules_url) %>	  </li>				
+		    <li class="<%= the_class %>">  <%= link_to(label_name(:previous_schedules) , list_schedules_path) %>  </li>
+			<li class="<%= the_class %>">  <%= link_to(label_name(:create_schedule) , new_schedule_url) if current_user.is_manager? %>  </li>
+
+<% 
+		else 
+			if current_user.is_member_of?(@schedule.group)
+				the_label = "#{label_name(:forum)} #{@schedule.concept}"
+%>
+				<li class="<%= the_class %>">  <%= schedule_link @schedule %>
+				<li class="<%= the_class %>">  <%= link_to(the_label, forum_path(@schedule.forum)) %>  </li>			
+			    <li class="<%= the_class %>">  <%= link_to(label_name(:rosters), team_roster_path(@schedule)) %>  </li>
+			    <li class="<%= the_class %>">  <%= link_to(label_name(:no_shows), team_no_show_path(@schedule)) unless @schedule.played? %>  </li>
+<% 
+			end
+		end
+
+	when 'scorecards'
+%> 
+        <li class="<%= the_class %>">  <%= link_to(label_name(:my_scorecard) , scorecard_path) %>
+<%  
+	when 'fees' 
+%>
+		<li>tabs for <%= the_controller %></li>
+<%  
+	when 'invitations' 
+%>
+        <li>tabs for <%= the_controller %></li>
+<%
+	when 'payments' 
+%>
+        <li class="<%= the_class %>">  <%#= link_to_controller(label_name(:my_debit)) %></li>
+        <li class="<%= the_class %>">  <%#= link_to_controller_action(label_name(:my_credit) , '')) %></li>
+        <li class="<%= the_class %>">  <%#= link_to_controller_list(label_name(:my_payment))) %></li>
+		<li class="<%= the_class %>">  <%#= link_to_new(label_name(:create_payment))) %></li>
+<%
+	when 'markers' 
+%>		
+		<li class="<%= the_class %>">  <%= link_to(label_name(:list_marker) , marker_list_path) if current_user.is_manager? %></li>	
+		<li class="<%= the_class %>">  <%= link_to(label_name(:markers) , markers_url) %></li>
+		<li class="<%= the_class %>">  <%= link_to(label_name(:create_marker) , new_marker_url) %></li>
+<%
+	when 'messages' 		
+%>
+		<%= list_link_with_active(label_name(:inbox), messages_path) %>
+	  	<%= list_link_with_active(label_name(:sent_message), sent_messages_path) %>
+	  	<%= list_link_with_active(label_name(:trash), trash_messages_path) %>
+
+		<li class="<%= the_class %>">  <%= link_to(label_name(:create_message), new_message_path) %></li>
+<% 
+	end
+%>
+
+
+</ul>
+
+<% end %>
+
+<div class="clear"></div>
+
+</div>

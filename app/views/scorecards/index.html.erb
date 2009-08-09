@@ -28,9 +28,9 @@
             <%= scorecard.created_at %>
           </td>
           <td class="last">
-            <%= link_to 'show', scorecard_path(scorecard) %> |
-            <%= link_to 'edit', edit_scorecard_path(scorecard) %> |
-            <%= link_to 'destroy', scorecard_path(scorecard), :method => :delete, :confirm => 'Are you sure?' %>
+            <%= link_to label_name(:show), scorecard_path(scorecard) %> |
+            <%= link_to label_name(:edit), edit_scorecard_path(scorecard) %> |
+            <%= link_to label_name(:destroy), scorecard_path(scorecard), :method => :delete, :confirm => label_name(:are_you_sure) %>
           </td>
         </tr>          
         <% end -%>

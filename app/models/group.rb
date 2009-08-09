@@ -43,6 +43,10 @@ class Group < ActiveRecord::Base
   
   has_one       :blog
   
+  after_create :create_group_blog_details, 
+  
+  # method section
+  
   # def all_the_managers
   #   ids = []
   #   self.the_managers.each {|user| ids << user.user_id }
@@ -87,37 +91,19 @@ class Group < ActiveRecord::Base
   # def schedule_not_played
   #   self.schedules.find( :all, :conditions => [ 'group_id = ? and played = false', self.id ])
   # end
-  # 
-  # def create_group_blog_details
-  #   if Blog.find_by_user_id(self.id).nil?
-  #     blog = Blog.new
-  #     blog.group_id = self.id
-  #     blog.name = '...'
-  #     blog.description = '...'
-  #     blog.save!
-  #   end
-  # 
-  #   if Entry.find_by_group_id(self.id).nil?
-  #     entry = Entry.new
-  #     entry.blog_id = self.blog.id
-  #     entry.group_id = self.id
-  #     entry.title = '...'
-  #     entry.body = '...' 
-  #     entry.save!
-  #   end
-  # 
-  #   if Comment.find_by_group_id(self.id).nil?
-  #     comment = Comment.new
-  #     comment.entry_id = self.blog.entries.first.id
-  #     comment.group_id = self.id
-  #     comment.body = '...' 
-  #     comment.save!
-  #   end
-  # end
-  # 
-  # def create_group_details(user)
-  #     Scorecard.create(:group_id => self.id) if Scorecard.find_by_group_id(self.id).nil?
-  #     Account.create(:name => self.name, :group_id => self.id, :balance => 0.0) if Account.find_by_group_id(self.id).nil?      
-  # end
+
+private
+
+
+  def create_group_blog_details
+    @blog = Blog.create_group_blog(self)
+    @entry = Entry.create_group_entry(self, @blog)
+    Comment.create_group_comment(self, @blog, @entry)
+  end
+  
+  def create_group_details
+      # Scorecard.create(:group_id => self.id) if Scorecard.find_by_group_id(self.id).nil?     
+      Scorecard.create_group_scorecard(self)
+  end
 end
 

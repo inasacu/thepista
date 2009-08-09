@@ -28,9 +28,9 @@
             <%= teammate.created_at %>
           </td>
           <td class="last">
-            <%= link_to 'show', teammate_path(teammate) %> |
-            <%= link_to 'edit', edit_teammate_path(teammate) %> |
-            <%= link_to 'destroy', teammate_path(teammate), :method => :delete, :confirm => 'Are you sure?' %>
+            <%= link_to label_name(:show), teammate_path(teammate) %> |
+            <%= link_to label_name(:edit), edit_teammate_path(teammate) %> |
+            <%= link_to label_name(:destroy), teammate_path(teammate), :method => :delete, :confirm => label_name(:are_you_sure) %>
           </td>
         </tr>          
         <% end -%>

@@ -1,12 +1,8 @@
 <div class="block">
-  <div class="secondary-navigation">
-    <ul>
-      <li class="first"><%= link_to 'List', entries_path  %></li>
-      <li><%= link_to 'New', new_entry_path %></li>
-      <li class="active"><%= link_to 'Show', entry_path %></li>
-    </ul>
-    <div class="clear"></div>
-  </div>          
+
+  <%= render :partial => 'secondary_navigation' %>
+
+         
   <div class="content">
     <div class="inner">
       
@@ -39,7 +35,9 @@
           <b>Comments_count:</b>
           <%= @entry.comments_count %>
         </p>
-      <%= link_to 'Edit', edit_entry_path(@entry) %>
+
+      <%= link_to label_name(:edit), edit_entry_path(@entry) %>
+
     </div>
   </div>
 </div>

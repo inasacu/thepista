@@ -28,9 +28,9 @@
             <%= match.created_at %>
           </td>
           <td class="last">
-            <%= link_to 'show', match_path(match) %> |
-            <%= link_to 'edit', edit_match_path(match) %> |
-            <%= link_to 'destroy', match_path(match), :method => :delete, :confirm => 'Are you sure?' %>
+            <%= link_to label_name(:show), match_path(match) %> |
+            <%= link_to label_name(:edit), edit_match_path(match) %> |
+            <%= link_to label_name(:destroy), match_path(match), :method => :delete, :confirm => label_name(:are_you_sure) %>
           </td>
         </tr>          
         <% end -%>

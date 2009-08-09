@@ -1,10 +1,10 @@
 <div class="block">
 
   <%= render :partial => 'secondary_navigation' if current_user %>  
-  
+
   <div class="content">   
   
-    <h2 class="title"><%= control_action_label %></h2>
+    <h2 class="title"><%= get_collection_label(@users) %></h2>
 	
     <div class="inner">
 	
@@ -14,7 +14,8 @@
           <th class="first">&nbsp;</th>
           <th><%= I18n.t(:name) %></th>
           <th><%= I18n.t(:t_zone) %></th>
-          <th class="last"><%= I18n.t(:last_game_played) %></th>
+          <th><%= I18n.t(:last_game_played) %></th>
+          <th class="last">&nbsp;</th>
         </tr>
 		
         <% @users.each do |user| -%>		
@@ -31,9 +32,16 @@
 				<%= user.time_zone %>
 			  </td>
 			  
-			  <td class="last">
+			  <td>
 				<%= nice_day_of_week(user.last_login_at) %> 
-			  </td>		  
+			  </td>	
+			
+			  <td class="last">
+	            <%= link_to label_name(:show), user_path(user) %> |
+	            <%= link_to label_name(:edit), edit_user_path(user) %> |
+	            <%= link_to label_name(:destroy), user_path(user), :method => :delete, :confirm => label_name(:are_you_sure) %>
+	          </td>	
+	  
 			</tr>
         <% end -%>
 		

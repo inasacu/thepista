@@ -1,0 +1,32 @@
+<div class="secondary-navigation">
+
+<ul>
+	
+<% 
+	the_label = "" 
+	the_controller = controller.controller_name
+	the_action = controller.action_name
+	
+	unless is_action('show') or is_action('edit') or is_action('team list') 
+%>
+		<li class="<%= get_first_class %>">  <%= link_to(label_name(:my_group) , groups_url) %>  </li>
+<% 
+	else 
+		if current_user.is_member_of?(@group) 
+		the_label = "#{t(:the_wall)} #{h(@group.name)}"
+%>
+		<li class="<%= get_first_class %>">  <%= link_to(the_label, blog_path(@group.blog)) %>  </li>
+		<li class="<%= get_active %>">  <%= group_link @group %>  </li>
+		<li class="<%= get_active %>">  <%= link_to(label_name(:users) , team_list_path(@group.id)) %>  </li>
+<% 
+		end
+	end 
+
+%>
+
+	<li class="<%= get_active %>">  <%= link_to(label_name(:create_group) , new_group_url) %>  </li>
+</ul>
+
+<div class="clear"></div>
+
+</div>

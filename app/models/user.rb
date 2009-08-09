@@ -169,7 +169,7 @@ class User < ActiveRecord::Base
       has_one     :blog  
       
       
-    after_update    :create_user_blog_details
+    after_create    :create_user_blog_details
     
     #   has_many    :feeds
     #   
@@ -588,32 +588,11 @@ class User < ActiveRecord::Base
     #     end
     #   end
         
-      def create_user_blog_details
-        if Blog.find_by_user_id(self.id).nil?
-          blog = Blog.new
-          blog.user_id = self.id
-          blog.name = '...'
-          blog.description = '...'
-          blog.save!
-        end
-    
-        if Entry.find_by_user_id(self.id).nil?
-          entry = Entry.new
-          entry.blog_id = self.blog.id
-          entry.user_id = self.id
-          entry.title = '...'
-          entry.body = '...' 
-          entry.save!
-        end
-    
-        if Comment.find_by_user_id(self.id).nil?
-          comment = Comment.new
-          comment.entry_id = self.blog.entries.first.id
-          comment.user_id = self.id
-          comment.body = '...' 
-          comment.save!
-        end
-      end
+    def create_user_blog_details
+      @blog = Blog.create_user_blog(self)
+      @entry = Entry.create_user_entry(self, @blog)
+      Comment.create_user_comment(self, @blog, @entry)
+    end
       
     #   def get_gravatar
     #     theGravatar = Gravatar.new(self.email)

@@ -22,8 +22,8 @@ module ApplicationHelper
     return "first"    
   end
   
-  def get_active
-    return "active" unless is_action('index')
+  def get_active(action='')
+    return "active" if is_action(action)
     return ""
   end
   
@@ -38,13 +38,24 @@ module ApplicationHelper
 	  text.insert(0, '_') unless text.blank?
     return I18n.t(:"#{ value.to_s.downcase.gsub(' ','_') }#{ text }")
   end
-
+  
+  def control_label(text="")
+	  text.insert(0, '_') unless text.blank?
+    return I18n.t(:"#{ controller.controller_name.to_s.downcase.gsub(' ','_') }#{ text }")
+  end
 
   def control_action_label(text="")
 	  text.insert(0, '_') unless text.blank?
     return I18n.t(:"#{ controller.controller_name.to_s.downcase.gsub(' ','_') }_#{ controller.action_name.to_s.downcase.gsub(' ','_') }#{ text }")
   end
 
+
+  def get_collection_label(collection)
+    if collection.count > 0
+      return control_action_label
+    end
+    return control_action_label('no')    
+  end
   
   ############################### original source
   # 

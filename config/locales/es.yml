@@ -29,7 +29,8 @@ es:
      announcements: Anuncios   
      approved_petition_to_join: Petición aprovada para unirse a   
      approved_petition_to_leave: Petición aprovada para desapuntarse de   
-     archive: archiva   
+     archive: archiva  
+     are_you_sure:  ¿Estas Seguro? 
      at: a las   
      attend_schedule: Asiste al Evento   
      aunque_estamos: Aunque estamos en fase de pruebas nos gustaria que nos dieses   
@@ -179,7 +180,7 @@ es:
      # description_type: Detalles del Tipo   
      # description_venue: Detalles del Centro Deportivo   
      
-     destroy: Borra   
+     destroy: Borrar   
      destroy_address: Borra la Dirección   
      destroy_announcement: Borra un Anuncio   
      destroy_credit: Borra un Credito   
@@ -445,7 +446,8 @@ es:
      modified_reliable: Modificada la fiabilidad del jugardor para atender   
      modo: HayPista te quiere ayudar a organizar tu equipo o encontrar donde jugar...   
      Monday: Lunes   
-     must_be_numeric: tiene que ser un valor numerico (no pongas sin simbolos)   
+     must_be_numeric: tiene que ser un valor numerico (no pongas sin simbolos)  
+      
      my_address: Mis Direcciones   
      my_announcement: Mis Anuncios   
      my_credit: Mis Creditos   
@@ -473,9 +475,10 @@ es:
      my_teammate: Mis Compañeros de Equipo   
      my_tournament: Mis Torneos   
      my_type: Mi Tipo   
-     my_user: Mis Compañeros de Equipo   
+  
      my_venue: Mis Lugares de Encuentro   
-     my_wall: Mi Muro   
+
+            
      myopenid: miOpenID   
      myopenid_association: Una de las mejores características aquí en HayPista es su capacidad de acceso mediante cuentas que ya tienen. Nos hemos asociado con algunos de los principales proveedores de servicios en un esfuerzo para hacer de su experiencia que HayPista mucho más fácil.   
      myopenid_association_en: One of the great features here on HayPista is your ability to login using accounts you already have. We've teamed up with some of the top service providers in an effort to make your HayPista experience that much easier.    
@@ -734,7 +737,7 @@ es:
      server_not_available: "Lo sentimos, el servidor de OpenID server no se pudo encontrar."   
      share: Compartir   
      should_be_positive: tiene que ser positivo   
-     show: Muestra   
+     show: Mostrar   
      show_address: Presenta la Dirección   
      show_announcement: Presenta un Anuncio   
      show_credit: Presenta un Credito   
@@ -790,7 +793,7 @@ es:
      subscription_at_requirement: (Ha que hora termina la opción para apuntarse a un partido el abonado...(ej- 1 dia antes del partido))   
      successful_login: Inicio de sesión con éxito 
      successful_logged_in: Has accedido satisfactoriamente...
-     successful_logged_out:  Has cerrado correctamente...
+     successful_logged_out:  Has cerrado la session...
      successful_signup:  Regístrado éxito...
      successful_update:  Actualización éxitosa... 
      Sunday: Domingo   
@@ -980,12 +983,43 @@ es:
      home_index: Inicio
      
      send_message: Manda Mensaje 
-          
+     
+     
+     entries_teammate: Mis Compañeros de Equipo
+     entries_my_wall: Mi Muro
+     
+     groups_index:   Equipos
+     groups_index_no:  Ningun Equipo para mostrar.
+     groups_new:  Nuevo Equipo
+     groups_edit:  Modificar Equipo
+     groups_show:  Mostrar Equipo
+
+     markers_index:  Centros Deportivos
+     markers_index_no: Ningun Centro Deportivo para mostrar.
+     markers_new: Nuevo Centro Deportivo
+     markers_edit: Modificar Centro Deportivo
+     markers_show: Mostrar Centro Deportivo
+
+     messages_index:  Mensajes
+     messages_index_no: Ningun Mensaje para mostrar.
+     messages_new: Nuevo Mensaje
+     messages_edit: Modificar Mensaje
+     messages_show: Mostrar Mensaje
+     
+     schedules_index:  Eventos
+     schedules_index_no: Ningun Evento para mostrar.
+     schedules_new: Nuevo Evento
+     schedules_edit: Modificar Evento
+     schedules_show: Mostrar Evento
+
      users_index:  Jugadores  
+     users_index_no:  Ningun Jugador para mostrar.
      users_new:  Nuevo Jugador
      users_edit:  Modificar Jugador
      users_show: Mostrar Jugador
-     
+     users_my_wall: Mi Muro
+     users_teammate: Mis Compañeros de Equipo
+          
      must_be_logged_in:  Tienes que estar registrado para acceder a esta página
      must_be_logged_out:  Tienes que no estar registrado para acceder a esta página
     
