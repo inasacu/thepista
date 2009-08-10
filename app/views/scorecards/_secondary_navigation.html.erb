@@ -1,0 +1,13 @@
+<div class="secondary-navigation">
+
+<ul>
+
+		<li class="<%= get_first_class %>"><%= link_to(control_label('index') , scorecards_path) %></li>
+		<li class="<%= get_active('list') %>"><%= link_to(control_label('list') , scorecard_list_path) if current_user.is_manager? %></li>	
+		<li class="<%= get_active('create') %>"><%= link_to(control_label('create') , new_scorecard_path) %></li>
+
+</ul>
+
+<div class="clear"></div>
+
+</div>

@@ -7,7 +7,6 @@ class User < ActiveRecord::Base
   end
 
   acts_as_solr :fields => [:name, :time_zone, :position] if use_solr?
-  #   acts_as_solr :if => proc{|record| record.is_active?} if use_solr?
   
   has_attached_file :photo,
   :styles => {

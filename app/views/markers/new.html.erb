@@ -1,19 +1,36 @@
+<!-- maps api, ajax search api, map search solution code -->  
+<script src="http://maps.google.com/maps?file=api&amp;v=2&amp;key=<%= APP_CONFIG['google_api']['key'] %>" type="text/javascript"></script> 
+<script src="http://maps.google.com/maps?file=api&amp;v=2.92&amp;key=<%= APP_CONFIG['google_api']['key'] %>"></script>
+<script src="http://maps.google.com/intl/en_ALL/mapfiles/92/maps2.api/main.js"></script>
+
+<script src="http://maps.google.com/maps?file=api&amp;v=2&amp;key=<%= APP_CONFIG['google_api']['key'] %>" type="text/javascript"></script>
+<script src="http://gmaps-utility-library.googlecode.com/svn/trunk/dragzoom/release/src/dragzoom.js" type="text/javascript"></script>
+
+<%= javascript_include_tag('marker', 'prototype') %>
+
+
 <div class="block">
-  <div class="secondary-navigation">
-    <ul>
-      <li class="first"><%= link_to 'List', markers_path  %></li>
-      <li class="active"><%= link_to 'New', new_marker_path %></li>
-    </ul>
-    <div class="clear"></div>
-  </div>          
-  <div class="content">            
-    <h2 class="title">New Marker</h2>
-    <div class="inner">
-      <% form_for :marker, :url => markers_path, :html => { :class => :form } do |f| -%>
-        <%= render :partial => "form", :locals => {:f => f} %>
-      <% end -%>
-    </div>
-  </div>
+
+	<%= render :partial => 'secondary_navigation' %>  
+
+	<div class="content">            
+		<!-- <h2 class="title"><%#= control_action_label %></h2> -->
+		<div class="inner">
+
+			<div id="map"></div>
+
+		</div>
+	</div>
 </div>
 
-<% content_for :sidebar, render(:partial => 'sidebar') -%>
+
+
+
+
+
+
+
+
+
+
+

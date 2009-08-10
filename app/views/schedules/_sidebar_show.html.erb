@@ -1,0 +1,31 @@
+<div class="block">
+
+	<h3><%= label_name(get_the_controller, 'options') %></h3>
+	
+<ul class="navigation">
+<%
+	@group = @schedule.group
+	
+	if current_user.is_member_of?(@group)  %> 
+		<%= link_to(label_name(:send_message_to_group), :controller => 'messages', :action => 'new', :group_id => @group.id) %>
+<% 
+	end 
+	
+	if current_user.is_sub_manager_of?(@group) %> 
+		<%= link_to(label_name(:send_pre_match), :controller => 'messages', :action => 'new', :schedule_id => schedule.id) unless schedule.played? %>
+<% 
+	end 
+	
+	if current_user.is_manager_of?(@group) 
+		the_confirmation = "#{ label_name(:destroy_schedule) } #{ label_name(:from) } #{group.name}?" 
+%> 
+		<%= link_to(label_name('create'), new_schedule_path(:id => schedule.id}) %>
+		<%= link_to(label_name('edit'), edit_schedule_path(schedule)) %>   
+		<li><%= link_to(control_label('destroy'), destroy_schedule_path(schedule), :confirm => the_confirmation) if schedule.not_played? %></li>
+		<%= link_to(label_name(:matches), edit_match_path(schedule.id)) %>
+<% 
+	end 
+%>
+</ul>
+	
+</div>

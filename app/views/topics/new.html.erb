@@ -7,7 +7,7 @@
     <div class="clear"></div>
   </div>          
   <div class="content">            
-    <h2 class="title">New Topic</h2>
+    <h2 class="title"><%= control_action_label %></h2>
     <div class="inner">
       <% form_for :topic, :url => topics_path, :html => { :class => :form } do |f| -%>
         <%= render :partial => "form", :locals => {:f => f} %>

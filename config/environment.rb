@@ -75,10 +75,10 @@ end
 # NEW_OPENID_URL = "https://www.myopenid.com/affiliate_signup?affiliate_id=1443"
 # CONTACT_RECIPIENT = 'support@haypista.com'
 # 
-# # Load custom config file for current environment
-# raw_config = File.read(RAILS_ROOT + "/config/config.yml")
-# APP_CONFIG = YAML.load(raw_config)[RAILS_ENV]
-# 
+# Load custom config file for current environment
+raw_config = File.read(RAILS_ROOT + "/config/config.yml")
+APP_CONFIG = YAML.load(raw_config)[RAILS_ENV]
+
 # BASE_URL = 'https://rpxnow.com'
 # GRAVATAR_URL = 'http://en.gravatar.com/site/signup'
 # 

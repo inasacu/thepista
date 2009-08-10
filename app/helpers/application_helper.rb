@@ -17,8 +17,10 @@ module ApplicationHelper
     content_tag(:li, link_to(name, options, html_options, &block), opts)
   end
   
-  def get_first_class
-    return "first active" if is_action('index')
+  def get_first_class(text='')
+    action ||= 'index'
+	action = text unless text.blank?
+    return "first active" if is_action(action)
     return "first"    
   end
   
@@ -26,8 +28,7 @@ module ApplicationHelper
     return "active" if is_action(action)
     return ""
   end
-  
-  
+
   # I18n.t library methods
   def field_label_name(value, text="")
 	  text.insert(0, '_') unless text.blank?
@@ -37,6 +38,10 @@ module ApplicationHelper
   def label_name(value, text="")
 	  text.insert(0, '_') unless text.blank?
     return I18n.t(:"#{ value.to_s.downcase.gsub(' ','_') }#{ text }")
+  end
+  
+  def label_name_with(value, name="", text="")
+	return "#{label_name(value, text)}  #{name}"
   end
   
   def control_label(text="")

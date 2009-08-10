@@ -155,14 +155,11 @@
 	  <b><%= label_name(:current_login_ip) %>:</b>
 	  <%=h @user.current_login_ip %>
 	</p>
-		
-      <%#= link_to label_name(:edit), edit_user_path(@user) %>
-	  <%#= render :partial => '/layouts/share/general_action', :locals => {:collection => @user, :display_actions => true} %>
-	  
+  
     </div>
   </div>
 </div>
 
-<% content_for :sidebar, render(:partial => 'sidebar') -%>
-
+<% content_for :sidebar, render(:partial => 'sidebar_show') -%>
+ 
 <%#= render :partial => '/users/petition', :locals => {:user => @user} %>

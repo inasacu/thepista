@@ -1,47 +1,25 @@
+<!-- maps api, ajax search api, map search solution code -->  
+<script src="http://maps.google.com/maps?file=api&amp;v=2&amp;key=<%= APP_CONFIG['google_api']['key'] %>" type="text/javascript"></script> 
+
+<script src="http://maps.google.com/maps?file=api&amp;v=2.92&amp;key=<%= APP_CONFIG['google_api']['key'] %>"></script>
+<script src="http://maps.google.com/intl/en_ALL/mapfiles/92/maps2.api/main.js"></script>
+
+<script src="http://maps.google.com/maps?file=api&amp;v=2&amp;key=<%= APP_CONFIG['google_api']['key'] %>" type="text/javascript"></script>
+<script src="http://gmaps-utility-library.googlecode.com/svn/trunk/dragzoom/release/src/dragzoom.js" type="text/javascript"></script>
+
+<%= javascript_include_tag('gmap', 'prototype') %>
+
 <div class="block">
 
-	<%= render :partial => 'secondary_navigation' if current_user %>  
+	<%= render :partial => 'secondary_navigation' %>  
 
-	<div class="content">   
-
-		<h2 class="title"><%= get_collection_label(@markers) %></h2>
-
+	<div class="content">
 		<div class="inner">
 
-			<% if @markers.count > 0 %>
-
-			<table class="table">
-
-				<tr>            
-					<th class="first">ID</th>
-					<th>Name</th>
-					<th>Created at</th>
-					<th class="last">&nbsp;</th>
-				</tr>
-				<% @markers.each do |marker| -%>
-				<tr>
-					<td>
-						<%= marker.id %>
-					</td>
-					<td>
-						<%= link_to marker.name, marker_path(marker) %>
-					</td>
-					<td>
-						<%= marker.created_at %>
-					</td>
-					<td class="last">
-						<%= link_to label_name(:show), marker_path(marker) %> |
-						<%= link_to label_name(:edit), edit_marker_path(marker) %> |
-						<%= link_to label_name(:destroy), marker_path(marker), :method => :delete, :confirm => label_name(:are_you_sure) %>
-					</td>
-				</tr>          
-				<% end -%>
-			</table>
-
-			<% end %>
-			<%= render :partial => 'shared/action_bar', :locals => { :collection => @marker } %>
+			<%= GMap.header %>
+			<%= @map.to_html %>        
+			<%= @map.div(:width => '948px', :height => '400px') %>
 
 		</div>
 	</div>
 </div>
-<% content_for :sidebar, render(:partial => 'sidebar') -%>

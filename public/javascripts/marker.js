@@ -1,6 +1,10 @@
 var centerLatitude = 40.41562;
 var centerLongitude = -3.682222;
-var startZoom = 13;
+
+var centerLatitude = 40.485531081726045;
+var centerLongitude = -3.7153342366218567;
+
+var startZoom = 18;
 var map;
 var geocoder = null;
 
@@ -40,57 +44,43 @@ function init() {
                 var lng = latlng.lng();
                 var lat = latlng.lat();
         
-                inputForm.innerHTML = '<fieldset style="width:350px;">'
-                    + '<legend>Venue </legend>'
-                    + '<table border="0" cellpadding="0" cellspacing="0" width="100%">'
-                    + '<tbody>'
-                    + '<tr>'
-                    + '<td class="formName">Name:</td>'
-                    + '<td class="formItem" width="100%">'
-                    + '<input type="text" id="name" name="m[name]" style="width:100%;"/></td></tr>'
-                    + '<tr>'
-                    + '<td class="formName">Address:</td>'
-                    + '<td class="formItem" width="100%">'
-                    + '<input type="text" id="address" name="m[address]" style="width:100%;"/></td></tr>'
-                    + '<tr>'
-                    + '<td class="formName">City:</td>'
-                    + '<td class="formItem" width="100%">'
-                    + '<input type="text" id="city" name="m[city]" style="width:100%;"/></td></tr>'
-                    + '<tr>'
-                    + '<td class="formName">Zip Code:</td>'
-                    + '<td class="formItem" width="100%">'
-                    + '<input type="text" id="zip" name="m[zip]" style="width:100%;"/></td></tr>'
-                //+ '<tr>'
-                //+ '<td class="formName">Details:  </td>'
-                //+ '<td class="formItem" width="100%">'
-                //+ '<input type="text" id="city" name="m[description]" style="width:100%;"/></td></tr>'
-                //+ '<tr>'
-                //+ '<td class="formName">Surface:  </td>'
-                //+ '<td class="formItem" width="100%">'
-                //+ '<input type="text" id="city" name="m[surface]" style="width:100%;"/></td></tr>'
-                //+ '<tr>'
-                //+ '<td class="formName">Instalations:  </td>'
-                //+ '<td class="formItem" width="100%">'
-                //+ '<input type="text" id="city" name="m[facility]" style="width:100%;"/></td></tr>'
-                //+ '<tr>'
-                //+ '<td class="formName">Contact:  </td>'
-                //+ '<td class="formItem" width="100%">'
-                //+ '<input type="text" id="city" name="m[contact]" style="width:100%;"/></td></tr>'
-                //+ '<tr>'
-                //+ '<td class="formName">Email:  </td>'
-                //+ '<td class="formItem" width="100%">'
-                //+ '<input type="text" id="city" name="m[email]" style="width:100%;"/></td></tr>'
-                //+ '<tr>'
-                //+ '<td class="formName">Phone:  </td>'
-                //+ '<td class="formItem" width="100%">'
-                //+ '<input type="text" id="city" name="m[phone]" style="width:100%;"/></td></tr>'
-                    + '</tbody>'
-                    + '</table>'
-                    + '<input type="hidden" id="icon" name="m[icon]" style="width:100%" value="google_pin_icon.png"/>'
-                    + '<input type="submit" value="Save"/>'
-                    + '<input type="hidden" id="longitude" name="m[longitude]" value="' + lng + '"/>'
-                    + '<input type="hidden" id="latitude" name="m[latitude]" value="' + lat + '"/>'
-                    + '</fieldset>';
+                inputForm.innerHTML = '<fieldset style="width:255px; height:255px;">'
+             	+  '<div class="block" id="block-forms">' 
+				+  '<div class="content">' 
+				+  '<h2 class="title">Centro Deportivo</h2>' 
+				+  '<div class="inner">' 
+				
+				+  '<div class="group">' 
+				+  '<label class="label">Nombre</label>' 
+				+  '<input class="text_field" id="marker_name" name="marker[name]" size="30" type="text"><br/>'  
+				+  '</div>' 
+				
+				+  '<div class="group">' 
+				+  '<label class="label">Dirección</label>' 
+				+  '<input class="text_field" id="marker_address" name="marker[address]" size="30" type="text"><br/>'  
+				+  '</div>'
+				
+				+  '<div class="group">' 
+				+  '<label class="label">Ciudad</label>' 
+				+  '<input class="text_field" id="marker_city" name="marker[city]" size="30" type="text"><br/>'  
+				+  '</div>'
+
+				+  '<div class="group">' 
+				+  '<label class="label">Codigo Postal</label>' 
+				+  '<input class="text_field" id="marker_zip" name="marker[zip]" size="30" type="text"><br/><br/>'    
+				+  '</div>'
+
+                + '<input type="hidden" id="icon" name="marker[icon]" value="pin_icon.png"/>'  
+                + '<input type="hidden" id="longitude" name="marker[longitude]" value="' + lng + '"/>'  
+                + '<input type="hidden" id="latitude" name="marker[latitude]" value="' + lat + '"/>'  
+
+				+  '<div class="group navform">' 
+				+  '<input type="submit" class="button" value="Guardar &rarr;" />'
+				+  '</div>'
+				+  '</div>'
+				+  '</div>'
+				+  '</div>'
+				+ '</fieldset>'
             
                 //geocoder = new GClientGeocoder();
                 map.openInfoWindow (latlng,inputForm);
@@ -146,7 +136,7 @@ function createMarker(latlng, html, iconImage) {
 
 function listMarkers(){
     //alert('w/prototype');
-    var myAjax = new Ajax.Request( '../../marker/list', 
+    var myAjax = new Ajax.Request( '../../markers/list', 
     { method: 'GET', 
         onComplete: function(request){
             //parse the result to JSON (simply by eval-ing it). The response is an array of markers
@@ -167,12 +157,6 @@ function listMarkers(){
                         + "<strong>Direccion:&nbsp;&nbsp;</strong>" + marker.address + "<br>" 
                         + "<strong>Ciudad:&nbsp;&nbsp;</strong>" + marker.city + "<br>" 
                         + "<strong>C. Postal:&nbsp;&nbsp;</strong>" + marker.zip + "<br>" 
-                        //+ "<strong>Detalles:&nbsp;&nbsp;</strong>" + marker.description + "<br>"
-                        //+ "<strong>Superficie:&nbsp;&nbsp;</strong>" + marker.surface + "<br>"
-                        //+ "<strong>Instalaciones:&nbsp;&nbsp;</strong>" + marker.facility + "<br>"
-                        //+ "<strong>Contacto:&nbsp;&nbsp;</strong>" + marker.contact + "<br>"
-                        //+ "<strong>Email:&nbsp;&nbsp;</strong>" + marker.email + "<br>"
-                        //+ "<strong>Teléfono:&nbsp;&nbsp;</strong>" + marker.phone + "<br>"
                         + "</td></tr>" 
                         + "<tr><td style=\"font-size: 9px; padding-top: 10px;\">"
                         + "<a href=\"javascript:map.setZoom(map.getZoom()+1);\">Zoom</a>&nbsp;|"

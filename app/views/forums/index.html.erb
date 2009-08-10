@@ -1,16 +1,16 @@
 <div class="block">
-  <div class="secondary-navigation">
-    <ul>
-      <li class="first active"><%= link_to 'List', forums_path %></li>
-      <li><%= link_to 'New', new_forum_path %></li>
-    </ul>
-    <div class="clear"></div>
-  </div>          
-  <div class="content">          
-    <h2 class="title">All Forums</h2>
+
+  <%= render :partial => 'secondary_navigation' if current_user %>  
+
+  <div class="content">   
+  
+    <h2 class="title"><%= get_collection_label(@forums) %></h2>
+	
     <div class="inner">
+	
       <table class="table">
-        <tr>             
+	  
+        <tr>        
           <th class="first">ID</th>
           <th>Name</th>
           <th>Created at</th>
@@ -33,18 +33,15 @@
             <%= link_to label_name(:destroy), forum_path(forum), :method => :delete, :confirm => label_name(:are_you_sure) %>
           </td>
         </tr>          
-        <% end -%>
-      </table>
-      <div class="actions-bar">
-        <div class="actions">
-        </div>
-        
-        <%= will_paginate @forum  %>
-        
-        <div class="clear"></div>
-      </div>
-    </div>
-  </div>
-</div>
+		        <% end -%>
 
-<% content_for :sidebar, render(:partial => 'sidebar') -%>
+		      </table>
+			  <%= render :partial => 'shared/action_bar', :locals => { :collection => @forum } %>
+
+		    </div>
+
+		  </div>
+
+		</div>
+
+		<% content_for :sidebar, render(:partial => 'sidebar') -%>

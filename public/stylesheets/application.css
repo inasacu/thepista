@@ -6,3 +6,12 @@ input#user_openid_identifier, input#user_session_openid_identifier {
   color: #000;
   padding-left: 18px;
 }
+
+
+
+#mapwrap{width:948px;border:2px solid #gray;}body.v1 
+#mapwrap{width:528px;border:2px solid #gray;}body.v2 
+#mapwrap{width:533px;border:2px solid #gray;}
+#map{width:948px;height:400px;border:2px solid #gray;}body.v1 
+#map{width:528px;border:2px solid #gray;}body.v2 
+#map{width:533px;border:2px solid #gray;}
