@@ -5,4 +5,4 @@ right_aws
 authlogic
 will_paginate
 authlogic-oid
-be9-acl9, :source => "http://gems.github.com", :lib => "acl9"
+be9-acl9 --source http://gems.github.com
