@@ -56,10 +56,16 @@ module ApplicationHelper
 
 
   def get_collection_label(collection)
-    if collection.count > 0
+    if count_objects(collection) > 0
       return control_action_label
     end
     return control_action_label('no')    
+  end
+  
+  def count_objects(objects)
+    @counter = 0
+    objects.each { |object|  @counter += 1 }
+    return @counter
   end
   
   ############################### original source
