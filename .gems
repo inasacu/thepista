@@ -1,1 +1,8 @@
+ruby-openid -v=2.1.7
+rack-cache -v=0.5
+rack -v=1.0
 right_aws
+authlogic
+will_paginate
+authlogic-oid
+be9-acl9, :source => "http://gems.github.com", :lib => "acl9"
