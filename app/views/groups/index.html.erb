@@ -8,34 +8,54 @@
 
     <div class="inner">
 	
+	<%#= render :partial => 'sub_index' -%>
+	
 	<% if @groups.count > 0 %>
 	
       <table class="table">
 	
         <tr>             
-          <th class="first">ID</th>
-          <th>Name</th>
-          <th>Created at</th>
+          <th class="first">&nbsp;</th>
+          <th><%= I18n.t(:name) %></th>
+          <th><%= I18n.t(:manager) %></th>
+          <th><%= I18n.t(:time_zone) %></th>
+          <th><%= I18n.t(:general_information) %></th>
+          <th><%= I18n.t(:gameday_at) %></th>
           <th class="last">&nbsp;</th>
         </tr>
 
         <% @groups.each do |group| -%>
 
-        <tr>
+        <tr>  
+		  <td>
+			<%= group_image_link_small group %>
+		  </td>
+		  
+		  <td>
+			<%= user_link group %><br />
+			<%= group.sport.name %>
+		  </td>
+		
+		  <td>
+			<%= user_list group.all_the_managers %>
+		  </td>
+
+			  <td>
+				<%= group.time_zone %>
+			  </td>
+                
           <td>
-            <%= group.id %>
+			<%= I18n.t(:has_group_users, :count => group.users.count) %><br />
+			<%= I18n.t(:has_group_schedules, :count => group.schedules.count) %>
           </td>
+
           <td>
-            <%= link_to group.name, group_path(group) %>
-          </td>
-          <td>
-            <%= group.created_at %>
+            <%= nice_day_time(group.gameday_at) %>
           </td>
 
           <td class="last">
-            <%= link_to label_name(:show), group_path(group) %> |
-            <%= link_to label_name(:edit), edit_group_path(group) %> |
-            <%= link_to label_name(:destroy), group_path(group), :method => :delete, :confirm => label_name(:are_you_sure) %>
+            <%= link_to label_name(:send_message), group_path(group) %><br />
+            <%= link_to "label_name(:invitation)", edit_group_path(group) %> 
           </td>
         </tr>   
        
@@ -44,7 +64,7 @@
       </table>
 
 	<% end %>
-	<%= render :partial => 'shared/action_bar', :locals => { :collection => @group } %>
+	<%= render :partial => 'shared/action_bar', :locals => { :collection => @groups } %>
 
 	</div>
 	</div>

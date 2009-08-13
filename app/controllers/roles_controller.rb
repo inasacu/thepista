@@ -1,4 +1,6 @@
 class RolesController < ApplicationController
+  before_filter :require_user
+  
   def index
     @roles = Role.paginate(:per_page => 10, :page => params[:page])
   end
@@ -14,7 +16,7 @@ class RolesController < ApplicationController
   def create
     @roles = Role.new(params[:roles])
     if @roles.save
-      flash[:notice] = "Successfully created roles."
+      flash[:notice] = I18n.t(:successful_create)
       redirect_to @roles
     else
       render :action => 'new'
@@ -28,7 +30,7 @@ class RolesController < ApplicationController
   def update
     @roles = Role.find(params[:id])
     if @roles.update_attributes(params[:roles])
-      flash[:notice] = "Successfully updated roles."
+      flash[:notice] = I18n.t(:successful_update)
       redirect_to @roles
     else
       render :action => 'edit'
@@ -38,7 +40,7 @@ class RolesController < ApplicationController
   def destroy
     @roles = Role.find(params[:id])
     @roles.destroy
-    flash[:notice] = "Successfully destroyed roles."
+    flash[:notice] = I18n.t(:successful_destroy)
     redirect_to roles_url
   end
 end

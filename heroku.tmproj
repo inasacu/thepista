@@ -2,25 +2,61 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>currentDocument</key>
-	<string>app/views/templates/block_signup.html.erb</string>
 	<key>documents</key>
 	<array>
 		<dict>
 			<key>name</key>
-			<string>script</string>
+			<string>doc</string>
 			<key>regexFolderFilter</key>
 			<string>!.*/(\.[^/]*|CVS|_darcs|_MTN|\{arch\}|blib|.*~\.nib|.*\.(framework|app|pbproj|pbxproj|xcode(proj)?|bundle))$</string>
 			<key>sourceDirectory</key>
-			<string>script</string>
+			<string>doc</string>
 		</dict>
 		<dict>
 			<key>name</key>
-			<string>test</string>
+			<string>config</string>
 			<key>regexFolderFilter</key>
 			<string>!.*/(\.[^/]*|CVS|_darcs|_MTN|\{arch\}|blib|.*~\.nib|.*\.(framework|app|pbproj|pbxproj|xcode(proj)?|bundle))$</string>
 			<key>sourceDirectory</key>
-			<string>test</string>
+			<string>config</string>
+		</dict>
+		<dict>
+			<key>expanded</key>
+			<true/>
+			<key>name</key>
+			<string>db</string>
+			<key>regexFolderFilter</key>
+			<string>!.*/(\.[^/]*|CVS|_darcs|_MTN|\{arch\}|blib|.*~\.nib|.*\.(framework|app|pbproj|pbxproj|xcode(proj)?|bundle))$</string>
+			<key>sourceDirectory</key>
+			<string>db</string>
+		</dict>
+		<dict>
+			<key>expanded</key>
+			<true/>
+			<key>name</key>
+			<string>app</string>
+			<key>regexFolderFilter</key>
+			<string>!.*/(\.[^/]*|CVS|_darcs|_MTN|\{arch\}|blib|.*~\.nib|.*\.(framework|app|pbproj|pbxproj|xcode(proj)?|bundle))$</string>
+			<key>sourceDirectory</key>
+			<string>app</string>
+		</dict>
+		<dict>
+			<key>expanded</key>
+			<true/>
+			<key>name</key>
+			<string>information</string>
+			<key>regexFolderFilter</key>
+			<string>!.*/(\.[^/]*|CVS|_darcs|_MTN|\{arch\}|blib|.*~\.nib|.*\.(framework|app|pbproj|pbxproj|xcode(proj)?|bundle))$</string>
+			<key>sourceDirectory</key>
+			<string>information</string>
+		</dict>
+		<dict>
+			<key>name</key>
+			<string>lib</string>
+			<key>regexFolderFilter</key>
+			<string>!.*/(\.[^/]*|CVS|_darcs|_MTN|\{arch\}|blib|.*~\.nib|.*\.(framework|app|pbproj|pbxproj|xcode(proj)?|bundle))$</string>
+			<key>sourceDirectory</key>
+			<string>lib</string>
 		</dict>
 		<dict>
 			<key>name</key>
@@ -29,213 +65,129 @@
 			<string>!.*/(\.[^/]*|CVS|_darcs|_MTN|\{arch\}|blib|.*~\.nib|.*\.(framework|app|pbproj|pbxproj|xcode(proj)?|bundle))$</string>
 			<key>sourceDirectory</key>
 			<string>tmp</string>
+		</dict>
+		<dict>
+			<key>name</key>
+			<string>script</string>
+			<key>regexFolderFilter</key>
+			<string>!.*/(\.[^/]*|CVS|_darcs|_MTN|\{arch\}|blib|.*~\.nib|.*\.(framework|app|pbproj|pbxproj|xcode(proj)?|bundle))$</string>
+			<key>sourceDirectory</key>
+			<string>script</string>
+		</dict>
+		<dict>
+			<key>name</key>
+			<string>vendor</string>
+			<key>regexFolderFilter</key>
+			<string>!.*/(\.[^/]*|CVS|_darcs|_MTN|\{arch\}|blib|.*~\.nib|.*\.(framework|app|pbproj|pbxproj|xcode(proj)?|bundle))$</string>
+			<key>sourceDirectory</key>
+			<string>vendor</string>
+		</dict>
+		<dict>
+			<key>name</key>
+			<string>public</string>
+			<key>regexFolderFilter</key>
+			<string>!.*/(\.[^/]*|CVS|_darcs|_MTN|\{arch\}|blib|.*~\.nib|.*\.(framework|app|pbproj|pbxproj|xcode(proj)?|bundle))$</string>
+			<key>sourceDirectory</key>
+			<string>public</string>
 		</dict>
 		<dict>
 			<key>filename</key>
 			<string>README.rdoc</string>
 		</dict>
 		<dict>
-			<key>expanded</key>
-			<true/>
-			<key>name</key>
-			<string>vendor</string>
-			<key>regexFolderFilter</key>
-			<string>!.*/(\.[^/]*|CVS|_darcs|_MTN|\{arch\}|blib|.*~\.nib|.*\.(framework|app|pbproj|pbxproj|xcode(proj)?|bundle))$</string>
-			<key>sourceDirectory</key>
-			<string>vendor</string>
-		</dict>
-		<dict>
-			<key>expanded</key>
-			<true/>
-			<key>name</key>
-			<string>doc</string>
-			<key>regexFolderFilter</key>
-			<string>!.*/(\.[^/]*|CVS|_darcs|_MTN|\{arch\}|blib|.*~\.nib|.*\.(framework|app|pbproj|pbxproj|xcode(proj)?|bundle))$</string>
-			<key>sourceDirectory</key>
-			<string>doc</string>
-		</dict>
-		<dict>
-			<key>name</key>
-			<string>log</string>
-			<key>regexFolderFilter</key>
-			<string>!.*/(\.[^/]*|CVS|_darcs|_MTN|\{arch\}|blib|.*~\.nib|.*\.(framework|app|pbproj|pbxproj|xcode(proj)?|bundle))$</string>
-			<key>sourceDirectory</key>
-			<string>log</string>
-		</dict>
-		<dict>
-			<key>name</key>
-			<string>public</string>
-			<key>regexFolderFilter</key>
-			<string>!.*/(\.[^/]*|CVS|_darcs|_MTN|\{arch\}|blib|.*~\.nib|.*\.(framework|app|pbproj|pbxproj|xcode(proj)?|bundle))$</string>
-			<key>sourceDirectory</key>
-			<string>public</string>
-		</dict>
-		<dict>
 			<key>filename</key>
 			<string>Rakefile</string>
 		</dict>
 		<dict>
-			<key>expanded</key>
-			<true/>
 			<key>name</key>
-			<string>app</string>
+			<string>test</string>
 			<key>regexFolderFilter</key>
 			<string>!.*/(\.[^/]*|CVS|_darcs|_MTN|\{arch\}|blib|.*~\.nib|.*\.(framework|app|pbproj|pbxproj|xcode(proj)?|bundle))$</string>
 			<key>sourceDirectory</key>
-			<string>app</string>
-		</dict>
-		<dict>
-			<key>expanded</key>
-			<true/>
-			<key>name</key>
-			<string>config</string>
-			<key>regexFolderFilter</key>
-			<string>!.*/(\.[^/]*|CVS|_darcs|_MTN|\{arch\}|blib|.*~\.nib|.*\.(framework|app|pbproj|pbxproj|xcode(proj)?|bundle))$</string>
-			<key>sourceDirectory</key>
-			<string>config</string>
+			<string>test</string>
 		</dict>
 		<dict>
 			<key>name</key>
-			<string>db</string>
+			<string>log</string>
 			<key>regexFolderFilter</key>
 			<string>!.*/(\.[^/]*|CVS|_darcs|_MTN|\{arch\}|blib|.*~\.nib|.*\.(framework|app|pbproj|pbxproj|xcode(proj)?|bundle))$</string>
 			<key>sourceDirectory</key>
-			<string>db</string>
+			<string>log</string>
 		</dict>
 	</array>
 	<key>fileHierarchyDrawerWidth</key>
-	<integer>251</integer>
+	<integer>335</integer>
 	<key>metaData</key>
 	<dict>
-		<key>app/controllers/groups_controller.rb</key>
+		<key>app/controllers/application_controller.rb</key>
 		<dict>
 			<key>caret</key>
 			<dict>
 				<key>column</key>
-				<integer>2</integer>
+				<integer>52</integer>
 				<key>line</key>
-				<integer>6</integer>
+				<integer>8</integer>
 			</dict>
 			<key>firstVisibleColumn</key>
 			<integer>0</integer>
 			<key>firstVisibleLine</key>
 			<integer>0</integer>
 		</dict>
-		<key>app/views/groups/_form.html.erb</key>
+		<key>app/controllers/markers_controller.rb</key>
 		<dict>
 			<key>caret</key>
 			<dict>
 				<key>column</key>
-				<integer>0</integer>
-				<key>line</key>
-				<integer>0</integer>
-			</dict>
-			<key>firstVisibleColumn</key>
-			<integer>0</integer>
-			<key>firstVisibleLine</key>
-			<integer>0</integer>
-		</dict>
-		<key>app/views/templates/all.html</key>
-		<dict>
-			<key>caret</key>
-			<dict>
-				<key>column</key>
-				<integer>0</integer>
-				<key>line</key>
-				<integer>0</integer>
-			</dict>
-			<key>firstVisibleColumn</key>
-			<integer>0</integer>
-			<key>firstVisibleLine</key>
-			<integer>152</integer>
-		</dict>
-		<key>app/views/templates/block_signup.html.erb</key>
-		<dict>
-			<key>caret</key>
-			<dict>
-				<key>column</key>
-				<integer>0</integer>
-				<key>line</key>
-				<integer>0</integer>
-			</dict>
-			<key>firstVisibleColumn</key>
-			<integer>0</integer>
-			<key>firstVisibleLine</key>
-			<integer>18</integer>
-		</dict>
-		<key>app/views/users/_form.html.erb</key>
-		<dict>
-			<key>caret</key>
-			<dict>
-				<key>column</key>
-				<integer>40</integer>
-				<key>line</key>
-				<integer>2</integer>
-			</dict>
-			<key>columnSelection</key>
-			<false/>
-			<key>firstVisibleColumn</key>
-			<integer>0</integer>
-			<key>firstVisibleLine</key>
-			<integer>0</integer>
-			<key>selectFrom</key>
-			<dict>
-				<key>column</key>
-				<integer>32</integer>
-				<key>line</key>
-				<integer>2</integer>
-			</dict>
-			<key>selectTo</key>
-			<dict>
-				<key>column</key>
-				<integer>47</integer>
-				<key>line</key>
-				<integer>2</integer>
-			</dict>
-		</dict>
-		<key>app/views/users/_form_text_field.html.erb</key>
-		<dict>
-			<key>caret</key>
-			<dict>
-				<key>column</key>
-				<integer>75</integer>
-				<key>line</key>
 				<integer>10</integer>
+				<key>line</key>
+				<integer>59</integer>
 			</dict>
-			<key>columnSelection</key>
-			<false/>
 			<key>firstVisibleColumn</key>
 			<integer>0</integer>
 			<key>firstVisibleLine</key>
-			<integer>0</integer>
-			<key>selectFrom</key>
-			<dict>
-				<key>column</key>
-				<integer>2</integer>
-				<key>line</key>
-				<integer>10</integer>
-			</dict>
-			<key>selectTo</key>
-			<dict>
-				<key>column</key>
-				<integer>75</integer>
-				<key>line</key>
-				<integer>10</integer>
-			</dict>
+			<integer>48</integer>
 		</dict>
-		<key>config/locales/en.yml</key>
+		<key>app/views/markers/new.html.erb</key>
 		<dict>
 			<key>caret</key>
 			<dict>
 				<key>column</key>
-				<integer>38</integer>
+				<integer>7</integer>
 				<key>line</key>
-				<integer>12</integer>
+				<integer>16</integer>
 			</dict>
 			<key>firstVisibleColumn</key>
 			<integer>0</integer>
 			<key>firstVisibleLine</key>
 			<integer>0</integer>
+		</dict>
+		<key>information/migration changes.txt</key>
+		<dict>
+			<key>caret</key>
+			<dict>
+				<key>column</key>
+				<integer>0</integer>
+				<key>line</key>
+				<integer>3</integer>
+			</dict>
+			<key>firstVisibleColumn</key>
+			<integer>0</integer>
+			<key>firstVisibleLine</key>
+			<integer>16</integer>
+		</dict>
+		<key>public/javascripts/marker.js</key>
+		<dict>
+			<key>caret</key>
+			<dict>
+				<key>column</key>
+				<integer>0</integer>
+				<key>line</key>
+				<integer>0</integer>
+			</dict>
+			<key>firstVisibleColumn</key>
+			<integer>0</integer>
+			<key>firstVisibleLine</key>
+			<integer>11</integer>
 		</dict>
 		<key>vendor/plugins/paperclip/test/database.yml</key>
 		<dict>
@@ -252,18 +204,9 @@
 			<integer>0</integer>
 		</dict>
 	</dict>
-	<key>openDocuments</key>
-	<array>
-		<string>app/controllers/groups_controller.rb</string>
-		<string>app/views/groups/_form.html.erb</string>
-		<string>app/views/templates/all.html</string>
-		<string>app/views/templates/block_signup.html.erb</string>
-		<string>app/views/users/_form.html.erb</string>
-		<string>app/views/users/_form_text_field.html.erb</string>
-	</array>
 	<key>showFileHierarchyDrawer</key>
 	<true/>
 	<key>windowFrame</key>
-	<string>{{1570, 15}, {1178, 836}}</string>
+	<string>{{1632, -20}, {1178, 836}}</string>
 </dict>
 </plist>

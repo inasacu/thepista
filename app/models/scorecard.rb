@@ -1,9 +1,5 @@
 class Scorecard < ActiveRecord::Base 
 
-  # include ActivityLogger
-  # 
-  # # Authorization plugin
-  # acts_as_authorizable 
   # acts_as_paranoid
 
   belongs_to :user
@@ -262,17 +258,17 @@ class Scorecard < ActiveRecord::Base
     self.create!(:group_id => group.id) if self.group_exists?(group)
   end
   
-  # record if user and group dont exist
+  # record if user and group do not exist
   def self.create_user_scorecard(user, group)
     self.create!(:group_id => group.id, :user_id => user.id) if self.user_group_exists?(user, group)
   end
   
-  # Return true if the group exist
+  # Return true if the group nil
   def self.group_exists?(group)
     find_by_group_id(group).nil?
   end
   
-  # Return true if the user and group exist
+  # Return true if the user and group nil
   def self.user_group_exists?(user, group)
     find_by_group_id_and_user_id(group, user).nil?
   end

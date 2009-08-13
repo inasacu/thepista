@@ -1,16 +1,9 @@
 
 <!-- check_box -->
 <div class="group">
-  <%= f.label :default_email, label_name('default_email'), :class => :label %>
-  <%= f.check_box :default_email, :class => 'text_field' %>
-  <span class="description"><%= label_name('default_email', 'description') %></span>
-</div>
-
-<!-- check_box -->
-<div class="group">
-  <%= f.label :default_available, label_name('default_available'), :class => :label %>
-  <%= f.check_box :default_available, :class => 'text_field' %>
-  <span class="description"><%= label_name('default_available', 'description') %></span>
+  <%= f.label :available, label_name('available'), :class => :label %>
+  <%= f.check_box :available, :class => 'text_field' %>
+  <span class="description"><%= label_name('available', 'description') %></span>
 </div>
 
  <!-- check_box -->
@@ -30,13 +23,13 @@
 <!-- check_box -->
 <div class="group">
   <%= f.label :teammate_notification, label_name('teammate_notification'), :class => :label %>
-  <%#= f.check_box :teammate_notification, :class => 'text_field' %>
+  <%= f.check_box :teammate_notification, :class => 'text_field' %>
   <span class="description"><%= label_name('teammate_notification', 'description') %></span>
 </div> 
 
 <!-- check_box -->
 <div class="group">
   <%= f.label :message_notification, label_name('message_notification'), :class => :label %>
-  <%#= f.check_box :message_notification, :class => 'text_field' %>
+  <%= f.check_box :message_notification, :class => 'text_field' %>
   <span class="description"><%= label_name('message_notification', 'description') %></span>
 </div>

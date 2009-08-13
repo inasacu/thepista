@@ -7,6 +7,7 @@ class User < ActiveRecord::Base
   end
 
   acts_as_solr :fields => [:name, :time_zone, :position] if use_solr?
+  acts_as_authorization_subject
   
   has_attached_file :photo,
   :styles => {
@@ -21,108 +22,8 @@ class User < ActiveRecord::Base
     :bucket => 'thepista_desarrollo', 
     :default_url => "avatar.png"  
 
-    def avatar
-      self.photo.url
-    end
 
-    def thumbnail
-      self.photo.url
-    end
-
-    def icon
-      self.photo.url
-    end 
-
-    def has_group?
-      self.groups.count > 0
-    end
-
-
-    ###################################### original source 
-    # 
-    # 
-    # require 'digest/sha1'
-    # require 'gravatar'
-    # 
-    # class User < ActiveRecord::Base
-    # 
-    #   # Authorization plugin
-    #   acts_as_authorized_user
-    #   acts_as_authorizable
-    #   acts_as_paranoid
-    #   
-
-    #   
-    #   include ActivityLogger
-    #   include Authentication
-    #   include Authentication::ByCookieToken
-    #   
-    #   # variables
-    #   # USERS_PER_PAGE = 10
-    #   # MESSAGES_PER_PAGE = 100
-    #   # NUM_RECENT_MESSAGES = 4
-    #   # NUM_WALL_COMMENTS = 10
-    #   # NUM_RECENT = 8
-    #   # TRASH_TIME_AGO = 1.month.ago
-    #   # FEED_SIZE = 15
-    #   # MAX_NAME = 40
-    #   # MAX_DESCRIPTION = 5000
-    #   # ONE_WEEK_FROM_TODAY = Time.now - 1.day..Time.now + 7.days
-    #   # EMAIL_REGEX = /\A[A-Z0-9\._%+-]+@([A-Z0-9-]+\.)+[A-Z]{2,4}\z/i
-    #   # TIME_AGO_FOR_MOSTLY_ACTIVE = 1.month.ago
-    #   # N_COLUMNS = 4
-    #   # RASTER_PER_PAGE = 3 * N_COLUMNS
-    #   
-    #   validates_uniqueness_of     :identity_url
-    #   validate                    :normalize_identity_url
-    #   validates_presence_of       :email
-    #   validates_format_of         :email,                       :with => EMAIL_REGEX
-    #   validates_length_of         :name,                        :maximum => MAX_NAME
-    #   validates_length_of         :description,                 :maximum => MAX_DESCRIPTION
-    #   # validates_format_of         :name,                        :with => /^[A-Z0-9_]$/i, :message =>"must contain only letters, numbers and underscores"
-    # 
-    #   # validates_numericality_of   :technical,   :less_than => 6
-    #   # validates_numericality_of   :physical,    :less_than => 6
-    # 
-    #   # HACK HACK HACK -- how to do attr_accessible from here?
-    #   # prevents a user from submitting a crafted form that bypasses activation
-    #   # anything else you want your user to change should be added here.
-    #   attr_accessible :login, :email, :name, :password, :password_confirmation, :identity_url, :nickname, :rpxnow_id 
-    #   attr_accessible :language, :country, :time_zone, :phone, :default_available, :default_reliable
-    #   attr_accessible :terms, :position, :dorsal, :technical, :physical, :injury, :injury_until, :private_email, :private_phone, :private_profile
-    #   attr_accessible :teammate_notification, :message_notification, :blog_comment_notification, :forum_comment_notification
-    #   attr_accessible :birth_at, :interest, :gender, :description
-    #   attr_accessible :openid_login, :provider
-    # 
       belongs_to  :identity_user, :class_name => 'User', :foreign_key => 'rpxnow_id'
-    # 
-    #   # Paperclip
-    #   # if production?
-    #   #   has_attached_file :photo, :styles => { :medium => "300x300>", :thumb => "100x100>" },
-    #   #                             :url => "/assets/users/:id/:style/:basename.:extension", 
-    #   #                             :path => ":rails_root/public/assets/users/:id/:style/:basename.:extension"
-    #   # else
-    #   #   has_attached_file :photo, :url => "/assets/users/:id/:style/:basename.:extension",
-    #   #                             :path => ":rails_root/public/assets/users/:id/:style/:basename.:extension"  
-    #   # end
-    #   
-    #   # has_attached_file :photo,
-    #   #   :styles => {
-    #   #     :thumb  => "80x80#",
-    #   #     :medium => "160x160>",
-    #   #   },
-    #   #   :storage => :s3,
-    #   #   :s3_credentials => "#{RAILS_ROOT}/config/s3.yml",
-    #   #   :path => ":attachment/:id/:style.:extension",
-    #   #   :bucket => 'thepista_desarrollo'
-    #   
-    # 
-    #   # has_attached_file :photo, :default_url => "default_avatar.jpg"  
-    #   # validates_attachment_size         :photo, :less_than => 5.megabytes
-    #   # validates_attachment_content_type :photo, :content_type => ['image/jpeg', 'image/png', 'image/gif']
-    #   
-    #   attr_accessible :photo
-    #   
       has_and_belongs_to_many   :groups,         :join_table => "groups_users" , :order => "name"
         
       has_many    :addresses
@@ -168,7 +69,28 @@ class User < ActiveRecord::Base
       has_one     :blog  
       
       
-    after_create    :create_user_blog_details
+    after_create    :create_user_blog_details, :deliver_signup_notification
+    
+
+    
+    # method section
+    def avatar
+      self.photo.url
+    end
+
+    def thumbnail
+      self.photo.url
+    end
+
+    def icon
+      self.photo.url
+    end 
+
+    def has_group?
+      self.groups.count > 0
+    end
+
+
     
     #   has_many    :feeds
     #   
@@ -262,6 +184,10 @@ class User < ActiveRecord::Base
         return membership
       end
       
+      def is_not_member_of?(group)
+        return unless is_member_of?(group)
+      end
+      
       def is_member_of?(group)
         self.has_role?('member', group)
       end
@@ -296,7 +222,7 @@ class User < ActiveRecord::Base
     #   end
     # 
     #   def unavailable?
-    #     default_available == 'No'
+    #     available == 'No'
     #   end
     # 
     #   def is_phone_private?
@@ -397,37 +323,7 @@ class User < ActiveRecord::Base
     #         schedule.id],
     #       :order => 'name')
     #   end
-    #       
-    #   # Authenticates a user by their login name and unencrypted password.  Returns the user or nil.
-    #   def self.authenticate(login, password)
-    #     u = find :first, :conditions => ['login = ?', login] # need to get the salt
-    #     u && u.authenticated?(password) ? u : nil
-    #   end
-    # 
-    #   def remember_token?
-    #     remember_token_expires_at && Time.now.utc < remember_token_expires_at
-    #   end
-    # 
-    #   # These create and unset the fields required for remembering users between browser closes
-    #   def remember_me
-    #     remember_me_for 2.weeks
-    #   end
-    # 
-    #   def remember_me_for(time)
-    #     remember_me_until time.from_now.utc
-    #   end
-    # 
-    #   def remember_me_until(time)
-    #     self.remember_token_expires_at = time
-    #     self.remember_token            = encrypt("#{email}--#{remember_token_expires_at}")
-    #     save(false)
-    #   end
-    # 
-    #   def forget_me
-    #     self.remember_token_expires_at = nil
-    #     self.remember_token            = nil
-    #     save(false)
-    #   end
+
     # 
     #   # def is_same_user(user)
     #   #   (self.id.to_i == user.id.to_i)
@@ -442,28 +338,19 @@ class User < ActiveRecord::Base
     #   end
     # 
     #   def self.available
-    #     find(:all, :conditions => "default_available != 'No'")
+    #     find(:all, :conditions => "available != 'No'")
     #   end
-    # 
-    #   def age
-    #     (Time.now.year - birthday.year) - (turned_older? ? 0 : 1) rescue 0
-    #   end
-    # 
-    #   def next_birthday
-    #     birthday.to_time.change(:year => (turned_older? ? 1.year.from_now : Time.now).year)
-    #   end
-    # 
-    #   def turned_older?
-    #     (birthday.to_time.change(:year => Time.now.year) <= Time.now)
-    #   end
-    # 
+  
+
+
+
     #   #  queries predefined
     #   def find_group_mates(group)
     #     @recipients = User.find_by_sql(["select distinct users.* from users, groups_users " +
     #           "where users.id = groups_users.user_id " +
     #           "and groups_users.group_id in (?) " +
     #           "and groups_users.user_id != ? " +
-    #           "and users.default_available = true " +
+    #           "and users.available = true " +
     #           "order by name", group.id, self.id])
     #   end
     # 
@@ -472,7 +359,7 @@ class User < ActiveRecord::Base
     #           "where users.id = groups_users.user_id " +
     #           "and groups_users.group_id in (?) " +
     #           "and groups_users.user_id != ? " +
-    #           "and users.default_available = true " +
+    #           "and users.available = true " +
     #           "order by name", user.groups, user.id])
     #   end
     # 
@@ -490,6 +377,7 @@ class User < ActiveRecord::Base
       
     def page_mates(page = 1)                                 
       mates = User.paginate(:all, 
+      :select => "distinct users.*",
       :joins => "left join groups_users on users.id = groups_users.user_id",
       :conditions => ["groups_users.group_id in (?) or users.id = ?", self.groups, self.id],
       :order => "name",
@@ -497,95 +385,21 @@ class User < ActiveRecord::Base
       :per_page => USERS_PER_PAGE)
     end
 
-    #   def self.user_and_invite(user)
-    #     find_by_sql(["select distinct id as user_id " +
-    #           "from users " +
-    #           "where id = #{user.id} or invited_by_id =  #{user.id}", user.id ])
-    #   end
-    # 
-    # 
-    #   def create_user_details
-    #     Address.create(:user_id => self.id) if Address.find_by_user_id(self.id).nil?
-    #   end
-    # 
-    #   def create_matches(schedule, current_group)
-    #     team = Team.find(:first, :conditions=>["group_id = ?", current_group.id])
-    #     Match.create(:schedule_id => schedule.id, :team_id => team.id, :user_id => self.id) if Match.find(:first, :conditions =>["schedule_id = ? and team_id = ? and user_id = ?",  schedule.id, team.id, self.id]).nil?
-    #   end
-    # 
-    #   def create_user_fees(schedule, current_group)
-    #     Fee.create(:concept => schedule.concept, :schedule_id => schedule.id, :user_id => self.id,
-    #       :group_id => current_group.id, :user_fee => true, :actual_fee => schedule.fee_per_game) if Fee.find(:first, :conditions =>["schedule_id = ? and user_id = ? and group_id = ?", schedule.id, self.id, current_group.id]).nil?
-    #   end
-    #   
-    #   # for use with RPX Now gem
-    #   def self.find_or_initialize_with_rpx(data)
-    #     identifier = data['identifier']
-    # 
-    #     @user = User.find_by_identity_url(identifier)
-    # 
-    #     # For extra safeguard to make sure that the first user (who is an admin, who didn't sign up rpx, isn't returned)
-    #     unless identifier.nil? || identifier.blank?
-    #       u = self.find_by_identity_url(identifier)
-    #       if u.nil?
-    #         u = self.new
-    #         u.read_rpx_response(data)
-    #       else
-    #         u.id = @user.id  
-    #         u.time_zone ||= Time.zone
-    #         u.time_zone = @user.time_zone unless @user.time_zone.to_s.empty?        
-    #       end
-    #     end
-    # 
-    #     return u
-    #   end
-    # 
-    #   def read_rpx_response(user_data)
-    #     
-    #       self.identity_url = user_data['identifier']
-    #       self.openid_login = true
-    #       
-    #     case user_data['providerName']
-    #     # when "MyOpenID"    
-    #       # {"address"=>{"country"=>"Philippines"}, "verifiedEmail"=>"username@gmail.com", "displayName"=>"Yags", 
-    #       #                "preferredUsername"=>"Yags", "url"=>"http://username.myopenid.com/", "gender"=>"male", 
-    #       #                "utcOffset"=>"08:00", "birthday"=>Sun, 05 Dec 1982, "providerName"=>"MyOpenID", 
-    #       #                "identifier"=>"http://username.myopenid.com/", "email"=>"username@gmail.com"}
-    #       
-    #     when "Facebook"
-    #       # {"photo"=>"http://profile.ak.facebook.com/v279/631/23/n532614338_9399.jpg", "name"=>{"givenName"=>"Yags", 
-    #       #             "familyName"=>"Balls", "formatted"=>"Yags Balls"}, "displayName"=>"Yags Balls", 
-    #       #             "preferredUsername"=>"YagsBalls", "url"=>"http://www.facebook.com/profile.php?id=213144516", 
-    #       #             "gender"=>"male", "utcOffset"=>"08:00", "birthday"=>Sun, 05 Dec 1982, 
-    #       #             "providerName"=>"Facebook", "identifier"=>"http://www.facebook.com/profile.php?id=315164708"}
-    #       self.default_avatar = user_data['photo'] unless user_data['photo'].nil?
-    #       self.email = user_data['verifiedEmail'] || user_data['email']
-    #       self.name = user_data['givenName'] || user_data['displayName']
-    # 
-    #     # when "Google"
-    #       #   {"verifiedEmail"=>"username@gmail.com", "displayName"=>"username", "preferredUsername"=>"username", 
-    #       #             "providerName"=>"Google", 
-    #       #             "identifier"=>"https://www.google.com/accounts/o8/id?id=AItOaekQigFV6AKAd8XpaIa1r8rEOdQiib40wWX", 
-    #       #             "email"=>"username@gmail.com"}
-    #     # when "Yahoo!"
-    #       #  {"verifiedEmail"=>"username@yahoo.com", "displayName"=>"Yags T", "preferredUsername"=>"Yags T", 
-    #       #             "gender"=>"male", "utcOffset"=>"08:00", "providerName"=>"Yahoo!", 
-    #       #             "identifier"=>"https://me.yahoo.com/a/xa.oZ0oHLmBUYd0cVo-#38", 
-    #       #             "email"=>"username@yahoo.com"}
-    # 
-    #     else
-    #       #For actual responses, see http://pastie.org/382356
-    #       self.default_avatar = user_data['photo'] # unless user_data['photo'].nil?
-    #       self.email = user_data['verifiedEmail'] || user_data['email']
-    #       # self.gender = user_data['gender']
-    #       # self.birth_date = user_data['birthday']
-    #       self.name = user_data['givenName'] || user_data['displayName']
-    #       # self.last_name = user_data['familyName']
-    #       self.login = user_data['preferredUsername']
-    #       # self.country = user_data['address']['country'] unless user_data['address'].nil?
-    # 
-    #     end
-    #   end
+      def self.user_and_invite(user)
+        find_by_sql(["select distinct id as user_id " +
+              "from users " +
+              "where id = #{user.id} or invited_by_id =  #{user.id}", user.id ])
+      end
+    
+    
+      def create_matches(schedule, group, user)
+        Match.create_schedule_group_user_match(schedule, group, user)
+	  end
+    
+      def create_user_fees(schedule, group, user)
+		Fee.create_schedule_group_user_fee(schedule, group, user)
+      end
+
         
     def create_user_blog_details
       @blog = Blog.create_user_blog(self)
@@ -593,19 +407,7 @@ class User < ActiveRecord::Base
       Comment.create_user_comment(self, @blog, @entry)
     end
       
-    #   def get_gravatar
-    #     theGravatar = Gravatar.new(self.email)
-    #     if theGravatar.has_gravatar? and self.default_avatar != theGravatar.url
-    #       self.default_avatar = theGravatar.url 
-    #       self.has_gravatar = true              
-    #       self.save!
-    #     else 
-    #       self.has_gravatar = false
-    #       self.default_avatar = "default_avatar.jpg" 
-    #       self.save!
-    #     end
-    #   end
-    # 
+
     #   protected
     # 
     #   ## Callbacks
@@ -614,72 +416,17 @@ class User < ActiveRecord::Base
     #   def prepare_email
     #     self.email = email.downcase.strip if email
     #   end
-    # 
-    #   # Handle the case of a nil description.
-    #   # Some databases (e.g., MySQL) don't allow default values for text fields.
-    #   # By default, "blank" fields are really nil, which breaks certain
-    #   # validations; e.g., nil.length raises an exception, which breaks
-    #   # validates_length_of.  Fix this by setting the description to the empty
-    #   # string if it's nil.
-    #   def handle_nil_description
-    #     self.description = "" if description.nil?
-    #   end
-    #   
-    #   def set_old_description
-    #     @old_description = User.find(self).description
-    #   end
-    # 
-    #   def log_activity_description_changed
-    #     unless @old_description == description or description.blank?
-    #       add_activities(:item => self, :user => self)
-    #     end
-    #   end
-    #   
-    #   # Clear out all activities associated with this user.
-    #   def destroy_activities
-    #     Activity.find_all_by_user_id(self).each {|a| a.destroy}
-    #   end
-    #   
-    #   def destroy_feeds
-    #     Feed.find_all_by_user_id(self).each {|f| f.destroy}
-    #   end
-    #   
-    # 
-    #   def normalize_identity_url
-    #     self.identity_url = OpenIdAuthentication.normalize_identifier(identity_url) unless identity_url.blank?
-    #   rescue URI::InvalidURIError
-    #     errors.add_to_base("Invalid OpenID URL")
-    #   end
-    # 
-    #   def self.random_string(len)
-    #     #generate a random password consisting of strings and digits
-    #     chars = ("a".."z").to_a + ("A".."Z").to_a + ("0".."9").to_a
-    #     newpass = ""
-    #     1.upto(len) { |i| newpass << chars[rand(chars.size-1)] }
-    #     return newpass
-    #   end
-    # 
-    #   def generate_beta_code
-    #     self.beta_code = Digest::SHA1.hexdigest( Time.now.to_s.split(//).sort_by {rand}.join )
-    #   end
-    # 
-    #   
-    #   class << self
-    #   
-    #     # Return the conditions for a user to be active.
-    #     # def conditions_for_active
-    #     #   [%(deactivated = ? AND 
-    #     #      (email_verified IS NULL OR email_verified = ?)),
-    #     #    false, true]
-    #     # end
-    #     
-    #     # Return the conditions for a user to be 'mostly' active.
-    #     def conditions_for_mostly_active
-    #       [%((last_logged_in_at IS NOT NULL AND
-    #           last_logged_in_at >= ?)),
-    #        false, true, TIME_AGO_FOR_MOSTLY_ACTIVE]
-    #     end
-    #   end
+
+  
+    
+    def deliver_signup_notification
+      UserMailer.deliver_signup_notification(self)
+    end
+    
+    def deliver_password_reset_instructions!  
+  		reset_perishable_token!  
+  		UserMailer.deliver_password_reset_instructions(self)  
+  	end
 
     private
 

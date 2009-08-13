@@ -1,4 +1,6 @@
 class MatchesController < ApplicationController
+  before_filter :require_user
+
   def index
     @matches = Match.paginate(:per_page => 10, :page => params[:page])
   end
@@ -14,7 +16,7 @@ class MatchesController < ApplicationController
   def create
     @matches = Match.new(params[:matches])
     if @matches.save
-      flash[:notice] = "Successfully created matches."
+      flash[:notice] =  I18n.t(:successful_create)
       redirect_to @matches
     else
       render :action => 'new'
@@ -28,7 +30,7 @@ class MatchesController < ApplicationController
   def update
     @matches = Match.find(params[:id])
     if @matches.update_attributes(params[:matches])
-      flash[:notice] = "Successfully updated matches."
+      flash[:notice] =  I18n.t(:successful_update)
       redirect_to @matches
     else
       render :action => 'edit'
@@ -38,7 +40,7 @@ class MatchesController < ApplicationController
   def destroy
     @matches = Match.find(params[:id])
     @matches.destroy
-    flash[:notice] = "Successfully destroyed matches."
+    flash[:notice] =  I18n.t(:successful_destroy)
     redirect_to matches_url
   end
 end

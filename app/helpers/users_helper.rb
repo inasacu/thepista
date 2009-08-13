@@ -78,9 +78,9 @@ module UsersHelper
   # returns a link if user can modify availability
   # this option can remove the user from the roster list
   def is_available(user)
-    available = globalite_b(user.default_available)
+    available = globalite_b(user.available)
     if current_user == user or user.my_managers(current_user)
-      link_to available, {:controller => "users", :action => "set_available", :id => user.id}, :confirm => "#{t :change_default_available } #{user.name}?"
+      link_to available, {:controller => "users", :action => "set_available", :id => user.id}, :confirm => "#{t :change_available } #{user.name}?"
     else
       return available
     end
@@ -91,7 +91,7 @@ module UsersHelper
     receive_email = globalite_b(user.message_notification)
     if current_user == user 
       link_to receive_email, {:controller => "users", :action => "set_email", :id => @user.id},
-      :confirm => "#{t :change_default_email } #{@user.name}?"
+      :confirm => "#{t :change_message_notification } #{@user.name}?"
     else
       return receive_email
     end
@@ -99,7 +99,7 @@ module UsersHelper
 
   # returns a link to allow user to display or hide phone
   def is_private_phone(user)
-    private_phone = globalite_b(@user.default_email)
+    private_phone = globalite_b(@user.message_notification)
     if current_user == user 
       link_to private_phone, {:controller => "users", :action => "set_phone", :id => @user.id},
       :confirm => "#{t :change_private_phone } #{@user.name}?"
@@ -110,7 +110,7 @@ module UsersHelper
 
   # returns a link to allow user to display or hide his/her technical and physical profile
   def is_private_profile(user)
-    private_profile = globalite_b(@user.default_email)
+    private_profile = globalite_b(@user.message_notification)
     if current_user == user
       link_to private_profile, :controller => "users", :action => "set_profile", :id => @user.id
     else

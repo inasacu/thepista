@@ -13,7 +13,7 @@ class Blog < ActiveRecord::Base
   # method section
   # record if group does not exist
   def self.create_group_blog(group) 
-    self.create!(:group_id => group.id) if self.group_exists?(group)
+    self.create!(:group_id => group.id, :name => '.....', :description => '.....') if self.group_exists?(group)
   end 
 
   # record if user does not exist
@@ -21,12 +21,12 @@ class Blog < ActiveRecord::Base
     self.create!(:user_id => user.id, :name => '.....', :description => '.....') if self.user_exists?(user)
   end
 
-  # Return true if the group does not exist
+  # Return true if the group nil
   def self.group_exists?(group)
     find_by_group_id(group).nil?
   end
 
-  # Return true if the user does not exist
+  # Return true if the user nil
   def self.user_exists?(user)
     find_by_user_id(user).nil?
   end

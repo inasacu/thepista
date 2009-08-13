@@ -10,13 +10,14 @@
 	
       <table class="table">
 	  
-        <tr>             
-          <th class="first">&nbsp;</th>
-          <th><%= I18n.t(:name) %></th>
-          <th><%= I18n.t(:t_zone) %></th>
-          <th><%= I18n.t(:last_game_played) %></th>
-          <th class="last">&nbsp;</th>
-        </tr>
+		<tr>             
+			<th class="first">&nbsp;</th>
+			<th><%= I18n.t(:name) %></th>
+			<th><%= I18n.t(:group) %></th>
+			<th><%= I18n.t(:time_zone) %></th>
+			<th><%= I18n.t(:last_game_played) %></th>
+			<th class="last">&nbsp;</th>
+		</tr>
 		
         <% @users.each do |user| -%>		
 			<tr>
@@ -27,13 +28,17 @@
 			  <td>
 				<%= user_link user %>
 			  </td>
-			  
+
+			  <td>
+				<%= user_link user %>
+			  </td>			  
+
 			  <td>
 				<%= user.time_zone %>
 			  </td>
 			  
 			  <td>
-				<%= nice_day_of_week(user.last_login_at) %> 
+				<%= nice_day_time user.last_login_at %> 
 			  </td>	
 			
 			  <td class="last">

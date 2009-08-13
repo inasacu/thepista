@@ -1,4 +1,6 @@
 class SportsController < ApplicationController
+  before_filter :require_user
+
   def index
     @sports = Sport.paginate(:per_page => 10, :page => params[:page])
   end
@@ -14,7 +16,7 @@ class SportsController < ApplicationController
   def create
     @sports = Sport.new(params[:sports])
     if @sports.save
-      flash[:notice] = "Successfully created sports."
+      flash[:notice] = I18n.t(:successful_create)
       redirect_to @sports
     else
       render :action => 'new'
@@ -28,7 +30,7 @@ class SportsController < ApplicationController
   def update
     @sports = Sport.find(params[:id])
     if @sports.update_attributes(params[:sports])
-      flash[:notice] = "Successfully updated sports."
+      flash[:notice] = I18n.t(:successful_update)
       redirect_to @sports
     else
       render :action => 'edit'
@@ -38,7 +40,7 @@ class SportsController < ApplicationController
   def destroy
     @sports = Sport.find(params[:id])
     @sports.destroy
-    flash[:notice] = "Successfully destroyed sports."
+    flash[:notice] = I18n.t(:successful_destroy)
     redirect_to sports_url
   end
 end

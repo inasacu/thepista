@@ -160,7 +160,10 @@ es:
       short: "%e de %b %H:%M" 
       long: "%e de %B de %Y %H:%M" 
       day_week: "%A, %e de %B de %Y a las %H:%M" # this is my code
+      day_time: "%A, a las %H:%M" # this is my code
       day_weekday: "%A"
+      day_date: "%A, %e de %B de %Y" # this is my code
+      
     am: "am" 
     pm: "pm" 
 

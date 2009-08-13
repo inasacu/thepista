@@ -4,30 +4,28 @@
 
 <ul class="navigation">
 <% 
-	display_actions ||= false
-	if current_user.is_member_of?(group) 
-		the_confirmation = "#{ label_name(:do_leave_group) } #{group.name}?"
+	if current_user.is_member_of?(@group) 
+		the_confirmation = label_name_with(:do_leave_group, "#{@group.name}?")
 %>
-		<li><%= link_to(label_name(:send_message_to_group), new_message_path(:group_id => group.id) %> 
-		<li><%= link_to(label_name(:leave_group), leave_team_path(:id => group.id, :teammate => current_user.id), 
-													:confirm => the_confirmation) if display_actions %></li>
+		<li><%= link_to(label_name(:send_message_to_group), new_message_path(:group_id => @group.id)) %> 
+		<li><%= link_to(label_name(:leave_group), leave_team_path(:id => @group.id, :teammate => current_user.id), 
+													:confirm => the_confirmation) %></li>
 <% 
 	else 
-		the_label = label_name_with('add_to_group', group.name)
-		the_confirmation = "#{ label_name(:manage_join_group) } #{@user.name} #{ label_name(:to) } #{group.name}?"
+		the_label = label_name_with('add_to_group', @group.name)
+		the_confirmation = "#{ label_name(:manage_join_group) } #{@user.name} #{ label_name(:to) } #{@group.name}?"
 %> 
-		<li><%= link_to(the_label, join_team_path(:id => group.id, :teammate => current_user.id), :confirm => the_confirmation) %></li>
+		<li><%= link_to(the_label, join_team_path(:id => @group.id, :teammate => current_user.id), :confirm => the_confirmation) %></li>
 <% 
 	end 
 
-	if current_user.is_manager_of?(group)
-		the_label = label_name_with('create_schedule', group.name)
-		the_confirmation = "#{ label_name(:destroy_group) } #{ label_name(:to) } #{group.name}?" 
+	if current_user.is_manager_of?(@group)
+		the_label = label_name_with('create_schedule', @group.name)
+		the_confirmation = "#{ label_name(:destroy_group) } #{ label_name(:to) } #{@group.name}?" 
 %> 
-		<li><%= link_to(control_label('new'), new_schedule_path(:id => group.id) %></li>                       
-		<li><%= link_to(control_label('edit'), edit_group_path(group)) if current_user.is_manager_of?(group) %></li>  
-		<li><%= link_to(control_label('destroy'), destroy_group_path(group), 
-												:confirm => the_confirmation) if group.has_schedule?(group) and display_actions %></li>
+		<!-- <li><%#= link_to(control_label('new'), new_schedule_path(:id => @group.id)) %></li>   -->                     
+		<li><%= link_to(control_label('edit'), edit_group_path(@group)) if current_user.is_manager_of?(@group) %></li>  
+		<li><%= link_to(control_label('destroy'), destroy_group_path(@group), :confirm => the_confirmation) if @group.has_schedule? %></li>
 <% 
 	end 
 %>

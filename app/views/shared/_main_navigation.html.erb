@@ -1,3 +1,6 @@
+<% display ||= true %>
+<%# display = current_user.has_group?%>
+
 <div id="main-navigation">
 
 <ul>
@@ -5,9 +8,12 @@
 	<%= list_link_with_active(label_name(:home), '/') %>
 	<%= list_link_with_active(label_name(:users), users_url) %>	
 	<%= list_link_with_active(label_name(:groups), groups_url) %>	
-	<%= list_link_with_active(label_name(:schedules), schedules_url) if current_user.has_group? %>
+	<%= list_link_with_active(label_name(:schedules), schedules_url) %>
+	<%= list_link_with_active(label_name(:practices), practices_url) %>
+	<%= list_link_with_active(label_name(:fees), fees_url) %>
+	<%= list_link_with_active(label_name(:payments), payments_url) %>
 	<%= list_link_with_active(label_name(:messages), messages_url) %>
-	<%= list_link_with_active(label_name(:scorecards), scorecards_url) if current_user.has_group? %>
+	<%= list_link_with_active(label_name(:scorecards), scorecards_url) %>
 	<%= list_link_with_active(label_name(:markers), markers_url) %>
 	<% end %>
 </ul>

@@ -1,7 +1,7 @@
 class TeammatesController < ApplicationController
   include UserHelper
-  
-  before_filter :login_required
+   
+  before_filter :require_user
   before_filter :setup_managers, :only => :create
   before_filter :setup_groups, :only => [:join, :leave, :join_team, :leave_team]
   before_filter :setup_teammate, :only => [:accept, :decline]

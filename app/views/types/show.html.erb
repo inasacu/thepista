@@ -1,32 +1,32 @@
 <div class="block">
-  <div class="secondary-navigation">
-    <ul>
-      <li class="first"><%= link_to 'List', types_path  %></li>
-      <li><%= link_to 'New', new_type_path %></li>
-      <li class="active"><%= link_to 'Show', type_path %></li>
-    </ul>
-    <div class="clear"></div>
-  </div>          
+
+  <%= render :partial => 'secondary_navigation' %>   
+  
   <div class="content">
     <div class="inner">
-      
+
+	<p>
+	  <b><%= label_name(:name) %>:</b>
+	  <%=h @type.name %>
+	</p>
+	
         <p>
-          <b>Name:</b>
-          <%= @type.name %>
+          <b><%= label_name(:name) %>:</b>
+          <%=h @type.description %>
         </p>
 
         <p>
-          <b>Table_type:</b>
+          <<b><%= label_name(:table_type) %>:</b>
           <%= @type.table_type %>
         </p>
 
         <p>
-          <b>Table_id:</b>
+          <b><%= label_name(:table_id) %>:</b>
           <%= @type.table_id %>
         </p>
-      <%= link_to label_name(:edit), edit_type_path(@type) %>
+  
     </div>
   </div>
 </div>
 
-<% content_for :sidebar, render(:partial => 'sidebar') -%>
+<% content_for :sidebar, render(:partial => 'sidebar_show') -%>

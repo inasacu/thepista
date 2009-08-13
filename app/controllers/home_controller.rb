@@ -1,5 +1,5 @@
 class HomeController < ApplicationController  
-  # before_filter :login_required, :except => [:about, :help, :welcome]
+  # before_filter :require_user, :except => [:about, :help, :welcome]
 
   def index
     

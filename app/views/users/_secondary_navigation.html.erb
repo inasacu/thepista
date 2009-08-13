@@ -20,15 +20,14 @@
 		the_label = control_label('my_wall')
 %>
 		<li class="<%= get_active('show') %>">  <%= link_to(the_label, blog_path(current_user.blog)) %>  </li>
-		<li class="<%= get_active('recent_activity') %>">  <%= link_to(label_name(:recent_activities) , recent_activity_path) %>  </li>
+		<!-- <li class="<%#= get_active('recent_activity') %>">  <%#= link_to(label_name(:recent_activities) , recent_activity_path) %>  </li> -->
 <% 		
 	else 
 		the_label = (@user == current_user ? control_label('my_wall') : "#{label_name(:the_wall)} #{h(@user.name)}")	
 		#my_openid = (@user.can_modify?(current_user) and @user.openid_login)	
 %>
 		<li class="<%= get_active('blog') %>">  <%= link_to(the_label, blog_path(@user.blog)) %>  </li>
-		<li class="<%= get_active('recent_activity') %>">  <%= link_to(label_name(:recent_activities), recent_activity_path) %>  </li>
-
+		<!-- <li class="<%#= get_active('recent_activity') %>">  <%#= link_to(label_name(:recent_activities), recent_activity_path) %>  </li> -->
 		<!-- <li class="<%= get_active %>">  <%#= link_to(label_name(:myopenid) , my_openid_path(@user.id)) if my_openid %>  </li> -->
 <% 
 	end

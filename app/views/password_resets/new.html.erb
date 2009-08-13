@@ -1,0 +1,49 @@
+<div class="block">
+
+	<div class="secondary-navigation">
+
+	<ul>
+				<li class="<%= get_first_class %>"><%= label_name(:forgot_password) %></li>
+						<li class="<%= get_first_class %>"><%= label_name(:forgot_password) %></li>
+	</ul>
+
+	<div class="clear"></div>
+
+	</div>
+
+	<!-- <h2>
+		<%#= label_name(:forgot_password) %>
+	</h2>
+	<h4><%#= label_name(:password_reset_instructions) %></h4><br /><br /> -->
+	
+	<div class="content">  
+
+		<h2 class="title"><%= control_action_label %></h2>
+		<h4>&nbsp;&nbsp;&nbsp;&nbsp;<%= label_name(:password_reset_instructions) %></h4><br /><br />
+
+		<div class="inner">
+		
+		<% form_tag password_resets_path do %>
+		
+		<div class="group">
+	    <%= label :email, label_name('name') %>&nbsp;&nbsp;<%= text_field_tag :email %>	    
+	  	</div><br />
+	
+		<div class="group navform"> 
+			<%= submit_tag label_name(:password_reset), :class => "button" %>
+		</div>
+
+		<% end -%>
+
+		</div>
+
+	</div>
+
+</div>
+
+
+
+
+
+
+

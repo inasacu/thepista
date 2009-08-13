@@ -39,13 +39,8 @@
 	</p>
 
 	<p>
-	  <b><%= label_name(:default_email) %>:</b>
-	  <%=h @user.default_email %>
-	</p>
-
-	<p>
-	  <b><%= label_name(:default_available) %>:</b>
-	  <%=h @user.default_available %>
+	  <b><%= label_name(:available) %>:</b>
+	  <%=h @user.available %>
 	</p>
 
 	<p>
@@ -70,12 +65,12 @@
 
 	<p>
 	  <b><%= label_name(:private_phone) %>:</b>
-	  <%=h label_name(@user.private_phone) %>
+	  <%=h label_name(@user.private_phone, 'value') %>
 	</p>
 
 	<p>
 	  <b><%= label_name(:private_profile) %>:</b>
-	  <%=h label_name(@user.private_profile) %>
+	  <%=h label_name(@user.private_profile, 'value') %>
 	</p>
 
 	<p>
@@ -90,13 +85,13 @@
 
 	<p>
 	  <b><%= label_name(:birth_at) %>:</b>
-	  <%=h nice_day_of_week @user.birth_at %>
+	  <%=h nice_day_date @user.birth_at %>
 	</p>
 
 
 	<p>
 	  <b><%= label_name(:last_login_at) %>:</b>
-	  <%=h nice_day_of_week @user.last_login_at %>
+	  <%=h nice_day_date @user.last_login_at %>
 	</p>
 
 
@@ -131,10 +126,10 @@
 	  <%=h @user.login_count %>
 	</p>
 
-	<p>
-	  <b><%= label_name(:last_request_at) %>:</b>
-	  <%=h nice_day_of_week @user.last_request_at %>
-	</p>
+	<!-- <p>
+	  <b><%#= label_name(:last_request_at) %>:</b>
+	  <%#=h nice_day_date @user.last_request_at %>
+	</p> -->
 
 	<p>
 	  <b><%= label_name(:last_login_at) %>:</b>

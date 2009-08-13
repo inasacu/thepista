@@ -1,0 +1,82 @@
+<div class="block">
+
+  <%= render :partial => 'secondary_navigation' %>   
+  
+  <div class="content">
+    <div class="inner">
+
+	<p>
+	  <b><%= label_name(:concept) %>:</b>
+	  <%=h @practice.concept%>
+	</p>
+
+        <p>
+          <b><%= label_name(:starts_at) %>:</b>
+          <%=h nice_day_of_week @practice.starts_at %>
+        </p>
+
+        <p>
+          <b><%= label_name(:ends_at) %>:</b>
+          <%=h nice_day_of_week @practice.ends_at %>
+        </p>
+
+        <p>
+          <b><%= label_name(:reminder) %>:</b>
+          <%=h @practice.reminder %>
+        </p>
+
+        <p>
+          <b><%= label_name(:practice_attendees_count) %>:</b>
+          <%=h @practice.practice_attendees_count %>
+        </p>
+
+        <p>
+          <b><%= label_name(:group) %>:</b>
+          <%=h @practice.group.name %>
+        </p>
+
+        <p>
+          <b><%= label_name(:user) %>:</b>
+          <%=h @practice.user.name %>
+        </p>
+
+        <p>
+          <b><%= label_name(:sport) %>:</b>
+          <%=h @practice.sport.name %>
+        </p>
+
+        <p>
+          <b><%= label_name(:marker) %>:</b>
+          <%=h @practice.marker.name %>
+        </p>
+
+        <p>
+          <b><%= label_name(:time_zone) %>:</b>
+          <%=h @practice.time_zone %>
+        </p>
+
+        <p>
+          <b><%= label_name(:description) %>:</b>
+          <%=h @practice.description %>
+        </p>
+
+        <p>
+          <b><%= label_name(:player_limit) %>:</b>
+          <%=h @practice.player_limit %>
+        </p>
+
+        <p>
+          <b><%= label_name(:played) %>:</b>
+          <%=h @practice.played %>
+        </p>
+
+        <p>
+          <b><%= label_name(:privacy) %>:</b>
+          <%=h @practice.privacy %>
+        </p>
+  
+    </div>
+  </div>
+</div>
+
+<% content_for :sidebar, render(:partial => 'sidebar_show') -%>

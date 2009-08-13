@@ -68,7 +68,7 @@ class Match < ActiveRecord::Base
   #       "matches.group_id, a.name as home_name, b.name as invite_name, " +
   #       "matches.group_score, matches.invite_score, " +
   #       "matches.user_id, users.name as name, " +
-  #       "users.dorsal, users.email, users.phone, users.default_available, " +
+  #       "users.dorsal, users.email, users.phone, users.available, " +
   #       "availabilities.id as availability_id, availabilities.available, availabilities.reliable " +
   #       "from matches " +
   #       "left join groups a on a.id = matches.group_id " +
@@ -121,6 +121,16 @@ class Match < ActiveRecord::Base
   #     activity = Activity.create!(:item => match, :user => match.user)
   #     Feed.create!(:activity => activity, :user => match.user)
   #   end
-  # end   
+  # end 
+
+	def create_schedule_group_user_match(schedule, group, user)
+        self.create!(:schedule_id => schedule.id, :group_id => team.id, 
+					 :user_id => user.id) if self.schedule_group_user_exists?(schedule, group, user)
+	end
+
+	# return ture if the schedule group user conbination is nil
+   def self.schedule_group_user_exists?(schedule, group, user)
+		find_by_schedule_id_and_group_id_and_user_id(schedule, group, user).nil?
+	end 	
 end
 

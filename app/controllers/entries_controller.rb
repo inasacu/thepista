@@ -1,4 +1,5 @@
 class EntriesController < ApplicationController
+  before_filter :require_user
   
   def show
     @blog = Blog.find(params[:blog_id])

@@ -1,15 +1,5 @@
-
 require 'ym4r_gm'
 require 'test/unit'
-
-# git submodule add git://github.com/ewildgoose/ym4r_gm.git vendor/plugins/ym4r_gm
-#       http://jystewart.net/process/2006/09/abstracting-mapping-with-ym4r/
-#    @marker = Marker.find(:all, :conditions => "latitude is not null and longitude is not null").each do |marker|
-#      theMarker = GMarker.new([marker.latitude, marker.longitude], :title => marker.name, :info_window =>   render_to_string(:partial => 'bubble')) 
-
-#      http://jystewart.net/process/2007/02/extending-acts_as_locateable/
-#      http://jystewart.net/process/2007/02/extending-acts_as_locateable/
-
 class MarkersController < ApplicationController
 
   def index
@@ -77,27 +67,6 @@ class MarkersController < ApplicationController
       @markers = Marker.paginate_all_by_solr(params[:search].to_s, :page => params[:page])
       render :template => '/markers/index'
     end
-
-    # def new
-    #   @marker = Marker.new
-    #   render :template =>  '/layouts/current/new'
-    # end
-    # 
-    # def create
-    #   @marker = Marker.new(params[:marker])
-    #   @marker.url = "http://maps.google.com/maps?q=" + @marker.direction.tr(' ', '+')    
-    #   
-    #    if @marker.save      
-    #     @marker.accepts_role 'creator', current_user
-    #     
-    #     flash[:notice] = "#{:marker } #{:created }"
-    #     redirect_to :action => 'index'
-    #   else
-    #     
-    #     flash[:notice] = "#{:marker } #{:not_created }"
-    #     render :action => 'new'
-    #   end
-    # end
 
     def edit  
       # editing is limited to maximo or creator

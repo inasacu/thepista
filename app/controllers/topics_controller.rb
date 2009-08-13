@@ -1,44 +1,34 @@
 class TopicsController < ApplicationController
-  def index
-    @topics = Topic.paginate(:per_page => 10, :page => params[:page])
-  end
+  before_filter :require_user
   
   def show
-    @topics = Topic.find(params[:id])
+    @forum = Forum.find(params[:forum_id])
+    @user = @forum.user unless @forum.user.nil?
+    @group = @forum.group unless @forum.group.nil?
+    @entry = @forum.entries.first
+    @posts = Post.find(:all, 
+                      :conditions => ["topic_id = ? and created_at > ?",  @entry.id, User::TIME_AGO_FOR_MOSTLY_ACTIVE], 
+                      :order => 'created_at DESC')
   end
-  
+
   def new
-    @topics = Topic.new
+    @topic = Topic.new
+    @post = Post.new
   end
   
   def create
-    @topics = Topic.new(params[:topics])
-    if @topics.save
-      flash[:notice] = "Successfully created topics."
-      redirect_to @topics
-    else
-      render :action => 'new'
-    end
+    @forum = Forum.find(params[:id])
+    @topic = @forum.topics.first
+    
+    @post = Post.new(:body => params[:post][:body], :topic_id => @topic.id, :user_id => current_user.id)
+    @post.save!
+    
+    flash[:notice] = t(:post_saved)
+    redirect_to :action => 'index', :forum_id => @forum.id
+    return 
+  rescue ActiveRecord::RecordInvalid  
+    flash[:error] = t(:post_not_saved)
+    render :action => 'new'
   end
   
-  def edit
-    @topics = Topic.find(params[:id])
-  end
-  
-  def update
-    @topics = Topic.find(params[:id])
-    if @topics.update_attributes(params[:topics])
-      flash[:notice] = "Successfully updated topics."
-      redirect_to @topics
-    else
-      render :action => 'edit'
-    end
-  end
-  
-  def destroy
-    @topics = Topic.find(params[:id])
-    @topics.destroy
-    flash[:notice] = "Successfully destroyed topics."
-    redirect_to topics_url
-  end
 end

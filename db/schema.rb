@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20090808160801) do
+ActiveRecord::Schema.define(:version => 20090811210750) do
 
   create_table "blogs", :force => true do |t|
     t.string   "name"
@@ -53,6 +53,23 @@ ActiveRecord::Schema.define(:version => 20090808160801) do
 
   add_index "entries", ["blog_id"], :name => "index_entries_on_blog_id"
 
+  create_table "fees", :force => true do |t|
+    t.string   "concept",     :limit => 50
+    t.text     "description"
+    t.float    "actual_fee",                :default => 0.0
+    t.string   "payed",                     :default => "No"
+    t.string   "table_type",  :limit => 40
+    t.integer  "table_id"
+    t.integer  "schedule_id"
+    t.integer  "group_id"
+    t.integer  "user_id"
+    t.integer  "match_id"
+    t.boolean  "archive",                   :default => false
+    t.datetime "deleted_at"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "forums", :force => true do |t|
     t.string   "name"
     t.integer  "schedule_id"
@@ -71,7 +88,6 @@ ActiveRecord::Schema.define(:version => 20090808160801) do
     t.integer  "technical"
     t.integer  "physical"
     t.boolean  "private_profile",    :default => false
-    t.string   "default_available",  :default => "0"
     t.float    "points_for_win",     :default => 1.0
     t.float    "points_for_draw",    :default => 0.0
     t.float    "points_for_lose",    :default => 0.0
@@ -93,6 +109,7 @@ ActiveRecord::Schema.define(:version => 20090808160801) do
     t.datetime "deleted_at"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.boolean  "available",          :default => true,  :null => false
   end
 
   create_table "groups_markers", :force => true do |t|
@@ -209,6 +226,20 @@ ActiveRecord::Schema.define(:version => 20090808160801) do
     t.string  "salt",       :null => false
   end
 
+  create_table "payments", :force => true do |t|
+    t.string   "concept",       :limit => 150
+    t.float    "debit_amount",                 :default => 0.0
+    t.float    "credit_amount",                :default => 0.0
+    t.text     "description"
+    t.string   "table_type",    :limit => 40
+    t.integer  "table_id"
+    t.integer  "type_id"
+    t.boolean  "archive",                      :default => false
+    t.datetime "deleted_at"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "posts", :force => true do |t|
     t.integer  "topic_id"
     t.integer  "user_id"
@@ -218,6 +249,27 @@ ActiveRecord::Schema.define(:version => 20090808160801) do
   end
 
   add_index "posts", ["topic_id"], :name => "index_posts_on_topic_id"
+
+  create_table "practices", :force => true do |t|
+    t.string   "concept"
+    t.datetime "starts_at"
+    t.datetime "ends_at"
+    t.boolean  "reminder"
+    t.integer  "practice_attendees_count", :default => 0
+    t.integer  "group_id"
+    t.integer  "user_id"
+    t.integer  "sport_id"
+    t.integer  "marker_id"
+    t.string   "time_zone",                :default => "UTC"
+    t.text     "description"
+    t.integer  "player_limit"
+    t.boolean  "played",                   :default => false
+    t.boolean  "privacy",                  :default => true
+    t.boolean  "archive",                  :default => false
+    t.datetime "deleted_at"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "roles", :force => true do |t|
     t.string   "name",              :limit => 40
@@ -350,7 +402,7 @@ ActiveRecord::Schema.define(:version => 20090808160801) do
 
   create_table "users", :force => true do |t|
     t.string   "name"
-    t.string   "email"
+    t.string   "email",                      :default => "",    :null => false
     t.string   "openid_identifier"
     t.string   "identity_url"
     t.string   "language"
@@ -385,8 +437,6 @@ ActiveRecord::Schema.define(:version => 20090808160801) do
     t.datetime "current_login_at"
     t.string   "last_login_ip"
     t.string   "current_login_ip"
-    t.boolean  "default_email",              :default => true
-    t.boolean  "default_available",          :default => true
     t.boolean  "private_phone",              :default => false
     t.boolean  "private_profile",            :default => false
     t.text     "description"
@@ -396,11 +446,15 @@ ActiveRecord::Schema.define(:version => 20090808160801) do
     t.datetime "deleted_at"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "perishable_token",           :default => "",    :null => false
+    t.boolean  "available",                  :default => true,  :null => false
   end
 
+  add_index "users", ["email"], :name => "index_users_on_email"
   add_index "users", ["last_request_at"], :name => "index_users_on_last_request_at"
   add_index "users", ["login"], :name => "index_users_on_login"
   add_index "users", ["openid_identifier"], :name => "index_users_on_openid_identifier"
+  add_index "users", ["perishable_token"], :name => "index_users_on_perishable_token"
   add_index "users", ["persistence_token"], :name => "index_users_on_persistence_token"
 
 end

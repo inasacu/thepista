@@ -1,4 +1,7 @@
 class TypesController < ApplicationController
+  
+  before_filter :require_user
+
   def index
     @types = Type.paginate(:per_page => 10, :page => params[:page])
   end
@@ -14,7 +17,7 @@ class TypesController < ApplicationController
   def create
     @types = Type.new(params[:types])
     if @types.save
-      flash[:notice] = "Successfully created types."
+      flash[:notice] = I18n.t(:succesfully_created)
       redirect_to @types
     else
       render :action => 'new'
@@ -28,7 +31,7 @@ class TypesController < ApplicationController
   def update
     @types = Type.find(params[:id])
     if @types.update_attributes(params[:types])
-      flash[:notice] = "Successfully updated types."
+      flash[:notice] = I18n.t(:succesfully_updated)
       redirect_to @types
     else
       render :action => 'edit'
@@ -38,7 +41,7 @@ class TypesController < ApplicationController
   def destroy
     @types = Type.find(params[:id])
     @types.destroy
-    flash[:notice] = "Successfully destroyed types."
+    flash[:notice] = I18n.t(:succesfully_destroyed)
     redirect_to types_url
   end
 end

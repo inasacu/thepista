@@ -258,8 +258,16 @@ module ApplicationHelper
     return I18n.l(time_at, :format => :day_week) unless time_at.nil?
   end
   
-  def nice_weekday_name(time_at)
-    return I18n.l(time_at, :format => :day_weekday)
+  def nice_day_date(time_at)
+    return I18n.l(time_at, :format => :day_date) unless time_at.nil?
+  end
+  
+  def nice_day_weekday(time_at)
+    return I18n.t(time_at, :format => :day_weekday) unless time_at.nil?
+  end
+  
+  def nice_day_time(time_at)
+    return I18n.l(time_at, :format => :day_time) unless time_at.nil?
   end
   
   # def gravatar_url_for(email, options = {})    

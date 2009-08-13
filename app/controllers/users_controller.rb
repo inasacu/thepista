@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
-  before_filter :require_no_user, :only => [:new, :create]
-  before_filter :require_user
+  before_filter :require_no_user, :only => [:signup, :new, :create]
+  before_filter :require_user, :only => [:index, :show, :edit, :update]
   
   # GET /users
   # GET /users.xml
@@ -91,7 +91,7 @@ end
 #   helper :teammate
 # 
 #   before_filter :build_user
-#   before_filter :login_required, :except =>[:new, :create, :create_new_user, :third_party]
+#   before_filter :require_user, :except =>[:new, :create, :create_new_user, :third_party]
 #   before_filter :get_user, :only => [:show]
 
   # def index
@@ -325,7 +325,7 @@ end
 #       @user = User.find(params[:id])
 #       available = "Medium"
 # 
-#       case @user.default_available
+#       case @user.available
 #       when "Low" then available = "Medium"
 #       when "Medium" then available = "High"
 #       when "High" then available = "Low"
@@ -342,8 +342,8 @@ end
 #     def set_available
 #       @user = User.find(params[:id])
 # 
-#       if @user.update_attribute("default_available", !@user.default_available)
-#         @user.update_attribute("default_email", @user.default_available)                # set ema to = available  
+#       if @user.update_attribute("available", !@user.available)
+#         @user.update_attribute("available", @user.available)                # set ema to = available  
 # 
 #         flash[:notice] = "#{t :is_available_user }, #{@user.name}..."
 #         redirect_back_or_default('/index')

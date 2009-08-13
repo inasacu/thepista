@@ -1,0 +1,41 @@
+<div class="block" id="block-signup"> 
+
+<h2><%= label_name(:password_change) %></h2> 
+
+<div class="content"> 
+
+	<% form_for @user, :url => password_reset_path, :method => :put do |f| %>
+	<%= f.error_messages %>
+	
+		<div class="group">		
+		  <div class="left"> 		  
+			<%= f.label :password, field_label_name(:password) , :class => :label %>			
+		  </div>		  
+		  <div class="right"> 		  
+			<%= f.password_field :password, :class => 'text_field' %>			
+			<span class="description"><%= field_label_name(:password, 'description') %></span> 			
+		  </div> 		  
+		  <div class="clear"></div> 		  
+		</div>
+		
+		<div class="group">		
+		  <div class="left"> 		  
+			<%= f.label :password_confirmation, field_label_name(:password_confirmation) , :class => :label %>			
+		  </div>		  
+		  <div class="right"> 		  
+			<%= f.password_field :password_confirmation, :class => 'text_field' %>			
+			<span class="description"><%= field_label_name(:password_confirmation, 'description') %></span> 			
+		  </div> 		  
+		  <div class="clear"></div> 		  
+		</div>
+
+		
+		<div class="group navform"> 
+			<%= submit_tag label_name(:password_update_and_login), :class => "button" %>
+		</div> 
+	
+	<% end -%>
+  
+</div> 
+
+</div> 

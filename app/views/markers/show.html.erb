@@ -1,142 +1,47 @@
 <div class="block">
-  <div class="secondary-navigation">
-    <ul>
-      <li class="first"><%= link_to 'List', markers_path  %></li>
-      <li><%= link_to 'New', new_marker_path %></li>
-      <li class="active"><%= link_to 'Show', marker_path %></li>
-    </ul>
-    <div class="clear"></div>
-  </div>          
+
+  <%= render :partial => 'secondary_navigation' %>   
+  
   <div class="content">
     <div class="inner">
-      
+
+	<p>
+	  <b><%= label_name(:name) %>:</b>
+	  <%=h @marker.name %>
+	</p>
+
         <p>
-          <b>Name:</b>
-          <%= @marker.name %>
+          <b><%= label_name(:latitude) %>:</b>
+          <%=h @marker.latitude %>
         </p>
 
         <p>
-          <b>Latitude:</b>
-          <%= @marker.latitude %>
+          <b><%= label_name(:longitude) %>:</b>
+          <%=h @marker.longitude %>
         </p>
 
         <p>
-          <b>Longitude:</b>
-          <%= @marker.longitude %>
+          <b><%= label_name(:url) %>:</b>
+          <%=h @marker.url %>
         </p>
 
         <p>
-          <b>Direction:</b>
-          <%= @marker.direction %>
+          <b><%= label_name(:address) %>:</b>
+          <%=h @marker.address %>
         </p>
 
         <p>
-          <b>Image_url:</b>
-          <%= @marker.image_url %>
+          <b><%= label_name(:city) %>:</b>
+          <%=h @marker.city %>
         </p>
 
         <p>
-          <b>Url:</b>
-          <%= @marker.url %>
+          <b><%= label_name(:zip) %>:</b>
+          <%=h @marker.zip %>
         </p>
-
-        <p>
-          <b>Contact:</b>
-          <%= @marker.contact %>
-        </p>
-
-        <p>
-          <b>Email:</b>
-          <%= @marker.email %>
-        </p>
-
-        <p>
-          <b>Phone:</b>
-          <%= @marker.phone %>
-        </p>
-
-        <p>
-          <b>Address:</b>
-          <%= @marker.address %>
-        </p>
-
-        <p>
-          <b>City:</b>
-          <%= @marker.city %>
-        </p>
-
-        <p>
-          <b>Region:</b>
-          <%= @marker.region %>
-        </p>
-
-        <p>
-          <b>Zip:</b>
-          <%= @marker.zip %>
-        </p>
-
-        <p>
-          <b>Surface:</b>
-          <%= @marker.surface %>
-        </p>
-
-        <p>
-          <b>Facility:</b>
-          <%= @marker.facility %>
-        </p>
-
-        <p>
-          <b>Starts_at:</b>
-          <%= @marker.starts_at %>
-        </p>
-
-        <p>
-          <b>Ends_at:</b>
-          <%= @marker.ends_at %>
-        </p>
-
-        <p>
-          <b>Time_zone:</b>
-          <%= @marker.time_zone %>
-        </p>
-
-        <p>
-          <b>Public:</b>
-          <%= @marker.public %>
-        </p>
-
-        <p>
-          <b>Activation:</b>
-          <%= @marker.activation %>
-        </p>
-
-        <p>
-          <b>Description:</b>
-          <%= @marker.description %>
-        </p>
-
-        <p>
-          <b>Icon:</b>
-          <%= @marker.icon %>
-        </p>
-
-        <p>
-          <b>Shadow:</b>
-          <%= @marker.shadow %>
-        </p>
-
-        <p>
-          <b>Archive:</b>
-          <%= @marker.archive %>
-        </p>
-
-        <p>
-          <b>Deleted_at:</b>
-          <%= @marker.deleted_at %>
-        </p>
-      <%= link_to label_name(:edit), edit_marker_path(@marker) %>
+  
     </div>
   </div>
 </div>
 
-<% content_for :sidebar, render(:partial => 'sidebar') -%>
+<% content_for :sidebar, render(:partial => 'sidebar_show') -%>

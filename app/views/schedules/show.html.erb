@@ -1,127 +1,107 @@
 <div class="block">
-  <div class="secondary-navigation">
-    <ul>
-      <li class="first"><%= link_to 'List', schedules_path  %></li>
-      <li><%= link_to 'New', new_schedule_path %></li>
-      <li class="active"><%= link_to 'Show', schedule_path %></li>
-    </ul>
-    <div class="clear"></div>
-  </div>          
+
+  <%= render :partial => 'secondary_navigation' %>   
+  
   <div class="content">
     <div class="inner">
-      
+
+	<p>
+	  <b><%= label_name(:concept) %>:</b>
+	  <%=h @schedule.concept%>
+	</p>
+
         <p>
-          <b>Concept:</b>
-          <%= @schedule.concept %>
+          <b><%= label_name(:season) %>:</b>
+          <%=h @schedule.season %>
         </p>
 
         <p>
-          <b>Season:</b>
-          <%= @schedule.season %>
+          <b><%= label_name(:jornada) %>:</b>
+          <%=h @schedule.jornada %>
         </p>
 
         <p>
-          <b>Jornada:</b>
-          <%= @schedule.jornada %>
+          <b><%= label_name(:starts_at) %>:</b>
+          <%=h nice_day_of_week @schedule.starts_at %>
         </p>
 
         <p>
-          <b>Starts_at:</b>
-          <%= @schedule.starts_at %>
+          <b><%= label_name(:ends_at) %>:</b>
+          <%=h nice_day_of_week @schedule.ends_at %>
         </p>
 
         <p>
-          <b>Ends_at:</b>
-          <%= @schedule.ends_at %>
+          <b><%= label_name(:reminder_at) %>:</b>
+          <%=h nice_day_of_week @schedule.reminder_at %>
         </p>
 
         <p>
-          <b>Reminder_at:</b>
-          <%= @schedule.reminder_at %>
+          <b><%= label_name(:subscription_at) %>:</b>
+          <%=h nice_day_of_week @schedule.subscription_at %>
         </p>
 
         <p>
-          <b>Subscription_at:</b>
-          <%= @schedule.subscription_at %>
+          <b><%= label_name(:non_subscription_at) %>:</b>
+          <%=h nice_day_of_week @schedule.non_subscription_at %>
         </p>
 
         <p>
-          <b>Non_subscription_at:</b>
-          <%= @schedule.non_subscription_at %>
+          <b><%= label_name(:fee_per_game) %>:</b>
+          <%=h @schedule.fee_per_game %>
         </p>
 
         <p>
-          <b>Fee_per_game:</b>
-          <%= @schedule.fee_per_game %>
+          <b><%= label_name(:fee_per_pista) %>:</b>
+          <%=h @schedule.fee_per_pista %>
         </p>
 
         <p>
-          <b>Fee_per_pista:</b>
-          <%= @schedule.fee_per_pista %>
+          <b><%= label_name(:remind_before) %>:</b>
+          <%=h @schedule.remind_before %>
         </p>
 
         <p>
-          <b>Remind_before:</b>
-          <%= @schedule.remind_before %>
+          <b><%= label_name(:time_zone) %>:</b>
+          <%=h @schedule.time_zone %>
         </p>
 
         <p>
-          <b>Repeat_every:</b>
-          <%= @schedule.repeat_every %>
+          <b><%= label_name(:group) %>:</b>
+          <%=h @schedule.group.name %>
         </p>
 
         <p>
-          <b>Time_zone:</b>
-          <%= @schedule.time_zone %>
+          <b><%= label_name(:sport) %>:</b>
+          <%=h @schedule.sport.name %>
         </p>
 
         <p>
-          <b>Group_id:</b>
-          <%= @schedule.group_id %>
+          <b><%= label_name(:marker) %>:</b>
+          <%=h @schedule.marker.name %>
         </p>
 
         <p>
-          <b>Sport_id:</b>
-          <%= @schedule.sport_id %>
+          <b><%= label_name(:player_limit) %>:</b>
+          <%=h @schedule.player_limit %>
         </p>
 
         <p>
-          <b>Marker_id:</b>
-          <%= @schedule.marker_id %>
+          <b><%= label_name(:played) %>:</b>
+          <%=h @schedule.played %>
         </p>
 
         <p>
-          <b>Player_limit:</b>
-          <%= @schedule.player_limit %>
+          <b><%= label_name(:public) %>:</b>
+          <%=h @schedule.public %>
         </p>
 
         <p>
-          <b>Played:</b>
-          <%= @schedule.played %>
+          <b><%= label_name(:description) %>:</b>
+          <%=h @schedule.description %>
         </p>
-
-        <p>
-          <b>Public:</b>
-          <%= @schedule.public %>
-        </p>
-
-        <p>
-          <b>Description:</b>
-          <%= @schedule.description %>
-        </p>
-
-        <p>
-          <b>Archive:</b>
-          <%= @schedule.archive %>
-        </p>
-
-        <p>
-          <b>Deleted_at:</b>
-          <%= @schedule.deleted_at %>
-        </p>
-      <%= link_to label_name(:edit), edit_schedule_path(@schedule) %>
+  
     </div>
   </div>
 </div>
 
-<% content_for :sidebar, render(:partial => 'sidebar') -%>
+<% content_for :sidebar, render(:partial => 'sidebar_show') -%>

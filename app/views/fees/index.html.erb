@@ -1,0 +1,52 @@
+<div class="block">
+
+  <%= render :partial => 'secondary_navigation' if current_user %>  
+          
+  <div class="content">  
+	        
+    <h2 class="title"><%= get_collection_label(@fees) %></h2>
+
+    <div class="inner">
+	
+	<% if @fees.count > 0 %>
+	
+      <table class="table">
+	
+        <tr>            
+          <th class="first">ID</th>
+          <th>Concept</th>
+          <th>Created at</th>
+          <th class="last">&nbsp;</th>
+        </tr>
+		
+        <% @fees.each do |fee| -%>
+		
+        <tr>
+          <td>
+            <%= fee.id %>
+          </td>
+          <td>
+            <%= link_to fee.concept, fee_path(fee) %>
+          </td>
+          <td>
+            <%= fee.created_at %>
+          </td>
+
+          <td class="last">
+            <%= link_to label_name(:show), fee_path(fee) %> |
+            <%= link_to label_name(:edit), edit_fee_path(fee) %> |
+            <%= link_to label_name(:destroy), fee_path(fee), :method => :delete, :confirm => label_name(:are_you_sure) %>
+          </td>
+        </tr>   
+       
+        <% end -%>
+
+      </table>
+
+	<% end %>
+	<%= render :partial => 'shared/action_bar', :locals => { :collection => @fee } %>
+
+	</div>
+	</div>
+</div>
+<% content_for :sidebar, render(:partial => 'sidebar') -%>

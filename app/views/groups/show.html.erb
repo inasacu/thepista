@@ -1,147 +1,90 @@
 <div class="block">
-  <div class="secondary-navigation">
-    <ul>
-      <li class="first"><%= link_to 'List', groups_path  %></li>
-      <li><%= link_to 'New', new_group_path %></li>
-      <li class="active"><%= link_to 'Show', group_path %></li>
-    </ul>
-    <div class="clear"></div>
-  </div>          
+
+  <%= render :partial => 'secondary_navigation' %>   
+  
   <div class="content">
     <div class="inner">
-      
-        <p>
-          <b>Name:</b>
-          <%= @group.name %>
-        </p>
+		
+	<% if @group.photo_file_name %>
+	  <p><%= image_tag @group.photo.url %></p>
+	<% else %>
+	  <p><%= label_name(:no_photo_for, get_the_controller) %>. <%= link_to label_name(:upload), edit_group_path(@group) %></p>
+	<% end %>
+	
+	<p>
+	  <b><%= label_name(:name) %>:</b>
+	  <%=h @group.name %>
+	</p>
 
         <p>
-          <b>Second_team:</b>
+          <b><%= label_name(:second_team) %>:</b>
           <%= @group.second_team %>
         </p>
 
         <p>
-          <b>Gameday_at:</b>
-          <%= @group.gameday_at %>
+          <b><%= label_name(:gameday_at) %>:</b>
+          <%= nice_day_date @group.gameday_at %>
         </p>
 
         <p>
-          <b>Technical:</b>
-          <%= @group.technical %>
+          <b><%= label_name(:available) %>:</b>
+          <%= label_name(@group.available, 'value') %>
         </p>
 
         <p>
-          <b>Physical:</b>
-          <%= @group.physical %>
-        </p>
-
-        <p>
-          <b>Private_profile:</b>
-          <%= @group.private_profile %>
-        </p>
-
-        <p>
-          <b>Default_available:</b>
-          <%= @group.default_available %>
-        </p>
-
-        <p>
-          <b>Points_for_win:</b>
+          <b><%= label_name(:points_for_win) %>:</b>
           <%= @group.points_for_win %>
         </p>
 
         <p>
-          <b>Points_for_draw:</b>
+          <b><%= label_name(:points_for_draw) %>:</b>
           <%= @group.points_for_draw %>
         </p>
 
         <p>
-          <b>Points_for_lose:</b>
+          <b><%= label_name(:points_for_lose) %>:</b>
           <%= @group.points_for_lose %>
         </p>
 
         <p>
-          <b>Time_zone:</b>
+          <b><%= label_name(:time_zone) %>:</b>
           <%= @group.time_zone %>
         </p>
 
         <p>
-          <b>Sport_id:</b>
-          <%= @group.sport_id %>
+          <b><%= label_name(:sport) %>:</b>
+          <%= @group.sport.name %>
         </p>
 
         <p>
-          <b>Marker_id:</b>
-          <%= @group.marker_id %>
+          <b><%= label_name(:marker) %>:</b>
+          <%= marker_link @group.marker %>
         </p>
 
         <p>
-          <b>Description:</b>
+          <b><%= label_name(:description) %>:</b>
           <%= @group.description %>
         </p>
 
         <p>
-          <b>Conditions:</b>
+          <b><%= label_name(:conditions) %>:</b>
           <%= @group.conditions %>
         </p>
 
         <p>
-          <b>Player_limit:</b>
+          <b><%= label_name(:player_limit) %>:</b>
           <%= @group.player_limit %>
         </p>
 
-        <p>
-          <b>Blog_title:</b>
-          <%= @group.blog_title %>
-        </p>
 
         <p>
-          <b>Entries_count:</b>
-          <%= @group.entries_count %>
+          <b><%= label_name(:enable_comments) %>:</b>
+          <%= label_name(@group.enable_comments, 'value') %>
         </p>
 
-        <p>
-          <b>Comments_count:</b>
-          <%= @group.comments_count %>
-        </p>
-
-        <p>
-          <b>Enable_comments:</b>
-          <%= @group.enable_comments %>
-        </p>
-
-        <p>
-          <b>Photo_file_name:</b>
-          <%= @group.photo_file_name %>
-        </p>
-
-        <p>
-          <b>Photo_content_type:</b>
-          <%= @group.photo_content_type %>
-        </p>
-
-        <p>
-          <b>Photo_file_size:</b>
-          <%= @group.photo_file_size %>
-        </p>
-
-        <p>
-          <b>Photo_updated_at:</b>
-          <%= @group.photo_updated_at %>
-        </p>
-
-        <p>
-          <b>Archive:</b>
-          <%= @group.archive %>
-        </p>
-
-        <p>
-          <b>Deleted_at:</b>
-          <%= @group.deleted_at %>
-        </p>
-      <%= link_to label_name(:edit), edit_group_path(@group) %>
+  
     </div>
   </div>
 </div>
 
-<% content_for :sidebar, render(:partial => 'sidebar') -%>
+<% content_for :sidebar, render(:partial => 'sidebar_show') -%>

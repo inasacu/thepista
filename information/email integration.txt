@@ -1,0 +1,118 @@
+
+
+sending emails in heroku...
+
+http://support.heroku.com/forums/43117/entries/32352
+
+In config/environment.rb set ActionMailer's delivery method to SMTP:
+
+config.action_mailer.delivery_method = :smtp
+
+
+
+ActionMailer::Base.smtp_settings = {
+  :address  => "smtp.someserver.net",
+  :port  => 25,
+  :user_name  => "someone@someserver.net",
+  :password  => "mypass",
+  :authentication  => :login
+}
+
+config.action_mailer.raise_delivery_errors = true
+
+
+script/generate mailer <name>
+
+
+
+class UserMailer < ActionMailer::Base
+  def signup_notification(user)
+    recipients "#{user.name} <#{user.email}>"
+    from       "My Forum "
+    subject    "Please activate your new account"
+    sent_on    Time.now
+    body       { :user => user, :url => activate_url(user.activation_code, :host => user.site.host }
+  end
+end
+
+
+
+Your account has been created.
+
+Username: 
+Password: 
+Visit this url to activate your account:
+
+
+user = User.new(:name => 'Me', :email => 'me@gmail.com', :login => 'me', :password => '1234') # or find a record...
+UserMailer.deliver_signup_notification(user)
+
+
+after_create :deliver_signup_notification
+def deliver_signup_notification
+  UserMailer.deliver_signup_notification(self)
+end
+
+
+
+http://ruby.dzone.com/news/rails-gmail-simple-email-deliv
+
+
+Want to send email from your gmail account on your Rails site? Using this simple method you will be able to quickly achieve reliable email in your Rails app and not have to worry about maintaining multiple email configurations for every environment!
+
+Start off by installing the action_mailer_tls plugin:
+
+cd vendor/plugins/
+svn export https://openrain.com/opensource/public/rails/plugins/action_mailer_tls action_mailer_tls
+Now setup your environment.rb.
+
+require "smtp_tls"
+
+ActionMailer::Base.raise_delivery_errors = true
+ActionMailer::Base.delivery_method = :smtp
+ActionMailer::Base.server_settings = {
+  :address  => "smtp.gmail.com",
+  :port  => 587, 
+  :domain => 'yourdomain.com',
+  :user_name  => "you@yourdomain.com",
+  :password  => "password",
+  :authentication  => :plain
+}
+That's it!
+
+Now you'll be able to send email through your GMail account while running in development, test, or production modes.
+
+Your rating:
+
+I would highly recommend that you switch raise_delivery_errors to false when you open your application to the public. 
+
+A quick fix. The current SVN REPO is not valid. Use:
+
+svn export http://code.openrain.com/rails/action_mailer_tls action_mailer_tls
+
+
+http://github.com/openrain/action_mailer_tls/tree/master
+
+
+To install the gem (the preferred way):
+This gem will only work on Ruby 1.8.6. If you're on Ruby 1.8.7 and Rails >= 2.2.1, you don't need this gem. See Notes below.
+
+
+sudo gem install openrain-action_mailer_tls -s http://gems.github.com
+./script/generate action_mailer_tls
+Copy RAILS_ROOT/config/smtp_gmail.yml.sample to RAILS_ROOT/config/smtp_gmail.yml
+Update the configuration file with your settings
+
+
+
+
+./script/generate mailer Notifier hello_world
+Add the following lines to config/environments/development.rb
+config.action_mailer.raise_delivery_errors = true
+config.action_mailer.perform_deliveries = true
+config.action_mailer.delivery_method = :smtp
+Update the recipients and from fields in app/models/notifier.rb
+./script/console
+Notifier.deliver_hello_world!
+
+

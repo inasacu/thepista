@@ -11,7 +11,7 @@ en:
      actual_fee: Tasa Total   
      add_email: "Acepto, Crea mi cuenta"   
      add_moderator: Añade Moderador   
-     add_openid: Añade un OpenID a tu cuenta   
+     add_openid: Nuevo OpenID a tu cuenta   
      add_sub_manager: Añade Sub-Manager   
      add_subscription: Añade Abonado   
      add_to_group: Petición para unirse a   
@@ -29,7 +29,8 @@ en:
      announcements: Anuncios   
      approved_petition_to_join: Petición aprovada para unirse a   
      approved_petition_to_leave: Petición aprovada para desapuntarse de   
-     archive: archiva   
+     archive: archiva  
+     are_you_sure:  ¿Estas Seguro? 
      at: a las   
      attend_schedule: Asiste al Evento   
      aunque_estamos: Aunque estamos en fase de pruebas nos gustaria que nos dieses   
@@ -37,7 +38,7 @@ en:
      author: Author (in Spanish)   
      authorizable_id: Codigo    
      authorizable_type: Tipo    
-     available_requirement: (Si estas disponible para jugar o si no quieres que te molesten...)   
+     available_description: (Si estas disponible para jugar o si no quieres que te molesten...)   
      avatar: Gravatar   
      away_group: Fuera   
      back: Volver   
@@ -45,7 +46,7 @@ en:
      beta_login: Acceso a Beta requiere un codigo.   
      between: Entre   
      birth_at:  Fecha de Nacimiento
-     birth_requirement: (Escribe fecha de nacimiento...Solo se utiliza para calcular la edad media del equipo...)   
+     birth_description: (Escribe fecha de nacimiento...Solo se utiliza para calcular la edad media del equipo...)   
      body: Contenido   
      calendar_language: es   
      can_add_email: Puedes agregar tu correo para participar en la version beta.   
@@ -57,8 +58,8 @@ en:
      cancel_petition_to_join: Petición cancelada para unirse a   
      cannot_be_blank: no puede dejarse en blanco   
      change: Cambia Idioma   
-     change_default_available: Cambia la Disponibilidad de   
-     change_default_email: Cambio de Recibida de correo de   
+     change_available: Cambia la Disponibilidad de   
+     change_message_notification: Cambio de Recibida de correo de   
      change_email_configuration: Cambia tu configuración de mensajes.
      change_group: Cambia de Equipo   
      change_language: Cambia el idioma    
@@ -79,7 +80,8 @@ en:
      check_out_users: Ver Jugadores   
      city: Ciudad   
      close: Cerrar   
-     code: Codigo    
+     code: Codigo 
+     conditions: Condiciones   
      coeficient: "%"
      coeficient_full: Coeficiente   
      comment: Comentario   
@@ -93,36 +95,36 @@ en:
      could_not_log_you: No se ha podido iniciar la sesión en la que como   
      could_not_setup_account: "No pudimos crear la cuenta, lo sentimos!"   
      country: Pais   
-     create: Crear   
-     create_address: Añade una Dirección   
-     create_announcement: Crea un Anuncio   
-     create_credit: Crea un Credito   
-     create_debit: Crea una Deuda   
-     create_description: Crea un Detalles   
-     create_fee: Crea las Tasas   
-     create_festival: Añade un Acondiciónamiento   
-     create_group: Crea un Equipo   
-     create_information: Crea un Detalles   
+     create: Nuevo   
+     create_address: Nueva Dirección   
+     create_announcement: Nuevo Anuncio   
+     create_credit: Nuevo Credito   
+     create_debit: Nueva Deuda   
+     create_description: Nuevo Detalles   
+     create_fee: Nuevas Tasas   
+     create_festival: Nuevo Acondiciónamiento   
+     create_group: Nuevo Equipo   
+     create_information: Nuevo Detalles   
      create_invitation: Manda una Invitación   
-     create_manager: Añade un Mister   
-     create_map: Añade un Mapa   
-     create_marker: Añade un Centro Deportivo   
-     create_match: Crea un Resultado   
+     create_manager: Nuevo Mister   
+     create_map: Nuevo Mapa   
+     create_marker: Nuevo Centro Deportivo   
+     create_match: Nuevo Resultado   
      create_message: Manda un Mensaje   
-     create_name: Crea un Nombre   
-     create_note: Crea una Nota   
-     create_payment: Crea un Pago   
-     create_profile: Crea un perfil   
-     create_reminder: Crea un Recordatorio   
-     create_role: Crea una Responsabilidad   
-     create_schedule: Añade un Evento   
-     create_scorecard: Crea la Clasificación   
-     create_sport: Añade un Deporte   
-     create_tournament: Añade un Torneo   
-     create_type: Crea un Tipo   
-     create_url_venue: crear un marcador para indicar donde vas a jugar   
+     create_name: Nuevo Nombre   
+     create_note: Nueva Nota   
+     create_payment: Nuevo Pago   
+     create_profile: Nuevo perfil   
+     create_reminder: Nuevo Recordatorio   
+     create_role: Nueva Responsabilidad   
+     create_schedule: Nuevo Evento   
+     create_scorecard: Nueva Clasificación   
+     create_sport: Nuevo Deporte   
+     create_tournament: Nuevo Torneo   
+     create_type: Nuevo Tipo   
+     create_url_venue: nuevo marcador para indicar donde vas a jugar   
      create_user: Invita a un Amigo   
-     create_venue: Añade un Centro Deportivo   
+     create_venue: Nuevo Centro Deportivo   
      create_your_own: Crear tu propio    
      created: se ha creado correctamente.   
      created_a_schedule: a añadido un evento   
@@ -137,8 +139,8 @@ en:
      debit: Deuda   
      debit_amount: A Pagar   
      debits: Deudas   
-     default_available: Disponibilidad   
-     default_email: Recibir Correo   
+     available: Disponibilidad   
+     message_notification: Recibir Correo   
      default_reliable: Fiable   
      delete_activity: Borrar actividad   
      delete_this_message: Borra este mensaje   
@@ -171,7 +173,7 @@ en:
      # description_payment: Detalles del Pago   
      # description_profile: Detalles dtu perfil   
      # description_reminder: Detalles del Recordatorio   
-     # description_requirement: (Escribe algun detalle del equipo...)   
+     # description_description: (Escribe algun detalle del equipo...)   
      # description_schedule: Detalles del Evento   
      # description_scorecard: Detalles del Resultado   
      # description_sport: Detalles del Deporte   
@@ -179,7 +181,7 @@ en:
      # description_type: Detalles del Tipo   
      # description_venue: Detalles del Centro Deportivo   
      
-     destroy: Borra   
+     destroy: Borrar   
      destroy_address: Borra la Dirección   
      destroy_announcement: Borra un Anuncio   
      destroy_credit: Borra un Credito   
@@ -218,7 +220,7 @@ en:
      domain_unreachable: "domain is currently unreachable, try again later."  
      dont_user_marks: "Por favor, no use acentos en la cuenta OpenID. Gracias!"   
      dorsal: Dorsal   
-     dorsal_requirement: (Si te interesa poner el nombre o numero de tu camiseta...)   
+     dorsal_description: (Si te interesa poner el nombre o numero de tu camiseta...)   
      edit: Modifica   
      edit_address: Modifica la Dirección   
      edit_announcement: Modifica un Anuncio   
@@ -252,9 +254,11 @@ en:
      edit_venue: Modifica el Centro Deportivo   
      email: Correo   
      email_time_zone: Zona Horaria para mandar correos antes de un encuentro.   
+     enable_comments: Recivir Aviso de Comentarios
+     enable_comments_description: Opcion para recibir aviso cuando se deja un comentario.
      ends_at: Finalización   
      ends_at_match: Finalización   
-     ends_at_requirement: (Ha que hora termina el partido...)   
+     ends_at_description: (Ha que hora termina el partido...)   
      ends_at_venue: Horario   
 
      events:
@@ -268,15 +272,16 @@ en:
      exit_group: Desapuntate del Equipo   
      exit_tournament: Desapuntate del Torneo   
      facility: Instalaciones   
-     failed_login: Error de inicio de sesión   
-     false_value: "No"  
+     failed_login: Error de inicio de sesión 
+     false: "No"
+     false_value: "No"
      feature: Prestación
      features: Prestaciones
      fee: Honorarios   
      fee_per_game: Tarifa / Partido   
-     fee_per_game_requirement: (Este es el precio del partido por jugador...)   
+     fee_per_game_description: (Este es el precio del partido por jugador...)   
      fee_per_pista: Tarifa / Pista   
-     fee_per_pista_requirement: (Este es el precio de la pista or cancha...)   
+     fee_per_pista_description: (Este es el precio de la pista or cancha...)   
      feedback: feedback   
      fees: Tasas   
      female: Femenino   
@@ -297,12 +302,13 @@ en:
      from_payment: Pago a   
      from_Ultima_Hora: Pasate a convocado   
      game: Partido   
+     gameday_at:  Dia del Partido
      game_day: Encuentro   
      game_lost: Derrota   
      game_notes: Notas de futbol   
      game_tied: Empate   
      game_won: Victoria   
-     gameday_requirement: (Que dia de la semana en general jugais...)   
+     gameday_description: (Que dia de la semana en general jugais...)   
      games_assigned: P.A.   
      games_assigned_full: Partidos Asignados   
      games_lost: P.P.   
@@ -368,7 +374,7 @@ en:
      inbox: Bandeja de Entrada   
      information: Detalles   
      information_about: Detalles de   
-     interest_requirement: (Escribe algo de lo que te interesa...)   
+     interest_description: (Escribe algo de lo que te interesa...)   
      invalid_action: Acción Invalida   
      invalid_login: No válido de acceso o contraseña   
      invalid_openid: "Lo sentimos, pero el OpenID es invalido!"   
@@ -392,7 +398,7 @@ en:
      last_game_played: Ultima Jornada	 
      last_logged_at: conecto la ultima vez   
      last_minute: Ultima Hora   
-     last_schedule_requirement: Ultimo evento    
+     last_schedule_description: Ultimo evento    
      last_scorecard: Ultimos Resultados   
      leave_comment: Deja un comentario...   
      leave_group: Desapuntate del Equipo   
@@ -423,8 +429,10 @@ en:
      mark_as_unread: Marcar como no leido   
      marker: Centro Deportivo
      marker_id: Centro Deportivo   
-     marker_requirement: (Localiza en el mapa donde juega el equipo si no esta en la lista...)   
-     markers: Centros Deportivos   
+     marker_description: (Localiza en el mapa donde juega el equipo si no esta en la lista...)   
+     markers: Centros Deportivos 
+     markers_list: Listado de Centros Deportivos
+     markers_create:  Nuevo Centro Deportivo  
      match: Resultado   
      matches: Resultados   
      maybe_available: Posiblemente   
@@ -432,7 +440,7 @@ en:
      member_since: Miembro desde   
      message: Mensaje
      message_notification: Recibir Correo   
-     message_notification_requirement: (Quieres recibir notificaciones atraves del correo electronico...)   
+     message_notification_description: (Quieres recibir notificaciones atraves del correo electronico...)   
      messages: Mensajes   
      missing_information: Falta información   
      mistyped_url: "Posiblemente, habras escrito la dirección incorrectamente o es posible que la pagina ya no exista."   
@@ -444,7 +452,8 @@ en:
      modified_reliable: Modificada la fiabilidad del jugardor para atender   
      modo: HayPista te quiere ayudar a organizar tu equipo o encontrar donde jugar...   
      Monday: Lunes   
-     must_be_numeric: tiene que ser un valor numerico (no pongas sin simbolos)   
+     must_be_numeric: tiene que ser un valor numerico (no pongas sin simbolos)  
+      
      my_address: Mis Direcciones   
      my_announcement: Mis Anuncios   
      my_credit: Mis Creditos   
@@ -472,9 +481,10 @@ en:
      my_teammate: Mis Compañeros de Equipo   
      my_tournament: Mis Torneos   
      my_type: Mi Tipo   
-     my_user: Mis Compañeros de Equipo   
+  
      my_venue: Mis Lugares de Encuentro   
-     my_wall: Mi Muro   
+
+            
      myopenid: miOpenID   
      myopenid_association: Una de las mejores características aquí en HayPista es su capacidad de acceso mediante cuentas que ya tienen. Nos hemos asociado con algunos de los principales proveedores de servicios en un esfuerzo para hacer de su experiencia que HayPista mucho más fácil.   
      myopenid_association_en: One of the great features here on HayPista is your ability to login using accounts you already have. We've teamed up with some of the top service providers in an effort to make your HayPista experience that much easier.    
@@ -486,7 +496,7 @@ en:
      name_account: Nombre de la Cuenta   
      name_description:  Nombre
      name_festival: Nombre del Acondiciónamiento    
-     name_requirement: "(El nombre del equipo tiene que empezar con una leta, sin espacios e caracteres speciales excepto _ o . )"  
+     name_description: "(El nombre del equipo tiene que empezar con una leta, sin espacios e caracteres speciales excepto _ o . )"  
      name_sport: Nombre del deporte que practicas   
      names: Nombres   
      new: Nuevo   
@@ -514,7 +524,11 @@ en:
      no_message: No tienes mensajes.   
      no_openid: No tienes cuentas associadas a tu OpenID.   
      no_payment: No tienes pagos   
-     no_petition_to_join_group: No hay peticiones para unirse a un equipo!   
+     no_petition_to_join_group: No hay peticiones para unirse a un equipo! 
+       
+     no_photo_for_user: Este jugador no tiene foto
+     no_photo_for_group: Este equipo no tiene foto
+         
      no_recent_activity: No hay actividades recientes   
      no_role: No tienes ningun papel   
      no_schedule: No tienes eventos para tu Equipo   
@@ -528,7 +542,7 @@ en:
      no_user_on_message: El mensaje le falta un receptor   
      no_venue: No tienes un centro deportivo donde jugar   
      non_subscription_at_match: Inicio para Convocarse el no Abonado   
-     non_subscription_at_requirement: (Ha partir de que hora se puede apuntar a un partido el no abonado...(ej- 1 dia antes del partido))   
+     non_subscription_at_description: (Ha partir de que hora se puede apuntar a un partido el no abonado...(ej- 1 dia antes del partido))   
      not_able_to_attend: Cambia tu convocatoria   
      not_added_to_your_openid: Ningun OpenID ha sido añadido a tu cuenta    
      not_created: no se ha creado correctamente.   
@@ -573,21 +587,23 @@ en:
      petition_to_join: Petición para unirse a tu equipo   
      petitions: Peticiones   
      phone: Teléfono   
-     phone_requirement: (Por si te tiene que llamar tu equipo. Hay opción de poner este numero en privado...)   
+     phone_description: (Por si te tiene que llamar tu equipo. Hay opción de poner este numero en privado...)   
      photo: Foto 
      photo_description: Foto  
-     photo_requirement: (Opción para subir una imagen...)   
-     physical_level_requirement: "(Del 1 al 5, pon el nivel fisico que crees que tienes comparado con los de tu equipo...)"   
+     photo_description: (Opción para subir una imagen...)   
+     physical_level_description: "(Del 1 al 5, pon el nivel fisico que crees que tienes comparado con los de tu equipo...)"  
+     player_limit:  Limite de Jugadores
+     player_limit_description:  Limite de Jugadores que puede tener el Equipo. 
      points: Ptos.
      points_for_draw: Puntos por empatar
-     points_for_draw_requirement: Dale puntuación por empatar el evento...
+     points_for_draw_description: Dale puntuación por empatar el evento...
      points_for_lose: Puntos por perder
-     points_for_lose_requirement: Dale puntuación por perder el evento...
+     points_for_lose_description: Dale puntuación por perder el evento...
      points_for_win: Puntos por ganar
-     points_for_win_requirement: Dale puntuación por ganar el evento...
+     points_for_win_description: Dale puntuación por ganar el evento...
      points_full: Puntos   
      popular: De Moda   
-     position_requirement: (El puesto en el campo que mejor se te da. si es relevante!)   
+     position_description: (El puesto en el campo que mejor se te da. si es relevante!)   
      post: Publica   
      post_not_saved: Comentarios NO guardados!!!   
      post_saved: Comentarios guardados!!!   
@@ -601,9 +617,9 @@ en:
      privacy: privacidad   
      private_beta: Ya tenemos tu información registrada.  Actualmente estamos en version de pruebas.  Encuanto podamos abriremos al publico.   
      private_email: Correo Oculto   
-     private_option_requirement: (Marcar opción como privada a todos...)   
+     private_option_description: (Marcar opción como privada a todos...)   
      private_phone: Ocultar el teléfono   
-     private_phone_requirement: (Quieres ocultar tu numero de telefono...)   
+     private_phone_description: (Quieres ocultar tu numero de telefono...)   
      private_profile: Ocultar el perfil   
      problem_field: Hemos tenido problemas con algunos de los campos.   
      profile: Perfil   
@@ -654,10 +670,10 @@ en:
      roles: Responsabilidades   
      roster: Convocado   
      rosters: Convocados   
-     Saturday: Sabado
+     # Saturday: Sabado
      save: Guardar   
      schedule: Evento   
-     schedule_description_requirement: (Escribe algun detalle del equipo...)  
+     schedule_description_description: (Escribe algun detalle del equipo...)  
      schedules: Eventos 
      signup: Registrar 
      score: Resultados   
@@ -693,10 +709,10 @@ en:
      search_users: Buscar jugador   
      search_venues: Buscar Centro Deportivo   
      second_team: Segundo Equipo   
-     second_team_requirement: "(Si jugais entre el mismo equipo, pon algun significativo para diferenciar a la hora de hacer equipos...) "  
+     second_team_description: "(Si jugais entre el mismo equipo, pon algun significativo para diferenciar a la hora de hacer equipos...) "  
      select: Seleccióna   
-     select_venue: Añade un Centro Deportivo   
-     self_description_requirement: (Escribe algo sobre ti...)   
+     select_venue: Nuevo Centro Deportivo   
+     self_description_description: (Escribe algo sobre ti...)   
      send_announcement: Manda una Anuncio   
      send_credit: Manda un Credito   
      send_debit: Manda una Deuda   
@@ -705,8 +721,8 @@ en:
      send_information: Manda un Detalles   
      send_invitation: Manda una Invitación   
      send_marker: Manda el URL del Centro Deportivo   
-     send_match: Manda el Resultado   
-     send_message: Manda Mensaje   
+     send_match: Manda el Resultado  
+     
      send_message_to_group: Manda un Mensaje   
      send_message_to_join: Manda una solicitud para unirte a   
      send_name: Manda un Nombre   
@@ -729,7 +745,7 @@ en:
      server_not_available: "Lo sentimos, el servidor de OpenID server no se pudo encontrar."   
      share: Compartir   
      should_be_positive: tiene que ser positivo   
-     show: Muestra   
+     show: Mostrar   
      show_address: Presenta la Dirección   
      show_announcement: Presenta un Anuncio   
      show_credit: Presenta un Credito   
@@ -770,9 +786,9 @@ en:
      something_wrong_explained: "Ya hemos registrado este fallo.  Lo miraremos lo antes posible."	 
      sport: Deporte
      sport_id: Deporte   
-     sport_requirement: (Que tipo de deporte practica el equipo...)   
+     sport_description: (Que tipo de deporte practica el equipo...)   
      sports: Deportes   
-     start_at_requirement: (Ha que hora empieza el partido...)   
+     start_at_description: (Ha que hora empieza el partido...)   
      start_session: inicia tu sesión   
      starts_at: Inicio   
      starts_at_match: Inicio   
@@ -782,12 +798,15 @@ en:
      style: estilo_espanol   
      subject: Asunto   
      subscription_at_match: Finalización para Convocarse el Abonado   
-     subscription_at_requirement: (Ha que hora termina la opción para apuntarse a un partido el abonado...(ej- 1 dia antes del partido))   
+     subscription_at_description: (Ha que hora termina la opción para apuntarse a un partido el abonado...(ej- 1 dia antes del partido))   
      successful_login: Inicio de sesión con éxito 
      successful_logged_in: Has accedido satisfactoriamente...
-     successful_logged_out:  Has cerrado correctamente...
+     successful_logged_out:  Has cerrado la session...
      successful_signup:  Regístrado éxito...
      successful_update:  Actualización éxitosa... 
+     successful_created: Registro creado.
+     successful_updated:  Registro actualizado.
+     successful_destroyed:  Registro borrado.
      Sunday: Domingo   
      surface: Superficie   
      t_zone: Zona Horaria   
@@ -795,7 +814,7 @@ en:
      table_type: Tipo de Tabla   
      team_petition: Solicitud de Equipo   
      teammate_notification:  Recibir notificationes de tu equipo
-     technical_level_requirement: "(Del 1 al 5, pon el nivel tecnico que crees que tienes comparado con los de tu equipo...)"  
+     technical_level_description: "(Del 1 al 5, pon el nivel tecnico que crees que tienes comparado con los de tu equipo...)"  
      terms: terminos   
      terms_message: Please accept the terms to proceed   
      test_beta: "Si tienes interes in formar del equipo para probar la herramienta, pasanos tu cuenta de correo."   
@@ -806,7 +825,7 @@ en:
      Therapist: Terapeuta   
      thread_message: Mensaje (s)   
      Thursday: Jueves   
-     time_zone_requirement: (Zona donde tienes interes en practicar algun deporte...)   
+     time_zone_description: (Zona donde tienes interes en practicar algun deporte...)   
      title: Título   
      to: a   
      to_email: Email del Amigo   
@@ -826,7 +845,8 @@ en:
      tournament: Torneo   
      tournaments: Torneos    
      trash: Basura   
-     trash_message: Papelera   
+     trash_message: Papelera
+     true: "Si"   
      true_value: "Si"   
      try_again: Lo sentimos!   
      tu_punto_de_vista: tu punto de vista sobre el portal contactando con nosotros a traves de   
@@ -874,9 +894,11 @@ en:
      update_user: Actualiza tu perfil   
      update_venue: Actualiza el Centro Deportivo   
      updated: se ha actualizado correctamente.   
+     upload:  Subir
      url_group: Vincular a Equipo   
      use_at_discretion: Nueva opción para entrar.  Si tienes una cuenta entra con tu cuenta original.
      use_openid: O utiliza OpenID 
+     use_standard_login: utiliza el estándar de acceso de usuario / contraseña
      user: Jugador   
      users: Jugadores
      user_sessions: Entrar
@@ -885,7 +907,7 @@ en:
      user_last_login: Última vez conectado   
      user_options:  Opciones de Usuario
      username_not_available: Nombre de usuario no esta disponible 
-     users_index:  Jugadores  
+     
      validate_openid: valida tu OpenID   
      venue: Centro Deportivo    
      Venue: Centro   
@@ -894,7 +916,7 @@ en:
      verification_failed: "Lo sentimos, the OpenID verificación ha fallado."   
      verification_setup: Verificación de OpenID tiene que ser actualizado.   
      view: Ver   
-     visible_only_to_you_requirement: (Solo tu podras ver esta información...)   
+     visible_only_to_you_description: (Solo tu podras ver esta información...)   
      visit_group: Visitante   
      Wednesday: Miercoles   
      welcome: Bienvenidos a HayPista   
@@ -936,7 +958,7 @@ en:
      user_sessions_destroy_notice: Finalizacion de sesión con éxito.
      
      #####
-     default_email_description: "" 
+     message_notification_description: "" 
      gender_description: Genero
      birth_at_description:  Fecha de Nacimiento
      position:  Puesto en el Campo
@@ -949,7 +971,7 @@ en:
      country_description:  Pais donde te encuentras
      time_zone:  Zona Horaria
      time_zone_description:  Zona Horaria
-     default_available_description: ""
+     available_description: ""
      private_phone_description: ""
      private_profile_description: ""
      teammate_notification_description: ""
@@ -957,11 +979,60 @@ en:
      phone_description: ""
      dorsal_description: ""
      
-     last_login_at:  Ultima entrada
-     login_count:  Veces entrado
-     current_login_at:  Ultual entrada
+     last_login_at:  Ultima vez Entrado
+     last_request_at: Ultimo Pedido
+     login_count:  Veces Entrado
+     current_login_at:  Actual fecha de Entrada
      last_login_ip:  IP de ultima entrada
      current_login_ip:  IP actual
      
+     spanish:  Español
+     english:  Ingles
+     french:   Frances
+     german:   Aleman
+     italian:  Italiano
+     
+     home_index: Inicio
+     
+     send_message: Manda Mensaje 
+     
+     
+     entries_teammate: Mis Compañeros de Equipo
+     entries_my_wall: Mi Muro
+     
+     groups_index:   Equipos
+     groups_index_no:  Ningun Equipo para mostrar.
+     groups_index_option: Opciones de Equipo
+     groups_new:  Nuevo Equipo
+     groups_edit:  Modificar Equipo
+     groups_show:  Mostrar Equipo
+
+     markers_index:  Centros Deportivos
+     markers_index_no: Ningun Centro Deportivo para mostrar.
+     markers_new: Nuevo Centro Deportivo
+     markers_edit: Modificar Centro Deportivo
+     markers_show: Mostrar Centro Deportivo
+
+     messages_index:  Mensajes
+     messages_index_no: Ningun Mensaje para mostrar.
+     messages_new: Nuevo Mensaje
+     messages_edit: Modificar Mensaje
+     messages_show: Mostrar Mensaje
+     
+     schedules_index:  Eventos
+     schedules_index_no: Ningun Evento para mostrar.
+     schedules_new: Nuevo Evento
+     schedules_edit: Modificar Evento
+     schedules_show: Mostrar Evento
+
+     users_index:  Jugadores  
+     users_index_no:  Ningun Jugador para mostrar.
+     users_index_option: Opciones de Jugadores
      users_new:  Nuevo Jugador
      users_edit:  Modificar Jugador
+     users_show: Mostrar Jugador
+     users_my_wall: Mi Muro
+     users_teammate: Mis Compañeros de Equipo
+          
+     must_be_logged_in:  Tienes que estar registrado para acceder a esta página
+     must_be_logged_out:  Tienes que no estar registrado para acceder a esta página

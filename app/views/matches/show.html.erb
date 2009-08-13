@@ -1,107 +1,67 @@
 <div class="block">
-  <div class="secondary-navigation">
-    <ul>
-      <li class="first"><%= link_to 'List', matches_path  %></li>
-      <li><%= link_to 'New', new_match_path %></li>
-      <li class="active"><%= link_to 'Show', match_path %></li>
-    </ul>
-    <div class="clear"></div>
-  </div>          
+
+  <%= render :partial => 'secondary_navigation' %>   
+  
   <div class="content">
     <div class="inner">
-      
+
         <p>
-          <b>Name:</b>
-          <%= @match.name %>
+          <b><%= label_name(:concept) %>:</b>
+          <%=h @match.schedule.concept %>
         </p>
 
         <p>
-          <b>Schedule_id:</b>
-          <%= @match.schedule_id %>
+          <b><%= label_name(:user) %>:</b>
+          <%=h @match.user.name %>
         </p>
 
         <p>
-          <b>User_id:</b>
-          <%= @match.user_id %>
+          <b><%= label_name(:group) %>:</b>
+          <%=h @match.group.name %>
         </p>
 
         <p>
-          <b>Group_id:</b>
-          <%= @match.group_id %>
+          <b><%= label_name(:invite) %>:</b>
+          <%=h @match.invite.name %>
         </p>
 
         <p>
-          <b>Invite_id:</b>
-          <%= @match.invite_id %>
+          <b><%= label_name(:group_score) %>:</b>
+          <%=h @match.group_score %>
         </p>
 
         <p>
-          <b>Group_score:</b>
-          <%= @match.group_score %>
+          <b><%= label_name(:invite_score) %>:</b>
+          <%=h @match.invite_score %>
         </p>
 
         <p>
-          <b>Invite_score:</b>
-          <%= @match.invite_score %>
+          <b><%= label_name(:goals_scored) %>:</b>
+          <%=h @match.goals_scored %>
         </p>
 
         <p>
-          <b>Goals_scored:</b>
-          <%= @match.goals_scored %>
+          <b><%= label_name(:roster_position) %>:</b>
+          <%=h @match.roster_position %>
         </p>
 
         <p>
-          <b>Roster_position:</b>
-          <%= @match.roster_position %>
+          <b><%= label_name(:played) %>:</b>
+          <%=h @match.played %>
         </p>
 
         <p>
-          <b>Played:</b>
-          <%= @match.played %>
+          <b><%= label_name(:available) %>:</b>
+          <%=h @match.available %>
         </p>
 
         <p>
-          <b>Available:</b>
-          <%= @match.available %>
+          <b><%= label_name(:match_type) %>:</b>
+          <%=h @match.type_id %>
         </p>
-
-        <p>
-          <b>One_x_two:</b>
-          <%= @match.one_x_two %>
-        </p>
-
-        <p>
-          <b>User_x_two:</b>
-          <%= @match.user_x_two %>
-        </p>
-
-        <p>
-          <b>Type_id:</b>
-          <%= @match.type_id %>
-        </p>
-
-        <p>
-          <b>Status_at:</b>
-          <%= @match.status_at %>
-        </p>
-
-        <p>
-          <b>Description:</b>
-          <%= @match.description %>
-        </p>
-
-        <p>
-          <b>Archive:</b>
-          <%= @match.archive %>
-        </p>
-
-        <p>
-          <b>Deleted_at:</b>
-          <%= @match.deleted_at %>
-        </p>
-      <%= link_to label_name(:edit), edit_match_path(@match) %>
+  
     </div>
   </div>
 </div>
 
-<% content_for :sidebar, render(:partial => 'sidebar') -%>
+<% content_for :sidebar, render(:partial => 'sidebar_show') -%>

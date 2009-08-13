@@ -1,4 +1,6 @@
 class ScorecardsController < ApplicationController
+  before_filter :require_user
+  
   def index
     @scorecards = Scorecard.paginate(:per_page => 10, :page => params[:page])
   end
@@ -14,7 +16,7 @@ class ScorecardsController < ApplicationController
   def create
     @scorecards = Scorecard.new(params[:scorecards])
     if @scorecards.save
-      flash[:notice] = "Successfully created scorecards."
+      flash[:notice] = I18n.t(:successful_create)
       redirect_to @scorecards
     else
       render :action => 'new'
@@ -28,7 +30,7 @@ class ScorecardsController < ApplicationController
   def update
     @scorecards = Scorecard.find(params[:id])
     if @scorecards.update_attributes(params[:scorecards])
-      flash[:notice] = "Successfully updated scorecards."
+      flash[:notice] = I18n.t(:successful_update)
       redirect_to @scorecards
     else
       render :action => 'edit'
@@ -38,7 +40,7 @@ class ScorecardsController < ApplicationController
   def destroy
     @scorecards = Scorecard.find(params[:id])
     @scorecards.destroy
-    flash[:notice] = "Successfully destroyed scorecards."
+    flash[:notice] = I18n.t(:successful_destroy)
     redirect_to scorecards_url
   end
 end

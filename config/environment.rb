@@ -44,7 +44,20 @@ Rails::Initializer.run do |config|
   # The default locale is :en and all translations from config/locales/*.rb,yml are auto loaded.
   # config.i18n.load_path += Dir[Rails.root.join('my', 'locales', '*.{rb,yml}')]
   config.i18n.default_locale = :es
+  
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.raise_delivery_errors = true
+  
 end
+
+ActionMailer::Base.smtp_settings = {
+  :address  => "mail.haypista.com",
+  :port  => 26, 
+  :domain  => "haypista.com",
+  :user_name  => "support@haypista.com",
+  :password  => "m9$@4_4_$9d@",
+  :authentication  => :login
+}
 
 
 
@@ -57,6 +70,8 @@ ActionView::Base.field_error_proc = Proc.new do |html_tag, instance|
     html_tag
   end
 end
+
+
 
 
 ################### original source

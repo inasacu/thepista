@@ -71,17 +71,13 @@ class Schedule < ActiveRecord::Base
   # after_update        :save_matches
   # after_create        :log_activity
   # after_update        :log_activity_played
-  # 
-  # def self.per_page
-  #   4
-  # end
-  # 
+
   # def the_roster
   #   Match.find(:all,    
   #     :select => "matches.*, users.name as user_name, types.name as type_name, scorecards.id as scorecard_id, " +
   #                "scorecards.played as scorecard_played, scorecards.ranking, scorecards.points ",
   #     :joins => "left join users on users.id = matches.user_id left join types on types.id = matches.type_id left join scorecards on scorecards.user_id = matches.user_id",
-  #     :conditions => ["matches.schedule_id = ? and matches.archive = false and matches.type_id = 1  and scorecards.group_id = ? and users.default_available = true ", self.id, self.group_id],
+  #     :conditions => ["matches.schedule_id = ? and matches.archive = false and matches.type_id = 1  and scorecards.group_id = ? and users.available = true ", self.id, self.group_id],
   #     :order => "matches.group_id, users.name")
   # end
   # 
@@ -90,7 +86,7 @@ class Schedule < ActiveRecord::Base
   #     :select => "matches.*, users.name as user_name, types.name as type_name, scorecards.id as scorecard_id, " +
   #                "scorecards.played as scorecard_played, scorecards.ranking, scorecards.points ",
   #     :joins => "left join users on users.id = matches.user_id left join types on types.id = matches.type_id left join scorecards on scorecards.user_id = matches.user_id",
-  #     :conditions => ["matches.schedule_id = ?  and matches.archive = false and matches.type_id in (4, 5) and scorecards.group_id = ? and users.default_available = true ", self.id, self.group_id],
+  #     :conditions => ["matches.schedule_id = ?  and matches.archive = false and matches.type_id in (4, 5) and scorecards.group_id = ? and users.available = true ", self.id, self.group_id],
   #     :order => "matches.group_id, users.name")
   # end
   # 
@@ -99,7 +95,7 @@ class Schedule < ActiveRecord::Base
   #     :select => "matches.*, users.name as user_name, types.name as type_name, scorecards.id as scorecard_id, " +
   #                "scorecards.played as scorecard_played, scorecards.ranking, scorecards.points ",
   #     :joins => "left join users on users.id = matches.user_id left join types on types.id = matches.type_id left join scorecards on scorecards.user_id = matches.user_id",
-  #     :conditions => ["matches.schedule_id = ?  and matches.archive = false and matches.type_id in (2, 3) and scorecards.group_id = ? and users.default_available = true ", self.id, self.group_id],
+  #     :conditions => ["matches.schedule_id = ?  and matches.archive = false and matches.type_id in (2, 3) and scorecards.group_id = ? and users.available = true ", self.id, self.group_id],
   #     :order => "matches.group_id, users.name")
   # end
   # 
@@ -108,7 +104,7 @@ class Schedule < ActiveRecord::Base
   #     :select => "matches.*, users.name as user_name, types.name as type_name, scorecards.id as scorecard_id, " +
   #                "scorecards.played as scorecard_played, scorecards.ranking, scorecards.points ",
   #     :joins => "left join users on users.id = matches.user_id left join types on types.id = matches.type_id left join scorecards on scorecards.user_id = matches.user_id",
-  #     :conditions => ["matches.schedule_id = ?  and matches.archive = false and matches.type_id in (1,2,3,4,5) and scorecards.group_id = ? and users.default_available = false ", self.id, self.group_id],
+  #     :conditions => ["matches.schedule_id = ?  and matches.archive = false and matches.type_id in (1,2,3,4,5) and scorecards.group_id = ? and users.available = false ", self.id, self.group_id],
   #     :order => "matches.group_id, users.name")
   # end
   # 
@@ -179,58 +175,8 @@ class Schedule < ActiveRecord::Base
   #   end
   # end
   # 
-  # 
-  # # def self.scheduled_games(group)
-  # #   find_by_sql["select schedules.group_id as group_id, count(*) as total " +
-  # #       "from schedules " +
-  # #       "where schedules.group_id = #{group.id} " +
-  # #       "group by schedules.group_id " +
-  # #       "union all " +
-  # #       "select schedules.invite_id as group_id, count(*) as total " +
-  # #       "from schedules " +
-  # #       "where schedules.group_id = #{group.id} " +
-  # #       "group by schedules.invite_id "]
-  # # end
-  # 
-  # # def self.find_scheduled_matches(played)
-  # #   find_by_sql(["select schedules.id as schedule_id, schedules.concept, schedules.season, " +
-  # #         "schedules.starts_at, schedules.group_id, schedules.invite_id, " +
-  # #         "schedules.starts_at, schedules.played, schedules.group_id, schedules.invite_id, " +
-  # #         "schedules.location_id, schedules.sport_id, schedules.public, schedules.notes, " +
-  # #         "schedules.time_zone, matches.id as match_id, matches.name as match_name, " +
-  # #         "matches.group_score, matches.invite_score, " +
-  # #         "locations.name as location_name, locations.url as location_url, " +
-  # #         "markers.name as marker_name, markers.latitude, markers.longitude, " +
-  # #         "sports.name as activity_name, " +
-  # #         "a.name as group_name, b.name as invite_name, a.second_team " +
-  # #         "from schedules, matches, locations, markers, sports, groups a, groups b " +
-  # #         "where schedules.played = ? " +
-  # #         "and schedules.id = matches.schedule_id " +
-  # #         "and schedules.location_id = locations.id " +
-  # #         "and schedules.marker_id = markers.id " +
-  # #         "and schedules.sport_id = sports.id " +
-  # #         "order by schedules.starts_at", played])
-  # # end
-  # 
-  # # def self.find_scheduled_matches_id(id)
-  # #   find_by_sql(["select schedules.id, schedules.concept, schedules.season, " +
-  # #         "schedules.starts_at, schedules.group_id, schedules.invite_id, " +
-  # #         "schedules.starts_at, schedules.played, schedules.group_id, schedules.invite_id, " +
-  # #         "schedules.location_id, schedules.sport_id, schedules.public, schedules.notes, " +
-  # #         "schedules.time_zone, matches.id as match_id, " +
-  # #         "matches.name as match_name, matches.group_score, matches.invite_score, " +
-  # #         "locations.name as location_name, locations.url as location_url, " +
-  # #         "markers.name as marker_name, markers.latitude, markers.longitude, " +
-  # #         "sports.name as activity_name, " +
-  # #         "a.name as group_name, b.name as invite_name " +
-  # #         "from schedules, matches, locations, markers, sports, groups a, groups b " +
-  # #         "where schedules.id = ? " +
-  # #         "and schedules.id = matches.schedule_id " +
-  # #         "and schedules.location_id = locations.id " +
-  # #         "and schedules.marker_id = markers.id " +
-  # #         "and schedules.sport_id = sports.id " +
-  # #         "limit 1", id])
-  # # end
+
+
   # 
   # def game_played?
   #   played == true
@@ -260,26 +206,7 @@ class Schedule < ActiveRecord::Base
   #   create_matches
   #   create_user_fees
   # end
-  # 
-  # # def get_managers
-  # #   # @managers = []
-  # #   # self.group.users.each do |user|
-  # #   #   if user.is_manager_of?(self.group) 
-  # #   #     @managers << user unless @managers.include?(user)
-  # #   #   end
-  # #   # end
-  # #   # return @managers
-  # #   
-  # #   manager_id = 0
-  # # 
-  # #    self.group.users.each do |user|
-  # #      if user.is_manager_of?(self.group) and manager = 0        
-  # #        manager_id = user.id 
-  # #      end
-  # #    end
-  # #   return manager_id    
-  # # end
-  # 
+
   # def create_forum_topic_post    
   #   manager_id = 0
   # 
@@ -347,7 +274,7 @@ class Schedule < ActiveRecord::Base
   # 
   #       Match.create(:name => self.concept, :schedule_id => self.id,
   #         :group_id => self.invite_id, :user_id => user.id,
-  #         :available => user.default_available, :type_id => type_id, :played => self.played) if Match.exists?(self, user)
+  #         :available => user.available, :type_id => type_id, :played => self.played) if Match.exists?(self, user)
   #     end
   #   end
   # 
@@ -363,7 +290,7 @@ class Schedule < ActiveRecord::Base
   # 
   #     Match.create(:name => self.concept, :schedule_id => self.id,
   #       :group_id => self.group_id, :user_id => user.id,
-  #       :available => user.default_available, :type_id => type_id, :played => self.played) if Match.exists?(self, user)
+  #       :available => user.available, :type_id => type_id, :played => self.played) if Match.exists?(self, user)
   #   end
   # end
   # 
@@ -372,7 +299,7 @@ class Schedule < ActiveRecord::Base
   #   type_id = 3
   #   
   #   Match.create(:name => the_match.name, :schedule_id => the_match.schedule_id, :group_id => the_match.group_id, 
-  #                :invite_id => the_match.invite_id, :user_id => user.id, :available => user.default_available, 
+  #                :invite_id => the_match.invite_id, :user_id => user.id, :available => user.available, 
   #                :type_id => type_id, :played => the_match.played, :group_score => the_match.group_score, 
   #                :invite_score => the_match.invite_score, :one_x_two => the_match.one_x_two, 
   #                :user_x_two => the_match.user_x_two, :description => the_match.description) if Match.exists?(self, user)
@@ -383,7 +310,7 @@ class Schedule < ActiveRecord::Base
   #     Group.find(self.invite_id).users.each do |user|
   #       
   #       actual_fee = self.fee_per_game
-  #       actual_fee = 0 if user.default_available == 'is_not_available' or self.played
+  #       actual_fee = 0 if user.available == 'is_not_available' or self.played
   #       
   #       Fee.create(:concept => self.concept,
   #         :schedule_id => self.id,
@@ -395,7 +322,7 @@ class Schedule < ActiveRecord::Base
   # 
   #   self.group.users.each do |user|
   #     actual_fee = self.fee_per_game
-  #     actual_fee = 0 if user.default_available == 'is_not_available' or self.played
+  #     actual_fee = 0 if user.available == 'is_not_available' or self.played
   # 
   #     Fee.create(:concept => self.concept,
   #       :schedule_id => self.id,
