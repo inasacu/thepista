@@ -34,7 +34,7 @@ if current_user
 %>
 			<li class="<%= get_first_class %>">  <%#= link_to(the_label, blog_path(@user.blog)) %>  </li>
 			<li class="<%= get_active %>">  <%= link_to(label_name(:recent_activities), recent_activity_path) %>  </li>
-			<li class="<%= get_active %>">  <%= user_link (label_name(:profile), @user) %>  </li>
+			<li class="<%= get_active %>">  <%= user_link(label_name(:profile), @user) %>  </li>
 			<!-- <li class="<%= get_active %>">  <%#= link_to(label_name(:myopenid) , my_openid_path(@user.id)) if my_openid %>  </li> -->
 <% 
 		end
