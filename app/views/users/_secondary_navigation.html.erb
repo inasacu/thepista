@@ -14,25 +14,29 @@
 	actions = ['show','edit','third_party', 'recent_activity']
 	the_user = (@user ? @user : current_user)
 %>
-	<li class="<%= get_first_class %>">  <%= link_to(control_label('teammate'), users_url) %>  </li>	
+	<li class="<%= get_action_first %>">  <%= link_to(control_label('teammate'), users_url) %></li>	
 <%
 	unless actions.include?(the_action) or controls.include?(the_controller) 
 		the_label = control_label('my_wall')
 %>
-		<li class="<%= get_active('show') %>">  <%= link_to(the_label, blog_path(current_user.blog)) %>  </li>
-		<!-- <li class="<%#= get_active('recent_activity') %>">  <%#= link_to(label_name(:recent_activities) , recent_activity_path) %>  </li> -->
+		<li class="<%= get_action_active('show') %>">  <%= link_to(the_label, blog_path(current_user.blog)) %></li>
+<!-- <li class="<%#= get_action_active('recent_activity') %>">  <%#= link_to(label_name(:recent_activities) , recent_activity_path) %></li> -->
 <% 		
 	else 
-		the_label = (@user == current_user ? control_label('my_wall') : "#{label_name(:the_wall)} #{h(@user.name)}")	
+		the_label = (@user == current_user ? control_label('my_wall') : label_with_name('the_wall', h(@user.name)))	
 		#my_openid = (@user.can_modify?(current_user) and @user.openid_login)	
 %>
-		<li class="<%= get_active('blog') %>">  <%= link_to(the_label, blog_path(@user.blog)) %>  </li>
-		<!-- <li class="<%#= get_active('recent_activity') %>">  <%#= link_to(label_name(:recent_activities), recent_activity_path) %>  </li> -->
-		<!-- <li class="<%= get_active %>">  <%#= link_to(label_name(:myopenid) , my_openid_path(@user.id)) if my_openid %>  </li> -->
+		<li class="<%= get_action_active('blog') %>">  <%= link_to(the_label, blog_path(@user.blog)) %></li>
+<!-- <li class="<%#= get_action_active('recent_activity') %>">  <%#= link_to(label_name(:recent_activities), recent_activity_path) %></li> -->
+<!-- <li class="<%= get_action_active %>">  <%#= link_to(label_name(:myopenid) , my_openid_path(@user.id)) if my_openid %></li> -->
 <% 
 	end
 %>
-	<li class="<%= get_active('show') %>">  <%= user_link (label_name(:profile), the_user) %>  </li>
+	<li class="<%= get_action_active('show') %>"><%= user_link (label_name(:profile), the_user) %></li>
+	<li class="<%= get_action_active('petition') %>">
+		<%= link_to (label_name(:petitions), petition_path) %>
+		<!-- #if current_user == @user and (!current_user.requested_managers.empty? or !current_user.pending_managers.empty?) %> -->
+	</li>
 </ul>
 <div class="clear"></div>
 </div>

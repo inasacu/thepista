@@ -1,0 +1,31 @@
+<% 
+	@comments = Comment.new 
+	@comments.entry_id = Blog.find(blog_id).entries.first.id
+	@comments.user_id = current_user.id
+%>
+<div class="inner">
+
+<% form_for :comments, :url => comments_path, :id => blog_id, :html => { :class => :form } do |f| -%>
+	<h3 class="title">
+		<%= label %>
+<% 
+	if textfield 
+%>
+		<%= f.text_field :body, :class => 'textfield' -%>		
+<% 
+	else 
+%>
+		<%= f.text_area :body, :class => 'textfield' -%>
+<% 
+	end 
+%>
+	<%= f.hidden_field :entry_id %>
+	<%= f.hidden_field :user_id %>
+
+	<%= f.submit label_name(:comment) %>
+	</h3>
+<% end -%>
+
+	<div class="clear"></div>
+
+</div>

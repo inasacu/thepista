@@ -11,90 +11,9 @@
     <span class="description"><%= label_name('name', 'description') %></span>
   </div>
 
-  <div class="group">
-    <%= f.label :parent_id, "Parent_id", :class => :label %>
-    <%= f.text_field :parent_id, :class => 'text_field' %>
-    <span class="description"><%= label_name('name', 'description') %></span>
-  </div>
+<div class="clear"></div> 
 
-  <div class="group">
-    <%= f.label :sender_id, "Sender_id", :class => :label %>
-    <%= f.text_field :sender_id, :class => 'text_field' %>
-    <span class="description"><%= label_name('name', 'description') %></span>
-  </div>
-
-  <div class="group">
-    <%= f.label :recipient_id, "Recipient_id", :class => :label %>
-    <%= f.text_field :recipient_id, :class => 'text_field' %>
-    <span class="description"><%= label_name('name', 'description') %></span>
-  </div>
-
-  <div class="group">
-    <%= f.label :conversation_id, "Conversation_id", :class => :label %>
-    <%= f.text_field :conversation_id, :class => 'text_field' %>
-    <span class="description"><%= label_name('name', 'description') %></span>
-  </div>
-
-  <div class="group">
-    <%= f.label :reply_id, "Reply_id", :class => :label %>
-    <%= f.text_field :reply_id, :class => 'text_field' %>
-    <span class="description"><%= label_name('name', 'description') %></span>
-  </div>
-
-  <div class="group">
-    <%= f.label :replied_at, "Replied_at", :class => :label %>
-    <%= f.datetime_select :replied_at, :class => 'datetime_select' %>
-    <span class="description"><%= label_name('name', 'description') %></span>
-  </div>
-
-  <div class="group">
-    <%= f.label :sender_deleted_at, "Sender_deleted_at", :class => :label %>
-    <%= f.datetime_select :sender_deleted_at, :class => 'datetime_select' %>
-    <span class="description"><%= label_name('name', 'description') %></span>
-  </div>
-
-  <div class="group">
-    <%= f.label :sender_read_at, "Sender_read_at", :class => :label %>
-    <%= f.datetime_select :sender_read_at, :class => 'datetime_select' %>
-    <span class="description"><%= label_name('name', 'description') %></span>
-  </div>
-
-  <div class="group">
-    <%= f.label :recipient_deleted_at, "Recipient_deleted_at", :class => :label %>
-    <%= f.datetime_select :recipient_deleted_at, :class => 'datetime_select' %>
-    <span class="description"><%= label_name('name', 'description') %></span>
-  </div>
-
-  <div class="group">
-    <%= f.label :recipient_read_at, "Recipient_read_at", :class => :label %>
-    <%= f.datetime_select :recipient_read_at, :class => 'datetime_select' %>
-    <span class="description"><%= label_name('name', 'description') %></span>
-  </div>
-
-  <div class="group">
-    <%= f.label :replies, "Replies", :class => :label %>
-    <%= f.text_field :replies, :class => 'text_field' %>
-    <span class="description"><%= label_name('name', 'description') %></span>
-  </div>
-
-  <div class="group">
-    <%= f.label :reviews, "Reviews", :class => :label %>
-    <%= f.text_field :reviews, :class => 'text_field' %>
-    <span class="description"><%= label_name('name', 'description') %></span>
-  </div>
-
-  <div class="group">
-    <%= f.label :archive, "Archive", :class => :label %>
-    <%= f.check_box :archive, :class => 'check_box' %>
-    <span class="description"><%= label_name('name', 'description') %></span>
-  </div>
-
-  <div class="group">
-    <%= f.label :deleted_at, "Deleted_at", :class => :label %>
-    <%= f.datetime_select :deleted_at, :class => 'datetime_select' %>
-    <span class="description"><%= label_name('name', 'description') %></span>
-  </div>
-        
 <div class="group navform">
-  <input type="submit" class="button" value="Save &rarr;" /> or <%= link_to 'Cancel', messages_path %>
+	<%= submit_tag @message.new_record? ? label_name(:create) : label_name(:edit), 
+			:class => "button" %> <%= label_name(:or) %> <%= link_to label_name(:cancel), messages_path %>
 </div>

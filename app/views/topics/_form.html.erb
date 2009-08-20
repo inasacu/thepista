@@ -23,6 +23,10 @@
     <span class="description"><%= label_name('name', 'description') %></span>
   </div>
         
+
+<div class="clear"></div> 
+
 <div class="group navform">
-  <input type="submit" class="button" value="Save &rarr;" /> or <%= link_to 'Cancel', topics_path %>
+	<%= submit_tag @topic.new_record? ? label_name(:create) : label_name(:edit), 
+			:class => "button" %> <%= label_name(:or) %> <%= link_to label_name(:cancel), topics_path %>
 </div>

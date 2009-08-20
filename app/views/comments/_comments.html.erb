@@ -1,0 +1,36 @@
+<div class="block" id="block-lists"> 
+  
+  <div class="content"> 
+
+	<div class="inner"> 
+	
+	<% comments.each do |comment| -%>
+	
+	  <ul class="list"> 
+	  
+		<li> 
+		
+		  <div class="left"> 
+			<% if comment.user %>
+				<%= image_link_small comment.user %>&nbsp;&nbsp;<%= user_link comment.user %>
+			<% elsif @group %>
+				<%= group_image_link_small @group %>&nbsp;&nbsp;<%= group_link @group %>			
+			<% end %>
+			<br />
+			<%= nice_day_time_wo_year comment.created_at %>
+		  </div> 
+		  
+		  <div class="item"> 
+			<p><%=h comment.body %></p>
+		  </div>		  
+		</li> 
+		
+	  </ul> 
+	
+	<% end -%>
+		  
+	</div> 
+	
+  </div> 
+  
+</div>

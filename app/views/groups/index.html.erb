@@ -8,19 +8,19 @@
 
     <div class="inner">
 	
-	<%#= render :partial => 'sub_index' -%>
-	
 	<% if @groups.count > 0 %>
 	
       <table class="table">
 	
         <tr>             
           <th class="first">&nbsp;</th>
-          <th><%= I18n.t(:name) %></th>
-          <th><%= I18n.t(:manager) %></th>
-          <th><%= I18n.t(:time_zone) %></th>
-          <th><%= I18n.t(:general_information) %></th>
-          <th><%= I18n.t(:gameday_at) %></th>
+          <th><%= label_name(:name) %>&nbsp;/<br />
+			  <%= label_name(:gameday_at) %></th>
+          <th><%= label_name(:manager) %>&nbsp;/<br />
+			  <%= label_name(:sport) %></th>
+          <th><%= label_name(:time_zone) %></th>
+          <th><%= label_name(:general_information) %></th>
+          <th><%= label_name(:created_at) %></th>
           <th class="last">&nbsp;</th>
         </tr>
 
@@ -33,11 +33,12 @@
 		  
 		  <td>
 			<%= user_link group %><br />
-			<%= group.sport.name %>
+			<%= nice_day_time group.gameday_at %>
 		  </td>
 		
 		  <td>
-			<%= user_list group.all_the_managers %>
+			<%= user_list group.all_the_managers %><br />
+			<%= group.sport.name %>
 		  </td>
 
 			  <td>
@@ -50,12 +51,18 @@
           </td>
 
           <td>
-            <%= nice_day_time(group.gameday_at) %>
+            <%= nice_full_date group.created_at %>
           </td>
 
           <td class="last">
             <%= link_to label_name(:send_message), group_path(group) %><br />
-            <%= link_to "label_name(:invitation)", edit_group_path(group) %> 
+            <%#= link_to label_name(:invitation_to_group), edit_group_path(group) %> 
+
+			<% if current_user.is_manager_of?(group) %> 
+				<%= link_to label_name(:create_schedule), new_schedule_path(:id => group.id)  %>                       
+	          	<%#= link_to(label_name(:edit_group), edit_group_path(collection))  %>                  
+	          	<%#= link_to(label_name (:destroy_group), 'groups', collection.id) if group.has_schedule?(collection) %>
+	        <% end %>
           </td>
         </tr>   
        

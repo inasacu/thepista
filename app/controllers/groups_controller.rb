@@ -5,6 +5,17 @@ class GroupsController < ApplicationController
     @groups = current_user.groups.paginate :page => params[:page], :order => 'name'  
   end
   
+  def list    
+    @group = Group.find(params[:id])
+    @users = @group.users
+  end
+  
+  def team_list
+    @group = Group.find(params[:id]) 
+    @users = @group.users
+    render :template => '/groups/team_list'    
+  end
+  
   def show
 	  store_location 
     @group = Group.find(params[:id])
@@ -29,10 +40,7 @@ class GroupsController < ApplicationController
   # @group.second_team = @group.name + " II" if @group.second_team.nil? 
 	#@group.gameday_at = Time.now()
   # @group.description.gsub!(/\r?\n/, "<br>")
-  
-  
-
-		
+  		
     if @group.save and @group.create_group_details(current_user)
       
       # @group.create_group_details(current_user)
@@ -172,10 +180,7 @@ class GroupsController < ApplicationController
 #       end
 #     end
   
-    def team_list
-      @group = Group.find(params[:id].to_i) 
-      render :template => '/group/team_list'    
-    end
+
   
 #     def leave_team  
 #       @group = Group.find(params[:id].to_i) 

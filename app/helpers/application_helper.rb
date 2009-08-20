@@ -5,8 +5,7 @@ module ApplicationHelper
   
   # site name
   def app_name
-    "HayPista" if production?
-    "ThePista" unless production?  
+    "HayPista" 
   end
   
   
@@ -17,15 +16,27 @@ module ApplicationHelper
     content_tag(:li, link_to(name, options, html_options, &block), opts)
   end
   
-  def get_first_class(text='')
+  def get_action_first(text='')
     action ||= 'index'
-	action = text unless text.blank?
+	  action = text unless text.blank?
     return "first active" if is_action(action)
     return "first"    
   end
   
-  def get_active(action='')
+  def get_action_active(action='')
     return "active" if is_action(action)
+    return ""
+  end
+  
+  def get_control_first(text='')
+    control ||= 'home'
+    control = text unless text.blank?
+    return "first active" if is_controller(control)
+    return "first"    
+  end
+
+  def get_control_active(control='')
+    return "active" if is_controller(control)
     return ""
   end
 
@@ -59,7 +70,7 @@ module ApplicationHelper
     if count_objects(collection) > 0
       return control_action_label
     end
-    return control_action_label('no')    
+    return control_label('no')    
   end
   
   def count_objects(objects)
@@ -98,7 +109,7 @@ module ApplicationHelper
   # 
   # # Translated will_paginate
   # def will_paginate_t(collection = nil, options = {})
-  #   will_paginate collection, {:previous_label => t('will_paginate_previous'), :next_label => t('will_paginate_next')}.merge(options)
+  #   will_paginate collection, {:previous_label =>I18n.t'will_paginate_previous'), :next_label =>I18n.t'will_paginate_next')}.merge(options)
   # end
   # 
   # # options user for setting up the menu links
@@ -198,12 +209,12 @@ module ApplicationHelper
   # 
   # # used to translate combo fields and dbase default values
   # def globalite_l(value)
-  #   return t(:"#{(value).to_sym}")
+  #   returnI18n.t:"#{(value).to_sym}")
   # end
   # 
   # # used to translate true and false values
   # def globalite_b(value)
-  #   return value.to_s == "true" ? t(:true_value) : t(:false_value)    
+  #   return value.to_s == "true" ?I18n.t:true_value) :I18n.t:false_value)    
   # end
   # 
   # def send_individual_email(id)
@@ -260,6 +271,14 @@ module ApplicationHelper
   #   return ""
   # end
   
+  def nice_time_at(time_at)
+    return I18n.l(time_at, :format => :time_at) unless time_at.nil?
+  end
+  
+  def nice_full_date(time_at)
+    return I18n.l(time_at, :format => :full_date) unless time_at.nil?
+  end
+  
   def nice_day_of_week(time_at)
     return I18n.l(time_at, :format => :day_week) unless time_at.nil?
   end
@@ -274,6 +293,14 @@ module ApplicationHelper
   
   def nice_day_time(time_at)
     return I18n.l(time_at, :format => :day_time) unless time_at.nil?
+  end
+  
+  def nice_day_date_wo_year(time_at)
+    return I18n.l(time_at, :format => :day_date_wo_year) unless time_at.nil?
+  end
+  
+  def nice_day_time_wo_year(time_at)
+    return I18n.l(time_at, :format => :day_time_wo_year) unless time_at.nil?
   end
   
   # def gravatar_url_for(email, options = {})    

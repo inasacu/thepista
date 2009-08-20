@@ -4,11 +4,13 @@
 
 	<div class="content">  
 
-		<h2 class="title"><%= control_action_label %></h2>
+		<h2 class="title"><%= "#{control_action_label} #{label_name('for')} " %><%= group_link @group %></h2>
 
 		<div class="inner">
 		
       <% form_for :schedule, :url => schedules_path, :html => { :class => :form } do |f| -%>
+		<%= f.hidden_field :group_id %>
+
         <%= render :partial => "form", :locals => {:f => f} %>
       <% end -%>
 

@@ -4,12 +4,11 @@
   
   <div class="content">
     <div class="inner">
-		
-	<% if @group.photo_file_name %>
-	  <p><%= image_tag @group.photo.url %></p>
-	<% else %>
-	  <p><%= label_name(:no_photo_for, get_the_controller) %>. <%= link_to label_name(:upload), edit_group_path(@group) %></p>
-	<% end %>
+
+	<p>
+	  <b><%= label_name(:name) %>:</b>
+	  <%= group_show_photo @group %>
+	</p>		
 	
 	<p>
 	  <b><%= label_name(:name) %>:</b>

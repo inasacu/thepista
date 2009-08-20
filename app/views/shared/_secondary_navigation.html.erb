@@ -24,34 +24,34 @@ if current_user
 		unless actions.include?(the_action) or controls.include?(the_controller) 
 			the_label = "#{label_name(:the_wall)} #{h('current_user.name')}"
 %>
-	        <li class="<%= get_first_class %>">  <%= link_to(label_name(:my_user), users_url) %>  </li>		    
-			<li class="<%= get_active %>">  <%#= link_to(the_label, blog_path(current_user.blog)) %>  </li>
-			<li class="<%= get_active %>">  <%= link_to(label_name(:recent_activities) , recent_activity_path) %>  </li>
+	        <li class="<%= get_action_first %>">  <%= link_to(label_name(:my_user), users_url) %></li>		    
+			<li class="<%= get_action_active %>">  <%#= link_to(the_label, blog_path(current_user.blog)) %></li>
+			<li class="<%= get_action_active %>">  <%= link_to(label_name(:recent_activities) , recent_activity_path) %></li>
 <% 		
 		else 
 			the_label = (@user == current_user ? label_name(:my_wall) : "#{t(:the_wall)} #{h(@user.name)}")	
 			#my_openid = (@user.can_modify?(current_user) and @user.openid_login)	
 %>
-			<li class="<%= get_first_class %>">  <%#= link_to(the_label, blog_path(@user.blog)) %>  </li>
-			<li class="<%= get_active %>">  <%= link_to(label_name(:recent_activities), recent_activity_path) %>  </li>
-			<li class="<%= get_active %>">  <%= user_link (label_name(:profile), @user) %>  </li>
-			<!-- <li class="<%= get_active %>">  <%#= link_to(label_name(:myopenid) , my_openid_path(@user.id)) if my_openid %>  </li> -->
+			<li class="<%= get_action_first %>">  <%#= link_to(the_label, blog_path(@user.blog)) %></li>
+			<li class="<%= get_action_active %>">  <%= link_to(label_name(:recent_activities), recent_activity_path) %></li>
+			<li class="<%= get_action_active %>">  <%= user_link (label_name(:profile), @user) %></li>
+			<!-- <li class="<%= get_action_active %>">  <%#= link_to(label_name(:myopenid) , my_openid_path(@user.id)) if my_openid %></li> -->
 <% 
 		end
 
 	when 'groups' 	
 		unless is_action('show') or is_action('edit') or is_action('team list') 
 %>
-			<li class="<%= the_class %>">  <%= link_to(label_name(:my_group) , groups_url) %>  </li>
-			<li class="<%= the_class %>">  <%= link_to(label_name(:create_group) , new_group_url) %>  </li>
+			<li class="<%= the_class %>">  <%= link_to(label_name(:my_group) , groups_url) %></li>
+			<li class="<%= the_class %>">  <%= link_to(label_name(:create_group) , new_group_url) %></li>
 <% 
 		else 
 			if current_user.is_member_of?(@group) 
 			the_label = "#{t(:the_wall)} #{h(@group.name)}"
 %>
-			<li class="<%= the_class %>">  <%= link_to(the_label, blog_path(@group.blog)) %>  </li>
-			<li class="<%= the_class %>">  <%= group_link @group %>  </li>
-			<li class="<%= the_class %>">  <%= link_to(label_name(:users) , team_list_path(@group.id)) %>  </li>
+			<li class="<%= the_class %>">  <%= link_to(the_label, blog_path(@group.blog)) %></li>
+			<li class="<%= the_class %>">  <%= group_link @group %></li>
+			<li class="<%= the_class %>">  <%= link_to(label_name(:users) , team_list_path(@group.id)) %></li>
 <% 
 		end 
 	end
@@ -63,19 +63,19 @@ if current_user
 %>	
 			<%= list_link_with_active(the_label, blog_path(@user.blog), {:action => 'show'}) %>
 			
-			<li class="<%= the_class %>">  <%= link_to(the_label, blog_path(@user.blog)) %>  </li>
-		    <li class="<%= the_class %>">  <%= link_to(label_name(:recent_activities), recent_activity_path) %>  </li>		
-			<li class="<%= the_class %>">  <%= user_link(label_name(:profile) , @user) %>  </li>
-			<li class="<%= the_class %>">  <%= link_to(label_name(:myopenid) , my_openid_path(@user.id)) if my_openid %>  </li>
+			<li class="<%= the_class %>">  <%= link_to(the_label, blog_path(@user.blog)) %></li>
+		    <li class="<%= the_class %>">  <%= link_to(label_name(:recent_activities), recent_activity_path) %></li>		
+			<li class="<%= the_class %>">  <%= user_link(label_name(:profile) , @user) %></li>
+			<li class="<%= the_class %>">  <%= link_to(label_name(:myopenid) , my_openid_path(@user.id)) if my_openid %></li>
 
 <% 		
 		elsif @group 
 			if current_user.is_member_of?(@group) 
 				the_label = "#{label_name(:the_wall)} #{h(@group.name)}"
 %>
-				<li class="<%= the_class %>">  <%= link_to(the_label, blog_path(@group.blog)) %>  </li>
-				<li class="<%= the_class %>">  <%= group_link @group %>  </li>
-		       	<li class="<%= the_class %>">  <%= link_to(label_name(:users) , team_list_path(@group.id)) %>  </li>
+				<li class="<%= the_class %>">  <%= link_to(the_label, blog_path(@group.blog)) %></li>
+				<li class="<%= the_class %>">  <%= group_link @group %></li>
+		       	<li class="<%= the_class %>">  <%= link_to(label_name(:users) , team_list_path(@group.id)) %></li>
 <% 
 			end  
 		end	
@@ -86,8 +86,8 @@ if current_user
 		unless the_action.include?(get_the_action) or a.include?(the_controller) 
 %>
 	        <li class="<%= the_class %>">  <%= link_to(label_name(:upcoming_schedule) , schedules_url) %>	  </li>				
-		    <li class="<%= the_class %>">  <%= link_to(label_name(:previous_schedules) , list_schedules_path) %>  </li>
-			<li class="<%= the_class %>">  <%= link_to(label_name(:create_schedule) , new_schedule_url) if current_user.is_manager? %>  </li>
+		    <li class="<%= the_class %>">  <%= link_to(label_name(:previous_schedules) , list_schedules_path) %></li>
+			<li class="<%= the_class %>">  <%= link_to(label_name(:create_schedule) , new_schedule_url) if current_user.is_manager? %></li>
 
 <% 
 		else 
@@ -95,9 +95,9 @@ if current_user
 				the_label = "#{label_name(:forum)} #{@schedule.concept}"
 %>
 				<li class="<%= the_class %>">  <%= schedule_link @schedule %>
-				<li class="<%= the_class %>">  <%= link_to(the_label, forum_path(@schedule.forum)) %>  </li>			
-			    <li class="<%= the_class %>">  <%= link_to(label_name(:rosters), team_roster_path(@schedule)) %>  </li>
-			    <li class="<%= the_class %>">  <%= link_to(label_name(:no_shows), team_no_show_path(@schedule)) unless @schedule.played? %>  </li>
+				<li class="<%= the_class %>">  <%= link_to(the_label, forum_path(@schedule.forum)) %></li>			
+			    <li class="<%= the_class %>">  <%= link_to(label_name(:rosters), team_roster_path(@schedule)) %></li>
+			    <li class="<%= the_class %>">  <%= link_to(label_name(:no_shows), team_no_show_path(@schedule)) unless @schedule.played? %></li>
 <% 
 			end
 		end

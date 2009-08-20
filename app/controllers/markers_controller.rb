@@ -33,7 +33,7 @@ class MarkersController < ApplicationController
   end
 
   def get_locate
-    labels = [t(:name), t(:address), t(:city), t(:zip)]    
+    labels = [I18n.t(:name),I18n.t(:address),I18n.t(:city),I18n.t(:zip)]    
     render :text=> labels.to_json
   end
 

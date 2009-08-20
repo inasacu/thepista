@@ -23,11 +23,11 @@ class TopicsController < ApplicationController
     @post = Post.new(:body => params[:post][:body], :topic_id => @topic.id, :user_id => current_user.id)
     @post.save!
     
-    flash[:notice] = t(:post_saved)
+    flash[:notice] = I18n.t(:post_saved)
     redirect_to :action => 'index', :forum_id => @forum.id
     return 
   rescue ActiveRecord::RecordInvalid  
-    flash[:error] = t(:post_not_saved)
+    flash[:error] = I18n.t(:post_not_saved)
     render :action => 'new'
   end
   

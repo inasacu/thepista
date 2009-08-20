@@ -59,3 +59,9 @@
     <span class="description"><%= label_name('match', 'description') %></span>
   </div>
 
+<div class="clear"></div> 
+
+<div class="group navform">
+	<%= submit_tag @fee.new_record? ? label_name(:create) : label_name(:edit), 
+			:class => "button" %> <%= label_name(:or) %> <%= link_to label_name(:cancel), fees_path %>
+</div>

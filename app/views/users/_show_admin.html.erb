@@ -1,0 +1,72 @@
+
+
+	 <p>
+	  <b><%= label_name(:forum_comment_notification) %>:</b>
+	  <%=h label_name(@user.forum_comment_notification, 'value') %>
+	</p>
+
+	 <p>
+	  <b><%= label_name(:birth_at) %>:</b>
+	  <%=h nice_day_date @user.birth_at %>
+	</p> 
+
+	 <p>
+	  <b><%= label_name(:last_login_at) %>:</b>
+	  <%=h nice_day_date @user.last_login_at %>
+	</p> 
+
+	 <p>
+	  <b><%= label_name(:enable_comments) %>:</b>
+	  <%=h @user.enable_comments %>
+	</p> 
+
+	 <p>
+	  <b><%= label_name(:teammate_notification) %>:</b>
+	  <%=h @user.teammate_notification %>
+	</p> 
+
+	 <p>
+	  <b><%= label_name(:message_notification) %>:</b>
+	  <%=h @user.message_notification %>
+	</p> 
+
+	 <p>
+	  <b><%= label_name(:blog_comment_notification) %>:</b>
+	  <%=h @user.blog_comment_notification %>
+	</p> 
+
+	 <p>
+	  <b><%= label_name(:forum_comment_notification) %>:</b>
+	  <%=h @user.forum_comment_notification %>
+	</p> 
+
+	<p>
+	  <b><%= label_name(:login_count) %>:</b>
+	  <%=h @user.login_count %>
+	</p>
+
+	 <p>
+	  <b><%= label_name(:last_request_at) %>:</b>
+	  <%=h nice_day_date @user.last_request_at %>
+	</p> 
+
+	<p>
+	  <b><%= label_name(:last_login_at) %>:</b>
+	  <%=h nice_day_of_week @user.last_login_at %>
+	</p>
+
+	<p>
+	  <b><%= label_name(:current_login_at) %>:</b>
+	  <%=h nice_day_of_week @user.current_login_at %>
+	</p>
+
+	<p>
+	  <b><%= label_name(:last_login_ip) %>:</b>
+	  <%=h @user.last_login_ip %>
+	</p>
+
+	<p>
+	  <b><%= label_name(:current_login_ip) %>:</b>
+	  <%=h @user.current_login_ip %>
+	</p>
+  

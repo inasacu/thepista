@@ -1,6 +1,6 @@
 <div class="block">
 
-  <%= render :partial => 'secondary_navigation' if current_user %>  
+  <%= render :partial => 'secondary_navigation' %>  
 
   <div class="content">   
   
@@ -51,7 +51,7 @@
         <% end -%>
 		
       </table>
-	  <%= render :partial => 'shared/action_bar', :locals => { :collection => @user } %>
+	  <%#= render :partial => 'shared/action_bar', :locals => { :collection => @users } %>
 	  
     </div>
 	

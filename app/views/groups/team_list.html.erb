@@ -1,10 +1,10 @@
 <div class="block">
 
-  <%= render :partial => 'secondary_navigation' if current_user %>  
+  <%= render :partial => 'secondary_navigation' %>  
 
   <div class="content">   
   
-    <h2 class="title"><%= get_collection_label(@users) %></h2>
+    <h2 class="title"><%= I18n.t(:has_group_users, :count => @users.count) %></h2>
 	
     <div class="inner">
 	
@@ -51,7 +51,7 @@
         <% end -%>
 		
       </table>
-	  <%= render :partial => 'shared/action_bar', :locals => { :collection => @user } %>
+	  <%#= render :partial => 'shared/action_bar', :locals => { :collection => @users } %>
 	  
     </div>
 	

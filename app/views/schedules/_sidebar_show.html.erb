@@ -3,26 +3,24 @@
 	<h3><%= label_name(get_the_controller, 'options') %></h3>
 	
 <ul class="navigation">
-<%
-	@group = @schedule.group
-	
+<%	
 	if current_user.is_member_of?(@group)  %> 
-		<%= link_to(label_name(:send_message_to_group), :controller => 'messages', :action => 'new', :group_id => @group.id) %>
+		<li><%= link_to label_name(:send_message_to_group), new_message_path(:group_id => @group.id) %></li>
 <% 
 	end 
 	
 	if current_user.is_sub_manager_of?(@group) %> 
-		<%= link_to(label_name(:send_pre_match), :controller => 'messages', :action => 'new', :schedule_id => schedule.id) unless schedule.played? %>
+		<li><%= link_to label_name(:send_pre_match), new_message_path(:schedule_id => @schedule.id) unless @schedule.played? %></li>
 <% 
 	end 
 	
 	if current_user.is_manager_of?(@group) 
-		the_confirmation = "#{ label_name(:destroy_schedule) } #{ label_name(:from) } #{group.name}?" 
+		the_confirmation = "#{ label_name(:destroy_schedule) } #{ label_name(:from) } #{@group.name}?" 
 %> 
-		<%= link_to(label_name('create'), new_schedule_path(:id => schedule.id}) %>
-		<%= link_to(label_name('edit'), edit_schedule_path(schedule)) %>   
-		<li><%= link_to(control_label('destroy'), destroy_schedule_path(schedule), :confirm => the_confirmation) if schedule.not_played? %></li>
-		<%= link_to(label_name(:matches), edit_match_path(schedule.id)) %>
+		<li><%= link_to control_label('create'), new_schedule_path(:id => @schedule.id) %></li>
+		<li><%= link_to control_label('edit'), edit_schedule_path(@schedule) %></li>   
+		<li><%#= link_to(control_label('destroy'), delete_schedule_path(@schedule), :confirm => the_confirmation) if @schedule.not_played? %></li>
+		<li><%= link_to label_name(:matches), edit_match_path(@schedule.id) %></li>
 <% 
 	end 
 %>

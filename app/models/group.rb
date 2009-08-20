@@ -27,8 +27,7 @@ class Group < ActiveRecord::Base
   # validates_format_of       :name,          :with => /^.+ .+$/
   # validates_format_of       :name,          :with => /^[A-Z0-9_]$/i, :message =>"must contain only letters, numbers and underscores"
 
-
-
+  # variables to access
   attr_accessible :name, :second_team, :gameday_at, :points_for_win, :points_for_draw, :points_for_lose
   attr_accessible :time_zone, :sport_id, :marker_id, :description, :conditions, :photo
 

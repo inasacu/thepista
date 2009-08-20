@@ -71,3 +71,10 @@
     <%= f.text_field :icon, :class => 'text_field' %>
     <span class="description"><%= label_name('icon', 'description') %></span>
   </div>
+
+<div class="clear"></div> 
+
+<div class="group navform">
+	<%= submit_tag @marker.new_record? ? label_name(:create) : label_name(:edit), 
+			:class => "button" %> <%= label_name(:or) %> <%= link_to label_name(:cancel), markers_path %>
+</div>

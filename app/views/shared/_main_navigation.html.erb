@@ -5,16 +5,19 @@
 
 <ul>
 	<% if current_user %>
-	<%= list_link_with_active(label_name(:home), '/') %>
-	<%= list_link_with_active(label_name(:users), users_url) %>	
-	<%= list_link_with_active(label_name(:groups), groups_url) %>	
-	<%= list_link_with_active(label_name(:schedules), schedules_url) %>
-	<%= list_link_with_active(label_name(:practices), practices_url) %>
-	<%= list_link_with_active(label_name(:fees), fees_url) %>
-	<%= list_link_with_active(label_name(:payments), payments_url) %>
-	<%= list_link_with_active(label_name(:messages), messages_url) %>
-	<%= list_link_with_active(label_name(:scorecards), scorecards_url) %>
-	<%= list_link_with_active(label_name(:markers), markers_url) %>
+	<li class="<%= get_control_first('home') %>"><%= link_to(label_name(:home) , '/') %></li>
+	<li class="<%= get_control_active('user') %>"><%= link_to(label_name(:users), users_url) %></li>	
+	<li class="<%= get_control_active('group') %>"><%= link_to(label_name(:groups), groups_url) %></li>	
+	<li class="<%= get_control_active('schedule') %>"><%= link_to(label_name(:schedules), schedules_url) %></li>
+	<li class="<%= get_control_active('practice') %>"><%= link_to(label_name(:practices), practices_url) %></li>
+	<li class="<%= get_control_active('fee') %>"><%= link_to(label_name(:fees), fees_url) %></li>
+	<li class="<%= get_control_active('payment') %>"><%= link_to(label_name(:payments), payments_url) %></li>
+	<li class="<%= get_control_active('message') %>"><%= link_to(label_name(:messages), messages_url) %></li>
+	<li class="<%= get_control_active('scorecard') %>"><%= link_to(label_name(:scorecards), scorecards_url) %></li>
+	<li class="<%= get_control_active('marker') %>"><%= link_to(label_name(:markers), markers_url) %>
+	<!-- <li class="<%#= get_control_active('role') %>"><%#= link_to(label_name(:roles), roles_url) %>
+		<li class="<%#= get_control_active('sport') %>"><%#= link_to(label_name(:sports), sports_url) %>
+		<li class="<%#= get_control_active('type') %>"><%#= link_to(label_name(:type), types_url) %> -->
 	<% end %>
 </ul>
 

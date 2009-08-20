@@ -1,6 +1,15 @@
 <div class="block">
-	<h3><%= control_action_label %></h3>
+	<h3><%= control_label('option') %></h3>
 	<div class="content">
-		<p><%= control_action_label('option') %>.</p>
+<% 
+		if current_user.is_manager? %>
+			<p><%= link_to(control_label('create') , new_payment_url)  %></p>
+<% 		
+		else 
+%>
+			<p><%= control_label('manager_option') %></p>
+<%
+		end
+%>
 	</div>
 </div>

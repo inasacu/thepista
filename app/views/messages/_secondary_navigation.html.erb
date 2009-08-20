@@ -2,10 +2,9 @@
 
 <ul>
 	
-	<li class="<%= get_first_class('inbox') %>"><%= link_to(control_label('inbox') , messages_path) %></li>
-	<li class="<%= get_active('sent_message') %>"><%= link_to(control_label('sent_message') , sent_messages_path) %></li>
-	<li class="<%= get_active('trash') %>"><%= link_to(control_label('trash') , trash_messages_path) %></li>
-	<li class="<%= get_active('new') %>"><%= link_to(control_label('new') , new_message_path) %></li>
+	<li class="<%= get_action_first %>"><%= link_to(control_label('inbox') , messages_path) %></li>
+	<li class="<%= get_action_active('sent_message') %>"><%= link_to(control_label('sent') , sent_messages_path) %></li>
+	<li class="<%= get_action_active('trash') %>"><%= link_to(control_label('trash') , trash_messages_path) %></li>
 
 </ul>
 

@@ -1,33 +1,27 @@
 ActionController::Routing::Routes.draw do |map|
   map.root :controller => 'home'
 
-  map.login               'login',                  :controller => 'user_sessions',         :action => 'new'
-  map.logout              'logout',                 :controller => 'user_sessions',         :action => 'destroy'
-  map.signup              'signup',                 :controller => 'users',                 :action => 'signup'
+  map.login                 'login',                                  :controller => 'user_sessions',   :action => 'new'
+  map.logout                'logout',                                 :controller => 'user_sessions',   :action => 'destroy'
+  map.signup                'signup',                                 :controller => 'users',           :action => 'signup'
 
-  map.recent_activity     'recent_activity',        :controller => 'users',                 :action => 'recent_activity'
-  map.my_openid			      'my_openid',			        :controller => 'users',                 :action => 'third_party'
-  map.team_list			      'team_list',			        :controller => 'groups',                :action => 'team_list'
-  map.team_roster		      'team_roster',		        :controller => 'schedules',             :action => 'team_roster'
-  map.team_no_show		    'team_no_show',			      :controller => 'schedules',             :action => 'team_no_show'
-  map.marker_list		      'marker_list',			      :controller => 'markers',               :action => 'marker_list'
-  map.fichar              'matches/:id/set_team',   :controller => 'matches',               :action => 'set_team'
-  
-  # map.manage_join   'teammates/:id/manage_join/:teammate',    :controller => 'teammates',    :action => 'manage_join'
-  
-  ########################## 2009 0909 changes ########################
-  map.join_team   			    'teammates/:id/join_team/:teammate',    	:controller => 'teammates',    	:action => 'join_team'
-  map.leave_team		  	    'teammates/:id/leave_team/:teammate',    	:controller => 'teammates',     :action => 'leave_team'
-  map.set_sub_manager     	'users/:id/set_sub_manager/:group',    		:controller => 'users',    		  :action => 'set_sub_manager'
-  map.remove_sub_manager  	'users/:id/remove_sub_manager/:group', 		:controller => 'users',     	  :action => 'remove_sub_manager'
-  map.set_subscription   	  'users/:id/set_subscription/:group',    	:controller => 'users',    		  :action => 'set_subscription'
-  map.remove_subscription   'users/:id/remove_subscription/:group',  	:controller => 'users',    		  :action => 'remove_subscription' 
-  map.set_moderator   		  'users/:id/set_moderator/:group',    		  :controller => 'users',    		  :action => 'set_moderator'
-  map.remove_moderator   	  'users/:id/remove_moderator/:group',  		:controller => 'users',    		  :action => 'remove_moderator'   
-  
-  
-  
-  ########################## 2009 0909 changes ########################
+  map.recent_activity       'recent_activity',                        :controller => 'users',           :action => 'recent_activity'
+  map.my_openid			        'my_openid',			                        :controller => 'users',           :action => 'third_party'
+  map.team_list			        'team_list',			                        :controller => 'groups',          :action => 'team_list'
+  map.team_roster		        'team_roster',		                        :controller => 'schedules',       :action => 'team_roster'
+  map.team_no_show		      'team_no_show',			                      :controller => 'schedules',       :action => 'team_no_show'
+  map.marker_list		        'marker_list',			                      :controller => 'markers',         :action => 'marker_list'
+  map.fichar                'matches/:id/set_team',                   :controller => 'matches',         :action => 'set_team'
+
+  map.join_team   			    'teammates/:id/join_team/:teammate',    	:controller => 'teammates',    	  :action => 'join_team'
+  map.leave_team		  	    'teammates/:id/leave_team/:teammate',    	:controller => 'teammates',       :action => 'leave_team'
+  map.set_sub_manager     	'users/:id/set_sub_manager/:group',    		:controller => 'users',    		    :action => 'set_sub_manager'
+  map.remove_sub_manager  	'users/:id/remove_sub_manager/:group', 		:controller => 'users',     	    :action => 'remove_sub_manager'
+  map.set_subscription   	  'users/:id/set_subscription/:group',    	:controller => 'users',    		    :action => 'set_subscription'
+  map.remove_subscription   'users/:id/remove_subscription/:group',  	:controller => 'users',    		    :action => 'remove_subscription' 
+  map.set_moderator   		  'users/:id/set_moderator/:group',    		  :controller => 'users',    		    :action => 'set_moderator'
+  map.remove_moderator   	  'users/:id/remove_moderator/:group',  		:controller => 'users',    		    :action => 'remove_moderator'   
+  map.petition              'users/petition',                         :controller => 'users',           :action => 'petition'
   
   map.resources   :user_sessions,   :as => 'try_again'
 
@@ -45,10 +39,10 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :entries
   map.resources :comments
   map.resources :blogs
-  map.resources :types
-  map.resources :sports
-  map.resources :roles
-  map.resources :practices
+  map.resources   :types,         :as => 'tipos'
+  map.resources   :sports,        :as => 'deportes'
+  map.resources   :roles,         :as => 'responsabilidades'
+  map.resources   :practices,     :as => 'entrenamientos',  :collection  => { :list => :get, :search => :get }          
   map.resources :payments
   map.resources :fees
   map.resources :password_resets

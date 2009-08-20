@@ -152,6 +152,13 @@ module UsersHelper
     end
     link_to(content, link, link_options)
   end
+        
+  def user_show_photo(user)
+    if user.photo_file_name
+  	  return image_tag(user.photo.url)
+  	end
+  	"#{label_name(:no_photo_for, get_the_controller)}.  #{link_to(label_name(:upload), edit_user_path(user))}"
+  end	
   
   def image_link_small(user)
     link_to(image_tag(user.avatar, options={:style => "height: 55px; width: 55px;"}), user_path(user))

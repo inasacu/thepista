@@ -1,15 +1,9 @@
 class Schedule < ActiveRecord::Base
 
   
-  acts_as_solr :fields => [:concept, :description, :time_zone, :starts_at]  if use_solr? #, :include => [:sport, :marker] if use_solr?
+  acts_as_solr :fields => [:concept, :description, :time_zone, :starts_at]  if use_solr? 
+
   
-  # include ActivityLogger
-  # 
-  # ## variables
-  # # ONE_WEEK_FROM_TODAY = Time.now - 1.day..Time.now + 7.days
-  # # NAME_RANGE_LENGTH = 3..255
-  # # DESCRIPTION_RANGE_LENGTH = 3..2000
-  # 
   has_many :matches,  :conditions => "matches.archive = false",   :dependent => :destroy
   has_many :fees,                                             :dependent => :destroy
   
@@ -55,19 +49,25 @@ class Schedule < ActiveRecord::Base
   belongs_to :sport
   belongs_to :marker
   belongs_to :invite_group,   :class_name => "Group",   :foreign_key => "invite_id"
-  # 
-  # 
-  # validates_presence_of       :concept,          :within => NAME_RANGE_LENGTH
-  # validates_presence_of       :starts_at
-  # validates_presence_of       :time_zone
-  # validates_presence_of       :sport_id
-  # validates_presence_of       :marker_id
-  # validates_presence_of       :group_id
-  # validates_numericality_of   :fee_per_game
-  # validates_numericality_of   :fee_per_pista
-  # 
+   
+   
+   validates_presence_of       :concept,          :within => NAME_RANGE_LENGTH
+   validates_presence_of       :starts_at
+   validates_presence_of       :time_zone
+   validates_presence_of       :sport_id
+   validates_presence_of       :marker_id
+   validates_presence_of       :group_id
+   validates_numericality_of   :fee_per_game
+   validates_numericality_of   :fee_per_pista
+   
   # validates_associated        :matches
-  # 
+  
+  # variables to access
+  attr_accessible :concept, :season, :jornada, :starts_at, :ends_at, :reminder_at, :subscription_at, :non_subscription_at
+  attr_accessible :fee_per_game, :fee_per_pista, :time_zone, :group_id, :sport_id, :marker_id, :player_limit
+  attr_accessible :public, :description
+  
+  
   # after_update        :save_matches
   # after_create        :log_activity
   # after_update        :log_activity_played
@@ -185,62 +185,62 @@ class Schedule < ActiveRecord::Base
   # def is_invite?
   #   (!invite_id.nil? and invite_id > 0 and group_id != invite_id)
   # end
-  # 
-  # def not_played?
-  #   played == false
-  # end
-  # 
+  
+  def not_played?
+    played == false
+  end
+  
   # def has_schedule?(group)
   #   schedule = get_schedule(group)
   #   schedule ? true : false
   # end
-  # 
-  # def create_schedule_details
-  #   create_matches
-  #   create_forum_topic_post
-  #   create_user_fees
-  #   create_group_fees
-  # end
-  # 
+  
+  def create_schedule_details
+    create_matches
+    create_forum_topic_post
+    create_user_fees
+    create_group_fees
+  end
+  
   # def create_join_user_schedule_details
   #   create_matches
   #   create_user_fees
   # end
 
   # def create_forum_topic_post    
-  #   manager_id = 0
-  # 
-  #   self.group.users.each do |user|
-  #     if user.is_manager_of?(self.group) and manager = 0        
-  #       manager_id = user.id 
+  #     manager_id = 0
+  #   
+  #     self.group.users.each do |user|
+  #       if user.is_manager_of?(self.group) and manager = 0        
+  #         manager_id = user.id 
+  #       end
   #     end
+  #     
+  #     @forum = Forum.find_by_schedule_id(self.id)
+  #     if @forum.nil?
+  #       Forum.create(:schedule_id => self.id, :name => self.concept, :description => self.description) 
+  #     else
+  #       @forum.update_attributes(:name => self.concept, :description => self.description)
+  #     end 
+  #     
+  #     @forum = Forum.find_by_schedule_id(self.id)
+  #     @topic = Topic.find_by_forum_id(@forum.id)
+  #     if @topic.nil?
+  #       Topic.create(:forum_id => @forum.id, :user_id => manager_id, :name => self.concept)
+  #     else
+  #       @topic.update_attribute("name", self.concept)
+  #     end
+  #         
+  #     @topic = Topic.find_by_forum_id(@forum.id)
+  #     @post = Post.find_by_topic_id(@topic.id)
+  #     if @post.nil?
+  #       Post.create(:topic_id => @forum.topics.first.id, :user_id => manager_id, :body => self.description)
+  #     else
+  #       @post.update_attribute("body", self.description)
+  #     end  
+  #     
   #   end
-  #   
-  #   @forum = Forum.find_by_schedule_id(self.id)
-  #   if @forum.nil?
-  #     Forum.create(:schedule_id => self.id, :name => self.concept, :description => self.description) 
-  #   else
-  #     @forum.update_attributes(:name => self.concept, :description => self.description)
-  #   end 
-  #   
-  #   @forum = Forum.find_by_schedule_id(self.id)
-  #   @topic = Topic.find_by_forum_id(@forum.id)
-  #   if @topic.nil?
-  #     Topic.create(:forum_id => @forum.id, :user_id => manager_id, :name => self.concept)
-  #   else
-  #     @topic.update_attribute("name", self.concept)
-  #   end
-  #       
-  #   @topic = Topic.find_by_forum_id(@forum.id)
-  #   @post = Post.find_by_topic_id(@topic.id)
-  #   if @post.nil?
-  #     Post.create(:topic_id => @forum.topics.first.id, :user_id => manager_id, :body => self.description)
-  #   else
-  #     @post.update_attribute("body", self.description)
-  #   end  
-  #   
-  # end
-  # 
+     
   # def update_forum_topic_post(message, user)
   #    @forum = Forum.find_by_schedule_id(self.id)
   #    if @forum.nil?
@@ -346,7 +346,16 @@ class Schedule < ActiveRecord::Base
   #     :actual_fee => self.fee_per_pista)
   # end
   # 
-  # private
+  
+  def create_schedule_forum_details(user)
+    @forum = Forum.create_schedule_forum(self)
+    @topic = Topic.create_schedule_topic(@forum, user)
+    Post.create_schedule_post(@topic, user)
+  end
+  
+  private
+ 
+  
   # def get_schedule(group)
   #   Schedule.find( :first, :conditions => [ 'group_id = ? and played = false', group.id ])
   # end

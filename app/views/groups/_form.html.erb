@@ -55,7 +55,7 @@
   <div class="group">
     <%= f.label :marker_id, label_name('marker'), :class => :label %>
     <%= f.select(:marker_id, Marker.marker_name, 
-	{:selected => @group.marker_id, :include_blank => true})%>&nbsp;<%= link_to t(:create_marker), new_marker_url %>
+	{:selected => @group.marker_id, :include_blank => true})%>&nbsp;<%= link_to label_name(:create_marker), new_marker_url %>
     <span class="description"><%= label_name('marker', 'description') %></span>
   </div>
 
@@ -93,5 +93,5 @@
 
 <div class="group navform">
 	<%= submit_tag @group.new_record? ? label_name(:create) : label_name(:edit), 
-			:class => "button" %> <%= I18n.t(:or) %> <%= link_to label_name(:cancel), groups_path %>
+			:class => "button" %> <%= label_name(:or) %> <%= link_to label_name(:cancel), groups_path %>
 </div>

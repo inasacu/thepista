@@ -1,28 +1,21 @@
 <div class="secondary-navigation">
-
-<ul>	
+<ul>
+	<li class="<%= get_action_first %>">  <%= link_to(label_name(:my_group) , groups_url) %></li>	
 <% 
 	the_label = "" 
-	the_controller = controller.controller_name
-	the_action = controller.action_name
+	the_action = ['show','edit', 'team list', 'list']
 	
-	unless is_action('show') or is_action('edit') or is_action('team list') 
+	if the_action.include?(get_the_action) and current_user.is_member_of?(@group) 
+		the_label = label_name_with('the_wall', h(@group.name))
 %>
-		<li class="<%= get_first_class %>">  <%= link_to(label_name(:my_group) , groups_url) %>  </li>
+		<li class="<%= get_action_first %>">  <%= link_to(the_label, blog_path(@group.blog)) %></li>
+		<li class="<%= get_action_active %>">  <%= group_link @group %></li>
+		<!-- <li class="<%#= get_action_active %>">  <%#= link_to(label_name(:users) , list_groups_path(:id => @group)) %></li> -->
+		<li class="<%= get_action_active %>">  <%= link_to(label_name(:users) , team_list_path(:id => @group)) %></li>
 <% 
-	else 
-		if current_user.is_member_of?(@group) 
-		the_label = "#{t(:the_wall)} #{h(@group.name)}"
-%>
-		<li class="<%= get_first_class %>">  <%= link_to(the_label, blog_path(@group.blog)) %>  </li>
-		<li class="<%= get_active %>">  <%= group_link @group %>  </li>
-		<li class="<%= get_active %>">  <%= link_to(label_name(:users) , team_list_path(:id => @group)) %>  </li>
-<% 
-		end
 	end 
-
 %>
-	<li class="<%= get_active %>"><%= link_to(label_name(:create) , new_group_url) %></li>
+	
 </ul>
 
 <div class="clear"></div>

@@ -16,3 +16,10 @@
     <%= f.text_field :table_id, :class => 'text_field' %>
     <span class="description"><%= label_name('table_id', 'description') %></span>
   </div>
+
+<div class="clear"></div> 
+
+<div class="group navform">
+	<%= submit_tag @type.new_record? ? label_name(:create) : label_name(:edit), 
+			:class => "button" %> <%= label_name(:or) %> <%= link_to label_name(:cancel), types_path %>
+</div>

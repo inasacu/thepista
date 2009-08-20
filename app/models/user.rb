@@ -112,40 +112,6 @@ class User < ActiveRecord::Base
     #   #   end
     #   # end
     #   
-    #   # method of acts_as_solr
-    #   def is_active
-    #     return  self.archive? ? false : true
-    #   end
-    #   
-    #   ## methods for images  
-    #   def the_avatar    
-    #       # self.photo.url
-    #       return "default_avatar.jpg"
-    #   end
-    # 
-    #   def main_photo
-    #     the_avatar
-    #   end
-    # 
-    #   def thumbnail
-    #     the_avatar
-    #   end
-    # 
-    #   def bounded_icon
-    #     the_avatar
-    #   end
-    #   
-    #   def icon
-    #     the_avatar
-    #   end
-    # 
-    #   def image
-    #     the_avatar
-    #   end
-    #   
-    #   def missing_avatar
-    #     self.default_avatar.blank? or self.default_avatar == "default_avatar.jpg"
-    #   end
       
       def my_groups
         @my_groups = []
@@ -208,10 +174,14 @@ class User < ActiveRecord::Base
         self.has_role?('moderator', group) 
       end
       
-    #   def self.is_novice?
-    #     created_at == updated_at
-    #   end
-    # 
+      def is_manager?
+        self.has_role?('manager')
+      end
+      
+      def is_maximo?
+        self.has_role?('maximo')
+      end
+
     def can_modify?(user)
       user == self or user.has_role?('maximo')
     end
@@ -228,11 +198,11 @@ class User < ActiveRecord::Base
     #   def is_phone_private?
     #     !private_phone && !phone.blank?
     #   end
-    # 
-    # 
-    #   def is_user?(user)
-    #     self == user
-    #   end
+    
+    
+      # def is_user?(user)
+      #   self == user
+      # end
   
     
     ## messsage methods

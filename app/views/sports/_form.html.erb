@@ -34,3 +34,10 @@
     <%= f.text_field :points_for_draw, :class => 'text_field' %>
     <span class="description"><%= label_name('points_for_draw', 'description') %></span>
   </div>
+
+<div class="clear"></div> 
+
+<div class="group navform">
+	<%= submit_tag @sport.new_record? ? label_name(:create) : label_name(:edit), 
+			:class => "button" %> <%= label_name(:or) %> <%= link_to label_name(:cancel), sports_path %>
+</div>

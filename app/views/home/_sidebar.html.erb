@@ -1,23 +1,7 @@
-<% theController = get_the_controller 
-	display_actions ||= false
-%>
-
-
 <div class="block">
-  <h3><%= control_action_label %></h3>
-  <div class="content">
-    <p>Lorem ipsum dolor amco laboris nisi ut aliquip ex ea commodo consequat.</p>
-  </div>
+	<h3><%= control_label('option') %></h3>
+	<div class="content">
+		<p><%#= link_to(control_label('create') , new_marker_url) %></p>
+	</div>
 </div>
-
-<div class="block">
-  <h3><%= control_action_label %></h3>
-  <ul class="navigation">
-  <li><%#= link_to label_name(:edit), edit_user_path(@user) %></li>
-    <li><%#= link_to label_name(:send_messsage), edit_user_path(@user) %></li>
-  </ul>
-</div>
-
-
-
 

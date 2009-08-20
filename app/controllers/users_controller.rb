@@ -228,7 +228,7 @@ end
 #         @user.default_avatar = theGravatar.u 
 #         @user.has_gravatar = true                
 #         @user.save!
-#           flash[:notice] = t(:gravatar_received)
+#           flash[:notice] = I18n.t(:gravatar_received)
 #           redirect_back_or_default('/index')
 #           return
 #   
@@ -236,7 +236,7 @@ end
 #         @user.has_gravatar = false
 #         @user.default_avatar = "default_avatar.jpg" 
 #         @user.save!
-#         flash[:notice] = t(:gravatar_not_received)              
+#         flash[:notice] = I18n.t(:gravatar_not_received)              
 #       end
 #         redirect_back_or_default('/index')
 #     end
@@ -464,7 +464,7 @@ end
 #       # reset session
 #       self.current_user = @user # !! now logged in
 #       redirect_back_or_default('/')
-#       flash[:notice] = t(:thanx_sign_up)
+#       flash[:notice] = I18n.t(:thanx_sign_up)
 #     end
 # 
 #     def failed_creation(message = "#{t :could_not_setup_account }")

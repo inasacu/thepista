@@ -11,5 +11,5 @@
         
 <div class="group navform">
 	<%= submit_tag @user.new_record? ? label_name(:create) : label_name(:edit), 
-			:class => "button" %> <%= I18n.t(:or) %> <%= link_to label_name(:cancel), users_path %>
+			:class => "button" %> <%= label_name(:or) %> <%= link_to label_name(:cancel), users_path %>
 </div>

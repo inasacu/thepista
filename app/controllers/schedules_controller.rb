@@ -18,14 +18,20 @@ class SchedulesController < ApplicationController
     render :template => '/schedules/index'       
   end
 
-	def show
-		store_location  
-		@match = @schedule.matches.first
-		@previous = Schedule.previous(@schedule)
-		@next = Schedule.next(@schedule)
-	end
+  
+  def show
+    @schedule = Schedule.find(params[:id])
+    @group = @schedule.group
+  end
+  
+  # def show
+  #   store_location  
+  #   @match = @schedule.matches.first
+  #     # @previous = Schedule.previous(@schedule)
+  #     # @next = Schedule.next(@schedule)
+  # end
 
-	  def team_roster  
+  def team_roster  
     store_location  
     @match_type = Type.find(:all, :conditions => "id in (1, 3, 5)")
   end
@@ -51,7 +57,7 @@ class SchedulesController < ApplicationController
   def new   
     
     # editing is limited to administrator or creator
-    permit "manager of :group or creator of :group or maximo", :group => @group do 
+    # permit "manager of :group or creator of :group or maximo", :group => @group do 
       @schedule = Schedule.new
       @schedule.group_id = @group.id
       @schedule.sport_id = @group.sport_id
@@ -80,47 +86,20 @@ class SchedulesController < ApplicationController
 
       end
       #render :template => '/schedules/new'
-    end
+    # end
   end
 
-
-  # POST /schedules
-  # POST /schedules.xml
   def create
     @schedule = Schedule.new(params[:schedule])
-
-    @schedule.save do |result|
-      if result
-        # flash[:notice] = control_action_label('notice')
-        flash[:notice] = I18n.t(:successful_signup)
-        redirect_to root_url
-      else
-        render :action => 'signup'
-      end
+    if @schedule.save and @schedule.create_schedule_forum_details(current_user)
+      # @schedule.create_schedule_details
+      flash[:notice] = I18n.t(:successful_create)
+      redirect_to @schedule
+    else
+      render :action => 'new'
     end
   end
 
-  def create
-    @group = Group.find(params[:group][:id]) unless params[:group][:id].nil?
-    permit "manager of :group or creator of :group or maximo", :group => @group do
-      @schedule = Schedule.new(params[:schedule])
-      @schedule.group_id = params[:group][:id] unless params[:group][:id].nil?
-      @schedule.season = Time.now.year
-
-      if @schedule.save
-        # @schedule.accepts_role 'manager', current_user
-        @schedule.create_schedule_details
-
-        flash[:notice] = "#{t :schedule} #{t :created}"
-        redirect_to :action => 'show', :id => @schedule
-        return
-      else        
-        render :template =>  '/layouts/current/new' if @main
-      end
-    end
-  end
-
-    # GET /schedules/1/edit
   def edit
     @schedule = current_schedule
   end
@@ -207,7 +186,7 @@ class SchedulesController < ApplicationController
       @post = Post.new(:body => @description, :topic_id => @schedule.forum.topics.first.id, :user_id => current_user.id)
       @post.save!  if @schedule.played?
 
-      flash[:notice] = t(:scorecard_updated)
+      flash[:notice] = I18n.t(:scorecard_updated)
       redirect_to schedule_path(@schedule)
     else
       render :action => 'edit'

@@ -1,42 +1,30 @@
+<%
+	if @user
+		label = label_name_with('the_wall', h(@user.name))
+		label = control_label('my_wall') if @user == current_user	
+	end	
+	if @group
+		label = label_name_with('the_wall', h(@group.name))
+	end
+%>
 <div class="block">
 
-  <%= render :partial => 'secondary_navigation' %>
+  <%= render :partial => '/users/secondary_navigation' if @user %>
+  <%= render :partial => '/groups/secondary_navigation' if @group %>
 
-         
   <div class="content">
+	
+	<h2 class="title"><%= label %></h2>
+	
     <div class="inner">
-      
-        <p>
-          <b>Blog_id:</b>
-          <%= @entry.blog_id %>
-        </p>
+	
+	<%= render :partial => 'comments/new', 
+		:locals => { :blog_id => @entry.blog_id, :label => label_name(:what_are_you_practicing), :textfield => true } if @user == current_user %>
 
-        <p>
-          <b>User_id:</b>
-          <%= @entry.user_id %>
-        </p>
+	<%= render :partial => 'comments/comments' %>
 
-        <p>
-          <b>Group_id:</b>
-          <%= @entry.group_id %>
-        </p>
-
-        <p>
-          <b>Title:</b>
-          <%= @entry.title %>
-        </p>
-
-        <p>
-          <b>Body:</b>
-          <%= @entry.body %>
-        </p>
-
-        <p>
-          <b>Comments_count:</b>
-          <%= @entry.comments_count %>
-        </p>
-
-      <%= link_to label_name(:edit), edit_entry_path(@entry) %>
+	<%= render :partial => 'comments/new', 
+		:locals => { :blog_id => @entry.blog_id, :label => label_name(:write_comment), :textfield => false } if @user != current_user %>
 
     </div>
   </div>
