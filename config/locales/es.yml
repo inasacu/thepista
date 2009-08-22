@@ -34,7 +34,7 @@ es:
      at: a las   
      attend_schedule: Asiste al Evento   
      aunque_estamos: Aunque estamos en fase de pruebas nos gustaria que nos dieses   
-     Ausente: Ausente   
+     ausente: Ausente   
      author: Author (in Spanish)   
      authorizable_id: Codigo    
      authorizable_type: Tipo    
@@ -60,6 +60,7 @@ es:
      cannot_be_blank: no puede dejarse en blanco   
      change: Cambia Idioma   
      change_available: Cambia la Disponibilidad de   
+     change_at:  Fecha de Cambio
      change_message_notification: Cambio de Recibida de correo de   
      change_email_configuration: Cambia tu configuración de mensajes.
      change_group: Cambia de Equipo   
@@ -93,7 +94,7 @@ es:
      confirmation_password: Clave Confirmación   
      contact: Contacto   
      contact: Contacto   
-     Convocado: Convocado   
+     convocado: Convocado   
      could_not_log_you: No se ha podido iniciar la sesión en la que como   
      could_not_setup_account: "No pudimos crear la cuenta, lo sentimos!"   
      country: Pais   
@@ -298,7 +299,9 @@ es:
      gameday_at:  Dia del Partido
      game_day: Encuentro   
      game_lost: Derrota   
-     game_notes: Notas de futbol   
+     game_notes: Notas de futbol
+     game_played:  Partido Jugado
+     game_not_played:  Partido No Jugado   
      game_tied: Empate   
      game_won: Victoria   
      gameday_description: (Que dia de la semana en general jugais...)   
@@ -333,7 +336,9 @@ es:
      gravatar_not_received: No ha sido posible conseguir la información de gravatar del usuario   
      gravatar_received: Ya hemos conseguido la información del gravatar del usuario   
      group: Equipo   
-     Group: Equipo   
+     Group: Equipo 
+     group_a:  Primer Equipo
+     group_b:  Segundo Equipo  
      group_fee: Tasa de Equipo
      group_id: Equipo   
      groups: Equipos    
@@ -870,7 +875,7 @@ es:
      type: Tipo   
      type_account: Tipo de Cuenta 
      types: Tipos   
-     Ultima_Hora: Ultima Hora  
+     ultima_hora: Ultima Hora  
      unauthorized_user:  Jugador no autorizado 
      unavailable: No Disponible
      unsuccessful_logged_in:  No se ha accedido correctamente  
@@ -1084,6 +1089,7 @@ es:
      practices_show: Detalles del Entrenamiento
 
      schedules_create:  Nuevo Evento
+     schedules_destroy:  Borrar Evento
      schedules_index:  Eventos
      schedules_index_option: Opciones del Evento
      schedules_list:  Anteriores Eventos
@@ -1095,6 +1101,8 @@ es:
      schedules_option:  Opciones de Eventos
      schedule_options:  Opciones de Evento
      schedules_show: Detalles Del Evento
+     schedule_convocados:  Ningun Convocado para mostrar.
+     schedule_no_disponible:  Ningun Ausente para mostrar.
 
      scorecards_index:   Clasificaciones
      scorecards_manager_option:  Requiere responsable de equipo para ver mas opciones.
@@ -1107,6 +1115,10 @@ es:
      sports_index:  Deportes
      sports_maximo_option:  Requiere responsable de administrador para ver mas opciones.
      sports_option:  Opciones de Deportes
+     
+     topics_create:  Nuevo Evento
+     topics_edit:  Modificar Evento
+     topic_options:  Opciones de Evento     
      
      types_index:  Tipos
      types_maximo_option:  Requiere responsable de administrador para ver mas opciones.

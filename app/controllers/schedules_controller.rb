@@ -22,14 +22,9 @@ class SchedulesController < ApplicationController
   def show
     @schedule = Schedule.find(params[:id])
     @group = @schedule.group
+    @previous = Schedule.previous(@schedule)
+    @next = Schedule.next(@schedule)
   end
-  
-  # def show
-  #   store_location  
-  #   @match = @schedule.matches.first
-  #     # @previous = Schedule.previous(@schedule)
-  #     # @next = Schedule.next(@schedule)
-  # end
 
   def team_roster  
     store_location  
@@ -40,10 +35,6 @@ class SchedulesController < ApplicationController
     store_location
     @match_type = Type.find(:all, :conditions => "id in (1, 3, 5)")
   end
-  
-#  def show
-#    @schedule = Schedule.find(params[:id])
-#  end
 
   def search
     count = Schedule.count_by_solr(params[:search])
@@ -53,9 +44,7 @@ class SchedulesController < ApplicationController
     render :template => '/schedules/index'
   end
 
-
-  def new   
-    
+  def new    
     # editing is limited to administrator or creator
     # permit "manager of :group or creator of :group or maximo", :group => @group do 
       @schedule = Schedule.new
@@ -85,14 +74,12 @@ class SchedulesController < ApplicationController
         @schedule.non_subscription_at = @lastSchedule.starts_at - 1.day
 
       end
-      #render :template => '/schedules/new'
     # end
   end
 
   def create
     @schedule = Schedule.new(params[:schedule])
-    if @schedule.save and @schedule.create_schedule_forum_details(current_user)
-      # @schedule.create_schedule_details
+    if @schedule.save and @schedule.create_schedule_details(current_user)
       flash[:notice] = I18n.t(:successful_create)
       redirect_to @schedule
     else
@@ -101,46 +88,17 @@ class SchedulesController < ApplicationController
   end
 
   def edit
-    @schedule = current_schedule
+    @schedule = Schedule.find(params[:id])
   end
   
-  # PUT /schedules/1
-  # PUT /schedules/1.xml
   def update
-    @schedule = current_schedule
-
-    @schedule.attributes = params[:schedule]
-    @schedule.save do |result|
-      if result
-        # flash[:notice] = control_action_label('notice')
-        flash[:notice] = I18n.t(:successful_update)
-        redirect_to root_url
-      else
-        render :action => 'edit'
-      end
-    end
-  end
-
-  def edit 
     @schedule = Schedule.find(params[:id])
-    # editing is limited to the manager, creator, maximo
-    permit "manager of :group or creator of :group or maximo", :group => @schedule.group do
-      render :template => '/schedules/edit' 
+    if @schedule.update_attributes(params[:schedule])
+      flash[:notice] = I18n.t(:successful_update)
+      redirect_to @schedule
+    else
+      render :action => 'edit'
     end
-  end
-
-  def update  
-    # updating is limited to the manager, creator, maximo
-    permit "manager of :group or creator of :group or maximo", :group => @schedule.group do
-      @schedule.attributes = params[:schedule] 
-      if @schedule.save
-        @schedule.create_schedule_details
-        redirect_to :action => 'show', :id => @schedule
-        return
-      else
-        render :template =>  '/layouts/current/edit'
-      end
-    end 
   end
  
   def edit_match 
@@ -222,6 +180,7 @@ class SchedulesController < ApplicationController
   private
   def get_schedule
     @schedule = Schedule.find(params[:id])
+    @group = @schedule.group
   end
   
   def get_group

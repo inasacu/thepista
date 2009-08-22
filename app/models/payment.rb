@@ -1,27 +1,17 @@
 class Payment < ActiveRecord::Base
   
-  validates_presence_of     :concept, :debit_amount, :credit_amount, :description
+  belongs_to    :debit,        :polymorphic => true
+  belongs_to    :credit,       :polymorphic => true  
+  belongs_to    :fee
   
-  attr_accessible :concept, :debit_amount, :credit_amount, :description
-end
+  # validations 
+  validates_presence_of       :concept, :debit_amount, :credit_amount
+  validates_numericality_of   :debit_amount, :credit_amount 
 
+  # variables to access
+  attr_accessible :concept, :debit_amount, :credit_amount, :description, :table_type, :table_id, :type_id 
 
-
-# 
-# class Payment < ActiveRecord::Base 
-#   
-#   # Authorization plugin
-#   acts_as_authorizable 
-# 
-#   # validations 
-#   validates_presence_of       :concept
-#   validates_numericality_of   :debit_amount    
-#   validates_numericality_of   :credit_amount 
-#   
-#   belongs_to    :debit,        :polymorphic => true
-#   belongs_to    :credit,       :polymorphic => true  
-#   belongs_to    :fee 
-#   
+  
 #   def self.actual_payment(debit, archive=false)
 #     @payment = find(:first, 
 #          :select => "sum(debit_amount) - sum(credit_amount) as actual_payment", 
@@ -46,3 +36,4 @@ end
 #     errors.add(:credit_amount, :should_be_positive.l) unless credit_amount.nil? || credit_amount >= 0.0
 #   end
 # end
+end

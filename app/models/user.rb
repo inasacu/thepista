@@ -366,8 +366,8 @@ class User < ActiveRecord::Base
         Match.create_schedule_group_user_match(schedule, group, user)
 	  end
     
-      def create_user_fees(schedule, group, user)
-		Fee.create_schedule_group_user_fee(schedule, group, user)
+      def create_user_fees(schedule)
+		    Fee.create_user_fees(schedule)
       end
 
         

@@ -23,6 +23,8 @@ ActionController::Routing::Routes.draw do |map|
   map.remove_moderator   	  'users/:id/remove_moderator/:group',  		:controller => 'users',    		    :action => 'remove_moderator'   
   map.petition              'users/petition',                         :controller => 'users',           :action => 'petition'
   
+  map.match_status          'matches/:id/set_status/:type',           :controller => 'matches',         :action => 'set_status'
+  
   map.resources   :user_sessions,   :as => 'try_again'
 
   map.resources   :users,           :as => 'jugadores',       :collection  => { :list => :get, :recent_activity => :get, :search => :get }  

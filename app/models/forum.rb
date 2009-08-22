@@ -11,7 +11,7 @@ class Forum < ActiveRecord::Base
   # method section
   # record if schedule does not exist
   def self.create_schedule_forum(schedule) 
-    self.create!(:schedule_id => schedule.id, :name => '.....', :description => '.....') if self.schedule_exists?(schedule)
+    self.create!(:schedule_id => schedule.id, :name => schedule.concept, :description => schedule.description) if self.schedule_exists?(schedule)
   end 
 
   # Return true if the schedule nil

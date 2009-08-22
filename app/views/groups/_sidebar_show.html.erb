@@ -1,6 +1,6 @@
 <div class="block">
 
-<h3><%= label_name(get_the_controller, 'options') %></h3>
+<h3><%= label_name("groups_option") %></h3>
 
 <ul class="navigation">
 <% 
@@ -24,8 +24,8 @@
 		the_confirmation = "#{ label_name(:destroy_group) } #{ label_name(:to) } #{@group.name}?" 
 %> 
 		<!-- <li><%#= link_to(control_label('new'), new_schedule_path(:id => @group.id)) %></li>   -->                     
-		<li><%= link_to(control_label('edit'), edit_group_path(@group)) if current_user.is_manager_of?(@group) %></li>  
-		<li><%= link_to(control_label('destroy'), destroy_group_path(@group), :confirm => the_confirmation) if @group.has_schedule? %></li>
+		<li><%= link_to(label_name('groups_edit'), edit_group_path(@group)) if current_user.is_manager_of?(@group) %></li>  
+		<li><%#= link_to(control_label('destroy'), destroy_group_path(@group), :confirm => the_confirmation) if @group.has_schedule? %></li>
 <% 
 	end 
 %>

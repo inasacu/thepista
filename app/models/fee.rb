@@ -1,27 +1,21 @@
 class Fee < ActiveRecord::Base
-end
+  belongs_to     :user
+  belongs_to     :manager,      :class_name => 'User',        :foreign_key => 'sender_id'
+  
+  belongs_to     :group
+  belongs_to     :debit,        :polymorphic => true
+  belongs_to     :credit,       :polymorphic => true
+  has_many       :payments
+  
+  # validations
+  validates_presence_of       :concept
+  validates_numericality_of   :actual_fee    
 
-# 
-# class Fee < ActiveRecord::Base 
-#   
-#   # Authorization plugin
-#   acts_as_authorizable 
-#     
-#   belongs_to     :user
-#   belongs_to     :manager,      :class_name => 'User',        :foreign_key => 'sender_id'
-#   
-#   belongs_to     :group
-#   belongs_to     :debit,        :polymorphic => true
-#   belongs_to     :credit,       :polymorphic => true
-#   has_many       :payments
-#   
-#   # validations
-#   validates_presence_of       :concept
-#   validates_numericality_of   :debit_amount    
-# 
-#   def self.per_page
-#     12
-#   end 
+  # variables to access
+  attr_accessible :concept, :description, :actual_fee, :payed, :table_type 
+  attr_accessible :table_id, :schedule_id, :group_id, :user_id, :match_id
+
+
 #   
 #   def self.get_debit_fees(debit, season_payed=false, archive=false, page=1)
 #     paginate(:all, 
@@ -72,25 +66,46 @@ end
 #       fee.update_attribute(:archive, flag)
 #     end
 #   end
-    
-	def create_schedule_group_user_fee(schedule, group, user)
+
+  def self.create_user_fees(schedule)    
+    schedule.group.users.each do |user|
+      actual_fee = schedule.fee_per_game
+      actual_fee = 0 if !user.available or schedule.played
+  
+      self.create!(:concept => schedule.concept, :schedule_id => schedule.id, :user_id => user.id, :description => schedule.description,
+                   :group_id => schedule.group_id, :actual_fee => actual_fee) if self.schedule_user_exists?(schedule, user)
+    end
+  end
+  
+  def self.create_group_fees(schedule)
+    self.create!(:concept => schedule.concept, :schedule_id => schedule.id, :group_id => schedule.group_id, 
+                 :actual_fee => schedule.fee_per_pista) if self.schedule_group_exists?(schedule)
+  end
+  
+	def self.create_schedule_group_user_fee(schedule, user)
         self.create!(:concept => schedule.concept, :schedule_id => schedule.id, 
 				:user_id => user.id, :group_id => group.id, :user_fee => true, 
-				:actual_fee => schedule.fee_per_game) if self.schedule_group_user_exists(schedule, group, user)
+				:actual_fee => schedule.fee_per_game) if self.schedule_group_user_exists(schedule, user)
 	end
 	
-   # return ture if the schedule user group conbination is nil
-   def self.schedule_group_user_exists?(schedule, group, user)
-		find_by_schedule_id_and_group_id_and_user_id(schedule, group, user).nil?
+  # return ture if the schedule user group conbination is nil
+  def self.schedule_group_user_exists?(schedule, user)
+		find_by_schedule_id_and_group_id_and_user_id(schedule, schedule.group, user).nil?
 	end 
 	
-   # Return true if the available exist
-   def self.exists?(schedule, user)
+   # Return true if the schedule user combination exist
+   def self.schedule_user_exists?(schedule, user)
      find_by_schedule_id_and_user_id(schedule, user).nil?
    end
-   
+	
+  # Return true if the schedule user combination exist
+  def self.schedule_group_exists?(schedule)
+    find_by_schedule_id_and_group_id(schedule, schedule.group).nil?
+  end
+    
 # protected
 #   def validate
 #     errors.add(:debit_amount, :should_be_positive.l) unless debit_amount.nil? || debit_amount > 0.0
 #   end
 # end
+end

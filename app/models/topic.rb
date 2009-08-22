@@ -10,7 +10,7 @@ class Topic < ActiveRecord::Base
   # method section
   # record if schedule does not exist
   def self.create_schedule_topic(forum, user) 
-    self.create!(:forum_id => forum.id, :user_id => user.id, :name => '.....') if self.forum_exists?(forum)
+    self.create!(:forum_id => forum.id, :user_id => user.id, :name => forum.name) if self.forum_exists?(forum)
   end 
 
   # Return true if the schedule does not exist

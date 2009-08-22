@@ -1,12 +1,12 @@
 <div class="block">
 	
-	<h3><%= label_name(get_the_controller, 'options') %></h3>
+	<h3><%= label_name("user_options") %></h3>
 	
 <ul class="navigation">
 		
 <% 
 	if @user.can_modify?(current_user) %>		
-		<li><%= link_to control_label('edit'), edit_user_path(@user) %></li>
+		<li><%= link_to label_name('users_edit'), edit_user_path(@user) %></li>
 <% 
 	else 
 %>

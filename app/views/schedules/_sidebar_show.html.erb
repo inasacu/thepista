@@ -17,7 +17,7 @@
 	if current_user.is_manager_of?(@group) 
 		the_confirmation = "#{ label_name(:destroy_schedule) } #{ label_name(:from) } #{@group.name}?" 
 %> 
-		<li><%= link_to control_label('create'), new_schedule_path(:id => @schedule.id) %></li>
+		<li><%= link_to control_label('create'), new_schedule_path(:id => @schedule.group.id) %></li>
 		<li><%= link_to control_label('edit'), edit_schedule_path(@schedule) %></li>   
 		<li><%#= link_to(control_label('destroy'), delete_schedule_path(@schedule), :confirm => the_confirmation) if @schedule.not_played? %></li>
 		<li><%= link_to label_name(:matches), edit_match_path(@schedule.id) %></li>

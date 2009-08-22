@@ -1,20 +1,16 @@
 class Match < ActiveRecord::Base
-
-  # # Authorization plugin
-  # acts_as_authorizable 
-  # acts_as_paranoid  
-  # 
-  # # validations 
-  # #  validates_uniqueness_of   :name
-  # #  validates_presence_of     :name,    :within => 3..100
-  # 
+  
   belongs_to      :user
   belongs_to      :group
   belongs_to      :schedule
-  belongs_to      :convocado, :class_name => "User", :foreign_key => "user_id"
-  
+  belongs_to      :convocado, :class_name => "User", :foreign_key => "user_id"  
   belongs_to      :type,      :conditions => "table_type = 'Match'"
-  belongs_to      :invite,    :class_name => "Group", :foreign_key => "invite_id"
+  # belongs_to      :invite,    :class_name => "Group", :foreign_key => "invite_id"
+  
+  # variables to access
+  attr_accessible :name, :schedule_id, :user_id, :group_id, :invite_id, :group_score, :invite_score, :goals_scored
+  attr_accessible :roster_position, :played, :available, :one_x_two, :user_x_two, :type_id, :status_at, :description
+    
   # 
   # # def total
   # #   players.inject(0) {|sum, n| 1 + sum}
@@ -23,11 +19,12 @@ class Match < ActiveRecord::Base
   # def is_invite?
   #   (!invite_id.nil? and invite_id > 0 and group_id != invite_id)
   # end
-  # 
-  # def team_name(schedule)
-  #   (self.group_id > 0) ? schedule.home_group : schedule.away_group    
-  # end
-  # 
+  
+  def team_name(schedule)
+    # (self.group_id > 0) ? schedule.home_group : schedule.away_group 
+    schedule.home_group   
+  end
+  
   # def win_loose_draw_label       
   #   return I18n.t(:game_tied)  if self.one_x_two == "X"  
   #   return I18n.t(:game_won)  if self.one_x_two == self.user_x_two  
@@ -122,15 +119,34 @@ class Match < ActiveRecord::Base
   #     Feed.create!(:activity => activity, :user => match.user)
   #   end
   # end 
+  
+  # create a record in the match table for teammates in group team
+  def self.create_schedule_match(schedule, last_schedule)
 
-	def create_schedule_group_user_match(schedule, group, user)
-        self.create!(:schedule_id => schedule.id, :group_id => team.id, 
-					 :user_id => user.id) if self.schedule_group_user_exists?(schedule, group, user)
-	end
+    schedule.group.users.each do |user|
+      type_id = 1      
+      type_id = 3 if schedule.played
+
+      unless last_schedule.nil?
+        @match = self.find_by_schedule_id_and_user_id(last_schedule, user)
+        type_id = @match.type_id if !@match.nil?
+      end
+
+      self.create!(:name => schedule.concept, :schedule_id => schedule.id, :group_id => schedule.group_id, 
+      :user_id => user.id, :available => user.available, 
+      :type_id => type_id, :played => schedule.played) if self.schedule_group_user_exists?(schedule, user)
+    end
+
+  end
+
+  def self.create_schedule_group_user_match(schedule, user)
+    self.create!(:schedule_id => schedule.id, :group_id => schedule.group.id, 
+    :user_id => user.id) if self.schedule_group_user_exists?(schedule, user)
+  end
 
 	# return ture if the schedule group user conbination is nil
-   def self.schedule_group_user_exists?(schedule, group, user)
-		find_by_schedule_id_and_group_id_and_user_id(schedule, group, user).nil?
+   def self.schedule_group_user_exists?(schedule, user)
+		find_by_schedule_id_and_group_id_and_user_id(schedule, schedule.group, user).nil?
 	end 	
 end
 

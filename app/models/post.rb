@@ -7,8 +7,8 @@ class Post < ActiveRecord::Base
   
   # method section
   # record if schedule does not exist
-  def self.create_schedule_post(topic, user) 
-    self.create!(:topic_id => topic.id, :user_id => user.id, :body => '.....') if self.topic_exists?(topic)
+  def self.create_schedule_post(forum, topic, user) 
+    self.create!(:topic_id => topic.id, :user_id => user.id, :body => forum.description) if self.topic_exists?(topic)
   end 
 
   # Return true if the schedule does not exist

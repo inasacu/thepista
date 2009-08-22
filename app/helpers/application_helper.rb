@@ -65,7 +65,6 @@ module ApplicationHelper
     return I18n.t(:"#{ controller.controller_name.to_s.downcase.gsub(' ','_') }_#{ controller.action_name.to_s.downcase.gsub(' ','_') }#{ text }")
   end
 
-
   def get_collection_label(collection)
     if count_objects(collection) > 0
       return control_action_label
@@ -302,33 +301,13 @@ module ApplicationHelper
   def nice_day_time_wo_year(time_at)
     return I18n.l(time_at, :format => :day_time_wo_year) unless time_at.nil?
   end
+
   
-  # def gravatar_url_for(email, options = {})    
-  #   url_for({ :gravatar_id => Digest::MD5.hexdigest(email), :host => 'www.gravatar.com',      
-  #     :protocol => 'http://', :only_path => false, :controller => 'avatar.php'    
-  #     }.merge(options))  
-  #   end
-  # 
-  #   def gravatar(email, user='')
-  #     "<img alt=\"#{user}'s image\" src=\"/gravatars/#{MD5.new(email)}.gif\" height=\"80\" width=\"80\"/>"
-  #   end
-  # 
-  #   def current_announcements
-  #     @current_announcements ||= Announcement.current_announcements(session[:announcement_hide_time])
-  #   end
-  # 
-  #   def current_classifieds
-  #     @current_classifieds ||= Classified.current_classifieds(session[:classified_hide_time])
-  #   end
-  # 
-  #   def current_schedules
-  #     @current_schedules ||= Schedule.current_schedules(session[:schedule_hide_time])
-  #   end
-  # 
-  #   def current_festivals
-  #     @current_festivals ||= Festival.current_festivals(session[:festival_hide_time])
-  #   end
-  #   
+
+    def current_schedules
+      @current_schedules ||= Schedule.current_schedules(session[:schedule_hide_time])
+    end
+
   #   def current_messages
   #     @current_messages ||= Message.current_messages(current_user)
   #   end
@@ -338,11 +317,11 @@ module ApplicationHelper
   #   def current_year
   #     Time.now.year
   #   end
-  # 
-  #   def year_range( start_year = current_year )
-  #     [start_year, current_year].sort.uniq.join('-')
-  #   end  
-  # 
+  
+    def year_range( start_year = Time.now.year )
+      [start_year, Time.now.year].sort.uniq.join('-')
+    end  
+  
   # 
   #   # Find all rows created on a certain day; Rails apparently has a built-in :db string format
   #   # self.find(:all, :conditions => ["created_at >= ? AND created_at <= ?", day.beginning_of_day.to_s(:db), day.end_of_day.to_s(:db)])

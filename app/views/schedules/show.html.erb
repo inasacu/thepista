@@ -3,37 +3,119 @@
   <%= render :partial => 'secondary_navigation' %>   
   
   <div class="content">
+	<p>
+		<b><%= link_to "", schedule_path(@next), :class => 'previous_message' if @next %></b>
+	</p>
+	<p>
+		<b><%= link_to "", schedule_path(@previous), :class => 'next_message' if @previous %></b>
+	</p>
+	<br />
+  <h2 class="title"><%= @group.name %></h2>
+	
+	
     <div class="inner">
 
-	<p>
-	  <b><%= label_name(:concept) %>:</b>
-	  <%=h @schedule.concept %>
-	</p>
+		<p>
+		  <b><%= label_name(:concept) %>:</b>
+		  <%=h @schedule.concept %>
+		</p>
 
         <p>
-          <b><%= label_name(:season) %>:</b>
-          <%=h @schedule.season %>
+          <b><%= label_name(:description) %>:</b>
+          <%=h @schedule.description %>
+        </p>
+
+
+        <% if @schedule.game_played? %>
+          <p>
+            <b><%= label_name(:group) %>:</b>
+            	
+              <%= group_link @schedule.group %>
+              <%= view_spaces %>
+              <%= @schedule.matches.first.group_score %><%= view_spaces %>-<%= view_spaces %><%= @schedule.matches.first.invite_score %>
+              <%= view_spaces %>
+              <%= link_to h(@schedule.group.second_team), group_path(@schedule.group) %>
+
+          </p>
+        <% else %>
+          <p>
+            <b><%= label_name(:home_group) %>:</b>            
+				<%= group_link @schedule.group %>
+          </p>
+        <% end %>
+
+        <p>
+          <b><%= label_name(:sport) %>:</b>
+          <%= h(@schedule.sport.name) %>
         </p>
 
         <p>
-          <b><%= label_name(:jornada) %>:</b>
-          <%=h @schedule.jornada %>
+          <b><%= label_name(:marker) %></b>
+          <%= marker_link @schedule.group.marker %>
         </p>
 
         <p>
           <b><%= label_name(:starts_at) %>:</b>
-          <%=h nice_day_of_week @schedule.starts_at %>
+          <%= nice_day_of_week @schedule.starts_at %>
         </p>
 
         <p>
           <b><%= label_name(:ends_at) %>:</b>
-          <%=h nice_day_of_week @schedule.ends_at %>
+          <%= nice_day_of_week @schedule.ends_at %>
         </p>
 
+        <% unless @schedule.convocados.empty? %>
         <p>
-          <b><%= label_name(:reminder_at) %>:</b>
-          <%=h nice_day_of_week @schedule.reminder_at %>
+          <b><%= label_name(:rosters) %>:</b>
+          <%= @schedule.convocados.count %>
         </p>
+        <% end %>
+
+        <% unless @schedule.last_minute.empty? %>
+        <p>
+          <b><%= label_name(:last_minute) %>:</b>
+          <%= @schedule.last_minute.count %>
+        </p>
+        <% end %>
+
+        <% if @schedule.no_shows.empty? %>
+          <p>
+            <b><%= label_name(:no_shows) %>:</b>
+            <%= @schedule.no_shows.count %>
+          </p>
+        <% end %>
+
+        <% unless @schedule.convocados.empty? %>
+          <% if @schedule.played? %>
+            <p>
+              <b><%= @schedule.home_group %>:</b>
+              <%= user_list @schedule.home_roster %>
+            </p>
+            <p>
+              <b><%= @schedule.away_group %>:</b>
+              <%= user_list @schedule.away_roster %>
+            </p>
+          <% else %>
+            <p>
+              <b><%= label_name(:rosters) %>:</b>
+              <%= user_list @schedule.convocados %>
+            </p>
+          <% end %>
+        <% end %>
+
+        <% unless @schedule.last_minute.empty? %>
+          <p>
+            <b><%= label_name(:last_minute) %>:</b>
+            <%= user_list @schedule.last_minute %>
+          </p>
+        <% end %>
+
+        <% unless @schedule.no_shows.empty? %>
+          <p>
+            <b><%= label_name(:no_shows) %>:</b>
+            <%= user_list @schedule.no_shows %>
+          </p>
+        <% end %>
 
         <p>
           <b><%= label_name(:subscription_at) %>:</b>
@@ -56,8 +138,13 @@
         </p>
 
         <p>
-          <b><%= label_name(:remind_before) %>:</b>
-          <%=h @schedule.remind_before %>
+          <b><%= label_name(:season) %>:</b>
+          <%=h @schedule.season %>
+        </p>
+
+        <p>
+          <b><%= label_name(:jornada) %>:</b>
+          <%=h @schedule.jornada %>
         </p>
 
         <p>
@@ -66,38 +153,13 @@
         </p>
 
         <p>
-          <b><%= label_name(:group) %>:</b>
-          <%=h @schedule.group.name %>
-        </p>
-
-        <p>
-          <b><%= label_name(:sport) %>:</b>
-          <%=h @schedule.sport.name %>
-        </p>
-
-        <p>
-          <b><%= label_name(:marker) %>:</b>
-          <%=h @schedule.marker.name %>
-        </p>
-
-        <p>
           <b><%= label_name(:player_limit) %>:</b>
           <%=h @schedule.player_limit %>
         </p>
 
         <p>
-          <b><%= label_name(:played) %>:</b>
-          <%=h @schedule.played %>
-        </p>
-
-        <p>
           <b><%= label_name(:public) %>:</b>
           <%=h @schedule.public %>
-        </p>
-
-        <p>
-          <b><%= label_name(:description) %>:</b>
-          <%=h @schedule.description %>
         </p>
   
     </div>

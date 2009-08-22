@@ -1,0 +1,20 @@
+
+<% new_or_existing = match.new_record? ? 'new' : 'existing' %>
+<% prefix = "schedule[#{new_or_existing}_match_attributes][]" %>
+<% fields_for prefix, match do |match_form| -%>
+<li class="username">
+<%= user_link match.user %>    
+<%= view_spaces %>
+	<%= match.team_name(@schedule) %>    
+	<%= view_spaces %>
+	<%= match_form.text_field :goals_scored, :maxlength => 5, :size => 8 %>
+</li>
+<% end -%>
+
+
+
+
+
+
+
+ 

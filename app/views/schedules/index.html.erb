@@ -1,10 +1,12 @@
 <div class="block">
 
-  <%= render :partial => 'secondary_navigation' if current_user %>  
+  <%= render :partial => 'secondary_navigation' %>  
 
   <div class="content">   
   
-    <h2 class="title"><%= get_collection_label(@schedules) %></h2>
+    <h2 class="title"><%= get_collection_label(@schedules) %>
+	<%#= group_vs_invite @schedules %>
+	</h2>
 	
     <div class="inner">
 	
@@ -12,28 +14,48 @@
 	
       <table class="table">
 	  
-        <tr>            
-          <th class="first">ID</th>
-          <th>Concept</th>
-          <th>Created at</th>
+        <tr> 
+          <th class="first">&nbsp;</th>
+          <th><%= label_name(:group) %>&nbsp;/<br />
+			  <%= label_name(:gameday_at) %></th>
+          <th><%= label_name(:concept) %>&nbsp;/<br />
+			  <%= label_name(:sport) %></th>
+          <th><%= label_name(:marker) %><br />
+		      <%= label_name(:time_zone) %></th>
+          <th><%= label_name(:general_information) %></th>
           <th class="last">&nbsp;</th>
-        </tr>
+        
         <% @schedules.each do |schedule| -%>
         <tr>
           <td>
-            <%= schedule.id %>
+            <%= group_image_link_small schedule.group %>
           </td>
           <td>
-            <%= link_to schedule.concept, schedule_path(schedule) %>
+			<%= group_link schedule.group %><br />
+			<%= nice_day_time schedule.starts_at %>
+          </td>
+          <td>            
+            <%= link_to schedule.concept, schedule_path(schedule) %><br />
+			<%= schedule.sport.name %>
           </td>
           <td>
-            <%= schedule.created_at %>
-          </td>
+			<%= marker_link schedule.group.marker %><br />
+			<%= schedule.time_zone %>
+		  </td>
+
+			<% if schedule.game_played? %>            
+			<td>
+				<td><%= label_name(:game_played) %></td>          
+			</td>            
+			<% else %>            
+			<td><%= label_name(:game_not_played) %></td>            
+			<% end %>
+
           <td class="last">
-            <%= link_to label_name(:show), schedule_path(schedule) %> |
-            <%= link_to label_name(:edit), edit_schedule_path(schedule) %> |
-            <%= link_to label_name(:destroy), schedule_path(schedule), :method => :delete, :confirm => label_name(:are_you_sure) %>
+            <%= link_to label_name(:edit), edit_schedule_path(schedule) %><br />
+            <%= link_to control_label('destroy'), schedule_path(schedule), :method => :delete, :confirm => label_name(:are_you_sure) %>
           </td>
+
         </tr>          
         <% end -%>
       </table>

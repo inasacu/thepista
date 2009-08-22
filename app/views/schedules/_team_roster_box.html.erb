@@ -1,0 +1,143 @@
+<% 
+	counter = 0 
+	roster_count = (the_roster.count > 0)
+%>
+
+<div class="block">
+
+  <%= render :partial => 'secondary_navigation' %>  
+
+  <div class="content">   
+  
+    <h2 class="title">
+		<%= roster_count ? "#{roster}" : label_name("#{get_the_controller}_#{roster}") %>
+	</h2>
+	
+    <div class="inner">
+	
+	  <% if roster_count %>
+	
+      <table class="table">
+	  
+        <tr> 
+          <th class="first">&nbsp;</th>
+          <th>&nbsp;</th>
+          <th><%= label_name(:name) %></th>
+          <th><%= label_name(:group_a) %>&nbsp;&nbsp;/<br />
+              <%= label_name(:group_b) %></th>
+          <th><%= label_name(:change_at) %></th>
+          <th class="last">&nbsp;</th>
+        
+       	<% the_roster.each do |match| -%>
+        <tr>
+			<td>
+				<%= image_link_small match.user %>
+			</td>
+			<td>
+				<%= counter += 1 %>.
+			</td>
+			<td>
+				<%= user_link match.user %>
+			</td>
+			
+<% 
+	if current_user.is_sub_manager_of?(@schedule.group) 
+		unless @schedule.played? 
+			if match.type_id == 1 
+%>
+				<td><%= link_to match.team_name(@schedule), fichar_url(:id => match.id), :title => t(:change_group) %></td>
+<% 
+			else 
+%>
+				<td><%= h(@schedule.group.name) %></td>
+<% 
+			end 
+		else 
+%>								
+			<td><%= match.team_name(@schedule) %></td>
+			<td><%= match.win_loose_draw_label %></td>								
+<% 
+		end 
+	else 
+%>	
+		<td><%= h(match.team_name(@schedule)) %></td>
+<% 
+		if @schedule.played? 
+%>
+			<td><%= match.win_loose_draw_label %></td>
+<% 		
+		end 
+	end 
+%>	
+<td><%= link_to "Hace #{time_ago_in_words(match.status_at)}" %></td>
+
+<td>
+<% 
+if current_user == match.user or current_user.is_manager_of?(@schedule.group) and @schedule.not_played? 
+	@match_type.each do |type|  
+		if type.name != match.type_name			
+			if current_user.is_manager_of?(@schedule.group) 
+%>
+				<%= render :partial => '/schedules/match_user_option', :locals => {:type => type, :match => match} %>
+<% 
+			elsif match.user.is_subscriber_of?(@schedule.group)
+				if type.id != 1 
+%>
+					<%= render :partial => '/schedules/match_user_option', :locals => {:type => type, :match => match} %>
+<% 
+				elsif @schedule.subscription_at > Time.now and type.id == 1 
+%>
+					<%= render :partial => '/schedules/match_user_option', :locals => {:type => type, :match => match} %>												
+<% 
+				end 
+			else 
+				if type.id != 1 
+%>
+					<%= render :partial => '/schedules/match_user_option', :locals => {:type => type, :match => match} %>
+<% 
+				elsif @schedule.non_subscription_at < Time.now and type.id == 1 
+%>
+					<%= render :partial => '/schedules/match_user_option', :locals => {:type => type, :match => match} %>	
+<% 
+				end 			
+			end 
+		end
+ 	end
+end
+%>
+</td>
+</tr>          
+<% 
+end 
+-%>
+    </table>
+<%
+	end
+%>
+
+</div>
+</div>
+</div>
+
+<% content_for :sidebar, render(:partial => 'sidebar_show') -%>
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

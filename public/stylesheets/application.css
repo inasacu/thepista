@@ -32,3 +32,8 @@ textarea.textfield {
 	width: 400px;
 	height: 80px; 
 }
+
+.next_message, .previous_message { display: block; height: 15px; width: 12px; margin-top: 4px; background-repeat: no-repeat; background-position: -4px 4px; }
+.next_message:hover, .previous_message:hover { background-color: #005573; background-position: 4px 4px; text-decoration: none; }
+.next_message { float: left; background-image: url('../../images/next_message_arrow.gif'); }
+.previous_message { float: right; background-image: url('../../images/previous_message_arrow.gif'); }

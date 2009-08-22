@@ -13,10 +13,12 @@
 		if current_user.is_member_of?(@schedule.group)
 			the_label = "#{label_name(:forum)} #{@schedule.concept}"
 %>
-<li class="<%= get_action_first('index') %>">  <%= schedule_link @schedule %>
-<li class="<%= get_action_active('topics_show') %>"><%= link_to(the_label, forums_path(@schedule.forum)) %></li>			
-<li class="<%= get_action_active('rosters') %>"><%#= link_to(label_name(:rosters), team_roster_path(@schedule)) %></li>
-<li class="<%= get_action_active('no_show') %>"><%#	= link_to(label_name(:no_shows), team_no_show_path(@schedule)) unless @schedule.played? %></li>
+			<li class="<%= get_action_first('index') %>">  <%= schedule_link @schedule %>
+			<li class="<%= get_action_active('topics_show') %>"><%= link_to(the_label, forum_path(@schedule.forum)) %></li>			
+			<li class="<%= get_action_active('rosters') %>">
+						<%= link_to(label_name(:rosters), team_roster_path(:id => @schedule)) %></li>
+			<li class="<%= get_action_active('no_show') %>">
+						<%= link_to(label_name(:no_shows), team_no_show_path(:id => @schedule)) unless @schedule.played? %></li>
 <% 
 		end
 	end

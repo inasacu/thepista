@@ -1,0 +1,32 @@
+<div class="block" id="block-lists"> 
+  
+  <div class="content"> 
+
+	<div class="inner"> 
+	
+	<% posts.each do |post| -%>
+	
+	  <ul class="list"> 
+	  
+		<li> 
+		
+		  <div class="left"> 
+			<%= image_link_small post.user %>&nbsp;&nbsp;<%= user_link post.user %><br />
+			<%= nice_day_time_wo_year post.created_at %>
+		  </div> 
+		  
+		  <div class="item"> 
+			<p><%=h post.body %></p>
+		  </div>		 
+		 
+		</li> 
+		
+	  </ul> 
+	
+	<% end -%>
+		  
+	</div> 
+	
+  </div> 
+  
+</div>
