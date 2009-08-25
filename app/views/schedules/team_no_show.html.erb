@@ -1,23 +1,28 @@
+<% a_roster = !(@schedule.no_shows.empty? or @schedule.played?) %>
+
+<div class="block">
+
+	<%= render :partial => 'secondary_navigation' %>  
+
+	<div class="content">   
+
+		<h2 class="title">
+			<%= a_roster ? label_name(:no_shows) : label_name("#{get_the_controller}_#{label_name(:no_shows)}") %>
+		</h2>
+
+		<div class="inner">
 <% 
-if current_user.is_member_of?(@schedule.group) 
-	unless @schedule.no_shows.empty? or @schedule.played? 
+	if a_roster
 %>
 		<%= render :partial => '/schedules/team_roster_box', 
-					:locals => {:previous_show => @previous, :next_show => @next, 
-					:roster => t(:no_shows), :schedule => @schedule, 
-					:the_roster => @schedule.the_no_show, :match_type => @match_type, :display_type => true} %>
-
+					:locals => {:previous_show => @previous, :next_show => @next, :roster => label_name(:no_shows), 
+								:schedule => @schedule, :the_roster => @schedule.the_no_show, 
+								:match_type => @match_type} %>
 <% 
-	end 	
-	unless @schedule.unavailable.empty? or @schedule.played? 
+	end 
 %>
-		<%= render :partial => '/schedules/team_roster_box', 
-					:locals => {:previous_show => @previous, :next_show => @next, 
-					:roster => t(:unavailable), :schedule => @schedule, 
-					:the_roster => @schedule.the_unavailable, :match_type => @match_type, :display_type => false} %>
-<% 
-	end
-end 
-%>
+		</div>
+	</div>
+</div>
 
- 
+<%# content_for :sidebar, render(:partial => 'sidebar_show') -%>

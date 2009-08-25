@@ -4,9 +4,9 @@
 <% fields_for prefix, match do |match_form| -%>
 <li class="username">
 <%= user_link match.user %>    
-<%= view_spaces %>
+<%#= view_spaces %>
 	<%= match.team_name(@schedule) %>    
-	<%= view_spaces %>
+	<%#= view_spaces %>
 	<%= match_form.text_field :goals_scored, :maxlength => 5, :size => 8 %>
 </li>
 <% end -%>

@@ -51,7 +51,7 @@ module ApplicationHelper
     return I18n.t(:"#{ value.to_s.downcase.gsub(' ','_') }#{ text }")
   end
   
-  def label_name_with(value, name="", text="")
+  def label_with_name(value, name="", text="")
 	return "#{label_name(value, text)}  #{name}"
   end
   

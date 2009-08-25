@@ -34,8 +34,7 @@
 %>
 	<li class="<%= get_action_active('show') %>"><%= user_link (label_name(:profile), the_user) %></li>
 	<li class="<%= get_action_active('petition') %>">
-		<%= link_to (label_name(:petitions), petition_path) %>
-		<!-- #if current_user == @user and (!current_user.requested_managers.empty? or !current_user.pending_managers.empty?) %> -->
+		<%= link_to(label_name(:petitions), petition_path) if current_user.has_pending_petition?(current_user) %>
 	</li>
 </ul>
 <div class="clear"></div>

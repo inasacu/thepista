@@ -1,14 +1,13 @@
-<% image = 'table-arrow-top.gif' if type.id == 1 %>
-<% image = 'table-arrow-bottom.gif' if type.id == 3 %>
-<% image = 'table-arrow-right.gif' if type.id == 5 %>
+<% image = 'status_online.png' if type.id == 1 %>
+<% image = 'status_away.png' if type.id == 2 %>
+<% image = 'status_busy.png' if type.id == 3 %>
 
-<td>
-	<div id="status">
 <% 
 	the_label = "#{label_name(:change_roster_status) } #{label_name(type.name)}"
 	the_confirmation = "#{the_label}?"
 %>
-	<%= link_to image_tag(image, :title => the_label), match_status_path(:id => match.id, :type => type.id), 
-								 :title => the_label, :confirm => the_confirmation  %>
-	</div>
-</t>
+
+<%= link_to image_tag(image, :title => the_label), match_status_path(:id => match.id, :type => type.id), 
+							 :title => the_label, :confirm => the_confirmation  %>
+&nbsp;&nbsp;
+

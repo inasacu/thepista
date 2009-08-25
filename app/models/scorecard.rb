@@ -1,256 +1,187 @@
 class Scorecard < ActiveRecord::Base 
 
-  # acts_as_paranoid
-
   belongs_to :user
   belongs_to :group
+  
+  def self.calculate_group_scorecard(group)
+    total_schedules_played = group.games_played
 
-
-  ## recalculate group scorecard
-  def self.recalculate_group_scorecard(group)
-
-    @scorecards = Scorecard.find(:all, :conditions =>["group_id = ? and user_id > 0 and archive = ?", group, false])    
-    if group.schedules.count > 0
-      @last_schedule = Schedule.max(group.schedules.first)
-
-      @scorecards.each do |scorecard|      
-        # default variables      
-        wins, losses, draws, played, assigned, goals_for, goals_against, goals_scored = 0, 0, 0, 0, 0, 0, 0, 0
-        prev_wins, prev_losses, prev_draws, prev_played = 0, 0, 0, 0
-
-        Match.find_user_group_matches(scorecard.user_id, scorecard.group_id).each do |match|
-          if (match.one_x_two == 'X')
-            draws += 1
-            prev_draws = 1 if (match.schedule_id == @last_schedule.id)
-          else
-            wins += 1 if match.one_x_two == match.user_x_two                  
-            losses += 1 if match.one_x_two != match.user_x_two
-
-            if (match.schedule_id == @last_schedule.id)
-              prev_wins = 1 if match.one_x_two == match.user_x_two          
-              prev_losses = 1 if match.one_x_two != match.user_x_two 
-            end
-          end
-          if match.played
-            played += 1
-            prev_played = 1 if (match.schedule_id == @last_schedule.id)
-
-            case match.user_x_two
-            when "1"
-              # puts "#{scorecard.user.name } goals for #{match.group_score.to_i}"
-              goals_for += match.group_score.to_i
-              goals_against += match.invite_score.to_i
-            when "X"
-              # puts "#{scorecard.user.name } goals tied #{match.group_score.to_i}"
-              goals_for += match.group_score.to_i
-              goals_against += match.group_score.to_i
-            when "2"
-              # puts "#{scorecard.user.name } goals for #{match.invite_score.to_i}"
-              goals_for += match.invite_score.to_i
-              goals_against += match.group_score.to_i 
-            end
-
-          end        
-          first = false
-        end 
-
-        assigned = Match.user_assigned(scorecard).total
-        goals_scored = Match.user_goals_scored(scorecard).total
-
-        assigned ||= 0
-        goals_scored ||= 0
-
-        # ticker all the results for the user, group conbination and points relate to team activity
-        scorecard.update_attribute(:wins, wins)
-        scorecard.update_attribute(:losses, losses)
-        scorecard.update_attribute(:draws, draws)
-        scorecard.update_attribute(:played, played)
-        scorecard.update_attribute(:points, (wins * scorecard.group.points_for_win) + 
-        (draws * scorecard.group.points_for_draw) + 
-        (losses * scorecard.group.points_for_lose))           
-
-        scorecard.update_attribute(:previous_played, played-prev_played)
-        scorecard.update_attribute(:previous_points, (wins-prev_wins * scorecard.group.points_for_win) +
-        (draws-prev_draws * scorecard.group.points_for_draw) + 
-        (losses-prev_losses * scorecard.group.points_for_lose))   
-
-
-        scorecard.update_attribute(:goals_for, goals_for)
-        scorecard.update_attribute(:goals_against, goals_against)
-        scorecard.update_attribute(:assigned, assigned)
-        scorecard.update_attribute(:goals_scored, goals_scored)
-      end
+    if total_schedules_played > 1
+      previous_to_group_scorecard(group)  
+      update_group_user_ranking(group, true)
     end
 
+    if total_schedules_played > 0
+      last_to_group_scorecard(group)  
+      update_group_user_ranking(group, false)
+    end
+    
   end
+  
+  # calculate scorecard for all previous matches for group
+  def self.previous_to_group_scorecard(group)  
+      group.users.each do |user|
+        @scorecards = Scorecard.find(:all, :conditions =>["group_id = ? and user_id > 0 and archive = ?", group, false])
 
-  # update user scorecard based on match and schedule
-  def self.update_group_scorecard(schedule)
-
-    # this code was causing new user not to showup on scoreboard
-    # @scorecards = Scorecard.find(:all, :conditions =>["group_id = ? and user_id > 0 and played > 0", schedule.group])
-    @scorecards = Scorecard.find(:all, :conditions =>["group_id = ? and user_id > 0", schedule.group])
-    @last_schedule = Schedule.max(schedule)
-
-    @scorecards.each do |scorecard|
-      # default variables      
-      wins, losses, draws, played, assigned = 0, 0, 0, 0, 0
-      prev_wins, prev_losses, prev_draws, prev_played = 0, 0, 0, 0
-
-      Match.find_user_group_matches(scorecard.user_id, scorecard.group_id).each do |match|
-        if (match.one_x_two == 'X')
-          draws += 1
-          prev_draws = 1 if (match.schedule_id == @last_schedule.id)
-        else
-          wins += 1 if match.one_x_two == match.user_x_two                  
-          losses += 1 if match.one_x_two != match.user_x_two
-
-          if (match.schedule_id == @last_schedule.id)
-            prev_wins = 1 if match.one_x_two == match.user_x_two          
-            prev_losses = 1 if match.one_x_two != match.user_x_two 
-          end
+        @scorecards.each do |scorecard|  
+          @matches = Match.find_all_previous_schedules(scorecard.user_id, scorecard.group_id)
+          update_group_user_scorecard(group, user, scorecard, @matches, true)
+          previous_matches = true
         end
-        if match.played
-          played += 1
-          prev_played = 1 if (match.schedule_id == @last_schedule.id)
-        end        
-        first = false
-      end 
-
-      # ticker all the results for the user, group conbination and points relate to team activity
-      scorecard.update_attribute(:wins, wins)
-      scorecard.update_attribute(:losses, losses)
-      scorecard.update_attribute(:draws, draws)
-      scorecard.update_attribute(:played, played)
-      scorecard.update_attribute(:points, (wins * scorecard.group.points_for_win) + 
-      (draws * scorecard.group.points_for_draw) + 
-      (losses * scorecard.group.points_for_lose))           
-
-      scorecard.update_attribute(:previous_played, played-prev_played)
-      scorecard.update_attribute(:previous_points, (wins-prev_wins * scorecard.group.points_for_win) +
-      (draws-prev_draws * scorecard.group.points_for_draw) + 
-      (losses-prev_losses * scorecard.group.points_for_lose))   
-
-      scorecard.update_attribute(:assigned, Match.user_assigned(scorecard).total)
-      scorecard.update_attribute(:goals_scored, Match.user_goals_scored(scorecard).total)
-    end
+      end
   end
 
-  def self.update_group_ranking(schedule)
+  # calculate scorecard for all previous matches for group
+  def self.last_to_group_scorecard(group)  
+      group.users.each do |user|
+        @scorecards = Scorecard.find(:all, :conditions =>["group_id = ? and user_id > 0 and archive = ?", group, false])
+
+        @scorecards.each do |scorecard|  
+          @matches = Match.find_last_schedule(scorecard.user_id, scorecard.group_id)
+          update_group_user_scorecard(group, user, scorecard, @matches, false)
+          previous_matches = true
+        end
+      end
+  end
+  
+  def self.update_group_user_scorecard(group, user, scorecard, matches, previous_matches=true)
+
+    # calculate scorecards for user in group  
+    # default variables      
+    wins, losses, draws = 0, 0, 0
+    played, assigned = 0, 0
+    goals_for, goals_against, goals_scored = 0, 0, 0
+    prev_wins, prev_losses, prev_draws, prev_played = 0, 0, 0, 0
+    the_points, the_previous_played, the_previous_points = 0, 0, 0
+
+    matches.each do |match|
+      if (match.one_x_two == 'X')
+        draws += 1
+        # prev_draws += 1 if previous_matches
+      else
+        wins += 1 if match.one_x_two == match.user_x_two                  
+        losses += 1 if match.one_x_two != match.user_x_two
+
+        # if previous_matches
+        #   prev_wins += 1 if match.one_x_two == match.user_x_two          
+        #   prev_losses += 1 if match.one_x_two != match.user_x_two 
+        # end
+      end
+      
+      if match.played
+        case match.user_x_two
+        when "1"
+          goals_for += match.group_score.to_i
+          goals_against += match.invite_score.to_i
+        when "X"
+          goals_for += match.group_score.to_i
+          goals_against += match.group_score.to_i
+        when "2"
+          goals_for += match.invite_score.to_i
+          goals_against += match.group_score.to_i 
+        end
+      end 
+      
+    end 
+
+
+    played = Match.user_played(scorecard).total
+    assigned = Match.user_assigned(scorecard).total
+    goals_scored = Match.user_goals_scored(scorecard).total
+
+    # ticker all the results for the user, group conbination and points relate to team activity
+    the_points = (wins * scorecard.group.points_for_win) + 
+                 (draws * scorecard.group.points_for_draw) + 
+                 (losses * scorecard.group.points_for_lose)
+    
+    if previous_matches
+      the_previous_points = the_points
+    end
+    
+    if played.to_i > 1
+      the_previous_played = played.to_i - prev_played 
+      # the_previous_points = (wins - prev_wins * scorecard.group.points_for_win) +
+      #                       (draws - prev_draws * scorecard.group.points_for_draw) + 
+      #                       (losses - prev_losses * scorecard.group.points_for_lose)
+    end
+    
+    # update scorecard with all calculations
+    # if previous_matches
+      scorecard.update_attributes(:wins => wins, :losses => losses, :draws => draws, :played => played, :assigned => assigned.to_i,
+                                  :points => the_points, :previous_points => the_previous_points,
+                                  :previous_played => the_previous_played, 
+                                  :goals_for => goals_for, :goals_against => goals_against, :goals_scored => goals_scored.to_i)
+    # else
+    #   scorecard.update_attributes(:wins => wins, :losses => losses, :draws => draws, 
+    #                               :played => played, :assigned => assigned.to_i,
+    #                               :points => the_points, 
+    #                               :goals_for => goals_for, :goals_against => goals_against, :goals_scored => goals_scored.to_i)
+    # end
+  end
+  
+  def self.update_group_user_ranking(group, previous_matches=true)
+    # default variables
+    first, ranking, past_points, last = 0, 0, 0, 0
+
     # ranking
-    first, ranking, past_points, last = 0, 0, 0, 0
-
-    @scorecards = Scorecard.find(:all, 
-    :conditions =>["group_id = ? and user_id > 0 and played > 0 and archive = false", schedule.group], 
-    :order => 'points desc, (scorecards.points / (scorecards.played * 3)) desc')
-
-    @scorecards.each do |scorecard| 
-      if first != scorecard.group_id 
-        first, ranking, past_points, last = scorecard.group_id, 0, 0, 1
-      end 
-
-      if (past_points == scorecard.points) 
-        last += 1          
-      else
-        ranking += last
-        last = 1          
-      end
-      past_points = scorecard.points         
-
-      scorecard.update_attribute(:ranking, ranking)
-    end
-
+    unless previous_matches
+      @scorecards = Scorecard.find(:all, 
+      :conditions =>["group_id = ? and user_id > 0 and played > 0 and archive = false", group.id], 
+      :order => 'points desc, (scorecards.points / (scorecards.played * 10)) desc')
+      
     # previous ranking
-    first, ranking, past_points, last = 0, 0, 0, 0
-
-    @scorecards = Scorecard.find(:all, 
-    :conditions =>["group_id = ? and user_id > 0 and played > 0 and archive = false", schedule.group], 
-    :order => 'previous_points desc, (scorecards.previous_points / (scorecards.previous_played * 3)) desc')
+    else
+      @scorecards = Scorecard.find(:all, 
+      :conditions =>["group_id = ? and user_id > 0 and played > 0 and archive = false", group.id], 
+      :order => 'previous_points desc, (scorecards.points / (scorecards.played * 10)) desc')
+    end
 
     @scorecards.each do |scorecard| 
+      points ||= 0
+
+      # current ranking
+      unless previous_matches
+        points = scorecard.points
+        # previous ranking
+      else  
+        points = scorecard.previous_points
+      end
 
       if first != scorecard.group_id 
         first, ranking, past_points, last = scorecard.group_id, 0, 0, 1
       end 
 
-      if (past_points == scorecard.previous_points) 
+      if (past_points == points) 
         last += 1          
       else
         ranking += last
         last = 1          
       end
-      past_points = scorecard.previous_points         
+      past_points = points  
 
-      scorecard.update_attribute(:assigned, Match.user_assigned(scorecard).total)
-      scorecard.update_attribute(:goals_scored, Match.user_goals_scored(scorecard).total)
-      scorecard.update_attribute(:previous_ranking, ranking)
-    end
-
-  end
-
-  def self.set_user_group_scorecard(user, group)
-    # win, lose, draw, played, assigned = 0, 0, 0, 0, 0
-    wins, losses, draws, played, assigned = 0, 0, 0, 0, 0
-    Match.find(:all, :conditions => ["user_id = ? and (group_id = ? or invite_id = ?)", user.id, group.id, group.id]).each do |score|
-      if (score.type_id == 1 and score.played)  # user was in the game
-        if (score.one_x_two == 'X')
-          draws += 1
-        else
-          wins += 1 if score.one_x_two == score.user_x_two
-          losses += 1 if score.one_x_two != score.user_x_two
-        end
-        played += 1 
-        # assigned += 1
+      # current ranking
+      unless previous_matches
+        scorecard.update_attribute(:ranking, ranking)
+        # previous ranking
+      else
+        scorecard.update_attribute(:previous_ranking, ranking)
       end
+
     end
-
-    #    ticker all the results for the user, group conbination and points relate to team activity
-    @scorecard = Scorecard.find(:first, :conditions => ["user_id = ? and group_id = ?", user.id, group.id])
-    @scorecard.update_attribute(:wins, wins)
-    @scorecard.update_attribute(:losses, losses)
-    @scorecard.update_attribute(:draws, draws)
-    @scorecard.update_attribute(:played, played)
-
-    @scorecard.update_attribute(:points, (wins * @scorecard.group.points_for_win) + 
-    (draws * @scorecard.group.points_for_draw) + 
-    (losses * @scorecard.group.points_for_lose)) 
-
-    @scorecard.update_attribute(:assigned, Match.user_assigned(@scorecard).total) 
-    @scorecard.update_attribute(:goals_scored, Match.user_goals_scored(@scorecard).total)
-
   end
 
+  # calculate number of games played and assigned for user
+  def self.calculate_user_played_assigned_scorecard(user, group)
+    @scorecard = Scorecard.find(:first, :conditions => ["user_id = ? and group_id = ?", user.id, group.id])
+    @scorecard.update_attribute(:played, Match.user_played(@scorecard).total)
+    @scorecard.update_attribute(:assigned, Match.user_assigned(@scorecard).total) 
+  end
+
+  # archive or unarchive a scorecard and recalculate group scorecards
   def self.set_archive_flag(user, group, flag)
     @scorecard = Scorecard.find(:first, :conditions => ["user_id = ? and group_id = ?", user.id, group.id])
     @scorecard.update_attribute(:archive, flag)
-    self.set_user_group_scorecard(user, group)
-  end
-
-  # update user scorecard based on match and schedule  
-  def self.remove_user_scorecard(schedule)
-    wins, losses, draws, played, assigned = 0, 0, 0, 0, 0
-    Match.find_by_schedule_id(schedule).each do |score|      
-      if (score.one_x_two == 'X')
-        draws -= 1
-      else
-        wins -= 1 if score.one_x_two == score.user_x_two
-        losses -= 1 if score.one_x_two != score.user_x_two
-      end
-      played -= 1
-    end
-
-    @scorecard = Scorecard.find(:first, :conditions => ["user_id = ? and group_id = ?", match.user_id, schedule.group_id])
-    @scorecard.update_attribute(:wins, wins)
-    @scorecard.update_attribute(:losses, losses)
-    @scorecard.update_attribute(:draws, draws)
-    @scorecard.update_attribute(:played, played)
-
-    @scorecard.update_attribute(:points, (wins * @scorecard.group.points_for_win) + 
-    (draws * @scorecard.group.points_for_draw) + 
-    (losses * @scorecard.group.points_for_lose))
-
-    @scorecard.update_attribute(:assigned, Match.user_assigned(@scorecard).total)
-    @scorecard.update_attribute(:goals_scored, Match.user_goals_scored(@scorecard).total)
+    self.calculate_group_scorecard(group)
   end
 
   # record if group does not exist

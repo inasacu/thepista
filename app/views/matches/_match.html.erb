@@ -1,0 +1,20 @@
+<% 
+	new_or_existing = match.new_record? ? 'new' : 'existing' 
+	prefix = "match[match_attributes][]" 
+%>
+
+<% fields_for prefix, match do |match_form| -%>
+
+<div class="group">
+	<%= user_link match.user %>    
+	&nbsp;&nbsp;
+	<%= match.team_name(@schedule) %>    
+	&nbsp;&nbsp;
+	<%= match_form.text_field :goals_scored, :class => 'textscore' %>
+</div>
+
+<% end -%>
+
+
+
+

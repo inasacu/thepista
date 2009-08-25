@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20090811210750) do
+ActiveRecord::Schema.define(:version => 20090823192120) do
 
   create_table "blogs", :force => true do |t|
     t.string   "name"
@@ -163,7 +163,7 @@ ActiveRecord::Schema.define(:version => 20090811210750) do
     t.integer  "schedule_id"
     t.integer  "user_id"
     t.integer  "group_id"
-    t.integer  "invite_id"
+    t.integer  "invite_id",                    :default => 0
     t.integer  "group_score"
     t.integer  "invite_score"
     t.integer  "goals_scored",                 :default => 0
@@ -323,7 +323,7 @@ ActiveRecord::Schema.define(:version => 20090811210750) do
     t.integer  "wins",             :default => 0
     t.integer  "draws",            :default => 0
     t.integer  "losses",           :default => 0
-    t.integer  "points",           :default => 0
+    t.float    "points",           :default => 0.0
     t.integer  "ranking",          :default => 0
     t.integer  "played",           :default => 0
     t.integer  "assigned",         :default => 0

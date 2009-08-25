@@ -7,6 +7,44 @@ class Teammate < ActiveRecord::Base
   
   before_create :make_teammate_code  
   
+  def self.create_teammate_join_team(group, mate)
+    @role_user = RolesUsers.find_team_manager(group)
+    @manager = User.find(@role_user.user_id)
+    Teammate.join(mate, manager, group)
+    @teammate = Teammate.find_by_user_id_and_group_id(mate, group)
+    
+  end
+  
+  def self.create_teammate_leave_team(group, leave_user)
+    @role_user = RolesUsers.find_team_manager(group)
+    @manager = User.find(@role_user.user_id) 
+    GroupsUsers.leave_team(leave_user, group)
+    Teammate.breakup(leave_user, @manager, group)
+    @leave_user.has_no_role!(:member, group)
+    Scorecard.set_archive_flag(leave_user, group, true)
+    Match.set_archive_flag(leave_user, group, true)
+  end
+  
+  def self.create_teammate_details(requester, approver, group)
+    self.accept(requester, approver, group)
+    
+    GroupsUsers.join_team(approver, group) 
+    GroupsUsers.join_team(requester, group)
+    
+    Scorecard.create_user_scorecard(approver, group)
+    Scorecard.create_user_scorecard(requester, group)
+    Scorecard.set_archive_flag(approver, group, false)
+
+    approver.has_role!(:member, group)
+    
+    group.schedules.each do |schedule|
+      Match.create_schedule_match(schedule)
+      Fee.create_user_fees(schedule)
+    end
+    
+    Match.set_archive_flag(approver, group, false)    
+  end
+  
   # Return true if the users are (possibly pending) teammates.
   def self.exists?(user, manager)
     not find_by_user_id_and_manager_id(user, manager).nil?

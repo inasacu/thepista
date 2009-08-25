@@ -1,0 +1,27 @@
+<%# has_pending_petition?(current_user) %>
+
+<div class="block">
+
+  <%= render :partial => 'secondary_navigation' %>  
+
+  <div class="content">   
+  
+    <h2 class="title">
+		<%= get_collection_label(@requested_teammates)  if @requested_teammates %>
+		<%= get_collection_label(@pending_teammates)  if @pending_teammates %>
+	</h2>
+	
+    <div class="inner">
+	
+	<%= render :partial => 'petition_box', :locals => {:teammates => @requested_teammates}  if @requested_teammates %>
+	<%= render :partial => 'petition_box', :locals => {:teammates => @pending_teammates}  if @pending_teammates %>
+		
+	<%#= render :partial => 'shared/action_bar', :locals => { :collection => @teammates } %>
+	  
+    </div>
+	
+  </div>
+  
+</div>
+
+<% content_for :sidebar, render(:partial => 'sidebar') -%>

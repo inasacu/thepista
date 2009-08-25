@@ -33,7 +33,35 @@ textarea.textfield {
 	height: 80px; 
 }
 
+.textscore{ 
+	border: 1px solid rgb(205, 205, 205); 
+	padding: 0.4em; 
+	background: rgb(255, 255, 255) url('../../images/textfield-bg.gif') repeat-x scroll 0pt 1px; 
+}
+.textscore:focus { 
+	background: rgb(255, 254, 244) url('../../images/textfield-focus-bg.gif') repeat-x scroll 0pt 1px; 
+}
+input.textscore { 
+	width: 100px; 
+}
+
+
+.text_field{ 
+	border: 1px solid rgb(205, 205, 205); 
+	padding: 0.4em; 
+	background: rgb(255, 255, 255) url('../../images/textfield-bg.gif') repeat-x scroll 0pt 1px; 
+}
+.text_field:focus { 
+	background: rgb(255, 254, 244) url('../../images/textfield-focus-bg.gif') repeat-x scroll 0pt 1px; 
+}
+input.text_field { 
+	width: 400px; 
+}
+
+
+
 .next_message, .previous_message { display: block; height: 15px; width: 12px; margin-top: 4px; background-repeat: no-repeat; background-position: -4px 4px; }
 .next_message:hover, .previous_message:hover { background-color: #005573; background-position: 4px 4px; text-decoration: none; }
 .next_message { float: left; background-image: url('../../images/next_message_arrow.gif'); }
 .previous_message { float: right; background-image: url('../../images/previous_message_arrow.gif'); }
+

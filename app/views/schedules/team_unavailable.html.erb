@@ -1,4 +1,4 @@
-<% a_roster = !(@schedule.convocados.empty? or @schedule.played?) %>
+<% a_roster = !(@schedule.the_unavailable.empty? or @schedule.played?) %>
 
 <div class="block">
 
@@ -7,7 +7,7 @@
 	<div class="content">   
 
 		<h2 class="title">
-			<%= a_roster ? label_name(:rosters) : label_name("#{get_the_controller}_#{label_name(:rosters)}") %>
+			<%= a_roster ? label_name(:unavailable) : label_name("#{get_the_controller}_#{label_name(:unavailable)}") %>
 		</h2>
 
 		<div class="inner">
@@ -15,8 +15,8 @@
 	if a_roster
 %>
 		<%= render :partial => '/schedules/team_roster_box', 
-					:locals => {:previous_show => @previous, :next_show => @next, :roster => label_name(:rosters), 
-								:schedule => @schedule, :the_roster => @schedule.the_roster, 
+					:locals => {:previous_show => @previous, :next_show => @next, :roster => label_name(:unavailable), 
+								:schedule => @schedule, :the_roster => @schedule.the_unavailable, 
 								:match_type => @match_type} %>
 <% 
 	end 
@@ -26,7 +26,8 @@
 </div>
 
 <%# content_for :sidebar, render(:partial => 'sidebar_show') -%>
-	
+
+
 
 
 

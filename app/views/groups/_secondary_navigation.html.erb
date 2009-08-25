@@ -1,21 +1,22 @@
 <div class="secondary-navigation">
 <ul>
-	<li class="<%= get_action_first %>">  <%= link_to(label_name(:my_group) , groups_url) %></li>	
+	<li class="<%= get_action_first %>">  <%= link_to(label_name(:my_group), groups_path) %></li>
+	<li class="<%= get_action_active %>">  <%= link_to(label_name(:all_group) , list_groups_path) %></li>	
 <% 
 	the_label = "" 
-	the_action = ['show','edit', 'team list', 'list']
+	the_action = ['show','edit', 'team list']
 	
 	if the_action.include?(get_the_action) and current_user.is_member_of?(@group) 
-		the_label = label_name_with('the_wall', h(@group.name))
+		the_label = label_with_name('the_wall', h(@group.name))
 %>
-		<li class="<%= get_action_first %>">  <%= link_to(the_label, blog_path(@group.blog)) %></li>
+		<li class="<%= get_action_active %>">  <%= link_to(the_label, blog_path(@group.blog)) %></li>
 		<li class="<%= get_action_active %>">  <%= group_link @group %></li>
-		<!-- <li class="<%#= get_action_active %>">  <%#= link_to(label_name(:users) , list_groups_path(:id => @group)) %></li> -->
 		<li class="<%= get_action_active %>">  <%= link_to(label_name(:users) , team_list_path(:id => @group)) %></li>
 <% 
 	end 
 %>
-	
+<li class="<%= get_action_active('petition') %>">
+	<%= link_to(label_name(:petitions), petition_path) if current_user.has_pending_petition?(current_user) %></li>
 </ul>
 
 <div class="clear"></div>

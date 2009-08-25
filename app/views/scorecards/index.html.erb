@@ -1,47 +1,66 @@
 <div class="block">
 
-  <%= render :partial => 'secondary_navigation' if current_user %>  
+<%= render :partial => 'secondary_navigation' %>  
 
-  <div class="content">   
-  
-    <h2 class="title"><%= get_collection_label(@scorecards) %></h2>
+<% 
+@groups.each do |group| 
 	
-    <div class="inner">
-	
-      <table class="table">
-	  
-        <tr>           
-          <th class="first">ID</th>
-          <th>Group_id</th>
-          <th>Created at</th>
-          <th class="last">&nbsp;</th>
-        </tr>
-        <% @scorecards.each do |scorecard| -%>
-        <tr>
-          <td>
-            <%= scorecard.id %>
-          </td>
-          <td>
-            <%= link_to scorecard.group_id, scorecard_path(scorecard) %>
-          </td>
-          <td>
-            <%= scorecard.created_at %>
-          </td>
-          <td class="last">
-            <%= link_to label_name(:show), scorecard_path(scorecard) %> |
-            <%= link_to label_name(:edit), edit_scorecard_path(scorecard) %> |
-            <%= link_to label_name(:destroy), scorecard_path(scorecard), :method => :delete, :confirm => label_name(:are_you_sure) %>
-          </td>
-        </tr>          
-		        <% end -%>
+	@games_played = group.games_played
+	@scorecards = group.scorecards.paginate(:per_page => 10, :page => params[:page])
+	scorecards = false
+	@scorecards.each {|card| scorecards = true }
 
-		      </table>
-			  <%= render :partial => 'shared/action_bar', :locals => { :collection => @user } %>
+	if scorecards	
+%>
+<div class="content">   
 
-		    </div>
+	<h2 class="title"><%= group_link group %></h2>
 
-		  </div>
+	<div class="inner">
 
-		</div>
+		<table class="table">
 
-		<% content_for :sidebar, render(:partial => 'sidebar') -%>
+			<tr>           
+				<th class="first" title="<%= label_name(:ranking_full) %>"><%= label_name(:ranking) %></th>
+				<th><span><%= label_name(:name) %></span></th>
+				<th>&nbsp;</th>
+				<th>&nbsp;</th>
+				<th title="<%= label_name(:previous_ranking_full) %>"><%= label_name(:previous_ranking) %></th>
+				<th title="<%= label_name(:points_full) %>"><%= label_name(:points) %></th>
+				<th title="<%= label_name(:games_played_full) %>"><%= label_name(:games_played) %></th>
+				<th title="<%= label_name(:games_assigned_full) %>"><%= label_name(:games_assigned) %></th>
+				<th title="<%= label_name(:games_won_full) %>"><%= label_name(:games_won) %></th>
+				<th title="<%= label_name(:games_tied_full) %>"><%= label_name(:games_tied) %></th>
+				<th title="<%= label_name(:games_lost_full) %>"><%= label_name(:games_lost) %></th>
+				<th title="<%= label_name(:goals_scored_full) %>"><%= label_name(:goals_scored) %></th>
+				<th title="<%= label_name(:goals_for_full) %>"><%= label_name(:goals_for) %></th>
+				<th title="<%= label_name(:goals_against_full) %>"><%= label_name(:goals_against) %></th>
+				<th title="<%= label_name(:goal_difference_full) %>"><%= label_name(:goal_difference) %></th>
+				<th title="<%= label_name(:coeficient_full) %>"><%= label_name(:coeficient) %></th>
+				<!-- <th class="last">&nbsp;</th> -->
+			</tr>
+
+			<%= render :partial => 'scorecard', :collection => @scorecards, :locals => {:group => group, :games_played => @games_played} %>        
+		</table>
+		<%= render :partial => 'shared/action_bar', :locals => { :collection => @scorecards } %>
+		<p> <em style="color: rgb(153, 153, 153);"><%= label_name(:scorecards_less_games) %></em></p>
+		<p> <em style="color: rgb(153, 153, 153);"><%= label_name(:points_for_win) %>:&nbsp;&nbsp;<%= group.points_for_win %></em></p>
+		<p> <em style="color: rgb(153, 153, 153);"><%= label_name(:points_for_draw) %>:&nbsp;&nbsp;<%= group.points_for_draw %></em></p>
+		<p> <em style="color: rgb(153, 153, 153);"><%= label_name(:points_for_lose) %>:&nbsp;&nbsp;<%= group.points_for_lose %></em></p>
+		
+	</div>
+
+	</div>
+<% 
+	end 
+end 
+-%>
+
+</div>
+
+<% content_for :sidebar, render(:partial => 'sidebar') -%>
+
+
+
+
+

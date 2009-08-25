@@ -2,26 +2,31 @@
 
 <ul>
 <%
-	the_controller = ['forums', 'topics', 'posts']
-	the_action = ['show', 'edit', 'team roster', 'team no show']
-	unless the_action.include?(get_the_action) or the_controller.include?(get_the_controller) 
+the_controller = ['forums', 'topics', 'posts']
+the_action = ['show', 'edit', 'team roster', 'team no show', 'team last minute', 'team unavailable']
+
+unless the_action.include?(get_the_action) or the_controller.include?(get_the_controller) 
 %>
-		<li class="<%= get_action_first('index') %>"><%= link_to(label_name(:upcoming_schedule) , schedules_url) %>	</li>				
-		<li class="<%= get_action_active('list') %>"><%= link_to(label_name(:previous_schedules) , list_schedules_path) %></li>
+	<li class="<%= get_action_first('index') %>"><%= link_to(label_name(:upcoming_schedule) , schedules_url) %>	</li>				
+	<li class="<%= get_action_active('list') %>"><%= link_to(label_name(:previous_schedules) , list_schedules_path) %></li>
 <% 
-	else 
-		if current_user.is_member_of?(@schedule.group)
-			the_label = "#{label_name(:forum)} #{@schedule.concept}"
+else 
+	if current_user.is_member_of?(@schedule.group)
+		the_label = "#{label_name(:forum)} #{@schedule.concept}"
 %>
-			<li class="<%= get_action_first('index') %>">  <%= schedule_link @schedule %>
-			<li class="<%= get_action_active('topics_show') %>"><%= link_to(the_label, forum_path(@schedule.forum)) %></li>			
-			<li class="<%= get_action_active('rosters') %>">
-						<%= link_to(label_name(:rosters), team_roster_path(:id => @schedule)) %></li>
-			<li class="<%= get_action_active('no_show') %>">
-						<%= link_to(label_name(:no_shows), team_no_show_path(:id => @schedule)) unless @schedule.played? %></li>
+		<li class="<%= get_action_first('index') %>">  <%= schedule_link @schedule %>
+		<li class="<%= get_action_active('topics_show') %>"><%= link_to(the_label, forum_path(@schedule.forum)) %></li>			
+		<li class="<%= get_action_active('rosters') %>">
+					<%= link_to(label_name(:rosters), team_roster_path(:id => @schedule)) %></li>
+		<li class="<%= get_action_active('lastminute') %>">
+					<%= link_to(label_name(:last_minute), team_last_minute_path(:id => @schedule)) %></li>
+		<li class="<%= get_action_active('no_show') %>">
+					<%= link_to(label_name(:no_shows), team_no_show_path(:id => @schedule)) unless @schedule.played? %></li>
+		<li class="<%= get_action_active('unavailable') %>">
+					<%= link_to(label_name(:unavailable), team_unavailable_path(:id => @schedule)) unless @schedule.played? %></li>
 <% 
-		end
 	end
+end
 %>
 </ul>
 

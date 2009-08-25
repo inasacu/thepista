@@ -1,9 +1,9 @@
 <%
 	if @schedule
-		label = label_name_with('note', h(@schedule.concept))
+		label = label_with_name('note', h(@schedule.concept))
 	end	
 	if @practice
-		label = label_name_with('note', h(@practice.concept))
+		label = label_with_name('note', h(@practice.concept))
 	end
 %>
 <div class="block">
@@ -26,5 +26,5 @@
   </div>
 </div>
 
-<% content_for :sidebar, render(:partial => '/schedules/sidebar_show') if @schedule -%>
-<% content_for :sidebar, render(:partial => '/practices/sidebar_show') if @practice -%>
+<%# content_for :sidebar, render(:partial => '/schedules/sidebar_show') if @schedule -%>
+<%# content_for :sidebar, render(:partial => '/practices/sidebar_show') if @practice -%>

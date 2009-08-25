@@ -27,21 +27,11 @@ module GroupsHelper
   end
   
   def group_vs_invite(schedule)
-    group_link schedule.group         
-    # vs_invite +=  " vs. " + 
-    # group_link schedule.invite_group if schedule.is_invite? 
-    # return vs_invite
+    group_link schedule.group  
   end
   
   def group_score_link(schedule)
-    home_visit = "#{group_link(schedule.group)}  #{schedule.matches.first.group_score}  -  #{schedule.matches.first.invite_score}  "  
-
-    if schedule.is_invite? 
-      home_visit += group_link(schedule.invite_group)
-    else
-      home_visit += schedule.group.second_team
-    end
-    return home_visit    
+    return "#{schedule.matches.first.group_score}  -  #{schedule.matches.first.invite_score}" 
   end    
   
   def group_list(objects)

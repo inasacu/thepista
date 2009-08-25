@@ -31,9 +31,9 @@
             <b><%= label_name(:group) %>:</b>
             	
               <%= group_link @schedule.group %>
-              <%= view_spaces %>
-              <%= @schedule.matches.first.group_score %><%= view_spaces %>-<%= view_spaces %><%= @schedule.matches.first.invite_score %>
-              <%= view_spaces %>
+              &nbsp;&nbsp;
+              <%= @schedule.matches.first.group_score %>&nbsp;&nbsp;-&nbsp;&nbsp;<%= @schedule.matches.first.invite_score %>
+              &nbsp;&nbsp;
               <%= link_to h(@schedule.group.second_team), group_path(@schedule.group) %>
 
           </p>

@@ -89,7 +89,7 @@ task :thescorecard => :environment do |t|
   
   ## update group scorecard
   Group.find(:all).each do |group|
-    Scorecard.recalculate_group_scorecard(group)
+    Scorecard.calculate_group_scorecard(group)
   end
 
 end

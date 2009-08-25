@@ -1,6 +1,6 @@
 <div class="block">
 
-  <%= render :partial => 'secondary_navigation' if current_user %>  
+  <%= render :partial => '/schedules/secondary_navigation' %>  
 
   <div class="content">   
   
@@ -44,4 +44,4 @@
 
 		</div>
 
-		<% content_for :sidebar, render(:partial => 'sidebar') -%>
+		<% content_for :sidebar, render(:partial => '/schedules/sidebar') -%>

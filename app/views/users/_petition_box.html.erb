@@ -1,0 +1,51 @@
+
+<table class="table">
+
+	<tr>             
+		<th class="first">&nbsp;</th>
+		<th><%=label_name(:name) %></th>
+		<th><%=label_name(:group) %></th>
+		<th><%=label_name(:petition_at) %></th>
+		<th><%=label_name(:general_information) %></th>
+		<th class="last">&nbsp;</th>
+	</tr>
+
+	<% teammates.each do |teammate| %>	
+	<tr>
+		<td>
+			<%= image_link_small teammate.user %>
+		</td>
+
+		<td>
+			<%= user_link teammate.user %>
+		</td>
+		
+		<td>
+			<%= group_link teammate.group %>
+		</td>
+
+		<td>
+			<%= nice_day_date teammate.created_at %>
+		</td>
+
+		<td>
+			<%= label_name('petition_to_join') %>&nbsp;<%= group_link teammate.group %>
+		</td>			  
+
+		<td class="last">
+			<% if current_user.is_manager_of?(teammate.group) %>			
+				<%= link_to label_name('petition_join_team_accept'), join_team_accept_path(:id => teammate.id) %>
+				<%= "  /  " %>
+			<% end %>
+			<%= link_to label_name('petition_join_team_decline'), join_team_decline_path(:id => teammate.id) %>		
+		</td>	
+
+	</tr>
+	<% end -%>	
+
+
+</table>
+
+
+
+

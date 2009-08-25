@@ -19,12 +19,12 @@
         <li class="username">
             <label for="entry-title"><%= t(:score) %></label>
             <%= group_link @schedule.group %>    
-            <%= view_spaces %>
+            <%#= view_spaces %>
             <%= text_field :match, :group_score, :maxlength => 5, :size => 8 %>
-            <%= view_spaces %>vs.<%= view_spaces %>
+            <%#= view_spaces %>vs.<%#= view_spaces %>
             <%= text_field :match, :invite_score, :maxlength => 5, :size => 8 %>
-            <%= view_spaces %>
-			<%= link_to @schedule.away_group, 
+            <%#= view_spaces %>
+			<%#= link_to @schedule.away_group, 
 					{:controller => 'group', :action => 'show', :id => @schedule.invite_id > 0 ? @schedule.invite_id : @schedule.group_id} %>
         </li>
                

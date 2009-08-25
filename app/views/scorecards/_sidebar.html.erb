@@ -1,15 +1,70 @@
 <div class="block">
-	<h3><%= control_label('option') %></h3>
+	<h3><%= control_label('legend') %></h3>
 	<div class="content">
-<% 
-		if current_user.is_manager? %>
-			<p><%= link_to(control_label('create') , new_scorecard_url)  %></p>
-<% 		
-		else 
-%>
-			<p><%= control_label('manager_option') %></p>
-<%
-		end
-%>
+		<p>
+			<b><%= label_name(:ranking) %></b>
+			<%= label_name(:ranking_full) %>
+		</p>
+		
+		<p>
+			<b><%= label_name(:previous_ranking) %></b>
+			<%= label_name(:previous_ranking_full) %>
+		<p>
+				
+		<p>
+			<b><%= label_name(:points) %></b>
+			<%= label_name(:points_full) %>
+		<p>
+		
+		<p>
+			<b><%= label_name(:games_played) %></b>
+			<%= label_name(:games_played_full) %>
+		<p>
+			
+		<p>
+			<b><%= label_name(:games_assigned) %></b>
+			<%= label_name(:games_assigned_full) %>
+		<p>
+
+		<p>
+			<b><%= label_name(:games_won) %></b>
+			<%= label_name(:games_won_full) %>
+		<p>
+			
+		<p>
+			<b><%= label_name(:games_tied) %></b>
+			<%= label_name(:games_tied_full) %>
+		<p>
+				
+		<p>
+			<b><%= label_name(:games_lost) %></b>
+			<%= label_name(:games_lost_full) %>
+		<p>
+			
+		<p>
+			<b><%= label_name(:goals_scored) %></b>
+			<%= label_name(:goals_scored_full) %>
+		<p>
+						
+		<p>
+			<b><%= label_name(:goals_for) %></b>
+			<%= label_name(:goals_for_full) %>
+		<p>			
+		
+		<p>
+			<b><%= label_name(:goals_against) %></b>
+			<%= label_name(:goals_against_full) %>
+		<p>		
+				
+		<p>
+			<b><%= label_name(:goal_difference) %></b>
+			<%= label_name(:goal_difference_full) %>
+		<p>					
+				
+		<p>
+			<b><%= label_name(:coeficient) %></b>
+			<%= label_name(:coeficient_full) %>
+		<p>					
+
 	</div>
 </div>

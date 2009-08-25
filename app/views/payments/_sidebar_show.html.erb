@@ -13,15 +13,15 @@
 													:confirm => the_confirmation) if display_actions %></li>
 <% 
 	else 
-		the_label = label_name_with('add_to_group', group.name)
-		the_confirmation = "#{ label_name(:manage_join_group) } #{@user.name} #{ label_name(:to) } #{group.name}?"
+		the_label = label_with_name('add_to_group', group.name)
+		the_confirmation = "#{ label_name(:petition_to_join_group) } #{@user.name} #{ label_name(:to) } #{group.name}?"
 %> 
 		<li><%= link_to(the_label, join_team_path(:id => group.id, :teammate => current_user.id), :confirm => the_confirmation) %></li>
 <% 
 	end 
 
 	if current_user.is_manager_of?(group)
-		the_label = label_name_with('create_schedule', group.name)
+		the_label = label_with_name('create_schedule', group.name)
 		the_confirmation = "#{ label_name(:destroy_group) } #{ label_name(:to) } #{group.name}?" 
 %> 
 		<li><%= link_to(control_label('new'), new_schedule_path(:id => group.id) %></li>                       

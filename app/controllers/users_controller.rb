@@ -1,11 +1,17 @@
 class UsersController < ApplicationController
   before_filter :require_no_user, :only => [:signup, :new, :create]
-  before_filter :require_user, :only => [:index, :show, :edit, :update]
+  before_filter :require_user, :only => [:index, :show, :edit, :update] 
+  
+  before_filter :get_user, :only => [:show, :set_available, :set_private_phone, :set_private_profile, :set_enable_comments, 
+                                 :set_teammate_notification, :set_message_notification, :set_comment_notification] 
+  before_filter :get_user_group, :only =>[:set_sub_manager, :remove_sub_manager, :set_subscription, 
+                                          :remove_subscription, :set_moderator, :remove_moderator]
+  
   
   # GET /users
   # GET /users.xml
   def index
-    @users = User.paginate(:per_page => 10, :page => params[:page])
+    # @users = User.paginate(:per_page => 10, :page => params[:page])
     store_location
     @users = current_user.page_mates(params[:page])
   
@@ -18,8 +24,14 @@ class UsersController < ApplicationController
   # GET /users/1
   # GET /users/1.xml
   def show
-    @user = User.find(params[:id])
+    store_location
+    # @user = User.find(params[:id])
 
+    # if @user.my_members?(current_user)
+      @previous = User.previous(@user, current_user.groups)
+      @next = User.next(@user, current_user.groups)
+    # end
+    
     respond_to do |format|
       format.html # show.html.erb
       format.xml  { render :xml => @user }
@@ -76,7 +88,6 @@ class UsersController < ApplicationController
     @user.attributes = params[:user]
     @user.save do |result|
       if result
-        # flash[:notice] = control_action_label('notice')
         flash[:notice] = I18n.t(:successful_update)
         redirect_to root_url
       else
@@ -84,42 +95,25 @@ class UsersController < ApplicationController
       end
     end
   end
-end
 
-###### original source 
-# class UsersController < ApplicationController
-#   helper :teammate
-# 
-#   before_filter :build_user
-#   before_filter :require_user, :except =>[:new, :create, :create_new_user, :third_party]
-#   before_filter :get_user, :only => [:show]
+  def petition
+    if current_user.requested_managers.empty? and current_user.pending_managers.empty?  
+      flash[:notice] = I18n.t(:petition_no)
+      redirect_back_or_default('/index')
+      return
+    end
+    
+    unless current_user.requested_managers.empty?
+      @requested_teammates = Teammate.find(:all, :conditions => ["manager_id = ? and status = 'pending'", current_user.id])
+    end
+    unless current_user.pending_managers.empty? 
+      @pending_teammates = Teammate.find(:all, :conditions => ["user_id = ? and status = 'pending'", current_user.id])
+    end 
+  end
 
-  # def index
-  #   store_location
-  #   @users = current_user.page_mates(params[:page])        
-  # 
-  #   respond_to do |format|
-  #     format.html # index.html.erb
-  #     format.xml  { render :xml => @users }
-  #   end
-  # end
 
-#   # def list
-#   #   store_location
-#   #   unless current_user.groups.empty?
-#   #     @users = User.paginate(:all, :conditions => ['id not in (select user_id from roles_users where role_id = 72440) ' +
-#   #       'and id not in (select user_id from groups_users where group_id in (?)) and archive = false',
-#   #       current_user.groups], :order => 'name', :page => params[:page])
-#   #     else
-#   #       @users = User.paginate(:all,
-#   #       :conditions => ['id not in (select user_id from roles_users where role_id = 72440) and archive = false'], 
-#   #       :order => 'name', :page => params[:page])
-#   #     end
-#   #     
-#   #     @non_member = true
-#   #     render :template => '/users/index' 
-#   #   end
-#     
+
+    
 #     def search
 #       count = User.count_by_solr(params[:search])
 #       @users = User.paginate_all_by_solr(params[:search], :page => params[:page], :total_entries => count, :limit => 25, :offset => 1)
@@ -128,357 +122,152 @@ end
 #       # @users = User.paginate_all_by_solr(params[:search].to_s, :page => params[:page])
 #       render :template => '/users/index'
 #     end
-#     
-#     def recent_activity
-#       @user = current_user      
-#     end
-# 
-#     def show
-#       store_location      
-# 
-#       if @user.my_members?(current_user)
-#         @previous = User.previous(@user, current_user.groups)
-#         @next = User.next(@user, current_user.groups)
-#         @scorecard = @user.scorecards
-#       end
-#     end
-# 
-#     def create_user_group
-#       @group = Group.new
-#       @group.attributes = params[:group] unless params[:group].nil?
-#       @group.timezone_id = params[:timezone][:id]
-#       @group.sport_id = params[:sport][:id]
-#       @group.ema = current_user.email
-#       @group.name = @group.name if @group.name.nil?
-#       @group.description = "#{t(:no_description) }" if @group.description.nil?
-#       @group.save!
-#       @group.create_group_details
-#       GroupsUsers.create_groups_users(@group.id, current_user.id)
-#     end
-# 
-#     def edit
-#       store_location
-#       @user = User.find(params[:id])
-#       if @user.can_modify?(current_user)
-#         # render :template =>  '/layouts/current/edit' if @main
-#         # render :template => '/user/edit'
-#       end
-#     end
-# 
-#     def update
-#       @user = User.find(params[:id])
-# 
-#       if @user.update_attributes(params[:user])
-#         redirect_to :action => 'show', :id => @user
-#       else
-#         render :action => 'edit' 
-#       end
-#     end  
-# 
-#     def third_party
-#       store_location
-#       @user = current_user
-#     end
-# 
-#     def set_sub_manager   
-#       @user = User.find(params[:id])
-#       @group = Group.find(params[:group]) 
-# 
-#       permit "manager of :group", :group => @group do
-#         if @user
-#           @group.accepts_role 'sub_manager', @user
-# 
-#           flash[:notice] = "#{t(:add_sub_manager)} #{t(:updated)}"
-#           redirect_back_or_default('/index')
-#           return
-#         else
-#           flash[:notice] = "#{t(:add_sub_manager)} #{t(:updated)}"
-# 
-#           redirect_back_or_default('/index')
-#           return
-#         end
-#       end  
-#       redirect_back_or_default('/index')    
-#     end 
-# 
-#     def remove_sub_manager  
-#       @user = User.find(params[:id])
-#       @group = Group.find(params[:group]) 
-# 
-#       permit "manager of :group", :group => @group do
-#         if @user
-#           @group.accepts_no_role 'sub_manager', @user
-# 
-#           flash[:notice] = "#{t(remove_sub_manager)} #{t(:updated)}"
-#           redirect_back_or_default('/index')
-#           return
-#         else
-#           flash[:notice] = "#{t(:remove_sub_manager)} #{t(:not_updated)}"
-#           redirect_back_or_default('/index')
-#           return
-#         end
-#       end  
-#       redirect_back_or_default('/index')    
-#     end  
-# 
-#     def set_gravatar
-#       @user = User.find(params[:id])
-#       theGravatar = Gravatar.new(@user.email)
-#       if theGravatar.has_gravatar? and @user.default_avatar != theGravatar.url
-#         @user.default_avatar = theGravatar.u 
-#         @user.has_gravatar = true                
-#         @user.save!
-#           flash[:notice] = I18n.t(:gravatar_received)
-#           redirect_back_or_default('/index')
-#           return
-#   
-#       else 
-#         @user.has_gravatar = false
-#         @user.default_avatar = "default_avatar.jpg" 
-#         @user.save!
-#         flash[:notice] = I18n.t(:gravatar_not_received)              
-#       end
-#         redirect_back_or_default('/index')
-#     end
-#     
-#     def set_subscription   
-#       @user = User.find(params[:id])
-#       @group = Group.find(params[:group]) 
-# 
-#       permit "manager of :group", :group => @group do
-#         if @user
-#           @group.accepts_role 'subscription', @user
-# 
-#           flash[:notice] = "#{t(:add_subscription)} #{t(:updated)}"
-#           redirect_back_or_default('/index')
-#           return
-#         else
-#           flash[:notice] = "#{t(:add_subscription)} #{t(:not_updated)}"
-#           redirect_back_or_default('/index')
-#           return
-#         end
-#       end  
-#       redirect_back_or_default('/index')    
-#     end 
-# 
-#     def remove_subscription 
-#       @user = User.find(params[:id])
-#       @group = Group.find(params[:group]) 
-# 
-#       permit "manager of :group", :group => @group do
-#         if @user
-#           @group.accepts_no_role 'subscription', @user
-# 
-#           flash[:notice] = "#{t(:remove_subscription)} #{t(:updated)}"
-#           redirect_back_or_default('/index')
-#           return
-#         else
-#           flash[:notice] = "#{t(:remove_subscription)} #{t(:not_updated)}"
-#           redirect_back_or_default('/index')
-#           return
-#         end
-#       end  
-#       redirect_back_or_default('/index')    
-#     end
-# 
-#     def set_moderator   
-#       @user = User.find(params[:id])
-#       @group = Group.find(params[:group]) 
-# 
-#       permit "manager of :group", :group => @group do
-#         if @user
-#           @group.accepts_role 'moderator', @user
-# 
-#           flash[:notice] = "#{t(:add_moderator)} #{t(:updated)}"
-#           redirect_back_or_default('/index')
-#           return
-#         else
-#           flash[:notice] = "#{t(:add_moderator)} #{t(:not_updated)}"
-#           redirect_back_or_default('/index')
-#           return
-#         end
-#       end  
-#       redirect_back_or_default('/index')    
-#     end 
-# 
-#     def remove_moderator
-#       @user = User.find(params[:id])
-#       @group = Group.find(params[:group]) 
-# 
-#       permit "manager of :group", :group => @group do
-#         if @user
-#           @group.accepts_no_role 'moderator', @user
-# 
-#           flash[:notice] = "#{t :remove_moderator } #{t(:updated)}"
-#           redirect_back_or_default('/index')
-#           return
-#         else
-#           flash[:notice] = "#{t :remove_moderator } #{t(:not_updated)}"
-#           redirect_back_or_default('/index')
-#           return
-#         end
-#       end  
-#       redirect_back_or_default('/index')    
-#     end
-# 
-#     def set_reliable
-#       @user = User.find(params[:id])
-#       available = "Medium"
-# 
-#       case @user.available
-#       when "Low" then available = "Medium"
-#       when "Medium" then available = "High"
-#       when "High" then available = "Low"
-#       end
-# 
-#       if @user.update_attribute("default_reliable", available)
-#         flash[:notice] = "#{t :modified_reliable }, #{@user.name}..."
-#         redirect_to :action => 'show', :id => @user
-#       else
-#         render :action => 'index'
-#       end
-#     end
-# 
-#     def set_available
-#       @user = User.find(params[:id])
-# 
-#       if @user.update_attribute("available", !@user.available)
-#         @user.update_attribute("available", @user.available)                # set ema to = available  
-# 
-#         flash[:notice] = "#{t :is_available_user }, #{@user.name}..."
-#         redirect_back_or_default('/index')
-#       else
-#         render :action => 'index'
-#       end
-#     end
-# 
-#     def set_email
-#       @user = User.find(params[:id])
-# 
-#       if @user.update_attribute("message_notification", !@user.message_notification)
-#         flash[:notice] = "#{t :modified_ema }, #{@user.name}..."
-#         redirect_back_or_default('/index')
-#       else
-#         render :action => 'index'
-#       end
-#     end
-# 
-#     def set_openid
-#       @user = User.find(params[:id])
-# 
-#       if @user.update_attribute("openid_login", !@user.openid_login)
-#         flash[:notice] = "#{t :modified_openid }, #{@user.name}..."
-#         redirect_back_or_default('/index')
-#       else
-#         render :action => 'index'
-#       end
-#     end
-# 
-#     def set_phone
-#       @user = User.find(params[:id])
-# 
-#       if @user.update_attribute("private_phone", !@user.private_phone)
-#         flash[:notice] = "#{t :modified_phone }, #{@user.name}..."
-#         redirect_back_or_default('/index')
-#       else
-#         render :action => 'index'
-#       end
-#     end
-# 
-#     def set_profile
-#       @user = User.find(params[:id])
-# 
-#       if @user.update_attribute("private_profile", !@user.private_profile)
-#         flash[:notice] = "#{t :modified_profile }, #{@user.name}..."
-#         redirect_back_or_default('/index')
-#       else
-#         render :action => 'index'
-#       end
-#     end
-# 
-#     def set_injury
-#       @user = User.find(params[:id])
-# 
-#       if @user.update_attribute("injury", !@user.injury)
-#         flash[:notice] = "#{t :injury_profile } #{:updated }"
-#         if(params[:url]) == 'show'
-#           redirect_to :action => 'show', :id => @user
-#         else
-#           redirect_to :action => 'index'
-#         end
-#       else
-#         flash[:notice] = "#{t :injury_profile } #{t(:not_updated)}"
-#         render :action => 'index'
-#       end
-#     end
-# 
-#     def create
-#       logout_keeping_session!
-#       if using_open_id?
-#         session[:user_params] = params[:user] if params[:user]
-#         authenticate_with_open_id(params[:openid_url],
-#         :required => [:nickname, :email],
-#         :option => [:fullname, :country, :language, :timezone], :return_to => open_id_create_url) do |result, identity_url|
-#           if result.successful?
-#             if @actualUser = User.find_by_identity_url(identity_url)
-#               redirect_to :controller => 'sessions'
-#               return
-#             end
-# 
-#             create_new_user(:identity_url => identity_url)
-#             session[:locale] = @user.language.to_s.downcase unless @user.language.nil?
-#           else
-#             failed_creation(result.message || "#{t(:something_wrong) }")
-#           end
-#         end
-#       end
-#     end
-# 
-#     protected
-# 
-#     def create_new_user(attributes)
-#       if @user.update_attributes(attributes) && @user.errors.empty?
-#         the_login =  @user.identity_url.gsub('http:', '').gsub('.myopenid.com','').gsub('/','')
-# 
-#         @user.update_attribute('name', the_login) 
-#         @user.update_attribute('login', the_login) 
-# 
-#         @user.update_attribute('login', params['openid.sreg.nickname']) unless params['openid.sreg.nickname'].nil?
-#         @user.update_attribute('name', params['openid.sreg.fullname']) unless params['openid.sreg.fullname'].nil?
-#         @user.update_attribute('email', params['openid.sreg.email']) unless params['openid.sreg.email'].nil?
-#         @user.update_attribute('time_zone', params['openid.sreg.timezone']) unless params['openid.sreg.timezone'].nil?
-#         @user.update_attribute('country', params['openid.sreg.country']) unless params['openid.sreg.country'].nil?
-#         @user.update_attribute('language', params['openid.sreg.language']) unless params['openid.sreg.language'].nil?
-#         @user.save!
-# 
-#         successful_creation
-#       else
-#         failed_creation
-#       end
-#     end
-# 
-#     def successful_creation
-#       # Protects against session fixation attacks, causes request forgery
-#       # protection if visitor resubmits an earlier form using back
-#       # button. Uncomment if you understand the tradeoffs.
-#       # reset session
-#       self.current_user = @user # !! now logged in
-#       redirect_back_or_default('/')
-#       flash[:notice] = I18n.t(:thanx_sign_up)
-#     end
-# 
-#     def failed_creation(message = "#{t :could_not_setup_account }")
-#       flash[:error] = message
-#       render :action => 'new'
-#     end
-# 
-#     def build_user
-#       @user = User.new
-#     end
-# 
-# 
-#     private
-#     def get_user
-#       @user = User.find(params[:id])
-#     end
-#   end
+
+    def set_sub_manager 
+      unless current_user.is_manager_of?(@group)
+        flash[:notice] = I18n.t(:unauthorized)  
+        return
+      end
+      @user.has_role!(:sub_manager, @group)
+      flash[:notice] = I18n.t(:sub_manager_updated)
+      redirect_back_or_default('/index')
+    end
+
+    def remove_sub_manager 
+      unless current_user.is_manager_of?(@group)
+        flash[:notice] = I18n.t(:unauthorized)  
+        return
+      end
+      @user.has_no_role!(:sub_manager, @group)
+      flash[:notice] = I18n.t(:sub_manager_updated)
+      redirect_back_or_default('/index')
+    end
+
+    def set_subscription 
+      unless current_user.is_manager_of?(@group)
+        flash[:notice] = I18n.t(:unauthorized)  
+        return
+      end
+      @user.has_role!(:subscription, @group)
+      flash[:notice] = I18n.t(:subscription_updated)
+      redirect_back_or_default('/index')
+    end 
+    
+    def remove_subscription 
+      unless current_user.is_manager_of?(@group)
+        flash[:notice] = I18n.t(:unauthorized)  
+        return
+      end
+      @user.has_no_role!(:subscription, @group)
+      flash[:notice] = I18n.t(:subscription_updated)
+      redirect_back_or_default('/index')
+    end
+    
+    def set_moderator 
+      unless current_user.is_manager_of?(@group)
+        flash[:notice] = I18n.t(:unauthorized)  
+        return
+      end
+      @user.has_role!(:moderator, @group)
+      flash[:notice] = I18n.t(:moderator_updated)
+      redirect_back_or_default('/index')
+    end 
+    
+    def remove_moderator 
+      unless current_user.is_manager_of?(@group)
+        flash[:notice] = I18n.t(:unauthorized)  
+        return
+      end
+      @user.has_no_role!(:moderator, @group)
+      flash[:notice] = I18n.t(:moderator_updated)
+      redirect_back_or_default('/index')
+    end
+
+    def set_available
+      if @user.update_attribute("available", !@user.available)
+        @user.update_attribute("available", @user.available)  
+
+        flash[:notice] = I18n.t(:successful_update)
+        redirect_back_or_default('/index')
+      else
+        render :action => 'index'
+      end
+    end
+
+    def set_private_phone
+      if @user.update_attribute("private_phone", !@user.private_phone)
+        @user.update_attribute("private_phone", @user.private_phone)  
+
+        flash[:notice] = I18n.t(:successful_update)
+        redirect_back_or_default('/index')
+      else
+        render :action => 'index'
+      end
+    end
+    
+    def set_private_profile
+      if @user.update_attribute("private_profile", !@user.private_profile)
+        @user.update_attribute("private_profile", @user.private_profile)  
+
+        flash[:notice] = I18n.t(:successful_update)
+        redirect_back_or_default('/index')
+      else
+        render :action => 'index'
+      end
+    end  
+
+    def set_enable_comments
+      if @user.update_attribute("enable_comments", !@user.enable_comments)
+        @user.update_attribute("enable_comments", @user.enable_comments)  
+
+        flash[:notice] = I18n.t(:successful_update)
+        redirect_back_or_default('/index')
+      else
+        render :action => 'index'
+      end
+    end  
+
+    def set_teammate_notification
+      if @user.update_attribute("teammate_notification", !@user.teammate_notification)
+        @user.update_attribute("teammate_notification", @user.teammate_notification)  
+
+        flash[:notice] = I18n.t(:successful_update)
+        redirect_back_or_default('/index')
+      else
+        render :action => 'index'
+      end
+    end  
+
+    def set_message_notification
+      if @user.update_attribute("message_notification", !@user.message_notification)
+        @user.update_attribute("message_notification", @user.message_notification)  
+
+        flash[:notice] = I18n.t(:successful_update)
+        redirect_back_or_default('/index')
+      else
+        render :action => 'index'
+      end
+    end  
+
+    def set_comment_notification
+      if @user.update_attribute("blog_comment_notification", !@user.blog_comment_notification)
+        @user.update_attribute("blog_comment_notification", @user.blog_comment_notification)  
+
+        flash[:notice] = I18n.t(:successful_update)
+        redirect_back_or_default('/index')
+      else
+        render :action => 'index'
+      end
+    end  
+    
+    
+private
+  def get_user
+    @user = User.find(params[:id])
+  end
+  
+  def get_user_group
+    @user = User.find(params[:id])
+    @group = Group.find(params[:group])
+  end
+end

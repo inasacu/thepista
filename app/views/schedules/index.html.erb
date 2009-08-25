@@ -22,7 +22,7 @@
 			  <%= label_name(:sport) %></th>
           <th><%= label_name(:marker) %><br />
 		      <%= label_name(:time_zone) %></th>
-          <th><%= label_name(:general_information) %></th>
+          <th align="center"><%= label_name(:general_information) %></th>
           <th class="last">&nbsp;</th>
         
         <% @schedules.each do |schedule| -%>
@@ -32,7 +32,7 @@
           </td>
           <td>
 			<%= group_link schedule.group %><br />
-			<%= nice_day_time schedule.starts_at %>
+			<%= nice_day_date schedule.starts_at %>
           </td>
           <td>            
             <%= link_to schedule.concept, schedule_path(schedule) %><br />
@@ -44,9 +44,7 @@
 		  </td>
 
 			<% if schedule.game_played? %>            
-			<td>
-				<td><%= label_name(:game_played) %></td>          
-			</td>            
+				<td align="center"><%= group_score_link schedule %> </td>          
 			<% else %>            
 			<td><%= label_name(:game_not_played) %></td>            
 			<% end %>

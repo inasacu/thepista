@@ -1,10 +1,10 @@
 <%
 	if @user
-		label = label_name_with('the_wall', h(@user.name))
+		label = label_with_name('the_wall', h(@user.name))
 		label = control_label('my_wall') if @user == current_user	
 	end	
 	if @group
-		label = label_name_with('the_wall', h(@group.name))
+		label = label_with_name('the_wall', h(@group.name))
 	end
 %>
 <div class="block">
@@ -30,5 +30,5 @@
   </div>
 </div>
 
-<% content_for :sidebar, render(:partial => '/users/sidebar_show') if @user -%>
-<% content_for :sidebar, render(:partial => '/groups/sidebar_show') if @group -%>
+<%# content_for :sidebar, render(:partial => '/users/sidebar_show') if @user -%>
+<%# content_for :sidebar, render(:partial => '/groups/sidebar_show') if @group -%>

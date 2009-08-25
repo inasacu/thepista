@@ -55,13 +55,11 @@
           </td>
 
           <td class="last">
-            <%= link_to label_name(:send_message), group_path(group) %><br />
+			<%= link_to(label_name(:send_message_to_group), new_message_path(:group_id => group.id)) %><br />
             <%#= link_to label_name(:invitation_to_group), edit_group_path(group) %> 
 
 			<% if current_user.is_manager_of?(group) %> 
-				<%= link_to label_name(:create_schedule), new_schedule_path(:id => group.id)  %>                       
-	          	<%#= link_to(label_name(:edit_group), edit_group_path(collection))  %>                  
-	          	<%#= link_to(label_name (:destroy_group), 'groups', collection.id) if group.has_schedule?(collection) %>
+				<%= link_to label_name(:create_schedule), new_schedule_path(:id => group.id)  %>
 	        <% end %>
           </td>
         </tr>   

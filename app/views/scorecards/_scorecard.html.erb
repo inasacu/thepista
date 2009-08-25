@@ -1,0 +1,41 @@
+
+<!-- <td class="posicion champions">2</td>
+<td class="posicion uefa">5</td>
+<td class="posicion descenso">20</td> -->
+
+<% 
+	swith ||= false
+	max_points = group.games_played.to_i * group.points_for_win.to_i
+	coeficient = 0
+	coeficient = 100 *(scorecard.points.to_f/max_points.to_f) 
+	
+	image = "table-arrow-bottom.gif" if (scorecard.ranking > scorecard.previous_ranking) 
+	image = "table-arrow-top.gif" if (scorecard.ranking < scorecard.previous_ranking)  		
+	image = "table-arrow-right.gif" if (scorecard.ranking == scorecard.previous_ranking) 
+	image = "table-arrow-right.gif" if (scorecard.previous_ranking == 0) 
+	
+	ranking_change = "-#{scorecard.ranking - scorecard.previous_ranking}" if (scorecard.ranking > scorecard.previous_ranking)  
+	ranking_change = "+#{scorecard.previous_ranking - scorecard.ranking}" if (scorecard.ranking < scorecard.previous_ranking)  	
+	ranking_change = "=" if (scorecard.ranking == scorecard.previous_ranking or scorecard.previous_ranking == 0) 
+%>
+
+<tr>
+	<td class="first"><%= "*" if (scorecard.played < games_played.to_i) %>&nbsp;<%= scorecard.ranking %></td>
+	<td class="equipos"><span><%= user_link scorecard.user %></span></td>
+	<td class="jugados"><%= image_tag(image) %></td>
+	<td class="jugados"><%= ranking_change %></td>
+	<td class="jugados"><%= scorecard.previous_ranking %></td>
+	<td class="puntos"><%= scorecard.points %></td>
+	<td class="jugados"><%= scorecard.played %></td>
+	<td class="jugados"><%= scorecard.assigned %></td>
+	<td class="ganados"><%= scorecard.wins %></td>
+	<td class="empatados"><%= scorecard.draws %></td>
+	<td class="perdidos"><%= scorecard.losses %></td>
+	<td class="afavor"><%= scorecard.goals_scored %></td>
+	<td class="afavor"><%= scorecard.goals_for %></td>
+	<td class="encontra"><%= scorecard.goals_against %></td>
+	<td class="encontra"><%= scorecard.goals_for - scorecard.goals_against %></td>
+	<td class="puntos"><%= sprintf( "%0.00f", coeficient) %><%= "%" %></td>
+	<!-- <td class="last">&nbsp;</td> -->
+</tr>
+

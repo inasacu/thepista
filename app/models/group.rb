@@ -113,6 +113,11 @@ class Group < ActiveRecord::Base
   # end
 
 
+  def games_played
+    games_played = 0
+    self.schedules.each {|schedule| games_played += 1 if schedule.played}
+    return games_played
+  end
 
   def create_group_details(user)
     user.has_role!(:manager, self)

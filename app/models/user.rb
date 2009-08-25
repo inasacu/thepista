@@ -131,19 +131,39 @@ class User < ActiveRecord::Base
         return @my_users
       end
       
-    #   def self.previous(user, groups)
-    #       find_by_sql(["select max(user_id) as id from groups_users where user_id < ? and group_id in (?)", user.id, groups])
-    #   end 
-    #   
-    #   def self.next(user, groups)
-    #       find_by_sql(["select min(user_id) as id from groups_users where user_id > ? and group_id in (?)", user.id, groups])
-    #   end
-    #   
-    #   def admin?
-    #     false
-    #   end
+      def self.previous(user, groups)
+        if self.count(:conditions => ["id < ? and id in (select user_id from groups_users where group_id in (?))", user.id, groups] ) > 0
+          return find(:first, :select => "max(id) as id", :conditions => ["id < ?  and id in (select user_id from groups_users where group_id in (?))", user.id, groups]) 
+        end
+          return user
+      end 
+
+      def self.next(user, groups)
+        if self.count(:conditions => ["id > ? and id in (select user_id from groups_users where group_id in (?))", user.id, groups]) > 0
+          return find(:first, :select => "min(id) as id", :conditions => ["id > ?  and id in (select user_id from groups_users where group_id in (?))", user.id, groups])
+        end
+        return user
+      end
+      
+      
+      # def self.previous(user, groups)
+      #     find_by_sql(["select max(user_id) as id from groups_users where user_id < ? and group_id in (?)", user.id, groups])
+      # end 
+      # 
+      # def self.next(user, groups)
+      #     find_by_sql(["select min(user_id) as id from groups_users where user_id > ? and group_id in (?)", user.id, groups])
+      # end
+      
+    def has_pending_petition?(current_user)
+      current_user == self and (!current_user.requested_managers.empty? or !current_user.pending_managers.empty?)
+    end
          
-      ## methods for acts_as_authorizable    
+      ## methods for acl9 - authorization      
+      def can_add_to_group?(current_user, group)
+        # (self == current_user and self.is_not_member_of?(group)) or (current_user.is_manager_of?(group) and self.is_not_member_of?(group))
+        (self == current_user and self.is_not_member_of?(group))
+      end  
+          
       def my_members?(user)
           membership = false
         self.groups.each{ |group| membership = user.is_member_of?(group) unless membership } 

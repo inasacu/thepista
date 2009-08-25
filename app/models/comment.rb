@@ -19,11 +19,13 @@ class Comment < ActiveRecord::Base
 
   # Return true if the group does not exist
   def self.group_exists?(group)
-    find_by_group_id(group).nil?
+    # find_by_group_id(group).nil?
+    true
   end
 
   # Return true if the user does not exist
   def self.user_exists?(user)
-    find_by_user_id(user).nil?
+    # find_by_user_id(user).nil?
+    true
   end
 end
