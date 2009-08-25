@@ -6,9 +6,9 @@ class ScorecardsController < ApplicationController
       @groups = current_user.groups
   end
   
-  # def show
-  #   @scorecards = Scorecard.paginate(params[:id], :per_page => 10, :page => params[:page])
-  # end
+  def show
+    @group = Group.find(params[:id])
+  end
 
   # def list
   #   @groups = Group.find(:all, :conditions => ['id not in (?)', current_user.groups])

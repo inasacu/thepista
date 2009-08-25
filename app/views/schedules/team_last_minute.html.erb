@@ -1,4 +1,4 @@
-<% a_roster = !(@schedule.last_minute.empty? or @schedule.played?) %>
+<% a_roster = !(@schedule.last_minute.empty?) %>
 
 <div class="block">
 
@@ -25,7 +25,9 @@
 	</div>
 </div>
 
-<%# content_for :sidebar, render(:partial => 'sidebar_show') -%>
+	<% content_for :sidebar, render(:partial => '/schedules/sidebar_show') if @schedule -%>
+	<% content_for :sidebar, render(:partial => '/practices/sidebar_show') if @practice -%>
+
 
 
 

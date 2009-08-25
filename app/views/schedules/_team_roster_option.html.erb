@@ -1,6 +1,7 @@
 <% image = 'status_online.png' if type.id == 1 %>
 <% image = 'status_away.png' if type.id == 2 %>
 <% image = 'status_busy.png' if type.id == 3 %>
+<% image = 'status_offline.png' if type.id == 4 %>
 
 <% 
 	the_label = "#{label_name(:change_roster_status) } #{label_name(type.name)}"

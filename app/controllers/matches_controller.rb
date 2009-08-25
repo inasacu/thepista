@@ -54,7 +54,7 @@ class MatchesController < ApplicationController
     when 2
       redirect_to :controller => 'schedules', :action => 'team_last_minute', :id => @match.schedule_id
       return
-    when 3
+    when 3, 4
       redirect_to :controller => 'schedules', :action => 'team_no_show', :id => @match.schedule_id 
       return 
     end

@@ -35,13 +35,13 @@ class Schedule < ActiveRecord::Base
   has_many :no_shows,
            :through => :matches,
            :source => :convocado,
-           :conditions =>  "matches.type_id = 3",
+           :conditions =>  "matches.type_id in (3, 4)",
            :order =>       :name
            
   has_many :unavailable,
            :through => :matches,
            :source => :convocado,
-           :conditions =>  "matches.type_id in (1,2,3)",
+           :conditions =>  "matches.type_id in (1,2,3,4)",
            :order =>       :name
   
   belongs_to :group
@@ -76,7 +76,7 @@ class Schedule < ActiveRecord::Base
                  "scorecards.played as scorecard_played, scorecards.ranking, scorecards.points ",
       :joins => "left join users on users.id = matches.user_id left join types on types.id = matches.type_id left join scorecards on scorecards.user_id = matches.user_id",
       :conditions => ["matches.schedule_id = ? and matches.archive = false and matches.type_id = 1  and scorecards.group_id = ? and users.available = true ", self.id, self.group_id],
-      :order => "matches.group_id, users.name")
+      :order => "matches.group_id desc, users.name")
   end
   
   def the_last_minute
@@ -85,7 +85,7 @@ class Schedule < ActiveRecord::Base
                  "scorecards.played as scorecard_played, scorecards.ranking, scorecards.points ",
       :joins => "left join users on users.id = matches.user_id left join types on types.id = matches.type_id left join scorecards on scorecards.user_id = matches.user_id",
       :conditions => ["matches.schedule_id = ?  and matches.archive = false and matches.type_id = 2 and scorecards.group_id = ? and users.available = true ", self.id, self.group_id],
-      :order => "matches.group_id, users.name")
+      :order => "matches.group_id desc, users.name")
   end
   
   def the_no_show
@@ -93,8 +93,8 @@ class Schedule < ActiveRecord::Base
       :select => "matches.*, users.name as user_name, types.name as type_name, scorecards.id as scorecard_id, " +
                  "scorecards.played as scorecard_played, scorecards.ranking, scorecards.points ",
       :joins => "left join users on users.id = matches.user_id left join types on types.id = matches.type_id left join scorecards on scorecards.user_id = matches.user_id",
-      :conditions => ["matches.schedule_id = ?  and matches.archive = false and matches.type_id = 3 and scorecards.group_id = ? and users.available = true ", self.id, self.group_id],
-      :order => "matches.group_id, users.name")
+      :conditions => ["matches.schedule_id = ?  and matches.archive = false and matches.type_id in (3,4) and scorecards.group_id = ? and users.available = true ", self.id, self.group_id],
+      :order => "matches.group_id desc, users.name")
   end
   
   def the_unavailable
@@ -102,8 +102,8 @@ class Schedule < ActiveRecord::Base
       :select => "matches.*, users.name as user_name, types.name as type_name, scorecards.id as scorecard_id, " +
                  "scorecards.played as scorecard_played, scorecards.ranking, scorecards.points ",
       :joins => "left join users on users.id = matches.user_id left join types on types.id = matches.type_id left join scorecards on scorecards.user_id = matches.user_id",
-      :conditions => ["matches.schedule_id = ?  and matches.archive = false and matches.type_id in (1,2,3) and scorecards.group_id = ? and users.available = false ", self.id, self.group_id],
-      :order => "matches.group_id, users.name")
+      :conditions => ["matches.schedule_id = ?  and matches.archive = false and matches.type_id in (1,2,3,4) and scorecards.group_id = ? and users.available = false ", self.id, self.group_id],
+      :order => "matches.group_id desc, users.name")
   end
 
   def home_group

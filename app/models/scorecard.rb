@@ -12,7 +12,7 @@ class Scorecard < ActiveRecord::Base
     end
 
     if total_schedules_played > 0
-      last_to_group_scorecard(group)  
+      all_to_group_scorecard(group)  
       update_group_user_ranking(group, false)
     end
     
@@ -32,12 +32,12 @@ class Scorecard < ActiveRecord::Base
   end
 
   # calculate scorecard for all previous matches for group
-  def self.last_to_group_scorecard(group)  
+  def self.all_to_group_scorecard(group)  
       group.users.each do |user|
         @scorecards = Scorecard.find(:all, :conditions =>["group_id = ? and user_id > 0 and archive = ?", group, false])
 
         @scorecards.each do |scorecard|  
-          @matches = Match.find_last_schedule(scorecard.user_id, scorecard.group_id)
+          @matches = Match.find_all_schedules(scorecard.user_id, scorecard.group_id)
           update_group_user_scorecard(group, user, scorecard, @matches, false)
           previous_matches = true
         end
@@ -100,23 +100,20 @@ class Scorecard < ActiveRecord::Base
     
     if played.to_i > 1
       the_previous_played = played.to_i - prev_played 
-      # the_previous_points = (wins - prev_wins * scorecard.group.points_for_win) +
-      #                       (draws - prev_draws * scorecard.group.points_for_draw) + 
-      #                       (losses - prev_losses * scorecard.group.points_for_lose)
     end
     
     # update scorecard with all calculations
-    # if previous_matches
+    if previous_matches
       scorecard.update_attributes(:wins => wins, :losses => losses, :draws => draws, :played => played, :assigned => assigned.to_i,
                                   :points => the_points, :previous_points => the_previous_points,
                                   :previous_played => the_previous_played, 
                                   :goals_for => goals_for, :goals_against => goals_against, :goals_scored => goals_scored.to_i)
-    # else
-    #   scorecard.update_attributes(:wins => wins, :losses => losses, :draws => draws, 
-    #                               :played => played, :assigned => assigned.to_i,
-    #                               :points => the_points, 
-    #                               :goals_for => goals_for, :goals_against => goals_against, :goals_scored => goals_scored.to_i)
-    # end
+    else
+      scorecard.update_attributes(:wins => wins, :losses => losses, :draws => draws, 
+                                  :played => played, :assigned => assigned.to_i,
+                                  :points => the_points, 
+                                  :goals_for => goals_for, :goals_against => goals_against, :goals_scored => goals_scored.to_i)
+    end
   end
   
   def self.update_group_user_ranking(group, previous_matches=true)

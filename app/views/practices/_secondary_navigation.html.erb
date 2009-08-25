@@ -4,22 +4,22 @@
 <%
 	the_controller = ['forums', 'topics', 'posts']
 	the_action = ['show', 'edit', 'team roster', 'team no show']
-	unless the_action.include?(get_the_action) or the_controller.include?(get_the_controller) 
+ 
 %>
-		<li class="<%= get_action_first('index') %>"><%= link_to(label_name(:upcoming_practice) , practices_url) %>	</li>				
-		<li class="<%= get_action_active('list') %>"><%= link_to(label_name(:previous_practices) , list_practices_path) %></li>
+	<li class="<%= get_first_active %>"><%= link_to(label_name(:upcoming_practice) , practices_url) %>	</li>				
+	<li class="<%= get_active('practice_list') %>"><%= link_to(label_name(:previous_practices) , list_practices_path) %></li>
 <% 
-	else 
-		if current_user.is_member_of?(@practice.group)
-			the_label = "#{label_name(:forum)} #{@practice.concept}"
+if the_action.include?(get_the_action) or the_controller.include?(get_the_controller)
+	if current_user.is_member_of?(@practice.group)
+		the_label = "#{label_name(:forum)} #{@practice.concept}"
 %>
-			<li class="<%= get_action_first('index') %>">  <%= practice_link @practice %>
-			<li class="<%= get_action_active('topics_show') %>"><%= link_to(the_label, forum_path(@practice.forum)) %></li>			
-			<li class="<%= get_action_active('rosters') %>"><%= link_to(label_name(:rosters), team_roster_path(@practice)) %></li>
-			<li class="<%= get_action_active('no_show') %>"><%= link_to(label_name(:no_shows), team_no_show_path(@practice)) unless @practice.played? %></li>
+	<li class="<%= get_active('practice_show') %>">  <%= practice_link @practice %>
+	<li class="<%= get_active('topics_show') %>"><%= link_to(the_label, forum_path(@practice.forum)) %></li>			
+	<li class="<%= get_active('practice_rosters') %>"><%= link_to(label_name(:rosters), team_roster_path(@practice)) %></li>
+	<li class="<%= get_active('practice_no_show') %>"><%= link_to(label_name(:no_shows), team_no_show_path(@practice)) unless @practice.played? %></li>
 <% 
-		end
 	end
+end
 %>
 </ul>
 

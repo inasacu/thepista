@@ -68,7 +68,7 @@ es:
      # change_private_phone: Ocultar Teléfono de   
      change_rejected: El cambio que ha pedido ha sido rechazado.  
      change_rejected_explained: Es posible que no tuvieses acceso a esa zona, lo sentimos!	 
-     change_roster_status: Pasate a   
+     change_roster_status: Pasa a   
      change_wo_access: Es posible que hayas intentado cambiar algo a lo que no tenias acceso.   
      changed_description: cambio en la descripción   
      changes_in_roster_status: Ha cambiado su convocatoria   
@@ -512,7 +512,7 @@ es:
      no_announcement: No tienes anuncios internos   
      no_change_group: Ningun Cambio de Equipo   
      no_classified: No tienes anuncios   
-     No_Convocado: No Convocado   
+     no_convocado: No Convocado   
      no_credit: No tienes Creditos   
      no_debit: No tienes Deudas   
      no_description: Ningun Detalle   
@@ -520,7 +520,7 @@ es:
      no_festival: No tienes Acondiciónamientos   
      no_group: No tienes equipo   
      no_invitation: No tienes invitaciones   
-     No_Jugado: No Jugado   
+     no_jugado: No Presentado   
      no_language: Actualmente no tiene un idioma preferido   
      no_marker: No tienes un centro deportivo donde jugar   
      no_message: No tienes mensajes.   

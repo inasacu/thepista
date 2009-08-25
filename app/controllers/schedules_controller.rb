@@ -117,7 +117,7 @@ class SchedulesController < ApplicationController
       redirect_to :action => 'index'
       return
     end
-    @match_type = Type.find(:all, :conditions => "id in (1, 2, 3)", :order => "id")
+    @match_type = Type.find(:all, :conditions => "id in (1, 2, 3, 4)", :order => "id")
   end
   
   def get_group

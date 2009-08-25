@@ -19,6 +19,7 @@ class CreateTypes < ActiveRecord::Migration
           # update types set name = 'ultima_hora' where id = 2
           # update types set name = 'convocado' where id = 1
           # update types set name = 'ausente' where id = 3
+          # update types set name = 'no_jugado' where id = 4
       end
   end
 

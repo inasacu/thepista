@@ -1,7 +1,11 @@
 <div class="secondary-navigation">
 
 <ul>
-	<li class="<%= get_action_first %>"><%= link_to(control_label('index') , scorecards_path) %></li>
+	<li class="<%= get_first_active %>"><%= link_to(control_label('index') , scorecards_path) %></li>
+	
+	<% if is_action('show') %>
+		<li class="<%= get_active('scorecard_show') %>"><%=  group_link @group %></li>
+	<% end %>
 </ul>
 
 <div class="clear"></div>

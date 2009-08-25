@@ -5,7 +5,7 @@
 <% 
 if current_user 
 %>
-	<li class="<%= get_action_first %>">  <%= link_to label_name(:upcoming_schedule) , schedules_url %></li>				
+	<li class="<%= get_first_active %>">  <%= link_to label_name(:upcoming_schedule) , schedules_url %></li>				
 <% 
 end 
 %>

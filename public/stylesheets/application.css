@@ -55,7 +55,12 @@ input.textscore {
 	background: rgb(255, 254, 244) url('../../images/textfield-focus-bg.gif') repeat-x scroll 0pt 1px; 
 }
 input.text_field { 
-	width: 400px; 
+	width: 200px; 
+}
+
+text_area.textfield { 
+	width: 200px;
+	height: 80px; 
 }
 
 

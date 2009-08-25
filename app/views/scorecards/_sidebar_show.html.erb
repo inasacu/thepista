@@ -1,75 +1,85 @@
 <div class="block">
-	<h3><%= label_name(get_the_controller, 'options') %></h3>
-	<ul class="navigation">
+	<h3><%= control_label('legend') %></h3>
+	<div class="content">
+		<p>
+			<b><%= label_name(:ranking) %></b>
+			<%= label_name(:ranking_full) %>
+		</p>
 		
-	<% if @user.can_modify?(current_user) %>		
-		<li><%= link_to label_name(:edit_my_user), edit_user_path(@user) %></li>
-	<% else %>
-		<li><%= link_to label_name(:send_message), new_message_path(@user) %></li>
-	<% end %>
+		<p>
+			<b><%= label_name(:previous_ranking) %></b>
+			<%= label_name(:previous_ranking_full) %>
+		<p>
+				
+		<p>
+			<b><%= label_name(:points) %></b>
+			<%= label_name(:points_full) %>
+		<p>
+		
+		<p>
+			<b><%= label_name(:games_played) %></b>
+			<%= label_name(:games_played_full) %>
+		<p>
+			
+		<p>
+			<b><%= label_name(:games_assigned) %></b>
+			<%= label_name(:games_assigned_full) %>
+		<p>
 
+		<p>
+			<b><%= label_name(:games_won) %></b>
+			<%= label_name(:games_won_full) %>
+		<p>
+			
+		<p>
+			<b><%= label_name(:games_tied) %></b>
+			<%= label_name(:games_tied_full) %>
+		<p>
+				
+		<p>
+			<b><%= label_name(:games_lost) %></b>
+			<%= label_name(:games_lost_full) %>
+		<p>
+			
+		<p>
+			<b><%= label_name(:goals_scored) %></b>
+			<%= label_name(:goals_scored_full) %>
+		<p>
+						
+		<p>
+			<b><%= label_name(:goals_for) %></b>
+			<%= label_name(:goals_for_full) %>
+		<p>			
+		
+		<p>
+			<b><%= label_name(:goals_against) %></b>
+			<%= label_name(:goals_against_full) %>
+		<p>		
+				
+		<p>
+			<b><%= label_name(:goal_difference) %></b>
+			<%= label_name(:goal_difference_full) %>
+		<p>					
+				
+		<p>
+			<b><%= label_name(:coeficient) %></b>
+			<%= label_name(:coeficient_full) %>
+		<p>	
+			
+		<p>
+			<b><%= label_name(:points_for_win) %></b>
+			<%= @group.points_for_win %>
+		</p>
+		
+		<p>
+			<b><%= label_name(:points_for_draw) %></b>
+			<%= @group.points_for_draw %>
+		</p>
+		
+		<p>
+			<b><%= label_name(:points_for_lose) %></b>
+			<%= @group.points_for_lose %>
+		</p>				
 
-<% 
-current_user.groups.each do |group| 
-	
-	if @user.is_not_member_of?(group) or if current_user.is_manager_of?(group)
-		the_label = label_with_name('add_to_group, group.name)
-		the_confirmation = "#{label_name(:petition_to_join_group)} #{@user.name} #{label_name(:to) } #{group.name}?"
-%> 
-		<li><%= link_to(the_label, manage_join_path(:id => group.id, :teammate => @user.id), :confirm => the_confirmation) %></li>
-<% 
-	elsif current_user.is_manager_of?(group) 
-		the_label = label_with_name('fire_from_group, group.name)
-		the_confirmation = "#{label_name(:fire_from_group)} #{group.name} #{label_name(:to)} #{@user.name}?"
-%> 
-		<li><%= link_to(the_label, fire_path(:id => group.id, :leave => @user.id), :confirm => the_confirmation) %></li>
-<% 
-		unless @user.is_sub_manager_of?(group) 
-			the_label = label_with_name('add_sub_manager, group.name)
-			the_confirmation = "#{label_name(:add_sub_manager)} #{label_name(:to) } #{@user.name} #{label_name(:to) } #{group.name}?"
-%>		
-			<li><%= link_to(the_label , set_sub_manager_path(:id => @user.id, :group => group.id), :confirm => the_confirmation) %></li>
-<% 
-		else
-			the_label = label_with_name('remove_sub_manager, group.name)
-			the_confirmation = "#{label_name(:remove_sub_manager)} #{label_name(:to) } #{@user.name} #{label_name(:to) } #{group.name}?"
-%>					
-			<li><%= link_to(the_label, remove_sub_manager_path(:id => @user.id, :group => group.id), 
-										:confirm => the_confirmation) if @user != current_user %></li>			
-<% 
-		end 
-	
-		unless @user.is_subscriber_of?(group) 
-			the_label = label_with_name('add_subscription, group.name)
-			the_confirmation = "#{label_name(:add_subscription)} #{label_name(:to) } #{@user.name} #{label_name(:to) } #{group.name}?"
-%>
-			<li><%= link_to(the_label, set_subscription_path(:id => @user.id, :group => group.id), :confirm => the_confirmation) %></li> 	
-<% 
-		else
-			the_label = label_with_name('remove_subscription, group.name)
-			the_confirmation = "#{label_name(:remove_subscription) } #{label_name(:to) } #{@user.name} #{label_name(:to) } #{group.name}?" 
-%>		
-			<li><%= link_to(the_label, remove_subscription_path(:id => @user.id, :group => group.id), :confirm => the_confirmation) %></li> 	
-<% 
-		end 
- 
-		unless @user.is_moderator_of?(group)
-			the_label = label_with_name('add_moderator, group.name)
-			the_confirmation = "#{label_name(:add_moderator)} #{label_name(:to) } #{@user.name} #{label_name(:to) } #{group.name}?" 
-%>
-			<li><%= link_to(the_label, set_moderator_path(:id => @user.id, :group => group.id), :confirm => the_confirmation) %></li>
-<% 
-		else 
-			the_label = label_with_name('remove_moderator, group.name)
-			the_confirmation = "#{label_name(:remove_moderator)} #{label_name(:to) } #{@user.name} #{label_name(:to) } #{group.name}?"
-%>		
-			<li><%= link_to(the_label,remove_moderator_path(:id => @user.id, :group => group.id), :confirm => the_confirmation) %></li>
-<% 
-		end  
-	end 
-end 
-%>
-
-</ul>
-	
+	</div>
 </div>

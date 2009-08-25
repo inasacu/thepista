@@ -57,55 +57,25 @@ class Match < ActiveRecord::Base
                 "and matches.schedule_id = schedules.id " +
                 "and schedules.group_id = ? " +
                 "order by schedules.starts_at desc", user_id, group_id])
-    end
-    
+  end
 
-    def self.find_all_previous_schedules(user_id, group_id)
-      find(:all, 
-           :conditions => ["schedule_id not in (select max(id) as id from schedules where group_id = #{group_id} and played = true) " +
-                           "and (group_id = #{group_id} or invite_id = #{group_id}) " +
-                           "and user_id = #{user_id} and archive = false"],
-           :order => "id")
-    end
+  def self.find_all_previous_schedules(user_id, group_id)
+    find(:all, 
+         :conditions => ["schedule_id in (" +
+                        "select id from schedules where group_id = #{group_id} and played = true and id not in " +
+                        "(select max(id) as id from schedules where group_id = #{group_id} and played = true)) " +
+                         "and (group_id = #{group_id} or invite_id = #{group_id}) " +
+                         "and user_id = #{user_id} and archive = false"],
+         :order => "id")
+  end
     
-    def self.find_last_schedule(user_id, group_id)
-      find(:all, 
-           :conditions => ["schedule_id in (select max(id) as id from schedules where group_id = #{group_id} and played = true) " +
-                           "and (group_id = #{group_id} or invite_id = #{group_id}) " +
-                           "and user_id = #{user_id} and archive = false"],
-           :order => "id")
-    end
-  
-  #   def self.find_match_user_available(id)
-  #     find_by_sql(["select matches.id as match_id, " +
-  #       "matches.group_id, a.name as home_name, b.name as invite_name, " +
-  #       "matches.group_score, matches.invite_score, " +
-  #       "matches.user_id, users.name as name, " +
-  #       "users.dorsal, users.email, users.phone, users.available, " +
-  #       "availabilities.id as availability_id, availabilities.available, availabilities.reliable " +
-  #       "from matches " +
-  #       "left join groups a on a.id = matches.group_id " +
-  #       "left join groups b on b.id = matches.invite_id " +
-  #       "left join users on users.id = matches.user_id " +
-  #       "left join availabilities on availabilities.schedule_id = matches.schedule_id " +
-  #       "where matches.schedule_id = ?", id])
-  #     end
-  # 
-  # def self.find_match_details(id)
-  #   find_by_sql(["select schedules.id as schedule_id, schedules.concept, schedules.season, " +
-  #     "schedules.starts_at, schedules.group_id, schedules.invite_id, " +
-  #     "schedules.starts_at, schedules.played, schedules.group_id, schedules.invite_id, " +
-  #     "schedules.location_id, schedules.sport_id, schedules.public, schedules.notes, " +
-  #     "schedules.time_zone, matches.id as match_id, matches.name as match_name, " +      
-  #     "locations.name as location_name, locations.url as location_url, " +
-  #     "sports.name as activity_name, " +
-  #     "a.name as home_name, b.name as invite_name " +
-  #     "from schedules, matches, locations , sports, groups a, groups b " +
-  #     "where matches.schedule_id = ? " + 
-  #     "and matches.schedule_id = schedules.id " +
-  #     "and schedules.location_id = locations.id " +
-  #     "and schedules.sport_id = sports.id ", id])
-  # end
+  def self.find_all_schedules(user_id, group_id)
+    find(:all, 
+         :conditions => ["schedule_id in (select id from schedules where group_id = #{group_id} and played = true) " +
+                         "and (group_id = #{group_id} or invite_id = #{group_id}) " +
+                         "and user_id = #{user_id} and archive = false"],
+         :order => "id")
+  end
   
   def self.set_archive_flag(user, group, flag)
     @matches = Match.find(:all, :conditions => ["user_id = ? and (group_id = ? or invite_id = ?)", user.id, group.id, group.id])

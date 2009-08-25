@@ -14,9 +14,10 @@ class TeammatesController < ApplicationController
       redirect_to :controller => 'groups', :action => 'show', :id => @group
       return
     end
-
+    @role_user = RolesUsers.find_team_manager(@group)
+    @manager = User.find(@role_user.user_id)
     @mate = User.find(params[:teammate])
-    Teammate.create_teammate_join_team(@group, @mate)
+    Teammate.create_teammate_join_team(@group, @mate, @manager)
 
     # if @manager.message_notification?
     #   UserMailer.deliver_manager_join(

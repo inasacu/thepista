@@ -11,8 +11,8 @@
 		
       <% form_for @match, :url => match_path(@match), :html => { :class => :form } do |f| -%>
 
-	  <div class="group">
-			<%#= f.label :score, label_name(:score), :class => :label %>
+		<div class="group">
+			<%= f.label :score, label_name(:score), :class => :label %>
 			<%= group_link @schedule.group %>    
 			&nbsp;&nbsp;
 			<%= f.text_field :group_score, :class => 'textscore'  -%>	
@@ -20,20 +20,20 @@
 			<%= f.text_field :invite_score, :class => 'textscore'  -%>
 			&nbsp;&nbsp;
 			<%= @schedule.away_group %>
-			</div>
-			<br />
+		</div>
+		<br />
 
-		  <div class="group">
-		    <%= f.label :description, "Description", :class => :label %>
-		    <%= f.text_area :description, :class => 'textfield' %>
-		  </div>	
-			<br />
+		<div class="group">
+			<%= f.label :description, "Description", :class => :label %>
+			<%= f.text_area :description, :class => 'textfield' %>
+		</div>	
+		<br />
 
 		<div class="group">
 			<%= f.label :goals_scored, label_name(:goals_scored_full), :class => :label %>
 			<%= render :partial =>'match', :collection => @matches %>
 		</div>	
-			<br />
+		<br />
 
 		<div class="clear"></div> 
 

@@ -14,7 +14,7 @@
 %>
 <div class="content">   
 
-	<h2 class="title"><%= group_link group %></h2>
+	<h2 class="title"><%= link_to group.name, :controller => 'scorecards', :action => 'show', :id => group %></h2>
 
 	<div class="inner">
 
@@ -43,10 +43,6 @@
 			<%= render :partial => 'scorecard', :collection => @scorecards, :locals => {:group => group, :games_played => @games_played} %>        
 		</table>
 		<%= render :partial => 'shared/action_bar', :locals => { :collection => @scorecards } %>
-		<p> <em style="color: rgb(153, 153, 153);"><%= label_name(:scorecards_less_games) %></em></p>
-		<p> <em style="color: rgb(153, 153, 153);"><%= label_name(:points_for_win) %>:&nbsp;&nbsp;<%= group.points_for_win %></em></p>
-		<p> <em style="color: rgb(153, 153, 153);"><%= label_name(:points_for_draw) %>:&nbsp;&nbsp;<%= group.points_for_draw %></em></p>
-		<p> <em style="color: rgb(153, 153, 153);"><%= label_name(:points_for_lose) %>:&nbsp;&nbsp;<%= group.points_for_lose %></em></p>
 		
 	</div>
 

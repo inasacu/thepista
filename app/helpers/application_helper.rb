@@ -15,17 +15,19 @@ module ApplicationHelper
     opts.merge!(:class => 'active') if current_page?(options)
     content_tag(:li, link_to(name, options, html_options, &block), opts)
   end
-  
-  def get_action_first(text='')
-    action ||= 'index'
-	  action = text unless text.blank?
-    return "first active" if is_action(action)
+
+  def get_first_active(text='')    
+    controller_action ||= "#{get_the_controller}_index"
+	  controller_action = text unless text.blank?
+    return "first active" if "#{get_the_controller}_#{get_the_action}".gsub(' ','_') == controller_action.gsub(' ','_')
     return "first"    
   end
   
-  def get_action_active(action='')
-    return "active" if is_action(action)
-    return ""
+  def get_active(text='')
+    controller_action ||= "#{get_the_controller}_index"
+	  controller_action = text unless text.blank?
+    return "active" if "#{get_the_controller}_#{get_the_action}".gsub(' ','_') == controller_action.gsub(' ','_')
+    return ""    
   end
   
   def get_control_first(text='')

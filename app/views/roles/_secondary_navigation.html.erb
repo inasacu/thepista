@@ -2,9 +2,9 @@
 
 <ul>
 
-		<li class="<%= get_action_first %>"><%= link_to(control_label('index') , roles_path) %></li>
-		<!--<li class="<%#= get_action_active('list') %>"><%#= link_to(control_label('list') , role_list_path) if current_user.is_manager? %></li>-->	
-		<!--<li class="<%#= get_action_active('create') %>"><%#= link_to(control_label('create') , new_role_path) %></li> -->
+		<li class="<%= get_first_active %>"><%= link_to(control_label('index') , roles_path) %></li>
+		<!--<li class="<%#= get_active('list') %>"><%#= link_to(control_label('list') , role_list_path) if current_user.is_manager? %></li>-->	
+		<!--<li class="<%#= get_active('create') %>"><%#= link_to(control_label('create') , new_role_path) %></li> -->
 
 </ul>
 

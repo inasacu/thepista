@@ -2,6 +2,8 @@
 	counter = 0 
 	roster_count = (the_roster.count > 0)
 
+	type_id = [1, 4]
+	
 if roster_count 
 %>
       <table class="table">
@@ -11,7 +13,7 @@ if roster_count
           <th>&nbsp;</th>
           <th><%= label_name(:name) %></th>
           <th><%= label_name(:group) %></th>
-          <th><%= label_name(:change_at) %></th>
+          <th><%= @schedule.played? ? label_name(:score) : label_name(:change_at) %></th>
           <th class="last">&nbsp;</th>
         
        	<% the_roster.each do |match| -%>
@@ -23,7 +25,7 @@ if roster_count
 				<%= counter += 1 %>.
 			</td>
 			<td>
-				<%= user_link match.user %>
+				<%= user_link match.user %><%= "  ( #{label_name(:no_jugado)} )" if match.type_id == 4 %>
 			</td>
 			
 <% 
@@ -40,8 +42,8 @@ if roster_count
 			end 
 		else 
 %>								
-			<td><%= match.team_name(@schedule) %></td>
-			<td><%= match.win_loose_draw_label %></td>								
+			<td><%= match.team_name(@schedule) %>&nbsp;<%#= match.win_loose_draw_label %></td>
+			<td>&nbsp;&nbsp;<%= group_score_link @schedule %></td>							
 <% 
 		end 
 	else 
@@ -64,26 +66,26 @@ if current_user == match.user or current_user.is_manager_of?(@schedule.group) an
 		if type.name != match.type_name			
 			if current_user.is_manager_of?(@schedule.group) 
 %>
-				<%= render :partial => '/schedules/match_user_option', :locals => {:type => type, :match => match} %>
+				<%= render :partial => '/schedules/team_roster_option', :locals => {:type => type, :match => match} %>
 <% 
 			elsif match.user.is_subscriber_of?(@schedule.group)
-				if type.id != 1 
+				if !type_id.include?(type.id)
 %>
-					<%= render :partial => '/schedules/match_user_option', :locals => {:type => type, :match => match} %>
+					<%= render :partial => '/schedules/team_roster_option', :locals => {:type => type, :match => match} %>
 <% 
 				elsif @schedule.subscription_at > Time.now and type.id == 1 
 %>
-					<%= render :partial => '/schedules/match_user_option', :locals => {:type => type, :match => match} %>												
+					<%= render :partial => '/schedules/team_roster_option', :locals => {:type => type, :match => match} %>												
 <% 
 				end 
 			else 
 				if type.id != 1 
 %>
-					<%= render :partial => '/schedules/match_user_option', :locals => {:type => type, :match => match} %>
+					<%= render :partial => '/schedules/team_roster_option', :locals => {:type => type, :match => match} %>
 <% 
 				elsif @schedule.non_subscription_at < Time.now and type.id == 1 
 %>
-					<%= render :partial => '/schedules/match_user_option', :locals => {:type => type, :match => match} %>	
+					<%= render :partial => '/schedules/team_roster_option', :locals => {:type => type, :match => match} %>	
 <% 
 				end 			
 			end 
@@ -101,7 +103,6 @@ end
 end
 %>
 
-<%# content_for :sidebar, render(:partial => 'sidebar_show') -%>
 	
 
 

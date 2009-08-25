@@ -7,7 +7,7 @@ class Teammate < ActiveRecord::Base
   
   before_create :make_teammate_code  
   
-  def self.create_teammate_join_team(group, mate)
+  def self.create_teammate_join_team(group, mate, manager)
     @role_user = RolesUsers.find_team_manager(group)
     @manager = User.find(@role_user.user_id)
     Teammate.join(mate, manager, group)
