@@ -1,11 +1,16 @@
-<% display ||= true %>
-<% display = current_user.has_group? %>
+<% 
+display ||= true
+display = current_user.has_group? if current_user 
+the_screen ||= ""
+the_screen = "#{get_the_controller}_#{get_the_action}" if development?
+%>
 
 <div id="main-navigation">
 
 <ul>		
+	<li class="<%= get_control_first('home') %>"><%= link_to(label_name(:home) , '/') %></li>
+	
 	<% if current_user %>
-		<li class="<%= get_control_first('home') %>"><%= link_to(label_name(:home) , '/') %></li>
 		<li class="<%= get_control_active('user') %><%#= get_control_active('entry') %>">
 					<%= link_to(label_name(:users), users_url) %></li>	
 		<li class="<%= get_control_active('group') %><%#= get_control_active('entry') %>">
@@ -30,7 +35,13 @@
 			<li class="<%= get_control_active('type') %>"><%= link_to(label_name(:type), types_url) %>
 		<% end %>
 		
+	<% elsif production? %>
+			<li class="<%= get_control_first('features') %>"><%= link_to(label_name(:features) , '/') %></li>
+			<li class="<%= get_control_first('features') %>"><%= link_to(label_name(:pricing) , '/') %></li>	
+	
 	<% end %>
+	
+	<li class="active"><%= link_to the_screen, '/' %></li>
 </ul>
 
 <div class="clear"></div>

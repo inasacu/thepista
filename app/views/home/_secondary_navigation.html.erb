@@ -1,11 +1,15 @@
 <div class="secondary-navigation">
 
 <ul>
-	
+	<li class="<%= get_first_active %>"><%= link_to(label_name(:home) , '/') %></li>
 <% 
 if current_user 
 %>
-	<li class="<%= get_first_active %>">  <%= link_to label_name(:upcoming_schedule) , schedules_url %></li>				
+	<li class="<%= get_active('home_upcoming_schedule') %>">
+			<%= link_to label_name(:upcoming_schedule) , :controller => 'home', :action => 'upcoming_schedule' unless current_schedules.empty? %></li>
+	<li class="<%= get_active('user_petition') %>">
+		<%= link_to(label_name(:petitions), petition_path) if current_user.has_pending_petition?(current_user) %>
+	</li>				
 <% 
 end 
 %>

@@ -13,7 +13,11 @@ module SchedulesHelper
     # We normally write link_to(..., schedule) for brevity, but that breaks
     # activities_helper_spec due to an RSpec bug.
     link_to(h(text), schedule, html_options)
-  end               
+  end  
+  
+  def schedule_image_link_small(schedule, icon)
+    link_to(image_tag(icon, options={:style => "height: 15px; width: 15px;"}), schedule_path(schedule))
+  end             
 end
 
 

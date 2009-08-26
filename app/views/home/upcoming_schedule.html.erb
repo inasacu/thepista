@@ -1,0 +1,79 @@
+<%  
+unless current_schedules.empty? 
+%> 
+
+<div class="block">
+
+  <%= render :partial => 'secondary_navigation' %>   
+  
+  <div class="content">   
+  
+    <h2 class="title"><%= control_action_label %></h2>
+	
+    <div class="inner">
+	
+      <table class="table">
+	  
+        <tr>             
+          <!-- <th class="first">&nbsp;</th>
+          <th><%#= label_name(:schedule) %></th>
+          <th><%#= label_name(:group) %></th>
+          <th><%#= label_name(:starts_at) %></th>
+          <th class="last"><%#= label_name(:attend_schedule) %></th> -->
+        </tr>
+		
+        <% @current_schedules.each do |schedule| 
+			icon = schedule.sport.icon if !schedule.sport.icon.nil?
+			the_sport = "#{label_name(:rosters)}:  #{schedule.convocados.count}"
+		-%>		
+			<tr>
+			  <td>
+				<%= schedule_image_link_small(schedule, icon) %>
+			  </td>
+		  
+			  <td>
+				<%= schedule_link schedule %>
+			  </td>
+			  
+			  <td>
+				<%= group_link schedule.group %>
+			  </td>
+			  
+			  <td>
+				<%= nice_day_of_week(schedule.starts_at) %> 
+				<% if (schedule.starts_at != schedule.starts_at.in_time_zone(Time.zone)) or development? %>
+	                <br />
+					<p> <em style="color: rgb(153, 153, 153);">
+					<%= label_name(:your_schedule) %>&nbsp;<%= nice_day_of_week(schedule.starts_at.in_time_zone(Time.zone)) %>
+					</em></p>             
+	             <% end %>
+			  </td>	
+			  
+			<td class="last">
+				<%= the_sport %>
+			</td>
+			
+			</tr>
+        <% end -%>
+		
+      </table>
+	  <%#= render :partial => 'shared/action_bar', :locals => { :schedule => @current_schedules } %>
+	  
+
+	
+    </div>
+	
+  </div>
+  
+</div>
+
+<% content_for :sidebar, render(:partial => 'sidebar') -%>
+
+<% 
+end
+%>
+
+
+
+
+

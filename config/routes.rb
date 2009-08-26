@@ -38,6 +38,8 @@ ActionController::Routing::Routes.draw do |map|
   map.match_team            'matches/:id/set_team',                   :controller => 'matches',         :action => 'set_team'
   map.match_status          'matches/:id/set_status/:type',           :controller => 'matches',         :action => 'set_status'
   
+  map.upcoming_schedule     'home/upcoming_schedule',                 :controller => 'home',         :action => 'upcoming_schedule'         
+  
   map.resources   :user_sessions,   :as => 'try_again'
 
   map.resources   :users,           :as => 'jugadores',       :collection  => { :list => :get, :recent_activity => :get, :search => :get }  

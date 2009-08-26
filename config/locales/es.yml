@@ -593,6 +593,8 @@ es:
      percentage: %   
      percentage_full: Porcentaje   
      
+     
+     
      petition: Petición 
      petition_at:  Fecha de la Petición
      petition_join_team_accept:  Acepto
@@ -648,6 +650,7 @@ es:
      previous_schedules: Anteriores Eventos
      previous_practice: Anterior Entrenamiento
      previous_practices: Anteriores Entrenamientos
+     pricing:  Precios
      privacy: privacidad   
      private_beta: Ya tenemos tu información registrada.  Actualmente estamos en version de pruebas.  Encuanto podamos abriremos al publico.   
      private_email: Correo Oculto   
@@ -1073,6 +1076,7 @@ es:
      fees_show:  Mostrar Matrícula
      
      home_option:  Opciones de Inicio
+     home_upcoming_schedule:  Próximos Eventos
           
      payments_create:  Nuevo Pago
      payments_index:   Pagos
