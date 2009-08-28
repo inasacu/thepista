@@ -13,28 +13,28 @@ class Fee < ActiveRecord::Base
 
   # variables to access
   attr_accessible :concept, :description, :actual_fee, :payed, :table_type 
-  attr_accessible :table_id, :schedule_id, :group_id, :user_id, :match_id
-
-
-#   
-#   def self.get_debit_fees(debit, season_payed=false, archive=false, page=1)
-#     paginate(:all, 
-#              :conditions => ["debit_id = ? and debit_type = ? and season_payed = ? and archive = ?", debit.id, debit.class.to_s, season_payed, archive],
-#              :order => 'created_at DESC', 
-#              :page => page)
-#   end
-#   
-#   def self.debit_amount(debit, debit_name='User', season_payed=false, archive=false)
-#     @fee = find(:first, 
-#          :select => "sum(debit_amount) as debit_amount", 
-#          :conditions => ["debit_id = ? and debit_type = ? and season_payed = ? and archive = ?", debit.id, debit.class.to_s, season_payed, archive])
-#          
-#    if @fee.nil? or @fee.blank? 
-#      @fee.debit_amount = 0.0
-#    end
-#    return @fee
-#   end
-#   
+  attr_accessible :table_id, :schedule_id, :group_id, :user_id
+  attr_accessible :debit_amount, :debit_id, :debit_type
+  attr_accessible :credit_amount, :credit_id, :credit_type, :manager_id
+  
+  def self.get_debit_fees(debit, season_payed=false, archive=false, page=1)
+    paginate(:all, 
+             :conditions => ["debit_id = ? and debit_type = ? and season_payed = ? and archive = ?", debit.id, debit.class.to_s, season_payed, archive],
+             :order => 'created_at DESC', 
+             :page => page)
+  end
+  
+  def self.debit_amount(debit, debit_name='User', season_payed=false, archive=false)
+    @fee = find(:first, 
+         :select => "sum(debit_amount) as debit_amount", 
+         :conditions => ["debit_id = ? and debit_type = ? and season_payed = ? and archive = ?", debit.id, debit.class.to_s, season_payed, archive])
+         
+   if @fee.nil? or @fee.blank? 
+     @fee.debit_amount = 0.0
+   end
+   return @fee
+  end
+   
 #   def self.set_season_payed_match_flag(credit)
 #     @fee = find(:first, :conditions => ["credit_id = ? and credit_type = ?", credit.id, credit.class.to_s])
 #     if @fee
@@ -69,17 +69,29 @@ class Fee < ActiveRecord::Base
 
   def self.create_user_fees(schedule)    
     schedule.group.users.each do |user|
-      actual_fee = schedule.fee_per_game
-      actual_fee = 0 if !user.available or schedule.played
-  
-      self.create!(:concept => schedule.concept, :schedule_id => schedule.id, :user_id => user.id, :description => schedule.description,
-                   :group_id => schedule.group_id, :actual_fee => actual_fee) if self.schedule_user_exists?(schedule, user)
+      if self.schedule_user_exists?(schedule, user)
+        self.create!(:concept => schedule.concept, :schedule_id => schedule.id, :user_id => user.id, 
+                     :description => schedule.description, :group_id => schedule.group_id, 
+                     :actual_fee => schedule.fee_per_game, :debit_amount => schedule.fee_per_game,
+                     :debit_id => user.id, :debit_type => 'User')
+      else
+        self.find_by_schedule_id_and_user_id(schedule, user).update_attributes!(
+                      :actual_fee => schedule.fee_per_game, :debit_amount => schedule.fee_per_game)
+      end
+
     end
   end
   
   def self.create_group_fees(schedule)
-    self.create!(:concept => schedule.concept, :schedule_id => schedule.id, :group_id => schedule.group_id, 
-                 :actual_fee => schedule.fee_per_pista) if self.schedule_group_exists?(schedule)
+    if self.schedule_group_exists?(schedule)
+      self.create!(:concept => schedule.concept, :schedule_id => schedule.id, :group_id => schedule.group_id, 
+                  :actual_fee => schedule.fee_per_pista, :debit_amount => schedule.fee_per_game,
+                  :debit_id => group.id, :debit_type => 'Group')
+    else
+      self.find(:first, 
+                :conditions => ["schedule_id = ? and group_id = ? and user_id is null", schedule.id, schedule.group.id]).update_attributes(
+                :actual_fee => schedule.fee_per_pista, :debit_amount => schedule.fee_per_pista)
+    end
   end
   
 	def self.create_schedule_group_user_fee(schedule, user)
@@ -100,7 +112,7 @@ class Fee < ActiveRecord::Base
 	
   # Return true if the schedule user combination exist
   def self.schedule_group_exists?(schedule)
-    find_by_schedule_id_and_group_id(schedule, schedule.group).nil?
+    find(:first, :conditions => ["schedule_id = ? and group_id = ? and user_id is null", schedule, schedule.group]).nil?
   end
     
 # protected

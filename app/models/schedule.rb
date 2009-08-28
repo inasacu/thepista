@@ -150,15 +150,19 @@ class Schedule < ActiveRecord::Base
     played == false
   end
   
-  
-  def create_schedule_details(user)
-    # create forum, topic, post details for schedule
-    @forum = Forum.create_schedule_forum(self)
-    @topic = Topic.create_schedule_topic(@forum, user)
+  def create_schedule_details(user, update_schedule=false)
+    unless update_schedule
+      # create forum, topic, post details for schedule
+      @forum = Forum.create_schedule_forum(self)
+      @topic = Topic.create_schedule_topic(@forum, user)
+    else  
+      @forum = Forum.find(self.forum)
+      @topic = Topic.find(@forum.topics.first)
+    end
     Post.create_schedule_post(@forum, @topic, user)
-    
+
     Match.create_schedule_match(self) 
-    
+
     Fee.create_group_fees(self)    
     Fee.create_user_fees(self)
   end

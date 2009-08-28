@@ -1,9 +1,29 @@
 class PaymentsController < ApplicationController
   before_filter :require_user
   
-  def index
-    @payments = Payment.paginate(:per_page => 10, :page => params[:page])
-  end
+    
+    def index
+      if (params[:user_id])
+        @user = User.find(params[:user_id])      
+        @payments = Payment.get_credit_payments(@user,false, params[:page])
+  
+        respond_to do |format|
+          format.html 
+        end
+      
+  
+      elsif (params[:group_id])
+        @group = Group.find(params[:group_id])      
+        @payments = Payment.get_credit_payments(@group, false, params[:page])
+  
+        respond_to do |format|
+          format.html 
+        end
+      else
+
+        @payments = Payment.paginate(:per_page => 10, :page => params[:page])
+      end
+    end
   
   def show
     @payments = Payment.find(params[:id])
@@ -46,30 +66,6 @@ class PaymentsController < ApplicationController
 end
 
 
-# 
-# class PaymentsController < ApplicationController
-#   before_filter :login_required
-#   
-#   def index
-#     if (params[:user_id])
-#       @user = User.find(params[:user_id])      
-#       @payments = Payment.get_credit_payments(@user,false, params[:page])
-# 
-#       respond_to do |format|
-#         format.html 
-#       end
-#     end
-# 
-#     if (params[:group_id])
-#       @group = Group.find(params[:group_id])      
-#       @payments = Payment.get_credit_payments(@group, false, params[:page])
-# 
-#       respond_to do |format|
-#         format.html 
-#       end
-#     end
-#   end
-# 
 #   def list
 #     @payments = Payment.find(:all)
 #     render :template => '/payments/index'

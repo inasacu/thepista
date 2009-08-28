@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20090823192120) do
+ActiveRecord::Schema.define(:version => 20090828013436) do
 
   create_table "blogs", :force => true do |t|
     t.string   "name"
@@ -54,20 +54,26 @@ ActiveRecord::Schema.define(:version => 20090823192120) do
   add_index "entries", ["blog_id"], :name => "index_entries_on_blog_id"
 
   create_table "fees", :force => true do |t|
-    t.string   "concept",     :limit => 50
+    t.string   "concept",      :limit => 50
     t.text     "description"
-    t.float    "actual_fee",                :default => 0.0
-    t.string   "payed",                     :default => "No"
-    t.string   "table_type",  :limit => 40
+    t.float    "actual_fee",                 :default => 0.0
+    t.string   "payed",                      :default => "No"
+    t.string   "table_type",   :limit => 40
     t.integer  "table_id"
     t.integer  "schedule_id"
     t.integer  "group_id"
     t.integer  "user_id"
-    t.integer  "match_id"
-    t.boolean  "archive",                   :default => false
+    t.boolean  "archive",                    :default => false
     t.datetime "deleted_at"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.float    "debit_amount",               :default => 0.0
+    t.integer  "debit_id"
+    t.string   "debit_type"
+    t.integer  "credit_id"
+    t.string   "credit_type"
+    t.integer  "manager_id"
+    t.boolean  "season_payed",               :default => false
   end
 
   create_table "forums", :force => true do |t|
@@ -238,6 +244,13 @@ ActiveRecord::Schema.define(:version => 20090823192120) do
     t.datetime "deleted_at"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "debit_id"
+    t.string   "debit_type"
+    t.integer  "credit_id"
+    t.string   "credit_type"
+    t.integer  "manager_id"
+    t.integer  "fee_id"
+    t.integer  "parent_id"
   end
 
   create_table "posts", :force => true do |t|
@@ -249,6 +262,15 @@ ActiveRecord::Schema.define(:version => 20090823192120) do
   end
 
   add_index "posts", ["topic_id"], :name => "index_posts_on_topic_id"
+
+  create_table "practice_attendees", :force => true do |t|
+    t.integer  "group_id"
+    t.integer  "user_id"
+    t.integer  "practice_id"
+    t.datetime "deleted_at"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "practices", :force => true do |t|
     t.string   "concept"
@@ -448,6 +470,7 @@ ActiveRecord::Schema.define(:version => 20090823192120) do
     t.datetime "updated_at"
     t.string   "perishable_token",           :default => "",    :null => false
     t.boolean  "available",                  :default => true,  :null => false
+    t.datetime "last_contacted_at"
   end
 
   add_index "users", ["email"], :name => "index_users_on_email"

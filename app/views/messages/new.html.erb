@@ -4,13 +4,24 @@
 
 	<div class="content">  
 
-		<h2 class="title"><%= control_action_label %></h2>
+		<h2 class="title"><%#= control_action_label %><br />
+		
+			<%= "#{label_name(:message)} #{label_name(:to)} "  %>
+			&nbsp;<%= user_link @recipient if @recipient %>
+			&nbsp;<%= group_link @group if @group %>
+			&nbsp;<%= "( #{schedule_link @schedule} )" if @schedule %>
+		</h2>
 
 		<div class="inner">
 		
-      <% form_for :message, :url => messages_path, :html => { :class => :form } do |f| -%>
-        <%= render :partial => "form", :locals => {:f => f} %>
-      <% end -%>
+	      <% form_for :message, :url => messages_path, :html => { :class => :form } do |f| -%>
+	        <%= render :partial => "form", :locals => {:f => f} %>
+
+			<%- if @message.reply? -%>
+		        <%= f.hidden_field :parent_id %>
+			<% end %>
+		
+	      <% end -%>
 
 		</div>
 

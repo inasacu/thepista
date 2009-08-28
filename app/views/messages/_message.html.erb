@@ -1,0 +1,36 @@
+<% full_message ||= false %>
+<tr>
+	<td>
+		<%= image_link_small message.other_user(current_user) %>
+	</td>
+	<td>
+		<span class="name">	
+			<%= message_icon(message) %>
+			<%- if current_user == message.sender -%>
+			<span class="label"><%= label_name(:to) %>:</span>
+			<%= user_link message.recipient %>
+			<%- else -%>
+			<span class="label"><%= label_name(:from) %>:</span>
+			<%= user_link message.sender %>
+			<%- end -%>
+		</span>
+		<br />
+		<span class="date">
+			<%= nice_day_of_week(message.created_at) %>
+		</span>
+	</td>
+	<td>
+		<span class="">
+			<%= link_to h(message.subject), message %><br />
+			<span class="">							
+				<%= link_to h(truncate(message.body.gsub('<br>', ' ').rstrip, 55, '...')), message unless full_message %>
+				<%= message.body.gsub('<br>', ' ') if full_message %>							
+			</span>
+		</span>
+	</td>
+	<td class="last">
+		<%#= render :partial => 'action', :locals => {:message => message} %>
+	</td>
+</tr>
+
+

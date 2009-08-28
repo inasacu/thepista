@@ -48,7 +48,8 @@ es:
      birth_at:  Fecha de Nacimiento
      birth_description: (Escribe fecha de nacimiento...Solo se utiliza para calcular la edad media del equipo...) 
      blog_comment_notification:  Recibir Notificación de comentario en tu Muro en tu cuenta de correo.
-     body: Contenido   
+     body: Contenido 
+     body_description:  Contenido  
      calendar_language: es   
      can_add_email: Puedes agregar tu correo para participar en la version beta.   
      can_create_schedule: Añadir un Evento   
@@ -65,7 +66,6 @@ es:
      change_group: Cambia de Equipo   
      change_language: Cambia el idioma    
      change_openid: Ocultar tus cuentas de OpenID   
-     # change_private_phone: Ocultar Teléfono de   
      change_rejected: El cambio que ha pedido ha sido rechazado.  
      change_rejected_explained: Es posible que no tuvieses acceso a esa zona, lo sentimos!	 
      change_roster_status: Pasa a   
@@ -133,7 +133,7 @@ es:
      created_a_schedule: a añadido un evento   
      credit: Credito   
      credit_amount: A Recibir   
-     credits: Creditos   
+     credits: Creditos  
      current_accounts: Cuentas Actuales   
      current_language: Español    
      current_time: La Hora   
@@ -289,7 +289,7 @@ es:
      from: de   
      from_Ausente: Pasate a Ultima Hora   
      from_Convocado: Pasate a Ausente   
-     from_fee: Tasas a   
+     
      from_message: De   
      from_payment: Pago a   
      from_Ultima_Hora: Pasate a convocado   
@@ -586,14 +586,13 @@ es:
      password_reset:  Restablecer contraseña
      password_reset_instructions:  "Danos tu cuenta de correo y te mandamos las instrucciones para restablecer tu contraseña."	 
      password_resets_new:  Restablecer contraseña
-     payed_fee: Tasa Pagada   
+     payed:  Tasa Pagada  
+     payed_description:  Han sido pagadas las Tasas? 
      payment: Pago  
      payments: Pagos   
      pending: Pendiente   
      percentage: %   
      percentage_full: Porcentaje   
-     
-     
      
      petition: Petición 
      petition_at:  Fecha de la Petición
@@ -705,7 +704,7 @@ es:
      reply: Contestar   
      reply_all: Contestar a todos   
      reply_message: Mensaje de Respuesta   
-     reply_to_this_message: Responde a este mensaje   
+     reply_to_this_message: Responde a este mensaje  
      request_email: Nueva Petición   
      request_invitation: Pide una Invitación   
      restored_message: Mensaje restaurado   
@@ -785,7 +784,7 @@ es:
      send_venue: Manda el URL del Centro Deportivo   
      sent_a_message: Ha mandado un mensaje   
      sent_invitation: Has mandado una invitación de HayPista a los siguientes   
-     sent_message: Mensajes Enviados   
+        
      separate_by: separa con una comma   
      server_not_available: "Lo sentimos, el servidor de OpenID server no se pudo encontrar." 
      
@@ -796,8 +795,6 @@ es:
      set_teammate_notification:  Quieres recibir Notificaciones de miembros que quieren unirse al equipo de
      set_message_notification:  Quieres recifir Notificaciones de correos en la cuenta de correo de
      set_blog_comment_notification:  Quieres recibir Notificaciones de comentarios dejados en el muro de
-
-         
              
      settings:  Opciones 
      share: Compartir   
@@ -854,7 +851,7 @@ es:
      Store: Tienda   
      style: estilo_espanol   
      subject: Asunto  
-     
+     subject_description:  Titulo del Asunto
      sub_manager_updated:  Actualización de sub manager.
      
      subscription_at: Finalización para Convocarse el Abonado  
@@ -892,7 +889,7 @@ es:
      title: Título   
      to: a   
      to_email: Email del Amigo   
-     to_fee: Tasas de   
+    
      to_join: Únirse a   
      to_join_email: para unirse   
      to_join_festival: Unirte a un Festivo   
@@ -1008,7 +1005,7 @@ es:
      your_join_notification: Petición para un equipo.   
      your_on_roster: Estas Convocado -   
      your_openid: Tus cuentas de OpenID   
-     your_schedule: En tu horario el evento seria a las   
+     your_schedule: "En tu horario, el evento seria el "   
      your_sent_beta: "Muchas gracias por tu interés, tu correo ha sido añadido para recibir una invitación."   
      your_sent_invitation: Tu invitación ha sido enviada a   
      your_sent_message: Tu mensaje ha sido enviada   
@@ -1065,6 +1062,11 @@ es:
      entries_show:  Opciones del Muro
      entries_show_option:  Opciones del Muro
      
+     
+     fee_from: Tasas a
+     fee_from_description: De quien son las Tasas
+     fee_to: Tasas de 
+     fee_to_description:  A quien son las Tasas
      fees_create:  Nueva Matrícula
      fees_index:   Matrícula
      fees_index_option: Opciones de Matrícula
@@ -1077,7 +1079,11 @@ es:
      
      home_option:  Opciones de Inicio
      home_upcoming_schedule:  Próximos Eventos
-          
+
+     payment_description:  Quien ha hecho el pago.
+     payment_full:  Pago Total
+     payment_greater_than:  Pago Superior
+     payment_less_than:  Pago Inferior
      payments_create:  Nuevo Pago
      payments_index:   Pagos
      payments_index_option: Opciones de Pago
@@ -1113,6 +1119,12 @@ es:
      
      matches_edit:  Resultados
      
+     message_options: Opciones de Mensaje  
+     message_reply:  Responde
+     message_reply_to: Responde a este mensaje
+     message_send:  Manda Mensaje
+     message_sent: Mensajes Enviados
+     message_trash:  Borrar Mensaje
      messages_create:  Nuevo Mensaje
      messages_inbox:  Mensajes Recibidos
      messages_index:  Mensajes
@@ -1124,6 +1136,7 @@ es:
      messages_sent:  Mensajes Mandados
      messages_show: Mostrar Mensaje
      messages_trash:  Mensajes Descartados
+     
      
      practices:  Entrenamientos
      practices_create:  Nuevo Entrenamiento

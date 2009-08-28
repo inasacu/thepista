@@ -130,7 +130,7 @@ if current_user
 	when 'messages' 		
 %>
 		<%= list_link_with_active(label_name(:inbox), messages_path) %>
-	  	<%= list_link_with_active(label_name(:sent_message), sent_messages_path) %>
+	  	<%= list_link_with_active(label_name(:message_sent), sent_messages_path) %>
 	  	<%= list_link_with_active(label_name(:trash), trash_messages_path) %>
 
 		<li class="<%= the_class %>">  <%= link_to(label_name(:create_message), new_message_path) %></li>

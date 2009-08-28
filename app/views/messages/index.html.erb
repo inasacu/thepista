@@ -1,6 +1,6 @@
 <div class="block">
 
-	<%= render :partial => 'secondary_navigation' if current_user %>  
+	<%= render :partial => 'secondary_navigation' %>  
 
 	<div class="content">   
 
@@ -12,33 +12,12 @@
 
 			<table class="table">
 
-				<tr>             
-					<th class="first">ID</th>
-					<th>Subject</th>
-					<th>Created at</th>
-					<th class="last">&nbsp;</th>
-				</tr>
-
-				<% @messages.each do |message| -%>
-				<tr>
-					<td>
-						<%= message.id %>
-					</td>
-					<td>
-						<%= link_to message.subject, message_path(message) %>
-					</td>
-					<td>
-						<%= message.created_at %>
-					</td>
-
-					<td class="last">
-						<%= link_to label_name(:show), message_path(message) %> |
-						<%= link_to label_name(:edit), edit_message_path(message) %> |
-						<%= link_to label_name(:destroy), message_path(message), :method => :delete, :confirm => label_name(:are_you_sure) %>
-					</td>
-
-				</tr>          
-				<% end -%>
+					<% previous = [] %>
+					<% @messages.each do |message| %>
+					<%= render :partial => 'message', :locals => {:message => message} unless previous.include?(message.parent_id) %>
+					<% previous << message.parent_id %>
+					<% end %>
+				
 			</table>
 
 			<% end %>

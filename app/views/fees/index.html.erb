@@ -1,6 +1,6 @@
 <div class="block">
 
-  <%= render :partial => 'secondary_navigation' if current_user %>  
+  <%= render :partial => 'secondary_navigation' %>  
           
   <div class="content">  
 	        
@@ -13,38 +13,24 @@
       <table class="table">
 	
         <tr>            
-          <th class="first">ID</th>
-          <th>Concept</th>
-          <th>Created at</th>
+          <th class="first">&nbsp;</th>
+          <th><%= label_name(:from) %>&nbsp;&nbsp;/&nbsp;&nbsp;<%= label_name(:to) %>&nbsp;&nbsp;/<br />
+			  <%= label_name(:created_at) %>
+		  </th>
+          <th><%= label_name(:concept) %></th>
+          <th><%= label_name(:debit) %></th>
+          <th><%= label_name(:credit) %></th>
           <th class="last">&nbsp;</th>
         </tr>
-		
-        <% @fees.each do |fee| -%>
-		
-        <tr>
-          <td>
-            <%= fee.id %>
-          </td>
-          <td>
-            <%= link_to fee.concept, fee_path(fee) %>
-          </td>
-          <td>
-            <%= fee.created_at %>
-          </td>
 
-          <td class="last">
-            <%= link_to label_name(:show), fee_path(fee) %> |
-            <%= link_to label_name(:edit), edit_fee_path(fee) %> |
-            <%= link_to label_name(:destroy), fee_path(fee), :method => :delete, :confirm => label_name(:are_you_sure) %>
-          </td>
-        </tr>   
-       
-        <% end -%>
+	<%= render :partial => 'fee', :collection => @fees %>
+		
+
 
       </table>
 
 	<% end %>
-	<%= render :partial => 'shared/action_bar', :locals => { :collection => @fee } %>
+	<%#= render :partial => 'shared/action_bar', :locals => { :collection => @fee } %>
 
 	</div>
 	</div>

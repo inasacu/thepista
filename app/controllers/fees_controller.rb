@@ -1,45 +1,95 @@
 class FeesController < ApplicationController
   before_filter :require_user
   
-  def index
-    @fees = Fee.paginate(:per_page => 10, :page => params[:page])
-  end
+  
+    def index
+      # if (params[:user_id])
+      if current_user
+        
+        @fee = Fee.paginate(:per_page => 10, :page => params[:page])
+  
+        # @user = User.find(params[:user_id]) 
+        @user = current_user
+        @fees = Fee.get_debit_fees(@user, false, false, params[:page])   
+  
+        @fee = Fee.debit_amount(@user)
+        @payment = Payment.actual_payment(@user)
+  
+        if @payment.actual_payment.to_f == @fee.debit_amount.to_f
+          @payment_in_full = I18n.t(:payment_full)
+        elsif @payment.actual_payment.to_f < @fee.debit_amount.to_f
+          @payment_in_full = I18n.t(:payment_less_than)
+        elsif @payment.actual_payment.to_f > @fee.debit_amount.to_f
+          @payment_in_full = I18n.t(:payment_greater_than)
+        end                
+  
+      end
+      
+      # if (params[:group_id])
+      #   
+      #   @group = Group.find(params[:group_id])     
+      #   @fee = Fee.get_debit_fees(@group, false, false, params[:page]) 
+      #   
+      #   @fee = Fee.debit_amount(@group)
+      #   @payment = Payment.actual_payment(@group, 'Group')
+      #   
+      #   if @payment.actual_payment.to_f == @fee.debit_amount.to_f
+      #     @payment_in_full = :full_payment.l
+      #   elsif @payment.actual_payment.to_f < @fee.debit_amount.to_f
+      #     @payment_in_full = :less_than_payment.l
+      #   elsif @payment.actual_payment.to_f > @fee.debit_amount.to_f
+      #     @payment_in_full = :greater_than_payment.l
+      #   end                
+      #   
+      #  end
+      
+      respond_to do |format|
+        format.html 
+      end             
+                             
+    end
+  
+  
+  
+  # def index
+  #   @fee = Fee.paginate(:per_page => 10, :page => params[:page])
+  # end
   
   def show
-    @fees = Fee.find(params[:id])
+    @fee = Fee.find(params[:id])
   end
   
   def new
-    @fees = Fee.new
+    @fee = Fee.new
   end
   
   def create
-    @fees = Fee.new(params[:fees])
-    if @fees.save
+    @fee = Fee.new(params[:fees])
+    if @fee.save
       flash[:notice] = I18n.t(:successful_create)
-      redirect_to @fees
+      redirect_to @fee
     else
       render :action => 'new'
     end
   end
   
   def edit
-    @fees = Fee.find(params[:id])
+    @fee = Fee.find(params[:id])
   end
   
   def update
-    @fees = Fee.find(params[:id])
-    if @fees.update_attributes(params[:fees])
+    @fee = Fee.find(params[:id])
+    if @fee.update_attributes(params[:fees])
       flash[:notice] = I18n.t(:successful_update)
-      redirect_to @fees
+      redirect_to @fee
     else
       render :action => 'edit'
     end
   end
   
   def destroy
-    @fees = Fee.find(params[:id])
-    @fees.destroy
+    @fee = Fee.find(params[:id])
+    @fee.destroy
     flash[:notice] = I18n.t(:successful_destroy)
     redirect_to fees_url
   end
@@ -50,51 +100,10 @@ end
 
 #   before_filter :get_fee, :only => [:show, :edit, :update, :destroy, :team_roster, :team_no_show]
 # 
-#   def index
-#     if (params[:user_id])
-# 
-#       @user = User.find(params[:user_id]) 
-#       @fees = Fee.get_debit_fees(@user, false, false, params[:page])   
-# 
-#       @fee = Fee.debit_amount(@user)
-#       @payment = Payment.actual_payment(@user)
-# 
-#       if @payment.actual_payment.to_f == @fee.debit_amount.to_f
-#         @payment_in_full = :full_payment.l
-#       elsif @payment.actual_payment.to_f < @fee.debit_amount.to_f
-#         @payment_in_full = :less_than_payment.l
-#       elsif @payment.actual_payment.to_f > @fee.debit_amount.to_f
-#         @payment_in_full = :greater_than_payment.l
-#       end                
-# 
-#     end
-#     
-#     if (params[:group_id])
-#       
-#       @group = Group.find(params[:group_id])     
-#       @fees = Fee.get_debit_fees(@group, false, false, params[:page]) 
-# 
-#       @fee = Fee.debit_amount(@group)
-#       @payment = Payment.actual_payment(@group, 'Group')
-# 
-#       if @payment.actual_payment.to_f == @fee.debit_amount.to_f
-#         @payment_in_full = :full_payment.l
-#       elsif @payment.actual_payment.to_f < @fee.debit_amount.to_f
-#         @payment_in_full = :less_than_payment.l
-#       elsif @payment.actual_payment.to_f > @fee.debit_amount.to_f
-#         @payment_in_full = :greater_than_payment.l
-#       end                
-# 
-#      end
-#     
-#     respond_to do |format|
-#       format.html 
-#     end             
-#                            
-#   end
+
 # 
 #   # def list    
-#   #   @fees = Fee.paginate(:all, 
+#   #   @fee = Fee.paginate(:all, 
 #   #                          :joins => "LEFT JOIN users on users.id = fees.user_id",                           
 #   #                          :conditions => ["fees.user_id > 0 and fees.group_id in (?) and fees.season_payed = ? and fees.archive = false", current_user.groups, false],
 #   #                          :order => 'group_id, created_at DESC, users.name', :page => params[:page])
@@ -235,7 +244,7 @@ end
 # #   #permit "maximo"
 # #   
 # #   def index
-# #     @fees = Fee.paginate(:all, 
+# #     @fee = Fee.paginate(:all, 
 # #                           :conditions => ["user_id = ?", current_user.id],
 # #                           :order => 'group_id, created_at DESC', :page => params[:page])
 # #   end

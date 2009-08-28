@@ -1,0 +1,72 @@
+<% 
+	balance_due =  (current_user.is_manager_of?(fee.group) and @fee.debit_amount.to_f > @payment.actual_payment.to_f) 
+ 	user_flag = (fee_debit_type(fee) == 'User') 
+ 	#group_flag = (fee_debit_type(fee) == 'Group') 
+ 	debit_object = fee_debit(fee) 
+ 	credit_object = fee_credit(fee)
+
+	debit_link = ''
+	credit_link = ''
+	
+	case fee_debit_type(fee)
+	when 'User'
+	debit_link =  user_link (fee_debit(fee))
+	when 'Group'
+	debit_link =   group_link (fee_debit(fee))
+	when 'Match'
+	debit_link =  schedule_link (fee_debit(fee).schedule)
+	when 'Marker'
+	debit_link =  marker_link (fee_debit(fee))    
+	end
+	
+	case fee_credit_type(fee)
+	when 'User'
+	credit_link =  user_link (fee_credit(fee))
+	when 'Group'
+	credit_link =   group_link (fee_credit(fee))
+	when 'Match'
+	credit_link =  schedule_link (fee_credit(fee).schedule)
+	when 'Marker'
+	credit_link =  marker_link (fee_credit(fee))    
+	end
+	
+%>
+
+<tr>  
+	<td>
+		<%= image_link_small debit_object if user_flag %>
+	</td>
+
+	<td>
+		<span class="name">	
+			<span class="label"><%= label_name(:from) %>:</span>
+			<%= debit_link %><br/>
+			<% unless credit_link.blank? %>
+			<span class="label"><%= label_name(:to) %>:</span>
+			<%= credit_link %><br/>
+			<% end %>
+		</span>
+		<span class="">						
+			<%= "#{label_name(:ago)} #{time_ago_in_words(fee.created_at)}" %>
+		</span>
+	</td>
+
+	<td>
+		<%= link_to h(fee.concept), new_payment_path(:fee_id => fee.id) %>
+	</td>
+
+	<td>						
+		<%= (debit_object.has_role?('subscription')) ? 
+				"+#{number_to_currency(@fee.debit_amount)}" : "+#{number_to_currency(@fee.debit_amount)}" %>
+	</td>
+
+	<td>
+		<%= @payment.actual_payment.to_f > 0 ? 
+				"-#{number_to_currency(@payment.actual_payment.to_f)}" : "#{number_to_currency(@payment.actual_payment.to_f)}" %>
+	</td>
+
+	<td>
+		<%= @payment_in_full %>
+	</td>
+
+</tr>

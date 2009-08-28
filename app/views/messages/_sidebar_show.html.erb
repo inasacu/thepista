@@ -2,73 +2,22 @@
 	<h3><%= label_name(get_the_controller, 'options') %></h3>
 	<ul class="navigation">
 		
-	<% if @user.can_modify?(current_user) %>		
-		<li><%= link_to label_name(:edit_my_user), edit_user_path(@user) %></li>
-	<% else %>
-		<li><%= link_to label_name(:send_message), new_message_path(@user) %></li>
-	<% end %>
 
+		<li><%= link_to label_name(:messages_new), new_message_path(@user) %></li>
 
-<% 
-current_user.groups.each do |group| 
-	
-	if @user.is_not_member_of?(group) or if current_user.is_manager_of?(group)
-		the_label = label_with_name('add_to_group, group.name)
-		the_confirmation = "#{label_name(:petition_to_join_group)} #{@user.name} #{label_name(:to) } #{group.name}?"
-%> 
-		<li><%= link_to(the_label, manage_join_path(:id => group.id, :teammate => @user.id), :confirm => the_confirmation) %></li>
-<% 
-	elsif current_user.is_manager_of?(group) 
-		the_label = label_with_name('fire_from_group, group.name)
-		the_confirmation = "#{label_name(:fire_from_group)} #{group.name} #{label_name(:to)} #{@user.name}?"
-%> 
-		<li><%= link_to(the_label, fire_path(:id => group.id, :leave => @user.id), :confirm => the_confirmation) %></li>
-<% 
-		unless @user.is_sub_manager_of?(group) 
-			the_label = label_with_name('add_sub_manager, group.name)
-			the_confirmation = "#{label_name(:add_sub_manager)} #{label_name(:to) } #{@user.name} #{label_name(:to) } #{group.name}?"
-%>		
-			<li><%= link_to(the_label , set_sub_manager_path(:id => @user.id, :group => group.id), :confirm => the_confirmation) %></li>
-<% 
-		else
-			the_label = label_with_name('remove_sub_manager, group.name)
-			the_confirmation = "#{label_name(:remove_sub_manager)} #{label_name(:to) } #{@user.name} #{label_name(:to) } #{group.name}?"
-%>					
-			<li><%= link_to(the_label, remove_sub_manager_path(:id => @user.id, :group => group.id), 
-										:confirm => the_confirmation) if @user != current_user %></li>			
-<% 
-		end 
-	
-		unless @user.is_subscriber_of?(group) 
-			the_label = label_with_name('add_subscription, group.name)
-			the_confirmation = "#{label_name(:add_subscription)} #{label_name(:to) } #{@user.name} #{label_name(:to) } #{group.name}?"
-%>
-			<li><%= link_to(the_label, set_subscription_path(:id => @user.id, :group => group.id), :confirm => the_confirmation) %></li> 	
-<% 
-		else
-			the_label = label_with_name('remove_subscription, group.name)
-			the_confirmation = "#{label_name(:remove_subscription) } #{label_name(:to) } #{@user.name} #{label_name(:to) } #{group.name}?" 
-%>		
-			<li><%= link_to(the_label, remove_subscription_path(:id => @user.id, :group => group.id), :confirm => the_confirmation) %></li> 	
-<% 
-		end 
- 
-		unless @user.is_moderator_of?(group)
-			the_label = label_with_name('add_moderator, group.name)
-			the_confirmation = "#{label_name(:add_moderator)} #{label_name(:to) } #{@user.name} #{label_name(:to) } #{group.name}?" 
-%>
-			<li><%= link_to(the_label, set_moderator_path(:id => @user.id, :group => group.id), :confirm => the_confirmation) %></li>
-<% 
-		else 
-			the_label = label_with_name('remove_moderator, group.name)
-			the_confirmation = "#{label_name(:remove_moderator)} #{label_name(:to) } #{@user.name} #{label_name(:to) } #{group.name}?"
-%>		
-			<li><%= link_to(the_label,remove_moderator_path(:id => @user.id, :group => group.id), :confirm => the_confirmation) %></li>
-<% 
-		end  
-	end 
-end 
-%>
+		<!-- <li><%#= link_to label_name(:message_reply_to), 
+			                reply_message_path(@message),
+			                :title => label_name(:message_reply_to) %></li> -->
+		<% unless @message.trashed?(current_user) -%>
+		<% the_confirmation = label_name(:delete_this_message) %>
+			<li><%= link_to label_name(:message_trash), message_path(@message), 
+															:method => :delete, 
+															:confirm => %(#{the_confirmation}?),
+															:title => the_confirmation  %></li>
+		<% else -%>	
+			<li><%= link_to label_name(:message_untrash), :controller => 'messages', :action => 'undestroy', :id => @message %></li>
+		<% end -%>
+
 
 </ul>
 	

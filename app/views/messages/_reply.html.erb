@@ -1,0 +1,35 @@
+<table class="table">
+	<tr>
+		<td>
+
+			<% form_tag :action => 'reply_message', :id => message.parent_id do -%>
+			<%= error_messages_for :message, :header_message => label_name(:try_again), :message => label_name(:problem_field)  -%>
+			<%= hidden_field :message, :parent_id %>
+
+			<div class="group">
+				<label for="text_field"><%= label_name(:reply_message) %>:</label>
+				<br />
+				<br />
+				<%= text_area :message, :body, :value => '', :class => 'textfield' %>
+			</div>
+			<br />
+				
+			<div class="clear"></div> 
+
+			<div class="group navform">
+				<%= submit_tag label_name(:message_send), :class => "button" %> 
+			</div>
+
+			<% end -%>
+
+		</td>
+	</tr>
+</table>
+
+
+
+
+
+
+
+

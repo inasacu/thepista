@@ -12,17 +12,17 @@ class Payment < ActiveRecord::Base
   attr_accessible :concept, :debit_amount, :credit_amount, :description, :table_type, :table_id, :type_id 
 
   
-#   def self.actual_payment(debit, archive=false)
-#     @payment = find(:first, 
-#          :select => "sum(debit_amount) - sum(credit_amount) as actual_payment", 
-#          :conditions => ["debit_id = ? and debit_type = ? and archive = ?", debit.id, debit.class.to_s, archive])
-#          
-#     if @payment.nil? or @payment.blank? 
-#       @payment.actual_payment = 0.0
-#     end
-#     return @payment         
-#   end
-#   
+  def self.actual_payment(debit, archive=false)
+    @payment = find(:first, 
+         :select => "sum(debit_amount) - sum(credit_amount) as actual_payment", 
+         :conditions => ["debit_id = ? and debit_type = ? and archive = ?", debit.id, debit.class.to_s, archive])
+         
+    if @payment.nil? or @payment.blank? 
+      @payment.actual_payment = 0.0
+    end
+    return @payment         
+  end
+  
 #   def self.get_credit_payments(debit, archive=false, page=1)
 #     conditions = [%((debit_id = :debit and debit_type = :debit_type and debit_amount > 0) or (credit_id = :debit and credit_type = :debit_type and credit_amount > 0) and archive = :archive),
 #                   {:debit => debit, :debit_type => debit.class.to_s, :archive => archive}]

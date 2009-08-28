@@ -343,17 +343,17 @@ class User < ActiveRecord::Base
     #           "and users.available = true " +
     #           "order by name", group.id, self.id])
     #   end
-    # 
-    #   def self.find_all_by_mates(user)
-    #     find_by_sql(["select distinct users.* from users, groups_users " +
-    #           "where users.id = groups_users.user_id " +
-    #           "and groups_users.group_id in (?) " +
-    #           "and groups_users.user_id != ? " +
-    #           "and users.available = true " +
-    #           "order by name", user.groups, user.id])
-    #   end
-    # 
-    #   
+    
+      def self.find_all_by_mates(user)
+        find_by_sql(["select distinct users.* from users, groups_users " +
+              "where users.id = groups_users.user_id " +
+              "and groups_users.group_id in (?) " +
+              "and groups_users.user_id != ? " +
+              "and users.available = true " +
+              "order by name", user.groups, user.id])
+      end
+    
+      
     #   def find_mates                         
     #     mates = User.find(:all, :select => "distinct users.id, users.identity_url, users.name, users.email, users.time_zone, users.phone, " +
     #                           "users.photo_file_name, users.photo_content_type, users.photo_file_size",

@@ -1,6 +1,24 @@
 <div class="block">
 	<h3><%= control_label('option') %></h3>
 	<div class="content">
-		<p><%= link_to(control_label('create') , new_match_url) %></p>
+		<p><%= link_to(control_label('create') , new_message_url) %></p>
+		
+<% collection = Message.new %>
+<%= link_to label_name(:send_pre_match), :controller => 'messages', :action =>  'schedule', :id => collection.id %><br />
+<%= link_to label_name(:send_match), :controller => 'messages', :action => 'match', :id => collection.id  %><br />
+<%= link_to label_name(:send_scorecard), :controller => 'messages', :action => 'match', :id => collection.id  %><br />
+<%= link_to label_name(:send_message_to_group), :controller => 'messages', :action =>  'group', :id => collection.id %><br />
+<%= link_to label_name(:invitation_to_schedule), :controller => 'invitation', :action => 'schedule', :id => collection.id %><br />
+<%= link_to label_name(:send_message_to_group), :controller => 'messages', :action => 'group', :id => collection.id %><br />
+<%= link_to label_name(:invitation_to_group), :controller => 'invitation', :action => 'group', :id => collection.id %>
+
+
+
+
+
+	
+		
+		
+		
 	</div>
 </div>
