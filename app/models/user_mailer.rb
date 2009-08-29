@@ -61,22 +61,22 @@ class UserMailer < ActionMailer::Base
   #   body        mail
   #   content_type  "text/html"
   # end  
-  # 
-  # def message_match(mail)
-  #   subject     "#{I18n.t(:matches)} [#{mail[:group].name}] - #{mail[:schedule].concept}"
-  #   from        mail[:user].name +  '  <DoNotReply@haypista.com>'
-  #   recipients  mail[:email]
-  #   body        mail
-  #   content_type  "text/html"
-  # end 
-  # 
-  # def message_scorecard(mail)
-  #   subject     "#{I18n.t(:scorecards)} [#{mail[:group].name}]"
-  #   from        mail[:user].name +  '  <DoNotReply@haypista.com>'
-  #   recipients  mail[:email]
-  #   body        mail
-  #   content_type  "text/html"
-  # end
+  
+  def message_match(mail)
+    subject     "#{I18n.t(:matches)} [#{mail[:group].name}] - #{mail[:schedule].concept}"
+    from        mail[:user].name +  '  <DoNotReply@haypista.com>'
+    recipients  mail[:email]
+    body        mail
+    content_type  "text/html"
+  end 
+  
+  def message_scorecard(mail)
+    subject     "#{I18n.t(:scorecards)} [#{mail[:group].name}]"
+    from        mail[:user].name +  '  <DoNotReply@haypista.com>'
+    recipients  mail[:email]
+    body        mail
+    content_type  "text/html"
+  end
   
   def message_schedule(mail)
     subject     "#{I18n.t(:schedule)} [#{mail[:group].name}] - #{mail[:schedule].concept}"

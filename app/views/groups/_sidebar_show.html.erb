@@ -18,7 +18,13 @@
 		<li><%= link_to(the_label, join_team_path(:id => @group.id, :teammate => current_user.id), :confirm => the_confirmation) %></li>
 <% 
 	end 
-
+	
+	if current_user.is_sub_manager_of?(@group)
+%>
+	<li><%= link_to label_name(:send_scorecard), new_message_path(:scorecard_id => @group.schedules.first.id) %></li>
+<%
+    end
+ 
 	if current_user.is_manager_of?(@group)
 		the_label = label_with_name('create_schedule', @group.name)
 		the_confirmation = "#{ label_name(:destroy_group) } #{ label_name(:to) } #{@group.name}?" 

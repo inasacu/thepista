@@ -8,6 +8,14 @@
 <%= hidden_field :schedule, :id %>
 <% end %>
 
+<% unless @match %>
+<%= hidden_field :match, :id %>
+<% end %>
+
+<% unless @scorecard %>
+<%= hidden_field :scorecard, :id %>
+<% end %>
+
 
   <div class="group">
     <%= f.label :subject, label_name(:subject), :class => :label %>
@@ -30,12 +38,23 @@
 </div>
 
 <div class="group">
+	<% if @scorecard 
+		@schedule = @scorecard
+	%>
+	<%= render :partial => '/messages/recipient_roster', :locals => {:schedule => @schedule, :checked => check } %>
+	<%= hidden_field :scorecard, :id %>
+	
+	<% elsif @match %>
+	<%= render :partial => '/messages/recipient_roster', :locals => {:schedule => @schedule, :checked => check } %>
+	<%= hidden_field :match, :id %>
 
-	<% if @schedule %>
+	<% elsif @schedule %>
 	<%= render :partial => '/messages/recipient_roster', :locals => {:schedule => @schedule, :checked => check } %>
 	<%= hidden_field :schedule, :id %>
+	
 	<% elsif @recipient %>
 	<%= hidden_field :recipient, :id %>
+	
 	<% else %>
 	<%= render :partial => '/messages/recipient_list', :locals => {:recipients => @recipients, :checked => check } %>
 	<% end %>

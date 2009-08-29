@@ -11,6 +11,8 @@
 	
 	if current_user.is_sub_manager_of?(@group) %> 
 		<li><%= link_to label_name(:send_pre_match), new_message_path(:schedule_id => @schedule.id) unless @schedule.played? %></li>
+		<li><%= link_to label_name(:send_match), new_message_path(:match_id => @schedule.matches.first.id) if @schedule.played? %></li>
+		<li><%= link_to label_name(:send_scorecard), new_message_path(:scorecard_id => @schedule.id) %></li>
 <% 
 	end 
 	
@@ -19,7 +21,8 @@
 %> 
 		<li><%= link_to control_label('create'), new_schedule_path(:id => @schedule.group.id) %></li>
 		<li><%= link_to control_label('edit'), edit_schedule_path(@schedule) %></li>   
-		<!-- <li><%#= link_to(control_label('destroy'), destroy_schedule_path(:id => @schedule), :confirm => the_confirmation) if @schedule.not_played? %></li> -->
+		<li><%= link_to control_label('destroy'), schedule_path(@schedule), :method => :delete, 
+						:confirm => label_name(:are_you_sure) unless @schedule.played? %></li>
 		<li><%= link_to label_name(:matches), edit_match_path(@schedule.id) %></li>
 <% 
 	end 

@@ -4,12 +4,28 @@
 
 	<div class="content">  
 
-		<h2 class="title"><%#= control_action_label %><br />
-		
-			<%= "#{label_name(:message)} #{label_name(:to)} "  %>
-			&nbsp;<%= user_link @recipient if @recipient %>
-			&nbsp;<%= group_link @group if @group %>
-			&nbsp;<%= "( #{schedule_link @schedule} )" if @schedule %>
+		<h2 class="title">
+			<% if @scorecard %>
+		    <%= label_name(:send_scorecard) if @scorecard %>
+			<% elsif @match %>
+		    <%= label_name(:send_match) if @match %>
+			<% elsif @schedule %>
+			<%= label_name(:send_pre_match) unless @schedule.played? %>
+			<% else %>
+			<%= "#{label_name(:message)} "  %>
+			<% end %>
+			<%= " #{label_name(:to)} " %>
+			
+			<%= user_link @recipient if @recipient %>
+			<%= group_link @group if @group %>
+			
+			<%  if @scorecard %>
+			
+			<%  elsif @match %>
+				<%= "( #{schedule_link @schedule} )" %>
+			<% elsif @schedule %>
+				<%= "( #{schedule_link @schedule} )"  %>
+			<% end %>
 		</h2>
 
 		<div class="inner">

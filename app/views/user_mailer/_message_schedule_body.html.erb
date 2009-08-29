@@ -1,16 +1,16 @@
-<h2 style="margin:0; padding:0; font:17px arial; color:#069;"><%= "#{I18n.t(:description_schedule)}:    " %>&nbsp;&nbsp;<a href="<%= @schedule_url %>"><%= "#{@schedule.concept}" %></a></h2>
+<h2 style="margin:0; padding:0; font:17px arial; color:#069;"><%= I18n.t(:description_schedule) %>:&nbsp;&nbsp;<a href="<%= @schedule_url %>"><%= @schedule.concept %></a></h2>
 
-<p style="margin: 15px 0 2px 0"><strong><a href="<%= @schedule_url %>"><%= "#{@schedule.concept}" %></a></strong></p>
+<p style="margin: 15px 0 2px 0"><strong><a href="<%= @schedule_url %>"><%= @schedule.concept %></a></strong></p>
 
 
 <table width="100%" border="0" cellpadding="0" cellspacing="0" style="font: 13px arial;">
   <tr>
     <td style="width:1%; color:#999999; vertical-align: top;">&nbsp;</td>
-    <td style="width:99%">&nbsp;<%= "#{@message.subject}" unless @message.subject == "" %></td>
+    <td style="width:99%">&nbsp;<%= @message.subject unless @message.subject == "" %></td>
   </tr>
   <tr>
     <td style="width:1%; color:#999999; vertical-align: top;">&nbsp;</td>
-    <td style="width:99%">&nbsp;<%= "#{@message.body}" unless @message.body == "" %></td>
+    <td style="width:99%">&nbsp;<%= @message.body unless @message.body == "" %></td>
   </tr>
   <tr>
     <td style="width:1%; color:#999999; vertical-align: top;">&nbsp;</td>
@@ -18,7 +18,7 @@
   </tr>
   <tr>
     <td style="width:1%; color:#999999; vertical-align: top;">&nbsp;</td>
-    <td style="width:99%">&nbsp;<a href="<%= @reply_url %>"><%= " #{to(:reply)}" %></a></td>
+    <td style="width:99%">&nbsp;<a href="<%= @reply_url %>"><%= I18n.t(:reply) %></a></td>
   </tr>
 </table>
 

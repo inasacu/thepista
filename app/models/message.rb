@@ -9,6 +9,7 @@ class Message < ActiveRecord::Base
   belongs_to :conversation
         
   validates_presence_of   :subject, :body
+  # validate_presence_of :body,  @message.body.gsub!(/\r?\n/, "<br>")
    
   before_create   :assign_conversation
   after_create    :update_recipient_last_contacted_at,

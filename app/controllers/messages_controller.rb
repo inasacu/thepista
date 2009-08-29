@@ -69,6 +69,14 @@ class MessagesController < ApplicationController
       @schedule = Schedule.find(params[:schedule_id])
       @group = @schedule.group
 
+    elsif (params[:match_id])
+      @match = Match.find(params[:match_id])
+      @schedule = @match.schedule
+      @group = @schedule.group
+
+    elsif (params[:scorecard_id])
+        @scorecard = Schedule.find(params[:scorecard_id])
+        @group = @scorecard.group
     else
       @recipients = User.find_all_by_mates(current_user)
     end
@@ -147,15 +155,33 @@ class MessagesController < ApplicationController
       unless params[:schedule][:id].blank?
         @schedule = Schedule.find(params[:schedule][:id]) 
       end
+
+      unless params[:match][:id].blank?
+        @match = Match.find(params[:match][:id]) 
+      end
+
+      unless params[:scorecard][:id].blank?
+        @group = Schedule.find(params[:scorecard][:id]).group 
+        @scorecards = Scorecard.find(:all, 
+        :conditions =>["user_id in (?) and group_id in (?) and archive = 0", current_user.my_users, @group.id],
+        :order => 'ranking desc')
+      end
       
       respond_to do |format|
         recipient_messages(@message, @recipients) 
         
-        # add message to forum, topic, post
-        if @schedule 
+        if @scorecards
+          deliver_message_scorecard(@message, @scorecards, @recipients, @group) 
+
+        elsif @match
+          @match.schedule.create_schedule_details(current_user, true)
+          deliver_message_match(@message, @match.schedule, @recipients)
+
+        elsif @schedule 
           @schedule.create_schedule_details(current_user, true)
           deliver_message_schedule(@message, @schedule, @recipients) 
         end
+
 
         flash[:notice] = I18n.t(:message_sent)
         format.html { redirect_to messages_url and return}
@@ -175,7 +201,7 @@ class MessagesController < ApplicationController
   #   redirect_to :action => 'new'  and return     
 
   end
- 
+  
   def recipient_messages(message, recipients)
     parent_id = 0
     parent_id = message.parent_id if reply?
@@ -215,6 +241,41 @@ class MessagesController < ApplicationController
         )
       end
     end
+  end
+  
+  def deliver_message_match(message, schedule, recipients)
+    recipients.each do |recipient|
+
+      if recipient.message_notification?
+        UserMailer.deliver_message_match(
+        :user => current_user,
+        :email => recipient.email,
+        :message => message,
+        :schedule => schedule, :group => schedule.group,
+        :user_url => url_for(:controller => 'user', :action => 'show', :id => current_user.id),
+        :reply_url => url_for(:controller => 'message', :action => 'reply', :id => message.id),
+        :schedule_url => url_for(:controller => 'schedule', :action => 'show', :id => schedule.id),
+        :group_url => url_for(:controller => 'group', :action => 'show', :id => schedule.group.id)
+        )
+      end
+    end
+  end
+  
+  def deliver_message_scorecard(message, scorecards, recipients, group)  
+    recipients.each do |recipient|
+
+      if recipient.message_notification?
+        UserMailer.deliver_message_scorecard(
+        :user => current_user,
+        :email => recipient.email,
+        :message => message, :receiver => recipient, :scorecards => scorecards, :group => group,
+        :user_url => url_for(:controller => 'user', :action => 'show', :id => current_user.id),
+        :reply_url => url_for(:controller => 'message', :action => 'reply', :id => message.id),
+        :group_url => url_for(:controller => 'group', :action => 'show', :id => group.id),
+        :scorecard_url => url_for(:controller => 'scorecard', :action => 'index')
+        )     
+      end
+    end 
   end
   
   def destroy

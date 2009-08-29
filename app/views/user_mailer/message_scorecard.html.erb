@@ -3,7 +3,7 @@
 <%= render :partial => 'message_body', :locals => {:user => @user, :message => @message, :reply_url => @reply_url} %>
 
 
-<p style="margin: 15px 0 2px 0"><strong><a href="<%= @scorecard_url %>"><%= "#{I18n.t(:scorecard)}" %></a></strong></p>
+<p style="margin: 15px 0 2px 0"><strong><a href="<%= @scorecard_url %>"><%= I18n.t(:scorecard) %></a></strong></p>
 
 <%= render :partial => 'message_scoreboard', :locals => {:collection => @scorecards} %>
 
