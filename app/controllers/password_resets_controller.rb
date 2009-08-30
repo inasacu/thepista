@@ -27,7 +27,7 @@ class PasswordResetsController < ApplicationController
     @user.password_confirmation = params[:user][:password_confirmation]
     if @user.save
       flash[:notice] = I18n.t(:password_updated)
-      redirect_to account_url
+      redirect_to root_url
     else
       render :action => :edit
     end
