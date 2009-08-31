@@ -26,20 +26,20 @@ languages = ['es', 'en', 'fr', 'ge', 'it']
 
 <div class="group">
   <%= f.label :description, label_name('description'), :class => :label %>
-  <%= f.text_area :description, :class => 'text_field' %>
+  <%= f.text_area :description, :class => 'text_field' %><br />
   <span class="description"><%= label_name('description') %></span>
 </div>
 
 <div class="group">
   <%= f.label :language, label_name('language'), :class => :label %>
-  <%= select_tag "user[language]", options %>
+  <%= select_tag "user[language]", options %><br />
   <span class="description"><%= label_name('language', 'description') %></span>
 </div>
 
   
 <div class="group">
   <%= f.label :time_zone, label_name('time_zone'), :class => :label %>
-  <%= f.time_zone_select :time_zone, ActiveSupport::TimeZone.us_zones %>
+  <%= f.time_zone_select :time_zone, ActiveSupport::TimeZone.us_zones %><br />
   <span class="description"><%= label_name('time_zone', 'description') %></span>
 </div>
   
@@ -83,6 +83,6 @@ languages = ['es', 'en', 'fr', 'ge', 'it']
 
  <div class="group">
   <%= f.label :birth_at, label_name('birth_at'), :class => :label %>
-  <%= date_select :user, :birth_at, :start_year => (Time.now.year.to_i - 70), :end_year => Time.now.year.to_i, :class => 'text_field' %>
+  <%= date_select :user, :birth_at, :start_year => (Time.now.year.to_i - 70), :end_year => Time.now.year.to_i, :class => 'text_field' %><br />
   <span class="description"><%= label_name('birth_at', 'description') %></span>
 </div>

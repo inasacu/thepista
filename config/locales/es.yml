@@ -133,6 +133,7 @@ es:
      created_a_schedule: a añadido un evento   
      credit: Credito   
      credit_amount: A Recibir   
+     credit_amount_description:  Lo que recibes
      credits: Creditos  
      current_accounts: Cuentas Actuales   
      current_language: Español    
@@ -141,6 +142,7 @@ es:
      current_user: Usuario   
      debit: Deuda   
      debit_amount: A Pagar   
+     debit_amount_description: Lo que debes pagar
      debits: Deudas   
      available: Disponibilidad   
      message_notification: Recibir Correo   
@@ -295,7 +297,8 @@ es:
      from_Ultima_Hora: Pasate a convocado   
      game: Partido   
      gameday_at:  Dia del Partido
-     game_day: Encuentro   
+     game_day: Encuentro 
+     gameday_at_description:  Dia de la semana del Encuentro  
      game_lost: Derrota   
      game_notes: Notas de futbol
      game_played:  Partido Jugado
