@@ -130,7 +130,8 @@ class User < ActiveRecord::Base
       
       def self.previous(user, groups)
         if self.count(:conditions => ["id < ? and id in (select user_id from groups_users where group_id in (?))", user.id, groups] ) > 0
-          return find(:first, :select => "max(id) as id", :conditions => ["id < ?  and id in (select user_id from groups_users where group_id in (?))", user.id, groups]) 
+          return find(:first, :select => "max(id) as id", 
+          :conditions => ["id < ?  and id in (select user_id from groups_users where group_id in (?))", user.id, groups]) 
         end
           return user
       end 

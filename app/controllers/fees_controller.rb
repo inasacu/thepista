@@ -6,7 +6,7 @@ class FeesController < ApplicationController
       # if (params[:user_id])
       if current_user
         
-        @fee = Fee.paginate(:per_page => 10, :page => params[:page])
+        @fee = Fee.paginate(:page => params[:page], :per_page => FEES_PER_PAGE)
   
         # @user = User.find(params[:user_id]) 
         @user = current_user

@@ -18,8 +18,8 @@ class GroupsController < ApplicationController
   # end
   
   def team_list
-    # @group = Group.find(params[:id]) 
-    @users = @group.users 
+    @users = @group.users.paginate(:page => params[:page], :per_page => USERS_PER_PAGE)
+    @total = @group.users.count
   end
   
   def show

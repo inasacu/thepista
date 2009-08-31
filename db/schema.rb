@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20090927190225) do
+ActiveRecord::Schema.define(:version => 20091231190225) do
 
   create_table "blogs", :force => true do |t|
     t.string   "name"
@@ -425,8 +425,7 @@ ActiveRecord::Schema.define(:version => 20090927190225) do
     t.string   "email",                      :default => "",    :null => false
     t.string   "openid_identifier"
     t.string   "identity_url"
-    t.string   "language"
-    t.string   "country"
+    t.string   "language",                   :default => "es"
     t.string   "time_zone",                  :default => "UTC"
     t.string   "phone"
     t.string   "position"

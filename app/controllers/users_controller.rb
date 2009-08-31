@@ -87,7 +87,8 @@ class UsersController < ApplicationController
     @user.save do |result|
       if result
         flash[:notice] = I18n.t(:successful_update)
-        redirect_to root_url
+        redirect_back_or_default('/index')
+        return
       else
         render :action => 'edit'
       end

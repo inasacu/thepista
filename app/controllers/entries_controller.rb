@@ -6,8 +6,6 @@ class EntriesController < ApplicationController
     @user = @blog.user unless @blog.user.nil?
     @group = @blog.group unless @blog.group.nil?
     @entry = @blog.entries.first
-    @comments = Comment.find(:all, 
-                      :conditions => ["entry_id = ? and created_at > ?",  @entry.id, TIME_AGO_FOR_MOSTLY_ACTIVE], 
-                      :order => 'created_at DESC')
+    @comments = Comment.get_latest_comments(@entry)
   end
 end

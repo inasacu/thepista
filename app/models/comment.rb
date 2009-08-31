@@ -7,6 +7,10 @@ class Comment < ActiveRecord::Base
   validates_length_of     :body,            :within => BODY_RANGE_LENGTH
   
   # method section
+  def self.get_latest_comments(entry)
+    find(:all, :conditions => ["entry_id = ? and created_at > ?",  entry.id, TIME_AGO_FOR_MOSTLY_ACTIVE], :order => 'created_at DESC')
+  end
+  
   # record if group does not exist
   def self.create_group_comment(group, blog, entry) 
     self.create!(:group_id => group.id, :entry_id => entry.id, :body => '.....') if self.group_exists?(group)

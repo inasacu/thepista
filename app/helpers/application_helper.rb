@@ -101,17 +101,6 @@ module ApplicationHelper
   # def widget_url
   #   BASE_URL + '/openid/v2/widget'
   # end
-  # 
-  # # def will_paginate_with_i18n(collection, options = {}) 
-  # #   will_paginate_without_i18n(collection, options.merge(:previous_label => I18n.t(:previous), :next_label => I18n.t(:next))) 
-  # # end 
-  # # alias_method_chain :will_paginate, :i18n
-  # 
-  # 
-  # # Translated will_paginate
-  # def will_paginate_t(collection = nil, options = {})
-  #   will_paginate collection, {:previous_label =>I18n.t'will_paginate_previous'), :next_label =>I18n.t'will_paginate_next')}.merge(options)
-  # end
 
   
   # returns true / false if controller name passed is same is current
@@ -133,69 +122,6 @@ module ApplicationHelper
   def get_the_action
     return self.controller.action_name.singularize.gsub("_", " ")
   end
-  
-  # # return spaces to separate info on the site
-  # def view_spaces(value=2)
-  #   spaces = ""
-  #   value.times{ spaces += '&nbsp;' }
-  #   return spaces
-  # end
- 
-
- 
-  # def send_individual_email(id)
-  #   return link_to(t(:send_message), :controller => 'messages', :action => 'new', :id => id)
-  # end
-  # 
-  # def count_objects(objects)
-  #   @counter = 0
-  #   objects.each { |object|  @counter += 1 }
-  #   return @counter
-  # end
-  # 
-  # # send the object to this method and it will return a list of objects w/ link and commas
-  # def list_objects(objects)
-  #   @counter = objects.count
-  #   list_of_objects = ""
-  #   objects.each do |object|
-  #     list_of_objects += nav_show(object.name, object.class, object.id) + comma_separator(@counter-=1)
-  #   end
-  #   return list_of_objects
-  # end
-  # 
-  # def list_objects_globalite(objects)
-  #   @counter = count_objects(objects)
-  #   list_of_objects = ""
-  #   objects.each { |object|  list_of_objects += globalite_l(object.name) + comma_separator(@counter -= 1) }
-  #   return list_of_objects
-  # end
-  # 
-  # def list_objects_count(objects)
-  #   @counter = 0
-  #   objects.each { |object|  @counter += 1 }
-  #   list_objects_count = ""
-  #   objects.each do |object|
-  #     list_objects_count += nav_show(object.name, object.class, object.id) + comma_separator(@counter-=1)
-  #   end
-  #   return list_objects_count
-  # end
-  # 
-  # def list_objects_plain(objects)
-  #   @counter = count_objects(objects)
-  #   list_of_objects = ""
-  #   objects.each { |object|  list_of_objects += object.name + comma_separator(@counter -= 1) }
-  #   return list_of_objects
-  # end
-  # 
-  # # returns a comma and space if counter > 0
-  # def comma_counter(counter)
-  #   return ", " if (@counter -= 1) > 0
-  # end
-  # 
-  # def comma_separator(counter)
-  #   return ",  " if counter > 0
-  #   return ""
-  # end
   
   def nice_time_at(time_at)
     return I18n.l(time_at, :format => :time_at) unless time_at.nil?

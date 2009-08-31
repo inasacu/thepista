@@ -19,16 +19,19 @@
     <div class="inner">
 	
 	<%= render :partial => 'comments/new', 
-		:locals => { :blog_id => @entry.blog_id, :label => label_name(:what_are_you_practicing), :textfield => true } if @user == current_user %>
+		:locals => { :blog_id => @entry.blog_id, :label => label_name(:what_are_you_practicing), 
+					 :textfield => true } if @user == current_user %>
 
-	<%= render :partial => 'comments/comments' %>
+      <table class="table">
+		<%= render :partial => 'comments/comments' %>
+      </table>
 
 	<%= render :partial => 'comments/new', 
 		:locals => { :blog_id => @entry.blog_id, :label => label_name(:write_comment), :textfield => false } if @user != current_user %>
-
+		
     </div>
   </div>
 </div>
 
-<%# content_for :sidebar, render(:partial => '/users/sidebar_show') if @user -%>
-<%# content_for :sidebar, render(:partial => '/groups/sidebar_show') if @group -%>
+<% content_for :sidebar, render(:partial => '/users/sidebar_show') if @user -%>
+<% content_for :sidebar, render(:partial => '/groups/sidebar_show') if @group -%>

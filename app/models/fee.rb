@@ -21,7 +21,8 @@ class Fee < ActiveRecord::Base
     paginate(:all, 
              :conditions => ["debit_id = ? and debit_type = ? and season_payed = ? and archive = ?", debit.id, debit.class.to_s, season_payed, archive],
              :order => 'created_at DESC', 
-             :page => page)
+             :page => page,
+             :per_page => FEES_PER_PAGE)
   end
   
   def self.debit_amount(debit, debit_name='User', season_payed=false, archive=false)

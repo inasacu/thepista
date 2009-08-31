@@ -985,8 +985,6 @@ es:
      were_removed: han sido eliminados   
      what_are_you_practicing: Que actividad estas practicando?   
      whats_new: ¿Qué hay de nuevo en HayPista?   
-     will_paginate_next: "Siguiente »"
-     will_paginate_previous: "« Anterior"
      write_comment: Escribe un comentario...   
      writes: escribe   
      yes_openid: OpenIDs associados a esta cuenta   
@@ -1047,11 +1045,23 @@ es:
      last_login_ip:  IP de ultima entrada
      current_login_ip:  IP actual
      
-     spanish:  Español
-     english:  Ingles
-     french:   Frances
-     german:   Aleman
-     italian:  Italiano
+     # spanish:  Español
+     # english:  Ingles
+     # french:   Frances
+     # german:   Aleman
+     # italian:  Italiano
+     # 
+     # Español:  es
+     # Ingles:  en
+     # Frances:  fr
+     # Aleman:  ge
+     # Italiano: it
+     
+     es:  Español
+     en:  Ingles
+     fr:   Frances
+     ge:   Aleman
+     it:  Italiano
      
      # translations for views
      home_index: Inicio

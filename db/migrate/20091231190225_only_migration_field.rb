@@ -49,6 +49,7 @@ class OnlyMigrationField < ActiveRecord::Migration
     # add_column    :users,     :available_starts_at,           :string  
     # add_column    :users,     :available_ends_at,             :string  
     # add_column    :users,     :injury_until,                  :string
+    # add_column    :users,     :country,                       :string
     # 
     # add_column    :fees,       :match_id,                     :string
     # add_column    :fees,       :actual_fee,                   :string
@@ -109,6 +110,7 @@ class OnlyMigrationField < ActiveRecord::Migration
     # remove_column      :users,     :available_starts_at 
     # remove_column      :users,     :available_ends_at 
     # remove_column      :users,     :injury_until
+    # remove_column      :users,     :country
     
     # remove_column      :fees,       :match_id
     # remove_column      :fees,       :actual_fee
