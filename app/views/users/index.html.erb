@@ -13,7 +13,7 @@
 		<tr>             
 			<th class="first">&nbsp;</th>
 			<th><%=label_name(:name) %>&nbsp;/<br />
-				<%=label_name(:last_game_played) %></th>
+				<%=label_name(:last_login_at) %></th>
 			<th><%=label_name(:group) %></th>
 			<th><%=label_name(:time_zone) %></th>
 			<th><%=label_name(:member_since) %></th>
@@ -28,7 +28,7 @@
 					
 			  <td>
 				<%= user_link user %><br />
-				<%= nice_day_time user.last_login_at %>
+				<%= nice_day_date user.last_login_at %>
 			  </td>
 
 			  <td>
@@ -40,7 +40,7 @@
 			  </td>
 			  
 			  <td>
-				<%= nice_day_time user.created_at %> 
+				<%= nice_day_date user.created_at %> 
 			  </td>	
 			
 			  <td class="last">

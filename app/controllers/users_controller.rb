@@ -11,7 +11,6 @@ class UsersController < ApplicationController
   # GET /users
   # GET /users.xml
   def index
-    # @users = User.paginate(:per_page => 10, :page => params[:page])
     store_location
     @users = current_user.page_mates(params[:page])
   
@@ -71,7 +70,6 @@ class UsersController < ApplicationController
 
     @user.save do |result|
       if result
-        # flash[:notice] = control_action_label('notice')
         flash[:notice] = I18n.t(:successful_signup)
         redirect_to root_url
       else

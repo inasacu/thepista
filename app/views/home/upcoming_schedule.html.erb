@@ -1,5 +1,5 @@
 <%  
-unless current_schedules.empty? 
+unless upcoming_schedules.empty? 
 %> 
 
 <div class="block">
@@ -22,7 +22,7 @@ unless current_schedules.empty?
           <th class="last"><%#= label_name(:attend_schedule) %></th> -->
         </tr>
 		
-        <% @current_schedules.each do |schedule| 
+        <% @upcoming_schedules.each do |schedule| 
 			icon = schedule.sport.icon if !schedule.sport.icon.nil?
 			the_sport = "#{label_name(:rosters)}:  #{schedule.convocados.count}"
 		-%>		
@@ -57,7 +57,7 @@ unless current_schedules.empty?
         <% end -%>
 		
       </table>
-	  <%#= render :partial => 'shared/action_bar', :locals => { :schedule => @current_schedules } %>
+	  <%#= render :partial => 'shared/action_bar', :locals => { :schedule => @upcoming_schedules } %>
 	  
 
 	

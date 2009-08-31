@@ -1,6 +1,8 @@
 class GroupsController < ApplicationController
     before_filter :require_user
     
+    before_filter :get_group, :only => [:team_list, :show, :edit, :update, :set_available, :set_enable_comments, :destroy]
+    
   def index
     @groups = current_user.groups.paginate :page => params[:page], :order => 'name'  
   end
@@ -16,13 +18,13 @@ class GroupsController < ApplicationController
   # end
   
   def team_list
-    @group = Group.find(params[:id]) 
+    # @group = Group.find(params[:id]) 
     @users = @group.users 
   end
   
   def show
 	  store_location 
-    @group = Group.find(params[:id])
+    # @group = Group.find(params[:id])
   end
   
   def new
@@ -46,23 +48,54 @@ class GroupsController < ApplicationController
   end
   
   def edit
-    @group = Group.find(params[:id])
+    # @group = Group.find(params[:id])
   end
   
   def update
-    @group = Group.find(params[:id])
-    if @group.update_attributes(params[:group])
-      flash[:notice] = I18n.t(:successfully_updated)
+    # @group = Group.find(params[:id])
+    if @group.update_attributes(params[:group]) and Scorecard.calculate_group_scorecard(@group)      
+      flash[:notice] = I18n.t(:successful_update)
       redirect_to @group
     else
       render :action => 'edit'
     end
+  end    
+
+  def set_available
+    if @group.update_attribute("available", !@group.available)
+      @group.update_attribute("available", @group.available)  
+
+      flash[:notice] = I18n.t(:successful_update)
+      redirect_back_or_default('/index')
+    else
+      render :action => 'index'
+    end
+  end
+
+  def set_enable_comments
+    if @group.update_attribute("enable_comments", !@group.enable_comments)
+      @group.update_attribute("enable_comments", @group.enable_comments)  
+
+      flash[:notice] = I18n.t(:successful_update)
+      redirect_back_or_default('/index')
+    else
+      render :action => 'index'
+    end
   end
   
   def destroy
-    @group = Group.find(params[:id])
-    @group.destroy
+    # @group = Group.find(params[:id])
+    counter = 0
+    @group.schedules.each {|schedule| counter += 1 }
+    
+    # @group.destroy unless counter > 0
+    
     flash[:notice] = I18n.t(:successfully_destroyed)
     redirect_to group_url
+  end
+  
+private
+  def get_group
+    @group = Group.find(params[:id])
   end
 end

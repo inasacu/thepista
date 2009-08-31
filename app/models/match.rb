@@ -65,7 +65,7 @@ class Match < ActiveRecord::Base
                         "select id from schedules where group_id = #{group_id} and played = true and id not in " +
                         "(select max(id) as id from schedules where group_id = #{group_id} and played = true)) " +
                          "and (group_id = #{group_id} or invite_id = #{group_id}) " +
-                         "and user_id = #{user_id} and archive = false"],
+                         "and user_id = #{user_id} and type_id = 1 and archive = false"],
          :order => "id")
   end
     
@@ -73,7 +73,7 @@ class Match < ActiveRecord::Base
     find(:all, 
          :conditions => ["schedule_id in (select id from schedules where group_id = #{group_id} and played = true) " +
                          "and (group_id = #{group_id} or invite_id = #{group_id}) " +
-                         "and user_id = #{user_id} and archive = false"],
+                         "and user_id = #{user_id} and type_id = 1 and archive = false"],
          :order => "id")
   end
   

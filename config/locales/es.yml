@@ -8,7 +8,7 @@ es:
      accept_player: "ACEPTA al jugador al equipo"   
      account: cuenta   
      accounts: Cuentas   
-     actual_fee: Tasa Total   
+     # actual_fee: Tasa Total   
      add_email: "Acepto, Crea mi cuenta"   
      # add_moderator: Nuevo Moderador   
      add_openid: Nuevo OpenID a tu cuenta   
@@ -51,7 +51,7 @@ es:
      body: Contenido 
      body_description:  Contenido  
      calendar_language: es   
-     can_add_email: Puedes agregar tu correo para participar en la version beta.   
+     can_add_email: Puedes agregar tu correo para participar en la versión beta.   
      can_create_schedule: Añadir un Evento   
      cancel: Cancela   
      
@@ -241,7 +241,7 @@ es:
      email: Correo   
      email_time_zone: Zona Horaria para mandar correos antes de un encuentro.   
      enable_comments: Recibirir Aviso de Comentarios
-     enable_comments_description: Opcion para recibir aviso cuando se deja un comentario.
+     enable_comments_description: Opción para recibir aviso cuando se deja un comentario.
      ends_at: Finalización   
      ends_at_match: Finalización   
      ends_at_description: (¿Ha que hora termina el partido?)   
@@ -284,7 +284,7 @@ es:
      forum_comment_notification:  Recibir Notificación de comentario en tu Muro en tu cuenta de correo.
      message_notification:  Recibir correo en tu cuenta de correo.
      teammate_notification:  Recibir Notificación para unirse a tu equipo en tu cuenta de correo.
-     enable_comments:  Habilitar opcion para dejar comentarios en tu Muro.
+     enable_comments:  Habilitar opción para dejar comentarios en tu Muro.
      for:  para
      from: de   
      from_Ausente: Pasate a Ultima Hora   
@@ -651,7 +651,7 @@ es:
      previous_practices: Anteriores Entrenamientos
      pricing:  Precios
      privacy: privacidad   
-     private_beta: Ya tenemos tu información registrada.  Actualmente estamos en version de pruebas.  Encuanto podamos abriremos al publico.   
+     private_beta: Ya tenemos tu información registrada.  Actualmente estamos en versión de pruebas.  Encuanto podamos abriremos al publico.   
      private_email: Correo Oculto   
      private_option_description: (Marcar opción como privada a todos...)   
      private_phone: Ocultar el teléfono   
@@ -670,11 +670,11 @@ es:
      protect_your_privacy: "Protegemos tu privacidad. HayPista en ningún momento le ha proporcionado tu dirección de correo electrónico a ningún otro usuario de HayPista sin tu permiso. © 2007-2009, HayPista"  
      provider_not_supported: "provider is not supported, try another email address."   
      public:  Abierto al Publico
-     public_description:  Selecciona opcion si esta abierto al publico.
+     public_description:  Selecciona opción si esta abierto al publico.
      publish_in: Publica en HayPista   
-     published_date: Publication Date (in Spanish)   
+     # published_date: Publication Date (in Spanish)   
      ranking: Ranking   
-     ranking_full: Posicion del Jugador en la tabla   
+     ranking_full: Posición del Jugador en la tabla   
      really_archive: Estas seguro que quieres archivar    
      really_exit_festival: Estas seguro que te quieres desapuntar de   
      really_exit_group: Estas seguro que te quieres desapuntar de   
@@ -1016,7 +1016,7 @@ es:
      user_update_notice: Actualización éxitosa... 
      user_sessions_create_error:  Inicio de sesión con errores.
      user_sessions_create_notice:  Inicio de sesión con éxito.
-     user_sessions_destroy_notice: Finalizacion de sesión con éxito.
+     user_sessions_destroy_notice: Finalización de sesión con éxito.
      
      #####
      message_notification_description: "" 

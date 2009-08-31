@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20091231190225) do
+ActiveRecord::Schema.define(:version => 20090927190225) do
 
   create_table "blogs", :force => true do |t|
     t.string   "name"
@@ -56,10 +56,7 @@ ActiveRecord::Schema.define(:version => 20091231190225) do
   create_table "fees", :force => true do |t|
     t.string   "concept",      :limit => 50
     t.text     "description"
-    t.float    "actual_fee",                 :default => 0.0
     t.string   "payed",                      :default => "No"
-    t.string   "table_type",   :limit => 40
-    t.integer  "table_id"
     t.integer  "schedule_id"
     t.integer  "group_id"
     t.integer  "user_id"

@@ -7,8 +7,8 @@ class HomeController < ApplicationController
       # @feed = current_user.activities
       # @users = current_user.find_mates
       
-       @current_schedules ||= Schedule.current_schedules(session[:schedule_hide_time])
-      redirect_to :upcoming_schedule unless @current_schedules.empty? 
+       @upcoming_schedules ||= Schedule.upcoming_schedules(session[:schedule_hide_time])
+      redirect_to :upcoming_schedule unless @upcoming_schedules.empty? 
       return
     end    
     respond_to do |format|

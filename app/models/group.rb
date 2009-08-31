@@ -81,41 +81,22 @@ class Group < ActiveRecord::Base
   def has_schedule?
     self.schedules.count > 0
   end
-  
-  # def is_same_group(group)
-  #   (self == group)
-  # end
-  # 
+
   # def game_day
   #   self.schedules.find_by_sql(["select distinct dayname(starts_at) as name from schedules " +
   #                                "where group_id = #{self.id} or invite_id = #{self.id} " +
   #                                "group by dayname(starts_at) order by dayofweek(starts_at)"])
   # end
-  # 
-  # def available_users
-  #   return group_available_users(0)
-  # end
-  # 
-  # def group_available_users(user)
-  #     self.users.find(:all, :conditions => ['available = true', user.id], :order => 'users.name')      
-  # end
-  # 
-  # # def self.all_ordered
-  # #   find :all, :order => "name"
-  # # end
-  # 
-  # def schedule_played
-  #   self.schedules.find( :all, :conditions => [ 'group_id = ? and played = true', self.id ], :order => 'starts_at desc')
-  # end
-  # 
-  # def schedule_not_played
-  #   self.schedules.find( :all, :conditions => [ 'group_id = ? and played = false', self.id ])
-  # end
-
 
   def games_played
     games_played = 0
-    self.schedules.each {|schedule| games_played += 1 if schedule.played}
+    # self.schedules.each {|schedule| games_played += 1 if schedule.played}
+
+    @match = Match.find(:first, :select => "count(*) as total", 
+    :conditions => ["schedule_id in (select id from schedules where group_id = 1) and type_id = 1"],
+    :group => "user_id", :order => "count(*) desc")
+    
+    games_played = @match.total
     return games_played
   end
 

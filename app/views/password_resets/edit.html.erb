@@ -1,41 +1,44 @@
-<div class="block" id="block-signup"> 
+<div class="block">
 
-<h2><%= label_name(:password_change) %></h2> 
+<div class="secondary-navigation">
 
-<div class="content"> 
+	<ul>
+		<li class="<%= get_first_active('password_reset_edit') %>">
+			<%=link_to label_name(:password_change), :controller => 'password_resets', :action => 'edit' %>
+		</li>
+	</ul>
+
+	<div class="clear"></div>
+
+</div>
+
+<div class="content">  
+
+	<h2 class="title"><%= label_name(:password_change) %></h2>
+
+	<div class="inner">
 
 	<% form_for @user, :url => password_reset_path, :method => :put do |f| %>
 	<%= f.error_messages %>
-	
-		<div class="group">		
-		  <div class="left"> 		  
-			<%= f.label :password, field_label_name(:password) , :class => :label %>			
-		  </div>		  
-		  <div class="right"> 		  
-			<%= f.password_field :password, :class => 'text_field' %>			
-			<span class="description"><%= field_label_name(:password, 'description') %></span> 			
-		  </div> 		  
-		  <div class="clear"></div> 		  
-		</div>
-		
-		<div class="group">		
-		  <div class="left"> 		  
-			<%= f.label :password_confirmation, field_label_name(:password_confirmation) , :class => :label %>			
-		  </div>		  
-		  <div class="right"> 		  
-			<%= f.password_field :password_confirmation, :class => 'text_field' %>			
-			<span class="description"><%= field_label_name(:password_confirmation, 'description') %></span> 			
-		  </div> 		  
-		  <div class="clear"></div> 		  
-		</div>
 
-		
-		<div class="group navform"> 
-			<%= submit_tag label_name(:password_update_and_login), :class => "button" %>
-		</div> 
-	
+	<div class="group">
+		<%= label :password, label_name(:password) %>&nbsp;&nbsp;
+							<%= f.password_field :password, :class => 'text_field' %>
+	</div><br />
+
+	<div class="group">
+		<%= label :password_confirmation, label_name(:password_confirmation) %>&nbsp;&nbsp;
+							<%= f.password_field :password_confirmation, :class => 'text_field' %>
+	</div><br />
+
+	<div class="group navform"> 
+		<%= submit_tag label_name(:password_update_and_login), :class => "button" %>
+	</div>
+
 	<% end -%>
-  
-</div> 
 
-</div> 
+	</div>
+
+</div>
+
+</div>

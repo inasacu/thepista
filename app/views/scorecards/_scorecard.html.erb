@@ -21,8 +21,6 @@
 	<td class="jugados"><%= ranking_change %></td>
 	<td class="jugados"><%= scorecard.previous_ranking %></td>
 	<td class="puntos"><%= scorecard.points %></td>
-	<td class="jugados"><%= scorecard.played %></td>
-	<td class="jugados"><%= scorecard.assigned %></td>
 	<td class="ganados"><%= scorecard.wins %></td>
 	<td class="empatados"><%= scorecard.draws %></td>
 	<td class="perdidos"><%= scorecard.losses %></td>
@@ -31,6 +29,8 @@
 	<td class="encontra"><%= scorecard.goals_against %></td>
 	<td class="encontra"><%= scorecard.goals_for - scorecard.goals_against %></td>
 	<td class="puntos"><%= sprintf( "%0.00f", coeficient) %><%= "%" %></td>
+	<td class="jugados"><%= scorecard.played %></td>
+	<td class="jugados"><%= scorecard.assigned %></td>
 	<!-- <td class="last">&nbsp;</td> -->
 </tr>
 

@@ -18,19 +18,19 @@ class NewFeePaymentFields < ActiveRecord::Migration
     
     remove_column   :fees,        :match_id
     
-    Fee.find(:all).each do |fee|
-      fee.debit_amount = fee.actual_fee
-
-      unless fee.user_id.nil?
-        fee.debit_id = fee.user_id
-        fee.debit_type = 'User'
-      else
-        fee.debit_id = fee.group_id
-        fee.debit_type = 'Group'
-      end
-
-      fee.save!
-    end
+    # Fee.find(:all).each do |fee|
+    #   fee.debit_amount = fee.actual_fee
+    # 
+    #   unless fee.user_id.nil?
+    #     fee.debit_id = fee.user_id
+    #     fee.debit_type = 'User'
+    #   else
+    #     fee.debit_id = fee.group_id
+    #     fee.debit_type = 'Group'
+    #   end
+    # 
+    #   fee.save!
+    # end
     
     Type.find(1).update_attributes(:name => 'convocado')
     Type.find(2).update_attributes(:name => 'ultima_hora')

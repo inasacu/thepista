@@ -8,7 +8,7 @@ en:
      accept_player: "ACEPTA al jugador al equipo"   
      account: cuenta   
      accounts: Cuentas   
-     actual_fee: Tasa Total   
+     # actual_fee: Tasa Total   
      add_email: "Acepto, Crea mi cuenta"   
      # add_moderator: Nuevo Moderador   
      add_openid: Nuevo OpenID a tu cuenta   
@@ -44,13 +44,14 @@ en:
      back: Volver   
      beta_code: Codigo Beta   
      beta_login: Acceso a Beta requiere un codigo.   
-     between: Entre   
+     between: entre   
      birth_at:  Fecha de Nacimiento
      birth_description: (Escribe fecha de nacimiento...Solo se utiliza para calcular la edad media del equipo...) 
      blog_comment_notification:  Recibir Notificación de comentario en tu Muro en tu cuenta de correo.
-     body: Contenido   
+     body: Contenido 
+     body_description:  Contenido  
      calendar_language: es   
-     can_add_email: Puedes agregar tu correo para participar en la version beta.   
+     can_add_email: Puedes agregar tu correo para participar en la versión beta.   
      can_create_schedule: Añadir un Evento   
      cancel: Cancela   
      
@@ -65,10 +66,9 @@ en:
      change_group: Cambia de Equipo   
      change_language: Cambia el idioma    
      change_openid: Ocultar tus cuentas de OpenID   
-     # change_private_phone: Ocultar Teléfono de   
      change_rejected: El cambio que ha pedido ha sido rechazado.  
      change_rejected_explained: Es posible que no tuvieses acceso a esa zona, lo sentimos!	 
-     change_roster_status: Pasate a   
+     change_roster_status: Pasa a   
      change_wo_access: Es posible que hayas intentado cambiar algo a lo que no tenias acceso.   
      changed_description: cambio en la descripción   
      changes_in_roster_status: Ha cambiado su convocatoria   
@@ -133,7 +133,7 @@ en:
      created_a_schedule: a añadido un evento   
      credit: Credito   
      credit_amount: A Recibir   
-     credits: Creditos   
+     credits: Creditos  
      current_accounts: Cuentas Actuales   
      current_language: Español    
      current_time: La Hora   
@@ -241,7 +241,7 @@ en:
      email: Correo   
      email_time_zone: Zona Horaria para mandar correos antes de un encuentro.   
      enable_comments: Recibirir Aviso de Comentarios
-     enable_comments_description: Opcion para recibir aviso cuando se deja un comentario.
+     enable_comments_description: Opción para recibir aviso cuando se deja un comentario.
      ends_at: Finalización   
      ends_at_match: Finalización   
      ends_at_description: (¿Ha que hora termina el partido?)   
@@ -284,12 +284,12 @@ en:
      forum_comment_notification:  Recibir Notificación de comentario en tu Muro en tu cuenta de correo.
      message_notification:  Recibir correo en tu cuenta de correo.
      teammate_notification:  Recibir Notificación para unirse a tu equipo en tu cuenta de correo.
-     enable_comments:  Habilitar opcion para dejar comentarios en tu Muro.
+     enable_comments:  Habilitar opción para dejar comentarios en tu Muro.
      for:  para
      from: de   
      from_Ausente: Pasate a Ultima Hora   
      from_Convocado: Pasate a Ausente   
-     from_fee: Tasas a   
+     
      from_message: De   
      from_payment: Pago a   
      from_Ultima_Hora: Pasate a convocado   
@@ -444,6 +444,9 @@ en:
      messages: Mensajes   
      missing_information: Falta información   
      mistyped_url: "Posiblemente, habras escrito la dirección incorrectamente o es posible que la pagina ya no exista."   
+     
+     moderator_updated:  Actualización de moderador.
+     
      modified_available: Modificada la disponibilidad de jugar de   
      modified_email: Modificada la disponibilidad de recibir correos a   
      modified_openid: Modificada la opción de ocultar tus cuentas de OpenID   
@@ -509,7 +512,7 @@ en:
      no_announcement: No tienes anuncios internos   
      no_change_group: Ningun Cambio de Equipo   
      no_classified: No tienes anuncios   
-     No_Convocado: No Convocado   
+     no_convocado: No Convocado   
      no_credit: No tienes Creditos   
      no_debit: No tienes Deudas   
      no_description: Ningun Detalle   
@@ -517,7 +520,7 @@ en:
      no_festival: No tienes Acondiciónamientos   
      no_group: No tienes equipo   
      no_invitation: No tienes invitaciones   
-     No_Jugado: No Jugado   
+     no_jugado: No Presentado   
      no_language: Actualmente no tiene un idioma preferido   
      no_marker: No tienes un centro deportivo donde jugar   
      no_message: No tienes mensajes.   
@@ -583,7 +586,8 @@ en:
      password_reset:  Restablecer contraseña
      password_reset_instructions:  "Danos tu cuenta de correo y te mandamos las instrucciones para restablecer tu contraseña."	 
      password_resets_new:  Restablecer contraseña
-     payed_fee: Tasa Pagada   
+     payed:  Tasa Pagada  
+     payed_description:  Han sido pagadas las Tasas? 
      payment: Pago  
      payments: Pagos   
      pending: Pendiente   
@@ -595,18 +599,19 @@ en:
      petition_join_team_accept:  Acepto
      petition_join_team_decline: Rechazo
      petition_no:  Ninguna Petición para mostrar.
-     petition_to_join_group: Quieres apuntar a 
+     petition_to_join_group: Petición para unirse a 
      petition_pending: Peticiones Pendiente   
-     petition_to_join: Petición para unirse a tu equipo   
+     petition_to_join: Petición para unirse a 
      petitions: Peticiones 
-     petition_to_join_approved: Petición aprovada para unirse a   
-     petition_to_leave_approved: Petición aprovada para desapuntarse de
+     petition_to_join_approved: Petición aprovada para unirse.
+     petition_to_join_declined:  Petición cancelada para unirse.
+     petition_to_leave_approved: Petición aprovada para desapuntarse.
                  
      no_petition_to_join_group: No hay peticiones para unirse a un equipo! 
      deleted_petition_by: Petición ha sido borrada por   
      denial_petition_to_join: Petición denegada para unirse a 
      cancel_petition: Cancelar Petición   
-     cancel_petition_to_join: Petición cancelada para unirse a  
+     # cancel_petition_to_join: Petición cancelada para unirse a  
      cancel_a_petition: ¿Cancelar petición para unirte al equipo? 
      you_petition_to_join: Petición para unirte a un equipo  
      team_petition: Solicitud de Equipo
@@ -644,8 +649,9 @@ en:
      previous_schedules: Anteriores Eventos
      previous_practice: Anterior Entrenamiento
      previous_practices: Anteriores Entrenamientos
+     pricing:  Precios
      privacy: privacidad   
-     private_beta: Ya tenemos tu información registrada.  Actualmente estamos en version de pruebas.  Encuanto podamos abriremos al publico.   
+     private_beta: Ya tenemos tu información registrada.  Actualmente estamos en versión de pruebas.  Encuanto podamos abriremos al publico.   
      private_email: Correo Oculto   
      private_option_description: (Marcar opción como privada a todos...)   
      private_phone: Ocultar el teléfono   
@@ -664,11 +670,11 @@ en:
      protect_your_privacy: "Protegemos tu privacidad. HayPista en ningún momento le ha proporcionado tu dirección de correo electrónico a ningún otro usuario de HayPista sin tu permiso. © 2007-2009, HayPista"  
      provider_not_supported: "provider is not supported, try another email address."   
      public:  Abierto al Publico
-     public_description:  Selecciona opcion si esta abierto al publico.
+     public_description:  Selecciona opción si esta abierto al publico.
      publish_in: Publica en HayPista   
-     published_date: Publication Date (in Spanish)   
-     ranking: "#"   
-     ranking_full: Ranking   
+     # published_date: Publication Date (in Spanish)   
+     ranking: Ranking   
+     ranking_full: Posición del Jugador en la tabla   
      really_archive: Estas seguro que quieres archivar    
      really_exit_festival: Estas seguro que te quieres desapuntar de   
      really_exit_group: Estas seguro que te quieres desapuntar de   
@@ -698,7 +704,7 @@ en:
      reply: Contestar   
      reply_all: Contestar a todos   
      reply_message: Mensaje de Respuesta   
-     reply_to_this_message: Responde a este mensaje   
+     reply_to_this_message: Responde a este mensaje  
      request_email: Nueva Petición   
      request_invitation: Pide una Invitación   
      restored_message: Mensaje restaurado   
@@ -778,7 +784,7 @@ en:
      send_venue: Manda el URL del Centro Deportivo   
      sent_a_message: Ha mandado un mensaje   
      sent_invitation: Has mandado una invitación de HayPista a los siguientes   
-     sent_message: Mensajes Enviados   
+        
      separate_by: separa con una comma   
      server_not_available: "Lo sentimos, el servidor de OpenID server no se pudo encontrar." 
      
@@ -789,8 +795,6 @@ en:
      set_teammate_notification:  Quieres recibir Notificaciones de miembros que quieren unirse al equipo de
      set_message_notification:  Quieres recifir Notificaciones de correos en la cuenta de correo de
      set_blog_comment_notification:  Quieres recibir Notificaciones de comentarios dejados en el muro de
-
-         
              
      settings:  Opciones 
      share: Compartir   
@@ -847,9 +851,14 @@ en:
      Store: Tienda   
      style: estilo_espanol   
      subject: Asunto  
+     subject_description:  Titulo del Asunto
+     sub_manager_updated:  Actualización de sub manager.
+     
      subscription_at: Finalización para Convocarse el Abonado  
      subscription_at_match: Finalización para Convocarse el Abonado   
-     subscription_at_description: (¿Ha que hora termina la opción para apuntarse a un partido el abonado...(ej- 1 dia antes del partido))   
+     subscription_at_description: (¿Ha que hora termina la opción para apuntarse a un partido el abonado...(ej- 1 dia antes del partido)) 
+     subscription_updated: Actualización de jugador abonado.
+           
      successful_login: Inicio de sesión con éxito 
      successful_logged_in: Has accedido satisfactoriamente...
      successful_logged_out:  Has cerrado la session...
@@ -880,7 +889,7 @@ en:
      title: Título   
      to: a   
      to_email: Email del Amigo   
-     to_fee: Tasas de   
+    
      to_join: Únirse a   
      to_join_email: para unirse   
      to_join_festival: Unirte a un Festivo   
@@ -996,7 +1005,7 @@ en:
      your_join_notification: Petición para un equipo.   
      your_on_roster: Estas Convocado -   
      your_openid: Tus cuentas de OpenID   
-     your_schedule: En tu horario el evento seria a las   
+     your_schedule: "En tu horario, el evento seria el "   
      your_sent_beta: "Muchas gracias por tu interés, tu correo ha sido añadido para recibir una invitación."   
      your_sent_invitation: Tu invitación ha sido enviada a   
      your_sent_message: Tu mensaje ha sido enviada   
@@ -1007,7 +1016,7 @@ en:
      user_update_notice: Actualización éxitosa... 
      user_sessions_create_error:  Inicio de sesión con errores.
      user_sessions_create_notice:  Inicio de sesión con éxito.
-     user_sessions_destroy_notice: Finalizacion de sesión con éxito.
+     user_sessions_destroy_notice: Finalización de sesión con éxito.
      
      #####
      message_notification_description: "" 
@@ -1053,6 +1062,11 @@ en:
      entries_show:  Opciones del Muro
      entries_show_option:  Opciones del Muro
      
+     
+     fee_from: Tasas a
+     fee_from_description: De quien son las Tasas
+     fee_to: Tasas de 
+     fee_to_description:  A quien son las Tasas
      fees_create:  Nueva Matrícula
      fees_index:   Matrícula
      fees_index_option: Opciones de Matrícula
@@ -1064,7 +1078,12 @@ en:
      fees_show:  Mostrar Matrícula
      
      home_option:  Opciones de Inicio
-          
+     home_upcoming_schedule:  Próximos Eventos
+
+     payment_description:  Quien ha hecho el pago.
+     payment_full:  Pago Total
+     payment_greater_than:  Pago Superior
+     payment_less_than:  Pago Inferior
      payments_create:  Nuevo Pago
      payments_index:   Pagos
      payments_index_option: Opciones de Pago
@@ -1097,7 +1116,15 @@ en:
      markers_edit: Modificar Centro Deportivo
      markers_option:  Opciones de Centros Deportivos
      markers_show: Mostrar Centro Deportivo
-
+     
+     matches_edit:  Resultados
+     
+     message_options: Opciones de Mensaje  
+     message_reply:  Responde
+     message_reply_to: Responde a este mensaje
+     message_send:  Manda Mensaje
+     message_sent: Mensajes Enviados
+     message_trash:  Borrar Mensaje
      messages_create:  Nuevo Mensaje
      messages_inbox:  Mensajes Recibidos
      messages_index:  Mensajes
@@ -1109,6 +1136,7 @@ en:
      messages_sent:  Mensajes Mandados
      messages_show: Mostrar Mensaje
      messages_trash:  Mensajes Descartados
+     
      
      practices:  Entrenamientos
      practices_create:  Nuevo Entrenamiento
@@ -1142,7 +1170,8 @@ en:
      scorecards_index:   Clasificaciones
      scorecards_manager_option:  Requiere responsable de equipo para ver mas opciones.
      scorecards_option:  Opciones de Clasificaciones
-          
+     scorecards_less_games:  ( * ) Jugadores con menos partidos
+     scorecards_legend:  Leyenda
      # add_moderator: Nuevo Moderador   
      # add_openid: Nuevo OpenID a tu cuenta   
      # add_sub_manager: Nuevo Sub-Manager   

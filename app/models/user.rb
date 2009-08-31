@@ -18,7 +18,6 @@ class User < ActiveRecord::Base
     :s3_credentials => "#{RAILS_ROOT}/config/s3.yml",
     :url => "/assets/users/:id/:style.:extension",
     :path => ":assets/users/:id/:style.:extension",
-    # :path => ":attachment/:id/:style.:extension",
     :bucket => 'thepista_desarrollo', 
     :default_url => "avatar.png"  
 
@@ -70,8 +69,6 @@ class User < ActiveRecord::Base
       
       
     after_create    :create_user_blog_details, :deliver_signup_notification
-    
-
     
     # method section
     def avatar
@@ -145,15 +142,6 @@ class User < ActiveRecord::Base
         return user
       end
       
-      
-      # def self.previous(user, groups)
-      #     find_by_sql(["select max(user_id) as id from groups_users where user_id < ? and group_id in (?)", user.id, groups])
-      # end 
-      # 
-      # def self.next(user, groups)
-      #     find_by_sql(["select min(user_id) as id from groups_users where user_id > ? and group_id in (?)", user.id, groups])
-      # end
-      
     def has_pending_petition?(current_user)
       current_user == self and (!current_user.requested_managers.empty? or !current_user.pending_managers.empty?)
     end
@@ -205,25 +193,6 @@ class User < ActiveRecord::Base
     def can_modify?(user)
       user == self or user.has_role?('maximo')
     end
-    # 
-    # 
-    #   def beta?
-    #     !beta_code.nil?
-    #   end
-    # 
-    #   def unavailable?
-    #     available == 'No'
-    #   end
-    # 
-    #   def is_phone_private?
-    #     !private_phone && !phone.blank?
-    #   end
-    
-    
-      # def is_user?(user)
-      #   self == user
-      # end
-  
     
     ## messsage methods
     def received_messages(page = 1)
@@ -290,89 +259,32 @@ class User < ActiveRecord::Base
       conditions = [sql, { :id => id }]
       Message.count(:all, :conditions => conditions) > 0
     end
-      
-      
-    #   # match availability
-    #   def self.available_schedule(schedule)
-    #     find(:all, 
-    #       :conditions => ["id in (select user_id from matches where schedule_id = ? and available = 0)",
-    #         schedule.id],
-    #       :order => 'name')
-    #   end
-    #   
-    #   def self.not_available_schedule(schedule)
-    #     find(:all, 
-    #       :conditions => ["id in (select user_id from matches where schedule_id = ? and available = 1)",
-    #         schedule.id],
-    #       :order => 'name')
-    #   end
-    #   
-    #   def self.maybe_available_schedule(schedule)
-    #     find(:all, 
-    #       :conditions => ["id in (select user_id from matches where schedule_id = ? and available = 1)",
-    #         schedule.id],
-    #       :order => 'name')
-    #   end
+ 
+    def self.find_all_by_mates(user)
+      find_by_sql(["select distinct users.* from users, groups_users " +
+        "where users.id = groups_users.user_id " +
+        "and groups_users.group_id in (?) " +
+        "and groups_users.user_id != ? " +
+        "and users.available = true " +
+        "order by name", user.groups, user.id])
+    end
 
-    # 
-    #   # def is_same_user(user)
-    #   #   (self.id.to_i == user.id.to_i)
-    #   # end
-    # 
-    #   def not_in_group?
-    #     GroupsUsers.find(:first, :conditions => ["user_id = ? or user_id = ?", self.id, self.invited_by_id]).nil?
-    #   end
-    # 
-    #   def self.names
-    #     find(:all, :select => "name").map(&:name)
-    #   end
-    # 
-    #   def self.available
-    #     find(:all, :conditions => "available != 'No'")
-    #   end
-  
+    def page_mates(page = 1)  
 
-
-
-    #   #  queries predefined
-    #   def find_group_mates(group)
-    #     @recipients = User.find_by_sql(["select distinct users.* from users, groups_users " +
-    #           "where users.id = groups_users.user_id " +
-    #           "and groups_users.group_id in (?) " +
-    #           "and groups_users.user_id != ? " +
-    #           "and users.available = true " +
-    #           "order by name", group.id, self.id])
-    #   end
-    
-      def self.find_all_by_mates(user)
-        find_by_sql(["select distinct users.* from users, groups_users " +
-              "where users.id = groups_users.user_id " +
-              "and groups_users.group_id in (?) " +
-              "and groups_users.user_id != ? " +
-              "and users.available = true " +
-              "order by name", user.groups, user.id])
-      end
-    
-      
-    #   def find_mates                         
-    #     mates = User.find(:all, :select => "distinct users.id, users.identity_url, users.name, users.email, users.time_zone, users.phone, " +
-    #                           "users.photo_file_name, users.photo_content_type, users.photo_file_size",
-    #                           :joins => "left join groups_users on users.id = groups_users.user_id",
-    #                           :conditions => ["groups_users.group_id in (?)", self.groups],
-    #                           :group => "users.id, users.identity_url, users.name, users.email, users.time_zone, users.phone, " +
-    #                                                 "users.photo_file_name, users.photo_content_type, users.photo_file_size")
-    #                                                 # ,
-    #                                                 #                           :order => "group_id, users.name")
-    #   end
-      
-    def page_mates(page = 1)                                 
       mates = User.paginate(:all, 
-      :select => "distinct users.*",
-      :joins => "left join groups_users on users.id = groups_users.user_id",
-      :conditions => ["groups_users.group_id in (?) or users.id = ?", self.groups, self.id],
-      :order => "name",
-      :page => page, 
-      :per_page => USERS_PER_PAGE)
+                          :conditions => ["id in (select distinct user_id from groups_users where group_id in (?))", self.groups],
+                          :order => "name",
+                          :page => page, 
+                          :per_page => USERS_PER_PAGE)
+      
+      if mates.count == 0
+        mates = User.paginate(:all, 
+                            :conditions => ["id = ?", self.id],
+                            :order => "name",
+                            :page => page, 
+                            :per_page => USERS_PER_PAGE)
+      end
+      return mates
     end
 
       def self.user_and_invite(user)

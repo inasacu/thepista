@@ -1,4 +1,7 @@
-<% can_modify = (@user == current_user or current_user.has_role?(:manager)) %>
+<% 
+	can_modify = (@user == current_user) 
+	is_user_manager = (current_user.has_role?(:manager))
+%>
 
 <div class="block">
 
@@ -81,7 +84,7 @@
 %>
 	<p>
 	  <b><%= label_name(:available) %>:</b>
-		<%= can_modify ? link_to(the_label, set_available_path(:id => @user.id), :confirm => the_confirmation) : the_label %>
+		<%= is_user_manager ? link_to(the_label, set_available_path(:id => @user.id), :confirm => the_confirmation) : the_label %>
 	</p>
 
 <% 
@@ -145,5 +148,3 @@
 </div>
 
 <% content_for :sidebar, render(:partial => 'sidebar_show') -%>
- 
-<%#= render :partial => '/users/petition', :locals => {:user => @user} %>

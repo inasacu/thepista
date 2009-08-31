@@ -1,3 +1,7 @@
+<% 
+	is_user_manager = (current_user.is_manager_of?(@group))
+%>
+
 <div class="block">
 
   <%= render :partial => 'secondary_navigation' %>   
@@ -77,14 +81,24 @@
           <b><%= label_name(:player_limit) %>:</b>
           <%= @group.player_limit %>
         </p>
-
-
-        <p>
-          <b><%= label_name(:enable_comments) %>:</b>
-          <%= label_name(@group.enable_comments, 'value') %>
-        </p>
-
-  
+<% 
+	the_label = h(label_name(@group.available, 'value'))
+	the_confirmation = label_with_name('set_available', "#{@group.name}?") 
+%>
+	<p>
+	  <b><%= label_name(:available) %>:</b>
+		<%= is_user_manager ? link_to(the_label, set_group_available_path(:id => @group.id), :confirm => the_confirmation) : the_label %>
+	</p>
+			
+<% 
+	the_label = h(label_name(@group.enable_comments, 'value'))
+	the_confirmation = label_with_name('enable_comments', "#{@group.name}?") 
+%>
+	<p>
+	  <b><%= label_name(:enable_comments) %>:</b>
+		<%= is_user_manager ? link_to(the_label, set_group_enable_comments_path(:id => @group.id), :confirm => the_confirmation) : the_label %>
+	</p>
+			 
     </div>
   </div>
 </div>

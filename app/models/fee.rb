@@ -9,13 +9,13 @@ class Fee < ActiveRecord::Base
   
   # validations
   validates_presence_of       :concept
-  validates_numericality_of   :actual_fee    
+  validates_numericality_of   :debit_amount    
 
   # variables to access
-  attr_accessible :concept, :description, :actual_fee, :payed, :table_type 
+  attr_accessible :concept, :description, :payed, :table_type 
   attr_accessible :table_id, :schedule_id, :group_id, :user_id
   attr_accessible :debit_amount, :debit_id, :debit_type
-  attr_accessible :credit_amount, :credit_id, :credit_type, :manager_id
+  attr_accessible :credit_id, :credit_type, :manager_id
   
   def self.get_debit_fees(debit, season_payed=false, archive=false, page=1)
     paginate(:all, 
@@ -72,11 +72,12 @@ class Fee < ActiveRecord::Base
       if self.schedule_user_exists?(schedule, user)
         self.create!(:concept => schedule.concept, :schedule_id => schedule.id, :user_id => user.id, 
                      :description => schedule.description, :group_id => schedule.group_id, 
-                     :actual_fee => schedule.fee_per_game, :debit_amount => schedule.fee_per_game,
-                     :debit_id => user.id, :debit_type => 'User')
+                     :debit_amount => schedule.fee_per_game,
+                     :debit_id => user.id, :debit_type => 'User',
+                     :credit_id => schedule.group_id, :credit_type => 'Group')
       else
         self.find_by_schedule_id_and_user_id(schedule, user).update_attributes!(
-                      :actual_fee => schedule.fee_per_game, :debit_amount => schedule.fee_per_game)
+                      :debit_amount => schedule.fee_per_game)
       end
 
     end
@@ -85,19 +86,20 @@ class Fee < ActiveRecord::Base
   def self.create_group_fees(schedule)
     if self.schedule_group_exists?(schedule)
       self.create!(:concept => schedule.concept, :schedule_id => schedule.id, :group_id => schedule.group_id, 
-                  :actual_fee => schedule.fee_per_pista, :debit_amount => schedule.fee_per_game,
-                  :debit_id => group.id, :debit_type => 'Group')
+                  :debit_amount => schedule.fee_per_game,
+                  :debit_id => group.id, :debit_type => 'Group',
+                  :credit_id => group.marker_id, :credit_type => 'Marker')
     else
       self.find(:first, 
                 :conditions => ["schedule_id = ? and group_id = ? and user_id is null", schedule.id, schedule.group.id]).update_attributes(
-                :actual_fee => schedule.fee_per_pista, :debit_amount => schedule.fee_per_pista)
+                :debit_amount => schedule.fee_per_pista)
     end
   end
   
 	def self.create_schedule_group_user_fee(schedule, user)
         self.create!(:concept => schedule.concept, :schedule_id => schedule.id, 
 				:user_id => user.id, :group_id => group.id, :user_fee => true, 
-				:actual_fee => schedule.fee_per_game) if self.schedule_group_user_exists(schedule, user)
+				:debit_amount => schedule.fee_per_game) if self.schedule_group_user_exists(schedule, user)
 	end
 	
   # return ture if the schedule user group conbination is nil

@@ -35,6 +35,9 @@ ActionController::Routing::Routes.draw do |map|
   map.set_message_notification    'users/set_message_notification',  	:controller => 'users',    		    :action => 'set_message_notification'
   map.set_comment_notification    'users/set_comment_notification',  	:controller => 'users',    		    :action => 'set_comment_notification'
   
+  map.set_group_enable_comments   'groups/set_enable_comments',  		  :controller => 'groups',    		    :action => 'set_enable_comments'
+  map.set_group_available         'groups/set_available',  		        :controller => 'groups',    		    :action => 'set_available'
+  
   map.match_team            'matches/:id/set_team',                   :controller => 'matches',         :action => 'set_team'
   map.match_status          'matches/:id/set_status/:type',           :controller => 'matches',         :action => 'set_status'
   map.reply_message         'messages/:id/reply',                     :controller => 'messages',        :action => 'reply'

@@ -6,16 +6,12 @@ class SchedulesController < ApplicationController
   before_filter :get_match_type, :only => [:team_roster, :team_last_minute, :team_no_show, :team_unavailable]
   before_filter :has_manager_access, :only => [:edit, :update, :destroy]
   
-  def index    
-    @schedules = Schedule.paginate(:all, 
-      :conditions => ["starts_at >= ? and group_id in (select group_id from groups_users where user_id = ?)", Time.now, current_user.id],
-      :order => 'group_id, starts_at', :page => params[:page])
+  def index
+    @schedules = Schedule.current_schedules(current_user, params[:page])
   end
 
   def list    
-    @schedules = Schedule.paginate(:all, 
-    :conditions => ["starts_at < ? and group_id in (select group_id from groups_users where user_id = ?)", Time.now, current_user.id],
-    :order => 'group_id, starts_at desc', :page => params[:page])
+    @schedules = Schedule.previous_schedules(current_user, params[:page])
     render :template => '/schedules/index'       
   end
   

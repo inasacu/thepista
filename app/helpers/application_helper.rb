@@ -229,8 +229,8 @@ module ApplicationHelper
     return I18n.l(time_at, :format => :day_time_wo_year) unless time_at.nil?
   end
 
-  def current_schedules
-    @current_schedules ||= Schedule.current_schedules(session[:schedule_hide_time])
+  def upcoming_schedules
+    @upcoming_schedules ||= Schedule.upcoming_schedules(session[:schedule_hide_time])
   end
   
   def current_messages

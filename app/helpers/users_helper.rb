@@ -161,9 +161,13 @@ module UsersHelper
   end	
   
   def image_link_small(user)
+    link_to(image_tag(user.avatar, options={:style => "height: 30px; width: 30px;"}), user_path(user))
+  end
+
+  def image_link_medium(user)
     link_to(image_tag(user.avatar, options={:style => "height: 55px; width: 55px;"}), user_path(user))
   end
-  
+   
   def user_list(objects)
     list_of_objects = ""
     objects.each do |object|

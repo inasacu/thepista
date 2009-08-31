@@ -22,7 +22,7 @@
 
         <p>
           <b>Actual_fee:</b>
-          <%= @fee.actual_fee %>
+          <%= @fee.debit_amount %>
         </p>
 
         <p>
@@ -31,13 +31,23 @@
         </p>
 
         <p>
-          <b>Table_type:</b>
-          <%= @fee.table_type %>
+          <b>debit_type:</b>
+          <%= @fee.debit_type %>
         </p>
 
         <p>
-          <b>Table_id:</b>
-          <%= @fee.table_id %>
+          <b>debit_id:</b>
+          <%= @fee.debit_id %>
+        </p>
+
+        <p>
+          <b>credit_type:</b>
+          <%= @fee.credit_type %>
+        </p>
+
+        <p>
+          <b>credit_id:</b>
+          <%= @fee.credit_id %>
         </p>
 
         <p>

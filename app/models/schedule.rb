@@ -114,6 +114,18 @@ class Schedule < ActiveRecord::Base
     self.group.second_team
   end
   
+  def self.current_schedules(user, page = 1)
+     self.paginate(:all, 
+        :conditions => ["starts_at >= ? and group_id in (select group_id from groups_users where user_id = ?)", Time.now, user.id],
+        :order => 'group_id, starts_at', :page => page, :per_page => SCHEDULES_PER_PAGE)
+  end
+
+  def self.previous_schedules(user, page = 1)
+     self.paginate(:all, 
+     :conditions => ["starts_at < ? and group_id in (select group_id from groups_users where user_id = ?)", Time.now, user.id],
+     :order => 'group_id, starts_at desc', :page => page, :per_page => SCHEDULES_PER_PAGE)
+  end
+  
   def self.max(schedule)
       find(:first, :conditions => ["group_id = ? and played = true", schedule.group_id], :order => "starts_at desc")    
   end
@@ -132,7 +144,7 @@ class Schedule < ActiveRecord::Base
     return schedule
   end
         
-  def self.current_schedules(hide_time)
+  def self.upcoming_schedules(hide_time)
     with_scope :find => {:conditions=>{:starts_at => ONE_WEEK_FROM_TODAY, :played => false}, :order => "starts_at"} do
       if hide_time.nil?
         find(:all)
