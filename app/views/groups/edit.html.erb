@@ -7,10 +7,10 @@
 		<h2 class="title"><%= control_action_label %></h2>
 
 		<div class="inner">
-		
-      <% form_for @group, :url => group_path(@group), :html => { :class => :form } do |f| -%>
-        <%= render :partial => "form", :locals => {:f => f} %>
-      <% end -%>
+
+			<% form_for(@group, :html => { :multipart => true, :class => :form  }) do |f| -%>
+			<%= render :partial => "form", :locals => {:f => f} %>
+			<% end -%>
 
 		</div>
 

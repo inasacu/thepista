@@ -6,12 +6,12 @@ class Scorecard < ActiveRecord::Base
   def self.calculate_group_scorecard(group)
     total_schedules_played = group.games_played
 
-    if total_schedules_played > 1
+    if total_schedules_played.to_i > 1
       previous_to_group_scorecard(group)  
       update_group_user_ranking(group, true)
     end
 
-    if total_schedules_played > 0
+    if total_schedules_played.to_i > 0
       all_to_group_scorecard(group)  
       update_group_user_ranking(group, false)
     end

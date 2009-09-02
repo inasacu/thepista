@@ -2,7 +2,6 @@
 
 	<%= render :partial => 'secondary_navigation' %>
 
-	<%#= render :partial => 'shared/content', :locals => {:content_title => :edit_user} %>  
 	<% content_for :content, render(:partial => 'shared/content', :locals => {:content_title => :edit_user}) -%>
 
 	<div class="content">   
@@ -11,11 +10,8 @@
 
 		<div class="inner">
 
-			<% form_for(@user, :html => { :multipart => true ,  :class => :form }) do |f| %>
-			<%# form_for @user, :url => user_path(@user.id), :html => { :class => :form } do |f| -%>
-
+			<% form_for(@user, :html => { :multipart => true ,  :class => :form }) do |f| -%>
 			<%= render :partial => "form", :locals => {:f => f} %>
-
 			<% end -%>
 
 		</div>

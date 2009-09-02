@@ -52,8 +52,17 @@ class GroupsController < ApplicationController
   end
   
   def update
-    # @group = Group.find(params[:id])
-    if @group.update_attributes(params[:group]) and Scorecard.calculate_group_scorecard(@group)      
+    @original_group = Group.find(params[:id])
+    
+    if @group.update_attributes(params[:group]) 
+      if (@original_group.points_for_win != @group.points_for_win) or 
+         (@original_group.points_for_lose != @group.points_for_lose) or 
+         (@original_group.points_for_draw != @group.points_for_draw)
+         
+         Scorecard.calculate_group_scorecard(@group)  
+         # flash[:notice] = I18n.t(:successful_update)    
+      end
+      
       flash[:notice] = I18n.t(:successful_update)
       redirect_to @group
     else
