@@ -582,7 +582,7 @@ es:
      password_change: Cambiar Contraseña
      password_confirmation: Confirma la Contraseña	
      password_confirmation_description: Necesita 5 characteres. 
-     password_instructions: "Las instrucciones para restablecer su contraseña han sido enviadas a su cuenta de correo. Por favor, revisa tu cuenta de correo."
+     password_instructions: "Las instrucciones para restablecer su contraseña han sido enviadas a su cuenta de correo. Por favor, revisalo."
      password_issue:  "Lo sentimos, pero no hemos podido localizar su cuenta.  Si tiene problemas intente copiar y pegar la URL desde tu cuenta de correo al navegador o reiniciar el proceso de restablecimiento la contraseña."
      password_updated:    Su contraseña ha sido actualizada.
      password_update_and_login: Actualizar mi contraseña y entra.
@@ -1068,6 +1068,7 @@ es:
      
      # translations for views
      home_index: Inicio
+     home_search:  Buscar
           
      entries_teammate: Mis Compañeros de Equipo
      entries_my_wall: Mi Muro
@@ -1222,6 +1223,7 @@ es:
      users_new:  Nuevo Jugador
      users_no:  Ningun Jugador para mostrar.
      users_petition:  Petición del Jugador
+     users_search:  Busqueda de Jugadores
      users_show: Mostrar Jugador
      users_my_wall: Mi Muro
      users_option:  Opciones de Jugadores

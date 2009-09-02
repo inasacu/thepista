@@ -1,7 +1,8 @@
 <div id="user-navigation">
 
     <p>
-      <%#= "#{pluralize User.logged_in.count, 'user'} currently logged in" %><br />
+      <%#= "#{pluralize User.logged_in.count, 'user'} currently logged in" %>
+		<%#= (current_user.current_login_at >= (Time.now - 1.minutes)) %><br />
     </p>
 	
 <ul>
