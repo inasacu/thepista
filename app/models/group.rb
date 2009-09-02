@@ -58,13 +58,14 @@ class Group < ActiveRecord::Base
 
   after_create  :create_group_blog_details, :create_group_marker, :create_group_scorecard
 
-  # method section
-  def self.count
+  # # method section
+    
+  def object_counter(objects)
     @counter = 0
-    self.each { |object|  @counter += 1 }
+    objects.each { |object|  @counter += 1 }
     return @counter
   end
-  
+
   def all_the_managers
     ids = []
     self.the_managers.each {|user| ids << user.user_id }

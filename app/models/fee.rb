@@ -88,18 +88,18 @@ class Fee < ActiveRecord::Base
     if self.schedule_group_exists?(schedule)
       self.create!(:concept => schedule.concept, :schedule_id => schedule.id, :group_id => schedule.group_id, 
                   :debit_amount => schedule.fee_per_game,
-                  :debit_id => group.id, :debit_type => 'Group',
-                  :credit_id => group.marker_id, :credit_type => 'Marker')
+                  :debit_id => schedule.group_id, :debit_type => 'Group',
+                  :credit_id => schedule.group.marker_id, :credit_type => 'Marker')
     else
       self.find(:first, 
-                :conditions => ["schedule_id = ? and group_id = ? and user_id is null", schedule.id, schedule.group.id]).update_attributes(
+                :conditions => ["schedule_id = ? and group_id = ? and user_id is null", schedule.id, schedule.group_id]).update_attributes(
                 :debit_amount => schedule.fee_per_pista)
     end
   end
   
 	def self.create_schedule_group_user_fee(schedule, user)
         self.create!(:concept => schedule.concept, :schedule_id => schedule.id, 
-				:user_id => user.id, :group_id => group.id, :user_fee => true, 
+				:user_id => user.id, :group_id => schedule.group_id, :user_fee => true, 
 				:debit_amount => schedule.fee_per_game) if self.schedule_group_user_exists(schedule, user)
 	end
 	

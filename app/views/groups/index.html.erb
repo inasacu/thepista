@@ -8,7 +8,7 @@
 
     <div class="inner">
 	
-	<% if @groups.count > 0 %>
+	<% if object_counter(@groups) > 0 %>
 	
       <table class="table">
 	
@@ -46,8 +46,8 @@
 			  </td>
                 
           <td>
-			<%= I18n.t(:has_group_users, :count => group.users.count) %><br />
-			<%= I18n.t(:has_group_schedules, :count => group.schedules.count) %>
+			<%= I18n.t(:has_group_users, :count => object_counter(group.users)) %><br />
+			<%= I18n.t(:has_group_schedules, :count => object_counter(group.schedules)) %>
           </td>
 
           <td>

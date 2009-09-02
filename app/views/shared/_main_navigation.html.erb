@@ -1,6 +1,9 @@
 <% 
-display ||= true
-display = current_user.has_group? if current_user 
+display ||= false
+
+if current_user 
+	display = current_user.has_group? 
+end
 %>
 
 <div id="main-navigation">
@@ -9,9 +12,9 @@ display = current_user.has_group? if current_user
 	<li class="<%= get_control_first('home') %>"><%= link_to(label_name(:home) , '/') %></li>
 	
 	<% if current_user %>
-		<li class="<%= get_control_active('user') %><%#= get_control_active('entry') %>">
+		<li class="<%= get_control_active('user') %>">
 					<%= link_to(label_name(:users), users_url) %></li>	
-		<li class="<%= get_control_active('group') %><%#= get_control_active('entry') %>">
+		<li class="<%= get_control_active('group') %>">
 					<%= link_to(label_name(:groups), groups_url) %></li>
 				
 		<% if display %>	
@@ -40,8 +43,7 @@ display = current_user.has_group? if current_user
 	<% end %>
 	
 <% if development? 
-	the_screen ||= ""
-	the_screen = "#{get_the_controller}_#{get_the_action}" if development?
+	the_screen = "#{get_the_controller}_#{get_the_action}" 
 %>
 	<!-- <li class="active"><%#= link_to the_screen, '/' %></li> -->
 	<% end -%>
