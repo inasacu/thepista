@@ -8,7 +8,6 @@ module ApplicationHelper
     "HayPista" 
   end
   
-  
   # easy and clean link_to w/ <li>
   def list_link_with_active(name, options = {}, html_options = {}, &block)
     opts = {}
@@ -68,17 +67,19 @@ module ApplicationHelper
   end
 
   def get_collection_label(collection)
-    if count_objects(collection) > 0
+    if object_counter(collection) > 0
       return control_action_label
     end
     return control_label('no')    
   end
   
-  def count_objects(objects)
+  def object_counter(objects)
     @counter = 0
     objects.each { |object|  @counter += 1 }
     return @counter
   end
+  
+  
   
   ############################### original source
   # 

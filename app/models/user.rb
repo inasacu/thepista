@@ -269,6 +269,12 @@ class User < ActiveRecord::Base
         "and users.available = true " +
         "order by name", user.groups, user.id])
     end
+    
+    def object_counter(objects)
+      @counter = 0
+      objects.each { |object|  @counter += 1 }
+      return @counter
+    end
 
     def page_mates(page = 1)  
 
@@ -278,7 +284,7 @@ class User < ActiveRecord::Base
                           :page => page, 
                           :per_page => USERS_PER_PAGE)
       
-      if mates.count == 0
+      if object_counter(mates) == 0
         mates = User.paginate(:all, 
                             :conditions => ["id = ?", self.id],
                             :order => "name",

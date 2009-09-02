@@ -1,8 +1,6 @@
 <% 
 display ||= true
 display = current_user.has_group? if current_user 
-the_screen ||= ""
-the_screen = "#{get_the_controller}_#{get_the_action}" if development?
 %>
 
 <div id="main-navigation">
@@ -41,7 +39,12 @@ the_screen = "#{get_the_controller}_#{get_the_action}" if development?
 	
 	<% end %>
 	
-	<li class="active"><%= link_to the_screen, '/' %></li>
+<% if development? 
+	the_screen ||= ""
+	the_screen = "#{get_the_controller}_#{get_the_action}" if development?
+%>
+	<!-- <li class="active"><%#= link_to the_screen, '/' %></li> -->
+	<% end -%>
 </ul>
 
 <div class="clear"></div>
