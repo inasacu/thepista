@@ -1,2 +1,9 @@
 log/*.log
 db/*.sqlite3
+tmp/**/*
+*.tmproj
+db/schema.rb
+db/schema.sql
+.DS_Store
+doc/api
+doc/app
