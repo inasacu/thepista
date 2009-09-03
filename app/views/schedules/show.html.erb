@@ -56,12 +56,12 @@
 
         <p>
           <b><%= label_name(:starts_at) %>:</b>
-          <%= nice_day_of_week @schedule.starts_at %>
+          <%= nice_day_of_week(@schedule.starts_at) %>
         </p>
 
         <p>
           <b><%= label_name(:ends_at) %>:</b>
-          <%= nice_day_of_week @schedule.ends_at %>
+          <%= nice_day_of_week(@schedule.ends_at) %>
         </p>
 
         <% unless @schedule.convocados.empty? %>
@@ -119,12 +119,12 @@
 
         <p>
           <b><%= label_name(:subscription_at) %>:</b>
-          <%=h nice_day_of_week @schedule.subscription_at %>
+          <%=h nice_day_of_week(@schedule.subscription_at) %>
         </p>
 
         <p>
           <b><%= label_name(:non_subscription_at) %>:</b>
-          <%=h nice_day_of_week @schedule.non_subscription_at %>
+          <%=h nice_day_of_week(@schedule.non_subscription_at) %>
         </p>
 
         <p>

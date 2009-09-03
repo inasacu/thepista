@@ -47,17 +47,17 @@
 
 	 <p>
 	  <b><%= label_name(:last_request_at) %>:</b>
-	  <%=h nice_day_date @user.last_request_at %>
+	  <%=h nice_day_date(@user.last_request_at) %>
 	</p> 
 
 	<p>
 	  <b><%= label_name(:last_login_at) %>:</b>
-	  <%=h nice_day_of_week @user.last_login_at %>
+	  <%=h nice_day_of_week(@user.last_login_at) %>
 	</p>
 
 	<p>
 	  <b><%= label_name(:current_login_at) %>:</b>
-	  <%=h nice_day_of_week @user.current_login_at %>
+	  <%=h nice_day_of_week(@user.current_login_at) %>
 	</p>
 
 	<p>
