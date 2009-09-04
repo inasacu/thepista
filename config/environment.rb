@@ -52,6 +52,7 @@ end
 
 ActionMailer::Base.smtp_settings = {
    :tls => true,
+   :enable_starttls_auto => true,
    :address => "smtp.gmail.com",
    :port => "587",
    :domain => "haypista.com",
@@ -59,7 +60,6 @@ ActionMailer::Base.smtp_settings = {
    :user_name => "haypista@gmail.com",
    :password => "4xbk28drmp" 
  }
-
 
 # this code from http://gravityblast.com/
 # shows form error messages inside the auto generated forms 

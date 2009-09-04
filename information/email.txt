@@ -45,3 +45,21 @@ http://douglasfshearer.com/blog/gmail-smtp-with-ruby-on-rails-and-actionmailer
 #    :password => "GOOGLEPASSWORD" 
 #  }
 
+
+
+issues w/ Net::SMTPAuthenticationError (530 5.7.0 Must issue a STARTTLS command first. 32sm818017aga.30
+
+http://www.justinball.com/2009/06/25/sending-email-with-ruby-on-rails-2-3-2-and-gmail/
+
+ActionMailer::Base.smtp_settings = {
+   :enable_starttls_auto => true,
+   :address        => 'smtp.gmail.com',
+   :port           => 587,
+   :domain         => 'your.domain.com',
+   :authentication => :plain,
+   :user_name      => 'login@your.domain.com',
+   :password       => 'some_password'
+ }
+
+
+
