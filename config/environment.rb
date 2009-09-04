@@ -51,14 +51,14 @@ Rails::Initializer.run do |config|
 end
 
 ActionMailer::Base.smtp_settings = {
-  :address  => "mail.haypista.com",
-  :port  => 26, 
-  :domain  => "haypista.com",
-  :user_name  => "support@haypista.com",
-  :password  => "m9$@4_4_$9d@",
-  :authentication  => :login
-}
-
+   :tls => true,
+   :address => "smtp.gmail.com",
+   :port => "587",
+   :domain => "haypista.com",
+   :authentication => :plain,
+   :user_name => "haypista@gmail.com",
+   :password => "4xbk28drmp" 
+ }
 
 
 # this code from http://gravityblast.com/

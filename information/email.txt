@@ -1,0 +1,47 @@
+
+
+http://github.com/collectiveidea/action_mailer_optional_tls/tree/master
+
+http://douglasfshearer.com/blog/gmail-smtp-with-ruby-on-rails-and-actionmailer
+
+
+
+# ActionMailer::Base.smtp_settings = {
+#   :address  => "mail.haypista.com",
+#   :port  => 26, 
+#   :domain  => "haypista.com",
+#   :user_name  => "support@haypista.com",
+#   :password  => "m9$@4_4_$9d@",
+#   :authentication  => :login
+# }
+
+
+
+# ActionMailer::Base.server_settings = {
+#   :address  => "smtp.gmail.com",
+#   :port  => 587, 
+#   :domain => 'haypista.com'
+#   :user_name  => "support@haypista.com",
+#   :password  => "m9$@4_4_$9d@",
+#   :authentication  => :plain
+# }
+
+#ActionMailer::Base.server_settings = {
+#  :address => "mail.haypista.com",
+#  :port    => 26,
+#  :domain  => "haypista.com",
+#  :authentication => :login,
+#  :user_name => "support@haypista.com",
+#  :password => "m9$@4_4_$9d@"
+#}
+
+# ActionMailer::Base.smtp_settings = {
+#    :tls => true,
+#    :address => "smtp.gmail.com",
+#    :port => "587",
+#    :domain => "YOURDOMAIN",
+#    :authentication => :plain,
+#    :user_name => "GOOGLEUSERNAME",
+#    :password => "GOOGLEPASSWORD" 
+#  }
+

@@ -6,7 +6,9 @@ es:
      about: "sobre"   
      accept: "Acepto"   
      accept_player: "ACEPTA al jugador al equipo"   
-     account: cuenta   
+     account: cuenta
+     account_activation:  "Visita esta dirección URL para activar tu cuenta:"
+     account_created:  Tu cuenta ha sido creada.
      accounts: Cuentas   
      # actual_fee: Tasa Total   
      add_email: "Acepto, Crea mi cuenta"   
