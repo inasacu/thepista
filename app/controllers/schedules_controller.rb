@@ -5,6 +5,8 @@ class SchedulesController < ApplicationController
   before_filter :get_group, :only =>[:new]
   before_filter :get_match_type, :only => [:team_roster, :team_last_minute, :team_no_show, :team_unavailable]
   before_filter :has_manager_access, :only => [:edit, :update, :destroy]
+  before_filter :has_member_access, :only => :show
+  before_filter :excess_players, :only => [:show, :team_roster, :team_last_minute, :team_no_show, :team_unavailable]
   
   def index
     @schedules = Schedule.current_schedules(current_user, params[:page])
@@ -47,7 +49,7 @@ class SchedulesController < ApplicationController
         @schedule.jornada += 1
         @schedule.starts_at = @lastSchedule.starts_at + 7.days
         @schedule.ends_at = @lastSchedule.ends_at + 7.days
-        @schedule.reminder_at = @lastSchedule.starts_at - 2.days
+        @schedule.reminder = @lastSchedule.reminder
         @schedule.subscription_at = @lastSchedule.starts_at - 2.days
         @schedule.non_subscription_at = @lastSchedule.starts_at - 1.day
       end
@@ -101,6 +103,14 @@ class SchedulesController < ApplicationController
     end
   end
   
+  def has_member_access
+    unless current_user.is_member_of?(@schedule.group)
+      flash[:warning] = I18n.t(:unauthorized)
+      redirect_back_or_default('/index')
+      return
+    end
+  end
+  
   def get_schedule
     @schedule = Schedule.find(params[:id])
     @group = @schedule.group
@@ -133,6 +143,12 @@ class SchedulesController < ApplicationController
       return
     end
     
+  end
+  
+  def excess_players
+    unless @schedule.convocados.empty? or @schedule.player_limit == 0
+      flash[:warning] = I18n.t(:schedule_excess_player) if (@schedule.convocados.count > @schedule.player_limit)  
+    end
   end
 end
 

@@ -92,7 +92,6 @@ es:
      comment_saved: Comentarios guardados!!!   
      concept: Concepto
      concept_description:  Concepto   
-     confirmation_password: Clave Confirmación   
      contact: Contacto   
      contact: Contacto   
      convocado: Convocado   
@@ -118,6 +117,7 @@ es:
      create_name: Nuevo Nombre   
      create_note: Nueva Nota   
      create_payment: Nuevo Pago   
+     create_practice:  Nuevo Entrenamiento
      create_profile: Nuevo perfil   
      create_reminder: Nuevo Recordatorio   
      create_role: Nueva Responsabilidad   
@@ -149,8 +149,7 @@ es:
      available: Disponibilidad   
      message_notification: Recibir Correo   
      default_reliable: Fiable   
-     delete_activity: Borrar actividad   
-     delete_this_message: Borra este mensaje   
+     delete_activity: Borrar actividad    
      deleted: se ha borrado correctamente.   
        
      deny: Rechazo   
@@ -280,7 +279,6 @@ es:
      fire_from_group: Desapunta de   
      flag: es.png   
      follow: Sigue 
-     forgot_password:  ¿Has olvidado tu contraseña?	 
      forum: Notas de    
      forward: Adelante   
      Friday: Viernes 
@@ -579,10 +577,11 @@ es:
      or_use: ...o utiliza   
      overview: descripción general   
      page_does_not_exist: La pagina que querias no exite.   
-     participate_schedule: Participa en el Evento   
-     password: Contraseña
+     participate_schedule: Participa en el Evento  
+      
+     password: Clave
      password_change: Cambiar Contraseña
-     password_confirmation: Confirma la Contraseña	
+     password_confirmation: Clave Confirmación	
      password_confirmation_description: Necesita 5 characteres. 
      password_instructions: "Las instrucciones para restablecer su contraseña han sido enviadas a su cuenta de correo. Por favor, revisalo."
      password_issue:  "Lo sentimos, pero no hemos podido localizar su cuenta.  Si tiene problemas intente copiar y pegar la URL desde tu cuenta de correo al navegador o reiniciar el proceso de restablecimiento la contraseña."
@@ -591,6 +590,17 @@ es:
      password_reset:  Restablecer contraseña
      password_reset_instructions:  "Danos tu cuenta de correo y te mandamos las instrucciones para restablecer tu contraseña."	 
      password_resets_new:  Restablecer contraseña
+     
+     password_forgotten:  ¿Has olvidado tu contraseña?	
+     confirmation_password: Clave Confirmación
+     
+     password_request_reset:  "La solicitud para restablecer tu contraseña se ha hecho."
+     password_request_ignore:  "Si no has realizado hecho esta solicitud, simplemente ignore este mensaje."
+     password_request_made:  "Si usted ha hecho esta solicitud haga clic en el enlace de abajo:"
+           
+     request_url_does_not_work:  "Si el URL no funciona, trate de copiarlo y pegarlo en tu navegador."
+     request_url_issue:   "Si continúas teniendo problemas por favor no dude en contactar con nosotros."
+     
      payed:  Tasa Pagada  
      payed_description:  Han sido pagadas las Tasas? 
      payment: Pago  
@@ -696,6 +706,7 @@ es:
      remember_me: Permanecer conectado. 
      # remember me: Permanecer conectado 
      reminder: Recordatorio 
+     reminder_description:  Quieres un recordatorio del Evento
      reminder_at:  Recordatorio
      reminder_at_description:  (¿Ha que hora te mandamos un recordatorio?)  
      reminder_at_match: Recordatorio   
@@ -924,7 +935,7 @@ es:
      unauthorized:  No Autorizado.
      unavailable: No Disponible
      unsuccessful_logged_in:  No se ha accedido correctamente  
-     untrash: Recuperar   
+
      upcoming: próximos eventos   
      upcoming_festival: Próximos Acondiciónamientos   
      upcoming_schedule: Próximo Evento   
@@ -1093,6 +1104,7 @@ es:
      fees_option:  Opciones de las Matriculas
      fees_show:  Mostrar Matrícula
      
+     home_information:  Información
      home_option:  Opciones de Inicio
      home_upcoming_schedule:  Próximos Eventos
 
@@ -1135,12 +1147,14 @@ es:
      
      matches_edit:  Resultados
      
+     message_delete: Borra este mensaje
      message_options: Opciones de Mensaje  
      message_reply:  Responde
      message_reply_to: Responde a este mensaje
      message_send:  Manda Mensaje
      message_sent: Mensajes Enviados
      message_trash:  Borrar Mensaje
+     message_untrash: Recuperar   
      messages_create:  Nuevo Mensaje
      messages_inbox:  Mensajes Recibidos
      messages_index:  Mensajes
@@ -1153,7 +1167,9 @@ es:
      messages_show: Mostrar Mensaje
      messages_trash:  Mensajes Descartados
      
-     
+     practice_attend:  Asistir al Entrenamiento
+     practice_options:  Opciones de Entrenamiento
+     practice_unattend:  No asistir al entrenamiento
      practices:  Entrenamientos
      practices_create:  Nuevo Entrenamiento
      practices_index:  Entrenamiento
@@ -1180,6 +1196,7 @@ es:
      schedules_show: Detalles Del Evento
      schedule_ausentes:  Ningun Ausente para mostrar.
      schedule_convocados:  Ningun Convocado para mostrar.
+     schedule_excess_player:  Demasiados Jugadores Convocados
      schedule_ultima_hora:   Ninguno en Ultima Hora para mostrar.
      schedule_no_disponible:  Ninguno no Disponible para mostrar.
 

@@ -1,11 +1,13 @@
-<%= link_to image_tag("icons/email_edit.png", :class => 'actioner'), 
+<%#= link_to image_tag("icons/email_edit.png"), 
             reply_message_path(message),
-            :title => "Reply to this message" %>
+            :title => label_name(:message_reply_to) %>
+
 <% unless message.trashed?(current_user) -%>
-	<%= link_to image_tag("icons/email_delete.png", :class => 'actioner'), message_path(message), 
+	<%= link_to image_tag("icons/email_delete.png"), message_path(message), 
 													:method => :delete, 
-													:confirm => %(#{t :delete_this_message }?),
-													:title => t(:delete_this_message) %>
+													:confirm => %(#{label_name(:message_delete) }?),
+													:title => label_name(:message_delete) %>
 <% else -%>	
-	<%= link_to label_name(:untrash), :controller => 'messages', :action => 'undestroy', :id => message %>
+	<%= link_to image_tag("icons/email_add.png"), untrash_message_path(message),
+	            		:title => label_name(:message_untrash) %>
 <% end -%>

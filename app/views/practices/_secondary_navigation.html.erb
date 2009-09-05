@@ -14,9 +14,9 @@ if the_action.include?(get_the_action) or the_controller.include?(get_the_contro
 		the_label = "#{label_name(:forum)} #{@practice.concept}"
 %>
 	<li class="<%= get_active('practice_show') %>">  <%= practice_link @practice %>
-	<li class="<%= get_active('topics_show') %>"><%= link_to(the_label, forum_path(@practice.forum)) %></li>			
-	<li class="<%= get_active('practice_rosters') %>"><%= link_to(label_name(:rosters), team_roster_path(@practice)) %></li>
-	<li class="<%= get_active('practice_no_show') %>"><%= link_to(label_name(:no_shows), team_no_show_path(@practice)) unless @practice.played? %></li>
+	<li class="<%= get_active('topics_show') %>"><%#= link_to(the_label, forum_path(@practice.forum)) %></li>			
+	<li class="<%= get_active('practice_rosters') %>"><%#= link_to(label_name(:rosters), team_roster_path(@practice)) %></li>
+	<li class="<%= get_active('practice_no_show') %>"><%#= link_to(label_name(:no_shows), team_no_show_path(@practice)) unless @practice.played? %></li>
 <% 
 	end
 end

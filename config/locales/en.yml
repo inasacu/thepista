@@ -6,7 +6,9 @@ en:
      about: "sobre"   
      accept: "Acepto"   
      accept_player: "ACEPTA al jugador al equipo"   
-     account: cuenta   
+     account: cuenta
+     account_activation:  "Visita esta dirección URL para activar tu cuenta:"
+     account_created:  Tu cuenta ha sido creada.
      accounts: Cuentas   
      # actual_fee: Tasa Total   
      add_email: "Acepto, Crea mi cuenta"   
@@ -90,7 +92,6 @@ en:
      comment_saved: Comentarios guardados!!!   
      concept: Concepto
      concept_description:  Concepto   
-     confirmation_password: Clave Confirmación   
      contact: Contacto   
      contact: Contacto   
      convocado: Convocado   
@@ -133,6 +134,7 @@ en:
      created_a_schedule: a añadido un evento   
      credit: Credito   
      credit_amount: A Recibir   
+     credit_amount_description:  Lo que recibes
      credits: Creditos  
      current_accounts: Cuentas Actuales   
      current_language: Español    
@@ -141,12 +143,12 @@ en:
      current_user: Usuario   
      debit: Deuda   
      debit_amount: A Pagar   
+     debit_amount_description: Lo que debes pagar
      debits: Deudas   
      available: Disponibilidad   
      message_notification: Recibir Correo   
      default_reliable: Fiable   
-     delete_activity: Borrar actividad   
-     delete_this_message: Borra este mensaje   
+     delete_activity: Borrar actividad    
      deleted: se ha borrado correctamente.   
        
      deny: Rechazo   
@@ -276,7 +278,6 @@ en:
      fire_from_group: Desapunta de   
      flag: es.png   
      follow: Sigue 
-     forgot_password:  ¿Has olvidado tu contraseña?	 
      forum: Notas de    
      forward: Adelante   
      Friday: Viernes 
@@ -295,7 +296,8 @@ en:
      from_Ultima_Hora: Pasate a convocado   
      game: Partido   
      gameday_at:  Dia del Partido
-     game_day: Encuentro   
+     game_day: Encuentro 
+     gameday_at_description:  Dia de la semana del Encuentro  
      game_lost: Derrota   
      game_notes: Notas de futbol
      game_played:  Partido Jugado
@@ -574,18 +576,30 @@ en:
      or_use: ...o utiliza   
      overview: descripción general   
      page_does_not_exist: La pagina que querias no exite.   
-     participate_schedule: Participa en el Evento   
-     password: Contraseña
+     participate_schedule: Participa en el Evento  
+      
+     password: Clave
      password_change: Cambiar Contraseña
-     password_confirmation: Confirma la Contraseña	
+     password_confirmation: Clave Confirmación	
      password_confirmation_description: Necesita 5 characteres. 
-     password_instructions: "Las instrucciones para restablecer su contraseña han sido enviadas a su cuenta de correo. Por favor, revisa tu cuenta de correo."
+     password_instructions: "Las instrucciones para restablecer su contraseña han sido enviadas a su cuenta de correo. Por favor, revisalo."
      password_issue:  "Lo sentimos, pero no hemos podido localizar su cuenta.  Si tiene problemas intente copiar y pegar la URL desde tu cuenta de correo al navegador o reiniciar el proceso de restablecimiento la contraseña."
      password_updated:    Su contraseña ha sido actualizada.
      password_update_and_login: Actualizar mi contraseña y entra.
      password_reset:  Restablecer contraseña
      password_reset_instructions:  "Danos tu cuenta de correo y te mandamos las instrucciones para restablecer tu contraseña."	 
      password_resets_new:  Restablecer contraseña
+     
+     password_forgotten:  ¿Has olvidado tu contraseña?	
+     confirmation_password: Clave Confirmación
+     
+     password_request_reset:  "La solicitud para restablecer tu contraseña se ha hecho."
+     password_request_ignore:  "Si no has realizado hecho esta solicitud, simplemente ignore este mensaje."
+     password_request_made:  "Si usted ha hecho esta solicitud haga clic en el enlace de abajo:"
+           
+     request_url_does_not_work:  "Si el URL no funciona, trate de copiarlo y pegarlo en tu navegador."
+     request_url_issue:   "Si continúas teniendo problemas por favor no dude en contactar con nosotros."
+     
      payed:  Tasa Pagada  
      payed_description:  Han sido pagadas las Tasas? 
      payment: Pago  
@@ -919,7 +933,7 @@ en:
      unauthorized:  No Autorizado.
      unavailable: No Disponible
      unsuccessful_logged_in:  No se ha accedido correctamente  
-     untrash: Recuperar   
+
      upcoming: próximos eventos   
      upcoming_festival: Próximos Acondiciónamientos   
      upcoming_schedule: Próximo Evento   
@@ -985,8 +999,6 @@ en:
      were_removed: han sido eliminados   
      what_are_you_practicing: Que actividad estas practicando?   
      whats_new: ¿Qué hay de nuevo en HayPista?   
-     will_paginate_next: "Siguiente »"
-     will_paginate_previous: "« Anterior"
      write_comment: Escribe un comentario...   
      writes: escribe   
      yes_openid: OpenIDs associados a esta cuenta   
@@ -1047,14 +1059,27 @@ en:
      last_login_ip:  IP de ultima entrada
      current_login_ip:  IP actual
      
-     spanish:  Español
-     english:  Ingles
-     french:   Frances
-     german:   Aleman
-     italian:  Italiano
+     # spanish:  Español
+     # english:  Ingles
+     # french:   Frances
+     # german:   Aleman
+     # italian:  Italiano
+     # 
+     # Español:  es
+     # Ingles:  en
+     # Frances:  fr
+     # Aleman:  ge
+     # Italiano: it
+     
+     es:  Español
+     en:  Ingles
+     fr:   Frances
+     ge:   Aleman
+     it:  Italiano
      
      # translations for views
      home_index: Inicio
+     home_search:  Buscar
           
      entries_teammate: Mis Compañeros de Equipo
      entries_my_wall: Mi Muro
@@ -1077,6 +1102,7 @@ en:
      fees_option:  Opciones de las Matriculas
      fees_show:  Mostrar Matrícula
      
+     home_information:  Información
      home_option:  Opciones de Inicio
      home_upcoming_schedule:  Próximos Eventos
 
@@ -1119,12 +1145,14 @@ en:
      
      matches_edit:  Resultados
      
+     message_delete: Borra este mensaje
      message_options: Opciones de Mensaje  
      message_reply:  Responde
      message_reply_to: Responde a este mensaje
      message_send:  Manda Mensaje
      message_sent: Mensajes Enviados
      message_trash:  Borrar Mensaje
+     message_untrash: Recuperar   
      messages_create:  Nuevo Mensaje
      messages_inbox:  Mensajes Recibidos
      messages_index:  Mensajes
@@ -1209,6 +1237,7 @@ en:
      users_new:  Nuevo Jugador
      users_no:  Ningun Jugador para mostrar.
      users_petition:  Petición del Jugador
+     users_search:  Busqueda de Jugadores
      users_show: Mostrar Jugador
      users_my_wall: Mi Muro
      users_option:  Opciones de Jugadores

@@ -1,71 +1,147 @@
 class PracticesController < ApplicationController
   before_filter :require_user
   
+  before_filter :get_practice, :only => [:show, :edit, :update, :destroy, :team_roster, :team_last_minute, :team_no_show, :team_unavailable]
+  before_filter :get_group, :only =>[:new]
+  before_filter :get_match_type, :only => [:team_roster, :team_last_minute, :team_no_show, :team_unavailable]
+  before_filter :has_manager_access, :only => [:edit, :update, :destroy]
+  before_filter :has_member_access, :only => :show
+  
   def index
-    @practices = Practice.paginate(:per_page => 10, :page => params[:page])
+    @practices = Practice.current_practices(current_user, params[:page])
+  end
+
+  def list    
+    @practices = Practice.previous_practices(current_user, params[:page])
+    render :template => '/practices/index'       
   end
   
   def show
-    @practices = Practice.find(params[:id])
+    store_location
+    @practice = Practice.find(params[:id])
+    @group = @practice.group
+    @previous = Practice.previous(@practice)
+    @next = Practice.next(@practice)
   end
   
-  def new
-    @practices = Practice.new
+  def new    
+    # editing is limited to administrator or creator
+      @practice = Practice.new
+      @practice.group_id = @group.id
+      @practice.sport_id = @group.sport_id
+      @practice.marker_id = @group.marker_id
+      @practice.time_zone = @group.time_zone
+
+      @lastPractice = Practice.find(:first, :conditions => ["id = (select max(id) from practices where group_id = ?) ", @group.id])    
+      if !@lastPractice.nil?
+        @practice = @lastPractice 
+        @practice.starts_at = @lastPractice.starts_at + 7.days
+        @practice.ends_at = @lastPractice.ends_at + 7.days
+        @practice.reminder = @lastPractice.reminder
+      end
+      @recipients = User.find_all_by_mates(current_user)
   end
+  
+
   
   def create
-    @practices = Practice.new(params[:practices])
-    if @practices.save
+    @practice = Practice.new(params[:practice])
+    
+    if params[:recipient_ids]
+      @recipients = User.find(params[:recipient_ids])
+    end
+    
+    if @practice.save
+      
+      if @recipients
+        # @recipients.each {|recipient| @practice.attend(recipient) }
+      end
+      
       flash[:notice] = I18n.t(:successful_create)
-      redirect_to @practices
+      redirect_to @practice
     else
       render :action => 'new'
     end
   end
   
   def edit
-    @practices = Practice.find(params[:id])
+    @practice = Practice.find(params[:id])
   end
   
   def update
-    @practices = Practice.find(params[:id])
-    if @practices.update_attributes(params[:practices])
+    @practice = Practice.find(params[:id])
+    if @practice.update_attributes(params[:practices])
       flash[:notice] = I18n.t(:successful_update)
-      redirect_to @practices
+      redirect_to @practice
     else
       render :action => 'edit'
     end
   end
   
   def destroy
-    @practices = Practice.find(params[:id])
-    @practices.destroy
+    @practice = Practice.find(params[:id])
+    @practice.destroy
     flash[:notice] = I18n.t(:successful_destroy)
     redirect_to practices_url
   end
-end
+
+    private
+    def has_manager_access
+      unless current_user.is_manager_of?(@practice.group)
+        flash[:warning] = I18n.t(:unauthorized)
+        redirect_back_or_default('/index')
+        return
+      end
+    end
+
+    def has_member_access
+      unless current_user.is_member_of?(@practice.group)
+        flash[:warning] = I18n.t(:unauthorized)
+        redirect_back_or_default('/index')
+        return
+      end
+    end
+
+    def get_practice
+      @practice = Practice.find(params[:id])
+      @group = @practice.group
+    end
+
+    def get_match_type 
+      store_location 
+      unless current_user.is_member_of?(@practice.group)  
+        redirect_to :action => 'index'
+        return
+      end
+      @match_type = Type.find(:all, :conditions => "id in (1, 2, 3, 4)", :order => "id")
+    end
+
+    def get_group
+      # depended on number of groups for current user 
+      # a group id is needed
+      if current_user.groups.count == 0
+        redirect_to :controller => 'groups', :action => 'new' 
+        return
+
+      elsif current_user.groups.count == 1 
+        @group = current_user.groups.find(:first)
+
+      elsif current_user.groups.count > 1 and !params[:id].nil?
+        @group = Group.find(params[:id])
+
+      elsif current_user.groups.count > 1 and params[:id].nil? 
+        redirect_to :controller => 'groups', :action => 'index' 
+        return
+      end
+
+    end
+  end
 
 
 
-# 
-#     def index    
-#       # only displayed based on date previous to today
-#       @practices = Practice.paginate(:all, 
-#         :conditions => ["starts_at >= ? and group_id in (select group_id from groups_users where user_id = ?)", Time.now, current_user.id],
-#         :order => 'group_id, starts_at', :page => params[:page])
-#           respond_to do |format|
-#             format.html # index.html.erb
-#             format.xml  { render :xml => @practices }
-#           end
-#     end
-# 
-#     def list    
-#       #only display based on date after today
-#       @practices = Practice.paginate(:all, 
-#       :conditions => ["starts_at < ? and group_id in (select group_id from groups_users where user_id = ?)", Time.now, current_user.id],
-#       :order => 'group_id, starts_at desc', :page => params[:page])
-#       render :template => '/practices/index'       
-#     end
+
+
+
 #    
 #    def search
 #      count = Practice.count_by_solr(params[:search])
@@ -74,15 +150,6 @@ end
 #      render :template => '/practices/index'
 #    end
 # 
-#    def show
-#      store_location    
-#      # manage join allows manager of group to join others
-#      # permit "member of :group", :group => @practice.group do
-#        @match = @practice
-#        # @previous = Practice.previous(@practice)
-#        # @next = Practice.next(@practice)
-#      # end
-#    end 
 #     
 #     # def index
 #     #   @month_practices = Practice.monthly_practices(@date).user_practices(current_user)
@@ -109,15 +176,7 @@ end
 #     #   end
 #     # end
 # 
-#     def new
-#       @practice = Practice.new
-#       @recipients = current_user.find_group_mates(@group)
-#       
-#       respond_to do |format|
-#         format.html # new.html.erb
-#         format.xml  { render :xml => @practice }
-#       end
-#     end
+
 # 
 #     def edit
 #     end

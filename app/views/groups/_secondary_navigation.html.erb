@@ -17,8 +17,11 @@
 <% 
 	end 
 %>
-<li class="<%= get_active('petition') %>">
-	<%= link_to(label_name(:petitions), petition_path) if current_user.has_pending_petition?(current_user) %></li>
+
+<% if current_user.has_pending_petition?(current_user) %>
+<li class="<%= get_active('petition') %>"><%= link_to(label_name(:petitions), petition_path)  %></li>
+<% end %>
+
 </ul>
 
 <div class="clear"></div>

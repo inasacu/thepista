@@ -40,8 +40,13 @@ ActionController::Routing::Routes.draw do |map|
   
   map.match_team            'matches/:id/set_team',                   :controller => 'matches',         :action => 'set_team'
   map.match_status          'matches/:id/set_status/:type',           :controller => 'matches',         :action => 'set_status'
+  
   map.reply_message         'messages/:id/reply',                     :controller => 'messages',        :action => 'reply'
+  map.untrash_message       'messages/:id/undestroy',                 :controller => 'messages',        :action => 'undestroy'
   map.upcoming_schedule     'home/upcoming_schedule',                 :controller => 'home',            :action => 'upcoming_schedule'         
+  
+  map.attend_practice       'practices/:id/attend',                   :controller => 'practices',       :action => 'attend'
+  map.unattend_practice     'practices/:id/unattend',                 :controller => 'practices',       :action => 'unattend'
   
   map.resources   :user_sessions,   :as => 'try_again'
 

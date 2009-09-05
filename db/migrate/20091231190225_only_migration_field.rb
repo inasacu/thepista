@@ -2,6 +2,7 @@ class OnlyMigrationField < ActiveRecord::Migration
   def self.up
     
     # rake db:migrate VERSION=20090830181157
+    # rake db:migrate VERSION=20090904234112
     
     # add_column    :messages,  :sender_read,                   :string
     # add_column    :messages,  :recipient_read,                :string

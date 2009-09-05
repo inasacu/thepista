@@ -294,21 +294,15 @@ class User < ActiveRecord::Base
       return mates
     end
 
-      def self.user_and_invite(user)
-        find_by_sql(["select distinct id as user_id " +
-              "from users " +
-              "where id = #{user.id} or invited_by_id =  #{user.id}", user.id ])
-      end
     
     
-      def create_matches(schedule, group, user)
-        Match.create_schedule_group_user_match(schedule, group, user)
-	  end
-    
-      def create_user_fees(schedule)
-		    Fee.create_user_fees(schedule)
-      end
+    def create_matches(schedule, group, user)
+      Match.create_schedule_group_user_match(schedule, group, user)
+    end
 
+    def create_user_fees(schedule)
+      Fee.create_user_fees(schedule)
+    end
         
     def create_user_blog_details
       @blog = Blog.create_user_blog(self)

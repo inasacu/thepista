@@ -61,7 +61,7 @@ class Schedule < ActiveRecord::Base
    validates_numericality_of   :fee_per_pista
 
   # variables to access
-  attr_accessible :concept, :season, :jornada, :starts_at, :ends_at, :reminder_at, :subscription_at, :non_subscription_at
+  attr_accessible :concept, :season, :jornada, :starts_at, :ends_at, :reminder, :subscription_at, :non_subscription_at
   attr_accessible :fee_per_game, :fee_per_pista, :time_zone, :group_id, :sport_id, :marker_id, :player_limit
   attr_accessible :public, :description
   

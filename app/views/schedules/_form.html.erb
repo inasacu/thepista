@@ -29,10 +29,11 @@
   </div>
 
   <div class="group">
-    <%= f.label :reminder_at, label_name('reminder_at'), :class => :label %>
-    <%= f.datetime_select :reminder_at, :class => 'datetime_select' %><br />
-    <span class="description"><%= label_name('reminder_at', 'description') %></span>
+    <%= f.label :reminder, label_name('reminder'), :class => :label %>
+    <%= f.check_box :reminder, :class => 'check_box' %>
+    <span class="description"><%= label_name('reminder', 'description') %></span>
   </div>
+
 
   <div class="group">
     <%= f.label :subscription_at, label_name('subscription_at'), :class => :label %>
@@ -64,17 +65,18 @@
     <span class="description"><%#= label_name('remind_before', 'description') %></span>
   </div> -->
 
-<div class="group">
-  <%= f.label :time_zone, label_name('time_zone'), :class => :label %>
-  <%= f.time_zone_select :time_zone, ActiveSupport::TimeZone.us_zones %><br />
-  <span class="description"><%= label_name('time_zone', 'description') %></span>
-</div>
+<!-- <div class="group">
+  <%#= f.label :time_zone, label_name('time_zone'), :class => :label %>
+  <%#= f.time_zone_select :time_zone, ActiveSupport::TimeZone.us_zones %><br />
+  <span class="description"><%#= label_name('time_zone', 'description') %></span>
+</div> -->
 
-  <div class="group">
-    <%= f.label :sport_id, label_name('sport'), :class => :label %>
-   	<%= f.select(:sport_id, Sport.sport_name, {:selected => @group.sport_id, :include_blank => true}) %>
-    <span class="description"><%= label_name('sport', 'description') %></span>
-  </div>
+
+  <!-- <div class="group">
+    <%#= f.label :sport_id, label_name('sport'), :class => :label %>
+   	<%#= f.select(:sport_id, Sport.sport_name, {:selected => @group.sport_id, :include_blank => true}) %>
+    <span class="description"><%#= label_name('sport', 'description') %></span>
+  </div> -->
 
   <div class="group">
     <%= f.label :marker_id, label_name('marker'), :class => :label %>
@@ -100,6 +102,9 @@
     <%= f.text_area :description, :class => 'text_area' %><br />
     <span class="description"><%= label_name('description') %></span>
   </div>
+
+<%= f.hidden_field :sport_id %>
+<%= f.hidden_field :time_zone %>
 
 <div class="clear"></div> 
 

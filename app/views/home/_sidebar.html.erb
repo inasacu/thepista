@@ -1,7 +1,10 @@
 <div class="block">
-	<h3><%= control_label('option') %></h3>
+	<h3><%= control_label('information') %></h3>
 	<div class="content">
-		<p><%#= link_to(control_label('create') , new_marker_url) %></p>
+		
+		<% if current_user.has_pending_petition?(current_user) %>
+		<p><%= link_to(label_name(:petitions), petition_path)  %></p>
+		<% end %>
+		
 	</div>
 </div>
-
