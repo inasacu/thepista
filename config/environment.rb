@@ -58,7 +58,7 @@ ActionMailer::Base.smtp_settings = {
    :domain => "haypista.com",
    :authentication => :plain,
    :user_name => "haypista@gmail.com",
-   :password => "4xbk28drmp" 
+   :password => "72dae4bc40" 
  }
 
 # this code from http://gravityblast.com/
