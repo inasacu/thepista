@@ -3,9 +3,12 @@
 <div class="group">		
   <div class=""> 		  
  	<% variable = APP_CONFIG['rpx_api']['realm'] %>
-<%#= variable %>
-	<%= RPXNow.embed_code(variable, rpx_token_sessions_url, :language => 'es') %><br />
-	<%#= RPXNow.popup_code(the_label, APP_CONFIG['rpx_api']['realm'], rpx_token_sessions_url, :language =>'es') %>
+
+	<%#= RPXNow.embed_code(variable, rpx_token_sessions_url, :language => 'es') %>
+	
+	<%#= RPXNow.embed_code(variable, rpx_token_sessions_url) %>
+	
+	<%= RPXNow.popup_code(the_label, APP_CONFIG['rpx_api']['realm'], rpx_token_sessions_url, :language =>'es') %>
 	
   </div> 		  
   <div class="clear"></div> 		  
