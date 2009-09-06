@@ -1,0 +1,11 @@
+<h3><%= I18n.t(:rpx_login) %></h3>
+
+<div class="group">		
+  <div class=""> 		  
+ 	
+	<%= RPXNow.embed_code(APP_CONFIG['rpx_api']['realm'],rpx_token_sessions_url, :language => 'es') %><br />
+	<%#= RPXNow.popup_code(the_label, APP_CONFIG['rpx_api']['realm'], rpx_token_sessions_url, :language =>'es') %>
+	
+  </div> 		  
+  <div class="clear"></div> 		  
+</div>

@@ -26,3 +26,16 @@ config.action_view.cache_template_loading            = true
 
 # Enable threaded mode
 # config.threadsafe!
+
+
+
+ # www.haypista.com
+# ENV['RECAPTCHA_PUBLIC_KEY'] = '6LefCgMAAAAAAEom455Tp0HL6htCfMGMtzMZe_tt'
+# ENV['RECAPTCHA_PRIVATE_KEY'] = '6LefCgMAAAAAANQefgV-N4boOD7Rq3S9uX8U9I5v'
+
+
+# thepista.heroku.com
+ENV['RECAPTCHA_PUBLIC_KEY'] = '6LfiKAgAAAAAAHRhcX9WTEdGbXW9B3hlFbea1RZZ'
+ENV['RECAPTCHA_PRIVATE_KEY'] = '6LfiKAgAAAAAABzbnVm1Km4oWJU6FsKqJaEtjuVa'
+
+

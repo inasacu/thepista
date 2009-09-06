@@ -1,0 +1,94 @@
+* {
+	margin: 0;
+	padding: 0;
+}
+
+body {
+	font-size: 75%;
+	font-family: "Lucida Grande", Lucida, Verdana, sans-serif;
+}
+
+div#pagewrap {
+	margin: 0 auto;
+	width: 720px;
+}
+
+table {
+	border-collapse: collapse;
+	width: 100%;
+}
+
+caption {
+	font-size: 2em;
+	color: #666;
+	text-align: left;
+	margin-bottom: 10px;
+}
+
+th {
+	font-size: 1em;
+    color: orange;
+    text-align: left;
+	padding: 5px 10px;	
+}
+
+div.owner_comment {
+	padding: 0px 0px 5px 18px;
+	background: transparent url('start_quote_small.gif') no-repeat scroll top left;
+}
+
+
+div.owner_comment span.q { 
+	font-weight: normal;
+	padding: 2px 16px 2px 0px;
+	background: transparent url('end_quote_small.gif') no-repeat scroll right bottom;
+}
+
+div#avatarImg {
+	text-align: center;
+	margin-bottom: 55px;
+	}
+	
+	div#avatarImg p a {
+		text-decoration: none;
+		color: #666;
+	}
+	
+	div#avatarImg p a:hover {
+		text-decoration: underline;
+	}
+	
+	
+
+tr.heading {
+	font-size: 1.2em;
+	text-align: center;
+	color: #333;
+	background: #ccc;	
+}
+
+tr.results {
+	font-size: 1em;
+	text-align: center;
+	color: #666;
+}
+
+tr.extraInfo td.convocados,
+tr.extraInfo td.ausentes {
+	font-size: 1.2em;
+	text-align: center;
+	color: #333;
+
+}
+
+
+td img {
+	width: 60px;
+	height: 60px;
+}
+
+
+
+
+
+

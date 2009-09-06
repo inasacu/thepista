@@ -1,0 +1,17 @@
+<h3><%= I18n.t(:use_openid) %></h3>
+
+<div class="group">		
+  <div class="left"> 		  
+	<%= f.label :openid_identifier, field_label_name(:openid_identifier) , :class => :label %>
+  </div>		  
+  <div class="right"> 		  
+	<%= f.text_field :openid_identifier, :class => 'text_field' %>			
+	<span class="description"><%= field_label_name(:openid_identifier, 'description') %></span> 			
+  </div> 		  
+  <div class="clear"></div> 		  
+</div>
+
+<div class="group navform"> 
+	<%= submit_tag the_label, :class => "button" %>&nbsp;&nbsp;
+	<%= link_to(label_name(:no_account_yet), signup_path) if ("#{get_the_controller}_#{ get_the_action}" != "user_signup") %>
+</div>

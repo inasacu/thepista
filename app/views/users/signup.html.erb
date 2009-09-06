@@ -7,65 +7,13 @@
 <div class="content"> 
 
 	<% form_for @user, :html => { :class => :form } do |f| -%>
-	<%#= f.error_messages %>
-
-		<div class="group">		
-		  <div class="left"> 		  
-			<%= f.label :email, field_label_name(:email) , :class => :label %>			
-		  </div>		  
-		  <div class="right"> 		  
-			<%= f.text_field :email, :class => 'text_field' %>			
-			<span class="description"><%= field_label_name(:email, 'description') %></span> 			
-		  </div> 		  
-		  <div class="clear"></div> 		  
-		</div>
-		
-		<% if @user.openid_identifier.blank? %>
 	
-		<div class="group">		
-		  <div class="left"> 		  
-			<%= f.label :password, field_label_name(:password) , :class => :label %>			
-		  </div>		  
-		  <div class="right"> 		  
-			<%= f.password_field :password, :class => 'text_field' %>			
-			<span class="description"><%= field_label_name(:password, 'description') %></span> 			
-		  </div> 		  
-		  <div class="clear"></div> 		  
-		</div>
+		<%= render :partial => 'utilities/rpx_now', :locals => {:the_label => the_label} %>
 		
-		<div class="group">		
-		  <div class="left"> 		  
-			<%= f.label :password_confirmation, field_label_name(:password_confirmation) , :class => :label %>			
-		  </div>		  
-		  <div class="right"> 		  
-			<%= f.password_field :password_confirmation, :class => 'text_field' %>			
-			<span class="description"><%= field_label_name(:password_confirmation, 'description') %></span> 			
-		  </div> 		  
-		  <div class="clear"></div> 		  
-		</div>
-
-		<div class="group navform"> 
-			<%= submit_tag the_label, :class => "button" %>  
-		</div>
+		<h3><%= I18n.t(:use_login) %></h3>
 		
-		<h3><%= I18n.t(:use_openid) %></h3>
-		
-		<% end %>
-		
-		<div class="group">		
-		  <div class="left"> 		  
-			<%= f.label :openid_identifier, field_label_name(:openid_identifier) , :class => :label %>
-		  </div>		  
-		  <div class="right"> 		  
-			<%= f.text_field :openid_identifier, :class => 'text_field' %>			
-			<span class="description"><%= field_label_name(:openid_identifier, 'description') %></span> 			
-		  </div> 		  
-		  <div class="clear"></div> 		  
-		</div>
-		
-		<div class="group navform"> 
-			<%= submit_tag the_label, :class => "button" %>  
-		</div> 
+		<%= render :partial => 'utilities/login', :locals => {:f => f, :the_label => the_label} %>
+		<%= render :partial => 'utilities/openid', :locals => {:f => f, :the_label => the_label} %>
 	
 	<% end -%>
   

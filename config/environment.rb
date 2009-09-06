@@ -71,45 +71,20 @@ ActionView::Base.field_error_proc = Proc.new do |html_tag, instance|
   end
 end
 
-
-
-
-################### original source
-# 
-# require 'solr_pagination'
-# 
-# 
-# # Can be 'object roles' or 'hardwired'
-# AUTHORIZATION_MIXIN = "object roles"
-# 
-# # The method your auth scheme uses to store the location to redirect back to
-# STORE_LOCATION_METHOD = :store_location
-# 
-# # global variables
-# # url to get users to signup
-# NEW_OPENID_URL = "https://www.myopenid.com/affiliate_signup?affiliate_id=1443"
-# CONTACT_RECIPIENT = 'support@haypista.com'
-# 
 # Load custom config file for current environment
 raw_config = File.read(RAILS_ROOT + "/config/config.yml")
 APP_CONFIG = YAML.load(raw_config)[RAILS_ENV]
 
-# BASE_URL = 'https://rpxnow.com'
-# GRAVATAR_URL = 'http://en.gravatar.com/site/signup'
-# 
-# 
+RPXNow.api_key = APP_CONFIG['rpx_api']['key']
+
+
+
+
+# # global variables
+# # url to get users to signup
+# NEW_OPENID_URL = "https://www.myopenid.com/affiliate_signup?affiliate_id=1443"
+# CONTACT_RECIPIENT = 'support@haypista.com'
+
 # # Workaround to make ruby-openid work with Passenger, because these two don't always cooperate.
 # # http://groups.google.com/group/phusion-passenger/browse_thread/thread/30b8996f8a1b11f0/ba4cc76a5a08c37d? @@@ hl=en&lnk=gst&q=
 # OpenID::Util.logger = RAILS_DEFAULT_LOGGER
-# 
-# ExceptionNotifier.exception_recipients = %w(support@haypista.com)
-# 
-# 
-# config.action_mailer.delivery_method = :smtp
-# ActionMailer::Base.smtp_settings = {
-#   :address  => "smtp.someserver.net",
-#   :port  => 25,
-#   :user_name  => "someone@someserver.net",
-#   :password  => "mypass",
-#   :authentication  => :login
-# }

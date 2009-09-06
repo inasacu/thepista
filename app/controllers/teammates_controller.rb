@@ -84,7 +84,7 @@ class TeammatesController < ApplicationController
   def destroy
     if @user.pending_managers.include?(@manager)
       Teammate.breakup(@user, @manager)
-      flash[:notice] = I18n.t(:cancel_petition_to_join)
+      flash[:notice] = I18n.t(:petition_to_join_declined)
     else
       flash[:notice] = I18n.t(:no_petition_to_join_group)
     end

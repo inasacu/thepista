@@ -1,5 +1,11 @@
 ActionController::Routing::Routes.draw do |map|
   map.root :controller => 'home'
+  
+  # rpxnow implementation
+  map.rpx_token_sessions    'rpx_token_sessions',                     :controller => "user_sessions",   :action => "rpx_create"
+  map.rpx_signup            '/rpx_signup',                            :controller => 'users',           :action => 'rpx_new'
+  map.resources             :users, :collection => { :rpx_create => :post, :rpx_associate => :post }
+   
 
   map.login                 'login',                                  :controller => 'user_sessions',   :action => 'new'
   map.logout                'logout',                                 :controller => 'user_sessions',   :action => 'destroy'

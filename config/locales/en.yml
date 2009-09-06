@@ -625,7 +625,7 @@ en:
      deleted_petition_by: Petición ha sido borrada por   
      denial_petition_to_join: Petición denegada para unirse a 
      cancel_petition: Cancelar Petición   
-     # cancel_petition_to_join: Petición cancelada para unirse a  
+     # petition_to_join_declined: Petición cancelada para unirse a  
      cancel_a_petition: ¿Cancelar petición para unirte al equipo? 
      you_petition_to_join: Petición para unirte a un equipo  
      team_petition: Solicitud de Equipo

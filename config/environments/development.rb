@@ -15,3 +15,9 @@ config.action_controller.perform_caching             = false
 
 # Don't care if the mailer can't send
 config.action_mailer.raise_delivery_errors = false
+
+#recapture keys
+
+# http://thepista.local/
+ENV['RECAPTCHA_PUBLIC_KEY'] = '6LfhKAgAAAAAAOzho3sELOcG-PkiPRBOX94ZrmEg'
+ENV['RECAPTCHA_PRIVATE_KEY'] = '6LfhKAgAAAAAAAivbLUYGmNpdRwKQJL57V8I53o0'

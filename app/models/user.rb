@@ -1,10 +1,52 @@
 class User < ActiveRecord::Base
-  acts_as_authentic do |c|    
+  
+  # http://www.cafecourses.com/courses/31-integrating-authlogic-with-rpxnow/pages/54-userrb
+  # authologic and rpxnow
+  RE_LOGIN_OK = /\A\w[\w\.\-_@]+\z/
+  MSG_LOGIN_BAD = "should use only letters, numbers, and .-_@ please."
+  RE_NAME_OK = /\A[^[:cntrl:]\\<>\/&]*\z/
+  MSG_NAME_BAD = "avoid non-printing characters and \\&gt;&lt;&amp;/ please."
+ 
+  acts_as_authentic do |c|
+    
     c.openid_required_fields = [:nickname, :email]
 
     login_field :email
-    validate_login_field :false    
+    validate_login_field :false
+    
+    
+    # Modify the default Authlogic length/format validations.
+    c.merge_validates_length_of_login_field_options :within => 3..40, :message => "Username too short."
+    c.merge_validates_format_of_login_field_options :with => RE_LOGIN_OK, :message => MSG_LOGIN_BAD
+    
+    # We do not use password confirmations!
+    # c.require_password_confirmation = false
+    
+    # Ok so we only want to validate the password and login fields under certain circumstances... see below
+    c.validates_length_of_password_field_options c.validates_length_of_password_field_options.merge(:if => :validate_password_with_rpx?)
+    c.validates_length_of_login_field_options c.validates_length_of_login_field_options.merge(:if => :validate_login_with_rpx?)
+    c.validates_format_of_login_field_options c.validates_format_of_login_field_options.merge(:if => :validate_login_with_rpx?)
+    c.validates_uniqueness_of_login_field_options c.validates_uniqueness_of_login_field_options.merge(:if => :validate_unique_login_with_rpx?)
+    # We allow login by either username or email address so make Authlogic respect that.
+    UserSession.find_by_login_method = 'find_by_login_or_email'
   end
+  
+  # Validations
+  # validate :name_must_include_first_and_last
+  validates_format_of :name, :with => RE_NAME_OK, :message => MSG_NAME_BAD
+  validates_length_of :name, :within => 2..60
+  validates_presence_of :email
+  validates_acceptance_of :terms_of_service
+  validates_inclusion_of :gender, :in => ['male','female'], :allow_nil => true
+ 
+  before_destroy :unmap_rpx
+  
+  # acts_as_authentic do |c|    
+  #   c.openid_required_fields = [:nickname, :email]
+  # 
+  #   login_field :email
+  #   validate_login_field :false    
+  # end
 
   acts_as_solr :fields => [:name, :time_zone, :position] if use_solr?
   acts_as_authorization_subject
@@ -320,8 +362,29 @@ class User < ActiveRecord::Base
     #     self.email = email.downcase.strip if email
     #   end
 
-  
-    
+
+  # authlogic and rpxnow
+    # Set the login to nil if it was blank so we avoid duplicates on ''.
+    # Duplicates of NULL (nil) are allowed.
+    def login=(login)
+      login = nil if login.blank?
+      self[:login] = login
+    end
+
+    def rpx_user?
+      !identity_url.blank?
+    end
+
+    def name=(name)
+      # self[:first_name], self[:last_name] = name.split(' ', 2)
+      self[:name]
+    end
+
+    def name
+      # return "#{self[:first_name]} #{self[:last_name]}"
+      return self[:name]
+    end
+
     def deliver_signup_notification
       UserMailer.deliver_signup_notification(self)
     end
@@ -330,12 +393,50 @@ class User < ActiveRecord::Base
   		reset_perishable_token!  
   		UserMailer.deliver_password_reset_instructions(self)  
   	end
+  	
+    protected
+
+    # def name_must_include_first_and_last
+    #   errors.add(:name, 'must include both your first and last name.') if self[:first_name].blank? || self[:last_name].blank?
+    # end
+
+    # We need to cleanup the RPX mapping from RPXNow so that if the user tries
+    # to create a new account using RPX in the future, we don't think they should
+    # already have one and try to log them in as a deleted User.
+    def unmap_rpx
+      # api_key = [YOUR API KEY]
+      api_key = APP_CONFIG['rpx_api']['key']
+      RPXNow.mappings(self[:id], api_key).each do |identifier|
+        RPXNow.unmap(identifier, self[:id], api_key)
+      end
+    end
+
+    # Only validate uniqueness of the login if they are not an RPX user
+    # or they have actually specified one. This stops us from finding
+    # other RPX users (with NULL logins) as "duplicates".
+    def validate_unique_login_with_rpx?
+      !rpx_user? || !self.login.blank?
+    end
+
+    # We only need to validate format/length of the login if the user is NOT an RPX user
+    # or they are trying to set a username or password in their profile.
+    def validate_login_with_rpx?
+      !rpx_user? || !self.login.blank? || !self.password.blank?
+    end
+
+    # We only need to validate the password if the user is NOT an RPX user
+    # or they are trying to set a username or password in their profile.
+    def validate_password_with_rpx?
+      ( !rpx_user? || !self.password.blank? || !self.login.blank? ) && require_password?
+    end
+    
 
     private
 
+    # openid from authlogic authentication
     def map_openid_registration(registration)
       self.email = registration["email"] if email.blank?
       self.name = registration["nickname"] if name.blank?
     end
-
+    
   end

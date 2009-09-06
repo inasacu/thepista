@@ -1,0 +1,54 @@
+<div class="group">		
+  <div class="left"> 		  
+	<%= f.label :email, field_label_name(:email) , :class => :label %>			
+  </div>		  
+  <div class="right"> 		  
+	<%= f.text_field :email, :class => 'text_field' %>			
+	<span class="description"><%= field_label_name(:email, 'description') %></span> 			
+  </div> 		  
+  <div class="clear"></div> 		  
+</div>
+
+<div class="group">		
+  <div class="left"> 		  
+	<%= f.label :password, field_label_name(:password) , :class => :label %>			
+  </div>		  
+  <div class="right"> 		  
+	<%= f.password_field :password, :class => 'text_field' %>			
+	<span class="description"><%= field_label_name(:password, 'description') %></span> 			
+  </div> 		  
+  <div class="clear"></div> 		  
+</div>
+
+<% if is_action('signup') %>
+
+<div class="group">		
+  <div class="left"> 		  
+	<%= f.label :password_confirmation, field_label_name(:password_confirmation) , :class => :label %>			
+  </div>		  
+  <div class="right"> 		  
+	<%= f.password_field :password_confirmation, :class => 'text_field' %>			
+	<span class="description"><%= field_label_name(:password_confirmation, 'description') %></span> 			
+  </div> 		  
+  <div class="clear"></div> 		  
+</div>
+
+<% else %>
+
+<div class="group">
+	<div class="left">
+		&nbsp;
+	</div>
+	<div class="right">
+  <br />
+  <%= f.check_box :remember_me %>&nbsp;&nbsp;<%= f.label :remember_me %><br />
+	</div>
+	<div class="clear">
+	</div>
+</div>
+
+<% end %>
+
+<div class="group navform"> 
+	<%= submit_tag the_label, :class => "button" %>  
+</div>

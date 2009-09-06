@@ -10,14 +10,10 @@ es:
      account_activation:  "Visita esta dirección URL para activar tu cuenta:"
      account_created:  Tu cuenta ha sido creada.
      accounts: Cuentas   
-     # actual_fee: Tasa Total   
-     add_email: "Acepto, Crea mi cuenta"   
-     # add_moderator: Nuevo Moderador   
-     add_openid: Nuevo OpenID a tu cuenta   
-     # add_sub_manager: Nuevo Sub-Manager   
-     # add_subscription: Nuevo Abonado   
-     add_to_group: Petición para unirse a   
-     added_to_your_openid: añadido a tu cuenta OpenID
+
+     add_email: "Acepto, Crea mi cuenta"     
+ 
+     add_to_group: Petición para unirse a  
      address: Dirección   
      addresses: Direcciones   
      administrator: Administrador   
@@ -66,8 +62,7 @@ es:
      change_message_notification: Cambio de Recibida de correo de   
      change_email_configuration: Cambia tu configuración de mensajes.
      change_group: Cambia de Equipo   
-     change_language: Cambia el idioma    
-     change_openid: Ocultar tus cuentas de OpenID   
+     change_language: Cambia el idioma  
      change_rejected: El cambio que ha pedido ha sido rechazado.  
      change_rejected_explained: Es posible que no tuvieses acceso a esa zona, lo sentimos!	 
      change_roster_status: Pasa a   
@@ -168,8 +163,7 @@ es:
      description_match: Detalles del Partido   
      description_message: Detalles del Mensaje   
      description_note: Detalles de la Nota   
-     description_notification: Detalles del Notificación  
-     openid_identifier_description:  "Ej:  tu_nombre.myopenid.com"  
+     description_notification: Detalles del Notificación
      destroy: Borrar   
      destroy_address: Borra la Dirección   
      destroy_announcement: Borra un Anuncio   
@@ -324,7 +318,6 @@ es:
      games_won_full: Partidos Ganados   
      gender: Genero   
      general_information:  Información General
-     get_an_openid: Consigue una cuenta OpenID con myOpenID.com   
      get_your_gravatar: Pilla tu Gravatar    
      goal_difference: G.D.   
      goal_difference_full: Gol Diferencial   
@@ -378,7 +371,6 @@ es:
      interest_description: (Escribe algo de lo que te interesa...)   
      invalid_action: Acción Invalida   
      invalid_login: No válido de acceso o contraseña   
-     invalid_openid: "Lo sentimos, pero el OpenID es invalido!"   
      invitation: Invitación
      invitation_to: Tienes una invitación a HayPista   
      invitation_to_group: Invita a un Amigo al Equipo   
@@ -415,8 +407,7 @@ es:
      location_festival: Lugar donde practicas se Acondiciónamientos.   
      location_sport: Lugar donde practicas tu deporte. 
      login:  Entrar	 
-     log_in: Entrar  
-     log_in_myopenid: Entra con tu cuenta de myOpenID   
+     log_in: Entrar   
      logged_out: Se ha cerrado la sesión.   
      login: Entrar   
      logout: Salir   
@@ -451,8 +442,7 @@ es:
      moderator_updated:  Actualización de moderador.
      
      modified_available: Modificada la disponibilidad de jugar de   
-     modified_email: Modificada la disponibilidad de recibir correos a   
-     modified_openid: Modificada la opción de ocultar tus cuentas de OpenID   
+     modified_email: Modificada la disponibilidad de recibir correos a  
      modified_phone: Modificada la opción de ocultar el telefono de   
      modified_profile: Modificada la opción de ocultar tu perfil de   
      modified_reliable: Modificada la fiabilidad del jugardor para atender   
@@ -496,7 +486,17 @@ es:
      myopenid_login: myOpenID   
      myopenid_select: Seleccióna cualquiera de los siguientes proveedores de servicios.   Sigue el URL para añadir una cuenta de un tercer servicio a tu cuenta existente de HayPista!   
      myopenid_select_en: Select any of the service providers by following the url above to add a third-party account to your existing HayPista account!    
-     myopenid_third_party: miOpenID Tercera Parte Cuenta   
+     myopenid_third_party: miOpenID Tercera Parte Cuenta  
+
+     modified_openid: Modificada la opción de ocultar tus cuentas de OpenID 
+     log_in_myopenid: Entra con tu cuenta de myOpenID 
+     invalid_openid: "Lo sentimos, pero el OpenID es invalido!"  
+     get_an_openid: Consigue una cuenta OpenID con myOpenID.com  
+     openid_identifier_description:  "Ej:  tu_nombre.myopenid.com"  
+     change_openid: Ocultar tus cuentas de OpenID   
+     added_to_your_openid: añadido a tu cuenta OpenID
+     add_openid: Nuevo OpenID a tu cuenta        
+             
      name: Nombre 
      name_account: Nombre de la Cuenta   
      name_description:  Nombre
@@ -583,6 +583,7 @@ es:
      password_change: Cambiar Contraseña
      password_confirmation: Clave Confirmación	
      password_confirmation_description: Necesita 5 characteres. 
+     password_description:  Clave
      password_instructions: "Las instrucciones para restablecer su contraseña han sido enviadas a su cuenta de correo. Por favor, revisalo."
      password_issue:  "Lo sentimos, pero no hemos podido localizar su cuenta.  Si tiene problemas intente copiar y pegar la URL desde tu cuenta de correo al navegador o reiniciar el proceso de restablecimiento la contraseña."
      password_updated:    Su contraseña ha sido actualizada.
@@ -626,13 +627,11 @@ es:
      deleted_petition_by: Petición ha sido borrada por   
      denial_petition_to_join: Petición denegada para unirse a 
      cancel_petition: Cancelar Petición   
-     # cancel_petition_to_join: Petición cancelada para unirse a  
+
      cancel_a_petition: ¿Cancelar petición para unirte al equipo? 
      you_petition_to_join: Petición para unirte a un equipo  
      team_petition: Solicitud de Equipo
      error_petition_to_join: Error en la petición para unirse a
-
-
 
      phone: Teléfono   
      phone_description: (Por si te tiene que llamar tu equipo. Hay opción de poner este numero en privado...)   
@@ -650,7 +649,8 @@ es:
      points_for_win: Puntos por ganar
      points_for_win_description: Dale puntuación por ganar el evento...
      points_full: Puntos   
-     popular: De Moda   
+     popular: De Moda 
+     possible_spam:  Posible SPAM!  
      position_description: (El puesto en el campo que mejor se te da. si es relevante!)   
      post: Publica   
      post_not_saved: Comentarios NO guardados!!!   
@@ -977,6 +977,7 @@ es:
      url_group: Vincular a Equipo   
      use_at_discretion: Nueva opción para entrar.  Si tienes una cuenta entra con tu cuenta original.
      use_openid: O utiliza OpenID 
+     use_login:  O utiliza Acceso con
      use_standard_login: utiliza el estándar de acceso de usuario / contraseña
      user: Jugador   
      users: Jugadores
@@ -1205,10 +1206,19 @@ es:
      scorecards_option:  Opciones de Clasificaciones
      scorecards_less_games:  ( * ) Jugadores con menos partidos
      scorecards_legend:  Leyenda
+     
      # add_moderator: Nuevo Moderador   
      # add_openid: Nuevo OpenID a tu cuenta   
      # add_sub_manager: Nuevo Sub-Manager   
      # add_subscription: Nuevo Abonado
+     
+     recaptcha_ask_question: "Haz una Pregunta, recibe una respuesta!"
+     recaptcha_question:  Haz la Pregunta
+     recaptcha_question:  Pregunta
+     recaptcha_human_test:  Prueba Humana
+     recaptcha_type_words:  Escribe las dos Palabras
+     
+     rpx_login:  Acceso atraves de terceras cuentas
      
      role_add_moderator:  Nuevo Moderador
      role_add_sub_manager:  Nuevo Sub-Manager
