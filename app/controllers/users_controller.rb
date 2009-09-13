@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_filter :require_no_user, :only => [:signup, :new, :create]
+  before_filter :require_no_user, :only => [:signup, :new, :create, :rpx_new, :rpx_create, :rpx_associate]
   before_filter :require_user, :only => [:index, :show, :edit, :update] 
   
   before_filter :get_user, :only => [:show, :set_available, :set_private_phone, :set_private_profile, :set_enable_comments, 
@@ -82,6 +82,13 @@ class UsersController < ApplicationController
     @user.save do |result|
       if result
         flash[:notice] = I18n.t(:successful_signup)
+        
+        # if @user.name.blank?
+        #   current_user = @user
+        #   render :action => 'edit', :id => current_user
+        #   return 
+        # end
+        
         redirect_to root_url
       else
         render :action => 'signup'
@@ -272,7 +279,7 @@ class UsersController < ApplicationController
     # Token should be in the session from UserSessionsController.rpx_create...
     data = RPXNow.user_data(session[:rpx_token], :extended => 'true')
     if data.blank?
-      flash[:error] = "Unable to retrieve data from your third-party account. Please try again."
+      flash[:error] = I18n.t(:rpx_third_party_error)
       redirect_to login_path
     else
       # Save the identifier in the session to save a lookup...
@@ -281,20 +288,21 @@ class UsersController < ApplicationController
       name = params[:name] || data[:name] || data[:displayName] || data[:nickName]
       email = params[:email] || data[:verifiedEmail] || data[:email]
       login = params[:preferredUsername]
+      
       @user = User.new
       @user.name = name
       @user.email = email
       
-      existing_user = User.find_by_email(email) || (User.find_by_login(login) unless login.blank?)
+      existing_user = User.find_by_email(email)
       if existing_user
         # Handle associating an existing account found by email or login to an OpenID.
-        @login = existing_user.nil? ? login : existing_user.login
-        @user_session = UserSession.new(:login => @login)
+        @email = existing_user.nil? ?   email : existing_user.email
+        @user_session = UserSession.new(:email => @email)
         @show_openid_association = true
-        if existing_user.login == login
-          @association_message = "We found an existing account that is already using the username '#{login}'."
+        if existing_user.email == email
+          @association_message = I18n.t(:rpx_association_email_msg)
         else
-          @association_message = "We found an existing account that is already using the email address '#{email}'."
+          @association_message = I18n.t(:rpx_association_login_msg)
         end
       end
       
@@ -304,8 +312,33 @@ class UsersController < ApplicationController
     end
   end
   
+  def rpx_create
+    @user = User.new(params[:user])
+    # We want to save the identifier so we can tell a) that they are an RPX user and b) what provider they used (initially)
+    @user.identity_url = session[:rpx_identifier]
+    @user.openid_identifier = session[:rpx_identifier]
+    @user.active = true
+
+    if @user.save
+      # Map this identifier to this user's ID on RPXNow. This is how we know a local account exists
+      # for them and saves them from having to "sign up" again when they login with that same OpenID.
+      # RPXNow.map(session[:rpx_identifier], @user.id)
+      
+      # Won't be needing these anymore.
+      session[:rpx_identifier] = nil
+      session[:rpx_token] = nil
+      respond_to do |format|
+        format.html { redirect_back_or_default root_url }            
+      end
+    else
+      respond_to do |format|
+        format.html { render :action => :rpx_new }
+      end
+    end
+  end
+  
   def rpx_associate
-    @user_session = UserSession.new(:login => params[:user_session][:login], :password => params[:user_session][:password])
+    @user_session = UserSession.new(:email => params[:user_session][:email], :password => params[:user_session][:password])
     if @user_session.save
       # Map this identifier to this existing user's ID on RPXNow. This way they can login
       # to their existing account with their OpenID.
@@ -314,36 +347,13 @@ class UsersController < ApplicationController
       session[:rpx_identifier] = nil
       session[:rpx_token] = nil
       respond_to do |format|
-        format.html { redirect_back_or_default home_path }
+        format.html { redirect_back_or_default root_url }
         session[:return_to] = nil
       end
     else
-      flash[:error] = "Unable to associate new third-party account to existing Haypista account due to an incorrect username or password."
+      flash[:error] = I18n.t(:rpx_unable_to_associate)
       respond_to do |format|
         format.html { redirect_to :action => :rpx_new }
-      end
-    end
-  end
-  
-  def rpx_create
-    @user = User.new(params[:user])
-    # We want to save the identifier so we can tell a) that they are an RPX user and b) what provider they used (initially)
-    @user.identity_url = session[:rpx_identifier]
-    @user.active = true
-    
-    if @user.save
-      # Map this identifier to this user's ID on RPXNow. This is how we know a local account exists
-      # for them and saves them from having to "sign up" again when they login with that same OpenID.
-      RPXNow.map(session[:rpx_identifier], @user.id)
-      # Won't be needing these anymore.
-      session[:rpx_identifier] = nil
-      session[:rpx_token] = nil
-      respond_to do |format|
-        format.html { redirect_to invite_friends_path(:invitation_type => 'new_user') }
-      end
-    else
-      respond_to do |format|
-        format.html { render :action => :rpx_new }
       end
     end
   end

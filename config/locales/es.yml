@@ -578,7 +578,7 @@ es:
      overview: descripción general   
      page_does_not_exist: La pagina que querias no exite.   
      participate_schedule: Participa en el Evento  
-      
+     
      password: Clave
      password_change: Cambiar Contraseña
      password_confirmation: Clave Confirmación	
@@ -590,7 +590,8 @@ es:
      password_update_and_login: Actualizar mi contraseña y entra.
      password_reset:  Restablecer contraseña
      password_reset_instructions:  "Danos tu cuenta de correo y te mandamos las instrucciones para restablecer tu contraseña."	 
-     password_resets_new:  Restablecer contraseña
+     password_resets_new:  Restablecer contraseña  
+     password_recover_instructions: Instrucciones para recupera tu Clave!  
      
      password_forgotten:  ¿Has olvidado tu contraseña?	
      confirmation_password: Clave Confirmación
@@ -698,7 +699,7 @@ es:
      recent_activity: Actividad reciente   
      recommend_marker: Este campo es recomendado...   
      recommend_venue: Este campo es recomendado...   
-     recover_password: Recupera tu Clave!   
+
      recycled_message: Mensaje reciclado   
      region: Provincia   
      register: Registrate con   
@@ -979,6 +980,7 @@ es:
      use_openid: O utiliza OpenID 
      use_login:  O utiliza Acceso con
      use_standard_login: utiliza el estándar de acceso de usuario / contraseña
+     
      user: Jugador   
      users: Jugadores
      user_not_found:  "Ningún usuario con esa cuenta de correo se ha encontrado."
@@ -987,6 +989,8 @@ es:
      user_last_login: Última vez conectado   
      user_options:  Opciones de Usuario
      username_not_available: Nombre de usuario no esta disponible 
+     users_activate:  "Es necesario activar tu cuenta"
+     
      validate_openid: valida tu OpenID   
      venue: Centro Deportivo    
      Venue: Centro   
@@ -1219,6 +1223,10 @@ es:
      recaptcha_type_words:  Escribe las dos Palabras
      
      rpx_login:  Acceso atraves de terceras cuentas
+     rpx_third_party_error:  "No se pueden recuperar los datos de terceras cuentas. Por favor, inténtalo de nuevo."
+     rpx_association_email_msg: Hemos encontrado una cuenta existente que ya está utilizando la dirección de correo electrónico
+     rpx_association_login_msg: Hemos encontrado una cuenta existente que ya está utilizando el nombre de usuario
+     rpx_unable_to_associate: "No ha sido posible asociar la cuenta nueva de terceros a las existente de Haypista cuenta debido a que tu correo electrónico o la contraseña son incorrectas."
      
      role_add_moderator:  Nuevo Moderador
      role_add_sub_manager:  Nuevo Sub-Manager
@@ -1256,10 +1264,12 @@ es:
      users_show: Mostrar Jugador
      users_my_wall: Mi Muro
      users_option:  Opciones de Jugadores
+     users_rpx_new: Nuevo Jugador
+     users_rpx_create:  Nuevo Jugador
      users_teammate: Mis Compañeros de Equipo
           
      must_be_logged_in:  Tienes que estar registrado para acceder a esta página
-     must_be_logged_out:  Tienes que no estar registrado para acceder a esta página
+     must_be_logged_out:  Tienes que cerrar la sesión para acceder a esta página
     
      true: "Si"
      false: "No"

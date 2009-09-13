@@ -1,3 +1,7 @@
+<% 
+if SHOW_OPENID_LOGIN 
+%>
+
 <h3><%= I18n.t(:use_openid) %></h3>
 
 <div class="group">		
@@ -15,3 +19,7 @@
 	<%= submit_tag the_label, :class => "button" %>&nbsp;&nbsp;
 	<%= link_to(label_name(:no_account_yet), signup_path) if ("#{get_the_controller}_#{ get_the_action}" != "user_signup") %>
 </div>
+
+<% 
+end 
+%>

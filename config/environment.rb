@@ -78,8 +78,6 @@ APP_CONFIG = YAML.load(raw_config)[RAILS_ENV]
 # RPXNow.api_key = APP_CONFIG['rpx_api']['key']
 
 
-
-
 # # global variables
 # # url to get users to signup
 # NEW_OPENID_URL = "https://www.myopenid.com/affiliate_signup?affiliate_id=1443"

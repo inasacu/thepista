@@ -19,10 +19,9 @@
 <body>
   <div id="container">
 	
-	<% login_action = ['signup', 'create', 'new'] %>
-	<% login_controller =['user_sessions', 'users',''] %>	
+	<% login_action = ['signup', 'create', 'new', 'rpx_create', 'rpx_new'] %>
+	<% login_controller =['user_sessions', 'users', ''] %>	
 	<% login_session = (login_controller.include?(controller.controller_name) and login_action.include?(controller.action_name)) %>
-	
   
 	<%= render :partial => "shared/header" %>	
 	<%= render :partial => "shared/wrapper" unless login_session %>	

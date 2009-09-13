@@ -32,6 +32,13 @@ TOPICS_PER_PAGE = 8
 TYPES_PER_PAGE = 8
 USERS_PER_PAGE = 10
 
+#variables for login
+SHOW_OPENID_LOGIN = false
+SHOW_LOGIN = trueroot_url
+SHOW_RPX_NOW = true
+
+
+
 # Column sizes
 # FULL = 20
 # LEFT = LARGER_COLUMN = 14

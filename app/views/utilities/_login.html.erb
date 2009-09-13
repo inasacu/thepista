@@ -1,3 +1,9 @@
+<% 
+if SHOW_LOGIN 
+%>
+
+<h3><%= I18n.t(:use_login) %></h3>
+
 <div class="group">		
   <div class="left"> 		  
 	<%= f.label :email, field_label_name(:email) , :class => :label %>			
@@ -33,6 +39,8 @@
   <div class="clear"></div> 		  
 </div>
 
+<% elsif controller.action_name == 'rpx_new' or is_action('create') %>
+
 <% else %>
 
 <div class="group">
@@ -40,9 +48,33 @@
 		&nbsp;
 	</div>
 	<div class="right">
-  <br />
-  <%= f.check_box :remember_me %>&nbsp;&nbsp;<%= f.label :remember_me %><br />
+  		<%= f.check_box :remember_me %>&nbsp;&nbsp;<%= f.label :remember_me %><br />
 	</div>
+	
+	<div class="clear">
+	</div>
+</div>
+
+<div class="group">
+	<div class="left">
+		&nbsp;
+	</div>
+	<div class="right">
+  		<%= link_to(label_name(:password_forgotten), :controller => 'password_resets', :action => 'new') if ("#{get_the_controller}_#{ get_the_action}" != "user_signup") %>
+	</div>
+
+	<div class="clear">
+	</div>
+</div>
+
+<div class="group">
+	<div class="left">
+		&nbsp;
+	</div>
+	<div class="right">
+  		<%= link_to(label_name(:no_account_yet), signup_path) if ("#{get_the_controller}_#{ get_the_action}" != "user_signup") %>
+	</div>
+	
 	<div class="clear">
 	</div>
 </div>
@@ -50,5 +82,10 @@
 <% end %>
 
 <div class="group navform"> 
-	<%= submit_tag the_label, :class => "button" %>  
+	<%= submit_tag the_label, :class => "button" %>	 
 </div>
+
+<% 
+end 
+%>
+
