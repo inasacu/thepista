@@ -8,7 +8,7 @@ task :thejugador => :environment do |t|
   users = (User.find :all, :conditions => ['archive = false']).collect {|user| user unless user.email.blank? }.compact
   users.each do |user|
     
-    user.last_logged_at = user.updated_at
+    user.last_login_at = user.updated_at
     user.save!
     
     if Blog.find_by_user_id(user.id).nil?

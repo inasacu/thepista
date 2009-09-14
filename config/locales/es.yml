@@ -391,7 +391,7 @@ es:
      jornada_description:  Jornada
      language: Idioma 
      last_game_played: Ultima Jornada	 
-     last_logged_at: conecto la ultima vez   
+     last_login_at: conecto la ultima vez   
      last_minute: Ultima Hora   
      last_schedule_description: Ultimo evento    
      last_scorecard: Ultimos Resultados   

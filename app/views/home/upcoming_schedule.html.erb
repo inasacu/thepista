@@ -23,12 +23,11 @@ unless upcoming_schedules.empty?
         </tr>
 		
         <% @upcoming_schedules.each do |schedule| 
-			icon = schedule.sport.icon if !schedule.sport.icon.nil?
 			the_sport = "#{label_name(:rosters)}:  #{schedule.convocados.count}"
 		-%>		
 			<tr>
 			  <td>
-				<%= schedule_image_link_small(schedule, icon) %>
+				<%= schedule_image_link_small(schedule) %>
 			  </td>
 		  
 			  <td>

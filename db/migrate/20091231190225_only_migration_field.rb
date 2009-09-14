@@ -1,7 +1,7 @@
 class OnlyMigrationField < ActiveRecord::Migration
   def self.up
     
-    # rake db:migrate VERSION=20090830181157
+    # rake db:migrate VERSION=20090913220857
     # rake db:migrate VERSION=20090904234112
     
     # add_column    :messages,  :sender_read,                   :string
@@ -16,7 +16,7 @@ class OnlyMigrationField < ActiveRecord::Migration
     # add_column    :messages,  :user_archive,                  :string
     # add_column    :messages,  :to_user_archive,               :string
     # add_column    :messages,  :to_group_archive,              :string  
-    # 
+    
     # add_column    :groups,    :reliable,                      :string  
     # add_column    :groups,    :default_available,             :string  
     # add_column    :groups,    :default_reliable,              :string  
@@ -61,6 +61,7 @@ class OnlyMigrationField < ActiveRecord::Migration
     # 
     # add_column    :schedules,   :invite_id,                   :string
     # add_column    :schedules,   :activity_id,                 :string
+    # add_column    :schedules,   :reminder_at,                 :string
     
   end
 
@@ -77,7 +78,7 @@ class OnlyMigrationField < ActiveRecord::Migration
     # remove_column    :messages,  :user_archive
     # remove_column    :messages,  :to_user_archive
     # remove_column    :messages,  :to_group_archive
-    # 
+    
     # remove_column      :groups,     :reliable 
     # remove_column      :groups,     :default_available
     # remove_column      :groups,     :default_reliable
@@ -112,16 +113,17 @@ class OnlyMigrationField < ActiveRecord::Migration
     # remove_column      :users,     :available_ends_at 
     # remove_column      :users,     :injury_until
     # remove_column      :users,     :country
-    
+    # 
     # remove_column      :fees,       :match_id
     # remove_column      :fees,       :actual_fee
     # remove_column      :fees,       :table_id
     # remove_column      :fees,       :table_type
-    
+    # 
     # remove_column      :matches,    :reliable
     # 
     # remove_column      :schedules,   :invite_id
     # remove_column      :schedules,   :activity_id
+    # remove_column      :schedules,   :reminder_at
     
   end
 end

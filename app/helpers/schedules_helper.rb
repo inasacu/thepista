@@ -15,8 +15,8 @@ module SchedulesHelper
     link_to(h(text), schedule, html_options)
   end  
   
-  def schedule_image_link_small(schedule, icon)
-    link_to(image_tag(icon, options={:style => "height: 15px; width: 15px;"}), schedule_path(schedule))
+  def schedule_image_link_small(schedule)
+    link_to(image_tag(schedule.sport.icon, options={:style => "height: 15px; width: 15px;"}), schedule_path(schedule))
   end             
 end
 

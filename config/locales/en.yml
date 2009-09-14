@@ -10,14 +10,10 @@ en:
      account_activation:  "Visita esta dirección URL para activar tu cuenta:"
      account_created:  Tu cuenta ha sido creada.
      accounts: Cuentas   
-     # actual_fee: Tasa Total   
-     add_email: "Acepto, Crea mi cuenta"   
-     # add_moderator: Nuevo Moderador   
-     add_openid: Nuevo OpenID a tu cuenta   
-     # add_sub_manager: Nuevo Sub-Manager   
-     # add_subscription: Nuevo Abonado   
-     add_to_group: Petición para unirse a   
-     added_to_your_openid: añadido a tu cuenta OpenID
+
+     add_email: "Acepto, Crea mi cuenta"     
+ 
+     add_to_group: Petición para unirse a  
      address: Dirección   
      addresses: Direcciones   
      administrator: Administrador   
@@ -66,8 +62,7 @@ en:
      change_message_notification: Cambio de Recibida de correo de   
      change_email_configuration: Cambia tu configuración de mensajes.
      change_group: Cambia de Equipo   
-     change_language: Cambia el idioma    
-     change_openid: Ocultar tus cuentas de OpenID   
+     change_language: Cambia el idioma  
      change_rejected: El cambio que ha pedido ha sido rechazado.  
      change_rejected_explained: Es posible que no tuvieses acceso a esa zona, lo sentimos!	 
      change_roster_status: Pasa a   
@@ -117,6 +112,7 @@ en:
      create_name: Nuevo Nombre   
      create_note: Nueva Nota   
      create_payment: Nuevo Pago   
+     create_practice:  Nuevo Entrenamiento
      create_profile: Nuevo perfil   
      create_reminder: Nuevo Recordatorio   
      create_role: Nueva Responsabilidad   
@@ -167,8 +163,7 @@ en:
      description_match: Detalles del Partido   
      description_message: Detalles del Mensaje   
      description_note: Detalles de la Nota   
-     description_notification: Detalles del Notificación  
-     openid_identifier_description:  "Ej:  tu_nombre.myopenid.com"  
+     description_notification: Detalles del Notificación
      destroy: Borrar   
      destroy_address: Borra la Dirección   
      destroy_announcement: Borra un Anuncio   
@@ -323,7 +318,6 @@ en:
      games_won_full: Partidos Ganados   
      gender: Genero   
      general_information:  Información General
-     get_an_openid: Consigue una cuenta OpenID con myOpenID.com   
      get_your_gravatar: Pilla tu Gravatar    
      goal_difference: G.D.   
      goal_difference_full: Gol Diferencial   
@@ -377,7 +371,6 @@ en:
      interest_description: (Escribe algo de lo que te interesa...)   
      invalid_action: Acción Invalida   
      invalid_login: No válido de acceso o contraseña   
-     invalid_openid: "Lo sentimos, pero el OpenID es invalido!"   
      invitation: Invitación
      invitation_to: Tienes una invitación a HayPista   
      invitation_to_group: Invita a un Amigo al Equipo   
@@ -398,7 +391,7 @@ en:
      jornada_description:  Jornada
      language: Idioma 
      last_game_played: Ultima Jornada	 
-     last_logged_at: conecto la ultima vez   
+     last_login_at: conecto la ultima vez   
      last_minute: Ultima Hora   
      last_schedule_description: Ultimo evento    
      last_scorecard: Ultimos Resultados   
@@ -414,8 +407,7 @@ en:
      location_festival: Lugar donde practicas se Acondiciónamientos.   
      location_sport: Lugar donde practicas tu deporte. 
      login:  Entrar	 
-     log_in: Entrar  
-     log_in_myopenid: Entra con tu cuenta de myOpenID   
+     log_in: Entrar   
      logged_out: Se ha cerrado la sesión.   
      login: Entrar   
      logout: Salir   
@@ -450,8 +442,7 @@ en:
      moderator_updated:  Actualización de moderador.
      
      modified_available: Modificada la disponibilidad de jugar de   
-     modified_email: Modificada la disponibilidad de recibir correos a   
-     modified_openid: Modificada la opción de ocultar tus cuentas de OpenID   
+     modified_email: Modificada la disponibilidad de recibir correos a  
      modified_phone: Modificada la opción de ocultar el telefono de   
      modified_profile: Modificada la opción de ocultar tu perfil de   
      modified_reliable: Modificada la fiabilidad del jugardor para atender   
@@ -495,7 +486,17 @@ en:
      myopenid_login: myOpenID   
      myopenid_select: Seleccióna cualquiera de los siguientes proveedores de servicios.   Sigue el URL para añadir una cuenta de un tercer servicio a tu cuenta existente de HayPista!   
      myopenid_select_en: Select any of the service providers by following the url above to add a third-party account to your existing HayPista account!    
-     myopenid_third_party: miOpenID Tercera Parte Cuenta   
+     myopenid_third_party: miOpenID Tercera Parte Cuenta  
+
+     modified_openid: Modificada la opción de ocultar tus cuentas de OpenID 
+     log_in_myopenid: Entra con tu cuenta de myOpenID 
+     invalid_openid: "Lo sentimos, pero el OpenID es invalido!"  
+     get_an_openid: Consigue una cuenta OpenID con myOpenID.com  
+     openid_identifier_description:  "Ej:  tu_nombre.myopenid.com"  
+     change_openid: Ocultar tus cuentas de OpenID   
+     added_to_your_openid: añadido a tu cuenta OpenID
+     add_openid: Nuevo OpenID a tu cuenta        
+             
      name: Nombre 
      name_account: Nombre de la Cuenta   
      name_description:  Nombre
@@ -577,18 +578,20 @@ en:
      overview: descripción general   
      page_does_not_exist: La pagina que querias no exite.   
      participate_schedule: Participa en el Evento  
-      
+     
      password: Clave
      password_change: Cambiar Contraseña
      password_confirmation: Clave Confirmación	
      password_confirmation_description: Necesita 5 characteres. 
+     password_description:  Clave
      password_instructions: "Las instrucciones para restablecer su contraseña han sido enviadas a su cuenta de correo. Por favor, revisalo."
      password_issue:  "Lo sentimos, pero no hemos podido localizar su cuenta.  Si tiene problemas intente copiar y pegar la URL desde tu cuenta de correo al navegador o reiniciar el proceso de restablecimiento la contraseña."
      password_updated:    Su contraseña ha sido actualizada.
      password_update_and_login: Actualizar mi contraseña y entra.
      password_reset:  Restablecer contraseña
      password_reset_instructions:  "Danos tu cuenta de correo y te mandamos las instrucciones para restablecer tu contraseña."	 
-     password_resets_new:  Restablecer contraseña
+     password_resets_new:  Restablecer contraseña  
+     password_recover_instructions: Instrucciones para recupera tu Clave!  
      
      password_forgotten:  ¿Has olvidado tu contraseña?	
      confirmation_password: Clave Confirmación
@@ -625,13 +628,11 @@ en:
      deleted_petition_by: Petición ha sido borrada por   
      denial_petition_to_join: Petición denegada para unirse a 
      cancel_petition: Cancelar Petición   
-     # petition_to_join_declined: Petición cancelada para unirse a  
+
      cancel_a_petition: ¿Cancelar petición para unirte al equipo? 
      you_petition_to_join: Petición para unirte a un equipo  
      team_petition: Solicitud de Equipo
      error_petition_to_join: Error en la petición para unirse a
-
-
 
      phone: Teléfono   
      phone_description: (Por si te tiene que llamar tu equipo. Hay opción de poner este numero en privado...)   
@@ -649,7 +650,8 @@ en:
      points_for_win: Puntos por ganar
      points_for_win_description: Dale puntuación por ganar el evento...
      points_full: Puntos   
-     popular: De Moda   
+     popular: De Moda 
+     possible_spam:  Posible SPAM!  
      position_description: (El puesto en el campo que mejor se te da. si es relevante!)   
      post: Publica   
      post_not_saved: Comentarios NO guardados!!!   
@@ -697,7 +699,7 @@ en:
      recent_activity: Actividad reciente   
      recommend_marker: Este campo es recomendado...   
      recommend_venue: Este campo es recomendado...   
-     password_recover: Recupera tu Clave!   
+
      recycled_message: Mensaje reciclado   
      region: Provincia   
      register: Registrate con   
@@ -705,6 +707,7 @@ en:
      remember_me: Permanecer conectado. 
      # remember me: Permanecer conectado 
      reminder: Recordatorio 
+     reminder_description:  Quieres un recordatorio del Evento
      reminder_at:  Recordatorio
      reminder_at_description:  (¿Ha que hora te mandamos un recordatorio?)  
      reminder_at_match: Recordatorio   
@@ -975,7 +978,9 @@ en:
      url_group: Vincular a Equipo   
      use_at_discretion: Nueva opción para entrar.  Si tienes una cuenta entra con tu cuenta original.
      use_openid: O utiliza OpenID 
+     use_login:  O utiliza Acceso con
      use_standard_login: utiliza el estándar de acceso de usuario / contraseña
+     
      user: Jugador   
      users: Jugadores
      user_not_found:  "Ningún usuario con esa cuenta de correo se ha encontrado."
@@ -984,6 +989,8 @@ en:
      user_last_login: Última vez conectado   
      user_options:  Opciones de Usuario
      username_not_available: Nombre de usuario no esta disponible 
+     users_activate:  "Es necesario activar tu cuenta"
+     
      validate_openid: valida tu OpenID   
      venue: Centro Deportivo    
      Venue: Centro   
@@ -1165,7 +1172,9 @@ en:
      messages_show: Mostrar Mensaje
      messages_trash:  Mensajes Descartados
      
-     
+     practice_attend:  Asistir al Entrenamiento
+     practice_options:  Opciones de Entrenamiento
+     practice_unattend:  No asistir al entrenamiento
      practices:  Entrenamientos
      practices_create:  Nuevo Entrenamiento
      practices_index:  Entrenamiento
@@ -1192,6 +1201,7 @@ en:
      schedules_show: Detalles Del Evento
      schedule_ausentes:  Ningun Ausente para mostrar.
      schedule_convocados:  Ningun Convocado para mostrar.
+     schedule_excess_player:  Demasiados Jugadores Convocados
      schedule_ultima_hora:   Ninguno en Ultima Hora para mostrar.
      schedule_no_disponible:  Ninguno no Disponible para mostrar.
 
@@ -1200,10 +1210,23 @@ en:
      scorecards_option:  Opciones de Clasificaciones
      scorecards_less_games:  ( * ) Jugadores con menos partidos
      scorecards_legend:  Leyenda
+     
      # add_moderator: Nuevo Moderador   
      # add_openid: Nuevo OpenID a tu cuenta   
      # add_sub_manager: Nuevo Sub-Manager   
      # add_subscription: Nuevo Abonado
+     
+     recaptcha_ask_question: "Haz una Pregunta, recibe una respuesta!"
+     recaptcha_question:  Haz la Pregunta
+     recaptcha_question:  Pregunta
+     recaptcha_human_test:  Prueba Humana
+     recaptcha_type_words:  Escribe las dos Palabras
+     
+     rpx_login:  Acceso atraves de terceras cuentas
+     rpx_third_party_error:  "No se pueden recuperar los datos de terceras cuentas. Por favor, inténtalo de nuevo."
+     rpx_association_email_msg: Hemos encontrado una cuenta existente que ya está utilizando la dirección de correo electrónico
+     rpx_association_login_msg: Hemos encontrado una cuenta existente que ya está utilizando el nombre de usuario
+     rpx_unable_to_associate: "No ha sido posible asociar la cuenta nueva de terceros a las existente de Haypista cuenta debido a que tu correo electrónico o la contraseña son incorrectas."
      
      role_add_moderator:  Nuevo Moderador
      role_add_sub_manager:  Nuevo Sub-Manager
@@ -1241,10 +1264,12 @@ en:
      users_show: Mostrar Jugador
      users_my_wall: Mi Muro
      users_option:  Opciones de Jugadores
+     users_rpx_new: Nuevo Jugador
+     users_rpx_create:  Nuevo Jugador
      users_teammate: Mis Compañeros de Equipo
           
      must_be_logged_in:  Tienes que estar registrado para acceder a esta página
-     must_be_logged_out:  Tienes que no estar registrado para acceder a esta página
+     must_be_logged_out:  Tienes que cerrar la sesión para acceder a esta página
     
      true: "Si"
      false: "No"

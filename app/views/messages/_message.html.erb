@@ -1,4 +1,7 @@
-<% full_message ||= false %>
+<% full_message ||= false 
+	the_message = message.body
+	the_message = "#{the_message.strip[0..55]}..." if the_message.length > 55
+%>
 <tr>
 	<td>
 		<%= image_link_small message.other_user(current_user) %>
@@ -23,8 +26,9 @@
 		<span class="">
 			<%= link_to h(message.subject), message unless full_message %><br />
 			<span class="">							
-				<%= link_to h(truncate(message.body.gsub('<br>', ' ').rstrip, 55, '...')), message unless full_message %>
-				<%= message.body.gsub('<br>', ' ') if full_message %>							
+				<%#= link_to h(truncate(message.body.gsub('<br>', ' ').rstrip, 55, '...')), message unless full_message %>
+				<%= link_to the_message, message unless full_message %>
+				<%= the_message if full_message %>							
 			</span>
 		</span>
 	</td>
