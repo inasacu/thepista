@@ -9,27 +9,28 @@ body {
 }
 
 div#pagewrap {
-	margin: 0 auto;
-	width: 720px;
+	margin: 10px 0 0 10px;
+	width: 700px;
 }
 
 table {
 	border-collapse: collapse;
-	width: 100%;
+	width: 700px;
 }
 
 caption {
-	font-size: 2em;
-	color: #666;
+	font-size: 2.2em;
+	color: #1f5092;
 	text-align: left;
 	margin-bottom: 10px;
 }
 
 th {
-	font-size: 1em;
-    color: orange;
+	font-size: 1.3em;
+    color: #1f5092;
     text-align: left;
 	padding: 5px 10px;	
+
 }
 
 div.owner_comment {
@@ -44,48 +45,74 @@ div.owner_comment span.q {
 	background: transparent url('end_quote_small.gif') no-repeat scroll right bottom;
 }
 
-div#avatarImg {
-	text-align: center;
-	margin-bottom: 55px;
-	}
-	
-	div#avatarImg p a {
-		text-decoration: none;
-		color: #666;
-	}
-	
-	div#avatarImg p a:hover {
-		text-decoration: underline;
-	}
-	
-	
-
-tr.heading {
-	font-size: 1.2em;
-	text-align: center;
-	color: #333;
-	background: #ccc;	
-}
-
-tr.results {
+td.heading {
+	text-align: right;
+	font-weight: bold;
 	font-size: 1em;
-	text-align: center;
-	color: #666;
+	padding: 5px 20px 5px 10px;
+	color: #212121;
+	
+	width: 250px;
+	border-top: 1px solid #ccc;
+	border-bottom: 1px solid #ccc;
+	border-left: 1px solid #ccc;
+	background: #eaeaea;
+	
 }
 
-tr.extraInfo td.convocados,
-tr.extraInfo td.ausentes {
-	font-size: 1.2em;
-	text-align: center;
-	color: #333;
-
+td.results {
+	font-size: 1em;
+	text-align: left;
+	padding-left: 25px;
+	color: #666;
+	
+	border-top: 1px solid #eaeaea;
+	border-bottom: 1px solid #eaeaea;
+	border-right: 1px solid #eaeaea;
 }
 
 
 td img {
-	width: 60px;
-	height: 60px;
+   margin-left: 10px;
 }
+
+td#uploadpic {
+	text-align: center;
+	}
+	td#uploadpic a:link {
+		text-decoration: none;
+		color: #666;
+	}
+	td#uploadpic a:hover {
+		text-decoration: underline;
+		color: #1f5092;
+	}
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

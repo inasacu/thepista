@@ -34,7 +34,7 @@ USERS_PER_PAGE = 10
 
 #variables for login
 SHOW_OPENID_LOGIN = false
-SHOW_LOGIN = trueroot_url
+SHOW_LOGIN = true
 SHOW_RPX_NOW = true
 
 
