@@ -7,8 +7,8 @@ SUBJECT_RANGE_LENGTH = 3..75
 BODY_RANGE_LENGTH = 3..2000
 
 
-# ONE_WEEK_FROM_TODAY = Time.now - 1.day..Time.now + 7.days
-ONE_WEEK_FROM_TODAY = Time.now - 1.day..Time.now + 30.days
+ONE_WEEK_FROM_TODAY = Time.now - 1.day..Time.now + 7.days
+# ONE_WEEK_FROM_TODAY = Time.now - 1.day..Time.now + 30.days
 TIME_AGO_FOR_MOSTLY_ACTIVE = 1.month.ago
 TRASH_TIME_AGO = 1.month.ago
 
