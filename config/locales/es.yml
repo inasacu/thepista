@@ -28,6 +28,7 @@ es:
      announcements: Anuncios   
        
      archive: archiva  
+     archive_schedules:  Temporada Anterior
      are_you_sure:  ¿Estas Seguro? 
      at: a las   
      attend_schedule: Asiste al Evento   
@@ -733,7 +734,9 @@ es:
      save: Guardar   
      schedule: Evento   
      schedule_description_description: (Escribe algun detalle del equipo...)  
-     schedules: Eventos 
+     schedules: Eventos
+     season_ends_at:  Finalización de Temporada 
+     season_ends_at_description:  Fecha de Finalización de Temporada 
      signup: Registrar 
      score: Resultados   
      scorecard: Clasificación
@@ -1186,6 +1189,7 @@ es:
      practices_option:  Opciones de Entrenamientos
      practices_show: Detalles del Entrenamiento
 
+     schedules_archive:  Temporada Anterior
      schedules_create:  Nuevo Evento
      schedules_destroy:  Borrar Evento
      schedules_index:  Eventos

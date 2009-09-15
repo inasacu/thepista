@@ -57,7 +57,7 @@ ActionController::Routing::Routes.draw do |map|
   map.resources   :user_sessions,   :as => 'repitelo'
 
   map.resources   :users,           :as => 'jugadores',               :collection  => { :list => :get, :recent_activity => :get, :search => :get }  
-  map.resources   :schedules,       :as => 'eventos',                 :collection  => { :list => :get, :search => :get }          
+  map.resources   :schedules,       :as => 'eventos',                 :collection  => { :list => :get, :archive => :get, :search => :get }          
   map.resources   :groups,          :as => 'equipos',                 :collection  => { :list => :get, :search => :get }
   map.resources   :markers,         :as => 'centros'
   map.resources   :scorecards,      :as => 'classificaciones'

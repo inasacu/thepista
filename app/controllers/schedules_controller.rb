@@ -17,6 +17,11 @@ class SchedulesController < ApplicationController
     render :template => '/schedules/index'       
   end
   
+  def archive  
+    @schedules = Schedule.archive_schedules(current_user, params[:page])
+    render :template => '/schedules/index'       
+  end
+  
   def show
     store_location
     @schedule = Schedule.find(params[:id])
@@ -69,6 +74,11 @@ class SchedulesController < ApplicationController
     else
       render :action => 'new'
     end
+  end
+  
+  # set the end of season, 1 august current_year + 1
+  def edit
+    @schedule.season_ends_at = Time.utc(Time.now.year + 1, 8, 1)
   end
   
   def update

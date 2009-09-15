@@ -63,7 +63,7 @@ class Schedule < ActiveRecord::Base
   # variables to access
   attr_accessible :concept, :season, :jornada, :starts_at, :ends_at, :reminder, :subscription_at, :non_subscription_at
   attr_accessible :fee_per_game, :fee_per_pista, :time_zone, :group_id, :sport_id, :marker_id, :player_limit
-  attr_accessible :public, :description
+  attr_accessible :public, :description, :season_ends_at
   
   
   # after_update        :save_matches
@@ -106,6 +106,11 @@ class Schedule < ActiveRecord::Base
       :order => "matches.group_id desc, users.name")
   end
 
+  def last_season?
+    return false if self.season_ends_at.nil?
+    self.season_ends_at < Time.now()
+  end
+  
   def home_group
     self.group.name
   end
@@ -122,8 +127,14 @@ class Schedule < ActiveRecord::Base
 
   def self.previous_schedules(user, page = 1)
      self.paginate(:all, 
-     :conditions => ["starts_at < ? and group_id in (select group_id from groups_users where user_id = ?)", Time.now, user.id],
+     :conditions => ["starts_at < ? and (season_ends_at is null or season_ends_at > ?) and group_id in (select group_id from groups_users where user_id = ?)", Time.now, Time.now, user.id],
      :order => 'group_id, starts_at desc', :page => page, :per_page => SCHEDULES_PER_PAGE)
+  end
+
+  def self.archive_schedules(user, page = 1)
+    self.paginate(:all, 
+    :conditions => ["season_ends_at < ? and group_id in (select group_id from groups_users where user_id = ?)", Time.now, user.id],
+    :order => 'group_id, starts_at', :page => page, :per_page => SCHEDULES_PER_PAGE)
   end
   
   def self.max(schedule)

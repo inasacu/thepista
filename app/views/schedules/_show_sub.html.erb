@@ -148,4 +148,9 @@
       <%=h @schedule.public %>
     </p>
 
+    <p>
+      <b><%= label_name(:season_ends_at) %>:</b>
+      <%= nice_day_date(@schedule.season_ends_at) %>
+    </p>
+
 </div>

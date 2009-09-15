@@ -103,6 +103,12 @@
     <span class="description"><%= label_name('description') %></span>
   </div>
 
+  <div class="group">
+    <%= f.label :season_ends_at, label_name('season_ends_at'), :class => :label %>
+    <%= f.date_select :season_ends_at, :class => 'datetime_select' %><br />
+    <span class="description"><%= label_name('season_ends_at', 'description') %></span>
+  </div>
+
 <%= f.hidden_field :sport_id %>
 <%= f.hidden_field :time_zone %>
 
