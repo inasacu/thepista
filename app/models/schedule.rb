@@ -106,9 +106,9 @@ class Schedule < ActiveRecord::Base
       :order => "matches.group_id desc, users.name")
   end
 
-  def last_season?
-    return false if self.season_ends_at.nil?
-    self.season_ends_at < Time.now()
+  def last_season?(user)
+    return false if self.season_ends_at.nil? and user.is_manager_of?(self.group)
+    return (self.season_ends_at < Time.now() and user.is_manager_of?(self.group))
   end
   
   def home_group

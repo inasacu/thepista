@@ -1,20 +1,30 @@
+<% 
+@archive ||= false 
+@less_games = 5
+%>
+
 <div class="block">
 
 <%= render :partial => 'secondary_navigation' %>  
 
 <% 
-@groups.each do |group| 
-	
-	@games_played = group.games_played
-	@scorecards = group.scorecards.paginate(:per_page => 10, :page => params[:page])
-	scorecards = false
-	@scorecards.each {|card| scorecards = true }
+@games_played = @scorecards.first.group.games_played
+scorecards = false
+@scorecards.each {|card| scorecards = true }
 
-	if scorecards	
+if scorecards	
 %>
 <div class="content">   
 
-	<h2 class="title"><%= link_to group.name, :controller => 'scorecards', :action => 'show', :id => group %></h2>
+	<h2 class="title">
+		<% unless @archive %>
+			<%= link_to @scorecards.first.group.name, 
+				{:controller => 'scorecards', :action => 'show', :id => @scorecards.first.group} %>
+		<% else %>
+			<%= link_to @scorecards.first.group.name, 
+					{:controller => 'scorecards', :action => 'show_archive', :id => @scorecards.first.group} %>
+		<% end %>
+	</h2>
 
 	<div class="inner">
 
@@ -22,10 +32,10 @@
 
 			<tr>           
 				<th class="first" title="<%= label_name(:ranking_full) %>"><%= label_name(:ranking) %></th>
+				<th>&nbsp;</th>
 				<th><span><%= label_name(:name) %></span></th>
 				<th>&nbsp;</th>
 				<th>&nbsp;</th>
-				<th title="<%= label_name(:previous_ranking_full) %>"><%= label_name(:previous_ranking) %></th>
 				<th title="<%= label_name(:points_full) %>"><%= label_name(:points) %></th>
 				<th title="<%= label_name(:games_won_full) %>"><%= label_name(:games_won) %></th>
 				<th title="<%= label_name(:games_tied_full) %>"><%= label_name(:games_tied) %></th>
@@ -37,18 +47,22 @@
 				<th title="<%= label_name(:coeficient_full) %>"><%= label_name(:coeficient) %></th>
 				<th title="<%= label_name(:games_played_full) %>"><%= label_name(:games_played) %></th>
 				<th title="<%= label_name(:games_assigned_full) %>"><%= label_name(:games_assigned) %></th>
+				<th title="<%= label_name(:previous_ranking_full) %>"><%= label_name(:previous_ranking) %></th>
 				<!-- <th class="last">&nbsp;</th> -->
 			</tr>
 
-			<%= render :partial => 'scorecard', :collection => @scorecards, :locals => {:group => group, :games_played => @games_played} %>        
+			<%= render :partial => 'scorecard', :collection => @scorecards, 
+									:locals => {:group => @scorecards.first.group, :games_played => @games_played, :less_games => @less_games} %>        
 		</table>
-		<%= render :partial => 'shared/action_bar', :locals => { :collection => @scorecards } %>
-		
+		<%#= render :partial => 'shared/action_bar', :locals => { :collection => @scorecards } %>
+		<p><em style="color: rgb(153, 153, 153);">
+			<%= "(*) #{label_name(:player_with)} #{@less_games} #{label_name(:player_with_less_games)}" %>
+			</em>
+		</p>
 	</div>
 
 	</div>
 <% 
-	end 
 end 
 -%>
 

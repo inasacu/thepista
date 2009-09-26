@@ -83,3 +83,25 @@
 
 	</div>
 </div>
+
+<% unless @archive %>
+
+<div class="block">
+
+	<h3><%= label_name(get_the_controller, 'options') %></h3>
+	
+<ul class="navigation">
+<% 
+	if current_user.is_manager_of?(@group) 
+		the_confirmation = "#{ label_name(:destroy_schedule) } #{ label_name(:from) } #{@group.name}?" 
+%> 
+		<li><%= link_to control_label('archive'), 
+				archive_scorecard_path(:id => @group), :confirm => label_name(:are_you_sure)  if current_user.is_manager_of?(@group) %></li>
+<% 
+	end 
+%>
+</ul>
+	
+</div>
+
+<% end %>

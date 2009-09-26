@@ -17,7 +17,8 @@ if SHOW_OPENID_LOGIN
 
 <div class="group navform"> 
 	<%= submit_tag the_label, :class => "button" %>&nbsp;&nbsp;
-	<%= link_to(label_name(:no_account_yet), signup_path) if ("#{get_the_controller}_#{ get_the_action}" != "user_signup") %>
+	<%= link_to(label_name(:no_account_yet), signup_path) if ("#{get_the_controller}_#{ get_the_action}" != "user_signup") %><br />
+  	<%= link_to(label_name(:no_openid_account_yet), NEW_OPENID_URL) if ("#{get_the_controller}_#{ get_the_action}" != "user_signup") %>
 </div>
 
 <% 

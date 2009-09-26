@@ -8,7 +8,7 @@ class GroupsController < ApplicationController
   end
   
   def list
-    @groups = Group.paginate(:all, :page => params[:page], :order => 'name')
+    @groups = Group.paginate(:all, :conditions => ["archive = false and id not in (?)", current_user.groups], :page => params[:page], :order => 'name')
     render :template => '/groups/index'       
   end
   

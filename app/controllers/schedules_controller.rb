@@ -17,7 +17,7 @@ class SchedulesController < ApplicationController
     render :template => '/schedules/index'       
   end
   
-  def archive  
+  def archive_list 
     @schedules = Schedule.archive_schedules(current_user, params[:page])
     render :template => '/schedules/index'       
   end

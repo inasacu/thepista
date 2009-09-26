@@ -80,8 +80,8 @@ APP_CONFIG = YAML.load(raw_config)[RAILS_ENV]
 
 # # global variables
 # # url to get users to signup
-# NEW_OPENID_URL = "https://www.myopenid.com/affiliate_signup?affiliate_id=1443"
-# CONTACT_RECIPIENT = 'support@haypista.com'
+NEW_OPENID_URL = "https://www.myopenid.com/affiliate_signup?affiliate_id=1443"
+CONTACT_RECIPIENT = 'support@haypista.com'
 
 # # Workaround to make ruby-openid work with Passenger, because these two don't always cooperate.
 # # http://groups.google.com/group/phusion-passenger/browse_thread/thread/30b8996f8a1b11f0/ba4cc76a5a08c37d? @@@ hl=en&lnk=gst&q=

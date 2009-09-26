@@ -28,7 +28,7 @@ es:
      announcements: Anuncios   
        
      archive: archiva  
-     archive_schedules:  Temporada Anterior
+     archive_list_schedules:  Temporada Anterior
      are_you_sure:  ¿Estas Seguro? 
      at: a las   
      attend_schedule: Asiste al Evento   
@@ -513,6 +513,7 @@ es:
      nickname: Alias   
      no_account: "Con tu cuenta nueva OpenID, registrate en HayPista"   
      no_account_yet: No tienes una cuenta todavia?   
+     no_openid_account_yet: No tienes una cuenta OpenID todavia? 
      no_announcement: No tienes anuncios internos   
      no_change_group: Ningun Cambio de Equipo   
      no_classified: No tienes anuncios   
@@ -643,6 +644,8 @@ es:
      physical_level_description: "(Del 1 al 5, pon el nivel fisico que crees que tienes comparado con los de tu equipo...)"  
      player_limit:  Limite de Jugadores
      player_limit_description:  Limite de Jugadores que puede tener el Equipo. 
+     player_with: "Jugadores con"
+     player_with_less_games: partidos menos que el resto.
      points: Ptos.
      points_for_draw: Puntos por empatar
      points_for_draw_description: Dale puntuación por empatar el evento...
@@ -705,8 +708,7 @@ es:
      region: Provincia   
      register: Registrate con   
      registration_failed: Su perfil de OpenID ha fallado.   
-     remember_me: Permanecer conectado. 
-     # remember me: Permanecer conectado 
+     remember_me: "¿Permanecer Conectado?"
      reminder: Recordatorio 
      reminder_description:  Quieres un recordatorio del Evento
      reminder_at:  Recordatorio
@@ -1016,7 +1018,6 @@ es:
      you_can: Puedes   
      you_can_search: Puedes buscar un   
      you_have: Tienes   
-     
       
      your_beta_invite: Estas invitado a entrar en HayPista.   
      your_birthdate: Fecha de nacimiento   
@@ -1068,18 +1069,6 @@ es:
      current_login_at:  Actual fecha de Entrada
      last_login_ip:  IP de ultima entrada
      current_login_ip:  IP actual
-     
-     # spanish:  Español
-     # english:  Ingles
-     # french:   Frances
-     # german:   Aleman
-     # italian:  Italiano
-     # 
-     # Español:  es
-     # Ingles:  en
-     # Frances:  fr
-     # Aleman:  ge
-     # Italiano: it
      
      es:  Español
      en:  Ingles
@@ -1189,7 +1178,7 @@ es:
      practices_option:  Opciones de Entrenamientos
      practices_show: Detalles del Entrenamiento
 
-     schedules_archive:  Temporada Anterior
+     schedules_archive_list:  Temporada Anterior
      schedules_create:  Nuevo Evento
      schedules_destroy:  Borrar Evento
      schedules_index:  Eventos
@@ -1209,6 +1198,9 @@ es:
      schedule_ultima_hora:   Ninguno en Ultima Hora para mostrar.
      schedule_no_disponible:  Ninguno no Disponible para mostrar.
 
+     scorecard_list:  Clasificaciones Anteriores
+     scorecard_options:  Opciones de Clasificación
+     scorecards_archive:  Archivar la Clasificación
      scorecards_index:   Clasificaciones
      scorecards_manager_option:  Requiere responsable de equipo para ver mas opciones.
      scorecards_option:  Opciones de Clasificaciones
@@ -1256,6 +1248,7 @@ es:
      types_maximo_option:  Requiere responsable de administrador para ver mas opciones.
      types_option:  Opciones de Tipos
      
+     users_available:  Jugadores Disponibles
      users_index:  Jugadores
      users_index_option: Opciones de Jugador
      users_description_no:  Ningun detalle del Jugador.
@@ -1268,6 +1261,7 @@ es:
      users_show: Mostrar Jugador
      users_my_wall: Mi Muro
      users_option:  Opciones de Jugadores
+     user_options_team: Opciones de Equipos del Jugador
      users_rpx_new: Nuevo Jugador
      users_rpx_create:  Nuevo Jugador
      users_teammate: Mis Compañeros de Equipo

@@ -40,6 +40,12 @@ class Group < ActiveRecord::Base
   has_many      :accounts  
   has_many      :payments
   has_many      :scorecards, :conditions => "user_id > 0 and played > 0 and archive = false", :order => "points DESC, ranking"
+  
+  has_many      :archive_scorecards, 
+                :through => :scorecards,
+                :conditions => ["user_id > 0 and played > 0 and season_ends_at < ?", Time.now], 
+                :order => "points DESC, ranking"
+                
   has_many      :fees   
 
   has_many :the_managers,
@@ -94,15 +100,19 @@ class Group < ActiveRecord::Base
   #                                "group by dayname(starts_at) order by dayofweek(starts_at)"])
   # end
 
+  def available_users
+      self.users.find(:all, :conditions => 'available = true', :order => 'users.name')      
+  end
+  
   def games_played
     games_played = 0
-    # self.schedules.each {|schedule| games_played += 1 if schedule.played}
+    self.schedules.each {|schedule| games_played += 1 if schedule.played}
 
-    @match = Match.find(:first, :select => "count(*) as total", 
-    :conditions => ["schedule_id in (select id from schedules where group_id = 1) and type_id = 1"],
-    :group => "user_id", :order => "count(*) desc")
-    
-    games_played = @match.total
+    # @match = Match.find(:first, :select => "count(*) as total", 
+    # :conditions => ["schedule_id in (select id from schedules where group_id = ?) and type_id = 1", self.id],
+    # :group => "user_id", :order => "count(*) desc")
+    # 
+    # games_played = @match.total
     return games_played
   end
 

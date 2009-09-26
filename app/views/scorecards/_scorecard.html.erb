@@ -1,6 +1,6 @@
 <% 
 	swith ||= false
-	max_points = group.games_played.to_i * group.points_for_win.to_i
+	max_points = scorecard.played.to_i * group.points_for_win.to_i
 	coeficient = 0
 	coeficient = 100 *(scorecard.points.to_f/max_points.to_f) 
 	
@@ -15,22 +15,23 @@
 %>
 
 <tr>
-	<td class="first"><%= "*" if (scorecard.played < games_played.to_i) %>&nbsp;<%= scorecard.ranking %></td>
+	<td class="first"><%= "*" if ((scorecard.played.to_i + less_games) < games_played.to_i) %>&nbsp;<%= scorecard.ranking %></td>
+	<td class="equipos"><%= image_link_tiny scorecard.user %></td>
 	<td class="equipos"><span><%= user_link scorecard.user %></span></td>
 	<td class="jugados"><%= image_tag(image) %></td>
 	<td class="jugados"><%= ranking_change %></td>
-	<td class="jugados"><%= scorecard.previous_ranking %></td>
-	<td class="puntos"><%= scorecard.points %></td>
+	<td class="puntos"><strong><%= scorecard.points.round %></strong></td>
 	<td class="ganados"><%= scorecard.wins %></td>
 	<td class="empatados"><%= scorecard.draws %></td>
 	<td class="perdidos"><%= scorecard.losses %></td>
-	<td class="afavor"><%= scorecard.goals_scored %></td>
+	<td class="afavor"><strong><%= scorecard.goals_scored %></strong></td>
 	<td class="afavor"><%= scorecard.goals_for %></td>
 	<td class="encontra"><%= scorecard.goals_against %></td>
 	<td class="encontra"><%= scorecard.goals_for - scorecard.goals_against %></td>
-	<td class="puntos"><%= sprintf( "%0.00f", coeficient) %><%= "%" %></td>
+	<td class="puntos"><strong><%= sprintf( "%0.00f", coeficient) %><%= "%" %></strong></td>
 	<td class="jugados"><%= scorecard.played %></td>
 	<td class="jugados"><%= scorecard.assigned %></td>
+	<td class="jugados"><%= scorecard.previous_ranking %></td>
 	<!-- <td class="last">&nbsp;</td> -->
 </tr>
 

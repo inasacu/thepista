@@ -4,6 +4,7 @@ class UsersController < ApplicationController
   
   before_filter :get_user, :only => [:show, :set_available, :set_private_phone, :set_private_profile, :set_enable_comments, 
                                      :set_teammate_notification, :set_message_notification, :set_comment_notification] 
+                                     
   before_filter :get_user_group, :only =>[:set_sub_manager, :remove_sub_manager, :set_subscription, 
                                           :remove_subscription, :set_moderator, :remove_moderator]
   

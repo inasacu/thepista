@@ -124,6 +124,10 @@ module ApplicationHelper
     return self.controller.action_name.singularize.gsub("_", " ")
   end
   
+  def nice_day_time(time_at)
+    return I18n.l(time_at, :format => :day_time) unless time_at.nil?
+  end
+  
   def nice_time_at(time_at)
     return I18n.l(time_at, :format => :time_at) unless time_at.nil?
   end

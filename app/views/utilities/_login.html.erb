@@ -48,7 +48,7 @@ if SHOW_LOGIN
 		&nbsp;
 	</div>
 	<div class="right">
-  		<%= f.check_box :remember_me %>&nbsp;&nbsp;<%= f.label :remember_me %><br />
+  		<%= f.check_box :remember_me %>&nbsp;&nbsp;<%= f.label label_name(:remember_me) %><br />
 	</div>
 	
 	<div class="clear">
@@ -67,17 +67,18 @@ if SHOW_LOGIN
 	</div>
 </div>
 
-<div class="group">
+<!-- <div class="group">
 	<div class="left">
 		&nbsp;
 	</div>
 	<div class="right">
-  		<%= link_to(label_name(:no_account_yet), signup_path) if ("#{get_the_controller}_#{ get_the_action}" != "user_signup") %>
+  		<%#= link_to(label_name(:no_account_yet), signup_path) if ("#{get_the_controller}_#{ get_the_action}" != "user_signup") %><br />
+	  	<%#= link_to(label_name(:no_openid_account_yet), NEW_OPENID_URL) if ("#{get_the_controller}_#{ get_the_action}" != "user_signup") %>
 	</div>
 	
 	<div class="clear">
 	</div>
-</div>
+</div> -->
 
 <% end %>
 

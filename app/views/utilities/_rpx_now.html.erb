@@ -13,6 +13,11 @@ if SHOW_RPX_NOW
   </div> 		  
   <div class="clear"></div> 		  
 </div>
+<br />
+<div class="group navform">
+	<%= link_to(label_name(:no_openid_account_yet), NEW_OPENID_URL) %>
+  	<%#= link_to(label_name(:no_openid_account_yet), NEW_OPENID_URL) if ("#{get_the_controller}_#{ get_the_action}" != "user_signup") %>
+</div>
 
 <% 
 end 

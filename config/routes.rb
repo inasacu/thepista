@@ -33,16 +33,16 @@ ActionController::Routing::Routes.draw do |map|
   map.remove_moderator   	  'users/:id/remove_moderator/:group',  		:controller => 'users',    		    :action => 'remove_moderator'   
   map.petition              'users/petition',                         :controller => 'users',           :action => 'petition'
   
-  map.set_available               'users/set_available',  		        :controller => 'users',    		    :action => 'set_available'
-  map.set_private_phone           'users/set_private_phone',  		    :controller => 'users',    		    :action => 'set_private_phone'
-  map.set_private_profile         'users/set_private_profile',  		  :controller => 'users',    		    :action => 'set_private_profile'
-  map.set_enable_comments         'users/set_enable_comments',  		  :controller => 'users',    		    :action => 'set_enable_comments'
-  map.set_teammate_notification   'users/set_teammate_notification',  :controller => 'users',    		    :action => 'set_teammate_notification'
-  map.set_message_notification    'users/set_message_notification',  	:controller => 'users',    		    :action => 'set_message_notification'
-  map.set_comment_notification    'users/set_comment_notification',  	:controller => 'users',    		    :action => 'set_comment_notification'
+  map.set_available               'users/:id/set_available',  		        :controller => 'users',    		    :action => 'set_available'
+  map.set_private_phone           'users/:id/set_private_phone',  		    :controller => 'users',    		    :action => 'set_private_phone'
+  map.set_private_profile         'users/:id/set_private_profile',  		  :controller => 'users',    		    :action => 'set_private_profile'
+  map.set_enable_comments         'users/:id/set_enable_comments',  		  :controller => 'users',    		    :action => 'set_enable_comments'
+  map.set_teammate_notification   'users/:id/set_teammate_notification',  :controller => 'users',    		    :action => 'set_teammate_notification'
+  map.set_message_notification    'users/:id/set_message_notification',  	:controller => 'users',    		    :action => 'set_message_notification'
+  map.set_comment_notification    'users/:id/set_comment_notification',  	:controller => 'users',    		    :action => 'set_comment_notification'
   
-  map.set_group_enable_comments   'groups/set_enable_comments',  		  :controller => 'groups',    		    :action => 'set_enable_comments'
-  map.set_group_available         'groups/set_available',  		        :controller => 'groups',    		    :action => 'set_available'
+  map.set_group_enable_comments   'groups/:id/set_enable_comments',  		  :controller => 'groups',    		    :action => 'set_enable_comments'
+  map.set_group_available         'groups/:id/set_available',  		        :controller => 'groups',    		    :action => 'set_available'
   
   map.match_team            'matches/:id/set_team',                   :controller => 'matches',         :action => 'set_team'
   map.match_status          'matches/:id/set_status/:type',           :controller => 'matches',         :action => 'set_status'
@@ -54,13 +54,16 @@ ActionController::Routing::Routes.draw do |map|
   map.attend_practice       'practices/:id/attend',                   :controller => 'practices',       :action => 'attend'
   map.unattend_practice     'practices/:id/unattend',                 :controller => 'practices',       :action => 'unattend'
   
+  map.archive_scorecard     'scorecards/:id/archive',                 :controller => 'scorecards',      :action => 'archive'
+  map.show_archive          'scorecards/:id/show_archive',            :controller => 'scorecards',      :action => 'show_archive'
+  
   map.resources   :user_sessions,   :as => 'repitelo'
 
   map.resources   :users,           :as => 'jugadores',               :collection  => { :list => :get, :recent_activity => :get, :search => :get }  
-  map.resources   :schedules,       :as => 'eventos',                 :collection  => { :list => :get, :archive => :get, :search => :get }          
+  map.resources   :schedules,       :as => 'eventos',                 :collection  => { :list => :get, :archive_list => :get, :search => :get }          
   map.resources   :groups,          :as => 'equipos',                 :collection  => { :list => :get, :search => :get }
   map.resources   :markers,         :as => 'centros'
-  map.resources   :scorecards,      :as => 'classificaciones'
+  map.resources   :scorecards,      :as => 'classificaciones',        :collection  => { :list => :get }
   map.resources   :matches,         :as => 'jornadas'
 
   map.resources :teammates

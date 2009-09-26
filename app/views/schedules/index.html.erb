@@ -50,8 +50,8 @@
 			<% end %>
 
           <td class="last">
-            <%= link_to label_name('edit'), edit_schedule_path(schedule) unless schedule.last_season? %><br />
-            <%= link_to control_label('destroy'), schedule_path(schedule), 
+            <%= link_to label_name('edit'), edit_schedule_path(schedule) unless schedule.last_season?(current_user) %><br />
+            <%#= link_to control_label('destroy'), schedule_path(schedule), 
 					:method => :delete, :confirm => label_name(:are_you_sure) unless schedule.played? %>
           </td>
 

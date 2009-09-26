@@ -12,8 +12,10 @@
 
     <div class="inner">
 
+	<%= render :partial => 'show_thepista' %>
+
 	<p>
-	  <b><%= label_name(:name) %>:</b>
+	  <b><%#= label_name(:name) %></b>
 	  <%= group_show_photo @group %>
 	</p>		
 	
@@ -28,13 +30,43 @@
         </p>
 
         <p>
-          <b><%= label_name(:gameday_at) %>:</b>
-          <%= nice_day_date @group.gameday_at %>
+          <b><%= label_name(:game_day) %>:</b>
+          <%= nice_day_time @group.schedules.first.starts_at %>
         </p>
 
         <p>
-          <b><%= label_name(:available) %>:</b>
-          <%= label_name(@group.available, 'value') %>
+          <b><%= label_name(:description) %>:</b>
+          <%= @group.description %>
+        </p>
+
+        <p>
+          <b><%= label_name(:manager) %>:</b>
+          <%= user_list @group.all_the_managers %>
+        </p>
+
+        <p>
+          <b><%= label_name(:time_zone) %>:</b>
+          <%= @group.time_zone %>
+        </p>
+
+        <p>
+          <b><%= label_name(:sport) %>:</b>
+          <%= @group.sport.name %>
+        </p>
+
+        <p>
+          <b><%= label_name(:marker) %>:</b>
+          <%= marker_link @group.marker %>
+        </p>
+
+          <p>
+            <b><%= label_name(:users) %>:</b>
+            <%= t(:has_group_users, :count => @group.users.count) %>
+          </p>
+      
+        <p>
+          <b><%= label_name(:schedules) %>:</b>
+          <%= t(:has_group_schedules, :count => @group.schedules.count) %>
         </p>
 
         <p>
@@ -53,26 +85,6 @@
         </p>
 
         <p>
-          <b><%= label_name(:time_zone) %>:</b>
-          <%= @group.time_zone %>
-        </p>
-
-        <p>
-          <b><%= label_name(:sport) %>:</b>
-          <%= @group.sport.name %>
-        </p>
-
-        <p>
-          <b><%= label_name(:marker) %>:</b>
-          <%= marker_link @group.marker %>
-        </p>
-
-        <p>
-          <b><%= label_name(:description) %>:</b>
-          <%= @group.description %>
-        </p>
-
-        <p>
           <b><%= label_name(:conditions) %>:</b>
           <%= @group.conditions %>
         </p>
@@ -81,6 +93,14 @@
           <b><%= label_name(:player_limit) %>:</b>
           <%= @group.player_limit %>
         </p>
+
+	    <% if current_user.is_member_of?(@group) and !@group.available_users.empty? %>
+	      <p>
+	        <b><%= label_name(:users_available) %>:</b>
+	        <%= user_list @group.available_users %>
+	      </p>
+	    <% end %>
+
 <% 
 	the_label = h(label_name(@group.available, 'value'))
 	the_confirmation = label_with_name('set_available', "#{@group.name}?") 

@@ -1,0 +1,8 @@
+
+
+# archiving teams
+select * from groups where archive = true
+
+update groups set archive = true
+where id not in (
+select group_id from schedules)

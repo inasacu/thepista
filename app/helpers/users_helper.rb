@@ -160,6 +160,10 @@ module UsersHelper
   	"#{label_name(:no_photo_for, get_the_controller)}.  #{link_to(label_name(:upload), edit_user_path(user))}"
   end	
   
+  def image_link_tiny(user)
+    link_to(image_tag(user.avatar, options={:style => "height: 15px; width: 15px;"}), user_path(user))
+  end
+  
   def image_link_small(user)
     link_to(image_tag(user.avatar, options={:style => "height: 30px; width: 30px;"}), user_path(user))
   end
