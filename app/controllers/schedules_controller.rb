@@ -28,6 +28,10 @@ class SchedulesController < ApplicationController
     @group = @schedule.group
     @previous = Schedule.previous(@schedule)
     @next = Schedule.next(@schedule)
+    
+    unless current_user.is_member_of?(@schedule.group) 
+      redirect_back_or_default('/index')
+    end
   end
   
   # def search
@@ -46,6 +50,7 @@ class SchedulesController < ApplicationController
       @schedule.marker_id = @group.marker_id
       @schedule.time_zone = @group.time_zone
       @schedule.jornada = 1
+      @schedule.season_ends_at = Time.utc(Time.now.year + 1, 8, 1)
 
       @lastSchedule = Schedule.find(:first, :conditions => ["id = (select max(id) from schedules where group_id = ?) ", @group.id])    
       if !@lastSchedule.nil?
@@ -54,14 +59,14 @@ class SchedulesController < ApplicationController
         @schedule.jornada += 1
         @schedule.starts_at = @lastSchedule.starts_at + 7.days
         @schedule.ends_at = @lastSchedule.ends_at + 7.days
-        @schedule.reminder = @lastSchedule.reminder
-        @schedule.subscription_at = @lastSchedule.starts_at - 2.days
-        @schedule.non_subscription_at = @lastSchedule.starts_at - 1.day
+        # @schedule.reminder = @lastSchedule.reminder
+        # @schedule.subscription_at = @lastSchedule.starts_at - 2.days
+        # @schedule.non_subscription_at = @lastSchedule.starts_at - 1.day
       end
   end
 
   def create
-    @schedule = Schedule.new(params[:schedule])
+    @schedule = Schedule.new(params[:schedule])    
     unless current_user.is_manager_of?(@schedule.group)
       flash[:warning] = I18n.t(:unauthorized)
       redirect_back_or_default('/index')

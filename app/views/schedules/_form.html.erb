@@ -28,24 +28,23 @@
     <span class="description"><%= label_name('ends_at', 'description') %></span>
   </div>
 
-  <div class="group">
-    <%= f.label :reminder, label_name('reminder'), :class => :label %>
-    <%= f.check_box :reminder, :class => 'check_box' %>
-    <span class="description"><%= label_name('reminder', 'description') %></span>
-  </div>
+  <!-- <div class="group">
+    <%#= f.label :reminder, label_name('reminder'), :class => :label %>
+    <%#= f.check_box :reminder, :class => 'check_box' %>
+    <span class="description"><%#= label_name('reminder', 'description') %></span>
+  </div> -->
 
+  <!-- <div class="group">
+    <%#= f.label :subscription_at, label_name('subscription_at'), :class => :label %>
+    <%#= f.datetime_select :subscription_at, :class => 'datetime_select' %><br />
+    <span class="description"><%#= label_name('subscription_at', 'description') %></span>
+  </div> -->
 
-  <div class="group">
-    <%= f.label :subscription_at, label_name('subscription_at'), :class => :label %>
-    <%= f.datetime_select :subscription_at, :class => 'datetime_select' %><br />
-    <span class="description"><%= label_name('subscription_at', 'description') %></span>
-  </div>
-
-  <div class="group">
-    <%= f.label :non_subscription_at, label_name('non_subscription_at'), :class => :label %>
-    <%= f.datetime_select :non_subscription_at, :class => 'datetime_select' %><br />
-    <span class="description"><%= label_name('non_subscription_at', 'description') %></span>
-  </div>
+  <!-- <div class="group">
+    <%#= f.label :non_subscription_at, label_name('non_subscription_at'), :class => :label %>
+    <%#= f.datetime_select :non_subscription_at, :class => 'datetime_select' %><br />
+    <span class="description"><%#= label_name('non_subscription_at', 'description') %></span>
+  </div> -->
 
   <div class="group">
     <%= f.label :fee_per_game, label_name('fee_per_game'), :class => :label %>
@@ -103,18 +102,19 @@
     <span class="description"><%= label_name('description') %></span>
   </div>
 
-  <div class="group">
-    <%= f.label :season_ends_at, label_name('season_ends_at'), :class => :label %>
-    <%= f.date_select :season_ends_at, :class => 'datetime_select' %><br />
-    <span class="description"><%= label_name('season_ends_at', 'description') %></span>
-  </div>
+  <!-- <div class="group">
+    <%#= f.label :season_ends_at, label_name('season_ends_at'), :class => :label %>
+    <%#= f.date_select :season_ends_at, :class => 'datetime_select' %><br />
+    <span class="description"><%#= label_name('season_ends_at', 'description') %></span>
+  </div> -->
 
+<%= f.hidden_field :group_id %>
 <%= f.hidden_field :sport_id %>
 <%= f.hidden_field :time_zone %>
 
 <div class="clear"></div> 
 
 <div class="group navform">
-	<%= submit_tag @schedule.new_record? ? label_name(:create) : label_name(:edit), 
+	<%= submit_tag label_name, 
 			:class => "button" %> <%= label_name(:or) %> <%= link_to label_name(:cancel), schedules_path %>
 </div>

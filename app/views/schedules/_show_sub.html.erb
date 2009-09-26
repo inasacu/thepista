@@ -11,6 +11,12 @@
       <%=h @schedule.description %>
     </p>
 
+	<% if @schedule.played? %>	
+	<p>
+      <b><%= label_name(:game_notes) %>:</b>
+      <%= @schedule.matches.first.description %>
+    </p>
+	<% end %>
 
     <% if @schedule.game_played? %>
       <p>
@@ -72,21 +78,10 @@
     <% end %>
 
     <% unless @schedule.convocados.empty? %>
-      <% if @schedule.played? %>
-        <p>
-          <b><%= @schedule.home_group %>:</b>
-          <%= user_list @schedule.home_roster %>
-        </p>
-        <p>
-          <b><%= @schedule.away_group %>:</b>
-          <%= user_list @schedule.away_roster %>
-        </p>
-      <% else %>
-        <p>
-          <b><%= label_name(:rosters) %>:</b>
-          <%= user_list @schedule.convocados %>
-        </p>
-      <% end %>
+      <p>
+        <b><%= label_name(:rosters) %>:</b>
+        <%= user_list @schedule.convocados %>
+      </p>
     <% end %>
 
     <% unless @schedule.last_minute.empty? %>
@@ -103,15 +98,15 @@
       </p>
     <% end %>
 
-    <p>
-      <b><%= label_name(:subscription_at) %>:</b>
-      <%=h nice_day_of_week(@schedule.subscription_at) %>
-    </p>
+    <!-- <p>
+      <b><%#= label_name(:subscription_at) %>:</b>
+      <%#=h nice_day_of_week(@schedule.subscription_at) %>
+    </p> -->
 
-    <p>
-      <b><%= label_name(:non_subscription_at) %>:</b>
-      <%=h nice_day_of_week(@schedule.non_subscription_at) %>
-    </p>
+    <!-- <p>
+      <b><%#= label_name(:non_subscription_at) %>:</b>
+      <%#=h nice_day_of_week(@schedule.non_subscription_at) %>
+    </p> -->
 
     <p>
       <b><%= label_name(:fee_per_game) %>:</b>
@@ -145,12 +140,12 @@
 
     <p>
       <b><%= label_name(:public) %>:</b>
-      <%=h @schedule.public %>
+      <%=h label_name(@schedule.public, 'value') %>
     </p>
 
-    <p>
-      <b><%= label_name(:season_ends_at) %>:</b>
-      <%= nice_day_date(@schedule.season_ends_at) %>
-    </p>
+    <!-- <p>
+      <b><%#= label_name(:season_ends_at) %>:</b>
+      <%#= nice_day_date(@schedule.season_ends_at) %>
+    </p> -->
 
 </div>
