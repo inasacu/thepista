@@ -1,5 +1,6 @@
 class Schedule < ActiveRecord::Base
-
+  
+  include ActivityLogger
   
   acts_as_solr :fields => [:concept, :description, :time_zone, :starts_at]  if use_solr? 
 
@@ -67,8 +68,8 @@ class Schedule < ActiveRecord::Base
   
   
   # after_update        :save_matches
-  # after_create        :log_activity
-  # after_update        :log_activity_played
+  after_create        :log_activity
+  after_update        :log_activity_played
 
   def the_roster
     Match.find(:all,    
@@ -194,5 +195,13 @@ class Schedule < ActiveRecord::Base
     Match.create_schedule_match(self) 
     Fee.create_user_fees(self)
   end
- 
+  
+  private
+  def log_activity
+    add_activities(:item => self, :user => self.group.all_the_managers.first) 
+  end
+  
+  def log_activity_played
+    add_activities(:item => self, :user => self.group.all_the_managers.first) if self.played?
+  end
 end

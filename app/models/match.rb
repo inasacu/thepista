@@ -147,6 +147,14 @@ class Match < ActiveRecord::Base
 	# return ture if the schedule group user conbination is nil
    def self.schedule_group_user_exists?(schedule, user)
 		find_by_schedule_id_and_group_id_and_user_id(schedule, schedule.group, user).nil?
-	end 	
+	end 
+
+  def self.log_activity_convocado(match)
+    unless Activity.exists?(match, match.user)
+      activity = Activity.create!(:item => match, :user => match.user)
+      Feed.create!(:activity => activity, :user => match.user)
+    end
+  end   
 end
+
 

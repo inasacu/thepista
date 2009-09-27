@@ -5,7 +5,7 @@ class HomeController < ApplicationController
 
     if current_user
       # @feed = current_user.activities
-      # @users = current_user.find_mates
+      @users = current_user.find_mates
 
       if current_user.current_login_at >= (Time.now - 1.minutes)
         @upcoming_schedules ||= Schedule.upcoming_schedules(session[:schedule_hide_time])

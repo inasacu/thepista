@@ -66,25 +66,26 @@ ActionController::Routing::Routes.draw do |map|
   map.resources   :scorecards,      :as => 'classificaciones',        :collection  => { :list => :get }
   map.resources   :matches,         :as => 'jornadas'
 
-  map.resources :teammates
-  map.resources :posts
-  map.resources :topics
-  map.resources :forums
-  map.resources :entries
-  map.resources :comments
-  map.resources :blogs
+  map.resources   :activities
+  map.resources   :teammates
+  map.resources   :posts
+  map.resources   :topics
+  map.resources   :forums
+  map.resources   :entries
+  map.resources   :comments
+  map.resources   :blogs
   map.resources   :types,         :as => 'tipos'
   map.resources   :sports,        :as => 'deportes'
   map.resources   :roles,         :as => 'responsabilidades'
   map.resources   :practices,     :as => 'entrenamientos',  :collection  => { :list => :get, :search => :get }          
-  map.resources :payments
-  map.resources :fees
-  map.resources :password_resets
+  map.resources   :payments
+  map.resources   :fees
+  map.resources   :password_resets
   
-  map.resources :connections
-  map.resources :messages, :collection => { :sent => :get, :trash => :get }
+  map.resources   :connections
+  map.resources   :messages, :collection => { :sent => :get, :trash => :get }
 
-  map.resources :users do |user|
+  map.resources   :users do |user|
     user.resources :messages
   end
 

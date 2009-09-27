@@ -1,0 +1,27 @@
+class Activity < ActiveRecord::Base
+  
+  belongs_to  :user
+  belongs_to  :item,      :polymorphic => true
+  has_many    :feeds,     :dependent => :destroy
+  
+  # Return a feed drawn from all activities.
+  # The fancy SQL is to keep inactive users out of feeds.
+  # It's hard to do that entirely, but this way deactivated users 
+  # won't be the user in "<user> has <done something>".
+  #
+  # This is especially useful for sites that require email verifications.
+  # Their 'connected with admin' item won't show up until they verify.
+  def self.global_feed
+    find(:all, 
+         :joins => "INNER JOIN users ON users.id = activities.user_id",
+         :order => 'activities.created_at DESC',
+         :limit => GLOBAL_FEED_SIZE)
+  end
+  
+  
+  # Return true if the item and user already exist.
+  def self.exists?(item, user)
+    find(:all, :conditions => ["item_id = ? and item_type = ? and user_id = ?", item.id, item.class.to_s, user.id]).nil?
+  end
+  
+end

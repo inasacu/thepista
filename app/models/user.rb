@@ -7,6 +7,8 @@ class User < ActiveRecord::Base
   # RE_NAME_OK = /\A[^[:cntrl:]\\<>\/&]*\z/
   # MSG_NAME_BAD = "avoid non-printing characters and \\&gt;&lt;&amp;/ please."
  
+   include ActivityLogger
+   
   acts_as_authentic do |c|
     
     c.openid_required_fields = [:nickname, :email]
@@ -43,6 +45,9 @@ class User < ActiveRecord::Base
   # validates_acceptance_of :terms_of_service
   # validates_inclusion_of :gender, :in => ['male','female'], :allow_nil => true
  
+  # after_update      :log_activity_description_changed
+  before_destroy    :destroy_activities, :destroy_feeds  
+  
   before_destroy :unmap_rpx
 
   acts_as_solr :fields => [:name, :time_zone, :position] if use_solr?
@@ -106,6 +111,12 @@ class User < ActiveRecord::Base
       end         
       
       has_one     :blog  
+      has_many    :feeds
+
+      has_many    :activities,
+                  :conditions => {:created_at => ONE_WEEK_FROM_TODAY},
+                  :order => "created_at DESC",
+                  :limit => FEED_SIZE
       
     after_create    :create_user_blog_details, :deliver_signup_notification
     
@@ -128,17 +139,7 @@ class User < ActiveRecord::Base
 
 
     
-    #   has_many    :feeds
-    #   
-    #   has_many    :activities,
-    #               :conditions => {:created_at => ONE_WEEK_FROM_TODAY},
-    #               :order => "created_at DESC",
-    #               :limit => FEED_SIZE
-    # 
-    #   before_update     :set_old_description
-    #   after_update      :log_activity_description_changed
-    #   before_destroy    :destroy_activities, :destroy_feeds  
-    #   before_validation :prepare_email, :handle_nil_description
+
     # 
     #   # def self.search(search)
     #   #   if search
@@ -316,7 +317,6 @@ class User < ActiveRecord::Base
     end
 
     def page_mates(page = 1)  
-
       mates = User.paginate(:all, 
                           :conditions => ["id in (select distinct user_id from groups_users where group_id in (?))", self.groups],
                           :order => "name",
@@ -333,7 +333,10 @@ class User < ActiveRecord::Base
       return mates
     end
 
-    
+    def find_mates                         
+      mates = User.find(:all, :conditions => ["id in (select distinct user_id from groups_users where group_id in (?))", self.groups], 
+                 :order => "name")
+    end
     
     def create_matches(schedule, group, user)
       Match.create_schedule_group_user_match(schedule, group, user)
@@ -434,6 +437,21 @@ class User < ActiveRecord::Base
     def map_openid_registration(registration)
       self.email = registration["email"] if email.blank?
       self.name = registration["nickname"] if name.blank?      
+    end
+    
+    # def log_activity_description_changed
+    #   unless @old_description == description or description.blank?
+    #     add_activities(:item => self, :user => self)
+    #   end
+    # end
+
+    # Clear out all activities associated with this user.
+    def destroy_activities
+      Activity.find_all_by_user_id(self).each {|a| a.destroy}
+    end
+
+    def destroy_feeds
+      Feed.find_all_by_user_id(self).each {|f| f.destroy}
     end
     
   end

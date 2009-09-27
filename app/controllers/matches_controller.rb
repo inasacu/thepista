@@ -42,7 +42,7 @@ class MatchesController < ApplicationController
 
     if @match.update_attributes(:type_id => @type.id, :played => played, :user_x_two => @user_x_two, :status_at => Time.now)
       Scorecard.calculate_user_played_assigned_scorecard(@match.user, @match.schedule.group)
-      # Match.log_activity_convocado(@match)
+      Match.log_activity_convocado(@match)
 
       flash[:notice] = I18n.t(:is_available_user) 
     end 

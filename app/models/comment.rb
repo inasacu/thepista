@@ -1,10 +1,15 @@
 class Comment < ActiveRecord::Base
+
+  include ActivityLogger
+
   belongs_to  :entry,   :counter_cache => true
   belongs_to  :user,    :counter_cache => true
   belongs_to  :group,   :counter_cache => true
 
   validates_presence_of   :body
   validates_length_of     :body,            :within => BODY_RANGE_LENGTH
+
+  after_create    :log_activity
   
   # method section
   def self.get_latest_comments(entry)
@@ -31,5 +36,10 @@ class Comment < ActiveRecord::Base
   def self.user_exists?(user)
     # find_by_user_id(user).nil?
     true
+  end
+
+  private
+  def log_activity
+    add_activities(:item => self, :user => self.user) unless (self.user.nil?)
   end
 end

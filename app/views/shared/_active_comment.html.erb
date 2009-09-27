@@ -1,0 +1,15 @@
+<div class="block"> 
+  <div class="sidebar-block"> 
+	<h4><%= label_name(:recent_activities) %></h4> 
+			
+	<% @users.each do |user| %>
+	<%- unless user.activities.empty? -%>
+
+		<%= render :partial => 'shared/activity', :collection => user.activities, 
+				   :locals => { :destroy => current_user == user, :recent => true } %>
+	
+	<%- end -%>
+	<%- end -%>
+			
+  </div> 
+</div>
