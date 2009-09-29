@@ -46,7 +46,8 @@ es:
      between: entre   
      birth_at:  Fecha de Nacimiento
      birth_description: (Escribe fecha de nacimiento...Solo se utiliza para calcular la edad media del equipo...) 
-     blog_comment_notification:  Recibir Notificación de comentario en tu Muro en tu cuenta de correo.
+     # blog_comment_notification:  Recibir Notificación de comentario en tu Muro en tu cuenta de correo.
+     blog_comment_notification: Recibir Notificación
      body: Contenido 
      body_description:  Contenido  
      calendar_language: es   
@@ -281,7 +282,8 @@ es:
      forum_comment_notification:  Recibir Notificación de comentario en tu Muro en tu cuenta de correo.
      message_notification:  Recibir correo en tu cuenta de correo.
      teammate_notification:  Recibir Notificación para unirse a tu equipo en tu cuenta de correo.
-     enable_comments:  Habilitar opción para dejar comentarios en tu Muro.
+     # enable_comments:  Habilitar opción para dejar comentarios en tu Muro.
+     enable_comments:  Habilitar comentarios
      for:  para
      from: de   
      from_Ausente: Pasate a Ultima Hora   
@@ -895,7 +897,8 @@ es:
      table_id: Codigo de Tabla   
      table_type: Tipo de Tabla   
      # team_petition: Solicitud de Equipo   
-     teammate_notification:  Recibir Notificationes de tu equipo
+     # teammate_notification:  Recibir Notificationes de tu equipo
+     teammate_notification:  Recibir Notificationes
      technical_level_description: "(Del 1 al 5, pon el nivel tecnico que crees que tienes comparado con los de tu equipo...)"  
      terms: terminos   
      terms_message: Please accept the terms to proceed   
