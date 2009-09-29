@@ -9,17 +9,11 @@
 %>
 <li><%= group_link group %></li>
 <%
-	if @user.can_add_to_group?(current_user, group)
-		the_label = label_with_name('petition_to_join_group', group.name)
-		the_confirmation = "#{ label_name(:petition_to_join_group)} #{@user.name} #{ label_name(:to) } #{group.name}?"
-%> 
-		<li><%= link_to(the_label, join_team_path(:id => group.id, :teammate => @user.id), :confirm => the_confirmation) %></li>
-<% 
-	elsif current_user.is_manager_of?(group) 
+	if current_user.is_manager_of?(group) 
 		the_label = label_with_name('fire_from_group', group.name)
 		the_confirmation = "#{ label_name(:fire_from_group)} #{group.name} #{ label_name(:to)} #{@user.name}?"
 %> 
-		<li><%= link_to(the_label, leave_team_path(:id => group.id, :teammate => @user.id), :confirm => the_confirmation) %></li>
+		<!-- <li><%#= link_to(the_label, leave_team_path(:id => group.id, :teammate => @user.id), :confirm => the_confirmation) %></li> -->
 <% 
 		unless @user.is_sub_manager_of?(group) 
 			the_label = label_with_name('role_add_sub_manager', group.name)
@@ -67,6 +61,35 @@
 end 
 %>
 
+
+</ul>
+	
+</div>
+
+<div class="block">
+	
+	<h3><%= label_name("user_options_team") %></h3>
+	
+<ul class="navigation">
+<% 
+	current_user.groups.each do |group| 
+
+ 		unless @user.is_member_of?(group)  
+			the_label = label_with_name('petition_to_join_group', group.name)
+			the_confirmation = "#{ label_name(:petition_to_join_group)} #{@user.name} #{ label_name(:to) } #{group.name}?"
+%>
+        	<li><%= link_to(the_label, join_team_path(:id => group.id, :teammate => @user.id), :confirm => the_confirmation) %></li>
+
+<% 
+		else 
+			the_label = label_with_name('fire_from_group', group.name)
+			the_confirmation = "#{ label_name(:fire_from_group)} #{group.name} #{ label_name(:to)} #{@user.name}?"
+%> 
+		<li><%= link_to(the_label, leave_team_path(:id => group.id, :teammate => @user.id), :confirm => the_confirmation) %></li>
+<% 
+		end 
+	end 
+%>
 
 
 </ul>
