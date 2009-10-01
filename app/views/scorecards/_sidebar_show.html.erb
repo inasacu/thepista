@@ -49,12 +49,17 @@
 		<p>
 			<b><%= label_name(:goal_difference) %></b>
 			<%= label_name(:goal_difference_full) %>
-		<p>					
-				
+		<p>	
+
 		<p>
 			<b><%= label_name(:coeficient) %></b>
 			<%= label_name(:coeficient_full) %>
-		<p>	
+		<p>
+
+		<p>
+			<b><%= label_name(:coeficient_points) %></b>
+			<%= label_name(:coeficient_full_points) %>
+		<p>
 
 		<p>
 			<b><%= label_name(:games_played) %></b>
@@ -95,8 +100,8 @@
 	if current_user.is_manager_of?(@group) 
 		the_confirmation = "#{ label_name(:destroy_schedule) } #{ label_name(:from) } #{@group.name}?" 
 %> 
-		<li><%= link_to control_label('archive'), 
-				archive_scorecard_path(:id => @group), :confirm => label_name(:are_you_sure)  if current_user.is_manager_of?(@group) %></li>
+		<li><%= link_to control_label('archive'), archive_scorecard_path(:id => @group), 
+				:confirm => label_name(:are_you_sure)  if current_user.is_manager_of?(@group) %></li>
 <% 
 	end 
 %>

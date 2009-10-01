@@ -17,13 +17,26 @@ module GroupsHelper
 
   def group_show_photo(group)
     if group.photo_file_name
-      return image_tag(group.photo.url)
+      # return image_tag(group.photo.url)
+      return group_image_link_large(group)
     end
     "#{label_name(:no_photo_for, get_the_controller)}.  #{link_to(label_name(:upload), edit_group_path(group))}"
   end
 
+  def group_image_link_tiny(group)
+    link_to(image_tag(group.avatar, options={:style => "height: 15px; width: 15px;"}), group_path(group))
+  end
+  
   def group_image_link_small(group)
+    link_to(image_tag(group.avatar, options={:style => "height: 30px; width: 30px;"}), group_path(group))
+  end
+
+  def group_image_link_medium(group)
     link_to(image_tag(group.avatar, options={:style => "height: 55px; width: 55px;"}), group_path(group))
+  end
+
+  def group_image_link_large(group)
+    link_to(image_tag(group.avatar, options={:style => "height: 80px; width: 80px;"}), group_path(group))
   end
   
   def group_vs_invite(schedule)

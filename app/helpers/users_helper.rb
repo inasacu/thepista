@@ -155,7 +155,8 @@ module UsersHelper
         
   def user_show_photo(user)
     if user.photo_file_name
-  	  return image_tag(user.photo.url)
+      # return image_tag(user.photo.url)
+      return image_link_large(user)
   	end
   	"#{label_name(:no_photo_for, get_the_controller)}.  #{link_to(label_name(:upload), edit_user_path(user))}"
   end	
@@ -171,7 +172,11 @@ module UsersHelper
   def image_link_medium(user)
     link_to(image_tag(user.avatar, options={:style => "height: 55px; width: 55px;"}), user_path(user))
   end
-   
+
+  def image_link_large(user)
+    link_to(image_tag(user.avatar, options={:style => "height: 80px; width: 80px;"}), user_path(user))
+  end
+    
   def user_list(objects)
     list_of_objects = ""
     objects.each do |object|

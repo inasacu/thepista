@@ -42,6 +42,9 @@ class User < ActiveRecord::Base
   validates_presence_of :email
   validates_length_of   :name,      :within => NAME_RANGE_LENGTH
   
+  # validates_attachment_size         :photo, :less_than => 5.megabytes
+  # validates_attachment_content_type :photo, :content_type => ['image/jpeg', 'image/png', 'image/gif']
+  
   # validates_acceptance_of :terms_of_service
   # validates_inclusion_of :gender, :in => ['male','female'], :allow_nil => true
  
@@ -53,11 +56,7 @@ class User < ActiveRecord::Base
   acts_as_solr :fields => [:name, :time_zone, :position] if use_solr?
   acts_as_authorization_subject
   
-  has_attached_file :photo,
-  :styles => {
-    :thumb  => "80x80#",
-    :medium => "160x160>",
-    },
+  has_attached_file :photo, :styles => { :thumb  => "80x80#", :medium => "160x160>", },
     :storage => :s3,
     :s3_credentials => "#{RAILS_ROOT}/config/s3.yml",
     :url => "/assets/users/:id/:style.:extension",

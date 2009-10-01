@@ -70,3 +70,48 @@ text_area.textfield {
 .next_message { float: left; background-image: url('../../images/next_message_arrow.gif'); }
 .previous_message { float: right; background-image: url('../../images/previous_message_arrow.gif'); }
 
+
+
+
+/* tables */
+.table table.scorecard{
+  width: 100%;
+  border-collapse: collapse;  
+  margin-bottom: 15px;
+}
+
+.table th {
+  padding: 10px;
+  font-weight: bold;
+  text-align: left;
+}
+
+.table th.first {
+  width: 30px;
+}
+
+.table th.last {
+ /* width: 200px;  */
+	width: 130px;
+}
+
+.table .checkbox {
+  margin-left: 10px;
+}
+
+.table td {
+  padding: 10px;
+}
+
+.table td.last {
+  text-align: right;
+}
+
+.table td.puntos { 
+	border-left: 0pt none; 
+	border-bottom:1px solid #EEF0F0  ! important; 
+	padding-right: 2px; width: 24px; 
+	background-color: #F7F7F8;
+	color: darkblue ! important; 
+	font-weight: bold; 
+}

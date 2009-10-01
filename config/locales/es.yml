@@ -83,7 +83,9 @@ es:
      code: Codigo 
      conditions: Condiciones   
      coeficient: "%"
-     coeficient_full: Coeficiente   
+     coeficient_full: Coeficiente 
+     coeficient_points: "#"  
+     coeficient_full_points: Puntos * Coeficiente
      comment: Comentario   
      comment_not_saved: Comentarios NO guardados!!!   
      comment_saved: Comentarios guardados!!!   

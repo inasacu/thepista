@@ -57,6 +57,8 @@ ActionController::Routing::Routes.draw do |map|
   map.archive_scorecard     'scorecards/:id/archive',                 :controller => 'scorecards',      :action => 'archive'
   map.show_archive          'scorecards/:id/show_archive',            :controller => 'scorecards',      :action => 'show_archive'
   
+  map.ratings_rate          'ratings/:id/rate/:type',                 :controller => 'ratings',         :action => 'rate'
+  
   map.resources   :user_sessions,   :as => 'repitelo'
 
   map.resources   :users,           :as => 'jugadores',               :collection  => { :list => :get, :recent_activity => :get, :search => :get }  
@@ -65,7 +67,8 @@ ActionController::Routing::Routes.draw do |map|
   map.resources   :markers,         :as => 'centros'
   map.resources   :scorecards,      :as => 'classificaciones',        :collection  => { :list => :get }
   map.resources   :matches,         :as => 'jornadas'
-
+  
+  map.resources   :ratings,         :member => { :rate => :put }
   map.resources   :activities
   map.resources   :teammates
   map.resources   :posts
