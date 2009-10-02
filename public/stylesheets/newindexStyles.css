@@ -35,14 +35,14 @@ th {
 
 div.owner_comment {
 	padding: 0px 0px 5px 18px;
-	background: transparent url('start_quote_small.gif') no-repeat scroll top left;
+	background: transparent url('../../images/start_quote_small.gif') no-repeat scroll top left;
 }
 
 
 div.owner_comment span.q { 
 	font-weight: normal;
 	padding: 2px 16px 2px 0px;
-	background: transparent url('end_quote_small.gif') no-repeat scroll right bottom;
+	background: transparent url('../../images/end_quote_small.gif') no-repeat scroll right bottom;
 }
 
 td.heading {
