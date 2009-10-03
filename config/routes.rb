@@ -31,7 +31,8 @@ ActionController::Routing::Routes.draw do |map|
   map.remove_subscription   'users/:id/remove_subscription/:group',  	:controller => 'users',    		    :action => 'remove_subscription' 
   map.set_moderator   		  'users/:id/set_moderator/:group',    		  :controller => 'users',    		    :action => 'set_moderator'
   map.remove_moderator   	  'users/:id/remove_moderator/:group',  		:controller => 'users',    		    :action => 'remove_moderator'   
-  map.petition              'users/petition',                         :controller => 'users',           :action => 'petition'
+  map.petition              'users/:id/petition',                     :controller => 'users',           :action => 'petition'
+  map.set_public            'schedules/:id/set_public',               :controller => 'schedules',       :action => 'set_public'  
   
   map.set_available               'users/:id/set_available',  		        :controller => 'users',    		    :action => 'set_available'
   map.set_private_phone           'users/:id/set_private_phone',  		    :controller => 'users',    		    :action => 'set_private_phone'

@@ -35,8 +35,8 @@
 	<table border="1">
 
 		
-		<%= tr_td_show(:name, @group.name) %>
-		<%= tr_td_show(:second_team, @group.second_team) %>
+		<%= tr_td_action(:name, @group.name) %>
+		<%= tr_td_action(:second_team, @group.second_team) %>
 
 		<tr>
 			<%= content_tag :td, label_name(:manager), :class => "label" %>
@@ -48,16 +48,16 @@
 			<%= content_tag :td, marker_link(@group.marker), :class => get_the_action %>
 		</tr>
 
-		<%= tr_td_show(:sports, @group.sport.name) %>
-		<%= tr_td_show(:game_day, nice_day_time(@group.schedules.first.starts_at)) %>
-		<%= tr_td_show(:time_zone, @group.time_zone) %>
-		<%= tr_td_show(:users, t(:has_group_users, :count => @group.users.count)) %>
-		<%= tr_td_show(:schedules, t(:has_group_schedules, :count => @group.schedules.count)) %>
-		<%= tr_td_show(:points_for_win, @group.points_for_win) %>
-		<%= tr_td_show(:points_for_draw, @group.points_for_draw) %>
-		<%= tr_td_show(:points_for_lose, @group.points_for_lose) %>
-		<%= tr_td_show(:conditions, @group.conditions) %>
-		<%= tr_td_show(:player_limit, @group.player_limit) %>
+		<%= tr_td_action(:sports, @group.sport.name) %>
+		<%= tr_td_action(:game_day, nice_day_time(@group.schedules.first.starts_at)) %>
+		<%= tr_td_action(:time_zone, @group.time_zone) %>
+		<%= tr_td_action(:users, t(:has_group_users, :count => @group.users.count)) %>
+		<%= tr_td_action(:schedules, t(:has_group_schedules, :count => @group.schedules.count)) %>
+		<%= tr_td_action(:points_for_win, @group.points_for_win) %>
+		<%= tr_td_action(:points_for_draw, @group.points_for_draw) %>
+		<%= tr_td_action(:points_for_lose, @group.points_for_lose) %>
+		<%= tr_td_action(:conditions, @group.conditions) %>
+		<%= tr_td_action(:player_limit, @group.player_limit) %>
 
 	 <% if current_user.is_member_of?(@group) and !@group.available_users.empty? %>
 	   <tr>

@@ -6,10 +6,14 @@
 if current_user 
 %>
 	<li class="<%= get_active('home_upcoming_schedule') %>">
-			<%= link_to label_name(:upcoming_schedule) , :controller => 'home', :action => 'upcoming_schedule' unless upcoming_schedules.empty? %></li>
+			<%= link_to label_name(:upcoming_schedule) , :controller => 'home', :action => 'upcoming_schedule' unless upcoming_schedules.empty? %>
+	</li>
+			
+	<% if current_user.has_pending_petition?(current_user) %>
 	<li class="<%= get_active('user_petition') %>">
-		<%= link_to(label_name(:petitions), petition_path) if current_user.has_pending_petition?(current_user) %>
-	</li>				
+		<%= link_to(label_name(:petitions), petition_path(:id => current_user)) %>
+	</li>	
+	<% end %>			
 <% 
 end 
 %>

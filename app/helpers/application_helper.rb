@@ -83,7 +83,7 @@ module ApplicationHelper
   #   <%= content_tag 'td', label_name(:name), :class => "label" %>
   #   <%= content_tag 'td', h(@group.name), :class => get_the_action %>
   # </tr>
-  def tr_td_show(label, value)
+  def tr_td_action(label, value)
     content_tag(:tr, content_tag(:td, label_name(label), :class => "label") + content_tag(:td, h(value), :class => get_the_action))
   end
   

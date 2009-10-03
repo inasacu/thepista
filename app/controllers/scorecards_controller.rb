@@ -2,10 +2,12 @@ class ScorecardsController < ApplicationController
   before_filter :require_user
   
   def index
-    @scorecards = Scorecard.find(:all, 
-          :joins => "LEFT JOIN users on users.id = scorecards.user_id",
-          :conditions => ["group_id in (?) and user_id > 0 and played > 0 and scorecards.archive = false", current_user.groups],
-          :order => "group_id, points DESC, ranking, users.name")
+    @groups = current_user.groups.paginate :page => params[:page], :order => 'name'
+    
+    # @scorecards = Scorecard.find(:all, 
+    #           :joins => "LEFT JOIN users on users.id = scorecards.user_id",
+    #           :conditions => ["group_id in (?) and user_id > 0 and played > 0 and scorecards.archive = false", current_user.groups],
+    #           :order => "group_id, points DESC, ranking, users.name")
     # @scorecards = Scorecard.paginate(:all, 
     # :conditions => ["group_id in (?) and user_id > 0 and played > 0 and archive = false", current_user.groups],
     # :order => "group_id, points DESC, ranking",
@@ -14,9 +16,14 @@ class ScorecardsController < ApplicationController
   
   def list
     @scorecards = Scorecard.find(:all, 
-          :joins => "LEFT JOIN users on users.id = scorecards.user_id",
-          :conditions => ["group_id in (?) and user_id > 0 and played > 0 and scorecards.archive = true and season_ends_at < ?", current_user.groups, Time.now],
-          :order => "group_id, points DESC, ranking, users.name")
+                    :conditions => ["group_id in (?) and user_id = 0 and scorecards.archive = true and season_ends_at < ?", 
+                                    current_user.groups, Time.now])
+    @groups = Group.paginate(:all, :conditions => ["id in (?)", @scorecards],:per_page => 10, :page => params[:page])   
+    
+    # @scorecards = Scorecard.find(:all, 
+    #       :joins => "LEFT JOIN users on users.id = scorecards.user_id",
+    #       :conditions => ["group_id in (?) and user_id > 0 and played > 0 and scorecards.archive = true and season_ends_at < ?", current_user.groups, Time.now],
+    #       :order => "group_id, points DESC, ranking, users.name")
 
     # @scorecards = Scorecard.paginate(:all, 
     #       :conditions => ["group_id in (?) and user_id > 0 and played > 0 and archive = true and season_ends_at < ?", current_user.groups, Time.now],

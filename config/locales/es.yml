@@ -83,9 +83,9 @@ es:
      code: Codigo 
      conditions: Condiciones   
      coeficient: "%"
-     coeficient_full: Coeficiente 
+     coeficient_full: Coeficiente = Puntos Obtenidos / Maximo Puntos
      coeficient_points: "#"  
-     coeficient_full_points: Puntos * Coeficiente
+     coeficient_full_points: Puntos Obtenidos * Coeficiente
      comment: Comentario   
      comment_not_saved: Comentarios NO guardados!!!   
      comment_saved: Comentarios guardados!!!   
@@ -93,7 +93,8 @@ es:
      concept_description:  Concepto   
      contact: Contacto   
      contact: Contacto   
-     convocado: Convocado   
+     convocado: Convocado
+     convocados: Convocados
      could_not_log_you: No se ha podido iniciar la sesión en la que como   
      could_not_setup_account: "No pudimos crear la cuenta, lo sentimos!"   
      country: Pais   
@@ -584,6 +585,9 @@ es:
      overview: descripción general   
      page_does_not_exist: La pagina que querias no exite.   
      participate_schedule: Participa en el Evento  
+     
+     participation:  %
+     participation_full:  Porcentaje de Participación
      
      password: Clave
      password_change: Cambiar Contraseña
@@ -1204,6 +1208,7 @@ es:
      schedule_no_disponible:  Ninguno no Disponible para mostrar.
 
      scorecard_list:  Clasificaciones Anteriores
+     scorecards_list:  Clasificaciones Anteriores
      scorecard_options:  Opciones de Clasificación
      scorecards_archive:  Archivar la Clasificación
      scorecards_index:   Clasificaciones

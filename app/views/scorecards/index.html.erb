@@ -1,77 +1,92 @@
 <% 
 @archive ||= false 
-@less_games = 5
 %>
 
 <div class="block">
 
-<%= render :partial => 'secondary_navigation' %>  
+  <%= render :partial => 'secondary_navigation' %>  
+          
+  <div class="content">  
+	        
+    <h2 class="title"><%= get_collection_label(@groups) %></h2>
 
-<% 
-@games_played = @scorecards.first.group.games_played
-scorecards = false
-@scorecards.each {|card| scorecards = true }
+    <div class="inner">
+	
+	<% if object_counter(@groups) > 0 %>
+	
+      <table class="table">
+	
+        <tr>             
+          <th class="first">&nbsp;</th>
+          <th><%= label_name(:name) %>&nbsp;/<br />
+			  <%= label_name(:gameday_at) %></th>
+          <th><%= label_name(:manager) %>&nbsp;/<br />
+			  <%= label_name(:sport) %></th>
+          <th><%= label_name(:time_zone) %></th>
+          <th><%= label_name(:general_information) %></th>
+          <th><%= label_name(:created_at) %></th>
+          <th class="last">&nbsp;</th>
+        </tr>
 
-if scorecards	
-%>
-<div class="content">   
+        <% @groups.each do |group| -%>
 
-	<h2 class="title">
-		<% unless @archive %>
-			<%= link_to @scorecards.first.group.name, 
-				{:controller => 'scorecards', :action => 'show', :id => @scorecards.first.group} %>
-		<% else %>
-			<%= link_to @scorecards.first.group.name, 
-					{:controller => 'scorecards', :action => 'show_archive', :id => @scorecards.first.group} %>
-		<% end %>
-	</h2>
+        <tr>  
+		  <td>
+			<%= group_image_link_small group %>
+		  </td>
+		  
+		  <td>
+			
+			
+			<% unless @archive %>
+				<%= link_to group.name, scorecard_path(:id => group.id) %>
+			<% else %>
+			<%= link_to group.name, show_archive_path(:id => group.id) %>
+				<%#= link_to @scorecards.first.group.name, 
+						{:controller => 'scorecards', :action => 'show_archive', :id => @scorecards.first.group} %>
+			<% end %>
+			
+			<%#= nice_day_time group.gameday_at %>
+		  </td>
+		
+		  <td>
+			<%= user_list group.all_the_managers %><br />
+			<%= group.sport.name %>
+		  </td>
 
-	<div class="inner">
+			  <td>
+				<%= group.time_zone %>
+			  </td>
+                
+          <td>
+			<%= I18n.t(:has_group_users, :count => object_counter(group.users)) %><br />
+			<%= I18n.t(:has_group_schedules, :count => object_counter(group.schedules)) %>
+          </td>
 
-		<table class="table">
+          <td>
+            <%#= nice_full_date group.created_at %>
+          </td>
 
-			<tr>           
-				<th class="first" title="<%= label_name(:ranking_full) %>"><%= label_name(:ranking) %></th>
-				<th>&nbsp;</th>
-				<th><span><%= label_name(:name) %></span></th>
-				<th>&nbsp;</th>
-				<th>&nbsp;</th>
-				<th title="<%= label_name(:points_full) %>"><%= label_name(:points) %></th>
-				<th title="<%= label_name(:games_won_full) %>"><%= label_name(:games_won) %></th>
-				<th title="<%= label_name(:games_tied_full) %>"><%= label_name(:games_tied) %></th>
-				<th title="<%= label_name(:games_lost_full) %>"><%= label_name(:games_lost) %></th>
-				<th title="<%= label_name(:goals_scored_full) %>"><%= label_name(:goals_scored) %></th>
-				<th title="<%= label_name(:goals_for_full) %>"><%= label_name(:goals_for) %></th>
-				<th title="<%= label_name(:goals_against_full) %>"><%= label_name(:goals_against) %></th>
-				<th title="<%= label_name(:goal_difference_full) %>"><%= label_name(:goal_difference) %></th>
-				<th title="<%= label_name(:coeficient_full) %>"><%= label_name(:coeficient) %></th>
-				<th title="<%= label_name(:coeficient_full) %>"><%= label_name(:coeficient_points) %></th>
-				<th title="<%= label_name(:games_played_full) %>"><%= label_name(:games_played) %></th>
-				<th title="<%= label_name(:games_assigned_full) %>"><%= label_name(:games_assigned) %></th>
-				<th title="<%= label_name(:previous_ranking_full) %>"><%= label_name(:previous_ranking) %></th>
-				<!-- <th class="last">&nbsp;</th> -->
-			</tr>
+          <td class="last">
+			<%= link_to(label_name(:send_message_to_group), new_message_path(:group_id => group.id)) %><br />
+            <%#= link_to label_name(:invitation_to_group), edit_group_path(group) %> 
 
-			<%= render :partial => 'scorecard', :collection => @scorecards, 
-									:locals => {:group => @scorecards.first.group, :games_played => @games_played, :less_games => @less_games} %>        
-		</table>
-		<%#= render :partial => 'shared/action_bar', :locals => { :collection => @scorecards } %>
-		<p><em style="color: rgb(153, 153, 153);">
-			<%= "(*) #{label_name(:player_with)} #{@less_games} #{label_name(:player_with_less_games)}" %>
-			</em>
-		</p>
+			<%# if current_user.is_manager_of?(group) %> 
+				<%#= link_to label_name(:create_schedule), new_schedule_path(:id => group.id)  %><br />
+				<%#= link_to label_name(:create_practice), new_practice_path(:id => group.id)  %>
+	        <%# end %>
+          </td>
+        </tr>   
+       
+        <% end -%>
+
+      </table>
+
+	<% end %>
+	<%= render :partial => 'shared/action_bar', :locals => { :collection => @groups } %>
+
 	</div>
-
 	</div>
-<% 
-end 
--%>
-
 </div>
-
 <% content_for :sidebar, render(:partial => 'sidebar') -%>
-
-
-
-
 

@@ -1,7 +1,7 @@
 class SchedulesController < ApplicationController
   before_filter :require_user
   
-  before_filter :get_schedule, :only => [:show, :edit, :update, :destroy, :team_roster, :team_last_minute, :team_no_show, :team_unavailable]
+  before_filter :get_schedule, :only => [:show, :edit, :update, :destroy, :set_public, :team_roster, :team_last_minute, :team_no_show, :team_unavailable]
   before_filter :get_group, :only =>[:new]
   before_filter :get_match_type, :only => [:team_roster, :team_last_minute, :team_no_show, :team_unavailable]
   before_filter :has_manager_access, :only => [:edit, :update, :destroy]
@@ -109,6 +109,17 @@ class SchedulesController < ApplicationController
       redirect_to :action => 'index'  
   end
 
+  def set_public
+    if @schedule.update_attribute("public", !@schedule.public)
+      @schedule.update_attribute("public", @schedule.public)  
+
+      flash[:notice] = I18n.t(:successful_update)
+      redirect_back_or_default('/index')
+    else
+      render :action => 'index'
+    end
+  end
+  
   private
   def has_manager_access
     unless current_user.is_manager_of?(@schedule.group)

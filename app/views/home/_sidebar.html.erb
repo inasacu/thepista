@@ -3,7 +3,7 @@
 	<div class="content">
 		
 		<% if current_user.has_pending_petition?(current_user) %>
-		<p><%= link_to(label_name(:petitions), petition_path)  %></p>
+		<p><%= link_to(label_name(:petitions), petition_path(current_user))  %></p>
 		<% end %>
 		
 	</div>

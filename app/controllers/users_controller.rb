@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   before_filter :require_no_user, :only => [:signup, :new, :create, :rpx_new, :rpx_create, :rpx_associate]
-  before_filter :require_user, :only => [:index, :show, :edit, :update] 
+  before_filter :require_user, :only => [:index, :show, :edit, :update, :petition] 
   
   before_filter :get_user, :only => [:show, :set_available, :set_private_phone, :set_private_profile, :set_enable_comments, 
                                      :set_teammate_notification, :set_message_notification, :set_comment_notification] 

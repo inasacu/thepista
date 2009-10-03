@@ -14,8 +14,10 @@
     <title><%= app_name %><%= " | #{current_user.name}" if current_user %></title>
 
 	<%= stylesheet_link_tag 'application' %>
-	<%= stylesheet_link_tag 'web_app_theme', 'themes/djime-cerulean/style' %>
+	<%#= stylesheet_link_tag 'web_app_theme', 'themes/djime-cerulean/style' %>
+	<%= stylesheet_link_tag 'web_app_theme', 'themes/warehouse/style' %>
 	<%= stylesheet_link_tag get_the_action %>
+	
 </head>
 <body>
   <div id="container">
