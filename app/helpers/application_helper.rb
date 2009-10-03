@@ -79,30 +79,13 @@ module ApplicationHelper
     return @counter
   end
   
-  
-  
-  ############################### original source
-  # 
-  #   
-  # 
-  # # include WillPaginate::ViewHelpers
-  # 
-  # def rpx_token_sessions_url
-  #   url_for :controller => :rpx, :action => :login, :only_path => false
-  # end
-  # 
-  # def site_logout_url
-  #     url_for :controller => :site, :action => :logout
-  # end
-  # 
-  # def site_url
-  #   url_for :controller => :site, :action => :index
-  # end
-  # 
-  # def widget_url
-  #   BASE_URL + '/openid/v2/widget'
-  # end
-
+  #   <tr>
+  #   <%= content_tag 'td', label_name(:name), :class => "label" %>
+  #   <%= content_tag 'td', h(@group.name), :class => get_the_action %>
+  # </tr>
+  def tr_td_show(label, value)
+    content_tag(:tr, content_tag(:td, label_name(label), :class => "label") + content_tag(:td, h(value), :class => get_the_action))
+  end
   
   # returns true / false if controller name passed is same is current
   def is_controller(aController)

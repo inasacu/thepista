@@ -1,151 +1,103 @@
 
 <div class="inner">
 
-	<p>
-	  <b><%= label_name(:concept) %>:</b>
-	  <%=h @schedule.concept %>
-	</p>
+<!-- new table -->
+<table>
+<thead>
 
-    <p>
-      <b><%= label_name(:description) %>:</b>
-      <%=h @schedule.description %>
-    </p>
+<tr>
+<th colspan="2">
 
-	<% if @schedule.played? %>	
-	<p>
-      <b><%= label_name(:game_notes) %>:</b>
-      <%= @schedule.matches.first.description %>
-    </p>
-	<% end %>
+	<div class="description">
+		<span class="q">
+			...<%=h @schedule.description.blank? ? control_label('description_no') : @schedule.description %>
+		</span>
+	</div>
 
+
+</th>
+
+</tr>
+</thead>
+
+<tr>
+<td valign="top" width="105"><%#= group_show_photo(@schedule.group, current_user) %></td>
+
+<td>
+<table border="1">
+
+	<%= tr_td_show(:concept, @schedule.concept) %>	
+	<%= tr_td_show(:game_notes, @schedule.matches.first.description) if @schedule.played? %>	
+	
     <% if @schedule.game_played? %>
-      <p>
-        <b><%= label_name(:group) %>:</b>
-        	
+
+      <tr>
+        <%= content_tag :td, label_name(:group), :class => "label" %>
+        
+		<td class="<%= get_the_action%>">
           <%= group_link @schedule.group %>
           &nbsp;&nbsp;
           <%= @schedule.matches.first.group_score %>&nbsp;&nbsp;-&nbsp;&nbsp;<%= @schedule.matches.first.invite_score %>
           &nbsp;&nbsp;
           <%= link_to h(@schedule.group.second_team), group_path(@schedule.group) %>
-
-      </p>
+		</td>
+      </tr>
     <% else %>
-      <p>
-        <b><%= label_name(:home_group) %>:</b>            
-			<%= group_link @schedule.group %>
-      </p>
+
+      <tr>
+        <%= content_tag :td, label_name(:home_group), :class => "label" %>            
+		<%= content_tag :td, group_link(@schedule.group), :class => get_the_action %>
+      </tr>
+
     <% end %>
 
-    <p>
-      <b><%= label_name(:sport) %>:</b>
-      <%= h(@schedule.sport.name) %>
-    </p>
+	<%= tr_td_show(:sport, @schedule.sport.name) %>
 
-    <p>
-      <b><%= label_name(:marker) %></b>
-      <%= marker_link @schedule.group.marker %>
-    </p>
+    <tr>
+      <%= content_tag :td, label_name(:marker), :class => "label" %>       
+      <%= content_tag :td, marker_link(@schedule.group.marker), :class => get_the_action %>
+    </tr>
 
-    <p>
-      <b><%= label_name(:starts_at) %>:</b>
-      <%= nice_day_of_week(@schedule.starts_at) %>
-    </p>
+	<%= tr_td_show(:starts_at, nice_day_of_week(@schedule.starts_at)) %>
+	<%= tr_td_show(:ends_at, nice_day_of_week(@schedule.ends_at)) %>
 
-    <p>
-      <b><%= label_name(:ends_at) %>:</b>
-      <%= nice_day_of_week(@schedule.ends_at) %>
-    </p>
+	<% unless @schedule.convocados.empty? %>
+	<tr>
+		<%= content_tag :td, "#{label_name(:convocados)}  (#{@schedule.convocados.count})", :class => "label" %>
+		<%= content_tag :td, user_list(@schedule.convocados), :class => get_the_action %>
+	</tr>
+	<% end %>
 
-    <% unless @schedule.convocados.empty? %>
-    <p>
-      <b><%= label_name(:rosters) %>:</b>
-      <%= @schedule.convocados.count %>
-    </p>
-    <% end %>
+	<% unless @schedule.last_minute.empty? %>
+	<tr>
+		<%= content_tag :td, "#{label_name(:last_minute)}  (#{@schedule.last_minute.count})", :class => "label" %>
+		<%= content_tag :td, user_list(@schedule.last_minute), :class => get_the_action %>
+	</tr>
+	<% end %>
+	<% unless @schedule.no_shows.empty? %>
+	<tr>
+		<%= content_tag :td, "#{label_name(:no_shows)}  (#{@schedule.no_shows.count})", :class => "label" %>
+		<%= content_tag :td, user_list(@schedule.no_shows), :class => get_the_action %>
+	</tr>
+	<% end %>
 
-    <% unless @schedule.last_minute.empty? %>
-    <p>
-      <b><%= label_name(:last_minute) %>:</b>
-      <%= @schedule.last_minute.count %>
-    </p>
-    <% end %>
+	<%#= tr_td_show(:subscription_at, nice_day_of_week(@schedule.subscription_at)) %>
+	<%#= tr_td_show(:non_subscription_at, nice_day_of_week(@schedule.non_subscription_at)) %>
+	<%= tr_td_show(:fee_per_game, @schedule.fee_per_game) %>
+	<%= tr_td_show(:fee_per_pista, @schedule.fee_per_pista) %>
+	<%= tr_td_show(:season, @schedule.season) %>
+	<%= tr_td_show(:jornada, @schedule.jornada) %>
+	<%= tr_td_show(:time_zone, @schedule.time_zone) %>
+	<%= tr_td_show(:player_limit, @schedule.player_limit) %>
+	<%= tr_td_show(:public, label_name(@schedule.public)) %>
+	<%#= tr_td_show(:season_ends_at, nice_day_date(@schedule.season_ends_at)) %>
 
-    <% if @schedule.no_shows.empty? %>
-      <p>
-        <b><%= label_name(:no_shows) %>:</b>
-        <%= @schedule.no_shows.count %>
-      </p>
-    <% end %>
+</table>
 
-    <% unless @schedule.convocados.empty? %>
-      <p>
-        <b><%= label_name(:rosters) %>:</b>
-        <%= user_list @schedule.convocados %>
-      </p>
-    <% end %>
+</td>
+</tr>
 
-    <% unless @schedule.last_minute.empty? %>
-      <p>
-        <b><%= label_name(:last_minute) %>:</b>
-        <%= user_list @schedule.last_minute %>
-      </p>
-    <% end %>
-
-    <% unless @schedule.no_shows.empty? %>
-      <p>
-        <b><%= label_name(:no_shows) %>:</b>
-        <%= user_list @schedule.no_shows %>
-      </p>
-    <% end %>
-
-    <!-- <p>
-      <b><%#= label_name(:subscription_at) %>:</b>
-      <%#=h nice_day_of_week(@schedule.subscription_at) %>
-    </p> -->
-
-    <!-- <p>
-      <b><%#= label_name(:non_subscription_at) %>:</b>
-      <%#=h nice_day_of_week(@schedule.non_subscription_at) %>
-    </p> -->
-
-    <p>
-      <b><%= label_name(:fee_per_game) %>:</b>
-      <%=h @schedule.fee_per_game %>
-    </p>
-
-    <p>
-      <b><%= label_name(:fee_per_pista) %>:</b>
-      <%=h @schedule.fee_per_pista %>
-    </p>
-
-    <p>
-      <b><%= label_name(:season) %>:</b>
-      <%=h @schedule.season %>
-    </p>
-
-    <p>
-      <b><%= label_name(:jornada) %>:</b>
-      <%=h @schedule.jornada %>
-    </p>
-
-    <p>
-      <b><%= label_name(:time_zone) %>:</b>
-      <%=h @schedule.time_zone %>
-    </p>
-
-    <p>
-      <b><%= label_name(:player_limit) %>:</b>
-      <%=h @schedule.player_limit %>
-    </p>
-
-    <p>
-      <b><%= label_name(:public) %>:</b>
-      <%=h label_name(@schedule.public, 'value') %>
-    </p>
-
-    <!-- <p>
-      <b><%#= label_name(:season_ends_at) %>:</b>
-      <%#= nice_day_date(@schedule.season_ends_at) %>
-    </p> -->
+</table>
+<!-- new table -->
 
 </div>

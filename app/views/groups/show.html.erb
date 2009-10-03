@@ -12,112 +12,95 @@
 
     <div class="inner">
 
-	<%= render :partial => 'show_thepista' %>
+	<!-- new table -->
+	<table>
+	<thead>
 
-	<p>
-	  <b><%#= label_name(:name) %></b>
-	  <%= group_show_photo @group %>
-	</p>		
-	
-	<p>
-	  <b><%= label_name(:name) %>:</b>
-	  <%=h @group.name %>
-	</p>
+	<tr>
+	<th colspan="2">
+		<div class="description">
+			<span class="q">
+				<%=h @group.description.blank? ? control_label('description_no') : @group.description %>
+			</span>
+		</div>
+	</th>
 
-        <p>
-          <b><%= label_name(:second_team) %>:</b>
-          <%= @group.second_team %>
-        </p>
+	</tr>
+	</thead>
 
-        <p>
-          <b><%= label_name(:game_day) %>:</b>
-          <%= nice_day_time @group.schedules.first.starts_at %>
-        </p>
+	<tr>
+	<td valign="top" width="105"><%= group_show_photo(@group, current_user) %></td>
 
-        <p>
-          <b><%= label_name(:description) %>:</b>
-          <%= @group.description %>
-        </p>
+	<td>
+	<table border="1">
 
-        <p>
-          <b><%= label_name(:manager) %>:</b>
-          <%= user_list @group.all_the_managers %>
-        </p>
+		
+		<%= tr_td_show(:name, @group.name) %>
+		<%= tr_td_show(:second_team, @group.second_team) %>
 
-        <p>
-          <b><%= label_name(:time_zone) %>:</b>
-          <%= @group.time_zone %>
-        </p>
+		<tr>
+			<%= content_tag :td, label_name(:manager), :class => "label" %>
+			<%= content_tag :td, user_list(@group.all_the_managers), :class => get_the_action %>
+		</tr>
 
-        <p>
-          <b><%= label_name(:sport) %>:</b>
-          <%= @group.sport.name %>
-        </p>
+		<tr>
+			<%= content_tag :td, label_name(:marker), :class => "label" %>
+			<%= content_tag :td, marker_link(@group.marker), :class => get_the_action %>
+		</tr>
 
-        <p>
-          <b><%= label_name(:marker) %>:</b>
-          <%= marker_link @group.marker %>
-        </p>
+		<%= tr_td_show(:sports, @group.sport.name) %>
+		<%= tr_td_show(:game_day, nice_day_time(@group.schedules.first.starts_at)) %>
+		<%= tr_td_show(:time_zone, @group.time_zone) %>
+		<%= tr_td_show(:users, t(:has_group_users, :count => @group.users.count)) %>
+		<%= tr_td_show(:schedules, t(:has_group_schedules, :count => @group.schedules.count)) %>
+		<%= tr_td_show(:points_for_win, @group.points_for_win) %>
+		<%= tr_td_show(:points_for_draw, @group.points_for_draw) %>
+		<%= tr_td_show(:points_for_lose, @group.points_for_lose) %>
+		<%= tr_td_show(:conditions, @group.conditions) %>
+		<%= tr_td_show(:player_limit, @group.player_limit) %>
 
-          <p>
-            <b><%= label_name(:users) %>:</b>
-            <%= t(:has_group_users, :count => @group.users.count) %>
-          </p>
-      
-        <p>
-          <b><%= label_name(:schedules) %>:</b>
-          <%= t(:has_group_schedules, :count => @group.schedules.count) %>
-        </p>
+	 <% if current_user.is_member_of?(@group) and !@group.available_users.empty? %>
+	   <tr>
+	     <%= content_tag :td, label_name(:users_available), :class => "label" %>
+	     <%= content_tag :td, user_list(@group.available_users), :class => get_the_action %>
+	   </tr>
+	 <% end %>
 
-        <p>
-          <b><%= label_name(:points_for_win) %>:</b>
-          <%= @group.points_for_win %>
-        </p>
+		<% 
+			the_label = h(label_name(@group.available, 'value'))
+			the_confirmation = label_with_name('set_available', "#{@group.name}?") 
+		%>
+			<tr>
+			  <%= content_tag :td, label_name(:available), :class => "label" %>
+			  <%= content_tag :td, 
+					(is_user_manager ? link_to(the_label, set_group_available_path(:id => @group.id), :confirm => the_confirmation) : the_label), 
+					:class => get_the_action %>
+			</tr>
 
-        <p>
-          <b><%= label_name(:points_for_draw) %>:</b>
-          <%= @group.points_for_draw %>
-        </p>
+		<% 
+			the_label = h(label_name(@group.enable_comments, 'value'))
+			the_confirmation = label_with_name('enable_comments', "#{@group.name}?") 
+		%>
+			<tr>
+			  <%= content_tag :td, label_name(:enable_comments), :class => "label" %>
+			  <%= content_tag :td, 
+					(is_user_manager ? link_to(the_label, set_group_enable_comments_path(:id => @group.id), :confirm => the_confirmation) : the_label), 
+					:class => get_the_action %>
+			</tr>
 
-        <p>
-          <b><%= label_name(:points_for_lose) %>:</b>
-          <%= @group.points_for_lose %>
-        </p>
+		</table>
 
-        <p>
-          <b><%= label_name(:conditions) %>:</b>
-          <%= @group.conditions %>
-        </p>
+	</td>
+	</tr>
 
-        <p>
-          <b><%= label_name(:player_limit) %>:</b>
-          <%= @group.player_limit %>
-        </p>
+	</table>
+	<!-- new table -->
 
-	    <% if current_user.is_member_of?(@group) and !@group.available_users.empty? %>
-	      <p>
-	        <b><%= label_name(:users_available) %>:</b>
-	        <%= user_list @group.available_users %>
-	      </p>
-	    <% end %>
 
-<% 
-	the_label = h(label_name(@group.available, 'value'))
-	the_confirmation = label_with_name('set_available', "#{@group.name}?") 
-%>
-	<p>
-	  <b><%= label_name(:available) %>:</b>
-		<%= is_user_manager ? link_to(the_label, set_group_available_path(:id => @group.id), :confirm => the_confirmation) : the_label %>
-	</p>
-			
-<% 
-	the_label = h(label_name(@group.enable_comments, 'value'))
-	the_confirmation = label_with_name('enable_comments', "#{@group.name}?") 
-%>
-	<p>
-	  <b><%= label_name(:enable_comments) %>:</b>
-		<%= is_user_manager ? link_to(the_label, set_group_enable_comments_path(:id => @group.id), :confirm => the_confirmation) : the_label %>
-	</p>
+
+
+
+
 			 
     </div>
   </div>

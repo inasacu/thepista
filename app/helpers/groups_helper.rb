@@ -15,12 +15,16 @@ module GroupsHelper
     link_to(h(text), group, html_options)
   end
 
-  def group_show_photo(group)
+  def group_show_photo(group, current_user)
     if group.photo_file_name
       # return image_tag(group.photo.url)
       return group_image_link_large(group)
     end
-    "#{label_name(:no_photo_for, get_the_controller)}.  #{link_to(label_name(:upload), edit_group_path(group))}"
+    if current_user.is_manager_of?(group)
+      "#{label_name(:no_photo_for, get_the_controller)}.  #{link_to(label_name(:upload), edit_group_path(group))}"
+    else  
+      return group_image_link_large(group)
+    end
   end
 
   def group_image_link_tiny(group)

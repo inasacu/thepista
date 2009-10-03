@@ -39,6 +39,19 @@ if SHOW_LOGIN
   <div class="clear"></div> 		  
 </div>
 
+
+<div class="group">
+	<div class="left">
+		&nbsp;
+	</div>
+	<div class="right">
+  		<%= link_to(label_name(:password_forgotten), :controller => 'password_resets', :action => 'new') %>
+	</div>
+
+	<div class="clear">
+	</div>
+</div>
+
 <% elsif controller.action_name == 'rpx_new' or is_action('create') %>
 
 <% else %>
@@ -66,19 +79,6 @@ if SHOW_LOGIN
 	<div class="clear">
 	</div>
 </div>
-
-<!-- <div class="group">
-	<div class="left">
-		&nbsp;
-	</div>
-	<div class="right">
-  		<%#= link_to(label_name(:no_account_yet), signup_path) if ("#{get_the_controller}_#{ get_the_action}" != "user_signup") %><br />
-	  	<%#= link_to(label_name(:no_openid_account_yet), NEW_OPENID_URL) if ("#{get_the_controller}_#{ get_the_action}" != "user_signup") %>
-	</div>
-	
-	<div class="clear">
-	</div>
-</div> -->
 
 <% end %>
 

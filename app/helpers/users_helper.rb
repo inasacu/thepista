@@ -153,12 +153,16 @@ module UsersHelper
     link_to(content, link, link_options)
   end
         
-  def user_show_photo(user)
+  def user_show_photo(user, current_user)
     if user.photo_file_name
-      # return image_tag(user.photo.url)
       return image_link_large(user)
   	end
-  	"#{label_name(:no_photo_for, get_the_controller)}.  #{link_to(label_name(:upload), edit_user_path(user))}"
+  	
+  	 if user == current_user
+    	"#{label_name(:no_photo_for, get_the_controller)}.  #{link_to(label_name(:upload), edit_user_path(user))}"
+     else
+       return image_link_large(user)
+     end
   end	
   
   def image_link_tiny(user)

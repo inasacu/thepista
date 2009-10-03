@@ -8,7 +8,6 @@ if SHOW_RPX_NOW
   <div class=""> 		  
  	
 	<%= RPXNow.embed_code(APP_CONFIG['rpx_api']['realm'],rpx_token_sessions_url, :language => 'es') %><br />
-	<%#= RPXNow.popup_code(the_label, APP_CONFIG['rpx_api']['realm'], rpx_token_sessions_url, :language =>'es') %>
 	
   </div> 		  
   <div class="clear"></div> 		  
@@ -16,7 +15,6 @@ if SHOW_RPX_NOW
 <br />
 <div class="group navform">
 	<%= link_to(label_name(:no_openid_account_yet), NEW_OPENID_URL) %>
-  	<%#= link_to(label_name(:no_openid_account_yet), NEW_OPENID_URL) if ("#{get_the_controller}_#{ get_the_action}" != "user_signup") %>
 </div>
 
 <% 
