@@ -1213,6 +1213,7 @@ es:
      scorecards_archive:  Archivar la Clasificación
      scorecards_index:   Clasificaciones
      scorecards_manager_option:  Requiere responsable de equipo para ver mas opciones.
+     scorecards_no: Ninguna Clasificación para mostrar.
      scorecards_option:  Opciones de Clasificaciones
      scorecards_less_games:  ( * ) Jugadores con menos partidos
      scorecards_legend:  Leyenda

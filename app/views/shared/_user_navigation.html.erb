@@ -1,15 +1,10 @@
 <div id="user-navigation">
-
-    <p>
-      <%#= "#{pluralize User.logged_in.count, 'user'} currently logged in" %>
-		<%#= (current_user.current_login_at >= (Time.now - 1.minutes)) %><br />
-    </p>
 	
 <ul>
 	<% if current_user %>
 	
 		<% if current_user.has_pending_petition?(current_user) %>
-			<li><background-color = 'red'><%= link_to(label_name(:petitions), petition_path(current_user)) %></li>
+			<li><%= link_to(label_name(:petitions), petition_path(current_user)) %></li>
 		<% end %>
 	
 		<li><%= user_link current_user %></li>
