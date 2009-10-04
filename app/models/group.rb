@@ -11,9 +11,11 @@ class Group < ActiveRecord::Base
     :s3_credentials => "#{RAILS_ROOT}/config/s3.yml",
     :url => "/assets/groups/:id/:style.:extension",
     :path => ":assets/groups/:id/:style.:extension",
-    # :path => ":attachment/:id/:style.:extension",
-    :bucket => 'thepista_desarrollo', 
-    :default_url => "group_avatar.png"
+    :bucket => PAPERCLIP_BUCKET, 
+    :default_url => "group_avatar.png"  
+
+    validates_attachment_content_type :photo, :content_type => ['image/jpeg', 'image/png', 'image/gif']
+    validates_attachment_size         :photo, :less_than => 5.megabytes
     
 
   # validations 

@@ -75,8 +75,12 @@ end
 raw_config = File.read(RAILS_ROOT + "/config/config.yml")
 APP_CONFIG = YAML.load(raw_config)[RAILS_ENV]
 
-ENV['RECAPTCHA_PUBLIC_KEY'] = APP_CONFIG['recaptcha_api']['public_key']
-ENV['RECAPTCHA_PRIVATE_KEY'] = APP_CONFIG['recaptcha_api']['private_key']
+# recaptcha configuration keys
+RECAPTCHA_PUBLIC_KEY = APP_CONFIG['recaptcha_api']['public_key']
+RECAPTCHA_PRIVATE_KEY = APP_CONFIG['recaptcha_api']['private_key']
+
+# paperclip configuration bucket
+PAPERCLIP_BUCKET = APP_CONFIG['paperclip']['bucket']
 
 # # global variables
 # # url to get users to signup

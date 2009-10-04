@@ -9,6 +9,9 @@ development: &non_production_settings
         public_key: 6LfhKAgAAAAAAOzho3sELOcG-PkiPRBOX94ZrmEg
         private_key: 6LfhKAgAAAAAAAivbLUYGmNpdRwKQJL57V8I53o0
     
+    paperclip:
+        bucket: thepista_desarrollo
+            
     amazon_api:
         key:    1Z36VBYX179XC52VJWR2
         secret: XB/iiMMjSyZM+bjG+l/8HxrAzGEPylcWu05Zd7/W
@@ -67,7 +70,9 @@ production:
     recaptcha_api:
         public_key: 6LfiKAgAAAAAAHRhcX9WTEdGbXW9B3hlFbea1RZZ 
         private_key: 6LfiKAgAAAAAABzbnVm1Km4oWJU6FsKqJaEtjuVa 
-        
+    
+    paperclip:
+        bucket: thepista_produccion        
     
     
     # haypista.com

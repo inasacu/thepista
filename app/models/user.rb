@@ -42,9 +42,6 @@ class User < ActiveRecord::Base
   validates_presence_of :email
   validates_length_of   :name,      :within => NAME_RANGE_LENGTH
   
-  # validates_attachment_size         :photo, :less_than => 5.megabytes
-  # validates_attachment_content_type :photo, :content_type => ['image/jpeg', 'image/png', 'image/gif']
-  
   # validates_acceptance_of :terms_of_service
   # validates_inclusion_of :gender, :in => ['male','female'], :allow_nil => true
  
@@ -61,9 +58,11 @@ class User < ActiveRecord::Base
     :s3_credentials => "#{RAILS_ROOT}/config/s3.yml",
     :url => "/assets/users/:id/:style.:extension",
     :path => ":assets/users/:id/:style.:extension",
-    :bucket => 'thepista_desarrollo', 
+    :bucket => PAPERCLIP_BUCKET, 
     :default_url => "avatar.png"  
 
+    validates_attachment_content_type :photo, :content_type => ['image/jpeg', 'image/png', 'image/gif']
+    validates_attachment_size         :photo, :less_than => 5.megabytes
 
       belongs_to                :identity_user,   :class_name => 'User',              :foreign_key => 'rpxnow_id'
       has_and_belongs_to_many   :groups,          :conditions => 'archive = false',   :order => 'name'
