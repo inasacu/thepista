@@ -5,6 +5,10 @@
 # APP_CONFIG['flickr_api']['key']
 
 development: &non_production_settings
+    recaptcha_api:
+        public_key: 6LfhKAgAAAAAAOzho3sELOcG-PkiPRBOX94ZrmEg
+        private_key: 6LfhKAgAAAAAAAivbLUYGmNpdRwKQJL57V8I53o0
+    
     amazon_api:
         key:    1Z36VBYX179XC52VJWR2
         secret: XB/iiMMjSyZM+bjG+l/8HxrAzGEPylcWu05Zd7/W
@@ -59,6 +63,18 @@ test:
     <<: *non_production_settings
 
 production:
+    # thepista.heroku.com
+    recaptcha_api:
+        public_key: 6LfiKAgAAAAAAHRhcX9WTEdGbXW9B3hlFbea1RZZ 
+        private_key: 6LfiKAgAAAAAABzbnVm1Km4oWJU6FsKqJaEtjuVa 
+        
+    
+    
+    # haypista.com
+    # recaptcha_api:
+    #     public_key: 6LefCgMAAAAAAEom455Tp0HL6htCfMGMtzMZe_tt 
+    #     private_key: 6LefCgMAAAAAANQefgV-N4boOD7Rq3S9uX8U9I5v
+    
     amazon_api:
         key:                0697QGHEFH5XP3CBS1G2
         secret:             9VmgyGREmPAYxMrEGcjAzcajRSZrV3AaVsatRusk

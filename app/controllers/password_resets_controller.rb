@@ -10,7 +10,7 @@ class PasswordResetsController < ApplicationController
     @user = User.find_by_email(params[:email])
     if @user
       @user.deliver_password_reset_instructions!
-      flash[:notice] = I18n.t(:password_instructions)
+      flash[:notice] = I18n.t(:password_instructions) + I18n.t("#{ verify_recaptcha() }_value")
       redirect_to root_url
     else
       flash[:notice] = I18n.t(:user_not_found)
@@ -26,7 +26,7 @@ class PasswordResetsController < ApplicationController
     @user.password = params[:user][:password]
     @user.password_confirmation = params[:user][:password_confirmation]
     if @user.save
-      flash[:notice] = I18n.t(:password_updated)
+      flash[:notice] = I18n.t(:password_updated) + I18n.t("#{ verify_recaptcha() }_value")
       redirect_to root_url
     else
       render :action => :edit

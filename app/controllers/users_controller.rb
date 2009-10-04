@@ -69,26 +69,10 @@ class UsersController < ApplicationController
   # POST /users.xml
   def create
     @user = User.new(params[:user])
-    
-    
-    #  validate recapta if user has password
-    # if verify_recaptcha() && @user.save
-      
-    # unless verify_recaptcha
-    #   flash[:error] = "There was an error with the recaptcha"
-    #   render :action => 'signup'
-    #   return
-    # end
 
     @user.save do |result|
       if result
-        flash[:notice] = I18n.t(:successful_signup)
-        
-        # if @user.name.blank?
-        #   current_user = @user
-        #   render :action => 'edit', :id => current_user
-        #   return 
-        # end
+        flash[:notice] = I18n.t(:successful_signup) + I18n.t("#{ verify_recaptcha() }_value")
         
         redirect_to root_url
       else

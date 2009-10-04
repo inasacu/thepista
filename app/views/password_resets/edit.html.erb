@@ -31,6 +31,8 @@
 							<%= f.password_field :password_confirmation, :class => 'text_field' %>
 	</div><br />
 
+	<%= render :partial => 'utilities/recaptcha' %>
+
 	<div class="group navform"> 
 		<%= submit_tag label_name(:password_update_and_login), :class => "button" %>
 	</div>

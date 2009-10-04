@@ -25,12 +25,14 @@
 		    <%= label :email, label_name('name') %>&nbsp;&nbsp;<%= text_field_tag :email %>	    
 		  	</div><br />
 
+			<%= render :partial => 'utilities/recaptcha' %>
+
 			<div class="group navform"> 
 				<%= submit_tag label_name(:password_reset), :class => "button" %>
 			</div>
 
 			<% end -%>
-
+			
 		</div>
 
 	</div>

@@ -112,7 +112,7 @@ class User < ActiveRecord::Base
       has_many    :feeds
 
       has_many    :activities,
-                  :conditions => {:created_at => ONE_WEEK_FROM_TODAY},
+                  :conditions => {:created_at => LAST_WEEK_TO_TODAY},
                   :order => "created_at DESC",
                   :limit => FEED_SIZE
       

@@ -7,11 +7,14 @@ SUBJECT_RANGE_LENGTH = 3..75
 BODY_RANGE_LENGTH = 3..2000
 
 
+LAST_WEEK_TO_TODAY = Time.now - 7.days..Time.now + 1.day
 ONE_WEEK_FROM_TODAY = Time.now - 1.day..Time.now + 7.days
+LAST_WEEK = Time.now - 7.days
+
 # ONE_WEEK_FROM_TODAY = Time.now - 1.day..Time.now + 30.days
+
 TIME_AGO_FOR_MOSTLY_ACTIVE = 1.month.ago
 TRASH_TIME_AGO = 1.month.ago
-
 
 # variable for pagination
 BLOGS_PER_PAGE = 8
@@ -32,6 +35,8 @@ TOPICS_PER_PAGE = 8
 TYPES_PER_PAGE = 8
 USERS_PER_PAGE = 10
 ROSTERS_PER_PAGE = 16
+
+
 
 #variables for login
 SHOW_OPENID_LOGIN = false
@@ -65,7 +70,7 @@ RICH_TEXT_HEIGHT = '350px'
 
 
 EMAIL_REGEX = /\A[A-Z0-9\._%+-]+@([A-Z0-9-]+\.)+[A-Z]{2,4}\z/i
-FEED_SIZE = 15
+FEED_SIZE = 1
 GLOBAL_FEED_SIZE = 10
 
 MAX_NAME = 40

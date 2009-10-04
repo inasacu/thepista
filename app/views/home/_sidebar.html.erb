@@ -9,4 +9,4 @@
 	</div>
 </div>
 
-<%= render :partial => '/shared/active_comment' if current_user %>
+<%= render :partial => '/shared/active_comment' if current_user and @has_activities %>

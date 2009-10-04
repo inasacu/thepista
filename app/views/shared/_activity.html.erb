@@ -3,7 +3,7 @@
 	the_label = "#{label_name(:ago)} #{time_ago_in_words(activity.created_at).capitalize}" -%>
 
 	<p><%= image_link_small activity.user %>&nbsp;&nbsp;<%= user_link activity.user %>&nbsp;&nbsp;<%= feed_message(activity, recent) %> 
-		<%= content_tag 'h5', the_label %> 
+		<%#= content_tag 'h5', the_label %> 
 
 		<%= link_to(image_tag("icons/comment_delete.png"), 
 					activity_path(activity), :method => :delete, 

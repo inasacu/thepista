@@ -18,7 +18,13 @@ class Activity < ActiveRecord::Base
          :limit => GLOBAL_FEED_SIZE)
   end
   
-  
+  def self.all_activities(user)
+    if self.count(:conditions => ["user_id in (select user_id from groups_users where group_id in (?)) and created_at >= ?", user.groups, LAST_WEEK]) > 0
+      return true
+    end
+      return false
+  end
+    
   # Return true if the item and user already exist.
   def self.exists?(item, user)
     find(:all, :conditions => ["item_id = ? and item_type = ? and user_id = ?", item.id, item.class.to_s, user.id]).nil?

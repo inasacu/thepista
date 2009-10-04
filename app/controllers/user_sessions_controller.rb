@@ -1,22 +1,33 @@
 class UserSessionsController < ApplicationController
-  before_filter :require_no_user, :only => [:new, :create]
+  before_filter :require_no_user, :only => [:new, :create, :verify_recaptcha]
   before_filter :require_user, :only => :destroy
 
   def new
     @user_session = UserSession.new
   end
 
-  def create
+  def create   
     @user_session = UserSession.new(params[:user_session])
     @user_session.save do |result|
       if result
-        flash[:notice] = I18n.t(:successful_logged_in)
-        redirect_back_or_default root_url
+        flash[:notice] = I18n.t(:successful_logged_in) + I18n.t("#{ verify_recaptcha() }_value")
+        # redirect_back_or_default root_url
       else
         flash[:error] = I18n.t(:unsuccessful_logged_in)
         render :action => 'new'
+        return
       end
     end
+    
+    # # use recaptcha to control user access...
+    # unless verify_recaptcha() 
+    #   flash[:error] = I18n.t(:recaptcha_type_words) 
+    #   render :action => 'new'    
+    #   return
+    # end
+    
+    # flash[:notice] = I18n.t(:successful_logged_in)
+    redirect_back_or_default root_url    
   end
 
   def destroy

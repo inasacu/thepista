@@ -1,0 +1,23 @@
+<script>
+	var RecaptchaOptions = {
+		// theme : 'white',
+		lang : 'es'
+};
+</script>
+
+
+
+<div class="group">
+	<div class="left">
+	<label class="label"><%= label_name(:recaptcha_type_words) %></lable>
+	</div>
+	<div class="right">
+  		<%= recaptcha_tags :ssl => true %>
+	</div>
+
+	<div class="clear">
+	</div>
+</div>
+
+
+<script type="text/javascript" src="http://api.recaptcha.net/challenge?k=<%= APP_CONFIG['recaptcha_api']['public_key'] %>"></script>

@@ -28,6 +28,7 @@ class HomeController < ApplicationController
   private
   def get_user_mates
     @users = current_user.find_mates if current_user
+    @has_activities = Activity.all_activities(current_user) if current_user
   end
 
 end
