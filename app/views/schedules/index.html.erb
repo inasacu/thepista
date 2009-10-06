@@ -23,6 +23,7 @@
           <th><%= label_name(:marker) %><br />
 		      <%= label_name(:time_zone) %></th>
           <th><%= label_name(:general_information) %></th>
+		
           <th class="last">&nbsp;</th>
         
         <% @schedules.each do |schedule| -%>
@@ -50,9 +51,11 @@
 			<% end %>
 
           <td class="last">
-            <%= link_to label_name('edit'), edit_schedule_path(schedule) unless schedule.last_season?(current_user) %><br />
-            <%#= link_to control_label('destroy'), schedule_path(schedule), 
-					:method => :delete, :confirm => label_name(:are_you_sure) unless schedule.played? %>
+			<% if current_user.is_manager_of?(schedule.group) %>
+            	<%= link_to label_name('edit'), edit_schedule_path(schedule) unless schedule.last_season?(current_user) %><br />
+            	<%#= link_to control_label('destroy'), schedule_path(schedule), 
+										:method => :delete, :confirm => label_name(:are_you_sure) unless schedule.played? %>
+			<% end %>
           </td>
 
         </tr>          
