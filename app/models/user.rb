@@ -58,7 +58,6 @@ class User < ActiveRecord::Base
     :s3_credentials => "#{RAILS_ROOT}/config/s3.yml",
     :url => "/assets/users/:id/:style.:extension",
     :path => ":assets/users/:id/:style.:extension",
-    :bucket => PAPERCLIP_BUCKET, 
     :default_url => "avatar.png"  
 
     validates_attachment_content_type :photo, :content_type => ['image/jpeg', 'image/png', 'image/gif']

@@ -79,9 +79,6 @@ APP_CONFIG = YAML.load(raw_config)[RAILS_ENV]
 RECAPTCHA_PUBLIC_KEY = APP_CONFIG['recaptcha_api']['public_key']
 RECAPTCHA_PRIVATE_KEY = APP_CONFIG['recaptcha_api']['private_key']
 
-# paperclip configuration bucket
-ENV['PAPERCLIP_BUCKET'] = APP_CONFIG['paperclip']['bucket']
-
 # # global variables
 # # url to get users to signup
 NEW_OPENID_URL = "https://www.myopenid.com/affiliate_signup?affiliate_id=1443"

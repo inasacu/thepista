@@ -11,7 +11,6 @@ class Group < ActiveRecord::Base
     :s3_credentials => "#{RAILS_ROOT}/config/s3.yml",
     :url => "/assets/groups/:id/:style.:extension",
     :path => ":assets/groups/:id/:style.:extension",
-    :bucket => PAPERCLIP_BUCKET, 
     :default_url => "group_avatar.png"  
 
     validates_attachment_content_type :photo, :content_type => ['image/jpeg', 'image/png', 'image/gif']
