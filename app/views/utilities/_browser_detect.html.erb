@@ -19,6 +19,10 @@
 
 <% if development? %>
 
+RECAPTCHA_PUBLIC_KEY <%= RECAPTCHA_PUBLIC_KEY %><br />
+RECAPTCHA_PRIVATE_KEY <%= RECAPTCHA_PRIVATE_KEY %><br />
+PAPERCLIP_BUCKET <%= PAPERCLIP_BUCKET %><br />
+
 <%= debug(params) %>
 
  <%= "#{t(:current_user) }:  #{current_user.name}" if current_user %><br/>
