@@ -80,7 +80,7 @@ RECAPTCHA_PUBLIC_KEY = APP_CONFIG['recaptcha_api']['public_key']
 RECAPTCHA_PRIVATE_KEY = APP_CONFIG['recaptcha_api']['private_key']
 
 # paperclip configuration bucket
-PAPERCLIP_BUCKET = APP_CONFIG['paperclip']['bucket']
+ENV['PAPERCLIP_BUCKET'] = APP_CONFIG['paperclip']['bucket']
 
 # # global variables
 # # url to get users to signup
