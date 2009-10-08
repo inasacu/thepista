@@ -2,7 +2,11 @@
 if SHOW_LOGIN 
 %>
 
-<h3><%= I18n.t(:use_login) %></h3>
+<a href="#" onclick="toggle_visibility('abc');"><h3><%= I18n.t(:use_login) %></h3></a>
+<div id="abc" style='display:none;'>
+
+
+<!-- <h3><%#= I18n.t(:use_login) %></h3> -->
 
 <div class="group">		
   <div class="left"> 		  
@@ -92,3 +96,4 @@ if SHOW_LOGIN
 end 
 %>
 
+</div>

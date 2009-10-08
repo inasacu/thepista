@@ -21,9 +21,20 @@ if roster_count
 			<td>
 				<%= image_link_small match.user %>
 			</td>
-			<td>
-				<%= counter += 1 %>.
+			
+			<%  sub_manager = match.user.is_sub_manager_of?(@schedule.group)
+		    	the_label =  label_name("sub_#{sub_manager}") unless sub_manager 
+				the_klass = "sub_#{sub_manager}" unless sub_manager
+				
+				subscriber = match.user.is_subscriber_of?(@schedule.group)
+			    the_label =  label_name("subscription_#{subscriber}") unless subscriber 
+				the_klass = "subscription_#{subscriber}" unless subscriber 
+			%>
+			
+			<td class="<%= the_klass %>" title = "<%= the_label %>">
+				<%= counter +=1 %>.
 			</td>
+			
 			<td>
 				<%= user_link match.user %><%= "  ( #{label_name(:no_jugado)} )" if match.type_id == 4 %>
 			</td>

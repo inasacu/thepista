@@ -5,10 +5,9 @@ if SHOW_RPX_NOW
 <h3><%= I18n.t(:rpx_login) %></h3>
 
 <div class="group">		
-  <div class=""> 		  
- 	
+	<br />
+  <div class=""> 
 	<%= RPXNow.embed_code(APP_CONFIG['rpx_api']['realm'],rpx_token_sessions_url, :language => 'es') %><br />
-	
   </div> 		  
   <div class="clear"></div> 		  
 </div>

@@ -15,7 +15,7 @@
 															:confirm => %(#{the_confirmation}?),
 															:title => the_confirmation  %></li>
 		<% else -%>	
-			<li><%= link_to label_name(::message_untrash), :controller => 'messages', :action => 'undestroy', :id => @message %></li>
+			<li><%= link_to label_name(:message_untrash), :controller => 'messages', :action => 'undestroy', :id => @message %></li>
 		<% end -%>
 
 

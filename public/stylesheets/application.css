@@ -111,3 +111,13 @@ text_area.textfield {
 	color: darkblue; 
 	font-weight: bold; 
 }
+
+td.subscription_false { 
+	color: darkred; 
+	font-weight: bold;
+}
+
+td.sub_true { 
+	color: darkblue; 
+	font-weight: bold; 
+}

@@ -9,9 +9,12 @@ end
 <div id="main-navigation">
 
 <ul>		
-	<li class="<%= get_control_first('home') %>"><%= link_to(label_name(:home) , '/') %></li>
+	<%= "<li />" unless current_user %>
+	
 	
 	<% if current_user %>
+		<li class="<%= get_control_first('home') %>"><%= link_to(label_name(:home) , '/') %></li>
+		
 		<li class="<%= get_control_active('user') %>">
 					<%= link_to(label_name(:users), users_url) %></li>	
 		<li class="<%= get_control_active('group') %>">

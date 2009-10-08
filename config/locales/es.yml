@@ -887,6 +887,8 @@ es:
      subscription_at: Finalización para Convocarse el Abonado  
      subscription_at_match: Finalización para Convocarse el Abonado   
      subscription_at_description: (¿Ha que hora termina la opción para apuntarse a un partido el abonado...(ej- 1 dia antes del partido)) 
+     subscription_false:  Jugador No Abonado.
+     subscription_true:  Jugador Abonado
      subscription_updated: Actualización de jugador abonado.
            
      successful_login: Inicio de sesión con éxito 
