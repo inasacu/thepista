@@ -20,6 +20,8 @@ Rails::Initializer.run do |config|
   # config.gem "sqlite3-ruby", :lib => "sqlite3"
   # config.gem "aws-s3", :lib => "aws/s3"
   
+  config.action_controller.resources_path_names = { :new => 'nuevo', :edit => 'modificar', :show => 'mostrar' }
+  
   config.gem "authlogic"
   config.gem "will_paginate"
   config.gem "authlogic-oid", :lib => "authlogic_openid"

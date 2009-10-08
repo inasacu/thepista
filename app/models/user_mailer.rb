@@ -24,7 +24,7 @@ class UserMailer < ActionMailer::Base
   #   from          mail[:user].name +  '  <DoNotReply@haypista.com>'
   #   content_type  "text/html"
   # end 
-  # 
+  
   # def manager_request(mail)
   #   subject     "#{I18n.t(:join_group)} " + mail[:group].name
   #   from        mail[:user].name +  '  <DoNotReply@haypista.com>'
@@ -32,7 +32,7 @@ class UserMailer < ActionMailer::Base
   #   body        mail
   #   content_type  "text/html"
   # end  
-  # 
+  
   # def manager_join(mail)
   #   subject     "#{I18n.t(:to_join_group_message) } " + mail[:group].name
   #   from        mail[:user].name +  '  <DoNotReply@haypista.com>'
@@ -40,7 +40,7 @@ class UserMailer < ActionMailer::Base
   #   body        mail
   #   content_type  "text/html"
   # end 
-  # 
+  
   # def manager_leave(mail)
   #   subject     "#{I18n.t(:to_leave_group_message)}  " + mail[:group].name
   #   from        mail[:user].name +  '  <DoNotReply@haypista.com>'
@@ -48,7 +48,7 @@ class UserMailer < ActionMailer::Base
   #   body        mail
   #   content_type  "text/html"
   # end 
-  # 
+  
   # def message_group(mail)
   #   subject     "#{I18n.t(:join_group)} [#{mail[:group].name}]"
   #   from        mail[:user].name +  '  <DoNotReply@haypista.com>'

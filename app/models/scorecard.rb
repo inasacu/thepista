@@ -207,5 +207,12 @@ class Scorecard < ActiveRecord::Base
   def self.archive?
     return self.archive
   end
+  
+  def self.users_group_scorecard(group)
+     find(:all, 
+              :joins => "LEFT JOIN users on users.id = scorecards.user_id",
+              :conditions => ["group_id in (?) and user_id > 0 and played > 0 and scorecards.archive = false", group],
+              :order => "group_id, points DESC, ranking, users.name")
+  end
 
 end

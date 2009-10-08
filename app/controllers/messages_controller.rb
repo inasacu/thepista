@@ -63,7 +63,7 @@ class MessagesController < ApplicationController
       
     elsif (params[:group_id])
       @group = Group.find(params[:group_id])
-      @recipients = current_user.find_group_mates(@group)
+      @recipients = User.find_group_mates(@group)
 
     elsif (params[:schedule_id])
       @schedule = Schedule.find(params[:schedule_id])
@@ -77,6 +77,7 @@ class MessagesController < ApplicationController
     elsif (params[:scorecard_id])
         @scorecard = Schedule.find(params[:scorecard_id])
         @group = @scorecard.group
+        @recipients = User.find_group_mates(@group)
     else
       @recipients = User.find_all_by_mates(current_user)
     end
@@ -162,9 +163,7 @@ class MessagesController < ApplicationController
 
       unless params[:scorecard][:id].blank?
         @group = Schedule.find(params[:scorecard][:id]).group 
-        @scorecards = Scorecard.find(:all, 
-        :conditions =>["user_id in (?) and group_id in (?) and archive = 0", current_user.my_users, @group.id],
-        :order => 'ranking desc')
+        @scorecards = Scorecard.users_group_scorecard(@group)
       end
       
       respond_to do |format|
@@ -234,10 +233,10 @@ class MessagesController < ApplicationController
           :email => recipient.email,
           :message => message,
           :schedule => schedule, :group => schedule.group, :receiver => recipient,
-          :user_url => url_for(:controller => 'user', :action => 'show', :id => current_user.id),
-          :reply_url => url_for(:controller => 'message', :action => 'reply', :id => message.id),
-          :schedule_url => url_for(:controller => 'schedule', :action => 'show', :id => schedule.id),
-          :group_url => url_for(:controller => 'group', :action => 'show', :id => schedule.group.id)
+          :user_url => url_for(:controller => 'users', :action => 'show', :id => current_user.id),
+          :reply_url => url_for(:controller => 'messages', :action => 'reply', :id => message.id),
+          :schedule_url => url_for(:controller => 'schedules', :action => 'show', :id => schedule.id),
+          :group_url => url_for(:controller => 'groups', :action => 'show', :id => schedule.group.id)
         )
       end
     end
@@ -252,10 +251,10 @@ class MessagesController < ApplicationController
         :email => recipient.email,
         :message => message,
         :schedule => schedule, :group => schedule.group,
-        :user_url => url_for(:controller => 'user', :action => 'show', :id => current_user.id),
-        :reply_url => url_for(:controller => 'message', :action => 'reply', :id => message.id),
-        :schedule_url => url_for(:controller => 'schedule', :action => 'show', :id => schedule.id),
-        :group_url => url_for(:controller => 'group', :action => 'show', :id => schedule.group.id)
+        :user_url => url_for(:controller => 'users', :action => 'show', :id => current_user.id),
+        :reply_url => url_for(:controller => 'messages', :action => 'reply', :id => message.id),
+        :schedule_url => url_for(:controller => 'schedules', :action => 'show', :id => schedule.id),
+        :group_url => url_for(:controller => 'groups', :action => 'show', :id => schedule.group.id)
         )
       end
     end
@@ -269,10 +268,10 @@ class MessagesController < ApplicationController
         :user => current_user,
         :email => recipient.email,
         :message => message, :receiver => recipient, :scorecards => scorecards, :group => group,
-        :user_url => url_for(:controller => 'user', :action => 'show', :id => current_user.id),
-        :reply_url => url_for(:controller => 'message', :action => 'reply', :id => message.id),
-        :group_url => url_for(:controller => 'group', :action => 'show', :id => group.id),
-        :scorecard_url => url_for(:controller => 'scorecard', :action => 'index')
+        :user_url => url_for(:controller => 'users', :action => 'show', :id => current_user.id),
+        :reply_url => url_for(:controller => 'messages', :action => 'reply', :id => message.id),
+        :group_url => url_for(:controller => 'groups', :action => 'show', :id => group.id),
+        :scorecard_url => url_for(:controller => 'scorecards', :action => 'show', :id => group.id)
         )     
       end
     end 

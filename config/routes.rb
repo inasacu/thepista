@@ -70,24 +70,24 @@ ActionController::Routing::Routes.draw do |map|
   map.resources   :matches,         :as => 'jornadas'
   
   map.resources   :ratings,         :member => { :rate => :put }
-  map.resources   :activities
-  map.resources   :teammates
-  map.resources   :posts
-  map.resources   :topics
-  map.resources   :forums
-  map.resources   :entries
-  map.resources   :comments
-  map.resources   :blogs
-  map.resources   :types,         :as => 'tipos'
-  map.resources   :sports,        :as => 'deportes'
-  map.resources   :roles,         :as => 'responsabilidades'
-  map.resources   :practices,     :as => 'entrenamientos',  :collection  => { :list => :get, :search => :get }          
-  map.resources   :payments
-  map.resources   :fees
-  map.resources   :password_resets
+  map.resources   :activities,      :as => 'actividades'
+  map.resources   :teammates,       :as => 'mi_equipo'
+  map.resources   :posts,           :as => 'comentario'
+  map.resources   :topics,          :as => 'tema'
+  map.resources   :forums,          :as => 'foro'
+  map.resources   :entries,         :as => 'tema'
+  map.resources   :comments,        :as => 'comentario'
+  map.resources   :blogs,           :as => 'blog'
+  map.resources   :types,           :as => 'tipos'
+  map.resources   :sports,          :as => 'deportes'
+  map.resources   :roles,           :as => 'responsabilidades'
+  map.resources   :practices,       :as => 'entrenamientos',        :collection  => { :list => :get, :search => :get }          
+  map.resources   :payments,        :as => 'pago'
+  map.resources   :fees,            :as => 'tasas'
+  map.resources   :password_resets, :as => 'resetear'
   
   map.resources   :connections
-  map.resources   :messages, :collection => { :sent => :get, :trash => :get }
+  map.resources   :messages,        :as => 'mensajes',              :collection => { :sent => :get, :trash => :get }
 
   map.resources   :users do |user|
     user.resources :messages

@@ -60,7 +60,7 @@
 
 			<% if current_user.is_manager_of?(group) %> 
 				<%= link_to label_name(:create_schedule), new_schedule_path(:id => group.id)  %><br />
-				<%= link_to label_name(:create_practice), new_practice_path(:id => group.id)  %>
+				<%= link_to label_name(:create_practice), new_practice_path(:id => group.id)  if development? %>
 	        <% end %>
           </td>
         </tr>   

@@ -134,7 +134,7 @@ end
 #     if current_user.is_manager_of?(@group)  
 #       @fee = Fee.new
 #       @fee.group_id = @group.id
-#       @recipients = current_user.find_group_mates(@group)
+#       @recipients = User.find_group_mates(@group)
 # 
 #       @lastFee = Fee.find(:first, :conditions => ["id = (select max(id) from fees where group_id = ? and user_id > 0) ", @group.id])    
 #       if !@lastFee.nil?
@@ -252,7 +252,7 @@ end
 # #   def new
 # #     @fee = Fee.new     
 # #     @group = current_user.groups.find(:first)
-# #     @recipients = current_user.find_group_mates(@group)    
+# #     @recipients = User.find_group_mates(@group)    
 # #   end
 # #   
 # #  #  def create

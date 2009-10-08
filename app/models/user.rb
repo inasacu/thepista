@@ -305,6 +305,15 @@ class User < ActiveRecord::Base
         "and users.available = true " +
         "order by name", user.groups, user.id])
     end
+
+    def self.find_group_mates(group)
+      @recipients = User.find_by_sql(["select distinct users.* from users, groups_users " +
+            "where users.id = groups_users.user_id " +
+            "and groups_users.group_id in (?) " +
+            "and groups_users.user_id != ? " +
+            "and users.available = true " +
+            "order by name", group.id, self.id])
+    end
     
     def object_counter(objects)
       @counter = 0

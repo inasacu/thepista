@@ -1,4 +1,5 @@
-<% 
+<%
+ 	mailer ||= false
 	swith ||= false
 	max_points = scorecard.played.to_i * group.points_for_win.to_i
 	coeficient = 0
@@ -19,9 +20,9 @@
 
 <tr>
 	<td class="puntos"><%= "*" if ((scorecard.played.to_i + less_games) < games_played.to_i) %>&nbsp;<%= scorecard.ranking %></td>
-	<td class="equipos"><%= image_link_tiny scorecard.user %></td>
-	<td class="equipos"><span><%= user_link scorecard.user %></span></td>
-	<td class="jugados"><%= image_tag(image) %></td>
+	<td class="equipos"><%= mailer ? "&nbsp;" : image_link_tiny(scorecard.user) %></td>
+	<td class="equipos"><span><%= mailer ? scorecard.user.name : user_link(scorecard.user) %></span></td>
+	<td class="jugados"><%= mailer ? "&nbsp;" : image_tag(image) %></td>
 	<td class="jugados"><%= ranking_change %></td>
 	<td class="puntos"><%= scorecard.points.round %></td>
 	<td class="ganados"><%= scorecard.wins %></td>
@@ -35,7 +36,7 @@
 	<td class="jugados"><%= scorecard.played %></td>
 	<td class="jugados"><%= scorecard.assigned %></td>
 	<!-- <td class="jugados"><%#= scorecard.previous_ranking %></td> -->
-	<td class="puntos"><%= coeficient_points.round %></td>
+	<td class="puntos"><%= mailer ? sprintf( "%0.0f", coeficient_points)  : coeficient_points.round %></td>
 	<td class="puntos"><%= sprintf( "%0.00f", coeficient_played) %><%= "%" %></td>
 	<!-- <td class="last">&nbsp;</td> -->
 </tr>

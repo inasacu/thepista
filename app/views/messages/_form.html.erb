@@ -41,7 +41,8 @@
 	<% if @scorecard 
 		@schedule = @scorecard
 	%>
-	<%= render :partial => '/messages/recipient_roster', :locals => {:schedule => @schedule, :checked => check } %>
+	<%#= render :partial => '/messages/recipient_roster', :locals => {:schedule => @schedule, :checked => check } %>
+	<%= render :partial => '/messages/recipient_list', :locals => {:recipients => @recipients, :checked => check } %>
 	<%= hidden_field :scorecard, :id %>
 	
 	<% elsif @match %>

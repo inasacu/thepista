@@ -35,11 +35,13 @@ class ScorecardsController < ApplicationController
   
   def show
     @group = Group.find(params[:id])
+    @scorecards = Scorecard.users_group_scorecard(@group)
+    
     # @scorecards = @group.scorecards
-    @scorecards = Scorecard.find(:all, 
-            :joins => "LEFT JOIN users on users.id = scorecards.user_id",
-            :conditions => ["group_id in (?) and user_id > 0 and played > 0 and scorecards.archive = false", @group],
-            :order => "group_id, points DESC, ranking, users.name")
+    # @scorecards = Scorecard.find(:all, 
+    #            :joins => "LEFT JOIN users on users.id = scorecards.user_id",
+    #            :conditions => ["group_id in (?) and user_id > 0 and played > 0 and scorecards.archive = false", @group],
+    #            :order => "group_id, points DESC, ranking, users.name")
     # @scorecards = @group.scorecards.paginate(:per_page => 10, :page => params[:page])
   end
   

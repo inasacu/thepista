@@ -1,90 +1,70 @@
-<%= stylesheet_link_tag  'scorecard' %>
 
-<div class="partyrow">   
-    
-  <table border="0" cellpadding="0" cellspacing="0" width="100%">
-    <tbody> 
-      <tr>
-        <td class="leagueheaderright">&nbsp;</td>
-	    <td class="leagueheaderright">&nbsp;</td>
-        <td class="leagueheaderright">&nbsp;</td>
-        <td class="leagueheaderright">&nbsp;</td>
-        <td class="leagueheaderright" title="<%= I18n.t(:points_full) %>"><%= I18n.t(:points) %></td>
-        <td class="leagueheaderright" title="<%= I18n.t(:games_played_full) %>"><%= I18n.t(:games_played) %></td>
-        <td class="leagueheaderright" title="<%= I18n.t(:games_won_full) %>"><%= I18n.t(:games_won) %></td>
-        <td class="leagueheaderright" title="<%= I18n.t(:games_tied_full) %>"><%= I18n.t(:games_tied) %></td>
-        <td class="leagueheaderright" title="<%= I18n.t(:games_lost_full) %>"><%= I18n.t(:games_lost) %></td>
-        <td class="leagueheaderright" title="<%= I18n.t(:percentage_full) %>"><%= I18n.t(:percentage) %></td>
-      </tr>
-          
-      <% first, user_id, swith = 0, 0, false
-      collection.each do |scorecard| 
-        
-        max_points = (scorecard.wins + scorecard.losses + scorecard.draws) * 3
-        coeficient = 0
-        coeficient = 100 *(scorecard.points.to_f/max_points.to_f) if (scorecard.played > 0)        
-      %>
-        <% if first != scorecard.group_id 
-          first = scorecard.group_id
-        %>
-		<tr><td class="leagueheaderright">&nbsp;</td></tr>	
-			     
-          <tr class="leaguedisplayedteam"> 
-            <td class="leagueitemright">
-              <span id="">&nbsp;</span>
-            </td>   
-           
-            <td class="leagueheaderleft">                    
-              <%= scorecard.group.name %>
-            </td>
-                
-            <td class="leagueheaderright">&nbsp;</td>
-            <td class="leagueheaderright">&nbsp;</td>
-            <td class="leagueitemright">&nbsp;</td>
-            <td class="leagueitemright">&nbsp;</td>
-            <td class="leagueitemright">&nbsp;</td>
-            <td class="leagueitemright">&nbsp;</td>
-            <td class="leagueitemright">&nbsp;</td>
-            <td class="leagueitemright">&nbsp;</td>
-            <td class="leagueitemright">&nbsp;</td>
-          </tr>
-	        <tr>
-           <td class="leagueitemright">
-             <span id="">&nbsp;</span>
-           </td>
-         </tr>
+<%= stylesheet_link_tag 'application' %>
+<%= stylesheet_link_tag 'web_app_theme', 'themes/djime-cerulean/style' %>
+<%= stylesheet_link_tag 'show' %>
 
-        <% end %>
-       	  
-		  <% league = (swith = !swith and user_id != scorecard.user_id) %>
-		  <tr class="league_<%= league %>">
-          <td class="leagueitemright">
-            <span id=""><%= scorecard.ranking %>&nbsp;&nbsp;</span>
-          </td>
-              
-          <td class="leagueitemleft">                    
-            <%= scorecard.user.name %>
-          </td>
-              
-          <td class="leagueitemright">
-			<%= "-#{scorecard.ranking - scorecard.previous_ranking}" if (scorecard.ranking > scorecard.previous_ranking)  %>
-			<%= "+#{scorecard.previous_ranking - scorecard.ranking}" if (scorecard.ranking < scorecard.previous_ranking)  %>		
-			<%= "=" if (scorecard.ranking == scorecard.previous_ranking)  %>
-		  </td>	
-		  <td class="leagueitemright">&nbsp;</td>
-          <td class="leagueitemright"><%= scorecard.points %></td>
-          <td class="leagueitemright"><%= scorecard.played %></td>
-          <td class="leagueitemright"><%= scorecard.wins %></td>
-          <td class="leagueitemright"><%= scorecard.draws %></td>
-          <td class="leagueitemright"><%= scorecard.losses %></td>
-          <td class="leagueitemright"><%= sprintf( "%0.00f", coeficient) %><%= "%" %> </td>
-          <td class="leagueitemright">&nbsp;</td>
-        </tr>   
+<% 
+@archive ||= false 
+@less_games = 5 
+%>
+<div class="block">
 
-	      <% user_id = scorecard.user_id %>
+<% 
+	@games_played = @group.games_played
+	scorecards = false
+	collection.each {|card| scorecards = true }
 
-	  <% end %>
-          
-    </tbody>
-  </table>
+	if scorecards	
+%>
+<div class="content">   
+
+	<h2 class="title"><a href="<%= @group_url %>" title="<%= @group.name %>"><%= @group.name %></a></h2>
+
+	<div class="inner">
+
+		<table class="table">
+
+			<tr>           
+				<th class="first" title="<%= I18n.t(:ranking_full) %>"><%= I18n.t(:ranking) %></th>
+				<th>&nbsp;</th>
+				<th><span><%= I18n.t(:name) %></span></th>
+				<th>&nbsp;</th>
+				<th>&nbsp;</th>
+				<th title="<%= I18n.t(:points_full) %>"><%= I18n.t(:points) %></th>
+				<th title="<%= I18n.t(:games_won_full) %>"><%= I18n.t(:games_won) %></th>
+				<th title="<%= I18n.t(:games_tied_full) %>"><%= I18n.t(:games_tied) %></th>
+				<th title="<%= I18n.t(:games_lost_full) %>"><%= I18n.t(:games_lost) %></th>
+				<th title="<%= I18n.t(:goals_scored_full) %>"><%= I18n.t(:goals_scored) %></th>
+				<th title="<%= I18n.t(:goals_for_full) %>"><%= I18n.t(:goals_for) %></th>
+				<th title="<%= I18n.t(:goals_against_full) %>"><%= I18n.t(:goals_against) %></th>
+				<th title="<%= I18n.t(:goal_difference_full) %>"><%= I18n.t(:goal_difference) %></th>
+				<th title="<%= I18n.t(:coeficient_full) %>"><%= I18n.t(:coeficient) %></th>
+				<th title="<%= I18n.t(:games_played_full) %>"><%= I18n.t(:games_played) %></th>
+				<th title="<%= I18n.t(:games_assigned_full) %>"><%= I18n.t(:games_assigned) %></th>
+				<!-- <th title="<%#= I18n.t(:previous_ranking_full) %>"><%#= I18n.t(:previous_ranking) %></th> -->
+				<th title="<%= I18n.t(:coeficient_full) %>"><%= I18n.t(:coeficient_points) %></th>
+				<th title="<%= I18n.t(:participation_full) %>"><%= I18n.t(:participation) %></th>
+				<!-- <th class="last">&nbsp;</th> -->
+			</tr>
+
+			<%= render :partial => '/scorecards/scorecard', :collection => collection, 
+							:locals => {:group => @group, :games_played => @games_played, :less_games => @less_games, :mailer => true} %>        
+		</table>
+	
+		<p><em style="color: rgb(153, 153, 153);">
+			<%= "(*) #{I18n.t(:player_with)} #{@less_games} #{I18n.t(:player_with_less_games)}" %>
+			</em>
+		</p>
+		
+	</div>
+
+	</div>
+<% 
+end 
+-%>
+
 </div>
+
+
+
+
