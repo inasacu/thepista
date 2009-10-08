@@ -19,22 +19,22 @@ class TeammatesController < ApplicationController
     @mate = User.find(params[:teammate])
     Teammate.create_teammate_join_team(@group, @mate, @manager)
 
-    # if @manager.message_notification?
-    #   UserMailer.deliver_manager_join(
-    #   :user => @mate,
-    #   :friend => @manager,
-    #   :group => @group,
-    #   :email => @manager.email,
-    #   :user_url => url_for(:controller => 'users', :action => 'show', :id => @mate),
-    #   :group_url => url_for(:controller => 'groups', :action => 'show', :id => @group),
-    #   :accept_url =>  url_for(:action => "accept",  :id => @mate),
-    #   :decline_url => url_for(:action => "decline", :id => @mate),
-    #   :teammate_accept_url =>  url_for(:action => "accept",  :id => @teammate.id),
-    #   :teammate_decline_url => url_for(:action => "decline", :id => @teammate.id)
-    #   )
-    # end
+    if @manager.message_notification?
+      UserMailer.deliver_manager_join(
+      :user => @mate,
+      :friend => @manager,
+      :group => @group,
+      :email => @manager.email,
+      :user_url => url_for(:controller => 'users', :action => 'show', :id => @mate),
+      :group_url => url_for(:controller => 'groups', :action => 'show', :id => @group),
+      :accept_url =>  url_for(:action => "accept",  :id => @mate),
+      :decline_url => url_for(:action => "decline", :id => @mate),
+      :teammate_accept_url =>  url_for(:action => "accept",  :id => @mate),
+      :teammate_decline_url => url_for(:action => "decline", :id => @mate)
+      )
+    end
     
-    flash[:notice] = I18n.t(:to_join_group_message)
+    flash[:notice] = I18n.t(:to_join_group_message_sent)
     redirect_back_or_default('/index')
     # end
   end 
@@ -50,18 +50,18 @@ class TeammatesController < ApplicationController
     @leave_user = User.find(params[:teammate])   
     Teammate.create_teammate_leave_team(@group, @leave_user)
 
-    # if @leaveUser.message_notification?
-    #   UserMailer.deliver_manager_leave(
-    #     :user => current_user,
-    #     :friend => @manager,
-    #     :group => @group,
-    #     :email => @manager.email,
-    #     :user_url => url_for(:controller => 'users', :action => 'show', :id => @leaveUser),
-    #     :group_url => url_for(:controller => 'groups', :action => 'show', :id => @group)
-    #   )
-    # end
+    if @leaveUser.message_notification?
+      UserMailer.deliver_manager_leave(
+        :user => current_user,
+        :friend => @manager,
+        :group => @group,
+        :email => @manager.email,
+        :user_url => url_for(:controller => 'users', :action => 'show', :id => @leaveUser),
+        :group_url => url_for(:controller => 'groups', :action => 'show', :id => @group)
+      )
+    end
 
-    flash[:notice] = I18n.t(:to_leave_group_message)
+    flash[:notice] = I18n.t(:to_leave_group_message_sent)
     redirect_back_or_default('/index')          
   end
 

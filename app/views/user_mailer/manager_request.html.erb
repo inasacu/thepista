@@ -1,6 +1,6 @@
 <%= render :partial => 'header' %>
 
-<h2 style="margin:0; padding:0; font:17px arial; color:#069;"><%= I18n.t(:request_email) %>:&nbsp;&nbsp;</h2>
+<h2 style="margin:0; padding:0; font:17px arial; color:#069;"><%= I18n.t(:request_petition) %>:&nbsp;&nbsp;</h2>
 
 <p style="margin: 15px 0 2px 0"><strong>&nbsp;</strong></p>
 
@@ -11,7 +11,7 @@
   </tr>
   <tr>
     <td style="width:1%; color:#999999; vertical-align: top;">&nbsp;</td>
-    <td style="width:99%">&nbsp;<%= "#{I18n.t(:request_email)} #{@user.name} #{I18n.t(:to_join_email)} #{@group.name}" %></td>
+    <td style="width:99%">&nbsp;<%= "#{I18n.t(:request_petition)} #{@user.name} #{I18n.t(:to_join_email)} #{@group.name}" %></td>
   </tr>
 </table>
 

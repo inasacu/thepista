@@ -13,14 +13,6 @@ unless upcoming_schedules.empty?
     <div class="inner">
 	
       <table class="table">
-	  
-        <tr>             
-          <!-- <th class="first">&nbsp;</th>
-          <th><%#= label_name(:schedule) %></th>
-          <th><%#= label_name(:group) %></th>
-          <th><%#= label_name(:starts_at) %></th>
-          <th class="last"><%#= label_name(:attend_schedule) %></th> -->
-        </tr>
 		
         <% @upcoming_schedules.each do |schedule| 
 			the_sport = "#{label_name(:rosters)}:  #{schedule.convocados.count}"
@@ -31,7 +23,7 @@ unless upcoming_schedules.empty?
 			  </td>
 		  
 			  <td>
-				<%= schedule_link schedule %>
+				<%= current_user.is_member_of?(schedule.group) ? schedule_link(schedule) : schedule.concept %>
 			  </td>
 			  
 			  <td>

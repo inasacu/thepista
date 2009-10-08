@@ -5,7 +5,7 @@ es:
      a: "a"   
      about: "sobre"   
      accept: "Acepto"   
-     accept_player: "ACEPTA al jugador al equipo"   
+     accept_player: "ACEPTA"   
      account: cuenta
      account_activation:  "Visita esta dirección URL para activar tu cuenta:"
      account_created:  Tu cuenta ha sido creada.
@@ -153,7 +153,7 @@ es:
      deleted: se ha borrado correctamente.   
        
      deny: Rechazo   
-     deny_player: DENIEGA al jugador al equipo   
+     deny_player: "DENIEGA"  
      description: Detalles
      description_announcement: Detalles de la Anuncio      
      email_description: "Ej:  tu_cuenta@gmail.com"     
@@ -733,7 +733,7 @@ es:
      reply_all: Contestar a todos   
      reply_message: Mensaje de Respuesta   
      reply_to_this_message: Responde a este mensaje  
-     request_email: Nueva Petición   
+     request_petition: Nueva Petición   
      request_invitation: Pide una Invitación   
      restored_message: Mensaje restaurado   
      role: Responsabilidad
@@ -927,9 +927,11 @@ es:
      to_join_email: para unirse   
      to_join_festival: Unirte a un Festivo   
      to_join_group: Unirte a un equipo   
-     to_join_group_message: Petición para unirte a   
+     to_join_group_message: Petición para unirte a 
+     to_join_group_message_sent: Petición para unirte a sido emviada.
      to_join_tournament: Unirte a un Torneo   
-     to_leave_group_message: Petición para desapuntarte de   
+     to_leave_group_message: Petición para desapuntarte de
+     to_leave_group_message_sent: Petición para desapuntarte a sido enviada.
      to_member_of: Para los miembros de   
      to_message: A   
      to_payment: Pago de   

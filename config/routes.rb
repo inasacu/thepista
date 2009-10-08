@@ -72,12 +72,12 @@ ActionController::Routing::Routes.draw do |map|
   map.resources   :ratings,         :member => { :rate => :put }
   map.resources   :activities,      :as => 'actividades'
   map.resources   :teammates,       :as => 'mi_equipo'
-  map.resources   :posts,           :as => 'comentario'
+  map.resources   :posts,           :as => 'nota'
   map.resources   :topics,          :as => 'tema'
   map.resources   :forums,          :as => 'foro'
-  map.resources   :entries,         :as => 'tema'
+  map.resources   :entries,         :as => 'entrada'
   map.resources   :comments,        :as => 'comentario'
-  map.resources   :blogs,           :as => 'blog'
+  map.resources   :blogs,           :as => 'muro'
   map.resources   :types,           :as => 'tipos'
   map.resources   :sports,          :as => 'deportes'
   map.resources   :roles,           :as => 'responsabilidades'
@@ -94,8 +94,8 @@ ActionController::Routing::Routes.draw do |map|
   end
 
   map.resources :blogs do |blog|
-    blog.resources :posts do |post|
-      post.resources :comments
+    blog.resources :entries do |entry|
+      entry.resources :comments
     end
   end
 
