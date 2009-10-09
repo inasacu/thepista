@@ -20,9 +20,18 @@ test:
     
     rpx_api: 
         key:            59b7bd4a615a2c17439b6a4ca064a1d5f482944e
+        realm:          thepista-heroku 
+
+# http://thepista.heroku.com/
+staging:
+    google_api:
+        key:            ABQIAAAACEstwoTkWwNQXJRd_oxlohSq-oAE0ua8qdLg2ooJ1gPBC3o68hSzsTAi3Ohp8MXoYZjPHRLMnqEGxw
+    
+    rpx_api: 
+        key:            59b7bd4a615a2c17439b6a4ca064a1d5f482944e
         realm:          thepista-heroku
-          
-          
+
+               
 production:
     # haypista.heroku.com
     google_api:
