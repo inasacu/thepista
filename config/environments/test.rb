@@ -26,3 +26,8 @@ config.action_mailer.delivery_method = :test
 # This is necessary if your schema can't be completely dumped by the schema dumper,
 # like if you have constraints or database-specific column types
 # config.active_record.schema_format = :sql
+
+#recapture keys
+# thepista.heroku.com
+ENV['RECAPTCHA_PUBLIC_KEY'] = '6LfiKAgAAAAAAHRhcX9WTEdGbXW9B3hlFbea1RZZ'
+ENV['RECAPTCHA_PRIVATE_KEY'] = '6LfiKAgAAAAAABzbnVm1Km4oWJU6FsKqJaEtjuVa'

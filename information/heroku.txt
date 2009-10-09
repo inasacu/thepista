@@ -1,0 +1,6 @@
+
+
+
+heroku config:add RACK_ENV=staging --app thepista
+heroku config:add RACK_ENV=production --app haypista
+
