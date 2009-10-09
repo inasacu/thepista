@@ -38,10 +38,6 @@ end
 			<li class="<%= get_control_active('sport') %>"><%= link_to(label_name(:sports), sports_url) %>
 			<li class="<%= get_control_active('type') %>"><%= link_to(label_name(:type), types_url) %>
 		<% end %>
-		
-	<% elsif production? %>
-			<!-- <li class="<%#= get_control_first('features') %>"><%#= link_to(label_name(:features) , '/') %></li> -->
-			<!-- <li class="<%#= get_control_first('features') %>"><%#= link_to(label_name(:pricing) , '/') %></li>	 -->
 	
 	<% end %>
 	

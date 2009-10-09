@@ -14,7 +14,7 @@
     <title><%= app_name %><%= " | #{current_user.name}" if current_user %></title>
 
 	<%= stylesheet_link_tag 'application' %>
-	<%= stylesheet_link_tag 'web_app_theme', 'themes/djime-cerulean/style' if production? %>
+	<%= stylesheet_link_tag 'web_app_theme', 'themes/djime-cerulean/style' unless development? %>
 	<%= stylesheet_link_tag 'web_app_theme', 'themes/warehouse/style' if development? %>
 	<%= stylesheet_link_tag get_the_action if is_action('show') %>
 	
