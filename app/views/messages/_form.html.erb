@@ -34,10 +34,13 @@
 		
 
 <div class="group">
-	<label for="user_username"><%= label_name(:users)  unless @recipient %></label>	
+	<label for="user_username"><%= label_name(:users) unless @recipient %></label>	
 </div>
 
 <div class="group">
+	
+	<fieldset id="roster">
+	
 	<% if @scorecard 
 		@schedule = @scorecard
 	%>
@@ -60,9 +63,14 @@
 	<% else %>
 	<%= render :partial => '/messages/recipient_list', :locals => {:recipients => @recipients, :checked => check } %>
 	<% end %>
-
+	
+	</fieldset>
+	
 </div>	
 
+<div class="group">
+	<%= render :partial => '/shared/check_radio_button' unless @recipient %>
+</div>
 
 <div class="clear"></div> 
 
