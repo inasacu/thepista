@@ -32,12 +32,14 @@
 				<th title="<%= label_name(:games_won_full) %>"><%= label_name(:games_won) %></th>
 				<th title="<%= label_name(:games_tied_full) %>"><%= label_name(:games_tied) %></th>
 				<th title="<%= label_name(:games_lost_full) %>"><%= label_name(:games_lost) %></th>
+				
 				<%  if @group.use_goals?  %>
 				<th title="<%= label_name(:goals_scored_full) %>"><%= label_name(:goals_scored) %></th>
-				<% end %>
 				<th title="<%= label_name(:goals_for_full, the_value.to_s) %>"><%= label_name(:goals_for, the_value.to_s) %></th>
 				<th title="<%= label_name(:goals_against_full, the_value.to_s) %>"><%= label_name(:goals_against, the_value.to_s) %></th>
 				<th title="<%= label_name(:goal_difference_full, the_value.to_s) %>"><%= label_name(:goal_difference, the_value.to_s) %></th>
+				<% end %>
+				
 				<th title="<%= label_name(:coeficient_full) %>"><%= label_name(:coeficient) %></th>
 				<th title="<%= label_name(:games_played_full) %>"><%= label_name(:games_played) %></th>
 				<th title="<%= label_name(:games_assigned_full) %>"><%= label_name(:games_assigned) %></th>

@@ -28,12 +28,14 @@
 	<td class="ganados"><%= scorecard.wins %></td>
 	<td class="empatados"><%= scorecard.draws %></td>
 	<td class="perdidos"><%= scorecard.losses %></td>
+	
 	<%  if group.use_goals?  %>
 	<td class="puntos"><%= scorecard.goals_scored %></td>
-	<% end %>
 	<td class="afavor"><%= scorecard.goals_for %></td>
 	<td class="encontra"><%= scorecard.goals_against %></td>
 	<td class="encontra"><%= scorecard.goals_for - scorecard.goals_against %></td>
+	<% end %>
+		
 	<td class="puntos"><%= sprintf( "%0.00f", coeficient) %><%= "%" %></td>
 	<td class="jugados"><%= scorecard.played %></td>
 	<td class="jugados"><%= scorecard.assigned %></td>

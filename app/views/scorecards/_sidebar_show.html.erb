@@ -38,7 +38,6 @@
 			<b><%= label_name(:goals_scored) %></b>
 			<%= label_name(:goals_scored_full) %>
 		<p>
-		<% end %>
 						
 		<p>
 			<b><%= label_name(:goals_for, the_value.to_s) %></b>
@@ -54,6 +53,7 @@
 			<b><%= label_name(:goal_difference, the_value.to_s) %></b>
 			<%= label_name(:goal_difference_full, the_value.to_s) %>
 		<p>	
+		<% end %>
 
 		<p>
 			<b><%= label_name(:coeficient) %></b>
@@ -77,17 +77,17 @@
 			
 		<p>
 			<b><%= label_name(:points_for_win) %></b>
-			<%= @group.points_for_win %>
+			<%= @group.points_for_win.round %>
 		</p>
 		
 		<p>
 			<b><%= label_name(:points_for_draw) %></b>
-			<%= @group.points_for_draw %>
+			<%= @group.points_for_draw.round %>
 		</p>
 		
 		<p>
 			<b><%= label_name(:points_for_lose) %></b>
-			<%= @group.points_for_lose %>
+			<%= @group.points_for_lose.round %>
 		</p>				
 
 	</div>
