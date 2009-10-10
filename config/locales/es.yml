@@ -324,15 +324,26 @@ es:
      games_won_full: Partidos Ganados   
      gender: Genero   
      general_information:  Información General
-     get_your_gravatar: Pilla tu Gravatar    
-     goal_difference: G.D.   
-     goal_difference_full: Gol Diferencial   
-     goals_against: G.C.   
-     goals_against_full: Goles en Contra   
-     goals_for: G.F.   
-     goals_for_full: Goles a Favor   
+     get_your_gravatar: Pilla tu Gravatar   
+      
+     goal_difference_true: G.D.   
+     goal_difference_full_true: Gol Diferencial   
+     goals_against_true: G.C.   
+     goals_against_full_true: Goles en Contra   
+     goals_for_true: G.F.   
+     goals_for_full_true: Goles a Favor    
+     
+     goal_difference_false: D.P.   
+     goal_difference_full_false: Diferencial De Puntos   
+     goals_against_false: P.C.   
+     goals_against_full_false: Puntos en Contra   
+     goals_for_false: P.F.   
+     goals_for_full_false: Puntos a Favor   
+     
      goals_scored: G.M.   
-     goals_scored_full: Goles Marcados   
+     goals_scored_full: Goles Marcados
+     
+     
      gravatar_not_received: No ha sido posible conseguir la información de gravatar del usuario   
      gravatar_received: Ya hemos conseguido la información del gravatar del usuario   
      group: Equipo   

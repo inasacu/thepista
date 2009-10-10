@@ -94,6 +94,11 @@ class Group < ActiveRecord::Base
   def has_schedule?
     self.schedules.count > 0
   end
+  
+  def use_goals?
+   	# sports related to goals
+    return [1, 2, 3, 4, 5].include?(self.sport_id)
+  end
 
   # def game_day
   #   self.schedules.find_by_sql(["select distinct dayname(starts_at) as name from schedules " +

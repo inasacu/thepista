@@ -1,3 +1,5 @@
+<% @goles = [1, 2, 3, 4, 5] %>
+
 <div class="block">
 
 	<%= render :partial => '/schedules/secondary_navigation' %>
@@ -29,12 +31,16 @@
 		</div>	
 		<br />
 
+		<% if @goles.include?(@schedule.group.sport_id) %>
+		
 		<div class="group">
 			<%= f.label :goals_scored, label_name(:goals_scored_full), :class => :label %>
 			<%= render :partial =>'match', :collection => @matches %>
 		</div>	
 		<br />
-
+		
+		<% end %>
+		
 		<div class="clear"></div> 
 
 		<div class="group navform">

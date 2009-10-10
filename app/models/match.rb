@@ -12,12 +12,6 @@ class Match < ActiveRecord::Base
   # variables to access
   attr_accessible :name, :schedule_id, :user_id, :group_id, :invite_id, :group_score, :invite_score, :goals_scored
   attr_accessible :roster_position, :played, :available, :one_x_two, :user_x_two, :type_id, :status_at, :description
-  # attr_accessible :match_attributes
-      
-  # 
-  # # def total
-  # #   players.inject(0) {|sum, n| 1 + sum}
-  # # end
   
   def team_name(schedule)
     (self.group_id > 0) ? schedule.home_group : schedule.away_group 

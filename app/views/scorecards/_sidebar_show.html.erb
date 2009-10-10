@@ -1,3 +1,5 @@
+<% the_value = @group.use_goals? %>
+
 <div class="block">
 	<h3><%= control_label('legend') %></h3>
 	<div class="content">
@@ -30,25 +32,27 @@
 			<b><%= label_name(:games_lost) %></b>
 			<%= label_name(:games_lost_full) %>
 		<p>
-			
+		
+		<% if @group.use_goals? %>	
 		<p>
 			<b><%= label_name(:goals_scored) %></b>
 			<%= label_name(:goals_scored_full) %>
 		<p>
+		<% end %>
 						
 		<p>
-			<b><%= label_name(:goals_for) %></b>
-			<%= label_name(:goals_for_full) %>
+			<b><%= label_name(:goals_for, the_value.to_s) %></b>
+			<%= label_name(:goals_for_full, the_value.to_s) %>
 		<p>			
 		
 		<p>
-			<b><%= label_name(:goals_against) %></b>
-			<%= label_name(:goals_against_full) %>
+			<b><%= label_name(:goals_against, the_value.to_s) %></b>
+			<%= label_name(:goals_against_full, the_value.to_s) %>
 		<p>		
 				
 		<p>
-			<b><%= label_name(:goal_difference) %></b>
-			<%= label_name(:goal_difference_full) %>
+			<b><%= label_name(:goal_difference, the_value.to_s) %></b>
+			<%= label_name(:goal_difference_full, the_value.to_s) %>
 		<p>	
 
 		<p>
