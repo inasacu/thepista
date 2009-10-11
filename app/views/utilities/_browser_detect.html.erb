@@ -17,13 +17,21 @@
 }
 </style>
 
+<% unless production? %>
+ <%= "#{t(:current_user) }:  #{current_user.name}" if current_user %><br/>
+ <%= "#{t(:current_time_zone) }: #{Time.zone.name}" %><br/>
+ <%= "#{t(:current_time) }: #{nice_day_of_week(Time.zone.now)}" %><br/>
+<hr />
+
+<% end %>
+
 <% if development? %>
 
 <%= debug(params) %>
 
- <%= "#{t(:current_user) }:  #{current_user.name}" if current_user %><br/>
- <%= "#{t(:current_time_zone) }: #{Time.zone.name}" %><br/>
- <%= "#{t(:current_time) }: #{nice_day_of_week(Time.zone.now)}" %><br/>
+ <%#= "#{t(:current_user) }:  #{current_user.name}" if current_user %><br/>
+ <%#= "#{t(:current_time_zone) }: #{Time.zone.name}" %><br/>
+ <%#= "#{t(:current_time) }: #{nice_day_of_week(Time.zone.now)}" %><br/>
 <hr />
 
 

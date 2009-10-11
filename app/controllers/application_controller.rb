@@ -9,7 +9,13 @@ class ApplicationController < ActionController::Base
   helper_method :current_user_session, :current_user
   filter_parameter_logging :password, :password_confirmation
 
+  before_filter :set_time_zone
+
   private  
+    def set_time_zone
+      Time.zone = @current_user.time_zone if @current_user
+    end
+  
     def current_user_session
       return @current_user_session if defined?(@current_user_session)
       @current_user_session = UserSession.find
