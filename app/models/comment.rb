@@ -9,7 +9,7 @@ class Comment < ActiveRecord::Base
   validates_presence_of   :body
   validates_length_of     :body,            :within => BODY_RANGE_LENGTH
 
-  after_create    :log_activity
+  after_create    :log_activity, :send_message_blog
   
   # method section
   def self.get_latest_comments(entry)
@@ -42,4 +42,10 @@ class Comment < ActiveRecord::Base
   def log_activity
     add_activities(:item => self, :user => self.user) unless (self.user.nil?)
   end
+  
+  def send_message_blog()
+    @send_mail ||= self.user.blog_comment_notification?
+    UserMailer.deliver_message_blog(self.entry.blog.user, self.user, self) if @send_mail
+  end
+  
 end

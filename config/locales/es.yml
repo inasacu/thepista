@@ -46,10 +46,12 @@ es:
      between: entre   
      birth_at:  Fecha de Nacimiento
      birth_description: (Escribe fecha de nacimiento...Solo se utiliza para calcular la edad media del equipo...) 
-     # blog_comment_notification:  Recibir Notificación de comentario en tu Muro en tu cuenta de correo.
+     
      blog_comment_notification: Recibir Notificación
      body: Contenido 
      body_description:  Contenido  
+     by: por
+     
      calendar_language: es   
      can_add_email: Puedes agregar tu correo para participar en la versión beta.   
      can_create_schedule: Añadir un Evento   
@@ -241,7 +243,9 @@ es:
      edit_user: Modifica tu perfil   
      edit_venue: Modifica el Centro Deportivo   
      email: Correo   
-     email_time_zone: Zona Horaria para mandar correos antes de un encuentro.   
+     email_time_zone: Zona Horaria para mandar correos antes de un encuentro.  
+     email_addresses: Cuentas de Correo
+     email_addresses_description:  Escribe las cuentas de correo separandolas con un espacio.
      enable_comments: Recibirir Aviso de Comentarios
      enable_comments_description: Opción para recibir aviso cuando se deja un comentario.
      ends_at: Finalización   
@@ -450,6 +454,7 @@ es:
      Medium: Medio   
      member_since: Miembro desde   
      message: Mensaje
+     message_description: Escribe el mensaje.
      message_notification: Recibir Correo   
      message_notification_description: (Quieres recibir notificaciones atraves del correo electronico...)   
      messages: Mensajes   
@@ -809,7 +814,7 @@ es:
      send_match: Manda el Resultado  
      send_message: Manda Mensaje 
      send_message_to_group: Manda un Mensaje   
-     send_message_to_join: Manda una solicitud para unirte a   
+     
      send_name: Manda un Nombre   
      send_note: Manda una Nota   
      send_notification: Manda una Notificación   
@@ -1045,6 +1050,7 @@ es:
       
      your_beta_invite: Estas invitado a entrar en HayPista.   
      your_birthdate: Fecha de nacimiento   
+     your_email:  Tu Cuenta de Correo
      your_interest: Que te interesa   
      your_interest_group: ¿Estás interesado en crear o unirte a un equipo?   
      your_interest_schedule: ¿Estás interesado en crear o unirte a un evento?   
@@ -1101,16 +1107,28 @@ es:
      it:  Italiano
      
      # translations for views
+     comments_on_your_blog:  ha dejado comentarios en tu muro
+     
      home_index: Inicio
      home_search:  Buscar
-          
+     
+     invitations_index:  Invitaciones Mandadas
+     invitations_import:  Importar Contactos
+     invitations_for_your_friends:  Invita a tus amigos
+     invitations_no:  Ninguna Invitación para mostrar
+     invitations_option:  Opciones de Invitación
+     invitations_create:  Nueva Invitación
+     invitations_sent:  Invitaciones Mandadas
+     invitation_successfully_created: La Invitación ha sido mandada.
+     invitation_to_join: te manda una solicitud para unirte a HayPista  
+     invitation_signup_link:  Visite este enlace para registrarse
+         
      entries_teammate: Mis Compañeros de Equipo
      entries_my_wall: Mi Muro
      entries_option:  Opciones del Muro
      entries_show:  Opciones del Muro
      entries_show_option:  Opciones del Muro
-     
-     
+          
      fee_from: Tasas a
      fee_from_description: De quien son las Tasas
      fee_to: Tasas de 
@@ -1147,6 +1165,7 @@ es:
      groups_destroy:  Borrar Equipo
      groups_index:   Equipos
      groups_index_option: Opciones de Equipo
+     groups_invitations_create:  Invita a un Amigo al Equipo
      groups_list:  Jugadores del Equipo
      groups_new:  Nuevo Equipo
      groups_new_option: Opciones de Nuevo Equipo
@@ -1207,6 +1226,7 @@ es:
      schedules_destroy:  Borrar Evento
      schedules_index:  Eventos
      schedules_index_option: Opciones del Evento
+     schedules_invitations_create:  Invita a un Amigo al Evento
      schedules_list:  Anteriores Eventos
      schedules_list_no: Ningun Evento previo para mostrar.
      schedules_manager_option:  Requiere responsable de equipo para ver mas opciones.

@@ -11,27 +11,22 @@ class UserMailer < ActionMailer::Base
 
   def password_reset_instructions(user)  
     subject       I18n.t(:password_recover_instructions)
-    from          "Binary Logic Notifier "  
+    from          "[HayPista]"  
     recipients    user.email  
     sent_on       Time.now  
     body          :edit_password_reset_url => edit_password_reset_url(user.perishable_token)  
-  end  
-
-  # def message(mail)
-  #   recipients    mail[:email]
-  #   subject       "[HayPista] " + mail[:message].subject
-  #   body          mail
-  #   from          mail[:user].name +  '  <DoNotReply@haypista.com>'
-  #   content_type  "text/html"
-  # end 
+  end    
   
-  # def manager_request(mail)
-  #   subject     "#{I18n.t(:join_group)} " + mail[:group].name
-  #   from        mail[:user].name +  '  <DoNotReply@haypista.com>'
-  #   recipients  mail[:email]
-  #   body        mail
-  #   content_type  "text/html"
-  # end  
+  def signup_invitation(email, user, message)
+      @recipients = "#{email}"
+      @subject = "#{user.name} #{I18n.t(:invitation_to_join)}!"
+      @sent_on = Time.now
+      @body[:user] = user
+      @body[:url] = signup_url
+      @body[:message] = message
+      @from  =  user.name + '  <DoNotReply@haypista.com>'
+      content_type  "text/html"
+  end
   
   def manager_join(mail)
     subject     "[HayPista] #{I18n.t(:to_join_group_message) } " + mail[:group].name
@@ -48,14 +43,6 @@ class UserMailer < ActionMailer::Base
     body        mail
     content_type  "text/html"
   end 
-  
-  # def message_group(mail)
-  #   subject     "#{I18n.t(:join_group)} [#{mail[:group].name}]"
-  #   from        mail[:user].name +  '  <DoNotReply@haypista.com>'
-  #   recipients  mail[:email]
-  #   body        mail
-  #   content_type  "text/html"
-  # end  
   
   def message_match(mail)
     subject     "#{I18n.t(:matches)} [#{mail[:group].name}] - #{mail[:schedule].concept}"
@@ -80,6 +67,16 @@ class UserMailer < ActionMailer::Base
     body        mail
     content_type  "text/html"
   end
+  
+  def message_blog(recipient, user, message)
+      @recipients = recipient.email
+      @subject = "#{user.name} #{I18n.t(:comments_on_your_blog)}!"
+      @sent_on = Time.now
+      @body[:user] = user
+      @body[:message] = message
+      @from  =  user.name + '  <DoNotReply@haypista.com>'
+      content_type  "text/html"
+  end
 
   def message_notification(message)
     subject       "[HayPista] " + message.subject
@@ -87,12 +84,6 @@ class UserMailer < ActionMailer::Base
     recipients    message.recipient.email
     body          message.body
     content_type  "text/html"
-
-    # from         "Message notification <message@#{domain}>"
-    # recipients   message.recipient.email
-    # subject      formatted_subject("New message")
-    # body         "server" => server, "message" => message,
-    #              "preferences_note" => preferences_note(message.recipient)
   end
 
 end

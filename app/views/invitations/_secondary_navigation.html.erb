@@ -1,0 +1,16 @@
+<div class="secondary-navigation">
+
+<ul>
+	<li class="<%= get_first_active %>"><%= link_to(control_label('sent') , invitations_path) %></li>
+	<li class="<%= get_active('invitation_new') %>"><%= link_to(control_label('create') , new_invitation_url) %></li>
+	<% if development? %>
+	<li class="<%= get_active('import') %>">
+		<%= link_to(control_label('import') , {:controller => 'invitations', :action => 'import'}) %>
+	</li>
+	<% end %>
+	
+</ul>
+
+<div class="clear"></div>
+
+</div>

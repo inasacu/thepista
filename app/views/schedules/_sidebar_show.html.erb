@@ -5,7 +5,8 @@
 <ul class="navigation">
 <%	
 	if current_user.is_member_of?(@group)  %> 
-		<li><%= link_to label_name(:send_message_to_group), new_message_path(:group_id => @group.id) %></li>
+		<li><%= link_to label_name(:send_message_to_group), new_message_path(:group_id => @group.id) %></li>		
+		<li><%= link_to(control_label('invitations_create') , new_invitation_url(:schedule_id => @schedule.id)) %></li>
 <% 
 	end 
 	

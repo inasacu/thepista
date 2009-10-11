@@ -785,7 +785,7 @@ en:
      send_match: Manda el Resultado  
      send_message: Manda Mensaje 
      send_message_to_group: Manda un Mensaje   
-     send_message_to_join: Manda una solicitud para unirte a   
+     invitation_to_join: Manda una solicitud para unirte a   
      send_name: Manda un Nombre   
      send_note: Manda una Nota   
      send_notification: Manda una Notificación   

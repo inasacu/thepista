@@ -1,0 +1,30 @@
+<%= render :partial => 'header' %>
+
+<%= I18n.t(:hi_email_header) %>,<br /><br />
+ 
+<%= "#{@user.name} #{I18n.t(:invitation_to_join)}!" %><br /><br />
+
+
+
+<%= @message %><br /><br />
+
+
+
+
+<%= I18n.t(:invitation_signup_link) %><br /><br />
+ 
+<%= @url %><br /><br />
+
+ 
+<%= "#{I18n.t(:request_url_does_not_work)}  #{I18n.t(:request_url_issue)}" %><br /><br />
+
+
+
+<%= render :partial => 'footer' %>
+
+
+
+
+
+
+

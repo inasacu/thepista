@@ -1,0 +1,118 @@
+<!-- <= stylesheet_link_tag 'common', 'feed', 'addfriend','ubersearch', 'actionspro','base','apps_menu','booklet','wallpro','dialog','attachments', 'invite','invite_friends','contact_importer', 'editor','multi_friend_selector','friend_suggester','captcha', 'dialogpro', 'typeaheadpro', 'intl' %> -->
+<!--<= stylesheet_link_tag 'common', 'actionspro', 'discussions', 'profilepro', 'typeahead' %> -->
+
+<div id="page_body" class="pagebody editcontact">
+
+  
+  <div id="content_shadow">
+
+    
+    <div id="content" class="clearfix">
+
+    
+    <div class="title_header">
+        <h2 class="" style="background-image: url(../../images/email_web.gif);">Select which contacts to invite from the list below.</h2>
+    </div>
+    
+    <div class="tabs clearfix">
+      <center>
+       <%= render :partial => '/layouts/current/left_tabs' %>
+       <%= render :partial => '/layouts/current/right_tabs' %>
+      </center>
+    </div>
+    
+
+    
+    <div class="editor_panel clearfix">
+
+    
+    <!-- <= render :partial => '/layouts/flash_message' %> -->
+    
+        <div id="hidden_login_fields">
+            <%= hidden_field :user, :id %>
+        </div>
+
+       
+    <table class="editor" border="0" cellspacing="0">
+    <tbody>
+    <tr class="text name">
+    <td></td>
+    <td>
+    <div id="address_book_login">
+    <h4>Web Email (Hotmail, Gmail, Yahoo, etc.)<br/>
+      <span style="color: rgb(119, 119, 119); font-weight: normal; font-size: 11px;">
+        Invite contacts from your email address book.
+        <br>
+        HayPista will not store your email login or password.
+      </span>
+    </h4>
+    </div>
+    </td>
+    </tr>
+
+    <!-- text activity -->   
+    <!--
+    < counter = 0 %>
+    < @contacts.each do |contact| %>
+    <tr class="text name">
+    <td class="label"><= check_box('contact_'+counter.to_s, 'checked', {}, contact[1], '') %><= contact[0] %></td>
+    <td>&lt;<= contact[1] %>&gt;</td>
+    </tr>
+    < counter += 1
+       end %>
+-->
+    <!-- text activity -->
+
+
+    <% counter = 0
+    @contacts.each do |contact|%>
+    <tr class="text name">
+        <td class="label"><input type="checkbox" id="<%= counter += 1 %>" name="contact_ids[]" value="<%= contact[1] %>"><%= contact[0] %></td>
+        <td>&lt;<%= contact[1] %>&gt;</td>
+      </tr>
+    <% end %>
+
+
+    
+    
+    <%= render :partial => '/layouts/buttons' %>
+    
+    <!--
+    <div class="buttons">
+    <input class="inputbutton" onclick="save_contacts('email_list', 10496)" id="save" name="save" value="Add to Invite" type="button">
+    <input class="inputbutton inputsubmit aux" onclick="window.close()" id="cancel" name="cancel" value="Cancel" type="button">
+    </div>
+    -->
+
+    
+    <tr>
+      <td></td>
+      <td><div class="divider" style="">&nbsp;</div></td>
+    </tr>
+    
+
+    
+    <tr>
+    <td></td>
+    <td>
+    
+    <div class="note">Note:  Invitation conditions...    </div>
+    
+    </td>
+    </tr>
+    
+
+    </tbody>
+    </table>
+    
+
+    </div>
+    
+
+    </div>
+    
+
+  </div>
+  
+
+</div>

@@ -1,0 +1,32 @@
+<% full_invitation ||= false 
+	the_invitation = invitation.message
+	the_invitation = "#{the_invitation.strip[0..55]}..." if the_invitation.length > 55
+%>
+<tr>
+	<td>
+		<%= image_link_small invitation.user %>
+	</td>
+	<td>
+		<span class="name">	
+			<span class="label"><%= label_name(:to) %>:</span>
+			<%= invitation.recipient %>
+			<br />
+			<span class="label"><%= label_name(:from) %>:</span>
+			<%= user_link invitation.sender %>
+		</span>
+		<br />
+		<span class="date">
+			<%= nice_day_of_week(invitation.created_at) %>
+		</span>
+	</td>
+	<td>
+		<span class="">
+			<%= h(invitation.message) %><br />
+		</span>
+	</td>
+	<td class="last">
+		<%= link_to label_name(:destroy), invitation_path(invitation), :method => :delete, :confirm => 'Are you sure?' %>
+	</td>
+</tr>
+
+

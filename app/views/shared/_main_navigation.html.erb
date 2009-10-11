@@ -33,6 +33,10 @@ end
 		<li class="<%= get_control_active('scorecard') %>"><%= link_to(label_name(:scorecards), scorecards_url) %></li>
 		<li class="<%= get_control_active('marker') %>"><%= link_to(label_name(:markers), markers_url) %>
 		
+		<% if development? %>	
+		<li class="<%= get_control_active('marker') %>"><%= link_to(label_name(:invitations), invitations_url) %>
+		<% end %>
+		
 		<% if test? %>
 			<li class="<%= get_control_active('role') %>"><%= link_to(label_name(:roles), roles_url) %>
 			<li class="<%= get_control_active('sport') %>"><%= link_to(label_name(:sports), sports_url) %>

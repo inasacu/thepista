@@ -1,0 +1,99 @@
+<div class="block" id="block-forms-2"> 
+
+  <%= render :partial => 'secondary_navigation' %>  
+  
+  <div class="content"> 
+  
+	<h2 class="title">
+		<%= "#{label_name(:invitation)} "  %>
+
+		<%  if @schedule %>
+		<%= "#{label_name(:to)} #{schedule_link @schedule} #{label_name(:by)} #{group_link @group}"  %>
+		<% end %>
+	</h2>
+	
+	<div class="inner"> 
+	
+	  <% form_for :invitation, :url => invitations_path, :html => { :class => :form } do |f| -%>
+	  
+		<% if @schedule %>
+		<%= hidden_field :schedule, :id %>
+		<% elsif @group %>
+		<%= hidden_field :group, :id %>
+		<% end %>
+	
+		<div class="columns"> 
+		
+		  <div class="column left"> 
+		  
+			<div class="group">
+			  <%= f.label :email_addresses, label_name('email_addresses'), :class => :label %>
+			  <%= f.text_field :email_addresses, :class => 'text_field' %>
+			  <span class="description"><%= label_name('email_addresses', 'description') %></span>
+			</div> 
+			
+			<div class="group">
+			  <%= f.label :message, label_name(:message), :class => :label %>
+			  <%= f.text_area :message, :class => 'text_area' %>
+				<br />
+			  <span class="description"><%= label_name('message', 'description') %></span>
+			</div>
+			
+		  </div> 
+		  
+		  <div class="column right"> 
+		  
+<!-- 			<div class="group"> 
+			  <label class="label">Select</label> 
+			  <select><option value="1">Choose...</option></select> 
+			</div> 
+			
+			<div class="group"> 
+			
+			  <label class="label">Check box</label> 
+			  
+			  <div> 
+				<input type="checkbox" name="checkbox" id="checkbox_1" class="checkbox" value="1" /> 
+					<label for="checkbox_1" class="checkbox">Option 1</label> 
+			  </div> 
+			  
+			  <div> 
+				<input type="checkbox" name="checkbox" id="checkbox_2" class="checkbox" value="2" /> 
+					<label for="checkbox_2" class="checkbox">Option 2</label> 
+			  </div> 
+			  
+			</div> 
+			
+			<div class="group"> 
+			  <label class="label">Radio</label> 
+			  
+			  <div> 
+				<input type="radio" name="radio" id="radio_1" class="checkbox" value="1" /> <label for="radio_1" class="radio">Option 1</label> 
+			  </div> 
+			  
+			  <div> 
+				<input type="radio" name="radio" id="radio_2" class="checkbox" value="2" /> <label for="radio_2" class="radio">Option 2</label> 
+			  </div> 
+			  
+			</div> 
+			 -->
+		  </div> 
+		  
+		</div> 
+		
+		<div class="clear"></div> 
+		
+		<div class="group navform">
+			<%= submit_tag @invitation.new_record? ? label_name(:create) : label_name(:edit), 
+							:class => "button" %> <%= label_name(:or) %> <%= link_to label_name(:cancel), invitations_path %>
+		</div>
+		
+	  <% end %>
+	  
+	</div> 
+	
+  </div> 
+  
+</div>
+
+<% content_for :sidebar, render(:partial => 'sidebar') -%>

@@ -1,0 +1,128 @@
+<div class="block" id="block-forms-2"> 
+
+  <%= render :partial => 'secondary_navigation' %>  
+  
+  <div class="content"> 
+  
+	<h2 class="title">
+		<%= "#{label_name(:invitations_for_your_friends)} "  %><br />
+
+		  <span style="color: rgb(119, 119, 119); font-weight: normal; font-size: 11px;">
+		    Invite contacts from your email address book.  Web Email (Hotmail, Gmail, Yahoo, etc.)<br/>
+		    HayPista will not store your email login or password.
+		  </span>
+
+	</h2>
+	
+	<div class="inner"> 
+	<%# form_tag :action => 'contact', :id => @invitation do %>
+	
+	  <% form_for :invitation, :url => import_contact_url, :html => { :class => :form } do |f| -%>
+
+		<div class="columns"> 
+		
+		  <div class="column left"> 
+		  
+			<div class="group">
+			  <%= f.label :your_email, label_name('your_email'), :class => :label %>
+			  <input type="text" class="inputtext" id="login" name="login" value="" onblur="update_ms_login();" />
+			</div>
+			
+			<div class="group">
+			  <%= f.label :password, label_name(:password), :class => :label %>
+			  <input type="password" class="inputpassword" id="password" name="password" value=""autocomplete=off />	
+			</div>
+			
+			
+			
+			<!-- &nbsp;@
+						 
+						  <select class="select" id="domain" name="domain" onchange="checkDomain(event);check_ms_login(event);">
+						    <option value="0" selected="selected">select...</option>
+						    <option value="1">hotmail.com</option>
+						    <option value="8">yahoo.es</option>
+						    <option value="2">yahoo.com</option>
+						    <option value="1">gmail.com</option>
+						    <option value="35">yahoo.com.mx</option>
+						    <option value="32">yahoo.com.ar</option>
+						    <option value="12">live.com </option>
+						    <option value="5">msn.com</option>
+						    <option value="3">aol.com</option>
+						    <option value="6">hotmail.co.uk</option>
+						  <optgroup label="-----------------">
+						    <option value="7">yahoo.co.uk</option>
+						    <option value="8">yahoo.ca</option>
+						    <option value="13">comcast.net</option>
+						    <option value="16">bellsouth.net</option>
+						    <option value="15">web.de</option>
+						    <option value="17">gmx.de</option>
+						    <option value="18">gmx.net</option>
+						    <option value="23">yahoo.fr</option>
+						    <option value="24">yahoo.de</option>
+						    <option value="42">hotmail.de</option>
+						    <option value="43">hotmail.fr</option>
+						    <option value="44">googlemail.com</option>
+						    <option value="45">gmx.at</option>
+						    <option value="46">gmx.ch</option>
+						  </optgroup>
+						  </select> -->
+			
+		  </div> 
+		  
+		  <div class="column right"> 
+		  
+			<!-- <div class="group"> 
+			  <label class="label">Select</label> 
+			  <select><option value="1">Choose...</option></select> 
+			</div>  -->
+			
+			<!-- <div class="group"> 
+			
+			  <label class="label">Check box</label> 
+			  
+			  <div> 
+				<input type="checkbox" name="checkbox" id="checkbox_1" class="checkbox" value="1" /> 
+					<label for="checkbox_1" class="checkbox">Option 1</label> 
+			  </div> 
+			  
+			  <div> 
+				<input type="checkbox" name="checkbox" id="checkbox_2" class="checkbox" value="2" /> 
+					<label for="checkbox_2" class="checkbox">Option 2</label> 
+			  </div> 
+			  
+			</div> 
+			<div class="group"> 
+			  <label class="label">Radio</label> 
+			  
+			  <div> 
+				<input type="radio" name="radio" id="radio_1" class="checkbox" value="1" /> <label for="radio_1" class="radio">Option 1</label> 
+			  </div> 
+			  
+			  <div> 
+				<input type="radio" name="radio" id="radio_2" class="checkbox" value="2" /> <label for="radio_2" class="radio">Option 2</label> 
+			  </div> 
+			  
+			</div> 
+			 -->
+			
+		  </div> 
+		  
+		</div> 
+		
+		<div class="clear"></div> 
+		
+		<div class="group navform">
+			<%= submit_tag @invitation.new_record? ? label_name(:create) : label_name(:edit), 
+							:class => "button" %> <%= label_name(:or) %> <%= link_to label_name(:cancel), invitations_path %>
+		</div>
+		
+	  <% end %>
+	  
+	</div> 
+	
+  </div> 
+  
+</div>
+
+<% content_for :sidebar, render(:partial => 'sidebar') -%>
+

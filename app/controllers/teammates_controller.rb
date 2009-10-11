@@ -19,7 +19,7 @@ class TeammatesController < ApplicationController
     @mate = User.find(params[:teammate])
     Teammate.create_teammate_join_team(@group, @mate, @manager)
 
-    if @manager.message_notification?
+    if @manager.teammate_notification?
       UserMailer.deliver_manager_join(
       :user => @mate,
       :friend => @manager,
@@ -50,7 +50,7 @@ class TeammatesController < ApplicationController
     @leave_user = User.find(params[:teammate])   
     Teammate.create_teammate_leave_team(@group, @leave_user)
 
-    if @leaveUser.message_notification?
+    if @leaveUser.teammate_notification?
       UserMailer.deliver_manager_leave(
         :user => current_user,
         :friend => @manager,

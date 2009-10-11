@@ -5,7 +5,7 @@ ActionController::Routing::Routes.draw do |map|
   map.rpx_token_sessions    'rpx_token_sessions',                     :controller => "user_sessions",   :action => "rpx_create"
   map.rpx_signup            '/rpx_signup',                            :controller => 'users',           :action => 'rpx_new'
   map.rpx_create            'users/rpx_create',                       :controller => 'users',           :action => 'rpx_create'
-  map.resources             :users,                                   :collection => { :rpx_create => :post, :rpx_associate => :post }
+  map.resources             :users,       :as => 'jugadores',         :collection => { :rpx_create => :post, :rpx_associate => :post }
 
   map.login                 'login',                                  :controller => 'user_sessions',   :action => 'new'
   map.logout                'logout',                                 :controller => 'user_sessions',   :action => 'destroy'
@@ -60,6 +60,10 @@ ActionController::Routing::Routes.draw do |map|
   
   map.ratings_rate          'ratings/:id/rate/:type',                 :controller => 'ratings',         :action => 'rate'
   
+  map.import_contact   'invitations/contact',                   :controller => 'invitations',     :action => 'contact'
+  map.invite_contact   'invitations/invitecontact',                   :controller => 'invitations',     :action => 'invitecontact'
+  
+  
   map.resources   :user_sessions,   :as => 'repitelo'
 
   map.resources   :users,           :as => 'jugadores',               :collection  => { :list => :get, :recent_activity => :get, :search => :get }  
@@ -68,6 +72,8 @@ ActionController::Routing::Routes.draw do |map|
   map.resources   :markers,         :as => 'centros'
   map.resources   :scorecards,      :as => 'classificaciones',        :collection  => { :list => :get }
   map.resources   :matches,         :as => 'jornadas'
+  
+  map.resources   :invitations,     :as => 'invitaciones'
   
   map.resources   :ratings,         :member => { :rate => :put }
   map.resources   :activities,      :as => 'actividades'
@@ -104,7 +110,6 @@ ActionController::Routing::Routes.draw do |map|
       topic.resources :posts
     end
   end
-
 
   # See how all your routes lay out with "rake routes"
 

@@ -29,7 +29,7 @@
 
 						<div class="description">
                           <span class="q">
-								...<%=h @user.description.blank? ? control_label('description_no') : @user.description %>
+								<%=h @user.description.blank? ? control_label('description_no') : @user.description %>
 							</span>
                         </div>
 
@@ -95,7 +95,8 @@
 													:confirm => the_confirmation) : the_label), 
 													:class => get_the_action %>
 						</tr>
-
+						
+						<%  if test? %>
 						<% 
 							the_label = h(label_name(@user.private_profile, 'value'))
 							the_confirmation = label_with_name('set_private_profile', "#{@user.name}?") 
@@ -108,7 +109,7 @@
 												:class => get_the_action %>
 						</tr>
 						
-						<% 
+						<%
 							the_label = h(label_name(@user.enable_comments, 'value'))
 							the_confirmation = label_with_name('set_enable_comments', "#{@user.name}?") 
 						%>					
@@ -119,6 +120,7 @@
 												:confirm => the_confirmation) : the_label), 
 												:class => get_the_action %>
 						</tr>
+						<% end %>
 
 						<% if @user.has_role?('manager') %>
 						<%
