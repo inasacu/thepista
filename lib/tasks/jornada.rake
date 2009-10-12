@@ -36,7 +36,15 @@ task :thejornada => :environment do |t|
       post.body = @description
       post.save!
     end
-     
+    
+    forum = Forum.find_by_schedule_id(schedule.id)
+    forum.name = schedule.concept
+    forum.save!
+    
+    topic = Topic.find_by_forum_id(schedule.forum.id)
+    topic.name = schedule.concept
+    topic.save!
+      
 
     # @forum = Forum.find_by_schedule_id(schedule.id)
     # if @forum.nil?

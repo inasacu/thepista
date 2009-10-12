@@ -200,8 +200,8 @@ class Schedule < ActiveRecord::Base
   
   private
   def set_time_to_utc
-    self.starts_at = self.starts_at.utc
-    self.ends_at = self.ends_at.utc
+    # self.starts_at = self.starts_at.utc
+    # self.ends_at = self.ends_at.utc
   end
   
   def log_activity

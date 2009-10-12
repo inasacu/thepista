@@ -41,8 +41,8 @@ Rails::Initializer.run do |config|
 
   # Set Time.zone default to the specified zone and make Active Record auto-convert to this zone.
   # Run "rake -D time" for a list of tasks for finding time zone names.
-  config.time_zone = 'UTC'
-  # config.time_zone = 'Madrid'
+  # config.time_zone = 'UTC'
+  config.time_zone = 'Madrid'
 
   # The default locale is :en and all translations from config/locales/*.rb,yml are auto loaded.
   # config.i18n.load_path += Dir[Rails.root.join('my', 'locales', '*.{rb,yml}')]
@@ -77,10 +77,6 @@ end
 # Load custom config file for current environment
 raw_config = File.read(RAILS_ROOT + "/config/config.yml")
 APP_CONFIG = YAML.load(raw_config)[RAILS_ENV]
-
-# # recaptcha configuration keys
-# RECAPTCHA_PUBLIC_KEY = APP_CONFIG['recaptcha_api']['public_key']
-# RECAPTCHA_PRIVATE_KEY = APP_CONFIG['recaptcha_api']['private_key']
 
 # # global variables
 # # url to get users to signup
