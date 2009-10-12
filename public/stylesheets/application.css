@@ -121,3 +121,11 @@ td.sub_true {
 	color: darkblue; 
 	font-weight: bold; 
 }
+
+.form input.text_field {
+  width:90%;
+}
+
+.form textarea.text_area {
+  width: 75%;
+}

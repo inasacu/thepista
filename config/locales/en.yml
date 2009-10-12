@@ -5,7 +5,7 @@ en:
      a: "a"   
      about: "sobre"   
      accept: "Acepto"   
-     accept_player: "ACEPTA al jugador al equipo"   
+     accept_player: "ACEPTA"   
      account: cuenta
      account_activation:  "Visita esta dirección URL para activar tu cuenta:"
      account_created:  Tu cuenta ha sido creada.
@@ -28,6 +28,7 @@ en:
      announcements: Anuncios   
        
      archive: archiva  
+     archive_list_schedules:  Temporada Anterior
      are_you_sure:  ¿Estas Seguro? 
      at: a las   
      attend_schedule: Asiste al Evento   
@@ -45,9 +46,12 @@ en:
      between: entre   
      birth_at:  Fecha de Nacimiento
      birth_description: (Escribe fecha de nacimiento...Solo se utiliza para calcular la edad media del equipo...) 
-     blog_comment_notification:  Recibir Notificación de comentario en tu Muro en tu cuenta de correo.
+     
+     blog_comment_notification: Recibir Notificación
      body: Contenido 
      body_description:  Contenido  
+     by: por
+     
      calendar_language: es   
      can_add_email: Puedes agregar tu correo para participar en la versión beta.   
      can_create_schedule: Añadir un Evento   
@@ -81,7 +85,9 @@ en:
      code: Codigo 
      conditions: Condiciones   
      coeficient: "%"
-     coeficient_full: Coeficiente   
+     coeficient_full: Coeficiente = Puntos Obtenidos / Maximo Puntos
+     coeficient_points: "#"  
+     coeficient_full_points: Puntos Obtenidos * Coeficiente
      comment: Comentario   
      comment_not_saved: Comentarios NO guardados!!!   
      comment_saved: Comentarios guardados!!!   
@@ -89,7 +95,8 @@ en:
      concept_description:  Concepto   
      contact: Contacto   
      contact: Contacto   
-     convocado: Convocado   
+     convocado: Convocado
+     convocados: Convocados
      could_not_log_you: No se ha podido iniciar la sesión en la que como   
      could_not_setup_account: "No pudimos crear la cuenta, lo sentimos!"   
      country: Pais   
@@ -148,7 +155,7 @@ en:
      deleted: se ha borrado correctamente.   
        
      deny: Rechazo   
-     deny_player: DENIEGA al jugador al equipo   
+     deny_player: "DENIEGA"  
      description: Detalles
      description_announcement: Detalles de la Anuncio      
      email_description: "Ej:  tu_cuenta@gmail.com"     
@@ -236,7 +243,9 @@ en:
      edit_user: Modifica tu perfil   
      edit_venue: Modifica el Centro Deportivo   
      email: Correo   
-     email_time_zone: Zona Horaria para mandar correos antes de un encuentro.   
+     email_time_zone: Zona Horaria para mandar correos antes de un encuentro.  
+     email_addresses: Cuenta de Correo
+     email_addresses_description:  Escribe la cuenta de correo.
      enable_comments: Recibirir Aviso de Comentarios
      enable_comments_description: Opción para recibir aviso cuando se deja un comentario.
      ends_at: Finalización   
@@ -280,7 +289,8 @@ en:
      forum_comment_notification:  Recibir Notificación de comentario en tu Muro en tu cuenta de correo.
      message_notification:  Recibir correo en tu cuenta de correo.
      teammate_notification:  Recibir Notificación para unirse a tu equipo en tu cuenta de correo.
-     enable_comments:  Habilitar opción para dejar comentarios en tu Muro.
+     # enable_comments:  Habilitar opción para dejar comentarios en tu Muro.
+     enable_comments:  Habilitar comentarios
      for:  para
      from: de   
      from_Ausente: Pasate a Ultima Hora   
@@ -318,15 +328,26 @@ en:
      games_won_full: Partidos Ganados   
      gender: Genero   
      general_information:  Información General
-     get_your_gravatar: Pilla tu Gravatar    
-     goal_difference: G.D.   
-     goal_difference_full: Gol Diferencial   
-     goals_against: G.C.   
-     goals_against_full: Goles en Contra   
-     goals_for: G.F.   
-     goals_for_full: Goles a Favor   
+     get_your_gravatar: Pilla tu Gravatar   
+      
+     goal_difference_true: G.D.   
+     goal_difference_full_true: Gol Diferencial   
+     goals_against_true: G.C.   
+     goals_against_full_true: Goles en Contra   
+     goals_for_true: G.F.   
+     goals_for_full_true: Goles a Favor    
+     
+     goal_difference_false: D.P.   
+     goal_difference_full_false: Diferencial De Puntos   
+     goals_against_false: P.C.   
+     goals_against_full_false: Puntos en Contra   
+     goals_for_false: P.F.   
+     goals_for_full_false: Puntos a Favor   
+     
      goals_scored: G.M.   
-     goals_scored_full: Goles Marcados   
+     goals_scored_full: Goles Marcados
+     
+     
      gravatar_not_received: No ha sido posible conseguir la información de gravatar del usuario   
      gravatar_received: Ya hemos conseguido la información del gravatar del usuario   
      group: Equipo   
@@ -433,6 +454,7 @@ en:
      Medium: Medio   
      member_since: Miembro desde   
      message: Mensaje
+     message_description: Escribe el mensaje.
      message_notification: Recibir Correo   
      message_notification_description: (Quieres recibir notificaciones atraves del correo electronico...)   
      messages: Mensajes   
@@ -512,6 +534,7 @@ en:
      nickname: Alias   
      no_account: "Con tu cuenta nueva OpenID, registrate en HayPista"   
      no_account_yet: No tienes una cuenta todavia?   
+     no_openid_account_yet: No tienes una cuenta OpenID todavia? 
      no_announcement: No tienes anuncios internos   
      no_change_group: Ningun Cambio de Equipo   
      no_classified: No tienes anuncios   
@@ -579,6 +602,9 @@ en:
      page_does_not_exist: La pagina que querias no exite.   
      participate_schedule: Participa en el Evento  
      
+     participation:  %
+     participation_full:  Porcentaje de Participación
+     
      password: Clave
      password_change: Cambiar Contraseña
      password_confirmation: Clave Confirmación	
@@ -642,6 +668,8 @@ en:
      physical_level_description: "(Del 1 al 5, pon el nivel fisico que crees que tienes comparado con los de tu equipo...)"  
      player_limit:  Limite de Jugadores
      player_limit_description:  Limite de Jugadores que puede tener el Equipo. 
+     player_with: "Jugadores con"
+     player_with_less_games: partidos menos que el resto.
      points: Ptos.
      points_for_draw: Puntos por empatar
      points_for_draw_description: Dale puntuación por empatar el evento...
@@ -704,8 +732,7 @@ en:
      region: Provincia   
      register: Registrate con   
      registration_failed: Su perfil de OpenID ha fallado.   
-     remember_me: Permanecer conectado. 
-     # remember me: Permanecer conectado 
+     remember_me: "¿Permanecer Conectado?"
      reminder: Recordatorio 
      reminder_description:  Quieres un recordatorio del Evento
      reminder_at:  Recordatorio
@@ -733,7 +760,9 @@ en:
      save: Guardar   
      schedule: Evento   
      schedule_description_description: (Escribe algun detalle del equipo...)  
-     schedules: Eventos 
+     schedules: Eventos
+     season_ends_at:  Finalización de Temporada 
+     season_ends_at_description:  Fecha de Finalización de Temporada 
      signup: Registrar 
      score: Resultados   
      scorecard: Clasificación
@@ -785,7 +814,7 @@ en:
      send_match: Manda el Resultado  
      send_message: Manda Mensaje 
      send_message_to_group: Manda un Mensaje   
-     invitation_to_join: Manda una solicitud para unirte a   
+     
      send_name: Manda un Nombre   
      send_note: Manda una Nota   
      send_notification: Manda una Notificación   
@@ -874,6 +903,8 @@ en:
      subscription_at: Finalización para Convocarse el Abonado  
      subscription_at_match: Finalización para Convocarse el Abonado   
      subscription_at_description: (¿Ha que hora termina la opción para apuntarse a un partido el abonado...(ej- 1 dia antes del partido)) 
+     subscription_false:  Jugador No Abonado.
+     subscription_true:  Jugador Abonado
      subscription_updated: Actualización de jugador abonado.
            
      successful_login: Inicio de sesión con éxito 
@@ -890,7 +921,8 @@ en:
      table_id: Codigo de Tabla   
      table_type: Tipo de Tabla   
      # team_petition: Solicitud de Equipo   
-     teammate_notification:  Recibir Notificationes de tu equipo
+     # teammate_notification:  Recibir Notificationes de tu equipo
+     teammate_notification:  Recibir Notificationes
      technical_level_description: "(Del 1 al 5, pon el nivel tecnico que crees que tienes comparado con los de tu equipo...)"  
      terms: terminos   
      terms_message: Please accept the terms to proceed   
@@ -911,9 +943,11 @@ en:
      to_join_email: para unirse   
      to_join_festival: Unirte a un Festivo   
      to_join_group: Unirte a un equipo   
-     to_join_group_message: Petición para unirte a   
+     to_join_group_message: Petición para unirte a 
+     to_join_group_message_sent: Petición para unirte a sido emviada.
      to_join_tournament: Unirte a un Torneo   
-     to_leave_group_message: Petición para desapuntarte de   
+     to_leave_group_message: Petición para desapuntarte de
+     to_leave_group_message_sent: Petición para desapuntarte a sido enviada.
      to_member_of: Para los miembros de   
      to_message: A   
      to_payment: Pago de   
@@ -1013,10 +1047,10 @@ en:
      you_can: Puedes   
      you_can_search: Puedes buscar un   
      you_have: Tienes   
-     
       
      your_beta_invite: Estas invitado a entrar en HayPista.   
      your_birthdate: Fecha de nacimiento   
+     your_email:  Tu Cuenta de Correo
      your_interest: Que te interesa   
      your_interest_group: ¿Estás interesado en crear o unirte a un equipo?   
      your_interest_schedule: ¿Estás interesado en crear o unirte a un evento?   
@@ -1066,18 +1100,6 @@ en:
      last_login_ip:  IP de ultima entrada
      current_login_ip:  IP actual
      
-     # spanish:  Español
-     # english:  Ingles
-     # french:   Frances
-     # german:   Aleman
-     # italian:  Italiano
-     # 
-     # Español:  es
-     # Ingles:  en
-     # Frances:  fr
-     # Aleman:  ge
-     # Italiano: it
-     
      es:  Español
      en:  Ingles
      fr:   Frances
@@ -1085,16 +1107,28 @@ en:
      it:  Italiano
      
      # translations for views
+     comments_on_your_blog:  ha dejado comentarios en tu muro
+     
      home_index: Inicio
      home_search:  Buscar
-          
+     
+     invitations_index:  Invitaciones Mandadas
+     invitations_import:  Importar Contactos
+     invitations_for_your_friends:  Invita a tus amigos
+     invitations_no:  Ninguna Invitación para mostrar
+     invitations_option:  Opciones de Invitación
+     invitations_create:  Nueva Invitación
+     invitations_sent:  Invitaciones Mandadas
+     invitation_successfully_created: La Invitación ha sido mandada.
+     invitation_to_join: te manda una solicitud para unirte a HayPista  
+     invitation_signup_link:  Visite este enlace para registrarse
+         
      entries_teammate: Mis Compañeros de Equipo
      entries_my_wall: Mi Muro
      entries_option:  Opciones del Muro
      entries_show:  Opciones del Muro
      entries_show_option:  Opciones del Muro
-     
-     
+          
      fee_from: Tasas a
      fee_from_description: De quien son las Tasas
      fee_to: Tasas de 
@@ -1131,6 +1165,7 @@ en:
      groups_destroy:  Borrar Equipo
      groups_index:   Equipos
      groups_index_option: Opciones de Equipo
+     groups_invitations_create:  Invita a un Amigo al Equipo
      groups_list:  Jugadores del Equipo
      groups_new:  Nuevo Equipo
      groups_new_option: Opciones de Nuevo Equipo
@@ -1186,10 +1221,12 @@ en:
      practices_option:  Opciones de Entrenamientos
      practices_show: Detalles del Entrenamiento
 
+     schedules_archive_list:  Temporada Anterior
      schedules_create:  Nuevo Evento
      schedules_destroy:  Borrar Evento
      schedules_index:  Eventos
      schedules_index_option: Opciones del Evento
+     schedules_invitations_create:  Invita a un Amigo al Evento
      schedules_list:  Anteriores Eventos
      schedules_list_no: Ningun Evento previo para mostrar.
      schedules_manager_option:  Requiere responsable de equipo para ver mas opciones.
@@ -1205,8 +1242,13 @@ en:
      schedule_ultima_hora:   Ninguno en Ultima Hora para mostrar.
      schedule_no_disponible:  Ninguno no Disponible para mostrar.
 
+     scorecard_list:  Clasificaciones Anteriores
+     scorecards_list:  Clasificaciones Anteriores
+     scorecard_options:  Opciones de Clasificación
+     scorecards_archive:  Archivar la Clasificación
      scorecards_index:   Clasificaciones
      scorecards_manager_option:  Requiere responsable de equipo para ver mas opciones.
+     scorecards_no: Ninguna Clasificación para mostrar.
      scorecards_option:  Opciones de Clasificaciones
      scorecards_less_games:  ( * ) Jugadores con menos partidos
      scorecards_legend:  Leyenda
@@ -1252,6 +1294,7 @@ en:
      types_maximo_option:  Requiere responsable de administrador para ver mas opciones.
      types_option:  Opciones de Tipos
      
+     users_available:  Jugadores Disponibles
      users_index:  Jugadores
      users_index_option: Opciones de Jugador
      users_description_no:  Ningun detalle del Jugador.
@@ -1264,6 +1307,7 @@ en:
      users_show: Mostrar Jugador
      users_my_wall: Mi Muro
      users_option:  Opciones de Jugadores
+     user_options_team: Opciones de Equipos del Jugador
      users_rpx_new: Nuevo Jugador
      users_rpx_create:  Nuevo Jugador
      users_teammate: Mis Compañeros de Equipo

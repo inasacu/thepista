@@ -244,8 +244,8 @@ es:
      edit_venue: Modifica el Centro Deportivo   
      email: Correo   
      email_time_zone: Zona Horaria para mandar correos antes de un encuentro.  
-     email_addresses: Cuentas de Correo
-     email_addresses_description:  Escribe las cuentas de correo separandolas con un espacio.
+     email_addresses: Cuenta de Correo
+     email_addresses_description:  Escribe la cuenta de correo.
      enable_comments: Recibirir Aviso de Comentarios
      enable_comments_description: Opción para recibir aviso cuando se deja un comentario.
      ends_at: Finalización   
