@@ -34,16 +34,18 @@ staging:
                
 production:
     # haypista.heroku.com
-    google_api:
-        key:            ABQIAAAACEstwoTkWwNQXJRd_oxlohR-Y432UtzrUQVcRgSh7RX82w7ExxTMQ8-qK9OoHHqeTAR2GKavcStcyg             
+    # google_api:
+    #     key:            ABQIAAAACEstwoTkWwNQXJRd_oxlohR-Y432UtzrUQVcRgSh7RX82w7ExxTMQ8-qK9OoHHqeTAR2GKavcStcyg             
     
     rpx_api: 
         key:            bcd9944176260aba26f0e1a9475f51160ac3eaf3
         realm:          haypista-heroku
     
     # haypista.com
-    # google_api:
-    # key:                ABQIAAAACEstwoTkWwNQXJRd_oxlohRJsBlthpMFqyH8uqiMijHv-RMFmBTkGqR7rVuhstoeKCeFz7pjFx3ieA             
+    google_api:
+    key:                ABQIAAAACEstwoTkWwNQXJRd_oxlohRJsBlthpMFqyH8uqiMijHv-RMFmBTkGqR7rVuhstoeKCeFz7pjFx3ieA          
+    
+    # ABQIAAAACEstwoTkWwNQXJRd_oxlohSoCLEsqd_d00sV4mz08Wmw7v3GsxQTHKZcd9M_qtbpT8Y3WMKMMgmmRA   
     
     # rpx_api: 
     #     key:   2acf2c6b39e3d1d988629e0cb41c675827c2f45e
