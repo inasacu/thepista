@@ -111,7 +111,7 @@ class Schedule < ActiveRecord::Base
 
   def last_season?(user)
     return false if self.season_ends_at.nil? and user.is_manager_of?(self.group)
-    return (self.season_ends_at < Time.now() and user.is_manager_of?(self.group))
+    return (self.season_ends_at < Time.zone.now() and user.is_manager_of?(self.group))
   end
   
   def home_group
@@ -124,19 +124,19 @@ class Schedule < ActiveRecord::Base
   
   def self.current_schedules(user, page = 1)
      self.paginate(:all, 
-        :conditions => ["starts_at >= ? and group_id in (select group_id from groups_users where user_id = ?)", Time.now, user.id],
+        :conditions => ["starts_at >= ? and group_id in (select group_id from groups_users where user_id = ?)", Time.zone.now, user.id],
         :order => 'group_id, starts_at', :page => page, :per_page => SCHEDULES_PER_PAGE)
   end
 
   def self.previous_schedules(user, page = 1)
      self.paginate(:all, 
-     :conditions => ["starts_at < ? and (season_ends_at is null or season_ends_at > ?) and group_id in (select group_id from groups_users where user_id = ?)", Time.now, Time.now, user.id],
+     :conditions => ["starts_at < ? and (season_ends_at is null or season_ends_at > ?) and group_id in (select group_id from groups_users where user_id = ?)", Time.zone.now, Time.zone.now, user.id],
      :order => 'group_id, starts_at desc', :page => page, :per_page => SCHEDULES_PER_PAGE)
   end
 
   def self.archive_schedules(user, page = 1)
     self.paginate(:all, 
-    :conditions => ["season_ends_at < ? and group_id in (select group_id from groups_users where user_id = ?)", Time.now, user.id],
+    :conditions => ["season_ends_at < ? and group_id in (select group_id from groups_users where user_id = ?)", Time.zone.now, user.id],
     :order => 'group_id, starts_at', :page => page, :per_page => SCHEDULES_PER_PAGE)
   end
   
@@ -185,7 +185,7 @@ class Schedule < ActiveRecord::Base
       @forum = Forum.find(self.forum)
       @topic = Topic.find(@forum.topics.first)
     end
-    Post.create_schedule_post(@forum, @topic, user)
+    Post.create_schedule_post(@forum, @topic, user, self.description)
 
     Match.create_schedule_match(self) 
 

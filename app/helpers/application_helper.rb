@@ -151,7 +151,7 @@ module ApplicationHelper
     @current_messages ||= Message.current_messages(current_user)
   end
   
-  def year_range( start_year = Time.now.year )
-    [start_year, Time.now.year].sort.uniq.join('-')
+  def year_range( start_year = Time.zone.now.year )
+    [start_year, Time.zone.now.year].sort.uniq.join('-')
   end  
 end

@@ -40,7 +40,7 @@ class MatchesController < ApplicationController
 
     played = (@type.id == 1 and !@match.group_score.nil? and !@match.invite_score.nil?)
 
-    if @match.update_attributes(:type_id => @type.id, :played => played, :user_x_two => @user_x_two, :status_at => Time.now)
+    if @match.update_attributes(:type_id => @type.id, :played => played, :user_x_two => @user_x_two, :status_at => Time.zone.now)
       Scorecard.calculate_user_played_assigned_scorecard(@match.user, @match.schedule.group)
       Match.log_activity_convocado(@match)
 

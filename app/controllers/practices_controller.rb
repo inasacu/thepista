@@ -271,14 +271,14 @@ class PracticesController < ApplicationController
 #         if @practice
 #           @date = @practice.start_time
 #         else
-#           now = Time.now
+#           now = Time.zone.now
 #           year = (params[:year] || now.year).to_i
 #           month = (params[:month] || now.month).to_i
 #           day = (params[:day] || now.mday).to_i
 #           @date = DateTime.new(year,month,day)
 #         end
 #       rescue ArgumentError
-#         @date = Time.now
+#         @date = Time.zone.now
 #       end
 # 
 #       def filter_by_day?

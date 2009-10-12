@@ -44,7 +44,7 @@ class Group < ActiveRecord::Base
   
   has_many      :archive_scorecards, 
                 :through => :scorecards,
-                :conditions => ["user_id > 0 and played > 0 and season_ends_at < ?", Time.now], 
+                :conditions => ["user_id > 0 and played > 0 and season_ends_at < ?", Time.zone.now], 
                 :order => "points DESC, ranking"
                 
   has_many      :fees   

@@ -3,7 +3,7 @@ class UserMailer < ActionMailer::Base
     recipients "#{user.name} <#{user.email}>"
     from       "My Forum "
     subject    I18n.t(:users_activate)
-    sent_on    Time.now
+    sent_on    Time.zone.now
     body       :user => user #{ :user => user, :url => activate_url(user.activation_code), :host => user.site.host }
   end
 
@@ -13,14 +13,14 @@ class UserMailer < ActionMailer::Base
     subject       I18n.t(:password_recover_instructions)
     from          "[HayPista]"  
     recipients    user.email  
-    sent_on       Time.now  
+    sent_on       Time.zone.now  
     body          :edit_password_reset_url => edit_password_reset_url(user.perishable_token)  
   end    
   
   def signup_invitation(email, user, message)
       @recipients = "#{email}"
       @subject = "#{user.name} #{I18n.t(:invitation_to_join)}!"
-      @sent_on = Time.now
+      @sent_on = Time.zone.now
       @body[:user] = user
       @body[:url] = signup_url
       @body[:message] = message
@@ -71,7 +71,7 @@ class UserMailer < ActionMailer::Base
   def message_blog(recipient, user, message)
       @recipients = recipient.email
       @subject = "#{user.name} #{I18n.t(:comments_on_your_blog)}!"
-      @sent_on = Time.now
+      @sent_on = Time.zone.now
       @body[:user] = user
       @body[:message] = message
       @from  =  user.name + '  <DoNotReply@haypista.com>'

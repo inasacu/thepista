@@ -37,7 +37,7 @@ class Message < ActiveRecord::Base
   end
    
   # Put the message in the trash for the given user.
-  def trash(user, time=Time.now)
+  def trash(user, time=Time.zone.now)
     case user
     when sender
       self.sender_deleted_at = time
@@ -99,7 +99,7 @@ class Message < ActiveRecord::Base
   end
   
   # Mark a message as read.
-  def mark_as_read(time = Time.now)
+  def mark_as_read(time = Time.zone.now)
     unless read?
       self.recipient_read_at = time
       save!
@@ -123,7 +123,7 @@ class Message < ActiveRecord::Base
     # Mark the parent message as replied to if the current message is a reply.
     def set_replied_to
       if reply?
-        parent.replied_at = Time.now
+        parent.replied_at = Time.zone.now
         parent.save!
       end
     end

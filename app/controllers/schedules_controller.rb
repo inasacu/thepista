@@ -50,7 +50,7 @@ class SchedulesController < ApplicationController
       @schedule.marker_id = @group.marker_id
       @schedule.time_zone = @group.time_zone
       @schedule.jornada = 1
-      @schedule.season_ends_at = Time.utc(Time.now.year + 1, 8, 1)
+      @schedule.season_ends_at = Time.utc(Time.zone.now.year + 1, 8, 1)
 
       @lastSchedule = Schedule.find(:first, :conditions => ["id = (select max(id) from schedules where group_id = ?) ", @group.id])    
       if !@lastSchedule.nil?
@@ -83,7 +83,7 @@ class SchedulesController < ApplicationController
   
   # set the end of season, 1 august current_year + 1
   def edit
-    @schedule.season_ends_at = Time.utc(Time.now.year + 1, 8, 1)
+    @schedule.season_ends_at = Time.utc(Time.zone.now.year + 1, 8, 1)
   end
   
   def update

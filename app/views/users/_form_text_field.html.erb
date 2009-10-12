@@ -83,6 +83,6 @@ languages = ['es', 'en', 'fr', 'ge', 'it']
 
  <div class="group">
   <%= f.label :birth_at, label_name('birth_at'), :class => :label %>
-  <%= date_select :user, :birth_at, :start_year => (Time.now.year.to_i - 70), :end_year => Time.now.year.to_i, :class => 'text_field' %><br />
+  <%= date_select :user, :birth_at, :start_year => (Time.zone.now.year.to_i - 70), :end_year => Time.zone.now.year.to_i, :class => 'text_field' %><br />
   <span class="description"><%= label_name('birth_at', 'description') %></span>
 </div>

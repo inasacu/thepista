@@ -113,7 +113,7 @@ class Match < ActiveRecord::Base
     @schedule.forum.description = the_match.description
     
     Scorecard.calculate_group_scorecard(@schedule.group)
-    Post.create_schedule_post(@schedule.forum, @schedule.forum.topics.first, user) if @schedule.played?
+    Post.create_schedule_post(@schedule.forum, @schedule.forum.topics.first, user, @schedule.description) if @schedule.played?
   end
 
   def self.save_matches(the_match, match_attributes)

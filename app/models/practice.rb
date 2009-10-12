@@ -88,13 +88,13 @@ class Practice < ActiveRecord::Base
 
   def self.current_practices(user, page = 1)
     self.paginate(:all, 
-    :conditions => ["starts_at >= ? and group_id in (select group_id from groups_users where user_id = ?)", Time.now, user.id],
+    :conditions => ["starts_at >= ? and group_id in (select group_id from groups_users where user_id = ?)", Time.zone.now, user.id],
     :order => 'group_id, starts_at', :page => page, :per_page => PRACTICES_PER_PAGE)
   end
 
   def self.previous_practices(user, page = 1)
     self.paginate(:all, 
-    :conditions => ["starts_at < ? and group_id in (select group_id from groups_users where user_id = ?)", Time.now, user.id],
+    :conditions => ["starts_at < ? and group_id in (select group_id from groups_users where user_id = ?)", Time.zone.now, user.id],
     :order => 'group_id, starts_at desc', :page => page, :per_page => PRACTICES_PER_PAGE)
   end
 

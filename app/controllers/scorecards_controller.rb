@@ -17,16 +17,16 @@ class ScorecardsController < ApplicationController
   def list
     @scorecards = Scorecard.find(:all, 
                     :conditions => ["group_id in (?) and user_id = 0 and scorecards.archive = true and season_ends_at < ?", 
-                                    current_user.groups, Time.now])
+                                    current_user.groups, Time.zone.now])
     @groups = Group.paginate(:all, :conditions => ["id in (?)", @scorecards],:per_page => 10, :page => params[:page])   
     
     # @scorecards = Scorecard.find(:all, 
     #       :joins => "LEFT JOIN users on users.id = scorecards.user_id",
-    #       :conditions => ["group_id in (?) and user_id > 0 and played > 0 and scorecards.archive = true and season_ends_at < ?", current_user.groups, Time.now],
+    #       :conditions => ["group_id in (?) and user_id > 0 and played > 0 and scorecards.archive = true and season_ends_at < ?", current_user.groups, Time.zone.now],
     #       :order => "group_id, points DESC, ranking, users.name")
 
     # @scorecards = Scorecard.paginate(:all, 
-    #       :conditions => ["group_id in (?) and user_id > 0 and played > 0 and archive = true and season_ends_at < ?", current_user.groups, Time.now],
+    #       :conditions => ["group_id in (?) and user_id > 0 and played > 0 and archive = true and season_ends_at < ?", current_user.groups, Time.zone.now],
     #       :order => "group_id, points DESC, ranking",
     #       :per_page => 10, :page => params[:page])   
     @archive = true
@@ -49,11 +49,11 @@ class ScorecardsController < ApplicationController
     @group = Group.find(params[:id])
     @scorecards = Scorecard.find(:all, 
           :joins => "LEFT JOIN users on users.id = scorecards.user_id",
-          :conditions => ["group_id in (?) and user_id > 0 and played > 0 and scorecards.archive = true and season_ends_at < ?", @group, Time.now],
+          :conditions => ["group_id in (?) and user_id > 0 and played > 0 and scorecards.archive = true and season_ends_at < ?", @group, Time.zone.now],
           :order => "group_id, points DESC, ranking, users.name")
 
     # @scorecards = Scorecard.paginate(:all, 
-    # :conditions => ["group_id in (?) and user_id > 0 and played > 0 and archive = true and season_ends_at < ?", @group, Time.now],
+    # :conditions => ["group_id in (?) and user_id > 0 and played > 0 and archive = true and season_ends_at < ?", @group, Time.zone.now],
     # :order => "group_id, points DESC, ranking",
     # :per_page => 10, :page => params[:page])
           
@@ -67,7 +67,7 @@ class ScorecardsController < ApplicationController
     @scorecards = Scorecard.find(:all, :conditions => ["group_id = ?", @group.id])
     @scorecards.each do |scorecard|
       scorecard.archive = true
-      scorecard.season_ends_at = Time.utc(Time.now.year, 8, 1) # set end of season to 1 august current.year
+      scorecard.season_ends_at = Time.utc(Time.zone.now.year, 8, 1) # set end of season to 1 august current.year
       scorecard.save!
     end
 

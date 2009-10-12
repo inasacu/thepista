@@ -77,7 +77,7 @@ class Teammate < ActiveRecord::Base
   
   def self.accept(user, manager, group)
     transaction do
-      accepted_at = Time.now
+      accepted_at = Time.zone.now
       accept_one_team(user, manager, group, accepted_at)
       accept_one_team( manager, user, group, accepted_at)
     end
@@ -95,7 +95,7 @@ class Teammate < ActiveRecord::Base
 
   protected    
   def make_teammate_code
-    self.teammate_code = Digest::SHA1.hexdigest( Time.now.to_s.split(//).sort_by {rand}.join )
+    self.teammate_code = Digest::SHA1.hexdigest( Time.zone.now.to_s.split(//).sort_by {rand}.join )
   end
     
   private

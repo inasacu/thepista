@@ -84,7 +84,7 @@ if current_user == match.user or current_user.is_manager_of?(@schedule.group) an
 %>
 					<%= render :partial => '/schedules/team_roster_option', :locals => {:type => type, :match => match} %>
 <% 
-				elsif @schedule.subscription_at > Time.now and type.id == 1 
+				elsif @schedule.subscription_at > Time.zone.now and type.id == 1 
 %>
 					<%= render :partial => '/schedules/team_roster_option', :locals => {:type => type, :match => match} %>												
 <% 
@@ -94,7 +94,7 @@ if current_user == match.user or current_user.is_manager_of?(@schedule.group) an
 %>
 					<%= render :partial => '/schedules/team_roster_option', :locals => {:type => type, :match => match} %>
 <% 
-				elsif @schedule.non_subscription_at < Time.now and type.id == 1 
+				elsif @schedule.non_subscription_at < Time.zone.now and type.id == 1 
 %>
 					<%= render :partial => '/schedules/team_roster_option', :locals => {:type => type, :match => match} %>	
 <% 
