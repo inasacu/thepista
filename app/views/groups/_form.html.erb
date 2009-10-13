@@ -4,13 +4,13 @@
 
   <div class="group">
     <%= f.label :name, label_name('name'), :class => :label %>
-    <%= f.text_field :name, :class => 'text_field' %>
+    <%= f.text_field :name, :class => 'text_field' %><br />
     <span class="description"><%= label_name('name', 'description') %></span>
   </div>
 
   <div class="group">
     <%= f.label :second_team, label_name('second_team'), :class => :label %>
-    <%= f.text_field :second_team, :class => 'text_field' %>
+    <%= f.text_field :second_team, :class => 'text_field' %><br />
     <span class="description"><%= label_name('second_team', 'description') %></span>
   </div>
 
@@ -29,7 +29,7 @@
 <% if @group.new_record? %>
   <div class="group">
     <%= f.label :sport_id, label_name('sport'), :class => :label %>
-   	<%= f.select(:sport_id, Sport.sport_name, {:selected => @group.sport_id, :include_blank => true}) %>
+   	<%= f.select(:sport_id, Sport.sport_name, {:selected => @group.sport_id, :include_blank => true}) %><br />
     <span class="description"><%= label_name('sport', 'description') %></span>
   </div>
 <% end %>
@@ -43,15 +43,13 @@
 
   <div class="group">
     <%= f.label :description, label_name('description'), :class => :label %>
-    <%#= f.text_area :description, :class => 'text_area' %>
-	<%= f.text_area :description, :class => 'textfield' -%><br />
+    <%= f.text_area :description, :class => 'text_area' %><br />
     <span class="description"><%= label_name('description') %></span>
   </div>
 
   <div class="group">
     <%= f.label :conditions, label_name('conditions'), :class => :label %>
-    <%#= f.text_area :conditions, :class => 'text_area' %>
-	<%= f.text_area :conditions, :class => 'textfield' -%><br />
+    <%= f.text_area :conditions, :class => 'text_area' %><br />
     <span class="description"><%= label_name('conditions') %></span>
   </div>
 
@@ -61,7 +59,7 @@
 
 	<div class="group">
 	  <%= f.label :photo, label_name('photo'), :class => :label %>
-	  <%= f.file_field :photo, :class => 'text_field' %>
+	  <%= f.file_field :photo, :class => 'text_field' %><br />
 	  <span class="description"><%= label_name('photo', 'description') %></span>
 	</div>
 
@@ -91,13 +89,13 @@
 
   <div class="group">
     <%= f.label :available, label_name('available'), :class => :label %>
-    <%= f.check_box :available, :class => 'check_box' %>
+    <%= f.check_box :available, :class => 'check_box' %><br />
     <span class="description"><%= label_name('available', 'description') %></span>
   </div> 
 
   <div class="group">
     <%= f.label :enable_comments, label_name('enable_comments'), :class => :label %>
-    <%= f.check_box :enable_comments, :class => 'check_box' %>
+    <%= f.check_box :enable_comments, :class => 'check_box' %><br />
     <span class="description"><%= label_name('enable_comments', 'description') %></span>
   </div>
 

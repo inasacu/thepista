@@ -69,7 +69,7 @@
 						<% end %>
 
 						<% unless @user.gender.blank? %>
-							<%= tr_td_action(:gender, @user.gender) %>						
+							<%= tr_td_action(:gender, label_name(@user.gender, 'value')) %>						
 						<% end %>
 
 

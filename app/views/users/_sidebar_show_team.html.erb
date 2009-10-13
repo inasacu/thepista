@@ -48,13 +48,13 @@
 			the_label = label_with_name('role_add_moderator', group.name)
 			the_confirmation = "#{ label_name(:role_add_moderator)} #{ label_name(:to) } #{@user.name} #{ label_name(:to) } #{group.name}?" 
 %>
-			<li><%= link_to(the_label, set_moderator_path(:id => @user.id, :group => group.id), :confirm => the_confirmation) %></li>
+			<!-- <li><%#= link_to(the_label, set_moderator_path(:id => @user.id, :group => group.id), :confirm => the_confirmation) %></li> -->
 <% 
 		else 
 			the_label = label_with_name('role_remove_moderator', group.name)
 			the_confirmation = "#{ label_name(:role_remove_moderator)} #{ label_name(:to) } #{@user.name} #{ label_name(:to) } #{group.name}?"
 %>		
-			<li><%= link_to(the_label,remove_moderator_path(:id => @user.id, :group => group.id), :confirm => the_confirmation) %></li>
+			<!-- <li><%#= link_to(the_label,remove_moderator_path(:id => @user.id, :group => group.id), :confirm => the_confirmation) %></li> -->
 <% 
 		end  
 	end 

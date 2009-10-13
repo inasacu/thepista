@@ -38,6 +38,7 @@ class Message < ActiveRecord::Base
    
   # Put the message in the trash for the given user.
   def trash(user, time=Time.zone.now)
+    
     case user
     when sender
       self.sender_deleted_at = time
@@ -46,6 +47,11 @@ class Message < ActiveRecord::Base
     else
       # Given our controller before filters, this should never happen...
       raise ArgumentError, I18n.t(:unauthorized_user)
+    end
+    
+    if sender == recipient
+      self.sender_deleted_at = time
+      self.recipient_deleted_at = time
     end
     save!
   end

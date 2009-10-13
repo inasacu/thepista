@@ -19,7 +19,7 @@ unless upcoming_schedules.empty?
 		-%>		
 			<tr>
 			  <td>
-				<%= schedule_image_link_small(schedule) %>
+				<%= current_user.is_member_of?(schedule.group) ? schedule_image_link_small(schedule) : schedule_image_small(schedule) %>
 			  </td>
 		  
 			  <td>

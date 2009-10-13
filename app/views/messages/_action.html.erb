@@ -1,6 +1,3 @@
-<%#= link_to image_tag("icons/email_edit.png"), 
-            reply_message_path(message),
-            :title => label_name(:message_reply_to) %>
 
 <% unless message.trashed?(current_user) -%>
 	<%= link_to image_tag("icons/email_delete.png"), message_path(message), 

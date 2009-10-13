@@ -17,7 +17,13 @@ module SchedulesHelper
   
   def schedule_image_link_small(schedule)
     link_to(image_tag(schedule.sport.icon, options={:style => "height: 15px; width: 15px;"}), schedule_path(schedule))
-  end             
+  end    
+  
+  def schedule_image_small(schedule)
+    image_tag(schedule.sport.icon, options={:style => "height: 15px; width: 15px;"})
+  end
+  
+             
 end
 
 

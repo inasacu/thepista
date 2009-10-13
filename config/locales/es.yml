@@ -276,7 +276,7 @@ es:
      fee_per_pista_description: (Este es el precio de la pista or cancha...)   
      feedback: feedback   
      fees: Tasas   
-     female: Femenino   
+     female_value: Femenina  
      festival: Acondiciónamiento  
      festivals: Acondiciónamientos   
      fire_from_group: Desapunta de   
@@ -434,7 +434,7 @@ es:
      logout: Salir   
      look: Mira   
      Low: Bajo   
-     male: Masculino   
+     male_value: Masculino   
      
      manager: Responsable   
      managers: Responsable(s)   
