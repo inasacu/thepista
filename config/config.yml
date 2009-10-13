@@ -45,6 +45,6 @@ production:
     google_api:
     key:                ABQIAAAACEstwoTkWwNQXJRd_oxlohRJsBlthpMFqyH8uqiMijHv-RMFmBTkGqR7rVuhstoeKCeFz7pjFx3ieA             
     
-    # rpx_api: 
+    rpx_api: 
         key:   2acf2c6b39e3d1d988629e0cb41c675827c2f45e
         realm: haypista
