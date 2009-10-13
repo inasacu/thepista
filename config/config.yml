@@ -43,7 +43,8 @@ production:
     
     # haypista.com
     google_api:
-    key:                ABQIAAAACEstwoTkWwNQXJRd_oxlohRJsBlthpMFqyH8uqiMijHv-RMFmBTkGqR7rVuhstoeKCeFz7pjFx3ieA          
+    key:                ABQIAAAACEstwoTkWwNQXJRd_oxlohSoCLEsqd_d00sV4mz08Wmw7v3GsxQTHKZcd9M_qtbpT8Y3WMKMMgmmRA
+    # key:                ABQIAAAACEstwoTkWwNQXJRd_oxlohRJsBlthpMFqyH8uqiMijHv-RMFmBTkGqR7rVuhstoeKCeFz7pjFx3ieA          
     
     # ABQIAAAACEstwoTkWwNQXJRd_oxlohSoCLEsqd_d00sV4mz08Wmw7v3GsxQTHKZcd9M_qtbpT8Y3WMKMMgmmRA   
     
