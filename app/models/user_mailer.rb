@@ -1,8 +1,4 @@
 class UserMailer < ActionMailer::Base
-  
-  include BaseHelper
-  ActionMailer::Base.default_url_options[:host] = APP_URL.sub('http://', '')
-    
   def signup_notification(user)
     recipients "#{user.name} <#{user.email}>"
     from       "My Forum "
