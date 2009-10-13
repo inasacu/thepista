@@ -37,7 +37,7 @@ production:
     # google_api:
     #     key:            ABQIAAAACEstwoTkWwNQXJRd_oxlohR-Y432UtzrUQVcRgSh7RX82w7ExxTMQ8-qK9OoHHqeTAR2GKavcStcyg             
     
-    rpx_api: 
+    # rpx_api: 
         # key:            bcd9944176260aba26f0e1a9475f51160ac3eaf3
         # realm:          haypista-heroku
     
