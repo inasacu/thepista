@@ -13,6 +13,7 @@ if roster_count
           <th>&nbsp;</th>
           <th><%= label_name(:name) %></th>
           <th><%= label_name(:group) %></th>
+          <th align="center" title = "<%= label_name(:games_played_full) %>"><%= label_name(:games_played) %></th>
           <th><%= @schedule.played? ? label_name(:score) : label_name(:change_at) %></th>
           <th class="last">&nbsp;</th>
         
@@ -36,7 +37,8 @@ if roster_count
 			</td>
 			
 			<td>
-				<%= user_link match.user %><%= "  ( #{label_name(:no_jugado)} )" if match.type_id == 4 %>
+				<%= user_link match.user %><br />
+				<%= "  ( #{label_name(:no_jugado)} )" if match.type_id == 4 %>
 			</td>
 			
 <% 
@@ -44,7 +46,7 @@ if roster_count
 		unless @schedule.played? 
 			if match.type_id == 1 
 %>
-				<td><%= link_to match.team_name(@schedule), match_team_path(:id => match.id), :title => t(:change_group) %></td>
+				<td><%= link_to match.team_name(@schedule), match_team_path(:id => match.id), :title => label_name(:change_group) %></td>
 <% 
 			else 
 %>
@@ -68,6 +70,10 @@ if roster_count
 		end 
 	end 
 %>	
+
+
+<td align="left"><%= match.scorecard_played %></td>
+
 <td><%= "#{label_name(:ago)} #{time_ago_in_words(match.status_at)}" %></td>
 
 <td class="last">
