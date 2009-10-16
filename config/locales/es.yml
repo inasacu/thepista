@@ -329,7 +329,14 @@ es:
      games_won_full: Partidos Ganados   
      gender: Genero   
      general_information:  Información General
-     get_your_gravatar: Pilla tu Gravatar   
+     get_your_gravatar: Pilla tu Gravatar 
+
+     goal_difference: G.D.   
+     goal_difference_full: Gol Diferencial   
+     goals_against: G.C.   
+     goals_against_full: Goles en Contra   
+     goals_for: G.F.   
+     goals_for_full: Goles a Favor  
       
      goal_difference_true: G.D.   
      goal_difference_full_true: Gol Diferencial   
