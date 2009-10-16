@@ -5,8 +5,8 @@ class UsersController < ApplicationController
   before_filter :get_user, :only => [:show, :set_available, :set_private_phone, :set_private_profile, :set_enable_comments, 
                                      :set_teammate_notification, :set_message_notification, :set_comment_notification] 
                                      
-  before_filter :get_user_group, :only =>[:set_sub_manager, :remove_sub_manager, :set_subscription, 
-                                          :remove_subscription, :set_moderator, :remove_moderator]
+  before_filter :get_user_group, :only =>[:set_manager, :remove_manager, :set_sub_manager, :remove_sub_manager, 
+                                          :set_subscription, :remove_subscription, :set_moderator, :remove_moderator]
   
   before_filter :setup_rpx_api_key, :only => [:rpx_new, :rpx_create, :rpx_associate]
   
@@ -125,6 +125,26 @@ class UsersController < ApplicationController
     # @non_member = true
     # @users = User.paginate_all_by_solr(params[:search].to_s, :page => params[:page])
     render :template => '/users/index'
+  end
+
+  def set_manager 
+    unless current_user.is_creator_of?(@group)
+      flash[:notice] = I18n.t(:unauthorized)  
+      return
+    end
+    @user.has_role!(:manager, @group)
+    flash[:notice] = I18n.t(:manager_updated)
+    redirect_back_or_default('/index')
+  end
+
+  def remove_manager 
+    unless current_user.is_creator_of?(@group)
+      flash[:notice] = I18n.t(:unauthorized)  
+      return
+    end
+    @user.has_no_role!(:manager, @group)
+    flash[:notice] = I18n.t(:manager_updated)
+    redirect_back_or_default('/index')
   end
 
   def set_sub_manager 

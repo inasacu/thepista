@@ -29,7 +29,7 @@
 
 	<div class="description">
 		<span class="q">
-			...<%=h @schedule.description.blank? ? control_label('description_no') : @schedule.description %>
+			<%=h @schedule.description.blank? ? control_label('description_no') : @schedule.description %>
 		</span>
 	</div>
 
@@ -40,7 +40,7 @@
 </thead>
 
 <tr>
-<td valign="top" width="105"><%#= group_show_photo(@schedule.group, current_user) %></td>
+<td valign="top" width="105">&nbsp;</td>
 
 <td>
 <table border="1">
@@ -103,6 +103,13 @@
 	<tr>
 		<%= content_tag :td, "#{label_name(:no_shows)}   (#{@schedule.no_shows.count})", :class => "label" %>
 		<%= content_tag :td, user_list(@schedule.no_shows), :class => get_the_action %>
+	</tr>
+	<% end %>
+	
+	<% unless @schedule.no_jugado.empty? %>
+	<tr>
+		<%= content_tag :td, "#{label_name(:no_jugado)}   (#{@schedule.no_jugado.count})", :class => "label" %>
+		<%= content_tag :td, user_list(@schedule.no_jugado), :class => get_the_action %>
 	</tr>
 	<% end %>
 

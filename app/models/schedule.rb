@@ -38,6 +38,12 @@ class Schedule < ActiveRecord::Base
            :source => :convocado,
            :conditions =>  "matches.type_id in (3, 4)",
            :order =>       :name
+
+   has_many :no_jugado,
+            :through => :matches,
+            :source => :convocado,
+            :conditions =>  "matches.type_id in (4)",
+            :order =>       :name
            
   has_many :unavailable,
            :through => :matches,

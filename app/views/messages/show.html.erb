@@ -16,17 +16,23 @@
 
 		<%= h @all_messages.first.subject %>
 		<br />
+		
 		<span>
-			<%= "#{label_name(:between)}:&nbsp;&nbsp;" %>
-			<% first = true %>
-			<% @recipients.each do |recipient| %>
-			<%= first ? "" : ", " %>
-			<%= user_link recipient %>
-			<% first = false
-			number_of_users += 1
-		end %>
+			
+			<table class="table">
+				<tr>
+					<td></td>
+				<td class="name_and_date">
+					<span class="date"><%= label_name(:between) %>:
+						<%= user_list(@recipients) %>
+					</span>
+				</td>
+				</tr>
+			</table>
 		</span>
 	</h2>
+	
+	
 	
 	<div class="inner">
 		<table class="table">			

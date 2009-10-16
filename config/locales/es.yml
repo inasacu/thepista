@@ -68,10 +68,11 @@ es:
      change_group: Cambia de Equipo   
      change_language: Cambia el idioma  
      change_rejected: El cambio que ha pedido ha sido rechazado.  
-     change_rejected_explained: Es posible que no tuvieses acceso a esa zona, lo sentimos!	 
-     change_roster_status: Pasa a   
-     change_wo_access: Es posible que hayas intentado cambiar algo a lo que no tenias acceso.   
-     changed_description: cambio en la descripción   
+     change_rejected_explained: "Es posible que no tuvieses acceso a esa zona, lo sentimos!"	 
+     change_roster_status: Pasa a 
+     change_wo_access: Es posible que hayas intentado cambiar algo a lo que no tenias acceso.  
+     change_your_roster_status:  ""
+     changed_description: cambio en la descripción
      changes_in_roster_status: Ha cambiado su convocatoria   
      character_limit: Máximo 255 carácteres   
      check_all: Todos   
@@ -1272,10 +1273,12 @@ es:
      
      role_add_moderator:  Nuevo Moderador
      role_add_sub_manager:  Nuevo Sub-Manager
+     role_add_manager:  Nuevo Manager
      role_add_subscription:  Nuevo Abonado
-     
-     role_remove_moderator: Borra Moderador   
-     role_remove_sub_manager: Borra Sub-Manager   
+
+     role_remove_moderator: Borra Moderador 
+     role_remove_sub_manager: Borra Sub-Manager
+     role_remove_manager: Borra Manager   
      role_remove_subscription: Borra Abonado
      
      roles_index:   Responsabilidades

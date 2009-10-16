@@ -47,11 +47,13 @@
 <div class="group">
 	
 	
+	<% unless @recipient %>	
+	<fieldset id="roster">
+	<% end %>
+		
 	<% if @scorecard 
 		@schedule = @scorecard
 	%>
-		
-	<fieldset id="roster">
 		
 	<%#= render :partial => '/messages/recipient_roster', :locals => {:schedule => @schedule, :checked => check } %>
 	<%= render :partial => '/messages/recipient_list', :locals => {:recipients => @recipients, :checked => check } %>
@@ -72,10 +74,12 @@
 	<% else %>
 	<%= render :partial => '/messages/recipient_list', :locals => {:recipients => @recipients, :checked => check } %>
 	
-	</fieldset>
 	
 	<% end %>
 	
+	<% unless @recipient %>
+	</fieldset>
+	<% end %>
 	
 </div>	
 

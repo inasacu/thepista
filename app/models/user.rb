@@ -218,6 +218,10 @@ class User < ActiveRecord::Base
       def is_moderator_of?(group)
         self.has_role?('moderator', group) 
       end
+
+      def is_creator_of?(group)
+        self.has_role?('creator', group)
+      end
       
       def is_manager?
         self.has_role?('manager')

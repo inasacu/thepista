@@ -1,7 +1,7 @@
 class UserMailer < ActionMailer::Base
   def signup_notification(user)
     recipients "#{user.name} <#{user.email}>"
-    from       "My Forum "
+    from       "[HayPista]"
     subject    I18n.t(:users_activate)
     sent_on    Time.zone.now
     body       :user => user #{ :user => user, :url => activate_url(user.activation_code), :host => user.site.host }
@@ -45,7 +45,7 @@ class UserMailer < ActionMailer::Base
   end 
   
   def message_match(mail)
-    subject     "#{I18n.t(:matches)} [#{mail[:group].name}] - #{mail[:schedule].concept}"
+    subject     "#{I18n.t(:matches)} #{mail[:schedule].concept}"
     from        mail[:user].name +  '  <DoNotReply@haypista.com>'
     recipients  mail[:email]
     body        mail

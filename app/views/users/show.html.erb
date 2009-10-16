@@ -47,8 +47,7 @@
 						
 						<%= tr_td_action(:name, @user.name) %>
 						<%= tr_td_action(:language, label_name(@user.language)) %>						
-						<%= tr_td_action(:name, @user.name) %>
-
+						
 						<tr>
 							<td class="label"><%= label_name(:groups) %></td>
 							<td class="show"><%= @user.has_group? ? group_list(@user.groups) : label_name('groups_none') %></td>

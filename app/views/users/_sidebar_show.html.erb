@@ -10,19 +10,13 @@
 <% 
 	else 
 %>
-	<li><%= link_to label_name(:send_message), new_message_path(@user) %></li>
+	<li><%= link_to label_name(:send_message), new_message_path(:id => @user.id) if @user.available and @user != current_user %></li>
 <% 
 	end 
-
-@user.groups.each do |group| 
-%>
-<li><%= group_link group %></li>
-<%
-end
 %>
 
 </ul>
 	
 </div>
 
-<%= render :partial => '/users/sidebar_show_team' %>
+<%= render :partial => '/users/sidebar_show_team' if @user == current_user or current_user.has_role?('manager') %>

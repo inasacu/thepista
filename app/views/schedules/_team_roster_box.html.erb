@@ -12,10 +12,11 @@ if roster_count
           <th class="first">&nbsp;</th>
           <th>&nbsp;</th>
           <th><%= label_name(:name) %></th>
-          <th><%= label_name(:group) %></th>
           <th align="center" title = "<%= label_name(:games_played_full) %>"><%= label_name(:games_played) %></th>
-          <th><%= @schedule.played? ? label_name(:score) : label_name(:change_at) %></th>
-          <th class="last">&nbsp;</th>
+          <th><%= label_name(:group) %></th>
+		  <%= content_tag 'th', label_name(:score), :align => "center" if @schedule.played? %>
+          <th><%= label_name(:change_at) %></th>
+          <th class="last"><%= label_name(:change_your_roster_status) %></th>
         
        	<% the_roster.each do |match| -%>
         <tr>
@@ -41,40 +42,33 @@ if roster_count
 				<%= "  ( #{label_name(:no_jugado)} )" if match.type_id == 4 %>
 			</td>
 			
+			<td align="left"><%= match.scorecard_played %></td>
+
 <% 
-	if current_user.is_sub_manager_of?(@schedule.group) 
-		unless @schedule.played? 
-			if match.type_id == 1 
+	if current_user.is_sub_manager_of?(@schedule.group) and match.type_id == 1 and !@schedule.played?
 %>
-				<td><%= link_to match.team_name(@schedule), match_team_path(:id => match.id), :title => label_name(:change_group) %></td>
+		<td><%= link_to match.team_name(@schedule), match_team_path(:id => match.id), :title => label_name(:change_group) %></td>
 <% 
-			else 
-%>
-				<td><%= h(@schedule.group.name) %></td>
-<% 
-			end 
-		else 
-%>								
-			<td><%= match.team_name(@schedule) %>&nbsp;<%#= match.win_loose_draw_label %></td>
-			<td>&nbsp;&nbsp;<%= group_score_link @schedule %></td>							
-<% 
-		end 
 	else 
-%>	
-		<td><%= h(match.team_name(@schedule)) %></td>
-<% 
-		if @schedule.played? 
 %>
-			<td><%= match.win_loose_draw_label %></td>
-<% 		
-		end 
+		<td><%= h match.team_name(@schedule) %></td>
+<% 
+	end 
+	
+	if @schedule.played? 
+%>	
+		<td><%= group_score_link @schedule if match.type_id == 1 %></td>
+<%		
 	end 
 %>	
 
+	<td class="name_and_date">
+		<span class="date">
+			<%= "#{label_name(:ago)} #{time_ago_in_words(match.status_at)}" %>
+		</span>
+	</td>
+		
 
-<td align="left"><%= match.scorecard_played %></td>
-
-<td><%= "#{label_name(:ago)} #{time_ago_in_words(match.status_at)}" %></td>
 
 <td class="last">
 <% 

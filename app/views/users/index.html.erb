@@ -13,7 +13,8 @@
 		<tr>             
 			<th class="first">&nbsp;</th>
 			<th><%=label_name(:name) %>&nbsp;/<br />
-				<%=label_name(:last_login_at) %></th>
+				<%=label_name(:last_login_at) %>
+			</th>
 			<th><%=label_name(:group) %></th>
 			<th><%=label_name(:time_zone) %></th>
 			<th><%=label_name(:member_since) %></th>
@@ -25,11 +26,13 @@
 			  <td>
 				<%= image_link_small user %>
 			  </td>
-					
-			  <td>
-				<%= user_link user %><br />
-				<%= nice_day_date user.last_login_at %>
-			  </td>
+			
+				<td class="name_and_date">
+					<%= user_link user %>
+					<span class="date">
+						<%= nice_day_date user.last_login_at %>
+					</span>
+				</td>
 
 			  <td>
 				<%= user.has_group? ? group_list(user.groups) : label_name('groups_none') %>
@@ -38,13 +41,17 @@
 			  <td>
 				<%= user.time_zone %>
 			  </td>
-			  
-			  <td>
-				<%= nice_day_date user.created_at %> 
-			  </td>	
+
+				<td class="name_and_date">
+					<span class="date">
+						<%= nice_full_date user.created_at %> 
+					</span>
+				</td>
 			
 			  <td class="last">
-	            <%= link_to label_name(:send_message), new_message_path(:id => user.id) if user.available %>				
+				<span class="action">
+	            <%= link_to label_name(:send_message), new_message_path(:id => user.id) if user.available and user != current_user %>				
+				</span>
 	          </td>	
 	  
 			</tr>

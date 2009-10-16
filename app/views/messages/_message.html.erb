@@ -1,22 +1,22 @@
 <% full_message ||= false 
-	the_message = message.body
-	the_message = "#{the_message.strip[0..55]}..." if the_message.length > 55
+	the_message = message.body	
+	the_message = "#{the_message.strip[0..55]}..." if the_message.length > 55 and !full_message
 %>
 <tr>
 	<td>
 		<%= image_link_small message.other_user(current_user) %>
 	</td>
-	<td>
-		<span class="name">	
-			<%= message_icon(message) %>
-			<%- if current_user == message.sender -%>
+
+	<td class="name_and_date">
+		<%= message_icon(message) %>
+		<%- if current_user == message.sender -%>
 			<span class="label"><%= label_name(:to) %>:</span>
 			<%= user_link message.recipient %>
-			<%- else -%>
+		<%- else -%>
 			<span class="label"><%= label_name(:from) %>:</span>
 			<%= user_link message.sender %>
-			<%- end -%>
-		</span>
+		<%- end -%>
+	
 		<br />
 		<span class="date">
 			<%= nice_day_of_week(message.created_at) %>

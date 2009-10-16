@@ -129,3 +129,10 @@ td.sub_true {
 .form textarea.text_area {
   width: 75%;
 }
+
+
+/* table rows */
+.table .name_and_date .name { overflow: hidden; display: block; width: 150px; margin-right: 20px; white-space: nowrap; }
+.name_and_date .date { padding: 1px 0pt 0pt; display: block; font-size: 10px; color: rgb(119, 119, 119); }
+.last .action  { padding: 1px 0pt 0pt; display: block; font-size: 10px; color: rgb(119, 119, 119); }
+
