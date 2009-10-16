@@ -74,31 +74,18 @@ if roster_count
 <% 
 if current_user == match.user or current_user.is_manager_of?(@schedule.group) and @schedule.not_played? 
 	@match_type.each do |type|  
-		if type.name != match.type_name			
-			if current_user.is_manager_of?(@schedule.group) 
+		unless type.id == match.type_id			
+			
+			# only manager can view option 'no_jugado'
+			if type.id == 4
+%>
+				<%= render :partial => '/schedules/team_roster_option', 
+						:locals => {:type => type, :match => match} if current_user.is_manager_of?(@schedule.group) %>
+<% 			
+			else
 %>
 				<%= render :partial => '/schedules/team_roster_option', :locals => {:type => type, :match => match} %>
-<% 
-			elsif match.user.is_subscriber_of?(@schedule.group)
-				if !type_id.include?(type.id)
-%>
-					<%= render :partial => '/schedules/team_roster_option', :locals => {:type => type, :match => match} %>
-<% 
-				#elsif @schedule.subscription_at > Time.zone.now and type.id == 1 
-%>
-					<%#= render :partial => '/schedules/team_roster_option', :locals => {:type => type, :match => match} %>												
-<% 
-				end 
-			else 
-				if type.id != 1 
-%>
-					<%= render :partial => '/schedules/team_roster_option', :locals => {:type => type, :match => match} %>
-<% 
-				#elsif @schedule.non_subscription_at < Time.zone.now and type.id == 1 
-%>
-					<%#= render :partial => '/schedules/team_roster_option', :locals => {:type => type, :match => match} %>	
-<% 
-				end 			
+<%
 			end 
 		end
  	end
