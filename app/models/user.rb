@@ -47,7 +47,6 @@ class User < ActiveRecord::Base
  
   # after_update      :log_activity_description_changed
   before_destroy    :destroy_activities, :destroy_feeds  
-  
   before_destroy :unmap_rpx
 
   acts_as_solr :fields => [:name, :time_zone, :position] if use_solr?
@@ -110,9 +109,9 @@ class User < ActiveRecord::Base
       has_many    :feeds
 
       has_many    :activities,
-                  :conditions => {:created_at => LAST_WEEK_TO_TODAY},
+                  :conditions => {:created_at => LAST_THREE_DAYS},
                   :order => "created_at DESC",
-                  :limit => FEED_SIZE
+                  :limit => 1
       
     after_create    :create_user_blog_details, :deliver_signup_notification
     
@@ -133,7 +132,12 @@ class User < ActiveRecord::Base
       self.groups.count > 0
     end
 
-
+    def self.recent_activities(user)
+      find(:all, :select => "distinct users.id",            
+           :joins => "INNER JOIN activities ON users.id = activities.user_id INNER JOIN groups_users on users.id = groups_users.user_id",
+           :conditions => ["groups_users.group_id in (?) and activities.created_at >= ?", user.groups, PAST_THREE_DAYS],
+           :order => 'activities.created_at DESC')
+    end
     
 
     # 

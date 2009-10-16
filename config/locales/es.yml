@@ -152,7 +152,7 @@ es:
      available: Disponibilidad   
      message_notification: Recibir Correo   
      default_reliable: Fiable   
-     delete_activity: Borrar actividad    
+     delete_activity: Borrar Actividad    
      deleted: se ha borrado correctamente.   
        
      deny: Rechazo   
@@ -907,6 +907,7 @@ es:
      subject: Asunto  
      subject_description:  Titulo del Asunto
      sub_manager_updated:  Actualización de sub manager.
+     manager_updated:  Actualización de manager.
      
      subscription_at: Finalización para Convocarse el Abonado  
      subscription_at_match: Finalización para Convocarse el Abonado   

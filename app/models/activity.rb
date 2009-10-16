@@ -19,11 +19,18 @@ class Activity < ActiveRecord::Base
   end
   
   def self.all_activities(user)
-    if self.count(:conditions => ["user_id in (select user_id from groups_users where group_id in (?)) and created_at >= ?", user.groups, LAST_WEEK]) > 0
+    if self.count(:conditions => ["user_id in (select user_id from groups_users where group_id in (?)) and created_at >= ?", user.groups, PAST_THREE_DAYS],
+                  :order => "created_at desc") > 0
       return true
     end
       return false
   end
+  
+  def self.related_activities(user)
+      find(:all, :conditions => ["user_id in (select user_id from groups_users where group_id in (?)) and created_at >= ?", user.groups, PAST_THREE_DAYS],
+                  :order => "created_at desc") 
+  end
+  
     
   # Return true if the item and user already exist.
   def self.exists?(item, user)

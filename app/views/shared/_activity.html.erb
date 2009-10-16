@@ -2,14 +2,22 @@
 	recent ||= false 
 	the_label = "#{label_name(:ago)} #{time_ago_in_words(activity.created_at).capitalize}" -%>
 
-	<p><%= image_link_small activity.user %>&nbsp;&nbsp;<%= user_link activity.user %>&nbsp;&nbsp;<%= feed_message(activity, recent) %> 
-		<%#= content_tag 'h5', the_label %> 
-
-		<%= link_to(image_tag("icons/comment_delete.png"), 
-					activity_path(activity), :method => :delete, 
-											 :confirm => %(#{label_name(:delete_activity)}?),
-											 :title => label_name(:delete_activity)) if current_user == activity.user %>
-
-	</p>
-
+	<tr>
+	  <td class="name_and_date">
+		<%= image_link_small activity.user %>
+			<span class="date"><%= user_link activity.user %></span>
+	  </td>
+	  </td>
+	
+		<td class="name_and_date">
+			<span class="date">
+				<%= feed_message(activity, recent) %> 
+				<%= link_to(image_tag("icons/comment_delete.png"), 
+							activity_path(activity), :method => :delete, 
+													 :confirm => %(#{label_name(:delete_activity)}?),
+													 :title => label_name(:delete_activity)) if current_user == activity.user %>
+													<%= "&nbsp;&nbsp;[#{the_label}]" %>
+			</span>
+		</td>
+		</tr>
 <%- end -%>

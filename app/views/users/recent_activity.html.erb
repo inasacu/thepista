@@ -1,24 +1,22 @@
-<%- if @user.activities.empty? -%>
+<%- if current_user.activities.empty? -%>
 	<%= content_tag 'h3', t(:no_recent_activity) %>
 	
 <%- else -%>
 
-	<%= render :partial => '/shared/content_pagination' %>
+	<%#= render :partial => '/shared/content_pagination' %>
 
 	<%= content_tag 'h2', t(:recent_activities) %>
 
-	<%#- unless @user.last_logged_at.nil? or @user == @user -%>
+	<%#- unlesscurrent_user.last_logged_at.nil? orcurrent_user ==current_user -%>
 	<p class="meta">
-		<%= user_link @user %>  
+		<%= user_link current_user %>  
 		<%#= "#{t :last_logged_at } #{t :ago} #{time_ago_in_words(activity.created_at).capitalize}" %>
 	</p>    
 	<%#- end -%>
 
 	<ul class="list messages full">	
 		<%= render :partial => 'users/activity',
-		:collection => @user.activities,
-		:locals => { :destroy => @user == @user,
-			:recent => true } %>
+		:collection =>current_user.activities, :locals => { :destroy => true, :recent => true } %>
 	</ul>
 
 <%= render :partial => '/shared/content_pagination' %>
