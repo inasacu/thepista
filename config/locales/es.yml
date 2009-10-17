@@ -447,6 +447,7 @@ es:
      manager: Responsable   
      managers: Responsable(s)   
      map: Mapa    
+     map_it: Ubicalo
      maps: Mapas   
      mark_as_read: Marcar como leido   
      mark_as_unread: Marcar como no leido   

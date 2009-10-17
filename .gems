@@ -6,3 +6,4 @@ authlogic
 will_paginate
 authlogic-oid
 be9-acl9 --source http://gems.github.com
+geokit

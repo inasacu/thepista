@@ -27,6 +27,8 @@ Rails::Initializer.run do |config|
   config.gem "authlogic-oid", :lib => "authlogic_openid"
   config.gem "ruby-openid", :lib => "openid"
   config.gem "be9-acl9", :source => "http://gems.github.com", :lib => "acl9"
+  config.gem "geokit"
+  
   
   # Only load the plugins named here, in the order given (default is alphabetical).
   # :all can be used as a placeholder for all plugins not explicitly named

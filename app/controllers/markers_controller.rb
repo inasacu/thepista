@@ -1,15 +1,54 @@
 require 'ym4r_gm'
-require 'test/unit'
-class MarkersController < ApplicationController
 
+class MarkersController < ApplicationController
+  
+  include GeoKit::Geocoders
+  
   def index
+    @coord = [40.41562,-3.682222]
+    
+    location = "#{current_user.time_zone.to_s}"
+  
+    results = Geocoding::get(location)
+    if results.status == Geocoding::GEO_SUCCESS
+      @coord = results[0].latlon
+      @marker = GMarker.new(@coord,:info_window => location, :title => location)
+    end
+  
+    @markers = Marker.all_markers
+    
     @map = GMap.new("map")
     @map.control_init(:large_map => true, :map_type => true)
-    @map.center_zoom_init([40.41562,-3.682222], 11)
-    @markers = Marker.find(:all, :conditions => "latitude is not null and longitude is not null").each do |marker|
-      theMarker = GMarker.new([marker.latitude, marker.longitude], :title => marker.name, :info_window =>  marker.name + "! ") 
+    @map.center_zoom_init(@coord, 11)
+        
+     #  # Define the start and end icons  
+     # @map.icon_global_init( GIcon.new( :image => "/images/pin_icon.png", 
+     #                                        :icon_size => GSize.new(24,24), 
+     #                                        :icon_anchor => GPoint.new(12,38), 
+     #                                        :info_window_anchor => GPoint.new(9,2) ), "icon")  
+     #    
+     #  icon = Variable.new("icon")
+     # :icon => icon
+     
+    @markers.each do |marker|
+       
+      the_groups = "<br /><strong>" + I18n.t(:groups) + ":</strong><br />" unless marker.groups.empty?
+      
+      marker.groups.each do |group|
+        group_url = url_for(:controller => 'groups', :action => 'show', :id => group.id)   
+        the_groups = the_groups + "<a href=\"#{group_url}\">#{group.name}</a>&nbsp;&nbsp;#{group.sport.name}<br />"
+      end
+        
+      theMarker = GMarker.new([marker.latitude, marker.longitude], 
+                              :info_window => "<strong>#{marker.name}</strong><br />
+                                              #{marker.address}<br >
+                                              #{marker.city}, #{marker.zip}<br />
+                                              #{the_groups}",
+                              :title => marker.name)
       @map.overlay_init(theMarker)
     end  
+    @map.overlay_init(@marker) if @marker
+    
   end
 
   def show
