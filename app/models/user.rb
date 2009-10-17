@@ -133,7 +133,7 @@ class User < ActiveRecord::Base
     end
 
     def self.recent_activities(user)
-      find(:all, :select => "distinct users.id",            
+      find(:all, :select => "users.id",            
            :joins => "INNER JOIN activities ON users.id = activities.user_id INNER JOIN groups_users on users.id = groups_users.user_id",
            :conditions => ["groups_users.group_id in (?) and activities.created_at >= ?", user.groups, PAST_THREE_DAYS],
            :order => 'activities.created_at DESC')
