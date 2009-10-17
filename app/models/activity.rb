@@ -19,8 +19,7 @@ class Activity < ActiveRecord::Base
   end
   
   def self.all_activities(user)
-    if self.count(:conditions => ["user_id in (select user_id from groups_users where group_id in (?)) and created_at >= ?", user.groups, PAST_THREE_DAYS],
-                  :order => "created_at desc") > 0
+    if self.count(:conditions => ["user_id in (select user_id from groups_users where group_id in (?)) and created_at >= ?", user.groups, PAST_THREE_DAYS]) > 0
       return true
     end
       return false
