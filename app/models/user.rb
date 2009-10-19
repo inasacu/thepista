@@ -136,7 +136,7 @@ class User < ActiveRecord::Base
       find(:all, :select => "users.id",            
            :joins => "INNER JOIN activities ON users.id = activities.user_id INNER JOIN groups_users on users.id = groups_users.user_id",
            :conditions => ["groups_users.group_id in (?) and activities.created_at >= ?", user.groups, PAST_THREE_DAYS],
-           :group => 'users.id',
+           :group => 'users.id, activities.created_at', 
            :order => 'activities.created_at DESC')
     end
     
