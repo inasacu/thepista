@@ -8,8 +8,8 @@
 		<%= "#{label_name(:invitations_for_your_friends)} "  %><br />
 
 		  <span style="color: rgb(119, 119, 119); font-weight: normal; font-size: 11px;">
-		    Invite contacts from your email address book.  Web Email (Hotmail, Gmail, Yahoo, etc.)<br/>
-		    HayPista will not store your email login or password.
+		    <%= "#{label_name(:invitations_contacts)}  #{label_name(:invitations_email)}" %><br/>
+		    <%= label_name(:invitation_notice) %>
 		  </span>
 
 	</h2>
@@ -112,7 +112,7 @@
 		<div class="clear"></div> 
 		
 		<div class="group navform">
-			<%= submit_tag @invitation.new_record? ? label_name(:create) : label_name(:edit), 
+			<%= submit_tag @invitation.new_record? ? control_label('create') : control_label('edit'), 
 							:class => "button" %> <%= label_name(:or) %> <%= link_to label_name(:cancel), invitations_path %>
 		</div>
 		

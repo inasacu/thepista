@@ -16,8 +16,17 @@
 	<h2 class="title"><%= label %></h2>
 	
     <div class="inner">
-	
-	<%= render :partial => 'posts/posts' %>
+
+	  <table class="table">
+		<tr>             
+          <th class="first">&nbsp;</th>
+          <th>&nbsp;</th>
+          <th>&nbsp;</th>
+          <th class="last">&nbsp;</th>
+        </tr>
+
+		<%= render :partial => 'posts/posts' %>
+      </table>
 
 	<%= render :partial => 'posts/new', 
 		:locals => { :forum_id => @topic.forum_id, :label => label_name(:write_comment), :textfield => false } %>

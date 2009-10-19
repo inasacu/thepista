@@ -1,32 +1,29 @@
-<div class="block" id="block-lists"> 
-  
-  <div class="content"> 
 
-	<div class="inner"> 
-	
-	<% posts.each do |post| -%>
-	
-	  <ul class="list"> 
-	  
-		<li> 
+<% posts.each do |post| -%>
+<tr>  
+	<td>
+		<%= image_link_small post.user %>		
+	</td>
+
+	<td class="name_and_date">
 		
-		  <div class="left"> 
-			<%= image_link_small post.user %>&nbsp;&nbsp;<%= user_link post.user %><br />
-			<%= nice_day_time_wo_year post.created_at %>
-		  </div> 
-		  
-		  <div class="item"> 
-			<p><%=h post.body %></p>
-		  </div>		 
-		 
-		</li> 
-		
-	  </ul> 
+		<span class="label"><%= label_name(:from) %>:</span>
+		<%= user_link post.user %>
+				
+		<span class="date">
+			<%= nice_day_of_week(post.created_at) %>
+		</span>
+	</td>
 	
-	<% end -%>
-		  
-	</div> 
+	<td>				
+		<%=h post.body %>			
+	</td>
 	
-  </div> 
-  
-</div>
+	
+	<td class="last">
+		<%#= render :partial => 'action', :locals => {:post => post} %>
+	</td>
+</tr>
+<% end -%>
+
+ 

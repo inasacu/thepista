@@ -44,8 +44,10 @@ class Comment < ActiveRecord::Base
   end
   
   def send_message_blog()
-    @send_mail ||= self.user.blog_comment_notification?
-    UserMailer.deliver_message_blog(self.entry.blog.user, self.user, self) if @send_mail
+    if self.group_id.blank?
+      @send_mail ||= self.user.blog_comment_notification?
+      UserMailer.deliver_message_blog(self.entry.blog.user, self.user, self) if @send_mail 
+    end
   end
   
 end

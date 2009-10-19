@@ -27,47 +27,48 @@
         <% @groups.each do |group| -%>
 
         <tr>  
-		  <td>
-			<%= group_image_link_small group %>
-		  </td>
+			<td>
+				<%= group_image_link_small group %>
+			</td>
+
 			<td class="name_and_date">
 				<%= group_link(group) %>
 				<span class="date">
 					<%= nice_day_time group.gameday_at %>
 				</span>
 			</td>
-		
-		  <td>
-			<%= user_list group.all_the_managers %><br />
-			<%= group.sport.name %>
-		  </td>
 
-			  <td>
+			<td>
+				<%= user_list group.all_the_managers %><br />
+				<%= group.sport.name %>
+			</td>
+
+			<td>
 				<%= group.time_zone %>
-			  </td>
-                
-          <td>
-			<%= I18n.t(:has_group_users, :count => object_counter(group.users)) %><br />
-			<%= I18n.t(:has_group_schedules, :count => object_counter(group.schedules)) %>
-          </td>
+			</td>
 
-		<td class="name_and_date">
-			<span class="date">
-				<%= nice_full_date group.created_at %> 
-			</span>
-		</td>
+			<td>
+				<%= I18n.t(:has_group_users, :count => object_counter(group.users)) %><br />
+				<%= I18n.t(:has_group_schedules, :count => object_counter(group.schedules)) %>
+			</td>
 
-          <td class="last">
-			<span class="action">
-			<%= link_to(label_name(:send_message_to_group), new_message_path(:group_id => group.id)) %><br />
-            <%#= link_to label_name(:invitation_to_group), edit_group_path(group) %> 
+			<td class="name_and_date">
+				<span class="date">
+					<%= nice_full_date group.created_at %> 
+				</span>
+			</td>
 
-			<% if current_user.is_manager_of?(group) %> 
-				<%= link_to label_name(:create_schedule), new_schedule_path(:id => group.id)  %><br />
-				<%= link_to label_name(:create_practice), new_practice_path(:id => group.id)  if development? %>
-	        <% end %>
-			</span>
-          </td>
+	         <td class="last">
+				<span class="action">
+					<%= link_to(label_name(:send_message_to_group), new_message_path(:group_id => group.id)) %><br />
+			           <%#= link_to label_name(:invitation_to_group), edit_group_path(group) %> 
+
+					<% if current_user.is_manager_of?(group) %> 
+						<%= link_to label_name(:create_schedule), new_schedule_path(:id => group.id)  %><br />
+						<%= link_to label_name(:create_practice), new_practice_path(:id => group.id)  if development? %>
+			        <% end %>
+				</span>
+	         </td>
         </tr>   
        
         <% end -%>

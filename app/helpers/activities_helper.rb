@@ -26,7 +26,12 @@ module ActivitiesHelper
           
     when "Comment"
         comment = activity.item
+        if comment.group_id.blank?
           %(#{I18n.t(:left_comment_on_wall) } #{user_link(comment.entry.user)})
+        else
+          %(#{I18n.t(:left_comment_on_wall) } #{group_link(comment.entry.group)})
+        end
+          
 
     when "Match"	
           match = activity.item

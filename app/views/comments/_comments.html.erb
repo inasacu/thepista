@@ -1,37 +1,31 @@
 
 <% comments.each do |comment| -%>
-<tr>
+<tr>  
 	<td>
-		<% if comment.user %>
-			<%= image_link_small comment.user %>
-		<% elsif @group %>
-			<%= group_image_link_small @group %>		
-		<% end %>
-	</td>
-	<td>
-		<span class="name">	
-			
-			<span class="label"><%= label_name(:from) %>:</span>
-			
 			<% if comment.user %>
-				<%= user_link comment.user %>
+				<%= image_link_small comment.user %>
 			<% elsif @group %>
-				<%= group_link @group %>	
+				<%= group_image_link_small @group %>		
 			<% end %>
+	</td>
 
-			
-		</span>
-		<br />
+	<td class="name_and_date">
+		
+		<span class="label"><%= label_name(:from) %>:</span>
+		<% if comment.user %>
+			<%= user_link comment.user %>
+		<% elsif @group %>
+			<%= group_link @group %>	
+		<% end %>
+		
 		<span class="date">
 			<%= nice_day_of_week(comment.created_at) %>
 		</span>
 	</td>
-	<td>
-		<span class="">							
-				<%=h comment.body %>	
-		</span>
-	</td>
 	
+	<td>				
+		<%=h comment.body %>			
+	</td>
 	
 	
 	<td class="last">

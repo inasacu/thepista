@@ -4,12 +4,10 @@
 	
 	<table class="table">		
 	<% User.recent_activities(current_user).each do |user| %>
-	<%- unless user.activities.empty? -%>
 
 		<%= render :partial => 'shared/activity', :collection => user.activities, 
 				   :locals => { :destroy => current_user == user, :recent => true } %>
-	
-	<%- end -%>
+				
 	<%- end -%>
 	</table>
 		

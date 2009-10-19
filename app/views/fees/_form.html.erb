@@ -36,7 +36,7 @@
 
 <div class="clear"></div> 
 
-<div class="group navform">
-	<%= submit_tag @fee.new_record? ? label_name(:create) : label_name(:edit), 
+<div class="group navform"><%= submit_tag @group.new_record? ? control_label('create') : control_label('edit'), 
+	<%= submit_tag @fee.new_record? ? control_label('create') : control_label('edit'), 
 			:class => "button" %> <%= label_name(:or) %> <%= link_to label_name(:cancel), fees_path %>
 </div>

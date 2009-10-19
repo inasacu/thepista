@@ -1112,8 +1112,8 @@ es:
      
      es:  Español
      en:  Ingles
-     fr:   Frances
-     ge:   Aleman
+     fr:  Frances
+     ge:  Aleman
      it:  Italiano
      
      # translations for views
@@ -1122,8 +1122,10 @@ es:
      home_index: Inicio
      home_search:  Buscar
      
+     invitations_contacts:  Invitar a los contactos de tu libreta de direcciones de correo electrónico.
+     invitations_email: "Email (Hotmail, Gmail, Yahoo, etc...)"
      invitations_index:  Invitaciones Mandadas
-     invitations_import:  Importar Contactos
+     invitations_import:  Invitar a tus contactos
      invitations_for_your_friends:  Invita a tus amigos
      invitations_no:  Ninguna Invitación para mostrar
      invitations_option:  Opciones de Invitación
@@ -1132,6 +1134,7 @@ es:
      invitation_successfully_created: La Invitación ha sido mandada.
      invitation_to_join: te manda una solicitud para unirte a HayPista  
      invitation_signup_link:  Visite este enlace para registrarse
+     invitation_notice: HayPista no almacena ni tu cuenta de correo ni tu contraseña.
          
      entries_teammate: Mis Compañeros de Equipo
      entries_my_wall: Mi Muro
@@ -1213,6 +1216,7 @@ es:
      messages_no: Ningun Mensaje para mostrar.
      messages_edit: Modificar Mensaje
      messages_option:  Opciones de Mensajes
+     messages_send:  Manda Mensaje
      messages_sent:  Mensajes Mandados
      messages_show: Mostrar Mensaje
      messages_trash:  Mensajes Descartados

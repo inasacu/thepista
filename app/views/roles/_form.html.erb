@@ -20,6 +20,6 @@
 <div class="clear"></div> 
 
 <div class="group navform">
-	<%= submit_tag @role.new_record? ? label_name(:create) : label_name(:edit), 
+	<%= submit_tag @role.new_record? ? control_label('create') : control_label('edit'), 
 			:class => "button" %> <%= label_name(:or) %> <%= link_to label_name(:cancel), roles_path %>
 </div>
