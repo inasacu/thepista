@@ -66,7 +66,7 @@ class UserMailer < ActionMailer::Base
   
   def message_schedule(mail)
     subject     "#{I18n.t(:schedule)} - #{mail[:schedule].concept}"
-    from        "#{mail[:user].name}<#{mail[:user].email}>"
+    from        "#{mail[:user].name}"
     recipients  mail[:email]
     body        mail
     sent_on       Time.zone.now
@@ -85,7 +85,7 @@ class UserMailer < ActionMailer::Base
 
   def message_notification(message)
     subject       message.subject
-    from          "#{message.recipient.name} <#{message.recipient.email}>"
+    from          "#{message.recipient.name}"
     recipients    message.recipient.email
     body          message.body
     sent_on       Time.zone.now
