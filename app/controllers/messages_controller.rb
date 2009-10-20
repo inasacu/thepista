@@ -167,7 +167,6 @@ class MessagesController < ApplicationController
       end
       
       respond_to do |format|
-        recipient_messages(@message, @recipients) 
         
         if @scorecards
           deliver_message_scorecard(@message, @scorecards, @recipients, @group) 
@@ -179,6 +178,9 @@ class MessagesController < ApplicationController
         elsif @schedule 
           @schedule.create_schedule_details(current_user, true)
           deliver_message_schedule(@message, @schedule, @recipients) 
+          
+        else
+          recipient_messages(@message, @recipients)
         end
 
 
