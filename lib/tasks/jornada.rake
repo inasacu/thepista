@@ -17,7 +17,7 @@ task :thejornada => :environment do |t|
       forum = Forum.new
       forum.schedule_id = schedule.id
       forum.name = schedule.concept
-      forum.description = @description
+      forum.description = '...'
       forum.save!
     end
     
@@ -33,7 +33,7 @@ task :thejornada => :environment do |t|
       post = Post.new
       post.topic_id = schedule.forum.topics.first.id
       post.user_id = manager
-      post.body = @description
+      post.body = '...'
       post.save!
     end
     
