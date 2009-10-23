@@ -9,6 +9,10 @@ class Match < ActiveRecord::Base
   belongs_to      :type,      :conditions => "table_type = 'Match'"
   # belongs_to      :invite,    :class_name => "Group", :foreign_key => "invite_id"
   
+  # validations  
+  validates_presence_of         :description
+  validates_length_of           :description,                     :within => DESCRIPTION_RANGE_LENGTH
+  
   # variables to access
   attr_accessible :name, :schedule_id, :user_id, :group_id, :invite_id, :group_score, :invite_score, :goals_scored
   attr_accessible :roster_position, :played, :available, :one_x_two, :user_x_two, :type_id, :status_at, :description
@@ -109,9 +113,9 @@ class Match < ActiveRecord::Base
 
       match.save!  
     end       
-    
+        
+    the_match ||= "..."
     @schedule.forum.description = the_match.description
-    
     Scorecard.calculate_group_scorecard(@schedule.group)
     Post.create_schedule_post(@schedule.forum, @schedule.forum.topics.first, user, the_match.description) if @schedule.played?
   end
@@ -129,9 +133,10 @@ class Match < ActiveRecord::Base
     schedule.group.users.each do |user|
       type_id = 3     # set to ausente
 
-      self.create!(:name => schedule.concept, :schedule_id => schedule.id, :group_id => schedule.group_id, 
-                  :user_id => user.id, :available => user.available, 
-                  :type_id => type_id, :played => schedule.played) if self.schedule_group_user_exists?(schedule, user)
+      self.create!(:name => schedule.concept, :description => schedule.description, 
+                   :schedule_id => schedule.id, :group_id => schedule.group_id, 
+                   :user_id => user.id, :available => user.available, 
+                   :type_id => type_id, :played => schedule.played) if self.schedule_group_user_exists?(schedule, user)
     end
   end
 

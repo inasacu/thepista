@@ -7,14 +7,15 @@ class MatchesController < ApplicationController
   end
 
   def edit
-    @schedule = Schedule.find(params[:id]) 
+    @match = Match.find(params[:id])
+    @schedule = @match.schedule
+    @matches = @schedule.the_roster
+
     unless current_user.is_manager_of?(@schedule.group)
       flash[:warning] = I18n.t(:unauthorized)
       redirect_back_or_default('/index')
       return
     end    
-    @match = @schedule.matches.first   
-    @matches = @schedule.the_roster
   end
 
   def update

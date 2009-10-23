@@ -5,8 +5,12 @@ class Payment < ActiveRecord::Base
   belongs_to    :fee
   
   # validations 
-  validates_presence_of       :concept, :debit_amount, :credit_amount
-  validates_numericality_of   :debit_amount, :credit_amount 
+  validates_presence_of         :concept
+  validates_length_of           :concept,                         :within => NAME_RANGE_LENGTH
+  validates_presence_of         :description
+  validates_length_of           :description,                     :within => DESCRIPTION_RANGE_LENGTH
+  validates_presence_of         :debit_amount,  :credit_amount
+  validates_numericality_of     :debit_amount,  :credit_amount 
 
   # variables to access
   attr_accessible :concept, :debit_amount, :credit_amount, :description, :table_type, :table_id, :type_id 

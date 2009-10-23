@@ -251,14 +251,14 @@ es:
      enable_comments_description: Opción para recibir aviso cuando se deja un comentario.
      ends_at: Finalización   
      ends_at_match: Finalización   
-     ends_at_description: (¿Ha que hora termina el partido?)   
+     ends_at_description: (¿Ha que hora termina el evento?)   
      ends_at_venue: Horario   
 
      events:
         one:  "tiene 1 evento." 
         other: "tiene {{count}} eventos."
         
-     event_details:  "(Escribe algun detalle de la jornada...)"
+     event_details:  "(Escribe algun detalle del evento...)"
  
      error_when_create_account: "Fallo al intentar crear tu cuenta, intentalo de nuevo."   
      exit_festival: Desapuntate del Festivo   
@@ -272,7 +272,7 @@ es:
      features: Prestaciones
      fee: Honorarios   
      fee_per_game: Tarifa / Partido   
-     fee_per_game_description: (Este es el precio del partido por jugador...)   
+     fee_per_game_description: (Este es el precio del evento por jugador...)   
      fee_per_pista: Tarifa / Pista   
      fee_per_pista_description: (Este es el precio de la pista or cancha...)   
      feedback: feedback   
@@ -579,7 +579,7 @@ es:
      no_venue: No tienes un centro deportivo donde jugar 
      non_subscription_at: Inicio para Convocarse el no Abonado
      non_subscription_at_match: Inicio para Convocarse el no Abonado   
-     non_subscription_at_description: (Ha partir de que hora se puede apuntar a un partido el no abonado...(ej- 1 dia antes del partido))   
+     non_subscription_at_description: (Ha partir de que hora se puede apuntar a un evento el no abonado...(ej- 1 dia antes del evento))   
      not_able_to_attend: Cambia tu convocatoria   
      not_added_to_your_openid: Ningun OpenID ha sido añadido a tu cuenta    
      not_created: no se ha creado correctamente.   
@@ -678,7 +678,7 @@ es:
      player_limit:  Limite de Jugadores
      player_limit_description:  Limite de Jugadores que puede tener el Equipo. 
      player_with: "Jugadores con"
-     player_with_less_games: partidos menos que el resto.
+     player_with_less_games: asistencias a eventos menos que el resto.
      points: Ptos.
      points_for_draw: Puntos por empatar
      points_for_draw_description: Dale puntuación por empatar el evento...
@@ -897,7 +897,7 @@ es:
      sport_id: Deporte   
      sport_description: (Que tipo de deporte practica el equipo...)   
      sports: Deportes   
-     starts_at_description: (¿Ha que hora empieza el partido?)   
+     starts_at_description: (¿Ha que hora empieza el evento?)   
      start_session: inicia tu sesión   
      starts_at: Inicio   
      starts_at_match: Inicio   
@@ -912,7 +912,7 @@ es:
      
      subscription_at: Finalización para Convocarse el Abonado  
      subscription_at_match: Finalización para Convocarse el Abonado   
-     subscription_at_description: (¿Ha que hora termina la opción para apuntarse a un partido el abonado...(ej- 1 dia antes del partido)) 
+     subscription_at_description: (¿Ha que hora termina la opción para apuntarse a un evento el abonado...(ej- 1 dia antes del evento)) 
      subscription_false:  Jugador No Abonado.
      subscription_true:  Jugador Abonado
      subscription_updated: Actualización de jugador abonado.
@@ -1164,6 +1164,7 @@ es:
      payment_full:  Pago Total
      payment_greater_than:  Pago Superior
      payment_less_than:  Pago Inferior
+     payment_type:  Tipo de Pago
      payments_create:  Nuevo Pago
      payments_index:   Pagos
      payments_index_option: Opciones de Pago
@@ -1247,6 +1248,7 @@ es:
      schedules_new: Nuevo Evento
      schedules_no: Ningun Evento para mostrar.
      schedules_edit: Modificar Evento
+     schedules_update: Modificar Evento
      schedules_option:  Opciones de Eventos
      schedule_options:  Opciones de Evento
      schedules_show: Detalles Del Evento
@@ -1264,7 +1266,7 @@ es:
      scorecards_manager_option:  Requiere responsable de equipo para ver mas opciones.
      scorecards_no: Ninguna Clasificación para mostrar.
      scorecards_option:  Opciones de Clasificaciones
-     scorecards_less_games:  ( * ) Jugadores con menos partidos
+     scorecards_less_games:  ( * ) Jugadores con menos asistencias a eventos
      scorecards_legend:  Leyenda
      
      # add_moderator: Nuevo Moderador   

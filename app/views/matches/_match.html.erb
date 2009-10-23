@@ -2,19 +2,25 @@
 	new_or_existing = match.new_record? ? 'new' : 'existing' 
 	prefix = "match[match_attributes][]" 
 %>
+	  
+<!-- field_for start -->		
+<% 
+fields_for prefix, match do |match_form| 
+	if (first_team == (@schedule.group_id == match.group_id))
+-%>
+	<tr>
+		<td valign="top" width="180">
+			<%= image_link_small match.user %>&nbsp;&nbsp;&nbsp;&nbsp;<%= user_link match.user %>
+		</td>
 
-<% fields_for prefix, match do |match_form| -%>
-
-<div class="group">
-	<%= user_link match.user %>    
-	&nbsp;&nbsp;
-	<%= match.team_name(@schedule) %>    
-	&nbsp;&nbsp;
-	<%= match_form.text_field :goals_scored, :class => 'textscore' %>
-</div>
-
-<% end -%>
-
-
-
+		<td>
+			<%= match_form.text_field :goals_scored, :class => 'textscore' %>
+		</td>
+	</tr>
+<%
+ 	end
+end 
+-%>
+	
+<!-- field_for end -->
 

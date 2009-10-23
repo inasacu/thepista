@@ -1,4 +1,8 @@
-<% @goles = [1, 2, 3, 4, 5] %>
+<% 
+@goles = [1, 2, 3, 4, 5] 
+@schedule ||= @match.schedule
+@matches ||= @schedule.the_roster
+%>
 
 <div class="block">
 
@@ -14,13 +18,14 @@
       <% form_for @match, :url => match_path(@match), :html => { :class => :form } do |f| -%>
 
 		<div class="group">
-			<%= f.label :score, label_name(:score), :class => :label %>
-			<%= group_link @schedule.group %>    
-			&nbsp;&nbsp;
-			<%= f.text_field :group_score, :class => 'textscore'  -%>	
-			&nbsp;&nbsp;vs.&nbsp;&nbsp;
-			<%= f.text_field :invite_score, :class => 'textscore'  -%>
-			&nbsp;&nbsp;
+			<%= f.label :score, label_name(:score), :class => :label %><br />
+			
+			<%= group_link @schedule.group %>&nbsp;&nbsp;
+			
+			<%= f.text_field :group_score, :class => 'textscore'  -%>&nbsp;&nbsp;vs.&nbsp;&nbsp;
+			
+			<%= f.text_field :invite_score, :class => 'textscore'  -%>&nbsp;&nbsp;
+			
 			<%= @schedule.away_group %>
 		</div>
 		<br />
@@ -29,20 +34,50 @@
 			<%= f.label :description, "Description", :class => :label %>
 			<%= f.text_area :description, :class => 'textfield' %>
 		</div>	
-		<br />
+		<br />	
 
 		<% if @goles.include?(@schedule.group.sport_id) %>
 		
-		<div class="group">
-			<%= f.label :goals_scored, label_name(:goals_scored_full), :class => :label %>
-			<%= render :partial =>'match', :collection => @matches %>
-		</div>	
-		<br />
+			<%= f.label :goals_scored, label_name(:goals_scored_full), :class => :label %><br /><br />
+			
+			<div class="columns"> 
+				
+					<h4 class="title"><%= "#{@schedule.home_group} vs. #{@schedule.away_group}" %></h4>
+					
+				<div class="column left"> 
+					
+					<div class="columns"> 
+						<div class="column left"> 
+							
+					<table>
+						<%= render :partial =>'match', :collection => @matches, :locals => {:first_team => true} %>
+					</table>
+					</div> 
+
+					<div class="column right">    
+
+						<table>
+							<%= render :partial =>'match', :collection => @matches, :locals => {:first_team => false} %>
+						</table>
+
+					</div> 
+
+				</div>
+				
+				</div> 
+
+				<div class="column right">    
+					
+				</div> 
+
+			</div>
+			
 		
 		<% end %>
 		
 		<div class="clear"></div> 
-
+		<br />
+		<br />
 		<div class="group navform">
 			<%= submit_tag @match.new_record? ? control_label('create') : control_label('edit'), 
 					:class => "button" %> <%= label_name(:or) %> <%= link_to label_name(:cancel), matches_path %>
@@ -56,4 +91,4 @@
 
 </div>
 
-<%# content_for :sidebar, render(:partial => '/schedules/sidebar') -%>
+<!-- end of the line -->

@@ -49,10 +49,10 @@
 		</tr>
 
 		<%= tr_td_action(:sports, @group.sport.name) %>
-		<%= tr_td_action(:game_day, nice_day_time(@group.schedules.first.starts_at)) %>
+		<%= tr_td_action(:game_day, nice_day_time(@group.schedules.first.starts_at)) unless @group.schedules.blank? %>
 		<%= tr_td_action(:time_zone, @group.time_zone) %>
 		<%= tr_td_action(:users, t(:has_group_users, :count => @group.users.count)) %>
-		<%= tr_td_action(:schedules, t(:has_group_schedules, :count => @group.schedules.count)) %>
+		<%= tr_td_action(:schedules, t(:has_group_schedules, :count => @group.schedules.count)) unless @group.schedules.blank? %>
 		<%= tr_td_action(:points_for_win, @group.points_for_win) %>
 		<%= tr_td_action(:points_for_draw, @group.points_for_draw) %>
 		<%= tr_td_action(:points_for_lose, @group.points_for_lose) %>

@@ -26,7 +26,7 @@
 		<li><%= link_to control_label('destroy'), schedule_path(@schedule), :method => :delete, 
 					:confirm => label_name(:are_you_sure) unless @schedule.played? %></li>
 		<% end %>
-		<li><%= link_to label_name(:matches), edit_match_path(@schedule.id)  unless @schedule.last_season?(current_user) %></li>
+		<li><%= link_to label_name(:matches), edit_match_path(@schedule.matches.first.id)  unless @schedule.last_season?(current_user) %></li>
 <% 
 	end 
 %>

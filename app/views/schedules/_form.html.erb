@@ -20,22 +20,16 @@
     <span class="description"><%= label_name('ends_at', 'description') %></span>
   </div>
 
+  <div class="group">
+    <%= f.label :description, label_name('description'), :class => :label %>
+    <%= f.text_area :description, :class => 'text_area' %><br />
+    <span class="description"><%= label_name('description') %></span>
+  </div>
+
   <!-- <div class="group">
     <%#= f.label :reminder, label_name('reminder'), :class => :label %>
     <%#= f.check_box :reminder, :class => 'check_box' %>
     <span class="description"><%#= label_name('reminder', 'description') %></span>
-  </div> -->
-
-  <!-- <div class="group">
-    <%#= f.label :subscription_at, label_name('subscription_at'), :class => :label %>
-    <%#= f.datetime_select :subscription_at, :class => 'datetime_select' %><br />
-    <span class="description"><%#= label_name('subscription_at', 'description') %></span>
-  </div> -->
-
-  <!-- <div class="group">
-    <%#= f.label :non_subscription_at, label_name('non_subscription_at'), :class => :label %>
-    <%#= f.datetime_select :non_subscription_at, :class => 'datetime_select' %><br />
-    <span class="description"><%#= label_name('non_subscription_at', 'description') %></span>
   </div> -->
 
   <!-- <div class="group">
@@ -44,32 +38,12 @@
     <span class="description"><%#= label_name('remind_before', 'description') %></span>
   </div> -->
 
-<!-- <div class="group">
-  <%#= f.label :time_zone, label_name('time_zone'), :class => :label %>
-  <%#= f.time_zone_select :time_zone, ActiveSupport::TimeZone.us_zones %><br />
-  <span class="description"><%#= label_name('time_zone', 'description') %></span>
-</div> -->
-
-
   <!-- <div class="group">
-    <%#= f.label :sport_id, label_name('sport'), :class => :label %>
-   	<%#= f.select(:sport_id, Sport.sport_name, {:selected => @group.sport_id, :include_blank => true}) %>
-    <span class="description"><%#= label_name('sport', 'description') %></span>
+    <%#= f.label :marker_id, label_name('marker'), :class => :label %>
+    <%#= f.select(:marker_id, Marker.marker_name, 
+	{:selected => @group.marker_id, :include_blank => true}) %>&nbsp;<%#= link_to label_name(:create_marker), new_marker_url %><br />
+    <span class="description"><%#= label_name('marker', 'description') %></span>
   </div> -->
-
-  <div class="group">
-    <%= f.label :marker_id, label_name('marker'), :class => :label %>
-    <%= f.select(:marker_id, Marker.marker_name, 
-	{:selected => @group.marker_id, :include_blank => true})%>&nbsp;<%= link_to label_name(:create_marker), new_marker_url %><br />
-    <span class="description"><%= label_name('marker', 'description') %></span>
-  </div>
-
-  <div class="group">
-    <%= f.label :description, label_name('description'), :class => :label %>
-    <%= f.text_area :description, :class => 'text_area' %>
-	<%#= f.text_area :description, :class => 'textfield' -%><br />
-    <span class="description"><%= label_name('description') %></span>
-  </div>
 
   <!-- <div class="group">
     <%#= f.label :season_ends_at, label_name('season_ends_at'), :class => :label %>

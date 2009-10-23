@@ -56,20 +56,22 @@ class Schedule < ActiveRecord::Base
   belongs_to :marker
   belongs_to :invite_group,   :class_name => "Group",   :foreign_key => "invite_id"
    
-  # validations   
-  validates_presence_of       :concept,          :within => NAME_RANGE_LENGTH
-  validates_presence_of       :description,      :within => DESCRIPTION_RANGE_LENGTH
-  validates_presence_of       :starts_at
-  validates_presence_of       :ends_at
-  validates_presence_of       :time_zone
-  validates_presence_of       :sport_id
-  validates_presence_of       :marker_id
-  validates_presence_of       :group_id
-  validates_numericality_of   :fee_per_game
-  validates_numericality_of   :fee_per_pista
+  # validations  
+  validates_presence_of         :concept
+  validates_length_of           :concept,                         :within => NAME_RANGE_LENGTH
+  
+  validates_presence_of         :description
+  validates_length_of           :description,                     :within => DESCRIPTION_RANGE_LENGTH
+  
+  validates_presence_of         :fee_per_game,  :fee_per_pista, :player_limit
+  validates_numericality_of     :fee_per_game,  :fee_per_pista, :player_limit
+
+  validates_presence_of         :starts_at,     :ends_at  
+  # validates_presence_of         :time_zone
+  # validates_presense_of         :sport_id, :marker_id, :group_id
 
   # variables to access
-  attr_accessible :concept, :season, :jornada, :starts_at, :ends_at, :reminder, :subscription_at, :non_subscription_at
+  attr_accessible :concept, :description, :season, :jornada, :starts_at, :ends_at, :reminder, :subscription_at, :non_subscription_at
   attr_accessible :fee_per_game, :fee_per_pista, :time_zone, :group_id, :sport_id, :marker_id, :player_limit
   attr_accessible :public, :description, :season_ends_at
   

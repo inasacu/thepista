@@ -45,23 +45,32 @@ class SchedulesController < ApplicationController
   def new    
     # editing is limited to administrator or creator
       @schedule = Schedule.new
-      @schedule.group_id = @group.id
-      @schedule.sport_id = @group.sport_id
-      @schedule.marker_id = @group.marker_id
-      @schedule.time_zone = @group.time_zone
+      
+      if @group
+        @schedule.group_id = @group.id
+        @schedule.sport_id = @group.sport_id
+        @schedule.marker_id = @group.marker_id
+        @schedule.time_zone = @group.time_zone
+      end
+    
       @schedule.jornada = 1
+      @schedule.season = Time.zone.now.year
       @schedule.season_ends_at = Time.utc(Time.zone.now.year + 1, 8, 1)
 
-      @lastSchedule = Schedule.find(:first, :conditions => ["id = (select max(id) from schedules where group_id = ?) ", @group.id])    
-      if !@lastSchedule.nil?
-        @schedule = @lastSchedule 
-        @schedule.jornada ||= 0
-        @schedule.jornada += 1
-        @schedule.starts_at = @lastSchedule.starts_at + 7.days
-        @schedule.ends_at = @lastSchedule.ends_at + 7.days
-        # @schedule.reminder = @lastSchedule.reminder
-        # @schedule.subscription_at = @lastSchedule.starts_at - 2.days
-        # @schedule.non_subscription_at = @lastSchedule.starts_at - 1.day
+      @previous_schedule = Schedule.find(:first, :conditions => ["id = (select max(id) from schedules where group_id = ?) ", @group.id])    
+      unless @previous_schedule.nil?
+        @schedule.jornada = @previous_schedule.jornada + 1
+        @schedule.season = @previous_schedule.season
+        @schedule.fee_per_game = @previous_schedule.fee_per_game
+        @schedule.fee_per_pista = @previous_schedule.fee_per_pista
+        @schedule.player_limit = @previous_schedule.player_limit
+        @schedule.public = @previous_schedule.public
+        @schedule.starts_at = @previous_schedule.starts_at + 7.days
+        @schedule.ends_at = @previous_schedule.ends_at + 7.days
+        
+        @schedule.subscription_at = @previous_schedule.starts_at + 7.days
+        @schedule.non_subscription_at = @previous_schedule.starts_at + 7.days        
+        @schedule.reminder = @previous_schedule.starts_at + 5.days
       end
   end
 
