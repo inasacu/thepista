@@ -1,5 +1,7 @@
 class GroupsUsers < ActiveRecord::Base
 
+  set_primary_key :group_id, :user_id
+  
   # record a group join
   def self.join_team(user, group)
     self.create!(:group_id => group.id, :user_id => user.id) if self.exists?(user, group)

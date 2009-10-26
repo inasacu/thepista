@@ -673,7 +673,7 @@ es:
      phone_description: (Por si te tiene que llamar tu equipo. Hay opción de poner este numero en privado...)   
      photo: Foto 
      photo_description: Foto  
-     photo_description: (Opción para subir una imagen...)   
+     photo_description: "(Opción para subir una imagen...{formato: jpeg, gif, png, jpg}{tamaño: 5mb})"  
      physical_level_description: "(Del 1 al 5, pon el nivel fisico que crees que tienes comparado con los de tu equipo...)"  
      player_limit:  Limite de Jugadores
      player_limit_description:  Limite de Jugadores que puede tener el Equipo. 
