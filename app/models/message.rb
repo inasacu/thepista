@@ -4,16 +4,19 @@ class Message < ActiveRecord::Base
   attr_accessor :reply, :parent, :send_mail
   attr_accessible :subject, :body, :parent_id
   
-  belongs_to :sender, :class_name => 'User', :foreign_key => 'sender_id'
-  belongs_to :recipient, :class_name => 'User', :foreign_key => 'recipient_id'
+  belongs_to :sender,         :class_name => 'User', :foreign_key => 'sender_id'
+  belongs_to :recipient,      :class_name => 'User', :foreign_key => 'recipient_id'
   belongs_to :conversation
+  belongs_to :item,           :polymorphic => true
+  
         
   validates_presence_of   :subject, :body
   # validate_presence_of :body,  @message.body.gsub!(/\r?\n/, "<br>")
    
   before_create   :assign_conversation
   after_create    :update_recipient_last_contacted_at,
-                  :save_recipient, :set_replied_to, :send_receipt_reminder
+                  :save_recipient, :set_replied_to, 
+                  :send_receipt_reminder, :send_schedule_reminder
 
   
   # Return all messages in the same parent group          
@@ -143,15 +146,31 @@ class Message < ActiveRecord::Base
     end
     
     def send_receipt_reminder
-      return if sender == recipient
-      @send_mail ||= recipient.message_notification?
-      UserMailer.deliver_message_notification(self) if @send_mail
+      return if (sender == recipient or !self.item_type.nil?)
+      
+      @send_mail ||= recipient.message_notification?   
+      return unless @send_mail
+      
+      UserMailer.send_later(:deliver_message_notification, self) 
     end
     
-    def send_schedule_reminder()
-      return if sender == recipient
-      @send_mail ||= recipient.message_notification?
-      UserMailer.deliver_message_notification(self) if @send_mail
-    end
+    def send_schedule_reminder
+      return if (self.item_type.nil?)
 
+      @send_mail ||= recipient.message_notification?   
+      return unless @send_mail
+
+      case self.item.class.to_s      
+      when "Schedule", "Match", "Scorecard"
+        UserMailer.send_later(:deliver_message_schedule, self)
+      # when "Scorecard"
+      #   UserMailer.send_later(:deliver_message_scorecard, self)
+      else
+        return
+      end
+
+    end
+    
+    
+      
 end

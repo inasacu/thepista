@@ -55,6 +55,7 @@ Rails::Initializer.run do |config|
   
 end
 
+ActionMailer::Base.default_content_type = "text/html"
 ActionMailer::Base.smtp_settings = {
    :tls => true,
    :enable_starttls_auto => true,

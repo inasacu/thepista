@@ -1,0 +1,4 @@
+<h3 style="margin:0; padding:0; font:17px arial; color:#069;">
+			<%= link_to(@user.name, {:host => 'haypista.com', :controller => 'users', :action => 'show', :id => @user}) %>
+			<%=  "#{I18n.t(:writes)}: " %></h3>
+<br /><br />

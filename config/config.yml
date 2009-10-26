@@ -12,6 +12,9 @@ development:
     rpx_api: 
         key:            f7bbfeed95a9e71fe994397d496614da8972aa2c
         realm:          thepista-local
+        
+    server_name: 
+        key:            http://thepista.local
 
 # http://thepista.heroku.com/
 test:
@@ -21,6 +24,9 @@ test:
     rpx_api: 
         key:            59b7bd4a615a2c17439b6a4ca064a1d5f482944e
         realm:          thepista-heroku 
+        
+    server_name: 
+        key:        http://thepista.heroku.com
 
 # http://thepista.heroku.com/
 staging:
@@ -30,6 +36,9 @@ staging:
     rpx_api: 
         key:            59b7bd4a615a2c17439b6a4ca064a1d5f482944e
         realm:          thepista-heroku
+        
+    server_name: 
+        key:        http://thepista.heroku.com
 
                
 production:
@@ -44,3 +53,6 @@ production:
     rpx_api: 
         key:   2acf2c6b39e3d1d988629e0cb41c675827c2f45e
         realm: haypista
+        
+    server_name: 
+        key:        http://haypista.com

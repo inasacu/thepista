@@ -1,26 +1,46 @@
 <%= render :partial => 'header' %>
 
-<%= render :partial => 'message_schedule_body', 
-		   :locals => {:schedule => @schedule, :schedule_url => @schedule_url, 
-		   :message => @message, :reply_url => @reply_url} %>
-
-<% unless @schedule.convocados.empty? %>  
-	<%= render :partial => 'message_list_box', 
-			   :locals => {:label => t(:rosters), :the_roster => @schedule.the_roster, 
-			   :schedule => @schedule, :receiver => @receiver, :schedule_url => @schedule_url } %>
-<% end %>
-
-<% unless @schedule.last_minute.empty? %>   
-	<%= render :partial => 'message_list_box', 
-			   :locals => {:label => t(:last_minute), :the_roster => @schedule.the_last_minute, 
-			   :schedule => @schedule, :receiver => @receiver, :schedule_url => @schedule_url } %>
-<% end %>
+<%= render :partial => 'the_user' %>
 
 
-<%= render :partial => 'user' %>
 
 
-<%= render :partial => 'group' %>
+<%= render :partial => 'the_body' %>
+
+
+<%
+case @message.item.class.to_s      
+when "Schedule" 
+	@schedule = @message.item 
+%>
+
+<%= render :partial => 'the_group', :locals => {:group => @schedule.group} %>
+<%= render :partial => 'the_schedule' %>
+
+<%
+when "Scorecard"
+	@scorecard = @message.item 
+	@group = @scorecard.group
+	@scorecards = Scorecard.users_group_scorecard(@group)
+%>
+
+<%= render :partial => 'the_group', :locals => {:group => @scorecard.group} %>
+<%= render :partial => 'the_scorecard', 
+		:locals => {:collection => Scorecard.users_group_scorecard(@scorecard.group), 
+					:group => @scorecard.group} %>
+
+<%
+end
+%>
+
+
+
+
+
+
+
+
+
 
 
 <%= render :partial => 'footer' %>

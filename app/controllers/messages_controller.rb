@@ -163,32 +163,32 @@ class MessagesController < ApplicationController
 
       unless params[:scorecard][:id].blank?
         @group = Schedule.find(params[:scorecard][:id]).group 
-        @scorecards = Scorecard.users_group_scorecard(@group)
+        @scorecard = @group.scorecards.first
       end
-      
-      respond_to do |format|
+       
+
+      if @scorecard
+        group_messages(@message, @recipients, @scorecard)
+
+      elsif @match
+        @match.schedule.create_schedule_details(current_user, true)
+        group_messages(@message, @recipients, @match.schedule)
+
+      elsif @schedule 
+        @schedule.create_schedule_details(current_user, true)
+        group_messages(@message, @recipients, @schedule)
         
-        if @scorecards
-          deliver_message_scorecard(@message, @scorecards, @recipients, @group) 
-
-        elsif @match
-          @match.schedule.create_schedule_details(current_user, true)
-          deliver_message_match(@message, @match.schedule, @recipients)
-
-        elsif @schedule 
-          @schedule.create_schedule_details(current_user, true)
-          deliver_message_schedule(@message, @schedule, @recipients) 
-          
-        else
-          recipient_messages(@message, @recipients)
-        end
+      else
+        recipient_messages(@message, @recipients)
+      end
 
 
+      respond_to do |format|
         flash[:notice] = I18n.t(:message_sent)
         format.html { redirect_to messages_url and return}
       end
+        
     else
-      # redirect_to :action => 'new', :id => @message and return
       redirect_to :action => 'new' and return
     end
 
@@ -201,6 +201,31 @@ class MessagesController < ApplicationController
   #   redirect_to :action => 'new', :id => @recipient.id and return if @recipient
   #   redirect_to :action => 'new'  and return     
 
+  end
+  
+  def group_messages(message, recipients, object)    
+    parent_id = 0
+    parent_id = message.parent_id if reply?
+    
+    unless recipients.nil?
+      recipients.each do |recipient| 
+        
+        @recipient_message = Message.new      
+        @recipient_message.subject = message.subject
+        @recipient_message.body = message.body
+        @recipient_message.sender = current_user
+        @recipient_message.recipient = recipient
+        
+        @recipient_message.item_type = object.class.to_s
+        @recipient_message.item_id = object.id
+        
+        if @recipient_message.save 
+            parent_id = @recipient_message.id if parent_id == 0            
+            @recipient_message.update_attribute('parent_id', parent_id) 
+        end
+
+      end
+    end
   end
   
   def recipient_messages(message, recipients)
@@ -226,41 +251,41 @@ class MessagesController < ApplicationController
     end
   end
   
-  def deliver_message_schedule(message, schedule, recipients)
-    recipients.each do |recipient|
-
-      if recipient.message_notification?
-        UserMailer.deliver_message_schedule(
-          :user => message.sender,
-          :email => recipient.email,
-          :message => message,
-          :schedule => schedule, :group => schedule.group, :receiver => recipient,
-          :user_url => url_for(:controller => 'users', :action => 'show', :id => current_user.id),
-          :reply_url => url_for(:controller => 'messages', :action => 'reply', :id => message.id),
-          :schedule_url => url_for(:controller => 'schedules', :action => 'show', :id => schedule.id),
-          :group_url => url_for(:controller => 'groups', :action => 'show', :id => schedule.group.id)
-        )
-      end
-    end
-  end
+  # def deliver_message_schedule(message, schedule, recipients)
+  #   recipients.each do |recipient|
+  # 
+  #     if recipient.message_notification?
+  #       UserMailer.deliver_message_schedule(
+  #         :user => message.sender,
+  #         :email => recipient.email,
+  #         :message => message,
+  #         :schedule => schedule, :group => schedule.group, :receiver => recipient,
+  #         :user_url => url_for(:controller => 'users', :action => 'show', :id => current_user.id),
+  #         :reply_url => url_for(:controller => 'messages', :action => 'reply', :id => message.id),
+  #         :schedule_url => url_for(:controller => 'schedules', :action => 'show', :id => schedule.id),
+  #         :group_url => url_for(:controller => 'groups', :action => 'show', :id => schedule.group.id)
+  #       )
+  #     end
+  #   end
+  # end
   
-  def deliver_message_match(message, schedule, recipients)
-    recipients.each do |recipient|
-
-      if recipient.message_notification?
-        UserMailer.deliver_message_match(
-        :user => current_user,
-        :email => recipient.email,
-        :message => message,
-        :schedule => schedule, :group => schedule.group,
-        :user_url => url_for(:controller => 'users', :action => 'show', :id => current_user.id),
-        :reply_url => url_for(:controller => 'messages', :action => 'reply', :id => message.id),
-        :schedule_url => url_for(:controller => 'schedules', :action => 'show', :id => schedule.id),
-        :group_url => url_for(:controller => 'groups', :action => 'show', :id => schedule.group.id)
-        )
-      end
-    end
-  end
+  # def deliver_message_match(message, schedule, recipients)
+  #   recipients.each do |recipient|
+  # 
+  #     if recipient.message_notification?
+  #       UserMailer.deliver_message_match(
+  #       :user => current_user,
+  #       :email => recipient.email,
+  #       :message => message,
+  #       :schedule => schedule, :group => schedule.group,
+  #       :user_url => url_for(:controller => 'users', :action => 'show', :id => current_user.id),
+  #       :reply_url => url_for(:controller => 'messages', :action => 'reply', :id => message.id),
+  #       :schedule_url => url_for(:controller => 'schedules', :action => 'show', :id => schedule.id),
+  #       :group_url => url_for(:controller => 'groups', :action => 'show', :id => schedule.group.id)
+  #       )
+  #     end
+  #   end
+  # end
   
   def deliver_message_scorecard(message, scorecards, recipients, group)  
     recipients.each do |recipient|

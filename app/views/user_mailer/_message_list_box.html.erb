@@ -6,7 +6,7 @@
 	<tr>    
 		<td style="width:1%; color:#999999; vertical-align: top;">•&nbsp;</td>
 		<td style="width:25%"><%= counter += 1 %>.&nbsp;&nbsp;
-			<a href="http://www.haypista.com/user/show/<%= match.user.id %>"><%= match.user.name %></a>
+			<%= link_to(match.user.name, :host => 'haypista.com', :controller => 'users', :action => 'show', :id => match.user) %>
 		</td>
 		<td style="width:25%"><%= match.team_name(@schedule) %></td>
 		<% if @schedule.played? %>

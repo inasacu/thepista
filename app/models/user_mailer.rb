@@ -16,18 +16,18 @@ class UserMailer < ActionMailer::Base
     sent_on       Time.zone.now  
     body          :edit_password_reset_url => edit_password_reset_url(user.perishable_token)  
   end    
-  
+
   def signup_invitation(email, user, message)
-      @recipients = "#{email}"
-      @subject = "#{user.name} #{I18n.t(:invitation_to_join)}!"
-      @sent_on = Time.zone.now
-      @body[:user] = user
-      @body[:url] = signup_url
-      @body[:message] = message
-      @from  =  "#{user.name} <#{user.email}>"
-      content_type  "text/html"
+    @recipients = "#{email}"
+    @subject = "#{user.name} #{I18n.t(:invitation_to_join)}!"
+    @sent_on = Time.zone.now
+    @body[:user] = user
+    @body[:url] = signup_url
+    @body[:message] = message
+    @from  =  "#{user.name} <#{user.email}>"
+    content_type  "text/html"
   end
-  
+
   def manager_join(mail)
     subject       "[HayPista] #{I18n.t(:to_join_group_message) } " + mail[:group].name
     from          "#{mail[:user].name} <#{mail[:user].email}>"
@@ -36,7 +36,7 @@ class UserMailer < ActionMailer::Base
     sent_on       Time.zone.now
     content_type  "text/html"
   end 
-  
+
   def manager_leave(mail)
     subject       "[HayPista] #{I18n.t(:to_leave_group_message)}  " + mail[:group].name
     from          "#{mail[:user].name} <#{mail[:user].email}>"
@@ -45,52 +45,37 @@ class UserMailer < ActionMailer::Base
     sent_on       Time.zone.now
     content_type  "text/html"
   end 
-  
-  def message_match(mail)
-    subject     "#{I18n.t(:matches)} [#{mail[:group].name}] - #{mail[:schedule].concept}"
-    from        "#{mail[:user].name} <#{mail[:user].email}>"
-    recipients  mail[:email]
-    body        mail
-    sent_on       Time.zone.now
-    content_type  "text/html"
-  end 
-  
-  def message_scorecard(mail)
-    subject     "#{I18n.t(:scorecards)} [#{mail[:group].name}]"
-    from        "#{mail[:user].name} <#{mail[:user].email}>"
-    recipients  mail[:email]
-    body        mail
-    sent_on       Time.zone.now
-    content_type  "text/html"
-  end
-  
-  def message_schedule(mail)
-    subject     "#{I18n.t(:schedule)} [#{mail[:group].name}] - #{mail[:schedule].concept}"
-    from        "#{mail[:user].name} <#{mail[:user].email}>"
-    recipients  mail[:email]
-    body        mail
-    sent_on       Time.zone.now
-    content_type  "text/html"
-  end
-  
+
   def message_blog(recipient, user, message)
-      @recipients = recipient.email
-      @subject = "#{user.name}  #{I18n.t(:comments_on_your_blog)}!"
-      @sent_on = Time.zone.now
-      @body[:user] = user
-      @body[:message] = message
-      @from  =  "#{user.name} <#{user.email}>"
-      sent_on       Time.zone.now
-      content_type  "text/html"
+    @recipients = recipient.email
+    @subject = "#{user.name}  #{I18n.t(:comments_on_your_blog)}!"
+    @sent_on = Time.zone.now
+    @body[:user] = user
+    @body[:message] = message
+    @from  =  "#{user.name} <#{user.email}>"
+    sent_on       Time.zone.now
+    content_type  "text/html"
   end
 
   def message_notification(message)
-    subject       message.subject
-    from          "#{message.sender.name} <#{message.sender.email}>"
-    recipients    message.recipient.email
-    body          message.body
-    sent_on       Time.zone.now
-    content_type  "text/html"
+    setup_message_email(message)
+  end
+
+  def message_schedule(message)
+    setup_message_email(message)
+  end
+  
+  protected
+  def setup_message_email(message)
+    @subject          = message.subject
+    @recipients       = message.recipient.email
+    @from             = "#{message.sender.name} <#{message.sender.email}>"
+    @sent_on          = Time.zone.now
+    @body[:user]      = message.sender
+    @body[:message]   = message
+    @body[:url]       = "thepista.local"
+    @content_type     = "text/html"
+    # @headers          = {}
   end
 
 end

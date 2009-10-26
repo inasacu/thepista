@@ -624,10 +624,10 @@ es:
      password_updated:    Su contraseña ha sido actualizada.
      password_update_and_login: Actualizar mi contraseña y entra.
      password_reset:  Restablecer contraseña
-     password_reset_instructions:  "Danos tu cuenta de correo y te mandamos las instrucciones para restablecer tu contraseña."	 
+     password_reset_instructions:  "Danos tu cuenta de correo y te mandamos las instrucciones para restablecer tu contraseña."	
+     password_resets_create: Restablecer contraseña
      password_resets_new:  Restablecer contraseña  
      password_recover_instructions: Instrucciones para recupera tu Clave!  
-     
      password_forgotten:  ¿Has olvidado tu contraseña?	
      confirmation_password: Clave Confirmación
      

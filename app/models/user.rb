@@ -42,12 +42,19 @@ class User < ActiveRecord::Base
   validates_presence_of :email
   validates_length_of   :name,      :within => NAME_RANGE_LENGTH
   
+  # RE_EMAIL_NAME   = '[\w\.%\+\-]+'                          # what you actually see in practice
+  # #RE_EMAIL_NAME   = '0-9A-Z!#\$%\&\'\*\+_/=\?^\-`\{|\}~\.' # technically allowed by RFC-2822
+  # RE_DOMAIN_HEAD  = '(?:[A-Z0-9\-]+\.)+'
+  # RE_DOMAIN_TLD   = '(?:[A-Z]{2}|com|org|net|gov|mil|biz|info|mobi|name|aero|jobs|museum)'
+  # RE_EMAIL_OK     = /\A#{RE_EMAIL_NAME}@#{RE_DOMAIN_HEAD}#{RE_DOMAIN_TLD}\z/i
+  
+  
   # validates_acceptance_of :terms_of_service
   # validates_inclusion_of :gender, :in => ['male','female'], :allow_nil => true
  
   # after_update      :log_activity_description_changed
   before_destroy    :destroy_activities, :destroy_feeds  
-  before_destroy :unmap_rpx
+  before_destroy    :unmap_rpx
 
   acts_as_solr :fields => [:name, :time_zone, :position] if use_solr?
   acts_as_authorization_subject
@@ -389,30 +396,18 @@ class User < ActiveRecord::Base
       !identity_url.blank?
     end
 
-    # def name=(name)
-    #   # self[:first_name], self[:last_name] = name.split(' ', 2)
-    #   self[:name]
-    # end
-    # 
-    # def name
-    #   # return "#{self[:first_name]} #{self[:last_name]}"
-    #   return self[:name]
-    # end
-
     def deliver_signup_notification
-      UserMailer.deliver_signup_notification(self)
+      # UserMailer.deliver_signup_notification(self)
+      UserMailer.send_later(:deliver_signup_notification, self)
     end
     
     def deliver_password_reset_instructions!  
   		reset_perishable_token!  
-  		UserMailer.deliver_password_reset_instructions(self)  
+      # UserMailer.deliver_password_reset_instructions(self) 
+      UserMailer.send_later(:deliver_password_reset_instructions, self) 
   	end
   	
     protected
-
-    # def name_must_include_first_and_last
-    #   errors.add(:name, 'must include both your first and last name.') if self[:first_name].blank? || self[:last_name].blank?
-    # end
 
     # We need to cleanup the RPX mapping from RPXNow so that if the user tries
     # to create a new account using RPX in the future, we don't think they should
@@ -452,12 +447,6 @@ class User < ActiveRecord::Base
       self.email = registration["email"] if email.blank?
       self.name = registration["nickname"] if name.blank?      
     end
-    
-    # def log_activity_description_changed
-    #   unless @old_description == description or description.blank?
-    #     add_activities(:item => self, :user => self)
-    #   end
-    # end
 
     # Clear out all activities associated with this user.
     def destroy_activities
