@@ -9,6 +9,12 @@ class Match < ActiveRecord::Base
   belongs_to      :type,      :conditions => "table_type = 'Match'"
   # belongs_to      :invite,    :class_name => "Group", :foreign_key => "invite_id"
   
+  belongs_to      :position,  
+                  :class_name => "Type", 
+                  :foreign_key => "position_id",                                 
+                  :conditions => "types.table_type = 'User'"                  
+  
+  
   # validations  
   validates_presence_of         :description
   validates_length_of           :description,                     :within => DESCRIPTION_RANGE_LENGTH

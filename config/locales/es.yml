@@ -31,12 +31,14 @@ es:
      archive_list_schedules:  Temporada Anterior
      are_you_sure:  ¿Estas Seguro? 
      at: a las   
+     attack:  Delantera
      attend_schedule: Asiste al Evento   
      aunque_estamos: Aunque estamos en fase de pruebas nos gustaria que nos dieses   
      ausente: Ausente   
      author: Author (in Spanish)   
      authorizable_id: Codigo    
      authorizable_type: Tipo    
+     available: Disponibilidad
      available_description: (Si estas disponible para jugar o si no quieres que te molesten...)   
      avatar: Gravatar   
      away_group: Fuera   
@@ -60,6 +62,7 @@ es:
      cancel_email_subscription: ¿No deseas recibir notificaciones por correo electrónico?  
 
      cannot_be_blank: no puede dejarse en blanco   
+     center:  Media
      change: Cambia Idioma   
      change_available: Cambia la Disponibilidad de   
      change_at:  Fecha de Cambio
@@ -149,12 +152,11 @@ es:
      debit_amount: A Pagar   
      debit_amount_description: Lo que debes pagar
      debits: Deudas   
-     available: Disponibilidad   
-     message_notification: Recibir Correo   
      default_reliable: Fiable   
+     defense:  Defensa
      delete_activity: Borrar Actividad    
      deleted: se ha borrado correctamente.   
-       
+
      deny: Rechazo   
      deny_player: "DENIEGA"  
      description: Detalles
@@ -464,7 +466,7 @@ es:
      member_since: Miembro desde   
      message: Mensaje
      message_description: Escribe el mensaje.
-     message_notification: Recibir Correo   
+     message_notification: Recibir Correo  
      message_notification_description: (Quieres recibir notificaciones atraves del correo electronico...)   
      messages: Mensajes   
      missing_information: Falta información   
