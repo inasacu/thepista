@@ -66,8 +66,8 @@ if roster_count
 	if current_user.is_sub_manager_of?(@schedule.group) and match.type_id == 1 and !@schedule.played?
 		
 	#	(match.group_id > 0) ? home[match.user.type.name += 1] : away[match.user.type.name += 1]
-		(match.group_id > 0) ? home["technical" => home["technical"] + 1] : away["technical"  => away["technical"] + 1]
-		(match.group_id > 0) ? home["physical"  => home["physical"] + 1] : away["physical"  => away["physical"] + 1]
+		(match.group_id > 0) ? home["technical" => home["technical"].to_i + 1] : away["technical"  => away["technical"].to_i + 1]
+		(match.group_id > 0) ? home["physical"  => home["physical"].to_i + 1] : away["physical"  => away["physical"].to_i + 1]
 		
 		
 %>		
