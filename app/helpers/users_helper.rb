@@ -128,8 +128,8 @@ module UsersHelper
     end			
   end
 
-  
-#########################
+
+  #########################
   # Return a user's image link.
   # The default is to display the user's icon linked to the profile.
   def image_link(user, options = {})
@@ -152,22 +152,27 @@ module UsersHelper
     end
     link_to(content, link, link_options)
   end
-        
+
   def user_show_photo(user, current_user)
     if user.photo_file_name
       return image_link_large(user)
-  	end
-  	
-  	 if user == current_user
-    	"#{label_name(:no_photo_for, get_the_controller)}.  #{link_to(label_name(:upload), edit_user_path(user))}"
-     else
-       return image_link_large(user)
-     end
+    end
+
+    if user == current_user
+      "#{label_name(:no_photo_for, get_the_controller)}.  #{link_to(label_name(:upload), edit_user_path(user))}"
+    else
+      return image_link_large(user)
+    end
   end	
-  
+
   def image_link_tiny(user)
     link_to(image_tag(user.avatar, options={:style => "height: 15px; width: 15px;"}), user_path(user)) if production?
     link_to(image_tag('avatar.png', options={:style => "height: 15px; width: 15px;"}), user_path(user)) unless production?
+  end
+
+  def image_link_smaller(user)
+    link_to(image_tag(user.avatar, options={:style => "height: 22px; width: 22px;"}), user_path(user)) if production?
+    link_to(image_tag('avatar.png', options={:style => "height: 22px; width: 22px;"}), user_path(user)) unless production?
   end
 
   def image_link_small(user)
@@ -184,7 +189,7 @@ module UsersHelper
     link_to(image_tag(user.avatar, options={:style => "height: 80px; width: 80px;"}), user_path(user)) if production?
     link_to(image_tag('avatar.png', options={:style => "height: 80px; width: 80px;"}), user_path(user)) unless production?
   end
-    
+
   def user_list(objects)
     list_of_objects = ""
     objects.each do |object|
@@ -192,7 +197,7 @@ module UsersHelper
     end
     return list_of_objects.chop.chop
   end
-  
+
   # Link to a user (default is by name).
   def user_link(text, user = nil, html_options = nil)
     if user.nil?

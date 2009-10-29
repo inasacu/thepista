@@ -357,8 +357,7 @@ es:
      
      goals_scored: G.M.   
      goals_scored_full: Goles Marcados
-     
-     
+          
      gravatar_not_received: No ha sido posible conseguir la información de gravatar del usuario   
      gravatar_received: Ya hemos conseguido la información del gravatar del usuario   
      group: Equipo   
@@ -391,6 +390,7 @@ es:
      High: Alto   
      home: Inicio   
      home_group: Equipo   
+     how_much_better:  "¿Cuánto Mayor?"
      i_confirm: "Seleciónando 'inicia tu sesión', confirmas que aceptas los Terminos de Servicio."   
      identity_does_not_exist: "Lo sentimos, ningun usuario con esa identidad existe."   
      if_role_is: si eres el responsable   
@@ -966,7 +966,8 @@ es:
      to_message: A   
      to_payment: Pago de   
      topic: Asunto   
-     topic: Tema   
+     topic: Tema  
+     total:  Total 
      tournament: Torneo   
      tournaments: Torneos    
      trash: Basura   

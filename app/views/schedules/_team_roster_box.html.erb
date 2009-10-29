@@ -17,12 +17,14 @@
 	home["attack"] = 0
 	home["technical"] = 0
 	home["physical"] = 0
+	home["total"] = 0
 	
 	away["defense"] = 0
 	away["center"] = 0
 	away["attack"] = 0
 	away["technical"] = 0
 	away["physical"] = 0
+	away["total"] = 0
 	
 	technical["difference"] = 0
 	technical["minimum"] = 0
@@ -37,20 +39,16 @@
 	
 if roster_count 
 %>
-      <table class="table">
+      <table class="table" id="<%= get_the_action.gsub(' ','_') %>">
 	  
 		<tr>
 		 <th class="first">&nbsp;</th>
 		 <th>&nbsp;</th>
 		 <th><%= label_name(:name) %></th>
 		 <th align="center" title = "<%= label_name(:games_played_full) %>"><%= label_name(:games_played) %></th>
-		
-		<% if current_user.is_sub_manager_of?(@schedule.group) %>
 		 <th align="center" title = "<%= label_name(:position) %>"><%= label_name(:position) %></th>
 		 <th align="center" title = "<%= label_name(:technical) %>"><%= label_name(:technical) %></th>
 		 <th align="center" title = "<%= label_name(:physical) %>"><%= label_name(:physical) %></th>
-		<% end -%>
-		
 		 <th><%= label_name(:group) %></th>
 		 <%= content_tag 'th', label_name(:score), :align =>"center" if @schedule.played? %>
 		 <th><%= label_name(:change_at) %></th>
@@ -61,7 +59,7 @@ if roster_count
        	<% the_roster.each do |match| -%>
         <tr>
 			<td>
-				<%= image_link_small match.user %>
+				<%= image_link_smaller match.user %>
 			</td>
 			
 			<%  sub_manager = match.user.is_sub_manager_of?(@schedule.group)
@@ -83,12 +81,8 @@ if roster_count
 			</td>
 			
 			<td align="left"><%= match.scorecard_played %></td>
-
-<% 
-	if current_user.is_sub_manager_of?(@schedule.group) 
-		#and match.type_id == 1 and !@schedule.played?
-		
-		case match.position_name
+<% 		
+		case match.position.name
 		when "defense"
 			(match.group_id > 0) ? home["defense"] += 1 : away["defense"] += 1
 		when "center"
@@ -96,8 +90,9 @@ if roster_count
 		when "attack"
 			(match.group_id > 0) ? home["attack"] += 1 : away["attack"] += 1
 		end
-		(match.group_id > 0) ? home["technical"] += 1 : away["technical"] += 1
-		(match.group_id > 0) ? home["physical"] += 1 : away["physical"] += 1
+		(match.group_id > 0) ? home["technical"] += match.technical : away["technical"] += match.technical
+		(match.group_id > 0) ? home["physical"] += match.physical : away["physical"] += match.physical
+		(match.group_id > 0) ? home["total"] += 1 : away["total"] += 1
 				
 		@roster = match  
 %>		
@@ -113,14 +108,6 @@ if roster_count
 		</td>
 		<td><%= link_to match.team_name(@schedule), match_team_path(:id => match.id), :title => label_name(:change_group) %></td>
 <% 
-	else 
-%>
-		<td/>
-		<td/>
-		<td/>
-		<td><%= h match.team_name(@schedule) %></td>
-<% 
-	end 
 	
 	if @schedule.played? 
 %>	
@@ -168,23 +155,42 @@ end
 end 
 -%>
 
+<% technical["difference"] = home["technical"] - away["technical"] %>
+<% physical["difference"] = home["physical"] - away["physical"] %>
+<% technical["minimum"] = ((home["technical"] > away["technical"]) ? away["technical"] : home["technical"]) %>
+<% physical["minimum"] = ((home["physical"] > away["physical"]) ? away["physical"] : home["physical"]) %>
+<% technical["percentage"] = technical["difference"].abs / technical["minimum"].to_f unless technical["minimum"] == 0 %>
+<% physical["percentage"] = physical["difference"].abs / physical["minimum"].to_f unless physical["minimum"] == 0 %>
 
     </table>
 
-	<table>
+	<table class="table" id="<%= get_the_action.gsub(' ','_') %>">
 
-		<% if current_user.is_sub_manager_of?(@schedule.group)  %>
+		<tr>
+		 <th class="first">&nbsp;</th>	
+		 <th>&nbsp;</th>
+		 <th>&nbsp;</th>
+		 <th align="center" title = "<%= label_name(:defense) %>"><%= label_name(:defense) %></th>
+		 <th align="center" title = "<%= label_name(:center) %>"><%= label_name(:center) %></th>
+		 <th align="center" title = "<%= label_name(:attack) %>"><%= label_name(:attack) %></th>
+		 <th align="center" title = "<%= label_name(:technical) %>"><%= label_name(:technical) %></th>
+		 <th align="center" title = "<%= label_name(:physical) %>"><%= label_name(:physical) %></th>
+		 <th align="center" title = "<%= label_name(:total) %>"><%= label_name(:total) %></th>
+		 <th>&nbsp;</th>
+		 <th>&nbsp;</th>
+		 <th class="last">&nbsp;</th>
+		</tr>
+		
 		<tr>
 			<td class="first">&nbsp;</td>
-			<td>&nbsp;</td>
-			<th>home</td>
-			<td>&nbsp;</td>
+			 <td>&nbsp;</td>
+			<td><%= link_to @schedule.home_group, group_path(@schedule.group) %></td>
 			<td><%= home["defense"] %></td>
 			<td><%= home["center"] %></td>
 			<td><%= home["attack"] %></td>
 			<td><%= home["technical"] %></td>
 			<td><%= home["physical"] %></td>
-			<td>&nbsp;</td>
+			<td><%= home["total"] %></td>
 			<td>&nbsp;</td>
 			<td>&nbsp;</td>
 			<td class="last">&nbsp;</td>
@@ -192,45 +198,65 @@ end
 
 		<tr>
 			<td class="first">&nbsp;</td>
+			 <td>&nbsp;</td>
+			<td><%= link_to @schedule.away_group, group_path(@schedule.group) %></td>
+			<td><%= away["defense"] %></td>
+			<td><%= away["center"] %></td>
+			<td><%= away["attack"] %></td>
+			<td><%= away["technical"] %></td>
+			<td><%= away["physical"] %></td>
+			<td><%= away["total"] %></td>
 			<td>&nbsp;</td>
-			<th>differences</td>
 			<td>&nbsp;</td>
+			<td class="last">&nbsp;</td>
+		</tr>
+
+		<tr>
+			<td class="first">&nbsp;</td>
+			 <td>&nbsp;</td>
+			<td><strong>Diff.</strong></td>
 			<td><%= home["defense"]-away["defense"] %></td>
 			<td><%= home["center"]-away["center"] %></td>
 			<td><%= home["attack"]-away["attack"] %></td>
-			<td><%= home["technical"]-away["technical"] %></td>
-			<td><%= home["physical"]-away["physical"] %></td>
+			<td><%= technical["difference"] %></td>
+			<td><%= physical["difference"] %></td>
 			<td>&nbsp;</td>
 			<td>&nbsp;</td>
 			<td>&nbsp;</td>
 			<td class="last">&nbsp;</td>
 		</tr>
-		
+								
 		<tr>
 		 <td class="first">&nbsp;</td>
 		 <td>&nbsp;</td>
-		 <th>percentages</td>
+		 <td><strong>%</strong></td>
 		 <td>&nbsp;</td>
 		 <td>&nbsp;</td>
 		 <td>&nbsp;</td>
-		 <td>&nbsp;</td>
-		 <td><%= technical["difference"] = home["technical"]-away["technical"] %></td>
-		 <td><%= physical["difference"] = home["physical"]-away["physical"] %></td>
+		 <td><%= sprintf( "%0.00f", technical["difference"].abs) %><%= "%" %></td>
+		 <td><%= sprintf( "%0.00f", physical["difference"].abs) %><%= "%" %></td>
 		 <td>&nbsp;</td>
 		 <td>&nbsp;</td>
 		 <td>&nbsp;</td>
 		 <td class="last">&nbsp;</td>
 		</tr>
-		<% technical["difference"] = home["technical"]-away["technical"] %>
-		<% physical["difference"] = home["physical"]-away["physical"] %>
-
-		<% technical["minimum"] = ((home["technical"] > away["technical"]) ? away["technical"] : home["technical"]) %>
-		<% physical["minimum"] = ((home["physical"] > away["physical"]) ? away["physical"] : home["physical"]) %>
-
-		<%# technical["percentage"] = technical["difference"].abs / technical["minimum"] %>
-		<%# physical["percentage"] = technical["difference"].abs / physical["minimum"] %>
+				
+		<tr>
+		 <td class="first">&nbsp;</td>
+		 <td>&nbsp;</td>
+		 <td><%= label_name(:how_much_better) %></td>
+		 <td>&nbsp;</td>
+		 <td>&nbsp;</td>
+		 <td>&nbsp;</td>
+		 <td><%= sprintf( "%0.00f", technical["percentage"]*100) %><%= "%" %></td>
+		 <td><%= sprintf( "%0.00f", physical["percentage"]*100) %><%= "%" %></td>
+		 <td>&nbsp;</td>
+		 <td>&nbsp;</td>
+		 <td>&nbsp;</td>
+		 <td class="last">&nbsp;</td>
 		</tr>
-		<% end -%>
+
+
 
 		</table>
 <%

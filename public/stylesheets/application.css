@@ -126,6 +126,14 @@ text_area.textfield {
   text-align: right;
 }
 
+#team_roster td{
+	padding: 4px 10px;
+}
+
+#scorecard td{
+	padding: 4px 10px;
+}
+
 .table td.puntos { 
 	color: darkblue; 
 	font-weight: bold; 

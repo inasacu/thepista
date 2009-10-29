@@ -143,7 +143,7 @@ class SchedulesController < ApplicationController
       return
     end
 
-    technical = params[:roster][:physical]
+    physical = params[:roster][:physical]
     if @match.update_attributes('physical' => physical)
       flash[:notice] = I18n.t(:successful_update)
     end
