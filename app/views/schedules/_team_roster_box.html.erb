@@ -1,19 +1,39 @@
+<%= stylesheet_link_tag "in_place_styles"  %>
+<% inplace_error_div %>
+
 <% 
 	counter = 0 
 	roster_count = (object_counter(the_roster) > 0)
 
 	type_id = [1, 4]
 	
-	defense, center, attack, technical, physical = 0, 0, 0, 0, 0
-	difference, minimum, percentage = 0.0, 0.0, 0.0
-	home = %w(defense, center, attack, technical, physical)
-	away = %w(defense, center, attack, technical, physical)
-	technical = %w(difference, minimum, percentage)
-	physical = %w(difference, minimum, percentage)
+	home = {}
+	away = {}
+	technical = {}
+	physical = {}
+		
+	home["defense"] = 0
+	home["center"] = 0
+	home["attack"] = 0
+	home["technical"] = 0
+	home["physical"] = 0
 	
+	away["defense"] = 0
+	away["center"] = 0
+	away["attack"] = 0
+	away["technical"] = 0
+	away["physical"] = 0
+	
+	technical["difference"] = 0
+	technical["minimum"] = 0
+	technical["percentage"] = 0.0
+		
+	physical["difference"] = 0
+	physical["minimum"] = 0
+	physical["percentage"] = 0.0
 		
 	position_id = [18, 19, 20]
-	
+	@positions = Type.find(:all, :conditions => "table_type = 'User'", :order => "id")
 	
 if roster_count 
 %>
@@ -24,11 +44,13 @@ if roster_count
 		 <th>&nbsp;</th>
 		 <th><%= label_name(:name) %></th>
 		 <th align="center" title = "<%= label_name(:games_played_full) %>"><%= label_name(:games_played) %></th>
-		 <th align="center" title = "<%= label_name(:defense) %>"><%= label_name(:defense) %></th>
-		 <th align="center" title = "<%= label_name(:center) %>"><%= label_name(:center) %></th>
-		 <th align="center" title = "<%= label_name(:attack) %>"><%= label_name(:attack) %></th>
+		
+		<% if current_user.is_sub_manager_of?(@schedule.group) %>
+		 <th align="center" title = "<%= label_name(:position) %>"><%= label_name(:position) %></th>
 		 <th align="center" title = "<%= label_name(:technical) %>"><%= label_name(:technical) %></th>
 		 <th align="center" title = "<%= label_name(:physical) %>"><%= label_name(:physical) %></th>
+		<% end -%>
+		
 		 <th><%= label_name(:group) %></th>
 		 <%= content_tag 'th', label_name(:score), :align =>"center" if @schedule.played? %>
 		 <th><%= label_name(:change_at) %></th>
@@ -63,25 +85,36 @@ if roster_count
 			<td align="left"><%= match.scorecard_played %></td>
 
 <% 
-	if current_user.is_sub_manager_of?(@schedule.group) and match.type_id == 1 and !@schedule.played?
+	if current_user.is_sub_manager_of?(@schedule.group) 
+		#and match.type_id == 1 and !@schedule.played?
 		
-	#	(match.group_id > 0) ? home[match.user.type.name += 1] : away[match.user.type.name += 1]
-		#(match.group_id > 0) ? home["technical" => home["technical"].to_i + 1] : away["technical"  => away["technical"].to_i + 1]
-	#	(match.group_id > 0) ? home["physical"  => home["physical"].to_i + 1] : away["physical"  => away["physical"].to_i + 1]
-		
-		
+		case match.position_name
+		when "defense"
+			(match.group_id > 0) ? home["defense"] += 1 : away["defense"] += 1
+		when "center"
+			(match.group_id > 0) ? home["center"] += 1 : away["center"] += 1
+		when "attack"
+			(match.group_id > 0) ? home["attack"] += 1 : away["attack"] += 1
+		end
+		(match.group_id > 0) ? home["technical"] += 1 : away["technical"] += 1
+		(match.group_id > 0) ? home["physical"] += 1 : away["physical"] += 1
+				
+		@roster = match  
 %>		
-		<td/>
-		<td/>
-		<td/>
-		<td/>
-		<td/>
+		<td>			
+		    <%= in_place_select :roster, :position_name, :choices => @positions.map { |e| [I18n.t(e.name), e.id] } %>
+		</td>
+	
+		<td align="center">
+			<%= in_place_text_field :roster, :technical, {:cols => 1} %>
+		</td>		
+		<td align="center">			
+			<%= in_place_text_field :roster, :physical, {:cols => 1} %>			
+		</td>
 		<td><%= link_to match.team_name(@schedule), match_team_path(:id => match.id), :title => label_name(:change_group) %></td>
 <% 
 	else 
 %>
-		<td/>
-		<td/>
 		<td/>
 		<td/>
 		<td/>
@@ -136,12 +169,70 @@ end
 -%>
 
 
-
-
-
-
-
     </table>
+
+	<table>
+
+		<% if current_user.is_sub_manager_of?(@schedule.group)  %>
+		<tr>
+			<td class="first">&nbsp;</td>
+			<td>&nbsp;</td>
+			<th>home</td>
+			<td>&nbsp;</td>
+			<td><%= home["defense"] %></td>
+			<td><%= home["center"] %></td>
+			<td><%= home["attack"] %></td>
+			<td><%= home["technical"] %></td>
+			<td><%= home["physical"] %></td>
+			<td>&nbsp;</td>
+			<td>&nbsp;</td>
+			<td>&nbsp;</td>
+			<td class="last">&nbsp;</td>
+		</tr>
+
+		<tr>
+			<td class="first">&nbsp;</td>
+			<td>&nbsp;</td>
+			<th>differences</td>
+			<td>&nbsp;</td>
+			<td><%= home["defense"]-away["defense"] %></td>
+			<td><%= home["center"]-away["center"] %></td>
+			<td><%= home["attack"]-away["attack"] %></td>
+			<td><%= home["technical"]-away["technical"] %></td>
+			<td><%= home["physical"]-away["physical"] %></td>
+			<td>&nbsp;</td>
+			<td>&nbsp;</td>
+			<td>&nbsp;</td>
+			<td class="last">&nbsp;</td>
+		</tr>
+		
+		<tr>
+		 <td class="first">&nbsp;</td>
+		 <td>&nbsp;</td>
+		 <th>percentages</td>
+		 <td>&nbsp;</td>
+		 <td>&nbsp;</td>
+		 <td>&nbsp;</td>
+		 <td>&nbsp;</td>
+		 <td><%= technical["difference"] = home["technical"]-away["technical"] %></td>
+		 <td><%= physical["difference"] = home["physical"]-away["physical"] %></td>
+		 <td>&nbsp;</td>
+		 <td>&nbsp;</td>
+		 <td>&nbsp;</td>
+		 <td class="last">&nbsp;</td>
+		</tr>
+		<% technical["difference"] = home["technical"]-away["technical"] %>
+		<% physical["difference"] = home["physical"]-away["physical"] %>
+
+		<% technical["minimum"] = ((home["technical"] > away["technical"]) ? away["technical"] : home["technical"]) %>
+		<% physical["minimum"] = ((home["physical"] > away["physical"]) ? away["physical"] : home["physical"]) %>
+
+		<%# technical["percentage"] = technical["difference"].abs / technical["minimum"] %>
+		<%# physical["percentage"] = technical["difference"].abs / physical["minimum"] %>
+		</tr>
+		<% end -%>
+
+		</table>
 <%
 end
 %>

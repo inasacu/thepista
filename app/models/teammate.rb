@@ -44,7 +44,7 @@ class Teammate < ActiveRecord::Base
     
     Match.set_archive_flag(approver, group, false)    
   end
-  
+      
   # Return true if the users are (possibly pending) teammates.
   def self.exists?(user, manager)
     not find_by_user_id_and_manager_id(user, manager).nil?

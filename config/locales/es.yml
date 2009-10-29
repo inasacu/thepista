@@ -84,7 +84,8 @@ es:
      check_out_groups: Ver Equipos   
      check_out_schedules: Ver Eventos   
      check_out_users: Ver Jugadores   
-     city: Ciudad   
+     city: Ciudad  
+     click_to_edit:  "Haz clic para editar!" 
      close: Cerrar   
      code: Codigo 
      conditions: Condiciones   
@@ -98,7 +99,7 @@ es:
      concept: Concepto
      concept_description:  Concepto   
      contact: Contacto   
-     contact: Contacto   
+     contact_us: contáctenos 
      convocado: Convocado
      convocados: Convocados
      could_not_log_you: No se ha podido iniciar la sesión en la que como   
@@ -817,7 +818,8 @@ es:
      send_announcement: Manda una Anuncio   
      send_credit: Manda un Credito   
      send_debit: Manda una Deuda   
-     send_description: Manda un Detalles   
+     send_description: Manda un Detalles 
+     send_email_to: Manda un correo a
      send_fee: Manda las Tasas   
      send_information: Manda un Detalles   
      send_invitation: Manda una Invitación   
@@ -1087,7 +1089,7 @@ es:
      message_notification_description: "" 
      gender_description: Genero
      birth_at_description:  Fecha de Nacimiento
-     position:  Posición en el Campo
+     position:  Posición
      position_description:  Posición en el Campo
      technical:  Nivel Tecnico
      technical_description:  Nivel tecnico

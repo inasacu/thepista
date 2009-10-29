@@ -359,9 +359,9 @@ class User < ActiveRecord::Base
                  :order => "name")
     end
     
-    def create_matches(schedule, group, user)
-      Match.create_schedule_group_user_match(schedule, group, user)
-    end
+    # def create_matches(schedule, group, user)
+    #   Match.create_schedule_group_user_match(schedule, group, user)
+    # end
 
     def create_user_fees(schedule)
       Fee.create_user_fees(schedule)

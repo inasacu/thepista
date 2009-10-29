@@ -166,19 +166,23 @@ module UsersHelper
   end	
   
   def image_link_tiny(user)
-    link_to(image_tag(user.avatar, options={:style => "height: 15px; width: 15px;"}), user_path(user))
+    link_to(image_tag(user.avatar, options={:style => "height: 15px; width: 15px;"}), user_path(user)) if production?
+    link_to(image_tag('avatar.png', options={:style => "height: 15px; width: 15px;"}), user_path(user)) unless production?
   end
-  
+
   def image_link_small(user)
-    link_to(image_tag(user.avatar, options={:style => "height: 30px; width: 30px;"}), user_path(user))
+    link_to(image_tag(user.avatar, options={:style => "height: 30px; width: 30px;"}), user_path(user)) if production?
+    link_to(image_tag('avatar.png', options={:style => "height: 30px; width: 30px;"}), user_path(user)) unless production?
   end
 
   def image_link_medium(user)
-    link_to(image_tag(user.avatar, options={:style => "height: 55px; width: 55px;"}), user_path(user))
+    link_to(image_tag(user.avatar, options={:style => "height: 55px; width: 55px;"}), user_path(user)) if production?
+    link_to(image_tag('avatar.png', options={:style => "height: 55px; width: 55px;"}), user_path(user)) unless production?
   end
 
   def image_link_large(user)
-    link_to(image_tag(user.avatar, options={:style => "height: 80px; width: 80px;"}), user_path(user))
+    link_to(image_tag(user.avatar, options={:style => "height: 80px; width: 80px;"}), user_path(user)) if production?
+    link_to(image_tag('avatar.png', options={:style => "height: 80px; width: 80px;"}), user_path(user)) unless production?
   end
     
   def user_list(objects)

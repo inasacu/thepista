@@ -16,16 +16,20 @@ class Match < ActiveRecord::Base
   
   
   # validations  
-  validates_presence_of         :description
-  validates_length_of           :description,                     :within => DESCRIPTION_RANGE_LENGTH
+  # validates_presence_of         :description
+  # validates_length_of           :description,                     :within => DESCRIPTION_RANGE_LENGTH
   
   # variables to access
   attr_accessible :name, :schedule_id, :user_id, :group_id, :invite_id, :group_score, :invite_score, :goals_scored
   attr_accessible :roster_position, :played, :available, :one_x_two, :user_x_two, :type_id, :status_at, :description
+  attr_accessible :position_id, :technical, :physical
+  
+  def position_name
+    I18n.t(self.position.name)
+  end
   
   def team_name(schedule)
     (self.group_id > 0) ? schedule.home_group : schedule.away_group 
-    # schedule.home_group   
   end
   
   def win_loose_draw_label       
@@ -137,19 +141,27 @@ class Match < ActiveRecord::Base
   # create a record in the match table for teammates in group team
   def self.create_schedule_match(schedule)
     schedule.group.users.each do |user|
-      type_id = 3     # set to ausente
+      type_id = 3         # set to ausente
+      position_id = 18    # set user position to center field 
 
       self.create!(:name => schedule.concept, :description => schedule.description, 
                    :schedule_id => schedule.id, :group_id => schedule.group_id, 
                    :user_id => user.id, :available => user.available, 
-                   :type_id => type_id, :played => schedule.played) if self.schedule_group_user_exists?(schedule, user)
+                   :type_id => type_id, :position_id => position_id,
+                   :played => schedule.played) if self.schedule_group_user_exists?(schedule, user)
     end
   end
 
-  def self.create_schedule_group_user_match(schedule, user)
-    self.create!(:schedule_id => schedule.id, :group_id => schedule.group.id, 
-    :user_id => user.id) if self.schedule_group_user_exists?(schedule, user)
-  end
+  # def self.create_schedule_group_user_match(schedule, user)
+  #   type_id = 3         # set to ausente
+  #   position_id = 18    # set user position to center field 
+  # 
+  #   self.create!(:schedule_id => schedule.id, 
+  #                :group_id => schedule.group.id, 
+  #                :user_id => user.id, 
+  #                :type_id => type_id, 
+  #                :position_id => position_id) if self.schedule_group_user_exists?(schedule, user)
+  # end
 
 	# return ture if the schedule group user conbination is nil
    def self.schedule_group_user_exists?(schedule, user)

@@ -1,7 +1,10 @@
 class MatchesController < ApplicationController
   before_filter :require_user
   before_filter :get_match_and_user_x_two, :only =>[:set_status, :set_team]
-  
+
+  # in_place_edit_for :match, :technical
+  # in_place_edit_for :roster, :physical
+    
   def index
     redirect_to :controller => 'schedules', :action => 'index'
   end
@@ -28,14 +31,40 @@ class MatchesController < ApplicationController
     if @match.update_attributes(params[:match])
       Match.save_matches(@match, params[:match][:match_attributes]) if params[:match][:match_attributes]
       Match.update_match_details(@match, current_user)
-      
+
       flash[:notice] = I18n.t(:successful_update)
       redirect_to :controller => 'schedules', :action => 'show', :id => @match.schedule
     else
       render :action => 'edit'
     end
-  end  
-  
+  end 
+
+  # def set_match_technical
+  #   @match = Match.find(params[:id])
+  #   unless current_user.is_manager_of?(@match.schedule.group)
+  #     flash[:warning] = I18n.t(:unauthorized)
+  #     redirect_back_or_default('/index')
+  #     return
+  #   end
+  #   if @match.update_attributes(params[:match])
+  #     flash[:notice] = I18n.t(:successful_update)
+  #   end
+  #   redirect_back_or_default('/index')
+  # end
+
+  # def set_match_physical
+  #   @match = Match.find(params[:id])
+  #   unless current_user.is_manager_of?(@match.schedule.group)
+  #     flash[:warning] = I18n.t(:unauthorized)
+  #     redirect_back_or_default('/index')
+  #     return
+  #   end
+  #   if @match.update_attributes(params[:match])
+  #     flash[:notice] = I18n.t(:successful_update)
+  #   end
+  #   redirect_back_or_default('/index')
+  # end
+
   def set_status
     @type = Type.find(params[:type])
 
@@ -72,7 +101,7 @@ class MatchesController < ApplicationController
     played = (@match.type_id.to_i == 1 and !@match.group_score.nil? and !@match.invite_score.nil?)
 
     if @match.update_attributes(:group_id => @match.invite_id, :invite_id => @match.group_id, 
-                                :played => played, :user_x_two => @user_x_two)
+      :played => played, :user_x_two => @user_x_two)
 
       Scorecard.calculate_user_played_assigned_scorecard(@match.user, @match.schedule.group)
       flash[:notice] = I18n.t(:change_group)

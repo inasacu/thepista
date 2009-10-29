@@ -117,6 +117,52 @@ class SchedulesController < ApplicationController
       flash[:notice] = I18n.t(:successful_destroy)
       redirect_to :action => 'index'  
   end
+  
+  def set_roster_technical
+      @match = Match.find(params[:id])
+      
+      unless current_user.is_manager_of?(@match.schedule.group)
+        flash[:warning] = I18n.t(:unauthorized)
+        redirect_back_or_default('/index')
+        return
+      end
+      
+      technical = params[:roster][:technical]
+      if @match.update_attributes('technical' => technical)
+        flash[:notice] = I18n.t(:successful_update)
+      end
+      redirect_back_or_default('/index')
+  end
+
+  def set_roster_physical
+    @match = Match.find(params[:id])
+
+    unless current_user.is_manager_of?(@match.schedule.group)
+      flash[:warning] = I18n.t(:unauthorized)
+      redirect_back_or_default('/index')
+      return
+    end
+
+    technical = params[:roster][:physical]
+    if @match.update_attributes('physical' => physical)
+      flash[:notice] = I18n.t(:successful_update)
+    end
+    redirect_back_or_default('/index')
+  end
+
+  def set_roster_position_name
+    @match = Match.find(params[:id])
+    unless current_user.is_manager_of?(@match.schedule.group)
+      flash[:warning] = I18n.t(:unauthorized)
+      redirect_back_or_default('/index')
+      return
+    end
+    @type = Type.find(params[:roster][:position_name])
+    if @match.update_attributes('position_id' => @type.id)
+      flash[:notice] = I18n.t(:successful_update)
+    end
+    redirect_back_or_default('/index')
+  end
 
   def set_public
     if @schedule.update_attribute("public", !@schedule.public)
