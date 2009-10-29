@@ -18,9 +18,11 @@
 	end 
 %>
 
-<% if current_user.has_pending_petition?(current_user) %>
+<% unless current_user.is_member_of?(@group)  
+	unless current_user.has_pending_petition?(current_user) %>
 <li class="<%= get_active('petition') %>"><%= link_to(label_name(:petitions), petition_path)  %></li>
-<% end %>
+<% end
+end %>
 
 </ul>
 
