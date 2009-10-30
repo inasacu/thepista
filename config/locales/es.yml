@@ -1140,7 +1140,18 @@ es:
      invitation_to_join: te manda una solicitud para unirte a HayPista  
      invitation_signup_link:  Visite este enlace para registrarse
      invitation_notice: HayPista no almacena ni tu cuenta de correo ni tu contraseña.
-         
+
+     # ie_no_more
+     you_upgrade_browser:  Es posible que desee actualizar su navegador.
+     you_are_using_ie6:  "Actualmente, está usando Internet Explorer 6 para navegar este sitio. 
+                            Este sitio funcionara mejor con otros navegadores mas avanzados..."
+     switch_to_safari:  Cambiar a Safari
+     switch_to_firefox: Cambiar a Firefox
+     switch_to_chrome: Cambiar a Chrome
+     upgrade_to_ie8:  Actualiza a Internet Explorer 8
+     please_read_this:  "Por favor lea esto!"
+     ie_no_more_country: es-ES
+     
      entries_teammate: Mis Compañeros de Equipo
      entries_my_wall: Mi Muro
      entries_option:  Opciones del Muro

@@ -47,6 +47,9 @@
 	<%= render :partial => "shared/wrapper" unless login_session %>	
 	<%= render :partial => "shared/box" if login_session %>	
 	
+  	<%= javascript_include_tag "ie_no_more.js" %>
+	<%= smack_down_ie6 %>
+	
   </div>
   
   <%= render :partial => 'utilities/uservoice' %>
