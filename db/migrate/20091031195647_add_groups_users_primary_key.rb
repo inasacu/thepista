@@ -4,6 +4,6 @@ class AddGroupsUsersPrimaryKey < ActiveRecord::Migration
   end
 
   def self.down
-    remove_column :groups_users, :id, :primary_key
+    remove_column :groups_users, :id
   end
 end
