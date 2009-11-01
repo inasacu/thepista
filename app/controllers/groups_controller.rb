@@ -40,7 +40,7 @@ class GroupsController < ApplicationController
   # @group.description.gsub!(/\r?\n/, "<br>")
   		
     if @group.save and @group.create_group_details(current_user)
-      flash[:notice] = I18n.t(:successfully_created)
+      flash[:notice] = I18n.t(:successful_create)
       redirect_to @group
     else
       render :action => 'new'
