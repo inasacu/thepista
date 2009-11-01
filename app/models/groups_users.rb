@@ -1,10 +1,9 @@
 class GroupsUsers < ActiveRecord::Base
 
-  # set_primary_key :group_id
-  # set_primary_key :user_id
+  set_primary_keys :user_id, :group_id 
   
   # variables to access
-  attr_accessible :group_id, :user_id
+  # attr_accessible :group_id, :user_id
   
   # record a group join
   def self.join_team(user, group)

@@ -1,5 +1,7 @@
 class RolesUsers < ActiveRecord::Base
   
+  set_primary_keys :user_id, :role_id 
+  
   # belongs_to      :the_user_role, :class_name => "User", :foreign_key => "user_id"
   
   # remove all roles_users not in roles
