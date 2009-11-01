@@ -1,10 +1,5 @@
 class GroupsMarkers < ActiveRecord::Base
   
-  set_primary_keys :group_id, :marker_id 
-  
-  # variables to access
-  # attr_accessible :group_id, :marker_id
-  
   # record a marker join
   def self.join_marker(group, marker)
     self.create!(:group_id => group.id, :marker_id => marker.id) if self.exists?(marker, group)
