@@ -9,6 +9,7 @@ class Post < ActiveRecord::Base
   validates_presence_of         :body
   validates_length_of           :body,                         :within => BODY_RANGE_LENGTH
 
+  before_create :format_body
   after_create  :log_activity
 
   # method section
@@ -24,6 +25,11 @@ class Post < ActiveRecord::Base
   end
 
   private
+  
+  def format_body
+    self.body.gsub!(/\r?\n/, "<br>")
+  end
+  
   def log_activity
     add_activities(:item => self, :user => self.user, :include_user => false)
   end

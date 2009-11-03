@@ -9,6 +9,7 @@ class Comment < ActiveRecord::Base
   validates_presence_of   :body
   validates_length_of     :body,            :within => BODY_RANGE_LENGTH
 
+  before_create   :format_body
   after_create    :log_activity, :send_message_blog
   
   # method section
@@ -39,6 +40,11 @@ class Comment < ActiveRecord::Base
   end
 
   private
+  
+  def format_body
+    self.body.gsub!(/\r?\n/, "<br>")
+  end
+  
   def log_activity
     add_activities(:item => self, :user => self.user) unless (self.user.nil?)
   end

@@ -1,7 +1,7 @@
 class Match < ActiveRecord::Base
     
   acts_as_rateable
-  
+    
   belongs_to      :user
   belongs_to      :group
   belongs_to      :schedule
@@ -13,9 +13,11 @@ class Match < ActiveRecord::Base
                   :class_name => "Type", 
                   :foreign_key => "position_id",                                 
                   :conditions => "types.table_type = 'User'"                  
-  
-  
+    
   # validations  
+  validates_numericality_of :technical,    :greater_than_or_equal_to => 0, :less_than_or_equal_to => 5
+  validates_numericality_of :physical,     :greater_than_or_equal_to => 0, :less_than_or_equal_to => 5
+  
   # validates_presence_of         :description
   # validates_length_of           :description,                     :within => DESCRIPTION_RANGE_LENGTH
   
@@ -23,6 +25,8 @@ class Match < ActiveRecord::Base
   attr_accessible :name, :schedule_id, :user_id, :group_id, :invite_id, :group_score, :invite_score, :goals_scored
   attr_accessible :roster_position, :played, :available, :one_x_two, :user_x_two, :type_id, :status_at, :description
   attr_accessible :position_id, :technical, :physical
+  
+  before_create   :format_description
   
   def position_name
     I18n.t(self.position.name)
@@ -160,6 +164,10 @@ class Match < ActiveRecord::Base
                    :type_id => type_id, :position_id => position_id, :technical => technical, :physical => physical,
                    :played => schedule.played) if self.schedule_group_user_exists?(schedule, user)
     end
+  end
+  
+  def format_description
+    self.description.gsub!(/\r?\n/, "<br>")
   end
 
   # def self.create_schedule_group_user_match(schedule, user)

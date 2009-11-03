@@ -76,6 +76,8 @@ class Group < ActiveRecord::Base
 
   has_one       :blog
 
+  before_create :format_description, :format_conditions
+  before_update :format_description, :format_conditions
   after_create  :create_group_blog_details, :create_group_marker, :create_group_scorecard
 
   # # method section
@@ -143,7 +145,14 @@ class Group < ActiveRecord::Base
     Scorecard.create_user_scorecard(user, self)    
     GroupsUsers.join_team(user, self)
   end
-
+  
+  def format_description
+    self.description.gsub!(/\r?\n/, "<br>")
+  end
+  
+  def format_conditions
+    self.conditions.gsub!(/\r?\n/, "<br>")
+  end
 
 private
   def create_group_marker

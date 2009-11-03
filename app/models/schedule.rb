@@ -77,7 +77,9 @@ class Schedule < ActiveRecord::Base
   
   
   # after_update        :save_matches
-  before_update       :set_time_to_utc
+  before_create       :format_description
+  before_update       :set_time_to_utc, :format_description
+  
   after_create        :log_activity
   after_update        :log_activity_played
 
@@ -207,6 +209,11 @@ class Schedule < ActiveRecord::Base
   end
   
   private
+  
+  def format_description
+    self.description.gsub!(/\r?\n/, "<br>")
+  end
+  
   def set_time_to_utc
     # self.starts_at = self.starts_at.utc
     # self.ends_at = self.ends_at.utc

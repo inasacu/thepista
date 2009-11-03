@@ -119,7 +119,8 @@ class User < ActiveRecord::Base
                   :conditions => {:created_at => LAST_THREE_DAYS},
                   :order => "created_at DESC",
                   :limit => 1
-      
+    
+    before_update   :format_description
     after_create    :create_user_blog_details, :deliver_signup_notification
     
     # method section
@@ -139,24 +140,6 @@ class User < ActiveRecord::Base
       self.groups.count > 0
     end
 
-    # def self.recent_activities(user)
-    #   find(:all, :select => "users.id",            
-    #        :joins => "INNER JOIN activities ON users.id = activities.user_id INNER JOIN groups_users on users.id = groups_users.user_id",
-    #        :conditions => ["groups_users.group_id in (?) and activities.created_at >= ?", user.groups, PAST_THREE_DAYS],
-    #        :group => 'users.id, activities.created_at', 
-    #        :order => 'activities.created_at DESC')
-    # end
-    
-
-    # 
-    #   # def self.search(search)
-    #   #   if search
-    #   #     find_by_solr("#{search}"])
-    #   #   else
-    #   #     find(:all)
-    #   #   end
-    #   # end
-    #   
       
       def my_groups
         @my_groups = []
@@ -441,6 +424,10 @@ class User < ActiveRecord::Base
     
 
     private
+
+    def format_description
+      self.description.gsub!(/\r?\n/, "<br>")
+    end
 
     # openid from authlogic authentication
     def map_openid_registration(registration)
