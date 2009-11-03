@@ -1,6 +1,9 @@
 namespace :sqlite3 do
   desc 'Build the sqlite test databases'
   task :build_databases => :load_connection do 
+    
+    PROJECT_ROOT = File.join(File.dirname(__FILE__), '..')
+    
     file = File.join(SCHEMA_PATH, 'sqlite.sql')
     dbfile = File.join(PROJECT_ROOT, ENV['cpk_adapter_options_str'])
     cmd = "mkdir -p #{File.dirname(dbfile)}"

@@ -17,6 +17,8 @@ namespace :oracle do
   task :rebuild_databases => [:drop_databases, :build_databases]
   
   task :load_connection do
+    
+    PROJECT_ROOT = File.join(File.dirname(__FILE__), '..')
     require File.join(PROJECT_ROOT, %w[lib adapter_helper oracle])
     spec = AdapterHelper::Oracle.load_connection_from_env
     ENV['cpk_adapter_options_str'] = "#{spec[:username]}/#{spec[:password]}@#{spec[:host]}"

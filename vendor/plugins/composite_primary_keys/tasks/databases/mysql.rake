@@ -17,7 +17,8 @@ namespace :mysql do
   desc 'Rebuild the MySQL test databases'
   task :rebuild_databases => [:drop_databases, :build_databases]
   
-  task :load_connection do
+  task :load_connection do    
+    PROJECT_ROOT = File.join(File.dirname(__FILE__), '..')
     require File.join(PROJECT_ROOT, %w[lib adapter_helper mysql])
     spec = AdapterHelper::MySQL.load_connection_from_env
     options = {}
