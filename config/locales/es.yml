@@ -813,7 +813,8 @@ es:
      second_team: Segundo Equipo   
      second_team_description: "(Si jugais entre el mismo equipo, pon algun significativo para diferenciar a la hora de hacer equipos...) "  
      select: Seleccióna   
-     select_venue: Nuevo Centro Deportivo   
+     select_venue: Nuevo Centro Deportivo  
+     select_contacts:  Seleccione los contactos que quiere invitar a partir de la esta lista. 
      self_description_description: (Escribe algo sobre ti...)   
      send_announcement: Manda una Anuncio   
      send_credit: Manda un Credito   

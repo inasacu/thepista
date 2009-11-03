@@ -26,6 +26,17 @@
 			<div class="group">
 			  <%= f.label :your_email, label_name('your_email'), :class => :label %>
 			  <input type="text" class="inputtext" id="login" name="login" value="" onblur="update_ms_login();" />
+				
+					&nbsp;@
+
+					<select name="from" id="from">
+					<option value="">Select Email Service</option>
+					<option value="gmail">Gmail</option>
+					<option value="yahoo">Yahoo</option>
+					<option value="hotmail">Hotmail</option>
+					<option value="hotmail">Flickr</option>
+					</select>
+				
 			</div>
 			
 			<div class="group">
@@ -33,79 +44,9 @@
 			  <input type="password" class="inputpassword" id="password" name="password" value=""autocomplete=off />	
 			</div>
 			
-			
-			
-			<!-- &nbsp;@
-						 
-						  <select class="select" id="domain" name="domain" onchange="checkDomain(event);check_ms_login(event);">
-						    <option value="0" selected="selected">select...</option>
-						    <option value="1">hotmail.com</option>
-						    <option value="8">yahoo.es</option>
-						    <option value="2">yahoo.com</option>
-						    <option value="1">gmail.com</option>
-						    <option value="35">yahoo.com.mx</option>
-						    <option value="32">yahoo.com.ar</option>
-						    <option value="12">live.com </option>
-						    <option value="5">msn.com</option>
-						    <option value="3">aol.com</option>
-						    <option value="6">hotmail.co.uk</option>
-						  <optgroup label="-----------------">
-						    <option value="7">yahoo.co.uk</option>
-						    <option value="8">yahoo.ca</option>
-						    <option value="13">comcast.net</option>
-						    <option value="16">bellsouth.net</option>
-						    <option value="15">web.de</option>
-						    <option value="17">gmx.de</option>
-						    <option value="18">gmx.net</option>
-						    <option value="23">yahoo.fr</option>
-						    <option value="24">yahoo.de</option>
-						    <option value="42">hotmail.de</option>
-						    <option value="43">hotmail.fr</option>
-						    <option value="44">googlemail.com</option>
-						    <option value="45">gmx.at</option>
-						    <option value="46">gmx.ch</option>
-						  </optgroup>
-						  </select> -->
-			
 		  </div> 
 		  
-		  <div class="column right"> 
-		  
-			<!-- <div class="group"> 
-			  <label class="label">Select</label> 
-			  <select><option value="1">Choose...</option></select> 
-			</div>  -->
-			
-			<!-- <div class="group"> 
-			
-			  <label class="label">Check box</label> 
-			  
-			  <div> 
-				<input type="checkbox" name="checkbox" id="checkbox_1" class="checkbox" value="1" /> 
-					<label for="checkbox_1" class="checkbox">Option 1</label> 
-			  </div> 
-			  
-			  <div> 
-				<input type="checkbox" name="checkbox" id="checkbox_2" class="checkbox" value="2" /> 
-					<label for="checkbox_2" class="checkbox">Option 2</label> 
-			  </div> 
-			  
-			</div> 
-			<div class="group"> 
-			  <label class="label">Radio</label> 
-			  
-			  <div> 
-				<input type="radio" name="radio" id="radio_1" class="checkbox" value="1" /> <label for="radio_1" class="radio">Option 1</label> 
-			  </div> 
-			  
-			  <div> 
-				<input type="radio" name="radio" id="radio_2" class="checkbox" value="2" /> <label for="radio_2" class="radio">Option 2</label> 
-			  </div> 
-			  
-			</div> 
-			 -->
-			
-		  </div> 
+		  <div class="column right"> </div> 
 		  
 		</div> 
 		

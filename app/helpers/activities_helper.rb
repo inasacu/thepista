@@ -1,21 +1,26 @@
 module ActivitiesHelper
 
   # Given an activity, return a message for the feed for the activity's class.
-  def feed_message(activity, recent = false)
+  def feed_message(activity, current_user, recent = false)
     user = activity.user
+    is_member = false
+      
+      
     case activity_type(activity)
-
     when "Message"
         %(#{I18n.t(:sent_a_message) }.)
 
     when "Schedule"
       schedule = activity.item
-      
-      if schedule.played?
-        %(#{I18n.t(:has_updated_scorecard) } #{schedule_link schedule}.)
-      else        
-        %(#{I18n.t(:created_a_schedule) } #{schedule_link schedule}.)
-      end
+      is_member = current_user.is_member_of?(schedule.group)
+      the_label = schedule.played? ? I18n.t(:has_updated_scorecard) : I18n.t(:created_a_schedule)
+       %(#{the_label} #{is_member ? schedule_link(schedule) : schedule.concept}.)
+              
+      # if schedule.played?
+      #   %(#{I18n.t(:has_updated_scorecard) } #{is_member ? schedule_link(schedule) : schedule.concept}.)
+      # else        
+      #   %(#{I18n.t(:created_a_schedule) } #{is_member ? schedule_link(schedule) : schedule.concept}.)
+      # end
 
     when "User"
         %(#{I18n.t(:changed_description) })
@@ -23,26 +28,29 @@ module ActivitiesHelper
     when "Post"
         post = activity.item
           %(#{I18n.t(:left_post_on_forum) } #{topic_link(post.topic)})
-          
+
     when "Comment"
         comment = activity.item
         if comment.group_id.blank?
           %(#{I18n.t(:left_comment_on_wall) } #{user_link(comment.entry.user)})
-        else
-          %(#{I18n.t(:left_comment_on_wall) } #{group_link(comment.entry.group)})
+        else  
+          is_member = current_user.is_member_of?(comment.entry.group)
+          %(#{I18n.t(:left_comment_on_wall) } #{is_member ? group_link(comment.entry.group) : comment.entry.group.name})
         end
-          
+
 
     when "Match"	
           match = activity.item
-      %(#{I18n.t(:changes_in_roster_status) } #{I18n.t(:in) } #{schedule_link match.schedule}.)
+          is_member = current_user.is_member_of?(match.schedule.group)
+      %(#{I18n.t(:changes_in_roster_status) } #{I18n.t(:in) } #{is_member ? schedule_link(match.schedule) : match.schedule.concept}.)
 
     when "Result"
       %(Resultados ya se han actualizado...)
       
 	  when "Scorecard"
           scorecard = activity.item
-      %(changed results for #{group_link scorecard.group}.)
+          is_member = current_user.is_member_of?(scorecard.group)
+      %(changed results for #{is_member ? group_link(scorecard.group) : scorecard.group.name}.)
             
       
     else

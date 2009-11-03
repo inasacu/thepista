@@ -64,7 +64,7 @@ ActionController::Routing::Routes.draw do |map|
   map.ratings_rate          'ratings/:id/rate/:type',                     :controller => 'ratings',         :action => 'rate'
   
   map.import_contact   'invitations/contact',                             :controller => 'invitations',     :action => 'contact'
-  map.invite_contact   'invitations/invitecontact',                       :controller => 'invitations',     :action => 'invitecontact'
+  map.invite_contact   'invitations/invite_contact',                       :controller => 'invitations',     :action => 'invite_contact'
   
   
   map.resources   :user_sessions,   :as => 'repitelo'

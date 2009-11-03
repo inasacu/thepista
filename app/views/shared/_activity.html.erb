@@ -11,7 +11,7 @@
 	
 		<td class="name_and_date">
 			<span class="date">
-				<%= feed_message(activity, recent) %> 
+				<%= feed_message(activity, current_user, recent) %> 
 				<%= link_to(image_tag("icons/comment_delete.png"), 
 							activity_path(activity), :method => :delete, 
 													 :confirm => %(#{label_name(:delete_activity)}?),

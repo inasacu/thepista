@@ -25,6 +25,11 @@ class Activity < ActiveRecord::Base
       return false
   end
   
+  def self.related_activities(user)
+    find(:all, 
+    :conditions => ["user_id in (select user_id from groups_users where group_id in (?)) and created_at >= ?", user.groups, PAST_THREE_DAYS],
+    :order => "created_at desc") 
+  end
   
   # def self.related_activities(user)
   #     find(:all, 

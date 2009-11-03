@@ -143,11 +143,21 @@ class Match < ActiveRecord::Base
     schedule.group.users.each do |user|
       type_id = 3         # set to ausente
       position_id = 18    # set user position to center field 
+      technical = 3       # set user technical to default value
+      physical = 3        # set user physical to default value
+
+      @previous_match = Match.find(:first, 
+            :conditions => ["id = (select max(id) from matches where (group_id = ? or invite_id = ?) and user_id = ?) ", schedule.group_id, schedule.group_id, user.id])    
+      unless @previous_match.nil?
+        position_id = @previous_match.position_id
+        technical = @previous_match.technical
+        physical = @previous_match.physical
+      end
 
       self.create!(:name => schedule.concept, :description => schedule.description, 
                    :schedule_id => schedule.id, :group_id => schedule.group_id, 
                    :user_id => user.id, :available => user.available, 
-                   :type_id => type_id, :position_id => position_id,
+                   :type_id => type_id, :position_id => position_id, :technical => technical, :physical => physical,
                    :played => schedule.played) if self.schedule_group_user_exists?(schedule, user)
     end
   end

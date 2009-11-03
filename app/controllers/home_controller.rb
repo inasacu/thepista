@@ -8,7 +8,7 @@ class HomeController < ApplicationController
       @upcoming_schedules ||= Schedule.upcoming_schedules(session[:schedule_hide_time])
       unless @upcoming_schedules.empty?       
       # if current_user.current_login_at >= (Time.zone.now - 1.minutes)            
-        redirect_to :upcoming_schedule unless @upcoming_schedules.empty? 
+        redirect_to :upcoming_schedule # unless @upcoming_schedules.empty? 
         return
       end
       

@@ -133,19 +133,19 @@ class Schedule < ActiveRecord::Base
   def self.current_schedules(user, page = 1)
      self.paginate(:all, 
         :conditions => ["starts_at >= ? and group_id in (select group_id from groups_users where user_id = ?)", Time.zone.now, user.id],
-        :order => 'group_id, starts_at', :page => page, :per_page => SCHEDULES_PER_PAGE)
+        :order => 'starts_at, group_id', :page => page, :per_page => SCHEDULES_PER_PAGE)
   end
 
   def self.previous_schedules(user, page = 1)
      self.paginate(:all, 
      :conditions => ["starts_at < ? and (season_ends_at is null or season_ends_at > ?) and group_id in (select group_id from groups_users where user_id = ?)", Time.zone.now, Time.zone.now, user.id],
-     :order => 'group_id, starts_at desc', :page => page, :per_page => SCHEDULES_PER_PAGE)
+     :order => 'starts_at desc, group_id', :page => page, :per_page => SCHEDULES_PER_PAGE)
   end
 
   def self.archive_schedules(user, page = 1)
     self.paginate(:all, 
     :conditions => ["season_ends_at < ? and group_id in (select group_id from groups_users where user_id = ?)", Time.zone.now, user.id],
-    :order => 'group_id, starts_at', :page => page, :per_page => SCHEDULES_PER_PAGE)
+    :order => 'starts_at, group_id', :page => page, :per_page => SCHEDULES_PER_PAGE)
   end
   
   def self.max(schedule)
