@@ -8,6 +8,11 @@ test:
   secret_access_key: XB/iiMMjSyZM+bjG+l/8HxrAzGEPylcWu05Zd7/W
   bucket: thepista_prueba
 
+staging:
+  access_key_id: 1Z36VBYX179XC52VJWR2
+  secret_access_key: XB/iiMMjSyZM+bjG+l/8HxrAzGEPylcWu05Zd7/W
+  bucket: thepista_prueba
+    
 production:
   access_key_id: 1Z36VBYX179XC52VJWR2
   secret_access_key: XB/iiMMjSyZM+bjG+l/8HxrAzGEPylcWu05Zd7/W
