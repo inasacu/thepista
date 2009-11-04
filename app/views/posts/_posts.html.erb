@@ -16,13 +16,11 @@
 	</td>
 	
 	<td>				
-		<%=h post.body %>			
+		<%=sanitize(post.body) %>			
 	</td>
 	
 	
-	<td class="last">
-		<%#= render :partial => 'action', :locals => {:post => post} %>
-	</td>
+	<td class="last">&nbsp;</td>
 </tr>
 <% end -%>
 

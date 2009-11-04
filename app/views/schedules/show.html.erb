@@ -15,7 +15,7 @@
 		<b><%= link_to "", schedule_path(@previous), :class => 'next_message' if @previous %></b>
 	</p>
 	<br />
-  <h2 class="title"><%= @schedule.concept %></h2>
+  <h2 class="title"><%=sanitize(@schedule.concept) %></h2>
 
 
 <div class="inner">
@@ -29,7 +29,7 @@
 
 	<div class="description">
 		<span class="q">
-			<%=h @schedule.description.blank? ? control_label('description_no') : @schedule.description %>
+			<%=sanitize @schedule.description.blank? ? control_label('description_no') : @schedule.description %>
 		</span>
 	</div>
 
@@ -45,7 +45,13 @@
 <td>
 <table border="1">
 
-	<%= tr_td_action(:concept, @schedule.concept) %>	
+    <tr>
+      <%= content_tag :td, label_name(:concept), :class => "label" %>            
+		<%= content_tag :td, sanitize(@schedule.concept), :class => get_the_action %>
+		<%#= tr_td_action(:concept, sanitize(@schedule.concept)) %>	
+    </tr>
+
+	
 
     <% if @schedule.game_played? %>
 
@@ -121,7 +127,7 @@
 	
 	<% 
 		the_label = h(label_name(@schedule.public, 'value'))
-		the_confirmation = label_with_name('public', "- #{@schedule.concept}?") 
+		the_confirmation = label_with_name('public', "- #{sanitize(@schedule.concept)}?") 
 	%>
 	<tr>
 		<%= content_tag :td, label_name(:public), :class => "label" %>

@@ -23,7 +23,7 @@ unless upcoming_schedules.empty?
 			  </td>
 		  
 			  <td>
-				<%= current_user.is_member_of?(schedule.group) ? schedule_link(schedule) : schedule.concept %>
+				<%= current_user.is_member_of?(schedule.group) ? schedule_link(schedule) : sanitize(schedule.concept) %>
 			  </td>
 			  
 			  <td>

@@ -26,9 +26,8 @@
 		<span class="">
 			<%= link_to h(message.subject), message unless full_message %><br />
 			<span class="">							
-				<%#= link_to h(truncate(message.body.gsub('<br>', ' ').rstrip, 55, '...')), message unless full_message %>
-				<%= link_to the_message, message unless full_message %>
-				<%= the_message if full_message %>							
+				<%= link_to sanitize(the_message), message unless full_message %>
+				<%=sanitize the_message if full_message %>							
 			</span>
 		</span>
 	</td>

@@ -92,7 +92,7 @@ if current_user
 <% 
 		else 
 			if current_user.is_member_of?(@schedule.group)
-				the_label = "#{label_name(:forum)} #{@schedule.concept}"
+				the_label = "#{label_name(:forum)} #{sanitize(@schedule.concept)}"
 %>
 				<li class="<%= the_class %>">  <%= schedule_link @schedule %>
 				<li class="<%= the_class %>">  <%= link_to(the_label, forum_path(@schedule.forum)) %></li>			

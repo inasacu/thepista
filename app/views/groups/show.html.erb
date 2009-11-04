@@ -20,7 +20,7 @@
 	<th colspan="2">
 		<div class="description">
 			<span class="q">
-				<%=h @group.description.blank? ? control_label('description_no') : @group.description %>
+				<%=sanitize @group.description.blank? ? control_label('description_no') : @group.description %>
 			</span>
 		</div>
 	</th>
@@ -55,9 +55,13 @@
 		<%= tr_td_action(:schedules, t(:has_group_schedules, :count => @group.schedules.count)) unless @group.schedules.blank? %>
 		<%= tr_td_action(:points_for_win, @group.points_for_win) %>
 		<%= tr_td_action(:points_for_draw, @group.points_for_draw) %>
-		<%= tr_td_action(:points_for_lose, @group.points_for_lose) %>
-		<%= tr_td_action(:conditions, @group.conditions) %>
+		<%= tr_td_action(:points_for_lose, @group.points_for_lose) %>		
 		<%= tr_td_action(:player_limit, @group.player_limit) %>
+		
+		<tr>
+			<%= content_tag :td, label_name(:conditions), :class => "label" %>
+			  <%= content_tag :td, sanitize(@group.conditions) %>
+		</tr>
 
 	 <% if current_user.is_member_of?(@group) and !@group.available_users.empty? %>
 	   <tr>

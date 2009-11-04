@@ -64,9 +64,9 @@ if roster_count
 				<%= image_link_smaller match.user %>
 			</td>
 			
-			<%  sub_manager = match.user.is_sub_manager_of?(@schedule.group)
-		    	the_label =  label_name("sub_#{sub_manager}") unless sub_manager 
-				the_klass = "sub_#{sub_manager}" unless sub_manager
+			<%  #sub_manager = match.user.is_sub_manager_of?(@schedule.group)
+		    	#the_label =  label_name("sub_#{sub_manager}") unless sub_manager 
+				#the_klass = "sub_#{sub_manager}" unless sub_manager
 				
 				subscriber = match.user.is_subscriber_of?(@schedule.group)
 			    the_label =  label_name("subscription_#{subscriber}") unless subscriber 

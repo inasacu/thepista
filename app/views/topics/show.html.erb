@@ -1,9 +1,9 @@
 <%
 	if @schedule
-		label = label_with_name('note', h(@schedule.concept))
+		label = label_with_name('note', sanitize(@schedule.concept))
 	end	
 	if @practice
-		label = label_with_name('note', h(@practice.concept))
+		label = label_with_name('note', sanitize(@practice.concept))
 	end
 %>
 <div class="block">

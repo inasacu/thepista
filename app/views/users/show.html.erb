@@ -29,7 +29,7 @@
 
 						<div class="description">
                           <span class="q">
-								<%=h @user.description.blank? ? control_label('description_no') : @user.description %>
+								<%=sanitize @user.description.blank? ? control_label('description_no') : @user.description %>
 							</span>
                         </div>
 

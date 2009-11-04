@@ -37,7 +37,7 @@
 			<%= nice_day_date schedule.starts_at %>
           </td>
           <td>            
-            <%= link_to schedule.concept, schedule_path(schedule) %><br />
+            <%= link_to sanitize(schedule.concept), schedule_path(schedule) %><br />
 			<%= schedule.sport.name %>
           </td>
           <td>

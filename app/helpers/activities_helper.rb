@@ -14,7 +14,7 @@ module ActivitiesHelper
       schedule = activity.item
       is_member = current_user.is_member_of?(schedule.group)
       the_label = schedule.played? ? I18n.t(:has_updated_scorecard) : I18n.t(:created_a_schedule)
-       %(#{the_label} #{is_member ? schedule_link(schedule) : schedule.concept}.)
+       %(#{the_label} #{is_member ? schedule_link(schedule) : sanitize(schedule.concept)}.)
               
       # if schedule.played?
       #   %(#{I18n.t(:has_updated_scorecard) } #{is_member ? schedule_link(schedule) : schedule.concept}.)
@@ -27,10 +27,14 @@ module ActivitiesHelper
       
     when "Post"
         post = activity.item
-          %(#{I18n.t(:left_post_on_forum) } #{topic_link(post.topic)})
+        is_member = current_user.is_member_of?(post.topic.forum.schedule.group)
+        
+          %(#{I18n.t(:left_post_on_forum) } #{is_member ? topic_link(post.topic): sanitize(post.topic.forum.schedule.concept)})
+          #{topic_link(post.topic)})
 
     when "Comment"
         comment = activity.item
+
         if comment.group_id.blank?
           %(#{I18n.t(:left_comment_on_wall) } #{user_link(comment.entry.user)})
         else  

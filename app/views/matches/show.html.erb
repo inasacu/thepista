@@ -7,7 +7,7 @@
 
         <p>
           <b><%= label_name(:concept) %>:</b>
-          <%=h @match.schedule.concept %>
+          <%=sanitize(@match.schedule.concept) %>
         </p>
 
         <p>
