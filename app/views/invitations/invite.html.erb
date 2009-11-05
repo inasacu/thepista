@@ -15,8 +15,7 @@
 	</h2>
 	
 	<div class="inner"> 
-	<%# form_tag :action => 'contact', :id => @invitation do %>
-	
+      <%# form_tag :action => 'import', :id => @user do %>
 	  <% form_for :invitation, :url => import_contact_url, :html => { :class => :form } do |f| -%>
 
 		<div class="columns"> 
@@ -28,7 +27,6 @@
 			  <input type="text" class="inputtext" id="login" name="login" value="" onblur="update_ms_login();" />
 				&nbsp;@
 				<select name="from" id="from">
-				<option value="">Select Id</option>
 				<option value="gmail">Gmail</option>
 				<option value="yahoo">Yahoo</option>
 				<option value="hotmail">Hotmail</option>
@@ -49,8 +47,7 @@
 		<div class="clear"></div> 
 		
 		<div class="group navform">
-			<%= submit_tag @invitation.new_record? ? control_label('create') : control_label('edit'), 
-							:class => "button" %> <%= label_name(:or) %> <%= link_to label_name(:cancel), invitations_path %>
+			<%= submit_tag label_name(:import_contact), :class => "button" %> <%= label_name(:or) %> <%= link_to label_name(:cancel), invitations_path %>
 		</div>
 		
 	  <% end %>

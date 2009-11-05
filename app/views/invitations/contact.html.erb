@@ -12,6 +12,7 @@
 
 			<% counter ||= 0 %>
 		
+		<fieldset id="roster">
 			<table class="table" id="<%= get_the_action.gsub(' ','_') %>">
 
 				<tr>
@@ -22,23 +23,15 @@
 				</tr>
 				
 				<% form_for :invitation, :url => invite_contact_url, :html => { :class => :form } do |f| -%>
-				<% @contacts.each do |contact| -%>
+				<% @no_users.each do |contact| -%>
 				<tr>
-					<td class="first">
-						<%= counter +=1 %>.
-					</td>
+					<td class="first"><%= counter +=1 %>.</td>
 
-					<td>
-						<input type="checkbox" id="contacts" name="contact_ids[]" value="<%= contact[counter] %>" '' >
-							&nbsp;&nbsp;<%= contact[0] %>
+					<td><input type="checkbox" name="emails[]" id="email_<%= contact[:email] %>" value="<%= contact[:email] %>" />
+							<%= contact[:name] %>
 					</td>
-
-					<td>
-						&lt;<%= contact[1] %>&gt;
-					</td>
-
-					<td class="last">&nbsp;
-					</td>
+					<td>&nbsp;&nbsp;<%= contact[:email] %></td>
+					<td class="last">&nbsp;</td>
 				</tr>          
 				<% end -%>
 				
@@ -47,7 +40,7 @@
 				<div class="group navform">
 					<%= submit_tag control_label('create'), 
 							:class => "button" %> <%= label_name(:or) %> <%= link_to label_name(:cancel), invitations_path %>
-				</div>
+				</div><br />
 				
 				<% end -%>
 				
