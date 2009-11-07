@@ -147,11 +147,11 @@ class Group < ActiveRecord::Base
   end
   
   def format_description
-    self.description.gsub!(/\r?\n/, "<br>")
+    self.description.gsub!(/\r?\n/, "<br>") unless self.description.nil?
   end
   
   def format_conditions
-    self.conditions.gsub!(/\r?\n/, "<br>")
+    self.conditions.gsub!(/\r?\n/, "<br>") unless self.conditions.nil?
   end
 
 private

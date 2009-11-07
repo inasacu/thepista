@@ -124,7 +124,7 @@ class Message < ActiveRecord::Base
   private
 
   def format_body
-    self.body.gsub!(/\r?\n/, "<br>")
+    self.body.gsub!(/\r?\n/, "<br>") unless self.body.nil?
   end
 
   # Assign the conversation id.

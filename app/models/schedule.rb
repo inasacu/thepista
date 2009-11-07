@@ -211,7 +211,7 @@ class Schedule < ActiveRecord::Base
   private
   
   def format_description
-    self.description.gsub!(/\r?\n/, "<br>")
+    self.description.gsub!(/\r?\n/, "<br>") unless self.description.nil?
   end
   
   def set_time_to_utc

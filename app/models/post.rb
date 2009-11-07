@@ -15,19 +15,19 @@ class Post < ActiveRecord::Base
   # method section
   # record if schedule does not exist
   def self.create_schedule_post(forum, topic, user, description) 
-    self.create!(:topic_id => topic.id, :user_id => user.id, :body => description) if self.topic_exists?(topic)
+    self.create!(:topic_id => topic.id, :user_id => user.id, :body => description) #if self.topic_exists?(topic)
   end 
 
   # Return true if the schedule does not exist
-  def self.topic_exists?(topic)
-    # find_by_topic_id(topic).nil?
-    true
-  end
+  # def self.topic_exists?(topic)
+  #   # find_by_topic_id(topic).nil?
+  #   true
+  # end
 
   private
   
   def format_body
-    self.body.gsub!(/\r?\n/, "<br>")
+    self.body.gsub!(/\r?\n/, "<br>") unless self.body.nil?
   end
   
   def log_activity

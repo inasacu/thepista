@@ -426,7 +426,7 @@ class User < ActiveRecord::Base
     private
 
     def format_description
-      self.description.gsub!(/\r?\n/, "<br>")
+      self.description.gsub!(/\r?\n/, "<br>") unless self.description.nil?
     end
 
     # openid from authlogic authentication
