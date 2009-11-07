@@ -10,11 +10,21 @@ class InvitationsController < ApplicationController
     end 
   end
   
+  def invite
+  end
+  
   def contact
-    @users = current_user
     begin
+      @users = current_user
       @sites = {"gmail"  => Contacts::Gmail, "yahoo" => Contacts::Yahoo, "hotmail" => Contacts::Hotmail}
       @contacts = @sites[params[:from]].new(params[:login], params[:password]).contacts
+
+      if @contacts.nil? or @contacts.blank?
+        flash[:notice] = I18n.t(:username_password_donot_match)
+        redirect_to :action => 'invite'
+        return
+      end
+      
       @users , @no_users = [], []
       @contacts.each do |contact|
         #if u = User.find(:first , :conditions => @users.email = '#{contact[1]}' , :include =>[:user])
@@ -24,12 +34,27 @@ class InvitationsController < ApplicationController
           @no_users << {:name => contact[0] , :email => contact[1]}
         end
       end
+      return true
       
-      # respond_to do |format|
-      #   format.html {render :template => 'invitations/_contact_list', :layout => false}
-      #   format.xml {render :xml => @contacts.to_xml}
-      # end
+    rescue Contacts::AuthenticationError
+      flash[:notice] = I18n.t(:username_password_donot_match)
+      redirect_to :action => 'invite'
+      
+      # return false
+    # rescue Exception => exc
+    #   logger.error("Message for the log file #{exc.message}")
+    #   # flash[:notice] = "Store error message"
+    #   # redirect_to(:action => 'index')
+    #     flash[:notice] = I18n.t(:username_password_donot_match)
+    #     redirect_to :action => 'invite'
+
     end
+
+
+    # respond_to do |format|
+    #   format.html {render :template => 'invitations/_contact_list', :layout => false}
+    #   format.xml {render :xml => @contacts.to_xml}
+    # end
   end
   
   def invite_contact 

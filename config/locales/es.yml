@@ -1039,6 +1039,7 @@ es:
      user_last_login: Última vez conectado   
      user_options:  Opciones de Usuario
      username_not_available: Nombre de usuario no esta disponible 
+     username_password_donot_match: Nombre de usuario y contraseña no coinciden
      users_activate:  "Es necesario activar tu cuenta"
      
      validate_openid: valida tu OpenID   
