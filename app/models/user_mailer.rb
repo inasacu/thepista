@@ -15,18 +15,7 @@ class UserMailer < ActionMailer::Base
     recipients    user.email  
     sent_on       Time.zone.now  
     body          :edit_password_reset_url => edit_password_reset_url(user.perishable_token)  
-  end    
-
-  def signup_invitation(email, user, message)
-    @recipients = "#{email}"
-    @subject = "#{user.name} #{I18n.t(:invitation_to_join)}!"
-    @sent_on = Time.zone.now
-    @body[:user] = user
-    @body[:url] = signup_url
-    @body[:message] = message
-    @from  =  "#{user.name} <#{user.email}>"
-    content_type  "text/html"
-  end
+  end  
 
   def manager_join(mail)
     subject       "[HayPista] #{I18n.t(:to_join_group_message) } " + mail[:group].name
@@ -63,6 +52,18 @@ class UserMailer < ActionMailer::Base
 
   def message_schedule(message)
     setup_message_email(message)
+  end
+
+  def signup_invitation(invitation)
+    @subject          = "#{invitation.user.name} #{I18n.t(:invitation_to_join)}!"
+    @recipients       = "#{invitation.email}"
+    @from             = "#{invitation.user.name} <#{invitation.user.email}>"
+    @sent_on          = Time.zone.now
+    @body[:user]      = invitation.user
+    @body[:message]   = invitation.message
+    @body[:url]       = signup_url
+    @content_type     = "text/html"
+    # @headers          = {}
   end
   
   protected

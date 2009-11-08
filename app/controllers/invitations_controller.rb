@@ -26,10 +26,13 @@ class InvitationsController < ApplicationController
       end
       
       @users , @no_users = [], []
+  
+      # verify user's email is not already a user on site nor has the user received a previous invitation
       @contacts.each do |contact|
         #if u = User.find(:first , :conditions => @users.email = '#{contact[1]}' , :include =>[:user])
-        if u = User.find(:first , :conditions => ["email = ?", contact[1]] )
-          @users << u
+        if user = User.find(:first , :conditions => ["email = ?", contact[1]] ) or 
+              user = Invitation.find(:first , :conditions => ["email_addresses = ?", contact[1]] )
+          @users << user
         else
           @no_users << {:name => contact[0] , :email => contact[1]}
         end
@@ -49,57 +52,29 @@ class InvitationsController < ApplicationController
     #     redirect_to :action => 'invite'
 
     end
-
-
-    # respond_to do |format|
-    #   format.html {render :template => 'invitations/_contact_list', :layout => false}
-    #   format.xml {render :xml => @contacts.to_xml}
-    # end
   end
   
   def invite_contact 
-    recipients = ""
     if params[:emails]
-
-
-      # params[:emails].each do |contact|
-      #   recipients += "#{contact}, "      
-      # end
-      # recipients.chop.chop
-
-      # if recipients.length > 0
-      # params[:emails].each do |contact|
-      #   @invitation = Invitation.new
-      #   @invitation.user = current_user
-      #   @invitation.email_addresses = contact
-      #   @invitation.message = "sending contact information..."
-      #   if @invitation.save
-      #     # send message
-      #     flash[:notice] = I18n.t(:invitation_successfully_created)
-      #   end
-      # end
 
       @contacts = []
       params[:emails].each do |email|
-         @contacts << {:accy => email}
-       end
+        @contacts << {:account => email}
+      end
 
       @contacts.each do |contact|
-      @contact_invitation = Invitation.new
-      @contact_invitation.user = current_user
-      @contact_invitation.email_addresses = contact[:acct]
-      @contact_invitation.message = contact[:acct]
-      # @contact_invitation.save!
+        @contact_invitation = Invitation.new
+        @contact_invitation.user = current_user
+        @contact_invitation.email_addresses = contact[:account]
+        @contact_invitation.message = contact[:account]
 
-      # respond_to do |format|
         if @contact_invitation.save
-          # send invitation
           flash[:notice] = I18n.t(:invitation_successfully_created)
         end
       end
 
     end
-
+    
     redirect_back_or_default('/index')
   end 
   
@@ -140,6 +115,13 @@ class InvitationsController < ApplicationController
       end
     end
   end  
+  
+  def destroy
+    @invitation = Invitation.find(params[:id])
+    @invitation.destroy
+    flash[:notice] = I18n.t(:successful_destroy)
+    redirect_to invitations_url
+  end
 
 end
 

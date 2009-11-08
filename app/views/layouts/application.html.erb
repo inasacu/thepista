@@ -53,6 +53,6 @@
   </div>
   
   <%= render :partial => 'utilities/uservoice' %>
-  <%= render :partial => 'utilities/browser_detect' %>
+  <%= render :partial => 'utilities/browser_detect' if development? %>
 </body>
 </html>

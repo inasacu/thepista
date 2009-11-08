@@ -3,14 +3,8 @@
 	<h4><%= label_name(:recent_activities) %></h4> 
 	
 	<table class="table">		
-	<%# User.recent_activities(current_user).each do |user| %>
-
-		<%#= render :partial => 'shared/activity', :collection => user.activities, 
-				   :locals => { :destroy => current_user == user, :recent => true } %>
-				
-	<%#- end -%>
 	
-	<% Activity.related_activities(current_user).each do |activity| %>
+		<% Activity.related_activities(current_user).each do |activity| %>
 		
 		<%= render :partial => 'shared/activity', :locals => {:activity => activity, :destroy => current_user == activity.user, :recent => true } %>
 	<% end -%>

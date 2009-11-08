@@ -40,7 +40,6 @@ unless upcoming_schedules.empty?
 					<%= schedule.starts_at.utc %>
 					</em></p>
 	             <% end %>
-					<%#  (schedule.starts_at != schedule.starts_at.in_time_zone(Time.zone))  %>
 	       
 			  </td>	
 			  
@@ -51,9 +50,7 @@ unless upcoming_schedules.empty?
 			</tr>
         <% end -%>
 		
-      </table>
-	  <%#= render :partial => 'shared/action_bar', :locals => { :schedule => @upcoming_schedules } %>
-	  
+      </table> 
 
 	
     </div>
@@ -62,9 +59,13 @@ unless upcoming_schedules.empty?
   
 </div>
 
-<% content_for :search, render(:partial => 'shared/search') -%>
+<%# content_for :search, render(:partial => 'shared/search') -%>
 
-<% content_for :sidebar, render(:partial => 'sidebar') -%>
+<%# content_for :sidebar, render(:partial => 'sidebar') -%>
+
+<% content_for :sidebar, render(:partial => '/shared/active_comment') if current_user and @has_activities  -%>
+
+<%# content_for :sidebar, render(:partial => '/utilities/soccer_way') -%>
 
 <% 
 end

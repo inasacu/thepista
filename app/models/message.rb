@@ -168,8 +168,6 @@ class Message < ActiveRecord::Base
     case self.item.class.to_s      
     when "Schedule", "Match", "Scorecard"
       UserMailer.send_later(:deliver_message_schedule, self)
-      # when "Scorecard"
-      #   UserMailer.send_later(:deliver_message_scorecard, self)
     else
       return
     end

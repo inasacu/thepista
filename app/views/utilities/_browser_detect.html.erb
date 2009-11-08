@@ -1,23 +1,4 @@
 
-<% unless production? %>
- <%= "#{t(:current_user) }:  #{current_user.name}" if current_user %><br/>
- <%= "#{t(:current_time_zone) }: #{Time.zone.name}" %><br/>
- <%= "#{t(:current_time) }: #{nice_day_of_week(Time.zone.now)}" %><br/>
- <%= "#{t(:current_time) }: #{Time.zone.now}" %><br/>
- <%= "#{t(:current_time) }: #{Time.now.to_s(:db)}" %><br/>
- <%= "#{t(:time_zone) }: #{Time.zone.now.to_s(:db)}" %><br/>
-
-<hr />
-<% end %>
-
-<% if development? %>
-
-<!--  SOCCERWAY FREE SCRIPT STARTS -->
-<!-- <iframe src="http://www.soccerway.com/freeresults.php" width="280" scrolling="auto" frameborder="0" height="1500">[Your user agent does not support frames or is currently configured not to display frames. However, you may visit <A href="http://www.soccerway.com/freeresults.php">this link.</A>]</iframe> -->
-<!--  SOCCERWAY FREE SCRIPT ENDS -->
-
-
-
 <style type="text/css">
 .debug_dump {
 	text-align: center;
@@ -30,19 +11,20 @@
 </style>
 
 
-<% if development? %>
+
 
 <%= debug(params) %>
-
- <%#= "#{t(:current_user) }:  #{current_user.name}" if current_user %><br/>
- <%#= "#{t(:current_time_zone) }: #{Time.zone.name}" %><br/>
- <%#= "#{t(:current_time) }: #{nice_day_of_week(Time.zone.now)}" %><br/>
-<hr />
-
-
-<% end %>
+<br /><br />
 
 <% if display %>
+<%= "#{t(:current_user) }:  #{current_user.name}" if current_user %><br/><td>
+<%= "#{t(:current_time_zone) }: #{Time.zone.name}" %><br/>
+<%= "#{t(:current_time) }: #{nice_day_of_week(Time.zone.now)}" %><br/>
+<%= "#{t(:current_time) }: #{Time.zone.now}" %><br/>
+<%= "#{t(:current_time) }: #{Time.now.to_s(:db)}" %><br/>
+<%= "#{t(:time_zone) }: #{Time.zone.now.to_s(:db)}" %><br/>
+
+
 <h3> Browser Info </h3>
 <br>
 <script language="JavaScript" type="text/javascript">
@@ -61,6 +43,5 @@ document.write("document.body.clientWidth" + document.body.clientWidth + "<BR>")
 document.write("document.body.clientHeight" + document.body.clientHeight + "<BR>");
 //-->
 </script>
-<% end %>
 
-<% end %>
+<% end -%>
