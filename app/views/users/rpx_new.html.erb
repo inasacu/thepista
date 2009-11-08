@@ -22,6 +22,12 @@
 			  <%= f.text_field :email, :class => 'text_field' %>
 			</div>
 			
+			<div class="group">
+			  <%= f.label :time_zone, label_name('time_zone'), :class => :label %>
+			  <%= f.time_zone_select :time_zone, ActiveSupport::TimeZone.us_zones %><br />
+			  <span class="description"><%= label_name('time_zone', 'description') %></span>
+			</div>
+			
 			<div class="group"></div>
 			
 			<div class="group navform">

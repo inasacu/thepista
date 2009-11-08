@@ -66,7 +66,7 @@ class User < ActiveRecord::Base
     :path => ":assets/users/:id/:style.:extension",
     :default_url => "avatar.png"  
 
-    validates_attachment_content_type :photo, :content_type => ['image/jpeg', 'image/png', 'image/gif', 'image/jpg']
+    validates_attachment_content_type :photo, :content_type => ['image/jpeg', 'image/png', 'image/gif', 'image/jpg', 'image/pjpeg']
     validates_attachment_size         :photo, :less_than => 5.megabytes
 
       belongs_to                :identity_user,   :class_name => 'User',              :foreign_key => 'rpxnow_id'

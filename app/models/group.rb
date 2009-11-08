@@ -13,7 +13,7 @@ class Group < ActiveRecord::Base
     :path => ":assets/groups/:id/:style.:extension",
     :default_url => "group_avatar.png"  
 
-    validates_attachment_content_type :photo, :content_type => ['image/jpeg', 'image/png', 'image/gif', 'image/jpg']
+    validates_attachment_content_type :photo, :content_type => ['image/jpeg', 'image/png', 'image/gif', 'image/jpg', 'image/pjpeg']
     validates_attachment_size         :photo, :less_than => 5.megabytes
     
 

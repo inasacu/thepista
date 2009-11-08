@@ -167,7 +167,7 @@ class Match < ActiveRecord::Base
   end
   
   def format_description
-    self.description.gsub!(/\r?\n/, "<br>")
+    self.description.gsub!(/\r?\n/, "<br>") unless self.description.nil?
   end
 
   # def self.create_schedule_group_user_match(schedule, user)

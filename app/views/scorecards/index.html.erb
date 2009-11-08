@@ -42,11 +42,8 @@
 				<%= link_to group.name, scorecard_path(:id => group.id) %>
 			<% else %>
 			<%= link_to group.name, show_archive_path(:id => group.id) %>
-				<%#= link_to @scorecards.first.group.name, 
-						{:controller => 'scorecards', :action => 'show_archive', :id => @scorecards.first.group} %>
 			<% end %>
 			
-			<%#= nice_day_time group.gameday_at %>
 		  </td>
 		
 		  <td>
@@ -69,12 +66,6 @@
 
           <td class="last">
 			<%= link_to(label_name(:send_message_to_group), new_message_path(:group_id => group.id)) %><br />
-            <%#= link_to label_name(:invitation_to_group), edit_group_path(group) %> 
-
-			<%# if current_user.is_manager_of?(group) %> 
-				<%#= link_to label_name(:create_schedule), new_schedule_path(:id => group.id)  %><br />
-				<%#= link_to label_name(:create_practice), new_practice_path(:id => group.id)  %>
-	        <%# end %>
           </td>
         </tr>   
        
@@ -88,5 +79,5 @@
 	</div>
 	</div>
 </div>
-<% content_for :sidebar, render(:partial => 'sidebar') -%>
+<% content_for :sidebar, render(:partial => 'sidebar')  if object_counter(@groups) > 0  -%>
 
