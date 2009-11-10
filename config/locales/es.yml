@@ -1128,7 +1128,14 @@ es:
      
      home_index: Inicio
      home_search:  Buscar
-     
+
+     invitation_delete: Borra esta invitación
+     invitation_deleted: Invitación borrada
+     invitation_message: Has recibido una invitation para unirte o buscar a algun equipo con quien jugar...
+     invitation_notice: HayPista no almacena ni tu cuenta de correo ni tu contraseña.
+     invitation_signup_link:  Visite este enlace para registrarse
+     invitation_successful_create: La Invitación ha sido mandada.
+     invitation_to_join: te manda una solicitud para unirte a HayPista     
      invitations_contacts:  Invitar a los contactos de tu libreta de direcciones de correo electrónico.
      invitations_email: "Email (Hotmail, Gmail, Yahoo, etc...)"
      invitations_index:  Invitaciones Mandadas
@@ -1137,11 +1144,9 @@ es:
      invitations_no:  Ninguna Invitación para mostrar
      invitations_option:  Opciones de Invitación
      invitations_create:  Nueva Invitación
+     invitations_create_group: Nueva Invitación al equipo
+     invitations_create_schedule: Nueva Invitación al evento
      invitations_sent:  Invitaciones Mandadas
-     invitation_successfully_created: La Invitación ha sido mandada.
-     invitation_to_join: te manda una solicitud para unirte a HayPista  
-     invitation_signup_link:  Visite este enlace para registrarse
-     invitation_notice: HayPista no almacena ni tu cuenta de correo ni tu contraseña.
 
      # ie_no_more
      you_upgrade_browser:  Es posible que desee actualizar su navegador.

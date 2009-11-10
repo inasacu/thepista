@@ -1,0 +1,35 @@
+<%= render :partial => '/layouts/current_mailer/header' %>
+
+<h2 style="margin:0; padding:0; font:17px arial; color:#069;"><%= "#{:your_beta_invite.l}:    " %>&nbsp;&nbsp;</h2>
+
+<p style="margin: 15px 0 2px 0"><strong>&nbsp;</strong></p>
+
+
+
+<table width="100%" border="0" cellpadding="0" cellspacing="0" style="font: 13px arial;">
+  <tr>
+    <td style="width:1%; color:#999999; vertical-align: top;">&nbsp;</td>
+    <td style="width:99%">&nbsp;<%= "#{:hi_email_header.l}, " %></td>
+  </tr>
+  <tr>
+    <td style="width:1%; color:#999999; vertical-align: top;">&nbsp;</td>
+    <td style="width:99%">&nbsp;<%= "#{:your_beta_invite.l}" %></td>
+  </tr>
+  <tr>
+    <td style="width:1%; color:#999999; vertical-align: top;">&nbsp;</td>
+    <td style="width:99%">&nbsp;<%= "#{@invitation.comments} " unless @invitation.comments == "" %></td>
+  </tr>
+</table>
+
+
+<div style="margin-top: 6px; border-bottom: 3px solid #ddd; line-height:3px">&nbsp;</div>
+
+<%= render :partial => '/layouts/current_mailer/user' %>
+
+
+<%= render :partial => '/layouts/current_mailer/group' %>
+
+
+<%= render :partial => '/layouts/current_mailer/footer' %>
+
+

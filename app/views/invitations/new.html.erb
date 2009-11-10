@@ -8,7 +8,11 @@
 		<%= "#{label_name(:invitation)} "  %>
 
 		<%  if @schedule %>
-		<%= "#{label_name(:to)} #{schedule_link @schedule} #{label_name(:by)} #{group_link @group}"  %>
+			<%= "#{label_name(:to)} #{schedule_link @schedule}"  %>
+
+		<%  elsif @group %>
+			<%= "#{label_name(:to)} #{group_link @group}"  %>
+
 		<% end %>
 	</h2>
 	
@@ -16,10 +20,9 @@
 	
 	  <% form_for :invitation, :url => invitations_path, :html => { :class => :form } do |f| -%>
 	  
-		<% if @schedule %>
-		<%= hidden_field :schedule, :id %>
-		<% elsif @group %>
-		<%= hidden_field :group, :id %>
+		<% if @schedule or @group %>
+			<%= hidden_field :schedule, :id %>
+			<%= hidden_field :group, :id %>
 		<% end %>
 	
 		<div class="columns"> 

@@ -1119,7 +1119,7 @@ en:
      invitations_option:  Opciones de Invitación
      invitations_create:  Nueva Invitación
      invitations_sent:  Invitaciones Mandadas
-     invitation_successfully_created: La Invitación ha sido mandada.
+     invitation_successful_create: La Invitación ha sido mandada.
      invitation_to_join: te manda una solicitud para unirte a HayPista  
      invitation_signup_link:  Visite este enlace para registrarse
          

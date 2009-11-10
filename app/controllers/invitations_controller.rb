@@ -10,6 +10,53 @@ class InvitationsController < ApplicationController
     end 
   end
   
+  def new
+    @invitation = Invitation.new
+    if (params[:group_id])
+      @group = Group.find(params[:group_id])
+
+    elsif (params[:schedule_id])
+      @schedule = Schedule.find(params[:schedule_id])
+      # @group = @schedule.group
+    end
+
+    respond_to do |format|
+      format.html
+    end
+  end
+
+  def create
+    @user = current_user
+    @invitation = Invitation.new(params[:invitation])
+    @invitation.user = @user
+    
+    unless params[:schedule][:id].blank? 
+      @schedule = Schedule.find(params[:schedule][:id])
+      @invitation.item = @schedule
+    end
+    
+    unless params[:group][:id].blank?
+      @group = Group.find(params[:group][:id])
+      @invitation.item = @group
+    end
+    
+    respond_to do |format|
+      if @invitation.save
+        
+        flash[:notice] = I18n.t(:invitation_successful_create)
+        format.html {
+          unless params[:welcome]
+            redirect_to user_path(@invitation.user)
+          else
+            redirect_to welcome_complete_user_path(@invitation.user)
+          end
+        }
+      else
+        format.html { render :action => "new" }
+      end
+    end
+  end
+  
   def invite
   end
   
@@ -66,10 +113,10 @@ class InvitationsController < ApplicationController
         @contact_invitation = Invitation.new
         @contact_invitation.user = current_user
         @contact_invitation.email_addresses = contact[:account]
-        @contact_invitation.message = contact[:account]
+        @contact_invitation.message = I18n.t(:invitation_message)
 
         if @contact_invitation.save
-          flash[:notice] = I18n.t(:invitation_successfully_created)
+          flash[:notice] = I18n.t(:invitation_successful_create)
         end
       end
 
@@ -78,48 +125,10 @@ class InvitationsController < ApplicationController
     redirect_back_or_default('/index')
   end 
   
-
-  def new
-    @invitation = Invitation.new
-    if (params[:group_id])
-      @group = Group.find(params[:group_id])
-
-    elsif (params[:schedule_id])
-      @schedule = Schedule.find(params[:schedule_id])
-      @group = @schedule.group
-    end
-
-    respond_to do |format|
-      format.html
-    end
-  end
-
-  def create
-    @user = current_user
-    @invitation = Invitation.new(params[:invitation])
-    @invitation.user = @user
-    
-    respond_to do |format|
-      if @invitation.save
-        
-        flash[:notice] = I18n.t(:invitation_successfully_created)
-        format.html {
-          unless params[:welcome]
-            redirect_to user_path(@invitation.user)
-          else
-            redirect_to welcome_complete_user_path(@invitation.user)
-          end
-        }
-      else
-        format.html { render :action => "new" }
-      end
-    end
-  end  
-  
   def destroy
     @invitation = Invitation.find(params[:id])
     @invitation.destroy
-    flash[:notice] = I18n.t(:successful_destroy)
+    flash[:notice] = I18n.t(:invitation_deleted)
     redirect_to invitations_url
   end
 

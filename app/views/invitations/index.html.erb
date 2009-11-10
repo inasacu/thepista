@@ -12,13 +12,6 @@
 
 			<table class="table">
 
-		        <tr>             
-		          <th class="first">&nbsp;</th>
-		          <th>&nbsp;</th>
-		          <th><%= label_name(:message) %></th>
-		          <th class="last">&nbsp;</th>
-		        </tr>
-
 					<% @invitations.each do |invitation| %>
 					<%= render :partial => 'invitation', :locals => {:invitation => invitation}  %>
 					<% end %>
@@ -26,7 +19,7 @@
 			</table>
 
 			<% end %>
-			<%= render :partial => 'shared/action_bar', :locals => { :collection => @message } %>
+			<%= render :partial => 'shared/action_bar', :locals => { :collection => @invitation } %>
 
 		</div>
 	</div>

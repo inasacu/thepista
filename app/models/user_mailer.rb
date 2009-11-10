@@ -55,6 +55,21 @@ class UserMailer < ActionMailer::Base
   end
 
   def signup_invitation(invitation)
+    setup_invitation_email(invitation)
+  end
+
+  def invitation_group(invitation)
+    setup_invitation_email(invitation)
+    # deliver_invitation_group
+  end
+
+  def invitation_schedule(invitation)
+    setup_invitation_email(invitation)
+    # deliver_invitation_schedule
+  end
+  
+  protected
+  def setup_invitation_email(invitation)
     @subject          = "#{invitation.user.name} #{I18n.t(:invitation_to_join)}!"
     @recipients       = "#{invitation.email}"
     @from             = "#{invitation.user.name} <#{invitation.user.email}>"
@@ -65,8 +80,7 @@ class UserMailer < ActionMailer::Base
     @content_type     = "text/html"
     # @headers          = {}
   end
-  
-  protected
+
   def setup_message_email(message)
     @subject          = message.subject
     @recipients       = message.recipient.email
