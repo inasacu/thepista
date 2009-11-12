@@ -21,6 +21,7 @@ es:
      afterwards: despues   
      ago: hace 
      all_group:  Todos los Equipos   
+     all_user:   Todos los Jugadores
      already_exist: ya existe   
      already_have_gravatar: Ya tengo un Gravatar   
      and: y   
@@ -1205,7 +1206,7 @@ es:
      groups_index:   Equipos
      groups_index_option: Opciones de Equipo
      groups_invitations_create:  Invita a un Amigo al Equipo
-     groups_list:  Jugadores del Equipo
+     groups_list:  Resto de Equipo
      groups_new:  Nuevo Equipo
      groups_new_option: Opciones de Nuevo Equipo
      groups_no:  Ningun Equipo para mostrar.
@@ -1343,6 +1344,7 @@ es:
      users_description_no:  Ningun detalle del Jugador.
      users_edit:  Modificar Jugador
      users_edit_option:  Opciones de Jugador
+     users_list:  Resto de Jugadores
      users_new:  Nuevo Jugador
      users_no:  Ningun Jugador para mostrar.
      users_petition:  Petición del Jugador

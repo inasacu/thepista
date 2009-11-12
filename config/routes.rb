@@ -5,8 +5,7 @@ ActionController::Routing::Routes.draw do |map|
   map.rpx_token_sessions    'rpx_token_sessions',                         :controller => "user_sessions",   :action => "rpx_create"
   map.rpx_signup            '/rpx_signup',                                :controller => 'users',           :action => 'rpx_new'
   map.rpx_create            'users/rpx_create',                           :controller => 'users',           :action => 'rpx_create'
-  map.resources             :users,       :as => 'jugadores',             :collection => { :rpx_create => :post, :rpx_associate => :post }
-
+  
   map.login                 'login',                                      :controller => 'user_sessions',   :action => 'new'
   map.logout                'logout',                                     :controller => 'user_sessions',   :action => 'destroy'
   map.signup                'signup',                                     :controller => 'users',           :action => 'signup'
@@ -64,21 +63,18 @@ ActionController::Routing::Routes.draw do |map|
   map.ratings_rate          'ratings/:id/rate/:type',                     :controller => 'ratings',         :action => 'rate'
   
   map.import_contact   'invitations/contact',                             :controller => 'invitations',     :action => 'contact'
-  map.invite_contact   'invitations/invite_contact',                       :controller => 'invitations',     :action => 'invite_contact'
-  
+  map.invite_contact   'invitations/invite_contact',                      :controller => 'invitations',     :action => 'invite_contact'
   
   map.resources   :user_sessions,   :as => 'repitelo'
-
-  map.resources   :users,           :as => 'jugadores',               :collection  => { :list => :get, :recent_activity => :get, :search => :get }  
-  map.resources   :schedules,       :as => 'eventos',                 :collection  => { :list => :get, :archive_list => :get, :search => :get }          
-  map.resources   :groups,          :as => 'equipos',                 :collection  => { :list => :get, :search => :get }
+  map.resources   :users,           :as => 'jugadores',                   :collection => { :rpx_create => :post, :rpx_associate => :post,
+                                                                                            :list => :get, :recent_activity => :get, :search => :get }  
+  map.resources   :schedules,       :as => 'eventos',                     :collection => { :list => :get, :archive_list => :get, :search => :get }          
+  map.resources   :groups,          :as => 'equipos',                     :collection => { :list => :get, :search => :get }
   map.resources   :markers,         :as => 'centros'
-  map.resources   :scorecards,      :as => 'classificaciones',        :collection  => { :list => :get }
+  map.resources   :scorecards,      :as => 'classificaciones',            :collection => { :list => :get }
+
   map.resources   :matches,         :as => 'jornadas'
-  
   map.resources   :invitations,     :as => 'invitaciones'
-  
-  map.resources   :ratings,         :member => { :rate => :put }
   map.resources   :activities,      :as => 'actividades'
   map.resources   :teammates,       :as => 'mi_equipo'
   map.resources   :posts,           :as => 'nota'
@@ -90,14 +86,15 @@ ActionController::Routing::Routes.draw do |map|
   map.resources   :types,           :as => 'tipos'
   map.resources   :sports,          :as => 'deportes'
   map.resources   :roles,           :as => 'responsabilidades'
-  map.resources   :practices,       :as => 'entrenamientos',          :collection  => { :list => :get, :search => :get }          
+  map.resources   :practices,       :as => 'entrenamientos',              :collection => { :list => :get, :search => :get }          
   map.resources   :payments,        :as => 'pago'
   map.resources   :fees,            :as => 'tasas'
   map.resources   :password_resets, :as => 'resetear'
-  
-  map.resources   :connections
-  map.resources   :messages,        :as => 'mensajes',                   :collection => { :sent => :get, :trash => :get }
+  map.resources   :messages,        :as => 'mensajes',                    :collection => { :sent => :get, :trash => :get }
 
+  map.resources   :connections
+  map.resources   :ratings,                                               :member => { :rate => :put }
+  
   map.resources   :users do |user|
     user.resources :messages
   end

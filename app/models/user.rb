@@ -322,20 +322,38 @@ class User < ActiveRecord::Base
 
     def page_mates(page = 1)  
       mates = User.paginate(:all, 
-                          :conditions => ["id in (select distinct user_id from groups_users where group_id in (?))", self.groups],
-                          :order => "name",
-                          :page => page, 
-                          :per_page => USERS_PER_PAGE)
-      
+      :conditions => ["id in (select distinct user_id from groups_users where group_id in (?))", self.groups],
+      :order => "name",
+      :page => page, 
+      :per_page => USERS_PER_PAGE)
+
       if object_counter(mates) == 0
         mates = User.paginate(:all, 
-                            :conditions => ["id = ?", self.id],
-                            :order => "name",
-                            :page => page, 
-                            :per_page => USERS_PER_PAGE)
+        :conditions => ["id = ?", self.id],
+        :order => "name",
+        :page => page, 
+        :per_page => USERS_PER_PAGE)
       end
       return mates
     end
+    
+    def other_mates(page = 1)      
+      mates = User.paginate(:all, 
+      :conditions => ["archive = false and id not in (select user_id from groups_users where group_id in (?))", self.groups],
+      :order => "name",
+      :page => page, 
+      :per_page => USERS_PER_PAGE)
+
+      if object_counter(mates) == 0
+        mates = User.paginate(:all, 
+        :conditions => ["id = ?", self.id],
+        :order => "name",
+        :page => page, 
+        :per_page => USERS_PER_PAGE)
+      end
+      return mates
+    end
+      
 
     def find_mates                         
       mates = User.find(:all, :conditions => ["id in (select distinct user_id from groups_users where group_id in (?))", self.groups], 

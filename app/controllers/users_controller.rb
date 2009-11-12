@@ -21,6 +21,18 @@ class UsersController < ApplicationController
       format.xml  { render :xml => @users }
     end
   end
+  
+  
+  def list
+    store_location
+    @users = current_user.other_mates(params[:page])
+    render :template => '/users/index'       
+
+    # respond_to do |format|
+    #   format.html  index.html.erb
+    #   format.xml  { render :xml => @users }
+    # end
+  end
 
   # GET /users/1
   # GET /users/1.xml
