@@ -904,7 +904,8 @@ es:
      sport: Deporte
      sport_id: Deporte   
      sport_description: (Que tipo de deporte practica el equipo...)   
-     sports: Deportes   
+     sports: Deportes 
+     sports_none:  Ningun Deporte.  
      starts_at_description: (¿Ha que hora empieza el evento?)   
      start_session: inicia tu sesión   
      starts_at: Inicio   

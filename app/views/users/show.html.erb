@@ -1,6 +1,6 @@
 <% 
 	can_modify = (@user == current_user) 
-	is_user_manager = (current_user.has_role?(:manager))
+	is_user_manager = current_user.is_user_manager_of?(@user)
 %>
 
 <div class="block">
@@ -59,13 +59,13 @@
 							<%= tr_td_action(:phone, @user.phone) %>
 						<% end %>
 
-						<%= tr_td_action(:position, @user.position) %>
-						<%= tr_td_action(:dorsal, @user.dorsal) %>
+						<%#= tr_td_action(:position, @user.position) %>
+						<%#= tr_td_action(:dorsal, @user.dorsal) %>
 							
-						<% unless @user.private_profile %>
-							<%= tr_td_action(:technical, @user.technical) %>
-							<%= tr_td_action(:physical, @user.physical) %>
-						<% end %>
+						<%# unless @user.private_profile %>
+							<%#= tr_td_action(:technical, @user.technical) %>
+							<%#= tr_td_action(:physical, @user.physical) %>
+						<%# end %>
 
 						<% unless @user.gender.blank? %>
 							<%= tr_td_action(:gender, label_name(@user.gender, 'value')) %>						
@@ -95,31 +95,31 @@
 													:class => get_the_action %>
 						</tr>
 						
-						<%  if test? %>
-						<% 
+						<%#  if test? %>
+						<%# 
 							the_label = h(label_name(@user.private_profile, 'value'))
 							the_confirmation = label_with_name('set_private_profile', "#{@user.name}?") 
 						%>					
-						<tr>
-							<%= content_tag :td, label_name(:private_profile), :class => "label" %>
-							<%= content_tag :td, 
+						<!-- <tr>
+							<%#= content_tag :td, label_name(:private_profile), :class => "label" %>
+							<%#= content_tag :td, 
 									(can_modify ? link_to(the_label, set_private_profile_path(:id => @user.id), 
 												:confirm => the_confirmation) : the_label), 
 												:class => get_the_action %>
-						</tr>
+						</tr> -->
 						
-						<%
+						<%#
 							the_label = h(label_name(@user.enable_comments, 'value'))
 							the_confirmation = label_with_name('set_enable_comments', "#{@user.name}?") 
 						%>					
-						<tr>
-							<%= content_tag :td, label_name(:enable_comments), :class => "label" %>
-							<%= content_tag :td, 
+						<!-- <tr>
+							<%#= content_tag :td, label_name(:enable_comments), :class => "label" %>
+							<%#= content_tag :td, 
 								(can_modify ? link_to(the_label, set_enable_comments_path(:id => @user.id), 
 												:confirm => the_confirmation) : the_label), 
 												:class => get_the_action %>
-						</tr>
-						<% end %>
+						</tr> -->
+						<%# end %>
 
 						<% if @user.has_role?('manager') %>
 						<%

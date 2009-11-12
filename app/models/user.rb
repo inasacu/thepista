@@ -139,40 +139,44 @@ class User < ActiveRecord::Base
     def has_group?
       self.groups.count > 0
     end
-
-      
-      def my_groups
-        @my_groups = []
-        self.groups.each { |group| @my_groups << group.id }
-        return @my_groups
-      end
-      
-      def my_managers(user)
-        is_manager = false
-        self.groups.each{ |group| is_manager = user.is_manager_of?(group) } 
-        return is_manager
-      end
     
-      def my_users
-        @my_users = []
-        self.groups.each do |group| ; group.users.each { |user| @my_users << user.id unless @my_users.include?(user.id) } ; end
-        return @my_users
-      end
-      
-      def self.previous(user, groups)
-        if self.count(:conditions => ["id < ? and id in (select user_id from groups_users where group_id in (?))", user.id, groups] ) > 0
-          return find(:first, :select => "max(id) as id", 
-          :conditions => ["id < ?  and id in (select user_id from groups_users where group_id in (?))", user.id, groups]) 
-        end
-          return user
-      end 
+    def has_sport?
+      self.groups.count > 0
+    end
 
-      def self.next(user, groups)
-        if self.count(:conditions => ["id > ? and id in (select user_id from groups_users where group_id in (?))", user.id, groups]) > 0
-          return find(:first, :select => "min(id) as id", :conditions => ["id > ?  and id in (select user_id from groups_users where group_id in (?))", user.id, groups])
-        end
-        return user
+
+    def my_groups
+      @my_groups = []
+      self.groups.each { |group| @my_groups << group.id }
+      return @my_groups
+    end
+      
+    def my_managers(user)
+      is_manager = false
+      self.groups.each{ |group| is_manager = user.is_manager_of?(group) } 
+      return is_manager
+    end
+
+    def my_users
+      @my_users = []
+      self.groups.each do |group| ; group.users.each { |user| @my_users << user.id unless @my_users.include?(user.id) } ; end
+      return @my_users
+    end
+      
+    def self.previous(user, groups)
+      if self.count(:conditions => ["id < ? and id in (select user_id from groups_users where group_id in (?))", user.id, groups] ) > 0
+        return find(:first, :select => "max(id) as id", 
+        :conditions => ["id < ?  and id in (select user_id from groups_users where group_id in (?))", user.id, groups]) 
       end
+      return user
+    end 
+
+    def self.next(user, groups)
+      if self.count(:conditions => ["id > ? and id in (select user_id from groups_users where group_id in (?))", user.id, groups]) > 0
+        return find(:first, :select => "min(id) as id", :conditions => ["id > ?  and id in (select user_id from groups_users where group_id in (?))", user.id, groups])
+      end
+      return user
+    end
       
     def has_pending_petition?(current_user)
       current_user == self and (!current_user.requested_managers.empty? or !current_user.pending_managers.empty?)
@@ -196,6 +200,26 @@ class User < ActiveRecord::Base
       
       def is_member_of?(group)
         self.has_role?('member', group)
+      end
+      
+      def is_user_manager_of?(user)
+        is_manager = false
+        user.groups.each do |group|
+          unless is_manager
+            is_manager = (self.has_role?('manager', group) or self.has_role?('creater', group))
+          end
+        end
+        return is_manager
+      end
+
+      def is_user_member_of?(user)
+        is_member = false
+        user.groups.each do |group|
+          unless is_member
+            is_member = self.has_role?('member', group) 
+          end
+        end
+        return is_member
       end
     
       def is_manager_of?(group)

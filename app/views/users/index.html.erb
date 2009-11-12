@@ -17,7 +17,7 @@
 			</th>
 			<th><%=label_name(:group) %></th>
 			<th><%=label_name(:time_zone) %></th>
-			<th><%=label_name(:member_since) %></th>
+			<th><%=label_name(:sport) %></th>
 			<th class="last">&nbsp;</th>
 		</tr>
 		
@@ -44,7 +44,7 @@
 
 				<td class="name_and_date">
 					<span class="date">
-						<%= nice_full_date user.created_at %> 
+						<%= user.has_sport? ? sport_list(user.groups) : label_name('sports_none') %>
 					</span>
 				</td>
 			
