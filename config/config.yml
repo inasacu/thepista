@@ -14,7 +14,7 @@ development:
         realm:          thepista-local
         
     server_name: 
-        key:            http://thepista.local
+        key:            thepista.local
 
 # http://thepista.heroku.com/
 test:
@@ -26,7 +26,7 @@ test:
         realm:          thepista-heroku 
         
     server_name: 
-        key:        http://thepista.heroku.com
+        key:            thepista.heroku.com
 
 # http://thepista.heroku.com/
 staging:
@@ -38,7 +38,7 @@ staging:
         realm:          thepista-heroku
         
     server_name: 
-        key:        http://thepista.heroku.com
+        key:            thepista.heroku.com
 
                
 production:
@@ -55,4 +55,4 @@ production:
         realm: haypista
         
     server_name: 
-        key:        http://haypista.com
+        key:            haypista.com

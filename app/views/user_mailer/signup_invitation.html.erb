@@ -13,10 +13,20 @@
 
 <%= I18n.t(:invitation_signup_link) %><br /><br />
  
+
 <%= @url %><br /><br />
 
  
 <%= "#{I18n.t(:request_url_does_not_work)}  #{I18n.t(:request_url_issue)}" %><br /><br />
+
+
+<% if @schedule %>
+
+<%= I18n.t(:participate_schedule_afterwards) %><br /><br />
+
+<%= link_to(@schedule.concept, {:host => 'thepista.local', :controller => 'schedules', :action => 'show', :id => @schedule.id}) %><br /><br />
+
+<% end %>
 
 
 

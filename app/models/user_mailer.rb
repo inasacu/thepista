@@ -1,4 +1,7 @@
 class UserMailer < ActionMailer::Base
+
+  default_url_options[:host] = APP_CONFIG['server_name']['key']
+
   def signup_notification(user)
     recipients "#{user.name} <#{user.email}>"
     from       "[HayPista] <support@haypista.com>"
@@ -6,8 +9,6 @@ class UserMailer < ActionMailer::Base
     sent_on    Time.zone.now
     body       :user => user #{ :user => user, :url => activate_url(user.activation_code), :host => user.site.host }
   end
-
-  default_url_options[:host] = "thepista.local"  
 
   def password_reset_instructions(user)  
     subject       I18n.t(:password_recover_instructions)
@@ -57,25 +58,27 @@ class UserMailer < ActionMailer::Base
   def signup_invitation(invitation)
     setup_invitation_email(invitation)
   end
-
-  def invitation_group(invitation)
-    setup_invitation_email(invitation)
-    # deliver_invitation_group
-  end
-
-  def invitation_schedule(invitation)
-    setup_invitation_email(invitation)
-    # deliver_invitation_schedule
-  end
   
   protected
   def setup_invitation_email(invitation)
-    @subject          = "#{invitation.user.name} #{I18n.t(:invitation_to_join)}!"
+    
+    case invitation.item.class.to_s 
+    when "Group"
+      @subject            = "#{invitation.user.name} #{I18n.t(:participate_group)}!"
+      @body[:group]       = invitation.item
+    when "Schedule"
+      @subject            = "#{invitation.user.name} #{I18n.t(:participate_schedule)}!"
+      @body[:schedule]    = invitation.item
+    else
+      @subject            = "#{invitation.user.name} #{I18n.t(:invitation_to_join)}!"
+    end
+    
+    
     @recipients       = "#{invitation.email}"
     @from             = "#{invitation.user.name} <#{invitation.user.email}>"
     @sent_on          = Time.zone.now
     @body[:user]      = invitation.user
-    @body[:message]   = invitation.message
+    @body[:message]   = invitation
     @body[:url]       = signup_url
     @content_type     = "text/html"
     # @headers          = {}

@@ -9,7 +9,7 @@ if current_user
 			<%= link_to label_name(:upcoming_schedule) , :controller => 'home', :action => 'upcoming_schedule' unless upcoming_schedules.empty? %>
 	</li>
 
-	<li class="<%= get_active('home_current_messages') %>">
+	<li class="message">
 			<%= link_to label_name(:messages_inbox) , :controller => 'messages', :action => 'index' if current_user.has_unread_messages? %>
 	</li>
 			

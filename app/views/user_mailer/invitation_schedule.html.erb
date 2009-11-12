@@ -1,34 +1,33 @@
-<%= render :partial => '/layouts/current_mailer/header' %>
+<%= render :partial => 'header' %>
 
-<h2 style="margin:0; padding:0; font:17px arial; color:#069;"><%= "#{:participate_schedule.l}:    " %>&nbsp;&nbsp;</h2>
-
-<p style="margin: 15px 0 2px 0"><strong>&nbsp;</strong></p>
-
-
-
-<table width="100%" border="0" cellpadding="0" cellspacing="0" style="font: 13px arial;">
-  <tr>
-    <td style="width:1%; color:#999999; vertical-align: top;">&nbsp;</td>
-    <td style="width:99%">&nbsp;<%= "#{:hi_email_header.l}, " %></td>
-  </tr>
-  <tr>
-    <td style="width:1%; color:#999999; vertical-align: top;">&nbsp;</td>
-    <td style="width:99%">&nbsp;<%= "#{@invitation.comments} " unless @invitation.comments == "" %></td>
-  </tr>
-</table>
+<%= I18n.t(:hi_email_header) %>,<br /><br />
+ 
+<%= "#{@user.name} #{I18n.t(:participate_schedule)}!" %><br /><br />
 
 
-<div style="margin-top: 6px; border-bottom: 3px solid #ddd; line-height:3px">&nbsp;</div>
 
-<%= render :partial => '/layouts/current_mailer/schedule' %>
-
-
-<%= render :partial => '/layouts/current_mailer/user' %>
+<%= @message %><br /><br />
 
 
-<%= render :partial => '/layouts/current_mailer/group' %>
 
 
-<%= render :partial => '/layouts/current_mailer/footer' %>
+<%= I18n.t(:invitation_signup_link) %><br /><br />
+ 
 
+<%= link_to(I18n.t(:signup), @url) %><br /><br />
+
+
+
+<%= I18n.t(:participate_schedule_afterwards) %><br /><br />
+
+
+<%= link_to(@invitation.item_type, {:host => 'thepista.local', :controller => 'schedules', :action => 'show', :id => @schedule}) %><br /><br />
+
+
+ 
+<%= "#{I18n.t(:request_url_does_not_work)}  #{I18n.t(:request_url_issue)}" %><br /><br />
+
+
+
+<%= render :partial => 'footer' %>
 
