@@ -1,6 +1,6 @@
 class UserMailer < ActionMailer::Base
 
-  default_url_options[:host] = APP_CONFIG['server_name']['key']
+  default_url_options[:host] = "haypista.com"
 
   def signup_notification(user)
     recipients "#{user.name} <#{user.email}>"
@@ -91,7 +91,7 @@ class UserMailer < ActionMailer::Base
     @sent_on          = Time.zone.now
     @body[:user]      = message.sender
     @body[:message]   = message
-    @body[:url]       = APP_CONFIG['server_name']['key']
+    @body[:url]       = "haypista.com"
     @content_type     = "text/html"
     # @headers          = {}
   end
