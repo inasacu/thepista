@@ -6,26 +6,26 @@
 
 		<h2 class="title">
 			<% if @scorecard %>
-		    <%= label_name(:send_scorecard) if @scorecard %>
+		    <%= "#{label_name(:send_scorecard)} #{label_name(:from)} #{group_link(@group)}" if @scorecard %>
 			<% elsif @match %>
-		    <%= label_name(:send_match) if @match %>
+		    <%= "#{label_name(:send_match)} #{schedule_link(@schedule)}" if @match %>
 			<% elsif @schedule %>
-			<%= label_name(:send_pre_match) unless @schedule.played? %>
+			<%= "#{label_name(:send_pre_match)} #{schedule_link(@schedule)}" unless @schedule.played? %>
 			<% else %>
 			<%= "#{label_name(:message)} "  %>
 			<% end %>
-			<%= " #{label_name(:to)} " %>
+			<%#= " #{label_name(:to)} " %>
 			
-			<%= user_link @recipient if @recipient %>
-			<%= group_link @group if @group %>
+			<%= "#{label_name(:to)} #{user_link(@recipient)}" if @recipient %>
+			<%#= group_link @group if @group %>
 			
-			<%  if @scorecard %>
+			<%#  if @scorecard %>
 			
-			<%  elsif @match %>
-				<%= "( #{schedule_link @schedule} )" %>
-			<% elsif @schedule %>
-				<%= "( #{schedule_link @schedule} )"  %>
-			<% end %>
+			<%#  elsif @match %>
+				<%#= "( #{schedule_link @schedule} )" %>
+			<%# elsif @schedule %>
+				<%#= "( #{schedule_link @schedule} )"  %>
+			<%# end %>
 		</h2>
 
 		<div class="inner">

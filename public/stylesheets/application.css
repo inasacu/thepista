@@ -183,3 +183,12 @@ td.sub_true {
 .name_and_date .date_tiny { padding: 1px 0pt 0pt; display: block; font-size: 9px; color: rgb(119, 119, 119); }
 .last .action  { padding: 1px 0pt 0pt; display: block; font-size: 10px; color: rgb(119, 119, 119); }
 
+
+/*  new footer */
+div#footer div.col_wrapper { padding-top: 1.0em; text-align: center; }
+div#footer p, ol, li { margin: 0pt; font-size: 1.0em; line-height: 1.0em; }
+div#footer a { color: lightgray;  }
+div#footer a:hover { color: orange; }
+div#footer div.link_wrapper { position: relative; float: left; left: 50%; }
+div#footer ol { position: relative; left: -50%; font-size: 1.0em; }
+div#footer ol li { margin: 0pt 1em; position: relative; float: left; }

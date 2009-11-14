@@ -17,6 +17,7 @@
 %>
 	<li class="<%= get_first_active %>">  <%= link_to(control_label('teammate'), users_url) %></li>
 	<li class="<%= get_active('user_list') %>"><%=  link_to(label_name(:all_user) , list_users_path) %></li>
+	<li class="<%= get_active('third_party') %>"><%= link_to(t(:myopenid) , third_party_url(:id => the_user.id)) if the_user == current_user %></li>
 <%
 	unless actions.include?(the_action) or controls.include?(the_controller) 
 		the_label = control_label('my_wall')

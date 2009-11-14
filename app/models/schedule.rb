@@ -132,6 +132,14 @@ class Schedule < ActiveRecord::Base
     self.group.second_team
   end
   
+  def home_score
+    self.matches.first.group_score
+  end
+  
+  def away_score
+    self.matches.first.invite_score
+  end
+  
   def self.current_schedules(user, page = 1)
      self.paginate(:all, 
         :conditions => ["starts_at >= ? and group_id in (select group_id from groups_users where user_id = ?)", Time.zone.now, user.id],

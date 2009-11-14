@@ -515,8 +515,10 @@ es:
   
      my_venue: Mis Lugares de Encuentro   
 
-     myopenid: miOpenID   
-     myopenid_association: Una de las mejores características aquí en HayPista es su capacidad de acceso mediante cuentas que ya tienen. Nos hemos asociado con algunos de los principales proveedores de servicios en un esfuerzo para hacer de su experiencia que HayPista mucho más fácil.   
+     myopenid: Mi OpenID   
+     myopenid_association: "Una de las mejores características aquí en HayPista es su capacidad de acceso mediante cuentas que ya tienen. <br />
+                          Nos hemos asociado con algunos de los principales proveedores de servicios en un esfuerzo 
+                          para hacer de su experiencia que HayPista mucho más fácil."   
      myopenid_association_en: One of the great features here on HayPista is your ability to login using accounts you already have. We've teamed up with some of the top service providers in an effort to make your HayPista experience that much easier.    
      myopenid_login: myOpenID   
      myopenid_select: Seleccióna cualquiera de los siguientes proveedores de servicios.   Sigue el URL para añadir una cuenta de un tercer servicio a tu cuenta existente de HayPista!   
@@ -530,7 +532,7 @@ es:
      openid_identifier_description:  "Ej:  tu_nombre.myopenid.com"  
      change_openid: Ocultar tus cuentas de OpenID   
      added_to_your_openid: añadido a tu cuenta OpenID
-     add_openid: Nuevo OpenID a tu cuenta        
+     add_openid: Añadido un OpenID a tu cuenta        
              
      name: Nombre 
      name_account: Nombre de la Cuenta   
@@ -1031,8 +1033,8 @@ es:
      upload:  Subir
      url_group: Vincular a Equipo   
      use_at_discretion: Nueva opción para entrar.  Si tienes una cuenta entra con tu cuenta original.
-     use_openid: O utiliza OpenID 
-     use_login:  O utiliza Acceso con
+     use_openid: O entra con OpenID 
+     use_login:  O entra con
      use_standard_login: utiliza el estándar de acceso de usuario / contraseña
      
      user: Jugador   
@@ -1132,6 +1134,11 @@ es:
      
      home_index: Inicio
      home_search:  Buscar
+     about_us:  About Us
+     terms_of_use: Terms of Use
+     privacy_policy: Privacy Policy
+     faq: FAQ
+     follow_twitter:  Follow Us on Twitter
 
      invitation_delete: Borra esta invitación
      invitation_deleted: Invitación borrada

@@ -23,7 +23,19 @@ class HomeController < ApplicationController
   def upcoming_schedule
     @upcoming_schedules ||= Schedule.upcoming_schedules(session[:schedule_hide_time])
   end
-
+  
+  def about_us
+  end
+  
+  def terms_of_use
+  end
+  
+  def privacy_policy
+  end
+  
+  def faq
+  end
+  
   private
   def get_user_mates
     @users = current_user.find_mates if current_user

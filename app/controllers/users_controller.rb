@@ -129,6 +129,10 @@ class UsersController < ApplicationController
     end 
   end
 
+  def third_party
+    store_location
+    @user = current_user
+  end
 
   def search
     count = User.count_by_solr(params[:search])
@@ -378,7 +382,76 @@ class UsersController < ApplicationController
       end
     end
   end
- 
+
+  def associate_return
+    if params[:error]
+      flash[:error] = "#{t :openid_failed }: #{params[:error]}"
+      redirect_to :controller => "sessions", :action => "index"
+      return
+    end
+
+    if !params[:token]
+      flash[:notice] = t(:openid_cancelled) 
+      redirect_to :controller => "sessions", :action => "index"
+      return
+    end
+  
+    data = []     
+    RPXNow.user_data(params[:token], APP_CONFIG['rpx_api']['key'], :extended=>'true') { |raw| data = raw['profile'] }
+
+    session[:identifier] = identifier = data["identifier"]
+    primary_key = data["primaryKey"]
+
+    if primary_key.nil?
+      if current_user.nil?
+        flash[:notice] = t(:not_signed_in)
+      else
+        RPXNow.map(identifier, current_user.id, APP_CONFIG['rpx_api']['key'])
+        
+        ## assign user to original user
+        @lastUser = User.find(:first, :conditions => ["identity_url = ? ", identifier])    
+        unless @lastUser.nil?
+          @lastUser.update_attributes("name" => current_user.name, "email" => current_user.email, "rpxnow_id" => current_user.id)
+          @lastUser.save!
+        else
+          @lastUser = User.new
+          @lastUser.rpxnow_id = current_user.id
+          @lastUser.identity_url = identifier
+          @lastUser.name = current_user.name
+          @lastUser.email = current_user.email
+          @lastUser.save!
+        end
+        
+        
+        flash[:notice] = "#{identifier} #{t :openid_added }"
+      end
+      # redirect_to :controller => "sessions", :action => "index"
+      redirect_back_or_default('/index')
+      return
+    else
+      if current_user.id == primary_key.to_i
+        flash[:notice] = t(:openid_already_added)
+        # redirect_to :controller => "sessions", :action => "index"
+        redirect_back_or_default('/index')
+        return
+      else
+        # The OpenID was already associated with a different user account.
+        @page_title = t(:openid_replace_account) 
+        session[:identifier] = identifier
+        @other_user = User.find_by_id(primary_key)
+        if @user.nil?
+          
+          RPXNow.unmap(identifier, primary_key, APP_CONFIG['rpx_api']['key'])
+          RPXNow.map(identifier, current_user.id, APP_CONFIG['rpx_api']['key'])
+
+          flash[:notice] = "#{identifier} #{t(:openid_added) }"
+        end
+        # redirect_to :controller => "home", :action => "index" 
+      end
+    end
+      redirect_back_or_default('/index')
+  end
+   
   protected
   
   def setup_rpx_api_key

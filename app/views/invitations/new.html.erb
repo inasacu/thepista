@@ -20,10 +20,10 @@
 	
 	  <% form_for :invitation, :url => invitations_path, :html => { :class => :form } do |f| -%>
 	  
-		<% if @schedule or @group %>
+		<%# if @schedule or @group %>
 			<%= hidden_field :schedule, :id %>
 			<%= hidden_field :group, :id %>
-		<% end %>
+		<%# end %>
 	
 		<div class="columns"> 
 		

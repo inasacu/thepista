@@ -78,7 +78,7 @@ class UserMailer < ActionMailer::Base
     @from             = "#{invitation.user.name} <#{invitation.user.email}>"
     @sent_on          = Time.zone.now
     @body[:user]      = invitation.user
-    @body[:message]   = invitation
+    @body[:message]   = message
     @body[:url]       = signup_url
     @content_type     = "text/html"
     # @headers          = {}
@@ -91,7 +91,7 @@ class UserMailer < ActionMailer::Base
     @sent_on          = Time.zone.now
     @body[:user]      = message.sender
     @body[:message]   = message
-    @body[:url]       = "thepista.local"
+    @body[:url]       = APP_CONFIG['server_name']['key']
     @content_type     = "text/html"
     # @headers          = {}
   end

@@ -1,0 +1,72 @@
+<% myOpenID = RPXNow.mappings(current_user.id, APP_CONFIG['rpx_api']['key']) %>
+
+<div class="block">
+
+  <%= render :partial => 'secondary_navigation' %>   
+
+  <div class="content">
+	
+	<h2 class="title"><%= label_name(:your_openid) %><br />
+		  <span style="color: rgb(119, 119, 119); font-weight: normal; font-size: 11px;">
+		    <%= label_name(:myopenid_association) %>
+		  </span>
+	</h2>  
+	
+	<!-- <h2>
+		<%#= label_name(:current_accounts) %>
+	</h2> -->
+	
+  
+  
+    <div class="inner">
+
+	<!-- new table -->
+		<table class="table">
+			<thead>
+
+				<tr>             
+					<th class="first"><%=label_name(:type_account) %></th>
+					<th><%=label_name(:name_account) %></th>
+					<th class="last"><%= t :destroy %>?</th>
+				</tr>
+			</thead>
+
+			<% if myOpenID.length > 0 %>
+				<% myOpenID.each do |identifier| 	%>
+				<tr>
+					<td>
+						<%= image_tag('auth-openid-tiny.gif') if identifier.include?('myopenid.com') %>
+						<%= image_tag('auth-live-tiny.gif') if identifier.include?('live.com') %>
+						<%= image_tag('auth-facebook-tiny.gif') if identifier.include?('facebook.com') %>
+						<%= image_tag('auth-google-tiny.gif') if identifier.include?('google.com') %>
+						<%= image_tag('auth-yahoo-tiny.gif') if identifier.include?('yahoo.com') %>
+						<%= image_tag('auth-myspace-tiny.gif') if identifier.include?('myspace.com') %>			
+					</td>
+					<td>
+						<%= h(identifier) %>
+					</td>
+					<td class="remove"><%= link_to t(:destroy), :controller => :rpx, :action => "remove_openid", :openid => identifier %></td>
+				</tr>
+				<% end %>
+			<% end %>
+			
+		
+		</table>
+	<!-- new table -->
+	
+		<p>
+			<%= t(:myopenid_select) %>
+		</p>
+
+	<h2>
+		<%=RPXNow.popup_code("#{t(:add_openid)  }",APP_CONFIG['rpx_api']['realm'], rpx_token_sessions_url, :language=>'es') %>	
+	</h2>
+	
+		<%#= render :partial => 'show_admin' if current_user.is_maximo? %>
+  
+    </div>
+  </div>
+</div>
+
+<%= render :partial => 'utilities/rpx_script' if current_user %>
+<%# content_for :sidebar, render(:partial => 'sidebar_show') -%>

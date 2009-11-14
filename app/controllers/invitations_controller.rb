@@ -40,21 +40,27 @@ class InvitationsController < ApplicationController
       @invitation.item = @group
     end
     
-    respond_to do |format|
+    # respond_to do |format|
       if @invitation.save
         
         flash[:notice] = I18n.t(:invitation_successful_create)
-        format.html {
-          unless params[:welcome]
-            redirect_to user_path(@invitation.user)
-          else
-            redirect_to welcome_complete_user_path(@invitation.user)
-          end
-        }
+        
+        
+        # format.html {
+        #   unless params[:welcome]
+        #     redirect_to user_path(@invitation.user)
+        #   else
+        #     redirect_to welcome_complete_user_path(@invitation.user)
+        #   end
+        # }
+        
       else
         format.html { render :action => "new" }
+        return
       end
-    end
+    # end
+    
+    redirect_back_or_default('/index')
   end
   
   def invite

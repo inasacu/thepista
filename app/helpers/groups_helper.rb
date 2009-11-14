@@ -52,7 +52,7 @@ module GroupsHelper
   end
   
   def group_score_link(schedule)
-    return "#{schedule.home_group} ( #{schedule.matches.first.group_score}  -  #{schedule.matches.first.invite_score} ) #{schedule.away_group}" 
+    return "#{schedule.home_group} ( #{schedule.home_score}  -  #{schedule.away_score} ) #{schedule.away_group}" 
   end    
   
   def group_list(objects)

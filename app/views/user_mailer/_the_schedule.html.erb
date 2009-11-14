@@ -1,12 +1,33 @@
 <div style="margin-top: 6px; border-bottom: 3px solid #ddd; line-height:3px">&nbsp;</div>
 <br>
 
+<% if @schedule.played? %>  
+
+	<p style="margin: 15px 0 2px 0"><strong><%= I18n.t(:score) %>:&nbsp;&nbsp;</strong></p>
+
+	<table width="100%" border="0" cellpadding="0" cellspacing="0" style="font: 13px arial;">
+	  <tr>
+	    <td style="width:1%; color:#999999; vertical-align: top;">•&nbsp;</td>
+	    <td>
+	      	<%= @schedule.group.name %>&nbsp;&nbsp;
+	        					  <%= @schedule.matches.first.invite_score %>&nbsp;&nbsp;-&nbsp;&nbsp;
+								  <%= @schedule.matches.first.group_score %>&nbsp;&nbsp;
+								  <%= @schedule.group.second_team %>          
+	    </td>
+	  </tr>
+	</table>
+	
+	<br>
+	<div style="margin-top: 6px; border-bottom: 3px solid #ddd; line-height:3px">&nbsp;</div>
+	<br>
+<% end %>  
+
 <% unless @schedule.convocados.empty? %>  
 	<%= render :partial => 'message_list_box', 
 			   :locals => { :label => I18n.t(:rosters), :the_roster => @schedule.the_roster, :schedule => @schedule } %>
 <% end %>
 
-<% unless @schedule.last_minute.empty? %>   
+<% unless @schedule.last_minute.empty? or @schedule.played? %>   
 	<%= render :partial => 'message_list_box', 
 			   :locals => { :label => I18n.t(:last_minute), :the_roster => @schedule.the_last_minute, :schedule => @schedule } %>
 <% end %>

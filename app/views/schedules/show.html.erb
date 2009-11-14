@@ -61,7 +61,7 @@
 		<td class="<%= get_the_action%>">
           <%= group_link @schedule.group %>
           &nbsp;&nbsp;
-          <%= @schedule.matches.first.group_score %>&nbsp;&nbsp;-&nbsp;&nbsp;<%= @schedule.matches.first.invite_score %>
+          <%= @schedule.home_score %>&nbsp;&nbsp;-&nbsp;&nbsp;<%= @schedule.away_score %>
           &nbsp;&nbsp;
           <%= link_to h(@schedule.group.second_team), group_path(@schedule.group) %>
 		</td>

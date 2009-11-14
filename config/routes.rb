@@ -26,7 +26,6 @@ ActionController::Routing::Routes.draw do |map|
 
   map.set_manager     	    'users/:id/set_manager/:group',    		        :controller => 'users',    		    :action => 'set_manager'
   map.remove_manager  	    'users/:id/remove_manager/:group', 		        :controller => 'users',     	    :action => 'remove_manager'
-   
   map.set_sub_manager     	'users/:id/set_sub_manager/:group',    		    :controller => 'users',    		    :action => 'set_sub_manager'
   map.remove_sub_manager  	'users/:id/remove_sub_manager/:group', 		    :controller => 'users',     	    :action => 'remove_sub_manager'
   map.set_subscription   	  'users/:id/set_subscription/:group',    	    :controller => 'users',    		    :action => 'set_subscription'
@@ -34,7 +33,6 @@ ActionController::Routing::Routes.draw do |map|
   map.set_moderator   		  'users/:id/set_moderator/:group',    		      :controller => 'users',    		    :action => 'set_moderator'
   map.remove_moderator   	  'users/:id/remove_moderator/:group',  		    :controller => 'users',    		    :action => 'remove_moderator'   
   map.petition              'users/:id/petition',                         :controller => 'users',           :action => 'petition'
-  map.set_public            'schedules/:id/set_public',                   :controller => 'schedules',       :action => 'set_public'  
   
   map.set_available               'users/:id/set_available',  		        :controller => 'users',    		    :action => 'set_available'
   map.set_private_phone           'users/:id/set_private_phone',  		    :controller => 'users',    		    :action => 'set_private_phone'
@@ -43,6 +41,11 @@ ActionController::Routing::Routes.draw do |map|
   map.set_teammate_notification   'users/:id/set_teammate_notification',  :controller => 'users',    		    :action => 'set_teammate_notification'
   map.set_message_notification    'users/:id/set_message_notification',  	:controller => 'users',    		    :action => 'set_message_notification'
   map.set_comment_notification    'users/:id/set_comment_notification',  	:controller => 'users',    		    :action => 'set_comment_notification'
+  
+  map.third_party           'users/third_party',                          :controller => 'users',           :action => 'third_party'
+  map.associate_return      'users/associate_return',                     :controller => 'users',           :action => 'associate_return'
+    
+  map.set_public            'schedules/:id/set_public',                   :controller => 'schedules',       :action => 'set_public'
   
   map.set_group_enable_comments   'groups/:id/set_enable_comments',  		  :controller => 'groups',    		    :action => 'set_enable_comments'
   map.set_group_available         'groups/:id/set_available',  		        :controller => 'groups',    		    :action => 'set_available'
@@ -62,8 +65,13 @@ ActionController::Routing::Routes.draw do |map|
   
   map.ratings_rate          'ratings/:id/rate/:type',                     :controller => 'ratings',         :action => 'rate'
   
-  map.import_contact   'invitations/contact',                             :controller => 'invitations',     :action => 'contact'
-  map.invite_contact   'invitations/invite_contact',                      :controller => 'invitations',     :action => 'invite_contact'
+  map.import_contact        'invitations/contact',                        :controller => 'invitations',     :action => 'contact'
+  map.invite_contact        'invitations/invite_contact',                 :controller => 'invitations',     :action => 'invite_contact'
+  
+  map.about_us              'about_us',                                   :controller => 'home',            :action => 'about_us'
+  map.terms_of_use          'terms_of_use',                               :controller => 'home',            :action => 'terms_of_use'
+  map.privacy_policy        'privacy_policy',                             :controller => 'home',            :action => 'privacy_policy'
+  map.faq                   'about_us',                                   :controller => 'home',            :action => 'about_us'
   
   map.resources   :user_sessions,   :as => 'repitelo'
   map.resources   :users,           :as => 'jugadores',                   :collection => { :rpx_create => :post, :rpx_associate => :post,
