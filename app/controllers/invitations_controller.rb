@@ -29,37 +29,23 @@ class InvitationsController < ApplicationController
     @user = current_user
     @invitation = Invitation.new(params[:invitation])
     @invitation.user = @user
-    
+
     unless params[:schedule][:id].blank? 
       @schedule = Schedule.find(params[:schedule][:id])
       @invitation.item = @schedule
     end
-    
+
     unless params[:group][:id].blank?
       @group = Group.find(params[:group][:id])
       @invitation.item = @group
     end
-    
-    # respond_to do |format|
-      if @invitation.save
-        
-        flash[:notice] = I18n.t(:invitation_successful_create)
-        
-        
-        # format.html {
-        #   unless params[:welcome]
-        #     redirect_to user_path(@invitation.user)
-        #   else
-        #     redirect_to welcome_complete_user_path(@invitation.user)
-        #   end
-        # }
-        
-      else
-        format.html { render :action => "new" }
-        return
-      end
-    # end
-    
+
+    if @invitation.save
+      flash[:notice] = I18n.t(:invitation_successful_create)
+    else
+      redirect_to :action => 'new' and return
+    end
+
     redirect_back_or_default('/index')
   end
   

@@ -1214,6 +1214,7 @@ es:
      groups_index:   Equipos
      groups_index_option: Opciones de Equipo
      groups_invitations_create:  Invita a un Amigo al Equipo
+     groups_join:  Unete al Equipo
      groups_list:  Resto de Equipo
      groups_new:  Nuevo Equipo
      groups_new_option: Opciones de Nuevo Equipo
