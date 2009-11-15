@@ -192,3 +192,12 @@ div#footer a:hover { color: orange; }
 div#footer div.link_wrapper { position: relative; float: left; left: 50%; }
 div#footer ol { position: relative; left: -50%; font-size: 1.0em; }
 div#footer ol li { margin: 0pt 1em; position: relative; float: left; }
+
+
+ /*user navigation*/
+#user-navigation a.logout {
+  background: #cc0000;
+  padding: 1px 4px;
+  -moz-border-radius: 4px;
+-webkit-border-radius: 3px;
+}

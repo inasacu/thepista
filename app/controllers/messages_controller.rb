@@ -171,11 +171,11 @@ class MessagesController < ApplicationController
         group_messages(@message, @recipients, @scorecard)
 
       elsif @match
-        @match.schedule.create_schedule_details(current_user, true)
+        # @match.schedule.create_schedule_details(current_user, true)
         group_messages(@message, @recipients, @match.schedule)
 
       elsif @schedule 
-        @schedule.create_schedule_details(current_user, true)
+        # @schedule.create_schedule_details(current_user, true)
         group_messages(@message, @recipients, @schedule)
         
       else
