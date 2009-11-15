@@ -72,13 +72,12 @@ class UserMailer < ActionMailer::Base
     else
       @subject            = "#{invitation.user.name} #{I18n.t(:invitation_to_join)}!"
     end
-    
-    
+        
     @recipients       = "#{invitation.email}"
     @from             = "#{invitation.user.name} <#{invitation.user.email}>"
     @sent_on          = Time.zone.now
     @body[:user]      = invitation.user
-    @body[:message]   = message
+    @body[:message]   = invitation
     @body[:url]       = signup_url
     @content_type     = "text/html"
     # @headers          = {}
