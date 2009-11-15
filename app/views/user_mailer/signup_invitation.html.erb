@@ -19,6 +19,14 @@
  
 <%= "#{I18n.t(:request_url_does_not_work)}  #{I18n.t(:request_url_issue)}" %><br /><br />
 
+<% if @group %>
+
+<%= I18n.t(:participate_group_afterwards) %><br /><br />
+
+<%= link_to(@group.name, {:host => 'haypista.com', :controller => 'groups', :action => 'show', :id => @group.id}) %><br /><br />
+
+<% end %>
+
 
 <% if @schedule %>
 

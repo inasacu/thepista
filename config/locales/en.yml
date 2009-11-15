@@ -21,6 +21,7 @@ en:
      afterwards: despues   
      ago: hace 
      all_group:  Todos los Equipos   
+     all_user:   Todos los Jugadores
      already_exist: ya existe   
      already_have_gravatar: Ya tengo un Gravatar   
      and: y   
@@ -31,12 +32,14 @@ en:
      archive_list_schedules:  Temporada Anterior
      are_you_sure:  ¿Estas Seguro? 
      at: a las   
+     attack:  Delantera
      attend_schedule: Asiste al Evento   
      aunque_estamos: Aunque estamos en fase de pruebas nos gustaria que nos dieses   
      ausente: Ausente   
      author: Author (in Spanish)   
      authorizable_id: Codigo    
      authorizable_type: Tipo    
+     available: Disponibilidad
      available_description: (Si estas disponible para jugar o si no quieres que te molesten...)   
      avatar: Gravatar   
      away_group: Fuera   
@@ -60,6 +63,7 @@ en:
      cancel_email_subscription: ¿No deseas recibir notificaciones por correo electrónico?  
 
      cannot_be_blank: no puede dejarse en blanco   
+     center:  Media
      change: Cambia Idioma   
      change_available: Cambia la Disponibilidad de   
      change_at:  Fecha de Cambio
@@ -68,10 +72,11 @@ en:
      change_group: Cambia de Equipo   
      change_language: Cambia el idioma  
      change_rejected: El cambio que ha pedido ha sido rechazado.  
-     change_rejected_explained: Es posible que no tuvieses acceso a esa zona, lo sentimos!	 
-     change_roster_status: Pasa a   
-     change_wo_access: Es posible que hayas intentado cambiar algo a lo que no tenias acceso.   
-     changed_description: cambio en la descripción   
+     change_rejected_explained: "Es posible que no tuvieses acceso a esa zona, lo sentimos!"	 
+     change_roster_status: Pasa a 
+     change_wo_access: Es posible que hayas intentado cambiar algo a lo que no tenias acceso.  
+     change_your_roster_status:  ""
+     changed_description: cambio en la descripción
      changes_in_roster_status: Ha cambiado su convocatoria   
      character_limit: Máximo 255 carácteres   
      check_all: Todos   
@@ -80,7 +85,8 @@ en:
      check_out_groups: Ver Equipos   
      check_out_schedules: Ver Eventos   
      check_out_users: Ver Jugadores   
-     city: Ciudad   
+     city: Ciudad  
+     click_to_edit:  "Haz clic para editar!" 
      close: Cerrar   
      code: Codigo 
      conditions: Condiciones   
@@ -94,7 +100,7 @@ en:
      concept: Concepto
      concept_description:  Concepto   
      contact: Contacto   
-     contact: Contacto   
+     contact_us: contáctenos 
      convocado: Convocado
      convocados: Convocados
      could_not_log_you: No se ha podido iniciar la sesión en la que como   
@@ -148,12 +154,11 @@ en:
      debit_amount: A Pagar   
      debit_amount_description: Lo que debes pagar
      debits: Deudas   
-     available: Disponibilidad   
-     message_notification: Recibir Correo   
      default_reliable: Fiable   
-     delete_activity: Borrar actividad    
+     defense:  Defensa
+     delete_activity: Borrar Actividad    
      deleted: se ha borrado correctamente.   
-       
+
      deny: Rechazo   
      deny_player: "DENIEGA"  
      description: Detalles
@@ -250,14 +255,14 @@ en:
      enable_comments_description: Opción para recibir aviso cuando se deja un comentario.
      ends_at: Finalización   
      ends_at_match: Finalización   
-     ends_at_description: (¿Ha que hora termina el partido?)   
+     ends_at_description: (¿Ha que hora termina el evento?)   
      ends_at_venue: Horario   
 
      events:
         one:  "tiene 1 evento." 
         other: "tiene {{count}} eventos."
         
-     event_details:  "(Escribe algun detalle de la jornada...)"
+     event_details:  "(Escribe algun detalle del evento...)"
  
      error_when_create_account: "Fallo al intentar crear tu cuenta, intentalo de nuevo."   
      exit_festival: Desapuntate del Festivo   
@@ -271,12 +276,12 @@ en:
      features: Prestaciones
      fee: Honorarios   
      fee_per_game: Tarifa / Partido   
-     fee_per_game_description: (Este es el precio del partido por jugador...)   
+     fee_per_game_description: (Este es el precio del evento por jugador...)   
      fee_per_pista: Tarifa / Pista   
      fee_per_pista_description: (Este es el precio de la pista or cancha...)   
      feedback: feedback   
      fees: Tasas   
-     female: Femenino   
+     female_value: Femenina  
      festival: Acondiciónamiento  
      festivals: Acondiciónamientos   
      fire_from_group: Desapunta de   
@@ -328,7 +333,14 @@ en:
      games_won_full: Partidos Ganados   
      gender: Genero   
      general_information:  Información General
-     get_your_gravatar: Pilla tu Gravatar   
+     get_your_gravatar: Pilla tu Gravatar 
+
+     goal_difference: G.D.   
+     goal_difference_full: Gol Diferencial   
+     goals_against: G.C.   
+     goals_against_full: Goles en Contra   
+     goals_for: G.F.   
+     goals_for_full: Goles a Favor  
       
      goal_difference_true: G.D.   
      goal_difference_full_true: Gol Diferencial   
@@ -346,8 +358,7 @@ en:
      
      goals_scored: G.M.   
      goals_scored_full: Goles Marcados
-     
-     
+          
      gravatar_not_received: No ha sido posible conseguir la información de gravatar del usuario   
      gravatar_received: Ya hemos conseguido la información del gravatar del usuario   
      group: Equipo   
@@ -380,6 +391,7 @@ en:
      High: Alto   
      home: Inicio   
      home_group: Equipo   
+     how_much_better:  "¿Cuánto Mayor?"
      i_confirm: "Seleciónando 'inicia tu sesión', confirmas que aceptas los Terminos de Servicio."   
      identity_does_not_exist: "Lo sentimos, ningun usuario con esa identidad existe."   
      if_role_is: si eres el responsable   
@@ -434,11 +446,12 @@ en:
      logout: Salir   
      look: Mira   
      Low: Bajo   
-     male: Masculino   
+     male_value: Masculino   
      
      manager: Responsable   
      managers: Responsable(s)   
      map: Mapa    
+     map_it: Ubicalo
      maps: Mapas   
      mark_as_read: Marcar como leido   
      mark_as_unread: Marcar como no leido   
@@ -455,7 +468,7 @@ en:
      member_since: Miembro desde   
      message: Mensaje
      message_description: Escribe el mensaje.
-     message_notification: Recibir Correo   
+     message_notification: Recibir Correo  
      message_notification_description: (Quieres recibir notificaciones atraves del correo electronico...)   
      messages: Mensajes   
      missing_information: Falta información   
@@ -502,8 +515,10 @@ en:
   
      my_venue: Mis Lugares de Encuentro   
 
-     myopenid: miOpenID   
-     myopenid_association: Una de las mejores características aquí en HayPista es su capacidad de acceso mediante cuentas que ya tienen. Nos hemos asociado con algunos de los principales proveedores de servicios en un esfuerzo para hacer de su experiencia que HayPista mucho más fácil.   
+     myopenid: Mi OpenID   
+     myopenid_association: "Una de las mejores características aquí en HayPista es su capacidad de acceso mediante cuentas que ya tienen. <br />
+                          Nos hemos asociado con algunos de los principales proveedores de servicios en un esfuerzo 
+                          para hacer de su experiencia que HayPista mucho más fácil."   
      myopenid_association_en: One of the great features here on HayPista is your ability to login using accounts you already have. We've teamed up with some of the top service providers in an effort to make your HayPista experience that much easier.    
      myopenid_login: myOpenID   
      myopenid_select: Seleccióna cualquiera de los siguientes proveedores de servicios.   Sigue el URL para añadir una cuenta de un tercer servicio a tu cuenta existente de HayPista!   
@@ -517,7 +532,7 @@ en:
      openid_identifier_description:  "Ej:  tu_nombre.myopenid.com"  
      change_openid: Ocultar tus cuentas de OpenID   
      added_to_your_openid: añadido a tu cuenta OpenID
-     add_openid: Nuevo OpenID a tu cuenta        
+     add_openid: Añadido un OpenID a tu cuenta        
              
      name: Nombre 
      name_account: Nombre de la Cuenta   
@@ -570,7 +585,7 @@ en:
      no_venue: No tienes un centro deportivo donde jugar 
      non_subscription_at: Inicio para Convocarse el no Abonado
      non_subscription_at_match: Inicio para Convocarse el no Abonado   
-     non_subscription_at_description: (Ha partir de que hora se puede apuntar a un partido el no abonado...(ej- 1 dia antes del partido))   
+     non_subscription_at_description: (Ha partir de que hora se puede apuntar a un evento el no abonado...(ej- 1 dia antes del evento))   
      not_able_to_attend: Cambia tu convocatoria   
      not_added_to_your_openid: Ningun OpenID ha sido añadido a tu cuenta    
      not_created: no se ha creado correctamente.   
@@ -599,8 +614,10 @@ en:
      or: o   
      or_use: ...o utiliza   
      overview: descripción general   
-     page_does_not_exist: La pagina que querias no exite.   
-     participate_schedule: Participa en el Evento  
+     page_does_not_exist: La pagina que querias no exite.  
+     
+     participate_schedule: Participa en el Evento
+     participate_schedule_afterwards: Despues de registrate sigue este enlace para participa en el Evento
      
      participation:  %
      participation_full:  Porcentaje de Participación
@@ -615,10 +632,10 @@ en:
      password_updated:    Su contraseña ha sido actualizada.
      password_update_and_login: Actualizar mi contraseña y entra.
      password_reset:  Restablecer contraseña
-     password_reset_instructions:  "Danos tu cuenta de correo y te mandamos las instrucciones para restablecer tu contraseña."	 
+     password_reset_instructions:  "Danos tu cuenta de correo y te mandamos las instrucciones para restablecer tu contraseña."	
+     password_resets_create: Restablecer contraseña
      password_resets_new:  Restablecer contraseña  
      password_recover_instructions: Instrucciones para recupera tu Clave!  
-     
      password_forgotten:  ¿Has olvidado tu contraseña?	
      confirmation_password: Clave Confirmación
      
@@ -664,12 +681,12 @@ en:
      phone_description: (Por si te tiene que llamar tu equipo. Hay opción de poner este numero en privado...)   
      photo: Foto 
      photo_description: Foto  
-     photo_description: (Opción para subir una imagen...)   
+     photo_description: "(Opción para subir una imagen...{formato: jpeg, gif, png, jpg}{tamaño: 5mb})"  
      physical_level_description: "(Del 1 al 5, pon el nivel fisico que crees que tienes comparado con los de tu equipo...)"  
      player_limit:  Limite de Jugadores
      player_limit_description:  Limite de Jugadores que puede tener el Equipo. 
      player_with: "Jugadores con"
-     player_with_less_games: partidos menos que el resto.
+     player_with_less_games: asistencias a eventos menos que el resto.
      points: Ptos.
      points_for_draw: Puntos por empatar
      points_for_draw_description: Dale puntuación por empatar el evento...
@@ -801,12 +818,14 @@ en:
      second_team: Segundo Equipo   
      second_team_description: "(Si jugais entre el mismo equipo, pon algun significativo para diferenciar a la hora de hacer equipos...) "  
      select: Seleccióna   
-     select_venue: Nuevo Centro Deportivo   
+     select_venue: Nuevo Centro Deportivo  
+     select_contacts:  Seleccione los contactos que quiere invitar a partir de la esta lista. 
      self_description_description: (Escribe algo sobre ti...)   
      send_announcement: Manda una Anuncio   
      send_credit: Manda un Credito   
      send_debit: Manda una Deuda   
-     send_description: Manda un Detalles   
+     send_description: Manda un Detalles 
+     send_email_to: Manda un correo a
      send_fee: Manda las Tasas   
      send_information: Manda un Detalles   
      send_invitation: Manda una Invitación   
@@ -887,8 +906,9 @@ en:
      sport: Deporte
      sport_id: Deporte   
      sport_description: (Que tipo de deporte practica el equipo...)   
-     sports: Deportes   
-     starts_at_description: (¿Ha que hora empieza el partido?)   
+     sports: Deportes 
+     sports_none:  Ningun Deporte.  
+     starts_at_description: (¿Ha que hora empieza el evento?)   
      start_session: inicia tu sesión   
      starts_at: Inicio   
      starts_at_match: Inicio   
@@ -899,10 +919,11 @@ en:
      subject: Asunto  
      subject_description:  Titulo del Asunto
      sub_manager_updated:  Actualización de sub manager.
+     manager_updated:  Actualización de manager.
      
      subscription_at: Finalización para Convocarse el Abonado  
      subscription_at_match: Finalización para Convocarse el Abonado   
-     subscription_at_description: (¿Ha que hora termina la opción para apuntarse a un partido el abonado...(ej- 1 dia antes del partido)) 
+     subscription_at_description: (¿Ha que hora termina la opción para apuntarse a un evento el abonado...(ej- 1 dia antes del evento)) 
      subscription_false:  Jugador No Abonado.
      subscription_true:  Jugador Abonado
      subscription_updated: Actualización de jugador abonado.
@@ -952,7 +973,8 @@ en:
      to_message: A   
      to_payment: Pago de   
      topic: Asunto   
-     topic: Tema   
+     topic: Tema  
+     total:  Total 
      tournament: Torneo   
      tournaments: Torneos    
      trash: Basura   
@@ -1011,8 +1033,8 @@ en:
      upload:  Subir
      url_group: Vincular a Equipo   
      use_at_discretion: Nueva opción para entrar.  Si tienes una cuenta entra con tu cuenta original.
-     use_openid: O utiliza OpenID 
-     use_login:  O utiliza Acceso con
+     use_openid: O entra con OpenID 
+     use_login:  O entra con
      use_standard_login: utiliza el estándar de acceso de usuario / contraseña
      
      user: Jugador   
@@ -1023,6 +1045,7 @@ en:
      user_last_login: Última vez conectado   
      user_options:  Opciones de Usuario
      username_not_available: Nombre de usuario no esta disponible 
+     username_password_donot_match: Nombre de usuario y contraseña no coinciden
      users_activate:  "Es necesario activar tu cuenta"
      
      validate_openid: valida tu OpenID   
@@ -1075,7 +1098,7 @@ en:
      message_notification_description: "" 
      gender_description: Genero
      birth_at_description:  Fecha de Nacimiento
-     position:  Posición en el Campo
+     position:  Posición
      position_description:  Posición en el Campo
      technical:  Nivel Tecnico
      technical_description:  Nivel tecnico
@@ -1102,8 +1125,8 @@ en:
      
      es:  Español
      en:  Ingles
-     fr:   Frances
-     ge:   Aleman
+     fr:  Frances
+     ge:  Aleman
      it:  Italiano
      
      # translations for views
@@ -1111,18 +1134,42 @@ en:
      
      home_index: Inicio
      home_search:  Buscar
-     
+     about_us:  About Us
+     terms_of_use: Terms of Use
+     privacy_policy: Privacy Policy
+     faq: FAQ
+     follow_twitter:  Follow Us on Twitter
+
+     invitation_delete: Borra esta invitación
+     invitation_deleted: Invitación borrada
+     invitation_message: Has recibido una invitation para unirte o buscar a algun equipo con quien jugar...
+     invitation_notice: HayPista no almacena ni tu cuenta de correo ni tu contraseña.
+     invitation_signup_link:  Visite este enlace para registrarse
+     invitation_successful_create: La Invitación ha sido mandada.
+     invitation_to_join: te manda una solicitud para unirte a HayPista     
+     invitations_contacts:  Invitar a los contactos de tu libreta de direcciones de correo electrónico.
+     invitations_email: "Email (Hotmail, Gmail, Yahoo, etc...)"
      invitations_index:  Invitaciones Mandadas
-     invitations_import:  Importar Contactos
+     invitations_import:  Invitar a tus contactos
      invitations_for_your_friends:  Invita a tus amigos
      invitations_no:  Ninguna Invitación para mostrar
      invitations_option:  Opciones de Invitación
      invitations_create:  Nueva Invitación
+     invitations_create_group: Nueva Invitación al equipo
+     invitations_create_schedule: Nueva Invitación al evento
      invitations_sent:  Invitaciones Mandadas
-     invitation_successful_create: La Invitación ha sido mandada.
-     invitation_to_join: te manda una solicitud para unirte a HayPista  
-     invitation_signup_link:  Visite este enlace para registrarse
-         
+
+     # ie_no_more
+     you_upgrade_browser:  Es posible que desee actualizar su navegador.
+     you_are_using_ie6:  "Actualmente, está usando Internet Explorer 6 para navegar este sitio. 
+                            Este sitio funcionara mejor con otros navegadores mas avanzados..."
+     switch_to_safari:  Cambiar a Safari
+     switch_to_firefox: Cambiar a Firefox
+     switch_to_chrome: Cambiar a Chrome
+     upgrade_to_ie8:  Actualiza a Internet Explorer 8
+     please_read_this:  "Por favor lea esto!"
+     ie_no_more_country: es-ES
+     
      entries_teammate: Mis Compañeros de Equipo
      entries_my_wall: Mi Muro
      entries_option:  Opciones del Muro
@@ -1151,6 +1198,7 @@ en:
      payment_full:  Pago Total
      payment_greater_than:  Pago Superior
      payment_less_than:  Pago Inferior
+     payment_type:  Tipo de Pago
      payments_create:  Nuevo Pago
      payments_index:   Pagos
      payments_index_option: Opciones de Pago
@@ -1166,7 +1214,8 @@ en:
      groups_index:   Equipos
      groups_index_option: Opciones de Equipo
      groups_invitations_create:  Invita a un Amigo al Equipo
-     groups_list:  Jugadores del Equipo
+     groups_join:  Unete al Equipo
+     groups_list:  Resto de Equipo
      groups_new:  Nuevo Equipo
      groups_new_option: Opciones de Nuevo Equipo
      groups_no:  Ningun Equipo para mostrar.
@@ -1203,6 +1252,7 @@ en:
      messages_no: Ningun Mensaje para mostrar.
      messages_edit: Modificar Mensaje
      messages_option:  Opciones de Mensajes
+     messages_send:  Manda Mensaje
      messages_sent:  Mensajes Mandados
      messages_show: Mostrar Mensaje
      messages_trash:  Mensajes Descartados
@@ -1233,6 +1283,7 @@ en:
      schedules_new: Nuevo Evento
      schedules_no: Ningun Evento para mostrar.
      schedules_edit: Modificar Evento
+     schedules_update: Modificar Evento
      schedules_option:  Opciones de Eventos
      schedule_options:  Opciones de Evento
      schedules_show: Detalles Del Evento
@@ -1250,7 +1301,7 @@ en:
      scorecards_manager_option:  Requiere responsable de equipo para ver mas opciones.
      scorecards_no: Ninguna Clasificación para mostrar.
      scorecards_option:  Opciones de Clasificaciones
-     scorecards_less_games:  ( * ) Jugadores con menos partidos
+     scorecards_less_games:  ( * ) Jugadores con menos asistencias a eventos
      scorecards_legend:  Leyenda
      
      # add_moderator: Nuevo Moderador   
@@ -1272,10 +1323,12 @@ en:
      
      role_add_moderator:  Nuevo Moderador
      role_add_sub_manager:  Nuevo Sub-Manager
+     role_add_manager:  Nuevo Manager
      role_add_subscription:  Nuevo Abonado
-     
-     role_remove_moderator: Borra Moderador   
-     role_remove_sub_manager: Borra Sub-Manager   
+
+     role_remove_moderator: Borra Moderador 
+     role_remove_sub_manager: Borra Sub-Manager
+     role_remove_manager: Borra Manager   
      role_remove_subscription: Borra Abonado
      
      roles_index:   Responsabilidades
@@ -1300,6 +1353,7 @@ en:
      users_description_no:  Ningun detalle del Jugador.
      users_edit:  Modificar Jugador
      users_edit_option:  Opciones de Jugador
+     users_list:  Resto de Jugadores
      users_new:  Nuevo Jugador
      users_no:  Ningun Jugador para mostrar.
      users_petition:  Petición del Jugador

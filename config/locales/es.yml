@@ -618,6 +618,7 @@ es:
      
      participate_schedule: Participa en el Evento
      participate_schedule_afterwards: Despues de registrate sigue este enlace para participa en el Evento
+     participate_group_afterwards: Despues de registrate sigue este enlace para unirte al equipo
      
      participation:  %
      participation_full:  Porcentaje de Participación

@@ -64,7 +64,7 @@ class UserMailer < ActionMailer::Base
     
     case invitation.item.class.to_s 
     when "Group"
-      @subject            = "#{invitation.user.name} #{I18n.t(:groups_join)}!"
+      @subject            = "#{I18n.t(:groups_join)} #{invitation.item.name}"
       @body[:group]       = invitation.item
     when "Schedule"
       @subject            = "#{invitation.user.name} #{I18n.t(:participate_schedule)}!"
