@@ -53,28 +53,28 @@ class UserSessionsController < ApplicationController
         format.html { render :action => :new }
       end
     else
-      
+
       # Authentication good... check if need to "sign up"... if user email is listed, then simply login and disrecard mapping id to rpxnow...
       email = data[:verifiedEmail] || data[:email]
       @user = User.find_by_email(email)
-       
+
       openid_identifier = data[:identifier]
       @user_openid = User.find_by_openid_identifier(openid_identifier)
-      
-      if @user_openid
-        UserSession.create(@user_openid)
-        respond_to do |format|
-          format.html { redirect_back_or_default root_url }
-        end
-      
-      elsif @user
+
+      if @user
         UserSession.create(@user)
         respond_to do |format|
           format.html { redirect_back_or_default root_url }
         end
-        
+
+      elsif @user_openid
+        UserSession.create(@user_openid)
+        respond_to do |format|
+          format.html { redirect_back_or_default root_url }
+        end
+
       else
-      
+
         # Authentication good.. check if need to "sign up"...if user has no key assigned in rpxnow add it
         primary_key = data[:id]
         unless primary_key
@@ -97,9 +97,9 @@ class UserSessionsController < ApplicationController
             end
           end
         end
-    
+
       end
-    
+
     end
   end
 
