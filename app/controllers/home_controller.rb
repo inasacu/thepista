@@ -1,5 +1,5 @@
 class HomeController < ApplicationController  
-  before_filter :require_user, :except => [:index, :about, :help, :welcome, :pricing]
+  before_filter :require_user, :except => [:index, :about, :help, :welcome, :pricing, :about_us, :terms_of_use, :privacy_policy, :faq]
   before_filter :get_user_mates
 
   def index
