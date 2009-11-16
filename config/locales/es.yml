@@ -1058,11 +1058,13 @@ es:
      verification_setup: Verificación de OpenID tiene que ser actualizado.   
      view: Ver   
      visible_only_to_you_description: (Solo tu podras ver esta información...)   
-     visit_group: Visitante   
+     visit_group: Visitante  
+      
      Wednesday: Miercoles   
      welcome: Bienvenidos a HayPista   
      were_removed: han sido eliminados   
      what_are_you_practicing: Que actividad estas practicando?   
+     
      whats_new: ¿Qué hay de nuevo en HayPista?   
      write_comment: Escribe un comentario...   
      writes: escribe   
@@ -1210,8 +1212,10 @@ es:
      payments_option:  Opciones de Pagos
      payments_show:  Mostrar Pago
      
+     group_options:  Opciones de Equipos
      groups_create:  Nuevo Equipo 
      groups_destroy:  Borrar Equipo
+     groups_edit:  Modificar Equipo
      groups_index:   Equipos
      groups_index_option: Opciones de Equipo
      groups_invitations_create:  Invita a un Amigo al Equipo
@@ -1221,9 +1225,10 @@ es:
      groups_new_option: Opciones de Nuevo Equipo
      groups_no:  Ningun Equipo para mostrar.
      groups_none:  Ningun Equipo.
-     groups_edit:  Modificar Equipo
-     group_options:  Opciones de Equipos
+     groups_options_without: "Que opciones tienes ya que no tienes un equipo?"
      groups_option:  Opciones de Equipo
+     groups_search: Busqueda de Equipos
+     groups_search_to_join: Puedes Buscar un equipo a quien unierte.
      groups_show:  Mostrar Equipo
 
      markers_create: Nuevo Centro Deportivo

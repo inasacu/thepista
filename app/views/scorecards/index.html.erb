@@ -4,80 +4,16 @@
 
 <div class="block">
 
-  <%= render :partial => 'secondary_navigation' %>  
-          
-  <div class="content">  
-	        
-    <h2 class="title"><%= get_collection_label(@groups) %></h2>
+	<%= render :partial => 'secondary_navigation' %>  
 
-    <div class="inner">
-	
-	<% if object_counter(@groups) > 0 %>
-	
-      <table class="table">
-	
-        <tr>             
-          <th class="first">&nbsp;</th>
-          <th><%= label_name(:name) %>&nbsp;/<br />
-			  <%= label_name(:gameday_at) %></th>
-          <th><%= label_name(:manager) %>&nbsp;/<br />
-			  <%= label_name(:sport) %></th>
-          <th><%= label_name(:time_zone) %></th>
-          <th><%= label_name(:general_information) %></th>
-          <th><%= label_name(:created_at) %></th>
-          <th class="last">&nbsp;</th>
-        </tr>
+	<div class="content">  
 
-        <% @groups.each do |group| -%>
+		<% if object_counter(@groups) > 0 %>
+			<%= render :partial => 'index_full' %>
+		<% else %>
+			<%= render :partial => 'groups/index_blank' %>
+		<% end %>
 
-        <tr>  
-		  <td>
-			<%= group_image_link_small group %>
-		  </td>
-		  
-		  <td>
-			
-			
-			<% unless @archive %>
-				<%= link_to group.name, scorecard_path(:id => group.id) %>
-			<% else %>
-			<%= link_to group.name, show_archive_path(:id => group.id) %>
-			<% end %>
-			
-		  </td>
-		
-		  <td>
-			<%= user_list group.all_the_managers %><br />
-			<%= group.sport.name %>
-		  </td>
-
-			  <td>
-				<%= group.time_zone %>
-			  </td>
-                
-          <td>
-			<%= I18n.t(:has_group_users, :count => object_counter(group.users)) %><br />
-			<%= I18n.t(:has_group_schedules, :count => object_counter(group.schedules)) %>
-          </td>
-
-          <td>
-            <%#= nice_full_date group.created_at %>
-          </td>
-
-          <td class="last">
-			<%= link_to(label_name(:send_message_to_group), new_message_path(:group_id => group.id)) %><br />
-          </td>
-        </tr>   
-       
-        <% end -%>
-
-      </table>
-
-	<% end %>
-	<%= render :partial => 'shared/action_bar', :locals => { :collection => @groups } %>
-
-	</div>
 	</div>
 </div>
 <% content_for :sidebar, render(:partial => 'sidebar')  if object_counter(@groups) > 0  -%>
-
