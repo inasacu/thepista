@@ -22,11 +22,17 @@
       		<% form_tag password_resets_path do %>
 
 			<div class="group">
-		    <%= label :email, label_name('name') %>&nbsp;&nbsp;<%= text_field_tag :email %>	    
-		  	</div><br />
+		    <%= label :email, label_name(:email) %>&nbsp;&nbsp;<%= text_field_tag :email %>	    
+		  	</div>
+			<br />
+			<br />
+			<div class="clear"></div>
 
 			<%= render :partial => 'utilities/recaptcha' %>
-
+			
+			<br />
+			<br />
+			
 			<div class="group navform"> 
 				<%= submit_tag label_name(:password_reset), :class => "button" %>
 			</div>
