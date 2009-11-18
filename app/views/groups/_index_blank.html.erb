@@ -10,8 +10,14 @@
 </p>
 <p>
 	<span class="large">*&nbsp;&nbsp;
-		<%= label_name(:groups_search_to_join) %>
+		<%= link_to("#{label_name(:you_can)} #{label_name(:to_join_group)}", list_groups_path) %>
+		<%#=  link_to(label_name(:all_group) , list_groups_path) %>
 	</span>
 </p>
+<!-- <p>
+	<span class="large">*&nbsp;&nbsp;
+		<%#= label_name(:groups_search_to_join) %>
+	</span>
+</p> -->
 
 </div>

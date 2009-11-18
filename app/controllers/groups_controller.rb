@@ -8,7 +8,10 @@ class GroupsController < ApplicationController
   end
   
   def list
-    @groups = Group.paginate(:all, :conditions => ["archive = false and id not in (?)", current_user.groups], :page => params[:page], :order => 'name')
+    @groups = Group.paginate(:all, 
+               :conditions => ["archive = false and id not in (?)", current_user.groups], :page => params[:page], :order => 'name') unless current_user.groups.blank?
+     @groups = Group.paginate(:all, :conditions =>["archive = false"], 
+                              :page => params[:page], :order => 'name') if current_user.groups.blank?
     render :template => '/groups/index'       
   end
   

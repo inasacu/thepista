@@ -1229,7 +1229,7 @@ es:
      groups_options_without: "Que opciones tienes ya que no tienes un equipo?"
      groups_option:  Opciones de Equipo
      groups_search: Busqueda de Equipos
-     groups_search_to_join: Puedes Buscar un equipo a quien unierte.
+     groups_search_to_join: Puedes Buscar un equipo a quien unierte. 
      groups_show:  Mostrar Equipo
 
      markers_create: Nuevo Centro Deportivo
