@@ -50,7 +50,7 @@ class Message < ActiveRecord::Base
       self.recipient_deleted_at = time
     else
       # Given our controller before filters, this should never happen...
-      raise ArgumentError, I18n.t(:unauthorized_user)
+      # raise ArgumentError, I18n.t(:unauthorized_user)
     end
 
     if sender == recipient

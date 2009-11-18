@@ -287,22 +287,22 @@ class MessagesController < ApplicationController
   #   end
   # end
   
-  def deliver_message_scorecard(message, scorecards, recipients, group)  
-    recipients.each do |recipient|
-
-      if recipient.message_notification?
-        UserMailer.deliver_message_scorecard(
-        :user => current_user,
-        :email => recipient.email,
-        :message => message, :receiver => recipient, :scorecards => scorecards, :group => group,
-        :user_url => url_for(:controller => 'users', :action => 'show', :id => current_user.id),
-        :reply_url => url_for(:controller => 'messages', :action => 'reply', :id => message.id),
-        :group_url => url_for(:controller => 'groups', :action => 'show', :id => group.id),
-        :scorecard_url => url_for(:controller => 'scorecards', :action => 'show', :id => group.id)
-        )     
-      end
-    end 
-  end
+  # def deliver_message_scorecard(message, scorecards, recipients, group)  
+  #   recipients.each do |recipient|
+  # 
+  #     if recipient.message_notification?
+  #       UserMailer.deliver_message_scorecard(
+  #       :user => current_user,
+  #       :email => recipient.email,
+  #       :message => message, :receiver => recipient, :scorecards => scorecards, :group => group,
+  #       :user_url => url_for(:controller => 'users', :action => 'show', :id => current_user.id),
+  #       :reply_url => url_for(:controller => 'messages', :action => 'reply', :id => message.id),
+  #       :group_url => url_for(:controller => 'groups', :action => 'show', :id => group.id),
+  #       :scorecard_url => url_for(:controller => 'scorecards', :action => 'show', :id => group.id)
+  #       )     
+  #     end
+  #   end 
+  # end
   
   def destroy
     @message = Message.find_all_parent_messages(params[:id])
