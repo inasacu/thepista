@@ -617,7 +617,7 @@ es:
      page_does_not_exist: La pagina que querias no exite.  
      
      participate_schedule: Participa en el Evento
-     participate_schedule_afterwards: Despues de registrate sigue este enlace para participa en el Evento
+     participate_schedule_afterwards: "Despues de registrate en el equipo y ser aceptado, sigue este enlace para participa en el Evento"
      participate_group_afterwards: Despues de registrate sigue este enlace para unirte al equipo
      
      participation:  %

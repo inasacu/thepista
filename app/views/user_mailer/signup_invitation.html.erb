@@ -30,6 +30,10 @@
 
 <% if @schedule %>
 
+<%= I18n.t(:participate_group_afterwards) %><br /><br />
+
+<%= link_to(@schedule.group.name, {:host => 'haypista.com', :controller => 'groups', :action => 'show', :id => @schedule.group_id}) %><br /><br />
+
 <%= I18n.t(:participate_schedule_afterwards) %><br /><br />
 
 <%= link_to(@schedule.concept, {:host => 'haypista.com', :controller => 'schedules', :action => 'show', :id => @schedule.id}) %><br /><br />
