@@ -1,0 +1,26 @@
+<div class="secondary-navigation">
+
+<%#= get_the_action %>
+
+<ul>
+	<li class="first active">
+		<% case get_the_action 
+			when 'about u' %>			
+				<%= link_to label_name(:about_us), about_us_url %>
+		
+		<% when 'terms of use' %>
+			<%= link_to label_name(:terms_of_use), terms_of_use_url %>
+	
+		<% when 'privacy policy' %>
+			<%= link_to label_name(:privacy_policy), privacy_policy_url %>
+
+		<% when 'faq' %>
+			<%= link_to label_name(:faq), faq_url %>
+			
+		<% end %>
+	</li>
+</ul>
+
+<div class="clear"></div>
+
+</div>
