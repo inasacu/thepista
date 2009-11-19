@@ -711,6 +711,8 @@ es:
      previous_schedules: Anteriores Eventos
      previous_practice: Anterior Entrenamiento
      previous_practices: Anteriores Entrenamientos
+     previous_profile_set:  Actualizar Perfiles.
+     previous_profile_set_full:  Obtener los perfiles de la previa jornada.
      pricing:  Precios
      privacy: privacidad   
      private_beta: Ya tenemos tu información registrada.  Actualmente estamos en versión de pruebas.  Encuanto podamos abriremos al publico.   

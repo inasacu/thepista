@@ -20,7 +20,15 @@
 		 <th align="center" title = "<%= label_name(:physical) %>"><%= label_name(:physical) %></th>
 		 <th align="center" title = "<%= label_name(:total) %>"><%= label_name(:total) %></th>
 		 <th>&nbsp;</th>
-		 <th>&nbsp;</th>
+		 <th>&nbsp;
+			<% 
+				the_label = "#{label_name(:previous_profile_set_full) }"
+				the_confirmation = "#{the_label}?"
+			%>
+			<%= link_to(label_name(:previous_profile_set), 
+						set_previous_profile_url(:id => @schedule.id), 
+						:title => the_label, :confirm => the_confirmation) if current_user.is_manager_of?(@schedule.group) %>
+					</th>
 		 <th>&nbsp;</th>
 		 <th>&nbsp;</th>
 		 <th>&nbsp;</th>

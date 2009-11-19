@@ -118,6 +118,31 @@ class SchedulesController < ApplicationController
       redirect_to :action => 'index'  
   end
   
+  def set_previous_profile
+    @schedule = Schedule.find(params[:id])
+
+    unless current_user.is_manager_of?(@schedule.group)
+      flash[:warning] = I18n.t(:unauthorized)
+      redirect_back_or_default('/index')
+      return
+    end
+
+    @previous_schedule = Schedule.find(:first, 
+    :conditions => ["id = (select max(id) from schedules where group_id = ? and id < ?) ", @schedule.group.id, @schedule.id])    
+    unless @previous_schedule.nil?
+
+      @schedule.matches.each do |match|
+        @previous_match = Match.find(:first, :conditions => ["schedule_id = ? and user_id = ?", @previous_schedule.id, match.user_id])
+        match.technical = @previous_match.technical
+        match.technical = @previous_match.technical
+        match.save!
+      end
+
+      flash[:notice] = I18n.t(:successful_update)
+    end
+    redirect_back_or_default('/index')
+  end
+  
   def set_roster_technical
       @match = Match.find(params[:id])
       

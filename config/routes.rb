@@ -46,9 +46,10 @@ ActionController::Routing::Routes.draw do |map|
   map.associate_return      'users/associate_return',                     :controller => 'users',           :action => 'associate_return'
     
   map.set_public            'schedules/:id/set_public',                   :controller => 'schedules',       :action => 'set_public'
+  map.set_previous_profile  'schedules/:id/set_previous_profile',         :controller => 'schedules',       :action => 'set_previous_profile'
   
-  map.set_group_enable_comments   'groups/:id/set_enable_comments',  		  :controller => 'groups',    		    :action => 'set_enable_comments'
-  map.set_group_available         'groups/:id/set_available',  		        :controller => 'groups',    		    :action => 'set_available'
+  map.set_group_enable_comments   'groups/:id/set_enable_comments',  		  :controller => 'groups',    		  :action => 'set_enable_comments'
+  map.set_group_available         'groups/:id/set_available',  		        :controller => 'groups',    		  :action => 'set_available'
   
   map.match_team            'matches/:id/set_team',                       :controller => 'matches',         :action => 'set_team'
   map.match_status          'matches/:id/set_status/:type',               :controller => 'matches',         :action => 'set_status'
