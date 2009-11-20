@@ -29,6 +29,7 @@ Rails::Initializer.run do |config|
   config.gem "be9-acl9", :source => "http://gems.github.com", :lib => "acl9"
   config.gem "geokit"
   config.gem "contacts"  
+  config.gem "friendly_id"
   
   # Only load the plugins named here, in the order given (default is alphabetical).
   # :all can be used as a placeholder for all plugins not explicitly named

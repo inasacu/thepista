@@ -108,6 +108,7 @@ class GroupsController < ApplicationController
   
 private
   def get_group
-    @group = Group.find(params[:id])
+    @group = Group.find(params[:id])    
+    redirect_to @group, :status => 301 if @group.has_better_id?
   end
 end

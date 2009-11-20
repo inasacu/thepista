@@ -1,44 +1,19 @@
 class User < ActiveRecord::Base
-  
-  # http://www.cafecourses.com/courses/31-integrating-authlogic-with-rpxnow/pages/54-userrb
-  # authologic and rpxnow
-  # RE_LOGIN_OK = /\A\w[\w\.\-_@]+\z/
-  # MSG_LOGIN_BAD = "should use only letters, numbers, and .-_@ please."
-  # RE_NAME_OK = /\A[^[:cntrl:]\\<>\/&]*\z/
-  # MSG_NAME_BAD = "avoid non-printing characters and \\&gt;&lt;&amp;/ please."
- 
+
    include ActivityLogger
+
+   has_friendly_id :name, :use_slug => true, 
+                   :reserved => ["new", "create", "index", "list", "signup", "edit", "update", "destroy", "show", "petition"]
+   
    
   acts_as_authentic do |c|
-    
     c.openid_required_fields = [:nickname, :email]
-
     login_field :email
     validate_login_field :false
-    
-    # Modify the default Authlogic length/format validations.
-    # c.merge_validates_length_of_login_field_options :within => 3..40, :message => "Username too short."
-    # c.merge_validates_format_of_login_field_options :with => RE_LOGIN_OK, :message => MSG_LOGIN_BAD
-    
-    # We do not use password confirmations!
-    # c.require_password_confirmation = false
-    
-    # Ok so we only want to validate the password and login fields under certain circumstances... see below
-    # c.validates_length_of_password_field_options c.validates_length_of_password_field_options.merge(:if => :validate_password_with_rpx?)
-    # c.validates_length_of_login_field_options c.validates_length_of_login_field_options.merge(:if => :validate_login_with_rpx?)
-    # c.validates_format_of_login_field_options c.validates_format_of_login_field_options.merge(:if => :validate_login_with_rpx?)
-    # c.validates_uniqueness_of_login_field_options c.validates_uniqueness_of_login_field_options.merge(:if => :validate_unique_login_with_rpx?)
-    
-    # We allow login by either username or email address so make Authlogic respect that.
-    # UserSession.find_by_login_method = 'find_by_login_or_email'
     UserSession.find_by_login_method = 'find_by_email'
   end
   
   # Validations
-  # validate :name_must_include_first_and_last     .to_s.sub(/@.*/,'')
-  # validates_format_of :name, :with => RE_NAME_OK, :message => MSG_NAME_BAD
-  # validates_length_of :name, :within => 2..60
-  
   validates_presence_of :email
   validates_length_of   :name,      :within => NAME_RANGE_LENGTH
   

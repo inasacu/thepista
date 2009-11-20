@@ -460,6 +460,7 @@ class UsersController < ApplicationController
 private
   def get_user
     @user = User.find(params[:id])
+    redirect_to @user, :status => 301 if @user.has_better_id?
   end
   
   def get_user_group

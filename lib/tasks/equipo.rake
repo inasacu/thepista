@@ -33,6 +33,9 @@ task :theequipo => :environment do |t|
       comment.save!
     end
     
+    group.conditions = 'no conditions...' if group.conditions.blank?
+    group.save!
+    
   end
 
 end

@@ -219,7 +219,8 @@ class SchedulesController < ApplicationController
   
   def get_schedule
     @schedule = Schedule.find(params[:id])
-    @group = @schedule.group
+    @group = @schedule.group    
+    redirect_to @schedule, :status => 301 if @schedule.has_better_id?
   end
   
   def get_match_type 

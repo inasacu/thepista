@@ -4,6 +4,8 @@ class Schedule < ActiveRecord::Base
   
   acts_as_solr :fields => [:concept, :description, :time_zone, :starts_at]  if use_solr? 
 
+  has_friendly_id :concept, :use_slug => true, 
+                  :reserved => ["new", "create", "index", "list", "signup", "edit", "update", "destroy", "show"]
   
   has_many  :matches,  :conditions => "matches.archive = false",    :dependent => :destroy
   has_many  :fees,                                                  :dependent => :destroy 
