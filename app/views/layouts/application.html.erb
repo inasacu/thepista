@@ -59,7 +59,7 @@
   <%#= link_to "tour", "http://thepista.local?tourId=MyTour&skinId=black_beauty" %>
 
   <%#= render :partial => 'tours/home_tour' %>
-  <%= render :partial => 'utilities/secure_site' %>
+  <%= render :partial => 'utilities/secure_site' unless current_user %>
 
 </body>
 </html>
