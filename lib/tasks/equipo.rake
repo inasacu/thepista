@@ -33,6 +33,8 @@ task :theequipo => :environment do |t|
       comment.save!
     end
     
+    puts "#{group.second_team} => #{group.second_team.gsub(/[^a-zA-Z|\s]/,' ')}"
+    group.second_team = group.second_team.gsub(/[^a-zA-Z|\s]/,' ')
     group.conditions = 'no conditions...' if group.conditions.blank?
     group.save!
     
