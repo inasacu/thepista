@@ -11,7 +11,7 @@ class UsersController < ApplicationController
   before_filter :setup_rpx_api_key, :only => [:rpx_new, :rpx_create, :rpx_associate]
   
   ssl_required :signup, :new, :create
-  ssl_allowed :index, :list, :show
+  # ssl_allowed :index, :list, :show
   
   # GET /users
   # GET /users.xml
