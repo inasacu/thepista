@@ -171,11 +171,9 @@ class MessagesController < ApplicationController
         group_messages(@message, @recipients, @scorecard)
 
       elsif @match
-        # @match.schedule.create_schedule_details(current_user, true)
         group_messages(@message, @recipients, @match.schedule)
 
       elsif @schedule 
-        # @schedule.create_schedule_details(current_user, true)
         group_messages(@message, @recipients, @schedule)
         
       else
@@ -251,65 +249,26 @@ class MessagesController < ApplicationController
     end
   end
   
-  # def deliver_message_schedule(message, schedule, recipients)
-  #   recipients.each do |recipient|
-  # 
-  #     if recipient.message_notification?
-  #       UserMailer.deliver_message_schedule(
-  #         :user => message.sender,
-  #         :email => recipient.email,
-  #         :message => message,
-  #         :schedule => schedule, :group => schedule.group, :receiver => recipient,
-  #         :user_url => url_for(:controller => 'users', :action => 'show', :id => current_user.id),
-  #         :reply_url => url_for(:controller => 'messages', :action => 'reply', :id => message.id),
-  #         :schedule_url => url_for(:controller => 'schedules', :action => 'show', :id => schedule.id),
-  #         :group_url => url_for(:controller => 'groups', :action => 'show', :id => schedule.group.id)
-  #       )
-  #     end
-  #   end
-  # end
-  
-  # def deliver_message_match(message, schedule, recipients)
-  #   recipients.each do |recipient|
-  # 
-  #     if recipient.message_notification?
-  #       UserMailer.deliver_message_match(
-  #       :user => current_user,
-  #       :email => recipient.email,
-  #       :message => message,
-  #       :schedule => schedule, :group => schedule.group,
-  #       :user_url => url_for(:controller => 'users', :action => 'show', :id => current_user.id),
-  #       :reply_url => url_for(:controller => 'messages', :action => 'reply', :id => message.id),
-  #       :schedule_url => url_for(:controller => 'schedules', :action => 'show', :id => schedule.id),
-  #       :group_url => url_for(:controller => 'groups', :action => 'show', :id => schedule.group.id)
-  #       )
-  #     end
-  #   end
-  # end
-  
-  # def deliver_message_scorecard(message, scorecards, recipients, group)  
-  #   recipients.each do |recipient|
-  # 
-  #     if recipient.message_notification?
-  #       UserMailer.deliver_message_scorecard(
-  #       :user => current_user,
-  #       :email => recipient.email,
-  #       :message => message, :receiver => recipient, :scorecards => scorecards, :group => group,
-  #       :user_url => url_for(:controller => 'users', :action => 'show', :id => current_user.id),
-  #       :reply_url => url_for(:controller => 'messages', :action => 'reply', :id => message.id),
-  #       :group_url => url_for(:controller => 'groups', :action => 'show', :id => group.id),
-  #       :scorecard_url => url_for(:controller => 'scorecards', :action => 'show', :id => group.id)
-  #       )     
-  #     end
-  #   end 
-  # end
-  
   def destroy
     @message = Message.find_all_parent_messages(params[:id])
-    # @message = Message.find(:all, :conditions => ["parent_id = (select parent_id from messages where id = ?)", params[:id]])
-
     @message.each do |message| 
       if message.trash(current_user)
+        flash[:notice] = I18n.t(:recycled_message)
+      else
+        # This should never happen...
+        flash[:error] = I18n.t(:invalid_action)
+      end
+    end
+    respond_to do |format|
+      format.html { redirect_back_or_default('/index') }
+    end
+
+  end
+
+  def undestroy
+    @message = Message.find_all_parent_messages(params[:id])
+    @message.each do |message| 
+      if message.untrash(current_user)
         flash[:notice] = I18n.t(:recycled_message)
       else
         # This should never happen...
@@ -322,25 +281,6 @@ class MessagesController < ApplicationController
       end
 
     end
-
-    def undestroy
-      @message = Message.find_all_parent_messages(params[:id])
-      # @message = Message.find(:all, :conditions => ["parent_id = (select parent_id from messages where id = ?)", params[:id]])
-
-      @message.each do |message| 
-        if message.untrash(current_user)
-          flash[:notice] = I18n.t(:recycled_message)
-        else
-          # This should never happen...
-          flash[:error] = I18n.t(:invalid_action)
-        end
-      end
-      respond_to do |format|
-        format.html { 
-          redirect_to messages_url }
-        end
-
-      end
  
   private
   

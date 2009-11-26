@@ -2,14 +2,10 @@
 	if @schedule
 		label = label_with_name('note', sanitize(@schedule.concept))
 	end	
-	if @practice
-		label = label_with_name('note', sanitize(@practice.concept))
-	end
 %>
 <div class="block">
 
   <%= render :partial => '/schedules/secondary_navigation' if @schedule %>
-  <%= render :partial => '/practices/secondary_navigation' if @practice %>
 
   <div class="content">
 	
@@ -36,4 +32,3 @@
 </div>
 
 <% content_for :sidebar, render(:partial => '/schedules/sidebar_show') if @schedule -%>
-<% content_for :sidebar, render(:partial => '/practices/sidebar_show') if @practice -%>

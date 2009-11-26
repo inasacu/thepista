@@ -1,6 +1,6 @@
-<div class="block">
+<div class="block"> 
 
-  <%= render :partial => 'secondary_navigation' %>  
+  <%= render :partial => '/users/secondary_navigation' %>
           
   <div class="content">  
 	        
@@ -19,11 +19,18 @@
 		  </th>
           <th><%= label_name(:concept) %></th>
           <th><%= label_name(:debit) %></th>
-          <th><%= label_name(:credit) %></th>
           <th class="last">&nbsp;</th>
         </tr>
 
-	<%= render :partial => 'fee', :collection => @fees %>
+		<%= render :partial => 'fee', :collection => @fees %>
+
+		<tr>  
+			<td>&nbsp;</td>
+			<td>&nbsp;</td>
+			<td><%#= "#{label_name(:credit)} #{number_to_currency(@credit_payment.actual_payment)}" %></td>
+			<td><%= "#{label_name(:credit)} #{number_to_currency(@debit_payment.actual_payment)}" %></td>
+		   <td class="last"></td>
+		</tr>
 
       </table>
 
@@ -33,4 +40,6 @@
 	</div>
 	</div>
 </div>
-<% content_for :sidebar, render(:partial => 'sidebar') -%>
+<%# content_for :sidebar, render(:partial => 'sidebar') if current_user.has_role?('manager') -%>
+
+<% content_for :sidebar, render(:partial => '/fees/sidebar_show_team') if current_user.has_role?('manager') %>

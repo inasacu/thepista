@@ -1,6 +1,6 @@
 # to run:    sudo rake eltimezone
 
-desc "update all timezone for users, groups, schedules, practices"
+desc "update all timezone for users, groups, schedules"
 task :eltimezone => :environment do |t|
 
   ActiveRecord::Base.establish_connection(RAILS_ENV.to_sym)
@@ -25,12 +25,5 @@ task :eltimezone => :environment do |t|
     schedule.save!
     puts "#{schedule.concept } #{schedule.time_zone}..."
   end
-
-  # practices = Practice.find :all
-  # practices.each do |practice|
-  #   practice.time_zone = 'Madrid'
-  #   practice.save!
-  #   puts "#{practice.concept } #{practice.time_zone}..."
-  # end
 end
 

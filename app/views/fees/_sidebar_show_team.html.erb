@@ -1,0 +1,27 @@
+<div class="block">
+	
+	<h3><%= label_name(get_the_controller, 'options') %></h3>
+	
+<ul class="navigation">
+		
+<% 
+current_user.groups.each do |group| 
+
+	if current_user.is_manager_of?(group) 
+		the_label = "#{label_name(:fee_user_for_group)}  #{group.name}"
+%>		
+			<li><%= link_to(the_label , new_fee_url(:group_id => group)) %></li>
+<% 
+		the_label = "Charge Team for Marker:  #{group.marker.name}"
+%>		
+			<!-- <li><%#= link_to(the_label , new_fee_url(:group_id => group)) %></li> -->
+<%
+	end 
+end 
+
+%>
+
+
+</ul>
+	
+</div>

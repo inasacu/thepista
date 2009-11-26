@@ -34,3 +34,5 @@
 </ul>
 
 </div>
+
+<%= render :partial => '/f/sidebar_show_team' if @user == current_user or current_user.has_role?('manager') %>

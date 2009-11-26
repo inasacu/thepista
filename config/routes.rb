@@ -58,9 +58,6 @@ ActionController::Routing::Routes.draw do |map|
   map.untrash_message       'messages/:id/undestroy',                     :controller => 'messages',        :action => 'undestroy'
   map.upcoming_schedule     'home/upcoming_schedule',                     :controller => 'home',            :action => 'upcoming_schedule'         
   
-  map.attend_practice       'practices/:id/attend',                       :controller => 'practices',       :action => 'attend'
-  map.unattend_practice     'practices/:id/unattend',                     :controller => 'practices',       :action => 'unattend'
-  
   map.archive_scorecard     'scorecards/:id/archive',                     :controller => 'scorecards',      :action => 'archive'
   map.show_archive          'scorecards/:id/show_archive',                :controller => 'scorecards',      :action => 'show_archive'
   
@@ -94,10 +91,9 @@ ActionController::Routing::Routes.draw do |map|
   map.resources   :blogs,           :as => 'muro'
   map.resources   :types,           :as => 'tipos'
   map.resources   :sports,          :as => 'deportes'
-  map.resources   :roles,           :as => 'responsabilidades'
-  map.resources   :practices,       :as => 'entrenamientos',              :collection => { :list => :get, :search => :get }          
+  map.resources   :roles,           :as => 'responsabilidades'          
   map.resources   :payments,        :as => 'pago'
-  map.resources   :fees,            :as => 'tasas'
+  map.resources   :fees,            :as => 'tasas'  
   map.resources   :password_resets, :as => 'resetear'
   map.resources   :messages,        :as => 'mensajes',                    :collection => { :sent => :get, :trash => :get }
 

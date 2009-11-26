@@ -1,6 +1,6 @@
 <div class="block">
 
-  <%= render :partial => 'secondary_navigation' %>  
+  <%= render :partial => '/users/secondary_navigation' %>
           
   <div class="content">  
 	        
@@ -12,41 +12,34 @@
 	
       <table class="table">
 	
-        <tr>             
+        <tr>            
           <th class="first">&nbsp;</th>
-          <th>Concept</th>
-          <th>Created at</th>
+          <th><%= label_name(:from) %>&nbsp;&nbsp;/&nbsp;&nbsp;<%= label_name(:to) %>&nbsp;&nbsp;/<br />
+			  <%= label_name(:created_at) %>
+		  </th>
+          <th><%= label_name(:concept) %>
+          <th><%= label_name(:credit) %></th>
           <th class="last">&nbsp;</th>
         </tr>
-		
-        <% @payments.each do |payment| -%>
-		
-        <tr>
-          <td>
-            <%= payment.id %>
-          </td>
-          <td>
-            <%= link_to payment.concept, payment_path(payment) %>
-          </td>
-          <td>
-            <%= payment.created_at %>
-          </td>
 
-          <td class="last">
-            <%= link_to label_name(:show), payment_path(payment) %> |
-            <%= link_to label_name(:edit), edit_payment_path(payment) %> |
-            <%= link_to label_name(:destroy), payment_path(payment), :method => :delete, :confirm => label_name(:are_you_sure) %>
-          </td>
-        </tr>   
-       
-        <% end -%>
+		<%= render :partial => 'payment', :collection => @payments %>
 
+		<tr>  
+			<td>&nbsp;</td>
+			<td>&nbsp;</td>
+			<td><%#= "#{label_name(:credit)} #{number_to_currency(@credit_payment.actual_payment)}" %></td>
+			<td><%= "#{label_name(:credit)} #{number_to_currency(@debit_payment.actual_payment)}" %></td>
+		   <td class="last"></td>
+		</tr>			
+		
       </table>
 
 	<% end %>
-	<%= render :partial => 'shared/action_bar', :locals => { :collection => @payment } %>
+	<%= render :partial => 'shared/action_bar', :locals => { :collection => @payments } %>
 
 	</div>
 	</div>
 </div>
-<% content_for :sidebar, render(:partial => 'sidebar') -%>
+<%# content_for :sidebar, render(:partial => 'sidebar') -%>
+
+<%# content_for :sidebar, render(:partial => '/payments/sidebar_show_team') if current_user.has_role?('manager') %>

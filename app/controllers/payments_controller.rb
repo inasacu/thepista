@@ -1,189 +1,112 @@
 class PaymentsController < ApplicationController
   before_filter :require_user
-  
-    
-    def index
-      if (params[:user_id])
-        @user = User.find(params[:user_id])      
-        @payments = Payment.get_credit_payments(@user,false, params[:page])
-  
-        respond_to do |format|
-          format.html 
-        end
-      
-  
-      elsif (params[:group_id])
-        @group = Group.find(params[:group_id])      
-        @payments = Payment.get_credit_payments(@group, false, params[:page])
-  
-        respond_to do |format|
-          format.html 
-        end
-      else
 
-        @payments = Payment.paginate(:per_page => 10, :page => params[:page])
-      end
+
+  def index
+    if (params[:user_id]) 
+      @user = User.find(params[:user_id])      
+    else
+      @user = current_user
     end
   
-  def show
-    @payments = Payment.find(params[:id])
+    @payments = Payment.current_payments(@user, page=1)
+    @debit_payment = Payment.debit_payment(@user)
+    @credit_payment = Payment.credit_payment(@user)
   end
-  
+
   def new
-    @payments = Payment.new
+    @payment = Payment.new
+    return unless (params[:fee_id])
+    
+    @fee = Fee.find(params[:fee_id])
+    @group = Group.find(@fee.item_id)
+    unless current_user.is_manager_of?(@group)
+      flash[:warning] = I18n.t(:unauthorized)
+      redirect_back_or_default('/index')
+      return
+    end
+    
+    @user = User.find(@fee.debit_id)
+    @debit_payment = Payment.debit_payment(@user)
+    
+    @payment.concept = @fee.concept
+    @payment.debit_amount = @fee.debit_amount.to_f - @debit_payment.actual_payment.to_f
+    @payment.description = @fee.description
   end
-  
+
   def create
-    @payments = Payment.new(params[:payments])
-    if @payments.save
+    @payment_debit = Payment.new(params[:payment])
+    @payment_credit = Payment.new(params[:payment])
+    
+    @fee = Fee.find(params[:fee][:id])
+    @group = Group.find(@fee.item_id)
+    unless current_user.is_manager_of?(@group)
+      flash[:warning] = I18n.t(:unauthorized)
+      redirect_back_or_default('/index')
+      return
+    end
+    
+    @payment_debit.manager_id = current_user.id
+    @payment_debit.credit = @fee.credit
+    @payment_debit.debit = @fee.debit
+    @payment_debit.item = @fee.item
+    @payment_debit.fee_id = @fee.id
+    @payment_debit.credit_amount = 0.0
+    
+    @payment_credit.manager_id = current_user.id
+    @payment_credit.debit = @fee.debit
+    @payment_credit.credit = @fee.credit
+    @payment_credit.item = @fee.item 
+    @payment_credit.fee_id = @fee.id
+    @payment_credit.debit_amount = 0.0
+    @payment_credit.credit_amount = @payment_debit.debit_amount
+    
+    if @payment_debit.save and @payment_credit.save
       flash[:notice] = I18n.t(:successful_create)
-      redirect_to @payments
+      redirect_to payments_url and return
     else
       render :action => 'new'
     end
   end
-  
+
   def edit
-    @payments = Payment.find(params[:id])
+    @payment = Payment.find(params[:id])
+    @group = Group.find(@payment.fee.item_id)
+    unless current_user.is_manager_of?(@group)
+      flash[:warning] = I18n.t(:unauthorized)
+      redirect_back_or_default('/index')
+      return
+    end
   end
-  
+
   def update
-    @payments = Payment.find(params[:id])
-    if @payments.update_attributes(params[:payments])
+    @payment = Payment.find(params[:id])
+    @group = Group.find(@payment.fee.item_id)
+    unless current_user.is_manager_of?(@group)
+      flash[:warning] = I18n.t(:unauthorized)
+      redirect_back_or_default('/index')
+      return
+    end
+    
+    if @payment.update_attributes(params[:payment])
       flash[:notice] = I18n.t(:successful_update)
-      redirect_to @payments
+      redirect_to payments_url and return
     else
       render :action => 'edit'
     end
   end
-  
+
   def destroy
-    @payments = Payment.find(params[:id])
-    @payments.destroy
+    @payment = Payment.find(params[:id])
+    @group = Group.find(@payment.fee.item_id)
+    unless current_user.is_manager_of?(@group)
+      flash[:warning] = I18n.t(:unauthorized)
+      redirect_back_or_default('/index')
+      return
+    end
+    
+    @payment.destroy
     flash[:notice] = I18n.t(:successful_destroy)
-    redirect_to fees_url
+    redirect_to payments_url and return
   end
 end
-
-
-#   def list
-#     @payments = Payment.find(:all)
-#     render :template => '/payments/index'
-#     
-#     respond_to do |format|
-#       format.html 
-#     end
-#   end 
-#   
-#   def show
-#     @payment = Payment.find(params[:id])
-#     
-#     respond_to do |format|
-#       format.html 
-#     end
-#   end 
-#   
-#   def get_fee_objects(fee)
-#     case @fee.debit.class.to_s
-#     when 'User'
-#       @debit_object = User.find(@fee.debit_id)
-#       
-#       case @fee.credit.class.to_s
-#       when 'Group'
-#         @credit_object = Group.find(@fee.credit_id)
-#       when 'Match'
-#         @credit_object = Match.find(@fee.credit_id).schedule.group
-#       when 'Marker'
-#         @credit_object = Marker.find(@fee.credit_id)
-#       end
-#       
-#     when 'Group'  
-#       @debit_object = Group.find(@fee.debit_id)
-#       
-#       case @fee.credit.class.to_s
-#       when 'Group'
-#         @credit_object = Group.find(@fee.credit_id)
-#       when 'Match'
-#         @credit_object = Match.find(@fee.credit_id).schedule.group
-#       when 'Marker'
-#         @credit_object = Marker.find(@fee.credit_id)
-#       end
-#     end
-#     return @debit_object, @credit_object
-#   end
-#   
-# 
-#   def new
-#     @fee = Payment.find(params[:fee_id])
-#     @payment = Payment.new
-#     
-#     @debit, @credit = get_fee_objects(@fee)
-#     
-#     if current_user.is_manager_of?(@debit) or current_user.is_manager_of?(@credit)      
-#       fee = Payment.debit_amount(@debit)
-#       payment = Payment.actual_payment(@debit)
-#       
-#       @payment = Payment.new 
-#       @payment.concept = @fee.concept
-#       @payment.debit_amount = fee.debit_amount.to_f - payment.actual_payment.to_f
-#       @payment.credit_amount = 0.0
-# 
-#       respond_to do |format|
-#         format.html 
-#       end
-#       
-#      end
-#   end
-#     
-#   def create
-#     @debit = Payment.new(params[:payment])
-#     @credit = Payment.new(params[:payment])
-#     @fee = Payment.find(params[:fee][:id]) unless params[:fee][:id].nil?     
-#     
-#     @debit_object, @credit_object = get_fee_objects(@fee)
-#     
-#     if current_user.is_manager_of?(@debit_object) or current_user.is_manager_of?(@credit_object)
-#                   
-#          @debit.manager_id = current_user.id
-#          @debit.fee_id = @fee.id
-#          @debit.debit_id = @debit_object.id
-#          @debit.debit_type = @debit_object.class.to_s
-#          @debit.credit_id = @credit_object.id
-#          @debit.credit_type = @credit_object.class.to_s         
-#          @debit.credit_amount = 0
-#          
-#          @credit.manager_id = current_user.id
-#          @credit.fee_id = @fee.id
-#          @credit.debit_id = @debit_object.id
-#          @credit.debit_type = @debit_object.class.to_s
-#          @credit.credit_id = @credit_object.id
-#          @credit.credit_type = @credit_object.class.to_s
-#          @credit.debit_amount = @debit.credit_amount
-#          @credit.credit_amount = @debit.debit_amount
-#                 
-#          if @debit.save and @credit.save
-#            
-#            if @debit.debit_amount == @fee.debit_amount
-#              flash[:notice] = "perfect - payed total balance"
-#            elsif @debit.debit_amount < @fee.debit_amount
-#              flash[:notice] = "still missing - to cover total balance"
-#            elsif @debit.debit_amount > @fee.debit_amount
-#              flash[:notice] = "perfect - but you payed over total balance"
-#            end
-#               
-#            respond_to do |format|
-#              format.html { redirect_back_or_default('/') and return}
-#            end           
-#           else
-#             flash[:notice] = :missing_information.l
-#             redirect_to :action => 'new', :fee_id => @fee.id and return
-#          end
-#         # flash[:notice] = :change_wo_access.l 
-#         # redirect_to :action => 'new', :fee_id => @fee.id 
-#     end    
-#   
-#      rescue ActiveRecord::RecordNotSaved
-#            flash[:notice] = :missing_information.l
-#            redirect_to payments_url and return
-#   end   
-# end

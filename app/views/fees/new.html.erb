@@ -1,16 +1,20 @@
 <div class="block">
 
-	<%= render :partial => 'secondary_navigation' %>
+	<%#= render :partial => 'secondary_navigation' %>  
+
+  <%= render :partial => '/users/secondary_navigation' %>
 
 	<div class="content">  
 
 		<h2 class="title"><%= control_action_label %></h2>
 
 		<div class="inner">
-		
-      <% form_for :fee, :url => fees_path, :html => { :class => :form } do |f| -%>
-        <%= render :partial => "form", :locals => {:f => f} %>
-      <% end -%>
+
+			<% form_for :fee, :url => fees_path, :html => { :class => :form } do |f| -%>
+			<%= f.hidden_field :credit_id %>
+			<%= f.hidden_field :credit_type %>
+			<%= render :partial => "form", :locals => {:f => f} %>
+			<% end -%>
 
 		</div>
 

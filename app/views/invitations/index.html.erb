@@ -1,6 +1,8 @@
 <div class="block">
 
-	<%= render :partial => 'secondary_navigation' %>  
+  <%#= render :partial => 'secondary_navigation' %>  
+
+  <%= render :partial => '/users/secondary_navigation' %>
 
 	<div class="content">   
 
@@ -11,11 +13,7 @@
 			<% if object_counter(@invitations) > 0 %>
 
 			<table class="table">
-
-					<% @invitations.each do |invitation| %>
-					<%= render :partial => 'invitation', :locals => {:invitation => invitation}  %>
-					<% end %>
-				
+				<%= render :partial => 'invitation', :collection => @invitations %>
 			</table>
 
 			<% end %>

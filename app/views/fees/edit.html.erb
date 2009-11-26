@@ -1,14 +1,19 @@
+<%
+debit_link, debit_object = fee_debit(@fee)
+%>
 <div class="block">
 
-	<%= render :partial => 'secondary_navigation' %>
+	<%#= render :partial => 'secondary_navigation' %>  
+
+  <%= render :partial => '/users/secondary_navigation' %>
 
 	<div class="content">   
 
-		<h2 class="title"><%= control_action_label %></h2>
+		<h2 class="title"><%= control_action_label %><%= " #{label_name(:to)} #{debit_link}" %></h2>
 
 		<div class="inner">
 
-      <% form_for @fee, :url => fee_path(@fee), :html => { :class => :form } do |f| -%>
+      <% form_for @fee, :url => fee_path(@fee), :html => { :class => :form } do |f| -%>		
         <%= render :partial => "form", :locals => {:f => f} %>
       <% end -%>
 

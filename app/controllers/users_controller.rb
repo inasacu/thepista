@@ -192,6 +192,8 @@ class UsersController < ApplicationController
       return
     end
     @user.has_role!(:subscription, @group)
+    Fee.set_season_player(@user, @group, true)
+    
     flash[:notice] = I18n.t(:subscription_updated)
     redirect_back_or_default('/index')
   end 
@@ -202,6 +204,8 @@ class UsersController < ApplicationController
       return
     end
     @user.has_no_role!(:subscription, @group)
+    Fee.set_season_player(@user, @group, false)
+    
     flash[:notice] = I18n.t(:subscription_updated)
     redirect_back_or_default('/index')
   end

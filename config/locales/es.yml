@@ -109,10 +109,10 @@ es:
      create: Nuevo   
      create_address: Nueva Dirección   
      create_announcement: Nuevo Anuncio   
-     create_credit: Nuevo Credito   
-     create_debit: Nueva Deuda   
+     create_credit: Nuevo Pago   
+     create_debit: Nuevo Cargo   
      create_description: Nuevo Detalles   
-     create_fee: Nuevas Tasas   
+     create_fee: Nuevos Cargos   
      create_festival: Nuevo Acondiciónamiento   
      create_group: Nuevo Equipo   
      create_information: Nuevo Detalles   
@@ -125,7 +125,7 @@ es:
      create_name: Nuevo Nombre   
      create_note: Nueva Nota   
      create_payment: Nuevo Pago   
-     create_practice:  Nuevo Entrenamiento
+     
      create_profile: Nuevo perfil   
      create_reminder: Nuevo Recordatorio   
      create_role: Nueva Responsabilidad   
@@ -141,19 +141,19 @@ es:
      created: se ha creado correctamente.   
      created_at:  Fecha de Creación
      created_a_schedule: a añadido un evento   
-     credit: Credito   
+     credit: Pago   
      credit_amount: A Recibir   
      credit_amount_description:  Lo que recibes
-     credits: Creditos  
+     credits: Pagos  
      current_accounts: Cuentas Actuales   
      current_language: Español    
      current_time: La Hora   
      current_time_zone: Zona del Usuario   
      current_user: Usuario   
-     debit: Deuda   
+     debit: Cargo   
      debit_amount: A Pagar   
      debit_amount_description: Lo que debes pagar
-     debits: Deudas   
+     debits: Cargos   
      default_reliable: Fiable   
      defense:  Defensa
      delete_activity: Borrar Actividad    
@@ -164,7 +164,7 @@ es:
      description: Detalles
      description_announcement: Detalles de la Anuncio      
      email_description: "Ej:  tu_cuenta@gmail.com"     
-     description_fee: Detalles de las Tasas   
+     description_fee: Detalles de los Cargos   
      description_festival: Detalles del Acondiciónamiento   
      description_group: Detalles del Equipo   
      description_invitation: Detalles de la Invitación  
@@ -179,10 +179,10 @@ es:
      destroy: Borrar   
      destroy_address: Borra la Dirección   
      destroy_announcement: Borra un Anuncio   
-     destroy_credit: Borra un Credito   
-     destroy_debit: Borra una Deuda   
+     destroy_credit: Borra un Pago   
+     destroy_debit: Borra un Cargo   
      destroy_description: Borra un Detalles   
-     destroy_fee: Borra las Tasas   
+     destroy_fee: Borra los Cargos   
      destroy_festival: Borra el Acondiciónamiento   
      destroy_group: Borra el Equipo   
      destroy_information: Borra un Detalles   
@@ -219,10 +219,10 @@ es:
      edit: Modifica   
      edit_address: Modifica la Dirección   
      edit_announcement: Modifica un Anuncio   
-     edit_credit: Modifica un Credito   
-     edit_debit: Modifica una Deuda   
+     edit_credit: Modifica un Pago   
+     edit_debit: Modifica un Cargo   
      edit_description: Modifica un Detalles   
-     edit_fee: Modifica las Tasas   
+     edit_fee: Modifica los Cargos   
      edit_festival: Modifica el Acondiciónamiento   
      edit_group: Modifica el Equipo   
      edit_information: Modifica un Detalles   
@@ -280,7 +280,7 @@ es:
      fee_per_pista: Tarifa / Pista   
      fee_per_pista_description: (Este es el precio de la pista or cancha...)   
      feedback: feedback   
-     fees: Tasas   
+     fees: Cargos   
      female_value: Femenina  
      festival: Acondiciónamiento  
      festivals: Acondiciónamientos   
@@ -487,10 +487,10 @@ es:
       
      my_address: Mis Direcciones   
      my_announcement: Mis Anuncios   
-     my_credit: Mis Creditos   
-     my_debit: Mis Deudas   
+     my_credit: Mis Pagos   
+     my_debit: Mis Cargos   
      my_description: Mis Detalles   
-     my_fee: Mis Tasas   
+     my_fee: Mis Cargos   
      my_festival: Mis Acondiciónamientos   
      my_group: Mis Equipos   
      my_information: Mis Detalles   
@@ -513,7 +513,8 @@ es:
      my_tournament: Mis Torneos   
      my_type: Mi Tipo   
   
-     my_venue: Mis Lugares de Encuentro   
+     my_venue: Mis Lugares de Encuentro 
+     my_wall: Mi Muro  
 
      myopenid: Mi OpenID   
      myopenid_association: "Una de las mejores características aquí en HayPista es su capacidad de acceso mediante cuentas que ya tienen. <br />
@@ -554,8 +555,8 @@ es:
      no_change_group: Ningun Cambio de Equipo   
      no_classified: No tienes anuncios   
      no_convocado: No Convocado   
-     no_credit: No tienes Creditos   
-     no_debit: No tienes Deudas   
+     no_credit: No tienes Pagos   
+     no_debit: No tienes Cargos   
      no_description: Ningun Detalle   
      no_fee: No tienes tasas   
      no_festival: No tienes Acondiciónamientos   
@@ -648,7 +649,7 @@ es:
      request_url_issue:   "Si continúas teniendo problemas por favor no dude en contactar con nosotros."
      
      payed:  Tasa Pagada  
-     payed_description:  Han sido pagadas las Tasas? 
+     payed_description:  Han sido pagadas las Cargos? 
      payment: Pago  
      payments: Pagos   
      pending: Pendiente   
@@ -709,8 +710,7 @@ es:
      previous_ranking_full: Ranking Previo
      previous_schedule: Anterior Evento   
      previous_schedules: Anteriores Eventos
-     previous_practice: Anterior Entrenamiento
-     previous_practices: Anteriores Entrenamientos
+     
      previous_profile_set:  Actualizar Perfiles.
      previous_profile_set_full:  Obtener los perfiles de la previa jornada.
      pricing:  Precios
@@ -792,7 +792,7 @@ es:
      search: busca   
      search_announcements: Buscar Anuncios   
      search_descriptions: Buscar Detalles   
-     search_fees: Buscar Tasas   
+     search_fees: Buscar Cargos   
      search_festivals: Buscar Acondiciónamiento   
      search_groups: Buscar equipo
      search_imports: Buscar Datos Importados   
@@ -825,11 +825,11 @@ es:
      select_contacts:  Seleccione los contactos que quiere invitar a partir de la esta lista. 
      self_description_description: (Escribe algo sobre ti...)   
      send_announcement: Manda una Anuncio   
-     send_credit: Manda un Credito   
-     send_debit: Manda una Deuda   
+     send_credit: Manda un Pago   
+     send_debit: Manda una Cargo   
      send_description: Manda un Detalles 
      send_email_to: Manda un correo a
-     send_fee: Manda las Tasas   
+     send_fee: Manda las Cargos   
      send_information: Manda un Detalles   
      send_invitation: Manda una Invitación   
      send_marker: Manda el URL del Centro Deportivo   
@@ -870,10 +870,10 @@ es:
      show: Mostrar   
      show_address: Presenta la Dirección   
      show_announcement: Presenta un Anuncio   
-     show_credit: Presenta un Credito   
-     show_debit: Presenta una Deuda   
+     show_credit: Presenta un Pago   
+     show_debit: Presenta una Cargo   
      show_description: Presenta un Detalles   
-     show_fee: Presenta las Tasas   
+     show_fee: Presenta las Cargos   
      show_festival: Presenta el Acondiciónamiento   
      show_group: Presenta el Equipo   
      show_information: Presenta un Detalles   
@@ -1000,15 +1000,14 @@ es:
      upcoming_festival: Próximos Acondiciónamientos   
      upcoming_schedule: Próximo Evento   
      upcoming_schedules: Próximos Eventos 
-     upcoming_practice:  Próximo Entrenamiento   
-     upcoming_practices: Próximos Entrenamientos
+     
      update: Actualiza   
      update_address: Actualiza la Dirección   
      update_announcement: Actualiza un Anuncio   
-     update_credit: Actualiza un Credito   
-     update_debit: Actualiza una Deuda   
+     update_credit: Actualiza un Pago   
+     update_debit: Actualiza una Cargo   
      update_description: Actualiza un Detalles   
-     update_fee: Actualiza las Tasas   
+     update_fee: Actualiza las Cargos   
      update_festival: Actualiza el Acondiciónamiento   
      update_group: Actualiza el Equipo   
      update_information: Actualiza un Detalles   
@@ -1181,19 +1180,23 @@ es:
      entries_show:  Opciones del Muro
      entries_show_option:  Opciones del Muro
           
-     fee_from: Tasas a
-     fee_from_description: De quien son las Tasas
-     fee_to: Tasas de 
-     fee_to_description:  A quien son las Tasas
-     fees_create:  Nueva Matrícula
-     fees_index:   Matrícula
-     fees_index_option: Opciones de Matrícula
+     fee_from: Cargos a
+     fee_from_description: De quien son las Cargos
+     fee_options: Opciones de Cargo
+     fee_to: Cargos de 
+     fee_to_description:  A quien son los Cargos
+     fee_user_for_group:  Cargar a los jugadores 
+     fees_create:  Nueva Cargo
+     fees_destroy: Borrar Cargo
+     fees_index:   Cargo
+     fees_index_option: Opciones de Cargo
      fees_manager_option:  Requiere responsable de equipo para ver mas opciones.
-     fees_new:  Nueva Matrícula
-     fees_no:  Ninguna Matrícula para mostrar.
-     fees_edit:  Modificar Matrícula
-     fees_option:  Opciones de las Matriculas
-     fees_show:  Mostrar Matrícula
+     fees_new:  Nuevo Cargo
+     fees_no:  Ningun Cargo para mostrar.
+     fees_edit:  Modificar Cargo
+     fees_option:  Opciones de los Cargos
+     fees_show:  Mostrar Cargo
+     fees_update:  Modificar Cargo
      
      home_about_us: About Us
      home_information:  Información
@@ -1204,6 +1207,7 @@ es:
      payment_full:  Pago Total
      payment_greater_than:  Pago Superior
      payment_less_than:  Pago Inferior
+     payment_for_bill:  Paga este Cargo
      payment_type:  Tipo de Pago
      payments_create:  Nuevo Pago
      payments_index:   Pagos
@@ -1211,10 +1215,11 @@ es:
      payments_manager_option:  Requiere responsable de equipo para ver mas opciones.
      payments_new:  Nuevo Pago
      payments_no:  Ningun Pago para mostrar.
+     payments_destroy:  Borrar Pago
      payments_edit:  Modificar Pago
      payments_option:  Opciones de Pagos
      payments_show:  Mostrar Pago
-     
+          
      group_options:  Opciones de Equipos
      groups_create:  Nuevo Equipo 
      groups_destroy:  Borrar Equipo
@@ -1265,20 +1270,6 @@ es:
      messages_sent:  Mensajes Mandados
      messages_show: Mostrar Mensaje
      messages_trash:  Mensajes Descartados
-     
-     practice_attend:  Asistir al Entrenamiento
-     practice_options:  Opciones de Entrenamiento
-     practice_unattend:  No asistir al entrenamiento
-     practices:  Entrenamientos
-     practices_create:  Nuevo Entrenamiento
-     practices_index:  Entrenamiento
-     practices_index_option: Opciones de Entrenamiento
-     practices_manager_option:  Requiere responsable de equipo para ver mas opciones.
-     practices_new: Nuevo Entrenamiento
-     practices_no: Ningun entrenamiento para mostrar.
-     practices_edit: Modificar Entrenamiento
-     practices_option:  Opciones de Entrenamientos
-     practices_show: Detalles del Entrenamiento
 
      schedules_archive_list:  Temporada Anterior
      schedules_create:  Nuevo Evento

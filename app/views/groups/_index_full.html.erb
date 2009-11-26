@@ -54,7 +54,6 @@
 				<span class="action">
 					<% if current_user.is_member_of?(group) %>
 						<%= link_to(label_name(:send_message_to_group), new_message_path(:group_id => group.id)) %><br />
-			           <%#= link_to label_name(:invitation_to_group), edit_group_path(group) %> 
 					<% else %>
 						<%= link_to(label_name(:send_message_to_group), new_message_path(:id => group.all_the_managers.first)) %><br />
 				
@@ -69,7 +68,6 @@
 				
 					<% if current_user.is_manager_of?(group) %> 
 						<%= link_to label_name(:create_schedule), new_schedule_path(:id => group.id)  %><br />
-						<%= link_to label_name(:create_practice), new_practice_path(:id => group.id)  if development? %>
 			        <% end %>
 					
 				</span>

@@ -125,7 +125,7 @@ en:
      create_name: Nuevo Nombre   
      create_note: Nueva Nota   
      create_payment: Nuevo Pago   
-     create_practice:  Nuevo Entrenamiento
+     
      create_profile: Nuevo perfil   
      create_reminder: Nuevo Recordatorio   
      create_role: Nueva Responsabilidad   
@@ -513,7 +513,8 @@ en:
      my_tournament: Mis Torneos   
      my_type: Mi Tipo   
   
-     my_venue: Mis Lugares de Encuentro   
+     my_venue: Mis Lugares de Encuentro 
+     my_wall: Mi Muro  
 
      myopenid: Mi OpenID   
      myopenid_association: "Una de las mejores características aquí en HayPista es su capacidad de acceso mediante cuentas que ya tienen. <br />
@@ -617,7 +618,8 @@ en:
      page_does_not_exist: La pagina que querias no exite.  
      
      participate_schedule: Participa en el Evento
-     participate_schedule_afterwards: Despues de registrate sigue este enlace para participa en el Evento
+     participate_schedule_afterwards: "Despues de registrate en el equipo y ser aceptado, sigue este enlace para participa en el Evento"
+     participate_group_afterwards: Despues de registrate sigue este enlace para unirte al equipo
      
      participation:  %
      participation_full:  Porcentaje de Participación
@@ -708,8 +710,9 @@ en:
      previous_ranking_full: Ranking Previo
      previous_schedule: Anterior Evento   
      previous_schedules: Anteriores Eventos
-     previous_practice: Anterior Entrenamiento
-     previous_practices: Anteriores Entrenamientos
+     
+     previous_profile_set:  Actualizar Perfiles.
+     previous_profile_set_full:  Obtener los perfiles de la previa jornada.
      pricing:  Precios
      privacy: privacidad   
      private_beta: Ya tenemos tu información registrada.  Actualmente estamos en versión de pruebas.  Encuanto podamos abriremos al publico.   
@@ -997,8 +1000,7 @@ en:
      upcoming_festival: Próximos Acondiciónamientos   
      upcoming_schedule: Próximo Evento   
      upcoming_schedules: Próximos Eventos 
-     upcoming_practice:  Próximo Entrenamiento   
-     upcoming_practices: Próximos Entrenamientos
+     
      update: Actualiza   
      update_address: Actualiza la Dirección   
      update_announcement: Actualiza un Anuncio   
@@ -1057,11 +1059,13 @@ en:
      verification_setup: Verificación de OpenID tiene que ser actualizado.   
      view: Ver   
      visible_only_to_you_description: (Solo tu podras ver esta información...)   
-     visit_group: Visitante   
+     visit_group: Visitante  
+      
      Wednesday: Miercoles   
      welcome: Bienvenidos a HayPista   
      were_removed: han sido eliminados   
      what_are_you_practicing: Que actividad estas practicando?   
+     
      whats_new: ¿Qué hay de nuevo en HayPista?   
      write_comment: Escribe un comentario...   
      writes: escribe   
@@ -1178,9 +1182,11 @@ en:
           
      fee_from: Tasas a
      fee_from_description: De quien son las Tasas
+     fee_options: Opciones de Matrícula
      fee_to: Tasas de 
      fee_to_description:  A quien son las Tasas
      fees_create:  Nueva Matrícula
+     fees_destroy: Borrar Matricula
      fees_index:   Matrícula
      fees_index_option: Opciones de Matrícula
      fees_manager_option:  Requiere responsable de equipo para ver mas opciones.
@@ -1189,7 +1195,9 @@ en:
      fees_edit:  Modificar Matrícula
      fees_option:  Opciones de las Matriculas
      fees_show:  Mostrar Matrícula
+     fees_update:  Modificar Matricula
      
+     home_about_us: About Us
      home_information:  Información
      home_option:  Opciones de Inicio
      home_upcoming_schedule:  Próximos Eventos
@@ -1198,6 +1206,7 @@ en:
      payment_full:  Pago Total
      payment_greater_than:  Pago Superior
      payment_less_than:  Pago Inferior
+     payment_for_bill:  Paga esta Matricula
      payment_type:  Tipo de Pago
      payments_create:  Nuevo Pago
      payments_index:   Pagos
@@ -1205,12 +1214,15 @@ en:
      payments_manager_option:  Requiere responsable de equipo para ver mas opciones.
      payments_new:  Nuevo Pago
      payments_no:  Ningun Pago para mostrar.
+     payments_destroy:  Borrar Pago
      payments_edit:  Modificar Pago
      payments_option:  Opciones de Pagos
      payments_show:  Mostrar Pago
-     
+          
+     group_options:  Opciones de Equipos
      groups_create:  Nuevo Equipo 
      groups_destroy:  Borrar Equipo
+     groups_edit:  Modificar Equipo
      groups_index:   Equipos
      groups_index_option: Opciones de Equipo
      groups_invitations_create:  Invita a un Amigo al Equipo
@@ -1220,9 +1232,10 @@ en:
      groups_new_option: Opciones de Nuevo Equipo
      groups_no:  Ningun Equipo para mostrar.
      groups_none:  Ningun Equipo.
-     groups_edit:  Modificar Equipo
-     group_options:  Opciones de Equipos
+     groups_options_without: "Que opciones tienes ya que no tienes un equipo?"
      groups_option:  Opciones de Equipo
+     groups_search: Busqueda de Equipos
+     groups_search_to_join: Puedes Buscar un equipo a quien unierte. 
      groups_show:  Mostrar Equipo
 
      markers_create: Nuevo Centro Deportivo
@@ -1256,20 +1269,6 @@ en:
      messages_sent:  Mensajes Mandados
      messages_show: Mostrar Mensaje
      messages_trash:  Mensajes Descartados
-     
-     practice_attend:  Asistir al Entrenamiento
-     practice_options:  Opciones de Entrenamiento
-     practice_unattend:  No asistir al entrenamiento
-     practices:  Entrenamientos
-     practices_create:  Nuevo Entrenamiento
-     practices_index:  Entrenamiento
-     practices_index_option: Opciones de Entrenamiento
-     practices_manager_option:  Requiere responsable de equipo para ver mas opciones.
-     practices_new: Nuevo Entrenamiento
-     practices_no: Ningun entrenamiento para mostrar.
-     practices_edit: Modificar Entrenamiento
-     practices_option:  Opciones de Entrenamientos
-     practices_show: Detalles del Entrenamiento
 
      schedules_archive_list:  Temporada Anterior
      schedules_create:  Nuevo Evento

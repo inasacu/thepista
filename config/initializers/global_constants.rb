@@ -13,8 +13,6 @@ LAST_WEEK = Time.zone.now - 7.days
 PAST_THREE_DAYS = Time.zone.now - 3.days
 LAST_THREE_DAYS = Time.zone.now - 3.days..Time.zone.now + 1.day
 
-# ONE_WEEK_FROM_TODAY = Time.zone.now - 1.day..Time.zone.now + 30.days
-
 TIME_AGO_FOR_MOSTLY_ACTIVE = 1.month.ago
 TRASH_TIME_AGO = 1.month.ago
 
@@ -38,6 +36,7 @@ TYPES_PER_PAGE = 8
 USERS_PER_PAGE = 10
 ROSTERS_PER_PAGE = 16
 INVITATIONS_PER_PAGE = 15
+PAYMENTS_PER_PAGE = 15
 
 #variables for login
 SHOW_OPENID_LOGIN = false

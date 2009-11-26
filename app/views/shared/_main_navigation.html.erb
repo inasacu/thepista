@@ -7,11 +7,9 @@ end
 %>
 
 <div id="main-navigation">
-
 <ul>		
 	<%= "<li />" unless current_user %>
-	
-	
+		
 	<% if current_user %>
 		<li class="<%= get_control_first('home') %>"><%= link_to(label_name(:home) , '/') %></li>
 		
@@ -23,19 +21,12 @@ end
 		<% if display %>	
 			<li class="<%= get_control_active('schedule') %><%= get_control_active('topic') %>">
 						<%= link_to(label_name(:schedules), schedules_url) %></li>
-			<li class="<%= get_control_active('practice') %><%#= get_control_active('topic') %>">
-						<%= link_to(label_name(:practices), practices_url) if development? %></li>
-			<li class="<%= get_control_active('fee') %>"><%= link_to(label_name(:fees), fees_url) if development? %></li>
-			<li class="<%= get_control_active('payment') %>"><%= link_to(label_name(:payments), payments_url) if development? %></li>
 		<% end %>
 	
 		<li class="<%= get_control_active('message') %>"><%= link_to(label_name(:messages), messages_url) %></li>
-		<li class="<%= get_control_active('marker') %>"><%= link_to(label_name(:invitations), invitations_url) %>
 		<li class="<%= get_control_active('scorecard') %>"><%= link_to(label_name(:scorecards), scorecards_url) %></li>
 		<li class="<%= get_control_active('marker') %>"><%= link_to(label_name(:markers), markers_url) %>
-		
-
-		
+				
 		<% if test? %>
 			<li class="<%= get_control_active('role') %>"><%= link_to(label_name(:roles), roles_url) %>
 			<li class="<%= get_control_active('sport') %>"><%= link_to(label_name(:sports), sports_url) %>
