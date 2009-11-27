@@ -170,17 +170,6 @@ class Match < ActiveRecord::Base
     self.description.gsub!(/\r?\n/, "<br>") unless self.description.nil?
   end
 
-  # def self.create_schedule_group_user_match(schedule, user)
-  #   type_id = 3         # set to ausente
-  #   position_id = 18    # set user position to center field 
-  # 
-  #   self.create!(:schedule_id => schedule.id, 
-  #                :group_id => schedule.group.id, 
-  #                :user_id => user.id, 
-  #                :type_id => type_id, 
-  #                :position_id => position_id) if self.schedule_group_user_exists?(schedule, user)
-  # end
-
 	# return ture if the schedule group user conbination is nil
    def self.schedule_group_user_exists?(schedule, user)
 		find_by_schedule_id_and_group_id_and_user_id(schedule, schedule.group, user).nil?

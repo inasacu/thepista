@@ -36,12 +36,9 @@ class Group < ActiveRecord::Base
   validates_length_of       :description,     :within => DESCRIPTION_RANGE_LENGTH
   validates_length_of       :conditions,      :within => DESCRIPTION_RANGE_LENGTH
       
-  # validates_format_of       :name,            :with => /^[A-z0-9 _.-]*$/ 
-  # validates_format_of       :second_team,     :with => /^[A-z0-9 _.-]*$/ 
-  
-  validates_format_of       :name,            :with =>  /^[A-Z a-z 0-9]*\z/
-  validates_format_of       :second_team,     :with =>  /^[A-Z a-z 0-9]*\z/
-  
+  validates_format_of       :name,            :with => /^[A-z 0-9 _.-]*$/ 
+  validates_format_of       :second_team,     :with => /^[A-z 0-9 _.-]*$/ 
+    
   validates_numericality_of :points_for_win,  :greater_than_or_equal_to => 0, :less_than_or_equal_to => 100
   validates_numericality_of :points_for_lose, :greater_than_or_equal_to => 0, :less_than_or_equal_to => 100
   validates_numericality_of :points_for_draw, :greater_than_or_equal_to => 0, :less_than_or_equal_to => 100

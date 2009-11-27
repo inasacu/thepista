@@ -96,7 +96,7 @@ class SchedulesController < ApplicationController
   end
   
   def update
-    if @schedule.update_attributes(params[:schedule]) and @schedule.create_schedule_details(current_user)    
+    if @schedule.update_attributes(params[:schedule]) and @schedule.create_schedule_details(current_user, true)  
       flash[:notice] = I18n.t(:successful_update)
       redirect_to @schedule
     else

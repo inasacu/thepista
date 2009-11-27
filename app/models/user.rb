@@ -16,7 +16,7 @@ class User < ActiveRecord::Base
   # Validations
   validates_presence_of :email
   validates_length_of   :name,            :within => NAME_RANGE_LENGTH
-  validates_format_of   :name,            :with =>  /^[A-Z a-z 0-9]*\z/
+  # validates_format_of   :name,            :with =>  /^[A-Z a-z 0-9]*\z/
   
   # RE_EMAIL_NAME   = '[\w\.%\+\-]+'                          # what you actually see in practice
   # #RE_EMAIL_NAME   = '0-9A-Z!#\$%\&\'\*\+_/=\?^\-`\{|\}~\.' # technically allowed by RFC-2822

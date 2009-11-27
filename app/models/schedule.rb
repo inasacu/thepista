@@ -61,7 +61,7 @@ class Schedule < ActiveRecord::Base
   # validations  
   validates_presence_of         :concept
   validates_length_of           :concept,                         :within => NAME_RANGE_LENGTH
-  validates_format_of           :concept,                         :with =>  /^[A-Z a-z 0-9]*\z/
+  validates_format_of           :concept,                         :with => /^[A-z 0-9 _.-]*$/ 
   
   validates_presence_of         :description
   validates_length_of           :description,                     :within => DESCRIPTION_RANGE_LENGTH
@@ -196,10 +196,12 @@ class Schedule < ActiveRecord::Base
   end
   
   # create forum, topic, post details for schedule
-  def create_schedule_details(user)
-    @forum = Forum.create_schedule_forum(self)
-    @topic = Topic.create_schedule_topic(@forum, user)
-    Post.create_schedule_post(@forum, @topic, user, self.description)
+  def create_schedule_details(user, schedule_update=false)
+    unless schedule_update
+      @forum = Forum.create_schedule_forum(self)
+      @topic = Topic.create_schedule_topic(@forum, user) 
+      Post.create_schedule_post(@forum, @topic, user, self.description)
+    end
     Match.create_schedule_match(self) 
     Fee.create_group_fees(self)    
     Fee.create_user_fees(self)
