@@ -4,11 +4,11 @@
 	<% if current_user %>
 	
 		<% if current_user.has_pending_petition?(current_user) %>
-			<li><%= link_to(label_name(:petitions), petition_path(current_user)) %></li>
+			<li><%= link_to label_name(:petitions), petition_path(current_user), :class => "petition" %></li>
 		<% end %>
 	
 		<li><%= user_link current_user %></li>
-		<!-- <li><%#= link_to label_name(:settings), '/' %></li> -->
+		<li><%= link_to label_name(:documentation), '/' %></li>
 		<li><%= link_to label_name(:logout), logout_path %></li>			
 	<% else %>
 		<li><%= link_to label_name(:signup), signup_path %></li>

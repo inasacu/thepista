@@ -206,6 +206,7 @@ es:
      destroy_type: Borra un Tipo   
      destroy_user: Borra el Jugador   
      destroy_venue: Borra el Centro Deportivo 
+     documentation: El Manual
      does_not_exist: La pagina que buscas no existe.
      does_not_exist_explained: Es posible que la pagina se haya cambiado.	  
      do_join_festival: ¿Te quieres unir a   

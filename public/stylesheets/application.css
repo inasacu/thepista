@@ -173,7 +173,11 @@ td.sub_true {
   width: 75%;
 }
 
-.secondary-navigation ul li.message, .secondary-navigation ul li.message a:hover {
+.secondary-navigation ul li.petition, .secondary-navigation ul li.petition a:hover {
+	background: #2AA9D8;
+}
+
+.secondary-navigation ul li.message, .secondary-navigation ul li.message li.petition a:hover {
 	background: #2AA9D8;
 }
 
@@ -196,6 +200,13 @@ div#footer ol li { margin: 0pt 1em; position: relative; float: left; }
 
  /*user navigation*/
 #user-navigation a.logout {
+  background: #cc0000;
+  padding: 1px 4px;
+  -moz-border-radius: 4px;
+-webkit-border-radius: 3px;
+}
+
+#user-navigation a.petition {
   background: #cc0000;
   padding: 1px 4px;
   -moz-border-radius: 4px;

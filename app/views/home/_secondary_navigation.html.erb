@@ -14,7 +14,7 @@ if current_user
 	</li>
 			
 	<% if current_user.has_pending_petition?(current_user) %>
-	<li class="<%= get_active('user_petition') %>">
+	<li class="petition">
 		<%= link_to(label_name(:petitions), petition_path(:id => current_user)) %>
 	</li>	
 	<% end %>			

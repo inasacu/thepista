@@ -7,6 +7,10 @@ class TeammatesController < ApplicationController
   before_filter :setup_teammate, :only => [:join_team_accept, :join_team_decline]
     
 
+  def index
+    redirect_to   :controller => 'home', :action => 'index'
+  end
+  
   # methods
   def join_team 
     unless (current_user.is_manager_of?(@group) or !current_user.is_member_of?(@group))
@@ -35,15 +39,17 @@ class TeammatesController < ApplicationController
     end
     
     flash[:notice] = I18n.t(:to_join_group_message_sent)
-    redirect_back_or_default('/index')
+    # redirect_back_or_default('/index')
+    redirect_to   :controller => 'home', :action => 'index'
     # end
   end 
 
   def leave_team
     # leaving is limited to the member
     unless current_user.is_member_of?(@group)
-      flash[:notice] = I18n.t(:unauthorized)
-      redirect_back_or_default('/index')
+      flash[:notice] = I18n.t(:unauthorized)      
+      # redirect_back_or_default('/index')
+      redirect_to   :controller => 'home', :action => 'index'
       return
     end
 
@@ -62,7 +68,8 @@ class TeammatesController < ApplicationController
     end
 
     flash[:notice] = I18n.t(:to_leave_group_message_sent)
-    redirect_back_or_default('/index')          
+    # redirect_back_or_default('/index')
+    redirect_to   :controller => 'home', :action => 'index'
   end
 
   def join_team_accept    
@@ -78,7 +85,8 @@ class TeammatesController < ApplicationController
       Teammate.breakup(@requester, @approver, @group)
       flash[:notice] = I18n.t(:petition_to_join_declined)
     end
-    redirect_back_or_default('/index')
+      # redirect_back_or_default('/index')
+      redirect_to   :controller => 'home', :action => 'index'
   end
   
   def destroy
@@ -88,7 +96,8 @@ class TeammatesController < ApplicationController
     else
       flash[:notice] = I18n.t(:no_petition_to_join_group)
     end
-    redirect_back_or_default('/index') 
+      # redirect_back_or_default('/index')
+      redirect_to   :controller => 'home', :action => 'index'
   end
   
   private  
