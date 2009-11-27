@@ -9,10 +9,10 @@ task :cron => :environment do
  #   User.send_reminders
  # end
  
- # rake friendly_id:make_slugs MODEL=User 
- # rake friendly_id:make_slugs MODEL=Group 
- # rake friendly_id:make_slugs MODEL=Schedule 
- # rake friendly_id:make_slugs MODEL=Fee
- # rake friendly_id:make_slugs MODEL=Payment 
+ # heroku rake friendly_id:make_slugs MODEL=User --app thepista
+ # heroku rake friendly_id:make_slugs MODEL=Group  --app thepista
+ # heroku rake friendly_id:make_slugs MODEL=Schedule  --app thepista
+ # heroku rake friendly_id:make_slugs MODEL=Fee --app thepista
+ # heroku rake friendly_id:make_slugs MODEL=Payment  --app thepista
  
 end

@@ -1,5 +1,3 @@
-<%# has_pending_petition?(current_user) %>
-
 <div class="block">
 
   <%= render :partial => 'secondary_navigation' %>  
@@ -15,9 +13,7 @@
 	
 	<%= render :partial => 'petition_box', :locals => {:teammates => @requested_teammates}  if @requested_teammates %>
 	<%= render :partial => 'petition_box', :locals => {:teammates => @pending_teammates}  if @pending_teammates %>
-		
-	<%#= render :partial => 'shared/action_bar', :locals => { :collection => @teammates } %>
-	  
+			  
     </div>
 	
   </div>

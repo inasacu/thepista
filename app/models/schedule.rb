@@ -61,6 +61,7 @@ class Schedule < ActiveRecord::Base
   # validations  
   validates_presence_of         :concept
   validates_length_of           :concept,                         :within => NAME_RANGE_LENGTH
+  validates_format_of           :concept,                         :with =>  /^[A-Z a-z 0-9]*\z/
   
   validates_presence_of         :description
   validates_length_of           :description,                     :within => DESCRIPTION_RANGE_LENGTH
@@ -69,8 +70,6 @@ class Schedule < ActiveRecord::Base
   validates_numericality_of     :fee_per_game,  :fee_per_pista, :player_limit
 
   validates_presence_of         :starts_at,     :ends_at  
-  # validates_presence_of         :time_zone
-  # validates_presense_of         :sport_id, :marker_id, :group_id
 
   # variables to access
   attr_accessible :concept, :description, :season, :jornada, :starts_at, :ends_at, :reminder, :subscription_at, :non_subscription_at

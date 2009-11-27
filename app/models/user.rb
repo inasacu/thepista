@@ -15,7 +15,8 @@ class User < ActiveRecord::Base
   
   # Validations
   validates_presence_of :email
-  validates_length_of   :name,      :within => NAME_RANGE_LENGTH
+  validates_length_of   :name,            :within => NAME_RANGE_LENGTH
+  validates_format_of   :name,            :with =>  /^[A-Z a-z 0-9]*\z/
   
   # RE_EMAIL_NAME   = '[\w\.%\+\-]+'                          # what you actually see in practice
   # #RE_EMAIL_NAME   = '0-9A-Z!#\$%\&\'\*\+_/=\?^\-`\{|\}~\.' # technically allowed by RFC-2822
@@ -151,6 +152,15 @@ class User < ActiveRecord::Base
         return find(:first, :select => "min(id) as id", :conditions => ["id > ?  and id in (select user_id from groups_users where group_id in (?))", user.id, groups])
       end
       return user
+    end
+    
+    def has_group_petition?(current_user, group)
+      petition = false      
+      if Teammate.count(:conditions => ["accepted_at is null and group_id = ? and (user_id = ? or manager_id = ?)", 
+                        group.id, current_user.id, current_user.id]) > 0
+          petition = true
+      end        
+      return (current_user == self and petition)
     end
       
     def has_pending_petition?(current_user)
