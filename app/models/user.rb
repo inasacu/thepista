@@ -188,13 +188,17 @@ class User < ActiveRecord::Base
       end
       
       def is_user_manager_of?(user)
-        is_manager = false
+        is_manager = false        
         user.groups.each do |group|
           unless is_manager
-            is_manager = (self.has_role?('manager', group) or self.has_role?('creater', group))
+            is_manager = (self.has_role?('manager', group)) # or self.has_role?('creator', group))
           end
         end
         return is_manager
+      end
+      
+      def is_user_manager_group(user, group)
+        user.is_member_of?(group) and self.has_role?('manager', group)
       end
 
       def is_user_member_of?(user)

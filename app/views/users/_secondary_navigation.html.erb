@@ -37,7 +37,7 @@
 	end
 %>
 	<li class="<%= get_active('user_show') %>"><%= user_link(label_name(:profile), the_user) %></li>
-	<li class="<%= get_active('fee_index') %>"><%= link_to(label_name(:fees), fees_url) %></li>
+	<li class="<%= get_active('fee_index') %>"><%= link_to(label_name(:fees), fees_url(:id => @user)) %></li>
 	<li class="<%= get_active('payment_index') %>"><%= link_to(label_name(:payments), payments_url) %></li>
 	<li class="<%= get_active('invitation_index') %>"><%= link_to(label_name(:invitations), invitations_url) %></li>
 	
