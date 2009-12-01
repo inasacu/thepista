@@ -8,7 +8,7 @@ class TeammatesController < ApplicationController
     
 
   def index
-    redirect_to   :controller => 'home', :action => 'index'
+    redirect_to root_url
   end
   
   # methods
@@ -40,7 +40,7 @@ class TeammatesController < ApplicationController
     
     flash[:notice] = I18n.t(:to_join_group_message_sent)
     # redirect_back_or_default('/index')
-    redirect_to   :controller => 'home', :action => 'index'
+    redirect_to root_url
     # end
   end 
 
@@ -49,7 +49,7 @@ class TeammatesController < ApplicationController
     unless current_user.is_member_of?(@group)
       flash[:notice] = I18n.t(:unauthorized)      
       # redirect_back_or_default('/index')
-      redirect_to   :controller => 'home', :action => 'index'
+      redirect_to root_url
       return
     end
 
@@ -69,7 +69,7 @@ class TeammatesController < ApplicationController
 
     flash[:notice] = I18n.t(:to_leave_group_message_sent)
     # redirect_back_or_default('/index')
-    redirect_to   :controller => 'home', :action => 'index'
+    redirect_to root_url
   end
 
   def join_team_accept    
@@ -86,7 +86,7 @@ class TeammatesController < ApplicationController
       flash[:notice] = I18n.t(:petition_to_join_declined)
     end
       # redirect_back_or_default('/index')
-      redirect_to   :controller => 'home', :action => 'index'
+      redirect_to root_url
   end
   
   def destroy
@@ -97,7 +97,7 @@ class TeammatesController < ApplicationController
       flash[:notice] = I18n.t(:no_petition_to_join_group)
     end
       # redirect_back_or_default('/index')
-      redirect_to   :controller => 'home', :action => 'index'
+      redirect_to root_url
   end
   
   private  

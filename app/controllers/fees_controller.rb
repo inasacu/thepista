@@ -1,31 +1,32 @@
 class FeesController < ApplicationController
   before_filter :require_user
 
-
   def index
-    if current_user
+    if params[:id]
+      @user = User.find(params[:id])
+      unless current_user.is_user_manager_of?(@user) or @user == current_user
+        flash[:warning] = I18n.t(:unauthorized)
+        redirect_to root_url
+        return
+      end
 
-      @user = current_user
-      @fees = Fee.get_debit_fees(@user, false, false, params[:page])   
-
-      @fee = Fee.debit_amount(@user)
       @debit_payment = Payment.debit_payment(@user)
       @credit_payment = Payment.credit_payment(@user)
 
-      # if @payment.actual_payment.to_f == @fee.debit_amount.to_f
-      #   @payment_in_full = I18n.t(:payment_full)
-      # elsif @payment.actual_payment.to_f < @fee.debit_amount.to_f
-      #   @payment_in_full = I18n.t(:payment_less_than)
-      # elsif @payment.actual_payment.to_f > @fee.debit_amount.to_f
-      #   @payment_in_full = I18n.t(:payment_greater_than)
-      # end                
-
+      @groups = []
+      @user.groups.each do |group|
+        @groups << group.id if current_user.is_user_manager_group(@user, group)
+      end
+      
+      @fee = Fee.debit_amount(@user, @groups)
+      @fees = Fee.get_debit_fees(@user, @groups, params[:page])
+    else
+      redirect_to root_url
     end
 
     respond_to do |format|
       format.html 
-    end             
-
+    end 
   end
 
   def new

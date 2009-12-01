@@ -25,28 +25,31 @@ class Fee < ActiveRecord::Base
   attr_accessible :debit_id, :debit_type, :credit_id, :credit_type, :item_id, :item_type 
   attr_accessible :type_id, :manager_id
   
-  def self.get_debit_fees(debit, season_player=false, archive=false, page=1)
+  def self.get_debit_fees(debit, credits, page=1)
     paginate(:all, 
-             :conditions => ["debit_id = ? and debit_type = ? and season_player = ? and archive = ?", debit.id, debit.class.to_s, season_player, archive],
+             :conditions => ["debit_id = ? and debit_type = ? and 
+                              credit_id in (?) and credit_type = ? and season_player = false and archive = false", 
+                              debit.id, debit.class.to_s, credits, 'Group'],
              :order => 'created_at DESC', 
              :page => page,
              :per_page => FEES_PER_PAGE)
   end
   
-  def self.debit_amount(debit, debit_name='User', season_player=false, archive=false)
-    @fee = find(:first, 
-         :select => "sum(debit_amount) as debit_amount", 
-         :conditions => ["debit_id = ? and debit_type = ? and season_player = ? and archive = ?", debit.id, debit.class.to_s, season_player, archive])
-         
-   if @fee.nil? or @fee.blank? 
-     @fee.debit_amount = 0.0
-   end
-   return @fee
-  end
+  def self.debit_amount(debit, credits)
+    @fee = find(:first, :select => "sum(debit_amount) as debit_amount", 
+          :conditions => ["debit_id = ? and debit_type = ? and credit_id in (?) and credit_type = ? and 
+                          season_player = false and archive = false", 
+                          debit.id, debit.class.to_s, credits, 'Group'])
+
+      if @fee.nil? or @fee.blank? 
+        @fee.debit_amount = 0.0
+      end
+      return @fee
+    end
   
   def self.set_season_player(debit, credit, flag)
     @fees = find(:all, 
-                 :conditions => ["debit_id = ? and debit_type = ? and credit_id = ? and credit_type = ?", 
+                 :conditions => ["debit_id = ? and debit_type = ? and credit_id = ? and credit_type = ? and item_type = 'Schedule'", 
                                   debit, debit.class.to_s, credit, credit.class.to_s])    
     @fees.each do |fee|
       

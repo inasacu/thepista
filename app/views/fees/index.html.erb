@@ -27,8 +27,10 @@
 		<tr>  
 			<td>&nbsp;</td>
 			<td>&nbsp;</td>
-			<td><%#= "#{label_name(:credit)} #{number_to_currency(@credit_payment.actual_payment)}" %></td>
-			<td><%= "#{label_name(:credit)} #{number_to_currency(@debit_payment.actual_payment)}" %></td>
+			<td>&nbsp;</td>
+			<td>
+	<%= "#{label_name(:credit)} #{number_to_currency(@debit_payment.actual_payment)}" if (@debit_payment.actual_payment.to_f > 0) %>
+	</td>
 		   <td class="last"></td>
 		</tr>
 

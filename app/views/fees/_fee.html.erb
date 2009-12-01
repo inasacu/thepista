@@ -1,14 +1,7 @@
 <% 
-	# balance_due =  (current_user.is_manager_of?(fee.group) and @fee.debit_amount.to_f > @payment.actual_payment.to_f) 
-
-	user_flag = false
-	group_flag = false
-	schedule_flag = false
-	
 	debit_link, debit_object = fee_debit(fee)
 	credit_link, credit_object = fee_credit(fee)
 	item_link, item_object = fee_item(fee)
-	
 %>
 
 <tr>  
