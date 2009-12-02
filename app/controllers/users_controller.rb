@@ -3,7 +3,7 @@ class UsersController < ApplicationController
   before_filter :require_user, :only => [:index, :show, :edit, :update, :petition] 
   
   before_filter :get_user, :only => [:show, :set_available, :set_private_phone, :set_private_profile, :set_enable_comments, 
-                                     :set_teammate_notification, :set_message_notification, :set_comment_notification] 
+                                     :set_teammate_notification, :set_message_notification, :set_blog_comment_notification] 
                                      
   before_filter :get_user_group, :only =>[:set_manager, :remove_manager, :set_sub_manager, :remove_sub_manager, 
                                           :set_subscription, :remove_subscription, :set_moderator, :remove_moderator]
@@ -252,17 +252,6 @@ class UsersController < ApplicationController
     end
   end
 
-  def set_private_profile
-    if @user.update_attribute("private_profile", !@user.private_profile)
-      @user.update_attribute("private_profile", @user.private_profile)  
-
-      flash[:notice] = I18n.t(:successful_update)
-      redirect_back_or_default('/index')
-    else
-      render :action => 'index'
-    end
-  end  
-
   def set_enable_comments
     if @user.update_attribute("enable_comments", !@user.enable_comments)
       @user.update_attribute("enable_comments", @user.enable_comments)  
@@ -296,7 +285,7 @@ class UsersController < ApplicationController
     end
   end  
 
-  def set_comment_notification
+  def set_blog_comment_notification
     if @user.update_attribute("blog_comment_notification", !@user.blog_comment_notification)
       @user.update_attribute("blog_comment_notification", @user.blog_comment_notification)  
 
@@ -467,7 +456,7 @@ class UsersController < ApplicationController
 private
   def get_user
     @user = User.find(params[:id])
-    redirect_to @user, :status => 301 if @user.has_better_id?
+    # redirect_to @user, :status => 301 if @user.has_better_id?
   end
   
   def get_user_group

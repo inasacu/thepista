@@ -40,7 +40,7 @@ ActionController::Routing::Routes.draw do |map|
   map.set_enable_comments         'users/:id/set_enable_comments',  		  :controller => 'users',    		    :action => 'set_enable_comments'
   map.set_teammate_notification   'users/:id/set_teammate_notification',  :controller => 'users',    		    :action => 'set_teammate_notification'
   map.set_message_notification    'users/:id/set_message_notification',  	:controller => 'users',    		    :action => 'set_message_notification'
-  map.set_comment_notification    'users/:id/set_comment_notification',  	:controller => 'users',    		    :action => 'set_comment_notification'
+  map.set_blog_comment_notification    'users/:id/set_blog_comment_notification',  	:controller => 'users',    		    :action => 'set_blog_comment_notification'
   
   map.third_party           'users/third_party',                          :controller => 'users',           :action => 'third_party'
   map.associate_return      'users/associate_return',                     :controller => 'users',           :action => 'associate_return'
@@ -97,6 +97,8 @@ ActionController::Routing::Routes.draw do |map|
   map.resources   :password_resets, :as => 'resetear'
   map.resources   :messages,        :as => 'mensajes',                    :collection => { :sent => :get, :trash => :get }
 
+  map.resources   :tournaments,     :as => 'torneos',                     :collection => { :list => :get, :search => :get }
+  
   map.resources   :connections
   map.resources   :ratings,                                               :member => { :rate => :put }
   

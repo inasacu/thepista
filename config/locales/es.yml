@@ -50,7 +50,7 @@ es:
      birth_at:  Fecha de Nacimiento
      birth_description: (Escribe fecha de nacimiento...Solo se utiliza para calcular la edad media del equipo...) 
      
-     blog_comment_notification: Recibir Notificación
+     blog_comment_notification: Recibir Notas en tu Muro
      body: Contenido 
      body_description:  Contenido  
      by: por
@@ -861,8 +861,8 @@ es:
      set_private_phone:  Ocultar Teléfono de 
      set_private_profile:  Ocultar Perfil de
      set_enable_comments:  Quieres recibir Notificaciones de comentarios dejados en el muro de
-     set_teammate_notification:  Quieres recibir Notificaciones de miembros que quieren unirse al equipo de
-     set_message_notification:  Quieres recifir Notificaciones de correos en la cuenta de correo de
+     set_teammate_notification:  Quieres recibir Peticiones para unirse al equipo de
+     set_message_notification:  Quieres recibir Notificaciones de correos en la cuenta de correo de
      set_blog_comment_notification:  Quieres recibir Notificaciones de comentarios dejados en el muro de
              
      settings:  Opciones 
@@ -945,9 +945,8 @@ es:
      t_zone: Zona Horaria   
      table_id: Codigo de Tabla   
      table_type: Tipo de Tabla   
-     # team_petition: Solicitud de Equipo   
-     # teammate_notification:  Recibir Notificationes de tu equipo
-     teammate_notification:  Recibir Notificationes
+
+     teammate_notification:  Recibir Peticiones
      technical_level_description: "(Del 1 al 5, pon el nivel tecnico que crees que tienes comparado con los de tu equipo...)"  
      terms: terminos   
      terms_message: Please accept the terms to proceed   
@@ -1344,6 +1343,26 @@ es:
      topics_create:  Nuevo Evento
      topics_edit:  Modificar Evento
      topic_options:  Opciones de Evento     
+     
+     tournament_options:  Opciones de Torneos
+     tournaments_create:  Nuevo Torneo 
+     tournaments_destroy:  Borrar Torneo
+     tournaments_edit:  Modificar Torneo
+     tournaments_index:   Torneos
+     tournaments_index_option: Opciones de Torneo
+     tournaments_invitations_create:  Invita a un Amigo al Torneo
+     tournaments_join:  Unete al Torneo
+     tournaments_list:  Resto de Torneo
+     tournaments_new:  Nuevo Torneo
+     tournaments_new_option: Opciones de Nuevo Torneo
+     tournaments_no:  Ningun Torneo para mostrar.
+     tournaments_none:  Ningun Torneo.
+     tournaments_options_without: "Que opciones tienes ya que no tienes un torneo?"
+     tournaments_option:  Opciones de Torneo
+     tournaments_search: Busqueda de Torneos
+     tournaments_search_to_join: Puedes Buscar un Torneo a quien unierte. 
+     tournaments_show:  Mostrar Torneo
+     tournaments_update: Modificar Torneo
      
      types_index:  Tipos
      types_maximo_option:  Requiere responsable de administrador para ver mas opciones.

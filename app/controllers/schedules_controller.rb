@@ -134,7 +134,7 @@ class SchedulesController < ApplicationController
       @schedule.matches.each do |match|
         @previous_match = Match.find(:first, :conditions => ["schedule_id = ? and user_id = ?", @previous_schedule.id, match.user_id])
         match.technical = @previous_match.technical
-        match.technical = @previous_match.technical
+        match.physical = @previous_match.physical
         match.save!
       end
 
@@ -220,7 +220,7 @@ class SchedulesController < ApplicationController
   def get_schedule
     @schedule = Schedule.find(params[:id])
     @group = @schedule.group    
-    redirect_to @schedule, :status => 301 if @schedule.has_better_id?
+    # redirect_to @schedule, :status => 301 if @schedule.has_better_id?
   end
   
   def get_match_type 
