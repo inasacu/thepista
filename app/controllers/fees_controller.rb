@@ -22,6 +22,7 @@ class FeesController < ApplicationController
       @fees = Fee.get_debit_fees(@user, @groups, params[:page])
     else
       redirect_to root_url
+      return
     end
 
     respond_to do |format|

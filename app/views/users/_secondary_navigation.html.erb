@@ -30,15 +30,25 @@
 		<li class="<%= get_active('entry_show') %>">  <%= link_to(the_label, blog_path(current_user.blog)) %></li>
 <% 		
 	else 
-		the_label = (the_user == current_user ? label_name(:my_wall) : "#{label_name(:the_wall)} #{h(@user.name)}")	
+		the_label = (the_user == current_user ? label_name(:my_wall) : "#{label_name(:the_wall)} #{h(the_user.name)}")	
 %>
 		<li class="<%= get_active('entry_show') %>">  <%= link_to(the_label, blog_path(the_user.blog)) %></li>
 <% 
 	end
 %>
-	<li class="<%= get_active('user_show') %>"><%= user_link(label_name(:profile), the_user) %></li>
-	<li class="<%= get_active('fee_index') %>"><%= link_to(label_name(:fees), fees_url(:id => @user)) %></li>
-	<li class="<%= get_active('payment_index') %>"><%= link_to(label_name(:payments), payments_url) %></li>
+	<li class="<%= get_active('user_show') %>">
+		<%= user_link("#{label_name(:profile)} #{label_name(:from)} #{h(the_user.name)}", the_user) %>
+	</li>
+	
+	<% if current_user.is_user_manager_of?(the_user) or the_user == current_user %>
+	<li class="<%= get_active('fee_index') %>">
+		<%= link_to("#{label_name(:fees)} #{label_name(:from)} #{h(the_user.name)}", fees_url(:id => the_user)) %>
+	</li>
+	<li class="<%= get_active('payment_index') %>">
+		<%= link_to("#{label_name(:payments)} #{label_name(:from)} #{h(the_user.name)}", payments_url) %>
+	</li>
+	<% end %>
+	
 	<li class="<%= get_active('invitation_index') %>"><%= link_to(label_name(:invitations), invitations_url) %></li>
 	
 	<% if current_user.has_pending_petition?(current_user) %>
