@@ -45,7 +45,7 @@
 		<%= link_to("#{label_name(:fees)} #{label_name(:from)} #{h(the_user.name)}", fees_url(:id => the_user)) %>
 	</li>
 	<li class="<%= get_active('payment_index') %>">
-		<%= link_to("#{label_name(:payments)} #{label_name(:from)} #{h(the_user.name)}", payments_url) %>
+		<%= link_to("#{label_name(:payments)} #{label_name(:from)} #{h(the_user.name)}", payments_url(:id => the_user)) %>
 	</li>
 	<% end %>
 	

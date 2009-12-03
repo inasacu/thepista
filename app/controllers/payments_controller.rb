@@ -3,8 +3,8 @@ class PaymentsController < ApplicationController
 
 
   def index
-    if (params[:user_id]) 
-      @user = User.find(params[:user_id])      
+    if (params[:id]) 
+      @user = User.find(params[:id])      
     else
       @user = current_user
     end
