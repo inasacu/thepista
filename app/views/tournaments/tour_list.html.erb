@@ -4,7 +4,7 @@
 
   <div class="content">   
   
-    <h2 class="title"><%= I18n.t(:has_group_users, :count => @total) %></h2>
+    <h2 class="title"><%= I18n.t(:has_tournament_users, :count => @total) %></h2>
 	
     <div class="inner">
 	
@@ -14,7 +14,7 @@
 			<th class="first">&nbsp;</th>
 			<th><%=label_name(:name) %>&nbsp;/<br />
 				<%=label_name(:last_game_played) %></th>
-			<th><%=label_name(:group) %></th>
+			<th><%=label_name(:tournament) %></th>
 			<th><%=label_name(:time_zone) %></th>
 			<th><%=label_name(:member_since) %></th>
 			<th class="last">&nbsp;</th>
@@ -32,7 +32,7 @@
 			  </td>
 
 			  <td>
-				<%= user.has_group? ? group_list(user.groups) : label_name('groups_none') %>
+				<%= user.has_tournament? ? tournament_list(user.tournaments) : label_name('tournaments_none') %>
 			  </td>			  
 
 			  <td>

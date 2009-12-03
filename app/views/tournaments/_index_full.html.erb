@@ -6,8 +6,7 @@
 
 	  <tr>             
 	    <th class="first">&nbsp;</th>
-	    <th><%= label_name(:name) %>&nbsp;/<br />
-			  <%= label_name(:gameday_at) %></th>
+	    <th><%= label_name(:name) %></th>
 	    <th><%= label_name(:manager) %>&nbsp;/<br />
 			  <%= label_name(:sport) %></th>
 	    <th><%= label_name(:time_zone) %></th>
@@ -16,59 +15,58 @@
 	    <th class="last">&nbsp;</th>
 	  </tr>
 
-	  <% @tournaments.each do |group| -%>
+	  <% @tournaments.each do |tournament| -%>
 
 	  <tr>  
 			<td>
-				<%= group_image_link_small group %>
+				<%= tournament_image_link_small tournament %>
 			</td>
 
 			<td class="name_and_date">
-				<%= group_link(group) %>
+				<%= tournament_link(tournament) %>
 				<span class="date">
-					<%= nice_day_time group.gameday_at %>
+					<%#= nice_day_time tournament.gameday_at %>
 				</span>
 			</td>
 
 			<td>
-				<%= user_list group.all_the_managers %><br />
-				<%= group.sport.name %>
+				<%= user_list tournament.all_the_managers %><br />
+				<%= tournament.sport.name %>
 			</td>
 
 			<td>
-				<%= group.time_zone %>
+				<%= tournament.time_zone %>
 			</td>
 
 			<td>
-				<%= I18n.t(:has_group_users, :count => object_counter(group.users)) %><br />
-				<%= I18n.t(:has_group_schedules, :count => object_counter(group.schedules)) %>
+				<%= I18n.t(:has_tournament_users, :count => object_counter(tournament.users)) %><br />
+				<%#= I18n.t(:has_tournament_meets, :count => object_counter(tournament.meets)) %>
 			</td>
 
 			<td class="name_and_date">
 				<span class="date">
-					<%= nice_full_date group.created_at %> 
+					<%= nice_full_date tournament.created_at %> 
 				</span>
 			</td>
 
 	       <td class="last">
 				<span class="action">
-					<% if current_user.is_member_of?(group) %>
-						<%= link_to(label_name(:send_message_to_group), new_message_path(:group_id => group.id)) %><br />
+					<% if current_user.is_member_of?(tournament) %>
+						<%= link_to(label_name(:send_message_to_tournament), new_message_path(:tournament_id => tournament.id)) %><br />
 					<% else %>
-						<%= link_to(label_name(:send_message_to_group), new_message_path(:id => group.all_the_managers.first)) %><br />
+						<%= link_to(label_name(:send_message_to_tournament), new_message_path(:id => tournament.all_the_managers.first)) %><br />
 				
-					<% 	# unless current_user.has_pending_petition?(current_user) 
-						unless current_user.has_group_petition?(current_user, group) 
-							the_label = label_with_name('add_to_group', group.name)
-							the_confirmation = "#{ label_name(:petition_to_join_group) } #{current_user.name} #{ label_name(:to) } #{group.name}?"
+					<% 	unless current_user.has_tournament_petition?(current_user, tournament) 
+							the_label = label_with_name('add_to_tournament', tournament.name)
+							the_confirmation = "#{ label_name(:petition_to_join_tournament) } #{current_user.name} #{ label_name(:to) } #{tournament.name}?"
 					%> 
-							<%= link_to(the_label, join_team_path(:id => group.id, :teammate => current_user.id), :confirm => the_confirmation) %>
+							<%= link_to(the_label, join_team_path(:id => tournament.id, :teammate => current_user.id), :confirm => the_confirmation) %>
 					<% 	end 
 					   end
 					-%>
 				
-					<% if current_user.is_manager_of?(group) %> 
-						<%= link_to label_name(:create_schedule), new_schedule_path(:id => group.id)  %><br />
+					<% if current_user.is_tour_manager_of?(tournament) %> 
+						<%#= link_to label_name(:create_meet), new_meet_path(:id => tournament.id)  %><br />
 			        <% end %>
 					
 				</span>

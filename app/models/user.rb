@@ -114,6 +114,10 @@ class User < ActiveRecord::Base
       self.photo.url
     end 
 
+    def has_tournament?
+      self.tournaments.count > 0
+    end
+
     def has_group?
       self.groups.count > 0
     end
@@ -212,7 +216,11 @@ class User < ActiveRecord::Base
         end
         return is_member
       end
-    
+  
+      def is_tour_manager_of?(tournament)
+        self.has_role?('manager', tournament) or self.has_role?('creater', tournament)
+      end
+        
       def is_manager_of?(group)
         self.has_role?('manager', group) or self.has_role?('creater', group)
       end

@@ -1,7 +1,7 @@
 class TournamentsController < ApplicationController
   before_filter :require_user
 
-  before_filter :get_tournament, :only => [:team_list, :show, :edit, :update, :set_available, :set_enable_comments, :destroy]
+  before_filter :get_tournament, :only => [:tour_list, :show, :edit, :update, :set_available, :set_enable_comments, :destroy]
 
   def index
     @tournaments = current_user.tournaments.paginate :page => params[:page], :order => 'name'  
@@ -20,7 +20,7 @@ class TournamentsController < ApplicationController
   #   @users = @tournament.users
   # end
 
-  def team_list
+  def tour_list
     @users = @tournament.users.paginate(:page => params[:page], :per_page => USERS_PER_PAGE)
     @total = @tournament.users.count
   end

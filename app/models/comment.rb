@@ -5,6 +5,7 @@ class Comment < ActiveRecord::Base
   belongs_to  :entry,   :counter_cache => true
   belongs_to  :user,    :counter_cache => true
   belongs_to  :group,   :counter_cache => true
+  belongs_to  :tournament,   :counter_cache => true
 
   validates_presence_of   :body
   validates_length_of     :body,            :within => BODY_RANGE_LENGTH
@@ -16,7 +17,12 @@ class Comment < ActiveRecord::Base
   def self.get_latest_comments(entry)
     find(:all, :conditions => ["entry_id = ? and created_at > ?",  entry.id, TIME_AGO_FOR_MOSTLY_ACTIVE], :order => 'created_at DESC')
   end
-  
+
+  # record if tournament does not exist
+  def self.create_tournament_comment(tournament, blog, entry) 
+    self.create!(:tournament_id => tournament.id, :entry_id => entry.id, :body => '.....') #if self.group_exists?(tournament)
+  end
+    
   # record if group does not exist
   def self.create_group_comment(group, blog, entry) 
     self.create!(:group_id => group.id, :entry_id => entry.id, :body => '.....') #if self.group_exists?(group)
@@ -50,7 +56,7 @@ class Comment < ActiveRecord::Base
   end
   
   def send_message_blog()
-    if self.group_id.blank?
+    if self.group_id.blank? and self.tournament_id.blank?
       @send_mail ||= self.user.blog_comment_notification?
       UserMailer.deliver_message_blog(self.entry.blog.user, self.user, self) if @send_mail 
     end

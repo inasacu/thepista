@@ -2,8 +2,8 @@
 	
 <ul>
 	
-	<li class="<%= get_first_active %>"><%=  link_to(label_name(:my_group), groups_path) %></li>
-	<li class="<%= get_active('group_list') %>"><%=  link_to(label_name(:all_group) , list_groups_path) %></li>	
+	<li class="<%= get_first_active %>"><%=  link_to(label_name(:my_tournament), tournaments_path) %></li>
+	<li class="<%= get_active('tournament_list') %>"><%=  link_to(label_name(:all_tournament) , list_tournaments_path) %></li>	
 <% 
 	the_label = "" 
 	the_action = ['show','edit', 'team list']
@@ -12,9 +12,9 @@
 		if current_user.is_member_of?(@tournament) 
 		the_label = label_with_name('the_wall', h(@tournament.name))
 %>		
-		<li class="<%= get_active('group_show') %>"><%=  group_link @tournament %></li>
+		<li class="<%= get_active('tournament_show') %>"><%=  tournament_link @tournament %></li>
 		<li class="<%= get_active('entry_show') %>"><%=  link_to(the_label, blog_path(@tournament.blog)) %></li>
-		<li class="<%= get_active('group_team_list') %>"><%=  link_to(label_name(:users) , team_list_path(:id => @tournament)) %></li>
+		<li class="<%= get_active('tournament_team_list') %>"><%=  link_to(label_name(:users) , tour_list_path(:id => @tournament)) %></li>
 <% 
 		else 
 			unless current_user.has_pending_petition?(current_user) %>

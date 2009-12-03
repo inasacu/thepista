@@ -36,7 +36,7 @@
 
 		
 		<%= tr_td_action(:name, @tournament.name) %>
-		<%= tr_td_action(:second_team, @tournament.second_team) %>
+		<%#= tr_td_action(:second_team, @tournament.second_team) %>
 
 		<tr>
 			<%= content_tag :td, label_name(:manager), :class => "label" %>
@@ -49,14 +49,14 @@
 		</tr>
 
 		<%= tr_td_action(:sports, @tournament.sport.name) %>
-		<%= tr_td_action(:game_day, nice_day_time(@tournament.schedules.first.starts_at)) unless @tournament.schedules.blank? %>
+		<%#= tr_td_action(:game_day, nice_day_time(@tournament.meets.first.starts_at)) unless @tournament.meets.blank? %>
 		<%= tr_td_action(:time_zone, @tournament.time_zone) %>
 		<%= tr_td_action(:users, t(:has_group_users, :count => @tournament.users.count)) %>
-		<%= tr_td_action(:schedules, t(:has_group_schedules, :count => @tournament.schedules.count)) unless @tournament.schedules.blank? %>
+		<%#= tr_td_action(:meets, t(:has_group_meets, :count => @tournament.meets.count)) unless @tournament.meets.blank? %>
 		<%= tr_td_action(:points_for_win, @tournament.points_for_win) %>
 		<%= tr_td_action(:points_for_draw, @tournament.points_for_draw) %>
 		<%= tr_td_action(:points_for_lose, @tournament.points_for_lose) %>		
-		<%= tr_td_action(:player_limit, @tournament.player_limit) %>
+		<%#= tr_td_action(:player_limit, @tournament.player_limit) %>
 		
 		<tr>
 			<%= content_tag :td, label_name(:conditions), :class => "label" %>
@@ -69,17 +69,6 @@
 	     <%= content_tag :td, user_list(@tournament.available_users), :class => get_the_action %>
 	   </tr>
 	 <% end %>
-
-		<% 
-			the_label = h(label_name(@tournament.available, 'value'))
-			the_confirmation = label_with_name('set_available', "#{@tournament.name}?") 
-		%>
-			<tr>
-			  <%= content_tag :td, label_name(:available), :class => "label" %>
-			  <%= content_tag :td, 
-					(is_user_manager ? link_to(the_label, set_group_available_path(:id => @tournament.id), :confirm => the_confirmation) : the_label), 
-					:class => get_the_action %>
-			</tr>
 
 		<% 
 			the_label = h(label_name(@tournament.enable_comments, 'value'))
@@ -111,4 +100,4 @@
 </div>
 
 <% content_for :sidebar, render(:partial => 'sidebar_show') -%>
-<% content_for :sidebar, render(:partial => '/fees/sidebar_show_team') if current_user.is_manager_of?(@tournament) %>
+<% content_for :sidebar, render(:partial => '/fees/sidebar_show_tour') if current_user.is_manager_of?(@tournament) %>

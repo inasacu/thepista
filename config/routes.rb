@@ -71,6 +71,8 @@ ActionController::Routing::Routes.draw do |map|
   map.privacy_policy        'privacy_policy',                             :controller => 'home',            :action => 'privacy_policy'
   map.faq                   'faq',                                        :controller => 'home',            :action => 'faq'
   
+  map.tour_list			        'tour_list',			                            :controller => 'tournaments',          :action => 'tour_list'
+  
   map.resources   :user_sessions,   :as => 'repitelo'
   map.resources   :users,           :as => 'jugadores',                   :collection => { :rpx_create => :post, :rpx_associate => :post,
                                                                                             :list => :get, :recent_activity => :get, :search => :get }  

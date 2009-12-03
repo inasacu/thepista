@@ -5,6 +5,7 @@ class Entry < ActiveRecord::Base
   belongs_to  :blog,   :counter_cache => true
   belongs_to  :user
   belongs_to  :group
+  belongs_to  :tournament
 
   validates_presence_of   :title, :body
   validates_length_of     :title,           :within => TITLE_RANGE_LENGTH
@@ -21,6 +22,11 @@ class Entry < ActiveRecord::Base
     self.create!(:user_id => user.id, :blog_id => blog.id, :title => '.....', :body => '.....') #if self.user_exists?(user)
   end
 
+  # record if tournament does not exist
+  def self.create_tournament_entry(tournament, blog) 
+    self.create!(:tournament_id => tournament.id, :blog_id => blog.id, :title => '.....', :body => '.....') #if self.group_exists?(tournament)
+  end
+  
   # Return true if the group does not exist
   # def self.group_exists?(group)
   #   find_by_group_id(group).nil?

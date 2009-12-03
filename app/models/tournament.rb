@@ -23,7 +23,6 @@ class Tournament < ActiveRecord::Base
     validates_uniqueness_of   :name,    :case_sensitive => false
 
     validates_presence_of     :name
-    # validates_presence_of     :second_team
     validates_presence_of     :description
     validates_presence_of     :conditions
     validates_presence_of     :time_zone
@@ -31,17 +30,14 @@ class Tournament < ActiveRecord::Base
     validates_presence_of     :marker_id
 
     validates_length_of       :name,            :within => NAME_RANGE_LENGTH
-    # validates_length_of       :second_team,     :within => NAME_RANGE_LENGTH
     validates_length_of       :description,     :within => DESCRIPTION_RANGE_LENGTH
     validates_length_of       :conditions,      :within => DESCRIPTION_RANGE_LENGTH
 
     validates_format_of       :name,            :with => /^[A-z 0-9 _.-]*$/ 
-    # validates_format_of       :second_team,     :with => /^[A-z 0-9 _.-]*$/ 
 
     validates_numericality_of :points_for_win,  :greater_than_or_equal_to => 0, :less_than_or_equal_to => 100
     validates_numericality_of :points_for_lose, :greater_than_or_equal_to => 0, :less_than_or_equal_to => 100
     validates_numericality_of :points_for_draw, :greater_than_or_equal_to => 0, :less_than_or_equal_to => 100
-    # validates_numericality_of :player_limit,    :greater_than_or_equal_to => 0, :less_than_or_equal_to => 100
 
     # variables to access
     attr_accessible :name, :points_for_win, :points_for_draw, :points_for_lose
@@ -76,7 +72,7 @@ class Tournament < ActiveRecord::Base
 
     before_create :format_description, :format_conditions
     before_update :format_description, :format_conditions
-    after_create  :create_tournament_blog_details, :create_tournament_marker, :create_tournament_scorecard
+    after_create  :create_tournament_blog_details, :create_tournament_scorecard
 
     # # method section
 
@@ -140,7 +136,7 @@ class Tournament < ActiveRecord::Base
       user.has_role!(:creator, self)
       user.has_role!(:member,  self)
 
-      Standing.create_user_scorecard(user, self)    
+      # Standing.create_user_scorecard(user, self)    
       TournamentsUsers.join_team(user, self)
     end
 
@@ -153,9 +149,9 @@ class Tournament < ActiveRecord::Base
     end
 
     private
-    def create_tournament_marker
-      TournamentsMarkers.join_marker(self, self.marker)
-    end
+    # def create_tournament_marker
+    #   TournamentsMarkers.join_marker(self, self.marker)
+    # end
 
     def create_tournament_blog_details
       @blog = Blog.create_tournament_blog(self)
@@ -164,7 +160,7 @@ class Tournament < ActiveRecord::Base
     end
 
     def create_tournament_scorecard   
-      Standing.create_tournament_scorecard(self)
+      # Standing.create_tournament_scorecard(self)
     end
   end
 

@@ -10,30 +10,38 @@ class CreateTournaments < ActiveRecord::Migration
       t.datetime    :deadline_at    
                       
       t.string      :season,                :limit => 50
-      t.string      :time_zone            
       t.float       :price,                 :default => 0.0  
-                    
-      t.integer     :sport_id,              :default => 0      
-      t.integer     :marker_id,             :default => 0   
+      
+      t.float       :points_for_win,      :default => 1
+      t.float       :points_for_draw,     :default => 0
+      t.float       :points_for_lose,     :default => 0
+      
+      t.string      :time_zone,           :default => 'UTC'
 
-      t.integer     :points_for_win,        :default => 1,  :null => false      
-      t.integer     :points_for_draw,       :default => 0,  :null => false      
-      t.integer     :points_for_lose,       :default => 0,  :null => false      
+      t.integer     :sport_id
+      t.integer     :marker_id
+            
+      t.text        :description
+      t.text        :conditions
 
       t.string      :contact,               :limit => 150      
       t.string      :email,                 :limit => 150     
       t.string      :mobile,                :limit => 40           
-         
-      t.text        :conditions     
-                     
-      t.string      :photo_file_name          
-      t.string      :photo_content_type          
-      t.integer     :photo_file_size          
-      t.datetime    :photo_updated_at
-                        
-      t.datetime    :deleted_at      
-      t.boolean     :archive,           :default => false     
+      
+      t.integer     :player_limit,        :default => 99
+                  
+      t.string      :blog_title
+      t.integer     :entries_count,       :null => false,     :default => 0
+      t.integer     :comments_count,      :null => false,     :default => 0
+      t.boolean     :enable_comments,     :default => true
 
+      t.string      :photo_file_name
+      t.string      :photo_content_type
+      t.integer     :photo_file_size
+      t.datetime    :photo_updated_at
+              
+      t.boolean     :archive,               :default => false
+      t.datetime    :deleted_at
       t.timestamps
     end
   end

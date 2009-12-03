@@ -20,7 +20,8 @@ es:
      ads: publicidad   
      afterwards: despues   
      ago: hace 
-     all_group:  Todos los Equipos   
+     all_group:  Todos los Equipos 
+     all_tournament:  Todos los Torneos  
      all_user:   Todos los Jugadores
      already_exist: ya existe   
      already_have_gravatar: Ya tengo un Gravatar   
@@ -381,11 +382,20 @@ es:
      has_group_users:         
          one:  "Este equipo tiene 1 jugador." 
          other: "Este equipo tiene {{count}} jugadores."
-               
+
+     has_tournament_meets:
+        zero: "Este torneo no tiene eventos." 
+        one:  "Este torneo tiene 1 evento." 
+        other: "Este torneo tiene {{count}} eventos."
+
+     has_tournament_users:         
+         one:  "Este torneo tiene 1 jugador." 
+         other: "Este torneo tiene {{count}} jugadores."
+                          
      has_not_been_sent: no ha sido mandado correctamente.   
      has_updated_scorecard: Ha actualizado el resultado   
      have_an_account: Si tienes una cuenta   
-     #have_been_notified: Ya hemos registrado este error.  Lo miraremos lo antes posible.   
+  
      have_changed_language: Has cambiado el idioma
      help: Ayuda   
      hi_email_header: Hola   
@@ -493,7 +503,7 @@ es:
      my_description: Mis Detalles   
      my_fee: Mis Cargos   
      my_festival: Mis Acondiciónamientos   
-     my_group: Mis Equipos   
+     my_group: Mis Equipos 
      my_information: Mis Detalles   
      my_invitation: Mis Invitaciones   
      my_manager: Mis Misters   
@@ -572,6 +582,7 @@ es:
 
      no_photo_for_user: Este jugador no tiene foto
      no_photo_for_group: Este equipo no tiene foto
+     no_photo_for_tournament: Este torneo no tiene foto
          
      no_recent_activity: No hay actividades recientes   
      no_role: No tienes ningun papel   
@@ -663,6 +674,7 @@ es:
      petition_join_team_decline: Rechazo
      petition_no:  Ninguna Petición para mostrar.
      petition_to_join_group: Petición para unirse a 
+     petition_to_join_tournament: Petición para unirse a
      petition_pending: Peticiones Pendiente   
      petition_to_join: Petición para unirse a 
      petitions: Peticiones 
@@ -836,7 +848,8 @@ es:
      send_marker: Manda el URL del Centro Deportivo   
      send_match: Manda el Resultado  
      send_message: Manda Mensaje 
-     send_message_to_group: Manda un Mensaje   
+     send_message_to_group: Manda un Mensaje  
+     send_message_to_tournament: Manda un Mensaje 
      
      send_name: Manda un Nombre   
      send_note: Manda una Nota   
@@ -1161,6 +1174,7 @@ es:
      invitations_create:  Nueva Invitación
      invitations_create_group: Nueva Invitación al equipo
      invitations_create_schedule: Nueva Invitación al evento
+     invitations_create_tournament: Nueva Invitación al Tourneo
      invitations_sent:  Invitaciones Mandadas
 
      # ie_no_more
@@ -1185,7 +1199,8 @@ es:
      fee_options: Opciones de Cargo
      fee_to: Cargos de 
      fee_to_description:  A quien son los Cargos
-     fee_user_for_group:  Cargar a los jugadores 
+     fee_user_for_group:  Cargar a los jugadores
+     fee_user_for_tournament:  Cargar a los jugadores 
      fees_create:  Nueva Cargo
      fees_destroy: Borrar Cargo
      fees_index:   Cargo
