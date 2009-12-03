@@ -145,6 +145,7 @@ es:
      credit: Pago   
      credit_amount: A Recibir   
      credit_amount_description:  Lo que recibes
+     credit_total:  Pago Total
      credits: Pagos  
      current_accounts: Cuentas Actuales   
      current_language: Español    
@@ -154,6 +155,7 @@ es:
      debit: Cargo   
      debit_amount: A Pagar   
      debit_amount_description: Lo que debes pagar
+     debit_total:  Cargo Total
      debits: Cargos   
      default_reliable: Fiable   
      defense:  Defensa

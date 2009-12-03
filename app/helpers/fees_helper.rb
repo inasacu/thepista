@@ -23,7 +23,7 @@ module FeesHelper
   def fee_credit(fee)
     credit_link, credit_object = '', ''
 
-    case fee.item.class.to_s
+    case fee.credit.class.to_s
     when 'User'
       credit_link =  user_link(fee.credit)
       credit_object = User.find(fee.credit_id)

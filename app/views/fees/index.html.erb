@@ -19,6 +19,7 @@
 		  </th>
           <th><%= label_name(:concept) %></th>
           <th><%= label_name(:debit) %></th>
+          <th><%= label_name(:credit) %></th>
           <th class="last">&nbsp;</th>
         </tr>
 
@@ -28,9 +29,12 @@
 			<td>&nbsp;</td>
 			<td>&nbsp;</td>
 			<td>&nbsp;</td>
-			<td>
-	<%= "#{label_name(:credit)} #{number_to_currency(@debit_payment.actual_payment)}" if (@debit_payment.actual_payment.to_f > 0) %>
-	</td>
+			<td align="left">
+				<%= "#{label_name(:debit_total)}:  #{number_to_currency(@debit_fee.debit_amount.to_f)}" %>
+			</td>
+			<td align="left"><%= @debit_payment.actual_payment %>
+				<%= "#{label_name(:credit_total)}:  #{number_to_currency(@debit_payment.actual_payment.to_f)}" %>
+			</td>
 		   <td class="last"></td>
 		</tr>
 

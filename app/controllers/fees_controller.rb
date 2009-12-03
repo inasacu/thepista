@@ -18,7 +18,7 @@ class FeesController < ApplicationController
         @groups << group.id if current_user.is_user_manager_group(@user, group)
       end
       
-      @fee = Fee.debit_amount(@user, @groups)
+      @debit_fee = Fee.debit_amount(@user, @groups)
       @fees = Fee.get_debit_fees(@user, @groups, params[:page])
     else
       redirect_to root_url

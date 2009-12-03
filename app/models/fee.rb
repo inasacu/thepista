@@ -28,7 +28,7 @@ class Fee < ActiveRecord::Base
   def self.get_debit_fees(debit, credits, page=1)
     paginate(:all, 
              :conditions => ["debit_id = ? and debit_type = ? and 
-                              credit_id in (?) and credit_type = ? and season_player = false and archive = false", 
+                              credit_id in (?) and credit_type = ? and type_id = 1 and season_player = false and archive = false", 
                               debit.id, debit.class.to_s, credits, 'Group'],
              :order => 'created_at DESC', 
              :page => page,
@@ -38,7 +38,7 @@ class Fee < ActiveRecord::Base
   def self.debit_amount(debit, credits)
     @fee = find(:first, :select => "sum(debit_amount) as debit_amount", 
           :conditions => ["debit_id = ? and debit_type = ? and credit_id in (?) and credit_type = ? and 
-                          season_player = false and archive = false", 
+                          type_id = 1 and season_player = false and archive = false", 
                           debit.id, debit.class.to_s, credits, 'Group'])
 
       if @fee.nil? or @fee.blank? 
