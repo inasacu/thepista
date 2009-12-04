@@ -1,41 +1,52 @@
+<div class="columns"> 
 
+  <div class="column left">
+	
   <div class="group">
     <%= f.label :name, label_name('name'), :class => :label %>
-    <%= f.text_field :name, :class => 'text_field' %>
+    <%= f.text_field :name, :class => 'text_field' %><br />
     <span class="description"><%= label_name('name', 'description') %></span>
   </div>
 
   <div class="group">
     <%= f.label :description, label_name('description'), :class => :label %>
-    <%= f.text_area :description, :class => 'text_area' %>
+    <%= f.text_area :description, :class => 'text_area' %><br />
     <span class="description"><%= label_name('description') %></span>
   </div>
 
+  </div> 
+
+  <div class="column right">
+
   <div class="group">
     <%= f.label :icon, label_name('icon'), :class => :label %>
-    <%= f.text_field :icon, :class => 'text_field' %>
+    <%= f.text_field :icon, :class => 'text_field' %><br />
     <span class="description"><%= label_name('icon', 'description') %></span>
   </div>
+	
+	  <div class="group">
+	    <%= f.label :points_for_win, label_name('points_for_win'), :class => :label %>
+	    <%= f.text_field :points_for_win, :class => 'textscore' %><br />
+	    <span class="description"><%= label_name('points_for_win', 'description') %></span>
+	  </div>
 
-  <div class="group">
-    <%= f.label :points_for_win, label_name('points_for_win'), :class => :label %>
-    <%= f.text_field :points_for_win, :class => 'text_field' %>
-    <span class="description"><%= label_name('points_for_win', 'description') %></span>
-  </div>
+	  <div class="group">
+	    <%= f.label :points_for_draw, label_name('points_for_draw'), :class => :label %>
+	    <%= f.text_field :points_for_draw, :class => 'textscore' %><br />
+	    <span class="description"><%= label_name('points_for_draw', 'description') %></span>
+	  </div>
 
-  <div class="group">
-    <%= f.label :points_for_lose, label_name('points_for_lose'), :class => :label %>
-    <%= f.text_field :points_for_lose, :class => 'text_field' %>
-    <span class="description"><%= label_name('points_for_lose', 'description') %></span>
-  </div>
+	  <div class="group">
+	    <%= f.label :points_for_lose, label_name('points_for_lose'), :class => :label %>
+	    <%= f.text_field :points_for_lose, :class => 'textscore' %><br />
+	    <span class="description"><%= label_name('points_for_lose', 'description') %></span>
+	  </div>
 
-  <div class="group">
-    <%= f.label :points_for_draw, label_name('points_for_draw'), :class => :label %>
-    <%= f.text_field :points_for_draw, :class => 'text_field' %>
-    <span class="description"><%= label_name('points_for_draw', 'description') %></span>
-  </div>
+	  </div> 
 
-<div class="clear"></div> 
+	</div>
+
+	<div class="clear"></div>
 
 <div class="group navform">
 	<%= submit_tag @sport.new_record? ? control_label('create') : control_label('edit'), 

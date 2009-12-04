@@ -168,6 +168,15 @@ class User < ActiveRecord::Base
       end        
       return (current_user == self and petition)
     end
+    
+    def has_tournament_petition?(current_user, tournament)
+      petition = false      
+      if Teammate.count(:conditions => ["accepted_at is null and tournament_id = ? and (user_id = ? or manager_id = ?)", 
+                        tournament.id, current_user.id, current_user.id]) > 0
+          petition = true
+      end        
+      return (current_user == self and petition)
+    end
       
     def has_pending_petition?(current_user)
       current_user == self and (!current_user.requested_managers.empty? or !current_user.pending_managers.empty?)
@@ -383,10 +392,6 @@ class User < ActiveRecord::Base
                  :order => "name")
     end
     
-    # def create_matches(schedule, group, user)
-    #   Match.create_schedule_group_user_match(schedule, group, user)
-    # end
-
     def create_user_fees(schedule)
       Fee.create_user_fees(schedule)
     end
@@ -396,16 +401,6 @@ class User < ActiveRecord::Base
       @entry = Entry.create_user_entry(self, @blog)
       Comment.create_user_comment(self, @blog, @entry)
     end
-      
-
-    #   protected
-    # 
-    #   ## Callbacks
-    # 
-    #   # Prepare email for database insertion.
-    #   def prepare_email
-    #     self.email = email.downcase.strip if email
-    #   end
 
 
   # authlogic and rpxnow

@@ -12,26 +12,22 @@
 	  
         <tr>            
           <th class="first">&nbsp;</th>
-          <th>Name</th>
-          <th>Created at</th>
-          <th class="last">&nbsp;</th>
+          <th><%= label_name(:name) %></th>
+          <th><%= label_name(:points_for_win)%></th>
+          <th><%=label_name(:points_for_lose)%></th>
+          <th><%=label_name(:points_for_draw) %></th>
+          <th><%= label_name(:icon_name) %></th>
+          <th class="last"><%= label_name(:icon) %></th>
         </tr>
         <% @sports.each do |sport| -%>
-        <tr>
-          <td>
-            <%= sport.id %>
-          </td>
-          <td>
-            <%= link_to sport.name, sport_path(sport) %>
-          </td>
-          <td>
-            <%= sport.created_at %>
-          </td>
-          <td class="last">
-            <%= link_to label_name(:show), sport_path(sport) %> |
-            <%= link_to label_name(:edit), edit_sport_path(sport) %> |
-            <%= link_to label_name(:destroy), sport_path(sport), :method => :delete, :confirm => label_name(:are_you_sure) %>
-          </td>
+		<tr>
+			<td><%= sport.id %></td>
+			<td><%= link_to sport.name, sport_path(sport) %></td>
+			<td><%= sport.points_for_win %></td>
+			<td><%= sport.points_for_lose %></td> 
+			<td><%= sport.points_for_draw %></td>
+			<td><%= sport.icon %></td>
+			<td class="last"><%= image_tag(sport.icon, options={:style => "height: 15px; width: 15px;"}) %></td>
         </tr>          
 		        <% end -%>
 

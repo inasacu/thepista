@@ -4,10 +4,6 @@
 <% 
 		if current_user.is_maximo? %>
 			<p><%= link_to(control_label('create') , new_sport_url)  %></p>
-<% 		
-		else 
-%>
-			<p><%= control_label('maximo_option') %></p>
 <%
 		end
 %>

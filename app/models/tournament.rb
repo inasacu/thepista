@@ -35,13 +35,19 @@ class Tournament < ActiveRecord::Base
 
     validates_format_of       :name,            :with => /^[A-z 0-9 _.-]*$/ 
 
+    validates_presence_of         :fee_per_tour
+    validates_numericality_of     :fee_per_tour
+    
+    validates_presence_of     :starts_at, :ends_at, :signup_at, :deadline_at
+    
     validates_numericality_of :points_for_win,  :greater_than_or_equal_to => 0, :less_than_or_equal_to => 100
     validates_numericality_of :points_for_lose, :greater_than_or_equal_to => 0, :less_than_or_equal_to => 100
     validates_numericality_of :points_for_draw, :greater_than_or_equal_to => 0, :less_than_or_equal_to => 100
 
     # variables to access
-    attr_accessible :name, :points_for_win, :points_for_draw, :points_for_lose
+    attr_accessible :name, :points_for_win, :points_for_draw, :points_for_lose, :fee_per_tour
     attr_accessible :time_zone, :sport_id, :marker_id, :description, :conditions, :photo
+    attr_accessible :starts_at, :ends_at, :signup_at, :deadline_at
 
     has_and_belongs_to_many :users,           :join_table => "tournaments_users",   :order => "name"
 
@@ -149,9 +155,6 @@ class Tournament < ActiveRecord::Base
     end
 
     private
-    # def create_tournament_marker
-    #   TournamentsMarkers.join_marker(self, self.marker)
-    # end
 
     def create_tournament_blog_details
       @blog = Blog.create_tournament_blog(self)

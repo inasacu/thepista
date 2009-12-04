@@ -9,8 +9,7 @@ class CreateTournaments < ActiveRecord::Migration
       t.datetime    :signup_at      
       t.datetime    :deadline_at    
                       
-      t.string      :season,                :limit => 50
-      t.float       :price,                 :default => 0.0  
+      t.float       :fee_per_tour,        :default => 0.0  
       
       t.float       :points_for_win,      :default => 1
       t.float       :points_for_draw,     :default => 0
@@ -24,9 +23,9 @@ class CreateTournaments < ActiveRecord::Migration
       t.text        :description
       t.text        :conditions
 
-      t.string      :contact,               :limit => 150      
-      t.string      :email,                 :limit => 150     
-      t.string      :mobile,                :limit => 40           
+      # t.string      :contact,               :limit => 150      
+      # t.string      :email,                 :limit => 150     
+      # t.string      :phone,                :limit => 40           
       
       t.integer     :player_limit,        :default => 99
                   
