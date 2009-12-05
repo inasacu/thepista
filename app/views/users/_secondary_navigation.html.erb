@@ -19,33 +19,38 @@
 	controls = ['blogs', 'entries', 'comments', 'fees', 'payments'] 
 	actions = ['show','edit','third_party', 'recent_activity']
 	the_user = (@user ? @user : current_user)
+	label_the_user = (the_user == current_user ? "" : "#{label_name(:from)} #{h(the_user.name)}")
+	the_label = (the_user == current_user ? label_name(:my_wall) : "#{label_name(:the_wall)} #{h(the_user.name)}")	
 %>
 	<li class="<%= get_first_active('user_index') %>">  <%= link_to(label_name(:users_teammate), users_url) %></li>
 	<li class="<%= get_active('user_list') %>"><%=  link_to(label_name(:all_user) , list_users_path) %></li>
-	<li class="<%= get_active('third_party') %>"><%= link_to(t(:myopenid) , third_party_url(:id => the_user.id)) if the_user == current_user %></li>
+	<li class="<%= get_active('user_third_party') %>">
+		<%= link_to(label_name(:myopenid) , third_party_url(:id => the_user)) if the_user == current_user %>
+	</li>
 <%
-	unless actions.include?(the_action) or controls.include?(the_controller) 
-		the_label = label_name(:my_wall)
+ 	if current_user.is_user_member_of?(the_user) 
+		unless actions.include?(the_action) or controls.include?(the_controller) 
+			the_label = label_name(:my_wall)
 %>
-		<li class="<%= get_active('entry_show') %>">  <%= link_to(the_label, blog_path(current_user.blog)) %></li>
+			<li class="<%= get_active('entry_show') %>">  <%= link_to(the_label, blog_path(current_user.blog)) %></li>
 <% 		
-	else 
-		the_label = (the_user == current_user ? label_name(:my_wall) : "#{label_name(:the_wall)} #{h(the_user.name)}")	
+		else 
 %>
-		<li class="<%= get_active('entry_show') %>">  <%= link_to(the_label, blog_path(the_user.blog)) %></li>
+			<li class="<%= get_active('entry_show') %>">  <%= link_to(the_label, blog_path(the_user.blog)) %></li>
 <% 
+		end
 	end
 %>
 	<li class="<%= get_active('user_show') %>">
-		<%= user_link("#{label_name(:profile)} #{label_name(:from)} #{h(the_user.name)}", the_user) %>
+		<%= user_link("#{label_name(:profile)} #{label_the_user}", the_user) if current_user.is_user_member_of?(the_user) %>
 	</li>
 	
 	<% if current_user.is_user_manager_of?(the_user) or the_user == current_user %>
 	<li class="<%= get_active('fee_index') %>">
-		<%= link_to("#{label_name(:fees)} #{label_name(:from)} #{h(the_user.name)}", fees_url(:id => the_user)) %>
+		<%= link_to("#{label_name(:fees)} #{label_the_user}", fees_url(:id => the_user)) %>
 	</li>
 	<li class="<%= get_active('payment_index') %>">
-		<%= link_to("#{label_name(:payments)} #{label_name(:from)} #{h(the_user.name)}", payments_url(:id => the_user)) %>
+		<%= link_to("#{label_name(:payments)} #{label_the_user}", payments_url(:id => the_user)) %>
 	</li>
 	<% end %>
 	

@@ -41,12 +41,9 @@ class UsersController < ApplicationController
   # GET /users/1.xml
   def show
     store_location
-    # @user = User.find(params[:id])
 
-    # if @user.my_members?(current_user)
     @previous = User.previous(@user, current_user.groups)
     @next = User.next(@user, current_user.groups)
-    # end
 
     respond_to do |format|
       format.html # show.html.erb
@@ -135,6 +132,10 @@ class UsersController < ApplicationController
   def third_party
     store_location
     @user = current_user
+    respond_to do |format|
+      format.html 
+      format.xml  { render :xml => @user }
+    end
   end
 
   def search
