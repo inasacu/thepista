@@ -1,19 +1,19 @@
-class TypesController < ApplicationController
-  
+class TypesController < ApplicationController  
   before_filter :require_user
+  before_filter :the_maximo
 
   def index
     @types = Type.paginate(:per_page => 10, :page => params[:page])
   end
-  
+
   def show
     @types = Type.find(params[:id])
   end
-  
+
   def new
     @types = Type.new
   end
-  
+
   def create
     @types = Type.new(params[:types])
     if @types.save
@@ -23,11 +23,11 @@ class TypesController < ApplicationController
       render :action => 'new'
     end
   end
-  
+
   def edit
     @types = Type.find(params[:id])
   end
-  
+
   def update
     @types = Type.find(params[:id])
     if @types.update_attributes(params[:types])
@@ -37,11 +37,12 @@ class TypesController < ApplicationController
       render :action => 'edit'
     end
   end
-  
-  def destroy
-    @types = Type.find(params[:id])
-    @types.destroy
-    flash[:notice] = I18n.t(:succesfully_destroyed)
-    redirect_to types_url
+
+  private 
+  def the_maximo
+    unless current_user.is_maximo? 
+      redirect_to root_url
+      return
+    end
   end
 end

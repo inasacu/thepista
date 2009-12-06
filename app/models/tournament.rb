@@ -140,7 +140,7 @@ class Tournament < ActiveRecord::Base
     def create_tournament_details(user)
       user.has_role!(:manager, self)
       user.has_role!(:creator, self)
-      user.has_role!(:member,  self)
+      # user.has_role!(:member,  self)
 
       # Standing.create_user_scorecard(user, self)    
       TournamentsUsers.join_team(user, self)

@@ -1,24 +1,19 @@
 class TournamentsController < ApplicationController
   before_filter :require_user
-
   before_filter :get_tournament, :only => [:tour_list, :show, :edit, :update, :set_available, :set_enable_comments, :destroy]
-
+  before_filter :has_manager_access, :only => [:edit, :update, :destroy]
+  
   def index
     @tournaments = current_user.tournaments.paginate :page => params[:page], :order => 'name'  
   end
 
   def list
     @tournaments = Tournament.paginate(:all, 
-    :conditions => ["archive = false and id not in (?)", current_user.tournaments], :page => params[:page], :order => 'name') unless current_user.tournaments.blank?
+          :conditions => ["archive = false and id not in (?)", current_user.tournaments], :page => params[:page], :order => 'name') unless current_user.tournaments.blank?
     @tournaments = Tournament.paginate(:all, :conditions =>["archive = false"], 
-    :page => params[:page], :order => 'name') if current_user.tournaments.blank?
+          :page => params[:page], :order => 'name') if current_user.tournaments.blank?
     render :template => '/tournaments/index'       
   end
-
-  # def list    
-  #   @tournament = Tournament.find(params[:id])
-  #   @users = @tournament.users
-  # end
 
   def tour_list
     @users = @tournament.users.paginate(:page => params[:page], :per_page => USERS_PER_PAGE)
@@ -40,7 +35,6 @@ class TournamentsController < ApplicationController
   def create
     @tournament = Tournament.new(params[:tournament])		
     @user = current_user
-    # @tournament.description.gsub!(/\r?\n/, "<br>")
 
     if @tournament.save and @tournament.create_tournament_details(current_user)
       flash[:notice] = I18n.t(:successful_create)
@@ -51,7 +45,7 @@ class TournamentsController < ApplicationController
   end
 
   def edit
-    # @tournament = Tournament.find(params[:id])
+    @tournament = Tournament.find(params[:id])
   end
 
   def update
@@ -110,5 +104,12 @@ class TournamentsController < ApplicationController
   def get_tournament
     @tournament = Tournament.find(params[:id])    
     # redirect_to @tournament, :status => 301 if @tournament.has_better_id?
+  end
+  def has_manager_access
+    unless current_user.is_manager_of?(@tournament)
+      flash[:warning] = I18n.t(:unauthorized)
+      redirect_back_or_default('/index')
+      return
+    end
   end
 end

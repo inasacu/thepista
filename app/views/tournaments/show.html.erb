@@ -49,9 +49,10 @@
 		</tr>
 
 		<%= tr_td_action(:sports, @tournament.sport.name) %>
+		<%= tr_td_action(:fee_per_tour, number_to_currency(@tournament.fee_per_tour)) %>
 		<%#= tr_td_action(:game_day, nice_day_time(@tournament.meets.first.starts_at)) unless @tournament.meets.blank? %>
 		<%= tr_td_action(:time_zone, @tournament.time_zone) %>
-		<%= tr_td_action(:users, t(:has_group_users, :count => @tournament.users.count)) %>
+		<%= tr_td_action(:users, t(:has_tournament_users, :count => @tournament.users.count-1)) %>
 		<%#= tr_td_action(:meets, t(:has_group_meets, :count => @tournament.meets.count)) unless @tournament.meets.blank? %>
 		<%= tr_td_action(:points_for_win, @tournament.points_for_win) %>
 		<%= tr_td_action(:points_for_draw, @tournament.points_for_draw) %>
@@ -74,12 +75,12 @@
 			the_label = h(label_name(@tournament.enable_comments, 'value'))
 			the_confirmation = label_with_name('enable_comments', "#{@tournament.name}?") 
 		%>
-			<tr>
-			  <%= content_tag :td, label_name(:enable_comments), :class => "label" %>
-			  <%= content_tag :td, 
-					(is_user_manager ? link_to(the_label, set_group_enable_comments_path(:id => @tournament.id), :confirm => the_confirmation) : the_label), 
-					:class => get_the_action %>
-			</tr>
+		<!-- <tr>
+		  <%#= content_tag :td, label_name(:enable_comments), :class => "label" %>
+		  <%#= content_tag :td, 
+		(is_user_manager ? link_to(the_label, set_group_enable_comments_path(:id => @tournament.id), :confirm => the_confirmation) : the_label), 
+		:class => get_the_action %>
+		</tr> -->
 
 		</table>
 

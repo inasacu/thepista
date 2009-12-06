@@ -48,10 +48,7 @@
     <tr>
       <%= content_tag :td, label_name(:concept), :class => "label" %>            
 		<%= content_tag :td, sanitize(@schedule.concept), :class => get_the_action %>
-		<%#= tr_td_action(:concept, sanitize(@schedule.concept)) %>	
     </tr>
-
-	
 
     <% if @schedule.game_played? %>
 
@@ -82,8 +79,8 @@
 	<%= tr_td_action(:ends_at, nice_day_of_week(@schedule.ends_at)) %>
 	<%= tr_td_action(:season, @schedule.season) %>
 	<%= tr_td_action(:sport, @schedule.sport.name) %>
-	<%= tr_td_action(:fee_per_game, @schedule.fee_per_game) %>
-	<%= tr_td_action(:fee_per_pista, @schedule.fee_per_pista) %>
+	<%= tr_td_action(:fee_per_game, number_to_currency(@schedule.fee_per_game)) %>
+	<%= tr_td_action(:fee_per_pista, number_to_currency(@schedule.fee_per_pista)) %>
 	<%= tr_td_action(:time_zone, @schedule.time_zone) %>
 	
     <tr>
@@ -119,11 +116,7 @@
 	</tr>
 	<% end %>
 
-	<%#= tr_td_action(:subscription_at, nice_day_of_week(@schedule.subscription_at)) %>
-	<%#= tr_td_action(:non_subscription_at, nice_day_of_week(@schedule.non_subscription_at)) %>
-
 	<%= tr_td_action(:player_limit, @schedule.player_limit) %>
-	<%#= tr_td_action(:public, label_name(@schedule.public, 'value')) %>
 	
 	<% 
 		the_label = h(label_name(@schedule.public, 'value'))
