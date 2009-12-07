@@ -11,7 +11,7 @@
 			  <%= label_name(:sport) %></th>
 	    <th><%= label_name(:time_zone) %></th>
 	    <th><%= label_name(:general_information) %></th>
-	    <th><%= label_name(:created_at) %></th>
+	    <th><%= label_name(:tournament_starts_ends_at) %></th>
 	    <th class="last">&nbsp;</th>
 	  </tr>
 
@@ -45,14 +45,14 @@
 
 			<td class="name_and_date">
 				<span class="date">
-					<%= nice_full_date tournament.created_at %> 
+					<%= "#{nice_full_date(tournament.starts_at)} - #{nice_full_date(tournament.ends_at)}" %>
 				</span>
 			</td>
 
 	       <td class="last">
 				<span class="action">
-					<% if current_user.is_member_of?(tournament) %>
-						<%= link_to(label_name(:send_message_to_tournament), new_message_path(:tournament_id => tournament.id)) %><br />
+					<% if current_user.is_tour_member_of?(tournament) %>
+						<%= link_to(label_name(:send_message_to_tournament), new_message_path(:tour_id => tournament)) %><br />
 					<% else %>
 						<%= link_to(label_name(:send_message_to_tournament), new_message_path(:id => tournament.all_the_managers.first)) %><br />
 				

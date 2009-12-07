@@ -503,8 +503,16 @@ es:
      modified_reliable: Modificada la fiabilidad del jugardor para atender   
      modo: HayPista te quiere ayudar a organizar tu equipo o encontrar donde jugar...   
      Monday: Lunes   
-     must_be_numeric: tiene que ser un valor numerico (no pongas sin simbolos)  
-      
+     
+     must_be_logged_in:  Tienes que estar registrado para acceder a esta página
+     must_be_logged_out:  Tienes que cerrar la sesión para acceder a esta página
+     must_be_numeric: Tiene que ser un valor numerico (no pongas sin simbolos)
+     must_be_before_ends_at:  Tiene que ser despues de la fecha de Inicio.
+     must_be_before_starts_at:  Tiene que ser antes de la fecha de Finalización.
+     must_be_before_signup_at:  Tiene que ser antes de la fecha de Cierre de Inscripción.
+     must_be_before_deadline_at:  Tiene que ser despues de la fecha de Inscripción.
+     must_be_after_deadline_at:  Tiene que ser despues de la fecha de Inscripción.
+       
      my_address: Mis Direcciones   
      my_announcement: Mis Anuncios   
      my_credit: Mis Pagos   
@@ -1379,6 +1387,7 @@ es:
      topic_options:  Opciones de Evento     
      
      tournament_options:  Opciones de Torneos
+     tournament_starts_ends_at:  Fechas del Torneo
      tournaments_create:  Nuevo Torneo 
      tournaments_destroy:  Borrar Torneo
      tournaments_edit:  Modificar Torneo
@@ -1420,9 +1429,6 @@ es:
      users_rpx_new: Nuevo Jugador
      users_rpx_create:  Nuevo Jugador
      users_teammate: Mis Compañeros de Equipo
-          
-     must_be_logged_in:  Tienes que estar registrado para acceder a esta página
-     must_be_logged_out:  Tienes que cerrar la sesión para acceder a esta página
     
      true: "Si"
      false: "No"

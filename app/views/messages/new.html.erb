@@ -11,21 +11,14 @@
 		    <%= "#{label_name(:send_match)} #{schedule_link(@schedule)}" if @match %>
 			<% elsif @schedule %>
 			<%= "#{label_name(:send_pre_match)} #{schedule_link(@schedule)}" unless @schedule.played? %>
+			<%# elsif @tournament %>
+			<%#= "#{label_name(:send_tournament)} #{tournament_link(@tournament)}" %>			
 			<% else %>
 			<%= "#{label_name(:message)} "  %>
 			<% end %>
-			<%#= " #{label_name(:to)} " %>
 			
 			<%= "#{label_name(:to)} #{user_link(@recipient)}" if @recipient %>
-			<%#= group_link @group if @group %>
-			
-			<%#  if @scorecard %>
-			
-			<%#  elsif @match %>
-				<%#= "( #{schedule_link @schedule} )" %>
-			<%# elsif @schedule %>
-				<%#= "( #{schedule_link @schedule} )"  %>
-			<%# end %>
+
 		</h2>
 
 		<div class="inner">

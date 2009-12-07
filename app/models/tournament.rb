@@ -1,9 +1,8 @@
 class Tournament < ActiveRecord::Base
 
-  acts_as_solr :fields => [:name, :description, :time_zone], :include => [:sport, :marker] if use_solr?
+  # acts_as_solr :fields => [:name, :description, :time_zone], :include => [:sport, :marker] if use_solr?
 
-  has_friendly_id :name, :use_slug => true, 
-  :reserved => ["new", "create", "index", "list", "signup", "edit", "update", "destroy", "show"]
+  has_friendly_id :name, :use_slug => true, :reserved => ["new", "create", "index", "list", "signup", "edit", "update", "destroy", "show"]
 
   has_attached_file :photo,
   :styles => {
@@ -14,7 +13,7 @@ class Tournament < ActiveRecord::Base
     :s3_credentials => "#{RAILS_ROOT}/config/s3.yml",
     :url => "/assets/tournaments/:id/:style.:extension",
     :path => ":assets/tournaments/:id/:style.:extension",
-    :default_url => "tournament_avatar.png"  
+    :default_url => "group_avatar.png"  
 
     validates_attachment_content_type :photo, :content_type => ['image/jpeg', 'image/png', 'image/gif', 'image/jpg', 'image/pjpeg']
     validates_attachment_size         :photo, :less_than => 5.megabytes
@@ -43,9 +42,10 @@ class Tournament < ActiveRecord::Base
     validates_numericality_of :points_for_win,  :greater_than_or_equal_to => 0, :less_than_or_equal_to => 100
     validates_numericality_of :points_for_lose, :greater_than_or_equal_to => 0, :less_than_or_equal_to => 100
     validates_numericality_of :points_for_draw, :greater_than_or_equal_to => 0, :less_than_or_equal_to => 100
+    validates_numericality_of :player_limit,    :greater_than_or_equal_to => 0, :less_than_or_equal_to => 100
 
     # variables to access
-    attr_accessible :name, :points_for_win, :points_for_draw, :points_for_lose, :fee_per_tour
+    attr_accessible :name, :points_for_win, :points_for_draw, :points_for_lose, :fee_per_tour, :player_limit
     attr_accessible :time_zone, :sport_id, :marker_id, :description, :conditions, :photo
     attr_accessible :starts_at, :ends_at, :signup_at, :deadline_at
 
@@ -106,7 +106,7 @@ class Tournament < ActiveRecord::Base
       self.photo.url
     end
 
-    def has_schedule?
+    def has_meet?
       self.meets.count > 0
     end
 
@@ -115,12 +115,6 @@ class Tournament < ActiveRecord::Base
       return [1, 2, 3, 4, 5].include?(self.sport_id)
     end
 
-    # def game_day
-    #   self.meets.find_by_sql(["select distinct dayname(starts_at) as name from meets " +
-    #                                "where tournament_id = #{self.id} or invite_id = #{self.id} " +
-    #                                "tournament by dayname(starts_at) order by dayofweek(starts_at)"])
-    # end
-
     def available_users
       self.users.find(:all, :conditions => 'available = true', :order => 'users.name')      
     end
@@ -128,19 +122,13 @@ class Tournament < ActiveRecord::Base
     def games_played
       games_played = 0
       self.meets.each {|schedule| games_played += 1 if schedule.played}
-
-      # @match = Match.find(:first, :select => "count(*) as total", 
-      # :conditions => ["schedule_id in (select id from meets where tournament_id = ?) and type_id = 1", self.id],
-      # :tournament => "user_id", :order => "count(*) desc")
-      # 
-      # games_played = @match.total
       return games_played
     end
 
     def create_tournament_details(user)
       user.has_role!(:manager, self)
       user.has_role!(:creator, self)
-      # user.has_role!(:member,  self)
+      user.has_role!(:member,  self)
 
       # Standing.create_user_scorecard(user, self)    
       TournamentsUsers.join_team(user, self)
@@ -164,6 +152,14 @@ class Tournament < ActiveRecord::Base
 
     def create_tournament_scorecard   
       # Standing.create_tournament_scorecard(self)
+    end
+    
+    def validate
+      self.errors.add(:signup_at, I18n.t(:must_be_before_signup_at)) if self.signup_at >= self.deadline_at
+      self.errors.add(:deadline_at, I18n.t(:must_be_before_deadline_at)) if self.deadline_at <= self.signup_at
+      self.errors.add(:starts_at, I18n.t(:must_be_after_deadline_at)) if self.starts_at <= self.deadline_at
+      self.errors.add(:starts_at, I18n.t(:must_be_before_starts_at)) if self.starts_at >= self.ends_at
+      self.errors.add(:ends_at, I18n.t(:must_be_before_ends_at)) if self.ends_at <= self.starts_at
     end
   end
 

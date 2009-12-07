@@ -173,13 +173,13 @@ td.sub_true {
   width: 75%;
 }
 
-.secondary-navigation ul li.petition, .secondary-navigation ul li.petition a:hover {
-	background: #2AA9D8;
+/*.secondary-navigation ul li.petition, .secondary-navigation ul li.petition a:hover {
+	background: #009933;
 }
 
 .secondary-navigation ul li.message, .secondary-navigation ul li.message li.petition a:hover {
-	background: #2AA9D8;
-}
+	background: #009933;
+}*/
 
 /* table rows */
 .table .name_and_date .name { overflow: hidden; display: block; width: 150px; margin-right: 20px; white-space: nowrap; }

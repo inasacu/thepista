@@ -7,8 +7,8 @@
 	if current_user.is_member_of?(@tournament) 
 		the_confirmation = label_with_name(:do_leave_tournament, "#{@tournament.name}?")
 %>
-		<li><%= link_to(label_name(:send_message_to_tournament), new_message_path(:tournament_id => @tournament.id)) %></li>
-		<li><%= link_to(label_name(:invitations_create_tournament) , new_invitation_url(:tournament_id => @tournament.id)) %></li>
+		<li><%= link_to(label_name(:send_message_to_tournament), new_message_path(:tour_id => @tournament)) %></li>
+		<li><%= link_to(label_name(:invitations_create_tournament) , new_invitation_url(:tour_id => @tournament)) %></li>
 <% 
 	else
 %>

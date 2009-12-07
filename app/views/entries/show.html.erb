@@ -5,12 +5,16 @@
 	end	
 	if @group
 		label = label_with_name('the_wall', h(@group.name))
+	end	
+	if @tournament
+		label = label_with_name('the_wall', h(@tournament.name))
 	end
 %>
 <div class="block">
 
   <%= render :partial => '/users/secondary_navigation' if @user %>
   <%= render :partial => '/groups/secondary_navigation' if @group %>
+  <%= render :partial => '/tournaments/secondary_navigation' if @tournament %>
 
   <div class="content">
 	
@@ -42,3 +46,4 @@
 
 <% content_for :sidebar, render(:partial => '/users/sidebar_show') if @user -%>
 <% content_for :sidebar, render(:partial => '/groups/sidebar_show') if @group -%>
+<% content_for :sidebar, render(:partial => '/tournaments/sidebar_show') if @tournament -%>

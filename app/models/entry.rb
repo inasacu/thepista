@@ -14,17 +14,17 @@ class Entry < ActiveRecord::Base
   # method section
   # record if group does not exist
   def self.create_group_entry(group, blog) 
-    self.create!(:group_id => group.id, :blog_id => blog.id, :title => '.....', :body => '.....') #if self.group_exists?(group)
+    self.create!(:group_id => group.id, :blog_id => blog.id, :title => group.name, :body => group.description) #if self.group_exists?(group)
   end 
 
   # record if user does not exist
   def self.create_user_entry(user, blog) 
-    self.create!(:user_id => user.id, :blog_id => blog.id, :title => '.....', :body => '.....') #if self.user_exists?(user)
+    self.create!(:user_id => user.id, :blog_id => blog.id, :title => user.name, :body => user.name) #if self.user_exists?(user)
   end
 
   # record if tournament does not exist
   def self.create_tournament_entry(tournament, blog) 
-    self.create!(:tournament_id => tournament.id, :blog_id => blog.id, :title => '.....', :body => '.....') #if self.group_exists?(tournament)
+    self.create!(:tournament_id => tournament.id, :blog_id => blog.id, :title => tournament.name, :body => tournament.description) #if self.group_exists?(tournament)
   end
   
   # Return true if the group does not exist

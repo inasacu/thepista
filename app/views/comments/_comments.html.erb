@@ -5,7 +5,9 @@
 			<% if comment.user %>
 				<%= image_link_small comment.user %>
 			<% elsif @group %>
-				<%= group_image_link_small @group %>		
+				<%= group_image_link_small @group %>
+			<% elsif @tournament %>
+				<%= tournament_image_link_small @tournament %>		
 			<% end %>
 	</td>
 
@@ -15,7 +17,9 @@
 		<% if comment.user %>
 			<%= user_link comment.user %>
 		<% elsif @group %>
-			<%= group_link @group %>	
+			<%= group_link @group %>
+		<% elsif @tournament %>
+			<%= tournament_link @tournament %>	
 		<% end %>
 		
 		<span class="date">

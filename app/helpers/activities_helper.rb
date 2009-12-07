@@ -35,11 +35,14 @@ module ActivitiesHelper
     when "Comment"
         comment = activity.item
 
-        if comment.group_id.blank?
+        if comment.group_id.blank? and comment.tournament_id.blank?
           %(#{I18n.t(:left_comment_on_wall) } #{user_link(comment.entry.user)})
-        else  
+        elsif comment.tournament_id.blank?
           is_member = current_user.is_member_of?(comment.entry.group)
           %(#{I18n.t(:left_comment_on_wall) } #{is_member ? group_link(comment.entry.group) : comment.entry.group.name})
+        else
+            is_member = current_user.is_tour_member_of?(comment.entry.tournament)
+            %(#{I18n.t(:left_comment_on_wall) } #{is_member ? group_link(comment.entry.tournament) : comment.entry.tournament.name})              
         end
 
 

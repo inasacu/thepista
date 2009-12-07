@@ -33,11 +33,8 @@
 
 	<td>
 	<table border="1">
-
 		
 		<%= tr_td_action(:name, @tournament.name) %>
-		<%#= tr_td_action(:second_team, @tournament.second_team) %>
-
 		<tr>
 			<%= content_tag :td, label_name(:manager), :class => "label" %>
 			<%= content_tag :td, user_list(@tournament.all_the_managers), :class => get_the_action %>
@@ -52,12 +49,12 @@
 		<%= tr_td_action(:fee_per_tour, number_to_currency(@tournament.fee_per_tour)) %>
 		<%#= tr_td_action(:game_day, nice_day_time(@tournament.meets.first.starts_at)) unless @tournament.meets.blank? %>
 		<%= tr_td_action(:time_zone, @tournament.time_zone) %>
-		<%= tr_td_action(:users, t(:has_tournament_users, :count => @tournament.users.count-1)) %>
+		<%= tr_td_action(:users, t(:has_tournament_users, :count => @tournament.users.count)) %>
 		<%#= tr_td_action(:meets, t(:has_group_meets, :count => @tournament.meets.count)) unless @tournament.meets.blank? %>
 		<%= tr_td_action(:points_for_win, @tournament.points_for_win) %>
 		<%= tr_td_action(:points_for_draw, @tournament.points_for_draw) %>
 		<%= tr_td_action(:points_for_lose, @tournament.points_for_lose) %>		
-		<%#= tr_td_action(:player_limit, @tournament.player_limit) %>
+		<%= tr_td_action(:player_limit, @tournament.player_limit) %>
 		
 		<tr>
 			<%= content_tag :td, label_name(:conditions), :class => "label" %>
@@ -70,17 +67,6 @@
 	     <%= content_tag :td, user_list(@tournament.available_users), :class => get_the_action %>
 	   </tr>
 	 <% end %>
-
-		<% 
-			the_label = h(label_name(@tournament.enable_comments, 'value'))
-			the_confirmation = label_with_name('enable_comments', "#{@tournament.name}?") 
-		%>
-		<!-- <tr>
-		  <%#= content_tag :td, label_name(:enable_comments), :class => "label" %>
-		  <%#= content_tag :td, 
-		(is_user_manager ? link_to(the_label, set_group_enable_comments_path(:id => @tournament.id), :confirm => the_confirmation) : the_label), 
-		:class => get_the_action %>
-		</tr> -->
 
 		</table>
 

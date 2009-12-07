@@ -2,10 +2,10 @@ class Comment < ActiveRecord::Base
 
   include ActivityLogger
 
-  belongs_to  :entry,   :counter_cache => true
-  belongs_to  :user,    :counter_cache => true
-  belongs_to  :group,   :counter_cache => true
-  belongs_to  :tournament,   :counter_cache => true
+  belongs_to  :entry,         :counter_cache => true
+  belongs_to  :user,          :counter_cache => true
+  belongs_to  :group,         :counter_cache => true
+  belongs_to  :tournament,    :counter_cache => true
 
   validates_presence_of   :body
   validates_length_of     :body,            :within => BODY_RANGE_LENGTH
@@ -20,17 +20,17 @@ class Comment < ActiveRecord::Base
 
   # record if tournament does not exist
   def self.create_tournament_comment(tournament, blog, entry) 
-    self.create!(:tournament_id => tournament.id, :entry_id => entry.id, :body => '.....') #if self.group_exists?(tournament)
+    self.create!(:tournament_id => tournament.id, :entry_id => entry.id, :body => tournament.description) #if self.group_exists?(tournament)
   end
     
   # record if group does not exist
   def self.create_group_comment(group, blog, entry) 
-    self.create!(:group_id => group.id, :entry_id => entry.id, :body => '.....') #if self.group_exists?(group)
+    self.create!(:group_id => group.id, :entry_id => entry.id, :body => group.description) #if self.group_exists?(group)
   end 
 
   # record if user does not exist
   def self.create_user_comment(user, blog, entry)  
-    self.create!(:user_id => user.id, :entry_id => entry.id, :body => '.....') #if self.user_exists?(user)
+    self.create!(:user_id => user.id, :entry_id => entry.id, :body => user.name) #if self.user_exists?(user)
   end
 
   # Return true if the group does not exist

@@ -22,7 +22,6 @@ class TournamentsController < ApplicationController
 
   def show
     store_location 
-    # @tournament = Tournament.find(params[:id])
   end
 
   def new
@@ -105,6 +104,7 @@ class TournamentsController < ApplicationController
     @tournament = Tournament.find(params[:id])    
     # redirect_to @tournament, :status => 301 if @tournament.has_better_id?
   end
+  
   def has_manager_access
     unless current_user.is_manager_of?(@tournament)
       flash[:warning] = I18n.t(:unauthorized)

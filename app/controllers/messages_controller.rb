@@ -64,6 +64,10 @@ class MessagesController < ApplicationController
     elsif (params[:group_id])
       @group = Group.find(params[:group_id])
       @recipients = User.find_group_mates(@group)
+      
+    elsif (params[:tour_id])
+      @tournament = Tournament.find(params[:tour_id])
+      @recipients = User.find_tour_mates(@tournament)
 
     elsif (params[:schedule_id])
       @schedule = Schedule.find(params[:schedule_id])

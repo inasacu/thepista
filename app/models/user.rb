@@ -45,58 +45,58 @@ class User < ActiveRecord::Base
     validates_attachment_content_type :photo, :content_type => ['image/jpeg', 'image/png', 'image/gif', 'image/jpg', 'image/pjpeg']
     validates_attachment_size         :photo, :less_than => 5.megabytes
 
-      belongs_to                :identity_user,   :class_name => 'User',              :foreign_key => 'rpxnow_id'
-      
-      has_and_belongs_to_many   :groups,          :conditions => 'archive = false',   :order => 'name'
-      has_and_belongs_to_many   :tournaments,     :conditions => 'archive = false',   :order => 'name'
-      
-      has_many    :addresses
-      has_many    :accounts
-      has_many    :payments
+    belongs_to                :identity_user,   :class_name => 'User',              :foreign_key => 'rpxnow_id'
     
-      has_many    :scorecards, :conditions => "user_id > 0 and played > 0 and archive = false", :order => "group_id"
+    has_and_belongs_to_many   :groups,          :conditions => 'archive = false',   :order => 'name'
+    has_and_belongs_to_many   :tournaments,     :conditions => 'archive = false',   :order => 'name'
     
-      has_many    :fees
-      has_many    :invitations
-      has_many    :messages
-      has_many    :matches
+    has_many    :addresses
+    has_many    :accounts
+    has_many    :payments
+  
+    has_many    :scorecards, :conditions => "user_id > 0 and played > 0 and archive = false", :order => "group_id"
+  
+    has_many    :fees
+    has_many    :invitations
+    has_many    :messages
+    has_many    :matches
+  
+    has_many    :teammates
+    has_many    :managers,
+      :through =>     :teammates,
+      :conditions =>  "teammates.status = 'accepted'",
+      :order =>       :name
+  
+    has_many    :requested_managers,
+      :through =>     :teammates,
+      :source =>      :manager,
+      :conditions =>  "teammates.status = 'requested'",
+      :order =>       "teammates.created_at"
     
-      has_many    :teammates
-      has_many    :managers,
-        :through =>     :teammates,
-        :conditions =>  "teammates.status = 'accepted'",
-        :order =>       :name
+    has_many    :pending_managers,
+      :through =>     :teammates,
+      :source =>      :manager,
+      :conditions =>  "teammates.status = 'pending'",
+      :order =>       "teammates.created_at"
     
-      has_many    :requested_managers,
-        :through =>     :teammates,
-        :source =>      :manager,
-        :conditions =>  "teammates.status = 'requested'",
-        :order =>       "teammates.created_at"
-      
-      has_many    :pending_managers,
-        :through =>     :teammates,
-        :source =>      :manager,
-        :conditions =>  "teammates.status = 'pending'",
-        :order =>       "teammates.created_at"
-      
-      has_many    :pending_teams,
-        :through =>     :teammates,
-        :source =>      :group,
-        :conditions =>  "teammates.status = 'pending'",
-        :order =>       "teammates.created_at"
-      
-      with_options :class_name => "Message", :dependent => :destroy, :order => "created_at DESC" do |user|
-        user.has_many :_sent_messages, :foreign_key => "sender_id", :conditions => "sender_deleted_at IS NULL"
-        user.has_many :_received_messages, :foreign_key => "recipient_id", :conditions => "recipient_deleted_at IS NULL"
-      end         
-      
-      has_one     :blog  
-      has_many    :feeds
+    has_many    :pending_teams,
+      :through =>     :teammates,
+      :source =>      :group,
+      :conditions =>  "teammates.status = 'pending'",
+      :order =>       "teammates.created_at"
+    
+    with_options :class_name => "Message", :dependent => :destroy, :order => "created_at DESC" do |user|
+      user.has_many :_sent_messages, :foreign_key => "sender_id", :conditions => "sender_deleted_at IS NULL"
+      user.has_many :_received_messages, :foreign_key => "recipient_id", :conditions => "recipient_deleted_at IS NULL"
+    end         
+    
+    has_one     :blog  
+    has_many    :feeds
 
-      has_many    :activities,
-                  :conditions => {:created_at => LAST_THREE_DAYS},
-                  :order => "created_at DESC",
-                  :limit => 1
+    has_many    :activities,
+                :conditions => {:created_at => LAST_THREE_DAYS},
+                :order => "created_at DESC",
+                :limit => 1
     
     before_update   :format_description
     after_create    :create_user_blog_details, :deliver_signup_notification
@@ -201,6 +201,10 @@ class User < ActiveRecord::Base
       def is_member_of?(group)
         self.has_role?('member', group)
       end
+
+      def is_tour_member_of?(tournament)
+        self.has_role?('member', tournament)
+      end
       
       def is_user_manager_of?(user)
         is_manager = false        
@@ -225,13 +229,23 @@ class User < ActiveRecord::Base
         end
         return is_member
       end
+      
+      def is_user_tour_member_of?(user)
+        is_member = false
+        user.tournaments.each do |tournament|
+          unless is_member
+            is_member = self.has_role?('member', tournament) 
+          end
+        end
+        return is_member
+      end
   
       def is_tour_manager_of?(tournament)
-        self.has_role?('manager', tournament) or self.has_role?('creater', tournament)
+        self.has_role?('manager', tournament) or self.has_role?('creator', tournament)
       end
         
       def is_manager_of?(group)
-        self.has_role?('manager', group) or self.has_role?('creater', group)
+        self.has_role?('manager', group) or self.has_role?('creator', group)
       end
     
       def is_sub_manager_of?(group)
@@ -345,6 +359,15 @@ class User < ActiveRecord::Base
             "and users.available = true " +
             "order by name", group.id, self.id])
     end
+
+    def self.find_tour_mates(tournament)
+      @recipients = User.find_by_sql(["select distinct users.* from users, tournaments_users " +
+            "where users.id = tournaments_users.user_id " +
+            "and tournaments_users.tournament_id in (?) " +
+            "and tournaments_users.user_id != ? " +
+            "and users.available = true " +
+            "order by name", tournament.id, self.id])
+    end
     
     def object_counter(objects)
       @counter = 0
@@ -384,8 +407,7 @@ class User < ActiveRecord::Base
         :per_page => USERS_PER_PAGE)
       end
       return mates
-    end
-      
+    end      
 
     def find_mates                         
       mates = User.find(:all, :conditions => ["id in (select distinct user_id from groups_users where group_id in (?))", self.groups], 

@@ -6,7 +6,7 @@
 	<li class="<%= get_active('tournament_list') %>"><%=  link_to(label_name(:all_tournament) , list_tournaments_path) %></li>	
 <% 
 	the_label = "" 
-	the_action = ['show','edit', 'team list']
+	the_action = ['show','edit', 'tour list']
 	
 	if the_action.include?(get_the_action) 
 		if current_user.is_member_of?(@tournament) 

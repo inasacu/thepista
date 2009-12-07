@@ -1,5 +1,7 @@
 class Blog < ActiveRecord::Base
 
+  has_friendly_id :name, :use_slug => true, :reserved => ["new", "create", "index", "list", "signup", "edit", "update", "destroy", "show"]
+  
   has_many      :entries,      :dependent => :delete_all
   has_many      :comments,     :through => :entries
 
@@ -14,17 +16,17 @@ class Blog < ActiveRecord::Base
   # method section
   # record if group does not exist
   def self.create_group_blog(group) 
-    self.create!(:group_id => group.id, :name => '.....', :description => '.....') if self.group_exists?(group)
+    self.create!(:group_id => group.id, :name => group.name, :description => group.description) if self.group_exists?(group)
   end 
 
   # record if user does not exist
   def self.create_user_blog(user) 
-    self.create!(:user_id => user.id, :name => '.....', :description => '.....') if self.user_exists?(user)
+    self.create!(:user_id => user.id, :name => user.name, :description => user.name) if self.user_exists?(user)
   end
 
   # record if tournament does not exist
   def self.create_tournament_blog(tournament) 
-    self.create!(:tournament_id => tournament.id, :name => '.....', :description => '.....') if self.tournament_exists?(tournament)
+    self.create!(:tournament_id => tournament.id, :name => tournament.name, :description => tournament.description) if self.tournament_exists?(tournament)
   end
   
   # Return true if the tournament nil

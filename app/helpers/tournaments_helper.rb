@@ -28,23 +28,19 @@ module TournamentsHelper
   end
 
   def tournament_image_link_tiny(tournament)
-    link_to(image_tag(tournament.avatar, options={:style => "height: 15px; width: 15px;"}), tournament_path(tournament)) #if production?
-    # link_to(image_tag('tournament_avatar.png', options={:style => "height: 15px; width: 15px;"}), tournament_path(tournament)) unless production?
+    link_to(image_tag(tournament.avatar, options={:style => "height: 15px; width: 15px;"}), tournament_path(tournament))
   end
 
   def tournament_image_link_small(tournament)
-    link_to(image_tag(tournament.avatar, options={:style => "height: 30px; width: 30px;"}), tournament_path(tournament)) #if production?
-    # link_to(image_tag('tournament_avatar.png', options={:style => "height: 30px; width: 30px;"}), tournament_path(tournament)) unless production?
+    link_to(image_tag(tournament.avatar, options={:style => "height: 30px; width: 30px;"}), tournament_path(tournament)) 
   end
 
   def tournament_image_link_medium(tournament)
-    link_to(image_tag(tournament.avatar, options={:style => "height: 55px; width: 55px;"}), tournament_path(tournament)) #if production?
-    # link_to(image_tag('tournament_avatar.png', options={:style => "height: 55px; width: 55px;"}), tournament_path(tournament)) unless production?
+    link_to(image_tag(tournament.avatar, options={:style => "height: 55px; width: 55px;"}), tournament_path(tournament))
   end
 
   def tournament_image_link_large(tournament)
-    link_to(image_tag(tournament.avatar, options={:style => "height: 80px; width: 80px;"}), tournament_path(tournament)) #if production?
-    # link_to(image_tag('tournament_avatar.png', options={:style => "height: 80px; width: 80px;"}), tournament_path(tournament)) unless production?
+    link_to(image_tag(tournament.avatar, options={:style => "height: 80px; width: 80px;"}), tournament_path(tournament))
   end
 
   def tournament_vs_invite(schedule)

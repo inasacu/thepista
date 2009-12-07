@@ -3,12 +3,12 @@
 	@comments.entry_id = Blog.find(blog_id).entries.first.id
 	@comments.user_id = current_user.id
 	@comments.group_id = @group.id if @group
+	@comments.tournament_id = @tournament.id if @tournament
 %>
 <div class="inner">
 
 <% form_for :comments, :url => comments_path, :id => blog_id, :html => { :class => :form } do |f| -%>
-	<h3 class="title">
-		<%= label %>
+	<h5 class="title"><%= label %></h5>
 <% 
 	if textfield 
 %>
@@ -23,9 +23,10 @@
 	<%= f.hidden_field :entry_id %>
 	<%= f.hidden_field :user_id %>
 	<%= f.hidden_field :group_id %>
-	
+	<%= f.hidden_field :tournament_id %>
+	<br /><br />
 	<%= f.submit label_name(:comment) %>
-	</h3>
+
 <% end -%>
 
 	<div class="clear"></div>

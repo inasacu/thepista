@@ -55,7 +55,6 @@
 		@schedule = @scorecard
 	%>
 		
-	<%#= render :partial => '/messages/recipient_roster', :locals => {:schedule => @schedule, :checked => check } %>
 	<%= render :partial => '/messages/recipient_list', :locals => {:recipients => @recipients, :checked => check } %>
 	<%= hidden_field :scorecard, :id %>
 	
@@ -67,6 +66,10 @@
 	<% elsif @schedule %>
 	<%= render :partial => '/messages/recipient_roster', :locals => {:schedule => @schedule, :checked => check } %>
 	<%= hidden_field :schedule, :id %>
+
+	<%# elsif @tournament %>
+	<%#= render :partial => '/messages/recipient_list', :locals => {:recipients => @recipients, :checked => check } %>
+	<%#= hidden_field :tournament, :id %>
 	
 	<% elsif @recipient %>
 	<%= hidden_field :recipient, :id %>
