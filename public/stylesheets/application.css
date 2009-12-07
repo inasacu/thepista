@@ -4,7 +4,6 @@ html {
 }
 
 
-
 /* embeds the openid image in the text field */
 input#user_openid_identifier, input#user_session_openid_identifier {
   background: url(../../images/login-bg.gif) no-repeat;
@@ -64,7 +63,6 @@ input.inplace_text_field {
 	width: 15px; 
 }
 
-
 .text_field{ 
 	border: 1px solid rgb(205, 205, 205); 
 	padding: 0.4em; 
@@ -83,25 +81,21 @@ text_area.textfield {
 }
 
 
-
 .next_message, .previous_message { 
 	display: block; 
 	height: 20px; 
 	width: 20px; 
-/*	margin-top: 4px;*/
 	margin-left: 4px;
 	background-repeat: no-repeat; 
-/*	background-position: -4px 4px; */
 }
 .next_message:hover, .previous_message:hover { 
 	background-color: #005573; 
 /*	background-position: 4px 4px; */
 	text-decoration: none; 
 }
+
 .next_message { float: left; background-image: url('../../images/resultset_previous.png'); }
 .previous_message { float: right; background-image: url('../../images/resultset_next.png'); }
-
-
 
 
 /* tables */
@@ -173,13 +167,14 @@ td.sub_true {
   width: 75%;
 }
 
-/*.secondary-navigation ul li.petition, .secondary-navigation ul li.petition a:hover {
+/*
+.secondary-navigation ul li.petition, .secondary-navigation ul li.petition a:hover {
 	background: #009933;
 }
-
 .secondary-navigation ul li.message, .secondary-navigation ul li.message li.petition a:hover {
 	background: #009933;
-}*/
+}
+*/
 
 /* table rows */
 .table .name_and_date .name { overflow: hidden; display: block; width: 150px; margin-right: 20px; white-space: nowrap; }
@@ -187,12 +182,11 @@ td.sub_true {
 .name_and_date .date_tiny { padding: 1px 0pt 0pt; display: block; font-size: 9px; color: rgb(119, 119, 119); }
 .last .action  { padding: 1px 0pt 0pt; display: block; font-size: 10px; color: rgb(119, 119, 119); }
 
-
 /*  new footer */
 div#footer div.col_wrapper { padding-top: 1.0em; text-align: center; }
 div#footer p, ol, li { margin: 0pt; font-size: 1.0em; line-height: 1.0em; }
 div#footer a { color: lightgray;  }
-div#footer a:hover { color: orange; }
+div#footer a:hover { color: black; }
 div#footer div.link_wrapper { position: relative; float: left; left: 50%; }
 div#footer ol { position: relative; left: -50%; font-size: 1.0em; }
 div#footer ol li { margin: 0pt 1em; position: relative; float: left; }
@@ -212,3 +206,5 @@ div#footer ol li { margin: 0pt 1em; position: relative; float: left; }
   -moz-border-radius: 4px;
 -webkit-border-radius: 3px;
 }
+
+#user-navigation ul li a:hover { color: black; }

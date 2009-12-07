@@ -12,16 +12,21 @@
 				<strong>
 					HayPista 
 				</strong>
-				te quiere ayudar a organizar tu equipo o encontrar donde jugar...
+				fue fundada a finales de 2007 con la misión de hacer que sea fácil organizar tu equipo o encontrar donde jugar...
 			</p>
 
 
-			<!-- <p>
+			<% if display %>
+			<p>
 				<strong>
 					HayPista&nbsp;
 				</strong>
-				was founded in late 2007 with the mission of making it easy for you to find a team to play with based on your individual interests. We are developing an algorithm to generate personalized recommendations to help you discover the best team available today.
-			</p> -->
+				was founded in late 2007 with the mission of making it easy for you 
+				to find a team to play with based on your individual interests. 
+				We are developing an algorithm to generate personalized recommendations 
+				to help you discover the best team available today.
+			</p>
+			<% end -%>
 			
 			<br/><br/><br/><br/>
 			<p>
@@ -30,7 +35,7 @@
 					<%= label_name(:drop_us_a_note) %>
 				</a>
 			</p>
-						
+
 		</div>
 	</div>
 </div>

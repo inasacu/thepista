@@ -1,17 +1,19 @@
 <div id="wrapper">	
 
 	<%= render :partial => 'shared/flash', :locals => {:flash => flash } %>
-	
-  <div id="main">
-  
-	<%= yield %>	
-	
-	<%= render :partial => 'shared/footer' %>	
-	
-  </div>	  
-  
+
+	<div id="main">
+
+		<%= yield %>	
+
+		<%#= render :partial => 'shared/footer' %>	
+
+	</div>	  
+
 	<%= render :partial => 'shared/sidebar' %>	
-	
+
 	<div class="clear"></div>    
-  
+
+	<%= render :partial => 'shared/footer' %>	
+
 </div>  
