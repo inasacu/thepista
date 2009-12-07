@@ -223,6 +223,7 @@ es:
      dont_user_marks: "Por favor, no use acentos en la cuenta OpenID. Gracias!"   
      dorsal: Dorsal   
      dorsal_description: (Si te interesa poner el nombre o numero de tu camiseta...)   
+     drop_us_a_note: Envíenos una nota.
      edit: Modifica   
      edit_address: Modifica la Dirección   
      edit_announcement: Modifica un Anuncio   
@@ -767,6 +768,7 @@ es:
      public_description:  Selecciona opción si esta abierto al publico.
      publish_in: Publica en HayPista   
      # published_date: Publication Date (in Spanish)   
+     question_or_comment: Pregunta o comentario?
      ranking: Ranking   
      ranking_full: Posición del Jugador en la tabla   
      really_archive: Estas seguro que quieres archivar    
@@ -1166,11 +1168,11 @@ es:
      
      home_index: Inicio
      home_search:  Buscar
-     about_us:  About Us
-     terms_of_use: Terms of Use
-     privacy_policy: Privacy Policy
-     faq: FAQ
-     follow_twitter:  Follow Us on Twitter
+     about_us:  ¿Quiénes somos?
+     terms_of_use: Condiciones de uso
+     privacy_policy: Privacidad
+     faq: Preguntas Frecuentes
+     follow_twitter:  Siguenos en Twitter
 
      invitation_delete: Borra esta invitación
      invitation_deleted: Invitación borrada

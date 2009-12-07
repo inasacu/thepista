@@ -31,6 +31,7 @@ class HomeController < ApplicationController
   end
   
   def privacy_policy
+    render :template => '/home/terms_of_use'    
   end
   
   def faq
