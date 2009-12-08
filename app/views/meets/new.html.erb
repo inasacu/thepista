@@ -1,0 +1,21 @@
+<div class="block">
+
+	<%= render :partial => 'secondary_navigation' %>
+
+	<div class="content">  
+
+		<h2 class="title"><%= "#{control_action_label} #{label_name('for')} " %><%= round_link @meet.round %></h2>
+
+		<div class="inner">
+		
+      <% form_for :meet, :url => meets_path, :html => { :class => :form } do |f| -%>
+		<%= f.hidden_field :round_id if @round %>
+        <%= render :partial => "form", :locals => {:f => f, :label_name => label_name(:create)} %>
+      <% end -%>
+
+		</div>
+
+	</div>
+
+</div>
+

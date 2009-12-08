@@ -4,7 +4,7 @@ class SchedulesController < ApplicationController
   before_filter :get_schedule, :only => [:show, :edit, :update, :destroy, :set_public, :team_roster, :team_last_minute, :team_no_show, :team_unavailable]
   before_filter :get_group, :only =>[:new]
   before_filter :get_match_type, :only => [:team_roster, :team_last_minute, :team_no_show, :team_unavailable]
-  before_filter :has_manager_access, :only => [:edit, :update, :destroy]
+  before_filter :has_manager_access, :only => [:edit, :update, :destroy, :set_public]
   before_filter :has_member_access, :only => :show
   before_filter :excess_players, :only => [:show, :team_roster, :team_last_minute, :team_no_show, :team_unavailable]
   

@@ -124,7 +124,7 @@ en:
      create_message: Manda un Mensaje   
      create_name: Nuevo Nombre   
      create_note: Nueva Nota   
-     create_payment: Nuevo Pago   
+     payments_create: Nuevo Pago   
      
      create_profile: Nuevo perfil   
      create_reminder: Nuevo Recordatorio   

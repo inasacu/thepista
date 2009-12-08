@@ -1,0 +1,151 @@
+<% technical["difference"] = home["technical"] - away["technical"] %>
+<% physical["difference"] = home["physical"] - away["physical"] %>
+<% technical["minimum"] = ((home["technical"] > away["technical"]) ? away["technical"] : home["technical"]) %>
+<% physical["minimum"] = ((home["physical"] > away["physical"]) ? away["physical"] : home["physical"]) %>
+<% technical["percentage"] = technical["difference"].abs / technical["minimum"].to_f unless technical["minimum"] == 0 %>
+<% physical["percentage"] = physical["difference"].abs / physical["minimum"].to_f unless physical["minimum"] == 0 %>
+
+
+	<table class="table" id="<%= get_the_action.gsub(' ','_') %>">
+
+		<tr>
+		 <th class="first">&nbsp;</th>	
+		 <th>&nbsp;</th>
+		 <th>&nbsp;</th>
+		 <th>&nbsp;</th>
+		 <th align="center" title = "<%= label_name(:defense) %>"><%= label_name(:defense) %></th>
+		 <th align="center" title = "<%= label_name(:center) %>"><%= label_name(:center) %></th>
+		 <th align="center" title = "<%= label_name(:attack) %>"><%= label_name(:attack) %></th>
+		 <th align="center" title = "<%= label_name(:technical) %>"><%= label_name(:technical) %></th>
+		 <th align="center" title = "<%= label_name(:physical) %>"><%= label_name(:physical) %></th>
+		 <th align="center" title = "<%= label_name(:total) %>"><%= label_name(:total) %></th>
+		 <th>&nbsp;</th>
+		 <th>&nbsp;
+			<% 
+				the_label = "#{label_name(:previous_profile_set_full) }"
+				the_confirmation = "#{the_label}?"
+			%>
+			<%= link_to(label_name(:previous_profile_set), 
+						set_previous_profile_url(:id => @meet.id), 
+						:title => the_label, :confirm => the_confirmation) if current_user.is_manager_of?(@meet.group) %>
+					</th>
+		 <th>&nbsp;</th>
+		 <th>&nbsp;</th>
+		 <th>&nbsp;</th>
+		 <th>&nbsp;</th>
+		 <th>&nbsp;</th>
+		 <th>&nbsp;</th>
+		 <th class="last">&nbsp;</th>
+		</tr>
+		
+		<tr>
+			<td class="first">&nbsp;</td>
+			 <td>&nbsp;</td>
+			 <td>&nbsp;</td>
+			<td><%= link_to @meet.home_group, group_path(@meet.group) %></td>
+			<td><%= home["defense"] %></td>
+			<td><%= home["center"] %></td>
+			<td><%= home["attack"] %></td>
+			<td><%= home["technical"] %></td>
+			<td><%= home["physical"] %></td>
+			<td><%= home["total"] %></td>
+			<td>&nbsp;</td>
+			<td>&nbsp;</td>
+			<td>&nbsp;</td>
+			<td>&nbsp;</td>
+			<td>&nbsp;</td>
+			<td>&nbsp;</td>
+			<td>&nbsp;</td>
+			<td>&nbsp;</td>
+			<td class="last">&nbsp;</td>
+		</tr>
+
+		<tr>
+			<td class="first">&nbsp;</td>
+			 <td>&nbsp;</td>
+			 <td>&nbsp;</td>
+			<td><%= link_to @meet.away_group, group_path(@meet.group) %></td>
+			<td><%= away["defense"] %></td>
+			<td><%= away["center"] %></td>
+			<td><%= away["attack"] %></td>
+			<td><%= away["technical"] %></td>
+			<td><%= away["physical"] %></td>
+			<td><%= away["total"] %></td>
+			<td>&nbsp;</td>
+			<td>&nbsp;</td>
+			<td>&nbsp;</td>
+			<td>&nbsp;</td>
+			<td>&nbsp;</td>
+			<td>&nbsp;</td>
+			<td>&nbsp;</td>
+			<td>&nbsp;</td>
+			<td class="last">&nbsp;</td>
+		</tr>
+
+		<tr>
+			<td class="first">&nbsp;</td>
+			 <td>&nbsp;</td>
+			 <td>&nbsp;</td>
+			<td><strong>Diff.</strong></td>
+			<td><%= home["defense"]-away["defense"] %></td>
+			<td><%= home["center"]-away["center"] %></td>
+			<td><%= home["attack"]-away["attack"] %></td>
+			<td><%= technical["difference"] %></td>
+			<td><%= physical["difference"] %></td>
+			<td>&nbsp;</td>
+			<td>&nbsp;</td>
+			<td>&nbsp;</td>
+			<td>&nbsp;</td>
+			<td>&nbsp;</td>
+			<td>&nbsp;</td>
+			<td>&nbsp;</td>
+			<td>&nbsp;</td>
+			<td>&nbsp;</td>
+			<td class="last">&nbsp;</td>
+		</tr>
+								
+		<tr>
+		 <td class="first">&nbsp;</td>
+		 <td>&nbsp;</td>
+		 <td>&nbsp;</td>
+		 <td><strong>%</strong></td>
+		 <td>&nbsp;</td>
+		 <td>&nbsp;</td>
+		 <td>&nbsp;</td>
+		 <td><%= sprintf( "%0.00f", technical["difference"].abs) %><%= "%" %></td>
+		 <td><%= sprintf( "%0.00f", physical["difference"].abs) %><%= "%" %></td>
+		 <td>&nbsp;</td>
+		 <td>&nbsp;</td>	
+		 <td>&nbsp;</td>
+		 <td>&nbsp;</td>	
+			<td>&nbsp;</td>
+			<td>&nbsp;</td>
+		 <td>&nbsp;</td>
+		 <td>&nbsp;</td>
+		 <td>&nbsp;</td>
+		 <td class="last">&nbsp;</td>
+		</tr>
+				
+		<tr>
+		 <td class="first">&nbsp;</td>
+			 <td>&nbsp;</td>
+			 <td>&nbsp;</td>
+		 <td><%= label_name(:how_much_better) %></td>
+		 <td>&nbsp;</td>
+		 <td>&nbsp;</td>
+		 <td>&nbsp;</td>
+		 <td><%= sprintf( "%0.00f", technical["percentage"]*100) %><%= "%" %></td>
+		 <td><%= sprintf( "%0.00f", physical["percentage"]*100) %><%= "%" %></td>
+		 <td>&nbsp;</td>	
+		 <td>&nbsp;</td>
+		 <td>&nbsp;</td>
+		 <td>&nbsp;</td>	
+			<td>&nbsp;</td>
+			<td>&nbsp;</td>
+		 <td>&nbsp;</td>
+		 <td>&nbsp;</td>
+		 <td>&nbsp;</td>
+		 <td class="last">&nbsp;</td>
+		</tr>
+
+		</table>

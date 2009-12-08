@@ -1,0 +1,194 @@
+<%= stylesheet_link_tag "in_place_styles"  %>
+<% inplace_error_div %>
+
+<% 
+	counter = 0 
+	roster_count = (object_counter(the_roster) > 0)
+
+	type_id = [1, 4]
+	
+	home = {}
+	away = {}
+	technical = {}
+	physical = {}
+		
+	home["defense"] = 0
+	home["center"] = 0
+	home["attack"] = 0
+	home["technical"] = 0
+	home["physical"] = 0
+	home["total"] = 0
+	
+	away["defense"] = 0
+	away["center"] = 0
+	away["attack"] = 0
+	away["technical"] = 0
+	away["physical"] = 0
+	away["total"] = 0
+	
+	technical["difference"] = 0
+	technical["minimum"] = 0
+	technical["percentage"] = 0.0
+		
+	physical["difference"] = 0
+	physical["minimum"] = 0
+	physical["percentage"] = 0.0
+	
+	is_manager = current_user.is_manager_of?(@meet.group)
+	is_sub_manager = current_user.is_sub_manager_of?(@meet.group)
+	
+	@positions = Type.find(:all, :conditions => "table_type = 'User'", :order => "id")
+	
+if roster_count 
+%>
+      <table class="table" id="<%= get_the_action.gsub(' ','_') %>">
+	  
+		<tr>
+		 <th class="first">&nbsp;</th>
+		 <th>&nbsp;</th>
+		 <th><%= label_name(:name) %></th>
+		 <th align="center" title = "<%= label_name(:games_played_full) %>"><%= label_name(:games_played) %></th>
+		 <th align="center" title = "<%= label_name(:position) %>"><%= label_name(:position) %></th>
+		 <th align="center" title = "<%= label_name(:technical) %>"><%= label_name(:technical) %></th>
+		 <th align="center" title = "<%= label_name(:physical) %>"><%= label_name(:physical) %></th>
+		 <th><%= label_name(:group) %></th>
+		 <%= content_tag 'th', label_name(:score), :align =>"center" if @meet.played? %>
+		 <th><%= label_name(:change_at) %></th>
+		 <th class="last"><%= label_name(:change_your_roster_status) %></th>
+		</tr>
+
+        
+       	<% the_roster.each do |match| -%>
+        <tr>
+			<td>
+				<%= image_link_smaller match.user %>
+			</td>
+			
+			<%  #sub_manager = match.user.is_sub_manager_of?(@meet.group)
+		    	#the_label =  label_name("sub_#{sub_manager}") unless sub_manager 
+				#the_klass = "sub_#{sub_manager}" unless sub_manager
+				
+				subscriber = match.user.is_subscriber_of?(@meet.group)
+			    the_label =  label_name("subscription_#{subscriber}") unless subscriber 
+				the_klass = "subscription_#{subscriber}" unless subscriber 
+			%>
+			
+			<td class="<%= the_klass %>" title = "<%= the_label %>">
+				<%= counter +=1 %>.
+			</td>
+			
+			<td>
+				<%= user_link match.user %><br />
+				<%= "  ( #{label_name(:no_jugado)} )" if match.type_id == 4 %>
+			</td>
+			
+			<td align="left"><%= match.scorecard_played %></td>
+<% 		
+		case match.position.name
+		when "defense"
+			(match.group_id > 0) ? home["defense"] += 1 : away["defense"] += 1
+		when "center"
+			(match.group_id > 0) ? home["center"] += 1 : away["center"] += 1
+		when "attack"
+			(match.group_id > 0) ? home["attack"] += 1 : away["attack"] += 1
+		end
+		(match.group_id > 0) ? home["technical"] += match.technical : away["technical"] += match.technical
+		(match.group_id > 0) ? home["physical"] += match.physical : away["physical"] += match.physical
+		(match.group_id > 0) ? home["total"] += 1 : away["total"] += 1
+				
+		@roster = match  
+%>		
+		<td>			
+		    <%= is_manager ? in_place_select(:roster, :position_name, :choices => @positions.map { |e| [I18n.t(e.name), e.id] }) : match.position_name %>
+		</td>
+	
+		<td align="center">
+			<%= is_manager ? in_place_text_field(:roster, :technical, {:cols => 1}) : match.technical %>
+		</td>	
+			
+		<td align="center">			
+			<%= is_manager ? in_place_text_field(:roster, :physical, {:cols => 1}) : match.physical %>		
+		</td>
+		
+		<td><%= is_sub_manager ? link_to(match.team_name(@meet), match_team_path(:id => match.id), :title => label_name(:change_group)) :  match.team_name(@meet) %></td>
+<% 
+	
+	if @meet.played? 
+%>	
+		<td><%= group_score_link @meet if match.type_id == 1 %></td>
+<%		
+	end 
+%>	
+
+	<td class="name_and_date">
+		<span class="date">
+			<%= "#{label_name(:ago)} #{time_ago_in_words(match.status_at)}" %>
+		</span>
+	</td>
+		
+
+
+<td class="last">
+<% 
+if current_user == match.user or current_user.is_manager_of?(@meet.group) and @meet.not_played? 
+	@match_type.each do |type|  
+		unless type.id == match.type_id			
+			
+			# only manager can view option 'no_jugado'
+			if type.id == 4
+%>
+				<%= render :partial => '/meets/team_roster_option', 
+						:locals => {:type => type, :match => match} if current_user.is_manager_of?(@meet.group) %>
+<% 			
+			else
+%>
+				<%= render :partial => '/meets/team_roster_option', :locals => {:type => type, :match => match} %>
+<%
+			end 
+		end
+ 	end
+end
+%>
+
+<%#= render :partial => 'ratings/rate', 
+		   :locals => { :asset => match } unless match.user == current_user or !@meet.played? or match.type == 1 %>
+
+</td>
+</tr>          
+<% 
+end 
+-%>
+
+</table>
+
+<% if get_the_action.gsub(' ','_') == 'team_roster' %>
+
+	<%= render :partial => '/meets/team_level', :locals => {:home => home, :away => away, :technical => technical, :physical => physical} %>
+
+<% end -%>
+
+<% 
+end
+%>
+
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

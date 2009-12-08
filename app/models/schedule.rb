@@ -65,16 +65,19 @@ class Schedule < ActiveRecord::Base
 
   validates_presence_of         :description
   validates_length_of           :description,                     :within => DESCRIPTION_RANGE_LENGTH
-
-  validates_presence_of         :fee_per_game,  :fee_per_pista, :player_limit
-  validates_numericality_of     :fee_per_game,  :fee_per_pista, :player_limit
+  
+  validates_presence_of         :fee_per_game,  :fee_per_pista, :player_limit,  :jornada
+  validates_numericality_of     :fee_per_game,  :fee_per_pista, :player_limit,  :jornada
+  
+  validates_numericality_of     :jornada,       :greater_than_or_equal_to => 0, :less_than_or_equal_to => 100
+  validates_numericality_of     :player_limit,  :greater_than_or_equal_to => 0, :less_than_or_equal_to => 100
 
   validates_presence_of         :starts_at,     :ends_at  
 
   # variables to access
-  attr_accessible :concept, :description, :season, :jornada, :starts_at, :ends_at, :reminder, :subscription_at, :non_subscription_at
+  attr_accessible :concept, :description, :season, :jornada, :starts_at, :ends_at, :reminder
   attr_accessible :fee_per_game, :fee_per_pista, :time_zone, :group_id, :sport_id, :marker_id, :player_limit
-  attr_accessible :public, :description, :season_ends_at
+  attr_accessible :public, :season_ends_at
 
 
   # after_update        :save_matches

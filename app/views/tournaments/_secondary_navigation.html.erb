@@ -3,12 +3,13 @@
 <ul>
 	
 	<li class="<%= get_first_active %>"><%=  link_to(label_name(:my_tournament), tournaments_path) %></li>
-	<li class="<%= get_active('tournament_list') %>"><%=  link_to(label_name(:all_tournament) , list_tournaments_path) %></li>	
+	<li class="<%= get_active('tournament_list') %>"><%=  link_to(label_name(:all_tournament) , list_tournaments_path) %></li>
 <% 
 	the_label = "" 
 	the_action = ['show','edit', 'tour list']
+	the_control = ['round']
 	
-	if the_action.include?(get_the_action) 
+	if the_action.include?(get_the_action) or the_control.include?(get_the_controller)
 		if current_user.is_member_of?(@tournament) 
 		the_label = label_with_name('the_wall', h(@tournament.name))
 %>		

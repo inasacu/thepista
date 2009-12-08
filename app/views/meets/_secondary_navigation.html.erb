@@ -1,0 +1,48 @@
+<div class="secondary-navigation">
+	
+<ul>
+<%
+the_controller = ['forums', 'topics', 'posts']
+the_action = ['show', 'edit', 'team roster', 'team no show', 'team last minute', 'team unavailable']
+unless the_action.include?(get_the_action) or the_controller.include?(get_the_controller) 
+%>
+	<li class="<%= get_first_active %>"><%= link_to(label_name(:upcoming_meet) , meets_url) %>	</li>
+	<li class="<%= get_active('meet_list') %>"><%= link_to(label_name(:previous_meets) , list_meets_path) %></li>
+<% 
+else
+	if current_user.is_tour_member_of?(@meet.round.tournament)
+		the_label = "#{label_name(:forum)} #{sanitize(@meet.concept)}"
+%>
+		<li class="<%= get_first_active('meet_show') %>">  <%= meet_link @meet %>
+		<li class="<%= get_active('topic_show') %>"><%= link_to(the_label, forum_path(@meet.forum)) %></li>	
+		
+
+		
+		<% unless (@meet.the_roster.empty?) %>		
+			<li class="<%= get_active('meet_team_roster') %>">
+					<%= link_to(label_name(:rosters), team_roster_path(:id => @meet)) %></li>
+		<% end %>
+				
+		<% unless (@meet.the_last_minute.empty?) %>
+			<li class="<%= get_active('meet_team_last_minute') %>">
+						<%= link_to(label_name(:last_minute), team_last_minute_path(:id => @meet)) %></li>
+		<% end %>
+						
+		<% unless (@meet.the_no_show.empty?) %>
+			<li class="<%= get_active('meet_team_no_show') %>">
+						<%= link_to(label_name(:no_shows), team_no_show_path(:id => @meet)) %></li>
+		<% end %>
+						
+		<% unless (@meet.the_unavailable.empty?) %>
+			<li class="<%= get_active('meet_team_unavailable') %>">
+						<%= link_to(label_name(:unavailable), team_unavailable_path(:id => @meet)) %></li>
+		<% end %>
+<% 
+	end
+end
+%>
+</ul>
+
+<div class="clear"></div>
+
+</div>

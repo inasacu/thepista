@@ -34,7 +34,7 @@
 		the_label = label_with_name('create_schedule', @group.name)
 		the_confirmation = "#{ label_name(:destroy_group) } #{ label_name(:to) } #{@group.name}?" 
 %>                    
-		<li><%= link_to label_name(:create_schedule), new_schedule_path(:id => @group.id) %></li>
+		<li><%= link_to label_name(:schedules_create), new_schedule_path(:id => @group) %></li>
 		<li><%= link_to(label_name('groups_edit'), edit_group_path(@group)) if current_user.is_manager_of?(@group) %></li>  
 		<li><%= link_to(control_label('destroy'), 
 				{:controller => 'groups', :action => 'destroy', :id => @group}, 

@@ -10,7 +10,6 @@
 		
       <% form_for :schedule, :url => schedules_path, :html => { :class => :form } do |f| -%>
 		<%= f.hidden_field :group_id if @group %>
-
         <%= render :partial => "form", :locals => {:f => f, :label_name => label_name(:create)} %>
       <% end -%>
 

@@ -100,6 +100,8 @@ ActionController::Routing::Routes.draw do |map|
   map.resources   :messages,        :as => 'mensajes',                    :collection => { :sent => :get, :trash => :get }
 
   map.resources   :tournaments,     :as => 'torneos',                     :collection => { :list => :get, :search => :get }
+  map.resources   :rounds,          :as => 'fases',                       :collection => { :list => :get, :search => :get }
+  map.resources   :meets,           :as => 'acontecimiento',              :collection => { :list => :get, :search => :get }
   
   map.resources   :connections
   map.resources   :ratings,                                               :member => { :rate => :put }

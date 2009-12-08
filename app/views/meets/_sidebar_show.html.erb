@@ -1,0 +1,35 @@
+<div class="block">
+
+	<h3><%= label_name(get_the_controller, 'options') %></h3>
+	
+<ul class="navigation">
+<%	
+	if current_user.is_member_of?(@group)  %> 
+		<li><%= link_to label_name(:send_message_to_group), new_message_path(:group_id => @group.id) %></li>		
+		<li><%= link_to(label_name(:invitations_create_meet) , new_invitation_url(:meet_id => @meet.id)) %></li>
+<% 
+	end 
+	
+	if current_user.is_sub_manager_of?(@group) %> 
+		<li><%= link_to label_name(:send_pre_match), new_message_path(:meet_id => @meet.id) unless @meet.played? %></li>
+		<li><%= link_to label_name(:send_match), new_message_path(:match_id => @meet.matches.first.id) if @meet.played? %></li>
+		<li><%= link_to label_name(:send_scorecard), new_message_path(:scorecard_id => @meet.id) %></li>
+<% 
+	end 
+	
+	if current_user.is_manager_of?(@group) 
+		the_confirmation = "#{ label_name(:destroy_meet) } #{ label_name(:from) } #{@group.name}?" 
+%> 
+		<li><%= link_to control_label('create'), new_meet_path(:id => @meet.group.id)  unless @meet.last_season?(current_user) %></li>
+		<li><%= link_to control_label('edit'), edit_meet_path(@meet) unless @meet.last_season?(current_user) %></li>  
+		<%  unless get_the_controller == 'topic' %> 
+		<li><%= link_to control_label('destroy'), meet_path(@meet), :method => :delete, 
+					:confirm => label_name(:are_you_sure) unless @meet.played? %></li>
+		<% end %>
+		<li><%= link_to label_name(:matches), edit_match_path(@meet.matches.first.id)  unless @meet.last_season?(current_user) %></li>
+<% 
+	end 
+%>
+</ul>
+	
+</div>

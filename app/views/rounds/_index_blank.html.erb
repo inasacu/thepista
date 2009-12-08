@@ -1,0 +1,15 @@
+<h2 class="title"><%= label_name(:rounds_options_without) %></h2>
+
+<div class="inner">
+
+<p>
+	<span class="large">*&nbsp;&nbsp;
+		<%= link_to("#{label_name(:you_can)} #{label_name(:create_your_own)} #{label_name(:round)}", new_round_url) %>
+	</span>
+</p>
+<p>
+	<span class="large">*&nbsp;&nbsp;
+		<%= link_to("#{label_name(:you_can)} #{label_name(:to_join_round)}", list_rounds_path) %>
+	</span>
+</p>
+</div>

@@ -43,7 +43,7 @@ if current_user
 		unless is_action('show') or is_action('edit') or is_action('team list') 
 %>
 			<li class="<%= the_class %>">  <%= link_to(label_name(:my_group) , groups_url) %></li>
-			<li class="<%= the_class %>">  <%= link_to(label_name(:create_group) , new_group_url) %></li>
+			<li class="<%= the_class %>">  <%= link_to(label_name(:groups_create) , new_group_url) %></li>
 <% 
 		else 
 			if current_user.is_member_of?(@group) 
@@ -87,7 +87,7 @@ if current_user
 %>
 	        <li class="<%= the_class %>">  <%= link_to(label_name(:upcoming_schedule) , schedules_url) %>	  </li>				
 		    <li class="<%= the_class %>">  <%= link_to(label_name(:previous_schedules) , list_schedules_path) %></li>
-			<li class="<%= the_class %>">  <%= link_to(label_name(:create_schedule) , new_schedule_url) if current_user.is_manager? %></li>
+			<li class="<%= the_class %>">  <%= link_to(label_name(:schedules_create) , new_schedule_url) if current_user.is_manager? %></li>
 
 <% 
 		else 
@@ -119,13 +119,13 @@ if current_user
         <li class="<%= the_class %>">  <%#= link_to_controller(label_name(:my_debit)) %></li>
         <li class="<%= the_class %>">  <%#= link_to_controller_action(label_name(:my_credit) , '')) %></li>
         <li class="<%= the_class %>">  <%#= link_to_controller_list(label_name(:my_payment))) %></li>
-		<li class="<%= the_class %>">  <%#= link_to_new(label_name(:create_payment))) %></li>
+		<li class="<%= the_class %>">  <%#= link_to_new(label_name(:payments_create))) %></li>
 <%
 	when 'markers' 
 %>		
 		<li class="<%= the_class %>">  <%= link_to(label_name(:list_marker) , marker_list_path) if current_user.is_manager? %></li>	
 		<li class="<%= the_class %>">  <%= link_to(label_name(:markers) , markers_url) %></li>
-		<li class="<%= the_class %>">  <%= link_to(label_name(:create_marker) , new_marker_url) %></li>
+		<li class="<%= the_class %>">  <%= link_to(label_name(:markers_create) , new_marker_url) %></li>
 <%
 	when 'messages' 		
 %>
@@ -133,7 +133,7 @@ if current_user
 	  	<%= list_link_with_active(label_name(:message_sent), sent_messages_path) %>
 	  	<%= list_link_with_active(label_name(:trash), trash_messages_path) %>
 
-		<li class="<%= the_class %>">  <%= link_to(label_name(:create_message), new_message_path) %></li>
+		<li class="<%= the_class %>">  <%= link_to(label_name(:messages_create), new_message_path) %></li>
 <% 
 	end
 %>

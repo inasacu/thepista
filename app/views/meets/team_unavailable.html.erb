@@ -1,0 +1,51 @@
+<% a_roster = !(@meet.the_unavailable.empty?) %>
+
+<div class="block">
+
+	<%= render :partial => 'secondary_navigation' %>  
+
+	<div class="content">   
+
+		<h2 class="title">
+			<%= a_roster ? label_name(:unavailable) : label_name("#{get_the_controller}_#{label_name(:unavailable)}") %>
+		</h2>
+
+		<div class="inner">
+<% 
+	if a_roster
+%>
+		<%= render :partial => '/meets/team_roster_box', 
+					:locals => {:previous_show => @previous, :next_show => @next, :roster => label_name(:unavailable), 
+								:meet => @meet, :the_roster => @meet.the_unavailable, 
+								:match_type => @match_type} %>
+<% 
+	end 
+%>
+		</div>
+	</div>
+</div>
+
+	<% content_for :sidebar, render(:partial => '/meets/sidebar_show') if @meet -%>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

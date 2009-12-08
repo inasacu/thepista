@@ -14,7 +14,6 @@
 %>
 		<li><%= link_to(label_name(:send_message_to_tournament), new_message_path(:id => @tournament.all_the_managers.first)) %></li>
 <%
-		# unless current_user.has_pending_petition?(current_user) 
 		unless current_user.has_tournament_petition?(current_user, @tournament)
 			the_label = label_with_name('add_to_tournament', @tournament.name)
 			the_confirmation = "#{ label_name(:petition_to_join_tournament) } #{current_user.name} #{ label_name(:to) } #{@tournament.name}?"
@@ -33,8 +32,9 @@
 	if current_user.is_manager_of?(@tournament)
 		the_label = label_with_name('create_meet', @tournament.name)
 		the_confirmation = "#{ label_name(:destroy_tournament) } #{ label_name(:to) } #{@tournament.name}?" 
-%>                    
-		<li><%#= link_to label_name(:create_meet), new_meet_path(:id => @tournament.id) %></li>
+%>              
+		<li><%= link_to label_name(:rounds_create), new_round_path(:id => @tournament) %></li>      
+		<li><%#= link_to label_name(:meets_create), new_meet_path(:id => @tournament.id) %></li>
 		<li><%= link_to(label_name('tournaments_edit'), edit_tournament_path(@tournament)) if current_user.is_manager_of?(@tournament) %></li>  
 		<li><%#= link_to(control_label('destroy'), 
 				{:controller => 'tournaments', :action => 'destroy', :id => @tournament}, 

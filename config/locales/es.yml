@@ -108,38 +108,35 @@ es:
      could_not_log_you: No se ha podido iniciar la sesión en la que como   
      could_not_setup_account: "No pudimos crear la cuenta, lo sentimos!"   
      country: Pais   
+     
      create: Nuevo   
      create_address: Nueva Dirección   
      create_announcement: Nuevo Anuncio   
      create_credit: Nuevo Pago   
      create_debit: Nuevo Cargo   
      create_description: Nuevo Detalles   
-     create_fee: Nuevos Cargos   
      create_festival: Nuevo Acondiciónamiento   
-     create_group: Nuevo Equipo   
      create_information: Nuevo Detalles   
      create_invitation: Manda una Invitación   
      create_manager: Nuevo Mister   
-     create_map: Nuevo Mapa   
-     create_marker: Nuevo Centro Deportivo   
-     create_match: Nuevo Resultado   
-     create_message: Manda un Mensaje   
+ 
      create_name: Nuevo Nombre   
      create_note: Nueva Nota   
-     create_payment: Nuevo Pago   
      
      create_profile: Nuevo perfil   
      create_reminder: Nuevo Recordatorio   
      create_role: Nueva Responsabilidad   
-     create_schedule: Nuevo Evento   
-     create_scorecard: Nueva Clasificación   
+     # create_round: Nueva Fase de Torneo
+     # create_schedule: Nuevo Evento   
+     # create_scorecard: Nueva Clasificación   
      create_sport: Nuevo Deporte   
-     create_tournament: Nuevo Torneo   
+     # create_tournament: Nuevo Torneo   
      create_type: Nuevo Tipo   
      create_url_venue: nuevo marcador para indicar donde vas a jugar   
      create_user: Invita a un Amigo   
      create_venue: Nuevo Centro Deportivo   
      create_your_own: Crear tu propio    
+     
      created: se ha creado correctamente.   
      created_at:  Fecha de Creación
      created_a_schedule: a añadido un evento   
@@ -693,6 +690,7 @@ es:
      petition_no:  Ninguna Petición para mostrar.
      petition_to_join_group: Petición para unirse a 
      petition_to_join_tournament: Petición para unirse a
+     petition_to_join_round: Petición para unirse a
      petition_pending: Peticiones Pendiente   
      petition_to_join: Petición para unirse a 
      petitions: Peticiones 
@@ -741,7 +739,9 @@ es:
      previous_ranking_full: Ranking Previo
      previous_schedule: Anterior Evento   
      previous_schedules: Anteriores Eventos
-     
+     previous_meet: Anterior Evento de Torneo  
+     previous_meets: Anteriores Eventos de Torneo
+         
      previous_profile_set:  Actualizar Perfiles.
      previous_profile_set_full:  Obtener los perfiles de la previa jornada.
      pricing:  Precios
@@ -808,6 +808,8 @@ es:
      roles: Responsabilidades   
      roster: Convocado   
      rosters: Convocados   
+     round:  Fase de Torneo
+     rounds:  Fases de Torneos
      # Saturday: Sabado
      save: Guardar   
      schedule: Evento   
@@ -869,6 +871,7 @@ es:
      send_message: Manda Mensaje 
      send_message_to_group: Manda un Mensaje  
      send_message_to_tournament: Manda un Mensaje 
+     send_message_to_round: Manda un Mensaje
      
      send_name: Manda un Nombre   
      send_note: Manda una Nota   
@@ -999,7 +1002,8 @@ es:
      to_join_group: Unirte a un equipo   
      to_join_group_message: Petición para unirte a 
      to_join_group_message_sent: Petición para unirte a sido emviada.
-     to_join_tournament: Unirte a un Torneo   
+     to_join_tournament: Unirte a un Torneo 
+     to_join_round: Unirte a un Torneo  
      to_leave_group_message: Petición para desapuntarte de
      to_leave_group_message_sent: Petición para desapuntarte a sido enviada.
      to_member_of: Para los miembros de   
@@ -1030,6 +1034,8 @@ es:
      upcoming_festival: Próximos Acondiciónamientos   
      upcoming_schedule: Próximo Evento   
      upcoming_schedules: Próximos Eventos 
+     upcoming_meet: Próximo Evento de Torneo  
+     upcoming_meets: Próximos Eventos de Torneo
      
      update: Actualiza   
      update_address: Actualiza la Dirección   
@@ -1271,7 +1277,7 @@ es:
      groups_search_to_join: Puedes Buscar un equipo a quien unierte. 
      groups_show:  Mostrar Equipo
      groups_update: Modificar Equipo
-
+ 
      markers_create: Nuevo Centro Deportivo
      markers_index:  Centros Deportivos
      markers_index_option: Opciones de Centro Deportivo
@@ -1282,7 +1288,29 @@ es:
      markers_show: Mostrar Centro Deportivo
      
      matches_edit:  Resultados
-     
+
+     meets_archive_list:  Temporada Anterior
+     meets_create:  Nuevo Evento de Torneo  
+     meets_destroy:  Borrar Evento de Torneo  
+     meets_index:  Eventos de Torneo  
+     meets_index_option: Opciones del Evento de Torneo  
+     meets_invitations_create:  Invita a un Amigo al Evento de Torneo  
+     meets_list:  Anteriores Eventos de Torneo  
+     meets_list_no: Ningun Evento de Torneo previo para mostrar.
+     meets_manager_option:  Requiere responsable de equipo para ver mas opciones.
+     meets_new: Nuevo Evento de Torneo  
+     meets_no: Ningun Evento de Torneo para mostrar.
+     meets_edit: Modificar Evento de Torneo  
+     meets_update: Modificar Evento de Torneo  
+     meets_option:  Opciones de Evento de Torneos
+     meet_options:  Opciones de Evento de Torneo  
+     meets_show: Detalles Del Evento de Torneo
+     meet_ausentes:  Ningun Ausente para mostrar.
+     meet_convocados:  Ningun Convocado para mostrar.
+     meet_excess_player:  Demasiados Jugadores Convocados
+     meet_ultima_hora:   Ninguno en Ultima Hora para mostrar.
+     meet_no_disponible:  Ninguno no Disponible para mostrar.
+         
      message_delete: Borra este mensaje
      message_options: Opciones de Mensaje  
      message_reply:  Responde
@@ -1291,7 +1319,7 @@ es:
      message_sent: Mensajes Enviados
      message_trash:  Borrar Mensaje
      message_untrash: Recuperar   
-     messages_create:  Nuevo Mensaje
+     messages_create:  Manda un Mensaje
      messages_inbox:  Mensajes Recibidos
      messages_index:  Mensajes
      messages_index_option: Opciones de Mensaje
@@ -1367,7 +1395,42 @@ es:
      roles_index:   Responsabilidades
      roles_maximo_option:  Requiere responsable de administrador para ver mas opciones.
      roles_option:  Opciones de Responsabilidades
- 
+
+     round_options:  Opciones de Fases de Torneo
+     round_starts_ends_at:  Fechas de Fase de Torneo
+     rounds_create:  Nueva Fase de Torneo 
+     rounds_destroy:  Borrar Fase de Torneo 
+     rounds_edit:  Modificar Fase de Torneo 
+     rounds_index:  Fases de Torneo 
+     rounds_index_option: Opciones de Fases de Torneo
+     rounds_invitations_create:  Invita a un Amigo a la Fase de Torneo
+     rounds_join:  Unete a la Fase de Torneo
+     rounds_list:  Resto de la Fase de Torneo
+     rounds_new:  Nueva Fase de Torneo 
+     rounds_new_option: Opciones de Nuevo Fase de Torneo 
+     rounds_no:  Ninguna Fase de Torneo para mostrar.
+     rounds_none:  Ninguna Fase de Torneo.
+     rounds_options_without: "Que opciones tienes ya que no tienes una fase de torneo?"
+     rounds_option:  Opciones de Fase de Torneo
+     rounds_search: Busqueda de Fases de Torneos
+     rounds_search_to_join: Puedes Buscar una Fase de Torneo al cual unierte. 
+     rounds_show:  Mostrar Fase de Torneo
+     rounds_update: Modificar Fase de Torneo
+      
+     rounds_name_description:  Nombre de la Fase de Torneo
+     groups_name_description:  Nombre del Equipo
+     markers_name_description:  Nombre del Centro Deportivo
+     roles_name_description:  Nombre del Role
+     sports_name_description:  Nombre del Deporte
+     tournaments_name_description:  Nombre del Torneo
+     types_name_description:  Nombre de Tipo
+     users_name_description:  Nombre del Jugador
+
+     fees_concept_description:  Concepto del Cargo
+     payments_concept_description:  Concepto del Pago
+     schedules_concept_description:  Concepto del Evento
+     meets_concept_description:  Concepto del Evento de Torneo 
+     
      sport: Deporte
      sport_id: Deporte    
      sports: Deportes 
@@ -1405,10 +1468,10 @@ es:
      tournaments_options_without: "Que opciones tienes ya que no tienes un torneo?"
      tournaments_option:  Opciones de Torneo
      tournaments_search: Busqueda de Torneos
-     tournaments_search_to_join: Puedes Buscar un Torneo a quien unierte. 
+     tournaments_search_to_join: Puedes Buscar un Torneo al cual unierte. 
      tournaments_show:  Mostrar Torneo
      tournaments_update: Modificar Torneo
-     
+          
      types_index:  Tipos
      types_maximo_option:  Requiere responsable de administrador para ver mas opciones.
      types_option:  Opciones de Tipos
