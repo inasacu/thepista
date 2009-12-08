@@ -1,5 +1,11 @@
 class CreateTournaments < ActiveRecord::Migration
   def self.up
+    # remote table
+    drop_table :tournaments
+    drop_table :tournaments_users  
+    drop_table :rounds
+    drop_table :meets
+        
     create_table :tournaments do |t|      
       t.string      :name,                  :limit => 150      
       t.text        :description   
