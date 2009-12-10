@@ -77,6 +77,12 @@
 	<%= tr_td_action(:jornada, @schedule.jornada) %>
 	<%= tr_td_action(:starts_at, nice_day_of_week(@schedule.starts_at)) %>
 	<%= tr_td_action(:ends_at, nice_day_of_week(@schedule.ends_at)) %>
+		
+	<tr>
+		<%= content_tag :td,"#{label_name(:schedule_rate)}", :class => "label" %>
+		<%= content_tag :td, ratings_for(@schedule, :dimension => :performance), :class => get_the_action %>
+	</tr>	
+	
 	<%= tr_td_action(:season, @schedule.season) %>
 	<%= tr_td_action(:sport, @schedule.sport.name) %>
 	<%= tr_td_action(:fee_per_game, number_to_currency(@schedule.fee_per_game)) %>

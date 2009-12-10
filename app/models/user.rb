@@ -1,6 +1,9 @@
 class User < ActiveRecord::Base
 
    include ActivityLogger
+   
+   ajaxful_rater
+   
 
    has_friendly_id :name, :use_slug => true, 
                    :reserved => ["new", "create", "index", "list", "signup", "edit", "update", "destroy", "show", "petition"]

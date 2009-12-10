@@ -1,6 +1,6 @@
 class Match < ActiveRecord::Base
     
-  acts_as_rateable
+  # acts_as_rateable
     
   belongs_to      :user
   belongs_to      :group

@@ -150,9 +150,6 @@ if current_user == match.user or current_user.is_manager_of?(@meet.group) and @m
 end
 %>
 
-<%#= render :partial => 'ratings/rate', 
-		   :locals => { :asset => match } unless match.user == current_user or !@meet.played? or match.type == 1 %>
-
 </td>
 </tr>          
 <% 

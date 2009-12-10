@@ -34,6 +34,24 @@ class SchedulesController < ApplicationController
     end
   end
   
+  def rate
+    @schedule = Schedule.find(params[:id])
+    
+    unless current_user.is_member_of?(@schedule.group)
+      flash[:warning] = I18n.t(:unauthorized)
+      redirect_back_or_default('/show')
+      return
+    end
+    
+    @schedule.rate(params[:stars], current_user, params[:dimension])
+    id = "ajaxful-rating-#{!params[:dimension].blank? ? "#{params[:dimension]}-" : ''}schedule-#{@schedule.id}"
+    render :update do |page|
+      page.replace_html id, ratings_for(@schedule, :wrap => false, :dimension => params[:dimension])
+      page.visual_effect :highlight, id
+    end
+  end
+  
+  
   # def search
   #   count = Schedule.count_by_solr(params[:search])
   #   @schedules = Schedule.paginate_all_by_solr(params[:search], :page => params[:page], :total_entries => count, :limit => 25, :offset => 1)

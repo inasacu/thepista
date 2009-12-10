@@ -1,6 +1,9 @@
 class Schedule < ActiveRecord::Base
 
   include ActivityLogger
+  
+  ajaxful_rateable :stars => 5, :dimensions => [:performance]
+  
 
   acts_as_solr :fields => [:concept, :description, :time_zone, :starts_at]  if use_solr? 
 

@@ -992,20 +992,29 @@ es:
      thread_message: Mensaje (s)   
      Thursday: Jueves   
      time_zone_description: (Zona donde tienes interes en practicar algun deporte...)   
-     title: Título   
+     # title: Título   
      to: a   
      to_email: Email del Amigo   
     
      to_join: Únirse a   
-     to_join_email: para unirse   
+     to_join_email: para unirse a 
      to_join_festival: Unirte a un Festivo   
      to_join_group: Unirte a un equipo   
      to_join_group_message: Petición para unirte a 
-     to_join_group_message_sent: Petición para unirte a sido emviada.
+     to_join_group_message_sent: Petición para unirte a sido enviada.
      to_join_tournament: Unirte a un Torneo 
      to_join_round: Unirte a un Torneo  
      to_leave_group_message: Petición para desapuntarte de
      to_leave_group_message_sent: Petición para desapuntarte a sido enviada.
+  
+     to_join_tour: Unirte a un equipo   
+     to_join_tour_message: Petición para unirte a 
+     to_join_tour_message_sent: Petición para unirte a sido emviada.
+     to_join_tournament: Unirte a un Torneo 
+     to_join_round: Unirte a un Torneo  
+     to_leave_tour_message: Petición para desapuntarte de
+     to_leave_tour_message_sent: Petición para desapuntarte a sido enviada.
+          
      to_member_of: Para los miembros de   
      to_message: A   
      to_payment: Pago de   
@@ -1353,6 +1362,7 @@ es:
      schedule_excess_player:  Demasiados Jugadores Convocados
      schedule_ultima_hora:   Ninguno en Ultima Hora para mostrar.
      schedule_no_disponible:  Ninguno no Disponible para mostrar.
+     schedule_rate: Valoración del Evento
 
      scorecard_list:  Clasificaciones Anteriores
      scorecards_list:  Clasificaciones Anteriores
@@ -1497,3 +1507,12 @@ es:
     
      true: "Si"
      false: "No"
+          
+     # ajaxful_rating:
+     #   stars:
+     #     current_average: "Current rating: {{average}}/{{max}}"
+     #     title:
+     #       one: "1 star out of {{total}}"
+     #       other: "{{count}} stars out of {{total}}"
+           
+           

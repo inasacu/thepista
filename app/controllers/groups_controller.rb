@@ -4,7 +4,12 @@ class GroupsController < ApplicationController
   before_filter :has_manager_access, :only => [:edit, :update, :destroy]
 
   def index
-    @groups = current_user.groups.paginate :page => params[:page], :order => 'name'  
+    @groups = current_user.groups.paginate :page => params[:page], :order => 'name' 
+     
+    if @groups.nil? or @groups.blank?
+      redirect_to :action => 'list'
+      return
+    end
   end
 
   def list

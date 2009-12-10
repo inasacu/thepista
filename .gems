@@ -11,4 +11,5 @@ contacts
 friendly_id
 sitemap_generator
 newrelic_rpm
+edgarjs-ajaxful_rating --source http://gems.github.com
 

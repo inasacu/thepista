@@ -106,6 +106,8 @@ ActionController::Routing::Routes.draw do |map|
   map.resources   :connections
   map.resources   :ratings,                                               :member => { :rate => :put }
   
+  map.resources   :schedules,                                             :member => { :rate => :post }
+  
   map.resources   :users do |user|
     user.resources :messages
   end

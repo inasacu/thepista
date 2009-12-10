@@ -5,14 +5,15 @@ class Teammate < ActiveRecord::Base
   belongs_to :group, :class_name => "Group", :foreign_key => "group_id"
   validates_presence_of :user_id, :manager_id
   
-  before_create :make_teammate_code  
+  before_create :make_teammate_code 
+  after_create  :send_manager_join
+  before_destroy :send_manager_leave 
   
   def self.create_teammate_join_team(group, mate, manager)
     @role_user = RolesUsers.find_team_manager(group)
     @manager = User.find(@role_user.user_id)
     Teammate.join(mate, manager, group)
-    @teammate = Teammate.find_by_user_id_and_group_id(mate, group)
-    
+    @teammate = Teammate.find_by_user_id_and_group_id(mate, group)    
   end
   
   def self.create_teammate_leave_team(group, leave_user)
@@ -99,6 +100,26 @@ class Teammate < ActiveRecord::Base
   end
     
   private
+  
+  def send_manager_join
+    @send_mail ||= self.manager.teammate_notification?   
+    return unless @send_mail 
+    
+    if self.status == "pending"
+      # UserMailer.deliver_teammate_join(self, self.manager, self.user) unless self.group.nil?        
+     UserMailer.send_later(:deliver_teammate_join, self, self.manager, self.user) unless self.group.nil?       
+    end       
+  end
+  
+  def send_manager_leave 
+    @send_mail ||= self.manager.teammate_notification?   
+    return unless @send_mail 
+      
+    if self.status == "pending"
+      # UserMailer.deliver_teammate_leave(self, self.user, self.manager) unless self.group.nil?        
+       UserMailer.send_later(:deliver_teammate_leave, self, self.user, self.manager) unless self.group.nil?       
+    end       
+  end 
   
   # Update the db with one side of an accepted teammates request.
   def self.accept_one_side(user, manager, accepted_at)

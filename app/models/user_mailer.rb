@@ -16,25 +16,27 @@ class UserMailer < ActionMailer::Base
     recipients    user.email  
     sent_on       Time.zone.now  
     body          :edit_password_reset_url => edit_password_reset_url(user.perishable_token)  
-  end  
-
-  def manager_join(mail)
-    subject       "[HayPista] #{I18n.t(:to_join_group_message) } " + mail[:group].name
-    from          "#{mail[:user].name} <#{mail[:user].email}>"
-    recipients    mail[:email]
-    body          mail
-    sent_on       Time.zone.now
-    content_type  "text/html"
   end 
-
-  def manager_leave(mail)
-    subject       "[HayPista] #{I18n.t(:to_leave_group_message)}  " + mail[:group].name
-    from          "#{mail[:user].name} <#{mail[:user].email}>"
-    recipients    mail[:email]
-    body          mail
-    sent_on       Time.zone.now
-    content_type  "text/html"
+  
+  def teammate_join(teammate, recipient, sender)
+    @subject          = "[HayPista] #{I18n.t(:request_petition)} #{I18n.t(:to_join_email)} - #{teammate.group.name} " 
+    @recipients       = recipient.email
+    @from             = "#{sender.name} <#{sender.email}>"
+    @sent_on          = Time.zone.now
+    @body[:teammate]  = teammate
+    @body[:user]      = sender
+    @body[:group]     = teammate.group
+    @content_type     = "text/html"
   end 
+  
+  def teammate_leave(teammate, recipient, sender)
+    @subject          = "[HayPista] #{I18n.t(:petition_to_join_declined)} - #{teammate.group.name} " 
+    @recipients       = recipient.email
+    @from             = "#{sender.name} <#{sender.email}>"
+    @sent_on          = Time.zone.now
+    @body[:group]     = teammate.group
+    @content_type     = "text/html"
+  end
 
   def message_blog(recipient, user, message)
     @recipients = recipient.email

@@ -5,7 +5,7 @@
   <tr>
     <td style="width:1%; color:#999999; vertical-align: top;">•&nbsp;</td>
     <td>
-      <a href="<%= @group_url %>" title="<%= @group.name %>"><%= @group.name %></a><br/>          
+		<%= link_to(@group.name, {:host => 'haypista.com', :controller => 'groups', :action => 'show', :id => @group}, :title => @group.name) %><br/>          
     </td>
   </tr>
   
