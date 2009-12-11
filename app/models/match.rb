@@ -1,13 +1,10 @@
 class Match < ActiveRecord::Base
-    
-  # acts_as_rateable
-    
+          
   belongs_to      :user
   belongs_to      :group
   belongs_to      :schedule
   belongs_to      :convocado, :class_name => "User", :foreign_key => "user_id"  
   belongs_to      :type,      :conditions => "table_type = 'Match'"
-  # belongs_to      :invite,    :class_name => "Group", :foreign_key => "invite_id"
   
   belongs_to      :position,  
                   :class_name => "Type", 
@@ -17,9 +14,6 @@ class Match < ActiveRecord::Base
   # validations  
   validates_numericality_of :technical,    :greater_than_or_equal_to => 0, :less_than_or_equal_to => 5
   validates_numericality_of :physical,     :greater_than_or_equal_to => 0, :less_than_or_equal_to => 5
-  
-  # validates_presence_of         :description
-  # validates_length_of           :description,                     :within => DESCRIPTION_RANGE_LENGTH
   
   # variables to access
   attr_accessible :name, :schedule_id, :user_id, :group_id, :invite_id, :group_score, :invite_score, :goals_scored

@@ -15,6 +15,7 @@ LAST_THREE_DAYS = Time.zone.now - 3.days..Time.zone.now + 1.day
 
 TIME_AGO_FOR_MOSTLY_ACTIVE = 1.month.ago
 TRASH_TIME_AGO = 1.month.ago
+ACTIVITY_TIME_AGO = 6.months.ago
 
 # variable for pagination
 BLOGS_PER_PAGE = 8
