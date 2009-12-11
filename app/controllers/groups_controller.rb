@@ -107,8 +107,9 @@ class GroupsController < ApplicationController
   private
   def get_group
     @group = Group.find(params[:id])    
-    # redirect_to @group, :status => 301 if @group.has_better_id?
+    redirect_to @group, :status => 301 if @group.has_better_id?
   end
+  
   def has_manager_access
     unless current_user.is_manager_of?(@group)
       flash[:warning] = I18n.t(:unauthorized)

@@ -104,8 +104,7 @@ ActionController::Routing::Routes.draw do |map|
   map.resources   :meets,           :as => 'acontecimiento',              :collection => { :list => :get, :search => :get }
   
   map.resources   :connections
-  map.resources   :ratings,                                               :member => { :rate => :put }
-  
+  # map.resources   :ratings,                                               :member => { :rate => :put }  
   map.resources   :schedules,                                             :member => { :rate => :post }
   
   map.resources   :users do |user|
