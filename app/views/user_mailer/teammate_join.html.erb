@@ -17,8 +17,20 @@
   <tr>
     <td style="width:1%; color:#999999; vertical-align: top;">&nbsp;</td>
     <td style="width:99%">
+	<% 
+		join_accept = ""
+		join_decline = ""
+		
+		if @teammate.group
+			join_accept = "join_team_accept"
+			join_decline = "join_team_decline"
+		elsif @teammate.tournament
+			join_accept = "join_tour_accept"
+			join_decline = "join_tour_decline"
+		end
+	%>
 		<%= link_to(I18n.t(:accept_player), 
-			{:host => 'thepista.local', :controller => 'teammates', :action => 'join_team_accept', :id => @teammate}) %>
+			{:host => 'thepista.local', :controller => 'teammates', :action => join_accept, :id => @teammate}) %>
 	</td>
   </tr>
 	<br />
@@ -26,7 +38,7 @@
     <td style="width:1%; color:#999999; vertical-align: top;">&nbsp;</td>
     <td style="width:99%">
 		<%= link_to(I18n.t(:deny_player), 
-				{:host => 'thepista.local', :controller => 'teammates', :action => 'join_team_decline', :id => @teammate}) %>
+				{:host => 'thepista.local', :controller => 'teammates', :action => join_decline, :id => @teammate}) %>
 	</td>
   </tr>
 	<br />

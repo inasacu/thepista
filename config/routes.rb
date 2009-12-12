@@ -23,7 +23,11 @@ ActionController::Routing::Routes.draw do |map|
   map.leave_team		  	    'teammates/:id/leave_team/:teammate',    	    :controller => 'teammates',       :action => 'leave_team'
   map.join_team_accept	    'teammates/:id/join_team_accept/',            :controller => 'teammates',       :action => 'join_team_accept'
   map.join_team_decline	    'teammates/:id/join_team_decline/',           :controller => 'teammates',       :action => 'join_team_decline'  
-
+  map.join_tour   			    'teammates/:id/join_tour/:teammate',    	    :controller => 'teammates',       :action => 'join_tour'
+  map.leave_tour		  	    'teammates/:id/leave_tour/:teammate',    	    :controller => 'teammates',       :action => 'leave_tour'
+  map.join_tour_accept	    'teammates/:id/join_tour_accept/',            :controller => 'teammates',       :action => 'join_tour_accept'
+  map.join_tour_decline	    'teammates/:id/join_tour_decline/',           :controller => 'teammates',       :action => 'join_tour_decline'
+  
   map.set_manager     	    'users/:id/set_manager/:group',    		        :controller => 'users',    		    :action => 'set_manager'
   map.remove_manager  	    'users/:id/remove_manager/:group', 		        :controller => 'users',     	    :action => 'remove_manager'
   map.set_sub_manager     	'users/:id/set_sub_manager/:group',    		    :controller => 'users',    		    :action => 'set_sub_manager'

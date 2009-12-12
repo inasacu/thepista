@@ -3,11 +3,7 @@ class CreateRounds < ActiveRecord::Migration
     create_table :rounds do |t|
         t.string      :name,                  :limit => 150    
         t.integer     :tournament_id
-        
-        t.integer     :jornada,               :default => 1
-          
-        t.text        :description 
-        t.text        :conditions
+        t.integer     :phase,               :default => 1
 
         t.boolean     :archive,               :default => false
         t.datetime    :deleted_at

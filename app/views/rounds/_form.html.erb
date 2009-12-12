@@ -9,22 +9,10 @@
   </div>
 
   <div class="group">
-    <%= f.label :jornada, label_name('jornada'), :class => :label %>
-    <%= f.text_field :jornada, :class => 'textscore' %><br />
-    <span class="description"><%= label_name('jornada', 'description') %></span>
+    <%= f.label :phase, label_name('phase'), :class => :label %>
+    <%= f.text_field :phase, :class => 'textscore' %><br />
+    <span class="description"><%= control_label('phase_description') %></span>
   </div>
-
-  <!-- <div class="group">
-    <%#= f.label :description, label_name('description'), :class => :label %>
-    <%#= f.text_area :description, :class => 'text_area' %><br />
-    <span class="description"><%#= label_name('description') %></span>
-  </div> -->
-
-  <!-- <div class="group">
-    <%#= f.label :conditions, label_name('conditions'), :class => :label %>
-    <%#= f.text_area :conditions, :class => 'text_area' %><br />
-    <span class="description"><%#= label_name('conditions') %></span>
-  </div> -->
 
   </div>
 

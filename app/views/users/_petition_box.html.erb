@@ -21,7 +21,8 @@
 		</td>
 		
 		<td>
-			<%= group_link teammate.group %>
+			<%= group_link teammate.group if teammate.group %>
+			<%= tournament_link teammate.tournament if teammate.tournament %>
 		</td>
 
 		<td>
@@ -29,15 +30,27 @@
 		</td>
 
 		<td>
-			<%= label_name('petition_to_join') %>&nbsp;<%= group_link teammate.group %>
+			<%= label_name(:petition_to_join) %>&nbsp;
+				<%= group_link teammate.group if teammate.group %>
+				<%= tournament_link teammate.tournament if teammate.tournament %>
 		</td>			  
 
 		<td class="last">
-			<% if current_user.is_manager_of?(teammate.group) %>			
-				<%= link_to label_name('petition_join_team_accept'), join_team_accept_path(:id => teammate.id) %>
-				<%= "  /  " %>
-			<% end %>
-			<%= link_to label_name('petition_join_team_decline'), join_team_decline_path(:id => teammate.id) %>		
+			<% if teammate.group %>	
+				<% if current_user.is_manager_of?(teammate.group) %>		
+					<%= link_to label_name(:petition_join_team_accept), join_team_accept_path(teammate) %>
+					<%= "  /  " %>
+				<% end %>	
+
+				<%= link_to label_name(:petition_join_team_decline), join_team_decline_path(teammate) %>		
+			<% elsif teammate.tournament %>
+				<% if current_user.is_tour_manager_of?(teammate.tournament) %>		
+					<%= link_to label_name(:petition_join_team_accept), join_tour_accept_path(teammate) %>
+					<%= "  /  " %>
+				<% end %>
+
+				<%= link_to label_name(:petition_join_team_decline), join_tour_decline_path(teammate) %>
+			<% end %>		
 		</td>	
 
 	</tr>

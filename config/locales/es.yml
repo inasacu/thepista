@@ -708,6 +708,7 @@ es:
      team_petition: Solicitud de Equipo
      error_petition_to_join: Error en la petición para unirse a
 
+     phase:  Fase
      phone: Teléfono   
      phone_description: (Por si te tiene que llamar tu equipo. Hay opción de poner este numero en privado...)   
      photo: Foto 
@@ -872,6 +873,7 @@ es:
      send_message_to_group: Manda un Mensaje  
      send_message_to_tournament: Manda un Mensaje 
      send_message_to_round: Manda un Mensaje
+     send_message_to_meet: Manda un Mensaje
      
      send_name: Manda un Nombre   
      send_note: Manda una Nota   
@@ -1009,7 +1011,7 @@ es:
   
      to_join_tour: Unirte a un equipo   
      to_join_tour_message: Petición para unirte a 
-     to_join_tour_message_sent: Petición para unirte a sido emviada.
+     to_join_tour_message_sent: Petición para unirte a sido enviada
      to_join_tournament: Unirte a un Torneo 
      to_join_round: Unirte a un Torneo  
      to_leave_tour_message: Petición para desapuntarte de
@@ -1207,6 +1209,7 @@ es:
      invitations_create_group: Nueva Invitación al equipo
      invitations_create_schedule: Nueva Invitación al evento
      invitations_create_tournament: Nueva Invitación al Tourneo
+     invitations_create_meet: Nueva Invitación al Tourneo
      invitations_sent:  Invitaciones Mandadas
 
      # ie_no_more
@@ -1415,6 +1418,7 @@ es:
      rounds_index_option: Opciones de Fases de Torneo
      rounds_invitations_create:  Invita a un Amigo a la Fase de Torneo
      rounds_join:  Unete a la Fase de Torneo
+     rounds_phase_description:  Numero de la Fase del Torneo
      rounds_list:  Resto de la Fase de Torneo
      rounds_new:  Nueva Fase de Torneo 
      rounds_new_option: Opciones de Nuevo Fase de Torneo 
@@ -1470,6 +1474,7 @@ es:
      tournaments_index_option: Opciones de Torneo
      tournaments_invitations_create:  Invita a un Amigo al Torneo
      tournaments_join:  Unete al Torneo
+     tournaments_joined:  Fecha de Inscripción
      tournaments_list:  Resto de Torneo
      tournaments_new:  Nuevo Torneo
      tournaments_new_option: Opciones de Nuevo Torneo

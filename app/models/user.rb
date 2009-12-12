@@ -246,6 +246,14 @@ class User < ActiveRecord::Base
       def is_tour_manager_of?(tournament)
         self.has_role?('manager', tournament) or self.has_role?('creator', tournament)
       end
+
+      def is_tour_sub_manager_of?(tournament)
+        self.has_role?('sub_manager', tournament) or self.has_role?('manager', tournament)
+      end
+
+      def is_tour_subscriber_of?(tournament)
+        self.has_role?('subscription', tournament) 
+      end
         
       def is_manager_of?(group)
         self.has_role?('manager', group) or self.has_role?('creator', group)

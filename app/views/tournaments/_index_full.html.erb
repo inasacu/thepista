@@ -40,7 +40,6 @@
 
 			<td>
 				<%= I18n.t(:has_tournament_users, :count => object_counter(tournament.users)) %><br />
-				<%#= I18n.t(:has_tournament_meets, :count => object_counter(tournament.meets)) %>
 			</td>
 
 			<td class="name_and_date">
@@ -60,14 +59,10 @@
 							the_label = label_with_name('add_to_tournament', tournament.name)
 							the_confirmation = "#{ label_name(:petition_to_join_tournament) } #{current_user.name} #{ label_name(:to) } #{tournament.name}?"
 					%> 
-							<%= link_to(the_label, join_team_path(:id => tournament.id, :teammate => current_user.id), :confirm => the_confirmation) %>
+							<%= link_to(the_label, join_tour_path(:id => tournament, :teammate => current_user), :confirm => the_confirmation) %>
 					<% 	end 
 					   end
 					-%>
-				
-					<% if current_user.is_tour_manager_of?(tournament) %> 
-						<%#= link_to label_name(:meets_create), new_meet_path(:id => tournament.id)  %><br />
-			        <% end %>
 					
 				</span>
 	       </td>

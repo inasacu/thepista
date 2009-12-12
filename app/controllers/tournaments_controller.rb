@@ -5,6 +5,11 @@ class TournamentsController < ApplicationController
   
   def index
     @tournaments = current_user.tournaments.paginate :page => params[:page], :order => 'name'  
+     
+    if @tournaments.nil? or @tournaments.blank?
+      redirect_to :action => 'list'
+      return
+    end
   end
 
   def list

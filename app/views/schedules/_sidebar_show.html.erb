@@ -5,28 +5,28 @@
 <ul class="navigation">
 <%	
 	if current_user.is_member_of?(@group)  %> 
-		<li><%= link_to label_name(:send_message_to_group), new_message_path(:group_id => @group.id) %></li>		
-		<li><%= link_to(label_name(:invitations_create_schedule) , new_invitation_url(:schedule_id => @schedule.id)) %></li>
+		<li><%= link_to label_name(:send_message_to_group), new_message_path(:group_id => @group) %></li>		
+		<li><%= link_to(label_name(:invitations_create_schedule) , new_invitation_url(:schedule_id => @schedule)) %></li>
 <% 
 	end 
 	
 	if current_user.is_sub_manager_of?(@group) %> 
-		<li><%= link_to label_name(:send_pre_match), new_message_path(:schedule_id => @schedule.id) unless @schedule.played? %></li>
-		<li><%= link_to label_name(:send_match), new_message_path(:match_id => @schedule.matches.first.id) if @schedule.played? %></li>
-		<li><%= link_to label_name(:send_scorecard), new_message_path(:scorecard_id => @schedule.id) %></li>
+		<li><%= link_to label_name(:send_pre_match), new_message_path(:schedule_id => @schedule) unless @schedule.played? %></li>
+		<li><%= link_to label_name(:send_match), new_message_path(:match_id => @schedule.matches.first) if @schedule.played? %></li>
+		<li><%= link_to label_name(:send_scorecard), new_message_path(:scorecard_id => @schedule) %></li>
 <% 
 	end 
 	
 	if current_user.is_manager_of?(@group) 
 		the_confirmation = "#{ label_name(:destroy_schedule) } #{ label_name(:from) } #{@group.name}?" 
 %> 
-		<li><%= link_to control_label('create'), new_schedule_path(:id => @schedule.group.id)  unless @schedule.last_season?(current_user) %></li>
+		<li><%= link_to control_label('create'), new_schedule_path(:id => @schedule.group)  unless @schedule.last_season?(current_user) %></li>
 		<li><%= link_to control_label('edit'), edit_schedule_path(@schedule) unless @schedule.last_season?(current_user) %></li>  
 		<%  unless get_the_controller == 'topic' %> 
 		<li><%= link_to control_label('destroy'), schedule_path(@schedule), :method => :delete, 
 					:confirm => label_name(:are_you_sure) unless @schedule.played? %></li>
 		<% end %>
-		<li><%= link_to label_name(:matches), edit_match_path(@schedule.matches.first.id)  unless @schedule.last_season?(current_user) %></li>
+		<li><%= link_to label_name(:matches), edit_match_path(@schedule.matches.first)  unless @schedule.last_season?(current_user) %></li>
 <% 
 	end 
 %>

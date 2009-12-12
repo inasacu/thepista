@@ -13,41 +13,22 @@
 		<tr>             
 			<th class="first">&nbsp;</th>
 			<th><%=label_name(:name) %>&nbsp;/<br />
-				<%=label_name(:last_game_played) %></th>
+				<%#=label_name(:last_game_played) %></th>
 			<th><%=label_name(:tournament) %></th>
 			<th><%=label_name(:time_zone) %></th>
-			<th><%=label_name(:member_since) %></th>
+			<!-- <th><%#=label_name(:tournaments_joined) %></th> -->
 			<th class="last">&nbsp;</th>
 		</tr>
 		
-        <% @users.each do |user| -%>		
-			<tr>
-			  <td>
-				<%= image_link_small user %>
-			  </td>
-					
-			  <td>
-				<%= user_link user %><br />
-				<%= nice_day_time user.last_login_at %>
-			  </td>
-
-			  <td>
-				<%= user.has_tournament? ? tournament_list(user.tournaments) : label_name('tournaments_none') %>
-			  </td>			  
-
-			  <td>
-				<%= user.time_zone %>
-			  </td>
-			  
-			  <td>
-				<%= nice_day_time user.created_at %> 
-			  </td>	
-			
-			  <td class="last">
-	            <%= link_to label_name(:send_message), new_message_path(:id => user.id) %>				
-	          </td>	
-	  
-			</tr>
+        <% @users.each do |user| -%>
+		<tr>
+		  <td><%= image_link_small user %></td>					
+		  <td><%= user_link user %></td>
+		  <td><%= user.has_tournament? ? tournament_list(user.tournaments) : label_name('tournaments_none') %></td>		 
+		  <td><%= user.time_zone %></td>			  
+		  <!-- <td><%#= nice_day_date(user.updated_at)  %></td>	 -->
+		  <td class="last"><%= link_to label_name(:send_message), new_message_path(:id => user) %></td>		  
+		</tr>
         <% end -%>
 		
       </table>

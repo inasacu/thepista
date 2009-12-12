@@ -23,6 +23,7 @@ class MeetsController < ApplicationController
     @round = @meet.round
     @previous = Meet.previous(@meet)
     @next = Meet.next(@meet)
+    @tournament = @round.tournament
   end
 
   def new    
@@ -32,19 +33,17 @@ class MeetsController < ApplicationController
       if @round        
         @tournament = @round.tournament
         @meet.round_id = @round.id
-        @meet.sport_id = @tournament.sport_id
         @meet.marker_id = @tournament.marker_id
-        @meet.time_zone = @tournament.time_zone
         @meet.starts_at = @tournament.starts_at 
+        @meet.ends_at = @tournament.starts_at 
         @meet.reminder_at = @tournament.starts_at        
       end
       
       unless @meet.round.nil?
         @tournament = @meet.round.tournament 
-        @meet.sport_id = @tournament.sport_id
         @meet.marker_id = @tournament.marker_id
-        @meet.time_zone = @tournament.time_zone
         @meet.starts_at = @tournament.starts_at 
+        @meet.ends_at = @tournament.starts_at 
         @meet.reminder_at = @tournament.starts_at      
       end
     
@@ -62,15 +61,21 @@ class MeetsController < ApplicationController
 
   def create
     @meet = Meet.new(params[:meet])   
-    @tournament = @meet.round.tournament 
+    @tournament = @meet.round.tournament
     
     unless current_user.is_tour_manager_of?(@tournament)
       flash[:warning] = I18n.t(:unauthorized)
       redirect_back_or_default('/index')
       return
     end
-
-    if @meet.save and @meet.create_meet_details(current_user)
+    
+    # meet to several users    
+    if params[:recipient_ids]
+      @recipients = User.find(params[:recipient_ids])
+    end
+        
+    if @meet.save and @meet.create_meet_details(current_user, @recipients)
+  
       flash[:notice] = I18n.t(:successful_create)
       redirect_to @meet
     else
@@ -80,11 +85,18 @@ class MeetsController < ApplicationController
   
   # set the end of season, 1 august current_year + 1
   def edit
+    @tournament = @meet.round.tournament
     # @meet.season_ends_at = Time.utc(Time.zone.now.year + 1, 8, 1)
   end
   
   def update
-    if @meet.update_attributes(params[:meet]) and @meet.create_meet_details(current_user, true)  
+    
+    # meet to several users    
+    if params[:recipient_ids]
+      @recipients = User.find(params[:recipient_ids])
+    end
+    
+    if @meet.update_attributes(params[:meet]) and @meet.create_meet_details(current_user, @recipients, true)  
       flash[:notice] = I18n.t(:successful_update)
       redirect_to @meet
     else

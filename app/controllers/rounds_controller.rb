@@ -36,10 +36,10 @@ class RoundsController < ApplicationController
         @round.tournament_id = @tournament.id
       end
     
-      @round.jornada = 1
+      @round.phase = 1
       @previous_round = Round.find(:first, :conditions => ["id = (select max(id) from rounds where tournament_id = ?) ", @tournament.id])    
       unless @previous_round.nil?
-        @round.jornada = @previous_round.jornada + 1
+        @round.phase = @previous_round.phase + 1
       end
   end
 

@@ -1,5 +1,5 @@
 class CreateMeets < ActiveRecord::Migration
-  def self.up
+  def self.up    
     create_table :meets do |t|
       t.string        :concept
       t.integer       :jornada
@@ -7,15 +7,10 @@ class CreateMeets < ActiveRecord::Migration
       t.datetime      :starts_at
       t.datetime      :ends_at
       t.datetime      :reminder_at
-
-      t.string        :time_zone,           :default => 'UTC'
-      t.integer       :sport_id
+      
       t.integer       :marker_id
-
-      t.integer       :tournament_id
       t.integer       :round_id
 
-      t.string        :time_zone,           :default => 'UTC'
       t.integer       :player_limit,        :default => 99
       
       t.boolean       :played,              :default => false
@@ -27,7 +22,6 @@ class CreateMeets < ActiveRecord::Migration
       t.datetime      :deleted_at
       t.timestamps
     end
-    add_index     :meets,   :tournament_id
     add_index     :meets,   :round_id
   end
 

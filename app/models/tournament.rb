@@ -132,7 +132,7 @@ class Tournament < ActiveRecord::Base
       user.has_role!(:member,  self)
 
       # Standing.create_user_scorecard(user, self)    
-      TournamentsUsers.join_team(user, self)
+      TournamentsUsers.join_tour(user, self)
     end
 
     def format_description

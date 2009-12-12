@@ -1,11 +1,11 @@
 <% 
-	is_user_manager = current_user.is_manager_of?(@meet.group)
+	is_user_manager = current_user.is_manager_of?(@meet.round)
 %>
 
 
 <div class="block">
 
-  <%= render :partial => 'secondary_navigation' %>   
+  <%= render :partial => '/tournaments/secondary_navigation' %>   
   
   <div class="content">
 	<p>
@@ -53,39 +53,38 @@
     <% if @meet.game_played? %>
 
       <tr>
-        <%= content_tag :td, label_name(:group), :class => "label" %>
+        <%= content_tag :td, label_name(:round), :class => "label" %>
 
 		<td class="<%= get_the_action%>">
-          <%= group_link @meet.group %>
+          <%#= round_link @meet.round %>
           &nbsp;&nbsp;
-          <%= @meet.home_score %>&nbsp;&nbsp;-&nbsp;&nbsp;<%= @meet.away_score %>
+          <%#= @meet.home_score %>&nbsp;&nbsp;-&nbsp;&nbsp;<%#= @meet.away_score %>
           &nbsp;&nbsp;
-          <%= link_to h(@meet.group.second_team), group_path(@meet.group) %>
+          <%#= link_to h(@meet.round.second_team), round_path(@meet.round) %>
 		</td>
       </tr>
     <% else %>
 
       <tr>
-        <%= content_tag :td, label_name(:home_group), :class => "label" %>            
-		<%= content_tag :td, group_link(@meet.group), :class => get_the_action %>
+        <%= content_tag :td, label_name(:home_round), :class => "label" %>            
+		<%= content_tag :td, round_link(@meet.round), :class => get_the_action %>
       </tr>
 
     <% end %>
 
 	
-	<%= tr_td_action(:game_notes, @meet.matches.first.description) if @meet.played? %>
+	<%#= tr_td_action(:game_notes, @meet.matches.first.description) if @meet.played? %>
 	<%= tr_td_action(:jornada, @meet.jornada) %>
 	<%= tr_td_action(:starts_at, nice_day_of_week(@meet.starts_at)) %>
 	<%= tr_td_action(:ends_at, nice_day_of_week(@meet.ends_at)) %>
-	<%= tr_td_action(:season, @meet.season) %>
-	<%= tr_td_action(:sport, @meet.sport.name) %>
-	<%= tr_td_action(:fee_per_game, number_to_currency(@meet.fee_per_game)) %>
-	<%= tr_td_action(:fee_per_pista, number_to_currency(@meet.fee_per_pista)) %>
+	<%#= tr_td_action(:season, @meet.season) %>
+	<%= tr_td_action(:sport, @meet.sport_name) %>
+	<%#= tr_td_action(:fee_per_tour, number_to_currency(@meet.fee_per_tour)) %>
 	<%= tr_td_action(:time_zone, @meet.time_zone) %>
 	
     <tr>
       <%= content_tag :td, label_name(:marker), :class => "label" %>       
-      <%= content_tag :td, marker_link(@meet.group.marker), :class => get_the_action %>
+      <%= content_tag :td, marker_link(@meet.marker), :class => get_the_action %>
     </tr>
 
 

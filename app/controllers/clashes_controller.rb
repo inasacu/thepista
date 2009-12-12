@@ -1,0 +1,2 @@
+class ClashesController < ApplicationController
+end

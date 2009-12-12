@@ -1,0 +1,77 @@
+<div class="block">
+  <div class="secondary-navigation">
+    <ul>
+      <li class="first"><%= link_to 'List', standings_path  %></li>
+      <li><%= link_to 'New', new_standing_path %></li>
+      <li class="active"><%= link_to 'Show', standing_path %></li>
+    </ul>
+    <div class="clear"></div>
+  </div>          
+  <div class="content">
+    <div class="inner">
+      
+        <p>
+          <b>Tour_id:</b>
+          <%= @standing.tour_id %>
+        </p>
+
+        <p>
+          <b>Round_id:</b>
+          <%= @standing.round_id %>
+        </p>
+
+        <p>
+          <b>User_id:</b>
+          <%= @standing.user_id %>
+        </p>
+
+        <p>
+          <b>Played:</b>
+          <%= @standing.played %>
+        </p>
+
+        <p>
+          <b>Assigned:</b>
+          <%= @standing.assigned %>
+        </p>
+
+        <p>
+          <b>Wins:</b>
+          <%= @standing.wins %>
+        </p>
+
+        <p>
+          <b>Draws:</b>
+          <%= @standing.draws %>
+        </p>
+
+        <p>
+          <b>Losses:</b>
+          <%= @standing.losses %>
+        </p>
+
+        <p>
+          <b>Points:</b>
+          <%= @standing.points %>
+        </p>
+
+        <p>
+          <b>Ranking:</b>
+          <%= @standing.ranking %>
+        </p>
+
+        <p>
+          <b>Deleted_at:</b>
+          <%= @standing.deleted_at %>
+        </p>
+
+        <p>
+          <b>Archive:</b>
+          <%= @standing.archive %>
+        </p>
+      <%= link_to 'Edit', edit_standing_path(@standing) %>
+    </div>
+  </div>
+</div>
+
+<% content_for :sidebar, render(:partial => 'sidebar') -%>

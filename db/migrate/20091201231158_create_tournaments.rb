@@ -5,7 +5,8 @@ class CreateTournaments < ActiveRecord::Migration
     drop_table :tournaments_users  
     drop_table :rounds
     drop_table :meets
-        
+    drop_table :ratings
+    
     create_table :tournaments do |t|      
       t.string      :name,                  :limit => 150      
       t.text        :description   
@@ -28,10 +29,6 @@ class CreateTournaments < ActiveRecord::Migration
             
       t.text        :description
       t.text        :conditions
-
-      # t.string      :contact,               :limit => 150      
-      # t.string      :email,                 :limit => 150     
-      # t.string      :phone,                :limit => 40           
       
       t.integer     :player_limit,        :default => 99
                   

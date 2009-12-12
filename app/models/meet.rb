@@ -7,27 +7,28 @@ class Meet < ActiveRecord::Base
   has_friendly_id :concept, :use_slug => true, 
   :reserved => ["new", "create", "index", "list", "signup", "edit", "update", "destroy", "show"]
 
-  has_many  :clashes,  :conditions => "clashes.archive = false",    :dependent => :destroy
-  has_many  :fees,                                                  :dependent => :destroy 
-  has_one   :forum,                                                 :dependent => :destroy
+  belongs_to  :round
+  has_many    :clashes,  :conditions => "clashes.archive = false",    :dependent => :destroy
+  has_many    :fees,                                                  :dependent => :destroy 
+  has_one     :forum,                                                 :dependent => :destroy
 
-  has_many :home_roster,
-  :through => :clashes,
-  :source => :convocado,
-  :conditions =>  "clashes.type_id = 1 and clashes.round_id = (select meets.round_id from meets where meet_id = clashes.meet_id limit 1)",
-  :order =>       :name
+  has_many    :home_roster,
+              :through => :clashes,
+              :source => :convocado,
+              :conditions =>  "clashes.type_id = 1 and clashes.round_id = (select meets.round_id from meets where meet_id = clashes.meet_id limit 1)",
+              :order =>       :name
 
-  has_many :away_roster,
-  :through => :clashes,
-  :source => :convocado,
-  :conditions =>  "clashes.type_id = 1 and clashes.invite_id = (select meets.round_id from meets where meet_id = clashes.meet_id limit 1)",
-  :order =>       :name
+  has_many    :away_roster,
+              :through => :clashes,
+              :source => :convocado,
+              :conditions =>  "clashes.type_id = 1 and clashes.invite_id = (select meets.round_id from meets where meet_id = clashes.meet_id limit 1)",
+              :order =>       :name
 
-  has_many :convocados,
-  :through => :clashes,
-  :source => :convocado,
-  :conditions =>  "clashes.type_id = 1",
-  :order =>       :name
+  has_many    :convocados,
+              :through => :clashes,
+              :source => :convocado,
+              :conditions =>  "clashes.type_id = 1",
+              :order =>       :name
 
   has_many :last_minute,
   :through => :clashes,
@@ -53,10 +54,8 @@ class Meet < ActiveRecord::Base
   :conditions =>  "clashes.type_id in (1,2,3,4)",
   :order =>       :name
 
-  belongs_to :round
   belongs_to :sport
   belongs_to :marker
-  belongs_to :invite_round,   :class_name => "Round",   :foreign_key => "invite_id"
 
   # validations  
   validates_presence_of         :concept
@@ -72,11 +71,11 @@ class Meet < ActiveRecord::Base
   validates_numericality_of     :jornada,       :greater_than_or_equal_to => 0, :less_than_or_equal_to => 100
   validates_numericality_of     :player_limit,  :greater_than_or_equal_to => 0, :less_than_or_equal_to => 100
 
-  validates_presence_of         :starts_at,     :ends_at, :reminder_at  
+  validates_presence_of         :starts_at, :ends_at, :reminder_at  
 
   # variables to access
-  attr_accessible :concept, :description, :season, :jornada, :starts_at, :ends_at, :reminder_at
-  attr_accessible :time_zone, :round_id, :sport_id, :marker_id, :player_limit, :public
+  attr_accessible :concept, :description, :jornada, :starts_at, :ends_at, :reminder_at
+  attr_accessible :time_zone, :tournament_id, :round_id, :sport_id, :marker_id, :player_limit, :public
 
 
   # after_update        :save_clashes
@@ -122,10 +121,18 @@ class Meet < ActiveRecord::Base
     :order => "clashes.round_id desc, users.name")
   end
 
-  def last_season?(user)
-    return false if self.season_ends_at.nil? and user.is_manager_of?(self.round)
-    return (self.season_ends_at < Time.zone.now() and user.is_manager_of?(self.round))
+  def sport_name
+    self.round.tournament.sport.name
   end
+  
+  def time_zone
+    self.round.tournament.time_zone
+  end
+
+  # def last_season?(user)
+  #   return false if self.season_ends_at.nil? and user.is_manager_of?(self.round)
+  #   return (self.season_ends_at < Time.zone.now() and user.is_manager_of?(self.round))
+  # end
 
   def home_round
     self.round.name
@@ -143,23 +150,23 @@ class Meet < ActiveRecord::Base
     self.clashes.first.invite_score
   end
 
-  def self.current_meets(user, page = 1)
-    self.paginate(:all, 
-    :conditions => ["starts_at >= ? and round_id in (select round_id from rounds_users where user_id = ?)", Time.zone.now, user.id],
-    :order => 'starts_at, round_id', :page => page, :per_page => SCHEDULES_PER_PAGE)
-  end
+  # def self.current_meets(user, page = 1)
+  #   self.paginate(:all, 
+  #   :conditions => ["starts_at >= ? and round_id in (select round_id from rounds_users where user_id = ?)", Time.zone.now, user.id],
+  #   :order => 'starts_at, round_id', :page => page, :per_page => SCHEDULES_PER_PAGE)
+  # end
 
-  def self.previous_meets(user, page = 1)
-    self.paginate(:all, 
-    :conditions => ["starts_at < ? and (season_ends_at is null or season_ends_at > ?) and round_id in (select round_id from rounds_users where user_id = ?)", Time.zone.now, Time.zone.now, user.id],
-    :order => 'starts_at desc, round_id', :page => page, :per_page => SCHEDULES_PER_PAGE)
-  end
+  # def self.previous_meets(user, page = 1)
+  #   self.paginate(:all, 
+  #   :conditions => ["starts_at < ? and (season_ends_at is null or season_ends_at > ?) and round_id in (select round_id from rounds_users where user_id = ?)", Time.zone.now, Time.zone.now, user.id],
+  #   :order => 'starts_at desc, round_id', :page => page, :per_page => SCHEDULES_PER_PAGE)
+  # end
 
-  def self.archive_meets(user, page = 1)
-    self.paginate(:all, 
-    :conditions => ["season_ends_at < ? and round_id in (select round_id from rounds_users where user_id = ?)", Time.zone.now, user.id],
-    :order => 'starts_at, round_id', :page => page, :per_page => SCHEDULES_PER_PAGE)
-  end
+  # def self.archive_meets(user, page = 1)
+  #   self.paginate(:all, 
+  #   :conditions => ["season_ends_at < ? and round_id in (select round_id from rounds_users where user_id = ?)", Time.zone.now, user.id],
+  #   :order => 'starts_at, round_id', :page => page, :per_page => SCHEDULES_PER_PAGE)
+  # end
 
   def self.max(meet)
     find(:first, :conditions => ["round_id = ? and played = true", meet.round_id], :order => "starts_at desc")    
@@ -189,9 +196,9 @@ class Meet < ActiveRecord::Base
     end
   end
 
-  def self.last_meet_played(user)
-    find(:first, :select => "starts_at", :conditions => ["id = (select max(meet_id) from clashes where user_id = ? and type_id = 1  and played = 1)", user.id])
-  end
+  # def self.last_meet_played(user)
+  #   find(:first, :select => "starts_at", :conditions => ["id = (select max(meet_id) from clashes where user_id = ? and type_id = 1  and played = true)", user.id])
+  # end
 
   def game_played?
     played == true
@@ -202,13 +209,17 @@ class Meet < ActiveRecord::Base
   end
 
   # create forum, topic, post details for meet
-  def create_meet_details(user, meet_update=false)
+  def create_meet_details(user, recipients, meet_update=false)
     unless meet_update
       @forum = Forum.create_meet_forum(self)
-      @topic = Topic.create_meet_topic(@forum, user) 
-      Post.create_meet_post(@forum, @topic, user, self.description)
+      @topic = Topic.create_forum_topic(@forum, user) 
+      Post.create_topic_post(@forum, @topic, user, self.description)
     end
-    Clash.create_meet_clash(self)
+
+    recipients.each do |user|
+      Clash.create_meet_clash(self, user)
+      Standing.create_user_standing(user, self.round)
+    end    
   end
 
   def create_join_user_meet_details
@@ -227,19 +238,19 @@ class Meet < ActiveRecord::Base
   end
 
   def log_activity
-    add_activities(:item => self, :user => self.round.all_the_managers.first) 
+    # add_activities(:item => self, :user => self.round.all_the_managers.first) 
   end
 
   def log_activity_played
-    add_activities(:item => self, :user => self.round.all_the_managers.first) if self.played?
+    # add_activities(:item => self, :user => self.round.all_the_managers.first) if self.played?
   end
 
   def validate
-    self.errors.add(:starts_at, I18n.t(:must_be_after_deadline_at)) if self.starts_at < self.round.tournament.starts_at
-    self.errors.add(:starts_at, I18n.t(:must_be_before_starts_at)) if self.starts_at >= self.ends_at
-    self.errors.add(:ends_at, I18n.t(:must_be_before_ends_at)) if self.ends_at <= self.starts_at
-    self.errors.add(:reminder_at, I18n.t(:must_be_after_deadline_at)) if self.reminder_at < self.round.tournament.signup_at
-    self.errors.add(:reminder_at, I18n.t(:must_be_before_starts_at)) if self.reminder_at > self.starts_at
+    # self.errors.add(:starts_at, I18n.t(:must_be_after_deadline_at)) if self.starts_at < self.round.tournament.deadline_at
+    # self.errors.add(:starts_at, I18n.t(:must_be_before_starts_at)) if self.starts_at >= self.ends_at
+    # self.errors.add(:ends_at, I18n.t(:must_be_before_ends_at)) if self.ends_at <= self.starts_at
+    # self.errors.add(:reminder_at, I18n.t(:must_be_after_deadline_at)) if self.reminder_at < self.round.tournament.signup_at
+    # self.errors.add(:reminder_at, I18n.t(:must_be_before_starts_at)) if self.reminder_at > self.starts_at
   end
 
 end

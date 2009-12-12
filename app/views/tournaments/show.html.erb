@@ -53,19 +53,35 @@
 		<% @tournament.rounds.each do |round| %>
 			<tr>
 				<%= content_tag :td, 
-						(link_to "#{label_name(:round)} (#{round.jornada})", 
+						(link_to "#{label_name(:round)} (#{round.phase})", 
 								edit_round_path(round), 
 								:title => label_name(:rounds_edit)), 
 								:class => "label" %>	
 
 				<%= content_tag :td, 
 						(link_to h(round.name), new_meet_path(:id => round), :title => label_name(:meets_create)), 
-								:class => get_the_action %>								
+								:class => get_the_action if current_user.is_tour_manager_of?(@tournament) %>
+								
+				<%= content_tag :td, 
+						(link_to h(round.name), meet_path(:id => round), :title => label_name(:meets_show)), 
+								:class => get_the_action unless current_user.is_tour_manager_of?(@tournament) %>															
 			</tr>
+			
+			<% round.meets.each do |meet| %>
+			<tr>
+				<%= content_tag :td, "", :class => "label" %>
+				<%= content_tag :td, 
+						(link_to meet.concept, 
+								meet_path(meet), 
+								:title => label_name(:meets_show)), 
+								:class => get_the_action %>
+			</tr>
+			<% end%>
 		<% end %>
+		
+		
 
 		<%= tr_td_action(:fee_per_tour, number_to_currency(@tournament.fee_per_tour)) %>
-		<%#= tr_td_action(:game_day, nice_day_time(@tournament.meets.first.starts_at)) unless @tournament.meets.blank? %>
 		<%= tr_td_action(:time_zone, @tournament.time_zone) %>
 		<%= tr_td_action(:users, t(:has_tournament_users, :count => @tournament.users.count)) %>
 		<%#= tr_td_action(:meets, t(:has_group_meets, :count => @tournament.meets.count)) unless @tournament.meets.blank? %>

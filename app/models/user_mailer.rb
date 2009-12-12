@@ -19,22 +19,34 @@ class UserMailer < ActionMailer::Base
   end 
   
   def teammate_join(teammate, recipient, sender)
-    @subject          = "[HayPista] #{I18n.t(:request_petition)} #{I18n.t(:to_join_email)} - #{teammate.group.name} " 
+    the_subject = "[HayPista] #{I18n.t(:request_petition)} #{I18n.t(:to_join_email)} - "
+    if teammate.group
+      @subject          = "#{the_subject} #{teammate.group.name} " 
+      @body[:group]     = teammate.group 
+    elsif teammate.tournament
+      @subject          = "#{the_subject} #{teammate.tournament.name} " 
+      @body[:group]     = teammate.tournament 
+    end
     @recipients       = recipient.email
     @from             = "#{sender.name} <#{sender.email}>"
     @sent_on          = Time.zone.now
     @body[:teammate]  = teammate
     @body[:user]      = sender
-    @body[:group]     = teammate.group
     @content_type     = "text/html"
   end 
   
   def teammate_leave(teammate, recipient, sender)
-    @subject          = "[HayPista] #{I18n.t(:petition_to_join_declined)} - #{teammate.group.name} " 
+    the_subject = "[HayPista] #{I18n.t(:petition_to_join_declined)} - "
+    if teammate.group
+      @subject          = "#{the_subject} #{teammate.group.name} " 
+      @body[:group]     = teammate.group 
+    elsif teammate.tournament
+      @subject          = "#{the_subject} #{teammate.tournament.name} " 
+      @body[:group]     = teammate.tournament 
+    end
     @recipients       = recipient.email
     @from             = "#{sender.name} <#{sender.email}>"
     @sent_on          = Time.zone.now
-    @body[:group]     = teammate.group
     @content_type     = "text/html"
   end
 

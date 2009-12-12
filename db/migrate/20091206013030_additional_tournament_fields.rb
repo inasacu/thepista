@@ -4,7 +4,10 @@ class AdditionalTournamentFields < ActiveRecord::Migration
     add_column      :entries,       :tournament_id,     :integer
     add_column      :comments,      :tournament_id,     :integer
     add_column      :teammates,     :tournament_id,     :integer 
-
+    
+    add_column      :forums,        :meet_id,           :integer
+    remove_column   :forums,        :practice_id
+      
     add_index       :teammates,     :tournament_id
   end
 
@@ -13,5 +16,8 @@ class AdditionalTournamentFields < ActiveRecord::Migration
     remove_column   :entries,       :tournament_id
     remove_column   :comments,      :tournament_id
     remove_column   :teammates,     :tournament_id
+    remove_column   :forums,        :meet_id
+    
+    add_column      :forums,         :practice_id,      :integer
   end
 end

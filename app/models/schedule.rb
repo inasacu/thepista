@@ -208,8 +208,8 @@ class Schedule < ActiveRecord::Base
   def create_schedule_details(user, schedule_update=false)
     unless schedule_update
       @forum = Forum.create_schedule_forum(self)
-      @topic = Topic.create_schedule_topic(@forum, user) 
-      Post.create_schedule_post(@forum, @topic, user, self.description)
+      @topic = Topic.create_forum_topic(@forum, user) 
+      Post.create_topic_post(@forum, @topic, user, self.description)
     end
     Match.create_schedule_match(self) 
     Fee.create_group_fees(self)    

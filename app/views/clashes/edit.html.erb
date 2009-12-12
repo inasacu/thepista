@@ -1,0 +1,20 @@
+<div class="block">
+  <div class="secondary-navigation">
+    <ul>
+      <li class="first"><%= link_to 'List', clashes_path  %></li>
+      <li><%= link_to 'New', new_clash_path %></li>
+      <li class="active"><%= link_to 'Edit', edit_clash_path %></li>
+    </ul>
+    <div class="clear"></div>
+  </div>          
+  <div class="content">            
+    <h2 class="title">Edit Clash</h2>
+    <div class="inner">
+      <% form_for @clash, :url => clash_path(@clash), :html => { :class => :form } do |f| -%>
+        <%= render :partial => "form", :locals => {:f => f} %>
+      <% end -%>
+    </div>
+  </div>
+</div>
+
+<% content_for :sidebar, render(:partial => 'sidebar') -%>

@@ -53,7 +53,7 @@
 	       <td class="last">
 				<span class="action">
 					<% if current_user.is_member_of?(group) %>
-						<%= link_to(label_name(:send_message_to_group), new_message_path(:group_id => group.id)) %><br />
+						<%= link_to(label_name(:send_message_to_group), new_message_path(:group_id => group)) %><br />
 					<% else %>
 						<%= link_to(label_name(:send_message_to_group), new_message_path(:id => group.all_the_managers.first)) %><br />
 				
@@ -62,13 +62,13 @@
 							the_label = label_with_name('add_to_group', group.name)
 							the_confirmation = "#{ label_name(:petition_to_join_group) } #{current_user.name} #{ label_name(:to) } #{group.name}?"
 					%> 
-							<%= link_to(the_label, join_team_path(:id => group.id, :teammate => current_user.id), :confirm => the_confirmation) %>
+							<%= link_to(the_label, join_team_path(:id => group, :teammate => current_user), :confirm => the_confirmation) %>
 					<% 	end 
 					   end
 					-%>
 				
 					<% if current_user.is_manager_of?(group) %> 
-						<%= link_to label_name(:schedules_create), new_schedule_path(:id => group.id)  %><br />
+						<%= link_to label_name(:schedules_create), new_schedule_path(:id => group)  %><br />
 			        <% end %>
 					
 				</span>

@@ -4,7 +4,7 @@
 
 <ul class="navigation">
 <% 
-	if current_user.is_member_of?(@tournament) 
+	if current_user.is_tour_member_of?(@tournament) 
 		the_confirmation = label_with_name(:do_leave_tournament, "#{@tournament.name}?")
 %>
 		<li><%= link_to(label_name(:send_message_to_tournament), new_message_path(:tour_id => @tournament)) %></li>
@@ -18,24 +18,24 @@
 			the_label = label_with_name('add_to_tournament', @tournament.name)
 			the_confirmation = "#{ label_name(:petition_to_join_tournament) } #{current_user.name} #{ label_name(:to) } #{@tournament.name}?"
 %> 
-			<li><%= link_to(the_label, join_team_path(:id => @tournament.id, :teammate => current_user.id), :confirm => the_confirmation) %></li>
+			<li><%= link_to(the_label, join_tour_path(:id => @tournament, :teammate => current_user), :confirm => the_confirmation) %></li>
 <% 
 		end 
 	end
 	
-	if current_user.is_sub_manager_of?(@tournament)
+	if current_user.is_tour_sub_manager_of?(@tournament)
 %>
 	<li><%#= link_to label_name(:send_scorecard), new_message_path(:scorecard_id => @tournament.meets.first.id) unless @tournament.meets.blank? %></li>
 <%
     end
  
-	if current_user.is_manager_of?(@tournament)
+	if current_user.is_tour_manager_of?(@tournament)
 		the_label = label_with_name('create_meet', @tournament.name)
 		the_confirmation = "#{ label_name(:destroy_tournament) } #{ label_name(:to) } #{@tournament.name}?" 
 %>              
 		<li><%= link_to label_name(:rounds_create), new_round_path(:id => @tournament) %></li>      
-		<li><%#= link_to label_name(:meets_create), new_meet_path(:id => @tournament.id) %></li>
-		<li><%= link_to(label_name('tournaments_edit'), edit_tournament_path(@tournament)) if current_user.is_manager_of?(@tournament) %></li>  
+		<!-- <li><%#= link_to label_name(:meets_create), new_meet_path(:id => @tournament) %></li> -->
+		<li><%= link_to(label_name('tournaments_edit'), edit_tournament_path(@tournament)) if current_user.is_tour_manager_of?(@tournament) %></li>  
 		<li><%#= link_to(control_label('destroy'), 
 				{:controller => 'tournaments', :action => 'destroy', :id => @tournament}, 
 				:confirm => the_confirmation) unless @tournament.has_meet? %></li>

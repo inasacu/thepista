@@ -11,8 +11,6 @@ class CreateRates < ActiveRecord::Migration
     
     add_index :rates, :user_id
     add_index :rates, :rateable_id
-    
-    drop_table :ratings
   end
 
   def self.down
