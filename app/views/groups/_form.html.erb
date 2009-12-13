@@ -26,13 +26,13 @@
   <span class="description"><%= label_name('time_zone', 'description') %></span>
 </div>
 
-<% if @group.new_record? %>
+<%# if @group.new_record? %>
   <div class="group">
     <%= f.label :sport_id, label_name('sport'), :class => :label %>
    	<%= f.select(:sport_id, Sport.sport_name, {:selected => @group.sport_id, :include_blank => true}) %><br />
     <span class="description"><%= label_name('sport', 'description') %></span>
   </div>
-<% end %>
+<%# end %>
 
   <div class="group">
     <%= f.label :marker_id, label_name('marker'), :class => :label %>
