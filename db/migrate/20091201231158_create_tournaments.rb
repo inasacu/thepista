@@ -1,10 +1,10 @@
 class CreateTournaments < ActiveRecord::Migration
   def self.up
     # remote table
-    drop_table :tournaments
-    drop_table :tournaments_users  
-    drop_table :rounds
-    drop_table :meets
+    # drop_table :tournaments
+    # drop_table :tournaments_users  
+    # drop_table :rounds
+    # drop_table :meets
     drop_table :ratings
     
     create_table :tournaments do |t|      

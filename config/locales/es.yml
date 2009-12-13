@@ -668,12 +668,12 @@ es:
      password_forgotten:  ¿Has olvidado tu contraseña?	
      confirmation_password: Clave Confirmación
      
-     password_request_reset:  "La solicitud para restablecer tu contraseña se ha hecho."
-     password_request_ignore:  "Si no has realizado hecho esta solicitud, simplemente ignore este mensaje."
-     password_request_made:  "Si usted ha hecho esta solicitud haga clic en el enlace de abajo:"
+     password_request_reset:  "Este e-mail es la respuesta a su solicitud para restablecer su contraseña."
+     password_request_ignore:  "Si no ha realizado esta solicitud, simplemente ignore este mensaje."
+     password_request_made:  "En caso contrario haga clic en el siguiente enlace:"
            
-     request_url_does_not_work:  "Si el URL no funciona, trate de copiarlo y pegarlo en tu navegador."
-     request_url_issue:   "Si continúas teniendo problemas por favor no dude en contactar con nosotros."
+     request_url_does_not_work:  "Si la URL no funciona trate de copiarla y pegarla en su navegador."
+     request_url_issue:   "Si continua teniendo problemas por favor no dude en contactarnos."
      
      payed:  Tasa Pagada  
      payed_description:  Han sido pagadas las Cargos? 
@@ -1039,7 +1039,7 @@ es:
      unauthorized_user:  Jugador no autorizado 
      unauthorized:  No Autorizado.
      unavailable: No Disponible
-     unsuccessful_logged_in:  No se ha accedido correctamente  
+     unsuccessful_logged_in:  Nombre o clave son incorrectas 
 
      upcoming: próximos eventos   
      upcoming_festival: Próximos Acondiciónamientos   
@@ -1392,7 +1392,7 @@ es:
      recaptcha_question:  Haz la Pregunta
      recaptcha_question:  Pregunta
      recaptcha_human_test:  Prueba Humana
-     recaptcha_type_words:  Escribe las dos Palabras
+     recaptcha_type_words:  Escriba las dos palabras separadas con un espacio.
      
      rpx_login:  Acceso atraves de terceras cuentas
      rpx_third_party_error:  "No se pueden recuperar los datos de terceras cuentas. Por favor, inténtalo de nuevo."

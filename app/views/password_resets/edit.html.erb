@@ -20,18 +20,42 @@
 
 	<% form_for @user, :url => password_reset_path, :method => :put do |f| %>
 	<%= f.error_messages %>
-
+	
 	<div class="group">
-		<%= label :password, label_name(:password) %>&nbsp;&nbsp;
-							<%= f.password_field :password, :class => 'text_field' %>
-	</div><br />
-
-	<div class="group">
-		<%= label :password_confirmation, label_name(:password_confirmation) %>&nbsp;&nbsp;
-							<%= f.password_field :password_confirmation, :class => 'text_field' %>
-	</div><br />
+		
+		<br />
+	
+		<table>
+			<tr>
+				<td valign="top" width="180">
+					<%= f.label :password, label_name(:password), :class => :label %>
+				</td>
+				<td>
+					<%= f.password_field :password, :class => 'text_field' %>
+				</td>
+			</tr>
+			
+		</table>
+		
+		<table>
+			<tr>
+				<td valign="top" width="180">
+					<%= f.label :password_confirmation, label_name(:password_confirmation), :class => :label %>
+				</td>
+				<br />
+				<td>
+					<%= f.password_field :password_confirmation, :class => 'text_field' %>
+				</td>
+			</tr>
+			
+		</table>
+		
+						
+	</div><br /><br /><br />
 
 	<%= render :partial => 'utilities/recaptcha' %>
+
+	<br /><br /><br />
 
 	<div class="group navform"> 
 		<%= submit_tag label_name(:password_update_and_login), :class => "button" %>
