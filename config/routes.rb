@@ -75,7 +75,14 @@ ActionController::Routing::Routes.draw do |map|
   map.privacy_policy        'privacy_policy',                             :controller => 'home',            :action => 'privacy_policy'
   map.faq                   'faq',                                        :controller => 'home',            :action => 'faq'
   
-  map.tour_list			        'tour_list',			                            :controller => 'tournaments',          :action => 'tour_list'
+  map.tour_list			        'tour_list',			                            :controller => 'tournaments',     :action => 'tour_list'
+  map.tour_roster		        'tour_roster',		                            :controller => 'meets',           :action => 'tour_roster'
+  map.tour_last_minute		  'tour_last_minute',		                        :controller => 'meets',           :action => 'tour_last_minute'
+  map.tour_no_show		      'tour_no_show',			                          :controller => 'meets',           :action => 'tour_no_show'
+  map.tour_unavailable      'tour_unavailable',			                      :controller => 'meets',           :action => 'tour_unavailable'
+  
+  map.clash_tour            'clashes/:id/set_tour',                       :controller => 'clashes',         :action => 'set_tour'
+  map.clash_status          'clashes/:id/set_status/:type',               :controller => 'clashes',         :action => 'set_status'
   
   map.resources   :user_sessions,   :as => 'repitelo'
   map.resources   :users,           :as => 'jugadores',                   :collection => { :rpx_create => :post, :rpx_associate => :post,
@@ -106,7 +113,10 @@ ActionController::Routing::Routes.draw do |map|
   map.resources   :tournaments,     :as => 'torneos',                     :collection => { :list => :get, :search => :get }
   map.resources   :rounds,          :as => 'fases',                       :collection => { :list => :get, :search => :get }
   map.resources   :meets,           :as => 'acontecimiento',              :collection => { :list => :get, :search => :get }
-  
+    
+  map.resources   :clashes,         :as => 'enfrentamientos'
+  map.resources   :standings,       :as => 'encasillado',                 :collection => { :list => :get }
+    
   map.resources   :connections
   # map.resources   :ratings,                                               :member => { :rate => :put }  
   map.resources   :schedules,                                             :member => { :rate => :post }

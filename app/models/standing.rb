@@ -5,47 +5,47 @@ class Standing < ActiveRecord::Base
     belongs_to  :tournament,      :dependent => :destroy
 
     def self.calculate_round_standing(round)
-      total_schedules_played = round.games_played
+      total_meets_played = round.games_played
 
-      if total_schedules_played.to_i > 1
+      if total_meets_played.to_i > 1
         previous_to_round_standing(round)  
         update_round_user_ranking(round, true)
       end
 
-      if total_schedules_played.to_i > 0
+      if total_meets_played.to_i > 0
         all_to_round_standing(round)  
         update_round_user_ranking(round, false)
       end
 
     end
 
-    # calculate standing for all previous matches for round
+    # calculate standing for all previous clashes for round
     def self.previous_to_round_standing(round)  
         round.users.each do |user|
-          @standings = Scorecard.find(:all, :conditions =>["round_id = ? and user_id > 0 and archive = ?", round, false])
+          @standings = Standing.find(:all, :conditions =>["round_id = ? and user_id > 0 and archive = ?", round, false])
 
           @standings.each do |standing|  
-            @matches = Match.find_all_previous_schedules(standing.user_id, standing.round_id)
-            update_round_user_standing(round, user, standing, @matches, true)
-            previous_matches = true
+            @clashes = Clash.find_all_previous_meets(standing.user_id, standing.round_id)
+            update_round_user_standing(round, user, standing, @clashes, true)
+            previous_clashes = true
           end
         end
     end
 
-    # calculate standing for all previous matches for round
+    # calculate standing for all previous clashes for round
     def self.all_to_round_standing(round)  
         round.users.each do |user|
-          @standings = Scorecard.find(:all, :conditions =>["round_id = ? and user_id > 0 and archive = ?", round, false])
+          @standings = Standing.find(:all, :conditions =>["round_id = ? and user_id > 0 and archive = ?", round, false])
 
           @standings.each do |standing|  
-            @matches = Match.find_all_schedules(standing.user_id, standing.round_id)
-            update_round_user_standing(round, user, standing, @matches, false)
-            previous_matches = true
+            @clashes = Clash.find_all_meets(standing.user_id, standing.round_id)
+            update_round_user_standing(round, user, standing, @clashes, false)
+            previous_clashes = true
           end
         end
     end
 
-    def self.update_round_user_standing(round, user, standing, matches, previous_matches=true)
+    def self.update_round_user_standing(round, user, standing, clashes, previous_clashes=true)
 
       # calculate standings for user in round  
       # default variables      
@@ -55,15 +55,15 @@ class Standing < ActiveRecord::Base
       prev_wins, prev_losses, prev_draws, prev_played = 0, 0, 0, 0
       the_points, the_previous_played, the_previous_points = 0, 0, 0
 
-      matches.each do |match|
+      clashes.each do |match|
         if (match.one_x_two == 'X')
           draws += 1
-          # prev_draws += 1 if previous_matches
+          # prev_draws += 1 if previous_clashes
         else
           wins += 1 if match.one_x_two == match.user_x_two                  
           losses += 1 if match.one_x_two != match.user_x_two
 
-          # if previous_matches
+          # if previous_clashes
           #   prev_wins += 1 if match.one_x_two == match.user_x_two          
           #   prev_losses += 1 if match.one_x_two != match.user_x_two 
           # end
@@ -86,16 +86,16 @@ class Standing < ActiveRecord::Base
       end 
 
 
-      played = Match.user_played(standing).total
-      assigned = Match.user_assigned(standing).total
-      goals_scored = Match.user_goals_scored(standing).total
+      played = Clash.user_played(standing).total
+      assigned = Clash.user_assigned(standing).total
+      goals_scored = Clash.user_goals_scored(standing).total
 
       # ticker all the results for the user, round conbination and points relate to team activity
       the_points = (wins * standing.round.points_for_win) + 
                    (draws * standing.round.points_for_draw) + 
                    (losses * standing.round.points_for_lose)
 
-      if previous_matches
+      if previous_clashes
         the_previous_points = the_points
       end
 
@@ -104,7 +104,7 @@ class Standing < ActiveRecord::Base
       end
 
       # update standing with all calculations
-      if previous_matches
+      if previous_clashes
         standing.update_attributes(:wins => wins, :losses => losses, :draws => draws, :played => played, :assigned => assigned.to_i,
                                     :points => the_points, :previous_points => the_previous_points,
                                     :previous_played => the_previous_played, 
@@ -117,19 +117,19 @@ class Standing < ActiveRecord::Base
       end
     end
 
-    def self.update_round_user_ranking(round, previous_matches=true)
+    def self.update_round_user_ranking(round, previous_clashes=true)
       # default variables
       first, ranking, past_points, last = 0, 0, 0, 0
 
       # ranking
-      unless previous_matches
-        @standings = Scorecard.find(:all, 
+      unless previous_clashes
+        @standings = Standing.find(:all, 
         :conditions =>["round_id = ? and user_id > 0 and played > 0 and archive = false", round.id], 
         :order => 'points desc, (standings.points / (standings.played * 10)) desc')
 
       # previous ranking
       else
-        @standings = Scorecard.find(:all, 
+        @standings = Standing.find(:all, 
         :conditions =>["round_id = ? and user_id > 0 and played > 0 and archive = false", round.id], 
         :order => 'previous_points desc, (standings.points / (standings.played * 10)) desc')
       end
@@ -138,7 +138,7 @@ class Standing < ActiveRecord::Base
         points ||= 0
 
         # current ranking
-        unless previous_matches
+        unless previous_clashes
           points = standing.points
           # previous ranking
         else  
@@ -158,7 +158,7 @@ class Standing < ActiveRecord::Base
         past_points = points  
 
         # current ranking
-        unless previous_matches
+        unless previous_clashes
           standing.update_attribute(:ranking, ranking)
           # previous ranking
         else
@@ -170,14 +170,14 @@ class Standing < ActiveRecord::Base
 
     # calculate number of games played and assigned for user
     def self.calculate_user_played_assigned_standing(user, round)
-      @standing = Scorecard.find(:first, :conditions => ["user_id = ? and round_id = ?", user.id, round.id])
-      @standing.update_attribute(:played, Match.user_played(@standing).total)
-      @standing.update_attribute(:assigned, Match.user_assigned(@standing).total) 
+      @standing = Standing.find(:first, :conditions => ["user_id = ? and round_id = ?", user.id, round.id])
+      @standing.update_attribute(:played, Clash.user_played(@standing).total)
+      @standing.update_attribute(:assigned, Clash.user_assigned(@standing).total) 
     end
 
     # archive or unarchive a standing and recalculate round standings
     def self.set_archive_flag(user, round, flag)
-      @standing = Scorecard.find(:first, :conditions => ["user_id = ? and round_id = ?", user.id, round.id])
+      @standing = Standing.find(:first, :conditions => ["user_id = ? and round_id = ?", user.id, round.id])
       @standing.update_attribute(:archive, flag)
       self.calculate_round_standing(round)
     end

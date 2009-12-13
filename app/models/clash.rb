@@ -1,17 +1,29 @@
 class Clash < ActiveRecord::Base
   
     belongs_to      :user
-    belongs_to      :meet,     :dependent => :destroy
-    
-    belongs_to      :convocado, :class_name => "User", :foreign_key => "user_id"  
+    belongs_to      :meet,        :dependent => :destroy
+    belongs_to      :convocado,   :class_name => "User",                  :foreign_key => "user_id"  
+    belongs_to      :type,        :conditions => "table_type = 'Clash'"
+
+    belongs_to      :position,  
+                    :class_name => "Type", 
+                    :foreign_key => "position_id",                                 
+                    :conditions => "types.table_type = 'User'"                  
+
+    # validations  
+    validates_numericality_of :technical,    :greater_than_or_equal_to => 0, :less_than_or_equal_to => 5
+    validates_numericality_of :physical,     :greater_than_or_equal_to => 0, :less_than_or_equal_to => 5
 
     # variables to access
     attr_accessible :name, :meet_id, :user_id, :user_score
-    attr_accessible :played, :one_x_two, :user_x_two, :type_id, :status_at
+    attr_accessible :played, :one_x_two, :user_x_two, :type_id, :status_at, :description
+    attr_accessible :position_id, :technical, :physical
 
-    # def team_name(meet)
-    #   (self.meet_id > 0) ? meet.home_round : meet.away_round 
-    # end
+    before_create   :format_description
+
+    def position_name
+      I18n.t(self.position.name)
+    end    
 
     # def win_loose_draw_label       
     #   return I18n.t(:game_tied)  if self.one_x_two == "X"  
@@ -19,28 +31,28 @@ class Clash < ActiveRecord::Base
     #   return I18n.t(:game_lost)  if self.one_x_two != self.user_x_two  
     # end
 
-    # def self.user_assigned(scorecard)
+    # def self.user_assigned(standing)
     #     find(:first, :select => "count(*) as total", 
-    #          :conditions =>["(meet_id = #{scorecard.meet_id} or invite_id = #{scorecard.meet_id}) and user_id = #{scorecard.user_id} " +
+    #          :conditions =>["(meet_id = #{standing.meet_id} or invite_id = #{standing.meet_id}) and user_id = #{standing.user_id} " +
     #                         "and type_id = 1 and archive = false"])
     # end
 
 
-    # def self.user_played(scorecard)
+    # def self.user_played(standing)
     #     find(:first, :select => "count(*) as total", 
-    #          :conditions =>["(meet_id = #{scorecard.meet_id} or invite_id = #{scorecard.meet_id}) and user_id = #{scorecard.user_id} " +
+    #          :conditions =>["(meet_id = #{standing.meet_id} or invite_id = #{standing.meet_id}) and user_id = #{standing.user_id} " +
     #                         "and type_id = 1 and played = true and archive = false"])
     # end
 
-    # def self.user_goals_scored(scorecard)
+    # def self.user_goals_scored(standing)
     #       find(:first, :select => "sum(goals_scored) as total", 
-    #            :conditions =>["(meet_id = #{scorecard.meet_id} or invite_id = #{scorecard.meet_id}) and user_id = #{scorecard.user_id} " +
+    #            :conditions =>["(meet_id = #{standing.meet_id} or invite_id = #{standing.meet_id}) and user_id = #{standing.user_id} " +
     #                           "and type_id = 1 and played = true and archive = false"])
     # end
 
     # def self.find_user_round_clashes(user_id, meet_id)
     #   find_by_sql(["select clashes.id, clashes.meet_id, clashes.user_id, clashes.one_x_two, clashes.user_x_two, clashes.type_id, clashes.played, " +
-    #               "clashes.meet_id, clashes.invite_id, clashes.round_score, clashes.invite_score, meets.meet_id " +
+    #               "clashes.meet_id, clashes.invite_id, clashes.user_score, clashes.invite_score, meets.meet_id " +
     #               "from clashes, meets " +
     #               "where clashes.user_id = ? " +
     #               "and clashes.type_id = 1 " +
@@ -73,51 +85,45 @@ class Clash < ActiveRecord::Base
     #   @clashes.each do |clash|
     #     clash.update_attribute(:archive, flag)
     #   end
-    #   Standing.calculate_round_scorecard(round)
+    #   Standing.calculate_user_standing(round)
     # end
 
-    # def self.update_clash_details(the_clash, user)
-    #   @meet = the_clash.meet    
-    #   @meet.played = (!the_clash.round_score.nil? and !the_clash.invite_score.nil?)
-    #   @meet.save!
-    # 
-    #   @meet.clashes.each do |clash|
-    #     clash.round_score = the_clash.round_score
-    #     clash.invite_score = the_clash.invite_score
-    #     clash.description = the_clash.description
-    #     clash.played = (clash.type_id == 1 and @meet.played)  
-    # 
-    #     # 1 == team one wins
-    #     # x == teams draw
-    #     # 2 == team two wins
-    #     clash.one_x_two = "" if (the_clash.round_score.nil? or the_clash.invite_score.nil?)
-    #     clash.one_x_two = "1" if (the_clash.round_score.to_i > the_clash.invite_score.to_i)
-    #     clash.one_x_two = "X" if (the_clash.round_score.to_i == the_clash.invite_score.to_i)
-    #     clash.one_x_two = "2" if (the_clash.round_score.to_i < the_clash.invite_score.to_i)
-    # 
-    #     # 1 == player is in team one
-    #     # x == game tied, doesnt matter where player is
-    #     # 2 == player is in team two      
-    #     clash.user_x_two = "1" if (clash.meet_id.to_i > 0 and clash.invite_id.to_i == 0)
-    #     clash.user_x_two = "X" if (clash.round_score.to_i == clash.invite_score.to_i)
-    #     clash.user_x_two = "2" if (clash.meet_id.to_i == 0 and clash.invite_id.to_i > 0)
-    # 
-    #     clash.save!  
-    #   end       
-    # 
-    #   the_clash ||= "..."
-    #   @meet.forum.description = the_clash.description
-    #   Standing.calculate_round_scorecard(@meet.round)
-    #   Post.create_meet_post(@meet.forum, @meet.forum.topics.first, user, the_clash.description) if @meet.played?
-    # end
+    def self.update_clash_details(meet)      
+      clash_id, ranking, past_points, last = 0, 0, 0, 0  
+      
+      meet.clashes.each do |clash|
+        points = clash.user_score        
+        if clash_id != clash.id 
+          clash_id,  past_points, last = clash.id,  0, 1
+        end 
 
-    # def self.save_clashes(the_clash, clash_attributes)
-    #   the_clash.meet.clashes.each do |clash|
-    #     attributes = clash_attributes[clash.id.to_s]
-    #     clash.attributes = attributes if attributes
-    #     clash.save(false)
-    #   end
-    # end
+        if (past_points == points) 
+          last += 1          
+        else
+          ranking += last
+          last = 1          
+        end
+        past_points = points  
+
+        clash.one_x_two = ranking
+        clash.user_x_two = 0
+        clash.save!
+        
+      end       
+    
+      # the_clash ||= "..."
+      # @meet.forum.description = the_clash.description
+      # Standing.calculate_round_standing(@meet.round)
+      # Post.create_meet_post(@meet.forum, @meet.forum.topics.first, user, the_clash.description) if @meet.played?
+    end
+
+    def self.save_clashes(meet, clash_attributes)
+      meet.clashes.each do |clash|
+        attributes = clash_attributes[clash.id.to_s]
+        clash.attributes = attributes if attributes
+        clash.save(false)
+      end
+    end
 
     # create a record in the clash table for teammates in round team
     def self.create_meet_clash(meet, user)
@@ -143,13 +149,17 @@ class Clash < ActiveRecord::Base
      def self.meet_user_exists?(meet, user)
   		find_by_meet_id_and_user_id(meet, user).nil?
   	end 
+  	
+  	def format_description
+      self.description.gsub!(/\r?\n/, "<br>") unless self.description.nil?
+    end
 
-    # def self.log_activity_convocado(clash)
-    #   unless Activity.exists?(clash, clash.user)
-    #     activity = Activity.create!(:item => clash, :user => clash.user)
-    #     Feed.create!(:activity => activity, :user => clash.user)
-    #   end
-    # end   
+    def self.log_activity_convocado(clash)
+      unless Activity.exists?(clash, clash.user)
+        activity = Activity.create!(:item => clash, :user => clash.user)
+        Feed.create!(:activity => activity, :user => clash.user)
+      end
+    end   
   end
 
 

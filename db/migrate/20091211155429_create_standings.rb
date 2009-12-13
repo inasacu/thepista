@@ -1,7 +1,6 @@
 class CreateStandings < ActiveRecord::Migration
   def self.up
-    create_table :standings do |t|      
-      # t.integer   :tournament_id      
+    create_table :standings do |t|    
       t.integer   :round_id      
       t.integer   :user_id      
       t.integer   :played,             :default => 0             

@@ -8,21 +8,21 @@ class Meet < ActiveRecord::Base
   :reserved => ["new", "create", "index", "list", "signup", "edit", "update", "destroy", "show"]
 
   belongs_to  :round
-  has_many    :clashes,  :conditions => "clashes.archive = false",    :dependent => :destroy
-  has_many    :fees,                                                  :dependent => :destroy 
-  has_one     :forum,                                                 :dependent => :destroy
+  has_many    :clashes,  :conditions => "clashes.archive = false",    :order => "user_score DESC",      :dependent => :destroy
+  has_many    :fees,                                                                                    :dependent => :destroy 
+  has_one     :forum,                                                                                   :dependent => :destroy
 
   has_many    :home_roster,
               :through => :clashes,
               :source => :convocado,
-              :conditions =>  "clashes.type_id = 1 and clashes.round_id = (select meets.round_id from meets where meet_id = clashes.meet_id limit 1)",
+              :conditions =>  "clashes.type_id = 1 and clashes.meet_id = (select meets.round_id from meets where meet_id = clashes.meet_id limit 1)",
               :order =>       :name
 
-  has_many    :away_roster,
-              :through => :clashes,
-              :source => :convocado,
-              :conditions =>  "clashes.type_id = 1 and clashes.invite_id = (select meets.round_id from meets where meet_id = clashes.meet_id limit 1)",
-              :order =>       :name
+  # has_many    :away_roster,
+  #             :through => :clashes,
+  #             :source => :convocado,
+  #             :conditions =>  "clashes.type_id = 1 and clashes.invite_id = (select meets.round_id from meets where meet_id = clashes.meet_id limit 1)",
+  #             :order =>       :name
 
   has_many    :convocados,
               :through => :clashes,
@@ -30,32 +30,32 @@ class Meet < ActiveRecord::Base
               :conditions =>  "clashes.type_id = 1",
               :order =>       :name
 
-  has_many :last_minute,
-  :through => :clashes,
-  :source => :convocado,
-  :conditions =>  "clashes.type_id = 2",
-  :order =>       :name
+  has_many    :last_minute,
+              :through => :clashes,
+              :source => :convocado,
+              :conditions =>  "clashes.type_id = 2",
+              :order =>       :name
 
-  has_many :no_shows,
-  :through => :clashes,
-  :source => :convocado,
-  :conditions =>  "clashes.type_id in (3, 4)",
-  :order =>       :name
+  has_many    :no_shows,
+              :through => :clashes,
+              :source => :convocado,
+              :conditions =>  "clashes.type_id in (3, 4)",
+              :order =>       :name
 
-  has_many :no_jugado,
-  :through => :clashes,
-  :source => :convocado,
-  :conditions =>  "clashes.type_id in (4)",
-  :order =>       :name
+  has_many    :no_jugado,
+              :through => :clashes,
+              :source => :convocado,
+              :conditions =>  "clashes.type_id in (4)",
+              :order =>       :name
 
-  has_many :unavailable,
-  :through => :clashes,
-  :source => :convocado,
-  :conditions =>  "clashes.type_id in (1,2,3,4)",
-  :order =>       :name
+  has_many    :unavailable,
+              :through => :clashes,
+              :source => :convocado,
+              :conditions =>  "clashes.type_id in (1,2,3,4)",
+              :order =>       :name
 
-  belongs_to :sport
-  belongs_to :marker
+  belongs_to  :sport
+  belongs_to  :marker
 
   # validations  
   validates_presence_of         :concept
@@ -91,7 +91,7 @@ class Meet < ActiveRecord::Base
     "standings.played as standing_played, standings.ranking, standings.points ",
     :joins => "left join users on users.id = clashes.user_id left join types on types.id = clashes.type_id left join standings on standings.user_id = clashes.user_id",
     :conditions => ["clashes.meet_id = ? and clashes.archive = false and clashes.type_id = 1  and standings.round_id = ? and users.available = true ", self.id, self.round_id],
-    :order => "clashes.round_id desc, users.name")
+    :order => "clashes.meet_id desc, users.name")
   end
 
   def the_last_minute
@@ -100,7 +100,7 @@ class Meet < ActiveRecord::Base
     "standings.played as standing_played, standings.ranking, standings.points ",
     :joins => "left join users on users.id = clashes.user_id left join types on types.id = clashes.type_id left join standings on standings.user_id = clashes.user_id",
     :conditions => ["clashes.meet_id = ?  and clashes.archive = false and clashes.type_id = 2 and standings.round_id = ? and users.available = true ", self.id, self.round_id],
-    :order => "clashes.round_id desc, users.name")
+    :order => "clashes.meet_id desc, users.name")
   end
 
   def the_no_show
@@ -109,7 +109,7 @@ class Meet < ActiveRecord::Base
     "standings.played as standing_played, standings.ranking, standings.points ",
     :joins => "left join users on users.id = clashes.user_id left join types on types.id = clashes.type_id left join standings on standings.user_id = clashes.user_id",
     :conditions => ["clashes.meet_id = ?  and clashes.archive = false and clashes.type_id in (3,4) and standings.round_id = ? and users.available = true ", self.id, self.round_id],
-    :order => "clashes.round_id desc, users.name")
+    :order => "clashes.meet_id desc, users.name")
   end
 
   def the_unavailable
@@ -118,7 +118,7 @@ class Meet < ActiveRecord::Base
     "standings.played as standing_played, standings.ranking, standings.points ",
     :joins => "left join users on users.id = clashes.user_id left join types on types.id = clashes.type_id left join standings on standings.user_id = clashes.user_id",
     :conditions => ["clashes.meet_id = ?  and clashes.archive = false and clashes.type_id in (1,2,3,4) and standings.round_id = ? and users.available = false ", self.id, self.round_id],
-    :order => "clashes.round_id desc, users.name")
+    :order => "clashes.meet_id desc, users.name")
   end
 
   def sport_name
@@ -138,17 +138,17 @@ class Meet < ActiveRecord::Base
     self.round.name
   end
 
-  def away_round
-    self.round.second_team
-  end
+  # def away_round
+  #   self.round.second_team
+  # end
 
-  def home_score
-    self.clashes.first.round_score
-  end
+  # def home_score
+  #   self.clashes.first.round_score
+  # end
 
-  def away_score
-    self.clashes.first.invite_score
-  end
+  # def away_score
+  #   self.clashes.first.invite_score
+  # end
 
   # def self.current_meets(user, page = 1)
   #   self.paginate(:all, 

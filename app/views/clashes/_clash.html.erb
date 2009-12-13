@@ -1,0 +1,19 @@
+<% 
+	new_or_existing = clash.new_record? ? 'new' : 'existing' 
+	prefix = "clash[clash_attributes][]" 
+%>
+	  
+<!-- field_for start -->		
+<% fields_for prefix, clash do |clash_form| -%>
+	<tr>
+		<td valign="top" width="180">
+			<%= image_link_small clash.user %>&nbsp;&nbsp;&nbsp;&nbsp;<%= user_link clash.user %>
+		</td>
+
+		<td>
+			<%= clash_form.text_field :user_score, :class => 'textscore' %>
+		</td>
+	</tr>
+<% end -%>	
+<!-- field_for end -->
+

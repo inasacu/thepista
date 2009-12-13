@@ -2,10 +2,14 @@
 	if @schedule
 		label = label_with_name('note', sanitize(@schedule.concept))
 	end	
+	if @meet
+		label = label_with_name('note', sanitize(@meet.concept))
+	end
 %>
 <div class="block">
 
   <%= render :partial => '/schedules/secondary_navigation' if @schedule %>
+  <%= render :partial => '/meets/secondary_navigation' if @meet %>
 
   <div class="content">
 	
@@ -32,3 +36,4 @@
 </div>
 
 <% content_for :sidebar, render(:partial => '/schedules/sidebar_show') if @schedule -%>
+<% content_for :sidebar, render(:partial => '/meets/sidebar_show') if @meet -%>

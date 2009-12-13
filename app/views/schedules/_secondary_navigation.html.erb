@@ -14,7 +14,7 @@ else
 	if current_user.is_member_of?(@schedule.group)
 		the_label = "#{label_name(:forum)} #{sanitize(@schedule.concept)}"
 %>
-		<li class="<%= get_first_active('schedule_show') %>">  <%= schedule_link @schedule %>
+		<li class="<%= get_first_active('schedule_show') %>">  <%= schedule_link @schedule %></li>	
 		<li class="<%= get_active('topic_show') %>"><%= link_to(the_label, forum_path(@schedule.forum)) %></li>	
 		
 

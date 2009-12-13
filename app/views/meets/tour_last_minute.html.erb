@@ -14,7 +14,7 @@
 <% 
 	if a_roster
 %>
-		<%= render :partial => '/meets/team_roster_box', 
+		<%= render :partial => '/meets/tour_roster_box', 
 					:locals => {:previous_show => @previous, :next_show => @next, :roster => label_name(:last_minute), 
 								:meet => @meet, :the_roster => @meet.the_last_minute, 
 								:match_type => @match_type} %>

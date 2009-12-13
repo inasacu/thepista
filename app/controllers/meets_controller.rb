@@ -1,20 +1,19 @@
 class MeetsController < ApplicationController
   before_filter :require_user
   
-  before_filter :get_meet, :only => [:show, :edit, :update, :destroy, :set_public, :team_roster, :team_last_minute, :team_no_show, :team_unavailable]
+  before_filter :get_meet, :only => [:show, :edit, :update, :destroy, :set_public, :tour_roster, :tour_last_minute, :tour_no_show, :tour_unavailable]
   before_filter :get_round, :only =>[:new]
-  before_filter :get_clash_type, :only => [:team_roster, :team_last_minute, :team_no_show, :team_unavailable]
+  before_filter :get_clash_type, :only => [:tour_roster, :tour_last_minute, :tour_no_show, :tour_unavailable]
   before_filter :has_manager_access, :only => [:edit, :update, :destroy, :set_public]
   before_filter :has_member_access, :only => :show
-  before_filter :excess_players, :only => [:show, :team_roster, :team_last_minute, :team_no_show, :team_unavailable]
+  before_filter :excess_players, :only => [:show, :tour_roster, :tour_last_minute, :tour_no_show, :tour_unavailable]
   
   def index
-    @meets = Meet.current_meets(current_user, params[:page])
+    redirect_to tournament_url
   end
 
-  def list    
-    @meets = Meet.previous_meets(current_user, params[:page])
-    render :template => '/meets/index'       
+  def list
+    redirect_to tournament_url      
   end
   
   def show

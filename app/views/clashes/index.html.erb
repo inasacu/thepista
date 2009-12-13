@@ -1,50 +1,47 @@
 <div class="block">
-  <div class="secondary-navigation">
-    <ul>
-      <li class="first active"><%= link_to 'List', clashes_path %></li>
-      <li><%= link_to 'New', new_clash_path %></li>
-    </ul>
-    <div class="clear"></div>
-  </div>          
-  <div class="content">          
-    <h2 class="title">All Clashes</h2>
+
+  <%= render :partial => '/tournaments/secondary_navigation' %>   
+
+  <div class="content">   
+  
+    <h2 class="title"><%= get_collection_label(@matches) %></h2>
+	
     <div class="inner">
+	
       <table class="table">
-        <tr>             
-          <th class="first">ID</th>
+	  
+        <tr>         
+          <th class="first">&nbsp;</th>
           <th>Name</th>
           <th>Created at</th>
           <th class="last">&nbsp;</th>
         </tr>
-        <% @clashes.each do |clash| -%>
+        <% @matches.each do |match| -%>
         <tr>
           <td>
-            <%= clash.id %>
+            <%= match.id %>
           </td>
           <td>
-            <%= link_to clash.name, clash_path(clash) %>
+            <%= link_to match.name, match_path(match) %>
           </td>
           <td>
-            <%= clash.created_at %>
+            <%= match.created_at %>
           </td>
           <td class="last">
-            <%= link_to 'show', clash_path(clash) %> |
-            <%= link_to 'edit', edit_clash_path(clash) %> |
-            <%= link_to 'destroy', clash_path(clash), :method => :delete, :confirm => 'Are you sure?' %>
+            <%= link_to label_name(:show), match_path(match) %> |
+            <%= link_to label_name(:edit), edit_match_path(match) %> |
+            <%= link_to label_name(:destroy), match_path(match), :method => :delete, :confirm => label_name(:are_you_sure) %>
           </td>
         </tr>          
-        <% end -%>
-      </table>
-      <div class="actions-bar">
-        <div class="actions">
-        </div>
-        
-        <%= will_paginate @clash  %>
-        
-        <div class="clear"></div>
-      </div>
-    </div>
-  </div>
-</div>
+		        <% end -%>
 
-<% content_for :sidebar, render(:partial => 'sidebar') -%>
+		      </table>
+			  <%= render :partial => 'shared/action_bar', :locals => { :collection => @match } %>
+
+		    </div>
+
+		  </div>
+
+		</div>
+
+		<% content_for :sidebar, render(:partial => '/schedules/sidebar') -%>

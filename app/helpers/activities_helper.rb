@@ -15,23 +15,22 @@ module ActivitiesHelper
       is_member = current_user.is_member_of?(schedule.group)
       the_label = schedule.played? ? I18n.t(:has_updated_scorecard) : I18n.t(:created_a_schedule)
        %(#{the_label} #{is_member ? schedule_link(schedule) : sanitize(schedule.concept)}.)
-              
-      # if schedule.played?
-      #   %(#{I18n.t(:has_updated_scorecard) } #{is_member ? schedule_link(schedule) : schedule.concept}.)
-      # else        
-      #   %(#{I18n.t(:created_a_schedule) } #{is_member ? schedule_link(schedule) : schedule.concept}.)
-      # end
 
     when "User"
         %(#{I18n.t(:changed_description) })
       
     when "Post"
         post = activity.item
-        is_member = current_user.is_member_of?(post.topic.forum.schedule.group)
+        is_member = false
         
-          %(#{I18n.t(:left_post_on_forum) } #{is_member ? topic_link(post.topic): sanitize(post.topic.forum.schedule.concept)})
-          #{topic_link(post.topic)})
-
+        if post.topic.forum.schedule        
+          is_member = current_user.is_member_of?(post.topic.forum.schedule.group)        
+            %(#{I18n.t(:left_post_on_forum) } #{is_member ? topic_link(post.topic): sanitize(post.topic.forum.schedule.concept)})
+        elsif post.topic.forum.meet        
+          is_member = current_user.is_tour_member_of?(post.topic.forum.meet.round.tournament)        
+            %(#{I18n.t(:left_post_on_forum) } #{is_member ? topic_link(post.topic): sanitize(post.topic.forum.meet.concept)})
+        end
+        
     when "Comment"
         comment = activity.item
 
@@ -48,8 +47,16 @@ module ActivitiesHelper
 
     when "Match"	
           match = activity.item
-          is_member = current_user.is_member_of?(match.schedule.group)
-      %(#{I18n.t(:changes_in_roster_status) } #{I18n.t(:in) } #{is_member ? schedule_link(match.schedule) : match.schedule.concept}.)
+          is_member = false
+
+          if post.topic.forum.schedule        
+            is_member = current_user.is_member_of?(match.schedule.group)        
+               %(#{I18n.t(:changes_in_roster_status) } #{I18n.t(:in) } #{is_member ? schedule_link(match.schedule) : match.schedule.concept}.)
+          elsif post.topic.forum.meet        
+            is_member = current_user.is_tour_member_of?(clash.meet.round.tournament)        
+              %(#{I18n.t(:changes_in_roster_status) } #{I18n.t(:in) } #{is_member ? meet_link(clash.meet) : clash.meet.concept}.)
+          end
+     
 
     when "Result"
       %(Resultados ya se han actualizado...)

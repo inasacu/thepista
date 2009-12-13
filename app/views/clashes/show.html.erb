@@ -1,72 +1,67 @@
 <div class="block">
-  <div class="secondary-navigation">
-    <ul>
-      <li class="first"><%= link_to 'List', clashes_path  %></li>
-      <li><%= link_to 'New', new_clash_path %></li>
-      <li class="active"><%= link_to 'Show', clash_path %></li>
-    </ul>
-    <div class="clear"></div>
-  </div>          
+
+  <%= render :partial => '/tournaments/secondary_navigation' %>    
+  
   <div class="content">
     <div class="inner">
-      
+
         <p>
-          <b>Name:</b>
-          <%= @clash.name %>
+          <b><%= label_name(:concept) %>:</b>
+          <%=sanitize(@match.schedule.concept) %>
         </p>
 
         <p>
-          <b>Meet_id:</b>
-          <%= @clash.meet_id %>
+          <b><%= label_name(:user) %>:</b>
+          <%=h @match.user.name %>
         </p>
 
         <p>
-          <b>User_id:</b>
-          <%= @clash.user_id %>
+          <b><%= label_name(:group) %>:</b>
+          <%=h @match.group.name %>
         </p>
 
         <p>
-          <b>User_score:</b>
-          <%= @clash.user_score %>
+          <b><%= label_name(:invite) %>:</b>
+          <%=h @match.invite.name %>
         </p>
 
         <p>
-          <b>Played:</b>
-          <%= @clash.played %>
+          <b><%= label_name(:group_score) %>:</b>
+          <%=h @match.group_score %>
         </p>
 
         <p>
-          <b>One_x_two:</b>
-          <%= @clash.one_x_two %>
+          <b><%= label_name(:invite_score) %>:</b>
+          <%=h @match.invite_score %>
         </p>
 
         <p>
-          <b>User_x_two:</b>
-          <%= @clash.user_x_two %>
+          <b><%= label_name(:goals_scored) %>:</b>
+          <%=h @match.goals_scored %>
         </p>
 
         <p>
-          <b>Type_id:</b>
-          <%= @clash.type_id %>
+          <b><%= label_name(:roster_position) %>:</b>
+          <%=h @match.roster_position %>
         </p>
 
         <p>
-          <b>Status_at:</b>
-          <%= @clash.status_at %>
+          <b><%= label_name(:played) %>:</b>
+          <%=h @match.played %>
         </p>
 
         <p>
-          <b>Deleted_at:</b>
-          <%= @clash.deleted_at %>
+          <b><%= label_name(:available) %>:</b>
+          <%=h @match.available %>
         </p>
 
         <p>
-          <b>Archive:</b>
-          <%= @clash.archive %>
+          <b><%= label_name(:match_type) %>:</b>
+          <%=h @match.type_id %>
         </p>
-      <%= link_to 'Edit', edit_clash_path(@clash) %>
+  
     </div>
   </div>
 </div>
 
-<% content_for :sidebar, render(:partial => 'sidebar') -%>
+<% content_for :sidebar, render(:partial => '/schedules/sidebar_show') -%>

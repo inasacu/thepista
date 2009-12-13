@@ -94,11 +94,8 @@ class TournamentsController < ApplicationController
   end
 
   def destroy
-    # @tournament = Tournament.find(params[:id])
     counter = 0
     @tournament.schedules.each {|schedule| counter += 1 }
-
-    # @tournament.destroy unless counter > 0
 
     flash[:notice] = I18n.t(:successfully_destroyed)
     redirect_to tournament_url

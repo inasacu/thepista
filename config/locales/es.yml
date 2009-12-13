@@ -1223,6 +1223,11 @@ es:
      please_read_this:  "Por favor lea esto!"
      ie_no_more_country: es-ES
      
+     
+     clash:  Resultado
+     clashes:  Resultados
+     clashes_edit:  Resultados
+     
      entries_teammate: Mis Compañeros de Equipo
      entries_my_wall: Mi Muro
      entries_option:  Opciones del Muro
