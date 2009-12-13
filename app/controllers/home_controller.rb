@@ -24,7 +24,7 @@ class HomeController < ApplicationController
 
   def upcoming_schedule
     @upcoming_schedules ||= Schedule.upcoming_schedules(session[:schedule_hide_time])
-    @upcoming_meets ||= Schedule.upcoming_meets(session[:meet_hide_time]) if development?
+    # @upcoming_meets ||= Schedule.upcoming_meets(session[:meet_hide_time]) if development?
   end
   
   def about_us
