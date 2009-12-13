@@ -13,7 +13,7 @@ end
 	<% if current_user %>
 		<li class="<%= get_control_first('home') %>"><%= link_to(label_name(:home) , '/') %></li>
 		
-		<% unless production? %>
+		<% unless development? %>
 			<li class="<%= get_control_active('tournament') %>"><%= link_to(label_name(:tournaments), tournaments_url) %></li>			
 		<% end %>
 		
@@ -22,7 +22,7 @@ end
 				
 		<% if display %>	
 			<li class="<%= get_control_active('schedule') %><%= get_control_active('topic') %>">
-						<%= link_to(label_name(:schedules), schedules_url) %>
+				<%= link_to(label_name(:schedules), schedules_url) %>
 			</li>
 		<% end %>
 	

@@ -129,44 +129,9 @@ class Meet < ActiveRecord::Base
     self.round.tournament.time_zone
   end
 
-  # def last_season?(user)
-  #   return false if self.season_ends_at.nil? and user.is_manager_of?(self.round)
-  #   return (self.season_ends_at < Time.zone.now() and user.is_manager_of?(self.round))
-  # end
-
   def home_round
     self.round.name
   end
-
-  # def away_round
-  #   self.round.second_team
-  # end
-
-  # def home_score
-  #   self.clashes.first.round_score
-  # end
-
-  # def away_score
-  #   self.clashes.first.invite_score
-  # end
-
-  # def self.current_meets(user, page = 1)
-  #   self.paginate(:all, 
-  #   :conditions => ["starts_at >= ? and round_id in (select round_id from rounds_users where user_id = ?)", Time.zone.now, user.id],
-  #   :order => 'starts_at, round_id', :page => page, :per_page => SCHEDULES_PER_PAGE)
-  # end
-
-  # def self.previous_meets(user, page = 1)
-  #   self.paginate(:all, 
-  #   :conditions => ["starts_at < ? and (season_ends_at is null or season_ends_at > ?) and round_id in (select round_id from rounds_users where user_id = ?)", Time.zone.now, Time.zone.now, user.id],
-  #   :order => 'starts_at desc, round_id', :page => page, :per_page => SCHEDULES_PER_PAGE)
-  # end
-
-  # def self.archive_meets(user, page = 1)
-  #   self.paginate(:all, 
-  #   :conditions => ["season_ends_at < ? and round_id in (select round_id from rounds_users where user_id = ?)", Time.zone.now, user.id],
-  #   :order => 'starts_at, round_id', :page => page, :per_page => SCHEDULES_PER_PAGE)
-  # end
 
   def self.max(meet)
     find(:first, :conditions => ["round_id = ? and played = true", meet.round_id], :order => "starts_at desc")    
@@ -195,10 +160,6 @@ class Meet < ActiveRecord::Base
       end
     end
   end
-
-  # def self.last_meet_played(user)
-  #   find(:first, :select => "starts_at", :conditions => ["id = (select max(meet_id) from clashes where user_id = ? and type_id = 1  and played = true)", user.id])
-  # end
 
   def game_played?
     played == true

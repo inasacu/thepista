@@ -44,19 +44,21 @@ module ActivitiesHelper
             %(#{I18n.t(:left_comment_on_wall) } #{is_member ? group_link(comment.entry.tournament) : comment.entry.tournament.name})              
         end
 
-
     when "Match"	
           match = activity.item
           is_member = false
-
-          if post.topic.forum.schedule        
-            is_member = current_user.is_member_of?(match.schedule.group)        
-               %(#{I18n.t(:changes_in_roster_status) } #{I18n.t(:in) } #{is_member ? schedule_link(match.schedule) : match.schedule.concept}.)
-          elsif post.topic.forum.meet        
-            is_member = current_user.is_tour_member_of?(clash.meet.round.tournament)        
-              %(#{I18n.t(:changes_in_roster_status) } #{I18n.t(:in) } #{is_member ? meet_link(clash.meet) : clash.meet.concept}.)
-          end
-     
+          
+          match = activity.item
+          is_member = current_user.is_member_of?(match.schedule.group)
+          %(#{I18n.t(:changes_in_roster_status) } #{I18n.t(:in) } #{is_member ? schedule_link(match.schedule) : match.schedule.concept}.)
+    
+    when "Clash"  
+          clash = activity.item
+          is_member = false
+    
+          match = activity.item
+          is_member = current_user.is_tour_member_of?(match.meet.round.tournament)
+          %(#{I18n.t(:changes_in_roster_status) } #{I18n.t(:in) } #{is_member ? schedule_link(match.meet) : match.meet.concept}.)
 
     when "Result"
       %(Resultados ya se han actualizado...)
@@ -66,7 +68,6 @@ module ActivitiesHelper
           is_member = current_user.is_member_of?(scorecard.group)
       %(changed results for #{is_member ? group_link(scorecard.group) : scorecard.group.name}.)
             
-      
     else
       raise "Invalid activity type #{activity_type(activity).inspect}"
     end

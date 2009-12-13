@@ -146,6 +146,10 @@ module ApplicationHelper
   def upcoming_schedules
     @upcoming_schedules ||= Schedule.upcoming_schedules(session[:schedule_hide_time])
   end
+
+  def upcoming_meets
+    @upcoming_meets ||= Meet.upcoming_meets(session[:meet_hide_time])
+  end
   
   def current_messages
     @current_messages ||= Message.current_messages(current_user)

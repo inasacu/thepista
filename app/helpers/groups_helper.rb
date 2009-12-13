@@ -28,23 +28,19 @@ module GroupsHelper
   end
 
   def group_image_link_tiny(group)
-    link_to(image_tag(group.avatar, options={:style => "height: 15px; width: 15px;"}), group_path(group)) #if production?
-      # link_to(image_tag('group_avatar.png', options={:style => "height: 15px; width: 15px;"}), group_path(group)) unless production?
+    link_to(image_tag(group.avatar, options={:style => "height: 15px; width: 15px;"}), group_path(group)) 
   end
   
   def group_image_link_small(group)
-    link_to(image_tag(group.avatar, options={:style => "height: 30px; width: 30px;"}), group_path(group)) #if production?
-      # link_to(image_tag('group_avatar.png', options={:style => "height: 30px; width: 30px;"}), group_path(group)) unless production?
+    link_to(image_tag(group.avatar, options={:style => "height: 30px; width: 30px;"}), group_path(group)) 
   end
 
   def group_image_link_medium(group)
-    link_to(image_tag(group.avatar, options={:style => "height: 55px; width: 55px;"}), group_path(group)) #if production?
-      # link_to(image_tag('group_avatar.png', options={:style => "height: 55px; width: 55px;"}), group_path(group)) unless production?
+    link_to(image_tag(group.avatar, options={:style => "height: 55px; width: 55px;"}), group_path(group))
   end
 
   def group_image_link_large(group)
-    link_to(image_tag(group.avatar, options={:style => "height: 80px; width: 80px;"}), group_path(group)) #if production?
-      # link_to(image_tag('group_avatar.png', options={:style => "height: 80px; width: 80px;"}), group_path(group)) unless production?
+    link_to(image_tag(group.avatar, options={:style => "height: 80px; width: 80px;"}), group_path(group))
   end
   
   def group_vs_invite(schedule)
