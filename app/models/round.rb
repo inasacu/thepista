@@ -13,5 +13,11 @@ class Round < ActiveRecord::Base
 
   belongs_to    :tournament
   has_many      :meets
-
+  has_many      :standings,     :conditions => "archive = false", :order => "ranking"
+  
+  def games_played
+    games_played = 0
+    self.meets.each {|meet| games_played += 1 if meet.played}
+    return games_played
+  end
 end

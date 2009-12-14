@@ -88,13 +88,15 @@ class Clash < ActiveRecord::Base
     #   Standing.calculate_user_standing(round)
     # end
 
-    def self.update_clash_details(meet)      
-      clash_id, ranking, past_points, last = 0, 0, 0, 0  
-      
+    def self.update_clash_details(meet)       
+      is_played ||= false
+      tie_game ||= true
+           
+      clash_id, ranking, past_points, last = 0, 0, 0, 0        
       meet.clashes.each do |clash|
         points = clash.user_score        
         if clash_id != clash.id 
-          clash_id,  past_points, last = clash.id,  0, 1
+          clash_id, ranking,  past_points, last = clash.id, 0, 0, 1
         end 
 
         if (past_points == points) 
@@ -103,17 +105,33 @@ class Clash < ActiveRecord::Base
           ranking += last
           last = 1          
         end
-        past_points = points  
-
-        clash.one_x_two = ranking
-        clash.user_x_two = 0
-        clash.save!
         
-      end       
-    
-      # the_clash ||= "..."
-      # @meet.forum.description = the_clash.description
-      # Standing.calculate_round_standing(@meet.round)
+        tie_game = !tie_game if (ranking == 1)
+        
+        past_points = points  
+        clash.one_x_two = ranking
+        clash.user_x_two = 1
+        clash.description = meet.description
+        clash.played = !clash.user_score.nil? 
+        clash.save! 
+        
+        is_played = true unless clash.user_score.nil?       
+      end   
+      
+      # update for draw game
+      if tie_game
+        meet.clashes.each do  |clash|
+          clash.user_x_two = 99999
+          clash.save!
+        end
+      end
+      
+      # if any clashes has a user score then game is played
+      meet.played = is_played
+      meet.save!
+
+      Standing.calculate_round_standing(meet.round)
+      Standing.update_round_user_ranking(meet.round)  
       # Post.create_meet_post(@meet.forum, @meet.forum.topics.first, user, the_clash.description) if @meet.played?
     end
 

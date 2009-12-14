@@ -53,14 +53,12 @@
     <% if @meet.game_played? %>
 
       <tr>
-        <%= content_tag :td, label_name(:round), :class => "label" %>
+        <%= content_tag :td, label_name(:users), :class => "label" %>
 
 		<td class="<%= get_the_action%>">
-          <%#= round_link @meet.round %>
-          &nbsp;&nbsp;
-          <%#= @meet.home_score %>&nbsp;&nbsp;-&nbsp;&nbsp;<%#= @meet.away_score %>
-          &nbsp;&nbsp;
-          <%#= link_to h(@meet.round.second_team), round_path(@meet.round) %>
+			<% @meet.clashes.each do |clash| %>
+          		<%= user_link clash.user %>&nbsp;&nbsp;&nbsp;&nbsp;<%= clash.user_score %><br /><br />
+			<% end -%>
 		</td>
       </tr>
     <% else %>
@@ -71,22 +69,17 @@
       </tr>
 
     <% end %>
-
 	
-	<%#= tr_td_action(:game_notes, @meet.matches.first.description) if @meet.played? %>
 	<%= tr_td_action(:jornada, @meet.jornada) %>
 	<%= tr_td_action(:starts_at, nice_day_of_week(@meet.starts_at)) %>
 	<%= tr_td_action(:ends_at, nice_day_of_week(@meet.ends_at)) %>
-	<%#= tr_td_action(:season, @meet.season) %>
 	<%= tr_td_action(:sport, @meet.sport_name) %>
-	<%#= tr_td_action(:fee_per_tour, number_to_currency(@meet.fee_per_tour)) %>
 	<%= tr_td_action(:time_zone, @meet.time_zone) %>
 	
     <tr>
       <%= content_tag :td, label_name(:marker), :class => "label" %>       
       <%= content_tag :td, marker_link(@meet.marker), :class => get_the_action %>
     </tr>
-
 
 	<% unless @meet.convocados.empty? %>
 	<tr>
@@ -128,8 +121,6 @@
 								:class => get_the_action %>
 	</tr>
 	
-	<%#= tr_td_action(:season_ends_at, nice_day_date(@meet.season_ends_at)) %>
-
 </table>
 
 </td>

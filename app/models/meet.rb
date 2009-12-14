@@ -132,6 +132,14 @@ class Meet < ActiveRecord::Base
   def home_round
     self.round.name
   end
+  
+  def tournament
+    self.round.tournament
+  end
+  
+  def sport
+    self.round.tournament.sport
+  end
 
   def self.max(meet)
     find(:first, :conditions => ["round_id = ? and played = true", meet.round_id], :order => "starts_at desc")    

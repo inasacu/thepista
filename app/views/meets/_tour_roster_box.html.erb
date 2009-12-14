@@ -30,7 +30,7 @@
 	is_sub_manager = current_user.is_tour_sub_manager_of?(@tournament)
 	
 	@positions = Type.find(:all, :conditions => "table_type = 'User'", :order => "id")
-	@tournament = @meet.round.tournament
+	@tournament = @meet.tournament
 	
 if roster_count 
 %>

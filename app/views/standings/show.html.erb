@@ -1,77 +1,81 @@
+<% 
+	@archive ||= false 
+	@less_games = 5 
+%>
 <div class="block">
-  <div class="secondary-navigation">
-    <ul>
-      <li class="first"><%= link_to 'List', standings_path  %></li>
-      <li><%= link_to 'New', new_standing_path %></li>
-      <li class="active"><%= link_to 'Show', standing_path %></li>
-    </ul>
-    <div class="clear"></div>
-  </div>          
-  <div class="content">
-    <div class="inner">
-      
-        <p>
-          <b>Tour_id:</b>
-          <%= @standing.tour_id %>
-        </p>
 
-        <p>
-          <b>Round_id:</b>
-          <%= @standing.round_id %>
-        </p>
+<%= render :partial => 'secondary_navigation' %>  
 
-        <p>
-          <b>User_id:</b>
-          <%= @standing.user_id %>
-        </p>
+<% 	
+	# @games_played = @tournament.rounds.games_played
+	the_value = @tournament.use_goals?
+	standings = false
+	@standings.each {|card| standings = true }
+	
+	if standings	
+%>
+<div class="content">   
 
-        <p>
-          <b>Played:</b>
-          <%= @standing.played %>
-        </p>
+	<h2 class="title"><%= tournament_link @tournament %></h2>
 
-        <p>
-          <b>Assigned:</b>
-          <%= @standing.assigned %>
-        </p>
+	<div class="inner">
+			
+		<% @tournament.rounds.each do |round| 					
+		   		if round.meets.count > 0
+					@standings = round.standings
+		%>
+			
+		<table class="table" id="<%= get_the_controller.gsub(' ','_') %>">
 
-        <p>
-          <b>Wins:</b>
-          <%= @standing.wins %>
-        </p>
+			<h4 class="title"><%= round_link round %></h4><br />
+			
+			<tr>           
+				<th class="first" title="<%= label_name(:ranking_full) %>"><%= label_name(:ranking) %></th>
+				<th>&nbsp;</th>
+				<th><span><%= label_name(:name) %></span></th>
 
-        <p>
-          <b>Draws:</b>
-          <%= @standing.draws %>
-        </p>
+				<th title="<%= label_name(:points_full) %>"><%= label_name(:points) %></th>
+				<th title="<%= label_name(:games_won_full) %>"><%= label_name(:games_won) %></th>
+				<th title="<%= label_name(:games_tied_full) %>"><%= label_name(:games_tied) %></th>
+				<th title="<%= label_name(:games_lost_full) %>"><%= label_name(:games_lost) %></th>
+				
+				<%  if @tournament.use_goals?  %>
+				<th title="<%= label_name(:goals_scored_full) %>"><%= label_name(:goals_scored) %></th>
+				<th title="<%= label_name(:goals_for_full, the_value.to_s) %>"><%= label_name(:goals_for, the_value.to_s) %></th>
+				<th title="<%= label_name(:goals_against_full, the_value.to_s) %>"><%= label_name(:goals_against, the_value.to_s) %></th>
+				<th title="<%= label_name(:goal_difference_full, the_value.to_s) %>"><%= label_name(:goal_difference, the_value.to_s) %></th>
+				<% end %>
+				
+				<th title="<%= label_name(:coeficient_full) %>"><%= label_name(:coeficient) %></th>
+				<th title="<%= label_name(:games_played_full) %>"><%= label_name(:games_played) %></th>
+			</tr>
+			
+				<%= render :partial => 'standing', :collection => @standings, 
+							:locals => {:tournament => @tournament, :games_played => @games_played, :less_games => @less_games} %>        
+			
+		</table><br />
+		
+		<% 
+				end
+			end 
+		-%>
+		
+		<!-- <p><em style="color: rgb(153, 153, 153);">
+			<%#= "(*) #{label_name(:player_with)} #{@less_games} #{label_name(:player_with_less_games)}" %>
+			</em>
+		</p> -->
+		
+	</div>
+	</div>
+<% 
+end 
+-%>
 
-        <p>
-          <b>Losses:</b>
-          <%= @standing.losses %>
-        </p>
-
-        <p>
-          <b>Points:</b>
-          <%= @standing.points %>
-        </p>
-
-        <p>
-          <b>Ranking:</b>
-          <%= @standing.ranking %>
-        </p>
-
-        <p>
-          <b>Deleted_at:</b>
-          <%= @standing.deleted_at %>
-        </p>
-
-        <p>
-          <b>Archive:</b>
-          <%= @standing.archive %>
-        </p>
-      <%= link_to 'Edit', edit_standing_path(@standing) %>
-    </div>
-  </div>
 </div>
 
-<% content_for :sidebar, render(:partial => 'sidebar') -%>
+<% content_for :sidebar, render(:partial => 'sidebar_show') -%>
+
+
+
+
+

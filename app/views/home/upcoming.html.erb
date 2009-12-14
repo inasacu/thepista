@@ -1,0 +1,34 @@
+<%  
+	has_schedule ||= false
+	has_meet ||= false
+	
+	has_schedule = true unless upcoming_schedules.empty? 
+	has_meet = true unless upcoming_meets.empty? 
+%> 
+
+<div class="block">
+
+  <%= render :partial => 'secondary_navigation' %>   
+  
+  <div class="content">   
+  
+    <h2 class="title"><%= control_action_label %></h2>
+	
+    <div class="inner">
+
+	<%= render :partial => "upcoming_schedule", :locals => {:upcoming_schedules => @upcoming_schedules} if has_schedule %>
+	<%= render :partial => "upcoming_meet", :locals => {:upcoming_meets => @upcoming_meets} if has_meet %>
+	
+    </div>
+	
+  </div>
+  
+</div>
+
+<% content_for :sidebar, render(:partial => '/shared/active_comment') if current_user and @has_activities  -%>
+
+
+
+
+
+

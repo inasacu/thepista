@@ -60,7 +60,9 @@ ActionController::Routing::Routes.draw do |map|
   
   map.reply_message         'messages/:id/reply',                         :controller => 'messages',        :action => 'reply'
   map.untrash_message       'messages/:id/undestroy',                     :controller => 'messages',        :action => 'undestroy'
-  map.upcoming_schedule     'home/upcoming_schedule',                     :controller => 'home',            :action => 'upcoming_schedule'         
+  
+  # map.upcoming_schedule     'home/upcoming_schedule',                     :controller => 'home',            :action => 'upcoming_schedule'         
+  map.upcoming              'home/upcoming',                              :controller => 'home',            :action => 'upcoming'         
   
   map.archive_scorecard     'scorecards/:id/archive',                     :controller => 'scorecards',      :action => 'archive'
   map.show_archive          'scorecards/:id/show_archive',                :controller => 'scorecards',      :action => 'show_archive'
@@ -118,7 +120,6 @@ ActionController::Routing::Routes.draw do |map|
   map.resources   :standings,       :as => 'encasillado',                 :collection => { :list => :get }
     
   map.resources   :connections
-  # map.resources   :ratings,                                               :member => { :rate => :put }  
   map.resources   :schedules,                                             :member => { :rate => :post }
   
   map.resources   :users do |user|

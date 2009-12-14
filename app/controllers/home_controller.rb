@@ -6,11 +6,12 @@ class HomeController < ApplicationController
     if current_user
         
       @upcoming_schedules ||= Schedule.upcoming_schedules(session[:schedule_hide_time])
-      @upcoming_meets ||= Meet.upcoming_meets(session[:meet_hide_time]) if development?
+      # @upcoming_meets ||= Meet.upcoming_meets(session[:meet_hide_time]) if development?
       
       unless @upcoming_schedules.empty?       
       # if current_user.current_login_at >= (Time.zone.now - 1.minutes)            
-        redirect_to :upcoming_schedule # unless @upcoming_schedules.empty? 
+        # redirect_to :upcoming_schedule 
+        redirect_to :upcoming
         return
       end
       
@@ -21,11 +22,16 @@ class HomeController < ApplicationController
       format.atom
     end  
   end
-
-  def upcoming_schedule
+  
+  def upcoming
     @upcoming_schedules ||= Schedule.upcoming_schedules(session[:schedule_hide_time])
-    # @upcoming_meets ||= Schedule.upcoming_meets(session[:meet_hide_time]) if development?
+    # @upcoming_meets ||= Meet.upcoming_meets(session[:meet_hide_time]) if development?    
   end
+
+  # def upcoming_schedule
+  #   @upcoming_schedules ||= Schedule.upcoming_schedules(session[:schedule_hide_time])
+  #   @upcoming_meets ||= Meet.upcoming_meets(session[:meet_hide_time]) if development?
+  # end
   
   def about_us
   end

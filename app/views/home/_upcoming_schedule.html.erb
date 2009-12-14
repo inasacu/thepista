@@ -1,0 +1,44 @@
+<table class="table">
+
+<% upcoming_schedules.each do |schedule| 
+	the_sport = "#{label_name(:rosters)}:  #{schedule.convocados.count}"
+	-%>		
+	<tr>
+		<td>
+			<%= current_user.is_member_of?(schedule.group) ? schedule_image_link_small(schedule) : schedule_image_small(schedule) %>
+		</td>
+
+		<td>
+			<%= current_user.is_member_of?(schedule.group) ? schedule_link(schedule) : sanitize(schedule.concept) %>
+		</td>
+
+		<td>
+			<%= group_link schedule.group %><br />
+			<%= label_name(:group) %>
+		</td>
+
+		<td>
+			<%= nice_day_of_week(schedule.starts_at) %> 
+			<% unless production? %>
+			<br />
+			<p> <em style="color: rgb(153, 153, 153);">
+				<%= label_name(:your_schedule) %>&nbsp;<%= nice_day_of_week(schedule.starts_at.in_time_zone(Time.zone)) %><br />
+			</em></p>
+			<% end %>
+
+		</td>	
+
+		<td class="last">
+			<%= the_sport %>
+		</td>
+
+	</tr>
+	<% end -%>
+
+</table> 
+
+
+
+
+
+

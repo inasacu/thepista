@@ -27,7 +27,7 @@ module ActivitiesHelper
           is_member = current_user.is_member_of?(post.topic.forum.schedule.group)        
             %(#{I18n.t(:left_post_on_forum) } #{is_member ? topic_link(post.topic): sanitize(post.topic.forum.schedule.concept)})
         elsif post.topic.forum.meet        
-          is_member = current_user.is_tour_member_of?(post.topic.forum.meet.round.tournament)        
+          is_member = current_user.is_tour_member_of?(post.topic.forum.meet.tournament)        
             %(#{I18n.t(:left_post_on_forum) } #{is_member ? topic_link(post.topic): sanitize(post.topic.forum.meet.concept)})
         end
         
@@ -57,7 +57,7 @@ module ActivitiesHelper
           is_member = false
     
           match = activity.item
-          is_member = current_user.is_tour_member_of?(match.meet.round.tournament)
+          is_member = current_user.is_tour_member_of?(match.meet.tournament)
           %(#{I18n.t(:changes_in_roster_status) } #{I18n.t(:in) } #{is_member ? schedule_link(match.meet) : match.meet.concept}.)
 
     when "Result"

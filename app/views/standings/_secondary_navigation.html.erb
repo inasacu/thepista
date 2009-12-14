@@ -1,0 +1,19 @@
+<% 
+	all_actions = ['show', 'show_archive'] 
+	the_action = get_the_action.gsub(' ', '_')
+	the_label = "standing_#{the_action}"
+%>
+<div class="secondary-navigation">
+
+<ul>
+	<li class="<%= get_first_active %>"><%= link_to(control_label('index') , standings_path) %></li>
+	<li class="<%= get_active('standing_list') %>"><%= link_to(label_name(:standing_list) , list_standings_path) %></li>
+	
+	<% if all_actions.include?(the_action) %>
+		<li class="<%= get_active(the_label) %>"><%=  tournament_link @tournament %></li>
+	<% end %>
+</ul>
+
+<div class="clear"></div>
+
+</div>

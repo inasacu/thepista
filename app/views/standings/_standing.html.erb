@@ -1,0 +1,37 @@
+<%
+ 	mailer ||= false
+	swith ||= false
+	max_points = standing.played.to_i * tournament.points_for_win.to_i
+	coeficient = 0
+	coeficient = 100 *(standing.points.to_f/max_points.to_f) 
+%>
+
+<tr>
+	<td class="puntos"><%= "*" if ((standing.played.to_i + less_games) < games_played.to_i) %>&nbsp;<%= standing.ranking %></td>
+	<td class="equipos"><%= mailer ? "&nbsp;" : image_link_tiny(standing.user) %></td>
+	<td class="equipos">
+		<span>
+		<% if mailer %>
+		<%= link_to(standing.user.name, {:host => 'haypista.com', :controller => 'users', :action => 'show', :id => standing.user}) %>
+		<% else %>
+		<%= user_link(standing.user) %>
+		<% end %>
+		</span>
+	</td>
+
+	<td class="puntos"><%= standing.points.round %></td>
+	<td class="ganados"><%= standing.wins %></td>
+	<td class="empatados"><%= standing.draws %></td>
+	<td class="perdidos"><%= standing.losses %></td>
+	
+	<%  if tournament.use_goals?  %>
+	<td class="puntos"><%= standing.goals_scored %></td>
+	<td class="afavor"><%= standing.goals_for %></td>
+	<td class="encontra"><%= standing.goals_against %></td>
+	<td class="encontra"><%= standing.goals_for - standing.goals_against %></td>
+	<% end %>
+		
+	<td class="puntos"><%= sprintf( "%0.00f", coeficient) %><%= "%" %></td>
+	<td class="jugados"><%= standing.played %></td>	
+</tr>
+

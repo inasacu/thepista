@@ -45,9 +45,7 @@ class ClashesController < ApplicationController
   def set_status
     @type = Type.find(params[:type])
 
-    played = (@type.id == 1 and !@clash.round_score.nil? and !@clash.invite_score.nil?)
-
-    if @clash.update_attributes(:type_id => @type.id, :played => played, :user_x_two => @user_x_two, :status_at => Time.zone.now)
+    if @clash.update_attributes(:type_id => @type.id, :status_at => Time.zone.now)
       Scorecard.calculate_user_played_assigned_scorecard(@clash.user, @clash.meet.round)
       Clash.log_activity_convocado(@clash)
 
@@ -68,23 +66,23 @@ class ClashesController < ApplicationController
     redirect_back_or_default('index')
   end
 
-  def set_tour 
-    unless current_user.is_sub_manager_of?(@clash.meet.round) 
-      flash[:warning] = I18n.t(:unauthorized)
-      redirect_back_or_default('/index')
-      return
-    end
-
-    played = (@clash.type_id.to_i == 1 and !@clash.round_score.nil? and !@clash.invite_score.nil?)
-
-    if @clash.update_attributes(:round_id => @clash.invite_id, :invite_id => @clash.round_id, 
-      :played => played, :user_x_two => @user_x_two)
-
-      Scorecard.calculate_user_played_assigned_scorecard(@clash.user, @clash.meet.round)
-      flash[:notice] = I18n.t(:change_round)
-    end
-    redirect_back_or_default('/index')
-  end
+  # def set_tour 
+  #   unless current_user.is_sub_manager_of?(@clash.meet.round) 
+  #     flash[:warning] = I18n.t(:unauthorized)
+  #     redirect_back_or_default('/index')
+  #     return
+  #   end
+  # 
+  #   played = (@clash.type_id.to_i == 1 and !@clash.round_score.nil? and !@clash.invite_score.nil?)
+  # 
+  #   if @clash.update_attributes(:round_id => @clash.invite_id, :invite_id => @clash.round_id, 
+  #     :played => played, :user_x_two => @user_x_two)
+  # 
+  #     Scorecard.calculate_user_played_assigned_scorecard(@clash.user, @clash.meet.round)
+  #     flash[:notice] = I18n.t(:change_round)
+  #   end
+  #   redirect_back_or_default('/index')
+  # end
 
   private
   def has_manager_access
@@ -97,12 +95,5 @@ class ClashesController < ApplicationController
 
   def get_clash_and_user_x_two
     @clash = Clash.find(params[:id])
-
-    # 1 == player is in team one
-    # x == game tied, doesnt matter where player is
-    # 2 == player is in team two      
-    # @user_x_two = "1" if (@clash.round_id.to_i > 0 and @clash.invite_id.to_i == 0)
-    # @user_x_two = "X" if (@clash.round_score.to_i == @clash.invite_score.to_i)
-    # @user_x_two = "2" if (@clash.round_id.to_i == 0 and @clash.invite_id.to_i > 0)
   end
 end

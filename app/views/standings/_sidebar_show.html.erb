@@ -1,0 +1,118 @@
+<% the_value = @tournament.use_goals? %>
+
+<div class="block">
+	<h3><%= control_label('legend') %></h3>
+	<div class="content">
+		<p>
+			<b><%= label_name(:ranking) %></b>
+			<%= label_name(:ranking_full) %>
+		</p>
+		
+		<p>
+			<b><%= label_name(:previous_ranking) %></b>
+			<%= label_name(:previous_ranking_full) %>
+		<p>
+				
+		<p>
+			<b><%= label_name(:points) %></b>
+			<%= label_name(:points_full) %>
+		<p>
+
+		<p>
+			<b><%= label_name(:games_won) %></b>
+			<%= label_name(:games_won_full) %>
+		<p>
+			
+		<p>
+			<b><%= label_name(:games_tied) %></b>
+			<%= label_name(:games_tied_full) %>
+		<p>
+				
+		<p>
+			<b><%= label_name(:games_lost) %></b>
+			<%= label_name(:games_lost_full) %>
+		<p>
+		
+		<% if @tournament.use_goals? %>	
+		<p>
+			<b><%= label_name(:goals_scored) %></b>
+			<%= label_name(:goals_scored_full) %>
+		<p>
+						
+		<p>
+			<b><%= label_name(:goals_for, the_value.to_s) %></b>
+			<%= label_name(:goals_for_full, the_value.to_s) %>
+		<p>			
+		
+		<p>
+			<b><%= label_name(:goals_against, the_value.to_s) %></b>
+			<%= label_name(:goals_against_full, the_value.to_s) %>
+		<p>		
+				
+		<p>
+			<b><%= label_name(:goal_difference, the_value.to_s) %></b>
+			<%= label_name(:goal_difference_full, the_value.to_s) %>
+		<p>	
+		<% end %>
+
+		<p>
+			<b><%= label_name(:coeficient) %></b>
+			<%= label_name(:coeficient_full) %>
+		<p>
+
+		<p>
+			<b><%= label_name(:coeficient_points) %></b>
+			<%= label_name(:coeficient_full_points) %>
+		<p>
+
+		<p>
+			<b><%= label_name(:games_played) %></b>
+			<%= label_name(:games_played_full) %>
+		<p>
+
+		<p>
+			<b><%= label_name(:games_assigned) %></b>
+			<%= label_name(:games_assigned_full) %>
+		<p>
+			
+		<p>
+			<b><%= label_name(:points_for_win) %></b>
+			<%= @tournament.points_for_win.round %>
+		</p>
+		
+		<p>
+			<b><%= label_name(:points_for_draw) %></b>
+			<%= @tournament.points_for_draw.round %>
+		</p>
+		
+		<p>
+			<b><%= label_name(:points_for_lose) %></b>
+			<%= @tournament.points_for_lose.round %>
+		</p>				
+
+	</div>
+</div>
+
+<% if current_user.is_maximo? %>
+<% unless @archive %>
+
+<div class="block">
+
+	<h3><%= label_name(get_the_controller, 'options') %></h3>
+	
+<ul class="navigation">
+<% 
+	if current_user.is_manager_of?(@tournament) 
+		the_confirmation = "#{ label_name(:destroy_schedule) } #{ label_name(:from) } #{@tournament.name}?" 
+%> 
+		<li><%= link_to control_label('archive'), archive_standing_path(:id => @tournament), 
+				:confirm => label_name(:are_you_sure)  if current_user.is_manager_of?(@tournament) %></li>
+<% 
+	end 
+%>
+</ul>
+	
+</div>
+
+<% end 
+end %>

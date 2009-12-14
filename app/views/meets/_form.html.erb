@@ -55,15 +55,8 @@
     <span class="description"><%= label_name('player_limit', 'description') %></span>
   </div><br />
 
-  <!-- <div class="group">
-    <%#= f.label :public, label_name('public'), :class => :label %>
-    <%#= f.check_box :public, :class => 'check_box' %>
-    <span class="description"><%#= label_name('public', 'description') %></span>
-  </div> -->
-
 <br />
 
-	<%# if @meet.new_record? %>
 		<fieldset id="roster">
 		<%= render :partial => '/messages/recipient_list', 
 		:locals => {:label => label_name(:roster), :recipients => @tournament.users, :checked => false } %>
@@ -74,7 +67,6 @@
 		<div class="group">
 			<%= render :partial => '/shared/check_radio_button' unless @recipient %>
 		</div>
-	<%# end -%>
 
   </div> 
 

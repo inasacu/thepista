@@ -52,7 +52,7 @@ class Tournament < ActiveRecord::Base
     has_and_belongs_to_many :users,           :join_table => "tournaments_users",   :order => "name"
 
     has_many      :rounds
-    has_many      :meets
+    
     has_many      :messages
     has_many      :standings, :conditions => "user_id > 0 and played > 0 and archive = false", :order => "points DESC, ranking"
 

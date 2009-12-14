@@ -52,15 +52,20 @@ class MeetsController < ApplicationController
         @meet.jornada = @previous_meet.jornada + 1
         @meet.player_limit = @previous_meet.player_limit
         @meet.public = @previous_meet.public
-        @meet.starts_at = @previous_meet.starts_at + 7.days
-        @meet.ends_at = @previous_meet.ends_at + 7.days
-        @meet.reminder_at = @previous_meet.reminder_at + 7.days
+        @meet.starts_at = @previous_meet.starts_at + 1.day
+        @meet.ends_at = @previous_meet.ends_at + 1.day
+        @meet.reminder_at = @previous_meet.reminder_at + 1.day
       end
   end
 
   def create
     @meet = Meet.new(params[:meet])   
     @tournament = @meet.round.tournament
+    
+    unless params[:recipient_ids]
+      redirect_to :action => 'new', :id => @meet.round
+      return
+    end
     
     unless current_user.is_tour_manager_of?(@tournament)
       flash[:warning] = I18n.t(:unauthorized)
@@ -82,14 +87,11 @@ class MeetsController < ApplicationController
     end
   end
   
-  # set the end of season, 1 august current_year + 1
   def edit
     @tournament = @meet.round.tournament
-    # @meet.season_ends_at = Time.utc(Time.zone.now.year + 1, 8, 1)
   end
   
-  def update
-    
+  def update    
     # meet to several users    
     if params[:recipient_ids]
       @recipients = User.find(params[:recipient_ids])

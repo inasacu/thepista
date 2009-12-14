@@ -5,8 +5,8 @@
 <% 
 if current_user 
 %>
-	<li class="<%= get_active('home_upcoming_schedule') %>">
-		<%= link_to label_name(:upcoming_schedule) , :controller => 'home', :action => 'upcoming_schedule' unless upcoming_schedules.empty? %>
+	<li class="<%= get_active('home_upcoming') %>">
+		<%= link_to label_name(:upcoming) , :controller => 'home', :action => 'upcoming' unless upcoming_schedules.empty? %>
 	</li>
 
 	<li class="message">
