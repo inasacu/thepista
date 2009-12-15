@@ -59,8 +59,13 @@
 		<%= tr_td_action(:player_limit, @group.player_limit) %>
 		
 		<tr>
+			<%= content_tag :td, label_name(:scorecard), :class => "label" %>
+			<%= content_tag :td, link_to(@group.name, scorecard_path(:id => @group)), :class => get_the_action %>	
+		</tr>
+		
+		<tr>
 			<%= content_tag :td, label_name(:conditions), :class => "label" %>
-			  <%= content_tag :td, sanitize(@group.conditions) %>
+			  <%= content_tag :td, sanitize(@group.conditions), :class => get_the_action %>	
 		</tr>
 
 	 <% if current_user.is_member_of?(@group) and !@group.available_users.empty? %>

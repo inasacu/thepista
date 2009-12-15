@@ -74,17 +74,27 @@
 						(link_to meet.concept, 
 								meet_path(meet), 
 								:title => label_name(:meets_show)), 
-								:class => get_the_action %>
+								:class => get_the_action %>				
 			</tr>
-			<% end%>
+			<tr>
+				<%= content_tag :td, "", :class => "label" %>
+				<td class="show">
+				<% meet.clashes.each do |clash| %>
+					<%= "&nbsp;&nbsp;&nbsp;&nbsp;#{user_link(clash.user)}&nbsp;&nbsp;&nbsp;&nbsp;#{clash.user_score}&nbsp;&nbsp;&nbsp;&nbsp;" %>	
+				<% end -%>
+				</td>
+			</tr>
+			<% end %>
 		<% end %>
 		
+		<tr>
+			<%= content_tag :td, label_name(:standing), :class => "label" %>
+			<%= content_tag :td, link_to(@tournament.name, standing_path(:id => @tournament)), :class => get_the_action %>	
+		</tr>
 		
-
 		<%= tr_td_action(:fee_per_tour, number_to_currency(@tournament.fee_per_tour)) %>
 		<%= tr_td_action(:time_zone, @tournament.time_zone) %>
 		<%= tr_td_action(:users, t(:has_tournament_users, :count => @tournament.users.count)) %>
-		<%#= tr_td_action(:meets, t(:has_group_meets, :count => @tournament.meets.count)) unless @tournament.meets.blank? %>
 		<%= tr_td_action(:points_for_win, @tournament.points_for_win) %>
 		<%= tr_td_action(:points_for_draw, @tournament.points_for_draw) %>
 		<%= tr_td_action(:points_for_lose, @tournament.points_for_lose) %>		
@@ -92,10 +102,10 @@
 		
 		<tr>
 			<%= content_tag :td, label_name(:conditions), :class => "label" %>
-			  <%= content_tag :td, sanitize(@tournament.conditions) %>
+			<%= content_tag :td, sanitize(@tournament.conditions) %>
 		</tr>
 
-	 <% if current_user.is_member_of?(@tournament) and !@tournament.available_users.empty? %>
+	 <% if current_user.is_tour_member_of?(@tournament) and !@tournament.available_users.empty? %>
 	   <tr>
 	     <%= content_tag :td, label_name(:users_available), :class => "label" %>
 	     <%= content_tag :td, user_list(@tournament.available_users), :class => get_the_action %>

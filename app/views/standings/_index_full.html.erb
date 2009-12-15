@@ -6,8 +6,7 @@
 
        <tr>             
          <th class="first">&nbsp;</th>
-         <th><%= label_name(:name) %>&nbsp;/<br />
-		  <%= label_name(:gameday_at) %></th>
+         <th><%= label_name(:name) %></th>
          <th><%= label_name(:manager) %>&nbsp;/<br />
 		  <%= label_name(:sport) %></th>
          <th><%= label_name(:time_zone) %></th>
@@ -21,14 +20,12 @@
        <tr>  
 	  <td>
 		<%= tournament_image_link_small tournament %>
-	  </td>
-	  
+	  </td>	  
 	  <td>
-		
 		<% unless @archive %>
-			<%= link_to tournament.name, standing_path(:id => tournament.id) %>
+			<%= link_to tournament.name, standing_path(:id => tournament) %>
 		<% else %>
-		<%= link_to tournament.name, show_archive_path(:id => tournament.id) %>
+		<%= link_to tournament.name, show_archive_path(:id => tournament) %>
 		<% end %>
 		
 	  </td>
