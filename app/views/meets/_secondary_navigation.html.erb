@@ -2,15 +2,15 @@
 <ul>
 <% 
 the_label = "" 
-the_action = ['show','edit', 'tour list']
+the_action = ['show','edit', 'tour list', 'tour roster', 'tour no show', 'tour last minute', 'tour unavailable']
 the_control = ['round']
 
 if the_action.include?(get_the_action) or the_control.include?(get_the_controller)
 	if current_user.is_member_of?(@tournament) 
-	the_label = label_with_name('the_wall', h(@tournament.name))
+	the_label = label_name(:wall)
 %>		
 	<li class="<%= get_active('tournament_show') %>"><%=  tournament_link @tournament %></li>
-	<li class="<%= get_active('entry_show') %>"><%=  link_to(the_label, blog_path(@tournament.blog)) %></li>
+	<li class="<%= get_active('entry_show') %>"><%=  link_to(the_label, blog_path(@tournament.blog)) if the_control.include?(get_the_controller) %></li>
 	<li class="<%= get_active('tournament_team_list') %>"><%=  link_to(label_name(:users) , tour_list_path(:id => @tournament)) %></li>
 <% 
 	else 
@@ -23,30 +23,31 @@ end
 
 the_controller = ['forums', 'topics', 'posts']
 the_action = ['show', 'edit', 'tour roster', 'tour no show', 'tour last minute', 'tour unavailable']
+the_control = ['meet']
 
 if current_user.is_tour_member_of?(@meet.tournament)
-	the_label = "#{label_name(:forum)} #{sanitize(@meet.concept)}"
+	the_label = label_name(:wall)
 %>
 	<li class="<%= get_first_active('meet_show') %>">  <%= meet_link @meet %></li>
-	<li class="<%= get_active('topic_show') %>"><%= link_to(the_label, forum_path(@meet.forum)) %></li>	
+	<li class="<%= get_active('topic_show') %>"><%= link_to(the_label, forum_path(@meet.forum)) if the_control.include?(get_the_controller) %></li>
 	
 	<% unless (@meet.the_roster.empty?) %>		
-		<li class="<%= get_active('meet_team_roster') %>">
+		<li class="<%= get_active('meet_tour_roster') %>">
 				<%= link_to(label_name(:rosters), tour_roster_path(:id => @meet)) %></li>
 	<% end %>
 			
 	<% unless (@meet.the_last_minute.empty?) %>
-		<li class="<%= get_active('meet_team_last_minute') %>">
+		<li class="<%= get_active('meet_tour_last_minute') %>">
 					<%= link_to(label_name(:last_minute), tour_last_minute_path(:id => @meet)) %></li>
 	<% end %>
 					
 	<% unless (@meet.the_no_show.empty?) %>
-		<li class="<%= get_active('meet_team_no_show') %>">
+		<li class="<%= get_active('meet_tour_no_show') %>">
 					<%= link_to(label_name(:no_shows), tour_no_show_path(:id => @meet)) %></li>
 	<% end %>
 					
 	<% unless (@meet.the_unavailable.empty?) %>
-		<li class="<%= get_active('meet_team_unavailable') %>">
+		<li class="<%= get_active('meet_tour_unavailable') %>">
 					<%= link_to(label_name(:unavailable), tour_unavailable_path(:id => @meet)) %></li>
 	<% end %>
 <% 

@@ -11,7 +11,8 @@
 	
 	if the_action.include?(get_the_action) or the_control.include?(get_the_controller)
 		if current_user.is_member_of?(@tournament) 
-		the_label = label_with_name('the_wall', h(@tournament.name))
+		# the_label = label_with_name('the_wall', h(@tournament.name))
+			the_label = label_name(:wall)
 %>		
 		<li class="<%= get_active('tournament_show') %>"><%=  tournament_link @tournament %></li>
 		<li class="<%= get_active('entry_show') %>"><%=  link_to(the_label, blog_path(@tournament.blog)) %></li>

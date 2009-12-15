@@ -20,7 +20,8 @@
 	actions = ['show','edit','third_party', 'recent_activity']
 	the_user = (@user ? @user : current_user)
 	label_the_user = (the_user == current_user ? "" : "#{label_name(:from)} #{h(the_user.name)}")
-	the_label = (the_user == current_user ? label_name(:my_wall) : "#{label_name(:the_wall)} #{h(the_user.name)}")	
+	# the_label = (the_user == current_user ? label_name(:my_wall) : "#{label_name(:the_wall)} #{h(the_user.name)}")	
+	the_label = label_name(:wall)
 %>
 	<li class="<%= get_first_active('user_index') %>">  <%= link_to(label_name(:users_teammate), users_url) %></li>
 	<li class="<%= get_active('user_list') %>"><%=  link_to(label_name(:all_user) , list_users_path) %></li>

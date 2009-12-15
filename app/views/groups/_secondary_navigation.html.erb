@@ -10,7 +10,8 @@
 	
 	if the_action.include?(get_the_action) 
 		if current_user.is_member_of?(@group) 
-		the_label = label_with_name('the_wall', h(@group.name))
+		# the_label = label_with_name('the_wall', h(@group.name))
+		the_label = label_name(:wall)
 %>		
 		<li class="<%= get_active('group_show') %>"><%=  group_link @group %></li>
 		<li class="<%= get_active('entry_show') %>"><%=  link_to(the_label, blog_path(@group.blog)) %></li>

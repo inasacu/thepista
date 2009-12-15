@@ -25,90 +25,24 @@ class Clash < ActiveRecord::Base
       I18n.t(self.position.name)
     end    
 
-    # def win_loose_draw_label       
-    #   return I18n.t(:game_tied)  if self.one_x_two == "X"  
-    #   return I18n.t(:game_won)   if self.one_x_two == self.user_x_two  
-    #   return I18n.t(:game_lost)  if self.one_x_two != self.user_x_two  
-    # end
-
-    # def self.user_assigned(standing)
-    #     find(:first, :select => "count(*) as total", 
-    #          :conditions =>["(meet_id = #{standing.meet_id} or invite_id = #{standing.meet_id}) and user_id = #{standing.user_id} " +
-    #                         "and type_id = 1 and archive = false"])
-    # end
-
-
-    # def self.user_played(standing)
-    #     find(:first, :select => "count(*) as total", 
-    #          :conditions =>["(meet_id = #{standing.meet_id} or invite_id = #{standing.meet_id}) and user_id = #{standing.user_id} " +
-    #                         "and type_id = 1 and played = true and archive = false"])
-    # end
-
-    # def self.user_goals_scored(standing)
-    #       find(:first, :select => "sum(goals_scored) as total", 
-    #            :conditions =>["(meet_id = #{standing.meet_id} or invite_id = #{standing.meet_id}) and user_id = #{standing.user_id} " +
-    #                           "and type_id = 1 and played = true and archive = false"])
-    # end
-
-    # def self.find_user_round_clashes(user_id, meet_id)
-    #   find_by_sql(["select clashes.id, clashes.meet_id, clashes.user_id, clashes.one_x_two, clashes.user_x_two, clashes.type_id, clashes.played, " +
-    #               "clashes.meet_id, clashes.invite_id, clashes.user_score, clashes.invite_score, meets.meet_id " +
-    #               "from clashes, meets " +
-    #               "where clashes.user_id = ? " +
-    #               "and clashes.type_id = 1 " +
-    #               "and clashes.played = true " +
-    #               "and clashes.meet_id = meets.id " +
-    #               "and meets.meet_id = ? " +
-    #               "order by meets.starts_at desc", user_id, meet_id])
-    # end
-
-    # def self.find_all_previous_meets(user_id, meet_id)
-    #   find(:all, 
-    #        :conditions => ["meet_id in (" +
-    #                       "select id from meets where meet_id = #{meet_id} and played = true and id not in " +
-    #                       "(select max(id) as id from meets where meet_id = #{meet_id} and played = true)) " +
-    #                        "and (meet_id = #{meet_id} or invite_id = #{meet_id}) " +
-    #                        "and user_id = #{user_id} and type_id = 1 and archive = false"],
-    #        :order => "id")
-    # end
-
-    # def self.find_all_meets(user_id, meet_id)
-    #   find(:all, 
-    #        :conditions => ["meet_id in (select id from meets where meet_id = #{meet_id} and played = true) " +
-    #                        "and (meet_id = #{meet_id} or invite_id = #{meet_id}) " +
-    #                        "and user_id = #{user_id} and type_id = 1 and archive = false"],
-    #        :order => "id")
-    # end
-
-    # def self.set_archive_flag(user, round, flag)
-    #   @clashes = Clash.find(:all, :conditions => ["user_id = ? and (meet_id = ? or invite_id = ?)", user.id, round.id, round.id])
-    #   @clashes.each do |clash|
-    #     clash.update_attribute(:archive, flag)
-    #   end
-    #   Standing.calculate_user_standing(round)
-    # end
-
     def self.update_clash_details(meet)       
       is_played ||= false
       tie_game ||= true
            
-      clash_id, ranking, past_points, last = 0, 0, 0, 0        
+      ranking, past_points, last = 0, 0, 1        
       meet.clashes.each do |clash|
-        points = clash.user_score        
-        if clash_id != clash.id 
-          clash_id, ranking,  past_points, last = clash.id, 0, 0, 1
-        end 
 
-        if (past_points == points) 
+        if (past_points == clash.user_score) 
           last += 1          
         else
           ranking += last
-          last = 1          
+          last = 1
+          past_points = clash.user_score          
         end
         
         tie_game = !tie_game if (ranking == 1)
-        
-        past_points = points  
+        past_points = clash.user_score 
+          
         clash.one_x_two = ranking
         clash.user_x_two = 1
         clash.description = meet.description

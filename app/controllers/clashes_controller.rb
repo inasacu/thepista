@@ -46,7 +46,6 @@ class ClashesController < ApplicationController
     @type = Type.find(params[:type])
 
     if @clash.update_attributes(:type_id => @type.id, :status_at => Time.zone.now)
-      Scorecard.calculate_user_played_assigned_scorecard(@clash.user, @clash.meet.round)
       Clash.log_activity_convocado(@clash)
 
       flash[:notice] = I18n.t(:is_available_user) 
@@ -61,28 +60,10 @@ class ClashesController < ApplicationController
       return
     when 3, 4
       redirect_to :controller => 'meets', :action => 'tour_no_show', :id => @clash.meet_id 
-      return 
+      return
     end
     redirect_back_or_default('index')
   end
-
-  # def set_tour 
-  #   unless current_user.is_sub_manager_of?(@clash.meet.round) 
-  #     flash[:warning] = I18n.t(:unauthorized)
-  #     redirect_back_or_default('/index')
-  #     return
-  #   end
-  # 
-  #   played = (@clash.type_id.to_i == 1 and !@clash.round_score.nil? and !@clash.invite_score.nil?)
-  # 
-  #   if @clash.update_attributes(:round_id => @clash.invite_id, :invite_id => @clash.round_id, 
-  #     :played => played, :user_x_two => @user_x_two)
-  # 
-  #     Scorecard.calculate_user_played_assigned_scorecard(@clash.user, @clash.meet.round)
-  #     flash[:notice] = I18n.t(:change_round)
-  #   end
-  #   redirect_back_or_default('/index')
-  # end
 
   private
   def has_manager_access

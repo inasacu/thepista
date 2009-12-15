@@ -1,14 +1,12 @@
-<% a_roster = !(@meet.last_minute.empty?) %>
-
+<% 
+	a_roster = !(@meet.last_minute.empty?)
+	the_label = control_action_label("#{a_roster}")
+%>
 <div class="block">
 
-	<%= render :partial => 'secondary_navigation' %>  
+	  <%= render :partial => '/shared/previous_next_message' %>
 
-	<div class="content">   
-
-		<h2 class="title">
-			<%= a_roster ? label_name(:last_minute) : label_name("#{get_the_controller}_#{label_name(:last_minute)}") %>
-		</h2>
+		<h2 class="title"><%= the_label %></h2>
 
 		<div class="inner">
 <% 
@@ -25,7 +23,7 @@
 	</div>
 </div>
 
-	<% content_for :sidebar, render(:partial => '/meets/sidebar_show') if @meet -%>
+<% content_for :sidebar, render(:partial => '/meets/sidebar_show') if @meet -%>
 
 
 

@@ -18,11 +18,15 @@ class MeetsController < ApplicationController
   
   def show
     store_location
-    @meet = Meet.find(params[:id])
-    @round = @meet.round
-    @previous = Meet.previous(@meet)
-    @next = Meet.next(@meet)
-    @tournament = @round.tournament
+    # @meet = Meet.find(params[:id])
+    # @round = @meet.round
+    # @previous = Meet.previous(@meet)
+    # @next = Meet.next(@meet)
+    # @tournament = @round.tournament
+    
+    unless current_user.is_tour_member_of?(@tournament) 
+      redirect_back_or_default('/index')
+    end
   end
 
   def new    
@@ -97,7 +101,8 @@ class MeetsController < ApplicationController
       @recipients = User.find(params[:recipient_ids])
     end
     
-    if @meet.update_attributes(params[:meet]) and @meet.create_meet_details(current_user, @recipients, true)  
+    if @meet.update_attributes(params[:meet]) and @meet.create_meet_details(current_user, @recipients, true) 
+       
       flash[:notice] = I18n.t(:successful_update)
       redirect_to @meet
     else
@@ -225,7 +230,10 @@ class MeetsController < ApplicationController
   
   def get_meet
     @meet = Meet.find(params[:id])
-    @round = @meet.round    
+    @round = @meet.round
+    @previous = Meet.previous(@meet)
+    @next = Meet.next(@meet)
+    @tournament = @round.tournament    
   end
   
   def get_clash_type 

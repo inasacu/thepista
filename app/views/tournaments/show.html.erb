@@ -50,22 +50,25 @@
 		<%= tr_td_action(:starts_at, nice_day_of_week(@tournament.starts_at)) %>
 		<%= tr_td_action(:ends_at, nice_day_of_week(@tournament.ends_at)) %>
 
+		<tr>
+			<%= content_tag :td, "", :class => "label" %>
+			<%= content_tag :td, "", :class => get_the_action %>				
+		</tr>
+		
+		
 		<% @tournament.rounds.each do |round| %>
 			<tr>
-				<%= content_tag :td, 
-						(link_to "#{label_name(:round)} (#{round.phase})", 
-								edit_round_path(round), 
-								:title => label_name(:rounds_edit)), 
-								:class => "label" %>	
-
-				<%= content_tag :td, 
+				<%= content_tag :td, link_to(h(round.name), :class => "label") %>
+				<%= content_tag :td, "", :class => get_the_action %>							
+				<%#= content_tag :td, 
 						(link_to h(round.name), new_meet_path(:id => round), :title => label_name(:meets_create)), 
 								:class => get_the_action if current_user.is_tour_manager_of?(@tournament) %>
-								
-				<%= content_tag :td, 
-						(link_to h(round.name), meet_path(:id => round), :title => label_name(:meets_show)), 
-								:class => get_the_action unless current_user.is_tour_manager_of?(@tournament) %>															
+														
 			</tr>
+			<!-- <tr>
+				<%#= content_tag :td, "", :class => "label" %>
+				<%#= content_tag :td, "", :class => get_the_action %>				
+			</tr> -->
 			
 			<% round.meets.each do |meet| %>
 			<tr>
@@ -80,10 +83,23 @@
 				<%= content_tag :td, "", :class => "label" %>
 				<td class="show">
 				<% meet.clashes.each do |clash| %>
-					<%= "&nbsp;&nbsp;&nbsp;&nbsp;#{user_link(clash.user)}&nbsp;&nbsp;&nbsp;&nbsp;#{clash.user_score}&nbsp;&nbsp;&nbsp;&nbsp;" %>	
+				<table>
+					<tr>
+						<%= content_tag :td, user_link(clash.user), :class => "label" %>
+						<%= content_tag :td, clash.user_score, :class => get_the_action %>
+					</tr>
+				</table>
 				<% end -%>
 				</td>
 			</tr>
+			<tr>
+				<%= content_tag :td, "", :class => "label" %>
+				<%= content_tag :td, "", :class => get_the_action %>				
+			</tr>
+			<!-- <tr>
+				<%#= content_tag :td, "", :class => "label" %>
+				<%#= content_tag :td, "", :class => get_the_action %>				
+			</tr> -->	
 			<% end %>
 		<% end %>
 		
@@ -119,16 +135,15 @@
 
 	</table>
 	<!-- new table -->
-
-
-
-
-
-
 			 
     </div>
   </div>
 </div>
 
 <% content_for :sidebar, render(:partial => '/tournaments/sidebar_show') -%>
-<%# content_for :sidebar, render(:partial => '/fees/sidebar_show_tour') if current_user.is_manager_of?(@tournament) %>
+<% content_for :sidebar, render(:partial => '/tournaments/sidebar_show_tour') if @tournament.rounds.count > 0 -%>
+<% content_for :sidebar, render(:partial => '/tournaments/sidebar_edit_tour') -%>
+
+
+
+

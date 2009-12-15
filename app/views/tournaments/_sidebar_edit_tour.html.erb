@@ -1,0 +1,19 @@
+<% if current_user.is_tour_manager_of?(@tournament) %>
+
+<a href="#" onclick="toggle_visibility('fgh');"><h3><%= "#{control_label('option')} #{h(@tournament.name)}" %></h3></a>
+<div id="fgh" style='display:none;'>
+	
+<div class="block">
+
+<!-- <h3><%#= "#{control_label('option')} #{h(@tournament.name)}" %></h3> -->
+
+<ul class="navigation">
+	<% @tournament.rounds.each do |round| %>
+		<%= content_tag :li, link_to("#{label_name(:edit)} #{h(round.name)}", edit_round_path(round)) %>			
+		<%= content_tag :li, link_to("#{label_name(:meets_new)} #{label_name(:for)} #{h(round.name)}", new_meet_path(:id => round)) %>	
+	<% end %>
+</ul>
+
+</div>
+</div>
+<% end -%>

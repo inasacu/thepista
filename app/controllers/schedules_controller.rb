@@ -24,12 +24,12 @@ class SchedulesController < ApplicationController
   
   def show
     store_location
-    @schedule = Schedule.find(params[:id])
-    @group = @schedule.group
-    @previous = Schedule.previous(@schedule)
-    @next = Schedule.next(@schedule)
+    # @schedule = Schedule.find(params[:id])
+    # @group = @schedule.group
+    # @previous = Schedule.previous(@schedule)
+    # @next = Schedule.next(@schedule)
     
-    unless current_user.is_member_of?(@schedule.group) 
+    unless current_user.is_member_of?(@group) 
       redirect_back_or_default('/index')
     end
   end
@@ -235,10 +235,13 @@ class SchedulesController < ApplicationController
     end
   end
   
-  def get_schedule
+  def get_schedule    
+    # @schedule = Schedule.find(params[:id])
+    # @group = @schedule.group    
     @schedule = Schedule.find(params[:id])
-    @group = @schedule.group    
-    # redirect_to @schedule, :status => 301 if @schedule.has_better_id?
+    @group = @schedule.group
+    @previous = Schedule.previous(@schedule)
+    @next = Schedule.next(@schedule)    
   end
   
   def get_match_type 

@@ -107,8 +107,8 @@ class Tournament < ActiveRecord::Base
       self.photo.url
     end
 
-    def has_meet?
-      self.meets.count > 0
+    def has_round?
+      self.rounds.count > 0
     end
 
     def use_goals?

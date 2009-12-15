@@ -1,0 +1,17 @@
+<% the_controller = get_the_controller %>
+<%= render :partial => "/#{the_controller}s/secondary_navigation" %>
+
+<div class="content">
+	<p>
+		<% if @next %>
+		<%= content_tag 'b', link_to("", schedule_path(@next), :class => 'next_message') if the_controller == "schedule" %>
+		<%= content_tag 'b', link_to("", meet_path(@next), :class => 'next_message') if the_controller == "meet" %>
+		<% end -%>
+	</p>
+	<p>
+		<% if @previous %>
+		<%= content_tag 'b', link_to("", schedule_path(@previous), :class => 'previous_message') if the_controller == "schedule" %>
+		<%= content_tag 'b', link_to("", meet_path(@previous), :class => 'previous_message') if the_controller == "meet" %>
+		<% end -%>
+	</p>
+	<br />

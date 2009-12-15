@@ -29,25 +29,17 @@
 
 			<h4 class="title"><%= round_link round %></h4><br />
 			
-			<tr>           
-				<th class="first" title="<%= label_name(:ranking_full) %>"><%= label_name(:ranking) %></th>
-				<th>&nbsp;</th>
-				<th><span><%= label_name(:name) %></span></th>
-
-				<th title="<%= label_name(:points_full) %>"><%= label_name(:points) %></th>
-				<th title="<%= label_name(:games_won_full) %>"><%= label_name(:games_won) %></th>
-				<th title="<%= label_name(:games_tied_full) %>"><%= label_name(:games_tied) %></th>
-				<th title="<%= label_name(:games_lost_full) %>"><%= label_name(:games_lost) %></th>
-				
-				<%  if @tournament.use_goals?  %>
-				<th title="<%= label_name(:goals_scored_full) %>"><%= label_name(:goals_scored) %></th>
-				<th title="<%= label_name(:goals_for_full, the_value.to_s) %>"><%= label_name(:goals_for, the_value.to_s) %></th>
-				<th title="<%= label_name(:goals_against_full, the_value.to_s) %>"><%= label_name(:goals_against, the_value.to_s) %></th>
-				<th title="<%= label_name(:goal_difference_full, the_value.to_s) %>"><%= label_name(:goal_difference, the_value.to_s) %></th>
-				<% end %>
-				
-				<th title="<%= label_name(:coeficient_full) %>"><%= label_name(:coeficient) %></th>
-				<th title="<%= label_name(:games_played_full) %>"><%= label_name(:games_played) %></th>
+			<tr>
+				<%= content_tag 'th', label_name(:ranking), :class => "first", :title => label_name(:ranking_full) %>
+				<%= content_tag 'th', "&nbsp;" %>
+				<%= content_tag 'th', content_tag(:span, label_name(:name)) %>
+								
+				<%= content_tag 'th', label_name(:points), :title => label_name(:points_full) %>
+				<%= content_tag 'th', label_name(:games_won), :title => label_name(:games_won_full) %>
+				<%= content_tag 'th', label_name(:games_tied), :title => label_name(:games_tied_full) %>
+				<%= content_tag 'th', label_name(:games_lost), :title => label_name(:games_lost_full) %>
+								
+				<%= content_tag 'th', label_name(:games_played), :title => label_name(:games_played_full), :class => "last" %>
 			</tr>
 			
 				<%= render :partial => 'standing', :collection => @standings, 
@@ -59,11 +51,6 @@
 				end
 			end 
 		-%>
-		
-		<!-- <p><em style="color: rgb(153, 153, 153);">
-			<%#= "(*) #{label_name(:player_with)} #{@less_games} #{label_name(:player_with_less_games)}" %>
-			</em>
-		</p> -->
 		
 	</div>
 	</div>

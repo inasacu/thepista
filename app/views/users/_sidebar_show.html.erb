@@ -10,7 +10,7 @@
 <% 
 	else 
 %>
-	<li><%= link_to label_name(:send_message), new_message_path(:id => @user.id) if @user.available and @user != current_user %></li>
+	<li><%= link_to label_name(:send_message), new_message_path(:id => @user) if @user.available and @user != current_user %></li>
 <% 
 	end 
 %>
@@ -19,4 +19,5 @@
 	
 </div>
 
-<%= render :partial => '/users/sidebar_show_team' if @user == current_user or current_user.has_role?('manager') %>
+<%= render :partial => '/users/sidebar_show_team' if @user == current_user and current_user.groups.count > 0 %>
+<%= render :partial => '/users/sidebar_show_manager' if current_user.has_role?('manager') or current_user.has_role?('sub_manager') %>

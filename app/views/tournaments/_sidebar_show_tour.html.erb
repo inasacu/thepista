@@ -1,0 +1,15 @@
+<div class="block">
+
+	<h3><%= "#{control_label('option')} #{h(@tournament.name)}" %></h3>
+
+<ul class="navigation">
+
+	<% @tournament.rounds.each do |round| %>		
+		<% round.meets.each do |meet| %>			
+			<%= content_tag :li, link_to(h(meet.concept), meet_path(meet)) if current_user.is_tour_member_of?(@tournament) %>
+		<% end %>
+	<% end %>
+	
+</ul>
+
+</div>

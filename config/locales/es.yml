@@ -77,7 +77,7 @@ es:
      change_rejected_explained: "Es posible que no tuvieses acceso a esa zona, lo sentimos!"	 
      change_roster_status: Pasa a 
      change_wo_access: Es posible que hayas intentado cambiar algo a lo que no tenias acceso.  
-     change_your_roster_status:  ""
+     change_your_roster_status:  Cambia tu Convocatoria
      changed_description: cambio en la descripción
      changes_in_roster_status: Ha cambiado su convocatoria   
      character_limit: Máximo 255 carácteres   
@@ -736,7 +736,7 @@ es:
      previous_ranking_full: Ranking Previo
      previous_schedule: Anterior Evento   
      previous_schedules: Anteriores Eventos
-     previous_meet: Anterior Evento de Torneo  
+     previous_meet: Anterior Evento 
      previous_meets: Anteriores Eventos de Torneo
          
      previous_profile_set:  Actualizar Perfiles.
@@ -1045,7 +1045,7 @@ es:
      upcoming_festival: Próximos Acondiciónamientos   
      upcoming_schedule: Próximo Evento   
      upcoming_schedules: Próximos Eventos 
-     upcoming_meet: Próximo Evento de Torneo  
+     upcoming_meet: Próximo Evento 
      upcoming_meets: Próximos Eventos de Torneo
      
      update: Actualiza   
@@ -1107,7 +1107,8 @@ es:
      view: Ver   
      visible_only_to_you_description: (Solo tu podras ver esta información...)   
      visit_group: Visitante  
-      
+     
+     wall:  Muro
      Wednesday: Miercoles   
      welcome: Bienvenidos a HayPista   
      were_removed: han sido eliminados   
@@ -1132,7 +1133,8 @@ es:
      your_join_notification: Petición para un equipo.   
      your_on_roster: Estas Convocado -   
      your_openid: Tus cuentas de OpenID   
-     your_schedule: "En tu horario, el evento seria el "   
+     your_schedule: "En tu horario, el evento seria el "  
+     your_meet: "En tu horario, el evento seria el " 
      your_sent_beta: "Muchas gracias por tu interés, tu correo ha sido añadido para recibir una invitación."   
      your_sent_invitation: Tu invitación ha sido enviada a   
      your_sent_message: Tu mensaje ha sido enviada   
@@ -1308,27 +1310,38 @@ es:
      matches_edit:  Resultados
 
      meets_archive_list:  Temporada Anterior
-     meets_create:  Nuevo Evento de Torneo  
-     meets_destroy:  Borrar Evento de Torneo  
+     meets_concept_description:  Concepto del Evento 
+     meets_create:  Nuevo Evento 
+     meets_destroy:  Borrar Evento 
      meets_index:  Eventos de Torneo  
-     meets_index_option: Opciones del Evento de Torneo  
-     meets_invitations_create:  Invita a un Amigo al Evento de Torneo  
-     meets_list:  Anteriores Eventos de Torneo  
-     meets_list_no: Ningun Evento de Torneo previo para mostrar.
+     meets_index_option: Opciones del Evento 
+     meets_invitations_create:  Invita a un Amigo al Evento 
+     meets_list:  Anteriores Eventos 
+     meets_list_no: Ningun Eventoprevio para mostrar.
      meets_manager_option:  Requiere responsable de equipo para ver mas opciones.
-     meets_new: Nuevo Evento de Torneo  
-     meets_no: Ningun Evento de Torneo para mostrar.
-     meets_edit: Modificar Evento de Torneo  
-     meets_update: Modificar Evento de Torneo  
-     meets_option:  Opciones de Evento de Torneos
-     meet_options:  Opciones de Evento de Torneo  
+     meets_new: Nuevo Evento 
+     meets_no: Ningun Eventopara mostrar.
+     meets_edit: Modificar Evento 
+     meets_update: Modificar Evento 
+     meets_option:  Opciones de Eventos
+     meet_options:  Opciones de Eventos
      meets_show: Detalles Del Evento de Torneo
      meet_ausentes:  Ningun Ausente para mostrar.
      meet_convocados:  Ningun Convocado para mostrar.
-     meet_excess_player:  Demasiados Jugadores Convocados
+     meet_excess_player:  Demasiados Jugadores Convocados.
      meet_ultima_hora:   Ninguno en Ultima Hora para mostrar.
      meet_no_disponible:  Ninguno no Disponible para mostrar.
-         
+     
+     meets_tour_roster_false:  Ningun Convocado para mostrar.
+     meets_tour_last_minute_false:   Ninguno en Ultima Hora para mostrar.
+     meets_tour_no_show_false:  Ningun Ausente para mostrar.
+     meets_tour_unavailable_true_false:  Ninguno no Disponible para mostrar.
+     meets_tour_roster_true:  Convocados
+     meets_tour_last_minute_true:   Ultima Hora
+     meets_tour_no_show_true:  Ausentes
+     meets_tour_unavailable_true:  No Disponibles
+     
+             
      message_delete: Borra este mensaje
      message_options: Opciones de Mensaje  
      message_reply:  Responde
@@ -1372,6 +1385,15 @@ es:
      schedule_ultima_hora:   Ninguno en Ultima Hora para mostrar.
      schedule_no_disponible:  Ninguno no Disponible para mostrar.
      schedule_rate: Valoración del Evento
+     
+     schedules_team_roster_false:  Ningun Convocado para mostrar.
+     schedules_team_last_minute_false:   Ninguno en Ultima Hora para mostrar.
+     schedules_team_no_show_false:  Ningun Ausente para mostrar.
+     schedules_team_unavailable_true_false:  Ninguno no Disponible para mostrar.
+     schedules_team_roster_true:  Convocados
+     schedules_team_last_minute_true:   Ultima Hora
+     schedules_team_no_show_true:  Ausentes
+     schedules_team_unavailable_true:  No Disponibles
 
      scorecard_list:  Clasificaciones Anteriores
      scorecards_list:  Clasificaciones Anteriores
@@ -1428,27 +1450,27 @@ es:
      roles_maximo_option:  Requiere responsable de administrador para ver mas opciones.
      roles_option:  Opciones de Responsabilidades
 
-     round_options:  Opciones de Fases de Torneo
-     round_starts_ends_at:  Fechas de Fase de Torneo
-     rounds_create:  Nueva Fase de Torneo 
-     rounds_destroy:  Borrar Fase de Torneo 
-     rounds_edit:  Modificar Fase de Torneo 
+     round_options:  Opciones de Fases 
+     round_starts_ends_at:  Fechas de Fase 
+     rounds_create:  Nueva Fase
+     rounds_destroy:  Borrar Fase 
+     rounds_edit:  Modificar Fase 
      rounds_index:  Fases de Torneo 
-     rounds_index_option: Opciones de Fases de Torneo
-     rounds_invitations_create:  Invita a un Amigo a la Fase de Torneo
-     rounds_join:  Unete a la Fase de Torneo
-     rounds_phase_description:  Numero de la Fase del Torneo
-     rounds_list:  Resto de la Fase de Torneo
-     rounds_new:  Nueva Fase de Torneo 
-     rounds_new_option: Opciones de Nuevo Fase de Torneo 
-     rounds_no:  Ninguna Fase de Torneo para mostrar.
-     rounds_none:  Ninguna Fase de Torneo.
+     rounds_index_option: Opciones de Fases 
+     rounds_invitations_create:  Invita a un Amigo a la Fase 
+     rounds_join:  Unete a la Fase 
+     rounds_phase_description:  Numero de la Fase 
+     rounds_list:  Resto de la Fase 
+     rounds_new:  Nueva Fase 
+     rounds_new_option: Opciones de Nuevo Fase 
+     rounds_no:  Ninguna Fase para mostrar.
+     rounds_none:  Ninguna Fase.
      rounds_options_without: "Que opciones tienes ya que no tienes una fase de torneo?"
-     rounds_option:  Opciones de Fase de Torneo
-     rounds_search: Busqueda de Fases de Torneos
-     rounds_search_to_join: Puedes Buscar una Fase de Torneo al cual unierte. 
-     rounds_show:  Mostrar Fase de Torneo
-     rounds_update: Modificar Fase de Torneo
+     rounds_option:  Opciones de Fase
+     rounds_search: Busqueda de Fases
+     rounds_search_to_join: Puedes Buscar una Fase al cual unierte. 
+     rounds_show:  Mostrar Fase 
+     rounds_update: Modificar Fase 
       
      rounds_name_description:  Nombre de la Fase de Torneo
      groups_name_description:  Nombre del Equipo
@@ -1462,7 +1484,7 @@ es:
      fees_concept_description:  Concepto del Cargo
      payments_concept_description:  Concepto del Pago
      schedules_concept_description:  Concepto del Evento
-     meets_concept_description:  Concepto del Evento de Torneo 
+
      
      sport: Deporte
      sport_id: Deporte    

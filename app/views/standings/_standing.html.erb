@@ -7,8 +7,9 @@
 %>
 
 <tr>
-	<td class="puntos"><%= "*" if ((standing.played.to_i + less_games) < games_played.to_i) %>&nbsp;<%= standing.ranking %></td>
-	<td class="equipos"><%= mailer ? "&nbsp;" : image_link_tiny(standing.user) %></td>
+	<%= content_tag 'td', standing.ranking, :class => "puntos" %>
+	<%= content_tag 'td', mailer ? "&nbsp;" : image_link_tiny(standing.user), :class => "equipos" %>
+		
 	<td class="equipos">
 		<span>
 		<% if mailer %>
@@ -19,19 +20,17 @@
 		</span>
 	</td>
 
-	<td class="puntos"><%= standing.points.round %></td>
-	<td class="ganados"><%= standing.wins %></td>
-	<td class="empatados"><%= standing.draws %></td>
-	<td class="perdidos"><%= standing.losses %></td>
+	<%= content_tag 'td', standing.points.round, :class => "puntos" %>
+	<%= content_tag 'td', standing.wins, :class => "ganados" %>
+	<%= content_tag 'td', standing.draws, :class => "empatados" %>
+	<%= content_tag 'td', standing.losses, :class => "perdidos" %>
+	<%= content_tag 'td', standing.played, :class => "last" %>
 	
-	<%  if tournament.use_goals?  %>
-	<td class="puntos"><%= standing.goals_scored %></td>
-	<td class="afavor"><%= standing.goals_for %></td>
-	<td class="encontra"><%= standing.goals_against %></td>
-	<td class="encontra"><%= standing.goals_for - standing.goals_against %></td>
+	
+	<% 5.times.each do %>
+	<%= content_tag 'td', "&nbsp;" %>
+	<%= content_tag 'td', "&nbsp;" %>
 	<% end %>
-		
-	<td class="puntos"><%= sprintf( "%0.00f", coeficient) %><%= "%" %></td>
-	<td class="jugados"><%= standing.played %></td>	
+
 </tr>
 

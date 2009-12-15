@@ -188,7 +188,8 @@ class Meet < ActiveRecord::Base
     recipients.each do |user|
       Clash.create_meet_clash(self, user)
       Standing.create_user_standing(user, self.round)
-    end    
+    end  
+    Clash.update_clash_details(self)  
   end
 
   def create_join_user_meet_details

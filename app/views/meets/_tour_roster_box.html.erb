@@ -1,31 +1,9 @@
-<%= stylesheet_link_tag "in_place_styles"  %>
-<% inplace_error_div %>
-
 <% 
 	counter = 0 
 	roster_count = (object_counter(the_roster) > 0)
 
 	type_id = [1, 4]
-	
-	home = {}
-	technical = {}
-	physical = {}
 		
-	home["defense"] = 0
-	home["center"] = 0
-	home["attack"] = 0
-	home["technical"] = 0
-	home["physical"] = 0
-	home["total"] = 0
-	
-	technical["difference"] = 0
-	technical["minimum"] = 0
-	technical["percentage"] = 0.0
-		
-	physical["difference"] = 0
-	physical["minimum"] = 0
-	physical["percentage"] = 0.0
-	
 	is_manager = current_user.is_tour_manager_of?(@tournament)
 	is_sub_manager = current_user.is_tour_sub_manager_of?(@tournament)
 	
@@ -34,121 +12,68 @@
 	
 if roster_count 
 %>
-      <table class="table" id="<%= get_the_action.gsub(' ','_') %>">
-	  
-		<tr>
-		 <th class="first">&nbsp;</th>
-		 <th>&nbsp;</th>
-		 <th><%= label_name(:name) %></th>
-		 <th align="center" title = "<%= label_name(:games_played_full) %>"><%= label_name(:games_played) %></th>
-		 <th align="center" title = "<%= label_name(:position) %>"><%= label_name(:position) %></th>
-		 <th align="center" title = "<%= label_name(:technical) %>"><%= label_name(:technical) %></th>
-		 <th align="center" title = "<%= label_name(:physical) %>"><%= label_name(:physical) %></th>
-		 <th><%= label_name(:group) %></th>
-		 <%= content_tag 'th', label_name(:score), :align =>"center" if @meet.played? %>
-		 <th><%= label_name(:change_at) %></th>
-		 <th class="last"><%= label_name(:change_your_roster_status) %></th>
-		</tr>
-
+	<table class="table" id="<%= get_the_action.gsub(' ','_') %>">
+	<tr>
+		<%= content_tag 'th', "&nbsp;", :class => "first" %>
+		<%= content_tag 'th', "&nbsp;" %>
+		<%= content_tag 'th', label_name(:name) %>
+		<%= content_tag 'th', label_name(:change_at), :align => "center", :title => label_name(:change_at) %>
+		<%= content_tag 'th', label_name(:change_your_roster_status), :align => "center", 
+										 :title => label_name(:change_your_roster_status), :class => "last" %>
+	</tr>
         
-       	<% the_roster.each do |clash| -%>
+       	<% the_roster.each do |clash| 
+			subscriber = clash.user.is_subscriber_of?(@tournament)
+		    the_label =  label_name("subscription_#{subscriber}") unless subscriber 
+			the_klass = "subscription_#{subscriber}" unless subscriber
+			@roster = clash	
+		-%>
         <tr>
-			<td>
-				<%= image_link_smaller clash.user %>
-			</td>			
-			<%  
-				subscriber = clash.user.is_subscriber_of?(@tournament)
-			    the_label =  label_name("subscription_#{subscriber}") unless subscriber 
-				the_klass = "subscription_#{subscriber}" unless subscriber 
-			%>			
-			<td class="<%= the_klass %>" title = "<%= the_label %>">
-				<%= counter +=1 %>.
-			</td>			
+			<td><%= image_link_smaller clash.user %></td>			
+			<td class="<%= the_klass %>" title = "<%= the_label %>"><%= counter +=1 %>.</td>			
 			<td>
 				<%= user_link clash.user %><br />
-				<%= "  ( #{label_name(:no_jugado)} )" if clash.type_id == 4 %>
+				<%= "( #{label_name(:no_jugado)} )" if clash.type_id == 4 %>
 			</td>			
-			<td align="left"><%= clash.standing_played %></td>
-<% 		
-		case clash.position.name
-		when "defense"
-			home["defense"] += 1
-		when "center"
-			home["center"] += 1
-		when "attack"
-			home["attack"] += 1
-		end
-		home["technical"] += clash.technical
-		home["physical"] += clash.physical
-		home["total"] += 1 
-				
-		@roster = clash  
-%>		
-		<td>			
-		    <%= is_manager ? in_place_select(:roster, :position_name, :choices => @positions.map { |e| [I18n.t(e.name), e.id] }) : clash.position_name %>
-		</td>
-	
-		<td align="center">
-			<%= is_manager ? in_place_text_field(:roster, :technical, {:cols => 1}) : clash.technical %>
-		</td>	
 			
-		<td align="center">			
-			<%= is_manager ? in_place_text_field(:roster, :physical, {:cols => 1}) : clash.physical %>		
-		</td>
+			<td class="name_and_date">
+				<span class="date">
+					<%= "#{label_name(:ago)} #{time_ago_in_words(clash.status_at)}" %>
+				</span>
+			</td>
 		
-		<td><%#= is_sub_manager ? link_to(clash.team_name(@meet), clash_team_path(:id => clash.id), :title => label_name(:change_group)) :  clash.team_name(@meet) %></td>
-<% 
-	
-	if @meet.played? 
-%>	
-		<td><%#= group_score_link @meet if clash.type_id == 1 %></td>
-<%		
-	end 
-%>	
-
-	<td class="name_and_date">
-		<span class="date">
-			<%= "#{label_name(:ago)} #{time_ago_in_words(clash.status_at)}" %>
-		</span>
-	</td>
-		
-
-
-<td class="last">
-<% 
-if current_user == clash.user or current_user.is_tour_manager_of?(@tournament) and @meet.not_played? 
-	@clash_type.each do |type|  
-		unless type.id == clash.type_id			
+			<td class="last">
+			<% 
+			if current_user == clash.user or current_user.is_tour_manager_of?(@tournament) and @meet.not_played? 
+				@clash_type.each do |type|  
+					unless type.id == clash.type_id			
 			
-			# only manager can view option 'no_jugado'
-			if type.id == 4
-%>
-				<%= render :partial => '/meets/tour_roster_option', 
-						:locals => {:type => type, :clash => clash} if current_user.is_tour_manager_of?(@tournament) %>
-<% 			
-			else
-%>
-				<%= render :partial => '/meets/tour_roster_option', :locals => {:type => type, :clash => clash} %>
-<%
-			end 
-		end
- 	end
-end
-%>
-
-</td>
+						# only manager can view option 'no_jugado'
+						if type.id == 4
+			%>
+							<%= render :partial => '/meets/tour_roster_option', 
+									:locals => {:type => type, :clash => clash} if current_user.is_tour_manager_of?(@tournament) %>
+			<% 			
+						else
+			%>
+							<%= render :partial => '/meets/tour_roster_option', :locals => {:type => type, :clash => clash} %>
+			<%
+						end 
+					end
+			 	end
+			end
+			%>
+			</td>
+			<% 5.times.each do %>
+			<%= content_tag 'td', "&nbsp;" %>
+			<%= content_tag 'td', "&nbsp;" %>
+			<% end %>
 </tr>          
 <% 
 end 
 -%>
 
 </table>
-
-<% if get_the_action.gsub(' ','_') == 'team_roster' %>
-
-	<%= render :partial => '/meets/tour_level', :locals => {:home => home, :away => away, :technical => technical, :physical => physical} %>
-
-<% end -%>
 
 <% 
 end
