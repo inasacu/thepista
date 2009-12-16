@@ -18,12 +18,6 @@ class Meet < ActiveRecord::Base
               :conditions =>  "clashes.type_id = 1 and clashes.meet_id = (select meets.round_id from meets where meet_id = clashes.meet_id limit 1)",
               :order =>       :name
 
-  # has_many    :away_roster,
-  #             :through => :clashes,
-  #             :source => :convocado,
-  #             :conditions =>  "clashes.type_id = 1 and clashes.invite_id = (select meets.round_id from meets where meet_id = clashes.meet_id limit 1)",
-  #             :order =>       :name
-
   has_many    :convocados,
               :through => :clashes,
               :source => :convocado,
@@ -119,6 +113,10 @@ class Meet < ActiveRecord::Base
     :joins => "left join users on users.id = clashes.user_id left join types on types.id = clashes.type_id left join standings on standings.user_id = clashes.user_id",
     :conditions => ["clashes.meet_id = ?  and clashes.archive = false and clashes.type_id in (1,2,3,4) and standings.round_id = ? and users.available = false ", self.id, self.round_id],
     :order => "clashes.meet_id desc, users.name")
+  end
+  
+  def the_scored
+    Clash.find(:all, :conditions => "clashes.user_score is not null", :order => "user_score DESC")
   end
 
   def sport_name

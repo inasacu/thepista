@@ -124,81 +124,81 @@ class MeetsController < ApplicationController
       redirect_to :action => 'index'  
   end
   
-  def set_previous_profile
-    @meet = Meet.find(params[:id])  
-    @tournament = @meet.round.tournament 
-    
-    unless current_user.is_tour_manager_of?(@tournament)
-      flash[:warning] = I18n.t(:unauthorized)
-      redirect_back_or_default('/index')
-      return
-    end
-
-    @previous_meet = Meet.find(:first, 
-    :conditions => ["id = (select max(id) from meets where round_id = ? and id < ?) ", @meet.round.id, @meet.id])    
-    unless @previous_meet.nil?
-
-      @meet.clashes.each do |clash|
-        @previous_clash = Match.find(:first, :conditions => ["meet_id = ? and user_id = ?", @previous_meet.id, clash.user_id])
-        clash.technical = @previous_clash.technical
-        clash.physical = @previous_clash.physical
-        clash.save!
-      end
-
-      flash[:notice] = I18n.t(:successful_update)
-    end
-    redirect_back_or_default('/index')
-  end
+  # def set_previous_profile
+  #   @meet = Meet.find(params[:id])  
+  #   @tournament = @meet.round.tournament 
+  #   
+  #   unless current_user.is_tour_manager_of?(@tournament)
+  #     flash[:warning] = I18n.t(:unauthorized)
+  #     redirect_back_or_default('/index')
+  #     return
+  #   end
+  # 
+  #   @previous_meet = Meet.find(:first, 
+  #   :conditions => ["id = (select max(id) from meets where round_id = ? and id < ?) ", @meet.round.id, @meet.id])    
+  #   unless @previous_meet.nil?
+  # 
+  #     @meet.clashes.each do |clash|
+  #       @previous_clash = Match.find(:first, :conditions => ["meet_id = ? and user_id = ?", @previous_meet.id, clash.user_id])
+  #       clash.technical = @previous_clash.technical
+  #       clash.physical = @previous_clash.physical
+  #       clash.save!
+  #     end
+  # 
+  #     flash[:notice] = I18n.t(:successful_update)
+  #   end
+  #   redirect_back_or_default('/index')
+  # end
   
-  def set_roster_technical
-      @clash = Match.find(params[:id])
-      @tournament = @clash.meet.round.tournament
+  # def set_roster_technical
+  #     @clash = Match.find(params[:id])
+  #     @tournament = @clash.meet.round.tournament
+  # 
+  #     unless current_user.is_tour_manager_of?(@tournament)
+  #       flash[:warning] = I18n.t(:unauthorized)
+  #       redirect_back_or_default('/index')
+  #       return
+  #     end
+  #     
+  #     technical = params[:roster][:technical]
+  #     if @clash.update_attributes('technical' => technical)
+  #       flash[:notice] = I18n.t(:successful_update)
+  #     end
+  #     redirect_back_or_default('/index')
+  # end
 
-      unless current_user.is_tour_manager_of?(@tournament)
-        flash[:warning] = I18n.t(:unauthorized)
-        redirect_back_or_default('/index')
-        return
-      end
-      
-      technical = params[:roster][:technical]
-      if @clash.update_attributes('technical' => technical)
-        flash[:notice] = I18n.t(:successful_update)
-      end
-      redirect_back_or_default('/index')
-  end
+  # def set_roster_physical
+  #   @clash = Match.find(params[:id])
+  #   @tournament = @clash.meet.round.tournament
+  # 
+  #   unless current_user.is_tour_manager_of?(@tournament)
+  #     flash[:warning] = I18n.t(:unauthorized)
+  #     redirect_back_or_default('/index')
+  #     return
+  #   end
+  # 
+  #   physical = params[:roster][:physical]
+  #   if @clash.update_attributes('physical' => physical)
+  #     flash[:notice] = I18n.t(:successful_update)
+  #   end
+  #   redirect_back_or_default('/index')
+  # end
 
-  def set_roster_physical
-    @clash = Match.find(params[:id])
-    @tournament = @clash.meet.round.tournament
-
-    unless current_user.is_tour_manager_of?(@tournament)
-      flash[:warning] = I18n.t(:unauthorized)
-      redirect_back_or_default('/index')
-      return
-    end
-
-    physical = params[:roster][:physical]
-    if @clash.update_attributes('physical' => physical)
-      flash[:notice] = I18n.t(:successful_update)
-    end
-    redirect_back_or_default('/index')
-  end
-
-  def set_roster_position_name
-    @clash = Match.find(params[:id])
-    @tournament = @clash.meet.round.tournament
-
-    unless current_user.is_tour_manager_of?(@tournament)
-      flash[:warning] = I18n.t(:unauthorized)
-      redirect_back_or_default('/index')
-      return
-    end
-    @type = Type.find(params[:roster][:position_name])
-    if @clash.update_attributes('position_id' => @type.id)
-      flash[:notice] = I18n.t(:successful_update)
-    end
-    redirect_back_or_default('/index')
-  end
+  # def set_roster_position_name
+  #   @clash = Match.find(params[:id])
+  #   @tournament = @clash.meet.round.tournament
+  # 
+  #   unless current_user.is_tour_manager_of?(@tournament)
+  #     flash[:warning] = I18n.t(:unauthorized)
+  #     redirect_back_or_default('/index')
+  #     return
+  #   end
+  #   @type = Type.find(params[:roster][:position_name])
+  #   if @clash.update_attributes('position_id' => @type.id)
+  #     flash[:notice] = I18n.t(:successful_update)
+  #   end
+  #   redirect_back_or_default('/index')
+  # end
 
   def set_public
     if @meet.update_attribute("public", !@meet.public)

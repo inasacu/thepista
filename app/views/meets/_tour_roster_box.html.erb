@@ -44,7 +44,7 @@ if roster_count
 		
 			<td class="last">
 			<% 
-			if current_user == clash.user or current_user.is_tour_manager_of?(@tournament) and @meet.not_played? 
+			if current_user == clash.user or current_user.is_tour_manager_of?(@tournament) 
 				@clash_type.each do |type|  
 					unless type.id == clash.type_id			
 			
