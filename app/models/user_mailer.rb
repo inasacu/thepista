@@ -1,13 +1,14 @@
 class UserMailer < ActionMailer::Base
 
   default_url_options[:host] = "haypista.com"
+  helper ActionView::Helpers::UrlHelper
 
   def signup_notification(user)
     recipients "#{user.name} <#{user.email}>"
     from       "[HayPista] <support@haypista.com>"
     subject    I18n.t(:users_activate)
     sent_on    Time.zone.now
-    body       :user => user #{ :user => user, :url => activate_url(user.activation_code), :host => user.site.host }
+    body       :user => user 
   end
 
   def password_reset_instructions(user)  
@@ -94,7 +95,6 @@ class UserMailer < ActionMailer::Base
     @body[:message]   = invitation
     @body[:url]       = signup_url
     @content_type     = "text/html"
-    # @headers          = {}
   end
 
   def setup_message_email(message)
@@ -106,7 +106,6 @@ class UserMailer < ActionMailer::Base
     @body[:message]   = message
     @body[:url]       = "haypista.com"
     @content_type     = "text/html"
-    # @headers          = {}
   end
 
 end

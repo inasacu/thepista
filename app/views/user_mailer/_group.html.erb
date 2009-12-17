@@ -5,15 +5,8 @@
   <tr>
     <td style="width:1%; color:#999999; vertical-align: top;">•&nbsp;</td>
     <td>
-		<%= link_to(@group.name, {:host => 'haypista.com', :controller => 'groups', :action => 'show', :id => @group}, :title => @group.name) %><br/>          
+		<%#= link_to(@group.name, {:host => 'haypista.com', :controller => 'groups', :action => 'show', :id => @group}, :title => @group.name) %>
+		<%= link_to(@group.name, group_url(@group)) %>      
     </td>
-  </tr>
-  
-  <tr><td>&nbsp;</td><td>&nbsp;</td></tr>
-  <tr>
-    <td>&nbsp;</td> 
-    <% if display %>
-    <td>&nbsp; <%= I18n.t(:your_interest_group) %>  <a class="more" href="http://www.HayPista.com/groups/list"> <%= I18n.t(:check_out_groups) %>  »</a></td>    
-    <% end %>
   </tr>
 </table>

@@ -7,8 +7,8 @@ es:
      accept: "Acepto"   
      accept_player: "ACEPTA"   
      account: cuenta
-     account_activation:  "Visita esta dirección URL para activar tu cuenta:"
-     account_created:  Tu cuenta ha sido creada.
+     account_activation:  Tu cuenta ya ha sido activada.
+     account_created:  Tu cuenta ha sido creada y activada.
      accounts: Cuentas   
 
      add_email: "Acepto, Crea mi cuenta"     
