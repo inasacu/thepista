@@ -22,7 +22,7 @@ else
 			the_active = get_active("#{get_the_controller}_team_roster")
 		%>
 			<%= content_tag :li, 
-				link_to("#{label_name(:rosters)} (#{@schedule.the_roster.count})", team_roster_path(:id => @schedule)),
+				link_to("#{label_name(:rosters)} (#{@schedule.the_roster_count})", team_roster_path(:id => @schedule)),
 				:class => the_active %>
 		<% end %>
 				
@@ -30,7 +30,7 @@ else
 			the_active = get_active("#{get_the_controller}_team_last_minute")
 		%>
 			<%= content_tag :li, 
-				link_to("#{label_name(:last_minute)} (#{@schedule.the_last_minute.count})", team_last_minute_path(:id => @schedule)),
+				link_to("#{label_name(:last_minute)} (#{@schedule.the_last_minute_count})", team_last_minute_path(:id => @schedule)),
 				:class => the_active %>
 		<% end %>
 						
@@ -38,7 +38,7 @@ else
 			the_active = get_active("#{get_the_controller}_team_no_show")
 		%>
 			<%= content_tag :li, 
-				link_to("#{label_name(:no_shows)} (#{@schedule.the_no_show.count})", team_no_show_path(:id => @schedule)),
+				link_to("#{label_name(:no_shows)} (#{@schedule.the_no_show_count})", team_no_show_path(:id => @schedule)),
 				:class => the_active %>
 		<% end %>
 						
@@ -46,7 +46,7 @@ else
 			the_active = get_active("#{get_the_controller}_team_unavailable")
 		%>
 			<%= content_tag :li, 
-				link_to("#{label_name(:unavailable)} (#{@schedule.the_unavailable.count})", team_unavailable_path(:id => @schedule)),
+				link_to("#{label_name(:unavailable)} (#{@schedule.the_unavailable_count})", team_unavailable_path(:id => @schedule)),
 				:class => the_active %>
 		<% end %>
 		
