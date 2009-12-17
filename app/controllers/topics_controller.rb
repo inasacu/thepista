@@ -7,11 +7,15 @@ class TopicsController < ApplicationController
     unless @forum.schedule.nil?
       @schedule = @forum.schedule 
       @group = @schedule.group
+      @previous = Schedule.previous(@schedule)
+      @next = Schedule.next(@schedule)
     end  
 
     unless @forum.meet.nil?
       @meet = @forum.meet 
       @round = @meet.round
+      @previous = Meet.previous(@meet)
+      @next = Meet.next(@meet)
     end
     
     @topic = @forum.topics.first

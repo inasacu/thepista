@@ -9,17 +9,19 @@
 	<table class="table" id="<%= get_the_action.gsub(' ','_') %>">
 
 		<tr>
-		 <th class="first">&nbsp;</th>	
-		 <th>&nbsp;</th>
-		 <th>&nbsp;</th>
-		 <th>&nbsp;</th>
+			<%= content_tag :th, "&nbsp;", :class => "first" %>
+			<%= content_tag :th, "&nbsp;" %>
+			<%= content_tag :th, "&nbsp;" %>
+			<%= content_tag :th, "&nbsp;" %>
 		 <th align="center" title = "<%= label_name(:defense) %>"><%= label_name(:defense) %></th>
 		 <th align="center" title = "<%= label_name(:center) %>"><%= label_name(:center) %></th>
 		 <th align="center" title = "<%= label_name(:attack) %>"><%= label_name(:attack) %></th>
 		 <th align="center" title = "<%= label_name(:technical) %>"><%= label_name(:technical) %></th>
 		 <th align="center" title = "<%= label_name(:physical) %>"><%= label_name(:physical) %></th>
 		 <th align="center" title = "<%= label_name(:total) %>"><%= label_name(:total) %></th>
-		 <th>&nbsp;</th>
+		 	
+			<%= content_tag :th, "&nbsp;" %>
+			
 		 <th>&nbsp;
 			<% 
 				the_label = "#{label_name(:previous_profile_set_full) }"
@@ -28,20 +30,22 @@
 			<%= link_to(label_name(:previous_profile_set), 
 						set_previous_profile_url(:id => @schedule.id), 
 						:title => the_label, :confirm => the_confirmation) if current_user.is_manager_of?(@schedule.group) %>
-					</th>
-		 <th>&nbsp;</th>
-		 <th>&nbsp;</th>
-		 <th>&nbsp;</th>
-		 <th>&nbsp;</th>
-		 <th>&nbsp;</th>
-		 <th>&nbsp;</th>
+		</th>
+		
+		<%	5.times.each { %>			
+			<%= content_tag :th, "&nbsp;" %>
+		<% } %>
+		
+
 		 <th class="last">&nbsp;</th>
 		</tr>
 		
 		<tr>
-			<td class="first">&nbsp;</td>
-			 <td>&nbsp;</td>
-			 <td>&nbsp;</td>
+			
+			 <%= content_tag :td, "&nbsp;" , :class => "first" %>
+			 <%= content_tag :td, "&nbsp;" %>
+			 <%= content_tag :td, "&nbsp;" %>
+			
 			<td><%= link_to @schedule.home_group, group_path(@schedule.group) %></td>
 			<td><%= home["defense"] %></td>
 			<td><%= home["center"] %></td>
@@ -49,14 +53,11 @@
 			<td><%= home["technical"] %></td>
 			<td><%= home["physical"] %></td>
 			<td><%= home["total"] %></td>
-			<td>&nbsp;</td>
-			<td>&nbsp;</td>
-			<td>&nbsp;</td>
-			<td>&nbsp;</td>
-			<td>&nbsp;</td>
-			<td>&nbsp;</td>
-			<td>&nbsp;</td>
-			<td>&nbsp;</td>
+			
+			<%	8.times.each { %>			
+				<%= content_tag :td, "&nbsp;" %>
+			<% } %>
+			
 			<td class="last">&nbsp;</td>
 		</tr>
 

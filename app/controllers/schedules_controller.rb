@@ -23,12 +23,7 @@ class SchedulesController < ApplicationController
   end
   
   def show
-    store_location
-    # @schedule = Schedule.find(params[:id])
-    # @group = @schedule.group
-    # @previous = Schedule.previous(@schedule)
-    # @next = Schedule.next(@schedule)
-    
+    store_location    
     unless current_user.is_member_of?(@group) 
       redirect_back_or_default('/index')
     end
@@ -235,9 +230,7 @@ class SchedulesController < ApplicationController
     end
   end
   
-  def get_schedule    
-    # @schedule = Schedule.find(params[:id])
-    # @group = @schedule.group    
+  def get_schedule      
     @schedule = Schedule.find(params[:id])
     @group = @schedule.group
     @previous = Schedule.previous(@schedule)

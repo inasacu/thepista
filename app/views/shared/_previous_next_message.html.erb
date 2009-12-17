@@ -1,17 +1,73 @@
-<% the_controller = get_the_controller %>
+<% 
+	if is_controller("topic")
+		the_controller = "schedule" if @schedule
+		the_controller = "meet" if @meet
+	else
+		the_controller = get_the_controller
+	end
+%>
+
 <%= render :partial => "/#{the_controller}s/secondary_navigation" %>
 
 <div class="content">
-	<p>
-		<% if @next %>
-		<%= content_tag 'b', link_to("", schedule_path(@next), :class => 'next_message') if the_controller == "schedule" %>
-		<%= content_tag 'b', link_to("", meet_path(@next), :class => 'next_message') if the_controller == "meet" %>
-		<% end -%>
-	</p>
-	<p>
-		<% if @previous %>
-		<%= content_tag 'b', link_to("", schedule_path(@previous), :class => 'previous_message') if the_controller == "schedule" %>
-		<%= content_tag 'b', link_to("", meet_path(@previous), :class => 'previous_message') if the_controller == "meet" %>
-		<% end -%>
-	</p>
-	<br />
+
+<% 
+the_action = get_the_action.gsub(" ", "_")
+
+if is_controller("schedule")
+	case the_action
+	when"show"
+%>
+		<p><%= content_tag :b, link_to("", schedule_path(@previous), :class => 'next_message') %></p>
+		<p><%= content_tag :b, link_to("", schedule_path(@next), :class => 'previous_message') %></p>
+<% 		when "team_roster" 
+%>
+		<p><%= content_tag :b, link_to("", team_roster_path(:id => @previous), :class => 'next_message') %></p>
+		<p><%= content_tag :b, link_to("", team_roster_path(:id => @next), :class => 'previous_message') %></p>
+<% 		when "team_last_minute" 
+%>
+		<p><%= content_tag :b, link_to("", team_last_minute_path(:id => @previous), :class => 'next_message') %></p>
+		<p><%= content_tag :b, link_to("", team_last_minute_path(:id => @next), :class => 'previous_message') %></p>
+<% 		when "team_no_show" 
+%>
+		<p><%= content_tag :b, link_to("", team_no_show_path(:id => @previous), :class => 'next_message') %></p>
+		<p><%= content_tag :b, link_to("", team_no_show_path(:id => @next), :class => 'previous_message') %></p>
+<% 		when "team_unavailable" 
+%>
+		<p><%= content_tag :b, link_to("", team_unavailable_path(:id => @previous), :class => 'next_message') %></p>
+		<p><%= content_tag :b, link_to("", team_unavailable_path(:id => @next), :class => 'previous_message') %></p>
+<%		end
+elsif is_controller("topic")
+%>
+		<p><%= content_tag :b, link_to("", forum_path(@previous.forum), :class => 'next_message') %></p>
+		<p><%= content_tag :b, link_to("", forum_path(@next.forum), :class => 'previous_message') %></p>
+<%	
+elsif is_controller("meet")
+	case the_action
+	when"show"
+%>
+		<p><%= content_tag :b, link_to("", meet_path(@previous), :class => 'next_message') %></p>
+		<p><%= content_tag :b, link_to("", meet_path(@next), :class => 'previous_message') %></p>
+<% 		when "tour_roster" 
+%>
+		<p><%= content_tag :b, link_to("", tour_roster_path(:id => @previous), :class => 'next_message') %></p>
+		<p><%= content_tag :b, link_to("", tour_roster_path(:id => @next), :class => 'previous_message') %></p>
+<% 		when "tour_last_minute" 
+%>
+		<p><%= content_tag :b, link_to("", tour_last_minute_path(:id => @previous), :class => 'next_message') %></p>
+		<p><%= content_tag :b, link_to("", tour_last_minute_path(:id => @next), :class => 'previous_message') %></p>
+<% 		when "tour_no_show" 
+%>
+		<p><%= content_tag :b, link_to("", tour_no_show_path(:id => @previous), :class => 'next_message') %></p>
+		<p><%= content_tag :b, link_to("", tour_no_show_path(:id => @next), :class => 'previous_message') %></p>
+<% 		when "tour_unavailable" 
+%>
+		<p><%= content_tag :b, link_to("", tour_unavailable_path(:id => @previous), :class => 'next_message') %></p>
+		<p><%= content_tag :b, link_to("", tour_unavailable_path(:id => @next), :class => 'previous_message') %></p>
+<%		end
+
+ end
+%>
+	
+
+<br />
