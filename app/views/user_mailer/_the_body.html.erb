@@ -8,8 +8,8 @@
   </tr><tr>
     <td style="width:1%; color:#999999; vertical-align: top;">&nbsp;</td>
     <td style="width:99%">&nbsp;
-		<%= link_to(I18n.t(:reply), {:host => 'haypista.com', :controller => 'messages', :action => 'show', :id => @message}) %>
-		<%#= link_to(I18n.t(:reply), message_url(@message)) %>
+		<%#= link_to(I18n.t(:reply), {:host => 'haypista.com', :controller => 'messages', :action => 'show', :id => @message}) %>
+		<%= link_to(I18n.t(:reply), message_url(@message)) %>
 	</td>
   </tr>
 </table>

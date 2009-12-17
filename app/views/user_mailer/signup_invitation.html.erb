@@ -23,8 +23,8 @@
 
 <%= I18n.t(:participate_group_afterwards) %><br /><br />
 
-<%= link_to(@group.name, {:host => 'haypista.com', :controller => 'groups', :action => 'show', :id => @group.id}) %>
-<%#= link_to(@group.name, group_url(@group)) %>
+<%#= link_to(@group.name, {:host => 'haypista.com', :controller => 'groups', :action => 'show', :id => @group.id}) %>
+<%= link_to(@group.name, group_url(@group)) %>
 <br /><br />
 <% end %>
 
@@ -33,14 +33,14 @@
 
 <%= I18n.t(:participate_group_afterwards) %><br /><br />
 
-<%= link_to(@schedule.group.name, {:host => 'haypista.com', :controller => 'groups', :action => 'show', :id => @schedule.group_id}) %>
-<%#= link_to(@schedule.group.name, group_url(@schedule.group)) %>
+<%#= link_to(@schedule.group.name, {:host => 'haypista.com', :controller => 'groups', :action => 'show', :id => @schedule.group_id}) %>
+<%= link_to(@schedule.group.name, group_url(@schedule.group)) %>
 <br /><br />
 
 <%= I18n.t(:participate_schedule_afterwards) %><br /><br />
 
-<%= link_to(@schedule.concept, {:host => 'haypista.com', :controller => 'schedules', :action => 'show', :id => @schedule.id}) %>
-<%#= link_to(@schedule.concept, schedule_url(@schedule)) %>
+<%#= link_to(@schedule.concept, {:host => 'haypista.com', :controller => 'schedules', :action => 'show', :id => @schedule.id}) %>
+<%= link_to(@schedule.concept, schedule_url(@schedule)) %>
 <br /><br />
 
 <% end %>

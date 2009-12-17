@@ -1,5 +1,3 @@
-<% display = false %>
-
 <p style="margin: 15px 0 2px 0"><strong><%= I18n.t(:description) %></strong></p>
 
 <table width="100%" border="0" cellpadding="0" cellspacing="0" style="font: 13px arial;">
@@ -8,13 +6,5 @@
     <td>
       <a href="<%= @schedule_url %>" title="<%= @schedule.concept %>"><%= @schedule.concept %></a><br/>          
     </td>
-  </tr>
-  
-  <tr><td>&nbsp;</td><td>&nbsp;</td></tr>
-  <tr>
-    <td>&nbsp;</td> 
-    <% if display %>
-    <td>&nbsp; <%= I18n.t(:your_interest_schedule) %>  <a class="more" href="http://www.HayPista.com/schedules/list"> <%= I18n.t(:check_out_schedules) %>  »</a></td>    
-    <% end %>
   </tr>
 </table>
