@@ -10,7 +10,8 @@ if current_user
 	</li>
 
 	<li class="message">
-		<%= link_to label_name(:messages_inbox) , :controller => 'messages', :action => 'index' if current_user.has_unread_messages? %>
+		<% unread_count = current_user.unread_messages_count %>
+		<%= link_to "#{label_name(:messages_inbox)} (#{unread_count})" , :controller => 'messages', :action => 'index' if unread_count > 0 %>
 	</li>
 			
 	<% if current_user.has_pending_petition?(current_user) %>

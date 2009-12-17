@@ -348,6 +348,15 @@ class User < ActiveRecord::Base
                    :limit => NUM_RECENT_MESSAGES)
     end
     
+    def unread_messages_count
+      sql = %(recipient_id = :id
+      AND sender_id != :id
+      AND recipient_deleted_at IS NULL
+      AND recipient_read_at IS NULL)
+      conditions = [sql, { :id => id }]
+      Message.count(:all, :conditions => conditions)
+    end
+    
     def has_unread_messages?
       sql = %(recipient_id = :id
               AND sender_id != :id
