@@ -2,6 +2,7 @@ class UserMailer < ActionMailer::Base
 
   default_url_options[:host] = "haypista.com"
   helper ActionView::Helpers::UrlHelper
+  helper ActionView::Helpers::TagHelper
 
   def signup_notification(user)
     recipients "#{user.name} <#{user.email}>"
