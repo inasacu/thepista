@@ -48,6 +48,8 @@ class Group < ActiveRecord::Base
   attr_accessible :name, :second_team, :gameday_at, :points_for_win, :points_for_draw, :points_for_lose, :player_limit
   attr_accessible :time_zone, :sport_id, :marker_id, :description, :conditions, :photo, :available, :enable_comments
   
+  attr_protected :avatar if accessible_attributes.nil?
+  
   has_and_belongs_to_many :users,           :join_table => "groups_users",   :order => "name"
 
   has_many      :schedules
