@@ -37,7 +37,7 @@
 			<%= nice_day_date schedule.starts_at %>
           </td>
           <td>            
-            <%= link_to sanitize(schedule.concept), schedule_path(schedule) %><br />
+            <%= link_to sanitize(schedule.concept), team_roster_path(:id => schedule) %><br />
 			<%= schedule.sport.name %>
           </td>
           <td>
@@ -54,8 +54,6 @@
           <td class="last">
 			<% if current_user.is_manager_of?(schedule.group) %>
             	<%= link_to label_name('edit'), edit_schedule_path(schedule) unless schedule.last_season?(current_user) %><br />
-            	<%#= link_to control_label('destroy'), schedule_path(schedule), 
-										:method => :delete, :confirm => label_name(:are_you_sure) unless schedule.played? %>
 			<% end %>
           </td>
 

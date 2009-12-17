@@ -9,14 +9,17 @@
 
 <% form_for :comments, :url => comments_path, :id => blog_id, :html => { :class => :form } do |f| -%>
 	<h5 class="title"><%= label %></h5>
+	<br />
 <% 
 	if textfield 
 %>
-		<%= f.text_field :body, :class => 'textfield' -%>		
+		<%= f.text_field :body, :class => 'textfield' -%>&nbsp;&nbsp;<%= f.submit label_name(:comment) %>		
 <% 
 	else 
 %>
 		<%= f.text_area :body, :class => 'textfield' -%>
+		<br /><br />
+		<%= f.submit label_name(:comment) %>
 <% 
 	end 
 %>
@@ -24,8 +27,6 @@
 	<%= f.hidden_field :user_id %>
 	<%= f.hidden_field :group_id %>
 	<%= f.hidden_field :tournament_id %>
-	<br /><br />
-	<%= f.submit label_name(:comment) %>
 
 <% end -%>
 

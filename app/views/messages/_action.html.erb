@@ -4,7 +4,7 @@
 													:method => :delete, 
 													:confirm => %(#{label_name(:message_delete) }?),
 													:title => label_name(:message_delete) %>
-<% else -%>	
-	<%= link_to image_tag("icons/email_add.png"), untrash_message_path(message),
+<%# else -%>	
+	<%#= link_to image_tag("icons/email_add.png"), untrash_message_path(message),
 	            		:title => label_name(:message_untrash) %>
 <% end -%>

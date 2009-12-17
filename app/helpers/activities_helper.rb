@@ -14,7 +14,7 @@ module ActivitiesHelper
       schedule = activity.item
       is_member = current_user.is_member_of?(schedule.group)
       the_label = schedule.played? ? I18n.t(:has_updated_scorecard) : I18n.t(:created_a_schedule)
-       %(#{the_label} #{is_member ? schedule_link(schedule) : sanitize(schedule.concept)}.)
+       %(#{the_label} #{is_member ? team_roster_path(:id => schedule) : sanitize(schedule.concept)}.)
 
     when "User"
         %(#{I18n.t(:changed_description) })
@@ -50,15 +50,15 @@ module ActivitiesHelper
           
           match = activity.item
           is_member = current_user.is_member_of?(match.schedule.group)
-          %(#{I18n.t(:changes_in_roster_status) } #{I18n.t(:in) } #{is_member ? schedule_link(match.schedule) : match.schedule.concept}.)
+          %(#{I18n.t(:changes_in_roster_status) } #{I18n.t(:in) } #{is_member ? team_roster_link(match.schedule) : match.schedule.concept}.)
     
     when "Clash"  
           clash = activity.item
           is_member = false
     
-          match = activity.item
-          is_member = current_user.is_tour_member_of?(match.meet.tournament)
-          %(#{I18n.t(:changes_in_roster_status) } #{I18n.t(:in) } #{is_member ? schedule_link(match.meet) : match.meet.concept}.)
+          clash = activity.item
+          is_member = current_user.is_tour_member_of?(clash.meet.tournament)
+          %(#{I18n.t(:changes_in_roster_status) } #{I18n.t(:in) } #{is_member ? meet_link(clash.meet) : clash.meet.concept}.)
 
     when "Result"
       %(Resultados ya se han actualizado...)
