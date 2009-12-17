@@ -32,10 +32,12 @@
 						:title => the_label, :confirm => the_confirmation) if current_user.is_manager_of?(@schedule.group) %>
 		</th>
 		
-		<%	5.times.each { %>			
+				
 			<%= content_tag :th, "&nbsp;" %>
-		<% } %>
-		
+			<%= content_tag :th, "&nbsp;" %>
+			<%= content_tag :th, "&nbsp;" %>
+			<%= content_tag :th, "&nbsp;" %>
+			<%= content_tag :th, "&nbsp;" %>
 
 		 <th class="last">&nbsp;</th>
 		</tr>
@@ -54,9 +56,8 @@
 			<td><%= home["physical"] %></td>
 			<td><%= home["total"] %></td>
 			
-			<%	8.times.each { %>			
-				<%= content_tag :td, "&nbsp;" %>
-			<% } %>
+
+			
 			
 			<td class="last">&nbsp;</td>
 		</tr>
