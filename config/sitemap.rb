@@ -1,5 +1,6 @@
 # Set the host name for URL creation
 SitemapGenerator::Sitemap.default_host = "http://haypista.com"
+SitemapGenerator::Sitemap.yahoo_app_id = "_em2vb_V34GL_0QXEPTfW2cakP6xLp8jAah_o5dJkAn8o1Ko_dtmNY1ky85Iv0tXWzwI"
 
 SitemapGenerator::Sitemap.add_links do |sitemap|
   # Put links creation logic here.
@@ -30,7 +31,6 @@ SitemapGenerator::Sitemap.add_links do |sitemap|
   # add users
   User.find_in_batches(:batch_size => 1000) do |users|
     users.each do |user|
-      # sitemap.add "/users/show/#{user.to_param}", :lastmod => user.updated_at, :changefreq => 'weekly'
       sitemap.add user_path(user), :lastmod => user.updated_at, :changefreq => 'weekly'
     end
   end
@@ -49,7 +49,13 @@ SitemapGenerator::Sitemap.add_links do |sitemap|
     end
   end
 
-
+  # add tournaments
+  Tournament.find_in_batches(:batch_size => 1000) do |tournaments|
+    tournaments.each do |tournament|
+      sitemap.add tournament_path(tournament), :lastmod => tournament.updated_at, :changefreq => 'weekly'
+    end
+  end
+  
   # You can run rake sitemap:refresh as needed to create Sitemap files. 
   # This will also ping all the 'major' search engines. 
   # (if you want to disable all non-essential output run the rake task thusly rake -s sitemap:refresh)
