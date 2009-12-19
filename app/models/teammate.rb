@@ -23,7 +23,7 @@ class Teammate < ActiveRecord::Base
     @manager = User.find(@role_user.user_id) 
     GroupsUsers.leave_team(leave_user, group)
     Teammate.breakup(leave_user, @manager, group)
-    @leave_user.has_no_role!(:member, group)
+    leave_user.has_no_role!(:member, group)
     Scorecard.set_archive_flag(leave_user, group, true)
     Match.set_archive_flag(leave_user, group, true)
   end
@@ -40,7 +40,7 @@ class Teammate < ActiveRecord::Base
     @manager = User.find(@role_user.user_id) 
     TournamentsUsers.leave_tour(leave_user, tournament)
     Teammate.breakup_tour(leave_user, @manager, tournament)
-    @leave_user.has_no_role!(:member, tournament)
+    leave_user.has_no_role!(:member, tournament)
     # Standing.set_archive_flag(leave_user, tournament, true)
     # Clash.set_archive_flag(leave_user, tournament, true)
   end
