@@ -3,21 +3,16 @@
 	
 <div class="block">
 	
-	<!-- <h3><%#= label_name("user_options_team") %></h3> -->
-	
 <ul class="navigation">
 		
 <% 
 @user.groups.each do |group| 
 %>
-<!-- <li><%#= group_link group %></li> -->
 <%
 	if current_user.is_manager_of?(group) 
 		the_label = label_with_name('fire_from_group', group.name)
 		the_confirmation = "#{ label_name(:fire_from_group)} #{group.name} #{ label_name(:to)} #{@user.name}?"
-%> 
-		<!-- <li><%#= link_to(the_label, leave_team_path(:id => group, :teammate => @user), :confirm => the_confirmation) %></li> -->
-<% 
+
 		unless @user.is_sub_manager_of?(group) 
 			the_label = label_with_name('role_add_sub_manager', group.name)
 			the_confirmation = "#{ label_name(:role_add_sub_manager)} #{ label_name(:to) } #{@user.name} #{ label_name(:to) } #{group.name}?"

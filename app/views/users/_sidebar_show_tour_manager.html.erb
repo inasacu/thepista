@@ -1,0 +1,39 @@
+<div class="block">
+	
+	<h3><%= label_name("user_options_tour") %></h3>
+	
+<ul class="navigation">
+		
+<% 
+	current_user.tournaments.each do |tournament| 
+
+ 		unless @user.is_tour_member_of?(tournament)  
+			the_label = label_with_name('petition_to_join_tournament', tournament.name)
+			the_confirmation = "#{ label_name(:petition_to_join_tournament)} #{@user.name} #{ label_name(:to) } #{tournament.name}?"
+%>
+        	<li><%= link_to(the_label, join_tour_path(:id => tournament, :teammate => @user), :confirm => the_confirmation) %></li>
+<% 
+		end 
+		
+		if @user == current_user and @user.is_tour_creator_of?(tournament)  
+			unless @user.is_tour_manager_of?(tournament)
+				the_label = label_with_name('role_add_manager', tournament.name)
+				the_confirmation = "#{ label_name(:role_add_manager)} #{ label_name(:to) } #{@user.name} #{ label_name(:to) } #{tournament.name}?"
+%>		
+					<li><%= link_to(the_label , set_tour_manager_path(:id => @user, :tournament => tournament), :confirm => the_confirmation) %></li>
+<% 
+			else
+				the_label = label_with_name('role_remove_manager', tournament.name)
+				the_confirmation = "#{ label_name(:role_remove_manager)} #{ label_name(:to) } #{@user.name} #{ label_name(:to) } #{tournament.name}?"
+%>					
+				<li><%= link_to(the_label , remove_tour_manager_path(:id => @user, :tournament => tournament), :confirm => the_confirmation) %></li>		
+<% 
+			end 
+		end
+	end 
+%>
+
+
+</ul>
+	
+</div>

@@ -19,5 +19,5 @@
 	
 </div>
 
-<%= render :partial => '/users/sidebar_show_team' if @user == current_user and current_user.groups.count > 0 %>
 <%= render :partial => '/users/sidebar_show_manager' if current_user.has_role?('manager') or current_user.has_role?('sub_manager') %>
+<%= render :partial => '/users/sidebar_show_tour_manager' if current_user.has_role?('manager') %>

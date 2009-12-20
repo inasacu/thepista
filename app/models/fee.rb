@@ -1,7 +1,5 @@
 class Fee < ActiveRecord::Base
-  
-  has_friendly_id :concept, :use_slug => true, 
-                  :reserved => ["new", "create", "index", "list", "edit", "update", "destroy", "show"]
+
 
   belongs_to     :manager,        :class_name => 'User',        :foreign_key => 'manager_id'
   belongs_to     :debit,          :polymorphic => true
@@ -25,6 +23,9 @@ class Fee < ActiveRecord::Base
   attr_accessible :debit_id, :debit_type, :credit_id, :credit_type, :item_id, :item_type 
   attr_accessible :type_id, :manager_id
   
+  # friendly url and removes id  
+  has_friendly_id :concept, :use_slug => true, :reserved => ["new", "create", "index", "list", "edit", "update", "destroy", "show"]
+                  
   def self.get_debit_fees(debit, credits, page=1)
     paginate(:all, 
              :conditions => ["debit_id = ? and debit_type = ? and 

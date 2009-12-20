@@ -1,7 +1,5 @@
 class Round < ActiveRecord::Base
 
-  has_friendly_id :name, :use_slug => true, :reserved => ["new", "create", "index", "list", "signup", "edit", "update", "destroy", "show"]
-
   validates_presence_of     :name
   validates_length_of       :name,            :within => NAME_RANGE_LENGTH
   validates_format_of       :name,            :with => /^[A-z 0-9 _.-]*$/ 
@@ -10,6 +8,9 @@ class Round < ActiveRecord::Base
 
   # variables to access
   attr_accessible :name, :tournament_id, :phase
+
+  # friendly url and removes id
+  has_friendly_id :name, :use_slug => true, :reserved => ["new", "create", "index", "list", "signup", "edit", "update", "destroy", "show"]
 
   belongs_to    :tournament
   has_many      :meets

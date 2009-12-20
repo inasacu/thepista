@@ -2,8 +2,6 @@ class Tournament < ActiveRecord::Base
 
   # acts_as_solr :fields => [:name, :description, :time_zone], :include => [:sport, :marker] if use_solr?
 
-  has_friendly_id :name, :use_slug => true, :reserved => ["new", "create", "index", "list", "signup", "edit", "update", "destroy", "show"]
-
   has_attached_file :photo,
   :styles => {
     :thumb  => "80x80#",
@@ -48,6 +46,9 @@ class Tournament < ActiveRecord::Base
     attr_accessible :name, :points_for_win, :points_for_draw, :points_for_lose, :fee_per_tour, :player_limit
     attr_accessible :time_zone, :sport_id, :marker_id, :description, :conditions, :photo
     attr_accessible :starts_at, :ends_at, :signup_at, :deadline_at
+
+    # friendly url and removes id
+    has_friendly_id :name, :use_slug => true, :reserved => ["new", "create", "index", "list", "signup", "edit", "update", "destroy", "show"]
 
     has_and_belongs_to_many :users,           :join_table => "tournaments_users",   :order => "name"
 

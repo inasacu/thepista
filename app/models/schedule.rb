@@ -6,9 +6,6 @@ class Schedule < ActiveRecord::Base
 
   acts_as_solr :fields => [:concept, :time_zone, :starts_at]  if use_solr? 
 
-  has_friendly_id :concept, :use_slug => true, 
-  :reserved => ["new", "create", "index", "list", "signup", "edit", "update", "destroy", "show"]
-
   has_many  :matches,  :conditions => "matches.archive = false",    :dependent => :destroy
   has_many  :fees,                                                  :dependent => :destroy 
   has_one   :forum,                                                 :dependent => :destroy
@@ -81,6 +78,8 @@ class Schedule < ActiveRecord::Base
   attr_accessible :fee_per_game, :fee_per_pista, :time_zone, :group_id, :sport_id, :marker_id, :player_limit
   attr_accessible :public, :season_ends_at
 
+  # friendly url and removes id
+  has_friendly_id :concept, :use_slug => true, :reserved => ["new", "create", "index", "list", "signup", "edit", "update", "destroy", "show"]
 
   # after_update        :save_matches
   before_create       :format_description

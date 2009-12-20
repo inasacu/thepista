@@ -1,7 +1,5 @@
 class Payment < ActiveRecord::Base
 
-  has_friendly_id :concept, :use_slug => true,:reserved => ["new", "create", "index", "list", "signup", "edit", "update", "destroy", "show"]
-
   belongs_to    :debit,        :polymorphic => true
   belongs_to    :credit,       :polymorphic => true
   belongs_to    :item,         :polymorphic => true 
@@ -19,6 +17,9 @@ class Payment < ActiveRecord::Base
 
   # variables to access
   attr_accessible :concept, :description, :debit_amount, :credit_amount
+
+  # friendly url and removes id
+  has_friendly_id :concept, :use_slug => true,:reserved => ["new", "create", "index", "list", "signup", "edit", "update", "destroy", "show"]
 
   def self.current_payments(user, page = 1)
      self.paginate(:all, 

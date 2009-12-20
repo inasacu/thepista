@@ -4,9 +4,6 @@ class Meet < ActiveRecord::Base
 
   acts_as_solr :fields => [:concept, :description, :time_zone, :starts_at]  if use_solr? 
 
-  has_friendly_id :concept, :use_slug => true, 
-  :reserved => ["new", "create", "index", "list", "signup", "edit", "update", "destroy", "show"]
-
   belongs_to  :round
   has_many    :clashes,  :conditions => "clashes.archive = false",    :order => "user_score DESC",      :dependent => :destroy
   has_many    :fees,                                                                                    :dependent => :destroy 
@@ -71,6 +68,8 @@ class Meet < ActiveRecord::Base
   attr_accessible :concept, :description, :jornada, :starts_at, :ends_at, :reminder_at
   attr_accessible :time_zone, :tournament_id, :round_id, :sport_id, :marker_id, :player_limit, :public
 
+  # friendly url and removes id  
+  has_friendly_id :concept, :use_slug => true, :reserved => ["new", "create", "index", "list", "signup", "edit", "update", "destroy", "show"]
 
   # after_update        :save_clashes
   before_create       :format_description

@@ -37,6 +37,8 @@ ActionController::Routing::Routes.draw do |map|
   map.set_moderator   		  'users/:id/set_moderator/:group',    		      :controller => 'users',    		    :action => 'set_moderator'
   map.remove_moderator   	  'users/:id/remove_moderator/:group',  		    :controller => 'users',    		    :action => 'remove_moderator'   
   map.petition              'users/:id/petition',                         :controller => 'users',           :action => 'petition'
+  map.set_tour_manager     	'users/:id/set_tour_manager/:tournament',     :controller => 'users',    		    :action => 'set_tour_manager'
+  map.remove_tour_manager  	'users/:id/remove_tour_manager/:tournament',  :controller => 'users',     	    :action => 'remove_tour_manager'
   
   map.set_available               'users/:id/set_available',  		        :controller => 'users',    		    :action => 'set_available'
   map.set_private_phone           'users/:id/set_private_phone',  		    :controller => 'users',    		    :action => 'set_private_phone'
@@ -44,7 +46,7 @@ ActionController::Routing::Routes.draw do |map|
   map.set_enable_comments         'users/:id/set_enable_comments',  		  :controller => 'users',    		    :action => 'set_enable_comments'
   map.set_teammate_notification   'users/:id/set_teammate_notification',  :controller => 'users',    		    :action => 'set_teammate_notification'
   map.set_message_notification    'users/:id/set_message_notification',  	:controller => 'users',    		    :action => 'set_message_notification'
-  map.set_blog_comment_notification    'users/:id/set_blog_comment_notification',  	:controller => 'users',    		    :action => 'set_blog_comment_notification'
+  map.set_blog_comment_notification    'users/:id/set_blog_comment_notification',  	:controller => 'users',    	:action => 'set_blog_comment_notification'
   
   map.third_party           'users/third_party',                          :controller => 'users',           :action => 'third_party'
   map.associate_return      'users/associate_return',                     :controller => 'users',           :action => 'associate_return'
@@ -60,8 +62,7 @@ ActionController::Routing::Routes.draw do |map|
   
   map.reply_message         'messages/:id/reply',                         :controller => 'messages',        :action => 'reply'
   map.untrash_message       'messages/:id/undestroy',                     :controller => 'messages',        :action => 'undestroy'
-  
-  # map.upcoming_schedule     'home/upcoming_schedule',                     :controller => 'home',            :action => 'upcoming_schedule'         
+         
   map.upcoming              'home/upcoming',                              :controller => 'home',            :action => 'upcoming'         
   
   map.archive_scorecard     'scorecards/:id/archive',                     :controller => 'scorecards',      :action => 'archive'

@@ -7,7 +7,9 @@ class UsersController < ApplicationController
                                      
   before_filter :get_user_group, :only =>[:set_manager, :remove_manager, :set_sub_manager, :remove_sub_manager, 
                                           :set_subscription, :remove_subscription, :set_moderator, :remove_moderator]
-  
+
+  before_filter :get_user_tournament, :only =>[:set_tour_manager, :remove_tour_manager]
+                                          
   before_filter :setup_rpx_api_key, :only => [:rpx_new, :rpx_create, :rpx_associate]
   
   before_filter :get_activities, :only => [:index, :list]
@@ -146,6 +148,26 @@ class UsersController < ApplicationController
     render :template => '/users/index'
   end
 
+  def set_tour_manager 
+    unless current_user.is_tour_creator_of?(@tournament)
+      flash[:notice] = I18n.t(:unauthorized)  
+      return
+    end
+    @user.has_role!(:manager, @tournament)
+    flash[:notice] = I18n.t(:manager_updated)
+    redirect_back_or_default('/index')
+  end
+
+  def remove_tour_manager 
+    unless current_user.is_tour_creator_of?(@tournament)
+      flash[:notice] = I18n.t(:unauthorized)  
+      return
+    end
+    @user.has_no_role!(:manager, @tournament)
+    flash[:notice] = I18n.t(:manager_updated)
+    redirect_back_or_default('/index')
+  end
+  
   def set_manager 
     unless current_user.is_creator_of?(@group)
       flash[:notice] = I18n.t(:unauthorized)  
@@ -462,6 +484,11 @@ private
   def get_user_group
     @user = User.find(params[:id])
     @group = Group.find(params[:group])
+  end
+  
+  def get_user_tournament
+    @user = User.find(params[:id])
+    @tournament = Tournament.find(params[:tournament])
   end
   
   def get_activities    
