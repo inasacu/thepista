@@ -1,6 +1,6 @@
 class Group < ActiveRecord::Base
 
-  acts_as_solr :fields => [:name, :second_team, :description, :time_zone], :include => [:sport, :marker] if use_solr?
+  acts_as_solr :fields => [:name, :second_team, :description, :time_zone] if use_solr? #, :include => [:sport, :marker] 
     
   has_friendly_id :name, :use_slug => true, 
                   :reserved => ["new", "create", "index", "list", "signup", "edit", "update", "destroy", "show"]

@@ -55,20 +55,12 @@
 			<%= content_tag :td, "", :class => get_the_action %>				
 		</tr>
 		
-		
+		<% counter = 0 %>
 		<% @tournament.rounds.each do |round| %>
 			<tr>
-				<%= content_tag :td, link_to(h(round.name), :class => "label") %>
-				<%= content_tag :td, "", :class => get_the_action %>							
-				<%#= content_tag :td, 
-						(link_to h(round.name), new_meet_path(:id => round), :title => label_name(:meets_create)), 
-								:class => get_the_action if current_user.is_tour_manager_of?(@tournament) %>
-														
+				<%= content_tag :td, "#{label_name(:phase)} (#{counter += 1})", :class => "label" %>
+				<%= content_tag :td, h(round.name), :class => get_the_action %>
 			</tr>
-			<!-- <tr>
-				<%#= content_tag :td, "", :class => "label" %>
-				<%#= content_tag :td, "", :class => get_the_action %>				
-			</tr> -->
 			
 			<% round.meets.each do |meet| %>
 			<tr>

@@ -14,7 +14,7 @@ module ActivitiesHelper
       schedule = activity.item
       is_member = current_user.is_member_of?(schedule.group)
       the_label = schedule.played? ? I18n.t(:has_updated_scorecard) : I18n.t(:created_a_schedule)
-       %(#{the_label} #{is_member ? team_roster_path(:id => schedule) : sanitize(schedule.concept)}.)
+       %(#{the_label} #{is_member ? team_roster_link(schedule) : sanitize(schedule.concept)}.)
 
     when "User"
         %(#{I18n.t(:changed_description) })
@@ -38,10 +38,10 @@ module ActivitiesHelper
           %(#{I18n.t(:left_comment_on_wall) } #{user_link(comment.entry.user)})
         elsif comment.tournament_id.blank?
           is_member = current_user.is_member_of?(comment.entry.group)
-          %(#{I18n.t(:left_comment_on_wall) } #{is_member ? group_link(comment.entry.group) : comment.entry.group.name})
+          %(#{I18n.t(:left_comment_on_wall) } #{is_member ? group_link(comment.entry.group) : sanitize(comment.entry.group.name)})
         else
             is_member = current_user.is_tour_member_of?(comment.entry.tournament)
-            %(#{I18n.t(:left_comment_on_wall) } #{is_member ? group_link(comment.entry.tournament) : comment.entry.tournament.name})              
+            %(#{I18n.t(:left_comment_on_wall) } #{is_member ? group_link(comment.entry.tournament) : sanitize(comment.entry.tournament.name)})              
         end
 
     when "Match"	
@@ -50,7 +50,7 @@ module ActivitiesHelper
           
           match = activity.item
           is_member = current_user.is_member_of?(match.schedule.group)
-          %(#{I18n.t(:changes_in_roster_status) } #{I18n.t(:in) } #{is_member ? team_roster_link(match.schedule) : match.schedule.concept}.)
+          %(#{I18n.t(:changes_in_roster_status) } #{I18n.t(:in) } #{is_member ? team_roster_link(match.schedule) : sanitize(match.schedule.concept)}.)
     
     when "Clash"  
           clash = activity.item
@@ -58,7 +58,7 @@ module ActivitiesHelper
     
           clash = activity.item
           is_member = current_user.is_tour_member_of?(clash.meet.tournament)
-          %(#{I18n.t(:changes_in_roster_status) } #{I18n.t(:in) } #{is_member ? meet_link(clash.meet) : clash.meet.concept}.)
+          %(#{I18n.t(:changes_in_roster_status) } #{I18n.t(:in) } #{is_member ? meet_link(clash.meet) : sanitize(clash.meet.concept)}.)
 
     when "Result"
       %(Resultados ya se han actualizado...)

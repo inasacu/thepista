@@ -140,10 +140,7 @@ class UsersController < ApplicationController
 
   def search
     count = User.count_by_solr(params[:search])
-    @users = User.paginate_all_by_solr(params[:search], :page => params[:page], :total_entries => count, :limit => 25, :offset => 1)
-
-    # @non_member = true
-    # @users = User.paginate_all_by_solr(params[:search].to_s, :page => params[:page])
+    @users = User.paginate_all_by_solr(params[:search], :page => params[:page], :per_page => USERS_PER_PAGE, :operator => :or)
     render :template => '/users/index'
   end
 

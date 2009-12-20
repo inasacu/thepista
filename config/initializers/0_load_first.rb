@@ -20,20 +20,16 @@ def env_is(env)
 end
 
 def display?
-# display? = false
+  # display? = false
   false
 end
 
 def use_solr?
-# use_solr? = false
-  true
+  false
+  # true if development?
+  # false if production?
 end
 
 def allow_plugins?
-# allow_plugins? = false
-false
-end
-
-def use_solr?
   false
 end

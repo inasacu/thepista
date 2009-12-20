@@ -5,24 +5,13 @@
 	<h3><%= control_label('search') %></h3>
 	<div class="content">
 		<p>
-
-			<% form_tag( { :action => 'search' }, { :method => 'get' } ) do %>
-
+			<% form_tag search_users_path, :method => 'get' do %>
 			<div class="group">
-				<%= text_field :search, h(params[:search]), 
-				:title => search_by, :class => 'text_field',
-				:value => '', :onFocus => "this.select()" %>
-
+				<%= text_field_tag :search, h(params[:search]) %>
 				<%= submit_tag label_name(:search), :name => nil %>
 			</div>
-
-
-
 			<% end -%>
-
 		</p>
-
-
 	</div>
 </div>
 <% end %>

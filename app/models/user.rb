@@ -1,10 +1,14 @@
 class User < ActiveRecord::Base
 
    include ActivityLogger
-   
-   ajaxful_rater
-   
 
+   # search engine
+   acts_as_solr :fields => [:name, :time_zone] if use_solr? #, :include => [:sport, :marker] 
+   
+   # allows user to rate a model (currently only schedule)
+   ajaxful_rater
+      
+   # friendly url and removes id
    has_friendly_id :name, :use_slug => true, 
                    :reserved => ["new", "create", "index", "list", "signup", "edit", "update", "destroy", "show", "petition"]
    
@@ -34,8 +38,7 @@ class User < ActiveRecord::Base
   # after_update      :log_activity_description_changed
   before_destroy    :destroy_activities, :destroy_feeds  
   before_destroy    :unmap_rpx
-
-  acts_as_solr :fields => [:name, :time_zone, :position] if use_solr?
+  
   acts_as_authorization_subject
   
   has_attached_file :photo, :styles => { :thumb  => "80x80#", :medium => "160x160>", },
@@ -105,6 +108,14 @@ class User < ActiveRecord::Base
     after_create    :create_user_blog_details, :deliver_signup_notification
     
     # method section
+    # def self.search(search)
+    #   if search
+    #     find_by_solr(search, :operator => :or )
+    #   else
+    #     find(:all, :limit => USERS_PER_PAGE)
+    #   end
+    # end
+    
     def avatar
       self.photo.url
     end

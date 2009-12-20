@@ -1,0 +1,72 @@
+<div class="block">
+
+  <%= render :partial => 'secondary_navigation' %>  
+
+  <div class="content">   
+  
+    <h2 class="title"><%= get_collection_label(@users) %></h2>
+	
+    <div class="inner">
+	
+      <table class="table">
+	  
+		<tr>             
+			<th class="first">&nbsp;</th>
+			<th><%=label_name(:name) %>&nbsp;/<br />
+				<%=label_name(:last_login_at) %>
+			</th>
+			<th><%=label_name(:group) %></th>
+			<th><%=label_name(:time_zone) %></th>
+			<th><%=label_name(:sport) %></th>
+			<th class="last">&nbsp;</th>
+		</tr>
+		
+        <% @users.each do |user| -%>		
+			<tr>
+			  <td>
+				<%= image_link_small user %>
+			  </td>
+			
+				<td class="name_and_date">
+					<%= user_link user %>
+					<span class="date">
+						<%= nice_day_date user.last_login_at %>
+					</span>
+				</td>
+
+			  <td>
+				<%= user.has_group? ? group_list(user.groups) : label_name('groups_none') %>
+			  </td>			  
+
+			  <td>
+				<%= user.time_zone %>
+			  </td>
+
+				<td class="name_and_date">
+					<span class="date">
+						<%= user.has_sport? ? sport_list(user.groups) : label_name('sports_none') %>
+					</span>
+				</td>
+			
+			  <td class="last">
+				<span class="action">
+	            <%= link_to label_name(:send_message), new_message_path(:id => user.id) if user.available %>				
+				</span>
+	          </td>	
+	  
+			</tr>
+        <% end -%>
+		
+      </table>
+	  <%#= render :partial => 'shared/action_bar', :locals => { :collection => @user } %>
+	
+	  <%= will_paginate WillPaginate::Collection.new((params[:page]||1), (params[:products_per_page]||10), @total_hits) -%>
+	  <%= will_paginate @users, {:previous_label => "&laquo; #{label_name(:previous)} ", :next_label => "#{label_name(:next)} &raquo;"} %>
+	  
+    </div>
+	
+  </div>
+  
+</div>
+
+<% content_for :search, render(:partial => 'shared/search') -%>

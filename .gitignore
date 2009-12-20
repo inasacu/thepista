@@ -7,3 +7,4 @@ db/schema.sql
 .DS_Store
 doc/api
 doc/app
+solr/development/index/*.*
