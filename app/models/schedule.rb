@@ -4,7 +4,7 @@ class Schedule < ActiveRecord::Base
   
   ajaxful_rateable :stars => 5, :dimensions => [:performance]
 
-  acts_as_solr :fields => [:concept, :description, :time_zone, :starts_at]  if use_solr? 
+  acts_as_solr :fields => [:concept, :time_zone, :starts_at]  if use_solr? 
 
   has_friendly_id :concept, :use_slug => true, 
   :reserved => ["new", "create", "index", "list", "signup", "edit", "update", "destroy", "show"]

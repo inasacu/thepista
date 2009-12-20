@@ -26,7 +26,7 @@ end
 
 def use_solr?
   false
-  true if development?
+  # true if development?
   # false if production?
 end
 
