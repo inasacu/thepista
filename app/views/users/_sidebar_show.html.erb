@@ -20,4 +20,4 @@
 </div>
 
 <%= render :partial => '/users/sidebar_show_manager' if current_user.has_role?('manager') or current_user.has_role?('sub_manager') %>
-<%= render :partial => '/users/sidebar_show_tour_manager' if current_user.has_role?('manager') %>
+<%= render :partial => '/users/sidebar_show_tour_manager' if current_user.has_role?('manager') and development? %>
