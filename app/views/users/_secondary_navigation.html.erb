@@ -43,15 +43,15 @@
 	end
 %>
 	<li class="<%= get_active('user_show') %>">
-		<%= user_link("#{label_name(:profile)} #{label_the_user}", the_user) if current_user.is_user_member_of?(the_user) %>
+		<%= user_link("#{label_name(:profile)}", the_user) if current_user.is_user_member_of?(the_user) %>
 	</li>
 	
 	<% if current_user.is_user_manager_of?(the_user) or the_user == current_user %>
 	<li class="<%= get_active('fee_index') %>">
-		<%= link_to("#{label_name(:fees)} #{label_the_user}", fees_url(:id => the_user)) %>
+		<%= link_to("#{label_name(:fees)}", fees_url(:id => the_user)) %>
 	</li>
 	<li class="<%= get_active('payment_index') %>">
-		<%= link_to("#{label_name(:payments)} #{label_the_user}", payments_url(:id => the_user)) %>
+		<%= link_to("#{label_name(:payments)}", payments_url(:id => the_user)) %>
 	</li>
 	<% end %>
 	
