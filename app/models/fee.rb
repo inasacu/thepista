@@ -55,9 +55,13 @@ class Fee < ActiveRecord::Base
                  :conditions => ["debit_id = ? and debit_type = ? and credit_id = ? and credit_type = ? and item_type = 'Schedule'", 
                                   debit, debit.class.to_s, credit, credit.class.to_s])    
     @fees.each do |fee|
+      type_id = 3
+      @match = Match.find_by_schedule_id_and_user_id(fee.item_id, fee.debit_id)
+      type_id = @match.type_id unless @match.nil?
       
       # set subscription to flag status
       fee.update_attribute(:season_player, flag)
+      fee.update_attribute(:type_id, type_id)
         
       # unless flag is true then user does not has a subscription   
       # and if user has played match then set season_player to false to that it gets charged...
@@ -69,26 +73,29 @@ class Fee < ActiveRecord::Base
 
   def self.create_user_fees(schedule)    
     schedule.group.users.each do |user|
-      type_id = 3
-      season_player = user.is_subscriber_of?(schedule.group)
-      
+
       @match = Match.find_by_schedule_id_and_user_id(schedule, user)
+      type_id = 3
       type_id = @match.type_id unless @match.nil?
-      
-      self.create_debit_credit_item_fee(user, schedule.group, schedule)
+      season_player = user.is_subscriber_of?(schedule.group) 
+
+      self.create_debit_credit_item_fee(user, schedule.group, schedule, season_player, type_id)
     end
   end
 
   def self.create_group_fees(schedule)
-    self.create_debit_credit_item_fee(schedule.group, schedule.marker, schedule)
+    self.create_debit_credit_item_fee(schedule.group, schedule.group.marker, schedule)
   end 
-  
-  def self.create_debit_credit_item_fee(debit, credit, item)
+
+  def self.create_debit_credit_item_fee(debit, credit, item, season_player=false, type_id=1)
     unless self.debit_credit_item_exists?(debit, credit, item) 
-      self.create!(:concept => item.concept, :description => item.description,
-                    :debit_amount => item.fee_per_game,
+      fee_per_game = item.fee_per_game
+      fee_per_game = item.fee_per_pista if credit.class.to_s == "Marker"
+      
+      self.create!(:concept => item.concept, :description => item.description, :debit_amount => fee_per_game,
                     :debit_id => debit.id, :credit_id => credit.id, :item_id => item.id, 
-                    :debit_type => debit.class.to_s, :credit_type => credit.class.to_s, :item_type => item.class.to_s)    
+                    :debit_type => debit.class.to_s, :credit_type => credit.class.to_s, :item_type => item.class.to_s,
+                    :season_player => season_player, :type_id => type_id)    
     end
   end
 
