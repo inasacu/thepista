@@ -23,7 +23,7 @@ module PaymentsHelper
   def payment_credit(payment)
     credit_link, credit_object = '', ''
 
-    case payment.item.class.to_s
+    case payment.credit.class.to_s
     when 'User'
       credit_link =  user_link(payment.credit)
       credit_object = User.find(payment.credit_id)

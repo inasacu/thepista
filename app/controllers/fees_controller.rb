@@ -49,8 +49,10 @@ class FeesController < ApplicationController
   end
 
   def create
-    @fee = Fee.new(params[:fee])    
-    @group = Group.find(@fee.credit_id)
+    @fee = Fee.new(params[:fee])       
+    # @group = Group.find(@fee.item_id)
+    @group = Group.find(@fee.credit_id) if @fee.credit_type == "Group"
+    
     
     unless current_user.is_manager_of?(@group)
       flash[:warning] = I18n.t(:unauthorized)
@@ -90,9 +92,10 @@ class FeesController < ApplicationController
   end
 
   def edit
-    @fee = Fee.find(params[:id])
+    @fee = Fee.find(params[:id])    
+    # @group = Group.find(@fee.item_id)
+    @group = Group.find(@fee.credit_id) if @fee.credit_type == "Group"
     
-    @group = Group.find(@fee.item_id)
     unless current_user.is_manager_of?(@group)
       flash[:warning] = I18n.t(:unauthorized)
       redirect_back_or_default('/index')
@@ -102,8 +105,10 @@ class FeesController < ApplicationController
   end
 
   def update
-    @fee = Fee.find(params[:id])
-    @group = Group.find(@fee.item_id)
+    @fee = Fee.find(params[:id])   
+    # @group = Group.find(@fee.item_id)
+    @group = Group.find(@fee.credit_id) if @fee.credit_type == "Group"
+    
     unless current_user.is_manager_of?(@group)
       flash[:warning] = I18n.t(:unauthorized)
       redirect_back_or_default('/index')
@@ -119,8 +124,10 @@ class FeesController < ApplicationController
   end
 
   def destroy    
-    @fee = Fee.find(params[:id])
-    @group = Group.find(@fee.item_id)
+    @fee = Fee.find(params[:id])   
+    # @group = Group.find(@fee.item_id)
+    @group = Group.find(@fee.credit_id) if @fee.credit_type == "Group"
+    
     unless current_user.is_manager_of?(@group)
       flash[:warning] = I18n.t(:unauthorized)
       redirect_back_or_default('/index')

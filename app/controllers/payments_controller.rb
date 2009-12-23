@@ -19,7 +19,9 @@ class PaymentsController < ApplicationController
     return unless (params[:fee_id])
     
     @fee = Fee.find(params[:fee_id])
-    @group = Group.find(@fee.item_id)
+    # @group = Group.find(@fee.item_id)
+    @group = Group.find(@fee.credit_id) if @fee.credit_type == "Group"
+    
     unless current_user.is_manager_of?(@group)
       flash[:warning] = I18n.t(:unauthorized)
       redirect_back_or_default('/index')
@@ -39,7 +41,9 @@ class PaymentsController < ApplicationController
     @payment_credit = Payment.new(params[:payment])
     
     @fee = Fee.find(params[:fee][:id])
-    @group = Group.find(@fee.item_id)
+    # @group = Group.find(@fee.item_id)
+    @group = Group.find(@fee.credit_id) if @fee.credit_type == "Group"
+    
     unless current_user.is_manager_of?(@group)
       flash[:warning] = I18n.t(:unauthorized)
       redirect_back_or_default('/index')
@@ -71,7 +75,10 @@ class PaymentsController < ApplicationController
 
   def edit
     @payment = Payment.find(params[:id])
-    @group = Group.find(@payment.fee.item_id)
+    # @group = Group.find(@payment.fee.item_id)
+    @group = Group.find(@payment.fee.credit_id) if @fee.credit_type == "Group"
+    
+    
     unless current_user.is_manager_of?(@group)
       flash[:warning] = I18n.t(:unauthorized)
       redirect_back_or_default('/index')
@@ -81,7 +88,9 @@ class PaymentsController < ApplicationController
 
   def update
     @payment = Payment.find(params[:id])
-    @group = Group.find(@payment.fee.item_id)
+    # @group = Group.find(@payment.fee.item_id)
+    @group = Group.find(@payment.fee.credit_id) if @fee.credit_type == "Group"
+    
     unless current_user.is_manager_of?(@group)
       flash[:warning] = I18n.t(:unauthorized)
       redirect_back_or_default('/index')
@@ -98,7 +107,9 @@ class PaymentsController < ApplicationController
 
   def destroy
     @payment = Payment.find(params[:id])
-    @group = Group.find(@payment.fee.item_id)
+    # @group = Group.find(@payment.fee.item_id)
+    @group = Group.find(@payment.fee.credit_id) if @fee.credit_type == "Group"
+    
     unless current_user.is_manager_of?(@group)
       flash[:warning] = I18n.t(:unauthorized)
       redirect_back_or_default('/index')
