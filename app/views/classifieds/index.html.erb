@@ -1,0 +1,25 @@
+<div class="block">
+
+	<%= render :partial => '/groups/secondary_navigation' %>  
+
+	<div class="content">   
+
+		<h2 class="title"><%= get_collection_label(@classifieds) %></h2>
+
+		<div class="inner">
+
+			<% if object_counter(@classifieds) > 0 %>
+
+			<table class="table">
+
+			<%= render :partial => 'classified', :collection => @classifieds %>
+				
+			</table>
+
+			<% end %>
+			<%= render :partial => 'shared/action_bar', :locals => { :collection => @classified } %>
+
+		</div>
+	</div>
+</div>
+<% content_for :sidebar, render(:partial => 'sidebar') -%>

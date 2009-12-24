@@ -2,21 +2,11 @@
 	is_user_manager = current_user.is_manager_of?(@schedule.group)
 %>
 
-
 <div class="block">
 
-  <%= render :partial => 'secondary_navigation' %>   
-  
-  <div class="content">
-	<p>
-		<b><%= link_to "", schedule_path(@next), :class => 'previous_message' if @next %></b>
-	</p>
-	<p>
-		<b><%= link_to "", schedule_path(@previous), :class => 'next_message' if @previous %></b>
-	</p>
-	<br />
-  <h2 class="title"><%=sanitize(@schedule.concept) %></h2>
+  <%= render :partial => '/shared/previous_next_message' %>
 
+  <h2 class="title"><%=sanitize(@schedule.concept) %></h2>
 
 <div class="inner">
 

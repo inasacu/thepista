@@ -50,6 +50,7 @@ class Group < ActiveRecord::Base
                   
   has_and_belongs_to_many :users,           :join_table => "groups_users",   :order => "name"
 
+  has_many      :classifieds
   has_many      :schedules
   has_many      :addresses  
   has_many      :accounts 

@@ -50,27 +50,27 @@
 		<%= content_tag :td, sanitize(@meet.concept), :class => get_the_action %>
     </tr>
 
-    <% if @meet.game_played? %>
+	      <tr>
+	        <%= content_tag :td, label_name(:home_round), :class => "label" %>            
+			<%= content_tag :td, round_link(@meet.round), :class => get_the_action %>
+	      </tr>
+
+
+    <%# if @meet.game_played? %>
 
       <tr>
         <%= content_tag :td, label_name(:users), :class => "label" %>
 
 		<td class="<%= get_the_action%>">
 			<% @meet.clashes.each do |clash| %>
-          		<%= user_link clash.user %>&nbsp;&nbsp;&nbsp;&nbsp;<%= clash.user_score %><br /><br />
+          		<%= user_link clash.user %>&nbsp;&nbsp;-&nbsp;&nbsp;<%= clash.user_score %><br /><br />
 			<% end -%>
 		</td>
       </tr>
-    <% else %>
-
-      <tr>
-        <%= content_tag :td, label_name(:home_round), :class => "label" %>            
-		<%= content_tag :td, round_link(@meet.round), :class => get_the_action %>
-      </tr>
-
-    <% end %>
+    <%# else %>
+    <%# end %>
 	
-	<%= tr_td_action(:jornada, @meet.jornada) %>
+	<%#= tr_td_action(:jornada, @meet.jornada) %>
 	<%= tr_td_action(:starts_at, nice_day_of_week(@meet.starts_at)) %>
 	<%= tr_td_action(:ends_at, nice_day_of_week(@meet.ends_at)) %>
 	<%= tr_td_action(:sport, @meet.sport_name) %>

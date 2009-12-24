@@ -112,7 +112,8 @@ ActionController::Routing::Routes.draw do |map|
   map.resources   :fees,            :as => 'tasas'  
   map.resources   :password_resets, :as => 'resetear'
   map.resources   :messages,        :as => 'mensajes',                    :collection => { :sent => :get, :trash => :get }
-
+  map.resources   :classifieds,     :as => 'anuncios',                    :collection => { :sent => :get, :trash => :get }
+  
   map.resources   :tournaments,     :as => 'torneos',                     :collection => { :list => :get, :search => :get }
   map.resources   :rounds,          :as => 'fases',                       :collection => { :list => :get, :search => :get }
   map.resources   :meets,           :as => 'acontecimiento',              :collection => { :list => :get, :search => :get }

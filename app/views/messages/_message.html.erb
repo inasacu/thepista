@@ -1,6 +1,6 @@
 <% full_message ||= false 
 	the_message = message.body	
-	the_message = "#{the_message.strip[0..140]}..." if the_message.length > 55 and !full_message
+	the_message = "#{the_message.strip[0..140]}..." if the_message.length > 140 and !full_message
 %>
 <tr>
 	<td>

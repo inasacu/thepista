@@ -145,7 +145,8 @@ es:
      current_language: Español    
      current_time: La Hora   
      current_time_zone: Zona del Usuario   
-     current_user: Usuario   
+     current_user: Usuario 
+     dates:  Fechas  
      deadline_at:  Fecha de Cierre de Inscripción 
      deadline_at_description:  Fecha de Cierre de Inscripción 
      debit: Cargo   
@@ -575,7 +576,6 @@ es:
      no_openid_account_yet: No tienes una cuenta OpenID todavia? 
      no_announcement: No tienes anuncios internos   
      no_change_group: Ningun Cambio de Equipo   
-     no_classified: No tienes anuncios   
      no_convocado: No Convocado   
      no_credit: No tienes Pagos   
      no_debit: No tienes Cargos   
@@ -1191,6 +1191,25 @@ es:
      faq: Preguntas Frecuentes
      follow_twitter:  Siguenos en Twitter
 
+     classified:  Anuncio
+     classifieds:  Anuncios
+     classified_description:  Detalles del Anuncio
+     classified_delete: Borra este anuncio
+     classified_deleted: Anuncios borrados
+     classified_successful_create: Los Anuncios ha sido created.
+     classifieds_concept_description:  Concepto del Anuncio
+     classifieds_destroy:  Borrar Anuncio
+     classifieds_edit:  Modificar Anuncio
+     classifieds_index:  Mis Anuncios
+     classifieds_new:  Nuevo Anuncio
+     classifieds_no:  Ningun Anuncio para mostrar
+     classifieds_option:  Opciones de Anuncios
+     classifieds_create:  Nuevo Anuncio
+     classifieds_create_group: Nuevos Anuncios del equipo
+     classifieds_create_schedule: Nuevos Anuncios del evento
+     classifieds_create_tournament: Nuevos Anuncios del Tourneo
+     classifieds_create_meet: Nuevos Anuncios del Tourneo
+     
      invitation_delete: Borra esta invitación
      invitation_deleted: Invitación borrada
      invitation_message: Has recibido una invitation para unirte o buscar a algun equipo con quien jugar...

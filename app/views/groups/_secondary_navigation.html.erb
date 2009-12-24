@@ -1,16 +1,22 @@
+<% 	get_first_active ||=""
+	get_first_active = get_active("#{get_the_controller}_#{get_the_action}") if is_controller('group')
+%>
+
 <div class="secondary-navigation">
 	
 <ul>
 	
 	<li class="<%= get_first_active %>"><%=  link_to(label_name(:my_group), groups_path) %></li>
-	<li class="<%= get_active('group_list') %>"><%=  link_to(label_name(:all_group) , list_groups_path) %></li>	
+	<li class="<%= get_active('group_list') %>"><%=  link_to(label_name(:all_group) , list_groups_path) %></li>
 <% 
 	the_label = "" 
 	the_action = ['show','edit', 'team list']
+	the_controller = ['classified']
+	active_classified ||= ""
+	active_classified = get_active("#{get_the_controller}_#{get_the_action}") if the_controller.include?(get_the_controller)
 	
-	if the_action.include?(get_the_action) 
+	if the_action.include?(get_the_action) or the_controller.include?(get_the_controller)
 		if current_user.is_member_of?(@group) 
-		# the_label = label_with_name('the_wall', h(@group.name))
 		the_label = label_name(:wall)
 %>		
 		<li class="<%= get_active('group_show') %>"><%=  group_link @group %></li>
@@ -26,6 +32,7 @@
 	end 
 %>
 
+<li class="<%= active_classified %>"><%= link_to(label_name(:classifieds), classifieds_url(:id => @group)) %></li>
 </ul>
 
 <div class="clear"></div>

@@ -1,0 +1,35 @@
+<% full_classified ||= false 
+the_classified = classified.description	
+the_classified = "#{the_classified.strip[0..140]}..." if the_classified.length > 140 and !full_classified
+%>
+<tr>
+	<td>
+		<%= image_link_small classified.group %>
+	</td>
+
+	<td class="name_and_date">
+		<span class="label"><%= "#{label_name(:from)}:  " %></span>
+			<%= group_link classified.group %>
+			<br />
+		<span class="label"><%= "#{label_name(:dates)}:  " %></span>
+		<span class="date">
+			<%= nice_full_date(classified.starts_at) %>
+			&nbsp;-&nbsp;
+			<%= nice_full_date(classified.ends_at) %>
+		</span>
+	</td>
+
+	<td>
+		<span class="">
+			<%= link_to h(classified.concept), classified unless full_classified %><br />
+			<span class="">
+				<%=sanitize the_classified %>							
+			</span>
+		</span>
+	</td>
+	<td class="last">
+		<%= render :partial => 'action', :locals => {:classified => classified} %>
+	</td>
+</tr>
+
+
