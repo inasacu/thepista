@@ -16,7 +16,7 @@ class ClassifiedsController < ApplicationController
   def new
     @classified = Classified.new
     @classified.starts_at = Time.zone.now
-    @classified.ends_at = Time.zone.now + 7.days
+    # @classified.ends_at = Time.zone.now + 7.days
 
     if @group
       @classified.group_id = @group.id
@@ -31,7 +31,8 @@ class ClassifiedsController < ApplicationController
   end
 
   def create
-    @classified = Classified.new(params[:classified])    
+    @classified = Classified.new(params[:classified])     
+    @classified.ends_at = @classified.starts_at + 7.days   
     
     # has_manager_access
 
@@ -76,8 +77,8 @@ class ClassifiedsController < ApplicationController
   def get_classified
     @classified = Classified.find(params[:id])
     @group = @classified.group
-    @previous = Classified.previous(@classified)
-    @next = Classified.next(@classified)    
+    # @previous = Classified.previous(@classified)
+    # @next = Classified.next(@classified)    
   end
   
   def get_group

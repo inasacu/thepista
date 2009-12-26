@@ -1,5 +1,5 @@
 <% 	get_first_active ||=""
-	get_first_active = get_active("#{get_the_controller}_#{get_the_action}") if is_controller('group')
+	get_first_active = get_active("#{get_the_controller}_#{get_the_action}") if is_controller('group') and is_action('index')
 %>
 
 <div class="secondary-navigation">
@@ -32,7 +32,7 @@
 	end 
 %>
 
-<li class="<%= active_classified %>"><%= link_to(label_name(:classifieds), classifieds_url(:id => @group)) %></li>
+<li class="<%= active_classified %>"><%= link_to(label_name(:classifieds), classifieds_url(:id => @group)) if @group %></li>
 </ul>
 
 <div class="clear"></div>

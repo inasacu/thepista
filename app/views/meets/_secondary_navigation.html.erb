@@ -29,7 +29,7 @@ if current_user.is_tour_member_of?(@meet.tournament)
 	the_label = label_name(:wall)
 %>
 	<li class="<%= get_first_active('meet_show') %>">  <%= meet_link @meet %></li>
-	<li class="<%= get_active('topic_show') %>"><%= link_to(the_label, forum_path(@meet.forum)) if the_control.include?(get_the_controller) %></li>
+	<li class="<%= get_active('forum_show') %>"><%= link_to(the_label, forum_path(@meet.forum)) if the_control.include?(get_the_controller) %></li>
 	
 	<% unless (@meet.the_roster.empty?) %>		
 		<li class="<%= get_active('meet_tour_roster') %>">

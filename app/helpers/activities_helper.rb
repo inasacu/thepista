@@ -32,17 +32,36 @@ module ActivitiesHelper
         end
         
     when "Comment"
-        comment = activity.item
-
-        if comment.group_id.blank? and comment.tournament_id.blank?
-          %(#{I18n.t(:left_comment_on_wall) } #{user_link(comment.entry.user)})
-        elsif comment.tournament_id.blank?
-          is_member = current_user.is_member_of?(comment.entry.group)
-          %(#{I18n.t(:left_comment_on_wall) } #{is_member ? group_link(comment.entry.group) : sanitize(comment.entry.group.name)})
+      comment = activity.item
+      
+      case comment_type(comment)
+      when "Blog"
+        blog = comment.commentable
+        if blog.group_id.blank? and blog.tournament_id.blank?
+          %(#{I18n.t(:left_comment_on_wall) } #{blog_link(blog)})
+        elsif blog.tournament_id.blank?
+          is_member = current_user.is_member_of?(blog.group)
+          %(#{I18n.t(:left_comment_on_wall) } #{is_member ? blog_link(blog) : sanitize(blog.group.name)})
         else
-            is_member = current_user.is_tour_member_of?(comment.entry.tournament)
-            %(#{I18n.t(:left_comment_on_wall) } #{is_member ? group_link(comment.entry.tournament) : sanitize(comment.entry.tournament.name)})              
+          is_member = current_user.is_tour_member_of?(blog.tournament)
+          %(#{I18n.t(:left_comment_on_wall) } #{is_member ? blog_link(blog) : sanitize(blog.tournament.name)})              
         end
+      
+      when "Forum"
+        forum = comment.commentable
+        is_member = false
+        
+        if forum.schedule        
+          is_member = current_user.is_member_of?(forum.schedule.group)        
+            %(#{I18n.t(:left_post_on_forum) } #{is_member ? forum_link(forum): sanitize(forum.schedule.concept)})
+        elsif forum.meet        
+          is_member = current_user.is_tour_member_of?(forum.meet.tournament)        
+            %(#{I18n.t(:left_post_on_forum) } #{is_member ? forum_link(forum): sanitize(forum.meet.concept)})
+        end
+      else
+        ""
+      end      
+        
 
     when "Match"	
           match = activity.item
@@ -226,5 +245,9 @@ module ActivitiesHelper
     # (due to ActiveRecord).
     def activity_type(activity)
       activity.item.class.to_s      
+    end
+    
+    def comment_type(comment)
+      comment.commentable.class.to_s      
     end
 end

@@ -37,7 +37,10 @@ Rails::Initializer.run do |config|
   config.gem 'sitemap_generator', :lib => false, :source => 'http://gemcutter.org'
   # config.gem "newrelic_rpm" 
   config.gem "edgarjs-ajaxful_rating", :lib => "ajaxful_rating", :source => "http://gems.github.com"
-    
+  config.gem 'jackdempsey-acts_as_commentable', :lib => 'acts_as_commentable', :source => "http://gems.github.com"
+  config.gem "acts-as-taggable-on", :source => "http://gemcutter.org"
+  
+  
   # Only load the plugins named here, in the order given (default is alphabetical).
   # :all can be used as a placeholder for all plugins not explicitly named
   # config.plugins = [ :exception_notification, :ssl_requirement, :all ]

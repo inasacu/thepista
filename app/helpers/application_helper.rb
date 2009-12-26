@@ -155,21 +155,11 @@ module ApplicationHelper
     @current_messages ||= Message.current_messages(current_user)
   end
   
+  def upcoming_classifieds
+    @upcoming_classifieds ||= Classified.upcoming_classifieds(session[:classified_hide_time])
+  end
+  
   def year_range( start_year = Time.zone.now.year )
     [start_year, Time.zone.now.year].sort.uniq.join('-')
-  end 
-    
-  def link_to_email(text, label="HayPista", email="support@haypista.com", options = {})
-    #    options[:private] ||= true
-
-    if options[:private]
-      return text
-    else
-      return mail_format(text, label, email)
-    end
   end
-
-  def mail_format(text, label, email)
-    mail_to email, text, :replace_at => "[at]", :replace_dot => "[dot]", :class => "email", :title => "#{I18n.t(:send_email_to)}  #{label}"
-  end 
 end

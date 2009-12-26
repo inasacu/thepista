@@ -1,6 +1,11 @@
 class Forum < ActiveRecord::Base
-  has_many      :topics,    :dependent => :delete_all
-  has_many      :posts,     :through => :topics
+
+  acts_as_commentable
+
+  # has_friendly_id :name, :use_slug => true, :reserved => ["new", "create", "index", "list", "signup", "edit", "update", "destroy", "show"]
+
+  # has_many      :topics,    :dependent => :delete_all
+  # has_many      :posts,     :through => :topics
 
   belongs_to    :schedule
   belongs_to    :meet

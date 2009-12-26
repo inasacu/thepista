@@ -1,9 +1,11 @@
 class Blog < ActiveRecord::Base
-
-  has_friendly_id :name, :use_slug => true, :reserved => ["new", "create", "index", "list", "signup", "edit", "update", "destroy", "show"]
   
-  has_many      :entries,      :dependent => :delete_all
-  has_many      :comments,     :through => :entries
+  acts_as_commentable
+  
+  # has_friendly_id :name, :use_slug => true, :reserved => ["new", "create", "index", "list", "signup", "edit", "update", "destroy", "show"]
+  
+  # has_many      :entries,      :dependent => :delete_all
+  # has_many      :comments,     :through => :entries
 
   belongs_to    :user
   belongs_to    :group

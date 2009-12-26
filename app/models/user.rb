@@ -194,107 +194,107 @@ class User < ActiveRecord::Base
       current_user == self and (!current_user.requested_managers.empty? or !current_user.pending_managers.empty?)
     end
          
-      ## methods for acl9 - authorization      
-      def can_add_to_group?(current_user, group)
-        # (self == current_user and self.is_not_member_of?(group)) or (current_user.is_manager_of?(group) and self.is_not_member_of?(group))
-        (self == current_user and self.is_not_member_of?(group))
-      end  
-          
-      def my_members?(user)
-          membership = false
-        self.groups.each{ |group| membership = user.is_member_of?(group) unless membership } 
-        return membership
-      end
-      
-      def is_not_member_of?(group)
-        return unless is_member_of?(group)
-      end
-      
-      def is_member_of?(group)
-        self.has_role?('member', group)
-      end
+    ## methods for acl9 - authorization      
+    def can_add_to_group?(current_user, group)
+      # (self == current_user and self.is_not_member_of?(group)) or (current_user.is_manager_of?(group) and self.is_not_member_of?(group))
+      (self == current_user and self.is_not_member_of?(group))
+    end  
 
-      def is_tour_member_of?(tournament)
-        self.has_role?('member', tournament)
-      end
+    def my_members?(user)
+      membership = false
+      self.groups.each{ |group| membership = user.is_member_of?(group) unless membership } 
+      return membership
+    end
       
-      def is_user_manager_of?(user)
-        is_manager = false        
-        user.groups.each do |group|
-          unless is_manager
-            is_manager = (self.has_role?('manager', group)) # or self.has_role?('creator', group))
-          end
+    def is_not_member_of?(group)
+      return unless is_member_of?(group)
+    end
+
+    def is_member_of?(group)
+      self.has_role?('member', group)
+    end
+
+    def is_tour_member_of?(tournament)
+      self.has_role?('member', tournament)
+    end
+      
+    def is_user_manager_of?(user)
+      is_manager = false        
+      user.groups.each do |group|
+        unless is_manager
+          is_manager = (self.has_role?('manager', group)) # or self.has_role?('creator', group))
         end
-        return is_manager
       end
-      
-      def is_user_manager_group(user, group)
-        user.is_member_of?(group) and self.has_role?('manager', group)
-      end
+      return is_manager
+    end
 
-      def is_user_member_of?(user)
-        is_member = false
-        user.groups.each do |group|
-          unless is_member
-            is_member = self.has_role?('member', group) 
-          end
+    def is_user_manager_group(user, group)
+      user.is_member_of?(group) and self.has_role?('manager', group)
+    end
+
+    def is_user_member_of?(user)
+      is_member = false
+      user.groups.each do |group|
+        unless is_member
+          is_member = self.has_role?('member', group) 
         end
-        return is_member
       end
-      
-      def is_user_tour_member_of?(user)
-        is_member = false
-        user.tournaments.each do |tournament|
-          unless is_member
-            is_member = self.has_role?('member', tournament) 
-          end
+      return is_member
+    end
+
+    def is_user_tour_member_of?(user)
+      is_member = false
+      user.tournaments.each do |tournament|
+        unless is_member
+          is_member = self.has_role?('member', tournament) 
         end
-        return is_member
       end
-  
-      def is_tour_manager_of?(tournament)
-        self.has_role?('manager', tournament) 
-      end
-            
-      def is_tour_creator_of?(tournament)
-        self.has_role?('creator', tournament)
-      end
-      
-      def is_tour_sub_manager_of?(tournament)
-        self.has_role?('sub_manager', tournament) or self.has_role?('manager', tournament)
-      end
+      return is_member
+    end
 
-      def is_tour_subscriber_of?(tournament)
-        self.has_role?('subscription', tournament) 
-      end
-        
-      def is_manager_of?(group)
-        self.has_role?('manager', group)
-      end
-    
-      def is_sub_manager_of?(group)
-        self.has_role?('sub_manager', group) or self.has_role?('manager', group)
-      end
-    
-      def is_subscriber_of?(group)
-        self.has_role?('subscription', group) 
-      end
-    
-      def is_moderator_of?(group)
-        self.has_role?('moderator', group) 
-      end
+    def is_tour_manager_of?(tournament)
+      self.has_role?('manager', tournament) 
+    end
 
-      def is_creator_of?(group)
-        self.has_role?('creator', group)
-      end
-      
-      def is_manager?
-        self.has_role?('manager')
-      end
-      
-      def is_maximo?
-        self.has_role?('maximo')
-      end
+    def is_tour_creator_of?(tournament)
+      self.has_role?('creator', tournament)
+    end
+
+    def is_tour_sub_manager_of?(tournament)
+      self.has_role?('sub_manager', tournament) or self.has_role?('manager', tournament)
+    end
+
+    def is_tour_subscriber_of?(tournament)
+      self.has_role?('subscription', tournament) 
+    end
+
+    def is_manager_of?(group)
+      self.has_role?('manager', group)
+    end
+
+    def is_sub_manager_of?(group)
+      self.has_role?('sub_manager', group) or self.has_role?('manager', group)
+    end
+
+    def is_subscriber_of?(group)
+      self.has_role?('subscription', group) 
+    end
+
+    def is_moderator_of?(group)
+      self.has_role?('moderator', group) 
+    end
+
+    def is_creator_of?(group)
+      self.has_role?('creator', group)
+    end
+
+    def is_manager?
+      self.has_role?('manager')
+    end
+
+    def is_maximo?
+      self.has_role?('maximo')
+    end
 
     def can_modify?(user)
       user == self or user.has_role?('maximo')
@@ -453,8 +453,8 @@ class User < ActiveRecord::Base
         
     def create_user_blog_details
       @blog = Blog.create_user_blog(self)
-      @entry = Entry.create_user_entry(self, @blog)
-      Comment.create_user_comment(self, @blog, @entry)
+      # @entry = Entry.create_user_entry(self, @blog)
+      # Comment.create_user_comment(self, @blog, @entry)
     end
 
 

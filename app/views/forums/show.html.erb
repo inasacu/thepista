@@ -1,0 +1,33 @@
+<%
+	the_label = label_with_name('note', sanitize(@schedule.concept)) if @schedule
+	the_label = label_with_name('note', sanitize(@meet.concept)) if @meet
+%>
+<div class="block">
+
+  <%= render :partial => '/shared/previous_next_message', :locals => {:the_controller => @schedule} if @schedule -%>
+
+  <%= render :partial => '/meets/secondary_navigation' if @meet %>
+
+  <h2 class="title"><%= the_label %></h2>
+
+	<div class="inner">
+
+	      <table class="table">
+			<tr>             
+	          <th class="first">&nbsp;</th>
+	          <th>&nbsp;</th>
+	          <th>&nbsp;</th>
+	          <th class="last">&nbsp;</th>
+	        </tr>
+
+			<%= render :partial => 'comments/comments', :locals => { :comments => @comments } %>
+	      </table>
+
+		<%= render :partial => 'comments/new', :locals => { :label => label_name(:write_comment) } %>				
+
+    </div>
+  </div>
+</div>
+
+<% content_for :sidebar, render(:partial => '/schedules/sidebar_show') if @schedule -%>
+<% content_for :sidebar, render(:partial => '/meets/sidebar_show') if @meet -%>

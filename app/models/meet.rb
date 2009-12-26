@@ -178,8 +178,8 @@ class Meet < ActiveRecord::Base
   def create_meet_details(user, recipients, meet_update=false)
     unless meet_update
       @forum = Forum.create_meet_forum(self)
-      @topic = Topic.create_forum_topic(@forum, user) 
-      Post.create_topic_post(@forum, @topic, user, self.description)
+      # @topic = Topic.create_forum_topic(@forum, user) 
+      # Post.create_topic_post(@forum, @topic, user, self.description)
     end
 
     recipients.each do |user|

@@ -1,49 +1,24 @@
 class Comment < ActiveRecord::Base
 
+  include ActsAsCommentable::Comment
+
   include ActivityLogger
 
-  belongs_to  :entry,         :counter_cache => true
-  belongs_to  :user,          :counter_cache => true
-  belongs_to  :group,         :counter_cache => true
-  belongs_to  :tournament,    :counter_cache => true
-
-  validates_presence_of   :body
-  validates_length_of     :body,            :within => BODY_RANGE_LENGTH
+  belongs_to :commentable, :polymorphic => true
+  belongs_to  :entry
+  
+  default_scope :order => 'created_at DESC'
 
   before_create   :format_body
   after_create    :log_activity, :send_message_blog
   
-  # method section
-  def self.get_latest_comments(entry)
-    find(:all, :conditions => ["entry_id = ? and created_at > ?",  entry.id, TIME_AGO_FOR_MOSTLY_ACTIVE], :order => 'created_at DESC')
-  end
+  # NOTE: install the acts_as_votable plugin if you
+  # want user to vote on the quality of comments.
+  #acts_as_voteable
 
-  # record if tournament does not exist
-  def self.create_tournament_comment(tournament, blog, entry) 
-    self.create!(:tournament_id => tournament.id, :entry_id => entry.id, :body => tournament.description) #if self.group_exists?(tournament)
-  end
-    
-  # record if group does not exist
-  def self.create_group_comment(group, blog, entry) 
-    self.create!(:group_id => group.id, :entry_id => entry.id, :body => group.description) #if self.group_exists?(group)
-  end 
-
-  # record if user does not exist
-  def self.create_user_comment(user, blog, entry)  
-    self.create!(:user_id => user.id, :entry_id => entry.id, :body => user.name) #if self.user_exists?(user)
-  end
-
-  # Return true if the group does not exist
-  # def self.group_exists?(group)
-  #   # find_by_group_id(group).nil?
-  #   true
-  # end
-
-  # Return true if the user does not exist
-  # def self.user_exists?(user)
-  #   # find_by_user_id(user).nil?
-  #   true
-  # end
+  # NOTE: Comments belong to a user
+  belongs_to :user
+  
 
   private
   
@@ -52,13 +27,15 @@ class Comment < ActiveRecord::Base
   end
   
   def log_activity
-    add_activities(:item => self, :user => self.user) unless (self.user.nil?)
+    add_activities(:item => self, :user => self.user) unless (self.user.nil?) 
   end
   
-  def send_message_blog()
-    if self.group_id.blank? and self.tournament_id.blank?
-      @send_mail ||= self.user.blog_comment_notification?
-      UserMailer.deliver_message_blog(self.entry.blog.user, self.user, self) if @send_mail 
+  def send_message_blog   
+    unless self.commentable_type == 'Forum'
+      if self.commentable.user 
+        @send_mail ||= self.commentable.user.blog_comment_notification?
+        UserMailer.send_later(:deliver_message_blog, self.commentable.user, self.user, self) if @send_mail
+      end
     end
   end
   

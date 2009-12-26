@@ -52,10 +52,11 @@ class TeammatesController < ApplicationController
     flash[:notice] = I18n.t(:to_leave_tour_message_sent)
     redirect_to root_url
   end
-    
+
   def join_team_accept    
     if @requester.requested_managers.include?(@approver)
-      Teammate.create_teammate_details(@requester, @approver, @group)
+      # Teammate.create_teammate_details(@requester, @approver, @group)
+      Teammate.send_later(:create_teammate_details, @requester, @approver, @group)
       flash[:notice] = I18n.t(:petition_to_join_approved)
     end    
     redirect_to root_url
@@ -72,7 +73,8 @@ class TeammatesController < ApplicationController
 
   def join_tour_accept    
     if @requester.requested_managers.include?(@approver)
-      Teammate.create_teammate_details_tour(@requester, @approver, @tournament)
+      # Teammate.create_teammate_details_tour(@requester, @approver, @tournament)
+      Teammate.send_later(:create_teammate_details_tour, @requester, @approver, @tournament)
       flash[:notice] = I18n.t(:petition_to_join_approved)
     end    
     redirect_to root_url
@@ -85,7 +87,7 @@ class TeammatesController < ApplicationController
     end
     redirect_to root_url
   end
-    
+
   def destroy
     if @user.pending_managers.include?(@manager)
       Teammate.breakup(@user, @manager)

@@ -4,10 +4,11 @@ class HomeController < ApplicationController
 
   def index
     if current_user
-        
+      
       @upcoming_schedules ||= Schedule.upcoming_schedules(session[:schedule_hide_time])
       @upcoming_meets ||= Meet.upcoming_meets(session[:meet_hide_time]) if development?
-      
+      @upcoming_classifieds ||= Classified.upcoming_classifieds(session[:classified_hide_time])
+
       unless @upcoming_schedules.empty?       
       # if current_user.current_login_at >= (Time.zone.now - 1.minutes)            
         # redirect_to :upcoming_schedule 
@@ -25,7 +26,7 @@ class HomeController < ApplicationController
   
   def upcoming
     @upcoming_schedules ||= Schedule.upcoming_schedules(session[:schedule_hide_time])
-    @upcoming_meets ||= Meet.upcoming_meets(session[:meet_hide_time]) if development?    
+    @upcoming_meets ||= Meet.upcoming_meets(session[:meet_hide_time]) if development?  
   end
   
   def about_us

@@ -53,6 +53,8 @@ es:
      birth_description: (Escribe fecha de nacimiento...Solo se utiliza para calcular la edad media del equipo...) 
      
      blog_comment_notification: Recibir Notas en tu Muro
+     blogs_my_wall:  Mi Muro
+     blogs_option:  Opciones de Muro
      body: Contenido 
      body_description:  Contenido  
      by: por
@@ -618,8 +620,8 @@ es:
      not_signed_in: No has entrado    
      not_updated: no se ha actualizado correctamente.   
      not_valid_openid: "Lo sentimos, pero esto no parece ser un válido OpenID."   
-     note: ""    
-     notes: Notas   
+     note: Notas de    
+     notes: Notas de  
      notice: NOTA   
      notification: Notificación   
      notifications: Notificaciones   
@@ -1200,7 +1202,7 @@ es:
      classifieds_concept_description:  Concepto del Anuncio
      classifieds_destroy:  Borrar Anuncio
      classifieds_edit:  Modificar Anuncio
-     classifieds_index:  Mis Anuncios
+     classifieds_index:  Anuncios
      classifieds_new:  Nuevo Anuncio
      classifieds_no:  Ningun Anuncio para mostrar
      classifieds_option:  Opciones de Anuncios

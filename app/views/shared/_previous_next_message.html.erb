@@ -1,5 +1,5 @@
 <% 
-	if is_controller("topic")
+	if is_controller("forum")
 		the_controller = "schedule" if @schedule
 		the_controller = "meet" if @meet
 	else
@@ -37,7 +37,7 @@ if is_controller("schedule")
 		<p><%= content_tag :b, link_to("", team_unavailable_path(:id => @previous), :class => 'next_message') %></p>
 		<p><%= content_tag :b, link_to("", team_unavailable_path(:id => @next), :class => 'previous_message') %></p>
 <%		end
-elsif is_controller("topic")
+elsif is_controller("forum")
 %>
 		<p><%= content_tag :b, link_to("", forum_path(@previous.forum), :class => 'next_message') %></p>
 		<p><%= content_tag :b, link_to("", forum_path(@next.forum), :class => 'previous_message') %></p>

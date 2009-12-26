@@ -1,5 +1,7 @@
 class CreateClassifieds < ActiveRecord::Migration
   def self.up
+    drop_table :classifieds
+    
     create_table :classifieds do |t|
       t.string        :concept
 
