@@ -137,7 +137,7 @@ es:
      
      created: se ha creado correctamente.   
      created_at:  Fecha de Creación
-     created_a_schedule: a añadido un evento   
+     created_a_schedule: Ha creado un evento   
      credit: Pago   
      credit_amount: A Recibir   
      credit_amount_description:  Lo que recibes
@@ -1248,6 +1248,11 @@ es:
      clashes:  Resultados
      clashes_edit:  Resultados
      
+     clouds_show:  Etiquetas
+     clouds_options:  Opciones de Etiquetas
+     
+     
+     
      entries_teammate: Mis Compañeros de Equipo
      entries_my_wall: Mi Muro
      entries_option:  Opciones del Muro
@@ -1522,6 +1527,8 @@ es:
      sports_none:  Ningun Deporte.
      sports_option:  Opciones de Deportes
      sports_show: Mostrar Deporte
+     
+     tags:  Etiquetas
      
      topics_create:  Nuevo Evento
      topics_edit:  Modificar Evento

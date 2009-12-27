@@ -94,6 +94,13 @@ class SchedulesController < ApplicationController
       redirect_back_or_default('/index')
       return
     end
+    
+    # :tags, :zones, :locations, :sports
+    @schedule.tag_list = @schedule.concept     
+    @schedule.zone_list =  @schedule.group.time_zone
+    @schedule.location_list = @schedule.group.marker.name
+    @schedule.sport_list = @schedule.group.sport.name
+    
 
     if @schedule.save and @schedule.create_schedule_details(current_user)
       flash[:notice] = I18n.t(:successful_create)

@@ -124,6 +124,8 @@ ActionController::Routing::Routes.draw do |map|
   map.resources   :connections
   map.resources   :schedules,                                             :member => { :rate => :post }
   
+  map.resources   :clouds,          :as => 'nube'  
+  
   map.resources   :users do |user|
     user.resources :messages
   end

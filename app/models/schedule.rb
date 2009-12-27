@@ -1,6 +1,9 @@
 class Schedule < ActiveRecord::Base
 
   include ActivityLogger
+
+   # tagging
+   acts_as_taggable_on :tags, :zones, :locations, :sports
   
   ajaxful_rateable :stars => 5, :dimensions => [:performance]
 
