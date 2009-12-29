@@ -209,9 +209,28 @@ div#footer ol li { margin: 0pt 1em; position: relative; float: left; }
 
 #user-navigation ul li a:hover { color: black; }
 
-.nube1 {font-size: 0.8em;}
-.nube2 {font-size: 1.0em;}
-.nube3 {font-size: 1.2em;}
-.nube4 {font-size: 1.4em;}
-.nube5 {font-size: 1.6em;}
-.nube6 {font-size: 1.8em;}
+/*.cloud1 {font-size: 100%;}
+.cloud2 {font-size: 120%;}
+.cloud3 {font-size: 140%;}
+.cloud4 {font-size: 160%;}
+.cloud5 {font-size: 180%;}
+.cloud6 {font-size: 200%;}
+.cloud7 {font-size: 220%;}*/
+
+/* ::::: new cloud taggings ::::: */
+
+#sidebar .block .extra h2 { font-size: 1.3em; color: rgb(204, 204, 204); font-weight: normal; margin-bottom: 10px; }
+
+#tagcloud a { margin: 5px 5px 5px 0pt; padding: 1px 3px; white-space: nowrap; text-decoration: none; color: rgb(102, 102, 102); font-size: 0.90em; line-height: 1.4em; }
+#tagcloud a.cloud_0 { font-size: 12px; color: rgb(204, 204, 204); }
+#tagcloud a.cloud_1 { font-size: 0.85em; }
+#tagcloud a.cloud_2 { font-size: 0.95em; }
+#tagcloud a.cloud_3 { font-size: 1.05em; }
+#tagcloud a.cloud_4 { font-size: 1.1em; font-weight: bold; }
+#tagcloud a.cloud_5 { font-size: 1.2em; }
+#tagcloud a.cloud_6 { font-size: 1.3em; }
+#tagcloud a.cloud_7 { font-size: 1.4em; }
+#tagcloud a.cloud_8 { font-size: 1.5em; color: rgb(162, 198, 9); }
+#tagcloud a.cloud_9 { font-size: 1.6em; color: rgb(162, 198, 9); }
+#tagcloud a.cloud_10 { padding: 0pt; font-size: 1.8em; line-height: 1em; color: rgb(162, 198, 9); font-weight: normal; }
+

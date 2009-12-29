@@ -50,9 +50,7 @@ class HomeController < ApplicationController
   end
 
   def get_tag    
-    @tags = Schedule.tag_counts_on(:tags, :limit => 50, :order => "id DESC")
-    @zones = Schedule.tag_counts_on(:zones, :limit => 50, :order => "id DESC")
-    @locations = Schedule.tag_counts_on(:locations, :limit => 50, :order => "id DESC")
-    @sports = Schedule.tag_counts_on(:sports, :limit => 50, :order => "id DESC")
+    @tags = Schedule.tag_counts_on(:tags, :limit => 50, :order => "name")
+    @rankings = Scorecard.tag_counts_on(:rankings, :limit => 50, :order => "name")
   end
 end

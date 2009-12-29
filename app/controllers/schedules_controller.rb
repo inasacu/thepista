@@ -95,13 +95,10 @@ class SchedulesController < ApplicationController
       return
     end
     
-    # :tags, :zones, :locations, :sports
-    @schedule.tag_list = @schedule.concept     
-    @schedule.zone_list =  @schedule.group.time_zone
-    @schedule.location_list = @schedule.group.marker.name
-    @schedule.sport_list = @schedule.group.sport.name
+    # :tags, :groups
+    @schedule.tag_list = @schedule.concept  
+    @schedule.group_list = @schedule.group.name
     
-
     if @schedule.save and @schedule.create_schedule_details(current_user)
       flash[:notice] = I18n.t(:successful_create)
       redirect_to @schedule
@@ -131,7 +128,7 @@ class SchedulesController < ApplicationController
         match.archive = false
         match.save!
       end
-      Scorecard.calculate_group_scorecard(@schedule.group)
+      Scorecard.send_later(:calculate_group_scorecard, @schedule.group)
       @schedule.destroy
       
       flash[:notice] = I18n.t(:successful_destroy)

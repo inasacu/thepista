@@ -61,7 +61,7 @@ class GroupsController < ApplicationController
         (@original_group.points_for_lose != @group.points_for_lose) or 
         (@original_group.points_for_draw != @group.points_for_draw)
 
-        Scorecard.calculate_group_scorecard(@group)    
+        Scorecard.send_later(:calculate_group_scorecard, @group)    
       end
 
       flash[:notice] = I18n.t(:successful_update)

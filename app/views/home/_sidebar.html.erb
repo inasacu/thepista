@@ -1,22 +1,14 @@
 <div class="block">
-	<div class="sidebar-block">
-	<h4><%= label_name(:tags) %></h4>
-
-	<% tag_cloud @tags, %w(nube1 nube2 nube3 nube4 nube5) do |name, css_class| %>
-	  <%= link_to name, cloud_url(:id => name), :class => css_class %>&nbsp;&nbsp;&nbsp;
-	<% end %><br /><br />
+	<div class="sidebar-block" class="extra">
+		
+	<h2><%= label_name(:tags) %></h2>
 	
-	<% tag_cloud @zones, %w(nube1 nube2 nube3 nube4 nube5) do |name, css_class| %>
-	  <%= link_to name, cloud_url(:id => name), :class => css_class %>&nbsp;&nbsp;&nbsp;
-	<% end %><br /><br />
-
-	<% tag_cloud @locations, %w(nube1 nube2 nube3 nube4 nube5) do |name, css_class| %>
-	  <%= link_to name, cloud_url(:id => name), :class => css_class %>&nbsp;&nbsp;&nbsp;
-	<% end %><br /><br />
+	<p id="tagcloud">
+		
+	<%= render :partial => '/home/tag_cloud', :locals => { :objects => @tags } %>
+	<%= render :partial => '/home/tag_cloud', :locals => { :objects => @rankings } %>
 	
-	<% tag_cloud @sports, %w(nube1 nube2 nube3 nube4 nube5) do |name, css_class| %>
-	  <%= link_to name, cloud_url(:id => name), :class => css_class %>&nbsp;&nbsp;&nbsp;
-	<% end %><br /><br />
+	</p>
   </div>
 </div>
 
