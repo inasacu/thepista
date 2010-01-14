@@ -19,34 +19,34 @@ class Scorecard < ActiveRecord::Base
       update_group_user_ranking(group, false)
     end
     
-    group_scorecard_tags(group)    
+    # group_scorecard_tags(group)    
   end
   
-  # creating tags for scorecards, top 5 in the rank only 
-  def group_scorecard_tags(group)
-    # delete all current tags for group scorecard          
-    # Tag.find(:all, :conditions => ["group_id = ?", group]).each do |tag|                
-    #   tag.destroy          
-    # end         
-
-    Tagging.find(:all, :conditions => ["taggable_type = 'Scorecard' and context = 'rankings' and 
-                                        taggable_id in (select scorecards.id from scorecards where group_id = ?)", group]).each do |tagging|                
-      # tagging.destroy     
-           
-    end
-
-    @scorecards = Scorecard.find(:all, 
-    :conditions =>["group_id = ? and user_id > 0 and archive = ? and (ranking >= 1 and ranking <= 5) and played > 0", group, false],
-    :order => 'ranking')        
-    @scorecards.each do |scorecard|                  
-      tag_counter = (scorecard.points/10).round                  
-      tag_counter.times { 
-        puts "scorecard tag:  #{scorecard.user.name}"
-        scorecard.ranking_list = scorecard.user.name 
-      }                  
-      scorecard.save!        
-    end      
-  end
+  # # creating tags for scorecards, top 5 in the rank only 
+  # def group_scorecard_tags(group)
+  #   # delete all current tags for group scorecard          
+  #   # Tag.find(:all, :conditions => ["group_id = ?", group]).each do |tag|                
+  #   #   tag.destroy          
+  #   # end         
+  #   
+  #   Tagging.find(:all, :conditions => ["taggable_type = 'Scorecard' and context = 'rankings' and 
+  #                                       taggable_id in (select scorecards.id from scorecards where group_id = ?)", group]).each do |tagging|                
+  #     # tagging.destroy     
+  #          
+  #   end
+  #   
+  #   @scorecards = Scorecard.find(:all, 
+  #   :conditions =>["group_id = ? and user_id > 0 and archive = ? and (ranking >= 1 and ranking <= 5) and played > 0", group, false],
+  #   :order => 'ranking')        
+  #   @scorecards.each do |scorecard|                  
+  #     tag_counter = (scorecard.points/10).round                  
+  #     tag_counter.times { 
+  #       puts "scorecard tag:  #{scorecard.user.name}"
+  #       scorecard.ranking_list = scorecard.user.name 
+  #     }                  
+  #     scorecard.save!        
+  #   end      
+  # end
     
   # calculate scorecard for all previous matches for group
   def self.previous_to_group_scorecard(group)  
