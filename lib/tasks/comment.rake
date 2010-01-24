@@ -12,8 +12,8 @@ task :thecomment => :environment do |t|
   Comment.find(:all, :conditions => "commentable_type = 'Forum'").each do |comment|
     comment.destroy
   end
-  
   # migrating blog comment to new comments table
+  
   Comment.find(:all).each do |comment|
     puts "comment: (#{comment.id})"
     @blog = comment.entry.blog

@@ -25,6 +25,7 @@
   
 </div>
 
+<% content_for :sidebar, render(:partial => 'sidebar') -%>
 <% content_for :sidebar, render(:partial => '/shared/active_comment') if current_user and @has_activities  -%>
 
 

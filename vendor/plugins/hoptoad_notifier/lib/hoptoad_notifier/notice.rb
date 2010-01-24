@@ -84,7 +84,7 @@ module HoptoadNotifier
 
       self.environment_name = args[:environment_name]
       self.cgi_data         = args[:cgi_data]
-      self.backtrace        = Backtrace.parse(exception_attribute(:backtrace, caller))
+      self.backtrace        = Backtrace.parse(exception_attribute(:backtrace, caller), :filters => self.backtrace_filters)
       self.error_class      = exception_attribute(:error_class) {|exception| exception.class.name }
       self.error_message    = exception_attribute(:error_message, 'Notification') do |exception|
         "#{exception.class.name}: #{exception.message}"
@@ -221,7 +221,7 @@ module HoptoadNotifier
     # TODO: move this onto Hash
     def clean_unserializable_data(data)
       if data.respond_to?(:to_hash)
-        data.inject({}) do |result, (key, value)|
+        data.to_hash.inject({}) do |result, (key, value)|
           result.merge(key => clean_unserializable_data(value))
         end
       elsif data.respond_to?(:to_ary)
@@ -237,12 +237,31 @@ module HoptoadNotifier
     # TODO: extract this to a different class
     def clean_params
       clean_unserializable_data_from(:parameters)
+      filter(parameters)
+      if cgi_data
+        clean_unserializable_data_from(:cgi_data)
+        filter(cgi_data)
+      end
+      if session_data
+        clean_unserializable_data_from(:session_data)
+      end
+    end
+
+    def filter(hash)
       if params_filters
-        parameters.keys.each do |key|
-          parameters[key] = "[FILTERED]" if params_filters.any? do |filter|
-            key.to_s.include?(filter)
+        hash.each do |key, value|
+          if filter_key?(key)
+            hash[key] = "[FILTERED]"
+          elsif value.respond_to?(:to_hash)
+            filter(hash[key])
           end
         end
+      end
+    end
+
+    def filter_key?(key)
+      params_filters.any? do |filter|
+        key.to_s.include?(filter)
       end
     end
 
