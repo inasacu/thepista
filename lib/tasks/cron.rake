@@ -15,4 +15,6 @@ task :cron => :environment do
  # heroku rake friendly_id:make_slugs MODEL=Fee --app thepista
  # heroku rake friendly_id:make_slugs MODEL=Payment  --app thepista
  
+ rake theschedule_tags
+ 
 end
