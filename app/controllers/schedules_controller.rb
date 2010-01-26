@@ -96,8 +96,8 @@ class SchedulesController < ApplicationController
     end
     
     # :tags, :groups
-    @schedule.tag_list = @schedule.concept  
-    @schedule.group_list = @schedule.group.name
+    # @schedule.tag_list = @schedule.concept  
+    # @schedule.group_list = @schedule.group.name
     
     if @schedule.save and @schedule.create_schedule_details(current_user)
       flash[:notice] = I18n.t(:successful_create)

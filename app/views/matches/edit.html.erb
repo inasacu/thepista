@@ -1,5 +1,6 @@
 <% 
-@goles = [1, 2, 3, 4, 5] 
+@futbol = [1, 2, 3, 4, 5] 
+@basket = [7]
 @schedule ||= @match.schedule
 @matches ||= @schedule.the_roster
 %>
@@ -36,43 +37,13 @@
 		</div>	
 		<br />	
 
-		<% if @goles.include?(@schedule.group.sport_id) %>
 		
-			<%= f.label :goals_scored, label_name(:goals_scored_full), :class => :label %><br /><br />
-			
-			<div class="columns"> 
-				
-					<h4 class="title"><%= "#{@schedule.home_group} vs. #{@schedule.away_group}" %></h4>
-					
-				<div class="column left"> 
-					
-					<div class="columns"> 
-						<div class="column left"> 
-							
-					<table>
-						<%= render :partial =>'match', :collection => @matches, :locals => {:first_team => true} %>
-					</table>
-					</div> 
-
-					<div class="column right">    
-
-						<table>
-							<%= render :partial =>'match', :collection => @matches, :locals => {:first_team => false} %>
-						</table>
-
-					</div> 
-
-				</div>
-				
-				</div> 
-
-				<div class="column right">    
-					
-				</div> 
-
-			</div>
-			
+		<% if @futbol.include?(@schedule.group.sport_id) %>		
+			<%= render :partial => '/matches/futbol', :locals => {:f => f} %>
+		<% end %>
 		
+		<% if @basket.include?(@schedule.group.sport_id) %>		
+			<%= render :partial => '/matches/basket', :locals => {:f => f} %>
 		<% end %>
 		
 		<div class="clear"></div> 

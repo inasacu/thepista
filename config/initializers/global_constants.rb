@@ -45,6 +45,9 @@ SHOW_OPENID_LOGIN = false
 SHOW_LOGIN = true
 SHOW_RPX_NOW = true
 
+# tag variable
+TAG_LIMIT = 30
+TAG_LEAST = 8
 
 
 # Column sizes
