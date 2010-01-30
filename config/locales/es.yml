@@ -1251,9 +1251,7 @@ es:
      
      clouds_show:  Etiquetas
      clouds_options:  Opciones de Etiquetas
-     
-     
-     
+          
      entries_teammate: Mis Compañeros de Equipo
      entries_my_wall: Mi Muro
      entries_option:  Opciones del Muro
@@ -1261,12 +1259,12 @@ es:
      entries_show_option:  Opciones del Muro
           
      fee_from: Cargos a
-     fee_from_description: De quien son las Cargos
+     fee_from_description: De quien son los Cargos
      fee_options: Opciones de Cargo
      fee_to: Cargos de 
      fee_to_description:  A quien son los Cargos
-     fee_user_for_group:  Cargar a los jugadores
-     fee_user_for_tournament:  Cargar a los jugadores 
+     fee_user_for_group:  Anotar cargo a los jugadores
+     fee_user_for_tournament:  Anotar cargo a los jugadores 
      fees_create:  Nueva Cargo
      fees_destroy: Borrar Cargo
      fees_index:   Cargo

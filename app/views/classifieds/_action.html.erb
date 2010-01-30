@@ -1,4 +1,7 @@
-<%= link_to image_tag("icons/email_delete.png"), classified_path(classified), 
-												:method => :delete, 
-												:confirm => %(#{label_name(:classified_delete) }?),
-												:title => label_name(:classified_delete)  if current_user.is_manager_of?(Group.find(classified.table_id)) %>
+<% if current_user.is_manager_of?(group) %> 
+	<%= link_to image_tag("icons/email_delete.png"), classified_path(classified), 
+					:method => :delete, 
+					:confirm => %(#{label_name(:classified_delete) }?),
+					:title => label_name(:classified_delete)  %><br />
+<% end %>
+

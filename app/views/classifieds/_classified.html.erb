@@ -29,7 +29,7 @@ the_classified = "#{the_classified.strip[0..140]}..." if the_classified.length >
 		</span>
 	</td>
 	<td class="last">
-		<%= render :partial => 'action', :locals => {:classified => classified} %>
+		<%= render :partial => 'action', :locals => {:classified => classified, :group => the_group} %>
 	</td>
 </tr>
 
