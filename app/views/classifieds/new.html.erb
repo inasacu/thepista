@@ -4,13 +4,15 @@
 
 	<div class="content">  
 
-		<h2 class="title"><%= "#{label_name(:classified)} "  %></h2>
+		<h2 class="title"><%= "#{control_action_label} #{label_name('from')} " %><%= group_link Group.find(@classified.table_id) %></h2>
 
 		<div class="inner">
 		
-	      <% form_for :classified, :url => classifieds_path, :html => { :class => :form } do |f| -%>
-	        <%= render :partial => "form", :locals => {:f => f} %>
-	      <% end -%>
+			<% form_for :classified, :url => classifieds_path, :html => { :class => :form } do |f| -%>
+			<%= f.hidden_field :table_id %>
+			<%= f.hidden_field :table_type %>
+			<%= render :partial => "form", :locals => {:f => f} %>
+			<% end -%>
 
 		</div>
 

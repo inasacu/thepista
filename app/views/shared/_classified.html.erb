@@ -7,8 +7,8 @@
 
 	<tr>
 	  <td class="name_and_date">
-		<%= image_link_small classified.group %>
-			<span class="date"><%= group_link classified.group %></span>
+		<%= image_link_small Group.find(classified.table_id) %>
+			<span class="date"><%= group_link Group.find(classified.table_id) %></span>
 	  </td>
 	  </td>
 	
@@ -17,9 +17,9 @@
 				<%= classified_link classified %><br />
 				<%= link_to(image_tag("icons/comment_delete.png"), 
 							classified_path(classified), :method => :delete, 
-													 :confirm => %(#{label_name(:delete_classified)}?),
-													 :title => label_name(:delete_classified)) if current_user.is_manager_of?(classified.group) %>
-													<%= "&nbsp;&nbsp;[#{the_label}]" %>
+							 :confirm => %(#{label_name(:delete_classified)}?),
+							 :title => label_name(:delete_classified)) if current_user.is_manager_of?(Group.find(classified.table_id)) %>
+							<%= "&nbsp;&nbsp;[#{the_label}]" %>
 			</span>
 		</td>
 		</tr>

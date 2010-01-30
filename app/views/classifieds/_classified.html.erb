@@ -1,15 +1,16 @@
 <% full_classified ||= false 
+the_group = Group.find(classified.table_id)
 the_classified = classified.description	
 the_classified = "#{the_classified.strip[0..140]}..." if the_classified.length > 140 and !full_classified
 %>
 <tr>
 	<td>
-		<%= image_link_small classified.group %>
+		<%= image_link_small the_group %>
 	</td>
 
 	<td class="name_and_date">
 		<span class="label"><%= "#{label_name(:from)}:  " %></span>
-			<%= group_link classified.group %>
+			<%= group_link the_group %>
 			<br />
 		<span class="label"><%= "#{label_name(:dates)}:  " %></span>
 		<span class="date">

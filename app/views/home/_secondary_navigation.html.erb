@@ -12,8 +12,7 @@ if current_user
 	<% unread_count = current_user.unread_messages_count %>
 	<%  if unread_count > 0 %>	
 		<li class="message">
-			<%= link_to label_name(:messages_inbox) , :controller => 'messages', :action => 'index' %>
-			
+			<%= link_to label_name(:messages_inbox) , :controller => 'messages', :action => 'index' %>			
 		</li>		
 		<li><div class="comment-bubble"><%= unread_count %></div></li>
 	<% end %>
@@ -21,7 +20,8 @@ if current_user
 	<% if current_user.has_pending_petition?(current_user) %>
 	<li class="petition">
 		<%= link_to(label_name(:petitions), petition_path(:id => current_user)) %>
-	</li>	
+	</li>				
+	<li><div class="comment-bubble">1</div></li>
 	<% end %>			
 <% 
 end 

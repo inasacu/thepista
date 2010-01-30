@@ -9,7 +9,8 @@ class CreateClassifieds < ActiveRecord::Migration
       t.datetime      :ends_at
       t.datetime      :reminder_at
       
-      t.integer       :group_id
+      t.string        :table_type,           :limit => 40
+      t.integer       :table_id
 
       t.string        :item_type,           :limit => 40
       t.integer       :item_id

@@ -45,19 +45,16 @@ class SchedulesController < ApplicationController
       page.visual_effect :highlight, id
     end
   end
-  
-  
-  # def search
-  #   count = Schedule.count_by_solr(params[:search])
-  #   @schedules = Schedule.paginate_all_by_solr(params[:search], :page => params[:page], :total_entries => count, :limit => 25, :offset => 1)
-  # 
-  #   # @schedules = Schedule.paginate_all_by_solr(params[:search].to_s, :page => params[:page])
-  #   render :template => '/schedules/index'
-  # end
 
   def new    
     # editing is limited to administrator or creator
       @schedule = Schedule.new
+      
+      unless current_user.is_manager_of?(@group)
+        flash[:warning] = I18n.t(:unauthorized)
+        redirect_back_or_default('/index')
+        return
+      end
       
       if @group
         @schedule.group_id = @group.id

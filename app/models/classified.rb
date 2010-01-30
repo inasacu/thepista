@@ -2,8 +2,8 @@ class Classified < ActiveRecord::Base
 
     include ActivityLogger
 
-    belongs_to :group
-
+    belongs_to     :table,          :polymorphic => true
+  
     # validations  
     validates_presence_of         :concept
     validates_length_of           :concept,                         :within => NAME_RANGE_LENGTH
@@ -15,7 +15,7 @@ class Classified < ActiveRecord::Base
     validates_presence_of         :starts_at,     :ends_at
 
     # variables to access
-    attr_accessible :concept, :description, :starts_at, :ends_at, :time_zone, :group_id
+    attr_accessible :concept, :description, :starts_at, :table_id, :table_type
 
     # friendly url and removes id
     # has_friendly_id :concept, :use_slug => true, :reserved => ["new", "create", "index", "list", "signup", "edit", "update", "destroy", "show"]
@@ -26,10 +26,10 @@ class Classified < ActiveRecord::Base
     after_update        :log_activity_played
 
     # method section
-    def self.find_classifieds(user, page = 1)
+    def self.find_classifieds(group, page = 1)
       self.paginate(:all, 
-      :conditions => ["group_id in (select group_id from groups_users where user_id = ?)", user.id],
-      :order => 'starts_at DESC, group_id', :page => page, :per_page => CLASSIFIEDS_PER_PAGE)
+      :conditions => ["table_type = 'Group' and table_id = ?", group.id],
+      :order => 'starts_at DESC', :page => page, :per_page => CLASSIFIEDS_PER_PAGE)
     end
     
     # def self.current_classifieds(user, page = 1)
