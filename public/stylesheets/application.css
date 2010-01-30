@@ -234,3 +234,29 @@ div#footer ol li { margin: 0pt 1em; position: relative; float: left; }
 #tagcloud a.cloud_9 { font-size: 1.6em; color: rgb(162, 198, 9); }
 #tagcloud a.cloud_10 { padding: 0pt; font-size: 1.8em; line-height: 1em; color: rgb(162, 198, 9); font-weight: normal; }
 
+/* ::::: message counter ::::: */
+
+.comment-bubble { 
+	background: transparent url('../images/sprite.png') no-repeat scroll -2px -90px; 
+	-moz-background-clip: border; 
+	-moz-background-origin: padding; 
+	-moz-background-inline-policy: continuous; 
+	width: 24px; height: 20px; 
+	padding-top: 4px; 
+	color: rgb(255, 255, 255); 
+	padding-left: 0pt; 
+	font-family: Helvetica, Arial-BoldMT, Geneva, sans-serif; 
+	font-style: normal; font-variant: normal; 
+	font-weight: bold; font-size: 13px; 
+	line-height: normal; 
+	font-size-adjust: none; 
+	font-stretch: normal; -x-system-font: none; 
+	letter-spacing: -1px; 
+	text-shadow: -1px -1px 1px rgb(135, 21, 33); 
+	padding-right: 1px; margin-left: 0pt; 
+	z-index: 1; 
+	text-align: center; 
+	position: relative; 
+	left: -19px; 
+	top: -9px; 
+}
