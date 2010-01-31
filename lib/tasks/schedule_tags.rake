@@ -29,8 +29,14 @@ task :theschedule_tags => :environment do |t|
     @matches = Match.find(:all, :conditions => ["schedule_id = ? and type_id  = 1", schedule.id])    
     @taggables = Tagging.find(:all, :conditions => ["taggable_id = ? and taggable_type = ?", schedule.id, schedule.class.to_s])
   
-    total_matches = @matches.count.to_i + 5
-    total_tags = @taggables.count.to_i
+    total_matches = 0
+    total_taggables = 0
+    
+    @matches.each {|match| total_matches += 1}
+    @taggables.each {|taggable| total_taggables += 1}
+        
+    total_matches = total_matches + 5
+    total_tags = total_taggables
   
     # puts  "#{total_matches} == #{total_tags} => (#{schedule.id}), #{schedule.concept}"
   
