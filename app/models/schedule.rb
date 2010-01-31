@@ -163,12 +163,12 @@ class Schedule < ActiveRecord::Base
 
   def home_score
     # self.matches.first.group_score
-    return Match.find_by_schedule_id(self, :order => 'group_score DESC').group_score
+    return Match.find_by_schedule_id(self, :order => 'group_score ASC').group_score
   end
 
   def away_score
     # self.matches.first.invite_score
-    return Match.find_by_schedule_id(self, :order => 'invite_score DESC').invite_score
+    return Match.find_by_schedule_id(self, :order => 'invite_score ASC').invite_score
   end
 
   def self.current_schedules(user, page = 1)
