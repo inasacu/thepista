@@ -85,7 +85,7 @@ task :theschedule_tags => :environment do |t|
       tags << schedule.group.sport.name
           
       # puts tags
-      puts "schedule_id: #{schedule.id} - #{@schedule.concept}"
+      puts "schedule_id: #{schedule.id} - #{schedule.concept}"
       schedule.tag_list = tags
       schedule.save!
     end
