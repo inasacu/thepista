@@ -4,12 +4,6 @@ class ClassifiedsController < ApplicationController
   def index
     if params[:id]
       @group = Group.find(params[:id])
-      # unless current_user.is_manager_of?(@group) 
-      #   flash[:warning] = I18n.t(:unauthorized)
-      #   redirect_to root_url
-      #   return
-      # end
-
       @classifieds = Classified.find_classifieds(@group, params[:page])
 
     else

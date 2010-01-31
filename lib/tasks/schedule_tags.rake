@@ -5,7 +5,7 @@ task :theschedule_tags => :environment do |t|
 
   ActiveRecord::Base.establish_connection(RAILS_ENV.to_sym)
 
-  # delete all current tags
+  # # delete all current tags
   # Tag.find(:all).each do |tag|
   #   puts "remove tag:  #{tag.id}"
   #   tag.destroy
@@ -85,7 +85,7 @@ task :theschedule_tags => :environment do |t|
       tags << schedule.group.sport.name
           
       # puts tags
-          
+      puts "schedule_id: #{schedule.id} - #{@schedule.concept}"
       schedule.tag_list = tags
       schedule.save!
     end
