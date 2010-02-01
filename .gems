@@ -13,3 +13,4 @@ sitemap_generator
 edgarjs-ajaxful_rating --source http://gems.github.com
 jackdempsey-acts_as_commentable --source http://gems.github.com
 acts-as-taggable-on
+hoptoad_notifier
