@@ -692,9 +692,9 @@ es:
      petition_pending: Peticiones Pendiente   
      petition_to_join: Petición para unirse a 
      petitions: Peticiones 
-     petition_to_join_approved: Petición aprovada para unirse.
+     petition_to_join_approved: Petición aprobada para unirse.
      petition_to_join_declined:  Petición cancelada para unirse.
-     petition_to_leave_approved: Petición aprovada para desapuntarse.
+     petition_to_leave_approved: Petición aprobada para desapuntarse.
                  
      no_petition_to_join_group: No hay peticiones para unirse a un equipo! 
      deleted_petition_by: Petición ha sido borrada por   
