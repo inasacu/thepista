@@ -39,6 +39,8 @@ Rails::Initializer.run do |config|
   config.gem 'jackdempsey-acts_as_commentable', :lib => 'acts_as_commentable', :source => "http://gems.github.com"
   config.gem "acts-as-taggable-on", :source => "http://gemcutter.org"
   config.gem 'hoptoad_notifier'
+  config.gem 'rpx_now'
+  
     
   # Only load the plugins named here, in the order given (default is alphabetical).
   # :all can be used as a placeholder for all plugins not explicitly named
@@ -64,6 +66,10 @@ Rails::Initializer.run do |config|
   config.action_mailer.raise_delivery_errors = true
   
   config.action_view.sanitized_allowed_tags = 'br'
+  
+  # config.after_initialize do # so rake gems:install works
+  #     RPXNow.api_key = "YOU RPX API KEY"
+  # end
   
 end
 

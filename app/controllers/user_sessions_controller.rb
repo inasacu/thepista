@@ -45,9 +45,9 @@ class UserSessionsController < ApplicationController
   end
 
   def rpx_create
-    # RPXNow.api_key = [YOUR RPX KEY]
     RPXNow.api_key = APP_CONFIG['rpx_api']['key']
     data = RPXNow.user_data(params[:token], :extended => 'true')
+      
     if data.blank?
       @user_session = UserSession.new
       flash[:error] = I18n.t(:unauthorized)
@@ -103,6 +103,11 @@ class UserSessionsController < ApplicationController
       end
 
     end
+  
+    # this code has been set to prevent failure when user goes to myopenid and selects cancel
+    rescue RPXNow::ApiError
+      redirect_to root_url
+
   end
 
 end
