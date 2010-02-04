@@ -38,12 +38,8 @@
 		<br />	
 
 		
-		<% if @futbol.include?(@schedule.group.sport_id) %>		
-			<%= render :partial => '/matches/futbol', :locals => {:f => f} %>
-		<% end %>
-		
-		<% if @basket.include?(@schedule.group.sport_id) %>		
-			<%= render :partial => '/matches/basket', :locals => {:f => f} %>
+		<% if @futbol.include?(@schedule.group.sport_id) or @basket.include?(@schedule.group.sport_id) %>		
+			<%= render :partial => '/matches/sport', :locals => {:f => f} %>
 		<% end %>
 		
 		<div class="clear"></div> 
