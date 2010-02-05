@@ -51,6 +51,20 @@ input.textscore {
 	width: 100px; 
 }
 
+
+.text_tiny_score{ 
+	border: 1px solid rgb(205, 205, 205); 
+	padding: 0.4em; 
+	background: rgb(255, 255, 255) url('../../images/textfield-bg.gif') repeat-x scroll 0pt 1px; 
+}
+.text_tiny_score:focus { 
+	background: rgb(255, 254, 244) url('../../images/textfield-focus-bg.gif') repeat-x scroll 0pt 1px; 
+}
+input.text_tiny_score { 
+	width: 20px; 
+}
+
+
 .inplace_text_field{ 
 	border: 1px solid rgb(205, 205, 205); 
 	padding: 0.4em; 

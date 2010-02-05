@@ -12,51 +12,63 @@ fields_for prefix, match do |match_form|
 		<td valign="top" width="180">
 			<%= image_link_small match.user %>&nbsp;&nbsp;&nbsp;&nbsp;<%= user_link match.user %>
 		</td>
+		
+		<td>&nbsp;&nbsp;<td/>
+		
 		<td>
 			<%= match_form.text_field :goals_scored, :class => 'textscore' %>
-
-			<%= match_form.text_field :goals_scored, :class => 'textscore' %>
+		</td>		
+		
+		<td>
+			<%= match_form.text_field :goals_scored, :class => 'text_tiny_score' %>	
 		</td>		
 		<td>
-		<%= match_form.text_field :field_goal_attempt, :class => 'textscore' %>	
-
-	    <%= match_form.text_field :field_goal_made,           :class => 'textscore' %>	
-
-	    <%= match_form.text_field :free_throw_attempt, :class => 'textscore' %>	
-
-	    <%= match_form.text_field :free_throw_made,           :class => 'textscore' %>	
-
-	    <%= match_form.text_field :three_point_attempt,      :class => 'textscore' %>	
-
-	    <%= match_form.text_field :three_point_made,          :class => 'textscore' %>	
-
-	    <%= match_form.text_field :rebounds,                   :class => 'textscore' %>	
-
-	    <%= match_form.text_field :rebounds_defense,           :class => 'textscore' %>	
-
-	    <%= match_form.text_field :rebounds_offense,           :class => 'textscore' %>	
-   
-	    <%= match_form.text_field :minutes_played,             :class => 'textscore' %>	
+			<%= match_form.text_field :field_goal_attempt, :class => 'text_tiny_score' %>	
+		</td>		
+		<td>	
+			<%= match_form.text_field :field_goal_made, :class => 'text_tiny_score' %>	
 		</td>		
 		<td>
-
-	    <%= match_form.text_field :assists,                    :class => 'textscore' %>	
+	    	<%= match_form.text_field :free_throw_attempt, :class => 'text_tiny_score' %>	
+		</td>		
+		<td>	
+			<%= match_form.text_field :free_throw_made, :class => 'text_tiny_score' %>	
+		</td>		
+		<td>	
+			<%= match_form.text_field :three_point_attempt, :class => 'text_tiny_score' %>	
+		</td>		
+		<td>	
+			<%= match_form.text_field :three_point_made, :class => 'text_tiny_score' %>	
+		</td>		
+		<td>	
+			<%= match_form.text_field :rebounds, :class => 'text_tiny_score' %>		
 		</td>		
 		<td>
-	    <%= match_form.text_field :steals,                     :class => 'textscore' %>	
+			<%= match_form.text_field :rebounds_defense, :class => 'text_tiny_score' %>	
+		</td>		
+		<td>	
+			<%= match_form.text_field :rebounds_offense, :class => 'text_tiny_score' %>		
+		</td>		
+		<td>  
+	    	<%= match_form.text_field :minutes_played, :class => 'text_tiny_score' %>	
 		</td>		
 		<td>
-	    <%= match_form.text_field :blocks,                     :class => 'textscore' %>	
+	    	<%= match_form.text_field :assists, :class => 'text_tiny_score' %>	
 		</td>		
 		<td>
-	    <%= match_form.text_field :turnovers,                  :class => 'textscore' %>	
+	    	<%= match_form.text_field :steals, :class => 'text_tiny_score' %>	
 		</td>		
 		<td>
-	    <%= match_form.text_field :personal_fouls,             :class => 'textscore' %>	
+	    	<%= match_form.text_field :blocks, :class => 'text_tiny_score' %>	
 		</td>		
 		<td>
-
-	    <%= match_form.check_box :game_started %>	
+	    	<%= match_form.text_field :turnovers, :class => 'text_tiny_score' %>	
+		</td>		
+		<td>
+	    	<%= match_form.text_field :personal_fouls, :class => 'text_tiny_score' %>	
+		</td>		
+		<td>
+	    	<%= match_form.check_box :game_started %>	
 		</td>	
 	</tr>
 <%
