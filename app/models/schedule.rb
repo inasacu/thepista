@@ -56,7 +56,7 @@ class Schedule < ActiveRecord::Base
   :order =>       :name
 
   belongs_to :group
-  belongs_to :sport
+  # belongs_to :sport
   belongs_to :marker
   belongs_to :invite_group,   :class_name => "Group",   :foreign_key => "invite_id"
 
@@ -148,6 +148,10 @@ class Schedule < ActiveRecord::Base
     :order => "matches.group_id desc, users.name")
   end
 
+  def sport
+    self.group.sport
+  end
+  
   def last_season?(user)
     return false if self.season_ends_at.nil? and user.is_manager_of?(self.group)
     return (self.season_ends_at < Time.zone.now() and user.is_manager_of?(self.group))

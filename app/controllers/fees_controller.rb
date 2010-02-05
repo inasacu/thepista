@@ -4,6 +4,7 @@ class FeesController < ApplicationController
   def index
     if params[:id]
       @user = User.find(params[:id])
+
       unless current_user.is_user_manager_of?(@user) or @user == current_user
         flash[:warning] = I18n.t(:unauthorized)
         redirect_to root_url
@@ -15,9 +16,10 @@ class FeesController < ApplicationController
 
       @groups = []
       @user.groups.each do |group|
-        @groups << group.id if current_user.is_user_manager_group(@user, group)
+        # @groups << group.id if current_user.is_user_manager_group(@user, group)
+        @groups << group.id 
       end
-      
+
       @debit_fee = Fee.debit_amount(@user, @groups)
       @fees = Fee.get_debit_fees(@user, @groups, params[:page])
     else
@@ -34,13 +36,13 @@ class FeesController < ApplicationController
     @fee = Fee.new
     return unless (params[:group_id])
     @group = Group.find(params[:group_id])
-    
+
     unless current_user.is_manager_of?(@group)
       flash[:warning] = I18n.t(:unauthorized)
       redirect_back_or_default('/index')
       return
     end
-    
+
     @fee.credit = @group
 
     respond_to do |format|
@@ -52,14 +54,14 @@ class FeesController < ApplicationController
     @fee = Fee.new(params[:fee])       
     # @group = Group.find(@fee.item_id)
     @group = Group.find(@fee.credit_id) if @fee.credit_type == "Group"
-    
-    
+
+
     unless current_user.is_manager_of?(@group)
       flash[:warning] = I18n.t(:unauthorized)
       redirect_back_or_default('/index')
       return
     end
-    
+
     @fee.item = @group
     @fee.manager_id = current_user.id
 
@@ -95,26 +97,26 @@ class FeesController < ApplicationController
     @fee = Fee.find(params[:id])    
     # @group = Group.find(@fee.item_id)
     @group = Group.find(@fee.credit_id) if @fee.credit_type == "Group"
-    
+
     unless current_user.is_manager_of?(@group)
       flash[:warning] = I18n.t(:unauthorized)
       redirect_back_or_default('/index')
       return
     end
-    
+
   end
 
   def update
     @fee = Fee.find(params[:id])   
     # @group = Group.find(@fee.item_id)
     @group = Group.find(@fee.credit_id) if @fee.credit_type == "Group"
-    
+
     unless current_user.is_manager_of?(@group)
       flash[:warning] = I18n.t(:unauthorized)
       redirect_back_or_default('/index')
       return
     end
-    
+
     if @fee.update_attributes(params[:fee])
       flash[:notice] = I18n.t(:successful_update)
       redirect_to fees_url and return
@@ -127,13 +129,13 @@ class FeesController < ApplicationController
     @fee = Fee.find(params[:id])   
     # @group = Group.find(@fee.item_id)
     @group = Group.find(@fee.credit_id) if @fee.credit_type == "Group"
-    
+
     unless current_user.is_manager_of?(@group)
       flash[:warning] = I18n.t(:unauthorized)
       redirect_back_or_default('/index')
       return
     end
-    
+
     @fee.destroy
     flash[:notice] = I18n.t(:successful_destroy)
     redirect_to fees_url

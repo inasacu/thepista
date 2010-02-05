@@ -10,13 +10,13 @@
 	</td>
 		
 	<td class="name_and_date">
-		<span class="label"><%= label_name(:to) %>:</span>
-		<%= debit_link %><br/>
 		<% unless credit_link.blank? %>
 		<span class="label"><%= label_name(:from) %>:</span>
 		<%= credit_link %><br/>
 		<% end %>
 		</span>
+		<span class="label"><%= label_name(:to) %>:</span>
+		<%= debit_link %><br/>
 		<span class="date">			
 		<%= "#{label_name(:ago)} #{time_ago_in_words(fee.created_at)}" %>
 		</span>

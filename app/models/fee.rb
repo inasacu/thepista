@@ -88,14 +88,26 @@ class Fee < ActiveRecord::Base
   end 
 
   def self.create_debit_credit_item_fee(debit, credit, item, season_player=false, type_id=1)
+    fee_per_game = item.fee_per_game
+    fee_per_game = item.fee_per_pista if credit.class.to_s == "Marker"
+    
     unless self.debit_credit_item_exists?(debit, credit, item) 
-      fee_per_game = item.fee_per_game
-      fee_per_game = item.fee_per_pista if credit.class.to_s == "Marker"
       
       self.create!(:concept => item.concept, :description => item.description, :debit_amount => fee_per_game,
                     :debit_id => debit.id, :credit_id => credit.id, :item_id => item.id, 
                     :debit_type => debit.class.to_s, :credit_type => credit.class.to_s, :item_type => item.class.to_s,
                     :season_player => season_player, :type_id => type_id)    
+    
+    else
+      @fees = Fee.find(:all, 
+        :conditions => ["debit_id = ? and debit_type = ? and credit_id = ? and credit_type = ? and item_id = ? and item_type = ?",
+        debit.id, debit.class.to_s, credit.id, credit.class.to_s, item.id, item.class.to_s])
+      
+      @fees.each do |fee|
+        fee.debit_amount = fee_per_game
+        fee.save!
+      end
+      
     end
   end
 
