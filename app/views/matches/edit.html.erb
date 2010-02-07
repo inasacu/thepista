@@ -1,8 +1,9 @@
 <% 
-@futbol = [1, 2, 3, 4, 5] 
-@basket = [7]
 @schedule ||= @match.schedule
 @matches ||= @schedule.the_roster
+
+@is_futbol = @schedule.group.is_futbol?
+@is_basket = @schedule.group.is_basket?
 %>
 
 <div class="block">
@@ -38,7 +39,7 @@
 		<br />	
 
 		
-		<% if @futbol.include?(@schedule.group.sport_id) or @basket.include?(@schedule.group.sport_id) %>		
+		<% if @is_futbol or @is_basket %>		
 			<%= render :partial => '/matches/sport', :locals => {:f => f} %>
 		<% end %>
 		

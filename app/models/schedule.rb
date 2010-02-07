@@ -56,7 +56,7 @@ class Schedule < ActiveRecord::Base
   :order =>       :name
 
   belongs_to :group
-  belongs_to :sport
+  # belongs_to :sport
   belongs_to :marker
   belongs_to :invite_group,   :class_name => "Group",   :foreign_key => "invite_id"
 
@@ -153,6 +153,10 @@ class Schedule < ActiveRecord::Base
     return (self.season_ends_at < Time.zone.now() and user.is_manager_of?(self.group))
   end
 
+  def sport
+    self.group.sport
+  end
+  
   def home_group
     self.group.name
   end

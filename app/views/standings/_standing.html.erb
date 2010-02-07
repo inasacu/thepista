@@ -1,6 +1,6 @@
 <%
  	mailer ||= false
-	swith ||= false
+	switch ||= false
 	max_points = standing.played.to_i * tournament.points_for_win.to_i
 	coeficient = 0
 	coeficient = 100 *(standing.points.to_f/max_points.to_f) 

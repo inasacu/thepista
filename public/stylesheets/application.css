@@ -61,7 +61,7 @@ input.textscore {
 	background: rgb(255, 254, 244) url('../../images/textfield-focus-bg.gif') repeat-x scroll 0pt 1px; 
 }
 input.text_tiny_score { 
-	width: 20px; 
+	width: 25px; 
 }
 
 
@@ -117,6 +117,7 @@ text_area.textfield {
   width: 100%;
   border-collapse: collapse;  
   margin-bottom: 15px;
+
 }
 
 .table th {

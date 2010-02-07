@@ -6,70 +6,19 @@
 <!-- field_for start -->		
 <% 
 fields_for prefix, match do |match_form| 
-	if (first_team == (@schedule.group_id == match.group_id))
+	if (first_team == (@schedule.group_id == match.group_id)) or @is_basket
 -%>
 	<tr>
-		<td valign="top" width="180">
+		<td valign="top" width="200">
 			<%= image_link_small match.user %>&nbsp;&nbsp;&nbsp;&nbsp;<%= user_link match.user %>
-		</td>
+		</td>		
+		<td>&nbsp;&nbsp;<td/>		
+		<td>&nbsp;&nbsp;<td/>		
+		<td>&nbsp;&nbsp;<td/>	
 		
-		<td>&nbsp;&nbsp;<td/>
-		
-		<td>
-			<%= match_form.text_field :goals_scored, :class => 'textscore' %>
-		</td>		
-		
-		<td>
-			<%= match_form.text_field :goals_scored, :class => 'text_tiny_score' %>	
-		</td>		
-		<td>
-			<%= match_form.text_field :field_goal_attempt, :class => 'text_tiny_score' %>	
-		</td>		
-		<td>	
-			<%= match_form.text_field :field_goal_made, :class => 'text_tiny_score' %>	
-		</td>		
-		<td>
-	    	<%= match_form.text_field :free_throw_attempt, :class => 'text_tiny_score' %>	
-		</td>		
-		<td>	
-			<%= match_form.text_field :free_throw_made, :class => 'text_tiny_score' %>	
-		</td>		
-		<td>	
-			<%= match_form.text_field :three_point_attempt, :class => 'text_tiny_score' %>	
-		</td>		
-		<td>	
-			<%= match_form.text_field :three_point_made, :class => 'text_tiny_score' %>	
-		</td>		
-		<td>	
-			<%= match_form.text_field :rebounds, :class => 'text_tiny_score' %>		
-		</td>		
-		<td>
-			<%= match_form.text_field :rebounds_defense, :class => 'text_tiny_score' %>	
-		</td>		
-		<td>	
-			<%= match_form.text_field :rebounds_offense, :class => 'text_tiny_score' %>		
-		</td>		
-		<td>  
-	    	<%= match_form.text_field :minutes_played, :class => 'text_tiny_score' %>	
-		</td>		
-		<td>
-	    	<%= match_form.text_field :assists, :class => 'text_tiny_score' %>	
-		</td>		
-		<td>
-	    	<%= match_form.text_field :steals, :class => 'text_tiny_score' %>	
-		</td>		
-		<td>
-	    	<%= match_form.text_field :blocks, :class => 'text_tiny_score' %>	
-		</td>		
-		<td>
-	    	<%= match_form.text_field :turnovers, :class => 'text_tiny_score' %>	
-		</td>		
-		<td>
-	    	<%= match_form.text_field :personal_fouls, :class => 'text_tiny_score' %>	
-		</td>		
-		<td>
-	    	<%= match_form.check_box :game_started %>	
-		</td>	
+		<%= render :partial => 'futbol', :locals => {:match_form => match_form} if @is_futbol %>		
+		<%= render :partial => 'basket', :locals => {:match_form => match_form} if @is_basket %>			 
+			
 	</tr>
 <%
  	end

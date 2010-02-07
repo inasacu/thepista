@@ -1,4 +1,4 @@
-<% the_value = @tournament.use_goals? %>
+<% the_value = @tournament.is_futbol? %>
 
 <div class="block">
 	<h3><%= control_label('legend') %></h3>
@@ -33,7 +33,7 @@
 			<%= label_name(:games_lost_full) %>
 		<p>
 		
-		<% if @tournament.use_goals? %>	
+		<% if @tournament.is_futbol? %>	
 		<p>
 			<b><%= label_name(:goals_scored) %></b>
 			<%= label_name(:goals_scored_full) %>
