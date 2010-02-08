@@ -19,31 +19,31 @@
 	<td class="ganados"><%= scorecard_basket.wins %></td>
 	<td class="ganados"><%= scorecard_basket.losses %></td>
 		
-	<td class="puntos"><%= scorecard_basket.field_goal_made %></td>
-	<td class="puntos"><%= scorecard_basket.field_goal_attempt %></td>
+	<td class="ganados"><%= scorecard_basket.field_goal_made %></td>
+	<td class="ganados"><%= scorecard_basket.field_goal_attempt %></td>
 	<td class="puntos">
 				<%= sprintf( "%0.00f", 100 * (scorecard_basket.field_goal_made.to_f/scorecard_basket.field_goal_attempt.to_f)) %><%= "%" %></td>	
-	<td class="puntos"><%= scorecard_basket.three_point_made %></td>	
-	<td class="puntos"><%= scorecard_basket.three_point_attempt %></td>
+	<td class="ganados"><%= scorecard_basket.three_point_made %></td>	
+	<td class="ganados"><%= scorecard_basket.three_point_attempt %></td>
 	<td class="puntos">
 				<%= sprintf( "%0.00f", 100 * (scorecard_basket.three_point_made.to_f/scorecard_basket.three_point_attempt.to_f)) %><%= "%" %></td>
-	<td class="puntos"><%= scorecard_basket.free_throw_made %></td>	
-	<td class="puntos"><%= scorecard_basket.free_throw_attempt %></td>
+	<td class="ganados"><%= scorecard_basket.free_throw_made %></td>	
+	<td class="ganados"><%= scorecard_basket.free_throw_attempt %></td>
 	<td class="puntos">
 				<%= sprintf( "%0.00f", 100 * (scorecard_basket.free_throw_made.to_f/scorecard_basket.free_throw_attempt.to_f)) %><%= "%" %></td>
-	<td class="puntos"><%= scorecard_basket.rebounds_offense %></td>			
-	<td class="puntos"><%= scorecard_basket.rebounds_defense %></td>
+	<td class="ganados"><%= scorecard_basket.rebounds_offense %></td>			
+	<td class="ganados"><%= scorecard_basket.rebounds_defense %></td>
 	<td class="puntos"><%= scorecard_basket.rebounds_defense + scorecard_basket.rebounds_offense %></td>		
-	<td class="puntos"><%= scorecard_basket.minutes_played %></td>		
-	<td class="puntos"><%= scorecard_basket.assists %></td>		
-	<td class="puntos"><%= scorecard_basket.steals %></td>		
-	<td class="puntos"><%= scorecard_basket.blocks %></td>	
-	<td class="puntos"><%= scorecard_basket.turnovers %></td>
-	<td class="puntos"><%= scorecard_basket.personal_fouls %></td>
+	<td class="ganados"><%= scorecard_basket.minutes_played %></td>		
+	<td class="ganados"><%= scorecard_basket.assists %></td>		
+	<td class="ganados"><%= scorecard_basket.steals %></td>		
+	<td class="ganados"><%= scorecard_basket.blocks %></td>	
+	<td class="ganados"><%= scorecard_basket.turnovers %></td>
+	<td class="ganados"><%= scorecard_basket.personal_fouls %></td>
 	<td class="puntos">
 				<%= sprintf("%00.00f", scorecard_basket.assists.to_f/scorecard_basket.turnovers.to_f) %></td>
-	<td class="puntos"><%= scorecard_basket.played %></td>			
-	<td class="puntos"><%= scorecard_basket.started %></td>
+	<td class="ganados"><%= scorecard_basket.played %></td>			
+	<td class="ganados"><%= scorecard_basket.started %></td>
 
 
 </tr>

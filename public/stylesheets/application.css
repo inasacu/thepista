@@ -140,7 +140,7 @@ text_area.textfield {
 }
 
 .table td {
-  padding: 10px;
+  padding: 20px;
 }
 
 .table td.last {
@@ -154,6 +154,10 @@ text_area.textfield {
 #contact td{
 	padding: 4px 10px;
 }
+
+/*#scorecard th{
+	padding: 4px 8px;
+}*/
 
 #scorecard td{
 	padding: 4px 10px;
