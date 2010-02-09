@@ -48,7 +48,7 @@
 		
 		<% if @group.is_futbol? %>
 		<p><em style="color: rgb(153, 153, 153);">
-			<%= "(*) #{label_name(:player_with)} #{@less_games} #{label_name(:player_with_less_games)}" %>
+			<%= "(*) #{I18n.t(:player_with)} #{@less_games} #{I18n.t(:player_with_less_games)}" %>
 			</em>
 		</p>
 		<% end %>
