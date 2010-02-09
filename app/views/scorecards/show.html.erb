@@ -1,18 +1,16 @@
 <% 
 	@archive ||= false 
 	@less_games = 5 
+	@games_played = @group.games_played
+	scorecards = false
+	@scorecards.each {|card| scorecards = true }
 %>
 
 <div class="block">
 
 <%= render :partial => 'secondary_navigation' %>  
 
-<% 	
-	@games_played = @group.games_played
-	the_value = @group.is_futbol?
-	scorecards = false
-	@scorecards.each {|card| scorecards = true }
-	
+<%
 	if scorecards	
 %>
 <div class="content">   
@@ -62,7 +60,7 @@ end
 </div>
 
 <% content_for :sidebar, render(:partial => 'sidebar_show') if @group.is_futbol? -%>
-<%# content_for :sidebar, render(:partial => 'sidebar_show_basket') if @group.is_basket? -%>
+<% content_for :sidebar, render(:partial => 'sidebar_show_basket') if @group.is_basket? -%>
 
 
 
