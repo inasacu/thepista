@@ -101,6 +101,7 @@ es:
      comment: Comentario   
      comment_not_saved: Comentarios NO guardados!!!   
      comment_saved: Comentarios guardados!!!   
+     connect:  Conectar
      concept: Concepto
      concept_description:  Concepto   
      contact: Contacto   
@@ -272,6 +273,7 @@ es:
      exit_festival: Desapuntate del Festivo   
      exit_group: Desapuntate del Equipo   
      exit_tournament: Desapuntate del Torneo   
+     explore:  Explorar
      facility: Instalaciones   
      failed_login: Error de inicio de sesión 
      
@@ -684,6 +686,7 @@ es:
      optional: opciónal   
      or: o   
      or_use: ...o utiliza   
+     organize:  Organizar
      overview: descripción general   
      page_does_not_exist: La pagina que querias no exite.  
      

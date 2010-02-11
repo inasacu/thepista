@@ -1,24 +1,13 @@
 <div class="secondary-navigation">
 
-<%#= get_the_action %>
-
 <ul>
-	<li class="first active">
-		<% case get_the_action 
-			when 'about u' %>			
-				<%= link_to label_name(:about_us), about_us_url %>
-		
-		<% when 'terms of use' %>
-			<%= link_to label_name(:terms_of_use), terms_of_use_url %>
-	
-		<% when 'privacy policy' %>
-			<%= link_to label_name(:privacy_policy), privacy_policy_url %>
-
-		<% when 'faq' %>
-			<%= link_to label_name(:faq), faq_url %>
-			
-		<% end %>
-	</li>
+	<li class="<%= get_first_active %>"><%= link_to label_name(:explore), root_url %></li>
+	<li class="<%= get_active %>"><%= link_to label_name(:connect), root_url %></li>
+	<li class="<%= get_active %>"><%= link_to label_name(:organize), root_url %></li>
+	<!-- <li class="<%#= get_active('home_about_u') %>"><%#= link_to label_name(:about_us), about_us_url %></li> -->
+	<!-- <li class="<%#= get_active('home_terms_of_use') %>"><%#= link_to label_name(:terms_of_use), terms_of_use_url %></li> -->
+	<!-- <li class="<%#= get_active('home_privacy_policy') %>"><%#= link_to label_name(:privacy_policy), privacy_policy_url %></li> -->
+	<!-- <li class="<%#= get_active('home_faq') %>"><%#= link_to label_name(:faq), faq_url %></li> -->
 </ul>
 
 <div class="clear"></div>

@@ -42,13 +42,23 @@
 	
   <div id="container">
 	
+	<% about = ['about u', 'terms of use', 'privacy policy', 'faq']%>
 	<% login_action = ['signup', 'create', 'new', 'rpx_create', 'rpx_new'] %>
 	<% login_controller =['user_sessions', 'users', ''] %>	
 	<% login_session = (login_controller.include?(controller.controller_name) and login_action.include?(controller.action_name)) %>
+	<% logout =  !current_user and is_controller('home') and is_action('index') %>
   
-	<%= render :partial => "shared/header" %>	
-	<%= render :partial => "shared/wrapper" unless login_session %>	
-	<%= render :partial => "shared/box" if login_session %>	
+	<%= render :partial => "shared/header" %>
+	
+	<% if login_session %>
+		<%= render :partial => "shared/box" %>
+	<% elsif about.include?(get_the_action) %>
+		<%= render :partial => "shared/about" %>
+	<% elsif logout %>
+		<%= render :partial => "shared/about" %>
+	<% else %>
+		<%= render :partial => "shared/wrapper" %>	
+	<% end %>
 	
   	<%= javascript_include_tag "ie_no_more.js" %>
 	<%= smack_down_ie6 %>
@@ -56,7 +66,7 @@
   </div>
   
   <%= render :partial => 'utilities/uservoice' %>
-  <%= render :partial => 'utilities/browser_detect' if development? %>
+  <%#= render :partial => 'utilities/browser_detect' if development? %>
 
   <%#= link_to "tour", "http://thepista.local?tourId=MyTour&skinId=black_beauty" %>
   <%#= render :partial => 'tours/home_tour' %>

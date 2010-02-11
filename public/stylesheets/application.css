@@ -4,6 +4,40 @@ html {
 }
 
 
+
+/* about */
+#about {
+  width: 900px;
+  margin: 0px auto;  
+}
+
+#about .block {
+  margin-bottom: 20px;
+}
+
+#about .block h2 {
+  padding: 10px 15px;
+  margin: 0;  
+}
+
+#about .block .content {
+  padding: 10px 20px;
+}
+
+#about .block {
+  background: #F7F7F8;
+}
+
+#about .block h2 {
+/*  background: #0F7D00;*/
+  color: #0F7D00;
+}
+
+
+
+
+
+
 /* embeds the openid image in the text field */
 input#user_openid_identifier, input#user_session_openid_identifier {
   background: url(../../images/login-bg.gif) no-repeat;
