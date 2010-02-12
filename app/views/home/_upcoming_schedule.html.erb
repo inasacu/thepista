@@ -20,17 +20,26 @@
 
 		<td>
 			<%= nice_day_of_week(schedule.starts_at) %> 
-			<% unless production? %>
+			<!-- <%# unless production? %>
 			<br />
 			<p> <em style="color: rgb(153, 153, 153);">
-				<%= label_name(:your_schedule) %>&nbsp;<%= nice_day_of_week(schedule.starts_at.in_time_zone(Time.zone)) %><br />
+				<%#= label_name(:your_schedule) %>&nbsp;<%= nice_day_of_week(schedule.starts_at.in_time_zone(Time.zone)) %><br />
 			</em></p>
-			<% end %>
+			<%# end %> -->
 
-		</td>	
-
-		<td class="last">
+		</td>
+		
+	
+		<td>
 			<%= the_sport %>
+		</td>
+		
+		<td>
+			<%= "#{label_name(:schedule_rate)}  #{ratings_for(schedule, :dimension => :performance)}" if current_user.is_member_of?(schedule.group) %>
+		</td>
+		
+		<td class="last">
+			<%#= the_sport %>
 		</td>
 
 	</tr>
