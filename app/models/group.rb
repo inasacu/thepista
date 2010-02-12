@@ -114,9 +114,14 @@ class Group < ActiveRecord::Base
     self.schedules.count > 0
   end
   
-  def use_goals?
+  def is_futbol?
    	# sports related to goals
     return [1, 2, 3, 4, 5].include?(self.sport_id)
+  end
+  
+  def is_basket?
+   	# sports related to basket
+    return [7].include?(self.sport_id)
   end
 
   # def game_day

@@ -317,6 +317,7 @@ es:
      game_lost: Derrota   
      game_notes: Notas de futbol
      game_played:  Partido Jugado
+     game_started:  Titular
      game_not_played:  Partido No Jugado   
      game_tied: Empate   
      game_won: Victoria   
@@ -326,7 +327,9 @@ es:
      games_lost: P.P.   
      games_lost_full: Partidos Perdidos   
      games_played: P.J.   
-     games_played_full: Partidos Jugados   
+     games_played_full: Partidos Jugados  
+     games_started: P.T.
+     games_started_full:  Partidos Titular 
      games_ranking: R.   
      games_ranking_full: Ranking   
      games_stats: Coef.   
@@ -341,6 +344,7 @@ es:
      general_information:  Información General
      get_your_gravatar: Pilla tu Gravatar 
 
+     # futbol labels
      goal_difference: G.D.   
      goal_difference_full: Gol Diferencial   
      goals_against: G.C.   
@@ -364,6 +368,47 @@ es:
      
      goals_scored: G.M.   
      goals_scored_full: Goles Marcados
+     
+     # basket label     
+     field_goal_attempt: FGA		
+     field_goal_made: 	 FGM
+     field_goal_percentage: "FG%"	
+     free_throw_attempt: FTA	
+     free_throw_made: 	 FTM
+     free_throw_percentage:  "FT%"	
+     three_point_attempt: TPA	
+     three_point_made: 	  TPM
+     three_point_percentage: "TP%"
+     rebounds: 		REB
+     rebounds_defense: 	DREB	
+     rebounds_offense: 	OREB	
+     minutes_played: 	MIN	
+     assists: AST
+     steals: STL	
+     blocks: BLK	
+     turnovers: TO		
+     personal_fouls: PF
+     assist_turnover_ratio:  "AST/TO" 	
+
+     field_goal_attempt_full: Field Goal Attempt		
+     field_goal_made_full: 	 Field Goal Made
+     field_goal_percentage_full: Field Goal Percentage	
+     free_throw_attempt_full: Free Throw Attempt
+     free_throw_made_full: 	 Free Throw Made
+     free_throw_percentage_full:  Free Throw Percentage
+     three_point_attempt_full: Three Point Attempt
+     three_point_made_full:  Three Point Made
+     three_point_percentage_full: Three Point Percentage
+     rebounds_full: Rebounds 
+     rebounds_defense_full: Defensive Rebounds	
+     rebounds_offense_full: Offensive Rebounds
+     minutes_played_full: 	Minutes Played	
+     assists_full: Assits
+     steals_full: Steals
+     blocks_full: Blocks
+     turnovers_full: Turnovers
+     personal_fouls_full: Personal Fouls
+     assist_turnover_ratio_full:  Assist Turnover Ratio
           
      gravatar_not_received: No ha sido posible conseguir la información de gravatar del usuario   
      gravatar_received: Ya hemos conseguido la información del gravatar del usuario   

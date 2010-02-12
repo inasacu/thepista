@@ -1,8 +1,8 @@
 class Scorecard < ActiveRecord::Base 
 
- # tagging
- acts_as_taggable_on :rankings
-
+  # tagging
+  # acts_as_taggable_on :tags
+  
   belongs_to :user
   belongs_to :group
   
@@ -17,36 +17,8 @@ class Scorecard < ActiveRecord::Base
     if total_schedules_played.to_i > 0
       all_to_group_scorecard(group)  
       update_group_user_ranking(group, false)
-    end
-    
-    # group_scorecard_tags(group)    
+    end  
   end
-  
-  # # creating tags for scorecards, top 5 in the rank only 
-  # def group_scorecard_tags(group)
-  #   # delete all current tags for group scorecard          
-  #   # Tag.find(:all, :conditions => ["group_id = ?", group]).each do |tag|                
-  #   #   tag.destroy          
-  #   # end         
-  #   
-  #   Tagging.find(:all, :conditions => ["taggable_type = 'Scorecard' and context = 'rankings' and 
-  #                                       taggable_id in (select scorecards.id from scorecards where group_id = ?)", group]).each do |tagging|                
-  #     # tagging.destroy     
-  #          
-  #   end
-  #   
-  #   @scorecards = Scorecard.find(:all, 
-  #   :conditions =>["group_id = ? and user_id > 0 and archive = ? and (ranking >= 1 and ranking <= 5) and played > 0", group, false],
-  #   :order => 'ranking')        
-  #   @scorecards.each do |scorecard|                  
-  #     tag_counter = (scorecard.points/10).round                  
-  #     tag_counter.times { 
-  #       puts "scorecard tag:  #{scorecard.user.name}"
-  #       scorecard.ranking_list = scorecard.user.name 
-  #     }                  
-  #     scorecard.save!        
-  #   end      
-  # end
     
   # calculate scorecard for all previous matches for group
   def self.previous_to_group_scorecard(group)  
@@ -57,6 +29,9 @@ class Scorecard < ActiveRecord::Base
           @matches = Match.find_all_previous_schedules(scorecard.user_id, scorecard.group_id)
           update_group_user_scorecard(group, user, scorecard, @matches, true)
           previous_matches = true
+          
+          # run for basket stats if team is basket
+          update_group_user_scorecard_basket(group, user, scorecard, @matches) if group.is_basket?
         end
       end
   end
@@ -70,6 +45,9 @@ class Scorecard < ActiveRecord::Base
           @matches = Match.find_all_schedules(scorecard.user_id, scorecard.group_id)
           update_group_user_scorecard(group, user, scorecard, @matches, false)
           previous_matches = true
+          
+          # run for basket stats if team is basket
+          update_group_user_scorecard_basket(group, user, scorecard, @matches) if group.is_basket?
         end
       end
   end
@@ -144,6 +122,44 @@ class Scorecard < ActiveRecord::Base
                                   :points => the_points, 
                                   :goals_for => goals_for, :goals_against => goals_against, :goals_scored => goals_scored.to_i)
     end
+  end
+  
+  def self.update_group_user_scorecard_basket(group, user, scorecard, matches)
+
+    # calculate scorecards for user in group basket 
+    # default variables  
+    field_goal_attempt, field_goal_made = 0, 0
+  	free_throw_attempt, free_throw_made = 0, 0
+  	three_point_attempt, three_point_made = 0, 0
+  	rebounds_defense, rebounds_offense = 0, 0, 0
+  	minutes_played, assists, steals = 0, 0, 0
+  	blocks, turnovers, personal_fouls, started = 0, 0, 0, 0
+
+    matches.each do |match|
+      field_goal_attempt += match.field_goal_attempt
+      field_goal_made += match.field_goal_made
+    	free_throw_attempt += match.free_throw_attempt
+    	free_throw_made += match.free_throw_made
+    	three_point_attempt += match.three_point_attempt
+    	three_point_made += match.three_point_made
+    	rebounds_defense += match.rebounds_defense
+    	rebounds_offense += match.rebounds_offense 
+    	minutes_played += match.minutes_played
+    	assists += match.assists
+    	steals += match.steals 
+    	blocks += match.blocks
+    	turnovers += match.turnovers
+    	personal_fouls += match.personal_fouls
+    	started += 1 if match.started      
+    end 
+    
+    # update scorecard with all calculations
+      scorecard.update_attributes(:field_goal_attempt => field_goal_attempt, :field_goal_made => field_goal_made,
+                	                :free_throw_attempt => free_throw_attempt, :free_throw_made => free_throw_made,
+                                	:three_point_attempt => three_point_attempt, :three_point_made => three_point_made, 
+                                	:rebounds_defense => rebounds_defense, :rebounds_offense => rebounds_offense, 
+                                	:minutes_played => minutes_played, :assists => assists, :steals => steals, :blocks => blocks, 
+                                	:turnovers => turnovers, :personal_fouls => personal_fouls, :started => started)
   end
   
   def self.update_group_user_ranking(group, previous_matches=true)

@@ -1,17 +1,16 @@
 <% 
 	@archive ||= false 
 	@less_games = 5 
+	@games_played = @group.games_played
+	scorecards = false
+	@scorecards.each {|card| scorecards = true }
 %>
+
 <div class="block">
 
 <%= render :partial => 'secondary_navigation' %>  
 
-<% 	
-	@games_played = @group.games_played
-	the_value = @group.use_goals?
-	scorecards = false
-	@scorecards.each {|card| scorecards = true }
-	
+<%
 	if scorecards	
 %>
 <div class="content">   
@@ -22,41 +21,34 @@
 
 		<table class="table" id="<%= get_the_controller.gsub(' ','_') %>">
 
-			<tr>           
-				<th class="first" title="<%= label_name(:ranking_full) %>"><%= label_name(:ranking) %></th>
-				<th>&nbsp;</th>
-				<th><span><%= label_name(:name) %></span></th>
-				<th>&nbsp;</th>
-				<th>&nbsp;</th>
-				<th title="<%= label_name(:points_full) %>"><%= label_name(:points) %></th>
-				<th title="<%= label_name(:games_won_full) %>"><%= label_name(:games_won) %></th>
-				<th title="<%= label_name(:games_tied_full) %>"><%= label_name(:games_tied) %></th>
-				<th title="<%= label_name(:games_lost_full) %>"><%= label_name(:games_lost) %></th>
-				
-				<%  if @group.use_goals?  %>
-				<th title="<%= label_name(:goals_scored_full) %>"><%= label_name(:goals_scored) %></th>
-				<th title="<%= label_name(:goals_for_full, the_value.to_s) %>"><%= label_name(:goals_for, the_value.to_s) %></th>
-				<th title="<%= label_name(:goals_against_full, the_value.to_s) %>"><%= label_name(:goals_against, the_value.to_s) %></th>
-				<th title="<%= label_name(:goal_difference_full, the_value.to_s) %>"><%= label_name(:goal_difference, the_value.to_s) %></th>
-				<% end %>
-				
-				<th title="<%= label_name(:coeficient_full) %>"><%= label_name(:coeficient) %></th>
-				<th title="<%= label_name(:games_played_full) %>"><%= label_name(:games_played) %></th>
-				<th title="<%= label_name(:games_assigned_full) %>"><%= label_name(:games_assigned) %></th>
-				<!-- <th title="<%#= label_name(:previous_ranking_full) %>"><%#= label_name(:previous_ranking) %></th> -->
-				<th title="<%= label_name(:coeficient_full) %>"><%= label_name(:coeficient_points) %></th>
-				<th title="<%= label_name(:participation_full) %>"><%= label_name(:participation) %></th>
-				<!-- <th class="last">&nbsp;</th> -->
-			</tr>
-
+			<% if @group.is_futbol? %>
+			<%= render :partial => 'scorecard_futbol_label' %>
 			<%= render :partial => 'scorecard', :collection => @scorecards, 
-							:locals => {:group => @group, :games_played => @games_played, :less_games => @less_games} %>        
+							:locals => {:group => @group, :games_played => @games_played, :less_games => @less_games} %>
+			<% end %>
+			
+			<%  if @group.is_basket?  %>
+			<% @scorecard_baskets = @scorecards %>
+			<%= render :partial => 'scorecard_basket_label' %>
+			<%= render :partial => 'scorecard_basket', :collection => @scorecard_baskets, 
+							:locals => {:group => @group, :games_played => @games_played, :less_games => @less_games} %>       
+			<% end %> 
+			
+			<% unless @group.is_futbol? or @group.is_basket? %>
+			<% @scorecard_others = @scorecards %>
+			<%= render :partial => 'scorecard_other_label' %>
+			<%= render :partial => 'scorecard_other', :collection => @scorecard_others, 
+							:locals => {:group => @group, :games_played => @games_played, :less_games => @less_games} %>       
+			<% end %>
+			
 		</table>
-		<%#= render :partial => 'shared/action_bar', :locals => { :collection => @scorecards } %>
+		
+		<% if @group.is_futbol? %>
 		<p><em style="color: rgb(153, 153, 153);">
 			<%= "(*) #{label_name(:player_with)} #{@less_games} #{label_name(:player_with_less_games)}" %>
 			</em>
 		</p>
+		<% end %>
 		
 	</div>
 
@@ -67,7 +59,8 @@ end
 
 </div>
 
-<% content_for :sidebar, render(:partial => 'sidebar_show') -%>
+<% content_for :sidebar, render(:partial => 'sidebar_show') if @group.is_futbol? -%>
+<% content_for :sidebar, render(:partial => 'sidebar_show_basket') if @group.is_basket? -%>
 
 
 

@@ -51,6 +51,20 @@ input.textscore {
 	width: 100px; 
 }
 
+
+.text_tiny_score{ 
+	border: 1px solid rgb(205, 205, 205); 
+	padding: 0.4em; 
+	background: rgb(255, 255, 255) url('../../images/textfield-bg.gif') repeat-x scroll 0pt 1px; 
+}
+.text_tiny_score:focus { 
+	background: rgb(255, 254, 244) url('../../images/textfield-focus-bg.gif') repeat-x scroll 0pt 1px; 
+}
+input.text_tiny_score { 
+	width: 25px; 
+}
+
+
 .inplace_text_field{ 
 	border: 1px solid rgb(205, 205, 205); 
 	padding: 0.4em; 
@@ -103,6 +117,7 @@ text_area.textfield {
   width: 100%;
   border-collapse: collapse;  
   margin-bottom: 15px;
+
 }
 
 .table th {
@@ -125,7 +140,7 @@ text_area.textfield {
 }
 
 .table td {
-  padding: 10px;
+  padding: 20px;
 }
 
 .table td.last {
@@ -139,6 +154,10 @@ text_area.textfield {
 #contact td{
 	padding: 4px 10px;
 }
+
+/*#scorecard th{
+	padding: 4px 8px;
+}*/
 
 #scorecard td{
 	padding: 4px 10px;

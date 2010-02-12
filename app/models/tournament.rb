@@ -112,7 +112,7 @@ class Tournament < ActiveRecord::Base
       self.rounds.count > 0
     end
 
-    def use_goals?
+    def is_futbol?
       # sports related to goals
       return [1, 2, 3, 4, 5].include?(self.sport_id)
     end
