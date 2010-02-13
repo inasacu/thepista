@@ -2,42 +2,58 @@
 
 	<%= render :partial => 'secondary_info' %>
 
-	<div class="content">   
+	<!-- <div class="content">   
 
-		<h2 class="title"><%= label_name(:about_us) %></h2>
+		<h2 class="title"><%= label_name(:what_is_haypista) %></h2>
 
 		<div class="inner">
 
-			<p>
-				<strong>
-					HayPista 
-				</strong>
-				fue fundada a finales de 2007 con la misión de hacer que sea fácil organizar tu equipo o encontrar donde jugar...
-			</p>
+			<ul>
+				<li>* HayPista es una herramienta web para ayudarte a organizar un group de amigos para practicar  a web de negocios, grupo y software de gestión de evento diseñado para los propietarios, administradores y organizadores.</li><br/>
+				<li>* HayPista ™ le ayuda a gestionar personas, los horarios, la comunicación, y los pagos.</li><br/>
+				<li>* HayPista le ahorrará tiempo, mientras que energizante a todos los que trabajamos, no importa qué tipo de negocio, el equipo o evento que usted está manejando. Siga lellendo para saber más o regístrate ahora.</li><br/>
+			</ul>
+
+			<ul type="square">
+				<li>* Bienvenido a <strong>HayPista</strong>, una red social para conectar a la gente a jugar al fútbol.</li><br/>
+				<li>* Si usted es un jugador que busca un pick-up del juego, utiliza nuestra búsqueda para encontrar los juegos en su área.</li><br/>
+				<li>* Si usted tiene un juego regular y está buscando jugadores, calendario de su juego con nosotros para que los jugadores puedan encontrar.</li><br/>
+				<li>* Publicar boletines para contratar a sus compañeros de equipo, encontrar socios, promover una liga, o aprender acerca de los deportes.</li><br/>
+				<li>* Administre sus equipos, eventos y ligas online, con equipo electrónico, las listas, personas que hagan reservaciones y más!</li>
+			</ul>
+
+			<br />				
+			<ul>
+				<li><strong>Explorar</strong>&nbsp; Recibir resultados en vivo, calendarios y noticias personalizadas.</li>
+			</ul>
+			<br />
+
+			<ul>
+				<li><strong>Conectar</strong>&nbsp;Comunicarte con amigos y otros aficionados al fútbol de todo el mundo</li>
+			</ul>
+			<br />
+
+			<ul>
+				<li><strong>Compartir</strong>&nbsp;Los blogs más recientes, últimas noticias, fotos, videos, las transferencias, los pronósticos y los debates.</li>
+			</ul>
+		</p>
 
 
-			<% if display %>
-			<p>
-				<strong>
-					HayPista&nbsp;
-				</strong>
-				was founded in late 2007 with the mission of making it easy for you 
-				to find a team to play with based on your individual interests. 
-				We are developing an algorithm to generate personalized recommendations 
-				to help you discover the best team available today.
-			</p>
-			<% end -%>
-			
-			<br/><br/><br/><br/>
-			<p>
-				<%= label_name(:question_or_comment) %>
-				<a href="mailto:support@HayPista.com">
-					<%= label_name(:drop_us_a_note) %>
-				</a>
-			</p>
+		<p>
+			<%= label_name(:question_or_comment) %>
+			<a href="mailto:support@HayPista.com">
+				<%= label_name(:drop_us_a_note) %>
+			</a>
+		</p>
 
-		</div>
-	</div>
+
+		<%#= render :partial => 'details' %>
+
+
+	</div> -->
+
+
+	<%= render :partial => 'details' %>
 </div>
 
 

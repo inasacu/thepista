@@ -323,7 +323,7 @@ es:
      game_not_played:  Partido No Jugado   
      game_tied: Empate   
      game_won: Victoria   
-     gameday_description: (Que dia de la semana en general jugais...)   
+     gameday_description: (¿Qué dia de la semana en general jugais?)   
      games_assigned: P.A.   
      games_assigned_full: Partidos Asignados   
      games_lost: P.P.   
@@ -1162,7 +1162,8 @@ es:
      Wednesday: Miercoles   
      welcome: Bienvenidos a HayPista   
      were_removed: han sido eliminados   
-     what_are_you_practicing: Que actividad estas practicando?   
+     what_is_haypista:  ¿Qué es HayPista?
+     what_are_you_practicing: ¿Qué actividad estas practicando?   
      
      whats_new: ¿Qué hay de nuevo en HayPista?   
      write_comment: Escribe un comentario...   
@@ -1364,7 +1365,7 @@ es:
      groups_new_option: Opciones de Nuevo Equipo
      groups_no:  Ningun Equipo para mostrar.
      groups_none:  Ningun Equipo.
-     groups_options_without: "Que opciones tienes ya que no tienes un equipo?"
+     groups_options_without: "¿Qué opciones tienes ya que no tienes un equipo?"
      groups_option:  Opciones de Equipo
      groups_search: Busqueda de Equipos
      groups_search_to_join: Puedes Buscar un equipo a quien unierte. 
@@ -1538,7 +1539,7 @@ es:
      rounds_new_option: Opciones de Nuevo Fase 
      rounds_no:  Ninguna Fase para mostrar.
      rounds_none:  Ninguna Fase.
-     rounds_options_without: "Que opciones tienes ya que no tienes una fase de torneo?"
+     rounds_options_without: "¿Qué opciones tienes ya que no tienes una fase de torneo?"
      rounds_option:  Opciones de Fase
      rounds_search: Busqueda de Fases
      rounds_search_to_join: Puedes Buscar una Fase al cual unierte. 
@@ -1563,7 +1564,7 @@ es:
      sport_id: Deporte    
      sports: Deportes 
      
-     sport_description: (Que tipo de deporte practica el equipo...)      
+     sport_description: (¿Qué tipo de deporte practica el equipo?)      
      sports_create: Nuevo Deporte
      sports_edit: Modificar Deporte
      sports_index:  Deportes
@@ -1596,7 +1597,7 @@ es:
      tournaments_new_option: Opciones de Nuevo Torneo
      tournaments_no:  Ningun Torneo para mostrar.
      tournaments_none:  Ningun Torneo.
-     tournaments_options_without: "Que opciones tienes ya que no tienes un torneo?"
+     tournaments_options_without: "¿Qué opciones tienes ya que no tienes un torneo?"
      tournaments_option:  Opciones de Torneo
      tournaments_search: Busqueda de Torneos
      tournaments_search_to_join: Puedes Buscar un Torneo al cual unierte. 

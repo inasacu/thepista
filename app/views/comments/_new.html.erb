@@ -1,10 +1,10 @@
 <% 
-	@comments = Comment.new 
+	@comment = Comment.new 
 	textfield ||= false
 %>
 <div class="inner">
 
-<% form_for :comments, :url => comments_path, :html => { :class => :form } do |f| -%>
+<% form_for :comment, :url => comments_path, :html => { :class => :form } do |f| -%>
 	<h5 class="title"><%= label %></h5>
 	<br />
 <% 
@@ -20,8 +20,8 @@
 <% 
 	end 
 %>
-	<%= hidden_field :blog, :id  %>
-	<%= hidden_field :forum, :id  %>
+	<%= hidden_field :blog, :id %>
+	<%= hidden_field :forum, :id %>
 <% end -%>
 
 	<div class="clear"></div>
