@@ -1,11 +1,17 @@
 <%
+	label = ""
+	is_same_user = false
+	
 	if @user
+		is_same_user = (@user == current_user)
 		label = label_with_name('the_wall', h(@user.name))
-		label = control_label('my_wall') if @user == current_user	
+		label = control_label('my_wall') if is_same_user	
 	end	
+	
 	if @group
 		label = label_with_name('the_wall', h(@group.name))
 	end	
+	
 	if @tournament
 		label = label_with_name('the_wall', h(@tournament.name))
 	end
@@ -22,7 +28,7 @@
 	
     <div class="inner">
 	
-	<%= render :partial => 'comments/new', :locals => { :label => label_name(:what_are_you_practicing), :textfield => true } if @user == current_user %>
+	<%= render :partial => 'comments/new', :locals => { :label => label_name(:what_are_you_practicing), :textfield => true } if is_same_user %>
 
       <table class="table">
 		<tr>             
@@ -35,7 +41,7 @@
 		<%= render :partial => 'comments/comments', :locals => { :comments => @comments } %>
       </table>
 
-	<%= render :partial => 'comments/new', :locals => { :label => label_name(:write_comment) } if @user != current_user %>
+	<%= render :partial => 'comments/new', :locals => { :label => label_name(:write_comment) } unless is_same_user %>
 					
     </div>
   </div>

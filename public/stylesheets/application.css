@@ -4,6 +4,81 @@ html {
 }
 
 
+
+/* about */
+#about {
+  width: 900px;
+  margin: 0px auto;  
+}
+
+#about .block {
+  margin-bottom: 20px;
+}
+
+#about .block h2 {
+  padding: 10px 15px;
+  margin: 0;  
+}
+
+#about .block .content {
+  padding: 10px 20px;
+}
+
+#about .block {
+  background: #F7F7F8;
+}
+
+#about .block h2 {
+/*  background: #0F7D00;*/
+  color: #0F7D00;
+}
+
+
+/* faq */
+#faq { 
+/*	margin: 80px auto 0pt; */
+	background: transparent url('') repeat-y scroll 0% 0%; 
+	clear: both; 
+	width: 780px; 
+	-moz-background-clip: border; 
+	-moz-background-origin: padding; 
+	-moz-background-inline-policy: continuous; 
+}
+#faq_content { 
+	padding: 40px 100px; 
+	background: transparent url('') no-repeat scroll center top; 
+	width: 580px; font-size: 12px; 
+	-moz-background-clip: border; 
+	-moz-background-origin: padding; 
+	-moz-background-inline-policy: continuous; 
+}
+#faq_content h3 { 
+	margin-top: 18px; 
+	padding-bottom: 6px; 
+	font-family: helvetica,arial,sans-serif; 
+	font-size: 24px; 
+	font-weight: bold; 
+	color: rgb(127, 191, 48); 
+	letter-spacing: -1px; 
+}
+#faq_content h4 { margin-top: 22px; font-size: 14px; font-weight: bold; color: rgb(0, 0, 0); line-height: 18px; }
+#faq_content p { line-height: 16px; }
+#faq_content li { 
+	background: transparent url('../images/bullet_yellow.gif') no-repeat scroll left 8px ! important; 
+	position: relative; 
+	line-height: 22px; 
+	padding-left: 16px; 
+	margin-left: 12px; 
+	-moz-background-clip: border ! important; 
+	-moz-background-origin: padding ! important; 
+	-moz-background-inline-policy: continuous ! important; 
+}
+#faq_content .mailing_list { margin: 10px 0pt 20px; display: none; text-align: center; }
+
+
+
+
+
 /* embeds the openid image in the text field */
 input#user_openid_identifier, input#user_session_openid_identifier {
   background: url(../../images/login-bg.gif) no-repeat;
