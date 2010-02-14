@@ -5,186 +5,50 @@
 	<div id="faq">
 		<div id="faq_content">
 			<h3>
-				HayPista P &amp; R
+				<%= label_name(:faq) %>
 			</h3>
 			<h4>
 				<%= label_name(:what_is_haypista) %>
 			</h4>
-			<p><strong>HayPista</strong> is a website for sport team management. We help people organize their private matches, find people to play with, keep records of scores, compete amongst each other and above all have fun. We cover several sports (football, tennis, padel, etc...) and are working currently in Spain with a base of 200 users but can be used globally.
-			Our users benefit from being able to manage their own informal teams, to find someone in their neighborhood to play with, to find a pitch nearby, to reduce of time in calls and emails to confirm assitance to matches, to avoid not playing due to miscommunication, to enjoy competing to each other and to have available information about their informal games any time anywhere.
-			</p>
-
 			<p>
-				HayPista es una forma única para organizar tus equipos de deporte.
-				Anybody who's coached or played on a recreational adult sports team or youth sports team knows how hard it can be to keep track of all the players, games, and team payments. 
-				HayPista toma el dolor de cabeza de los deportes de equipo por lo que es fácil de administrar su línea de deportes de equipo.
-			</p>
-			<p>
-				Lo mejor de todo, HayPista es fácil, intuitiva y basada en la web. No es necesario descargar, instalar o configurar nada. Todo lo que necesitas es un navegador web y una conexión a Internet.
+				<strong>HayPista</strong> es un portal que te ayuda a organizar partidos entre amigos, 
+				buscar un centro donde puedas jugar, 
+				encontrar a gente con los mismos intereses y 
+				sobretodo disfrutar el deporte.
 			</p>
 			<h4>
 				¿Cómo te puede ayudar HayPista?
 			</h4>
 			<p>
-				HayPista te ayuda a organizar tu equipo atraves de internet:
+				<strong>HayPista</strong> te ayuda a organizar tu equipo atraves de internet:
 			</p>
 			<ul>
 				<li>
-					<a href="features/schedule.php">
-						Te permite organizar equipos y eventos.
-					</a>
+					<%= link_to("Te permite organizar equipos y eventos.", schedules_url) %>
 				</li>
 				<li>
-					<a href="features/availability.php">
-						Puedes ver quien se ha convocado al evento, quien esta para ultima hora y quien sera ausente.
-					</a>
+					 <%= link_to("Puedes ver quien se ha convocado al evento, quien esta para ultima hora y quien sera ausente.", schedules_url) %>
 				</li>
 				<li>
-					<a href="features/payments.php">
-						Controlar los pagos y deudas del equipo
-					</a>
+					<%= link_to("Controlar los pagos y deudas del equipo", schedules_url) %>
 				</li>
 				<li>
-					<a href="features/messages.php">
-						Dejar mensajes en el muro del equipo o de tus companeros e incluso en el evento
-					</a>
+					<%= link_to("Dejar mensajes en el muro del equipo o de tus companeros e incluso en el evento", schedules_url) %>
 				</li>
 				<li>
-					<a href="features/messages.php">
-						Podras mandar mensajes a tu equipo
-					</a>
+					<%= link_to("Podras mandar mensajes a tu equipo", schedules_url) %>
 				</li>
 				<li>
-					<a href="features/statistics.php">
-						Controlar las estadisticas de tu equipo
-					</a>
+					<%= link_to("Controlar las estadisticas de tu equipo", schedules_url) %>
 				</li>
 				<li>
-					<a href="features/photos.php">
-						Ver y subir el logo de tu equipo o tu propia foto
-					</a>
+					<%= link_to("Ver y subir el logo de tu equipo o tu propia foto", schedules_url) %>
 				</li>
 				<li>
-					<a href="features/refreshments.php">
-						Ver los centros mas cercanos a donde tu juegas
-					</a>
+					<%= link_to("Ver los centros mas cercanos a donde tu juegas", schedules_url) %>
 				</li>
 			</ul>
-			<h4>
-				Para quien es HayPista?
-			</h4>
-			<p>
-				En primer lugar, HayPista es para la persona con exceso de trabajo que está a cargo de su equipo de deportes de recreo o deportivas de adultos jóvenes del equipo. (Ustedes saben quienes son.) Entrenadores, directivos, padres y cualquier otra persona que ha sido aprovechado para hacer un seguimiento de su equipo de deportes. HayPista da a esta persona su vida de nuevo.
-			</p>
-			<p>
-				Sobretodo, HayPista is para el equipo ya que permite coordinar, colllaborar y comunicar entre el equipo de manera que es facil y ahora tiempo.  En el fondo, HayPista pone de nuevo el disfrute de los deportes en el equipo.
-			</p>
-			<h4>
-				¿Puedo usar HayPista para otras actividades que no sean deportivas?
-			</h4>
-			<p>
-				Definitely! HayPista works great with any kind of group that wants to coordinate its activities. Check out our¡Definitivamente! HayPista funciona muy bien con cualquier tipo de grupo que quiere coordinar sus actividades. Echa un vistazo a nuestra
-				<a href="uses.php">
-					Usos de la página HayPista
-				</a>
-				Para obtener más información.
 
-			</p>
-			<h4>
-				¿Cuánto cuesta HayPista?
-			</h4>
-			<p>
-				HayPista comes in three flavors: Gratis, Basic and Premium —
-				<a href="pricing.php">
-					check out our pricing page
-				</a>
-				for more details.
-			</p>
-			<h4>
-				¿Tengo que pagar en fuera de Temporada?
-			</h4>
-			<p>
-				¡No! Simplemente cambia a tu equipo al
-				<a href="pricing.php">
-					Plan Gratuito
-				</a>
-				en fuera de Temporada. No pagas nada y sigues manteniendo el 100% de los datos de tu equipo guardados. Una vez empezada la nueva temporada simplemente cambias al play y estas listo para rodar.
-			</p>
-			<h4>
-				¿Cada jugador en el equipo tienen que pagar?
-			</h4>
-			<p>
-				No. Hay un cargo mensual fijo para todo el equipo (pagado por el "manager del equipo") sin tener encuenta la cantidad de jugadores en el equipo.
-			</p>
-			<h4>
-				¿Qué métodos de pago se aceptan? ¿Se puede pedir una factura?
-			</h4>
-			<p>
-				Actualmente aceptamos Visa, Visa Electron, Mastercard y PayPal.  Desafortunadamente, en estos momentos no podemos mandar facturas.
-			</p>
-			<h4>
-				¿Puedo pagar por 3 meses, 6-meses, o un año?
-			</h4>
-			<p>
-				Tenemos planes anuales (ver.
-				<a href="pricing.php">
-					precios
-				</a>
-				). Y ofrecemos un ahorro sustancial con el pago anual!
-			</p>
-			<h4>
-				¿Cuál es su política de reembolso?
-			</h4>
-			<p>
-				HayPista es un "pay-as-you-go servicio de modo que no ofrecemos reembolsos. Puedes cancelar el servicio en cualquier momento y usted no se le cobrará de nuevo, pero usted es responsable de todos los gastos ya efectuados.
-			</p>
-			<h4>
-				¿Se han HayPista anuncios de banner?
-			</h4>
-			<p>
-				Nuestro Plan Gratuito es apoyado por anuncios, pero nuestra
-				<a href="pricing.php">
-					premium plan
-				</a>
-				son libres de anuncios.
-			</p>
-			<!-- <h4>
-			Can I customize HayPista for my team?
-			</h4>
-			<p>
-			You bet. It's easy to
-			<a href="features/customization.php">
-			customize your sports team website
-			</a>
-			with your own logo and team colors.
-			</p> -->
-			<h4>
-				La información de nuestro equipo es privada?
-			</h4>
-			<p>
-				¡Por supuesto! Nos tomamos muy en serio la seguridad en línea. Y es por eso que todos los datos del equipo es 100% privada y protegida por contraseña - nadie puede tener acceso a la información de su equipo sin autorización expresa de usted. De forma predeterminada, los únicos que pueden acceder a su sitio de grupo son los actores concretos que has invitado en el equipo, y cada sesión con un nombre de usuario y claves.
-			</p>
-			<!--
-			< p >
-			If you so choose, you can also provide a public web link to friends and family so that they can access your team site. But you must specifically enable that level of "public access" on the Manager tab &ndash; it is turned off by default. We do this so that all team sites are 100% private unless specifically made public by their team owner.
-			< /p >
-			-->
-			<h4>
-				¿En qué idiomas está disponible en HayPista?
-			</h4>
-			<p>
-				En la actualidad, HayPista sólo en Español. Pero tenemos planes de traducirlo al ingles, alemán y francés, chino, japonés (probablemente en ese orden). 
-			</p>
-			<h4>
-				¿Puedo usar HayPista para ejecutar toda mi club o la liga?
-			</h4>
-			<p>
-				Sí y no. HayPista está diseñado para gestionar equipos. Así que haría uso de HayPista para cada equipo en su liga, pero no tenemos ninguna "características de la liga" todavía. Estamos actualmente desarrollando un "club de la liga y la versión" de HayPista que ofrecerá nuevas características diseñadas específicamente para los clubes y ligas. Para ser notificado de la evolución de nuestro club y producto de la liga,
-				<a href="javascript:;" onclick="document.getElementById('leaguenotify').style.display='block';">
-					añadir su nombre a la lista
-				</a>
-				.
-			</p>
 			<div id="leaguenotify" class="mailing_list">
 				<p>
 					<%= label_name(:question_or_comment) %>
@@ -193,36 +57,6 @@
 					</a>
 				</p>
 			</div>
-			<h4>
-				¿Cuáles son los requisitos del sistema para utilizar HayPista?
-			</h4>
-			<p>
-				Desde HayPista se encuentra alojado en nuestros servidores, no hay nada que instalar y no los requisitos del servidor de qué preocuparse. Ninguna queja, ningún muss. Todo lo que necesitas es un navegador web moderno * y una conexión a Internet.
-			</p>
-			<p class="smalltext">
-				(* Internet Explorer 7 o posterior en el PC, Firefox en Mac y PC, y Safari en Mac. HayPista no es compatible con Internet Explorer 6.x en el Mac o PC. Si usted tiene Internet Explorer 6, le recomendamos cambiar a
-				<a href="http://www.getfirefox.com/" target="_blank">
-					Firefox
-				</a>
-				.)
-			</p>
-			<h4>
-				Tengo una pregunta acerca de HayPista ...
-			</h4>
-			<p>
-				¿Tienes preguntas sobre HayPista? Simplemente,
-				<a href="mailto:support@haypista.com">
-					<%= label_name(:drop_us_a_note) %>
-				</a>
-				y nos pondremos en contacto con usted pronto.
-			</p>
-			<h4>
-				¿Quién está detrás HayPista?
-			</h4>
-			<p>
-				Si desea obtener más información acerca de cómo comenzó HayPista y nuestro enfoque para su desarrollo, consulta nuestros
-				<%= link_to label_name(:about_us), about_us_url %>.
-			</p>
 		</div>
 
 	</div>

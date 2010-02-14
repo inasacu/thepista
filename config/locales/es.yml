@@ -622,8 +622,8 @@ es:
      next_step: el próximo paso   
      nickname: Alias   
      no_account: "Con tu cuenta nueva OpenID, registrate en HayPista"   
-     no_account_yet: No tienes una cuenta todavia?   
-     no_openid_account_yet: No tienes una cuenta OpenID todavia? 
+     no_account_yet: ¿No tienes una cuenta todavia?   
+     no_openid_account_yet: ¿No tienes una cuenta atraves de terceras cuentas? 
      no_announcement: No tienes anuncios internos   
      no_change_group: Ningun Cambio de Equipo   
      no_convocado: No Convocado   
@@ -688,6 +688,7 @@ es:
      or: o   
      or_use: ...o utiliza   
      organize:  Organizar
+     our_philosophy:  Nuestra Filosofía
      overview: descripción general   
      page_does_not_exist: La pagina que querias no exite.  
      
@@ -1237,7 +1238,8 @@ es:
      # translations for views
      comments_on_your_blog:  ha dejado comentarios en tu muro
 
-     about_us:  ¿Quiénes somos?
+     about:  Acerca de
+     abou:  Acerca de
      terms_of_use: Condiciones de uso
      privacy_policy: Privacidad
      # faq: Preguntas Frecuentes

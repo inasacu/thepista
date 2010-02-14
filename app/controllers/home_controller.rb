@@ -1,5 +1,5 @@
 class HomeController < ApplicationController  
-  before_filter :require_user, :except => [:index, :about, :help, :welcome, :pricing, :about_us, :terms_of_use, :privacy_policy, :faq]
+  before_filter :require_user, :except => [:index, :about, :help, :welcome, :pricing, :about, :terms_of_use, :privacy_policy, :faq]
   
   before_filter :get_user_mates, :get_tag
 
@@ -31,7 +31,7 @@ class HomeController < ApplicationController
     @upcoming_classifieds ||= Classified.upcoming_classifieds(session[:classified_hide_time]) if development? 
   end
 
-  def about_us
+  def about
   end
 
   def terms_of_use

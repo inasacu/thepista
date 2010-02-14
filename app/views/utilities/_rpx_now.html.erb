@@ -1,4 +1,6 @@
 <% 
+the_controller_action = "#{get_the_controller}_#{get_the_action}".gsub(' ','_') 
+
 if SHOW_RPX_NOW
 %>
 
@@ -13,9 +15,10 @@ if SHOW_RPX_NOW
 </div>
 <br />
 <div class="group navform">
-	<%= link_to(label_name(:no_openid_account_yet), NEW_OPENID_URL) %>
+	<%= link_to(label_name(:no_openid_account_yet), NEW_OPENID_URL) if the_controller_action == 'user_signup' %>
 </div>
 
 <% 
 end 
 %>
+ 
