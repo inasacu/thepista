@@ -17,10 +17,10 @@ task :theschedule_tags => :environment do |t|
   # end
 
   #remove period from user name
-  User.find(:all, :conditions => "name like '%.%'").each do |user|
-    user.name = user.name.gsub('.', '')
-    user.save!
-  end
+  # User.find(:all, :conditions => "name like '%.%'").each do |user|
+  #   user.name = user.name.gsub('.', '')
+  #   user.save!
+  # end
   
   # creating tags for current schedules
   @schedules_for_tagging = Schedule.find(:all, :conditions => "group_id != 1", :order => "id")
