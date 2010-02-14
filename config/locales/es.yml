@@ -52,6 +52,7 @@ es:
      birth_at:  Fecha de Nacimiento
      birth_description: (Escribe fecha de nacimiento...Solo se utiliza para calcular la edad media del equipo...) 
      
+     blog_haypista: Blog
      blog_comment_notification: Recibir Notas en tu Muro
      blogs_my_wall:  Mi Muro
      blogs_option:  Opciones de Muro
@@ -1239,7 +1240,8 @@ es:
      about_us:  ¿Quiénes somos?
      terms_of_use: Condiciones de uso
      privacy_policy: Privacidad
-     faq: Preguntas Frecuentes
+     # faq: Preguntas Frecuentes
+     faq:  FAQ
      follow_twitter:  Siguenos en Twitter
 
      classified:  Anuncio

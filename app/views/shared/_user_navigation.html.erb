@@ -8,9 +8,14 @@
 		<% end %>
 	
 		<li><%= user_link current_user %></li>
-		<li><%#= link_to label_name(:documentation), '/' %></li>
+		<!-- <li><%#= link_to label_name(:documentation), '/' %></li> -->
 		<li><%= link_to label_name(:logout), logout_path %></li>			
 	<% else %>
+		<li><%= link_to label_name(:home), root_url %></li>
+		<!-- <li><%#= link_to label_name(:pricing), root_url %></li> -->
+		<li><%= link_to label_name(:explore), root_url %></li>		
+		<li><%= link_to label_name(:help), root_url %></li>
+		<!-- <li><%#= link_to label_name(:blog_haypista), root_url %></li> -->
 		<li><%= link_to label_name(:signup), signup_path %></li>
 		<li><%= link_to label_name(:login), login_path, :class => "logout" %></li>
   <% end -%>
