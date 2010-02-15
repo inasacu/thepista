@@ -8,7 +8,7 @@ authlogic-oid
 be9-acl9 --source http://gems.github.com
 geokit
 contacts
-friendly_id
+friendly_id --version 2.2.4
 sitemap_generator
 edgarjs-ajaxful_rating --source http://gems.github.com
 jackdempsey-acts_as_commentable --source http://gems.github.com

@@ -33,7 +33,7 @@ Rails::Initializer.run do |config|
   config.gem "be9-acl9", :source => "http://gems.github.com", :lib => "acl9"
   config.gem "geokit"
   config.gem "contacts"  
-  config.gem "friendly_id"
+  config.gem "friendly_id", :version => "= 2.2.4"  
   config.gem 'sitemap_generator', :lib => false, :source => 'http://gemcutter.org'
   config.gem "edgarjs-ajaxful_rating", :lib => "ajaxful_rating", :source => "http://gems.github.com"
   config.gem 'jackdempsey-acts_as_commentable', :lib => 'acts_as_commentable', :source => "http://gems.github.com"
