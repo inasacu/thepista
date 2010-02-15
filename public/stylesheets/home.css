@@ -1,30 +1,12 @@
-/* ::::: http://assets0.github.com/stylesheets/bundle_common.css?7371c81fbc6b010a32fb11b42a0fc322c3c57863 ::::: */
 
-/** { margin: 0pt; padding: 0pt; }*/
-/*html, body { height: 100%; color: black; }*/
-body { 
-	background-color: white; 
-/*	font-family: helvetica,arial,freesans,clean,sans-serif; */
-/*	font-style: normal; */
-/*	font-variant: normal; */
-/*	font-weight: normal; */
-/*	font-size: 13.34px; */
-/*	line-height: normal; */
-/*	font-size-adjust: none; */
-/*	font-stretch: normal; */
-/*	-x-system-font: none; */
-/*	text-align: center; */
-	}
+body { background-color: white; }
 	
-
 #home .announce { 
 	min-width: 75em; 
 	margin-top: -1em; 
-/*	background-color: rgb(251, 251, 251); */
 }
 #home .announce h1 { 
 	padding: 0.75em 0pt; 
-/*	font-family: "HelveticaNeue-Light",Helvetica,Arial,FreeSans,sans-serif; */
 		font-size: 215%; 
 	text-align: center; 
 	font-weight: normal; 
@@ -41,14 +23,6 @@ body {
 #home .featured .blurb p { font-size: 110%; }
 #home .featured .blurb span { color: black; font-size: 105%; }
 
-#home .popular { margin-top: 0.5em; margin-bottom: 1em; padding-top: 1em; }
-#home .popular h3 { font-size: 105%; color: rgb(170, 170, 170); }
-#home .popular img { border: 1px solid rgb(208, 208, 208); padding: 1px; background-color: white; margin-right: 0.1em; position: relative; top: 0.25em; }
-#home .popular a { color: black; }
-#home .popular ul { list-style-type: none; }
-#home .popular ul li { font-size: 125%; color: rgb(136, 136, 136); }
-#home .popular ul li a.repo { font-weight: bold; }
-
 #home .headline { 
 	font-family: "HelveticaNeue-Light",Helvetica,Arial,FreeSans,sans-serif; 
 	margin-bottom: 4.2em; 
@@ -56,8 +30,18 @@ body {
 #home .headline .words { margin-top: 1.5em; text-align: center; }
 #home .headline .tour { margin-top: 3em; text-align: center; }
 #home .headline h1, #home .headline h2 { text-align: center; font-weight: normal; }
-#home .headline h1 { font-size: 240%; color: rgb(19, 56, 85); }
-#home .headline h2 { font-size: 150%; color: rgb(19, 56, 85); }
+
+#home .headline h1 { 
+	font-size: 200%; 
+	color: rgb(19, 56, 85); 
+}
+
+#home .headline h2 { 
+	font-size: 150%; 
+	color: rgb(19, 56, 85);
+}
+
+
 #home .features { border-top: 5px solid rgb(221, 221, 221); padding: 1em 2em 3em; overflow: hidden; background-color: rgb(237, 242, 246); }
 #home .features h3 { font-size: 150%; margin-top: 1em; }
 #home .features p { font-size: 120%; color: rgb(68, 68, 68); padding-bottom: 1em; }
@@ -70,13 +54,3 @@ body {
 #home .screens .screenshot { margin: 0pt 1em 2em 0pt; float: left; text-align: center; width: 275px; }
 #home .screens .screenshot img { margin-bottom: 0.1em; }
 
-#home .learn { padding: 2em 0pt 2.5em; overflow: hidden; background-color: rgb(237, 242, 246); }
-#home .learn .site { margin: 0pt auto; text-align: center; width: 68em; }
-#home .learn .book { border: 4px solid rgb(238, 238, 238); margin: 0pt auto 2em; overflow: hidden; background-color: white; width: 88%; }
-#home .learn .book img { padding: 1em 1em 1em 1.5em; float: left; }
-#home .learn .book .info { float: left; width: 25em; text-align: left; }
-#home .learn .book .other { float: right; width: 18em; text-align: left; }
-#home .learn .book div h2 { margin: 1.5em 0pt 0.25em; font-family: "HelveticaNeue-Light",Helvetica,Arial,FreeSans,sans-serif; font-weight: normal; font-size: 160%; color: rgb(102, 102, 102); }
-#home .learn .book div h2 a { text-decoration: underline; }
-#home .learn .book div p { color: rgb(102, 102, 102); }
-#home .learn h2 { margin-bottom: 1em; }
