@@ -33,7 +33,8 @@ es:
      archive: archiva  
      archive_list_schedules:  Temporada Anterior
      are_you_sure:  ¿Estas Seguro? 
-     at: a las   
+     at: a las 
+       
      attack:  Delantera
      attend_schedule: Asiste al Evento   
      aunque_estamos: Aunque estamos en fase de pruebas nos gustaria que nos dieses   
@@ -449,7 +450,8 @@ es:
      have_an_account: Si tienes una cuenta   
   
      have_changed_language: Has cambiado el idioma
-     help: Ayuda   
+     help: Ayuda 
+     help_amateur:  "Una ayuda a los aficionados..."  
      hi_email_header: Hola   
      High: Alto   
      home: Inicio   

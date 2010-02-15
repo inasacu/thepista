@@ -1,6 +1,7 @@
 require 'ym4r_gm'
 
 class MarkersController < ApplicationController
+before_filter :require_user
   
   include GeoKit::Geocoders
   

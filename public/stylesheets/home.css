@@ -10,7 +10,6 @@ body { background-color: white; }
 		font-size: 215%; 
 	text-align: center; 
 	font-weight: normal; 
-/*	color: rgb(19, 56, 85);*/
 }
 
 #home .featured { border: 2px solid rgb(242, 242, 242); padding: 0.4em 0.5em; margin-top: 1.5em; background-color: white; position: relative; margin-right: 0.3em; }
@@ -48,7 +47,22 @@ body { background-color: white; }
 #home .features .left { margin-left: 7em; float: left; width: 25em; }
 #home .features .right { margin-right: 7em; float: right; width: 25em; }
 
-#home .screens { border-top: 5px solid rgb(221, 221, 221); border-bottom: 5px solid rgb(221, 221, 221); padding: 2em 0pt 2.5em; overflow: hidden; }
+#home .screens { 
+	border-top: 5px solid rgb(221, 221, 221); 
+	border-bottom: 5px solid rgb(221, 221, 221); 
+	padding: 2em 0pt 2.5em; 
+	overflow: hidden; 
+	font-family: helvetica,arial,freesans,clean,sans-serif; 
+	font-style: normal; 
+	font-variant: normal; 
+	font-weight: normal; font-size: 13.34px; 
+	line-height: normal; 
+	font-size-adjust: none; 
+	font-stretch: normal; 
+	-x-system-font: none; 
+	text-align: center; 
+}
+
 #home .screens .site { margin: 0pt auto; text-align: center; width: 68em; list-style-type: none; }
 #home .screens h2 { margin-bottom: 0.5em; }
 #home .screens .screenshot { margin: 0pt 1em 2em 0pt; float: left; text-align: center; width: 275px; }
