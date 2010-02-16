@@ -41,7 +41,7 @@ Rails::Initializer.run do |config|
   config.gem 'hoptoad_notifier'
   config.gem 'rpx_now'
   config.gem "nokogiri"
-  config.gem 'rubaidh-google_analytics', :lib => 'rubaidh/google_analytics', :source => 'http://gems.github.com' 
+  # config.gem 'rubaidh-google_analytics', :lib => 'rubaidh/google_analytics', :source => 'http://gems.github.com' 
   
     
   # Only load the plugins named here, in the order given (default is alphabetical).
