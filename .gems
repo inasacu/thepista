@@ -16,4 +16,4 @@ acts-as-taggable-on
 hoptoad_notifier
 rpx_now
 nokogiri
-rubaidh-google_analytics
+rubaidh-google_analytics-1.1.4 --source http://gems.github.com
