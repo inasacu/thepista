@@ -499,7 +499,7 @@ en:
      modified_phone: Modificada la opción de ocultar el telefono de   
      modified_profile: Modificada la opción de ocultar tu perfil de   
      modified_reliable: Modificada la fiabilidad del jugardor para atender   
-     modo: HayPista te quiere ayudar a organizar tu equipo o encontrar donde jugar...   
+     modo: "<strong>HayPista</strong> te quiere ayudar a organizar tu equipo o encontrar donde jugar..."  
      Monday: Lunes   
      
      must_be_logged_in:  Tienes que estar registrado para acceder a esta página

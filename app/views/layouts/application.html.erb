@@ -8,17 +8,16 @@
     <meta name="keywords" content="pista, partido, futbol, soccer, football, deportes, padel, tennis, golf, gameday">
     <meta name="description" content="HayPista te quiere ayudar a organizar tu equipo o encontrar donde jugar...">
     <meta name="DC.title" content="HayPista">
-    <link rel="home" href="http://www.haypista.com">
+	
+	<meta name="google-site-verification" content="mdV1uGitdMPX6iGGIO73nCD3fydsa8UftGGNActaUDA" />
+	<meta name="google-site-verification" content="qyTyrJH8o08Ur15mr5hUYjVNyWcbfQatF3yar3Ry2ws" />
+    
+	<link rel="home" href="http://www.haypista.com">
     <link rel="shortcut icon" type="image/ico" href="/favicon.ico">
     
     <title><%= app_name %><%= " | #{current_user.name}" if current_user %></title>
 
 	<%= stylesheet_link_tag 'reset', 'web_app_theme', 'haypista' %>
-
-	<%#= stylesheet_link_tag 'web_app_theme', 'themes/djime-cerulean/style' %>
-	<%#= stylesheet_link_tag 'web_app_theme', 'themes/bec-green/style' %>
-	<%#= stylesheet_link_tag 'web_app_theme', 'themes/warehouse/style' %>
-	<%#= stylesheet_link_tag 'web_app_theme', 'themes/drastic-dark/style' %>
 	
 	<%= stylesheet_link_tag 'application' %>
 	<%= stylesheet_link_tag get_the_action if is_action('show') %>

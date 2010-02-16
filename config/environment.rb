@@ -41,6 +41,8 @@ Rails::Initializer.run do |config|
   config.gem 'hoptoad_notifier'
   config.gem 'rpx_now'
   config.gem "nokogiri"
+  config.gem 'rubaidh-google_analytics', :lib => 'rubaidh/google_analytics', :source => 'http://gems.github.com' 
+  
     
   # Only load the plugins named here, in the order given (default is alphabetical).
   # :all can be used as a placeholder for all plugins not explicitly named
@@ -94,6 +96,9 @@ ActionView::Base.field_error_proc = Proc.new do |html_tag, instance|
     html_tag
   end
 end
+
+# google analytics
+Rubaidh::GoogleAnalytics.tracker_id = 'UA-3271268-1'
 
 # Load custom config file for current environment
 raw_config = File.read(RAILS_ROOT + "/config/config.yml")
