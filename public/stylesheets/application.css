@@ -215,7 +215,7 @@ text_area.textfield {
 }
 
 .table td {
-  padding: 20px;
+  padding: 15px;
 }
 
 .table td.last {
@@ -353,4 +353,14 @@ div#footer ol li { margin: 0pt 1em; position: relative; float: left; }
 	position: relative; 
 	left: -19px; 
 	top: -9px; 
+}
+
+
+/*#sidebar .block .sidebar-block, #sidebar .notice {
+  padding:10px;
+}*/
+
+
+#sidebar .table td {
+  padding: 5px;
 }

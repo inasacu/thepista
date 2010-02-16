@@ -3,8 +3,8 @@
 	<h3><%= control_label('option') %></h3>
 
 	<ul class="navigation">
-		<li><%= link_to(control_label('create') , new_invitation_url) %></li>
-		<li><%= link_to(control_label('import') , {:controller => 'invitations', :action => 'invite'}) %></li>
+		<li><%= link_to(label_name(:invitations_create) , new_invitation_url) %></li>
+		<li><%= link_to(label_name(:invitations_import) , {:controller => 'invitations', :action => 'invite'}) %></li>
 	</ul>
 
 </div>

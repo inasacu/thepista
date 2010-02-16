@@ -1278,11 +1278,11 @@ es:
      invitations_contacts:  Invitar a los contactos de tu libreta de direcciones de correo electrónico.
      invitations_email: "Email (Hotmail, Gmail, Yahoo, etc...)"
      invitations_index:  Invitaciones Mandadas
-     invitations_import:  Invitar a tus contactos
+     invitations_import:  Invita a tus contactos
      invitations_for_your_friends:  Invita a tus amigos
      invitations_no:  Ninguna Invitación para mostrar
      invitations_option:  Opciones de Invitación
-     invitations_create:  Nueva Invitación
+     invitations_create:  Invita a tus Amigos
      invitations_create_group: Nueva Invitación al equipo
      invitations_create_schedule: Nueva Invitación al evento
      invitations_create_tournament: Nueva Invitación al Tourneo
