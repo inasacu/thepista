@@ -98,7 +98,10 @@ ActionView::Base.field_error_proc = Proc.new do |html_tag, instance|
 end
 
 # google analytics
+# Rubaidh::GoogleAnalytics.tracker_id = 'UA-3271268-2' 
 Rubaidh::GoogleAnalytics.tracker_id = 'UA-3271268-1'
+
+
 
 # Load custom config file for current environment
 raw_config = File.read(RAILS_ROOT + "/config/config.yml")
