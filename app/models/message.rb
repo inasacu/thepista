@@ -9,11 +9,9 @@ class Message < ActiveRecord::Base
   belongs_to :conversation
   belongs_to :item,           :polymorphic => true
 
-
   validates_presence_of   :subject, :body
-  # validate_presence_of :body,  @message.body.gsub!(/\r?\n/, "<br>")
 
-  before_create   :assign_conversation, :format_body
+  before_create   :assign_conversation, :format_body, :set_mark_as_read
 
   after_create    :update_recipient_last_contacted_at,
   :save_recipient, :set_replied_to, 
@@ -132,6 +130,10 @@ class Message < ActiveRecord::Base
   # in which case we create a new conversation.
   def assign_conversation
     self.conversation = parent.nil? ? Conversation.create : parent.conversation
+  end
+  
+  def set_mark_as_read
+    self.recipient_read_at = Time.zone.now if recipient.message_notification?  
   end
 
   # Mark the parent message as replied to if the current message is a reply.
