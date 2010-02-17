@@ -1283,9 +1283,9 @@ es:
      invitations_no:  Ninguna Invitación para mostrar
      invitations_option:  Opciones de Invitación
      invitations_create:  Invita a tus Amigos
-     invitations_create_group: Nueva Invitación al equipo
-     invitations_create_schedule: Nueva Invitación al evento
-     invitations_create_tournament: Nueva Invitación al Tourneo
+     invitations_create_group: Invita a tus amigos a este equipo
+     invitations_create_schedule: Invita a tus amigos a este evento
+     invitations_create_tournament: Invita a tus amigos a este Tourneo
      invitations_create_meet: Nueva Invitación al Tourneo
      invitations_sent:  Invitaciones Mandadas
 
