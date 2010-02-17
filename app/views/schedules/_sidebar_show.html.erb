@@ -5,7 +5,17 @@
 <ul class="navigation">
 <%	
 	if current_user.is_member_of?(@group)  %> 
-		<li><%= link_to label_name(:send_message_to_group), new_message_path(:group_id => @group) %></li>		
+		<% case "#{get_the_controller}_#{get_the_action}".gsub(" ", "_") 
+		 	when "schedule_team_roster" %>
+		<li><%= link_to label_name(:send_message_to_group), new_message_path(:group_id => @group, :roster_id => @schedule) %></li>
+		<%  when "schedule_team_last_minute" %>
+		<li><%= link_to label_name(:send_message_to_group), new_message_path(:group_id => @group, :last_minute_id => @schedule) %></li>
+		<%  when "schedule_team_no_show" %>
+		<li><%= link_to label_name(:send_message_to_group), new_message_path(:group_id => @group, :no_show_id => @schedule) %></li>	
+		<%  else %>
+			<li><%= link_to label_name(:send_message_to_group), new_message_path(:group_id => @group) %></li>
+		<% end %>
+
 		<li><%= link_to(label_name(:invitations_create_schedule) , new_invitation_url(:schedule_id => @schedule)) %></li>
 <% 
 	end 

@@ -65,6 +65,22 @@ class MessagesController < ApplicationController
       @group = Group.find(params[:group_id])
       @recipients = User.find_group_mates(@group)
       
+      if params[:roster_id]
+        users = []
+        Schedule.find(params[:roster_id]).the_roster.each {|match| users << match.user_id}
+        @recipients = User.find(:all, :conditions => ["id in (?)", users]) 
+        
+      elsif params[:last_minute_id]
+          users = []
+          Schedule.find(params[:last_minute_id]).the_last_minute.each {|match| users << match.user_id}
+          @recipients = User.find(:all, :conditions => ["id in (?)", users])
+          
+      elsif params[:no_show_id]
+          users = []
+          Schedule.find(params[:no_show_id]).the_no_show.each {|match| users << match.user_id}
+          @recipients = User.find(:all, :conditions => ["id in (?)", users])
+      end
+      
     elsif (params[:tour_id])
       @tournament = Tournament.find(params[:tour_id])
       @recipients = User.find_tour_mates(@tournament)
