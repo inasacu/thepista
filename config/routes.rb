@@ -73,11 +73,11 @@ ActionController::Routing::Routes.draw do |map|
   map.import_contact        'invitations/contact',                        :controller => 'invitations',     :action => 'contact'
   map.invite_contact        'invitations/invite_contact',                 :controller => 'invitations',     :action => 'invite_contact'
   
-  # map.about_us              'about_us',                                   :controller => 'home',            :action => 'about_us'
   map.about                 'about',                                      :controller => 'home',            :action => 'about'
   map.terms_of_use          'terms_of_use',                               :controller => 'home',            :action => 'terms_of_use'
   map.privacy_policy        'privacy_policy',                             :controller => 'home',            :action => 'privacy_policy'
   map.faq                   'faq',                                        :controller => 'home',            :action => 'faq'
+  map.openid                'openid',                                     :controller => 'home',            :action => 'openid'
   
   map.tour_list			        'tour_list',			                            :controller => 'tournaments',     :action => 'tour_list'
   map.tour_roster		        'tour_roster',		                            :controller => 'meets',           :action => 'tour_roster'

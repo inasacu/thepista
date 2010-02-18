@@ -13,21 +13,21 @@
 		
 		<%= render :partial => 'utilities/rpx_now', :locals => {:the_label => the_label} %>
 		<%= render :partial => 'utilities/login', :locals => {:f => f, :the_label => the_label} %>
-		<%= render :partial => 'utilities/openid', :locals => {:f => f, :the_label => the_label} %>
+		<%#= render :partial => 'utilities/openid', :locals => {:f => f, :the_label => the_label} %>
 
 		<% end -%>	
 	
-	<div class="group">
+	<!-- <div class="group">
 		<div class="left">
 			&nbsp;
 		</div>
 		<div class="right" align="center">
-	  		<%= link_to(label_name(:password_forgotten), :controller => 'password_resets', :action => 'new') %>
+	  		<%#= link_to(label_name(:password_forgotten), :controller => 'password_resets', :action => 'new') %>
 		</div>
 
 		<div class="clear">
 		</div>
-	</div>
+	</div> -->
 	
 	</div>
 </div>

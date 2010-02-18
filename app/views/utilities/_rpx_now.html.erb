@@ -3,22 +3,23 @@ the_controller_action = "#{get_the_controller}_#{get_the_action}".gsub(' ','_')
 
 if SHOW_RPX_NOW
 %>
+	<h1 align="center"><%= (the_controller_action == 'user_signup') ? link_to(I18n.t(:rpx_login), openid_url, :title => I18n.t(:what_is_this)) : I18n.t(:rpx_login) %></h1>
 
-<h3><%= I18n.t(:rpx_login) %></h3>
-
-<div class="group">		
+	<div class="group" align="center">		
+		<br />
+		<div class=""> 
+			<%= RPXNow.embed_code(APP_CONFIG['rpx_api']['realm'],rpx_token_sessions_url, :language => 'es') %><br />
+		</div> 		  
+		<div class="clear"></div> 		  
+	</div>
 	<br />
-  <div class=""> 
-	<%= RPXNow.embed_code(APP_CONFIG['rpx_api']['realm'],rpx_token_sessions_url, :language => 'es') %><br />
-  </div> 		  
-  <div class="clear"></div> 		  
-</div>
-<br />
-<div class="group navform">
-	<%= link_to(label_name(:no_openid_account_yet), NEW_OPENID_URL) if the_controller_action == 'user_signup' %>
-</div>
+	<br />
+	<br />
+	<br />
+	<!-- <div class="group navform">
+	<%#= link_to(label_name(:no_openid_account_yet), NEW_OPENID_URL) if the_controller_action == 'user_signup' %>
+	</div> -->
 
 <% 
 end 
 %>
- 

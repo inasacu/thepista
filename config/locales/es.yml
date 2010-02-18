@@ -1138,6 +1138,7 @@ es:
      use_at_discretion: Nueva opción para entrar.  Si tienes una cuenta entra con tu cuenta original.
      use_openid: O entra con OpenID 
      use_login:  O entra con tu cuenta de correo
+     user_haypista_signup: O Registrate con tu cuenta de correo.
      use_standard_login: utiliza el estándar de acceso de usuario / contraseña
      
      user: Jugador   
@@ -1165,10 +1166,13 @@ es:
      wall:  Muro
      Wednesday: Miercoles   
      welcome: Bienvenidos a HayPista   
-     were_removed: han sido eliminados   
+     were_removed: han sido eliminados  
+     what_is_important:  Lo Importante 
      what_is_haypista:  ¿Qué es HayPista?
-     what_are_you_practicing: ¿Qué actividad estas practicando?   
-     
+     what_is_this:   ¿Qué es esto? 
+     what_is_your_account: "¿Qué es acceso con tu cuenta?"
+     what_are_you_practicing: Qué actividad estas practicando?   
+     why_use_your_account:  ¿Por qué usar tu cuenta?
      whats_new: ¿Qué hay de nuevo en HayPista?   
      write_comment: Escribe un comentario...   
      writes: escribe   
@@ -1244,8 +1248,10 @@ es:
      abou:  Acerca de
      terms_of_use: Condiciones de uso
      privacy_policy: Privacidad
-     # faq: Preguntas Frecuentes
-     faq:  FAQ
+     faq: Preguntas Frecuentes
+     openid:  Acceso con tu cuenta
+     # faq:  FAQ
+     faq_acceso_con_tu_cuenta:  Preguntas sobre Acceso con tu Cuenta
      follow_twitter:  Siguenos en Twitter
 
      classified:  Anuncio
@@ -1510,7 +1516,7 @@ es:
      recaptcha_human_test:  Prueba Humana
      recaptcha_type_words:  Escriba las dos palabras separadas con un espacio.
      
-     rpx_login:  Acceso atraves de terceras cuentas
+     rpx_login: Conecta con tu cuenta en
      rpx_third_party_error:  "No se pueden recuperar los datos de terceras cuentas. Por favor, inténtalo de nuevo."
      rpx_association_email_msg: Hemos encontrado una cuenta existente que ya está utilizando la dirección de correo electrónico
      rpx_association_login_msg: Hemos encontrado una cuenta existente que ya está utilizando el nombre de usuario

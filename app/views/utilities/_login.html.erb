@@ -1,98 +1,87 @@
 <% 
+the_signup = is_action('signup')
+
 if SHOW_LOGIN 
-%>
+	%>
 
-<a href="#" onclick="toggle_visibility('abc');"><h3><%= I18n.t(:use_login) %></h3></a>
-<div id="abc" style='display:none;'>
+	<a href="#" onclick="toggle_visibility('abc');"><h5><%= the_signup ? I18n.t(:user_haypista_signup) : I18n.t(:use_login) %></h5></a>
+
+	<div id="abc" style='display:none;'>
+
+		<div class="group">		
+			<div class="left"> 		  
+				<%= f.label :email, field_label_name(:email) , :class => :label %>			
+			</div>		  
+			<div class="right"> 		  
+				<%= f.text_field :email, :class => 'text_field' %><br />		
+				<span class="description"><%= field_label_name(:email, 'description') %></span> 			
+			</div> 		  
+			<div class="clear"></div> 		  
+		</div>
+
+		<div class="group">		
+			<div class="left"> 		  
+				<%= f.label :password, field_label_name(:password) , :class => :label %>			
+			</div>		  
+			<div class="right"> 		  
+				<%= f.password_field :password, :class => 'text_field' %><br />			
+				<span class="description"><%= field_label_name(:password, 'description') %></span> 			
+			</div> 		  
+			<div class="clear"></div> 		  
+		</div>
+
+		<% if the_signup %>
+
+		<div class="group">		
+			<div class="left"> 		  
+				<%= f.label :password_confirmation, field_label_name(:password_confirmation) , :class => :label %>			
+			</div>		  
+			<div class="right"> 		  
+				<%= f.password_field :password_confirmation, :class => 'text_field' %><br />				
+				<span class="description"><%= field_label_name(:password_confirmation, 'description') %></span> 			
+			</div> 		  
+			<div class="clear"></div> 		  
+		</div>
 
 
+		<% elsif controller.action_name == 'rpx_new' or is_action('create') %>
 
-<div class="group">		
-  <div class="left"> 		  
-	<%= f.label :email, field_label_name(:email) , :class => :label %>			
-  </div>		  
-  <div class="right"> 		  
-	<%= f.text_field :email, :class => 'text_field' %><br />		
-	<span class="description"><%= field_label_name(:email, 'description') %></span> 			
-  </div> 		  
-  <div class="clear"></div> 		  
-</div>
+		<% else %>
 
-<div class="group">		
-  <div class="left"> 		  
-	<%= f.label :password, field_label_name(:password) , :class => :label %>			
-  </div>		  
-  <div class="right"> 		  
-	<%= f.password_field :password, :class => 'text_field' %><br />			
-	<span class="description"><%= field_label_name(:password, 'description') %></span> 			
-  </div> 		  
-  <div class="clear"></div> 		  
-</div>
+		<div class="group">
+			<div class="left">
+				&nbsp;
+			</div>
+			<div class="right">
+				<%= f.check_box :remember_me %>&nbsp;&nbsp;<%= f.label label_name(:remember_me) %><br />
+			</div>
 
-<% if is_action('signup') %>
+			<div class="clear">
+			</div>
+		</div>
 
-<div class="group">		
-  <div class="left"> 		  
-	<%= f.label :password_confirmation, field_label_name(:password_confirmation) , :class => :label %>			
-  </div>		  
-  <div class="right"> 		  
-	<%= f.password_field :password_confirmation, :class => 'text_field' %><br />				
-	<span class="description"><%= field_label_name(:password_confirmation, 'description') %></span> 			
-  </div> 		  
-  <div class="clear"></div> 		  
-</div>
+		<div class="group">
+			<div class="left">
+				&nbsp;
+			</div>
+			<div class="right">
+				<%= link_to(label_name(:password_forgotten), :controller => 'password_resets', :action => 'new') if ("#{get_the_controller}_#{ get_the_action}" != "user_signup") %>
+			</div>
 
+			<div class="clear">
+			</div>
+		</div>
 
-<!-- <div class="group">
-	<div class="left">
-		&nbsp;
-	</div>
-	<div class="right">
-  		<%#= link_to(label_name(:password_forgotten), :controller => 'password_resets', :action => 'new') %>
-	</div>
+		<% end %>
 
-	<div class="clear">
-	</div>
-</div> -->
+		<%= render :partial => '/utilities/recaptcha' %>
 
-<% elsif controller.action_name == 'rpx_new' or is_action('create') %>
+		<div class="group navform"> 
+			<%= submit_tag the_label, :class => "button" %>	 
+		</div>
 
-<% else %>
-
-<div class="group">
-	<div class="left">
-		&nbsp;
-	</div>
-	<div class="right">
-  		<%= f.check_box :remember_me %>&nbsp;&nbsp;<%= f.label label_name(:remember_me) %><br />
-	</div>
-	
-	<div class="clear">
-	</div>
-</div>
-
-<div class="group">
-	<div class="left">
-		&nbsp;
-	</div>
-	<div class="right">
-  		<%= link_to(label_name(:password_forgotten), :controller => 'password_resets', :action => 'new') if ("#{get_the_controller}_#{ get_the_action}" != "user_signup") %>
-	</div>
-
-	<div class="clear">
-	</div>
-</div>
-
-<% end %>
-
-<%= render :partial => '/utilities/recaptcha' %>
-
-<div class="group navform"> 
-	<%= submit_tag the_label, :class => "button" %>	 
-</div>
-
-<% 
-end 
-%>
+		<% 
+	end 
+	%>
 
 </div>
