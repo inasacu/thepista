@@ -1284,15 +1284,15 @@ es:
      invitations_contacts:  Invitar a los contactos de tu libreta de direcciones de correo electrónico.
      invitations_email: "Email (Hotmail, Gmail, Yahoo, etc...)"
      invitations_index:  Invitaciones Mandadas
-     invitations_import:  Invita a tus Contactos
+     invitations_import:  Invita a tus contactos
      invitations_for_your_friends:  Invita a tus amigos
      invitations_no:  Ninguna Invitación para mostrar
      invitations_option:  Opciones de Invitación
-     invitations_create:  Invita a tus Amigos
+     invitations_create:  Invita a tus amigos
      invitations_create_group: Invita a tus amigos a este equipo
      invitations_create_schedule: Invita a tus amigos a este evento
      invitations_create_tournament: Invita a tus amigos a este Tourneo
-     invitations_create_meet: Nueva Invitación al Tourneo
+     invitations_create_meet: Nueva Invitación al tourneo
      invitations_sent:  Invitaciones Mandadas
 
      # ie_no_more

@@ -3,6 +3,8 @@ html {
           overflow-y: scroll;
 }
 
+a { cursor: pointer; color: rgb(59, 89, 152); outline-style: none; text-decoration: none; }
+a:hover { text-decoration: underline; }
 
 
 /* about */
@@ -355,12 +357,7 @@ div#footer ol li { margin: 0pt 1em; position: relative; float: left; }
 	top: -9px; 
 }
 
-
-/*#sidebar .block .sidebar-block, #sidebar .notice {
-  padding:10px;
-}*/
-
-
 #sidebar .table td {
   padding: 5px;
 }
+

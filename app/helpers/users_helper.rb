@@ -149,12 +149,20 @@ module UsersHelper
     link_to(image_tag(user.avatar, options={:style => "height: 30px; width: 30px;"}), user_path(user))
   end
 
+  def image_link_less_medium(user)
+    link_to(image_tag(user.avatar, options={:style => "height: 40px; width: 40px;"}), user_path(user))
+  end
+
   def image_link_medium(user)
     link_to(image_tag(user.avatar, options={:style => "height: 55px; width: 55px;"}), user_path(user))
   end
 
   def image_link_large(user)
     link_to(image_tag(user.avatar, options={:style => "height: 80px; width: 80px;"}), user_path(user)) 
+  end
+  
+  def image_link_class(user, the_class='')
+    link_to(image_tag(user.avatar, options={:class => the_class, :alt => user.name, :title => user.name}), user_path(user)) 
   end
 
   def user_list(objects)
@@ -163,6 +171,24 @@ module UsersHelper
       list_of_objects += "#{user_link object}, "      
     end
     return list_of_objects.chop.chop
+  end
+  
+  def user_link_limit(text, user = nil, html_options = nil)
+      if user.nil?
+        user = text
+        text = user.name
+      elsif user.is_a?(Hash)
+        html_options = user
+        user = text
+        text = user.name
+      end
+      
+      text = h(text)
+      text = "#{text.to_s.strip[0..12]}..." if text.to_s.length > 14
+      text = text.gsub(" ", "<wbr> ")
+      text = text.split.collect {|i| i.capitalize}.join(' ')
+      
+      link_to(text, user, html_options)
   end
 
   # Link to a user (default is by name).
@@ -175,9 +201,12 @@ module UsersHelper
       user = text
       text = user.name
     end
-    # We normally write link_to(..., user) for brevity, but that breaks
-    # activities_helper_spec due to an RSpec bug.
-    link_to(h(text), user, html_options)
+
+    text = h(text)
+    text = text.gsub(" ", "<wbr> ")
+    text = text.split.collect {|i| i.capitalize}.join(' ')
+    
+    link_to(text, user, html_options)
   end
 
   # Same as user_link except sets up HTML needed for the image on hover effect

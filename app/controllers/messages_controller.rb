@@ -67,18 +67,9 @@ class MessagesController < ApplicationController
       
       if params[:roster_id]
         users = []
-        Schedule.find(params[:roster_id]).the_roster.each {|match| users << match.user_id}
-        @recipients = User.find(:all, :conditions => ["id in (?)", users]) 
-        
-      elsif params[:last_minute_id]
-          users = []
-          Schedule.find(params[:last_minute_id]).the_last_minute.each {|match| users << match.user_id}
-          @recipients = User.find(:all, :conditions => ["id in (?)", users])
-          
-      elsif params[:no_show_id]
-          users = []
-          Schedule.find(params[:no_show_id]).the_no_show.each {|match| users << match.user_id}
-          @recipients = User.find(:all, :conditions => ["id in (?)", users])
+        @the_schedule = Schedule.find(params[:roster_id])
+        @the_schedule.the_roster.each {|match| users << match.user_id}
+        @recipients = User.find(:all, :conditions => ["id in (?)", users], :order => "name")
       end
       
     elsif (params[:tour_id])

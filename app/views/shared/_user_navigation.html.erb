@@ -8,7 +8,7 @@
 		<% end %>
 	
 		<li><%= user_link current_user %></li>
-		<!-- <li><%#= link_to label_name(:documentation), '/' %></li> -->
+		<li><%= link_to(label_name(:invitations_import) , {:controller => 'invitations', :action => 'invite'}) %></li>
 		<li><%= link_to label_name(:logout), logout_path %></li>			
 	<% else %>
 		<li><%= link_to label_name(:home), root_url %></li>

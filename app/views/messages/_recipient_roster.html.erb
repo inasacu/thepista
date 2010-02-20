@@ -1,31 +1,30 @@
-<% display = false %>
-
 <% if current_user.is_member_of?(@schedule.group) or current_user.is_member_of?(@schedule.group_visit) %>
 
-<% unless @schedule.convocados.empty? %>
+	<% unless @schedule.convocados.empty? %>
+	
+		<tr><label class="label"><%= t(:roster) %>:</label></tr>
+	
+		<%= render :partial => '/messages/recipient_roster_list', 
+				   :locals => {:recipients => @schedule.the_roster, :checked => checked } %>
+		<br/>
+	<% end %>
 
-<%= render :partial => '/messages/recipient_roster_list', 
-:locals => {:label => t(:roster), :schedule => @schedule, :recipients => @schedule.the_roster, :checked => checked } %>
-<% end %>
+	<% unless @schedule.last_minute.empty?  %>
+		
+		<tr><label class="label"><%= t(:last_minute) %>:</label></tr>
+		
+		<%= render :partial => '/messages/recipient_roster_list', 
+				   :locals => {:recipients => @schedule.the_last_minute, :checked => false } %>
+		<br/>
+	<% end %>
 
-<% unless @schedule.last_minute.empty?  %>
-
-<%= render :partial => '/messages/recipient_roster_list', 
-:locals => {:label => t(:last_minute), :schedule => @schedule, :recipients => @schedule.the_last_minute, :checked => checked } %>
-<% end %>
-
-<% if display %>
-<% unless @schedule.no_shows.empty?  %>
-
-<%= render :partial => '/messages/recipient_roster_list', 
-:locals => {:label => t(:no_shows), :schedule => @schedule, :recipients => @schedule.the_no_show, :checked => checked } %>
-<% end %> 
-
-<% unless @schedule.unavailable.empty?  %>
-
-<%= render :partial => '/messages/recipient_roster_list',  
-:locals => {:label => t(:unavailable), :schedule => @schedule, :recipients => @schedule.the_unavailable, :checked => checked } %>
-<% end %>
-<% end %>
+	<% unless @schedule.no_shows.empty?  %>
+	
+		<tr><label class="label"><%= t(:no_shows) %>:</label></tr>
+		
+		<%= render :partial => '/messages/recipient_roster_list', 
+				   :locals => {:recipients => @schedule.the_no_show, :checked => false } %>
+		<br/>
+	<% end %> 
 
 <% end %>

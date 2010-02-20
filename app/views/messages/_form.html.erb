@@ -41,7 +41,7 @@
 
 
 <div class="group">
-	<label for="user_username"><%= label_name(:users) unless @recipient %></label>	
+	<label class="label"><%= label_name(:users) unless @recipient %></label>	
 </div>
 
 <div class="group">
@@ -74,9 +74,13 @@
 	<% elsif @recipient %>
 	<%= hidden_field :recipient, :id %>
 	
+	<% elsif @the_schedule 
+		@schedule = @the_schedule
+	%>	 
+	<%= render :partial => '/messages/recipient_roster', :locals => {:schedule => @schedule, :checked => check } %>
+	
 	<% else %>
 	<%= render :partial => '/messages/recipient_list', :locals => {:recipients => @recipients, :checked => check } %>
-	
 	
 	<% end %>
 	
