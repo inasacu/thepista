@@ -39,7 +39,7 @@ Rails::Initializer.run do |config|
   config.gem 'jackdempsey-acts_as_commentable', :lib => 'acts_as_commentable', :source => "http://gems.github.com"
   config.gem "acts-as-taggable-on", :source => "http://gemcutter.org"
   config.gem 'hoptoad_notifier'
-  # config.gem 'rpx_now'
+  config.gem 'rpx_now'
   config.gem "nokogiri"
   # config.gem 'rubaidh-google_analytics', :lib => 'rubaidh/google_analytics', :source => 'http://gems.github.com' 
   
