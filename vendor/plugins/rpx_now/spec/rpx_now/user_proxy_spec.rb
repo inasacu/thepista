@@ -1,5 +1,4 @@
-require 'spec/spec_helper'
-require 'rpx_now/user_integration'
+require File.expand_path("../spec_helper", File.dirname(__FILE__))
 
 class User
   include RPXNow::UserIntegration
@@ -10,24 +9,23 @@ class User
 end
 
 describe RPXNow::UserProxy do
-  before { @user = User.new }
-
-  it "has a proxy" do
-    @user.rpx.class.should == RPXNow::UserProxy
+  before do
+    RPXNow.unmap('http://test.myopenid.com', 5)
   end
 
   it "has identifiers" do
-    RPXNow.should_receive(:mappings).with(@user.id).and_return(['identifiers'])
-    @user.rpx.identifiers.should == ['identifiers']
+    RPXNow.map('http://test.myopenid.com', 5)
+    User.new.rpx.identifiers.should == ['http://test.myopenid.com']
   end
 
   it "can map" do
-    RPXNow.should_receive(:map).with('identifier', @user.id)
-    @user.rpx.map('identifier')
+    User.new.rpx.map('http://test.myopenid.com')
+    User.new.rpx.identifiers.should == ['http://test.myopenid.com']
   end
 
   it "can unmap" do
-    RPXNow.should_receive(:unmap).with('identifier', @user.id)
-    @user.rpx.unmap('identifier')
+    RPXNow.map('http://test.myopenid.com', 5)
+    User.new.rpx.unmap('http://test.myopenid.com')
+    User.new.rpx.identifiers.should == []
   end
 end

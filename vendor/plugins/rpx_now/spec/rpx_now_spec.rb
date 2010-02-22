@@ -1,69 +1,18 @@
-require 'spec/spec_helper'
+require File.expand_path("spec_helper", File.dirname(__FILE__))
 
 describe RPXNow do
-  def fake_response(replace={})
-    body = {'stat' => 'ok'}.merge(replace)
-    mock({:code => "200", :body => body.to_json})
-  end
-
   describe :api_key= do
-    before do
-      RPXNow.api_key='XX'
-    end
-
-    it "is stored" do
-      RPXNow.api_key.should == 'XX'
-    end
-
     it "stores the api key, so i do not have to supply everytime" do
-      RPXNow::Api.should_receive(:request).
-        with(anything, hash_including(:apiKey => 'XX')).
-        and_return fake_response
+      RPXNow.api_key='XX'
+      RPXNow.expects(:post).with{|x,data|data[:apiKey]=='XX'}.returns mock(:code=>'200', :body=>%Q({"stat":"ok"}))
       RPXNow.mappings(1)
-    end
-
-    it "is not overwritten when overwriting for a single request" do
-      RPXNow::Api.should_receive(:request).
-        with(anything, hash_including(:apiKey => 'YY')).
-        and_return fake_response
-      RPXNow.mappings(1, :apiKey => 'YY')
-      RPXNow.api_key.should == 'XX'
     end
   end
   
   describe :api_version= do
-    it "is 2 by default" do
-      RPXNow.api_version.should == 2
-    end
-
-    it "is stored" do
-      RPXNow.api_version='XX'
-      RPXNow.api_version.should == 'XX'
-    end
-
-    it "used for every request" do
-      RPXNow.api_version='XX'
-      RPXNow::Api.should_receive(:request).
-        with('/api/vXX/mappings', anything).
-        and_return fake_response
-      RPXNow.mappings(1)
-    end
-
-    it "is not overwritten when overwriting for a single request" do
-      RPXNow.api_version='XX'
-      RPXNow::Api.should_receive(:request).
-        with('/api/vYY/mappings', anything).
-        and_return fake_response
-      RPXNow.mappings(1, :api_version => 'YY')
-      RPXNow.api_version.should == 'XX'
-    end
-
-    it "is not passed in data for request" do
-      RPXNow.api_version='XX'
-      RPXNow::Api.should_receive(:request).
-        with(anything, hash_not_including(:api_version => 'YY')).
-        and_return fake_response
-      RPXNow.mappings(1, :api_version => 'YY')
+    it "can be set to a api_version globally" do
+      RPXNow.api_version = 5
+      RPXNow.popup_code('x','y','z').should =~ %r(/openid/v5/signin)
     end
   end
 
@@ -76,10 +25,10 @@ describe RPXNow do
       RPXNow.embed_code('xxx','my_url').should =~ /token_url=my_url/
     end
     
-    it "defaults to no language" do
-      RPXNow.embed_code('xxx', 'my_url').should_not =~ /language_preference/
+    it "defaults to English" do
+      RPXNow.embed_code('xxx', 'my_url').should =~ /language_preference=en/
     end
-
+    
     it "has a changeable language" do
       RPXNow.embed_code('xxx', 'my_url', :language => 'es').should =~ /language_preference=es/
     end
@@ -105,48 +54,12 @@ describe RPXNow do
     it "defaults to obtrusive output" do
       RPXNow.popup_code('sign on', 'subdomain', 'http://fake.domain.com/').should =~ /script src=/
     end
-
-    it "does not change supplied options" do
-      options = {:xxx => 1}
-      RPXNow.popup_code('a','b','c', options)
-      options.should == {:xxx => 1}
-    end
-
-    describe 'obstrusive' do
-      it "does not encode token_url for popup" do
-        expected = %Q(RPXNOW.token_url = 'http://fake.domain.com/')
-        RPXNow.popup_code('sign on', 'subdomain', 'http://fake.domain.com/').should include(expected)
-      end
-      it "encodes token_url for unobtrusive fallback link" do
-        expected = %Q(<a class="rpxnow" href="https://subdomain.rpxnow.com/openid/v2/signin?token_url=http%3A%2F%2Ffake.domain.com%2F">sign on</a>)
-        RPXNow.popup_code('sign on', 'subdomain', 'http://fake.domain.com/').should include(expected)
-      end
+    
+    it "can build an unobtrusive widget with specific version" do
+      expected = %Q(<a class="rpxnow" href="https://subdomain.rpxnow.com/openid/v300/signin?token_url=http://fake.domain.com/">sign on</a>)
+      RPXNow.popup_code('sign on', 'subdomain', 'http://fake.domain.com/', { :unobtrusive => true, :api_version => 300 }).should == expected
     end
     
-    describe 'unobstrusive' do
-      it "can build an unobtrusive widget with encoded token_url" do
-        expected = %Q(<a class="rpxnow" href="https://subdomain.rpxnow.com/openid/v2/signin?token_url=http%3A%2F%2Ffake.domain.com%2F">sign on</a>)
-        actual = RPXNow.popup_code('sign on', 'subdomain', 'http://fake.domain.com/', :unobtrusive => true)
-        actual.should == expected
-      end
-
-      it "can change api version" do
-        RPXNow.popup_code('x', 'y', 'z', :unobtrusive => true, :api_version => 'XX').should include("openid/vXX/signin?")
-      end
-
-      it "can change language" do
-        RPXNow.popup_code('x', 'y', 'z', :unobtrusive => true, :language => 'XX').should include("language_preference=XX")
-      end
-
-      it "can add flags" do
-        RPXNow.popup_code('x', 'y', 'z', :unobtrusive => true, :flags => 'test').should include("flags=test")
-      end
-
-      it "can add default_provider" do
-        RPXNow.popup_code('x', 'y', 'z', :unobtrusive => true, :default_provider => 'test').should include("default_provider=test")
-      end
-    end
-
     it "allows to specify the version of the widget" do
       RPXNow.popup_code('x','y','z', :api_version => 300).should =~ %r(/openid/v300/signin)
     end
@@ -155,52 +68,25 @@ describe RPXNow do
       RPXNow.popup_code('x','y','z').should =~ %r(/openid/v2/signin)
     end
 
-    describe 'language' do
-      it "defaults to no language" do
-        RPXNow.popup_code('x','y','z').should_not =~ /RPXNOW.language_preference/
-      end
-
-      it "has a changeable language" do
-        RPXNow.popup_code('x','y','z', :language=>'de').should =~ /RPXNOW.language_preference = 'de'/
-      end
+    it "defaults to english" do
+      RPXNow.popup_code('x','y','z').should =~ /RPXNOW.language_preference = 'en'/
     end
-
-    describe 'flags' do
-      it "defaults to no language" do
-        RPXNow.popup_code('x','y','z').should_not =~ /RPXNOW.flags/
-      end
-
-      it "can have flags" do
-        RPXNow.popup_code('x','y','z', :flags=>'test').should =~ /RPXNOW.flags = 'test'/
-      end
-    end
-
-    describe 'default_provider' do
-      it "defaults to no provider" do
-        RPXNow.popup_code('x','y','z').should_not =~ /RPXNOW.default_provider/
-      end
-
-      it "can have default_provider" do
-        RPXNow.popup_code('x','y','z', :default_provider=>'test').should =~ /RPXNOW.default_provider = 'test'/
-      end
+    
+    it "has a changeable language" do
+      RPXNow.popup_code('x','y','z',:language=>'de').should =~ /RPXNOW.language_preference = 'de'/
     end
   end
 
   describe :user_data do
     before do
-      @response_body = {
-        "profile" => {
-          "verifiedEmail" => "grosser.michael@googlemail.com",
-          "displayName" => "Michael Grosser",
-          "preferredUsername" => "grosser.michael",
-          "identifier" => "https:\/\/www.google.com\/accounts\/o8\/id?id=AItOawmaOlyYezg_WfbgP_qjaUyHjmqZD9qNIVM",
-          "email" => "grosser.michael@gmail.com"
-        }
-      }
-      @response = fake_response(@response_body)
+      @response_body = %Q({"profile":{"verifiedEmail":"grosser.michael@googlemail.com","displayName":"Michael Grosser","preferredUsername":"grosser.michael","identifier":"https:\/\/www.google.com\/accounts\/o8\/id?id=AItOawmaOlyYezg_WfbgP_qjaUyHjmqZD9qNIVM","email":"grosser.michael@gmail.com"},"stat":"ok"})
       @fake_user_data = {'profile'=>{}}
     end
 
+    def fake_response
+      mock(:code=>"200",:body=>@response_body)
+    end
+    
     it "raises ApiError when used with an invalid token" do
       lambda{
         RPXNow.user_data('xxxx')
@@ -212,133 +98,181 @@ describe RPXNow do
     end
     
     it "parses JSON response to user data" do
-      expected = {
-        :name       => 'Michael Grosser',
-        :email      => 'grosser.michael@googlemail.com',
-        :identifier => 'https://www.google.com/accounts/o8/id?id=AItOawmaOlyYezg_WfbgP_qjaUyHjmqZD9qNIVM',
-        :username   => 'grosser.michael',
-      }
-      RPXNow::Api.should_receive(:request).and_return @response
-      RPXNow.user_data('').should == expected
+      RPXNow.expects(:post).returns fake_response
+      RPXNow.user_data('').should == {:name=>'Michael Grosser',:email=>'grosser.michael@googlemail.com',:identifier=>"https://www.google.com/accounts/o8/id?id=AItOawmaOlyYezg_WfbgP_qjaUyHjmqZD9qNIVM", :username => 'grosser.michael'}
     end
     
     it "adds a :id when primaryKey was returned" do
-      @response_body['profile']['primaryKey'] = "2"
-      response = fake_response(@response_body)
-      RPXNow::Api.should_receive(:request).and_return response
+      @response_body.sub!(%Q("verifiedEmail"), %Q("primaryKey":"2","verifiedEmail"))
+      RPXNow.expects(:post).returns fake_response
       RPXNow.user_data('')[:id].should == '2'
     end
 
     it "handles primaryKeys that are not numeric" do
-      @response_body['profile']['primaryKey'] = "dbalatero"
-      response = fake_response(@response_body)
-      RPXNow::Api.should_receive(:request).and_return response
+      @response_body.sub!(%Q("verifiedEmail"), %Q("primaryKey":"dbalatero","verifiedEmail"))
+      RPXNow.expects(:post).returns fake_response
       RPXNow.user_data('')[:id].should == 'dbalatero'
-    end
-
-    it "can fetch additional fields" do
-      @response_body['profile']['xxxy'] = "test"
-      response = fake_response(@response_body)
-      RPXNow::Api.should_receive(:request).and_return response
-      RPXNow.user_data('', :additional => [:xxxy])[:xxxy].should == 'test'
     end
     
     it "hands JSON response to supplied block" do
-      RPXNow::Api.should_receive(:request).and_return @response
+      RPXNow.expects(:post).returns mock(:code=>'200',:body=>%Q({"x":"1","stat":"ok"}))
       response = nil
       RPXNow.user_data(''){|data| response = data}
-      response.delete('stat') # dunno why it happens, but is not important...
-      response.should == @response_body
+      response.should == {"x" => "1", "stat" => "ok"}
     end
     
     it "returns what the supplied block returned" do
-      RPXNow::Api.should_receive(:request).and_return @response
+      RPXNow.expects(:post).returns mock(:code=>'200',:body=>%Q({"x":"1","stat":"ok"}))
       RPXNow.user_data(''){|data| "x"}.should == 'x'
     end
     
     it "can send additional parameters" do
-      RPXNow::Api.should_receive(:request).
-        with(anything, hash_including(:extended => 'true')).
-        and_return @response
+      RPXNow.expects(:post).with{|url,data|
+        data[:extended].should == 'true'
+      }.returns fake_response
       RPXNow.user_data('',:extended=>'true')
     end
 
-    # these 2 tests are kind of duplicates of the api_version/key tests,
-    # but i want to be extra-sure user_data works
-    it "works with api version as option" do
-      RPXNow::Api.should_receive(:request).
-        with('/api/v123/auth_info', anything).
-        and_return @response
-      RPXNow.user_data('id', :extended=>'abc', :api_version=>123)
-      RPXNow.api_version.should == API_VERSION
+    it "works with api key as 2nd parameter (backwards compatibility)" do
+      RPXNow.expects(:secure_json_post).with('/api/v2/auth_info', :apiKey=>'THE KEY', :token=>'id').returns @fake_user_data
+      RPXNow.user_data('id', 'THE KEY')
+      RPXNow.api_key.should == API_KEY
     end
 
-    it "works with apiKey as option" do
-      RPXNow::Api.should_receive(:request).
-        with('/api/v2/auth_info', hash_including(:apiKey=>'THE KEY')).
-        and_return @response
-      RPXNow.user_data('id', :extended=>'abc', :apiKey=>'THE KEY')
+    it "works with api key as 2nd parameter and options (backwards compatibility)" do
+      RPXNow.expects(:secure_json_post).with('/api/v2/auth_info', :apiKey=>'THE KEY', :extended=>'abc', :token=>'id' ).returns @fake_user_data
+      RPXNow.user_data('id', 'THE KEY', :extended=>'abc')
       RPXNow.api_key.should == API_KEY
+    end
+
+    it "works with api version as option (backwards compatibility)" do
+      RPXNow.expects(:secure_json_post).with('/api/v123/auth_info', :apiKey=>API_KEY, :token=>'id', :extended=>'abc').returns @fake_user_data
+      RPXNow.user_data('id', :extended=>'abc', :api_version=>123)
+      RPXNow.api_version.should == API_VERSION
     end
   end
 
   describe :set_status do
-    it "sets the status" do
-      RPXNow::Api.should_receive(:request).
-        with("/api/v2/set_status", :identifier=>"identifier", :status=>"Chillen...", :apiKey=>API_KEY).
-        and_return fake_response
-      RPXNow.set_status('identifier', 'Chillen...')
+    before do
+      @response_body = %Q({ "stat": "ok" })
+    end
+
+    def fake_response
+      mock(:code=>"200",:body=>@response_body)
+    end
+
+    it "parses JSON response to result hash" do
+      RPXNow.expects(:post).returns fake_response
+      RPXNow.set_status('identifier', 'Chillen...').should == {'stat' => 'ok'}
     end
   end
 
-  describe :parse_user_data do
+  describe :read_user_data_from_response do
     it "reads secondary names" do
-      RPXNow.send(:parse_user_data,{'profile'=>{'preferredUsername'=>'1'}}, {})[:name].should == '1'
+      RPXNow.send(:read_user_data_from_response,{'profile'=>{'preferredUsername'=>'1'}})[:name].should == '1'
     end
     
     it "parses email when no name is found" do
-      RPXNow.send(:parse_user_data,{'profile'=>{'email'=>'1@xxx.com'}}, {})[:name].should == '1'
+      RPXNow.send(:read_user_data_from_response,{'profile'=>{'email'=>'1@xxx.com'}})[:name].should == '1'
     end
   end
 
   describe :contacts do
     it "finds all contacts" do
-      response = fake_response(JSON.parse(File.read('spec/fixtures/get_contacts_response.json')))
-      RPXNow::Api.should_receive(:request).
-        with('/api/v2/get_contacts',:identifier=>'xx', :apiKey=>API_KEY).
-        and_return response
+      response = JSON.parse(File.read('spec/fixtures/get_contacts_response.json'))
+      RPXNow.expects(:secure_json_post).with('/api/v2/get_contacts',:identifier=>'xx', :apiKey=>API_KEY).returns response
       RPXNow.contacts('xx').size.should == 5
     end
   end
 
+  describe :parse_response do
+    it "parses json when status is ok" do
+      response = mock(:code=>'200', :body=>%Q({"stat":"ok","data":"xx"}))
+      RPXNow.send(:parse_response, response)['data'].should == "xx"
+    end
+
+    it "raises when there is a communication error" do
+      response = stub(:code=>'200', :body=>%Q({"err":"wtf","stat":"ok"}))
+      lambda{
+        RPXNow.send(:parse_response,response)
+      }.should raise_error(RPXNow::ApiError)
+    end
+
+    it "raises when service has downtime" do
+      response = stub(:code=>'200', :body=>%Q({"err":{"code":-1},"stat":"ok"}))
+      lambda{
+        RPXNow.send(:parse_response,response)
+      }.should raise_error(RPXNow::ServiceUnavailableError)
+    end
+
+    it "raises when service is down" do
+      response = stub(:code=>'400',:body=>%Q({"stat":"err"}))
+      lambda{
+        RPXNow.send(:parse_response,response)
+      }.should raise_error(RPXNow::ServiceUnavailableError)
+    end
+  end
+
   describe :mappings do
-    it "shows all mappings" do
-      RPXNow::Api.should_receive(:request).
-        with("/api/v2/mappings", :apiKey=>API_KEY, :primaryKey=>1).
-        and_return fake_response("identifiers" => ["http://test.myopenid.com/"])
-      RPXNow.mappings(1).should == ["http://test.myopenid.com/"]
+    it "parses JSON response to unmap data" do
+      RPXNow.expects(:post).returns mock(:code=>'200',:body=>%Q({"stat":"ok", "identifiers": ["http://test.myopenid.com/"]}))
+      RPXNow.mappings(1, "x").should == ["http://test.myopenid.com/"]
     end
   end
 
   describe :map do
-    it "maps a identifier" do
-      RPXNow::Api.should_receive(:request).
-        with("/api/v2/map", :apiKey=>API_KEY, :primaryKey=>1, :identifier=>"http://test.myopenid.com").
-        and_return fake_response
-      RPXNow.map('http://test.myopenid.com',1)
+    it "adds a mapping" do
+      RPXNow.expects(:post).returns mock(:code=>'200',:body=>%Q({"stat":"ok"}))
+      RPXNow.map('http://test.myopenid.com',1, API_KEY)
     end
   end
 
   describe :unmap do
     it "unmaps a indentifier" do
-      RPXNow::Api.should_receive(:request).
-        with("/api/v2/unmap", :apiKey=>API_KEY, :primaryKey=>1, :identifier=>"http://test.myopenid.com").
-        and_return fake_response
-      RPXNow.unmap('http://test.myopenid.com', 1)
+      RPXNow.expects(:post).returns mock(:code=>'200',:body=>%Q({"stat":"ok"}))
+      RPXNow.unmap('http://test.myopenid.com', 1, "x")
+    end
+
+    it "can be called with a specific version" do
+      RPXNow.expects(:secure_json_post).with{|a,b|a == "/api/v300/unmap"}
+      RPXNow.unmap('http://test.myopenid.com', 1, :api_key=>'xxx', :api_version=>300)
     end
   end
 
-  it "has a VERSION" do
-    RPXNow::VERSION.should =~ /^\d+\.\d+\.\d+$/
+  describe :mapping_integration do
+    before do
+      @k1 = 'http://test.myopenid.com'
+      RPXNow.unmap(@k1, 1)
+      @k2 = 'http://test-2.myopenid.com'
+      RPXNow.unmap(@k2, 1)
+    end
+
+    it "has no mappings when nothing was mapped" do
+      RPXNow.mappings(1).should == []
+    end
+
+    it "unmaps mapped keys" do
+      RPXNow.map(@k2, 1)
+      RPXNow.unmap(@k2, 1)
+      RPXNow.mappings(1).should == []
+    end
+
+    it "maps keys to a primary key and then retrieves them" do
+      RPXNow.map(@k1, 1)
+      RPXNow.map(@k2, 1)
+      RPXNow.mappings(1).sort.should == [@k2,@k1]
+    end
+
+    it "does not add duplicate mappings" do
+      RPXNow.map(@k1, 1)
+      RPXNow.map(@k1, 1)
+      RPXNow.mappings(1).should == [@k1]
+    end
+
+    it "finds all mappings" do
+      RPXNow.map(@k1, 1)
+      RPXNow.map(@k2, 2)
+      RPXNow.all_mappings.sort.should == [["1", ["http://test.myopenid.com"]], ["2", ["http://test-2.myopenid.com"]]]
+    end
   end
 end

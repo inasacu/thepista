@@ -1,6 +1,7 @@
 # ---- requirements
 require 'rubygems'
 require 'spec'
+require 'mocha'
 
 $LOAD_PATH << File.expand_path("../lib", File.dirname(__FILE__))
 
@@ -11,6 +12,7 @@ API_VERSION = RPXNow.api_version
 
 # ---- rspec
 Spec::Runner.configure do |config|
+  config.mock_with :mocha
   config.before :each do
     RPXNow.api_key = API_KEY
     RPXNow.api_version = API_VERSION

@@ -23,45 +23,30 @@ Usage
 Install
 =======
  - As Rails plugin: `script/plugin install git://github.com/grosser/rpx_now.git `
- - As gem: `sudo gem install rpx_now`
+ - As gem: `sudo gem install grosser-rpx_now --source http://gems.github.com/`
 
 Examples
 ========
 
-[Example application](http://github.com/grosser/rpx_now_example), go play around!
-
 View
 ----
     #'mywebsite' is your subdomain/realm on RPX
-    <%=RPXNow.embed_code('mywebsite', url_for(:controller=>:session, :action=>:rpx_token, :only_path => false))%>
+    <%=RPXNow.embed_code('mywebsite',rpx_token_sessions_url)%>
     OR
-    <%=RPXNow.popup_code('Login here...', 'mywebsite', url_for(:controller=>:session, :action=>:rpx_token, :only_path => false), options)%>
+    <%=RPXNow.popup_code('Login here...','mywebsite',rpx_token_sessions_url,:language=>'de')%>
 
-###Options
-`:language=>'en'` rpx tries to detect the users language, but you may overwrite it [possible languages](https://rpxnow.com/docs#sign-in_localization)  
-`:default_provider=>'google'` [possible default providers](https://rpxnow.com/docs#sign-in_default_provider)  
-`:flags=>'show_provider_list'` [possible flags](https://rpxnow.com/docs#sign-in_interface)  
+`popup_code` can also be called with `:unobstrusive=>true`
 
-###Unobtrusive / JS-last
-`popup_code` can also be called with `:unobtrusive=>true` ( --> just link without javascript include).  
-To still get the normal popup add `RPXNow.popup_source('mywebsite', url_for(:controller=>:session, :action=>:rpx_token, :only_path => false), [options])`.  
-Options like :language / :flags should be given for both.
-
-environment.rb
---------------
+Environment
+-----------
     Rails::Initializer.run do |config|
-      config.gem "rpx_now"
+      config.gem "grosser-rpx_now", :lib => "rpx_now", :source => "http://gems.github.com/"
       ...
-
-      config.after_initialize do # so rake gems:install works
-        RPXNow.api_key = "YOU RPX API KEY"
-      end
     end
+    RPXNow.api_key = "YOU RPX API KEY"
 
 Controller
 ----------
-    skip_before_filter :verify_authenticity_token, :only => [:rpx_token] # RPX does not pass Rails form tokens...
-
     # user_data
     # found: {:name=>'John Doe', :username => 'john', :email=>'john@doe.com', :identifier=>'blug.google.com/openid/dsdfsdfs3f3'}
     # not found: nil (can happen with e.g. invalid tokens)
@@ -70,10 +55,6 @@ Controller
       self.current_user = User.find_by_identifier(data[:identifier]) || User.create!(data)
       redirect_to '/'
     end
-
-    # getting additional fields (these fields are rarely filled)
-    # all possibilities: https://rpxnow.com/docs#profile_data
-    data = RPXNow.user_data(params[:token], :additional => [:gender, :birthday, :photo, :providerName, ...])
 
     # raw request processing
     RPXNow.user_data(params[:token]){|raw| {:email=>raw['profile']['verifiedEmail']} }
@@ -119,23 +100,13 @@ TODO
 ====
  - add provider / credentials helpers ?
 
-
 Author
 ======
-
-__[rpx_now_gem mailing list](http://groups.google.com/group/rpx_now_gem)__
-
-
 ###Contributors
  - [Amunds](http://github.com/Amunds)
  - [DBA](http://github.com/DBA)
  - [dbalatero](http://github.com/dbalatero)
- - [Paul Gallagher](http://tardate.blogspot.com/)
- - [jackdempsey](http://jackndempsey.blogspot.com)
- - [Patrick Reagan (reagent)](http://sneaq.net)
- - [Joris Trooster (trooster)](http://www.interstroom.nl)
- - [Mick Staugaard (staugaard)](http://mick.staugaard.com/)
- - [Kasper Weibel](http://github.com/weibel)
+ - [jackdempsey](http://jackndempsey.blogspot.com/)
 
 [Michael Grosser](http://pragmatig.wordpress.com)  
 grosser.michael@gmail.com  
