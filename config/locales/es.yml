@@ -212,7 +212,7 @@ es:
      destroy_user: Borra el Jugador   
      destroy_venue: Borra el Centro Deportivo 
      documentation: El Manual
-     does_not_exist: La pagina que buscas no existe.
+     does_not_exist: "Lo sentimos, pero la página a la que intentas acceder no existe."
      does_not_exist_explained: Es posible que la pagina se haya cambiado.	  
      do_join_festival: ¿Te quieres unir a   
      do_join_group: ¿Te quieres unir a   
@@ -868,7 +868,7 @@ es:
      schedules: Eventos
      season_ends_at:  Finalización de Temporada 
      season_ends_at_description:  Fecha de Finalización de Temporada 
-     signup: Registrar 
+     signup: Regístrate 
      score: Resultados   
      scorecard: Clasificación
      scorecards: Clasificaciones

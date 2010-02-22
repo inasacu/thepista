@@ -4,7 +4,8 @@ class InvitationsController < ApplicationController
   def index  
     store_location     
     @user = current_user
-    @invitations = Invitation.paginate(:all, :conditions => ["user_id = ?", @user],:page => params[:page], :per_page => INVITATIONS_PER_PAGE)
+    @invitations = Invitation.paginate(:all, 
+        :conditions => ["user_id = ?", @user],:page => params[:page], :per_page => INVITATIONS_PER_PAGE, :order => "created_at desc")
     respond_to do |format|
       format.html 
     end 
@@ -46,7 +47,7 @@ class InvitationsController < ApplicationController
       redirect_to :action => 'new' and return
     end
 
-    redirect_back_or_default('/index')
+    redirect_to invitations_url
   end
   
   def invite
@@ -114,7 +115,7 @@ class InvitationsController < ApplicationController
 
     end
     
-    redirect_back_or_default('/index')
+    redirect_to invitations_url
   end 
   
   def destroy

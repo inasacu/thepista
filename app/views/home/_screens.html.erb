@@ -22,7 +22,13 @@
 		<li class="screenshot">
 			<p><b><%= label_name(:schedules) %></b><br/>
 			Muestra la lista de los proximos eventos,e incluso anteriores eventos...</p>
-			<%= link_to(image_tag("screens/event.png"), schedules_url) %>
+			<%= link_to(image_tag("screens/events.png"), schedules_url) %>
+		</li>
+		
+		<li class="screenshot">
+			<p><b><%= label_name(:schedule) %></b><br/>
+			Muestra los detalles del evento, un muro, lista de convocados, ultima hora y ausentes..</p>
+			<%= link_to(image_tag("screens/event.png"), markers_url) %>
 		</li>
 
 		<li class="screenshot">
@@ -31,11 +37,13 @@
 			<%= link_to(image_tag("screens/scorecard.png"), scorecards_url) %>
 		</li>
 
-		<li class="screenshot">
-			<p><b><%= label_name(:markers) %></b><br/>
+		<!-- <li class="screenshot">
+			<p><b><%#= label_name(:markers) %></b><br/>
 			Permite visualizar un mapa donde puedes ver centros deportivos señalados...</p>
-			<%= link_to(image_tag("screens/map.png"), markers_url) %>
-		</li>
+			<%#= link_to(image_tag("screens/map.png"), markers_url) %>
+		</li> -->
+		
+		
 
 	</ul>
 </div>
