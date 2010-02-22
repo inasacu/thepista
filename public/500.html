@@ -1,7 +1,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"> 
 <html lang="en" id="loading" xml:lang="en" xmlns="http://www.w3.org/1999/xhtml"> 
-  <head> 
-	
+<head> 
+
 	<meta http-equiv="Content-Type" content="application/xhtml+xml; charset=utf-8"?> 
 	<meta http-equiv="Content-Language" content="es"/> 
 	<meta name="Author" content="HayPista"/> 
@@ -19,168 +19,146 @@
 	<meta name="distribution" content="all" /> 
 	<meta name="robots" content="all" /> 
 	<meta name="revisit" content="15 days" /> 
-	
-    
+
+
 	<link rel="home" href="http://www.haypista.com"> 
-    <link rel="shortcut icon" type="image/ico" href="/favicon.ico"> 
-    
-    <title>HayPista | (422)</title> 
- 
+	<link rel="shortcut icon" type="image/ico" href="/favicon.ico"> 
+
+	<title>HayPista | (422)</title> 
+
 	<link href="/stylesheets/reset.css" media="screen" rel="stylesheet" type="text/css" /> 
-<link href="/stylesheets/web_app_theme.css" media="screen" rel="stylesheet" type="text/css" /> 
-<link href="/stylesheets/haypista.css" media="screen" rel="stylesheet" type="text/css" /> 
+	<link href="/stylesheets/web_app_theme.css" media="screen" rel="stylesheet" type="text/css" /> 
+	<link href="/stylesheets/haypista.css" media="screen" rel="stylesheet" type="text/css" /> 
 	<link href="/stylesheets/application.css" media="screen" rel="stylesheet" type="text/css" /> 
-	
-	
+
+
 	<script src="/javascripts/prototype.js" type="text/javascript"></script> 
-<script src="/javascripts/effects.js" type="text/javascript"></script> 
-<script src="/javascripts/dragdrop.js" type="text/javascript"></script> 
-<script src="/javascripts/controls.js" type="text/javascript"></script> 
-<script src="/javascripts/application.js" type="text/javascript"></script> 
-	
-	
+	<script src="/javascripts/effects.js" type="text/javascript"></script> 
+	<script src="/javascripts/dragdrop.js" type="text/javascript"></script> 
+	<script src="/javascripts/controls.js" type="text/javascript"></script> 
+	<script src="/javascripts/application.js" type="text/javascript"></script> 
+
+
 </head> 
 <body> 
 	<script type="text/javascript"> 
 	<!--
-	    function toggle_visibility(id) {
-	       var e = document.getElementById(id);
-	       if(e.style.display == 'block')
-	          e.style.display = 'none';
-	       else
-	          e.style.display = 'block';
-	    }
+	function toggle_visibility(id) {
+		var e = document.getElementById(id);
+		if(e.style.display == 'block')
+		e.style.display = 'none';
+		else
+		e.style.display = 'block';
+	}
 	//-->
 	</script> 
-	
-  <div id="container"> 
-	
-	<div id="header"> 
-	
-  <h1> 
-	<a href="http://haypista.com" label="HayPista" title="HayPista te quiere ayudar a organizar tu equipo o encontrar donde jugar..."> 
-		<img alt="HayPista" src="/images/logo.png" style="width: 180px;" />	  
-	</a> 
-  </h1> 
-  
-  <div id="user-navigation"> 
-	
-<ul> 	
-		<li><a href="http://thepista.local/">Inicio</a></li>
-</ul> 
- 
-<div class="clear"></div> 
- 
-</div> 
- 
-  
- 
-<div id="main-navigation"> 
-<ul>		
-	<li /> 
-		
-	
- 
-</ul> 
- 
-<div class="clear"></div> 
- 
-</div> 
-  
-</div> 
-	
-	
-		<div id="about"> 
- 
-<h2>&nbsp;</h2> 
- 
-  
-  
-	
-<link href="/stylesheets/home.css" media="screen" rel="stylesheet" type="text/css" /> 
- 
-<div id="home"> 
- 
-	<div class="announce"> 
-		<h1><%= I18n.t(:change_rejected) %></h1>
-		<h4 align="center"><%= I18n.t(:something_wrong_explained) %></h4>
-	</div> 
- 
-</div> 
-	
- 
-   
-  	
-</div> 
- 
-<div id="wrapper">	
- 
-	<div class="clear"></div>    
- 
-	<div id="footer"> 
-	<div class="block"> 
-		<div class="col_wrapper"><div> 
-			<div class="link_wrapper"> 
-				<ol class="horizontal_list"> 
-					<li><a href="http://thepista.local/about">Acerca de</a></li> 
-					<li><a href="http://thepista.local/terms_of_use">Condiciones de uso</a></li> 
-					<li><a href="http://thepista.local/faq">Preguntas Frecuentes</a></li> 
-					<li><a href="mailto:support@haypista.com">Contacto</a></li> 
-					<li><a href="http://twitter.com/haypista" target="_top"><label_name(:follow_twitter)>Siguenos en Twitter</a></li> 
-					<li><a href="http://twitter.com/haypista" target="_top"> 
-						<img alt="Siguenos en Twitter" src="/images/twitter.png" title="Siguenos en Twitter" /> 
-					</a> 
-				</li> 
-			</ol> 
-		</div> 
-		<br> 
-		<br> 
-		<br> 
-		<p>HayPista&nbsp;&copy;&nbsp;2010.</p> 
-	</div> 
-</div> 
- 
-</div> 
-</div> 
-</div> 
-	
-	
-  	<script src="/javascripts/ie_no_more.js" type="text/javascript"></script> 
-	
-	
-  </div> 
-  
 
-	
-	<script type="text/javascript"> 
-	var uservoiceOptions = {
-	 /* required */
-	 key: 'haypista',
-	 host: 'haypista.uservoice.com',
-	 forum: '11852',
-	 showTab: true,  
-	 /* optional */
-	 alignment: 'right',
-	 background_color:'#f00',
-	 text_color: 'white',
-	 hover_color: '#06C',
-	 lang: 'en'
-	};
- 
-	function _loadUserVoice() {
-	 var s = document.createElement('script');
-	 s.setAttribute('type', 'text/javascript');
-	 s.setAttribute('src', ("https:" == document.location.protocol ? "https://" : "http://") + "cdn.uservoice.com/javascripts/widgets/tab.js");
-	 document.getElementsByTagName('head')[0].appendChild(s);
-	}
-	_loadSuper = window.onload;
-	window.onload = (typeof window.onload != 'function') ? _loadUserVoice : function() { _loadSuper(); _loadUserVoice(); };
-	</script> 
-	
- 
-   
-  
- 
- 
+	<div id="container"> 
+
+		<div id="header"> 
+
+			<h1> 
+				<a href="http://haypista.com" label="HayPista" title="HayPista te quiere ayudar a organizar tu equipo o encontrar donde jugar..."> 
+					<img alt="HayPista" src="/images/logo.png" style="width: 180px;" />	  
+				</a> 
+			</h1> 
+
+			<div id="user-navigation"> 
+
+				<ul> 	
+					<li><a href="http://thepista.local/">Inicio</a></li>
+				</ul> 
+
+				<div class="clear"></div> 
+
+			</div> 
+
+
+
+			<div id="main-navigation"> 
+				<ul>		
+					<li /> 
+
+
+
+				</ul> 
+
+				<div class="clear"></div> 
+
+			</div> 
+
+		</div> 
+
+
+		<div id="about"> 
+
+			<h2>&nbsp;</h2> 
+
+
+
+
+			<link href="/stylesheets/home.css" media="screen" rel="stylesheet" type="text/css" /> 
+
+			<div id="home"> 
+
+				<div class="announce"> 
+					<h1><%= I18n.t(:change_rejected) %></h1>
+					<h4 align="center"><%= I18n.t(:something_wrong_explained) %></h4>
+				</div> 
+
+			</div> 
+
+
+
+
+		</div> 
+
+		<div id="wrapper">	
+
+			<div class="clear"></div>    
+
+		
+		</div> 
+	</div> 
+</div> 
+
+
+<script src="/javascripts/ie_no_more.js" type="text/javascript"></script> 
+
+
+</div> 
+
+
+
+<script type="text/javascript"> 
+var uservoiceOptions = {
+	/* required */
+	key: 'haypista',
+	host: 'haypista.uservoice.com',
+	forum: '11852',
+	showTab: true,  
+	/* optional */
+	alignment: 'right',
+	background_color:'#f00',
+	text_color: 'white',
+	hover_color: '#06C',
+	lang: 'en'
+};
+
+function _loadUserVoice() {
+	var s = document.createElement('script');
+	s.setAttribute('type', 'text/javascript');
+	s.setAttribute('src', ("https:" == document.location.protocol ? "https://" : "http://") + "cdn.uservoice.com/javascripts/widgets/tab.js");
+	document.getElementsByTagName('head')[0].appendChild(s);
+}
+_loadSuper = window.onload;
+window.onload = (typeof window.onload != 'function') ? _loadUserVoice : function() { _loadSuper(); _loadUserVoice(); };
+</script> 
+
+
+
+
+
+
 </body> 
 </html>
