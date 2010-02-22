@@ -4,10 +4,12 @@ class Invitation < ActiveRecord::Base
   belongs_to      :item,           :polymorphic => true
 
   # validations
-  validates_presence_of   :user
-  validates_presence_of   :email_addresses
-  validates_length_of     :email_addresses, :minimum => 6
-  validates_length_of     :email_addresses, :maximum => 1500
+  validates_presence_of     :user
+  validates_presence_of     :email_addresses
+  validates_length_of       :email_addresses, :minimum => 6
+  validates_length_of       :email_addresses, :maximum => 1500
+  validates_presence_of     :message
+  validates_length_of       :message,     :within => DESCRIPTION_RANGE_LENGTH
 
   validates_each :email_addresses do |record, attr, email_addresses |
     invalid_emails = []
@@ -24,7 +26,11 @@ class Invitation < ActiveRecord::Base
       record.email_addresses = (emails - invalid_emails).join(', ')
     end
   end
-
+  
+  # variables to access
+  # attr_accessible :email_addresses, :message, :user_id, :item_id, :item_type
+    
+  before_create :format_message
   after_save :send_invite_contact
 
   def sender
@@ -38,11 +44,15 @@ class Invitation < ActiveRecord::Base
   def email
     self.email_addresses
   end
+  
+  def format_message
+    self.message.gsub!(/\r?\n/, "<br>") unless self.message.nil?
+  end
 
   protected
   def send_invite_contact
     UserMailer.send_later(:deliver_signup_invitation, self)
-    UserMailer.deliver_signup_invitation(self)
+    # UserMailer.deliver_signup_invitation(self)
   end
 
 end
