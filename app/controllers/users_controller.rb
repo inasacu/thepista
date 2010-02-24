@@ -134,6 +134,7 @@ class UsersController < ApplicationController
   end
 
   def third_party
+    RPXNow.api_key = APP_CONFIG['rpx_api']['key']
     store_location
     @user = current_user
     respond_to do |format|

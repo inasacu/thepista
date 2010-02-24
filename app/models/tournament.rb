@@ -35,7 +35,8 @@ class Tournament < ActiveRecord::Base
     validates_presence_of         :fee_per_tour
     validates_numericality_of     :fee_per_tour
     
-    validates_presence_of     :starts_at, :ends_at, :signup_at, :deadline_at
+    validates_presence_of     :starts_at, :ends_at
+    # validates_presence_of     :signup_at, :deadline_at
     
     validates_numericality_of :points_for_win,  :greater_than_or_equal_to => 0, :less_than_or_equal_to => 100
     validates_numericality_of :points_for_lose, :greater_than_or_equal_to => 0, :less_than_or_equal_to => 100
@@ -157,9 +158,9 @@ class Tournament < ActiveRecord::Base
     end
     
     def validate
-      self.errors.add(:signup_at, I18n.t(:must_be_before_signup_at)) if self.signup_at >= self.deadline_at
-      self.errors.add(:deadline_at, I18n.t(:must_be_before_deadline_at)) if self.deadline_at <= self.signup_at
-      self.errors.add(:starts_at, I18n.t(:must_be_after_deadline_at)) if self.starts_at <= self.deadline_at
+      # self.errors.add(:signup_at, I18n.t(:must_be_before_signup_at)) if self.signup_at >= self.deadline_at
+      # self.errors.add(:deadline_at, I18n.t(:must_be_before_deadline_at)) if self.deadline_at <= self.signup_at
+      # self.errors.add(:starts_at, I18n.t(:must_be_after_deadline_at)) if self.starts_at <= self.deadline_at
       self.errors.add(:starts_at, I18n.t(:must_be_before_starts_at)) if self.starts_at >= self.ends_at
       self.errors.add(:ends_at, I18n.t(:must_be_before_ends_at)) if self.ends_at <= self.starts_at
     end
