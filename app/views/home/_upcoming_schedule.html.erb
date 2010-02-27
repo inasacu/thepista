@@ -14,20 +14,25 @@
 						link_to(sanitize(schedule.concept), team_roster_path(:id => schedule)) : sanitize(schedule.concept) %>
 		</td>
 
-		<td>
+		<td class="name_and_date">
 			<%= group_link schedule.group %><br />
-			<%= schedule.group.sport.name %>
+			<span class="date">
+				<%= schedule.group.sport.name %>
+			</span>
 		</td>
 
-		<td>
+		<td class="name_and_date">
 			<%= nice_day_of_week(schedule.starts_at) %><br />
-			<%= "#{label_name(:has_left)} #{time_ago_in_words(schedule.starts_at)}" %>
-		</td>
-		
-	
-		<td>
+			<span class="date">
+				<%= "#{label_name(:has_left)} #{time_ago_in_words(schedule.starts_at)}" %>
+			</span>
+		</td>		
+
+		<td class="name_and_date">
 			<%= the_sport %><br />
-			<%= the_missing %>
+			<span class="date">
+				<%= the_missing %>
+			</span>
 		</td>
 		
 		<td>
