@@ -1,7 +1,11 @@
 <% 
 	can_modify = (@user == current_user) 
 	is_user_manager = current_user.is_user_manager_of?(@user)
+	the_label = h(@user.name)
+	content_for(:title, the_label)
 %>
+
+<%  %>
 
 <div class="block">
 
@@ -16,7 +20,7 @@
 	</p>
 	<br />
 	
-  <h2 class="title"><%= @user.name %></h2>  
+  <%= show_heading(the_label) %>
   
     <div class="inner">
 

@@ -12,11 +12,13 @@
 			  <%= label_name(:sport) %></th>
 	    <th><%= label_name(:time_zone) %></th>
 	    <th><%= label_name(:general_information) %></th>
-	    <th><%= label_name(:created_at) %></th>
+	    <th><%= label_name(:last_game_played) %></th>
 	    <th class="last">&nbsp;</th>
 	  </tr>
 
-	  <% @groups.each do |group| -%>
+	  <% @groups.each do |group| 
+		schedule = Schedule.last_schedule_group_played(group)
+		-%>
 
 	  <tr>  
 			<td>
@@ -45,8 +47,9 @@
 			</td>
 
 			<td class="name_and_date">
+				<%= link_to(label_name(:scorecards), scorecard_path(:id => group)) %>
 				<span class="date">
-					<%= nice_full_date group.created_at %> 
+					<%= nice_full_date(schedule.starts_at) unless schedule.nil? %> 
 				</span>
 			</td>
 

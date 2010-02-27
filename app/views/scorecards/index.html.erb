@@ -1,6 +1,9 @@
 <% 
-is_cloud = is_controller('cloud')? true : false 
-@archive ||= false 
+	is_cloud = is_controller('cloud')? true : false 
+	@archive ||= false 
+
+	the_label = label_name(:scorecards)
+	content_for(:title, the_label)
 %>
 
 <div class="block">

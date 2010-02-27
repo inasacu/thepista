@@ -64,10 +64,7 @@ if roster_count
 				<%= image_link_smaller match.user %>
 			</td>
 			
-			<%  #sub_manager = match.user.is_sub_manager_of?(@schedule.group)
-		    	#the_label =  label_name("sub_#{sub_manager}") unless sub_manager 
-				#the_klass = "sub_#{sub_manager}" unless sub_manager
-				
+			<% 				
 				subscriber = match.user.is_subscriber_of?(@schedule.group)
 			    the_label =  label_name("subscription_#{subscriber}") unless subscriber 
 				the_klass = "subscription_#{subscriber}" unless subscriber 
@@ -78,7 +75,7 @@ if roster_count
 			</td>
 			
 			<td>
-				<%= user_link match.user %><br />
+				<%= user_link_limit match.user %><br />
 				<%= "  ( #{label_name(:no_jugado)} )" if match.type_id == 4 %>
 			</td>
 			
@@ -167,9 +164,8 @@ end
 <% 
 end
 %>
-				
-<a name="fb_share" type="icon_link" href="http://www.facebook.com/sharer.php"><%= label_name(:share) %></a>
-<script src="http://static.ak.fbcdn.net/connect.php/js/FB.Share" type="text/javascript"></script>
+
+<%= render :partial => '/utilities/meneame' %>
 
 
 

@@ -305,14 +305,6 @@ div#footer ol li { margin: 0pt 1em; position: relative; float: left; }
 
 #user-navigation ul li a:hover { color: black; }
 
-/*.cloud1 {font-size: 100%;}
-.cloud2 {font-size: 120%;}
-.cloud3 {font-size: 140%;}
-.cloud4 {font-size: 160%;}
-.cloud5 {font-size: 180%;}
-.cloud6 {font-size: 200%;}
-.cloud7 {font-size: 220%;}*/
-
 /* ::::: new cloud taggings ::::: */
 
 #sidebar .block .extra h2 { font-size: 1.3em; color: rgb(204, 204, 204); font-weight: normal; margin-bottom: 10px; }

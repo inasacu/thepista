@@ -1,3 +1,8 @@
+<%
+	the_label = label_name(:users)
+	content_for(:title, the_label)
+%>
+
 <div class="block">
 
   <%= render :partial => 'secondary_navigation' %>  
@@ -15,13 +20,17 @@
 			<th><%=label_name(:name) %>&nbsp;/<br />
 				<%=label_name(:last_login_at) %>
 			</th>
-			<th><%=label_name(:group) %></th>
+			<th><%=label_name(:group) %>&nbsp;/<br />
+				<%=label_name(:sport) %>
+			</th>
 			<th><%=label_name(:time_zone) %></th>
-			<th><%=label_name(:sport) %></th>
+			<th><%=label_name(:last_game_played) %></th>
 			<th class="last">&nbsp;</th>
 		</tr>
 		
-        <% @users.each do |user| -%>		
+        <% @users.each do |user| 
+			schedule = Schedule.last_schedule_played(user)
+	    -%>	
 			<tr>
 			  <td>
 				<%= image_link_small user %>
@@ -35,7 +44,10 @@
 				</td>
 
 			  <td>
-				<%= user.has_group? ? group_list(user.groups) : label_name('groups_none') %>
+				<%= user.has_group? ? group_list(user.groups) : label_name('groups_none') %><br />
+				<span class="date">
+					<%= user.has_sport? ? sport_list(user.groups) : label_name('sports_none') %>
+				</span><br />
 			  </td>			  
 
 			  <td>
@@ -44,8 +56,10 @@
 
 				<td class="name_and_date">
 					<span class="date">
-						<%= user.has_sport? ? sport_list(user.groups) : label_name('sports_none') %>
+						<%= nice_full_date(schedule.starts_at) unless schedule.nil? %> 
 					</span>
+					</td>
+					
 				</td>
 			
 			  <td class="last">

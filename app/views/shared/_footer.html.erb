@@ -7,9 +7,8 @@
 					<li><%= link_to label_name(:terms_of_use), terms_of_use_url %></li>
 					<li><%= link_to label_name(:faq), faq_url %></li>
 					<li><%= mail_to CONTACT_RECIPIENT, label_name(:contact) %></li>
-					<li><a href="http://twitter.com/haypista" target="_top"><label_name(:follow_twitter)><%= label_name(:follow_twitter) %></a></li>
 					<li><a href="http://twitter.com/haypista" target="_top">
-						<%= image_tag('twitter.png', :alt => label_name(:follow_twitter), :title => label_name(:follow_twitter)) %></a>
+						<%= image_tag('twitter.png', :alt => label_name(:follow_twitter), :title => label_name(:follow_twitter), :style => "height: 18px; width: 18px;") %></a>
 					</li>
 			</ol>
 		</div>

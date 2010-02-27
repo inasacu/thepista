@@ -2,6 +2,7 @@
 
 <% upcoming_schedules.each do |schedule| 
 	the_sport = "#{label_name(:rosters)}:  #{schedule.convocados.count}"
+	the_missing = "#{label_name(:missing)}:  #{schedule.player_limit.to_i - schedule.convocados.count}"
 	-%>		
 	<tr>
 		<td>
@@ -15,24 +16,26 @@
 
 		<td>
 			<%= group_link schedule.group %><br />
-			<%= label_name(:group) %>
+			<%= schedule.group.sport.name %>
 		</td>
 
 		<td>
-			<%= nice_day_of_week(schedule.starts_at) %> 
+			<%= nice_day_of_week(schedule.starts_at) %><br />
+			<%= "#{label_name(:has_left)} #{time_ago_in_words(schedule.starts_at)}" %>
 		</td>
 		
 	
 		<td>
-			<%= the_sport %>
+			<%= the_sport %><br />
+			<%= the_missing %>
 		</td>
 		
 		<td>
-			<%= "#{label_name(:schedule_rate)}  #{ratings_for(schedule, :dimension => :performance)}" if current_user.is_member_of?(schedule.group) %>
+			<%= content_tag :td, marker_link(schedule.group.marker), :class => get_the_action %>
 		</td>
 		
 		<td class="last">
-			<%#= the_sport %>
+			&nbsp;
 		</td>
 
 	</tr>

@@ -228,6 +228,10 @@ class Schedule < ActiveRecord::Base
   def self.last_schedule_played(user)
     find(:first, :select => "starts_at", :conditions => ["id = (select max(schedule_id) from matches where user_id = ? and type_id = 1  and played = true)", user.id])
   end
+  
+  def self.last_schedule_group_played(group)
+    find(:first, :select => "starts_at", :conditions => ["id = (select max(id) from schedules where played = true and group_id = ?)", group])
+  end
 
   def game_played?
     played == true

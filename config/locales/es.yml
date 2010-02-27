@@ -445,6 +445,7 @@ es:
          one:  "Este torneo tiene 1 jugador." 
          other: "Este torneo tiene {{count}} jugadores."
                           
+     has_left:  Quedan  
      has_not_been_sent: no ha sido mandado correctamente.   
      has_updated_scorecard: Ha actualizado el resultado   
      have_an_account: Si tienes una cuenta   
@@ -538,6 +539,7 @@ es:
      message_notification: Recibir Correo  
      message_notification_description: (Quieres recibir notificaciones atraves del correo electronico...)   
      messages: Mensajes   
+     missing:  Faltan
      missing_information: Falta información   
      mistyped_url: "Posiblemente, habras escrito la dirección incorrectamente o es posible que la pagina ya no exista."   
      
@@ -957,7 +959,11 @@ es:
      set_blog_comment_notification:  Quieres recibir Notificaciones de comentarios dejados en el muro de
              
      settings:  Opciones 
-     share: Comparte   
+     share: Compártelo
+     share_in_facebook: "Compártelo en Facebook"
+     share_in_twitter: "Compártelo en Twitter"
+     share_in_menealo: "Menéalo"   
+     share_in_linkedin: "Compártelo en LinkedIn"
      should_be_positive: tiene que ser positivo   
      show: Mostrar   
      show_address: Presenta la Dirección   

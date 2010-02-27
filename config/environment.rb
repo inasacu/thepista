@@ -41,6 +41,7 @@ Rails::Initializer.run do |config|
   config.gem 'hoptoad_notifier'
   config.gem 'rpx_now'
   config.gem "nokogiri"
+  config.gem "url_shortener"
   # config.gem 'rubaidh-google_analytics', :lib => 'rubaidh/google_analytics', :source => 'http://gems.github.com' 
   
     

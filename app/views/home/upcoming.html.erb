@@ -5,6 +5,8 @@
 	has_schedule = true unless upcoming_schedules.empty? 
 	has_meet = true unless upcoming_meets.empty?
 	has_classified = true unless upcoming_classifieds.empty?
+	the_label = label_name(:upcoming_schedules)
+	content_for(:title, the_label)
 %> 
 
 <div class="block">
@@ -13,12 +15,12 @@
   
   <div class="content">   
   
-    <h2 class="title"><%= control_action_label %></h2>
+ 	<%= show_heading(the_label) %>
 	
     <div class="inner">
 
 	<%= render :partial => "upcoming_schedule", :locals => {:upcoming_schedules => @upcoming_schedules} if has_schedule %>
-	<%= render :partial => "upcoming_meet", :locals => {:upcoming_meets => @upcoming_meets} if has_meet %>
+	<%#= render :partial => "upcoming_meet", :locals => {:upcoming_meets => @upcoming_meets} if has_meet %>
 	
     </div>
   </div> 

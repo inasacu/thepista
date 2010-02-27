@@ -164,7 +164,6 @@ module ApplicationHelper
   end
   
   def tag_cloud( tags )          
-    # classes = %w(cloud1 cloud2 cloud3 cloud4 cloud5 cloud6 cloud7) 
     classes = %w(a.cloud_0 a.cloud_1 a.cloud_2 a.cloud_3 cloud_4 cloud_5 cloud_6 cloud_7 cloud_8 cloud_9 cloud_10)         
     max, min = 0, 0          
     tags.each { |t|                
@@ -175,6 +174,18 @@ module ApplicationHelper
     tags.each { |t|                 
       yield t.name, classes[(t.count.to_i - min) / divisor]          
     }  
+  end
+  
+  def page_title
+     "HayPista" + ( " | " + @content_for_title if @content_for_title).to_s
+  end
+
+  def page_heading(text)
+    content_tag(:h1, content_for(:title){ text })
+  end
+  
+  def show_heading(text)
+    content_tag(:h2, h(text), :class => :title )
   end
       
 end

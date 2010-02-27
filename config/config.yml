@@ -15,6 +15,11 @@ development:
         
     server_name: 
         key:            thepista.local
+        
+    bit_ly_api:
+        login:          haypista
+        key:            R_e843b4e8c994a59c71b10d54c319e23b
+            
 
 # http://thepista.heroku.com/
 test:
@@ -27,6 +32,10 @@ test:
         
     server_name: 
         key:            thepista.heroku.com
+        
+    bit_ly_api:
+        login:          haypista
+        key:            R_e843b4e8c994a59c71b10d54c319e23b
 
 # http://thepista.heroku.com/
 staging:
@@ -39,6 +48,10 @@ staging:
         
     server_name: 
         key:            thepista.heroku.com
+        
+    bit_ly_api:
+        login:          haypista
+        key:            R_e843b4e8c994a59c71b10d54c319e23b
 
                
 production:
@@ -56,3 +69,7 @@ production:
         
     server_name: 
         key:            haypista.com
+        
+    bit_ly_api:
+        login:          haypista
+        key:            R_e843b4e8c994a59c71b10d54c319e23b

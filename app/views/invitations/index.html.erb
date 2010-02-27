@@ -1,6 +1,9 @@
-<div class="block">
+<%
+	the_label = label_name(:invitations)
+	content_for(:title, the_label)
+%>
 
-  <%#= render :partial => 'secondary_navigation' %>  
+<div class="block"> 
 
   <%= render :partial => '/users/secondary_navigation' %>
 

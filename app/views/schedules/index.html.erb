@@ -1,5 +1,10 @@
 <% is_cloud = is_controller('cloud')? true : false -%>
 
+<%
+	the_label = label_name(:schedules)
+	content_for(:title, the_label)
+%>
+
 <div class="block">
 
   <%= render :partial => '/schedules/secondary_navigation' unless is_cloud %>

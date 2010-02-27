@@ -4,10 +4,13 @@
 	
 	<meta http-equiv="Content-Type" content="application/xhtml+xml; charset=utf-8"?> 
 	<meta http-equiv="Content-Language" content="es"/>
+	
+	<title><%= page_title %></title>
+	
 	<meta name="Author" content="HayPista"/> 
-	<meta name="title" content="HayPista" />
+	<!-- <meta name="title" content="HayPista" /> -->
 	<meta name="keywords" content="hay, pistas, polideportivo, deportivo, convocado, futbol, deportes, deportivas, fútbol sala, fútbol, padel, golf, jornada, tenis, tennis "/> 
-	<meta name="description" content="HayPista te quiere ayudar a organizar tu equipo o encontrar donde jugar..." />
+	<!-- <meta name="description" content="HayPista te quiere ayudar a organizar tu equipo o encontrar donde jugar..." /> -->
 	<meta name="vw96.objectype" content="Document" />
 	<meta name="resource-type" content="Document" />
 	<meta name="distribution" content="all" />
@@ -16,12 +19,9 @@
 	
 	<link rel="image_src" href="../images/facebook.png" />
 	
-    
 	<link rel="home" href="http://www.haypista.com">
     <link rel="shortcut icon" type="image/ico" href="/favicon.ico">
     
-    <title><%= app_name %><%= " | #{current_user.name}" if current_user %></title>
-
 	<%= stylesheet_link_tag 'reset', 'web_app_theme', 'haypista' %>
 	<%= stylesheet_link_tag 'application' %>
 	<%= stylesheet_link_tag get_the_action if is_action('show') %>
@@ -63,18 +63,15 @@
 		<%= render :partial => "shared/wrapper" %>	
 	<% end %>
 	
-  	<%= javascript_include_tag "ie_no_more.js" %>
-	<%= smack_down_ie6 %>
+  	<%#= javascript_include_tag "ie_no_more.js" %>
+	<%#= smack_down_ie6 %>
 	
   </div>
-  
-  <%= render :partial => 'utilities/uservoice' %>
-  <%#= render :partial => 'utilities/browser_detect' if development? %>
 
-  <%#= link_to "tour", "http://thepista.local?tourId=MyTour&skinId=black_beauty" %>
-  <%#= render :partial => 'tours/home_tour' %>
- 
+  <%= render :partial => 'utilities/uservoice' %> 
   <%= render :partial => 'utilities/secure_site' unless current_user %>
 
+  <%#= render :partial => 'utilities/browser_detect' if development? %>
+	
 </body>
 </html>

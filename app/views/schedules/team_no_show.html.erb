@@ -1,13 +1,13 @@
 <% 
 	a_roster = !(@schedule.no_shows.empty?)
 	the_label = control_action_label("#{a_roster}")
+	content_for(:title, the_label)
 %> 
 
 <div class="block">
 
 	<%= render :partial => '/shared/previous_next_message' %>   
-
-		<h2 class="title"><%= the_label %></h2>
+	<%= show_heading(the_label) %>
 
 		<div class="inner">
 <% 

@@ -4,6 +4,9 @@
 	@games_played = @group.games_played
 	scorecards = false
 	@scorecards.each {|card| scorecards = true }
+	
+	the_label = label_name(:scorecard)
+	content_for(:title, the_label)
 %>
 
 <div class="block">
