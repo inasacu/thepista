@@ -19,6 +19,18 @@ development:
     bit_ly_api:
         login:          haypista
         key:            R_e843b4e8c994a59c71b10d54c319e23b
+ 
+    weather:
+        partner: YOUR_PARTNER_KEY
+        license: YOUR_LICENSE_KEY
+
+    # eg. weatherbug.com
+    weather_bug:
+        code: YOUR_API_CODE
+    
+    # eg. Yahoo! Placemaker
+    yahoo:
+        app_id: 4uSWOoTV34EAizCZbcobagFpBQVErwkVJwnS8OUagpua3nJpKtTcfNr16X9yOIo-
             
 
 # http://thepista.heroku.com/
@@ -36,6 +48,19 @@ test:
     bit_ly_api:
         login:          haypista
         key:            R_e843b4e8c994a59c71b10d54c319e23b
+ 
+    weather:
+        partner: YOUR_PARTNER_KEY
+        license: YOUR_LICENSE_KEY
+
+    # eg. weatherbug.com
+    weather_bug:
+        code: YOUR_API_CODE
+    
+    # eg. Yahoo! Placemaker
+    yahoo:
+        app_id: 4uSWOoTV34EAizCZbcobagFpBQVErwkVJwnS8OUagpua3nJpKtTcfNr16X9yOIo-
+        
 
 # http://thepista.heroku.com/
 staging:
@@ -52,7 +77,19 @@ staging:
     bit_ly_api:
         login:          haypista
         key:            R_e843b4e8c994a59c71b10d54c319e23b
+ 
+    weather:
+        partner: YOUR_PARTNER_KEY
+        license: YOUR_LICENSE_KEY
 
+    # eg. weatherbug.com
+    weather_bug:
+        code: YOUR_API_CODE
+    
+    # eg. Yahoo! Placemaker
+    yahoo:
+        app_id: 4uSWOoTV34EAizCZbcobagFpBQVErwkVJwnS8OUagpua3nJpKtTcfNr16X9yOIo-
+        
                
 production:
     # haypista.heroku.com
@@ -73,3 +110,16 @@ production:
     bit_ly_api:
         login:          haypista
         key:            R_e843b4e8c994a59c71b10d54c319e23b
+ 
+    weather:
+        partner: YOUR_PARTNER_KEY
+        license: YOUR_LICENSE_KEY
+
+    # eg. weatherbug.com
+    weather_bug:
+        code: YOUR_API_CODE
+    
+    # eg. Yahoo! Placemaker
+    yahoo:
+        app_id: 4uSWOoTV34EAizCZbcobagFpBQVErwkVJwnS8OUagpua3nJpKtTcfNr16X9yOIo-
+        

@@ -1,3 +1,5 @@
+require 'barometer'
+
 class HomeController < ApplicationController  
   before_filter :require_user, :except => [:index, :about, :help, :welcome, :pricing, :about, :terms_of_use, :privacy_policy, :faq, :openid]
   

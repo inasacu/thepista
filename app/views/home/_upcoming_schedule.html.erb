@@ -1,9 +1,18 @@
+<%
+	Barometer.google_geocode_key = APP_CONFIG['google_api']['key']
+	Barometer.config = { 1 => [:yahoo, :google], 2 => :wunderground }
+%>
+
+
 <table class="table">
 
-<% upcoming_schedules.each do |schedule| 
+<% 
+	upcoming_schedules.each do |schedule| 
 	the_sport = "#{label_name(:rosters)}:  #{schedule.convocados.count}"
 	the_missing = "#{label_name(:missing)}:  #{schedule.player_limit.to_i - schedule.convocados.count}"
-	-%>		
+	barometer = Barometer.new(schedule.group.time_zone)
+    weather = barometer.measure
+-%>		
 	<tr>
 		<td>
 			<%= (current_user.is_member_of?(schedule.group) or schedule.public) ? 
@@ -35,9 +44,12 @@
 				<%= the_missing %>
 			</span>
 		</td>
-		
-		<td>
-			<%= content_tag :td, marker_link(schedule.group.marker), :class => get_the_action %>
+
+		<td class="name_and_date">
+			<%= image_tag('weather_rain.png', options={:style => "height: 20px; width: 20px;"}) if weather.wet? and (schedule.starts_at <= Time.zone.now + 1.day) %>
+			<%= image_tag('weather_sun.png', options={:style => "height: 20px; width: 20px;"}) if weather.sunny? and (schedule.starts_at <= Time.zone.now + 1.day) %>
+			<%= image_tag('weather_clouds.png', options={:style => "height: 20px; width: 20px;"}) if weather.windy? and (schedule.starts_at <= Time.zone.now + 1.day) %>
+			<%= content_tag :td, marker_link(schedule.group.marker) %>
 		</td>
 		
 		<td class="last">
