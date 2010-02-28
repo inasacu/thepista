@@ -1,7 +1,7 @@
 <% 
 	is_user_manager = current_user.is_manager_of?(@schedule.group)
 	the_label = sanitize(@schedule.concept)
-	content_for(:title, the_label)
+	content_for(:title, sanitize(@schedule.concept))
 %>
 
 <div class="block">

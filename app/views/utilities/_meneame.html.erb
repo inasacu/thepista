@@ -7,20 +7,21 @@
 
 
 <% the_url = "http://haypista.com#{team_roster_path(:id => @schedule)}" %>
-<% the_title = "#{sanitize(@schedule.concept)} #{label_name(:for)} #{@schedule.group.name} (#{label_name(:rosters).downcase} #{@schedule.convocados.count})" %>
+<% the_description = h("#{sanitize(@schedule.concept)} #{label_name(:for)} #{@schedule.group.name} (#{label_name(:rosters).downcase} #{@schedule.convocados.count})") %>
 
+<% content_for(:description, the_description) %>
 
 <% shorten = client.shorten(the_url) %>
-<% the_title = the_title.gsub(" ", "+") %>
+<% the_description = the_description.gsub(" ", "+") %>
 
 <br /><br />
-<a name="fb_share" type="icon_link" share_url="<%=shorten.urls %>&t=<%=the_title %>" title="<%= label_name(:share_in_facebook) %>" ><%= label_name(:share) %></a>
+<a name="fb_share" type="icon_link" share_url="<%=shorten.urls %>&t=<%=the_description %>" title="<%= label_name(:share_in_facebook) %>" ><%= label_name(:share) %></a>
 <script src="http://static.ak.fbcdn.net/connect.php/js/FB.Share" type="text/javascript"></script><br/>
 &nbsp;&nbsp;&nbsp;&nbsp;
 <br/>
 
 <%= image_tag('twitter.png', options={:style => "height: 16px; width: 16px;"}) %>
-<a href="http://twitter.com/home?status=@haypista+<%=the_title %>+<%=shorten.urls %>" title="<%= label_name(:share_in_twitter) %>">
+<a href="http://twitter.com/home?status=@haypista+<%=the_description %>+<%=shorten.urls %>" title="<%= label_name(:share_in_twitter) %>">
 <%= " #{label_name(:share)}" %></a>
 &nbsp;&nbsp;&nbsp;&nbsp;
 <br/>

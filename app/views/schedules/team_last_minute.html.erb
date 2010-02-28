@@ -1,7 +1,7 @@
 <% 
 	a_roster = !(@schedule.last_minute.empty?)
 	the_label = control_action_label("#{a_roster}")
-	content_for(:title, the_label)
+	content_for(:title, sanitize(@schedule.concept))
 %>
 
 <div class="block">

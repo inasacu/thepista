@@ -181,7 +181,11 @@ module ApplicationHelper
   end
 
   def page_heading(text)
-    content_tag(:h1, content_for(:title){ text })
+    content_tag(:h1, content_for(:title){ h(text) })
+  end
+  
+  def page_description
+    @content_for_description.to_s
   end
   
   def show_heading(text)
