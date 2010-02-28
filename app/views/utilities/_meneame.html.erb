@@ -6,7 +6,7 @@
 <% client = UrlShortener::Client.new(authorize) %>
 
 
-<% the_url = "http://thepista.heroku.com#{team_roster_path(:id => @schedule)}" %>
+<% the_url = "http://haypista.com#{team_roster_path(:id => @schedule)}" %>
 <% the_title = "#{sanitize(@schedule.concept)} #{label_name(:for)} #{@schedule.group.name} (#{label_name(:rosters).downcase} #{@schedule.convocados.count})" %>
 
 
