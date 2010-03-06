@@ -2,7 +2,7 @@
   RPXNOW.token_url = "<%= url_for :controller => :users, :action => :associate_return, :only_path => false %>";
   RPXNOW.realm = <%= APP_CONFIG['rpx_api']['realm'].to_json %>;
   RPXNOW.overlay = true;
-  RPXNOW.language_preference = 'es';  
+  RPXNOW.language_preference = "<%= I18n.locale %>";  
 </script>
 
 <script type="text/javascript" src="https://rpxnow.com/openid/v2/widget"></script>

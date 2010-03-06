@@ -29,7 +29,7 @@
 <% content_for :sidebar, render(:partial => '/invitations/sidebar') -%>
 <% content_for :sidebar, render(:partial => 'shared/upcoming_classified' , :locals => {:upcoming_meets => @upcoming_meets}) if has_classified -%>
 <% content_for :sidebar, render(:partial => '/shared/active_comment') if current_user and @has_activities  -%>
-<% content_for :sidebar, render(:partial => 'sidebar') -%>
+<%# content_for :sidebar, render(:partial => 'sidebar_tag') -%>
 
 
 

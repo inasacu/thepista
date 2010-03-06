@@ -8,7 +8,7 @@ if SHOW_RPX_NOW
 	<div class="group" align="center">		
 		<br />
 		<div class=""> 
-			<%= RPXNow.embed_code(APP_CONFIG['rpx_api']['realm'],rpx_token_sessions_url, :language => 'es') %><br />
+			<%= RPXNow.embed_code(APP_CONFIG['rpx_api']['realm'],rpx_token_sessions_url, :language => I18n.locale) %><br />
 		</div> 		  
 		<div class="clear"></div> 		  
 	</div>

@@ -1,6 +1,7 @@
 <%- unless activity.item.nil? 
 	recent ||= false 
-	the_label = "#{label_name(:ago)} #{time_ago_in_words(activity.created_at).capitalize}" -%>
+	the_label = ago(activity.created_at)
+-%>
 
 	<tr>
 	  <td class="name_and_date">

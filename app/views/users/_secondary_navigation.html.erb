@@ -25,9 +25,9 @@
 %>
 	<li class="<%= get_first_active('user_index') %>">  <%= link_to(label_name(:users_teammate), users_url) %></li>
 	<li class="<%= get_active('user_list') %>"><%=  link_to(label_name(:all_user) , list_users_path) %></li>
-	<!-- <li class="<%#= get_active('user_third_party') %>">
-		<%#= link_to(label_name(:myopenid) , third_party_url(:id => the_user)) if the_user == current_user %>
-	</li> -->
+	<li class="<%= get_active('user_third_party') %>">
+			<%= link_to(label_name(:myopenid) , third_party_url(:id => the_user)) if the_user == current_user and current_user.is_maximo? %>
+		</li>
 <%
  	if current_user.is_user_member_of?(the_user) 
 		unless actions.include?(the_action) or controls.include?(the_controller) 

@@ -1,4 +1,4 @@
-<% myOpenID = RPXNow.mappings(current_user.id, RPXNow.api_key) %>
+<% myOpenID = RPXNow.mappings(current_user.id) %>
 
 <div class="block">
 
@@ -37,7 +37,7 @@
 						<%= image_tag('auth-yahoo-tiny.gif') if identifier.include?('yahoo.com') %>
 						<%= image_tag('auth-myspace-tiny.gif') if identifier.include?('myspace.com') %>			
 					</td>
-					<td><%= link_to t(:destroy), :controller => :rpx, :action => "remove_openid", :openid => identifier %></td>
+					<td><%= link_to t(:destroy), remove_openid_url(:openid => identifier) %></td>
 					<!-- <td><%#= h(identifier) %></td> -->
 					<td class="remove"></td>
 				</tr>

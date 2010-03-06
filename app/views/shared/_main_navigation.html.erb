@@ -11,7 +11,7 @@ end
 <div id="main-navigation">
 <ul>		
 	<%= "<li />" unless current_user %>
-		
+	
 	<% if current_user %>
 		
 		<%= content_tag 'li', link_to(label_name(:home) , '/'), :class => get_control_first('home') %>

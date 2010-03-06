@@ -24,7 +24,7 @@
 		<% end %>
 		</span>
 		<span class="date">			
-		<%= "#{label_name(:ago)} #{time_ago_in_words(payment.created_at)}" %>
+		<%= ago(payment.created_at) %>
 		</span>
 	</td>
 

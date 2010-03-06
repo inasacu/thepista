@@ -119,11 +119,9 @@ if roster_count
 
 	<td class="name_and_date">
 		<span class="date">
-			<%= "#{label_name(:ago)} #{time_ago_in_words(match.status_at)}" %>
+			<%= ago(match.status_at) %>
 		</span>
-	</td>
-		
-
+	</td>	
 
 <td class="last">
 <% 

@@ -3,16 +3,11 @@
 	
 <%- else -%>
 
-	<%#= render :partial => '/shared/content_pagination' %>
-
 	<%= content_tag 'h2', t(:recent_activities) %>
 
-	<%#- unlesscurrent_user.last_logged_at.nil? orcurrent_user ==current_user -%>
 	<p class="meta">
 		<%= user_link current_user %>  
-		<%#= "#{t :last_logged_at } #{t :ago} #{time_ago_in_words(activity.created_at).capitalize}" %>
 	</p>    
-	<%#- end -%>
 
 	<ul class="list messages full">	
 		<%= render :partial => 'users/activity',

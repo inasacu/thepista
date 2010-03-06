@@ -54,7 +54,6 @@ class HomeController < ApplicationController
   end
 
   def get_tag    
-    @tags = Schedule.tag_counts_on(:tags, :at_least => TAG_LEAST, :limit => TAG_LIMIT, :order => "name")
-    # @rankings = Scorecard.tag_counts_on(:rankings, :at_least => TAG_LEAST, :limit => TAG_LIMIT, :order => "name")
+    # @tags = Schedule.tag_counts_on(:tags, :at_least => TAG_LEAST, :limit => TAG_LIMIT, :order => "name")
   end
 end

@@ -64,6 +64,11 @@ class UserSessionsController < ApplicationController
       @user_openid = User.find_by_openid_identifier(openid_identifier)
 
       if @user
+        if @user.language != I18n.locale
+          @user.language = I18n.locale 
+          @user.save!
+        end
+        
         UserSession.create(@user)
         respond_to do |format|
           format.html { redirect_back_or_default root_url }

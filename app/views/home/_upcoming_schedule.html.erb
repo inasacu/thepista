@@ -24,7 +24,7 @@
 		<td class="name_and_date">
 			<%= nice_day_of_week(schedule.starts_at) %><br />
 			<span class="date">
-				<%= "#{label_name(:has_left)} #{time_ago_in_words(schedule.starts_at)}" %>
+				<%= has_left(schedule.starts_at) if Time.zone.now < schedule.starts_at %>
 			</span>
 		</td>		
 

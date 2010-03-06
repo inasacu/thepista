@@ -42,7 +42,7 @@ Rails::Initializer.run do |config|
   config.gem 'rpx_now'
   config.gem "nokogiri"
   config.gem "url_shortener"
-  # config.gem 'rubaidh-google_analytics', :lib => 'rubaidh/google_analytics', :source => 'http://gems.github.com' 
+  config.gem "i18n"
   
     
   # Only load the plugins named here, in the order given (default is alphabetical).
@@ -63,7 +63,7 @@ Rails::Initializer.run do |config|
 
   # The default locale is :en and all translations from config/locales/*.rb,yml are auto loaded.
   # config.i18n.load_path += Dir[Rails.root.join('my', 'locales', '*.{rb,yml}')]
-  config.i18n.default_locale = :es
+  # config.i18n.default_locale = :es
   
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.raise_delivery_errors = true

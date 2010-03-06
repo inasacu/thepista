@@ -1,7 +1,7 @@
 # Sample localization file for English. Add more files in this directory for other locales.
 # See http://github.com/svenfuchs/rails-i18n/tree/master/rails%2Flocale for starting points.
 
-es:
+fr:
      a: "a"   
      about: "sobre"   
      accept: "Acepto"   
@@ -19,12 +19,13 @@ es:
      addresses: Direcciones   
      administrator: Administrador   
      ads: publicidad   
-     afterwards: despues        
-     ago:  "hace {{count}}"     
+     afterwards: despues   
+     ago: hace 
      all_group:  Todos los Equipos 
      all_tournament:  Todos los Torneos  
      all_user:   Todos los Jugadores
      already_exist: ya existe   
+     already_have_gravatar: Ya tengo un Gravatar   
      and: y   
      announcement: Anuncio
      announcements: Anuncios   
@@ -45,7 +46,9 @@ es:
      available_description: (Si estas disponible para jugar o si no quieres que te molesten...)   
      avatar: Gravatar   
      away_group: Fuera   
-     back: Volver      
+     back: Volver   
+     beta_code: Codigo Beta   
+     beta_login: Acceso a Beta requiere un codigo.   
      between: entre   
      birth_at:  Fecha de Nacimiento
      birth_description: (Escribe fecha de nacimiento...Solo se utiliza para calcular la edad media del equipo...) 
@@ -58,7 +61,7 @@ es:
      body_description:  Contenido  
      by: por
      
-     calendar_language: es    
+     calendar_language: es     
      can_create_schedule: Añadir un Evento   
      cancel: Cancela   
      
@@ -210,10 +213,11 @@ es:
      documentation: El Manual
      does_not_exist: "Lo sentimos, pero la página a la que intentas acceder no existe."
      does_not_exist_explained: Es posible que la pagina se haya cambiado.	  
-  
+     # do_join_festival: ¿Te quieres unir a   
      do_join_group: ¿Te quieres unir a   
      do_join_tournament: ¿Te quieres unir a   
      do_leave_group: ¿Te quieres salir de   
+     domain_unreachable: "domain is currently unreachable, try again later."  
      dont_user_marks: "Por favor, no use acentos en la cuenta OpenID. Gracias!"   
      dorsal: Dorsal   
      dorsal_description: (Si te interesa poner el nombre o numero de tu camiseta...)   
@@ -336,11 +340,12 @@ es:
      games_tied: P.E.   
      games_tied_full: Partidos Empatados   
      games_title_stat_points: Coeficiente Puntos (Coeficiente)/(Ptos.)   
-     games_title_stats: "Coeficiente (Ptos.)/(P.J.*#)"   
+     games_title_stats: Coeficiente (Ptos.)/(P.J.*3)   
      games_won: P.G.   
      games_won_full: Partidos Ganados   
      gender: Genero   
      general_information:  Información General
+     get_your_gravatar: Pilla tu Gravatar 
 
      # futbol labels
      goal_difference: G.D.   
@@ -439,7 +444,7 @@ es:
          one:  "Este torneo tiene 1 jugador." 
          other: "Este torneo tiene {{count}} jugadores."
                           
-     has_left:  "Quedan {{count}}"   
+     has_left:  Has Left  
      has_not_been_sent: no ha sido mandado correctamente.   
      has_updated_scorecard: Ha actualizado el resultado   
      have_an_account: Si tienes una cuenta   
@@ -448,10 +453,10 @@ es:
      help: Ayuda 
      help_amateur:  "Una ayuda a los aficionados..."  
      hi_email_header: Hola   
-     High: Alto   
-     home: Inicio   
-     home_group: Equipo   
-     how_much_better:  "¿Cuánto Mayor?"
+     High: High   
+     home: Home   
+     home_group: Home Team   
+     how_much_better:  "How much Better?"
      i_confirm: "Seleciónando 'inicia tu sesión', confirmas que aceptas los Terminos de Servicio."  
      icon: Icono
      icon_name: Nombre del Icono 
@@ -459,42 +464,42 @@ es:
      if_role_is: si eres el responsable   
      if_second_team: Segundo equipo si juegas entre amigos.   
      import_contact: Importa Contactos de tu Correo   
-     in: en   
-     inbox: Bandeja de Entrada   
-     information: Detalles   
-     information_about: Detalles de   
+     in: in   
+     inbox: Inbox   
+     information: Information   
+     information_about: Information on   
      interest_description: (Escribe algo de lo que te interesa...)   
-     invalid_action: Acción Invalida   
+     invalid_action: Invalid Action   
      invalid_login: No válido de acceso o contraseña   
-     invitation: Invitación
+     invitation: Invitation
      invitation_to: Tienes una invitación a HayPista   
      invitation_to_group: Invita a un Amigo al Equipo   
      invitation_to_schedule: Invita a un Amigo   
-     invitations: Invitaciones   
-     invite: invita   
-     invite_friend: Invita a un amigo   
-     invite_other_friend: Invita a otro amigo   
-     is_available: Si   
+     invitations: Invitations   
+     invite: invite   
+     invite_friend: Invite a friend   
+     invite_other_friend: Invite other Friends   
+     is_available: Is Available   
      is_available_user: Disponibilidad del jugador ha sido actualizada correctamente.   
-     is_invalid: no es valido.   
+     is_invalid: is not valid.   
      is_not_available: "No"   
-
-     join_group: Únete al Equipo   
+     # join_festival: Únete al Festivo   
+     join_group: Join the Team   
      join_group_message: Mensaje para unirte al equipo ha sido mandado correctamente.   
-     join_tournament: Únete al Torneo   
+     join_tournament: Join the Tournament   
      jornada:  Jornada
      jornada_description:  Jornada
-     language: Idioma 
-     last_game_played: Ultima Jornada	 
+     language: Language 
+     last_game_played: Last Recent Game	 
      last_login_at: conecto la ultima vez   
-     last_minute: Ultima Hora   
+     last_minute: Last Minute   
      last_schedule_description: Ultimo evento    
      last_scorecard: Ultimos Resultados   
      leave_comment: Deja un comentario...   
      leave_group: Desapuntate del Equipo   
      left_comment_on_wall: Ha dejado un comentario en el muro de    
      left_post_on_forum: Ha dejado un comentario en    
-     list: Listado   
+     list: List   
      list_marker: Lista de Centros Deportivos   
      list_user: Listado   
      list_venue: Lista de Centros Deportivos   
@@ -504,10 +509,10 @@ es:
      login:  Entrar	 
      log_in: Entrar   
      logged_out: Se ha cerrado la sesión.   
-     login: Entrar   
-     logout: Salir   
-     look: Mira   
-     Low: Bajo   
+     login: Login   
+     logout: Logout   
+     look: Look   
+     Low: Low   
      male_value: Masculino   
      
      manager: Responsable   
@@ -523,12 +528,12 @@ es:
      markers: Centros Deportivos 
      markers_list: Listado de Centros Deportivos
      markers_create:  Nuevo Centro Deportivo  
-     match: Resultado   
-     matches: Resultados   
-     maybe_available: Posiblemente   
-     Medium: Medio   
-     member_since: Miembro desde   
-     message: Mensaje
+     match: Match Result   
+     matches: Match Results   
+     maybe_available: Maybe Available   
+     Medium: Medium   
+     member_since: Member since   
+     message: Message
      message_description: Escribe el mensaje.
      message_notification: Recibir Correo  
      message_notification_description: (Quieres recibir notificaciones atraves del correo electronico...)   
@@ -556,34 +561,35 @@ es:
      must_be_before_deadline_at:  Tiene que ser despues de la fecha de Inscripción.
      must_be_after_deadline_at:  Tiene que ser despues de la fecha de Inscripción.
        
-     my_address: Mis Direcciones   
-     my_announcement: Mis Anuncios   
-     my_credit: Mis Pagos   
-     my_debit: Mis Cargos   
-     my_description: Mis Detalles   
-     my_fee: Mis Cargos   
-     my_group: Mis Equipos 
-     my_information: Mis Detalles   
-     my_invitation: Mis Invitaciones   
-     my_manager: Mis Misters   
-     my_map: Mis Mapas   
-     my_marker: Mis Lugares de Encuentro   
-     my_match: Mis Resultado   
-     my_message: Mis Mensajes   
+     my_address: My Direcciones   
+     my_announcement: My Anuncios   
+     my_credit: My Pagos   
+     my_debit: My Cargos   
+     my_description: My Detalles   
+     my_fee: My Cargos   
+     my_festival: My Acondiciónamientos   
+     my_group: My Equipos 
+     my_information: My Detalles   
+     my_invitation: My Invitaciones   
+     my_manager: My Myters   
+     my_map: My Mapas   
+     my_marker: My Lugares de Encuentro   
+     my_match: My Resultado   
+     my_message: My Mensajes   
      my_name: Mi Nombre   
-     my_nofication: Mis Notificaciones   
-     my_note: Mis Notas   
-     my_payment: Mis Pagos   
-     my_reminder: Mis Recordatorios   
-     my_role: Mis Responsabilidades   
-     my_schedule: Mis Eventos   
-     my_scorecard: Mis Clasificaciones   
-     my_sport: Mis Deportes   
-     my_teammate: Mis Compañeros de Equipo   
-     my_tournament: Mis Torneos   
+     my_nofication: My Notificaciones   
+     my_note: My Notas   
+     my_payment: My Pagos   
+     my_reminder: My Recordatorios   
+     my_role: My Responsabilidades   
+     my_schedule: My Eventos   
+     my_scorecard: My Clasificaciones   
+     my_sport: My Deportes   
+     my_teammate: My Compañeros de Equipo   
+     my_tournament: My Torneos   
      my_type: Mi Tipo   
   
-     my_venue: Mis Lugares de Encuentro 
+     my_venue: My Lugares de Encuentro 
      my_wall: Mi Muro  
 
      myopenid: Mi OpenID   
@@ -870,32 +876,32 @@ es:
      scorecard_updated: Resultados actualizados   
      search: Buscador no activado   
      search: busca   
-     search_announcements: Buscar Anuncios   
-     search_descriptions: Buscar Detalles   
-     search_fees: Buscar Cargos   
-     search_festivals: Buscar Acondiciónamiento   
-     search_groups: Buscar equipo
-     search_imports: Buscar Datos Importados   
-     search_informations: Buscar Detalles   
-     search_invitations: Buscar Invitación   
-     search_managers: Buscar Mister   
-     search_maps: Buscar Centro Deportivo   
-     search_markers: Buscar Centro Deportivo   
-     search_messages: Buscar Mensaje   
-     search_names: Buscar Nombres   
-     search_notes: Buscar Notas   
-     search_notifications: Buscar Notificación   
-     search_payments: Buscar Pagos   
-     search_profiles: Buscar perfiles   
-     search_reminders: Buscar Recordatorio   
-     search_roles: Buscar    
-     search_schedules: Buscar evento   
-     search_scorecards: Buscar Resultados   
-     search_sports: Buscar Deporte   
-     search_tournaments: Buscar Torneos   
-     search_types: Buscar Tipos   
-     search_users: Buscar jugador   
-     search_venues: Buscar Centro Deportivo  
+     search_announcements: Search for Anuncios   
+     search_descriptions: Search for Detalles   
+     search_fees: Search for Cargos   
+     search_festivals: Search for Acondiciónamiento   
+     search_groups: Search for equipo
+     search_imports: Search for Datos Importados   
+     search_informations: Search for Detalles   
+     search_invitations: Search for Invitación   
+     search_managers: Search for Mister   
+     search_maps: Search for Centro Deportivo   
+     search_markers: Search for Centro Deportivo   
+     search_messages: Search for Mensaje   
+     search_names: Search for Nombres   
+     search_notes: Search for Notas   
+     search_notifications: Search for Notificación   
+     search_payments: Search for Pagos   
+     search_profiles: Search for perfiles   
+     search_reminders: Search for Recordatorio   
+     search_roles: Search for    
+     search_schedules: Search for evento   
+     search_scorecards: Search for Resultados   
+     search_sports: Search for Deporte   
+     search_tournaments: Search for Torneos   
+     search_types: Search for Tipos   
+     search_users: Search for jugador   
+     search_venues: Search for Centro Deportivo  
      season:  Temporada
      season_description:  Temporada 
      second_team: Segundo Equipo   
@@ -1047,12 +1053,13 @@ es:
      thread_message: Mensaje (s)   
      Thursday: Jueves   
      time_zone_description: (Zona donde tienes interes en practicar algun deporte...)   
+     # title: Título   
      to: a   
      to_email: Email del Amigo   
     
      to_join: Únirse a   
      to_join_email: para unirse a 
-
+     # to_join_festival: Unirte a un Festivo   
      to_join_group: Unirte a un equipo   
      to_join_group_message: Petición para unirte a 
      to_join_group_message_sent: Petición para unirte a sido enviada.
@@ -1094,6 +1101,7 @@ es:
      unsuccessful_logged_in:  Nombre o clave son incorrectas 
 
      upcoming: próximos eventos   
+     upcoming_festival: Próximos Acondiciónamientos   
      upcoming_schedule: Próximo Evento   
      upcoming_schedules: Próximos Eventos 
      upcoming_meet: Próximo Evento 
@@ -1336,7 +1344,7 @@ es:
      fees_update:  Modificar Cargo
      
      home_index: Inicio
-     home_search:  Buscar
+     home_search:  Search for
      home_about_us: About Us
      home_information:  Información
      home_option:  Opciones de Inicio
@@ -1613,7 +1621,7 @@ es:
      tournaments_show:  Mostrar Torneo
      tournaments_update: Modificar Torneo
           
-     types_index:  Tipos
+     types_index:  Types
      types_maximo_option:  Requiere responsable de administrador para ver mas opciones.
      types_option:  Opciones de Tipos
      
@@ -1637,7 +1645,7 @@ es:
      users_rpx_create:  Nuevo Jugador
      users_teammate: Mis Compañeros de Equipo
     
-     true: "Si"
+     true: "Yes"
      false: "No"
           
      # ajaxful_rating:
@@ -1647,16 +1655,3 @@ es:
      #       one: "1 star out of {{total}}"
      #       other: "{{count}} stars out of {{total}}"
            
-     time:
-       formats:
-         default: "%A, %e de %B de %Y %H:%M:%S %z"
-         short: "%e de %b %H:%M" 
-         long: "%e de %B de %Y %H:%M" 
-         day_week: "%A, %e de %B de %Y a las %H:%M" # this is my code
-         day_time: "%A, a las %H:%M" # this is my code
-         day_weekday: "%A"
-         day_date: "%A, %e de %B de %Y" # this is my code
-         day_date_wo_year: "%A, %e de %B" # this is my code
-         day_time_wo_year: "%A, %e de %B a las %H:%M" # this is my code
-         time_at: "a las %H:%M" # this is my code
-         full_date: "%e de %B de %Y" # this is my code

@@ -142,12 +142,33 @@ class UsersController < ApplicationController
       format.xml  { render :xml => @user }
     end
   end
+  
+  def remove_openid    
+    identifier = params[:openid] 
+    RPXNow.unmap(identifier, @current_user.id)
+    flash[:notice] = "OpenID #{identifier} #{I18n.t(:removed)}"    
+    redirect_back_or_default('/index')
+  end
 
   def search
     count = User.count_by_solr(params[:search])
     @users = User.paginate_all_by_solr(params[:search], :page => params[:page], :per_page => USERS_PER_PAGE, :operator => :or)
     render :template => '/users/index'
+  end  
+  
+  def set_language
+    I18n.locale = "en"
+    case params[:id]
+    when "es", "en", "fr", "ge", "it"
+      I18n.locale = params[:id]
+    end     
+    if current_user
+      @user = current_user
+      @user.update_attribute("language", I18n.locale)
+    end
+     redirect_back_or_default('/')
   end
+  
 
   def set_tour_manager 
     unless current_user.is_tour_creator_of?(@tournament)
@@ -470,6 +491,7 @@ class UsersController < ApplicationController
     end
       redirect_back_or_default('/index')
   end
+
    
   protected
   
