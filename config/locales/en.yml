@@ -464,25 +464,24 @@ en:
      join_group: Join the Team   
      join_group_message: Message para unirte al team ha sido mandado correctamente.   
      join_tournament: Join the Tournament   
-     jornada:  Jornada
-     jornada_description:  Jornada
+     jornada:  Event
+     jornada_description:  Event
      language: Language 
      last_game_played: Last Recent Game	 
-     last_login_at: conecto la ultima vez   
+     last_login_at: last login at   
      last_minute: Last Minute   
-     last_schedule_description: Ultimo event    
-     last_scorecard: Ultimos Resultados   
-     leave_comment: Deja un comentario...   
-     leave_group: Desapuntate del Team   
-     left_comment_on_wall: Ha dejado un comentario en el muro de    
-     left_post_on_forum: Ha dejado un comentario en    
+     last_schedule_description: Recent event    
+     last_scorecard: Recent Results   
+     leave_comment: Leave a comment...   
+     leave_group: Leave the Team   
+     left_comment_on_wall: Has left a comment on the wall    
+     left_post_on_forum: Has left a comment on    
      list: List   
-     list_marker: Lista de Sport Centers   
-     list_user: Listado   
-     list_venue: Lista de Sport Centers   
-     locale_name: Español   
-     location_festival: Lugar donde practicas se Acondiciónamientos.   
-     location_sport: Lugar donde practicas tu deporte. 
+     list_marker: List of Sport Centers   
+     list_user: List   
+     list_venue: List of Sport Centers   
+     locale_name: Español     
+     location_sport: Location where you practice sports. 
      login:  Log In	 
      log_in: Log In   
      logged_out: Logged Out.   
@@ -495,31 +494,31 @@ en:
      manager: Manager   
      managers: Responsable(s)   
      map: Mapa    
-     map_it: Ubicalo
-     maps: Mapas   
-     mark_as_read: Marcar como leido   
-     mark_as_unread: Marcar como no leido   
+     map_it: Map It
+     maps: Maps   
+     mark_as_read: Mark as Read   
+     mark_as_unread: Mark as Unread   
      marker: Sport Center
      marker_id: Sport Center   
      marker_description: (Localiza en el mapa donde juega el team si no esta en la lista...)   
      markers: Sport Centers 
-     markers_list: Listado de Sport Centers
+     markers_list: List of Sport Centers
      markers_create:  New Sport Center  
-     match: Resultado   
-     matches: Resultados   
-     maybe_available: Posiblemente   
-     Medium: Medio   
-     member_since: Miembro desde   
+     match: Match Result   
+     matches: Match Results   
+     maybe_available: Maybe Available   
+     Medium: Medium   
+     member_since: Member since   
      message: Message
-     message_description: Escribe el mensaje.
-     message_notification: Recibir Correo  
+     message_description: Write a message.
+     message_notification: Message Notification  
      message_notification_description: (Quieres recibir notificaciones atraves del correo electronico...)   
      messages: Messages   
-     missing:  Faltan
-     missing_information: Falta información   
+     missing:  Missing
+     missing_information: Missing Information   
      mistyped_url: "Posiblemente, habras escrito la dirección incorrectamente o es posible que la pagina ya no exista."   
      
-     moderator_updated:  Update de moderador.
+     moderator_updated:  Update moderator.
      
      modified_available: Modificada la disponibilidad de jugar de   
      modified_email: Modificada la disponibilidad de recibir correos a  
@@ -600,7 +599,7 @@ en:
      next: "next"
      next_step: next step   
      nickname: Nickname
-     ######   
+  
      no_account: "Con tu cuenta nueva OpenID, registrate en HayPista"   
      no_account_yet: ¿No tienes una cuenta todavia?   
      no_openid_account_yet: ¿No tienes una cuenta atraves de terceras cuentas? 
@@ -635,7 +634,7 @@ en:
      no_sport: No sports   
      no_tournament: No Tournaments   
      no_type: No types   
-     no_user_on_message: El mensaje le falta un receptor   
+     no_user_on_message: The mensaje le falta un receptor   
      no_venue: No tienes un centro deportivo donde jugar 
      non_subscription_at: Inicio para Convocarse el no Subscription
      non_subscription_at_match: Inicio para Convocarse el no Subscription   
@@ -658,7 +657,7 @@ en:
      open_id_explanation: "OpenID es un sistema de autentificación seguro, libre y muy facil de usar, que te facilitara la identificación en muchas páginas web con solo introducir tu dirección URL de OpenID,   de  forma que solo mantendra  una  ID  global  paryour  accesos  a web  con soporte OpenID "  
      open_id_logged_in: Identificado con successful.   
      openid_added: Añadido un OpenID a tu cuenta   
-     openid_already_added: El OpenID ya estaba añadido a tu cuenta    
+     openid_already_added: The OpenID ya estaba añadido a tu cuenta    
      openid_cancelled: Autorización a la cuenta OpenID ha sido cancelada   
      openid_failed: Autorización a la OpenID ha fallado   
      openid_replace_account: Reemplaza el OpenID   
@@ -757,7 +756,7 @@ en:
      points_full: Points   
      popular: De Moda 
      possible_spam:  Posible SPAM!  
-     position_description: (El puesto en el campo que mejor se te da. si es relevante!)   
+     position_description: (The puesto en el campo que mejor se te da. si es relevante!)   
      post: Post   
      post_not_saved: Comments NOT saved!!!   
      post_saved: Comments saved!!!   
@@ -1022,8 +1021,8 @@ en:
      terms_message: Please accept the terms to proceed   
      test_beta: "Si tienes interes in formar del team para probar la herramienta, pasanos tu cuenta de correo."   
      thanx_sign_up: Gracias por registrarte!   
-     the_haypista_team: El Team de HayPista...   
-     the_schedule: La Jornada   
+     the_haypista_team: The Team de HayPista...   
+     the_schedule: The Event   
      the_wall: Wall -    
      Therapist: Therapist   
      thread_message: Message (s)   
