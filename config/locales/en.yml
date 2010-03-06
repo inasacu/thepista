@@ -204,34 +204,33 @@ en:
      edit: Edit   
      edit_address: Edit Address   
      edit_announcement: Edit Announcement   
-     edit_credit: Edit a Payment   
-     edit_debit: Edit a Fee   
-     edit_description: Edit Description  
-     edit_fee: Edit Fees   
-     edit_festival: Modifica el Acondiciónamiento   
-     edit_group: Modifica el Team   
+     edit_credit: Edit Payment   
+     edit_debit: Edit Charge   
+     edit_description: Edit Details  
+     edit_fee: Edit Charges    
+     edit_group: Edit Team   
      edit_information: Modifica un Detalles   
-     edit_invitation: Modifica la Invitation   
-     edit_manager: Modifica un Manager   
-     edit_map: Modifica el Mapa   
-     edit_marker: Modifica el Club   
+     edit_invitation: Edit Invitation   
+     edit_manager: Edit Manager   
+     edit_map: Edit the Mapa   
+     edit_marker: Edit the Club   
      edit_match: Guardar el Resultado   
-     edit_message: Modifica un Message   
+     edit_message: Edit Message   
      edit_my_user: Modifica mi Cuenta   
-     edit_name: Modifica un Nombre   
+     edit_name: Edit Nombre   
      edit_note: Modifica una Nota   
-     edit_notification: Modifica la Notificación   
-     edit_payment: Modifica un Payment   
-     edit_profile: Modifica tu perfil   
-     edit_reminder: Modifica un Recordatorio   
-     edit_role: Modifica la Responsabilidad   
-     edit_schedule: Modifica el Event   
-     edit_scorecard: Modifica el Resultado   
-     edit_sport: Modifica el Sport   
-     edit_tournament: Modifica el Tournament   
-     edit_type: Modifica un Type   
-     edit_user: Modifica tu perfil   
-     edit_venue: Modifica el Club   
+     edit_notification: Edit the Notificación   
+     edit_payment: Edit Payment   
+     edit_profile: Edit your profile   
+     edit_reminder: Edit Reminder   
+     edit_role: Edit the Responsabilidad   
+     edit_schedule: Edit the Event   
+     edit_scorecard: Edit the Resultado   
+     edit_sport: Edit the Sport   
+     edit_tournament: Edit the Tournament   
+     edit_type: Edit Type   
+     edit_user: Edit your profile   
+     edit_venue: Edit the Club   
      email: Email   
      email_time_zone: Zona Horaria para mandar correos antes de un encuentro.  
      email_addresses: Cuenta de Correo
@@ -305,49 +304,49 @@ en:
      gameday_description: (What day of the week does your team play?)   
      games_assigned: G.A.   
      games_assigned_full: Games Assigned   
-     games_lost: P.P.   
+     games_lost: G.L.   
      games_lost_full: Games Lost   
-     games_played: P.J.   
+     games_played: G.P.   
      games_played_full: Games Played  
-     games_started: P.T.
-     games_started_full:  Starting Line-Up 
+     games_started: G.S.
+     games_started_full:  Games Started 
      games_ranking: R.   
      games_ranking_full: Ranking   
      games_stats: Coef.   
      games_stats_points: C. Pts.   
-     games_tied: P.E.   
+     games_tied: G.T.   
      games_tied_full: Games Tied   
      games_title_stat_points: Coefficient Points (Coefficient)/(Pts.)   
      games_title_stats: "Coefficient (Pts.)/(G.P.*#)"  
-     games_won: G.P.   
+     games_won: G.W.   
      games_won_full: Games Won   
      gender: Gender   
      general_information:  General Information
 
      # futbol labels
      goal_difference: G.D.   
-     goal_difference_full: Gole Difference   
+     goal_difference_full: Goal Difference   
      goals_against: G.A.   
-     goals_against_full: Goles Against   
+     goals_against_full: Goals Against   
      goals_for: G.F.   
-     goals_for_full: Goles For  
+     goals_for_full: Goals For  
       
      goal_difference_true: G.D.   
-     goal_difference_full_true: Gole Difference   
-     goals_against_true: G.C.   
-     goals_against_full_true: Goles Against   
+     goal_difference_full_true: Goal Difference   
+     goals_against_true: G.A.   
+     goals_against_full_true: Goals Against   
      goals_for_true: G.F.   
-     goals_for_full_true: Goles in Favor    
+     goals_for_full_true: Goals in Favor    
      
-     goal_difference_false: D.P.   
-     goal_difference_full_false: Diferencial De Puntos   
-     goals_against_false: P.C.   
-     goals_against_full_false: Puntos en Contra   
-     goals_for_false: P.F.   
-     goals_for_full_false: Puntos a Favor   
+     goal_difference_false: G.D.   
+     goal_difference_full_false: Point Difference   
+     goals_against_false: G.A.   
+     goals_against_full_false: Goals Against   
+     goals_for_false: G.F.   
+     goals_for_full_false: Goals in Favor   
      
-     goals_scored: G.M.   
-     goals_scored_full: Goles Marcados
+     goals_scored: G.S.   
+     goals_scored_full: Goals Scored
      
      # basket label     
      field_goal_attempt: FGA		
@@ -525,7 +524,7 @@ en:
      modified_available: Modificada la disponibilidad de jugar de   
      modified_email: Modificada la disponibilidad de recibir correos a  
      modified_phone: Modificada la opción de ocultar el telefono de   
-     modified_profile: Modificada la opción de ocultar tu perfil de   
+     modified_profile: Modificada la opción de ocultar tu profile de   
      modified_reliable: Modificada la fiabilidad del jugardor para atender   
      modo: HayPista te quiere ayudar a organizar tu team o encontrar donde jugar...   
      Monday: Lunes   
@@ -678,7 +677,7 @@ en:
      participate_group_afterwards: Despues de registrate sigue este enlace para unirte al team
      
      participation:  %
-     participation_full:  Porcentaje de Participación
+     participation_full:  Participation Percentage
      
      password: Clave
      password_change: Cambiar Contraseña
@@ -708,119 +707,118 @@ en:
      payed_description:  Han sido pagadas las Charges? 
      payment: Payment  
      payments: Payments   
-     pending: Pendiente   
+     pending: Pending   
      percentage: %   
-     percentage_full: Porcentaje   
+     percentage_full: Percent   
      
-     petition: Petición 
-     petition_at:  Fecha de la Petición
-     petition_join_team_accept:  Acepto
-     petition_join_team_decline: Rechazo
-     petition_no:  No Petición to show.
-     petition_to_join_group: Petición para unirse a 
-     petition_to_join_tournament: Petición para unirse a
-     petition_to_join_round: Petición para unirse a
-     petition_pending: Peticiones Pendiente   
-     petition_to_join: Petición para unirse a 
-     petitions: Peticiones 
-     petition_to_join_approved: Petición aprobada para unirse.
-     petition_to_join_declined:  Petición cancelada para unirse.
-     petition_to_leave_approved: Petición aprobada para desapuntarse.
+     petition: Request 
+     petition_at:  Date of Request
+     petition_join_team_accept:  Accept
+     petition_join_team_decline: Decline
+     petition_no:  No Requests to show.
+     petition_to_join_group: Request to join a 
+     petition_to_join_tournament: Request to join a
+     petition_to_join_round: Request to join a
+     petition_pending: Pending Request   
+     petition_to_join: Request to join a 
+     petitions: Requests 
+     petition_to_join_approved: Request to join has been approved.
+     petition_to_join_declined:  Request to join has been denied.
+     petition_to_leave_approved: Request to opt-out has been approved.
                  
-     no_petition_to_join_group: No hay peticiones para unirse a un team! 
-     deleted_petition_by: Petición ha sido borrada por   
-     denial_petition_to_join: Petición denegada para unirse a 
-     cancel_petition: Cancelar Petición   
+     no_petition_to_join_group: No Request to join a team! 
+     deleted_petition_by: Request has been removed by   
+     denial_petition_to_join: Request to join has been denied to 
+     cancel_petition: Cancel Request  
 
-     cancel_a_petition: ¿Cancelar petición para unirte al team? 
-     you_petition_to_join: Petición para unirte a un team  
-     team_petition: Solicitud de Team
-     error_petition_to_join: Error en la petición para unirse a
+     cancel_a_petition: Cancel Request to join a team? 
+     you_petition_to_join: Request to join a team  
+     team_petition: Request for Team
+     error_petition_to_join:  Error in the request to join 
 
      phase:  Round
-     phone: Teléfono   
+     phone: Telephone   
      phone_description: (Por si te tiene que llamar tu team. Hay opción de poner este numero en privado...)   
-     photo: Foto 
-     photo_description: Foto  
+     photo: Photo 
+     photo_description: Photo  
      photo_description: "(Opción para subir una imagen...{formato: jpeg, gif, png, jpg}{tamaño: 5mb})"  
      physical_level_description: "(Del 1 al 5, pon el nivel fisico que crees que tienes comparado con los de tu team...)"  
-     player_limit:  Limite de Players
+     player_limit:  Player Limit
      player_limit_description:  Limite de Players que puede tener el Team. 
-     player_with: "Players con"
+     player_with: "Players with"
      player_with_less_games: asistencias a events menos que el resto.
-     points: Ptos.
-     points_for_draw: Puntos por empatar
+     points: Pts.
+     points_for_draw: Points for a Tie
      points_for_draw_description: Dale puntuación por empatar el event...
-     points_for_lose: Puntos por perder
+     points_for_lose: Points for a Loss
      points_for_lose_description: Dale puntuación por perder el event...
-     points_for_win: Puntos por ganar
+     points_for_win: Points for a Win
      points_for_win_description: Dale puntuación por ganar el event...
-     points_full: Puntos   
+     points_full: Points   
      popular: De Moda 
      possible_spam:  Posible SPAM!  
      position_description: (El puesto en el campo que mejor se te da. si es relevante!)   
-     post: Publica   
-     post_not_saved: Comentarios NO guardados!!!   
-     post_saved: Comentarios guardados!!!   
-     pre_match: Convocatoria   
-     preference: preferencias
-     previous: "Anterior"
-     previous_ranking: R.P.   
-     previous_ranking_full: Ranking Previo
-     previous_schedule: Anterior Event   
-     previous_schedules: Anteriores Events
-     previous_meet: Anterior Event 
-     previous_meets: Anteriores Events de Tournament
+     post: Post   
+     post_not_saved: Comments NOT saved!!!   
+     post_saved: Comments saved!!!   
+     pre_match: On the Roster   
+     preference: Preferences
+     previous: "Previous"
+     previous_ranking: P.R.   
+     previous_ranking_full: Previous Ranking
+     previous_schedule: Previous Event   
+     previous_schedules: Previous Events
+     previous_meet: Previous Event 
+     previous_meets: Previous Events for Tournament
          
-     previous_profile_set:  Updater Perfiles.
-     previous_profile_set_full:  Obtener los perfiles de la previa jornada.
-     pricing:  Precios
-     privacy: privacidad   
+     previous_profile_set:  Update Profiles.
+     previous_profile_set_full:  Get previous event's profiles.
+     pricing:  Pricing
+     privacy: privacy   
      private_beta: Ya tenemos tu información registrada.  Actualmente estamos en versión de pruebas.  Encuanto podamos abriremos al publico.   
-     private_email: Correo Oculto   
+     private_email: Private Email   
      private_option_description: (Marcar opción como privada a todos...)   
      private_phone: Ocultar el teléfono   
      private_phone_description: (Quieres ocultar tu numero de telefono...)   
-     private_profile: Ocultar el perfil   
+     private_profile: Ocultar el profile   
      problem_field: Hemos tenido problemas con algunos de los campos.   
      profile: Profile   
      profile_available_ends: No Disponible Hasta   
      profile_available_starts: No Disponible Desde   
      profile_injury_until: Lesionado Hasta   
-     profile_physical: Nivel Fisico   
+     profile_physical: Physical Level   
      profile_position: Position   
-     profile_private: Ocultar el perfil   
-     profile_rating: Calificación   
-     profile_technical: Nivel Tecnico 
+     profile_private: Private Profile   
+     profile_rating: Qualifications   
+     profile_technical: Technical Level 
      protect_your_privacy: "Protegemos tu privacidad. HayPista en ningún momento le ha proporcionado tu dirección de correo electrónico a ningún otro usuario de HayPista sin tu permiso. © 2007-2009, HayPista"  
      provider_not_supported: "provider is not supported, try another email address."   
-     public:  Abierto al Publico
-     public_description:  Selecciona opción si esta abierto al publico.
-     publish_in: Publica en HayPista   
-     # published_date: Publication Date (in Spanish)   
-     question_or_comment: Pregunta o comentario?
+     public:  Open to the Public
+     public_description:  Selection option if open to the public.
+     publish_in: Publish on HayPista     
+     question_or_comment: Feedback?
      ranking: Ranking   
-     ranking_full: Position del Jugador en la tabla   
-     really_archive: Estas seguro que quieres archivar    
-     really_exit_festival: Estas seguro que te quieres desapuntar de   
-     really_exit_group: Estas seguro que te quieres desapuntar de   
-     really_exit_tournament: Estas seguro que te quieres desapuntar de   
-     recent_activities: Actividades Recientes   
-     recent_activity: Actividad reciente   
-     recommend_marker: Este campo es recomendado...   
-     recommend_venue: Este campo es recomendado...   
+     ranking_full: Player Ranking    
+     really_archive: Are you sure you want to archive    
+     really_exit_festival: Are you sure you want to opt-out of   
+     really_exit_group: Are you sure you want to opt-out of   
+     really_exit_tournament: Are you sure you want to opt-out of   
+     recent_activities: Recent Activities   
+     recent_activity: Recent Activity   
+     recommend_marker: This marker is recommended...   
+     recommend_venue: This venue is recommended...   
 
-     recycled_message: Message reciclado   
-     region: Provincia   
+     recycled_message: Recycle Message   
+     region: Region   
      register: Registrate con   
-     registration_failed: Su perfil de OpenID ha fallado.   
+     registration_failed: Su profile de OpenID ha fallado.   
      remember_me: "¿Permanecer Conectado?"
-     reminder: Recordatorio 
+     reminder: Reminder 
      reminder_description:  Quieres un recordatorio del Event
-     reminder_at:  Recordatorio
+     reminder_at:  Reminder
      reminder_at_description:  (¿Ha que hora te mandamos un recordatorio?)  
-     reminder_at_match: Recordatorio   
-     reminders: Recordatorios   
+     reminder_at_match: Reminder   
+     reminders: Reminders   
      
      # remove_moderator: Remove Moderador   
      # remove_sub_manager: Remove Sub-Manager   
@@ -870,8 +868,8 @@ en:
      search_notes: Buscar Notas   
      search_notifications: Buscar Notificación   
      search_payments: Buscar Payments   
-     search_profiles: Buscar perfiles   
-     search_reminders: Buscar Recordatorio   
+     search_profiles: Buscar profiles   
+     search_reminders: Buscar Reminder   
      search_roles: Buscar    
      search_schedules: Buscar event   
      search_scorecards: Buscar Resultados   
@@ -1102,15 +1100,15 @@ en:
      update_note: Update una Nota   
      update_notification: Update la Notificación   
      update_payment: Update un Payment   
-     update_profile: Update tu perfil   
-     update_reminder: Update un Recordatorio   
+     update_profile: Update tu profile   
+     update_reminder: Update un Reminder   
      update_role: Update la Responsabilidad   
      update_schedule: Update el Event   
      update_scorecard: Update el Resultado   
      update_sport: Update el Sport   
      update_tournament: Update el Tournament   
      update_type: Update un Type   
-     update_user: Update tu perfil   
+     update_user: Update tu profile   
      update_venue: Update el Sport Center   
      updated: se ha actualizado correctamente.   
      upload:  Subir
@@ -1306,7 +1304,7 @@ en:
      fees_destroy: Remove Charge
      fees_index:   Charge
      fees_index_option: Options
-     fees_manager_option:  Requiere responsable de team para ver mas opciones.
+     fees_manager_option:  Requires team manager position to view more options.
      fees_new:  New Charge
      fees_no:  No Charge to show.
      fees_edit:  Edit Charge
@@ -1332,7 +1330,7 @@ en:
      payments_create:  New Payment
      payments_index:   Payments
      payments_index_option: Options de Payment
-     payments_manager_option:  Requiere responsable de team para ver mas opciones.
+     payments_manager_option:  Requires team manager position to view more options.
      payments_new:  New Payment
      payments_no:  No Payment to show.
      payments_destroy:  Remove Payment
@@ -1378,9 +1376,9 @@ en:
      meets_index:  Events de Tournament  
      meets_index_option: Options del Event 
      meets_invitations_create:  Invite a friend to the Event 
-     meets_list:  Anteriores Events 
+     meets_list:  Previous Events 
      meets_list_no: No Event previo to show.
-     meets_manager_option:  Requiere responsable de team para ver mas opciones.
+     meets_manager_option:  Requires team manager position to view more options.
      meets_new: New Event 
      meets_no: No Event to show.
      meets_edit: Edit Event 
@@ -1462,7 +1460,7 @@ en:
      scorecard_options:  Options
      scorecards_archive:  Archive Scorecard
      scorecards_index:   Scorecards
-     scorecards_manager_option:  Requiere responsable de team para ver mas opciones.
+     scorecards_manager_option:  Requires team manager position to view more options.
      scorecards_no: No Scorecard to show.
      scorecards_option:  Options de Sport Centers
      scorecards_less_games:  ( * ) Messages con menos asistencias a events
@@ -1470,12 +1468,12 @@ en:
 
      standing:  Scorecard del Tournament
      standings:  Scorecards de Tournament
-     standing_list:  Scorecards Anteriores de Tournament
-     standings_list:  Scorecards Anteriores de Tournament
+     standing_list:  Scorecards Previous de Tournament
+     standings_list:  Scorecards Previous de Tournament
      standing_options:  Options de Scorecard de Tournament
      standings_archive:  Archivar la Scorecard de Tournament
      standings_index:   Scorecards de Tournament
-     standings_manager_option:  Requiere responsable de team para ver mas opciones.
+     standings_manager_option:  Requires team manager position to view more options.
      standings_no: No Scorecard de Tournament to show.
      standings_option:  Options de Scorecards de Tournament
      standings_less_games:  ( * ) Players con menos asistencias a events
