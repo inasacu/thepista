@@ -1,4 +1,3 @@
-
 <%= stylesheet_link_tag 'home' %>
 
 <div id="home">
@@ -6,48 +5,27 @@
 	<div class="announce">
 		<h1><%= label_name(:modo) %></h1>
 	</div>
-
 	<div class="features">
-
 		<div class="site">
 			<div class="left">
 				<div class="headline">
 					<div class="words">
-						<h1>Pónte en marcha en cuestión de segundos </h1>
+						<h1><%= label_name(:get_rolling) %></h1>
 					</div>
-					<div class="tour">
-						
-						<h1><%= link_to label_name(:signup), signup_path %></h1>
-						
+					<div class="tour">						
+						<h1><%= link_to label_name(:signup), signup_path %></h1>						
 					</div>
 				</div>
-
-				<h3>¿Qué es <strong>HayPista</strong>?</h3>
-				<p>
-					<strong>HayPista</strong> es un portal que te ayuda a organizar partidos entre amigos, 
-					buscar un centro donde puedas jugar, 
-					encontrar a gente con los mismos intereses y 
-					sobretodo disfrutar el deporte.
-				</p>
+				<h3><%= label_name(:what_is_haypista) %></h3>
+				<p><%= label_name(:what_is_haypista_details) %></p>
 			</div>
-
-
-			<div class="right">
-				
-				<h3>Como funciona <strong>HayPista</strong>?</h3>
-				<p>
-					Simplemente crea un equipo, busca un centro deportivo, crea un evento, envía invitaciones a tus amigos y ya está.  <strong>Asi de fácil.</strong>
-				</p>
-
-				<h3>¿Qué otras cosas hace <strong>HayPista</strong>?</h3>
-				<p>
-					<strong>HayPista</strong> te permite organizar quién del equipo puede participar en cada evento, hacer diferentes equipos por evento, mandar la convocatoria y poner el resultado del evento.  También mantiene los resultados de cada evento y la clasificación de cada jugador en tu equipo.
-				</p>
+			<div class="right">				
+				<h3><%= label_name(:how_does_haypista) %></h3>
+				<p><%= label_name(:how_does_haypista_details) %></p>
+				<h3><%= label_name(:what_other_haypista) %></h3>
+				<p><%= label_name(:what_other_haypista_details) %></p>
 			</div>
-
 		</div>
 	</div>
-
 	<%= render :partial => 'screens' %>
-
 </div>

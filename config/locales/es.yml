@@ -583,10 +583,8 @@ es:
      myopenid_association: "Una de las mejores características aquí en HayPista es su capacidad de acceso mediante cuentas que ya tienen. <br />
                           Nos hemos asociado con algunos de los principales proveedores de servicios en un esfuerzo 
                           para hacer de su experiencia que HayPista mucho más fácil."   
-     myopenid_association_en: One of the great features here on HayPista is your ability to login using accounts you already have. We've teamed up with some of the top service providers in an effort to make your HayPista experience that much easier.    
      myopenid_login: myOpenID   
      myopenid_select: Seleccióna cualquiera de los siguientes proveedores de servicios.   Sigue el URL para añadir una cuenta de un tercer servicio a tu cuenta existente de HayPista!   
-     myopenid_select_en: Select any of the service providers by following the url above to add a third-party account to your existing HayPista account!    
      myopenid_third_party: miOpenID Tercera Parte Cuenta  
 
      modified_openid: Modificada la opción de ocultar tus cuentas de OpenID 
@@ -621,7 +619,6 @@ es:
      no_debit: No tienes Cargos   
      no_description: Ningun Detalle   
      no_fee: No tienes tasas   
-     no_festival: No tienes Acondiciónamientos   
      no_group: No tienes equipo   
      no_invitation: No tienes invitaciones   
      no_jugado: No Presentado   
@@ -785,28 +782,23 @@ es:
      previous_profile_set_full:  Obtener los perfiles de la previa jornada.
      pricing:  Precios
      privacy: privacidad   
-     private_beta: Ya tenemos tu información registrada.  Actualmente estamos en versión de pruebas.  Encuanto podamos abriremos al publico.   
      private_email: Correo Oculto   
      private_option_description: (Marcar opción como privada a todos...)   
      private_phone: Ocultar el teléfono   
      private_phone_description: (Quieres ocultar tu numero de telefono...)   
      private_profile: Ocultar el perfil   
      problem_field: Hemos tenido problemas con algunos de los campos.   
-     profile: Perfil   
-     profile_available_ends: No Disponible Hasta   
-     profile_available_starts: No Disponible Desde   
-     profile_injury_until: Lesionado Hasta   
+     profile: Perfil        
      profile_physical: Nivel Fisico   
      profile_position: Posición   
      profile_private: Ocultar el perfil   
      profile_rating: Calificación   
      profile_technical: Nivel Tecnico 
-     protect_your_privacy: "Protegemos tu privacidad. HayPista en ningún momento le ha proporcionado tu dirección de correo electrónico a ningún otro usuario de HayPista sin tu permiso. © 2007-2009, HayPista"  
+     protect_your_privacy: "Protegemos tu privacidad. HayPista en ningún momento le ha proporcionado tu dirección de correo electrónico a ningún otro usuario de HayPista sin tu permiso. © 2007-2010, HayPista"  
      provider_not_supported: "provider is not supported, try another email address."   
      public:  Abierto al Publico
      public_description:  Selecciona opción si esta abierto al publico.
      publish_in: Publica en HayPista   
-     # published_date: Publication Date (in Spanish)   
      question_or_comment: Pregunta o comentario?
      ranking: Ranking   
      ranking_full: Posición del Jugador en la tabla   
@@ -1632,14 +1624,20 @@ es:
     
      true: "Si"
      false: "No"
-          
-     # ajaxful_rating:
-     #   stars:
-     #     current_average: "Current rating: {{average}}/{{max}}"
-     #     title:
-     #       one: "1 star out of {{total}}"
-     #       other: "{{count}} stars out of {{total}}"
-           
+
+     get_rolling:  Pónte en marcha en cuestión de segundos
+     upcoming_schedules_screen:  "Al entrar, puedes ver los próximos eventos de tu equipo, y actividades de tus compañeros..."
+     users_screen:   "Puedes ver todos tus compañeros de equipo y sus perfiles..."
+     groups_screen:  "Todos los equipos a los que perteneces se pueden ver aquí..."
+     schedules_screen:  "Muestra la lista de los proximos eventos, e incluso anteriores eventos..."
+     schedule_screen:  "Muestra los detalles del evento, un muro, lista de convocados, ultima hora y ausentes..."
+     scorecards_screen:  "Los resultados de cada evento permite mantener la clasificación de tu equipo..."
+     what_is_haypista_details:  "HayPista es un portal que te ayuda a organizar partidos entre amigos, buscar un centro donde puedas jugar, encontrar a gente con los mismos intereses y sobretodo disfrutar el deporte."
+     how_does_haypista:  "¿Como funciona HayPista?"
+     how_does_haypista_details:  "Simplemente crea un equipo, busca un centro deportivo, crea un evento, envía invitaciones a tus amigos y ya está. Asi de fácil."
+     what_other_haypista: "¿Qué otras cosas hace HayPista?"
+     what_other_haypista_details:  "HayPista te permite organizar quién del equipo puede participar en cada evento, hacer diferentes equipos por evento, mandar la convocatoria y poner el resultado del evento. También mantiene los resultados de cada evento y la clasificación de cada jugador en tu equipo."
+
      time:
        formats:
          default: "%A, %e de %B de %Y %H:%M:%S %z"
