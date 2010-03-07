@@ -407,9 +407,6 @@ es:
      turnovers_full: Turnovers
      personal_fouls_full: Personal Fouls
      assist_turnover_ratio_full:  Assist Turnover Ratio
-          
-     gravatar_not_received: No ha sido posible conseguir la información de gravatar del usuario   
-     gravatar_received: Ya hemos conseguido la información del gravatar del usuario   
      group: Equipo   
      Group: Equipo 
      group_a:  Primer Equipo
@@ -452,12 +449,8 @@ es:
      home: Inicio   
      home_group: Equipo   
      how_much_better:  "¿Cuánto Mayor?"
-     i_confirm: "Seleciónando 'inicia tu sesión', confirmas que aceptas los Terminos de Servicio."  
      icon: Icono
-     icon_name: Nombre del Icono 
-     identity_does_not_exist: "Lo sentimos, ningun usuario con esa identidad existe."   
-     if_role_is: si eres el responsable   
-     if_second_team: Segundo equipo si juegas entre amigos.   
+     icon_name: Nombre del Icono    
      import_contact: Importa Contactos de tu Correo   
      in: en   
      inbox: Bandeja de Entrada   

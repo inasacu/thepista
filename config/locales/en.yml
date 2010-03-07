@@ -35,9 +35,9 @@ en:
      aunque_estamos: Aunque estamos en fase de pruebas nos gustaria que nos dieses   
      ausente: No-Show     
      authorizable_id: Code    
-     authorizable_type: Tipe    
+     authorizable_type: Type    
      available: Available
-     available_description: (Si estas disponible para jugar o si no quieres que te molesten...)   
+     available_description: (Are you available to Play?)   
      avatar: Gravatar   
      away_group: Visiting   
      back: back    
@@ -97,7 +97,7 @@ en:
      contact_us: contact us 
      convocado: Roster
      convocados: Roster
-     could_not_log_you: Count not log your session    
+     could_not_log_you: Could not log your session    
      could_not_setup_account: "We could not setup your account, Sorry!"   
      country: Country    
      create: Create   
@@ -177,7 +177,7 @@ en:
      destroy_match: Remove the Match Result   
      destroy_message: Remove the Message   
      destroy_name: Remove the Name   
-     destroy_note: Remove una Note   
+     destroy_note: Remove the Note   
      destroy_notification: Remove the Notification   
      destroy_payment: Remove the Paymebt   
      destroy_profile: Remove your Profile   
@@ -197,10 +197,10 @@ en:
      do_join_group: Do you want to join   
      do_join_tournament: Do you want to join   
      do_leave_group: Do you want to leave     
-     dont_user_marks: "Por favor, no use acentos en la cuenta OpenID. Gracias!"   
+     dont_user_marks: "Please do not use accents when using OpenID. Thank You!"   
      dorsal: Dorsal   
-     dorsal_description: (Si te interesa poner el nombre o numero de tu camiseta...)   
-     drop_us_a_note: Envíenos una nota.
+     dorsal_description: (If your interest is to put your name or number on your jersey...)   
+     drop_us_a_note: Drop us a note.
      edit: Edit   
      edit_address: Edit Address   
      edit_announcement: Edit Announcement   
@@ -209,95 +209,91 @@ en:
      edit_description: Edit Details  
      edit_fee: Edit Charges    
      edit_group: Edit Team   
-     edit_information: Modifica un Detalles   
+     edit_information: Edit Details   
      edit_invitation: Edit Invitation   
      edit_manager: Edit Manager   
-     edit_map: Edit the Mapa   
-     edit_marker: Edit the Club   
-     edit_match: Guardar el Resultado   
+     edit_map: Edit Map  
+     edit_marker: Edit Marker   
+     edit_match: Save the Match Result   
      edit_message: Edit Message   
-     edit_my_user: Modifica mi Cuenta   
-     edit_name: Edit Nombre   
-     edit_note: Modifica una Nota   
-     edit_notification: Edit the Notificación   
+     edit_my_user: Edit My Account   
+     edit_name: Edit Name   
+     edit_note: Edit Note   
+     edit_notification: Edit Notificación   
      edit_payment: Edit Payment   
      edit_profile: Edit your profile   
      edit_reminder: Edit Reminder   
      edit_role: Edit the Responsabilidad   
      edit_schedule: Edit the Event   
-     edit_scorecard: Edit the Resultado   
+     edit_scorecard: Edit Scorecard   
      edit_sport: Edit the Sport   
-     edit_tournament: Edit the Tournament   
+     edit_tournament: Edit Tournament   
      edit_type: Edit Type   
      edit_user: Edit your profile   
-     edit_venue: Edit the Club   
+     edit_venue: Edit Venue   
      email: Email   
-     email_time_zone: Zona Horaria para mandar correos antes de un encuentro.  
-     email_addresses: Cuenta de Correo
-     email_addresses_description:  Escribe la cuenta de correo.
-     enable_comments: Recibirir Aviso de Comentarios
-     enable_comments_description: Opción para recibir aviso cuando se deja un comentario.
-     ends_at: Finalización   
-     ends_at_match: Finalización   
-     ends_at_description: (¿Ha que hora termina el event?)   
-     ends_at_venue: Horario
+     email_time_zone: Time Zone to send email before an event.  
+     email_addresses: Email Address
+     email_addresses_description:  Write your email address.
+     enable_comments: Receive Comment Notifications
+     enable_comments_description: Option to receive comments in your inbox.
+     ends_at: Ends at   
+     ends_at_match: Match Ends At   
+     ends_at_description: (What time does the event end?)   
+     ends_at_venue: Hours
      
      events:
-        one:  "tiene 1 event." 
-        other: "tiene {{count}} events."
+        one:  "has 1 event." 
+        other: "has {{count}} events."
         
-     event_details:  "(Escribe algun detalle del event...)"
+     event_details:  "(Write a comment about the event...)"
  
-     error_when_create_account: "Fallo al intentar crear tu cuenta, intentalo de nuevo."   
-     exit_festival: Desapuntate del Festivo   
-     exit_group: Desapuntate del Team   
-     exit_tournament: Desapuntate del Tournament   
+     error_when_create_account: "your account was not created, please try again."
+     exit_group: Opt-out of the Team   
+     exit_tournament: Opt-out of the Tournament   
      explore:  Explore
-     facility: Instalaciones   
-     failed_login: Error de inicio de sesión 
+     facility: Instalations   
+     failed_login: Failed Login 
      
      false_value: "No"
-     feature: Prestación
-     features: Prestaciones
-     fee: Honorarios   
-     fee_per_game: Tarifa / Partido   
-     fee_per_game_description: (Este es el precio del event por jugador...)   
-     fee_per_pista: Tarifa / Pista   
-     fee_per_pista_description: (Este es el precio de la pista or cancha...) 
-     fee_per_tour: Tarifa / Tournament   
-     fee_per_tour_description: (Este es el precio del torneo...)  
+     feature: Feature
+     features: Features
+     fee: Fee   
+     fee_per_game: Fee / Game   
+     fee_per_game_description: (This is the price player has to pay for the event...)   
+     fee_per_pista: Fee / Pista   
+     fee_per_pista_description: (This is the price for the pista...) 
+     fee_per_tour: Fee / Tournament   
+     fee_per_tour_description: (This is the price for the tournament...)  
      feedback: feedback   
      fees: Charges   
-     female_value: Femenina  
-     festival: Acondiciónamiento  
-     festivals: Acondiciónamientos   
-     fire_from_group: Desapunta de   
-     flag: es.png   
-     follow: Sigue 
-     forum: Notas de    
-     forward: Adelante   
-     Friday: Viernes 
-     profile:  Perfil
-     forum_comment_notification:  Receive email notice Recibir Notificación de comentario en tu Muro en tu cuenta de correo.
+     female_value: Femaile    
+     fire_from_group: Opt-out of   
+     flag: en.png   
+     follow: Follow 
+     forum: Notes for     
+     forward: Forward   
+     Friday: Friday 
+     profile:  Profile
+     forum_comment_notification:  Receive Comment in your inbox.
      message_notification:  Recibir correo en tu cuenta de correo.
      teammate_notification:  Recibir Notificación para unirse a tu team en tu cuenta de correo.
      enable_comments:  Habilitar comentarios
      for:  for
-     from: from   
-     from_No-Show: Change to Last Minute   
+     from: de   
+     from_Ausente: Change to Last Minute   
      from_Convocado: Change to No-Show   
-     
-     from_message: From   
+     from_message: from   
      from_payment: Payment from   
      from_Ultima_Hora: Change to Roster   
      game: Game   
      gameday_at:  Game Day
      game_day: Game Day 
      gameday_at_description:  Game Day  
-     game_lost: Loss Game   
+     game_lost: Game Lost   
      game_notes: Game Notes
      game_played:  Games Played
-     game_started:  Starting Line-Up
+     game_started:  Game Started
      game_not_played:  Games Not Played   
      game_tied: Draw Game   
      game_won: Won Game   
@@ -387,10 +383,7 @@ en:
      blocks_full: Blocks
      turnovers_full: Turnovers
      personal_fouls_full: Personal Fouls
-     assist_turnover_ratio_full:  Assist Turnover Ratio
-          
-     gravatar_not_received: No ha sido posible conseguir la información de gravatar del usuario   
-     gravatar_received: Ya hemos conseguido la información del gravatar del usuario   
+     assist_turnover_ratio_full:  Assist Turnover Ratio  
      group: Team   
      Group: Team 
      group_a:  First Team
@@ -433,23 +426,18 @@ en:
      home: Home   
      home_group: Home Team  
      how_much_better:  "How much Better?"
-     i_confirm: "Seleciónando 'inicia tu sesión', confirmas que aceptas los Terminos de Servicio."  
      icon: Icon
-     icon_name: Icon Name
-     identity_does_not_exist: "Lo sentimos, ningun usuario con esa identidad existe."   
-     if_role_is: si eres el responsable   
-     if_second_team: Segundo team si juegas entre friends.   
-     import_contact: Importa Contactos de tu Correo 
-       
+     icon_name: Icon Name    
+     import_contact: Import your email contacts       
      in: in   
      inbox: Inbox   
      information: Information   
      information_about: Information on 
-     interest_description: (Escribe algo de lo que te interesa...)   
+     interest_description: (What about what interest you...)   
      invalid_action: Invalid Action   
-     invalid_login: No válido de acceso o contraseña   
+     invalid_login: Invalid Login   
      invitation: Invitation
-     invitation_to: Tienes una invitación a HayPista   
+     invitation_to: You have an invitation to HayPista   
      invitation_to_group: Invite a friend to join the Team   
      invitation_to_schedule: Invite a friend   
      invitations: Invitations   
@@ -480,7 +468,7 @@ en:
      list_marker: List of Sport Centers   
      list_user: List   
      list_venue: List of Sport Centers   
-     locale_name: Español     
+     locale_name: English     
      location_sport: Location where you practice sports. 
      login:  Log In	 
      log_in: Log In   
@@ -492,15 +480,15 @@ en:
      male_value: Male
           
      manager: Manager   
-     managers: Responsable(s)   
-     map: Mapa    
+     managers: Manager(s)   
+     map: Map   
      map_it: Map It
      maps: Maps   
      mark_as_read: Mark as Read   
      mark_as_unread: Mark as Unread   
      marker: Sport Center
      marker_id: Sport Center   
-     marker_description: (Localiza en el mapa donde juega el team si no esta en la lista...)   
+     marker_description: (Mark where you play on the map if it is not on the list...)   
      markers: Sport Centers 
      markers_list: List of Sport Centers
      markers_create:  New Sport Center  
@@ -512,30 +500,30 @@ en:
      message: Message
      message_description: Write a message.
      message_notification: Message Notification  
-     message_notification_description: (Quieres recibir notificaciones atraves del correo electronico...)   
+     message_notification_description: (Do you want to receive email notifications...)   
      messages: Messages   
      missing:  Missing
      missing_information: Missing Information   
-     mistyped_url: "Posiblemente, habras escrito la dirección incorrectamente o es posible que la pagina ya no exista."   
+     mistyped_url: "It is possible that the url is not correct or the web page no longer exist."   
      
      moderator_updated:  Update moderator.
      
-     modified_available: Modificada la disponibilidad de jugar de   
-     modified_email: Modificada la disponibilidad de recibir correos a  
-     modified_phone: Modificada la opción de ocultar el telefono de   
-     modified_profile: Modificada la opción de ocultar tu profile de   
-     modified_reliable: Modificada la fiabilidad del jugardor para atender   
-     modo: HayPista te quiere ayudar a organizar tu team o encontrar donde jugar...   
-     Monday: Lunes   
+     modified_available: Edit availability to play for   
+     modified_email: Edit availability to receive email for  
+     modified_phone: Edit option to hide email for    
+     modified_profile: Edit option to hide profile for   
+     modified_reliable: Edit reliability for    
+     modo: HayPista wants to help you organize your team or find where to play...   
+     Monday: Monday   
      
-     must_be_logged_in:  Tienes que estar registrado para acceder a esta página
-     must_be_logged_out:  Tienes que cerrar la sesión para acceder a esta página
-     must_be_numeric: Tiene que ser un valor numerico (no pongas sin simbolos)
-     must_be_before_ends_at:  Tiene que ser despues de la fecha de Inicio.
-     must_be_before_starts_at:  Tiene que ser antes de la fecha de Finalización.
-     must_be_before_signup_at:  Tiene que ser antes de la fecha de Cierre de Inscripción.
-     must_be_before_deadline_at:  Tiene que ser despues de la fecha de Inscripción.
-     must_be_after_deadline_at:  Tiene que ser despues de la fecha de Inscripción.
+     must_be_logged_in:  You need to be logged in to access this page
+     must_be_logged_out:  You need to logged out to access this page
+     must_be_numeric: Should be a numeric value
+     must_be_before_ends_at:  Should be a date after the Start Date.
+     must_be_before_starts_at:  Should be a date previous to the End Date.
+     must_be_before_signup_at:  Should be a date previous to the End Inscription Date.
+     must_be_before_deadline_at:  Should be a date before the Start Inscription Date.
+     must_be_after_deadline_at:  Should be a date after the Start Inscription Date.
        
      my_address: My Address   
      my_announcement: My Announcement   
@@ -566,7 +554,7 @@ en:
   
      my_venue: My Venue 
      my_wall: My Wall  
-
+#########
      myopenid: My OpenID   
      myopenid_association: "Una de las mejores características aquí en HayPista es su capacidad de acceso mediante cuentas que ya tienen. <br />
                           Nos hemos asociado con algunos de los principales proveedores de servicios en un esfuerzo 
@@ -683,19 +671,19 @@ en:
      password_confirmation: Clave Confirmación	
      password_confirmation_description: Necesita 5 characteres. 
      password_description:  Clave
-     password_instructions: "Las instrucciones para restablecer su contraseña han sido enviadas a su cuenta de correo. Por favor, revisalo."
-     password_issue:  "Lo sentimos, pero no hemos podido localizar su cuenta.  Si tiene problemas intente copiar y pegar la URL desde tu cuenta de correo al navegador o reiniciar el proceso de restablecimiento la contraseña."
-     password_updated:    Su contraseña ha sido actualizada.
-     password_update_and_login: Updater mi contraseña y entra.
-     password_reset:  Restablecer contraseña
-     password_reset_instructions:  "Danos tu cuenta de correo y te mandamos las instrucciones para restablecer tu contraseña."	
-     password_resets_create: Restablecer contraseña
-     password_resets_new:  Restablecer contraseña  
+     password_instructions: "Las instrucciones para restablecer su password han sido enviadas a su cuenta de correo. Por favor, revisalo."
+     password_issue:  "Lo sentimos, pero no hemos podido localizar su cuenta.  Si tiene problemas intente copiar y pegar la URL desde tu cuenta de correo al navegador o reiniciar el proceso de restablecimiento la password."
+     password_updated:    Su password ha sido actualizada.
+     password_update_and_login: Updater mi password y entra.
+     password_reset:  Restablecer password
+     password_reset_instructions:  "Danos tu cuenta de correo y te mandamos las instrucciones para restablecer tu password."	
+     password_resets_create: Restablecer password
+     password_resets_new:  Restablecer password  
      password_recover_instructions: Instrucciones para recupera tu Clave!  
-     password_forgotten:  ¿Has olvidado tu contraseña?	
+     password_forgotten:  ¿Has olvidado tu password?	
      confirmation_password: Clave Confirmación
      
-     password_request_reset:  "Este e-mail es la respuesta a su solicitud para restablecer su contraseña."
+     password_request_reset:  "Este e-mail es la respuesta a su solicitud para restablecer su password."
      password_request_ignore:  "Si no ha realizado esta solicitud, simplemente ignore este mensaje."
      password_request_made:  "En caso contrario haga clic en el siguiente enlace:"
            
@@ -863,8 +851,8 @@ en:
      search_maps: Buscar Sport Center   
      search_markers: Buscar Sport Center   
      search_messages: Buscar Message   
-     search_names: Buscar Nombres   
-     search_notes: Buscar Notas   
+     search_names: Buscar Names   
+     search_notes: Buscar Notes   
      search_notifications: Buscar Notificación   
      search_payments: Buscar Payments   
      search_profiles: Buscar profiles   
@@ -903,7 +891,7 @@ en:
      send_message_to_round: Send a Message
      send_message_to_meet: Send a Message     
      send_name: Send a Name   
-     send_note: Send a Nota   
+     send_note: Send a Note   
      send_notification: Send a Notification   
      send_payment: Send a Payment   
      send_pre_match: Send the Roster   
@@ -1095,8 +1083,8 @@ en:
      update_marker: Update el Sport Center   
      update_match: Update el Resultado   
      update_message: Update un Message   
-     update_name: Update un Nombre   
-     update_note: Update una Nota   
+     update_name: Update un Name   
+     update_note: Update una Note   
      update_notification: Update la Notificación   
      update_payment: Update un Payment   
      update_profile: Update tu profile   
@@ -1113,10 +1101,10 @@ en:
      upload:  Subir
      url_group: Vincular a Team   
      use_at_discretion: New opción para entrar.  Si tienes una cuenta entra con tu cuenta original.
-     use_openid: O entra con OpenID 
-     use_login:  O entra con tu cuenta de correo
-     user_haypista_signup: O Registrate con tu cuenta de correo.
-     use_standard_login: utiliza el estándar de acceso de usuario / contraseña
+     use_openid: Or use your OpenID 
+     use_login:  Or use your email 
+     user_haypista_signup: Or Signup with your email account.
+     use_standard_login: utiliza el estándar de acceso de usuario / password
      
      user: Jugador   
      users: Players
@@ -1125,8 +1113,8 @@ en:
      user_fee: Tasa de Jugador
      user_last_login: Última vez conectado   
      user_options:  Options 
-     username_not_available: Nombre de usuario no esta disponible 
-     username_password_donot_match: Nombre de usuario y contraseña no coinciden
+     username_not_available: Name de usuario no esta disponible 
+     username_password_donot_match: Name de usuario y password no coinciden
      users_activate:  "Es necesario activar tu cuenta"
      
      validate_openid: valida tu OpenID   
@@ -1483,17 +1471,17 @@ en:
      # add_sub_manager: New Sub-Manager   
      # add_subscription: New Subscription
      
-     recaptcha_ask_question: "Haz una Pregunta, recibe una respuesta!"
-     recaptcha_question:  Haz la Pregunta
-     recaptcha_question:  Pregunta
-     recaptcha_human_test:  Prueba Humana
-     recaptcha_type_words:  Escriba las dos palabras separadas con un espacio.
+     recaptcha_ask_question: "Ask a question, receive an answer!"
+     recaptcha_question:  Question
+     recaptcha_question:  Question
+     recaptcha_human_test:  Human Test
+     recaptcha_type_words:  Write the two words or number you see separated by a space.
      
-     rpx_login: Conecta con tu cuenta en
+     rpx_login: Log in with your personal Account
      rpx_third_party_error:  "No se pueden recuperar los datos de terceras cuentas. Por favor, inténtalo de nuevo."
      rpx_association_email_msg: Hemos encontrado una cuenta existente que ya está utilizando la dirección de correo electrónico
      rpx_association_login_msg: Hemos encontrado una cuenta existente que ya está utilizando el nombre de usuario
-     rpx_unable_to_associate: "No ha sido posible asociar la cuenta nueva de terceros a las existente de Haypista cuenta debido a que tu correo electrónico o la contraseña son incorrectas."
+     rpx_unable_to_associate: "No ha sido posible asociar la cuenta nueva de terceros a las existente de Haypista cuenta debido a que tu correo electrónico o la password son incorrectas."
      
      role_add_moderator:  New Moderador
      role_add_sub_manager:  New Sub-Manager
