@@ -1,8 +1,6 @@
 <%
-languages = ['es', 'en', 'fr', 'ge', 'it']
-
   options = ""
-	languages.each do |language|
+	LANGUAGES.each do |language|
 		options += "<option value='#{language}'>" + label_name(language) + "</option>"	
 	end
 %>
@@ -27,7 +25,7 @@ languages = ['es', 'en', 'fr', 'ge', 'it']
 
 <div class="group">
   <%= f.label :dorsal, label_name('dorsal'), :class => :label %>
-  <%= f.text_field :dorsal, :class => 'text_field' %><br />
+  <%= f.text_field :dorsal, :class => 'textscore' %><br />
   <span class="description"><%= label_name('dorsal', 'description') %></span>
 </div>
 

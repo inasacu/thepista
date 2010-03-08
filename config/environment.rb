@@ -42,7 +42,7 @@ Rails::Initializer.run do |config|
   config.gem 'rpx_now'
   config.gem "nokogiri"
   config.gem "url_shortener"
-  config.gem "i18n"
+  # config.gem "i18n"
   
     
   # Only load the plugins named here, in the order given (default is alphabetical).
@@ -118,3 +118,5 @@ CONTACT_RECIPIENT = 'support@haypista.com'
 # OpenID::Util.logger = RAILS_DEFAULT_LOGGER
 
 require 'composite_primary_keys'
+
+LANGUAGES = ['en', 'es']

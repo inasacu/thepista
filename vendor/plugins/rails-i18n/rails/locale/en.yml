@@ -1,0 +1,20 @@
+# English translations for Rails
+# by raul padilla (inasacu@gmail.com)
+
+en:
+  time:
+    formats:
+      default: "%A, %e de %B de %Y %H:%M:%S %z"
+      short: "%e of %b %H:%M" 
+      long: "%e of %B, %Y %H:%M" 
+      day_week: "%A, %e of %B, %Y at %H:%M" # this is my code
+      day_time: "%A, at %H:%M" # this is my code
+      day_weekday: "%A"
+      day_date: "%A, %e of %B, %Y" # this is my code
+      day_date_wo_year: "%A, %e of %B" # this is my code
+      day_time_wo_year: "%A, %e of %B at %H:%M" # this is my code
+      time_at: "at %H:%M" # this is my code
+      full_date: "%e of %B, %Y" # this is my code
+           
+    am: "am" 
+    pm: "pm" 
