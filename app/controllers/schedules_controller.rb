@@ -78,6 +78,7 @@ class SchedulesController < ApplicationController
         @schedule.public = @previous_schedule.public
         @schedule.starts_at = @previous_schedule.starts_at + 7.days
         @schedule.ends_at = @previous_schedule.ends_at + 7.days
+        @schedule.reminder_at = @previous_schedule.starts_at + 5.days
         
         @schedule.subscription_at = @previous_schedule.starts_at + 7.days
         @schedule.non_subscription_at = @previous_schedule.starts_at + 7.days        

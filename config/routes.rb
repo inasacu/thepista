@@ -42,6 +42,7 @@ ActionController::Routing::Routes.draw do |map|
   map.set_tour_manager     	'users/:id/set_tour_manager/:tournament',     :controller => 'users',    		    :action => 'set_tour_manager'
   map.remove_tour_manager  	'users/:id/remove_tour_manager/:tournament',  :controller => 'users',     	    :action => 'remove_tour_manager'
   
+  map.set_user_looking            'users/:id/set_looking',  	            :controller => 'users',    		    :action => 'set_looking'
   map.set_available               'users/:id/set_available',  		        :controller => 'users',    		    :action => 'set_available'
   map.set_private_phone           'users/:id/set_private_phone',  		    :controller => 'users',    		    :action => 'set_private_phone'
   map.set_private_profile         'users/:id/set_private_profile',  		  :controller => 'users',    		    :action => 'set_private_profile'
@@ -58,6 +59,8 @@ ActionController::Routing::Routes.draw do |map|
   
   map.set_group_enable_comments   'groups/:id/set_enable_comments',  		  :controller => 'groups',    		  :action => 'set_enable_comments'
   map.set_group_available         'groups/:id/set_available',  		        :controller => 'groups',    		  :action => 'set_available'
+  map.set_group_looking           'groups/:id/set_looking',  	            :controller => 'groups',    		  :action => 'set_looking'
+  
   
   map.match_team            'matches/:id/set_team',                       :controller => 'matches',         :action => 'set_team'
   map.match_status          'matches/:id/set_status/:type',               :controller => 'matches',         :action => 'set_status'

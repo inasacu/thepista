@@ -1,11 +1,11 @@
 class GroupsController < ApplicationController
   before_filter :require_user    
-  before_filter :get_group, :only => [:team_list, :show, :edit, :update, :set_available, :set_enable_comments, :destroy]
-  before_filter :has_manager_access, :only => [:edit, :update, :destroy]
+  before_filter :get_group, :only => [:team_list, :show, :edit, :update, :set_available, :set_enable_comments, :set_looking, :destroy]
+  before_filter :has_manager_access, :only => [:edit, :update, :destroy, :set_available, :set_enable_comments, :set_looking]
 
   def index
     @groups = current_user.groups.paginate :page => params[:page], :order => 'name' 
-     
+
     if @groups.nil? or @groups.blank?
       redirect_to :action => 'list'
       return
@@ -14,9 +14,9 @@ class GroupsController < ApplicationController
 
   def list
     @groups = Group.paginate(:all, :conditions => ["archive = false and id not in (?)", current_user.groups], 
-                             :page => params[:page], :order => 'name') unless current_user.groups.blank?
+    :page => params[:page], :order => 'name') unless current_user.groups.blank?
     @groups = Group.paginate(:all, :conditions =>["archive = false"], 
-                             :page => params[:page], :order => 'name') if current_user.groups.blank?
+    :page => params[:page], :order => 'name') if current_user.groups.blank?
     render :template => '/groups/index'       
   end
 
@@ -69,7 +69,18 @@ class GroupsController < ApplicationController
     else
       render :action => 'edit'
     end
-  end    
+  end 
+
+  def set_looking
+    if @group.update_attribute("looking_for_user", !@group.looking_for_user)
+      @group.update_attribute("looking_for_user", @group.looking_for_user)  
+
+      flash[:notice] = I18n.t(:successful_update)
+      redirect_back_or_default('/index')
+    else
+      render :action => 'index'
+    end
+  end   
 
   def set_available
     if @group.update_attribute("available", !@group.available)
@@ -109,7 +120,7 @@ class GroupsController < ApplicationController
     @group = Group.find(params[:id])    
     # redirect_to @group, :status => 301 if @group.has_better_id?
   end
-  
+
   def has_manager_access
     unless current_user.is_manager_of?(@group)
       flash[:warning] = I18n.t(:unauthorized)

@@ -499,7 +499,11 @@ es:
      logged_out: Se ha cerrado la sesión.   
      login: Entrar   
      logout: Salir   
-     look: Mira   
+     look: Mira 
+     looking_for_group:  Jugador que busca Equipo
+     looking_for_group_description:  Jugador que busca Equipo
+     looking_for_user:  Equipo que busca Jugadores
+     looking_for_user_description:  Equipo que busca Jugadores 
      Low: Bajo   
      male_value: Masculino   
      

@@ -2,7 +2,7 @@ class UsersController < ApplicationController
   before_filter :require_no_user, :only => [:signup, :new, :create, :rpx_new, :rpx_create, :rpx_associate]
   before_filter :require_user, :only => [:index, :show, :edit, :update, :petition] 
   
-  before_filter :get_user, :only => [:show, :set_available, :set_private_phone, :set_private_profile, :set_enable_comments, 
+  before_filter :get_user, :only => [:show, :set_available, :set_private_phone, :set_private_profile, :set_enable_comments, :set_looking, 
                                      :set_teammate_notification, :set_message_notification, :set_blog_comment_notification] 
                                      
   before_filter :get_user_group, :only =>[:set_manager, :remove_manager, :set_sub_manager, :remove_sub_manager, 
@@ -154,7 +154,18 @@ class UsersController < ApplicationController
     count = User.count_by_solr(params[:search])
     @users = User.paginate_all_by_solr(params[:search], :page => params[:page], :per_page => USERS_PER_PAGE, :operator => :or)
     render :template => '/users/index'
-  end  
+  end 
+
+  def set_looking
+    if @user.update_attribute("looking_for_group", !@user.looking_for_group)
+      @user.update_attribute("looking_for_group", @user.looking_for_group)  
+
+      flash[:notice] = I18n.t(:successful_update)
+      redirect_back_or_default('/index')
+    else
+      render :action => 'index'
+    end
+  end 
   
   def set_language
     I18n.locale = "en"
@@ -172,7 +183,7 @@ class UsersController < ApplicationController
 
   def set_tour_manager 
     unless current_user.is_tour_creator_of?(@tournament)
-      flash[:notice] = I18n.t(:unauthorized)  
+      flash[:warning] = I18n.t(:unauthorized)  
       return
     end
     @user.has_role!(:manager, @tournament)
@@ -182,7 +193,7 @@ class UsersController < ApplicationController
 
   def remove_tour_manager 
     unless current_user.is_tour_creator_of?(@tournament)
-      flash[:notice] = I18n.t(:unauthorized)  
+      flash[:warning] = I18n.t(:unauthorized)  
       return
     end
     @user.has_no_role!(:manager, @tournament)
@@ -192,7 +203,7 @@ class UsersController < ApplicationController
   
   def set_manager 
     unless current_user.is_creator_of?(@group)
-      flash[:notice] = I18n.t(:unauthorized)  
+      flash[:warning] = I18n.t(:unauthorized)  
       return
     end
     @user.has_role!(:manager, @group)
@@ -202,7 +213,7 @@ class UsersController < ApplicationController
 
   def remove_manager 
     unless current_user.is_creator_of?(@group)
-      flash[:notice] = I18n.t(:unauthorized)  
+      flash[:warning] = I18n.t(:unauthorized)  
       return
     end
     @user.has_no_role!(:manager, @group)
@@ -212,7 +223,7 @@ class UsersController < ApplicationController
 
   def set_sub_manager 
     unless current_user.is_manager_of?(@group)
-      flash[:notice] = I18n.t(:unauthorized)  
+      flash[:warning] = I18n.t(:unauthorized)  
       return
     end
     @user.has_role!(:sub_manager, @group)
@@ -222,7 +233,7 @@ class UsersController < ApplicationController
 
   def remove_sub_manager 
     unless current_user.is_manager_of?(@group)
-      flash[:notice] = I18n.t(:unauthorized)  
+      flash[:warning] = I18n.t(:unauthorized)  
       return
     end
     @user.has_no_role!(:sub_manager, @group)
@@ -232,7 +243,7 @@ class UsersController < ApplicationController
 
   def set_subscription 
     unless current_user.is_manager_of?(@group)
-      flash[:notice] = I18n.t(:unauthorized)  
+      flash[:warning] = I18n.t(:unauthorized)  
       return
     end
     @user.has_role!(:subscription, @group)
@@ -244,7 +255,7 @@ class UsersController < ApplicationController
 
   def remove_subscription 
     unless current_user.is_manager_of?(@group)
-      flash[:notice] = I18n.t(:unauthorized)  
+      flash[:warning] = I18n.t(:unauthorized)  
       return
     end
     @user.has_no_role!(:subscription, @group)
@@ -256,7 +267,7 @@ class UsersController < ApplicationController
 
   def set_moderator 
     unless current_user.is_manager_of?(@group)
-      flash[:notice] = I18n.t(:unauthorized)  
+      flash[:warning] = I18n.t(:unauthorized)  
       return
     end
     @user.has_role!(:moderator, @group)
@@ -266,7 +277,7 @@ class UsersController < ApplicationController
 
   def remove_moderator 
     unless current_user.is_manager_of?(@group)
-      flash[:notice] = I18n.t(:unauthorized)  
+      flash[:warning] = I18n.t(:unauthorized)  
       return
     end
     @user.has_no_role!(:moderator, @group)
@@ -501,6 +512,13 @@ class UsersController < ApplicationController
 private
   def get_user
     @user = User.find(params[:id])
+    
+    unless @user == current_user
+      flash[:warning] = I18n.t(:unauthorized)
+      redirect_to root_url
+      return
+    end
+      
     # redirect_to @user, :status => 301 if @user.has_better_id?
   end
   

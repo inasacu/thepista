@@ -97,6 +97,17 @@
 					:class => get_the_action %>
 			</tr>
 
+		<% 
+			the_label = h(label_name(@group.looking_for_user, 'value'))
+			the_confirmation = label_with_name('looking_for_user', "#{@group.name}?") 
+		%>
+			<tr>
+			  <%= content_tag :td, label_name(:looking_for_user), :class => "label" %>
+			  <%= content_tag :td, 
+					(is_user_manager ? link_to(the_label, set_group_looking_path(:id => @group), :confirm => the_confirmation) : the_label), 
+					:class => get_the_action %>
+			</tr>
+
 		</table>
 
 	</td>
@@ -104,10 +115,6 @@
 
 	</table>
 	<!-- new table -->
-
-
-
-
 
 
 			 

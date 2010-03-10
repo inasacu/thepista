@@ -475,7 +475,11 @@ en:
      logged_out: Logged Out.   
      login: Login   
      logout: Logout   
-     look: Look   
+     look: Look  
+     looking_for_group:  Player looking for Team
+     looking_for_group_description:  Player looking for Team
+     looking_for_user:  Team looking for Players
+     looking_for_user_description:  Team looking for Players 
      Low: Low   
      male_value: Male
           
