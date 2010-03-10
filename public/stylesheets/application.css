@@ -228,6 +228,14 @@ text_area.textfield {
 	padding: 4px 10px;
 }
 
+#team_no_show td{
+	padding: 4px 10px;
+}
+
+#team_ultima_hora td{
+	padding: 4px 10px;
+}
+
 #contact td{
 	padding: 4px 10px;
 }

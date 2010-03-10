@@ -70,7 +70,7 @@ en:
      change_wo_access: "It is possible that you tried to change something you did not have access to, Sorry!"  
      change_your_roster_status:  Change your Squad Status
      changed_description: Change Details
-     changes_in_roster_status: Has Changed roster status   
+     changes_in_roster_status: Has changed squad status   
      character_limit: Max characters is 255   
      check_all: Select All   
      check_invert: Inverse   
@@ -1590,17 +1590,3 @@ en:
      how_does_haypista_details:  "Simply create a team, find a sports center, create an event, send invitations to your friends and you're done. That easy!"
      what_other_haypista: "What else can you do on HayPista?"
      what_other_haypista_details:  "HayPista will help you organize your team.  It allows you to select who will be on the squad for each event, create different groups within each event, send the squad list and write the match result after the event.  It also uses these results to maintain a scorecard for each player on the team."
-           
-     time:
-       formats:
-         default: "%A, %e de %B de %Y %H:%M:%S %z"
-         short: "%e of %b %H:%M" 
-         long: "%e of %B, %Y %H:%M" 
-         day_week: "%A, %e of %B, %Y at %H:%M" # this is my code
-         day_time: "%A, at %H:%M" # this is my code
-         day_weekday: "%A"
-         day_date: "%A, %e of %B, %Y" # this is my code
-         day_date_wo_year: "%A, %e of %B" # this is my code
-         day_time_wo_year: "%A, %e of %B at %H:%M" # this is my code
-         time_at: "at %H:%M" # this is my code
-         full_date: "%e of %B, %Y" # this is my code
