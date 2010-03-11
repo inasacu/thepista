@@ -30,9 +30,13 @@ module GroupsHelper
   def group_image_link_tiny(group)
     link_to(image_tag(group.avatar, options={:style => "height: 15px; width: 15px;"}), group_path(group)) 
   end
+
+  def group_image_link_smaller(group)
+    link_to(image_tag(group.avatar, options={:style => "height: 22px; width: 22px;"}), group_path(group)) 
+  end
   
   def group_image_link_small(group)
-    link_to(image_tag(group.avatar, options={:style => "height: 30px; width: 30px;"}), group_path(group)) 
+    link_to(image_tag(group.avatar, options={:style => "height: 30px; width: 30px;", :title => h(group.name)}), group_path(group)) 
   end
 
   def group_image_link_medium(group)

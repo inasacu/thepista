@@ -12,6 +12,7 @@ ONE_WEEK_FROM_TODAY = Time.zone.now - 1.day..Time.zone.now + 7.days
 LAST_WEEK = Time.zone.now - 7.days
 PAST_THREE_DAYS = Time.zone.now - 3.days
 LAST_THREE_DAYS = Time.zone.now - 3.days..Time.zone.now + 1.day
+LAST_24_HOURS = Time.zone.now - 1.day
 
 TIME_AGO_FOR_MOSTLY_ACTIVE = 1.month.ago
 TRASH_TIME_AGO = 1.month.ago
@@ -77,6 +78,9 @@ RICH_TEXT_HEIGHT = '350px'
 EMAIL_REGEX = /\A[A-Z0-9\._%+-]+@([A-Z0-9-]+\.)+[A-Z]{2,4}\z/i
 FEED_SIZE = 1
 GLOBAL_FEED_SIZE = 8
+
+LOOKING_USERS = 12
+LOOKING_GROUPS = 12
 
 MAX_NAME = 40
 MAX_DESCRIPTION = 5000

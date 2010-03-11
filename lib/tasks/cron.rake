@@ -22,5 +22,8 @@ task :cron => :environment do
   #   Schedule.find(:all, :conditions => ["reminder_at is not null and reminder_at >= ?", Time.zone.now])
   #   Message.send_schedule_reminder
   # end
+  
+  # archive all messages older than 1 month, set all other emails to mark as read
+  # rake themessage_archive
 
 end

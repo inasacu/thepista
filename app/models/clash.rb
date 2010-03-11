@@ -107,9 +107,9 @@ class Clash < ActiveRecord::Base
     end
 
     def self.log_activity_convocado(clash)
-      unless Activity.exists?(clash, clash.user)
+      if Activity.exists?(clash, clash.user)
         activity = Activity.create!(:item => clash, :user => clash.user)
-        Feed.create!(:activity => activity, :user => clash.user)
+        # Feed.create!(:activity => activity, :user => clash.user)
       end
     end   
   end

@@ -14,11 +14,11 @@ module ActivityLogger
     user = options[:user]
     include_user = options[:include_user]
 
-    unless Activity.exists?(options[:item], user)
+    if Activity.exists?(options[:item], user)
       activity = options[:activity] || Activity.create!(:item => options[:item], :user => user)
     
       users_ids = users_to_add(user, activity, include_user)
-      do_feed_insert(users_ids, activity.id) unless users_ids.empty?
+      # do_feed_insert(users_ids, activity.id) unless users_ids.empty?
     end
   end
   

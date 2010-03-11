@@ -1,7 +1,3 @@
-
-<%= stylesheet_link_tag 'menealo' %>
-
-
 <% authorize = UrlShortener::Authorize.new( APP_CONFIG['bit_ly_api']['login'], APP_CONFIG['bit_ly_api']['key']) %>
 <% client = UrlShortener::Client.new(authorize) %>
 

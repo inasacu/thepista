@@ -146,7 +146,7 @@ module UsersHelper
   end
 
   def image_link_small(user)
-    link_to(image_tag(user.avatar, options={:style => "height: 30px; width: 30px;"}), user_path(user))
+    link_to(image_tag(user.avatar, options={:style => "height: 30px; width: 30px;", :title => h(user.name)}), user_path(user))
   end
 
   def image_link_less_medium(user)

@@ -70,7 +70,7 @@ en:
      change_wo_access: "It is possible that you tried to change something you did not have access to, Sorry!"  
      change_your_roster_status:  Change your Squad Status
      changed_description: Change Details
-     changes_in_roster_status: Has changed squad status   
+     changes_in_roster_status: Has changed <strong>SQUAD</strong> status   
      character_limit: Max characters is 255   
      check_all: Select All   
      check_invert: Inverse   
@@ -276,6 +276,7 @@ en:
      Friday: Friday 
      profile:  Profile
      forum_comment_notification:  Receive Comment in your inbox.
+     forum_options:  Options
      message_notification:  Recibir correo en tu cuenta de correo.
      teammate_notification:  Recibir Notificación para unirse a tu team en tu cuenta de correo.
      enable_comments:  Enable Comments
@@ -462,8 +463,8 @@ en:
      last_scorecard: Recent Results   
      leave_comment: Leave a comment...   
      leave_group: Leave the Team   
-     left_comment_on_wall: Has left a comment on the wall    
-     left_post_on_forum: Has left a comment on    
+     left_comment_on_wall: Has left a <strong>COMMENT</strong> on the wall    
+     left_post_on_forum: Has left a <strong>COMMENT</strong> on    
      list: List   
      list_marker: List of Sport Centers   
      list_user: List   
@@ -477,8 +478,10 @@ en:
      logout: Logout   
      look: Look  
      looking_for_group:  Player looking for Team
+     looking_for_groups:  Players looking for Team
      looking_for_group_description:  Player looking for Team
      looking_for_user:  Team looking for Players
+     looking_for_users:  Teams looking for Players
      looking_for_user_description:  Team looking for Players 
      Low: Low   
      male_value: Male
@@ -792,7 +795,7 @@ en:
      region: Region   
      register: Register with   
      registration_failed: Your OpenID profile failed.   
-     remember_me: "remember connection?"
+     remember_me: "remember connection"
      reminder: Reminder 
      reminder_description:  Want a reminder for the event
      reminder_at:  Reminder
@@ -1594,3 +1597,20 @@ en:
      how_does_haypista_details:  "Simply create a team, find a sports center, create an event, send invitations to your friends and you're done. That easy!"
      what_other_haypista: "What else can you do on HayPista?"
      what_other_haypista_details:  "HayPista will help you organize your team.  It allows you to select who will be on the squad for each event, create different groups within each event, send the squad list and write the match result after the event.  It also uses these results to maintain a scorecard for each player on the team."
+     
+     time:
+       formats:
+         default: "%m/%d/%Y %I:%M %p"
+         time: "%I:%M %p"
+         short: "%d %b %H:%M"
+         long: "%B %d, %Y %H:%M" 
+         day_week: "%A, %e of %B, %Y at %H:%M" # this is my code
+         day_time: "%A, at %H:%M" # this is my code
+         day_weekday: "%A" # this is my code
+         day_date: "%A, %e of %B, %Y" # this is my code
+         day_date_wo_year: "%A, %e of %B" # this is my code
+         day_time_wo_year: "%A, %e of %B at %H:%M" # this is my code
+         time_at: "at %H:%M" # this is my code
+         full_date: "%e of %B, %Y" # this is my code
+       am: "am"
+       pm: "pm"

@@ -106,13 +106,12 @@ class User < ActiveRecord::Base
     after_create    :create_user_blog_details, :deliver_signup_notification
     
     # method section
-    # def self.search(search)
-    #   if search
-    #     find_by_solr(search, :operator => :or )
-    #   else
-    #     find(:all, :limit => USERS_PER_PAGE)
-    #   end
-    # end
+    def self.looking_for_group(user)
+      find(:all, 
+      :conditions => ["looking_for_group = true and time_zone = ?", user.time_zone],
+      :order => "updated_at DESC",
+       :limit => LOOKING_GROUPS) 
+    end
     
     def avatar
       self.photo.url

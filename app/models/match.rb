@@ -175,9 +175,9 @@ class Match < ActiveRecord::Base
 	end 
 
   def self.log_activity_convocado(match)
-    unless Activity.exists?(match, match.user)
+    if Activity.exists?(match, match.user)
       activity = Activity.create!(:item => match, :user => match.user)
-      Feed.create!(:activity => activity, :user => match.user)
+      # Feed.create!(:activity => activity, :user => match.user)
     end
   end   
 end

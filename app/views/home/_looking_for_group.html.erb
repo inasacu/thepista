@@ -1,0 +1,36 @@
+<% 
+	counter = 0 
+	column = 0
+%>
+<div class="block"> 
+	<div class="sidebar-block"> 
+		<h4><%= label_name(:looking_for_groups) %></h4> 
+		<table class="table">
+		<tbody>
+		<tr>
+		<% 
+			User.looking_for_group(current_user).each do |recipient| 
+				column += 1
+				counter += 1
+
+				if column > 6
+					column = 1 
+		%>
+			</tr>
+			<tr>
+		<% 
+			end 
+		%>        
+			<td>
+			<%= image_link_small recipient %>
+			</td>            
+		<% 
+			end 
+		%>
+			</tr>
+		<tr>
+		</tbody>
+		</table>
+		
+	</div> 
+</div>

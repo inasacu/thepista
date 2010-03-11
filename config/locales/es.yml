@@ -79,7 +79,7 @@ es:
      change_wo_access: Es posible que hayas intentado cambiar algo a lo que no tenias acceso.  
      change_your_roster_status:  Cambia tu Convocatoria
      changed_description: cambio en la descripción
-     changes_in_roster_status: Ha cambiado su convocatoria   
+     changes_in_roster_status: Ha cambiado su <strong>CONVOCATORIA</strong>
      character_limit: Máximo 255 carácteres   
      check_all: Todos   
      check_invert: Inverso   
@@ -297,6 +297,7 @@ es:
      Friday: Viernes 
      profile:  Perfil
      forum_comment_notification:  Recibir Notificación de comentario en tu Muro en tu cuenta de correo.
+     forum_options:  Opciones
      message_notification:  Recibir correo en tu cuenta de correo.
      teammate_notification:  Recibir Notificación para unirse a tu equipo en tu cuenta de correo.
      # enable_comments:  Habilitar opción para dejar comentarios en tu Muro.
@@ -485,8 +486,8 @@ es:
      last_scorecard: Ultimos Resultados   
      leave_comment: Deja un comentario...   
      leave_group: Desapuntate del Equipo   
-     left_comment_on_wall: Ha dejado un comentario en el muro de    
-     left_post_on_forum: Ha dejado un comentario en    
+     left_comment_on_wall: Ha dejado un <strong>COMENTARIO</strong> en el muro de    
+     left_post_on_forum: Ha dejado un <strong>COMENTARIO</strong> en    
      list: Listado   
      list_marker: Lista de Centros Deportivos   
      list_user: Listado   
@@ -501,8 +502,10 @@ es:
      logout: Salir   
      look: Mira 
      looking_for_group:  Jugador que busca Equipo
+     looking_for_groups:  Jugadores que buscan Equipo
      looking_for_group_description:  Jugador que busca Equipo
      looking_for_user:  Equipo que busca Jugadores
+     looking_for_users:  Equipos que buscan Jugadores
      looking_for_user_description:  Equipo que busca Jugadores 
      Low: Bajo   
      male_value: Masculino   

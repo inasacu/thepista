@@ -11,12 +11,12 @@ class Activity < ActiveRecord::Base
   #
   # This is especially useful for sites that require email verifications.
   # Their 'connected with admin' item won't show up until they verify.
-  def self.global_feed
-    find(:all, 
-         :joins => "INNER JOIN users ON users.id = activities.user_id",
-         :order => 'activities.created_at DESC',
-         :limit => GLOBAL_FEED_SIZE)
-  end
+  # def self.global_feed
+  #   find(:all, 
+  #        :joins => "INNER JOIN users ON users.id = activities.user_id",
+  #        :order => 'activities.created_at DESC',
+  #        :limit => GLOBAL_FEED_SIZE)
+  # end
   
   def self.all_activities(user)
     if self.count(:conditions => ["user_id in (select user_id from groups_users where group_id in (?)) and created_at >= ?", user.groups, PAST_THREE_DAYS]) > 0
@@ -42,7 +42,7 @@ class Activity < ActiveRecord::Base
     
   # Return true if the item and user already exist.
   def self.exists?(item, user)
-    find(:all, :conditions => ["item_id = ? and item_type = ? and user_id = ?", item.id, item.class.to_s, user.id]).nil?
+    find(:first, :conditions => ["item_id = ? and item_type = ? and user_id = ? and created_at >= ?", item.id, item.class.to_s, user.id, LAST_24_HOURS]).nil?
   end
   
 end

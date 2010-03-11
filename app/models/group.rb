@@ -130,6 +130,13 @@ class Group < ActiveRecord::Base
   #                                "group by dayname(starts_at) order by dayofweek(starts_at)"])
   # end
 
+  def self.looking_for_user(user)
+    find(:all, 
+    :conditions => ["id not in (?) and looking_for_user = true and time_zone = ?", user.groups, user.time_zone],
+    :order => "updated_at DESC",
+     :limit => LOOKING_USERS) 
+  end
+  
   def available_users
       self.users.find(:all, :conditions => 'available = true', :order => 'users.name')      
   end
