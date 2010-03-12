@@ -9,16 +9,17 @@
 	
 	<meta name="Author" content="HayPista"/> 	
 	<meta name="title" content="<%= page_title %>" />
-	<meta name="keywords" content="hay, pistas, polideportivo, deportivo, convocado, futbol, deportes, deportivas, fútbol sala, fútbol, padel, golf, jornada, tenis, tennis "/> 
-	<meta name="description" content="HayPista te quiere ayudar a organizar tu equipo o encontrar donde jugar..." />
+	<meta name="keywords" content="pista, hay, pistas, polideportivo, deportivo, convocado, futbol, deportes, deportivas, fútbol sala, fútbol, padel, golf, jornada, tenis, tennis "/> 
+	<meta name="description" content="Hay Pista te quiere ayudar a organizar tu equipo o encontrar donde jugar..." />
 	<meta name="description" content="<%= page_description %>" />
 	<meta name="vw96.objectype" content="Document" />
 	<meta name="resource-type" content="Document" />
 	<meta name="distribution" content="all" />
 	<meta name="robots" content="all" />
 	<meta name="revisit" content="15 days" />
+	<meta name="google-site-verification" content="qyTyrJH8o08Ur15mr5hUYjVNyWcbfQatF3yar3Ry2ws" />
 		
-	<link rel="image_src" href="http://haypista.com/images/facebook.png" />
+	<link rel="image_src" href="http://haypista.com/images/haypista.png" />
 	
 	<link rel="home" href="http://www.haypista.com">
     <link rel="shortcut icon" type="image/ico" href="/favicon.ico">
@@ -53,6 +54,7 @@
 	<% logout =  !current_user and is_controller('home') and is_action('index') %>
   
 	<%= render :partial => "shared/header" %>
+	<%#= render :partial => "shared/notice" if current_user %>
 	
 	<% if login_session %>
 		<%= render :partial => "shared/box" %>
@@ -63,9 +65,6 @@
 	<% else %>
 		<%= render :partial => "shared/wrapper" %>	
 	<% end %>
-	
-  	<%#= javascript_include_tag "ie_no_more.js" %>
-	<%#= smack_down_ie6 %>
 	
   </div>
 

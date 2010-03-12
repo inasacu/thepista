@@ -2,9 +2,12 @@ class UsersController < ApplicationController
   before_filter :require_no_user, :only => [:signup, :new, :create, :rpx_new, :rpx_create, :rpx_associate]
   before_filter :require_user, :only => [:index, :show, :edit, :update, :petition] 
   
-  before_filter :get_user, :only => [:show, :set_available, :set_private_phone, :set_private_profile, :set_enable_comments, :set_looking, 
-                                     :set_teammate_notification, :set_message_notification, :set_blog_comment_notification] 
-                                     
+  before_filter :get_user, :only => [:show] 
+  before_filter :get_user_manager, :only => [:set_available]
+  
+  before_filter :get_user_self, :only => [:set_private_phone, :set_private_profile, :set_enable_comments, :set_looking, 
+                                          :set_teammate_notification, :set_message_notification, :set_blog_comment_notification]
+                                                                                                         
   before_filter :get_user_group, :only =>[:set_manager, :remove_manager, :set_sub_manager, :remove_sub_manager, 
                                           :set_subscription, :remove_subscription, :set_moderator, :remove_moderator]
 
@@ -509,8 +512,23 @@ class UsersController < ApplicationController
   def setup_rpx_api_key
     RPXNow.api_key = APP_CONFIG['rpx_api']['key']
   end   
+
 private
   def get_user
+    @user = User.find(params[:id])
+  end
+  
+  def get_user_manager
+    @user = User.find(params[:id])
+
+    unless current_user.is_user_manager_of?(@user)
+      flash[:warning] = I18n.t(:unauthorized)
+      redirect_to root_url
+      return
+    end
+  end
+  
+  def get_user_self
     @user = User.find(params[:id])
     
     unless @user == current_user
@@ -518,8 +536,6 @@ private
       redirect_to root_url
       return
     end
-      
-    # redirect_to @user, :status => 301 if @user.has_better_id?
   end
   
   def get_user_group

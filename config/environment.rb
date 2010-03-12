@@ -42,7 +42,7 @@ Rails::Initializer.run do |config|
   config.gem 'rpx_now'
   config.gem "nokogiri"
   config.gem "url_shortener"
-  # config.gem "i18n"
+  config.gem "i18n"
   
     
   # Only load the plugins named here, in the order given (default is alphabetical).
@@ -68,11 +68,7 @@ Rails::Initializer.run do |config|
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.raise_delivery_errors = true
   
-  config.action_view.sanitized_allowed_tags = 'br'
-  
-  # config.after_initialize do # so rake gems:install works
-  #     RPXNow.api_key = "YOU RPX API KEY"
-  # end
+  config.action_view.sanitized_allowed_tags = 'br' 
   
 end
 
@@ -103,7 +99,6 @@ end
 Rubaidh::GoogleAnalytics.tracker_id = 'UA-3271268-1'
 
 
-
 # Load custom config file for current environment
 raw_config = File.read(RAILS_ROOT + "/config/config.yml")
 APP_CONFIG = YAML.load(raw_config)[RAILS_ENV]
@@ -120,3 +115,7 @@ CONTACT_RECIPIENT = 'support@haypista.com'
 require 'composite_primary_keys'
 
 LANGUAGES = ['en', 'es']
+
+I18n.load_path = Dir.glob("#{RAILS_ROOT}/locales/*.{rb,yml}")
+I18n.default_locale = 'es'
+I18n.reload!
