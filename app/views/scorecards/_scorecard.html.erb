@@ -18,14 +18,14 @@
 %>
 
 <tr>
-	<td class="puntos"><%= "*" if ((scorecard.played.to_i + less_games) < games_played.to_i) %>&nbsp;<%= scorecard.ranking %></td>
+	<td class="puntos"><%#= "*" if ((scorecard.played.to_i + less_games) < games_played.to_i) %>&nbsp;<%= scorecard.ranking %></td>
 	<td class="equipos"><%= mailer ? "&nbsp;" : image_link_tiny(scorecard.user) %></td>
 	<td class="equipos">
 		<span>
 		<% if mailer %>
 		<%= link_to(scorecard.user.name, {:host => 'haypista.com', :controller => 'users', :action => 'show', :id => scorecard.user}) %>
 		<% else %>
-		<%= user_link(scorecard.user) %>
+		<%= user_link_limit(scorecard.user) %>
 		<% end %>
 		</span>
 	</td>

@@ -132,7 +132,7 @@ class Group < ActiveRecord::Base
 
   def self.looking_for_user(user)
     find(:all, 
-    :conditions => ["id not in (?) and looking_for_user = true and time_zone = ?", user.groups, user.time_zone],
+    :conditions => ["id not in (?) and looking_for_user = true and time_zone = ? and archive = false and photo_file_name is not null", user.groups, user.time_zone],
     :order => "updated_at DESC",
      :limit => LOOKING_USERS) 
   end

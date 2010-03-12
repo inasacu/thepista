@@ -300,13 +300,12 @@ es:
      forum_options:  Opciones
      message_notification:  Recibir correo en tu cuenta de correo.
      teammate_notification:  Recibir Notificación para unirse a tu equipo en tu cuenta de correo.
-     # enable_comments:  Habilitar opción para dejar comentarios en tu Muro.
      enable_comments:  Habilitar comentarios
      for:  para
-     from: de   
+     from: de  
+     from_de: de 
      from_Ausente: Pasate a Ultima Hora   
-     from_Convocado: Pasate a Ausente   
-     
+     from_Convocado: Pasate a Ausente
      from_message: De   
      from_payment: Pago a   
      from_Ultima_Hora: Pasate a convocado   
@@ -1136,7 +1135,7 @@ es:
      user_sessions: Entrar 
      user_fee: Tasa de Jugador
      user_last_login: Última vez conectado   
-     user_options:  Opciones de Usuario
+     user_options:  Opciones
      username_not_available: Nombre de usuario no esta disponible 
      username_password_donot_match: Nombre de usuario y contraseña no coinciden
      users_activate:  "Es necesario activar tu cuenta"

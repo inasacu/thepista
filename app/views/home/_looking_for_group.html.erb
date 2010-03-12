@@ -1,7 +1,10 @@
 <% 
 	counter = 0 
 	column = 0
+	recipients = User.looking_for_group(current_user)
 %>
+
+<% unless recipients.nil? or recipients.blank? %>
 <div class="block"> 
 	<div class="sidebar-block"> 
 		<h4><%= label_name(:looking_for_groups) %></h4> 
@@ -9,7 +12,7 @@
 		<tbody>
 		<tr>
 		<% 
-			User.looking_for_group(current_user).each do |recipient| 
+			recipients.each do |recipient| 
 				column += 1
 				counter += 1
 
@@ -34,3 +37,4 @@
 		
 	</div> 
 </div>
+<% end %>

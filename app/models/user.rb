@@ -108,7 +108,7 @@ class User < ActiveRecord::Base
     # method section
     def self.looking_for_group(user)
       find(:all, 
-      :conditions => ["looking_for_group = true and time_zone = ?", user.time_zone],
+      :conditions => ["looking_for_group = true and time_zone = ? and archive = false and photo_file_name is not null", user.time_zone],
       :order => "updated_at DESC",
        :limit => LOOKING_GROUPS) 
     end
