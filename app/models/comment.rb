@@ -12,10 +12,6 @@ class Comment < ActiveRecord::Base
   before_create   :format_body
   after_create    :log_activity, :send_message_blog
 
-  # NOTE: install the acts_as_votable plugin if you
-  # want user to vote on the quality of comments.
-  #acts_as_voteable
-
   # NOTE: Comments belong to a user
   belongs_to :user
 
@@ -32,7 +28,6 @@ class Comment < ActiveRecord::Base
         activity = Activity.create!(:item => self, :user => self.user)
       end
     end
-    # add_activities(:item => self, :user => self.user) unless (self.user.nil?) 
   end
 
   def send_message_blog   
@@ -45,8 +40,11 @@ class Comment < ActiveRecord::Base
   end
   
   def self.exists?(commentable_id, commentable_type, user)
-    find(:first, :conditions => ["commentable_id = ? and commentable_type = ? and user_id = ? and created_at >= ?", 
-                  commentable_id, commentable_type, user.id, LAST_24_HOURS]).nil?
+    if self.count(:conditions => ["commentable_id = ? and commentable_type = ? and user_id = ? and created_at >= ?", 
+      commentable_id, commentable_type, user.id, LAST_24_HOURS]) > 1
+      return false
+    end
+    return true
   end
 
 end
