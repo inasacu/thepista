@@ -16,8 +16,12 @@ class ApplicationController < ActionController::Base
   
   private  
   def set_user_language
-    I18n.locale = current_user.language if current_user    
+    I18n.load_path = Dir.glob("#{RAILS_ROOT}/locales/*.{rb,yml}")
+    I18n.default_locale = 'es'
     I18n.reload!
+    
+    I18n.locale = current_user.language if current_user    
+    # I18n.reload!
   end
 
   def set_time_zone
