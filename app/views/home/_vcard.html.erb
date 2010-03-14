@@ -1,0 +1,6 @@
+<span class="vcard">
+	<%= link_to(image_tag(recipient.avatar, options={:style => "height: 24px; width: 24px;", :title => h(recipient.name), :class =>"photo fn"}), 
+	(recipient.class.to_s == "Group") ? group_path(recipient) : user_path(recipient), 
+	:class => "url", :hreflang => "en", :rel => "contact") %>
+</span>
+

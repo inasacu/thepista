@@ -72,8 +72,8 @@ class GroupsController < ApplicationController
   end 
 
   def set_looking
-    if @group.update_attribute("looking_for_user", !@group.looking_for_user)
-      @group.update_attribute("looking_for_user", @group.looking_for_user)  
+    if @group.update_attribute("looking", !@group.looking)
+      @group.update_attribute("looking", @group.looking)  
 
       flash[:notice] = I18n.t(:successful_update)
       redirect_back_or_default('/index')
@@ -117,8 +117,7 @@ class GroupsController < ApplicationController
 
   private
   def get_group
-    @group = Group.find(params[:id])    
-    # redirect_to @group, :status => 301 if @group.has_better_id?
+    @group = Group.find(params[:id])
   end
 
   def has_manager_access

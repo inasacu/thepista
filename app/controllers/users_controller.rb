@@ -160,8 +160,8 @@ class UsersController < ApplicationController
   end 
 
   def set_looking
-    if @user.update_attribute("looking_for_group", !@user.looking_for_group)
-      @user.update_attribute("looking_for_group", @user.looking_for_group)  
+    if @user.update_attribute("looking", !@user.looking)
+      @user.update_attribute("looking", @user.looking)  
 
       flash[:notice] = I18n.t(:successful_update)
       redirect_back_or_default('/index')

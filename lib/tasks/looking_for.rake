@@ -7,22 +7,17 @@ task :looking_for => :environment do |t|
 
   groups = Group.find(:all)
   groups.each do |group|    
-    puts "#{group.name} set to NOT looking for players"
-    group.looking_for_user = false
+    puts "#{group.name} NOT NOT" if group.archive
+    puts "#{group.name} LOOKING for players" unless group.archive
+    group.looking = !group.archive
     group.save!
   end
 
   users = User.find(:all)
   users.each do |user|
-    # puts "#{user.name} set to NOT looking for team"
-    user.looking_for_group = false
-    user.save!    
-  end
-  
-  users = User.find(:all, :conditions => "archive = false and current_login_at is not null")
-  users.each do |user|
-    puts "#{user.name} set to LOOKING for team"
-    user.looking_for_group = true
+    puts "#{user.name} NOT NOT" if user.archive
+    puts "#{user.name} LOOKING for team" unless user.archive 
+    user.looking = !user.archive
     user.save!    
   end
   

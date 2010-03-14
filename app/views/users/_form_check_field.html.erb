@@ -5,30 +5,11 @@
   <span class="description"><%= label_name('photo', 'description') %></span>
 </div>
 
-<% if development? %>
+<!-- check_box -->
 <div class="group">
-  <%= f.label :technical, label_name('technical'), :class => :label %>
-  <%= f.text_field :technical, :class => 'textscore' %><br />
-  <span class="description"><%= label_name('technical', 'description') %></span>
-</div>
-
- <div class="group">
-  <%= f.label :physical, label_name('physical'), :class => :label %>
-  <%= f.text_field :physical, :class => 'textscore' %><br />
-  <span class="description"><%= label_name('physical', 'description') %></span>
-</div>
-<% end %>
-
- <div class="group">
-  <%= f.label :gender, label_name('gender'), :class => :label %>
-  <%= "#{label_name(:male, 'value')}  " %><%= radio_button("user", "gender", "male") %>&nbsp;&nbsp;
-  <%= "#{label_name(:female, 'value')}  " %><%= radio_button("user", "gender", "female") %>
-</div>  
-
- <div class="group">
-  <%= f.label :birth_at, label_name('birth_at'), :class => :label %>
-  <%= date_select :user, :birth_at, :start_year => (Time.zone.now.year.to_i - 70), :end_year => Time.zone.now.year.to_i, :class => 'text_field' %><br />
-  <span class="description"><%= label_name('birth_at', 'description') %></span>
+  <%= f.label :looking_for_group, label_name('looking_for_group'), :class => :label %>
+  <%= f.check_box :looking, :class => 'check_box' %><br />
+  <span class="description"><%= label_name('looking_for_group', 'description') %></span>
 </div>
 
 <!-- check_box -->
@@ -38,26 +19,19 @@
   <span class="description"><%= label_name('available', 'description') %></span>
 </div>
 
+<!-- check_box -->
+<div class="group">
+  <%= f.label :teammate_notification, label_name('teammate_notification'), :class => :label %>
+  <%= f.check_box :teammate_notification, :class => 'text_field' %>
+  <span class="description"><%= label_name('teammate_notification', 'description') %></span>
+</div>
+
  <!-- check_box -->
 <div class="group">
   <%= f.label :private_phone, label_name('private_phone'), :class => :label %>
   <%= f.check_box :private_phone, :class => 'text_field' %>
   <span class="description"><%= label_name('private_phone', 'description') %></span>
 </div>  
-
- <!-- check_box -->
-<div class="group">
-  <%= f.label :private_profile, label_name('private_profile'), :class => :label %>
-  <%= f.check_box :private_profile, :class => 'text_field' %>
-  <span class="description"><%= label_name('private_profile', 'description') %></span>
-</div>  
-
-<!-- check_box -->
-<div class="group">
-  <%= f.label :teammate_notification, label_name('teammate_notification'), :class => :label %>
-  <%= f.check_box :teammate_notification, :class => 'text_field' %>
-  <span class="description"><%= label_name('teammate_notification', 'description') %></span>
-</div> 
 
 <!-- check_box -->
 <div class="group">
@@ -66,10 +40,15 @@
   <span class="description"><%= label_name('message_notification', 'description') %></span>
 </div>
 
+ <div class="group">
+  <%= f.label :gender, label_name('gender'), :class => :label %>
+  <%= "#{label_name(:male, 'value')}  " %><%= radio_button("user", "gender", "male") %>&nbsp;&nbsp;
+  <%= "#{label_name(:female, 'value')}  " %><%= radio_button("user", "gender", "female") %>
+</div>  
 
-
-<div class="group">
-  <%= f.label :looking_for_group, label_name('looking_for_group'), :class => :label %>
-  <%= f.check_box :looking_for_group, :class => 'check_box' %><br />
-  <span class="description"><%= label_name('looking_for_group', 'description') %></span>
+<!-- check_box -->
+ <div class="group">
+  <%= f.label :birth_at, label_name('birth_at'), :class => :label %>
+  <%= date_select :user, :birth_at, :start_year => (Time.zone.now.year.to_i - 70), :end_year => Time.zone.now.year.to_i, :class => 'text_field' %><br />
+  <span class="description"><%= label_name('birth_at', 'description') %></span>
 </div>

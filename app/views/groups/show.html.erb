@@ -51,6 +51,18 @@
 		<%= tr_td_action(:sports, @group.sport.name) %>
 		<%= tr_td_action(:game_day, nice_day_time(@group.schedules.first.starts_at)) unless @group.schedules.blank? %>
 		<%= tr_td_action(:time_zone, @group.time_zone) %>
+
+	<% 
+		the_label = h(label_name(@group.looking, 'value'))
+		the_confirmation = label_with_name('looking_for_user', "#{@group.name}?") 
+	%>
+		<tr>
+		  <%= content_tag :td, label_name(:looking_for_user), :class => "label" %>
+		  <%= content_tag :td, 
+				(is_user_manager ? link_to(the_label, set_group_looking_path(:id => @group), :confirm => the_confirmation) : the_label), 
+				:class => get_the_action %>
+		</tr>
+		
 		<%= tr_td_action(:users, t(:has_group_users, :count => @group.users.count)) %>
 		<%= tr_td_action(:schedules, t(:has_group_schedules, :count => @group.schedules.count)) unless @group.schedules.blank? %>
 		<%= tr_td_action(:points_for_win, @group.points_for_win) %>
@@ -59,13 +71,12 @@
 		<%= tr_td_action(:player_limit, @group.player_limit) %>
 		
 		<tr>
-			<%= content_tag :td, label_name(:scorecard), :class => "label" %>
-			<%= content_tag :td, link_to(@group.name, scorecard_path(:id => @group)), :class => get_the_action %>	
+			<%= content_tag :td, link_to(label_name(:scorecard), scorecard_path(:id => @group)), :class => "label" %>
 		</tr>
 		
 		<tr>
 			<%= content_tag :td, label_name(:conditions), :class => "label" %>
-			  <%= content_tag :td, sanitize(@group.conditions), :class => get_the_action %>	
+			<%= content_tag :td, sanitize(@group.conditions), :class => get_the_action %>	
 		</tr>
 
 	 <% if current_user.is_member_of?(@group) and !@group.available_users.empty? %>
@@ -76,37 +87,26 @@
 	 <% end %>
 
 		<% 
-			the_label = h(label_name(@group.available, 'value'))
-			the_confirmation = label_with_name('set_available', "#{@group.name}?") 
+			# the_label = h(label_name(@group.available, 'value'))
+			# the_confirmation = label_with_name('set_available', "#{@group.name}?") 
 		%>
-			<tr>
-			  <%= content_tag :td, label_name(:available), :class => "label" %>
-			  <%= content_tag :td, 
+			<!-- <tr>
+			  <%#= content_tag :td, label_name(:available), :class => "label" %>
+			  <%#= content_tag :td, 
 					(is_user_manager ? link_to(the_label, set_group_available_path(:id => @group.id), :confirm => the_confirmation) : the_label), 
 					:class => get_the_action %>
-			</tr>
+			</tr> -->
 
 		<% 
-			the_label = h(label_name(@group.enable_comments, 'value'))
-			the_confirmation = label_with_name('enable_comments', "#{@group.name}?") 
+			# the_label = h(label_name(@group.enable_comments, 'value'))
+			# the_confirmation = label_with_name('enable_comments', "#{@group.name}?") 
 		%>
-			<tr>
-			  <%= content_tag :td, label_name(:enable_comments), :class => "label" %>
-			  <%= content_tag :td, 
+			<!-- <tr>
+			  <%#= content_tag :td, label_name(:enable_comments), :class => "label" %>
+			  <%#= content_tag :td, 
 					(is_user_manager ? link_to(the_label, set_group_enable_comments_path(:id => @group.id), :confirm => the_confirmation) : the_label), 
 					:class => get_the_action %>
-			</tr>
-
-		<% 
-			the_label = h(label_name(@group.looking_for_user, 'value'))
-			the_confirmation = label_with_name('looking_for_user', "#{@group.name}?") 
-		%>
-			<tr>
-			  <%= content_tag :td, label_name(:looking_for_user), :class => "label" %>
-			  <%= content_tag :td, 
-					(is_user_manager ? link_to(the_label, set_group_looking_path(:id => @group), :confirm => the_confirmation) : the_label), 
-					:class => get_the_action %>
-			</tr>
+			</tr> -->
 
 		</table>
 

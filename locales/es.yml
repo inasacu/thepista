@@ -463,7 +463,7 @@ es:
      invitation_to: Tienes una invitación a HayPista   
      invitation_to_group: Invita a un Amigo al Equipo   
      invitation_to_schedule: Invita a un Amigo   
-     invitations: Invitaciones   
+     invitations: Conecta con amigos   
      invite: invita   
      invite_friend: Invita a un amigo   
      invite_other_friend: Invita a otro amigo   
@@ -500,12 +500,12 @@ es:
      login: Entrar   
      logout: Salir   
      look: Mira 
-     looking_for_group:  Jugador que busca Equipo
-     looking_for_groups:  Jugadores que buscan Equipo
-     looking_for_group_description:  Jugador que busca Equipo
-     looking_for_user:  Equipo que busca Jugadores
-     looking_for_users:  Equipos que buscan Jugadores
-     looking_for_user_description:  Equipo que busca Jugadores 
+     looking_for_group:  Busca Equipo
+     looking_for_groups:  Buscan Equipo
+     looking_for_group_description:  Busca Equipo
+     looking_for_user:  Busca Jugadores
+     looking_for_users:  Buscan Jugadores
+     looking_for_user_description:  Busca Jugadores 
      Low: Bajo   
      male_value: Masculino   
      
@@ -1011,14 +1011,14 @@ es:
      subscription_true:  Jugador Abonado
      subscription_updated: Actualización de jugador abonado.
            
-     successful_login: Inicio de sesión con éxito 
+     successful_login: Inicio de sesión con éxito...
      successful_logged_in: Has accedido satisfactoriamente...
      successful_logged_out:  Has cerrado la session...
-     successful_signup:  Regístrado éxito...
+     successful_signup:  Regístrado con éxito...
      successful_update:  Actualización éxitosa... 
-     successful_create: Registro creado.
-     successful_update:  Registro actualizado.
-     successful_destroy:  Registro borrado.
+     successful_create: Datos creados.
+     successful_update:  Datos actualizados.
+     successful_destroy:  Datos borrados.
      Sunday: Domingo	 
      surface: Superficie   
      t_zone: Zona Horaria   
@@ -1273,10 +1273,10 @@ es:
      invitations_email: "Email (Hotmail, Gmail, Yahoo, etc...)"
      invitations_index:  Invitaciones Mandadas
      invitations_import:  Invita a tus contactos
-     invitations_for_your_friends:  Invita a tus amigos
+     invitations_for_your_friends:  Invita a tus amigos a unirse a HayPista
      invitations_no:  Ninguna Invitación para mostrar
      invitations_option:  Opciones de Invitación
-     invitations_create:  Invita a tus amigos
+     invitations_create:  Invita a tus amigos a unirse a HayPista
      invitations_create_group: Invita a tus amigos a este equipo
      invitations_create_schedule: Invita a tus amigos a este evento
      invitations_create_tournament: Invita a tus amigos a este Tourneo

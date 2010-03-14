@@ -7,7 +7,6 @@ class HomeController < ApplicationController
     if current_user
 
       @upcoming_schedules ||= Schedule.upcoming_schedules(session[:schedule_hide_time])
-      @upcoming_meets ||= Meet.upcoming_meets(session[:meet_hide_time]) if development?
       @upcoming_classifieds ||= Classified.upcoming_classifieds(session[:classified_hide_time])
 
       unless @upcoming_schedules.empty?       
@@ -27,7 +26,6 @@ class HomeController < ApplicationController
 
   def upcoming
     @upcoming_schedules ||= Schedule.upcoming_schedules(session[:schedule_hide_time])
-    @upcoming_meets ||= Meet.upcoming_meets(session[:meet_hide_time]) if development?
     @upcoming_classifieds ||= Classified.upcoming_classifieds(session[:classified_hide_time]) if development? 
   end
 

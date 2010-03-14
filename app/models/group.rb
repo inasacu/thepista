@@ -43,7 +43,7 @@ class Group < ActiveRecord::Base
 
   # variables to access
   attr_accessible :name, :second_team, :gameday_at, :points_for_win, :points_for_draw, :points_for_lose, :player_limit
-  attr_accessible :time_zone, :sport_id, :marker_id, :description, :conditions, :photo, :available, :enable_comments
+  attr_accessible :time_zone, :sport_id, :marker_id, :description, :conditions, :photo, :available, :looking, :enable_comments
     
   # friendly url and removes id  
   has_friendly_id :name, :use_slug => true, :reserved => ["new", "create", "index", "list", "signup", "edit", "update", "destroy", "show"]
@@ -124,15 +124,9 @@ class Group < ActiveRecord::Base
     return [7].include?(self.sport_id)
   end
 
-  # def game_day
-  #   self.schedules.find_by_sql(["select distinct dayname(starts_at) as name from schedules " +
-  #                                "where group_id = #{self.id} or invite_id = #{self.id} " +
-  #                                "group by dayname(starts_at) order by dayofweek(starts_at)"])
-  # end
-
   def self.looking_for_user(user)
     find(:all, 
-    :conditions => ["id not in (?) and looking_for_user = true and time_zone = ? and archive = false and photo_file_name is not null", user.groups, user.time_zone],
+    :conditions => ["id in (?) and archive = false and looking = true and time_zone = ? and photo_file_name is not null", user.groups, user.time_zone],
     :order => "updated_at DESC",
      :limit => LOOKING_USERS) 
   end

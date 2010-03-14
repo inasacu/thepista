@@ -4,7 +4,7 @@ has_tournament ||= false
 
 if current_user 
 	has_group = current_user.has_group? 
-	has_tournament = current_user.has_tournament?	
+	# has_tournament = current_user.has_tournament?	
 end
 %>
 
@@ -15,7 +15,7 @@ end
 	<% if current_user %>
 		
 		<%= content_tag 'li', link_to(label_name(:home) , '/'), :class => get_control_first('home') %>
-		<%= content_tag 'li', link_to(label_name(:tournaments), tournaments_url), :class => get_control_active('tournament') if development? %>
+		<%#= content_tag 'li', link_to(label_name(:tournaments), tournaments_url), :class => get_control_active('tournament') if development? %>
 		
 		<%= content_tag 'li', link_to(label_name(:users), users_url), :class => get_control_active('user') %>
 		<%= content_tag 'li', link_to(label_name(:groups), groups_url), :class => get_control_active('group') %>

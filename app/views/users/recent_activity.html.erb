@@ -1,9 +1,6 @@
-<%- if current_user.activities.empty? -%>
-	<%= content_tag 'h3', t(:no_recent_activity) %>
-	
-<%- else -%>
+<%- unless current_user.activities.empty? -%>
 
-	<%= content_tag 'h2', t(:recent_activities) %>
+	<%= content_tag 'h5', t(:recent_activities) %>
 
 	<p class="meta">
 		<%= user_link current_user %>  

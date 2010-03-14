@@ -442,7 +442,7 @@ en:
      invitation_to: You have an invitation to HayPista   
      invitation_to_group: Invite a friend to join the Team   
      invitation_to_schedule: Invite a friend   
-     invitations: Invitations   
+     invitations: Connect with friends   
      invite: invite   
      invite_friend: Invite a friend     
      invite_other_friend: Invite other friend  
@@ -478,12 +478,12 @@ en:
      login: Login   
      logout: Logout   
      look: Look  
-     looking_for_group:  Player looking for Team
-     looking_for_groups:  Players looking for Team
-     looking_for_group_description:  Player looking for Team
-     looking_for_user:  Team looking for Players
-     looking_for_users:  Teams looking for Players
-     looking_for_user_description:  Team looking for Players 
+     looking_for_group:  Looking for Team
+     looking_for_groups:  Looking for Team
+     looking_for_group_description:  Looking for Team
+     looking_for_user:  Looking for Players
+     looking_for_users:  Looking for Players
+     looking_for_user_description:  Looking for Players 
      Low: Low   
      male_value: Male
           
@@ -1236,10 +1236,10 @@ en:
      invitations_email: "Email (Hotmail, Gmail, Yahoo, etc...)"
      invitations_index:  Invitations Sent
      invitations_import:  Invite your contacts
-     invitations_for_your_friends:  Invite your friends
+     invitations_for_your_friends:  Invite your friends to join HayPista
      invitations_no:  No Invitation to show.
      invitations_option:  Options
-     invitations_create:  Invite your friends
+     invitations_create:  Invite your friends to join HayPista
      invitations_create_group: Invite your friends to this team
      invitations_create_schedule: Invite your friends to this event
      invitations_create_tournament: Invite your friends to this Tourneo
@@ -1586,7 +1586,7 @@ en:
      false: "No"
 
      get_rolling:  Get going in seconds...
-     upcoming_schedules_screen:  "Upon entering, you can view upcoming events for your team, and your teammates' activities..."
+     upcoming_schedules_screen:  "Upon entering, you can view upcoming events, and teammates' activities..."
      users_screen:   "You can view all your teammates and their profiles..."
      groups_screen:  "You can view all the teams you are signed up for..."
      schedules_screen:  "Shows all the upcoming events, as well as previous events..."

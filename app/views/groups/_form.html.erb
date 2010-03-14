@@ -87,21 +87,21 @@
     <span class="description"><%= label_name('player_limit', 'description') %></span>
   </div>
 
-  <div class="group">
-    <%= f.label :available, label_name('available'), :class => :label %>
-    <%= f.check_box :available, :class => 'check_box' %><br />
-    <span class="description"><%= label_name('available', 'description') %></span>
-  </div> 
+  <!-- <div class="group">
+    <%#= f.label :available, label_name('available'), :class => :label %>
+    <%#= f.check_box :available, :class => 'check_box' %><br />
+    <span class="description"><%#= label_name('available', 'description') %></span>
+  </div> --> 
 
-  <div class="group">
-    <%= f.label :enable_comments, label_name('enable_comments'), :class => :label %>
-    <%= f.check_box :enable_comments, :class => 'check_box' %><br />
-    <span class="description"><%= label_name('enable_comments', 'description') %></span>
-  </div>
+  <!-- <div class="group">
+    <%#= f.label :enable_comments, label_name('enable_comments'), :class => :label %>
+    <%#= f.check_box :enable_comments, :class => 'check_box' %><br />
+    <span class="description"><%#= label_name('enable_comments', 'description') %></span>
+  </div> -->
 
   <div class="group">
     <%= f.label :looking_for_user, label_name('looking_for_user'), :class => :label %>
-    <%= f.check_box :looking_for_user, :class => 'check_box' %><br />
+    <%= f.check_box :looking, :class => 'check_box' %><br />
     <span class="description"><%= label_name('looking_for_user', 'description') %></span>
   </div>
 

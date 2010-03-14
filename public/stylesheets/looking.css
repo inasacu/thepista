@@ -1,0 +1,36 @@
+
+
+#side_base { 
+	border-left: 1px solid rgb(192, 222, 237); 
+	width: 199px; 
+	line-height: 1.2; 
+	background-color: #F7F7F8; 
+	-moz-border-radius-topright: 5px; 
+	-moz-border-radius-bottomright: 5px; 
+}
+
+#side { padding-top: 0.5em; width: 298px; margin-bottom: 10px; }
+#side ul { margin: 0pt; }
+#side ul { margin: 0pt; }
+#side #following #following_list { padding: 5px 10px 5px 14px; }
+#side #following #friends_view_all { padding: 0pt 14px; font-size: 0.9em; }
+
+#side hr { 
+	border: 0pt none ; 
+	margin: 0.5em 14px; 
+	background: #F7F7F8 none repeat scroll 0% 0%; 
+	display: block; 
+	height: 1px; 
+	opacity: 0.7; 
+	-moz-background-clip: border; 
+	-moz-background-origin: padding; 
+	-moz-background-inline-policy: continuous; 
+	color: rgb(192, 222, 237); 
+}
+
+#following_list { padding: 0pt 0pt 0pt 3px; overflow: hidden; }
+#following_list span { padding: 0pt 3px 2px 1px; float: left; }
+#following_list img { padding: 0pt; }
+
+
+
