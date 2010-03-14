@@ -16,7 +16,8 @@ class ApplicationController < ActionController::Base
   
   private  
   def set_user_language
-    I18n.locale = current_user.language if current_user
+    I18n.locale = current_user.language if current_user    
+    I18n.reload!
   end
 
   def set_time_zone
