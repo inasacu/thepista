@@ -109,7 +109,7 @@ class User < ActiveRecord::Base
     def self.looking_for_group(user)
       find(:all, 
       :conditions => ["archive = false and looking = true and time_zone = ?", user.time_zone],
-      :order => "last_request_at DESC",
+      :order => "last_request_at",
       :limit => LOOKING_GROUPS) 
     end
     
