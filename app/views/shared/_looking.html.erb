@@ -14,7 +14,7 @@
 				<div id="following_list">
 
 					<% recipients.each do |recipient| %>
-					<%= render :partial => 'vcard', :locals => {:recipient => recipient} %>
+					<%= render :partial => '/shared/vcard', :locals => {:recipient => recipient} %>
 					<% end %>
 
 				</div>
