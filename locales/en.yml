@@ -1304,7 +1304,7 @@ en:
      payment_type:  Type de Payment
      payments_create:  New Payment
      payments_index:   Payments
-     payments_index_option: Options de Payment
+     payments_index_option: Options
      payments_manager_option:  Requires team manager position to view more options.
      payments_new:  New Payment
      payments_no:  No Payment to show.
@@ -1378,7 +1378,7 @@ en:
      
              
      message_delete: Delete this message
-     message_options: Options de Message  
+     message_options: Options 
      message_reply:  Reply
      message_reply_to: Reply to this message
      message_send:  Send Message
@@ -1411,9 +1411,9 @@ en:
      schedules_no: No Event to show.
      schedules_edit: Edit Event
      schedules_update: Edit Event
-     schedules_option:  Options de Events
-     schedule_options:  Options de Event
-     schedules_show: Detalles Del Event
+     schedules_option:  Options 
+     schedule_options:  Options 
+     schedules_show: Event Details
      schedule_ausentes:  Noone on No-Show to show.
      schedule_convocados:  Noone on Squad to show.
      schedule_excess_player:  To many Players on Squad
@@ -1445,7 +1445,7 @@ en:
      standings:  Scorecards 
      standing_list:  Previous Scorecards
      standings_list:  Previous Scorecards
-     standing_options:  Options de Scorecard de Tournament
+     standing_options:  Options 
      standings_archive:  Archivar la Scorecard de Tournament
      standings_index:   Scorecards de Tournament
      standings_manager_option:  Requires team manager position to view more options.
@@ -1523,7 +1523,7 @@ en:
      sports_create: New Sport
      sports_edit: Edit Sport
      sports_index:  Sports
-     sports_index_option: Options de Sport
+     sports_index_option: Options
      sports_maximo_option:   Admin Access Only.
      sports_new: New Sport
      sports_no: No Sport to show.

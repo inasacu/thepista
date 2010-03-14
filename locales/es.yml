@@ -53,7 +53,7 @@ es:
      blog_haypista: Blog
      blog_comment_notification: Recibir Notas en tu Muro
      blogs_my_wall:  Mi Muro
-     blogs_option:  Opciones de Muro
+     blogs_option:  Opciones 
      body: Contenido 
      body_description:  Contenido  
      by: por
@@ -1254,8 +1254,8 @@ es:
      classifieds_index:  Anuncios
      classifieds_new:  Nuevo Anuncio
      classifieds_no:  Ningun Anuncio para mostrar
-     classifieds_option:  Opciones de Anuncios
-     classified_options: Opciones de Anuncios
+     classifieds_option:  Opciones
+     classified_options: Opciones
      classifieds_create:  Nuevo Anuncio
      classifieds_create_group: Nuevos Anuncios del equipo
      classifieds_create_schedule: Nuevos Anuncios del evento
@@ -1275,7 +1275,7 @@ es:
      invitations_import:  Invita a tus contactos
      invitations_for_your_friends:  Invita a tus amigos a unirse a HayPista
      invitations_no:  Ninguna Invitación para mostrar
-     invitations_option:  Opciones de Invitación
+     invitations_option:  Opciones
      invitations_create:  Invita a tus amigos a unirse a HayPista
      invitations_create_group: Invita a tus amigos a este equipo
      invitations_create_schedule: Invita a tus amigos a este evento
@@ -1299,17 +1299,17 @@ es:
      clashes_edit:  Resultados
      
      clouds_show:  Etiquetas
-     clouds_options:  Opciones de Etiquetas
+     clouds_options:  Opciones
           
      entries_teammate: Mis Compañeros de Equipo
      entries_my_wall: Mi Muro
-     entries_option:  Opciones del Muro
-     entries_show:  Opciones del Muro
-     entries_show_option:  Opciones del Muro
+     entries_option:  Opciones 
+     entries_show:  Opciones 
+     entries_show_option:  Opciones 
           
      fee_from: Cargos a
      fee_from_description: De quien son los Cargos
-     fee_options: Opciones de Cargo
+     fee_options: Opciones 
      fee_to: Cargos de 
      fee_to_description:  A quien son los Cargos
      fee_user_for_group:  Anotar cargo a los jugadores
@@ -1322,7 +1322,7 @@ es:
      fees_new:  Nuevo Cargo
      fees_no:  Ningun Cargo para mostrar.
      fees_edit:  Modificar Cargo
-     fees_option:  Opciones de los Cargos
+     fees_option:  Opciones
      fees_show:  Mostrar Cargo
      fees_update:  Modificar Cargo
      
@@ -1330,7 +1330,7 @@ es:
      home_search:  Buscar
      home_about_us: About Us
      home_information:  Información
-     home_option:  Opciones de Inicio
+     home_option:  Opciones
      home_round:  Fase
      home_upcoming_schedule:  Próximos Eventos
      home_upcoming:  Próximos Eventos
@@ -1343,30 +1343,30 @@ es:
      payment_type:  Tipo de Pago
      payments_create:  Nuevo Pago
      payments_index:   Pagos
-     payments_index_option: Opciones de Pago
+     payments_index_option: Opciones 
      payments_manager_option:  Requiere responsable de equipo para ver mas opciones.
      payments_new:  Nuevo Pago
      payments_no:  Ningun Pago para mostrar.
      payments_destroy:  Borrar Pago
      payments_edit:  Modificar Pago
-     payments_option:  Opciones de Pagos
+     payments_option:  Opciones 
      payments_show:  Mostrar Pago
           
-     group_options:  Opciones de Equipos
+     group_options:  Opciones
      groups_create:  Nuevo Equipo 
      groups_destroy:  Borrar Equipo
      groups_edit:  Modificar Equipo
      groups_index:   Equipos
-     groups_index_option: Opciones de Equipo
+     groups_index_option: Opciones 
      groups_invitations_create:  Invita a un Amigo al Equipo
      groups_join:  Unete al Equipo
      groups_list:  Resto de Equipo
      groups_new:  Nuevo Equipo
-     groups_new_option: Opciones de Nuevo Equipo
+     groups_new_option: Opciones 
      groups_no:  Ningun Equipo para mostrar.
      groups_none:  Ningun Equipo.
      groups_options_without: "¿Qué opciones tienes ya que no tienes un equipo?"
-     groups_option:  Opciones de Equipo
+     groups_option:  Opciones 
      groups_search: Busqueda de Equipos
      groups_search_to_join: Puedes Buscar un equipo a quien unierte. 
      groups_show:  Mostrar Equipo
@@ -1374,11 +1374,11 @@ es:
  
      markers_create: Nuevo Centro Deportivo
      markers_index:  Centros Deportivos
-     markers_index_option: Opciones de Centro Deportivo
+     markers_index_option: Opciones 
      markers_new: Nuevo Centro Deportivo
      markers_no: Ningun Centro Deportivo para mostrar.
      markers_edit: Modificar Centro Deportivo
-     markers_option:  Opciones de Centros Deportivos
+     markers_option:  Opciones 
      markers_show: Mostrar Centro Deportivo
      
      matches_edit:  Resultados
@@ -1388,7 +1388,7 @@ es:
      meets_create:  Nuevo Evento 
      meets_destroy:  Borrar Evento 
      meets_index:  Eventos de Torneo  
-     meets_index_option: Opciones del Evento 
+     meets_index_option: Opciones  
      meets_invitations_create:  Invita a un Amigo al Evento 
      meets_list:  Anteriores Eventos 
      meets_list_no: Ningun Eventoprevio para mostrar.
@@ -1397,8 +1397,8 @@ es:
      meets_no: Ningun Eventopara mostrar.
      meets_edit: Modificar Evento 
      meets_update: Modificar Evento 
-     meets_option:  Opciones de Eventos
-     meet_options:  Opciones de Eventos
+     meets_option:  Opciones 
+     meet_options:  Opciones 
      meets_show: Detalles Del Evento de Torneo
      meet_ausentes:  Ningun Ausente para mostrar.
      meet_convocados:  Ningun Convocado para mostrar.
@@ -1417,7 +1417,7 @@ es:
      
              
      message_delete: Borra este mensaje
-     message_options: Opciones de Mensaje  
+     message_options: Opciones   
      message_reply:  Responde
      message_reply_to: Responde a este mensaje
      message_send:  Manda Mensaje
@@ -1427,11 +1427,11 @@ es:
      messages_create:  Manda un Mensaje
      messages_inbox:  Mensajes Recibidos
      messages_index:  Mensajes
-     messages_index_option: Opciones de Mensaje
+     messages_index_option: Opciones 
      messages_new: Nuevo Mensaje
      messages_no: Ningun Mensaje para mostrar.
      messages_edit: Modificar Mensaje
-     messages_option:  Opciones de Mensajes
+     messages_option:  Opciones 
      messages_send:  Manda Mensaje
      messages_sent:  Mensajes Mandados
      messages_show: Mostrar Mensaje
@@ -1441,7 +1441,7 @@ es:
      schedules_create:  Nuevo Evento
      schedules_destroy:  Borrar Evento
      schedules_index:  Eventos
-     schedules_index_option: Opciones del Evento
+     schedules_index_option: Opciones 
      schedules_invitations_create:  Invita a un Amigo al Evento
      schedules_list:  Anteriores Eventos
      schedules_list_no: Ningun Evento previo para mostrar.
@@ -1450,8 +1450,8 @@ es:
      schedules_no: Ningun Evento para mostrar.
      schedules_edit: Modificar Evento
      schedules_update: Modificar Evento
-     schedules_option:  Opciones de Eventos
-     schedule_options:  Opciones de Evento
+     schedules_option:  Opciones 
+     schedule_options:  Opciones 
      schedules_show: Detalles Del Evento
      schedule_ausentes:  Ningun Ausente para mostrar.
      schedule_convocados:  Ningun Convocado para mostrar.
@@ -1471,12 +1471,12 @@ es:
 
      scorecard_list:  Clasificaciones Anteriores
      scorecards_list:  Clasificaciones Anteriores
-     scorecard_options:  Opciones de Clasificación
+     scorecard_options:  Opciones 
      scorecards_archive:  Archivar la Clasificación
      scorecards_index:   Clasificaciones
      scorecards_manager_option:  Requiere responsable de equipo para ver mas opciones.
      scorecards_no: Ninguna Clasificación para mostrar.
-     scorecards_option:  Opciones de Clasificaciones
+     scorecards_option:  Opciones 
      scorecards_less_games:  ( * ) Jugadores con menos asistencias a eventos
      scorecards_legend:  Leyenda
 
@@ -1484,12 +1484,12 @@ es:
      standings:  Clasificaciones de Torneo
      standing_list:  Clasificaciones Anteriores de Torneo
      standings_list:  Clasificaciones Anteriores de Torneo
-     standing_options:  Opciones de Clasificación de Torneo
+     standing_options:  Opciones 
      standings_archive:  Archivar la Clasificación de Torneo
      standings_index:   Clasificaciones de Torneo
      standings_manager_option:  Requiere responsable de equipo para ver mas opciones.
      standings_no: Ninguna Clasificación de Torneo para mostrar.
-     standings_option:  Opciones de Clasificaciones de Torneo
+     standings_option:  Opciones
      standings_less_games:  ( * ) Jugadores con menos asistencias a eventos
      standings_legend:  Leyenda
           
@@ -1522,25 +1522,25 @@ es:
      
      roles_index:   Responsabilidades
      roles_maximo_option:  Requiere responsable de administrador para ver mas opciones.
-     roles_option:  Opciones de Responsabilidades
+     roles_option:  Opciones 
 
-     round_options:  Opciones de Fases 
+     round_options:  Opciones  
      round_starts_ends_at:  Fechas de Fase 
      rounds_create:  Nueva Fase
      rounds_destroy:  Borrar Fase 
      rounds_edit:  Modificar Fase 
      rounds_index:  Fases de Torneo 
-     rounds_index_option: Opciones de Fases 
+     rounds_index_option: Opciones  
      rounds_invitations_create:  Invita a un Amigo a la Fase 
      rounds_join:  Unete a la Fase 
      rounds_phase_description:  Numero de la Fase 
      rounds_list:  Resto de la Fase 
      rounds_new:  Nueva Fase 
-     rounds_new_option: Opciones de Nuevo Fase 
+     rounds_new_option: Opciones  
      rounds_no:  Ninguna Fase para mostrar.
      rounds_none:  Ninguna Fase.
      rounds_options_without: "¿Qué opciones tienes ya que no tienes una fase de torneo?"
-     rounds_option:  Opciones de Fase
+     rounds_option:  Opciones 
      rounds_search: Busqueda de Fases
      rounds_search_to_join: Puedes Buscar una Fase al cual unierte. 
      rounds_show:  Mostrar Fase 
@@ -1568,37 +1568,37 @@ es:
      sports_create: Nuevo Deporte
      sports_edit: Modificar Deporte
      sports_index:  Deportes
-     sports_index_option: Opciones de Deporte
+     sports_index_option: Opciones 
      sports_maximo_option:  Requiere responsable de administrador para ver mas opciones.
      sports_new: Nuevo Deporte
      sports_no: Ningun Deporte para mostrar.
      sports_none:  Ningun Deporte.
-     sports_option:  Opciones de Deportes
+     sports_option:  Opciones 
      sports_show: Mostrar Deporte
      
      tags:  Etiquetas
      
      topics_create:  Nuevo Evento
      topics_edit:  Modificar Evento
-     topic_options:  Opciones de Evento     
+     topic_options:  Opciones      
      
-     tournament_options:  Opciones de Torneos
+     tournament_options:  Opciones 
      tournament_starts_ends_at:  Fechas del Torneo
      tournaments_create:  Nuevo Torneo 
      tournaments_destroy:  Borrar Torneo
      tournaments_edit:  Modificar Torneo
      tournaments_index:   Torneos
-     tournaments_index_option: Opciones de Torneo
+     tournaments_index_option: Opciones
      tournaments_invitations_create:  Invita a un Amigo al Torneo
      tournaments_join:  Unete al Torneo
      tournaments_joined:  Fecha de Inscripción
      tournaments_list:  Resto de Torneo
      tournaments_new:  Nuevo Torneo
-     tournaments_new_option: Opciones de Nuevo Torneo
+     tournaments_new_option: Opciones 
      tournaments_no:  Ningun Torneo para mostrar.
      tournaments_none:  Ningun Torneo.
      tournaments_options_without: "¿Qué opciones tienes ya que no tienes un torneo?"
-     tournaments_option:  Opciones de Torneo
+     tournaments_option:  Opciones 
      tournaments_search: Busqueda de Torneos
      tournaments_search_to_join: Puedes Buscar un Torneo al cual unierte. 
      tournaments_show:  Mostrar Torneo
@@ -1606,14 +1606,14 @@ es:
           
      types_index:  Tipos
      types_maximo_option:  Requiere responsable de administrador para ver mas opciones.
-     types_option:  Opciones de Tipos
+     types_option:  Opciones
      
      users_available:  Jugadores Disponibles
      users_index:  Jugadores
-     users_index_option: Opciones de Jugador
+     users_index_option: Opciones 
      users_description_no:  Ningun detalle del Jugador.
      users_edit:  Modificar Jugador
-     users_edit_option:  Opciones de Jugador
+     users_edit_option:  Opciones 
      users_list:  Resto de Jugadores
      users_new:  Nuevo Jugador
      users_no:  Ningun Jugador para mostrar.
@@ -1621,9 +1621,9 @@ es:
      users_search:  Busqueda de Jugadores
      users_show: Mostrar Jugador
      users_my_wall: Mi Muro
-     users_option:  Opciones de Jugadores
-     user_options_team: Opciones de Equipos del Jugador
-     user_options_tour: Opciones de Torneos del Jugador
+     users_option:  Opciones 
+     user_options_team: Opciones 
+     user_options_tour: Opciones 
      users_rpx_new: Nuevo Jugador
      users_rpx_create:  Nuevo Jugador
      users_teammate: Mis Compañeros de Equipo
