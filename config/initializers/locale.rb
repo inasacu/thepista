@@ -4,9 +4,6 @@ I18n.load_path << Dir[ File.join(RAILS_ROOT, 'lib', 'locale', 'locales', '*.{rb,
  
 # set default locale to something other than :en
 I18n.default_locale = :es
-
 I18n.reload!
-
 I18n.backend.class.send(:include, I18n::Backend::Fallbacks)
-
 I18n.fallbacks.map('en' => 'es')
