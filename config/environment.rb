@@ -116,6 +116,7 @@ require 'composite_primary_keys'
 
 LANGUAGES = ['en', 'es']
 
+# http://dirk.net/2009/02/11/rails-i18n-translation-missing-errors-in-production/
 I18n.load_path = Dir.glob("#{RAILS_ROOT}/locales/**/*.{rb,yml}")
 I18n.default_locale = 'es'
 I18n.reload!
