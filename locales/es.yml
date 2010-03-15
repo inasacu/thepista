@@ -500,12 +500,12 @@ es:
      login: Entrar   
      logout: Salir   
      look: Mira 
-     looking_for_group:  Busca Equipo
-     looking_for_groups:  Buscan Equipo
-     looking_for_group_description:  Busca Equipo
-     looking_for_user:  Busca Jugadores
-     looking_for_users:  Buscan Jugadores
-     looking_for_user_description:  Busca Jugadores 
+     looking_for_group:  Jugadores que Busca Equipo
+     looking_for_groups:  Jugadores que Buscan Equipo
+     looking_for_group_description:  Jugadores que Busca Equipo
+     looking_for_user:  Equipos que Busca Jugadores
+     looking_for_users:  Equipos que Buscan Jugadores
+     looking_for_user_description:  Equipos que Busca Jugadores 
      Low: Bajo   
      male_value: Masculino   
      

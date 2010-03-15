@@ -1,14 +1,14 @@
 <% 
 	users = User.looking_for_group(current_user)
-	# groups = Group.looking_for_user(current_user)
+	groups = Group.looking_for_user(current_user)
 	user_label = "groups"
 	group_label = "users"	
 %>
 
 <%# content_for :search, render(:partial => 'shared/search') -%>
 <% content_for :sidebar, render(:partial => '/invitations/sidebar') -%>
+<% content_for :sidebar, render(:partial => '/shared/looking', :locals => {:recipients => groups, :the_label => group_label}) unless groups.nil? or groups.blank? -%>
 <% content_for :sidebar, render(:partial => '/shared/looking', :locals => {:recipients => users, :the_label => user_label}) unless users.nil? or users.blank? -%>
-<%# content_for :sidebar, render(:partial => '/shared/looking', :locals => {:recipients => groups, :the_label => group_label}) unless groups.nil? or groups.blank? -%>
 <% content_for :sidebar, render(:partial => '/shared/active_comment') if current_user and @has_activities  -%>
 <% content_for :sidebar, render(:partial => '/shared/upcoming_classified') unless @upcoming_classifieds.blank?  -%>
 <%# content_for :sidebar, render(:partial => 'latest_payment') -%>

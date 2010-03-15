@@ -9,6 +9,14 @@ task :looking_for => :environment do |t|
   groups.each do |group|    
     puts "#{group.name} NOT NOT" if group.archive
     puts "#{group.name} LOOKING for players" unless group.archive
+    group.looking = group.archive
+    group.save!
+  end
+  
+  groups = Group.find(:all, :conditions => ["id in (select distinct group_id from schedules where starts_at >= ?)", Time.zone.now - 90.days])
+  groups.each do |group|    
+    puts "#{group.name} NOT NOT" if group.archive
+    puts "#{group.name} LOOKING for players" unless group.archive
     group.looking = !group.archive
     group.save!
   end
