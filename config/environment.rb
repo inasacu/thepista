@@ -70,6 +70,9 @@ Rails::Initializer.run do |config|
   
   config.action_view.sanitized_allowed_tags = 'br' 
   
+  
+  config.i18n.load_path += Dir[File.join(RAILS_ROOT, 'config', 'locales', '**', '*.{rb,yml}')]
+  
 end
 
 ActionMailer::Base.default_content_type = "text/html"
@@ -115,6 +118,7 @@ CONTACT_RECIPIENT = 'support@haypista.com'
 require 'composite_primary_keys'
 
 LANGUAGES = ['en', 'es']
+
 
 I18n.load_path = Dir.glob("#{RAILS_ROOT}/locales/*.{rb,yml}")
 I18n.default_locale = 'es'
