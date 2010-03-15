@@ -116,6 +116,6 @@ require 'composite_primary_keys'
 
 LANGUAGES = ['en', 'es']
 
-I18n.load_path = Dir.glob("#{RAILS_ROOT}/locales/*.{rb,yml}")
+I18n.load_path = Dir.glob("#{RAILS_ROOT}/locales/**/*.{rb,yml}")
 I18n.default_locale = 'es'
 I18n.reload!
