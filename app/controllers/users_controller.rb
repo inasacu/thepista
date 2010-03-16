@@ -172,17 +172,19 @@ class UsersController < ApplicationController
   
   def set_language
     I18n.locale = "es"
-    the_location = "es"
+    # the_location = "es"
+      
+    # case params[:id]
+    # when LANGUAGES
+    #   I18n.locale = params[:id]
+    #   the_location = params[:id]
+    # end     
 
-    case params[:id]
-    when "es", "en", "fr", "ge", "it"
-      I18n.locale = params[:id]
-      the_location = params[:id]
-    end     
-
-    if current_user
+    if current_user and LANGUAGES.include?(params[:id])
       @user = current_user
-      @user.update_attribute("language", the_location)
+      # @user.update_attribute("language", the_location)
+      @user.language = params[:id]
+      @user.save!
     end
     redirect_back_or_default('/')
   end
