@@ -98,7 +98,6 @@ end
 # Rubaidh::GoogleAnalytics.tracker_id = 'UA-3271268-2' 
 Rubaidh::GoogleAnalytics.tracker_id = 'UA-3271268-1'
 
-
 # Load custom config file for current environment
 raw_config = File.read(RAILS_ROOT + "/config/config.yml")
 APP_CONFIG = YAML.load(raw_config)[RAILS_ENV]
@@ -119,4 +118,6 @@ LANGUAGES = ['en', 'es']
 # http://dirk.net/2009/02/11/rails-i18n-translation-missing-errors-in-production/
 I18n.load_path = Dir.glob("#{RAILS_ROOT}/locales/**/*.{rb,yml}")
 I18n.default_locale = 'es'
+I18n.backend.class.send(:include, I18n::Backend::Fallbacks)
+I18n.fallbacks.map('en' => 'es')
 I18n.reload!
