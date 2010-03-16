@@ -54,13 +54,13 @@ en:
      calendar_language: en      
      can_create_schedule: Create an Event   
      cancel: Cancel        
-     cancel_email_subscription: Unsubscribe to email Notifications? 
+     cancel_email_subscription: Unsubscribe to email Notices? 
      cannot_be_blank: cannot be blank   
      center:  Mid-Field
      change: Change Language   
      change_available: Change available status   
      change_at:  Date Changed
-     change_message_notification: Change Message Notification
+     change_message_notification: Change Message Notice
      change_email_configuration: Change Email Configuration.
      change_group: Change Team   
      change_language: Change Language  
@@ -160,7 +160,7 @@ en:
      description_match: Match Details   
      description_message: Message Details   
      description_note: Note Details   
-     description_notification: Notification Details
+     description_notification: Notice Details
      destroy: Remove   
      destroy_address: Remove the Address   
      destroy_announcement: Remove the Announcement   
@@ -178,7 +178,7 @@ en:
      destroy_message: Remove the Message   
      destroy_name: Remove the Name   
      destroy_note: Remove the Note   
-     destroy_notification: Remove the Notification   
+     destroy_notification: Remove the Notice   
      destroy_payment: Remove the Paymebt   
      destroy_profile: Remove your Profile   
      destroy_reminder: Remove the Reminder   
@@ -235,7 +235,7 @@ en:
      email_time_zone: Time Zone to send email before an event.  
      email_addresses: Email Address
      email_addresses_description:  Write your email address.
-     enable_comments: Receive Comment Notifications
+     enable_comments: Receive Comment NoticeNotices
      enable_comments_description: Option to receive comments in your inbox.
      ends_at: Ends at   
      ends_at_match: Match Ends At   
@@ -507,7 +507,7 @@ en:
      member_since: Member since   
      message: Message
      message_description: Write a message.
-     message_notification: Message Notification  
+     message_notification: Message Notice  
      message_notification_description: (Do you want to receive email notifications...)   
      messages: Messages   
      missing:  Missing
@@ -527,8 +527,9 @@ en:
      must_be_logged_in:  You need to be logged in to access this page
      must_be_logged_out:  You need to logged out to access this page
      must_be_numeric: Should be a numeric value
-     must_be_before_ends_at:  Should be a date after the Start Date.
-     must_be_before_starts_at:  Should be a date previous to the End Date.
+     must_be_before_starts_at:  Should be a date before the Start Date.
+     must_be_after_starts_at:  Should be a date after the Start Date.
+     must_be_before_ends_at:  Should be a date previous to the End Date.
      must_be_before_signup_at:  Should be a date previous to the End Inscription Date.
      must_be_before_deadline_at:  Should be a date before the Start Inscription Date.
      must_be_after_deadline_at:  Should be a date after the Start Inscription Date.
@@ -548,7 +549,7 @@ en:
      my_match: My Match Results   
      my_message: My Messages   
      my_name: Mi Name   
-     my_nofication: My Notifications   
+     my_nofication: My Notices   
      my_note: My Notes   
      my_payment: My Payments   
      my_reminder: My Reminders   
@@ -640,8 +641,8 @@ en:
      note: Notes    
      notes: Notes  
      notice: NOTICE   
-     notification: Notification   
-     notifications: Notifications   
+     notification: Notice   
+     notifications: Notices   
      open: Open   
      openid_identifier: OpenID URL
      open_id_explanation: "The OpenID authentication system is a safe, free and very easy to use.  It will enable identification of many web pages when you enter your OpenID URL, it also gives you access to sites that support OpenID "  
@@ -801,6 +802,8 @@ en:
      reminder_description:  Want a reminder for the event
      reminder_at:  Reminder
      reminder_at_description:  (What time would you like us to send you a reminder?)  
+     reminder_at_message:  "Hi,<br><br>why don't you sign up for next event?<br><br>"
+     reminder_at_salute:  "<br><br>Thanks<br><br>"
      reminder_at_match: Reminder   
      reminders: Reminders   
      
@@ -844,7 +847,7 @@ en:
      search_messages: Search for Messages   
      search_names: Search for Names   
      search_notes: Search for Notes   
-     search_notifications: Search for Notifications   
+     search_notifications: Search for Notice   
      search_payments: Search for Payments   
      search_profiles: Search for profiles   
      search_reminders: Search for Reminders  
@@ -883,7 +886,7 @@ en:
      send_message_to_meet: Send a Message     
      send_name: Send a Name   
      send_note: Send a Note   
-     send_notification: Send a Notification   
+     send_notification: Send a Notice   
      send_payment: Send a Payment   
      send_pre_match: Send the Squad   
      send_pre_match_to: Send the Squad to 
@@ -915,7 +918,7 @@ en:
      share: Share
      share_in_facebook: "Share on Facebook"
      share_in_twitter: "Share on Twitter"
-     share_in_menealo: "Menéalo"   
+     share_in_menealo: "Share on Menéalo"   
      share_in_linkedin: "Share on LinkedIn"
      should_be_positive: should be positive   
      show: Show   
@@ -935,7 +938,7 @@ en:
      show_message: Show the Message  
      show_name: Show the Name   
      show_note: Show the Note   
-     show_notification: Show the Notification   
+     show_notification: Show the Notice   
      show_openid: Show the OpenID   
      show_payment: Show the Payment  
      show_profile: Show your Profile   
@@ -971,9 +974,9 @@ en:
      
      manager_updated:  Update manager.
      
-     subscription_at: Finalización para Convocarse el Subscription  
-     subscription_at_match: Finalización para Convocarse el Subscription   
-     subscription_at_description: (¿Ha que hora termina la opción para apuntarse a un event el abonado...(ej- 1 dia antes del event)) 
+     subscription_at: Last Day to add squad status change for subscriber  
+     subscription_at_match: Last Day to add squad status change for subscriber    
+     subscription_at_description: (Last Day to add squad status change for subscriber  ...(ex- 1 day before the event)) 
      subscription_false:  Player does not have a Subscription.
      subscription_true:  Player has a Subscription
      subscription_updated: Update user subscription.
@@ -985,14 +988,14 @@ en:
      successful_create: Record created.
      successful_update:  Record updated.
      successful_destroy:  Record removed.
-     Sunday: Domingo	 
-     surface: Superficie  
+     Sunday: Sunday	 
+     surface: Surface  
       
-     t_zone: Zona Horaria   
+     t_zone: Time Zone   
      table_id: Table ID   
      table_type: Table Type  
 
-     teammate_notification:  Teammate Notification
+     teammate_notification:  Teammate Notice
      technical_level_description: "(From 1 to 5, put the technical level that you think you have compared to your teammates...)"  
      terms: terms   
      terms_message: Please accept the terms to proceed   
@@ -1070,11 +1073,12 @@ en:
      update_manager: Update Manager   
      update_map: Update Mapa   
      update_marker: Update Sport Center   
-     update_match: Update Match Result   
+     update_match: Update Match Result  
+     update_match_message:  "Hi,<br><br>Just a reminder to enter the results for the previous event.<br><br>" 
      update_message: Update Message   
      update_name: Update Name   
      update_note: Update Note   
-     update_notification: Update Notification   
+     update_notification: Update Notice   
      update_payment: Update Payment   
      update_profile: Update profile   
      update_reminder: Update Reminder   
@@ -1095,7 +1099,7 @@ en:
      user_haypista_signup: Or Signup with your email account.
      use_standard_login: access using a username and password
      
-     user: Jugador   
+     user: Player   
      users: Players
      user_not_found:  "No user with that email account has been found."
      user_sessions: Login 
@@ -1244,10 +1248,8 @@ en:
      invitations_create_schedule: Invite your friends to this event
      invitations_create_tournament: Invite your friends to this Tourneo
      invitations_create_meet: New Invitation to Tournament
-     invitations_sent:  Invitaciones Mandadas
+     invitations_sent:  Invitations Sent
 
-     # you_upgrade_browser:  Es posible que desee actualizar su navegador.
-     # you_are_using_ie6:  "Actualmente, está usando Internet Explorer 6 para navegar este sitio.  Este sitio funcionara mejor con otros navegadores mas avanzados..."
      switch_to_safari:  Change to Safari
      switch_to_firefox: Change to Firefox
      switch_to_chrome: Change to Chrome
@@ -1452,7 +1454,7 @@ en:
      standings_no: No Scorecard de Tournament to show.
      standings_option:  Options 
      standings_less_games:  ( * ) Players con menos asistencias a events
-     standings_legend:  Leyenda
+     standings_legend:  Leyend
      
      recaptcha_ask_question: "Ask a question, receive an answer!"
      recaptcha_question:  Question

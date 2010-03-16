@@ -69,6 +69,7 @@
 	<%= tr_td_action(:jornada, @schedule.jornada) %>
 	<%= tr_td_action(:starts_at, nice_day_of_week(@schedule.starts_at)) %>
 	<%= tr_td_action(:ends_at, nice_day_of_week(@schedule.ends_at)) %>
+	<%= tr_td_action(:reminder_at, nice_day_of_week(@schedule.reminder_at)) %>
 		
 	<tr>
 		<%= content_tag :td,"#{label_name(:schedule_rate)}", :class => "label" %>
@@ -115,7 +116,18 @@
 	<% end %>
 
 	<%= tr_td_action(:player_limit, @schedule.player_limit) %>
-	
+
+	<% 
+		the_label = h(label_name(@schedule.reminder, 'value'))
+		the_confirmation = label_with_name('reminder', "- #{sanitize(@schedule.concept)}?") 
+	%>
+	<tr>
+		<%= content_tag :td, label_name(:reminder), :class => "label" %>
+		<%= content_tag :td, (is_user_manager ? link_to(the_label, set_reminder_path(:id => @schedule.id), 
+								:confirm => the_confirmation) : the_label), 
+								:class => get_the_action %>
+	</tr>
+		
 	<% 
 		the_label = h(label_name(@schedule.public, 'value'))
 		the_confirmation = label_with_name('public', "- #{sanitize(@schedule.concept)}?") 

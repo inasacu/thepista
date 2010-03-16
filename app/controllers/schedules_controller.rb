@@ -1,10 +1,10 @@
 class SchedulesController < ApplicationController
   before_filter :require_user
   
-  before_filter :get_schedule, :only => [:show, :edit, :update, :destroy, :set_public, :team_roster, :team_last_minute, :team_no_show, :team_unavailable]
+  before_filter :get_schedule, :only => [:show, :edit, :update, :destroy, :set_public, :set_reminder, :team_roster, :team_last_minute, :team_no_show, :team_unavailable]
   before_filter :get_group, :only =>[:new]
   before_filter :get_match_type, :only => [:team_roster, :team_last_minute, :team_no_show, :team_unavailable]
-  before_filter :has_manager_access, :only => [:edit, :update, :destroy, :set_public]
+  before_filter :has_manager_access, :only => [:edit, :update, :destroy, :set_public, :set_reminder]
   before_filter :has_member_access, :only => :show
   before_filter :excess_players, :only => [:show, :team_roster, :team_last_minute, :team_no_show, :team_unavailable]
   
@@ -78,11 +78,7 @@ class SchedulesController < ApplicationController
         @schedule.public = @previous_schedule.public
         @schedule.starts_at = @previous_schedule.starts_at + 7.days
         @schedule.ends_at = @previous_schedule.ends_at + 7.days
-        @schedule.reminder_at = @previous_schedule.starts_at + 5.days
-        
-        @schedule.subscription_at = @previous_schedule.starts_at + 7.days
-        @schedule.non_subscription_at = @previous_schedule.starts_at + 7.days        
-        @schedule.reminder = @previous_schedule.starts_at + 5.days
+        @schedule.reminder_at = @previous_schedule.starts_at + 4.days
       end
   end
 
@@ -93,10 +89,6 @@ class SchedulesController < ApplicationController
       redirect_back_or_default('/index')
       return
     end
-    
-    # :tags, :groups
-    # @schedule.tag_list = @schedule.concept  
-    # @schedule.group_list = @schedule.group.name
     
     if @schedule.save and @schedule.create_schedule_details(current_user)
       flash[:notice] = I18n.t(:successful_create)
@@ -132,6 +124,17 @@ class SchedulesController < ApplicationController
       
       flash[:notice] = I18n.t(:successful_destroy)
       redirect_to :action => 'index'  
+  end
+  
+  def set_reminder
+    if @schedule.update_attribute("reminder", !@schedule.reminder)
+      @schedule.update_attribute("reminder", @schedule.reminder)  
+
+      flash[:notice] = I18n.t(:successful_update)
+      redirect_back_or_default('/index')
+    else
+      render :action => 'index'
+    end
   end
   
   def set_previous_profile

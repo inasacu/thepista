@@ -548,9 +548,10 @@ es:
      
      must_be_logged_in:  Tienes que estar registrado para acceder a esta página
      must_be_logged_out:  Tienes que cerrar la sesión para acceder a esta página
-     must_be_numeric: Tiene que ser un valor numerico (no pongas sin simbolos)
-     must_be_before_ends_at:  Tiene que ser despues de la fecha de Inicio.
-     must_be_before_starts_at:  Tiene que ser antes de la fecha de Finalización.
+     must_be_numeric: Tiene que ser un valor numerico (no pongas sin simbolos)     
+     must_be_before_starts_at:  Tiene que ser antes de la fecha de Inicio.
+     must_be_after_starts_at:  Tiene que ser despues de la fecha de Inicio.
+     must_be_before_ends_at:  Tiene que ser antes de la fecha de Finalización.
      must_be_before_signup_at:  Tiene que ser antes de la fecha de Cierre de Inscripción.
      must_be_before_deadline_at:  Tiene que ser despues de la fecha de Inscripción.
      must_be_after_deadline_at:  Tiene que ser despues de la fecha de Inscripción.
@@ -826,13 +827,11 @@ es:
      reminder_description:  Quieres un recordatorio del Evento
      reminder_at:  Recordatorio
      reminder_at_description:  (¿Ha que hora te mandamos un recordatorio?)  
+     reminder_at_message:  "Hola,<br><br>¿Te apuntas para el proximo evento?<br><br>"
+     reminder_at_salute:  "<br><br>Saludos<br><br>"
      reminder_at_match: Recordatorio   
      reminders: Recordatorios   
-     
-     # remove_moderator: Borra Moderador   
-     # remove_sub_manager: Borra Sub-Manager   
-     # remove_subscription: Borra Abonado   
-     
+          
      removed: eliminado   
      reply: Contestar   
      reply_all: Contestar a todos   
@@ -1104,7 +1103,8 @@ es:
      update_manager: Actualiza un Mister   
      update_map: Actualiza el Mapa   
      update_marker: Actualiza el Centro Deportivo   
-     update_match: Actualiza el Resultado   
+     update_match: Actualiza el Resultado 
+     update_match_message:  "Hola,<br><br>Solo un recordatorio para que no te olvides de actualizar el resultado.<br><br>"  
      update_message: Actualiza un Mensaje   
      update_name: Actualiza un Nombre   
      update_note: Actualiza una Nota   

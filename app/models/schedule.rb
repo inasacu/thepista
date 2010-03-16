@@ -77,7 +77,7 @@ class Schedule < ActiveRecord::Base
   validates_presence_of         :starts_at,     :ends_at  
 
   # variables to access
-  attr_accessible :concept, :description, :season, :jornada, :starts_at, :ends_at, :reminder
+  attr_accessible :concept, :description, :season, :jornada, :starts_at, :ends_at, :reminder_at, :reminder
   attr_accessible :fee_per_game, :fee_per_pista, :time_zone, :group_id, :sport_id, :marker_id, :player_limit
   attr_accessible :public, :season_ends_at
 
@@ -257,6 +257,68 @@ class Schedule < ActiveRecord::Base
     Match.create_schedule_match(self) 
     Fee.create_user_fees(self)
   end
+  
+  def self.send_reminders
+    schedules = Schedule.find(:all, :conditions => ["played = false and send_reminder_at is null and reminder = true and reminder_at >= ? and reminder_at <= ?", LAST_24_HOURS, NEXT_24_HOURS])
+    schedules.each do |schedule|
+      total_schedules = Schedule.count(:conditions => ["group_id = ?", schedule.group])
+      one_third = total_schedules.to_f / 5
+      manager_id = RolesUsers.find_team_manager(schedule.group).user_id
+
+      schedule.group.users.each do |user|
+        scorecard = Scorecard.find(:first, :conditions => ["user_id = ? and group_id = ?", user, schedule.group])
+
+        # send email to user and request to have a email sent
+        if scorecard.played.to_i >= one_third.round and user.message_notification?   
+
+          message = Message.new
+          message.subject = "#{I18n.t(:reminder_at)}:  #{schedule.concept}"
+          message.body = "#{I18n.t(:reminder_at_message)}  #{schedule.concept}  #{I18n.t(:reminder_at_salute)}"
+          message.item = schedule
+          message.sender_id = manager_id
+          message.recipient_id = user.id
+          message.sender_read_at = Time.zone.now
+          message.recipient_read_at = Time.zone.now
+          message.sender_deleted_at = Time.zone.now
+          message.sender_deleted_at = Time.zone.now        
+          message.save!
+
+        end
+      end
+
+      schedule.send_reminder_at = Time.zone.now
+      schedule.save!
+
+    end
+  end
+  
+  def self.send_results
+    schedules = Schedule.find(:all, :conditions => ["starts_at >= ? and starts_at <= ? and send_result_at is null", LAST_24_HOURS, TWO_DAYS_AFTER])
+    schedules.each do |schedule|
+
+      match = Match.find(:first, :conditions => ["type_id = 1 and schedule_id = ? and (group_score is null or invite_score is null)", schedule])
+      manager_id = RolesUsers.find_team_manager(schedule.group).user_id
+      manager = User.find(manager_id)
+
+      # send email to manager to update match result
+      if !match.nil?  and manager.message_notification?   
+        message = Message.new
+        message.subject = "#{I18n.t(:update_match)}:  #{schedule.concept}"
+        message.body = "#{I18n.t(:update_match_message)}  #{schedule.concept}  #{I18n.t(:reminder_at_salute)}"
+        message.item = match
+        message.sender_id = manager_id
+        message.recipient_id = manager_id
+        message.sender_read_at = Time.zone.now
+        message.recipient_read_at = Time.zone.now
+        message.sender_deleted_at = Time.zone.now
+        message.sender_deleted_at = Time.zone.now        
+        message.save!
+      end  
+
+      schedule.send_result_at = Time.zone.now
+      schedule.save!   
+    end
+  end
 
   private
 
@@ -278,8 +340,9 @@ class Schedule < ActiveRecord::Base
   end
 
   def validate
-    self.errors.add(:starts_at, I18n.t(:must_be_before_starts_at)) if self.starts_at >= self.ends_at
-    self.errors.add(:ends_at, I18n.t(:must_be_before_ends_at)) if self.ends_at <= self.starts_at
+    self.errors.add(:reminder_at, I18n.t(:must_be_before_starts_at)) if self.reminder_at >= self.starts_at
+    self.errors.add(:starts_at, I18n.t(:must_be_before_ends_at)) if self.starts_at >= self.ends_at
+    self.errors.add(:ends_at, I18n.t(:must_be_after_starts_at)) if self.ends_at <= self.starts_at
   end
 
 end

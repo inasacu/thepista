@@ -161,8 +161,8 @@ class Tournament < ActiveRecord::Base
       # self.errors.add(:signup_at, I18n.t(:must_be_before_signup_at)) if self.signup_at >= self.deadline_at
       # self.errors.add(:deadline_at, I18n.t(:must_be_before_deadline_at)) if self.deadline_at <= self.signup_at
       # self.errors.add(:starts_at, I18n.t(:must_be_after_deadline_at)) if self.starts_at <= self.deadline_at
-      self.errors.add(:starts_at, I18n.t(:must_be_before_starts_at)) if self.starts_at >= self.ends_at
-      self.errors.add(:ends_at, I18n.t(:must_be_before_ends_at)) if self.ends_at <= self.starts_at
+      self.errors.add(:starts_at, I18n.t(:must_be_before_ends_at)) if self.starts_at >= self.ends_at
+      self.errors.add(:ends_at, I18n.t(:must_be_after_starts_at)) if self.ends_at <= self.starts_at
     end
   end
 
