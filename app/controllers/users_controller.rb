@@ -171,18 +171,10 @@ class UsersController < ApplicationController
   end 
   
   def set_language
-    I18n.locale = "es"
-    # the_location = "es"
-      
-    # case params[:id]
-    # when LANGUAGES
-    #   I18n.locale = params[:id]
-    #   the_location = params[:id]
-    # end     
+    I18n.locale = "es"   
 
     if current_user and LANGUAGES.include?(params[:id])
       @user = current_user
-      # @user.update_attribute("language", the_location)
       @user.language = params[:id]
       @user.save!
     end

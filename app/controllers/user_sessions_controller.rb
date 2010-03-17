@@ -64,7 +64,8 @@ class UserSessionsController < ApplicationController
       @user_openid = User.find_by_openid_identifier(openid_identifier)
 
       if @user
-        if @user.language != I18n.locale
+        
+        if LANGUAGES.include?(I18n.locale)
           @user.language = I18n.locale 
           @user.save!
         end
