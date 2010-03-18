@@ -8,11 +8,11 @@ task :cron => :environment do
     puts "done."
 
     puts "Sending schedule reminders..."
-    # Schedule.send_reminders
+    Schedule.send_reminders
     puts "done."
 
     puts "Sending schedule results reminders ..."
-    # Schedule.send_results
+    Schedule.send_results
     puts "done."
   end
 

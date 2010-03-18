@@ -17,7 +17,7 @@ task :the_reminder => :environment do |t|
     schedule.save!    
   end
   
-  # schedules = Schedule.find(:all, :conditions => ["played = false and sent_reminder_at is null and reminder = true and reminder_at >= ? and reminder_at <= ?", LAST_24_HOURS, NEXT_24_HOURS])
+  # schedules = Schedule.find(:all, :conditions => ["played = false and send_reminder_at is null and reminder = true and reminder_at >= ? and reminder_at <= ?", LAST_24_HOURS, NEXT_24_HOURS])
   # schedules.each do |schedule|
   #   puts "#{schedule.concept} - #{schedule.starts_at} - #{schedule.ends_at} - #{schedule.reminder_at} "
   #   
@@ -53,7 +53,7 @@ task :the_reminder => :environment do |t|
   #   schedule.save!
   #   
   # end
-  
+  # 
   # schedules = Schedule.find(:all, :conditions => ["starts_at >= ? and starts_at <= ? and send_result_at is null", LAST_24_HOURS, TWO_DAYS_AFTER])
   # # schedules = Schedule.find(:all, :conditions => ["starts_at >= ? and send_result_at is null", Time.zone.now])
   # schedules.each do |schedule|
