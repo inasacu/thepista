@@ -45,7 +45,7 @@ class ApplicationController < ActionController::Base
   def require_no_user
     if current_user
       store_location
-      flash[:notice] = I18n.t(:must_be_logged_out)
+      # flash[:notice] = I18n.t(:must_be_logged_out)
       redirect_to root_url
       return false
     end
