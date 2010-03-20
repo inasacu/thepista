@@ -866,7 +866,7 @@ ge:
      # Saturday: Sabado
      save: Guardar   
      schedule: Evento   
-     schedule_description_description: (Escribe algun detalle del equipo...)  
+     schedule_description: (Escribe algun detalle del equipo...)  
      schedules: Eventos
      season_ends_at:  Finalización de Temporada 
      season_ends_at_description:  Fecha de Finalización de Temporada 
@@ -910,7 +910,7 @@ ge:
      select: Seleccióna   
      select_venue: Nuevo Centro Deportivo  
      select_contacts:  Seleccione los contactos que quiere invitar a partir de la esta lista. 
-     self_description_description: (Escribe algo sobre ti...)  
+     self_description: (Escribe algo sobre ti...)  
       
      send_announcement: Manda una Anuncio   
      send_credit: Manda un Pago   

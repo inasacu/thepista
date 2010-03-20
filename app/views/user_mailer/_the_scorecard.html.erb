@@ -16,8 +16,9 @@
 %>
 <div class="content">   
 
-	<h2 class="title"><a href="<%= @group_url %>" title="<%= @group.name %>"><%= @group.name %></a></h2>
-
+	<h2 class="title"><%= link_to(@group.name, group_url(@group)) %></h2>
+	<p><%= link_to(I18n.t(:scorecard), scorecard_url(@group)) %></p>
+	
 	<div class="inner">
 
 		<table class="table">
@@ -41,18 +42,8 @@
 			<%= render :partial => '/scorecards/scorecard_other', :collection => @scorecard_others, 
 							:locals => {:group => @group, :games_played => @games_played, :less_games => @less_games, :mailer => true} %>     
 			<% end %>
-			
-			
       
 		</table>
-		
-		<% if @group.is_futbol? %>
-		<p><em style="color: rgb(153, 153, 153);">
-			<%= "(*) #{I18n.t(:player_with)} #{@less_games} #{I18n.t(:player_with_less_games)}" %>
-			</em>
-		</p>
-		<% end %>
-		
 		
 	</div>
 

@@ -2,9 +2,9 @@ class Schedule < ActiveRecord::Base
 
   include ActivityLogger
 
-   # tagging
-   acts_as_taggable_on :tags
-  
+  # tagging
+  acts_as_taggable_on :tags
+
   ajaxful_rateable :stars => 5, :dimensions => [:performance]
 
   acts_as_solr :fields => [:concept, :time_zone, :starts_at]  if use_solr? 
@@ -67,10 +67,10 @@ class Schedule < ActiveRecord::Base
 
   validates_presence_of         :description
   validates_length_of           :description,                     :within => DESCRIPTION_RANGE_LENGTH
-  
+
   validates_presence_of         :fee_per_game,  :fee_per_pista, :player_limit,  :jornada
   validates_numericality_of     :fee_per_game,  :fee_per_pista, :player_limit,  :jornada
-  
+
   validates_numericality_of     :jornada,       :greater_than_or_equal_to => 0, :less_than_or_equal_to => 100
   validates_numericality_of     :player_limit,  :greater_than_or_equal_to => 0, :less_than_or_equal_to => 100
 
@@ -110,8 +110,8 @@ class Schedule < ActiveRecord::Base
     Match.count(:joins => "left join users on users.id = matches.user_id left join types on types.id = matches.type_id left join scorecards on scorecards.user_id = matches.user_id",
     :conditions => ["matches.schedule_id = ?  and matches.archive = false and matches.type_id in (1,2,3,4) and scorecards.group_id = ? and users.available = false ", self.id, self.group_id])
   end
-  
-  
+
+
   def the_roster
     Match.find(:all,    
     :select => "matches.*, users.name as user_name, types.name as type_name, scorecards.id as scorecard_id, " +
@@ -151,7 +151,7 @@ class Schedule < ActiveRecord::Base
   def sport
     self.group.sport
   end
-  
+
   def last_season?(user)
     return false if self.season_ends_at.nil? and user.is_manager_of?(self.group)
     return (self.season_ends_at < Time.zone.now() and user.is_manager_of?(self.group))
@@ -160,7 +160,7 @@ class Schedule < ActiveRecord::Base
   def sport
     self.group.sport
   end
-  
+
   def home_group
     self.group.name
   end
@@ -228,7 +228,7 @@ class Schedule < ActiveRecord::Base
   def self.last_schedule_played(user)
     find(:first, :select => "starts_at", :conditions => ["id = (select max(schedule_id) from matches where user_id = ? and type_id = 1  and played = true)", user.id])
   end
-  
+
   def self.last_schedule_group_played(group)
     find(:first, :select => "starts_at", :conditions => ["id = (select max(id) from schedules where played = true and group_id = ?)", group])
   end
@@ -257,7 +257,7 @@ class Schedule < ActiveRecord::Base
     Match.create_schedule_match(self) 
     Fee.create_user_fees(self)
   end
-  
+
   def self.send_reminders
     schedules = Schedule.find(:all, :conditions => ["played = false and send_reminder_at is null and reminder = true and reminder_at >= ? and reminder_at <= ?", LAST_24_HOURS, NEXT_24_HOURS])
     schedules.each do |schedule|
@@ -280,7 +280,7 @@ class Schedule < ActiveRecord::Base
           message.sender_read_at = Time.zone.now
           message.recipient_read_at = Time.zone.now
           message.sender_deleted_at = Time.zone.now
-          message.sender_deleted_at = Time.zone.now        
+          message.recipient_deleted_at = Time.zone.now        
           message.save!
 
         end
@@ -291,7 +291,7 @@ class Schedule < ActiveRecord::Base
 
     end
   end
-  
+
   def self.send_results
     schedules = Schedule.find(:all, :conditions => ["starts_at >= ? and starts_at <= ? and send_result_at is null", LAST_24_HOURS, TWO_DAYS_AFTER])
     schedules.each do |schedule|
@@ -311,12 +311,55 @@ class Schedule < ActiveRecord::Base
         message.sender_read_at = Time.zone.now
         message.recipient_read_at = Time.zone.now
         message.sender_deleted_at = Time.zone.now
-        message.sender_deleted_at = Time.zone.now        
+        message.recipient_deleted_at = Time.zone.now        
         message.save!
       end  
 
       schedule.send_result_at = Time.zone.now
       schedule.save!   
+    end
+  end
+
+  # after the event send for users to comment and the scorecard if updated...
+  def self.send_after_comment_scorecards
+    schedules = Schedule.find(:all, :conditions => ["starts_at >= ? and starts_at <= ?", LAST_24_HOURS, NEXT_24_HOURS])
+    schedules.each do |schedule|
+
+      scorecard = schedule.group.scorecards.first
+      manager_id = RolesUsers.find_team_manager(schedule.group).user_id
+
+      schedule.the_roster.each do |match|
+        message = Message.new
+        message.subject = "#{I18n.t(:reminder_wall_message)}:  #{schedule.concept}"
+        message.body = "#{I18n.t(:reminder_after_game_message)}  #{schedule.concept}  #{I18n.t(:reminder_at_salute)}"
+        message.item = schedule
+        message.sender_id = manager_id
+        message.recipient_id = match.user_id
+        message.sender_read_at = Time.zone.now
+        message.recipient_read_at = Time.zone.now
+        message.sender_deleted_at = Time.zone.now
+        message.recipient_deleted_at = Time.zone.now        
+        message.save! 
+
+      end
+
+      # once game has been played then the scorecard will be automatically sent
+      if schedule.played?
+        schedule.group.users.each do |user|
+          message = Message.new
+          message.subject = "#{I18n.t(:scorecard_latest)}:  #{schedule.group.name}"
+          message.body = "#{I18n.t(:scorecard_latest)}  #{schedule.group.name}  #{I18n.t(:reminder_at_salute)}"
+          message.item = scorecard
+          message.sender_id = manager_id
+          message.recipient_id = user.id
+          message.sender_read_at = Time.zone.now
+          message.recipient_read_at = Time.zone.now
+          message.sender_deleted_at = Time.zone.now
+          message.recipient_deleted_at = Time.zone.now        
+          message.save!
+        end
+      end
+
     end
   end
 

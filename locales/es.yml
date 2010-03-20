@@ -177,6 +177,8 @@ es:
      description_message: Detalles del Mensaje   
      description_note: Detalles de la Nota   
      description_notification: Detalles del Notificación
+     description_scorecard:  Detalles de la clasificación
+     description_wall:  Detalles del Muro
      destroy: Borrar   
      destroy_address: Borra la Dirección   
      destroy_announcement: Borra un Anuncio   
@@ -218,37 +220,37 @@ es:
      dorsal: Dorsal   
      dorsal_description: (Si te interesa poner el nombre o numero de tu camiseta...)   
      drop_us_a_note: Envíenos una nota.
-     edit: Modifica   
-     edit_address: Modifica la Dirección   
-     edit_announcement: Modifica un Anuncio   
-     edit_credit: Modifica un Pago   
-     edit_debit: Modifica un Cargo   
-     edit_description: Modifica un Detalles   
-     edit_fee: Modifica los Cargos   
-     edit_festival: Modifica el Acondiciónamiento   
-     edit_group: Modifica el Equipo   
-     edit_information: Modifica un Detalles   
-     edit_invitation: Modifica la Invitación   
-     edit_manager: Modifica un Mister   
-     edit_map: Modifica el Mapa   
-     edit_marker: Modifica el Centro Deportivo   
+     edit: Actualiza   
+     edit_address: Actualiza la Dirección   
+     edit_announcement: Actualiza un Anuncio   
+     edit_credit: Actualiza un Pago   
+     edit_debit: Actualiza un Cargo   
+     edit_description: Actualiza un Detalles   
+     edit_fee: Actualiza los Cargos   
+     edit_festival: Actualiza el Acondiciónamiento   
+     edit_group: Actualiza el Equipo   
+     edit_information: Actualiza un Detalles   
+     edit_invitation: Actualiza la Invitación   
+     edit_manager: Actualiza un Mister   
+     edit_map: Actualiza el Mapa   
+     edit_marker: Actualiza el Centro Deportivo   
      edit_match: Guardar el Resultado   
-     edit_message: Modifica un Mensaje   
-     edit_my_user: Modifica mi Cuenta   
-     edit_name: Modifica un Nombre   
-     edit_note: Modifica una Nota   
-     edit_notification: Modifica la Notificación   
-     edit_payment: Modifica un Pago   
-     edit_profile: Modifica tu perfil   
-     edit_reminder: Modifica un Recordatorio   
-     edit_role: Modifica la Responsabilidad   
-     edit_schedule: Modifica el Evento   
-     edit_scorecard: Modifica el Resultado   
-     edit_sport: Modifica el Deporte   
-     edit_tournament: Modifica el Torneo   
-     edit_type: Modifica un Tipo   
-     edit_user: Modifica tu perfil   
-     edit_venue: Modifica el Centro Deportivo   
+     edit_message: Actualiza un Mensaje   
+     edit_my_user: Actualiza mi Cuenta   
+     edit_name: Actualiza un Nombre   
+     edit_note: Actualiza una Nota   
+     edit_notification: Actualiza la Notificación   
+     edit_payment: Actualiza un Pago   
+     edit_profile: Actualiza tu perfil   
+     edit_reminder: Actualiza un Recordatorio   
+     edit_role: Actualiza la Responsabilidad   
+     edit_schedule: Actualiza  el Evento   
+     edit_scorecard: Actualiza el Resultado   
+     edit_sport: Actualiza el Deporte   
+     edit_tournament: Actualiza el Torneo   
+     edit_type: Actualiza un Tipo   
+     edit_user: Actualiza tu perfil   
+     edit_venue: Actualiza el Centro Deportivo   
      email: Correo   
      email_time_zone: Zona Horaria para mandar correos antes de un encuentro.  
      email_addresses: Cuenta de Correo
@@ -823,13 +825,15 @@ es:
      register: Registrate con   
      registration_failed: Su perfil de OpenID ha fallado.   
      remember_me: "¿Permanecer Conectado?"
-     reminder: Recordatorio 
+     reminder: Recordatorio
+     reminder_after_game_message:  "Hola,<br><br>¿Quetal el ultimo evento?<br><br>¿Que fue lo mas interesante del evento?<br><br>¿Quien jugo mejor?<br><br>Deja tus comentarios en el muro del evento...<br><br>"
      reminder_description:  Quieres un recordatorio del Evento
      reminder_at:  Recordatorio
      reminder_at_description:  (¿Ha que hora te mandamos un recordatorio?)  
      reminder_at_message:  "Hola,<br><br>¿Te apuntas para el proximo evento?<br><br>"
      reminder_at_salute:  "<br><br>Saludos<br><br>"
      reminder_at_match: Recordatorio   
+     reminder_wall_message:  Deja tus comentarios
      reminders: Recordatorios   
           
      removed: eliminado   
@@ -849,7 +853,7 @@ es:
      # Saturday: Sabado
      save: Guardar   
      schedule: Evento   
-     schedule_description_description: (Escribe algun detalle del equipo...)  
+     schedule_description: (Escribe algun detalle del equipo...)  
      schedules: Eventos
      season_ends_at:  Finalización de Temporada 
      season_ends_at_description:  Fecha de Finalización de Temporada 
@@ -857,7 +861,8 @@ es:
      score: Resultados   
      scorecard: Clasificación
      scorecards: Clasificaciones
-     scorecard_updated: Resultados actualizados   
+     scorecard_updated: Resultados actualizados  
+     scorecard_latest:  "Ultimos resultados de "
      search: Buscador no activado   
      search: busca   
      search_announcements: Buscar Anuncios   
@@ -893,7 +898,7 @@ es:
      select: Seleccióna   
      select_venue: Nuevo Centro Deportivo  
      select_contacts:  Seleccione los contactos que quiere invitar a partir de la esta lista. 
-     self_description_description: (Escribe algo sobre ti...)  
+     self_description: (Escribe algo sobre ti...)  
       
      send_announcement: Manda una Anuncio   
      send_credit: Manda un Pago   

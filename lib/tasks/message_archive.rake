@@ -1,7 +1,7 @@
-# to run:    sudo rake themessage_archive
+# to run:    sudo rake the_message_archive
 
 desc "archive all messages older than 1 month, set all other emails to mark as read"
-task :themessage_archive => :environment do |t|
+task :the_message_archive => :environment do |t|
 
   ActiveRecord::Base.establish_connection(RAILS_ENV.to_sym)
 

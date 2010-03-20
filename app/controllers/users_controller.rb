@@ -172,6 +172,7 @@ class UsersController < ApplicationController
   
   def set_language
     I18n.locale = "es"   
+    I18n.locale = params[:id] if LANGUAGES.include?(params[:id])
 
     if current_user and LANGUAGES.include?(params[:id])
       @user = current_user

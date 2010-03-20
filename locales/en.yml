@@ -161,6 +161,8 @@ en:
      description_message: Message Details   
      description_note: Note Details   
      description_notification: Notice Details
+     description_scorecard:  Scorecard Details
+     description_wall:  Wall Details
      destroy: Remove   
      destroy_address: Remove the Address   
      destroy_announcement: Remove the Announcement   
@@ -797,14 +799,16 @@ en:
      region: Region   
      register: Register with   
      registration_failed: Your OpenID profile failed.   
-     remember_me: "remember connection"
+     remember_me: "remember me"
      reminder: Reminder 
+     reminder_after_game_message:  "Hi,<br><br>How was the previous event?<br><br>What was the most interesting thing that occured?<br><br>Who stuck out amongst all participants?<br><br>Leave your comments on the event wall...<br><br>"
      reminder_description:  Want a reminder for the event
      reminder_at:  Reminder
      reminder_at_description:  (What time would you like us to send you a reminder?)  
      reminder_at_message:  "Hi,<br><br>why don't you sign up for next event?<br><br>"
      reminder_at_salute:  "<br><br>Thanks<br><br>"
-     reminder_at_match: Reminder   
+     reminder_at_match: Reminder  
+     reminder_wall_message:  Leave a comment on the wall. 
      reminders: Reminders   
      
      removed: removed   
@@ -824,7 +828,7 @@ en:
      Saturday: Saturday
      save: Save   
      schedule: Event   
-     schedule_description_description: (Write some details about the team...)  
+     schedule_description: (Write some details about the team...)  
      schedules: Events
      season_ends_at:  End of Season 
      season_ends_at_description:  Date for End of Season
@@ -832,7 +836,8 @@ en:
      score: Score   
      scorecard: Scorecard
      scorecards: Scorecards
-     scorecard_updated: Score Updated   
+     scorecard_updated: Score Updated  
+     scorecard_latest:  "Latest scorecard for "
      search: search   
      search_announcements: Search for Announcements   
      search_descriptions: Search for Details   
@@ -866,7 +871,7 @@ en:
      select: Seelct   
      select_venue: New Sport Center  
      select_contacts:  Select the contacts you want to invite from this list.
-     self_description_description: (Escribe algo sobre ti...)  
+     self_description: (Escribe algo sobre ti...)  
       
      send_announcement: Send an Announcement   
      send_credit: Send a Payment   

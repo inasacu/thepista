@@ -23,14 +23,14 @@
 	<td class="equipos">
 		<span>
 		<% if mailer %>
-		<%= link_to(scorecard.user.name, {:host => 'haypista.com', :controller => 'users', :action => 'show', :id => scorecard.user}) %>
+		<%= link_to((scorecard.user.name.to_s.length > 14) ? "#{scorecard.user.name.to_s.strip[0..12]}..." : scorecard.user.name, {:host => 'haypista.com', :controller => 'users', :action => 'show', :id => scorecard.user}) %>
 		<% else %>
 		<%= user_link_limit(scorecard.user) %>
 		<% end %>
 		</span>
 	</td>
 	<td class="jugados"><%= mailer ? "&nbsp;" : image_tag(image) %></td>
-	<td class="jugados"><%= ranking_change %></td>
+	<td class="jugados"><%= mailer ? "&nbsp;" : ranking_change %></td>
 	<td class="puntos"><%= scorecard.points.round %></td>
 	<td class="ganados"><%= scorecard.wins %></td>
 	<td class="empatados"><%= scorecard.draws %></td>

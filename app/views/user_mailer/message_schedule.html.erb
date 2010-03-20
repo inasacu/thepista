@@ -1,12 +1,6 @@
 <%= render :partial => 'header' %>
-
 <%= render :partial => 'the_user' %>
-
-
-
-
 <%= render :partial => 'the_body' %>
-
 
 <%
 case @message.item.class.to_s      
@@ -14,7 +8,6 @@ when "Schedule"
 	@schedule = @message.item 
 %>
 
-<%= render :partial => 'the_group', :locals => {:group => @schedule.group} %>
 <%= render :partial => 'the_schedule' %>
 
 <%
@@ -24,23 +17,10 @@ when "Scorecard"
 	@scorecards = Scorecard.users_group_scorecard(@group)
 %>
 
-<%= render :partial => 'the_group', :locals => {:group => @scorecard.group} %>
-<%= render :partial => 'the_scorecard', 
-		:locals => {:collection => Scorecard.users_group_scorecard(@scorecard.group), 
-					:group => @scorecard.group} %>
+<%= render :partial => 'the_scorecard', :locals => {:collection => Scorecard.users_group_scorecard(@scorecard.group), :group => @scorecard.group} %>
 
 <%
 end
 %>
-
-
-
-
-
-
-
-
-
-
 
 <%= render :partial => 'footer' %>

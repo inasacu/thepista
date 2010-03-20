@@ -65,10 +65,10 @@ class UserSessionsController < ApplicationController
 
       if @user
         
-        if LANGUAGES.include?(I18n.locale)
-          @user.language = I18n.locale 
-          @user.save!
-        end
+        # if LANGUAGES.include?(I18n.locale)
+        #   @user.language = I18n.locale 
+        #   @user.save!
+        # end
         
         UserSession.create(@user)
         respond_to do |format|

@@ -9,16 +9,18 @@
 	  <tr>
 	    <td style="width:1%; color:#999999; vertical-align: top;">•&nbsp;</td>
 	    <td>
-	      	<%= @schedule.group.name %>&nbsp;&nbsp;
-	        					  <%= @schedule.matches.first.invite_score %>&nbsp;&nbsp;-&nbsp;&nbsp;
-								  <%= @schedule.matches.first.group_score %>&nbsp;&nbsp;
-								  <%= @schedule.group.second_team %>          
+			<%= link_to(@schedule.group.name, group_url(@schedule.group.name)) %>&nbsp;&nbsp; 
+			<%= @schedule.matches.first.invite_score %>&nbsp;&nbsp;-&nbsp;&nbsp;
+			<%= @schedule.matches.first.group_score %>&nbsp;&nbsp;
+			<%= @schedule.group.second_team %>          
 	    </td>
 	  </tr>
-	</table>
+	  <!-- <tr/> -->
+	  <!-- <br /> -->
+	<!-- </table> -->
 	
 	<br>
-	<div style="margin-top: 6px; border-bottom: 3px solid #ddd; line-height:3px">&nbsp;</div>
+	<!-- <div style="margin-top: 6px; border-bottom: 3px solid #ddd; line-height:3px">&nbsp;</div> -->
 	<br>
 <% end %>  
 

@@ -1,8 +1,6 @@
 class MessagesController < ApplicationController
   before_filter :require_user
 
-  
-  # GET /messages
   def index
     store_location
     @messages = current_user.received_messages(params[:page])
@@ -11,13 +9,10 @@ class MessagesController < ApplicationController
     end
   end
 
-
-  # GET /messages/1/edit
   def edit
     @message = current_message
   end
- 
-  # GET /messages/sent
+
   def sent
     store_location
     @messages = current_user.sent_messages(params[:page])
@@ -25,8 +20,7 @@ class MessagesController < ApplicationController
       format.html { render :template => "messages/index" }
     end
   end
-  
-  # GET /messages/trash
+
   def trash
     @messages = current_user.trashed_messages(params[:page])
     respond_to do |format|
@@ -50,9 +44,6 @@ class MessagesController < ApplicationController
   end
  
   def new
-    # TODO - need to have some relationship to any of these to be able to send message:
-    #        user, goup, schedule
-    
     @message = Message.new
     
     if (params[:id])
@@ -204,12 +195,6 @@ class MessagesController < ApplicationController
     rescue ActiveRecord::RecordNotSaved
           flash[:notice] = I18n.t(:missing_information)
           redirect_to messages_url and return
-
-  # rescue Exception => e
-  #   flash[:error] = e.message
-  #   redirect_to :action => 'new', :id => @recipient.id and return if @recipient
-  #   redirect_to :action => 'new'  and return     
-
   end
   
   def group_messages(message, recipients, object)    

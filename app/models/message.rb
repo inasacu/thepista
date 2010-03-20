@@ -100,7 +100,6 @@ class Message < ActiveRecord::Base
     !replied_at.nil?
   end
 
-
   # Return true if the message is new for the given user.
   def new?(user)
     not read? and user != sender

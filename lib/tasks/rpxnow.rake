@@ -8,33 +8,33 @@ task :therpxnow => :environment do |t|
     
   ActiveRecord::Base.establish_connection(RAILS_ENV.to_sym)
    
-  users = (User.find :all, :conditions => ['archive = false']).collect {|user| user unless user.email.blank? }.compact
-  users.each do |user|    
-      user.rpxnow_id = user.id
-      user.save!
-  end
-  
-  
-  ActiveRecord::Base.establish_connection(RAILS_ENV.to_sym)
-  
-  User.find(:all).each do |user|
-    myOpenID = RPXNow.mappings(user.id, APP_CONFIG['rpx_api']['key'])
-    
-    if myOpenID.length > 0
-      
-      myOpenID.each do |identifier| 
-          
-        if user.identity_url != identifier
-          
-          RPXNow.unmap(identifier, user.id, APP_CONFIG['rpx_api']['key'])
-          puts "updated #{user.name } has incorrect identity_url and id conbination in rpx_now.com..."
-        end
-        
-      end
-      
-    end
-    
-  end
+  # users = (User.find :all, :conditions => ['archive = false']).collect {|user| user unless user.email.blank? }.compact
+  # users.each do |user|    
+  #     user.rpxnow_id = user.id
+  #     user.save!
+  # end
+  # 
+  # 
+  # ActiveRecord::Base.establish_connection(RAILS_ENV.to_sym)
+  # 
+  # User.find(:all).each do |user|
+  #   myOpenID = RPXNow.mappings(user.id, APP_CONFIG['rpx_api']['key'])
+  #   
+  #   if myOpenID.length > 0
+  #     
+  #     myOpenID.each do |identifier| 
+  #         
+  #       if user.identity_url != identifier
+  #         
+  #         RPXNow.unmap(identifier, user.id, APP_CONFIG['rpx_api']['key'])
+  #         puts "updated #{user.name } has incorrect identity_url and id conbination in rpx_now.com..."
+  #       end
+  #       
+  #     end
+  #     
+  #   end
+  #   
+  # end
 
 end
 

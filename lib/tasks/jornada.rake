@@ -5,46 +5,46 @@ task :thejornada => :environment do |t|
 
   ActiveRecord::Base.establish_connection(RAILS_ENV.to_sym)
 
-  schedules = (Schedule.find :all).collect {|s| s }.compact  
-  schedules.each do |schedule|
+  # schedules = (Schedule.find :all).collect {|s| s }.compact  
+  # schedules.each do |schedule|
+  # 
+  #   @description = "...."
+  #   @description = schedule.description unless schedule.description.blank?
+  #   
+  #   manager = schedule.group.the_managers.first.user_id
+  #   
+  #   if Forum.find_by_schedule_id(schedule.id).nil?
+  #     forum = Forum.new
+  #     forum.schedule_id = schedule.id
+  #     forum.name = schedule.concept
+  #     forum.description = '...'
+  #     forum.save!
+  #   end
+  #   
+  #   if Topic.find_by_forum_id(schedule.forum.id).nil?
+  #     topic = Topic.new
+  #     topic.forum_id = schedule.forum.id
+  #     topic.user_id = manager
+  #     topic.name = schedule.concept
+  #     topic.save!
+  #   end   
+  #   
+  #   if Post.find_by_topic_id(schedule.forum.topics.first.id).nil?
+  #     post = Post.new
+  #     post.topic_id = schedule.forum.topics.first.id
+  #     post.user_id = manager
+  #     post.body = '...'
+  #     post.save!
+  #   end
+  #   
+  #   forum = Forum.find_by_schedule_id(schedule.id)
+  #   forum.name = schedule.concept
+  #   forum.save!
+  #   
+  #   topic = Topic.find_by_forum_id(schedule.forum.id)
+  #   topic.name = schedule.concept
+  #   topic.save!
 
-    @description = "...."
-    @description = schedule.description unless schedule.description.blank?
-    
-    manager = schedule.group.the_managers.first.user_id
-    
-    if Forum.find_by_schedule_id(schedule.id).nil?
-      forum = Forum.new
-      forum.schedule_id = schedule.id
-      forum.name = schedule.concept
-      forum.description = '...'
-      forum.save!
-    end
-    
-    if Topic.find_by_forum_id(schedule.forum.id).nil?
-      topic = Topic.new
-      topic.forum_id = schedule.forum.id
-      topic.user_id = manager
-      topic.name = schedule.concept
-      topic.save!
-    end   
-    
-    if Post.find_by_topic_id(schedule.forum.topics.first.id).nil?
-      post = Post.new
-      post.topic_id = schedule.forum.topics.first.id
-      post.user_id = manager
-      post.body = '...'
-      post.save!
-    end
-    
-    forum = Forum.find_by_schedule_id(schedule.id)
-    forum.name = schedule.concept
-    forum.save!
-    
-    topic = Topic.find_by_forum_id(schedule.forum.id)
-    topic.name = schedule.concept
-    topic.save!
-      
 
     # @forum = Forum.find_by_schedule_id(schedule.id)
     # if @forum.nil?
@@ -70,6 +70,6 @@ task :thejornada => :environment do |t|
     #     puts "#{schedule.concept } post created..."
     # end
     
-  end
+  # end
   
 end
