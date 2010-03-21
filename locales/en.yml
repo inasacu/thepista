@@ -149,13 +149,12 @@ en:
      deny_player: "DENY"  
      description: Details
      description_announcement: Announcement Details     
-     email_description: "Ej:  your_account@gmail.com"     
+     email_description: "Ex:  your_account@gmail.com"     
      description_fee: Fee Details   
      description_group: Team Details   
      description_invitation: Invitation Details
      description_login: Requires at least 5 characters. 
-     description_manager: Manager Details   
-     description_map: Map Details   
+     description_manager: Manager Details  
      description_marker: Marker Details   
      description_match: Match Details   
      description_message: Message Details   
@@ -181,7 +180,7 @@ en:
      destroy_name: Remove the Name   
      destroy_note: Remove the Note   
      destroy_notification: Remove the Notice   
-     destroy_payment: Remove the Paymebt   
+     destroy_payment: Remove the Payment   
      destroy_profile: Remove your Profile   
      destroy_reminder: Remove the Reminder   
      destroy_role: Remove the Role   
@@ -267,7 +266,6 @@ en:
      fees: Charges   
      female_value: Femaile    
      fire_from_group: Opt-out of   
-     flag: en.png   
      follow: Follow 
      forum: Notes for     
      forward: Forward   
@@ -558,7 +556,6 @@ en:
      add_openid: Added an OpenID to your account              
      name: Name 
      name_account: Account Name   
-     name_description:  Name 
      name_description: "(The Team name should start with a letter and contain no special characters, exceptions:  _ o . )"  
      name_sport: Name of the sport you practice   
      names: Names   
@@ -748,8 +745,7 @@ en:
      question_or_comment: Feedback?
      ranking: Ranking   
      ranking_full: Player Ranking    
-     really_archive: Are you sure you want to archive    
-     really_exit_festival: Are you sure you want to opt-out of   
+     really_archive: Are you sure you want to archive      
      really_exit_group: Are you sure you want to opt-out of   
      really_exit_tournament: Are you sure you want to opt-out of   
      recent_activities: Recent Activities   
@@ -921,13 +917,14 @@ en:
      simple_note: are helping in the testing phase...  
      single_identity: allows you to have a global ID for many websites. You can get your OpenID URL   
      something_wrong: "Something went wrong, Sorry!"  
-     something_wrong_explained: "Already registered this ruling. We'll Look as soon as possible."	      
-     starts_at_description: (At what time does the event start?)   
+     something_wrong_explained: "Already registered this ruling. We'll Look as soon as possible."
      start_session: Start Session   
-     starts_at: Starts At   
+     starts_at: Starts At  
+     starts_at_description: (At what time does the event start?) 
      starts_at_match: Starts At   
      starts_at_venue: Hours   
-     steps_to_join: Steps to join HayPista   
+     steps_to_join: Steps to join HayPista  
+     Store: Store 
      subject: Subject  
      subject_description:  Subject
      sub_manager_updated:  Update sub-manager.     
@@ -984,8 +981,7 @@ en:
      to_leave_tour_message_sent: Request to opt-out has been sent.          
      to_member_of: To teammates of   
      to_message: A   
-     to_payment: Payment   
-     topic: Topic   
+     to_payment: Payment    
      topic: Topic  
      total:  Total 
      tournament: Tournament   

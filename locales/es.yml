@@ -106,7 +106,6 @@ es:
      create_credit: Nuevo pago   
      create_debit: Nuevo cargo   
      create_description: Nuevo detalles   
-     create_festival: Nuevo acondiciónamiento   
      create_information: Nuevo detalles   
      create_invitation: Manda una invitación   
      create_manager: Nuevo mister   
@@ -151,13 +150,11 @@ es:
      description: Detalles
      description_announcement: Detalles de la anuncio      
      email_description: "Ej:  tu_cuenta@gmail.com"     
-     description_fee: Detalles de los cargos   
-     description_festival: Detalles del acondiciónamiento   
+     description_fee: Detalles de los cargos      
      description_group: Detalles del equipo   
      description_invitation: Detalles de la invitación  
      description_login: Necesita 5 characteres. 
      description_manager: Detalles del mister   
-     description_map: Detalles del mapa   
      description_marker: Detalles del centro deportivo   
      description_match: Detalles del partido   
      description_message: Detalles del mensaje   
@@ -171,8 +168,7 @@ es:
      destroy_credit: Borra un pago   
      destroy_debit: Borra un cargo   
      destroy_description: Borra un detalles   
-     destroy_fee: Borra los cargos   
-     destroy_festival: Borra el acondiciónamiento   
+     destroy_fee: Borra los cargos 
      destroy_group: Borra el equipo   
      destroy_information: Borra un detalles   
      destroy_invitation: Borra la invitación   
@@ -212,7 +208,6 @@ es:
      edit_debit: Actualiza un cargo   
      edit_description: Actualiza un detalles   
      edit_fee: Actualiza los cargos   
-     edit_festival: Actualiza el acondiciónamiento   
      edit_group: Actualiza el equipo   
      edit_information: Actualiza un detalles   
      edit_invitation: Actualiza la invitación   
@@ -251,8 +246,7 @@ es:
         other: "tiene {{count}} eventos."        
      event_details:  "(Escribe algun detalle del evento...)" 
      event_participation:  Paticipación en eventos
-     error_when_create_account: "Fallo al intentar crear tu cuenta, intentalo de nuevo."   
-     exit_festival: Desapuntate del festivo   
+     error_when_create_account: "Fallo al intentar crear tu cuenta, intentalo de nuevo."  
      exit_group: Desapuntate del equipo   
      exit_tournament: Desapuntate del torneo   
      explore:  Explorar
@@ -270,11 +264,8 @@ es:
      fee_per_tour_description: (Este es el precio del torneo...)  
      feedback: feedback   
      fees: Cargos   
-     female_value: Femenina  
-     festival: Acondiciónamiento  
-     festivals: Acondiciónamientos   
+     female_value: Femenina   
      fire_from_group: Desapunta de   
-     flag: es.png   
      follow: Sigue 
      forum: Notas de    
      forward: Adelante   
@@ -464,8 +455,7 @@ es:
      list_marker: Lista de centros deportivos   
      list_user: Listado   
      list_venue: Lista de centros deportivos   
-     locale_name: Español   
-     location_festival: Lugar donde practicas se Acondiciónamientos.   
+     locale_name: Español    
      location_sport: Lugar donde practicas tu deporte. 
      login:  Entrar	 
      log_in: Entrar   
@@ -565,9 +555,7 @@ es:
      added_to_your_openid: añadido a tu cuenta OpenID
      add_openid: Añadido un OpenID a tu cuenta   
      name: Nombre 
-     name_account: Nombre de la cuenta   
-     name_description:  Nombre
-     name_festival: Nombre del acondiciónamiento    
+     name_account: Nombre de la cuenta  
      name_description: "(El nombre del equipo tiene que empezar con una leta, sin espacios e caracteres speciales excepto _ o . )"  
      name_sport: Nombre del deporte que practicas   
      names: Nombres   
@@ -758,7 +746,6 @@ es:
      ranking: Ranking   
      ranking_full: Posición del jugador en la tabla   
      really_archive: Estas seguro que quieres archivar    
-     really_exit_festival: Estas seguro que te quieres desapuntar de   
      really_exit_group: Estas seguro que te quieres desapuntar de   
      really_exit_tournament: Estas seguro que te quieres desapuntar de   
      recent_activities: Actividades recientes   
@@ -807,12 +794,10 @@ es:
      scorecards: Clasificaciones
      scorecard_updated: Resultados actualizados  
      scorecard_latest:  "Ultimos resultados de "
-     search: Buscador no activado   
      search: busca   
      search_announcements: Buscar anuncios   
      search_descriptions: Buscar detalles   
-     search_fees: Buscar cargos   
-     search_festivals: Buscar acondiciónamiento   
+     search_fees: Buscar cargos 
      search_groups: Buscar equipo
      search_imports: Buscar datos importados   
      search_informations: Buscar detalles   
@@ -899,8 +884,7 @@ es:
      show_credit: Presenta un pago   
      show_debit: Presenta una cargo   
      show_description: Presenta un detalles   
-     show_fee: Presenta las cargos   
-     show_festival: Presenta el acondiciónamiento   
+     show_fee: Presenta las cargos     
      show_group: Presenta el equipo   
      show_information: Presenta un detalles   
      show_invitation: Presenta la invitación   
@@ -933,10 +917,10 @@ es:
      simple_note: estas ayudando en la fase de pruebas...   
      single_identity: te permite tener una iD global para muchas páginas web.  Puedes conseguir tu dirección uRL de OpenID en   
      something_wrong: "Lo sentimos!, algo ha ido mal."  
-     something_wrong_explained: "Ya hemos registrado este fallo.  Lo miraremos lo antes posible."	      
-     starts_at_description: (¿Ha que hora empieza el evento?)   
+     something_wrong_explained: "Ya hemos registrado este fallo.  Lo miraremos lo antes posible."
      start_session: inicia tu sesión   
-     starts_at: Inicio   
+     starts_at: Inicio  
+     starts_at_description: (¿Ha que hora empieza el evento?) 
      starts_at_match: Inicio   
      starts_at_venue: Horario   
      steps_to_join: Pasos para incorporarse a HayPista   
@@ -999,7 +983,6 @@ es:
      to_message: A   
      to_payment: Pago de   
      topic: Asunto   
-     topic: Tema  
      total:  Total 
      tournament: Torneo   
      tournaments: Torneos    
@@ -1028,8 +1011,7 @@ es:
      update_credit: Actualiza un pago   
      update_debit: Actualiza una cargo   
      update_description: Actualiza un detalles   
-     update_fee: Actualiza las cargos   
-     update_festival: Actualiza el acondiciónamiento   
+     update_fee: Actualiza las cargos      
      update_group: Actualiza el equipo   
      update_information: Actualiza un detalles   
      update_invitation: Actualiza la invitación   
