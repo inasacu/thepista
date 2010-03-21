@@ -1,0 +1,18 @@
+<table>
+	<tr>
+		<%= content_tag :td, "", :class => "label" %>
+
+		<%= stylesheet_link_tag 'looking' %>
+		<td class="<%= get_the_action %>">
+		<div id="side">
+			<div class="sidebar-menu">
+				<div id="following_list">
+					<% collection.each do |recipient| %>
+					<%= render :partial => '/shared/vcard', :locals => {:recipient => recipient} %>
+					<% end %>
+				</div>
+			</div>
+		</div>
+		</td>
+	</tr>
+</table>
