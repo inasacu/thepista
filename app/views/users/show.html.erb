@@ -57,12 +57,13 @@
 							<td class="show"><%= @user.has_group? ? group_list(@user.groups) : label_name('groups_none') %></td>
 						</tr>
 
-						<%# if development? %>
-						<!-- <tr>
-							<td class="label"><%#= label_name(:tournaments) %></td>
-							<td class="show"><%#= @user.has_tournament? ? tournament_list(@user.tournaments) : label_name('tournaments_none') %></td>
-						</tr> -->
-						<%# end -%>
+						<tr>
+							<td class="label"><%= label_name(:event_participation) %></td>
+							<td class="show">
+								<% counter = 0; @user.scorecards.each {|scorecard| counter += scorecard.played} %>
+								<%= I18n.t(:has_user_scorecard_played, :count => counter) %>
+							</td>
+						</tr>
 						
 						<%= tr_td_action(:time_zone, @user.time_zone) %>
 						<%= tr_td_action(:phone, @user.phone) unless @user.private_phone %>

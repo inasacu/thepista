@@ -246,6 +246,7 @@ en:
         one:  "has 1 event." 
         other: "has {{count}} events."        
      event_details:  "(Write a comment about the event...)" 
+     event_participation:  Events Participation
      error_when_create_account: "your account was not created, please try again."
      exit_group: Opt-out of the Team   
      exit_tournament: Opt-out of the Tournament   
@@ -398,7 +399,11 @@ en:
         other: "Tournament has {{count}} rounds."
      has_tournament_users:         
          one:  "Tournament has 1 player." 
-         other: "Tournament has {{count}} players."                          
+         other: "Tournament has {{count}} players." 
+     has_user_scorecard_played:
+         zero: "Has not participated in any events." 
+         one:  "Has participated in 1 event." 
+         other: "Has participated in {{count}} events."                
      has_left:  "{{count}} until game"
      has_not_been_sent: has not been sent correctly.   
      has_updated_scorecard: Has updated the <strong>SCORECARD</strong> with   
@@ -548,7 +553,6 @@ en:
      log_in_myopenid: Log in with your OpenID 
      invalid_openid: "the OpenID is invalid, Sorry!"  
      get_an_openid: Get an OpenID with myOpenID.com  
-     openid_identifier_description:  "Ej:  your_name.myopenid.com"  
      change_openid: Hide your OpenID accounts
      added_to_your_openid: added the account to your OpenID account
      add_openid: Added an OpenID to your account              
@@ -1183,12 +1187,6 @@ en:
      invitations_create_tournament: Invite your friends to this Tourneo
      invitations_create_meet: New Invitation to Tournament
      invitations_sent:  Invitations Sent
-     switch_to_safari:  Change to Safari
-     switch_to_firefox: Change to Firefox
-     switch_to_chrome: Change to Chrome
-     upgrade_to_ie8:  Upgrade to Internet Explorer 8
-     please_read_this:  "Please read this!"
-     ie_no_more_country: en-US          
      clash:  Result
      clashes:  Results
      clashes_edit:  Results     
@@ -1280,7 +1278,7 @@ en:
      meets_list_no: No Previous Events to show.
      meets_manager_option:  Requires team manager position to view more options.
      meets_new: New Event 
-     meets_no: No Event to show.
+     meets_no: No events to show.
      meets_edit: Edit Event 
      meets_update: Edit Event 
      meets_option:  Options
@@ -1329,7 +1327,7 @@ en:
      schedules_list_no: No previous events to show.
      schedules_manager_option:  Requires team manger to see additional options.
      schedules_new: New Event
-     schedules_no: No Event to show.
+     schedules_no: No events to show.
      schedules_edit: Edit Event
      schedules_update: Edit Event
      schedules_option:  Options 

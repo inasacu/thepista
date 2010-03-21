@@ -18,7 +18,7 @@
 		<tr>             
 			<th class="first">&nbsp;</th>
 			<th><%=label_name(:name) %>&nbsp;/<br />
-				<%=label_name(:last_login_at) %>
+				<%=label_name(:event_participation) %>
 			</th>
 			<th><%=label_name(:group) %>&nbsp;/<br />
 				<%=label_name(:sport) %>
@@ -39,7 +39,8 @@
 				<td class="name_and_date">
 					<%= user_link user %>
 					<span class="date">
-						<%= nice_day_date user.last_login_at %>
+						<% counter = 0; user.scorecards.each {|scorecard| counter += scorecard.played} %>
+						<%= I18n.t(:has_user_scorecard_played, :count => counter) %>
 					</span>
 				</td>
 
