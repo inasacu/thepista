@@ -298,45 +298,45 @@ en:
      game_tied: Draw Game   
      game_won: Won Game   
      gameday_description: (What day of the week does your team play?)   
-     games_assigned: G.A.   
+     games_assigned: GA   
      games_assigned_full: Games Assigned   
-     games_lost: G.L.   
+     games_lost: GL   
      games_lost_full: Games Lost   
-     games_played: G.P.   
+     games_played: GP   
      games_played_full: Games Played  
-     games_started: G.S.
+     games_started: GS
      games_started_full:  Games Started 
      games_ranking: R.   
      games_ranking_full: Ranking   
      games_stats: Coef.   
      games_stats_points: C. Pts.   
-     games_tied: G.T.   
+     games_tied: GT   
      games_tied_full: Games Tied   
      games_title_stat_points: Coefficient Points (Coefficient)/(Pts.)   
      games_title_stats: "Coefficient (Pts.)/(G.P.*#)"  
-     games_won: G.W.   
+     games_won: GW   
      games_won_full: Games Won   
      gender: Gender   
      general_information:  General Information
-     goal_difference: G.D.   
+     goal_difference: GD   
      goal_difference_full: Goal Difference   
-     goals_against: G.A.   
+     goals_against: GA   
      goals_against_full: Goals Against   
-     goals_for: G.F.   
+     goals_for: GF   
      goals_for_full: Goals For        
-     goal_difference_true: G.D.   
+     goal_difference_true: GD   
      goal_difference_full_true: Goal Difference   
-     goals_against_true: G.A.   
+     goals_against_true: GA   
      goals_against_full_true: Goals Against   
-     goals_for_true: G.F.   
+     goals_for_true: GF  
      goals_for_full_true: Goals in Favor       
-     goal_difference_false: G.D.   
+     goal_difference_false: GD   
      goal_difference_full_false: Point Difference   
-     goals_against_false: G.A.   
+     goals_against_false: GA   
      goals_against_full_false: Goals Against   
-     goals_for_false: G.F.   
+     goals_for_false: GF   
      goals_for_full_false: Goals in Favor        
-     goals_scored: G.S.   
+     goals_scored: GS   
      goals_scored_full: Goals Scored
      field_goal_attempt: FGA		
      field_goal_made: 	 FGM
