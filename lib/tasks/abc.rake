@@ -15,7 +15,7 @@ task :the_abc => :environment do |t|
   # who scored the goals
   # who was the best player
 
-  schedules = Schedule.find(:all, :conditions => ["starts_at >= ? and starts_at <= ?", LAST_24_HOURS, NEXT_24_HOURS])
+  schedules = Schedule.find(:all, :conditions => ["starts_at >= ? and starts_at <= ?", Time.zone.now, Time.zone.now + 1.day])
   schedules.each do |schedule|
 
     puts schedule.concept
@@ -61,7 +61,7 @@ task :the_abc => :environment do |t|
 
 
   schedules = Schedule.find(:all, 
-  :conditions => ["played = false and send_reminder_at is null and reminder = true and reminder_at >= ? and reminder_at <= ?", LAST_24_HOURS, NEXT_24_HOURS])
+  :conditions => ["played = false and send_reminder_at is null and reminder = true and reminder_at >= ? and reminder_at <= ?", Time.zone.now, Time.zone.now + 1.day])
   schedules.each do |schedule|
     puts "#{schedule.concept} - #{schedule.starts_at} - #{schedule.ends_at} - #{schedule.reminder_at} "
 
@@ -74,7 +74,7 @@ task :the_abc => :environment do |t|
       scorecard = Scorecard.find(:first, :conditions => ["user_id = ? and group_id = ?", user, schedule.group])
 
       # send email to user and request to have a email sent
-      if scorecard.played.to_i >= one_third.round and user.message_notification?   
+      if scorecard.played.to_i >= one_third.round and user.message_notification?
 
         puts "#{schedule.group.name} - #{user.name} #{scorecard.played.to_i} #{one_third.round}"  
 
@@ -98,7 +98,7 @@ task :the_abc => :environment do |t|
 
   end
 
-  schedules = Schedule.find(:all, :conditions => ["starts_at >= ? and starts_at <= ? and send_result_at is null", LAST_24_HOURS, NEXT_24_HOURS])
+  schedules = Schedule.find(:all, :conditions => ["starts_at >= ? and starts_at <= ? and send_result_at is null", Time.zone.now, Time.zone.now + 1.day])
   schedules.each do |schedule|
     puts "#{schedule.concept} - #{schedule.starts_at} resultados missing... "
 

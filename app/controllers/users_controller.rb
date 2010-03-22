@@ -178,8 +178,10 @@ class UsersController < ApplicationController
       @user = current_user
       @user.language = params[:id]
       @user.save!
+      redirect_back_or_default('/')
+      return
     end
-    redirect_back_or_default('/')
+    redirect_to login_url
   end
   
 

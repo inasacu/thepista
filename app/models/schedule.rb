@@ -259,7 +259,7 @@ class Schedule < ActiveRecord::Base
   end
 
   def self.send_reminders
-    schedules = Schedule.find(:all, :conditions => ["played = false and send_reminder_at is null and reminder = true and reminder_at >= ? and reminder_at <= ?", LAST_24_HOURS, NEXT_24_HOURS])
+    schedules = Schedule.find(:all, :conditions => ["played = false and send_reminder_at is null and reminder = true and reminder_at >= ? and reminder_at <= ?", Time.zone.now, NEXT_24_HOURS])
     schedules.each do |schedule|
       total_schedules = Schedule.count(:conditions => ["group_id = ?", schedule.group])
       one_third = total_schedules.to_f / 5
@@ -293,7 +293,7 @@ class Schedule < ActiveRecord::Base
   end
 
   def self.send_results
-    schedules = Schedule.find(:all, :conditions => ["starts_at >= ? and starts_at <= ? and send_result_at is null", LAST_24_HOURS, TWO_DAYS_AFTER])
+    schedules = Schedule.find(:all, :conditions => ["starts_at >= ? and starts_at <= ? and send_result_at is null", Time.zone.now, NEXT_24_HOURS])
     schedules.each do |schedule|
 
       match = Match.find(:first, :conditions => ["type_id = 1 and schedule_id = ? and (group_score is null or invite_score is null)", schedule])
@@ -322,7 +322,7 @@ class Schedule < ActiveRecord::Base
 
   # after the event send for users to comment and the scorecard if updated...
   def self.send_after_comment_scorecards
-    schedules = Schedule.find(:all, :conditions => ["starts_at >= ? and starts_at <= ?", LAST_24_HOURS, NEXT_24_HOURS])
+    schedules = Schedule.find(:all, :conditions => ["starts_at >= ? and starts_at <= ?", Time.zone.now, NEXT_24_HOURS])
     schedules.each do |schedule|
 
       scorecard = schedule.group.scorecards.first
