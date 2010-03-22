@@ -46,11 +46,17 @@
 		</td>
 
 		<td class="name_and_date">
-			<%= image_tag('weather_rain.png', options={:style => "height: 20px; width: 20px;"}) if weather.wet? and (schedule.starts_at <= Time.zone.now + 1.day) %>
-			<%= image_tag('weather_sun.png', options={:style => "height: 20px; width: 20px;"}) if weather.sunny? and (schedule.starts_at <= Time.zone.now + 1.day) %>
-			<%= image_tag('weather_clouds.png', options={:style => "height: 20px; width: 20px;"}) if weather.windy? and (schedule.starts_at <= Time.zone.now + 1.day) %>
-			<%= content_tag :td, marker_link(schedule.group.marker) %>
+			<%= image_tag('weather_rain.png', options={:style => "height: 20px; width: 20px;"}) if weather.wet? %>
+			<%= image_tag('weather_sun.png', options={:style => "height: 20px; width: 20px;"}) if weather.sunny? %>
+			<%= image_tag('weather_clouds.png', options={:style => "height: 20px; width: 20px;"}) if weather.windy? %>
+			<%= marker_link(schedule.group.marker) %><br/>
+			<span class="date">			
+			<%= "low/high:  #{weather.tomorrow.low.c}°C / #{weather.tomorrow.high.c}°C" %>
+			</span>
 		</td>
+		
+	
+
 		
 		<td class="last">
 			&nbsp;

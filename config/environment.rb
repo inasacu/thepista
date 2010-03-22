@@ -44,6 +44,7 @@ Rails::Initializer.run do |config|
   config.gem "nokogiri"
   config.gem "url_shortener"
   config.gem "i18n"
+  config.gem "barometer"
   
     
   # Only load the plugins named here, in the order given (default is alphabetical).
