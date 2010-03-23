@@ -411,8 +411,11 @@ en:
      has_user_scorecard_played:
          zero: "Has not participated in any events." 
          one:  "Has participated in 1 event." 
-         other: "Has participated in {{count}} events."                
-     has_left:  "{{count}} until game"
+         other: "Has participated in {{count}} events."   
+     has_left:
+         zero: "Zero until game" 
+         one:  "{{count}} until game"
+         other: "{{count}} until game"
      has_not_been_sent: has not been sent correctly.   
      has_updated_scorecard: Has updated the <strong>SCORECARD</strong> with   
      have_an_account: If you have an account  

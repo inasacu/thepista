@@ -412,7 +412,10 @@ es:
          zero: "No ha participado en un evento." 
          one:  "Ha participado en 1 evento." 
          other: "Ha participado en {{count}} eventos."                        
-     has_left:  "Quedan {{count}}"   
+     has_left:
+         zero: "No quedan" 
+         one:  "Queda {{count}} "       
+         other: "Quedan {{count}} "        
      has_not_been_sent: no ha sido mandado correctamente.   
      has_updated_scorecard: Ha actualizado el <strong>RESULTADO</strong>  
      have_an_account: Si tienes una cuenta     
