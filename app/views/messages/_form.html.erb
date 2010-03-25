@@ -30,10 +30,13 @@
   <div class="group">
     <%= f.label :body, label_name(:body), :class => :label %>
     <%= f.text_area :body, :class => 'text_area' %><br />
-	<%#= f.text_area :body, :class => 'textfield' -%><br />
     <span class="description"><%= label_name('body', 'description') %></span>
   </div>
-		
+
+  <div class="group navform">
+	<%= submit_tag @message.new_record? ? control_label('send') : control_label('edit'), 
+	:class => "button" %> <%= label_name(:or) %> <%= link_to label_name(:cancel), messages_path %>
+  </div>
 	
   </div> 
   
@@ -102,9 +105,5 @@
 
 <div class="clear"></div> 
 
-<div class="group navform">
-	<%= submit_tag @message.new_record? ? control_label('send') : control_label('edit'), 
-	:class => "button" %> <%= label_name(:or) %> <%= link_to label_name(:cancel), messages_path %>
-</div>
 
 

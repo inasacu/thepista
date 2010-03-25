@@ -152,8 +152,8 @@ class Message < ActiveRecord::Base
   end
 
   def send_receipt_reminder
-    #return if (sender == recipient or !self.item_type.nil?)
-      return if (self.item_type.nil?)
+    return if (sender == recipient or !self.item_type.nil?)
+      # return if (self.item_type.nil?)
 
     @send_mail ||= recipient.message_notification?   
     return unless @send_mail

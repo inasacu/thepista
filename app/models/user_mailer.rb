@@ -105,7 +105,7 @@ class UserMailer < ActionMailer::Base
     #   @body[:group]       = message.item
     # when "Schedule"
     #   @body[:schedule]    = message.item
-    # when "Schedule"
+    # when "Scorecard"
     #   @body[:scorecard]    = message.item
     # end
     
