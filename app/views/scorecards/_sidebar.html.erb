@@ -17,7 +17,7 @@
 		the_label = label_with_name('add_to_group', @group.name)
 		the_confirmation = "#{ label_name(:petition_to_join_group) } #{current_user.name} #{ label_name(:to) } #{@group.name}?"
 %> 
-		<li><%= link_to(the_label, join_team_path(:id => @group.id, :teammate => current_user.id), :confirm => the_confirmation) %></li>
+		<li><%= link_to(the_label, join_team_path(:id => @group, :teammate => current_user), :confirm => the_confirmation) %></li>
 <% 
 	end 
 end 
