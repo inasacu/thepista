@@ -7,10 +7,6 @@
 	if current_user.is_member_of?(@group)  %> 
 		<li><%= link_to label_name(:send_message_to_group), new_message_path(:group_id => @group, :roster_id => @schedule) %></li>
 		<li><%= link_to(label_name(:invitations_create_schedule) , new_invitation_url(:schedule_id => @schedule)) %></li>
-<% 
-	end 
-	
-	if current_user.is_sub_manager_of?(@group) %> 
 		<li><%= link_to label_name(:send_pre_match), new_message_path(:schedule_id => @schedule) unless @schedule.played? %></li>
 		<li><%= link_to label_name(:send_match), new_message_path(:match_id => @schedule.matches.first) if @schedule.played? %></li>
 		<li><%= link_to label_name(:send_scorecard), new_message_path(:scorecard_id => @schedule) %></li>

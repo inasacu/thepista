@@ -46,13 +46,6 @@
 			
 		</table>
 		
-		<%# if @group.is_futbol? %>
-		<!-- <p><em style="color: rgb(153, 153, 153);">
-			<%#= "(*) #{label_name(:player_with)} #{@less_games} #{label_name(:player_with_less_games)}" %>
-			</em>
-		</p> -->
-		<%# end %>
-		
 	</div>
 
 	</div>
@@ -62,6 +55,7 @@ end
 
 </div>
 
+<% content_for :sidebar, render(:partial => 'sidebar') -%>
 <% content_for :sidebar, render(:partial => 'sidebar_show') if @group.is_futbol? -%>
 <% content_for :sidebar, render(:partial => 'sidebar_show_basket') if @group.is_basket? -%>
 

@@ -8,7 +8,8 @@
 		the_confirmation = label_with_name(:do_leave_group, "#{@group.name}?")
 %>
 		<li><%= link_to(label_name(:send_message_to_group), new_message_path(:group_id => @group.id)) %></li>
-		<li><%= link_to(label_name(:invitations_create_group) , new_invitation_url(:group_id => @group.id)) %></li>
+		<li><%= link_to(label_name(:invitations_create_group) , new_invitation_url(:group_id => @group)) %></li>	
+		<li><%= link_to label_name(:send_scorecard), new_message_path(:scorecard_id => @group.schedules.first) unless @group.schedules.blank? %></li>
 <% 
 	else
 %>
@@ -23,12 +24,6 @@
 <% 
 		end 
 	end
-	
-	if current_user.is_sub_manager_of?(@group)
-%>
-	<li><%= link_to label_name(:send_scorecard), new_message_path(:scorecard_id => @group.schedules.first.id) unless @group.schedules.blank? %></li>
-<%
-    end
  
 	if current_user.is_manager_of?(@group)
 		the_label = label_with_name('create_schedule', @group.name)
