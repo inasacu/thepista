@@ -100,14 +100,14 @@ class UserMailer < ActionMailer::Base
 
   def setup_message_email(message)
     
-    case message.item.class.to_s 
-    when "Group"
-      @body[:group]       = message.item
-    when "Schedule"
-      @body[:schedule]    = message.item
-    when "Schedule"
-      @body[:scorecard]    = message.item
-    end
+    # case message.item.class.to_s 
+    # when "Group"
+    #   @body[:group]       = message.item
+    # when "Schedule"
+    #   @body[:schedule]    = message.item
+    # when "Schedule"
+    #   @body[:scorecard]    = message.item
+    # end
     
     @subject          = message.subject
     @recipients       = message.recipient.email
