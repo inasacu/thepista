@@ -84,7 +84,7 @@ es:
      code: Codigo 
      conditions: Condiciones   
      coeficient: "%"
-     coeficient_full: Coeficiente = Puntos Obtenidos / Maximo puntos
+     coeficient_full: Coeficiente = Puntos Obtenidos / Maximo Puntos
      coeficient_points: "#"  
      coeficient_full_points: Puntos Obtenidos * Coeficiente
      comment: Comentario   

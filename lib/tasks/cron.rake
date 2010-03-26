@@ -2,10 +2,10 @@
 
 desc "set reminder dates to schedules 3 days before"
 task :cron => :environment do
-  
+
   puts "Hour:  #{Time.zone.now.hour}"
   if Time.zone.now.hour == 0 # run at midnight
-    
+
     puts "archive all messages older than 1 month, set all other emails to mark as read..."
     # rake the_message_archive
     puts "done."
@@ -17,10 +17,15 @@ task :cron => :environment do
     puts "Sending schedule RESULTS reminders ..."
     Schedule.send_results
     puts "done."
-    
-    puts "Sending schedule COMMENT reminders..."
-    Schedule.send_after_comment_scorecards
+
+    puts "Sending after schedule COMMENT reminders..."
+    Schedule.send_after_comments
     puts "done."
+
+    puts "Sending after schedule scorecard..."
+    Schedule.send_after_scorecards
+    puts "done."
+
   end
 
 end
