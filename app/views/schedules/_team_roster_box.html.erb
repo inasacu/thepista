@@ -52,9 +52,10 @@ if roster_count
 		 <th align="center" title = "<%= label_name(:technical) %>"><%= label_name(:technical) %></th>
 		 <th align="center" title = "<%= label_name(:physical) %>"><%= label_name(:physical) %></th>
 		 <th><%= label_name(:group) %></th>
-		 <%= content_tag 'th', label_name(:score), :align =>"center" if @schedule.played? %>
-		 <th><%= label_name(:change_at) %></th>
-		 <th class="last"><%= label_name(:change_your_roster_status) %></th>
+		 <%= content_tag 'th', label_name(:score), :class => "last" if @schedule.played? %>
+		 <%= content_tag 'th', label_name(:change_at) unless @schedule.played? %>
+		 <%= content_tag 'th', label_name(:change_your_roster_status), :class => "last" unless @schedule.played? %>	
+		 <!-- <th class="last"><%#= label_name(:change_your_roster_status) unless @schedule.played? %></th> -->
 		</tr>
 
         
@@ -112,37 +113,35 @@ if roster_count
 	
 	if @schedule.played? 
 %>	
-		<td><%= group_score_link @schedule if match.type_id == 1 %></td>
+		<td class="last"><%= group_score_link @schedule if match.type_id == 1 %></td>
 <%		
 	end 
-%>	
-
-	<td class="name_and_date">
-		<span class="date">
-			<%= ago(match.status_at) %>
-		</span>
-	</td>	
-
-<td class="last">
+ 
+	unless @schedule.played?  %>
+		<td class="name_and_date">
+			<span class="date">
+				<%= ago(match.status_at) %>
+			</span>
+		</td>	
+		<td class="last">
 <% 
-if current_user == match.user or current_user.is_manager_of?(@schedule.group) and @schedule.not_played? 
-	@match_type.each do |type|  
-		unless type.id == match.type_id			
-			
-			# only manager can view option 'no_jugado'
-			if type.id == 4
+	if current_user == match.user or current_user.is_manager_of?(@schedule.group) 
+		@match_type.each do |type|  
+			unless type.id == match.type_id			
+				if type.id == 4
 %>
-				<%= render :partial => '/schedules/team_roster_option', 
+					<%= render :partial => '/schedules/team_roster_option', 
 						:locals => {:type => type, :match => match} if current_user.is_manager_of?(@schedule.group) %>
 <% 			
-			else
+				else
 %>
-				<%= render :partial => '/schedules/team_roster_option', :locals => {:type => type, :match => match} %>
+					<%= render :partial => '/schedules/team_roster_option', :locals => {:type => type, :match => match} %>
 <%
-			end 
-		end
- 	end
-end
+				end 
+			end
+ 		end
+	end
+end 
 %>
 
 </td>
