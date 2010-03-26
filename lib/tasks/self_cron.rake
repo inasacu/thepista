@@ -18,7 +18,7 @@ task :self_cron => :environment do
   puts "done."
 
   puts "Sending after schedule COMMENT reminders..."
-  # Schedule.send_after_comments
+  Schedule.send_after_comments
   puts "done."
 
   puts "Sending after schedule scorecard..."
