@@ -504,7 +504,8 @@ en:
      modified_profile: Edit option to hide profile for   
      modified_reliable: Edit reliability for    
      modo: HayPista wants to help you organize your team or find where to play...   
-     Monday: Monday        
+     Monday: Monday 
+     more:  more       
      must_be_logged_in:  You need to be logged in to access this page
      must_be_logged_out:  You need to logged out to access this page
      must_be_numeric: Should be a numeric value
@@ -828,6 +829,7 @@ en:
      select_venue: New Sport Center  
      select_contacts:  Select the contacts you want to invite from this list.
      self_description: "(Escribe algo sobre ti...)"       
+     send:  Send
      send_announcement: Send an Announcement   
      send_credit: Send a Payment   
      send_debit: Send a Charge   

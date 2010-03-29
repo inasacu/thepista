@@ -1,0 +1,46 @@
+<style type="text/css">
+
+.see-more { clear: both; float: right; font-family: Arial,Helvetica,sans-serif; font-size: 10px; font-weight: bold; margin: 0pt 3px ! important; text-decoration: none; }
+.see-more:after { content: " »"; font-size: 11px; }
+.see-more:hover { text-decoration: underline; }
+.see-more-left:before { content: "» "; }
+</style>
+
+<% @invitation = Invitation.new %>
+<div class="block">
+	<div class="sidebar-block" class="extra">
+		
+	<%#= content_tag 'h5', t(:invitations) %><br />
+
+		<div class="inner"> 
+		  <%# form_for :invitation, :url => invitations_path, :html => { :class => :form } do |f| -%>
+
+			<!-- <table class="table">
+				<tr>
+
+					<td class="name_and_date">
+						<%#= f.text_field :email_addresses, :class => 'text_field', :value => label_name('email_addresses'),
+										 :onfocus => "if(this.value == '#{label_name('email_addresses')}') { this.value = ''} ",
+										 :onblur => "if(this.value == '') { this.value='#{label_name('email_addresses')}'; }" %>
+					
+						<span class="date">
+						<%#= submit_tag @invitation.new_record? ? label_name(:send) : control_label('edit'), :class => "button" %>
+						</span> 
+					</td>
+				</tr>
+			</table> -->
+		
+		  <%# end %>
+
+		<%= content_tag 'h5', t(:invitations_import) %><br />
+	
+		<%= link_to(image_tag('invites.png') , {:controller => 'invitations', :action => 'invite'}, options={:style => "height: 28px; width: 286px;"},
+				:alt => label_name(:invitations_import)) %><br />
+		<%= link_to(label_name(:more) , {:controller => 'invitations', :action => 'invite'}, :class => "see-more") %>
+		
+		</div> 
+	
+  </div>
+</div>
+
+

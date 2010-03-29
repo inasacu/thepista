@@ -3,7 +3,12 @@
 	# has_meet ||= false
 	
 	has_schedule = true unless upcoming_schedules.empty? 
-	the_label = label_name(:upcoming_schedules)
+	
+	if has_schedule
+		the_label = @upcoming_schedules.first.concept 
+	else
+		the_label = label_name(:upcoming_schedules)
+	end
 	content_for(:title, the_label)
 %> 
 

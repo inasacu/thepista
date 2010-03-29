@@ -505,6 +505,7 @@ es:
      modified_reliable: Modificada la fiabilidad del jugardor para atender   
      modo: HayPista te quiere ayudar a organizar tu equipo o encontrar donde jugar...   
      Monday: Lunes        
+     more:  mas
      must_be_logged_in:  Tienes que estar registrado para acceder a esta página
      must_be_logged_out:  Tienes que cerrar la sesión para acceder a esta página
      must_be_numeric: Tiene que ser un valor numerico (no pongas sin simbolos)     
@@ -827,7 +828,8 @@ es:
      select: Seleccióna   
      select_venue: Nuevo centro deportivo  
      select_contacts:  Seleccione los contactos que quiere invitar a partir de la esta lista. 
-     self_description: "(Escribe algo sobre ti...)"       
+     self_description: "(Escribe algo sobre ti...)"  
+     send:  Enviar     
      send_announcement: Manda una anuncio   
      send_credit: Manda un pago   
      send_debit: Manda una cargo   
