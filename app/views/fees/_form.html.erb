@@ -20,6 +20,11 @@
 		  <span class="description"><%= label_name('description') %></span>
 		</div>
 
+		<div class="group navform">
+			<%= submit_tag @fee.new_record? ? control_label('create') : control_label('edit'), 
+					:class => "button" %> <%= label_name(:or) %> <%= link_to label_name(:cancel), fees_path %>
+		</div>
+
 	</div> 
 
 	<div class="column right"> 
@@ -42,8 +47,3 @@
 </div>
 
 <div class="clear"></div> 
-
-<div class="group navform">
-	<%= submit_tag @fee.new_record? ? control_label('create') : control_label('edit'), 
-			:class => "button" %> <%= label_name(:or) %> <%= link_to label_name(:cancel), fees_path %>
-</div>

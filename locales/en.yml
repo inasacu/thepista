@@ -140,6 +140,7 @@ en:
      debit_amount: Charges  
      debit_amount_description: What needs to be Payed
      debit_total:  Total Charges
+     debit_to_group:  Debt owed to your team
      debits: Charges   
      default_reliable: Reliable   
      defense:  Defense

@@ -2,14 +2,8 @@
 <% client = UrlShortener::Client.new(authorize) %>
 
 <% 
-	the_url = "http://haypista.com"
-	the_description = label_name(:modo)
-		
-	# unless upcoming_schedules.empty? 
-	
-		# schedule = upcoming_schedules.first
-		the_url = "http://haypista.com#{team_roster_path(:id => schedule)}"
-		the_description = h("#{sanitize(schedule.concept)} #{label_name(:for)} #{schedule.group.name} (#{label_name(:rosters).downcase} #{schedule.convocados.count})")		
+	the_url = "http://haypista.com#{team_roster_path(:id => schedule)}"
+	the_description = h("#{sanitize(schedule.concept)} #{label_name(:for)} #{schedule.group.name} (#{label_name(:rosters).downcase} #{schedule.convocados.count})")		
    	# end 	
 	shorten = client.shorten(the_url) 
 %>
@@ -17,20 +11,19 @@
 <div class="block">
 	<div class="sidebar-block" class="extra">
 
-		<%= content_tag 'h5', t(:share) %><br />
+	<%= content_tag 'h5', t(:share) %><br />
 
+	<div class="profile" id="mwmInfo">
 
-		<div class="profile" id="mwmInfo">
-
-			<div class="icons">
-				<a target="_blank" 
-						href="http://twitter.com/home?status=@haypista+<%=the_description.gsub(" ", "+") %>+<%=shorten.urls %>">					
-					<%= image_tag('icons/icotwitter.png') %>
-				</a>
-				<a target="_blank" href="http://www.linkedin.com/shareArticle?mini=true&url=<%= shorten.urls %>&title=<%= sanitize(schedule.concept) %>&summary=<%= sanitize(schedule.concept) %>&source=http://haypista.com"><%= image_tag('icons/icolinkedin.png') %></a>
-				<a target="_blank" href="http://www.facebook.com/sharer.php?u=http%3A%2F%2Fhaypista.com%2F&t=<%= the_description.gsub(" ", "%20") %>"><%= image_tag('icons/icofacebk.png') %></a>
-			</div>
+		<div class="icons">
+			<a target="_blank" 
+					href="http://twitter.com/home?status=@haypista+<%=the_description.gsub(" ", "+") %>+<%=shorten.urls %>">					
+				<%= image_tag('icons/icotwitter.png') %>
+			</a>
+			<a target="_blank" href="http://www.linkedin.com/shareArticle?mini=true&url=<%= shorten.urls %>&title=<%= sanitize(schedule.concept) %>&summary=<%= sanitize(schedule.concept) %>&source=http://haypista.com"><%= image_tag('icons/icolinkedin.png') %></a>
+			<a target="_blank" href="http://www.facebook.com/sharer.php?u=http%3A%2F%2Fhaypista.com%2F&t=<%= the_description.gsub(" ", "%20") %>"><%= image_tag('icons/icofacebk.png') %></a>
 		</div>
+	</div>
 
 	</div>
 </div>
