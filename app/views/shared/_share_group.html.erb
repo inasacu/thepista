@@ -1,0 +1,30 @@
+<% authorize = UrlShortener::Authorize.new( APP_CONFIG['bit_ly_api']['login'], APP_CONFIG['bit_ly_api']['key']) %>
+<% client = UrlShortener::Client.new(authorize) %>
+
+<% 
+	the_url = "http://haypista.com#{team_roster_path(:id => group)}"
+	the_description = h("label_name(:scorecard) #{label_name(:for)} #{sanitize(group.name)}")		
+   	# end 	
+	shorten = client.shorten(the_url) 
+%>
+
+<div class="block">
+	<div class="sidebar-block" class="extra">
+
+	<%= content_tag 'h5', t(:share) %><br />
+
+	<div class="profile" id="mwmInfo">
+
+		<div class="icons">
+			<a target="_blank" 
+					href="http://twitter.com/home?status=@haypista+<%=the_description.gsub(" ", "+") %>+<%=shorten.urls %>">					
+				<%= image_tag('icons/icotwitter.png') %>
+			</a>
+			<a target="_blank" href="http://www.linkedin.com/shareArticle?mini=true&url=<%= shorten.urls %>&title=<%= sanitize(group.name) %>&summary=<%= sanitize(group.name) %>&source=http://haypista.com"><%= image_tag('icons/icolinkedin.png') %></a>
+			<a target="_blank" href="http://www.facebook.com/sharer.php?u=http%3A%2F%2Fhaypista.com%2F&t=<%= the_description.gsub(" ", "%20") %>"><%= image_tag('icons/icofacebk.png') %></a>
+		</div>
+	</div>
+
+	</div>
+</div>
+
