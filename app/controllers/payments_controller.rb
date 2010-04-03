@@ -76,7 +76,7 @@ class PaymentsController < ApplicationController
   def edit
     @payment = Payment.find(params[:id])
     # @group = Group.find(@payment.fee.item_id)
-    @group = Group.find(@payment.fee.credit_id) if @fee.credit_type == "Group"
+    @group = Group.find(@payment.fee.credit_id) if @payment.credit_type == "Group"
     
     
     unless current_user.is_manager_of?(@group)
@@ -89,7 +89,7 @@ class PaymentsController < ApplicationController
   def update
     @payment = Payment.find(params[:id])
     # @group = Group.find(@payment.fee.item_id)
-    @group = Group.find(@payment.fee.credit_id) if @fee.credit_type == "Group"
+    @group = Group.find(@payment.fee.credit_id) if @payment.credit_type == "Group"
     
     unless current_user.is_manager_of?(@group)
       flash[:warning] = I18n.t(:unauthorized)
