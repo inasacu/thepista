@@ -3,7 +3,7 @@
 
 <% 
 	the_url = "http://haypista.com#{team_roster_path(:id => group)}"
-	the_description = h("label_name(:scorecard) #{label_name(:for)} #{sanitize(group.name)}")		
+	the_description = sanitize(group.name)		
    	# end 	
 	shorten = client.shorten(the_url) 
 %>
