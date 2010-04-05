@@ -11,25 +11,55 @@ class FeesController < ApplicationController
         return
       end
 
-      @debit_payment = Payment.debit_payment(@user)
-      @credit_payment = Payment.credit_payment(@user)
+      @users = [] 
+      @users << @user.id      
+      @debit_payment = Payment.debit_payment(@users, 'User')
+      @credit_payment = Payment.credit_payment(@users, 'User')
 
       @groups = []
       @user.groups.each do |group|
-        # @groups << group.id if current_user.is_user_manager_group(@user, group)
         @groups << group.id 
       end
 
-      @debit_fee = Fee.debit_amount(@user, @groups)
-      @fees = Fee.get_debit_fees(@user, @groups, params[:page])
+      @debit_fee = Fee.debit_amount(@users, @groups)
+      @fees = Fee.debit_fees(@users, @groups, params[:page])
     else
       redirect_to root_url
       return
     end
 
-    respond_to do |format|
-      format.html 
-    end 
+    render :template => '/fees/index'
+  end
+
+  def list
+    if params[:id]
+      @group = Group.find(params[:id])
+
+      unless current_user.is_manager_of?(@group) 
+        flash[:warning] = I18n.t(:unauthorized)
+        redirect_to root_url
+        return
+      end
+
+      @users = [] 
+      @group.users.each do |user|
+        @users << user.id 
+      end     
+        
+      @debit_payment = Payment.debit_payment(@users, 'User')
+      @credit_payment = Payment.credit_payment(@users, 'User')
+
+      @groups = []
+      @groups << @group.id 
+
+      @debit_fee = Fee.debit_amount(@users, @groups)
+      @fees = Fee.debit_fees(@users, @groups, params[:page])
+    else
+      redirect_to root_url
+      return
+    end
+        
+    render :template => '/fees/index'
   end
 
   def new
@@ -125,7 +155,7 @@ class FeesController < ApplicationController
     end
   end
 
-  def destroy    
+  def destroy
     @fee = Fee.find(params[:id])   
     # @group = Group.find(@fee.item_id)
     @group = Group.find(@fee.credit_id) if @fee.credit_type == "Group"

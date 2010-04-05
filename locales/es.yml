@@ -20,6 +20,7 @@ es:
      afterwards: despues        
      ago:  "Hace {{count}}"     
      all_group:  Todos los equipos 
+     all_scorecard:  Todos las Clasificaciones
      all_tournament:  Todos los torneos  
      all_user:   Todos los jugadores
      already_exist: ya existe   
@@ -1207,6 +1208,7 @@ es:
      fees_destroy: Borrar cargo
      fees_index:   Cargo
      fees_index_option: Opciones
+     fees_list:  Cargos
      fees_manager_option:  Requiere responsable de equipo para ver mas opciones.
      fees_new:  Nuevo cargo
      fees_no:  Ningun cargo para mostrar.
@@ -1231,6 +1233,7 @@ es:
      payments_create:  Nuevo pago
      payments_index:   Pagos
      payments_index_option: Opciones 
+     payments_list:  Payments
      payments_manager_option:  Requiere responsable de equipo para ver mas opciones.
      payments_new:  Nuevo pago
      payments_no:  Ningun pago para mostrar.

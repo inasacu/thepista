@@ -21,35 +21,39 @@ class Payment < ActiveRecord::Base
   # friendly url and removes id
   has_friendly_id :concept, :use_slug => true,:reserved => ["new", "create", "index", "list", "signup", "edit", "update", "destroy", "show"]
 
-  def self.current_payments(user, page = 1)
+  # def self.current_payments(user, page = 1)
+  #    self.paginate(:all, 
+  #       :conditions => ["debit_amount > 0 and debit_type = 'User' and debit_id = ?", user.id],
+  #       :order => 'created_at', :page => page, :per_page => PAYMENTS_PER_PAGE)
+  # end
+  
+  def self.current_payments(users, page = 1)
      self.paginate(:all, 
-        :conditions => ["debit_amount > 0 and debit_type = 'User' and debit_id = ?", user.id],
+        :conditions => ["debit_amount > 0 and debit_type = 'User' and debit_id in (?)", users],
         :order => 'created_at', :page => page, :per_page => PAYMENTS_PER_PAGE)
   end
 
-  def self.debit_payment(debit, archive=false)
+  def self.debit_payment(debits, object, archive=false)
     @payment = find(:first, 
          :select => "sum(debit_amount) as actual_payment", 
-         :conditions => ["debit_id = ? and debit_type = ? and archive = ?", debit.id, debit.class.to_s, archive])
+         :conditions => ["debit_id in (?) and debit_type = ? and archive = ?", debits, object, archive])
          
     if @payment.nil? or @payment.blank? 
       @payment.actual_payment = 0.0
     end
     return @payment         
   end
-
-  def self.credit_payment(debit, archive=false)
+  
+  def self.credit_payment(credits, object, archive=false)
     @payment = find(:first, 
          :select => "sum(credit_amount) as actual_payment", 
-         :conditions => ["credit_id = ? and credit_type = ? and archive = ?", debit.id, debit.class.to_s, archive])
+         :conditions => ["credit_id in (?) and credit_type = ? and archive = ?", credits, object, archive])
 
     if @payment.nil? or @payment.blank? 
       @payment.actual_payment = 0.0
     end
     return @payment         
   end
-  
-
     
   protected
     def validate

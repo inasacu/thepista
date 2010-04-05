@@ -4,21 +4,15 @@
 %>
 
 <div class="block">
-
-	<%= render :partial => 'secondary_navigation' %>  
-
+	<%= render :partial => '/groups/secondary_navigation' %>  
 	<div class="content">  
-
 			<% if object_counter(@groups) > 0 %>
-				<%= render :partial => 'index_full' %>
+				<%= render :partial => '/groups/index_full' %>
 			<% else %>
-				<%= render :partial => 'index_blank' %>
+				<%= render :partial => '/groups/index_blank' %>
 			<% end %>
-
-	</div>
-	
+	</div>	
 </div>
 
 <% content_for :search, render(:partial => 'shared/search') -%>
-
 <% content_for :sidebar, render(:partial => 'sidebar') -%>

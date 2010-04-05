@@ -47,7 +47,7 @@
 			</td>
 
 			<td class="name_and_date">
-				<%= link_to(label_name(:scorecards), scorecard_path(:id => group)) %>
+				<%= link_to(label_name(:scorecard), scorecard_path(:id => group)) %>
 				<span class="date">
 					<%= nice_full_date(schedule.starts_at) unless schedule.nil? %> 
 				</span>

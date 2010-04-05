@@ -20,6 +20,8 @@ ActionController::Routing::Routes.draw do |map|
   map.team_no_show		      'team_no_show',			                          :controller => 'schedules',       :action => 'team_no_show'
   map.team_unavailable      'team_unavailable',			                      :controller => 'schedules',       :action => 'team_unavailable'
   map.marker_list		        'marker_list',			                          :controller => 'markers',         :action => 'marker_list'
+  # map.fee_list              'fee_list',                                   :controller => 'fees',            :action => 'fee_list'
+  # map.payment_list          'payment_list',                               :controller => 'payments',        :action => 'payment_list'
 
   map.join_team   			    'teammates/:id/join_team/:teammate',    	    :controller => 'teammates',       :action => 'join_team'
   map.leave_team		  	    'teammates/:id/leave_team/:teammate',    	    :controller => 'teammates',       :action => 'leave_team'
@@ -115,8 +117,8 @@ ActionController::Routing::Routes.draw do |map|
   map.resources   :types,           :as => 'tipos'
   map.resources   :sports,          :as => 'deportes'
   map.resources   :roles,           :as => 'responsabilidades'          
-  map.resources   :payments,        :as => 'pago'
-  map.resources   :fees,            :as => 'tasas'  
+  map.resources   :payments,        :as => 'pago',                        :collection => { :list => :get }
+  map.resources   :fees,            :as => 'tasas',                       :collection => { :list => :get } 
   map.resources   :password_resets, :as => 'resetear'
   map.resources   :messages,        :as => 'mensajes',                    :collection => { :sent => :get, :trash => :get }
   map.resources   :classifieds,     :as => 'anuncios',                    :collection => { :sent => :get, :trash => :get }

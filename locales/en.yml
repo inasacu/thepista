@@ -20,6 +20,7 @@ en:
      afterwards: afterwards 
      ago:  "{{count}} ago"      
      all_group:  All Teams 
+     all_scorecard:  All Scorecards
      all_tournament:  All Tournaments  
      all_user:   All Players
      already_exist: already exist
@@ -1201,12 +1202,13 @@ en:
      fee_options: Options
      fee_to: Charges to 
      fee_to_description:  Charges Details
-     fee_user_for_group:  Add a change to all players
-     fee_user_for_tournament:  Add a change to all players 
+     fee_user_for_group:  Add a charge to all players on
+     fee_user_for_tournament:  Add a charge to all players on 
      fees_create:  New Charge
      fees_destroy: Remove Charge
      fees_index:   Charge
      fees_index_option: Options
+     fees_list:  Charges
      fees_manager_option:  Requires team manager position to view more options.
      fees_new:  New Charge
      fees_no:  No Charge to show.
@@ -1231,6 +1233,7 @@ en:
      payments_create:  New Payment
      payments_index:   Payments
      payments_index_option: Options
+     payments_list:  Payments
      payments_manager_option:  Requires team manager position to view more options.
      payments_new:  New Payment
      payments_no:  No Payment to show.

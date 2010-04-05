@@ -9,38 +9,17 @@
 <% @invitation = Invitation.new %>
 <div class="block">
 	<div class="sidebar-block" class="extra">
-		
-	<%#= content_tag 'h5', t(:invitations) %><br />
 
-		<div class="inner"> 
-		  <%# form_for :invitation, :url => invitations_path, :html => { :class => :form } do |f| -%>
+	<%= content_tag 'h5', t(:invitations_import) %><br />
+				<%= link_to(image_tag('icons/microsoft.png', options={:style => "height: 30px; width: 90px;"}) ,
+								{:controller => 'invitations', :action => 'invite'}, :alt => label_name(:invitations_import)) %>
+				<%= link_to(image_tag('icons/google.png', options={:style => "height: 30px; width: 90px;"}) ,
+								{:controller => 'invitations', :action => 'invite'}, :alt => label_name(:invitations_import)) %>
+				<%= link_to(image_tag('icons/yahoo.png', options={:style => "height: 30px; width: 90px;"}) , 
+								{:controller => 'invitations', :action => 'invite'}, :alt => label_name(:invitations_import)) %>
+			
+				<%= link_to(label_name(:more) , {:controller => 'invitations', :action => 'invite'}, :class => "see-more") %>
 
-			<!-- <table class="table">
-				<tr>
 
-					<td class="name_and_date">
-						<%#= f.text_field :email_addresses, :class => 'text_field', :value => label_name('email_addresses'),
-										 :onfocus => "if(this.value == '#{label_name('email_addresses')}') { this.value = ''} ",
-										 :onblur => "if(this.value == '') { this.value='#{label_name('email_addresses')}'; }" %>
-					
-						<span class="date">
-						<%#= submit_tag @invitation.new_record? ? label_name(:send) : control_label('edit'), :class => "button" %>
-						</span> 
-					</td>
-				</tr>
-			</table> -->
-		
-		  <%# end %>
-
-		<%= content_tag 'h5', t(:invitations_import) %><br />
-	
-		<%= link_to(image_tag('invites.png') , {:controller => 'invitations', :action => 'invite'}, options={:style => "height: 28px; width: 286px;"},
-				:alt => label_name(:invitations_import)) %><br />
-		<%= link_to(label_name(:more) , {:controller => 'invitations', :action => 'invite'}, :class => "see-more") %>
-		
-		</div> 
-	
-  </div>
+	</div>
 </div>
-
-

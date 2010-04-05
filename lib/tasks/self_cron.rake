@@ -5,9 +5,9 @@ task :self_cron => :environment do
 
   puts "Hour:  #{Time.zone.now.hour}"
 
-  puts "archive all messages older than 1 month, set all other emails to mark as read..."
-  # rake the_message_archive
-  puts "done."
+  # puts "archive all messages older than 1 month, set all other emails to mark as read..."
+  # # rake the_message_archive
+  # puts "done."
 
   puts "Sending schedule reminders..."
   Schedule.send_reminders
