@@ -1,13 +1,15 @@
 <%- 
-	@debit_payment = Payment.debit_payment(current_user)
-	@credit_payment = Payment.credit_payment(current_user)
+	@users = [] 
+	@users << current_user.id      
+	@debit_payment = Payment.debit_payment(@users, 'User')
+	@credit_payment = Payment.credit_payment(@users, 'User')
 
 	@groups = []
 	current_user.groups.each do |group|
-	  @groups << group.id 
+		@groups << group.id 
 	end
 
-	@debit_fee = Fee.debit_amount(current_user, @groups)
+	@debit_fee = Fee.debit_amount(@users, @groups)
 -%>
 
 <% if (@debit_fee.debit_amount.to_f - @debit_payment.actual_payment.to_f) > 0.0 %>
