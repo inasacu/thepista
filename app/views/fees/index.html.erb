@@ -6,7 +6,7 @@
 <div class="block">
 
   <%= render :partial => '/users/secondary_navigation' if is_action('index') %>
-  <%= render :partial => '/groups/secondary_navigation' if is_action('list') %>
+  <%= render :partial => '/groups/secondary_navigation' if is_action('list') or is_action('complete') %>
           
   <div class="content">  
 	        
@@ -29,7 +29,8 @@
           <th class="last">&nbsp;</th>
         </tr>
 
-		<%= render :partial => 'fee', :collection => @fees %>
+		<%= render :partial => 'fees/fee', :collection => @fees %>
+		<%= render :partial => 'payments/payment', :collection => @payments %>
 
 		<tr>  
 			<td>&nbsp;</td>
@@ -38,8 +39,8 @@
 			<td align="left">
 				<%= "#{label_name(:debit_total)}:  #{number_to_currency(@debit_fee.debit_amount.to_f)}" %>
 			</td>
-			<td align="left"><%= @debit_payment.actual_payment %>
-				<%= "#{label_name(:credit_total)}:  #{number_to_currency(@debit_payment.actual_payment.to_f)}" %>
+			<td align="left">
+				<%= "#{label_name(:credit_total)}:  #{number_to_currency(@debit_payment.debit_amount.to_f + @credit_payment.credit_amount.to_f)}" %>
 			</td>
 		   <td class="last"></td>
 		</tr>

@@ -27,30 +27,41 @@ class Payment < ActiveRecord::Base
   #       :order => 'created_at', :page => page, :per_page => PAYMENTS_PER_PAGE)
   # end
   
-  def self.current_payments(users, page = 1)
-     self.paginate(:all, 
-        :conditions => ["debit_amount > 0 and debit_type = 'User' and debit_id in (?)", users],
-        :order => 'created_at', :page => page, :per_page => PAYMENTS_PER_PAGE)
+  # def self.current_payments(users, page = 1)
+  #    self.paginate(:all, 
+  #       :conditions => ["debit_amount > 0 and debit_type = 'User' and debit_id in (?)", users],
+  #       :order => 'created_at', :page => page, :per_page => PAYMENTS_PER_PAGE)
+  # end
+  
+  def self.credit_payments(debits, credits, page=1)
+    paginate(:all, :conditions => ["debit_id in (?) and debit_type = ? and 
+                                    credit_id in (?) and credit_type = ? and 
+                                    archive = false and debit_amount > 0", debits, 'User', credits, 'Group'],
+             :order => 'created_at DESC', 
+             :page => page,
+             :per_page => FEES_PER_PAGE)
   end
 
-  def self.debit_payment(debits, object, archive=false)
+  def self.debit_amount(debits, object)
     @payment = find(:first, 
-         :select => "sum(debit_amount) as actual_payment", 
-         :conditions => ["debit_id in (?) and debit_type = ? and archive = ?", debits, object, archive])
+         :select => "sum(debit_amount) as debit_amount", 
+         :conditions => ["debit_id in (?) and debit_type = ? and 
+                        archive = false and debit_amount > 0", debits, object])
          
     if @payment.nil? or @payment.blank? 
-      @payment.actual_payment = 0.0
+      @payment.debit_amount = 0.0
     end
     return @payment         
   end
   
-  def self.credit_payment(credits, object, archive=false)
+  def self.credit_amount(credits, object)
     @payment = find(:first, 
-         :select => "sum(credit_amount) as actual_payment", 
-         :conditions => ["credit_id in (?) and credit_type = ? and archive = ?", credits, object, archive])
+         :select => "sum(credit_amount) as credit_amount", 
+         :conditions => ["credit_id in (?) and credit_type = ? and 
+                         archive = false and credit_amount > 0", credits, object])
 
     if @payment.nil? or @payment.blank? 
-      @payment.actual_payment = 0.0
+      @payment.credit_amount = 0.0
     end
     return @payment         
   end

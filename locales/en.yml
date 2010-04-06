@@ -1208,6 +1208,7 @@ en:
      fee_to_description:  Charges Details
      fee_user_for_group:  Add a charge to all players on
      fee_user_for_tournament:  Add a charge to all players on 
+     fees_complete:  All Charges
      fees_create:  New Charge
      fees_destroy: Remove Charge
      fees_index:   Charge

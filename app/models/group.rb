@@ -74,6 +74,15 @@ class Group < ActiveRecord::Base
   :class_name => "Role", 
   :foreign_key => "authorizable_id", 
   :conditions => ["roles.name = 'manager' and roles.authorizable_type = 'Group'"]
+  
+  has_many :the_subscriptions,
+  :through => :subscription_roles,
+  :source => :roles_users
+
+  has_many  :subscription_roles,
+  :class_name => "Role", 
+  :foreign_key => "authorizable_id", 
+  :conditions => ["roles.name = 'subscription' and roles.authorizable_type = 'Group'"]
 
   belongs_to    :sport   
   belongs_to    :marker 

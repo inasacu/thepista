@@ -1,6 +1,4 @@
 <% 
-	# balance_due =  (current_user.is_manager_of?(payment.group) and @payment.debit_amount.to_f > @payment.actual_payment.to_f) 
-
 	user_flag = false
 	group_flag = false
 	schedule_flag = false
@@ -10,8 +8,8 @@
 	item_link, item_object = payment_item(payment)	
 %>
 
-<tr>  
-	<td>
+<tr> 
+	<td class="first">
 		<%= image_link_small debit_object %>
 	</td>
 		
@@ -28,14 +26,18 @@
 		</span>
 	</td>
 
-	<td><%= h(payment.concept) %></td>
+	<td>
+		<%= item_link %>
+	</td>
+
+	<td><%#= h(payment.concept) %></td>
 	<td><%= number_to_currency(payment.debit_amount) %></td>
 	
    <td class="last">
 	<span class="action">
-		<% if current_user.is_manager_of?(credit_object) or current_user.is_manager_of?(item_object)%> 
+		<% if current_user.is_manager_of?(credit_object) or current_user.is_manager_of?(item_object) and !is_action('complete') %> 
 			<%= link_to label_name(:payments_edit), edit_payment_path(:id => payment, :group_id => payment.credit_id) %><br />
-		<%= link_to label_name(:payments_destroy), payment_path(payment), :method => :delete, :confirm => %(#{label_name(:payments_destroy) }?) %>	
+			<%= link_to label_name(:payments_destroy), payment_path(payment), :method => :delete, :confirm => %(#{label_name(:payments_destroy) }?) %>	
         <% end %>
 	</span>
    </td>

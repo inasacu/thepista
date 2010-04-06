@@ -118,7 +118,7 @@ ActionController::Routing::Routes.draw do |map|
   map.resources   :sports,          :as => 'deportes'
   map.resources   :roles,           :as => 'responsabilidades'          
   map.resources   :payments,        :as => 'pago',                        :collection => { :list => :get }
-  map.resources   :fees,            :as => 'tasas',                       :collection => { :list => :get } 
+  map.resources   :fees,            :as => 'tasas',                       :collection => { :list => :get, :complete => :get } 
   map.resources   :password_resets, :as => 'resetear'
   map.resources   :messages,        :as => 'mensajes',                    :collection => { :sent => :get, :trash => :get }
   map.resources   :classifieds,     :as => 'anuncios',                    :collection => { :sent => :get, :trash => :get }

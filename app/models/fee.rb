@@ -39,10 +39,10 @@ class Fee < ActiveRecord::Base
   
   def self.debit_amount(debits, credits)
     @fee = find(:first, :select => "sum(debit_amount) as debit_amount", 
-          :joins => "LEFT JOIN matches on matches.user_id = fees.debit_id and matches.schedule_id = fees.item_id",
-          :conditions => ["fees.debit_id in (?) and fees.debit_type = ? and fees.credit_id in (?) and fees.credit_type = ? and 
-                          matches.type_id = 1 and fees.season_player = false and fees.archive = false", 
-                          debits, 'User', credits, 'Group'])
+    :joins => "LEFT JOIN matches on matches.user_id = fees.debit_id and matches.schedule_id = fees.item_id",
+    :conditions => ["fees.debit_id in (?) and fees.debit_type = ? and fees.credit_id in (?) and fees.credit_type = ? and 
+      matches.type_id = 1 and fees.season_player = false and fees.archive = false", 
+      debits, 'User', credits, 'Group'])
 
       if @fee.nil? or @fee.blank? 
         @fee.debit_amount = 0.0

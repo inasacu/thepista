@@ -3,9 +3,7 @@ debit_link, debit_object = fee_debit(@fee)
 %>
 <div class="block">
 
-	<%#= render :partial => 'secondary_navigation' %>  
-
-  <%= render :partial => '/users/secondary_navigation' %>
+	<%= render :partial => '/users/secondary_navigation' %>
 
 	<div class="content">  
 
@@ -23,5 +21,3 @@ debit_link, debit_object = fee_debit(@fee)
 	</div>
 
 </div>
-
-<% content_for :sidebar, render(:partial => 'sidebar') -%>

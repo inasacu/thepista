@@ -1208,6 +1208,7 @@ es:
      fee_to_description:  A quien son los cargos
      fee_user_for_group:  Anotar cargo a los jugadores de
      fee_user_for_tournament:  Anotar cargo a los jugadores de
+     fees_complete:  Todos los Cargos
      fees_create:  Nueva cargo
      fees_destroy: Borrar cargo
      fees_index:   Cargo

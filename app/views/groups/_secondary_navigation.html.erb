@@ -4,7 +4,7 @@
 
 <div class="secondary-navigation">
 	
-<ul>	
+<ul>
 	<li class="<%= get_first_active %>"><%=  link_to(label_name(:my_group), groups_path) %></li>
 	<li class="<%= get_active('group_list') %>"><%=  link_to(label_name(:all_group) , list_groups_path) %></li>
 	<li class="<%= get_active('group_show') %>"><%=  group_link(@group) if @group %></li>
@@ -21,14 +21,13 @@
 %>		
 		<li class="<%= get_active('entry_show') %>"><%=  link_to(the_label, blog_path(@group.blog)) %></li>
 		<li class="<%= get_active('group_team_list') %>"><%=  link_to(label_name(:users) , team_list_path(:id => @group)) %></li>
-		<li class="<%= get_active('group_fee_list') %>"><%=  link_to(label_name(:fees) , list_fees_path(:id => @group)) %></li>
-		<li class="<%= get_active('group_payment_list') %>"><%=  link_to(label_name(:payments) , list_payments_path(:id => @group)) %></li>
+		<li class="<%= get_active('fee_list') %>"><%=  link_to(label_name(:fees) , list_fees_path(:id => @group)) %></li>
+		<li class="<%= get_active('fee_complete') %>"><%=  link_to(label_name(:fees_complete) , complete_fees_path(:id => @group)) %></li>
 <%			
 		end
 	end 
 %>
-
-<li class="<%= active_classified %>"><%= link_to(label_name(:classifieds), classifieds_url(:id => @group)) if @group %></li>
+	<li class="<%= get_active('classified_index') %>"><%= link_to(label_name(:classifieds), classifieds_url(:id => @group)) if @group %></li>
 </ul>
 
 <div class="clear"></div>
