@@ -881,6 +881,10 @@ en:
      share_in_twitter: "Share on Twitter"
      share_in_menealo: "Share on Menéalo"   
      share_in_linkedin: "Share on LinkedIn"
+     share_in_digg: "Share on Digg"
+     share_in_delicious: "Share on Delicious"
+     share_in_buzz: "Share on Buzz"
+     share_in_email: "Share with an Email"
      should_be_positive: should be positive   
      show: Show   
      show_address: Show the Address   

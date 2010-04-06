@@ -881,6 +881,10 @@ es:
      share_in_twitter: "Compártelo en Twitter"
      share_in_menealo: "Menéalo"   
      share_in_linkedin: "Compártelo en LinkedIn"
+     share_in_digg: "Compártelo en Digg"
+     share_in_delicious: "Compártelo en Delicious"
+     share_in_buzz: "Compártelo en Buzz"
+     share_in_email: "Compártelo con un Email"     
      should_be_positive: tiene que ser positivo   
      show: Mostrar   
      show_address: Presenta la dirección   

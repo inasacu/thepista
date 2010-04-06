@@ -1,0 +1,55 @@
+<% authorize = UrlShortener::Authorize.new( APP_CONFIG['bit_ly_api']['login'], APP_CONFIG['bit_ly_api']['key']) %>
+<% client = UrlShortener::Client.new(authorize) %>
+
+<% 
+	case get_the_controller
+	when 'schedule', 'home'
+		the_url = "http://haypista.com#{team_roster_path(:id => schedule)}"
+		the_description = h("#{sanitize(schedule.concept)} #{label_name(:for)} #{schedule.group.name} (#{label_name(:rosters).downcase} #{schedule.convocados.count})")	
+		the_name = sanitize(schedule.concept)
+
+	when 'group'
+		the_url = "http://haypista.com#{group_path(:id => group)}"
+		the_description = sanitize(group.name)
+		the_name = sanitize(group.name)
+	else
+		the_url = "http://haypista.com"
+		the_description = label_name(:modo)
+		the_name="HayPista"
+	end
+	shorten = client.shorten(the_url) 
+%>
+
+<div class="block">
+	<div class="sidebar-block" class="extra">
+
+	<%= content_tag 'h5', t(:share) %><br />
+
+	<div class="profile" id="mwmInfo">
+
+		<div class="icons">
+			<a target="_blank" 
+					href="http://twitter.com/home?status=@haypista+<%=the_description.gsub(" ", "+") %>+<%=shorten.urls %>">					
+				<%= image_tag('icons/ico-twitter.gif', :title => label_name(:share_in_twitter), :alt => 'twitter logo') %>
+			</a>
+			<a target="_blank" 
+					href="http://www.linkedin.com/shareArticle?mini=true&url=<%= shorten.urls %>&title=<%= the_name %>&summary=<%= the_name %>&source=http://haypista.com">
+					<%= image_tag('icons/ico-linkedin.gif', :title => label_name(:share_in_linkedin), :alt => 'linkedin logo') %>
+			</a>
+			<a target="_blank" 
+					href="http://www.facebook.com/sharer.php?u=http%3A%2F%2Fhaypista.com%2F&t=<%= the_description.gsub(" ", "%20") %>">
+					<%= image_tag('icons/ico-facebook.gif', :title => label_name(:share_in_facebook), :alt => 'facebook logo') %>
+			</a>
+			<!-- <a target="_blank" 
+					expr:href='&quot;http://www.google.com/reader/link?url=&quot; data:post.url &quot;&amp;title=&quot; data:post.title &quot;&amp;srcTitle=&quot; data:blog.title &quot;&amp;srcURL=&quot; data:blog.homepageUrl ' rel='nofolloW' style='text-decoration:none;'>
+					<%#= image_tag('icons/ico-buzz.png', :title => label_name(:share_in_buzz), :alt => 'buzz logo') %>
+			</a>
+			<a href='javascript:var%20b=document.body;var%20GR________bookmarklet_domain=&quot;http://www.google.com&quot;;if(b&amp;&amp;!document.xmlVersion){void(z=document.createElement(&quot;script&quot;));void(z.src=&quot;http://www.google.com/reader/ui/link-bookmarklet.js&quot;);void(b.appendChild(z));}else{}'> 
+			<%#= image_tag('icons/ico-buzz.png', :title => label_name(:share_in_buzz), :alt => 'buzz logo') %>
+			</a> -->
+			
+		</div>
+	</div>
+
+	</div>
+</div>

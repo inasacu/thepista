@@ -56,7 +56,7 @@ end
 </div>
 
 <% content_for :sidebar, render(:partial => 'sidebar') -%>
-<% content_for :sidebar, render(:partial => 'shared/share_group', :locals => {:group => @group}) if @group -%>
+<% content_for :sidebar, render(:partial => 'shared/share_object', :locals => {:group => @group}) if @group -%>
 <% content_for :sidebar, render(:partial => 'sidebar_show') if @group.is_futbol? -%>
 <% content_for :sidebar, render(:partial => 'sidebar_show_basket') if @group.is_basket? -%>
 

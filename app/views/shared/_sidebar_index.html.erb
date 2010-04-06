@@ -7,7 +7,7 @@
 
 <% content_for :sidebar, render(:partial => '/shared/latest_payment') -%>
 <% content_for :sidebar, render(:partial => 'shared/invite') -%>
-<% content_for :sidebar, render(:partial => 'shared/share', 
+<% content_for :sidebar, render(:partial => 'shared/share_object', 
 		:locals => {:schedule => @upcoming_schedules.first}) unless @upcoming_schedules.blank? or @upcoming_schedules.nil? or @upcoming_schedules.empty? -%>
 <% content_for :sidebar, render(:partial => '/shared/upcoming_classified') unless @upcoming_classifieds.blank?  -%>
 <% content_for :sidebar, render(:partial => '/shared/active_comment') if current_user and @has_activities  -%>

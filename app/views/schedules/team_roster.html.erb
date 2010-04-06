@@ -27,7 +27,7 @@
 
 <% content_for :sidebar, render(:partial => '/schedules/sidebar_show') if @schedule -%>
 <% content_for :sidebar, render(:partial => '/shared/latest_payment') -%>
-<% content_for :sidebar, render(:partial => 'shared/share', :locals => {:schedule => @schedule}) if @schedule -%>
+<% content_for :sidebar, render(:partial => 'shared/share_object', :locals => {:schedule => @schedule}) if @schedule -%>
 
 
 
