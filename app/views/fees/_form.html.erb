@@ -31,8 +31,18 @@
 
 	<% if @fee.new_record? %>
 		<fieldset id="roster">
-		<%= render :partial => '/messages/recipient_list', 
-		:locals => {:label => label_name(:roster), :recipients => @group.users, :checked => true } %>
+			<% unless @user_subscription.empty? %>
+			<tr><label class="label"><%= t(:subscriptions_true) %>:</label></tr>
+			<%= render :partial => '/messages/recipient_list', 
+					   :locals => {:recipients => @user_subscription, :checked => true } %><br/>
+			<% end %>
+			
+			<% unless @user_non_subscription.empty? %>
+			<tr><label class="label"><%= t(:subscriptions_false) %>:</label></tr>
+			<%= render :partial => '/messages/recipient_list', 
+					   :locals => { :recipients => @user_non_subscription, :checked => false } %><br/>
+			<% end %>
+			
 		</fieldset>
 		
 		<br /><br />

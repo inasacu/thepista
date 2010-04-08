@@ -37,7 +37,7 @@
 	<span class="action">
 		<% if current_user.is_manager_of?(credit_object) or current_user.is_manager_of?(item_object) and !is_action('complete') %> 
 			<%= link_to label_name(:payments_edit), edit_payment_path(:id => payment, :group_id => payment.credit_id) %><br />
-			<%= link_to label_name(:payments_destroy), payment_path(payment), :method => :delete, :confirm => %(#{label_name(:payments_destroy) }?) %>	
+			<%#= link_to label_name(:payments_destroy), payment_path(payment), :method => :delete, :confirm => %(#{label_name(:payments_destroy) }?) %>	
         <% end %>
 	</span>
    </td>

@@ -1,6 +1,8 @@
 class PaymentsController < ApplicationController
   before_filter :require_user
 
+  before_filter :has_manager_access, :only =>[:edit, :update]
+
   def index
     if (params[:id]) 
       @user = User.find(params[:id])      
@@ -29,17 +31,17 @@ class PaymentsController < ApplicationController
 
     unless current_user.is_manager_of?(@group)
       flash[:warning] = I18n.t(:unauthorized)
-      redirect_back_or_default('/index')
+      redirect_to root_url
       return
     end
 
     @user = User.find(@fee.debit_id)
     @users = [] 
     @users << @user.id 
-    
+
     @groups = [] 
     @groups << @group.id
-    
+
     @debit_fee = Fee.debit_amount(@users, @groups)
     @debit_payment = Payment.debit_amount(@users, 'User')
 
@@ -57,7 +59,7 @@ class PaymentsController < ApplicationController
 
     unless current_user.is_manager_of?(@group)
       flash[:warning] = I18n.t(:unauthorized)
-      redirect_back_or_default('/index')
+      redirect_to root_url
       return
     end
 
@@ -78,59 +80,32 @@ class PaymentsController < ApplicationController
 
     if @payment_debit.save and @payment_credit.save
       flash[:notice] = I18n.t(:successful_create)
-      # redirect_to payments_url and return
-      # redirect_to :controller => 'fees', :action => 'index', :id => @user
       redirect_to fees_url(:id => @user) and return
     else
       render :action => 'new'
     end
   end
 
-  def edit
-    @payment = Payment.find(params[:id])
-    # @group = Group.find(@payment.fee.item_id)
-    @group = Group.find(@payment.fee.credit_id) if @payment.credit_type == "Group"
-
-
-    unless current_user.is_manager_of?(@group)
-      flash[:warning] = I18n.t(:unauthorized)
-      redirect_back_or_default('/index')
-      return
-    end
-  end
-
   def update
-    @payment = Payment.find(params[:id])
-    # @group = Group.find(@payment.fee.item_id)
-    @group = Group.find(@payment.fee.credit_id) if @payment.credit_type == "Group"
-
-    unless current_user.is_manager_of?(@group)
-      flash[:warning] = I18n.t(:unauthorized)
-      redirect_back_or_default('/index')
-      return
-    end
-
     if @payment.update_attributes(params[:payment])
       flash[:notice] = I18n.t(:successful_update)
-      redirect_to payments_url and return
+      redirect_to fees_url and return
     else
       render :action => 'edit'
     end
   end
 
-  def destroy
+  private
+
+  def has_manager_access
     @payment = Payment.find(params[:id])
-    # @group = Group.find(@payment.fee.item_id)
-    @group = Group.find(@payment.fee.credit_id) if @fee.credit_type == "Group"
+    @group = Group.find(@payment.fee.credit_id) if @payment.credit_type == "Group"
 
     unless current_user.is_manager_of?(@group)
       flash[:warning] = I18n.t(:unauthorized)
-      redirect_back_or_default('/index')
+      redirect_to root_url
       return
     end
-
-    @payment.destroy
-    flash[:notice] = I18n.t(:successful_destroy)
-    redirect_to payments_url and return
   end
+
 end

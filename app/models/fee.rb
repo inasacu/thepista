@@ -27,12 +27,12 @@ class Fee < ActiveRecord::Base
   has_friendly_id :concept, :use_slug => true, :reserved => ["new", "create", "index", "list", "edit", "update", "destroy", "show"]
                   
   def self.debit_fees(debits, credits, page=1)
-    paginate(:all, 
+    paginate(:all,
              :joins => "LEFT JOIN matches on matches.user_id = fees.debit_id and matches.schedule_id = fees.item_id",
              :conditions => ["fees.debit_id in (?) and fees.debit_type = ? and 
                               fees.credit_id in (?) and fees.credit_type = ? and matches.type_id = 1 and fees.season_player = false and fees.archive = false", 
                               debits, 'User', credits, 'Group'],
-             :order => 'created_at DESC', 
+             :order => 'fees.item_type, fees.item_id', 
              :page => page,
              :per_page => FEES_PER_PAGE)
   end
@@ -91,8 +91,7 @@ class Fee < ActiveRecord::Base
     fee_per_game = item.fee_per_game
     fee_per_game = item.fee_per_pista if credit.class.to_s == "Marker"
     
-    unless self.debit_credit_item_exists?(debit, credit, item) 
-      
+    if self.debit_credit_item_exists?(debit, credit, item)       
       self.create!(:concept => item.concept, :description => item.description, :debit_amount => fee_per_game,
                     :debit_id => debit.id, :credit_id => credit.id, :item_id => item.id, 
                     :debit_type => debit.class.to_s, :credit_type => credit.class.to_s, :item_type => item.class.to_s,
@@ -113,12 +112,11 @@ class Fee < ActiveRecord::Base
 
 private
 	
-  # return ture if the schedule user group conbination is nil
-  def self.debit_credit_item_exists?(debit, credit, item)
-		count(:conditions => ["fees.debit_id = ? and fees.debit_type = ? and
-		                       fees.credit_id = ? and fees.credit_type = ? and 
-                           fees.item_id = ? and fees.item_type = ? and fees.archive = false", 
-                          debit.id, debit.class.to_s, credit.id, credit.class.to_s, item.id, item.class.to_s]) > 0                   
+  # return true if the schedule user group conbination is nil
+  def self.debit_credit_item_exists?(debit, credit, item)                          
+    find(:first, :conditions => ["debit_id = ? and debit_type = ? and credit_id = ? and credit_type = ? and 
+                                item_id = ? and item_type = ? and archive = false", 
+                                debit.id, debit.class.to_s, credit.id, credit.class.to_s, item.id, item.class.to_s]).nil?              
 	end 
 
 end

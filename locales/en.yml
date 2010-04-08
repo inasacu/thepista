@@ -940,8 +940,10 @@ en:
      subscription_at: Last Day to add squad status change for subscriber  
      subscription_at_match: Last Day to add squad status change for subscriber    
      subscription_at_description: (Last Day to add squad status change for subscriber  ...(ex- 1 day before the event)) 
-     subscription_false:  Player does not have a Subscription.
+     subscription_false:  Player does not have a Subscription
      subscription_true:  Player has a Subscription
+     subscriptions_true:  Players with a Subscription
+     subscriptions_false:  Players without a Subscription
      subscription_updated: Update user subscription.
      successful_login: Logged in successfully 
      successful_logged_in: Logged in successfully...

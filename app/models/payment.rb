@@ -37,7 +37,7 @@ class Payment < ActiveRecord::Base
     paginate(:all, :conditions => ["debit_id in (?) and debit_type = ? and 
                                     credit_id in (?) and credit_type = ? and 
                                     archive = false and debit_amount > 0", debits, 'User', credits, 'Group'],
-             :order => 'created_at DESC', 
+                   :order => 'item_type, item_id',
              :page => page,
              :per_page => FEES_PER_PAGE)
   end

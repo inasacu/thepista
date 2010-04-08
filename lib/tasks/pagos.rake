@@ -1,27 +1,34 @@
-# to run:    sudo rake thepayment
+# to run:    sudo rake elpago
 
 desc "fixing issues w/ fees and payment data"
-task :thepayment => :environment do |t|
+task :elpago => :environment do |t|
 
   ActiveRecord::Base.establish_connection(RAILS_ENV.to_sym)
-  
-  # Fee.find(:all).each {|fee| fee.destroy }
-  #  
-  # Group.find(:all).each do |group|
-  #   group.schedules.each do |schedule| 
-  #     puts "#{schedule.id} - #{schedule.concept} - #{schedule.group.name}"
-  #     counter = Time.zone.now
-  #     Fee.create_user_fees(schedule) 
-  #     puts "#{counter} - #{Time.zone.now}"
-  #     counter = Time.zone.now
-  #     Fee.create_group_fees(schedule)
-  #     puts "#{counter} - #{Time.zone.now}"
-  #   end 
-  # end
-  # 
-  # fees = Fee.find(:all, :conditions => "credit_id = 1 and credit_type = 'Group'")
-  # fees.each {|fee| fee.archive = true; fee.save! }
-end
+
+  @groups = Group.find(:all, :conditions => "id != 1 and archive = false")
+
+  @groups.each do |group|
+
+    group.schedules.each do |schedule|
+
+      group.users.each do |user|
+
+        @fee = Fee.find(:all, 
+        :conditions => ["debit_id = ? and debit_type = 'User' and 
+                         credit_id = ? and credit_type = 'Group' and 
+                         item_id = ? and item_type = 'Schedule'", user, group, schedule ])
+
+          if @fee.nil? or @fee.blank? or @fee.empty?
+            Fee.create_debit_credit_item_fee(user, group, schedule, user.is_subscriber_of?(group))
+            puts "#{group.name} - #{user.name} #{user.id} -    #{schedule.concept} -"  
+          end
+          
+        end
+      end
+
+    end
+
+  end
 
 
 
