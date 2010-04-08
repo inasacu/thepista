@@ -8,8 +8,12 @@ task :elpago => :environment do |t|
   @groups = Group.find(:all, :conditions => "id != 1 and archive = false")
 
   @groups.each do |group|
+    
+    puts "group:  #{group.name}"
 
     group.schedules.each do |schedule|
+
+      puts "group:  #{schedule.concept}"
 
       group.users.each do |user|
 
