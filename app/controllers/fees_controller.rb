@@ -175,7 +175,6 @@ class FeesController < ApplicationController
 
   def edit
     @fee = Fee.find(params[:id])    
-    # @group = Group.find(@fee.item_id)
     @group = Group.find(@fee.credit_id) if @fee.credit_type == "Group"
 
     unless current_user.is_manager_of?(@group)

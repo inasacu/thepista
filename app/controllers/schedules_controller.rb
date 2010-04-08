@@ -25,9 +25,9 @@ class SchedulesController < ApplicationController
   
   def show
     store_location    
-    unless current_user.is_member_of?(@group) 
-      redirect_back_or_default('/index')
-    end
+    # unless current_user.is_member_of?(@group) 
+    #   redirect_back_or_default('/index')
+    # end
   end
   
   def rate
@@ -229,7 +229,7 @@ class SchedulesController < ApplicationController
   end
   
   def has_member_access
-    unless current_user.is_member_of?(@schedule.group)
+    unless current_user.is_member_of?(@schedule.group) or @schedule.public
       flash[:warning] = I18n.t(:unauthorized)
       redirect_back_or_default('/index')
       return
@@ -245,7 +245,7 @@ class SchedulesController < ApplicationController
   
   def get_match_type 
     store_location 
-    unless current_user.is_member_of?(@schedule.group)  
+    unless current_user.is_member_of?(@schedule.group) or @schedule.public 
       redirect_to :action => 'index'
       return
     end
