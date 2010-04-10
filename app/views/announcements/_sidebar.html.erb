@@ -1,0 +1,16 @@
+<div class="block">
+	<h3><%= control_label('option') %></h3>
+	<div class="content">
+<% 
+		#if current_user.is_maximo? 
+%>
+			<p><%= link_to(control_label('create') , new_announcement_url)  %></p>
+<% 		
+		#else 
+%>
+			<p><%#= control_label('maximo_option') %></p>
+<%
+		#end
+%>
+	</div>
+</div>

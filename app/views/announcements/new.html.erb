@@ -8,7 +8,7 @@
 
 		<div class="inner">
 		
-      <% form_for :type, :url => types_path, :html => { :class => :form } do |f| -%>
+      <% form_for :announcement, :url => announcements_path, :html => { :class => :form } do |f| -%>
         <%= render :partial => "form", :locals => {:f => f} %>
       <% end -%>
 

@@ -27,6 +27,10 @@ en:
      and: and   
      announcement: Announcement
      announcements: Announcements
+     announcements_create:  New Announcement
+     announcements_index:  Announcements 
+     announcements_new:    New Announcement
+     announcements_no:  No Announcements to display.
      archive: archive 
      archive_list_schedules:  Previous Season
      are_you_sure:  Are you sure? 
@@ -411,6 +415,7 @@ en:
      have_changed_language: Language has been changed
      help: Help 
      help_amateur:  Helping Amateurs... 
+     hide:  Hide
      hi_email_header: Hi   
      High: High   
      home: Home   

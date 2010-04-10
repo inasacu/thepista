@@ -151,6 +151,10 @@ module ApplicationHelper
     return I18n.l(time_at, :format => :day_time_wo_year) unless time_at.nil?
   end
 
+  def current_announcements
+    @current_announcements ||= Announcement.current_announcements(session[:announcement_hide_time])
+  end
+  
   def upcoming_schedules
     @upcoming_schedules ||= Schedule.upcoming_schedules(session[:schedule_hide_time])
   end

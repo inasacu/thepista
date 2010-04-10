@@ -54,7 +54,7 @@
 	<% logout =  !current_user and is_controller('home') and is_action('index') %>
   
 	<%= render :partial => "shared/header" %>
-	<%#= render :partial => "shared/notice" if current_user %>
+	<%= render :partial => "shared/notice" if current_user %>
 	
 	<% if login_session %>
 		<%= render :partial => "shared/box" %>

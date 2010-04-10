@@ -1,9 +1,9 @@
 
 
-ruby script/generate controller tournaments
-ruby script/generate model tournament
+ruby script/generate controller announcements
+ruby script/generate model announcement
 rake db:migrate
-ruby script/generate themed tournaments tournament --layout=application --with_will_paginate
+ruby script/generate themed announcements announcement --layout=application --with_will_paginate
 
 
 ruby script/generate nifty_scaffold feeds

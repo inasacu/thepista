@@ -25,8 +25,12 @@ es:
      all_user:   Todos los jugadores
      already_exist: ya existe   
      and: y   
-     announcement: Anuncio
-     announcements: Anuncios   
+     announcement: Comunicación
+     announcements: Comunicaciones 
+     announcements_create:  Nueva communicación
+     announcements_index:  Comunicaciones 
+     announcements_new:    Nueva communicación
+     announcements_no:  Ninguna communicación para mostrar. 
      archive: archiva  
      archive_list_schedules:  Temporada anterior
      are_you_sure:  ¿Estas seguro? 
@@ -411,6 +415,7 @@ es:
      have_changed_language: Has cambiado el idioma
      help: Ayuda 
      help_amateur:  "Una ayuda a los aficionados..."  
+     hide:  Ocultar
      hi_email_header: Hola   
      High: Alto   
      home: Inicio   

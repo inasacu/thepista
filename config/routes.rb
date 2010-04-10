@@ -20,8 +20,6 @@ ActionController::Routing::Routes.draw do |map|
   map.team_no_show		      'team_no_show',			                          :controller => 'schedules',       :action => 'team_no_show'
   map.team_unavailable      'team_unavailable',			                      :controller => 'schedules',       :action => 'team_unavailable'
   map.marker_list		        'marker_list',			                          :controller => 'markers',         :action => 'marker_list'
-  # map.fee_list              'fee_list',                                   :controller => 'fees',            :action => 'fee_list'
-  # map.payment_list          'payment_list',                               :controller => 'payments',        :action => 'payment_list'
 
   map.join_team   			    'teammates/:id/join_team/:teammate',    	    :controller => 'teammates',       :action => 'join_team'
   map.leave_team		  	    'teammates/:id/leave_team/:teammate',    	    :controller => 'teammates',       :action => 'leave_team'
@@ -133,7 +131,9 @@ ActionController::Routing::Routes.draw do |map|
   map.resources   :connections
   map.resources   :schedules,                                             :member => { :rate => :post }
   
-  map.resources   :clouds,          :as => 'nube'  
+  map.resources   :announcements,   :as => 'comunicaciones'
+  
+  # map.resources   :clouds,          :as => 'nube'  
   
   map.resources   :users do |user|
     user.resources :messages
@@ -158,4 +158,6 @@ ActionController::Routing::Routes.draw do |map|
   # consider removing the them or commenting them out if you're using named routes and resources.
   map.connect ':controller/:action/:id'
   map.connect ':controller/:action/:id.:format'
+  
+  map.connect ":controller/:action.:format"
 end
