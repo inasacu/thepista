@@ -1,4 +1,4 @@
-<%= stylesheet_link_tag 'looking' %>
+<%#= stylesheet_link_tag 'looking' %>
 
 <div class="block"> 
 	<div class="sidebar-block">
@@ -11,8 +11,8 @@
 				</span>
 			</h5>
 			<hr />
-			<div class="sidebar-menu">
-				<div id="following_list">
+			<!-- <div class="sidebar-menu"> -->
+				<!-- <div id="following_list"> -->
 
 					<% recipients.each do |recipient| %>
 					<%= render :partial => '/shared/vcard', :locals => {:recipient => recipient} %>
@@ -24,9 +24,9 @@
 					<%#= link_to "View all..." %>
 				</div> -->
 
-			</div>
+			<!-- </div> -->
 
-		</div>
+		<!-- </div> -->
 
 	</div>
 </div>
