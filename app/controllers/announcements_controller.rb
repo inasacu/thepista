@@ -1,6 +1,6 @@
 class AnnouncementsController < ApplicationController
   before_filter :require_user
-  # before_filter :the_maximo
+  before_filter :the_maximo, :only => [:new, :edit, :update, :delete]
 
   def hide_announcement
     session[:announcement_hide_time] = Time.now
