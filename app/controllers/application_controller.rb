@@ -25,7 +25,7 @@ class ApplicationController < ActionController::Base
 
   def current_user_session
     return @current_user_session if defined?(@current_user_session)
-    @current_user_session = UserSession.find
+    @current_user_session = UserSession.find  # wrong number of arguments (0 for 1) w/ version 2.3.5
   end
 
   def current_user
