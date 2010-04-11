@@ -152,7 +152,12 @@ module ApplicationHelper
   end
 
   def current_announcements
-    @current_announcements ||= Announcement.current_announcements(session[:announcement_hide_time])
+    unless session[:announcement_hide_time].nil?
+      time = session[:announcement_hide_time]
+    else
+      time = cookies[:announcement_hide_time].to_datetime unless cookies[:announcement_hide_time].nil?
+    end
+    @current_announcements ||= Announcement.current_announcements(time)
   end
   
   def upcoming_schedules

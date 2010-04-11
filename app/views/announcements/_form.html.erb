@@ -4,13 +4,13 @@
 
   <div class="group">
     <%= f.label :starts_at, label_name('starts_at'), :class => :label %>
-    <%= f.datetime_select :starts_at, :class => 'datetime_select' %><br />
+    <%= f.date_select :starts_at, :class => 'datetime_select' %><br />
     <span class="description"><%= label_name('starts_at', 'description') %></span>
   </div>
 
   <div class="group">
     <%= f.label :ends_at, label_name('ends_at'), :class => :label %>
-    <%= f.datetime_select :ends_at, :class => 'datetime_select' %><br />
+    <%= f.date_select :ends_at, :class => 'datetime_select' %><br />
     <span class="description"><%= label_name('ends_at', 'description') %></span>
   </div>
 

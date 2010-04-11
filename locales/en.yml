@@ -28,9 +28,13 @@ en:
      announcement: Announcement
      announcements: Announcements
      announcements_create:  New Announcement
+     announcements_delete:  Delete this Announcement
      announcements_index:  Announcements 
+     announcements_list:  Previous Announcements
      announcements_new:    New Announcement
      announcements_no:  No Announcements to display.
+     announcements_option: Options
+     announcements_previous:  Previous Announcements
      archive: archive 
      archive_list_schedules:  Previous Season
      are_you_sure:  Are you sure? 

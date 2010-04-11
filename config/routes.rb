@@ -94,6 +94,8 @@ ActionController::Routing::Routes.draw do |map|
   map.clash_tour            'clashes/:id/set_tour',                       :controller => 'clashes',         :action => 'set_tour'
   map.clash_status          'clashes/:id/set_status/:type',               :controller => 'clashes',         :action => 'set_status'
   
+  map.hide_announcements    '/hide_announcements',                        :controller => 'javascripts',     :action => 'hide_announcements'
+  
   map.resources   :user_sessions,   :as => 'repitelo'
   map.resources   :users,           :as => 'jugadores',                   :collection => { :rpx_create => :post, :rpx_associate => :post,
                                                                                             :list => :get, :recent_activity => :get, :search => :get }  
@@ -131,7 +133,7 @@ ActionController::Routing::Routes.draw do |map|
   map.resources   :connections
   map.resources   :schedules,                                             :member => { :rate => :post }
   
-  map.resources   :announcements,   :as => 'comunicaciones'
+  map.resources   :announcements,   :as => 'comunicaciones',              :collection => { :list => :get }
   
   # map.resources   :clouds,          :as => 'nube'  
   

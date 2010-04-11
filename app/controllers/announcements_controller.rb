@@ -1,13 +1,14 @@
 class AnnouncementsController < ApplicationController
   before_filter :require_user
-  before_filter :the_maximo, :only => [:new, :edit, :update, :delete]
-
-  def hide_announcement
-    session[:announcement_hide_time] = Time.now
-  end
-
+  before_filter :the_maximo 
+  
   def index
-    @announcements = Announcement.paginate(:per_page => 10, :page => params[:page])
+    @announcements = Announcement.paginate(:per_page => SCHEDULES_PER_PAGE, :page => params[:page])
+  end
+  
+  def list
+    @announcements = Announcement.previous_announcement
+      render :template => '/announcements/index'
   end
 
   def show
@@ -16,6 +17,7 @@ class AnnouncementsController < ApplicationController
 
   def new
     @announcement = Announcement.new
+    @announcement.ends_at = Time.zone.now + 1.day
   end
 
   def create
@@ -41,6 +43,13 @@ class AnnouncementsController < ApplicationController
       render :action => 'edit'
     end
   end
+
+    def destroy
+      @announcement = Announcement.find(params[:id])
+      @announcement.destroy
+      flash[:notice] = I18n.t(:successful_update)
+      redirect_to announcement_url
+    end
 
   private 
   def the_maximo

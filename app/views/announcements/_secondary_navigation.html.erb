@@ -1,0 +1,10 @@
+<div class="secondary-navigation">
+
+<ul>	
+	<li class="<%= get_first_active %>"><%= link_to(label_name(:announcements) , announcements_path) %></li>
+	<li class="<%= get_active('announcement_list') %>"><%= link_to(label_name(:announcements_previous) , list_announcements_path) %></li>
+</ul>
+
+<div class="clear"></div>
+
+</div>

@@ -28,9 +28,13 @@ es:
      announcement: Comunicación
      announcements: Comunicaciones 
      announcements_create:  Nueva communicación
+     announcements_delete:  Borrar communicación
      announcements_index:  Comunicaciones 
+     announcements_list:    Anteriores communicaciones
      announcements_new:    Nueva communicación
      announcements_no:  Ninguna communicación para mostrar. 
+     announcements_option: Opciones
+     announcements_previous:  Anteriores communicaciones
      archive: archiva  
      archive_list_schedules:  Temporada anterior
      are_you_sure:  ¿Estas seguro? 
@@ -1016,7 +1020,7 @@ es:
      unavailable: No disponible
      unsuccessful_logged_in:  Nombre o clave son incorrectas 
      upcoming: Próximos Eventos   
-     upcoming_schedule: Próximo eventos  
+     upcoming_schedule: Próximos eventos  
      upcoming_schedules: Próximos Eventos 
      upcoming_meet: Próximo eventos 
      upcoming_meets: Próximos eventos de torneo     
