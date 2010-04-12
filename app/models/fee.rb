@@ -16,10 +16,16 @@ class Fee < ActiveRecord::Base
   
   validates_presence_of         :debit_amount
   validates_numericality_of     :debit_amount
+  
+  validates_presence_of          :debit_id
+  validates_presence_of          :debit_type
+  validates_presence_of          :credit_id
+  validates_presence_of          :credit_type
+  validates_presence_of          :item_id
+  validates_presence_of          :item_type
 
   # variables to access
-  attr_accessible :concept, :description, :payed 
-  attr_accessible :debit_amount, :season_player
+  attr_accessible :concept, :description, :payed, :debit_amount, :season_player
   attr_accessible :debit_id, :debit_type, :credit_id, :credit_type, :item_id, :item_type 
   attr_accessible :type_id, :manager_id
   

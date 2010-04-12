@@ -1,6 +1,7 @@
 class FeesController < ApplicationController
   before_filter :require_user
 
+  before_filter :get_group, :only =>[:new]
   before_filter :has_manager_access, :only =>[:list, :complete]
   before_filter :has_fee_group_access, :only =>[:edit, :update]
   before_filter :has_user_access, :only => [:index]
@@ -78,8 +79,6 @@ class FeesController < ApplicationController
 
   def new
     @fee = Fee.new
-    return unless (params[:group_id])
-    @group = Group.find(params[:group_id])
 
     unless current_user.is_manager_of?(@group) 
       flash[:warning] = I18n.t(:unauthorized)
@@ -88,27 +87,25 @@ class FeesController < ApplicationController
     end
 
     @fee.credit = @group
-
-    # get subscription and non subscription users
-    @non_subscriptions = []
-    @subscriptions = []
-    @group.the_subscriptions.each do |subs|
-      @subscriptions << subs.user_id 
-    end 
-
-    # users who do not have subscriptions
-    @group.users.each do |user|
-      @non_subscriptions << user.id unless @subscriptions.include?(user.id)
-    end
-    
-    @user_subscription = User.find(:all, :conditions => ["id in (?)", @subscriptions], :order => 'name')
-    @user_non_subscription = User.find(:all, :conditions => ["id in (?)", @non_subscriptions], :order => 'name')
-
-
-    respond_to do |format|
-      format.html
-    end
+    # get_subscriptions if @group
   end
+
+  # def get_subscriptions
+  #   # get subscription and non subscription users
+  #   @non_subscriptions = []
+  #   @subscriptions = []
+  #   @group.the_subscriptions.each do |subs|
+  #     @subscriptions << subs.user_id 
+  #   end 
+  # 
+  #   # users who do not have subscriptions
+  #   @group.users.each do |user|
+  #     @non_subscriptions << user.id unless @subscriptions.include?(user.id)
+  #   end
+  #   
+  #   @user_subscription = User.find(:all, :conditions => ["id in (?)", @subscriptions], :order => 'name')
+  #   @user_non_subscription = User.find(:all, :conditions => ["id in (?)", @non_subscriptions], :order => 'name')
+  # end
 
   def create
     @fee = Fee.new(params[:fee])       
@@ -123,17 +120,17 @@ class FeesController < ApplicationController
     @fee.item = @group
     @fee.manager_id = current_user.id
 
-    unless current_user.is_manager_of?(@group)
-      flash[:warning] = I18n.t(:unauthorized)
-      redirect_back_or_default('/index')
-      return
-    end
-
     # fee to several users    
     if params[:recipient_ids]
       @recipients = User.find(params[:recipient_ids])
       @fee.debit = @recipients.first
     end
+
+    if @recipients.nil?
+      redirect_to :action => "new", :id => @group
+      return
+    end
+
 
     if @fee.save 
       @recipients.each do |recipient|
@@ -167,6 +164,25 @@ class FeesController < ApplicationController
   # end
 
   private
+
+  def get_group
+    # depended on number of groups for current user 
+    # a group id is needed
+    if current_user.groups.count == 0
+      redirect_to :controller => 'groups', :action => 'new' 
+      return
+
+    elsif current_user.groups.count == 1 
+      @group = current_user.groups.find(:first)
+
+    elsif current_user.groups.count > 1 and !params[:id].nil?
+      @group = Group.find(params[:id])
+
+    elsif current_user.groups.count > 1 and params[:id].nil? 
+      redirect_to :controller => 'groups', :action => 'index' 
+      return
+    end
+  end
 
   def has_user_access
     if params[:id]
