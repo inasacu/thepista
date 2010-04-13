@@ -33,9 +33,9 @@
 			<% if current_user.is_manager_of?(credit_object) or current_user.is_manager_of?(item_object) and !is_action('complete') %> 
             	<%= link_to label_name(:send_message), new_message_path(:id => fee.debit_id) %><br />
 				<%  unless @debit_fee.debit_amount.to_f == (@debit_payment.debit_amount.to_f + @credit_payment.credit_amount.to_f) %>
-				<%= link_to  label_name(:payment_for_bill), new_payment_path(:fee_id => fee.id) %><br />
-				<%= link_to label_name(:fees_edit), edit_fee_path(:id => fee, :group_id => fee.credit_id) %><br />
-				<%#= link_to label_name(:fees_destroy), fee_path(fee), :method => :delete, :confirm => %(#{label_name(:fees_destroy) }?) %>	
+				<%= link_to  label_name(:payment_for_bill), new_payment_path(:id => fee) %><br />
+				<%= link_to label_name(:fees_edit), edit_fee_path(:id => fee) %><br />
+				<%= link_to label_name(:fees_destroy), fee_path(fee), :method => :delete, :confirm => %(#{label_name(:fees_destroy) }?) %>	
 				<% end %>
 	        <% end %>
 		</span>

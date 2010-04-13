@@ -1,6 +1,7 @@
 class PaymentsController < ApplicationController
   before_filter :require_user
 
+  before_filter :get_fee, :only =>[:new]
   before_filter :has_manager_access, :only =>[:edit, :update]
 
   def index
@@ -24,36 +25,34 @@ class PaymentsController < ApplicationController
 
   def new
     @payment = Payment.new
-    return unless (params[:fee_id])
 
-    @fee = Fee.find(params[:fee_id])
-    @group = Group.find(@fee.credit_id) if @fee.credit_type == "Group"
+    @fee = @payment.fee unless @payment.fee.nil?
 
-    unless current_user.is_manager_of?(@group)
-      flash[:warning] = I18n.t(:unauthorized)
-      redirect_to root_url
-      return
+    if @fee
+      @group = Group.find(@fee.credit_id) if @fee.credit_type == "Group"
+      @user = User.find(@fee.debit_id)
+      
+      @users = [] 
+      @users << @user.id 
+
+      @groups = [] 
+      @groups << @group.id
+
+      @debit_fee = Fee.debit_amount(@users, @groups)
+      @debit_payment = Payment.debit_amount(@users, 'User')
+
+      @payment.concept = @fee.concept
+      @payment.debit_amount = @debit_fee.debit_amount.to_f - @debit_payment.debit_amount.to_f
+      @payment.description = @fee.description
+      @payment.fee_id = @fee.id
     end
-
-    @user = User.find(@fee.debit_id)
-    @users = [] 
-    @users << @user.id 
-
-    @groups = [] 
-    @groups << @group.id
-
-    @debit_fee = Fee.debit_amount(@users, @groups)
-    @debit_payment = Payment.debit_amount(@users, 'User')
-
-    @payment.concept = @fee.concept
-    @payment.debit_amount = @debit_fee.debit_amount.to_f - @debit_payment.debit_amount.to_f
   end
 
   def create
-    @payment_debit = Payment.new(params[:payment])
+    @payment = Payment.new(params[:payment])
     @payment_credit = Payment.new(params[:payment])
 
-    @fee = Fee.find(params[:fee][:id])
+    @fee = Fee.find(@payment.fee_id)
     @group = Group.find(@fee.credit_id) if @fee.credit_type == "Group"
     @user = User.find(@fee.debit_id) if @fee.debit_type == 'User'
 
@@ -63,12 +62,12 @@ class PaymentsController < ApplicationController
       return
     end
 
-    @payment_debit.manager_id = current_user.id
-    @payment_debit.credit = @fee.credit
-    @payment_debit.debit = @fee.debit
-    @payment_debit.item = @fee.item
-    @payment_debit.fee_id = @fee.id
-    @payment_debit.credit_amount = 0.0
+    @payment.manager_id = current_user.id
+    @payment.credit = @fee.credit
+    @payment.debit = @fee.debit
+    @payment.item = @fee.item
+    @payment.fee_id = @fee.id
+    @payment.credit_amount = 0.0
 
     @payment_credit.manager_id = current_user.id
     @payment_credit.debit = @fee.debit
@@ -76,13 +75,13 @@ class PaymentsController < ApplicationController
     @payment_credit.item = @fee.item 
     @payment_credit.fee_id = @fee.id
     @payment_credit.debit_amount = 0.0
-    @payment_credit.credit_amount = @payment_debit.debit_amount
+    @payment_credit.credit_amount = @payment.debit_amount
 
-    if @payment_debit.save and @payment_credit.save
+    if @payment.save and @payment_credit.save
       flash[:notice] = I18n.t(:successful_create)
       redirect_to fees_url(:id => @user) and return
     else
-      render :action => 'new'
+      render :action => 'new', :id => @payment
     end
   end
 
@@ -96,6 +95,23 @@ class PaymentsController < ApplicationController
   end
 
   private
+
+  def get_fee    
+    unless params[:id]
+      flash[:warning] = I18n.t(:unauthorized)
+      redirect_to root_url
+      return
+    end
+    
+    @fee = Fee.find(params[:id])    
+    @group = Group.find(@fee.credit_id) if @fee.credit_type == "Group"
+
+    unless current_user.is_manager_of?(@group)
+      flash[:warning] = I18n.t(:unauthorized)
+      redirect_to root_url
+      return
+    end
+  end
 
   def has_manager_access
     @payment = Payment.find(params[:id])

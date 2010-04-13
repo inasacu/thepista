@@ -1,6 +1,5 @@
 class Fee < ActiveRecord::Base
 
-
   belongs_to     :manager,        :class_name => 'User',        :foreign_key => 'manager_id'
   belongs_to     :debit,          :polymorphic => true
   belongs_to     :credit,         :polymorphic => true
@@ -17,12 +16,13 @@ class Fee < ActiveRecord::Base
   validates_presence_of         :debit_amount
   validates_numericality_of     :debit_amount
   
-  validates_presence_of          :debit_id
-  validates_presence_of          :debit_type
-  validates_presence_of          :credit_id
-  validates_presence_of          :credit_type
-  validates_presence_of          :item_id
-  validates_presence_of          :item_type
+  validates_presence_of         :debit_id
+  validates_presence_of         :debit_type
+  validates_presence_of         :credit_id
+  validates_presence_of         :credit_type
+  validates_presence_of         :item_id
+  validates_presence_of         :item_type
+  validates_presence_of         :manager_id
 
   # variables to access
   attr_accessible :concept, :description, :payed, :debit_amount, :season_player
@@ -115,6 +115,11 @@ class Fee < ActiveRecord::Base
       
     end
   end
+
+    protected
+      def validate
+        errors.add(:debit_amount, I18n.t(:should_be_positive)) unless debit_amount.nil? || debit_amount >= 0.0
+      end
 
 private
 	

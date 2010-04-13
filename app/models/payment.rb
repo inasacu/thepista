@@ -1,8 +1,9 @@
 class Payment < ActiveRecord::Base
-
-  belongs_to    :debit,        :polymorphic => true
-  belongs_to    :credit,       :polymorphic => true
-  belongs_to    :item,         :polymorphic => true 
+  
+  belongs_to    :manager,        :class_name => 'User',        :foreign_key => 'manager_id'
+  belongs_to    :debit,          :polymorphic => true
+  belongs_to    :credit,         :polymorphic => true
+  belongs_to    :item,           :polymorphic => true
   belongs_to    :fee
 
   # validations 
@@ -14,24 +15,21 @@ class Payment < ActiveRecord::Base
 
   validates_presence_of         :debit_amount,  :credit_amount
   validates_numericality_of     :debit_amount,  :credit_amount 
+  
+  validates_presence_of         :debit_id
+  validates_presence_of         :debit_type
+  validates_presence_of         :credit_id
+  validates_presence_of         :credit_type
+  validates_presence_of         :item_id
+  validates_presence_of         :item_type
+  validates_presence_of         :manager_id
 
   # variables to access
-  attr_accessible :concept, :description, :debit_amount, :credit_amount
+  attr_accessible :concept, :description, :debit_amount, :credit_amount, :debit_id, :debit_type
+  attr_accessible :credit_id, :credit_type, :item_id, :item_type, :manager_id, :fee_id
 
   # friendly url and removes id
   has_friendly_id :concept, :use_slug => true,:reserved => ["new", "create", "index", "list", "signup", "edit", "update", "destroy", "show"]
-
-  # def self.current_payments(user, page = 1)
-  #    self.paginate(:all, 
-  #       :conditions => ["debit_amount > 0 and debit_type = 'User' and debit_id = ?", user.id],
-  #       :order => 'created_at', :page => page, :per_page => PAYMENTS_PER_PAGE)
-  # end
-  
-  # def self.current_payments(users, page = 1)
-  #    self.paginate(:all, 
-  #       :conditions => ["debit_amount > 0 and debit_type = 'User' and debit_id in (?)", users],
-  #       :order => 'created_at', :page => page, :per_page => PAYMENTS_PER_PAGE)
-  # end
   
   def self.credit_payments(debits, credits, page=1)
     paginate(:all, :conditions => ["debit_id in (?) and debit_type = ? and 

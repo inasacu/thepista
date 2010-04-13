@@ -87,25 +87,7 @@ class FeesController < ApplicationController
     end
 
     @fee.credit = @group
-    # get_subscriptions if @group
   end
-
-  # def get_subscriptions
-  #   # get subscription and non subscription users
-  #   @non_subscriptions = []
-  #   @subscriptions = []
-  #   @group.the_subscriptions.each do |subs|
-  #     @subscriptions << subs.user_id 
-  #   end 
-  # 
-  #   # users who do not have subscriptions
-  #   @group.users.each do |user|
-  #     @non_subscriptions << user.id unless @subscriptions.include?(user.id)
-  #   end
-  #   
-  #   @user_subscription = User.find(:all, :conditions => ["id in (?)", @subscriptions], :order => 'name')
-  #   @user_non_subscription = User.find(:all, :conditions => ["id in (?)", @non_subscriptions], :order => 'name')
-  # end
 
   def create
     @fee = Fee.new(params[:fee])       
@@ -197,7 +179,6 @@ class FeesController < ApplicationController
       return
     end
   end
-
 
   def has_manager_access
     if params[:id]

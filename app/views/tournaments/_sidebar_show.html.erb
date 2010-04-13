@@ -36,9 +36,8 @@
 		<li><%= link_to label_name(:rounds_create), new_round_path(:id => @tournament) %></li>      
 		<!-- <li><%#= link_to label_name(:meets_create), new_meet_path(:id => @tournament) %></li> -->
 		<li><%= link_to(label_name('tournaments_edit'), edit_tournament_path(@tournament)) if current_user.is_tour_manager_of?(@tournament) %></li>  
-		<li><%= link_to(control_label('destroy'), 
-				{:controller => 'tournaments', :action => 'destroy', :id => @tournament}, 
-				:confirm => the_confirmation) unless @tournament.has_round? %></li>
+		<li><%= link_to(control_label('destroy'), tournament_path(@tournament), :method => :delete, 
+													:confirm => the_confirmation) unless @tournament.has_round? %></li>
 <% 
 	end 
 %>
