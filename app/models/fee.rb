@@ -22,7 +22,7 @@ class Fee < ActiveRecord::Base
   validates_presence_of         :credit_type
   validates_presence_of         :item_id
   validates_presence_of         :item_type
-  validates_presence_of         :manager_id
+  # validates_presence_of         :manager_id
 
   # variables to access
   attr_accessible :concept, :description, :payed, :debit_amount, :season_player
