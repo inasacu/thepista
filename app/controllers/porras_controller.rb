@@ -1,0 +1,2 @@
+class PorrasController < ApplicationController
+end

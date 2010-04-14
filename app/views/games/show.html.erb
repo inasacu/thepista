@@ -1,0 +1,82 @@
+<div class="block">
+  <div class="secondary-navigation">
+    <ul>
+      <li class="first"><%= link_to 'List', games_path  %></li>
+      <li><%= link_to 'New', new_game_path %></li>
+      <li class="active"><%= link_to 'Show', game_path %></li>
+    </ul>
+    <div class="clear"></div>
+  </div>          
+  <div class="content">
+    <div class="inner">
+      
+        <p>
+          <b>Starts_at:</b>
+          <%= @game.starts_at %>
+        </p>
+
+        <p>
+          <b>Ends_at:</b>
+          <%= @game.ends_at %>
+        </p>
+
+        <p>
+          <b>Reminder_at:</b>
+          <%= @game.reminder_at %>
+        </p>
+
+        <p>
+          <b>Cup_id:</b>
+          <%= @game.cup_id %>
+        </p>
+
+        <p>
+          <b>Home_id:</b>
+          <%= @game.home_id %>
+        </p>
+
+        <p>
+          <b>Away_id:</b>
+          <%= @game.away_id %>
+        </p>
+
+        <p>
+          <b>Winner_id:</b>
+          <%= @game.winner_id %>
+        </p>
+
+        <p>
+          <b>Next_game_id:</b>
+          <%= @game.next_game_id %>
+        </p>
+
+        <p>
+          <b>Home_score:</b>
+          <%= @game.home_score %>
+        </p>
+
+        <p>
+          <b>Away_score:</b>
+          <%= @game.away_score %>
+        </p>
+
+        <p>
+          <b>Points_for_single:</b>
+          <%= @game.points_for_single %>
+        </p>
+
+        <p>
+          <b>Points_for_double:</b>
+          <%= @game.points_for_double %>
+        </p>
+
+        <p>
+          <b>Type_name:</b>
+          <%= @game.type_name %>
+        </p>
+      <%= link_to 'Edit', edit_game_path(@game) %>
+    </div>
+  </div>
+</div>
+
+<% content_for :sidebar, render(:partial => 'sidebar') -%>

@@ -135,6 +135,12 @@ ActionController::Routing::Routes.draw do |map|
   
   map.resources   :announcements,   :as => 'comunicaciones',              :collection => { :list => :get }
   
+  map.resources   :cups,            :as => 'copas',                       :collection => { :list => :get }
+  map.resources   :games,           :as => 'partidos',                    :collection => { :list => :get }
+  map.resources   :porras,          :as => 'sandbags',                    :collection => { :list => :get }
+  map.resources   :predictions,     :as => 'pronostico',                  :collection => { :list => :get }
+  map.resources   :squads,                                                :collection => { :list => :get }
+  
   # map.resources   :clouds,          :as => 'nube'  
   
   map.resources   :users do |user|

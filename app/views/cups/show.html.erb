@@ -1,0 +1,117 @@
+<div class="block">
+  <div class="secondary-navigation">
+    <ul>
+      <li class="first"><%= link_to 'List', cups_path  %></li>
+      <li><%= link_to 'New', new_cup_path %></li>
+      <li class="active"><%= link_to 'Show', cup_path %></li>
+    </ul>
+    <div class="clear"></div>
+  </div>          
+  <div class="content">
+    <div class="inner">
+      
+        <p>
+          <b>Name:</b>
+          <%= @cup.name %>
+        </p>
+
+        <p>
+          <b>Starts_at:</b>
+          <%= @cup.starts_at %>
+        </p>
+
+        <p>
+          <b>Ends_at:</b>
+          <%= @cup.ends_at %>
+        </p>
+
+        <p>
+          <b>Deadline_at:</b>
+          <%= @cup.deadline_at %>
+        </p>
+
+        <p>
+          <b>Time_zone:</b>
+          <%= @cup.time_zone %>
+        </p>
+
+        <p>
+          <b>Sport_id:</b>
+          <%= @cup.sport_id %>
+        </p>
+
+        <p>
+          <b>Group_stage:</b>
+          <%= @cup.group_stage %>
+        </p>
+
+        <p>
+          <b>Group_stage_single:</b>
+          <%= @cup.group_stage_single %>
+        </p>
+
+        <p>
+          <b>Second_stage_single:</b>
+          <%= @cup.second_stage_single %>
+        </p>
+
+        <p>
+          <b>Final_stage_single:</b>
+          <%= @cup.final_stage_single %>
+        </p>
+
+        <p>
+          <b>Points_for_win:</b>
+          <%= @cup.points_for_win %>
+        </p>
+
+        <p>
+          <b>Points_for_draw:</b>
+          <%= @cup.points_for_draw %>
+        </p>
+
+        <p>
+          <b>Points_for_lose:</b>
+          <%= @cup.points_for_lose %>
+        </p>
+
+        <p>
+          <b>Description:</b>
+          <%= @cup.description %>
+        </p>
+
+        <p>
+          <b>Photo_file_name:</b>
+          <%= @cup.photo_file_name %>
+        </p>
+
+        <p>
+          <b>Photo_content_type:</b>
+          <%= @cup.photo_content_type %>
+        </p>
+
+        <p>
+          <b>Photo_file_size:</b>
+          <%= @cup.photo_file_size %>
+        </p>
+
+        <p>
+          <b>Photo_updated_at:</b>
+          <%= @cup.photo_updated_at %>
+        </p>
+
+        <p>
+          <b>Archive:</b>
+          <%= @cup.archive %>
+        </p>
+
+        <p>
+          <b>Deleted_at:</b>
+          <%= @cup.deleted_at %>
+        </p>
+      <%= link_to 'Edit', edit_cup_path(@cup) %>
+    </div>
+  </div>
+</div>
+
+<% content_for :sidebar, render(:partial => 'sidebar') -%>
