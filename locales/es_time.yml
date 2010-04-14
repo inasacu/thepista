@@ -177,6 +177,8 @@ es:
       day_time_wo_year: "%A, %e de %B a las %H:%M" # this is my code
       time_at: "a las %H:%M" # this is my code
       full_date: "%e de %B de %Y" # this is my code
+      month_year:  "%B %Y"
+      day_abbr:  "%a"
     am: "am" 
     pm: "pm" 
 

@@ -17,13 +17,21 @@ es:
      addresses: Direcciones   
      administrator: Administrador   
      ads: publicidad   
-     afterwards: despues        
-     ago:  "Hace {{count}}"     
+     afterwards: despues  
+     agenda:  Agenda
+     agendas:  Agendas
+     agendas_calendar:  Calendario
+     agendas_create:  Nueva Agenda  
+     agendas_index:  Agendas
+     agendas_new:  Nueva Agenda    
+     agendas_no:  Ninguna agenda para mostrar.
+     ago:  "Hace {{count}}" 
      all_group:  Todos los equipos 
      all_scorecard:  Todos las Clasificaciones
      all_tournament:  Todos los torneos  
      all_user:   Todos los jugadores
-     already_exist: ya existe   
+     all_venue:  Todos los centros deportivos    
+     already_exist: ya existe  
      and: y   
      announcement: Comunicación
      announcements: Comunicaciones 
@@ -128,7 +136,7 @@ es:
      create_url_venue: nuevo marcador para indicar donde vas a jugar   
      create_user: Invita a un amigo   
      create_venue: Nuevo centro deportivo   
-     create_your_own: Crear tu propio      
+     create_your_own: crear tu propio      
      created: se ha creado correctamente.   
      created_at:  Fecha de creación
      created_a_schedule: Ha creado un evento   
@@ -260,7 +268,8 @@ es:
      exit_group: Desapuntate del equipo   
      exit_tournament: Desapuntate del torneo   
      explore:  Explorar
-     facility: Instalaciones   
+     facility: Instalaciones 
+     facilitiess_create:  Nueva Instalación 
      failed_login: Error de inicio de sesión      
      false_value: "No"
      feature: Prestación
@@ -421,8 +430,8 @@ es:
      have_an_account: Si tienes una cuenta     
      have_changed_language: Has cambiado el idioma
      help: Ayuda 
-     help_amateur:  "Una ayuda a los aficionados..."  
-     hide:  Ocultar
+     help_amateur:  "Una ayuda a los aficionados..." 
+     hide:  Ocultar 
      hi_email_header: Hola   
      High: Alto   
      home: Inicio   
@@ -628,7 +637,8 @@ es:
      notes: Notas de  
      notice: NOTA   
      notification: Notificación   
-     notifications: Notificaciones   
+     notifications: Notificaciones
+     office_hours:  Horarios   
      open: Abrir   
      openid_identifier: OpenID URL
      open_id_explanation: "OpenID es un sistema de autentificación seguro, libre y muy facil de usar, que te facilitara la identificación en muchas páginas web con solo introducir tu dirección uRL de OpenID,   de  forma que solo mantendra  una  ID  global  para tus  accesos  a web  con soporte OpenID "  
@@ -640,7 +650,8 @@ es:
      openid_replace_account: Reemplaza el OpenID   
      openid_user_not_saved: Información del usuario nuevo nO ha sido guardada   
      openid_user_saved: Información del usuario nuevo ha sido guardada correctamente   
-     optional: opciónal   
+     optional: opciónal 
+     options: Opciones  
      or: o   
      or_use: ...o utiliza   
      organize:  Organizar
@@ -730,6 +741,7 @@ es:
      pre_match: Convocatoria   
      preference: preferencias
      previous: "Anterior"
+     previous_agendas:  Anteriores agendas
      previous_ranking: RP   
      previous_ranking_full: Ranking Previo
      previous_schedule: Anterior evento   
@@ -834,7 +846,7 @@ es:
      search_tournaments: Buscar torneos   
      search_types: Buscar tipos   
      search_users: Buscar jugador   
-     search_venues: Buscar centro deportivo  
+     search_venues: Buscar centro  
      season:  Temporada
      season_description:  Temporada 
      second_team: Segundo equipo   
@@ -859,7 +871,8 @@ es:
      send_message_to_group: Manda un mensaje  
      send_message_to_tournament: Manda un mensaje 
      send_message_to_round: Manda un mensaje
-     send_message_to_meet: Manda un mensaje     
+     send_message_to_meet: Manda un mensaje 
+     send_message_to_venue:  Manda un mensaje   
      send_name: Manda un nombre   
      send_note: Manda una nota   
      send_notification: Manda una notificación   
@@ -896,7 +909,7 @@ es:
      share_in_digg: "Compártelo en Digg"
      share_in_delicious: "Compártelo en Delicious"
      share_in_buzz: "Compártelo en Buzz"
-     share_in_email: "Compártelo con un Email"     
+     share_in_email: "Compártelo con un Email"
      should_be_positive: tiene que ser positivo   
      show: Mostrar   
      show_address: Presenta la dirección   
@@ -952,7 +965,7 @@ es:
      subscription_at: Finalización para convocarse el abonado  
      subscription_at_match: Finalización para convocarse el abonado   
      subscription_at_description: (¿Ha que hora termina la opción para apuntarse a un evento el abonado...(ej- 1 dia antes del evento)) 
-     subscription_false:  Jugador no abonado
+     subscription_false:  Jugador no abonado.
      subscription_true:  Jugador abonado
      subscriptions_true:  Jugadores abonados
      subscriptions_false:  Jugadores no abonados
@@ -987,18 +1000,19 @@ es:
      to_email: Email del amigo       
      to_join: Únirse a   
      to_join_email: para unirse a 
-     to_join_group: Unirte a un equipo   
+     to_join_group: unirte a un equipo   
      to_join_group_message: Petición para unirte a 
      to_join_group_message_sent: Petición para unirte a sido enviada.
-     to_join_tournament: Unirte a un torneo 
-     to_join_round: Unirte a un torneo  
+     to_join_tournament: unirte a un torneo 
+     to_join_round: unirte a un torneo  
      to_leave_group_message: Petición para desapuntarte de
      to_leave_group_message_sent: Petición para desapuntarte a sido enviada.  
-     to_join_tour: Unirte a un equipo   
+     to_join_tour: unirte a un equipo   
      to_join_tour_message: Petición para unirte a 
      to_join_tour_message_sent: Petición para unirte a sido enviada
-     to_join_tournament: Unirte a un torneo 
-     to_join_round: Unirte a un torneo  
+     to_join_tournament: unirte a un torneo 
+     to_join_round: unirte a un torneo
+     to_join_venue:  unirte a un centro deportivo
      to_leave_tour_message: Petición para desapuntarte de
      to_leave_tour_message_sent: Petición para desapuntarte a sido enviada.          
      to_member_of: Para los miembros de   
@@ -1022,8 +1036,9 @@ es:
      unauthorized:  No autorizado.
      unavailable: No disponible
      unsuccessful_logged_in:  Nombre o clave son incorrectas 
-     upcoming: Próximos Eventos   
-     upcoming_schedule: Próximos eventos  
+     upcoming: Próximos Eventos  
+     upcoming_agenda:  Próximas agendas 
+     upcoming_schedule: Próximo eventos  
      upcoming_schedules: Próximos Eventos 
      upcoming_meet: Próximo eventos 
      upcoming_meets: Próximos eventos de torneo     
@@ -1076,9 +1091,18 @@ es:
      username_password_donot_match: Nombre de usuario y contraseña no coinciden
      users_activate:  "Es necesario activar tu cuenta"     
      validate_openid: valida tu OpenID   
-     venue: Centro deportivo    
-     Venue: Centro   
-     venues: Centros Deportivos   
+     venue: Lugar de Encuentro    
+     Venue: Lugar de Encuentro
+     venues: Lugares de Encuentro
+     venues_create:    Nuevo lugar de encuentro
+     venues_index: Centros 
+     venues_name_description:  Nombre del lugar de encuentro
+     venues_edit:  Actualizar lugar de encuentro
+     venues_new:  Nuevo lugar de encuentro
+     venues_option:  Opciones
+     venues_options_without:  "¿Qué opciones tienes ya que no estas apuntado a un lugar de encuentro?"
+     venues_starts_at:  Hora de apertura
+     venues_ends_at:  Hora de cierre
      verification_canceled: OpenID verificación fue cancelada.   
      verification_failed: "Lo sentimos, the OpenID verificación ha fallado."   
      verification_setup: Verificación de OpenID tiene que ser actualizado.   
