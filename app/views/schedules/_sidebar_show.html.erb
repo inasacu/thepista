@@ -6,7 +6,7 @@
 	
 <ul class="navigation">
 <%	
-	if current_user.is_member_of?(@group)  %> 
+	if current_user.is_member_of?(@group) %> 
 		<li><%= link_to label_name(:send_message_to_group), new_message_path(:group_id => @group, :roster_id => @schedule) %></li>
 		<li><%= link_to(label_name(:invitations_create_schedule) , new_invitation_url(:schedule_id => @schedule)) %></li>
 		<li><%= link_to label_name(:send_pre_match), new_message_path(:schedule_id => @schedule) unless @schedule.played? %></li>
@@ -15,7 +15,7 @@
 <% 
 	end 
 	
-	if current_user.is_manager_of?(@group) 
+	if current_user.is_manager_of?(@group) and !is_controller('forum')
 		the_confirmation = "#{ label_name(:destroy_schedule) } #{ label_name(:from) } #{@group.name}?" 
 %> 
 		<li><%= link_to control_label('create'), new_schedule_path(:id => @schedule.group)  unless @schedule.last_season?(current_user) %></li>
