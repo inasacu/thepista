@@ -106,6 +106,12 @@ class Group < ActiveRecord::Base
     self.the_managers.each {|user| ids << user.user_id }
     the_users = User.find(:all, :conditions => ["id in (?)", ids], :order => "name")
   end
+  
+  def total_managers
+    counter = 0
+    self.all_the_managers.each {|user| counter += 1}
+    return counter
+  end
 
   def avatar
     self.photo.url
