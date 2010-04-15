@@ -1,117 +1,133 @@
+<% 
+	is_user_manager = (current_user.is_manager_of?(@cup))
+%>
+
 <div class="block">
-  <div class="secondary-navigation">
-    <ul>
-      <li class="first"><%= link_to 'List', cups_path  %></li>
-      <li><%= link_to 'New', new_cup_path %></li>
-      <li class="active"><%= link_to 'Show', cup_path %></li>
-    </ul>
-    <div class="clear"></div>
-  </div>          
+
+  <%= render :partial => 'secondary_navigation' %>   
+  
   <div class="content">
+	        
+  <h2 class="title"><%= @cup.name %></h2>
+
     <div class="inner">
-      
-        <p>
-          <b>Name:</b>
-          <%= @cup.name %>
-        </p>
 
-        <p>
-          <b>Starts_at:</b>
-          <%= @cup.starts_at %>
-        </p>
+	<!-- new table -->
+	<table>
+	<thead>
 
-        <p>
-          <b>Ends_at:</b>
-          <%= @cup.ends_at %>
-        </p>
+	<tr>
+	<th colspan="2">
+		<div class="description">
+			<span class="q">
+				<%=sanitize @cup.description.blank? ? control_label('description_no') : @cup.description %>
+			</span>
+		</div>
+	</th>
 
-        <p>
-          <b>Deadline_at:</b>
-          <%= @cup.deadline_at %>
-        </p>
+	</tr>
+	</thead>
 
-        <p>
-          <b>Time_zone:</b>
-          <%= @cup.time_zone %>
-        </p>
+	<tr>
+	<td valign="top" width="105"><%= cup_show_photo(@cup, current_user) %></td>
 
-        <p>
-          <b>Sport_id:</b>
-          <%= @cup.sport_id %>
-        </p>
+	<td>
+	<table border="1">
 
-        <p>
-          <b>Group_stage:</b>
-          <%= @cup.group_stage %>
-        </p>
+		
+		<%= tr_td_action(:name, @cup.name) %>
+		<%= tr_td_action(:second_team, @cup.second_team) %>
 
-        <p>
-          <b>Group_stage_single:</b>
-          <%= @cup.group_stage_single %>
-        </p>
+		<tr>
+			<%= content_tag :td, label_name(:manager), :class => "label" %>
+			<%= content_tag :td, user_list(@cup.all_the_managers), :class => get_the_action %>
+		</tr>
 
-        <p>
-          <b>Second_stage_single:</b>
-          <%= @cup.second_stage_single %>
-        </p>
+		<tr>
+			<%= content_tag :td, label_name(:marker), :class => "label" %>
+			<%= content_tag :td, marker_link(@cup.marker), :class => get_the_action %>
+		</tr>
 
-        <p>
-          <b>Final_stage_single:</b>
-          <%= @cup.final_stage_single %>
-        </p>
+		<%= tr_td_action(:sports, @cup.sport.name) %>
+		<%= tr_td_action(:game_day, nice_day_time(@cup.schedules.first.starts_at)) unless @cup.schedules.blank? %>
+		<%= tr_td_action(:time_zone, @cup.time_zone) %>
 
-        <p>
-          <b>Points_for_win:</b>
-          <%= @cup.points_for_win %>
-        </p>
+	<% 
+		the_label = h(label_name(@cup.looking, 'value'))
+		the_confirmation = label_with_name('looking_for_user', "#{@cup.name}?") 
+	%>
+		<tr>
+		  <%= content_tag :td, label_name(:looking_for_user), :class => "label" %>
+		  <%= content_tag :td, 
+				(is_user_manager ? link_to(the_label, set_cup_looking_path(:id => @cup), :confirm => the_confirmation) : the_label), 
+				:class => get_the_action %>
+		</tr>
+		
+		<%= tr_td_action(:users, t(:has_cup_users, :count => @cup.users.count)) %>
+		<%= tr_td_action(:schedules, t(:has_cup_schedules, :count => @cup.schedules.count)) unless @cup.schedules.blank? %>
+		<%= tr_td_action(:points_for_win, @cup.points_for_win) %>
+		<%= tr_td_action(:points_for_draw, @cup.points_for_draw) %>
+		<%= tr_td_action(:points_for_lose, @cup.points_for_lose) %>		
+		<%= tr_td_action(:player_limit, @cup.player_limit) %>
+		
+		<tr>
+			<%= content_tag :td, link_to(label_name(:standing), standing_path(:id => @cup)), :class => "label" %>
+		</tr>
+		
+		<tr>
+			<%= content_tag :td, label_name(:conditions), :class => "label" %>
+			<%= content_tag :td, sanitize(@cup.conditions), :class => get_the_action %>	
+		</tr>
 
-        <p>
-          <b>Points_for_draw:</b>
-          <%= @cup.points_for_draw %>
-        </p>
+	 <% if current_user.is_member_of?(@cup) and !@cup.available_users.empty? %>
+	   <tr>
+	     <%= content_tag :td, label_name(:users_available), :class => "label" %>
+	     <%#= content_tag :td, user_list(@cup.available_users), :class => get_the_action %>
+	     <%= content_tag :td, user_list(@cup.users), :class => get_the_action %>
+	   </tr>
 
-        <p>
-          <b>Points_for_lose:</b>
-          <%= @cup.points_for_lose %>
-        </p>
+		<tr>
+		<%= render :partial => '/shared/show_images', :locals => {:collection => @cup.users} %>			
+		</tr>	
+	
+	 <% end %>
 
-        <p>
-          <b>Description:</b>
-          <%= @cup.description %>
-        </p>
+		<% 
+			# the_label = h(label_name(@cup.available, 'value'))
+			# the_confirmation = label_with_name('set_available', "#{@cup.name}?") 
+		%>
+			<!-- <tr>
+			  <%#= content_tag :td, label_name(:available), :class => "label" %>
+			  <%#= content_tag :td, 
+					(is_user_manager ? link_to(the_label, set_cup_available_path(:id => @cup.id), :confirm => the_confirmation) : the_label), 
+					:class => get_the_action %>
+			</tr> -->
 
-        <p>
-          <b>Photo_file_name:</b>
-          <%= @cup.photo_file_name %>
-        </p>
+		<% 
+			# the_label = h(label_name(@cup.enable_comments, 'value'))
+			# the_confirmation = label_with_name('enable_comments', "#{@cup.name}?") 
+		%>
+			<!-- <tr>
+			  <%#= content_tag :td, label_name(:enable_comments), :class => "label" %>
+			  <%#= content_tag :td, 
+					(is_user_manager ? link_to(the_label, set_cup_enable_comments_path(:id => @cup.id), :confirm => the_confirmation) : the_label), 
+					:class => get_the_action %>
+			</tr> -->
 
-        <p>
-          <b>Photo_content_type:</b>
-          <%= @cup.photo_content_type %>
-        </p>
+		</table>
 
-        <p>
-          <b>Photo_file_size:</b>
-          <%= @cup.photo_file_size %>
-        </p>
+	</td>
+	</tr>
 
-        <p>
-          <b>Photo_updated_at:</b>
-          <%= @cup.photo_updated_at %>
-        </p>
+	</table>
+	<!-- new table -->
 
-        <p>
-          <b>Archive:</b>
-          <%= @cup.archive %>
-        </p>
 
-        <p>
-          <b>Deleted_at:</b>
-          <%= @cup.deleted_at %>
-        </p>
-      <%= link_to 'Edit', edit_cup_path(@cup) %>
+			 
     </div>
   </div>
 </div>
 
-<% content_for :sidebar, render(:partial => 'sidebar') -%>
+<% content_for :sidebar, render(:partial => 'sidebar_show') -%>
+<% content_for :sidebar, render(:partial => 'shared/share_object', :locals => {:cup => @cup}) if @cup -%>
+<% content_for :sidebar, render(:partial => 'shared/sidebar_show_team', :locals => {:cup => @cup}) if current_user.is_manager_of?(@cup) %>

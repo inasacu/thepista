@@ -144,7 +144,28 @@ es:
      credit_amount: A recibir   
      credit_amount_description:  Lo que recibes
      credit_total:  Pago total
-     credits: Pagos  
+     credits: Pagos
+     cup:  Copa  
+     cups:  Copas
+     cup_options:  Opciones
+     cups_create:  Nueva copa 
+     cups_destroy:  Borrar copa
+     cups_edit:  Modificar copa
+     cups_index:   Copas
+     cups_index_option: Opciones 
+     cups_invitations_create:  Invita a un amigo a esta copa
+     cups_join:  Unete a la copa
+     cups_list:  Resto de copas
+     cups_new:  Nueva copa
+     cups_new_option: Opciones 
+     cups_no:  Ninguna copa para mostrar.
+     cups_none:  Ninguna copa.
+     cups_options_without: "¿Qué opciones tienes ya que no estas apuntado a una copa?"
+     cups_option:  Opciones 
+     cups_search: Busqueda de copas
+     cups_search_to_join: Puedes buscar una copa para unirte. 
+     cups_show:  Mostrar copa
+     cups_update: Modificar copa
      current_accounts: Cuentas actuales   
      current_language: Español    
      current_time: La hora   
