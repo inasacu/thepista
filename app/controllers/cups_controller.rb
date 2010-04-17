@@ -5,11 +5,6 @@ class CupsController < ApplicationController
 
   def index
     @cups = Cup.paginate :page => params[:page], :order => 'name' 
-
-    # if @cups.nil? or @cups.blank?
-    #   redirect_to :action => 'list'
-    #   return
-    # end
   end
 
   # def list
@@ -20,14 +15,13 @@ class CupsController < ApplicationController
   #   render :template => '/cups/index'       
   # end
 
-  def team_list
-    @users = @cup.users.paginate(:page => params[:page], :per_page => USERS_PER_PAGE)
-    @total = @cup.users.count
+  def squad_list
+    @squads = @cup.squads.paginate(:page => params[:page], :per_page => USERS_PER_PAGE)
+    @total = @cup.squads.count
   end
 
   def show
     store_location 
-    # @cup = Cup.find(params[:id])
   end
 
   def new
@@ -49,13 +43,9 @@ class CupsController < ApplicationController
     end
   end
 
-  def edit
-    # @cup = Cup.find(params[:id])
-  end
-
   def update
     @original_cup = Cup.find(params[:id])
-
+    
     if @cup.update_attributes(params[:cup]) 
       if (@original_cup.points_for_win != @cup.points_for_win) or 
         (@original_cup.points_for_lose != @cup.points_for_lose) or 

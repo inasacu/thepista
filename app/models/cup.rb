@@ -11,11 +11,10 @@ class Cup < ActiveRecord::Base
     :s3_credentials => "#{RAILS_ROOT}/config/s3.yml",
     :url => "/assets/cups/:id/:style.:extension",
     :path => ":assets/cups/:id/:style.:extension",
-    :default_url => "cup_avatar.png"  
+    :default_url => "group_avatar.png"  
 
     validates_attachment_content_type :photo, :content_type => ['image/jpeg', 'image/png', 'image/gif', 'image/jpg', 'image/pjpeg']
     validates_attachment_size         :photo, :less_than => 5.megabytes
-    
 
   # validations 
   validates_uniqueness_of   :name,    :case_sensitive => false
@@ -29,66 +28,38 @@ class Cup < ActiveRecord::Base
   validates_length_of       :description,     :within => DESCRIPTION_RANGE_LENGTH
       
   validates_format_of       :name,            :with => /^[A-z 0-9 _.-]*$/ 
-  validates_format_of       :second_team,     :with => /^[A-z 0-9 _.-]*$/ 
     
   validates_numericality_of :points_for_win,  :greater_than_or_equal_to => 0, :less_than_or_equal_to => 100
   validates_numericality_of :points_for_lose, :greater_than_or_equal_to => 0, :less_than_or_equal_to => 100
   validates_numericality_of :points_for_draw, :greater_than_or_equal_to => 0, :less_than_or_equal_to => 100
 
   # variables to access
-  attr_accessible :name, :gameday_at, :points_for_win, :points_for_draw, :points_for_lose
+  attr_accessible :name, :points_for_win, :points_for_draw, :points_for_lose
   attr_accessible :time_zone, :sport_id, :description, :photo
+  attr_accessible :starts_at, :ends_at, :deadline_at
     
   # friendly url and removes id  
   has_friendly_id :name, :use_slug => true, :reserved => ["new", "create", "index", "list", "signup", "edit", "update", "destroy", "show"]
-                  
-  has_and_belongs_to_many :users,           :join_table => "cups_users",   :order => "name"
-
-  has_many      :classifieds
-  has_many      :schedules
-  has_many      :addresses  
-  has_many      :accounts 
-  has_many      :messages
-  has_many      :accounts  
-  has_many      :payments
-  has_many      :scorecards, :conditions => "user_id > 0 and played > 0 and archive = false", :order => "points DESC, ranking"
-  
-  has_many      :archive_scorecards, 
-                :through => :scorecards,
-                :conditions => ["user_id > 0 and played > 0 and season_ends_at < ?", Time.zone.now], 
-                :order => "points DESC, ranking"
-                
-  has_many      :fees   
+      
+  has_and_belongs_to_many :squads,          :join_table => "cups_squads",   :order => "name"
+  has_many                :games
+  has_many                :standings,       :order => "points DESC, ranking"
 
   has_many :the_managers,
   :through => :manager_roles,
-  :source => :roles_users
+  :source => :roles_squads
 
   has_many  :manager_roles,
   :class_name => "Role", 
   :foreign_key => "authorizable_id", 
-  :conditions => ["roles.name = 'manager' and roles.authorizable_type = 'Group'"]
-  
-  has_many :the_subscriptions,
-  :through => :subscription_roles,
-  :source => :roles_users
-
-  has_many  :subscription_roles,
-  :class_name => "Role", 
-  :foreign_key => "authorizable_id", 
-  :conditions => ["roles.name = 'subscription' and roles.authorizable_type = 'Group'"]
+  :conditions => ["roles.name = 'manager' and roles.authorizable_type = 'Cup'"]
 
   belongs_to    :sport   
-  belongs_to    :marker 
 
-  has_one       :blog
+  before_create :format_description
+  before_update :format_description
 
-  before_create :format_description, :format_conditions
-  before_update :format_description, :format_conditions
-  after_create  :create_cup_blog_details, :create_cup_marker, :create_cup_scorecard
-
-  # # method section
-    
+  # # method section    
   def object_counter(objects)
     @counter = 0
     objects.each { |object|  @counter += 1 }
@@ -98,7 +69,7 @@ class Cup < ActiveRecord::Base
   def all_the_managers
     ids = []
     self.the_managers.each {|user| ids << user.user_id }
-    the_users = User.find(:all, :conditions => ["id in (?)", ids], :order => "name")
+    the_squads = User.find(:all, :conditions => ["id in (?)", ids], :order => "name")
   end
 
   def avatar
@@ -113,8 +84,8 @@ class Cup < ActiveRecord::Base
     self.photo.url
   end
   
-  def has_schedule?
-    self.schedules.count > 0
+  def has_game?
+    self.games.count > 0
   end
   
   def is_futbol?
@@ -126,37 +97,17 @@ class Cup < ActiveRecord::Base
    	# sports related to basket
     return [7].include?(self.sport_id)
   end
-
-  def self.looking_for_user(user)
-    find(:all, 
-    :conditions => ["id not in (?) and archive = false and looking = true and time_zone = ?", user.cups, user.time_zone],
-    :order => "updated_at",
-     :limit => LOOKING_USERS) 
-  end
-  
-  def available_users
-      self.users.find(:all, :conditions => 'available = true', :order => 'users.name')      
-  end
   
   def games_played
-    games_played = 0
-    self.schedules.each {|schedule| games_played += 1 if schedule.played}
-
-    # @match = Match.find(:first, :select => "count(*) as total", 
-    # :conditions => ["schedule_id in (select id from schedules where cup_id = ?) and type_id = 1", self.id],
-    # :cup => "user_id", :order => "count(*) desc")
-    # 
-    # games_played = @match.total
-    return games_played
+    the_played = 0
+    self.games.each {|game| the_played += 1 if game.played}
+    return the_played
   end
 
   def create_cup_details(user)
     user.has_role!(:manager, self)
     user.has_role!(:creator, self)
     user.has_role!(:member,  self)
-
-    Scorecard.create_user_scorecard(user, self)    
-    GroupsUsers.join_team(user, self)
   end
   
   def format_description
@@ -166,20 +117,13 @@ class Cup < ActiveRecord::Base
   def format_conditions
     self.conditions.gsub!(/\r?\n/, "<br>") unless self.conditions.nil?
   end
-
 private
-  def create_cup_marker
-    GroupsMarkers.join_marker(self, self.marker)
-  end
 
-  def create_cup_blog_details
-    @blog = Blog.create_cup_blog(self)
-    # @entry = Entry.create_cup_entry(self, @blog)
-    # Comment.create_cup_comment(self, @blog, @entry)
-  end
 
-  def create_cup_scorecard   
-    Scorecard.create_cup_scorecard(self)
-  end
+def validate
+  self.errors.add(:deadline_at, I18n.t(:must_be_before_starts_at)) if self.deadline_at >= self.starts_at
+  self.errors.add(:starts_at, I18n.t(:must_be_before_ends_at)) if self.starts_at >= self.ends_at
+  self.errors.add(:ends_at, I18n.t(:must_be_after_starts_at)) if self.ends_at <= self.starts_at
+end
 end
 

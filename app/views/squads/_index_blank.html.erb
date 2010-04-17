@@ -1,0 +1,17 @@
+
+<h2 class="title"><%= label_name(:squads_options_without) %></h2>
+
+<div class="inner">
+
+<p>
+	<span class="large">*&nbsp;&nbsp;
+		<%= link_to("#{label_name(:you_can)} #{label_name(:create_your_own)} #{label_name(:squad)}", new_squad_url(:id => @cup)) %>
+	</span>
+</p>
+<p>
+	<span class="large">*&nbsp;&nbsp;
+		<%= link_to("#{label_name(:you_can)} #{label_name(:squads_join)}", squads_path) %>
+		<%#=  link_to(label_name(:all_squad) , list_squads_path) %>
+	</span>
+</p>
+</div>

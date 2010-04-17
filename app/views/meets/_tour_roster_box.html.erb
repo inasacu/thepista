@@ -4,8 +4,8 @@
 
 	type_id = [1, 4]
 		
-	is_manager = current_user.is_tour_manager_of?(@tournament)
-	is_sub_manager = current_user.is_tour_sub_manager_of?(@tournament)
+	is_manager = current_user.is_manager_of?(@tournament)
+	is_sub_manager = current_user.is_sub_manager_of?(@tournament)
 	
 	@positions = Type.find(:all, :conditions => "table_type = 'User'", :order => "id")
 	@tournament = @meet.tournament
@@ -44,7 +44,7 @@ if roster_count
 		
 			<td class="last">
 			<% 
-			if current_user == clash.user or current_user.is_tour_manager_of?(@tournament) 
+			if current_user == clash.user or current_user.is_manager_of?(@tournament) 
 				@clash_type.each do |type|  
 					unless type.id == clash.type_id			
 			
@@ -52,7 +52,7 @@ if roster_count
 						if type.id == 4
 			%>
 							<%= render :partial => '/meets/tour_roster_option', 
-									:locals => {:type => type, :clash => clash} if current_user.is_tour_manager_of?(@tournament) %>
+									:locals => {:type => type, :clash => clash} if current_user.is_manager_of?(@tournament) %>
 			<% 			
 						else
 			%>

@@ -186,7 +186,7 @@ class UsersController < ApplicationController
   
 
   def set_tour_manager 
-    unless current_user.is_tour_creator_of?(@tournament)
+    unless current_user.is_creator_of?(@tournament)
       flash[:warning] = I18n.t(:unauthorized)  
       return
     end
@@ -196,7 +196,7 @@ class UsersController < ApplicationController
   end
 
   def remove_tour_manager 
-    unless current_user.is_tour_creator_of?(@tournament)
+    unless current_user.is_creator_of?(@tournament)
       flash[:warning] = I18n.t(:unauthorized)  
       return
     end

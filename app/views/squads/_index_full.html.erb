@@ -1,0 +1,47 @@
+<h2 class="title"><%= get_collection_label(@squads) %></h2>
+
+<div class="inner">
+	
+	<table class="table">
+
+	  <tr>             
+	    <th class="first">&nbsp;</th>
+	    <th><%= label_name(:name) %></th>
+	    <th><%= label_name(:general_information) %></th>
+	    <th class="last">&nbsp;</th>
+	  </tr>
+
+	  <% @squads.each do |squad| -%>
+
+	  <tr>  
+			<td>
+				<%= squad_image_link_small squad %>
+			</td>
+
+			<td class="name_and_date">
+				<%= squad_link(squad) %>
+			</td>
+
+
+			<td class="name_and_date">
+				<%#= link_to(label_name(:scorecard), scorecard_path(:id => squad)) %>
+				<span class="date">
+					<%#= nice_full_date(schedule.starts_at) unless schedule.nil? %> 
+				</span>
+			</td>
+
+	       <td class="last">
+				<span class="action">
+
+					
+				</span>
+	       </td>
+	  </tr>   
+ 
+	  <% end -%>
+
+	</table>	
+	
+	<%#= render :partial => 'shared/action_bar', :locals => { :collection => @squads } %>
+
+</div>

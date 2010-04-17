@@ -17,14 +17,14 @@
 <% 
 	end 
 	
-	if current_user.is_tour_sub_manager_of?(@tournament) %> 
+	if current_user.is_sub_manager_of?(@tournament) %> 
 		<%= content_tag 'li', link_to(label_name(:send_pre_clash), new_message_path(:meet_id => @meet)) unless @meet.played? or !is_convocado %>
 		<%= content_tag 'li', link_to(label_name(:send_clash), new_message_path(:clash_id => @meet.clashes.first)) if @meet.played? %>
 		<%#= content_tag 'li', link_to(label_name(:send_standing), new_message_path(:standing_id => @meet.round)) %>
 <% 
 	end 
 	
-	if current_user.is_tour_manager_of?(@tournament) 
+	if current_user.is_manager_of?(@tournament) 
 		the_confirmation = "#{ label_name(:destroy_meet) } #{ label_name(:from) } #{@meet.concept}?" 
 %> 
 		<%= content_tag 'li', link_to(control_label('create'), new_meet_path(:id => @meet.round)) unless is_convocado %>

@@ -96,6 +96,8 @@ ActionController::Routing::Routes.draw do |map|
   
   map.hide_announcements    '/hide_announcements',                        :controller => 'javascripts',     :action => 'hide_announcements'
   
+  map.squad_list			      'squad_list',			                            :controller => 'cups',            :action => 'squad_list'
+  
   map.resources   :user_sessions,   :as => 'repitelo'
   map.resources   :users,           :as => 'jugadores',                   :collection => { :rpx_create => :post, :rpx_associate => :post,
                                                                                             :list => :get, :recent_activity => :get, :search => :get }  

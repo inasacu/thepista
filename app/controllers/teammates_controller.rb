@@ -145,7 +145,7 @@ class TeammatesController < ApplicationController
   end
 
   def has_tour_manager_access
-    unless current_user.is_tour_manager_of?(@tournament) or !current_user.is_tour_member_of?(@tournament)
+    unless current_user.is_manager_of?(@tournament) or !current_user.is_tour_member_of?(@tournament)
       flash[:warning] = I18n.t(:unauthorized)
       redirect_to root_url
       return

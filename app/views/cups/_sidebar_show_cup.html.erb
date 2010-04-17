@@ -1,0 +1,19 @@
+<% 
+	the_cup = h(@cup.name)
+
+	the_label = label_with_name('create_game', @cup.name)
+	the_confirmation = "#{ label_name(:cups_destroy) } #{the_cup}?" 
+%>
+
+<div class="block">
+	
+	<h3><%= label_name(get_the_controller, 'options') %></h3>
+	
+	<ul class="navigation">
+		<li><%= link_to label_name(:squads_create), new_squad_path(:id => @cup) %></li>
+			<li><%= link_to label_name(:games_create), new_game_path(:id => @cup) %></li>
+		<li><%= link_to label_name(:@cups_edit), edit_cup_path(@cup) %></li>  
+		<li><%= link_to(the_confirmation, cup_path(@cup), :method => :delete, :confirm => the_confirmation) unless @cup.has_game? %></li>
+	</ul>
+	
+</div>

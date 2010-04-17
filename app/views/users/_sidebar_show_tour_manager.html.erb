@@ -15,8 +15,8 @@
 <% 
 		end 
 		
-		if @user == current_user and @user.is_tour_creator_of?(tournament)  
-			unless @user.is_tour_manager_of?(tournament)
+		if @user == current_user and @user.is_creator_of?(tournament)  
+			unless @user.is_manager_of?(tournament)
 				the_label = label_with_name('role_add_manager', tournament.name)
 				the_confirmation = "#{ label_name(:role_add_manager)} #{ label_name(:to) } #{@user.name} #{ label_name(:to) } #{tournament.name}?"
 %>		

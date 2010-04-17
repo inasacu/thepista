@@ -7,7 +7,7 @@
 <% 
 current_user.tournaments.each do |tournament| 
 
-	if current_user.is_tour_manager_of?(tournament) 
+	if current_user.is_manager_of?(tournament) 
 		the_label = "#{label_name(:fee_user_for_tournament)}  #{tournament.name}"
 %>		
 			<li><%= link_to(the_label , new_fee_url(:tournament_id => tournament)) %></li>

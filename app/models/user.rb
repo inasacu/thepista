@@ -244,40 +244,25 @@ class User < ActiveRecord::Base
       return is_member
     end
 
-    def is_tour_manager_of?(tournament)
-      self.has_role?('manager', tournament) 
+    # had role models
+    def is_manager_of?(object)
+      self.has_role?('manager', object)
     end
 
-    def is_tour_creator_of?(tournament)
-      self.has_role?('creator', tournament)
+    def is_sub_manager_of?(object)
+      self.has_role?('sub_manager', object) or self.has_role?('manager', object)
     end
 
-    def is_tour_sub_manager_of?(tournament)
-      self.has_role?('sub_manager', tournament) or self.has_role?('manager', tournament)
+    def is_subscriber_of?(object)
+      self.has_role?('subscription', object) 
     end
 
-    def is_tour_subscriber_of?(tournament)
-      self.has_role?('subscription', tournament) 
+    def is_moderator_of?(object)
+      self.has_role?('moderator', object) 
     end
 
-    def is_manager_of?(group)
-      self.has_role?('manager', group)
-    end
-
-    def is_sub_manager_of?(group)
-      self.has_role?('sub_manager', group) or self.has_role?('manager', group)
-    end
-
-    def is_subscriber_of?(group)
-      self.has_role?('subscription', group) 
-    end
-
-    def is_moderator_of?(group)
-      self.has_role?('moderator', group) 
-    end
-
-    def is_creator_of?(group)
-      self.has_role?('creator', group)
+    def is_creator_of?(object)
+      self.has_role?('creator', object)
     end
 
     def is_manager?

@@ -3,27 +3,7 @@
 <h3><%= control_label('option') %></h3>
 
 <ul class="navigation">
-<% 
-	if current_user.is_member_of?(@cup) 
-		the_confirmation = label_with_name(:do_leave_cup, "#{@cup.name}?")
-%>
-		<li><%= link_to(label_name(:send_message_to_cup), new_message_path(:cup_id => @cup.id)) %></li>
-		<li><%= link_to(label_name(:invitations_create_cup) , new_invitation_url(:cup_id => @cup)) %></li>	
-		<li><%= link_to label_name(:send_standing), new_message_path(:standing_id => @cup.schedules.first) unless @cup.schedules.blank? %></li>
-<% 
-	else
-%>
-		<li><%= link_to(label_name(:send_message_to_cup), new_message_path(:id => @cup.all_the_managers.first)) %></li>
-<%
-		unless current_user.has_cup_petition?(current_user, @cup)
-			the_label = label_with_name('add_to_cup', @cup.name)
-			the_confirmation = "#{ label_name(:petition_to_join_cup) } #{current_user.name} #{ label_name(:to) } #{@cup.name}?"
-%> 
-			<li><%= link_to(the_label, join_team_path(:id => @cup, :teammate => current_user), :confirm => the_confirmation) %></li>
-<% 
-		end 
-	end
-%>
+		<li><%= link_to(label_name(:invitations_create_cup) , new_invitation_url(:cup_id => @cup)) %></li>
 </ul>
 
 </div>

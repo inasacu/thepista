@@ -147,7 +147,7 @@ es:
      credits: Pagos
      cup:  Copa  
      cups:  Copas
-     cup_options:  Opciones
+     cups_all:  Todas las copas
      cups_create:  Nueva copa 
      cups_destroy:  Borrar copa
      cups_edit:  Modificar copa
@@ -155,16 +155,19 @@ es:
      cups_index_option: Opciones 
      cups_invitations_create:  Invita a un amigo a esta copa
      cups_join:  Unete a la copa
-     cups_list:  Resto de copas
+     cups_list:  Anteriores Copas
      cups_new:  Nueva copa
      cups_new_option: Opciones 
      cups_no:  Ninguna copa para mostrar.
      cups_none:  Ninguna copa.
+     cup_options:  Opciones
      cups_options_without: "¿Qué opciones tienes ya que no estas apuntado a una copa?"
      cups_option:  Opciones 
      cups_search: Busqueda de copas
      cups_search_to_join: Puedes buscar una copa para unirte. 
      cups_show:  Mostrar copa
+     cups_to_join:   inscribite a una copa 
+     cups_upcoming: Próximas Copas  
      cups_update: Modificar copa
      current_accounts: Cuentas actuales   
      current_language: Español    
@@ -203,7 +206,8 @@ es:
      description_wall:  Detalles del muro
      destroy: Borrar   
      destroy_address: Borra la dirección   
-     destroy_announcement: Borra un anuncio   
+     destroy_announcement: Borra un anuncio 
+     destroy_cup:  Borra copa  
      destroy_credit: Borra un pago   
      destroy_debit: Borra un cargo   
      destroy_description: Borra un detalles   
@@ -306,6 +310,7 @@ es:
      fees: Cargos   
      female_value: Femenina   
      fire_from_group: Desapunta de   
+     flag:  Bandera
      follow: Sigue 
      forum: Notas de    
      forward: Adelante   
@@ -323,11 +328,28 @@ es:
      from_Convocado: Pasate a ausente
      from_message: De   
      from_payment: Pago a   
-     from_Ultima_Hora: Pasate a convocado   
-     game: Partido   
-     gameday_at:  Dia del partido
+     from_Ultima_Hora: Pasate a convocado 
+     game: Evento 
+     games:  Eventos  
+     games_archive_list:  Temporada anterior
+     gameday_at:  Dia del Evento
      game_day: Encuentro 
      gameday_at_description:  Dia de la semana del encuentro  
+     games_destroy:  Borrar evento
+     games_index:  Eventos
+     games_index_option: Opciones 
+     games_invitations_create:  Invita a un amigo al evento
+     games_list:  Anteriores eventos
+     games_list_no: Ningun evento previo para mostrar.
+     games_manager_option:  Requiere responsable de equipo para ver mas opciones.
+     games_new: Nuevo evento
+     games_no: Ningun evento para mostrar.
+     games_create: Nuevo Evento
+     games_edit: Modificar evento
+     games_update: Modificar evento
+     games_option:  Opciones 
+     game_options:  Opciones 
+     games_show: Detalles del evento
      game_lost: Derrota   
      game_notes: Notas de futbol
      game_played:  Partido jugado
@@ -423,7 +445,15 @@ es:
      groups: Equipos    
      has_been_sent: ha sido mandado correctamente.  
      has_been_sent_female: has sido mandada correctamente. 
-     has_been_taken: ya se ha elegido.  Intenta otro nombre. 
+     has_been_taken: ya se ha elegido.  Intenta otro nombre.
+     has_cup_squads:
+        zero: "Esta copa no tiene equipos." 
+        one:  "Esta copa tiene 1 equipo." 
+        other: "Esta copa tiene {{count}} equipos."
+     has_cup_games:
+        zero: "Esta copa no tiene eventos." 
+        one:  "Esta copa tiene 1 evento." 
+        other: "Esta copa tiene {{count}} eventos."
      has_group_schedules:
         zero: "Este equipo no tiene eventos." 
         one:  "Este equipo tiene 1 evento." 
@@ -972,6 +1002,28 @@ es:
      single_identity: te permite tener una iD global para muchas páginas web.  Puedes conseguir tu dirección uRL de OpenID en   
      something_wrong: "Lo sentimos!, algo ha ido mal."  
      something_wrong_explained: "Ya hemos registrado este fallo.  Lo miraremos lo antes posible."
+     squad: Equipo
+     squads: Equipos
+     squads_all:  Todos los equipos
+     squads_create:  Nuevo equipo 
+     squads_destroy:  Borrar equipo
+     squads_edit:  Modificar equipo
+     squads_index:   Equipo
+     squads_index_option: Opciones 
+     squads_invitations_create:  Invita a un amigo a este equipe
+     squads_join:  Unete al equipo
+     squads_new:  Nuevo equipo
+     squads_new_option: Opciones 
+     squads_no:  Ningun equipo para mostrar.
+     squads_none:  Ningun equipo.
+     squad_options:  Opciones
+     squads_options_without: "¿Qué opciones tienes ya que no hay equipos?"
+     squads_option:  Opciones 
+     squads_search: Busqueda de equipos
+     squads_search_to_join: Puedes buscar un equipo. 
+     squads_show:  Mostrar equipo
+     squads_to_join:   crea un equipo 
+     squads_update: Modificar equipo
      start_session: inicia tu sesión   
      starts_at: Inicio  
      starts_at_description: (¿Ha que hora empieza el evento?) 
@@ -1245,6 +1297,7 @@ es:
      invitations_no:  Ninguna invitación para mostrar
      invitations_option:  Opciones
      invitations_create:  Invita a tus amigos a unirse a HayPista
+     invitations_create_cup: Invita a tus amigos a este evento
      invitations_create_group: Invita a tus amigos a este equipo
      invitations_create_schedule: Invita a tus amigos a este evento
      invitations_create_tournament: Invita a tus amigos a este tourneo
