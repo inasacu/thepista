@@ -1,82 +1,63 @@
+<div class="columns"> 
+
+  <div class="column left"> 
 
   <div class="group">
-    <%= f.label :starts_at, "Starts_at", :class => :label %>
-    <%= f.datetime_select :starts_at, :class => 'datetime_select' %>
-    <span class="description">Ex: a simple text</span>
-  </div>
-
-  <div class="group">
-    <%= f.label :ends_at, "Ends_at", :class => :label %>
-    <%= f.datetime_select :ends_at, :class => 'datetime_select' %>
-    <span class="description">Ex: a simple text</span>
-  </div>
-
-  <div class="group">
-    <%= f.label :reminder_at, "Reminder_at", :class => :label %>
-    <%= f.datetime_select :reminder_at, :class => 'datetime_select' %>
-    <span class="description">Ex: a simple text</span>
-  </div>
-
-  <div class="group">
-    <%= f.label :cup_id, "Cup_id", :class => :label %>
-    <%= f.text_field :cup_id, :class => 'text_field' %>
-    <span class="description">Ex: a simple text</span>
-  </div>
-
-  <div class="group">
-    <%= f.label :home_id, "Home_id", :class => :label %>
-    <%= f.text_field :home_id, :class => 'text_field' %>
-    <span class="description">Ex: a simple text</span>
-  </div>
-
-  <div class="group">
-    <%= f.label :away_id, "Away_id", :class => :label %>
-    <%= f.text_field :away_id, :class => 'text_field' %>
-    <span class="description">Ex: a simple text</span>
-  </div>
-
-  <div class="group">
-    <%= f.label :winner_id, "Winner_id", :class => :label %>
-    <%= f.text_field :winner_id, :class => 'text_field' %>
-    <span class="description">Ex: a simple text</span>
-  </div>
+    <%= f.label :home_id, label_name('escuadras'), :class => :label %>
+   	<%= f.select(:home_id, @home, {:selected => @home.id, :include_blank => true}) %>&nbsp;&nbsp;vs.&nbsp;&nbsp;
+   	<%= f.select(:away_id, @away, {:selected => @away.id, :include_blank => true}) %>
+	<br />
+    <!-- <span class="description"><%#= label_name('groups', 'description') %></span> -->
+  </div>	
 
   <div class="group">
     <%= f.label :next_game_id, "Next_game_id", :class => :label %>
-    <%= f.text_field :next_game_id, :class => 'text_field' %>
-    <span class="description">Ex: a simple text</span>
+    <%= f.text_field :next_game_id, :class => 'textscore' %>
+	<br />
+    <!-- <span class="description"><%#= label_name('Next_game_id', 'description') %></span> -->
   </div>
 
   <div class="group">
-    <%= f.label :home_score, "Home_score", :class => :label %>
-    <%= f.text_field :home_score, :class => 'text_field' %>
-    <span class="description">Ex: a simple text</span>
+    <%= f.label :starts_at, label_name('starts_at'), :class => :label %>
+    <%= f.datetime_select :starts_at, :class => 'datetime_select' %><br />
+    <span class="description"><%= label_name('starts_at', 'description') %></span>
   </div>
 
   <div class="group">
-    <%= f.label :away_score, "Away_score", :class => :label %>
-    <%= f.text_field :away_score, :class => 'text_field' %>
-    <span class="description">Ex: a simple text</span>
+    <%= f.label :ends_at, label_name('ends_at'), :class => :label %>
+    <%= f.datetime_select :ends_at, :class => 'datetime_select' %><br />
+    <span class="description"><%= label_name('ends_at', 'description') %></span>
   </div>
+
+  <div class="group">
+    <%= f.label :reminder_at, label_name('reminder_at'), :class => :label %>
+    <%= f.datetime_select :reminder_at, :class => 'datetime_select' %><br />
+    <span class="description"><%= label_name('reminder_at', 'description') %></span>
+  </div>	
 
   <div class="group">
     <%= f.label :points_for_single, "Points_for_single", :class => :label %>
-    <%= f.text_field :points_for_single, :class => 'text_field' %>
+    <%= f.text_field :points_for_single, :class => 'textscore' %><br />
     <span class="description">Ex: a simple text</span>
   </div>
 
   <div class="group">
     <%= f.label :points_for_double, "Points_for_double", :class => :label %>
-    <%= f.text_field :points_for_double, :class => 'text_field' %>
+    <%= f.text_field :points_for_double, :class => 'textscore' %><br />
     <span class="description">Ex: a simple text</span>
   </div>
 
-  <div class="group">
-    <%= f.label :type_name, "Type_name", :class => :label %>
-    <%= f.text_field :type_name, :class => 'text_field' %>
-    <span class="description">Ex: a simple text</span>
-  </div>
-        
+  </div> 
+
+  <div class="column right"> 
+
+  </div> 
+
+</div>
+
+<div class="clear"></div> 
+
 <div class="group navform">
-  <input type="submit" class="button" value="Save &rarr;" /> or <%= link_to 'Cancel', games_path %>
+	<%= submit_tag @game.new_record? ? control_label('create') : control_label('edit'), 
+			:class => "button" %> <%= label_name(:or) %> <%= link_to label_name(:cancel), games_path %>
 </div>

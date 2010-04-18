@@ -1,82 +1,160 @@
+<% 
+	is_user_manager = current_user.is_manager_of?(@game.cup)
+	# the_label = sanitize(@game.cup.name)
+	the_label = ""
+	content_for(:title, sanitize(@game.cup.name))
+%>
+
 <div class="block">
-  <div class="secondary-navigation">
-    <ul>
-      <li class="first"><%= link_to 'List', games_path  %></li>
-      <li><%= link_to 'New', new_game_path %></li>
-      <li class="active"><%= link_to 'Show', game_path %></li>
-    </ul>
-    <div class="clear"></div>
-  </div>          
-  <div class="content">
-    <div class="inner">
-      
-        <p>
-          <b>Starts_at:</b>
-          <%= @game.starts_at %>
-        </p>
 
-        <p>
-          <b>Ends_at:</b>
-          <%= @game.ends_at %>
-        </p>
+  <%= render :partial => '/shared/previous_next_message' %>
 
-        <p>
-          <b>Reminder_at:</b>
-          <%= @game.reminder_at %>
-        </p>
+  <%= show_heading(the_label) %>
 
-        <p>
-          <b>Cup_id:</b>
-          <%= @game.cup_id %>
-        </p>
+<div class="inner">
 
-        <p>
-          <b>Home_id:</b>
-          <%= @game.home_id %>
-        </p>
+<!-- new table -->
+<table>
+<thead>
 
-        <p>
-          <b>Away_id:</b>
-          <%= @game.away_id %>
-        </p>
+<tr>
+<th colspan="2">
 
-        <p>
-          <b>Winner_id:</b>
-          <%= @game.winner_id %>
-        </p>
+	<div class="description">
+		<span class="q">
+			<%#=sanitize @game.description.blank? ? control_label('description_no') : @game.description %>
+		</span>
+	</div>
 
-        <p>
-          <b>Next_game_id:</b>
-          <%= @game.next_game_id %>
-        </p>
 
-        <p>
-          <b>Home_score:</b>
-          <%= @game.home_score %>
-        </p>
+</th>
 
-        <p>
-          <b>Away_score:</b>
-          <%= @game.away_score %>
-        </p>
+</tr>
+</thead>
 
-        <p>
-          <b>Points_for_single:</b>
-          <%= @game.points_for_single %>
-        </p>
+<tr>
+<td valign="top" width="105">&nbsp;</td>
 
-        <p>
-          <b>Points_for_double:</b>
-          <%= @game.points_for_double %>
-        </p>
+<td>
+<table border="1">
 
-        <p>
-          <b>Type_name:</b>
-          <%= @game.type_name %>
-        </p>
-      <%= link_to 'Edit', edit_game_path(@game) %>
-    </div>
-  </div>
+    <tr>
+      <%= content_tag :td, label_name(:concept), :class => "label" %>            
+		<%= content_tag :td, sanitize(@game.cup.name), :class => get_the_action %>
+    </tr>
+
+    <% if @game.game_played? %>
+
+      <tr>
+        <%= content_tag :td, label_name(:cup), :class => "label" %>
+
+		<td class="<%= get_the_action%>">
+          <%= cup_link @game.cup %>
+          &nbsp;&nbsp;
+          <%= @game.home_score %>&nbsp;&nbsp;-&nbsp;&nbsp;<%= @game.away_score %>
+          &nbsp;&nbsp;
+          <%#= link_to h(@game.cup.second_team), cup_path(@game.cup) %>
+		</td>
+      </tr>
+    <% else %>
+
+      <tr>
+        <%= content_tag :td, label_name(:home_cup), :class => "label" %>            
+		<%= content_tag :td, cup_link(@game.cup), :class => get_the_action %>
+      </tr>
+
+    <% end %>
+
+	
+	<%= tr_td_action(:game_notes, @game.matches.first.description) if @game.played? %>
+	<%= tr_td_action(:jornada, @game.jornada) %>
+	<%= tr_td_action(:starts_at, nice_day_of_week(@game.starts_at)) %>
+	<%= tr_td_action(:ends_at, nice_day_of_week(@game.ends_at)) %>
+	<%= tr_td_action(:reminder_at, nice_day_of_week(@game.reminder_at)) %>
+		
+	<tr>
+		<%= content_tag :td,"#{label_name(:game_rate)}", :class => "label" %>
+		<%= content_tag :td, ratings_for(@game, :dimension => :performance), :class => get_the_action if current_user.is_member_of?(@game.cup) %>
+	</tr>	
+	
+	<%= tr_td_action(:season, @game.season) %>
+	<%= tr_td_action(:sport, @game.sport.name) %>
+	<%= tr_td_action(:fee_per_game, number_to_currency(@game.fee_per_game)) %>
+	<%= tr_td_action(:fee_per_pista, number_to_currency(@game.fee_per_pista)) %>
+	<%= tr_td_action(:time_zone, @game.time_zone) %>
+	
+    <tr>
+      <%= content_tag :td, label_name(:marker), :class => "label" %>       
+      <%= content_tag :td, marker_link(@game.cup.marker), :class => get_the_action %>
+    </tr>
+
+
+	<% unless @game.convocados.empty? %>
+	<tr>
+		<%= content_tag :td, "#{label_name(:convocados)}   (#{@game.convocados.count})", :class => "label" %>
+		<%= content_tag :td, user_list(@game.convocados), :class => get_the_action %>
+	</tr>
+	<% end %>
+
+	<% unless @game.last_minute.empty? %>
+	<tr>
+		<%= content_tag :td, "#{label_name(:last_minute)}   (#{@game.last_minute.count})", :class => "label" %>
+		<%= content_tag :td, user_list(@game.last_minute), :class => get_the_action %>
+	</tr>
+	<% end %>
+	<% unless @game.no_shows.empty? %>
+	<tr>
+		<%= content_tag :td, "#{label_name(:no_shows)}   (#{@game.no_shows.count})", :class => "label" %>
+		<%= content_tag :td, user_list(@game.no_shows), :class => get_the_action %>
+	</tr>
+	<% end %>
+	
+	<% unless @game.no_jugado.empty? %>
+	<tr>
+		<%= content_tag :td, "#{label_name(:no_jugado)}   (#{@game.no_jugado.count})", :class => "label" %>
+		<%= content_tag :td, user_list(@game.no_jugado), :class => get_the_action %>
+	</tr>
+	<% end %>
+
+	<%= tr_td_action(:player_limit, @game.player_limit) %>
+
+	<% 
+		the_label = h(label_name(@game.reminder, 'value'))
+		the_confirmation = label_with_name('reminder', "- #{sanitize(@game.cup.name)}?") 
+	%>
+	<tr>
+		<%= content_tag :td, label_name(:reminder), :class => "label" %>
+		<%= content_tag :td, (is_user_manager ? link_to(the_label, set_reminder_path(:id => @game.id), 
+								:confirm => the_confirmation) : the_label), 
+								:class => get_the_action %>
+	</tr>
+		
+	<% 
+		the_label = h(label_name(@game.public, 'value'))
+		the_confirmation = label_with_name('public', "- #{sanitize(@game.cup.name)}?") 
+	%>
+	<tr>
+		<%= content_tag :td, label_name(:public), :class => "label" %>
+		<%= content_tag :td, (is_user_manager ? link_to(the_label, set_public_path(:id => @game.id), 
+								:confirm => the_confirmation) : the_label), 
+								:class => get_the_action %>
+	</tr>
+	
+	<%#= tr_td_action(:season_ends_at, nice_day_date(@game.season_ends_at)) %>
+
+</table>
+
+</td>
+</tr>
+
+</table>
+<!-- new table -->
+
 </div>
 
-<% content_for :sidebar, render(:partial => 'sidebar') -%>
+</div>
+</div>
+
+<% content_for :sidebar, render(:partial => '/games/sidebar_show') if @game -%>
+<% content_for :sidebar, render(:partial => '/shared/latest_payment') -%>
+<% content_for :sidebar, render(:partial => 'shared/share_object', :locals => {:game => @game}) if @game -%>

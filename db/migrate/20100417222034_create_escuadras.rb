@@ -1,5 +1,6 @@
 class CreateEscuadras < ActiveRecord::Migration
   def self.up
+    drop_table :escuadras
     create_table :escuadras do |t|
 
       t.string      :name

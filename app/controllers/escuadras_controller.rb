@@ -16,6 +16,8 @@ class EscuadrasController < ApplicationController
   def show
     @escuadra = Escuadra.find(params[:id])
     @cup = @escuadra.cups.first
+    redirect_to list_escuadras_path(:id => @cup)    
+    return
   end
 
   def new
@@ -30,8 +32,8 @@ class EscuadrasController < ApplicationController
      
     if @escuadra.save and @escuadra.join_escuadra(@cup)
       flash[:notice] = I18n.t(:successful_create)
-      # redirect_to cups_url(:id => @cup) and return
-      redirect_to cup_path(@cup) and return
+      # redirect_to cup_path(@cup) and return      
+      redirect_to list_escuadras_path(:id => @cup) and return
     else
       render :action => 'new'
     end

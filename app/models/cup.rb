@@ -66,11 +66,17 @@ class Cup < ActiveRecord::Base
     return @counter
   end
 
-  def all_the_managers
-    ids = []
-    self.the_managers.each {|user| ids << user.user_id }
-    the_squads = User.find(:all, :conditions => ["id in (?)", ids], :order => "name")
+  def the_escuadras
+    return self.escuadras.collect {|p| [ p.name, p.id ] }
+    
+    # find(:all, :order => "name").collect {|p| [ p.name, p.id ] }
   end
+  
+  # def all_the_managers
+  #   ids = []
+  #   self.the_managers.each {|user| ids << user.user_id }
+  #   the_squads = User.find(:all, :conditions => ["id in (?)", ids], :order => "name")
+  # end
 
   def avatar
     self.photo.url

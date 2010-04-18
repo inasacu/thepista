@@ -44,16 +44,16 @@
 		<%= tr_td_action(:games, t(:has_cup_games, :count => @cup.games.count)) %>		
 		
 		<tr>
-			<%#= content_tag :td, link_to(label_name(:standing), standing_path(:id => @cup)), :class => "label" %>
+			<%= content_tag :td, link_to(label_name(:standing), standing_path(:id => @cup)), :class => "label" %>
 		</tr>
 		
 		<tr>
-		     <%#= content_tag :td, label_name(:escuadras_available), :class => "label" %>
-		     <%#= content_tag :td, escuadra_list(@cup.escuadras), :class => get_the_action %>
+		     <%= content_tag :td, label_name(:escuadras_available), :class => "label" %>
+		     <%= content_tag :td, escuadra_list(@cup.escuadras), :class => get_the_action %>
 		</tr>
 
 		<tr>
-		<%#= render :partial => '/shared/show_images', :locals => {:collection => @cup.escuadras} %>			
+		<%= render :partial => '/shared/show_images', :locals => {:collection => @cup.escuadras} %>			
 		</tr>
 
 		</table>

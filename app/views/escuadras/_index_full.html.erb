@@ -4,12 +4,11 @@
 	
 	<table class="table">
 
-	  <tr>             
-	    <th class="first">&nbsp;</th>
-	    <th><%= label_name(:name) %></th>
-	    <th><%= label_name(:general_information) %></th>
-	    <th class="last">&nbsp;</th>
-	  </tr>
+		<tr>             
+			<th class="first">&nbsp;</th>
+			<th><%=label_name(:name) %></th>
+			<th class="last">&nbsp;</th>
+		</tr>
 
 	  <% @escuadras.each do |escuadra| -%>
 
@@ -22,17 +21,9 @@
 				<%= escuadra_link(escuadra) %>
 			</td>
 
-
-			<td class="name_and_date">
-				<%#= link_to(label_name(:scorecard), scorecard_path(:id => escuadra)) %>
-				<span class="date">
-					<%#= nice_full_date(schedule.starts_at) unless schedule.nil? %> 
-				</span>
-			</td>
-
 	       <td class="last">
 				<span class="action">
-					<%= link_to label_name(:send_message), new_message_path(:id => user.id) if user.available %>		
+					<%= link_to label_name(:escuadras_edit), edit_escuadra_path(escuadra) %></li>		
 				</span>
 	       </td>
 	  </tr>   
@@ -40,7 +31,5 @@
 	  <% end -%>
 
 	</table>	
-	
-	<%#= render :partial => 'shared/action_bar', :locals => { :collection => @escuadras } %>
 
 </div>

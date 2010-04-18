@@ -16,7 +16,7 @@ class Escuadra < ActiveRecord::Base
 
     validates_attachment_content_type :photo, :content_type => ['image/jpeg', 'image/png', 'image/gif', 'image/jpg', 'image/pjpeg']
     validates_attachment_size         :photo, :less_than => 5.megabytes
-    
+     
   # validations 
   validates_uniqueness_of   :name,    :case_sensitive => false
   
@@ -28,7 +28,7 @@ class Escuadra < ActiveRecord::Base
       
   validates_format_of       :name,            :with => /^[A-z 0-9 _.-]*$/
 
-  has_and_belongs_to_many   :cups,          :join_table => "cups_escuadras",  :order => 'name'
+  has_and_belongs_to_many   :cups,          :conditions => 'archive = false',   :order => 'name'
   has_many                  :standings,     :conditions => "escuadra_id > 0 and played > 0 and archive = false" #,  :order => "escuadra_id"
 
   # variables to access
@@ -47,6 +47,18 @@ class Escuadra < ActiveRecord::Base
     self.photo.url
   end 
 
+  def avatar_flag
+    self.flag.url
+  end
+
+  def thumbnail_flag
+    self.flag.url
+  end
+
+  def icon_flag
+    self.flag.url
+  end
+  
   def join_escuadra(cup)
     CupsEscuadras.join_escuadra(self, cup)
   end

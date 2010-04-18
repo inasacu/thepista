@@ -588,7 +588,8 @@ es:
      must_be_before_ends_at:  Tiene que ser antes de la fecha de finalización.
      must_be_before_signup_at:  Tiene que ser antes de la fecha de cierre de inscripción.
      must_be_before_deadline_at:  Tiene que ser despues de la fecha de inscripción.
-     must_be_after_deadline_at:  Tiene que ser despues de la fecha de inscripción.       
+     must_be_after_deadline_at:  Tiene que ser despues de la fecha de inscripción.
+     must_be_different:  Tienen que ser distintos.       
      my_address: Mis direcciones   
      my_announcement: Mis anuncios   
      my_credit: Mis pagos   
@@ -1013,6 +1014,7 @@ es:
      escuadras_index_option: Opciones 
      escuadras_invitations_create:  Invita a un amigo a este equipe
      escuadras_join:  Unete al equipo
+     escuadras_list:  Equipos
      escuadras_new:  Nuevo equipo
      escuadras_new_option: Opciones 
      escuadras_no:  Ningun equipo para mostrar.

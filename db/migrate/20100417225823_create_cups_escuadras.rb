@@ -1,10 +1,11 @@
 class CreateCupsEscuadras < ActiveRecord::Migration
   def self.up
-    create_table :cups_escuadras do |t|
-       t.integer     :cup_id
-       t.integer     :escuadra_id      
-       t.datetime    :deleted_at
-       t.timestamps
+    drop_table :cups_escuadras
+    create_table :cups_escuadras, :id => false, :force => true  do |t|
+      t.integer     :cup_id
+      t.integer     :escuadra_id      
+      t.datetime    :deleted_at
+      t.timestamps
     end
   end
 
