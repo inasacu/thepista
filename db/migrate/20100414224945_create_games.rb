@@ -1,5 +1,6 @@
 class CreateGames < ActiveRecord::Migration
   def self.up
+    drop_table :games
     create_table :games do |t|
 
       t.datetime  :starts_at

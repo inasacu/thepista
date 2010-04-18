@@ -1,3 +1,0 @@
-*   for golfing
-
-users will probably need their own scorecard not associated to a particular group

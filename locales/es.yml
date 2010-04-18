@@ -446,7 +446,7 @@ es:
      has_been_sent: ha sido mandado correctamente.  
      has_been_sent_female: has sido mandada correctamente. 
      has_been_taken: ya se ha elegido.  Intenta otro nombre.
-     has_cup_squads:
+     has_cup_escuadras:
         zero: "Esta copa no tiene equipos." 
         one:  "Esta copa tiene 1 equipo." 
         other: "Esta copa tiene {{count}} equipos."
@@ -1002,28 +1002,28 @@ es:
      single_identity: te permite tener una iD global para muchas páginas web.  Puedes conseguir tu dirección uRL de OpenID en   
      something_wrong: "Lo sentimos!, algo ha ido mal."  
      something_wrong_explained: "Ya hemos registrado este fallo.  Lo miraremos lo antes posible."
-     squad: Equipo
-     squads: Equipos
-     squads_all:  Todos los equipos
-     squads_create:  Nuevo equipo 
-     squads_destroy:  Borrar equipo
-     squads_edit:  Modificar equipo
-     squads_index:   Equipo
-     squads_index_option: Opciones 
-     squads_invitations_create:  Invita a un amigo a este equipe
-     squads_join:  Unete al equipo
-     squads_new:  Nuevo equipo
-     squads_new_option: Opciones 
-     squads_no:  Ningun equipo para mostrar.
-     squads_none:  Ningun equipo.
-     squad_options:  Opciones
-     squads_options_without: "¿Qué opciones tienes ya que no hay equipos?"
-     squads_option:  Opciones 
-     squads_search: Busqueda de equipos
-     squads_search_to_join: Puedes buscar un equipo. 
-     squads_show:  Mostrar equipo
-     squads_to_join:   crea un equipo 
-     squads_update: Modificar equipo
+     escuadra: Equipo
+     escuadras: Equipos
+     escuadras_all:  Todos los equipos
+     escuadras_create:  Nuevo equipo 
+     escuadras_destroy:  Borrar equipo
+     escuadras_edit:  Modificar equipo
+     escuadras_index:   Equipo
+     escuadras_index_option: Opciones 
+     escuadras_invitations_create:  Invita a un amigo a este equipe
+     escuadras_join:  Unete al equipo
+     escuadras_new:  Nuevo equipo
+     escuadras_new_option: Opciones 
+     escuadras_no:  Ningun equipo para mostrar.
+     escuadras_none:  Ningun equipo.
+     escuadra_options:  Opciones
+     escuadras_options_without: "¿Qué opciones tienes ya que no hay equipos?"
+     escuadras_option:  Opciones 
+     escuadras_search: Busqueda de equipos
+     escuadras_search_to_join: Puedes buscar un equipo. 
+     escuadras_show:  Mostrar equipo
+     escuadras_to_join:   crea un equipo 
+     escuadras_update: Modificar equipo
      start_session: inicia tu sesión   
      starts_at: Inicio  
      starts_at_description: (¿Ha que hora empieza el evento?) 

@@ -1,5 +1,6 @@
 class CreatePorras < ActiveRecord::Migration
   def self.up
+    drop_table :porras
     create_table :porras do |t|
 
       t.string      :name   

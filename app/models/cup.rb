@@ -42,6 +42,7 @@ class Cup < ActiveRecord::Base
   has_friendly_id :name, :use_slug => true, :reserved => ["new", "create", "index", "list", "signup", "edit", "update", "destroy", "show"]
       
   has_and_belongs_to_many :squads,          :join_table => "cups_squads",   :order => "name"
+has_and_belongs_to_many :escuadras #,          :join_table => "cups_squads",   :order => "name"
   has_many                :games
   has_many                :standings,       :order => "points DESC, ranking"
 

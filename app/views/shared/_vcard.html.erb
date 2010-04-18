@@ -1,6 +1,19 @@
+<% 
+	case recipient.class.to_s  
+	when 'User'
+	  the_link =  user_link(recipient)
+	  the_object_path = User.find(recipient.id)
+	when 'Group'
+	  the_link =   group_link(recipient)
+	  the_object_path = Group.find(recipient.id)
+	when 'Escuadra'
+	  the_link =  escuadra_link(recipient)
+	  the_object_path = Escuadra.find(recipient.id)
+	end
+%>
+
 <span class="vcard">
 	<%= link_to(image_tag(recipient.avatar, options={:style => "height: 24px; width: 24px;", :title => h(recipient.name), :class =>"photo fn"}), 
-	(recipient.class.to_s == "Group") ? group_path(recipient) : user_path(recipient), 
-	:class => "url", :hreflang => "en", :rel => "contact") %>
+	the_object_path, :class => "url", :hreflang => "en", :rel => "contact") %>
 </span>
 

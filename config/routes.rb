@@ -142,6 +142,7 @@ ActionController::Routing::Routes.draw do |map|
   map.resources   :porras,          :as => 'sandbags',                    :collection => { :list => :get }
   map.resources   :predictions,     :as => 'pronostico',                  :collection => { :list => :get }
   map.resources   :squads,                                                :collection => { :list => :get }
+  map.resources   :escuadras
   
   # map.resources   :clouds,          :as => 'nube'  
   

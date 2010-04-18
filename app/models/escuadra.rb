@@ -1,7 +1,7 @@
-class Squad < ActiveRecord::Base
+class Escuadra < ActiveRecord::Base
 
   # friendly url and removes id
-  # has_friendly_id :name, :use_slug => true, :reserved => ["new", "create", "index", "list", "signup", "edit", "update", "destroy", "show", "petition"]
+  has_friendly_id :name, :use_slug => true, :reserved => ["new", "create", "index", "list", "signup", "edit", "update", "destroy", "show", "petition"]
   
   has_attached_file :photo,
   :styles => {
@@ -10,15 +10,15 @@ class Squad < ActiveRecord::Base
     },
     :storage => :s3,
     :s3_credentials => "#{RAILS_ROOT}/config/s3.yml",
-    :url => "/assets/squads/:id/:style.:extension",
-    :path => ":assets/squads/:id/:style.:extension",
+    :url => "/assets/escuadras/:id/:style.:extension",
+    :path => ":assets/escuadras/:id/:style.:extension",
     :default_url => "group_avatar.png"
 
     validates_attachment_content_type :photo, :content_type => ['image/jpeg', 'image/png', 'image/gif', 'image/jpg', 'image/pjpeg']
     validates_attachment_size         :photo, :less_than => 5.megabytes
     
   # validations 
-  # validates_uniqueness_of   :name,    :case_sensitive => false
+  validates_uniqueness_of   :name,    :case_sensitive => false
   
   validates_presence_of     :name
   validates_presence_of     :description
@@ -28,8 +28,8 @@ class Squad < ActiveRecord::Base
       
   validates_format_of       :name,            :with => /^[A-z 0-9 _.-]*$/
 
-  # has_and_belongs_to_many   :cups,          :conditions => 'archive = false',                                 :order => 'name'
-  # has_many                  :standings,     :conditions => "squad_id > 0 and played > 0 and archive = false", :order => "squad_id"
+  has_and_belongs_to_many   :cups,          :conditions => 'archive = false',                                 :order => 'name'
+  has_many                  :standings,     :conditions => "escuadra_id > 0 and played > 0 and archive = false", :order => "escuadra_id"
 
   # variables to access
   attr_accessible :name, :photo, :description
@@ -47,8 +47,8 @@ class Squad < ActiveRecord::Base
     self.photo.url
   end 
 
-  def join_squad(cup)
-    CupsSquads.join_squad(self, cup)
+  def join_escuadra(cup)
+    CupsEscuadras.join_escuadra(self, cup)
   end
   
 end

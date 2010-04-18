@@ -1,15 +1,15 @@
 <%
-	the_label = label_name(:squads)
+	the_label = label_name(:escuadras)
 	content_for(:title, the_label)
 %>
 
 <div class="block">
 	<%= render :partial => '/cups/secondary_navigation' %>  
 	<div class="content">  
-			<% if object_counter(@squads) > 0 %>
-				<%= render :partial => '/squads/index_full' %>
+			<% if object_counter(@escuadras) > 0 %>
+				<%= render :partial => '/escuadras/index_full' %>
 			<% else %>
-				<%= render :partial => '/squads/index_blank' %>
+				<%= render :partial => '/escuadras/index_blank' %>
 			<% end %>
 	</div>	
 </div>

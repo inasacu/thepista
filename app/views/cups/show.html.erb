@@ -40,7 +40,7 @@
 		<%= tr_td_action(:starts_at, nice_day_of_week(@cup.starts_at)) %>
 		<%= tr_td_action(:ends_at, nice_day_of_week(@cup.ends_at)) %>
 		<%= tr_td_action(:deadline_at, nice_day_of_week(@cup.deadline_at)) %>
-		<%= tr_td_action(:squads, t(:has_cup_squads, :count => @cup.squads.count)) %>
+		<%= tr_td_action(:escuadras, t(:has_cup_escuadras, :count => @cup.escuadras.count)) %>
 		<%= tr_td_action(:games, t(:has_cup_games, :count => @cup.games.count)) %>
 		<%#= tr_td_action(:points_for_win, @cup.points_for_win) %>
 		<%#= tr_td_action(:points_for_draw, @cup.points_for_draw) %>
@@ -51,10 +51,10 @@
 		</tr>
 
 	   <tr>
-	     <%= content_tag :td, cup_list(@cup.squads), :class => get_the_action %>
+	     <%= content_tag :td, cup_list(@cup.escuadras), :class => get_the_action %>
 	   </tr>
 	   <tr>
-		<%= render :partial => '/shared/show_images', :locals => {:collection => @cup.squads} %>			
+		<%= render :partial => '/shared/show_images', :locals => {:collection => @cup.escuadras} %>			
 	   </tr>	
 
 		</table>

@@ -1,6 +1,6 @@
-class CreateSquads < ActiveRecord::Migration
+class CreateEscuadras < ActiveRecord::Migration
   def self.up
-    create_table :squads do |t|
+    create_table :escuadras do |t|
 
       t.string      :name
       t.text        :description
@@ -23,6 +23,6 @@ class CreateSquads < ActiveRecord::Migration
   end
 
   def self.down
-    drop_table :squads
+    drop_table :escuadras
   end
 end

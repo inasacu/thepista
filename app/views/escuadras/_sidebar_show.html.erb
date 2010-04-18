@@ -1,0 +1,20 @@
+<% 
+	the_escuadra = h(@escuadra.name)
+
+	the_label = label_with_name('create_game', @escuadra.name)
+	the_confirmation = "#{ label_name(:escuadras_destroy) } #{the_escuadra}?" 
+%>
+
+<div class="block">
+	
+	<h3><%= label_name(get_the_controller, 'options') %></h3>
+	
+	<ul class="navigation">
+
+		<li><%= link_to label_name(:escuadras_create), new_escuadra_path(:id => @escuadra) %></li>
+		<li><%= link_to label_name(:escuadras_edit), edit_escuadra_path(@escuadra) %></li>  
+		<li><%= link_to(the_confirmation, escuadra_path(@escuadra), :method => :delete, :confirm => the_confirmation) %></li>
+
+	</ul>
+	
+</div>

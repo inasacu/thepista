@@ -1,4 +1,4 @@
-<h2 class="title"><%= get_collection_label(@squads) %></h2>
+<h2 class="title"><%= get_collection_label(@escuadras) %></h2>
 
 <div class="inner">
 	
@@ -11,20 +11,20 @@
 	    <th class="last">&nbsp;</th>
 	  </tr>
 
-	  <% @squads.each do |squad| -%>
+	  <% @escuadras.each do |escuadra| -%>
 
 	  <tr>  
 			<td>
-				<%= squad_image_link_small squad %>
+				<%= escuadra_image_link_small escuadra %>
 			</td>
 
 			<td class="name_and_date">
-				<%= squad_link(squad) %>
+				<%= escuadra_link(escuadra) %>
 			</td>
 
 
 			<td class="name_and_date">
-				<%#= link_to(label_name(:scorecard), scorecard_path(:id => squad)) %>
+				<%#= link_to(label_name(:scorecard), scorecard_path(:id => escuadra)) %>
 				<span class="date">
 					<%#= nice_full_date(schedule.starts_at) unless schedule.nil? %> 
 				</span>
@@ -42,6 +42,6 @@
 
 	</table>	
 	
-	<%#= render :partial => 'shared/action_bar', :locals => { :collection => @squads } %>
+	<%#= render :partial => 'shared/action_bar', :locals => { :collection => @escuadras } %>
 
 </div>

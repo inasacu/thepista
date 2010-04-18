@@ -1,43 +1,43 @@
-class SquadsController < ApplicationController
+class EscuadrasController < ApplicationController
   before_filter :require_user
   # before_filter :the_maximo
 
   def index    
     @cup = Cup.find(params[:id])
-    @squads = @cup.squads
+    @escuadras = @cup.escuadras
   end
 
   def show
-    @squad = Squad.find(params[:id])
-    @cup = @squad.cups.first
+    @escuadra = Escuadra.find(params[:id])
+    @cup = @escuadra.cups.first
   end
 
   def new
-    @squad = Squad.new
+    @escuadra = Escuadra.new
     @cup = Cup.find(params[:id])    
   end
 
   def create
-    @squad = Squad.new(params[:squad])
+    @escuadra = Escuadra.new(params[:escuadra])
     @cup = Cup.find(params[:cup][:id])
      
-    if @squad.save and @squad.join_squad(@cup)
+    if @escuadra.save and @escuadra.join_escuadra(@cup)
       flash[:notice] = I18n.t(:successful_create)
-      redirect_to @squad
+      redirect_to cups_url(:id => @cup) and return
     else
       render :action => 'new'
     end
   end
 
   def edit
-    @squad = Squad.find(params[:id])
+    @escuadra = Escuadra.find(params[:id])
   end
 
   def update
-    @squad = Squad.find(params[:id])
-    if @squad.update_attributes(params[:squad])
+    @escuadra = Escuadra.find(params[:id])
+    if @escuadra.update_attributes(params[:escuadra])
       flash[:notice] = I18n.t(:successful_update)
-      redirect_to @squad
+      redirect_to @escuadra
     else
       render :action => 'edit'
     end
