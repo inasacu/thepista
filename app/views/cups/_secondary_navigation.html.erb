@@ -7,8 +7,9 @@
 <ul>
 	<li class="<%= get_first_active %>"><%=  link_to(label_name(:cups_upcoming), cups_path) %></li>
 	<li class="<%= get_active('cup_list') %>"><%=  link_to(label_name(:cups_list) , list_cups_path) %></li>
-	<li class="<%= get_active('cup_show') %>"><%=  cup_link(@cup) if @cup %></li>								
-	<li class="<%= get_active('cups_escuadra_list') %>"><%=  link_to(label_name(:escuadras) , escuadras_url(:id => @cup)) if @cup %></li>			
+	<li class="<%= get_active('cup_show') %>"><%=  cup_link(@cup) if @cup %></li>	
+	<li class="<%= get_active('cup_escuadra_list') %>"><%=  link_to(label_name(:escuadras) , list_escuadras_path(:id => @cup)) %></li>							
+	<!-- <li class="<%#= get_active('cups_escuadra_list') %>"><%#=  link_to(label_name(:escuadras) , escuadras_url(:id => @cup)) if @cup %></li>			 -->
 </ul>
 
 <div class="clear"></div>

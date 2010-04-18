@@ -95,9 +95,7 @@ ActionController::Routing::Routes.draw do |map|
   map.clash_status          'clashes/:id/set_status/:type',               :controller => 'clashes',         :action => 'set_status'
   
   map.hide_announcements    '/hide_announcements',                        :controller => 'javascripts',     :action => 'hide_announcements'
-  
-  map.squad_list			      'squad_list',			                            :controller => 'cups',            :action => 'squad_list'
-  
+    
   map.resources   :user_sessions,   :as => 'repitelo'
   map.resources   :users,           :as => 'jugadores',                   :collection => { :rpx_create => :post, :rpx_associate => :post,
                                                                                             :list => :get, :recent_activity => :get, :search => :get }  
@@ -141,8 +139,7 @@ ActionController::Routing::Routes.draw do |map|
   map.resources   :games,           :as => 'partidos',                    :collection => { :list => :get }
   map.resources   :porras,          :as => 'sandbags',                    :collection => { :list => :get }
   map.resources   :predictions,     :as => 'pronostico',                  :collection => { :list => :get }
-  map.resources   :squads,                                                :collection => { :list => :get }
-  map.resources   :escuadras
+  map.resources   :escuadras,                                             :collection => { :list => :get }
   
   # map.resources   :clouds,          :as => 'nube'  
   

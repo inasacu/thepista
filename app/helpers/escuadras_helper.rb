@@ -47,12 +47,12 @@ module EscuadrasHelper
     link_to(image_tag(escuadra.avatar, options={:style => "height: 80px; width: 80px;"}), escuadra_path(escuadra))
   end
 
-  def escuadra_vs_invite(schedule)
-    escuadra_link schedule.escuadra  
+  def escuadra_vs_invite(game)
+    escuadra_link game.escuadra  
   end
 
-  def escuadra_score_link(schedule)
-    return "#{schedule.home_escuadra} ( #{schedule.home_score}  -  #{schedule.away_score} ) #{schedule.away_escuadra}" 
+  def escuadra_score_link(game)
+    return "#{game.home_escuadra} ( #{game.home_score}  -  #{game.away_score} ) #{game.away_escuadra}" 
   end    
 
   def escuadra_list(objects)

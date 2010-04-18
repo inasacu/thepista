@@ -11,7 +11,7 @@
 	
 	<ul class="navigation">
 		<li><%= link_to label_name(:escuadras_create), new_escuadra_path(:id => @cup) %></li>
-			<li><%= link_to label_name(:games_create), new_game_path(:id => @cup) %></li>
+		<li><%= link_to label_name(:games_create), new_game_path(:id => @cup) %></li>
 		<li><%= link_to label_name(:cups_edit), edit_cup_path(@cup) %></li>  
 		<li><%= link_to(the_confirmation, cup_path(@cup), :method => :delete, :confirm => the_confirmation) unless @cup.has_game? %></li>
 	</ul>

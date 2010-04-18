@@ -41,21 +41,20 @@
 		<%= tr_td_action(:ends_at, nice_day_of_week(@cup.ends_at)) %>
 		<%= tr_td_action(:deadline_at, nice_day_of_week(@cup.deadline_at)) %>
 		<%= tr_td_action(:escuadras, t(:has_cup_escuadras, :count => @cup.escuadras.count)) %>
-		<%= tr_td_action(:games, t(:has_cup_games, :count => @cup.games.count)) %>
-		<%#= tr_td_action(:points_for_win, @cup.points_for_win) %>
-		<%#= tr_td_action(:points_for_draw, @cup.points_for_draw) %>
-		<%#= tr_td_action(:points_for_lose, @cup.points_for_lose) %>		
+		<%= tr_td_action(:games, t(:has_cup_games, :count => @cup.games.count)) %>		
 		
 		<tr>
-			<%= content_tag :td, link_to(label_name(:standing), standing_path(:id => @cup)), :class => "label" %>
+			<%#= content_tag :td, link_to(label_name(:standing), standing_path(:id => @cup)), :class => "label" %>
+		</tr>
+		
+		<tr>
+		     <%#= content_tag :td, label_name(:escuadras_available), :class => "label" %>
+		     <%#= content_tag :td, escuadra_list(@cup.escuadras), :class => get_the_action %>
 		</tr>
 
-	   <tr>
-	     <%= content_tag :td, cup_list(@cup.escuadras), :class => get_the_action %>
-	   </tr>
-	   <tr>
-		<%= render :partial => '/shared/show_images', :locals => {:collection => @cup.escuadras} %>			
-	   </tr>	
+		<tr>
+		<%#= render :partial => '/shared/show_images', :locals => {:collection => @cup.escuadras} %>			
+		</tr>
 
 		</table>
 
@@ -64,8 +63,6 @@
 
 	</table>
 	<!-- new table -->
-
-
 			 
     </div>
   </div>

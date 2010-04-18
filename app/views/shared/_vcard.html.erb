@@ -8,7 +8,7 @@
 	  the_object_path = Group.find(recipient.id)
 	when 'Escuadra'
 	  the_link =  escuadra_link(recipient)
-	  the_object_path = Escuadra.find(recipient.id)
+	  the_object_path = Escuadra.find(recipient.escuadra_id)
 	end
 %>
 

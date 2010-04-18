@@ -1005,6 +1005,7 @@ es:
      escuadra: Equipo
      escuadras: Equipos
      escuadras_all:  Todos los equipos
+     escuadras_available:  Todos los equipos
      escuadras_create:  Nuevo equipo 
      escuadras_destroy:  Borrar equipo
      escuadras_edit:  Modificar equipo

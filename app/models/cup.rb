@@ -39,12 +39,11 @@ class Cup < ActiveRecord::Base
   attr_accessible :starts_at, :ends_at, :deadline_at
     
   # friendly url and removes id  
-  has_friendly_id :name, :use_slug => true, :reserved => ["new", "create", "index", "list", "signup", "edit", "update", "destroy", "show"]
-      
-  has_and_belongs_to_many :squads,          :join_table => "cups_squads",   :order => "name"
-has_and_belongs_to_many :escuadras #,          :join_table => "cups_squads",   :order => "name"
+  # has_friendly_id :name, :use_slug => true, :reserved => ["new", "create", "index", "list", "signup", "edit", "update", "destroy", "show"]
+
+  has_and_belongs_to_many :escuadras,     :join_table => "cups_escuadras",   :order => "name"
   has_many                :games
-  has_many                :standings,       :order => "points DESC, ranking"
+  has_many                :standings,     :order => "points DESC, ranking"
 
   has_many :the_managers,
   :through => :manager_roles,

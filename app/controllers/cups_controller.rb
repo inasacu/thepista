@@ -27,8 +27,7 @@ class CupsController < ApplicationController
   def new
     @cup = Cup.new
     @cup.time_zone = current_user.time_zone if !current_user.time_zone.nil?
-    @markers = Marker.find(:all)
-    @sports = Sport.find(:all)
+    @sports = Sport.find(:all) 
   end
 
   def create
