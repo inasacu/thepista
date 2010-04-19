@@ -25,7 +25,7 @@ class Game < ActiveRecord::Base
   validates_presence_of         :starts_at, :ends_at, :reminder_at, :home_id, :away_id
 
   # variables to access
-  attr_accessible :starts_at, :ends_at, :reminder_at, :home_id, :away_id, :winner_id, :next_game_id
+  attr_accessible :starts_at, :ends_at, :reminder_at, :cup_id, :home_id, :away_id, :winner_id, :next_game_id
 
   # friendly url and removes id
   # has_friendly_id :concept, :use_slug => true, :reserved => ["new", "create", "index", "list", "signup", "edit", "update", "destroy", "show"]

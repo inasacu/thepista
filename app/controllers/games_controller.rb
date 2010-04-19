@@ -1,12 +1,10 @@
 class GamesController < ApplicationController
   before_filter :require_user
   
-  before_filter :get_game, :only => [:show, :edit, :update, :destroy, :set_public, :set_reminder, :team_roster, :team_last_minute, :team_no_show, :team_unavailable]
+  before_filter :get_game, :only => [:show, :edit, :update, :destroy]
   before_filter :get_cup, :only =>[:new]
-  before_filter :get_match_type, :only => [:team_roster, :team_last_minute, :team_no_show, :team_unavailable]
   before_filter :has_manager_access, :only => [:edit, :update, :destroy, :set_public, :set_reminder]
   before_filter :has_member_access, :only => :show
-  # before_filter :excess_players, :only => [:show, :team_roster, :team_last_minute, :team_no_show, :team_unavailable]
   
   def index
     @games = Game.current_games(current_user, params[:page])
@@ -48,10 +46,10 @@ class GamesController < ApplicationController
   end
 
   def create
-    @game = Game.new(params[:game])     
+    @game = Game.new(params[:game])         
     unless current_user.is_manager_of?(@game.cup)
       flash[:warning] = I18n.t(:unauthorized)
-      redirect_back_or_default('/index')
+      redirect_to cups_url
       return
     end
     
@@ -125,32 +123,12 @@ class GamesController < ApplicationController
   end
   
   def get_cup
-    # if current_user.cups.count == 0
-    #   redirect_to :controller => 'cups', :action => 'new' 
-    #   return
-    # 
-    # elsif current_user.cups.count == 1 
-    #   @cup = current_user.cups.find(:first)
-    # 
-    # elsif current_user.cups.count > 1 and !params[:id].nil?
       @cup = Cup.find(params[:id])
       
       unless @cup
         redirect to cups_url
         return
       end
-    # 
-    # elsif current_user.cups.count > 1 and params[:id].nil? 
-    #   redirect_to :controller => 'cups', :action => 'index' 
-    #   return
-    # end
-    
   end
-  
-  # def excess_players
-  #   unless @game.convocados.empty? or @game.player_limit == 0
-  #     flash[:warning] = I18n.t(:game_excess_player) if (@game.convocados.count > @game.player_limit)  
-  #   end
-  # end
 end
 

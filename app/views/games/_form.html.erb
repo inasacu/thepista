@@ -1,6 +1,15 @@
 <div class="columns"> 
 
   <div class="column left"> 
+	
+
+	  <div class="group">
+	    <%= f.label @cup.name, @cup.name, :class => :label %>
+	    <%#= f.text_field :cup_id, :class => 'textscore' %>
+		<br />
+	    <!-- <span class="description"><%#= label_name('Next_game_id', 'description') %></span> -->
+	  </div>
+	
 
   <div class="group">
     <%= f.label :home_id, label_name('escuadras'), :class => :label %>
@@ -55,6 +64,8 @@
 
 </div>
 
+<%= f.hidden_field :cup_id %>
+	
 <div class="clear"></div> 
 
 <div class="group navform">
