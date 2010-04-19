@@ -1,6 +1,5 @@
 class CreateCupsEscuadras < ActiveRecord::Migration
   def self.up
-    drop_table :cups_escuadras
     create_table :cups_escuadras, :id => false, :force => true  do |t|
       t.integer     :cup_id
       t.integer     :escuadra_id      

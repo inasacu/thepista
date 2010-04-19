@@ -10,7 +10,10 @@
 			<th class="last">&nbsp;</th>
 		</tr>
 
-	  <% @escuadras.each do |escuadra| -%>
+	  <% @escuadras.each do |escuadra|	 
+			the_label = label_name(:escuadras_destroy)
+			the_confirmation = "#{ the_label }?" 			
+		-%>
 
 	  <tr>  
 			<td>
@@ -22,9 +25,12 @@
 			</td>
 
 	       <td class="last">
+				<% if current_user.is_manager_of?(@cup) %>
 				<span class="action">
-					<%= link_to label_name(:escuadras_edit), edit_escuadra_path(escuadra) %></li>		
+					<%= link_to label_name(:escuadras_edit), edit_escuadra_path(escuadra) %><br/><br/>
+					<%= link_to(the_label, escuadra_path(escuadra), :method => :delete, :confirm => the_confirmation) %>	
 				</span>
+				<% end -%>
 	       </td>
 	  </tr>   
  

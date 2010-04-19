@@ -1,6 +1,5 @@
 class CreatePorras < ActiveRecord::Migration
   def self.up
-    drop_table :porras
     create_table :porras do |t|
 
       t.string      :name   
@@ -9,6 +8,8 @@ class CreatePorras < ActiveRecord::Migration
       t.datetime    :starts_at
       t.datetime    :ends_at
       t.datetime    :reminder_at
+      
+      t.string      :time_zone
             
       t.text        :description
       t.text        :conditions

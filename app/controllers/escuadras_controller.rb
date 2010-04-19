@@ -41,6 +41,7 @@ class EscuadrasController < ApplicationController
 
   def edit
     @escuadra = Escuadra.find(params[:id])
+    @cup = @escuadra.cups.first
   end
 
   def update

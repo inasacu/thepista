@@ -1,6 +1,6 @@
 class CreateCups < ActiveRecord::Migration
   def self.up
-    drop_table :cups
+
     create_table :cups do |t|
 
       t.string      :name

@@ -4,7 +4,6 @@ class Game < ActiveRecord::Base
 
   alias_method :next_game, :parent
 
-
   belongs_to :cup
 
   belongs_to :winner,     :class_name => 'Escuadra',  :foreign_key => 'winner_id' 
@@ -18,55 +17,37 @@ class Game < ActiveRecord::Base
   belongs_to :home_escuadra,     :class_name => "Escuadra",   :foreign_key => "home_id"
   belongs_to :invite_escuadra,   :class_name => "Escuadra",   :foreign_key => "invite_id"
 
-  # validations  
+  # validations   
+  validates_presence_of         :concept
+  validates_length_of           :concept,                         :within => NAME_RANGE_LENGTH
+  validates_format_of           :concept,                         :with => /^[A-z 0-9 _.-]*$/
+  
   # validates_numericality_of     :home_score,  :greater_than_or_equal_to => 0, :less_than_or_equal_to => 300
   # validates_numericality_of     :away_score,  :greater_than_or_equal_to => 0, :less_than_or_equal_to => 300
 
   validates_presence_of         :starts_at, :ends_at, :reminder_at, :home_id, :away_id
 
   # variables to access
-  attr_accessible :starts_at, :ends_at, :reminder_at, :cup_id, :home_id, :away_id, :winner_id, :next_game_id
+  attr_accessible :concept, :starts_at, :ends_at, :reminder_at, :points_for_single, :points_for_double
+  attr_accessible :cup_id, :home_id, :away_id, :winner_id, :next_game_id, :jornada, :round, :type_name
+  attr_accessible :home_score, :away_score, :played
 
   # friendly url and removes id
   # has_friendly_id :concept, :use_slug => true, :reserved => ["new", "create", "index", "list", "signup", "edit", "update", "destroy", "show"]
 
 
-  # method section  
-  def self.current_games(user, page = 1)
+  # method section 
+  def self.group_stage_games(cup, page = 1)
     self.paginate(:all, 
-    :conditions => ["starts_at >= ? and escuadra_id in (select escuadra_id from escuadras_users where user_id = ?)", Time.zone.now, user.id],
-    :order => 'starts_at, escuadra_id', :page => page, :per_page => SCHEDULES_PER_PAGE)
+    :conditions => ["cup_id = ? and type_name = 'GroupStage'", cup],
+    :order => 'starts_at', :page => page, :per_page => SCHEDULES_PER_PAGE)
   end
 
-  def self.previous_games(user, page = 1)
+  def self.group_round_games(cup, page = 1)
     self.paginate(:all, 
-    :conditions => ["starts_at < ? and (season_ends_at is null or season_ends_at > ?) and escuadra_id in (select escuadra_id from escuadras_users where user_id = ?)", Time.zone.now, Time.zone.now, user.id],
-    :order => 'starts_at desc, escuadra_id', :page => page, :per_page => SCHEDULES_PER_PAGE)
+    :conditions => ["cup_id = ? and type_name != 'GroupStage'", cup],
+    :order => 'starts_at', :page => page, :per_page => SCHEDULES_PER_PAGE)
   end
-
-  def self.archive_games(user, page = 1)
-    self.paginate(:all, 
-    :conditions => ["season_ends_at < ? and escuadra_id in (select escuadra_id from escuadras_users where user_id = ?)", Time.zone.now, user.id],
-    :order => 'starts_at, escuadra_id', :page => page, :per_page => SCHEDULES_PER_PAGE)
-  end
-
-  def self.max(game)
-    find(:first, :conditions => ["escuadra_id = ? and played = true", game.escuadra_id], :order => "starts_at desc")    
-  end
-
-  # def self.previous(game, option=false)
-  #   if self.count(:conditions => ["id < ? and escuadra_id = ?", game.id, game.escuadra_id] ) > 0
-  #     return find(:first, :select => "max(id) as id", :conditions => ["id < ? and escuadra_id = ?", game.id, game.escuadra_id]) 
-  #   end
-  #   return game
-  # end 
-  # 
-  # def self.next(game, option=false)
-  #   if self.count(:conditions => ["id > ? and escuadra_id = ?", game.id, game.escuadra_id]) > 0
-  #     return find(:first, :select => "min(id) as id", :conditions => ["id > ? and escuadra_id = ?", game.id, game.escuadra_id])
-  #   end
-  #   return game
-  # end
 
   def self.upcoming_games(hide_time)
     with_scope :find => {:conditions=>{:starts_at => ONE_WEEK_FROM_TODAY, :played => false}, :order => "starts_at"} do
@@ -94,6 +75,14 @@ class Game < ActiveRecord::Base
     played == false
   end
 
+  # def home_group
+  #   self..name
+  # end
+  # 
+  # def away_group
+  #   self.group.second_team
+  # end
+  
   private
 
   def validate
@@ -106,20 +95,19 @@ class Game < ActiveRecord::Base
 
   # 
   # # method section
-  # def set_game_winner
-  # 
-  #   unless self.home_score.nil? or self.away_score.nil?
-  #     if self.home_score > self.away_score
-  #       self.winner_id = self.home_id
-  #     end
-  # 
-  #     if self.home_score < self.away_score
-  #       self.winner_id = self.away_id
-  #     end
-  #   end
-  # 
-  # end
-  # 
+  def set_game_winner  
+    unless self.home_score.nil? or self.away_score.nil?
+      if self.home_score > self.away_score
+        self.winner_id = self.home_id
+      end  
+      if self.home_score < self.away_score
+        self.winner_id = self.away_id
+      end
+      self.played = true
+    end  
+  end
+  
+   
   # # return true if the round home away conbination is nil
   # def self.round_home_away_exist?(round, home, away)
   #   find_by_round_id_and_home_id_and_away_id(round.id, home.id, away.id).nil?

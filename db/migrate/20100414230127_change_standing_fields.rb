@@ -1,8 +1,5 @@
 class ChangeStandingFields < ActiveRecord::Migration
   def self.up
-
-    drop_table :standings
-
     create_table :standings do |t| 
          
       t.integer :cup_id 

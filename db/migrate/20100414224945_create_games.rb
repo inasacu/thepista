@@ -1,7 +1,8 @@
 class CreateGames < ActiveRecord::Migration
   def self.up
-    drop_table :games
     create_table :games do |t|
+      
+      t.string    :concept
 
       t.datetime  :starts_at
       t.datetime  :ends_at
@@ -16,11 +17,16 @@ class CreateGames < ActiveRecord::Migration
 
       t.integer   :home_score
       t.integer   :away_score
-
-      t.integer   :points_for_single,       :default => 1
-      t.integer   :points_for_double,       :default => 5
-
+      
+      t.integer   :jornada,                 :default => 1      
+      t.integer   :round,                   :default => 0
+      
+      t.boolean   :played,                  :default => false
+      
       t.string    :type_name,               :limit => 40
+
+      t.integer   :points_for_single,       :default => 0
+      t.integer   :points_for_double,       :default => 0
 
       t.timestamps
     end

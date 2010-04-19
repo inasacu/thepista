@@ -5,11 +5,16 @@
 <div class="secondary-navigation">
 	
 <ul>
+	<% unless @cup %>
 	<li class="<%= get_first_active %>"><%=  link_to(label_name(:cups_upcoming), cups_path) %></li>
 	<li class="<%= get_active('cup_list') %>"><%=  link_to(label_name(:cups_list) , list_cups_path) %></li>
-	<li class="<%= get_active('cup_show') %>"><%=  cup_link(@cup) if @cup %></li>	
-	<li class="<%= get_active('cup_escuadra_list') %>"><%=  link_to(label_name(:escuadras) , list_escuadras_path(:id => @cup)) if @cup %></li>							
-	<!-- <li class="<%#= get_active('cups_escuadra_list') %>"><%#=  link_to(label_name(:escuadras) , escuadras_url(:id => @cup)) if @cup %></li>			 -->
+	<% else %>
+	<li class="<%= get_active('cup_show') %>"><%=  cup_link(@cup) %></li>	
+	<li class="<%= get_active('escuadra_list') %>"><%=  link_to(label_name(:escuadras) , list_escuadras_path(:id => @cup)) %></li>					
+	<li class="<%= get_active('game_index') %>"><%= link_to(label_name(:group_stage) , games_url(:id => @cup)) %>	</li>
+	<li class="<%= get_active('game_list') %>"><%= link_to(label_name(:group_round) , list_games_path(:id => @cup)) %></li>
+	<li class="<%= get_active('game_show') %>"><%= game_link @game if @game %></li>
+	<% end %>
 </ul>
 
 <div class="clear"></div>

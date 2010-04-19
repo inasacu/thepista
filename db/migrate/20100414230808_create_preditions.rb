@@ -1,6 +1,5 @@
 class CreatePreditions < ActiveRecord::Migration
   def self.up
-    drop_table :preditions
     create_table :preditions do |t|
 
       t.integer   :porra_id

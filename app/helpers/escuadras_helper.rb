@@ -52,7 +52,7 @@ module EscuadrasHelper
   end
 
   def escuadra_score_link(game)
-    return "#{game.home_escuadra} ( #{game.home_score}  -  #{game.away_score} ) #{game.away_escuadra}" 
+    return "#{game.home} ( #{game.home_score}  -  #{game.away_score} ) #{game.away}" 
   end    
 
   def escuadra_list(objects)

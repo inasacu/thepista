@@ -335,6 +335,7 @@ es:
      gameday_at:  Dia del Evento
      game_day: Encuentro 
      gameday_at_description:  Dia de la semana del encuentro  
+     games_concept_description:  Concepto del evento
      games_destroy:  Borrar evento
      games_index:  Eventos
      games_index_option: Opciones 
@@ -441,8 +442,10 @@ es:
      group_a:  Primer equipo
      group_b:  Segundo equipo  
      group_fee: Tasa de equipo
-     group_id: Equipo   
-     groups: Equipos    
+     group_id: Equipo
+     group_stage:  Fase de Grupo
+     group_round:  Ronda de Eliminación   
+     groups: Equipos  
      has_been_sent: ha sido mandado correctamente.  
      has_been_sent_female: has sido mandada correctamente. 
      has_been_taken: ya se ha elegido.  Intenta otro nombre.
@@ -558,7 +561,7 @@ es:
      markers: Centros Deportivos 
      markers_list: Listado de centros deportivos
      markers_create:  Nuevo centro deportivo  
-     match: Resultado   
+     match: Resultado 
      matches: Resultados   
      maybe_available: Posiblemente   
      Medium: Medio   
@@ -639,6 +642,7 @@ es:
      new_openid: Nueva cuenta   
      news: noticias
      next: "Siguiente"
+     next_match:  Proxima Jornada
      next_step: el próximo paso   
      nickname: Alias   
      no_account: "Con tu cuenta nueva OpenID, registrate en HayPista"   
@@ -777,10 +781,14 @@ es:
      player_with: "Jugadores con"
      player_with_less_games: asistencias a eventos menos que el resto.
      points: Ptos.
+     points_for_double:  Puntos pro acerta el resultado
+     points_for_double_description:  Dale puntuación por acertar el resultado...
      points_for_draw: Puntos por Empatar
      points_for_draw_description: Dale puntuación por empatar el evento...
      points_for_lose: Puntos por Perder
      points_for_lose_description: Dale puntuación por perder el evento...
+     points_for_single:  Puntos por acertar parte del resultado
+     points_for_single_description:  Dale puntuación por acertar parte del resultado...
      points_for_win: Puntos por Ganar
      points_for_win_description: Dale puntuación por ganar el evento...
      points_full: Puntos   
@@ -794,6 +802,7 @@ es:
      preference: preferencias
      previous: "Anterior"
      previous_agendas:  Anteriores agendas
+     previous_games:  Anteriores eventos
      previous_ranking: RP   
      previous_ranking_full: Ranking Previo
      previous_schedule: Anterior evento   
@@ -858,8 +867,8 @@ es:
      roles: Responsabilidades   
      roster: Convocado   
      rosters: Convocados   
-     round:  Fase de torneo
-     rounds:  Fases de torneos
+     round:  Fase de copa
+     rounds:  Fases de copas
      Saturday: Sabado
      save: Guardar   
      schedule: Evento   
@@ -1114,6 +1123,8 @@ es:
      unsuccessful_logged_in:  Nombre o clave son incorrectas 
      upcoming: Próximos Eventos  
      upcoming_agenda:  Próximas agendas 
+     upcoming_game:  Próximo evento
+     upcoming_games:   Próximo eventos
      upcoming_schedule: Próximo eventos  
      upcoming_schedules: Próximos Eventos 
      upcoming_meet: Próximo eventos 
