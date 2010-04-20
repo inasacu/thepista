@@ -1,2 +1,0 @@
-class PreditionsController < ApplicationController
-end

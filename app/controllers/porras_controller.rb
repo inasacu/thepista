@@ -1,2 +1,0 @@
-class PorrasController < ApplicationController
-end

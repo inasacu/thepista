@@ -2,7 +2,7 @@
 
 <div class="inner">
 	
-	<table class="table">
+	<table class="table" id="<%= get_the_controller.gsub(' ','_') %>">
 
 		<tr>             
 			<th class="first">&nbsp;</th>
@@ -27,7 +27,7 @@
 	       <td class="last">
 				<% if current_user.is_manager_of?(@cup) %>
 				<span class="action">
-					<%= link_to label_name(:escuadras_edit), edit_escuadra_path(escuadra) %><br/><br/>
+					<%= link_to label_name(:escuadras_edit), edit_escuadra_path(escuadra) %><br/>
 					<%= link_to(the_label, escuadra_path(escuadra), :method => :delete, :confirm => the_confirmation) %>	
 				</span>
 				<% end -%>

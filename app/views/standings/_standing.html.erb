@@ -1,36 +1,32 @@
 <%
  	mailer ||= false
 	switch ||= false
-	max_points = standing.played.to_i * tournament.points_for_win.to_i
-	coeficient = 0
-	coeficient = 100 *(standing.points.to_f/max_points.to_f) 
+	escuadra = Escuadra.find(standing.item_id)
+	played = standing.wins.to_i + standing.draws.to_i + standing.losses.to_i
 %>
 
 <tr>
-	<%= content_tag 'td', standing.ranking, :class => "puntos" %>
-	<%= content_tag 'td', mailer ? "&nbsp;" : image_link_tiny(standing.user), :class => "equipos" %>
-		
+	<td class="puntos">&nbsp;<%= standing.ranking %></td>
+	<td class="equipos"><%= mailer ? "&nbsp;" : image_link_tiny(escuadra) %></td>
 	<td class="equipos">
 		<span>
 		<% if mailer %>
-		<%= link_to(standing.user.name, {:host => 'haypista.com', :controller => 'users', :action => 'show', :id => standing.user}) %>
+		<%= link_to((escuadra.name.to_s.length > 14) ? "#{escuadra.name.to_s.strip[0..12]}..." : escuadra.name, {:host => 'haypista.com', :controller => 'escuadras', :action => 'show', :id => escuadra}) %>
 		<% else %>
-		<%= user_link(standing.user) %>
+		<%= escuadra_link(escuadra) %>
 		<% end %>
 		</span>
 	</td>
-
-	<%= content_tag 'td', standing.points.round, :class => "puntos" %>
-	<%= content_tag 'td', standing.wins, :class => "ganados" %>
-	<%= content_tag 'td', standing.draws, :class => "empatados" %>
-	<%= content_tag 'td', standing.losses, :class => "perdidos" %>
-	<%= content_tag 'td', standing.played, :class => "last" %>
+	<td class="puntos"><%= standing.points.round %></td>
+	<td class="ganados"><%= standing.wins %></td>
+	<td class="empatados"><%= standing.draws %></td>
+	<td class="perdidos"><%= standing.losses %></td>
 	
-	
-	<% 5.times.each do %>
-	<%= content_tag 'td', "&nbsp;" %>
-	<%= content_tag 'td', "&nbsp;" %>
+	<%  if @cup.is_futbol?  %>
+	<td class="afavor"><%= standing.goals_for %></td>
+	<td class="encontra"><%= standing.goals_against %></td>
+	<td class="encontra"><%= standing.goals_for - standing.goals_against %></td>
 	<% end %>
-
+	<td class="encontra"><%= played %></td>
 </tr>
 

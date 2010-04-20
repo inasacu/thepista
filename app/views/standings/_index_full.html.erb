@@ -1,4 +1,4 @@
-	<h2 class="title"><%= get_collection_label(@tournaments) %></h2>
+	<h2 class="title"><%= get_collection_label(@groups) %></h2>
 
    <div class="inner">
 
@@ -6,7 +6,8 @@
 
        <tr>             
          <th class="first">&nbsp;</th>
-         <th><%= label_name(:name) %></th>
+         <th><%= label_name(:name) %>&nbsp;/<br />
+		  <%= label_name(:gameday_at) %></th>
          <th><%= label_name(:manager) %>&nbsp;/<br />
 		  <%= label_name(:sport) %></th>
          <th><%= label_name(:time_zone) %></th>
@@ -15,41 +16,43 @@
          <th class="last">&nbsp;</th>
        </tr>
 
-       <% @tournaments.each do |tournament| -%>
+       <% @groups.each do |group| -%>
 
        <tr>  
 	  <td>
-		<%= tournament_image_link_small tournament %>
-	  </td>	  
+		<%= group_image_link_small group %>
+	  </td>
+	  
 	  <td>
+		
 		<% unless @archive %>
-			<%= link_to tournament.name, standing_path(:id => tournament) %>
+			<%= link_to group.name, scorecard_path(:id => group) %>
 		<% else %>
-		<%= link_to tournament.name, show_archive_path(:id => tournament) %>
+		<%= link_to group.name, show_archive_path(:id => group) %>
 		<% end %>
 		
 	  </td>
 	
 	  <td>
-		<%= user_list tournament.all_the_managers %><br />
-		<%= tournament.sport.name %>
+		<%= user_list group.all_the_managers %><br />
+		<%= group.sport.name %>
 	  </td>
 
 		  <td>
-			<%= tournament.time_zone %>
+			<%= group.time_zone %>
 		  </td>
                
          <td>
-		<%= I18n.t(:has_tournament_users, :count => object_counter(tournament.users)) %><br />
-		<%= I18n.t(:has_tournament_rounds, :count => object_counter(tournament.rounds)) %>
+		<%= I18n.t(:has_group_users, :count => object_counter(group.users)) %><br />
+		<%= I18n.t(:has_group_schedules, :count => object_counter(group.schedules)) %>
          </td>
 
          <td>
-           <%#= nice_full_date tournament.created_at %>
+           <%#= nice_full_date group.created_at %>
          </td>
 
          <td class="last">
-		<%= link_to(label_name(:send_message_to_tournament), new_message_path(:tournament_id => tournament.id)) %><br />
+		<%= link_to(label_name(:send_message_to_group), new_message_path(:group_id => group.id)) %><br />
          </td>
        </tr>   
       
@@ -57,6 +60,6 @@
 
      </table>
 
-	<%= render :partial => 'shared/action_bar', :locals => { :collection => @tournaments } %>
+	<%= render :partial => 'shared/action_bar', :locals => { :collection => @groups } unless is_controller('cloud') %>
 </div>
 

@@ -29,7 +29,7 @@ class Escuadra < ActiveRecord::Base
   validates_format_of       :name,            :with => /^[A-z 0-9 _.-]*$/
 
   has_and_belongs_to_many   :cups,          :conditions => 'archive = false',   :order => 'name'
-  has_many                  :standings,     :conditions => "escuadra_id > 0 and played > 0 and archive = false" #,  :order => "escuadra_id"
+  # has_many                  :standings,     :conditions => "escuadra_id > 0 and played > 0 and archive = false" #,  :order => "escuadra_id"
 
   # variables to access
   attr_accessible :name, :photo, :description
@@ -46,21 +46,10 @@ class Escuadra < ActiveRecord::Base
   def icon
     self.photo.url
   end 
-
-  def avatar_flag
-    self.flag.url
-  end
-
-  def thumbnail_flag
-    self.flag.url
-  end
-
-  def icon_flag
-    self.flag.url
-  end
   
   def join_escuadra(cup)
     CupsEscuadras.join_escuadra(self, cup)
+    Standing.create_cup_escuadra_standing(cup)  
   end
   
 end

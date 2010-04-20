@@ -1,10 +1,10 @@
 class GamesController < ApplicationController
   before_filter :require_user
-  
+
   before_filter :get_game, :only => [:edit, :update, :destroy, :set_score]
   before_filter :get_cup, :only =>[:new, :index, :list]
   before_filter :has_manager_access, :only => [:edit, :update, :destroy]
-  
+
   def index
     @games = Game.group_stage_games(@cup, params[:page])
   end
@@ -13,7 +13,7 @@ class GamesController < ApplicationController
     @games = Game.group_round_games(@cup, params[:page])
     render :template => '/games/index'       
   end
-  
+
   def show
     store_location  
   end
@@ -45,16 +45,16 @@ class GamesController < ApplicationController
     unless @previous_game.nil?
       @game.cup_id = @cup.id  
       @game.concept = @previous_game.concept      
-       
+
       @game.starts_at = @previous_game.starts_at + 1.days
       @game.ends_at = @previous_game.ends_at + 1.days
       @game.reminder_at = @previous_game.starts_at - 1.day        
-      
+
       @game.type_name = @previous_game.type_name      
       @game.points_for_single = @previous_game.points_for_single      
       @game.points_for_double = @previous_game.points_for_double      
       @game.jornada = @previous_game.jornada.to_i + 1
-          
+
     end
   end
 
@@ -65,7 +65,7 @@ class GamesController < ApplicationController
       redirect_to cups_url
       return
     end
-    
+
     if @game.save 
       flash[:notice] = I18n.t(:successful_create)
       redirect_to games_path(:id => @game.cup)
@@ -74,14 +74,14 @@ class GamesController < ApplicationController
       render :action => 'new'
     end
   end
-  
+
   def edit
     if @cup
       @home = @cup.the_escuadras
       @away = @cup.the_escuadras
     end
   end
-  
+
   def update
     if @game.update_attributes(params[:game]) 
       flash[:notice] = I18n.t(:successful_update)
@@ -91,22 +91,22 @@ class GamesController < ApplicationController
       render :action => 'edit'
     end
   end
-  
+
   def set_score
   end
 
   def destroy    
-      # @game.played = false
-      # @game.save
-      # @game.matches.each do |match|
-      #   match.archive = false
-      #   match.save!
-      # end
-      # Scorecard.send_later(:calculate_cup_scorecard, @game.cup)
-      # @game.destroy
-      # 
-      # flash[:notice] = I18n.t(:successful_destroy)
-      # redirect_to :action => 'index'  
+    # @game.played = false
+    # @game.save
+    # @game.matches.each do |match|
+    #   match.archive = false
+    #   match.save!
+    # end
+    # Scorecard.send_later(:calculate_cup_scorecard, @game.cup)
+    # @game.destroy
+    # 
+    # flash[:notice] = I18n.t(:successful_destroy)
+    # redirect_to :action => 'index'  
   end
 
   private
@@ -117,18 +117,18 @@ class GamesController < ApplicationController
       return
     end
   end
-  
+
   def get_game      
     @game = Game.find(params[:id])
     @cup = @game.cup 
   end
-  
+
   def get_cup
-      @cup = Cup.find(params[:id])      
-      unless @cup
-        redirect to cups_url
-        return
-      end
+    @cup = Cup.find(params[:id])      
+    unless @cup
+      redirect to cups_url
+      return
+    end
   end
 end
 

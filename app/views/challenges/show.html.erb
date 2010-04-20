@@ -1,0 +1,133 @@
+<% 
+	is_user_manager = (current_user.is_manager_of?(@challenge))
+%>
+
+<div class="block">
+
+  <%= render :partial => 'secondary_navigation' %>   
+  
+  <div class="content">
+	        
+  <h2 class="title"><%= @challenge.name %></h2>
+
+    <div class="inner">
+
+	<!-- new table -->
+	<table>
+	<thead>
+
+	<tr>
+	<th colspan="2">
+		<div class="description">
+			<span class="q">
+				<%=sanitize @challenge.description.blank? ? control_label('description_no') : @challenge.description %>
+			</span>
+		</div>
+	</th>
+
+	</tr>
+	</thead>
+
+	<tr>
+	<td valign="top" width="105"><%= challenge_show_photo(@challenge, current_user) %></td>
+
+	<td>
+	<table border="1">
+
+		
+		<%= tr_td_action(:name, @challenge.name) %>
+		<%= tr_td_action(:second_team, @challenge.second_team) %>
+
+		<tr>
+			<%= content_tag :td, label_name(:manager), :class => "label" %>
+			<%= content_tag :td, user_list(@challenge.all_the_managers), :class => get_the_action %>
+		</tr>
+
+		<tr>
+			<%= content_tag :td, label_name(:marker), :class => "label" %>
+			<%= content_tag :td, marker_link(@challenge.marker), :class => get_the_action %>
+		</tr>
+
+		<%= tr_td_action(:sports, @challenge.sport.name) %>
+		<%= tr_td_action(:game_day, nice_day_time(@challenge.schedules.first.starts_at)) unless @challenge.schedules.blank? %>
+		<%= tr_td_action(:time_zone, @challenge.time_zone) %>
+
+	<% 
+		the_label = h(label_name(@challenge.looking, 'value'))
+		the_confirmation = label_with_name('looking_for_user', "#{@challenge.name}?") 
+	%>
+		<tr>
+		  <%= content_tag :td, label_name(:looking_for_user), :class => "label" %>
+		  <%= content_tag :td, 
+				(is_user_manager ? link_to(the_label, set_challenge_looking_path(:id => @challenge), :confirm => the_confirmation) : the_label), 
+				:class => get_the_action %>
+		</tr>
+		
+		<%= tr_td_action(:users, t(:has_challenge_users, :count => @challenge.users.count)) %>
+		<%= tr_td_action(:schedules, t(:has_challenge_schedules, :count => @challenge.schedules.count)) unless @challenge.schedules.blank? %>
+		<%= tr_td_action(:points_for_win, @challenge.points_for_win) %>
+		<%= tr_td_action(:points_for_draw, @challenge.points_for_draw) %>
+		<%= tr_td_action(:points_for_lose, @challenge.points_for_lose) %>		
+		<%= tr_td_action(:player_limit, @challenge.player_limit) %>
+		
+		<tr>
+			<%= content_tag :td, link_to(label_name(:scorecard), scorecard_path(:id => @challenge)), :class => "label" %>
+		</tr>
+		
+		<tr>
+			<%= content_tag :td, label_name(:conditions), :class => "label" %>
+			<%= content_tag :td, sanitize(@challenge.conditions), :class => get_the_action %>	
+		</tr>
+
+	 <% if current_user.is_member_of?(@challenge) and !@challenge.available_users.empty? %>
+	   <tr>
+	     <%= content_tag :td, label_name(:users_available), :class => "label" %>
+	     <%#= content_tag :td, user_list(@challenge.available_users), :class => get_the_action %>
+	     <%= content_tag :td, user_list(@challenge.users), :class => get_the_action %>
+	   </tr>
+
+		<tr>
+		<%= render :partial => '/shared/show_images', :locals => {:collection => @challenge.users} %>			
+		</tr>	
+	
+	 <% end %>
+
+		<% 
+			# the_label = h(label_name(@challenge.available, 'value'))
+			# the_confirmation = label_with_name('set_available', "#{@challenge.name}?") 
+		%>
+			<!-- <tr>
+			  <%#= content_tag :td, label_name(:available), :class => "label" %>
+			  <%#= content_tag :td, 
+					(is_user_manager ? link_to(the_label, set_challenge_available_path(:id => @challenge.id), :confirm => the_confirmation) : the_label), 
+					:class => get_the_action %>
+			</tr> -->
+
+		<% 
+			# the_label = h(label_name(@challenge.enable_comments, 'value'))
+			# the_confirmation = label_with_name('enable_comments', "#{@challenge.name}?") 
+		%>
+			<!-- <tr>
+			  <%#= content_tag :td, label_name(:enable_comments), :class => "label" %>
+			  <%#= content_tag :td, 
+					(is_user_manager ? link_to(the_label, set_challenge_enable_comments_path(:id => @challenge.id), :confirm => the_confirmation) : the_label), 
+					:class => get_the_action %>
+			</tr> -->
+
+		</table>
+
+	</td>
+	</tr>
+
+	</table>
+	<!-- new table -->
+
+
+			 
+    </div>
+  </div>
+</div>
+
+<% content_for :sidebar, render(:partial => 'sidebar_show') -%>
+<% content_for :sidebar, render(:partial => 'shared/share_object', :locals => {:challenge => @challenge}) if @challenge -%>
+<% content_for :sidebar, render(:partial => 'shared/sidebar_show_team', :locals => {:challenge => @challenge}) if current_user.is_manager_of?(@challenge) %>

@@ -78,9 +78,6 @@ a:hover { text-decoration: underline; }
 #faq_content .mailing_list { margin: 10px 0pt 20px; display: none; text-align: center; }
 
 
-
-
-
 /* embeds the openid image in the text field */
 input#user_openid_identifier, input#user_session_openid_identifier {
   background: url(../../images/login-bg.gif) no-repeat;
@@ -99,7 +96,6 @@ input#user_openid_identifier, input#user_session_openid_identifier {
 
 
 /* forms */
-
 .textfield { 
 	border: 1px solid rgb(205, 205, 205); 
 	padding: 0.4em; 
@@ -171,7 +167,6 @@ text_area.textfield {
 	height: 80px; 
 }
 
-
 .next_message, .previous_message { 
 	display: block; 
 	height: 20px; 
@@ -240,14 +235,21 @@ text_area.textfield {
 	padding: 4px 10px;
 }
 
-/*#scorecard th{
-	padding: 4px 8px;
-}*/
+#escuadra td{
+	padding: 1px 4px;
+}
 
-#scorecard td{
+#game td{
+	padding: 1px 4px;
+}
+
+#scorecard #standing td{
 	padding: 4px 10px;
 }
 
+#standing td{
+	padding: 4px 10px;
+}
 .table td.puntos { 
 	color: darkblue; 
 	font-weight: bold; 

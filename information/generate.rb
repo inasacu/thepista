@@ -1,9 +1,9 @@
 
 
-ruby script/generate controller escuadras
-ruby script/generate model escuadra
+ruby script/generate controller challenges
+ruby script/generate model challenge
 rake db:migrate
-ruby script/generate themed escuadras escuadra --layout=application --with_will_paginate
+ruby script/generate themed casts cast --layout=application --with_will_paginate
 
 
 ruby script/generate nifty_scaffold equipos
