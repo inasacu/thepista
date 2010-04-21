@@ -22,7 +22,7 @@
           <th><%= label_name(:gameday_at) %></th>
           <th>&nbsp;</th>
           <th>&nbsp;</th>
-		  <th><%= label_name(:scorecard) %></th>
+		  <th align="center"><%= label_name(:matches) %></th>
           <th>&nbsp;</th>
           <th>&nbsp;</th>
           <th class="last">&nbsp;</th>
@@ -50,7 +50,7 @@
 			<%= escuadra_link game.home %>
 		  </td>
 
-		  <td>
+		  <td align="center">
 		  	<%=  (game.game_played?) ? game_score_link(game) : label_name(:game_not_played) %> 
 		  </td>
 			

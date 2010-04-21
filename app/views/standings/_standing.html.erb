@@ -1,12 +1,18 @@
+<%= stylesheet_link_tag "in_place_styles"  %>
+<% inplace_error_div %>
 <%
  	mailer ||= false
 	switch ||= false
 	escuadra = Escuadra.find(standing.item_id)
 	played = standing.wins.to_i + standing.draws.to_i + standing.losses.to_i
+	@stand = standing  
+	is_manager = current_user.is_manager_of?(@cup)	
 %>
 
 <tr>
-	<td class="puntos">&nbsp;<%= standing.ranking %></td>
+	<td class="puntos">
+		<%= is_manager ? in_place_text_field(:stand, :group_stage_name, {:cols => 1}) : standing.group_stage_name %>
+	</td>
 	<td class="equipos"><%= mailer ? "&nbsp;" : image_link_tiny(escuadra) %></td>
 	<td class="equipos">
 		<span>

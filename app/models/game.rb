@@ -80,7 +80,7 @@ class Game < ActiveRecord::Base
   def self.find_all_games(standing)
     find(:all, :conditions => ["cup_id = ? and (home_id = ? or away_id = ?) and home_score is not null and away_score is not null", 
       standing.cup_id, standing.item_id, standing.item_id], :order => "id")
-    end
+  end
 
 
 

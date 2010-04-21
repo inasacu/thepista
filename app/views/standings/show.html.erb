@@ -1,8 +1,8 @@
 <% 	
 	standings = false
-	@standings.each {|card| standings = true }
-	
-	the_label = label_name(:scorecard)
+	@standings.each {|card| standings = true }	
+	the_label = @cup.name
+	the_label = label_name(:standings)
 	content_for(:title, the_label)
 %>
 
@@ -21,24 +21,30 @@
 
 		<table class="table" id="<%= get_the_controller.gsub(' ','_') %>">
 
-			<% if @cup.is_futbol? %>
-			<%= render :partial => 'standing_futbol_label' %>
-			<%= render :partial => 'standing', :collection => @standings, 
-							:locals => {:group => @cup, :games_played => @games_played, :less_games => @less_games} %>
+			<% if @cup.is_futbol? 
+				group_stage = 'Z'
+			%>
+			
+			<% @standings.each do |standing| 				
+				unless (group_stage == standing.group_stage_name)
+					group_stage = standing.group_stage_name 
+			-%>
+				<%= render :partial => 'standing_futbol_label', :locals => { :group_stage => group_stage} %>
+				<% end %>
+			<%= render :partial => 'standing', :locals => {:standing => standing} %>
+			<% end %>
 			<% end %>
 			
 			<%  if @cup.is_basket?  %>
 			<% @standing_baskets = @standings %>
 			<%= render :partial => 'standing_basket_label' %>
-			<%= render :partial => 'standing_basket', :collection => @standing_baskets, 
-							:locals => {:group => @cup, :games_played => @games_played, :less_games => @less_games} %>       
+			<%= render :partial => 'standing_basket', :collection => @standing_baskets %>       
 			<% end %> 
 			
 			<% unless @cup.is_futbol? or @cup.is_basket? %>
 			<% @standing_others = @standings %>
 			<%= render :partial => 'standing_other_label' %>
-			<%= render :partial => 'standing_other', :collection => @standing_others, 
-							:locals => {:group => @cup, :games_played => @games_played, :less_games => @less_games} %>       
+			<%= render :partial => 'standing_other', :collection => @standing_others %>       
 			<% end %>
 			
 		</table>

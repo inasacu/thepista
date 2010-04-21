@@ -19,13 +19,8 @@ class Standing < ActiveRecord::Base
     end	
   end 
 
-  def self.calculate_cup_standing(cup)
-    all_to_cup_standing(cup)  
-    update_cup_ranking(cup)
-  end
-
   # calculate standing for all previous game in item
-  def self.all_to_cup_standing(cup)  
+  def self.calculate_cup_standing(cup)  
     escuadras = []
     cup.escuadras.each {|escuadra| escuadras << escuadra.id} 
     @standings = Standing.find(:all, :conditions =>["cup_id = ? and item_id in (?) and item_type = ?", cup, escuadras, 'Escuadra'])
@@ -40,6 +35,7 @@ class Standing < ActiveRecord::Base
     # default variables      
     wins, losses, draws = 0, 0, 0
     played, the_points, the_games = 0, 0, 0
+    goals_for, goals_against = 0, 0
 
     # calculate score for home user
     games.each do |game|
@@ -61,6 +57,16 @@ class Standing < ActiveRecord::Base
       end
     end
 
+    games.each do |game|
+      if game.home_id == standing.item_id
+        goals_for += game.home_score.to_i 
+        goals_against += game.away_score.to_i 
+      else
+        goals_for += game.away_score.to_i
+        goals_against += game.home_score.to_i 
+      end
+    end
+
     # ticker all the results for the user, group conbination and points relate to team activity
     the_points = (wins * standing.cup.points_for_win) + 
     (draws * standing.cup.points_for_draw) + 
@@ -69,37 +75,9 @@ class Standing < ActiveRecord::Base
     the_games = wins + losses + draws
 
     # update standing with all calculations
-    standing.update_attributes(:wins => wins, :losses => losses, :draws => draws, :points => the_points, :played => the_games)
-  end
-
-  def self.update_cup_ranking(cup)
-    # default variables
-    first, ranking, past_points, last = 0, 0, 0, 0
-
-    # ranking
-    @standings = Standing.find(:all, :conditions =>["cup_id = ?", cup], :order => 'points desc')
-
-    @standings.each do |standing| 
-      points ||= 0
-
-      # current ranking
-      points = standing.points
-
-      if first != standing.item_id 
-        first, ranking, past_points, last = standing.item_id, 0, 0, 1
-      end 
-
-      if (past_points == points) 
-        last += 1          
-      else
-        ranking += last
-        last = 1          
-      end
-      past_points = points  
-
-      # current ranking
-      standing.update_attribute(:ranking, ranking)
-    end
+    standing.update_attributes(:wins => wins, :losses => losses, :draws => draws, 
+                               :points => the_points, :goals_for => goals_for, :goals_against => goals_against,
+                               :played => the_games)
   end
 
   # record if user and group do not exist
@@ -118,7 +96,7 @@ class Standing < ActiveRecord::Base
     find(:all, 
     :joins => "LEFT JOIN escuadras on escuadras.id = standings.item_id",
     :conditions => ["cup_id = ? and item_id in (?) and item_type = ? and standings.archive = false", cup, escuadras, 'Escuadra'],
-    :order => "points DESC, ranking")
+    :order => "group_stage_name, points DESC, (goals_for-goals_against) DESC")
   end
 
   private

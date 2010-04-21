@@ -6,6 +6,7 @@ class ChangeStandingFields < ActiveRecord::Migration
       t.integer :challege_id
       t.integer :item_id
       t.string	:item_type		                    # for :squad_id, :user_id 
+      t.string  :group_stage_name
       
       t.integer :wins,          :default => 0
       t.integer :draws,         :default => 0

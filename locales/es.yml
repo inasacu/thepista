@@ -444,6 +444,7 @@ es:
      group_fee: Tasa de equipo
      group_id: Equipo
      group_stage:  Fase de Grupo
+     group_stage_name:  Grupo
      group_round:  Ronda de Eliminación   
      groups: Equipos  
      has_been_sent: ha sido mandado correctamente.  
@@ -1492,6 +1493,7 @@ es:
      scorecards_legend:  Leyenda
      standing:  Clasificación del torneo
      standings:  Clasificaciones de torneo
+     standings_edit:  Modifica la clasificación
      standing_list:  Clasificaciones anteriores de torneo
      standings_list:  Clasificaciones anteriores de torneo
      standing_options:  Opciones 
