@@ -14,13 +14,13 @@
 		<div class="group">
 			<%= f.label :score, label_name(:score), :class => :label %><br />
 			
-			<%= escuadra_link @game.home %>&nbsp;&nbsp;
+			<%= escuadra_image_link_smaller @game.home %>&nbsp;&nbsp;<%= escuadra_link @game.home %>&nbsp;&nbsp;
 			
 			<%= f.text_field :home_score, :class => 'textscore'  -%>&nbsp;&nbsp;vs.&nbsp;&nbsp;
 			
 			<%= f.text_field :away_score, :class => 'textscore'  -%>&nbsp;&nbsp;
 			
-			<%= escuadra_link @game.away %>&nbsp;&nbsp;
+			<%= escuadra_link @game.away %>&nbsp;&nbsp;<%= escuadra_image_link_smaller @game.away %>&nbsp;&nbsp;
 		</div>
 		<br />
 		<br />	

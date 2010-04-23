@@ -3,8 +3,7 @@ class Standing < ActiveRecord::Base
   belongs_to 	:cup
   belongs_to  :item,      :polymorphic => true
   belongs_to	:challenge
-  
-  
+    
 
   # method section
   def self.create_cup_escuadra_standing(cup)  
@@ -31,8 +30,33 @@ class Standing < ActiveRecord::Base
       @games = Game.find_all_games(standing)
       update_cup_standing(standing, @games)
     end
-  end
 
+
+    @group_stages = Standing.find(:all, :select => "distinct cup_id, group_stage_name", :conditions =>["cup_id = ?", cup.id], :order => "group_stage_name")
+
+    @group_stages.each do |group_stage|    
+      self.update_cup_group_stage_ranking(group_stage)
+    end    
+
+    # counter = 0
+    # default_group_stage = @standings.first.group_stage_name
+    # 
+    # @standings.each do |standing|    
+    #   counter += 1
+    # 
+    #   if (default_group_stage == standing.group_stage_name and counter == 1)
+    #     self.update_cup_group_stage_ranking(standing)
+    #   end
+    # 
+    #   if (default_group_stage != standing.group_stage_name)
+    #     default_group_stage = standing.group_stage_name
+    #     counter = 0        
+    #   end
+    #       
+    # end
+
+  end
+ 
   def self.update_cup_standing(standing, games)
     # default variables      
     wins, losses, draws = 0, 0, 0
@@ -82,6 +106,23 @@ class Standing < ActiveRecord::Base
                                :played => the_games)
   end
 
+  def self.update_cup_group_stage_ranking(standing)
+    # default variables
+    ranking = 0
+    
+    @standings = Standing.find(:all, :conditions =>["cup_id = ? and group_stage_name = ?", standing.cup_id, standing.group_stage_name], 
+    :order => "points desc, (goals_for-goals_against) desc")
+  
+    @standings.each do |standing|
+      ranking += 1
+      # current ranking
+      standing.update_attribute(:ranking, ranking)
+
+    end
+  end
+
+
+
   # record if user and group do not exist
   def self.create_cup_challenge_item_standing(cup, challenge, item)
     self.create!(:cup => cup, :challenge => challenge, :item => item) if self.cup_challenge_item_exists?(cup, challenge, item)
@@ -98,7 +139,7 @@ class Standing < ActiveRecord::Base
     find(:all, 
     :joins => "LEFT JOIN escuadras on escuadras.id = standings.item_id",
     :conditions => ["cup_id = ? and item_id in (?) and item_type = ? and standings.archive = false", cup, escuadras, 'Escuadra'],
-    :order => "group_stage_name, points DESC, (goals_for-goals_against) DESC")
+    :order => "group_stage_name, points desc, (goals_for-goals_against) desc")
   end
 
   private

@@ -24,7 +24,8 @@ class Game < ActiveRecord::Base
   # validates_numericality_of     :home_score,  :greater_than_or_equal_to => 0, :less_than_or_equal_to => 300
   # validates_numericality_of     :away_score,  :greater_than_or_equal_to => 0, :less_than_or_equal_to => 300
 
-  validates_presence_of         :starts_at, :ends_at, :reminder_at, :home_id, :away_id
+  validates_presence_of         :starts_at, :ends_at, :reminder_at
+  # , :home_id, :away_id
 
   # variables to access
   attr_accessible :concept, :starts_at, :ends_at, :reminder_at, :points_for_single, :points_for_double
@@ -80,7 +81,13 @@ class Game < ActiveRecord::Base
   def not_played?
     played == false
   end
-
+  
+  def self.all_cup_games_played(cup)
+      if self.count(:conditions => ["cup_id = ? and played is false and type_name = 'GroupStage'", cup]) > 0
+        return false
+      end
+      return true
+    end
 
   def self.find_all_games(standing)
     find(:all, :conditions => ["cup_id = ? and (home_id = ? or away_id = ?) and home_score is not null and away_score is not null", 
@@ -236,7 +243,7 @@ class Game < ActiveRecord::Base
       # self.errors.add(:reminder_at, I18n.t(:must_be_before_starts_at)) if self.reminder_at >= self.starts_at
       #  self.errors.add(:starts_at, I18n.t(:must_be_before_ends_at)) if self.starts_at >= self.ends_at
       #  self.errors.add(:ends_at, I18n.t(:must_be_after_starts_at)) if self.ends_at <= self.starts_at
-      self.errors.add(:home_id, I18n.t(:must_be_different)) if self.home_id == self.away_id
+      self.errors.add(:home_id, I18n.t(:must_be_different)) if (self.home_id == self.away_id and !self.home_id.nil? and !self.away.nil?) 
     end
 
   end
