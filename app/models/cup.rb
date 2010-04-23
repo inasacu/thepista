@@ -123,13 +123,256 @@ class Cup < ActiveRecord::Base
   def format_conditions
     self.conditions.gsub!(/\r?\n/, "<br>") unless self.conditions.nil?
   end
+    
+  # group stage games
+  def create_group_stage(teams)
+    
+    # return unless self.group_stage    
+    teams.reverse!
+
+    # Hash of hashes to keep track of matchups already used.
+    played = Hash[ * teams.map { |t| [t, {}] }.flatten ]
+
+    # Initially generate the cup as a list of games.
+    games = []
+    return [] unless set_game(0, games, played, teams, nil)
+
+    # Convert the list into cup rounds.
+    rounds = []    
+    rounds.push games.slice!(0, teams.size / 2) while games.size > 0             
+    rounds
+  end
+
+  # create games for group stage
+  def set_game(i, games, played, teams, rem)
+    # Convenience vars: N of teams and total N of games.
+    nt  = teams.size
+    ng  = (nt - 1) * nt / 2
+
+    # If we are working on the first game of a round,
+    # reset rem (the teams remaining to be scheduled in
+    # the round) to the full list of teams.
+    rem = Array.new(teams) if i % (nt / 2) == 0
+
+    # Remove the top-seeded team from rem.
+    top = rem.sort_by { |tt| teams.index(tt) }.pop
+    rem.delete(top)
+
+    # Find the opponent for the top-seeded team.
+    rem.each_with_index do |opp, j|
+      # If top and opp haven't already been paired, schedule the matchup.
+      next if played[top][opp]
+      games[i] = [ top, opp ]
+
+      played[top][opp] = true
+
+      # create the round
+      create_group_stage_game(games[i])    
+
+      # Create a new list of remaining teams, removing opp
+      # and putting rejected opponents at the end of the list.
+      rem_new = [ rem[j + 1 .. rem.size - 1], rem[0, j] ].compact.flatten
+
+      # Method has succeeded if we have scheduled the last game
+      # or if all subsequent calls succeed.
+      return true if i + 1 == ng
+      return true if set_game(i + 1, games, played, teams, rem_new)
+
+      # The matchup leads down a bad path. Unschedule the game
+      # and proceed to the next opponent.
+      played[top][opp] = false
+      destroy_group_stage_game(games[i])  
+      # puts " *** removed *** "  
+    end
+
+    return false
+  end
+  
+  # create games for cup round in group stage
+  def create_group_stage_game(game)    
+    
+    if Game.cup_home_away_exist?(self, game[0], game[1]) 
+      
+      standing = Standing.find(:first, :conditions => ["cup_id = ? and item_id = ? and item_type = ?", self.id, game[0].id, game[0].class.to_s])
+      last_game = Game.last_cup_game(self)
+      puts "create: #{self.name} #{game[0].name} vs #{game[1].name} "
+      
+      # default values
+      starts_at =  self.starts_at
+      ends_at =  self.starts_at + (60 * 60 * 2)
+      reminder_at = self.starts_at - 1.day
+      jornada = 1
+      
+      unless last_game.nil?
+        starts_at =  last_game.starts_at + 1.day
+        ends_at =  starts_at + (60 * 60 * 2)
+        reminder_at = starts_at - 1.day
+        jornada = last_game.jornada.to_i + 1
+      end      
+      
+      
+      return Game.create!(:concept => "Group Stage #{standing.group_stage_name}", 
+                          :cup_id => self.id, :home_id => game[0].id ,:away_id => game[1].id, 
+                          :starts_at => starts_at, :ends_at => ends_at, 
+                          :reminder_at => reminder_at, :type_name => 'GroupStage', 
+                          :points_for_single => 0, :points_for_double => 5, :jornada => jornada)
+    end
+  end
+  
+  # destroy duplicate games for cup round in group stage 
+  def destroy_group_stage_game(game)    
+    puts "destroy:  #{self.first_round.jornada}: #{game[0].name} vs #{game[1].name} "
+    
+    @game = Game.find(:first, :conditions => ["cup_id = ? and home_id = ? and away_id = ? and type_name = 'GroupStage'", 
+                    self.id, game[0].id, game[1].id])
+    unless @game.nil?
+      puts "destroy:  #{self.first_round.jornada}: #{game[0].name} vs #{game[1].name} "
+      @game.destroy
+    end
+  end
+  
+  def create_final_stage player_names
+    first_round_games = generate_cup_bracket(player_names)
+  end
+
+  # generate a single elimination cup for N teams, numbered 1..N
+  def generate_cup_bracket(teams)
+    @participants = teams
+    @participant_number = @participants.length
+    @levels = @participant_number.log2
+    @levels = (1<<(@levels) == @participant_number) ? @levels -1 : @levels
+    @total_matchups = 1<<(@levels)
+    (@participant_number..(2*@total_matchups - 1)).each do |x| @participants << nil end
+
+    left_index, right_index = 1, 2
+
+    @tree = [[left_index, right_index]] 
+    @the_nodes = []      
+    @match = 0
+
+    (0..@levels).each do |level|
+      game = (1<<level) - 1 
+      nodes = @tree[-(game+1)/2,(game+1)/2].inject([]) {|s,e| s+e}        
+      @the_nodes << nodes
+      i = 0
+      nodes.each do |index|      
+        opponent = ((2*(game+1)-index+1) > @participant_number) ? nil : (2*(game+1) - index+1)
+        if i < game
+          @tree << [index, opponent]
+          # puts "[M]:  #{index} vs #{opponent}"
+        else  
+          @tree << [opponent, index]
+          # puts "[M]:  #{index} vs #{opponent}"
+        end 
+        i += 1
+      end       
+    end
+      
+      @tree << [left_index, right_index]
+      # puts "[Final]:  #{left_index} vs #{right_index}"
+      # puts
+      
+      @jornada = 0
+      level = @levels
+      counter = @levels + 1
+      while counter > 0
+        game = (1<<(level)) - 1    
+        i = 0
+        @the_nodes[counter-1].each do |index|     
+          next_game= ""
+
+          player_1 = @participants[index-1].name          
+          home_id = @participants[index-1].id
+
+          opponent =  'Bye'    
+          player_2 = 'Bye'           
+          away_id = nil
+
+          unless (2*(game+1)-index+1) > @participant_number
+            opponent =  (2*(game+1) - index+1)   
+            player_2 = @participants[opponent-1].name 
+            away_id = @participants[opponent-1].id
+          end
+
+          if level == @levels
+            # puts "levels "
+            @game =  Game.create!(:round => self.second_round, :home_id => home_id ,:away_id => away_id, :type_name => 'FirstGame', :jornada => counter)            
+            # @game =  Game.create!(:round => self.second_round, :type_name => 'FirstGame', :jornada => counter)
+
+          else
+              # puts "else levels "
+            @previous_1 = Game.find_by_round_id_and_home_id_and_next_game_id(self.second_round.id, home_id, nil)            
+            @previous_2 = Game.find_by_round_id_and_home_id_and_next_game_id(self.second_round.id, away_id, nil)                                    
+            # puts "#{@previous_1.jornada}#{ @previous_2.jornada}"
+
+            @game =  Game.create!(:round => self.second_round, :home_id => home_id ,:away_id => away_id, :type_name => 'SubsequentGame', :jornada => counter)
+
+            @previous_1.next_game_id = @game.id
+            @previous_1.save!
+            @previous_2.next_game_id = @game.id
+            @previous_2.save!
+                        
+            puts "[M * #{@jornada}]:  #{player_1} vs #{player_2}"
+          end           
+        end
+
+        level -= 1
+        counter -=1
+        puts
+      end
+
+      # final
+      puts "#{left_index} - #{right_index}"
+      home_id = @participants[left_index-1].id
+      away_id = @participants[right_index-1].id
+      player_1 = @participants[left_index-1].name
+      player_2 = @participants[right_index-1].name      
+      
+      @previous_1 = Game.find_by_round_id_and_home_id_and_next_game_id(self.second_round.id, home_id, nil)
+      @previous_2 = Game.find_by_round_id_and_home_id_and_next_game_id(self.second_round.id, away_id, nil)
+      # puts "[Final]:  #{@previous_1.jornada} #{ @previous_2.jornada}"
+      
+      @game =  Game.create!(:round => self.second_round, :type_name => 'FinalGame', :jornada => 1)
+      
+      @previous_1.next_game_id = @game.id
+      @previous_1.save!
+
+      @previous_2.next_game_id = @game.id
+      @previous_2.save!
+      
+      puts "[M * #{@jornada}]:  #{player_1} vs #{player_2}"
+      
+      #remove subsequent home and away players from games
+      # @games = Game.find(:all, :conditions => ["round_id = ? and type_name = 'SubsequentGame'", self.second_round.id])
+      @games = Game.find(:all, :conditions => ["round_id = ? and type_name != 'GroupStage'", self.second_round.id])
+      @games.each do |subsequent| 
+        subsequent.home_id = nil
+        subsequent.away_id = nil
+        subsequent.save!
+      end
+    end
+
+  end
+
+  class Fixnum
+    def log2
+      i = 0
+      value = self
+      while(value > 1) 
+        value >>= 1
+        i += 1
+      end 
+      i
+    end 
+    
+  
+  
 private
 
-
-def validate
-  self.errors.add(:deadline_at, I18n.t(:must_be_before_starts_at)) if self.deadline_at >= self.starts_at
-  self.errors.add(:starts_at, I18n.t(:must_be_before_ends_at)) if self.starts_at >= self.ends_at
-  self.errors.add(:ends_at, I18n.t(:must_be_after_starts_at)) if self.ends_at <= self.starts_at
-end
+  def validate
+    self.errors.add(:deadline_at, I18n.t(:must_be_before_starts_at)) if self.deadline_at >= self.starts_at
+    self.errors.add(:starts_at, I18n.t(:must_be_before_ends_at)) if self.starts_at >= self.ends_at
+    self.errors.add(:ends_at, I18n.t(:must_be_after_starts_at)) if self.ends_at <= self.starts_at
+  end
 end
 

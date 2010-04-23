@@ -1,6 +1,10 @@
+<%= stylesheet_link_tag "in_place_styles"  %>
+<% inplace_error_div %>
+
 <%
 	the_label = label_name(:group_stage)
 	content_for(:title, the_label)
+	is_manager = current_user.is_manager_of?(@cup)	
 %>
 
 <div class="block">
@@ -30,12 +34,13 @@
         
         <% @games.each do |game| 
 			the_label = label_name(:games_destroy)
-			the_confirmation = "#{ the_label }?"		
+			the_confirmation = "#{ the_label }?"
+			@the_game = game  		
 		-%>
         <tr>
 	
           <td class="first">
-            <%= game.jornada %>
+			<%= is_manager ? in_place_text_field(:the_game, :jornada, {:cols => 1}) : game.jornada %>
           </td>
 
           <td>
@@ -75,6 +80,8 @@
         </tr>          
         <% end -%>
       </table>
+
+	<%= render :partial => 'shared/action_bar', :locals => { :collection => @games } %>
 
 		<% end %>
 		

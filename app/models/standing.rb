@@ -3,6 +3,8 @@ class Standing < ActiveRecord::Base
   belongs_to 	:cup
   belongs_to  :item,      :polymorphic => true
   belongs_to	:challenge
+  
+  
 
   # method section
   def self.create_cup_escuadra_standing(cup)  

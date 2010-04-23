@@ -92,7 +92,22 @@ class GamesController < ApplicationController
     end
   end
 
-  def set_score
+  def set_the_game_jornada
+      @game = Game.find(params[:id])
+      @cup = @game.cup
+      
+      unless current_user.is_manager_of?(@cup)
+        flash[:warning] = I18n.t(:unauthorized)
+        redirect_back_or_default('/index')
+        return
+      end
+      
+      jornada = params[:the_game][:jornada]
+      if @game.update_attributes('jornada' => jornada)
+        flash[:notice] = I18n.t(:successful_update)
+      end
+      redirect_to games_path(:id => @cup)
+      return
   end
 
   def destroy    

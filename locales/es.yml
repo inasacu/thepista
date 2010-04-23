@@ -782,7 +782,7 @@ es:
      player_with: "Jugadores con"
      player_with_less_games: asistencias a eventos menos que el resto.
      points: Ptos.
-     points_for_double:  Puntos pro acerta el resultado
+     points_for_double:  Puntos por acerta el resultado
      points_for_double_description:  Dale puntuación por acertar el resultado...
      points_for_draw: Puntos por Empatar
      points_for_draw_description: Dale puntuación por empatar el evento...

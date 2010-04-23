@@ -19,6 +19,7 @@ class Game < ActiveRecord::Base
   validates_presence_of         :concept
   validates_length_of           :concept,                         :within => NAME_RANGE_LENGTH
   validates_format_of           :concept,                         :with => /^[A-z 0-9 _.-]*$/
+  validates_numericality_of     :jornada,                         :greater_than_or_equal_to => 0,       :less_than_or_equal_to => 999
 
   # validates_numericality_of     :home_score,  :greater_than_or_equal_to => 0, :less_than_or_equal_to => 300
   # validates_numericality_of     :away_score,  :greater_than_or_equal_to => 0, :less_than_or_equal_to => 300
@@ -41,13 +42,13 @@ class Game < ActiveRecord::Base
   def self.group_stage_games(cup, page = 1)
     self.paginate(:all, 
     :conditions => ["cup_id = ? and type_name = 'GroupStage'", cup],
-    :order => 'starts_at', :page => page, :per_page => SCHEDULES_PER_PAGE)
+    :order => 'jornada', :page => page, :per_page => CUPS_PER_PAGE)
   end
 
   def self.group_round_games(cup, page = 1)
     self.paginate(:all, 
     :conditions => ["cup_id = ? and type_name != 'GroupStage'", cup],
-    :order => 'starts_at', :page => page, :per_page => SCHEDULES_PER_PAGE)
+    :order => 'starts_at', :page => page, :per_page => CUPS_PER_PAGE)
   end
 
   def self.upcoming_games(hide_time)
@@ -66,6 +67,10 @@ class Game < ActiveRecord::Base
 
   def self.last_game_escuadra_played(escuadra)
     find(:first, :select => "starts_at", :conditions => ["id = (select max(id) from games where played = true and escuadra_id = ?)", escuadra])
+  end
+  
+  def self.last_cup_game(cup)
+    find(:first, :conditions => ["id = (select max(id) from games where cup_id = ?)", cup])
   end
 
   def game_played?
@@ -203,6 +208,11 @@ class Game < ActiveRecord::Base
     #   #   end
     #   #   leaves
     #   # end
+    
+    # return true if the round home away conbination is nil
+    def self.cup_home_away_exist?(cup, home, away)
+      find_by_cup_id_and_home_id_and_away_id(cup, home, away).nil?
+    end
 
     private
 
@@ -223,9 +233,9 @@ class Game < ActiveRecord::Base
     end
 
     def validate
-      self.errors.add(:reminder_at, I18n.t(:must_be_before_starts_at)) if self.reminder_at >= self.starts_at
-      self.errors.add(:starts_at, I18n.t(:must_be_before_ends_at)) if self.starts_at >= self.ends_at
-      self.errors.add(:ends_at, I18n.t(:must_be_after_starts_at)) if self.ends_at <= self.starts_at
+      # self.errors.add(:reminder_at, I18n.t(:must_be_before_starts_at)) if self.reminder_at >= self.starts_at
+      #  self.errors.add(:starts_at, I18n.t(:must_be_before_ends_at)) if self.starts_at >= self.ends_at
+      #  self.errors.add(:ends_at, I18n.t(:must_be_after_starts_at)) if self.ends_at <= self.starts_at
       self.errors.add(:home_id, I18n.t(:must_be_different)) if self.home_id == self.away_id
     end
 
