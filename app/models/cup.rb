@@ -44,6 +44,8 @@ class Cup < ActiveRecord::Base
   has_and_belongs_to_many :escuadras,     :join_table => "cups_escuadras",   :order => "name"
   has_many                :games
   has_many                :standings,     :order => "points DESC, ranking"
+  has_many                :stages
+  belongs_to              :sport
 
   has_many :the_managers,
   :through => :manager_roles,
@@ -212,7 +214,7 @@ class Cup < ActiveRecord::Base
         jornada = last_game.jornada.to_i + 1
       end      
       
-      return Game.create!(:concept => "Group Stage #{standing.group_stage_name}", 
+      return Game.create!(:concept => "Group #{standing.group_stage_name}", 
                           :cup_id => self.id, :home_id => game[0].id ,:away_id => game[1].id, 
                           :starts_at => starts_at, :ends_at => ends_at, 
                           :reminder_at => reminder_at, :type_name => 'GroupStage', 
@@ -264,10 +266,10 @@ class Cup < ActiveRecord::Base
         opponent = ((2*(game+1)-index+1) > @participant_number) ? nil : (2*(game+1) - index+1)
         if i < game
           @tree << [index, opponent]
-          puts "[z]:  #{index} vs #{opponent}"
+          # puts "[z]:  #{index} vs #{opponent}"
         else  
           @tree << [opponent, index]
-          puts "[M]:  #{index} vs #{opponent}"
+          # puts "[M]:  #{index} vs #{opponent}"
         end 
         i += 1
       end       
@@ -276,7 +278,7 @@ class Cup < ActiveRecord::Base
       @tree << [left_index, right_index]
       # puts "[Final]:  #{left_index} vs #{right_index}"
       
-      @jornada = 0
+      # @jornada = 0
       level = @levels
       counter = @levels + 1
       while counter > 0
@@ -300,22 +302,26 @@ class Cup < ActiveRecord::Base
 
           jornada = Game.last_cup_game(self).jornada.to_i + 1
 
-          if level == @levels
-            # puts "levels "
-            
-            @game = Game.create!(:concept => "FirstGame", 
+          if level == @levels            
+            @game = Game.create!(:concept => level_in_words(level), 
                                 :cup_id => self.id, :home_id => home_id ,:away_id => away_id,  
                                 :starts_at => self.starts_at, :ends_at => self.starts_at, 
                                 :reminder_at => self.starts_at, :type_name => 'FirstGame', 
                                 :points_for_single => 0, :points_for_double => 5, :jornada => jornada)
           
+          puts "[#{level_in_words(level)}]:  #{home_id} #{ away_id}"
+          
           else
-            @previous_1 = Game.find_by_cup_id_and_home_id_and_next_game_id(self.id, home_id, nil)            
-            @previous_2 = Game.find_by_cup_id_and_home_id_and_next_game_id(self.id, away_id, nil)                                    
+            @previous_1 = Game.find(:first, 
+            :conditions => ["cup_id = ? and home_id = ? and type_name != 'GroupStage' and next_game_id is null", self.id, home_id], 
+            :order => "id")            
+            @previous_2 = Game.find(:first, 
+            :conditions => ["cup_id = ? and home_id = ? and type_name != 'GroupStage' and next_game_id is null", self.id, away_id], 
+            :order => "id")
 
-            # puts "#{@previous_1.home_id} #{ @previous_2.away_id}"
+            puts "[#{level_in_words(level)}]:  #{@previous_1.id} #{ @previous_2.id}"
 
-            @game = Game.create!(:concept => "SubsequentGame", 
+            @game = Game.create!(:concept => level_in_words(level), 
                                 :cup_id => self.id, :home_id => home_id ,:away_id => away_id,  
                                 :starts_at => self.starts_at, :ends_at => self.starts_at, 
                                 :reminder_at => self.starts_at, :type_name => 'SubsequentGame', 
@@ -325,30 +331,39 @@ class Cup < ActiveRecord::Base
             @previous_1.save!
             @previous_2.next_game_id = @game.id
             @previous_2.save!
-                        
-            # puts "[M * #{@jornada}]:  #{player_1} vs #{player_2}"
           end           
         end
 
         level -= 1
         counter -=1
-        puts
       end
 
+
+      # third place
+      jornada = Game.last_cup_game(self).jornada.to_i + 1
+      @game = Game.create!(:concept => level_in_words(99), 
+                          :cup_id => self.id,  
+                          :starts_at => self.starts_at, :ends_at => self.starts_at, 
+                          :reminder_at => self.starts_at, :type_name => 'ThidPlaceGame', 
+                          :points_for_single => 0, :points_for_double => 5, :jornada => jornada)      
+      
       # final
-      # puts "#{left_index} - #{right_index}"
       home_id = @participants[left_index-1].id
       away_id = @participants[right_index-1].id
       player_1 = @participants[left_index-1].name
       player_2 = @participants[right_index-1].name     
       
       jornada = Game.last_cup_game(self).jornada.to_i + 1
+      @previous_1 = Game.find(:first, 
+      :conditions => ["cup_id = ? and home_id = ? and type_name != 'GroupStage' and next_game_id is null", self.id, home_id], 
+      :order => "id")            
+      @previous_2 = Game.find(:first, 
+      :conditions => ["cup_id = ? and home_id = ? and type_name != 'GroupStage' and next_game_id is null", self.id, away_id], 
+      :order => "id")
       
-      @previous_1 = Game.find_by_cup_id_and_home_id_and_next_game_id(self.id, home_id, nil)
-      @previous_2 = Game.find_by_cup_id_and_home_id_and_next_game_id(self.id, away_id, nil)
-      # puts "[Final]:  #{@previous_1.jornada} #{ @previous_2.jornada}"
+      puts "[#{level_in_words(0)}]:  #{@previous_1.id} #{ @previous_2.id}"
       
-      @game = Game.create!(:concept => "FinalGame", 
+      @game = Game.create!(:concept => level_in_words(0), 
                           :cup_id => self.id,  
                           :starts_at => self.starts_at, :ends_at => self.starts_at, 
                           :reminder_at => self.starts_at, :type_name => 'FinalGame', 
@@ -356,21 +371,47 @@ class Cup < ActiveRecord::Base
                                 
       @previous_1.next_game_id = @game.id
       @previous_1.save!
-
       @previous_2.next_game_id = @game.id
       @previous_2.save!
-      
-      # puts "[M * #{@jornada}]:  #{player_1} vs #{player_2}"
-      
+    end
+
+    def remove_subesequent_games
       #remove subsequent home and away players from games
-      @games = Game.find(:all, :conditions => ["cup_id = ? and type_name = 'SubsequentGame'", self.id])
-      @games.each do |subsequent| 
-        subsequent.home_id = nil
-        subsequent.away_id = nil
-        subsequent.save!
+      @games = Game.find(:all, :conditions => ["cup_id = ? and type_name != 'GroupStage'", self.id])    
+      @games.each do |game| 
+        game.home_id = nil
+        game.away_id = nil
+        game.save!
+      end
+        
+      @games = Game.find(:all, :conditions => ["cup_id = ?", self.id])  
+      @games.each do |game| 
+        game.winner_id = nil
+        game.home_score = nil
+        game.away_score = nil
+        game.save!
       end
     end
-  
+    
+    def level_in_words(level)
+      case level
+      when -1
+        'Champion'
+      when 0
+        'Finals'
+      when 1
+        'Semifinals'
+      when 2
+        'Quarterfinals'
+      when 3
+        "Round of 16"
+      when 99
+        "Third Place"
+      else
+        "Round #{level.ordinalize}"
+      end
+    end
+
 private
 
   def validate

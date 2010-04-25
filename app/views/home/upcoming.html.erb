@@ -2,6 +2,9 @@
 	has_schedule ||= false	
 	has_schedule = true unless upcoming_schedules.empty? 
 
+	has_game ||= false	
+	has_game = true unless upcoming_games.empty?
+	
 	the_label = label_name(:upcoming_schedules)
 	content_for(:title, the_label)
 %> 
@@ -19,6 +22,13 @@
 	<%= render :partial => "upcoming_schedule", :locals => {:upcoming_schedules => @upcoming_schedules} if has_schedule %>
 	
     </div>
+
+    <div class="inner">
+
+	<%= render :partial => "upcoming_game", :locals => {:upcoming_games => @upcoming_games} if has_game %>
+	
+    </div>
+
   </div> 
 </div>
 

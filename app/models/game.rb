@@ -49,11 +49,11 @@ class Game < ActiveRecord::Base
   def self.group_round_games(cup, page = 1)
     self.paginate(:all, 
     :conditions => ["cup_id = ? and type_name != 'GroupStage'", cup],
-    :order => 'starts_at', :page => page, :per_page => CUPS_PER_PAGE)
+    :order => 'jornada, starts_at', :page => page, :per_page => CUPS_PER_PAGE)
   end
 
   def self.upcoming_games(hide_time)
-    with_scope :find => {:conditions=>{:starts_at => ONE_WEEK_FROM_TODAY, :played => false}, :order => "starts_at"} do
+    with_scope :find => {:conditions=>{:starts_at => ONE_MONTH_FROM_TODAY, :played => false}, :order => "starts_at"} do
       if hide_time.nil?
         find(:all)
       else
@@ -135,6 +135,8 @@ class Game < ActiveRecord::Base
     #   end
     # end
     #
+    
+
 
     # 
     #   # def self.final

@@ -7,7 +7,7 @@ class TypesController < ApplicationController
   end
 
   def show
-    @types = Type.find(params[:id])
+    redirect_to :action => 'index'
   end
 
   def new

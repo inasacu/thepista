@@ -2,7 +2,7 @@
 <% inplace_error_div %>
 
 <%
-	the_label = is_action ('index') ? label_name(:group_stage) : label_name(:group_round)
+	the_label = label_name(:stage)
 	content_for(:title, the_label)
 	is_manager = current_user.is_manager_of?(@cup)	
 %>
@@ -17,14 +17,13 @@
 	
     <div class="inner">
 	
-	<% if object_counter(@games) > 0 %>
+	<% if object_counter(@stages) > 0 %>
 	
       <table class="table" id="<%= get_the_controller.gsub(' ','_') %>">
 	  
         <tr> 
-          <th class="first"><%= label_name(:jornada) %></th>
-	      <th><%= label_name(:name) %>&nbsp;/<br />
-			  <%= label_name(:gameday_at) %></th>
+          <th class="first"><%#= label_name(:name) %></th>
+          <th><%= label_name(:name) %></th>
           <th>&nbsp;</th>
           <th>&nbsp;</th>
 		  <th align="center"><%= label_name(:matches) %></th>
@@ -33,51 +32,36 @@
           <th class="last">&nbsp;</th>
 		</tr>
         
-        <% @games.each do |game| 
-			the_label = label_name(:games_destroy)
+        <% @stages.each do |stage| 
+			the_label = label_name(:stages_destroy)
 			the_confirmation = "#{ the_label }?"
-			@the_game = game
-			no_team = (game.home_id.nil? or game.away_id.nil?)  		
+			@the_stage = stage  		
 		-%>
         <tr>
 	
           <td class="first">
-			<%= is_manager ? in_place_text_field(:the_game, :jornada, {:cols => 1}) : game.jornada %>
+			<%#= is_manager ? in_place_text_field(:the_stage, :name, {:cols => 1}) : stage.name %>
           </td>
 
-			<td class="name_and_date">
-				<%= game.concept %>
-				<span class="date">
-					<%= nice_day_of_week game.starts_at %>
-				</span>
-			</td>
+          <td>
+			<%= stage.name %>
+          </td>
 
           <td>            
-            <%= escuadra_image_link_small game.home unless no_team %>
+            <%= is_manager ? in_place_text_field(:the_stage, :home_ranking, {:cols => 1}) : stage.home_ranking %><br/>
+	        <%= is_manager ? in_place_text_field(:the_stage, :home_stage_name, {:cols => 1}) : stage.home_stage_name %>
           </td>
 
           <td>
-			<%= escuadra_link game.home unless no_team %>
-		  </td>
-
-		  <td align="center">
-		  	<%=  (game.game_played?) ? game_score_link(game) : label_name(:game_not_played) %> 
-		  </td>
-			
-          <td>
-			<%= escuadra_link game.away unless no_team %>
-		  </td>
-		
-		  <td>
-            <%= escuadra_image_link_small game.away unless no_team %>
+	      	<%= is_manager ? in_place_text_field(:the_stage, :away_ranking, {:cols => 1}) : stage.away_ranking %><br/>
+		    <%= is_manager ? in_place_text_field(:the_stage, :away_stage_name, {:cols => 1}) : stage.away_stage_name %>
 		  </td>
 			
 	       <td class="last">
 				<% if current_user.is_manager_of?(@cup) %>
 				<span class="action">					
-					<%= link_to label_name(:matches), set_score_url(:id => game) %><br/>
-					<%= link_to label_name(:games_edit), edit_game_path(game) %>
-					<%#= link_to(the_label, game_path(game), :method => :delete, :confirm => the_confirmation) %>	
+					<%#= link_to label_name(:stages_edit), edit_stage_path(stage) %>
+					<%#= link_to(the_label, stage_path(stage), :method => :delete, :confirm => the_confirmation) %>	
 				</span>
 				<% end -%>
 	       </td>
@@ -86,7 +70,7 @@
         <% end -%>
       </table>
 
-	<%= render :partial => 'shared/action_bar', :locals => { :collection => @games } %>
+	<%#= render :partial => 'shared/action_bar', :locals => { :collection => @stages } %>
 
 		<% end %>
 		

@@ -58,12 +58,13 @@ end
 
 </div>
 
-<%# content_for :sidebar, render(:partial => 'sidebar') -%>
-<%# content_for :sidebar, render(:partial => 'shared/share_object', :locals => {:group => @cup}) if @cup -%>
-<%# content_for :sidebar, render(:partial => 'sidebar_show') if @cup.is_futbol? -%>
-<%# content_for :sidebar, render(:partial => 'sidebar_show_basket') if @cup.is_basket? -%>
+<% content_for :sidebar, render(:partial => 'cups/sidebar_show') -%>
 
-
+<%  if @cup  %>
+<% content_for :sidebar, render(:partial => 'shared/share_object', :locals => {:cup => @cup}) -%>
+<% content_for :sidebar, render(:partial => 'cups/sidebar_cup_additional', :locals => {:cup => @cup}) if current_user.is_manager_of?(@cup) -%>
+<% content_for :sidebar, render(:partial => 'shared/sidebar_show_cup', :locals => {:cup => @cup}) if current_user.is_manager_of?(@cup) -%>
+<% end -%>
 
 
 

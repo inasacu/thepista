@@ -9,6 +9,7 @@ BODY_RANGE_LENGTH = 3..2000
 
 LAST_WEEK_TO_TODAY = Time.zone.now - 7.days..Time.zone.now + 1.day
 ONE_WEEK_FROM_TODAY = Time.zone.now - 1.day..Time.zone.now + 7.days
+ONE_MONTH_FROM_TODAY = Time.zone.now - 1.day..Time.zone.now + 32.days
 LAST_WEEK = Time.zone.now - 7.days
 PAST_THREE_DAYS = Time.zone.now - 3.days
 LAST_THREE_DAYS = Time.zone.now - 3.days..Time.zone.now + 1.day

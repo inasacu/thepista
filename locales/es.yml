@@ -57,6 +57,8 @@ es:
      available_description: (Si estas disponible para jugar o si no quieres que te molesten...)   
      avatar: Gravatar   
      away_group: Fuera   
+     away_stage_name:  Grupo
+     away_ranking:  Ranking
      back: Volver      
      between: entre   
      birth_at:  Fecha de nacimiento
@@ -490,7 +492,9 @@ es:
      hi_email_header: Hola   
      High: Alto   
      home: Inicio   
-     home_group: Equipo   
+     home_group: Equipo       
+     home_stage_name:  Grupo
+     home_ranking:  Ranking
      how_much_better:  "¿Cuánto mayor?"
      icon: Icono
      icon_name: Nombre del icono    
@@ -1491,6 +1495,11 @@ es:
      scorecards_option:  Opciones 
      scorecards_less_games:  ( * ) Jugadores con menos asistencias a eventos
      scorecards_legend:  Leyenda
+     stage:  Etapa
+     stages:  Etapas
+     stages_create:  Nueva Etapa
+     stages_index:  Etapas
+     stages_new:  Nueva Etapa
      standing:  Clasificación del torneo
      standings:  Clasificaciones de torneo
      standings_edit:  Modifica la clasificación
