@@ -15,19 +15,19 @@
 			<th><%=label_name(:name) %></th>
 			<th><%=label_name(:challenge) %></th>
 			<th><%=label_name(:time_zone) %></th>
-			<th><%=label_name(:last_game_played) %></th>
+			<th>&nbsp;<%#=label_name(:last_game_played) %></th>
 			<th class="last">&nbsp;</th>
 		</tr>
 		
         <% @users.each do |user| 
-			schedule = Schedule.last_schedule_played(user)
+			# cast = Cast.last_cast_played(user)
 	    -%>
 			<tr>
 			  <td><%= image_link_small user %></td>					
 			  <td><%= user_link user %></td>
 			  <td><%= user.has_challenge? ? challenge_list(user.challenges) : label_name('challenges_none') %></td>		 
 			  <td><%= user.time_zone %></td>			  
-			  <td><%= nice_day_date(schedule.starts_at) unless schedule.nil? %></td>	
+			  <td><%#= nice_day_date(cast.starts_at) unless cast.nil? %></td>	
 			  <td class="last"><%= link_to label_name(:send_message), new_message_path(:id => user) %></td>		  
 			</tr>
         <% end -%>

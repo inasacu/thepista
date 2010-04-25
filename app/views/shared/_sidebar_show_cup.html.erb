@@ -11,6 +11,7 @@
 	<h3><%= label_name('options') %></h3>
 	
 	<ul class="navigation">
+		<li><%= link_to label_name(:challenges_create), new_challenge_path(:id => @cup) %></li>
 		<li><%= link_to label_name(:games_create), new_game_path(:id => @cup) %></li>
 		<li><%= link_to label_name(:stages_create), new_stage_path(:id => @cup) %></li>
 		<li><%= link_to label_name(:escuadras_create), new_escuadra_path(:id => @cup) %></li>

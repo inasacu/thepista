@@ -14,7 +14,9 @@ class CreateChallenges < ActiveRecord::Migration
       t.text        :conditions
       
       t.integer     :player_limit,        :default => 99
-	  
+              
+      t.boolean     :archive,               :default => false
+      t.datetime    :deleted_at
       t.timestamps
     end
   end

@@ -46,6 +46,7 @@ class User < ActiveRecord::Base
     
     has_and_belongs_to_many   :groups,                :conditions => 'archive = false',   :order => 'name'
     has_and_belongs_to_many   :tournaments,           :conditions => 'archive = false',   :order => 'name'
+    has_and_belongs_to_many   :challenges,            :conditions => 'archive = false',   :order => 'name'
     
     has_many    :addresses
     has_many    :accounts
@@ -120,6 +121,10 @@ class User < ActiveRecord::Base
 
     def has_tournament?
       self.tournaments.count > 0
+    end
+
+    def has_challenge?
+      self.challenges.count > 0
     end
 
     def has_group?

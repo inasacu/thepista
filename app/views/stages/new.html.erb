@@ -8,9 +8,9 @@
 
 		<div class="inner">
 
-			<% form_for(@stage, :html => { :multipart => true, :class => :form  }) do |f| %>
-				<%= hidden_field :cup, :id %>
-				<%= render :partial => "form", :locals => {:f => f} %>
+			<% form_for :stage, :url => stages_path, :html => { :class => :form } do |f| -%>
+			<%= f.hidden_field :cup, :id if @cup %>
+			<%= render :partial => "form", :locals => {:f => f} %>
 			<% end -%>
 
 		</div>

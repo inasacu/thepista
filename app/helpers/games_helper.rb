@@ -11,7 +11,7 @@ module GamesHelper
       text = game.concept
     end
     # We normally write link_to(..., game) for brevity, but that breaks
-    # activities_helper_spec due to an RSpec bug.
+    
     link_to(h(text), game, html_options)
   end 
 
@@ -25,7 +25,7 @@ module GamesHelper
       text = game.concept
     end
     # We normally write link_to(..., game) for brevity, but that breaks
-    # activities_helper_spec due to an RSpec bug.
+    
     link_to(h(text), team_roster_path(:id => game), html_options)
   end 
 

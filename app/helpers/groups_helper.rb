@@ -11,7 +11,7 @@ module GroupsHelper
       text = group.name
     end
     # We normally write link_to(..., group) for brevity, but that breaks
-    # activities_helper_spec due to an RSpec bug.
+    
     link_to(h(text), group, html_options)
   end
 

@@ -11,7 +11,7 @@ module MeetsHelper
       text = meet.concept
     end
     # We normally write link_to(..., meet) for brevity, but that breaks
-    # activities_helper_spec due to an RSpec bug.
+    
     link_to(h(text), meet, html_options)
   end  
 

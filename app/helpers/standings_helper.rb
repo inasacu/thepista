@@ -11,7 +11,7 @@ module StandingsHelper
       text = standing.name
     end
     # We normally write link_to(..., standing) for brevity, but that breaks
-    # activities_helper_spec due to an RSpec bug.
+    
     link_to(h(text), standing, html_options)
   end
 

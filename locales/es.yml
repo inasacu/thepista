@@ -76,6 +76,62 @@ es:
      cancel_email_subscription: ¿No deseas recibir notificaciones por correo electrónico?  
      cannot_be_blank: no puede dejarse en blanco   
      center:  Media
+     cast: Pronóstico   
+     cast_description: (Escribe algun detalle del pronóstico...)  
+     casts: Pronósticoz
+     casts_archive_list:  Pronósticos anteriores
+     casts_create:  Nuevo pronóstico
+     casts_destroy:  Borrar pronóstico
+     casts_index:  Pronósticos
+     casts_index_option: Opciones 
+     # casts_invitations_create:  Invita a un amigo al pronóstico
+     casts_list:  Anteriores pronósticos
+     casts_list_no: Ningun pronóstico previo para mostrar.
+     casts_manager_option:  Requiere responsable de reto para ver mas opciones.
+     casts_new: Nuevo pronóstico
+     casts_no: Ningun pronóstico para mostrar.
+     casts_edit: Modificar pronóstico
+     casts_update: Modificar pronóstico
+     casts_option:  Opciones 
+     cast_options:  Opciones 
+     casts_show: Detalles del pronóstico
+     cast_ausentes:  Ningun ausente para mostrar.
+     cast_convocados:  Ningun convocado para mostrar.
+     cast_excess_player:  Demasiados jugadores convocados
+     cast_ultima_hora:   Ninguno en ultima hora para mostrar.
+     cast_no_disponible:  Ninguno no disponible para mostrar.
+     cast_rate: Valoración del pronóstico     
+     casts_team_roster_false:  Ningun convocado para mostrar.
+     casts_team_last_minute_false:   Ninguno en ultima hora para mostrar.
+     casts_team_no_show_false:  Ningun ausente para mostrar.
+     casts_team_unavailable_true_false:  Ninguno no disponible para mostrar.
+     casts_team_roster_true:  Convocados
+     casts_team_last_minute_true:   Ultima hora
+     casts_team_no_show_true:  Ausentes
+     casts_team_unavailable_true:  No disponibles     
+     challenge:  Reto
+     challenge_options:  Opciones
+     challenges:  Retos
+     challenges_all:  Todos los Retos
+     challenges_create:  Nuevo Reto 
+     challenges_destroy:  Borrar reto
+     challenges_edit:  Modificar reto
+     challenges_index:   Retos
+     challenges_index_option: Opciones 
+     challenges_invitations_create:  Invita a un amigo al reto
+     challenges_join:  Unete al reto
+     challenges_my:  Mis Retos
+     challenges_list:  Resto de retos
+     challenges_new:  Nuevo reto
+     challenges_new_option: Opciones 
+     challenges_no:  Ningun reto para mostrar.
+     challenges_none:  Ningun reto.
+     challenges_options_without: "¿Qué opciones tienes ya que no tienes un reto?"
+     challenges_option:  Opciones 
+     challenges_search: Busqueda de retos
+     challenges_search_to_join: Puedes buscar un reto al que unierte. 
+     challenges_show:  Mostrar reto
+     challenges_update: Modificar reto
      change: Cambia idioma   
      change_available: Cambia la disponibilidad de   
      change_at:  Fecha de cambio
@@ -452,6 +508,14 @@ es:
      has_been_sent: ha sido mandado correctamente.  
      has_been_sent_female: has sido mandada correctamente. 
      has_been_taken: ya se ha elegido.  Intenta otro nombre.
+     has_challenge_users:
+        zero: "Este reto no tiene jugadores." 
+        one:  "Este reto tiene 1 jugador." 
+        other: "Este reto tiene {{count}} jugadores."
+     has_challenge_casts:
+        zero: "Este reto no tiene pronósticos." 
+        one:  "Este reto tiene 1 pronóstico." 
+        other: "Este reto tiene {{count}} pronósticos."        
      has_cup_escuadras:
         zero: "Esta copa no tiene equipos." 
         one:  "Esta copa tiene 1 equipo." 
@@ -757,6 +821,7 @@ es:
      petition_join_team_accept:  Acepto
      petition_join_team_decline: Rechazo
      petition_no:  Ninguna petición para mostrar.
+     petition_to_join_challenge: Petición para unirse a
      petition_to_join_group: Petición para unirse a 
      petition_to_join_tournament: Petición para unirse a
      petition_to_join_round: Petición para unirse a
@@ -765,7 +830,8 @@ es:
      petitions: Peticiones 
      petition_to_join_approved: Petición aprobada para unirse.
      petition_to_join_declined:  Petición cancelada para unirse.
-     petition_to_leave_approved: Petición aprobada para desapuntarse.                 
+     petition_to_leave_approved: Petición aprobada para desapuntarse. 
+     no_petition_to_join_challenge: No hay peticiones para unirse a un reto!                
      no_petition_to_join_group: No hay peticiones para unirse a un equipo! 
      deleted_petition_by: Petición ha sido borrada por   
      denial_petition_to_join: Petición denegada para unirse a 
@@ -1090,11 +1156,16 @@ es:
      to_email: Email del amigo       
      to_join: Únirse a   
      to_join_email: para unirse a 
+     to_join_challenge: unirte a un reto   
+     to_join_challenge_message: Petición para unirte a 
+     to_join_challenge_message_sent: Petición para unirte a sido enviada.
      to_join_group: unirte a un equipo   
      to_join_group_message: Petición para unirte a 
      to_join_group_message_sent: Petición para unirte a sido enviada.
      to_join_tournament: unirte a un torneo 
      to_join_round: unirte a un torneo  
+     to_leave_challenge_message: Petición para desapuntarte de
+     to_leave_challenge_message_sent: Petición para desapuntarte a sido enviada.
      to_leave_group_message: Petición para desapuntarte de
      to_leave_group_message_sent: Petición para desapuntarte a sido enviada.  
      to_join_tour: unirte a un equipo   
@@ -1455,6 +1526,9 @@ es:
      messages_sent:  Mensajes mandados
      messages_show: Mostrar mensaje
      messages_trash:  Mensajes descartados
+     schedule: Evento   
+     schedule_description: (Escribe algun detalle del equipo...)  
+     schedules: Eventos
      schedules_archive_list:  Temporada anterior
      schedules_create:  Nuevo evento
      schedules_destroy:  Borrar evento

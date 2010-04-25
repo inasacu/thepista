@@ -121,7 +121,15 @@ class Standing < ActiveRecord::Base
     end
   end
 
-
+  # record if group does not exist
+  def self.create_challenge_standing(challenge) 
+    self.create!(:challenge_id => challenge.id) if self.challenge_exists?(challenge)
+  end
+  
+  # Return true if the challenge nil
+  def self.challenge_exists?(challenge)
+    find(:first, :conditions => ["challenge_id = ? and archive = ?", challenge.id, false]).nil?
+  end
 
   # record if user and group do not exist
   def self.create_cup_challenge_item_standing(cup, challenge, item)

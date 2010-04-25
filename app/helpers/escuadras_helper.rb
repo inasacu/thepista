@@ -11,7 +11,7 @@ module EscuadrasHelper
       text = escuadra.name
     end
     # We normally write link_to(..., escuadra) for brevity, but that breaks
-    # activities_helper_spec due to an RSpec bug.
+    
     link_to(h(text), escuadra, html_options)
   end
 

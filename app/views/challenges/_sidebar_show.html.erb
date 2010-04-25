@@ -9,7 +9,7 @@
 %>
 		<li><%= link_to(label_name(:send_message_to_challenge), new_message_path(:challenge_id => @challenge.id)) %></li>
 		<li><%= link_to(label_name(:invitations_create_challenge) , new_invitation_url(:challenge_id => @challenge)) %></li>	
-		<li><%= link_to label_name(:send_scorecard), new_message_path(:scorecard_id => @challenge.schedules.first) unless @challenge.schedules.blank? %></li>
+		<li><%= link_to label_name(:send_standing), new_message_path(:standing_id => @challenge.casts.first) unless @challenge.casts.blank? %></li>
 <% 
 	else
 %>

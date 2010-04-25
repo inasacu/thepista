@@ -98,6 +98,8 @@ ActionController::Routing::Routes.draw do |map|
   
   map.set_score             'games/:id/set_score',                        :controller => 'games',           :action => 'set_score'
     
+  map.challenge_list			  'challenge_list',			                        :controller => 'challenges',      :action => 'challenge_list'
+  
   map.resources   :user_sessions,   :as => 'repitelo'
   map.resources   :users,           :as => 'jugadores',                   :collection => { :rpx_create => :post, :rpx_associate => :post,
                                                                                             :list => :get, :recent_activity => :get, :search => :get }  

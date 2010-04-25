@@ -7,34 +7,34 @@
 	  <tr>             
 	    <th class="first">&nbsp;</th>
 	    <th><%= label_name(:name) %>&nbsp;/<br />
-			  <%= label_name(:gameday_at) %></th>
+			  <%#= label_name(:gameday_at) %></th>
 	    <th><%= label_name(:manager) %>&nbsp;/<br />
 			  <%= label_name(:sport) %></th>
 	    <th><%= label_name(:time_zone) %></th>
 	    <th><%= label_name(:general_information) %></th>
-	    <th><%= label_name(:last_game_played) %></th>
+	    <th><%#= label_name(:last_game_played) %></th>
 	    <th class="last">&nbsp;</th>
 	  </tr>
 
 	  <% @challenges.each do |challenge| 
-		schedule = Schedule.last_schedule_challenge_played(challenge)
+		#cast = Cast.last_cast_challenge_played(challenge)
 		-%>
 
 	  <tr>  
 			<td>
-				<%= challenge_image_link_small challenge %>
+				<%= cup_image_link_small challenge.cup %>
 			</td>
 
 			<td class="name_and_date">
 				<%= challenge_link(challenge) %>
 				<span class="date">
-					<%= nice_day_time challenge.gameday_at %>
+					<%#= nice_day_time challenge.gameday_at %>
 				</span>
 			</td>
 
 			<td>
 				<%= user_list challenge.all_the_managers %><br />
-				<%= challenge.sport.name %>
+				<%#= challenge.cup.sport.name %>
 			</td>
 
 			<td>
@@ -43,22 +43,22 @@
 
 			<td>
 				<%= I18n.t(:has_challenge_users, :count => object_counter(challenge.users)) %><br />
-				<%= I18n.t(:has_challenge_schedules, :count => object_counter(challenge.schedules)) %>
+				<%= I18n.t(:has_challenge_casts, :count => object_counter(challenge.casts)) %>
 			</td>
 
 			<td class="name_and_date">
-				<%= link_to(label_name(:scorecard), scorecard_path(:id => challenge)) %>
+				<%= link_to(label_name(:standing), standing_path(:id => challenge)) %>
 				<span class="date">
-					<%= nice_full_date(schedule.starts_at) unless schedule.nil? %> 
+					<%#= nice_full_date(cast.starts_at) unless cast.nil? %> 
 				</span>
 			</td>
 
 	       <td class="last">
 				<span class="action">
 					<% if current_user.is_member_of?(challenge) %>
-						<%= link_to(label_name(:send_message_to_challenge), new_message_path(:challenge_id => challenge)) %><br />
+						<%= link_to(label_name(:send_message), new_message_path(:challenge_id => challenge)) %><br />
 					<% else %>
-						<%= link_to(label_name(:send_message_to_challenge), new_message_path(:id => challenge.all_the_managers.first)) %><br />
+						<%= link_to(label_name(:send_message), new_message_path(:id => challenge.all_the_managers.first)) %><br />
 				
 					<% 	# unless current_user.has_pending_petition?(current_user) 
 						unless current_user.has_challenge_petition?(current_user, challenge) 
@@ -71,7 +71,7 @@
 					-%>
 				
 					<% if current_user.is_manager_of?(challenge) %> 
-						<%= link_to label_name(:schedules_create), new_schedule_path(:id => challenge)  %><br />
+						<%= link_to label_name(:casts_create), new_cast_path(:id => challenge)  %><br />
 			        <% end %>
 					
 				</span>
