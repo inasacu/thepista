@@ -164,6 +164,10 @@ module ApplicationHelper
     @upcoming_schedules ||= Schedule.upcoming_schedules(session[:schedule_hide_time])
   end
 
+  def upcoming_cups
+    @upcoming_cups ||= Cup.upcoming_cups(session[:cup_hide_time])
+  end
+
   def upcoming_games
     @upcoming_games ||= Game.upcoming_games(session[:game_hide_time])
   end

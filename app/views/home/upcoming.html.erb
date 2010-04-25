@@ -4,6 +4,9 @@
 
 	has_game ||= false	
 	has_game = true unless upcoming_games.empty?
+
+	has_cup ||= false	
+	has_cup = true unless upcoming_cups.empty?
 	
 	the_label = label_name(:upcoming_schedules)
 	content_for(:title, the_label)
@@ -16,6 +19,12 @@
   <div class="content">   
   
  	<%= show_heading(the_label) %>
+
+    <div class="inner">
+
+	<%= render :partial => "upcoming_cup", :locals => {:upcoming_cups => @upcoming_cups} if has_cup %>
+
+    </div>
 	
     <div class="inner">
 
