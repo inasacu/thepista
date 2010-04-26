@@ -45,8 +45,9 @@ class Cup < ActiveRecord::Base
   has_many                :games
   has_many                :standings,     :order => "points DESC, ranking"
   has_many                :stages
+  has_many                :challenges
   belongs_to              :sport
-
+  
   has_many :the_managers,
   :through => :manager_roles,
   :source => :roles_squads

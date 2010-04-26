@@ -58,6 +58,7 @@ class User < ActiveRecord::Base
     has_many    :invitations
     has_many    :messages
     has_many    :matches
+    has_many    :casts
   
     has_many    :teammates
     has_many    :managers,

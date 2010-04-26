@@ -1,8 +1,11 @@
 class ChallengesController < ApplicationController
   before_filter :require_user    
-  before_filter :get_challenge, :only => [:challenge_list, :show, :edit, :update, :set_available, :destroy]
-  before_filter :has_manager_access, :only => [:edit, :update, :destroy, :set_available]
+  before_filter :get_challenge, :only => [:challenge_list, :show, :edit, :update, :destroy]
+  before_filter :has_manager_access, :only => [:edit, :update, :destroy]
 
+  before_filter :get_cup, :only =>[:new]
+  before_filter :has_member_access, :only => :show
+  
   def index
     @challenges = current_user.challenges.paginate :page => params[:page], :order => 'name' 
 
@@ -33,23 +36,22 @@ class ChallengesController < ApplicationController
     @challenge = Challenge.new
     @challenge.time_zone = current_user.time_zone if !current_user.time_zone.nil?
     
-    @cup = Cup.find(params[:id])
-    @challenge.cup_id = @cup.id
+    if @cup
+      @challenge.cup_id = @cup.id 
+      @challenge.starts_at = @cup.starts_at
+      @challenge.ends_at = @cup.ends_at
+      @challenge.reminder_at = @cup.starts_at - 7.days     
+    end
   end
 
   def create
     @challenge = Challenge.new(params[:challenge])		
-    @user = current_user
-
     if @challenge.save and @challenge.create_challenge_details(current_user)
       flash[:notice] = I18n.t(:successful_create)
       redirect_to @challenge
     else
       render :action => 'new'
     end
-  end
-
-  def edit
   end
 
   def update
@@ -70,39 +72,6 @@ class ChallengesController < ApplicationController
     end
   end 
 
-  def set_looking
-    if @challenge.update_attribute("looking", !@challenge.looking)
-      @challenge.update_attribute("looking", @challenge.looking)  
-
-      flash[:notice] = I18n.t(:successful_update)
-      redirect_back_or_default('/index')
-    else
-      render :action => 'index'
-    end
-  end   
-
-  def set_available
-    if @challenge.update_attribute("available", !@challenge.available)
-      @challenge.update_attribute("available", @challenge.available)  
-
-      flash[:notice] = I18n.t(:successful_update)
-      redirect_back_or_default('/index')
-    else
-      render :action => 'index'
-    end
-  end
-
-  def set_enable_comments
-    if @challenge.update_attribute("enable_comments", !@challenge.enable_comments)
-      @challenge.update_attribute("enable_comments", @challenge.enable_comments)  
-
-      flash[:notice] = I18n.t(:successful_update)
-      redirect_back_or_default('/index')
-    else
-      render :action => 'index'
-    end
-  end
-
   def destroy
     # @challenge = Challenge.find(params[:id])
     counter = 0
@@ -116,7 +85,20 @@ class ChallengesController < ApplicationController
 
   private
   def get_challenge
-    @challenge = Challenge.find(params[:id])
+    @challenge = Challenge.find(params[:id]) 
+    @cup = @challenge.cup
+  end
+
+  def get_cup
+    @cup = Cup.find(params[:id])
+  end
+  
+  def has_member_access
+    unless current_user.is_member_of?(@challenge)
+      flash[:warning] = I18n.t(:unauthorized)
+      redirect_back_or_default('/index')
+      return
+    end
   end
 
   def has_manager_access

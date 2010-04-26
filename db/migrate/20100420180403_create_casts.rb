@@ -8,7 +8,7 @@ class CreateCasts < ActiveRecord::Migration
 
       t.integer   :home_score
       t.integer   :away_score
-
+      
       t.timestamps
     end
   end

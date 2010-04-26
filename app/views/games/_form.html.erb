@@ -32,6 +32,12 @@
     <span class="description"><%= label_name('reminder_at', 'description') %></span>
   </div>
 
+  <div class="group">
+    <%= f.label :deadline_at, label_name('deadline_at'), :class => :label %>
+    <%= f.datetime_select :deadline_at, :class => 'datetime_select' %><br />
+    <span class="description"><%= label_name('deadline_at', 'description') %></span>
+  </div>
+
   </div> 
 
   <div class="column right"> 

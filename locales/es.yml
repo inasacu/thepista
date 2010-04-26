@@ -78,13 +78,12 @@ es:
      center:  Media
      cast: Pronóstico   
      cast_description: (Escribe algun detalle del pronóstico...)  
-     casts: Pronósticoz
+     casts: Pronósticos
      casts_archive_list:  Pronósticos anteriores
      casts_create:  Nuevo pronóstico
      casts_destroy:  Borrar pronóstico
      casts_index:  Pronósticos
      casts_index_option: Opciones 
-     # casts_invitations_create:  Invita a un amigo al pronóstico
      casts_list:  Anteriores pronósticos
      casts_list_no: Ningun pronóstico previo para mostrar.
      casts_manager_option:  Requiere responsable de reto para ver mas opciones.

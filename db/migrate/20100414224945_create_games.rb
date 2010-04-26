@@ -6,7 +6,8 @@ class CreateGames < ActiveRecord::Migration
 
       t.datetime  :starts_at
       t.datetime  :ends_at
-      t.datetime  :reminder_at
+      t.datetime  :reminder_at      
+      t.datetime  :deadline_at
 
       t.integer   :cup_id
       

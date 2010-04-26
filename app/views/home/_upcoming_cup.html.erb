@@ -1,20 +1,9 @@
-<%
-	Barometer.google_geocode_key = APP_CONFIG['google_api']['key']
-	Barometer.config = { 1 => [:google, :yahoo], 2 => :wunderground }
-%>
-
 <table class="table">
 
 <% 
 	upcoming_cups.each do |cup| 
-	the_sport = ""
-	the_missing = ""
+		the_sport = "#{label_name(:challenges)}:  #{cup.challenges.count}"
 	is_gameday = (cup.starts_at.to_date == Time.zone.today)
-	
-	if is_gameday		
-		barometer = Barometer.new(cup.time_zone)
-	    weather = barometer.measure
-	end
 -%>		
 	<tr>
 		<td>
@@ -40,28 +29,12 @@
 		</td>		
 
 		<td class="name_and_date">
-			<%= the_sport %><br />
-			<span class="date">
-				<%= the_missing %>
-			</span>
+			<%= link_to the_sport, challenges_url %>
 		</td>
 
 		<td class="name_and_date">
-			<% if is_gameday  %>
-			<%= image_tag('weather_rain.png', options={:style => "height: 20px; width: 20px;"}) if weather.wet? %>
-			<%= image_tag('weather_sun.png', options={:style => "height: 20px; width: 20px;"}) if weather.sunny? %>
-			<%= image_tag('weather_clouds.png', options={:style => "height: 20px; width: 20px;"}) if weather.windy? %>
-			<%#= image_tag('weather_clouds.png', options={:style => "height: 20px; width: 20px;"}) if weather.day? %>
-			<%#= image_tag('weather_clouds.png', options={:style => "height: 20px; width: 20px;"}) if weather.night? %>
-			<% end -%>
-			<%#= marker_link(cup.marker) %><br/>
-			<span class="date">		
-			<%= "#{weather.tomorrow.high.c}°C / #{weather.tomorrow.low.c}°C" if is_gameday %>
-			</span>
+			<%= link_to "Tu nuevo reto: #{cup.name}", new_challenge_path(:id => cup) %>
 		</td>
-		
-	
-
 		
 		<td class="last">
 			&nbsp;

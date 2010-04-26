@@ -1,32 +1,32 @@
 <% 
 has_group ||= false
-# has_tournament ||= false
 
 if current_user 
 	has_group = current_user.has_group? 
-	# has_tournament = current_user.has_tournament?	
 end
 %>
 
 <div id="main-navigation">
-<ul>		
+<ul>
 	<%= "<li />" unless current_user %>
 	
 	<% if current_user %>		
-		<%= content_tag 'li', link_to(label_name(:home) , '/'), :class => get_control_first('home') %>
-		
- 		<%= content_tag 'li', link_to(label_name(:cups), cups_url), :class => get_control_active('cup')  %>	
-		<%= content_tag 'li', link_to(label_name(:challenges), challenges_url), :class => get_control_active('challenge')  %>	
-		
-		<%= content_tag 'li', link_to(label_name(:users), users_url), :class => get_control_active('user') %>
-		<%= content_tag 'li', link_to(label_name(:groups), groups_url), :class => get_control_active('group') %>		
-		<%= content_tag 'li', link_to(label_name(:schedules), schedules_url), 
-										:class =>"#{get_control_active('schedule')} #{get_control_active('topic')}" if has_group %>
-		<%= content_tag 'li', link_to(label_name(:messages), messages_url), :class => get_control_active('message') %>
-		<%= content_tag 'li', link_to(label_name(:scorecards), scorecards_url), :class => get_control_active('scorecard') %>	
-		<%= content_tag 'li', link_to(label_name(:markers), markers_url), :class => get_control_active('marker') %>
-		<%= content_tag 'li', link_to(label_name(:announcements), announcements_url), 
-										:class => get_control_active('announcement') if current_user.is_maximo? %>
+	<%= content_tag 'li', link_to(label_name(:home) , '/'), :class => get_control_first('home') %>
+
+	<%= content_tag 'li', link_to(label_name(:cups), cups_url), 
+	:class => "#{get_control_active('cup')} #{get_control_active('game')} #{get_control_active('standing')}"  %>	
+	<%= content_tag 'li', link_to(label_name(:challenges), challenges_url), 
+	:class => "#{get_control_active('challenge')} #{get_control_active('blog')} #{get_control_active('fee')} #{get_control_active('payment')}"  %>	
+
+	<%= content_tag 'li', link_to(label_name(:users), users_url), :class => get_control_active('user') %>
+	<%= content_tag 'li', link_to(label_name(:groups), groups_url), :class => get_control_active('group') %>		
+	<%= content_tag 'li', link_to(label_name(:schedules), schedules_url), 
+	:class =>"#{get_control_active('schedule')} #{get_control_active('forum')}" if has_group %>
+	<%= content_tag 'li', link_to(label_name(:messages), messages_url), :class => get_control_active('message') %>
+	<%= content_tag 'li', link_to(label_name(:scorecards), scorecards_url), :class => get_control_active('scorecard') %>	
+	<%= content_tag 'li', link_to(label_name(:markers), markers_url), :class => get_control_active('marker') %>
+	<%= content_tag 'li', link_to(label_name(:announcements), announcements_url), 
+	:class => get_control_active('announcement') if current_user.is_maximo? %>
 	<% end %>
 
 </ul>

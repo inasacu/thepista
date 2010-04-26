@@ -77,6 +77,13 @@ class Fee < ActiveRecord::Base
     end    
   end
 
+  def self.create_user_challenge_fees(challenge) 
+    challenge["concept"] = challenge.name   
+    challenge.users.each do |user|
+      self.create_debit_credit_item_fee(user, challenge, challenge)
+    end
+  end
+
   def self.create_user_fees(schedule)    
     schedule.group.users.each do |user|
 
@@ -96,7 +103,7 @@ class Fee < ActiveRecord::Base
   def self.create_debit_credit_item_fee(debit, credit, item, season_player=false, type_id=1)
     fee_per_game = item.fee_per_game
     fee_per_game = item.fee_per_pista if credit.class.to_s == "Marker"
-    
+        
     if self.debit_credit_item_exists?(debit, credit, item)       
       self.create!(:concept => item.concept, :description => item.description, :debit_amount => fee_per_game,
                     :debit_id => debit.id, :credit_id => credit.id, :item_id => item.id, 

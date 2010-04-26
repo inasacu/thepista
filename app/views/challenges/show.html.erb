@@ -106,6 +106,12 @@
   </div>
 </div>
 
-<%# content_for :sidebar, render(:partial => 'sidebar_show') -%>
-<%# content_for :sidebar, render(:partial => 'shared/share_object', :locals => {:challenge => @challenge}) if @challenge -%>
-<%# content_for :sidebar, render(:partial => 'shared/sidebar_show_team', :locals => {:challenge => @challenge}) if current_user.is_manager_of?(@challenge) %>
+<%# content_for :sidebar, render(:partial => 'cups/sidebar_show') -%>
+<% content_for :sidebar, render(:partial => 'shared/invite') -%>
+<% content_for :sidebar, render(:partial => 'shared/share_object') -%>
+
+<%  if @cup  %>
+<%# content_for :sidebar, render(:partial => 'shared/share_object', :locals => {:cup => @cup}) -%>
+<% content_for :sidebar, render(:partial => 'cups/sidebar_cup_additional', :locals => {:cup => @cup}) if current_user.is_manager_of?(@cup) -%>
+<% content_for :sidebar, render(:partial => 'shared/sidebar_show_cup', :locals => {:cup => @cup}) if current_user.is_manager_of?(@cup) -%>
+<% end -%>

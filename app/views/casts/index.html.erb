@@ -1,50 +1,111 @@
+<%= stylesheet_link_tag "in_place_styles"  %>
+<% inplace_error_div %>
+
+<%
+	the_label = is_action ('index') ? label_name(:group_stage) : label_name(:group_round)
+	content_for(:title, the_label)
+	is_manager = current_user.is_manager_of?(@cup)	
+%>
+
 <div class="block">
-  <div class="secondary-navigation">
-    <ul>
-      <li class="first active"><%= link_to 'List', casts_path %></li>
-      <li><%= link_to 'New', new_cast_path %></li>
-    </ul>
-    <div class="clear"></div>
-  </div>          
-  <div class="content">          
-    <h2 class="title">All Casts</h2>
+
+  <%= render :partial => '/challenges/secondary_navigation' %>
+
+  <div class="content">   
+  
+    <h2 class="title"><%= the_label %></h2>
+	
     <div class="inner">
-      <table class="table">
-        <tr>             
-          <th class="first">ID</th>
-          <th>Challenge_id</th>
-          <th>Created at</th>
+	
+	<% if object_counter(@casts) > 0 %>
+	
+      <table class="table" id="<%= get_the_controller.gsub(' ','_') %>">
+	  
+        <tr> 
+          <th class="first"><%= label_name(:jornada) %></th>
+	      <th><%= label_name(:name) %>&nbsp;/<br />
+			  <%= label_name(:gameday_at) %></th>
+          <th>&nbsp;</th>
+	      <th>&nbsp;</th>
+		  <th align="center"><%= label_name(:matches) %></th>
+          <th>&nbsp;</th>
+          <th>&nbsp;</th>
           <th class="last">&nbsp;</th>
-        </tr>
-        <% @casts.each do |cast| -%>
+		</tr>
+        
+        <% @casts.each do |cast| 
+			the_label = label_name(:casts_destroy)
+			the_confirmation = "#{ the_label }?"
+			@the_cast = cast
+			no_team = (cast.home_id.nil? or cast.away_id.nil?)  
+			is_user = (current_user == cast.user) #and cast.deadline_at <= Time.zone.now - 1.day)	
+		-%>
         <tr>
+	
+          <td class="first">
+			<%= cast.jornada %>
+          </td>
+
+			<td class="name_and_date">
+				<%= cast.concept %>
+				<span class="date">
+					<%= nice_day_of_week cast.starts_at %>
+				</span>
+			</td>
+
+          <td>            
+            <%= escuadra_image_link_small cast.home unless no_team %>
+          </td>
+
           <td>
-            <%= cast.id %>
-          </td>
+			<%= escuadra_link cast.home unless no_team %>
+		  </td>
+
+		  <td align="center">
+		  	<%#=  (cast.game_played?) ? game_score_link(cast) : label_name(:game_not_played) %>
+			<%= is_user ? in_place_text_field(:the_cast, :home_score, {:cols => 1}) : cast.home_score %>
+		  </td>
+
+		  <td align="center">
+		  	<%#=  (cast.game_played?) ? game_score_link(cast) : label_name(:game_not_played) %>
+			<%= is_user ? in_place_text_field(:the_cast, :away_score, {:cols => 1}) : cast.away_score %>
+		  </td>
+			
           <td>
-            <%= link_to cast.challenge_id, cast_path(cast) %>
-          </td>
-          <td>
-            <%= cast.created_at %>
-          </td>
-          <td class="last">
-            <%= link_to 'show', cast_path(cast) %> |
-            <%= link_to 'edit', edit_cast_path(cast) %> |
-            <%= link_to 'destroy', cast_path(cast), :method => :delete, :confirm => 'Are you sure?' %>
-          </td>
+			<%= escuadra_link cast.away unless no_team %>
+		  </td>
+		
+		  <td>
+            <%= escuadra_image_link_small cast.away unless no_team %>
+		  </td>
+			
+	       <td class="last">
+				<% if is_manager %>
+				<span class="action">					
+					<%= link_to label_name(:matches), set_score_url(:id => cast) %><br/>
+					<%= link_to label_name(:casts_edit), edit_cast_path(cast) %>	
+				</span>
+				<% end -%>
+	       </td>
+
         </tr>          
         <% end -%>
       </table>
-      <div class="actions-bar">
-        <div class="actions">
-        </div>
-        
-        <%= will_paginate @cast  %>
-        
-        <div class="clear"></div>
-      </div>
-    </div>
-  </div>
-</div>
 
-<% content_for :sidebar, render(:partial => 'sidebar') -%>
+	<%= render :partial => 'shared/action_bar', :locals => { :collection => @casts } %>
+
+		<% end %>
+		
+		</div>
+		</div>
+	</div>
+	
+<%# content_for :sidebar, render(:partial => 'cups/sidebar_show') -%>
+<% content_for :sidebar, render(:partial => 'shared/invite') -%>
+<% content_for :sidebar, render(:partial => 'shared/share_object') -%>
+
+<%  if @cup  %>
+<%# content_for :sidebar, render(:partial => 'shared/share_object', :locals => {:cup => @cup}) -%>
+<% content_for :sidebar, render(:partial => 'cups/sidebar_cup_additional', :locals => {:cup => @cup}) if current_user.is_manager_of?(@cup) -%>
+<% content_for :sidebar, render(:partial => 'shared/sidebar_show_cup', :locals => {:cup => @cup}) if current_user.is_manager_of?(@cup) -%>
+<% end -%>
