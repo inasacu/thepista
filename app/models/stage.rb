@@ -9,10 +9,10 @@ class Stage < ActiveRecord::Base
   
   validates_presence_of         :home_stage_name
   validates_length_of           :home_stage_name,                 :is => 1
-  validates_format_of           :home_stage_name,                 :with => /^[-A-Z]+$/
+  # validates_format_of           :home_stage_name,                 :with => /^[-A-Z]+$/
   validates_presence_of         :away_stage_name
   validates_length_of           :away_stage_name,                 :is => 1
-  validates_format_of           :away_stage_name,                 :with => /^[-A-Z]+$/
+  # validates_format_of           :away_stage_name,                 :with => /^[-A-Z]+$/
   
   belongs_to                    :cup
 

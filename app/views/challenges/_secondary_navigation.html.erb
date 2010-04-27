@@ -4,7 +4,7 @@
 
 <div class="secondary-navigation">
 	
-<ul><%= "#{get_the_controller}_#{get_the_action}" %>
+<ul>
 	<li class="<%= get_first_active %>"><%=  link_to(label_name(:challenges_my), challenges_path) unless @challenge %></li>
 	<li class="<%= get_active('challenge_list') %>"><%=  link_to(label_name(:challenges_all) , list_challenges_path) unless @challenge %></li>
 	<li class="<%= get_active('challenge_show') %>"><%=  challenge_link(@challenge) if @challenge %></li>

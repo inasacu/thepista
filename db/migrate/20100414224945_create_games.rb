@@ -20,7 +20,7 @@ class CreateGames < ActiveRecord::Migration
       t.integer   :away_score
       
       t.integer   :jornada,                 :default => 1      
-      t.integer   :round,                   :default => 0
+      t.integer   :round,                   :default => 1
       
       t.boolean   :played,                  :default => false
       

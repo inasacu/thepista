@@ -15,30 +15,26 @@ task :the_cup => :environment do |t|
   counter = 0
 
   @groups_in_stage = []
+  Standing.create_cup_escuadra_standing(@cup)  
   @standings = Standing.cup_escuadras_standing(@cup)
   @standings.each {|standing| number_of_escuadras += 1}
 
   default_group_stage = @standings.first.group_stage_name
 
   # get groups from cup into an array
-  @standings.each do |standing|
-  
-    counter += 1
-  
+  @standings.each do |standing|  
+    counter += 1  
     if (default_group_stage == standing.group_stage_name)
       # puts "#{standing.group_stage_name} #{Escuadra.find(standing.item_id).name}"
       @groups_in_stage << Escuadra.find(standing.item_id)
-    end
-  
+    end  
     if (default_group_stage != standing.group_stage_name or counter == number_of_escuadras)
       @cup.create_group_stage(@groups_in_stage) 
       @groups_in_stage = []
       default_group_stage = standing.group_stage_name
-      @groups_in_stage << Escuadra.find(standing.item_id)
-  
+      @groups_in_stage << Escuadra.find(standing.item_id)  
       # puts "#{standing.group_stage_name} #{Escuadra.find(standing.item_id).name}" unless counter == number_of_escuadras
-    end
-  
+    end  
   end
 
   counter = 0

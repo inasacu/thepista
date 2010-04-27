@@ -706,7 +706,8 @@ es:
      name_description: "(El nombre del equipo tiene que empezar con una leta, sin espacios e caracteres speciales excepto _ o . )"  
      name_sport: Nombre del deporte que practicas   
      names: Nombres   
-     new: Nuevo   
+     new: Nuevo
+     new_low: nuevo   
      new_openid: Nueva cuenta   
      news: noticias
      next: "Siguiente"
@@ -1699,7 +1700,8 @@ es:
      user_options_tour: Opciones 
      users_rpx_new: Nuevo jugador
      users_rpx_create:  Nuevo jugador
-     users_teammate: Mis compañeros de equipo    
+     users_teammate: Mis compañeros de equipo   
+     your:  Tu 
      true: "Si"
      false: "No"
      get_rolling:  Pónte en marcha en cuestión de segundos

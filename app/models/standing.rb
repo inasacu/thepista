@@ -4,7 +4,6 @@ class Standing < ActiveRecord::Base
   belongs_to  :item,      :polymorphic => true
   belongs_to	:challenge
     
-
   # method section
   def self.create_cup_escuadra_standing(cup)  
     cup.escuadras.each do |escuadra|
@@ -12,12 +11,10 @@ class Standing < ActiveRecord::Base
     end
   end
 
-  def self.create_cup_challenge_standing(cup)  
-    cup.challenges.each do |challenge|
-      challenge.users.each do |user|
-        Standing.create_cup_challenge_item_standing(cup, challenge, user)
-      end
-    end	
+  def self.create_cup_challenge_standing(challenge)  
+    challenge.users.each do |user|
+      Standing.create_cup_challenge_item_standing(cup, challenge, item)
+    end
   end 
 
   # calculate standing for all previous game in item
@@ -31,30 +28,10 @@ class Standing < ActiveRecord::Base
       update_cup_standing(standing, @games)
     end
 
-
     @group_stages = Standing.find(:all, :select => "distinct cup_id, group_stage_name", :conditions =>["cup_id = ?", cup.id], :order => "group_stage_name")
-
     @group_stages.each do |group_stage|    
       self.update_cup_group_stage_ranking(group_stage)
     end    
-
-    # counter = 0
-    # default_group_stage = @standings.first.group_stage_name
-    # 
-    # @standings.each do |standing|    
-    #   counter += 1
-    # 
-    #   if (default_group_stage == standing.group_stage_name and counter == 1)
-    #     self.update_cup_group_stage_ranking(standing)
-    #   end
-    # 
-    #   if (default_group_stage != standing.group_stage_name)
-    #     default_group_stage = standing.group_stage_name
-    #     counter = 0        
-    #   end
-    #       
-    # end
-
   end
  
   def self.update_cup_standing(standing, games)
@@ -122,14 +99,15 @@ class Standing < ActiveRecord::Base
   end
 
   # record if group does not exist
-  def self.create_challenge_standing(challenge) 
-    self.create!(:challenge_id => challenge.id) if self.challenge_exists?(challenge)
-  end
+  # def self.create_challenge_standing(challenge) 
+  #   self.create!(:challenge_id => challenge.id) if self.challenge_exists?(challenge)
+  #   
+  # end
   
   # Return true if the challenge nil
-  def self.challenge_exists?(challenge)
-    find(:first, :conditions => ["challenge_id = ? and archive = ?", challenge.id, false]).nil?
-  end
+  # def self.challenge_exists?(challenge)
+  #   find(:first, :conditions => ["challenge_id = ? and archive = ?", challenge.id, false]).nil?
+  # end
 
   # record if user and group do not exist
   def self.create_cup_challenge_item_standing(cup, challenge, item)
@@ -147,11 +125,14 @@ class Standing < ActiveRecord::Base
     find(:all, 
     :joins => "LEFT JOIN escuadras on escuadras.id = standings.item_id",
     :conditions => ["cup_id = ? and item_id in (?) and item_type = ? and standings.archive = false", cup, escuadras, 'Escuadra'],
-    :order => "group_stage_name, points desc, (goals_for-goals_against) desc")
+    :order => "group_stage_name, points desc, (goals_for-goals_against) desc, escuadras.name")
+  end
+  
+  def self.cup_challenges_standing(challenge)
+    find(:all, :conditions => ["challenge_id = ? and standings.archive = false",  challenge], :order => "points desc")
   end
 
   private
-
   # Return true if the user and group nil
   def self.cup_challenge_item_exists?(cup, challenge, item)
     find(:first, :conditions => ["cup_id = ? and challenge_id = ? and item_id = ? and item_type = ?", cup, challenge, item, item.class.to_s]).nil?

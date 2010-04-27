@@ -26,17 +26,16 @@ class Game < ActiveRecord::Base
   # validates_numericality_of     :home_score,  :greater_than_or_equal_to => 0, :less_than_or_equal_to => 300
   # validates_numericality_of     :away_score,  :greater_than_or_equal_to => 0, :less_than_or_equal_to => 300
 
-  validates_presence_of         :starts_at, :ends_at, :reminder_at
+  validates_presence_of         :starts_at, :ends_at, :reminder_at, :deadline_at
   # , :home_id, :away_id
 
   # variables to access
-  attr_accessible :concept, :starts_at, :ends_at, :reminder_at, :points_for_single, :points_for_double
+  attr_accessible :concept, :starts_at, :ends_at, :reminder_at, :deadline_at, :points_for_single, :points_for_double
   attr_accessible :cup_id, :home_id, :away_id, :winner_id, :next_game_id, :jornada, :round, :type_name
   attr_accessible :home_score, :away_score, :played
 
   # friendly url and removes id
   # has_friendly_id :concept, :use_slug => true, :reserved => ["new", "create", "index", "list", "signup", "edit", "update", "destroy", "show"]
-
 
   before_update :set_game_winner
   after_update  :calculate_standing
@@ -244,10 +243,10 @@ class Game < ActiveRecord::Base
     end
 
     def validate
-      self.errors.add(:reminder_at, I18n.t(:must_be_before_starts_at)) if self.reminder_at >= self.starts_at
-      self.errors.add(:starts_at, I18n.t(:must_be_before_ends_at)) if self.starts_at >= self.ends_at
-      self.errors.add(:ends_at, I18n.t(:must_be_after_starts_at)) if self.ends_at <= self.starts_at
-      self.errors.add(:deadline_at, I18n.t(:must_be_before_starts_at)) if self.deadline_at < self.starts_at
+      # self.errors.add(:reminder_at, I18n.t(:must_be_before_starts_at)) if self.reminder_at >= self.starts_at
+      # self.errors.add(:starts_at, I18n.t(:must_be_before_ends_at)) if self.starts_at >= self.ends_at
+      # self.errors.add(:ends_at, I18n.t(:must_be_after_starts_at)) if self.ends_at <= self.starts_at
+      # self.errors.add(:deadline_at, I18n.t(:must_be_before_starts_at)) if self.deadline_at < self.starts_at
       self.errors.add(:home_id, I18n.t(:must_be_different)) if (self.home_id == self.away_id and !self.home_id.nil? and !self.away.nil?) 
     end
 

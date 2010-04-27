@@ -24,19 +24,26 @@ class StagesController < ApplicationController
     @stage = Stage.new
     @cup = Cup.find(params[:id])    
     
-    @previous_stage = Stage.find(:first, :conditions => ["id = (select max(id) from stages where cup_id = ?) ", @cup.id])    
-    unless @previous_stage.nil?
-      @stage.home_ranking = @previous_stage.home_ranking
-      @stage.away_ranking = @previous_stage.away_ranking 
+    @stage.cup_id = @cup.id
+
+    if @cup
+      @previous_stage = Stage.find(:first, :conditions => ["id = (select max(id) from stages where cup_id = ?) ", @cup.id])    
+      unless @previous_stage.nil?
+        @stage.home_ranking = @previous_stage.home_ranking
+        @stage.away_ranking = @previous_stage.away_ranking 
+      end
     end
+    
   end
 
   def create
     @stage = Stage.new(params[:stage])
-    @cup = Cup.find(params[:cup][:id])
+    # @cup = Cup.find(params[:cup][:id])
     
+    @cup = Cup.find(@stage.cup_id)
     @stage.name = @cup.name
-    @stage.cup_id = @cup.id
+    
+    # @stage.cup_id = @cup.id
     # @stage.home_stage_name = @stage.home_stage_name.upcase
     # @stage.away_stage_name = @stage.away_stage_name.upcase
      

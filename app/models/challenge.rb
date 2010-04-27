@@ -86,7 +86,7 @@ class Challenge < ActiveRecord::Base
 
     ChallengesUsers.join_team(user, self)
     Blog.create_item_blog(self)
-    Standing.create_challenge_standing(self)
+    Standing.create_cup_challenge_standing(self)
     Cast.create_challenge_cast(self) 
     Fee.create_user_challenge_fees(self)
   end

@@ -7,10 +7,12 @@
 	  <tr>             
 	    <th class="first">&nbsp;</th>
 	    <th><%= label_name(:name) %>&nbsp;/<br />
-			  <%#= label_name(:gameday_at) %></th>
+			<%= label_name(:sport) %>
+		</th>
 	    <th><%= label_name(:manager) %>&nbsp;/<br />
-			  <%= label_name(:sport) %></th>
-	    <th><%= label_name(:time_zone) %></th>
+			<%= label_name(:time_zone) %>
+		</th>
+	    <!-- <th><%#= label_name(:time_zone) %></th> -->
 	    <th><%= label_name(:general_information) %></th>
 	    <th><%#= label_name(:last_game_played) %></th>
 	    <th class="last">&nbsp;</th>
@@ -19,35 +21,34 @@
 	  <% @challenges.each do |challenge| 
 		#cast = Cast.last_cast_challenge_played(challenge)
 		-%>
-
-	  <tr>  
-			<td>
-				<%= cup_image_link_small challenge.cup %>
+	  <tr>  	
+			<td class="name_and_date">
+				<%= cup_image_link_small challenge.cup %><br/>
+				<span class="date">
+				</span>
 			</td>
 
 			<td class="name_and_date">
-				<%= challenge_link(challenge) %>
+				<%= challenge_link(challenge) %><br/>
 				<span class="date">
-					<%#= nice_day_time challenge.gameday_at %>
+					<%= challenge.cup.sport.name %>
+				</span>
+			</td>
+
+			<td class="name_and_date">
+				<%= user_list challenge.all_the_managers %><br />
+				<span class="date">
+					<%= challenge.time_zone %>
 				</span>
 			</td>
 
 			<td>
-				<%= user_list challenge.all_the_managers %><br />
-				<%#= challenge.cup.sport.name %>
-			</td>
-
-			<td>
-				<%= challenge.time_zone %>
-			</td>
-
-			<td>
 				<%= I18n.t(:has_challenge_users, :count => object_counter(challenge.users)) %><br />
-				<%= I18n.t(:has_challenge_casts, :count => object_counter(challenge.casts)) %>
+				<%#= I18n.t(:has_challenge_casts, :count => object_counter(challenge.casts)) %>
 			</td>
 
 			<td class="name_and_date">
-				<%= link_to(label_name(:standing), standing_path(:id => challenge)) %>
+				<%= link_to(label_name(:standing), list_standings_path(:id => challenge)) %>
 				<span class="date">
 					<%#= nice_full_date(cast.starts_at) unless cast.nil? %> 
 				</span>
@@ -70,9 +71,9 @@
 					   end
 					-%>
 				
-					<% if current_user.is_manager_of?(challenge) %> 
-						<%= link_to label_name(:casts_create), new_cast_path(:id => challenge)  %><br />
-			        <% end %>
+					<%# if current_user.is_manager_of?(challenge) %> 
+						<%#= link_to label_name(:casts_create), new_cast_path(:id => challenge)  %><br />
+			        <%# end %>
 					
 				</span>
 	       </td>

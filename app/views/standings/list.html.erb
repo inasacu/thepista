@@ -9,6 +9,7 @@
 <div class="block">
 
 <%= render :partial => '/challenges/secondary_navigation' %>  
+<%#= render :partial => '/cups/secondary_navigation' %>  
 
 <%
 	if @standings	
@@ -31,7 +32,8 @@
 			-%>
 				<%= render :partial => 'standing_futbol_label', :locals => { :group_stage => group_stage} %>
 				<% end %>
-			<%= render :partial => 'standing', :locals => {:standing => standing} %>
+				
+			<%#= render :partial => 'standing', :locals => {:standing => standing} %>
 			<% end %>
 			<% end %>
 			

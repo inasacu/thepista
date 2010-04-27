@@ -39,7 +39,7 @@ class Cup < ActiveRecord::Base
   attr_accessible :starts_at, :ends_at, :deadline_at
     
   # friendly url and removes id  
-  # has_friendly_id :name, :use_slug => true, :reserved => ["new", "create", "index", "list", "signup", "edit", "update", "destroy", "show"]
+  has_friendly_id :name, :use_slug => true, :reserved => ["new", "create", "index", "list", "signup", "edit", "update", "destroy", "show"]
 
   has_and_belongs_to_many :escuadras,     :join_table => "cups_escuadras",   :order => "name"
   has_many                :games
@@ -213,8 +213,9 @@ class Cup < ActiveRecord::Base
       return Game.create!(:concept => "Group #{standing.group_stage_name}", 
                           :cup_id => self.id, :home_id => game[0].id ,:away_id => game[1].id, 
                           :starts_at => last_game['starts_at'], :ends_at => last_game['ends_at'], 
-                          :reminder_at => last_game['reminder_at'], :type_name => 'GroupStage', 
-                          :points_for_single => 0, :points_for_double => 5, :jornada => last_game['jornada'])
+                          :reminder_at => last_game['reminder_at'], :deadline_at => last_game['deadline_at'], 
+                          :type_name => 'GroupStage', :jornada => last_game['jornada'], 
+                          :points_for_single => 0, :points_for_double => 5)
     end
   end
   
@@ -301,12 +302,19 @@ class Cup < ActiveRecord::Base
           
           if level == @levels      
                   
+            # @game = Game.create!(:concept => level_in_words(level), 
+            #                     :cup_id => self.id, :home_id => home_id ,:away_id => away_id,  
+            #                     :starts_at => last_game['starts_at'], :ends_at => last_game['ends_at'], 
+            #                     :reminder_at => last_game['reminder_at'], :type_name => 'FirstGame', 
+            #                     :points_for_single => 0, :points_for_double => 5, :jornada => last_game['jornada'])
+
             @game = Game.create!(:concept => level_in_words(level), 
                                 :cup_id => self.id, :home_id => home_id ,:away_id => away_id,  
                                 :starts_at => last_game['starts_at'], :ends_at => last_game['ends_at'], 
-                                :reminder_at => last_game['reminder_at'], :type_name => 'FirstGame', 
-                                :points_for_single => 0, :points_for_double => 5, :jornada => last_game['jornada'])
-          
+                                :reminder_at => last_game['reminder_at'], :deadline_at => last_game['deadline_at'], 
+                                :type_name => 'FirstGame', :jornada => last_game['jornada'], 
+                                :points_for_single => 0, :points_for_double => 5)
+                                                              
                                 puts "[#{level_in_words(level)}]:  #{home_id} #{ away_id}"
           
           else
@@ -322,9 +330,10 @@ class Cup < ActiveRecord::Base
             @game = Game.create!(:concept => level_in_words(level), 
                                 :cup_id => self.id, :home_id => home_id ,:away_id => away_id,  
                                 :starts_at => last_game['starts_at'], :ends_at => last_game['ends_at'], 
-                                :reminder_at => last_game['reminder_at'], :type_name => 'SubsequentGame', 
-                                :points_for_single => 0, :points_for_double => 5, :jornada => last_game['jornada'])
-
+                                :reminder_at => last_game['reminder_at'], :deadline_at => last_game['deadline_at'], 
+                                :type_name => 'SubsequentGame', :jornada => last_game['jornada'], 
+                                :points_for_single => 0, :points_for_double => 5)
+                                
             @previous_1.next_game_id = @game.id
             @previous_1.save!
             @previous_2.next_game_id = @game.id
@@ -340,12 +349,18 @@ class Cup < ActiveRecord::Base
        
       # third place
       jornada = Game.last_cup_game(self).jornada.to_i + 1
-      @game = Game.create!(:concept => level_in_words(99), 
-                          :cup_id => self.id,  
-                          :starts_at => last_game['starts_at'], :ends_at => last_game['ends_at'], 
-                          :reminder_at => last_game['reminder_at'], :type_name => 'ThidPlaceGame', 
-                          :points_for_single => 0, :points_for_double => 5, :jornada => last_game['jornada'])      
+      # @game = Game.create!(:concept => level_in_words(99), 
+      #                     :cup_id => self.id,  
+      #                     :starts_at => last_game['starts_at'], :ends_at => last_game['ends_at'], 
+      #                     :reminder_at => last_game['reminder_at'], :type_name => 'ThidPlaceGame', 
+      #                     :points_for_single => 0, :points_for_double => 5, :jornada => last_game['jornada'])      
       
+      @game = Game.create!(:concept => level_in_words(99), :cup_id => self.id,  
+                          :starts_at => last_game['starts_at'], :ends_at => last_game['ends_at'], 
+                          :reminder_at => last_game['reminder_at'], :deadline_at => last_game['deadline_at'], 
+                          :type_name => 'ThidPlaceGame', :jornada => last_game['jornada'], 
+                          :points_for_single => 0, :points_for_double => 5)
+                                              
       # final
       home_id = @participants[left_index-1].id
       away_id = @participants[right_index-1].id
@@ -363,11 +378,11 @@ class Cup < ActiveRecord::Base
       puts "[#{level_in_words(0)}]:  #{@previous_1.id} #{ @previous_2.id}"
       
       last_game = get_the_last_game
-      @game = Game.create!(:concept => level_in_words(0), 
-                          :cup_id => self.id,  
+      @game = Game.create!(:concept => level_in_words(0), :cup_id => self.id,  
                           :starts_at => last_game['starts_at'], :ends_at => last_game['ends_at'], 
-                          :reminder_at => last_game['reminder_at'], :type_name => 'FinalGame', 
-                          :points_for_single => 0, :points_for_double => 5, :jornada => last_game['jornada'])
+                          :reminder_at => last_game['reminder_at'], :deadline_at => last_game['deadline_at'], 
+                          :type_name => 'FinalGame', :jornada => last_game['jornada'], 
+                          :points_for_single => 0, :points_for_double => 5)
                                 
       @previous_1.next_game_id = @game.id
       @previous_1.save!
@@ -380,7 +395,7 @@ class Cup < ActiveRecord::Base
 
        # default values
        the_game = {"starts_at" =>  self.starts_at, "ends_at" =>  self.starts_at + (60 * 60 * 2), 
-                   "reminder_at" => self.starts_at - 1.day, "jornada" => 1}
+                   "reminder_at" => self.starts_at - 1.day, "deadline_at" => self.starts_at - 2.days, "jornada" => 1}
 
        unless last_game.nil?
          the_game['starts_at'] =  last_game.starts_at + 1.day

@@ -2,8 +2,15 @@ class StandingsController < ApplicationController
   before_filter :require_user
   before_filter :standing_cup, :only => [:index, :show]
   
-  def index
-    render :template => '/standings/show'
+  
+  def show
+    render :template => '/standings/index'
+  end
+  
+  def list
+    @challenge = Challenge.find(params[:id])
+    @cup = @challenge.cup
+    @standings = Standing.cup_challenges_standing(@challenge)    
   end
   
   def set_stand_group_stage_name
@@ -17,7 +24,7 @@ class StandingsController < ApplicationController
       end
       
       group_stage_name = params[:stand][:group_stage_name]
-      if @standing.update_attributes('group_stage_name' => group_stage_name)
+      if @standing.update_attributes('group_stage_name' => group_stage_name.upcase)
         flash[:notice] = I18n.t(:successful_update)
       end
       redirect_to standings_path(:id => @cup)

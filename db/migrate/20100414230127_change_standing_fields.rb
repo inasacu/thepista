@@ -4,7 +4,7 @@ class ChangeStandingFields < ActiveRecord::Migration
     create_table :standings do |t| 
          
       t.integer :cup_id 
-      # t.integer :challenge_id
+      t.integer :challenge_id
       t.integer :item_id
       t.string	:item_type		                    # for :squad_id, :user_id 
       t.string  :group_stage_name
