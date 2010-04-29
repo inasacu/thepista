@@ -51,6 +51,14 @@ class Cast < ActiveRecord::Base
     self.game.starts_at - 1.day
   end
   
+  def self.current_challenge(user, challenge, page = 1)
+    self.paginate(:all, :conditions => ["user_id = ? and challenge_id = ?", user.id, challenge.id], :order => 'id', :page => page, :per_page => CUPS_PER_PAGE)
+  end
+  
+  def self.current_casts(user, challenge)
+    find(:all, :conditions => ["user_id = ? and challenge_id = ?", user.id, challenge.id], :order => 'id', :limit => CUPS_PER_PAGE)
+  end
+  
   
   # create a record in the cast table for teammates in group team
   def self.create_challenge_cast(challenge)

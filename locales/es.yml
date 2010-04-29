@@ -82,15 +82,15 @@ es:
      casts_archive_list:  Pronósticos anteriores
      casts_create:  Nuevo pronóstico
      casts_destroy:  Borrar pronóstico
-     casts_index:  Pronósticos
+     casts_index: Mis Pronósticos
      casts_index_option: Opciones 
      casts_list:  Anteriores pronósticos
      casts_list_no: Ningun pronóstico previo para mostrar.
      casts_manager_option:  Requiere responsable de reto para ver mas opciones.
      casts_new: Nuevo pronóstico
      casts_no: Ningun pronóstico para mostrar.
-     casts_edit: Modificar pronóstico
-     casts_update: Modificar pronóstico
+     casts_edit: Actualizar Pronóstico
+     casts_update: Actualizar pronóstico
      casts_option:  Opciones 
      cast_options:  Opciones 
      casts_show: Detalles del pronóstico
@@ -114,7 +114,7 @@ es:
      challenges_all:  Todos los Retos
      challenges_create:  Nuevo Reto 
      challenges_destroy:  Borrar reto
-     challenges_edit:  Modificar reto
+     challenges_edit:  Actualizar reto
      challenges_index:   Retos
      challenges_index_option: Opciones 
      challenges_invitations_create:  Invita a un amigo al reto
@@ -130,7 +130,7 @@ es:
      challenges_search: Busqueda de retos
      challenges_search_to_join: Puedes buscar un reto al que unierte. 
      challenges_show:  Mostrar reto
-     challenges_update: Modificar reto
+     challenges_update: Actualizar reto
      change: Cambia idioma   
      change_available: Cambia la disponibilidad de   
      change_at:  Fecha de cambio
@@ -207,7 +207,7 @@ es:
      cups_all:  Todas las copas
      cups_create:  Nueva copa 
      cups_destroy:  Borrar copa
-     cups_edit:  Modificar copa
+     cups_edit:  Actualizar copa
      cups_index:   Copas
      cups_index_option: Opciones 
      cups_invitations_create:  Invita a un amigo a esta copa
@@ -225,7 +225,7 @@ es:
      cups_show:  Mostrar copa
      cups_to_join:   inscribite a una copa 
      cups_upcoming: Próximas Copas  
-     cups_update: Modificar copa
+     cups_update: Actualizar copa
      current_accounts: Cuentas actuales   
      current_language: Español    
      current_time: La hora   
@@ -403,8 +403,8 @@ es:
      games_new: Nuevo evento
      games_no: Ningun evento para mostrar.
      games_create: Nuevo Evento
-     games_edit: Modificar evento
-     games_update: Modificar evento
+     games_edit: Actualizar evento
+     games_update: Actualizar evento
      games_option:  Opciones 
      game_options:  Opciones 
      games_show: Detalles del evento
@@ -1089,7 +1089,7 @@ es:
      escuadras_available:  Todos los equipos
      escuadras_create:  Nuevo equipo 
      escuadras_destroy:  Borrar equipo
-     escuadras_edit:  Modificar equipo
+     escuadras_edit:  Actualizar equipo
      escuadras_index:   Equipo
      escuadras_index_option: Opciones 
      escuadras_invitations_create:  Invita a un amigo a este equipe
@@ -1106,7 +1106,7 @@ es:
      escuadras_search_to_join: Puedes buscar un equipo. 
      escuadras_show:  Mostrar equipo
      escuadras_to_join:   crea un equipo 
-     escuadras_update: Modificar equipo
+     escuadras_update: Actualizar equipo
      start_session: inicia tu sesión   
      starts_at: Inicio  
      starts_at_description: (¿Ha que hora empieza el evento?) 
@@ -1361,7 +1361,7 @@ es:
      classified_successful_create: Los anuncios han sido creatos.
      classifieds_concept_description:  Concepto del anuncio
      classifieds_destroy:  Borrar anuncio
-     classifieds_edit:  Modificar anuncio
+     classifieds_edit:  Actualizar anuncio
      classifieds_index:  Anuncios
      classifieds_new:  Nuevo anuncio
      classifieds_no:  Ningun anuncio para mostrar
@@ -1419,10 +1419,10 @@ es:
      fees_manager_option:  Requiere responsable de equipo para ver mas opciones.
      fees_new:  Nuevo cargo
      fees_no:  Ningun cargo para mostrar.
-     fees_edit:  Modificar cargo
+     fees_edit:  Actualizar cargo
      fees_option:  Opciones
      fees_show:  Mostrar cargo
-     fees_update:  Modificar cargo     
+     fees_update:  Actualizar cargo     
      home_index: Inicio
      home_search:  Buscar
      home_about_us: About Us
@@ -1445,13 +1445,13 @@ es:
      payments_new:  Nuevo pago
      payments_no:  Ningun pago para mostrar.
      payments_destroy:  Borrar pago
-     payments_edit:  Modificar pago
+     payments_edit:  Actualizar pago
      payments_option:  Opciones 
      payments_show:  Mostrar pago          
      group_options:  Opciones
      groups_create:  Nuevo equipo 
      groups_destroy:  Borrar equipo
-     groups_edit:  Modificar equipo
+     groups_edit:  Actualizar equipo
      groups_index:   Equipos
      groups_index_option: Opciones 
      groups_invitations_create:  Invita a un amigo al equipo
@@ -1466,13 +1466,13 @@ es:
      groups_search: Busqueda de equipos
      groups_search_to_join: Puedes buscar un equipo a quien unierte. 
      groups_show:  Mostrar equipo
-     groups_update: Modificar equipo 
+     groups_update: Actualizar equipo 
      markers_create: Nuevo centro deportivo
      markers_index:  Centros Deportivos
      markers_index_option: Opciones 
      markers_new: Nuevo centro deportivo
      markers_no: Ningun centro deportivo para mostrar.
-     markers_edit: Modificar centro deportivo
+     markers_edit: Actualizar centro deportivo
      markers_option:  Opciones 
      markers_show: Mostrar centro deportivo     
      matches_edit:  Resultados
@@ -1488,8 +1488,8 @@ es:
      meets_manager_option:  Requiere responsable de equipo para ver mas opciones.
      meets_new: Nuevo evento 
      meets_no: Ningun evento para mostrar.
-     meets_edit: Modificar evento 
-     meets_update: Modificar evento 
+     meets_edit: Actualizar evento 
+     meets_update: Actualizar evento 
      meets_option:  Opciones 
      meet_options:  Opciones 
      meets_show: Detalles del evento de torneo
@@ -1520,7 +1520,7 @@ es:
      messages_index_option: Opciones 
      messages_new: Nuevo mensaje
      messages_no: Ningun mensaje para mostrar.
-     messages_edit: Modificar mensaje
+     messages_edit: Actualizar mensaje
      messages_option:  Opciones 
      messages_send:  Manda mensaje
      messages_sent:  Mensajes mandados
@@ -1540,8 +1540,8 @@ es:
      schedules_manager_option:  Requiere responsable de equipo para ver mas opciones.
      schedules_new: Nuevo evento
      schedules_no: Ningun evento para mostrar.
-     schedules_edit: Modificar evento
-     schedules_update: Modificar evento
+     schedules_edit: Actualizar evento
+     schedules_update: Actualizar evento
      schedules_option:  Opciones 
      schedule_options:  Opciones 
      schedules_show: Detalles del evento
@@ -1612,7 +1612,7 @@ es:
      round_starts_ends_at:  Fechas de fase 
      rounds_create:  Nueva fase
      rounds_destroy:  Borrar fase 
-     rounds_edit:  Modificar fase 
+     rounds_edit:  Actualizar fase 
      rounds_index:  Fases de torneo 
      rounds_index_option: Opciones  
      rounds_invitations_create:  Invita a un amigo a la fase 
@@ -1628,7 +1628,7 @@ es:
      rounds_search: Busqueda de fases
      rounds_search_to_join: Puedes buscar una fase al cual unierte. 
      rounds_show:  Mostrar fase 
-     rounds_update: Modificar fase       
+     rounds_update: Actualizar fase       
      rounds_name_description:  Nombre de la fase de torneo
      groups_name_description:  Nombre del equipo
      markers_name_description:  Nombre del centro deportivo
@@ -1645,7 +1645,7 @@ es:
      sports: Deportes      
      sport_description: (¿Qué tipo de deporte practica el equipo?)      
      sports_create: Nuevo deporte
-     sports_edit: Modificar deporte
+     sports_edit: Actualizar deporte
      sports_index:  Deportes
      sports_index_option: Opciones 
      sports_maximo_option:  Requiere responsable de administrador para ver mas opciones.
@@ -1656,13 +1656,13 @@ es:
      sports_show: Mostrar deporte     
      tags:  Etiquetas     
      topics_create:  Nuevo evento
-     topics_edit:  Modificar evento
+     topics_edit:  Actualizar evento
      topic_options:  Opciones        
      tournament_options:  Opciones 
      tournament_starts_ends_at:  Fechas del torneo
      tournaments_create:  Nuevo torneo 
      tournaments_destroy:  Borrar torneo
-     tournaments_edit:  Modificar torneo
+     tournaments_edit:  Actualizar torneo
      tournaments_index:   Torneos
      tournaments_index_option: Opciones
      tournaments_invitations_create:  Invita a un amigo al torneo
@@ -1678,7 +1678,7 @@ es:
      tournaments_search: Busqueda de torneos
      tournaments_search_to_join: Puedes buscar un torneo al cual unierte. 
      tournaments_show:  Mostrar torneo
-     tournaments_update: Modificar torneo          
+     tournaments_update: Actualizar torneo          
      types_index:  Tipos
      types_maximo_option:  Requiere responsable de administrador para ver mas opciones.
      types_option:  Opciones     
@@ -1686,7 +1686,7 @@ es:
      users_index:  Jugadores
      users_index_option: Opciones 
      users_description_no:  Ningun detalle del jugador.
-     users_edit:  Modificar jugador
+     users_edit:  Actualizar jugador
      users_edit_option:  Opciones 
      users_list:  Resto de jugadores
      users_new:  Nuevo jugador
