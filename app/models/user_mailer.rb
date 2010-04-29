@@ -19,7 +19,7 @@ class UserMailer < ActionMailer::Base
     sent_on       Time.zone.now  
     body          :edit_password_reset_url => edit_password_reset_url(user.perishable_token)  
   end 
-  
+
   def teammate_join(teammate, recipient, sender)
     the_subject = "[HayPista] #{I18n.t(:request_petition)} #{I18n.t(:to_join_email)} - "
     if teammate.group
@@ -36,7 +36,7 @@ class UserMailer < ActionMailer::Base
     @body[:user]      = sender
     @content_type     = "text/html"
   end 
-  
+
   def teammate_leave(teammate, recipient, sender)
     the_subject = "[HayPista] #{I18n.t(:petition_to_join_declined)} - "
     if teammate.group
@@ -74,10 +74,10 @@ class UserMailer < ActionMailer::Base
   def signup_invitation(invitation)
     setup_invitation_email(invitation)
   end
-  
+
   protected
   def setup_invitation_email(invitation)
-    
+
     case invitation.item.class.to_s 
     when "Group"
       @subject            = "#{I18n.t(:groups_join)} #{invitation.item.name}"
@@ -85,10 +85,13 @@ class UserMailer < ActionMailer::Base
     when "Schedule"
       @subject            = "#{invitation.user.name} #{I18n.t(:participate_schedule)}!"
       @body[:schedule]    = invitation.item
+    when "Challenge"
+      @subject            = "#{invitation.user.name} #{I18n.t(:participate_challenge)}!"
+      @body[:challenge]    = invitation.item
     else
       @subject            = "#{invitation.user.name} #{I18n.t(:invitation_to_join)}!"
     end
-        
+
     @recipients       = "#{invitation.email}"
     @from             = "#{invitation.user.name} <#{invitation.user.email}>"
     @sent_on          = Time.zone.now
@@ -99,7 +102,7 @@ class UserMailer < ActionMailer::Base
   end
 
   def setup_message_email(message)
-    
+
     case message.item.class.to_s 
     when "Group"
       @body[:group]       = message.item
@@ -108,7 +111,7 @@ class UserMailer < ActionMailer::Base
     when "Scorecard"
       @body[:scorecard]    = message.item
     end
-    
+
     @subject          = message.subject
     @recipients       = message.recipient.email
     @from             = "#{message.sender.name} <#{message.sender.email}>"

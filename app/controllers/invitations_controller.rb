@@ -18,14 +18,16 @@ class InvitationsController < ApplicationController
 
     elsif (params[:schedule_id])
       @schedule = Schedule.find(params[:schedule_id])
-      # @group = @schedule.group
-    end
 
+    elsif (params[:challenge_id])
+      @challenge = Challenge.find(params[:challenge_id])
+	  
+    end
     respond_to do |format|
       format.html
     end
   end
-
+  
   def create
     @user = current_user
     @invitation = Invitation.new(params[:invitation])
@@ -39,6 +41,11 @@ class InvitationsController < ApplicationController
     unless params[:group][:id].blank?
       @group = Group.find(params[:group][:id])
       @invitation.item = @group
+    end
+
+    unless params[:challenge][:id].blank?
+      @challenge = Challenge.find(params[:challenge][:id])
+      @invitation.item = @challenge
     end
 
     if @invitation.save

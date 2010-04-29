@@ -49,7 +49,8 @@
 
 	       <td class="last">
 				<span class="action">
-					<%= link_to label_name(:challenges_create), new_challenge_path(:id => cup)  %><br />
+					<%#= link_to label_name(:challenges_create), new_challenge_path(:id => cup)  %><br />
+					<%= link_to "#{label_name(:your)} #{label_name(:new_low)} #{cup.name}", new_challenge_path(:id => cup) %>
 				
 					<% if current_user.is_manager_of?(cup) %> 
 						<%= link_to label_name(:games_create), new_game_path(:id => cup)  %><br />

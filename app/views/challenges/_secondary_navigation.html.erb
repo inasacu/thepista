@@ -2,15 +2,21 @@
 	get_first_active = get_active("#{get_the_controller}_#{get_the_action}") if is_controller('challenge') and is_action('index')
 	
 	display = false
-	is_deadline = ( Time.zone.now <= @challenge.cup.deadline_at)
 %>
 
 <div class="secondary-navigation">
 	
 <ul>
-	<li class="<%= get_first_active %>"><%=  link_to(label_name(:challenges_my), challenges_path) unless @challenge %></li>
-	<li class="<%= get_active('challenge_list') %>"><%=  link_to(label_name(:challenges_all) , list_challenges_path) unless @challenge %></li>
-	<li class="<%= get_active('challenge_show') %>"><%=  challenge_link(@challenge) if @challenge %></li>
+	<% unless @challege %>
+	<li class="<%= get_first_active %>"><%=  link_to(label_name(:challenges_my), challenges_path) %></li>
+	<li class="<%= get_active('challenge_list') %>"><%=  link_to(label_name(:challenges_all) , list_challenges_path) %></li>
+	
+	<% end
+	
+	if @challenge  
+		is_deadline = ( Time.zone.now <= @challenge.cup.deadline_at)	
+	-%>
+	<li class="<%= get_active('challenge_show') %>"><%=  challenge_link(@challenge) %></li>
 <% 
 	the_label = "" 
 	the_action = ['show','edit', 'challenge list']
@@ -30,7 +36,8 @@
 		<li class="<%= get_active('fee_list') %>"><%=  link_to(label_name(:fees) , list_fees_path(:id => @challenge)) %></li>
 		<li class="<%= get_active('fee_complete') %>"><%=  link_to(label_name(:fees_complete) , complete_fees_path(:id => @challenge)) %></li>
 		<% end -%>		
-<%			
+<%		
+		end
 		end
 	end 
 %>

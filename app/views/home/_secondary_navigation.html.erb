@@ -6,7 +6,7 @@
 if current_user 
 %>
 	<li class="<%= get_active('home_upcoming') %>">
-		<%= link_to label_name(:upcoming) , :controller => 'home', :action => 'upcoming' unless upcoming_schedules.empty? %>
+		<%= link_to label_name(:upcoming) , :controller => 'home', :action => 'upcoming' %>
 	</li>
 	
 	<% unread_count = current_user.unread_messages_count %>

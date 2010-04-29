@@ -782,7 +782,9 @@ es:
      organize:  Organizar
      our_philosophy:  Nuestra filosofía
      overview: descripción general   
-     page_does_not_exist: La pagina que querias no exite.       
+     page_does_not_exist: La pagina que querias no exite.
+     participate_challenge: Participa en el reto
+     participate_challenge_afterwards: "Despues de registrate y ser aceptado, sigue este enlace para participa en el reto"       
      participate_schedule: Participa en el evento
      participate_schedule_afterwards: "Despues de registrate en el equipo y ser aceptado, sigue este enlace para participa en el evento"
      participate_group_afterwards: Despues de registrate sigue este enlace para unirte al equipo     
@@ -1347,7 +1349,7 @@ es:
      comments_on_your_blog:  ha dejado comentarios en tu muro
      about:  Acerca de
      abou:  Acerca de
-     terms_of_use: Próximos Eventos
+     terms_of_use: Terminos de Uso
      privacy_policy: Privacidad
      faq: Preguntas Frecuentes
      openid:  Acceso con tu cuenta
@@ -1388,11 +1390,13 @@ es:
      invitations_option:  Opciones
      invitations_create:  Invita a tus amigos a unirse a HayPista
      invitations_create_cup: Invita a tus amigos a este evento
+     invitations_create_challenge:  Invita a tus amigos a este reto
      invitations_create_group: Invita a tus amigos a este equipo
      invitations_create_schedule: Invita a tus amigos a este evento
      invitations_create_tournament: Invita a tus amigos a este tourneo
      invitations_create_meet: Nueva invitación al tourneo
      invitations_sent:  Invitaciones mandadas
+     invitations_your_friend:  Invita a tus amigos a 
      clash:  Resultado
      clashes:  Resultados
      clashes_edit:  Resultados     
