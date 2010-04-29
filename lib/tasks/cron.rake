@@ -29,5 +29,7 @@ task :cron => :environment do
     puts "done."
 
   end
-
+  
+  SitemapGenerator::Generator.run
+  
 end

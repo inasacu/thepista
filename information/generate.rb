@@ -8,3 +8,9 @@ ruby script/generate themed announcements announcement --layout=application --wi
 
 ruby script/generate nifty_scaffold feeds
 
+
+rake friendly_id:redo_slugs MODEL=User
+
+
+http://norman.github.com/friendly_id/file.Guide.html
+

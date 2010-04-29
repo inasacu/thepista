@@ -1,13 +1,16 @@
 class Schedule < ActiveRecord::Base
 
   include ActivityLogger
+   
+   # sitemap generator
+   sitemap :change_frequency => :weekly, :limit => 1000, :priority => 0.5
 
   # tagging
   acts_as_taggable_on :tags
 
   ajaxful_rateable :stars => 5, :dimensions => [:performance]
 
-  acts_as_solr :fields => [:concept, :time_zone, :starts_at]  if use_solr? 
+  # acts_as_solr :fields => [:concept, :time_zone, :starts_at]  if use_solr? 
 
   has_many  :matches,  :conditions => "matches.archive = false",    :dependent => :destroy
   has_many  :fees,                                                  :dependent => :destroy 

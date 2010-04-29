@@ -1,9 +1,12 @@
 class User < ActiveRecord::Base
 
    include ActivityLogger
+   
+   # sitemap generator
+   sitemap :change_frequency => :weekly, :limit => 1000, :priority => 0.5
 
    # search engine
-   acts_as_solr :fields => [:name, :time_zone] if use_solr? #, :include => [:sport, :marker] 
+   # acts_as_solr :fields => [:name, :time_zone] if use_solr? #, :include => [:sport, :marker] 
    
    # allows user to rate a model (currently only schedule)
    ajaxful_rater

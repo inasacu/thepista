@@ -1,6 +1,9 @@
 class Group < ActiveRecord::Base
+ 
+  # sitemap generator
+  sitemap :change_frequency => :weekly, :limit => 1000, :priority => 0.5
 
-  acts_as_solr :fields => [:name, :second_team, :time_zone] if use_solr? #, :include => [:sport, :marker] 
+  # acts_as_solr :fields => [:name, :second_team, :time_zone] if use_solr? #, :include => [:sport, :marker] 
                   
   has_attached_file :photo,
   :styles => {
