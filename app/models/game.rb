@@ -4,18 +4,18 @@ class Game < ActiveRecord::Base
 
   alias_method :next_game, :parent
 
-  belongs_to :cup
+  belongs_to  :cup
 
-  belongs_to :winner,     :class_name => 'Escuadra',  :foreign_key => 'winner_id' 
-  belongs_to :home,       :class_name => 'Escuadra',  :foreign_key => 'home_id' 
-  belongs_to :away,       :class_name => 'Escuadra',  :foreign_key => 'away_id'
+  belongs_to  :winner,     :class_name => 'Escuadra',  :foreign_key => 'winner_id' 
+  belongs_to  :home,       :class_name => 'Escuadra',  :foreign_key => 'home_id' 
+  belongs_to  :away,       :class_name => 'Escuadra',  :foreign_key => 'away_id'
 
-  belongs_to :next_game,  :class_name => 'Game',  :foreign_key => 'next_game_id'
+  belongs_to  :next_game,  :class_name => 'Game',  :foreign_key => 'next_game_id'
 
-  belongs_to :home_escuadra,     :class_name => "Escuadra",   :foreign_key => "home_id"
-  belongs_to :invite_escuadra,   :class_name => "Escuadra",   :foreign_key => "invite_id"
+  belongs_to  :home_escuadra,     :class_name => "Escuadra",   :foreign_key => "home_id"
+  belongs_to  :invite_escuadra,   :class_name => "Escuadra",   :foreign_key => "invite_id"
 
-  has_many   :casts
+  has_many    :casts
 
   # validations   
   validates_presence_of         :concept
@@ -23,16 +23,25 @@ class Game < ActiveRecord::Base
   validates_format_of           :concept,                         :with => /^[A-z 0-9 _.-]*$/
   validates_numericality_of     :jornada,                         :greater_than_or_equal_to => 0,       :less_than_or_equal_to => 999
 
+  # validates_numericality_of     :home_ranking,                    :greater_than_or_equal_to => 0,       :less_than_or_equal_to => 8
+  # validates_numericality_of     :away_ranking,                    :greater_than_or_equal_to => 0,       :less_than_or_equal_to => 8
+  
+  # validates_presence_of         :home_stage_name
+  # validates_length_of           :home_stage_name,                 :is => 1
+  # validates_format_of           :home_stage_name,                 :with => /^[-A-Z]+$/
+  # validates_presence_of         :away_stage_name
+  # validates_length_of           :away_stage_name,                 :is => 1
+  # validates_format_of           :away_stage_name,                 :with => /^[-A-Z]+$/
+  
   # validates_numericality_of     :home_score,  :greater_than_or_equal_to => 0, :less_than_or_equal_to => 300
   # validates_numericality_of     :away_score,  :greater_than_or_equal_to => 0, :less_than_or_equal_to => 300
 
-  validates_presence_of         :starts_at, :ends_at, :reminder_at, :deadline_at
-  # , :home_id, :away_id
+  validates_presence_of         :starts_at, :ends_at, :reminder_at, :deadline_at # , :home_id, :away_id
 
   # variables to access
   attr_accessible :concept, :starts_at, :ends_at, :reminder_at, :deadline_at, :points_for_single, :points_for_double
   attr_accessible :cup_id, :home_id, :away_id, :winner_id, :next_game_id, :jornada, :round, :type_name
-  attr_accessible :home_score, :away_score, :played
+  attr_accessible :home_score, :away_score, :played, :home_ranking, :away_ranking, :home_stage_name, :away_stage_name
 
   # friendly url and removes id
   # has_friendly_id :concept, :use_slug => true, :reserved => ["new", "create", "index", "list", "signup", "edit", "update", "destroy", "show"]

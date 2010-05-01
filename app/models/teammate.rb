@@ -92,7 +92,9 @@ class Teammate < ActiveRecord::Base
         ChallengesUsers.join_item(requester, item)
         Standing.create_cup_challenge_standing(item)
         Cast.create_challenge_cast(item) 
-        Fee.create_user_challenge_fees(item)      
+        Fee.create_user_challenge_fees(item)  
+        Standing.set_archive_flag(leave_user, item, false)
+        Fee.set_archive_flag(leave_user, item, item, false)    
     else
     end
        

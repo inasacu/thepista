@@ -2,7 +2,7 @@
 
 <% 
 	upcoming_cups.each do |cup| 
-		the_sport = "#{label_name(:challenges)}:  #{cup.challenges.count}"
+		the_sport = "#{label_name(:join_cup)}:  #{cup.challenges.count}"
 		is_gameday = (cup.starts_at.to_date == Time.zone.today)
 -%>		
 	<tr>
@@ -33,7 +33,7 @@
 		</td>
 
 		<td class="name_and_date">
-				<%= link_to "#{label_name(:your)} #{label_name(:new_low)} #{cup.name}", new_challenge_path(:id => cup) %>
+			<%= link_to "#{label_name(:your)} #{label_name(:new_low)} #{cup.name}", new_challenge_path(:id => cup) %>
 		</td>
 		
 		<td class="last">

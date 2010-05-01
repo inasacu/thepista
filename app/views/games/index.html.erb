@@ -37,35 +37,53 @@
 			the_label = label_name(:games_destroy)
 			the_confirmation = "#{ the_label }?"
 			@the_game = game
-			no_team = (game.home_id.nil? or game.away_id.nil?)  		
+			
+			no_team = (game.home_id.nil? or game.away_id.nil?) 
+			no_ranking = (game.home_ranking.nil? or game.away_ranking.nil? or game.home_stage_name.nil? or game.away_stage_name.nil? and game.type_name == 'FirstGame') 
+			the_finals = (game.type_name == 'SubsequentGame' or game.type_name == 'FinalGame')
+			
+			the_previous = []
+			if the_finals
+				previous_games = Game.find(:all, :conditions => ["next_game_id = ?", game.id])
+				previous_games.each {|the_game| the_previous << the_game.jornada}
+			end					
 		-%>
+		
         <tr>
 	
           <td class="first">
 			<%= is_manager ? in_place_text_field(:the_game, :jornada, {:cols => 1}) : game.jornada %>
           </td>
 
-			<td class="name_and_date">
-				<%= game.concept %>
-				<span class="date">
-					<%= nice_day_of_week game.starts_at %>
-				</span>
-			</td>
+		  <td class="name_and_date">
+			<%= game.concept %>
+			<span class="date">
+				<%= nice_day_of_week game.starts_at %>
+			</span>
+		  </td>
 
           <td>            
             <%= escuadra_image_link_small game.home unless no_team %>
           </td>
 
-          <td>
-			<%= escuadra_link game.home unless no_team %>
+		  <td class="name_and_date">
+		  	<%= escuadra_link game.home unless no_team %>
+		  <span class="date">
+		  	<%= "#{game.home_ranking} #{game.home_stage_name}<br/>" unless no_ranking %>
+			<%= "W#{the_previous[0]}" if (the_previous.length > 0) %>
+		  </span>
 		  </td>
 
 		  <td align="center">
 		  	<%=  (game.game_played?) ? game_score_link(game) : label_name(:game_not_played) %> 
 		  </td>
-			
-          <td>
-			<%= escuadra_link game.away unless no_team %>
+
+		  <td class="name_and_date">
+		  	<%= escuadra_link game.away unless no_team %>
+		  <span class="date">
+		  	<%= "#{game.away_ranking} #{game.away_stage_name}<br/>" unless no_ranking %>
+			<%= "W#{the_previous[1]}" if (the_previous.length > 0) %>
+		  </span>
 		  </td>
 		
 		  <td>

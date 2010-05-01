@@ -581,7 +581,8 @@ es:
      is_available: "Si"   
      is_available_user: Disponibilidad del jugador ha sido actualizada correctamente.   
      is_invalid: no es valido.   
-     is_not_available: "No"   
+     is_not_available: "No"  
+     join_cup:  Únete a uno de los retos
      join_group: Únete al equipo   
      join_group_message: Mensaje para unirte al equipo ha sido mandado correctamente.   
      join_tournament: Únete al torneo   
@@ -1570,6 +1571,7 @@ es:
      stage:  Etapa
      stages:  Etapas
      stages_create:  Nueva Etapa
+     stages_description: Ranking y letra del grupo que avanzan
      stages_index:  Etapas
      stages_new:  Nueva Etapa
      standing:  Clasificación del torneo

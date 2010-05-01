@@ -12,7 +12,7 @@
 	<li class="<%= get_active('cup_show') %>"><%=  cup_link(@cup) %></li>					
 	<li class="<%= get_active('game_index') %>"><%= link_to(label_name(:group_stage) , games_url(:id => @cup)) %>	</li>
 	<li class="<%= get_active('game_list') %>"><%= link_to(label_name(:group_round) , list_games_path(:id => @cup)) %></li>
-	<li class="<%= get_active('game_show') %>"><%= game_link @game if @game %></li>
+	<li class="<%= get_active('game_edit') %>"><%= game_link @game if @game %></li>
 	<li class="<%= get_active('standing_index') %>"><%= link_to(label_name(:scorecards) , standings_path(:id => @cup)) %></li>	
 	<% end %>
 </ul>

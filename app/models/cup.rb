@@ -301,13 +301,6 @@ class Cup < ActiveRecord::Base
           last_game = get_the_last_game
           
           if level == @levels      
-                  
-            # @game = Game.create!(:concept => level_in_words(level), 
-            #                     :cup_id => self.id, :home_id => home_id ,:away_id => away_id,  
-            #                     :starts_at => last_game['starts_at'], :ends_at => last_game['ends_at'], 
-            #                     :reminder_at => last_game['reminder_at'], :type_name => 'FirstGame', 
-            #                     :points_for_single => 0, :points_for_double => 5, :jornada => last_game['jornada'])
-
             @game = Game.create!(:concept => level_in_words(level), 
                                 :cup_id => self.id, :home_id => home_id ,:away_id => away_id,  
                                 :starts_at => last_game['starts_at'], :ends_at => last_game['ends_at'], 
@@ -348,12 +341,7 @@ class Cup < ActiveRecord::Base
       last_game = get_the_last_game
        
       # third place
-      jornada = Game.last_cup_game(self).jornada.to_i + 1
-      # @game = Game.create!(:concept => level_in_words(99), 
-      #                     :cup_id => self.id,  
-      #                     :starts_at => last_game['starts_at'], :ends_at => last_game['ends_at'], 
-      #                     :reminder_at => last_game['reminder_at'], :type_name => 'ThidPlaceGame', 
-      #                     :points_for_single => 0, :points_for_double => 5, :jornada => last_game['jornada'])      
+      jornada = Game.last_cup_game(self).jornada.to_i + 1    
       
       @game = Game.create!(:concept => level_in_words(99), :cup_id => self.id,  
                           :starts_at => last_game['starts_at'], :ends_at => last_game['ends_at'], 

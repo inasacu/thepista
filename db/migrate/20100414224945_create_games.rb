@@ -16,6 +16,11 @@ class CreateGames < ActiveRecord::Migration
       t.integer   :winner_id     
       t.integer   :next_game_id 
 
+      t.integer   :home_ranking
+      t.string    :home_stage_name
+      t.integer   :away_ranking
+      t.string    :away_stage_name
+      
       t.integer   :home_score
       t.integer   :away_score
       

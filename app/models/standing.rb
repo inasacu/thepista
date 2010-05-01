@@ -13,7 +13,7 @@ class Standing < ActiveRecord::Base
 
   def self.create_cup_challenge_standing(challenge)  
     challenge.users.each do |user|
-      Standing.create_cup_challenge_item_standing(challenge.cup, challenge, item)
+      Standing.create_cup_challenge_item_standing(challenge.cup, challenge, user)
     end
   end 
 

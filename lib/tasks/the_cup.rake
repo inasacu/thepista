@@ -50,17 +50,19 @@ task :the_cup => :environment do |t|
 
   # get top escuadras en groups from cup into an array
   @final_stage = []
-  @standings = Standing.find(:all, :conditions => ["cup_id = ? and ranking <= ?", @cup.id, @cup.group_stage_advance])
+  @standings = Standing.find(:all, :conditions => ["cup_id = ? and item_type = 'Escuadra' and ranking <= ?", @cup.id, @cup.group_stage_advance])
   @standings.each do |standing|
     @final_stage << Escuadra.find(standing.item_id)
   end   
-
+  
   
   @cup.create_final_stage(@final_stage) unless @final_stage.nil?
     
   # use stage table to create last stage
   @cup.remove_subesequent_games
-    
+  
+  # create rounds for all users
+  @cup.challenges.each {|challenge| Cast.create_challenge_cast(challenge)}  
 end
 
 

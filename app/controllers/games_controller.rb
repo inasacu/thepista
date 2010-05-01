@@ -54,12 +54,14 @@ class GamesController < ApplicationController
       @game.points_for_single = @previous_game.points_for_single      
       @game.points_for_double = @previous_game.points_for_double      
       @game.jornada = @previous_game.jornada.to_i + 1
-
+      @game.home_ranking = @previous_game.home_ranking
+      @game.away_ranking = @previous_game.away_ranking
     end
   end
 
   def create
-    @game = Game.new(params[:game])         
+    @game = Game.new(params[:game]) 
+         
     unless current_user.is_manager_of?(@game.cup)
       flash[:warning] = I18n.t(:unauthorized)
       redirect_to cups_url

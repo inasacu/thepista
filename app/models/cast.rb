@@ -76,7 +76,7 @@ class Cast < ActiveRecord::Base
 
   # return true if the challenge cup game user conbination is nil
   def self.challenge_cup_game_user_exists?(challenge, game, user)
-    find_by_challenge_id_and_game_id_and_user_id(challenge,game, user).nil?
+    find_by_challenge_id_and_game_id_and_user_id(challenge, game, user).nil?
   end 
 
 end
