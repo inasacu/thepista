@@ -18,12 +18,19 @@ class RolesUsers < ActiveRecord::Base
       "and roles.authorizable_id = ? )", group.id])
     end 
 
-  def self.find_tour_manager(tournament)
-    find(:first, 
-    :conditions => ["role_id in " +
-      "(select id from roles " +
-      "where roles.authorizable_type = 'Tournament'" +
-      "and roles.name = 'manager' " +
-      "and roles.authorizable_id = ? )", tournament.id])
-    end 
+  # def self.find_tour_manager(tournament)
+  #   find(:first, 
+  #   :conditions => ["role_id in " +
+  #     "(select id from roles " +
+  #     "where roles.authorizable_type = 'Tournament'" +
+  #     "and roles.name = 'manager' " +
+  #     "and roles.authorizable_id = ? )", tournament.id])
+  #   end
+    
+    def self.find_item_manager(item)
+      find(:first, 
+      :conditions => ["role_id in (select id from roles where roles.authorizable_id = ? and roles.authorizable_type = ? and roles.name = 'manager')", 
+        item.id, item.class.to_s])
+    end
+      
 end

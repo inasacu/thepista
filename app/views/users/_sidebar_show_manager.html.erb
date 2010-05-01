@@ -9,8 +9,8 @@
 		the_group = h(group.name)
 
  		unless @user.is_member_of?(group)  
-			the_label = label_with_name('petition_to_join_group', group.name)
-			the_confirmation = "#{ label_name(:petition_to_join_group)} #{h(@user.name)} #{ label_name(:to) } #{the_group}?"
+			the_label = label_with_name('petition_to_join', group.name)
+			the_confirmation = "#{ label_name(:petition_to_join)} #{h(@user.name)} #{ label_name(:to) } #{the_group}?"
 %>
         	<li><%= link_to(the_label, join_team_path(:id => group, :teammate => @user), :confirm => the_confirmation) %></li>
 

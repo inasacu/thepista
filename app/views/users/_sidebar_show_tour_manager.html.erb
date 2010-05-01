@@ -8,8 +8,8 @@
 	current_user.tournaments.each do |tournament| 
 
  		unless @user.is_tour_member_of?(tournament)  
-			the_label = label_with_name('petition_to_join_tournament', tournament.name)
-			the_confirmation = "#{ label_name(:petition_to_join_tournament)} #{@user.name} #{ label_name(:to) } #{tournament.name}?"
+			the_label = label_with_name('petition_to_join', tournament.name)
+			the_confirmation = "#{ label_name(:petition_to_join)} #{@user.name} #{ label_name(:to) } #{tournament.name}?"
 %>
         	<li><%= link_to(the_label, join_tour_path(:id => tournament, :teammate => @user), :confirm => the_confirmation) %></li>
 <% 

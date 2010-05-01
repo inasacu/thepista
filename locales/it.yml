@@ -693,11 +693,11 @@ it:
      percentage_full: Percent        
      petition: Request 
      petition_at:  Requested Date
-     petition_join_team_accept:  Accept
-     petition_join_team_decline: Decline
+     petition_join_item_accept:  Accept
+     petition_join_item_decline: Decline
      petition_no:  No Requests to show.
      petition_to_join_group: Request to join a 
-     petition_to_join_tournament: Request to join a
+     petition_to_join: Request to join a
      petition_to_join_round: Request to join a
      petition_pending: Pending Request   
      petition_to_join: Request to join a 
@@ -868,11 +868,7 @@ it:
      send_clash: Send the Results
      send_match: Send the Results
      send_message: Send a Message 
-     send_message_to_group: Send a Message  
-     send_message_to_tournament: Send a Message 
-     send_message_to_round: Send a Message
-     send_message_to_meet: Send a Message   
-     send_message_to_venue:  Send a Message  
+     send_message_to: Send a Message   
      send_name: Send a Name   
      send_note: Send a Note   
      send_notification: Send a Notice   
@@ -1002,11 +998,11 @@ it:
      to_join_email: to join 
      to_join_group: join a team   
      to_join_group_message: Request to join a 
-     to_join_group_message_sent: Request to join has been sent.
+     to_join_item_message_sent: Request to join has been sent.
      to_join_tournament: Join a Tournament 
      to_join_round: Join a Tournament  
      to_leave_group_message: Petición para desapuntarte de
-     to_leave_group_message_sent: Petición para desapuntarte a sido enviada.  
+     to_leave_item_message_sent: Petición para desapuntarte a sido enviada.  
      to_join_tour: Join a Team   
      to_join_tour_message: Request to join a 
      to_join_tour_message_sent: Request to join has been sent.

@@ -52,6 +52,30 @@ class UserMailer < ActionMailer::Base
     @content_type     = "text/html"
   end
 
+  def manager_join_item(teammate, recipient, sender)
+    the_subject = "[HayPista] #{I18n.t(:request_petition)} #{I18n.t(:to_join_email)} - "
+
+    @subject          = "#{the_subject} #{teammate.item.name} " 
+    @body[:item]     = teammate.item
+    @recipients       = recipient.email
+    @from             = "#{sender.name} <#{sender.email}>"
+    @sent_on          = Time.zone.now
+    @body[:teammate]  = teammate
+    @body[:user]      = sender
+    @content_type     = "text/html"
+  end 
+
+  def manager_leave_item(teammate, recipient, sender)
+    the_subject = "[HayPista] #{I18n.t(:petition_to_join_declined)} - "
+    
+    @subject          = "#{the_subject} #{teammate.item.name} " 
+    @body[:item]     = teammate.item
+    @recipients       = recipient.email
+    @from             = "#{sender.name} <#{sender.email}>"
+    @sent_on          = Time.zone.now
+    @content_type     = "text/html"
+  end
+  
   def message_blog(recipient, user, message)
     @recipients = recipient.email
     @subject = "#{user.name}  #{I18n.t(:comments_on_your_blog)}!"

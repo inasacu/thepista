@@ -58,7 +58,12 @@ class Cast < ActiveRecord::Base
   def self.current_casts(user, challenge)
     find(:all, :conditions => ["user_id = ? and challenge_id = ?", user.id, challenge.id], :order => 'id', :limit => CUPS_PER_PAGE)
   end
-  
+    
+  # archive or unarchive a cast 
+  def self.set_remove_cast(user, challenge)
+    @casts = Cast.find(:all, :conditions => ["user_id = ? and challenge_id = ?", user.id, challenge.id])
+    @casts.each {|cast| cast.destroy}
+  end
   
   # create a record in the cast table for teammates in group team
   def self.create_challenge_cast(challenge)

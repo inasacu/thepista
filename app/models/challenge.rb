@@ -84,7 +84,7 @@ class Challenge < ActiveRecord::Base
     user.has_role!(:creator, self)
     user.has_role!(:member,  self)
 
-    ChallengesUsers.join_team(user, self)
+    ChallengesUsers.join_item(user, self)
     Blog.create_item_blog(self)
     Standing.create_cup_challenge_standing(self)
     Cast.create_challenge_cast(self) 

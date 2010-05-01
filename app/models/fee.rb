@@ -123,10 +123,19 @@ class Fee < ActiveRecord::Base
     end
   end
 
-    protected
-      def validate
-        errors.add(:debit_amount, I18n.t(:should_be_positive)) unless debit_amount.nil? || debit_amount >= 0.0
-      end
+  
+  
+  # archive or unarchive a fee
+  def self.set_archive_flag(debit, credit, item, flag)
+    @fees = Fee.find(:all, :conditions => ["debit_id = ? and debit_type = ? and credit_id = ? and credit_type = ? and item_id = ? and item_type = ?", 
+                                  debit.id, debit.class.to_s, credit.id, credit.class.to_s, item.id, item.class.to_s])
+    @fees.each {|fee| fee.update_attribute(:archive, flag)}    
+  end
+  
+protected
+  def validate
+    errors.add(:debit_amount, I18n.t(:should_be_positive)) unless debit_amount.nil? || debit_amount >= 0.0
+  end
 
 private
 	

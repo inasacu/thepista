@@ -13,7 +13,7 @@ class Standing < ActiveRecord::Base
 
   def self.create_cup_challenge_standing(challenge)  
     challenge.users.each do |user|
-      Standing.create_cup_challenge_item_standing(cup, challenge, item)
+      Standing.create_cup_challenge_item_standing(challenge.cup, challenge, item)
     end
   end 
 
@@ -114,7 +114,7 @@ class Standing < ActiveRecord::Base
     self.create!(:cup => cup, :challenge => challenge, :item => item) if self.cup_challenge_item_exists?(cup, challenge, item)
   end
 
-  # record if user and group do not exist
+  # record if cup and item do not exist
   def self.create_cup_item_standing(cup, item)
     self.create!(:cup_id => cup, :item => item) if self.cup_item_exists?(cup, item)
   end
@@ -130,6 +130,12 @@ class Standing < ActiveRecord::Base
   
   def self.cup_challenges_standing(challenge)
     find(:all, :conditions => ["challenge_id = ? and standings.archive = false",  challenge], :order => "points desc")
+  end
+  
+  # archive or unarchive a standing
+  def self.set_archive_flag(item, challenge, flag)
+    @standing = Standing.find(:first, :conditions => ["challenge_id = ? and item_id = ? and item_type = ?", challenge.id, item.id, item.class.to_s])
+    @standing.update_attribute(:archive, flag)
   end
 
   private

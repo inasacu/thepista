@@ -7,16 +7,16 @@
 	if current_user.is_tour_member_of?(@tournament) 
 		the_confirmation = label_with_name(:do_leave_tournament, "#{@tournament.name}?")
 %>
-		<li><%= link_to(label_name(:send_message_to_tournament), new_message_path(:tour_id => @tournament)) %></li>
+		<li><%= link_to(label_name(:send_message_to), new_message_path(:tour_id => @tournament)) %></li>
 		<li><%= link_to(label_name(:invitations_create_tournament) , new_invitation_url(:tour_id => @tournament)) %></li>
 <% 
 	else
 %>
-		<li><%= link_to(label_name(:send_message_to_tournament), new_message_path(:id => @tournament.all_the_managers.first)) %></li>
+		<li><%= link_to(label_name(:send_message_to), new_message_path(:id => @tournament.all_the_managers.first)) %></li>
 <%
-		unless current_user.has_tournament_petition?(current_user, @tournament)
+		unless current_user.has_item_petition?(current_user, @tournament)
 			the_label = label_with_name('add_to_tournament', @tournament.name)
-			the_confirmation = "#{ label_name(:petition_to_join_tournament) } #{current_user.name} #{ label_name(:to) } #{@tournament.name}?"
+			the_confirmation = "#{ label_name(:petition_to_join) } #{current_user.name} #{ label_name(:to) } #{@tournament.name}?"
 %> 
 			<li><%= link_to(the_label, join_tour_path(:id => @tournament, :teammate => current_user), :confirm => the_confirmation) %></li>
 <% 

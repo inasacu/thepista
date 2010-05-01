@@ -12,6 +12,7 @@ es:
      accounts: Cuentas   
      add_email: "Acepto, crea mi cuenta"     
      add_to_group: Petición para unirse a  
+     add_to_item: Petición para unirse a
      add_to_tournament: Petición para unirse a 
      address: Dirección   
      addresses: Direcciones   
@@ -112,7 +113,7 @@ es:
      challenge_options:  Opciones
      challenges:  Retos
      challenges_all:  Todos los Retos
-     challenges_create:  Nuevo Reto 
+     challenges_create:  Crea tu reto 
      challenges_destroy:  Borrar reto
      challenges_edit:  Actualizar reto
      challenges_index:   Retos
@@ -820,20 +821,18 @@ es:
      percentage_full: Porcentaje       
      petition: Petición 
      petition_at:  Fecha de la petición
-     petition_join_team_accept:  Acepto
-     petition_join_team_decline: Rechazo
-     petition_no:  Ninguna petición para mostrar.
-     petition_to_join_challenge: Petición para unirse a
-     petition_to_join_group: Petición para unirse a 
-     petition_to_join_tournament: Petición para unirse a
+     petition_join_item_accept:  Acepto
+     petition_join_item_decline: Rechazo
+     petition_no:  Ninguna petición para mostrar.  
+     petition_to_join: Petición para unirse a
+     petition_to_join: Petición para unirse a
      petition_to_join_round: Petición para unirse a
      petition_pending: Peticiones pendiente   
-     petition_to_join: Petición para unirse a 
      petitions: Peticiones 
      petition_to_join_approved: Petición aprobada para unirse.
      petition_to_join_declined:  Petición cancelada para unirse.
      petition_to_leave_approved: Petición aprobada para desapuntarse. 
-     no_petition_to_join_challenge: No hay peticiones para unirse a un reto!                
+     no_petition_to_join: No hay peticiones para unirse a un reto!                
      no_petition_to_join_group: No hay peticiones para unirse a un equipo! 
      deleted_petition_by: Petición ha sido borrada por   
      denial_petition_to_join: Petición denegada para unirse a 
@@ -1001,12 +1000,7 @@ es:
      send_marker: Manda el URL del centro deportivo 
      send_clash: Manda el resultado
      send_match: Manda el resultado
-     send_message: Manda mensaje 
-     send_message_to_group: Manda un mensaje  
-     send_message_to_tournament: Manda un mensaje 
-     send_message_to_round: Manda un mensaje
-     send_message_to_meet: Manda un mensaje 
-     send_message_to_venue:  Manda un mensaje   
+     send_message_to: Manda un mensaje   
      send_name: Manda un nombre   
      send_note: Manda una nota   
      send_notification: Manda una notificación   
@@ -1163,13 +1157,13 @@ es:
      to_join_challenge_message_sent: Petición para unirte a sido enviada.
      to_join_group: unirte a un equipo   
      to_join_group_message: Petición para unirte a 
-     to_join_group_message_sent: Petición para unirte a sido enviada.
+     to_join_item_message_sent: Petición para unirte a sido enviada.
      to_join_tournament: unirte a un torneo 
      to_join_round: unirte a un torneo  
      to_leave_challenge_message: Petición para desapuntarte de
      to_leave_challenge_message_sent: Petición para desapuntarte a sido enviada.
      to_leave_group_message: Petición para desapuntarte de
-     to_leave_group_message_sent: Petición para desapuntarte a sido enviada.  
+     to_leave_item_message_sent: Petición para desapuntarte a sido enviada.  
      to_join_tour: unirte a un equipo   
      to_join_tour_message: Petición para unirte a 
      to_join_tour_message_sent: Petición para unirte a sido enviada

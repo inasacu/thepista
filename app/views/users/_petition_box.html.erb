@@ -1,16 +1,26 @@
-
 <table class="table">
 
 	<tr>             
 		<th class="first">&nbsp;</th>
 		<th><%=label_name(:name) %></th>
-		<th><%=label_name(:group) %></th>
+		<th><%#=label_name(:group) %></th>
 		<th><%=label_name(:petition_at) %></th>
 		<th><%=label_name(:general_information) %></th>
 		<th class="last">&nbsp;</th>
 	</tr>
 
-	<% teammates.each do |teammate| %>	
+	<% teammates.each do |teammate| 
+		item_link = ''
+		manager_link = "#{link_to(label_name(:petition_join_item_accept), join_item_accept_path(teammate))}  /  " if current_user.is_manager_of?(teammate.item)
+		
+		case teammate.item.class.to_s  
+		when 'Group' 
+			item_link = group_link(teammate.group)
+		when 'Challenge' 
+			item_link = challenge_link(teammate.item)
+		else
+		end
+	%>	
 	<tr>
 		<td>
 			<%= image_link_small teammate.user %>
@@ -21,8 +31,7 @@
 		</td>
 		
 		<td>
-			<%= group_link teammate.group if teammate.group %>
-			<%= tournament_link teammate.tournament if teammate.tournament %>
+			<%= item_link %>
 		</td>
 
 		<td>
@@ -30,27 +39,13 @@
 		</td>
 
 		<td>
-			<%= label_name(:petition_to_join) %>&nbsp;
-				<%= group_link teammate.group if teammate.group %>
-				<%= tournament_link teammate.tournament if teammate.tournament %>
+			<%= label_name(:petition_to_join) %>&nbsp;<br/>
+			<%= item_link %>
 		</td>			  
 
-		<td class="last">
-			<% if teammate.group %>	
-				<% if current_user.is_manager_of?(teammate.group) %>		
-					<%= link_to label_name(:petition_join_team_accept), join_team_accept_path(teammate) %>
-					<%= "  /  " %>
-				<% end %>	
-
-				<%= link_to label_name(:petition_join_team_decline), join_team_decline_path(teammate) %>		
-			<% elsif teammate.tournament %>
-				<% if current_user.is_manager_of?(teammate.tournament) %>		
-					<%= link_to label_name(:petition_join_team_accept), join_tour_accept_path(teammate) %>
-					<%= "  /  " %>
-				<% end %>
-
-				<%= link_to label_name(:petition_join_team_decline), join_tour_decline_path(teammate) %>
-			<% end %>		
+		<td class="last">	
+			<%= manager_link %>	
+			<%= link_to label_name(:petition_join_item_decline), join_item_decline_path(teammate) %>
 		</td>	
 
 	</tr>

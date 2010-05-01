@@ -179,14 +179,15 @@ class User < ActiveRecord::Base
       return (current_user == self and petition)
     end
     
-    def has_tournament_petition?(current_user, tournament)
+    def has_item_petition?(current_user, item)
       petition = false      
-      if Teammate.count(:conditions => ["accepted_at is null and tournament_id = ? and (user_id = ? or manager_id = ?)", 
-                        tournament.id, current_user.id, current_user.id]) > 0
+      if Teammate.count(:conditions => ["accepted_at is null and item_id = ? and item_type = ? and (user_id = ? or manager_id = ?)", 
+                                item.id, item.class.to_s, current_user.id, current_user.id]) > 0
           petition = true
       end        
       return (current_user == self and petition)
     end
+    
       
     def has_pending_petition?(current_user)
       current_user == self and (!current_user.requested_managers.empty? or !current_user.pending_managers.empty?)

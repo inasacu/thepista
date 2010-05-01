@@ -57,23 +57,19 @@
 	       <td class="last">
 				<span class="action">
 					<% if current_user.is_member_of?(challenge) %>
-						<%= link_to(label_name(:send_message), new_message_path(:challenge_id => challenge)) %><br />
+						<%= link_to(label_name(:send_message_to), new_message_path(:challenge_id => challenge)) %><br />
 					<% else %>
-						<%= link_to(label_name(:send_message), new_message_path(:id => challenge.all_the_managers.first)) %><br />
+						<%#= link_to(label_name(:send_message_to), new_message_path(:id => challenge.all_the_managers.first)) %><br />
 				
-					<% 	# unless current_user.has_pending_petition?(current_user) 
-						unless current_user.has_challenge_petition?(current_user, challenge) 
-							the_label = label_with_name('add_to_challenge', challenge.name)
-							the_confirmation = "#{ label_name(:petition_to_join_challenge) } #{current_user.name} #{ label_name(:to) } #{challenge.name}?"
+					<% 
+						unless current_user.has_item_petition?(current_user, challenge) 
+							the_label = label_with_name('add_to_item', challenge.name)
+							the_confirmation = "#{ label_name(:petition_to_join) } #{challenge.name}?"
 					%> 
-							<%= link_to(the_label, join_team_path(:id => challenge, :teammate => current_user), :confirm => the_confirmation) %>
+							<%= link_to(the_label, join_item_path(:id => challenge, :item => challenge.class.to_s, :teammate => current_user), :confirm => the_confirmation) %>
 					<% 	end 
 					   end
 					-%>
-				
-					<%# if current_user.is_manager_of?(challenge) %> 
-						<%#= link_to label_name(:casts_create), new_cast_path(:id => challenge)  %><br />
-			        <%# end %>
 					
 				</span>
 	       </td>

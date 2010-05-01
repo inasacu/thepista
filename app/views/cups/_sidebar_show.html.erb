@@ -3,6 +3,8 @@
 <h3><%= label_name(:options) %></h3>
 
 <ul class="navigation">
+	<li><%#= link_to label_name(:challenges), challenges_url %></li>
+	<li><%= link_to "#{label_name(:challenges_create)} #{@cup.name}", new_challenge_path(:id => @cup) %></li>
 	<li><%= link_to(label_name(:invitations_create_cup) , new_invitation_url(:cup_id => @cup)) %></li>
 </ul>
 

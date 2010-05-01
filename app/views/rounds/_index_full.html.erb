@@ -52,9 +52,9 @@
 	       <td class="last">
 				<span class="action">
 					<% if current_user.is_tour_member_of?(round) %>
-						<%= link_to(label_name(:send_message_to_round), new_message_path(:tour_id => round)) %><br />
+						<%= link_to(label_name(:send_message_to), new_message_path(:tour_id => round)) %><br />
 					<% else %>
-						<%= link_to(label_name(:send_message_to_round), new_message_path(:id => round.all_the_managers.first)) %><br />
+						<%= link_to(label_name(:send_message_to), new_message_path(:id => round.all_the_managers.first)) %><br />
 				
 					<% 	unless current_user.has_round_petition?(current_user, round) 
 							the_label = label_with_name('add_to_round', round.name)

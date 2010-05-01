@@ -3,7 +3,7 @@
 <% 
 	upcoming_cups.each do |cup| 
 		the_sport = "#{label_name(:challenges)}:  #{cup.challenges.count}"
-	is_gameday = (cup.starts_at.to_date == Time.zone.today)
+		is_gameday = (cup.starts_at.to_date == Time.zone.today)
 -%>		
 	<tr>
 		<td>
