@@ -28,7 +28,7 @@
 			  <td><%= user.has_challenge? ? challenge_list(user.challenges) : label_name('challenges_none') %></td>		 
 			  <td><%= user.time_zone %></td>			  
 			  <td><%#= nice_day_date(cast.starts_at) unless cast.nil? %></td>	
-			  <td class="last"><%= link_to label_name(:send_message_to), new_message_path(:id => user) %></td>		  
+			  <td class="last"><%= link_to label_name(:send_message_to), new_message_path(:id => user) unless current_user == user %></td>		  
 			</tr>
         <% end -%>
 		

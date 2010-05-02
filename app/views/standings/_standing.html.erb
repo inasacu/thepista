@@ -3,7 +3,17 @@
 <%
  	mailer ||= false
 	switch ||= false
-	escuadra = Escuadra.find(standing.item_id)
+	escuadra = ''
+	is_escuadra = (standing.item_type == "Escuadra")
+	
+	case standing.item_type
+	when "Escuadra"
+		escuadra = Escuadra.find(standing.item_id)
+	when "User"
+		escuadra = User.find(standing.item_id)
+	else
+	end
+		
 	played = standing.wins.to_i + standing.draws.to_i + standing.losses.to_i
 	@stand = standing  
 	is_manager = current_user.is_manager_of?(@cup)	
@@ -24,15 +34,15 @@
 		</span>
 	</td>
 	<td class="puntos"><%= standing.points.round %></td>
-	<td class="ganados"><%= standing.wins %></td>
-	<td class="empatados"><%= standing.draws %></td>
-	<td class="perdidos"><%= standing.losses %></td>
+	<td class="ganados"><%= standing.wins if is_escuadra %></td>
+	<td class="empatados"><%= standing.draws if is_escuadra %></td>
+	<td class="perdidos"><%= standing.losses if is_escuadra %></td>
 	
-	<%  if @cup.is_futbol?  %>
+	<%  if @cup.is_futbol? and is_escuadra %>
 	<td class="afavor"><%= standing.goals_for %></td>
 	<td class="encontra"><%= standing.goals_against %></td>
 	<td class="encontra"><%= standing.goals_for - standing.goals_against %></td>
 	<% end %>
-	<td class="encontra"><%= played %></td>
+	<td class="encontra"><%= played if is_escuadra %></td>
 </tr>
 

@@ -6,10 +6,12 @@
 <% 
 	if current_user.is_member_of?(@challenge) 
 		the_confirmation = label_with_name(:do_leave_challenge, "#{@challenge.name}?")
+		is_deadline = ( Time.zone.now <= @challenge.cup.deadline_at)
 %>
 		<li><%= link_to(label_name(:send_message_to), new_message_path(:challenge_id => @challenge.id)) %></li>
-		<li><%= link_to(label_name(:invitations_create_challenge) , new_invitation_url(:challenge_id => @challenge)) %></li>	
-		<li><%= link_to label_name(:send_standing), new_message_path(:standing_id => @challenge.casts.first) unless @challenge.casts.blank? %></li>
+		<li><%= link_to("#{label_name(:invitations_your_friend)} #{@challenge.name}" , new_invitation_url(:challenge_id => @challenge)) %></li>
+		<li><%= link_to label_name(:challenges_edit), edit_challenge_path(@challenge) if current_user.is_manager_of?(@challenge) %></li> 
+		<li><%= link_to label_name(:casts_edit), edit_cast_path(:id => @challenge) if is_deadline %></li>
 <% 
 	else
 %>

@@ -96,6 +96,19 @@
 
 		<% end -%>
 		
+		<table class="table" id="<%= get_the_controller.gsub(' ','_') %>">
+
+	        <tr>
+		<!-- <div class="clear"></div>  -->
+
+		<!-- <div class="challenge navform"> -->
+			<%= submit_tag @challenge.new_record? ? control_label('create') : control_label('edit'), 
+					:class => "button" %> <%= label_name(:or) %> <%= link_to label_name(:cancel), challenges_path %>
+		<!-- </div> -->
+		
+		</tr>
+		</table>
+		
 		<% end -%>
 		
       </table>

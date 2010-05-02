@@ -9,7 +9,7 @@ class GamesController < ApplicationController
     @games = Game.group_stage_games(@cup, params[:page])
   end
 
-  def list    
+  def list
     @games = Game.group_round_games(@cup, params[:page])
     render :template => '/games/index'       
   end
@@ -18,7 +18,7 @@ class GamesController < ApplicationController
     store_location  
   end
 
-  def new    
+  def new
     @game = Game.new
 
     unless current_user.is_manager_of?(@cup)
@@ -112,7 +112,7 @@ class GamesController < ApplicationController
       return
   end
 
-  def destroy    
+  def destroy
     # @game.played = false
     # @game.save
     # @game.matches.each do |match|
@@ -135,7 +135,7 @@ class GamesController < ApplicationController
     end
   end
 
-  def get_game      
+  def get_game
     @game = Game.find(params[:id])
     @cup = @game.cup 
   end

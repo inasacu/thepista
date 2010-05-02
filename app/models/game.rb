@@ -23,8 +23,8 @@ class Game < ActiveRecord::Base
   validates_format_of           :concept,                         :with => /^[A-z 0-9 _.-]*$/
   validates_numericality_of     :jornada,                         :greater_than_or_equal_to => 0,       :less_than_or_equal_to => 999
 
-  # validates_numericality_of     :home_ranking,                    :greater_than_or_equal_to => 0,       :less_than_or_equal_to => 8
-  # validates_numericality_of     :away_ranking,                    :greater_than_or_equal_to => 0,       :less_than_or_equal_to => 8
+  validates_numericality_of     :home_ranking,                    :greater_than_or_equal_to => 0,       :less_than_or_equal_to => 8, :allow_nil => true
+  validates_numericality_of     :away_ranking,                    :greater_than_or_equal_to => 0,       :less_than_or_equal_to => 8, :allow_nil => true
   
   # validates_presence_of         :home_stage_name
   # validates_length_of           :home_stage_name,                 :is => 1
@@ -33,10 +33,10 @@ class Game < ActiveRecord::Base
   # validates_length_of           :away_stage_name,                 :is => 1
   # validates_format_of           :away_stage_name,                 :with => /^[-A-Z]+$/
   
-  # validates_numericality_of     :home_score,  :greater_than_or_equal_to => 0, :less_than_or_equal_to => 300
-  # validates_numericality_of     :away_score,  :greater_than_or_equal_to => 0, :less_than_or_equal_to => 300
+  validates_numericality_of     :home_score,  :greater_than_or_equal_to => 0, :less_than_or_equal_to => 300, :allow_nil => true
+  validates_numericality_of     :away_score,  :greater_than_or_equal_to => 0, :less_than_or_equal_to => 300, :allow_nil => true
 
-  validates_presence_of         :starts_at, :ends_at, :reminder_at, :deadline_at # , :home_id, :away_id
+  validates_presence_of         :starts_at, :ends_at, :reminder_at, :deadline_at 
 
   # variables to access
   attr_accessible :concept, :starts_at, :ends_at, :reminder_at, :deadline_at, :points_for_single, :points_for_double
@@ -237,6 +237,8 @@ class Game < ActiveRecord::Base
 
     def calculate_standing
       Standing.calculate_cup_standing(self.cup)
+      Standing.cup_challenges_user_standing(self.cup)      
+      Standing.update_cup_challenge_item_ranking(self.cup)
     end
 
     def set_game_winner  

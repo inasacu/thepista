@@ -39,13 +39,7 @@ class Teammate < ActiveRecord::Base
     @manager = User.find(@role_user.user_id) 
 
     # if @manager == manager or leave_user == manager
-      self.breakup_item(leave_user, manager, item)
-      # if self.user_item_exists?(leave_user, item)
-      #   transaction do    
-      #     destroy(self.find_user_manager_item(leave_user, @manager, item)) 
-      #     destroy(self.find_user_manager_item(@manager, leave_user, item)) 
-      #   end
-      # end    
+      self.breakup_item(leave_user, manager, item)   
 
       leave_user.has_no_role!(:member, item)
 
@@ -93,8 +87,8 @@ class Teammate < ActiveRecord::Base
         Standing.create_cup_challenge_standing(item)
         Cast.create_challenge_cast(item) 
         Fee.create_user_challenge_fees(item)  
-        Standing.set_archive_flag(leave_user, item, false)
-        Fee.set_archive_flag(leave_user, item, item, false)    
+        Standing.set_archive_flag(requester, item, false)
+        Fee.set_archive_flag(requester, item, item, false)    
     else
     end
        
@@ -206,13 +200,13 @@ class Teammate < ActiveRecord::Base
   end
  
   def self.breakup_item(leave_user, manager, item)
-     if self.user_item_exists?(leave_user, item)
-        transaction do    
-          destroy(self.find_user_manager_item(leave_user, manager, item)) 
-          destroy(self.find_user_manager_item(manager, leave_user, item)) 
-        end
-      end
+      @teammates = Teammate.find(:all, 
+            :conditions => ["item_id = ? and item_type = ? and ((user_id = ? and manager_id = ?) or (user_id = ? and manager_id = ? ))",
+              item.id, item.class.to_s, leave_user.id, manager.id, manager.id, leave_user.id])
+      
+      @teammates.each {|teammate| teammate.destroy}
   end
+  
   protected    
   def make_teammate_code
     self.teammate_code = Digest::SHA1.hexdigest( Time.zone.now.to_s.split(//).sort_by {rand}.join )

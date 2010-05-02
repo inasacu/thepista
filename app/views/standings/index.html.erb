@@ -4,12 +4,16 @@
 	the_label = @cup.name
 	the_label = label_name(:standings)
 	content_for(:title, the_label)
+	is_challenge_standing = ("#{get_the_controller}_#{get_the_action}".gsub(' ', '_') == 'standing_show_list') 
 %>
 
 <div class="block">
 
-<%#= render :partial => '/challenges/secondary_navigation' %>  
+<% if is_challenge_standing  %>
+<%= render :partial => '/challenges/secondary_navigation' %>  
+<% else %>
 <%= render :partial => '/cups/secondary_navigation' %>  
+<% end -%>
 
 <%
 	if @standings	
@@ -30,7 +34,8 @@
 				unless (group_stage == standing.group_stage_name)
 					group_stage = standing.group_stage_name 
 			-%>
-				<%= render :partial => 'standing_futbol_label', :locals => { :group_stage => group_stage} %>
+				<%= render :partial => 'standing_futbol_label', 
+						:locals => { :group_stage => group_stage, :is_escuadra => (standing.item_type == "Escuadra")} %>
 				<% end %>
 			<%= render :partial => 'standing', :locals => {:standing => standing} %>
 			<% end %>

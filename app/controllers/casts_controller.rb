@@ -58,15 +58,15 @@ class CastsController < ApplicationController
   def update
     @cast = Cast.find(params[:id])
     
-    # unless current_user.is_manager_of?(@challenge)
-    #   flash[:warning] = I18n.t(:unauthorized)
-    #   redirect_back_or_default('/index')
-    #   return
-    # end
+    unless current_user.is_member_of?(@cast.challenge) and current_user == @cast.user
+      flash[:warning] = I18n.t(:unauthorized)
+      redirect_back_or_default('/index')
+      return
+    end
     
     if @cast.update_attributes(params[:cast])
-      Match.save_castes(@cast, params[:cast][:cast_attributes]) if params[:cast][:cast_attributes]
-      Match.update_cast_details(@cast, current_user)
+      Cast.save_casts(@cast, params[:cast][:cast_attributes]) if params[:cast][:cast_attributes]
+      Cast.update_cast_details(@cast.challenge, current_user)
 
       flash[:notice] = I18n.t(:successful_update)
       redirect_to casts_path(:id => @cast.challenge)

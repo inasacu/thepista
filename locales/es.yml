@@ -83,14 +83,14 @@ es:
      casts_archive_list:  Pronósticos anteriores
      casts_create:  Nuevo pronóstico
      casts_destroy:  Borrar pronóstico
-     casts_index: Mis Pronósticos
+     casts_index: Mis pronósticos
      casts_index_option: Opciones 
      casts_list:  Anteriores pronósticos
      casts_list_no: Ningun pronóstico previo para mostrar.
      casts_manager_option:  Requiere responsable de reto para ver mas opciones.
      casts_new: Nuevo pronóstico
      casts_no: Ningun pronóstico para mostrar.
-     casts_edit: Actualizar Pronóstico
+     casts_edit: Actualizar pronóstico
      casts_update: Actualizar pronóstico
      casts_option:  Opciones 
      cast_options:  Opciones 
@@ -112,7 +112,7 @@ es:
      challenge:  Reto
      challenge_options:  Opciones
      challenges:  Retos
-     challenges_all:  Todos los Retos
+     challenges_all:  Todos los retos
      challenges_create:  Crea tu reto 
      challenges_destroy:  Borrar reto
      challenges_edit:  Actualizar reto

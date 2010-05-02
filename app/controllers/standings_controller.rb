@@ -2,8 +2,13 @@ class StandingsController < ApplicationController
   before_filter :require_user
   before_filter :standing_cup, :only => [:index, :show]
   
+  before_filter :standing_challenge, :only => [:show_list]
   
   def show
+    render :template => '/standings/index'
+  end
+  
+  def show_list
     render :template => '/standings/index'
   end
   
@@ -30,7 +35,13 @@ class StandingsController < ApplicationController
       redirect_to standings_path(:id => @cup)
       return
   end
-    
+  
+  def standing_challenge
+    @challenge = Challenge.find(params[:id])
+    @standings = Standing.cup_challenge_users_standing(@challenge)
+    @cup = @challenge.cup
+  end
+  
   def standing_cup
     @cup = Cup.find(params[:id])
     @standings = Standing.cup_escuadras_standing(@cup)
