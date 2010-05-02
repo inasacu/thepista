@@ -73,7 +73,7 @@
 
   <%#= render :partial => 'utilities/browser_detect' if development? %>
 
-  <%= render :partial => 'utilities/nurph' if test? %>
+  <%= render :partial => 'utilities/nurph' unless production? %>
 
 </body>
 </html>
