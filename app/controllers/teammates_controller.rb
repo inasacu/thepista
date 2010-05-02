@@ -82,8 +82,7 @@ class TeammatesController < ApplicationController
 
   def join_item_decline
     if @requester.requested_managers.include?(@approver)
-      # Teammate.breakup_item(@requester, @approver, @item)
-      Teammate.create_teammate_leave_item(@requester, @approver, @item)
+      Teammate.breakup_item(@requester, @approver, @item)
       flash[:notice] = I18n.t(:petition_to_join_declined)
     end
     redirect_to root_url

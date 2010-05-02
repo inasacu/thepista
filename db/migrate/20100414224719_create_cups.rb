@@ -7,9 +7,7 @@ class CreateCups < ActiveRecord::Migration
     drop_table  :cups_escuadras
     drop_table  :challenges
     drop_table  :casts
-    drop_table  :stages
-    drop_table  :challenges_users
-    
+    drop_table  :challenges_users    
 
     create_table :cups do |t|
 

@@ -5,7 +5,7 @@ task :the_user_maintenance => :environment do |t|
 
   ActiveRecord::Base.establish_connection(RAILS_ENV.to_sym)
 
-  unless production?
+  if development?
     users = (User.find :all).collect {|user| user unless user.email.blank? }.compact
     users.each do |user|
       user.photo_file_name = nil

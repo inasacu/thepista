@@ -39,13 +39,13 @@ class Teammate < ActiveRecord::Base
     @manager = User.find(@role_user.user_id) 
 
     # if @manager == manager or leave_user == manager
-      
-      if self.user_item_exists?(leave_user, item)
-        transaction do    
-          destroy(self.find_user_manager_item(leave_user, @manager, item)) 
-          destroy(self.find_user_manager_item(@manager, leave_user, item)) 
-        end
-      end    
+      self.breakup_item(leave_user, manager, item)
+      # if self.user_item_exists?(leave_user, item)
+      #   transaction do    
+      #     destroy(self.find_user_manager_item(leave_user, @manager, item)) 
+      #     destroy(self.find_user_manager_item(@manager, leave_user, item)) 
+      #   end
+      # end    
 
       leave_user.has_no_role!(:member, item)
 
@@ -205,6 +205,14 @@ class Teammate < ActiveRecord::Base
     end
   end
  
+  def self.breakup_item(leave_user, manager, item)
+     if self.user_item_exists?(leave_user, item)
+        transaction do    
+          destroy(self.find_user_manager_item(leave_user, manager, item)) 
+          destroy(self.find_user_manager_item(manager, leave_user, item)) 
+        end
+      end
+  end
   protected    
   def make_teammate_code
     self.teammate_code = Digest::SHA1.hexdigest( Time.zone.now.to_s.split(//).sort_by {rand}.join )
