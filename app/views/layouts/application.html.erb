@@ -72,6 +72,8 @@
   <%= render :partial => 'utilities/secure_site' unless current_user %>
 
   <%#= render :partial => 'utilities/browser_detect' if development? %>
-	
+
+  <%= render :partial => 'utilities/nurph' if test? %>
+
 </body>
 </html>
