@@ -236,9 +236,10 @@ class Game < ActiveRecord::Base
     private
 
     def calculate_standing
-      Standing.calculate_cup_standing(self.cup)
-      Standing.cup_challenges_user_standing(self.cup)      
-      Standing.update_cup_challenge_item_ranking(self.cup)
+      self.cup.challenges.each {|challenge| Cast.send_later(:update_cast_details, challenge) }
+      Standing.send_later(:calculate_cup_standing, self.cup)
+      Standing.send_later(:cup_challenges_user_standing, self.cup)      
+      Standing.send_later(:update_cup_challenge_item_ranking, self.cup)
     end
 
     def set_game_winner  

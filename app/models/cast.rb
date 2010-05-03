@@ -56,7 +56,10 @@ class Cast < ActiveRecord::Base
   end
   
   def self.current_casts(user, challenge)
-    find(:all, :conditions => ["user_id = ? and challenge_id = ?", user.id, challenge.id], :order => 'id', :limit => CUPS_PER_PAGE)
+    find(:all, 
+         :joins => "LEFT JOIN games on games.id = casts.game_id",
+         :conditions => ["casts.user_id = ? and casts.challenge_id = ? and games.deadline_at > ?", user.id, challenge.id, Time.zone.now], 
+         :order => 'id')
   end
   
   def self.save_casts(the_cast, cast_attributes)
@@ -67,20 +70,25 @@ class Cast < ActiveRecord::Base
     end
   end
   
-  def self.update_cast_details(challenge, user)
-    @casts = Cast.find(:all, :conditions => ["challenge_id = ? and user_id = ?", challenge, user])
+  def self.update_cast_details(challenge)
+    @casts = Cast.find(:all, :conditions => ["challenge_id = ?", challenge])
     @casts.each do |cast|
       points = 0
-
-      unless cast.home_score.nil? or cast.away_score.nil?
-        points += cast.game.points_for_single if (cast.home_score.to_i == cast.game.home_score.to_i or cast.away_score.to_i == cast.game.away_score.to_i )
-        points += cast.game.points_for_double if (cast.home_score.to_i == cast.game.home_score.to_i and cast.away_score.to_i == cast.game.away_score.to_i )
-        cast.points = points
-        cast.save!
+      unless cast.game.home_score.nil? or cast.game.away_score.nil? 
+        unless cast.home_score.nil? or cast.away_score.nil? 
+          points = cast.game.points_for_single.to_i if (cast.home_score.to_i == cast.game.home_score.to_i or cast.away_score.to_i == cast.game.away_score.to_i )
+          points += cast.game.points_for_double.to_i if (cast.home_score.to_i == cast.game.home_score.to_i and cast.away_score.to_i == cast.game.away_score.to_i )
+        end
       end
+      cast.points = points
+      cast.save!
     end
-    Standing.cup_challenges_user_standing(challenge.cup) 
-    Standing.update_cup_challenge_item_ranking(challenge.cup)
+  end
+  
+  def self.calculate_standing(cast)  
+    Cast.send_later(:update_cast_details, cast.challenge)   
+    Standing.send_later(:cup_challenges_user_standing, cast.challenge.cup) 
+    Standing.send_later(:update_cup_challenge_item_ranking, cast.challenge.cup)
   end
     
   # archive or unarchive a cast 

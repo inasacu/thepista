@@ -45,14 +45,21 @@ class CastsController < ApplicationController
   def edit
     @challenge = Challenge.find(params[:id])
 
-    unless current_user.is_manager_of?(@challenge)
+    unless current_user.is_member_of?(@challenge)
       flash[:warning] = I18n.t(:unauthorized)
       redirect_back_or_default('/index')
       return
-    end    
-    
+    end      
+
+    counter = 0
     @casts = Cast.current_casts(current_user, @challenge)
-    @cast = @casts.first    
+    @cast = @casts.first  
+    @casts.each {|cast| counter += 1}
+
+    unless counter > 0
+      redirect_back_or_default('/index') 
+      return 
+    end
   end
 
   def update
@@ -66,7 +73,7 @@ class CastsController < ApplicationController
     
     if @cast.update_attributes(params[:cast])
       Cast.save_casts(@cast, params[:cast][:cast_attributes]) if params[:cast][:cast_attributes]
-      Cast.update_cast_details(@cast.challenge, current_user)
+      Cast.calculate_standing(@cast)
 
       flash[:notice] = I18n.t(:successful_update)
       redirect_to casts_path(:id => @cast.challenge)

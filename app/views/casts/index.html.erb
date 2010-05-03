@@ -80,14 +80,7 @@
             <%= escuadra_image_link_small cast.away unless no_team %>
 		  </td>
 			
-	       <td class="last">
-				<% if is_manager %>
-				<span class="action">					
-					<%= link_to label_name(:matches), set_score_url(:id => cast) %><br/>
-					<%= link_to label_name(:casts_edit), edit_cast_path(cast) %>	
-				</span>
-				<% end -%>
-	       </td>
+	       <td class="last">&nbsp;</td>
 
         </tr>          
         <% end -%>

@@ -104,15 +104,13 @@ class Standing < ActiveRecord::Base
       first, ranking, past_points, last = 0, 0, 0, 0
 
       # ranking
-      @standings = Standing.find(:all, 
-      :conditions =>["challenge_id = ? and item_type = ? and archive = false", challenge, item], 
-      :order => 'points desc')
+      @standings = Standing.find(:all, :conditions =>["challenge_id = ? and item_type = ? and archive = false", challenge, item], :order => 'points desc')
 
       @standings.each do |standing| 
         points ||= 0
         points = standing.points
 
-        if first != standing.group_id 
+        if first != standing.item_id 
           first, ranking, past_points, last = standing.item_id, 0, 0, 1
         end 
 
