@@ -12,11 +12,12 @@ class StandingsController < ApplicationController
     render :template => '/standings/index'
   end
   
-  def list
-    @challenge = Challenge.find(params[:id])
-    @cup = @challenge.cup
-    @standings = Standing.cup_challenges_standing(@challenge)    
-  end
+  # def list
+  #   @challenge = Challenge.find(params[:id])
+  #   @cup = @challenge.cup
+  #   @standings = Standing.cup_challenges_standing(@challenge)    
+  #     render :template => '/standings/index'
+  # end
   
   def set_stand_group_stage_name
       @standing = Standing.find(params[:id])
@@ -39,7 +40,7 @@ class StandingsController < ApplicationController
   def standing_challenge
     @challenge = Challenge.find(params[:id])
     @standings = Standing.cup_challenge_users_standing(@challenge)
-    @cup = @challenge.cup
+    @cup = @challenge.cup    
   end
   
   def standing_cup

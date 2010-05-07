@@ -2,8 +2,11 @@ class Game < ActiveRecord::Base
 
   acts_as_tree :foreign_key => :next_game_id
 
-  alias_method :next_game, :parent
+  # alias_method :next_game, :parent
 
+  alias_method :previous_games, :children
+  alias_method :game_for_winner, :parent
+  
   belongs_to  :cup
 
   belongs_to  :winner,     :class_name => 'Escuadra',  :foreign_key => 'winner_id' 
@@ -47,7 +50,7 @@ class Game < ActiveRecord::Base
   # has_friendly_id :concept, :use_slug => true, :reserved => ["new", "create", "index", "list", "signup", "edit", "update", "destroy", "show"]
 
   before_update :set_game_winner
-  after_update  :calculate_standing
+  after_update  :calculate_standing, :set_final_stage
 
   # method section 
   def self.group_stage_games(cup, page = 1)
@@ -92,8 +95,8 @@ class Game < ActiveRecord::Base
     played == false
   end
 
-  def self.all_cup_games_played(cup)
-    if self.count(:conditions => ["cup_id = ? and played is false and type_name = 'GroupStage'", cup]) > 0
+  def all_cup_games_played(cup)
+    if Game.count(:conditions => ["cup_id = ? and played = false and type_name = 'GroupStage'", cup]) > 0
       return false
     end
     return true
@@ -102,164 +105,93 @@ class Game < ActiveRecord::Base
   def self.find_all_games(standing)
     find(:all, :conditions => ["cup_id = ? and (home_id = ? or away_id = ?) and home_score is not null and away_score is not null", 
       standing.cup_id, standing.item_id, standing.item_id], :order => "id")
-    end
+  end
 
-
-
-
-
-
-    # # return true if the round home away conbination is nil
-    # def self.round_home_away_exist?(round, home, away)
-    #   find_by_round_id_and_home_id_and_away_id(round.id, home.id, away.id).nil?
-    # end
-    # 
-    # def self.find_and_collect_by_jornada
-    #   collection = {}
-    #   jornada = self.jornada
-    #   collection[jornada] = [self]
-    #   while jornada > 0
-    #     jornada = jornada - 1
-    #     collection[jornada] = collect_previous_jornada collection[jornada+1]
-    #   end    
-    # 
-    #   collection
-    # end
-    # 
-    # def ready_to_play?
-    #   home and away
-    # end
-    # 
-    # def self.jornada_in_words(jornada)
-    #   case jornada
-    #   when -1
-    #     'Champion'
-    #   when 1
-    #     'Finals'
-    #   when 2
-    #     'Semifinals'
-    #   when 3
-    #     'Quarterfinals'
-    #   else
-    #     "Round #{jornada.ordinalize}"
-    #   end
-    # end
-    #
-
-
-
-    # 
-    #   # def self.final
-    #   #   self.root
-    #   # end
-    # 
-    # 
-    #   # def self.find_and_collect_by_round
-    #   #   collection = {}
-    #   #   round = self.final.round
-    #   #   collection[round] = [self.final]
-    #   #   while round > 0
-    #   #     round = round - 1
-    #   #     collection[round] = collect_previous_round collection[round+1]
-    #   #   end    
-    #   # 
-    #   #   collection
-    #   # end
-    # 
-    #   # def self.collect_previous_round games_in_round
-    #   #   games_in_round.collect {|game| game.children}.flatten
-    #   # end
-    # 
-    #   # def round
-    #   #   return 1 if children.blank?
-    #   #   1 + children.first.round
-    #   # end
-    # 
-    # 
-    #   # def home_next_games
-    #   #   # self.next_game
-    #   #   self
-    #   #   
-    #   # end
-    #   # 
-    #   # def away_next_games
-    #   #   # self.next_game
-    #   # end
-    # 
-    # 
-    # 
-    #   # def jornada
-    #   #   return 1 if first_players_previous_game.nil?
-    #   #   1 + first_players_previous_game.jornada
-    #   # end
-    # 
-    # 
-    # 
-    #   # def winner
-    #   #   # return nil if game_for_winner.nil?
-    #   #   game_for_winner.first_players_previous_game == self ? game_for_winner.player1 : game_for_winner.player2
-    #   # end
-    # 
-    #   # def winner_id= player_id
-    #   #   # return nil if game_for_winner.nil?
-    #   #   if game_for_winner.first_players_previous_game == self 
-    #   #     game_for_winner.player1_id = player_id 
-    #   #   else
-    #   #     game_for_winner.player2_id = player_id
-    #   #   end
-    #   #   game_for_winner.save
-    #   # end
-    # 
-    #   # def self.first_round
-    #   #   find_leaves([final]).flatten
-    #   # end
-    # 
-    #   protected  
-    # 
-    #   # def self.find_leaves roots
-    #   #   leaves = []
-    #   #   roots.each do |game|
-    #   #     if game.children.empty?
-    #   #       leaves << game
-    #   #     else
-    #   #       leaves << find_leaves(game.children)
-    #   #     end 
-    #   #   end
-    #   #   leaves
-    #   # end
-
-    # return true if the round home away conbination is nil
-    def self.cup_home_away_exist?(cup, home, away)
-      find_by_cup_id_and_home_id_and_away_id(cup, home, away).nil?
-    end
-
-    private
-
-    def calculate_standing
-      self.cup.challenges.each {|challenge| Cast.send_later(:update_cast_details, challenge) }
-      Standing.send_later(:calculate_cup_standing, self.cup)
-      Standing.send_later(:cup_challenges_user_standing, self.cup)      
-      Standing.send_later(:update_cup_challenge_item_ranking, self.cup)
-    end
-
-    def set_game_winner  
-      unless self.home_score.nil? or self.away_score.nil?
-        if self.home_score > self.away_score
-          self.winner_id = self.home_id
-        end  
-        if self.home_score < self.away_score
-          self.winner_id = self.away_id
+  def set_final_stage    
+    if self.all_cup_games_played(self.cup)
+      
+        @first_games = Game.find(:all, :conditions => ["cup_id = ? and type_name = 'FirstGame' and (home_id is null or away_id is null)", cup], :order => "id")
+        @first_games.each do |first|
+          standing = Standing.find(:first, 
+          :conditions => ["cup_id = ? and item_type = 'Escuadra' and group_stage_name = ? and ranking = ?", cup.id, first.home_stage_name, first.home_ranking])
+          first.home_id = standing.item_id
+    
+          standing = Standing.find(:first, 
+          :conditions => ["cup_id = ? and item_type = 'Escuadra' and group_stage_name = ? and ranking = ?", cup.id, first.away_stage_name, first.away_ranking])
+          first.away_id = standing.item_id
+          first.save!
+          
         end
-        self.played = true
-      end  
+        
     end
+  end
 
-    def validate
-      # self.errors.add(:reminder_at, I18n.t(:must_be_before_starts_at)) if self.reminder_at >= self.starts_at
-      # self.errors.add(:starts_at, I18n.t(:must_be_before_ends_at)) if self.starts_at >= self.ends_at
-      # self.errors.add(:ends_at, I18n.t(:must_be_after_starts_at)) if self.ends_at <= self.starts_at
-      # self.errors.add(:deadline_at, I18n.t(:must_be_before_starts_at)) if self.deadline_at < self.starts_at
-      self.errors.add(:home_id, I18n.t(:must_be_different)) if (self.home_id == self.away_id and !self.home_id.nil? and !self.away.nil?) 
+  def first_players_previous_game
+    self.children[0]
+  end
+
+  # def second_players_previous_game
+  #   self.children[1]
+  # end
+
+
+
+  def winner
+    return nil if game_for_winner.nil?
+    game_for_winner.first_players_previous_game == self ? game_for_winner.home : game_for_winner.away
+  end
+
+  def winner_id= player_id
+    return nil if game_for_winner.nil?
+    if game_for_winner.first_players_previous_game == self 
+      game_for_winner.home_id = player_id 
+    else
+      game_for_winner.away_id = player_id
     end
+    game_for_winner.save
+  end
+
+
+  # return true if the round home away conbination is nil
+  def self.cup_home_away_exist?(cup, home, away)
+    find_by_cup_id_and_home_id_and_away_id(cup, home, away).nil?
+  end
+
+  private
+
+  def calculate_standing
+    # self.cup.challenges.each {|challenge| Cast.send_later(:update_cast_details, challenge) }
+    # Standing.send_later(:calculate_cup_standing, self.cup)
+    # Standing.send_later(:cup_challenges_user_standing, self.cup)      
+    # Standing.send_later(:update_cup_challenge_item_ranking, self.cup)
+  end
+
+  def set_game_winner  
+    unless self.home_score.nil? or self.away_score.nil?
+      if self.home_score > self.away_score
+        self.winner_id = self.home_id
+      end  
+      if self.home_score < self.away_score
+        self.winner_id = self.away_id
+      end
+      self.played = true
+
+      # else
+      #   self.home_score = nil
+      #   self.away_score = nil
+      self.winner_id = nil
+      self.played = false
+
+    end       
 
   end
+
+  def validate
+    # self.errors.add(:reminder_at, I18n.t(:must_be_before_starts_at)) if self.reminder_at >= self.starts_at
+    # self.errors.add(:starts_at, I18n.t(:must_be_before_ends_at)) if self.starts_at >= self.ends_at
+    # self.errors.add(:ends_at, I18n.t(:must_be_after_starts_at)) if self.ends_at <= self.starts_at
+    # self.errors.add(:deadline_at, I18n.t(:must_be_before_starts_at)) if self.deadline_at < self.starts_at
+    self.errors.add(:home_id, I18n.t(:must_be_different)) if (self.home_id == self.away_id and !self.home_id.nil? and !self.away.nil?) 
+  end
+
+end

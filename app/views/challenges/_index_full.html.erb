@@ -48,7 +48,7 @@
 			</td>
 
 			<td class="name_and_date">
-				<%= link_to(label_name(:standing), list_standings_path(:id => challenge)) %>
+				<%= link_to(label_name(:points_full), show_list_standings_path(:id => challenge)) %>
 				<span class="date">
 					<%#= nice_full_date(cast.starts_at) unless cast.nil? %> 
 				</span>
@@ -58,13 +58,11 @@
 				<span class="action">
 					<% if current_user.is_member_of?(challenge) %>
 						<%= link_to(label_name(:send_message_to), new_message_path(:challenge_id => challenge)) %><br />
-					<% else %>
-						<%#= link_to(label_name(:send_message_to), new_message_path(:id => challenge.all_the_managers.first)) %><br />
-				
 					<% 
-						unless current_user.has_item_petition?(current_user, challenge) 
-							the_label = label_with_name('add_to_item', challenge.name)
-							the_confirmation = "#{ label_name(:petition_to_join) } #{challenge.name}?"
+					  	else
+							unless current_user.has_item_petition?(current_user, challenge) 
+								the_label = label_with_name('add_to_item', challenge.name)
+ 								the_confirmation = "#{ label_name(:petition_to_join) } #{challenge.name}?"
 					%> 
 							<%= link_to(the_label, join_item_path(:id => challenge, :item => challenge.class.to_s, :teammate => current_user), :confirm => the_confirmation) %>
 					<% 	end 

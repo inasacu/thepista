@@ -4,9 +4,10 @@
 	the_label = @cup.name
 	the_label = label_name(:standings)
 	content_for(:title, the_label)
-	is_challenge_standing = ("#{get_the_controller}_#{get_the_action}".gsub(' ', '_') == 'standing_show_list') 
+	
+	the_challenges = ['standing_list', 'standing_show_list']	
+	is_challenge_standing = the_challenges.include?("#{get_the_controller}_#{get_the_action}".gsub(' ', '_')) 
 %>
-
 <div class="block">
 
 <% if is_challenge_standing  %>
@@ -34,8 +35,7 @@
 				unless (group_stage == standing.group_stage_name)
 					group_stage = standing.group_stage_name 
 			-%>
-				<%= render :partial => 'standing_futbol_label', 
-						:locals => { :group_stage => group_stage, :is_escuadra => (standing.item_type == "Escuadra")} %>
+				<%= render :partial => 'standing_futbol_label', :locals => { :group_stage => group_stage, :is_escuadra => (standing.item_type == "Escuadra")} %>
 				<% end %>
 			<%= render :partial => 'standing', :locals => {:standing => standing} %>
 			<% end %>
@@ -69,7 +69,7 @@ end
 
 <% else %>
 <% content_for :sidebar, render(:partial => 'cups/sidebar_show') -%>
-<% content_for :sidebar, render(:partial => 'shared/invite') -%>
+<%# content_for :sidebar, render(:partial => 'shared/invite') -%>
 
 <% end %>
 

@@ -30,7 +30,7 @@
 				unless (group_stage == standing.group_stage_name)
 					group_stage = standing.group_stage_name 
 			-%>
-				<%= render :partial => 'standing_futbol_label', :locals => { :group_stage => group_stage} %>
+				<%= render :partial => 'standing_futbol_label', :locals => { :group_stage => group_stage, :is_escuadra => (standing.item_type == "Escuadra")} %>
 				<% end %>
 				
 			<%#= render :partial => 'standing', :locals => {:standing => standing} %>
