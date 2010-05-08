@@ -2,6 +2,8 @@ class CupsController < ApplicationController
   before_filter :require_user    
   before_filter :get_cup, :only => [:team_list, :show, :edit, :update, :set_available, :set_enable_comments, :set_looking, :destroy]
   before_filter :has_manager_access, :only => [:edit, :update, :destroy, :set_available, :set_enable_comments, :set_looking]
+  
+  before_filter :the_maximo, :only => [:new]
 
   def index
     @cups = Cup.paginate :page => params[:page], :order => 'name' 
@@ -115,5 +117,13 @@ class CupsController < ApplicationController
       redirect_back_or_default('/index')
       return
     end
+  end 
+  
+  def the_maximo
+    unless current_user.is_maximo? 
+      redirect_to root_url
+      return
+    end
   end
+  
 end

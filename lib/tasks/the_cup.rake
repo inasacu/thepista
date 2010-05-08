@@ -37,20 +37,20 @@ task :the_cup => :environment do |t|
     end  
   end
 
-  counter = 0
-  @games = Game.find(:all, :conditions => ["cup_id = ? and played is false and type_name = 'GroupStage'", @cup])
-  @games.each do |game|  
-    # game.next_game_id = game.id
-    game.home_score = 1 + rand(6)
-    game.away_score = 1 + rand(6)
-    game.away_score = counter if counter > 5
-    game.save!  
-    counter = 0 if counter > 5
-  end
+  # counter = 0
+  # @games = Game.find(:all, :conditions => ["cup_id = ? and played is false and type_name = 'GroupStage'", @cup])
+  # @games.each do |game|  
+  #   # game.next_game_id = game.id
+  #   game.home_score = 1 + rand(6)
+  #   game.away_score = 1 + rand(6)
+  #   game.away_score = counter if counter > 5
+  #   game.save!  
+  #   counter = 0 if counter > 5
+  # end
 
   # get top escuadras en groups from cup into an array
   @final_stage = []
-  @standings = Standing.find(:all, :conditions => ["cup_id = ? and item_type = 'Escuadra' and ranking <= ?", @cup.id, @cup.group_stage_advance])
+  @standings = Standing.find(:all, :conditions => ["cup_id = ? and item_type = 'Escuadra'", @cup.id], :limit => @cup.group_stage_advance)
   @standings.each do |standing|
     @final_stage << Escuadra.find(standing.item_id)
   end   

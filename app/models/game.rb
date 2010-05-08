@@ -31,12 +31,12 @@ class Game < ActiveRecord::Base
   validates_numericality_of     :home_score,                      :greater_than_or_equal_to => 0,       :less_than_or_equal_to => 300,  :allow_nil => true
   validates_numericality_of     :away_score,                      :greater_than_or_equal_to => 0,       :less_than_or_equal_to => 300,  :allow_nil => true
   
-  # validates_presence_of         :home_stage_name
-  # validates_length_of           :home_stage_name,                 :is => 1
-  # validates_format_of           :home_stage_name,                 :with => /^[-A-Z]+$/
-  # validates_presence_of         :away_stage_name
-  # validates_length_of           :away_stage_name,                 :is => 1
-  # validates_format_of           :away_stage_name,                 :with => /^[-A-Z]+$/
+  # validates_presence_of         :home_stage_name,                                                     :allow_nil => true
+  # validates_length_of           :home_stage_name,                 :is => 1,                           :allow_nil => true
+  # validates_format_of           :home_stage_name,                 :with => /^[-A-Z]+$/,               :allow_nil => true
+  # validates_presence_of         :away_stage_name,                                                     :allow_nil => true
+  # validates_length_of           :away_stage_name,                 :is => 1,                           :allow_nil => true
+  # validates_format_of           :away_stage_name,                 :with => /^[-A-Z]+$/,               :allow_nil => true
 
   validates_presence_of         :starts_at, :ends_at, :reminder_at, :deadline_at 
 
@@ -49,7 +49,7 @@ class Game < ActiveRecord::Base
   # has_friendly_id :concept, :use_slug => true, :reserved => ["new", "create", "index", "list", "signup", "edit", "update", "destroy", "show"]
 
   before_update :set_game_winner
-  # after_update  :calculate_standing, :set_final_stage
+  after_update  :calculate_standing, :set_final_stage
 
   # method section 
   def self.group_stage_games(cup, page = 1)
@@ -94,8 +94,15 @@ class Game < ActiveRecord::Base
     played == false
   end
 
-  def all_cup_games_played(cup)
-    if Game.count(:conditions => ["cup_id = ? and played = false and type_name = 'GroupStage'", cup]) > 0
+  def all_group_stage_played(cup)
+    if Game.count(:conditions => ["cup_id = ? and played = false and type_name = 'GroupStage'", cup]) > 0      
+      return false
+    end
+    return true
+  end
+  
+  def is_cup_game_played(cup)
+    if Game.count(:conditions => ["cup_id = ? and played = true", cup]) > 0      
       return false
     end
     return true
@@ -105,8 +112,6 @@ class Game < ActiveRecord::Base
     find(:all, :conditions => ["cup_id = ? and (home_id = ? or away_id = ?) and home_score is not null and away_score is not null", 
       standing.cup_id, standing.item_id, standing.item_id], :order => "id")
   end
-
-
 
   def first_players_previous_game
     self.children[0]
@@ -135,8 +140,7 @@ class Game < ActiveRecord::Base
   private
 
   def set_final_stage
-    if self.all_cup_games_played(self.cup)
-      
+    if self.all_group_stage_played(self.cup)
         @first_games = Game.find(:all, :conditions => ["cup_id = ? and type_name = 'FirstGame' and (home_id is null or away_id is null)", cup], :order => "id")
         @first_games.each do |first|
           standing = Standing.find(:first, 
@@ -147,21 +151,20 @@ class Game < ActiveRecord::Base
           :conditions => ["cup_id = ? and item_type = 'Escuadra' and group_stage_name = ? and ranking = ?", cup.id, first.away_stage_name, first.away_ranking])
           first.away_id = standing.item_id
           first.save!
-          
         end
-        
     end
   end
   
   def calculate_standing
-    self.cup.challenges.each {|challenge| Cast.send_later(:update_cast_details, challenge) }
     Standing.send_later(:calculate_cup_standing, self.cup)
-    Standing.send_later(:cup_challenges_user_standing, self.cup)      
-    Standing.send_later(:update_cup_challenge_item_ranking, self.cup)
+    if self.is_cup_game_played(self.cup)
+      self.cup.challenges.each {|challenge| Cast.send_later(:update_cast_details, challenge) }
+      Standing.send_later(:cup_challenges_user_standing, self.cup)      
+      Standing.send_later(:update_cup_challenge_item_ranking, self.cup)
+    end
   end
 
   def set_game_winner
-    
     self.played = false
     self.winner_id = nil
     

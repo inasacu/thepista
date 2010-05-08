@@ -3,11 +3,14 @@
 
 <div class="inner">
 
+<% if current_user.is_maximo?  %>
 <p>
 	<span class="large">*&nbsp;&nbsp;
 		<%= link_to("#{label_name(:you_can)} #{label_name(:create_your_own)} #{label_name(:cup)}", new_cup_url) %>
 	</span>
 </p>
+<% end %>
+
 <p>
 	<span class="large">*&nbsp;&nbsp;
 		<%= link_to("#{label_name(:you_can)} #{label_name(:cups_to_join)}", list_cups_path) %>

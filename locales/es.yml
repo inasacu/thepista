@@ -224,7 +224,7 @@ es:
      cups_search: Busqueda de copas
      cups_search_to_join: Puedes buscar una copa para unirte. 
      cups_show:  Mostrar copa
-     cups_to_join:   inscribite a una copa 
+     cups_to_join:   inscribir  te a una copa 
      cups_upcoming: Próximas Copas  
      cups_update: Actualizar copa
      current_accounts: Cuentas actuales   
@@ -502,7 +502,12 @@ es:
      group_fee: Tasa de equipo
      group_id: Equipo
      group_stage:  Fase de Grupo
+     group_stage_advance:  Pasan a siguiente fase
+     group_stage_advance_description:  Total de equipos que pasan a siguiente fase.
      group_stage_name:  Grupo
+     group_stage_single:  En fase de grupos se juega a un partido.
+     group_second_stage_single:  La eliminatoria se juega a un partido.
+     group_final_stage_single:  La final se juega a un partido.
      group_round:  Ronda de Eliminación   
      groups: Equipos  
      has_been_sent: ha sido mandado correctamente.  

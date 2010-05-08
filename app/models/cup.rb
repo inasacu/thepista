@@ -37,6 +37,7 @@ class Cup < ActiveRecord::Base
   attr_accessible :name, :points_for_win, :points_for_draw, :points_for_lose
   attr_accessible :time_zone, :sport_id, :description, :photo
   attr_accessible :starts_at, :ends_at, :deadline_at
+  attr_accessible :group_stage_advance, :group_stage, :group_stage_single, :second_stage_single, :final_stage_single
     
   # friendly url and removes id  
   has_friendly_id :name, :use_slug => true, :reserved => ["new", "create", "index", "list", "signup", "edit", "update", "destroy", "show"]
@@ -44,7 +45,6 @@ class Cup < ActiveRecord::Base
   has_and_belongs_to_many :escuadras,     :join_table => "cups_escuadras",   :order => "name"
   has_many                :games
   has_many                :standings,     :order => "points DESC, ranking"
-  # has_many                :stages
   has_many                :challenges
   belongs_to              :sport
   

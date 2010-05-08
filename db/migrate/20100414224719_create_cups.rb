@@ -26,7 +26,7 @@ class CreateCups < ActiveRecord::Migration
       t.boolean     :second_stage_single,   :default => true
       t.boolean     :final_stage_single,    :default => true
       
-      t.integer		  :group_stage_advance,	  :default => 2
+      t.integer		  :group_stage_advance,	  :default => 16
       
       t.integer     :points_for_win,        :default => 3
       t.integer     :points_for_draw,       :default => 1

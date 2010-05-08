@@ -48,11 +48,17 @@
 
   <div class="column right"> 
 
-	<div class="group">
-	  <%= f.label :photo, label_name('photo'), :class => :label %>
-	  <%= f.file_field :photo, :class => 'text_field' %><br />
-	  <span class="description"><%= label_name('photo', 'description') %></span>
-	</div>
+  <div class="group">
+	<%= f.label :photo, label_name('photo'), :class => :label %>
+	<%= f.file_field :photo, :class => 'text_field' %><br />
+	<span class="description"><%= label_name('photo', 'description') %></span>
+  </div>
+
+  <div class="group">
+    <%= f.label :group_stage_advance, label_name('group_stage_advance'), :class => :label %>
+    <%= f.text_field :group_stage_advance, :class => 'textscore' %><br />
+    <span class="description"><%= label_name('group_stage_advance', 'description') %></span>
+  </div>
 
   <div class="group">
     <%= f.label :points_for_win, label_name('points_for_win'), :class => :label %>
@@ -73,27 +79,27 @@
   </div>
 
   <div class="group">
-    <%= f.label :group_stage, "Group_stage", :class => :label %>
+    <%= f.label :group_stage, label_name('group_stage'), :class => :label %>
     <%= f.check_box :group_stage, :class => 'check_box' %><br />
-    <span class="description">Ex: a simple text</span>
+    <span class="description"><%= label_name('group_stage') %></span>
   </div>
 
   <div class="group">
-    <%= f.label :group_stage_single, "Group_stage_single", :class => :label %>
+    <%= f.label :group_stage_single, label_name('group_stage_single'), :class => :label %>
     <%= f.check_box :group_stage_single, :class => 'check_box' %><br />
-    <span class="description">Ex: a simple text</span>
+    <span class="description"><%= label_name('group_stage_single') %></span>
   </div>
 
   <div class="group">
-    <%= f.label :second_stage_single, "Second_stage_single", :class => :label %>
+    <%= f.label :second_stage_single, label_name('group_second_stage_single'), :class => :label %>
     <%= f.check_box :second_stage_single, :class => 'check_box' %><br />
-    <span class="description">Ex: a simple text</span>
+    <span class="description"><%= label_name('group_second_stage_single') %></span>
   </div>
 
   <div class="group">
-    <%= f.label :final_stage_single, "Final_stage_single", :class => :label %>
+    <%= f.label :final_stage_single, label_name('group_final_stage_single'), :class => :label %>
     <%= f.check_box :final_stage_single, :class => 'check_box' %><br />
-    <span class="description">Ex: a simple text</span>
+    <span class="description"><%= label_name('group_final_stage_single') %></span>
   </div>
 
   </div> 

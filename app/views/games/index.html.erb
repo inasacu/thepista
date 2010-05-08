@@ -93,7 +93,7 @@
 	       <td class="last">
 				<% if is_manager %>
 				<span class="action">					
-					<%= link_to label_name(:matches), set_score_url(:id => game) %><br/>
+					<%= link_to label_name(:matches), set_score_url(:id => game) unless no_team %><br/>
 					<%= link_to label_name(:games_edit), edit_game_path(game) %>
 					<%#= link_to(the_label, game_path(game), :method => :delete, :confirm => the_confirmation) %>	
 				</span>

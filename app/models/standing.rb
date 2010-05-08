@@ -85,17 +85,28 @@ class Standing < ActiveRecord::Base
 
   def self.update_cup_group_stage_ranking(standing)
     # default variables
-    ranking = 0
+    first, ranking, past_points, last = 0, 0, 0, 0
     
     @standings = Standing.find(:all, :conditions =>["cup_id = ? and group_stage_name = ?", standing.cup_id, standing.group_stage_name], 
     :order => "points desc, (goals_for-goals_against) desc")
-  
-    @standings.each do |standing|
-      ranking += 1
-      # current ranking
-      standing.update_attribute(:ranking, ranking)
+    
+     @standings.each do |standing| 
+        points ||= 0
+        points = standing.points
 
-    end
+        if first != standing.item_id 
+          first, ranking, past_points, last = standing.item_id, 0, 0, 1
+        end 
+
+        if (past_points == points) 
+          last += 1          
+        else
+          ranking += last
+          last = 1          
+        end
+        past_points = points  
+        standing.update_attribute(:ranking, ranking)
+      end
   end
 
   def self.update_cup_challenge_item_ranking(cup, item='User')
