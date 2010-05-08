@@ -49,8 +49,7 @@ es:
      are_you_sure:  ¿Estas seguro? 
      at: a las 
      attack:  Delantera
-     attend_schedule: Asiste al evento   
-     aunque_estamos: Aunque estamos en fase de pruebas nos gustaria que nos dieses   
+     attend_schedule: Asiste al evento     
      ausente: Ausente   
      authorizable_id: Codigo    
      authorizable_type: Tipo    
@@ -95,20 +94,7 @@ es:
      casts_option:  Opciones 
      cast_options:  Opciones 
      casts_show: Detalles del pronóstico
-     cast_ausentes:  Ningun ausente para mostrar.
-     cast_convocados:  Ningun convocado para mostrar.
-     cast_excess_player:  Demasiados jugadores convocados
-     cast_ultima_hora:   Ninguno en ultima hora para mostrar.
-     cast_no_disponible:  Ninguno no disponible para mostrar.
      cast_rate: Valoración del pronóstico     
-     casts_team_roster_false:  Ningun convocado para mostrar.
-     casts_team_last_minute_false:   Ninguno en ultima hora para mostrar.
-     casts_team_no_show_false:  Ningun ausente para mostrar.
-     casts_team_unavailable_true_false:  Ninguno no disponible para mostrar.
-     casts_team_roster_true:  Convocados
-     casts_team_last_minute_true:   Ultima hora
-     casts_team_no_show_true:  Ausentes
-     casts_team_unavailable_true:  No disponibles     
      challenge:  Reto
      challenge_options:  Opciones
      challenges:  Retos
@@ -224,7 +210,7 @@ es:
      cups_search: Busqueda de copas
      cups_search_to_join: Puedes buscar una copa para unirte. 
      cups_show:  Mostrar copa
-     cups_to_join:   inscribir  te a una copa 
+     cups_to_join:   inscribirte a una copa 
      cups_upcoming: Próximas Copas  
      cups_update: Actualizar copa
      current_accounts: Cuentas actuales   

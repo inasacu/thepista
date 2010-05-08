@@ -12,6 +12,7 @@ en:
      accounts: Accounts 
      add_email: "Accept, Create your account"  
      add_to_group: Petition to join 
+     add_to_item: Petición para unirse a
      add_to_tournament: Petition to join 
      address: Address   
      addresses: Addresses   
@@ -48,15 +49,16 @@ en:
      are_you_sure:  Are you sure? 
      at: at
      attack:  Forward
-     attend_schedule: Attend the Event
-     aunque_estamos: Aunque estamos en fase de pruebas nos gustaria que nos dieses   
+     attend_schedule: Attend the Event 
      ausente: No-Show     
      authorizable_id: Code    
      authorizable_type: Type    
      available: Available
      available_description: (Are you available to Play?)   
      avatar: Gravatar   
-     away_group: Visiting   
+     away_group: Visiting 
+     away_stage_name:  Group
+     away_ranking:  Ranking
      back: back    
      between: between   
      birth_at:  Date of Birth
@@ -74,6 +76,48 @@ en:
      cancel_email_subscription: Unsubscribe to email Notices? 
      cannot_be_blank: cannot be blank   
      center:  Mid-Field
+     cast: Forecast   
+     cast_description: (Write some details on the forecast...)  
+     casts: Forecasts
+     casts_archive_list:  Previous Forecasts
+     casts_create:  New forecast
+     casts_destroy:  Remove forecast
+     casts_index: My forecasts
+     casts_index_option: Options 
+     casts_list:  Previous Forecasts
+     casts_list_no: No previous forecast to display.
+     casts_manager_option:  Requires manager to  responsable de challenge to view more options.
+     casts_new: New forecast
+     casts_no: No forecast to display.
+     casts_edit: Update forecast
+     casts_update: Update forecast
+     casts_option:  Options 
+     cast_options:  Options 
+     casts_show: Forecast details
+     cast_rate: Forecast rate 
+     challenge:  Challenge
+     challenge_options:  Options
+     challenges:  Challenges
+     challenges_all:  All Challenges
+     challenges_create:  Create your challenge 
+     challenges_destroy:  Remove challenge
+     challenges_edit:  Update challenge
+     challenges_index:   Challenges
+     challenges_index_option: Options 
+     challenges_invitations_create:  Invite your friend to challenge
+     challenges_join:  Join challenge
+     challenges_my:  My Challenges
+     challenges_list:  Rest of challenges
+     challenges_new:  New challenge
+     challenges_new_option: Options 
+     challenges_no:  No challenge to display.
+     challenges_none:  No challenge.
+     challenges_options_without: "Whatoptions do you have since you don't have any challenges?"
+     challenges_option:  Options 
+     challenges_search: Search for challenges
+     challenges_search_to_join: You can search for challenge to join. 
+     challenges_show:  Show challenge
+     challenges_update: Update challenge
      change: Change Language   
      change_available: Change available status   
      change_at:  Date Changed
@@ -145,6 +189,30 @@ en:
      credit_amount_description:  Credit Amount Details
      credit_total:  Total Payment
      credits: Payments  
+     cup:  Tournament  
+     cups:  Tournaments
+     cups_all:  All tournaments
+     cups_create:  New tournament 
+     cups_destroy:  Remove tournament
+     cups_edit:  Update tournament
+     cups_index:   Tournaments
+     cups_index_option: Options 
+     cups_invitations_create:  Invite your friend to this tournament
+     cups_join:  Join this tournament
+     cups_list:  Previous Tournaments
+     cups_new:  New tournament
+     cups_new_option: Options 
+     cups_no:  No tournament to display.
+     cups_none:  No tournament.
+     cup_options:  Options
+     cups_options_without: "What options do you have since you are not part of a tournament?"
+     cups_option:  Options 
+     cups_search: Search for tournaments
+     cups_search_to_join: You can find a tournament to join. 
+     cups_show:  Show tournament
+     cups_to_join:   signup to a tournament 
+     cups_upcoming: Upcoming Tournaments  
+     cups_update: Update tournament
      current_accounts: Current Accounts   
      current_language: English    
      current_time: Current Time   
@@ -1093,7 +1161,7 @@ en:
      venues_name_description:  sport center name
      venues_new:  Sport center name
      venues_edit:  Edit Venue
-     venues_option:  Opciones
+     venues_option:  Options
      venues_options_without:  "What options do you have since you are not signed up to any sport center?"
      venues_starts_at:  Start Time
      venues_ends_at:  End Time 
