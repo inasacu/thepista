@@ -26,8 +26,10 @@ class Game < ActiveRecord::Base
   validates_format_of           :concept,                         :with => /^[A-z 0-9 _.-]*$/
   validates_numericality_of     :jornada,                         :greater_than_or_equal_to => 0,       :less_than_or_equal_to => 999
 
-  validates_numericality_of     :home_ranking,                    :greater_than_or_equal_to => 0,       :less_than_or_equal_to => 8, :allow_nil => true
-  validates_numericality_of     :away_ranking,                    :greater_than_or_equal_to => 0,       :less_than_or_equal_to => 8, :allow_nil => true
+  validates_numericality_of     :home_ranking,                    :greater_than_or_equal_to => 0,       :less_than_or_equal_to => 8,    :allow_nil => true
+  validates_numericality_of     :away_ranking,                    :greater_than_or_equal_to => 0,       :less_than_or_equal_to => 8,    :allow_nil => true  
+  validates_numericality_of     :home_score,                      :greater_than_or_equal_to => 0,       :less_than_or_equal_to => 300,  :allow_nil => true
+  validates_numericality_of     :away_score,                      :greater_than_or_equal_to => 0,       :less_than_or_equal_to => 300,  :allow_nil => true
   
   # validates_presence_of         :home_stage_name
   # validates_length_of           :home_stage_name,                 :is => 1
@@ -35,9 +37,6 @@ class Game < ActiveRecord::Base
   # validates_presence_of         :away_stage_name
   # validates_length_of           :away_stage_name,                 :is => 1
   # validates_format_of           :away_stage_name,                 :with => /^[-A-Z]+$/
-  
-  validates_numericality_of     :home_score,  :greater_than_or_equal_to => 0, :less_than_or_equal_to => 300, :allow_nil => true
-  validates_numericality_of     :away_score,  :greater_than_or_equal_to => 0, :less_than_or_equal_to => 300, :allow_nil => true
 
   validates_presence_of         :starts_at, :ends_at, :reminder_at, :deadline_at 
 
@@ -50,7 +49,7 @@ class Game < ActiveRecord::Base
   # has_friendly_id :concept, :use_slug => true, :reserved => ["new", "create", "index", "list", "signup", "edit", "update", "destroy", "show"]
 
   before_update :set_game_winner
-  after_update  :calculate_standing, :set_final_stage
+  # after_update  :calculate_standing, :set_final_stage
 
   # method section 
   def self.group_stage_games(cup, page = 1)
@@ -107,7 +106,35 @@ class Game < ActiveRecord::Base
       standing.cup_id, standing.item_id, standing.item_id], :order => "id")
   end
 
-  def set_final_stage    
+
+
+  def first_players_previous_game
+    self.children[0]
+  end
+
+  def winner
+    return nil if game_for_winner.nil?
+    game_for_winner.first_players_previous_game == self ? game_for_winner.home : game_for_winner.away
+  end
+
+  def winner_id= game_id
+    return nil if game_for_winner.nil?
+    if game_for_winner.first_players_previous_game == self 
+      game_for_winner.home_id = game_id 
+    else
+      game_for_winner.away_id = game_id
+    end
+    game_for_winner.save
+  end
+
+  # return true if the round home away conbination is nil
+  def self.cup_home_away_exist?(cup, home, away)
+    find_by_cup_id_and_home_id_and_away_id(cup, home, away).nil?
+  end
+
+  private
+
+  def set_final_stage
     if self.all_cup_games_played(self.cup)
       
         @first_games = Game.find(:all, :conditions => ["cup_id = ? and type_name = 'FirstGame' and (home_id is null or away_id is null)", cup], :order => "id")
@@ -125,63 +152,27 @@ class Game < ActiveRecord::Base
         
     end
   end
-
-  def first_players_previous_game
-    self.children[0]
-  end
-
-  # def second_players_previous_game
-  #   self.children[1]
-  # end
-
-
-
-  def winner
-    return nil if game_for_winner.nil?
-    game_for_winner.first_players_previous_game == self ? game_for_winner.home : game_for_winner.away
-  end
-
-  def winner_id= player_id
-    return nil if game_for_winner.nil?
-    if game_for_winner.first_players_previous_game == self 
-      game_for_winner.home_id = player_id 
-    else
-      game_for_winner.away_id = player_id
-    end
-    game_for_winner.save
-  end
-
-
-  # return true if the round home away conbination is nil
-  def self.cup_home_away_exist?(cup, home, away)
-    find_by_cup_id_and_home_id_and_away_id(cup, home, away).nil?
-  end
-
-  private
-
+  
   def calculate_standing
-    # self.cup.challenges.each {|challenge| Cast.send_later(:update_cast_details, challenge) }
-    # Standing.send_later(:calculate_cup_standing, self.cup)
-    # Standing.send_later(:cup_challenges_user_standing, self.cup)      
-    # Standing.send_later(:update_cup_challenge_item_ranking, self.cup)
+    self.cup.challenges.each {|challenge| Cast.send_later(:update_cast_details, challenge) }
+    Standing.send_later(:calculate_cup_standing, self.cup)
+    Standing.send_later(:cup_challenges_user_standing, self.cup)      
+    Standing.send_later(:update_cup_challenge_item_ranking, self.cup)
   end
 
-  def set_game_winner  
+  def set_game_winner
+    
+    self.played = false
+    self.winner_id = nil
+    
     unless self.home_score.nil? or self.away_score.nil?
-      if self.home_score > self.away_score
+      if self.home_score.to_i > self.away_score.to_i
         self.winner_id = self.home_id
       end  
-      if self.home_score < self.away_score
+      if self.home_score.to_i < self.away_score.to_i
         self.winner_id = self.away_id
       end
       self.played = true
-
-      # else
-      #   self.home_score = nil
-      #   self.away_score = nil
-      self.winner_id = nil
-      self.played = false
-
     end       
 
   end

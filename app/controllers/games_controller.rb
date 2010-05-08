@@ -10,6 +10,7 @@ class GamesController < ApplicationController
   end
 
   def list
+    store_location
     @games = Game.group_round_games(@cup, params[:page])
     render :template => '/games/index'       
   end
@@ -86,11 +87,12 @@ class GamesController < ApplicationController
 
   def update
     if @game.update_attributes(params[:game]) 
-      flash[:notice] = I18n.t(:successful_update)
-      redirect_to games_path(:id => @game.cup)
+      # flash[:notice] = I18n.t(:successful_update)
+      # redirect_to games_path(:id => @game.cup)
+      redirect_to list_games_path(:id => @game.cup)
       return
     else
-      render :action => 'edit'
+      render :action => 'edit', :id => @game.id
     end
   end
 
