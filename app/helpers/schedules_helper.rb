@@ -11,7 +11,7 @@ module SchedulesHelper
       text = schedule.concept
     end
     # We normally write link_to(..., schedule) for brevity, but that breaks
-    # activities_helper_spec due to an RSpec bug.
+    
     link_to(h(text), schedule, html_options)
   end 
   
@@ -25,7 +25,7 @@ module SchedulesHelper
       text = schedule.concept
     end
     # We normally write link_to(..., schedule) for brevity, but that breaks
-    # activities_helper_spec due to an RSpec bug.
+    
     link_to(h(text), team_roster_path(:id => schedule), html_options)
   end 
   

@@ -1,0 +1,82 @@
+<h2 class="title"><%= get_collection_label(@challenges) %></h2>
+
+<div class="inner">
+	
+	<table class="table">
+
+	  <tr>             
+	    <th class="first">&nbsp;</th>
+	    <th><%= label_name(:name) %>&nbsp;/<br />
+			<%= label_name(:sport) %>
+		</th>
+	    <th><%= label_name(:manager) %>&nbsp;/<br />
+			<%= label_name(:time_zone) %>
+		</th>
+	    <!-- <th><%#= label_name(:time_zone) %></th> -->
+	    <th><%= label_name(:general_information) %></th>
+	    <th><%#= label_name(:last_game_played) %></th>
+	    <th class="last">&nbsp;</th>
+	  </tr>
+
+	  <% @challenges.each do |challenge| 
+		#cast = Cast.last_cast_challenge_played(challenge)
+		-%>
+	  <tr>  	
+			<td class="name_and_date">
+				<%= cup_image_link_small challenge.cup %><br/>
+				<span class="date">
+				</span>
+			</td>
+
+			<td class="name_and_date">
+				<%= challenge_link(challenge) %><br/>
+				<span class="date">
+					<%= challenge.cup.sport.name %>
+				</span>
+			</td>
+
+			<td class="name_and_date">
+				<%= user_list challenge.all_the_managers %><br />
+				<span class="date">
+					<%= challenge.time_zone %>
+				</span>
+			</td>
+
+			<td>
+				<%= I18n.t(:has_challenge_users, :count => object_counter(challenge.users)) %><br />
+				<%#= I18n.t(:has_challenge_casts, :count => object_counter(challenge.casts)) %>
+			</td>
+
+			<td class="name_and_date">
+				<%= link_to(label_name(:points_full), show_list_standings_path(:id => challenge)) %>
+				<span class="date">
+					<%#= nice_full_date(cast.starts_at) unless cast.nil? %> 
+				</span>
+			</td>
+
+	       <td class="last">
+				<span class="action">
+					<% if current_user.is_member_of?(challenge) %>
+						<%= link_to(label_name(:send_message_to), new_message_path(:challenge_id => challenge)) %><br />
+					<% 
+					  	else
+							unless current_user.has_item_petition?(current_user, challenge) 
+								the_label = label_with_name('add_to_item', challenge.name)
+ 								the_confirmation = "#{ label_name(:petition_to_join) } #{challenge.name}?"
+					%> 
+							<%= link_to(the_label, join_item_path(:id => challenge, :item => challenge.class.to_s, :teammate => current_user), :confirm => the_confirmation) %>
+					<% 	end 
+					   end
+					-%>
+					
+				</span>
+	       </td>
+	  </tr>   
+ 
+	  <% end -%>
+
+	</table>	
+	
+	<%= render :partial => 'shared/action_bar', :locals => { :collection => @challenges } %>
+
+</div>

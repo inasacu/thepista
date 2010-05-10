@@ -11,7 +11,7 @@ module ClassifiedsHelper
       text = classified.concept
     end
     # We normally write link_to(..., classified) for brevity, but that breaks
-    # activities_helper_spec due to an RSpec bug.
+    
     link_to(h(text), classified, html_options)
   end
   

@@ -1,22 +1,26 @@
 class Blog < ActiveRecord::Base
   
   acts_as_commentable
-  
-  # has_friendly_id :name, :use_slug => true, :reserved => ["new", "create", "index", "list", "signup", "edit", "update", "destroy", "show"]
-  
-  # has_many      :entries,      :dependent => :delete_all
-  # has_many      :comments,     :through => :entries
 
   belongs_to    :user
   belongs_to    :group
   belongs_to    :tournament
+  belongs_to    :item,          :polymorphic => true
 
   validates_presence_of   :name, :description 
   validates_length_of     :name,                :within => NAME_RANGE_LENGTH
   validates_length_of     :description,         :within => DESCRIPTION_RANGE_LENGTH
 
   # method section
+  def self.find_item(item)
+    find_by_item_id_and_item_type(item.id, item.class.to_s)
+  end
+  
   # record if group does not exist
+  def self.create_item_blog(item) 
+    self.create!(:item_id => item.id, :item_type => item.class.to_s, :name => item.name, :description => item.description) if self.item_exists?(item)
+  end
+  
   def self.create_group_blog(group) 
     self.create!(:group_id => group.id, :name => group.name, :description => group.description) if self.group_exists?(group)
   end 
@@ -34,6 +38,11 @@ class Blog < ActiveRecord::Base
   # Return true if the tournament nil
   def self.tournament_exists?(tournament)
     find_by_tournament_id(tournament).nil?
+  end
+
+  # Return true if the item nil
+  def self.item_exists?(item)
+    find_by_item_id_and_item_type(item, item.class.to_s).nil?
   end
 
   # Return true if the group nil

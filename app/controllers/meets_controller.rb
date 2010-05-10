@@ -71,7 +71,7 @@ class MeetsController < ApplicationController
       return
     end
     
-    unless current_user.is_tour_manager_of?(@tournament)
+    unless current_user.is_manager_of?(@tournament)
       flash[:warning] = I18n.t(:unauthorized)
       redirect_back_or_default('/index')
       return
@@ -128,7 +128,7 @@ class MeetsController < ApplicationController
   #   @meet = Meet.find(params[:id])  
   #   @tournament = @meet.round.tournament 
   #   
-  #   unless current_user.is_tour_manager_of?(@tournament)
+  #   unless current_user.is_manager_of?(@tournament)
   #     flash[:warning] = I18n.t(:unauthorized)
   #     redirect_back_or_default('/index')
   #     return
@@ -154,7 +154,7 @@ class MeetsController < ApplicationController
   #     @clash = Match.find(params[:id])
   #     @tournament = @clash.meet.round.tournament
   # 
-  #     unless current_user.is_tour_manager_of?(@tournament)
+  #     unless current_user.is_manager_of?(@tournament)
   #       flash[:warning] = I18n.t(:unauthorized)
   #       redirect_back_or_default('/index')
   #       return
@@ -171,7 +171,7 @@ class MeetsController < ApplicationController
   #   @clash = Match.find(params[:id])
   #   @tournament = @clash.meet.round.tournament
   # 
-  #   unless current_user.is_tour_manager_of?(@tournament)
+  #   unless current_user.is_manager_of?(@tournament)
   #     flash[:warning] = I18n.t(:unauthorized)
   #     redirect_back_or_default('/index')
   #     return
@@ -188,7 +188,7 @@ class MeetsController < ApplicationController
   #   @clash = Match.find(params[:id])
   #   @tournament = @clash.meet.round.tournament
   # 
-  #   unless current_user.is_tour_manager_of?(@tournament)
+  #   unless current_user.is_manager_of?(@tournament)
   #     flash[:warning] = I18n.t(:unauthorized)
   #     redirect_back_or_default('/index')
   #     return
@@ -213,7 +213,7 @@ class MeetsController < ApplicationController
   
   private
   def has_manager_access
-    unless current_user.is_tour_manager_of?(@meet.round.tournament)
+    unless current_user.is_manager_of?(@meet.round.tournament)
       flash[:warning] = I18n.t(:unauthorized)
       redirect_back_or_default('/index')
       return

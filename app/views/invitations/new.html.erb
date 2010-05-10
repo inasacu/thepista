@@ -15,6 +15,9 @@
 		<%  elsif @group %>
 			<%= "#{label_name(:to)} #{group_link @group}"  %>
 
+		<%  elsif @challenge %>
+			<%= "#{label_name(:to)} #{challenge_link @challenge}"  %>
+
 		<% end %>
 	</h2>
 	
@@ -22,10 +25,9 @@
 	
 	  <% form_for :invitation, :url => invitations_path, :html => { :class => :form } do |f| -%>
 	  
-		<%# if @schedule or @group %>
-			<%= hidden_field :schedule, :id %>
-			<%= hidden_field :group, :id %>
-		<%# end %>
+		<%= hidden_field :schedule, :id %>
+		<%= hidden_field :group, :id %>
+		<%= hidden_field :challenge, :id %>
 	
 		<div class="columns"> 
 		
@@ -46,41 +48,7 @@
 		  </div> 
 		  
 		  <div class="column right"> 
-		  
-<!-- 			<div class="group"> 
-			  <label class="label">Select</label> 
-			  <select><option value="1">Choose...</option></select> 
-			</div> 
-			
-			<div class="group"> 
-			
-			  <label class="label">Check box</label> 
-			  
-			  <div> 
-				<input type="checkbox" name="checkbox" id="checkbox_1" class="checkbox" value="1" /> 
-					<label for="checkbox_1" class="checkbox">Option 1</label> 
-			  </div> 
-			  
-			  <div> 
-				<input type="checkbox" name="checkbox" id="checkbox_2" class="checkbox" value="2" /> 
-					<label for="checkbox_2" class="checkbox">Option 2</label> 
-			  </div> 
-			  
-			</div> 
-			
-			<div class="group"> 
-			  <label class="label">Radio</label> 
-			  
-			  <div> 
-				<input type="radio" name="radio" id="radio_1" class="checkbox" value="1" /> <label for="radio_1" class="radio">Option 1</label> 
-			  </div> 
-			  
-			  <div> 
-				<input type="radio" name="radio" id="radio_2" class="checkbox" value="2" /> <label for="radio_2" class="radio">Option 2</label> 
-			  </div> 
-			  
-			</div> 
-			 -->
+	
 		  </div> 
 		  
 		</div> 

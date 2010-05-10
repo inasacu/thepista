@@ -12,19 +12,28 @@ en:
      accounts: Accounts 
      add_email: "Accept, Create your account"  
      add_to_group: Petition to join 
+     add_to_item: Petición para unirse a
      add_to_tournament: Petition to join 
      address: Address   
      addresses: Addresses   
      administrator: Admin   
      ads: ads   
-     afterwards: afterwards 
+     afterwards: afterwards
+     agenda:  Agenda
+     agendas:  Agendas
+     agendas_calendar:  Calendar
+     agendas_create:  Create Agenda  
+     agendas_index:  Agendas
+     agendas_new:  Create Agenda    
+     agendas_no:  No agendas to display.
      ago:  "{{count}} ago"      
      all_group:  All Teams 
      all_scorecard:  All Scorecards
      all_tournament:  All Tournaments  
      all_user:   All Players
+     all_venue:  All Venues
      already_exist: already exist
-     and: and   
+     and: and
      announcement: Announcement
      announcements: Announcements
      announcements_create:  New Announcement
@@ -40,15 +49,16 @@ en:
      are_you_sure:  Are you sure? 
      at: at
      attack:  Forward
-     attend_schedule: Attend the Event
-     aunque_estamos: Aunque estamos en fase de pruebas nos gustaria que nos dieses   
+     attend_schedule: Attend the Event 
      ausente: No-Show     
      authorizable_id: Code    
      authorizable_type: Type    
      available: Available
      available_description: (Are you available to Play?)   
      avatar: Gravatar   
-     away_group: Visiting   
+     away_group: Visiting 
+     away_stage_name:  Group
+     away_ranking:  Ranking
      back: back    
      between: between   
      birth_at:  Date of Birth
@@ -66,6 +76,48 @@ en:
      cancel_email_subscription: Unsubscribe to email Notices? 
      cannot_be_blank: cannot be blank   
      center:  Mid-Field
+     cast: Forecast   
+     cast_description: (Write some details on the forecast...)  
+     casts: Forecasts
+     casts_archive_list:  Previous Forecasts
+     casts_create:  New forecast
+     casts_destroy:  Remove forecast
+     casts_index: My forecasts
+     casts_index_option: Options 
+     casts_list:  Previous Forecasts
+     casts_list_no: No previous forecast to display.
+     casts_manager_option:  Requires manager to  responsable de challenge to view more options.
+     casts_new: New forecast
+     casts_no: No forecast to display.
+     casts_edit: Update forecast
+     casts_update: Update forecast
+     casts_option:  Options 
+     cast_options:  Options 
+     casts_show: Forecast details
+     cast_rate: Forecast rate 
+     challenge:  Challenge
+     challenge_options:  Options
+     challenges:  Challenges
+     challenges_all:  All Challenges
+     challenges_create:  Create your challenge 
+     challenges_destroy:  Remove challenge
+     challenges_edit:  Update challenge
+     challenges_index:   Challenges
+     challenges_index_option: Options 
+     challenges_invitations_create:  Invite your friend to challenge
+     challenges_join:  Join challenge
+     challenges_my:  My Challenges
+     challenges_list:  Rest of challenges
+     challenges_new:  New challenge
+     challenges_new_option: Options 
+     challenges_no:  No challenge to display.
+     challenges_none:  No challenge.
+     challenges_options_without: "Whatoptions do you have since you don't have any challenges?"
+     challenges_option:  Options 
+     challenges_search: Search for challenges
+     challenges_search_to_join: You can search for challenge to join. 
+     challenges_show:  Show challenge
+     challenges_update: Update challenge
      change: Change Language   
      change_available: Change available status   
      change_at:  Date Changed
@@ -137,6 +189,30 @@ en:
      credit_amount_description:  Credit Amount Details
      credit_total:  Total Payment
      credits: Payments  
+     cup:  Tournament  
+     cups:  Tournaments
+     cups_all:  All tournaments
+     cups_create:  New tournament 
+     cups_destroy:  Remove tournament
+     cups_edit:  Update tournament
+     cups_index:   Tournaments
+     cups_index_option: Options 
+     cups_invitations_create:  Invite your friend to this tournament
+     cups_join:  Join this tournament
+     cups_list:  Previous Tournaments
+     cups_new:  New tournament
+     cups_new_option: Options 
+     cups_no:  No tournament to display.
+     cups_none:  No tournament.
+     cup_options:  Options
+     cups_options_without: "What options do you have since you are not part of a tournament?"
+     cups_option:  Options 
+     cups_search: Search for tournaments
+     cups_search_to_join: You can find a tournament to join. 
+     cups_show:  Show tournament
+     cups_to_join:   signup to a tournament 
+     cups_upcoming: Upcoming Tournaments  
+     cups_update: Update tournament
      current_accounts: Current Accounts   
      current_language: English    
      current_time: Current Time   
@@ -260,7 +336,8 @@ en:
      exit_group: Opt-out of the Team   
      exit_tournament: Opt-out of the Tournament   
      explore:  Explore
-     facility: Instalations   
+     facility: Instalations 
+     facilitiess_create:  Create Instalation  
      failed_login: Failed Login      
      false_value: "No"
      feature: Feature
@@ -468,7 +545,7 @@ en:
      list: List   
      list_marker: List of Sport Centers   
      list_user: List   
-     list_venue: List of Sport Centers   
+     list_venue: List of Venues   
      locale_name: English     
      location_sport: Location where you practice sports. 
      login:  Log In	 
@@ -629,6 +706,7 @@ en:
      notice: NOTICE   
      notification: Notice   
      notifications: Notices   
+     office_hours:  Office Hours
      open: Open   
      openid_identifier: OpenID URL
      open_id_explanation: "The OpenID authentication system is a safe, free and very easy to use.  It will enable identification of many web pages when you enter your OpenID URL, it also gives you access to sites that support OpenID "  
@@ -641,6 +719,7 @@ en:
      openid_user_not_saved: Information about the new user has NOT been save   
      openid_user_saved: Information about the new user has been save correctly
      optional: optional   
+     options: Options
      or: or   
      or_use: ...or user   
      organize:  Organize
@@ -682,11 +761,10 @@ en:
      percentage_full: Percent        
      petition: Request 
      petition_at:  Requested Date
-     petition_join_team_accept:  Accept
-     petition_join_team_decline: Decline
+     petition_join_item_accept:  Accept
+     petition_join_item_decline: Decline
      petition_no:  No Requests to show.
-     petition_to_join_group: Request to join a 
-     petition_to_join_tournament: Request to join a
+     petition_to_join: Request to join a
      petition_to_join_round: Request to join a
      petition_pending: Pending Request   
      petition_to_join: Request to join a 
@@ -730,6 +808,7 @@ en:
      pre_match: On the Squad   
      preference: Preferences
      previous: "Previous"
+     previous_agendas:  Previous Agendas
      previous_ranking: P.R.   
      previous_ranking_full: Previous Ranking
      previous_schedule: Previous Event   
@@ -818,7 +897,7 @@ en:
      search_informations: Search for Details   
      search_invitations: Search for Invitations   
      search_managers: Search for Managers   
-     search_maps: Search for Sport Centers   
+     search_maps: Search for Venues   
      search_markers: Search for Sport Centers   
      search_messages: Search for Messages   
      search_names: Search for Names   
@@ -834,13 +913,13 @@ en:
      search_tournaments: Search for Tournaments   
      search_types: Search for Types   
      search_users: Search for Players   
-     search_venues: Search for Sport Centers 
+     search_venues: Search for Venues 
      season:  Season
      season_description:  Season 
      second_team: Segundo Team   
      second_team_description: "(If you play within your team, set a different name to differentiate the teams when organizing the different teams within the event...) "  
      select: Seelct   
-     select_venue: New Sport Center  
+     select_venue: New Venue  
      select_contacts:  Select the contacts you want to invite from this list.
      self_description: "(Escribe algo sobre ti...)"       
      send:  Send
@@ -855,11 +934,7 @@ en:
      send_marker: Send the URL for the Sport Center 
      send_clash: Send the Results
      send_match: Send the Results
-     send_message: Send a Message 
-     send_message_to_group: Send a Message  
-     send_message_to_tournament: Send a Message 
-     send_message_to_round: Send a Message
-     send_message_to_meet: Send a Message     
+     send_message_to: Send a Message  
      send_name: Send a Name   
      send_note: Send a Note   
      send_notification: Send a Notice   
@@ -875,7 +950,7 @@ en:
      send_standing: Send the Scorecard
      send_to_all: Send to All   
      send_type: Send a Type   
-     send_venue: Send the URL for the Sport Center   
+     send_venue: Send the URL for the Venue   
      sent_a_message: Message Sent   
      sent_invitation: An invitation for HayPista has been sent to the following          
      separate_by: separate with a comma   
@@ -927,7 +1002,7 @@ en:
      show_tournament: Show the Tournament   
      show_type: Show the Type   
      show_user: Show your Profile   
-     show_venue: Show the Sport Center   
+     show_venue: Show the Venue   
      sign_in_cancelled: Cancel sign in   
      sign_new_user: Sign up as new user   
      sign_up: Sign Up 
@@ -952,7 +1027,7 @@ en:
      subscription_at: Last Day to add squad status change for subscriber  
      subscription_at_match: Last Day to add squad status change for subscriber    
      subscription_at_description: (Last Day to add squad status change for subscriber  ...(ex- 1 day before the event)) 
-     subscription_false:  Player does not have a Subscription
+     subscription_false:  Player does not have a Subscription.
      subscription_true:  Player has a Subscription
      subscriptions_true:  Players with a Subscription
      subscriptions_false:  Players without a Subscription
@@ -989,16 +1064,17 @@ en:
      to_join_email: to join 
      to_join_group: join a team   
      to_join_group_message: Request to join a 
-     to_join_group_message_sent: Request to join has been sent.
+     to_join_item_message_sent: Request to join has been sent.
      to_join_tournament: Join a Tournament 
      to_join_round: Join a Tournament  
      to_leave_group_message: Petición para desapuntarte de
-     to_leave_group_message_sent: Petición para desapuntarte a sido enviada.  
+     to_leave_item_message_sent: Petición para desapuntarte a sido enviada.  
      to_join_tour: Join a Team   
      to_join_tour_message: Request to join a 
      to_join_tour_message_sent: Request to join has been sent.
      to_join_tournament: Join a Tournament 
      to_join_round: Join a Tournament  
+     to_join_venue:  Join a Venue
      to_leave_tour_message: Request to opt-out of
      to_leave_tour_message_sent: Request to opt-out has been sent.          
      to_member_of: To teammates of   
@@ -1022,7 +1098,8 @@ en:
      unauthorized:  Not Authorized.
      unavailable:  Unavailable
      unsuccessful_logged_in:  username or password are incorrect. 
-     upcoming: Upcoming Event   
+     upcoming: Upcoming Event
+     upcoming_agenda:  Upcoming Agenda   
      upcoming_schedule: Upcoming Event   
      upcoming_schedules: Upcoming Events 
      upcoming_meet: Upcoming Event 
@@ -1056,7 +1133,7 @@ en:
      update_tournament: Update Tournament   
      update_type: Update Type   
      update_user: Update profile   
-     update_venue: Update Sport Center   
+     update_venue: Update Venue   
      updated: updated correctly.   
      upload:  Upload
      url_group: Link to Team   
@@ -1076,9 +1153,18 @@ en:
      username_password_donot_match: Username and Password combination are not correct
      users_activate:  "It is necessary to activate your account"     
      validate_openid: validate your OpenID   
-     venue: Sport Center    
-     Venue: Venue   
-     venues: Sport Centers   
+     venue: Venue    
+     Venue: Venue 
+     venues: Venues 
+     venues_create:  Create Venue  
+     venues_index:  Venues
+     venues_name_description:  sport center name
+     venues_new:  Sport center name
+     venues_edit:  Edit Venue
+     venues_option:  Options
+     venues_options_without:  "What options do you have since you are not signed up to any sport center?"
+     venues_starts_at:  Start Time
+     venues_ends_at:  End Time 
      verification_canceled: OpenID verification was cancelled.   
      verification_failed: "The OpenID verification failed, Sorry!"   
      verification_setup: OpenID verification has to be updated.  
@@ -1220,8 +1306,8 @@ en:
      fee_options: Options
      fee_to: Charges to 
      fee_to_description:  Charges Details
-     fee_user_for_group:  Add a charge to all players on
-     fee_user_for_tournament:  Add a charge to all players on 
+     fee_user_for_group:  Add a change to all players
+     fee_user_for_tournament:  Add a change to all players 
      fees_complete:  All Charges
      fees_create:  New Charge
      fees_destroy: Remove Charge
@@ -1426,7 +1512,7 @@ en:
      rounds_new_option: Options
      rounds_no:  No Round to show.
      rounds_none:  No Round.
-     rounds_options_without: "What options do you have since you do not una fase de torneo?"
+     rounds_options_without: "What options do you have since you do not have a tournament round?"
      rounds_option:  Options
      rounds_search: Search for Rounds
      rounds_search_to_join: Search for Round to join. 

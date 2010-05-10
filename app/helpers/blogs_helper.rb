@@ -1,4 +1,5 @@
 module BlogsHelper
+  
   # Link to a blog (default is by name).
   def blog_link(text, blog = nil, html_options = nil)
     if blog.nil?
@@ -8,9 +9,7 @@ module BlogsHelper
       html_options = blog
       blog = text
       text = blog.name
-    end
-    # We normally write link_to(..., blog) for brevity, but that breaks
-    # activities_helper_spec due to an RSpec bug.
-    link_to(h(text), blog, html_options)
+    end        
+    link_to(label_name(:wall), blog, html_options)
   end
 end

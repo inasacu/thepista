@@ -1,0 +1,158 @@
+<%
+	the_label = is_action ('index') ? label_name(:group_stage) : label_name(:group_round)
+	content_for(:title, the_label)
+	is_manager = current_user.is_manager_of?(@cup)	
+
+	new_or_existing = 'existing' 
+	prefix = "cast[cast_attributes][]" 
+%>
+
+
+<div class="block">
+
+  <%= render :partial => '/challenges/secondary_navigation' %>
+
+  <div class="content">   
+  
+    <h2 class="title"><%= the_label %></h2>
+	
+    <div class="inner">
+	
+      <table class="table" id="<%= get_the_controller.gsub(' ','_') %>">
+	  
+        <tr> 
+          <th class="first"><%= label_name(:jornada) %></th>
+	      <th><%= label_name(:name) %>&nbsp;/<br />
+			  <%= label_name(:gameday_at) %></th>
+		  <th>&nbsp;</th>
+		  <th>&nbsp;</th>
+		  <th>&nbsp;</th>
+		  <th><%= label_name(:matches) %></th>
+          <th>&nbsp;</th>
+          <th>&nbsp;</th>
+          <th>&nbsp;</th>
+          <th class="last">&nbsp;</th>
+		</tr>
+        
+		<% form_for @cast, :url => cast_path(@cast), :html => { :class => :form } do |f| -%>
+
+		
+        <% @casts.each do |cast| 
+			the_label = label_name(:casts_destroy)
+			the_confirmation = "#{ the_label }?"
+			@the_cast = cast
+			no_team = (cast.home_id.nil? or cast.away_id.nil?)  
+			is_user = (current_user == cast.user) #and cast.deadline_at <= Time.zone.now - 1.day)	
+			
+			no_team = (cast.home_id.nil? or cast.away_id.nil?) 
+			no_ranking = (cast.home_ranking.nil? or cast.away_ranking.nil? or 
+						  cast.home_stage_name.nil? or cast.away_stage_name.nil? and cast.type_name == 'FirstGame') 
+						
+			the_finals = (cast.type_name == 'SubsequentGame' or cast.type_name == 'FinalGame')
+			
+			the_previous = []
+			if the_finals
+				previous_games = Game.find(:all, :conditions => ["next_game_id = ?", cast.game_id])
+				previous_games.each {|the_game| the_previous << the_game.jornada}
+			end
+		-%>
+		
+
+		<!-- field_for start -->		
+			<% fields_for prefix, cast do |cast_form| -%>
+		
+        	<tr>
+	
+	          <td class="first">
+				<%= cast.jornada %>
+	          </td>
+
+			<td class="name_and_date">
+				<%= cast.concept %>
+				<span class="date">
+					<%= nice_day_of_week cast.starts_at %>
+				</span>
+			</td>
+
+	          <td>            
+	            <%= escuadra_image_link_small cast.home unless no_team %>
+	          </td>
+
+			  <td class="name_and_date">
+			  	<%= escuadra_link cast.home unless no_team %>
+			  <span class="date">
+			  	<%= "#{cast.home_ranking} #{cast.home_stage_name}<br/>" unless no_ranking %>
+				<%= "W#{the_previous[0]}" if (the_previous.length > 0) %>
+			  </span>
+			  </td>
+
+	          <!-- <td>            
+	            <%#= escuadra_image_link_small cast.home unless no_team %>
+	          </td> -->
+
+	          <!-- <td>
+				<%#= escuadra_link cast.home unless no_team %>
+			  </td> -->
+
+			  <td>
+				<%= cast_form.text_field :home_score, :class => 'text_tiny_score', :align => "center" %>
+			  </td>
+			
+			  <td al>&nbsp;vs.&nbsp;</td>
+
+			  <td>
+				<%= cast_form.text_field :away_score, :class => 'text_tiny_score', :align => "center" %>
+			  </td>
+
+			  <td class="name_and_date">
+			  	<%= escuadra_link cast.away unless no_team %>
+			  <span class="date">
+			  	<%= "#{cast.away_ranking} #{cast.away_stage_name}<br/>" unless no_ranking %>
+				<%= "W#{the_previous[1]}" if (the_previous.length > 0) %>
+			  </span>
+			  </td>
+
+			  <td>
+	            <%= escuadra_image_link_small cast.away unless no_team %>
+			  </td>
+						
+	          <!-- <td>
+				<%#= escuadra_link cast.away unless no_team %>
+			  </td>
+		
+			  <td>
+	            <%#= escuadra_image_link_small cast.away unless no_team %>
+			  </td> -->
+			
+		       <td class="last">&nbsp;</td>
+
+	        </tr>          
+        
+			<% end -%>
+
+		<% end -%>
+		
+		<table class="table" id="<%= get_the_controller.gsub(' ','_') %>">
+
+	        <tr>
+		<!-- <div class="clear"></div>  -->
+
+		<!-- <div class="challenge navform"> -->
+			<%= submit_tag @challenge.new_record? ? control_label('create') : control_label('edit'), 
+					:class => "button" %> <%= label_name(:or) %> <%= link_to label_name(:cancel), challenges_path %>
+		<!-- </div> -->
+		
+		</tr>
+		</table>
+		
+		<% end -%>
+		
+      </table>
+
+	
+		</div>
+		</div>
+	</div>
+	
+<% content_for :sidebar, render(:partial => 'shared/invite') -%>
+<% content_for :sidebar, render(:partial => 'shared/share_object') -%>

@@ -1,16 +1,119 @@
 class Teammate < ActiveRecord::Base
   
-  belongs_to :user
-  belongs_to :manager,    :class_name => "User", :foreign_key => "manager_id"
-  belongs_to :group,      :class_name => "Group", :foreign_key => "group_id"
-  belongs_to :tournament, :class_name => "Tournament", :foreign_key => "tournament_id"
+  belongs_to    :user
+  belongs_to    :manager,       :class_name => "User",        :foreign_key => "manager_id"
+  belongs_to    :group,         :class_name => "Group",       :foreign_key => "group_id"
+  belongs_to    :tournament,    :class_name => "Tournament",  :foreign_key => "tournament_id"
+  
+  belongs_to    :item,          :polymorphic => true
   
   validates_presence_of :user_id, :manager_id
   
   before_create :make_teammate_code 
-  after_create  :send_manager_join
-  before_destroy :send_manager_leave 
+  # after_create  :send_manager_join
+  # before_destroy :send_manager_leave 
   
+  after_create    :send_manager_join_item
+  before_destroy  :send_manager_leave_item
+  
+  # migrate group to an item based teammate
+  def self.create_teammate_join_item(join_user, manager, item)
+    
+    return if join_user == manager    
+    @role_user = RolesUsers.find_item_manager(item)
+    @manager = User.find(@role_user.user_id)
+
+    if @manager == manager 
+      if self.user_item_exists?(join_user, item)
+        transaction do
+          create(:user => join_user, :manager => @manager, :item_id => item.id, :item_type => item.class.to_s, :status => 'pending')
+          create(:user => @manager, :manager => join_user, :item_id => item.id, :item_type => item.class.to_s, :status => 'requested')
+        end
+      end
+    end
+
+  end
+  
+  def self.create_teammate_leave_item(leave_user, manager, item)
+    @role_user = RolesUsers.find_item_manager(item)
+    @manager = User.find(@role_user.user_id) 
+
+    # if @manager == manager or leave_user == manager
+      self.breakup_item(leave_user, manager, item)   
+
+      leave_user.has_no_role!(:member, item)
+
+      case item.class.to_s
+      when "Group"
+        GroupsUsers.leave_team(leave_user, item)  
+        Scorecard.set_archive_flag(leave_user, item, true)
+        Match.set_archive_flag(leave_user, item, true)
+
+      when "Challenge"
+        ChallengesUsers.leave_item(leave_user, item)
+        Standing.set_archive_flag(leave_user, item, true)
+        Cast.set_remove_cast(leave_user, item)   
+        Fee.set_archive_flag(leave_user, item, item, true)
+
+      else
+      end
+    # end
+    
+  end
+
+  def self.create_teammate_item_details(requester, approver, item)
+    self.accept_item(requester, approver, item)
+    approver.has_role!(:member, item)
+    
+    case item.class.to_s
+    when "Group"
+      GroupsUsers.join_team(approver, item) 
+      GroupsUsers.join_team(requester, item)
+
+      Scorecard.create_user_scorecard(approver, item)
+      Scorecard.create_user_scorecard(requester, item)
+      Scorecard.set_archive_flag(approver, item, false)
+
+      item.schedules.each do |schedule|
+        Match.create_schedule_match(schedule)
+        Fee.create_user_fees(schedule)
+      end
+
+      Match.set_archive_flag(approver, item, false)
+      
+    when "Challenge"
+        ChallengesUsers.join_item(approver, item) 
+        ChallengesUsers.join_item(requester, item)
+        Standing.create_cup_challenge_standing(item)
+        Cast.create_challenge_cast(item) 
+        Fee.create_user_challenge_fees(item)  
+        Standing.set_archive_flag(requester, item, false)
+        Fee.set_archive_flag(requester, item, item, false)    
+    else
+    end
+       
+  end
+  
+  def self.accept_item(user, manager, item)
+    transaction do
+      accept_one_item(user, manager, item, Time.zone.now)
+      accept_one_item(manager, user, item, Time.zone.now)
+    end
+  end
+    
+  def self.find_user_item(user, item)
+    find(:first, :conditions => ["user_id = ? and item_id = ? and item_type = ?", user.id, item.id, item.class.to_s])
+  end
+  
+  def self.find_user_manager_item(user, manager, item)
+    find(:first, :conditions => ["user_id = ? and manager_id = ? and item_id = ? and item_type = ?", user.id, manager.id, item.id, item.class.to_s])
+  end
+  
+  def self.user_item_exists?(user, item)
+    find_by_user_id_and_item_id_and_item_type(user, item.id, item.class.to_s).nil?
+  end
+    
+  # original team join methods
   def self.create_teammate_join_team(group, mate, manager)
     @role_user = RolesUsers.find_team_manager(group)
     @manager = User.find(@role_user.user_id)
@@ -27,62 +130,25 @@ class Teammate < ActiveRecord::Base
     Scorecard.set_archive_flag(leave_user, group, true)
     Match.set_archive_flag(leave_user, group, true)
   end
-  
-  def self.create_teammate_join_tour(tournament, mate, manager)
-    @role_user = RolesUsers.find_tour_manager(tournament)
-    @manager = User.find(@role_user.user_id)
-    Teammate.join_tour(mate, manager, tournament)
-    @teammate = Teammate.find_by_user_id_and_tournament_id(mate, tournament)    
-  end
-  
-  def self.create_teammate_leave_tour(tournament, leave_user)
-    @role_user = RolesUsers.find_tour_manager(tournament)
-    @manager = User.find(@role_user.user_id) 
-    TournamentsUsers.leave_tour(leave_user, tournament)
-    Teammate.breakup_tour(leave_user, @manager, tournament)
-    leave_user.has_no_role!(:member, tournament)
-    # Standing.set_archive_flag(leave_user, tournament, true)
-    # Clash.set_archive_flag(leave_user, tournament, true)
-  end
-    
+
   def self.create_teammate_details(requester, approver, group)
     self.accept(requester, approver, group)
-    
+
     GroupsUsers.join_team(approver, group) 
     GroupsUsers.join_team(requester, group)
-    
+
     Scorecard.create_user_scorecard(approver, group)
     Scorecard.create_user_scorecard(requester, group)
     Scorecard.set_archive_flag(approver, group, false)
 
     approver.has_role!(:member, group)
-    
+
     group.schedules.each do |schedule|
       Match.create_schedule_match(schedule)
       Fee.create_user_fees(schedule)
     end
-    
-    Match.set_archive_flag(approver, group, false)    
-  end
-  
-  def self.create_teammate_details_tour(requester, approver, tournament)
-    self.accept_tour(requester, approver, tournament)
-    
-    TournamentsUsers.join_tour(approver, tournament) 
-    TournamentsUsers.join_tour(requester, tournament)
-    
-    # Standing.create_user_standing(approver, tournament)
-    # Standing.create_user_standing(requester, tournament)
-    # Standing.set_archive_flag(approver, tournament, false)
 
-    approver.has_role!(:member, tournament)
-    
-    # tournament.meets.each do |meet|
-    #   Clash.create_meet_clash(meet)
-    #   Fee.create_user_fees(meet)
-    # end
-    
-    # Clash.set_archive_flag(approver, tournament, false)    
+    Match.set_archive_flag(approver, group, false)    
   end
       
   # Return true if the users are (possibly pending) teammates.
@@ -94,11 +160,7 @@ class Teammate < ActiveRecord::Base
   def self.group_exists?(user, group)
     not find_by_user_id_and_group_id(user, group).nil?
   end
-  
-  def self.tour_exists?(user, tournament)
-    not find_by_user_id_and_tournament_id(user, tournament).nil?
-  end
-  
+ 
   # Record a pending manager request.
   def self.request(user, manager)
     unless user == manager or Teammate.exists?(user, manager)
@@ -119,28 +181,11 @@ class Teammate < ActiveRecord::Base
     end
   end
   
-  def self.join_tour(user, manager, tournament)
-    unless user == manager or Teammate.tour_exists?(user, tournament)
-      transaction do
-        create(:user => user, :manager => manager, :tournament => tournament, :status => 'pending')
-        create(:user => manager, :manager => user, :tournament => tournament, :status => 'requested')
-      end
-    end
-  end
-  
   def self.accept(user, manager, group)
     transaction do
       accepted_at = Time.zone.now
       accept_one_team(user, manager, group, accepted_at)
       accept_one_team(manager, user, group, accepted_at)
-    end
-  end
-
-  def self.accept_tour(user, manager, tournament)
-    transaction do
-      accepted_at = Time.zone.now
-      accept_one_tour(user, manager, tournament, accepted_at)
-      accept_one_tour(manager, user, tournament, accepted_at)
     end
   end
   
@@ -153,14 +198,13 @@ class Teammate < ActiveRecord::Base
       end
     end
   end
-
-  def self.breakup_tour(user, manager, tournament)
-    if Teammate.exists?(user, manager)
-      transaction do    
-        destroy(find_by_user_id_and_manager_id_and_tournament_id(user, manager, tournament)) 
-        destroy(find_by_user_id_and_manager_id_and_tournament_id(manager, user, tournament)) 
-      end
-    end
+ 
+  def self.breakup_item(leave_user, manager, item)
+      @teammates = Teammate.find(:all, 
+            :conditions => ["item_id = ? and item_type = ? and ((user_id = ? and manager_id = ?) or (user_id = ? and manager_id = ? ))",
+              item.id, item.class.to_s, leave_user.id, manager.id, manager.id, leave_user.id])
+      
+      @teammates.each {|teammate| teammate.destroy}
   end
   
   protected    
@@ -190,14 +234,17 @@ class Teammate < ActiveRecord::Base
     end       
   end 
   
-  # Update the db with one side of an accepted teammates request.
-  def self.accept_one_side(user, manager, accepted_at)
-    request = find_by_user_id_and_manager_id(user, manager)
-    request.status = 'accepted'
-    request.accepted_at = accepted_at
-    request.teammate_code = nil
-    request.save!
+  def send_manager_join_item
+    @send_mail ||= self.manager.teammate_notification?   
+    return unless @send_mail 
+    UserMailer.send_later(:deliver_manager_join_item, self, self.manager, self.user) if self.status == "pending"   
   end
+
+  def send_manager_leave_item
+    @send_mail ||= self.manager.teammate_notification?   
+    return unless @send_mail 
+    UserMailer.send_later(:deliver_manager_leave_item, self, self.user, self.manager) if self.status == "pending" 
+  end 
   
   def self.accept_one_team(user, manager, group, accepted_at)
     request = find_by_user_id_and_manager_id_and_group_id(user, manager, group)
@@ -207,11 +254,17 @@ class Teammate < ActiveRecord::Base
     request.save!
   end
 
-  def self.accept_one_tour(user, manager, tournament, accepted_at)
-    request = find_by_user_id_and_manager_id_and_tournament_id(user, manager, tournament)
-    request.status = 'accepted'
-    request.accepted_at = accepted_at
-    request.teammate_code = nil
-    request.save!
+  def self.accept_one_item(user, manager, item, accepted_at)
+    @role_user = RolesUsers.find_item_manager(item)
+    @manager = User.find(@role_user.user_id)
+
+    if @manager == user or @manager == manager
+      request = self.find_user_manager_item(user, manager, item) 
+      request.status = 'accepted'
+      request.accepted_at = accepted_at
+      request.teammate_code = nil
+      request.save!
+    end
   end
+
 end

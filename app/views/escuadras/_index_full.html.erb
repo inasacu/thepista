@@ -1,0 +1,41 @@
+<h2 class="title"><%= get_collection_label(@escuadras) %></h2>
+
+<div class="inner">
+	
+	<table class="table" id="<%= get_the_controller.gsub(' ','_') %>">
+
+		<tr>             
+			<th class="first">&nbsp;</th>
+			<th><%=label_name(:name) %></th>
+			<th class="last">&nbsp;</th>
+		</tr>
+
+	  <% @escuadras.each do |escuadra|	 
+			the_label = label_name(:escuadras_destroy)
+			the_confirmation = "#{ the_label }?" 			
+		-%>
+
+	  <tr>  
+			<td>
+				<%= escuadra_image_link_small escuadra %>
+			</td>
+
+			<td class="name_and_date">
+				<%= escuadra_link(escuadra) %>
+			</td>
+
+	       <td class="last">
+				<% if current_user.is_manager_of?(@cup) %>
+				<span class="action">
+					<%= link_to label_name(:escuadras_edit), edit_escuadra_path(escuadra) %><br/>
+					<%= link_to(the_label, escuadra_path(escuadra), :method => :delete, :confirm => the_confirmation) %>	
+				</span>
+				<% end -%>
+	       </td>
+	  </tr>   
+ 
+	  <% end -%>
+
+	</table>	
+
+</div>

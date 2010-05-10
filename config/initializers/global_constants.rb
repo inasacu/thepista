@@ -6,9 +6,10 @@ TITLE_RANGE_LENGTH = 3..75
 SUBJECT_RANGE_LENGTH = 3..75
 BODY_RANGE_LENGTH = 3..2000
 
-
+MAJOR_EVENT_TWO_MONTHS = Time.zone.now - 1.day..Time.zone.now + 60.days 
 LAST_WEEK_TO_TODAY = Time.zone.now - 7.days..Time.zone.now + 1.day
 ONE_WEEK_FROM_TODAY = Time.zone.now - 1.day..Time.zone.now + 7.days
+ONE_MONTH_FROM_TODAY = Time.zone.now - 1.day..Time.zone.now + 32.days
 LAST_WEEK = Time.zone.now - 7.days
 PAST_THREE_DAYS = Time.zone.now - 3.days
 LAST_THREE_DAYS = Time.zone.now - 3.days..Time.zone.now + 1.day
@@ -42,6 +43,7 @@ ROSTERS_PER_PAGE = 16
 INVITATIONS_PER_PAGE = 15
 PAYMENTS_PER_PAGE = 15
 CLASSIFIEDS_PER_PAGE = 25
+CUPS_PER_PAGE = 48
 
 #variables for login
 SHOW_OPENID_LOGIN = false
@@ -81,8 +83,8 @@ EMAIL_REGEX = /\A[A-Z0-9\._%+-]+@([A-Z0-9-]+\.)+[A-Z]{2,4}\z/i
 FEED_SIZE = 1
 GLOBAL_FEED_SIZE = 8
 
-LOOKING_USERS = 30
-LOOKING_GROUPS = 30
+LOOKING_USERS = 24
+LOOKING_GROUPS = 24
 
 MAX_NAME = 40
 MAX_DESCRIPTION = 5000

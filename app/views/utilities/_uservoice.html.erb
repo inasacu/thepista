@@ -1,5 +1,4 @@
-<%# unless development? %>
-	<!--<script src="http://haypista.uservoice.com/pages/general/widgets/tab.js?alignment=right&amp;color=f00" type="text/javascript"></script>-->
+<% if test? %>
 	
 	<script type="text/javascript">
 	var uservoiceOptions = {
@@ -26,4 +25,4 @@
 	window.onload = (typeof window.onload != 'function') ? _loadUserVoice : function() { _loadSuper(); _loadUserVoice(); };
 	</script>
 	
-<%# end %>
+<% end %>

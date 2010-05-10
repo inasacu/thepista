@@ -1,0 +1,79 @@
+<div class="columns"> 
+
+  <div class="column left"> 	
+
+  <div class="group">
+    <%= f.label :name, label_name('name'), :class => :label %>
+    <%= f.text_field :name, :class => 'text_field' %><br />
+    <span class="description"><%#= control_label('name_description') %></span>
+  </div>
+
+  <div class="group">
+	  <%= f.label :time_zone, label_name('time_zone'), :class => :label %>
+	  <%= f.time_zone_select :time_zone, ActiveSupport::TimeZone.us_zones %><br />
+	  <span class="description"><%= label_name('time_zone', 'description') %></span>
+  </div>
+
+  <!-- <div class="group">
+    <%#= f.label :starts_at, label_name('starts_at'), :class => :label %>
+    <%#= f.datetime_select :starts_at, :class => 'datetime_select' %><br />
+    <span class="description"><%#= label_name('starts_at', 'description') %></span>
+  </div> -->
+
+  <!-- <div class="group">
+    <%#= f.label :ends_at, label_name('ends_at'), :class => :label %>
+    <%#= f.datetime_select :ends_at, :class => 'datetime_select' %><br />
+    <span class="description"><%#= label_name('ends_at', 'description') %></span>
+  </div> -->
+
+  <!-- <div class="group">
+    <%#= f.label :reminder_at, label_name('reminder_at'), :class => :label %>
+    <%#= f.datetime_select :reminder_at, :class => 'datetime_select' %><br />
+    <span class="description"><%#= label_name('reminder_at', 'description') %></span>
+  </div> -->
+
+  <div class="group">
+    <%= f.label :description, label_name('description'), :class => :label %>
+    <%= f.text_area :description, :class => 'text_area' %><br />
+    <span class="description"><%= label_name('description') %></span>
+  </div>
+
+  </div> 
+
+  <div class="column right"> 
+
+  <div class="group">
+    <%= f.label :fee_per_game, label_name('fee_per_game'), :class => :label %>
+    <%= f.text_field :fee_per_game, :class => 'textscore' %><br />
+    <span class="description"><%= label_name('fee_per_game', 'description') %></span>
+  </div>
+
+  <div class="group">
+    <%= f.label :player_limit, label_name('player_limit'), :class => :label %>
+    <%= f.text_field :player_limit, :class => 'textscore' %><br />
+    <span class="description"><%= label_name('player_limit', 'description') %></span>
+  </div>
+
+  <div class="group">
+    <%#= f.label :player_limit, label_name('player_limit'), :class => :label %>
+    <%#= f.text_field :player_limit, :class => 'textscore' %><br />
+    <span class="description"><%#= label_name('player_limit', 'description') %></span>
+  </div>
+
+  <div class="group">
+    <%= f.label :conditions, label_name('conditions'), :class => :label %>
+    <%= f.text_area :conditions, :class => 'text_area' %><br />
+    <span class="description"><%= label_name('conditions') %></span>
+  </div>
+
+  </div> 
+
+</div>
+<%= f.hidden_field :cup_id %>
+        
+<div class="clear"></div> 
+
+<div class="challenge navform">
+	<%= submit_tag @challenge.new_record? ? control_label('create') : control_label('edit'), 
+			:class => "button" %> <%= label_name(:or) %> <%= link_to label_name(:cancel), challenges_path %>
+</div>

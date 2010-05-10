@@ -1,0 +1,30 @@
+<div class="columns"> 
+
+  <div class="column left"> 	
+
+  <div class="group">
+    <%= f.label :name, label_name('name'), :class => :label %>
+    <%= f.text_field :name, :class => 'text_field' %><br />
+    <span class="description"><%= control_label('name_description') %></span>
+  </div>
+
+  </div> 
+
+  <div class="column right"> 
+
+	<div class="group">
+	  <%= f.label :photo, label_name('photo'), :class => :label %>
+	  <%= f.file_field :photo, :class => 'text_field' %><br />
+	  <span class="description"><%= label_name('photo', 'description') %></span>
+	</div>
+
+  </div> 
+
+</div>
+        
+<div class="clear"></div> 
+
+<div class="group navform">
+	<%= submit_tag @escuadra.new_record? ? control_label('create') : control_label('edit'), 
+			:class => "button" %> <%= label_name(:or) %> <%= link_to label_name(:cancel), escuadras_url(:id => @cup) %>
+</div>

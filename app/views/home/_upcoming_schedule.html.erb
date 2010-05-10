@@ -1,6 +1,6 @@
 <%
 	Barometer.google_geocode_key = APP_CONFIG['google_api']['key']
-	Barometer.config = { 1 => [:yahoo, :google], 2 => :wunderground }
+	Barometer.config = { 1 => [:google, :yahoo], 2 => :wunderground }
 %>
 
 
@@ -54,6 +54,8 @@
 			<%= image_tag('weather_rain.png', options={:style => "height: 20px; width: 20px;"}) if weather.wet? %>
 			<%= image_tag('weather_sun.png', options={:style => "height: 20px; width: 20px;"}) if weather.sunny? %>
 			<%= image_tag('weather_clouds.png', options={:style => "height: 20px; width: 20px;"}) if weather.windy? %>
+			<%#= image_tag('weather_clouds.png', options={:style => "height: 20px; width: 20px;"}) if weather.day? %>
+			<%#= image_tag('weather_clouds.png', options={:style => "height: 20px; width: 20px;"}) if weather.night? %>
 			<% end -%>
 			<%= marker_link(schedule.group.marker) %><br/>
 			<span class="date">		

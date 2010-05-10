@@ -1,0 +1,18 @@
+<%
+	the_label = label_name(:cups)
+	content_for(:title, the_label)
+%>
+
+<div class="block">
+	<%= render :partial => '/cups/secondary_navigation' %>  
+	<div class="content">  
+			<% if object_counter(@cups) > 0 %>
+				<%= render :partial => '/cups/index_full' %>
+			<% else %>
+				<%= render :partial => '/cups/index_blank' %>
+			<% end %>
+	</div>	
+</div>
+
+<% content_for :search, render(:partial => 'shared/search') -%>
+<% content_for :sidebar, render(:partial => 'sidebar') if current_user.is_maximo? -%>

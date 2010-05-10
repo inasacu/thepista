@@ -1,52 +1,115 @@
 class Standing < ActiveRecord::Base
-  
-    belongs_to  :user
-    belongs_to  :round,           :dependent => :destroy
-    belongs_to  :tournament,      :dependent => :destroy
 
-    # calculate standing for all clashes for round
-    def self.calculate_round_standing(round)
-      round.standings.each do |standing| 
-          @clashes = Clash.find(:all, :conditions => ["meet_id in (?) and user_id = ?", round.meets, standing.user])  
-          update_round_user_standing(standing, @clashes)
+  belongs_to 	:cup
+  belongs_to	:challenge
+  belongs_to  :item,          :polymorphic => true
+    
+  # method section
+  def self.create_cup_escuadra_standing(cup)  
+    cup.escuadras.each do |escuadra|
+      Standing.create_cup_item_standing(cup, escuadra)
+    end
+  end
+
+  def self.create_cup_challenge_standing(challenge)  
+    challenge.users.each do |user|
+      Standing.create_cup_challenge_item_standing(challenge.cup, challenge, user)
+    end
+  end 
+
+  # calculate standing for all game in item
+  def self.calculate_cup_standing(cup)  
+    escuadras = []
+    cup.escuadras.each {|escuadra| escuadras << escuadra.id} 
+    @standings = Standing.find(:all, :conditions =>["cup_id = ? and item_id in (?) and item_type = ?", cup, escuadras, 'Escuadra'])
+
+    @standings.each do |standing|  
+      @games = Game.find_all_games(standing)
+      update_cup_standing(standing, @games)
+    end
+
+    @group_stages = Standing.find(:all, :select => "distinct cup_id, group_stage_name", :conditions =>["cup_id = ?", cup.id], :order => "group_stage_name")
+    @group_stages.each do |group_stage|    
+      self.update_cup_group_stage_ranking(group_stage)
+    end    
+  end
+ 
+  def self.update_cup_standing(standing, games)
+    # default variables      
+    wins, losses, draws = 0, 0, 0
+    played, the_points, the_games = 0, 0, 0
+    goals_for, goals_against = 0, 0
+
+    # calculate score for home user
+    games.each do |game|
+      if (game.home_score.to_i == game.away_score.to_i and game.home_id == standing.item_id)
+        draws += 1
+      else
+        wins += 1 if (game.home_score.to_i > game.away_score.to_i and game.home_id == standing.item_id)                 
+        losses += 1 if (game.home_score.to_i < game.away_score.to_i and game.home_id == standing.item_id)
       end
     end
 
-    # calculate standings for user in round
-    def self.update_round_user_standing(standing, clashes)  
-      wins, losses, draws, the_points, played = 0, 0, 0, 0, 0
-      clashes.each do |clash|
-        if (clash.user_x_two == 99999)
-          draws += 1
-        else
-          wins += 1 if clash.one_x_two == clash.user_x_two                  
-          losses += 1 if clash.one_x_two != clash.user_x_two
-        end
-      end 
-
-      # ticker all the results for the user, round conbination and points relate to team activity
-      the_points = (wins * standing.round.tournament.points_for_win) + 
-                   (draws * standing.round.tournament.points_for_draw) + 
-                   (losses * standing.round.tournament.points_for_lose)
-
-      played = wins + draws + losses
-      
-      # update standing with all calculations
-      standing.update_attributes(:wins => wins, :losses => losses, :draws => draws, :points => the_points, :played => played)
+    # calculate score for away user
+    games.each do |game|
+      if (game.home_score.to_i == game.away_score.to_i and game.away_id == standing.item_id)
+        draws += 1
+      else
+        wins += 1 if (game.home_score.to_i < game.away_score.to_i and game.away_id == standing.item_id)                 
+        losses += 1 if (game.home_score.to_i > game.away_score.to_i and game.away_id == standing.item_id)
+      end
     end
 
-    def self.update_round_user_ranking(round)      
-      @standings = Standing.find(:all, :conditions =>["round_id = ? and user_id > 0 and played > 0 and archive = false", round.id], 
-                                 :order => 'points desc, standings.points desc')
+    games.each do |game|
+      if game.home_id == standing.item_id
+        goals_for += game.home_score.to_i 
+        goals_against += game.away_score.to_i 
+      else
+        goals_for += game.away_score.to_i
+        goals_against += game.home_score.to_i 
+      end
+    end
 
+    # ticker all the results for the user, group conbination and points relate to team activity
+    the_points = (wins * standing.cup.points_for_win) + 
+    (draws * standing.cup.points_for_draw) + 
+    (losses * standing.cup.points_for_lose)
+
+    the_games = wins + losses + draws
+
+    # update standing with all calculations
+    standing.update_attributes(:wins => wins, :losses => losses, :draws => draws, 
+                               :points => the_points, :goals_for => goals_for, :goals_against => goals_against,
+                               :played => the_games)
+  end
+
+  def self.update_cup_group_stage_ranking(standing)
+    # default variables
+    ranking = 0
+    
+    @standings = Standing.find(:all, :conditions =>["cup_id = ? and group_stage_name = ?", standing.cup_id, standing.group_stage_name], 
+    :order => "points desc, (goals_for-goals_against) desc")
+    
+     @standings.each do |standing| 
+        ranking += 1 if standing.played > 0
+        standing.update_attribute(:ranking, ranking)
+      end      
+  end
+
+  def self.update_cup_challenge_item_ranking(cup, item='User')
+    cup.challenges.each do |challenge|
       # default variables
       first, ranking, past_points, last = 0, 0, 0, 0
+
+      # ranking
+      @standings = Standing.find(:all, :conditions =>["challenge_id = ? and item_type = ? and archive = false", challenge, item], :order => 'points desc')
+
       @standings.each do |standing| 
         points ||= 0
         points = standing.points
 
-        if first != standing.round_id 
-          first, ranking, past_points, last = standing.round_id, 0, 0, 1
+        if first != standing.item_id 
+          first, ranking, past_points, last = standing.item_id, 0, 0, 1
         end 
 
         if (past_points == points) 
@@ -56,45 +119,74 @@ class Standing < ActiveRecord::Base
           last = 1          
         end
         past_points = points  
+
         standing.update_attribute(:ranking, ranking)
+
       end
     end
-
-    # # calculate number of games played and assigned for user
-    # def self.calculate_user_played_assigned_standing(user, round)
-    #   @standing = Standing.find(:first, :conditions => ["user_id = ? and round_id = ?", user.id, round.id])
-    #   @standing.update_attribute(:played, Clash.user_played(@standing).total)
-    #   @standing.update_attribute(:assigned, Clash.user_assigned(@standing).total) 
-    # end
-
-    # archive or unarchive a standing and recalculate round standings
-    def self.set_archive_flag(user, round, flag)
-      @standing = Standing.find(:first, :conditions => ["user_id = ? and round_id = ?", user.id, round.id])
-      @standing.update_attribute(:archive, flag)
-      self.calculate_round_standing(round)
-    end
-
-    # record if user and round do not exist
-    def self.create_user_standing(user, round)
-      self.create!(:round_id => round.id, :user_id => user.id) if self.user_round_exists?(user, round)
-    end
-
-    # Return true if the user and round nil
-    def self.user_round_exists?(user, round)
-      find_by_round_id_and_user_id(round, user).nil?
-    end
-
-    def self.archive?
-      return self.archive
-    end
-
-    def self.users_round_standing(round)
-       find(:all, 
-                :joins => "LEFT JOIN users on users.id = standings.user_id",
-                :conditions => ["round_id in (?) and standings.archive = false", round],
-                :order => "round_id, points DESC, ranking, users.name")
-    end
-
   end
 
+  # record if user and group do not exist
+  def self.create_cup_challenge_item_standing(cup, challenge, item)
+    self.create!(:cup => cup, :challenge => challenge, :item => item) if self.cup_challenge_item_exists?(cup, challenge, item)
+  end
 
+  # record if cup and item do not exist
+  def self.create_cup_item_standing(cup, item)
+    self.create!(:cup_id => cup, :item => item) if self.cup_item_exists?(cup, item)
+  end
+  
+  def self.cup_escuadras_standing(cup)
+    escuadras = []
+    cup.escuadras.each {|escuadra| escuadras << escuadra.id} 
+    find(:all, :joins => "LEFT JOIN escuadras on escuadras.id = standings.item_id",
+    :conditions => ["cup_id = ? and item_id in (?) and item_type = ? and standings.archive = false", cup, escuadras, 'Escuadra'],
+    :order => "group_stage_name, points desc, (goals_for-goals_against) desc, escuadras.name")
+  end
+  
+  def self.cup_challenge_users_standing(challenge) 
+    find(:all, 
+    :joins => "LEFT JOIN users on users.id = standings.item_id",
+    :conditions => ["cup_id = ? and challenge_id = ? and standings.archive = false", challenge.cup, challenge],
+    :order => "points desc, users.name")
+  end
+  
+  def self.cup_challenges_standing(challenge)
+    find(:all, :conditions => ["challenge_id = ? and standings.archive = false",  challenge], :order => "points desc")
+  end
+  
+  def self.cup_challenges_user_standing(cup)
+    cup.challenges.each do |challenge|
+      challenge.users.each do |user|
+        @standings = Standing.find(:all, :conditions => ["challenge_id = ? and item_id = ? and item_type = ?", challenge.id, user.id, user.class.to_s])
+        @standings.each do |standing|
+          points = 0
+
+          cast = Cast.find(:first, :select => "sum(points) as points", :conditions => ["challenge_id = ? and user_id = ?", challenge, user])
+          points = cast.points.to_i unless cast.nil?    
+
+          standing.points = points
+          standing.save!
+        end
+      end
+    end
+  end
+  
+  # archive or unarchive a standing
+  def self.set_archive_flag(item, challenge, flag)
+    @standing = Standing.find(:first, :conditions => ["challenge_id = ? and item_id = ? and item_type = ?", challenge.id, item.id, item.class.to_s])
+    @standing.update_attribute(:archive, flag)
+  end
+
+  private
+  # Return true if the user and group nil
+  def self.cup_challenge_item_exists?(cup, challenge, item)
+    find(:first, :conditions => ["cup_id = ? and challenge_id = ? and item_id = ? and item_type = ?", cup, challenge, item, item.class.to_s]).nil?
+  end
+
+  # Return true if the user and group nil
+  def self.cup_item_exists?(cup, item)
+    find_by_cup_id_and_item_id_and_item_type(cup, item, item.class.to_s).nil?
+  end
+
+end

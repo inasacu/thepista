@@ -17,15 +17,32 @@ ge:
      addresses: Addresses   
      administrator: Admin   
      ads: ads   
-     afterwards: afterwards 
+     afterwards: afterwards
+     agenda:  Agenda
+     agendas:  Agendas
+     agendas_calendar:  Calendar
+     agendas_create:  Create Agenda  
+     agendas_index:  Agendas
+     agendas_new:  Create Agenda    
+     agendas_no:  No agendas to display.
      ago:  "{{count}} ago"      
      all_group:  All Teams 
+     all_scorecard:  All Scorecards
      all_tournament:  All Tournaments  
      all_user:   All Players
+     all_venue:  All Sport Centers
      already_exist: already exist
-     and: and   
+     and: and
      announcement: Announcement
      announcements: Announcements
+     announcements_create:  New Announcement
+     announcements_delete:  Delete this Announcement
+     announcements_index:  Announcements 
+     announcements_list:  Previous Announcements
+     announcements_new:    New Announcement
+     announcements_no:  No Announcements to display.
+     announcements_option: Options
+     announcements_previous:  Previous Announcements
      archive: archive 
      archive_list_schedules:  Previous Season
      are_you_sure:  Are you sure? 
@@ -140,6 +157,7 @@ ge:
      debit_amount: Charges  
      debit_amount_description: What needs to be Payed
      debit_total:  Total Charges
+     debit_to_group:  Debt owed to your team
      debits: Charges   
      default_reliable: Reliable   
      defense:  Defense
@@ -250,7 +268,8 @@ ge:
      exit_group: Opt-out of the Team   
      exit_tournament: Opt-out of the Tournament   
      explore:  Explore
-     facility: Instalations   
+     facility: Instalations 
+     facilitiess_create:  Create Instalation  
      failed_login: Failed Login      
      false_value: "No"
      feature: Feature
@@ -401,14 +420,18 @@ ge:
      has_user_scorecard_played:
          zero: "Has not participated in any events." 
          one:  "Has participated in 1 event." 
-         other: "Has participated in {{count}} events."                
-     has_left:  "{{count}} until game"
+         other: "Has participated in {{count}} events."   
+     has_left:
+         zero: "Zero until game" 
+         one:  "{{count}} until game"
+         other: "{{count}} until game"
      has_not_been_sent: has not been sent correctly.   
      has_updated_scorecard: Has updated the <strong>SCORECARD</strong> with   
      have_an_account: If you have an account  
      have_changed_language: Language has been changed
      help: Help 
      help_amateur:  Helping Amateurs... 
+     hide:  Hide
      hi_email_header: Hi   
      High: High   
      home: Home   
@@ -504,7 +527,8 @@ ge:
      modified_profile: Edit option to hide profile for   
      modified_reliable: Edit reliability for    
      modo: HayPista wants to help you organize your team or find where to play...   
-     Monday: Monday        
+     Monday: Monday 
+     more:  more       
      must_be_logged_in:  You need to be logged in to access this page
      must_be_logged_out:  You need to logged out to access this page
      must_be_numeric: Should be a numeric value
@@ -614,6 +638,7 @@ ge:
      notice: NOTICE   
      notification: Notice   
      notifications: Notices   
+     office_hours:  Office Hours
      open: Open   
      openid_identifier: OpenID URL
      open_id_explanation: "The OpenID authentication system is a safe, free and very easy to use.  It will enable identification of many web pages when you enter your OpenID URL, it also gives you access to sites that support OpenID "  
@@ -626,6 +651,7 @@ ge:
      openid_user_not_saved: Information about the new user has NOT been save   
      openid_user_saved: Information about the new user has been save correctly
      optional: optional   
+     options: Options
      or: or   
      or_use: ...or user   
      organize:  Organize
@@ -667,11 +693,11 @@ ge:
      percentage_full: Percent        
      petition: Request 
      petition_at:  Requested Date
-     petition_join_team_accept:  Accept
-     petition_join_team_decline: Decline
+     petition_join_item_accept:  Accept
+     petition_join_item_decline: Decline
      petition_no:  No Requests to show.
      petition_to_join_group: Request to join a 
-     petition_to_join_tournament: Request to join a
+     petition_to_join: Request to join a
      petition_to_join_round: Request to join a
      petition_pending: Pending Request   
      petition_to_join: Request to join a 
@@ -715,6 +741,7 @@ ge:
      pre_match: On the Squad   
      preference: Preferences
      previous: "Previous"
+     previous_agendas:  Previous Agendas
      previous_ranking: P.R.   
      previous_ranking_full: Previous Ranking
      previous_schedule: Previous Event   
@@ -828,6 +855,7 @@ ge:
      select_venue: New Sport Center  
      select_contacts:  Select the contacts you want to invite from this list.
      self_description: "(Escribe algo sobre ti...)"       
+     send:  Send
      send_announcement: Send an Announcement   
      send_credit: Send a Payment   
      send_debit: Send a Charge   
@@ -840,10 +868,7 @@ ge:
      send_clash: Send the Results
      send_match: Send the Results
      send_message: Send a Message 
-     send_message_to_group: Send a Message  
-     send_message_to_tournament: Send a Message 
-     send_message_to_round: Send a Message
-     send_message_to_meet: Send a Message     
+     send_message_to: Send a Message  
      send_name: Send a Name   
      send_note: Send a Note   
      send_notification: Send a Notice   
@@ -877,6 +902,10 @@ ge:
      share_in_twitter: "Share on Twitter"
      share_in_menealo: "Share on Menéalo"   
      share_in_linkedin: "Share on LinkedIn"
+     share_in_digg: "Share on Digg"
+     share_in_delicious: "Share on Delicious"
+     share_in_buzz: "Share on Buzz"
+     share_in_email: "Share with an Email"
      should_be_positive: should be positive   
      show: Show   
      show_address: Show the Address   
@@ -934,6 +963,8 @@ ge:
      subscription_at_description: (Last Day to add squad status change for subscriber  ...(ex- 1 day before the event)) 
      subscription_false:  Player does not have a Subscription.
      subscription_true:  Player has a Subscription
+     subscriptions_true:  Players with a Subscription
+     subscriptions_false:  Players without a Subscription
      subscription_updated: Update user subscription.
      successful_login: Logged in successfully 
      successful_logged_in: Logged in successfully...
@@ -967,16 +998,17 @@ ge:
      to_join_email: to join 
      to_join_group: join a team   
      to_join_group_message: Request to join a 
-     to_join_group_message_sent: Request to join has been sent.
+     to_join_item_message_sent: Request to join has been sent.
      to_join_tournament: Join a Tournament 
      to_join_round: Join a Tournament  
      to_leave_group_message: Petición para desapuntarte de
-     to_leave_group_message_sent: Petición para desapuntarte a sido enviada.  
+     to_leave_item_message_sent: Petición para desapuntarte a sido enviada.  
      to_join_tour: Join a Team   
      to_join_tour_message: Request to join a 
      to_join_tour_message_sent: Request to join has been sent.
      to_join_tournament: Join a Tournament 
      to_join_round: Join a Tournament  
+     to_join_venue:  Join a Sport Center
      to_leave_tour_message: Request to opt-out of
      to_leave_tour_message_sent: Request to opt-out has been sent.          
      to_member_of: To teammates of   
@@ -1000,7 +1032,8 @@ ge:
      unauthorized:  Not Authorized.
      unavailable:  Unavailable
      unsuccessful_logged_in:  username or password are incorrect. 
-     upcoming: Upcoming Event   
+     upcoming: Upcoming Event
+     upcoming_agenda:  Upcoming Agenda   
      upcoming_schedule: Upcoming Event   
      upcoming_schedules: Upcoming Events 
      upcoming_meet: Upcoming Event 
@@ -1055,8 +1088,17 @@ ge:
      users_activate:  "It is necessary to activate your account"     
      validate_openid: validate your OpenID   
      venue: Sport Center    
-     Venue: Venue   
-     venues: Sport Centers   
+     Venue: Venue 
+     venues: Sport Centers 
+     venues_create:  Create Sport Center  
+     venues_index:  Sport Centers
+     venues_name_description:  sport center name
+     venues_new:  Sport center name
+     venues_edit:  Edit Sport Center
+     venues_option:  Opciones
+     venues_options_without:  "What options do you have since you are not signed up to any sport center?"
+     venues_starts_at:  Start Time
+     venues_ends_at:  End Time 
      verification_canceled: OpenID verification was cancelled.   
      verification_failed: "The OpenID verification failed, Sorry!"   
      verification_setup: OpenID verification has to be updated.  
@@ -1200,10 +1242,12 @@ ge:
      fee_to_description:  Charges Details
      fee_user_for_group:  Add a change to all players
      fee_user_for_tournament:  Add a change to all players 
+     fees_complete:  All Charges
      fees_create:  New Charge
      fees_destroy: Remove Charge
      fees_index:   Charge
      fees_index_option: Options
+     fees_list:  Charges
      fees_manager_option:  Requires team manager position to view more options.
      fees_new:  New Charge
      fees_no:  No Charge to show.
@@ -1228,6 +1272,7 @@ ge:
      payments_create:  New Payment
      payments_index:   Payments
      payments_index_option: Options
+     payments_list:  Payments
      payments_manager_option:  Requires team manager position to view more options.
      payments_new:  New Payment
      payments_no:  No Payment to show.
@@ -1401,7 +1446,7 @@ ge:
      rounds_new_option: Options
      rounds_no:  No Round to show.
      rounds_none:  No Round.
-     rounds_options_without: "What options do you have since you do not una fase de torneo?"
+     rounds_options_without: "What options do you have since you do not have a tournament round?"
      rounds_option:  Options
      rounds_search: Search for Rounds
      rounds_search_to_join: Search for Round to join. 

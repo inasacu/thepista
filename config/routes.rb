@@ -24,11 +24,12 @@ ActionController::Routing::Routes.draw do |map|
   map.join_team   			    'teammates/:id/join_team/:teammate',    	    :controller => 'teammates',       :action => 'join_team'
   map.leave_team		  	    'teammates/:id/leave_team/:teammate',    	    :controller => 'teammates',       :action => 'leave_team'
   map.join_team_accept	    'teammates/:id/join_team_accept/',            :controller => 'teammates',       :action => 'join_team_accept'
-  map.join_team_decline	    'teammates/:id/join_team_decline/',           :controller => 'teammates',       :action => 'join_team_decline'  
-  map.join_tour   			    'teammates/:id/join_tour/:teammate',    	    :controller => 'teammates',       :action => 'join_tour'
-  map.leave_tour		  	    'teammates/:id/leave_tour/:teammate',    	    :controller => 'teammates',       :action => 'leave_tour'
-  map.join_tour_accept	    'teammates/:id/join_tour_accept/',            :controller => 'teammates',       :action => 'join_tour_accept'
-  map.join_tour_decline	    'teammates/:id/join_tour_decline/',           :controller => 'teammates',       :action => 'join_tour_decline'
+  map.join_team_decline	    'teammates/:id/join_team_decline/',           :controller => 'teammates',       :action => 'join_team_decline' 
+   
+  map.join_item   			    'teammates/:id/join_item/:teammate',    	    :controller => 'teammates',       :action => 'join_item'
+  map.leave_item		  	    'teammates/:id/leave_item/:teammate',    	    :controller => 'teammates',       :action => 'leave_item'
+  map.join_item_accept	    'teammates/:id/join_item_accept',             :controller => 'teammates',       :action => 'join_item_accept'
+  map.join_item_decline	    'teammates/:id/join_item_decline',            :controller => 'teammates',       :action => 'join_item_decline'
   
   map.set_manager     	    'users/:id/set_manager/:group',    		        :controller => 'users',    		    :action => 'set_manager'
   map.remove_manager  	    'users/:id/remove_manager/:group', 		        :controller => 'users',     	    :action => 'remove_manager'
@@ -96,6 +97,10 @@ ActionController::Routing::Routes.draw do |map|
   
   map.hide_announcements    '/hide_announcements',                        :controller => 'javascripts',     :action => 'hide_announcements'
   
+  map.set_score             'games/:id/set_score',                        :controller => 'games',           :action => 'set_score'
+    
+  map.challenge_list			  'challenge_list',			                        :controller => 'challenges',      :action => 'challenge_list'
+  
   map.resources   :user_sessions,   :as => 'repitelo'
   map.resources   :users,           :as => 'jugadores',                   :collection => { :rpx_create => :post, :rpx_associate => :post,
                                                                                             :list => :get, :recent_activity => :get, :search => :get }  
@@ -128,12 +133,19 @@ ActionController::Routing::Routes.draw do |map|
   map.resources   :meets,           :as => 'acontecimiento',              :collection => { :list => :get, :search => :get }
     
   map.resources   :clashes,         :as => 'enfrentamientos'
-  map.resources   :standings,       :as => 'encasillado',                 :collection => { :list => :get }
+  map.resources   :standings,       :as => 'encasillado',                 :collection => { :list => :get, :show_list => :get }
     
   map.resources   :connections
   map.resources   :schedules,                                             :member => { :rate => :post }
   
   map.resources   :announcements,   :as => 'comunicaciones',              :collection => { :list => :get }
+  
+  map.resources   :cups,            :as => 'copas',                       :collection => { :list => :get }
+  map.resources   :games,           :as => 'partidos',                    :collection => { :list => :get }
+  map.resources   :challenges,                                            :collection => { :list => :get }
+  map.resources   :casts,           :as => 'pronostico',                  :collection => { :list => :get }
+  map.resources   :escuadras,                                             :collection => { :list => :get }
+  # map.resources   :stages
   
   # map.resources   :clouds,          :as => 'nube'  
   

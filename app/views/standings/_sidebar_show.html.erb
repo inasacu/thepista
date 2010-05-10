@@ -1,4 +1,4 @@
-<% the_value = @tournament.is_futbol? %>
+<% the_value = @group.is_futbol? %>
 
 <div class="block">
 	<h3><%= control_label('legend') %></h3>
@@ -33,7 +33,7 @@
 			<%= label_name(:games_lost_full) %>
 		<p>
 		
-		<% if @tournament.is_futbol? %>	
+		<% if @group.is_futbol? %>	
 		<p>
 			<b><%= label_name(:goals_scored) %></b>
 			<%= label_name(:goals_scored_full) %>
@@ -77,17 +77,17 @@
 			
 		<p>
 			<b><%= label_name(:points_for_win) %></b>
-			<%= @tournament.points_for_win.round %>
+			<%= @group.points_for_win.round %>
 		</p>
 		
 		<p>
 			<b><%= label_name(:points_for_draw) %></b>
-			<%= @tournament.points_for_draw.round %>
+			<%= @group.points_for_draw.round %>
 		</p>
 		
 		<p>
 			<b><%= label_name(:points_for_lose) %></b>
-			<%= @tournament.points_for_lose.round %>
+			<%= @group.points_for_lose.round %>
 		</p>				
 
 	</div>
@@ -98,15 +98,15 @@
 
 <div class="block">
 
-	<h3><%= label_name(get_the_controller, 'options') %></h3>
+	<h3><%= label_name(:options) %></h3>
 	
 <ul class="navigation">
 <% 
-	if current_user.is_manager_of?(@tournament) 
-		the_confirmation = "#{ label_name(:destroy_schedule) } #{ label_name(:from) } #{@tournament.name}?" 
+	if current_user.is_manager_of?(@group) 
+		the_confirmation = "#{ label_name(:destroy_schedule) } #{ label_name(:from) } #{@group.name}?" 
 %> 
-		<li><%= link_to control_label('archive'), archive_standing_path(:id => @tournament), 
-				:confirm => label_name(:are_you_sure)  if current_user.is_manager_of?(@tournament) %></li>
+		<li><%= link_to control_label('archive'), archive_scorecard_path(:id => @group), 
+				:confirm => label_name(:are_you_sure)  if current_user.is_manager_of?(@group) %></li>
 <% 
 	end 
 %>

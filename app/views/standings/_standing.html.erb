@@ -1,36 +1,48 @@
+<%= stylesheet_link_tag "in_place_styles"  %>
+<% inplace_error_div %>
 <%
  	mailer ||= false
 	switch ||= false
-	max_points = standing.played.to_i * tournament.points_for_win.to_i
-	coeficient = 0
-	coeficient = 100 *(standing.points.to_f/max_points.to_f) 
+	escuadra = ''
+	is_escuadra = (standing.item_type == "Escuadra")
+	
+	case standing.item_type
+	when "Escuadra"
+		escuadra = Escuadra.find(standing.item_id)
+	when "User"
+		escuadra = User.find(standing.item_id)
+	else
+	end
+		
+	played = standing.wins.to_i + standing.draws.to_i + standing.losses.to_i
+	@stand = standing  
+	is_manager = current_user.is_manager_of?(@cup)	
 %>
 
 <tr>
-	<%= content_tag 'td', standing.ranking, :class => "puntos" %>
-	<%= content_tag 'td', mailer ? "&nbsp;" : image_link_tiny(standing.user), :class => "equipos" %>
-		
+	<td class="puntos"><%= standing.ranking %>&nbsp;&nbsp;
+		<%= is_manager ? in_place_text_field(:stand, :group_stage_name, {:cols => 1}) : standing.group_stage_name %>
+	</td>
+	<td class="equipos"><%= mailer ? "&nbsp;" : image_link_tiny(escuadra) %></td>
 	<td class="equipos">
 		<span>
 		<% if mailer %>
-		<%= link_to(standing.user.name, {:host => 'haypista.com', :controller => 'users', :action => 'show', :id => standing.user}) %>
+		<%= link_to((escuadra.name.to_s.length > 14) ? "#{escuadra.name.to_s.strip[0..12]}..." : escuadra.name, {:host => 'haypista.com', :controller => 'escuadras', :action => 'show', :id => escuadra}) %>
 		<% else %>
-		<%= user_link(standing.user) %>
+		<%= escuadra_link(escuadra) %>
 		<% end %>
 		</span>
 	</td>
-
-	<%= content_tag 'td', standing.points.round, :class => "puntos" %>
-	<%= content_tag 'td', standing.wins, :class => "ganados" %>
-	<%= content_tag 'td', standing.draws, :class => "empatados" %>
-	<%= content_tag 'td', standing.losses, :class => "perdidos" %>
-	<%= content_tag 'td', standing.played, :class => "last" %>
+	<td class="puntos"><%= standing.points.round %></td>
+	<td class="ganados"><%= standing.wins if is_escuadra %></td>
+	<td class="empatados"><%= standing.draws if is_escuadra %></td>
+	<td class="perdidos"><%= standing.losses if is_escuadra %></td>
 	
-	
-	<% 5.times.each do %>
-	<%= content_tag 'td', "&nbsp;" %>
-	<%= content_tag 'td', "&nbsp;" %>
+	<%  if @cup.is_futbol? and is_escuadra %>
+	<td class="afavor"><%= standing.goals_for %></td>
+	<td class="encontra"><%= standing.goals_against %></td>
+	<td class="encontra"><%= standing.goals_for - standing.goals_against %></td>
 	<% end %>
-
+	<td class="encontra"><%= played if is_escuadra %></td>
 </tr>
 

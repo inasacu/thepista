@@ -77,6 +77,13 @@ class Fee < ActiveRecord::Base
     end    
   end
 
+  def self.create_user_challenge_fees(challenge) 
+    challenge["concept"] = challenge.name   
+    challenge.users.each do |user|
+      self.create_debit_credit_item_fee(user, challenge, challenge)
+    end
+  end
+
   def self.create_user_fees(schedule)    
     schedule.group.users.each do |user|
 
@@ -96,7 +103,7 @@ class Fee < ActiveRecord::Base
   def self.create_debit_credit_item_fee(debit, credit, item, season_player=false, type_id=1)
     fee_per_game = item.fee_per_game
     fee_per_game = item.fee_per_pista if credit.class.to_s == "Marker"
-    
+        
     if self.debit_credit_item_exists?(debit, credit, item)       
       self.create!(:concept => item.concept, :description => item.description, :debit_amount => fee_per_game,
                     :debit_id => debit.id, :credit_id => credit.id, :item_id => item.id, 
@@ -116,10 +123,19 @@ class Fee < ActiveRecord::Base
     end
   end
 
-    protected
-      def validate
-        errors.add(:debit_amount, I18n.t(:should_be_positive)) unless debit_amount.nil? || debit_amount >= 0.0
-      end
+  
+  
+  # archive or unarchive a fee
+  def self.set_archive_flag(debit, credit, item, flag)
+    @fees = Fee.find(:all, :conditions => ["debit_id = ? and debit_type = ? and credit_id = ? and credit_type = ? and item_id = ? and item_type = ?", 
+                                  debit.id, debit.class.to_s, credit.id, credit.class.to_s, item.id, item.class.to_s])
+    @fees.each {|fee| fee.update_attribute(:archive, flag)}    
+  end
+  
+protected
+  def validate
+    errors.add(:debit_amount, I18n.t(:should_be_positive)) unless debit_amount.nil? || debit_amount >= 0.0
+  end
 
 private
 	

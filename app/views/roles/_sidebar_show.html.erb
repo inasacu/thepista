@@ -1,11 +1,11 @@
 <div class="block">
-	<h3><%= label_name(get_the_controller, 'options') %></h3>
+	<h3><%= label_name(:options) %></h3>
 	<ul class="navigation">
 		
 	<% if @user.can_modify?(current_user) %>		
 		<li><%= link_to label_name(:edit_my_user), edit_user_path(@user) %></li>
 	<% else %>
-		<li><%= link_to label_name(:send_message), new_message_path(@user) %></li>
+		<li><%= link_to label_name(:send_message_to), new_message_path(@user) %></li>
 	<% end %>
 
 
@@ -14,7 +14,7 @@ current_user.groups.each do |group|
 	
 	if @user.is_not_member_of?(group) or if current_user.is_manager_of?(group)
 		the_label = label_with_name('add_to_group, group.name)
-		the_confirmation = "#{label_name(:petition_to_join_group)} #{@user.name} #{label_name(:to) } #{group.name}?"
+		the_confirmation = "#{label_name(:petition_to_join)} #{@user.name} #{label_name(:to) } #{group.name}?"
 %> 
 		<li><%= link_to(the_label, manage_join_path(:id => group.id, :teammate => @user.id), :confirm => the_confirmation) %></li>
 <% 

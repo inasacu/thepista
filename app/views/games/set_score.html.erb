@@ -1,0 +1,49 @@
+<div class="block">
+
+	<%= render :partial => '/cups/secondary_navigation' %>
+
+	<div class="content">   
+
+		<h2 class="title"><%= "#{escuadra_link @game.home} vs. #{escuadra_link @game.away}" %></h2>
+		<br />
+
+		<div class="inner">
+		
+      <% form_for @game, :url => game_path(@game), :html => { :class => :form } do |f| -%>
+
+		<div class="group">
+			<%= f.label :score, label_name(:score), :class => :label %><br />
+			
+			<%= escuadra_image_link_smaller @game.home %>&nbsp;&nbsp;<%= escuadra_link @game.home %>&nbsp;&nbsp;
+			
+			<%= f.text_field :home_score, :class => 'textscore'  -%>&nbsp;&nbsp;vs.&nbsp;&nbsp;
+			
+			<%= f.text_field :away_score, :class => 'textscore'  -%>&nbsp;&nbsp;
+			
+			<%= escuadra_link @game.away %>&nbsp;&nbsp;<%= escuadra_image_link_smaller @game.away %>&nbsp;&nbsp;
+		</div>
+		<br />
+		<br />	
+
+		
+		<% if @is_futbol or @is_basket %>		
+			<%= render :partial => '/gamees/sport', :locals => {:f => f} %>
+		<% end %>
+		
+		<div class="clear"></div> 
+		<br />
+		<br />
+		<div class="group navform">
+			<%= submit_tag @game.new_record? ? control_label('create') : control_label('edit'), 
+					:class => "button" %> <%= label_name(:or) %> <%= link_to label_name(:cancel), games_url(:id => @cup) %>
+		</div>
+		
+      <% end -%>
+
+		</div>
+
+	</div>
+
+</div>
+
+<!-- end of the line -->

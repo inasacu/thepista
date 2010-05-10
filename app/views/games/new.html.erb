@@ -1,0 +1,21 @@
+<div class="block">
+
+	<%= render :partial => '/cups/secondary_navigation' %>
+
+	<div class="content">  
+
+		<h2 class="title"><%= "#{control_action_label} #{label_name('for')} " %><%= cup_link @cup %></h2>
+
+		<div class="inner">
+		
+	      <% form_for :game, :url => games_path, :html => { :class => :form } do |f| -%>
+			<%= f.hidden_field :cup_id if @cup %>
+	        <%= render :partial => "form", :locals => {:f => f, :label_name => label_name(:create)} %>
+	      <% end -%>
+
+		</div>
+
+	</div>
+
+</div>
+

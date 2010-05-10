@@ -1,82 +1,27 @@
 <div class="block">
-	<h3><%= control_label('legend') %></h3>
-	<div class="content">
-		
-		
-		<p>
-			<b><%= label_name(:ranking) %></b>
-			<%= label_name(:ranking_full) %>
-		</p>
-		
-		<!-- <p>
-			<b><%#= label_name(:previous_ranking) %></b>
-			<%#= label_name(:previous_ranking_full) %>
-		<p> -->
-				
-		<p>
-			<b><%= label_name(:points) %></b>
-			<%= label_name(:points_full) %>
-		<p>
 
-		<p>
-			<b><%= label_name(:games_won) %></b>
-			<%= label_name(:games_won_full) %>
-		<p>
-			
-		<p>
-			<b><%= label_name(:games_tied) %></b>
-			<%= label_name(:games_tied_full) %>
-		<p>
-				
-		<p>
-			<b><%= label_name(:games_lost) %></b>
-			<%= label_name(:games_lost_full) %>
-		<p>
-			
-		<p>
-			<b><%= label_name(:goals_scored) %></b>
-			<%= label_name(:goals_scored_full) %>
-		<p>
-						
-		<p>
-			<b><%= label_name(:goals_for) %></b>
-			<%= label_name(:goals_for_full) %>
-		<p>			
-		
-		<p>
-			<b><%= label_name(:games_played) %></b>
-			<%= label_name(:games_played_full) %>
-		<p>
-			
-		<p>
-			<b><%= label_name(:games_assigned) %></b>
-			<%= label_name(:games_assigned_full) %>
-		<p>
-					
-		<p>
-			<b><%= label_name(:goals_against) %></b>
-			<%= label_name(:goals_against_full) %>
-		<p>		
-				
-		<p>
-			<b><%= label_name(:goal_difference) %></b>
-			<%= label_name(:goal_difference_full) %>
-		<p>					
-				
-		<p>
-			<b><%= label_name(:coeficient) %></b>
-			<%= label_name(:coeficient_full) %>
-		<p>	
-
-		<p>
-			<b><%= label_name(:coeficient_points) %></b>
-			<%= label_name(:coeficient_full_points) %>
-		<p>
-
-		<p>
-			<b><%= label_name(:participation) %></b>
-			<%= label_name(:participation_full) %>
-		<p>
-
-	</div>
+	<h3><%= label_name(:options) %></h3>
+	
+<ul class="navigation">
+<%	
+	if current_user.is_member_of?(@group)  %> 
+	<li><%= link_to(label_name(:send_message_to), new_message_path(:group_id => @group)) %></li>
+	<li><%= link_to(label_name(:invitations_create_group) , new_invitation_url(:group_id => @group)) %></li>
+	<li><%= link_to label_name(:send_scorecard), new_message_path(:scorecard_id => @group.schedules.first) unless @group.schedules.blank? %></li>
+<% 
+	else
+%>
+	<li><%= link_to(label_name(:send_message_to), new_message_path(:id => @group.all_the_managers.first)) %></li>
+<%
+	unless current_user.has_group_petition?(current_user, @group)
+		the_label = label_with_name('add_to_group', @group.name)
+		the_confirmation = "#{ label_name(:petition_to_join) } #{current_user.name} #{ label_name(:to) } #{@group.name}?"
+%> 
+		<li><%= link_to(the_label, join_team_path(:id => @group, :teammate => current_user), :confirm => the_confirmation) %></li>
+<% 
+	end 
+end 
+%>
+</ul>
+	
 </div>

@@ -1,8 +1,9 @@
 class Sport < ActiveRecord::Base
 
+  has_many :cups
   has_many :groups
   has_many :markers
-  has_many :tournamentes
+  has_many :tournaments
 
   # validations 
   validates_uniqueness_of   :name,    :case_sensitive => false

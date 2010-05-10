@@ -1,0 +1,54 @@
+<table class="table">
+
+<% 
+	upcoming_cups.each do |cup| 
+		#the_sport = "#{label_name(:join_cup)}:  #{cup.challenges.count}"
+		the_sport = label_name(:join_cup)
+		is_gameday = (cup.starts_at.to_date == Time.zone.today)
+-%>		
+	<tr>
+		<td>
+			<%= cup_image_link_small(cup) %>
+		</td>
+
+		<td>
+			<%= cup_link cup %>
+		</td>
+
+		<td class="name_and_date">
+			<%= cup_link cup %><br />
+			<span class="date">
+				<%= cup.sport.name %>
+			</span>
+		</td>
+
+		<td class="name_and_date">
+			<%= nice_day_of_week(cup.starts_at) %><br />
+			<span class="date">
+				<%= has_left(cup.starts_at) if Time.zone.now < cup.starts_at %>
+			</span>
+		</td>		
+
+		<td class="name_and_date">
+			<%= link_to the_sport, challenges_url %>
+		</td>
+
+		<td class="name_and_date">
+			<%#= link_to "#{label_name(:your)} #{label_name(:new_low)} #{cup.name}", new_challenge_path(:id => cup) %>
+			<%= link_to label_name(:challenges_create), new_challenge_path(:id => cup) %>
+		</td>
+		
+		<td class="last">
+			&nbsp;
+		</td>
+
+	</tr>
+	<% end -%>
+
+</table> 
+
+
+
+
+
+

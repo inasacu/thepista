@@ -49,6 +49,7 @@ class User < ActiveRecord::Base
     
     has_and_belongs_to_many   :groups,                :conditions => 'archive = false',   :order => 'name'
     has_and_belongs_to_many   :tournaments,           :conditions => 'archive = false',   :order => 'name'
+    has_and_belongs_to_many   :challenges,            :conditions => 'archive = false',   :order => 'name'
     
     has_many    :addresses
     has_many    :accounts
@@ -60,6 +61,7 @@ class User < ActiveRecord::Base
     has_many    :invitations
     has_many    :messages
     has_many    :matches
+    has_many    :casts
   
     has_many    :teammates
     has_many    :managers,
@@ -125,6 +127,10 @@ class User < ActiveRecord::Base
       self.tournaments.count > 0
     end
 
+    def has_challenge?
+      self.challenges.count > 0
+    end
+
     def has_group?
       self.groups.count > 0
     end
@@ -176,14 +182,15 @@ class User < ActiveRecord::Base
       return (current_user == self and petition)
     end
     
-    def has_tournament_petition?(current_user, tournament)
+    def has_item_petition?(current_user, item)
       petition = false      
-      if Teammate.count(:conditions => ["accepted_at is null and tournament_id = ? and (user_id = ? or manager_id = ?)", 
-                        tournament.id, current_user.id, current_user.id]) > 0
+      if Teammate.count(:conditions => ["accepted_at is null and item_id = ? and item_type = ? and (user_id = ? or manager_id = ?)", 
+                                item.id, item.class.to_s, current_user.id, current_user.id]) > 0
           petition = true
       end        
       return (current_user == self and petition)
     end
+    
       
     def has_pending_petition?(current_user)
       current_user == self and (!current_user.requested_managers.empty? or !current_user.pending_managers.empty?)
@@ -247,40 +254,25 @@ class User < ActiveRecord::Base
       return is_member
     end
 
-    def is_tour_manager_of?(tournament)
-      self.has_role?('manager', tournament) 
+    # had role models
+    def is_manager_of?(object)
+      self.has_role?('manager', object)
     end
 
-    def is_tour_creator_of?(tournament)
-      self.has_role?('creator', tournament)
+    def is_sub_manager_of?(object)
+      self.has_role?('sub_manager', object) or self.has_role?('manager', object)
     end
 
-    def is_tour_sub_manager_of?(tournament)
-      self.has_role?('sub_manager', tournament) or self.has_role?('manager', tournament)
+    def is_subscriber_of?(object)
+      self.has_role?('subscription', object) 
     end
 
-    def is_tour_subscriber_of?(tournament)
-      self.has_role?('subscription', tournament) 
+    def is_moderator_of?(object)
+      self.has_role?('moderator', object) 
     end
 
-    def is_manager_of?(group)
-      self.has_role?('manager', group)
-    end
-
-    def is_sub_manager_of?(group)
-      self.has_role?('sub_manager', group) or self.has_role?('manager', group)
-    end
-
-    def is_subscriber_of?(group)
-      self.has_role?('subscription', group) 
-    end
-
-    def is_moderator_of?(group)
-      self.has_role?('moderator', group) 
-    end
-
-    def is_creator_of?(group)
-      self.has_role?('creator', group)
+    def is_creator_of?(object)
+      self.has_role?('creator', object)
     end
 
     def is_manager?
