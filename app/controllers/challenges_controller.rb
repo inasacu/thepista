@@ -45,7 +45,13 @@ class ChallengesController < ApplicationController
   end
 
   def create
-    @challenge = Challenge.new(params[:challenge])		
+    @challenge = Challenge.new(params[:challenge])	
+    
+    @cup = Cup.find(@challenge.cup_id)	
+    @challenge.starts_at = @cup.starts_at
+    @challenge.ends_at = @cup.ends_at
+    @challenge.reminder_at = @cup.starts_at - 7.days
+    
     if @challenge.save and @challenge.create_challenge_details(current_user)
       flash[:notice] = I18n.t(:successful_create)
       redirect_to @challenge

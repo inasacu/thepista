@@ -43,6 +43,26 @@ class Cast < ActiveRecord::Base
     self.game.away
   end
   
+  def home_ranking
+    self.game.home_ranking
+  end
+  
+  def away_ranking
+    self.game.away_ranking
+  end
+  
+  def home_stage_name
+    self.game.home_stage_name
+  end
+  
+  def away_stage_name
+    self.game.away_stage_name
+  end
+  
+  def type_name
+    self.game.type_name
+  end
+  
   def game_played?
     self.game.game_played?
   end

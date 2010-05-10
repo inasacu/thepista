@@ -17,7 +17,7 @@ class Standing < ActiveRecord::Base
     end
   end 
 
-  # calculate standing for all previous game in item
+  # calculate standing for all game in item
   def self.calculate_cup_standing(cup)  
     escuadras = []
     cup.escuadras.each {|escuadra| escuadras << escuadra.id} 
@@ -85,28 +85,15 @@ class Standing < ActiveRecord::Base
 
   def self.update_cup_group_stage_ranking(standing)
     # default variables
-    first, ranking, past_points, last = 0, 0, 0, 0
+    ranking = 0
     
     @standings = Standing.find(:all, :conditions =>["cup_id = ? and group_stage_name = ?", standing.cup_id, standing.group_stage_name], 
     :order => "points desc, (goals_for-goals_against) desc")
     
      @standings.each do |standing| 
-        points ||= 0
-        points = standing.points
-
-        if first != standing.item_id 
-          first, ranking, past_points, last = standing.item_id, 0, 0, 1
-        end 
-
-        if (past_points == points) 
-          last += 1          
-        else
-          ranking += last
-          last = 1          
-        end
-        past_points = points  
+        ranking += 1 if standing.played > 0
         standing.update_attribute(:ranking, ranking)
-      end
+      end      
   end
 
   def self.update_cup_challenge_item_ranking(cup, item='User')
@@ -176,7 +163,7 @@ class Standing < ActiveRecord::Base
           points = 0
 
           cast = Cast.find(:first, :select => "sum(points) as points", :conditions => ["challenge_id = ? and user_id = ?", challenge, user])
-          points = cast.points unless cast.nil?    
+          points = cast.points.to_i unless cast.nil?    
 
           standing.points = points
           standing.save!

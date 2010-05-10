@@ -40,6 +40,19 @@
 			@the_cast = cast
 			no_team = (cast.home_id.nil? or cast.away_id.nil?)  
 			is_user = (current_user == cast.user) #and cast.deadline_at <= Time.zone.now - 1.day)	
+			
+			no_team = (cast.home_id.nil? or cast.away_id.nil?) 
+			no_ranking = (cast.home_ranking.nil? or cast.away_ranking.nil? or 
+						  cast.home_stage_name.nil? or cast.away_stage_name.nil? and cast.type_name == 'FirstGame') 
+						
+			the_finals = (cast.type_name == 'SubsequentGame' or cast.type_name == 'FinalGame')
+			
+			the_previous = []
+			if the_finals
+				previous_games = Game.find(:all, :conditions => ["next_game_id = ?", cast.game_id])
+				previous_games.each {|the_game| the_previous << the_game.jornada}
+			end
+			
 		-%>
         <tr>
 	
@@ -58,24 +71,26 @@
             <%= escuadra_image_link_small cast.home unless no_team %>
           </td>
 
-          <td>
-			<%= escuadra_link cast.home unless no_team %>
+		  <td class="name_and_date">
+		  	<%= escuadra_link cast.home unless no_team %>
+		  <span class="date">
+		  	<%= "#{cast.home_ranking} #{cast.home_stage_name}<br/>" unless no_ranking %>
+			<%= "W#{the_previous[0]}" if (the_previous.length > 0) %>
+		  </span>
 		  </td>
 
 		  <td align="center">
-		  	<%#=  (cast.game_played?) ? game_score_link(cast) : label_name(:game_not_played) %>
-			<%= is_user ? in_place_text_field(:the_cast, :home_score, {:cols => 1}) : cast.home_score %>
+		  	<%=  "  #{cast.home_score}  -  #{cast.away_score}  "  %> 
 		  </td>
 
-		  <td align="center">
-		  	<%#=  (cast.game_played?) ? game_score_link(cast) : label_name(:game_not_played) %>
-			<%= is_user ? in_place_text_field(:the_cast, :away_score, {:cols => 1}) : cast.away_score %>
+		  <td class="name_and_date">
+		  	<%= escuadra_link cast.away unless no_team %>
+		  <span class="date">
+		  	<%= "#{cast.away_ranking} #{cast.away_stage_name}<br/>" unless no_ranking %>
+			<%= "W#{the_previous[1]}" if (the_previous.length > 0) %>
+		  </span>
 		  </td>
-			
-          <td>
-			<%= escuadra_link cast.away unless no_team %>
-		  </td>
-		
+
 		  <td>
             <%= escuadra_image_link_small cast.away unless no_team %>
 		  </td>

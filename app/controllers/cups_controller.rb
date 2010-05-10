@@ -1,7 +1,7 @@
 class CupsController < ApplicationController
   before_filter :require_user    
-  before_filter :get_cup, :only => [:team_list, :show, :edit, :update, :set_available, :set_enable_comments, :set_looking, :destroy]
-  before_filter :has_manager_access, :only => [:edit, :update, :destroy, :set_available, :set_enable_comments, :set_looking]
+  before_filter :get_cup, :only => [:team_list, :show, :edit, :update, :destroy]
+  before_filter :has_manager_access, :only => [:edit, :update, :destroy]
   
   before_filter :the_maximo, :only => [:new]
 
@@ -62,44 +62,9 @@ class CupsController < ApplicationController
     end
   end 
 
-  def set_looking
-    if @cup.update_attribute("looking", !@cup.looking)
-      @cup.update_attribute("looking", @cup.looking)  
-
-      flash[:notice] = I18n.t(:successful_update)
-      redirect_back_or_default('/index')
-    else
-      render :action => 'index'
-    end
-  end   
-
-  def set_available
-    if @cup.update_attribute("available", !@cup.available)
-      @cup.update_attribute("available", @cup.available)  
-
-      flash[:notice] = I18n.t(:successful_update)
-      redirect_back_or_default('/index')
-    else
-      render :action => 'index'
-    end
-  end
-
-  def set_enable_comments
-    if @cup.update_attribute("enable_comments", !@cup.enable_comments)
-      @cup.update_attribute("enable_comments", @cup.enable_comments)  
-
-      flash[:notice] = I18n.t(:successful_update)
-      redirect_back_or_default('/index')
-    else
-      render :action => 'index'
-    end
-  end
-
   def destroy
-    # @cup = Cup.find(params[:id])
     counter = 0
-    @cup.schedules.each {|schedule| counter += 1 }
-
+    @cup.games.each {|game| counter += 1 }
     # @cup.destroy unless counter > 0
 
     flash[:notice] = I18n.t(:successfully_destroyed)

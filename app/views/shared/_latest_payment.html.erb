@@ -10,9 +10,11 @@
 	end
 
 	@debit_fee = Fee.debit_amount(@users, @groups)
+	
+	the_total = @debit_fee.debit_amount.to_f - (@debit_payment.debit_amount.to_f + @credit_payment.credit_amount.to_f)
 -%>
 
-<% if (@debit_fee.debit_amount.to_f - (@debit_payment.debit_amount.to_f + @credit_payment.credit_amount.to_f)) > 0.0 %>
+<% if the_total > 0.0 %>
 
 <div class="block"> 
   <div class="sidebar-block"> 	
@@ -22,7 +24,7 @@
 	<table class="table">		
 		<tr>
 			<td align="center">
-				<%= link_to("#{label_name(:fees)}:&nbsp;&nbsp;&nbsp;&nbsp;#{number_to_currency(@debit_fee.debit_amount.to_f)}", fees_url(:id => current_user)) %>
+				<%= link_to("#{label_name(:fees)}:&nbsp;&nbsp;&nbsp;&nbsp;#{number_to_currency(the_total)}", fees_url(:id => current_user)) %>
 	  		</td>
 		</tr>
 	</table>

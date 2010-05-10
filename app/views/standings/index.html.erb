@@ -21,7 +21,7 @@
 %>
 <div class="content">   
 
-	<h2 class="title"><%= cup_link @cup %></h2>
+	<h2 class="title"><%= is_challenge_standing ? challenge_link(@challenge)  : cup_link(@cup) %></h2>
 
 	<div class="inner">
 

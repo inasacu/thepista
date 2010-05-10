@@ -86,9 +86,12 @@ class Challenge < ActiveRecord::Base
 
     ChallengesUsers.join_item(user, self)
     Blog.create_item_blog(self)
-    Standing.create_cup_challenge_standing(self)
-    Cast.create_challenge_cast(self) 
-    Fee.create_user_challenge_fees(self)
+    # Standing.create_cup_challenge_standing(self)
+    # Cast.create_challenge_cast(self) 
+    # Fee.create_user_challenge_fees(self)
+    Standing.send_later(:create_cup_challenge_standing, self)
+    Cast.send_later(:create_challenge_cast, self) 
+    Fee.send_later(:create_user_challenge_fees, self)
   end
 
   def format_description

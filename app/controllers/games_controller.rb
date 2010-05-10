@@ -87,9 +87,13 @@ class GamesController < ApplicationController
 
   def update
     if @game.update_attributes(params[:game]) 
-      # flash[:notice] = I18n.t(:successful_update)
-      # redirect_to games_path(:id => @game.cup)
-      redirect_to list_games_path(:id => @game.cup)
+      flash[:notice] = I18n.t(:successful_update)
+      
+      unless @game.all_group_stage_played(@game.cup)
+        redirect_to games_path(:id => @game.cup)
+      else
+        redirect_to list_games_path(:id => @game.cup)
+      end
       return
     else
       render :action => 'edit', :id => @game.id

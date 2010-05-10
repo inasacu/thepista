@@ -49,7 +49,7 @@ class Game < ActiveRecord::Base
   # has_friendly_id :concept, :use_slug => true, :reserved => ["new", "create", "index", "list", "signup", "edit", "update", "destroy", "show"]
 
   before_update :set_game_winner
-  after_update  :calculate_standing, :set_final_stage
+  after_update  :calculate_standing#, :set_final_stage
 
   # method section 
   def self.group_stage_games(cup, page = 1)
@@ -138,30 +138,29 @@ class Game < ActiveRecord::Base
   end
 
   private
+  def self.set_final_stage(cup)
+    @first_games = Game.find(:all, :conditions => ["cup_id = ? and type_name = 'FirstGame' and (home_id is null or away_id is null)", cup], :order => "id")
+    @first_games.each do |first|
+      standing = Standing.find(:first, 
+      :conditions => ["cup_id = ? and item_type = 'Escuadra' and group_stage_name = ? and ranking = ?", cup.id, first.home_stage_name, first.home_ranking])
+      first.home_id = standing.item_id
 
-  def set_final_stage
-    if self.all_group_stage_played(self.cup)
-        @first_games = Game.find(:all, :conditions => ["cup_id = ? and type_name = 'FirstGame' and (home_id is null or away_id is null)", cup], :order => "id")
-        @first_games.each do |first|
-          standing = Standing.find(:first, 
-          :conditions => ["cup_id = ? and item_type = 'Escuadra' and group_stage_name = ? and ranking = ?", cup.id, first.home_stage_name, first.home_ranking])
-          first.home_id = standing.item_id
-    
-          standing = Standing.find(:first, 
-          :conditions => ["cup_id = ? and item_type = 'Escuadra' and group_stage_name = ? and ranking = ?", cup.id, first.away_stage_name, first.away_ranking])
-          first.away_id = standing.item_id
-          first.save!
-        end
+      standing = Standing.find(:first, 
+      :conditions => ["cup_id = ? and item_type = 'Escuadra' and group_stage_name = ? and ranking = ?", cup.id, first.away_stage_name, first.away_ranking])
+      first.away_id = standing.item_id
+      first.save!
     end
   end
   
   def calculate_standing
     Standing.send_later(:calculate_cup_standing, self.cup)
-    if self.is_cup_game_played(self.cup)
-      self.cup.challenges.each {|challenge| Cast.send_later(:update_cast_details, challenge) }
-      Standing.send_later(:cup_challenges_user_standing, self.cup)      
-      Standing.send_later(:update_cup_challenge_item_ranking, self.cup)
-    end
+    @cast = ''
+    self.cup.challenges.each do |challenge|       
+      Cast.send_later(:update_cast_details, challenge)
+      @cast = challenge.casts.first if @cast == ''
+    end      
+    Cast.calculate_standing(@cast)  
+    Game.send_later(:set_final_stage, self.cup) if self.all_group_stage_played(self.cup)
   end
 
   def set_game_winner
