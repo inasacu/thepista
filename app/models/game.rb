@@ -154,13 +154,17 @@ class Game < ActiveRecord::Base
   
   def calculate_standing
     Standing.send_later(:calculate_cup_standing, self.cup)
+    Game.send_later(:update_cast_details, self.cup)
+    Game.send_later(:set_final_stage, self.cup) if self.all_group_stage_played(self.cup)
+  end
+  
+  def self.update_cast_details(cup)
     @cast = ''
-    self.cup.challenges.each do |challenge|       
+    cup.challenges.each do |challenge|       
       Cast.send_later(:update_cast_details, challenge)
       @cast = challenge.casts.first if @cast == ''
-    end      
+    end
     Cast.calculate_standing(@cast)  
-    Game.send_later(:set_final_stage, self.cup) if self.all_group_stage_played(self.cup)
   end
 
   def set_game_winner
