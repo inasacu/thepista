@@ -61,7 +61,7 @@ class Game < ActiveRecord::Base
   def self.group_round_games(cup, page = 1)
     self.paginate(:all, 
     :conditions => ["cup_id = ? and type_name != 'GroupStage'", cup],
-    :order => 'jornada, starts_at', :page => page, :per_page => CUPS_PER_PAGE)
+    :order => 'jornada', :page => page, :per_page => CUPS_PER_PAGE)
   end
 
   def self.upcoming_games(hide_time)

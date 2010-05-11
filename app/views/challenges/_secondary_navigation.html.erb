@@ -35,7 +35,7 @@
 		<li class="<%= get_active('cast_edit') %>">
 					<%= link_to label_name(:casts_edit), edit_cast_path(:id => @challenge) if is_deadline and is_cast_edit %></li>
 		
-		<% if current_user.is_manager_of? (@challenge) and display %>
+		<% if current_user.is_manager_of?(@challenge) %>
 		<li class="<%= get_active('fee_list') %>"><%=  link_to(label_name(:fees) , list_fees_path(:id => @challenge)) %></li>
 		<li class="<%= get_active('fee_complete') %>"><%=  link_to(label_name(:fees_complete) , complete_fees_path(:id => @challenge)) %></li>
 		<% end -%>	
