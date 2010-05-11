@@ -2,7 +2,7 @@
 <% inplace_error_div %>
 
 <%
-	the_label = is_action ('index') ? label_name(:group_stage) : label_name(:group_round)
+	the_label = is_action('index') ? label_name(:group_stage) : label_name(:group_round)
 	content_for(:title, the_label)
 	is_manager = current_user.is_manager_of?(@cup)	
 %>

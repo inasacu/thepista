@@ -149,7 +149,7 @@ class GamesController < ApplicationController
   def get_cup
     @cup = Cup.find(params[:id])      
     unless @cup
-      redirect to cups_url
+      redirect_to(cups_url)
       return
     end
   end
