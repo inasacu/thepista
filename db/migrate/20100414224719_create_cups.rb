@@ -1,13 +1,13 @@
 class CreateCups < ActiveRecord::Migration
   def self.up
     
-    drop_table  :cups
-    drop_table  :games
-    drop_table  :escuadras
-    drop_table  :cups_escuadras
-    drop_table  :challenges
-    drop_table  :casts
-    drop_table  :challenges_users    
+    # drop_table  :cups
+    # drop_table  :games
+    # drop_table  :escuadras
+    # drop_table  :cups_escuadras
+    # drop_table  :challenges
+    # drop_table  :casts
+    # drop_table  :challenges_users    
 
     create_table :cups do |t|
 
