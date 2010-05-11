@@ -72,14 +72,15 @@ class Cast < ActiveRecord::Base
   end
   
   def self.current_challenge(user, challenge, page = 1)
-    self.paginate(:all, :conditions => ["user_id = ? and challenge_id = ?", user.id, challenge.id], :order => 'id', :page => page, :per_page => CUPS_PER_PAGE)
+    self.paginate(:all, :joins => "left join games on games.id = casts.game_id",
+                  :conditions => ["user_id = ? and challenge_id = ?", user.id, challenge.id], 
+                  :order => 'games.jornada', :page => page, :per_page => CUPS_PER_PAGE)
   end
   
   def self.current_casts(user, challenge)
-    find(:all, 
-         :joins => "LEFT JOIN games on games.id = casts.game_id",
+    find(:all, :joins => "LEFT JOIN games on games.id = casts.game_id",
          :conditions => ["casts.user_id = ? and casts.challenge_id = ? and games.deadline_at > ?", user.id, challenge.id, Time.zone.now], 
-         :order => 'id')
+         :order => 'games.jornada')
   end
   
   def self.save_casts(the_cast, cast_attributes)

@@ -49,7 +49,7 @@ class Game < ActiveRecord::Base
   # has_friendly_id :concept, :use_slug => true, :reserved => ["new", "create", "index", "list", "signup", "edit", "update", "destroy", "show"]
 
   before_update :set_game_winner
-  after_update  :calculate_standing#, :set_final_stage
+  after_update  :calculate_standing
 
   # method section 
   def self.group_stage_games(cup, page = 1)
