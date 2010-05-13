@@ -100,11 +100,11 @@ class ChallengesController < ApplicationController
   end
   
   def has_member_access
-    # unless current_user.is_member_of?(@challenge)
-    #   flash[:warning] = I18n.t(:unauthorized)
-    #   redirect_to root_url
-    #   return
-    # end
+    unless current_user.is_member_of?(@challenge)
+      flash[:warning] = I18n.t(:unauthorized)
+      redirect_to root_url
+      return
+    end
   end
 
   def has_manager_access

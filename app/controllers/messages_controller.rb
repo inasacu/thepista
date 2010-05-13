@@ -80,6 +80,11 @@ class MessagesController < ApplicationController
         @scorecard = Schedule.find(params[:scorecard_id])
         @group = @scorecard.group
         @recipients = User.find_group_mates(@group)
+    elsif (params[:challenge_id])
+        @challenge = Challenge.find(params[:challenge_id])
+        # @group = @scorecard.group
+        @recipients = @challenge.users
+      
     else
       @recipients = User.find_all_by_mates(current_user)
     end

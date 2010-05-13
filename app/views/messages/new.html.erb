@@ -11,8 +11,8 @@
 		    <%= "#{label_name(:send_match)} #{schedule_link(@schedule)}" if @match %>
 			<% elsif @schedule %>
 			<%= "#{label_name(:send_pre_match)} #{schedule_link(@schedule)}" unless @schedule.played? %>
-			<%# elsif @tournament %>
-			<%#= "#{label_name(:send_tournament)} #{tournament_link(@tournament)}" %>			
+			<% elsif @challenge %>
+			<%= "#{label_name(:message)} #{challenge_link(@challenge)}" %>			
 			<% else %>
 			<%= "#{label_name(:message)} "  %>
 			<% end %>

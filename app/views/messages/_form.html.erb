@@ -16,6 +16,10 @@
 <%= hidden_field :scorecard, :id %>
 <% end %>
 
+<% unless @challenge %>
+<%= hidden_field :challenge, :id %>
+<% end %>
+
 <div class="columns"> 
 
   <div class="column left"> 
@@ -70,9 +74,9 @@
 	<%= render :partial => '/messages/recipient_roster', :locals => {:schedule => @schedule, :checked => check } %>
 	<%= hidden_field :schedule, :id %>
 
-	<%# elsif @tournament %>
-	<%#= render :partial => '/messages/recipient_list', :locals => {:recipients => @recipients, :checked => check } %>
-	<%#= hidden_field :tournament, :id %>
+	<% elsif @challenge %>
+	<%= render :partial => '/messages/recipient_list', :locals => {:recipients => @recipients, :checked => check } %>
+	<%= hidden_field :challenge, :id %>
 	
 	<% elsif @recipient %>
 	<%= hidden_field :recipient, :id %>
