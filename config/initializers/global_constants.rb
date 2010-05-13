@@ -6,10 +6,10 @@ TITLE_RANGE_LENGTH = 3..75
 SUBJECT_RANGE_LENGTH = 3..75
 BODY_RANGE_LENGTH = 3..2000
 
-MAJOR_EVENT_TWO_MONTHS = Time.zone.now - 1.day..Time.zone.now + 60.days 
+MAJOR_EVENT_TWO_MONTHS = Time.zone.now - 1.day..Time.zone.now + 35.days 
 LAST_WEEK_TO_TODAY = Time.zone.now - 7.days..Time.zone.now + 1.day
 ONE_WEEK_FROM_TODAY = Time.zone.now - 1.day..Time.zone.now + 7.days
-ONE_MONTH_FROM_TODAY = Time.zone.now - 1.day..Time.zone.now + 32.days
+ONE_MONTH_FROM_TODAY = Time.zone.now - 1.day..Time.zone.now + 30.days
 LAST_WEEK = Time.zone.now - 7.days
 PAST_THREE_DAYS = Time.zone.now - 3.days
 LAST_THREE_DAYS = Time.zone.now - 3.days..Time.zone.now + 1.day

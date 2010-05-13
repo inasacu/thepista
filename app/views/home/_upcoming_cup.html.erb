@@ -2,9 +2,8 @@
 
 <% 
 	upcoming_cups.each do |cup| 
-		#the_sport = "#{label_name(:join_cup)}:  #{cup.challenges.count}"
 		the_sport = label_name(:join_cup)
-		is_gameday = (cup.starts_at.to_date == Time.zone.today)
+		#is_gameday = (cup.starts_at.to_date == Time.zone.today)
 -%>		
 	<tr>
 		<td>
@@ -18,14 +17,14 @@
 		<td class="name_and_date">
 			<%= cup_link cup %><br />
 			<span class="date">
-				<%= cup.sport.name %>
+			<%= cup.sport.name %>
 			</span>
 		</td>
 
 		<td class="name_and_date">
 			<%= nice_day_of_week(cup.starts_at) %><br />
 			<span class="date">
-				<%= has_left(cup.starts_at) if Time.zone.now < cup.starts_at %>
+			<%= has_left(cup.starts_at) if Time.zone.now < cup.starts_at %>
 			</span>
 		</td>		
 
