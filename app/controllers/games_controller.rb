@@ -1,7 +1,7 @@
 class GamesController < ApplicationController
   before_filter :require_user
 
-  before_filter :get_game, :only => [:edit, :update, :destroy, :set_score]
+  before_filter :get_game, :only => [:show, :edit, :update, :destroy, :set_score]
   before_filter :get_cup, :only =>[:new, :index, :list]
   before_filter :has_manager_access, :only => [:edit, :update, :destroy]
 
@@ -16,7 +16,13 @@ class GamesController < ApplicationController
   end
 
   def show
-    store_location  
+    if @game.type_name == 'GroupStage'
+      redirect_to :action => 'index', :id => @cup
+      return
+    else
+      redirect_to :action => 'list', :id => @cup
+      return
+    end      
   end
 
   def new

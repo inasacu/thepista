@@ -125,6 +125,7 @@ es:
      change_email_configuration: Cambia tu configuración de mensajes.
      change_group: Cambia de equipo   
      change_language: Cambia el idioma  
+     change_option:  Cambia opción?
      change_rejected: El cambio que ha pedido ha sido rechazado.  
      change_rejected_explained: "Es posible que no tuvieses acceso a esa zona, lo sentimos!"	 
      change_roster_status: Pasa a 
@@ -602,6 +603,7 @@ es:
      logout: Salir   
      look: Mira 
      looking_for_group:  Jugador que busca Equipo
+     looking_for_my_group:  Busco equipo
      looking_for_groups:  Jugadores que buscan equipo
      looking_for_group_description:  Jugador que busca Equipo
      looking_for_user:  Equipo que busca jugadores
@@ -1013,7 +1015,7 @@ es:
      sent_invitation: Has mandado una invitación de HayPista a los siguientes          
      separate_by: separa con una comma   
      server_not_available: "Lo sentimos, el servidor de OpenID server no se pudo encontrar."      
-     set_available:  Cambiar disponibilidad de participar en cualquier evento por
+     set_available:  Cambiar disponibilidad de
      set_private_phone:  Ocultar teléfono de 
      set_private_profile:  Ocultar perfil de
      set_enable_comments:  Quieres recibir notificaciones de comentarios dejados en el muro de

@@ -7,12 +7,6 @@
 	upcoming_games.each do |game| 
 	the_sport = ""
 	the_missing = ""
-	#is_gameday = (game.starts_at.to_date == Time.zone.today)
-	
-	#if is_gameday		
-		#barometer = Barometer.new(game.cup.time_zone)
-	    #weather = barometer.measure
-	#end
 -%>		
 	<tr>
 		<td>
@@ -40,7 +34,7 @@
 		<td class="name_and_date">
 			<%= the_sport %><br />
 			<span class="date">
-				<%= the_missing %>
+				<%= the_missing %>111	
 			</span>
 		</td>
 

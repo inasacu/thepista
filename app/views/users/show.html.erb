@@ -27,19 +27,14 @@
 	<!-- new table -->
 		<table>
 			<thead>
-
 				<tr>
 					<th colspan="2">
-
 						<div class="description">
                           <span class="q">
 								<%=sanitize @user.description.blank? ? control_label('description_no') : @user.description %>
 							</span>
                         </div>
-
-
 					</th>
-
 				</tr>
 			</thead>
 
@@ -82,10 +77,10 @@
 						</tr>
 						<% 
 							the_label = h(label_name(@user.looking, 'value'))
-							the_confirmation = label_with_name('looking_for_group', "#{@user.name}?") 
+							the_confirmation = label_name(:change_option) 
 						%>
 							<tr>
-							  <%= content_tag :td, label_name(:looking_for_group), :class => "label" %>
+							  <%= content_tag :td, label_name(:looking_for_my_group), :class => "label" %>
 							  <%= content_tag :td, 
 									(@user == current_user ? link_to(the_label, set_user_looking_path(:id => @user), :confirm => the_confirmation) : the_label), 
 									:class => get_the_action %>

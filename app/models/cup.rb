@@ -342,11 +342,10 @@ class Cup < ActiveRecord::Base
        
       # third place
       jornada = Game.last_cup_game(self).jornada.to_i + 1    
-      
       @game = Game.create!(:concept => level_in_words(99), :cup_id => self.id,  
                           :starts_at => last_game['starts_at'], :ends_at => last_game['ends_at'], 
                           :reminder_at => last_game['reminder_at'], :deadline_at => last_game['deadline_at'], 
-                          :type_name => 'ThidPlaceGame', :jornada => last_game['jornada'], 
+                          :type_name => 'ThirdPlaceGame', :jornada => last_game['jornada'], 
                           :points_for_single => 0, :points_for_double => 5)
                                               
       # final

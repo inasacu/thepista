@@ -60,7 +60,7 @@ class Game < ActiveRecord::Base
 
   def self.group_round_games(cup, page = 1)
     self.paginate(:all, 
-    :conditions => ["cup_id = ? and type_name != 'GroupStage'", cup],
+    :conditions => ["cup_id = ? and (type_name != 'GroupStage' or type_name is null)", cup],
     :order => 'jornada', :page => page, :per_page => CUPS_PER_PAGE)
   end
 
@@ -135,6 +135,10 @@ class Game < ActiveRecord::Base
   # return true if the round home away conbination is nil
   def self.cup_home_away_exist?(cup, home, away)
     find_by_cup_id_and_home_id_and_away_id(cup, home, away).nil?
+  end
+  
+  def self.game_type
+    return ['GroupStage', 'FirstGame', 'SubsequentGame', 'ThirdPlaceGame', 'FinalGame']
   end
 
   private
