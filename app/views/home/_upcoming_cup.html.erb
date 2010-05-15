@@ -3,15 +3,10 @@
 <% 
 	upcoming_cups.each do |cup| 
 		the_sport = label_name(:join_cup)
-		#is_gameday = (cup.starts_at.to_date == Time.zone.today)
 -%>		
 	<tr>
 		<td>
 			<%= cup_image_link_small(cup) %>
-		</td>
-
-		<td>
-			<%= cup_link cup %>
 		</td>
 
 		<td class="name_and_date">
@@ -28,6 +23,13 @@
 			</span>
 		</td>		
 
+		<td class="name_and_date">
+			<%= I18n.t(:has_cup_escuadras, :count => object_counter(cup.escuadras)) %><br />
+			<span class="date">
+			<%= I18n.t(:has_cup_games, :count => object_counter(cup.games)) %>
+			</span>
+		</td>
+		
 		<td class="name_and_date">
 			<%= link_to the_sport, challenges_url %>
 		</td>

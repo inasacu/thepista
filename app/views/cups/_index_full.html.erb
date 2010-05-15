@@ -6,10 +6,7 @@
 
 	  <tr>             
 	    <th class="first">&nbsp;</th>
-	    <th><%= label_name(:name) %>&nbsp;/<br />
-			  <%#= label_name(:gameday_at) %></th>
-	    <th><%= label_name(:manager) %>&nbsp;/<br />
-			  <%= label_name(:sport) %></th>
+	    <th><%= label_name(:name) %></th>
 	    <th><%= label_name(:time_zone) %></th>
 	    <th><%= label_name(:general_information) %></th>
 	    <th><%#= label_name(:last_game_played) %></th>
@@ -24,32 +21,34 @@
 			</td>
 
 			<td class="name_and_date">
-				<%= cup_link(cup) %>
-			</td>
-
-			<td>
+				<%= cup_link(cup) %><br />
+				<span class="date">
 				<%= cup.sport.name %>
+				</span>
 			</td>
 
-			<td>
-				<%= cup.time_zone %>
+			<td class="name_and_date">
+				<%= nice_day_of_week(cup.starts_at) %><br />
+				<span class="date">
+				<%= has_left(cup.starts_at) if Time.zone.now < cup.starts_at %>
+				</span>
 			</td>
 
-			<td>
+			<td class="name_and_date">
 				<%= I18n.t(:has_cup_escuadras, :count => object_counter(cup.escuadras)) %><br />
+				<span class="date">
 				<%= I18n.t(:has_cup_games, :count => object_counter(cup.games)) %>
+				</span>
 			</td>
 
 			<td class="name_and_date">
 				<%= link_to(label_name(:scorecards), standing_path(:id => cup)) %>
 				<span class="date">
-					<%#= nice_full_date(game.starts_at) unless game.nil? %> 
 				</span>
 			</td>
 
 	       <td class="last">
 				<span class="action">
-					<%#= link_to "#{label_name(:challenges_create)} <br/> #{cup.name}", new_challenge_path(:id => cup) %>
 					<%= link_to label_name(:challenges_create), new_challenge_path(:id => cup) %>
 				
 					<% if current_user.is_manager_of?(cup) %>
