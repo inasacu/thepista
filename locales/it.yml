@@ -785,7 +785,8 @@ it:
      participate_schedule_afterwards: "After you signup for the team and its accepted, follow this link to participate in the event"
      participate_group_afterwards: "After you signup, follow the link to signup for the team"   
      participation:  %
-     participation_full:  Participation Percentage     
+     participation_full:  Participation Percentage
+     participants:  Participants     
      password: Password
      password_change: Change Password
      password_confirmation: Pasword Confirmation	

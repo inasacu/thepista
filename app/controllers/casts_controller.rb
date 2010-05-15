@@ -12,7 +12,7 @@ class CastsController < ApplicationController
     counter = 0
     @casts = Cast.current_casts(current_user, @challenge)
     @cast = @casts.first  
-    @casts.each {|cast| counter += 1}
+    @casts.each {|cast| counter += 1  if (current_user == cast.user and cast.starts_at >= HOURS_BEFORE_GAME)	}
 
     unless counter > 0
       redirect_back_or_default('/index') 

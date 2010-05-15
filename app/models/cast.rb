@@ -79,7 +79,7 @@ class Cast < ActiveRecord::Base
   
   def self.current_casts(user, challenge)
     find(:all, :joins => "LEFT JOIN games on games.id = casts.game_id",
-         :conditions => ["casts.user_id = ? and casts.challenge_id = ? and games.deadline_at > ?", user.id, challenge.id, Time.zone.now], 
+         :conditions => ["casts.user_id = ? and casts.challenge_id = ?", user.id, challenge.id], 
          :order => 'games.jornada')
   end
   
