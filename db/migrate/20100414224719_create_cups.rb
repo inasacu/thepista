@@ -31,7 +31,9 @@ class CreateCups < ActiveRecord::Migration
       t.integer     :points_for_win,        :default => 3
       t.integer     :points_for_draw,       :default => 1
       t.integer     :points_for_lose,       :default => 0
+      
       t.text        :description
+      t.text        :conditions
       
       t.string      :photo_file_name
       t.string      :photo_content_type

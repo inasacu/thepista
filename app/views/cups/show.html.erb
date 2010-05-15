@@ -42,10 +42,15 @@
 		<%= tr_td_action(:deadline_at, nice_day_of_week(@cup.deadline_at)) %>
 		<%= tr_td_action(:escuadras, t(:has_cup_escuadras, :count => @cup.escuadras.count)) %>
 		<%= tr_td_action(:games, t(:has_cup_games, :count => @cup.games.count)) %>		
-		<%= tr_td_action(:group_stage_advance, @cup.group_stage_advance) %>
+		<%= tr_td_action(:group_stage_advance, @cup.group_stage_advance) if (@cup.group_stage_advance.to_i > 0) %>
 		
 		<tr>
 			<%= content_tag :td, link_to(label_name(:standing), standing_path(:id => @cup)), :class => "label" %>
+		</tr>
+
+		<tr>
+			<%= content_tag :td, label_name(:conditions), :class => "label" %>
+			<%= content_tag :td, sanitize(@cup.conditions), :class => get_the_action %>	
 		</tr>
 		
 		<tr>
