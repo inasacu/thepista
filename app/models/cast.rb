@@ -87,7 +87,7 @@ class Cast < ActiveRecord::Base
     the_cast.challenge.casts.each do |cast|
       attributes = cast_attributes[cast.id.to_s]
       cast.attributes = attributes if attributes
-      cast.save(false)
+      cast.save(false) if (cast.starts_at >= HOURS_BEFORE_GAME)
     end
   end
   

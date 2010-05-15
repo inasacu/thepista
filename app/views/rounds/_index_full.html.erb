@@ -58,7 +58,7 @@
 				
 					<% 	unless current_user.has_round_petition?(current_user, round) 
 							the_label = label_with_name('add_to_round', round.name)
-							the_confirmation = "#{ label_name(:petition_to_join_round) } #{current_user.name} #{ label_name(:to) } #{round.name}?"
+							the_confirmation = "#{ label_name(:petition_to_join) } #{current_user.name} #{ label_name(:to) } #{round.name}?"
 					%> 
 							<%= link_to(the_label, join_team_path(:id => round.id, :teammate => current_user.id), :confirm => the_confirmation) %>
 					<% 	end 

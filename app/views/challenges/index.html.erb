@@ -2,7 +2,6 @@
 	the_label = label_name(:challenges)
 	content_for(:title, the_label)
 %>
-
 <div class="block">
 	<%= render :partial => '/challenges/secondary_navigation' %>  
 	<div class="content">  
@@ -13,6 +12,4 @@
 			<% end %>
 	</div>	
 </div>
-
-<%# content_for :search, render(:partial => 'shared/search') -%>
 <% content_for :sidebar, render(:partial => 'sidebar') -%>

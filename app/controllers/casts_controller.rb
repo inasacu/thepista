@@ -3,55 +3,12 @@ class CastsController < ApplicationController
   before_filter :has_member_access, :only => [:index, :edit]
 
   def index
-    # @challenge = Challenge.find(params[:id])
     @user = User.find(params[:user_id])
     @casts = Cast.current_challenge(@user, @challenge, params[:page])
     @cup = @challenge.cup
   end
 
-  # def set_the_cast_home_score
-  #   @cast = Cast.find(params[:id])
-  # 
-  #   unless current_user == @cast.user
-  #     flash[:warning] = I18n.t(:unauthorized)
-  #     redirect_back_or_default('/index')
-  #     return
-  #   end
-  # 
-  #   home_score = params[:the_cast][:home_score]
-  #   if @cast.update_attributes('home_score' => home_score)
-  #     flash[:notice] = I18n.t(:successful_update)
-  #   end
-  #   redirect_to casts_path(:id => @cast.challenge)
-  #   return
-  # end
-
-  # def set_the_cast_away_score
-  #   @cast = Cast.find(params[:id])
-  # 
-  #   unless current_user == @cast.user
-  #     flash[:warning] = I18n.t(:unauthorized)
-  #     redirect_back_or_default('/index')
-  #     return
-  #   end
-  # 
-  #   away_score = params[:the_cast][:away_score]
-  #   if @cast.update_attributes('away_score' => away_score)
-  #     flash[:notice] = I18n.t(:successful_update)
-  #   end
-  #   redirect_to casts_path(:id => @cast.challenge)
-  #   return
-  # end
-
   def edit
-    # @challenge = Challenge.find(params[:id])
-    # 
-    # unless current_user.is_member_of?(@challenge)
-    #   flash[:warning] = I18n.t(:unauthorized)
-    #   redirect_back_or_default('/index')
-    #   return
-    # end      
-
     counter = 0
     @casts = Cast.current_casts(current_user, @challenge)
     @cast = @casts.first  
@@ -77,7 +34,7 @@ class CastsController < ApplicationController
       Cast.calculate_standing(@cast)
 
       flash[:notice] = I18n.t(:successful_update)
-      redirect_to casts_path(:id => @cast.challenge)
+      redirect_to casts_path(:id => @cast.challenge, :user_id => current_user)
       return
     else
       render :action => 'edit'

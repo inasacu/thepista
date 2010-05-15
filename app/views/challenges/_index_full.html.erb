@@ -11,8 +11,7 @@
 		</th>
 	    <th><%= label_name(:manager) %>&nbsp;/<br />
 			<%= label_name(:time_zone) %>
-		</th>
-	    <!-- <th><%#= label_name(:time_zone) %></th> -->
+		</th>	   
 	    <th><%= label_name(:general_information) %></th>
 	    <th><%#= label_name(:last_game_played) %></th>
 	    <th class="last">&nbsp;</th>
@@ -44,13 +43,11 @@
 
 			<td>
 				<%= I18n.t(:has_challenge_users, :count => object_counter(challenge.users)) %><br />
-				<%#= I18n.t(:has_challenge_casts, :count => object_counter(challenge.casts)) %>
 			</td>
 
 			<td class="name_and_date">
 				<%= link_to(label_name(:points_full), show_list_standings_path(:id => challenge)) %>
 				<span class="date">
-					<%#= nice_full_date(cast.starts_at) unless cast.nil? %> 
 				</span>
 			</td>
 
@@ -64,7 +61,8 @@
 								the_label = label_with_name('add_to_item', challenge.name)
  								the_confirmation = "#{ label_name(:petition_to_join) } #{challenge.name}?"
 					%> 
-							<%= link_to(the_label, join_item_path(:id => challenge, :item => challenge.class.to_s, :teammate => current_user), :confirm => the_confirmation) %>
+							<%= link_to(the_label, join_item_path(:id => challenge, :item => challenge.class.to_s, :teammate => current_user), 
+									:confirm => the_confirmation) %>
 					<% 	end 
 					   end
 					-%>

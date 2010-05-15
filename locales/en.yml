@@ -726,6 +726,8 @@ en:
      our_philosophy:  Our Philosophy
      overview: overview   
      page_does_not_exist: The page you wanted does not exist.     
+     participate_challenge: Participate in the challenge
+     participate_challenge_afterwards: "After you signup, follow the link to signup for the challenge"       
      participate_schedule: Participate in the Event
      participate_schedule_afterwards: "After you signup for the team and its accepted, follow this link to participate in the event"
      participate_group_afterwards: "After you signup, follow the link to signup for the team"   
@@ -765,7 +767,7 @@ en:
      petition_join_item_decline: Decline
      petition_no:  No Requests to show.
      petition_to_join: Request to join a
-     petition_to_join_round: Request to join a
+     petition_to_join: Request to join a
      petition_pending: Pending Request   
      petition_to_join: Request to join a 
      petitions: Requests 

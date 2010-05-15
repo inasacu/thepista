@@ -39,7 +39,7 @@
 			the_confirmation = "#{ the_label }?"
 			@the_cast = cast
 			no_team = (cast.home_id.nil? or cast.away_id.nil?)  
-			is_user = (current_user == cast.user) #and cast.deadline_at <= Time.zone.now - 1.day)	
+			is_user = (current_user == cast.user) # and cast.deadline_at <= Time.zone.now - 6.hours	
 			
 			no_team = (cast.home_id.nil? or cast.away_id.nil?) 
 			no_ranking = (cast.home_ranking.nil? or cast.away_ranking.nil? or 
@@ -112,7 +112,7 @@
 <% content_for :sidebar, render(:partial => 'challenges/sidebar_show') -%>
 <% content_for :sidebar, render(:partial => 'shared/share_object') -%>
 
-<%  if @cup  %>
+<%#  if @cup  %>
 <%# content_for :sidebar, render(:partial => 'cups/sidebar_cup_additional', :locals => {:cup => @cup}) if current_user.is_manager_of?(@cup) -%>
 <%# content_for :sidebar, render(:partial => 'shared/sidebar_show_cup', :locals => {:cup => @cup}) if current_user.is_manager_of?(@cup) -%>
-<% end -%>
+<%# end -%>

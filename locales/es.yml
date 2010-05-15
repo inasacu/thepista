@@ -818,9 +818,7 @@ es:
      petition_join_item_accept:  Acepto
      petition_join_item_decline: Rechazo
      petition_no:  Ninguna petición para mostrar.  
-     petition_to_join: Petición para unirse a
-     petition_to_join: Petición para unirse a
-     petition_to_join_round: Petición para unirse a
+     petition_to_join: Unirse a
      petition_pending: Peticiones pendiente   
      petitions: Peticiones 
      petition_to_join_approved: Petición aprobada para unirse.

@@ -1,6 +1,6 @@
 class EscuadrasController < ApplicationController
   before_filter :require_user
-  # before_filter :the_maximo
+  before_filter :the_maximo,  :only => [:new, :create, :edit, :update]
 
   def index    
     @cup = Cup.find(params[:id])

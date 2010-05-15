@@ -182,7 +182,7 @@ class FeesController < ApplicationController
 
   def has_manager_access
     if params[:id]
-      @group = Group.find(params[:id])
+      @group = Group.find(params[:id]) 
 
       unless current_user.is_manager_of?(@group) 
         flash[:warning] = I18n.t(:unauthorized)
