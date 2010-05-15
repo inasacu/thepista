@@ -12,7 +12,7 @@ class UserSessionsController < ApplicationController
     @user_session = UserSession.new(params[:user_session])
     @user_session.save do |result|
       if result
-        flash[:notice] = I18n.t(:successful_logged_in) + I18n.t("#{ verify_recaptcha() }_value")
+        # flash[:notice] = I18n.t(:successful_logged_in) # + I18n.t("#{ verify_recaptcha() }_value")
         # redirect_back_or_default root_url
       else
         flash[:error] = I18n.t(:unsuccessful_logged_in)
