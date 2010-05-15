@@ -496,6 +496,10 @@ fr:
      has_been_sent: has been sent.  
      has_been_sent_female: has been sent. 
      has_been_taken: "name not availble, try another."
+     has_casts_ready_users:
+        zero:  "Player has no forecast completed."
+        one:  "Player has 1 forecast completed"
+        other:  "Player has {{count}} forecasts completed"
      has_challenge_users:
         zero: "Challenge does not have players." 
         one:  "Challenge has 1 player." 

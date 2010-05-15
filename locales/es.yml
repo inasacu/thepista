@@ -496,6 +496,10 @@ es:
      has_been_sent: ha sido mandado correctamente.  
      has_been_sent_female: has sido mandada correctamente. 
      has_been_taken: ya se ha elegido.  Intenta otro nombre.
+     has_casts_ready_users:
+        zero:  "Jugador no tiene mardado ningun pronostico."
+        one:  "Jugador tiene 1 pronóstico marcado"
+        other:  "Jugador tiene {{count}} pronósticos marcados"
      has_challenge_users:
         zero: "Este reto no tiene jugadores." 
         one:  "Este reto tiene 1 jugador." 

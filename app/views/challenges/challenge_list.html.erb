@@ -15,18 +15,25 @@
 			<th><%=label_name(:name) %></th>
 			<th><%=label_name(:challenge) %></th>
 			<th><%=label_name(:time_zone) %></th>
-			<th>&nbsp;<%#=label_name(:last_game_played) %></th>
+			<th>&nbsp;</th>
 			<th class="last">&nbsp;</th>
 		</tr>
 		
         <% @users.each do |user| 
+			user_casts = Cast.ready_casts(user, @challenge)
 	    -%>
 			<tr>
 			  <td><%= image_link_small user %></td>					
 			  <td><%= user_link user %></td>
 			  <td><%= user.has_challenge? ? challenge_list(user.challenges) : label_name('challenges_none') %></td>		 
 			  <td><%= user.time_zone %></td>			  
-			  <td><%=  link_to(label_name(:cast) , casts_path(:id => @challenge, :user_id => user)) %></td>	
+			  <td class="name_and_date">
+				<%=  link_to(label_name(:cast) , casts_path(:id => @challenge, :user_id => user)) %>
+				<span class="date">
+					<%= I18n.t(:has_casts_ready_users, :count => user_casts.total) %>
+				</span>
+			  </td>
+			
 			  <td class="last"><%= link_to label_name(:send_message_to), new_message_path(:id => user) unless current_user == user %></td>		  
 			</tr>
         <% end -%>

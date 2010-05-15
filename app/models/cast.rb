@@ -83,6 +83,10 @@ class Cast < ActiveRecord::Base
          :order => 'games.jornada')
   end
   
+  def self.ready_casts(user, challenge)
+    find(:first, :select => "count(*) as total", :conditions => ["user_id = ? and challenge_id = ? and home_score is not null and away_score is not null", user.id, challenge.id])
+  end
+  
   def self.save_casts(the_cast, cast_attributes)
     the_cast.challenge.casts.each do |cast|
       attributes = cast_attributes[cast.id.to_s]
