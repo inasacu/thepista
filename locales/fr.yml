@@ -1,449 +1,445 @@
-# Sample localization file for english. Add more files in this directory for other locales.
-# See http://github.com/svenfuchs/rails-i18n/tree/master/rails%2Flocale for starting points.
-
 fr:
      a: "a"   
-     about: "sobre"   
-     accept: "Acepto"   
-     accept_player: "ACEPTA"   
-     account: cuenta
-     account_activation:  Tu cuenta ya ha sido activada.
-     account_created:  Tu cuenta ha sido creada y activada.
-     accounts: Cuentas   
-     add_email: "Acepto, crea mi cuenta"     
-     add_to_group: Petición para unirse a  
-     add_to_item: Petición para unirse a
-     add_to_tournament: Petición para unirse a 
-     address: Dirección   
-     addresses: Direcciones   
-     administrator: Administrador   
-     ads: publicidad   
-     afterwards: despues  
+     about: "about"   
+     accept: "Accept"   
+     accept_player: "ACCEPT"   
+     account: account
+     account_activation:  Your account is now active.  
+     account_created:  Your account has been created and active.  
+     accounts: Accounts 
+     add_email: "Accept, Create your account"  
+     add_to_group: Petition to join 
+     add_to_item: Request to unirse a
+     add_to_tournament: Petition to join 
+     address: Address   
+     addresses: Addresses   
+     administrator: Admin   
+     ads: ads   
+     afterwards: afterwards
      agenda:  Agenda
      agendas:  Agendas
-     agendas_calendar:  Calendario
-     agendas_create:  Nueva Agenda  
+     agendas_calendar:  Calendar
+     agendas_create:  Create Agenda  
      agendas_index:  Agendas
-     agendas_new:  Nueva Agenda    
-     agendas_no:  Ninguna agenda para mostrar.
-     ago:  "Hace {{count}}" 
-     all_group:  Todos los equipos 
-     all_scorecard:  Todos las Clasificaciones
-     all_tournament:  Todos los torneos  
-     all_user:   Todos los jugadores
-     all_venue:  Todos los centros deportivos    
-     already_exist: ya existe  
-     and: y   
-     announcement: Comunicación
-     announcements: Comunicaciones 
-     announcements_create:  Nueva communicación
-     announcements_delete:  Borrar communicación
-     announcements_index:  Comunicaciones 
-     announcements_list:    Anteriores communicaciones
-     announcements_new:    Nueva communicación
-     announcements_no:  Ninguna communicación para mostrar. 
-     announcements_option: Opciones
-     announcements_previous:  Anteriores communicaciones
-     archive: archiva  
-     archive_list_schedules:  Temporada anterior
-     are_you_sure:  ¿Estas seguro? 
-     at: a las 
-     attack:  Delantera
-     attend_schedule: Asiste al evento     
-     ausente: Ausente   
-     authorizable_id: Codigo    
-     authorizable_type: Tipo    
-     available: Disponibilidad
-     available_description: (Si estas disponible para jugar o si no quieres que te molesten...)   
+     agendas_new:  Create Agenda    
+     agendas_no:  No agendas to display.
+     ago:  "{{count}} ago"      
+     all_group:  All Teams 
+     all_scorecard:  All Scorecards
+     all_tournament:  All Tournaments  
+     all_user:   All Players
+     all_venue:  All Venues
+     already_exist: already exist
+     and: and
+     announcement: Announcement
+     announcements: Announcements
+     announcements_create:  New Announcement
+     announcements_delete:  Delete this Announcement
+     announcements_index:  Announcements 
+     announcements_list:  Previous Announcements
+     announcements_new:    New Announcement
+     announcements_no:  No Announcements to display.
+     announcements_option: Options
+     announcements_previous:  Previous Announcements
+     archive: archive 
+     archive_list_schedules:  Previous Season
+     are_you_sure:  Are you sure? 
+     at: at
+     attack:  Forward
+     attend_schedule: Attend the Event 
+     ausente: No-Show     
+     authorizable_id: Code    
+     authorizable_type: Type    
+     available: Available
+     available_description: (Are you available to Play?)   
      avatar: Gravatar   
-     away_group: Fuera   
-     away_stage_name:  Grupo
+     away_group: Visiting 
+     away_stage_name:  Group
      away_ranking:  Ranking
-     back: Volver      
-     between: entre   
-     birth_at:  Fecha de nacimiento
-     birth_description: (Escribe fecha de nacimiento...Solo se utiliza para calcular la edad media del equipo...)      
+     back: back    
+     between: between   
+     birth_at:  Date of Birth
+     birth_description: (Write your Date of Birth.  This is only used to calculate the medium Age for a Team.) 
      blog_haypista: Blog
-     blog_comment_notification: Recibir notas en tu muro
-     blogs_my_wall:  Mi muro
-     blogs_option:  Opciones 
-     body: Contenido 
-     body_description:  Contenido  
-     by: por     
-     calendar_language: es    
-     can_create_schedule: Añadir un evento   
-     cancel: Cancela        
-     cancel_email_subscription: ¿No deseas recibir notificaciones por correo electrónico?  
-     cannot_be_blank: no puede dejarse en blanco   
-     center:  Media
-     cast: Pronóstico   
-     cast_description: (Escribe algun detalle del pronóstico...)  
-     casts: Pronósticos
-     casts_archive_list:  Pronósticos anteriores
-     casts_create:  Nuevo pronóstico
-     casts_destroy:  Borrar pronóstico
-     casts_index: Mis pronósticos
-     casts_index_option: Opciones 
-     casts_list:  Anteriores pronósticos
-     casts_list_no: Ningun pronóstico previo para mostrar.
-     casts_manager_option:  Requiere responsable de reto para ver mas opciones.
-     casts_new: Nuevo pronóstico
-     casts_no: Ningun pronóstico para mostrar.
-     casts_edit: Actualizar pronóstico
-     casts_update: Actualizar pronóstico
-     casts_option:  Opciones 
-     cast_options:  Opciones 
-     casts_show: Detalles del pronóstico
-     cast_rate: Valoración del pronóstico     
-     challenge:  Reto
-     challenge_options:  Opciones
-     challenges:  Retos
-     challenges_all:  Todos los retos
-     challenges_create:  Crea tu reto 
-     challenges_destroy:  Borrar reto
-     challenges_edit:  Actualizar reto
-     challenges_index:   Retos
-     challenges_index_option: Opciones 
-     challenges_invitations_create:  Invita a un amigo al reto
-     challenges_join:  Unete al reto
-     challenges_my:  Mis Retos
-     challenges_list:  Resto de retos
-     challenges_new:  Nuevo reto
-     challenges_new_option: Opciones 
-     challenges_no:  Ningun reto para mostrar.
-     challenges_none:  Ningun reto.
-     challenges_options_without: "¿Qué opciones tienes ya que no tienes un reto?"
-     challenges_option:  Opciones 
-     challenges_search: Busqueda de retos
-     challenges_search_to_join: Puedes buscar un reto al que unierte. 
-     challenges_show:  Mostrar reto
-     challenges_update: Actualizar reto
-     change: Cambia idioma   
-     change_available: Cambia la disponibilidad de   
-     change_at:  Fecha de cambio
-     change_message_notification: Cambio de recibida de correo de   
-     change_email_configuration: Cambia tu configuración de mensajes.
-     change_group: Cambia de equipo   
-     change_language: Cambia el idioma  
-     change_option:  Cambia opción?
-     change_rejected: El cambio que ha pedido ha sido rechazado.  
-     change_rejected_explained: "Es posible que no tuvieses acceso a esa zona, lo sentimos!"	 
-     change_roster_status: Pasa a 
-     change_wo_access: Es posible que hayas intentado cambiar algo a lo que no tenias acceso.  
-     change_your_roster_status:  Cambia tu convocatoria
-     changed_description: cambio en la descripción
-     changes_in_roster_status: Ha cambiado su <strong>CONVOCATORIA</strong>
-     character_limit: Máximo 255 carácteres   
-     check_all: Todos   
-     check_invert: Inverso   
-     check_none: Nadie   
-     check_out_groups: Ver equipos   
-     check_out_schedules: Ver eventos   
-     check_out_users: Ver jugadores   
-     city: Ciudad  
-     click_to_edit:  "Haz clic para editar!" 
-     close: Cerrar   
-     code: Codigo 
-     conditions: Condiciones   
+     blog_comment_notification: Allow Messages on your Wall
+     blogs_my_wall:  My Wall
+     blogs_option:  Options
+     body: Body 
+     body_description:  Content  
+     by: by     
+     calendar_language: en      
+     can_create_schedule: Create an Event   
+     cancel: Cancel        
+     cancel_email_subscription: Unsubscribe to email Notices? 
+     cannot_be_blank: cannot be blank   
+     center:  Mid-Field
+     cast: Forecast   
+     cast_description: (Write some details on the forecast...)  
+     casts: Forecasts
+     casts_archive_list:  Previous Forecasts
+     casts_create:  New forecast
+     casts_destroy:  Remove forecast
+     casts_index: My forecasts
+     casts_index_option: Options 
+     casts_list:  Previous Forecasts
+     casts_list_no: No previous forecast to display.
+     casts_manager_option:  Requires manager to  responsable de challenge to view more options.
+     casts_new: New forecast
+     casts_no: No forecast to display.
+     casts_edit: Update forecast
+     casts_update: Update forecast
+     casts_option:  Options 
+     cast_options:  Options 
+     casts_show: Forecast details
+     cast_rate: Forecast rate 
+     challenge:  Challenge
+     challenge_options:  Options
+     challenges:  Challenges
+     challenges_all:  All Challenges
+     challenges_create:  Create your challenge 
+     challenges_destroy:  Remove challenge
+     challenges_edit:  Update challenge
+     challenges_index:   Challenges
+     challenges_index_option: Options 
+     challenges_invitations_create:  Invite your friend to challenge
+     challenges_join:  Join challenge
+     challenges_my:  My Challenges
+     challenges_list:  Rest of challenges
+     challenges_new:  New challenge
+     challenges_new_option: Options 
+     challenges_no:  No challenge to display.
+     challenges_none:  No challenge.
+     challenges_options_without: "What options do you have since you don't have any challenges?"
+     challenges_option:  Options 
+     challenges_search: Search for challenges
+     challenges_search_to_join: You can search for challenge to join. 
+     challenges_show:  Show challenge
+     challenges_update: Update challenge
+     change: Change Language   
+     change_available: Change available status   
+     change_at:  Date Changed
+     change_message_notification: Change Message Notice
+     change_email_configuration: Change Email Configuration.
+     change_group: Change Team   
+     change_language: Change Language  
+     change_option:  Change option?
+     change_rejected: Change has been rejected.
+     change_rejected_explained: "It is possible that you do not have access to that zone, Sorry!"
+     change_roster_status: Change to 
+     change_wo_access: "It is possible that you tried to change something you did not have access to, Sorry!"  
+     change_your_roster_status:  Change your Squad Status
+     changed_description: Change Details
+     changes_in_roster_status: Has changed <strong>SQUAD</strong> status   
+     character_limit: Max characters is 255   
+     check_all: Select All   
+     check_invert: Inverse   
+     check_none: Select None   
+     check_out_groups: Show Teams   
+     check_out_schedules: Show Events
+     check_out_users: Show Players   
+     city: City  
+     click_to_edit:  "Click to edit!" 
+     close: Close   
+     code: Code
+     conditions: Conditions   
      coeficient: "%"
-     coeficient_full: Coeficiente = Puntos Obtenidos / Maximo Puntos
+     coeficient_full: Coeficient = Points Received / Maximum Points Possible
      coeficient_points: "#"  
-     coeficient_full_points: Puntos Obtenidos * Coeficiente
-     comment: Comentario   
-     comment_not_saved: Comentarios no guardados!!!   
-     comment_saved: Comentarios guardados!!!   
-     connect:  Conectar
-     concept: Concepto
-     concept_description:  Concepto   
-     contact: Contacto   
-     contact_us: contáctenos 
-     convocado: Convocado
-     convocados: Convocados
-     could_not_log_you: No se ha podido iniciar la sesión en la que como   
-     could_not_setup_account: "No pudimos crear la cuenta, lo sentimos!"   
-     country: Pais        
-     create: Nuevo   
-     create_address: Nueva dirección   
-     create_announcement: Nuevo anuncio   
-     create_credit: Nuevo pago   
-     create_debit: Nuevo cargo   
-     create_description: Nuevo detalles   
-     create_information: Nuevo detalles   
-     create_invitation: Manda una invitación   
-     create_manager: Nuevo mister   
-     create_name: Nuevo nombre   
-     create_note: Nueva nota        
-     create_profile: Nuevo perfil   
-     create_reminder: Nuevo recordatorio   
-     create_role: Nueva responsabilidad    
-     create_sport: Nuevo deporte    
-     create_type: Nuevo tipo   
-     create_url_venue: nuevo marcador para indicar donde vas a jugar   
-     create_user: Invita a un amigo   
-     create_venue: Nuevo centro deportivo   
-     create_your_own: crear tu propio      
-     created: se ha creado correctamente.   
-     created_at:  Fecha de creación
-     created_a_schedule: Ha creado un evento   
-     credit: Pago   
-     credit_amount: A recibir   
-     credit_amount_description:  Lo que recibes
-     credit_total:  Pago total
-     credits: Pagos
-     cup:  Copa  
-     cups:  Copas
-     cups_all:  Todas las copas
-     cups_create:  Nueva copa 
-     cups_destroy:  Borrar copa
-     cups_edit:  Actualizar copa
-     cups_index:   Copas
-     cups_index_option: Opciones 
-     cups_invitations_create:  Invita a un amigo a esta copa
-     cups_join:  Unete a la copa
-     cups_list:  Anteriores Copas
-     cups_new:  Nueva copa
-     cups_new_option: Opciones 
-     cups_no:  Ninguna copa para mostrar.
-     cups_none:  Ninguna copa.
-     cup_options:  Opciones
-     cups_options_without: "¿Qué opciones tienes ya que no estas apuntado a una copa?"
-     cups_option:  Opciones 
-     cups_search: Busqueda de copas
-     cups_search_to_join: Puedes buscar una copa para unirte. 
-     cups_show:  Mostrar copa
-     cups_to_join:   inscribirte a una copa 
-     cups_upcoming: Próximas Copas  
-     cups_update: Actualizar copa
-     current_accounts: Cuentas actuales   
-     current_language: Español    
-     current_time: La hora   
-     current_time_zone: Zona del usuario   
-     current_user: Usuario 
-     dates:  Fechas  
-     deadline_at:  Fecha de cierre de inscripción 
-     deadline_at_description:  Fecha de cierre de inscripción 
-     debit: Cargo   
-     debit_amount: A pagar   
-     debit_amount_description: Lo que debes pagar
-     debit_total:  Cargo total
-     debit_to_group:  Debes a tu equipo
-     debits: Cargos   
-     default_reliable: Fiable   
-     defense:  Defensa
-     delete_activity: Borrar actividad    
-     deleted: se ha borrado correctamente.   
-     deny: Rechazo   
-     deny_player: "DENIEGA"  
-     description: Detalles
-     description_announcement: Detalles de la anuncio      
-     email_description: "Ej:  tu_cuenta@gmail.com"     
-     description_fee: Detalles de los cargos      
-     description_group: Detalles del equipo   
-     description_invitation: Detalles de la invitación  
-     description_login: Necesita 5 characteres. 
-     description_manager: Detalles del mister   
-     description_marker: Detalles del centro deportivo   
-     description_match: Detalles del partido   
-     description_message: Detalles del mensaje   
-     description_note: Detalles de la nota   
-     description_notification: Detalles del notificación
-     description_scorecard:  Detalles de la clasificación
-     description_wall:  Detalles del muro
-     destroy: Borrar   
-     destroy_address: Borra la dirección   
-     destroy_announcement: Borra un anuncio 
-     destroy_cup:  Borra copa  
-     destroy_credit: Borra un pago   
-     destroy_debit: Borra un cargo   
-     destroy_description: Borra un detalles   
-     destroy_fee: Borra los cargos 
-     destroy_group: Borra el equipo   
-     destroy_information: Borra un detalles   
-     destroy_invitation: Borra la invitación   
-     destroy_manager: Borra un mister   
-     destroy_map: Borra el mapa   
-     destroy_marker: Borra el centro deportivo   
-     destroy_match: Borra una resultado   
-     destroy_message: Borra el mensaje   
-     destroy_name: Borra un nombre   
-     destroy_note: Borra una nota   
-     destroy_notification: Borra la notificación   
-     destroy_payment: Borra un pago   
-     destroy_profile: Borra tu perfil   
-     destroy_reminder: Borra un recordatorio   
-     destroy_role: Borra la responsabilidad   
-     destroy_schedule: Borra el evento   
-     destroy_scorecard: Borra el resultado   
-     destroy_sport: Borra el deporte   
-     destroy_tournament: Borra el torneo   
-     destroy_type: Borra un tipo   
-     destroy_user: Borra el jugador   
-     destroy_venue: Borra el centro deportivo 
-     documentation: El manual
-     does_not_exist: "Lo sentimos, pero la página a la que intentas acceder no existe."
-     does_not_exist_explained: Es posible que la pagina se haya cambiado.	   
-     do_join_group: ¿Te quieres unir a   
-     do_join_tournament: ¿Te quieres unir a   
-     do_leave_group: ¿Te quieres salir de   
-     dont_user_marks: "Por favor, no use acentos en la cuenta OpenID. Gracias!"   
+     coeficient_full_points: Points Received * Coeficient
+     comment: Comment   
+     comment_not_saved: Comments NOT saved!!!   
+     comment_saved: Comments save!!!   
+     connect:  Connect
+     concept: Concept
+     concept_description:  Concept   
+     contact: Contact   
+     contact_us: contact us 
+     convocado: Squad
+     convocados: Squad
+     could_not_log_you: Could not log your session    
+     could_not_setup_account: "We could not setup your account, Sorry!"   
+     country: Country    
+     create: Create   
+     create_address: New Address   
+     create_announcement: New Announcement   
+     create_credit: New Payment   
+     create_debit: New Fee
+     create_description: New Details 
+     create_information: New Details   
+     create_invitation: Send an Invitation   
+     create_manager: Add a Manager  
+     create_name: Create Name   
+     create_note: Create a Note   
+     create_profile: Add a Profile   
+     create_reminder: Add a Reminder   
+     create_role: Add a Role    
+     create_sport: Add a Sport    
+     create_type: Add a Type   
+     create_url_venue: new marker to indicate where you play   
+     create_user: Invite a friend   
+     create_venue: New Club   
+     create_your_own: Create your own       
+     created: has been created correctly.   
+     created_at:  Date Created
+     created_a_schedule: Has created an event   
+     credit: Payment   
+     credit_amount: Credit Amount   
+     credit_amount_description:  Credit Amount Details
+     credit_total:  Total Payment
+     credits: Payments  
+     cup:  Tournament  
+     cups:  Tournaments
+     cups_all:  All tournaments
+     cups_create:  New tournament 
+     cups_destroy:  Remove tournament
+     cups_edit:  Update tournament
+     cups_index:   Tournaments
+     cups_index_option: Options 
+     cups_invitations_create:  Invite your friend to this tournament
+     cups_join:  Join this tournament
+     cups_list:  Previous Tournaments
+     cups_new:  New tournament
+     cups_new_option: Options 
+     cups_no:  No tournament to display.
+     cups_none:  No tournament.
+     cup_options:  Options
+     cups_options_without: "What options do you have since you are not part of a tournament?"
+     cups_option:  Options 
+     cups_search: Search for tournaments
+     cups_search_to_join: You can find a tournament to join. 
+     cups_show:  Show tournament
+     cups_to_join:   signup to a tournament 
+     cups_upcoming: Upcoming Tournaments  
+     cups_update: Update tournament
+     current_accounts: Current Accounts   
+     current_language: English    
+     current_time: Current Time   
+     current_time_zone: Player Time Zone  
+     current_user: Player 
+     dates:  Dates  
+     deadline_at:  Subscription Deadline
+     deadline_at_description:  Subscription Deadline 
+     debit: Fee   
+     debit_amount: Charges  
+     debit_amount_description: What needs to be Payed
+     debit_total:  Total Charges
+     debit_to_group:  Debt owed to your team
+     debits: Charges   
+     default_reliable: Reliable   
+     defense:  Defense
+     delete_activity: Remove Activity    
+     deleted: has been removed correctly. 
+     deny: Deny   
+     deny_player: "DENY"  
+     description: Details
+     description_announcement: Announcement Details     
+     email_description: "Ex:  your_account@gmail.com"     
+     description_fee: Fee Details   
+     description_group: Team Details   
+     description_invitation: Invitation Details
+     description_login: Requires at least 5 characters. 
+     description_manager: Manager Details  
+     description_marker: Marker Details   
+     description_match: Match Details   
+     description_message: Message Details   
+     description_note: Note Details   
+     description_notification: Notice Details
+     description_scorecard:  Scorecard Details
+     description_wall:  Wall Details
+     destroy: Remove   
+     destroy_address: Remove the Address   
+     destroy_announcement: Remove the Announcement   
+     destroy_credit: Remove the Payment   
+     destroy_cup:  Remove Tournament
+     destroy_debit: Remove the Charge   
+     destroy_description: Remove Details   
+     destroy_fee: Remove Charges   
+     destroy_group: Remove the Team   
+     destroy_information: Remove Details   
+     destroy_invitation: Remove Invitation   
+     destroy_manager: Remove Manager   
+     destroy_map: Remove the Map   
+     destroy_marker: Remove the Marker   
+     destroy_match: Remove the Match Result   
+     destroy_message: Remove the Message   
+     destroy_name: Remove the Name   
+     destroy_note: Remove the Note   
+     destroy_notification: Remove the Notice   
+     destroy_payment: Remove the Payment   
+     destroy_profile: Remove your Profile   
+     destroy_reminder: Remove the Reminder   
+     destroy_role: Remove the Role   
+     destroy_schedule: Remove the Event   
+     destroy_scorecard: Remove the Scorecard Result   
+     destroy_sport: Remove the Sport   
+     destroy_tournament: Remove the Tournament   
+     destroy_type: Remove the Type   
+     destroy_user: Remove the Player   
+     destroy_venue: Remove the Venue
+     documentation: Documentation
+     does_not_exist: "The page your are trying to access does not exist, Sorry!"
+     does_not_exist_explained: "It is possible that the page has been modified and no longer exist, Sorry!"	  
+     do_join_group: Do you want to join   
+     do_join_tournament: Do you want to join   
+     do_leave_group: Do you want to leave     
+     dont_user_marks: "Please do not use accents when using OpenID. Thank You!"   
      dorsal: Dorsal   
-     dorsal_description: (Si te interesa poner el nombre o numero de tu camiseta...)   
-     drop_us_a_note: Envíenos una nota.
-     edit: Actualiza   
-     edit_address: Actualiza la dirección   
-     edit_announcement: Actualiza un anuncio   
-     edit_credit: Actualiza un pago   
-     edit_debit: Actualiza un cargo   
-     edit_description: Actualiza un detalles   
-     edit_fee: Actualiza los cargos   
-     edit_group: Actualiza el equipo   
-     edit_information: Actualiza un detalles   
-     edit_invitation: Actualiza la invitación   
-     edit_manager: Actualiza un mister   
-     edit_map: Actualiza el mapa   
-     edit_marker: Actualiza el centro deportivo   
-     edit_match: Guardar el resultado   
-     edit_message: Actualiza un mensaje   
-     edit_my_user: Actualiza mi Cuenta   
-     edit_name: Actualiza un nombre   
-     edit_note: Actualiza una nota   
-     edit_notification: Actualiza la notificación   
-     edit_payment: Actualiza un pago   
-     edit_profile: Actualiza tu perfil   
-     edit_reminder: Actualiza un recordatorio   
-     edit_role: Actualiza la responsabilidad   
-     edit_schedule: Actualiza  el evento   
-     edit_scorecard: Actualiza el resultado   
-     edit_sport: Actualiza el deporte   
-     edit_tournament: Actualiza el torneo   
-     edit_type: Actualiza un tipo   
-     edit_user: Actualiza tu perfil   
-     edit_venue: Actualiza el centro deportivo   
-     email: Correo   
-     email_time_zone: Horario para mandar correos antes de un encuentro.  
-     email_addresses: Cuenta de correo
-     email_addresses_description:  Escribe la cuenta de correo.
-     enable_comments: Recibirir aviso de comentarios
-     enable_comments_description: Opción para recibir aviso cuando se deja un comentario.
-     ends_at: Finalización   
-     ends_at_match: Finalización   
-     ends_at_description: (¿Ha que hora termina el evento?)   
-     ends_at_venue: Horario   
+     dorsal_description: (If your interest is to put your name or number on your jersey...)   
+     drop_us_a_note: Drop us a note.
+     edit: Edit   
+     edit_address: Edit Address   
+     edit_announcement: Edit Announcement   
+     edit_credit: Edit Payment   
+     edit_debit: Edit Charge   
+     edit_description: Edit Details  
+     edit_fee: Edit Charges    
+     edit_group: Edit Team   
+     edit_information: Edit Details   
+     edit_invitation: Edit Invitation   
+     edit_manager: Edit Manager   
+     edit_map: Edit Map  
+     edit_marker: Edit Marker   
+     edit_match: Save the Match Result   
+     edit_message: Edit Message   
+     edit_my_user: Edit My Account   
+     edit_name: Edit Name   
+     edit_note: Edit Note   
+     edit_notification: Edit Notificación   
+     edit_payment: Edit Payment   
+     edit_profile: Edit your profile   
+     edit_reminder: Edit Reminder   
+     edit_role: Edit the Responsabilidad   
+     edit_schedule: Edit the Event   
+     edit_scorecard: Edit Scorecard   
+     edit_sport: Edit the Sport   
+     edit_tournament: Edit Tournament   
+     edit_type: Edit Type   
+     edit_user: Edit your profile   
+     edit_venue: Edit Venue   
+     email: Email   
+     email_time_zone: Time Zone to send email before an event.  
+     email_addresses: Email Address
+     email_addresses_description:  Write your email address.
+     enable_comments: Receive Comment NoticeNotices
+     enable_comments_description: Option to receive comments in your inbox.
+     ends_at: Ends at   
+     ends_at_match: Match Ends At   
+     ends_at_description: (What time does the event end?)   
+     ends_at_venue: Hours  
      events:
-        one:  "tiene 1 evento." 
-        other: "tiene {{count}} eventos."        
-     event_details:  "(Escribe algun detalle del evento...)" 
-     event_participation:  Paticipación en eventos
-     error_when_create_account: "Fallo al intentar crear tu cuenta, intentalo de nuevo."  
-     exit_group: Desapuntate del equipo   
-     exit_tournament: Desapuntate del torneo   
-     explore:  Explorar
-     facility: Instalaciones 
-     facilitiess_create:  Nueva Instalación 
-     failed_login: Error de inicio de sesión      
+        one:  "has 1 event." 
+        other: "has {{count}} events."        
+     event_details:  "(Write a comment about the event...)" 
+     event_participation:  Events Participation
+     error_when_create_account: "your account was not created, please try again."
+     exit_group: Opt-out of the Team   
+     exit_tournament: Opt-out of the Tournament   
+     explore:  Explore
+     facility: Instalations 
+     facilitiess_create:  Create Instalation  
+     failed_login: Failed Login      
      false_value: "No"
-     feature: Prestación
-     features: Prestaciones
-     fee: Honorarios   
-     fee_per_game: Tarifa / Partido   
-     fee_per_game_description: (Este es el precio del evento por jugador...)   
-     fee_per_pista: Tarifa / Pista   
-     fee_per_pista_description: (Este es el precio de la pista or cancha...) 
-     fee_per_tour: Tarifa / Torneo   
-     fee_per_tour_description: (Este es el precio del torneo...)  
+     feature: Feature
+     features: Features
+     fee: Fee   
+     fee_per_game: Fee / Game   
+     fee_per_game_description: (This is the price player has to pay for the event...)   
+     fee_per_pista: Fee / Pista   
+     fee_per_pista_description: (This is the price for the pista...) 
+     fee_per_tour: Fee / Tournament   
+     fee_per_tour_description: (This is the price for the tournament...)  
      feedback: feedback   
-     fees: Cargos   
-     female_value: Femenina   
-     fire_from_group: Desapunta de   
-     flag:  Bandera
-     follow: Sigue 
-     forum: Notas de    
-     forward: Adelante   
-     Friday: Viernes 
-     profile:  Perfil
-     forum_comment_notification:  Recibir notificación de comentario en tu muro en tu cuenta de correo.
-     forum_options:  Opciones
+     fees: Charges   
+     female_value: Femaile    
+     fire_from_group: Opt-out of   
+     follow: Follow 
+     forum: Notes for     
+     forward: Forward   
+     Friday: Friday 
+     profile:  Profile
+     forum_comment_notification:  Receive Comment in your inbox.
+     forum_options:  Options
      message_notification:  Recibir correo en tu cuenta de correo.
-     teammate_notification:  Recibir notificación para unirse a tu equipo en tu cuenta de correo.
-     enable_comments:  Habilitar comentarios
-     for:  para
-     from: de  
-     from_de: de 
-     from_Ausente: Pasate a Ultima hora   
-     from_Convocado: Pasate a ausente
-     from_message: De   
-     from_payment: Pago a   
-     from_Ultima_Hora: Pasate a convocado 
-     game: Evento 
-     games:  Eventos  
-     games_archive_list:  Temporada anterior
-     gameday_at:  Dia del Evento
-     game_day: Encuentro 
-     gameday_at_description:  Dia de la semana del encuentro  
-     games_concept_description:  Concepto del evento
-     games_destroy:  Borrar evento
-     games_index:  Eventos
-     games_index_option: Opciones 
-     games_invitations_create:  Invita a un amigo al evento
-     games_list:  Anteriores eventos
-     games_list_no: Ningun evento previo para mostrar.
-     games_manager_option:  Requiere responsable de equipo para ver mas opciones.
-     games_new: Nuevo evento
-     games_no: Ningun evento para mostrar.
-     games_create: Nuevo Evento
-     games_edit: Actualizar evento
-     games_update: Actualizar evento
-     games_option:  Opciones 
-     game_options:  Opciones 
-     games_show: Detalles del evento
-     game_lost: Derrota   
-     game_notes: Notas de futbol
-     game_played:  Partido jugado
-     game_started:  Titular
-     game_not_played:  Partido no jugado   
-     game_tied: Empate   
-     game_won: Victoria   
-     gameday_description: (¿Qué dia de la semana en general jugais?)   
-     games_assigned: PA   
-     games_assigned_full: Partidos Asignados   
-     games_lost: PP   
-     games_lost_full: Partidos Perdidos   
-     games_played: PJ   
-     games_played_full: Partidos Jugados  
-     games_started: PT
-     games_started_full:  Partidos Titular 
-     games_ranking: R   
+     teammate_notification:  Recibir Notificación para unirse a tu team en tu cuenta de correo.
+     enable_comments:  Enable Comments
+     for:  for
+     from: from 
+     from_de:  for  
+     from_Ausente: Change to Last Minute   
+     from_Convocado: Change to No-Show   
+     from_message: from   
+     from_payment: Payment from   
+     from_Ultima_Hora: Change to Squad  
+     game: Game 
+     games:  Games  
+     games_archive_list:  Previous Season
+     gameday_at:  Game Day
+     game_day: Game day 
+     gameday_at_description:  Game Day
+     games_concept_description:  Game Concept
+     games_destroy:  Remove Game
+     games_index:  Games
+     games_index_option: Options 
+     games_invitations_create:  Invite a friend to the game
+     games_list:  Previous Games
+     games_list_no: No previous games to display.
+     games_manager_option:  Requires team manager position to view more options.
+     games_new: New game
+     games_no: No game to display.
+     games_create: New Evento
+     games_edit: Update game
+     games_update: Update game
+     games_option:  Options 
+     game_options:  Options 
+     games_show: Game details
+     game_lost: Game Lost   
+     game_notes: Game Notes
+     game_played:  Games Played
+     game_started:  Game Started
+     game_not_played:  Games Not Played
+     game_tied: Draw Game   
+     game_won: Won Game   
+     gameday_description: (What day of the week does your team play?)   
+     games_assigned: GA   
+     games_assigned_full: Games Assigned   
+     games_lost: GL   
+     games_lost_full: Games Lost   
+     games_played: GP   
+     games_played_full: Games Played  
+     games_started: GS
+     games_started_full:  Games Started 
+     games_ranking: R.   
      games_ranking_full: Ranking   
      games_stats: Coef.   
-     games_stats_points: C. Ptos.   
-     games_tied: PE   
-     games_tied_full: Partidos Empatados   
-     games_title_stat_points: Coeficiente Puntos (Coeficiente)/(Ptos.)   
-     games_title_stats: "Coeficiente (Ptos.)/(P.J.*#)"   
-     games_won: PG   
-     games_won_full: Partidos Ganados   
-     gender: Genero   
-     general_information:  Información general
+     games_stats_points: C. Pts.   
+     games_tied: GT   
+     games_tied_full: Games Tied   
+     games_title_stat_points: Coefficient Points (Coefficient)/(Pts.)   
+     games_title_stats: "Coefficient (Pts.)/(G.P.*#)"  
+     games_won: GW   
+     games_won_full: Games Won   
+     gender: Gender   
+     general_information:  General Information
      goal_difference: GD   
-     goal_difference_full: Gol Diferencial   
-     goals_against: GC   
-     goals_against_full: Goles en Contra   
+     goal_difference_full: Goal Difference   
+     goals_against: GA   
+     goals_against_full: Goals Against   
      goals_for: GF   
-     goals_for_full: Goles a Favor        
+     goals_for_full: Goals For        
      goal_difference_true: GD   
-     goal_difference_full_true: Gol Diferencial   
-     goals_against_true: GC   
-     goals_against_full_true: Goles en Contra   
-     goals_for_true: GF   
-     goals_for_full_true: Goles a Favor   
-     goal_difference_false: DP   
-     goal_difference_full_false: Diferencial de Puntos   
-     goals_against_false: PC   
-     goals_against_full_false: Puntos en Contra   
-     goals_for_false: PF   
-     goals_for_full_false: Puntos a Favor        
-     goals_scored: GM   
-     goals_scored_full: Goles Marcados    
+     goal_difference_full_true: Goal Difference   
+     goals_against_true: GA   
+     goals_against_full_true: Goals Against   
+     goals_for_true: GF  
+     goals_for_full_true: Goals in Favor       
+     goal_difference_false: GD   
+     goal_difference_full_false: Point Difference   
+     goals_against_false: GA   
+     goals_against_full_false: Goals Against   
+     goals_for_false: GF   
+     goals_for_full_false: Goals in Favor        
+     goals_scored: GS   
+     goals_scored_full: Goals Scored
      field_goal_attempt: FGA		
      field_goal_made: 	 FGM
      field_goal_percentage: "FG%"	
@@ -481,839 +477,838 @@ fr:
      blocks_full: Blocks
      turnovers_full: Turnovers
      personal_fouls_full: Personal Fouls
-     assist_turnover_ratio_full:  Assist Turnover Ratio
-     group: Equipo   
-     Group: Equipo 
-     group_a:  Primer equipo
-     group_b:  Segundo equipo  
-     group_fee: Tasa de equipo
-     group_id: Equipo
-     group_stage:  Fase de Grupo
-     group_stage_advance:  Pasan a siguiente fase
-     group_stage_advance_description:  Total de equipos que pasan a siguiente fase.
-     group_stage_name:  Grupo
-     group_stage_single:  En fase de grupos se juega a un partido.
-     group_second_stage_single:  La eliminatoria se juega a un partido.
-     group_final_stage_single:  La final se juega a un partido.
-     group_round:  Ronda de Eliminación   
-     groups: Equipos  
-     has_been_sent: ha sido mandado correctamente.  
-     has_been_sent_female: has sido mandada correctamente. 
-     has_been_taken: ya se ha elegido.  Intenta otro nombre.
+     assist_turnover_ratio_full:  Assist Turnover Ratio  
+     group: Team   
+     Group: Team 
+     group_a:  First Team
+     group_b:  Second Team 
+     group_fee: Team Fees
+     group_id: Team  
+     group_stage:  Group Stage
+     group_stage_advance:  Continue to next round
+     group_stage_advance_description:  Total teams that move to next round.
+     group_stage_name:  Team
+     group_stage_single:  Single game in Group Stage.
+     group_second_stage_single:  Single game elimination.
+     group_final_stage_single:  Single game for the final.
+     group_round:  Elimination Round   
+     groups: Teams            
+     has_been_sent: has been sent.  
+     has_been_sent_female: has been sent. 
+     has_been_taken: "name not availble, try another."
      has_challenge_users:
-        zero: "Este reto no tiene jugadores." 
-        one:  "Este reto tiene 1 jugador." 
-        other: "Este reto tiene {{count}} jugadores."
+        zero: "Challenge does not have players." 
+        one:  "Challenge has 1 player." 
+        other: "Challenge has {{count}} players."
      has_challenge_casts:
-        zero: "Este reto no tiene pronósticos." 
-        one:  "Este reto tiene 1 pronóstico." 
-        other: "Este reto tiene {{count}} pronósticos."        
+        zero: "Challenge does not have forecasts." 
+        one:  "Challenge has 1 forecast." 
+        other: "Challenge has {{count}} forecasts."        
      has_cup_escuadras:
-        zero: "Esta copa no tiene equipos." 
-        one:  "Esta copa tiene 1 equipo." 
-        other: "Esta copa tiene {{count}} equipos."
+        zero: "Tournament does not have teams." 
+        one:  "Tournament has 1 team." 
+        other: "Tournament has {{count}} teams."
      has_cup_games:
-        zero: "Esta copa no tiene eventos." 
-        one:  "Esta copa tiene 1 evento." 
-        other: "Esta copa tiene {{count}} eventos."
+        zero: "Tournament does not have games." 
+        one:  "Tournament has 1 game." 
+        other: "Tournament has {{count}} games."
      has_group_schedules:
-        zero: "Este equipo no tiene eventos." 
-        one:  "Este equipo tiene 1 evento." 
-        other: "Este equipo tiene {{count}} eventos."        
-     has_group_users:         
-         one:  "Este equipo tiene 1 jugador." 
-         other: "Este equipo tiene {{count}} jugadores."
+        zero: "Team does not have events." 
+        one:  "Team has 1 event." 
+        other: "Team has {{count}} events."        
+     has_group_users: 
+        zero:  "Team has no players."        
+        one:  "Team has 1 player." 
+        other: "Team has {{count}} players."
      has_tournament_rounds:
-        zero: "Este torneo no tiene fases." 
-        one:  "Este torneo tiene 1 fase." 
-        other: "Este torneo tiene {{count}} fases."
+        zero: "Tournament does not have rounds." 
+        one:  "Tournament has 1 round." 
+        other: "Tournament has {{count}} rounds."
      has_tournament_users:         
-         one:  "Este torneo tiene 1 jugador." 
-         other: "Este torneo tiene {{count}} jugadores."  
+        one:  "Tournament has 1 player." 
+        other: "Tournament has {{count}} players." 
      has_user_scorecard_played:
-         zero: "No ha participado en un evento." 
-         one:  "Ha participado en 1 evento." 
-         other: "Ha participado en {{count}} eventos."                        
+        zero: "Has not participated in any events." 
+        one:  "Has participated in 1 event." 
+        other: "Has participated in {{count}} events."   
      has_left:
-         zero: "No quedan" 
-         one:  "Queda {{count}} "       
-         other: "Quedan {{count}} "        
-     has_not_been_sent: no ha sido mandado correctamente.   
-     has_updated_scorecard: Ha actualizado el <strong>RESULTADO</strong>  
-     have_an_account: Si tienes una cuenta     
-     have_changed_language: Has cambiado el idioma
-     help: Ayuda 
-     help_amateur:  "Una ayuda a los aficionados..." 
-     hide:  Ocultar 
-     hi_email_header: Hola   
-     High: Alto   
-     home: Inicio   
-     home_group: Equipo       
-     home_stage_name:  Grupo
+        zero: "Zero until game" 
+        one:  "{{count}} until game"
+        other: "{{count}} until game"
+     has_not_been_sent: does not havet been sent correctly.   
+     has_updated_scorecard: Has updated the <strong>SCORECARD</strong> with   
+     have_an_account: If you have an account  
+     have_changed_language: Language has been changed
+     help: Help 
+     help_amateur:  Helping Amateurs... 
+     hide:  Hide
+     hi_email_header: Hi   
+     High: High   
+     home: Home   
+     home_group: Home Team       
+     home_stage_name:  Group
      home_ranking:  Ranking
-     how_much_better:  "¿Cuánto mayor?"
-     icon: Icono
-     icon_name: Nombre del icono    
-     import_contact: Importa contactos de tu correo   
-     in: en   
-     inbox: Bandeja de entrada   
-     information: Detalles   
-     information_about: Detalles de   
-     interest_description: (Escribe algo de lo que te interesa...)   
-     invalid_action: Acción invalida   
-     invalid_login: No válido de acceso o contraseña   
-     invitation: Invitación
-     invitation_to: Tienes una invitación a HayPista   
-     invitation_to_group: Invita a un amigo al equipo   
-     invitation_to_schedule: Invita a un amigo   
-     invitations: Conecta con amigos   
-     invite: invita   
-     invite_friend: Invita a un amigo   
-     invite_other_friend: Invita a otro amigo   
-     is_available: "Si"   
-     is_available_user: Disponibilidad del jugador ha sido actualizada correctamente.   
-     is_invalid: no es valido.   
-     is_not_available: "No"  
-     join_cup:  Únete a un reto
-     join_group: Únete al equipo   
-     join_group_message: Mensaje para unirte al equipo ha sido mandado correctamente.   
-     join_tournament: Únete al torneo   
-     jornada:  Jornada
-     jornada_description:  Jornada
-     language: Idioma 
-     last_game_played: Ultima jornada	 
-     last_login_at: conecto la ultima vez   
-     last_minute: Ultima hora   
-     last_schedule_description: Ultimo evento    
-     last_scorecard: Ultimos resultados   
-     leave_comment: Deja un comentario...   
-     leave_group: Desapuntate del equipo   
-     left_comment_on_wall: Ha dejado un <strong>COMENTARIO</strong> a    
-     left_post_on_forum: Ha dejado un <strong>COMENTARIO</strong> en    
-     list: Listado   
-     list_marker: Lista de centros deportivos   
-     list_user: Listado   
-     list_venue: Lista de centros deportivos   
-     locale_name: Español    
-     location_sport: Lugar donde practicas tu deporte. 
-     login:  Entrar	 
-     log_in: Entrar   
-     logged_out: Se ha cerrado la sesión.   
-     login: Entrar   
-     logout: Salir   
-     look: Mira 
-     looking_for_group:  Jugador que busca Equipo
-     looking_for_my_group:  Busco equipo
-     looking_for_groups:  Jugadores que buscan equipo
-     looking_for_group_description:  Jugador que busca Equipo
-     looking_for_user:  Equipo que busca jugadores
-     looking_for_users:  Equipos que buscan jugadores
-     looking_for_user_description:  Equipo que busca jugadores 
-     Low: Bajo   
-     male_value: Masculino        
-     manager: Responsable   
-     managers: Responsable(s)   
-     map: Mapa    
-     map_it: Ubicalo
-     maps: Mapas   
-     mark_as_read: Marcar como leido   
-     mark_as_unread: Marcar como no leido   
-     marker: Centro deportivo
-     marker_id: Centro deportivo   
-     marker_description: (Localiza en el mapa donde juega el equipo si no esta en la lista...)   
-     markers: Centros Deportivos 
-     markers_list: Listado de centros deportivos
-     markers_create:  Nuevo centro deportivo  
-     match: Resultado 
-     matches: Resultados   
-     maybe_available: Posiblemente   
-     Medium: Medio   
-     member_since: Miembro desde   
-     message: Mensaje
-     message_description: Escribe el mensaje.
-     message_notification: Recibir correo  
-     message_notification_description: (Quieres recibir notificaciones atraves del correo electronico...)   
-     messages: Mensajes   
-     missing:  Faltan
-     missing_information: Falta información   
-     mistyped_url: "Posiblemente, habras escrito la dirección incorrectamente o es posible que la pagina ya no exista."       
-     moderator_updated:  Actualización de moderador.     
-     modified_available: Modificada la disponibilidad de jugar de   
-     modified_email: Modificada la disponibilidad de recibir correos a  
-     modified_phone: Modificada la opción de ocultar el telefono de   
-     modified_profile: Modificada la opción de ocultar tu perfil de   
-     modified_reliable: Modificada la fiabilidad del jugardor para atender   
-     modo: HayPista te quiere ayudar a organizar tu equipo o encontrar donde jugar...   
-     Monday: Lunes        
-     more:  mas
-     must_be_logged_in:  Tienes que estar registrado para acceder a esta página
-     must_be_logged_out:  Tienes que cerrar la sesión para acceder a esta página
-     must_be_numeric: Tiene que ser un valor numerico (no pongas sin simbolos)     
-     must_be_before_starts_at:  Tiene que ser antes de la fecha de inicio.
-     must_be_after_starts_at:  Tiene que ser despues de la fecha de inicio.
-     must_be_before_ends_at:  Tiene que ser antes de la fecha de finalización.
-     must_be_before_signup_at:  Tiene que ser antes de la fecha de cierre de inscripción.
-     must_be_before_deadline_at:  Tiene que ser despues de la fecha de inscripción.
-     must_be_after_deadline_at:  Tiene que ser despues de la fecha de inscripción.
-     must_be_different:  Tienen que ser distintos.       
-     my_address: Mis direcciones   
-     my_announcement: Mis anuncios   
-     my_credit: Mis pagos   
-     my_debit: Mis cargos   
-     my_description: Mis detalles   
-     my_fee: Mis cargos   
-     my_group: Mis equipos 
-     my_information: Mis detalles   
-     my_invitation: Mis invitaciones   
-     my_manager: Mis misters   
-     my_map: Mis mapas   
-     my_marker: Mis lugares de encuentro   
-     my_match: Mis resultado   
-     my_message: Mis mensajes   
-     my_name: Mi nombre   
-     my_nofication: Mis notificaciones   
-     my_note: Mis notas   
-     my_payment: Mis pagos   
-     my_reminder: Mis recordatorios   
-     my_role: Mis responsabilidades   
-     my_schedule: Mis eventos   
-     my_scorecard: Mis clasificaciones   
-     my_sport: Mis deportes   
-     my_teammate: Mis compañeros de equipo   
-     my_tournament: Mis torneos   
-     my_type: Mi tipo     
-     my_venue: Mis lugares de encuentro 
-     my_wall: Mi muro  
-     myopenid: Mi OpenID   
-     myopenid_association: "Una de las mejores características aquí en HayPista es su capacidad de acceso mediante cuentas que ya tienen. <br />Nos hemos asociado con algunos de los principales proveedores de servicios en un esfuerzo para hacer de su experiencia que HayPista mucho más fácil."   
-     myopenid_login: Mi OpenID   
-     myopenid_select: Seleccióna cualquiera de los siguientes proveedores de servicios.   Sigue el URL para añadir una cuenta de un tercer servicio a tu cuenta existente de HayPista!   
-     myopenid_third_party: Mi OpenID Terceras Cuentas  
-     modified_openid: Modificada la opción de ocultar tus cuentas de OpenID 
-     log_in_myopenid: Entra con tu cuenta de mi OpenID 
-     invalid_openid: "Lo sentimos, pero el OpenID es invalido!"  
-     get_an_openid: Consigue una cuenta OpenID con myOpenID.com  
-     change_openid: Ocultar tus cuentas de OpenID   
-     added_to_your_openid: añadido a tu cuenta OpenID
-     add_openid: Añadido un OpenID a tu cuenta   
-     name: Nombre 
-     name_account: Nombre de la cuenta  
-     name_description: "(El nombre del equipo tiene que empezar con una leta, sin espacios e caracteres speciales excepto _ o . )"  
-     name_sport: Nombre del deporte que practicas   
-     names: Nombres   
-     new: Nuevo
-     new_low: nuevo   
-     new_openid: Nueva cuenta   
-     news: noticias
-     next: "Siguiente"
-     next_match:  Proxima Jornada
-     next_step: el próximo paso   
-     nickname: Alias   
-     no_account: "Con tu cuenta nueva OpenID, registrate en HayPista"   
-     no_account_yet: ¿No tienes una cuenta todavia?   
-     no_openid_account_yet: ¿No tienes una cuenta atraves de terceras cuentas? 
-     no_announcement: No tienes anuncios internos   
-     no_change_group: Ningun cambio de equipo   
-     no_convocado: No convocado   
-     no_credit: No tienes pagos   
-     no_debit: No tienes cargos   
-     no_description: Ningun detalle   
-     no_fee: No tienes tasas   
-     no_group: No tienes equipo   
-     no_invitation: No tienes invitaciones   
-     no_jugado: No presentado   
-     no_language: Actualmente no tiene un idioma preferido   
-     no_marker: No tienes un centro deportivo donde jugar   
-     no_message: No tienes mensajes.   
-     no_openid: No tienes cuentas associadas a tu OpenID.   
-     no_payment: No tienes pagos 
-     no_photo_for_user: Este jugador no tiene foto
-     no_photo_for_group: Este equipo no tiene foto
-     no_photo_for_tournament: Este torneo no tiene foto         
-     no_recent_activity: No hay actividades recientes   
-     no_role: No tienes ningun papel   
-     no_schedule: No tienes eventos para tu Equipo   
-     no_scorecard: No tienes resultados   
-     no_search_results: Ningun resultado de la busqueda   
-     no_show: Ausente   
-     no_shows: Ausentes   
-     no_sport: No tienes deportes   
-     no_tournament: No tienes torneos   
-     no_type: No tienes tipos   
-     no_user_on_message: El mensaje le falta un receptor   
-     no_venue: No tienes un centro deportivo donde jugar 
-     non_subscription_at: Inicio para convocarse el no abonado
-     non_subscription_at_match: Inicio para convocarse el no abonado   
-     non_subscription_at_description: (Ha partir de que hora se puede apuntar a un evento el no abonado...(ej- 1 dia antes del evento))   
-     not_able_to_attend: Cambia tu convocatoria   
-     not_added_to_your_openid: Ningun OpenID ha sido añadido a tu cuenta    
-     not_created: no se ha creado correctamente.   
-     not_deleted: no se ha borrado correctamente.   
-     not_identity_url: "Lo sentimos, pero no pudimos iniciar la sesión con el OpenID"   
-     not_signed_in: No has entrado    
-     not_updated: no se ha actualizado correctamente.   
-     not_valid_openid: "Lo sentimos, pero esto no parece ser un válido OpenID."   
-     note: Notas de    
-     notes: Notas de  
-     notice: NOTA   
-     notification: Notificación   
-     notifications: Notificaciones
-     office_hours:  Horarios   
-     open: Abrir   
+     how_much_better:  "How much Better?"
+     icon: Icon
+     icon_name: Icon Name    
+     import_contact: Import your email contacts       
+     in: in   
+     inbox: Inbox   
+     information: Information   
+     information_about: Information on 
+     interest_description: (What about what interest you...)   
+     invalid_action: Invalid Action   
+     invalid_login: Invalid Login   
+     invitation: Invitation
+     invitation_to: You have an invitation to HayPista   
+     invitation_to_group: Invite a friend to join the Team   
+     invitation_to_schedule: Invite a friend   
+     invitations: Connect with friends   
+     invite: invite   
+     invite_friend: Invite a friend     
+     invite_other_friend: Invite other friend  
+     is_available: "Yes"   
+     is_available_user: Availability has been updated.   
+     is_invalid: is invalid.   
+     is_not_available: "No" 
+     join_cup:  Join the challenge  
+     join_group: Join the Team   
+     join_group_message: Message para unirte al team ha sido mandado correctamente.   
+     join_tournament: Join the Tournament   
+     jornada:  Event
+     jornada_description:  Event
+     language: Language 
+     last_game_played: Last Recent Game	 
+     last_login_at: last login at   
+     last_minute: Last Minute   
+     last_schedule_description: Recent event    
+     last_scorecard: Recent Results   
+     leave_comment: Leave a comment...   
+     leave_group: Leave the Team   
+     left_comment_on_wall: Has left a <strong>COMMENT</strong> for    
+     left_post_on_forum: Has left a <strong>COMMENT</strong> on    
+     list: List   
+     list_marker: List of Sport Centers   
+     list_user: List   
+     list_venue: List of Venues   
+     locale_name: English     
+     location_sport: Location where you practice sports. 
+     login:  Log In	 
+     log_in: Log In   
+     logged_out: Logged Out.   
+     login: Login   
+     logout: Logout   
+     look: Look  
+     looking_for_group:  Looking for Team
+     looking_for_my_group:  Looking for Team
+     looking_for_groups:  Looking for Team
+     looking_for_group_description:  Looking for Team
+     looking_for_user:  Looking for Players
+     looking_for_users:  Looking for Players
+     looking_for_user_description:  Looking for Players 
+     Low: Low   
+     male_value: Male          
+     manager: Manager   
+     managers: Manager(s)   
+     map: Map   
+     map_it: Map It
+     maps: Maps   
+     mark_as_read: Mark as Read   
+     mark_as_unread: Mark as Unread   
+     marker: Sport Center
+     marker_id: Sport Center   
+     marker_description: (Mark where you play on the map if it is not on the list...)   
+     markers: Sport Centers 
+     markers_list: List of Sport Centers
+     markers_create:  New Sport Center  
+     match: Match Result   
+     matches: Match Results   
+     maybe_available: Maybe Available   
+     Medium: Medium   
+     member_since: Member since   
+     message: Message
+     message_description: Write a message.
+     message_notification: Message Notice  
+     message_notification_description: (Do you want to receive email notifications...)   
+     messages: Messages   
+     missing:  Missing
+     missing_information: Missing Information   
+     mistyped_url: "It is possible that the url is not correct or the web page no longer exist."       
+     moderator_updated:  Update moderator.     
+     modified_available: Edit availability to play for   
+     modified_email: Edit availability to receive email for  
+     modified_phone: Edit option to hide email for    
+     modified_profile: Edit option to hide profile for   
+     modified_reliable: Edit reliability for    
+     modo: HayPista wants to help you organize your team or find where to play...   
+     Monday: Monday 
+     more:  more       
+     must_be_logged_in:  You need to be logged in to access this page
+     must_be_logged_out:  You need to logged out to access this page
+     must_be_numeric: Should be a numeric value
+     must_be_before_starts_at:  Should be a date before the Start Date.
+     must_be_after_starts_at:  Should be a date after the Start Date.
+     must_be_before_ends_at:  Should be a date previous to the End Date.
+     must_be_before_signup_at:  Should be a date previous to the End Inscription Date.
+     must_be_before_deadline_at:  Should be a date before the Start Inscription Date.
+     must_be_after_deadline_at:  Should be a date after the Start Inscription Date.  
+     must_be_different:  Should be different.     
+     my_address: My Address   
+     my_announcement: My Announcement   
+     my_credit: My Payments   
+     my_debit: My Fees   
+     my_description: My Details   
+     my_fee: My Fees   
+     my_group: My Teams 
+     my_information: My Details   
+     my_invitation: My Invitations   
+     my_manager: My Managers   
+     my_map: My Maps   
+     my_marker: My Venues  
+     my_match: My Match Results   
+     my_message: My Messages   
+     my_name: Mi Name   
+     my_nofication: My Notices   
+     my_note: My Notes   
+     my_payment: My Payments   
+     my_reminder: My Reminders   
+     my_role: My Roles   
+     my_schedule: My Events   
+     my_scorecard: My Scorecards   
+     my_sport: My Sports   
+     my_teammate: My Teammates   
+     my_tournament: My Tournaments   
+     my_type: My Type     
+     my_venue: My Venue 
+     my_wall: My Wall  
+     myopenid: My OpenID   
+     myopenid_association: "One of the great features here on HayPista is your ability to login using accounts you already have. We've teamed up with some of the top service providers in an effort to make your HayPista experience that much easier."   
+     myopenid_login: myOpenID   
+     myopenid_select: Select any of the service providers by following the url above to add a third-party account to your existing HayPista account.   
+     myopenid_third_party: myOpenID Third Party Account  
+     modified_openid: Edit the option to hide your third party account 
+     log_in_myopenid: Log in with your OpenID 
+     invalid_openid: "the OpenID is invalid, Sorry!"  
+     get_an_openid: Get an OpenID with myOpenID.com  
+     change_openid: Hide your OpenID accounts
+     added_to_your_openid: added the account to your OpenID account
+     add_openid: Added an OpenID to your account              
+     name: Name 
+     name_account: Account Name   
+     name_description: "(The Team name should start with a letter and contain no special characters, exceptions:  _ o . )"  
+     name_sport: Name of the sport you practice   
+     names: Names   
+     new: New   
+     new_low: new
+     new_openid: New OpenID  
+     news: news
+     next: "next"
+     next_match:  Upcoming Game
+     next_step: next step   
+     nickname: Nickname  
+     no_account: "With your new account OpenID signup HayPista"   
+     no_account_yet: You don't have an account yet?  
+     no_openid_account_yet: Do you have an account through a third party account?
+     no_announcement: No Announcement
+     no_change_group: No Change in Team   
+     no_convocado: No Squad  
+     no_credit: No Payments   
+     no_debit: No Charges   
+     no_description: No Details   
+     no_fee: No Charges  
+     no_group: No teams  
+     no_invitation: No invitaciones   
+     no_jugado: No Show   
+     no_language: No Language preference   
+     no_marker: No sport center where to play   
+     no_message: No messages.   
+     no_openid: No third party account added to OpenID.   
+     no_payment: No payments 
+     no_photo_for_user: Player without a photo
+     no_photo_for_group: Team without a photo
+     no_photo_for_tournament: Tournament without a photo         
+     no_recent_activity: No recent activities   
+     no_role: No Role   
+     no_schedule: No events for your Team   
+     no_scorecard: No Scorecard  
+     no_search_results: No Results were found   
+     no_show: No-Show   
+     no_shows: No-Shows   
+     no_sport: No sports   
+     no_tournament: No Tournaments   
+     no_type: No types   
+     no_user_on_message: The message is missing the recipient   
+     no_venue: You do not have a sports center where to play 
+     non_subscription_at: Date where non subscriber can be added to squad
+     non_subscription_at_match: Date where non subscriber can be added to squad  
+     non_subscription_at_description: (From this point on the non subscriber can be added to the squad...(ej- 1 day before event))   
+     not_able_to_attend: Change to Squad   
+     not_added_to_your_openid: No OpenID has been added to your account    
+     not_created: was not created correctly.   
+     not_deleted: was not removed correctly.   
+     not_identity_url: "We could not log you in with your OpenID, Sorry!"   
+     not_signed_in: Not signed In    
+     not_updated: was not updated correctly.   
+     not_valid_openid: "This does not appear to be a valid OpenID, Sorry!"   
+     note: Notes    
+     notes: Notes  
+     notice: NOTICE   
+     notification: Notice   
+     notifications: Notices   
+     office_hours:  Office Hours
+     open: Open   
      openid_identifier: OpenID URL
-     open_id_explanation: "OpenID es un sistema de autentificación seguro, libre y muy facil de usar, que te facilitara la identificación en muchas páginas web con solo introducir tu dirección uRL de OpenID,   de  forma que solo mantendra  una  ID  global  para tus  accesos  a web  con soporte OpenID "  
-     open_id_logged_in: Identificado con éxito.   
-     openid_added: Añadido un OpenID a tu cuenta   
-     openid_already_added: El OpenID ya estaba añadido a tu cuenta    
-     openid_cancelled: Autorización a la cuenta OpenID ha sido cancelada   
-     openid_failed: Autorización a la OpenID ha fallado   
-     openid_replace_account: Reemplaza el OpenID   
-     openid_user_not_saved: Información del usuario nuevo nO ha sido guardada   
-     openid_user_saved: Información del usuario nuevo ha sido guardada correctamente   
-     optional: opciónal 
-     options: Opciones  
-     or: o   
-     or_use: ...o utiliza   
-     organize:  Organizar
-     our_philosophy:  Nuestra filosofía
-     overview: descripción general   
-     page_does_not_exist: La pagina que querias no exite.
-     participate_challenge: Participa en el reto
-     participate_challenge_afterwards: "Despues de registrate y ser aceptado, sigue este enlace para participa en el reto"       
-     participate_schedule: Participa en el evento
-     participate_schedule_afterwards: "Despues de registrate en el equipo y ser aceptado, sigue este enlace para participa en el evento"
-     participate_group_afterwards: Despues de registrate sigue este enlace para unirte al equipo     
+     open_id_explanation: "The OpenID authentication system is a safe, free and very easy to use.  It will enable identification of many web pages when you enter your OpenID URL, it also gives you access to sites that support OpenID "  
+     open_id_logged_in: Successfully Logged In.   
+     openid_added: Added an OpenID to your account   
+     openid_already_added: The OpenID is already on your account    
+     openid_cancelled: Authentication to your OpenID account has been cancelled 
+     openid_failed: Authentication to your OpenID account has failed  
+     openid_replace_account: Replace the OpenID   
+     openid_user_not_saved: Information about the new user has NOT been save   
+     openid_user_saved: Information about the new user has been save correctly
+     optional: optional   
+     options: Options
+     or: or   
+     or_use: ...or user   
+     organize:  Organize
+     our_philosophy:  Our Philosophy
+     overview: overview   
+     page_does_not_exist: The page you wanted does not exist.     
+     participate_challenge: Participate in the challenge
+     participate_challenge_afterwards: "After you signup, follow the link to signup for the challenge"       
+     participate_schedule: Participate in the Event
+     participate_schedule_afterwards: "After you signup for the team and its accepted, follow this link to participate in the event"
+     participate_group_afterwards: "After you signup, follow the link to signup for the team"   
      participation:  %
-     participation_full:  Porcentaje de participación     
-     password: Clave
-     password_change: Cambiar contraseña
-     password_confirmation: Clave confirmación	
-     password_confirmation_description: Necesita 5 characteres. 
-     password_description:  Clave
-     password_instructions: "Las instrucciones para restablecer su contraseña han sido enviadas a su cuenta de correo. Por favor, revisalo."
-     password_issue:  "Lo sentimos, pero no hemos podido localizar su cuenta.  Si tiene problemas intente copiar y pegar la URL desde tu cuenta de correo al navegador o reiniciar el proceso de restablecimiento la contraseña."
-     password_updated:    Su contraseña ha sido actualizada.
-     password_update_and_login: Actualizar mi contraseña y entra.
-     password_reset:  Restablecer contraseña
-     password_reset_instructions:  "Danos tu cuenta de correo y te mandamos las instrucciones para restablecer tu contraseña."	
-     password_resets_create: Restablecer contraseña
-     password_resets_new:  Restablecer contraseña  
-     password_recover_instructions: Instrucciones para recupera tu clave!  
-     password_forgotten:  ¿Has olvidado tu contraseña?	
-     confirmation_password: Clave confirmación     
-     password_request_reset:  "Este e-mail es la respuesta a su solicitud para restablecer su contraseña."
-     password_request_ignore:  "Si no ha realizado esta solicitud, simplemente ignore este mensaje."
-     password_request_made:  "En caso contrario haga clic en el siguiente enlace:"           
-     request_url_does_not_work:  "Si la URL no funciona trate de copiarla y pegarla en su navegador."
-     request_url_issue:   "Si continua teniendo problemas por favor no dude en contactarnos."     
-     payed:  Tasa pagada  
-     payed_description:  Han sido pagadas las cargos? 
-     payment: Pago  
-     payments: Pagos   
-     pending: Pendiente   
+     participation_full:  Participation Percentage     
+     password: Password
+     password_change: Change Password
+     password_confirmation: Pasword Confirmation	
+     password_confirmation_description: Requires at least 5 characters. 
+     password_description:  Password
+     password_instructions: "The instructions to reset your password have been sent to your email account. Please, check your account."
+     password_issue:  "Sorry, we could not locate your account. If you have problems try copying and pasting the URL from your email account to the browser or restart the process of resetting the password."
+     password_updated:    Your password has been reset.
+     password_update_and_login: Update my password and login.
+     password_reset:  Reset password
+     password_reset_instructions:  "Give us your mail account and we will send you instructions on how to reset your password."	
+     password_resets_create: Reset password
+     password_resets_new:  Reset password  
+     password_recover_instructions: Instructions to recover your password!  
+     password_forgotten:  Forgot your password?	
+     confirmation_password: Password Confirmation     
+     password_request_reset:  "This e-mail is the answer to your request to reset your password."
+     password_request_ignore:  "If you have not made this request, simply ignore this message."
+     password_request_made:  "Otherwise click the link below:"           
+     request_url_does_not_work:  "If the URL does not work try to copy and paste it into your browser."
+     request_url_issue:   "If you still have problems please do not hesitate to contact us."     
+     payed:  Charges Payed  
+     payed_description:  Charges have been paid?
+     payment: Payment  
+     payments: Payments   
+     pending: Pending   
      percentage: %   
-     percentage_full: Porcentaje       
-     petition: Petición 
-     petition_at:  Fecha de la petición
-     petition_join_item_accept:  Acepto
-     petition_join_item_decline: Rechazo
-     petition_no:  Ninguna petición para mostrar.  
-     petition_to_join: Unirse a
-     petition_pending: Peticiones pendiente   
-     petitions: Peticiones 
-     petition_to_join_approved: Petición aprobada para unirse.
-     petition_to_join_declined:  Petición cancelada para unirse.
-     petition_to_leave_approved: Petición aprobada para desapuntarse. 
-     no_petition_to_join: No hay peticiones para unirse a un reto!                
-     no_petition_to_join_group: No hay peticiones para unirse a un equipo! 
-     deleted_petition_by: Petición ha sido borrada por   
-     denial_petition_to_join: Petición denegada para unirse a 
-     cancel_petition: Cancelar petición   
-     cancel_a_petition: ¿Cancelar petición para unirte al equipo? 
-     you_petition_to_join: Petición para unirte a un equipo  
-     team_petition: Solicitud de equipo
-     error_petition_to_join: Error en la petición para unirse a
-     phase:  Fase
-     phone: Teléfono   
-     phone_description: (Por si te tiene que llamar tu equipo. Hay opción de poner este numero en privado...)   
-     photo: Foto 
-     photo_description: Foto  
-     photo_description: "(Opción para subir una imagen...{formato: jpeg, gif, png, jpg}{tamaño: 5mb})"  
-     physical_level_description: "(Del 1 al 5, pon el nivel fisico que crees que tienes comparado con los de tu equipo...)"  
-     player_limit:  Limite de jugadores
-     player_limit_description:  Limite de jugadores que puede tener el equipo. 
-     player_with: "Jugadores con"
-     player_with_less_games: asistencias a eventos menos que el resto.
-     points: Ptos.
-     points_for_double:  Puntos por acerta el resultado
-     points_for_double_description:  Dale puntuación por acertar el resultado...
-     points_for_draw: Puntos por Empatar
-     points_for_draw_description: Dale puntuación por empatar el evento...
-     points_for_lose: Puntos por Perder
-     points_for_lose_description: Dale puntuación por perder el evento...
-     points_for_single:  Puntos por acertar parte del resultado
-     points_for_single_description:  Dale puntuación por acertar parte del resultado...
-     points_for_win: Puntos por Ganar
-     points_for_win_description: Dale puntuación por ganar el evento...
-     points_full: Puntos   
-     popular: De Moda 
-     possible_spam:  Posible SPAM!  
-     position_description: (El puesto en el campo que mejor se te da. si es relevante!)   
-     post: Publica   
-     post_not_saved: Comentarios no guardados!!!   
-     post_saved: Comentarios guardados!!!   
-     pre_match: Convocatoria   
-     preference: preferencias
-     previous: "Anterior"
-     previous_agendas:  Anteriores agendas
-     previous_games:  Anteriores eventos
-     previous_ranking: RP   
-     previous_ranking_full: Ranking Previo
-     previous_schedule: Anterior evento   
-     previous_schedules: Anteriores eventos
-     previous_meet: Anterior evento 
-     previous_meets: Anteriores eventos de torneo         
-     previous_profile_set:  Actualizar
-     previous_profile_set_full:  Obtener los perfiles de la jornada anterior.
-     pricing:  Precios
-     privacy: privacidad   
-     private_email: Correo oculto   
-     private_option_description: (Marcar opción como privada a todos...)   
-     private_phone: Ocultar el teléfono   
-     private_phone_description: (Quieres ocultar tu numero de telefono...)   
-     private_profile: Ocultar el perfil   
-     problem_field: Hemos tenido problemas con algunos de los campos.   
-     profile: Perfil        
-     profile_physical: Nivel fisico   
-     profile_position: Posición   
-     profile_private: Ocultar el perfil   
-     profile_rating: Calificación   
-     profile_technical: Nivel tecnico 
-     protect_your_privacy: "Protegemos tu privacidad. HayPista en ningún momento le ha proporcionado tu dirección de correo electrónico a ningún otro usuario de HayPista sin tu permiso. © 2007-2010, HayPista"  
+     percentage_full: Percent        
+     petition: Request 
+     petition_at:  Requested Date
+     petition_join_item_accept:  Accept
+     petition_join_item_decline: Decline
+     petition_no:  No Requests to show.
+     petition_to_join: Request to join a
+     petition_pending: Pending Request   
+     petitions: Requests 
+     petition_to_join_approved: Request to join has been approved.
+     petition_to_join_declined:  Request to join has been denied.
+     petition_to_leave_approved: Request to opt-out has been approved. 
+     no_petition_to_join: No Request to join the challenge!                    
+     no_petition_to_join_group: No Request to join a team! 
+     deleted_petition_by: Request has been removed by   
+     denial_petition_to_join: Request to join has been denied to 
+     cancel_petition: Cancel Request  
+     cancel_a_petition: Cancel Request to join a team? 
+     you_petition_to_join: Request to join a team  
+     team_petition: Request for Team
+     error_petition_to_join:  Error in the request to join 
+     phase:  Round
+     phone: Telephone   
+     phone_description: (In case your team needs to contact you.  You do have the a choise to set the phone to private...)   
+     photo: Photo  
+     photo_description: "(Option to upload an image...{format: jpeg, gif, png, jpg}{size: 5mb})"  
+     physical_level_description: "(From 1 to 5, put the physical level that you think you have compared to your team...)"  
+     player_limit:  Player Limit
+     player_limit_description:  Player limit on the team.
+     player_with: "Players with"
+     player_with_less_games: has less assistance to events then the rest.
+     points: Pts.
+     points_for_double:  Points for guessing the correct outcome
+     points_for_double_description:  Set points for guessing the correct outcome...
+     points_for_draw: Points for a Tie
+     points_for_draw_description: Points for Draw Match...
+     points_for_lose: Points for a Loss
+     points_for_lose_description: Points for a Lost Match...
+     points_for_single:  Points for guessing part of the outcome
+     points_for_single_description:  Set points for guessing the part of the result...
+     points_for_win: Points for a Win
+     points_for_win_description: Points for a Won Match...
+     points_full: Points   
+     popular: Popular
+     possible_spam:  Possible SPAM!  
+     position_description: (The position on the field that you are better at. if it is relevant!)   
+     post: Post   
+     post_not_saved: Comments NOT saved!!!   
+     post_saved: Comments saved!!!   
+     pre_match: On the Squad   
+     preference: Preferences
+     previous: "Previous"
+     previous_agendas:  Previous Agendas
+     previous_games:  Previous Agendas
+     previous_ranking: P.R.   
+     previous_ranking_full: Previous Ranking
+     previous_schedule: Previous Event   
+     previous_schedules: Previous Events
+     previous_meet: Previous Event 
+     previous_meets: Previous Events for Tournament         
+     previous_profile_set:  Update Profiles.
+     previous_profile_set_full:  Get previous event's profiles.
+     pricing:  Pricing
+     privacy: privacy     
+     private_email: Private Email   
+     private_option_description: (Mark as private option for all...)   
+     private_phone: Private Phone   
+     private_phone_description: (Mark to setup your phone as private...)   
+     private_profile: Private Profile   
+     problem_field: We had problems with some of the fields.  
+     profile: Profile    
+     profile_physical: Physical Level   
+     profile_position: Position   
+     profile_private: Private Profile   
+     profile_rating: Rating   
+     profile_technical: Technical Level 
+     protect_your_privacy: "We protect your privacy. HayPista at no time has provided your email address to any other user of HayPista without your permission. © 2007-2010, HayPista"  
      provider_not_supported: "provider is not supported, try another email address."   
-     public:  Abierto al publico
-     public_description:  Selecciona opción si esta abierto al publico.
-     publish_in: Publica en HayPista   
-     question_or_comment: Pregunta o comentario?
+     public:  Open to the Public
+     public_description:  Select option if open to the public.
+     publish_in: Publish on HayPista     
+     question_or_comment: Feedback?
      ranking: Ranking   
-     ranking_full: Posición del jugador en la tabla   
-     really_archive: Estas seguro que quieres archivar    
-     really_exit_group: Estas seguro que te quieres desapuntar de   
-     really_exit_tournament: Estas seguro que te quieres desapuntar de   
-     recent_activities: Actividades recientes   
-     recent_activity: Actividad reciente   
-     recommend_marker: Este campo es recomendado...   
-     recommend_venue: Este campo es recomendado... 
-     recycled_message: Mensaje reciclado   
-     region: Provincia   
-     register: Registrate con   
-     registration_failed: Su perfil de OpenID ha fallado.   
-     remember_me: "¿Permanecer conectado?"
-     reminder: Recordatorio
-     reminder_after_game_message:  "Hola,<br><br>¿Quetal el ultimo evento?<br><br>¿Que fue lo mas interesante del evento?<br><br>¿Quien jugo mejor?<br><br>Deja tus comentarios en el muro del evento...<br><br>"
-     reminder_description:  Quieres un recordatorio del evento
-     reminder_at:  Recordatorio
-     reminder_at_description:  (¿Ha que hora te mandamos un recordatorio?)  
-     reminder_at_message:  "Hola,<br><br>¿Te apuntas para el proximo evento?<br><br>"
-     reminder_at_salute:  "<br><br>Saludos<br><br>"
-     reminder_at_match: Recordatorio   
-     reminder_wall_message:  Deja tus comentarios
-     reminders: Recordatorios         
-     removed: eliminado   
-     reply: Contestar   
-     reply_all: Contestar a todos   
-     reply_message: Mensaje de Respuesta   
-     reply_to_this_message: Responde a este mensaje  
-     request_petition: Nueva petición   
-     request_invitation: Pide una invitación   
-     restored_message: Mensaje restaurado   
-     role: Responsabilidad
-     roles: Responsabilidades   
-     roster: Convocado   
-     rosters: Convocados   
-     round:  Fase de copa
-     rounds:  Fases de copas
-     Saturday: Sabado
-     save: Guardar   
-     schedule: Evento   
-     schedule_description: (Escribe algun detalle del equipo...)  
-     schedules: Eventos
-     season_ends_at:  Finalización de temporada 
-     season_ends_at_description:  Fecha de finalización de temporada 
-     signup: Regístrate 
-     score: Resultados   
-     scorecard: Clasificación
-     scorecards: Clasificaciones
-     scorecard_updated: Resultados actualizados  
-     scorecard_latest:  "Ultimos resultados de "
-     search: busca   
-     search_announcements: Buscar anuncios   
-     search_descriptions: Buscar detalles   
-     search_fees: Buscar cargos 
-     search_groups: Buscar equipo
-     search_imports: Buscar datos importados   
-     search_informations: Buscar detalles   
-     search_invitations: Buscar Invitación   
-     search_managers: Buscar mister   
-     search_maps: Buscar centro deportivo   
-     search_markers: Buscar centro deportivo   
-     search_messages: Buscar mensaje   
-     search_names: Buscar nombres   
-     search_notes: Buscar notas   
-     search_notifications: Buscar notificación   
-     search_payments: Buscar pagos   
-     search_profiles: Buscar perfiles   
-     search_reminders: Buscar recordatorio   
-     search_roles: Buscar    
-     search_schedules: Buscar evento   
-     search_scorecards: Buscar resultados   
-     search_sports: Buscar deporte   
-     search_tournaments: Buscar torneos   
-     search_types: Buscar tipos   
-     search_users: Buscar jugador   
-     search_venues: Buscar centro  
-     season:  Temporada
-     season_description:  Temporada 
-     second_team: Segundo equipo   
-     second_team_description: "(Si jugais entre el mismo equipo, pon algun significativo para diferenciar a la hora de hacer equipos...) "  
-     select: Seleccióna   
-     select_venue: Nuevo centro deportivo  
-     select_contacts:  Seleccione los contactos que quiere invitar a partir de la esta lista. 
-     self_description: "(Escribe algo sobre ti...)"  
-     send:  Enviar     
-     send_announcement: Manda una anuncio   
-     send_credit: Manda un pago   
-     send_debit: Manda una cargo   
-     send_description: Manda un detalles 
-     send_email_to: Manda un correo a
-     send_fee: Manda las cargos   
-     send_information: Manda un detalles   
-     send_invitation: Manda una invitación   
-     send_marker: Manda el URL del centro deportivo 
-     send_clash: Manda el resultado
-     send_match: Manda el resultado
-     send_message_to: Manda un mensaje   
-     send_name: Manda un nombre   
-     send_note: Manda una nota   
-     send_notification: Manda una notificación   
-     send_payment: Manda un pago   
-     send_pre_match: Manda la convocatoria   
-     send_pre_match_to: Manda la convocatoria a 
-     send_pre_clash: Manda la convocatoria   
-     send_pre_clash_to: Manda la convocatoria a  
-     send_profile: Manda tu perfil   
-     send_reminder: Manda un recordatorio   
-     send_role: Manda una responsabilidad   
-     send_scorecard: Manda la clasificación
-     send_standing: Manda la clasificación
-     send_to_all: Mandar a todos   
-     send_type: Manda un tipo   
-     send_venue: Manda el URL del centro deportivo   
-     sent_a_message: Ha mandado un mensaje   
-     sent_invitation: Has mandado una invitación de HayPista a los siguientes          
-     separate_by: separa con una comma   
-     server_not_available: "Lo sentimos, el servidor de OpenID server no se pudo encontrar."      
-     set_available:  Cambiar disponibilidad de
-     set_private_phone:  Ocultar teléfono de 
-     set_private_profile:  Ocultar perfil de
-     set_enable_comments:  Quieres recibir notificaciones de comentarios dejados en el muro de
-     set_teammate_notification:  Quieres recibir peticiones para unirse al equipo de
-     set_message_notification:  Quieres recibir notificaciones de correos en la cuenta de correo de
-     set_blog_comment_notification:  Quieres recibir notificaciones de comentarios dejados en el muro de             
-     settings:  Opciones 
-     share: Compártelo
-     share_in_facebook: "Compártelo en Facebook"
-     share_in_twitter: "Compártelo en Twitter"
-     share_in_menealo: "Menéalo"   
-     share_in_linkedin: "Compártelo en LinkedIn"
-     share_in_digg: "Compártelo en Digg"
-     share_in_delicious: "Compártelo en Delicious"
-     share_in_buzz: "Compártelo en Buzz"
-     share_in_email: "Compártelo con un Email"
-     should_be_positive: tiene que ser positivo   
-     show: Mostrar   
-     show_address: Presenta la dirección   
-     show_announcement: Presenta un anuncio   
-     show_credit: Presenta un pago   
-     show_debit: Presenta una cargo   
-     show_description: Presenta un detalles   
-     show_fee: Presenta las cargos     
-     show_group: Presenta el equipo   
-     show_information: Presenta un detalles   
-     show_invitation: Presenta la invitación   
-     show_manager: Presenta un mister   
-     show_map: Presenta el mapa   
-     show_marker: Presenta el centro deportivo   
-     show_match: Presenta el resultado   
-     show_message: Presenta un mensaje   
-     show_name: Presenta un nombre   
-     show_note: Presenta una nota   
-     show_notification: Presenta la notificación   
-     show_openid: Mostrar OpenID   
-     show_payment: Presenta un pago   
-     show_profile: Presenta tu perfil   
-     show_reminder: Presenta un recordatorio   
-     show_role: Presenta una responsabilidad   
-     show_schedule: Presenta el evento   
-     show_scorecard: Presenta la clasificación   
-     show_sport: Presenta el deporte   
-     show_tournament: Presenta el torneo   
-     show_type: Presenta un tipo   
-     show_user: Muestra tu perfil   
-     show_venue: Presenta el centro deportivo   
-     sign_in_cancelled: Cancelada la entrada   
-     sign_new_user: Registrate como nuevo usuario   
-     sign_up: Registrate 
-     signup_at:  Fecha de inscripción
-     signup_at_description:  Fecha de inscripción
-     simple_description: aqui una simple descripción   
-     simple_note: estas ayudando en la fase de pruebas...   
-     single_identity: te permite tener una iD global para muchas páginas web.  Puedes conseguir tu dirección uRL de OpenID en   
-     something_wrong: "Lo sentimos!, algo ha ido mal."  
-     something_wrong_explained: "Ya hemos registrado este fallo.  Lo miraremos lo antes posible."
-     escuadra: Equipo
-     escuadras: Equipos
-     escuadras_all:  Todos los equipos
-     escuadras_available:  Todos los equipos
-     escuadras_create:  Nuevo equipo 
-     escuadras_destroy:  Borrar equipo
-     escuadras_edit:  Actualizar equipo
-     escuadras_index:   Equipo
-     escuadras_index_option: Opciones 
-     escuadras_invitations_create:  Invita a un amigo a este equipe
-     escuadras_join:  Unete al equipo
-     escuadras_list:  Equipos
-     escuadras_new:  Nuevo equipo
-     escuadras_new_option: Opciones 
-     escuadras_no:  Ningun equipo para mostrar.
-     escuadras_none:  Ningun equipo.
-     escuadra_options:  Opciones
-     escuadras_options_without: "¿Qué opciones tienes ya que no hay equipos?"
-     escuadras_option:  Opciones 
-     escuadras_search: Busqueda de equipos
-     escuadras_search_to_join: Puedes buscar un equipo. 
-     escuadras_show:  Mostrar equipo
-     escuadras_to_join:   crea un equipo 
-     escuadras_update: Actualizar equipo
-     start_session: inicia tu sesión   
-     starts_at: Inicio  
-     starts_at_description: (¿Ha que hora empieza el evento?) 
-     starts_at_match: Inicio   
-     starts_at_venue: Horario   
-     steps_to_join: Pasos para incorporarse a HayPista   
-     Store: Tienda   
-     subject: Asunto  
-     subject_description:  Titulo del asunto
-     sub_manager_updated:  Actualización de sub manager.
-     manager_updated:  Actualización de manager.     
-     subscription_at: Finalización para convocarse el abonado  
-     subscription_at_match: Finalización para convocarse el abonado   
-     subscription_at_description: (¿Ha que hora termina la opción para apuntarse a un evento el abonado...(ej- 1 dia antes del evento)) 
-     subscription_false:  Jugador no abonado.
-     subscription_true:  Jugador abonado
-     subscriptions_true:  Jugadores abonados
-     subscriptions_false:  Jugadores no abonados
-     subscription_updated: Actualización de jugador abonado.           
-     successful_login: Inicio de sesión con éxito...
-     successful_logged_in: Has accedido satisfactoriamente...
-     successful_logged_out:  Has cerrado la session...
-     successful_signup:  Regístrado con éxito...
-     successful_update:  Actualización éxitosa... 
-     successful_create: Datos creados.
-     successful_update:  Datos actualizados.
-     successful_destroy:  Datos borrados.
-     Sunday: Domingo	 
-     surface: Superficie   
-     t_zone: Horario   
-     table_id: Codigo de tabla   
-     table_type: Tipo de tabla  
-     teammate_notification:  Recibir peticiones
-     technical_level_description: "(Del 1 al 5, pon el nivel tecnico que crees que tienes comparado con los de tu equipo...)"  
-     terms: terminos   
+     ranking_full: Player Ranking    
+     really_archive: Are you sure you want to archive      
+     really_exit_group: Are you sure you want to opt-out of   
+     really_exit_tournament: Are you sure you want to opt-out of   
+     recent_activities: Recent Activities   
+     recent_activity: Recent Activity   
+     recommend_marker: This marker is recommended...   
+     recommend_venue: This venue is recommended...  
+     recycled_message: Recycle Message   
+     region: Region   
+     register: Register with   
+     registration_failed: Your OpenID profile failed.   
+     remember_me: "remember me"
+     reminder: Reminder 
+     reminder_after_game_message:  "Hi,<br><br>How was the previous event?<br><br>What was the most interesting thing that occured?<br><br>Who stuck out amongst all participants?<br><br>Leave your comments on the event wall...<br><br>"
+     reminder_description:  Want a reminder for the event
+     reminder_at:  Reminder
+     reminder_at_description:  (What time would you like us to send you a reminder?)  
+     reminder_at_message:  "Hi,<br><br>why don't you sign up for next event?<br><br>"
+     reminder_at_salute:  "<br><br>Thanks<br><br>"
+     reminder_at_match: Reminder  
+     reminder_wall_message:  Leave a comment on the wall. 
+     reminders: Reminders        
+     removed: removed   
+     reply: Reply   
+     reply_all: Reply to All
+     reply_message: Reply Message   
+     reply_to_this_message: Reply to this message  
+     request_petition: New Petición   
+     request_invitation: Request an Invitation   
+     restored_message: Message Restored   
+     role: Role
+     roles: Roles   
+     roster: Squad   
+     rosters: Squad   
+     round:  Round for Tournament
+     rounds:  Rounds for Tournaments
+     Saturday: Saturday
+     save: Save   
+     schedule: Event   
+     schedule_description: (Write some details about the team...)  
+     schedules: Events
+     season_ends_at:  End of Season 
+     season_ends_at_description:  Date for End of Season
+     signup: Signup 
+     score: Score   
+     scorecard: Scorecard
+     scorecards: Scorecards
+     scorecard_updated: Score Updated  
+     scorecard_latest:  "Latest scorecard for "
+     search: search   
+     search_announcements: Search for Announcements   
+     search_descriptions: Search for Details   
+     search_fees: Search for Charges   
+     search_groups: Search for teams
+     search_imports: Search for Imports   
+     search_informations: Search for Details   
+     search_invitations: Search for Invitations   
+     search_managers: Search for Managers   
+     search_maps: Search for Venues   
+     search_markers: Search for Sport Centers   
+     search_messages: Search for Messages   
+     search_names: Search for Names   
+     search_notes: Search for Notes   
+     search_notifications: Search for Notice   
+     search_payments: Search for Payments   
+     search_profiles: Search for profiles   
+     search_reminders: Search for Reminders  
+     search_roles: Search for    
+     search_schedules: Search for Events   
+     search_scorecards: Search for Scorecards   
+     search_sports: Search for Sports   
+     search_tournaments: Search for Tournaments   
+     search_types: Search for Types   
+     search_users: Search for Players   
+     search_venues: Search for Venues 
+     season:  Season
+     season_description:  Season 
+     second_team: Segundo Team   
+     second_team_description: "(If you play within your team, set a different name to differentiate the teams when organizing the different teams within the event...) "  
+     select: Seelct   
+     select_venue: New Venue  
+     select_contacts:  Select the contacts you want to invite from this list.
+     self_description: "(Escribe algo sobre ti...)"       
+     send:  Send
+     send_announcement: Send an Announcement   
+     send_credit: Send a Payment   
+     send_debit: Send a Charge   
+     send_description: Send the Details 
+     send_email_to: Send an email to
+     send_fee: Send the Charges   
+     send_information: Send the Details   
+     send_invitation: Send an Invitation   
+     send_marker: Send the URL for the Sport Center 
+     send_clash: Send the Results
+     send_match: Send the Results
+     send_message_to: Send a Message  
+     send_name: Send a Name   
+     send_note: Send a Note   
+     send_notification: Send a Notice   
+     send_payment: Send a Payment   
+     send_pre_match: Send the Squad   
+     send_pre_match_to: Send the Squad to 
+     send_pre_clash: Send the Squad   
+     send_pre_clash_to: Send the Squad to  
+     send_profile: Send the Profile   
+     send_reminder: Send a Reminder   
+     send_role: Send the Role   
+     send_scorecard: Send the Scorecard
+     send_standing: Send the Scorecard
+     send_to_all: Send to All   
+     send_type: Send a Type   
+     send_venue: Send the URL for the Venue   
+     sent_a_message: Message Sent   
+     sent_invitation: An invitation for HayPista has been sent to the following          
+     separate_by: separate with a comma   
+     server_not_available: "The OpenID Server, cannot be found, Sorry!"      
+     set_available:  Change Availability to participate in any event for 
+     set_private_phone:  Set Phone Private 
+     set_private_profile:  Set Private Profile
+     set_enable_comments:  Want to receive notifications for comments left on the wall
+     set_teammate_notification:  Want to receive requests to join the team of
+     set_message_notification:  Want to receive email notifications in your email account
+     set_blog_comment_notification:  Want to receive notifications of comments left on the wall             
+     settings:  Options 
+     share: Share
+     share_in_facebook: "Share on Facebook"
+     share_in_twitter: "Share on Twitter"
+     share_in_menealo: "Share on Menéalo"   
+     share_in_linkedin: "Share on LinkedIn"
+     share_in_digg: "Share on Digg"
+     share_in_delicious: "Share on Delicious"
+     share_in_buzz: "Share on Buzz"
+     share_in_email: "Share with an Email"
+     should_be_positive: should be positive   
+     show: Show   
+     show_address: Show the Address   
+     show_announcement: Show the Announcement 
+     show_credit: Show the Payment   
+     show_debit: Show the Charge   
+     show_description: Show the Details 
+     show_fee: Show the Charges     
+     show_group: Show the Team   
+     show_information: Show the Details   
+     show_invitation: Show the Invitation   
+     show_manager: Show the Manager   
+     show_map: Show the Map   
+     show_marker: Show the Marker   
+     show_match: Show the Match Result   
+     show_message: Show the Message  
+     show_name: Show the Name   
+     show_note: Show the Note   
+     show_notification: Show the Notice   
+     show_openid: Show the OpenID   
+     show_payment: Show the Payment  
+     show_profile: Show your Profile   
+     show_reminder: Show the Reminder 
+     show_role: Show the Role   
+     show_schedule: Show the Event   
+     show_scorecard: Show the Scorecard   
+     show_sport: Show the Sport   
+     show_tournament: Show the Tournament   
+     show_type: Show the Type   
+     show_user: Show your Profile   
+     show_venue: Show the Venue   
+     sign_in_cancelled: Cancel sign in   
+     sign_new_user: Sign up as new user   
+     sign_up: Sign Up 
+     signup_at:  Sign Up Date
+     signup_at_description:  Sign Up Date
+     simple_description: Here a simple description  
+     simple_note: are helping in the testing phase...  
+     single_identity: allows you to have a global ID for many websites. You can get your OpenID URL   
+     something_wrong: "Something went wrong, Sorry!"  
+     something_wrong_explained: "Already registered this ruling. We'll Look as soon as possible."
+     escuadra: Team
+     escuadras: Teams
+     escuadras_all:  All teams
+     escuadras_available:  All teams
+     escuadras_create:  New team 
+     escuadras_destroy:  Remove team
+     escuadras_edit:  Update team
+     escuadras_index:   Team
+     escuadras_index_option: Options 
+     escuadras_invitations_create:  Invite a friend to this team 
+     escuadras_join:  Join the team
+     escuadras_list:  Teams
+     escuadras_new:  New team
+     escuadras_new_option: Options 
+     escuadras_no:  No team to display.
+     escuadras_none:  No team.
+     escuadra_options:  Options
+     escuadras_options_without: "What options do you have since you are not on a team?"
+     escuadras_option:  Options 
+     escuadras_search: Search for teams
+     escuadras_search_to_join: Search for team. 
+     escuadras_show:  Show team
+     escuadras_to_join:   Create a team 
+     escuadras_update: Update team
+     start_session: Start Session   
+     starts_at: Starts At  
+     starts_at_description: (At what time does the event start?) 
+     starts_at_match: Starts At   
+     starts_at_venue: Hours   
+     steps_to_join: Steps to join HayPista  
+     Store: Store 
+     subject: Subject  
+     subject_description:  Subject
+     sub_manager_updated:  Update sub-manager.     
+     manager_updated:  Update manager.     
+     subscription_at: Last Day to add squad status change for subscriber  
+     subscription_at_match: Last Day to add squad status change for subscriber    
+     subscription_at_description: (Last Day to add squad status change for subscriber  ...(ex- 1 day before the event)) 
+     subscription_false:  Player does not have a Subscription.
+     subscription_true:  Player has a Subscription
+     subscriptions_true:  Players with a Subscription
+     subscriptions_false:  Players without a Subscription
+     subscription_updated: Update user subscription.
+     successful_login: Logged in successfully 
+     successful_logged_in: Logged in successfully...
+     successful_logged_out:  Logged out successfully...
+     successful_signup:  Registration successful...
+     successful_update:  Update successful... 
+     successful_create: Record created.
+     successful_update:  Record updated.
+     successful_destroy:  Record removed.
+     Sunday: Sunday	 
+     surface: Surface        
+     t_zone: Time Zone   
+     table_id: Table ID   
+     table_type: Table Type  
+     teammate_notification:  Teammate Notice
+     technical_level_description: "(From 1 to 5, put the technical level that you think you have compared to your teammates...)"  
+     terms: terms   
      terms_message: Please accept the terms to proceed   
-     test_beta: "Si tienes interes in formar del equipo para probar la herramienta, pasanos tu cuenta de correo."   
-     thanx_sign_up: Gracias por registrarte!   
-     the_haypista_team: El equipo de HayPista...   
-     the_schedule: La jornada   
-     the_wall: Muro de   
-     Therapist: Terapeuta   
-     thread_message: Mensaje(s)   
-     Thursday: Jueves   
-     time_zone_description: (Zona donde tienes interes en practicar algun deporte...)   
-     to: a   
-     to_email: Email del amigo       
-     to_join: Únirse a   
-     to_join_email: para unirse a 
-     to_join_challenge: unirte a un reto   
-     to_join_challenge_message: Petición para unirte a 
-     to_join_challenge_message_sent: Petición para unirte a sido enviada.
-     to_join_group: unirte a un equipo   
-     to_join_group_message: Petición para unirte a 
-     to_join_item_message_sent: Petición para unirte a sido enviada.
-     to_join_tournament: unirte a un torneo 
-     to_join_round: unirte a un torneo  
-     to_leave_challenge_message: Petición para desapuntarte de
-     to_leave_challenge_message_sent: Petición para desapuntarte a sido enviada.
-     to_leave_group_message: Petición para desapuntarte de
-     to_leave_item_message_sent: Petición para desapuntarte a sido enviada.  
-     to_join_tour: unirte a un equipo   
-     to_join_tour_message: Petición para unirte a 
-     to_join_tour_message_sent: Petición para unirte a sido enviada
-     to_join_tournament: unirte a un torneo 
-     to_join_round: unirte a un torneo
-     to_join_venue:  unirte a un centro deportivo
-     to_leave_tour_message: Petición para desapuntarte de
-     to_leave_tour_message_sent: Petición para desapuntarte a sido enviada.          
-     to_member_of: Para los miembros de   
+     test_beta: "If you are interested in forming part of the team to test the tool, pass your email account."   
+     thanx_sign_up: Thanks for signing up!   
+     the_haypista_team: The HayPista Team...   
+     the_schedule: The Event   
+     the_wall: Wall -    
+     Therapist: Therapist   
+     thread_message: Message (s)   
+     Thursday: Thursday   
+     time_zone_description: (Location where you have interest in playing sports...)   
+     to: to   
+     to_email: Friend's Email       
+     to_join: Join   
+     to_join_email: to join 
+     to_join_group: join a team  
+     to_join_challenge: Join a challenge   
+     to_join_challenge_message: Request to join a  
+     to_join_group_message: Request to join a 
+     to_join_item_message_sent: Request to join has been sent.
+     to_join_tournament: Join a Tournament 
+     to_join_round: Join a Tournament  
+     to_leave_challenge_message:  Request to opt-out of
+     to_leave_challenge_message_sent: Request to opt-out has been sent. 
+     to_leave_group_message: Request to opt-out of
+     to_leave_item_message_sent: Request to opt-out has been sent. 
+     to_join_tour: Join a Team   
+     to_join_tour_message: Request to join a 
+     to_join_tour_message_sent: Request to join has been sent.
+     to_join_tournament: Join a Tournament 
+     to_join_round: Join a Tournament  
+     to_join_venue:  Join a Venue
+     to_leave_tour_message: Request to opt-out of
+     to_leave_tour_message_sent: Request to opt-out has been sent.          
+     to_member_of: To teammates of   
      to_message: A   
-     to_payment: Pago de   
-     topic: Asunto   
+     to_payment: Payment    
+     topic: Topic  
      total:  Total 
-     tournament: Torneo   
-     tournaments: Torneos    
-     trash: Basura   
-     trash_message: Papelera     
-     true_value: "Si"   
-     try_again: Lo sentimos!   
-     tu_punto_de_vista: tu punto de vista sobre el portal contactando con nosotros a traves de   
-     Tuesday: Martes   
-     type: Tipo   
-     type_account: Tipo de cuenta 
-     types: Tipos   
-     ultima_hora: Ultima hora  
-     unauthorized_user:  Jugador no autorizado 
-     unauthorized:  No autorizado.
-     unavailable: No disponible
-     unsuccessful_logged_in:  Nombre o clave son incorrectas 
-     upcoming: Próximos Eventos  
-     upcoming_agenda:  Próximas agendas 
-     upcoming_game:  Próximo evento
-     upcoming_games:   Próximo eventos
-     upcoming_schedule: Próximo eventos  
-     upcoming_schedules: Próximos Eventos 
-     upcoming_meet: Próximo eventos 
-     upcoming_meets: Próximos eventos de torneo     
-     update: Actualiza   
-     update_address: Actualiza la dirección   
-     update_announcement: Actualiza un anuncio   
-     update_credit: Actualiza un pago   
-     update_debit: Actualiza una cargo   
-     update_description: Actualiza un detalles   
-     update_fee: Actualiza las cargos      
-     update_group: Actualiza el equipo   
-     update_information: Actualiza un detalles   
-     update_invitation: Actualiza la invitación   
-     update_manager: Actualiza un mister   
-     update_map: Actualiza el mapa   
-     update_marker: Actualiza el centro deportivo   
-     update_match: Actualiza el resultado 
-     update_match_message:  "Hola,<br><br>Solo un recordatorio para que no te olvides de actualizar el resultado.<br><br>"  
-     update_message: Actualiza un mensaje   
-     update_name: Actualiza un nombre   
-     update_note: Actualiza una nota   
-     update_notification: Actualiza la notificación   
-     update_payment: Actualiza un pago   
-     update_profile: Actualiza tu perfil   
-     update_reminder: Actualiza un recordatorio   
-     update_role: Actualiza la responsabilidad   
-     update_schedule: Actualiza el evento   
-     update_scorecard: Actualiza el resultado   
-     update_sport: Actualiza el deporte   
-     update_tournament: Actualiza el torneo   
-     update_type: Actualiza un tipo   
-     update_user: Actualiza tu perfil   
-     update_venue: Actualiza el centro deportivo   
-     updated: se ha actualizado correctamente.   
-     upload:  Subir
-     url_group: Vincular a Equipo   
-     use_at_discretion: Nueva opción para entrar.  Si tienes una cuenta entra con tu cuenta original.
-     use_openid: O entra con OpenID 
-     use_login:  O entra con tu cuenta de correo
-     user_haypista_signup: O Registrate con tu cuenta de correo.
-     use_standard_login: utiliza el estándar de acceso de usuario / contraseña     
-     user: Jugador   
-     users: Jugadores
-     user_not_found:  "Ningún usuario con esa cuenta de correo se ha encontrado."
-     user_sessions: Entrar 
-     user_fee: Tasa de Jugador
-     user_last_login: Última vez conectado   
-     user_options:  Opciones
-     username_not_available: Nombre de usuario no esta disponible 
-     username_password_donot_match: Nombre de usuario y contraseña no coinciden
-     users_activate:  "Es necesario activar tu cuenta"     
-     validate_openid: valida tu OpenID   
-     venue: Lugar de Encuentro    
-     Venue: Lugar de Encuentro
-     venues: Lugares de Encuentro
-     venues_create:    Nuevo lugar de encuentro
-     venues_index: Centros 
-     venues_name_description:  Nombre del lugar de encuentro
-     venues_edit:  Actualizar lugar de encuentro
-     venues_new:  Nuevo lugar de encuentro
-     venues_option:  Opciones
-     venues_options_without:  "¿Qué opciones tienes ya que no estas apuntado a un lugar de encuentro?"
-     venues_starts_at:  Hora de apertura
-     venues_ends_at:  Hora de cierre
-     verification_canceled: OpenID verificación fue cancelada.   
-     verification_failed: "Lo sentimos, the OpenID verificación ha fallado."   
-     verification_setup: Verificación de OpenID tiene que ser actualizado.   
-     view: Ver   
-     visible_only_to_you_description: (Solo tu podras ver esta información...)   
-     visit_group: Visitante       
-     wall:  Muro
-     Wednesday: Miercoles   
-     welcome: Bienvenidos a HayPista   
-     were_removed: han sido eliminados  
-     what_is_important:  Lo importante 
-     what_is_haypista:  ¿Qué es HayPista?
-     what_is_this:   ¿Qué es esto? 
-     what_is_your_account: "¿Qué es acceso con tu cuenta?"
-     what_are_you_practicing: Qué actividad estas practicando?   
-     why_use_your_account:  ¿Por qué acceder con tu cuenta?
-     whats_new: ¿Qué hay de nuevo en HayPista?   
-     write_comment: Escribe un comentario...   
-     writes: escribe   
-     yes_openid: OpenIDs associados a esta cuenta   
-     you: Tu   
-     you_can: Puedes   
-     you_can_search: Puedes buscar un   
-     you_have: Tienes         
-     your_beta_invite: Estas invitado a entrar en HayPista.   
-     your_birthdate: Fecha de nacimiento   
-     your_email:  Tu cuenta de correo
-     your_interest: Que te interesa   
-     your_interest_group: ¿Estás interesado en crear o unirte a un equipo?   
-     your_interest_schedule: ¿Estás interesado en crear o unirte a un evento?   
-     your_interest_user: ¿Estás interesado en gente con quien jugar or que alquien se una a tu equipo?   
-     your_join_notification: Petición para un equipo.   
-     your_on_roster: Estas convocado -   
-     your_openid: Tus cuentas de OpenID   
-     your_schedule: "En tu horario, el evento seria el "  
-     your_meet: "En tu horario, el evento seria el " 
-     your_sent_beta: "Muchas gracias por tu interés, tu correo ha sido añadido para recibir una invitación."   
-     your_sent_invitation: Tu invitación ha sido enviada a   
-     your_sent_message: Tu mensaje ha sido enviada   
-     your_team_notification: Petición para tu equipo.   
-     your_thoughts: ¿Qué estás pensando?   
-     zip: Codigo postal
-     user_create_notice:  Regístrado éxito...
-     user_update_notice: Actualización éxitosa... 
-     user_sessions_create_error:  Inicio de sesión con errores.
-     user_sessions_create_notice:  Inicio de sesión con éxito.
-     user_sessions_destroy_notice: Finalización de sesión con éxito.
+     tournament: Tournament   
+     tournaments: Tournaments    
+     trash: Trash   
+     trash_message: Trash     
+     true_value: "Yes"   
+     try_again: Sorry!   
+     tu_punto_de_vista: give us your point of view on the website by contacting us through  
+     Tuesday: Tuesday   
+     type: Type   
+     type_account: Type of Account 
+     types: Types   
+     ultima_hora: Last Minute  
+     unauthorized_user:  Player not authorized. 
+     unauthorized:  Not Authorized.
+     unavailable:  Unavailable
+     unsuccessful_logged_in:  username or password are incorrect. 
+     upcoming: Upcoming Event
+     upcoming_agenda:  Upcoming Agenda  
+     upcoming_game:  Upcoming Event   
+     upcoming_games:   Upcoming Events   
+     upcoming_schedule: Upcoming Event   
+     upcoming_schedules: Upcoming Events 
+     upcoming_meet: Upcoming Event 
+     upcoming_meets: Upcoming Tournament Event     
+     update: Update   
+     update_address: Update Address   
+     update_announcement: Update Announcement   
+     update_credit: Update Payment   
+     update_debit: Update Charge   
+     update_description: Update Details   
+     update_fee: Update Charges  
+     update_group: Update Team   
+     update_information: Update Details   
+     update_invitation: Update Invitation   
+     update_manager: Update Manager   
+     update_map: Update Mapa   
+     update_marker: Update Sport Center   
+     update_match: Update Match Result  
+     update_match_message:  "Hi,<br><br>Just a reminder to enter the results for the previous event.<br><br>" 
+     update_message: Update Message   
+     update_name: Update Name   
+     update_note: Update Note   
+     update_notification: Update Notice   
+     update_payment: Update Payment   
+     update_profile: Update profile   
+     update_reminder: Update Reminder   
+     update_role: Update Role   
+     update_schedule: Update Event   
+     update_scorecard: Update Scorecard   
+     update_sport: Update Sport   
+     update_tournament: Update Tournament   
+     update_type: Update Type   
+     update_user: Update profile   
+     update_venue: Update Venue   
+     updated: updated correctly.   
+     upload:  Upload
+     url_group: Link to Team   
+     use_at_discretion: New option to enter. If you have a go with your original account.
+     use_openid: Or use your OpenID 
+     use_login:  Or use your email 
+     user_haypista_signup: Or Signup with your email account.
+     use_standard_login: access using a username and password     
+     user: Player   
+     users: Players
+     user_not_found:  "No user with that email account has been found."
+     user_sessions: Login 
+     user_fee: Player Fee
+     user_last_login: Player Last Login   
+     user_options:  Options 
+     username_not_available: Username not available 
+     username_password_donot_match: Username and Password combination are not correct
+     users_activate:  "It is necessary to activate your account"     
+     validate_openid: validate your OpenID   
+     venue: Venue    
+     Venue: Venue 
+     venues: Venues 
+     venues_create:  Create Venue  
+     venues_index:  Venues
+     venues_name_description:  sport center name
+     venues_new:  Sport center name
+     venues_edit:  Edit Venue
+     venues_option:  Options
+     venues_options_without:  "What options do you have since you are not signed up to any sport center?"
+     venues_starts_at:  Start Time
+     venues_ends_at:  End Time 
+     verification_canceled: OpenID verification was cancelled.   
+     verification_failed: "The OpenID verification failed, Sorry!"   
+     verification_setup: OpenID verification has to be updated.  
+     view: View   
+     visible_only_to_you_description: (Only you, can view this information...)   
+     visit_group: Visiting Team      
+     wall:  Wall
+     Wednesday: Wednesday   
+     welcome: Welcome a HayPista   
+     were_removed: have been removed  
+     what_is_important:  What is important 
+     what_is_haypista:  What is HayPista?
+     what_is_this:   What is this? 
+     what_is_your_account: "What is access with your personal account?"
+     what_are_you_practicing: What are you practicing?   
+     why_use_your_account:  Why access with your personal account?
+     whats_new: What is new in HayPista?   
+     write_comment: Write a comment...   
+     writes: writes   
+     yes_openid: OpenID's associated to this account   
+     you: You   
+     you_can: You can   
+     you_can_search: You can search for 
+     you_have: You have         
+     your_beta_invite: You are invited to HayPista.   
+     your_birthdate: Date of Birth   
+     your_email:  Your Email Account
+     your_interest: What Interest You   
+     your_interest_group: Are you interested in setting up a team or joining one?   
+     your_interest_schedule: Are you interested in setting up an event or joining one?   
+     your_interest_user: Are you interested in playing with other players or do you rather have someone join your team?   
+     your_join_notification: Request to join a team.   
+     your_on_roster: You are on the Squad -   
+     your_openid: Your OpenID Accounts
+     your_schedule: "In your time zone, the event would be at "  
+     your_meet: "In your time zone, the event would be at " 
+     your_sent_beta: "Thanks for your interest, your email has been added to receive an invitation."   
+     your_sent_invitation: Your invitation has been sent to    
+     your_sent_message: Your message has been sent   
+     your_team_notification: Request for your team.   
+     your_thoughts: What are you doing?   
+     zip: Postal Code
+     user_create_notice:  Registration successful...
+     user_update_notice: Update successful... 
+     user_sessions_create_error:  Session access with errors.
+     user_sessions_create_notice:  Session access was successful.
+     user_sessions_destroy_notice: Session exit was successful.     
      message_notification_description: "" 
-     gender_description: Genero
-     birth_at_description:  Fecha de nacimiento
-     position:  Posición
-     position_description:  Posición en el campo
-     technical:  Nivel tecnico
-     technical_description:  Nivel tecnico
-     physical:  Nivel fisico
-     physical_description: Nivel fisico
-     language_description:  Idioma preferible
-     country_description:  Pais donde te encuentras
-     time_zone:  Horario
-     time_zone_description:  Horario
+     gender_description: Gender
+     birth_at_description:  Date of Birth
+     position:  Position
+     position_description:  Position on the field
+     technical:  Technical 
+     technical_description:  Technical 
+     physical:  Physical 
+     physical_description: Physical 
+     language_description:  Language Preference
+     country_description:  Time Zone
+     time_zone:  Time Zone
+     time_zone_description:  Time Zone
      available_description: ""
      private_phone_description: ""
      private_profile_description: ""
@@ -1321,390 +1316,390 @@ fr:
      message_notification_description: ""
      phone_description: ""
      dorsal_description: ""     
-     last_login_at:  Ultima vez entrado
-     last_request_at: Ultimo pedido
-     login_count:  Veces entrado
-     current_login_at:  Actual fecha de entrada
-     last_login_ip:  IP de ultima entrada
-     current_login_ip:  IP actual     
+     last_login_at:  Last Login
+     last_request_at: Last Request
+     login_count:  Login Count
+     current_login_at:  Current Login Date
+     last_login_ip:  Last Login IP
+     current_login_ip:  Current IP     
      es:  Español
      en:  English
      fr:  Français
      ge:  Deutsch
      it:  Italiano     
-     comments_on_your_blog:  ha dejado comentarios en tu muro
-     about:  Acerca de
-     abou:  Acerca de
-     terms_of_use: Terminos de Uso
-     privacy_policy: Privacidad
-     faq: Preguntas Frecuentes
-     openid:  Acceso con tu cuenta
-     faq_acceso_con_tu_cuenta:  Preguntas sobre Acceso con tu cuenta
-     follow_twitter:  Siguenos en Twitter
-     classified:  Anuncio
-     classifieds:  Anuncios
-     classified_description:  Detalles del anuncio
-     classified_delete: Borra este anuncio
-     classified_deleted: Anuncios borrados
-     classified_successful_create: Los anuncios han sido creatos.
-     classifieds_concept_description:  Concepto del anuncio
-     classifieds_destroy:  Borrar anuncio
-     classifieds_edit:  Actualizar anuncio
-     classifieds_index:  Anuncios
-     classifieds_new:  Nuevo anuncio
-     classifieds_no:  Ningun anuncio para mostrar
-     classifieds_option:  Opciones
-     classified_options: Opciones
-     classifieds_create:  Nuevo anuncio
-     classifieds_create_group: Nuevos anuncios del equipo
-     classifieds_create_schedule: Nuevos anuncios del evento
-     classifieds_create_tournament: Nuevos anuncios del tourneo
-     classifieds_create_meet: Nuevos anuncios del tourneo     
-     invitation_delete: Borra esta invitación
-     invitation_deleted: Invitación borrada
-     invitation_message: Has recibido una invitation para unirte o buscar a algun equipo con quien jugar...
-     invitation_notice: HayPista no almacena ni tu cuenta de correo ni tu contraseña.
-     invitation_signup_link:  Visite este enlace para registrarse
-     invitation_successful_create: La invitación ha sido mandada.
-     invitation_to_join: te manda una solicitud para unirte a HayPista     
-     invitations_contacts:  Invitar a los contactos de tu libreta de direcciones de correo electrónico.
+     comments_on_your_blog:  has left comments on your wall
+     about:  About
+     abou:  About
+     terms_of_use: Terms of Use
+     privacy_policy: Privacy Policy
+     faq: FAQ
+     openid:  Login with your OpenID account
+     faq_acceso_con_tu_cuenta:  FAQ about your personal Account
+     follow_twitter:  Follow us Twitter
+     classified:  Announcement
+     classifieds:  Announcements
+     classified_description:  Announcement Details
+     classified_delete: Delete this Announcement
+     classified_deleted: Remove Announcements
+     classified_successful_create: Announcements has been created.
+     classifieds_concept_description:  Announcement Concept 
+     classifieds_destroy:  Remove Announcement
+     classifieds_edit:  Edit Announcement
+     classifieds_index:  Announcements
+     classifieds_new:  New Announcement
+     classifieds_no:  No Announcements to show.
+     classifieds_option:  Options
+     classified_options: Options
+     classifieds_create:  New Announcement
+     classifieds_create_group: New Announcements for the Team
+     classifieds_create_schedule: New Announcements for the Event
+     classifieds_create_tournament: New Announcements for the Tournament
+     classifieds_create_meet: New Announcements for the Tournament     
+     invitation_delete: Erase Invitations
+     invitation_deleted: Invitation Removed
+     invitation_message: You have received this invitation to join or search for a team to play on...
+     invitation_notice: HayPista DOES NOT save your email address or password.
+     invitation_signup_link:  Click this link to register
+     invitation_successful_create: Invitation has been sent.
+     invitation_to_join: sends you an invitation to join HayPista     
+     invitations_contacts:  Invite your email contacts.
      invitations_email: "Email (Hotmail, Gmail, Yahoo, etc...)"
-     invitations_index:  Invitaciones mandadas
-     invitations_import:  Invita a tus contactos
-     invitations_for_your_friends:  Invita a tus amigos a unirse a HayPista
-     invitations_no:  Ninguna invitación para mostrar
-     invitations_option:  Opciones
-     invitations_create:  Invita a tus amigos a unirse a HayPista
-     invitations_create_cup: Invita a tus amigos a este evento
-     invitations_create_challenge:  Invita a tus amigos a este reto
-     invitations_create_group: Invita a tus amigos a este equipo
-     invitations_create_schedule: Invita a tus amigos a este evento
-     invitations_create_tournament: Invita a tus amigos a este tourneo
-     invitations_create_meet: Nueva invitación al tourneo
-     invitations_sent:  Invitaciones mandadas
-     invitations_your_friend:  Invita a tus amigos a 
-     clash:  Resultado
-     clashes:  Resultados
-     clashes_edit:  Resultados     
-     clouds_show:  Etiquetas
-     clouds_options:  Opciones          
-     entries_teammate: Mis compañeros de equipo
-     entries_my_wall: Mi muro
-     entries_option:  Opciones 
-     entries_show:  Opciones 
-     entries_show_option:  Opciones           
-     fee_from: Cargos a
-     fee_from_description: De quien son los cargos
-     fee_options: Opciones 
-     fee_to: Cargos de 
-     fee_to_description:  A quien son los cargos
-     fee_user_for_group:  Anotar cargo a los jugadores de
-     fee_user_for_tournament:  Anotar cargo a los jugadores de
-     fees_complete:  Todos los Cargos
-     fees_create:  Nueva cargo
-     fees_destroy: Borrar cargo
-     fees_index:   Cargo
-     fees_index_option: Opciones
-     fees_list:  Cargos
-     fees_manager_option:  Requiere responsable de equipo para ver mas opciones.
-     fees_new:  Nuevo cargo
-     fees_no:  Ningun cargo para mostrar.
-     fees_edit:  Actualizar cargo
-     fees_option:  Opciones
-     fees_show:  Mostrar cargo
-     fees_update:  Actualizar cargo     
-     home_index: Inicio
-     home_search:  Buscar
+     invitations_index:  Invitations Sent
+     invitations_import:  Invite your contacts
+     invitations_for_your_friends:  Invite your friends to join HayPista
+     invitations_no:  No Invitation to show.
+     invitations_option:  Options
+     invitations_create:  Invite your friends to join HayPista
+     invitations_create_cup: Invite your friends to this tournament
+     invitations_create_challenge:  Invite your teams to this challenge
+     invitations_create_group: Invite your friends to this team
+     invitations_create_schedule: Invite your friends to this event
+     invitations_create_tournament: Invite your friends to this Tourneo
+     invitations_create_meet: New Invitation to Tournament
+     invitations_sent:  Invitations Sent
+     invitations_your_friend:  Invita your friends to
+     clash:  Result
+     clashes:  Results
+     clashes_edit:  Results     
+     clouds_show:  Tags
+     clouds_options:  Options          
+     entries_teammate: My Teammates
+     entries_my_wall: My Wall
+     entries_option:  Options
+     entries_show:  Options
+     entries_show_option:  Options          
+     fee_from: Charges from
+     fee_from_description: Charges Details
+     fee_options: Options
+     fee_to: Charges to 
+     fee_to_description:  Charges Details
+     fee_user_for_group:  Add a change to all players
+     fee_user_for_tournament:  Add a change to all players 
+     fees_complete:  All Charges
+     fees_create:  New Charge
+     fees_destroy: Remove Charge
+     fees_index:   Charge
+     fees_index_option: Options
+     fees_list:  Charges
+     fees_manager_option:  Requires team manager position to view more options.
+     fees_new:  New Charge
+     fees_no:  No Charge to show.
+     fees_edit:  Edit Charge
+     fees_option:  Options
+     fees_show:  Show Charge
+     fees_update:  Edit Charge     
+     home_index: Home
+     home_search:  Search
      home_about_us: About Us
-     home_information:  Información
-     home_option:  Opciones
-     home_round:  Fase
-     home_upcoming_schedule:  Próximos Eventos
-     home_upcoming:  Próximos Eventos
-     payment_description:  Quien ha hecho el pago.
-     payment_full:  Pago total
-     payment_greater_than:  Pago superior
-     payment_less_than:  Pago inferior
-     payment_for_bill:  Paga este cargo
-     payment_type:  Tipo de pago
-     payments_create:  Nuevo pago
-     payments_index:   Pagos
-     payments_index_option: Opciones 
+     home_information:  Information
+     home_option:  Options
+     home_round:  Round
+     home_upcoming_schedule:  Upcoming Events
+     home_upcoming:  Upcoming Events
+     payment_description:  Payment Details.
+     payment_full:  Payment Total Options
+     payment_greater_than:  Payment Greater than
+     payment_less_than:  Payment Less than
+     payment_for_bill:  Pay for Charges
+     payment_type:  Type de Payment
+     payments_create:  New Payment
+     payments_index:   Payments
+     payments_index_option: Options
      payments_list:  Payments
-     payments_manager_option:  Requiere responsable de equipo para ver mas opciones.
-     payments_new:  Nuevo pago
-     payments_no:  Ningun pago para mostrar.
-     payments_destroy:  Borrar pago
-     payments_edit:  Actualizar pago
-     payments_option:  Opciones 
-     payments_show:  Mostrar pago          
-     group_options:  Opciones
-     groups_create:  Nuevo equipo 
-     groups_destroy:  Borrar equipo
-     groups_edit:  Actualizar equipo
-     groups_index:   Equipos
-     groups_index_option: Opciones 
-     groups_invitations_create:  Invita a un amigo al equipo
-     groups_join:  Unete al equipo
-     groups_list:  Resto de equipo
-     groups_new:  Nuevo equipo
-     groups_new_option: Opciones 
-     groups_no:  Ningun equipo para mostrar.
-     groups_none:  Ningun equipo.
-     groups_options_without: "¿Qué opciones tienes ya que no tienes un equipo?"
-     groups_option:  Opciones 
-     groups_search: Busqueda de equipos
-     groups_search_to_join: Puedes buscar un equipo a quien unierte. 
-     groups_show:  Mostrar equipo
-     groups_update: Actualizar equipo 
-     markers_create: Nuevo centro deportivo
-     markers_index:  Centros Deportivos
-     markers_index_option: Opciones 
-     markers_new: Nuevo centro deportivo
-     markers_no: Ningun centro deportivo para mostrar.
-     markers_edit: Actualizar centro deportivo
-     markers_option:  Opciones 
-     markers_show: Mostrar centro deportivo     
-     matches_edit:  Resultados
-     meets_archive_list:  Temporada anterior
-     meets_concept_description:  Concepto del evento 
-     meets_create:  Nuevo evento 
-     meets_destroy:  Borrar evento 
-     meets_index:  Eventos de torneo  
-     meets_index_option: Opciones  
-     meets_invitations_create:  Invita a un amigo al evento 
-     meets_list:  Anteriores eventos 
-     meets_list_no: Ningun eventoprevio para mostrar.
-     meets_manager_option:  Requiere responsable de equipo para ver mas opciones.
-     meets_new: Nuevo evento 
-     meets_no: Ningun evento para mostrar.
-     meets_edit: Actualizar evento 
-     meets_update: Actualizar evento 
-     meets_option:  Opciones 
-     meet_options:  Opciones 
-     meets_show: Detalles del evento de torneo
-     meet_ausentes:  Ningun ausente para mostrar.
-     meet_convocados:  Ningun convocado para mostrar.
-     meet_excess_player:  Demasiados jugadores convocados.
-     meet_ultima_hora:   Ninguno en ultima hora para mostrar.
-     meet_no_disponible:  Ninguno no disponible para mostrar.     
-     meets_tour_roster_false:  Ningun convocado para mostrar.
-     meets_tour_last_minute_false:   Ninguno en ultima hora para mostrar.
-     meets_tour_no_show_false:  Ningun ausente para mostrar.
-     meets_tour_unavailable_true_false:  Ninguno no disponible para mostrar.
-     meets_tour_roster_true:  Convocados
-     meets_tour_last_minute_true:   Ultima hora
-     meets_tour_no_show_true:  Ausentes
-     meets_tour_unavailable_true:  No disponibles             
-     message_delete: Borra este mensaje
-     message_options: Opciones   
-     message_reply:  Responde
-     message_reply_to: Responde a este mensaje
-     message_send:  Manda mensaje
-     message_sent: Mensajes enviados
-     message_trash:  Borrar mensaje
-     message_untrash: Recuperar   
-     messages_create:  Manda un mensaje
-     messages_inbox:  Mensajes recibidos
-     messages_index:  Mensajes
-     messages_index_option: Opciones 
-     messages_new: Nuevo mensaje
-     messages_no: Ningun mensaje para mostrar.
-     messages_edit: Actualizar mensaje
-     messages_option:  Opciones 
-     messages_send:  Manda mensaje
-     messages_sent:  Mensajes mandados
-     messages_show: Mostrar mensaje
-     messages_trash:  Mensajes descartados
-     schedule: Evento   
-     schedule_description: (Escribe algun detalle del equipo...)  
-     schedules: Eventos
-     schedules_archive_list:  Temporada anterior
-     schedules_create:  Nuevo evento
-     schedules_destroy:  Borrar evento
-     schedules_index:  Eventos
-     schedules_index_option: Opciones 
-     schedules_invitations_create:  Invita a un amigo al evento
-     schedules_list:  Anteriores eventos
-     schedules_list_no: Ningun evento previo para mostrar.
-     schedules_manager_option:  Requiere responsable de equipo para ver mas opciones.
-     schedules_new: Nuevo evento
-     schedules_no: Ningun evento para mostrar.
-     schedules_edit: Actualizar evento
-     schedules_update: Actualizar evento
-     schedules_option:  Opciones 
-     schedule_options:  Opciones 
-     schedules_show: Detalles del evento
-     schedule_ausentes:  Ningun ausente para mostrar.
-     schedule_convocados:  Ningun convocado para mostrar.
-     schedule_excess_player:  Demasiados jugadores convocados
-     schedule_ultima_hora:   Ninguno en ultima hora para mostrar.
-     schedule_no_disponible:  Ninguno no disponible para mostrar.
-     schedule_rate: Valoración del evento     
-     schedules_team_roster_false:  Ningun convocado para mostrar.
-     schedules_team_last_minute_false:   Ninguno en ultima hora para mostrar.
-     schedules_team_no_show_false:  Ningun ausente para mostrar.
-     schedules_team_unavailable_true_false:  Ninguno no disponible para mostrar.
-     schedules_team_roster_true:  Convocados
-     schedules_team_last_minute_true:   Ultima hora
-     schedules_team_no_show_true:  Ausentes
-     schedules_team_unavailable_true:  No disponibles
-     scorecard_list:  Clasificaciones anteriores
-     scorecards_list:  Clasificaciones anteriores
-     scorecard_options:  Opciones 
-     scorecards_archive:  Archivar la clasificación
-     scorecards_index:   Clasificaciones
-     scorecards_manager_option:  Requiere responsable de equipo para ver mas opciones.
-     scorecards_no: Ninguna clasificación para mostrar.
-     scorecards_option:  Opciones 
-     scorecards_less_games:  ( * ) Jugadores con menos asistencias a eventos
-     scorecards_legend:  Leyenda
-     stage:  Etapa
-     stages:  Etapas
-     stages_create:  Nueva Etapa
-     stages_description: Ranking y letra del grupo que avanzan
-     stages_index:  Etapas
-     stages_new:  Nueva Etapa
-     standing:  Clasificación del torneo
-     standings:  Clasificaciones de torneo
-     standings_edit:  Modifica la clasificación
-     standing_list:  Clasificaciones anteriores de torneo
-     standings_list:  Clasificaciones anteriores de torneo
-     standing_options:  Opciones 
-     standings_archive:  Archivar la clasificación de torneo
-     standings_index:   Clasificaciones de torneo
-     standings_manager_option:  Requiere responsable de equipo para ver mas opciones.
-     standings_no: Ninguna clasificación de torneo para mostrar.
-     standings_option:  Opciones
-     standings_less_games:  ( * ) Jugadores con menos asistencias a eventos
-     standings_legend:  Leyenda     
-     recaptcha_ask_question: "Haz una pregunta, recibe una respuesta!"
-     recaptcha_question:  Haz la pregunta
-     recaptcha_question:  Pregunta
-     recaptcha_human_test:  Prueba Humana
-     recaptcha_type_words:  Escribe las palabras o números separados por un espacio.     
-     rpx_login: Conecta con tu cuenta en
-     rpx_third_party_error:  "No se pueden recuperar los datos de terceras cuentas. Por favor, inténtalo de nuevo."
-     rpx_association_email_msg: Hemos encontrado una cuenta existente que ya está utilizando la dirección de correo electrónico
-     rpx_association_login_msg: Hemos encontrado una cuenta existente que ya está utilizando el nombre de usuario
-     rpx_unable_to_associate: "No ha sido posible asociar la cuenta nueva de terceros a las existente de Haypista cuenta debido a que tu correo electrónico o la contraseña son incorrectas."
-     role_add_moderator:  Nuevo moderador
-     role_add_sub_manager:  Nuevo sub-manager
-     role_add_manager:  Nuevo manager
-     role_add_subscription:  Nuevo abonado
-     role_remove_moderator: Borra moderador 
-     role_remove_sub_manager: Borra sub-manager
-     role_remove_manager: Borra manager   
-     role_remove_subscription: Borra abonado     
-     roles_index:   Responsabilidades
-     roles_maximo_option:  Requiere responsable de administrador para ver mas opciones.
-     roles_option:  Opciones 
-     round_options:  Opciones  
-     round_starts_ends_at:  Fechas de fase 
-     rounds_create:  Nueva fase
-     rounds_destroy:  Borrar fase 
-     rounds_edit:  Actualizar fase 
-     rounds_index:  Fases de torneo 
-     rounds_index_option: Opciones  
-     rounds_invitations_create:  Invita a un amigo a la fase 
-     rounds_join:  Unete a la fase 
-     rounds_phase_description:  Numero de la fase 
-     rounds_list:  Resto de la fase 
-     rounds_new:  Nueva fase 
-     rounds_new_option: Opciones  
-     rounds_no:  Ninguna fase para mostrar.
-     rounds_none:  Ninguna fase.
-     rounds_options_without: "¿Qué opciones tienes ya que no tienes una fase de torneo?"
-     rounds_option:  Opciones 
-     rounds_search: Busqueda de fases
-     rounds_search_to_join: Puedes buscar una fase al cual unierte. 
-     rounds_show:  Mostrar fase 
-     rounds_update: Actualizar fase       
-     rounds_name_description:  Nombre de la fase de torneo
-     groups_name_description:  Nombre del equipo
-     markers_name_description:  Nombre del centro deportivo
-     roles_name_description:  Nombre del role
-     sports_name_description:  Nombre del deporte
-     tournaments_name_description:  Nombre del torneo
-     types_name_description:  Nombre de tipo
-     users_name_description:  Nombre del jugador
-     fees_concept_description:  Concepto del cargo
-     payments_concept_description:  Concepto del pago
-     schedules_concept_description:  Concepto del evento     
-     sport: Deporte
-     sport_id: Deporte    
-     sports: Deportes      
-     sport_description: (¿Qué tipo de deporte practica el equipo?)      
-     sports_create: Nuevo deporte
-     sports_edit: Actualizar deporte
-     sports_index:  Deportes
-     sports_index_option: Opciones 
-     sports_maximo_option:  Requiere responsable de administrador para ver mas opciones.
-     sports_new: Nuevo deporte
-     sports_no: Ningun deporte para mostrar.
-     sports_none:  Ningun deporte.
-     sports_option:  Opciones 
-     sports_show: Mostrar deporte     
-     tags:  Etiquetas     
-     topics_create:  Nuevo evento
-     topics_edit:  Actualizar evento
-     topic_options:  Opciones        
-     tournament_options:  Opciones 
-     tournament_starts_ends_at:  Fechas del torneo
-     tournaments_create:  Nuevo torneo 
-     tournaments_destroy:  Borrar torneo
-     tournaments_edit:  Actualizar torneo
-     tournaments_index:   Torneos
-     tournaments_index_option: Opciones
-     tournaments_invitations_create:  Invita a un amigo al torneo
-     tournaments_join:  Unete al torneo
-     tournaments_joined:  Fecha de inscripción
-     tournaments_list:  Resto de torneo
-     tournaments_new:  Nuevo torneo
-     tournaments_new_option: Opciones 
-     tournaments_no:  Ningun torneo para mostrar.
-     tournaments_none:  Ningun torneo.
-     tournaments_options_without: "¿Qué opciones tienes ya que no tienes un torneo?"
-     tournaments_option:  Opciones 
-     tournaments_search: Busqueda de torneos
-     tournaments_search_to_join: Puedes buscar un torneo al cual unierte. 
-     tournaments_show:  Mostrar torneo
-     tournaments_update: Actualizar torneo          
-     types_index:  Tipos
-     types_maximo_option:  Requiere responsable de administrador para ver mas opciones.
-     types_option:  Opciones     
-     users_available:  Jugadores disponibles
-     users_index:  Jugadores
-     users_index_option: Opciones 
-     users_description_no:  Ningun detalle del jugador.
-     users_edit:  Actualizar jugador
-     users_edit_option:  Opciones 
-     users_list:  Resto de jugadores
-     users_new:  Nuevo jugador
-     users_no:  Ningun Jugador para mostrar.
-     users_petition:  Petición del jugador
-     users_search:  Busqueda de jugadores
-     users_show: Mostrar jugador
-     users_my_wall: Mi muro
-     users_option:  Opciones 
-     user_options_team: Opciones 
-     user_options_tour: Opciones 
-     users_rpx_new: Nuevo jugador
-     users_rpx_create:  Nuevo jugador
-     users_teammate: Mis compañeros de equipo   
-     your:  Tu 
-     true: "Si"
+     payments_manager_option:  Requires team manager position to view more options.
+     payments_new:  New Payment
+     payments_no:  No Payment to show.
+     payments_destroy:  Remove Payment
+     payments_edit:  Edit Payment
+     payments_option:  Options
+     payments_show:  Show Payment          
+     group_options:  Opcions
+     groups_create:  New Team 
+     groups_destroy:  Remove Team
+     groups_edit:  Edit Team
+     groups_index:   Teams
+     groups_index_option: Options
+     groups_invitations_create:  Invite a friend to the Team
+     groups_join:  Join a Team
+     groups_list:  Rest of the Teams
+     groups_new:  New Team
+     groups_new_option: Options
+     groups_no:  No Teams to show.
+     groups_none:  No Teams.
+     groups_options_without: "What options do you have since you are not on a team?"
+     groups_option:  Options
+     groups_search: Search for Teams
+     groups_search_to_join: Search for a team to join. 
+     groups_show:  Show Team
+     groups_update: Edit Team 
+     markers_create: New Sport Center
+     markers_index:  Sport Centers
+     markers_index_option: Options 
+     markers_new: New Sport Center
+     markers_no: No Sport Center to show.
+     markers_edit: Edit Sport Center
+     markers_option:  Options
+     markers_show: Show Sport Center     
+     matches_edit:  Match Results
+     meets_archive_list:  Previous Season
+     meets_concept_description:  Event Concept 
+     meets_create:  New Event 
+     meets_destroy:  Remove Event 
+     meets_index:  Tournament Events 
+     meets_index_option: Options 
+     meets_invitations_create:  Invite a friend to the Event 
+     meets_list:  Previous Events 
+     meets_list_no: No Previous Events to show.
+     meets_manager_option:  Requires team manager position to view more options.
+     meets_new: New Event 
+     meets_no: No events to show.
+     meets_edit: Edit Event 
+     meets_update: Edit Event 
+     meets_option:  Options
+     meet_options:  Options 
+     meets_show: Tournament Details
+     meet_ausentes:  No No-Show to show.
+     meet_convocados:  No Squad to show.
+     meet_excess_player:  Too many Players on the Squad.
+     meet_ultima_hora:   Noone on Last Minute to show.
+     meet_no_disponible:  Noone on Unavailable to show.     
+     meets_tour_roster_false:  Noone on Squad to show.
+     meets_tour_last_minute_false:   Noone on Last Minute to show.
+     meets_tour_no_show_false:  Noone on No-Show to show.
+     meets_tour_unavailable_true_false:  Noone on Unavailable to show.
+     meets_tour_roster_true:  Squad
+     meets_tour_last_minute_true:   Last Minute
+     meets_tour_no_show_true:  No-Shows
+     meets_tour_unavailable_true:  Unavailable             
+     message_delete: Delete this message
+     message_options: Options 
+     message_reply:  Reply
+     message_reply_to: Reply to this message
+     message_send:  Send Message
+     message_sent: Messages Sent
+     message_trash:  Remove Message
+     message_untrash: Recover   
+     messages_create:  Send a Message
+     messages_inbox:  Inbox
+     messages_index:  Messages
+     messages_index_option: Options
+     messages_new: New Message
+     messages_no: No Messages to show.
+     messages_edit: Edit Message
+     messages_option:  Options
+     messages_send:  Send Message
+     messages_sent:  Sent
+     messages_show: Show Message
+     messages_trash:  Discarted Messages
+     schedule: Event   
+     schedule_description: (Write some detail about the team...)  
+     schedules: Events
+     schedules_archive_list:  Previous Season
+     schedules_create:  New Event
+     schedules_destroy:  Remove Event
+     schedules_index:  Events
+     schedules_index_option: Options
+     schedules_invitations_create:  Invite a friend to the Event
+     schedules_list:  Previous Events
+     schedules_list_no: No previous events to show.
+     schedules_manager_option:  Requires team manger to see additional options.
+     schedules_new: New Event
+     schedules_no: No events to show.
+     schedules_edit: Edit Event
+     schedules_update: Edit Event
+     schedules_option:  Options 
+     schedule_options:  Options 
+     schedules_show: Event Details
+     schedule_ausentes:  Noone on No-Show to show.
+     schedule_convocados:  Noone on Squad to show.
+     schedule_excess_player:  Too many Players on Squad
+     schedule_ultima_hora:   Noone on Last Minute to show.
+     schedule_no_disponible:  Noone on unavailable to show.
+     schedule_rate: Rate the Event     
+     schedules_team_roster_false:  Noone on Squad to show.
+     schedules_team_last_minute_false:   Noone on Last Minute to show.
+     schedules_team_no_show_false:  Noone on No-Shows to show.
+     schedules_team_unavailable_true_false:  Noone on Unavailable to show.
+     schedules_team_roster_true:  Squad
+     schedules_team_last_minute_true:   Last Minute
+     schedules_team_no_show_true:  No-Shows
+     schedules_team_unavailable_true:  Unavailable
+     scorecard_list:  Previous Scorecards
+     scorecards_list:  Previous Scorecards
+     scorecard_options:  Options
+     scorecards_archive:  Archive Scorecard
+     scorecards_index:   Scorecards
+     scorecards_manager_option:  Requires team manager position to view more options.
+     scorecards_no: No Scorecard to show.
+     scorecards_option:  Options
+     scorecards_less_games:  ( * ) Players with less event attendances
+     scorecards_legend:  Leyend
+     stage:  Stage
+     stages:  Stages
+     stages_create:  New Stage
+     stages_description: Ranking and group letter for team advancing
+     stages_index:  Stages
+     stages_new:  New Stage
+     standing:  Scorecard 
+     standings:  Scorecards 
+     standings_edit:  Update scorecard
+     standing_list:  Previous Scorecards
+     standings_list:  Previous Scorecards
+     standing_options:  Options 
+     standings_archive:  Archivar la Scorecard de Tournament
+     standings_index:   Scorecards de Tournament
+     standings_manager_option:  Requires team manager position to view more options.
+     standings_no: No Scorecard de Tournament to show.
+     standings_option:  Options 
+     standings_less_games:  ( * ) Players con menos asistencias a events
+     standings_legend:  Leyend     
+     recaptcha_ask_question: "Ask a question, receive an answer!"
+     recaptcha_question:  Question
+     recaptcha_question:  Question
+     recaptcha_human_test:  Human Test
+     recaptcha_type_words:  Write the two words or numbers you see separated by a space.     
+     rpx_login: Sign in using your account with
+     rpx_third_party_error:  "could not recover data from third party accounts, Please try again."
+     rpx_association_email_msg: We found an existing account which is already using the e-mail address
+     rpx_association_login_msg: We found an existing account which is already using the username
+     rpx_unable_to_associate: "Unable to associate the new account of third parties Haypista existing account because your email address or password are incorrect. "
+     role_add_moderator:  New Moderador
+     role_add_sub_manager:  New Sub-Manager
+     role_add_manager:  New Manager
+     role_add_subscription:  New Subscription
+     role_remove_moderator: Remove Moderator 
+     role_remove_sub_manager: Remove Sub-Manager
+     role_remove_manager: Remove Manager   
+     role_remove_subscription: Remove Subscription     
+     roles_index:   Roles
+     roles_maximo_option:  Admin Access Only.
+     roles_option:  Options
+     round_options:  Options  
+     round_starts_ends_at:  Dates for Round 
+     rounds_create:  New Round
+     rounds_destroy:  Remove Round 
+     rounds_edit:  Edit Round 
+     rounds_index:  Tournament Rounds
+     rounds_index_option: Options
+     rounds_invitations_create:  Invite a friend to the Round 
+     rounds_join:  Join the Round 
+     rounds_phase_description:  Round Number 
+     rounds_list:  Rest of the Rounds 
+     rounds_new:  New Round 
+     rounds_new_option: Options
+     rounds_no:  No Round to show.
+     rounds_none:  No Round.
+     rounds_options_without: "What options do you have since you do not have a tournament round?"
+     rounds_option:  Options
+     rounds_search: Search for Rounds
+     rounds_search_to_join: Search for Round to join. 
+     rounds_show:  Show Round 
+     rounds_update: Edit Round       
+     rounds_name_description:  Tournament Round Name
+     groups_name_description:  Team Name
+     markers_name_description:  Sport Center Name
+     roles_name_description:  Role Name
+     sports_name_description:  Sport Name
+     tournaments_name_description:  Tournament Name
+     types_name_description:  Type Name
+     users_name_description:  Player Name
+     fees_concept_description:  Fee Concept
+     payments_concept_description:  Payment Concept
+     schedules_concept_description:  Event Concept     
+     sport: Sport
+     sport_id: Sport    
+     sports: Sports      
+     sport_description: (What type of sport does the Team practice?)      
+     sports_create: New Sport
+     sports_edit: Edit Sport
+     sports_index:  Sports
+     sports_index_option: Options
+     sports_maximo_option:   Admin Access Only.
+     sports_new: New Sport
+     sports_no: No Sport to show.
+     sports_none:  No Sports.
+     sports_option:  Options
+     sports_show: Show Sport     
+     tags:  Tags     
+     topics_create:  New Event
+     topics_edit:  Edit Event
+     topic_options:  Options      
+     tournament_options:  Options
+     tournament_starts_ends_at:  Tournament Dates
+     tournaments_create:  New Tournament 
+     tournaments_destroy:  Remove Tournament
+     tournaments_edit:  Edit Tournament
+     tournaments_index:   Tournaments
+     tournaments_index_option: Options
+     tournaments_invitations_create:  Invite a friend to the Tournament
+     tournaments_join:  Signup for the Tournament
+     tournaments_joined:  Date Joined
+     tournaments_list:  Rest of the Tournaments
+     tournaments_new:  New Tournament
+     tournaments_new_option: Options
+     tournaments_no:  No Tournaments to show.
+     tournaments_none:  No Tournament.
+     tournaments_options_without: "What options do you have since you are not signed up for a Tournament?"
+     tournaments_option:  Options 
+     tournaments_search: Search for Tournaments
+     tournaments_search_to_join:  Search for a Tournament to join. 
+     tournaments_show:  Show Tournament
+     tournaments_update: Edit Tournament          
+     types_index:  Types
+     types_maximo_option:  Admin Access Only.
+     types_option:  Opcions     
+     users_available:  Players Available
+     users_index:  Players
+     users_index_option: Options
+     users_description_no:  No Details for Player.
+     users_edit:  Edit Player
+     users_edit_option:  Options
+     users_list:  Rest of the Players
+     users_new:  New Player
+     users_no:  No Players to show.
+     users_petition:  Player Request
+     users_search:  Search for Players
+     users_show: Show Player
+     users_my_wall: My Wall
+     users_option:  Options
+     user_options_team: Options
+     user_options_tour: Opcions
+     users_rpx_new: New Player
+     users_rpx_create:  New Player
+     users_teammate: My Teammates 
+     your:  You   
+     true: "Yes"
      false: "No"
-     get_rolling:  Pónte en marcha en cuestión de segundos
-     upcoming_schedules_screen:  "Al entrar, puedes ver los próximos eventos de tu equipo, y actividades de tus compañeros..."
-     users_screen:   "Puedes ver todos tus compañeros de equipo y sus perfiles..."
-     groups_screen:  "Todos los equipos a los que perteneces se pueden ver aquí..."
-     schedules_screen:  "Muestra la lista de los proximos eventos, e incluso anteriores eventos..."
-     schedule_screen:  "Muestra los detalles del evento, un muro, lista de convocados, ultima hora y ausentes..."
-     scorecards_screen:  "Los resultados de cada evento permite mantener la clasificación de tu equipo..."
-     what_is_haypista_details:  "HayPista es un portal que te ayuda a organizar partidos entre amigos, buscar un centro donde puedas jugar, encontrar a gente con los mismos intereses y sobretodo disfrutar el deporte."
-     how_does_haypista:  "¿Como funciona HayPista?"
-     how_does_haypista_details:  "Simplemente crea un equipo, busca un centro deportivo, crea un evento, envía invitaciones a tus amigos y ya está. Asi de fácil."
-     what_other_haypista: "¿Qué otras cosas hace HayPista?"
-     what_other_haypista_details:  "HayPista te permite organizar quién del equipo puede participar en cada evento, hacer diferentes equipos por evento, mandar la convocatoria y poner el resultado del evento. También mantiene los resultados de cada evento y la clasificación de cada jugador en tu equipo."
+     get_rolling:  Get going in seconds...
+     upcoming_schedules_screen:  "Upon entering, you can view upcoming events, and teammates' activities..."
+     users_screen:   "You can view all your teammates and their profiles..."
+     groups_screen:  "You can view all the teams you are signed up for..."
+     schedules_screen:  "Shows all the upcoming events, as well as previous events..."
+     schedule_screen:  "View all the details for the event, the wall, the squad, last minute and no-shows..."
+     scorecards_screen:  "All match results allows to maintain a scorecard for your team..."
+     what_is_haypista_details:  "HayPista is a site that helps you organize matches between friends, find a sport center where you can play, meet people with similar interests and above all enjoy sports."
+     how_does_haypista:  "How does HayPista work?"
+     how_does_haypista_details:  "Simply create a team, find a sports center, create an event, send invitations to your friends and you're done. That easy!"
+     what_other_haypista: "What else can you do on HayPista?"
+     what_other_haypista_details:  "HayPista will help you organize your team.  It allows you to select who will be on the squad for each event, create different groups within each event, send the squad list and write the match result after the event.  It also uses these results to maintain a scorecard for each player on the team."
      haypista_pronunciation:  "ˈɑi-peɪs-tɑ"

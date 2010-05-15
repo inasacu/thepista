@@ -1,6 +1,3 @@
-# Sample localization file for English. Add more files in this directory for other locales.
-# See http://github.com/svenfuchs/rails-i18n/tree/master/rails%2Flocale for starting points.
-
 en:
      a: "a"   
      about: "about"   
@@ -12,7 +9,7 @@ en:
      accounts: Accounts 
      add_email: "Accept, Create your account"  
      add_to_group: Petition to join 
-     add_to_item: Petición para unirse a
+     add_to_item: Request to unirse a
      add_to_tournament: Petition to join 
      address: Address   
      addresses: Addresses   
@@ -112,7 +109,7 @@ en:
      challenges_new_option: Options 
      challenges_no:  No challenge to display.
      challenges_none:  No challenge.
-     challenges_options_without: "Whatoptions do you have since you don't have any challenges?"
+     challenges_options_without: "What options do you have since you don't have any challenges?"
      challenges_option:  Options 
      challenges_search: Search for challenges
      challenges_search_to_join: You can search for challenge to join. 
@@ -125,6 +122,7 @@ en:
      change_email_configuration: Change Email Configuration.
      change_group: Change Team   
      change_language: Change Language  
+     change_option:  Change option?
      change_rejected: Change has been rejected.
      change_rejected_explained: "It is possible that you do not have access to that zone, Sorry!"
      change_roster_status: Change to 
@@ -252,6 +250,7 @@ en:
      destroy_address: Remove the Address   
      destroy_announcement: Remove the Announcement   
      destroy_credit: Remove the Payment   
+     destroy_cup:  Remove Tournament
      destroy_debit: Remove the Charge   
      destroy_description: Remove Details   
      destroy_fee: Remove Charges   
@@ -370,16 +369,34 @@ en:
      from_Convocado: Change to No-Show   
      from_message: from   
      from_payment: Payment from   
-     from_Ultima_Hora: Change to Squad   
-     game: Game   
+     from_Ultima_Hora: Change to Squad  
+     game: Game 
+     games:  Games  
+     games_archive_list:  Previous Season
      gameday_at:  Game Day
-     game_day: Game Day 
-     gameday_at_description:  Game Day  
+     game_day: Game day 
+     gameday_at_description:  Game Day
+     games_concept_description:  Game Concept
+     games_destroy:  Remove Game
+     games_index:  Games
+     games_index_option: Options 
+     games_invitations_create:  Invite a friend to the game
+     games_list:  Previous Games
+     games_list_no: No previous games to display.
+     games_manager_option:  Requires team manager position to view more options.
+     games_new: New game
+     games_no: No game to display.
+     games_create: New Evento
+     games_edit: Update game
+     games_update: Update game
+     games_option:  Options 
+     game_options:  Options 
+     games_show: Game details
      game_lost: Game Lost   
      game_notes: Game Notes
      game_played:  Games Played
      game_started:  Game Started
-     game_not_played:  Games Not Played   
+     game_not_played:  Games Not Played
      game_tied: Draw Game   
      game_won: Won Game   
      gameday_description: (What day of the week does your team play?)   
@@ -466,34 +483,59 @@ en:
      group_a:  First Team
      group_b:  Second Team 
      group_fee: Team Fees
-     group_id: Team   
-     groups: Teams    
+     group_id: Team  
+     group_stage:  Group Stage
+     group_stage_advance:  Continue to next round
+     group_stage_advance_description:  Total teams that move to next round.
+     group_stage_name:  Team
+     group_stage_single:  Single game in Group Stage.
+     group_second_stage_single:  Single game elimination.
+     group_final_stage_single:  Single game for the final.
+     group_round:  Elimination Round   
+     groups: Teams            
      has_been_sent: has been sent.  
      has_been_sent_female: has been sent. 
      has_been_taken: "name not availble, try another."
+     has_challenge_users:
+        zero: "Challenge does not have players." 
+        one:  "Challenge has 1 player." 
+        other: "Challenge has {{count}} players."
+     has_challenge_casts:
+        zero: "Challenge does not have forecasts." 
+        one:  "Challenge has 1 forecast." 
+        other: "Challenge has {{count}} forecasts."        
+     has_cup_escuadras:
+        zero: "Tournament does not have teams." 
+        one:  "Tournament has 1 team." 
+        other: "Tournament has {{count}} teams."
+     has_cup_games:
+        zero: "Tournament does not have games." 
+        one:  "Tournament has 1 game." 
+        other: "Tournament has {{count}} games."
      has_group_schedules:
         zero: "Team does not have events." 
         one:  "Team has 1 event." 
         other: "Team has {{count}} events."        
-     has_group_users:         
-         one:  "Team has 1 player." 
-         other: "Team has {{count}} players."
+     has_group_users: 
+        zero:  "Team has no players."        
+        one:  "Team has 1 player." 
+        other: "Team has {{count}} players."
      has_tournament_rounds:
-        zero: "Tournament has no rounds." 
+        zero: "Tournament does not have rounds." 
         one:  "Tournament has 1 round." 
         other: "Tournament has {{count}} rounds."
      has_tournament_users:         
-         one:  "Tournament has 1 player." 
-         other: "Tournament has {{count}} players." 
+        one:  "Tournament has 1 player." 
+        other: "Tournament has {{count}} players." 
      has_user_scorecard_played:
-         zero: "Has not participated in any events." 
-         one:  "Has participated in 1 event." 
-         other: "Has participated in {{count}} events."   
+        zero: "Has not participated in any events." 
+        one:  "Has participated in 1 event." 
+        other: "Has participated in {{count}} events."   
      has_left:
-         zero: "Zero until game" 
-         one:  "{{count}} until game"
-         other: "{{count}} until game"
-     has_not_been_sent: has not been sent correctly.   
+        zero: "Zero until game" 
+        one:  "{{count}} until game"
+        other: "{{count}} until game"
+     has_not_been_sent: does not havet been sent correctly.   
      has_updated_scorecard: Has updated the <strong>SCORECARD</strong> with   
      have_an_account: If you have an account  
      have_changed_language: Language has been changed
@@ -503,7 +545,9 @@ en:
      hi_email_header: Hi   
      High: High   
      home: Home   
-     home_group: Home Team  
+     home_group: Home Team       
+     home_stage_name:  Group
+     home_ranking:  Ranking
      how_much_better:  "How much Better?"
      icon: Icon
      icon_name: Icon Name    
@@ -526,7 +570,8 @@ en:
      is_available: "Yes"   
      is_available_user: Availability has been updated.   
      is_invalid: is invalid.   
-     is_not_available: "No"   
+     is_not_available: "No" 
+     join_cup:  Join the challenge  
      join_group: Join the Team   
      join_group_message: Message para unirte al team ha sido mandado correctamente.   
      join_tournament: Join the Tournament   
@@ -555,6 +600,7 @@ en:
      logout: Logout   
      look: Look  
      looking_for_group:  Looking for Team
+     looking_for_my_group:  Looking for Team
      looking_for_groups:  Looking for Team
      looking_for_group_description:  Looking for Team
      looking_for_user:  Looking for Players
@@ -605,7 +651,8 @@ en:
      must_be_before_ends_at:  Should be a date previous to the End Date.
      must_be_before_signup_at:  Should be a date previous to the End Inscription Date.
      must_be_before_deadline_at:  Should be a date before the Start Inscription Date.
-     must_be_after_deadline_at:  Should be a date after the Start Inscription Date.       
+     must_be_after_deadline_at:  Should be a date after the Start Inscription Date.  
+     must_be_different:  Should be different.     
      my_address: My Address   
      my_announcement: My Announcement   
      my_credit: My Payments   
@@ -652,9 +699,11 @@ en:
      name_sport: Name of the sport you practice   
      names: Names   
      new: New   
+     new_low: new
      new_openid: New OpenID  
      news: news
      next: "next"
+     next_match:  Upcoming Game
      next_step: next step   
      nickname: Nickname  
      no_account: "With your new account OpenID signup HayPista"   
@@ -767,13 +816,12 @@ en:
      petition_join_item_decline: Decline
      petition_no:  No Requests to show.
      petition_to_join: Request to join a
-     petition_to_join: Request to join a
      petition_pending: Pending Request   
-     petition_to_join: Request to join a 
      petitions: Requests 
      petition_to_join_approved: Request to join has been approved.
      petition_to_join_declined:  Request to join has been denied.
-     petition_to_leave_approved: Request to opt-out has been approved.                 
+     petition_to_leave_approved: Request to opt-out has been approved. 
+     no_petition_to_join: No Request to join the challenge!                    
      no_petition_to_join_group: No Request to join a team! 
      deleted_petition_by: Request has been removed by   
      denial_petition_to_join: Request to join has been denied to 
@@ -785,8 +833,7 @@ en:
      phase:  Round
      phone: Telephone   
      phone_description: (In case your team needs to contact you.  You do have the a choise to set the phone to private...)   
-     photo: Photo 
-     photo_description: Photo  
+     photo: Photo  
      photo_description: "(Option to upload an image...{format: jpeg, gif, png, jpg}{size: 5mb})"  
      physical_level_description: "(From 1 to 5, put the physical level that you think you have compared to your team...)"  
      player_limit:  Player Limit
@@ -794,10 +841,14 @@ en:
      player_with: "Players with"
      player_with_less_games: has less assistance to events then the rest.
      points: Pts.
+     points_for_double:  Points for guessing the correct outcome
+     points_for_double_description:  Set points for guessing the correct outcome...
      points_for_draw: Points for a Tie
      points_for_draw_description: Points for Draw Match...
      points_for_lose: Points for a Loss
      points_for_lose_description: Points for a Lost Match...
+     points_for_single:  Points for guessing part of the outcome
+     points_for_single_description:  Set points for guessing the part of the result...
      points_for_win: Points for a Win
      points_for_win_description: Points for a Won Match...
      points_full: Points   
@@ -811,6 +862,7 @@ en:
      preference: Preferences
      previous: "Previous"
      previous_agendas:  Previous Agendas
+     previous_games:  Previous Agendas
      previous_ranking: P.R.   
      previous_ranking_full: Previous Ranking
      previous_schedule: Previous Event   
@@ -1015,6 +1067,30 @@ en:
      single_identity: allows you to have a global ID for many websites. You can get your OpenID URL   
      something_wrong: "Something went wrong, Sorry!"  
      something_wrong_explained: "Already registered this ruling. We'll Look as soon as possible."
+     escuadra: Team
+     escuadras: Teams
+     escuadras_all:  All teams
+     escuadras_available:  All teams
+     escuadras_create:  New team 
+     escuadras_destroy:  Remove team
+     escuadras_edit:  Update team
+     escuadras_index:   Team
+     escuadras_index_option: Options 
+     escuadras_invitations_create:  Invite a friend to this team 
+     escuadras_join:  Join the team
+     escuadras_list:  Teams
+     escuadras_new:  New team
+     escuadras_new_option: Options 
+     escuadras_no:  No team to display.
+     escuadras_none:  No team.
+     escuadra_options:  Options
+     escuadras_options_without: "What options do you have since you are not on a team?"
+     escuadras_option:  Options 
+     escuadras_search: Search for teams
+     escuadras_search_to_join: Search for team. 
+     escuadras_show:  Show team
+     escuadras_to_join:   Create a team 
+     escuadras_update: Update team
      start_session: Start Session   
      starts_at: Starts At  
      starts_at_description: (At what time does the event start?) 
@@ -1064,13 +1140,17 @@ en:
      to_email: Friend's Email       
      to_join: Join   
      to_join_email: to join 
-     to_join_group: join a team   
+     to_join_group: join a team  
+     to_join_challenge: Join a challenge   
+     to_join_challenge_message: Request to join a  
      to_join_group_message: Request to join a 
      to_join_item_message_sent: Request to join has been sent.
      to_join_tournament: Join a Tournament 
      to_join_round: Join a Tournament  
-     to_leave_group_message: Petición para desapuntarte de
-     to_leave_item_message_sent: Petición para desapuntarte a sido enviada.  
+     to_leave_challenge_message:  Request to opt-out of
+     to_leave_challenge_message_sent: Request to opt-out has been sent. 
+     to_leave_group_message: Request to opt-out of
+     to_leave_item_message_sent: Request to opt-out has been sent. 
      to_join_tour: Join a Team   
      to_join_tour_message: Request to join a 
      to_join_tour_message_sent: Request to join has been sent.
@@ -1101,7 +1181,9 @@ en:
      unavailable:  Unavailable
      unsuccessful_logged_in:  username or password are incorrect. 
      upcoming: Upcoming Event
-     upcoming_agenda:  Upcoming Agenda   
+     upcoming_agenda:  Upcoming Agenda  
+     upcoming_game:  Upcoming Event   
+     upcoming_games:   Upcoming Events   
      upcoming_schedule: Upcoming Event   
      upcoming_schedules: Upcoming Events 
      upcoming_meet: Upcoming Event 
@@ -1288,11 +1370,14 @@ en:
      invitations_no:  No Invitation to show.
      invitations_option:  Options
      invitations_create:  Invite your friends to join HayPista
+     invitations_create_cup: Invite your friends to this tournament
+     invitations_create_challenge:  Invite your teams to this challenge
      invitations_create_group: Invite your friends to this team
      invitations_create_schedule: Invite your friends to this event
      invitations_create_tournament: Invite your friends to this Tourneo
      invitations_create_meet: New Invitation to Tournament
      invitations_sent:  Invitations Sent
+     invitations_your_friend:  Invita your friends to
      clash:  Result
      clashes:  Results
      clashes_edit:  Results     
@@ -1426,6 +1511,9 @@ en:
      messages_sent:  Sent
      messages_show: Show Message
      messages_trash:  Discarted Messages
+     schedule: Event   
+     schedule_description: (Write some detail about the team...)  
+     schedules: Events
      schedules_archive_list:  Previous Season
      schedules_create:  New Event
      schedules_destroy:  Remove Event
@@ -1466,8 +1554,15 @@ en:
      scorecards_option:  Options
      scorecards_less_games:  ( * ) Players with less event attendances
      scorecards_legend:  Leyend
+     stage:  Stage
+     stages:  Stages
+     stages_create:  New Stage
+     stages_description: Ranking and group letter for team advancing
+     stages_index:  Stages
+     stages_new:  New Stage
      standing:  Scorecard 
      standings:  Scorecards 
+     standings_edit:  Update scorecard
      standing_list:  Previous Scorecards
      standings_list:  Previous Scorecards
      standing_options:  Options 
@@ -1591,7 +1686,8 @@ en:
      user_options_tour: Opcions
      users_rpx_new: New Player
      users_rpx_create:  New Player
-     users_teammate: My Teammates    
+     users_teammate: My Teammates 
+     your:  You   
      true: "Yes"
      false: "No"
      get_rolling:  Get going in seconds...
