@@ -45,7 +45,8 @@
 		<%= tr_td_action(:group_stage_advance, @cup.group_stage_advance) if (@cup.group_stage_advance.to_i > 0) %>
 		
 		<tr>
-			<%= content_tag :td, link_to(label_name(:standing), standing_path(:id => @cup)), :class => "label" %>
+			<%= content_tag :td, link_to(label_name(:standing), standing_path(:id => @cup)), 
+					:class => "label" if object_counter(@cup.standings) > 1 %>
 		</tr>
 
 		<tr>

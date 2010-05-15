@@ -42,7 +42,7 @@
 			</td>
 
 			<td class="name_and_date">
-				<%= link_to(label_name(:scorecards), standing_path(:id => cup)) %>
+				<%= link_to(label_name(:standing), standing_path(:id => cup))  if object_counter(cup.standings) > 1 %>
 				<span class="date">
 				</span>
 			</td>

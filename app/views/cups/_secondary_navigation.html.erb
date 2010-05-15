@@ -13,7 +13,9 @@
 	<li class="<%= get_active('game_index') %>"><%= link_to(label_name(:group_stage) , games_url(:id => @cup)) %>	</li>
 	<li class="<%= "#{get_active('game_list')}"%>"><%= link_to(label_name(:group_round) , list_games_path(:id => @cup)) %></li>
 	<li class="<%= "#{get_active('game_edit')}"  "#{get_active('game_set_score')}" %>"><%= game_link(@game) if @game %></li>
-	<li class="<%= "#{get_active('standing_show')}#{get_active('standing_index')}" %>"><%= link_to(label_name(:scorecards) , standings_path(:id => @cup)) %></li>	
+	<li class="<%= "#{get_active('standing_show')}#{get_active('standing_index')}" %>">
+		<%= link_to(label_name(:scorecards) , standings_path(:id => @cup))  if object_counter(@cup.standings) > 1 %>
+	</li>	
 	<% end %>
 </ul>
 
