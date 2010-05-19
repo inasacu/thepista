@@ -6,6 +6,10 @@
 	debit_link, debit_object = payment_debit(payment)
 	credit_link, credit_object = payment_credit(payment)
 	item_link, item_object = payment_item(payment)	
+	
+	is_manager = false
+	is_manager = current_user.is_manager_of?(credit_object) or current_user.is_manager_of?(item_object) 
+	is_manager = is_manager and !is_action('complete') and !is_action('item complete')
 %>
 
 <tr> 
@@ -30,12 +34,12 @@
 		<%= item_link %>
 	</td>
 
-	<td><%#= h(payment.concept) %></td>
+	<td>&nbsp;</td>
 	<td><%= number_to_currency(payment.debit_amount) %></td>
 	
    <td class="last">
 	<span class="action">
-		<% if current_user.is_manager_of?(credit_object) or current_user.is_manager_of?(item_object) and !is_action('complete') %> 
+		<% if is_manager %> 
 			<%= link_to label_name(:payments_edit), edit_payment_path(:id => payment, :group_id => payment.credit_id) %><br />
 			<%= link_to label_name(:payments_destroy), payment_path(payment), :method => :delete, :confirm => %(#{label_name(:payments_destroy) }?) %>	
         <% end %>

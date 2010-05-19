@@ -2,7 +2,7 @@ class PaymentsController < ApplicationController
   before_filter :require_user
 
   before_filter :get_fee, :only =>[:new]
-  before_filter :has_manager_access, :only =>[:edit, :update]
+  before_filter :has_manager_access, :only =>[:edit, :update, :destroy]
 
   def index
     if (params[:id]) 
@@ -25,26 +25,27 @@ class PaymentsController < ApplicationController
 
   def new
     @payment = Payment.new
-
     @fee = @payment.fee unless @payment.fee.nil?
-
+    
     if @fee
-      @group = Group.find(@fee.credit_id) if @fee.credit_type == "Group"
-      @user = User.find(@fee.debit_id)
+      case @fee.credit_type
+      when "Group"
+        @item = Group.find(@fee.credit_id) 
+      when "Challenge"
+        @item = Challenge.find(@fee.credit_id)
+      else
+      end
       
-      @users = [] 
-      @users << @user.id 
+      @users = User.find(:all, :conditions => ["id = ?", @fee.debit_id])
 
-      @groups = [] 
-      @groups << @group.id
-
-      @debit_fee = Fee.debit_amount(@users, @groups)
-      @debit_payment = Payment.debit_amount(@users, 'User')
+      @debit_fee = Fee.debit_item_amount(@users, @item)
+      @debit_payment = Payment.debit_item_amount(@users, @item)
 
       @payment.concept = @fee.concept
       @payment.debit_amount = @debit_fee.debit_amount.to_f - @debit_payment.debit_amount.to_f
       @payment.description = @fee.description
       @payment.fee_id = @fee.id
+      
     end
   end
 
@@ -53,10 +54,16 @@ class PaymentsController < ApplicationController
     @payment_credit = Payment.new(params[:payment])
 
     @fee = Fee.find(@payment.fee_id)
-    @group = Group.find(@fee.credit_id) if @fee.credit_type == "Group"
-    @user = User.find(@fee.debit_id) if @fee.debit_type == 'User'
-
-    unless current_user.is_manager_of?(@group)
+    
+    case @fee.credit_type
+    when "Group"
+      @item = Group.find(@fee.credit_id) 
+    when "Challenge"  
+      @item = Challenge.find(@fee.credit_id)
+    else
+    end
+      
+    unless current_user.is_manager_of?(@item)
       flash[:warning] = I18n.t(:unauthorized)
       redirect_to root_url
       return
@@ -94,6 +101,12 @@ class PaymentsController < ApplicationController
     end
   end
 
+  def destroy
+    @payment.destroy
+    flash[:notice] = I18n.t(:successful_destroy)
+    redirect_to fees_url
+  end
+  
   private
 
   def get_fee    
@@ -103,21 +116,33 @@ class PaymentsController < ApplicationController
       return
     end
     
-    @fee = Fee.find(params[:id])    
-    @group = Group.find(@fee.credit_id) if @fee.credit_type == "Group"
+    @fee = Fee.find(params[:id])   
+    case @fee.credit_type
+    when "Group"
+      @item = Group.find(@fee.credit_id) 
+    when "Challenge"
+      @item = Challenge.find(@fee.credit_id)
+    end
 
-    unless current_user.is_manager_of?(@group)
+    unless current_user.is_manager_of?(@item)
       flash[:warning] = I18n.t(:unauthorized)
       redirect_to root_url
       return
     end
+    
   end
 
   def has_manager_access
     @payment = Payment.find(params[:id])
-    @group = Group.find(@payment.fee.credit_id) if @payment.credit_type == "Group"
 
-    unless current_user.is_manager_of?(@group)
+    case @payment.credit_type
+    when "Group"
+      @item = Group.find(@payment.fee.credit_id) 
+    when "Challenge"
+      @item = Challenge.find(@payment.fee.credit_id)
+    end
+
+    unless current_user.is_manager_of?(@item)
       flash[:warning] = I18n.t(:unauthorized)
       redirect_to root_url
       return

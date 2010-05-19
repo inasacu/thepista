@@ -76,12 +76,12 @@ it:
      cast: Forecast   
      cast_description: (Write some details on the forecast...)  
      casts: Forecasts
-     casts_archive_list:  Previous Forecasts
+     casts_archive_list:  All Forescasts
      casts_create:  New forecast
      casts_destroy:  Remove forecast
      casts_index: My forecasts
      casts_index_option: Options 
-     casts_list:  Previous Forecasts
+     casts_list:  All Forescasts
      casts_list_no: No previous forecast to display.
      casts_manager_option:  Requires manager to  responsable de challenge to view more options.
      casts_new: New forecast
@@ -92,6 +92,7 @@ it:
      cast_options:  Options 
      casts_show: Forecast details
      cast_rate: Forecast rate 
+     cast_right_guess:  Right Guesses
      challenge:  Challenge
      challenge_options:  Options
      challenges:  Challenges
@@ -786,6 +787,7 @@ it:
      participate_group_afterwards: "After you signup, follow the link to signup for the team"   
      participation:  %
      participation_full:  Participation Percentage
+     participant:  Participant
      participants:  Participants     
      password: Password
      password_change: Change Password
@@ -1406,6 +1408,7 @@ it:
      fees_index:   Charge
      fees_index_option: Options
      fees_list:  Charges
+     fees_item_list:  Charges
      fees_manager_option:  Requires team manager position to view more options.
      fees_new:  New Charge
      fees_no:  No Charge to show.

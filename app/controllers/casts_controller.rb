@@ -1,11 +1,27 @@
 class CastsController < ApplicationController
   before_filter :require_user
-  before_filter :has_member_access, :only => [:index, :edit]
+  before_filter :has_member_access, :only => [:index, :list, :edit]
 
   def index
-    @user = User.find(params[:user_id])
+    @user = User.find(params[:user_id])    
     @casts = Cast.current_challenge(@user, @challenge, params[:page])
     @cup = @challenge.cup
+  end
+  
+  def list
+    @casts = Cast.current_challenge(@challenge.users, @challenge, params[:page])
+    @cup = @challenge.cup    
+    render :template => '/casts/index'
+  end
+  
+  def list_guess
+    @cup = Cup.find(params[:id])
+    @challenges = @cup.challenges
+    @users = []
+    @challenges.each {|challenge| challenge.users.each {|user| @users << user}}
+    # @users = User.find(@challenges.users)
+    @casts = Cast.guess_casts(@users, @challenges, params[:page])   
+    render :template => '/casts/index'    
   end
 
   def edit

@@ -81,7 +81,7 @@ es:
      casts_destroy:  Borrar pronóstico
      casts_index: Mis pronósticos
      casts_index_option: Opciones 
-     casts_list:  Anteriores pronósticos
+     casts_list:  Todos los pronósticos
      casts_list_no: Ningun pronóstico previo para mostrar.
      casts_manager_option:  Requiere responsable de reto para ver mas opciones.
      casts_new: Nuevo pronóstico
@@ -91,7 +91,8 @@ es:
      casts_option:  Opciones 
      cast_options:  Opciones 
      casts_show: Detalles del pronóstico
-     cast_rate: Valoración del pronóstico     
+     cast_rate: Valoración del pronóstico 
+     cast_right_guess:  Aciertos    
      challenge:  Reto
      challenge_options:  Opciones
      challenges:  Retos
@@ -785,7 +786,8 @@ es:
      participate_schedule_afterwards: "Despues de registrate en el equipo y ser aceptado, sigue este enlace para participa en el evento"
      participate_group_afterwards: Despues de registrate sigue este enlace para unirte al equipo     
      participation:  %
-     participation_full:  Porcentaje de participación  
+     participation_full:  Porcentaje de participación 
+     participant:  Participante 
      participants:  Participantes   
      password: Clave
      password_change: Cambiar contraseña
@@ -1406,6 +1408,7 @@ es:
      fees_index:   Cargo
      fees_index_option: Opciones
      fees_list:  Cargos
+     fees_item_list:  Cargos
      fees_manager_option:  Requiere responsable de equipo para ver mas opciones.
      fees_new:  Nuevo cargo
      fees_no:  Ningun cargo para mostrar.

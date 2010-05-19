@@ -71,18 +71,24 @@ class Cast < ActiveRecord::Base
     self.game.starts_at - 1.day
   end
   
-  def self.current_challenge(user, challenge, page = 1)
-    self.paginate(:all, :joins => "left join games on games.id = casts.game_id",
-                  :conditions => ["user_id = ? and challenge_id = ?", user.id, challenge.id], 
-                  :order => 'games.jornada', :page => page, :per_page => CUPS_PER_PAGE)
+  def self.current_challenge(users, challenge, page = 1)
+    self.paginate(:all, :joins => "left join games on games.id = casts.game_id left join users on users.id = casts.user_id",
+                  :conditions => ["user_id in (?) and challenge_id = ?", users, challenge], 
+                  :order => 'games.jornada, users.name', :page => page, :per_page => CUPS_PER_PAGE)
   end
   
   def self.current_casts(user, challenge)
     find(:all, :joins => "LEFT JOIN games on games.id = casts.game_id",
-         :conditions => ["casts.user_id = ? and casts.challenge_id = ?", user.id, challenge.id], 
+         :conditions => ["casts.user_id = ? and casts.challenge_id = ?", user, challenge], 
          :order => 'games.jornada')
   end
   
+  def self.guess_casts(users, challenges, page = 1)
+    self.paginate(:all, :joins => "left join games on games.id = casts.game_id left join users on users.id = casts.user_id",
+                  :conditions => ["user_id in (?) and challenge_id in (?) and points > 0", users, challenges], 
+                  :order => 'games.jornada, users.name', :page => page, :per_page => CUPS_PER_PAGE)
+  end
+    
   def self.ready_casts(user, challenge)
     find(:first, :select => "count(*) as total", :conditions => ["user_id = ? and challenge_id = ? and home_score is not null and away_score is not null", user.id, challenge.id])
   end

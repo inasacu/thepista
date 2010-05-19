@@ -31,6 +31,46 @@ class Payment < ActiveRecord::Base
   # friendly url and removes id
   has_friendly_id :concept, :use_slug => true,:reserved => ["new", "create", "index", "list", "signup", "edit", "update", "destroy", "show"]
   
+  # method section
+  def self.debit_item_amount(debits, item)
+    @payment = find(:first, 
+         :select => "sum(debit_amount) as debit_amount", 
+         :conditions => ["debit_id in (?) and debit_type = ? and 
+                          item_id = ? and item_type = ? and 
+                        archive = false and debit_amount > 0", debits, debits.first.class.to_s, item, item.class.to_s])
+
+    if @payment.nil? or @payment.blank? 
+      @payment.debit_amount = 0.0
+    end
+    return @payment         
+  end
+
+  def self.credit_item_amount(credits, item)
+    @payment = find(:first, 
+         :select => "sum(credit_amount) as credit_amount", 
+         :conditions => ["credit_id in (?) and credit_type = ? and 
+                           item_id = ? and item_type = ? and
+                         archive = false and credit_amount > 0", credits, credits.first.class.to_s, item, item.class.to_s])
+
+    if @payment.nil? or @payment.blank? 
+      @payment.credit_amount = 0.0
+    end
+    return @payment         
+  end
+
+  def self.credit_item_payments(debits, credit, item, page=1)
+    paginate(:all, :conditions => ["debit_id in (?) and debit_type = ? and 
+                                    credit_id in (?) and credit_type = ? and 
+                                    item_id = ? and item_type = ? and 
+                                    archive = false and debit_amount > 0", 
+                                    debits, debits.first.class.to_s, 
+                                    credit, credit.class.to_s, 
+                                    item, item.class.to_s],
+                   :order => 'item_type, item_id',
+             :page => page,
+             :per_page => FEES_PER_PAGE)
+  end
+    
   def self.credit_payments(debits, credits, page=1)
     paginate(:all, :conditions => ["debit_id in (?) and debit_type = ? and 
                                     credit_id in (?) and credit_type = ? and 

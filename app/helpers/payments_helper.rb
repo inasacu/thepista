@@ -15,7 +15,10 @@ module PaymentsHelper
       debit_object = Schedule.find(payment.debit_id)
     when 'Marker'
       debit_link =  marker_link(payment.debit)
-      debit_object = Marker.find(payment.debit_id)   
+      debit_object = Marker.find(payment.debit_id) 
+    when 'Challenge'
+      debit_link =  challenge_link(payment.debit)
+      debit_object = Challenge.find(payment.debit_id)  
     end
     return debit_link, debit_object
   end
@@ -35,13 +38,16 @@ module PaymentsHelper
       credit_object = Schedule.find(payment.credit_id)
     when 'Marker'
       credit_link =  marker_link(payment.credit)
-      credit_object = Marker.find(payment.credit_id)   
+      credit_object = Marker.find(payment.credit_id)
+    when 'Challenge'
+      credit_link =  challenge_link(payment.credit)
+      credit_object = Challenge.find(payment.credit_id)   
     end
     return credit_link, credit_object
   end
 
   def payment_item(payment)
-    item_link, item_boject = '', ''
+    item_link, item_object = '', ''
 
     case payment.item.class.to_s
     when 'User'
@@ -55,7 +61,10 @@ module PaymentsHelper
       item_object = Schedule.find(payment.item_id)
     when 'Marker'
       item_link =  marker_link(payment.item)
-      item_object = Marker.find(payment.item_id)  
+      item_object = Marker.find(payment.item_id) 
+    when 'Challenge'
+      item_link =  challenge_link(payment.item)
+      item_object = Challenge.find(payment.item_id) 
     end
     return item_link, item_object
   end

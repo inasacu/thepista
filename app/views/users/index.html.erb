@@ -34,16 +34,14 @@
 			<tr>
 			  <td>
 				<%= image_link_small user %>
+			  </td>			
+			  <td class="name_and_date">
+				<%= user_link user %>
+				<span class="date">
+					<% counter = 0; user.scorecards.each {|scorecard| counter += scorecard.played} %>
+					<%= I18n.t(:has_user_scorecard_played, :count => counter) %>
+				</span>
 			  </td>
-			
-				<td class="name_and_date">
-					<%= user_link user %>
-					<span class="date">
-						<% counter = 0; user.scorecards.each {|scorecard| counter += scorecard.played} %>
-						<%= I18n.t(:has_user_scorecard_played, :count => counter) %>
-					</span>
-				</td>
-
 			  <td>
 				<%= user.has_group? ? group_list(user.groups) : label_name('groups_none') %><br />
 				<span class="date">

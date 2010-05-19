@@ -46,7 +46,7 @@
 		
 		<tr>
 			<%= content_tag :td, link_to(label_name(:standing), standing_path(:id => @cup)), 
-					:class => "label" if object_counter(@cup.standings) > 1 %>
+					:class => "label" if @cup.has_standing %>
 		</tr>
 
 		<tr>

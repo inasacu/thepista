@@ -3,6 +3,7 @@ class FeesController < ApplicationController
 
   before_filter :get_group, :only =>[:new]
   before_filter :has_manager_access, :only =>[:list, :complete]
+  before_filter :has_manager_item_access, :only => [:item_list, :item_complete]
   before_filter :has_fee_group_access, :only =>[:edit, :update]
   before_filter :has_user_access, :only => [:index]
 
@@ -20,6 +21,18 @@ class FeesController < ApplicationController
     @debit_fee = Fee.debit_amount(@users, @groups)      
     @fees = Fee.debit_fees(@users, @groups, params[:page])
     @payments = Payment.credit_payments(@users, @groups, params[:page])
+
+    render :template => '/fees/index'
+  end
+  
+  def item_list    
+    # payment information both user debits and user credits for item
+    @debit_payment = Payment.debit_item_amount(@users, @item)
+    @credit_payment = Payment.credit_item_amount(@users, @item)
+        
+    @debit_fee = Fee.debit_item_amount(@users, @item)
+    @fees = Fee.debit_item_fees(@users, @item, params[:page])
+    @payments = Payment.credit_item_payments(@users, @item, @item, params[:page])
 
     render :template => '/fees/index'
   end
@@ -174,6 +187,34 @@ class FeesController < ApplicationController
         redirect_to root_url
         return
       end
+    else
+      redirect_to root_url
+      return
+    end
+  end
+  
+  def has_manager_item_access
+    
+    if params[:item]
+      
+      case params[:item]
+      when "Challenge"
+        @item = Challenge.find(params[:id])
+        @challenge = Challenge.find(params[:id])
+        @users = @challenge.users
+      when "Group"
+        @item = Group.find(params[:id])
+        # @group = @item
+      else
+      end
+
+      unless current_user.is_manager_of?(@item) 
+        flash[:warning] = I18n.t(:unauthorized)
+        redirect_to root_url
+        return
+      end   
+
+
     else
       redirect_to root_url
       return

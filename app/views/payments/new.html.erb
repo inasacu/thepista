@@ -1,14 +1,14 @@
-<%
+<% 
 	debit_link, debit_object = fee_debit(@fee)
+	item_link, item_object = fee_item(@fee)
 %>
-
 <div class="block">
 
 	<%= render :partial => '/users/secondary_navigation' %>
 
 	<div class="content">  
 		
-		<h2 class="title"><%= control_action_label %><%= " #{label_name(:from)} #{debit_link} #{label_name(:to)} " %><%= group_link @group %></h2>
+		<h2 class="title"><%= control_action_label %><%= " #{label_name(:from)} #{debit_link} #{label_name(:to)} " %><%= item_link %></h2>
 
 		<div class="inner">
 		

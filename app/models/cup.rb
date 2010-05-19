@@ -109,6 +109,19 @@ class Cup < ActiveRecord::Base
     return [7].include?(self.sport_id)
   end
   
+  def has_standing    
+    @standing = Cup.find(:first, :select => "count(*) as total", 
+                     :joins => "left join standings on standings.cup_id = cups.id", 
+                     :conditions => ["standings.cup_id = ? and standings.item_type = 'Escuadra'", self])
+    
+     if @standing.nil? or @standing.blank? 
+       return false
+     elsif @standing.total.to_i == 0
+       return false
+     end      
+     return true    
+   end
+  
   def games_played
     the_played = 0
     self.games.each {|game| the_played += 1 if game.played}

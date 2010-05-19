@@ -123,7 +123,8 @@ ActionController::Routing::Routes.draw do |map|
   map.resources   :sports,          :as => 'deportes'
   map.resources   :roles,           :as => 'responsabilidades'          
   map.resources   :payments,        :as => 'pago',                        :collection => { :list => :get }
-  map.resources   :fees,            :as => 'tasas',                       :collection => { :list => :get, :complete => :get } 
+  map.resources   :fees,            :as => 'tasas',                       :collection => { :list => :get, :complete => :get, 
+                                                                                           :item_list => :get, :item_complete => :get} 
   map.resources   :password_resets, :as => 'resetear'
   map.resources   :messages,        :as => 'mensajes',                    :collection => { :sent => :get, :trash => :get }
   map.resources   :classifieds,     :as => 'anuncios',                    :collection => { :sent => :get, :trash => :get }
@@ -143,11 +144,8 @@ ActionController::Routing::Routes.draw do |map|
   map.resources   :cups,            :as => 'copas',                       :collection => { :list => :get }
   map.resources   :games,           :as => 'partidos',                    :collection => { :list => :get }
   map.resources   :challenges,                                            :collection => { :list => :get }
-  map.resources   :casts,           :as => 'pronostico',                  :collection => { :list => :get }
+  map.resources   :casts,           :as => 'pronostico',                  :collection => { :list => :get, :list_guess => :get }
   map.resources   :escuadras,                                             :collection => { :list => :get }
-  # map.resources   :stages
-  
-  # map.resources   :clouds,          :as => 'nube'  
   
   map.resources   :users do |user|
     user.resources :messages

@@ -15,7 +15,10 @@ module FeesHelper
       debit_object = Schedule.find(fee.debit_id)
     when 'Marker'
       debit_link =  marker_link(fee.debit)
-      debit_object = Marker.find(fee.debit_id)   
+      debit_object = Marker.find(fee.debit_id)
+    when 'Challenge'
+      debit_link =  challenge_link(fee.debit)
+      debit_object = Challenge.find(fee.debit_id)
     end
     return debit_link, debit_object
   end
@@ -35,13 +38,16 @@ module FeesHelper
       credit_object = Schedule.find(fee.credit_id)
     when 'Marker'
       credit_link =  marker_link(fee.credit)
-      credit_object = Marker.find(fee.credit_id)   
+      credit_object = Marker.find(fee.credit_id)
+    when 'Challenge'
+      credit_link =  challenge_link(fee.credit)
+      credit_object = Challenge.find(fee.credit_id)
     end
     return credit_link, credit_object
   end
 
   def fee_item(fee)
-    item_link, item_boject = '', ''
+    item_link, item_object = '', ''
 
     case fee.item.class.to_s
     when 'User'
@@ -56,6 +62,9 @@ module FeesHelper
     when 'Marker'
       item_link =  marker_link(fee.item)
       item_object = Marker.find(fee.item_id)  
+    when 'Challenge'
+      item_link =  challenge_link(fee.item)
+      item_object = Challenge.find(fee.item_id)
     end
     return item_link, item_object
   end

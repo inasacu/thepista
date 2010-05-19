@@ -139,10 +139,6 @@ module ApplicationHelper
     return I18n.t(time_at, :format => :day_weekday) unless time_at.nil?
   end
 
-  def nice_day_time(time_at)
-    return I18n.l(time_at, :format => :day_time) unless time_at.nil?
-  end
-
   def nice_day_date_wo_year(time_at)
     return I18n.l(time_at, :format => :day_date_wo_year) unless time_at.nil?
   end

@@ -1,14 +1,16 @@
 <%- 
-	@users = [] 
-	@users << current_user.id      
-	@debit_payment = Payment.debit_amount(@users, 'User')
-	@credit_payment = Payment.credit_amount(@users, 'User')
+	# @users = [] 
+	# @users << current_user.id      
+	# @debit_payment = Payment.debit_amount(@users, 'User')
+	# @credit_payment = Payment.credit_amount(@users, 'User')
+	
+	@users = User.find(:all, :conditions => ["id = ?", current_user])
+	@debit_payment = Payment.debit_item_amount(@users, current_user)
+    @credit_payment = Payment.credit_item_amount(@users, current_user)
+    # @debit_fee = Fee.debit_item_amount(@users, current_user.challenges)
 
 	@groups = []
-	current_user.groups.each do |group|
-		@groups << group.id 
-	end
-
+	current_user.groups.each {|group| @groups << group.id }
 	@debit_fee = Fee.debit_amount(@users, @groups)
 	
 	the_total = @debit_fee.debit_amount.to_f - (@debit_payment.debit_amount.to_f + @credit_payment.credit_amount.to_f)
