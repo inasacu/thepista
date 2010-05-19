@@ -40,12 +40,12 @@
 		</li>
 		
 		<% if current_user.is_manager_of?(@challenge) %>
-		<li class="<%= get_active('fee_item_list') %>">
-			<%=  link_to(label_name(:fees) , item_list_fees_path(:id => @challenge, :item => @challenge.class.to_s)) %>
+		<!-- <li class="<%#= get_active('fee_item_list') %>">
+			<%#=  link_to(label_name(:fees) , item_list_fees_path(:id => @challenge, :item => @challenge.class.to_s)) %>
 		</li>
-		<li class="<%= get_active('fee_item_complete') %>">
-			<%=  link_to(label_name(:fees_complete) , item_complete_fees_path(:id => @challenge, :item => @challenge.class.to_s)) %>
-		</li>
+		<li class="<%#= get_active('fee_item_complete') %>">
+			<%#=  link_to(label_name(:fees_complete) , item_complete_fees_path(:id => @challenge, :item => @challenge.class.to_s)) %>
+		</li> -->
 		<% end -%>	
 		
 		<li class="<%= get_active('standing_show') %><%= get_active('standing_show_list') %>">
