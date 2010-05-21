@@ -2,6 +2,15 @@
 	debit_link, debit_object = fee_debit(fee)
 	credit_link, credit_object = fee_credit(fee)
 	item_link, item_object = fee_item(fee)
+	user = User.find(:all, :conditions => ["id = ?", fee.debit_id])
+	debit_payment = Payment.debit_item_amount(user, @item)
+    credit_payment = Payment.credit_item_amount(user, @item)
+
+	current_debit =  number_to_currency(fee.debit_amount)
+	current_credit = number_to_currency(debit_payment.debit_amount.to_f + credit_payment.credit_amount.to_f) 	
+	is_unpayed = current_debit > current_credit
+	@payments = Payment.credit_item_payments(user, @item, @item)
+	last_payment = nil	
 %>
 
 <tr>  
@@ -25,17 +34,26 @@
 		<%= item_link %>
 	</td>
 
-	<td><%= number_to_currency(fee.debit_amount) %></td>
-	<td>&nbsp;</td>
+	<td><%= current_debit %></td>
+	<td><% @payments.each  do |payment| %> 
+			<%= number_to_currency(payment.debit_amount.to_f) %><br />			
+		<% 	last_payment = payment
+		   end 
+		%>
+	</td>
 	
     <td class="last">
 		<span class="action">
-			<% if current_user.is_manager_of?(credit_object) or current_user.is_manager_of?(item_object) and !is_action('complete') %> 
-            	<%= link_to label_name(:send_message_to), new_message_path(:id => fee.debit_id) %><br />
-				<%  unless @debit_fee.debit_amount.to_f == (@debit_payment.debit_amount.to_f + @credit_payment.credit_amount.to_f) %>
-				<%= link_to  label_name(:payment_for_bill), new_payment_path(:id => fee) %><br />
-				<%= link_to label_name(:fees_edit), edit_fee_path(:id => fee) %><br />
-				<%= link_to label_name(:fees_destroy), fee_path(fee), :method => :delete, :confirm => %(#{label_name(:fees_destroy) }?) %>	
+			<% if current_user.is_manager_of?(credit_object) or current_user.is_manager_of?(item_object) %> 
+            	<%= link_to label_name(:send_message_to), new_message_path(:id => fee.debit_id) %><br /><br />
+				<%  if is_unpayed %>
+					<%= link_to  label_name(:payment_for_bill), new_payment_path(:id => fee) %><br />
+					<%= link_to label_name(:fees_edit), edit_fee_path(:id => fee) %><br />
+					<%= link_to label_name(:fees_destroy), fee_path(fee), :method => :delete, :confirm => %(#{label_name(:fees_destroy) }?) %><br />
+				<% end %>
+				<% unless @payments.nil? or @payments.blank? or @payments.empty? %>
+					<%= link_to label_name(:payments_edit), edit_payment_path(:id => last_payment, :group_id => last_payment.credit_id) %><br />
+					<%= link_to label_name(:payments_destroy), payment_path(last_payment), :method => :delete, :confirm => %(#{label_name(:payments_destroy) }?) %>
 				<% end %>
 	        <% end %>
 		</span>

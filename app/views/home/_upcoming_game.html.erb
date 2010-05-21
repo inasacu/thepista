@@ -1,8 +1,10 @@
 <table class="table">
 <% 
 	upcoming_games.each do |game| 
-	the_sport = ""
-	the_missing = ""
+	
+	no_team = (game.home_id.nil? or game.away_id.nil?) 
+	no_ranking = (game.home_ranking.nil? or game.away_ranking.nil? or game.home_stage_name.nil? or game.away_stage_name.nil? and game.type_name == 'FirstGame') 
+	the_finals = (game.type_name == 'SubsequentGame' or game.type_name == 'FinalGame')
 -%>		
 	<tr>
 		<td>
@@ -23,14 +25,23 @@
 				<%= has_left(game.starts_at) if Time.zone.now < game.starts_at %>
 			</span>
 		</td>
-		<td class="name_and_date">
-			<%= the_sport %><br />
-			<span class="date">
-				<%= the_missing %>
-			</span>
-		</td>
-		<td class="name_and_date">
-		</td>		
+        <td>            
+          <%= escuadra_image_link_small game.home unless no_team %>
+        </td>
+
+		  <td class="name_and_date">
+		  	<%= escuadra_link game.home unless no_team %>
+		  </td>
+
+		  <td align="center">vs.</td>
+
+		  <td class="name_and_date">
+		  	<%= escuadra_link game.away unless no_team %>
+		  </td>
+		
+		  <td>
+          <%= escuadra_image_link_small game.away unless no_team %>
+		  </td>		
 		<td class="last">
 			&nbsp;
 		</td>

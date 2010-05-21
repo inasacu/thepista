@@ -41,7 +41,7 @@ en:
      announcements_no:  No Announcements to display.
      announcements_option: Options
      announcements_previous:  Previous Announcements
-     archive: archive 
+     archive: Archive 
      archive_list_schedules:  Previous Season
      are_you_sure:  Are you sure? 
      at: at
@@ -115,6 +115,7 @@ en:
      challenges_search: Search for challenges
      challenges_search_to_join: You can search for challenge to join. 
      challenges_show:  Show challenge
+     challenges_shows:  Show challenges
      challenges_update: Update challenge
      change: Change Language   
      change_available: Change available status   

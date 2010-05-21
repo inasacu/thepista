@@ -9,7 +9,8 @@
 	<li class="<%= get_first_active %>"><%=  link_to(label_name(:cups_upcoming), cups_path) %></li>
 	<li class="<%#= get_active('cup_list') %>"><%#=  link_to(label_name(:cups_list) , list_cups_path) %></li>
 	<% else %>
-	<li class="<%= get_active('cup_show') %>"><%=  cup_link(@cup) %></li>					
+	<li class="<%= get_active('cup_show') %>"><%=  cup_link(@cup) %></li>
+	<li class="<%= get_active('escuadra_list') %>"><%=  link_to(label_name(:escuadras), list_escuadras_url(:id => @cup)) %></li>					
 	<li class="<%= get_active('game_index') %>"><%= link_to(label_name(:group_stage) , games_url(:id => @cup)) %>	</li>
 	<li class="<%= "#{get_active('game_list')}"%>"><%= link_to(label_name(:group_round) , list_games_path(:id => @cup)) %></li>
 	<li class="<%= "#{get_active('game_edit')}"  "#{get_active('game_set_score')}" %>"><%= game_link(@game) if @game %></li>

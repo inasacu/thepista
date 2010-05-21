@@ -188,7 +188,7 @@ private
   end
 
   def create_group_blog_details
-    @blog = Blog.create_group_blog(self)
+    @blog = Blog.create_item_blog(self)
     # @entry = Entry.create_group_entry(self, @blog)
     # Comment.create_group_comment(self, @blog, @entry)
   end

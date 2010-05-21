@@ -148,7 +148,7 @@ class Tournament < ActiveRecord::Base
     private
 
     def create_tournament_blog_details
-      @blog = Blog.create_tournament_blog(self)
+      @blog = Blog.create_item_blog(self)
       # @entry = Entry.create_tournament_entry(self, @blog)
       # Comment.create_tournament_comment(self, @blog, @entry)
     end

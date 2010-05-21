@@ -37,14 +37,12 @@ module ActivitiesHelper
       case comment_type(comment)
       when "Blog"
         blog = comment.commentable
-        if blog.group_id.blank? and blog.tournament_id.blank?
-          %(#{I18n.t(:left_comment_on_wall) } #{blog_link(blog)})
-        elsif blog.tournament_id.blank?
-          is_member = current_user.is_member_of?(blog.group)
-          %(#{I18n.t(:left_comment_on_wall) } #{is_member ? blog_link(blog) : sanitize(blog.group.name)})
-        else
-          is_member = current_user.is_tour_member_of?(blog.tournament)
-          %(#{I18n.t(:left_comment_on_wall) } #{is_member ? blog_link(blog) : sanitize(blog.tournament.name)})              
+        case blog.item_type
+        when "User"
+            %(#{I18n.t(:left_comment_on_wall) } #{blog_link_item(blog)}<br/>)
+        when "Group", "Challenge"
+             is_member = current_user.is_member_of?(blog.item)
+             %(#{I18n.t(:left_post_on_forum)} #{is_member ? blog_link_item(blog) : sanitize(blog.item.name)}<br/>)
         end
       
       when "Forum"
@@ -108,13 +106,7 @@ module ActivitiesHelper
               when "User"
                 "sound.png"
               end
-              
-            # when "Connection"
-            #   if activity.item.contact.admin?
-            #     "vcard.png"
-            #   else
-            #     "connect.png"
-            #   end
+
               
             when "Post"
               "asterisk_yellow.png"
@@ -130,14 +122,7 @@ module ActivitiesHelper
               
             when "Photo"
               "photo.png"
-              
-            # when "Event"
-            #   # TODO: replace with a png icon
-            #   "time.gif"
-              
-            # when "EventAttendee"
-            #   # TODO: replace with a png icon
-            #   "check.gif"
+
               
             when "Message"
               "message.gif"
@@ -154,9 +139,9 @@ module ActivitiesHelper
     link ? "#{user_link_with_image(user)}'s" : "#{h user.name}'s"
   end
   
-  def blog_link(text, blog)
-    link_to(text, blog_path(blog))
-  end
+  # def blog_link(text, blog)
+  #   link_to(text, blog_path(blog))
+  # end
   
   def post_link(text, blog, post = nil)
     if post.nil?
@@ -177,37 +162,37 @@ module ActivitiesHelper
   end
 
   
-  def entry_link(text, entry = nil)
-    if entry.nil?
-      entry = text
-      text = entry.title
-    end
-    link_to(text, blog_path(entry.blog))
-  end
+  # def entry_link(text, entry = nil)
+  #   if entry.nil?
+  #     entry = text
+  #     text = entry.title
+  #   end
+  #   link_to(text, blog_path(entry.blog))
+  # end
  
-  def gallery_link(text, gallery = nil)
-    if gallery.nil?
-      gallery = text
-      text = gallery.title
-    end
-    link_to(h(text), gallery_path(gallery))
-  end
+  # def gallery_link(text, gallery = nil)
+  #   if gallery.nil?
+  #     gallery = text
+  #     text = gallery.title
+  #   end
+  #   link_to(h(text), gallery_path(gallery))
+  # end
   
-  def to_gallery_link(text = nil, gallery = nil)
-    if text.nil?
-      ''
-    else
-      'to the ' + gallery_link(text, gallery) + ' gallery'
-    end
-  end
+  # def to_gallery_link(text = nil, gallery = nil)
+  #   if text.nil?
+  #     ''
+  #   else
+  #     'to the ' + gallery_link(text, gallery) + ' gallery'
+  #   end
+  # end
   
-  def photo_link(text, photo= nil)
-    if photo.nil?
-      photo = text
-      text = "photo"
-    end
-    link_to(h(text), photo_path(photo))
-  end
+  # def photo_link(text, photo= nil)
+  #   if photo.nil?
+  #     photo = text
+  #     text = "photo"
+  #   end
+  #   link_to(h(text), photo_path(photo))
+  # end
 
   def event_link(text, event)
     link_to(text, event_path(event))

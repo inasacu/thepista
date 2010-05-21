@@ -21,20 +21,6 @@ class Blog < ActiveRecord::Base
     self.create!(:item_id => item.id, :item_type => item.class.to_s, :name => item.name, :description => item.description) if self.item_exists?(item)
   end
   
-  def self.create_group_blog(group) 
-    self.create!(:group_id => group.id, :name => group.name, :description => group.description) if self.group_exists?(group)
-  end 
-
-  # record if user does not exist
-  def self.create_user_blog(user) 
-    self.create!(:user_id => user.id, :name => user.name, :description => user.name) if self.user_exists?(user)
-  end
-
-  # record if tournament does not exist
-  def self.create_tournament_blog(tournament) 
-    self.create!(:tournament_id => tournament.id, :name => tournament.name, :description => tournament.description) if self.tournament_exists?(tournament)
-  end
-  
   # Return true if the tournament nil
   def self.tournament_exists?(tournament)
     find_by_tournament_id(tournament).nil?

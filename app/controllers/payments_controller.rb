@@ -86,7 +86,8 @@ class PaymentsController < ApplicationController
 
     if @payment.save and @payment_credit.save
       flash[:notice] = I18n.t(:successful_create)
-      redirect_to fees_url(:id => @user) and return
+      # redirect_to fees_url(:id => @user) and return
+      redirect_back_or_default('/index')
     else
       render :action => 'new', :id => @payment
     end

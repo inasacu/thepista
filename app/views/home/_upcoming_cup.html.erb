@@ -31,12 +31,11 @@
 		</td>
 		
 		<td class="name_and_date">
-			<%= link_to the_sport, challenges_url %>
+			<%= (cup.deadline_at < Time.zone.now) ? link_to(label_name(:challenges_shows), challenges_url) : link_to(the_sport, challenges_url) %>
 		</td>
 
-		<td class="name_and_date">
-			<%#= link_to "#{label_name(:your)} #{label_name(:new_low)} #{cup.name}", new_challenge_path(:id => cup) %>
-			<%= link_to label_name(:challenges_create), new_challenge_path(:id => cup) %>
+		<td class="name_and_date">	
+			<%= link_to label_name(:challenges_create), new_challenge_path(:id => cup)  unless (cup.deadline_at < Time.zone.now) %>
 		</td>
 		
 		<td class="last">

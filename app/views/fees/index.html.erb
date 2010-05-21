@@ -31,7 +31,7 @@
         </tr>
 
 		<%= render :partial => 'fees/fee', :collection => @fees %>
-		<%= render :partial => 'payments/payment', :collection => @payments %>
+		<%= render :partial => 'payments/payment', :collection => @payments unless @challenge %>
 
 		<tr>  
 			<td>&nbsp;</td>

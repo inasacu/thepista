@@ -41,7 +41,7 @@ es:
      announcements_no:  Ninguna communicación para mostrar. 
      announcements_option: Opciones
      announcements_previous:  Anteriores communicaciones
-     archive: archiva  
+     archive: Archiva  
      archive_list_schedules:  Temporada anterior
      are_you_sure:  ¿Estas seguro? 
      at: a las 
@@ -115,6 +115,7 @@ es:
      challenges_search: Busqueda de retos
      challenges_search_to_join: Puedes buscar un reto al que unierte. 
      challenges_show:  Mostrar reto
+     challenges_shows:  Mostrar retos
      challenges_update: Actualizar reto
      change: Cambia idioma   
      change_available: Cambia la disponibilidad de   

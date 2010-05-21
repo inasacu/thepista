@@ -26,18 +26,19 @@ class FeesController < ApplicationController
   end
   
   def item_list    
+    store_location
     # payment information both user debits and user credits for item
     @debit_payment = Payment.debit_item_amount(@users, @item)
     @credit_payment = Payment.credit_item_amount(@users, @item)
         
     @debit_fee = Fee.debit_item_amount(@users, @item)
     @fees = Fee.debit_item_fees(@users, @item, params[:page])
-    @payments = Payment.credit_item_payments(@users, @item, @item, params[:page])
-
+    # @payments = Payment.credit_item_payments(@users, @item, @item, params[:page])
     render :template => '/fees/index'
   end
 
   def list
+    store_location
     @groups = []
     @groups << @group.id
 
@@ -195,8 +196,7 @@ class FeesController < ApplicationController
   
   def has_manager_item_access
     
-    if params[:item]
-      
+    if params[:item]      
       case params[:item]
       when "Challenge"
         @item = Challenge.find(params[:id])
@@ -204,7 +204,8 @@ class FeesController < ApplicationController
         @users = @challenge.users
       when "Group"
         @item = Group.find(params[:id])
-        # @group = @item
+        @group = Group.find(params[:id])
+        @users = @group.users
       else
       end
 
@@ -212,9 +213,8 @@ class FeesController < ApplicationController
         flash[:warning] = I18n.t(:unauthorized)
         redirect_to root_url
         return
-      end   
-
-
+      end
+      
     else
       redirect_to root_url
       return

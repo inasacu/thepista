@@ -443,7 +443,7 @@ class User < ActiveRecord::Base
     end
         
     def create_user_blog_details
-      @blog = Blog.create_user_blog(self)
+      @blog = Blog.create_item_blog(self)
       # @entry = Entry.create_user_entry(self, @blog)
       # Comment.create_user_comment(self, @blog, @entry)
     end

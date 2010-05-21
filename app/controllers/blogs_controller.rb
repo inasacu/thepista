@@ -5,10 +5,6 @@ class BlogsController < ApplicationController
 
   def show
     @blog = Blog.find(params[:id]) 
-    @user = @blog.user unless @blog.user.nil?
-    @group = @blog.group unless @blog.group.nil?
-    @tournament = @blog.tournament unless @blog.tournament.nil?
-
     @comments = @blog.comments.recent.limit(COMMENTS_PER_PAGE).all    
   end
 
@@ -23,27 +19,19 @@ class BlogsController < ApplicationController
   def has_member_access
     # blog comment
     if @blog
-      unless @blog.user.blank?
-        unless current_user.is_user_member_of?(@blog.user)
-          redirect_to root_url
-          return
-        end
+      has_access = false
+
+      case @blog.item_type
+      when "User"
+        has_access = current_user.is_user_member_of?(@blog.item)
+      when "Group", "Challenge"
+        has_access = current_user.is_member_of?(@blog.item)
       end
 
-      unless @blog.group.blank?
-        unless current_user.is_member_of?(@blog.group)
-          redirect_to root_url
-          return
-        end
-      end    
-
-      unless @blog.tournament.blank?
-        unless current_user.is_tour_member_of?(@blog.tournament)
-          redirect_to root_url
-          return
-        end
+      unless has_access 
+        redirect_to root_url
+        return
       end
-
     end
   end
 

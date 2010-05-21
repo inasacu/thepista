@@ -8,31 +8,59 @@
 	the_cup = ""
 	the_challenge = ""
 	the_schedule = ""
+	the_group = ""
+	the_user = ""
 	the_controller = get_the_controller
 
 	case the_controller
 	when 'cup', 'game'
 		the_cup = "active"
+
+	when 'group', 'classified'	
+		the_group = "active"
+			
+	when 'user'
+		the_user = "active"	
+								
+	when 'schedule', 'forum'
+		the_schedule = "active"	
+		
+	when 'challenge', 'cast'     
+		the_challenge = "active"
+							
 	when 'standing'
 		the_cup = "active" unless is_action('show list')
-		the_challenge = "active" if is_action('show list')		
-	when 'challenge', 'blog', 'fee', 'payment'
-		the_challenge = "active"
-	when 'schedule', 'forum'
-		the_schedule = 'active'
+		the_challenge = "active" if is_action('show list')
+
+	when 'blog'
+		if @user
+			the_user = "active"
+		elsif @group
+			the_group = "active"
+		else @challenge
+			the_challenge = "active" 
+		end
+		
+	when 'fee', 'payment'
+		if @item and @item.class.to_s == 'Challenge' 
+			the_challenge = "active" 
+		else
+			the_group = "active" 
+		end
+		
 	end
 %>
 
 <div id="main-navigation">
-<ul>
+<ul><%= the_controller %>-<%= get_the_action %>
 	<%= "<li />" unless current_user %>
 	
 	<% if current_user %>		
 	<%= content_tag 'li', link_to(label_name(:home) , '/'), :class => get_control_first('home') %>
 	<%= content_tag 'li', link_to(label_name(:cups), cups_url), :class => the_cup  %>	
 	<%= content_tag 'li', link_to(label_name(:challenges), challenges_url), :class => the_challenge  %>	
-	<%= content_tag 'li', link_to(label_name(:users), users_url), :class => get_control_active('user') %>
-	<%= content_tag 'li', link_to(label_name(:groups), groups_url), :class => get_control_active('group') %>		
+	<%= content_tag 'li', link_to(label_name(:users), users_url), :class => the_user %>
+	<%= content_tag 'li', link_to(label_name(:groups), groups_url), :class => the_group %>		
 	<%= content_tag 'li', link_to(label_name(:schedules), schedules_url), :class => the_schedule if has_group %>
 	<%= content_tag 'li', link_to(label_name(:messages), messages_url), :class => get_control_active('message') %>
 	<%= content_tag 'li', link_to(label_name(:scorecards), scorecards_url), :class => get_control_active('scorecard') %>	

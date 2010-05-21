@@ -22,7 +22,6 @@ class Payment < ActiveRecord::Base
   validates_presence_of         :credit_type
   validates_presence_of         :item_id
   validates_presence_of         :item_type
-  # validates_presence_of         :manager_id
 
   # variables to access
   attr_accessible :concept, :description, :debit_amount, :credit_amount, :debit_id, :debit_type

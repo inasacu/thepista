@@ -21,13 +21,13 @@ class Cup < ActiveRecord::Base
   
   validates_presence_of     :name
   validates_presence_of     :description
-  # validates_presence_of     :conditions
+  validates_presence_of     :conditions
   validates_presence_of     :time_zone
   validates_presence_of     :sport_id
   
   validates_length_of       :name,            :within => NAME_RANGE_LENGTH
   validates_length_of       :description,     :within => DESCRIPTION_RANGE_LENGTH
-  # validates_length_of       :conditions,      :within => DESCRIPTION_RANGE_LENGTH
+  validates_length_of       :conditions,      :within => DESCRIPTION_RANGE_LENGTH
       
   validates_format_of       :name,            :with => /^[A-z 0-9 _.-]*$/ 
     
@@ -38,7 +38,7 @@ class Cup < ActiveRecord::Base
   # variables to access
   attr_accessible :name, :points_for_win, :points_for_draw, :points_for_lose
   attr_accessible :time_zone, :sport_id, :description, :conditions, :photo
-  attr_accessible :starts_at, :ends_at, :deadline_at
+  attr_accessible :starts_at, :ends_at, :deadline_at, :archive
   attr_accessible :group_stage_advance, :group_stage, :group_stage_single, :second_stage_single, :final_stage_single
     
   # friendly url and removes id  
@@ -73,8 +73,6 @@ class Cup < ActiveRecord::Base
 
   def the_escuadras
     return self.escuadras.collect {|p| [ p.name, p.id ] }
-    
-    # find(:all, :order => "name").collect {|p| [ p.name, p.id ] }
   end
   
   # def all_the_managers
@@ -143,7 +141,7 @@ class Cup < ActiveRecord::Base
   end
     
   def self.upcoming_cups(hide_time)
-    with_scope :find => {:conditions=>{:starts_at => MAJOR_EVENT_TWO_MONTHS}, :order => "starts_at"} do
+    with_scope :find => {:conditions=>{:starts_at => MAJOR_EVENT_TWO_MONTHS, :archive => false}, :order => "starts_at"} do
       if hide_time.nil?
         find(:all)
       else

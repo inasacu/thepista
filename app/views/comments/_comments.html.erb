@@ -1,5 +1,7 @@
 
-<% comments.each do |comment| -%>
+<% comments.each do |comment| 
+	if comment.created_at >= THREE_WEEKS_AGO 
+	-%>
 <tr>  
 	<td>
 			<% if comment.user %>
@@ -36,5 +38,8 @@
 		<%#= render :partial => 'action', :locals => {:comment => comment} %>
 	</td>
 </tr>
-<% end -%>
+<% 
+	end
+	end 
+-%>
 

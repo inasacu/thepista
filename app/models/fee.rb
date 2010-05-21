@@ -22,7 +22,6 @@ class Fee < ActiveRecord::Base
   validates_presence_of         :credit_type
   validates_presence_of         :item_id
   validates_presence_of         :item_type
-  # validates_presence_of         :manager_id
 
   # variables to access
   attr_accessible :concept, :description, :payed, :debit_amount, :season_player
@@ -33,7 +32,7 @@ class Fee < ActiveRecord::Base
   has_friendly_id :concept, :use_slug => true, :reserved => ["new", "create", "index", "list", "edit", "update", "destroy", "show"]
 
   def self.debit_item_fees(debits, credit, page=1)
-    paginate(:all,
+    paginate(:all,     
              :conditions => ["fees.debit_id in (?) and fees.debit_type = ? and 
                               fees.credit_id in (?) and fees.credit_type = ? and fees.archive = false", 
                               debits, debits.first.class.to_s, credit, credit.class.to_s],
