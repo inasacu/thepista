@@ -9,7 +9,8 @@
 	current_debit =  number_to_currency(fee.debit_amount)
 	current_credit = number_to_currency(debit_payment.debit_amount.to_f + credit_payment.credit_amount.to_f) 	
 	is_unpayed = current_debit > current_credit
-	@payments = Payment.credit_item_payments(user, @item, @item)
+	# @payments = Payment.credit_item_payments(user, @item, @item)
+	@payments = Payment.payments_for_fee(fee)
 	last_payment = nil	
 %>
 
@@ -45,7 +46,7 @@
     <td class="last">
 		<span class="action">
 			<% if current_user.is_manager_of?(credit_object) or current_user.is_manager_of?(item_object) %> 
-            	<%= link_to label_name(:send_message_to), new_message_path(:id => fee.debit_id) %><br /><br />
+            	<%= link_to label_name(:send_message_to), new_message_path(:id => fee.debit_id) unless fee.debit_type == 'User' and fee.debit_id = current_user.id %><br /><br />
 				<%  if is_unpayed %>
 					<%= link_to  label_name(:payment_for_bill), new_payment_path(:id => fee) %><br />
 					<%= link_to label_name(:fees_edit), edit_fee_path(:id => fee) %><br />

@@ -2,22 +2,21 @@
 	the_label = label_name(:fees)
 	content_for(:title, the_label)
 %>
+<div class="block"><%= get_the_controller.gsub(' ','_') %>
 
-<div class="block">
-
-  <%= render :partial => '/users/secondary_navigation' if is_action('index') %>
-  <%= render :partial => '/groups/secondary_navigation' if is_action('list') or is_action('complete') %>
+  <%= render :partial => '/users/secondary_navigation' if @user %>
+  <%= render :partial => '/groups/secondary_navigation' if @group %>
   <%= render :partial => '/challenges/secondary_navigation' if @challenge %>
           
   <div class="content">  
 	        
-    <h2 class="title"><%= get_collection_label(@fees) %></h2>
+    <h2 class="title"><%= the_label %></h2>
 
     <div class="inner">
 	
 	<% if object_counter(@fees) > 0 %>
 	
-      <table class="table">
+      <table class="table" id="<%= get_the_controller.gsub(' ','_') %>">
 	
         <tr>            
           <th class="first">&nbsp;</th>
@@ -31,7 +30,7 @@
         </tr>
 
 		<%= render :partial => 'fees/fee', :collection => @fees %>
-		<%= render :partial => 'payments/payment', :collection => @payments unless @challenge %>
+		<%= render :partial => 'payments/payment', :collection => @payments if @payments %>
 
 		<tr>  
 			<td>&nbsp;</td>

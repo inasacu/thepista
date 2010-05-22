@@ -45,8 +45,11 @@
 	</li>
 	
 	<% if current_user.is_user_manager_of?(the_user) or the_user == current_user %>
-		<li class="<%= get_active('fee_index') %>"><%= link_to("#{label_name(:fees)}", fees_url(:id => the_user)) %></li>
-	<% end %>
+		<!-- <li class="<%= get_active('fee_index') %>"><%#= link_to("#{label_name(:fees)}", fees_url(:id => the_user)) %></li> -->
+		<li class="<%= get_active('fee_item_list') %>">
+			<%= link_to(label_name(:fees), item_list_fees_path(:id => the_user, :item => the_user.class.to_s)) %>
+		</li>
+	<% end -%>
 	
 	<li class="<%= get_active('invitation_index') %>"><%= link_to(label_name(:invitations), invitations_url) %></li>
 	

@@ -147,6 +147,14 @@ module ApplicationHelper
     return I18n.l(time_at, :format => :day_time_wo_year) unless time_at.nil?
   end
 
+  def limit_url_length(text)
+    text = h(text)
+    text = "#{text.to_s.strip[0..12]}..." if text.to_s.length > 14
+    text = text.gsub(" ", "<wbr> ")
+    text = text.split.collect {|i| i.capitalize}.join(' ')
+    return text
+  end
+  
   def current_announcements
     unless session[:announcement_hide_time].nil?
       time = session[:announcement_hide_time]

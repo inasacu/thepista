@@ -254,6 +254,11 @@ text_area.textfield {
 #standing td{
 	padding: 4px 10px;
 }
+
+#fee td{
+	padding: 4px 10px;
+}
+
 .table td.puntos { 
 	color: darkblue; 
 	font-weight: bold; 

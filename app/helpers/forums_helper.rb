@@ -10,7 +10,7 @@ module ForumsHelper
       text = forum.name
     end
     # We normally write link_to(..., forum) for brevity, but that breaks
-    
+    text = limit_url_length(text)
     link_to(h(text), forum, html_options)
   end
 end

@@ -18,16 +18,16 @@
 
 	when 'group', 'classified'	
 		the_group = "active"
-			
+
 	when 'user'
 		the_user = "active"	
-								
+
 	when 'schedule', 'forum'
 		the_schedule = "active"	
-		
+
 	when 'challenge', 'cast'     
 		the_challenge = "active"
-							
+
 	when 'standing'
 		the_cup = "active" unless is_action('show list')
 		the_challenge = "active" if is_action('show list')
@@ -40,19 +40,21 @@
 		else @challenge
 			the_challenge = "active" 
 		end
-		
+
 	when 'fee', 'payment'
 		if @item and @item.class.to_s == 'Challenge' 
 			the_challenge = "active" 
-		else
-			the_group = "active" 
+		elsif @user
+			the_user = "active"
+		elsif @group
+			the_group = "active"
 		end
-		
+
 	end
 %>
 
 <div id="main-navigation">
-<ul><%= the_controller %>-<%= get_the_action %>
+<ul><%= "#{get_the_controller} #{get_the_action}" %>
 	<%= "<li />" unless current_user %>
 	
 	<% if current_user %>		

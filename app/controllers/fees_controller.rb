@@ -18,14 +18,15 @@ class FeesController < ApplicationController
       @groups << group.id 
     end
 
-    @debit_fee = Fee.debit_amount(@users, @groups)      
+    @debit_fee = Fee.debit_amount(@users, @groups)   
+
     @fees = Fee.debit_fees(@users, @groups, params[:page])
     @payments = Payment.credit_payments(@users, @groups, params[:page])
 
     render :template => '/fees/index'
   end
   
-  def item_list    
+  def item_list
     store_location
     # payment information both user debits and user credits for item
     @debit_payment = Payment.debit_item_amount(@users, @item)
@@ -33,7 +34,6 @@ class FeesController < ApplicationController
         
     @debit_fee = Fee.debit_item_amount(@users, @item)
     @fees = Fee.debit_item_fees(@users, @item, params[:page])
-    # @payments = Payment.credit_item_payments(@users, @item, @item, params[:page])
     render :template => '/fees/index'
   end
 
@@ -206,13 +206,29 @@ class FeesController < ApplicationController
         @item = Group.find(params[:id])
         @group = Group.find(params[:id])
         @users = @group.users
+      when "User"
+          @item = User.find(params[:id])
+          @user = @item
+          @users = User.find(:all, :conditions => ['id = ?', @user.id])
       else
       end
 
-      unless current_user.is_manager_of?(@item) 
-        flash[:warning] = I18n.t(:unauthorized)
-        redirect_to root_url
-        return
+      
+      case params[:item]
+      when "Challenge", "Group"
+        unless current_user.is_manager_of?(@item) 
+          flash[:warning] = I18n.t(:unauthorized)
+          redirect_to root_url
+          return
+        end
+
+      when "User"
+        if current_user.is_user_manager_of?(@user) or @user == current_user
+        else
+          flash[:warning] = I18n.t(:unauthorized)
+          redirect_to root_url
+          return
+        end
       end
       
     else

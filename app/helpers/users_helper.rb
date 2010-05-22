@@ -183,10 +183,12 @@ module UsersHelper
         text = user.name
       end
       
-      text = h(text)
-      text = "#{text.to_s.strip[0..12]}..." if text.to_s.length > 14
-      text = text.gsub(" ", "<wbr> ")
-      text = text.split.collect {|i| i.capitalize}.join(' ')
+      text = limit_url_length(text)
+      
+      # text = h(text)
+      # text = "#{text.to_s.strip[0..12]}..." if text.to_s.length > 14
+      # text = text.gsub(" ", "<wbr> ")
+      # text = text.split.collect {|i| i.capitalize}.join(' ')
       
       link_to(text, user, html_options)
   end

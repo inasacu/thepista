@@ -14,7 +14,7 @@ module ActivitiesHelper
       schedule = activity.item
       is_member = current_user.is_member_of?(schedule.group)
       the_label = schedule.played? ? I18n.t(:has_updated_scorecard) : I18n.t(:created_a_schedule)
-       %(#{the_label} #{is_member ? team_roster_link(schedule) : sanitize(schedule.concept)}.)
+       %(#{the_label} #{is_member ? team_roster_link(schedule) : sanitize(schedule.concept)}.<br/>)
 
     when "User"
         %(#{I18n.t(:changed_description) })
@@ -25,10 +25,10 @@ module ActivitiesHelper
         
         if post.topic.forum.schedule        
           is_member = current_user.is_member_of?(post.topic.forum.schedule.group)        
-            %(#{I18n.t(:left_post_on_forum) } #{is_member ? topic_link(post.topic): sanitize(post.topic.forum.schedule.concept)})
+            %(#{I18n.t(:left_post_on_forum) } #{is_member ? topic_link(post.topic): sanitize(post.topic.forum.schedule.concept)}<br/>)
         elsif post.topic.forum.meet        
           is_member = current_user.is_tour_member_of?(post.topic.forum.meet.tournament)        
-            %(#{I18n.t(:left_post_on_forum) } #{is_member ? topic_link(post.topic): sanitize(post.topic.forum.meet.concept)})
+            %(#{I18n.t(:left_post_on_forum) } #{is_member ? topic_link(post.topic): sanitize(post.topic.forum.meet.concept)}<br/>)
         end
         
     when "Comment"
@@ -51,10 +51,10 @@ module ActivitiesHelper
         
         if forum.schedule        
           is_member = current_user.is_member_of?(forum.schedule.group)        
-            %(#{I18n.t(:left_post_on_forum) } #{is_member ? forum_link(forum): sanitize(forum.schedule.concept)})
+            %(#{I18n.t(:left_post_on_forum) } #{is_member ? forum_link(forum): sanitize(forum.schedule.concept)}<br/>)
         elsif forum.meet        
           is_member = current_user.is_tour_member_of?(forum.meet.tournament)        
-            %(#{I18n.t(:left_post_on_forum) } #{is_member ? forum_link(forum): sanitize(forum.meet.concept)})
+            %(#{I18n.t(:left_post_on_forum) } #{is_member ? forum_link(forum): sanitize(forum.meet.concept)}<br/>)
         end
       else
         ""
@@ -67,7 +67,7 @@ module ActivitiesHelper
           
           match = activity.item
           is_member = current_user.is_member_of?(match.schedule.group)
-          %(#{I18n.t(:changes_in_roster_status) } #{I18n.t(:in) } #{is_member ? team_roster_link(match.schedule) : sanitize(match.schedule.concept)}.)
+          %(#{I18n.t(:changes_in_roster_status) } #{I18n.t(:in) } #{is_member ? team_roster_link(match.schedule) : sanitize(match.schedule.concept)}.<br/>)
     
     when "Clash"  
           clash = activity.item
@@ -75,7 +75,7 @@ module ActivitiesHelper
     
           clash = activity.item
           is_member = current_user.is_tour_member_of?(clash.meet.tournament)
-          %(#{I18n.t(:changes_in_roster_status) } #{I18n.t(:in) } #{is_member ? meet_link(clash.meet) : sanitize(clash.meet.concept)}.)
+          %(#{I18n.t(:changes_in_roster_status) } #{I18n.t(:in) } #{is_member ? meet_link(clash.meet) : sanitize(clash.meet.concept)}.<br/>)
 
     when "Result"
       %(Resultados ya se han actualizado...)
@@ -83,7 +83,7 @@ module ActivitiesHelper
 	  when "Scorecard"
           scorecard = activity.item
           is_member = current_user.is_member_of?(scorecard.group)
-      %(changed results for #{is_member ? group_link(scorecard.group) : scorecard.group.name}.)
+      %(changed results for #{is_member ? group_link(scorecard.group) : scorecard.group.name}.<br/>)
             
     else
       raise "Invalid activity type #{activity_type(activity).inspect}"
@@ -194,34 +194,34 @@ module ActivitiesHelper
   #   link_to(h(text), photo_path(photo))
   # end
 
-  def event_link(text, event)
-    link_to(text, event_path(event))
-  end
+  # def event_link(text, event)
+  #   link_to(text, event_path(event))
+  # end
 
 
   # Return a link to the wall.
-  def wall(activity)
-    commenter = activity.user
-    user = activity.item.commentable
-    link_to("#{someones(user, commenter, false)} wall",
-            user_path(user, :anchor => "tWall"))
-  end
+  # def wall(activity)
+  #   commenter = activity.user
+  #   user = activity.item.commentable
+  #   link_to("#{someones(user, commenter, false)} wall",
+  #           user_path(user, :anchor => "tWall"))
+  # end
   
   # Only show member photo for certain types of activity
-  def posterPhoto(activity)
-    shouldShow = case activity_type(activity)
-    when "Photo"
-      true
-    when "Connection"
-      true
-    else
-      false
-    end
-    if shouldShow
-      # image_link(activity.user, :image => :thumbnail)
-      image_link activity.user
-    end
-  end
+  # def posterPhoto(activity)
+  #   shouldShow = case activity_type(activity)
+  #   when "Photo"
+  #     true
+  #   when "Connection"
+  #     true
+  #   else
+  #     false
+  #   end
+  #   if shouldShow
+  #     # image_link(activity.user, :image => :thumbnail)
+  #     image_link activity.user
+  #   end
+  # end
   
   private
   
