@@ -29,15 +29,13 @@
 <%
  	if current_user.is_user_member_of?(the_user) 
 		unless actions.include?(the_action) or controls.include?(the_controller) 
+			the_blog = Blog.find_item(current_user)
+		else
 			the_blog = Blog.find_item(the_user)
+		end		
 %>
-			<li class="<%= get_active('blog_show') %>"><%= blog_link(Blog.find_item(current_user)) %></li>
-<% 		
-		else 
-%>
-			<li class="<%= get_active('blog_show') %>"><%= blog_link(Blog.find_item(the_user)) %></li>
+		<li class="<%= get_active('blog_show') %>"><%= blog_link(the_blog) %></li>
 <% 
-		end
 	end
 %>
 	<li class="<%= get_active('user_show') %>">
