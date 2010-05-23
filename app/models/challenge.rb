@@ -1,7 +1,7 @@
 class Challenge < ActiveRecord::Base
   
   # friendly url and removes id  
-  # has_friendly_id :name, :use_slug => true, :reserved => ["new", "create", "index", "list", "signup", "edit", "update", "destroy", "show"]
+  has_friendly_id :name, :use_slug => true, :reserved => ["new", "create", "index", "list", "signup", "edit", "update", "destroy", "show"]
   
   # validations 
   validates_uniqueness_of       :name,            :case_sensitive => false
