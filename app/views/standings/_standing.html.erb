@@ -23,7 +23,7 @@
 	<td class="puntos"><%= standing.ranking %>&nbsp;&nbsp;
 		<%= is_manager ? in_place_text_field(:stand, :group_stage_name, {:cols => 1}) : standing.group_stage_name %>
 	</td>
-	<td class="equipos"><%= mailer ? "&nbsp;" : image_link_tiny(escuadra) %></td>
+	<td class="equipos"><%= mailer ? "&nbsp;" : escuadra_image_link_tiny(escuadra) %></td>
 	<td class="equipos">
 		<span>
 		<% if mailer %>
