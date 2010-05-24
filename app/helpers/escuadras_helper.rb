@@ -29,17 +29,17 @@ module EscuadrasHelper
 
   def escuadra_image_link_tiny(escuadra)
     link_to(image_tag(escuadra.avatar, options={:style => "height: 15px; width: 15px;"}), escuadra_path(escuadra))
-    # link_to(image_tag(escuadra.avatar, options={:style => "height: 13px; width: 19px;"}), escuadra_path(escuadra)) 
+    link_to(image_tag(escuadra.avatar, options={:style => "height: 13px; width: 19px;"}), escuadra_path(escuadra)) 
   end
 
   def escuadra_image_link_smaller(escuadra)
     link_to(image_tag(escuadra.avatar, options={:style => "height: 22px; width: 22px;"}), escuadra_path(escuadra))
-    # link_to(image_tag(escuadra.avatar, options={:style => "height: 21px; width: 34px;"}), escuadra_path(escuadra)) 
+    link_to(image_tag(escuadra.avatar, options={:style => "height: 21px; width: 31px;"}), escuadra_path(escuadra)) 
   end
 
   def escuadra_image_link_small(escuadra)
     link_to(image_tag(escuadra.avatar, options={:style => "height: 30px; width: 30px;", :title => h(escuadra.name)}), escuadra_path(escuadra))
-    # link_to(image_tag(escuadra.avatar, options={:style => "height: 31px; width: 47px;", :title => h(escuadra.name)}), escuadra_path(escuadra)) 
+    link_to(image_tag(escuadra.avatar, options={:style => "height: 31px; width: 41px;", :title => h(escuadra.name)}), escuadra_path(escuadra)) 
   end
 
   def escuadra_vs_invite(game)
