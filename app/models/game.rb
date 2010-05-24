@@ -65,7 +65,7 @@ class Game < ActiveRecord::Base
   end
 
   def self.upcoming_games(hide_time)
-    with_scope :find => {:conditions=>{:starts_at => THREE_WEEKS_FROM_TODAY, :played => false}, :order => "starts_at"} do
+    with_scope :find => {:conditions=>{:starts_at => YESTERDAY_TO_TODAY, :played => false}, :order => "starts_at"} do
       if hide_time.nil?
         find(:all)
       else

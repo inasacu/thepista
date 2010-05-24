@@ -12,6 +12,7 @@ ONE_WEEK_FROM_TODAY = Time.zone.now - 1.day..Time.zone.now + 7.days
 TWO_WEEKS_FROM_TODAY = Time.zone.now - 1.day..Time.zone.now + 14.days
 THREE_WEEKS_FROM_TODAY = Time.zone.now - 1.day..Time.zone.now + 21.days
 ONE_MONTH_FROM_TODAY = Time.zone.now - 1.day..Time.zone.now + 30.days
+YESTERDAY_TO_TODAY = Time.zone.now - 1.day..Time.zone.now + 1.day
 LAST_WEEK = Time.zone.now - 7.days
 TWO_WEEKS_AGO = Time.zone.now - 14.days
 THREE_WEEKS_AGO = Time.zone.now - 21.days
