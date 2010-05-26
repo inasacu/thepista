@@ -10,9 +10,9 @@ class Forum < ActiveRecord::Base
   belongs_to    :schedule
   belongs_to    :meet
 
-  validates_presence_of   :name, :description 
+  validates_presence_of   :name #, :description 
   validates_length_of     :name,                :within => NAME_RANGE_LENGTH
-  validates_length_of     :description,         :within => DESCRIPTION_RANGE_LENGTH
+  # validates_length_of     :description,         :within => DESCRIPTION_RANGE_LENGTH
 
   # method section
   # record if schedule does not exist
