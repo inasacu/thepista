@@ -1,10 +1,11 @@
 class ChallengesController < ApplicationController
   before_filter :require_user    
-  before_filter :get_challenge, :only => [:challenge_list, :show, :edit, :update, :destroy]
+  before_filter :get_challenge, :only => [:challenge_list, :show, :edit, :update]
   before_filter :has_manager_access, :only => [:edit, :update, :destroy]
 
   before_filter :get_cup, :only =>[:new]
-  before_filter :has_member_access, :only => :show
+  # before_filter :has_member_access, :only => :show
+  before_filter :has_member_access, :only => [:challenge_list, :list]
   
   def index
     @challenges = current_user.challenges.paginate :page => params[:page], :order => 'name' 
