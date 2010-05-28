@@ -100,6 +100,17 @@ fr:
      challenges_create:  Create your challenge 
      challenges_destroy:  Remove challenge
      challenges_edit:  Update challenge
+     challenges_howto:  How to create a challenge.
+     challenges_howto_button:  Click the 'Create' button.
+     challenges_howto_create:  Click the option 'Create your challenge'.
+     challenges_howto_cup:  Click tab 
+     challenges_howto_fillin:  Fill in all the fields.
+     challenges_howto_gameday:  Game results will be updated automatically.
+     challenges_howto_petition:  Your friends will need to request to join your challenge.
+     challenges_howto_petition_done: A 'Requests' tab appears afer the join request by friends.
+     challenges_howto_petition_accept:  Click on request to enter and accept the requests.
+     challenges_howto_pronostico:  Participants should update their forecast.
+     challenges_howto_show:  Go to challenge details
      challenges_index:   Challenges
      challenges_index_option: Options 
      challenges_invitations_create:  Invite your friend to challenge
@@ -1385,7 +1396,7 @@ fr:
      invitations_create_tournament: Invite your friends to this Tourneo
      invitations_create_meet: New Invitation to Tournament
      invitations_sent:  Invitations Sent
-     invitations_your_friend:  Invita your friends to
+     invitations_your_friend:  Invite your friends to
      clash:  Result
      clashes:  Results
      clashes_edit:  Results     
@@ -1696,7 +1707,7 @@ fr:
      users_rpx_new: New Player
      users_rpx_create:  New Player
      users_teammate: My Teammates 
-     your:  You   
+     your:  Your   
      true: "Yes"
      false: "No"
      get_rolling:  Get going in seconds...

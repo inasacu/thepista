@@ -100,6 +100,17 @@ es:
      challenges_create:  Crea tu reto 
      challenges_destroy:  Borrar reto
      challenges_edit:  Actualizar reto
+     challenges_howto:  Como crear tu reto.
+     challenges_howto_button:  Pica en el boton 'Nuevo'.
+     challenges_howto_create:  Pica en la opcion de 'Crea tu reto'.
+     challenges_howto_cup:  Pica en la pestaña 
+     challenges_howto_fillin:  Rellena todos los campos.
+     challenges_howto_gameday:  Los resultados se actualizaran automaticamente.
+     challenges_howto_petition:  Tus amigos tendran que pedir unirse a tu reto.
+     challenges_howto_petition_done: Una vez hecha la petición veras la pestaña 'Peticiones'.
+     challenges_howto_petition_accept:  Entra en peticiones y acepta las.
+     challenges_howto_pronostico:  Los participantes deben actualizen su pronóstico.
+     challenges_howto_show:  Entra en los detalles del reto.
      challenges_index:   Retos
      challenges_index_option: Opciones 
      challenges_invitations_create:  Invita a un amigo al reto

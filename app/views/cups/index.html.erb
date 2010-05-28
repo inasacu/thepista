@@ -14,5 +14,5 @@
 	</div>	
 </div>
 
-<% content_for :search, render(:partial => 'shared/search') -%>
+<% content_for :sidebar, render(:partial => '/challenges/sidebar_legend') -%>
 <% content_for :sidebar, render(:partial => 'sidebar') if current_user.is_maximo? -%>

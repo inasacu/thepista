@@ -74,6 +74,6 @@
 <div class="clear"></div> 
 
 <div class="challenge navform">
-	<%= submit_tag @challenge.new_record? ? control_label('create') : control_label('edit'), 
+	<%= submit_tag @challenge.new_record? ? label_name('create') : control_label('edit'), 
 			:class => "button" %> <%= label_name(:or) %> <%= link_to label_name(:cancel), challenges_path %>
 </div>
