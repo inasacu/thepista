@@ -2,7 +2,7 @@
 	the_label = label_name(:fees)
 	content_for(:title, the_label)
 %>
-<div class="block"><%= get_the_controller.gsub(' ','_') %>
+<div class="block">
 
   <%= render :partial => '/users/secondary_navigation' if @user %>
   <%= render :partial => '/groups/secondary_navigation' if @group %>

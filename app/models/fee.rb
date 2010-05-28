@@ -56,15 +56,13 @@ class Fee < ActiveRecord::Base
     unless (debits.first.class.to_s == credit.class.to_s)
       @fee = find(:first, :select => "sum(debit_amount) as debit_amount", 
                 :conditions => ["fees.debit_id in (?) and fees.debit_type = ? and fees.credit_id in (?) 
-                                 and fees.credit_type = ? and fees.archive = false", 
-                                debits, debits.first.class.to_s, credit, credit.class.to_s])
+                                 and fees.credit_type = ? and fees.archive = false", debits, debits.first.class.to_s, credit, credit.class.to_s])
     else
       if debits.first.class.to_s == 'User'
       @fee = find(:first, :select => "sum(debit_amount) as debit_amount", 
                   :joins => "LEFT JOIN matches on matches.user_id = fees.debit_id and matches.schedule_id = fees.item_id",
                   :conditions => ["fees.debit_id in (?) and fees.debit_type = ?  and 
-                                  matches.type_id = 1 and fees.season_player = false and fees.archive = false", debits, debits.first.class.to_s],
-                  :order => 'fees.created_at')
+                                  matches.type_id = 1 and fees.season_player = false and fees.archive = false", debits, debits.first.class.to_s])
       end
     end
     
