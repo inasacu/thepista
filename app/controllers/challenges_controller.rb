@@ -64,13 +64,6 @@ class ChallengesController < ApplicationController
     @original_challenge = Challenge.find(params[:id])
 
     if @challenge.update_attributes(params[:challenge]) 
-      if (@original_challenge.points_for_win != @challenge.points_for_win) or 
-        (@original_challenge.points_for_lose != @challenge.points_for_lose) or 
-        (@original_challenge.points_for_draw != @challenge.points_for_draw)
-
-        Scorecard.send_later(:calculate_challenge_scorecard, @challenge)    
-      end
-
       flash[:notice] = I18n.t(:successful_update)
       redirect_to @challenge
     else
