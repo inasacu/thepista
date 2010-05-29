@@ -41,10 +41,13 @@
 		
 		<%= tr_td_action(:users, t(:has_challenge_users, :count => @challenge.users.count)) %>
 		<%= tr_td_action(:casts, t(:has_challenge_casts, :count => @challenge.casts.count)) unless @challenge.casts.blank? %>
-		<%= tr_td_action(:player_limit, @challenge.player_limit) %>
 		
 		<tr>
-			<%#= content_tag :td, link_to(label_name(:standing), standing_path(:id => @challenge)), :class => "label" %>
+			<%= content_tag :td, label_name(:challenges_points), :class => "label" %>
+			<%= content_tag :td, @challenge.points_for_double, :class => get_the_action %>
+		</tr>
+		
+		<tr>
 			<%= content_tag :td, link_to(label_name(:points_full), show_list_standings_path(:id => @challenge)), :class => "label" %>
 		</tr>
 		

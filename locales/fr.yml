@@ -123,6 +123,7 @@ fr:
      challenges_none:  No challenge.
      challenges_options_without: "What options do you have since you don't have any challenges?"
      challenges_option:  Options 
+     challenges_points:  Points / Game
      challenges_search: Search for challenges
      challenges_search_to_join: You can search for challenge to join. 
      challenges_show:  Show challenge

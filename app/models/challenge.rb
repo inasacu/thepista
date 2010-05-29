@@ -78,6 +78,10 @@ class Challenge < ActiveRecord::Base
     # sports related to basket
     return [7].include?(self.sport_id)
   end
+  
+  def points_for_double
+    self.cup.games.first.points_for_double
+  end
 
   def create_challenge_details(user)
     user.has_role!(:manager, self)
