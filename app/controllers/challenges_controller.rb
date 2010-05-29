@@ -52,6 +52,7 @@ class ChallengesController < ApplicationController
     @challenge.starts_at = @cup.starts_at
     @challenge.ends_at = @cup.ends_at
     @challenge.reminder_at = @cup.starts_at - 7.days
+    @challenge.player_limit = 99
     
     if @challenge.save and @challenge.create_challenge_details(current_user)
       flash[:notice] = I18n.t(:successful_create)

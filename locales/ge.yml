@@ -354,7 +354,9 @@ ge:
      false_value: "No"
      feature: Feature
      features: Features
-     fee: Fee   
+     fee: Fee
+     fee_per_challenge:  Fee / Participation
+     fee_per_challenge_description:  (This is the price the manager sets to participate...)   
      fee_per_game: Fee / Game   
      fee_per_game_description: (This is the price player has to pay for the event...)   
      fee_per_pista: Fee / Pista   

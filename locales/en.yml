@@ -83,7 +83,7 @@ en:
      casts_index_option: Options 
      casts_list:  All Forescasts
      casts_list_no: No previous forecast to display.
-     casts_manager_option:  Requires manager to  responsable de challenge to view more options.
+     casts_manager_option:  Requires manager for office pool to view more options.
      casts_new: New forecast
      casts_no: No forecast to display.
      casts_edit: Update forecast
@@ -93,41 +93,41 @@ en:
      casts_show: Forecast details
      cast_rate: Forecast rate 
      cast_right_guess:  Right Guesses
-     challenge:  Challenge
+     challenge:  Office Pool
      challenge_options:  Options
-     challenges:  Challenges
-     challenges_all:  All Challenges
-     challenges_create:  Create your challenge 
-     challenges_destroy:  Remove challenge
-     challenges_edit:  Update challenge
-     challenges_howto:  How to create a challenge.
+     challenges:  Office Pools
+     challenges_all:  All Office Pools
+     challenges_create:  Create your office pool 
+     challenges_destroy:  Remove office pool
+     challenges_edit:  Update office pool
+     challenges_howto:  How to create a office pool.
      challenges_howto_button:  Click the 'Create' button.
-     challenges_howto_create:  Click the option 'Create your challenge'.
+     challenges_howto_create:  Click the option 'Create your office pool'.
      challenges_howto_cup:  Click tab 
      challenges_howto_fillin:  Fill in all the fields.
      challenges_howto_gameday:  Game results will be updated automatically.
-     challenges_howto_petition:  Your friends will need to request to join your challenge.
+     challenges_howto_petition:  Your friends will need to request to join your office pool.
      challenges_howto_petition_done: A 'Requests' tab appears afer the join request by friends.
      challenges_howto_petition_accept:  Click on request to enter and accept the requests.
      challenges_howto_pronostico:  Participants should update their forecast.
-     challenges_howto_show:  Go to challenge details
-     challenges_index:   Challenges
+     challenges_howto_show:  Go to office pool details
+     challenges_index:   Office Pools
      challenges_index_option: Options 
-     challenges_invitations_create:  Invite your friend to challenge
-     challenges_join:  Join challenge
-     challenges_my:  My Challenges
-     challenges_list:  Rest of challenges
-     challenges_new:  New challenge
+     challenges_invitations_create:  Invite your friend to office pool
+     challenges_join:  Join office pool
+     challenges_my:  My Office Pools
+     challenges_list:  Rest of office pools
+     challenges_new:  New office pool
      challenges_new_option: Options 
-     challenges_no:  No challenge to display.
-     challenges_none:  No challenge.
-     challenges_options_without: "What options do you have since you don't have any challenges?"
+     challenges_no:  No office pool to display.
+     challenges_none:  No office pool.
+     challenges_options_without: "What options do you have since you don't have any office pools?"
      challenges_option:  Options 
-     challenges_search: Search for challenges
-     challenges_search_to_join: You can search for challenge to join. 
-     challenges_show:  Show challenge
-     challenges_shows:  Show challenges
-     challenges_update: Update challenge
+     challenges_search: Search for office pools
+     challenges_search_to_join: You can search for office pool to join. 
+     challenges_show:  Show office pool
+     challenges_shows:  Show office pools
+     challenges_update: Update office pool
      change: Change Language   
      change_available: Change available status   
      change_at:  Date Changed
@@ -354,7 +354,9 @@ en:
      false_value: "No"
      feature: Feature
      features: Features
-     fee: Fee   
+     fee: Fee 
+     fee_per_challenge:  Fee / Participation
+     fee_per_challenge_description:  (This is the price the manager sets to participate...)  
      fee_per_game: Fee / Game   
      fee_per_game_description: (This is the price player has to pay for the event...)   
      fee_per_pista: Fee / Pista   
@@ -514,13 +516,13 @@ en:
         one:  "Player has 1 forecast completed"
         other:  "Player has {{count}} forecasts completed"
      has_challenge_users:
-        zero: "Challenge does not have players." 
-        one:  "Challenge has 1 player." 
-        other: "Challenge has {{count}} players."
+        zero: "Office pool does not have players." 
+        one:  "Office pool has 1 player." 
+        other: "Office pool has {{count}} players."
      has_challenge_casts:
-        zero: "Challenge does not have forecasts." 
-        one:  "Challenge has 1 forecast." 
-        other: "Challenge has {{count}} forecasts."        
+        zero: "Office pool does not have forecasts." 
+        one:  "Office pool has 1 forecast." 
+        other: "Office pool has {{count}} forecasts."        
      has_cup_escuadras:
         zero: "Tournament does not have teams." 
         one:  "Tournament has 1 team." 
@@ -588,7 +590,7 @@ en:
      is_available_user: Availability has been updated.   
      is_invalid: is invalid.   
      is_not_available: "No" 
-     join_cup:  Join the challenge  
+     join_cup:  Join the office pool  
      join_group: Join the Team   
      join_group_message: Message para unirte al team ha sido mandado correctamente.   
      join_tournament: Join the Tournament   
@@ -792,8 +794,8 @@ en:
      our_philosophy:  Our Philosophy
      overview: overview   
      page_does_not_exist: The page you wanted does not exist.     
-     participate_challenge: Participate in the challenge
-     participate_challenge_afterwards: "After you signup, follow the link to signup for the challenge"       
+     participate_challenge: Participate in the office pool
+     participate_challenge_afterwards: "After you signup, follow the link to signup for the office pool"       
      participate_schedule: Participate in the Event
      participate_schedule_afterwards: "After you signup for the team and its accepted, follow this link to participate in the event"
      participate_group_afterwards: "After you signup, follow the link to signup for the team"   
@@ -840,7 +842,7 @@ en:
      petition_to_join_approved: Request to join has been approved.
      petition_to_join_declined:  Request to join has been denied.
      petition_to_leave_approved: Request to opt-out has been approved. 
-     no_petition_to_join: No Request to join the challenge!                    
+     no_petition_to_join: No Request to join the office pool!                    
      no_petition_to_join_group: No Request to join a team! 
      deleted_petition_by: Request has been removed by   
      denial_petition_to_join: Request to join has been denied to 
@@ -1160,7 +1162,7 @@ en:
      to_join: Join   
      to_join_email: to join 
      to_join_group: join a team  
-     to_join_challenge: Join a challenge   
+     to_join_challenge: Join a office pool   
      to_join_challenge_message: Request to join a  
      to_join_group_message: Request to join a 
      to_join_item_message_sent: Request to join has been sent.
@@ -1390,7 +1392,7 @@ en:
      invitations_option:  Options
      invitations_create:  Invite your friends to join HayPista
      invitations_create_cup: Invite your friends to this tournament
-     invitations_create_challenge:  Invite your teams to this challenge
+     invitations_create_challenge:  Invite your teams to this office pool
      invitations_create_group: Invite your friends to this team
      invitations_create_schedule: Invite your friends to this event
      invitations_create_tournament: Invite your friends to this Tourneo

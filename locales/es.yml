@@ -83,7 +83,7 @@ es:
      casts_index_option: Opciones 
      casts_list:  Todos los pronósticos
      casts_list_no: Ningun pronóstico previo para mostrar.
-     casts_manager_option:  Requiere responsable de reto para ver mas opciones.
+     casts_manager_option:  Requiere responsable de porra para ver mas opciones.
      casts_new: Nuevo pronóstico
      casts_no: Ningun pronóstico para mostrar.
      casts_edit: Actualizar pronóstico
@@ -93,41 +93,41 @@ es:
      casts_show: Detalles del pronóstico
      cast_rate: Valoración del pronóstico 
      cast_right_guess:  Aciertos    
-     challenge:  Reto
+     challenge:  Porra
      challenge_options:  Opciones
-     challenges:  Retos
-     challenges_all:  Todos los retos
-     challenges_create:  Crea tu reto 
-     challenges_destroy:  Borrar reto
-     challenges_edit:  Actualizar reto
-     challenges_howto:  Como crear tu reto.
+     challenges:  Porras
+     challenges_all:  Todos las porras
+     challenges_create:  Crea tu porra 
+     challenges_destroy:  Borrar porra
+     challenges_edit:  Actualizar porra
+     challenges_howto:  Como crear tu porra.
      challenges_howto_button:  Pica en el boton 'Nuevo'.
-     challenges_howto_create:  Pica en la opcion de 'Crea tu reto'.
+     challenges_howto_create:  Pica en la opcion de 'Crea tu porra'.
      challenges_howto_cup:  Pica en la pestaña 
      challenges_howto_fillin:  Rellena todos los campos.
      challenges_howto_gameday:  Los resultados se actualizaran automaticamente.
-     challenges_howto_petition:  Tus amigos tendran que pedir unirse a tu reto.
+     challenges_howto_petition:  Tus amigos tendran que pedir unirse a tu porra.
      challenges_howto_petition_done: Una vez hecha la petición veras la pestaña 'Peticiones'.
      challenges_howto_petition_accept:  Entra en peticiones y acepta las.
      challenges_howto_pronostico:  Los participantes deben actualizen su pronóstico.
-     challenges_howto_show:  Entra en los detalles del reto.
-     challenges_index:   Retos
+     challenges_howto_show:  Entra en los detalles de la porra.
+     challenges_index:   Porras
      challenges_index_option: Opciones 
-     challenges_invitations_create:  Invita a un amigo al reto
-     challenges_join:  Unete al reto
-     challenges_my:  Mis Retos
-     challenges_list:  Resto de retos
-     challenges_new:  Nuevo reto
+     challenges_invitations_create:  Invita a un amigo a la porra
+     challenges_join:  Unete a la porra
+     challenges_my:  Mis Porras
+     challenges_list:  Resto de porras
+     challenges_new:  Nueva porra
      challenges_new_option: Opciones 
-     challenges_no:  Ningun reto para mostrar.
-     challenges_none:  Ningun reto.
-     challenges_options_without: "¿Qué opciones tienes ya que no tienes un reto?"
+     challenges_no:  Ninguna porra para mostrar.
+     challenges_none:  Ninguna porra.
+     challenges_options_without: "¿Qué opciones tienes ya que no tienes una porra?"
      challenges_option:  Opciones 
-     challenges_search: Busqueda de retos
-     challenges_search_to_join: Puedes buscar un reto al que unierte. 
-     challenges_show:  Mostrar reto
-     challenges_shows:  Mostrar retos
-     challenges_update: Actualizar reto
+     challenges_search: Busqueda de porras
+     challenges_search_to_join: Puedes buscar una porra al que unierte. 
+     challenges_show:  Mostrar porra
+     challenges_shows:  Mostrar porras
+     challenges_update: Actualizar porra
      change: Cambia idioma   
      change_available: Cambia la disponibilidad de   
      change_at:  Fecha de cambio
@@ -355,6 +355,8 @@ es:
      feature: Prestación
      features: Prestaciones
      fee: Honorarios   
+     fee_per_challenge:  Tarifa / Participar
+     fee_per_challenge_description:  (Este es el precio que pone el manager por participar...)
      fee_per_game: Tarifa / Partido   
      fee_per_game_description: (Este es el precio del evento por jugador...)   
      fee_per_pista: Tarifa / Pista   
@@ -514,13 +516,13 @@ es:
         one:  "Jugador tiene 1 pronóstico marcado"
         other:  "Jugador tiene {{count}} pronósticos marcados"
      has_challenge_users:
-        zero: "Este reto no tiene jugadores." 
-        one:  "Este reto tiene 1 jugador." 
-        other: "Este reto tiene {{count}} jugadores."
+        zero: "Esta porra no tiene jugadores." 
+        one:  "Esta porra tiene 1 jugador." 
+        other: "Esta porra tiene {{count}} jugadores."
      has_challenge_casts:
-        zero: "Este reto no tiene pronósticos." 
-        one:  "Este reto tiene 1 pronóstico." 
-        other: "Este reto tiene {{count}} pronósticos."        
+        zero: "Esta porra no tiene pronósticos." 
+        one:  "Esta porra tiene 1 pronóstico." 
+        other: "Esta porra tiene {{count}} pronósticos."        
      has_cup_escuadras:
         zero: "Esta copa no tiene equipos." 
         one:  "Esta copa tiene 1 equipo." 
@@ -588,7 +590,7 @@ es:
      is_available_user: Disponibilidad del jugador ha sido actualizada correctamente.   
      is_invalid: no es valido.   
      is_not_available: "No"  
-     join_cup:  Únete a un reto
+     join_cup:  Únete a una porra
      join_group: Únete al equipo   
      join_group_message: Mensaje para unirte al equipo ha sido mandado correctamente.   
      join_tournament: Únete al torneo   
@@ -792,8 +794,8 @@ es:
      our_philosophy:  Nuestra filosofía
      overview: descripción general   
      page_does_not_exist: La pagina que querias no exite.
-     participate_challenge: Participa en el reto
-     participate_challenge_afterwards: "Despues de registrate y ser aceptado, sigue este enlace para participa en el reto"       
+     participate_challenge: Participa en la porra
+     participate_challenge_afterwards: "Despues de registrate y ser aceptado, sigue este enlace para participa en la porra"       
      participate_schedule: Participa en el evento
      participate_schedule_afterwards: "Despues de registrate en el equipo y ser aceptado, sigue este enlace para participa en el evento"
      participate_group_afterwards: Despues de registrate sigue este enlace para unirte al equipo     
@@ -840,7 +842,7 @@ es:
      petition_to_join_approved: Petición aprobada para unirse.
      petition_to_join_declined:  Petición cancelada para unirse.
      petition_to_leave_approved: Petición aprobada para desapuntarse. 
-     no_petition_to_join: No hay peticiones para unirse a un reto!                
+     no_petition_to_join: No hay peticiones para unirse a una porra!                
      no_petition_to_join_group: No hay peticiones para unirse a un equipo! 
      deleted_petition_by: Petición ha sido borrada por   
      denial_petition_to_join: Petición denegada para unirse a 
@@ -1159,7 +1161,7 @@ es:
      to_email: Email del amigo       
      to_join: Únirse a   
      to_join_email: para unirse a 
-     to_join_challenge: unirte a un reto   
+     to_join_challenge: unirte a una porra   
      to_join_challenge_message: Petición para unirte a 
      to_join_group: unirte a un equipo   
      to_join_group_message: Petición para unirte a 
@@ -1390,7 +1392,7 @@ es:
      invitations_option:  Opciones
      invitations_create:  Invita a tus amigos a unirse a HayPista
      invitations_create_cup: Invita a tus amigos a este evento
-     invitations_create_challenge:  Invita a tus amigos a este reto
+     invitations_create_challenge:  Invita a tus amigos a esta porra
      invitations_create_group: Invita a tus amigos a este equipo
      invitations_create_schedule: Invita a tus amigos a este evento
      invitations_create_tournament: Invita a tus amigos a este tourneo
@@ -1717,7 +1719,7 @@ es:
      schedules_screen:  "Muestra la lista de los proximos eventos, e incluso anteriores eventos..."
      schedule_screen:  "Muestra los detalles del evento, un muro, lista de convocados, ultima hora y ausentes..."
      scorecards_screen:  "Los resultados de cada evento permite mantener la clasificación de tu equipo..."
-     what_is_haypista_details:  "HayPista es un portal que te ayuda a organizar partidos entre amigos, buscar un centro donde puedas jugar, encontrar a gente con los mismos intereses y sobretodo disfrutar el deporte."
+     what_is_haypista_details:  "HayPista es un portal que te ayuda a organizar partidos entre amigos, buscar un centro donde puedas jugar, encontrar a gente con los mismos intereses y sobetodo disfrutar el deporte."
      how_does_haypista:  "¿Como funciona HayPista?"
      how_does_haypista_details:  "Simplemente crea un equipo, busca un centro deportivo, crea un evento, envía invitaciones a tus amigos y ya está. Asi de fácil."
      what_other_haypista: "¿Qué otras cosas hace HayPista?"

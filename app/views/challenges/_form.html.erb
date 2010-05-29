@@ -43,22 +43,16 @@
   <div class="column right"> 
 
   <div class="group">
-    <%= f.label :fee_per_game, label_name('fee_per_game'), :class => :label %>
+    <%= f.label :fee_per_game, label_name('fee_per_challenge'), :class => :label %>
     <%= f.text_field :fee_per_game, :class => 'textscore' %><br />
-    <span class="description"><%= label_name('fee_per_game', 'description') %></span>
+    <span class="description"><%= label_name('fee_per_challenge', 'description') %></span>
   </div>
 
-  <div class="group">
-    <%= f.label :player_limit, label_name('player_limit'), :class => :label %>
-    <%= f.text_field :player_limit, :class => 'textscore' %><br />
-    <span class="description"><%= label_name('player_limit', 'description') %></span>
-  </div>
-
-  <div class="group">
+  <!-- <div class="group">
     <%#= f.label :player_limit, label_name('player_limit'), :class => :label %>
     <%#= f.text_field :player_limit, :class => 'textscore' %><br />
     <span class="description"><%#= label_name('player_limit', 'description') %></span>
-  </div>
+  </div> -->
 
   <div class="group">
     <%= f.label :conditions, label_name('conditions'), :class => :label %>
