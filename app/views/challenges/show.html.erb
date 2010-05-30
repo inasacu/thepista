@@ -40,7 +40,7 @@
 		<%= tr_td_action(:time_zone, @challenge.time_zone) %>
 		
 		<%= tr_td_action(:users, t(:has_challenge_users, :count => @challenge.users.count)) %>
-		<%= tr_td_action(:casts, t(:has_challenge_casts, :count => @challenge.casts.count)) unless @challenge.casts.blank? %>
+		<%#= tr_td_action(:casts, t(:has_challenge_casts, :count => @challenge.casts.count)) unless @challenge.casts.blank? %>
 		
 		<tr>
 			<%= content_tag :td, label_name(:challenges_points), :class => "label" %>

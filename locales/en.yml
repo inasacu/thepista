@@ -101,14 +101,13 @@ en:
      challenges_destroy:  Remove office pool
      challenges_edit:  Update office pool
      challenges_howto:  How to create a office pool.
-     challenges_howto_button:  Click the 'Create' button.
      challenges_howto_create:  Click the option 'Create your office pool'.
-     challenges_howto_cup:  Click tab 
-     challenges_howto_fillin:  Fill in all the fields.
+     challenges_howto_tab:  Click tab 
+     challenges_howto_fillin:  Fill in all the fields and click the 'Create' button.
      challenges_howto_gameday:  Game results will be updated automatically.
      challenges_howto_petition:  Your friends will need to request to join your office pool.
      challenges_howto_petition_done: A 'Requests' tab appears afer the join request by friends.
-     challenges_howto_petition_accept:  Click on request to enter and accept the requests.
+     challenges_howto_petition_accept:  Click 'Requests' tab and accept the requests.
      challenges_howto_pronostico:  Participants should update their forecast.
      challenges_howto_show:  Go to office pool details
      challenges_index:   Office Pools
@@ -508,7 +507,16 @@ en:
      group_second_stage_single:  Single game elimination.
      group_final_stage_single:  Single game for the final.
      group_round:  Elimination Round   
-     groups: Teams            
+     groups: Teams  
+     groups_howto:  How to create a team.
+     groups_howto_create:  Click option 'New team'.
+     groups_howto_event:  Click option 'New event'.
+     groups_howto_tab:  Click the tab 
+     groups_howto_fillin:  Fill in all fields and click the 'Create' button.
+     groups_howto_gameday:  Upcoming events will appear on the home page.
+     groups_howto_petition:  Your friends will need to request to join your team.
+     groups_howto_convocatoria:  Teammates will need to set squad status per event.
+     groups_howto_show:  Go to the Team details.         
      has_been_sent: has been sent.  
      has_been_sent_female: has been sent. 
      has_been_taken: "name not availble, try another."

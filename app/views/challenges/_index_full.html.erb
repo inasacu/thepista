@@ -18,7 +18,10 @@
 	  </tr>
 
 	  <% @challenges.each do |challenge| 
-		#cast = Cast.last_cast_challenge_played(challenge)
+		the_description = sanitize(challenge.description)
+		the_description = "#{the_description.to_s.strip[0..60]}..." if the_description.to_s.length > 60
+		the_description = the_description.gsub(" ", "<wbr> ")
+		the_description = the_description.split.collect {|i| i.capitalize}.join(' ')
 		-%>
 	  <tr>  	
 			<td class="name_and_date">
@@ -41,8 +44,11 @@
 				</span>
 			</td>
 
-			<td>
+			<td class="name_and_date">
 				<%= I18n.t(:has_challenge_users, :count => object_counter(challenge.users)) %><br />
+				<span class="date">
+					<%= the_description %>
+				</span>
 			</td>
 
 			<td class="name_and_date">
