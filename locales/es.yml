@@ -98,6 +98,7 @@ es:
      challenges:  Porras
      challenges_all:  Todos las porras
      challenges_create:  Crea tu porra 
+     challenges_howto_tab:  Pica en la pestaña
      challenges_destroy:  Borrar porra
      challenges_edit:  Actualizar porra
      challenges_howto:  Como crear tu porra.
@@ -110,6 +111,7 @@ es:
      challenges_howto_petition_accept:  Entra en peticiones y acepta las.
      challenges_howto_pronostico:  Los participantes deben actualizen su pronóstico.
      challenges_howto_show:  Entra en los detalles de la porra.
+     challenges_howto_tab:  Pica en la pestaña 
      challenges_index:   Porras
      challenges_index_option: Opciones 
      challenges_invitations_create:  Invita a un amigo a la porra
