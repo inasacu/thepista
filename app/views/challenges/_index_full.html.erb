@@ -21,11 +21,10 @@
 		the_description = sanitize(challenge.description)
 		the_description = "#{the_description.to_s.strip[0..60]}..." if the_description.to_s.length > 60
 		the_description = the_description.gsub(" ", "<wbr> ")
-		# the_description = the_description.split.collect {|i| i.capitalize}.join(' ')
 		-%>
 	  <tr>  	
 			<td class="name_and_date">
-				<%= cup_image_link_small challenge.cup %><br/>
+					<%= challenge_image_link_small_manager challenge %><br/>
 				<span class="date">
 				</span>
 			</td>

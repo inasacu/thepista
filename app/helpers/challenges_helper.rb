@@ -25,6 +25,10 @@ module ChallengesHelper
       return challenge_image_link_large(challenge)
     end
   end
+  
+  def challenge_image_link_small_manager(challenge)
+    link_to(image_tag(challenge.all_the_managers.first.avatar, options={:style => "height: 30px; width: 30px;"}), challenge_path(challenge)) 
+  end
 
   def challenge_image_link_tiny(challenge)
     link_to(image_tag(challenge.avatar, options={:style => "height: 15px; width: 15px;"}), challenge_path(challenge)) 
