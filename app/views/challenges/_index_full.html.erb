@@ -24,15 +24,13 @@
 		-%>
 	  <tr>  	
 			<td class="name_and_date">
-					<%= challenge_image_link_small_manager challenge %><br/>
-				<span class="date">
-				</span>
+				<%= cup_image_link_small challenge.cup %>
 			</td>
 
 			<td class="name_and_date">
 				<%= challenge_link(challenge) %><br/>
 				<span class="date">
-					<%= challenge.cup.sport.name %>
+					<%= challenge.cup.name %>
 				</span>
 			</td>
 
