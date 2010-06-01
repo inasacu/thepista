@@ -331,8 +331,8 @@ en:
      edit_venue: Edit Venue   
      email: Email   
      email_time_zone: Time Zone to send email before an event.  
-     email_addresses: Email Address
-     email_addresses_description:  Write your email address.
+     email_addresses: Email(s)
+     email_addresses_description:  "Write your email addresses.  (Limit: 25)"
      enable_comments: Receive Comment NoticeNotices
      enable_comments_description: Option to receive comments in your inbox.
      ends_at: Ends at   
