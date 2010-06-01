@@ -334,7 +334,7 @@ es:
      email: Correo   
      email_time_zone: Horario para mandar correos antes de un encuentro.  
      email_addresses: "Correo(s)"
-     email_addresses_description:  "Escribe las cuentas de correo. (Limite:  25)"
+     email_addresses_description:  "Escribe las cuentas de correo separadas por espacios. (Limite:  25)"
      enable_comments: Recibirir aviso de comentarios
      enable_comments_description: Opción para recibir aviso cuando se deja un comentario.
      ends_at: Finalización   
