@@ -18,6 +18,9 @@
 			<%= nice_day_of_week(invitation.created_at) %>
 		</span>
 	</td>
+	<td>
+		<%= sanitize(invitation.message) %>
+	</td>
 	
 	<td>
 		<span class=""></span>

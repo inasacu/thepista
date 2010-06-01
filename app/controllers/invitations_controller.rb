@@ -47,10 +47,15 @@ class InvitationsController < ApplicationController
       @challenge = Challenge.find(params[:challenge][:id])
       @invitation.item = @challenge
     end
+    email_addresses = @invitation.email_addresses || ''
+    
+    text = "#{text.to_s.strip[0..12]}..." if text.to_s.length > 14
+    
+    @invitation.email_addresses = @invitation.email_addresses.to_s.strip[0..254] if @invitation.email_addresses.to_s.length > 254
 
-    if @invitation.save
+    if @invitation.save     
       
-      email_addresses = @invitation.email_addresses || ''
+      # email_addresses = @invitation.email_addresses || ''
       emails = email_addresses.gsub(",", " ").split(" ").collect{|email| email.strip }.uniq
       emails.each{ |email|
         @the_invitation = Invitation.new
@@ -59,7 +64,8 @@ class InvitationsController < ApplicationController
         @the_invitation.user = @invitation.user
         @the_invitation.email_addresses = email
         @the_invitation.save!
-      }    
+      }  
+      @invitation.destroy  
     
       flash[:notice] = I18n.t(:invitation_successful_create)
     else

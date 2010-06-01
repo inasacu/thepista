@@ -7,7 +7,7 @@ class Invitation < ActiveRecord::Base
   validates_presence_of     :user
   validates_presence_of     :email_addresses
   validates_length_of       :email_addresses, :minimum => 6
-  validates_length_of       :email_addresses, :maximum => 1500
+  validates_length_of       :email_addresses, :maximum => 255
   validates_presence_of     :message
   validates_length_of       :message,     :within => DESCRIPTION_RANGE_LENGTH
 
