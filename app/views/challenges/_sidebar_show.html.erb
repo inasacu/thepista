@@ -5,14 +5,15 @@
 <ul class="navigation">
 <% 
 	if current_user.is_member_of?(@challenge) 
-		the_confirmation = label_with_name(:do_leave_challenge, "#{@challenge.name}?")
+		the_challenge = sanitize(@challenge.name)
+		the_confirmation = label_with_name(:do_leave_challenge, "#{the_challenge}?")
 		can_edit = false
 		
 		@casts = Cast.current_casts(current_user, @challenge)
 		@casts.each {|cast| can_edit = true  if (current_user == cast.user and cast.starts_at >= HOURS_BEFORE_GAME)	}
 %>
 		<li><%= link_to(label_name(:send_message_to), new_message_path(:challenge_id => @challenge.id)) %></li>
-		<li><%= link_to("#{label_name(:invitations_your_friend)} #{@challenge.name}" , new_invitation_url(:challenge_id => @challenge)) %></li>
+		<li><%= link_to("#{label_name(:invitations_your_friend)} #{the_challenge}" , new_invitation_url(:challenge_id => @challenge)) %></li>
 		<li><%= link_to label_name(:challenges_edit), edit_challenge_path(@challenge) if current_user.is_manager_of?(@challenge) %></li> 
 		<li><%= link_to label_name(:casts_edit), edit_cast_path(:id => @challenge) if can_edit %></li>
 <% 
@@ -21,8 +22,8 @@
 		<li><%= link_to(label_name(:send_message_to), new_message_path(:id => @challenge.all_the_managers.first)) %></li>
 <%
 		unless current_user.has_item_petition?(current_user, @challenge)
-			the_label = label_with_name('add_to_item', @challenge.name)
-			the_confirmation = "#{ label_name(:petition_to_join) } #{@challenge.name}?"
+			the_label = label_with_name('add_to_item', the_challenge)
+			the_confirmation = "#{ label_name(:petition_to_join) } #{the_challenge}?"
 %> 
 			<li><%= link_to(the_label, join_item_path(:id => @challenge, :item => @challenge.class.to_s, :teammate => current_user), :confirm => the_confirmation) %></li>
 <% 

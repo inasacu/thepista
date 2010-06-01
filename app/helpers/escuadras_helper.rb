@@ -29,7 +29,7 @@ module EscuadrasHelper
 
   def escuadra_image_link_tiny(escuadra)
     link_to(image_tag(escuadra.avatar, options={:style => "height: 15px; width: 15px;"}), escuadra_path(escuadra))
-    link_to(image_tag(escuadra.avatar, options={:style => "height: 13px; width: 19px;"}), escuadra_path(escuadra)) 
+    # link_to(image_tag(escuadra.avatar, options={:style => "height: 13px; width: 19px;"}), escuadra_path(escuadra)) 
   end
 
   def escuadra_image_link_smaller(escuadra)

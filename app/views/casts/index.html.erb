@@ -1,5 +1,6 @@
 <%
-	the_label = is_action('index') ? label_name(:group_stage) : label_name(:group_round)
+	# the_label = is_action('index') ? label_name(:group_stage) : label_name(:group_round)
+	the_label = label_name(:cast_right_guess)
 	content_for(:title, the_label)
 	is_manager = current_user.is_manager_of?(@cup)
 	is_right_guess = is_action('list gues')	
@@ -129,7 +130,12 @@
 		</div>
 	</div>
 
+<% unless is_right_guess %>
 <% content_for :sidebar, render(:partial => 'challenges/sidebar_show') -%>
+<% else %>
+<% content_for :sidebar, render(:partial => 'cups/sidebar_show') -%>
+<% end %>
+
 <%# content_for :sidebar, render(:partial => 'challenges/sidebar_show') -%>
 <%# content_for :sidebar, render(:partial => 'shared/share_object') -%>
 

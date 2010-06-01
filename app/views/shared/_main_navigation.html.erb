@@ -26,7 +26,9 @@
 		the_schedule = "active"	
 
 	when 'challenge', 'cast'     
-		the_challenge = "active"
+		# the_challenge = "active"
+			the_cup = "active" if is_action('list gues')
+			the_challenge = "active" unless is_action('list gues')
 
 	when 'standing'
 		the_cup = "active" unless is_action('show list')

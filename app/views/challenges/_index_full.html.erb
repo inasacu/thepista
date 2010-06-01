@@ -21,10 +21,12 @@
 		the_description = sanitize(challenge.description)
 		the_description = "#{the_description.to_s.strip[0..60]}..." if the_description.to_s.length > 60
 		the_description = the_description.gsub(" ", "<wbr> ")
+		the_challenge = sanitize(challenge.name)
 		-%>
 	  <tr>  	
 			<td class="name_and_date">
-				<%= cup_image_link_small challenge.cup %>
+				<%#= cup_image_link_small challenge.cup %>
+				<%= challenge_image_link_small(challenge) %>
 			</td>
 
 			<td class="name_and_date">
@@ -57,12 +59,13 @@
 	       <td class="last">
 				<span class="action">
 					<% if current_user.is_member_of?(challenge) %>
-						<%= link_to(label_name(:send_message_to), new_message_path(:challenge_id => challenge)) %><br />
+						<%= link_to("#{label_name(:invitations_your_friend)} #{the_challenge}" , 
+											new_invitation_url(:challenge_id => challenge)) %><br />
 					<% 
 					  	else
 							unless current_user.has_item_petition?(current_user, challenge) 
-								the_label = label_with_name('add_to_item', challenge.name)
- 								the_confirmation = "#{ label_name(:petition_to_join) } #{challenge.name}?"
+								the_label = label_with_name('add_to_item', the_challenge)
+ 								the_confirmation = "#{ label_name(:petition_to_join) } #{the_challenge}?"
 					%> 
 							<%= link_to(the_label, join_item_path(:id => challenge, :item => challenge.class.to_s, :teammate => current_user), 
 									:confirm => the_confirmation) %>

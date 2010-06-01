@@ -1,5 +1,6 @@
 <% 
 	is_user_manager = (current_user.is_manager_of?(@challenge))
+	the_challenge = sanitize(@challenge.name)
 %>
 
 <div class="block">
@@ -8,7 +9,7 @@
   
   <div class="content">
 	        
-  <h2 class="title"><%= @challenge.name %></h2>
+  <h2 class="title"><%= the_challenge %></h2>
 
     <div class="inner">
 
@@ -27,20 +28,18 @@
 	</thead>
 
 	<tr>
-	<td valign="top" width="105"><%= cup_show_photo(@cup, current_user) %></td>
+	<td valign="top" width="105"><%= challenge_show_photo(@challenge, current_user) %></td>
 
 	<td>
 	<table border="1">
 	
-		<%= tr_td_action(:name, @challenge.name) %>
+		<%= tr_td_action(:name, the_challenge) %>
 		<tr>
 			<%= content_tag :td, label_name(:manager), :class => "label" %>
 			<%= content_tag :td, user_list(@challenge.all_the_managers), :class => get_the_action %>
 		</tr>
-		<%= tr_td_action(:time_zone, @challenge.time_zone) %>
-		
+		<%= tr_td_action(:time_zone, @challenge.time_zone) %>		
 		<%= tr_td_action(:users, t(:has_challenge_users, :count => @challenge.users.count)) %>
-		<%#= tr_td_action(:casts, t(:has_challenge_casts, :count => @challenge.casts.count)) unless @challenge.casts.blank? %>
 		
 		<tr>
 			<%= content_tag :td, label_name(:challenges_points), :class => "label" %>
