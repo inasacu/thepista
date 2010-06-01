@@ -49,6 +49,18 @@ class InvitationsController < ApplicationController
     end
 
     if @invitation.save
+      
+      email_addresses = @invitation.email_addresses || ''
+      emails = email_addresses.gsub(",", " ").split(" ").collect{|email| email.strip }.uniq
+      emails.each{ |email|
+        @the_invitation = Invitation.new
+        @the_invitation.message = @invitation.message
+        @the_invitation.item = @invitation.item
+        @the_invitation.user = @invitation.user
+        @the_invitation.email_addresses = email
+        @the_invitation.save!
+      }    
+    
       flash[:notice] = I18n.t(:invitation_successful_create)
     else
       redirect_to :action => 'new' and return
