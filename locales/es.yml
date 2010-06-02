@@ -98,20 +98,20 @@ es:
      challenges:  Porras
      challenges_all:  Todos las porras
      challenges_create:  Crea tu porra 
-     challenges_howto_tab:  Pica en la pestaña
+     challenges_howto_tab:  Haz click en la pestaña
      challenges_destroy:  Borrar porra
      challenges_edit:  Actualizar porra
-     challenges_howto:  Como crear tu porra.
-     challenges_howto_create:  Pica en la opcion de 'Crea tu porra'.
-     challenges_howto_cup:  Pica en la pestaña 
+     challenges_howto:  Crea tu porra en 7 pasos.
+     challenges_howto_create:  Selecciona la opción de 'Crea tu porra'.
+     challenges_howto_cup:  Haz click en la pestaña 
      challenges_howto_fillin:  Rellena todos los campos.
-     challenges_howto_gameday:  Los resultados se actualizaran automaticamente.
-     challenges_howto_petition:  Tus amigos tendran que pedir unirse a tu porra.
+     challenges_howto_gameday:  Las apuestas y resultados se actualizan en tiempo real.
+     challenges_howto_petition:  Acepta las peticiones de tus amigos para unirse tu porra.
      challenges_howto_petition_done: Una vez hecha la petición veras la pestaña 'Peticiones'.
      challenges_howto_petition_accept:  Entra en peticiones y acéptalas.
-     challenges_howto_pronostico:  Los participantes deben actualizar su pronóstico.
+     challenges_howto_pronostico:  "¡Los participantes estan listos para hacer sus apuestas!"
      challenges_howto_show:  Entra en los detalles de la porra.
-     challenges_howto_tab:  Pica en la pestaña 
+     challenges_howto_tab:  Haz click en la pestaña 
      challenges_index:   Porras
      challenges_index_option: Opciones 
      challenges_invitations_create:  Invita a un amigo a la porra
@@ -510,14 +510,14 @@ es:
      group_final_stage_single:  La final se juega a un partido.
      group_round:  Ronda de Eliminación   
      groups: Equipos 
-     groups_howto:  Como crear tu equipo.
-     groups_howto_create:  Pica en la opción de 'Nuevo equipo'.
-     groups_howto_event:  Pica en la opción de 'Nuevo evento'.
-     groups_howto_tab:  Pica en la pestaña 
+     groups_howto:  Crea tu equipo en 9 pasos.
+     groups_howto_create:  Haz click en la opción de 'Nuevo equipo'.
+     groups_howto_event:  Haz click en la opción de 'Nuevo evento'.
+     groups_howto_tab:  Haz click en la pestaña 
      groups_howto_fillin:  Rellena todos los campos y pica en el boton 'Nuevo'.
-     groups_howto_gameday:  El proximo evento saldra en la pagina de inicio.
-     groups_howto_petition:  Tus amigos tendran que pedir unirse a tu equipo.
-     groups_howto_convocatoria:  Los participantes deben actualizar su convocatoria en cada evento.
+     groups_howto_gameday:  Los proximos eventos salen en la pagina de inicio.
+     groups_howto_petition:  Acepta las peticiones de tus amigos para unirse a tu equipo.
+     groups_howto_convocatoria:  "¡Los participantes estan listos para convocarse a los eventos!"
      groups_howto_show:  Entra en los detalles del equipo. 
      has_been_sent: ha sido mandado correctamente.  
      has_been_sent_female: has sido mandada correctamente. 
