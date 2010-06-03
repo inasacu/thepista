@@ -3,7 +3,7 @@
 		<div class="col_wrapper"><div>
 			<div class="link_wrapper">
 				<ol class="horizontal_list">
-					<li><%= link_to label_name(:about), about_url unless current_user %></li>
+					<li><%= link_to label_name(:about), about_url %></li>
 					<li><%= link_to label_name(:terms_of_use), terms_of_use_url %></li>
 					<li><%= link_to label_name(:faq), faq_url %></li>
 					<li><%= mail_to CONTACT_RECIPIENT, label_name(:contact) %></li>
