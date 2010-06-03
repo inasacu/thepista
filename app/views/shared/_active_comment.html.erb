@@ -1,12 +1,10 @@
 <div class="block"> 
   <div class="sidebar-block"> 
-	<%= content_tag 'h5', t(:recent_activities) %><hr />
+	<%= content_tag 'h5', t(:recent_activities) %><br />
 	
-	<table class="table">		
-	
-		<% Activity.related_activities(current_user).each do |activity| %>
-		
-		<%= render :partial => 'shared/activity', :locals => {:activity => activity, :destroy => current_user == activity.user, :recent => true } %>
+	<table class="table">
+	<% my_activities.each do |activity| %>
+	<%= render :partial => 'shared/activity', :locals => {:activity => activity, :destroy => current_user == activity.user, :recent => true } %>
 	<% end -%>
 	</table>
 		

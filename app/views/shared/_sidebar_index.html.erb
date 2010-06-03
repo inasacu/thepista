@@ -3,16 +3,20 @@
 	groups = Group.looking_for_user(current_user)
 	user_label = "groups"
 	group_label = "users"	
+	has_schedules = !@upcoming_schedules.blank? or @upcoming_schedules.nil? or @upcoming_schedules.empty?
 %>
 
 <% content_for :sidebar, render(:partial => '/shared/latest_payment') -%>
 <% content_for :sidebar, render(:partial => 'shared/invite') -%>
-<% content_for :sidebar, render(:partial => 'shared/share_object', 
-		:locals => {:schedule => @upcoming_schedules.first}) unless @upcoming_schedules.blank? or @upcoming_schedules.nil? or @upcoming_schedules.empty? -%>
 <% content_for :sidebar, render(:partial => '/shared/upcoming_classified') unless @upcoming_classifieds.blank?  -%>
-<% content_for :sidebar, render(:partial => '/shared/active_comment') if current_user and @has_activities  -%>
-<%# content_for :sidebar, render(:partial => '/shared/looking', 
+<%# content_for :sidebar, render(:partial => '/shared/active_comment') if current_user and @has_activities  -%>
+<% content_for :sidebar, render(:partial => '/shared/active_comment', :locals => {:my_activities => @my_activities}) if current_user  -%>
+<% content_for :sidebar, render(:partial => 'shared/share_object', :locals => {:schedule => @upcoming_schedules.first}) if has_schedules -%>
+
+
+<% content_for :sidebar, render(:partial => '/shared/looking', 
 			:locals => {:recipients => groups, :the_label => group_label}) unless groups.nil? or groups.blank? -%>
-<%# content_for :sidebar, render(:partial => '/shared/looking', 
+
+<%  content_for :sidebar, render(:partial => '/shared/looking', 
 			:locals => {:recipients => users, :the_label => user_label}) unless users.nil? or users.blank? -%>
 <%# content_for :sidebar, render(:partial => 'sidebar_tag') -%>

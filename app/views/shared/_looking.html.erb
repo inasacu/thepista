@@ -8,7 +8,7 @@
 					<%= label_name("looking_for", the_label) %>
 				</span>
 			</h5>
-			<hr />
+			<br />
 			<% recipients.each do |recipient| %>
 			<%= render :partial => '/shared/vcard', :locals => {:recipient => recipient} %>
 			<% end %>

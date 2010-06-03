@@ -18,6 +18,10 @@ class Activity < ActiveRecord::Base
                                 select distinct user_id from challenges_users where challenge_id in (?)) and created_at >= ?", user.groups, user.challenges, PAST_THREE_DAYS],
     :order => "id DESC", :limit => GLOBAL_FEED_SIZE) 
   end
+  
+  def self.current_activities
+    find(:all, :conditions => ["created_at >= ?", PAST_THREE_DAYS], :order => "id DESC", :limit => GLOBAL_FEED_SIZE) 
+  end 
     
   # Return true if the item and user already exist.
   def self.exists?(item, user)

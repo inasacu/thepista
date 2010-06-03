@@ -234,6 +234,20 @@ class User < ActiveRecord::Base
       return is_manager
     end
 
+    def is_group_manager_of?
+      is_manager = false
+
+      unless is_manager   
+        self.groups.each do |group|
+          unless is_manager
+            is_manager = (self.has_role?('manager', group)) # or self.has_role?('creator', group))
+          end
+        end
+      end
+      
+      return is_manager
+    end
+    
     def is_user_manager_group(user, group)
       user.is_member_of?(group) and self.has_role?('manager', group)
     end
@@ -248,15 +262,15 @@ class User < ActiveRecord::Base
       return is_member
     end
 
-    def is_user_tour_member_of?(user)
-      is_member = false
-      user.tournaments.each do |tournament|
-        unless is_member
-          is_member = self.has_role?('member', tournament) 
-        end
-      end
-      return is_member
-    end
+    # def is_user_tour_member_of?(user)
+    #   is_member = false
+    #   user.tournaments.each do |tournament|
+    #     unless is_member
+    #       is_member = self.has_role?('member', tournament) 
+    #     end
+    #   end
+    #   return is_member
+    # end
 
     # had role models
     def is_manager_of?(object)
