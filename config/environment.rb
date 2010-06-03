@@ -121,5 +121,5 @@ LANGUAGES = ['en', 'es']
 I18n.load_path = Dir.glob("#{RAILS_ROOT}/locales/**/*.{rb,yml}")
 I18n.default_locale = 'es'
 I18n.backend.class.send(:include, I18n::Backend::Fallbacks)
-I18n.fallbacks.map('en' => 'es')
+# I18n.fallbacks.map('en' => 'es')
 I18n.reload!
