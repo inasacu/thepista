@@ -322,6 +322,13 @@ div#footer ol li { margin: 0pt 1em; position: relative; float: left; }
 -webkit-border-radius: 3px;
 }
 
+#user-navigation a.twitter {
+  background: #4493B4;
+  padding: 1px 4px;
+  -moz-border-radius: 4px;
+-webkit-border-radius: 3px;
+}
+
 #user-navigation ul li a:hover { color: black; }
 
 /* ::::: new cloud taggings ::::: */

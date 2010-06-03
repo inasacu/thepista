@@ -2,6 +2,7 @@
 	
 <ul>	
 	<% if current_user %>
+		<li><a href="http://twitter.com/haypista" target="_blank" class="twitter">Twitter</a></li>
 	
 		<% if current_user.has_pending_petition?(current_user) %>
 			<li><%= link_to label_name(:petitions), petition_path(current_user), :class => "petition" %></li>
