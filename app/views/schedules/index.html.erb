@@ -23,20 +23,20 @@
       <table class="table">
 	  
         <tr> 
-          <th class="first">&nbsp;</th>
-          <th><%= label_name(:concept) %>&nbsp;/<br />
+        <th class="first">&nbsp;</th>
+        <th><%= label_name(:concept) %>&nbsp;/<br />
 			  <%= label_name(:gameday_at) %></th>
-          <th><%= label_name(:group) %>&nbsp;/<br />
+        <th><%= label_name(:group) %>&nbsp;/<br />
 			  <%= label_name(:sport) %></th> 
-          <th><%= label_name(:time_zone) %></th>
-          <th><%= label_name(:general_information) %></th>
+        <th><%#= label_name(:time_zone) %></th>
+        <th><%= label_name(:general_information) %></th>	
+        <th><%#= label_name(:time_zone) %></th>
 		<th class="last">&nbsp;</th>
 		</tr>
         
         <% @schedules.each do |schedule| 
 			the_sport = "#{label_name(:rosters)}:  #{schedule.convocados.count}"
 			the_missing = "#{label_name(:missing)}:  #{schedule.player_limit.to_i - schedule.convocados.count}"
-			is_gameday = (schedule.starts_at.to_date == Time.zone.today)
 		-%>
         <tr>
 			<td>
@@ -44,9 +44,9 @@
 							schedule_image_link_small(schedule) : schedule_image_small(schedule) %>
 			</td>
 
-			<td>
+			<td class="name_and_date">
 				<%= (current_user.is_member_of?(schedule.group) or schedule.public) ? 
-							link_to(sanitize(schedule.concept), team_roster_path(:id => schedule)) : sanitize(schedule.concept) %>
+							link_to(sanitize(schedule.concept), team_roster_path(:id => schedule)) : sanitize(schedule.concept) %>						
 			</td>
 
 			<td class="name_and_date">
@@ -57,33 +57,37 @@
 			</td>
 
 			<td class="name_and_date">
-				<%= nice_day_of_week(schedule.starts_at) %><br />
-				<span class="date">
-					<%= has_left(schedule.starts_at) if Time.zone.now < schedule.starts_at %>
-				</span>
+				<% if schedule.game_played? %>
+		        	<%= group_link schedule.group %>
+		          	&nbsp;&nbsp;
+		          	<%= schedule.home_score %>&nbsp;&nbsp;-&nbsp;&nbsp;<%= schedule.away_score %>
+		          	&nbsp;&nbsp;
+		          	<%= link_to h(schedule.group.second_team), group_path(schedule.group) %>
+					<span class="date">
+						<%= nice_day_of_week(schedule.starts_at) %>
+					</span>
+			    <% else %>			
+					<%= nice_day_of_week(schedule.starts_at) %><br />
+					<span class="date">
+						<%= has_left(schedule.starts_at) if Time.zone.now < schedule.starts_at %>
+					</span>
+				<% end %>
 			</td>		
 
-			<td class="name_and_date">
-				<%= the_sport %><br />
+
+			<td class="name_and_date">			
+					<%= the_sport %><br />
 				<span class="date">
-					<%= the_missing %>
+					<%= the_missing if Time.zone.now < schedule.starts_at %>
 				</span>
 			</td>
 
+			<%= content_tag(:td, ratings_for(schedule, :dimension => :performance), 
+				:class => get_the_action) if current_user.is_member_of?(schedule.group) %>
+				
 			<td class="last">
-				<%# if is_gameday  %>
-				<%#= image_tag('weather_rain.png', options={:style => "height: 20px; width: 20px;"}) if weather.wet? %>
-				<%#= image_tag('weather_sun.png', options={:style => "height: 20px; width: 20px;"}) if weather.sunny? %>
-				<%#= image_tag('weather_clouds.png', options={:style => "height: 20px; width: 20px;"}) if weather.windy? %>
-				<%#= image_tag('weather_clouds.png', options={:style => "height: 20px; width: 20px;"}) if weather.day? %>
-				<%#= image_tag('weather_clouds.png', options={:style => "height: 20px; width: 20px;"}) if weather.night? %>
-				<%# end -%>
-				<%= marker_link(schedule.group.marker) %><br/>
-				<span class="date">		
-				<%#= "#{weather.tomorrow.high.c}°C / #{weather.tomorrow.low.c}°C" if is_gameday %>
-				</span>
+				<%= marker_link(schedule.group.marker) %>
 			</td>
-			
         </tr>          
         <% end -%>
       </table>

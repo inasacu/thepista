@@ -78,7 +78,7 @@ class UserMailer < ActionMailer::Base
   
   def message_blog(recipient, user, message)
     @recipients = recipient.email
-    @subject = "#{user.name}  #{I18n.t(:comments_on_your_blog)}!"
+    @subject = "#{user.name}  #{I18n.t(:comments_on_blog)}!"
     @sent_on = Time.zone.now
     @body[:user] = user
     @body[:message] = message

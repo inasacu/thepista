@@ -2,17 +2,11 @@ class Forum < ActiveRecord::Base
 
   acts_as_commentable
 
-  # has_friendly_id :name, :use_slug => true, :reserved => ["new", "create", "index", "list", "signup", "edit", "update", "destroy", "show"]
-
-  # has_many      :topics,    :dependent => :delete_all
-  # has_many      :posts,     :through => :topics
-
   belongs_to    :schedule
   belongs_to    :meet
 
-  validates_presence_of   :name #, :description 
+  validates_presence_of   :name 
   validates_length_of     :name,                :within => NAME_RANGE_LENGTH
-  # validates_length_of     :description,         :within => DESCRIPTION_RANGE_LENGTH
 
   # method section
   # record if schedule does not exist

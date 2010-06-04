@@ -262,17 +262,6 @@ class User < ActiveRecord::Base
       return is_member
     end
 
-    # def is_user_tour_member_of?(user)
-    #   is_member = false
-    #   user.tournaments.each do |tournament|
-    #     unless is_member
-    #       is_member = self.has_role?('member', tournament) 
-    #     end
-    #   end
-    #   return is_member
-    # end
-
-    # had role models
     def is_manager_of?(object)
       self.has_role?('manager', object)
     end
@@ -305,7 +294,6 @@ class User < ActiveRecord::Base
       user == self or user.has_role?('maximo')
     end
     
-    ## messsage methods
     def received_messages(page = 1)
       _received_messages.paginate(:page => page, :per_page => MESSAGES_PER_PAGE)
     end
@@ -458,8 +446,6 @@ class User < ActiveRecord::Base
         
     def create_user_blog_details
       @blog = Blog.create_item_blog(self)
-      # @entry = Entry.create_user_entry(self, @blog)
-      # Comment.create_user_comment(self, @blog, @entry)
     end
 
 
@@ -476,13 +462,11 @@ class User < ActiveRecord::Base
     end
 
     def deliver_signup_notification
-      # UserMailer.deliver_signup_notification(self)
       UserMailer.send_later(:deliver_signup_notification, self)
     end
     
     def deliver_password_reset_instructions!  
   		reset_perishable_token!  
-      # UserMailer.deliver_password_reset_instructions(self) 
       UserMailer.send_later(:deliver_password_reset_instructions, self) 
   	end
   	

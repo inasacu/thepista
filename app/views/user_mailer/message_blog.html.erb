@@ -1,3 +1,26 @@
+<%
+	the_label = I18n.t(:wall)
+	@item = ""
+	
+	case @message.commentable_type
+	when "Forum"
+		@item = Forum.find(@message.commentable_id)
+  		the_label = @item.schedule.concept
+
+	when "Blog"
+		@item = Blog.find(@message.commentable_id)
+		
+		case @item.item_type
+		when "Group"
+			the_label = Group.find(@item.item_id).name
+		when "User"
+			the_label = User.find(@item.item_id).name
+		end
+		
+	else
+	end
+%>
+
 <%= render :partial => 'header' %>
 
 <h2 style="margin:0; padding:0; font:17px arial; color:#069;"><%= I18n.t(:topic) %>:&nbsp;&nbsp;</h2>
@@ -13,24 +36,30 @@
     <td style="width:1%; color:#999999; vertical-align: top;">&nbsp;</td>
     <td style="width:99%">&nbsp;</td>
   </tr>
-  <tr>
-    <td style="width:1%; color:#999999; vertical-align: top;">&nbsp;</td>
-    <td style="width:99%">&nbsp;<%#= @message.subject %></td>
-  </tr>
+
   <tr>
     <td style="width:1%; color:#999999; vertical-align: top;">&nbsp;</td>
     <td style="width:99%">&nbsp;<%= @message.body %></td>
   </tr>
+<br/>
   <tr>
     <td style="width:1%; color:#999999; vertical-align: top;">&nbsp;</td>
-    <td style="width:99%">&nbsp;</td>
+    <td style="width:99%">
+<%
+	case @message.commentable_type
+	when "Forum" 
+%>
+	<%= link_to(the_label, forum_url(@item)) %>
+<%
+	when "Blog" 
+%>
+	<%= link_to(the_label, blog_url(@item)) %>
+<%		
+	else
+	end
+%>
+	</td>
   </tr>
-  <!-- <tr>
-      <td style="width:1%; color:#999999; vertical-align: top;">&nbsp;</td>
-      <td style="width:99%">&nbsp;<a href="<= @reply_url %>"><= " #{to(:reply)}" %></a></td>
-    </tr> -->
 </table>
-
-<!-- <div style="margin-top: 6px; border-bottom: 3px solid #ddd; line-height:3px">&nbsp;</div> -->
 
 <%= render :partial => 'footer' %>

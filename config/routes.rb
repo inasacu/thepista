@@ -50,7 +50,8 @@ ActionController::Routing::Routes.draw do |map|
   map.set_enable_comments         'users/:id/set_enable_comments',  		  :controller => 'users',    		    :action => 'set_enable_comments'
   map.set_teammate_notification   'users/:id/set_teammate_notification',  :controller => 'users',    		    :action => 'set_teammate_notification'
   map.set_message_notification    'users/:id/set_message_notification',  	:controller => 'users',    		    :action => 'set_message_notification'
-  map.set_blog_comment_notification    'users/:id/set_blog_comment_notification',  	:controller => 'users',    	:action => 'set_blog_comment_notification'
+  map.set_blog_notification       'users/:id/set_blog_notification',  	  :controller => 'users',    	      :action => 'set_blog_notification'
+  map.set_forum_notification      'users/:id/set_forum_notification',  	  :controller => 'users',    	      :action => 'set_forum_notification'
   
   map.third_party           'users/third_party',                          :controller => 'users',           :action => 'third_party'
   map.associate_return      'users/associate_return',                     :controller => 'users',           :action => 'associate_return'

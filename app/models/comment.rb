@@ -30,12 +30,26 @@ class Comment < ActiveRecord::Base
     end
   end
 
-  def send_message_blog   
-    unless self.commentable_type == 'Forum'
+  def send_message_blog      
+    @item = ''
+    case self.commentable_type
+    when "Forum"
+      @item = Forum.find(self.commentable_id)
+      @group = @item.schedule.group
+
+      @group.users.each do |user|
+        @send_mail ||= user.forum_comment_notification?
+        UserMailer.send_later(:deliver_message_blog, user, self.user, self) if @send_mail 
+      end      
+
+    when "Blog"
+      @item = Blog.find(self.commentable_id)
       if self.commentable.user 
         @send_mail ||= self.commentable.user.blog_comment_notification?
         UserMailer.send_later(:deliver_message_blog, self.commentable.user, self.user, self) if @send_mail
       end
+
+    else
     end
   end
   

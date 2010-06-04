@@ -35,8 +35,26 @@
 
 <!-- check_box -->
 <div class="group">
+  <%= f.label :teammate_notification, label_name('teammate_notification'), :class => :label %>
+  <%= f.check_box :teammate_notification, :class => 'text_field' %>
+  <span class="description"><%= label_name('teammate_notification', 'description') %></span>
+</div>
+
+<div class="group">
   <%= f.label :message_notification, label_name('message_notification'), :class => :label %>
   <%= f.check_box :message_notification, :class => 'text_field' %>
+  <span class="description"><%= label_name('message_notification', 'description') %></span>
+</div>
+
+<div class="group">
+  <%= f.label :blog_notification, label_name('blog_notification'), :class => :label %>
+  <%= f.check_box :blog_comment_notification, :class => 'text_field' %>
+  <span class="description"><%= label_name('message_notification', 'description') %></span>
+</div>
+
+<div class="group">
+  <%= f.label :forum_notification, label_name('forum_notification'), :class => :label %>
+  <%= f.check_box :forum_comment_notification, :class => 'text_field' %>
   <span class="description"><%= label_name('message_notification', 'description') %></span>
 </div>
 

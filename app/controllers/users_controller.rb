@@ -6,7 +6,7 @@ class UsersController < ApplicationController
   before_filter :get_user_manager, :only => [:set_available]
   
   before_filter :get_user_self, :only => [:set_private_phone, :set_private_profile, :set_enable_comments, :set_looking, 
-                                          :set_teammate_notification, :set_message_notification, :set_blog_comment_notification]
+                                          :set_teammate_notification, :set_message_notification, :set_blog_notification, :set_forum_notification]
                                                                                                          
   before_filter :get_user_group, :only =>[:set_manager, :remove_manager, :set_sub_manager, :remove_sub_manager, 
                                           :set_subscription, :remove_subscription, :set_moderator, :remove_moderator]
@@ -344,9 +344,20 @@ class UsersController < ApplicationController
     end
   end  
 
-  def set_blog_comment_notification
+  def set_blog_notification
     if @user.update_attribute("blog_comment_notification", !@user.blog_comment_notification)
       @user.update_attribute("blog_comment_notification", @user.blog_comment_notification)  
+
+      flash[:notice] = I18n.t(:successful_update)
+      redirect_back_or_default('/index')
+    else
+      render :action => 'index'
+    end
+  end  
+
+  def set_forum_notification
+    if @user.update_attribute("forum_comment_notification", !@user.forum_comment_notification)
+      @user.update_attribute("forum_comment_notification", @user.forum_comment_notification)  
 
       flash[:notice] = I18n.t(:successful_update)
       redirect_back_or_default('/index')

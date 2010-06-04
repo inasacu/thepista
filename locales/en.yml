@@ -61,7 +61,7 @@ en:
      birth_at:  Date of Birth
      birth_description: (Write your Date of Birth.  This is only used to calculate the medium Age for a Team.) 
      blog_haypista: Blog
-     blog_comment_notification: Allow Messages on your Wall
+     blog_notification: Receive comments from your wall
      blogs_my_wall:  My Wall
      blogs_option:  Options
      body: Body 
@@ -372,10 +372,10 @@ en:
      forward: Forward   
      Friday: Friday 
      profile:  Profile
-     forum_comment_notification:  Receive Comment in your inbox.
+     forum_notification:  Receive comments from your events.
      forum_options:  Options
-     message_notification:  Recibir correo en tu cuenta de correo.
-     teammate_notification:  Recibir Notificación para unirse a tu team en tu cuenta de correo.
+     message_notification:  Receive emails.
+     teammate_notification:  Receive notice to join your team.
      enable_comments:  Enable Comments
      for:  for
      from: from 
@@ -1042,10 +1042,11 @@ en:
      set_available:  Change Availability to participate in any event for 
      set_private_phone:  Set Phone Private 
      set_private_profile:  Set Private Profile
-     set_enable_comments:  Want to receive notifications for comments left on the wall
+     set_enable_comments:  Want to receive notices for comments left on the wall
      set_teammate_notification:  Want to receive requests to join the team of
-     set_message_notification:  Want to receive email notifications in your email account
-     set_blog_comment_notification:  Want to receive notifications of comments left on the wall             
+     set_message_notification:  Want to receive email notices in your email account
+     set_blog_notification:  Want to receive notices for comments left on the wall
+     set_forum_notification:  Want to receive notices for comments left on your event             
      settings:  Options 
      share: Share
      share_in_facebook: "Share on Facebook"
@@ -1358,6 +1359,7 @@ en:
      ge:  Deutsch
      it:  Italiano     
      comments_on_your_blog:  has left comments on your wall
+     comments_on_blog:  has left comments on the wall
      about:  About
      abou:  About
      terms_of_use: Terms of Use

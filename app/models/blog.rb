@@ -7,9 +7,8 @@ class Blog < ActiveRecord::Base
   belongs_to    :tournament
   belongs_to    :item,          :polymorphic => true
 
-  validates_presence_of   :name #, :description 
+  validates_presence_of   :name 
   validates_length_of     :name,                :within => NAME_RANGE_LENGTH
-  # validates_length_of     :description,         :within => DESCRIPTION_RANGE_LENGTH
 
   # method section
   def self.find_item(item)

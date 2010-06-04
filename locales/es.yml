@@ -61,7 +61,7 @@ es:
      birth_at:  Fecha de nacimiento
      birth_description: (Escribe fecha de nacimiento...Solo se utiliza para calcular la edad media del equipo...)      
      blog_haypista: Blog
-     blog_comment_notification: Recibir notas en tu muro
+     blog_notification: Recibir comentarios de tu muro
      blogs_my_wall:  Mi muro
      blogs_option:  Opciones 
      body: Contenido 
@@ -374,9 +374,9 @@ es:
      forward: Adelante   
      Friday: Viernes 
      profile:  Perfil
-     forum_comment_notification:  Recibir notificación de comentario en tu muro en tu cuenta de correo.
+     forum_notification:  Recibir comentarios de tus eventos.
      forum_options:  Opciones
-     message_notification:  Recibir correo en tu cuenta de correo.
+     message_notification:  Recibir correos.
      teammate_notification:  Recibir notificación para unirse a tu equipo en tu cuenta de correo.
      enable_comments:  Habilitar comentarios
      for:  para
@@ -1046,8 +1046,9 @@ es:
      set_private_profile:  Ocultar perfil de
      set_enable_comments:  Quieres recibir notificaciones de comentarios dejados en el muro de
      set_teammate_notification:  Quieres recibir peticiones para unirse al equipo de
-     set_message_notification:  Quieres recibir notificaciones de correos en la cuenta de correo de
-     set_blog_comment_notification:  Quieres recibir notificaciones de comentarios dejados en el muro de             
+     set_message_notification:  Quieres recibir notificaciones en la cuenta de correo de
+     set_blog_notification:  Quieres recibir notificaciones de comentarios dejados en el muro de    
+     set_forum_notification:  Quieres recibir notificaciones de comentarios dejados en los eventos de         
      settings:  Opciones 
      share: Compártelo
      share_in_facebook: "Compártelo en Facebook"
@@ -1360,6 +1361,7 @@ es:
      ge:  Deutsch
      it:  Italiano     
      comments_on_your_blog:  ha dejado comentarios en tu muro
+     comments_on_blog:  ha dejado comentarios en el muro
      about:  Acerca de
      abou:  Acerca de
      terms_of_use: Terminos de Uso

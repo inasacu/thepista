@@ -120,7 +120,29 @@
 												:confirm => the_confirmation) : the_label), 
 												:class => get_the_action %>
 						</tr>
-						
+
+						<% 
+							the_label = h(label_name(@user.blog_comment_notification, 'value'))
+							the_confirmation = label_with_name('set_blog_notification', "#{@user.name}?") 
+						%>
+						<tr>
+							<%= content_tag :td, label_name(:blog_notification), :class => "label" %>
+							<%= content_tag :td, (can_modify ? link_to(the_label, set_blog_notification_path(:id => @user), 
+												:confirm => the_confirmation) : the_label), 
+												:class => get_the_action %>
+						</tr>
+		
+						<% 
+							the_label = h(label_name(@user.forum_comment_notification, 'value'))
+							the_confirmation = label_with_name('set_forum_notification', "#{@user.name}?") 
+						%>
+						<tr>
+							<%= content_tag :td, label_name(:forum_notification), :class => "label" %>
+							<%= content_tag :td, (can_modify ? link_to(the_label, set_forum_notification_path(:id => @user), 
+												:confirm => the_confirmation) : the_label), 
+												:class => get_the_action %>
+						</tr>
+												
 					</table>
 					
 				</td>
