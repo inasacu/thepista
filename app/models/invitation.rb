@@ -50,7 +50,7 @@ class Invitation < ActiveRecord::Base
   end
   
   def self.has_sent_invitation(user)
-    if self.count(:conditions => ["user_id = ? and created_at >= ?", user.id, SIX_MONTHS_AGO]) > 0
+    if self.count(:conditions => ["user_id = ? and created_at >= ?", user.id, NINE_MONTHS_AGO]) > 0
       return true
     end
     return false

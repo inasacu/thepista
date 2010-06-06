@@ -20,12 +20,18 @@
 	actions = ['show','edit','third_party', 'recent_activity']
 	the_user = (@user ? @user : current_user)
 	label_the_user = (the_user == current_user ? "" : "#{label_name(:from)} #{h(the_user.name)}")
+	
+	the_invitation = ""
+	case get_the_controller
+	when "invitation"
+		the_invitation = "active"
+	end
 %>
 	<li class="<%= get_first_active('user_index') %>">  <%= link_to(label_name(:users_teammate), users_url) %></li>
 	<li class="<%= get_active('user_list') %>"><%=  link_to(label_name(:all_user) , list_users_path) %></li>
 	<li class="<%= get_active('user_third_party') %>">
 			<%= link_to(label_name(:myopenid) , third_party_url(:id => the_user)) if the_user == current_user and current_user.is_maximo? %>
-		</li>
+	</li>
 <%
  	if current_user.is_user_member_of?(the_user) 
 		unless actions.include?(the_action) or controls.include?(the_controller) 
@@ -43,13 +49,13 @@
 	</li>
 	
 	<% if current_user.is_user_manager_of?(the_user) or the_user == current_user %>
-		<!-- <li class="<%= get_active('fee_index') %>"><%#= link_to("#{label_name(:fees)}", fees_url(:id => the_user)) %></li> -->
+		<!-- <li class="<%#= get_active('fee_index') %>"><%#= link_to("#{label_name(:fees)}", fees_url(:id => the_user)) %></li> -->
 		<li class="<%= get_active('fee_item_list') %>">
 			<%= link_to(label_name(:fees), item_list_fees_path(:id => the_user, :item => the_user.class.to_s)) %>
 		</li>
 	<% end -%>
 	
-	<li class="<%= get_active('invitation_index') %>"><%= link_to(label_name(:invitations), invitations_url) %></li>
+	<li class="<%= the_invitation %>"><%= link_to(label_name(:invitations), invitations_url) %></li>
 	
 	<% if current_user.has_pending_petition?(current_user) %>
 	<li class="<%= get_active('user_petition') %>">
