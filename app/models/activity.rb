@@ -20,7 +20,7 @@ class Activity < ActiveRecord::Base
   end
   
   def self.current_activities
-    find(:all, :conditions => ["created_at >= ?", PAST_THREE_DAYS], :order => "id DESC", :limit => GLOBAL_FEED_SIZE) 
+    find(:all, :conditions => ["created_at >= ?", LAST_WEEK], :order => "id DESC", :limit => GLOBAL_FEED_SIZE) 
   end 
     
   # Return true if the item and user already exist.
