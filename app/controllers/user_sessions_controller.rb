@@ -65,12 +65,23 @@ class UserSessionsController < ApplicationController
 
       if @user
         
+        has_invitations = false
+        has_invitations = Invitation.has_sent_invitation(@user)
+        
         if LANGUAGES.include?(I18n.locale)
           @user.language = I18n.locale 
           @user.save!
         end
         
         UserSession.create(@user)
+        
+        # user has not sent an invitation in the last three weeks
+        # redirect to get contacts
+        unless has_invitations
+          redirect_back_or_default invite_url
+          return
+        end
+        
         respond_to do |format|
           format.html { redirect_back_or_default root_url }
         end
