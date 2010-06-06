@@ -562,5 +562,8 @@ private
   
   def get_activities    
     @has_activities = Activity.all_activities(current_user) if current_user
+    
+    @my_activities = Activity.related_activities(current_user) if @has_activities
+    @my_activities = Activity.current_activities unless @has_activities    
   end
 end
