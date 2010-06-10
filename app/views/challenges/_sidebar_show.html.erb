@@ -11,6 +11,8 @@
 		
 		@casts = Cast.current_casts(current_user, @challenge)
 		@casts.each {|cast| can_edit = true  if (current_user == cast.user and cast.starts_at >= HOURS_BEFORE_GAME)	}
+		
+		can_edit = false if is_controller('cast') and is_action('edit')
 %>
 		<li><%= link_to(label_name(:send_message_to), new_message_path(:challenge_id => @challenge.id)) %></li>
 		<li><%= link_to("#{label_name(:invitations_your_friend)} #{the_challenge}" , new_invitation_url(:challenge_id => @challenge)) %></li>

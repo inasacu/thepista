@@ -52,7 +52,8 @@
         <tr>
 	
           <td class="first">
-			<%= is_manager ? in_place_text_field(:the_game, :jornada, {:cols => 1}) : game.jornada %>
+			<%#= is_manager ? in_place_text_field(:the_game, :jornada, {:cols => 1}) : game.jornada %>
+			<%= game.jornada %>
           </td>
 
 		  <td class="name_and_date">

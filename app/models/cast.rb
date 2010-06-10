@@ -101,14 +101,61 @@ class Cast < ActiveRecord::Base
     end
   end
   
+  # points for casts
+  # points for single
+  # points for double
+  # Result  Description Points
+  # Correct Result  You predicted the exact result. 30 
+  # Correct Draw  You predicted a draw and the game was a draw. 20
+  # Correct goal difference You predicted the correct goal difference.  15
+  # Correct outcome You predicted the right winner. 10
+  # Bonus Points:
+  # Group Bonus If you predict the correct winner in a group. 50
+  # Final Bonus If you predict the correct final winner.  200
+  # :points_for_single            => 1
+  # :points_for_double            => 35
+  # :points_for_draw              => 25
+  # :points_for_goal_difference   => 15
+  # :points_for_goal_total        => 5
+  # :points_for_winner            => 10
   def self.update_cast_details(challenge)
     @casts = Cast.find(:all, :conditions => ["challenge_id = ?", challenge])
     @casts.each do |cast|
       points = 0
       unless cast.game.home_score.nil? or cast.game.away_score.nil? 
         unless cast.home_score.nil? or cast.away_score.nil? 
-          points = cast.game.points_for_single.to_i if (cast.home_score.to_i == cast.game.home_score.to_i or cast.away_score.to_i == cast.game.away_score.to_i )
-          points += cast.game.points_for_double.to_i if (cast.home_score.to_i == cast.game.home_score.to_i and cast.away_score.to_i == cast.game.away_score.to_i )
+          
+          # points for single
+          if (cast.home_score.to_i == cast.game.home_score.to_i or cast.away_score.to_i == cast.game.away_score.to_i )
+            points = cast.game.points_for_single.to_i 
+          end
+          
+          # points for double
+          if (cast.home_score.to_i == cast.game.home_score.to_i and cast.away_score.to_i == cast.game.away_score.to_i )
+            points += cast.game.points_for_double.to_i 
+          end
+          
+          # points for draw
+          if (cast.home_score.to_i == cast.away_score.to_i and cast.game.home_score.to_i == cast.game.away_score.to_i )
+            points += cast.game.points_for_draw.to_i 
+          end
+          
+          # points for goal difference
+          if (cast.home_score.to_f - cast.away_score.to_f == cast.game.home_score.to_f - cast.game.away_score.to_f )
+            points += cast.game.points_for_goal_difference.to_i 
+          end
+
+          # points for goal total
+          if (cast.home_score.to_i + cast.away_score.to_i == cast.game.home_score.to_i + cast.game.away_score.to_i )
+            points += cast.game.points_for_goal_total.to_i 
+          end
+          
+          # points for winner
+          if (cast.home_score.to_i < cast.away_score.to_i and cast.game.home_score.to_i < cast.game.away_score.to_i) or
+              (cast.home_score.to_i > cast.away_score.to_i and cast.game.home_score.to_i > cast.game.away_score.to_i)
+            points += cast.game.points_for_winner.to_i 
+          end
+          
         end
       end
       cast.points = points
