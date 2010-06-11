@@ -5,7 +5,7 @@
 
 	new_or_existing = 'existing' 
 	prefix = "cast[cast_attributes][]" 
-	the_label = "#{the_label}  -  #{nice_day_of_week(HOURS_BEFORE_GAME)}"
+	# the_label = "#{the_label}  -  #{nice_time_at(Time.zone.now)} / #{nice_time_at(HOURS_BEFORE_GAME)}"
 %>
 
 
@@ -68,7 +68,10 @@
 			<td class="name_and_date">
 				<%= cast.concept %>
 				<span class="date">
-					<%= nice_day_of_week cast.starts_at %>
+					<%= nice_day_of_week cast.starts_at %><br/>
+				</span>
+				<span class="date">
+					<%= has_left(cast.starts_at) %>
 				</span>
 			</td>
 
