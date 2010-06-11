@@ -141,7 +141,7 @@ class Standing < ActiveRecord::Base
     cup.escuadras.each {|escuadra| escuadras << escuadra.id} 
     find(:all, :joins => "LEFT JOIN escuadras on escuadras.id = standings.item_id",
     :conditions => ["cup_id = ? and item_id in (?) and item_type = ? and standings.archive = false", cup, escuadras, 'Escuadra'],
-    :order => "group_stage_name, points desc, (goals_for-goals_against) desc, escuadras.name")
+    :order => "group_stage_name, points desc, (goals_for-goals_against) desc, goals_for desc, goals_against, escuadras.name")
   end
   
   def self.cup_challenge_users_standing(challenge) 
