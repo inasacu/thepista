@@ -20,7 +20,7 @@
 			</span>
 		</td>
 		<td class="name_and_date">
-			<%= nice_day_of_week(game.starts_at) %><br />
+			<%= nice_day_time_wo_year(game.starts_at) %><br />
 			<span class="date">
 				<%= has_left(game.starts_at) if Time.zone.now < game.starts_at %>
 			</span>

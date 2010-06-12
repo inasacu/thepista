@@ -5,7 +5,7 @@ class ChallengesController < ApplicationController
 
   before_filter :get_cup, :only =>[:new]
   # before_filter :has_member_access, :only => :show
-  before_filter :has_member_access, :only => [:challenge_list, :list]
+  before_filter :has_member_access, :only => [:challenge_list]
   
   def index
     @challenges = current_user.challenges.paginate :page => params[:page], :order => 'name' 

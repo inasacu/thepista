@@ -22,14 +22,14 @@
 
     <div class="inner">
 
-	<%= render :partial => "upcoming_cup", :locals => {:upcoming_cups => @upcoming_cups} if has_cup %>
+	<%= render :partial => "upcoming_schedule", :locals => {:upcoming_schedules => @upcoming_schedules} if has_schedule %>
 
     </div>
-	
+
     <div class="inner">
 
-	<%= render :partial => "upcoming_schedule", :locals => {:upcoming_schedules => @upcoming_schedules} if has_schedule %>
-	
+	<%= render :partial => "upcoming_cup", :locals => {:upcoming_cups => @upcoming_cups} if has_cup %>
+
     </div>
 
     <div class="inner">

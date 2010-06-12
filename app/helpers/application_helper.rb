@@ -115,34 +115,42 @@ module ApplicationHelper
     I18n.t(:has_left, :count => time_ago_in_words(time_at).capitalize) 
   end
 
+  # Sábado, a las 20:30
   def nice_day_time(time_at)
     return I18n.l(time_at, :format => :day_time) unless time_at.nil?
   end
 
+  # a las 20:30
   def nice_time_at(time_at)
     return I18n.l(time_at, :format => :time_at) unless time_at.nil?
   end
 
+  # 12 de Junio de 2010
   def nice_full_date(time_at)
     return I18n.l(time_at, :format => :full_date) unless time_at.nil?
   end
 
+  # Sábado, 12 de Junio de 2010 a las 20:30
   def nice_day_of_week(time_at)
     return I18n.l(time_at, :format => :day_week) unless time_at.nil?
   end
 
+  # translation missing: es, 2010-06-12 20:30:00 +0200
   def nice_day_date(time_at)
     return I18n.l(time_at, :format => :day_date) unless time_at.nil?
   end
 
+  # translation missing: es, 2010-06-12 20:30:00 +0200
   def nice_day_weekday(time_at)
     return I18n.t(time_at, :format => :day_weekday) unless time_at.nil?
   end
 
+  # Sábado, 12 de Junio
   def nice_day_date_wo_year(time_at)
     return I18n.l(time_at, :format => :day_date_wo_year) unless time_at.nil?
   end
 
+  # Sábado, 12 de Junio a las 20:30
   def nice_day_time_wo_year(time_at)
     return I18n.l(time_at, :format => :day_time_wo_year) unless time_at.nil?
   end

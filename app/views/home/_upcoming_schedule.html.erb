@@ -36,7 +36,7 @@
 		</td>
 
 		<td class="name_and_date">
-			<%= nice_day_of_week(schedule.starts_at) %><br />
+			<%= nice_day_time_wo_year(schedule.starts_at) %><br />
 			<span class="date">
 				<%= has_left(schedule.starts_at) if Time.zone.now < schedule.starts_at %>
 			</span>
