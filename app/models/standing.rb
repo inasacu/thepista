@@ -99,29 +99,23 @@ class Standing < ActiveRecord::Base
   def self.update_cup_challenge_item_ranking(cup, item='User')
     cup.challenges.each do |challenge|
       # default variables
-      first, ranking, past_points, last = 0, 0, 0, 0
+      ranking, past_points, last = 0, 0, 1
 
       # ranking
-      @standings = Standing.find(:all, :conditions =>["challenge_id = ? and item_type = ? and archive = false", challenge, item], :order => 'points desc')
+      @standings = Standing.find(:all, :conditions =>["challenge_id = ? and item_type = ? and archive = false", challenge, item], 
+      :order => 'points desc')
 
-      @standings.each do |standing| 
-        points ||= 0
-        points = standing.points
+      @standings.each do |standing|  
 
-        if first != standing.item_id 
-          first, ranking, past_points, last = standing.item_id, 0, 0, 1
-        end 
-
-        if (past_points == points) 
-          last += 1          
-        else
-          ranking += last
+        if (past_points > standing.points) 
           last = 1          
         end
-        past_points = points  
+        
+        ranking += last # if (past_points > 0 or standing.points > 0)
+        last = 0
+        past_points = standing.points 
 
         standing.update_attribute(:ranking, ranking)
-
       end
     end
   end
