@@ -137,7 +137,14 @@ class Standing < ActiveRecord::Base
     :conditions => ["cup_id = ? and item_id in (?) and item_type = ? and standings.archive = false", cup, escuadras, 'Escuadra'],
     :order => "group_stage_name, points desc, (goals_for-goals_against) desc, goals_for desc, goals_against, escuadras.name")
   end
-  
+
+  def self.cup_items_standing(cup, item) 
+    find(:all, 
+    :joins => "LEFT JOIN users on users.id = standings.item_id",
+    :conditions => ["cup_id = ? and item_type = ? and standings.archive = false", cup, item.class.to_s],
+    :order => "points desc, users.name")
+  end
+    
   def self.cup_challenge_users_standing(challenge) 
     find(:all, 
     :joins => "LEFT JOIN users on users.id = standings.item_id",

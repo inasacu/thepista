@@ -136,7 +136,7 @@ ActionController::Routing::Routes.draw do |map|
   map.resources   :meets,           :as => 'acontecimiento',              :collection => { :list => :get, :search => :get }
     
   map.resources   :clashes,         :as => 'enfrentamientos'
-  map.resources   :standings,       :as => 'encasillado',                 :collection => { :list => :get, :show_list => :get }
+  map.resources   :standings,       :as => 'encasillado',                 :collection => { :list => :get, :show_list => :get, :show_all => :get }
     
   map.resources   :connections
   map.resources   :schedules,                                             :member => { :rate => :post }
