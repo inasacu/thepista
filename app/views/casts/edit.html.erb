@@ -71,7 +71,10 @@
 					<%= nice_day_of_week cast.starts_at %><br/>
 				</span>
 				<span class="date">
-					<%= has_left(cast.starts_at) %>
+					<%= nice_day_of_week HOURS_BEFORE_GAME %><br/>
+				</span>
+				<span class="date">
+					<%= has_left(cast.starts_at) if cast.starts_at >= HOURS_BEFORE_GAME %>
 				</span>
 			</td>
 
