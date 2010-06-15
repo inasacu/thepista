@@ -6,6 +6,12 @@
 	new_or_existing = 'existing' 
 	prefix = "cast[cast_attributes][]" 
 	# the_label = "#{the_label}  -  #{nice_time_at(Time.zone.now)} / #{nice_time_at(HOURS_BEFORE_GAME)}"
+	
+	# 14 jun 2010 (Mon)
+	# 12:28 GMT
+	# 08:28 EDT (GMT-4)
+	# 14:28 CEST (GMT+2)
+	
 %>
 
 
@@ -71,10 +77,12 @@
 					<%= nice_day_of_week(cast.starts_at) %><br/>
 				</span>
 				<span class="date">
-					<%= nice_day_of_week(HOURS_BEFORE_GAME) if can_edit %><br/>
+		<!-- <%#= cast.starts_at >= HOURS_BEFORE_GAME ?  nice_day_of_week(cast.starts_at) : nice_day_of_week(HOURS_BEFORE_GAME) %>&nbsp;<br/> -->
+		<!-- <%#= cast.starts_at <= HOURS_BEFORE_GAME ?  nice_day_of_week(cast.starts_at) : nice_day_of_week(HOURS_BEFORE_GAME) %>&nbsp;<br/> -->
+		<%= (Time.zone.now)  if can_edit %><br/>
 				</span>
 				<span class="date">
-					<%= has_left(cast.starts_at) if cast.starts_at >= HOURS_BEFORE_GAME %>
+					<%= has_left(cast.starts_at) if can_edit %>
 				</span>
 			</td>
 
