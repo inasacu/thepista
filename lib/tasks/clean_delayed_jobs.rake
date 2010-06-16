@@ -5,7 +5,7 @@ task :clean_delayed_jobs => :environment do |t|
 
   ActiveRecord::Base.establish_connection(RAILS_ENV.to_sym)
 
-  sql = "delete from delayed_jobs"
+  sql = "delete from delayed_jobs is not null"
   ActiveRecord::Base.connection.execute(sql)
   # This is really nice way to execute queries within rake tasks. In the following example I show how you would establish a database connection as well:
 
