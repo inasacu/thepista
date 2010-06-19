@@ -1,18 +1,7 @@
 <%
 	the_label = ""
 	is_same_user = false
-	
-	# if @user
-	# 	is_same_user = (@user == current_user)
-	# 	the_label = label_with_name('the_wall', h(@user.name))
-	# 	the_label = control_label('my_wall') if is_same_user	
-	# end	
-	# 
-	# if @group
-	# 	label = label_with_name('the_wall', h(@group.name))
-	# end	
 
-	# the_item = @blog.item
 	case @blog.item.class.to_s
 	when "User"
 		@user = @blog.item
@@ -29,6 +18,7 @@
 		the_label = label_with_name('the_wall', h(@challenge.name))
 	else
 	end
+	content_for(:title, the_label)
 %>
 <div class="block">
 

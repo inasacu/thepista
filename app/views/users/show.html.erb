@@ -162,4 +162,5 @@
 <% if current_user.is_group_manager_of? %>
 <% content_for :sidebar, render(:partial => '/users/sidebar_show_sub_manager')  %>
 <% content_for :sidebar, render(:partial => '/users/sidebar_show_manager')  %>
+<% content_for :sidebar, render(:partial => '/users/sidebar_show_item_manager', :locals => {:items => current_user.challenges})  %>
 <% end %>

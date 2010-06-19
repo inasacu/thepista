@@ -19,8 +19,8 @@ current_user.groups.each do |group|
 		<li><%= link_to(the_label, manage_join_path(:id => group.id, :teammate => @user.id), :confirm => the_confirmation) %></li>
 <% 
 	elsif current_user.is_manager_of?(group) 
-		the_label = label_with_name('fire_from_group, group.name)
-		the_confirmation = "#{label_name(:fire_from_group)} #{group.name} #{label_name(:to)} #{@user.name}?"
+		the_label = label_with_name('fire_from_item, group.name)
+		the_confirmation = "#{label_name(:fire_from_item)} #{group.name} #{label_name(:to)} #{@user.name}?"
 %> 
 		<li><%= link_to(the_label, fire_path(:id => group.id, :leave => @user.id), :confirm => the_confirmation) %></li>
 <% 

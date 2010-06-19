@@ -1,3 +1,7 @@
+<% 
+	the_challenge = sanitize(@challenge.name)
+	content_for(:title, the_challenge)
+%>
 <div class="block">
 
   <%= render :partial => 'secondary_navigation' %>  

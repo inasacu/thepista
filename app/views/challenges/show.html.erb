@@ -1,6 +1,7 @@
 <% 
 	is_user_manager = (current_user.is_manager_of?(@challenge))
 	the_challenge = sanitize(@challenge.name)
+	content_for(:title, the_challenge)
 %>
 
 <div class="block">

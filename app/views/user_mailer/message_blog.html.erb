@@ -15,6 +15,8 @@
 			the_label = Group.find(@item.item_id).name
 		when "User"
 			the_label = User.find(@item.item_id).name
+		when "Challenge"
+			the_label = Challenge.find(@item.item_id).name
 		end
 		
 	else

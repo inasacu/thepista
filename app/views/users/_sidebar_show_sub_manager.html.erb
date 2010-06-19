@@ -8,8 +8,8 @@
 @user.groups.each do |group| 
 
 	if current_user.is_manager_of?(group) 
-		the_label = label_with_name('fire_from_group', group.name)
-		the_confirmation = "#{ label_name(:fire_from_group)} #{group.name} #{ label_name(:to)} #{@user.name}?"
+		the_label = label_with_name('fire_from_item', group.name)
+		the_confirmation = "#{ label_name(:fire_from_item)} #{group.name} #{ label_name(:to)} #{@user.name}?"
 
 		unless @user.is_sub_manager_of?(group) 
 			the_label = label_with_name('role_add_sub_manager', group.name)

@@ -20,6 +20,7 @@ ActionController::Routing::Routes.draw do |map|
   map.team_no_show		      'team_no_show',			                          :controller => 'schedules',       :action => 'team_no_show'
   map.team_unavailable      'team_unavailable',			                      :controller => 'schedules',       :action => 'team_unavailable'
   map.marker_list		        'marker_list',			                          :controller => 'markers',         :action => 'marker_list'
+  map.challenge_list			  'challenge_list',			                        :controller => 'challenges',      :action => 'challenge_list'
 
   map.join_team   			    'teammates/:id/join_team/:teammate',    	    :controller => 'teammates',       :action => 'join_team'
   map.leave_team		  	    'teammates/:id/leave_team/:teammate',    	    :controller => 'teammates',       :action => 'leave_team'
@@ -100,8 +101,6 @@ ActionController::Routing::Routes.draw do |map|
   map.hide_announcements    '/hide_announcements',                        :controller => 'javascripts',     :action => 'hide_announcements'
   
   map.set_score             'games/:id/set_score',                        :controller => 'games',           :action => 'set_score'
-    
-  map.challenge_list			  'challenge_list',			                        :controller => 'challenges',      :action => 'challenge_list'
   
   map.resources   :user_sessions,   :as => 'repitelo'
   map.resources   :users,           :as => 'jugadores',                   :collection => { :rpx_create => :post, :rpx_associate => :post,

@@ -1,0 +1,69 @@
+<div class="block">
+	
+<ul class="navigation">
+<%
+	items.each do |item| 
+		the_item = h(item.name)
+
+ 		unless @user.is_member_of?(item)  
+			the_label = label_with_name('petition_to_join', item.name)
+			the_confirmation = "#{ label_name(:petition_to_join)} #{h(@user.name)} #{ label_name(:to) } #{the_item}?"
+%>
+        	<li><%= link_to(the_label, join_item_path(:id => item, :item => item.class.to_s, :teammate => current_user), 
+					:confirm => the_confirmation) %>
+			</li>
+
+<% 
+		else 
+			the_label = label_with_name('fire_from_item', item.name)
+			the_confirmation = "#{ label_name(:fire_from_item)} #{the_item} #{ label_name(:to)} #{h(@user.name)}?"
+%> 
+		<li><%= link_to(the_label, leave_item_path(:id => item, :item => item.class.to_s, :teammate => current_user), 
+				:confirm => the_confirmation) %>
+		</li>
+<% 
+		end 
+		
+		if @user == current_user and @user.is_creator_of?(item)  
+			if @user.is_manager_of?(item)
+				the_label = "#{ label_name(:role_remove_manager)} #{ label_name(:for) } #{the_item}"
+				the_confirmation = "#{ label_name(:role_remove_manager)}, #{h(@user.name)} #{ label_name(:for) } #{the_item}?"
+%>					
+				<li><%#= link_to(the_label , remove_manager_path(:id => @user, :item => item), :confirm => the_confirmation) %></li>
+<% 
+			else
+				# the_label = "#{ label_name(:role_add_manager)} #{ label_name(:from) } #{the_item}"
+				# the_confirmation = "#{ label_name(:role_add_manager)} #{ label_name(:to) } #{@user.name} #{ label_name(:to) } #{the_item}?"
+%>		
+				<!-- <li><%#= link_to(the_label , set_manager_path(:id => @user, :item => item), :confirm => the_confirmation) %></li>		 -->
+<% 
+			end 
+		end
+	
+		if @user != current_user  and @user.is_member_of?(item) and current_user.is_creator_of?(item)
+			if @user.is_manager_of?(item)
+				# the_label = "#{ label_name(:role_remove_manager)} #{ label_name(:from) } #{the_item}"
+				# the_confirmation = "#{ label_name(:role_remove_manager)} #{ label_name(:from) } #{the_item}?"
+%>					
+			<!-- <li><%#= link_to(the_label , remove_manager_path(:id => @user, :item => item), :confirm => the_confirmation) %></li>		 -->
+<%
+			else
+				unless @user.is_manager_of?(item) and item.total_managers.to_i <= 2
+				# the_label = "#{ label_name(:role_add_manager)} #{ label_name(:for) } #{the_item}"
+				# the_confirmation = "#{ label_name(:role_add_manager)} #{ label_name(:for) } #{the_item}?"
+%>		
+					<!-- <li><%#= link_to(the_label , set_manager_path(:id => @user, :item => item), :confirm => the_confirmation) %></li> -->
+<% 
+				end
+			end		
+		end	
+%>
+<li>&nbsp;</li>
+<%	
+	end 
+%>
+
+</ul>
+	
+</div>
+<!-- </div> -->

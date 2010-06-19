@@ -34,12 +34,12 @@ class Teammate < ActiveRecord::Base
 
   end
   
-  def self.create_teammate_leave_item(leave_user, manager, item)
+  def self.create_teammate_leave_item(leave_user, item)
     @role_user = RolesUsers.find_item_manager(item)
     @manager = User.find(@role_user.user_id) 
 
-    # if @manager == manager or leave_user == manager
-      self.breakup_item(leave_user, manager, item)   
+    return if @manager == leave_user
+      self.breakup_item(leave_user, @manager, item)   
 
       leave_user.has_no_role!(:member, item)
 

@@ -77,10 +77,10 @@ class UserSessionsController < ApplicationController
         
         # user has not sent an invitation in the last three weeks
         # redirect to get contacts
-        unless has_invitations and @user.created_at <= THREE_WEEKS_AGO
-          redirect_back_or_default invite_url
-          return
-        end
+        # unless has_invitations and @user.created_at <= THREE_WEEKS_AGO
+        #   redirect_back_or_default invite_url
+        #   return
+        # end
         
         respond_to do |format|
           format.html { redirect_back_or_default root_url }

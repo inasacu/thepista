@@ -1,6 +1,3 @@
-<!-- <a href="#" onclick="toggle_visibility('abc');"><h3><%= label_with_name(:user_options, "#{label_name(:from_de)} #{h(@user.name)}") %></h3></a>
-<div id="abc" style='display:none;'> -->
-	
 <div class="block">
 	
 <ul class="navigation">
@@ -16,8 +13,8 @@
 
 <% 
 		else 
-			the_label = label_with_name('fire_from_group', group.name)
-			the_confirmation = "#{ label_name(:fire_from_group)} #{the_group} #{ label_name(:to)} #{h(@user.name)}?"
+			the_label = label_with_name('fire_from_item', group.name)
+			the_confirmation = "#{ label_name(:fire_from_item)} #{the_group} #{ label_name(:to)} #{h(@user.name)}?"
 %> 
 		<li><%= link_to(the_label, leave_team_path(:id => group, :teammate => @user), :confirm => the_confirmation) %></li>
 <% 

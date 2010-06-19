@@ -44,13 +44,35 @@ class Comment < ActiveRecord::Base
 
     when "Blog"
       @item = Blog.find(self.commentable_id)
-      if self.commentable.user 
-        @send_mail ||= self.commentable.user.blog_comment_notification?
-        UserMailer.send_later(:deliver_message_blog, self.commentable.user, self.user, self) if @send_mail
-      end
 
+      case @item.item_type
+      when "User"
+        if self.commentable.user 
+          @send_mail ||= self.commentable.user.blog_comment_notification?
+          UserMailer.send_later(:deliver_message_blog, self.commentable.user, self.user, self) if @send_mail
+        end
+      when "Group"
+        @group = Group.find(@item.item_id)
+
+        @group.users.each do |user|
+          @send_mail ||= user.blog_comment_notification?
+          UserMailer.send_later(:deliver_message_blog, user, self.user, self) if @send_mail 
+        end
+          
+      when "Challenge"
+        @challenge = Challenge.find(@item.item_id)
+        
+        @challenge.users.each do |user|
+          @send_mail ||= user.blog_comment_notification?
+          UserMailer.send_later(:deliver_message_blog, user, self.user, self) if @send_mail 
+        end
+        
+      else
+      end
+      
     else
     end
+    
   end
   
   def self.exists?(commentable_id, commentable_type, user)
