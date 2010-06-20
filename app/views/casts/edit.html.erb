@@ -63,7 +63,7 @@
 				previous_games.each {|the_game| the_previous << the_game.jornada}
 			end
 		-%>
-		<!-- field_for start -->		
+		
 			<% fields_for prefix, cast do |cast_form| -%>
 		
         	<tr>	
@@ -77,13 +77,7 @@
 					<%= nice_day_of_week(cast.starts_at) %><br/>
 				</span>
 				<span class="date">
-				<% if cast.starts_at > HOURS_BEFORE_GAME %>
-					<%= nice_day_of_week(cast.starts_at) %><br/>
-				<% end %>
-				<% if cast.starts_at < HOURS_BEFORE_GAME %>
-					<%= nice_day_of_week(HOURS_BEFORE_GAME) %><br/>
-				<% end %>
-				<%= (Time.zone.now)  if can_edit %><br/>
+				<%= nice_day_of_week(HOURS_BEFORE_GAME) if can_edit %><br/>
 				</span>
 				<span class="date">
 					<%= has_left(cast.starts_at) if can_edit %>
