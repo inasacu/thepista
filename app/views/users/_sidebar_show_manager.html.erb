@@ -19,7 +19,10 @@
 			the_label = label_with_name('fire_from_item', group.name)
 			the_confirmation = "#{ label_name(:fire_from_item)} #{the_group} #{ label_name(:to)} #{h(@user.name)}?"
 %> 
-		<li><%= link_to(the_label, leave_team_path(:id => group, :teammate => @user), :confirm => the_confirmation) %></li>
+		<li>
+			<%#= link_to(the_label, leave_team_path(:id => group, :teammate => @user), :confirm => the_confirmation) %>
+			<%= link_to(the_label, leave_item_path(:id => group, :item => group.class.to_s, :teammate => current_user), :confirm => the_confirmation) %>
+		</li>
 <% 
 		end 
 		
