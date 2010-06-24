@@ -88,7 +88,7 @@ class Standing < ActiveRecord::Base
     ranking = 0
     
     @standings = Standing.find(:all, :conditions =>["cup_id = ? and group_stage_name = ?", standing.cup_id, standing.group_stage_name], 
-    :order => "points desc, (goals_for-goals_against) desc")
+    :order => "points desc, (goals_for-goals_against) desc, goals_for desc, goals_against")
     
      @standings.each do |standing| 
         ranking += 1 if standing.played > 0
