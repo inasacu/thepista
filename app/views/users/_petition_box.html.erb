@@ -15,7 +15,8 @@
 		
 		case teammate.item.class.to_s  
 		when 'Group' 
-			item_link = group_link(teammate.group)
+			# item_link = group_link(teammate.group)
+			item_link = group_link(teammate.item)
 		when 'Challenge' 
 			item_link = challenge_link(teammate.item)
 		else

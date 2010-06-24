@@ -7,6 +7,8 @@ task :the_teammate => :environment do |t|
   
   @teammates = Teammate.find(:all, :conditions => 'group_id is not null and item_id is null')
   @teammates.each do |teammate|
+    
+    puts teammate.group.name
     teammate.item = teammate.group
     teammate.save!
   end
