@@ -1,6 +1,6 @@
 # to run:    sudo rake clean_delayed_jobs
 
-desc "replacing all user, group and tournament comments for one generic an removing the entries"
+desc "delete all delayed jobs that have failed..."
 task :clean_delayed_jobs => :environment do |t|
 
   ActiveRecord::Base.establish_connection(RAILS_ENV.to_sym)
@@ -11,7 +11,7 @@ task :clean_delayed_jobs => :environment do |t|
 
   namespace :db do
 
-    desc "Cleanup the database by setting rows to deleted when older than xxx. Defaults to development database.  Set RAILS_ENV=[production, test, etc.] to override."
+    desc "delete all delayed jobs that have failed..."
     task :cleanup => :environment do
       sql = <<-SQL
       -- do some cleanup code
