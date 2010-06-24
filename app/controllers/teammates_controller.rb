@@ -133,15 +133,16 @@ class TeammatesController < ApplicationController
     @teammate = Teammate.find(params[:id])    
     @approver = User.find(@teammate.user_id)
     @requester = User.find(@teammate.manager_id)
-    
+
+    @item = nil    
     case @teammate.item.class.to_s
     when "Challenge"
       @item = Challenge.find(@teammate.item_id)
     when "Group"
       @item = Group.find(@teammate.item_id)
     else
+      @item = Group.find(@teammate.group_id) unless @teammate.group_id.nil?
     end
-       
   end
 
   def has_manager_access

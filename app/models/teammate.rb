@@ -201,8 +201,8 @@ class Teammate < ActiveRecord::Base
  
   def self.breakup_item(leave_user, manager, item)
       @teammates = Teammate.find(:all, 
-            :conditions => ["item_id = ? and item_type = ? and ((user_id = ? and manager_id = ?) or (user_id = ? and manager_id = ? ))",
-              item.id, item.class.to_s, leave_user.id, manager.id, manager.id, leave_user.id])
+            :conditions => ["((item_id = ? and item_type = ?) or group_id = ?) and ((user_id = ? and manager_id = ?) or (user_id = ? and manager_id = ? ))",
+              item.id, item.class.to_s, item.id, leave_user.id, manager.id, manager.id, leave_user.id])
       
       @teammates.each {|teammate| teammate.destroy}
   end
