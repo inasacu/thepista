@@ -137,13 +137,13 @@ body {
 }
 
 #main-navigation ul li a {
-  font-size: 15px;
+  font-size: 14px;
   display: block;
   padding: 8px 15px;
 }
 
 .secondary-navigation {
-  font-size: 13px;  
+  font-size: 12px;  
   border-bottom-width: 10px;
   border-bottom-style: solid;
 }
