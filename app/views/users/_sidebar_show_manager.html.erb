@@ -11,7 +11,7 @@
 %>
 			<li>
 				<%#= link_to(the_label, join_team_path(:id => group, :teammate => current_user), :confirm => the_confirmation) %>
-				<%= link_to(the_label, join_item_path(:id => group, :item => group.class.to_s, :teammate => current_user), 
+				<%= link_to(the_label, join_item_path(:id => group, :item => group.class.to_s, :teammate => @user), 
 						:confirm => the_confirmation) %>
 			</li>
 <% 
