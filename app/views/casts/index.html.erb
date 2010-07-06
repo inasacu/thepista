@@ -102,8 +102,8 @@
 		  <td class="name_and_date">
 		  	<%= escuadra_link cast.home unless no_team %>
 		  <span class="date">
-		  	<%= "#{cast.home_ranking} #{cast.home_stage_name}<br/>" unless no_ranking %>
-			<%= "W#{the_previous[0]}" if (the_previous.length > 0) %>
+		  	<%= "#{cast.home_ranking} #{cast.home_stage_name}<br/>" if no_team %>
+			<%= "W#{the_previous[0]}" if (the_previous.length > 0) and no_team %>
 		  </span>
 		  </td>
 
@@ -114,8 +114,8 @@
 		  <td class="name_and_date">
 		  	<%= escuadra_link cast.away unless no_team %>
 		  <span class="date">
-		  	<%= "#{cast.away_ranking} #{cast.away_stage_name}<br/>" unless no_ranking %>
-			<%= "W#{the_previous[1]}" if (the_previous.length > 0) %>
+		  	<%= "#{cast.away_ranking} #{cast.away_stage_name}<br/>" if no_team %>
+			<%= "W#{the_previous[1]}" if (the_previous.length > 0) and no_team %>
 		  </span>
 		  </td>
 

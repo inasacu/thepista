@@ -70,8 +70,8 @@
 		  <td class="name_and_date">
 		  	<%= escuadra_link game.home unless no_team %>
 		  <span class="date">
-		  	<%= "#{game.home_ranking} #{game.home_stage_name}<br/>" unless no_ranking %>
-			<%= "W#{the_previous[0]}" if (the_previous.length > 0) %>
+		  	<%= "#{game.home_ranking} #{game.home_stage_name}<br/>" if no_team %>
+			<%= "W#{the_previous[0]}" if (the_previous.length > 0) and no_team %>
 		  </span>
 		  </td>
 
@@ -82,8 +82,8 @@
 		  <td class="name_and_date">
 		  	<%= escuadra_link game.away unless no_team %>
 		  <span class="date">
-		  	<%= "#{game.away_ranking} #{game.away_stage_name}<br/>" unless no_ranking %>
-			<%= "W#{the_previous[1]}" if (the_previous.length > 0) %>
+		  	<%= "#{game.away_ranking} #{game.away_stage_name}<br/>" if no_team %>
+			<%= "W#{the_previous[1]}" if (the_previous.length > 0) and no_team %>
 		  </span>
 		  </td>
 		
