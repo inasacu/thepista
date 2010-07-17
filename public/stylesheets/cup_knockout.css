@@ -1,0 +1,74 @@
+
+
+p { line-height: 1.4em; }
+h1.sectionHeader { background: url('../images/wc_2010_sprite.png') no-repeat scroll -722px bottom transparent; color: rgb(51, 51, 51); font-size: 2em; margin-bottom: 15px; padding-bottom: 6px; }
+h1.noLine { background: none repeat scroll 0% 0% transparent; }
+h2 { background: url('../images/wc_2010_sprite.png') no-repeat scroll -722px bottom transparent; clear: both; color: rgb(51, 51, 51); font-size: 1.3em; margin-bottom: 12px; padding: 4px 0pt 6px; }
+h2.noLine { background: none repeat scroll 0% 0% transparent; }
+div.world-cup-2010-section h1, div.world-cup-2010-section h2, div.world-cup-2010-section table { font-family: Arial,Helvetica,sans-serif; }
+#blq-container-inner { background: none repeat scroll 0% 0% transparent; }
+div.world-cup-2010-section { background: url('../images/wc_2010_banner_001.jpg') no-repeat scroll 0pt 0pt transparent; }
+.team-list { background-image: url('../images/world_cup_list_teams_bg.png'); float: left; width: 972px; }
+#sportfooter { font-size: 0.85em; }
+div.full-layout { width: 946px; margin-left: 14px; }
+#navigation { margin-bottom: 30px; }
+
+.groupTableModule { border-bottom: 1px solid rgb(102, 102, 102); margin-bottom: 25px; }
+.groupTableModule table { width: 100%; }
+.groupTableModule table tr th { padding: 6px 8px 5px; background: none repeat scroll 0% 0% rgb(242, 242, 242); border-left: 1px solid rgb(255, 255, 255); font-size: 0.95em; text-align: right; }
+.groupTableModule table tr td { padding: 6px 8px 5px; background: none repeat scroll 0% 0% rgb(242, 242, 242); border-left: 1px solid rgb(255, 255, 255); text-align: right; }
+.groupTableModule table tr.alt td { background: none repeat scroll 0% 0% rgb(255, 255, 255); border-color: rgb(242, 242, 242); }
+.groupTableModule table tr.split td { border-bottom: 1px dashed rgb(102, 102, 102); }
+.groupTableModule table tr th.first { padding-left: 5px; text-align: left; border-left: 0pt none; }
+.groupTableModule table tr td.first { text-align: left; border-left: 0pt none; padding-left: 0pt; }
+.groupTableModule table tr td.first a { padding-left: 27px; background-image: url('../images/wc_2010_flags_16px.gif'); background-repeat: no-repeat; background-position: -17px -15px; }
+
+.groupTableModule table tr td.alg a { background-position: 8px 1px; }
+.groupTableModule table tr td.arg a { background-position: 8px -32px; }
+.groupTableModule table tr td.aus a { background-position: 8px -65px; }
+.groupTableModule table tr td.bra a { background-position: 8px -99px; }
+.groupTableModule table tr td.cmr a { background-position: 8px -132px; }
+.groupTableModule table tr td.chi a { background-position: 8px -164px; }
+.groupTableModule table tr td.civ a { background-position: 8px -197px; }
+.groupTableModule table tr td.den a { background-position: 8px -230px; }
+.groupTableModule table tr td.eng a { background-position: 8px -263px; }
+.groupTableModule table tr td.fra a { background-position: 8px -296px; }
+.groupTableModule table tr td.ger a { background-position: 8px -329px; }
+.groupTableModule table tr td.gha a { background-position: 8px -362px; }
+.groupTableModule table tr td.gre a { background-position: 8px -396px; }
+.groupTableModule table tr td.hon a { background-position: 8px -428px; }
+.groupTableModule table tr td.ita a { background-position: 8px -461px; }
+.groupTableModule table tr td.jpn a { background-position: 8px -494px; }
+.groupTableModule table tr td.mex a { background-position: 8px -527px; }
+.groupTableModule table tr td.ned a { background-position: 8px -560px; }
+.groupTableModule table tr td.nzl a { background-position: 8px -593px; }
+.groupTableModule table tr td.nga a { background-position: 8px -626px; }
+.groupTableModule table tr td.prk a { background-position: 8px -659px; }
+.groupTableModule table tr td.par a { background-position: 8px -692px; }
+.groupTableModule table tr td.por a { background-position: 8px -725px; }
+.groupTableModule table tr td.srb a { background-position: 8px -759px; }
+.groupTableModule table tr td.svk a { background-position: 8px -791px; }
+.groupTableModule table tr td.svn a { background-position: 8px -825px; }
+.groupTableModule table tr td.rsa a { background-position: 8px -860px; }
+.groupTableModule table tr td.kor a { background-position: 8px -893px; }
+.groupTableModule table tr td.esp a { background-position: 8px -927px; }
+.groupTableModule table tr td.sui a { background-position: 8px -961px; }
+.groupTableModule table tr td.usa a { background-position: 8px -995px; }
+.groupTableModule table tr td.uru a { background-position: 8px -1027px; }
+
+.groupTableModule { float: left; width: 226px; margin-right: 14px; }
+.groupTableModule table { width: 226px; }
+.groupTableModule table tr th { padding-left: 2px; padding-right: 2px; text-align: center; }
+.groupTableModule table tr td { padding-left: 2px; padding-right: 2px; text-align: center; }
+.groupTableModule table tr td.first { padding-left: 0pt; padding-right: 0pt; }
+.groupTableModule.last { margin-right: 0pt; }
+#knockout { clear: both; width: 946px; padding: 5px 0pt 0pt; background: url('../images/groups-knockout-back.gif') no-repeat scroll center 62px transparent; }
+#knockout h4 { clear: both; color: rgb(51, 51, 51); padding-top: 32px; text-align: center; }
+#knockout h4.first { margin-top: -1em; padding: 0pt; }
+#knockout div { width: 236px; float: left; background: url('../images/groups-fixture-back.png') no-repeat scroll center bottom transparent; }
+#knockout div.semi { width: 472px; }
+#knockout div.final, #knockout div.third { width: 946px; padding-top: 16px; }
+#knockout div.final { background: none repeat scroll 0% 0% transparent; }
+#knockout div h5 { margin: 9px 0pt 5px; color: rgb(170, 170, 170); font-size: 0.8em; text-align: center; }
+#knockout div p { width: 225px; padding: 5px 0pt 13px; margin: 0pt auto; text-align: center; }
+#knockout div.final p { width: 270px; border: 3px solid rgb(247, 71, 11); padding: 9px 0pt; font-size: 1.3em; font-weight: bold; }

@@ -13,7 +13,10 @@
 	    <th class="last">&nbsp;</th>
 	  </tr>
 
-	  <% @cups.each do |cup| -%>
+	  <% @cups.each do |cup| 
+		the_final = Game.final_game(cup)
+		final_played = the_final.played
+	  -%>
 
 	  <tr>  
 			<td>
@@ -42,14 +45,18 @@
 			</td>
 
 			<td class="name_and_date">
-				<%= link_to(label_name(:standing), standing_path(:id => cup))  if object_counter(cup.standings) > 1 %>
+				<%= link_to(label_name(:standing), standing_path(:id => cup))  if object_counter(cup.standings) > 1 and !final_played %>
 				<span class="date">
+					<% if final_played %>
+					<%= the_final.home.name if (the_final.home_score.to_i > the_final.away_score.to_i) %>
+					<%= the_final.away.name if (the_final.home_score.to_i < the_final.away_score.to_i) %>
+					<% end %>
 				</span>
 			</td>
 
 	       <td class="last">
 				<span class="action">
-					<%= link_to label_name(:challenges_create), new_challenge_path(:id => cup) %>
+					<%= link_to label_name(:challenges_create), new_challenge_path(:id => cup) unless final_played %>
 				
 					<% if current_user.is_manager_of?(cup) %>
 					 	<br/>

@@ -45,9 +45,6 @@ class Game < ActiveRecord::Base
   attr_accessible :cup_id, :home_id, :away_id, :winner_id, :next_game_id, :jornada, :round, :type_name
   attr_accessible :home_score, :away_score, :played, :home_ranking, :away_ranking, :home_stage_name, :away_stage_name
 
-  # friendly url and removes id
-  # has_friendly_id :concept, :use_slug => true, :reserved => ["new", "create", "index", "list", "signup", "edit", "update", "destroy", "show"]
-
   before_update :set_game_winner
   after_update  :calculate_standing
 
@@ -74,8 +71,8 @@ class Game < ActiveRecord::Base
     end
   end
 
-  def self.last_game_played(user)
-    find(:first, :select => "starts_at", :conditions => ["id = (select max(game_id) from matches where user_id = ? and type_id = 1  and played = true)", user.id])
+  def self.final_game(cup)
+    find(:first, :conditions => ["id = (select max(id) from games where cup_id = ?)", cup])
   end
 
   def self.last_game_escuadra_played(escuadra)
