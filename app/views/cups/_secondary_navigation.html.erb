@@ -20,9 +20,9 @@
 	<li class="<%= get_active('cast_list_gues') %>">
 		<%=  link_to(label_name(:cast_right_guess) , list_guess_casts_path(:id => @cup)) %>
 	</li>
-	<!-- <li class="<%#= get_active('cast_list_gues') %>">
-		<%#=  link_to(label_name(:cast_right_guess) , show_all_standings_path(:id => @cup)) %>
-	</li> -->	
+	<li class="<%= get_active('standing_show all') %>">
+		<%=  link_to(label_name(:cast_right_guess_all) , show_all_standings_path(:id => @cup)) %>
+	</li>	
 	<% end %>
 </ul>
 

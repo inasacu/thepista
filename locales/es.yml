@@ -92,7 +92,8 @@ es:
      cast_options:  Opciones 
      casts_show: Detalles del pronóstico
      cast_rate: Valoración del pronóstico 
-     cast_right_guess:  Aciertos    
+     cast_right_guess:  Aciertos
+     cast_right_guess_all:  Todos los Puntos
      challenge:  Reto
      challenge_options:  Opciones
      challenges:  Retos
@@ -367,7 +368,8 @@ es:
      fee_per_tour_description: (Este es el precio del torneo...)  
      feedback: feedback   
      fees: Cargos   
-     female_value: Femenina   
+     female_value: Femenina  
+     final: Final 
      fire_from_item: Desapunta de   
      follow: Sigue 
      forum: Notas de    

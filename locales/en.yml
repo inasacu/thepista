@@ -93,6 +93,7 @@ en:
      casts_show: Forecast details
      cast_rate: Forecast rate 
      cast_right_guess:  Right Guesses
+     cast_right_guess_all:  All Points
      challenge:  Challenge
      challenge_options:  Options
      challenges:  Challenges
@@ -365,7 +366,8 @@ en:
      fee_per_tour_description: (This is the price for the tournament...)  
      feedback: feedback   
      fees: Charges   
-     female_value: Femaile    
+     female_value: Female  
+     final: Final  
      fire_from_item: Opt-out of   
      follow: Follow 
      forum: Notes for     

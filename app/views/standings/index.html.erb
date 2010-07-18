@@ -7,6 +7,8 @@
 	
 	the_challenges = ['standing_list', 'standing_show_list']	
 	is_challenge_standing = the_challenges.include?("#{get_the_controller}_#{get_the_action}".gsub(' ', '_')) 
+	all_results = is_action('show all')
+	all_rank = 0
 %>
 <div class="block">
 
@@ -31,13 +33,16 @@
 				group_stage = 'Z'
 			%>
 			
-			<% @standings.each do |standing| 				
+			<% @standings.each do |standing| 
+				
+				standing.ranking = (all_rank+=1) if all_results
+								
 				unless (group_stage == standing.group_stage_name)
 					group_stage = standing.group_stage_name 
 			-%>
 				<%= render :partial => 'standing_futbol_label', :locals => { :group_stage => group_stage, :is_escuadra => (standing.item_type == "Escuadra")} %>
 				<% end %>
-			<%= render :partial => 'standing', :locals => {:standing => standing} %>
+				<%= render :partial => 'standing', :locals => {:standing => standing} %>
 			<% end %>
 			<% end %>
 			

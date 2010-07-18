@@ -9,7 +9,7 @@
 	    <th><%= label_name(:name) %></th>
 	    <th><%= label_name(:time_zone) %></th>
 	    <th><%= label_name(:general_information) %></th>
-	    <th><%#= label_name(:last_game_played) %></th>
+	    <th>&nbsp;</th>
 	    <th class="last">&nbsp;</th>
 	  </tr>
 
@@ -48,8 +48,9 @@
 				<%= link_to(label_name(:standing), standing_path(:id => cup))  if object_counter(cup.standings) > 1 and !final_played %>
 				<span class="date">
 					<% if final_played %>
-					<%= the_final.home.name if (the_final.home_score.to_i > the_final.away_score.to_i) %>
-					<%= the_final.away.name if (the_final.home_score.to_i < the_final.away_score.to_i) %>
+					<%#= the_final.home.name if (the_final.home_score.to_i > the_final.away_score.to_i) %>
+					<%#= the_final.away.name if (the_final.home_score.to_i < the_final.away_score.to_i) %>
+					<%= link_to(label_name(:final) , list_games_path(:id => cup)) %>
 					<% end %>
 				</span>
 			</td>
