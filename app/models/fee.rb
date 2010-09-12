@@ -29,7 +29,7 @@ class Fee < ActiveRecord::Base
   attr_accessible :type_id, :manager_id
   
   # friendly url and removes id  
-  has_friendly_id :concept, :use_slug => true, :reserved => ["new", "create", "index", "list", "edit", "update", "destroy", "show"]
+  has_friendly_id :concept, :use_slug => true, :reserved_words => ["new", "create", "index", "list", "edit", "update", "destroy", "show"]
 
   def self.debit_item_fees(debits, credit, page=1)
     unless (debits.first.class.to_s == credit.class.to_s)

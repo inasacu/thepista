@@ -9,7 +9,7 @@ class User < ActiveRecord::Base
    ajaxful_rater
       
    # friendly url and removes id
-   has_friendly_id :name, :use_slug => true, :reserved => ["new", "create", "index", "list", "signup", "edit", "update", "destroy", "show", "petition"]
+   has_friendly_id :name, :use_slug => true, :reserved_words => ["new", "create", "index", "list", "signup", "edit", "update", "destroy", "show", "petition"]
       
   acts_as_authentic do |c|
     c.openid_required_fields = [:nickname, :email]

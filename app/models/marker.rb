@@ -1,7 +1,7 @@
 class Marker < ActiveRecord::Base
 
   # friendly url and removes id  
-  has_friendly_id :name, :use_slug => true, :reserved => ["new", "create", "index", "list", "signup", "edit", "update", "destroy", "show"]
+  has_friendly_id :name, :use_slug => true, :reserved_words => ["new", "create", "index", "list", "signup", "edit", "update", "destroy", "show"]
 
   # sitemap generator
   sitemap :change_frequency => :weekly, :limit => 1000, :priority => 0.5

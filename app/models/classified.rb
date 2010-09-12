@@ -22,7 +22,7 @@ class Classified < ActiveRecord::Base
     attr_accessible :concept, :description, :starts_at, :table_id, :table_type
 
     # friendly url and removes id
-    has_friendly_id :concept, :use_slug => true, :reserved => ["new", "create", "index", "list", "signup", "edit", "update", "destroy", "show"]
+    has_friendly_id :concept, :use_slug => true, :reserved_words => ["new", "create", "index", "list", "signup", "edit", "update", "destroy", "show"]
 
     before_create       :format_description
 

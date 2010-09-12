@@ -28,7 +28,7 @@ class Payment < ActiveRecord::Base
   attr_accessible :credit_id, :credit_type, :item_id, :item_type, :manager_id, :fee_id
 
   # friendly url and removes id
-  has_friendly_id :concept, :use_slug => true,:reserved => ["new", "create", "index", "list", "signup", "edit", "update", "destroy", "show"]
+  has_friendly_id :concept, :use_slug => true,:reserved_words => ["new", "create", "index", "list", "signup", "edit", "update", "destroy", "show"]
   
   # method section
   def self.debit_item_amount(debits, item)    

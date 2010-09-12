@@ -85,7 +85,7 @@ class Schedule < ActiveRecord::Base
   attr_accessible :public, :season_ends_at
 
   # friendly url and removes id
-  has_friendly_id :concept, :use_slug => true, :reserved => ["new", "create", "index", "list", "signup", "edit", "update", "destroy", "show"]
+  has_friendly_id :concept, :use_slug => true, :reserved_words => ["new", "create", "index", "list", "signup", "edit", "update", "destroy", "show"]
 
   # after_update        :save_matches
   before_create       :format_description

@@ -1,7 +1,7 @@
 class Escuadra < ActiveRecord::Base
 
   # friendly url and removes id
-  # has_friendly_id :name, :use_slug => true, :reserved => ["new", "create", "index", "list", "signup", "edit", "update", "destroy", "show", "petition"]
+  # has_friendly_id :name, :use_slug => true, :reserved_words => ["new", "create", "index", "list", "signup", "edit", "update", "destroy", "show", "petition"]
   
   belongs_to    :item,          :polymorphic => true
   belongs_to    :sub_item,      :polymorphic => true
