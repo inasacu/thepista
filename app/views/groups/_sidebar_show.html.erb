@@ -5,7 +5,7 @@
 <ul class="navigation">
 <% 
 	if current_user.is_member_of?(@group) 
-		the_confirmation = label_with_name(:do_leave_group, "#{@group.name}?")
+		the_confirmation = label_with_name(:do_leave_item, "#{@group.name}?")
 %>
 		<li><%= link_to(label_name(:send_message_to), new_message_path(:group_id => @group.id)) %></li>
 		<li><%= link_to(label_name(:invitations_create_group) , new_invitation_url(:group_id => @group)) %></li>	
@@ -15,7 +15,7 @@
 %>
 		<li><%= link_to(label_name(:send_message_to), new_message_path(:id => @group.all_the_managers.first)) %></li>
 <%
-		unless current_user.has_group_petition?(current_user, @group)
+		unless current_user.has_item_petition?(current_user, @group)
 			the_label = label_with_name('add_to_group', @group.name)
 			the_confirmation = "#{ label_name(:petition_to_join) } #{current_user.name} #{ label_name(:to) } #{@group.name}?"
 %> 

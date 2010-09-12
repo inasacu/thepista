@@ -48,7 +48,8 @@
         <%= content_tag :td, label_name(:group), :class => "label" %>
 
 		<td class="<%= get_the_action%>">
-          <%= group_link @schedule.group %>
+          <%= item_name_link(@schedule.group)
+ %>
           &nbsp;&nbsp;
           <%= @schedule.home_score %>&nbsp;&nbsp;-&nbsp;&nbsp;<%= @schedule.away_score %>
           &nbsp;&nbsp;
@@ -59,7 +60,7 @@
 
       <tr>
         <%= content_tag :td, label_name(:home_group), :class => "label" %>            
-		<%= content_tag :td, group_link(@schedule.group), :class => get_the_action %>
+		<%= content_tag :td, item_name_link(@schedule.group), :class => get_the_action %>
       </tr>
 
     <% end %>

@@ -1,44 +1,61 @@
 class EscuadrasController < ApplicationController
   before_filter :require_user
-  before_filter :the_maximo,  :only => [:new, :create, :edit, :update]
-
-  def index    
+    
+  def index
     @cup = Cup.find(params[:id])
-    @escuadras = @cup.escuadras
-  end
-
-  def list    
-    @cup = Cup.find(params[:id])
-    @escuadras = @cup.escuadras
-    render :template => '/escuadras/index'
+    @escuadras = Escuadra.cup_escuadras(@cup, params[:page])
   end
   
   def show
     @escuadra = Escuadra.find(params[:id])
     @cup = @escuadra.cups.first
-    redirect_to list_escuadras_path(:id => @cup)    
+    redirect_to escuadras_path(:id => @cup)    
     return
   end
 
   def new
     @escuadra = Escuadra.new
-    @cup = Cup.find(params[:id])    
+    @cup = Cup.find(params[:id])   
+    # @cup_escuadras = @cup.escuadras
+    # @escuadras = Escuadra.find(:all, :conditions => ["item_type = 'Escuadra' and id not in (select escuadra_id from cups_escuadras where cup_id = ?)", @cup], :order => 'name')
+    # @escuadras = Escuadra.find(:all, :conditions => ["item_type = 'Escuadra'"], :order => 'name')
   end
 
   def create
+    @cup = Cup.find(params[:cup][:id])
+    
+    # escuadras for cup    
+    if params[:escuadra_ids]
+      @escuadras = Escuadra.find(params[:escuadra_ids])
+      @escuadras.each do |escuadra| 
+        escuadra.join_escuadra(@cup)
+      end
+      flash[:notice] = I18n.t(:successful_create)
+      redirect_to escuadras_path(:id => @cup) and return
+    end
+    
     @escuadra = Escuadra.new(params[:escuadra])
     @escuadra.description = @escuadra.name
-    @cup = Cup.find(params[:cup][:id])
      
     if @escuadra.save and @escuadra.join_escuadra(@cup)
+      
+      if @cup.official
+        @escuadra.item = @escuadra
+        @escuadra.save
+      end
+      
+      if @escuadra.item.nil?
+        @escuadra.item = @escuadra
+        @escuadra.save
+      end
+      
       flash[:notice] = I18n.t(:successful_create)
-      # redirect_to cup_path(@cup) and return      
-      redirect_to list_escuadras_path(:id => @cup) and return
+      redirect_to escuadras_path(:id => @cup) and return
     else
       render :action => 'new'
     end
   end
-
+  
   def edit
     @escuadra = Escuadra.find(params[:id])
     @cup = @escuadra.cups.first

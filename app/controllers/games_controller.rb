@@ -1,7 +1,7 @@
 class GamesController < ApplicationController
   before_filter :require_user
 
-  before_filter :get_game, :only => [:show, :edit, :update, :destroy, :set_score]
+  before_filter :get_game, :only => [:show, :edit, :update, :destroy, :set_score, :set_the_game_jornada]
   before_filter :get_cup, :only =>[:new, :index, :list]
   before_filter :has_manager_access, :only => [:edit, :update, :destroy]
 
@@ -35,20 +35,24 @@ class GamesController < ApplicationController
     end
 
     if @cup
-      @home = @cup.the_escuadras
-      @away = @cup.the_escuadras
+      # @home = @cup.the_escuadras
+      # @away = @cup.the_escuadras
+      
+      the_last_game = @cup.games.last
 
       @game.cup_id = @cup.id      
       @game.starts_at = @cup.starts_at
       @game.ends_at = @cup.starts_at + (60 * 60 * 2)
-      @game.reminder_at = @cup.starts_at - 1.day
+      @game.reminder_at = @cup.starts_at - 2.day
       @game.type_name = 'GroupStage'
       @game.points_for_single = 0
       @game.points_for_double = 5
       @game.jornada = 1
     end
 
-    @previous_game = Game.find(:first, :conditions => ["id = (select max(id) from games where cup_id = ?) ", @cup.id])    
+    # @previous_game = Game.find(:first, :conditions => ["id = (select max(id) from games where cup_id = ?) ", @cup.id])    
+    @previous_game = @cup.games.last
+    
     unless @previous_game.nil?
       @game.cup_id = @cup.id  
       @game.concept = @previous_game.concept      
@@ -58,8 +62,14 @@ class GamesController < ApplicationController
       @game.reminder_at = @previous_game.starts_at - 1.day        
 
       @game.type_name = @previous_game.type_name      
+      
       @game.points_for_single = @previous_game.points_for_single      
       @game.points_for_double = @previous_game.points_for_double      
+      @game.points_for_draw = @previous_game.points_for_draw    
+      @game.points_for_goal_difference = @previous_game.points_for_goal_difference    
+      @game.points_for_goal_total = @previous_game.points_for_goal_total    
+      @game.points_for_winner = @previous_game.points_for_winner         
+       
       @game.jornada = @previous_game.jornada.to_i + 1
       @game.home_ranking = @previous_game.home_ranking
       @game.away_ranking = @previous_game.away_ranking
@@ -84,13 +94,6 @@ class GamesController < ApplicationController
     end
   end
 
-  def edit
-    if @cup
-      @home = @cup.the_escuadras
-      @away = @cup.the_escuadras
-    end
-  end
-
   def update
     if @game.update_attributes(params[:game]) 
       flash[:notice] = I18n.t(:successful_update)
@@ -102,14 +105,12 @@ class GamesController < ApplicationController
       end
       return
     else
-      render :action => 'edit', :id => @game.id
+      render :action => 'edit'
     end
   end
 
   def set_the_game_jornada
-      @game = Game.find(params[:id])
-      @cup = @game.cup
-      
+          
       unless current_user.is_manager_of?(@cup)
         flash[:warning] = I18n.t(:unauthorized)
         redirect_back_or_default('/index')

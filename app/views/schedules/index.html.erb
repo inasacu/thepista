@@ -1,20 +1,21 @@
 <%
-	Barometer.google_geocode_key = APP_CONFIG['google_api']['key']
-	Barometer.config = { 1 => [:google, :yahoo], 2 => :wunderground }
-%>
-
-<%
 	the_label = label_name(:schedules)
 	content_for(:title, the_label)
+	
+	is_my_list = (get_controller_action == "schedule_my_list")
+	the_label = "#{the_label} #{label_name(:from_de)} #{h(@user.name)}" if is_my_list
+	
+	is_my_list = is_my_list ? (@user == current_user) : true
 %>
 
 <div class="block">
 
-  <%= render :partial => '/schedules/secondary_navigation' %>
+  <%= render :partial => '/schedules/secondary_navigation' if is_my_list %>
+  <%= render :partial => '/users/secondary_navigation' unless is_my_list %>
 
   <div class="content">   
   
-    <h2 class="title"><%= get_collection_label(@schedules) %></h2>
+    <h2 class="title"><%= @user == current_user ? label_name(:my_schedule) : the_label %></h2>
 	
     <div class="inner">
 	
@@ -28,9 +29,9 @@
 			  <%= label_name(:gameday_at) %></th>
         <th><%= label_name(:group) %>&nbsp;/<br />
 			  <%= label_name(:sport) %></th> 
-        <th><%#= label_name(:time_zone) %></th>
+        <th>&nbsp;</th>
         <th><%= label_name(:general_information) %></th>	
-        <th><%#= label_name(:time_zone) %></th>
+        <th>&nbsp;</th>
 		<th class="last">&nbsp;</th>
 		</tr>
         
@@ -50,7 +51,8 @@
 			</td>
 
 			<td class="name_and_date">
-				<%= group_link schedule.group %><br />
+				<%= item_name_link(schedule.group)
+ %><br />
 				<span class="date">
 					<%= schedule.group.sport.name %>
 				</span>
@@ -58,7 +60,8 @@
 
 			<td class="name_and_date">
 				<% if schedule.game_played? %>
-		        	<%= group_link schedule.group %>
+		        	<%= item_name_link(schedule.group)
+ %>
 		          	&nbsp;&nbsp;
 		          	<%= schedule.home_score %>&nbsp;&nbsp;-&nbsp;&nbsp;<%= schedule.away_score %>
 		          	&nbsp;&nbsp;
@@ -82,8 +85,7 @@
 				</span>
 			</td>
 
-			<%= content_tag(:td, ratings_for(schedule, :dimension => :performance), 
-				:class => get_the_action) if current_user.is_member_of?(schedule.group) %>
+			<%= content_tag(:td, ratings_for(schedule, :dimension => :performance), :class => get_the_action) if current_user.is_member_of?(schedule.group) %>
 				
 			<td class="last">
 				<%= marker_link(schedule.group.marker) %>

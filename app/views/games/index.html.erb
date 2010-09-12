@@ -5,6 +5,10 @@
 	the_label = is_action('index') ? label_name(:group_stage) : label_name(:group_round)
 	content_for(:title, the_label)
 	is_manager = current_user.is_manager_of?(@cup)	
+	
+	# final_played ||= false
+	# the_game = Game.final_game(@cup)
+	# final_played = the_game.played unless (the_game.nil? or the_game.blank?)	
 %>
 
 <div class="block">
@@ -53,22 +57,21 @@
 	
           <td class="first">
 			<%= is_manager ? in_place_text_field(:the_game, :jornada, {:cols => 1}) : game.jornada %>
-			<%#= game.jornada %>
           </td>
 
 		  <td class="name_and_date">
 			<%= game.concept %>
 			<span class="date">
-				<%= nice_day_of_week game.starts_at %>
+				<%= nice_day_of_week(game.starts_at) %>
 			</span>
 		  </td>
 
           <td>            
-            <%= escuadra_image_link_smaller game.home unless no_team %>
+            <%= escuadra_image_link_smaller(game.home) unless no_team %>
           </td>
 
 		  <td class="name_and_date">
-		  	<%= escuadra_link game.home unless no_team %>
+		  	<%= escuadra_link(game.home) unless no_team %>
 		  <span class="date">
 		  	<%= "#{game.home_ranking} #{game.home_stage_name}<br/>" if no_team %>
 			<%= "W#{the_previous[0]}" if (the_previous.length > 0) and no_team %>
@@ -80,7 +83,7 @@
 		  </td>
 
 		  <td class="name_and_date">
-		  	<%= escuadra_link game.away unless no_team %>
+		  	<%= escuadra_link(game.away) unless no_team %>
 		  <span class="date">
 		  	<%= "#{game.away_ranking} #{game.away_stage_name}<br/>" if no_team %>
 			<%= "W#{the_previous[1]}" if (the_previous.length > 0) and no_team %>
@@ -88,7 +91,7 @@
 		  </td>
 		
 		  <td>
-            <%= escuadra_image_link_smaller game.away unless no_team %>
+            <%= escuadra_image_link_smaller(game.away) unless no_team %>
 		  </td>
 			
 	       <td class="last">
@@ -112,13 +115,6 @@
 		</div>
 		</div>
 	</div>
-	
-<% content_for :sidebar, render(:partial => 'cups/sidebar_show') -%>
-<%# content_for :sidebar, render(:partial => 'shared/invite') -%>
-<%# content_for :sidebar, render(:partial => 'shared/share_object') -%>
 
-<%#  if @cup  %>
-<%# content_for :sidebar, render(:partial => 'shared/share_object', :locals => {:cup => @cup}) -%>
-<%# content_for :sidebar, render(:partial => 'cups/sidebar_cup_additional', :locals => {:cup => @cup}) if current_user.is_manager_of?(@cup) -%>
-<%# content_for :sidebar, render(:partial => 'shared/sidebar_show_cup', :locals => {:cup => @cup}) if current_user.is_manager_of?(@cup) -%>
-<%# end -%>
+
+<% content_for :sidebar, render(:partial => 'shared/sidebar_show_final_played') -%>

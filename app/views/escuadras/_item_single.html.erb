@@ -1,0 +1,12 @@
+<% 
+checked ? checkmark = 'checked' : checkmark = '' 
+%>
+
+<tr>
+	<td>	
+		<input type="checkbox" id="roster" name="escuadra_ids[]" value="<%= escuadra.id %>" <%= checkmark %> >
+	</td>        
+	<td>
+		<%= escuadra_image_link_smaller(escuadra) %>&nbsp;&nbsp;<%= escuadra_link(escuadra) %>
+	</td> 
+</tr>

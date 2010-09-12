@@ -36,7 +36,7 @@ class Cup < ActiveRecord::Base
   validates_numericality_of :points_for_draw, :greater_than_or_equal_to => 0, :less_than_or_equal_to => 100
 
   # variables to access
-  attr_accessible :name, :points_for_win, :points_for_draw, :points_for_lose
+  attr_accessible :name, :points_for_win, :points_for_draw, :points_for_lose, :official, :club
   attr_accessible :time_zone, :sport_id, :description, :conditions, :photo
   attr_accessible :starts_at, :ends_at, :deadline_at, :archive
   attr_accessible :group_stage_advance, :group_stage, :group_stage_single, :second_stage_single, :final_stage_single
@@ -52,7 +52,7 @@ class Cup < ActiveRecord::Base
   
   has_many :the_managers,
   :through => :manager_roles,
-  :source => :roles_squads
+  :source => :roles_users
 
   has_many  :manager_roles,
   :class_name => "Role", 
@@ -64,22 +64,22 @@ class Cup < ActiveRecord::Base
   before_create :format_description, :format_conditions
   before_update :format_description, :format_conditions
 
-  # # method section    
+  # method section    
   def object_counter(objects)
     @counter = 0
     objects.each { |object|  @counter += 1 }
     return @counter
   end
 
+  def all_the_managers
+    ids = []
+    self.the_managers.each {|user| ids << user.user_id }
+    the_users = User.find(:all, :conditions => ["id in (?)", ids], :order => "name")
+  end
+
   def the_escuadras
     return self.escuadras.collect {|p| [ p.name, p.id ] }
   end
-  
-  # def all_the_managers
-  #   ids = []
-  #   self.the_managers.each {|user| ids << user.user_id }
-  #   the_squads = User.find(:all, :conditions => ["id in (?)", ids], :order => "name")
-  # end
 
   def avatar
     self.photo.url
@@ -105,6 +105,18 @@ class Cup < ActiveRecord::Base
   def is_basket?
    	# sports related to basket
     return [7].include?(self.sport_id)
+  end
+  
+  def self.current_cups(page = 1)
+    self.paginate(:all, :conditions => ["ends_at > ?", Time.zone.now], :order => 'starts_at', :page => page, :per_page => CUPS_PER_PAGE)
+  end
+
+  def self.previous_cups(page = 1)
+    self.paginate(:all, :conditions => ["ends_at < ?", Time.zone.now], :order => 'starts_at', :page => page, :per_page => CUPS_PER_PAGE)
+  end
+  
+  def self.latest_items
+    find(:all, :conditions => ["created_at >= ?", LAST_WEEK], :order => "id desc") 
   end
   
   def has_standing    

@@ -2,7 +2,7 @@ class GroupsMarkers < ActiveRecord::Base
   
   # record a marker join
   def self.join_marker(group, marker)
-    self.create!(:group_id => group.id, :marker_id => marker.id) if self.exists?(marker, group)
+    self.create!(:group_id => group.id, :marker_id => marker.id, :created_at => Time.now, :updated_at => Time.now) if self.exists?(marker, group)
   end  
   
   # Return true if the marker group is nil

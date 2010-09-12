@@ -4,7 +4,7 @@ class CupsEscuadras < ActiveRecord::Base
   
   # record a cup join
   def self.join_escuadra(escuadra, cup)
-    self.create!(:cup_id => cup.id, :escuadra_id => escuadra.id) if self.exists?(escuadra, cup)
+    self.create!(:cup_id => cup.id, :escuadra_id => escuadra.id, :created_at => Time.now, :updated_at => Time.now) if self.exists?(escuadra, cup)
   end  
 
   def self.leave_escuadra(escuadra, cup) 

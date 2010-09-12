@@ -25,9 +25,9 @@ class UserMailer < ActionMailer::Base
     if teammate.group
       @subject          = "#{the_subject} #{teammate.group.name} " 
       @body[:group]     = teammate.group 
-    elsif teammate.tournament
-      @subject          = "#{the_subject} #{teammate.tournament.name} " 
-      @body[:group]     = teammate.tournament 
+    # elsif teammate.tournament
+    #   @subject          = "#{the_subject} #{teammate.tournament.name} " 
+    #   @body[:group]     = teammate.tournament 
     end
     @recipients       = recipient.email
     @from             = "#{sender.name} <#{sender.email}>"
@@ -42,9 +42,9 @@ class UserMailer < ActionMailer::Base
     if teammate.group
       @subject          = "#{the_subject} #{teammate.group.name} " 
       @body[:group]     = teammate.group 
-    elsif teammate.tournament
-      @subject          = "#{the_subject} #{teammate.tournament.name} " 
-      @body[:group]     = teammate.tournament 
+    # elsif teammate.tournament
+    #   @subject          = "#{the_subject} #{teammate.tournament.name} " 
+    #   @body[:group]     = teammate.tournament 
     end
     @recipients       = recipient.email
     @from             = "#{sender.name} <#{sender.email}>"
@@ -111,7 +111,10 @@ class UserMailer < ActionMailer::Base
       @body[:schedule]    = invitation.item
     when "Challenge"
       @subject            = "#{invitation.user.name} #{I18n.t(:participate_challenge)}!"
-      @body[:challenge]    = invitation.item
+      @body[:challenge]   = invitation.item
+    when "Cup"
+      @subject            = "#{invitation.user.name} #{I18n.t(:participate_cup)}!"
+      @body[:cup]         = invitation.item
     else
       @subject            = "#{invitation.user.name} #{I18n.t(:invitation_to_join)}!"
     end

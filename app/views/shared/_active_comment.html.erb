@@ -1,6 +1,7 @@
 <div class="block"> 
+	<%= content_tag 'h3', t(:recent_activities) %>
   <div class="sidebar-block"> 
-	<%= content_tag 'h5', t(:recent_activities) %><br />
+	<!-- <%#= content_tag 'h5', t(:recent_activities) %><br /> -->
 	
 	<table class="table">
 	<% my_activities.each do |activity| %>

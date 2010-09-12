@@ -50,7 +50,8 @@ if current_user
 			the_label = "#{t(:the_wall)} #{h(@group.name)}"
 %>
 			<li class="<%= the_class %>">  <%= link_to(the_label, blog_path(@group.blog)) %></li>
-			<li class="<%= the_class %>">  <%= group_link @group %></li>
+			<li class="<%= the_class %>">  <%= item_name_link(@group)
+ %></li>
 			<li class="<%= the_class %>">  <%= link_to(label_name(:users) , team_list_path(@group.id)) %></li>
 <% 
 		end 
@@ -74,7 +75,8 @@ if current_user
 				the_label = "#{label_name(:the_wall)} #{h(@group.name)}"
 %>
 				<li class="<%= the_class %>">  <%= link_to(the_label, blog_path(@group.blog)) %></li>
-				<li class="<%= the_class %>">  <%= group_link @group %></li>
+				<li class="<%= the_class %>">  <%= item_name_link(@group)
+ %></li>
 		       	<li class="<%= the_class %>">  <%= link_to(label_name(:users) , team_list_path(@group.id)) %></li>
 <% 
 			end  

@@ -14,6 +14,9 @@ class Match < ActiveRecord::Base
   # validations  
   validates_numericality_of :technical,    :greater_than_or_equal_to => 0, :less_than_or_equal_to => 5
   validates_numericality_of :physical,     :greater_than_or_equal_to => 0, :less_than_or_equal_to => 5
+
+  validates_presence_of         :description
+  validates_length_of           :description,                     :within => DESCRIPTION_RANGE_LENGTH
   
   # variables to access
   attr_accessible :name, :schedule_id, :user_id, :group_id, :invite_id, :group_score, :invite_score
@@ -26,6 +29,7 @@ class Match < ActiveRecord::Base
 
   before_create   :format_description
   
+  # method section
   def position_name
     I18n.t(self.position.name)
   end

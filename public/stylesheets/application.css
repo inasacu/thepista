@@ -112,6 +112,9 @@ textarea.textfield {
 	height: 80px; 
 }
 
+input.textfield_login { 
+	width: 300px; 
+}
 .textscore{ 
 	border: 1px solid rgb(205, 205, 205); 
 	padding: 0.4em; 
@@ -175,7 +178,7 @@ text_area.textfield {
 	background-repeat: no-repeat; 
 }
 .next_message:hover, .previous_message:hover { 
-	background-color: #005573; 
+/*	background-color: #005573; */
 /*	background-position: 4px 4px; */
 	text-decoration: none; 
 }
@@ -236,15 +239,16 @@ text_area.textfield {
 }
 
 #escuadra td{
-	padding: 1px 4px;
+/*	padding: 1px 4px;*/
+	padding: 4px 10px;
 }
 
 #game td{
-	padding: 1px 4px;
+	padding: 2px 6px;
 }
 
 #cast td{
-	padding: 1px 4px;
+	padding: 2px 6px;
 }
 
 #scorecard	 td{
@@ -256,6 +260,14 @@ text_area.textfield {
 }
 
 #fee td{
+	padding: 4px 10px;
+}
+
+#home td{
+	padding: 2px 6px;
+}
+
+#user td{
 	padding: 4px 10px;
 }
 
@@ -282,14 +294,6 @@ td.sub_true {
   width: 75%;
 }
 
-/*
-.secondary-navigation ul li.petition, .secondary-navigation ul li.petition a:hover {
-	background: #009933;
-}
-.secondary-navigation ul li.message, .secondary-navigation ul li.message li.petition a:hover {
-	background: #009933;
-}
-*/
 
 /* table rows */
 .table .name_and_date .name { overflow: hidden; display: block; width: 150px; margin-right: 20px; white-space: nowrap; }

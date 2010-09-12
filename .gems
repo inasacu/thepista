@@ -5,6 +5,7 @@ authlogic
 will_paginate
 authlogic-oid
 be9-acl9 --source http://gems.github.com
+acl9 --source http://gemcutter.org
 geokit
 contacts
 friendly_id --version 2.2.4

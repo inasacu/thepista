@@ -6,31 +6,37 @@
 	escuadra = ''
 	is_escuadra = (standing.item_type == "Escuadra")
 	
-	case standing.item_type
-	when "Escuadra"
-		escuadra = Escuadra.find(standing.item_id)
-	when "User"
-		escuadra = User.find(standing.item_id)
-	else
-	end
+	final_played ||= false
+	the_game = Game.final_game(@cup)
+	final_played = the_game.played unless (the_game.nil? or the_game.blank?)
+	
+	escuadra = standing.item
 		
 	played = standing.wins.to_i + standing.draws.to_i + standing.losses.to_i
 	@stand = standing  
-	is_manager = current_user.is_manager_of?(@cup)	
+	is_manager = current_user.is_manager_of?(@cup)
+	
+	has_challenge = !standing.challenge_id.nil?
+	the_challenge = has_challenge ? h(standing.challenge.name) : ""
 %>
 
 <tr>
 	<td class="puntos"><%= standing.ranking %>&nbsp;&nbsp;
+		<% if is_escuadra %>
 		<%= is_manager ? in_place_text_field(:stand, :group_stage_name, {:cols => 1}) : standing.group_stage_name %>
+		<% end %>
 	</td>
-	<td class="equipos"><%= mailer ? "&nbsp;" : escuadra_image_link_tiny(escuadra) %></td>
+	<td class="equipos"><%= mailer ? "&nbsp;" : item_image_link_tiny(escuadra.item) %></td>
 	<td class="equipos">
 		<span>
-		<% if mailer %>
+	
+		<% if mailer and is_escuadra %>
 		<%= link_to((escuadra.name.to_s.length > 14) ? "#{escuadra.name.to_s.strip[0..12]}..." : escuadra.name, {:host => 'haypista.com', :controller => 'escuadras', :action => 'show', :id => escuadra}) %>
 		<% else %>
-		<%= escuadra_link(escuadra) %>
+		<%= escuadra_link(escuadra) %><br/>
+		<%= (final_played ? the_challenge : item_name_link(standing.challenge)) if has_challenge %>
 		<% end %>
+
 		</span>
 	</td>
 	<td class="puntos"><%= standing.points.round %></td>

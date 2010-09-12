@@ -1,8 +1,6 @@
 <div class="block" id="block-forms-2"> 
 
-  <%#= render :partial => 'secondary_navigation' %>  
-
-  <%= render :partial => '/users/secondary_navigation' %>
+	<%= render :partial => '/messages/secondary_navigation' %>  
   
   <div class="content"> 
   
@@ -13,10 +11,16 @@
 			<%= "#{label_name(:to)} #{schedule_link @schedule}"  %>
 
 		<%  elsif @group %>
-			<%= "#{label_name(:to)} #{group_link @group}"  %>
+			<%= "#{label_name(:to)} #{item_name_link(@group)
+}"  %>
 
 		<%  elsif @challenge %>
-			<%= "#{label_name(:to)} #{challenge_link @challenge}"  %>
+			<%= "#{label_name(:to)} #{item_name_link(@challenge)
+}"  %>
+
+		<%  elsif @cup %>
+			<%= "#{label_name(:to)} #{item_name_link(@cup)
+}"  %>
 
 		<% end %>
 	</h2>
@@ -28,6 +32,7 @@
 		<%= hidden_field :schedule, :id %>
 		<%= hidden_field :group, :id %>
 		<%= hidden_field :challenge, :id %>
+		<%= hidden_field :cup, :id %>
 	
 		<div class="columns"> 
 		
@@ -35,7 +40,8 @@
 		  
 			<div class="group">
 			  <%= f.label :email_addresses, label_name('email_addresses'), :class => :label %>
-			  <%= f.text_area :email_addresses, :rows => 5, :cols => 56, :max_length => 100 %><br />
+			  <!-- <%#= f.text_area :email_addresses, :rows => 5, :cols => 56, :max_length => 100 %><br /> -->
+			  <%= f.text_area :email_addresses, :class => 'textfield' %><br />
 			  <span class="description"><%= label_name('email_addresses', 'description') %></span>
 			</div> 
 			
@@ -67,5 +73,3 @@
   </div> 
   
 </div>
-
-<% content_for :sidebar, render(:partial => 'sidebar') -%>

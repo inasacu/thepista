@@ -2,27 +2,22 @@ class InvitationsController < ApplicationController
   before_filter :require_user
   
   def index  
-    store_location     
-    @user = current_user
-    @invitations = Invitation.paginate(:all, 
-        :conditions => ["user_id = ?", @user],:page => params[:page], :per_page => INVITATIONS_PER_PAGE, :order => "created_at desc")
-    respond_to do |format|
-      format.html 
-    end 
+    redirect_to :action => 'invite'
   end
   
   def new
     @invitation = Invitation.new
+    
     if (params[:group_id])
       @group = Group.find(params[:group_id])
-
     elsif (params[:schedule_id])
       @schedule = Schedule.find(params[:schedule_id])
-
     elsif (params[:challenge_id])
       @challenge = Challenge.find(params[:challenge_id])
-	  
+    elsif (params[:cup_id])
+      @cup = Cup.find(params[:cup_id])
     end
+    
     respond_to do |format|
       format.html
     end
@@ -47,6 +42,12 @@ class InvitationsController < ApplicationController
       @challenge = Challenge.find(params[:challenge][:id])
       @invitation.item = @challenge
     end
+    
+    unless params[:cup][:id].blank?
+      @cup = Cup.find(params[:cup][:id])
+      @invitation.item = @cup
+    end
+    
     email_addresses = @invitation.email_addresses || ''
     
     text = "#{text.to_s.strip[0..12]}..." if text.to_s.length > 14

@@ -19,10 +19,9 @@
 	  <% @groups.each do |group| 
 		schedule = Schedule.last_schedule_group_played(group)
 		-%>
-
 	  <tr>  
 			<td>
-				<%= group_image_link_small group %>
+				<%= item_image_link_small(group) %>
 			</td>
 
 			<td class="name_and_date">
@@ -32,19 +31,23 @@
 				</span>
 			</td>
 
-			<td>
-				<%= user_list group.all_the_managers %><br />
+			<td class="name_and_date">
+				<%= item_list(group.all_the_managers) %><br />
+				<span class="date">
 				<%= group.sport.name %>
+				</span>
 			</td>
 
 			<td>
 				<%= group.time_zone %>
 			</td>
-
-			<td>
+			
+			  <td class="name_and_date">
 				<%= I18n.t(:has_group_users, :count => object_counter(group.users)) %><br />
-				<%= I18n.t(:has_group_schedules, :count => object_counter(group.schedules)) %>
-			</td>
+				<span class="date">
+					<%= I18n.t(:has_group_schedules, :count => object_counter(group.schedules)) %>
+				</span>
+			  </td>
 
 			<td class="name_and_date">
 				<%= link_to(label_name(:scorecard), scorecard_path(:id => group)) %>
@@ -61,7 +64,7 @@
 						<%= link_to(label_name(:send_message_to), new_message_path(:id => group.all_the_managers.first)) %><br />
 				
 					<% 	# unless current_user.has_pending_petition?(current_user) 
-						unless current_user.has_group_petition?(current_user, group) 
+						unless current_user.has_item_petition?(current_user, group) 
 							the_label = label_with_name('add_to_group', group.name)
 							the_confirmation = "#{ label_name(:petition_to_join) } #{current_user.name} #{ label_name(:to) } #{group.name}?"
 					%> 

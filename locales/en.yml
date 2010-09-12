@@ -42,6 +42,7 @@ en:
      announcements_option: Options
      announcements_previous:  Previous Announcements
      archive: Archive 
+     archive_description:  Archive Record
      archive_list_schedules:  Previous Season
      are_you_sure:  Are you sure? 
      at: at
@@ -95,7 +96,7 @@ en:
      cast_right_guess:  Right Guesses
      cast_right_guess_all:  All Points
      challenge:  Challenge
-     challenge_options:  Options
+     challenge_option:  Options for Challenges
      challenges:  Challenges
      challenges_all:  All Challenges
      challenges_create:  Create your challenge 
@@ -122,7 +123,7 @@ en:
      challenges_no:  No challenge to display.
      challenges_none:  No challenge.
      challenges_options_without: "What options do you have since you don't have any challenges?"
-     challenges_option:  Options 
+     challenge_option:  Opciones para retos 
      challenges_points:  Points / Game
      challenges_search: Search for challenges
      challenges_search_to_join: You can search for challenge to join. 
@@ -154,6 +155,8 @@ en:
      city: City  
      click_to_edit:  "Click to edit!" 
      close: Close   
+     club:  "Team Tournament Only"
+     club_description:  Tournament for teams only
      code: Code
      conditions: Conditions   
      coeficient: "%"
@@ -195,7 +198,12 @@ en:
      create_your_own: Create your own       
      created: has been created correctly.   
      created_at:  Date Created
-     created_a_schedule: Has created an event   
+     created_a_challenge:  Has created challenge
+     created_a_cup:  Has create tournament
+     created_a_game:  Has added game  
+     created_a_group:  Has created team
+     created_a_match:  Has updated scorecard with
+     created_a_schedule: Has created event
      credit: Payment   
      credit_amount: Credit Amount   
      credit_amount_description:  Credit Amount Details
@@ -203,16 +211,25 @@ en:
      credits: Payments  
      cup:  Tournament  
      cups:  Tournaments
-     cups_all:  All tournaments
-     cups_create:  New tournament 
-     cups_destroy:  Remove tournament
-     cups_edit:  Update tournament
+     cups_all:  All Tournaments
+     cups_create:  New Tournament 
+     cups_destroy:  Remove Tournament
+     cups_edit:  Update Tournament
      cups_index:   Tournaments
      cups_index_option: Options 
+     cups_howto:  Create your tournament in 7 steps.
+     cups_howto_create:  Click option 'New Tournament'.
+     cups_howto_event:  Click option 'New event'.
+     cups_howto_tab:  Click the tab 
+     cups_howto_fillin:  Fill in all fields and click the 'Create' button.
+     cups_howto_gameday:  Upcoming events will appear on the home page.
+     cups_howto_petition:  Your friends will need to request to join your tournament.
+     cups_howto_convocatoria:  Teammates will need to set squad status per event.
+     cups_howto_show:  Go to the tournament details.
      cups_invitations_create:  Invite your friend to this tournament
      cups_join:  Join this tournament
      cups_list:  Previous Tournaments
-     cups_new:  New tournament
+     cups_new:  New Tournament
      cups_new_option: Options 
      cups_no:  No tournament to display.
      cups_none:  No tournament.
@@ -290,12 +307,13 @@ en:
      destroy_type: Remove the Type   
      destroy_user: Remove the Player   
      destroy_venue: Remove the Venue
+     difference:  Difference
      documentation: Documentation
      does_not_exist: "The page your are trying to access does not exist, Sorry!"
      does_not_exist_explained: "It is possible that the page has been modified and no longer exist, Sorry!"	  
      do_join_group: Do you want to join   
      do_join_tournament: Do you want to join   
-     do_leave_group: Do you want to leave     
+     do_leave_item: Do you want to leave     
      dont_user_marks: "Please do not use accents when using OpenID. Thank You!"   
      dorsal: Dorsal   
      dorsal_description: (If your interest is to put your name or number on your jersey...)   
@@ -478,7 +496,8 @@ en:
      assist_turnover_ratio:  "AST/TO" 	
      field_goal_attempt_full: Field Goal Attempt		
      field_goal_made_full: 	 Field Goal Made
-     field_goal_percentage_full: Field Goal Percentage	
+     field_goal_percentage_full: Field Goal Percentage
+     find_people:  People	
      free_throw_attempt_full: Free Throw Attempt
      free_throw_made_full: 	 Free Throw Made
      free_throw_percentage_full:  Free Throw Percentage
@@ -593,7 +612,8 @@ en:
      invitation_to: You have an invitation to HayPista   
      invitation_to_group: Invite a friend to join the Team   
      invitation_to_schedule: Invite a friend   
-     invitations: Connect with friends   
+     invitations: Connect with friends 
+     invitations_sent:  Invitations sent  
      invite: invite   
      invite_friend: Invite a friend     
      invite_other_friend: Invite other friend  
@@ -603,7 +623,8 @@ en:
      is_not_available: "No" 
      join_cup:  Join the challenge  
      join_group: Join the Team   
-     join_group_message: Message para unirte al team ha sido mandado correctamente.   
+     join_group_message: Message para unirte al team ha sido mandado correctamente. 
+     join_option:  Options to Join / Opt-out  
      join_tournament: Join the Tournament   
      jornada:  Event
      jornada_description:  Event
@@ -613,6 +634,7 @@ en:
      last_minute: Last Minute   
      last_schedule_description: Recent event    
      last_scorecard: Recent Results   
+     latest_activities:  Recent Activities
      leave_comment: Leave a comment...   
      leave_group: Leave the Team   
      left_comment_on_wall: Has left a <strong>COMMENT</strong> for    
@@ -639,7 +661,8 @@ en:
      Low: Low   
      male_value: Male          
      manager: Manager   
-     managers: Manager(s)   
+     managers: Manager(s) 
+     manager_option:  Options to Add / Remove Manager
      map: Map   
      map_it: Map It
      maps: Maps   
@@ -754,6 +777,7 @@ en:
      no_message: No messages.   
      no_openid: No third party account added to OpenID.   
      no_payment: No payments 
+     no_photo_for_cup:  Tournament without a photo
      no_photo_for_user: Player without a photo
      no_photo_for_group: Team without a photo
      no_photo_for_tournament: Tournament without a photo         
@@ -786,6 +810,8 @@ en:
      notification: Notice   
      notifications: Notices   
      office_hours:  Office Hours
+     official:  Official Tournament
+     official_description:  Official Tournament
      open: Open   
      openid_identifier: OpenID URL
      open_id_explanation: "The OpenID authentication system is a safe, free and very easy to use.  It will enable identification of many web pages when you enter your OpenID URL, it also gives you access to sites that support OpenID "  
@@ -806,7 +832,9 @@ en:
      overview: overview   
      page_does_not_exist: The page you wanted does not exist.     
      participate_challenge: Participate in the challenge
-     participate_challenge_afterwards: "After you signup, follow the link to signup for the challenge"       
+     participate_challenge_afterwards: "After you signup, follow the link to signup for the challenge" 
+     participate_cup:  Participate in the tournament
+     participate_cup_afterwards: "After you signup, follow this link to participate in the tournament"     
      participate_schedule: Participate in the Event
      participate_schedule_afterwards: "After you signup for the team and its accepted, follow this link to participate in the event"
      participate_group_afterwards: "After you signup, follow the link to signup for the team"   
@@ -847,7 +875,8 @@ en:
      petition_join_item_accept:  Accept
      petition_join_item_decline: Decline
      petition_no:  No Requests to show.
-     petition_to_join: Request to join a
+     petition_to_join: Request to join
+     petition_to_join_accepted: Has joined
      petition_pending: Pending Request   
      petitions: Requests 
      petition_to_join_approved: Request to join has been approved.
@@ -881,6 +910,14 @@ en:
      points_for_lose_description: Points for a Lost Match...
      points_for_single:  Points for guessing part of the outcome
      points_for_single_description:  Set points for guessing the part of the result...
+     points_for_single_draw:  Points for guessing a draw game
+     points_for_single_draw_description:  Points for guessing a draw game  
+     points_for_single_goal_difference: Points for guessing the goal difference
+     points_for_single_goal_difference_description: Points for guessing the goal difference
+     points_for_single_goal_total: Points for guessing the goal total
+     points_for_single_goal_total_description: Points for guessing the goal total
+     points_for_single_winner: Points for guessing the winner
+     points_for_single_winner_description: Points for guessing the winner
      points_for_win: Points for a Win
      points_for_win_description: Points for a Won Match...
      points_full: Points   
@@ -1102,6 +1139,7 @@ en:
      something_wrong_explained: "Already registered this ruling. We'll Look as soon as possible."
      escuadra: Team
      escuadras: Teams
+     escuadras_add:  Teams
      escuadras_all:  All teams
      escuadras_available:  All teams
      escuadras_create:  New team 
@@ -1112,6 +1150,7 @@ en:
      escuadras_invitations_create:  Invite a friend to this team 
      escuadras_join:  Join the team
      escuadras_list:  Teams
+     escuadras_name_description:  Team Name
      escuadras_new:  New team
      escuadras_new_option: Options 
      escuadras_no:  No team to display.
@@ -1123,6 +1162,8 @@ en:
      escuadras_search_to_join: Search for team. 
      escuadras_show:  Show team
      escuadras_to_join:   Create a team 
+     escuadras_true:  Teams on list
+     escuadras_false: Teams not on the list
      escuadras_update: Update team
      start_session: Start Session   
      starts_at: Starts At  
@@ -1135,6 +1176,7 @@ en:
      subject_description:  Subject
      sub_manager_updated:  Update sub-manager.     
      manager_updated:  Update manager.     
+     subscription_option:  Options for subscribers
      subscription_at: Last Day to add squad status change for subscriber  
      subscription_at_match: Last Day to add squad status change for subscriber    
      subscription_at_description: (Last Day to add squad status change for subscriber  ...(ex- 1 day before the event)) 
@@ -1296,7 +1338,7 @@ en:
      what_is_haypista:  What is HayPista?
      what_is_this:   What is this? 
      what_is_your_account: "What is access with your personal account?"
-     what_are_you_practicing: What are you practicing?   
+     what_are_you_practicing: Share an update  
      why_use_your_account:  Why access with your personal account?
      whats_new: What is new in HayPista?   
      write_comment: Write a comment...   
@@ -1399,16 +1441,17 @@ en:
      invitations_contacts:  Invite your email contacts.
      invitations_email: "Email (Hotmail, Gmail, Yahoo, etc...)"
      invitations_index:  Invitations Sent
-     invitations_import:  Invite your contacts
+     invitations_import:  Invite Your Contacts
      invitations_for_your_friends:  Invite your friends to join HayPista
      invitations_no:  No Invitation to show.
      invitations_option:  Options
-     invitations_create:  Invite your friends to join HayPista
+     invitations_create:  Invite Your Friends 
      invitations_create_cup: Invite your friends to this tournament
      invitations_create_challenge:  Invite your teams to this challenge
      invitations_create_group: Invite your friends to this team
+     invitations_create_item:  Invite your friends to this
      invitations_create_schedule: Invite your friends to this event
-     invitations_create_tournament: Invite your friends to this Tourneo
+     invitations_create_tournament: Invite your friends to this Tournament
      invitations_create_meet: New Invitation to Tournament
      invitations_sent:  Invitations Sent
      invitations_your_friend:  Invite your friends to
@@ -1557,6 +1600,8 @@ en:
      schedules_invitations_create:  Invite a friend to the Event
      schedules_list:  Previous Events
      schedules_list_no: No previous events to show.
+     schedules_my_list: My Events 
+     schedules_my_list_no: No events to show.
      schedules_manager_option:  Requires team manger to see additional options.
      schedules_new: New Event
      schedules_no: No events to show.
@@ -1702,7 +1747,12 @@ en:
      tournaments_update: Edit Tournament          
      types_index:  Types
      types_maximo_option:  Admin Access Only.
-     types_option:  Opcions     
+     types_option:  Opcions  
+     type_groupstage: Group Stage
+     type_firstgame:  Elimination Round
+     type_subsequentgame: Querter / Semi-Finals
+     type_thirdplacegame: Third Place
+     type_finalgame: Final   
      users_available:  Players Available
      users_index:  Players
      users_index_option: Options

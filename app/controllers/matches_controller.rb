@@ -11,9 +11,10 @@ class MatchesController < ApplicationController
 
   def edit
     @match = Match.find(params[:id])
+    @match.description = nil
     @schedule = @match.schedule
     @matches = @schedule.the_roster
-
+    
     unless current_user.is_manager_of?(@schedule.group)
       flash[:warning] = I18n.t(:unauthorized)
       redirect_back_or_default('/index')

@@ -1,0 +1,19 @@
+
+
+.header{ text-align:left; height:39px; overflow:hidden; min-width:954px}
+.header,.header li a:hover,.header li a.active{background:#0F7D00}
+.header a.logo, .header div.logo{float:left;background:#0F7D00 url(../images/logo_white.png) no-repeat top left;width:130px;height:32px;display:block}
+.header a.logo:active{ position:relative; top:1px}
+.header div.logo{ margin-left:10px}
+.header li{ float:left; margin-right:1px}
+.header li a{  float:left; padding:11px 10px; display:block; color:#FFF}
+.header li a:hover, .header li a.active{ position:static; color:#FFF; text-decoration:none; background-color:#60AD35; background-position:bottom left}
+
+.sections{ float:left; padding-left:20px; width:695px; font-size:12px}
+.sections a.active{ font-weight:bold; font-size:11px}
+
+.settings{ float:right}
+
+.header .settings a:hover{}
+
+

@@ -13,12 +13,6 @@ class ForumsController < ApplicationController
       @next = Schedule.next(@schedule)
     end  
 
-    unless @forum.meet.nil?
-      @meet = @forum.meet 
-      @round = @meet.round
-      @previous = Meet.previous(@meet)
-      @next = Meet.next(@meet)
-    end
     @comments = @forum.comments.recent.limit(COMMENTS_PER_PAGE).all  
   end
 
@@ -40,14 +34,6 @@ class ForumsController < ApplicationController
           return
         end
       end    
-
-      unless @forum.meet.blank?
-        unless current_user.is_tour_member_of?(@forum.meet.tournament)
-          redirect_to root_url
-          return
-        end
-      end
-
     end
   end
 

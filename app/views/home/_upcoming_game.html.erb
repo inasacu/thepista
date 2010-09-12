@@ -8,15 +8,16 @@
 -%>		
 	<tr>
 		<td>
-			<%= cup_image_link_small(game.cup) %>
+			<%= item_image_name_link_small(game.cup) %>
 		</td>
 		<td>
-			<%= game_link game %>
+			<%= item_concept_link(game)
+ %>
 		</td>
 		<td class="name_and_date">
-			<%= cup_link game.cup %><br />
+			<%= item_name_link(game.cup) %><br />
 			<span class="date">
-				<%= game.cup.sport.name %>
+				<%= game.sport_name %>
 			</span>
 		</td>
 		<td class="name_and_date">

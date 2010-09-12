@@ -1,10 +1,12 @@
 <% 
 	is_user_manager = (current_user.is_manager_of?(@cup))
+	@the_escuadras = []
+	@cup.escuadras.each {|escuadra| @the_escuadras << escuadra.item}
 %>
 
 <div class="block">
 
-  <%= render :partial => 'secondary_navigation' %>   
+  <%= render :partial => '/cups/secondary_navigation' %>
   
   <div class="content">
 	        
@@ -35,14 +37,16 @@
 	<table border="1">
 		
 		<%= tr_td_action(:name, @cup.name) %>
+		<%= tr_td_action(:official, label_name(@cup.official, 'value')) if current_user.is_maximo? %>
 		<%= tr_td_action(:sports, @cup.sport.name) %>
 		<%= tr_td_action(:time_zone, @cup.time_zone) %>
 		<%= tr_td_action(:starts_at, nice_day_of_week(@cup.starts_at)) %>
 		<%= tr_td_action(:ends_at, nice_day_of_week(@cup.ends_at)) %>
 		<%= tr_td_action(:deadline_at, nice_day_of_week(@cup.deadline_at)) %>
+		<%= tr_td_action(:club, label_name(@cup.club, 'value')) %>		
 		<%= tr_td_action(:escuadras, t(:has_cup_escuadras, :count => @cup.escuadras.count)) %>
 		<%= tr_td_action(:games, t(:has_cup_games, :count => @cup.games.count)) %>		
-		<%= tr_td_action(:group_stage_advance, @cup.group_stage_advance) if (@cup.group_stage_advance.to_i > 0) %>
+		<%= tr_td_action(:group_stage_advance, @cup.group_stage_advance) if (@cup.group_stage_advance.to_i > 0) if current_user.is_maximo? %>
 		
 		<tr>
 			<%= content_tag :td, link_to(label_name(:standing), standing_path(:id => @cup)), 
@@ -56,11 +60,11 @@
 		
 		<tr>
 		     <%= content_tag :td, label_name(:escuadras_available), :class => "label" %>
-		     <%= content_tag :td, escuadra_list(@cup.escuadras), :class => get_the_action %>
+		     <%= content_tag :td, item_list(@the_escuadras), :class => get_the_action %>
 		</tr>
 
 		<tr>
-		<%= render :partial => 'shared/show_images', :locals => {:collection => @cup.escuadras} %>			
+		<%= render :partial => 'shared/show_images', :locals => {:collection => @the_escuadras} %>			
 		</tr>
 
 		</table>
@@ -75,10 +79,4 @@
   </div>
 </div>
 
-<% content_for :sidebar, render(:partial => 'cups/sidebar_show') -%>
-<% content_for :sidebar, render(:partial => 'challenges/sidebar_legend') -%>
-
-<%  if @cup  %>
-<% content_for :sidebar, render(:partial => 'cups/sidebar_cup_additional', :locals => {:cup => @cup}) if current_user.is_manager_of?(@cup) -%>
-<% content_for :sidebar, render(:partial => 'shared/sidebar_show_cup', :locals => {:cup => @cup}) if current_user.is_manager_of?(@cup) -%>
-<% end -%>
+<% content_for :sidebar, render(:partial => 'shared/sidebar_show_final_played') -%>

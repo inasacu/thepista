@@ -37,11 +37,19 @@ class Game < ActiveRecord::Base
   # validates_presence_of         :away_stage_name,                                                     :allow_nil => true
   # validates_length_of           :away_stage_name,                 :is => 1,                           :allow_nil => true
   # validates_format_of           :away_stage_name,                 :with => /^[-A-Z]+$/,               :allow_nil => true
+  
+  validates_numericality_of     :points_for_single,               :greater_than_or_equal_to => 0,       :less_than_or_equal_to => 100,  :allow_nil => true
+  validates_numericality_of     :points_for_double,               :greater_than_or_equal_to => 0,       :less_than_or_equal_to => 100,  :allow_nil => true
+  validates_numericality_of     :points_for_draw,                 :greater_than_or_equal_to => 0,       :less_than_or_equal_to => 100,  :allow_nil => true
+  validates_numericality_of     :points_for_goal_difference,      :greater_than_or_equal_to => 0,       :less_than_or_equal_to => 100,  :allow_nil => true
+  validates_numericality_of     :points_for_goal_total,           :greater_than_or_equal_to => 0,       :less_than_or_equal_to => 100,  :allow_nil => true
+  validates_numericality_of     :points_for_winner,               :greater_than_or_equal_to => 0,       :less_than_or_equal_to => 100,  :allow_nil => true
 
-  validates_presence_of         :starts_at, :ends_at, :reminder_at, :deadline_at 
+  validates_presence_of         :starts_at, :ends_at, :reminder_at 
 
   # variables to access
-  attr_accessible :concept, :starts_at, :ends_at, :reminder_at, :deadline_at, :points_for_single, :points_for_double
+  attr_accessible :concept, :starts_at, :ends_at, :reminder_at, :deadline_at
+  attr_accessible :points_for_single, :points_for_double, :points_for_draw, :points_for_goal_difference, :points_for_goal_total, :points_for_winner
   attr_accessible :cup_id, :home_id, :away_id, :winner_id, :next_game_id, :jornada, :round, :type_name
   attr_accessible :home_score, :away_score, :played, :home_ranking, :away_ranking, :home_stage_name, :away_stage_name
 
@@ -52,13 +60,13 @@ class Game < ActiveRecord::Base
   def self.group_stage_games(cup, page = 1)
     self.paginate(:all, 
     :conditions => ["cup_id = ? and type_name = 'GroupStage'", cup],
-    :order => 'jornada', :page => page, :per_page => CUPS_PER_PAGE)
+    :order => 'jornada', :page => page, :per_page => ESCUADRAS_PER_PAGE)
   end
 
   def self.group_round_games(cup, page = 1)
     self.paginate(:all, 
     :conditions => ["cup_id = ? and (type_name != 'GroupStage' or type_name is null)", cup],
-    :order => 'jornada', :page => page, :per_page => CUPS_PER_PAGE)
+    :order => 'jornada', :page => page, :per_page => ESCUADRAS_PER_PAGE)
   end
 
   def self.upcoming_games(hide_time)
@@ -70,9 +78,14 @@ class Game < ActiveRecord::Base
       end
     end
   end
+  
+  def self.latest_items
+    find(:all, :conditions => ["(created_at >= ?) or (updated_at >= ? and home_score is not null and away_score is not null)", LAST_WEEK, LAST_WEEK], :order => "id desc") 
+  end
 
   def self.final_game(cup)
-    find(:first, :conditions => ["id = (select max(id) from games where cup_id = ?)", cup])
+    # find(:first, :conditions => ["id = (select max(id) from games where cup_id = ?)", cup])
+    find(:first, :conditions => ["cup_id = ? and type_name = 'FinalGame'", cup])
   end
 
   def self.last_game_escuadra_played(escuadra)
@@ -90,6 +103,10 @@ class Game < ActiveRecord::Base
   def not_played?
     played == false
   end
+  
+  def sport_name
+    self.cup.sport.name
+  end
 
   def all_group_stage_played(cup)
     if Game.count(:conditions => ["cup_id = ? and played = false and type_name = 'GroupStage'", cup]) > 0      
@@ -106,7 +123,7 @@ class Game < ActiveRecord::Base
   end
 
   def self.find_all_games(standing)
-    find(:all, :conditions => ["cup_id = ? and (home_id = ? or away_id = ?) and home_score is not null and away_score is not null", 
+    find(:all, :conditions => ["cup_id = ? and (home_id = ? or away_id = ?) and home_score is not null and away_score is not null and type_name = 'GroupStage'", 
       standing.cup_id, standing.item_id, standing.item_id], :order => "id")
   end
 
@@ -135,7 +152,9 @@ class Game < ActiveRecord::Base
   end
   
   def self.game_type
-    return ['GroupStage', 'FirstGame', 'SubsequentGame', 'ThirdPlaceGame', 'FinalGame']
+    return [[I18n.t(:type_groupstage), 'GroupStage'],  [I18n.t(:type_firstgame), 'FirstGame'], 
+            [I18n.t(:type_subsequentgame), 'SubsequentGame'], [I18n.t(:type_thirdplacegame), 'ThirdPlaceGame'], 
+            [I18n.t(:type_finalgame), 'FinalGame']]
   end
 
   private
@@ -160,12 +179,12 @@ class Game < ActiveRecord::Base
   end
   
   def self.update_cast_details(cup)
-    @cast = ''
+    @cast = nil
     cup.challenges.each do |challenge|       
       Cast.send_later(:update_cast_details, challenge)
       @cast = challenge.casts.first if @cast == ''
     end
-    Cast.calculate_standing(@cast)  
+    Cast.calculate_standing(@cast) unless (@cast == nil)
   end
 
   def set_game_winner

@@ -31,7 +31,8 @@ Rails::Initializer.run do |config|
   config.gem "will_paginate"
   config.gem "authlogic-oid", :lib => "authlogic_openid"
   config.gem "ruby-openid", :lib => "openid"
-  config.gem "be9-acl9", :source => "http://gems.github.com", :lib => "acl9"
+  # config.gem "be9-acl9", :source => "http://gems.github.com", :lib => "acl9"
+  config.gem "acl9", :source => "http://gemcutter.org", :lib => "acl9"
   config.gem "geokit"
   config.gem "contacts"  
   config.gem "friendly_id", :version => "= 2.2.4"  
@@ -115,7 +116,7 @@ CONTACT_RECIPIENT = 'support@haypista.com'
 
 require 'composite_primary_keys'
 
-LANGUAGES = ['en', 'es']
+LANGUAGES = ['es', 'en']
 
 # http://dirk.net/2009/02/11/rails-i18n-translation-missing-errors-in-production/
 I18n.load_path = Dir.glob("#{RAILS_ROOT}/locales/**/*.{rb,yml}")

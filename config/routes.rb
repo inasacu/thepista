@@ -41,8 +41,6 @@ ActionController::Routing::Routes.draw do |map|
   map.set_moderator   		  'users/:id/set_moderator/:group',    		      :controller => 'users',    		    :action => 'set_moderator'
   map.remove_moderator   	  'users/:id/remove_moderator/:group',  		    :controller => 'users',    		    :action => 'remove_moderator'   
   map.petition              'users/:id/petition',                         :controller => 'users',           :action => 'petition'
-  map.set_tour_manager     	'users/:id/set_tour_manager/:tournament',     :controller => 'users',    		    :action => 'set_tour_manager'
-  map.remove_tour_manager  	'users/:id/remove_tour_manager/:tournament',  :controller => 'users',     	    :action => 'remove_tour_manager'
   
   map.set_user_looking            'users/:id/set_looking',  	            :controller => 'users',    		    :action => 'set_looking'
   map.set_available               'users/:id/set_available',  		        :controller => 'users',    		    :action => 'set_available'
@@ -105,7 +103,7 @@ ActionController::Routing::Routes.draw do |map|
   map.resources   :user_sessions,   :as => 'repitelo'
   map.resources   :users,           :as => 'jugadores',                   :collection => { :rpx_create => :post, :rpx_associate => :post,
                                                                                             :list => :get, :recent_activity => :get, :search => :get }  
-  map.resources   :schedules,       :as => 'eventos',                     :collection => { :list => :get, :archive_list => :get, :search => :get }          
+  map.resources   :schedules,       :as => 'eventos',                     :collection => { :list => :get, :archive_list => :get, :search => :get, :my_list => :get }          
   map.resources   :groups,          :as => 'equipos',                     :collection => { :list => :get, :search => :get }
   map.resources   :markers,         :as => 'centros'
   map.resources   :scorecards,      :as => 'classificaciones',            :collection => { :list => :get }
@@ -114,12 +112,11 @@ ActionController::Routing::Routes.draw do |map|
   map.resources   :invitations,     :as => 'invitaciones'
   map.resources   :activities,      :as => 'actividades'
   map.resources   :teammates,       :as => 'mi_equipo'
-  map.resources   :posts,           :as => 'nota'
-  map.resources   :topics,          :as => 'tema'
-  map.resources   :forums,          :as => 'foro'
-  map.resources   :entries,         :as => 'entrada'
+
   map.resources   :comments,        :as => 'comentario'
   map.resources   :blogs,           :as => 'muro'
+  map.resources   :forums,          :as => 'foro'
+    
   map.resources   :types,           :as => 'tipos'
   map.resources   :sports,          :as => 'deportes'
   map.resources   :roles,           :as => 'responsabilidades'          
@@ -129,12 +126,7 @@ ActionController::Routing::Routes.draw do |map|
   map.resources   :password_resets, :as => 'resetear'
   map.resources   :messages,        :as => 'mensajes',                    :collection => { :sent => :get, :trash => :get }
   map.resources   :classifieds,     :as => 'anuncios',                    :collection => { :sent => :get, :trash => :get }
-  
-  map.resources   :tournaments,     :as => 'torneos',                     :collection => { :list => :get, :search => :get }
-  map.resources   :rounds,          :as => 'fases',                       :collection => { :list => :get, :search => :get }
-  map.resources   :meets,           :as => 'acontecimiento',              :collection => { :list => :get, :search => :get }
     
-  map.resources   :clashes,         :as => 'enfrentamientos'
   map.resources   :standings,       :as => 'encasillado',                 :collection => { :list => :get, :show_list => :get, :show_all => :get }
     
   map.resources   :connections
@@ -146,23 +138,23 @@ ActionController::Routing::Routes.draw do |map|
   map.resources   :games,           :as => 'partidos',                    :collection => { :list => :get }
   map.resources   :challenges,                                            :collection => { :list => :get }
   map.resources   :casts,           :as => 'pronostico',                  :collection => { :list => :get, :list_guess => :get }
-  map.resources   :escuadras,                                             :collection => { :list => :get }
+  map.resources   :escuadras
   
   map.resources   :users do |user|
     user.resources :messages
   end
 
-  map.resources :blogs do |blog|
-    blog.resources :entries do |entry|
-      entry.resources :comments
-    end
-  end
-
-  map.resources :forums do |forums|
-    forums.resources :topics do |topic|
-      topic.resources :posts
-    end
-  end
+  # map.resources :blogs do |blog|
+  #   blog.resources :entries do |entry|
+  #     entry.resources :comments
+  #   end
+  # end
+  # 
+  # map.resources :forums do |forums|
+  #   forums.resources :topics do |topic|
+  #     topic.resources :posts
+  #   end
+  # end
 
   # See how all your routes lay out with "rake routes"
 

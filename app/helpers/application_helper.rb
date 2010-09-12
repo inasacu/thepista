@@ -106,6 +106,10 @@ module ApplicationHelper
   def get_the_action
     return self.controller.action_name.singularize.gsub("_", " ")
   end
+  
+  def get_controller_action
+    return "#{get_the_controller}_#{get_the_action}".gsub(' ','_')
+  end
 
   def ago(time_at)
     I18n.t(:ago, :count => time_ago_in_words(time_at).capitalize) 
@@ -162,6 +166,12 @@ module ApplicationHelper
     text = text.split.collect {|i| i.capitalize}.join(' ')
     return text
   end
+  
+  # def truncate(str, length)
+  #   return '' if str.blank?
+  #   truncated = str.size > length
+  #   (str.mb_chars[0..(truncated ? length - 3 : length)] + (truncated ? "..." : '')).to_s
+  # end
   
   def current_announcements
     unless session[:announcement_hide_time].nil?
@@ -229,4 +239,75 @@ module ApplicationHelper
     content_tag(:h2, h(text), :class => :title )
   end
 
+  # general helper source code
+  # Link to a item (default is by name).
+  def item_name_link(text, item = nil, html_options = nil)
+    if item.nil?
+      item = text
+      text = item.name
+    elsif item.is_a?(Hash)
+      html_options = item
+      item = text
+      text = item.name
+    end    
+    link_to(h(text), item, html_options)
+  end
+    
+  # Link to a item (default is by concept).
+  def item_concept_link(text, item = nil, html_options = nil)
+    if item.nil?
+      item = text
+      text = item.concept
+    elsif item.is_a?(Hash)
+      html_options = item
+      item = text
+      text = item.concept
+    end    
+    link_to(h(text), item, html_options)
+  end
+  
+  def item_image_link_tiny(item)
+    the_path = "#{item.class.to_s.downcase.chomp}_path"
+    link_to(image_tag(item.avatar, options={:style => "height: 15px; width: 15px;"}), send(:"#{the_path}", item)) 
+  end
+
+  def item_image_link_smaller(item)
+    the_path = "#{item.class.to_s.downcase.chomp}_path"
+    link_to(image_tag(item.avatar, options={:style => "height: 22px; width: 22px;"}), send(:"#{the_path}", item)) 
+  end
+
+  def item_image_link_small(item)
+    the_path = "#{item.class.to_s.downcase.chomp}_path"
+    link_to(image_tag(item.avatar, options={:style => "height: 30px; width: 30px;"}), send(:"#{the_path}", item))  
+  end
+
+  def item_image_name_link_small(item)
+    the_path = "#{item.class.to_s.downcase.chomp}_path"
+    link_to(image_tag(item.avatar, options={:style => "height: 30px; width: 30px;", :title => h(item.name)}), send(:"#{the_path}", item))
+  end
+  
+  def item_image_link_medium(item)
+    the_path = "#{item.class.to_s.downcase.chomp}_path"
+    link_to(image_tag(item.avatar, options={:style => "height: 55px; width: 55px;"}), send(:"#{the_path}", item))   
+  end
+
+  def item_image_link_large(item)
+    the_path = "#{item.class.to_s.downcase.chomp}_path"
+    link_to(image_tag(item.avatar, options={:style => "height: 80px; width: 80px;"}), send(:"#{the_path}", item))  
+  end 
+  
+  def item_list(items)    
+    the_link = "#{items.first.class.to_s.downcase.chomp}_link"
+    list_of_items = ""
+    items.each do |item|
+      list_of_items += send(:"#{the_link}", item)
+      list_of_items += ", "      
+    end
+    return list_of_items.chop.chop
+  end
+  
+  def item_new(item)    
+    the_url = "new_#{item.class.to_s.downcase.chomp}_url"
+  	content_tag ('li', link_to(control_action_label, send(:"#{the_url}")), :class =>  get_first_active ) if is_action('new')
+	end
 end

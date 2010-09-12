@@ -24,9 +24,9 @@
 		if @teammate.group
 			join_accept = "join_team_accept"
 			join_decline = "join_team_decline"
-		elsif @teammate.tournament
-			join_accept = "join_tour_accept"
-			join_decline = "join_tour_decline"
+		# elsif @teammate.tournament
+		# 	join_accept = "join_tour_accept"
+		# 	join_decline = "join_tour_decline"
 		end
 	%>
 		<%= link_to(I18n.t(:accept_player), 

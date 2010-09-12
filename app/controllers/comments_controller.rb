@@ -53,13 +53,6 @@ class CommentsController < ApplicationController
         end
       end    
 
-      unless @blog.tournament.blank?
-        unless current_user.is_tour_member_of?(@blog.tournament)
-          redirect_to root_url
-          return
-        end
-      end
-
     end
     
     # forum comment
@@ -70,13 +63,6 @@ class CommentsController < ApplicationController
           return
         end
       end    
-
-      unless @forum.meet.blank?
-        unless current_user.is_tour_member_of?(@forum.meet.tournament)
-          redirect_to root_url
-          return
-        end
-      end
 
     end
   end

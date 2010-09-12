@@ -74,7 +74,7 @@ class Cast < ActiveRecord::Base
   def self.current_challenge(users, challenge, page = 1)
     self.paginate(:all, :joins => "left join games on games.id = casts.game_id left join users on users.id = casts.user_id",
                   :conditions => ["user_id in (?) and challenge_id = ?", users, challenge], 
-                  :order => 'games.jornada, users.name', :page => page, :per_page => CUPS_PER_PAGE)
+                  :order => 'games.jornada, users.name', :page => page, :per_page => ESCUADRAS_PER_PAGE)
   end
   
   def self.current_casts(user, challenge)
@@ -86,7 +86,7 @@ class Cast < ActiveRecord::Base
   def self.guess_casts(users, challenges, page = 1)
     self.paginate(:all, :joins => "left join games on games.id = casts.game_id left join users on users.id = casts.user_id",
                   :conditions => ["user_id in (?) and challenge_id in (?) and points > 0", users, challenges], 
-                  :order => 'games.jornada, users.name', :page => page, :per_page => CUPS_PER_PAGE)
+                  :order => 'games.jornada, users.name', :page => page, :per_page => ESCUADRAS_PER_PAGE)
   end
     
   def self.ready_casts(user, challenge)

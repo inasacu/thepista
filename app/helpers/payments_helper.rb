@@ -17,7 +17,8 @@ module PaymentsHelper
       debit_link =  marker_link(payment.debit)
       debit_object = Marker.find(payment.debit_id) 
     when 'Challenge'
-      debit_link =  challenge_link(payment.debit)
+      debit_link =  item_name_link(
+payment.debit)
       debit_object = Challenge.find(payment.debit_id)  
     end
     return debit_link, debit_object
@@ -40,7 +41,8 @@ module PaymentsHelper
       credit_link =  marker_link(payment.credit)
       credit_object = Marker.find(payment.credit_id)
     when 'Challenge'
-      credit_link =  challenge_link(payment.credit)
+      credit_link =  item_name_link(
+payment.credit)
       credit_object = Challenge.find(payment.credit_id)   
     end
     return credit_link, credit_object
@@ -63,7 +65,8 @@ module PaymentsHelper
       item_link =  marker_link(payment.item)
       item_object = Marker.find(payment.item_id) 
     when 'Challenge'
-      item_link =  challenge_link(payment.item)
+      item_link =  item_name_link(
+payment.item)
       item_object = Challenge.find(payment.item_id) 
     end
     return item_link, item_object

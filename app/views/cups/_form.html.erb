@@ -4,7 +4,7 @@
 
   <div class="group">
     <%= f.label :name, label_name('name'), :class => :label %>
-    <%= f.text_field :name, :class => 'text_field' %><br />
+    <%= f.text_field :name, :class => 'textfield' %><br />
     <span class="description"><%= control_label('name_description') %></span>
   </div>
 
@@ -21,6 +21,12 @@
   </div>
 
   <div class="group">
+    <%= f.label :deadline_at, label_name('deadline_at'), :class => :label %>
+    <%= f.datetime_select :deadline_at, :class => 'datetime_select' %><br />
+    <span class="description"><%= label_name('deadline_at', 'description') %></span>
+  </div>
+
+  <div class="group">
     <%= f.label :starts_at, label_name('starts_at'), :class => :label %>
     <%= f.datetime_select :starts_at, :class => 'datetime_select' %><br />
     <span class="description"><%= label_name('starts_at', 'description') %></span>
@@ -30,12 +36,6 @@
     <%= f.label :ends_at, label_name('ends_at'), :class => :label %>
     <%= f.datetime_select :ends_at, :class => 'datetime_select' %><br />
     <span class="description"><%= label_name('ends_at', 'description') %></span>
-  </div>
-
-  <div class="group">
-    <%= f.label :deadline_at, label_name('deadline_at'), :class => :label %>
-    <%= f.datetime_select :deadline_at, :class => 'datetime_select' %><br />
-    <span class="description"><%= label_name('deadline_at', 'description') %></span>
   </div>
 
   <div class="group">
@@ -56,14 +56,8 @@
 
   <div class="group">
 	<%= f.label :photo, label_name('photo'), :class => :label %>
-	<%= f.file_field :photo, :class => 'text_field' %><br />
+	<%= f.file_field :photo, :class => 'textfield' %><br />
 	<span class="description"><%= label_name('photo', 'description') %></span>
-  </div>
-
-  <div class="group">
-    <%= f.label :group_stage_advance, label_name('group_stage_advance'), :class => :label %>
-    <%= f.text_field :group_stage_advance, :class => 'textscore' %><br />
-    <span class="description"><%= label_name('group_stage_advance', 'description') %></span>
   </div>
 
   <div class="group">
@@ -82,6 +76,26 @@
     <%= f.label :points_for_lose, label_name('points_for_lose'), :class => :label %>
     <%= f.text_field :points_for_lose, :class => 'textscore' %><br />
     <span class="description"><%= label_name('points_for_lose', 'description') %></span>
+  </div>
+
+  <div class="group">
+    <%= f.label :club, label_name(:club), :class => :label %>
+    <%= f.check_box :club, :class => 'check_box' %><br />
+    <span class="description"><%= label_name('club', 'description') %></span>
+  </div>
+
+  <% if current_user.is_maximo? %>
+
+  <div class="group">
+    <%= f.label :official, label_name(:official), :class => :label %>
+    <%= f.check_box :official, :class => 'check_box' %><br />
+    <span class="description"><%= label_name('official', 'description') %></span>
+  </div>
+
+  <div class="group">
+    <%= f.label :group_stage_advance, label_name('group_stage_advance'), :class => :label %>
+    <%= f.text_field :group_stage_advance, :class => 'textscore' %><br />
+    <span class="description"><%= label_name('group_stage_advance', 'description') %></span>
   </div>
 
   <div class="group">
@@ -111,8 +125,10 @@
   <div class="group">
     <%= f.label :archive, label_name(:archive), :class => :label %>
     <%= f.check_box :archive, :class => 'check_box' %><br />
-    <!-- <span class="description"><%#= label_name('archive', 'description') %></span> -->
+    <span class="description"><%#= label_name('archive', 'description') %></span>
   </div>
+
+  <% end %>
 
   </div> 
 

@@ -1,13 +1,5 @@
-<div id="header">
-	
-  <h1>
-	<a href="http://haypista.com" label="<%=app_name %>" title="<%= label_name(:modo)%>">
-		<%= image_tag("logo.png", options={:style => "width: 150px; height:  55px;", :alt=> "#{app_name}"}) %> 
-	</a>
-  </h1>
-  
-  <%= render :partial => 'shared/user_navigation' %>
- 
-  <%= render :partial => 'shared/main_navigation' %>
-  
-</div>
+<!-- <div id="header"> -->
+  <%#= render :partial => 'shared/user_navigation' %>
+  <%#= render :partial => 'shared/main_navigation' %>
+  <%= render :partial => 'shared/header_navigation' %>
+<!-- </div> -->

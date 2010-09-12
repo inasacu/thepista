@@ -4,38 +4,63 @@
 	
 	<table class="table">
 
+	  <!-- <tr>             
+	    <th class="first">&nbsp;</th>
+	    <th><%#= label_name(:name) %></th>
+	    <th><%#= label_name(:time_zone) %></th>
+	    <th><%#= label_name(:general_information) %></th>
+	    <th>&nbsp;</th>
+	    <th class="last">&nbsp;</th>
+	  </tr> -->
+	
 	  <tr>             
 	    <th class="first">&nbsp;</th>
-	    <th><%= label_name(:name) %></th>
+	    <th><%= label_name(:name) %>&nbsp;/<br />
+			  <%= label_name(:gameday_at) %></th>
+	    <th><%= label_name(:manager) %>&nbsp;/<br />
+			  <%= label_name(:sport) %></th>
 	    <th><%= label_name(:time_zone) %></th>
 	    <th><%= label_name(:general_information) %></th>
 	    <th>&nbsp;</th>
 	    <th class="last">&nbsp;</th>
 	  </tr>
+	
 
-	  <% @cups.each do |cup| 
-		the_final = Game.final_game(cup)
-		final_played = the_final.played
+	  <% @cups.each do |cup|
+		the_description = sanitize(cup.description)
+		the_description = "#{the_description.to_s.strip[0..60]}..." if the_description.to_s.length > 60
+		the_description = the_description.gsub(" ", "<wbr> ")
+		the_cup = sanitize(cup.name)
+		 
+		final_played ||= false
+		the_game = Game.final_game(cup)
+		final_played = the_game.played unless (the_game.nil? or the_game.blank?)
 	  -%>
 
 	  <tr>  
 			<td>
-				<%= cup_image_link_small cup %>
+				<%= item_image_name_link_small(cup) %>
 			</td>
 
 			<td class="name_and_date">
-				<%= cup_link(cup) %><br />
+				<%= item_name_link(cup) %><br />
+				
+				<span class="date">
+				<%= nice_full_date(cup.starts_at) %>
+				<%= "<br/>#{has_left(cup.starts_at)}" if Time.zone.now < cup.starts_at %>
+				</span>
+			</td>
+
+			<td class="name_and_date">
+				<%= item_list(cup.all_the_managers) %><br />
 				<span class="date">
 				<%= cup.sport.name %>
 				</span>
 			</td>
 
-			<td class="name_and_date">
-				<%= nice_day_of_week(cup.starts_at) %><br />
-				<span class="date">
-				<%= has_left(cup.starts_at) if Time.zone.now < cup.starts_at %>
-				</span>
-			</td>
+				<td>
+					<%= cup.time_zone %>
+				</td>
 
 			<td class="name_and_date">
 				<%= I18n.t(:has_cup_escuadras, :count => object_counter(cup.escuadras)) %><br />
@@ -48,8 +73,6 @@
 				<%= link_to(label_name(:standing), standing_path(:id => cup))  if object_counter(cup.standings) > 1 and !final_played %>
 				<span class="date">
 					<% if final_played %>
-					<%#= the_final.home.name if (the_final.home_score.to_i > the_final.away_score.to_i) %>
-					<%#= the_final.away.name if (the_final.home_score.to_i < the_final.away_score.to_i) %>
 					<%= link_to(label_name(:final) , list_games_path(:id => cup)) %>
 					<% end %>
 				</span>
@@ -57,16 +80,39 @@
 
 	       <td class="last">
 				<span class="action">
-					<%= link_to label_name(:challenges_create), new_challenge_path(:id => cup) unless final_played %>
-				
-					<% if current_user.is_manager_of?(cup) %>
+					<% if current_user.is_manager_of?(cup) and !final_played %>
 					 	<br/>
 						<%= link_to label_name(:games_create), new_game_path(:id => cup)  %><br/>
-						<%= link_to label_name(:escuadras_create), new_escuadra_path(:id => cup)  %>
+						<%= link_to label_name(:escuadras_create), new_escuadra_path(:id => cup)  %><br/><br/>
 			        <% end %>
+			
+					<% if !cup.official %> 
+					<% 
+					   if current_user.is_member_of?(cup) %>
+						<%= link_to("#{label_name(:invitations_your_friend)} #{the_cup}" , 
+											new_invitation_url(:cup_id => cup)) %><br />
+					<% 
+					  	else
+							unless current_user.has_item_petition?(current_user, cup)
+								the_label = label_with_name('add_to_item', the_cup)
+ 								the_confirmation = "#{ label_name(:petition_to_join) } #{the_cup}?"
+					%> 
+						<%= link_to(the_label,	
+									join_item_path(:id => cup, 
+												   :item => cup.class.to_s, 
+												   :teammate => current_user), 
+												   :confirm => the_confirmation) unless cup.club %>
+					<% 		
+							end 
+					   end
+					end
+					-%>
+					
+					<%= link_to label_name(:challenges_create), new_challenge_path(:id => cup) if cup.official and !final_played %>
 					
 				</span>
 	       </td>
+	
 	  </tr>   
  
 	  <% end -%>

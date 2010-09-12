@@ -10,13 +10,13 @@
 <% 
 	if textfield 
 %>
-		<%= f.text_field :body, :class => 'textfield' -%>&nbsp;&nbsp;<%= f.submit label_name(:comment) %>		
+		<%= f.text_area :body, :class => 'textfield' -%>&nbsp;&nbsp;<%= f.submit label_name(:share) %>		
 <% 
 	else 
 %>
 		<%= f.text_area :body, :class => 'textfield' -%>
 		<br /><br />
-		<%= f.submit label_name(:comment) %>
+		<%= f.submit label_name(:share) %>
 <% 
 	end 
 %>

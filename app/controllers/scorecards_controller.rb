@@ -3,6 +3,11 @@ class ScorecardsController < ApplicationController
 
   def index
     @groups = current_user.groups.paginate :page => params[:page], :order => 'name'
+
+    if @groups.nil? or @groups.blank?
+      redirect_to :action => 'list'
+      return
+    end
   end
 
   def list

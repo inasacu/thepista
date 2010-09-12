@@ -2,34 +2,26 @@ class UsersController < ApplicationController
   before_filter :require_no_user, :only => [:signup, :new, :create, :rpx_new, :rpx_create, :rpx_associate]
   before_filter :require_user, :only => [:index, :show, :edit, :update, :petition] 
   
-  before_filter :get_user, :only => [:show] 
-  before_filter :get_user_manager, :only => [:set_available]
+  before_filter :get_user,            :only => [:show] 
+  before_filter :get_user_member,     :only => [:show] 
+  before_filter :get_user_manager,    :only => [:set_available]
   
-  before_filter :get_user_self, :only => [:set_private_phone, :set_private_profile, :set_enable_comments, :set_looking, 
+  before_filter :get_user_self,       :only => [:set_private_phone, :set_private_profile, :set_enable_comments, :set_looking, 
                                           :set_teammate_notification, :set_message_notification, :set_blog_notification, :set_forum_notification]
                                                                                                          
-  before_filter :get_user_group, :only =>[:set_manager, :remove_manager, :set_sub_manager, :remove_sub_manager, 
+  before_filter :get_user_group,      :only =>[:set_manager, :remove_manager, :set_sub_manager, :remove_sub_manager, 
                                           :set_subscription, :remove_subscription, :set_moderator, :remove_moderator]
-
-  before_filter :get_user_tournament, :only =>[:set_tour_manager, :remove_tour_manager]
                                           
-  before_filter :setup_rpx_api_key, :only => [:rpx_new, :rpx_create, :rpx_associate]
+  before_filter :setup_rpx_api_key,   :only => [:rpx_new, :rpx_create, :rpx_associate]
   
-  before_filter :get_activities, :only => [:index, :list]
+  before_filter :get_activities,      :only => [:index, :list]
   
   # ssl_required :signup, :new, :create
   # ssl_allowed :index, :list, :show
   
-  # GET /users
-  # GET /users.xml
   def index
     store_location
     @users = current_user.page_mates(params[:page])
-
-    respond_to do |format|
-      format.html # index.html.erb
-      format.xml  { render :xml => @users }
-    end
   end
   
   
@@ -37,61 +29,30 @@ class UsersController < ApplicationController
     store_location
     @users = current_user.other_mates(params[:page])
     render :template => '/users/index'       
-
-    # respond_to do |format|
-    #   format.html  index.html.erb
-    #   format.xml  { render :xml => @users }
-    # end
   end
 
-  # GET /users/1
-  # GET /users/1.xml
   def show
     store_location
-
-    @previous = User.previous(@user, current_user.groups)
-    @next = User.next(@user, current_user.groups)
-
-    respond_to do |format|
-      format.html # show.html.erb
-      format.xml  { render :xml => @user }
-    end
   end
 
-  # GET /users/signup
-  # GET /users/signup.xml
   def signup
     @user = User.new
-    respond_to do |format|
-      format.html # signup.html.erb
-      format.xml  { render :xml => @user }
-    end
   end  
 
-  # GET /users/new
-  # GET /users/new.xml
   def new
     @user = User.new
-
-    respond_to do |format|
-      format.html # new.html.erb
-      format.xml  { render :xml => @user }
-    end
   end
 
-  # GET /users/1/edit
   def edit
     @user = current_user
   end
 
-  # POST /users
-  # POST /users.xml
   def create
     @user = User.new(params[:user])
 
     @user.save do |result|
       if result
-        flash[:notice] = I18n.t(:successful_signup) + I18n.t("#{ verify_recaptcha() }_value")
+        # flash[:notice] = I18n.t(:successful_signup) + I18n.t("#{ verify_recaptcha() }_value")
         
         redirect_to root_url
       else
@@ -100,8 +61,6 @@ class UsersController < ApplicationController
     end
   end
 
-  # PUT /users/1
-  # PUT /users/1.xml
   def update
     @user = current_user
 
@@ -125,6 +84,7 @@ class UsersController < ApplicationController
     if current_user.requested_managers.empty? and current_user.pending_managers.empty?  
       flash[:notice] = I18n.t(:petition_no)
       redirect_back_or_default('/index')
+      # redirect_to root_url
       return
     end
 
@@ -182,27 +142,6 @@ class UsersController < ApplicationController
       return
     end
     redirect_to login_url
-  end
-  
-
-  def set_tour_manager 
-    unless current_user.is_creator_of?(@tournament)
-      flash[:warning] = I18n.t(:unauthorized)  
-      return
-    end
-    @user.has_role!(:manager, @tournament)
-    flash[:notice] = I18n.t(:manager_updated)
-    redirect_back_or_default('/index')
-  end
-
-  def remove_tour_manager 
-    unless current_user.is_creator_of?(@tournament)
-      flash[:warning] = I18n.t(:unauthorized)  
-      return
-    end
-    @user.has_no_role!(:manager, @tournament)
-    flash[:notice] = I18n.t(:manager_updated)
-    redirect_back_or_default('/index')
   end
   
   def set_manager 
@@ -540,6 +479,16 @@ private
     end
   end
   
+  def get_user_member
+    @user = User.find(params[:id])
+
+    unless current_user.is_user_member_of?(@user)
+      flash[:warning] = I18n.t(:unauthorized)
+      redirect_to root_url
+      return
+    end
+  end
+  
   def get_user_self
     @user = User.find(params[:id])
     
@@ -553,11 +502,6 @@ private
   def get_user_group
     @user = User.find(params[:id])
     @group = Group.find(params[:group])
-  end
-  
-  def get_user_tournament
-    @user = User.find(params[:id])
-    @tournament = Tournament.find(params[:tournament])
   end
   
   def get_activities    

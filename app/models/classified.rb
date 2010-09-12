@@ -5,7 +5,8 @@ class Classified < ActiveRecord::Base
      # sitemap generator
      sitemap :change_frequency => :weekly, :limit => 1000, :priority => 0.5
 
-    belongs_to     :table,          :polymorphic => true
+    belongs_to      :table,           :polymorphic => true
+    belongs_to      :item,            :polymorphic => true
   
     # validations  
     validates_presence_of         :concept
@@ -35,31 +36,9 @@ class Classified < ActiveRecord::Base
       :order => 'starts_at DESC', :page => page, :per_page => CLASSIFIEDS_PER_PAGE)
     end
     
-    # def self.current_classifieds(user, page = 1)
-    #   self.paginate(:all, 
-    #   :conditions => ["starts_at >= ? and group_id in (select group_id from groups_users where user_id = ?)", Time.zone.now, user.id],
-    #   :order => 'starts_at, group_id', :page => page, :per_page => CLASSIFIEDS_PER_PAGE)
-    # end
-
-    # def self.previous_classifieds(user, page = 1)
-    #   self.paginate(:all, 
-    #   :conditions => ["starts_at < ? and group_id in (select group_id from groups_users where user_id = ?)", Time.zone.now, Time.zone.now, user.id],
-    #   :order => 'starts_at desc, group_id', :page => page, :per_page => CLASSIFIEDS_PER_PAGE)
-    # end
-
-    # def self.previous(classified, option=false)
-    #   if self.count(:conditions => ["id < ? and group_id = ?", classified.id, classified.group_id] ) > 0
-    #     return find(:first, :select => "max(id) as id", :conditions => ["id < ? and group_id = ?", classified.id, classified.group_id]) 
-    #   end
-    #   return classified
-    # end 
-
-    # def self.next(classified, option=false)
-    #   if self.count(:conditions => ["id > ? and group_id = ?", classified.id, classified.group_id]) > 0
-    #     return find(:first, :select => "min(id) as id", :conditions => ["id > ? and group_id = ?", classified.id, classified.group_id])
-    #   end
-    #   return classified
-    # end
+    def self.item_classifieds(item)
+      find(:all, :conditions => ["item_id = ? and item_type = ?", item, item.class.to_s])
+    end   
 
     def self.upcoming_classifieds(hide_time)
       with_scope :find => {:conditions=>{:starts_at => ONE_WEEK_FROM_TODAY, :archive => false}, :order => "starts_at"} do

@@ -9,6 +9,10 @@
 	is_challenge_standing = the_challenges.include?("#{get_the_controller}_#{get_the_action}".gsub(' ', '_')) 
 	all_results = is_action('show all')
 	all_rank = 0
+	
+	final_played ||= false
+	the_game = Game.final_game(@cup)
+	final_played = the_game.played unless (the_game.nil? or the_game.blank?)
 %>
 <div class="block">
 
@@ -23,7 +27,9 @@
 %>
 <div class="content">   
 
-	<h2 class="title"><%= is_challenge_standing ? challenge_link(@challenge)  : cup_link(@cup) %></h2>
+	<h2 class="title"><%= is_challenge_standing ? item_name_link(
+@challenge)  : item_name_link(@cup)
+ %></h2>
 
 	<div class="inner">
 
@@ -69,19 +75,5 @@ end
 
 </div>
 
-<% if is_action('show list') %>
-<% content_for :sidebar, render(:partial => 'challenges/sidebar_show') -%>
-
-<% else %>
-<% content_for :sidebar, render(:partial => 'cups/sidebar_show') -%>
-
-<% end %>
-
-<%# content_for :sidebar, render(:partial => 'shared/invite') -%>
-<%# content_for :sidebar, render(:partial => 'shared/share_object') -%>
-<%#  if @cup and current_user.is_manager_of?(@cup) %>
-<%# content_for :sidebar, render(:partial => 'cups/sidebar_cup_additional', :locals => {:cup => @cup})  -%>
-<%# content_for :sidebar, render(:partial => 'shared/sidebar_show_cup', :locals => {:cup => @cup})  -%>
-<%# end -%>
-
-
+<% content_for :sidebar, render(:partial => 'challenges/sidebar_show') if is_action('show list') %>
+<% content_for :sidebar, render(:partial => 'shared/sidebar_show_final_played') -%>

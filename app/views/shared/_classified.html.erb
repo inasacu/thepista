@@ -3,6 +3,7 @@
 	the_label = ago(classified.created_at) 
 	the_classified = classified.concept	
 	the_classified = "#{classified.concept.strip[0..45]}..." if the_classified.length > 45	
+	the_group = Group.find(classified.table_id)
 -%>
 
 	<tr>
@@ -18,7 +19,7 @@
 				<%= link_to(image_tag("icons/comment_delete.png"), 
 							classified_path(classified), :method => :delete, 
 							 :confirm => %(#{label_name(:delete_classified)}?),
-							 :title => label_name(:delete_classified)) if current_user.is_manager_of?(Group.find(classified.table_id)) %>
+							 :title => label_name(:delete_classified)) if current_user.is_manager_of?(the_group) %>
 							<%= "&nbsp;&nbsp;[#{the_label}]" %>
 			</span>
 		</td>

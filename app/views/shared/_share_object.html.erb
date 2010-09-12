@@ -1,7 +1,10 @@
+<% if production? %>
+
 <% authorize = UrlShortener::Authorize.new( APP_CONFIG['bit_ly_api']['login'], APP_CONFIG['bit_ly_api']['key']) %>
 <% client = UrlShortener::Client.new(authorize) %>
 
 <% 
+	the_url = ""
 	case get_the_controller
 	when 'schedule', 'home'
 		the_url = "http://haypista.com#{team_roster_path(:id => schedule)}"
@@ -57,3 +60,4 @@
 
 	</div>
 </div>
+<% end -%>

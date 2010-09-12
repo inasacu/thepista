@@ -42,6 +42,7 @@ es:
      announcements_option: Opciones
      announcements_previous:  Anteriores communicaciones
      archive: Archiva  
+     archive_description:  Archiva registro
      archive_list_schedules:  Temporada anterior
      are_you_sure:  ¿Estas seguro? 
      at: a las 
@@ -95,7 +96,7 @@ es:
      cast_right_guess:  Aciertos
      cast_right_guess_all:  Todos los Puntos
      challenge:  Reto
-     challenge_options:  Opciones
+     challenge_option:  Opciones de Retos
      challenges:  Retos
      challenges_all:  Todos los retos
      challenges_create:  Crea tu reto 
@@ -124,7 +125,6 @@ es:
      challenges_no:  Ningun reto para mostrar.
      challenges_none:  Ningun reto.
      challenges_options_without: "¿Qué opciones tienes ya que no tienes un reto?"
-     challenges_option:  Opciones 
      challenges_points:  Puntos / Partido
      challenges_search: Busqueda de retos
      challenges_search_to_join: Puedes buscar un reto al que unierte. 
@@ -155,7 +155,9 @@ es:
      check_out_users: Ver jugadores   
      city: Ciudad  
      click_to_edit:  "Haz clic para editar!" 
-     close: Cerrar   
+     close: Cerrar 
+     club:  Torneo solo para equipos
+     club_description:  Torneo solo para equipos  
      code: Codigo 
      conditions: Condiciones   
      coeficient: "%"
@@ -197,7 +199,12 @@ es:
      create_your_own: crear tu propio      
      created: se ha creado correctamente.   
      created_at:  Fecha de creación
-     created_a_schedule: Ha creado un evento   
+     created_a_challenge:  Ha creado el reto
+     created_a_cup:  Ha creado la copa
+     created_a_game:  Ha añadido el partido  
+     created_a_group:  Ha creado el equipo
+     created_a_match:  Ha actualizado el resultado
+     created_a_schedule: Ha creado el evento 
      credit: Pago   
      credit_amount: A recibir   
      credit_amount_description:  Lo que recibes
@@ -207,8 +214,17 @@ es:
      cups:  Copas
      cups_all:  Todas las copas
      cups_create:  Nueva copa 
-     cups_destroy:  Borrar copa
-     cups_edit:  Actualizar copa
+     cups_destroy:  Borra copa
+     cups_edit:  Actualiza copa
+     cups_howto:  Crea tu copa en 7 pasos.
+     cups_howto_create:  Haz click en la opción de 'Nuevo copa'.
+     cups_howto_event:  Haz click en la opción de 'Nuevo evento'.
+     cups_howto_tab:  Haz click en la pestaña 
+     cups_howto_fillin:  Rellena todos los campos y haz click en el boton 'Nuevo'.
+     cups_howto_gameday:  Los proximos eventos salen en la pagina de inicio.
+     cups_howto_petition:  Acepta las peticiones de tus amigos para unirse a tu copa.
+     cups_howto_convocatoria:  "¡Los participantes estan listos para convocarse a los eventos!"
+     cups_howto_show:  Entra en los detalles de la copa.
      cups_index:   Copas
      cups_index_option: Opciones 
      cups_invitations_create:  Invita a un amigo a esta copa
@@ -292,12 +308,13 @@ es:
      destroy_type: Borra un tipo   
      destroy_user: Borra el jugador   
      destroy_venue: Borra el centro deportivo 
+     difference:  Diferencia
      documentation: El manual
      does_not_exist: "Lo sentimos, pero la página a la que intentas acceder no existe."
      does_not_exist_explained: Es posible que la pagina se haya cambiado.	   
      do_join_group: ¿Te quieres unir a   
      do_join_tournament: ¿Te quieres unir a   
-     do_leave_group: ¿Te quieres salir de   
+     do_leave_item: ¿Te quieres salir de   
      dont_user_marks: "Por favor, no use acentos en la cuenta OpenID. Gracias!"   
      dorsal: Dorsal   
      dorsal_description: (Si te interesa poner el nombre o numero de tu camiseta...)   
@@ -480,7 +497,8 @@ es:
      assist_turnover_ratio:  "AST/TO" 	
      field_goal_attempt_full: Field Goal Attempt		
      field_goal_made_full: 	 Field Goal Made
-     field_goal_percentage_full: Field Goal Percentage	
+     field_goal_percentage_full: Field Goal Percentage
+     find_people:  Gente	
      free_throw_attempt_full: Free Throw Attempt
      free_throw_made_full: 	 Free Throw Made
      free_throw_percentage_full:  Free Throw Percentage
@@ -503,7 +521,7 @@ es:
      group_b:  Segundo equipo  
      group_fee: Tasa de equipo
      group_id: Equipo
-     group_stage:  Fase de Grupo
+     group_stage:  Fase de grupo
      group_stage_advance:  Pasan a siguiente fase
      group_stage_advance_description:  Total de equipos que pasan a siguiente fase.
      group_stage_name:  Grupo
@@ -595,7 +613,8 @@ es:
      invitation_to: Tienes una invitación a HayPista   
      invitation_to_group: Invita a un amigo al equipo   
      invitation_to_schedule: Invita a un amigo   
-     invitations: Conecta con amigos   
+     invitations: Conecta con amigos  
+     invitations_sent:  Invitaciones mandadas 
      invite: invita   
      invite_friend: Invita a un amigo   
      invite_other_friend: Invita a otro amigo   
@@ -606,6 +625,7 @@ es:
      join_cup:  Únete a un reto
      join_group: Únete al equipo   
      join_group_message: Mensaje para unirte al equipo ha sido mandado correctamente.   
+     join_option:  Opciones para apuntar / desapuntar
      join_tournament: Únete al torneo   
      jornada:  Jornada
      jornada_description:  Jornada
@@ -614,7 +634,8 @@ es:
      last_login_at: conecto la ultima vez   
      last_minute: Ultima hora   
      last_schedule_description: Ultimo evento    
-     last_scorecard: Ultimos resultados   
+     last_scorecard: Ultimos resultados  
+     latest_activities:  Recientes actividades 
      leave_comment: Deja un comentario...   
      leave_group: Desapuntate del equipo   
      left_comment_on_wall: Ha dejado un <strong>COMENTARIO</strong> a    
@@ -641,7 +662,8 @@ es:
      Low: Bajo   
      male_value: Masculino        
      manager: Responsable   
-     managers: Responsable(s)   
+     managers: Responsable(s) 
+     manager_option:  Opciones para borrar / añadir Responsable  
      map: Mapa    
      map_it: Ubicalo
      maps: Mapas   
@@ -756,6 +778,7 @@ es:
      no_message: No tienes mensajes.   
      no_openid: No tienes cuentas associadas a tu OpenID.   
      no_payment: No tienes pagos 
+     no_photo_for_cup:  Esta copa no tiene foto
      no_photo_for_user: Este jugador no tiene foto
      no_photo_for_group: Este equipo no tiene foto
      no_photo_for_tournament: Este torneo no tiene foto         
@@ -788,6 +811,8 @@ es:
      notification: Notificación   
      notifications: Notificaciones
      office_hours:  Horarios   
+     official:  Copa Oficial
+     official_description:  Copa oficial
      open: Abrir   
      openid_identifier: OpenID URL
      open_id_explanation: "OpenID es un sistema de autentificación seguro, libre y muy facil de usar, que te facilitara la identificación en muchas páginas web con solo introducir tu dirección uRL de OpenID,   de  forma que solo mantendra  una  ID  global  para tus  accesos  a web  con soporte OpenID "  
@@ -808,7 +833,9 @@ es:
      overview: descripción general   
      page_does_not_exist: La pagina que querias no exite.
      participate_challenge: Participa en el reto
-     participate_challenge_afterwards: "Despues de registrate y ser aceptado, sigue este enlace para participa en el reto"       
+     participate_challenge_afterwards: "Despues de registrate y ser aceptado, sigue este enlace para participa en el reto" 
+     participate_cup:  Participa en la copa 
+     participate_cup_afterwards: "Despues de registrate, sigue este enlace para participa en la copa"       
      participate_schedule: Participa en el evento
      participate_schedule_afterwards: "Despues de registrate en el equipo y ser aceptado, sigue este enlace para participa en el evento"
      participate_group_afterwards: Despues de registrate sigue este enlace para unirte al equipo     
@@ -818,7 +845,7 @@ es:
      participants:  Participantes   
      password: Clave
      password_change: Cambiar contraseña
-     password_confirmation: Clave confirmación	
+     password_confirmation: Confirmación	
      password_confirmation_description: Necesita 5 characteres. 
      password_description:  Clave
      password_instructions: "Las instrucciones para restablecer su contraseña han sido enviadas a su cuenta de correo. Por favor, revisalo."
@@ -850,6 +877,7 @@ es:
      petition_join_item_decline: Rechazo
      petition_no:  Ninguna petición para mostrar.  
      petition_to_join: Unirse a
+     petition_to_join_accepted: Se ha unido a
      petition_pending: Peticiones pendiente   
      petitions: Peticiones 
      petition_to_join_approved: Petición aprobada para unirse.
@@ -876,14 +904,22 @@ es:
      player_with_less_games: asistencias a eventos menos que el resto.
      points: Ptos.
      points_for_double:  Puntos por acerta el resultado
-     points_for_double_description:  Dale puntuación por acertar el resultado...
-     points_for_draw: Puntos por Empatar
-     points_for_draw_description: Dale puntuación por empatar el evento...
-     points_for_lose: Puntos por Perder
-     points_for_lose_description: Dale puntuación por perder el evento...
+     points_for_double_description:  Dale puntuación por acertar el resultado.
+     points_for_draw: Puntos por empatar
+     points_for_draw_description: Dale puntuación por empatar el evento.
+     points_for_lose: Puntos por perder
+     points_for_lose_description: Dale puntuación por perder el evento.
      points_for_single:  Puntos por acertar parte del resultado
-     points_for_single_description:  Dale puntuación por acertar parte del resultado...
-     points_for_win: Puntos por Ganar
+     points_for_single_description:  Dale puntuación por acertar parte del resultado.
+     points_for_single_draw:  Puntuación por acertar el resultado de empate.
+     points_for_single_draw_description:  Dale puntuación por acertar el resultado de empate.  
+     points_for_single_goal_difference: Puntuación por acertar la diferencia de goles.
+     points_for_single_goal_difference_description: Dale puntuación por acertar la diferencia de goles.
+     points_for_single_goal_total: Puntuación por acertar el total de goles.
+     points_for_single_goal_total_description: Dale puntuación por acertar el total de goles.
+     points_for_single_winner: Puntuación por acertar el ganador.
+     points_for_single_winner_description: Dale puntuación por acertar el ganador.
+     points_for_win: Puntos por ganar
      points_for_win_description: Dale puntuación por ganar el evento...
      points_full: Puntos   
      popular: De Moda 
@@ -1104,6 +1140,7 @@ es:
      something_wrong_explained: "Ya hemos registrado este fallo.  Lo miraremos lo antes posible."
      escuadra: Equipo
      escuadras: Equipos
+     escuadras_add:  Equipos
      escuadras_all:  Todos los equipos
      escuadras_available:  Todos los equipos
      escuadras_create:  Nuevo equipo 
@@ -1114,6 +1151,7 @@ es:
      escuadras_invitations_create:  Invita a un amigo a este equipe
      escuadras_join:  Unete al equipo
      escuadras_list:  Equipos
+     escuadras_name_description:  Nombre del equipo
      escuadras_new:  Nuevo equipo
      escuadras_new_option: Opciones 
      escuadras_no:  Ningun equipo para mostrar.
@@ -1125,6 +1163,8 @@ es:
      escuadras_search_to_join: Puedes buscar un equipo. 
      escuadras_show:  Mostrar equipo
      escuadras_to_join:   crea un equipo 
+     escuadras_true:  Escuadras en la lista
+     escuadras_false: Escuadras no en la lista
      escuadras_update: Actualizar equipo
      start_session: inicia tu sesión   
      starts_at: Inicio  
@@ -1136,7 +1176,8 @@ es:
      subject: Asunto  
      subject_description:  Titulo del asunto
      sub_manager_updated:  Actualización de sub manager.
-     manager_updated:  Actualización de manager.     
+     manager_updated:  Actualización de manager.  
+     subscription_option:  Opciones de abonado   
      subscription_at: Finalización para convocarse el abonado  
      subscription_at_match: Finalización para convocarse el abonado   
      subscription_at_description: (¿Ha que hora termina la opción para apuntarse a un evento el abonado...(ej- 1 dia antes del evento)) 
@@ -1298,7 +1339,7 @@ es:
      what_is_haypista:  ¿Qué es HayPista?
      what_is_this:   ¿Qué es esto? 
      what_is_your_account: "¿Qué es acceso con tu cuenta?"
-     what_are_you_practicing: Qué actividad estas practicando?   
+     what_are_you_practicing: Comparte una actualización  
      why_use_your_account:  ¿Por qué acceder con tu cuenta?
      whats_new: ¿Qué hay de nuevo en HayPista?   
      write_comment: Escribe un comentario...   
@@ -1405,12 +1446,13 @@ es:
      invitations_for_your_friends:  Invita a tus amigos a unirse a HayPista
      invitations_no:  Ninguna invitación para mostrar
      invitations_option:  Opciones
-     invitations_create:  Invita a tus amigos a unirse a HayPista
+     invitations_create:  Invita a tus amigos
      invitations_create_cup: Invita a tus amigos a este evento
      invitations_create_challenge:  Invita a tus amigos a este reto
      invitations_create_group: Invita a tus amigos a este equipo
+     invitations_create_item:  Invita a tus amigos a este 
      invitations_create_schedule: Invita a tus amigos a este evento
-     invitations_create_tournament: Invita a tus amigos a este tourneo
+     invitations_create_tournament: Invita a tus amigos a este torneo
      invitations_create_meet: Nueva invitación al tourneo
      invitations_sent:  Invitaciones mandadas
      invitations_your_friend:  Invita a tus amigos a 
@@ -1559,6 +1601,8 @@ es:
      schedules_invitations_create:  Invita a un amigo al evento
      schedules_list:  Anteriores eventos
      schedules_list_no: Ningun evento previo para mostrar.
+     schedules_my_list: Mis eventos 
+     schedules_my_list_no: Ningun evento para mostrar.
      schedules_manager_option:  Requiere responsable de equipo para ver mas opciones.
      schedules_new: Nuevo evento
      schedules_no: Ningun evento para mostrar.
@@ -1704,7 +1748,12 @@ es:
      tournaments_update: Actualizar torneo          
      types_index:  Tipos
      types_maximo_option:  Requiere responsable de administrador para ver mas opciones.
-     types_option:  Opciones     
+     types_option:  Opciones 
+     type_groupstage: Fase de grupo
+     type_firstgame:  Ronda de eliminación
+     type_subsequentgame: Cuartos / Semi-final
+     type_thirdplacegame: Tercer puesto
+     type_finalgame: Final   
      users_available:  Jugadores disponibles
      users_index:  Jugadores
      users_index_option: Opciones 

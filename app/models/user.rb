@@ -59,8 +59,9 @@ class User < ActiveRecord::Base
     has_many    :messages
     has_many    :matches
     has_many    :casts
-  
+                
     has_many    :teammates
+    
     has_many    :managers,
       :through =>     :teammates,
       :conditions =>  "teammates.status = 'accepted'",
@@ -120,10 +121,6 @@ class User < ActiveRecord::Base
       self.photo.url
     end 
 
-    def has_tournament?
-      self.tournaments.count > 0
-    end
-
     def has_challenge?
       self.challenges.count > 0
     end
@@ -148,40 +145,20 @@ class User < ActiveRecord::Base
       self.groups.each{ |group| is_manager = user.is_manager_of?(group) } 
       return is_manager
     end
-
-    def my_users
-      @my_users = []
-      self.groups.each do |group| ; group.users.each { |user| @my_users << user.id unless @my_users.include?(user.id) } ; end
-      return @my_users
-    end
-      
-    def self.previous(user, groups)
-      if self.count(:conditions => ["id < ? and id in (select user_id from groups_users where group_id in (?))", user.id, groups] ) > 0
-        return find(:first, :select => "max(id) as id", 
-        :conditions => ["id < ?  and id in (select user_id from groups_users where group_id in (?))", user.id, groups]) 
-      end
-      return user
-    end 
-
-    def self.next(user, groups)
-      if self.count(:conditions => ["id > ? and id in (select user_id from groups_users where group_id in (?))", user.id, groups]) > 0
-        return find(:first, :select => "min(id) as id", :conditions => ["id > ?  and id in (select user_id from groups_users where group_id in (?))", user.id, groups])
-      end
-      return user
+    
+    def friends
+      User.find(:all, :select => "distinct users.*", :joins => "LEFT JOIN groups_users on groups_users.user_id = users.id", 
+                      :conditions => ["users.id != ? and groups_users.group_id in (?)", self, self.groups], :order => "users.name")
     end
     
-    def has_group_petition?(current_user, group)
-      petition = false      
-      if Teammate.count(:conditions => ["accepted_at is null and group_id = ? and (user_id = ? or manager_id = ?)", 
-                        group.id, current_user.id, current_user.id]) > 0
-          petition = true
-      end        
-      return (current_user == self and petition)
+    def self.squad_list(schedule)
+      User.find(:all, :select => "distinct users.*, matches.type_id, types.name as types_name", :joins => "LEFT JOIN matches on matches.user_id = users.id LEFT JOIN types on types.id = matches.type_id", 
+                      :conditions => ["matches.schedule_id = ?", schedule], :order => "users.name")
     end
-    
+
     def has_item_petition?(current_user, item)
       petition = false      
-      if Teammate.count(:conditions => ["accepted_at is null and item_id = ? and item_type = ? and (user_id = ? or manager_id = ?)", 
+      if Teammate.count(:conditions => ["accepted_at is null and item_id = ? and item_type = ? and sub_item_id is null and sub_item_type is null and (user_id = ? or manager_id = ?)", 
                                 item.id, item.class.to_s, current_user.id, current_user.id]) > 0
           petition = true
       end        
@@ -250,12 +227,16 @@ class User < ActiveRecord::Base
     end
 
     def is_user_member_of?(user)
-      is_member = false
-      user.groups.each do |group|
-        unless is_member
-          is_member = self.has_role?('member', group) 
+      is_member = (user == self)
+
+      unless is_member
+        user.groups.each do |group|
+          unless is_member
+            is_member = self.has_role?('member', group) 
+          end
         end
       end
+      
       return is_member
     end
 
@@ -381,15 +362,6 @@ class User < ActiveRecord::Base
             "and groups_users.user_id != ? " +
             "and users.available = true " +
             "order by name", group.id, self.id])
-    end
-
-    def self.find_tour_mates(tournament)
-      @recipients = User.find_by_sql(["select distinct users.* from users, tournaments_users " +
-            "where users.id = tournaments_users.user_id " +
-            "and tournaments_users.tournament_id in (?) " +
-            "and tournaments_users.user_id != ? " +
-            "and users.available = true " +
-            "order by name", tournament.id, self.id])
     end
     
     def object_counter(objects)

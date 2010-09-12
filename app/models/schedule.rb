@@ -193,6 +193,22 @@ class Schedule < ActiveRecord::Base
     :conditions => ["starts_at < ? and (season_ends_at is null or season_ends_at > ?) and group_id in (select group_id from groups_users where user_id = ?)", Time.zone.now, Time.zone.now, user.id],
     :order => 'starts_at desc, group_id', :page => page, :per_page => SCHEDULES_PER_PAGE)
   end
+  
+  def self.latest_items
+    find(:all, :joins => "left join activities on activities.item_id = schedules.id and activities.item_type = 'Schedule'",
+         :conditions => ["schedules.created_at >= ? and played = false", LAST_WEEK], :order => "schedules.id desc") 
+  end
+  
+  def self.latest_matches
+    find(:all, :joins => "left join activities on activities.item_id = schedules.id and activities.item_type = 'Schedule'",
+         :conditions => ["schedules.updated_at >= ? and played = true", LAST_WEEK], :order => "schedules.id desc") 
+  end
+  
+  def self.find_all_played(user, page = 1)
+    self.paginate(:all, :joins => "left join matches on matches.schedule_id = schedules.id",
+                  :conditions => ["matches.user_id = ? and matches.type_id = 1 and matches.archive = false", user], 
+                  :order => 'schedules.starts_at desc', :page => page, :per_page => SCHEDULES_PER_PAGE)
+  end
 
   def self.archive_schedules(user, page = 1)
     self.paginate(:all, 
@@ -266,7 +282,7 @@ class Schedule < ActiveRecord::Base
     schedules.each do |schedule|
       total_schedules = Schedule.count(:conditions => ["group_id = ?", schedule.group])
       one_third = total_schedules.to_f / 5
-      manager_id = RolesUsers.find_team_manager(schedule.group).user_id
+      manager_id = RolesUsers.find_item_manager(schedule.group).user_id
 
       schedule.group.users.each do |user|
         scorecard = Scorecard.find(:first, :conditions => ["user_id = ? and group_id = ?", user, schedule.group])
@@ -300,7 +316,7 @@ class Schedule < ActiveRecord::Base
     schedules.each do |schedule|
 
       match = Match.find(:first, :conditions => ["type_id = 1 and schedule_id = ? and (group_score is null or invite_score is null)", schedule])
-      manager_id = RolesUsers.find_team_manager(schedule.group).user_id
+      manager_id = RolesUsers.find_item_manager(schedule.group).user_id
       manager = User.find(manager_id)
 
       # send email to manager to update match result
@@ -329,7 +345,7 @@ class Schedule < ActiveRecord::Base
     schedules.each do |schedule|
 
       scorecard = schedule.group.scorecards.first
-      manager_id = RolesUsers.find_team_manager(schedule.group).user_id
+      manager_id = RolesUsers.find_item_manager(schedule.group).user_id
 
       schedule.the_roster.each do |match|
         message = Message.new
@@ -357,7 +373,7 @@ class Schedule < ActiveRecord::Base
     schedules.each do |schedule|
 
       scorecard = schedule.group.scorecards.first
-      manager_id = RolesUsers.find_team_manager(schedule.group).user_id
+      manager_id = RolesUsers.find_item_manager(schedule.group).user_id
 
       # once game has been played then the scorecard will be automatically sent
       if schedule.played?

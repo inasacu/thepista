@@ -15,7 +15,7 @@ class UserSessionsController < ApplicationController
         # flash[:notice] = I18n.t(:successful_logged_in) # + I18n.t("#{ verify_recaptcha() }_value")
         # redirect_back_or_default root_url
       else
-        flash[:error] = I18n.t(:unsuccessful_logged_in)
+        # flash[:error] = I18n.t(:unsuccessful_logged_in)
         render :action => 'new'
         return
       end
@@ -39,7 +39,7 @@ class UserSessionsController < ApplicationController
     # Avoid session fixation attacks. 
     session[:test_that_this_disappears] = 'ok' 
     reset_session 
-    flash[:notice] = I18n.t(:successful_logged_out)
+    # flash[:notice] = I18n.t(:successful_logged_out)
     
     redirect_back_or_default new_user_session_url 
   end
@@ -50,7 +50,7 @@ class UserSessionsController < ApplicationController
       
     if data.blank?
       @user_session = UserSession.new
-      flash[:error] = I18n.t(:unauthorized)
+      # flash[:error] = I18n.t(:unauthorized)
       respond_to do |format|
         format.html { render :action => :new }
       end

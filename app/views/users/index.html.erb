@@ -5,7 +5,7 @@
 
 <div class="block">
 
-  <%= render :partial => 'secondary_navigation' %>  
+  <%= render :partial => '/users/secondary_navigation' %>
 
   <div class="content">   
   
@@ -13,16 +13,12 @@
 	
     <div class="inner">
 	
-      <table class="table">
+	<table class="table" id="<%= get_the_controller.gsub(' ','_') %>">
 	  
 		<tr>             
 			<th class="first">&nbsp;</th>
-			<th><%=label_name(:name) %>&nbsp;/<br />
-				<%=label_name(:event_participation) %>
-			</th>
-			<th><%=label_name(:group) %>&nbsp;/<br />
-				<%=label_name(:sport) %>
-			</th>
+			<th><%=label_name(:name) %></th>
+			<th><%=label_name(:group) %>&nbsp;/&nbsp;<%=label_name(:sport) %></th>
 			<th><%=label_name(:time_zone) %></th>
 			<th><%=label_name(:last_game_played) %></th>
 			<th class="last">&nbsp;</th>
@@ -33,16 +29,16 @@
 	    -%>	
 			<tr>
 			  <td>
-				<%= image_link_small user %>
+				<%= image_link_small(user) %>
 			  </td>			
 			  <td class="name_and_date">
-				<%= user_link user %>
+				<%= user_link(user) %>
 				<span class="date">
 					<% counter = 0; user.scorecards.each {|scorecard| counter += scorecard.played} %>
 					<%= I18n.t(:has_user_scorecard_played, :count => counter) %>
 				</span>
 			  </td>
-			  <td>
+			  <td class="name_and_date">
 				<%= user.has_group? ? group_list(user.groups) : label_name('groups_none') %><br />
 				<span class="date">
 					<%= user.has_sport? ? sport_list(user.groups) : label_name('sports_none') %>
@@ -63,7 +59,11 @@
 			
 			  <td class="last">
 				<span class="action">
-	            <%= link_to label_name(:send_message_to), new_message_path(:id => user.id) if user.available %>				
+					<%  if user.available and user != current_user %>
+						<%= link_to label_name(:send_message_to), new_message_path(:id => user.id) %><br/>
+						<%#= link_to label_name(:follow), new_message_path(:id => user.id) %>
+						<%#= link_to label_name(:hide), new_message_path(:id => user.id) %>						
+					<% end %>
 				</span>
 	          </td>	
 	  
@@ -80,5 +80,3 @@
 </div>
 
 <% content_for :sidebar, render(:partial => '/shared/sidebar_index') -%>
-<%# content_for :search, render(:partial => 'shared/search') -%>
-<%# content_for :sidebar, render(:partial => '/shared/active_comment') if current_user and @has_activities  -%>

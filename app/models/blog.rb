@@ -4,7 +4,6 @@ class Blog < ActiveRecord::Base
 
   belongs_to    :user
   belongs_to    :group
-  belongs_to    :tournament
   belongs_to    :item,          :polymorphic => true
 
   validates_presence_of   :name 
@@ -18,11 +17,6 @@ class Blog < ActiveRecord::Base
   # record if group does not exist
   def self.create_item_blog(item) 
     self.create!(:item_id => item.id, :item_type => item.class.to_s, :name => item.name, :description => item.description) if self.item_exists?(item)
-  end
-  
-  # Return true if the tournament nil
-  def self.tournament_exists?(tournament)
-    find_by_tournament_id(tournament).nil?
   end
 
   # Return true if the item nil

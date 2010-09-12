@@ -4,7 +4,7 @@ class GroupsUsers < ActiveRecord::Base
   
   # record a group join
   def self.join_team(user, group)
-    self.create!(:group_id => group.id, :user_id => user.id) if self.exists?(user, group)
+    self.create!(:group_id => group.id, :user_id => user.id, :created_at => Time.now, :updated_at => Time.now) if self.exists?(user, group)
   end  
 
   def self.leave_team(user, group) 

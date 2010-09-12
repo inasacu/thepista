@@ -17,7 +17,8 @@ module FeesHelper
       debit_link =  marker_link(fee.debit)
       debit_object = Marker.find(fee.debit_id)
     when 'Challenge'
-      debit_link =  challenge_link(fee.debit)
+      debit_link =  item_name_link(
+fee.debit)
       debit_object = Challenge.find(fee.debit_id)
     end
     return debit_link, debit_object
@@ -40,7 +41,8 @@ module FeesHelper
       credit_link =  marker_link(fee.credit)
       credit_object = Marker.find(fee.credit_id)
     when 'Challenge'
-      credit_link =  challenge_link(fee.credit)
+      credit_link =  item_name_link(
+fee.credit)
       credit_object = Challenge.find(fee.credit_id)
     end
     return credit_link, credit_object
@@ -63,7 +65,8 @@ module FeesHelper
       item_link =  marker_link(fee.item)
       item_object = Marker.find(fee.item_id)  
     when 'Challenge'
-      item_link =  challenge_link(fee.item)
+      item_link =  item_name_link(
+fee.item)
       item_object = Challenge.find(fee.item_id)
     end
     return item_link, item_object

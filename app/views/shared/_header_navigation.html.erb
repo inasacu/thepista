@@ -1,0 +1,118 @@
+<% 
+	has_group ||= false
+
+	if current_user 
+		has_group = current_user.has_group? 
+	end
+
+	the_cup = ""
+	the_challenge = ""
+	the_schedule = ""
+	the_group = ""
+	the_users = ""
+	the_user = ""
+	the_petition = ""
+	the_controller = get_the_controller
+	the_home = ""
+	the_controller_action = ['user_list', 'user_index']
+
+	case the_controller
+	when 'home'
+		the_home = "active"
+		
+	when 'cup', 'game', 'escuadra'
+		the_cup = "active"
+
+	when 'group', 'classified'	
+		the_group = "active"
+
+	when 'user'
+		the_users = "active" if the_controller_action.include?(get_controller_action)
+		the_user = "active" unless the_controller_action.include?(get_controller_action)
+		if get_controller_action == 'user_petition'
+			the_petition = "active" 
+			the_user = ""
+		end 
+		
+	when 'schedule', 'forum'
+		the_schedule = (get_controller_action == "schedule_my_list")
+		the_schedule = the_schedule ? (@user == current_user) : true
+		the_schedule = the_schedule ? "active" : " "
+		the_user = "active" if the_controller_action.include?(get_controller_action)
+
+	when 'challenge', 'cast'
+		the_cup = "active" if is_action('list gues')
+		the_challenge = "active" unless is_action('list gues')
+
+	when 'standing'
+		the_cup = "active" unless is_action('show list')
+		the_challenge = "active" if is_action('show list')
+
+	when 'blog'
+		if @user
+			the_user = "active"
+		elsif @group
+			the_group = "active"
+		else @challenge
+			the_challenge = "active" 
+		end
+
+	when 'fee', 'payment'
+		if @item and @item.class.to_s == 'Challenge' 
+			the_challenge = "active" 
+		elsif @user
+			the_user = "active"
+		elsif @group
+			the_group = "active"
+		end
+	
+	when 'message'
+		the_message = "active"
+		
+	end
+%>
+
+<div id="container" class="container">
+
+
+	<div id="header" class="header">
+
+
+	<div class="headerContent">
+
+		<%= link_to("", root_url, :class => "logo") %>
+
+		<ul id="sections" class="sections"><%#= get_controller_action %>
+			<% if current_user %>		
+			<%= content_tag 'li', link_to(label_name(:users), users_url, :class => the_users) %>
+			<%= content_tag 'li', link_to(label_name(:groups), groups_url, :class => the_group) %>		
+			<%= content_tag 'li', link_to(label_name(:schedules), schedules_url, :class => the_schedule) if has_group %>
+			<%= content_tag 'li', link_to(label_name(:cups), cups_url, :class => the_cup)  %>	
+			<%= content_tag 'li', link_to(label_name(:challenges), challenges_url, :class => the_challenge) %>
+			<%= content_tag 'li', link_to(label_name(:scorecards), scorecards_url, :class => get_control_active('scorecard')) %>	
+			<%= content_tag 'li', link_to(label_name(:markers), markers_url, :class => get_control_active('marker')) %>
+			<%= content_tag 'li', link_to(label_name(:announcements), announcements_url, :class => get_control_active('announcement')) if current_user.is_maximo? %>
+			<% end %>
+		</ul>
+
+<ul class="settings">
+
+	<%= content_tag 'li', link_to(label_name(:home), root_url, :class => the_home) %>
+	<% if current_user %>	
+		<%= content_tag('li', (link_to label_name(:petitions), petition_path(current_user), :class => the_petition)) if current_user.has_pending_petition?(current_user) %>
+	
+		<li><%= user_link(label_name(:profile), current_user, :class => the_user) %></li>
+		<li><%= link_to(label_name(:messages), messages_url, :class => the_message) %></li>
+		<!-- <li><%#= link_to label_name(:find_people), invitations_url %></li> -->
+		<!-- <li><%#= link_to label_name(:settings), root_url %></li> -->
+		<!-- <li><%#= link_to label_name(:help), root_url %></li> -->
+		<li><%= link_to label_name(:logout), logout_path %></li>		
+	<% else %>
+		<li><%= link_to label_name(:signup), signup_path %></li>
+		<li><%= link_to label_name(:login), login_path, :class => "logout" %></li
+  <% end -%>
+</ul>
+
+</div>
+</div>
+</div>

@@ -1,3 +1,10 @@
+<%
+	final_played ||= false
+	the_game = Game.final_game(@challenge.cup)
+	final_played = the_game.played unless (the_game.nil? or the_game.blank?)
+-%>
+
+
 <div class="block">
 
 <h3><%= label_name(:options) %></h3>
@@ -15,9 +22,10 @@
 		can_edit = false if is_controller('cast') and is_action('edit')
 %>
 		<li><%= link_to(label_name(:send_message_to), new_message_path(:challenge_id => @challenge.id)) %></li>
-		<li><%= link_to("#{label_name(:invitations_your_friend)} #{the_challenge}" , new_invitation_url(:challenge_id => @challenge)) %></li>
-		<li><%= link_to label_name(:challenges_edit), edit_challenge_path(@challenge) if current_user.is_manager_of?(@challenge) %></li> 
-		<li><%= link_to label_name(:casts_edit), edit_cast_path(:id => @challenge) if can_edit %></li>
+		<li><%= link_to("#{label_name(:invitations_your_friend)} #{the_challenge}" , 
+								new_invitation_url(:challenge_id => @challenge)) unless final_played %></li>
+		<li><%= link_to label_name(:challenges_edit), edit_challenge_path(@challenge) if current_user.is_manager_of?(@challenge) and !final_played %></li>
+		<li><%= link_to label_name(:casts_edit), edit_cast_path(:id => @challenge) if can_edit and !final_played %></li>
 <% 
 	else
 %>

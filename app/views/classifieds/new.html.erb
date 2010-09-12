@@ -1,10 +1,13 @@
+<% 
+the_group = Group.find(@classified.table_id)
+%>
 <div class="block">
 
 	<%= render :partial => '/groups/secondary_navigation' %>
 
 	<div class="content">  
 
-		<h2 class="title"><%= "#{control_action_label} #{label_name('from')} " %><%= group_link Group.find(@classified.table_id) %></h2>
+		<h2 class="title"><%= "#{control_action_label} #{label_name('from')} " %><%= group_link(the_group) %></h2>
 
 		<div class="inner">
 		

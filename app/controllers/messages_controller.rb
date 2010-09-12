@@ -59,30 +59,29 @@ class MessagesController < ApplicationController
       if params[:roster_id]
         users = []
         @the_schedule = Schedule.find(params[:roster_id])
-        @the_schedule.the_roster.each {|match| users << match.user_id}
-        @recipients = User.find(:all, :conditions => ["id in (?)", users], :order => "name")
+        # @the_schedule.the_roster.each {|match| users << match.user_id}
+        # @recipients = User.find(:all, :conditions => ["id in (?)", users], :order => "name")
+        @recipients = User.squad_list(@the_schedule)
       end
-      
-    elsif (params[:tour_id])
-      @tournament = Tournament.find(params[:tour_id])
-      @recipients = User.find_tour_mates(@tournament)
-
+   
     elsif (params[:schedule_id])
       @schedule = Schedule.find(params[:schedule_id])
       @group = @schedule.group
+      @recipients = User.squad_list(@schedule)
 
     elsif (params[:match_id])
       @match = Match.find(params[:match_id])
       @schedule = @match.schedule
       @group = @schedule.group
+      @recipients = User.squad_list(@schedule)
 
     elsif (params[:scorecard_id])
         @scorecard = Schedule.find(params[:scorecard_id])
         @group = @scorecard.group
         @recipients = User.find_group_mates(@group)
+        
     elsif (params[:challenge_id])
         @challenge = Challenge.find(params[:challenge_id])
-        # @group = @scorecard.group
         @recipients = @challenge.users
       
     else

@@ -1,5 +1,5 @@
 <div class="block">
-	
+	<h3><%= label_name(:challenge_option) %></h3>
 <ul class="navigation">
 <%
 	items.each do |item| 
@@ -12,7 +12,6 @@
         	<li><%= link_to(the_label, join_item_path(:id => item, :item => item.class.to_s, :teammate => current_user), 
 					:confirm => the_confirmation) %>
 			</li>
-
 <% 
 		else 
 			the_label = label_with_name('fire_from_item', item.name)
@@ -23,9 +22,6 @@
 		</li>
 <% 
 		end 
-%>
-<li>&nbsp;</li>
-<%	
 	end 
 %>
 

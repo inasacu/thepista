@@ -5,11 +5,11 @@
 <tr>  
 	<td>
 			<% if comment.user %>
-				<%= image_link_small comment.user %>
+				<%= image_link_small(comment.user) %>
 			<% elsif @group %>
-				<%= group_image_link_small @group %>
+				<%= item_image_link_small(@group) %>
 			<% elsif @tournament %>
-				<%= tournament_image_link_small @tournament %>		
+				<%= item_image_link_small(@tournament) %>		
 			<% end %>
 	</td>
 
@@ -17,11 +17,11 @@
 		
 		<span class="label"><%= label_name(:from) %>:</span>
 		<% if comment.user %>
-			<%= user_link comment.user %>
+			<%= user_link(comment.user) %>
 		<% elsif @group %>
-			<%= group_link @group %>
+			<%= group_link(@group) %>
 		<% elsif @tournament %>
-			<%= tournament_link @tournament %>	
+			<%= tournament_link(@tournament) %>	
 		<% end %>
 		
 		<span class="date">

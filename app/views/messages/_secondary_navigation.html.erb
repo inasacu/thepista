@@ -1,13 +1,9 @@
 <div class="secondary-navigation">
-
 <ul>
-	
-	<li class="<%= get_first_active %>"><%= link_to(control_label('inbox') , messages_path) %></li>
-	<li class="<%= get_active('message_sent') %>"><%= link_to(control_label('sent') , sent_messages_path) %></li>
-	<!-- <li class="<%#= get_active('message_trash') %>"><%#= link_to(control_label('trash') , trash_messages_path) %></li> -->
-
+	<li class="<%= get_first_active %>"><%= link_to(label_name(:inbox) , messages_path) %></li>
+	<li class="<%= get_active('message_sent') %>"><%= link_to(label_name(:message_sent) , sent_messages_path) %></li>	
+	<li class="<%= get_active('invitation_new') %>"><%= link_to(label_name(:invitations_create) , new_invitation_url) %></li>
+	<li class="<%= get_active('invitation_invite') %>"><%= link_to(label_name(:invitations_import) , invite_url) %></li>
 </ul>
-
 <div class="clear"></div>
-
 </div>

@@ -1,21 +1,20 @@
 class CupsController < ApplicationController
   before_filter :require_user    
   before_filter :get_cup, :only => [:team_list, :show, :edit, :update, :destroy]
+  before_filter :get_current_cup, :only => [:index, :list]
   before_filter :has_manager_access, :only => [:edit, :update, :destroy]
-  
-  before_filter :the_maximo, :only => [:new]
 
   def index
-    @cups = Cup.paginate :page => params[:page], :order => 'name' 
+    if @has_no_cups
+      redirect_to :action => 'list'
+      return
+    end
   end
 
-  # def list
-  #   @cups = Cup.paginate(:all, :conditions => ["archive = false and id not in (?)", current_user.cups], 
-  #   :page => params[:page], :order => 'name') unless current_user.cups.blank?
-  #   @cups = Cup.paginate(:all, :conditions =>["archive = false"], 
-  #   :page => params[:page], :order => 'name') if current_user.cups.blank?
-  #   render :template => '/cups/index'       
-  # end
+  def list    
+    @cups = Cup.previous_cups(params[:page])
+    render :template => '/cups/index'       
+  end
 
   def squad_list
     @squads = @cup.squads.paginate(:page => params[:page], :per_page => USERS_PER_PAGE)
@@ -29,6 +28,9 @@ class CupsController < ApplicationController
   def new
     @cup = Cup.new
     @cup.time_zone = current_user.time_zone if !current_user.time_zone.nil?
+    @cup.deadline_at = (Time.now + 7.days).midnight 
+    @cup.starts_at = (@cup.deadline_at + 1.day) + 19.hours
+    @cup.ends_at = (@cup.deadline_at + 60.day) + 21.hours
     @sports = Sport.find(:all) 
   end
 
@@ -65,15 +67,20 @@ class CupsController < ApplicationController
   def destroy
     counter = 0
     @cup.games.each {|game| counter += 1 }
-    # @cup.destroy unless counter > 0
+    @cup.destroy unless counter > 0
 
-    flash[:notice] = I18n.t(:successfully_destroyed)
-    redirect_to cup_url
+    flash[:notice] = I18n.t(:successful_destroy)
+    redirect_to cups_url
   end
 
   private
   def get_cup
     @cup = Cup.find(params[:id])
+  end
+  
+  def get_current_cup
+    @cups = Cup.current_cups(params[:page])
+    @has_no_cups = (@cups.nil? or @cups.blank?)
   end
 
   def has_manager_access
@@ -83,12 +90,5 @@ class CupsController < ApplicationController
       return
     end
   end 
-  
-  def the_maximo
-    unless current_user.is_maximo? 
-      redirect_to root_url
-      return
-    end
-  end
   
 end

@@ -137,7 +137,7 @@ body {
 }
 
 #main-navigation ul li a {
-  font-size: 14px;
+  font-size: 13px;
   display: block;
   padding: 8px 15px;
 }
@@ -332,6 +332,8 @@ ul.list li .item .avatar {
 
 #box .block .content {
   padding: 10px 20px;
+  border-width: 6px;
+  border-color: #fbb;
 }
 
 

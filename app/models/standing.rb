@@ -5,13 +5,13 @@ class Standing < ActiveRecord::Base
   belongs_to  :item,          :polymorphic => true
     
   # method section
-  def self.create_cup_escuadra_standing(cup)  
+  def self.create_cup_escuadra_standing(cup)
     cup.escuadras.each do |escuadra|
       Standing.create_cup_item_standing(cup, escuadra)
     end
   end
 
-  def self.create_cup_challenge_standing(challenge)  
+  def self.create_cup_challenge_standing(challenge)
     challenge.users.each do |user|
       Standing.create_cup_challenge_item_standing(challenge.cup, challenge, user)
     end
@@ -127,15 +127,16 @@ class Standing < ActiveRecord::Base
 
   # record if cup and item do not exist
   def self.create_cup_item_standing(cup, item)
-    self.create!(:cup_id => cup, :item => item) if self.cup_item_exists?(cup, item)
+    self.create!(:cup => cup, :item => item) if self.cup_item_exists?(cup, item)
   end
   
   def self.cup_escuadras_standing(cup)
     escuadras = []
     cup.escuadras.each {|escuadra| escuadras << escuadra.id} 
     find(:all, :joins => "LEFT JOIN escuadras on escuadras.id = standings.item_id",
-    :conditions => ["cup_id = ? and item_id in (?) and item_type = ? and standings.archive = false", cup, escuadras, 'Escuadra'],
-    :order => "group_stage_name, points desc, (goals_for-goals_against) desc, goals_for desc, goals_against, escuadras.name")
+    :conditions => ["standings.cup_id = ? and standings.item_id in (?) and standings.item_type = ? and standings.archive = false", cup, escuadras, 'Escuadra'],
+    :order => "standings.group_stage_name, standings.points desc, (standings.goals_for-standings.goals_against) desc, standings.goals_for desc, 
+              standings.goals_against, escuadras.name")
   end
 
   def self.cup_items_standing(cup, item) 
@@ -185,7 +186,7 @@ class Standing < ActiveRecord::Base
     find(:first, :conditions => ["cup_id = ? and challenge_id = ? and item_id = ? and item_type = ?", cup, challenge, item, item.class.to_s]).nil?
   end
 
-  # Return true if the user and group nil
+  # Return true if the cup and item nil
   def self.cup_item_exists?(cup, item)
     find_by_cup_id_and_item_id_and_item_type(cup, item, item.class.to_s).nil?
   end

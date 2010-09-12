@@ -3,7 +3,7 @@ class ChallengesUsers < ActiveRecord::Base
 
   # record a challenge join
   def self.join_item(user, challenge)
-    self.create!(:challenge_id => challenge.id, :user_id => user.id) if self.exists?(user, challenge)
+    self.create!(:challenge_id => challenge.id, :user_id => user.id, :created_at => Time.now, :updated_at => Time.now) if self.exists?(user, challenge)
   end  
 
   def self.leave_item(user, challenge) 

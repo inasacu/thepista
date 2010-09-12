@@ -14,22 +14,10 @@ module ActivitiesHelper
       schedule = activity.item
       is_member = current_user.is_member_of?(schedule.group)
       the_label = schedule.played? ? I18n.t(:has_updated_scorecard) : I18n.t(:created_a_schedule)
-       %(#{the_label} #{is_member ? team_roster_link(schedule) : sanitize(schedule.concept)}.<br/>)
+       %(#{the_label} #{is_member ? team_roster_link(schedule) : sanitize(schedule.concept)}.&nbsp;&nbsp;&nbsp;&nbsp;)
 
     when "User"
         %(#{I18n.t(:changed_description) })
-      
-    when "Post"
-        post = activity.item
-        is_member = false
-        
-        if post.topic.forum.schedule        
-          is_member = current_user.is_member_of?(post.topic.forum.schedule.group)        
-            %(#{I18n.t(:left_post_on_forum) } #{is_member ? topic_link(post.topic): sanitize(post.topic.forum.schedule.concept)}<br/>)
-        elsif post.topic.forum.meet        
-          is_member = current_user.is_tour_member_of?(post.topic.forum.meet.tournament)        
-            %(#{I18n.t(:left_post_on_forum) } #{is_member ? topic_link(post.topic): sanitize(post.topic.forum.meet.concept)}<br/>)
-        end
         
     when "Comment"
       comment = activity.item
@@ -42,7 +30,7 @@ module ActivitiesHelper
             %(#{I18n.t(:left_comment_on_wall) } #{blog_link_item(blog)}<br/>)
         when "Group", "Challenge"
              is_member = current_user.is_member_of?(blog.item)
-             %(#{I18n.t(:left_post_on_forum)} #{is_member ? blog_link_item(blog) : sanitize(blog.item.name)}<br/>)
+             %(#{I18n.t(:left_post_on_forum)} #{is_member ? blog_link_item(blog) : sanitize(blog.item.name)}&nbsp;&nbsp;&nbsp;&nbsp;)
         end
       
       when "Forum"
@@ -51,10 +39,7 @@ module ActivitiesHelper
         
         if forum.schedule        
           is_member = current_user.is_member_of?(forum.schedule.group)        
-            %(#{I18n.t(:left_post_on_forum) } #{is_member ? forum_link(forum): sanitize(forum.schedule.concept)}<br/>)
-        elsif forum.meet        
-          is_member = current_user.is_tour_member_of?(forum.meet.tournament)        
-            %(#{I18n.t(:left_post_on_forum) } #{is_member ? forum_link(forum): sanitize(forum.meet.concept)}<br/>)
+            %(#{I18n.t(:left_post_on_forum) } #{is_member ? forum_link(forum): sanitize(forum.schedule.concept)}&nbsp;&nbsp;&nbsp;&nbsp;)
         end
       else
         ""
@@ -67,45 +52,19 @@ module ActivitiesHelper
           
           match = activity.item
           is_member = current_user.is_member_of?(match.schedule.group)
-          %(#{I18n.t(:changes_in_roster_status) } #{I18n.t(:in) } #{is_member ? team_roster_link(match.schedule) : sanitize(match.schedule.concept)}.<br/>)
-    
-    when "Clash"  
-          clash = activity.item
-          is_member = false
-    
-          clash = activity.item
-          is_member = current_user.is_tour_member_of?(clash.meet.tournament)
-          %(#{I18n.t(:changes_in_roster_status) } #{I18n.t(:in) } #{is_member ? meet_link(clash.meet) : sanitize(clash.meet.concept)}.<br/>)
+          %(#{I18n.t(:changes_in_roster_status) } #{I18n.t(:in) } #{is_member ? team_roster_link(match.schedule) : sanitize(match.schedule.concept)}.&nbsp;&nbsp;&nbsp;&nbsp;)
 
-    when "Result"
-      %(Resultados ya se han actualizado...)
+    # when "Result"
+    #   %(Resultados ya se han actualizado...)
       
 	  when "Scorecard"
           scorecard = activity.item
           is_member = current_user.is_member_of?(scorecard.group)
-      %(changed results for #{is_member ? group_link(scorecard.group) : scorecard.group.name}.<br/>)
+      %(changed results for #{is_member ? group_link(scorecard.group) : sanitize(scorecard.group.name)}.<br/>)
             
     else
       raise "Invalid activity type #{activity_type(activity).inspect}"
     end
-  end
-  
-  def post_link(text, blog, post = nil)
-    if post.nil?
-      post = blog
-      blog = text
-      text = post.title
-    end
-    link_to(text, blog_post_path(blog, post))
-  end
-  
-  def topic_link(text, topic = nil)
-    if topic.nil?
-      topic = text
-      text = topic.name
-    end
-    # link_to(text, forum_topic_path(topic.forum, topic))
-    link_to(text, forum_path(topic.forum))
   end
   
   private

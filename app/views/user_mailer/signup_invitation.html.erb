@@ -46,6 +46,13 @@
 <br /><br />
 <% end %>
 
+<% if @cup %>
+
+<%= I18n.t(:participate_cup_afterwards) %><br /><br />
+<%= link_to(@cup.name, cup_url(@cup)) %>
+<br /><br />
+<% end %>
+
 <%= render :partial => 'footer' %>
 
 

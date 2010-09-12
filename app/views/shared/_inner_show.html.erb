@@ -13,19 +13,19 @@
 	case the_controller
 		when 'user'
 %>
-			<%= user_link object %>
+			<%= user_link(object) %>
 <% 		
 		when 'group'
 %>
-			<%= group_link object %>
+			<%= group_link(object) %>
 <% 		
 		when 'schedule'
 %>
-			<%= group_link object %>
+			<%= group_link(object) %>
 <% 		
 		when 'marker'
 %>
-			<%= marker_link object %>			
+			<%= marker_link(object) %>			
 <%
 		else
 	end

@@ -1,6 +1,15 @@
 <%
 	the_label = label_name(:fees)
 	content_for(:title, the_label)
+	
+	the_name = ""
+	if @user
+		the_name = sanitize(@user.name)
+	elsif @group
+		the_name = sanitize(@group.name)
+	elsif @challenge
+		the_name = sanitize(@challenge.name)
+	end
 %>
 <div class="block">
 
@@ -10,7 +19,7 @@
           
   <div class="content">  
 	        
-    <h2 class="title"><%= the_label %></h2>
+    <h2 class="title"><%= "#{the_label} #{label_name(:from_de)}  #{the_name}" %></h2>
 
     <div class="inner">
 	

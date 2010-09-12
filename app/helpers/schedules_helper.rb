@@ -1,18 +1,8 @@
 module SchedulesHelper
 
   # Link to a schedule (default is by concept).
-  def schedule_link(text, schedule = nil, html_options = nil)
-    if schedule.nil?
-      schedule = text
-      text = schedule.concept
-    elsif schedule.is_a?(Hash)
-      html_options = schedule
-      schedule = text
-      text = schedule.concept
-    end
-    # We normally write link_to(..., schedule) for brevity, but that breaks
-    
-    link_to(h(text), schedule, html_options)
+  def schedule_link(text, item = nil, html_options = nil)    
+    item_concept_link(text, item, html_options)
   end 
   
   def team_roster_link(text, schedule = nil, html_options = nil)
@@ -23,9 +13,7 @@ module SchedulesHelper
       html_options = schedule
       schedule = text
       text = schedule.concept
-    end
-    # We normally write link_to(..., schedule) for brevity, but that breaks
-    
+    end    
     link_to(h(text), team_roster_path(:id => schedule), html_options)
   end 
   
@@ -35,9 +23,7 @@ module SchedulesHelper
   
   def schedule_image_small(schedule)
     image_tag(schedule.sport.icon, options={:style => "height: 15px; width: 15px;"})
-  end
-  
-             
+  end   
 end
 
 

@@ -1,19 +1,32 @@
-<% the_label = label_name('signup') %>
+<% 
+	the_label = label_name('signup') 
+%>
 
-<div class="block" id="block-signup"> 
+<div class="block" id="block-login">
 
-<h2><%= the_label %></h2> 
+	<div class="content login">
+		
+		<div class="inner">
+			
+		<%= render :partial => 'shared/flash', :locals => {:flash => flash} %>
+			
+		<% form_for @user, :html => {:class => 'form login'} do |f| %>
+		
+				
+		<div class="columns"> 
 
-<div class="content"> 
+			<div class="column left">
+				<%= RPXNow.embed_code(APP_CONFIG['rpx_api']['realm'],rpx_token_sessions_url, :language => I18n.locale)  if SHOW_RPX_NOW %>
+			</div> 
 
-	<% form_for @user, :html => { :class => :form } do |f| -%>
+			<div class="column right">					
+				<%= render :partial => '/user_sessions/login', :locals => {:f => f, :the_label => the_label}  if SHOW_LOGIN %>			
+			</div>
+
+		</div>
+
+		<% end -%>	
 	
-		<%= render :partial => 'utilities/rpx_now', :locals => {:the_label => the_label} %>		
-		<%= render :partial => 'utilities/login', :locals => {:f => f, :the_label => the_label} %>
-		<%#= render :partial => 'utilities/openid', :locals => {:f => f, :the_label => the_label} %>
-	
-	<% end -%>
-  
-</div> 
-
-</div> 
+		</div>
+	</div>
+</div>

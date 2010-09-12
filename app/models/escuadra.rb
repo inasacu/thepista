@@ -3,6 +3,9 @@ class Escuadra < ActiveRecord::Base
   # friendly url and removes id
   # has_friendly_id :name, :use_slug => true, :reserved => ["new", "create", "index", "list", "signup", "edit", "update", "destroy", "show", "petition"]
   
+  belongs_to    :item,          :polymorphic => true
+  belongs_to    :sub_item,      :polymorphic => true
+    
   has_attached_file :photo,
   :styles => {
     :thumb  => "80x80#",
@@ -18,7 +21,7 @@ class Escuadra < ActiveRecord::Base
     validates_attachment_size         :photo, :less_than => 5.megabytes
      
   # validations 
-  validates_uniqueness_of   :name,    :case_sensitive => false
+  # validates_uniqueness_of   :name,    :case_sensitive => false
   
   validates_presence_of     :name
   validates_presence_of     :description
@@ -29,7 +32,6 @@ class Escuadra < ActiveRecord::Base
   validates_format_of       :name,            :with => /^[A-z 0-9 _.-]*$/
 
   has_and_belongs_to_many   :cups,          :conditions => 'archive = false',   :order => 'name'
-  # has_many                  :standings,     :conditions => "escuadra_id > 0 and played > 0 and archive = false" #,  :order => "escuadra_id"
 
   # variables to access
   attr_accessible :name, :photo, :description
@@ -52,4 +54,14 @@ class Escuadra < ActiveRecord::Base
     Standing.create_cup_escuadra_standing(cup)  
   end
   
+  def self.cup_escuadras(cup, page = 1)
+    self.paginate(:all, :conditions => ["id in (select escuadra_id from cups_escuadras where cup_id = ?)", cup], 
+    :order => 'name', :page => page, :per_page => ESCUADRAS_PER_PAGE)
+  end
+  
+  private
+  # Return true if the cup and item nil
+  def self.item_exists?(item)
+    find_by_item_id_and_item_type(item, item.class.to_s).nil?
+  end
 end

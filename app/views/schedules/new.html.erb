@@ -4,7 +4,10 @@
 
 	<div class="content">  
 
-		<h2 class="title"><%= "#{control_action_label} #{label_name('for')} " %><%= group_link @schedule.group %></h2>
+		<h2 class="title">
+			<%= "#{control_action_label} #{label_name('for')} " %>
+			<%= item_name_link(@schedule.group) %>
+		</h2>
 
 		<div class="inner">
 		

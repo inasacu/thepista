@@ -6,7 +6,6 @@ class Announcement < ActiveRecord::Base
     active.since(hide_time)
   end
     
-  
   def self.previous_announcement(page = 1)
     self.paginate(:all, :conditions => ["starts_at <= ? and ends_at < ?", Time.zone.now, Time.zone.now], 
                   :order => 'starts_at', :page => page, :per_page => SCHEDULES_PER_PAGE)

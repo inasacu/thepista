@@ -1,9 +1,7 @@
 class Group < ActiveRecord::Base
- 
+  
   # sitemap generator
   sitemap :change_frequency => :weekly, :limit => 1000, :priority => 0.5
-
-  # acts_as_solr :fields => [:name, :second_team, :time_zone] if use_solr? #, :include => [:sport, :marker] 
                   
   has_attached_file :photo,
   :styles => {
@@ -96,8 +94,9 @@ class Group < ActiveRecord::Base
   before_update :format_description, :format_conditions
   after_create  :create_group_blog_details, :create_group_marker, :create_group_scorecard
 
-  # # method section
-    
+  acts_as_authorization_subject
+
+  # method section
   def object_counter(objects)
     @counter = 0
     objects.each { |object|  @counter += 1 }
@@ -140,6 +139,14 @@ class Group < ActiveRecord::Base
   def is_basket?
    	# sports related to basket
     return [7].include?(self.sport_id)
+  end
+
+  def is_group_member_of?(item)
+    self.has_role?('member', item)
+  end
+  
+  def self.latest_items
+    find(:all, :conditions => ["created_at >= ?", LAST_WEEK], :order => "id desc") 
   end
 
   def self.looking_for_user(user)
@@ -189,8 +196,6 @@ private
 
   def create_group_blog_details
     @blog = Blog.create_item_blog(self)
-    # @entry = Entry.create_group_entry(self, @blog)
-    # Comment.create_group_comment(self, @blog, @entry)
   end
 
   def create_group_scorecard   

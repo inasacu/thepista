@@ -5,6 +5,11 @@
 <% technical["percentage"] = technical["difference"].abs / technical["minimum"].to_f unless technical["minimum"] == 0 %>
 <% physical["percentage"] = physical["difference"].abs / physical["minimum"].to_f unless physical["minimum"] == 0 %>
 
+<style type="text/css">
+.table td.no_line {
+  border-bottom: 0px solid #cfcfcf;
+}
+</style>
 
 	<table class="table" id="<%= get_the_action.gsub(' ','_') %>">
 
@@ -13,15 +18,13 @@
 			<%= content_tag :th, "&nbsp;" %>
 			<%= content_tag :th, "&nbsp;" %>
 			<%= content_tag :th, "&nbsp;" %>
-		 <th align="center" title = "<%= label_name(:defense) %>"><%= label_name(:defense) %></th>
-		 <th align="center" title = "<%= label_name(:center) %>"><%= label_name(:center) %></th>
-		 <th align="center" title = "<%= label_name(:attack) %>"><%= label_name(:attack) %></th>
-		 <th align="center" title = "<%= label_name(:technical) %>"><%= label_name(:technical) %></th>
-		 <th align="center" title = "<%= label_name(:physical) %>"><%= label_name(:physical) %></th>
-		 <th align="center" title = "<%= label_name(:total) %>"><%= label_name(:total) %></th>
-		 	
-			<%= content_tag :th, "&nbsp;" %>
-			
+			<%= content_tag(:th, label_name(:defense), :align => "center", :title => label_name(:defense)) %>
+			<%= content_tag(:th, label_name(:center), :align => "center", :title => label_name(:center)) %>
+			<%= content_tag(:th, label_name(:attack), :align => "center", :title => label_name(:attack)) %>
+			<%= content_tag(:th, label_name(:technical), :align => "center", :title => label_name(:technical)) %>
+			<%= content_tag(:th, label_name(:physical), :align => "center", :title => label_name(:physical)) %>
+			<%= content_tag(:th, label_name(:total), :align => "center", :title => label_name(:total)) %>		 	
+			<%= content_tag :th, "&nbsp;", :class => "last" %>	
 		 <th>&nbsp;
 			<% 
 				the_label = "#{label_name(:previous_profile_set_full) }"
@@ -30,124 +33,79 @@
 			<%= link_to(label_name(:previous_profile_set), 
 						set_previous_profile_url(:id => @schedule.id), 
 						:title => the_label, :confirm => the_confirmation) if current_user.is_manager_of?(@schedule.group) %>
-		</th>
-		
-				
+		</th>		
 			<%= content_tag :th, "&nbsp;" %>
 			<%= content_tag :th, "&nbsp;" %>
 			<%= content_tag :th, "&nbsp;" %>
 			<%= content_tag :th, "&nbsp;" %>
 			<%= content_tag :th, "&nbsp;" %>
-
-		 <th class="last">&nbsp;</th>
+			<%= content_tag :th, "&nbsp;" %>
+			<%= content_tag :th, "&nbsp;", :class => "last" %>
 		</tr>
 		
 		<tr>
-			
-			 <%= content_tag :td, "&nbsp;" , :class => "first" %>
-			 <%= content_tag :td, "&nbsp;" %>
-			 <%= content_tag :td, "&nbsp;" %>
-			
-			<td><%= link_to @schedule.home_group, group_path(@schedule.group) %></td>
-			<td><%= home["defense"] %></td>
-			<td><%= home["center"] %></td>
-			<td><%= home["attack"] %></td>
-			<td><%= home["technical"] %></td>
-			<td><%= home["physical"] %></td>
-			<td><%= home["total"] %></td>
-			
-
-			
-			
-			<td class="last">&nbsp;</td>
+			<%= content_tag(:td, "&nbsp;", :class => "no_line") %>
+			<%= content_tag(:td, "&nbsp;", :class => "no_line") %>
+			<%= content_tag(:td, "&nbsp;", :class => "no_line") %>
+			<%= content_tag(:td, link_to(@schedule.home_group, group_path(@schedule.group)), :class => "no_line") %>			
+			<%= content_tag(:td, home["defense"], :class => "no_line", :align => "center") %>
+			<%= content_tag(:td, home["center"], :class => "no_line", :align => "center") %>
+			<%= content_tag(:td, home["attack"], :class => "no_line", :align => "center") %>
+			<%= content_tag(:td, home["technical"], :class => "no_line", :align => "center") %>
+			<%= content_tag(:td, home["physical"], :class => "no_line", :align => "center") %>
+			<%= content_tag(:td, home["total"], :class => "no_line", :align => "center") %>
 		</tr>
 
 		<tr>
-			<td class="first">&nbsp;</td>
-			 <td>&nbsp;</td>
-			 <td>&nbsp;</td>
-			<td><%= link_to @schedule.away_group, group_path(@schedule.group) %></td>
-			<td><%= away["defense"] %></td>
-			<td><%= away["center"] %></td>
-			<td><%= away["attack"] %></td>
-			<td><%= away["technical"] %></td>
-			<td><%= away["physical"] %></td>
-			<td><%= away["total"] %></td>
-			<td>&nbsp;</td>
-			<td>&nbsp;</td>
-			<td>&nbsp;</td>
-			<td>&nbsp;</td>
-			<td>&nbsp;</td>
-			<td>&nbsp;</td>
-			<td>&nbsp;</td>
-			<td>&nbsp;</td>
-			<td class="last">&nbsp;</td>
+			<%= content_tag(:td, "&nbsp;", :class => "no_line") %>
+			<%= content_tag(:td, "&nbsp;", :class => "no_line") %>
+			<%= content_tag(:td, "&nbsp;", :class => "no_line") %>
+			<%= content_tag(:td, link_to(@schedule.away_group, group_path(@schedule.group)), :class => "") %>			
+			<%= content_tag(:td, away["defense"], :class => "", :align => "center") %>
+			<%= content_tag(:td, away["center"], :class => "", :align => "center") %>
+			<%= content_tag(:td, away["attack"], :class => "", :align => "center") %>
+			<%= content_tag(:td, away["technical"], :class => "", :align => "center") %>
+			<%= content_tag(:td, away["physical"], :class => "", :align => "center") %>
+			<%= content_tag(:td, away["total"], :class => "", :align => "center") %>
 		</tr>
 
 		<tr>
-			<td class="first">&nbsp;</td>
-			 <td>&nbsp;</td>
-			 <td>&nbsp;</td>
-			<td><strong>Diff.</strong></td>
-			<td><%= home["defense"]-away["defense"] %></td>
-			<td><%= home["center"]-away["center"] %></td>
-			<td><%= home["attack"]-away["attack"] %></td>
-			<td><%= technical["difference"] %></td>
-			<td><%= physical["difference"] %></td>
-			<td>&nbsp;</td>
-			<td>&nbsp;</td>
-			<td>&nbsp;</td>
-			<td>&nbsp;</td>
-			<td>&nbsp;</td>
-			<td>&nbsp;</td>
-			<td>&nbsp;</td>
-			<td>&nbsp;</td>
-			<td>&nbsp;</td>
-			<td class="last">&nbsp;</td>
+			<%= content_tag(:td, "&nbsp;", :class => "no_line") %>
+			<%= content_tag(:td, "&nbsp;", :class => "no_line") %>
+			<%= content_tag(:td, "&nbsp;", :class => "no_line") %>
+			<%= content_tag(:td, "#{label_name(:difference)}:", :class => "no_line") %>
+			<%= content_tag(:td, home["defense"]-away["defense"], :class => "no_line", :align => "center") %>
+			<%= content_tag(:td, home["center"]-away["center"], :class => "no_line", :align => "center") %>
+			<%= content_tag(:td, home["attack"]-away["attack"], :class => "no_line", :align => "center") %>
+			<%= content_tag(:td, technical["difference"], :class => "no_line", :align => "center") %>
+			<%= content_tag(:td, physical["difference"], :class => "no_line", :align => "center") %>
+			<%= content_tag(:td, "&nbsp;", :class => "no_line") %>
 		</tr>
 								
 		<tr>
-		 <td class="first">&nbsp;</td>
-		 <td>&nbsp;</td>
-		 <td>&nbsp;</td>
-		 <td><strong>%</strong></td>
-		 <td>&nbsp;</td>
-		 <td>&nbsp;</td>
-		 <td>&nbsp;</td>
-		 <td><%= sprintf( "%0.00f", technical["difference"].abs) %><%= "%" %></td>
-		 <td><%= sprintf( "%0.00f", physical["difference"].abs) %><%= "%" %></td>
-		 <td>&nbsp;</td>
-		 <td>&nbsp;</td>	
-		 <td>&nbsp;</td>
-		 <td>&nbsp;</td>	
-			<td>&nbsp;</td>
-			<td>&nbsp;</td>
-		 <td>&nbsp;</td>
-		 <td>&nbsp;</td>
-		 <td>&nbsp;</td>
-		 <td class="last">&nbsp;</td>
+		 <%= content_tag(:td, "&nbsp;", :class => "no_line") %>
+		 <%= content_tag(:td, "&nbsp;", :class => "no_line") %>
+		 <%= content_tag(:td, "&nbsp;", :class => "no_line") %>
+		 <%= content_tag(:td, "#{label_name(:percentage_full)}:", :class => "no_line") %>
+		 <%= content_tag(:td, "&nbsp;", :class => "no_line") %>
+		 <%= content_tag(:td, "&nbsp;", :class => "no_line") %>
+		 <%= content_tag(:td, "&nbsp;", :class => "no_line") %>		
+		 <%= content_tag(:td, "#{sprintf( "%0.00f", technical["difference"].abs)}%", :class => "", :align => "center") %>
+		 <%= content_tag(:td, "#{sprintf( "%0.00f", physical["difference"].abs)}%", :class => "", :align => "center") %>
+		 <%= content_tag(:td, "&nbsp;", :class => "no_line") %>
 		</tr>
 				
 		<tr>
-		 <td class="first">&nbsp;</td>
-			 <td>&nbsp;</td>
-			 <td>&nbsp;</td>
-		 <td><%= label_name(:how_much_better) %></td>
-		 <td>&nbsp;</td>
-		 <td>&nbsp;</td>
-		 <td>&nbsp;</td>
-		 <td><%= sprintf( "%0.00f", technical["percentage"]*100) %><%= "%" %></td>
-		 <td><%= sprintf( "%0.00f", physical["percentage"]*100) %><%= "%" %></td>
-		 <td>&nbsp;</td>	
-		 <td>&nbsp;</td>
-		 <td>&nbsp;</td>
-		 <td>&nbsp;</td>	
-			<td>&nbsp;</td>
-			<td>&nbsp;</td>
-		 <td>&nbsp;</td>
-		 <td>&nbsp;</td>
-		 <td>&nbsp;</td>
-		 <td class="last">&nbsp;</td>
+			<%= content_tag(:td, "&nbsp;", :class => "no_line") %>
+			<%= content_tag(:td, "&nbsp;", :class => "no_line") %>
+			<%= content_tag(:td, "&nbsp;", :class => "no_line") %>
+			<%= content_tag(:td, label_name(:how_much_better), :class => "no_line") %>
+			<%= content_tag(:td, "&nbsp;", :class => "no_line") %>
+			<%= content_tag(:td, "&nbsp;", :class => "no_line") %>
+			<%= content_tag(:td, "&nbsp;", :class => "no_line") %>
+			<%= content_tag(:td, "#{sprintf( "%0.00f", technical["percentage"]*100)}%", :class => "no_line", :align => "center") %>
+			<%= content_tag(:td, "#{sprintf( "%0.00f", physical["percentage"]*100)}%", :class => "no_line", :align => "center") %>
+			<%= content_tag(:td, "&nbsp;", :class => "no_line") %>
 		</tr>
 
 		</table>

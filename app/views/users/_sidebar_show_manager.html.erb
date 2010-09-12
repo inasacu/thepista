@@ -1,30 +1,9 @@
 <div class="block">
-	
+	<h3><%= label_name(:manager_option) %></h3>
 <ul class="navigation">
 <%
 	current_user.groups.each do |group| 
 		the_group = h(group.name)
-
- 		unless @user.is_member_of?(group)  
-			the_label = label_with_name('petition_to_join', group.name)
-			the_confirmation = "#{ label_name(:petition_to_join)} #{h(@user.name)} #{ label_name(:to) } #{the_group}?"
-%>
-			<li>
-				<%#= link_to(the_label, join_team_path(:id => group, :teammate => current_user), :confirm => the_confirmation) %>
-				<%= link_to(the_label, join_item_path(:id => group, :item => group.class.to_s, :teammate => @user), 
-						:confirm => the_confirmation) %>
-			</li>
-<% 
-		else 
-			the_label = label_with_name('fire_from_item', group.name)
-			the_confirmation = "#{ label_name(:fire_from_item)} #{the_group} #{ label_name(:to)} #{h(@user.name)}?"
-%> 
-		<li>
-			<%#= link_to(the_label, leave_team_path(:id => group, :teammate => @user), :confirm => the_confirmation) %>
-			<%= link_to(the_label, leave_item_path(:id => group, :item => group.class.to_s, :teammate => current_user), :confirm => the_confirmation) %>
-		</li>
-<% 
-		end 
 		
 		if @user == current_user and @user.is_creator_of?(group)  
 			if @user.is_manager_of?(group)
@@ -59,13 +38,9 @@
 				end
 			end		
 		end	
-%>
-<li>&nbsp;</li>
-<%	
 	end 
 %>
 
 </ul>
 	
 </div>
-<!-- </div> -->

@@ -1,59 +1,63 @@
-<table class="table">
+<%
+	teammates.each do |teammate| 
 
-	<tr>             
-		<th class="first">&nbsp;</th>
-		<th><%=label_name(:name) %></th>
-		<th><%#=label_name(:group) %></th>
-		<th><%=label_name(:petition_at) %></th>
-		<th><%=label_name(:general_information) %></th>
-		<th class="last">&nbsp;</th>
-	</tr>
+	has_sub_item = teammate.sub_item.nil?
 
-	<% teammates.each do |teammate| 
-		item_link = ''
-		manager_link = "#{link_to(label_name(:petition_join_item_accept), join_item_accept_path(teammate))}  /  " if current_user.is_manager_of?(teammate.item)
-		
-		case teammate.item.class.to_s  
-		when 'Group' 
-			# item_link = group_link(teammate.group)
-			item_link = group_link(teammate.item)
-		when 'Challenge' 
-			item_link = challenge_link(teammate.item)
-		else
-		end
-	%>	
-	<tr>
-		<td>
-			<%= image_link_small teammate.user %>
-		</td>
+	request_image = item_image_link_small(teammate.user)
+	request_link = item_name_link(teammate.user)
 
-		<td>
-			<%= user_link teammate.user %>
-		</td>
-		
-		<td>
-			<%= item_link %>
-		</td>
+	item_link = item_name_link(teammate.item)
+	item_image = item_image_link_small(teammate.item)
 
-		<td>
-			<%= nice_day_date teammate.created_at %>
-		</td>
+	sub_item_link = has_sub_item ?  "" : item_name_link(teammate.sub_item) 
+	sub_item_image = has_sub_item ? "" : item_image_link_small(teammate.sub_item)
 
-		<td>
-			<%= label_name(:petition_to_join) %>&nbsp;<br/>
-			<%= item_link %>
-		</td>			  
+	manager_link = "#{link_to(label_name(:petition_join_item_accept), join_item_accept_path(teammate))}  /  " if current_user.is_manager_of?(teammate.item)
+	
+	has_joined ||= false
+	has_joined = (teammate.status == 'accepted')
+%>	
 
-		<td class="last">	
-			<%= manager_link %>	
-			<%= link_to label_name(:petition_join_item_decline), join_item_decline_path(teammate) %>
-		</td>	
+<tr>
+	<td>
+		<% if has_sub_item %>		
+		<%= request_image %>
+		<% else %>
+		<%= sub_item_image %>
+		<% end %>
+	</td>
 
-	</tr>
-	<% end -%>	
+	<td class="name_and_date">
+		<%= request_link %>&nbsp;
+		<%= has_joined ? "#{label_name(:petition_to_join_accepted).downcase} <wbr/> #{item_link}" : "#{label_name(:petition_to_join)} <wbr/> #{item_link}" %>
+		<span class="date">
+			<% unless has_sub_item %>
+			<br/>
+			<%= sub_item_link %>
+			<br/>
+			<% end %>
+		<%= has_joined ? nice_full_date(teammate.accepted_at) : nice_full_date(teammate.created_at) %>	
+		</span>
+	</td>
 
+	<td>
+		<%#= has_joined ? "#{label_name(:petition_to_join_accepted)} <wbr/> #{item_link}" : "#{label_name(:petition_to_join)} <wbr/> #{item_link}" %>
+	</td>	
+	
+	<td>&nbsp;</td>		  
 
-</table>
+	<td class="last">
+		<% unless has_joined %>
+		<%= manager_link %>	
+		<%= link_to label_name(:petition_join_item_decline), join_item_decline_path(teammate) %>
+		<% end %>
+	</td>	
+
+</tr>
+<% 
+	end 
+-%>	
+
 
 
 

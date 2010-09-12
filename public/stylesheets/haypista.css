@@ -1,26 +1,3 @@
-/* @override 
-	http://thepista.local/stylesheets/themes/djime-cerulean/style.css?1259966885
-	http://thepista.local/stylesheets/themes/djime-cerulean/style.css?1259973888
-*/
-
-/**
- * Cerulean web-app-theme made for Djime: http://github.com/mikl/djime/
- *
- * Please note that we're using CSSEdit's @group comment syntax.
- *
- * Colour sheme:
- *   Cerulean:       #007BA7 =>  009933		
- *   Bright blue:    #01B8DE
- *   Near-white:     #F7F7F8
- *   Silver grey:    #cfcfcf
- *   Dark blue:      #001C26   =>    0C4A00      => 0F7D00
-
- * business card color #60AD35
- 
- 	main-navigation background-color: #005-573; 0F7D00
- *
- * http://www.colourlovers.com/palette/646252/Cerulean_touch
- */
 
 /* @group General styles */
 
@@ -32,7 +9,7 @@ a:link, a:visited, a:hover, a:active, h1, h2, h3 { color: #006699; }
 
 body {
   color: #222;
-  background: #cfcfcf; 
+  background: #EEF0F0;
   font-family: "Helvetica Neue",Helvetica,Arial,"Bitstream Vera Sans",sans-serif;
 }
 
@@ -46,7 +23,7 @@ hr {
 /* @group Header */
 
 #header {
-	background: #60AD35;   /* previous [ 33ff33 ] previous to previous [ 15B100 ] */   
+	background: #0F7D00;   
 }
 
 #header h1 {
@@ -67,8 +44,16 @@ hr {
 }
 
 #main .block .content {
-  background: #F7F7F8;
-  padding-top: 1px;
+	background: #F7F7F8;
+	padding-top: 1px;	
+	border-top: 1px solid #cfcfcf;
+	border-bottom: 1px solid #cfcfcf;
+	border-left: 1px solid #cfcfcf;
+	border-right: 1px solid #cfcfcf;
+/*	border-top-left-radius: 5px;*/
+	border-top-right-radius: 5px;
+	border-bottom-left-radius: 5px;
+	border-bottom-right-radius: 5px;
 }
 
 #main .block .content h2 {
@@ -83,12 +68,13 @@ hr {
   padding-left: 0;
 }
 
-#main-navigation ul li a {
+/*#main-navigation ul li a {
   padding: 8px 0;
-}
+}*/
 
 #main-navigation ul li a {
-  padding: 8px 15px;
+	font-size: 13px;
+	padding: 8px 8px;
 }
 
 #main-navigation {
@@ -96,62 +82,64 @@ hr {
 }
 
 #main-navigation ul li a:hover {
-  background-color: #003300;
+  background-color: #60AD35;
 }
 
 #main-navigation ul li.active a {
-  background-color: #cfcfcf;
-  background: -webkit-gradient(linear, left top, left bottom, from(#cfcfcf), to(#cfcfcf), color-stop(0.5, #F7F7F8), color-stop(0.5, #F7F7F8));
-
+  background-color: #60AD35;
 }
-
 /* @end */
 
+
 /* @group Secondary navigation */
-
-/*.secondary-navigation li a:hover {
+.secondary-navigation {
+	color: #F7F7F8;
+	background-color: #EEF0F0;
+	border-bottom-width: 0px;
+	border-bottom-color: #EEF0F0;
+}
+ 
+.secondary-navigation ul li {
   background: #0F7D00;
-}*/
-
-.secondary-navigation li a:hover {
-  background-color: #336600;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+  margin-right: 1px;
 }
 
-.secondary-navigation {
-  background: #009933;
-  color: #F7F7F8;
-  border-bottom-width: 3px;
-  border-bottom-color: #0F7D00;
+.secondary-navigation li a:hover {
+  background-color: #60AD35;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
 }
 
 .secondary-navigation ul li.active, .secondary-navigation ul li.active a:hover {
-  background-color: #0F7D00;
+	background-color: #60AD35;
 }
-
 /* @end */
 
 /* @group Sidebar */
 
 #sidebar .block {
   background: #F7F7F8;
+  border: 1px solid #cfcfcf;
 }
 
 #sidebar h3 {
-  background: #009933;
-  color: #F7F7F8;
-  border-bottom: 3px solid #0F7D00;
+/*	background: #009933;*/
+	background: #60AD35;	
+	color: #F7F7F8;
+	border-bottom: 2px solid #cfcfcf;
 }
 
 #sidebar ul li a:link, #sidebar ul li a:visited {
   background: #F7F7F8;
-  border-bottom: 1px solid #EEF0F0;
   text-decoration: none;
 }
 
-#sidebar ul li a:hover, #sidebar ul li a:active {
-  background: #60AD35;;
-  color: #F7F7F8;
-}
+/*#sidebar ul li a:hover, #sidebar ul li a:active {
+	background: #60AD35;
+	color: #F7F7F8;
+}*/
 
 /* @end */
 
@@ -163,12 +151,18 @@ hr {
 }
 
 #main-navigation ul li.active a:link, #main-navigation ul li.active a:visited, #main-navigation ul li.active a:hover, #main-navigation ul li.active a:active {
-  color: #001C26;
+/*  color: #001C26;*/
+  color: #F7F7F8;
+}
+
+#footer {
+/*  background-color: #ddd;*/
+  border-top: 1px solid #cfcfcf;
 }
 
 #footer .block {
-  color: #F7F7F8;
-  background: #0F7D00;
+/*  background: #0F7D00;*/
+  background: #EEF0F0;
 }
 
 #footer .block p {
@@ -196,14 +190,21 @@ hr {
 }
 
 /* tables */
-
 .table th {
-  background: #cfcfcf;
-  color: #001C26;
+/*	border-bottom: 2px solid #6D98AB;*/
+	border-bottom: 2px solid #cfcfcf;
+	color: #001C26;
+	background: #EEEEEE;
 }
 
 .table td {
-  border-bottom:1px solid #EEF0F0;
+  border-bottom: 1px solid #cfcfcf;
+}
+
+.table td.letter-divider {
+  color: #0F7D00;
+  border-bottom: 0px solid #cfcfcf;
+  font-size: 14px;
 }
 
 /* forms */
@@ -237,6 +238,7 @@ hr {
 
 .flash .message p {
   margin:8px;
+/*  font-size: 16px;*/
 }
 .flash .error {
   border: 1px solid #fbb;
@@ -247,13 +249,14 @@ hr {
   background-color: #ffffcc;
 }
 .flash .notice {
-  border: 1px solid #8ec4df;
-  background-color: #dffaff;
+  border: 1px solid #cfcfcf;
+/*  background-color: #dffaff;*/
+  background-color: #EEF0F0;
 }
 
 /* @end */
 
-/* lists */
+/* @group lists */
 
 ul.list li {
   border-bottom-color: #EEF0F0;
@@ -268,7 +271,9 @@ ul.list li .item .avatar {
   padding: 2px;
 }
 
-/* box */
+/* @end */
+
+/* @group box */
 
 #box .block {
   background: #F7F7F8;
@@ -278,6 +283,8 @@ ul.list li .item .avatar {
   background: #0F7D00;
   color: #F7F7F8;
 }
+
+/* @end */
 
 
 /* rounded borders */
@@ -311,3 +318,48 @@ ul.list li .item .avatar {
   -moz-border-radius-bottomright: 4px;
   -webkit-border-bottom-right-radius: 4px;
 }
+
+
+#box {
+  width: 798px;
+  margin: 50px auto;  
+}
+
+#box .block .content {
+	padding: 10px 20px;
+	border-width: 6px;
+	border-color: #fbb;
+
+	border-top: 1px solid #cfcfcf;
+	border-bottom: 1px solid #cfcfcf;
+	border-left: 1px solid #cfcfcf;
+	border-right: 1px solid #cfcfcf;
+
+	border-top-left-radius: 5px;
+	border-top-right-radius: 5px;
+	border-bottom-left-radius: 5px;
+	border-bottom-right-radius: 5px;
+
+	background: url('../images/login.png') no-repeat scroll 0pt 0pt transparent; 
+
+	height: 245px; 
+}
+
+.left { float: left; }
+.right { float: right; }
+
+div.rpx { 
+	width: 745px; 
+	height: 240px; 
+}
+
+div.rpx fieldset > div { 
+	margin-bottom: 19px; 
+	padding-left:60px; 
+	padding-top: 35px;
+}
+
+div.rpx fieldset.right > div { width: 373px; }
+div.rpx fieldset.right > div a { margin-bottom: 17px; margin-top: 8px; }
+div.rpx label { margin-right: 10px; display: inline-block; width: 70px; }
+div.rpx input.text { display: inline-block; width: 204px; font-size: 12px; }

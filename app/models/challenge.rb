@@ -25,7 +25,7 @@ class Challenge < ActiveRecord::Base
   # variables to access
   attr_accessible :name, :cup_id, :starts_at, :ends_at, :reminder_at, :fee_per_game, :time_zone, :description, :conditions, :player_limit, :archive
 
-  has_and_belongs_to_many :users,           :join_table => "challenges_users",   :order => "name"
+  has_and_belongs_to_many :users,   :conditions => 'archive = false',   :order => 'name'
 
   belongs_to    :cup
   has_many      :casts
@@ -46,7 +46,7 @@ class Challenge < ActiveRecord::Base
   before_create :format_description, :format_conditions
   before_update :format_description, :format_conditions
 
-  # # method section
+  # method section
   def object_counter(objects)
     @counter = 0
     objects.each { |object|  @counter += 1 }
@@ -90,12 +90,17 @@ class Challenge < ActiveRecord::Base
 
     ChallengesUsers.join_item(user, self)
     Blog.create_item_blog(self)
-    # Standing.create_cup_challenge_standing(self)
-    # Cast.create_challenge_cast(self) 
-    # Fee.create_user_challenge_fees(self)
     Standing.send_later(:create_cup_challenge_standing, self)
     Cast.send_later(:create_challenge_cast, self) 
     Fee.send_later(:create_user_challenge_fees, self)
+  end 
+  
+  def self.current_challenges(page = 1)
+    self.paginate(:all, :conditions => ["archive = false"], :order => 'name', :page => page, :per_page => CUPS_PER_PAGE)
+  end 
+  
+  def self.latest_items
+    find(:all, :conditions => ["created_at >= ?", LAST_WEEK], :order => "id desc") 
   end
 
   def format_description
@@ -107,20 +112,6 @@ class Challenge < ActiveRecord::Base
   end
 
   private
-
-  # def create_challenge_blog_details
-  #   Blog.create_item_blog(self)
-  # end
-  # 
-  # def create_challenge_standing   
-  #   Standing.create_challenge_standing(self)
-  # end
-  # 
-  # def create_join_user_challenge_details
-  #   Cast.create_challenge_cast(self) 
-  #   Fee.create_user_challenge_fees(self)
-  # end
-
   def validate
     self.errors.add(:reminder_at, I18n.t(:must_be_before_starts_at)) if self.reminder_at >= self.starts_at
     self.errors.add(:starts_at, I18n.t(:must_be_before_ends_at)) if self.starts_at >= self.ends_at

@@ -17,7 +17,7 @@
 	<%
 	when 'Escuadra'
 	  the_link =  escuadra_link(recipient)
-	  the_object_path = Escuadra.find(recipient.escuadra_id)
+	  the_object_path = Escuadra.find(recipient.id)
 	%>
 	<%= link_to(image_tag(recipient.avatar, options={:style => "height: 22px; width: 28px;", :title => h(recipient.name), :class =>"photo fn"}), 
 	the_object_path, :class => "url", :hreflang => "en", :rel => "contact") %>

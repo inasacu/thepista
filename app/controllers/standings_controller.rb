@@ -1,7 +1,6 @@
 class StandingsController < ApplicationController
   before_filter :require_user
   before_filter :standing_cup, :only => [:index, :show]
-  
   before_filter :standing_challenge, :only => [:show_list]
   
   def show

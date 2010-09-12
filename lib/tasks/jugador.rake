@@ -4,6 +4,9 @@ desc "creating a wall, also archive all unactive users...for each user. call wit
 task :thejugador => :environment do |t|
 
   ActiveRecord::Base.establish_connection(RAILS_ENV.to_sym)
+  
+  
+  
 
   # users = (User.find :all, :conditions => ['archive = false']).collect {|user| user unless user.email.blank? }.compact
   # users.each do |user|

@@ -1,7 +1,7 @@
 
 <div class="group">
   <%= f.label :photo, label_name('photo'), :class => :label %>
-  <%= f.file_field :photo, :class => 'text_field' %><br />
+  <%= f.file_field :photo, :class => 'textfield' %><br />
   <span class="description"><%= label_name('photo', 'description') %></span>
 </div>
 
@@ -15,46 +15,46 @@
 <!-- check_box -->
 <div class="group">
   <%= f.label :available, label_name('available'), :class => :label %>
-  <%= f.check_box :available, :class => 'text_field' %>
+  <%= f.check_box :available, :class => 'textfield' %>
   <span class="description"><%= label_name('available', 'description') %></span>
 </div>
 
 <!-- check_box -->
 <div class="group">
   <%= f.label :teammate_notification, label_name('teammate_notification'), :class => :label %>
-  <%= f.check_box :teammate_notification, :class => 'text_field' %>
+  <%= f.check_box :teammate_notification, :class => 'textfield' %>
   <span class="description"><%= label_name('teammate_notification', 'description') %></span>
 </div>
 
  <!-- check_box -->
 <div class="group">
   <%= f.label :private_phone, label_name('private_phone'), :class => :label %>
-  <%= f.check_box :private_phone, :class => 'text_field' %>
+  <%= f.check_box :private_phone, :class => 'textfield' %>
   <span class="description"><%= label_name('private_phone', 'description') %></span>
 </div>  
 
 <!-- check_box -->
 <div class="group">
   <%= f.label :teammate_notification, label_name('teammate_notification'), :class => :label %>
-  <%= f.check_box :teammate_notification, :class => 'text_field' %>
+  <%= f.check_box :teammate_notification, :class => 'textfield' %>
   <span class="description"><%= label_name('teammate_notification', 'description') %></span>
 </div>
 
 <div class="group">
   <%= f.label :message_notification, label_name('message_notification'), :class => :label %>
-  <%= f.check_box :message_notification, :class => 'text_field' %>
+  <%= f.check_box :message_notification, :class => 'textfield' %>
   <span class="description"><%= label_name('message_notification', 'description') %></span>
 </div>
 
 <div class="group">
   <%= f.label :blog_notification, label_name('blog_notification'), :class => :label %>
-  <%= f.check_box :blog_comment_notification, :class => 'text_field' %>
+  <%= f.check_box :blog_comment_notification, :class => 'textfield' %>
   <span class="description"><%= label_name('message_notification', 'description') %></span>
 </div>
 
 <div class="group">
   <%= f.label :forum_notification, label_name('forum_notification'), :class => :label %>
-  <%= f.check_box :forum_comment_notification, :class => 'text_field' %>
+  <%= f.check_box :forum_comment_notification, :class => 'textfield' %>
   <span class="description"><%= label_name('message_notification', 'description') %></span>
 </div>
 
@@ -67,6 +67,6 @@
 <!-- check_box -->
  <div class="group">
   <%= f.label :birth_at, label_name('birth_at'), :class => :label %>
-  <%= date_select :user, :birth_at, :start_year => (Time.zone.now.year.to_i - 70), :end_year => Time.zone.now.year.to_i, :class => 'text_field' %><br />
+  <%= date_select :user, :birth_at, :start_year => (Time.zone.now.year.to_i - 70), :end_year => Time.zone.now.year.to_i, :class => 'textfield' %><br />
   <span class="description"><%= label_name('birth_at', 'description') %></span>
 </div>

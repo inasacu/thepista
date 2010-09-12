@@ -20,12 +20,15 @@
 	<meta name="google-site-verification" content="qyTyrJH8o08Ur15mr5hUYjVNyWcbfQatF3yar3Ry2ws" />
 		
 	<link rel="image_src" href="http://haypista.com/images/haypista.png" />
+	<link rel="apple-touch-icon" href="../images/haypista_iphone.png"/>
 	
 	<link rel="home" href="http://www.haypista.com">
     <link rel="shortcut icon" type="image/ico" href="/favicon.ico">
     
 	<%= stylesheet_link_tag 'reset', 'web_app_theme', 'haypista' %>
 	<%= stylesheet_link_tag 'application' %>
+	<%= stylesheet_link_tag 'header' %>
+	
 	<%= stylesheet_link_tag get_the_action if is_action('show') %>
 	
 	<%= javascript_include_tag :defaults %>
@@ -53,6 +56,8 @@
 	<% login_session = (login_controller.include?(controller.controller_name) and login_action.include?(controller.action_name)) %>
 	<% logout =  !current_user and is_controller('home') and is_action('index') %>
   
+	<%= render :partial => "utilities/ie_nomore" %>
+	
 	<%= render :partial => "shared/header" %>
 	<%= render :partial => "shared/notice" if current_user %>
 	
@@ -69,8 +74,8 @@
   </div>
 
   <%= render :partial => 'utilities/uservoice' %> 
-  <%= render :partial => 'utilities/secure_site' unless current_user %>
-  <%#= render :partial => 'utilities/browser_detect' if development? %>
+  <%= render :partial => 'utilities/secure_site' unless current_user and !production? %>
+  <%= render :partial => 'utilities/browser_detect' if development? %>
   <%#= render :partial => 'utilities/nurph' unless production? %>
   <%= render :partial => 'utilities/envolve' %>
 

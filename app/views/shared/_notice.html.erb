@@ -27,25 +27,12 @@ font-family: Arial,Helvetica,sans-serif;
 		<div class="message warning">
 		<p>
 			<span id="explore-promo-new"><%= label_name(:new) %>!&nbsp;&nbsp;</span>
-			<%=h announcement.message %>
-			<%= link_to label_name(:hide), hide_announcements_path, :id => 'hideAnn', :class => "hide" %>
+			<%= h(announcement.message) %>
+			<%= link_to(label_name(:hide), hide_announcements_path, :id => 'hideAnn', :class => "hide") %>
 		</p>
 		</div>
 		<% end -%>
 	</div>
 </div>
-
-
-<!-- <div id="announcements_box">
-	<%# for announcement in current_announcements %>
-	<div class='announcement' id="announcement_<%= announcement.id.to_s %>">
-		<%#=h announcement.message %>
-		<%#= link_to label_name(:hide), hide_announcements_path, :id => 'hideAnn', :class => "hide" %>
-	</div>
-	<%# end %>
-</div> -->
-
-
-
 
 <% end -%>
