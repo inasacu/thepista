@@ -73,7 +73,7 @@
 	
   </div>
 
-  <%= render :partial => 'utilities/uservoice' %> 
+  <%= render :partial => 'utilities/uservoice' unless development? %> 
   <%= render :partial => 'utilities/secure_site' unless current_user and !production? %>
   <%= render :partial => 'utilities/browser_detect' if development? %>
   <%#= render :partial => 'utilities/nurph' unless production? %>
