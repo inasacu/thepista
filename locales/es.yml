@@ -600,7 +600,9 @@ es:
      home_ranking:  Ranking
      how_much_better:  "¿Cuánto mayor?"
      icon: Icono
-     icon_name: Nombre del icono    
+     icon_name: Nombre del icono
+     ie_no_more_out_dated:  "Usted está usando un navegador obsoleto."
+     ie_no_more_better:  "Para navegar mejor por este sitio, por favor, actualice su navegador."      
      import_contact: Importa contactos de tu correo   
      in: en   
      inbox: Bandeja de entrada   

@@ -599,7 +599,9 @@ en:
      home_ranking:  Ranking
      how_much_better:  "How much Better?"
      icon: Icon
-     icon_name: Icon Name    
+     icon_name: Icon Name 
+     ie_no_more_out_dated:  "You are using an outdated browser."
+     ie_no_more_better:  "For a better experience using this site, please upgrade to a modern web browser."   
      import_contact: Import your email contacts       
      in: in   
      inbox: Inbox   

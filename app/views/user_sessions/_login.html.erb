@@ -19,7 +19,7 @@ is_not_user_signup = get_controller_action != 'user_signup'
 				<label><%= field_label_name(:password) %></label>	
 			</div>		  
 			<div class="right"> 		  
-				&nbsp;&nbsp;<%= f.text_field :password, :class => 'username text' %>	
+				&nbsp;&nbsp;<%= f.password_field :password, :class => 'username text' %>	
 			</div> 		  
 		</div>
 		
@@ -30,7 +30,7 @@ is_not_user_signup = get_controller_action != 'user_signup'
 					<label><%= field_label_name(:password_confirmation) %></label>			
 				</div>		  
 				<div class="right"> 		  
-					&nbsp;&nbsp;<%= f.text_field :password_confirmation, :class => 'username text' %>	
+					&nbsp;&nbsp;<%= f.password_field :password_confirmation, :class => 'username text' %>	
 				</div> 		  
 			</div>
 
