@@ -57,6 +57,7 @@
 	<% logout =  !current_user and is_controller('home') and is_action('index') %>
   
 	<%= render :partial => "utilities/ie_nomore" %>
+	<%= render :partial => "utilities/ie_better_image" %>
 	
 	<%= render :partial => "shared/header" %>
 	<%= render :partial => "shared/notice" if current_user %>
