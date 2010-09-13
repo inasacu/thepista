@@ -4,7 +4,7 @@ var centerLongitude = -3.682222;
 var centerLatitude = 40.485531081726045;
 var centerLongitude = -3.7153342366218567;
 
-var startZoom = 18;
+var startZoom = 8;
 var map;
 var geocoder = null;
 

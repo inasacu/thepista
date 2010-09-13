@@ -6,6 +6,9 @@ before_filter :require_user
   include GeoKit::Geocoders
   
   def index
+    
+    @location = IpGeocoder.geocode(current_user.current_login_ip)
+    
     @coord = [40.41562,-3.682222]
     
     location = "#{current_user.time_zone.to_s}"
