@@ -7,7 +7,8 @@ before_filter :require_user
   
   def index
     
-    @location = IpGeocoder.geocode(current_user.current_login_ip)
+    # @location = IpGeocoder.geocode(current_user.current_login_ip)
+    @location = IpGeocoder.geocode(request.remote_ip)
     
     @coord = [40.41562,-3.682222]
     
