@@ -115,10 +115,13 @@ class Cup < ActiveRecord::Base
     self.paginate(:all, :conditions => ["ends_at < ?", Time.zone.now], :order => 'starts_at', :page => page, :per_page => CUPS_PER_PAGE)
   end
   
-  def self.latest_items
-    find(:all, :conditions => ["created_at >= ?", LAST_WEEK], :order => "id desc") 
+  def self.latest_items(items)
+    find(:all, :conditions => ["created_at >= ?", LAST_WEEK], :order => "id desc").each do |item| 
+      items << item
+    end
+    return items
   end
-  
+   
   def has_standing    
     @standing = Cup.find(:first, :select => "count(*) as total", 
                      :joins => "left join standings on standings.cup_id = cups.id", 

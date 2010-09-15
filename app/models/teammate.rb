@@ -186,7 +186,7 @@ class Teammate < ActiveRecord::Base
     return petition
   end
   
-  def self.latest_teammates
+  def self.latest_teammates(items)
     all_teammates = find(:all, :select => "id", :conditions => ["accepted_at >= ? and status = 'accepted'", LAST_WEEK], :order => "id") 
     first_teammates = []
 
@@ -195,7 +195,10 @@ class Teammate < ActiveRecord::Base
       first_teammates << teammate.id if first_only
       first_only = !first_only
     end
-    find(:all, :conditions => ["id in (?)", first_teammates], :order => "accepted_at desc")
+    find(:all, :conditions => ["id in (?)", first_teammates], :order => "accepted_at desc").each do |item| 
+      items << item
+    end
+    return items
   end
   
   protected    

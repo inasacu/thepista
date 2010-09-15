@@ -83,8 +83,8 @@ class UsersController < ApplicationController
   def petition
     if current_user.requested_managers.empty? and current_user.pending_managers.empty?  
       flash[:notice] = I18n.t(:petition_no)
-      redirect_back_or_default('/index')
-      # redirect_to root_url
+      # redirect_back_or_default('/index')
+      redirect_to root_url
       return
     end
 

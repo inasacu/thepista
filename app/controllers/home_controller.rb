@@ -60,16 +60,24 @@ class HomeController < ApplicationController
   end
 
   def get_home
-    @latest_teammates = Teammate.latest_teammates
-    @latest_schedules = Schedule.latest_items
-    @latest_groups = Group.latest_items
-    @latest_cups = Cup.latest_items
-    @latest_challenges = Challenge.latest_items
-    @latest_matches = Schedule.latest_matches
-    @latest_games = Game.latest_items
+    @items = []
+    
 
-    # @home_teammates ||= false
-    # @home_teammates = (!@latest_teammates.empty? or !@latest_schedules.empty? or !@latest_groups.empty? or !@latest_cups.empty? or !@latest_challenges.empty? or !@latest_matches.empty? or !@latest_games.empty?)
+    @latest_teammates = Teammate.latest_teammates(@items) 
+    
+    @latest_cups = Cup.latest_items(@items)
+    @latest_groups = Group.latest_items(@items) 
+    @latest_schedules = Schedule.latest_items(@items)
+    @latest_challenges = Challenge.latest_items(@items)    
+    @latest_matches = Schedule.latest_matches(@items)    
+    @latest_games = Game.latest_items(@items)    
+
+    # @items.sort { |a,b| a.created_at <=> b.created_at }.reverse!
+    @items = @items.sort_by(&:created_at).reverse!
+
+    # @latest = @items
+    
+    
   end
 
 end

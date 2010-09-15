@@ -194,14 +194,20 @@ class Schedule < ActiveRecord::Base
     :order => 'starts_at desc, group_id', :page => page, :per_page => SCHEDULES_PER_PAGE)
   end
   
-  def self.latest_items
+  def self.latest_items(items)
     find(:all, :joins => "left join activities on activities.item_id = schedules.id and activities.item_type = 'Schedule'",
-         :conditions => ["schedules.created_at >= ? and played = false", LAST_WEEK], :order => "schedules.id desc") 
+    :conditions => ["schedules.created_at >= ? and played = false", LAST_WEEK], :order => "schedules.id desc").each do |item| 
+      items << item
+    end
+    return items 
   end
   
-  def self.latest_matches
+  def self.latest_matches(items)
     find(:all, :joins => "left join activities on activities.item_id = schedules.id and activities.item_type = 'Schedule'",
-         :conditions => ["schedules.updated_at >= ? and played = true", LAST_WEEK], :order => "schedules.id desc") 
+    :conditions => ["schedules.updated_at >= ? and played = true", LAST_WEEK], :order => "schedules.id desc").each do |item| 
+      items << item
+    end
+    return items
   end
   
   def self.find_all_played(user, page = 1)

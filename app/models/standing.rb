@@ -3,6 +3,8 @@ class Standing < ActiveRecord::Base
   belongs_to 	:cup
   belongs_to	:challenge
   belongs_to  :item,          :polymorphic => true
+  
+  validates_format_of   :group_stage_name,            :with =>  /^[A-Z]*\z/
     
   # method section
   def self.create_cup_escuadra_standing(cup)
@@ -127,7 +129,7 @@ class Standing < ActiveRecord::Base
 
   # record if cup and item do not exist
   def self.create_cup_item_standing(cup, item)
-    self.create!(:cup => cup, :item => item) if self.cup_item_exists?(cup, item)
+    self.create!(:cup => cup, :item => item, :group_stage_name => 'A') if self.cup_item_exists?(cup, item)
   end
   
   def self.cup_escuadras_standing(cup)

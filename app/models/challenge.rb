@@ -99,8 +99,11 @@ class Challenge < ActiveRecord::Base
     self.paginate(:all, :conditions => ["archive = false"], :order => 'name', :page => page, :per_page => CUPS_PER_PAGE)
   end 
   
-  def self.latest_items
-    find(:all, :conditions => ["created_at >= ?", LAST_WEEK], :order => "id desc") 
+  def self.latest_items(items)
+    find(:all, :conditions => ["created_at >= ?", LAST_WEEK], :order => "id desc").each do |item| 
+      items << item
+    end
+    return items
   end
 
   def format_description

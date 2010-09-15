@@ -79,8 +79,11 @@ class Game < ActiveRecord::Base
     end
   end
   
-  def self.latest_items
-    find(:all, :conditions => ["(created_at >= ?) or (updated_at >= ? and home_score is not null and away_score is not null)", LAST_WEEK, LAST_WEEK], :order => "id desc") 
+  def self.latest_items(items)
+    find(:all, :conditions => ["(created_at >= ?) or (updated_at >= ? and home_score is not null and away_score is not null)", LAST_WEEK, LAST_WEEK], :order => "id desc").each do |item| 
+      items << item
+    end
+    return items
   end
 
   def self.final_game(cup)

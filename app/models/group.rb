@@ -145,8 +145,11 @@ class Group < ActiveRecord::Base
     self.has_role?('member', item)
   end
   
-  def self.latest_items
-    find(:all, :conditions => ["created_at >= ?", LAST_WEEK], :order => "id desc") 
+  def self.latest_items(items)
+    find(:all, :conditions => ["created_at >= ?", LAST_WEEK], :order => "id desc").each do |item| 
+      items << item
+    end
+    return items 
   end
 
   def self.looking_for_user(user)
