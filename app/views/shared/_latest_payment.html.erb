@@ -19,9 +19,10 @@
 <% if the_total > 0.0 %>
 
 <div class="block"> 
+	<%= content_tag 'h3', label_name(:debit_to_group) %>
   <div class="sidebar-block"> 	
 
-		<%= content_tag 'h5', label_name(:debit_to_group) %><br />
+		<%#= content_tag 'h5', label_name(:debit_to_group) %><br />
 	
 	<table class="table">		
 		<tr>

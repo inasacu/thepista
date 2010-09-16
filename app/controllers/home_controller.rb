@@ -7,17 +7,6 @@ class HomeController < ApplicationController
   before_filter :get_upcoming,    :only => [:index, :upcoming]
 
   def index
-    if current_user      
-      # unless @home_teammates
-      #   redirect_to :upcoming if @upcoming
-      #   return
-      # end    
-
-      respond_to do |format|
-        format.html
-        format.atom
-      end  
-    end
   end
 
   def about
@@ -72,7 +61,6 @@ class HomeController < ApplicationController
 
     # @items.sort { |a,b| a.created_at <=> b.created_at }.reverse!
     @items = @items.sort_by(&:created_at).reverse!
-
   end
 
 end

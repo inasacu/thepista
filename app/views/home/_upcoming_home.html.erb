@@ -44,7 +44,7 @@
 		<%= request_image %>
 	</td>
 	<td class="name_and_date">
-		<%= request_link %>&nbsp;<%= the_label %>
+		<%= request_link %>&nbsp;<%= the_label.downcase %>
 		<span class="date">
 			<%= nice_full_date(teammate.created_at) %>	
 		</span>
