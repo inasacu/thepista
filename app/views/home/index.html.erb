@@ -20,14 +20,6 @@ if current_user
 					<th class="last">&nbsp;</th>
 				</tr>
 				
-				<%#= render :partial => '/users/petition_box', :locals => {:teammates => @latest_teammates} unless @latest_teammates.empty? %>
-				<%#= render :partial => 'upcoming_home', :locals => {:teammates => @latest_schedules} unless @latest_schedules.empty? %>
-				<%#= render :partial => 'upcoming_home', :locals => {:teammates => @latest_groups} unless @latest_groups.empty? %>
-				<%#= render :partial => 'upcoming_home', :locals => {:teammates => @latest_cups} unless @latest_cups.empty? %>
-				<%#= render :partial => 'upcoming_home', :locals => {:teammates => @latest_challenges} unless @latest_challenges.empty? %>
-				<%#= render :partial => 'upcoming_home', :locals => {:teammates => @latest_matches} unless @latest_matches.empty? %>
-				<%#= render :partial => 'upcoming_home', :locals => {:teammates => @latest_games} unless @latest_games.empty? %>
-				
 				<% @items. each do |item| %>				
 				<%= render :partial => 'upcoming_home', :locals => {:teammate => item} unless item.class.to_s == 'Teammate'%>				
 				<%= render :partial => '/users/petition_box', :locals => {:teammate => item} if item.class.to_s == 'Teammate'%>

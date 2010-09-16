@@ -5,19 +5,18 @@
 };
 </script>
 
-
-
+<div style="visibility:hidden">
 <div class="group">
 	<div class="left">
 	<label class="label"><%= label_name(:recaptcha_type_words) %></lable>
 	</div>
-	<div class="right">
+	<div class="hidden">
   		<%= recaptcha_tags :ssl => true %>
 	</div>
 
 	<div class="clear">
 	</div>
 </div>
-
+</div>
 
 <script type="text/javascript" src="http://api.recaptcha.net/challenge?k=<%= ENV['RECAPTCHA_PUBLIC_KEY'] %>"></script>

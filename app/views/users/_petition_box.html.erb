@@ -1,6 +1,4 @@
 <%
-	# teammates.each do |teammate| 
-
 	has_sub_item = teammate.sub_item.nil?
 
 	request_image = item_image_link_small(teammate.user)
@@ -40,23 +38,16 @@
 		</span>
 	</td>
 
-	<td>
-		<%#= has_joined ? "#{label_name(:petition_to_join_accepted)} <wbr/> #{item_link}" : "#{label_name(:petition_to_join)} <wbr/> #{item_link}" %>
-	</td>	
-	
-	<td>&nbsp;</td>		  
+	<td>&nbsp;</td>		  	
+	<td>&nbsp;</td>  
 
 	<td class="last">
 		<% unless has_joined %>
 		<%= manager_link %>	
 		<%= link_to label_name(:petition_join_item_decline), join_item_decline_path(teammate) %>
 		<% end %>
-	</td>	
-
+	</td>
 </tr>
-<% 
-	# end 
--%>	
 
 
 
