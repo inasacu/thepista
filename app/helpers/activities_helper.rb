@@ -27,10 +27,10 @@ module ActivitiesHelper
         blog = comment.commentable
         case blog.item_type
         when "User"
-            %(#{I18n.t(:left_comment_on_wall) } #{blog_link_item(blog)}<br/>)
+            %(#{I18n.t(:left_comment_on_wall)} #{is_member ? blog_link_item(blog) : sanitize(blog.item.name)}&nbsp;&nbsp;&nbsp;&nbsp;)
         when "Group", "Challenge"
-             is_member = current_user.is_member_of?(blog.item)
-             %(#{I18n.t(:left_post_on_forum)} #{is_member ? blog_link_item(blog) : sanitize(blog.item.name)}&nbsp;&nbsp;&nbsp;&nbsp;)
+          is_member = current_user.is_member_of?(blog.item)
+          %(#{I18n.t(:left_post_on_forum)} #{is_member ? blog_link_item(blog) : sanitize(blog.item.name)}&nbsp;&nbsp;&nbsp;&nbsp;)
         end
       
       when "Forum"

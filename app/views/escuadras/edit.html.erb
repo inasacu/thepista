@@ -1,3 +1,8 @@
+<% 
+	@cup_escuadras = @cup.escuadras
+	@escuadras = Escuadra.find(:all, :conditions => ["item_type = 'Escuadra' and id not in (select escuadra_id from cups_escuadras where cup_id = ?)", @cup], :order => 'name')
+%>
+
 <div class="block">
 
 	<%= render :partial => '/cups/secondary_navigation' %>  

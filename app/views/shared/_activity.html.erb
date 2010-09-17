@@ -2,23 +2,21 @@
 	recent ||= false 
 	the_label = ago(activity.created_at)
 -%>
-
-	<tr>
-	  <td class="name_and_date">
-		<%= image_link_small activity.user %>
-			<span class="date"><%= user_link_limit activity.user %></span>
-	  </td>
-	  </td>
-	
-		<td class="name_and_date">
-			<span class="date">
-				<%= feed_message(activity, current_user, recent) %>
-				<%= link_to(image_tag("icons/comment_delete.png"), 
-							activity_path(activity), :method => :delete, 
-													 :confirm => %(#{label_name(:delete_activity)}?),
-													 :title => label_name(:delete_activity)) if current_user == activity.user %>
-													<%= "&nbsp;&nbsp;[#{the_label}]" %>
-			</span>
-		</td>
-		</tr>
+<tr>
+  <td class="name_and_date">
+	<%= image_link_small(activity.user) %>
+		<span class="date"><%= user_link_limit(activity.user) %></span>
+  </td>
+  </td>
+  <td class="name_and_date">
+		<span class="date">
+			<%= feed_message(activity, current_user, recent) %>
+			<%= link_to(image_tag("icons/comment_delete.png"), 
+						activity_path(activity), :method => :delete, 
+												 :confirm => %(#{label_name(:delete_activity)}?),
+												 :title => label_name(:delete_activity)) if current_user == activity.user %>
+												<%= "&nbsp;&nbsp;[#{the_label}]" %>
+		</span>
+  </td>
+</tr>
 <%- end -%>
