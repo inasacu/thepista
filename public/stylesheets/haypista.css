@@ -345,6 +345,26 @@ ul.list li .item .avatar {
 	height: 245px; 
 }
 
+#box .block .content_register {
+	padding: 10px 20px;
+	border-width: 6px;
+	border-color: #fbb;
+
+	border-top: 1px solid #cfcfcf;
+	border-bottom: 1px solid #cfcfcf;
+	border-left: 1px solid #cfcfcf;
+	border-right: 1px solid #cfcfcf;
+
+	border-top-left-radius: 5px;
+	border-top-right-radius: 5px;
+	border-bottom-left-radius: 5px;
+	border-bottom-right-radius: 5px;
+
+	background: url('') no-repeat scroll 0pt 0pt transparent; 
+
+	height: 245px; 
+}
+
 .left { float: left; }
 .right { float: right; }
 
