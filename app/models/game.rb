@@ -80,7 +80,7 @@ class Game < ActiveRecord::Base
   end
   
   def self.latest_items(items)
-    find(:all, :conditions => ["(created_at >= ?) or (updated_at >= ? and home_score is not null and away_score is not null)", LAST_WEEK, LAST_WEEK], :order => "id desc").each do |item| 
+    find(:all, :conditions => ["(created_at >= ?) or (updated_at >= ? and home_score is not null and away_score is not null)", LAST_24_HOURS, LAST_24_HOURS], :order => "id desc").each do |item| 
       items << item
     end
     return items

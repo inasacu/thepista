@@ -2,7 +2,7 @@
 
 # Specifies gem version of Rails to use when vendor/rails is not present
 RAILS_GEM_VERSION = '2.3.2' unless defined? RAILS_GEM_VERSION
-# RAILS_GEM_VERSION = '2.3.4' unless defined? RAILS_GEM_VERSION
+# RAILS_GEM_VERSION = '2.3.5' unless defined? RAILS_GEM_VERSION
 
 # Bootstrap the Rails environment, frameworks, and default configuration
 require File.join(File.dirname(__FILE__), 'boot')
@@ -19,23 +19,16 @@ Rails::Initializer.run do |config|
   # Add additional load paths for your own custom dirs
   # config.load_paths += %W( #{RAILS_ROOT}/extras )
 
-  # Specify gems that this application depends on and have them installed with rake gems:install
-  # config.gem "bj"
-  # config.gem "hpricot", :version => '0.6', :source => "http://code.whytheluckystiff.net"
-  # config.gem "sqlite3-ruby", :lib => "sqlite3"
-  # config.gem "aws-s3", :lib => "aws/s3"
-  
   config.action_controller.resources_path_names = { :new => 'nuevo', :edit => 'modificar', :show => 'mostrar' }
   
+  # Specify gems that this application depends on and have them installed with rake gems:install
   config.gem "authlogic"
   config.gem "will_paginate"
   config.gem "authlogic-oid", :lib => "authlogic_openid"
   config.gem "ruby-openid", :lib => "openid"
-  # config.gem "be9-acl9", :source => "http://gems.github.com", :lib => "acl9"
   config.gem "acl9", :source => "http://gemcutter.org", :lib => "acl9"
   config.gem "geokit"
   config.gem "contacts"  
-  # config.gem "friendly_id", :version => "= 2.2.4"  
   config.gem "friendly_id"
   config.gem 'sitemap_generator', :lib => false, :source => 'http://gemcutter.org'
   config.gem "edgarjs-ajaxful_rating", :lib => "ajaxful_rating", :source => "http://gems.github.com"

@@ -19,8 +19,17 @@
 					<th class="last">&nbsp;</th>
 				</tr>
 
-				<%= render :partial => 'petition_box', :locals => {:teammates => @requested_teammates}  if @requested_teammates %>
-				<%= render :partial => 'petition_box', :locals => {:teammates => @pending_teammates}  if @pending_teammates %>
+				<% if @requested_teammates %>				
+					<% @requested_teammates.each do |teammate| %>
+						<%= render :partial => '/users/petition_box', :locals => {:teammate => teammate} %>
+					<% end %>
+				<% end %>
+				
+				<% if @pending_teammates %>				
+					<% @pending_teammates.each do |teammate| %>
+						<%= render :partial => '/users/petition_box', :locals => {:teammate => teammate} %>
+					<% end %>
+				<% end %>
 
 			</table>	  
 		</div>
