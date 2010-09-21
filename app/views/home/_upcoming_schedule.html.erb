@@ -12,10 +12,10 @@
 	is_gameday = (schedule.starts_at.to_date == Time.zone.today)
 	the_url = team_roster_path(:id => schedule)
 	
-	if is_gameday		
-		barometer = Barometer.new(schedule.group.time_zone)
-	    weather = barometer.measure
-	end
+	# if is_gameday		
+	# 	barometer = Barometer.new(schedule.group.time_zone)
+	#     weather = barometer.measure
+	# end
 -%>		
 	<tr>
 		<td>
