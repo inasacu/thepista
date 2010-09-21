@@ -48,6 +48,8 @@
 	//-->
 	</script>
 	
+	<%= render :partial => '/shared/facebook_sdk' %>
+	
   <div id="container">
 	
 	<% about = ['about', 'terms of use', 'privacy policy', 'faq']%>
@@ -77,8 +79,8 @@
 
   <%= render :partial => 'utilities/browser_detect' if development? %>
   <%= render :partial => 'utilities/uservoice' unless development? %> 
-  <%= render :partial => 'utilities/envolve' unless development? %> 
-  <%= render :partial => 'utilities/secure_site' unless current_user %>
+  <%#= render :partial => 'utilities/envolve' unless development? %> 
+  <%#= render :partial => 'utilities/secure_site' unless current_user %>
   <%#= render :partial => 'utilities/nurph' unless production? %>
 
 </body>

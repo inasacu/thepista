@@ -1,8 +1,7 @@
 <%
-	Barometer.google_geocode_key = APP_CONFIG['google_api']['key']
-	Barometer.config = { 1 => [:google, :yahoo], 2 => :wunderground }
+	#Barometer.google_geocode_key = APP_CONFIG['google_api']['key']
+	#Barometer.config = { 1 => [:google, :yahoo], 2 => :wunderground }
 %>
-
 
 <table class="table">
 
@@ -11,6 +10,7 @@
 	the_sport = "#{label_name(:rosters)}:  #{schedule.convocados.count}"
 	the_missing = "#{label_name(:missing)}:  #{schedule.player_limit.to_i - schedule.convocados.count}"
 	is_gameday = (schedule.starts_at.to_date == Time.zone.today)
+	the_url = team_roster_path(:id => schedule)
 	
 	if is_gameday		
 		barometer = Barometer.new(schedule.group.time_zone)
@@ -52,21 +52,23 @@
 
 		<td class="name_and_date">
 			<% if is_gameday  %>
-			<%= image_tag('weather_rain.png', options={:style => "height: 20px; width: 20px;"}) if weather.wet? %>
-			<%= image_tag('weather_sun.png', options={:style => "height: 20px; width: 20px;"}) if weather.sunny? %>
-			<%= image_tag('weather_clouds.png', options={:style => "height: 20px; width: 20px;"}) if weather.windy? %>
-			<%#= image_tag('weather_clouds.png', options={:style => "height: 20px; width: 20px;"}) if weather.day? %>
-			<%#= image_tag('weather_clouds.png', options={:style => "height: 20px; width: 20px;"}) if weather.night? %>
+				<%#= image_tag('weather_rain.png', options={:style => "height: 20px; width: 20px;"}) if weather.wet? %>
+				<%#= image_tag('weather_sun.png', options={:style => "height: 20px; width: 20px;"}) if weather.sunny? %>
+				<%#= image_tag('weather_clouds.png', options={:style => "height: 20px; width: 20px;"}) if weather.windy? %>
+				<%#= image_tag('weather_clouds.png', options={:style => "height: 20px; width: 20px;"}) if weather.day? %>
+				<%#= image_tag('weather_clouds.png', options={:style => "height: 20px; width: 20px;"}) if weather.night? %>
+			
+				<span class="date">		
+				<%#= "#{weather.tomorrow.high.c}°C / #{weather.tomorrow.low.c}°C" if is_gameday %>
+				</span>
 			<% end -%>
-			<%= marker_link(schedule.group.marker) %><br/>
-			<span class="date">		
-			<%= "#{weather.tomorrow.high.c}°C / #{weather.tomorrow.low.c}°C" if is_gameday %>
-			</span>
+						
+			<%= marker_link(schedule.group.marker) %><br/><br/>
+			<fb:like href="haypista.com<%= the_url %>" layout="button_count" show_faces="false" action="recommend" font="arial"></fb:like>			
+			
 		</td>
 		
-		<td class="last">
-			&nbsp;
-		</td>
+		<td class="last">&nbsp;</td>
 
 	</tr>
 	<% end -%>

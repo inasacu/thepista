@@ -1,0 +1,24 @@
+<%
+	the_language = "es_ES"
+	case I18n.locale
+	when "es"
+		the_language = "es_ES"
+	when "us"
+		the_language = "en_US"
+	end
+%>
+
+
+<div id="fb-root"></div>
+<script>
+  window.fbAsyncInit = function() {
+    FB.init({appId: 'your app id', status: true, cookie: true,
+             xfbml: true});
+  };
+  (function() {
+    var e = document.createElement('script'); e.async = true;
+    e.src = document.location.protocol +
+      '//connect.facebook.net/<%= the_language %>/all.js';
+    document.getElementById('fb-root').appendChild(e);
+  }());
+</script>
