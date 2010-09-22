@@ -1,6 +1,11 @@
 <%= stylesheet_link_tag 'item_list' %>
 
-<% convocados ||= false %>
+<%
+	convocados ||= false
+	subscription ||= false
+	
+	the_check ||= false
+%>
 
 <style type="text/css">
 	.table .checkbox {  margin-left: 1px; }
@@ -21,40 +26,42 @@
 			<div id="filter-list-panel">
 				<div id="list-panel" class="abook-column">
 					<ul>
-						<fieldset id="roster">
+					<fieldset id="roster">
 
-							<table class="table">
-								<tbody>
-									<% 
-									first_character = ''
-									counter = 0
-									@recipients.each do |recipient| 
+						<table class="table">
+							<tbody>
+								<% 
+								first_character = ''
+								counter = 0
+								@recipients.each do |recipient| 
+									
+									the_check = recipient.is_subscriber_of?(@group) if subscription
 
-										if (first_character != recipient.name.chars.first.upcase)
-											first_character = recipient.name.chars.first.upcase
-											counter = 0
-										else
-											counter = 1
-										end 
-										if (counter == 0)
-											%>
-											<tr>
-												<td class="letter-divider">	
-													<span class="<%= first_character %>"><%= first_character %></span>
-												</td> 
-											</tr>
-											<% 
-										end
-										%>	
-											<%= render :partial => "/messages/recipient_item_single", 
-													   :locals => {:recipient => recipient, :checked => false, :convocados => convocados} %>
-										<%
+									if (first_character != recipient.name.chars.first.upcase)
+										first_character = recipient.name.chars.first.upcase
+										counter = 0
+									else
+										counter = 1
+									end 
+									if (counter == 0)
+										%>
+										<tr>
+											<td class="letter-divider">	
+												<span class="<%= first_character %>"><%= first_character %></span>
+											</td> 
+										</tr>
+										<% 
 									end
-									%>		
-								</tbody>
-							</table>
+									%>	
+										<%= render :partial => "/messages/recipient_item_single", 
+												   :locals => {:recipient => recipient, :checked => the_check, :convocados => convocados} %>
+									<%
+								end
+								%>		
+							</tbody>
+						</table>
 
-						</fieldset>
+					</fieldset>
 					</ul>
 				</div>
 			</div>

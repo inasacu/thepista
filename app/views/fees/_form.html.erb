@@ -28,29 +28,10 @@
 	</div> 
 
 	<div class="column right"> 
-
+			
 	<% if @fee.new_record? %>
-		<fieldset id="roster">
-			<% unless @user_subscription.empty? %>
-			<tr><label class="label"><%= t(:subscriptions_true) %>:</label></tr>
-			<%= render :partial => '/messages/recipient_list', 
-					   :locals => {:recipients => @user_subscription, :checked => true } %><br/>
-			<% end %>
-			
-			<% unless @user_non_subscription.empty? %>
-			<tr><label class="label"><%= t(:subscriptions_false) %>:</label></tr>
-			<%= render :partial => '/messages/recipient_list', 
-					   :locals => { :recipients => @user_non_subscription, :checked => false } %><br/>
-			<% end %>
-			
-		</fieldset>
-		
-		<br /><br />
-		
-		<div class="group">
-			<%= render :partial => '/shared/check_radio_button' unless @recipient %>
-		</div>
-	<% end -%>
+		<%= render :partial => "/messages/recipient_item_list", :locals => {:recipients => @recipients, :subscription => true} %>
+	<% end %>
 	
 	</div>
 

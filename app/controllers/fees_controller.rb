@@ -93,6 +93,7 @@ class FeesController < ApplicationController
 
   def new
     @fee = Fee.new
+    @recipients = @group.users
 
     unless current_user.is_manager_of?(@group) 
       flash[:warning] = I18n.t(:unauthorized)
