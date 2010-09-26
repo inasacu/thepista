@@ -1,6 +1,5 @@
 # Load local config files in /local
 begin
-  PROJECT_ROOT = File.join(File.dirname(__FILE__), '..')  
   local_file_supported = Dir[File.join(PROJECT_ROOT, 'local/*.sample')].map { |path| File.basename(path).sub(".sample","") }
   local_file_supported.each do |file|
     require "local/#{file}"

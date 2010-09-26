@@ -1,10 +1,7 @@
 class Classified < ActiveRecord::Base
 
     include ActivityLogger
-
-     # sitemap generator
-     sitemap :change_frequency => :weekly, :limit => 1000, :priority => 0.5
-
+    
     belongs_to      :table,           :polymorphic => true
     belongs_to      :item,            :polymorphic => true
   
@@ -20,10 +17,11 @@ class Classified < ActiveRecord::Base
 
     # variables to access
     attr_accessible :concept, :description, :starts_at, :table_id, :table_type
-
-    # friendly url and removes id
-    has_friendly_id :concept, :use_slug => true, :reserved_words => ["new", "create", "index", "list", "signup", "edit", "update", "destroy", "show"]
-
+    
+    # NOTE:  MUST BE DECLARED AFTER attr_accessible otherwise you get a 'RuntimeError: Declare either attr_protected or attr_accessible' 
+    has_friendly_id :concept, :use_slug => true, :approximate_ascii => true, 
+                     :reserved_words => ["new", "create", "index", "list", "signup", "edit", "update", "destroy", "show", "petition"]
+                     
     before_create       :format_description
 
     after_create        :log_activity

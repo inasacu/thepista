@@ -1,16 +1,11 @@
 class Schedule < ActiveRecord::Base
 
   include ActivityLogger
-   
-   # sitemap generator
-   sitemap :change_frequency => :weekly, :limit => 1000, :priority => 0.5
 
   # tagging
-  acts_as_taggable_on :tags
+  # acts_as_taggable_on :tags
 
   ajaxful_rateable :stars => 5, :dimensions => [:performance]
-
-  # acts_as_solr :fields => [:concept, :time_zone, :starts_at]  if use_solr? 
 
   has_many  :matches,  :conditions => "matches.archive = false",    :dependent => :destroy
   has_many  :fees,                                                  :dependent => :destroy 
@@ -84,8 +79,9 @@ class Schedule < ActiveRecord::Base
   attr_accessible :fee_per_game, :fee_per_pista, :time_zone, :group_id, :sport_id, :marker_id, :player_limit
   attr_accessible :public, :season_ends_at
 
-  # friendly url and removes id
-  has_friendly_id :concept, :use_slug => true, :reserved_words => ["new", "create", "index", "list", "signup", "edit", "update", "destroy", "show"]
+  # NOTE:  MUST BE DECLARED AFTER attr_accessible otherwise you get a 'RuntimeError: Declare either attr_protected or attr_accessible' 
+  has_friendly_id :concept, :use_slug => true, :approximate_ascii => true, 
+                   :reserved_words => ["new", "create", "index", "list", "signup", "edit", "update", "destroy", "show"]
 
   # after_update        :save_matches
   before_create       :format_description

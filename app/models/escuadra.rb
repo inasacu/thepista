@@ -1,7 +1,4 @@
 class Escuadra < ActiveRecord::Base
-
-  # friendly url and removes id
-  # has_friendly_id :name, :use_slug => true, :reserved_words => ["new", "create", "index", "list", "signup", "edit", "update", "destroy", "show", "petition"]
   
   belongs_to    :item,          :polymorphic => true
   belongs_to    :sub_item,      :polymorphic => true
@@ -17,6 +14,8 @@ class Escuadra < ActiveRecord::Base
     :path => ":assets/escuadras/:id/:style.:extension",
     :default_url => "group_avatar.png"
 
+    
+    
     validates_attachment_content_type :photo, :content_type => ['image/jpeg', 'image/png', 'image/gif', 'image/jpg', 'image/pjpeg']
     validates_attachment_size         :photo, :less_than => 5.megabytes
      
@@ -36,6 +35,10 @@ class Escuadra < ActiveRecord::Base
   # variables to access
   attr_accessible :name, :photo, :description
   
+  # NOTE:  MUST BE DECLARED AFTER attr_accessible otherwise you get a 'RuntimeError: Declare either attr_protected or attr_accessible' 
+  has_friendly_id :name, :use_slug => true, :approximate_ascii => true, 
+                   :reserved_words => ["new", "create", "index", "list", "signup", "edit", "update", "destroy", "show", "petition"]
+                   
   # method section
   def avatar
     self.photo.url

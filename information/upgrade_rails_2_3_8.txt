@@ -1,0 +1,128 @@
+
+
+DEPRECATION WARNING: 
+Rake tasks in 
+
+vendor/plugins/composite_primary_keys/tasks, 
+vendor/plugins/composite_primary_keys/tasks, 
+vendor/plugins/composite_primary_keys/tasks, 
+vendor/plugins/composite_primary_keys/tasks, 
+vendor/plugins/composite_primary_keys/tasks, 
+vendor/plugins/composite_primary_keys/tasks, 
+vendor/plugins/composite_primary_keys/tasks, 
+vendor/plugins/composite_primary_keys/tasks, 
+vendor/plugins/composite_primary_keys/tasks, 
+vendor/plugins/delayed_job/tasks, 
+vendor/plugins/google_analytics/tasks, 
+vendor/plugins/has_activity/tasks, 
+vendor/plugins/open_id_authentication/tasks, 
+vendor/plugins/paperclip/tasks, 
+vendor/plugins/recaptcha/tasks, 
+vendor/plugins/sitemap-generator/tasks, 
+vendor/plugins/super_inplace_controls/tasks, 
+vendor/plugins/ym4r_gm/tasks 
+
+are deprecated. 
+
+Use lib/tasks instead. (called from /opt/local/lib/ruby/gems/1.8/gems/rails-2.3.8/lib/tasks/rails.rb:10)
+
+
+
+*** vendor/plugins/open_id_authentication/tasks, 
+------------------------------------------------
+sudo gem install ruby-openid
+
+ruby script/plugin install http://github.com/rails/open_id_authentication.git --force
+
+
+
+*** vendor/plugins/delayed_job/tasks, 
+------------------------------------------------
+ruby script/plugin install http://github.com/tobi/delayed_job.git --force
+
+
+
+*** vendor/plugins/composite_primary_keys/tasks, 
+------------------------------------------------
+ruby script/plugin install http://github.com/drnic/composite_primary_keys.git --force
+
+
+
+*** vendor/plugins/google_analytics/tasks, 
+------------------------------------------------
+removed google analytics for gem  http://github.com/rubaidh/google_analytics.git
+
+
+
+
+*** vendor/plugins/has_activity/tasks, 
+------------------------------------------------
+ruby script/plugin install git://github.com/cdunn/has_activity.git --force
+
+
+
+*** vendor/plugins/paperclip/tasks, 
+------------------------------------------------
+ruby script/plugin install http://github.com/thoughtbot/paperclip.git
+
+
+
+
+
+*** vendor/plugins/recaptcha/tasks, 
+------------------------------------------------
+removed recaptcha for gem ambethia-recaptcha
+
+
+*** vendor/plugins/sitemap-generator/tasks, 
+------------------------------------------------
+removed plugin for gem sitemap_generator
+http://github.com/kjvarga/sitemap_generator
+
+
+
+*** vendor/plugins/super_inplace_controls/tasks, 
+------------------------------------------------
+ruby script/plugin install http://github.com/flvorful/super_inplace_controls.git --force
+
+
+*** vendor/plugins/ym4r_gm/tasks, 
+------------------------------------------------
+
+
+
+
+THINGS TO RUN IN NEXT VERSION
+
+rake the_slugs
+
+rake friendly_id:make_slugs MODEL=Blog
+rake friendly_id:make_slugs MODEL=Forum
+rake friendly_id:make_slugs MODEL=Challenge
+rake friendly_id:make_slugs MODEL=Classified
+rake friendly_id:make_slugs MODEL=Cup
+rake friendly_id:make_slugs MODEL=Escuadra
+rake friendly_id:make_slugs MODEL=Game
+rake friendly_id:make_slugs MODEL=Group
+rake friendly_id:make_slugs MODEL=Marker
+rake friendly_id:make_slugs MODEL=Payment
+rake friendly_id:make_slugs MODEL=Schedule
+rake friendly_id:make_slugs MODEL=User
+
+
+
+rake friendly_id:redo_slugs MODEL=Blog
+rake friendly_id:redo_slugs MODEL=Forum
+rake friendly_id:redo_slugs MODEL=Challenge
+rake friendly_id:redo_slugs MODEL=Classified
+rake friendly_id:redo_slugs MODEL=Cup
+rake friendly_id:redo_slugs MODEL=Escuadra
+rake friendly_id:redo_slugs MODEL=Game
+rake friendly_id:redo_slugs MODEL=Group
+rake friendly_id:redo_slugs MODEL=Marker
+rake friendly_id:redo_slugs MODEL=Payment
+rake friendly_id:redo_slugs MODEL=Schedule
+rake friendly_id:redo_slugs MODEL=User
+
+
+

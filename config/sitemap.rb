@@ -49,10 +49,31 @@ SitemapGenerator::Sitemap.add_links do |sitemap|
     end
   end
 
-  # add tournaments
-  Tournament.find_in_batches(:batch_size => 1000) do |tournaments|
-    tournaments.each do |tournament|
-      sitemap.add tournament_path(tournament), :lastmod => tournament.updated_at, :changefreq => 'weekly'
+  # add cups
+  Cup.find_in_batches(:batch_size => 1000) do |cups|
+    cups.each do |cup|
+      sitemap.add cup_path(cup), :lastmod => cup.updated_at, :changefreq => 'weekly'
+    end
+  end
+  
+  # add challenges
+  Challenge.find_in_batches(:batch_size => 1000) do |challenges|
+    challenges.each do |challenge|
+      sitemap.add challenge_path(challenge), :lastmod => challenge.updated_at, :changefreq => 'weekly'
+    end
+  end
+  
+  # add classifieds
+  Classified.find_in_batches(:batch_size => 1000) do |classifieds|
+    classifieds.each do |classified|
+      sitemap.add classified_path(classified), :lastmod => classified.updated_at, :changefreq => 'weekly'
+    end
+  end
+  
+  # add escuadras
+  Escuadra.find_in_batches(:batch_size => 1000) do |escuadras|
+    escuadras.each do |escuadra|
+      sitemap.add escuadra_path(escuadra), :lastmod => escuadra.updated_at, :changefreq => 'weekly'
     end
   end
   

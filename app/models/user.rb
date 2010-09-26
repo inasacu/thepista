@@ -2,14 +2,8 @@ class User < ActiveRecord::Base
 
    include ActivityLogger
    
-   # sitemap generator
-   sitemap :change_frequency => :weekly, :limit => 1000, :priority => 0.5
-   
    # allows user to rate a model (currently only schedule)
    ajaxful_rater
-      
-   # friendly url and removes id
-   has_friendly_id :name, :use_slug => true, :reserved_words => ["new", "create", "index", "list", "signup", "edit", "update", "destroy", "show", "petition"]
       
   acts_as_authentic do |c|
     c.openid_required_fields = [:nickname, :email]
@@ -38,7 +32,7 @@ class User < ActiveRecord::Base
     :url => "/assets/users/:id/:style.:extension",
     :path => ":assets/users/:id/:style.:extension",
     :default_url => "avatar.png"  
-
+        
     validates_attachment_content_type :photo, :content_type => ['image/jpeg', 'image/png', 'image/gif', 'image/jpg', 'image/pjpeg']
     validates_attachment_size         :photo, :less_than => 5.megabytes
 
@@ -97,7 +91,11 @@ class User < ActiveRecord::Base
                 :conditions => {:created_at => LAST_THREE_DAYS},
                 :order => "created_at DESC",
                 :limit => 1
-    
+
+    # NOTE:  MUST BE DECLARED AFTER attr_accessible otherwise you get a 'RuntimeError: Declare either attr_protected or attr_accessible' 
+    has_friendly_id :name, :use_slug => true, :approximate_ascii => true, 
+                    :reserved_words => ["new", "create", "index", "list", "signup", "edit", "update", "destroy", "show", "petition"]
+                      
     before_update   :format_description
     after_create    :create_user_blog_details, :deliver_signup_notification
     

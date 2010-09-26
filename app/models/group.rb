@@ -1,7 +1,4 @@
 class Group < ActiveRecord::Base
-  
-  # sitemap generator
-  sitemap :change_frequency => :weekly, :limit => 1000, :priority => 0.5
                   
   has_attached_file :photo,
   :styles => {
@@ -14,6 +11,8 @@ class Group < ActiveRecord::Base
     :path => ":assets/groups/:id/:style.:extension",
     :default_url => "group_avatar.png"  
 
+    
+    
     validates_attachment_content_type :photo, :content_type => ['image/jpeg', 'image/png', 'image/gif', 'image/jpg', 'image/pjpeg']
     validates_attachment_size         :photo, :less_than => 5.megabytes
     
@@ -46,8 +45,9 @@ class Group < ActiveRecord::Base
   attr_accessible :name, :second_team, :gameday_at, :points_for_win, :points_for_draw, :points_for_lose, :player_limit
   attr_accessible :time_zone, :sport_id, :marker_id, :description, :conditions, :photo, :available, :looking, :enable_comments
     
-  # friendly url and removes id  
-  has_friendly_id :name, :use_slug => true, :reserved_words => ["new", "create", "index", "list", "signup", "edit", "update", "destroy", "show"]
+  # NOTE:  MUST BE DECLARED AFTER attr_accessible otherwise you get a 'RuntimeError: Declare either attr_protected or attr_accessible' 
+  has_friendly_id :name, :use_slug => true, :approximate_ascii => true, 
+                   :reserved_words => ["new", "create", "index", "list", "signup", "edit", "update", "destroy", "show"]
                   
   has_and_belongs_to_many :users,           :join_table => "groups_users",   :order => "name"
 

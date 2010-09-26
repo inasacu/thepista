@@ -1,6 +1,4 @@
 class Cup < ActiveRecord::Base
-
-  acts_as_solr :fields => [:name, :time_zone] if use_solr? #, :include => [:sport, :marker] 
                   
   has_attached_file :photo,
   :styles => {
@@ -13,6 +11,8 @@ class Cup < ActiveRecord::Base
     :path => ":assets/cups/:id/:style.:extension",
     :default_url => "group_avatar.png"  
 
+    
+    
     validates_attachment_content_type :photo, :content_type => ['image/jpeg', 'image/png', 'image/gif', 'image/jpg', 'image/pjpeg']
     validates_attachment_size         :photo, :less_than => 5.megabytes
 
@@ -41,8 +41,9 @@ class Cup < ActiveRecord::Base
   attr_accessible :starts_at, :ends_at, :deadline_at, :archive
   attr_accessible :group_stage_advance, :group_stage, :group_stage_single, :second_stage_single, :final_stage_single
     
-  # friendly url and removes id  
-  has_friendly_id :name, :use_slug => true, :reserved_words => ["new", "create", "index", "list", "signup", "edit", "update", "destroy", "show"]
+  # NOTE:  MUST BE DECLARED AFTER attr_accessible otherwise you get a 'RuntimeError: Declare either attr_protected or attr_accessible' 
+  has_friendly_id :name, :use_slug => true, :approximate_ascii => true, 
+                   :reserved_words => ["new", "create", "index", "list", "signup", "edit", "update", "destroy", "show"]
 
   has_and_belongs_to_many :escuadras,     :join_table => "cups_escuadras",   :order => "name"
   has_many                :games

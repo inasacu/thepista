@@ -1,15 +1,11 @@
 # Be sure to restart your server when you modify this file
 
 # Specifies gem version of Rails to use when vendor/rails is not present
-RAILS_GEM_VERSION = '2.3.2' unless defined? RAILS_GEM_VERSION
-# RAILS_GEM_VERSION = '2.3.5' unless defined? RAILS_GEM_VERSION
+# RAILS_GEM_VERSION = '2.3.2' unless defined? RAILS_GEM_VERSION
+RAILS_GEM_VERSION = '2.3.8' unless defined? RAILS_GEM_VERSION
 
 # Bootstrap the Rails environment, frameworks, and default configuration
 require File.join(File.dirname(__FILE__), 'boot')
-
-# Using will_paginate with acts_as_solr
-require 'solr_pagination'
-
 
 Rails::Initializer.run do |config|
   # Settings in config/environments/* take precedence over those specified here.
@@ -24,22 +20,25 @@ Rails::Initializer.run do |config|
   # Specify gems that this application depends on and have them installed with rake gems:install
   config.gem "authlogic"
   config.gem "will_paginate"
-  config.gem "authlogic-oid", :lib => "authlogic_openid"
-  config.gem "ruby-openid", :lib => "openid"
-  config.gem "acl9", :source => "http://gemcutter.org", :lib => "acl9"
+  config.gem "authlogic-oid",                     :lib => "authlogic_openid"
+  config.gem "ruby-openid",                       :lib => "openid"
+  config.gem "acl9",                              :lib => "acl9",                         :source => "http://gemcutter.org"
   config.gem "geokit"
   config.gem "contacts"  
-  config.gem "friendly_id"
-  config.gem 'sitemap_generator', :lib => false, :source => 'http://gemcutter.org'
-  config.gem "edgarjs-ajaxful_rating", :lib => "ajaxful_rating", :source => "http://gems.github.com"
-  config.gem 'jackdempsey-acts_as_commentable', :lib => 'acts_as_commentable', :source => "http://gems.github.com"
-  config.gem "acts-as-taggable-on", :source => "http://gemcutter.org"
+  config.gem 'sitemap_generator',                 :lib => false,                          :source => 'http://gemcutter.org'
+  config.gem "edgarjs-ajaxful_rating",            :lib => "ajaxful_rating",               :source => "http://gems.github.com"
+  config.gem 'jackdempsey-acts_as_commentable',   :lib => 'acts_as_commentable',          :source => "http://gems.github.com"
+  config.gem "acts-as-taggable-on",                                                       :source => "http://gemcutter.org"
   config.gem 'hoptoad_notifier'
   config.gem 'rpx_now'
   config.gem "nokogiri"
   config.gem "url_shortener"
   config.gem "i18n"
   config.gem "barometer"
+  config.gem 'rubaidh-google_analytics',          :lib => 'rubaidh/google_analytics',     :source => 'http://gems.github.com'
+  config.gem "ambethia-recaptcha",                :lib => "recaptcha/rails",              :source => "http://gems.github.com"
+  config.gem 'sitemap_generator',                 :lib => false
+  config.gem "friendly_id",                       :version => "~> 3.1"
   
     
   # Only load the plugins named here, in the order given (default is alphabetical).
@@ -92,7 +91,6 @@ ActionView::Base.field_error_proc = Proc.new do |html_tag, instance|
 end
 
 # google analytics
-# Rubaidh::GoogleAnalytics.tracker_id = 'UA-3271268-2' 
 Rubaidh::GoogleAnalytics.tracker_id = 'UA-3271268-1'
 
 # Load custom config file for current environment
