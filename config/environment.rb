@@ -36,7 +36,7 @@ Rails::Initializer.run do |config|
   config.gem "url_shortener"
   config.gem "i18n"
   config.gem "barometer"
-  config.gem 'rubaidh-google_analytics',          :lib => 'rubaidh/google_analytics',     :source => 'http://gems.github.com'
+  # config.gem 'rubaidh-google_analytics',          :lib => 'rubaidh/google_analytics',     :source => 'http://gems.github.com'
   config.gem "ambethia-recaptcha",                :lib => "recaptcha/rails",              :source => "http://gems.github.com"
   config.gem 'sitemap_generator',                 :lib => false
   config.gem "friendly_id",                       :version => "~> 3.1"
