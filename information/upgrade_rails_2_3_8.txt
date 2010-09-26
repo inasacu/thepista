@@ -53,6 +53,11 @@ ruby script/plugin install http://github.com/drnic/composite_primary_keys.git --
 removed google analytics for gem  http://github.com/rubaidh/google_analytics.git
 
 
+replaced with http://github.com/christianhellsten/jquery-google-analytics
+
+
+
+
 
 
 *** vendor/plugins/has_activity/tasks, 
