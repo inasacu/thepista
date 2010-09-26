@@ -19,5 +19,4 @@ url_shortener
 i18n --version 0.3.5
 barometer
 friendly_id
-delayed_paperclip
 ambethia-recaptcha        --source http://gems.github.com
