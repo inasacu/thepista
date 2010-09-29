@@ -84,8 +84,10 @@ class Game < ActiveRecord::Base
   end
   
   def self.latest_items(items)
-    find(:all, :conditions => ["(created_at >= ?) or (updated_at >= ? and home_score is not null and away_score is not null)", LAST_24_HOURS, LAST_24_HOURS], :order => "id desc").each do |item| 
-      items << item
+    cup_id = 0
+    find(:all, :conditions => ["(created_at >= ?) or (updated_at >= ? and home_score is not null and away_score is not null)", LAST_24_HOURS, LAST_24_HOURS], :order => "cup_id desc").each do |item| 
+      items << item if cup_id != item.cup_id
+      cup_id = item.cup_id
     end
     return items
   end

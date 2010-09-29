@@ -35,6 +35,7 @@
 		item_link = item_concept_link(teammate)
 		item_image = item_image_link_small(teammate.cup)
 		
+		the_label = "#{label_name(:created_a_match)} <wbr/> #{item_link}"
 	end
 
 	the_label = label_name(:"created_a_#{teammate.class.to_s.downcase}") + " <wbr/> #{item_link}" if the_label == ""

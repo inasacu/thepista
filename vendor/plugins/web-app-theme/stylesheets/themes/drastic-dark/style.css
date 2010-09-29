@@ -82,6 +82,7 @@ hr {
   background: #cc0000;
   padding: 1px 4px;
   -moz-border-radius: 4px;
+	-webkit-border-radius: 3px;
 }
 
 #main .block .content {
@@ -217,7 +218,7 @@ hr {
   border: 1px solid #c1c1c1;
 }
 
-.pagination span.current {
+.pagination em {
   background: #36393d;
   color: #FFF;
   border: 1px solid #36393d;
@@ -234,8 +235,7 @@ hr {
 /* tables */
 
 .table th {
-  background: #36393d;
-  border-bottom: 3px solid #700000;
+  background: #36393d;  
   color: #FFF;
 }
 
