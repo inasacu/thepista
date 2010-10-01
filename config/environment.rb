@@ -35,9 +35,9 @@ Rails::Initializer.run do |config|
   config.gem "nokogiri"
   config.gem "url_shortener"
   config.gem "i18n"
-  config.gem "barometer"
+  # config.gem "barometer"
   config.gem "ambethia-recaptcha",                :lib => "recaptcha/rails",              :source => "http://gems.github.com"
-  config.gem 'sitemap_generator',                 :lib => false
+  # config.gem 'sitemap_generator',                 :lib => false
   config.gem "friendly_id",                       :version => "~> 3.1"
   
     

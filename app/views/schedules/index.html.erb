@@ -25,13 +25,12 @@
 	  
         <tr> 
         <th class="first">&nbsp;</th>
-        <th><%= label_name(:concept) %>&nbsp;/<br />
-			  <%= label_name(:gameday_at) %></th>
-        <th><%= label_name(:group) %>&nbsp;/<br />
-			  <%= label_name(:sport) %></th> 
+        <th><%= label_name(:concept) %></th>
+        <th><%= label_name(:group) %>&nbsp;/&nbsp;<%= label_name(:sport) %></th> 
+        <th><%= label_name(:matches) %>&nbsp;/&nbsp;<%= label_name(:gameday_at) %></th>
+        <th>&nbsp;</th>	
         <th>&nbsp;</th>
-        <th><%= label_name(:general_information) %></th>	
-        <th>&nbsp;</th>
+        <%= "<th>&nbsp;</th>" if current_user.is_member_of?(@schedules.first.group) %> 
 		<th class="last">&nbsp;</th>
 		</tr>
         
@@ -48,7 +47,9 @@
 
 			<td class="name_and_date">
 				<%= (current_user.is_member_of?(schedule.group) or schedule.public) ? 
-							link_to(sanitize(schedule.concept), team_roster_path(:id => schedule)) : sanitize(schedule.concept) %>						
+							link_to(sanitize(schedule.concept), team_roster_path(:id => schedule)) : sanitize(schedule.concept) unless schedule.game_played? %>	
+				<%= (current_user.is_member_of?(schedule.group) or schedule.public) ? 
+										link_to(sanitize(schedule.concept), schedule_path(:id => schedule)) : sanitize(schedule.concept) if schedule.game_played? %>					
 			</td>
 
 			<td class="name_and_date">
@@ -61,8 +62,7 @@
 
 			<td class="name_and_date">
 				<% if schedule.game_played? %>
-		        	<%= item_name_link(schedule.group)
- %>
+		        	<%= item_name_link(schedule.group) %>
 		          	&nbsp;&nbsp;
 		          	<%= schedule.home_score %>&nbsp;&nbsp;-&nbsp;&nbsp;<%= schedule.away_score %>
 		          	&nbsp;&nbsp;
@@ -86,15 +86,15 @@
 				</span>
 			</td>
 
-			<%#= content_tag(:td, ratings_for(schedule, :dimension => :performance), :class => get_the_action) if current_user.is_member_of?(schedule.group) if user_star_rating %>
+			<%= content_tag(:td, ratings_for(schedule, :dimension => :performance), 
+							:class => get_the_action) if current_user.is_member_of?(schedule.group) %>
 			
-			<td class="name_and_date">
+			<td class="name_and_date">&nbsp;</td>
+
+			<td class="last">				
 				<%= marker_link(schedule.group.marker) %><br/><br/>
-
-				<fb:like href="haypista.com<%= the_url %>" layout="button_count" show_faces="false" action="recommend" font="arial"></fb:like>			
+				<fb:like href="haypista.com<%= the_url %>" layout="button_count" show_faces="false" action="recommend" font="arial"></fb:like>
 			</td>
-
-			<td class="last">&nbsp;</td>
 			
         </tr>          
         <% end -%>

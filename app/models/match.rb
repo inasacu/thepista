@@ -184,6 +184,10 @@ class Match < ActiveRecord::Base
       # Feed.create!(:activity => activity, :user => match.user)
     end
   end   
+  
+  def self.find_score(schedule)
+    find(:first, :conditions => ["schedule_id = ? and group_score is not null and invite_score is not null", schedule])
+  end
 end
 
 

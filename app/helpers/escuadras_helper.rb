@@ -29,11 +29,11 @@ module EscuadrasHelper
   def escuadra_image_link_smaller(escuadra)
     is_escuadra = (escuadra.item_type == 'Escuadra')
     escuadra = escuadra.item
-    if is_escuadra
-      link_to(image_tag(escuadra.avatar, options={:style => "height: 21px; width: 31px;"}), escuadra_path(escuadra))
-    else
+    # if is_escuadra
+      # link_to(image_tag(escuadra.avatar, options={:style => "height: 21px; width: 31px;"}), escuadra_path(escuadra))
+    # else
       link_to(image_tag(escuadra.avatar, options={:style => "height: 22px; width: 22px;"}), escuadra_path(escuadra))
-    end
+    # end
   end
 
   def escuadra_vs_invite(game)

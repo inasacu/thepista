@@ -2,6 +2,30 @@
 	is_user_manager = current_user.is_manager_of?(@schedule.group)
 	the_label = sanitize(@schedule.concept)
 	content_for(:title, sanitize(@schedule.concept))
+	
+	show_individual_score = (@schedule.group.is_futbol? and @schedule.played?)
+	
+	if show_individual_score
+		@the_home_score = ""
+		@the_away_score = ""
+		
+		@has_score = false
+
+		@schedule.matches.find(:all, :conditions => ["group_id != 0 and goals_scored > 0"]).each do |match| 
+			@the_home_score += "#{item_name_link(match.user)}&nbsp;&nbsp;-&nbsp;&nbsp;#{match.goals_scored}, " 
+			@has_score = true
+		end
+
+		@schedule.matches.find(:all, :conditions => ["group_id = 0 and goals_scored > 0"]).each do |match| 
+			@the_away_score += "#{item_name_link(match.user)}&nbsp;&nbsp;-&nbsp;&nbsp;#{match.goals_scored}, " 
+			@has_score = true
+		end
+		@the_home_score = @the_home_score.chop.chop
+		@the_away_score = @the_away_score.chop.chop
+		
+		show_individual_score = (show_individual_score and @has_score)
+	end
+	
 %>
 
 <div class="block">
@@ -48,14 +72,27 @@
         <%= content_tag :td, label_name(:group), :class => "label" %>
 
 		<td class="<%= get_the_action%>">
-          <%= item_name_link(@schedule.group)
- %>
+          <%= item_name_link(@schedule.group) %>
           &nbsp;&nbsp;
           <%= @schedule.home_score %>&nbsp;&nbsp;-&nbsp;&nbsp;<%= @schedule.away_score %>
           &nbsp;&nbsp;
           <%= link_to h(@schedule.group.second_team), group_path(@schedule.group) %>
 		</td>
       </tr>
+
+		<% if show_individual_score %>	
+			<tr>
+				<%= content_tag :td, link_to(h(@schedule.home_group), @schedule.home_group), :class => "label" %>		
+				<td class="<%= get_the_action%>"><%= @the_home_score %></td>		
+			</tr>
+			<tr>
+				<%= content_tag :td, link_to(h(@schedule.away_group), @schedule.home_group), :class => "label" %>
+				<td class="<%= get_the_action%>"><%= @the_away_score %></td>		
+			</tr>
+		<% end %>
+		
+		<%= tr_td_action(:game_notes, @schedule.matches.first.description) %>
+	
     <% else %>
 
       <tr>
@@ -66,15 +103,15 @@
     <% end %>
 
 	
-	<%= tr_td_action(:game_notes, @schedule.matches.first.description) if @schedule.played? %>
+	
 	<%= tr_td_action(:jornada, @schedule.jornada) %>
 	<%= tr_td_action(:starts_at, nice_day_of_week(@schedule.starts_at)) %>
 	<%= tr_td_action(:ends_at, nice_day_of_week(@schedule.ends_at)) %>
-	<%= tr_td_action(:reminder_at, nice_day_of_week(@schedule.reminder_at)) %>
+	<%= tr_td_action(:reminder_at, nice_day_of_week(@schedule.reminder_at)) unless @schedule.game_played? %>
 		
 	<tr>
 		<%= content_tag :td,"#{label_name(:schedule_rate)}", :class => "label" %>
-		<%= content_tag :td, ratings_for(@schedule, :dimension => :performance), :class => get_the_action if current_user.is_member_of?(@schedule.group) %>
+		<%= content_tag :td, ratings_for(@schedule, :dimension => :performance, :show_user_rating => true), :class => get_the_action if current_user.is_member_of?(@schedule.group) %>
 	</tr>	
 	
 	<%= tr_td_action(:season, @schedule.season) %>
@@ -105,20 +142,20 @@
 	<% unless @schedule.no_shows.empty? %>
 	<tr>
 		<%= content_tag :td, "#{label_name(:no_shows)}   (#{@schedule.no_shows.count})", :class => "label" %>
-		<%= content_tag :td, user_list(@schedule.no_shows), :class => get_the_action %>
+		<%= content_tag :td, item_list(@schedule.no_shows), :class => get_the_action %>
 	</tr>
 	<% end %>
 	
 	<% unless @schedule.no_jugado.empty? %>
 	<tr>
 		<%= content_tag :td, "#{label_name(:no_jugado)}   (#{@schedule.no_jugado.count})", :class => "label" %>
-		<%= content_tag :td, user_list(@schedule.no_jugado), :class => get_the_action %>
+		<%= content_tag :td, item_list(@schedule.no_jugado), :class => get_the_action %>
 	</tr>
 	<% end %>
 
-	<%= tr_td_action(:player_limit, @schedule.player_limit) %>
-
 	<% 
+		unless  @schedule.played? 
+			
 		the_label = h(label_name(@schedule.reminder, 'value'))
 		the_confirmation = label_with_name('reminder', "- #{sanitize(@schedule.concept)}?") 
 	%>
@@ -140,8 +177,10 @@
 								:class => get_the_action %>
 	</tr>
 	
-	<%#= tr_td_action(:season_ends_at, nice_day_date(@schedule.season_ends_at)) %>
-
+	<%= tr_td_action(:player_limit, @schedule.player_limit) %>
+	
+	<% end %>
+	
 </table>
 
 </td>

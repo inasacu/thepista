@@ -8,17 +8,18 @@
 	<%= render :partial => 'secondary_navigation' %>
 
 	<div class="content">
-		<!-- <div class="inner"> -->
-			
-			<%#= GMap.header(:local_search => true) %>
-			<%= GMap.header %>
-			<%= @map.to_html unless @map.blank? %>
-			
-			<%= @map.div(:width => "99.5%", :height => 400) %>			
-
-		<!-- </div> -->
+		<%= GMap.header(:local_search => true) %>
+		<%= GMap.header %>
+		<%= @map.to_html unless @map.blank? %>
+		
+		<%= @map.div(:width => "99.5%", :height => 400) %>		
 	</div>
-	It appears you're located in <%= @location.city %>.
+	
+	
+	[<%= @coord %>]<br>
+	[<%= @location.lat %>,<%= @location.lng %>]<br>
+	[<%= request.remote_ip %>]
+	
 </div>
 
 <% content_for :sidebar, render(:partial => 'sidebar') -%>
