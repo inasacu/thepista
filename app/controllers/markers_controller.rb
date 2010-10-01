@@ -7,22 +7,22 @@ before_filter :require_user
   
   def index
     # @location = IpGeocoder.geocode(current_user.current_login_ip)
-    @location = IpGeocoder.geocode(request.remote_ip)
-
-    @coord = [40.4166909, -3.7003454]
+    # @location = IpGeocoder.geocode(request.remote_ip)
+    # 
+    # @coord = [40.4166909, -3.7003454]
     @coord = [0, 0]
-    if @location.success
-      @coord =  [@location.lat, @location.lng]  
-      @marker = GMarker.new(@coord, :info_window => @location, :title => @location)
-    end
+    # if @location.success
+    #   @coord =  [@location.lat, @location.lng]  
+    #   @marker = GMarker.new(@coord, :info_window => @location, :title => @location)
+    # end
 
-    # location = "#{current_user.time_zone.to_s}"
-    #   
-    # # results = Geocoding::get(location)
-    # #  if results.status == Geocoding::GEO_SUCCESS
-    # #    @coord = results[0].latlon
-    # #    @marker = GMarker.new(@coord, :info_window => location, :title => location)
-    # #  end
+    location = "#{current_user.time_zone.to_s}"
+  
+    results = Geocoding::get(location)
+     if results.status == Geocoding::GEO_SUCCESS
+       @coord = results[0].latlon
+       @marker = GMarker.new(@coord, :info_window => location, :title => location)
+     end
   
     @markers = Marker.all_markers
     
