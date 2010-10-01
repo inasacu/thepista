@@ -18,7 +18,8 @@
 	
 	[<%= @coord %>]<br>
 	[<%= @location.lat %>,<%= @location.lng %>]<br>
-	[<%= request.remote_ip %>]
+	[<%= request.remote_ip %>]<br>
+	<%= @location.city if @location.respond_to? :city %>
 	
 </div>
 
