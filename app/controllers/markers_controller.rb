@@ -6,22 +6,23 @@ before_filter :require_user
   include GeoKit::Geocoders
   
   def index
-    @location = IpGeocoder.geocode(current_user.current_login_ip)
-    # @location = IpGeocoder.geocode(request.remote_ip)
+    # @location = IpGeocoder.geocode(current_user.current_login_ip)
+    @location = IpGeocoder.geocode(request.remote_ip)
 
     @coord = [40.4166909, -3.7003454]
+    @coord = [0, 0]
     if @location.success
       @coord =  [@location.lat, @location.lng]  
       @marker = GMarker.new(@coord, :info_window => @location, :title => @location)
     end
 
-    location = "#{current_user.time_zone.to_s}"
-  
-    results = Geocoding::get(location)
-     if results.status == Geocoding::GEO_SUCCESS
-       @coord = results[0].latlon
-       @marker = GMarker.new(@coord, :info_window => location, :title => location)
-     end
+    # location = "#{current_user.time_zone.to_s}"
+    #   
+    # # results = Geocoding::get(location)
+    # #  if results.status == Geocoding::GEO_SUCCESS
+    # #    @coord = results[0].latlon
+    # #    @marker = GMarker.new(@coord, :info_window => location, :title => location)
+    # #  end
   
     @markers = Marker.all_markers
     
@@ -90,8 +91,7 @@ before_filter :require_user
   
   def create   
     @marker = Marker.new(params[:marker])
-    if @marker.save      
-
+    if @marker.save
       # @marker.accepts_role 'creator', current_user
       action = "../../groups/new/#{@marker.id}"
       res={:success=>true,
@@ -139,19 +139,4 @@ before_filter :require_user
         end
       end
     end
-
-    def set_geokit_cookies( ip )
-      @location = GeoKit::Geocoders::IpGeocoder.geocode( ip )
-      if @location.success &&
-        @location.respond_to?( :country_code ) &&
-        @location.country_code == 'US'
-        cookies['zipcode']  = @location.zipcode if @location.respond_to? :zipcode
-        cookies['state']    = @location.state if @location.respond_to? :state
-        cookies['city']     = @location.city if @location.respond_to? :city
-        cookies['geocoded'] = 'YES';
-      else
-        cookies['geocoded'] = 'NO';
-      end
-    end
-    
-  end
+end
