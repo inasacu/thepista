@@ -15,10 +15,6 @@
 		<%= @map.div(:width => "99.5%", :height => 400) %>		
 	</div>
 	
-	
-	[<%= @coord %>]<br>
-	<%= @location.city if @location.respond_to? :city %>
-	
 </div>
 
 <% content_for :sidebar, render(:partial => 'sidebar') -%>

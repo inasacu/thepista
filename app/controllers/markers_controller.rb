@@ -9,8 +9,8 @@ before_filter :require_user
     # @location = IpGeocoder.geocode(current_user.current_login_ip)
     # @location = IpGeocoder.geocode(request.remote_ip)
     # 
-    # @coord = [40.4166909, -3.7003454]
-    @coord = [0, 0]
+    @coord = [40.4166909, -3.7003454]
+    # @coord = [0, 0]
     # if @location.success
     #   @coord =  [@location.lat, @location.lng]  
     #   @marker = GMarker.new(@coord, :info_window => @location, :title => @location)
