@@ -86,7 +86,7 @@
 				</span>
 			</td>
 
-			<%= content_tag(:td, ratings_for(schedule, :dimension => :performance), :class => get_the_action) if current_user.is_member_of?(schedule.group) %>
+			<%= content_tag(:td, ratings_for(schedule, :dimension => :performance)) if current_user.is_member_of?(schedule.group) %>
 			
 			<td class="name_and_date">&nbsp;</td>
 
