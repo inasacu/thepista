@@ -34,7 +34,7 @@ Rails::Initializer.run do |config|
   config.gem 'rpx_now'
   config.gem "nokogiri"
   config.gem "url_shortener"
-  config.gem "i18n"#,                              :version => "~> 0.4.1"
+  config.gem "i18n",                              :version => "~> 0.3.5"
   config.gem "ambethia-recaptcha",                :lib => "recaptcha/rails",              :source => "http://gems.github.com"
   config.gem "friendly_id",                       :version => "~> 3.1"
   

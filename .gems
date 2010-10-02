@@ -1,6 +1,5 @@
 rails -v 2.3.2
 pg
-rubygems-update
 rack-cache -v=0.5
 rack -v=1.0
 right_aws
@@ -19,6 +18,6 @@ hoptoad_notifier
 rpx_now
 nokogiri
 url_shortener
-i18n 
+i18n -v=0.3.5
 friendly_id
 ambethia-recaptcha        --source http://gems.github.com
