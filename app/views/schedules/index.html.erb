@@ -87,9 +87,7 @@
 			</td>
 			
 			<td class="name_and_date">
-			<%  if current_user.is_member_of?(schedule.group) and schedule.game_played?  %>
-			<%= ratings_for schedule %>
-			<% end %>
+			<%= ratings_for(schedule, :dimension => :performance) if current_user.is_member_of?(schedule.group) and schedule.game_played? %>
 			</td>
 			
 			<td class="name_and_date">&nbsp;</td>
