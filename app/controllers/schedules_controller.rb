@@ -1,12 +1,12 @@
 class SchedulesController < ApplicationController
   before_filter :require_user
 
-  before_filter :get_schedule, :only => [:show, :edit, :update, :destroy, :set_public, :set_reminder, :team_roster, :team_last_minute, :team_no_show, :team_unavailable]
+  before_filter :get_schedule, :only => [:show, :rate, :edit, :update, :destroy, :set_public, :set_reminder, :team_roster, :team_last_minute, :team_no_show, :team_unavailable]
   before_filter :get_current_schedule, :only => [:index, :list, :my_list]
   before_filter :get_group, :only => [:new]
   before_filter :get_match_type, :only => [:team_roster, :team_last_minute, :team_no_show, :team_unavailable]
   before_filter :has_manager_access, :only => [:edit, :update, :destroy, :set_public, :set_reminder]
-  before_filter :has_member_access, :only => [:show]
+  before_filter :has_member_access, :only => [:show, :rate]
   before_filter :excess_players, :only => [:show, :team_roster, :team_last_minute, :team_no_show, :team_unavailable]
   before_filter :get_user, :only => [:my_list]
 
@@ -38,13 +38,13 @@ class SchedulesController < ApplicationController
   end
 
   def rate
-    @schedule = Schedule.find(params[:id])
+    # @schedule = Schedule.find(params[:id])
 
-    unless current_user.is_member_of?(@schedule.group)
-      flash[:warning] = I18n.t(:unauthorized)
-      redirect_back_or_default('/show')
-      return
-    end
+    # unless current_user.is_member_of?(@schedule.group)
+    #   flash[:warning] = I18n.t(:unauthorized)
+    #   redirect_back_or_default('/show')
+    #   return
+    # end
 
     @schedule.rate(params[:stars], current_user, params[:dimension])
     id = "ajaxful-rating-#{!params[:dimension].blank? ? "#{params[:dimension]}-" : ''}schedule-#{@schedule.id}"
