@@ -1,4 +1,4 @@
-rails -v 2.3.5
+rails -v 2.3.8
 pg
 rubygems-update
 rack-cache -v=0.5
@@ -19,7 +19,6 @@ hoptoad_notifier
 rpx_now
 nokogiri
 url_shortener
-i18n --version 0.4.1
-barometer
+i18n -v=0.4.1
 friendly_id
 ambethia-recaptcha        --source http://gems.github.com

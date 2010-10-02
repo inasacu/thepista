@@ -2,8 +2,8 @@
 
 # Specifies gem version of Rails to use when vendor/rails is not present
 # RAILS_GEM_VERSION = '2.3.2' unless defined? RAILS_GEM_VERSION
-RAILS_GEM_VERSION = '2.3.5' unless defined? RAILS_GEM_VERSION
-# RAILS_GEM_VERSION = '2.3.8' unless defined? RAILS_GEM_VERSION    # requires bamboo upgrade
+# RAILS_GEM_VERSION = '2.3.5' unless defined? RAILS_GEM_VERSION
+RAILS_GEM_VERSION = '2.3.8' unless defined? RAILS_GEM_VERSION    # requires bamboo upgrade
 
 # Bootstrap the Rails environment, frameworks, and default configuration
 require File.join(File.dirname(__FILE__), 'boot')
@@ -34,7 +34,7 @@ Rails::Initializer.run do |config|
   config.gem 'rpx_now'
   config.gem "nokogiri"
   config.gem "url_shortener"
-  config.gem "i18n",                              :version => "~> 0.4.1"
+  config.gem "i18n"#,                              :version => "~> 0.4.1"
   config.gem "ambethia-recaptcha",                :lib => "recaptcha/rails",              :source => "http://gems.github.com"
   config.gem "friendly_id",                       :version => "~> 3.1"
   
