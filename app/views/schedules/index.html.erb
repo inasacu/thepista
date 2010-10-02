@@ -85,12 +85,10 @@
 					<%= the_missing if Time.zone.now < schedule.starts_at %>
 				</span>
 			</td>
-
-			<% if current_user.is_member_of?(schedule.group) and schedule.game_played? %>
-			<%= content_tag(:td, ratings_for(schedule, :dimension => :performance)) %>
-			<% else %>
-			<%= content_tag(:td, "") %>
-			<% end %>
+			
+			<td class="name_and_date">
+			<%= ratings_for(schedule, :dimension => :performance) if current_user.is_member_of?(schedule.group) and schedule.game_played? %>
+			</td>
 			
 			<td class="name_and_date">&nbsp;</td>
 
