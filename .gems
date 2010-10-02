@@ -1,6 +1,6 @@
 rails -v 2.3.5
 pg
-rubygems
+rubygems-update
 rack-cache -v=0.5
 rack -v=1.0
 right_aws
