@@ -4,8 +4,7 @@
 	
 	is_my_list = (get_controller_action == "schedule_my_list")
 	the_label = "#{the_label} #{label_name(:from_de)} #{h(@user.name)}" if is_my_list	
-	is_my_list = is_my_list ? (@user == current_user) : true	
-	user_star_rating = false
+	is_my_list = is_my_list ? (@user == current_user) : true
 %>
 
 <div class="block">
@@ -26,8 +25,8 @@
         <tr> 
         <th class="first">&nbsp;</th>
         <th><%= label_name(:concept) %></th>
-        <th><%= label_name(:group) %>&nbsp;/&nbsp;<%= label_name(:sport) %></th> 
-        <th><%= label_name(:matches) %>&nbsp;/&nbsp;<%= label_name(:gameday_at) %></th>
+        <th><%= label_name(:group) %>&nbsp;<%#= label_name(:sport) %></th> 
+        <th><%#= label_name(:matches) %>&nbsp;<%#= label_name(:gameday_at) %></th>
         <th>&nbsp;</th>	
         <th>&nbsp;</th>
         <%= "<th>&nbsp;</th>" if current_user.is_member_of?(@schedules.first.group) %> 
@@ -38,6 +37,7 @@
 			the_sport = "#{label_name(:rosters)}:  #{schedule.convocados.count}"
 			the_missing = "#{label_name(:missing)}:  #{schedule.player_limit.to_i - schedule.convocados.count}"
 			the_url = team_roster_path(:id => schedule)
+			show_start_rating = (current_user.is_member_of?(schedule.group) and schedule.game_played?)
 		-%>
         <tr>
 			<td>
@@ -87,7 +87,7 @@
 			</td>
 			
 			<td class="name_and_date">
-			<%= ratings_for(schedule, :dimension => :performance) if current_user.is_member_of?(schedule.group) and schedule.game_played? %>
+			<%= ratings_for(schedule, :dimension => :performance) if show_start_rating %>
 			</td>
 			
 			<td class="name_and_date">&nbsp;</td>

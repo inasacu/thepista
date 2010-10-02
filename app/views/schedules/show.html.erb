@@ -1,7 +1,9 @@
 <% 
 	is_user_manager = current_user.is_manager_of?(@schedule.group)
 	the_label = sanitize(@schedule.concept)
-	content_for(:title, sanitize(@schedule.concept))
+	content_for(:title, sanitize(@schedule.concept))	
+
+	show_start_rating = (current_user.is_member_of?(@schedule.group) and @schedule.game_played?)
 	
 	show_individual_score = (@schedule.group.is_futbol? and @schedule.played?)
 	
@@ -111,7 +113,8 @@
 		
 	<tr>
 		<%= content_tag :td,"#{label_name(:schedule_rate)}", :class => "label" %>
-		<%= content_tag :td, ratings_for(@schedule, :dimension => :performance, :show_user_rating => true), :class => get_the_action if current_user.is_member_of?(@schedule.group) %>
+		<%= content_tag :td, 
+				ratings_for(@schedule, :dimension => :performance, :show_user_rating => true), :class => get_the_action if show_start_rating %>
 	</tr>	
 	
 	<%= tr_td_action(:season, @schedule.season) %>
