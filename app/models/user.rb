@@ -1,3 +1,5 @@
+require "paperclip"
+
 class User < ActiveRecord::Base
 
    include ActivityLogger
@@ -26,7 +28,7 @@ class User < ActiveRecord::Base
   
   acts_as_authorization_subject
   
-  has_attached_file :photo, :styles => { :thumb  => "80x80#", :medium => "160x160>", },
+  has_attached_file :photo, :styles => {:icon => "25x25>", :thumb  => "80x80>", :medium => "160x160>", :large => "500x500>" }, :processors => [:cropper], 
     :storage => :s3,
     :s3_credentials => "#{RAILS_ROOT}/config/s3.yml",
     :url => "/assets/users/:id/:style.:extension",
@@ -79,6 +81,8 @@ class User < ActiveRecord::Base
       :conditions =>  "teammates.status = 'pending'",
       :order =>       "teammates.created_at"
     
+    attr_accessor :crop_x, :crop_y, :crop_w, :crop_h
+      
     with_options :class_name => "Message", :dependent => :destroy, :order => "created_at DESC" do |user|
       user.has_many :_sent_messages, :foreign_key => "sender_id", :conditions => "sender_deleted_at IS NULL"
       user.has_many :_received_messages, :foreign_key => "recipient_id", :conditions => "recipient_deleted_at IS NULL"
@@ -98,8 +102,18 @@ class User < ActiveRecord::Base
                       
     before_update   :format_description
     after_create    :create_user_blog_details, :deliver_signup_notification
-    
+    after_update    :reprocess_avatar, :if => :cropping?
+       
     # method section
+    def cropping?
+      !crop_x.blank? && !crop_y.blank? && !crop_w.blank? && !crop_h.blank?
+    end
+
+    def avatar_geometry(style = :original)
+      @geometry ||= {}
+      @geometry[style] ||= Paperclip::Geometry.from_file(photo.path(style))
+    end
+    
     def self.looking_for_group(user)
       find(:all, 
       :conditions => ["archive = false and looking = true and time_zone = ?", user.time_zone],
@@ -112,12 +126,16 @@ class User < ActiveRecord::Base
     end
 
     def thumbnail
-      self.photo.url
+      self.photo.url(:thumb)
     end
 
-    def icon
-      self.photo.url
+    def icon      
+      self.photo.url(:icon)
     end 
+    
+    def medium
+      self.photo.url(:medium)
+    end
 
     def has_challenge?
       self.challenges.count > 0
@@ -471,6 +489,10 @@ class User < ActiveRecord::Base
     
 
     private
+
+    def reprocess_avatar
+      photo.reprocess!
+    end
 
     def format_description
       self.description.gsub!(/\r?\n/, "<br>") unless self.description.nil?

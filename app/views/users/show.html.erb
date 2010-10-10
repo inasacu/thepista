@@ -11,35 +11,29 @@
   <%= render :partial => '/users/secondary_navigation' %>   
 
   <div class="content">
-	<!-- <p>
-		<b><%#= link_to "", user_path(:id => @next), :class => 'previous_message' if @next %></b>
-	</p>
-	<p>
-		<b><%#= link_to "", user_path(:id => @previous), :class => 'next_message' if @previous %></b>
-	</p>
-	<br /> -->
 	
   <%= show_heading(the_label) %>
   
     <div class="inner">
+	
+		<div class="description">
+        <span class="q">
+				<%=sanitize @user.description.blank? ? control_label('description_no') : @user.description %>
+			</span>
+      </div>
+
+		<div class="columns"> 
+			<div class="column left"> 
+				<div class="description">
+                     <%= image_tag @user.thumbnail %>
+                   </div>
+			</div>
+		</div>
+		
 
 	<!-- new table -->
 		<table>
-			<thead>
-				<tr>
-					<th colspan="2">
-						<div class="description">
-                          <span class="q">
-								<%=sanitize @user.description.blank? ? control_label('description_no') : @user.description %>
-							</span>
-                        </div>
-					</th>
-				</tr>
-			</thead>
-
 			<tr>
-				<td valign="top" width="105"><%= user_show_photo(@user, current_user) %></td>
-				
 				<td>
 					<table border="1">
 						

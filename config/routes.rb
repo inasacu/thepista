@@ -101,8 +101,7 @@ ActionController::Routing::Routes.draw do |map|
   map.set_score             'games/:id/set_score',                        :controller => 'games',           :action => 'set_score'
   
   map.resources   :user_sessions,   :as => 'repitelo'
-  map.resources   :users,           :as => 'jugadores',                   :collection => { :rpx_create => :post, :rpx_associate => :post,
-                                                                                            :list => :get, :recent_activity => :get, :search => :get }  
+  map.resources   :users,           :as => 'jugadores',                   :collection => { :rpx_create => :post, :rpx_associate => :post, :list => :get, :recent_activity => :get, :search => :get }  
   map.resources   :schedules,       :as => 'eventos',                     :collection => { :list => :get, :archive_list => :get, :search => :get, :my_list => :get }          
   map.resources   :groups,          :as => 'equipos',                     :collection => { :list => :get, :search => :get }
   map.resources   :markers,         :as => 'centros'
@@ -121,8 +120,7 @@ ActionController::Routing::Routes.draw do |map|
   map.resources   :sports,          :as => 'deportes'
   map.resources   :roles,           :as => 'responsabilidades'          
   map.resources   :payments,        :as => 'pago',                        :collection => { :list => :get }
-  map.resources   :fees,            :as => 'tasas',                       :collection => { :list => :get, :complete => :get, 
-                                                                                           :item_list => :get, :item_complete => :get} 
+  map.resources   :fees,            :as => 'tasas',                       :collection => { :list => :get, :complete => :get, :item_list => :get, :item_complete => :get} 
   map.resources   :password_resets, :as => 'resetear'
   map.resources   :messages,        :as => 'mensajes',                    :collection => { :sent => :get, :trash => :get }
   map.resources   :classifieds,     :as => 'anuncios',                    :collection => { :sent => :get, :trash => :get }
@@ -144,25 +142,13 @@ ActionController::Routing::Routes.draw do |map|
     user.resources :messages
   end
 
-  # map.resources :blogs do |blog|
-  #   blog.resources :entries do |entry|
-  #     entry.resources :comments
-  #   end
-  # end
-  # 
-  # map.resources :forums do |forums|
-  #   forums.resources :topics do |topic|
-  #     topic.resources :posts
-  #   end
-  # end
-
   # See how all your routes lay out with "rake routes"
 
   # Install the default routes as the lowest priority.
   # Note: These default routes make all actions in every controller accessible via GET requests. You should
   # consider removing the them or commenting them out if you're using named routes and resources.
-  map.connect ':controller/:action/:id'
-  map.connect ':controller/:action/:id.:format'
+  # map.connect ':controller/:action/:id'
+  # map.connect ':controller/:action/:id.:format'
   
   map.connect ":controller/:action.:format"
 end

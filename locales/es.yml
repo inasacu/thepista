@@ -1774,7 +1774,8 @@ es:
      user_options_tour: Opciones 
      users_rpx_new: Nuevo jugador
      users_rpx_create:  Nuevo jugador
-     users_teammate: Mis compañeros de equipo   
+     users_teammate: Mis compañeros de equipo
+     users_update:  Actualizar jugador
      your:  Tu 
      true: "Si"
      false: "No"

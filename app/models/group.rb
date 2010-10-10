@@ -1,10 +1,6 @@
 class Group < ActiveRecord::Base
                   
-  has_attached_file :photo,
-  :styles => {
-    :thumb  => "80x80#",
-    :medium => "160x160>",
-    },
+  has_attached_file :photo, :styles => {:icon => "25x25>", :thumb  => "80x80>", :medium => "160x160>",  },
     :storage => :s3,
     :s3_credentials => "#{RAILS_ROOT}/config/s3.yml",
     :url => "/assets/groups/:id/:style.:extension",
@@ -118,13 +114,17 @@ class Group < ActiveRecord::Base
   def avatar
     self.photo.url
   end
+  
+  def mediam
+    self.photo.url(:medium)
+  end
 
   def thumbnail
-    self.photo.url
+    self.photo.url(:thumb)
   end
 
   def icon
-    self.photo.url
+    self.photo.url(:icon)
   end
   
   def has_schedule?

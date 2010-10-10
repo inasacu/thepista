@@ -10,26 +10,29 @@
 	        
   <h2 class="title"><%= @group.name %></h2>
 
-    <div class="inner">
+  <div class="inner">
+	
+		<div class="description">
+      <span class="q">
+				<%=sanitize @group.description.blank? ? control_label('description_no') : @group.description %>
+			</span>
+    </div>
+
+		<div class="columns"> 
+			<div class="column left"> 
+				<div class="description">
+                   <%= image_tag @group.thumbnail %>
+                 </div>
+			</div>
+		</div>
+
 
 	<!-- new table -->
 	<table>
-	<thead>
+
 
 	<tr>
-	<th colspan="2">
-		<div class="description">
-			<span class="q">
-				<%=sanitize @group.description.blank? ? control_label('description_no') : @group.description %>
-			</span>
-		</div>
-	</th>
-
-	</tr>
-	</thead>
-
-	<tr>
-	<td valign="top" width="105"><%= group_show_photo(@group, current_user) %></td>
+	<!-- <td valign="top" width="105"><%#= group_show_photo(@group, current_user) %></td> -->
 
 	<td>
 	<table border="1">

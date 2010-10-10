@@ -13,7 +13,7 @@ module ClassifiedsHelper
     # # We normally write link_to(..., classified) for brevity, but that breaks
     # 
     # link_to(h(text), classified, html_options)
-    item_name_link(text, item, html_options)
+    item_concept_link(text, item, html_options)
   end
   
   def classified_icon(classified)

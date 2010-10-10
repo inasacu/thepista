@@ -20,3 +20,6 @@ config.action_mailer.raise_delivery_errors = false
 # http://thepista.local/
 ENV['RECAPTCHA_PUBLIC_KEY'] = '6LfhKAgAAAAAAOzho3sELOcG-PkiPRBOX94ZrmEg'
 ENV['RECAPTCHA_PRIVATE_KEY'] = '6LfhKAgAAAAAAAivbLUYGmNpdRwKQJL57V8I53o0'
+
+Paperclip.options[:command_path] = "/opt/local/bin"
+# Paperclip.options[:command_path] = "/opt/local/var/macports/software"

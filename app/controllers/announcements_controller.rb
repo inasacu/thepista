@@ -1,6 +1,6 @@
 class AnnouncementsController < ApplicationController
   before_filter :require_user
-  before_filter :the_maximo 
+  before_filter :the_maximo, :only => [:index, :list, :show, :new, :create, :edit, :update,  :destroy] 
   
   def index
     @announcements = Announcement.paginate(:per_page => SCHEDULES_PER_PAGE, :page => params[:page])

@@ -2,7 +2,6 @@
 
 # Specifies gem version of Rails to use when vendor/rails is not present
 RAILS_GEM_VERSION = '2.3.2' unless defined? RAILS_GEM_VERSION
-# RAILS_GEM_VERSION = '2.3.5' unless defined? RAILS_GEM_VERSION
 # RAILS_GEM_VERSION = '2.3.8' unless defined? RAILS_GEM_VERSION    # requires bamboo upgrade
 
 # Bootstrap the Rails environment, frameworks, and default configuration
@@ -24,7 +23,6 @@ Rails::Initializer.run do |config|
   config.gem "authlogic-oid",                     :lib => "authlogic_openid"
   config.gem "ruby-openid",                       :lib => "openid"
   config.gem "acl9",                              :lib => "acl9",                         :source => "http://gemcutter.org"
-  config.gem "geokit"
   config.gem "contacts"  
   config.gem 'sitemap_generator',                 :lib => false,                          :source => 'http://gemcutter.org'
   config.gem "edgarjs-ajaxful_rating",            :lib => "ajaxful_rating",               :source => "http://gems.github.com"
@@ -32,12 +30,18 @@ Rails::Initializer.run do |config|
   config.gem "acts-as-taggable-on",                                                       :source => "http://gemcutter.org"
   config.gem 'hoptoad_notifier'
   config.gem 'rpx_now'
-  config.gem "nokogiri"
   config.gem "url_shortener"
   config.gem "i18n",                              :version => "~> 0.3.5"
   config.gem "ambethia-recaptcha",                :lib => "recaptcha/rails",              :source => "http://gems.github.com"
   config.gem "friendly_id",                       :version => "~> 3.1"
+  config.gem "geokit"
+  config.gem "rmagick"
   
+  # config.gem "aws-s3"
+  # config.gem "paperclip"
+  # config.gem "nokogiri"
+  # config.gem "subexec"
+  # config.gem "mini_magick"
     
   # Only load the plugins named here, in the order given (default is alphabetical).
   # :all can be used as a placeholder for all plugins not explicitly named

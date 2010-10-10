@@ -9,18 +9,24 @@ class FeesController < ApplicationController
 
   def index
     @users = [] 
-    @users << @user.id      
+    @users << @user
     @debit_payment = Payment.debit_amount(@users, 'User')
     @credit_payment = Payment.credit_amount(@users, 'User')
 
     @groups = []
+    @the_groups = []
     @user.groups.each do |group|
       @groups << group.id 
+      @the_groups << group
     end
+    
 
-    @debit_fee = Fee.debit_amount(@users, @groups)   
+    # @debit_fee = Fee.debit_amount(@users, @groups)   
+    # @fees = Fee.debit_fees(@users, @groups, params[:page])
+    
+    @debit_fee = Fee.debit_items_amount(@users, @the_groups)
+    @fees = Fee.debit_items_fees(@users, @the_groups, params[:page])    
 
-    @fees = Fee.debit_fees(@users, @groups, params[:page])
     @payments = Payment.credit_payments(@users, @groups, params[:page])
 
     render :template => '/fees/index'

@@ -1774,6 +1774,7 @@ en:
      users_rpx_new: New Player
      users_rpx_create:  New Player
      users_teammate: My Teammates 
+     users_update:  Edit Player
      your:  Your   
      true: "Yes"
      false: "No"

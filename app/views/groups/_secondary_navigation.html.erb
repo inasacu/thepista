@@ -3,7 +3,7 @@
 	is_not_new_item = !is_action('new')
 	
 	the_classifieds = Classified.item_classifieds(@group)
-	has_classifieds = the_classifieds.nil? or the_classifieds.blank?
+	has_classifieds = !the_classifieds.nil? or !the_classifieds.blank?
 %>
 
 <div class="secondary-navigation">

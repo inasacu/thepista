@@ -47,6 +47,10 @@ class Classified < ActiveRecord::Base
         end
       end
     end
+    
+    def self.find_classified_item(item)
+      find(:first, :conditions => ["id = (select max(id) from classifieds where table_id = ? and table_type = ?) ", item, item.class.to_s])
+    end
 
     private
 

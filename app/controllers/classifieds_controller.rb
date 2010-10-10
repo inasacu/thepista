@@ -30,15 +30,11 @@ class ClassifiedsController < ApplicationController
 
     @classified.table = @group
     @classified.item = @group
-    @previous_classified = Classified.find(:first, :conditions => ["id = (select max(id) from classifieds where table_id = ? and table_type = ?) ", @group.id, @group.class.to_s])
+    @previous_classified = Classified.find_classified_item(@group)
 
     unless @previous_classified.nil?
       @classified.starts_at = @previous_classified.starts_at + 7.days
     end
-
-    # respond_to do |format|
-    #   format.html
-    # end
   end
 
   def create

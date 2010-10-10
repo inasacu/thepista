@@ -60,21 +60,36 @@ class UsersController < ApplicationController
       end
     end
   end
-
+  
   def update
     @user = current_user
-
-    @user.attributes = params[:user]
-    @user.save do |result|
-      if result
+    if @user.update_attributes(params[:user])
+      if params[:user][:photo].blank?
         flash[:notice] = I18n.t(:successful_update)
-        redirect_back_or_default('/index')
-        return
+        redirect_to @user
       else
-        render :action => 'edit'
+        render :action => "crop"
       end
+    else
+      render :action => 'edit'
     end
   end
+  
+
+  # def update
+  #   @user = current_user
+  # 
+  #   @user.attributes = params[:user]
+  #   @user.save do |result|
+  #     if result
+  #       flash[:notice] = I18n.t(:successful_update)
+  #       redirect_back_or_default('/index')
+  #       return
+  #     else
+  #       render :action => 'edit'
+  #     end
+  #   end
+  # end
 
   def recent_activity
     @user = current_user      
