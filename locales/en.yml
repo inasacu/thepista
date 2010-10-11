@@ -1474,7 +1474,7 @@ en:
      fee_to_description:  Charges Details
      fee_user_for_group:  Add a change to all players
      fee_user_for_tournament:  Add a change to all players 
-     fees_complete:  All Charges
+     fees_complete:  Pending Charges
      fees_create:  New Charge
      fees_destroy: Remove Charge
      fees_index:   Charge

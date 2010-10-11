@@ -89,7 +89,16 @@ class Schedule < ActiveRecord::Base
 
   after_create        :log_activity
   after_update        :log_activity_played
-
+  
+  # method section
+  def self.match_participate(group, user, schedules)
+    find(:all, :select => "distinct schedules.*",  
+               :joins => "left join matches on matches.schedule_id  = schedules.id",
+               :conditions => ["schedule_id in (?) and user_id = ? and type_id = 1", group.schedules, user]).each do |schedule|
+      schedules << schedule
+    end
+  end
+  
   def the_roster_count
     Match.count(:joins => "left join users on users.id = matches.user_id left join types on types.id = matches.type_id left join scorecards on scorecards.user_id = matches.user_id",
     :conditions => ["matches.schedule_id = ? and matches.archive = false and matches.type_id = 1  and scorecards.group_id = ? and users.available = true ", self.id, self.group_id])

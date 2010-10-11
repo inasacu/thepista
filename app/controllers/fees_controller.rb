@@ -5,94 +5,152 @@ class FeesController < ApplicationController
   before_filter :has_manager_access, :only =>[:list, :complete]
   before_filter :has_manager_item_access, :only => [:item_list, :item_complete]
   before_filter :has_fee_group_access, :only =>[:edit, :update]
-  before_filter :has_user_access, :only => [:index]
+  before_filter :has_user_access, :only => [:index, :item]
 
   def index
     @users = [] 
-    @users << @user
-    @debit_payment = Payment.debit_amount(@users, 'User')
-    @credit_payment = Payment.credit_amount(@users, 'User')
-
     @groups = []
-    @the_groups = []
+    @schedules = []
+    @the_fees = []
+    @the_payments = []
+    
+    @users << @user
+    
     @user.groups.each do |group|
-      @groups << group.id 
-      @the_groups << group
+      @groups << group      
+      Schedule.match_participate(group, @user, @schedules) unless @user.is_subscriber_of?(group)
     end
     
+    @debit_payment = Payment.sum_debit_amount_payment(@users, @groups)
+    @credit_payment = Payment.sum_credit_amount_payment(@groups, @users)
 
-    # @debit_fee = Fee.debit_amount(@users, @groups)   
-    # @fees = Fee.debit_fees(@users, @groups, params[:page])
+    @debit_group = Fee.sum_debit_amount_fee(@users, @groups)
+    @debit_schedule = Fee.sum_debit_amount_fee(@users, @schedules)
     
-    @debit_fee = Fee.debit_items_amount(@users, @the_groups)
-    @fees = Fee.debit_items_fees(@users, @the_groups, params[:page])    
+    @debit_fee = Fee.new
+    @debit_fee.debit_amount = @debit_group.debit_amount.to_f + @debit_schedule.debit_amount.to_f
+    
+    Fee.debits_credits_items_fees(@users, @groups, @groups, @the_fees) 
+    Fee.debits_credits_items_fees(@users, @groups, @schedules, @the_fees) 
+    @fees = Fee.page_all_fees(@the_fees, params[:page])  
+    
+    # Payment.debits_credits_items_payments(@users, @groups, @groups, @the_payments) 
+    # Payment.debits_credits_items_payments(@users, @groups, @schedules, @the_payments)
+    # @payments = Payment.page_all_payments(@the_payments, params[:page])
 
-    @payments = Payment.credit_payments(@users, @groups, params[:page])
+    render :template => '/fees/index'
+  end
+  
+  def item
+    @users = [] 
+    @groups = []
+    @schedules = []
+    @the_fees = []
+    @the_payments = []
+    
+    @users << @user
+    
+    @user.groups.each do |group|
+      @groups << group      
+      Schedule.match_participate(group, @user, @schedules) unless @user.is_subscriber_of?(group)
+    end
+    
+    @debit_payment = Payment.sum_debit_amount_payment(@users, @groups)
+    @credit_payment = Payment.sum_credit_amount_payment(@groups, @users)
+
+    @debit_group = Fee.sum_debit_amount_fee(@users, @groups)
+    @debit_schedule = Fee.sum_debit_amount_fee(@users, @schedules)
+    
+    @debit_fee = Fee.new
+    @debit_fee.debit_amount = @debit_group.debit_amount.to_f + @debit_schedule.debit_amount.to_f
+    
+    # Fee.debits_credits_items_fees(@users, @groups, @groups, @the_fees) 
+    # Fee.debits_credits_items_fees(@users, @groups, @schedules, @the_fees) 
+    # @fees = Fee.page_all_fees(@the_fees, params[:page])  
+    
+    Payment.debits_credits_items_payments(@users, @groups, @groups, @the_payments) 
+    Payment.debits_credits_items_payments(@users, @groups, @schedules, @the_payments)
+    @payments = Payment.page_all_payments(@the_payments, params[:page])
 
     render :template => '/fees/index'
   end
   
   def item_list
-    store_location
-    # payment information both user debits and user credits for item
-    @debit_payment = Payment.debit_item_amount(@users, @item)
-    @credit_payment = Payment.credit_item_amount(@users, @item)
-        
-    @debit_fee = Fee.debit_item_amount(@users, @item)
-    @fees = Fee.debit_item_fees(@users, @item, params[:page])
+    @users = [] 
+    @groups = []
+    @schedules = []
+    @the_fees = []
+    @the_payments = []
+
+    @groups << @group
+
+    @group.users.each do |user|
+      @users << user
+    end
+
+    @debit_payment = Payment.sum_debit_amount_payment(@users, @groups)
+    @credit_payment = Payment.sum_credit_amount_payment(@groups, @users)
+
+    @debit_fee = Fee.new
+    @debit_fee.debit_amount = 0.0
+
+    Payment.debits_credits_items_payments(@users, @groups, @groups, @the_payments) 
+    Payment.debits_credits_items_payments(@users, @groups, @schedules, @the_payments)
+    @payments = Payment.page_all_payments(@the_payments, params[:page])
+
     render :template => '/fees/index'
   end
 
   def list
-    store_location
-    @groups = []
-    @groups << @group.id
+      @users = [] 
+      @groups = []
+      @schedules = []
+      @the_fees = []
+      @the_payments = []
 
-    @users = [] 
-    @subscriptions = []
-    @group.the_subscriptions.each do |subs|
-      @subscriptions << subs.user_id 
-    end 
+      @groups << @group
 
-    # users who do not have subscriptions, also remove users who owe no quantities to team
-    @group.users.each do |user|
-      unless @subscriptions.include?(user.id)
-
-        @temp_users = []
-        @temp_users << user.id
-
-        @debit_payment = Payment.debit_amount(@temp_users, 'User')
-        @credit_payment = Payment.credit_amount(@temp_users, 'User')
-        @debit_fee = Fee.debit_amount(@temp_users, @groups)
-
-        @users << user.id unless @debit_fee.debit_amount.to_f <= (@debit_payment.debit_amount.to_f + @credit_payment.credit_amount.to_f)
-
+      @group.users.each do |user|
+        @users << user
+        # Schedule.match_participate(@group, user, @schedules) unless user.is_subscriber_of?(@group)
       end
-    end
+      
+      @debit_payment = Payment.new
+      @credit_payment = Payment.new
+      @debit_payment.debit_amount = 0.0
+      @credit_payment.debit_amount = 0.0
+      
+      @debit_group = Fee.sum_debit_amount_fee(@users, @groups)
+      @debit_schedule = Fee.sum_debit_amount_fee(@users, @schedules)
 
-    @debit_payment = Payment.debit_amount(@users, 'User')
-    @credit_payment = Payment.credit_amount(@users, 'User')
-    @debit_fee = Fee.debit_amount(@users, @groups)
-    @fees = Fee.debit_fees(@users, @groups, params[:page])
-    @payments = Payment.credit_payments(@users, @groups, params[:page])
+      @debit_fee = Fee.new
+      @debit_fee.debit_amount = @debit_group.debit_amount.to_f + @debit_schedule.debit_amount.to_f
+      @debit_payment.debit_amount = @debit_fee.debit_amount
 
-    render :template => '/fees/index'
+      Fee.debits_credits_items_fees(@users, @groups, @groups, @the_fees) 
+      Fee.debits_credits_items_fees(@users, @groups, @schedules, @the_fees) 
+      @fees = Fee.page_all_fees(@the_fees, params[:page])  
+
+      render :template => '/fees/index'
   end
 
   def complete
     @groups = []
-    @groups << @group.id
+    @groups << @group
 
-    @users = [] 
+    @users = []
     @group.users.each do |user|
-      @users << user.id
-    end 
+      @users << user unless user.is_subscriber_of?(@group)
+    end
+        
+    @debit_payment = Payment.new
+    @credit_payment = Payment.new
+    @debit_payment.debit_amount = 0.0
+    @credit_payment.debit_amount = 0.0
 
-    @debit_payment = Payment.debit_amount(@users, 'User')
-    @credit_payment = Payment.credit_amount(@users, 'User')
-    @debit_fee = Fee.debit_amount(@users, @groups)
-    @fees = Fee.debit_fees(@users, @groups, params[:page])
-    @payments = Payment.credit_payments(@users, @groups, params[:page])
+    @debit_fee = Fee.debit_items_amount(@users, @groups)
+    
+    @fees = Fee.debit_items_fees(@users, @groups, params[:page])        
 
     render :template => '/fees/index'
   end

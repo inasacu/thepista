@@ -1,8 +1,8 @@
 development:
   access_key_id: 1Z36VBYX179XC52VJWR2
   secret_access_key: XB/iiMMjSyZM+bjG+l/8HxrAzGEPylcWu05Zd7/W
-  bucket: thepista_desarrollo
-  # bucket:  thepista_produccion
+  # bucket: thepista_desarrollo
+  bucket:  thepista_produccion
 
 test:
   access_key_id: 1Z36VBYX179XC52VJWR2

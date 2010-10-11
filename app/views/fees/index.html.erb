@@ -22,42 +22,40 @@
     <h2 class="title"><%= "#{the_label} #{label_name(:from_de)}  #{the_name}" %></h2>
 
     <div class="inner">
-	
-	<% if object_counter(@fees) > 0 %>
-	
+		
       <table class="table" id="<%= get_the_controller.gsub(' ','_') %>">
 	
         <tr>            
           <th class="first">&nbsp;</th>
-          <th><%= label_name(:from) %>,&nbsp;&nbsp;<%= label_name(:to) %><br />
-			  <%= label_name(:created_at) %>
-		  </th>
+          <th>&nbsp;&nbsp;</th>
           <th><%= label_name(:concept) %></th>
-          <th><%= label_name(:debit) %></th>
-          <th><%= label_name(:credit) %></th>
+          <th><%= label_name(:created_at) %></th>
+          <th><%= label_name(:debit) if @fees %></th>
+          <th><%= label_name(:credit) if @payments %></th>
           <th class="last">&nbsp;</th>
         </tr>
 
-		<%= render :partial => 'fees/fee', :collection => @fees %>
+		<%= render :partial => 'fees/fee', :collection => @fees if @fees %>
 		<%= render :partial => 'payments/payment', :collection => @payments if @payments %>
 
 		<tr>  
 			<td>&nbsp;</td>
 			<td>&nbsp;</td>
 			<td>&nbsp;</td>
+			<td>&nbsp;</td>
 			<td align="left">
-				<%= "#{label_name(:debit_total)}:  #{number_to_currency(@debit_fee.debit_amount.to_f)}" %>
+				<%= "#{label_name(:debit_total)}:  #{number_to_currency(@debit_fee.debit_amount.to_f)}" if @fees %>
 			</td>
 			<td align="left">
-				<%= "#{label_name(:credit_total)}:  #{number_to_currency(@debit_payment.debit_amount.to_f + @credit_payment.credit_amount.to_f)}" %>
+				<%= "#{label_name(:credit_total)}:  #{number_to_currency(@debit_payment.debit_amount.to_f + @credit_payment.credit_amount.to_f)}" if @payments %>
 			</td>
 		   <td class="last"></td>
 		</tr>
 
       </table>
 
-	<% end %>
-	<%= render :partial => 'shared/action_bar', :locals => { :collection => @fees } %>
+	<%= render :partial => 'shared/action_bar', :locals => { :collection => @fees } if @fees %>
+	<%= render :partial => 'shared/action_bar', :locals => { :collection => @payments } if @payments %>
 
 	</div>
 	</div>

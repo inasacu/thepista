@@ -26,15 +26,13 @@
 %>		
 		<li class="<%= get_active('blog_show') %>"><%=  blog_link(the_blog) %></li>
 		<li class="<%= get_active('group_team_list') %>"><%=  link_to(label_name(:users) , team_list_path(:id => @group)) %></li>
+		
 		<% if current_user.is_manager_of?(@group)  %>
-		<li class="<%= get_active('fee_list') %>"><%=  link_to(label_name(:fees) , list_fees_path(:id => @group)) %></li>
+		<li class="<%= get_active('fee_list') %>"><%= link_to(label_name(:fees) , list_fees_path(:id => @group)) %></li>
+		<li class="<%= get_active('fee_item_list') %>"><%= link_to(label_name(:payments), item_list_fees_path(:id => @group, :item => @group.class.to_s)) %></li>
 		<li class="<%= get_active('fee_complete') %>"><%=  link_to(label_name(:fees_complete) , complete_fees_path(:id => @group)) %></li>
 		<% end -%>
-		<% if current_user.is_manager_of?(@group) %>
-		<li class="<%= get_active('fee_item_list') %>">
-			<%= link_to(label_name(:fees), item_list_fees_path(:id => @group, :item => @group.class.to_s)) %>
-		</li>
-		<% end -%>
+		
 <%			
 		end
 	end

@@ -32,6 +32,51 @@ class Payment < ActiveRecord::Base
                    :reserved_words => ["new", "create", "index", "list", "signup", "edit", "update", "destroy", "show"]
   
   # method section
+  def self.sum_debit_amount_payment(debits, credits)
+    @payment = find(:first, :select => "sum(debit_amount) as debit_amount", 
+                            :conditions => ["debit_id in (?) and debit_type = ? and 
+                                             credit_id in (?) and credit_type = ? and 
+                                             archive = false", debits, debits.first.class.to_s, credits, credits.first.class.to_s])
+
+    if @payment.nil? or @payment.blank? 
+      @payment.debit_amount = 0.0
+    end
+    return @payment         
+  end
+  
+  def self.sum_credit_amount_payment(debits, credits)
+    @payment = find(:first, :select => "sum(credit_amount) as credit_amount", 
+                            :conditions => ["debit_id in (?) and debit_type = ? and 
+                                             credit_id in (?) and credit_type = ? and 
+                                             archive = false", debits, debits.first.class.to_s, credits, credits.first.class.to_s])
+
+    if @payment.nil? or @payment.blank? 
+      @payment.debit_amount = 0.0
+    end
+    return @payment         
+  end
+
+  def self.debits_credits_items_payments(debits, credits, items, the_payments)
+    fees = find(:all, :conditions => ["payments.debit_id in (?) and payments.debit_type = ? and 
+                                       payments.credit_id in (?) and payments.credit_type = ? and 
+                                       payments.item_id in (?) and payments.item_type = ? and
+                                       payments.archive = false and payments.debit_amount > 0", debits, debits.first.class.to_s, credits, credits.first.class.to_s, items, items.first.class.to_s]).each do |payment|
+      the_payments << payment
+    end
+    return the_payments
+  end
+
+  def self.page_all_payments(the_payments, page=1)
+    paginate(:all, :conditions => ["id in (?)", the_payments], :order => 'payments.id DESC', :page => page, :per_page => FEES_PER_PAGE)
+  end
+  
+  
+  
+  
+  
+  
+  ##########################################################
+  
   def self.debit_item_amount(debits, item)    
     unless (debits.first.class.to_s == item.class.to_s)
       @payment = find(:first, :select => "sum(debit_amount) as debit_amount", 
@@ -56,7 +101,6 @@ class Payment < ActiveRecord::Base
       :conditions => ["credit_id in (?) and credit_type = ? and 
         item_id = ? and item_type = ? and
         archive = false and credit_amount > 0", credits, credits.first.class.to_s, item, item.class.to_s])
-
       else
           @payment = find(:first, :select => "sum(credit_amount) as credit_amount", 
           :conditions => ["credit_id in (?) and credit_type = ? and 
@@ -78,10 +122,10 @@ class Payment < ActiveRecord::Base
         debits, debits.first.class.to_s, 
         credit, credit.class.to_s, 
         item, item.class.to_s],
-        :order => 'created_at', :page => page, :per_page => FEES_PER_PAGE)
+        :order => 'id', :page => page, :per_page => FEES_PER_PAGE)
     else
           paginate(:all, :conditions => ["debit_id in (?) and debit_type = ? and archive = false and debit_amount > 0", debits, debits.first.class.to_s],
-            :order => 'created_at', :page => page, :per_page => FEES_PER_PAGE)
+            :order => 'id', :page => page, :per_page => FEES_PER_PAGE)
     end
   end
   
@@ -90,17 +134,46 @@ class Payment < ActiveRecord::Base
   end
     
   def self.credit_payments(debits, credits, page=1)
-    paginate(:all, :conditions => ["debit_id in (?) and debit_type = ? and 
+    unless (debits.first.class.to_s == credits.first.class.to_s)
+      paginate(:all, :conditions => ["debit_id in (?) and debit_type = ? and 
                                     credit_id in (?) and credit_type = ? and 
-                                    archive = false and debit_amount > 0", debits, 'User', credits, 'Group'],
-             :order => 'created_at', :page => page,  :per_page => FEES_PER_PAGE)
+                                    archive = false and debit_amount > 0", debits, debits.first.class.to_s, credits, credits.first.class.to_s],
+             :order => 'id DESC', :page => page,  :per_page => FEES_PER_PAGE)
+    else
+     paginate(:all, :conditions => ["debit_id in (?) and debit_type = ? and archive = false and debit_amount > 0", debits, debits.first.class.to_s],
+                    :order => 'id DESC', :page => page,  :per_page => FEES_PER_PAGE)
+    end
   end
 
-  def self.debit_amount(debits, object)
-    @payment = find(:first, 
-         :select => "sum(debit_amount) as debit_amount", 
-         :conditions => ["debit_id in (?) and debit_type = ? and 
-                        archive = false and debit_amount > 0", debits, object])
+  def self.sum_debit_item_amount(debits, credits)
+    @payment = find(:first, :select => "sum(debit_amount) as debit_amount", 
+                            :conditions => ["debit_id in (?) and debit_type = ? and 
+                                             credit_id in (?) and credit_type = ? and 
+                                             archive = false and debit_amount > 0", debits, debits.first.class.to_s, credits, credits.first.class.to_s])
+
+    if @payment.nil? or @payment.blank? 
+      @payment.debit_amount = 0.0
+    end
+    return @payment         
+  end
+
+
+ def self.sum_credit_item_amount(debits, credits)
+   @payment = find(:first, :select => "sum(credit_amount) as credit_amount", 
+                           :conditions => ["debit_id in (?) and debit_type = ? and 
+                                            credit_id in (?) and credit_type = ? and 
+                                            archive = false and debit_amount > 0", debits, debits.first.class.to_s, credits, credits.first.class.to_s])
+
+   if @payment.nil? or @payment.blank? 
+     @payment.debit_amount = 0.0
+   end
+   return @payment         
+  end
+    
+     
+  def self.payment_debit_amount(debits, object)
+    @payment = find(:first, :select => "sum(debit_amount) as debit_amount", 
+                            :conditions => ["debit_id in (?) and debit_type = ? and archive = false and debit_amount > 0", debits, object])
          
     if @payment.nil? or @payment.blank? 
       @payment.debit_amount = 0.0
@@ -108,7 +181,7 @@ class Payment < ActiveRecord::Base
     return @payment         
   end
   
-  def self.credit_amount(credits, object)
+  def self.payment_credit_amount(credits, object)
     @payment = find(:first, 
          :select => "sum(credit_amount) as credit_amount", 
          :conditions => ["credit_id in (?) and credit_type = ? and 

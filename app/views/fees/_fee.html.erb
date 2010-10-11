@@ -2,22 +2,19 @@
 	debit_link, debit_object = fee_debit(fee)
 	credit_link, credit_object = fee_credit(fee)
 	item_link, item_object = fee_item(fee)
-	user = User.find(:all, :conditions => ["id = ?", fee.debit_id])
-	debit_payment = Payment.debit_item_amount(user, @item)
-    credit_payment = Payment.credit_item_amount(user, @item)
 
-	current_debit =  number_to_currency(fee.debit_amount)
-	current_credit = number_to_currency(debit_payment.debit_amount.to_f + credit_payment.credit_amount.to_f) 	
-	is_unpayed = current_debit > current_credit
-	# @payments = Payment.credit_item_payments(user, @item, @item)
-	@payments = Payment.payments_for_fee(fee)
-	last_payment = nil	
+	current_debit =  number_to_currency(fee.debit_amount.to_f)
+	current_credit = number_to_currency(@debit_payment.debit_amount.to_f + @credit_payment.credit_amount.to_f) 	
+	is_unpayed = fee.debit_amount.to_f > @debit_payment.debit_amount.to_f + @credit_payment.credit_amount.to_f
+
+	is_complete = get_controller_action == 'fee_complete'
 %>
 
 <tr>  
 	<td class="first">
-		<%= image_link_small credit_object %>
+		<%= is_complete ? image_link_small(debit_object) : image_link_small(credit_object) %>
 	</td>
+	
 	<td class="name_and_date">
 		<% unless credit_link.blank? %>
 		<span class="label"><%= label_name(:from) %>:</span>
@@ -25,37 +22,36 @@
 		<% end %>
 		</span>
 		<span class="label"><%= label_name(:to) %>:</span>
-		<%= debit_link %><br/>
-		<span class="date">			
-		<%= ago(fee.created_at) %>
-		</span>
+		<%= debit_link %>
 	</td>
 
 	<td>
-		<%= item_link %>
+		<%= item_link %>&nbsp;
+	</td>
+
+	<td class="name_and_date">
+		<%= nice_full_date(fee.created_at) %><br />
+		<span class="date">
+			<%= has_left(fee.created_at) if Time.zone.now < fee.created_at %>
+		</span>
 	</td>
 
 	<td><%= current_debit %></td>
-	<td><% @payments.each  do |payment| %> 
-			<%= number_to_currency(payment.debit_amount.to_f) %><br />			
-		<% 	last_payment = payment
-		   end 
-		%>
-	</td>
+	<td>&nbsp;</td>
 	
     <td class="last">
 		<span class="action">
 			<% if current_user.is_manager_of?(credit_object) or current_user.is_manager_of?(item_object) %> 
             	<%= link_to label_name(:send_message_to), new_message_path(:id => fee.debit_id) unless fee.debit_type == 'User' and fee.debit_id = current_user.id %><br /><br />
-				<%  if is_unpayed %>
+				<% if is_unpayed %>
 					<%= link_to  label_name(:payment_for_bill), new_payment_path(:id => fee) %><br />
-					<%= link_to label_name(:fees_edit), edit_fee_path(:id => fee) %><br />
-					<%= link_to label_name(:fees_destroy), fee_path(fee), :method => :delete, :confirm => %(#{label_name(:fees_destroy) }?) %><br />
+					<%= link_to label_name(:fees_edit), edit_fee_path(:id => fee) %>
+					<%#= link_to label_name(:fees_destroy), fee_path(fee), :method => :delete, :confirm => %(#{label_name(:fees_destroy) }?) %>
 				<% end %>
-				<% unless @payments.nil? or @payments.blank? or @payments.empty? %>
-					<%= link_to label_name(:payments_edit), edit_payment_path(:id => last_payment, :group_id => last_payment.credit_id) %><br />
-					<%= link_to label_name(:payments_destroy), payment_path(last_payment), :method => :delete, :confirm => %(#{label_name(:payments_destroy) }?) %>
-				<% end %>
+				<%# unless @payments.nil? or @payments.blank? or @payments.empty? %>
+					<%#= link_to label_name(:payments_edit), edit_payment_path(:id => last_payment, :group_id => last_payment.credit_id) %>
+					<%#= link_to label_name(:payments_destroy), payment_path(last_payment), :method => :delete, :confirm => %(#{label_name(:payments_destroy) }?) %>
+				<%# end %>
 	        <% end %>
 		</span>
     </td>
