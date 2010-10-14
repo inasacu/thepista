@@ -18,26 +18,10 @@ class FeesController < ApplicationController
     
     @user.groups.each do |group|
       @groups << group      
-      Schedule.match_participate(group, @user, @schedules) unless @user.is_subscriber_of?(group)
-    end
+      Schedule.match_participation(group, @users, @schedules) unless @user.is_subscriber_of?(group)
+    end  
     
-    @debit_payment = Payment.sum_debit_amount_payment(@users, @groups)
-    @credit_payment = Payment.sum_credit_amount_payment(@groups, @users)
-
-    @debit_group = Fee.sum_debit_amount_fee(@users, @groups)
-    @debit_schedule = Fee.sum_debit_amount_fee(@users, @schedules)
-    
-    @debit_fee = Fee.new
-    @debit_fee.debit_amount = @debit_group.debit_amount.to_f + @debit_schedule.debit_amount.to_f
-    
-    Fee.debits_credits_items_fees(@users, @groups, @groups, @the_fees) 
-    Fee.debits_credits_items_fees(@users, @groups, @schedules, @the_fees) 
-    @fees = Fee.page_all_fees(@the_fees, params[:page])  
-    
-    # Payment.debits_credits_items_payments(@users, @groups, @groups, @the_payments) 
-    # Payment.debits_credits_items_payments(@users, @groups, @schedules, @the_payments)
-    # @payments = Payment.page_all_payments(@the_payments, params[:page])
-
+    get_all_fees
     render :template => '/fees/index'
   end
   
@@ -52,26 +36,28 @@ class FeesController < ApplicationController
     
     @user.groups.each do |group|
       @groups << group      
-      Schedule.match_participate(group, @user, @schedules) unless @user.is_subscriber_of?(group)
+      Schedule.match_participation(group, @users, @schedules) unless @user.is_subscriber_of?(group)
     end
-    
-    @debit_payment = Payment.sum_debit_amount_payment(@users, @groups)
-    @credit_payment = Payment.sum_credit_amount_payment(@groups, @users)
 
-    @debit_group = Fee.sum_debit_amount_fee(@users, @groups)
-    @debit_schedule = Fee.sum_debit_amount_fee(@users, @schedules)
-    
-    @debit_fee = Fee.new
-    @debit_fee.debit_amount = @debit_group.debit_amount.to_f + @debit_schedule.debit_amount.to_f
-    
-    # Fee.debits_credits_items_fees(@users, @groups, @groups, @the_fees) 
-    # Fee.debits_credits_items_fees(@users, @groups, @schedules, @the_fees) 
-    # @fees = Fee.page_all_fees(@the_fees, params[:page])  
-    
-    Payment.debits_credits_items_payments(@users, @groups, @groups, @the_payments) 
-    Payment.debits_credits_items_payments(@users, @groups, @schedules, @the_payments)
-    @payments = Payment.page_all_payments(@the_payments, params[:page])
+    get_all_payments
+    render :template => '/fees/index'
+  end
 
+  def list
+    @users = [] 
+    @groups = []
+    @schedules = []
+    @the_fees = []
+    @the_payments = []
+
+    @groups << @group
+
+    @group.users.each do |user|
+      @users << user
+    end
+    Schedule.match_participation(@group, @users, @schedules)    
+    
+    get_all_fees
     render :template => '/fees/index'
   end
   
@@ -88,70 +74,25 @@ class FeesController < ApplicationController
       @users << user
     end
 
-    @debit_payment = Payment.sum_debit_amount_payment(@users, @groups)
-    @credit_payment = Payment.sum_credit_amount_payment(@groups, @users)
-
-    @debit_fee = Fee.new
-    @debit_fee.debit_amount = 0.0
-
-    Payment.debits_credits_items_payments(@users, @groups, @groups, @the_payments) 
-    Payment.debits_credits_items_payments(@users, @groups, @schedules, @the_payments)
-    @payments = Payment.page_all_payments(@the_payments, params[:page])
-
+    get_all_payments
     render :template => '/fees/index'
   end
 
-  def list
-      @users = [] 
-      @groups = []
-      @schedules = []
-      @the_fees = []
-      @the_payments = []
-
-      @groups << @group
-
-      @group.users.each do |user|
-        @users << user
-        # Schedule.match_participate(@group, user, @schedules) unless user.is_subscriber_of?(@group)
-      end
-      
-      @debit_payment = Payment.new
-      @credit_payment = Payment.new
-      @debit_payment.debit_amount = 0.0
-      @credit_payment.debit_amount = 0.0
-      
-      @debit_group = Fee.sum_debit_amount_fee(@users, @groups)
-      @debit_schedule = Fee.sum_debit_amount_fee(@users, @schedules)
-
-      @debit_fee = Fee.new
-      @debit_fee.debit_amount = @debit_group.debit_amount.to_f + @debit_schedule.debit_amount.to_f
-      @debit_payment.debit_amount = @debit_fee.debit_amount
-
-      Fee.debits_credits_items_fees(@users, @groups, @groups, @the_fees) 
-      Fee.debits_credits_items_fees(@users, @groups, @schedules, @the_fees) 
-      @fees = Fee.page_all_fees(@the_fees, params[:page])  
-
-      render :template => '/fees/index'
-  end
-
   def complete
+    @users = [] 
     @groups = []
+    @schedules = []
+    @the_fees = []
+    @the_payments = []
+
     @groups << @group
 
-    @users = []
     @group.users.each do |user|
       @users << user unless user.is_subscriber_of?(@group)
     end
-        
-    @debit_payment = Payment.new
-    @credit_payment = Payment.new
-    @debit_payment.debit_amount = 0.0
-    @credit_payment.debit_amount = 0.0
-
-    @debit_fee = Fee.debit_items_amount(@users, @groups)
+    Schedule.match_participation(@group, @users, @schedules)    
     
-    @fees = Fee.debit_items_fees(@users, @groups, params[:page])        
-
+    get_all_fees
     render :template => '/fees/index'
   end
 
@@ -327,6 +268,30 @@ class FeesController < ApplicationController
       redirect_back_or_default('/index')
       return
     end
+  end
+  
+  def get_all_fees    
+    Fee.debits_credits_items_fees(@users, @groups, @groups, @the_fees) 
+    Fee.debits_credits_items_fees(@users, @groups, @schedules, @the_fees)
+    @debit_fee = Fee.sum_debit_amount_fee(@the_fees)    
+    
+    Payment.debits_credits_items_payments(@users, @groups, @groups, @the_payments) 
+    Payment.debits_credits_items_payments(@users, @groups, @schedules, @the_payments)    
+    @debit_payment, @credit_payment = Payment.sum_debit_amount_payment(@the_payments)
+    
+    @fees = Fee.page_all_fees(@the_fees, params[:page])  
+  end
+  
+  def get_all_payments    
+    Fee.debits_credits_items_fees(@users, @groups, @groups, @the_fees) 
+    Fee.debits_credits_items_fees(@users, @groups, @schedules, @the_fees)
+    @debit_fee = Fee.sum_debit_amount_fee(@the_fees)
+    
+    Payment.debits_credits_items_payments(@users, @groups, @groups, @the_payments) 
+    Payment.debits_credits_items_payments(@users, @groups, @schedules, @the_payments)    
+    @debit_payment, @credit_payment = Payment.sum_debit_amount_payment(@the_payments) 
+    
+    @payments = Payment.page_all_payments(@the_payments, params[:page])
   end
 
 end

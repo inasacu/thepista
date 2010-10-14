@@ -173,15 +173,21 @@ class Match < ActiveRecord::Base
     self.description.gsub!(/\r?\n/, "<br>") unless self.description.nil?
   end
 
-	# return ture if the schedule group user conbination is nil
-   def self.schedule_group_user_exists?(schedule, user)
-		find_by_schedule_id_and_group_id_and_user_id(schedule, schedule.group, user).nil?
-	end 
+	# return true if the schedule group user conbination is nil
+  def self.schedule_group_user_exists?(schedule, user)
+    # find_by_schedule_id_and_group_id_and_user_id(schedule, schedule.group, user).nil?
+
+    has_match = find(:first, :conditions => ["schedule_id = ? and group_id = ? and user_id = ?", schedule, schedule.group, user]).nil?
+    unless has_match
+      has_match = find(:first, :conditions => ["schedule_id = ? and invite_id = ? and user_id = ?", schedule, schedule.group, user]).nil?
+    end
+    return has_match
+    
+  end 
 
   def self.log_activity_convocado(match)
     if Activity.exists?(match, match.user)
       activity = Activity.create!(:item => match, :user => match.user)
-      # Feed.create!(:activity => activity, :user => match.user)
     end
   end   
   

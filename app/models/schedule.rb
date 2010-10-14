@@ -91,10 +91,10 @@ class Schedule < ActiveRecord::Base
   after_update        :log_activity_played
   
   # method section
-  def self.match_participate(group, user, schedules)
+  def self.match_participation(group, users, schedules)
     find(:all, :select => "distinct schedules.*",  
                :joins => "left join matches on matches.schedule_id  = schedules.id",
-               :conditions => ["schedule_id in (?) and user_id = ? and type_id = 1", group.schedules, user]).each do |schedule|
+               :conditions => ["schedule_id in (?) and user_id in (?) and type_id = 1", group.schedules, users]).each do |schedule|
       schedules << schedule
     end
   end

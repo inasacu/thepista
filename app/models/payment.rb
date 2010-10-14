@@ -32,28 +32,14 @@ class Payment < ActiveRecord::Base
                    :reserved_words => ["new", "create", "index", "list", "signup", "edit", "update", "destroy", "show"]
   
   # method section
-  def self.sum_debit_amount_payment(debits, credits)
-    @payment = find(:first, :select => "sum(debit_amount) as debit_amount", 
-                            :conditions => ["debit_id in (?) and debit_type = ? and 
-                                             credit_id in (?) and credit_type = ? and 
-                                             archive = false", debits, debits.first.class.to_s, credits, credits.first.class.to_s])
-
-    if @payment.nil? or @payment.blank? 
-      @payment.debit_amount = 0.0
-    end
-    return @payment         
-  end
-  
-  def self.sum_credit_amount_payment(debits, credits)
-    @payment = find(:first, :select => "sum(credit_amount) as credit_amount", 
-                            :conditions => ["debit_id in (?) and debit_type = ? and 
-                                             credit_id in (?) and credit_type = ? and 
-                                             archive = false", debits, debits.first.class.to_s, credits, credits.first.class.to_s])
-
-    if @payment.nil? or @payment.blank? 
-      @payment.debit_amount = 0.0
-    end
-    return @payment         
+  def self.sum_debit_amount_payment(the_payments)
+    debit_payment = Payment.new
+    credit_payment = Payment.new
+    debit_payment.debit_amount = 0.0
+    credit_payment.debit_amount = 0.0
+    
+    the_payments.each {|the_payment| debit_payment.debit_amount += the_payment.debit_amount.to_f}
+    return debit_payment, credit_payment       
   end
 
   def self.debits_credits_items_payments(debits, credits, items, the_payments)

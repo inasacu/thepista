@@ -34,63 +34,40 @@ class Fee < ActiveRecord::Base
 
 
   # method section
-  def self.sum_debit_amount_fee(debits, items)
-    @fee = find(:first, :select => "sum(debit_amount) as debit_amount", 
-                        :conditions => ["debit_id in (?) and debit_type = ? and
-                                         item_id in (?) and item_type = ? and
-                                         archive = false", debits, debits.first.class.to_s, items, items.first.class.to_s])
-    if @fee.nil? or @fee.blank? 
-      @fee.debit_amount = 0.0
-    end
-    return @fee         
+  def self.sum_debit_amount_fee(the_fees)
+    debit_fee = Fee.new
+    debit_fee.debit_amount = 0.0
+    the_fees.each {|the_fee| debit_fee.debit_amount += the_fee.debit_amount.to_f}
+    return debit_fee        
   end
 
   def self.debits_credits_items_fees(debits, credits, items, the_fees)
-    fees = find(:all, :conditions => ["fees.debit_id in (?) and fees.debit_type = ? and 
+    
+    case items.first.class.to_s
+    when "Group"
+      fees = find(:all, :conditions => ["fees.debit_id in (?) and fees.debit_type = ? and 
                                        fees.credit_id in (?) and fees.credit_type = ? and 
                                        fees.item_id in (?) and fees.item_type = ? and
                                        fees.archive = false", debits, debits.first.class.to_s, credits, credits.first.class.to_s, items, items.first.class.to_s]).each do |fee|
-      the_fees << fee
-    end
+          the_fees << fee
+      end
+    when "Schedule"
+      fees = find(:all, :joins => "LEFT JOIN matches on matches.user_id = fees.debit_id and matches.schedule_id = fees.item_id",
+                        :conditions => ["fees.debit_id in (?) and fees.debit_type = ? and 
+                                       fees.credit_id in (?) and fees.credit_type = ? and 
+                                       fees.item_id in (?) and fees.item_type = ? and
+                                       fees.archive = false and matches.type_id = 1", debits, debits.first.class.to_s, credits, credits.first.class.to_s, items, items.first.class.to_s]).each do |fee|
+          the_fees << fee
+      end
+    end 
+      
     return the_fees
   end
   
   def self.page_all_fees(the_fees, page=1)
     paginate(:all, :conditions => ["id in (?)", the_fees], :order => 'fees.id DESC', :page => page, :per_page => FEES_PER_PAGE)
   end
-  
-  
-  
-  
-  
-  
-  
-  
 
-
-
-  def self.debit_item_fees(debits, credit, page=1)
-    unless (debits.first.class.to_s == credit.class.to_s)
-      paginate(:all,     
-               :conditions => ["fees.debit_id in (?) and fees.debit_type = ? and 
-                                fees.credit_id in (?) and fees.credit_type = ? and fees.archive = false", 
-                                debits, debits.first.class.to_s, credit, credit.class.to_s],
-               :order => 'fees.created_at', 
-               :page => page,
-               :per_page => FEES_PER_PAGE)
-    else
-      if debits.first.class.to_s == 'User'
-      paginate(:all, 
-      # :joins => "LEFT JOIN matches on matches.user_id = fees.debit_id and matches.schedule_id = fees.item_id",
-               :conditions => ["fees.debit_id in (?) and fees.debit_type = ?  and 
-                                matches.type_id = 1 and fees.season_player = false and fees.archive = false", debits, debits.first.class.to_s],
-               :order => 'fees.created_at', 
-               :page => page,
-               :per_page => FEES_PER_PAGE)
-      end             
-    end
-  end
-  
   def self.debit_item_amount(debits, credit)
     unless (debits.first.class.to_s == credit.class.to_s)
       @fee = find(:first, :select => "sum(debit_amount) as debit_amount", 
@@ -111,74 +88,97 @@ class Fee < ActiveRecord::Base
     return @fee
   end
    
-  def self.debit_items_fees(debits, credits, page=1)
-    unless (debits.first.class.to_s == credits.first.class.to_s)
-      paginate(:all, :joins => "LEFT JOIN matches on matches.user_id = fees.debit_id and matches.schedule_id = fees.item_id",
-               :conditions => ["fees.debit_id in (?) and fees.debit_type = ? and 
-                                fees.credit_id in (?) and fees.credit_type = ? and 
-                                fees.archive = false and matches.type_id = 1", 
-                                debits, debits.first.class.to_s, credits, credits.first.class.to_s],
-               :order => 'fees.created_at', 
-               :page => page,
-               :per_page => FEES_PER_PAGE)
-    else
-      if debits.first.class.to_s == 'User'
-      paginate(:all, :joins => "LEFT JOIN matches on matches.user_id = fees.debit_id and matches.schedule_id = fees.item_id", 
-               :conditions => ["fees.debit_id in (?) and fees.debit_type = ?  and 
-                                matches.type_id = 1 and fees.season_player = false and 
-                                fees.archive = false and matches.type_id = 1", debits, debits.first.class.to_s],
-               :order => 'fees.created_at', 
-               :page => page,
-               :per_page => FEES_PER_PAGE)
-      end             
-    end
-  end
+  # def self.debit_items_fees(debits, credits, page=1)
+  #   unless (debits.first.class.to_s == credits.first.class.to_s)
+  #     paginate(:all, :joins => "LEFT JOIN matches on matches.user_id = fees.debit_id and matches.schedule_id = fees.item_id",
+  #              :conditions => ["fees.debit_id in (?) and fees.debit_type = ? and 
+  #                               fees.credit_id in (?) and fees.credit_type = ? and 
+  #                               fees.archive = false and matches.type_id = 1", 
+  #                               debits, debits.first.class.to_s, credits, credits.first.class.to_s],
+  #              :order => 'fees.created_at', 
+  #              :page => page,
+  #              :per_page => FEES_PER_PAGE)
+  #   else
+  #     if debits.first.class.to_s == 'User'
+  #     paginate(:all, :joins => "LEFT JOIN matches on matches.user_id = fees.debit_id and matches.schedule_id = fees.item_id", 
+  #              :conditions => ["fees.debit_id in (?) and fees.debit_type = ?  and 
+  #                               matches.type_id = 1 and fees.season_player = false and 
+  #                               fees.archive = false and matches.type_id = 1", debits, debits.first.class.to_s],
+  #              :order => 'fees.created_at', 
+  #              :page => page,
+  #              :per_page => FEES_PER_PAGE)
+  #     end             
+  #   end
+  # end
   
-  def self.debit_items_amount(debits, credits)
-    unless (debits.first.class.to_s == credits.first.class.to_s)
-      @fee = find(:first, :joins => "LEFT JOIN matches on matches.user_id = fees.debit_id and matches.schedule_id = fees.item_id",
-                          :select => "sum(debit_amount) as debit_amount", 
-                          :conditions => ["fees.debit_id in (?) and fees.debit_type = ? and 
-                                           fees.credit_id in (?) and fees.credit_type = ? and 
-                                           fees.archive = false and matches.type_id = 1", debits, debits.first.class.to_s, credits, credits.first.class.to_s])
-    else
-      if debits.first.class.to_s == 'User'
-      @fee = find(:first, :joins => "LEFT JOIN matches on matches.user_id = fees.debit_id and matches.schedule_id = fees.item_id",
-                          :select => "sum(debit_amount) as debit_amount", 
-                          :conditions => ["fees.debit_id in (?) and fees.debit_type = ? and 
-                                           fees.archive = false and matches.type_id = 1", debits, debits.first.class.to_s])
-      end
-    end
-    
-    if @fee.nil? or @fee.blank? 
-      @fee.debit_amount = 0.0
-    end
-    return @fee
-  end  
+  # def self.debit_items_amount(debits, credits)
+  #   unless (debits.first.class.to_s == credits.first.class.to_s)
+  #     @fee = find(:first, :joins => "LEFT JOIN matches on matches.user_id = fees.debit_id and matches.schedule_id = fees.item_id",
+  #                         :select => "sum(debit_amount) as debit_amount", 
+  #                         :conditions => ["fees.debit_id in (?) and fees.debit_type = ? and 
+  #                                          fees.credit_id in (?) and fees.credit_type = ? and 
+  #                                          fees.archive = false and matches.type_id = 1", debits, debits.first.class.to_s, credits, credits.first.class.to_s])
+  #   else
+  #     if debits.first.class.to_s == 'User'
+  #     @fee = find(:first, :joins => "LEFT JOIN matches on matches.user_id = fees.debit_id and matches.schedule_id = fees.item_id",
+  #                         :select => "sum(debit_amount) as debit_amount", 
+  #                         :conditions => ["fees.debit_id in (?) and fees.debit_type = ? and 
+  #                                          fees.archive = false and matches.type_id = 1", debits, debits.first.class.to_s])
+  #     end
+  #   end
+  #   
+  #   if @fee.nil? or @fee.blank? 
+  #     @fee.debit_amount = 0.0
+  #   end
+  #   return @fee
+  # end  
+  
+  
+  # def self.debit_item_fees(debits, credit, page=1)
+  #   unless (debits.first.class.to_s == credit.class.to_s)
+  #     paginate(:all,     
+  #              :conditions => ["fees.debit_id in (?) and fees.debit_type = ? and 
+  #                               fees.credit_id in (?) and fees.credit_type = ? and fees.archive = false", 
+  #                               debits, debits.first.class.to_s, credit, credit.class.to_s],
+  #              :order => 'fees.created_at', 
+  #              :page => page,
+  #              :per_page => FEES_PER_PAGE)
+  #   else
+  #     if debits.first.class.to_s == 'User'
+  #     paginate(:all, 
+  #     # :joins => "LEFT JOIN matches on matches.user_id = fees.debit_id and matches.schedule_id = fees.item_id",
+  #              :conditions => ["fees.debit_id in (?) and fees.debit_type = ?  and 
+  #                               matches.type_id = 1 and fees.season_player = false and fees.archive = false", debits, debits.first.class.to_s],
+  #              :order => 'fees.created_at', 
+  #              :page => page,
+  #              :per_page => FEES_PER_PAGE)
+  #     end             
+  #   end
+  # end
         
-  def self.debit_fees(debits, credits, page=1)
-    paginate(:all,
-             :joins => "LEFT JOIN matches on matches.user_id = fees.debit_id and matches.schedule_id = fees.item_id",
-             :conditions => ["fees.debit_id in (?) and fees.debit_type = ? and 
-                              fees.credit_id in (?) and fees.credit_type = ? and matches.type_id = 1 and fees.season_player = false and fees.archive = false", 
-                              debits, 'User', credits, 'Group'],
-             :order => 'fees.item_type, fees.item_id', 
-             :page => page,
-             :per_page => FEES_PER_PAGE)
-  end
+  # def self.debit_fees(debits, credits, page=1)
+  #   paginate(:all,
+  #            :joins => "LEFT JOIN matches on matches.user_id = fees.debit_id and matches.schedule_id = fees.item_id",
+  #            :conditions => ["fees.debit_id in (?) and fees.debit_type = ? and 
+  #                             fees.credit_id in (?) and fees.credit_type = ? and matches.type_id = 1 and fees.season_player = false and fees.archive = false", 
+  #                             debits, 'User', credits, 'Group'],
+  #            :order => 'fees.item_type, fees.item_id', 
+  #            :page => page,
+  #            :per_page => FEES_PER_PAGE)
+  # end
   
-  def self.debit_amount(debits, credits)
-    @fee = find(:first, :select => "sum(debit_amount) as debit_amount", 
-    :joins => "LEFT JOIN matches on matches.user_id = fees.debit_id and matches.schedule_id = fees.item_id",
-    :conditions => ["fees.debit_id in (?) and fees.debit_type = ? and fees.credit_id in (?) and fees.credit_type = ? and 
-      matches.type_id = 1 and fees.season_player = false and fees.archive = false", 
-      debits, 'User', credits, 'Group'])
-
-      if @fee.nil? or @fee.blank? 
-        @fee.debit_amount = 0.0
-      end
-      return @fee
-    end
+  # def self.debit_amount(debits, credits)
+  #   @fee = find(:first, :select => "sum(debit_amount) as debit_amount", 
+  #   :joins => "LEFT JOIN matches on matches.user_id = fees.debit_id and matches.schedule_id = fees.item_id",
+  #   :conditions => ["fees.debit_id in (?) and fees.debit_type = ? and fees.credit_id in (?) and fees.credit_type = ? and 
+  #     matches.type_id = 1 and fees.season_player = false and fees.archive = false", 
+  #     debits, 'User', credits, 'Group'])
+  # 
+  #     if @fee.nil? or @fee.blank? 
+  #       @fee.debit_amount = 0.0
+  #     end
+  #     return @fee
+  #   end
   
   def self.set_season_player(debit, credit, flag)
     @fees = find(:all, 
@@ -201,14 +201,14 @@ class Fee < ActiveRecord::Base
     end    
   end
 
-  def self.create_user_challenge_fees(challenge) 
+  def self.create_user_challenge_fees(challenge)
     challenge["concept"] = challenge.name   
     challenge.users.each do |user|
       self.create_debit_credit_item_fee(user, challenge, challenge)
     end
   end
 
-  def self.create_user_fees(schedule)    
+  def self.create_user_fees(schedule)
     schedule.group.users.each do |user|
 
       @match = Match.find_by_schedule_id_and_user_id(schedule, user)
@@ -260,7 +260,6 @@ protected
   end
 
 private
-	
   # return true if the schedule user group conbination is nil
   def self.debit_credit_item_exists?(debit, credit, item)                          
     find(:first, :conditions => ["debit_id = ? and debit_type = ? and credit_id = ? and credit_type = ? and 
