@@ -103,9 +103,6 @@
 	
 		<li><%= user_link(label_name(:profile), current_user, :class => the_user) %></li>
 		<li><%= link_to(label_name(:messages), messages_url, :class => the_message) %></li>
-		<!-- <li><%#= link_to label_name(:find_people), invitations_url %></li> -->
-		<!-- <li><%#= link_to label_name(:settings), root_url %></li> -->
-		<!-- <li><%#= link_to label_name(:help), root_url %></li> -->
 		<li><%= link_to label_name(:logout), logout_path %></li>		
 	<% else %>
 		<li><%= link_to label_name(:signup), signup_path %></li>

@@ -1,11 +1,13 @@
+<% unless current_announcements.empty? %>
+
 <style type="text/css">
-#explore-promo { 
+#promo { 
 	border: 1px solid rgb(255, 241, 168); 
 	margin: 1em 0pt; 
 	padding: 4px 20px 4px 4px; 
 	background-color: rgb(255, 255, 204); 
 }
-#explore-promo-new { 
+#promo-new { 
 font-family: Arial,Helvetica,sans-serif;
 	font-weight: bold; 
 	color: red; 
@@ -20,13 +22,13 @@ font-family: Arial,Helvetica,sans-serif;
 }
 </style>
 
-<% unless current_announcements.empty? %>
+
 <div id="wrapper">	
 	<div class="flash">
 		<% for announcement in current_announcements %>
 		<div class="message warning">
 		<p>
-			<span id="explore-promo-new"><%= label_name(:new) %>!&nbsp;&nbsp;</span>
+			<span id="promo-new"><%= label_name(:new) %>!&nbsp;&nbsp;</span>
 			<%= h(announcement.message) %>
 			<%= link_to(label_name(:hide), hide_announcements_path, :id => 'hideAnn', :class => "hide") %>
 		</p>

@@ -165,7 +165,7 @@ class Match < ActiveRecord::Base
                    :schedule_id => schedule.id, :group_id => schedule.group_id, 
                    :user_id => user.id, :available => user.available, 
                    :type_id => type_id, :position_id => position_id, :technical => technical, :physical => physical,
-                   :played => schedule.played) if self.schedule_group_user_exists?(schedule, user)
+                   :played => schedule.played) if self.schedule_user_exists?(schedule, user)
     end
   end
   
@@ -174,15 +174,8 @@ class Match < ActiveRecord::Base
   end
 
 	# return true if the schedule group user conbination is nil
-  def self.schedule_group_user_exists?(schedule, user)
-    # find_by_schedule_id_and_group_id_and_user_id(schedule, schedule.group, user).nil?
-
-    has_match = find(:first, :conditions => ["schedule_id = ? and group_id = ? and user_id = ?", schedule, schedule.group, user]).nil?
-    unless has_match
-      has_match = find(:first, :conditions => ["schedule_id = ? and invite_id = ? and user_id = ?", schedule, schedule.group, user]).nil?
-    end
-    return has_match
-    
+  def self.schedule_user_exists?(schedule, user)
+    find_by_schedule_id_and_user_id(schedule, user).nil?    
   end 
 
   def self.log_activity_convocado(match)

@@ -229,7 +229,7 @@ hr {
 
 /* @group Flash messages */
 
-.flash .message {
+/*.flash .message {
   -moz-border-radius: 3px;
   -webkit-border-radius: 3px;
   text-align:center;
@@ -238,7 +238,6 @@ hr {
 
 .flash .message p {
   margin:8px;
-/*  font-size: 16px;*/
 }
 .flash .error {
   border: 1px solid #fbb;
@@ -250,9 +249,8 @@ hr {
 }
 .flash .notice {
   border: 1px solid #cfcfcf;
-/*  background-color: #dffaff;*/
   background-color: #EEF0F0;
-}
+}*/
 
 /* @end */
 
