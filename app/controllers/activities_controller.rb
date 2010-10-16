@@ -8,7 +8,7 @@ class ActivitiesController < ApplicationController
   
   def destroy
     @activity.destroy
-    flash[:notice] = I18n.t(:successful_update)
+    flash[:success] = I18n.t(:successful_update)
 
     respond_to do |format|
       format.html { redirect_to(user_url(current_user)) }

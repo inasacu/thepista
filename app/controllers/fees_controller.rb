@@ -152,7 +152,7 @@ class FeesController < ApplicationController
 
   def update
     if @fee.update_attributes(params[:fee])
-      flash[:notice] = I18n.t(:successful_update)
+      flash[:success] = I18n.t(:successful_update)
       redirect_to fees_url and return
     else
       render :action => 'edit'

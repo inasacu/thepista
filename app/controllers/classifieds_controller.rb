@@ -87,7 +87,7 @@ class ClassifiedsController < ApplicationController
     end
 
     if @classified.update_attributes(params[:classified])
-      flash[:notice] = I18n.t(:successful_update)
+      flash[:success] = I18n.t(:successful_update)
       redirect_to classifieds_url and return
     else
       render :action => 'edit'

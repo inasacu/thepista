@@ -621,7 +621,7 @@ es:
      invite_friend: Invita a un amigo   
      invite_other_friend: Invita a otro amigo   
      is_available: "Si"   
-     is_available_user: Disponibilidad del jugador ha sido actualizada correctamente.   
+     is_available_user: Cambio de disponibilidad.   
      is_invalid: no es valido.   
      is_not_available: "No"  
      join_cup:  Únete a un reto

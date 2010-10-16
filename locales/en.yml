@@ -620,7 +620,7 @@ en:
      invite_friend: Invite a friend     
      invite_other_friend: Invite other friend  
      is_available: "Yes"   
-     is_available_user: Availability has been updated.   
+     is_available_user: Availability changed.   
      is_invalid: is invalid.   
      is_not_available: "No" 
      join_cup:  Join the challenge  

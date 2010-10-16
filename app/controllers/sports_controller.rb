@@ -31,7 +31,7 @@ class SportsController < ApplicationController
   def update
     @sport = Sport.find(params[:id])
     if @sport.update_attributes(params[:sport])
-      flash[:notice] = I18n.t(:successful_update)
+      flash[:success] = I18n.t(:successful_update)
       redirect_to @sport
     else
       render :action => 'edit'

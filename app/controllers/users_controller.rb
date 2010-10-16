@@ -67,7 +67,7 @@ class UsersController < ApplicationController
     @user.attributes = params[:user]
     @user.save do |result|
       if result
-        flash[:notice] = I18n.t(:successful_update)
+        flash[:success] = I18n.t(:successful_update)
         redirect_back_or_default('/index')
         return
       else
@@ -123,7 +123,7 @@ class UsersController < ApplicationController
     if @user.update_attribute("looking", !@user.looking)
       @user.update_attribute("looking", @user.looking)  
 
-      flash[:notice] = I18n.t(:successful_update)
+      flash[:success] = I18n.t(:successful_update)
       redirect_back_or_default('/index')
     else
       render :action => 'index'
@@ -232,7 +232,7 @@ class UsersController < ApplicationController
     if @user.update_attribute("available", !@user.available)
       @user.update_attribute("available", @user.available)  
 
-      flash[:notice] = I18n.t(:successful_update)
+      flash[:success] = I18n.t(:successful_update)
       redirect_back_or_default('/index')
     else
       render :action => 'index'
@@ -243,7 +243,7 @@ class UsersController < ApplicationController
     if @user.update_attribute("private_phone", !@user.private_phone)
       @user.update_attribute("private_phone", @user.private_phone)  
 
-      flash[:notice] = I18n.t(:successful_update)
+      flash[:success] = I18n.t(:successful_update)
       redirect_back_or_default('/index')
     else
       render :action => 'index'
@@ -254,7 +254,7 @@ class UsersController < ApplicationController
     if @user.update_attribute("enable_comments", !@user.enable_comments)
       @user.update_attribute("enable_comments", @user.enable_comments)  
 
-      flash[:notice] = I18n.t(:successful_update)
+      flash[:success] = I18n.t(:successful_update)
       redirect_back_or_default('/index')
     else
       render :action => 'index'
@@ -265,7 +265,7 @@ class UsersController < ApplicationController
     if @user.update_attribute("teammate_notification", !@user.teammate_notification)
       @user.update_attribute("teammate_notification", @user.teammate_notification)  
 
-      flash[:notice] = I18n.t(:successful_update)
+      flash[:success] = I18n.t(:successful_update)
       redirect_back_or_default('/index')
     else
       render :action => 'index'
@@ -276,7 +276,7 @@ class UsersController < ApplicationController
     if @user.update_attribute("message_notification", !@user.message_notification)
       @user.update_attribute("message_notification", @user.message_notification)  
 
-      flash[:notice] = I18n.t(:successful_update)
+      flash[:success] = I18n.t(:successful_update)
       redirect_back_or_default('/index')
     else
       render :action => 'index'
@@ -287,7 +287,7 @@ class UsersController < ApplicationController
     if @user.update_attribute("blog_comment_notification", !@user.blog_comment_notification)
       @user.update_attribute("blog_comment_notification", @user.blog_comment_notification)  
 
-      flash[:notice] = I18n.t(:successful_update)
+      flash[:success] = I18n.t(:successful_update)
       redirect_back_or_default('/index')
     else
       render :action => 'index'
@@ -298,7 +298,7 @@ class UsersController < ApplicationController
     if @user.update_attribute("forum_comment_notification", !@user.forum_comment_notification)
       @user.update_attribute("forum_comment_notification", @user.forum_comment_notification)  
 
-      flash[:notice] = I18n.t(:successful_update)
+      flash[:success] = I18n.t(:successful_update)
       redirect_back_or_default('/index')
     else
       render :action => 'index'

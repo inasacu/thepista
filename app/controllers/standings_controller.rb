@@ -29,7 +29,7 @@ class StandingsController < ApplicationController
       
       group_stage_name = params[:stand][:group_stage_name]
       if @standing.update_attributes('group_stage_name' => group_stage_name.upcase)
-        flash[:notice] = I18n.t(:successful_update)
+        flash[:success] = I18n.t(:successful_update)
       end
       redirect_to standings_path(:id => @cup)
       return

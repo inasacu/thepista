@@ -112,7 +112,7 @@ class SchedulesController < ApplicationController
 
   def update
     if @schedule.update_attributes(params[:schedule]) and @schedule.create_schedule_details(current_user, true)  
-      flash[:notice] = I18n.t(:successful_update)
+      flash[:success] = I18n.t(:successful_update)
       redirect_to @schedule
     else
       render :action => 'edit'
@@ -137,7 +137,7 @@ class SchedulesController < ApplicationController
     if @schedule.update_attribute("reminder", !@schedule.reminder)
       @schedule.update_attribute("reminder", @schedule.reminder)  
 
-      flash[:notice] = I18n.t(:successful_update)
+      flash[:success] = I18n.t(:successful_update)
       redirect_back_or_default('/index')
     else
       render :action => 'index'
@@ -164,7 +164,7 @@ class SchedulesController < ApplicationController
         match.save!
       end
 
-      flash[:notice] = I18n.t(:successful_update)
+      flash[:success] = I18n.t(:successful_update)
     end
     redirect_back_or_default('/index')
   end
@@ -180,7 +180,7 @@ class SchedulesController < ApplicationController
 
     technical = params[:roster][:technical]
     if @match.update_attributes('technical' => technical)
-      flash[:notice] = I18n.t(:successful_update)
+      flash[:success] = I18n.t(:successful_update)
     end
     redirect_back_or_default('/index')
   end
@@ -196,7 +196,7 @@ class SchedulesController < ApplicationController
 
     physical = params[:roster][:physical]
     if @match.update_attributes('physical' => physical)
-      flash[:notice] = I18n.t(:successful_update)
+      flash[:success] = I18n.t(:successful_update)
     end
     redirect_back_or_default('/index')
   end
@@ -210,7 +210,7 @@ class SchedulesController < ApplicationController
     end
     @type = Type.find(params[:roster][:position_name])
     if @match.update_attributes('position_id' => @type.id)
-      flash[:notice] = I18n.t(:successful_update)
+      flash[:success] = I18n.t(:successful_update)
     end
     redirect_back_or_default('/index')
   end
@@ -219,7 +219,7 @@ class SchedulesController < ApplicationController
     if @schedule.update_attribute("public", !@schedule.public)
       @schedule.update_attribute("public", @schedule.public)  
 
-      flash[:notice] = I18n.t(:successful_update)
+      flash[:success] = I18n.t(:successful_update)
       redirect_back_or_default('/index')
     else
       render :action => 'index'

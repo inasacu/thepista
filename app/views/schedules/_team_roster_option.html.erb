@@ -8,7 +8,6 @@
 	the_confirmation = "#{the_label}?"
 %>
 
-<%= link_to image_tag(image, :title => the_label, :size => '22x22'), match_status_path(:id => match.id, :type => type.id), 
-							 :title => the_label, :confirm => the_confirmation  %>
+<%= link_to image_tag(image, :title => the_label, :size => '22x22'), match_status_path(:id => match.id, :type => type.id), :title => the_label %>
 &nbsp;&nbsp;
 

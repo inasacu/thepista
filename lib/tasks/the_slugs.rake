@@ -1,6 +1,6 @@
 # to run:    sudo rake the_slugs
 
-desc "  # clear foto for dev and test"
+desc "  # create slugs for all models"
 task :the_slugs => :environment do |t|
 
   ActiveRecord::Base.establish_connection(RAILS_ENV.to_sym)

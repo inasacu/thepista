@@ -29,19 +29,23 @@
 	<%= stylesheet_link_tag 'application' %>
 	<%= stylesheet_link_tag 'header' %>	
 	<%= stylesheet_link_tag get_the_action if is_action('show') %>
-	<%= stylesheet_link_tag 'flash' %>
 	
 	<%= javascript_include_tag :defaults %>
 	<%= ajaxful_rating_style %>
 
 	<%= javascript_include_tag 'jquery-1.3.1', 'jquery.google-analytics' %>
 	
-	<%= render :partial => '/shared/google_analytics' %>
+	<%= stylesheet_link_tag 'jquery.notifyBar' %>
+	<%= javascript_include_tag 'jquery.notifyBar' %>
+	
+	<%= render :partial => 'utilities/google_analytics' %>
 	
 </head>
 <body>
 	<%= render :partial => 'utilities/visible_script' %>	
-	<%= render :partial => '/shared/facebook_sdk' %>
+	<%= render :partial => 'utilities/facebook_sdk' %>
+	
+	<%= render :partial => 'shared/flash', :locals => {:flash => flash } %>
 	
   <div id="container">
 	

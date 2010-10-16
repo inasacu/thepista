@@ -37,7 +37,7 @@ class AnnouncementsController < ApplicationController
   def update
     @announcement = Announcement.find(params[:id])
     if @announcement.update_attributes(params[:announcement])
-      flash[:notice] = I18n.t(:successful_update)
+      flash[:success] = I18n.t(:successful_update)
       redirect_to @announcement
     else
       render :action => 'edit'
@@ -47,7 +47,7 @@ class AnnouncementsController < ApplicationController
     def destroy
       @announcement = Announcement.find(params[:id])
       @announcement.destroy
-      flash[:notice] = I18n.t(:successful_update)
+      flash[:success] = I18n.t(:successful_update)
       redirect_to announcement_url
     end
 

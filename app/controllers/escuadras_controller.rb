@@ -64,7 +64,7 @@ class EscuadrasController < ApplicationController
   def update
     @escuadra = Escuadra.find(params[:id])
     if @escuadra.update_attributes(params[:escuadra])
-      flash[:notice] = I18n.t(:successful_update)
+      flash[:success] = I18n.t(:successful_update)
       redirect_to @escuadra
     else
       render :action => 'edit'

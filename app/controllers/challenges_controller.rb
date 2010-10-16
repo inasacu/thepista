@@ -67,7 +67,7 @@ class ChallengesController < ApplicationController
     @original_challenge = Challenge.find(params[:id])
 
     if @challenge.update_attributes(params[:challenge]) 
-      flash[:notice] = I18n.t(:successful_update)
+      flash[:success] = I18n.t(:successful_update)
       redirect_to @challenge
     else
       render :action => 'edit'

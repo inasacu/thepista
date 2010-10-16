@@ -33,7 +33,7 @@ class MatchesController < ApplicationController
       Match.save_matches(@match, params[:match][:match_attributes]) if params[:match][:match_attributes]
       Match.update_match_details(@match, current_user)
 
-      flash[:notice] = I18n.t(:successful_update)
+      flash[:success] = I18n.t(:successful_update)
       redirect_to :controller => 'schedules', :action => 'show', :id => @match.schedule
     else
       render :action => 'edit'
@@ -48,7 +48,7 @@ class MatchesController < ApplicationController
   #     return
   #   end
   #   if @match.update_attributes(params[:match])
-  #     flash[:notice] = I18n.t(:successful_update)
+  #     flash[:success] = I18n.t(:successful_update)
   #   end
   #   redirect_back_or_default('/index')
   # end
@@ -61,12 +61,18 @@ class MatchesController < ApplicationController
   #     return
   #   end
   #   if @match.update_attributes(params[:match])
-  #     flash[:notice] = I18n.t(:successful_update)
+  #     flash[:success] = I18n.t(:successful_update)
   #   end
   #   redirect_back_or_default('/index')
   # end
 
   def set_status
+    unless current_user == @match.user or current_user.is_manager_of?(@match.schedule.group) 
+      flash[:warning] = I18n.t(:unauthorized)
+      redirect_to root_url
+      return
+    end
+      
     @type = Type.find(params[:type])
 
     played = (@type.id == 1 and !@match.group_score.nil? and !@match.invite_score.nil?)
@@ -75,7 +81,7 @@ class MatchesController < ApplicationController
       Scorecard.calculate_user_played_assigned_scorecard(@match.user, @match.schedule.group)
       Match.log_activity_convocado(@match)
 
-      flash[:notice] = I18n.t(:is_available_user) 
+      flash[:success] = I18n.t(:is_available_user) 
     end 
 
     select case @type.id
