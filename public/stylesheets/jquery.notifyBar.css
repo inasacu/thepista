@@ -28,7 +28,7 @@
 	font-weight:bold;
 }
 .jquery-notify-bar.notice {
-  color:#fff;
+  color:#ffc;
   background-color:#ccc;
 }
 .jquery-notify-bar.error {
@@ -36,8 +36,9 @@
   background-color:#fdd;
 }
 .jquery-notify-bar.success {
-  color:#060;
-  background-color:#BBFFB6;
+  color:#ffc;
+/*  background-color:#BBFFB6;*/
+  background-color: #336699;
 }
 .notify-bar-close {
   position:absolute;
