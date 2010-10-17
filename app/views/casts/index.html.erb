@@ -20,9 +20,11 @@
 <div class="block">
 
 	<% unless is_right_guess %>
-	<%= render :partial => '/challenges/secondary_navigation' %>
+	<%#= render :partial => '/challenges/secondary_navigation' %>
+	<%= render "challenges/secondary_navigation", :challenge => @challenge %>
 	<% else %>
-	<%= render :partial => '/cups/secondary_navigation' %>
+	<%#= render :partial => 'cups/secondary_navigation' %>
+	<%= render "cups/secondary_navigation", :cup => @cup %>
 	<% end %>
 
   <div class="content">   

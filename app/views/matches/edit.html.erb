@@ -42,7 +42,8 @@
 
 		
 		<% if @is_futbol or @is_basket %>		
-			<%= render :partial => '/matches/sport', :locals => {:f => f} %>
+			<%#= render :partial => '/matches/sport', :locals => {:f => f} %>
+			<%= render "matches/sport", :f => f, :matches => @matches, :is_basket => @is_basket %>
 		<% end %>
 		
 		<div class="clear"></div> 

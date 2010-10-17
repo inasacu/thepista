@@ -1,5 +1,9 @@
 module ChallengesHelper
 
+  def challenge_link(text, item = nil, html_options = nil)
+    item_name_link(text, item, html_options)
+  end
+  
   def challenge_show_photo(challenge, current_user)
     the_first_manager = challenge.all_the_managers.first
     
@@ -19,10 +23,6 @@ module ChallengesHelper
 
   def challenge_score_link(schedule)
     return "#{schedule.home_challenge} ( #{schedule.home_score}  -  #{schedule.away_score} ) #{schedule.away_challenge}" 
-  end    
-
-  def challenge_list(objects)
-    return item_list(objects)
-  end
+  end   
   
 end

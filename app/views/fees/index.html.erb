@@ -15,7 +15,8 @@
 
   <%= render :partial => '/users/secondary_navigation' if @user %>
   <%= render :partial => '/groups/secondary_navigation' if @group %>
-  <%= render :partial => '/challenges/secondary_navigation' if @challenge %>
+  <%#= render :partial => '/challenges/secondary_navigation' if @challenge %>
+  <%= render "challenges/secondary_navigation", :challenge => @challenge if @challenge %>
           
   <div class="content">  
 	        

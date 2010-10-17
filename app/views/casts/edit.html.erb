@@ -5,19 +5,13 @@
 
 	new_or_existing = 'existing' 
 	prefix = "cast[cast_attributes][]" 
-	# the_label = "#{the_label}  -  #{nice_time_at(Time.zone.now)} / #{nice_time_at(HOURS_BEFORE_GAME)}"
-	
-	# 14 jun 2010 (Mon)
-	# 12:28 GMT
-	# 08:28 EDT (GMT-4)
-	# 14:28 CEST (GMT+2)
-	
 %>
 
 
 <div class="block">
 
-  <%= render :partial => '/challenges/secondary_navigation' %>
+  <%#= render :partial => '/challenges/secondary_navigation' %>
+  <%= render "challenges/secondary_navigation", :challenge => @challenge %>
 
   <div class="content">   
   

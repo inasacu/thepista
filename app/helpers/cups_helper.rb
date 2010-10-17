@@ -1,5 +1,9 @@
 module CupsHelper
 
+  def cup_link(text, item = nil, html_options = nil)
+    item_name_link(text, item, html_options)
+  end
+  
   def cup_show_photo(cup, current_user)
     if cup.photo_file_name
       return item_image_link_large(cup)

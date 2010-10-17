@@ -12,8 +12,9 @@
 %>
 
 <div class="block">
-
-  <%= render :partial => '/cups/secondary_navigation' %>
+	
+	<%#= render :partial => 'cups/secondary_navigation' %>
+	<%= render "cups/secondary_navigation", :cup => @cup %>
 
   <div class="content">   
   

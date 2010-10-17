@@ -10,7 +10,8 @@
 
 <div class="block">
 
-  <%= render :partial => 'secondary_navigation' %>   
+  <%#= render :partial => 'challenges/secondary_navigation' %>
+  <%= render "challenges/secondary_navigation", :challenge => @challenge %>   
   
   <div class="content">
 	        

@@ -17,9 +17,11 @@
 <div class="block">
 
 <% if is_challenge_standing  %>
-<%= render :partial => '/challenges/secondary_navigation' %>  
+	<%#= render :partial => '/challenges/secondary_navigation' %>
+	<%= render "challenges/secondary_navigation", :challenge => @challenge %>
 <% else %>
-<%= render :partial => '/cups/secondary_navigation' %>  
+	<%#= render :partial => 'cups/secondary_navigation' %>
+	<%= render "cups/secondary_navigation", :cup => @cup %>
 <% end -%>
 
 <%
@@ -27,9 +29,7 @@
 %>
 <div class="content">   
 
-	<h2 class="title"><%= is_challenge_standing ? item_name_link(
-@challenge)  : item_name_link(@cup)
- %></h2>
+	<h2 class="title"><%= is_challenge_standing ? item_name_link(@challenge)  : item_name_link(@cup) %></h2>
 
 	<div class="inner">
 

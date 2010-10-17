@@ -29,7 +29,7 @@
 			<tr>
 			  <td><%= image_link_small user %></td>					
 			  <td><%= user_link user %></td>
-			  <td><%= user.has_challenge? ? challenge_list(user.challenges) : label_name('challenges_none') %></td>		 
+			  <td><%= user.has_challenge? ? item_list(user.challenges) : label_name('challenges_none') %></td>		 
 			  <td><%= user.time_zone %></td>			  
 			  <td class="name_and_date">
 				<%=  link_to(label_name(:cast) , casts_path(:id => @challenge, :user_id => user)) %>

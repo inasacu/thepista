@@ -3,7 +3,10 @@
 	content_for(:title, the_label)
 %>
 <div class="block">
-	<%= render :partial => '/challenges/secondary_navigation' %>  
+	
+	<%#= render :partial => '/challenges/secondary_navigation' %>
+    <%= render "challenges/secondary_navigation", :challenges => @challenges %> 
+	
 	<div class="content">  
 			<% if object_counter(@challenges) > 0 %>
 				<%= render :partial => '/challenges/index_full' %>

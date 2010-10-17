@@ -5,7 +5,9 @@
 %>
 
 <div class="block">
-	<%= render :partial => '/cups/secondary_navigation' %>  
+	<%#= render :partial => 'cups/secondary_navigation' %>
+	<%= render "cups/secondary_navigation", :cups => @cups %>
+
 	<div class="content">  
 			<% if has_cups %>
 				<%= render :partial => '/cups/index_full' %>
