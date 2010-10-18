@@ -7,7 +7,7 @@
 	if current_user.is_member_of?(@group) 
 		the_confirmation = label_with_name(:do_leave_item, "#{@group.name}?")
 %>
-		<li><%= link_to(label_name(:send_message_to), new_message_path(:group_id => @group.id)) %></li>
+		<li><%= link_to(label_name(:send_message_to), new_message_path(:group_id => @group)) %></li>
 		<li><%= link_to(label_name(:invitations_create_group) , new_invitation_url(:group_id => @group)) %></li>	
 		<li><%= link_to label_name(:send_scorecard), new_message_path(:scorecard_id => @group.schedules.first) unless @group.schedules.blank? %></li>
 <% 

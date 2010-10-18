@@ -152,6 +152,10 @@ class User < ActiveRecord::Base
       return is_manager
     end
     
+    def self.contact_emails(email)
+      User.find(:first, :conditions => ["email = ?", email])
+    end      
+    
     def friends
       User.find(:all, :select => "distinct users.*", :joins => "LEFT JOIN groups_users on groups_users.user_id = users.id", 
                       :conditions => ["users.id != ? and groups_users.group_id in (?)", self, self.groups], :order => "users.name")

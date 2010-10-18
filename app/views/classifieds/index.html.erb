@@ -1,6 +1,6 @@
 <div class="block">
-
-	<%= render :partial => '/groups/secondary_navigation' %>  
+	 
+	<%= render "groups/secondary_navigation", :group => @group %>
 
 	<div class="content">   
 
@@ -12,8 +12,10 @@
 
 			<table class="table">
 
-			<%= render :partial => 'classified', :collection => @classifieds %>
-				
+			<% @classifieds.each do |classified| %>
+			<%= render "classifieds/classified", :classified => classified, :group => @group %>
+			<%- end -%>
+			
 			</table>
 
 			<% end %>

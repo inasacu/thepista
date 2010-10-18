@@ -47,6 +47,10 @@ class Invitation < ActiveRecord::Base
   
   def format_message
     self.message.gsub!(/\r?\n/, "<br>") unless self.message.nil?
+  end  
+    
+  def self.contact_emails(email)
+    Invitation.find(:first, :conditions => ["email_addresses = ?", email])
   end
   
   def self.has_sent_invitation(user)

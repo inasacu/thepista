@@ -4,13 +4,13 @@ class ForumsController < ApplicationController
   before_filter :get_forum, :has_member_access
 
   def show
-    @forum = Forum.find(params[:id])
+    # @forum = Forum.find(params[:id])
 
     unless @forum.schedule.nil?
       @schedule = @forum.schedule 
       @group = @schedule.group
-      @previous = Schedule.previous(@schedule)
-      @next = Schedule.next(@schedule)
+      @the_previous = Schedule.previous(@schedule)
+      @the_next = Schedule.next(@schedule)
     end  
 
     @comments = @forum.comments.recent.limit(COMMENTS_PER_PAGE).all  

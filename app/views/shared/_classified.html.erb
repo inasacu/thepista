@@ -8,14 +8,14 @@
 
 	<tr>
 	  <td class="name_and_date">
-		<%= image_link_small Group.find(classified.table_id) %>
-			<span class="date"><%= group_link Group.find(classified.table_id) %></span>
+		<%= image_link_small(the_group) %>
+			<span class="date"><%= group_link(the_group) %></span>
 	  </td>
 	  </td>
 	
 		<td class="name_and_date">
 			<span class="date">
-				<%= classified_link classified %><br />
+				<%= classified_link(classified) %><br />
 				<%= link_to(image_tag("icons/comment_delete.png"), 
 							classified_path(classified), :method => :delete, 
 							 :confirm => %(#{label_name(:delete_classified)}?),

@@ -28,10 +28,9 @@ class Classified < ActiveRecord::Base
     after_update        :log_activity_played
 
     # method section
-    def self.find_classifieds(group, page = 1)
-      self.paginate(:all, 
-      :conditions => ["table_type = 'Group' and table_id = ?", group.id],
-      :order => 'starts_at DESC', :page => page, :per_page => CLASSIFIEDS_PER_PAGE)
+    def self.find_classifieds(item, page = 1)
+      self.paginate(:all, :conditions => ["table_type = ? and table_id = ?", item.class.to_s, item],
+                          :order => 'starts_at DESC', :page => page, :per_page => CLASSIFIEDS_PER_PAGE)
     end
     
     def self.item_classifieds(item)

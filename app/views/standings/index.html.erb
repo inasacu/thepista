@@ -17,10 +17,10 @@
 <div class="block">
 
 <% if is_challenge_standing  %>
-	<%#= render :partial => '/challenges/secondary_navigation' %>
+	
 	<%= render "challenges/secondary_navigation", :challenge => @challenge %>
 <% else %>
-	<%#= render :partial => 'cups/secondary_navigation' %>
+	
 	<%= render "cups/secondary_navigation", :cup => @cup %>
 <% end -%>
 

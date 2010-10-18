@@ -1,12 +1,13 @@
 <% 
 	a_roster = !(@schedule.no_shows.empty?)
-	the_label = control_action_label("#{a_roster}")
+	the_label = "#{control_action_label("#{a_roster}")} #{label_name(:in)} #{sanitize(@schedule.concept)}"
 	content_for(:title, sanitize(@schedule.concept))
 %> 
 
 <div class="block">
 
-	<%= render :partial => '/shared/previous_next_message' %>   
+	<%#= render :partial => '/shared/previous_next_message' %>
+    <%= render "shared/previous_next_message", :schedule => @schedule, :the_previous => @the_previous, :the_next => @the_next -%>
 	<%= show_heading(the_label) %>
 
 		<div class="inner">

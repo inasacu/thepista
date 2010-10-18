@@ -11,18 +11,14 @@ if current_user
 			<div class="inner">	
 					
 			<table class="table" id="<%= get_the_controller.gsub(' ','_') %>">
-
-				<!-- <tr>             
-					<th class="first">&nbsp;</th>
-					<th>&nbsp;<%= label_name(:latest_activities) %></th>
-					<th>&nbsp;</th>
-					<th>&nbsp;</th>
-					<th class="last">&nbsp;</th>
-				</tr> -->
 				
 				<% @items. each do |item| %>				
-				<%= render :partial => 'upcoming_home', :locals => {:teammate => item} unless item.class.to_s == 'Teammate'%>				
-				<%= render :partial => '/users/petition_box', :locals => {:teammate => item} if item.class.to_s == 'Teammate'%>
+				<%#= render :partial => 'upcoming_home', :locals => {:teammate => item} unless item.class.to_s == 'Teammate'%>				
+				<%#= render :partial => '/users/petition_box', :locals => {:teammate => item} if item.class.to_s == 'Teammate'%>
+				
+				<%= render "home/upcoming_home", :teammate => item unless (item.class.to_s == 'Teammate') %>
+				<%= render "users/petition_box", :teammate => item if (item.class.to_s == 'Teammate') %>	
+							
 				<% end %>
 				
 			</table>

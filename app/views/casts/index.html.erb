@@ -20,10 +20,10 @@
 <div class="block">
 
 	<% unless is_right_guess %>
-	<%#= render :partial => '/challenges/secondary_navigation' %>
+	
 	<%= render "challenges/secondary_navigation", :challenge => @challenge %>
 	<% else %>
-	<%#= render :partial => 'cups/secondary_navigation' %>
+	
 	<%= render "cups/secondary_navigation", :cup => @cup %>
 	<% end %>
 
@@ -146,10 +146,6 @@ cast.challenge)  %>
 		</div>
 	</div>
 
-<%# unless is_right_guess %>
-<% content_for :sidebar, render(:partial => 'challenges/sidebar_show') unless is_right_guess %>
-<%# else %>
-<%# content_for :sidebar, render(:partial => 'cups/sidebar_show') unless final_played -%>
-<%# end %>
 
+<% content_for :sidebar, render(:partial => 'challenges/sidebar_show') unless is_right_guess %>
 <% content_for :sidebar, render(:partial => 'shared/sidebar_show_final_played') -%>

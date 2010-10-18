@@ -1,22 +1,20 @@
-<% full_classified ||= false 
-the_group = Group.find(classified.table_id)
-the_classified = classified.description	
-the_classified = "#{the_classified.strip[0..140]}..." if the_classified.length > 140 and !full_classified
+<% 
+	full_classified ||= false 
+	the_description = classified.description	
+	the_description = "#{the_description.strip[0..140]}..." if the_description.length > 140 and !full_classified
 %>
 <tr>
 	<td>
-		<%= image_link_small the_group %>
+		<%= image_link_small(group) %>
 	</td>
 
 	<td class="name_and_date">
 		<span class="label"><%= "#{label_name(:from)}:  " %></span>
-			<%= group_link the_group %>
+			<%= group_link(group) %>
 			<br />
 		<span class="label"><%= "#{label_name(:dates)}:  " %></span>
 		<span class="date">
-			<%= nice_full_date(classified.starts_at) %>
-			&nbsp;-&nbsp;
-			<%= nice_full_date(classified.ends_at) %>
+			<%= nice_full_date(classified.starts_at) %>&nbsp;-&nbsp;<%= nice_full_date(classified.ends_at) %>
 		</span>
 	</td>
 
@@ -24,12 +22,12 @@ the_classified = "#{the_classified.strip[0..140]}..." if the_classified.length >
 		<span class="">
 			<%= link_to h(classified.concept), classified unless full_classified %><br />
 			<span class="">
-				<%=sanitize the_classified %>							
+				<%=sanitize the_description %>							
 			</span>
 		</span>
 	</td>
 	<td class="last">
-		<%= render :partial => 'action', :locals => {:classified => classified, :group => the_group} %>
+		<%= render :partial => 'action', :locals => {:classified => classified, :group => group} if full_classified %>
 	</td>
 </tr>
 

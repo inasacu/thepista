@@ -94,10 +94,8 @@ class InvitationsController < ApplicationController
       @users , @no_users = [], []
   
       # verify user's email is not already a user on site nor has the user received a previous invitation
-      @contacts.each do |contact|
-        #if u = User.find(:first , :conditions => @users.email = '#{contact[1]}' , :include =>[:user])
-        if user = User.find(:first , :conditions => ["email = ?", contact[1]] ) or 
-              user = Invitation.find(:first , :conditions => ["email_addresses = ?", contact[1]] )
+      @contacts.each do |contact|        
+        if (user = User.contact_emails(contact[1]) or user = Invitation.contact_emails(contact[1]))              
           @users << user
         else
           @no_users << {:name => contact[0] , :email => contact[1]}

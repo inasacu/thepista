@@ -38,13 +38,6 @@ class SchedulesController < ApplicationController
   end
 
   def rate
-    # @schedule = Schedule.find(params[:id])
-
-    # unless current_user.is_member_of?(@schedule.group)
-    #   flash[:warning] = I18n.t(:unauthorized)
-    #   redirect_back_or_default('/show')
-    #   return
-    # end
 
     @schedule.rate(params[:stars], current_user, params[:dimension])
     id = "ajaxful-rating-#{!params[:dimension].blank? ? "#{params[:dimension]}-" : ''}schedule-#{@schedule.id}"
@@ -250,8 +243,8 @@ class SchedulesController < ApplicationController
   def get_schedule
     @schedule = Schedule.find(params[:id])
     @group = @schedule.group
-    @previous = Schedule.previous(@schedule)
-    @next = Schedule.next(@schedule)    
+    @the_previous = Schedule.previous(@schedule)
+    @the_next = Schedule.next(@schedule)    
   end
 
   def get_current_schedule

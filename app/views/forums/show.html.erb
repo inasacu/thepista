@@ -1,12 +1,10 @@
 <%
-	the_label = label_with_name('note', sanitize(@schedule.concept)) if @schedule
-	the_label = label_with_name('note', sanitize(@meet.concept)) if @meet
+	the_label = label_with_name('note', sanitize(@schedule.concept))
 %>
 <div class="block">
 
-  <%= render :partial => '/shared/previous_next_message', :locals => {:the_controller => @schedule} if @schedule -%>
-
-  <%= render :partial => '/meets/secondary_navigation' if @meet %>
+  <%#= render :partial => '/shared/previous_next_message', :locals => {:the_controller => @schedule} if @schedule -%>
+  <%= render "shared/previous_next_message", :schedule => @schedule, :the_previous => @the_previous, :the_next => @the_next -%>
 
   <h2 class="title"><%= the_label %></h2>
 
@@ -29,5 +27,4 @@
   </div>
 </div>
 
-<% content_for :sidebar, render(:partial => '/schedules/sidebar_show') if @schedule -%>
-<% content_for :sidebar, render(:partial => '/meets/sidebar_show') if @meet -%>
+<% content_for :sidebar, render(:partial => '/schedules/sidebar_show') -%>
