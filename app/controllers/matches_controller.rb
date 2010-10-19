@@ -8,6 +8,18 @@ class MatchesController < ApplicationController
   def index
     redirect_to :controller => 'schedules', :action => 'index'
   end
+  
+  def set_profile
+    @schedule = Schedule.find(params[:id])
+    @match = @schedule.matches.first
+    @matches = @schedule.the_roster
+    
+    unless current_user.is_manager_of?(@schedule.group)
+      flash[:warning] = I18n.t(:unauthorized)
+      redirect_back_or_default('/index')
+      return
+    end    
+  end
 
   def edit
     @match = Match.find(params[:id])
@@ -40,20 +52,7 @@ class MatchesController < ApplicationController
     end
   end 
 
-  # def set_match_technical
-  #   @match = Match.find(params[:id])
-  #   unless current_user.is_manager_of?(@match.schedule.group)
-  #     flash[:warning] = I18n.t(:unauthorized)
-  #     redirect_back_or_default('/index')
-  #     return
-  #   end
-  #   if @match.update_attributes(params[:match])
-  #     flash[:success] = I18n.t(:successful_update)
-  #   end
-  #   redirect_back_or_default('/index')
-  # end
-
-  # def set_match_physical
+  # def set_match_technical_physical
   #   @match = Match.find(params[:id])
   #   unless current_user.is_manager_of?(@match.schedule.group)
   #     flash[:warning] = I18n.t(:unauthorized)

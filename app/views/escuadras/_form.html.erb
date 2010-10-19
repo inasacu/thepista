@@ -19,7 +19,7 @@
 
   <div class="column right">
 
-	<%= render :partial => "item_list", :locals => {:escuadras => @escuadras} %>
+	<%= render :partial => "item_list", :locals => {:escuadras => escuadras} %>
 	
   </div> 
 
@@ -29,5 +29,5 @@
 
 <div class="group navform">
 	<%= submit_tag @escuadra.new_record? ? control_label('create') : control_label('edit'), 
-			:class => "button" %> <%= label_name(:or) %> <%= link_to label_name(:cancel), escuadras_url(:id => @cup) %>
+			:class => "button" %> <%= label_name(:or) %> <%= link_to label_name(:cancel), escuadras_url(:id => cup) %>
 </div>

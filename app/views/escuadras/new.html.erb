@@ -4,7 +4,6 @@
 %>
 
 <div class="block">
-
 	
 	<%= render "cups/secondary_navigation", :cup => @cup %> 
 
@@ -17,7 +16,7 @@
 
 			<% form_for(@escuadra, :html => { :multipart => true, :class => :form  }) do |f| %>
 				<%= hidden_field :cup, :id %>
-				<%= render :partial => "form", :locals => {:f => f} %>
+				<%= render "escuadras/form", :f => f, :escuadras => @escuadras, :cup => @cup %>
 			<% end -%>
 
 		</div>

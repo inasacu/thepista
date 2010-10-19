@@ -1,5 +1,5 @@
-<%= stylesheet_link_tag "in_place_styles"  %>
-<% inplace_error_div %>
+<%#= stylesheet_link_tag "in_place_styles"  %>
+<%# inplace_error_div %>
 <%
  	mailer ||= false
 	switch ||= false
@@ -23,7 +23,8 @@
 <tr>
 	<td class="puntos"><%= standing.ranking %>&nbsp;&nbsp;
 		<% if is_escuadra %>
-		<%= is_manager ? in_place_text_field(:stand, :group_stage_name, {:cols => 1}) : standing.group_stage_name %>
+		<%#= is_manager ? in_place_text_field(:stand, :group_stage_name, {:cols => 1}) : standing.group_stage_name %>
+		<%=  standing.group_stage_name %>
 		<% end %>
 	</td>
 	<td class="equipos"><%= mailer ? "&nbsp;" : item_image_link_tiny(escuadra) %></td>

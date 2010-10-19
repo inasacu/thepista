@@ -1,5 +1,5 @@
-<%= stylesheet_link_tag "in_place_styles"  %>
-<% inplace_error_div %>
+<%#= stylesheet_link_tag "in_place_styles"  %>
+<%# inplace_error_div %>
 
 <% 
 	counter = 0 
@@ -34,7 +34,8 @@
 	physical["minimum"] = 0
 	physical["percentage"] = 0.0
 	
-	is_manager = current_user.is_manager_of?(@schedule.group)
+	is_manager ||=false
+	#is_manager = current_user.is_manager_of?(@schedule.group)
 	is_sub_manager = current_user.is_sub_manager_of?(@schedule.group)
 	
 	@positions = Type.find(:all, :conditions => "table_type = 'User'", :order => "id")
@@ -55,7 +56,6 @@ if roster_count
 		 <%= content_tag 'th', label_name(:score), :class => "last" if @schedule.played? %>
 		 <%= content_tag 'th', label_name(:change_at) unless @schedule.played? %>
 		 <%= content_tag 'th', label_name(:change_your_roster_status), :class => "last" unless @schedule.played? %>	
-		 <!-- <th class="last"><%#= label_name(:change_your_roster_status) unless @schedule.played? %></th> -->
 		</tr>
 
         
@@ -97,15 +97,18 @@ if roster_count
 		@roster = match  
 %>		
 		<td>			
-		    <%= is_manager ? in_place_select(:roster, :position_name, :choices => @positions.map { |e| [I18n.t(e.name), e.id] }) : match.position_name %>
+		    <%#= is_manager ? in_place_select(:roster, :position_name, :choices => @positions.map { |e| [I18n.t(e.name), e.id] }) : match.position_name %>
+			<%= match.position_name %>
 		</td>
 	
 		<td align="center">
-			<%= is_manager ? in_place_text_field(:roster, :technical, {:cols => 1}) : match.technical %>
+			<%#= is_manager ? in_place_text_field(:roster, :technical, {:cols => 1}) : match.technical %>
+			<%=  match.technical %>
 		</td>	
 			
 		<td align="center">			
-			<%= is_manager ? in_place_text_field(:roster, :physical, {:cols => 1}) : match.physical %>		
+			<%#= is_manager ? in_place_text_field(:roster, :physical, {:cols => 1}) : match.physical %>		
+			<%= match.physical %>
 		</td>
 		
 		<td><%= is_sub_manager ? link_to(match.team_name(@schedule), match_team_path(:id => match.id), :title => label_name(:change_group)) :  match.team_name(@schedule) %></td>

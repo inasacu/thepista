@@ -19,12 +19,10 @@
 
 <div class="block">
 
-	<% unless is_right_guess %>
-	
-	<%= render "challenges/secondary_navigation", :challenge => @challenge %>
-	<% else %>
-	
-	<%= render "cups/secondary_navigation", :cup => @cup %>
+	<% unless is_right_guess %>	
+		<%= render "challenges/secondary_navigation", :challenge => @challenge %>
+	<% else %>	
+		<%= render "cups/secondary_navigation", :cup => @cup %>
 	<% end %>
 
   <div class="content">   

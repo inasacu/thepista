@@ -1,19 +1,14 @@
-<%= stylesheet_link_tag "in_place_styles"  %>
-<% inplace_error_div %>
+<%#= stylesheet_link_tag "in_place_styles"  %>
+<%# inplace_error_div %>
 
 <%
 	the_label = is_action('index') ? label_name(:group_stage) : label_name(:group_round)
 	content_for(:title, the_label)
 	is_manager = current_user.is_manager_of?(@cup)	
-	
-	# final_played ||= false
-	# the_game = Game.final_game(@cup)
-	# final_played = the_game.played unless (the_game.nil? or the_game.blank?)	
 %>
 
 <div class="block">
-	
-	
+		
 	<%= render "cups/secondary_navigation", :cup => @cup %>
 
   <div class="content">   
@@ -57,7 +52,8 @@
         <tr>
 	
           <td class="first">
-			<%= is_manager ? in_place_text_field(:the_game, :jornada, {:cols => 1}) : game.jornada %>
+			<%#= is_manager ? in_place_text_field(:the_game, :jornada, {:cols => 1}) : game.jornada %>
+			<%= game.jornada %>
           </td>
 
 		  <td class="name_and_date">

@@ -1,0 +1,48 @@
+<% 
+@schedule ||= @match.schedule
+@matches ||= @schedule.the_roster
+
+@is_futbol = @schedule.group.is_futbol?
+@is_basket = @schedule.group.is_basket?
+
+a_roster = !(@schedule.convocados.empty?)
+the_label = "#{label_name(:rosters)} #{label_name(:in)} #{sanitize(@schedule.concept)}"
+content_for(:title, sanitize(@schedule.concept))
+@positions = Type.find(:all, :conditions => "table_type = 'User'", :order => "id")
+
+%>
+
+<div class="block">
+
+	<%= render :partial => '/schedules/secondary_navigation' %>
+
+	<div class="content">   
+
+		<h2 class="title"><%= the_label %></h2>
+		<br />
+
+		<div class="inner">
+		
+      <% form_for @match, :url => match_path(@match), :html => { :class => :form } do |f| -%>
+		
+		<% @matches.each do |match| %>
+		<%= render "matches/profile", :f => f, :match => match, :positions => @positions %>
+		<%- end -%>
+	
+		<div class="clear"></div> 
+		<br />
+		<br />
+		<div class="group navform">
+			<%= submit_tag @match.new_record? ? control_label('create') : control_label('edit'), 
+					:class => "button" %> <%= label_name(:or) %> <%= link_to label_name(:cancel), matches_path %>
+		</div>
+		
+      <% end -%>
+
+		</div>
+
+	</div>
+
+</div>
+
+<!-- end of the line -->

@@ -941,7 +941,7 @@ es:
      previous_schedules: Anteriores eventos
      previous_meet: Anterior evento 
      previous_meets: Anteriores eventos de torneo         
-     previous_profile_set:  Actualizar
+     previous_profile_set:  Obtener
      previous_profile_set_full:  Obtener los perfiles de la jornada anterior.
      pricing:  Precios
      privacy: privacidad   
@@ -956,6 +956,8 @@ es:
      profile_position: Posición   
      profile_private: Ocultar el perfil   
      profile_rating: Calificación   
+     profile_set:  Actualizar
+     profile_set_full:  Actualizar los perfiles de la jornada.
      profile_technical: Nivel tecnico 
      protect_your_privacy: "Protegemos tu privacidad. HayPista en ningún momento le ha proporcionado tu dirección de correo electrónico a ningún otro usuario de HayPista sin tu permiso. © 2007-2010, HayPista"  
      provider_not_supported: "provider is not supported, try another email address."   

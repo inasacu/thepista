@@ -45,6 +45,7 @@ gem "friendly_id", "3.1.7"
 group :development do
   # bundler requires these gems in development
   gem "mysql"
+  gem "rails_best_practices"
 end	
 
 group :test do

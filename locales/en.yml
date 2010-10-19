@@ -940,7 +940,7 @@ en:
      previous_schedules: Previous Events
      previous_meet: Previous Event 
      previous_meets: Previous Events for Tournament         
-     previous_profile_set:  Update Profiles.
+     previous_profile_set:  Get Profiles.
      previous_profile_set_full:  Get previous event's profiles.
      pricing:  Pricing
      privacy: privacy     
@@ -954,7 +954,9 @@ en:
      profile_physical: Physical Level   
      profile_position: Position   
      profile_private: Private Profile   
-     profile_rating: Rating   
+     profile_rating: Rating
+     profile_set:  Update Profiles.
+     profile_set_full:  Set current event's profiles.   
      profile_technical: Technical Level 
      protect_your_privacy: "We protect your privacy. HayPista at no time has provided your email address to any other user of HayPista without your permission. © 2007-2010, HayPista"  
      provider_not_supported: "provider is not supported, try another email address."   
