@@ -10,7 +10,7 @@
 <ul>
 	<%= item_new(cup) unless @cups %>
 	<li>
-	<% unless cup %>
+	<% if @cups %>
 		<%  unless @has_no_cups %>
 		<li class="<%= get_first_active %>"><%=  link_to(label_name(:cups_upcoming), cups_path) %></li>
 		<% end %>
