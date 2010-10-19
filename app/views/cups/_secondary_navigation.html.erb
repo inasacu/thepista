@@ -8,7 +8,7 @@
 
 <div class="secondary-navigation">
 <ul>
-	<%= item_new(cup) %>
+	<%= item_new(cup) unless @cups %>
 	<li>
 	<% unless cup %>
 		<%  unless @has_no_cups %>
