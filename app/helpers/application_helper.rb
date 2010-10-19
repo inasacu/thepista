@@ -239,9 +239,8 @@ module ApplicationHelper
     content_tag(:h2, h(text), :class => :title )
   end
 
-  # general helper source code
   # Link to a item (default is by name).
-  def item_name_link(text, item = nil, html_options = nil)
+  def item_name_link(text, item = nil, html_options = nil, limit = nil)
     if item.nil?
       item = text
       text = item.name
@@ -249,12 +248,13 @@ module ApplicationHelper
       html_options = item
       item = text
       text = item.name
-    end    
+    end
+    text = limit_item_link_length(text, limit) unless (limit == nil)
     link_to(h(text), item, html_options)
   end
     
   # Link to a item (default is by concept).
-  def item_concept_link(text, item = nil, html_options = nil)
+  def item_concept_link(text, item = nil, html_options = nil, limit = nil)
     if item.nil?
       item = text
       text = item.concept
@@ -262,8 +262,16 @@ module ApplicationHelper
       html_options = item
       item = text
       text = item.concept
-    end    
-    link_to(h(text), item, html_options)
+    end
+      text = limit_item_link_length(text, limit) unless (limit == nil)
+      link_to(h(text), item, html_options)
+    end
+    
+  def limit_item_link_length(text, value)
+    text = h(text)
+    text = "#{text.to_s.strip[0..value]}..." if text.to_s.length > value
+    text = text.split.collect {|i| i.capitalize}.join(' ')
+    return text
   end
   
   def item_image_link_tiny(item)

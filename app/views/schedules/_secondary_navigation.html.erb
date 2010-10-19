@@ -15,7 +15,7 @@ else
 	if current_user.is_member_of?(@schedule.group) or @schedule.public
 		the_label = label_name(:wall)
 %>
-		<li class="<%= get_first_active('schedule_show') %>">  <%= schedule_link @schedule %></li>	
+		<li class="<%= get_first_active('schedule_show') %>">  <%= item_concept_link(@schedule.concept, @schedule, nil, 25) %></li>	
 		<li class="<%= get_active('forum_show') %>"><%= link_to(the_label, forum_path(@schedule.forum)) if current_user.is_member_of?(@schedule.group) %></li>	
 		
 		<% unless (@schedule.the_roster.empty?)		

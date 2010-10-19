@@ -16,7 +16,7 @@
 		<% end %>
 		<li class="<%= get_active('cup_list') %>"><%=  link_to(label_name(:cups_list) , list_cups_path) %></li>
 	<% else %>
-		<li class="<%= get_active('cup_show') %>"><%=  item_name_link(cup) if is_not_new_item %></li>
+		<li class="<%= get_active('cup_show') %>"><%=  item_name_link(cup.name, cup, nil, 21) if is_not_new_item %></li>
 	
 		<% if has_escuadras %>			
 		<li class="<%= get_active('escuadra_index') %>"><%=  link_to(label_name(:escuadras), escuadras_url(:id => cup)) %></li>		
