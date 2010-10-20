@@ -35,7 +35,7 @@
 			<%= link_to(label_name(:previous_profile_set), set_previous_profile_url(:id => @schedule.id), 
 						:title => the_label, :confirm => the_confirmation) if current_user.is_manager_of?(@schedule.group) %>&nbsp;&nbsp;
 			<%= link_to(label_name(:profile_set), set_profile_url(:id => @schedule), 
-						:title => the_label_set, :confirm => the_confirmation_set) if current_user.is_manager_of?(@schedule.group) %>&nbsp;&nbsp;
+						:title => the_label_set) if current_user.is_manager_of?(@schedule.group) %>&nbsp;&nbsp;
 			
 		</th>		
 			<%= content_tag :th, "&nbsp;" %>

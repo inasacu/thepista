@@ -19,15 +19,28 @@ content_for(:title, sanitize(@schedule.concept))
 	<div class="content">   
 
 		<h2 class="title"><%= the_label %></h2>
-		<br />
 
 		<div class="inner">
 		
+			<table class="table">
+
+			  <tr>             
+			    <th class="first">&nbsp;</th>
+			    <th>&nbsp;</th>
+			    <th>&nbsp;</th>
+			    <th align="center"><%= label_name(:position) %></th>
+			    <th align="center"><%= label_name(:technical) %></th>
+			    <th align="center"><%= label_name(:physical) %></th>
+			    <th class="last" width="400">&nbsp;</th>
+			  </tr>
+			
       <% form_for @match, :url => match_path(@match), :html => { :class => :form } do |f| -%>
 		
 		<% @matches.each do |match| %>
 		<%= render "matches/profile", :f => f, :match => match, :positions => @positions %>
 		<%- end -%>
+		
+		</table>
 	
 		<div class="clear"></div> 
 		<br />
