@@ -35,7 +35,7 @@ Rails::Initializer.run do |config|
   config.gem "ambethia-recaptcha",                :lib => "recaptcha/rails",              :source => "http://gems.github.com"
   config.gem "friendly_id",                       :version => "~> 3.1"
   config.gem "geokit"
-  config.gem "rails_best_practices"
+  # config.gem "rails_best_practices"
   
   # config.gem "aws-s3"
   # config.gem "paperclip"
