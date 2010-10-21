@@ -17,6 +17,38 @@ class StandingsController < ApplicationController
     render :template => '/standings/index'
   end
   
+  def set_group_stage
+    @cup = Cup.find(params[:id])
+    @standings = Standing.cup_escuadras_standing(@cup)
+    @standing = @standings.first
+    
+    unless current_user.is_manager_of?(@cup)
+      flash[:warning] = I18n.t(:unauthorized)
+      redirect_back_or_default('/index')
+      return
+    end    
+  end
+
+  def update
+    @standing = Standing.find(params[:id])
+    @cup = @standing.cup
+    
+    unless current_user.is_manager_of?(@cup)
+      flash[:warning] = I18n.t(:unauthorized)
+      redirect_back_or_default('/index')
+      return
+    end
+    
+    if @standing.update_attributes(params[:standing])
+      Standing.save_standings(@standing, params[:standing][:standing_attributes]) if params[:standing][:standing_attributes]
+
+      flash[:success] = I18n.t(:successful_update)
+      redirect_to standings_path(:id => @cup)
+    else
+      render :action => 'edit'
+    end
+  end
+  
   def set_stand_group_stage_name
       @standing = Standing.find(params[:id])
       @cup = @standing.cup

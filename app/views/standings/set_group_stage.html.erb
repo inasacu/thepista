@@ -1,0 +1,49 @@
+<% 
+	the_label = "#{label_name(:group_stage_set)} #{label_name(:in)} #{sanitize(@cup.name)}"
+%>
+
+<div class="block">
+
+	<%= render "cups/secondary_navigation", :cup => @cup %>
+
+	<div class="content">   
+
+		<h2 class="title"><%= the_label %></h2>
+
+		<div class="inner">
+		
+			<table class="table">
+
+			<tr align="left">        
+			    <th class="first"><%= label_name(:ranking) %></th>
+			    <th align="center"><%= label_name(:group_stage_name) %></th>
+			    <th>&nbsp;</th>
+			    <th><%= label_name(:name) %></th>
+			    <th class="last" width="600">&nbsp;</th>
+			</tr>
+			
+      <% form_for @standing, :url => standing_path(@standing), :html => { :class => :form } do |f| -%>
+		
+		<% @standings.each do |standing| %>
+		<%= render "standings/group_stage", :f => f, :standing => standing %>
+		<%- end -%>
+		
+		</table>
+	
+		<div class="clear"></div> 
+		<br />
+		<br />
+		<div class="group navform">
+			<%= submit_tag @standing.new_record? ? control_label('create') : control_label('edit'), 
+					:class => "button" %> <%= label_name(:or) %> <%= link_to label_name(:cancel), standings_path %>
+		</div>
+		
+      <% end -%>
+
+		</div>
+
+	</div>
+
+</div>
+
+<!-- end of the line -->

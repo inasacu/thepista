@@ -87,19 +87,11 @@ ActionController::Routing::Routes.draw do |map|
   map.faq                   'faq',                                        :controller => 'home',            :action => 'faq'
   map.openid                'openid',                                     :controller => 'home',            :action => 'openid'
   
-  # map.tour_list              'tour_list',                                  :controller => 'tournaments',     :action => 'tour_list'
-  #  map.tour_roster            'tour_roster',                                :controller => 'meets',           :action => 'tour_roster'
-  #  map.tour_last_minute     'tour_last_minute',                           :controller => 'meets',           :action => 'tour_last_minute'
-  #  map.tour_no_show         'tour_no_show',                               :controller => 'meets',           :action => 'tour_no_show'
-  #  map.tour_unavailable      'tour_unavailable',                            :controller => 'meets',           :action => 'tour_unavailable'
-
-  #  map.clash_tour            'clashes/:id/set_tour',                       :controller => 'clashes',         :action => 'set_tour'
-  #  map.clash_status          'clashes/:id/set_status/:type',               :controller => 'clashes',         :action => 'set_status'
-  
   map.hide_announcements    '/hide_announcements',                        :controller => 'javascripts',     :action => 'hide_announcements'
   
   map.set_score             'games/:id/set_score',                        :controller => 'games',           :action => 'set_score'
   map.set_profile           'matches/:id/set_profile',                    :controller => 'matches',         :action => 'set_profile'
+  map.set_group_stage       'standings/:id/set_group_stage',           :controller => 'standings',       :action => 'set_group_stage'
   
   map.resources   :user_sessions,   :as => 'repitelo'
   map.resources   :users,           :as => 'jugadores',                   :collection => { :rpx_create => :post, :rpx_associate => :post, :list => :get, :recent_activity => :get, :search => :get }  

@@ -1517,6 +1517,8 @@ es:
      payments_option:  Opciones 
      payments_show:  Mostrar pago          
      group_options:  Opciones
+     group_stage_set:  Actualizar grupo
+     group_stage_set_full:  Actualizar grupo
      groups_create:  Nuevo equipo 
      groups_destroy:  Borrar equipo
      groups_edit:  Actualizar equipo

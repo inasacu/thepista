@@ -12,7 +12,9 @@
 	<ul class="navigation">		
 		<li><%= link_to label_name(:games_create), new_game_path(:id => cup) if has_escuadras %></li>
 		<li><%= link_to label_name(:escuadras_create), new_escuadra_path(:id => cup) if cup.official %></li>
-		<li><%= link_to label_name(:cups_edit), edit_cup_path(cup) %></li>  
+		<li><%= link_to label_name(:cups_edit), edit_cup_path(cup) %></li> 
+		<li><%= link_to(label_name(:group_stage_set), 
+					set_group_stage_url(:id => cup), :title => "#{label_name(:group_stage_set_full) }") if current_user.is_manager_of?(cup) %></li> 
 		<li>
 			<%= link_to(the_confirmation, cup_path(cup), :method => :delete, :confirm => "#{the_confirmation}?") unless cup.has_game? %>
 		</li>		

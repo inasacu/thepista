@@ -5,7 +5,7 @@ task :the_email_flag => :environment do |t|
 
   ActiveRecord::Base.establish_connection(RAILS_ENV.to_sym)
   
-  User.find(:all, :conditions => ["email = 'rami.malas@chep.com'"]).each do |user|
+  User.find(:all, :conditions => ["email = 'dado.t7@hotmail.com'"]).each do |user|
     puts user.name
     
     user.teammate_notification = false

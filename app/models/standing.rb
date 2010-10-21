@@ -5,6 +5,8 @@ class Standing < ActiveRecord::Base
   belongs_to  :item,          :polymorphic => true
   
   validates_format_of   :group_stage_name,            :with =>  /^[A-Z]*\z/
+  
+  attr_accessible       :group_stage_name
     
   # method section
   def self.create_cup_escuadra_standing(cup)
@@ -180,6 +182,14 @@ class Standing < ActiveRecord::Base
   def self.set_archive_flag(item, challenge, flag)
     @standing = Standing.find(:first, :conditions => ["challenge_id = ? and item_id = ? and item_type = ?", challenge.id, item.id, item.class.to_s])
     @standing.update_attribute(:archive, flag)
+  end
+  
+  def self.save_standings(the_standing, standing_attributes)
+    the_standing.cup.standings.each do |standing|
+      attributes = standing_attributes[standing.id.to_s]
+      standing.attributes = attributes if attributes
+      standing.save(false)
+    end
   end
 
   private

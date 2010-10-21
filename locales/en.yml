@@ -1515,7 +1515,9 @@ en:
      payments_edit:  Edit Payment
      payments_option:  Options
      payments_show:  Show Payment          
-     group_options:  Opcions
+     group_options:  Options
+     group_stage_set:  Group Stage Update
+     group_stage_set_full:  Group Stage Update
      groups_create:  New Team 
      groups_destroy:  Remove Team
      groups_edit:  Edit Team
@@ -1751,7 +1753,7 @@ en:
      tournaments_update: Edit Tournament          
      types_index:  Types
      types_maximo_option:  Admin Access Only.
-     types_option:  Opcions  
+     types_option:  Options  
      type_groupstage: Group Stage
      type_firstgame:  Elimination Round
      type_subsequentgame: Querter / Semi-Finals
@@ -1772,7 +1774,7 @@ en:
      users_my_wall: My Wall
      users_option:  Options
      user_options_team: Options
-     user_options_tour: Opcions
+     user_options_tour: Options
      users_rpx_new: New Player
      users_rpx_create:  New Player
      users_teammate: My Teammates 
