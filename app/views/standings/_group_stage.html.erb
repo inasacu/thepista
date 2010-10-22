@@ -1,13 +1,15 @@
 
 <% 
 	new_or_existing = standing.new_record? ? 'new' : 'existing' 
-	prefix = "standing[standing_attributes][]" 
+	prefix = "standing[standing_attributes][]"
+	the_group_stage_name = %w{A B C D E F G H I J K L M N O P Q R S T U V W X Y Z} 
 
 	fields_for prefix, standing do |standing_form| 
 -%>
 	<tr>
 		<td class="first"><%= standing.ranking %></td>
-		<td><%= standing_form.text_field :group_stage_name, :class => 'text_tiny_score' %></td>
+		<!-- <td><%#= standing_form.text_field :group_stage_name, :class => 'text_tiny_score' %></td> -->
+		<td><%= standing_form.select(:group_stage_name, the_group_stage_name, {:selected => standing.group_stage_name, :include_blank => false}) %></td>
 	    <td><%= item_image_link_tiny(standing.item) %></td>
 		<td><%= item_name_link(standing.item) %></td>
 	    <td class="last" width="600">&nbsp;</td>

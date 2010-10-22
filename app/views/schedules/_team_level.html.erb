@@ -1,9 +1,16 @@
-<% technical["difference"] = home["technical"] - away["technical"] %>
-<% physical["difference"] = home["physical"] - away["physical"] %>
-<% technical["minimum"] = ((home["technical"] > away["technical"]) ? away["technical"] : home["technical"]) %>
-<% physical["minimum"] = ((home["physical"] > away["physical"]) ? away["physical"] : home["physical"]) %>
-<% technical["percentage"] = technical["difference"].abs / technical["minimum"].to_f unless technical["minimum"] == 0 %>
-<% physical["percentage"] = physical["difference"].abs / physical["minimum"].to_f unless physical["minimum"] == 0 %>
+<% 
+	technical["difference"] = home["technical"] - away["technical"] 
+	physical["difference"] = home["physical"] - away["physical"] 
+	technical["minimum"] = ((home["technical"] > away["technical"]) ? away["technical"] : home["technical"]) 
+	physical["minimum"] = ((home["physical"] > away["physical"]) ? away["physical"] : home["physical"])
+	technical["percentage"] = technical["difference"].abs / technical["minimum"].to_f unless technical["minimum"] == 0 
+	physical["percentage"] = physical["difference"].abs / physical["minimum"].to_f unless physical["minimum"] == 0 
+
+	the_label = "#{label_name(:previous_profile_set_full) }"
+	the_label_set = "#{label_name(:profile_set_full) }"
+	the_confirmation = "#{the_label}?"	
+	the_confirmation_set = "#{the_label_set}?"
+%>
 
 <style type="text/css">
 .table td.no_line {
@@ -25,19 +32,16 @@
 			<%= content_tag(:th, label_name(:physical), :align => "center", :title => label_name(:physical)) %>
 			<%= content_tag(:th, label_name(:total), :align => "center", :title => label_name(:total)) %>		 	
 			<%= content_tag :th, "&nbsp;", :class => "last" %>	
-		 <th>&nbsp;
-			<% 
-				the_label = "#{label_name(:previous_profile_set_full) }"
-				the_label_set = "#{label_name(:profile_set_full) }"
-				the_confirmation = "#{the_label}?"	
-				the_confirmation_set = "#{the_label_set}?"
-			%>
+		 
+			<th>
 			<%= link_to(label_name(:previous_profile_set), set_previous_profile_url(:id => @schedule.id), 
-						:title => the_label, :confirm => the_confirmation) if current_user.is_manager_of?(@schedule.group) %>&nbsp;&nbsp;
+						:title => the_label, :confirm => the_confirmation) if current_user.is_manager_of?(@schedule.group) %>
+			</th>
+			<th>
 			<%= link_to(label_name(:profile_set), set_profile_url(:id => @schedule), 
 						:title => the_label_set) if current_user.is_manager_of?(@schedule.group) %>&nbsp;&nbsp;
-			
-		</th>		
+			</th>
+					
 			<%= content_tag :th, "&nbsp;" %>
 			<%= content_tag :th, "&nbsp;" %>
 			<%= content_tag :th, "&nbsp;" %>

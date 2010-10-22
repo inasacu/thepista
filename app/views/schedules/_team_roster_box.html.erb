@@ -96,18 +96,15 @@ if roster_count
 				
 		@roster = match  
 %>		
-		<td>			
-		    <%#= is_manager ? in_place_select(:roster, :position_name, :choices => @positions.map { |e| [I18n.t(e.name), e.id] }) : match.position_name %>
+		<td>
 			<%= match.position_name %>
 		</td>
 	
 		<td align="center">
-			<%#= is_manager ? in_place_text_field(:roster, :technical, {:cols => 1}) : match.technical %>
 			<%=  match.technical %>
 		</td>	
 			
-		<td align="center">			
-			<%#= is_manager ? in_place_text_field(:roster, :physical, {:cols => 1}) : match.physical %>		
+		<td align="center">	
 			<%= match.physical %>
 		</td>
 		
