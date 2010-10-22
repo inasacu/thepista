@@ -151,6 +151,13 @@ class Group < ActiveRecord::Base
     end
     return items 
   end
+  
+  def self.latest_updates(items)
+    find(:all, :select => "id, name, photo_file_name, updated_at as created_at", :conditions => ["updated_at >= ?", LAST_WEEK], :order => "updated_at desc").each do |item| 
+      items << item
+    end
+    return items 
+  end
 
   def self.looking_for_user(user)
     find(:all, 
@@ -166,12 +173,6 @@ class Group < ActiveRecord::Base
   def games_played
     games_played = 0
     self.schedules.each {|schedule| games_played += 1 if schedule.played}
-
-    # @match = Match.find(:first, :select => "count(*) as total", 
-    # :conditions => ["schedule_id in (select id from schedules where group_id = ?) and type_id = 1", self.id],
-    # :group => "user_id", :order => "count(*) desc")
-    # 
-    # games_played = @match.total
     return games_played
   end
 

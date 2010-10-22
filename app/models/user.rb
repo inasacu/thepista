@@ -154,7 +154,14 @@ class User < ActiveRecord::Base
     
     def self.contact_emails(email)
       User.find(:first, :conditions => ["email = ?", email])
-    end      
+    end  
+
+    def self.latest_updates(items)
+      find(:all, :select => "id, name, photo_file_name, updated_at as created_at", :conditions => ["updated_at >= ?", LAST_WEEK], :order => "updated_at desc").each do |item| 
+        items << item
+      end
+      return items 
+    end    
     
     def friends
       User.find(:all, :select => "distinct users.*", :joins => "LEFT JOIN groups_users on groups_users.user_id = users.id", 

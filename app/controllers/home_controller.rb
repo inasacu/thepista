@@ -55,7 +55,9 @@ class HomeController < ApplicationController
     Schedule.latest_items(@items)
     Challenge.latest_items(@items)    
     Schedule.latest_matches(@items)    
-    Game.latest_items(@items)    
+    Game.latest_items(@items)
+    Group.latest_updates(@items)
+    User.latest_updates(@items)   
 
     # @items.sort { |a,b| a.created_at <=> b.created_at }.reverse!
     @items = @items.sort_by(&:created_at).reverse!

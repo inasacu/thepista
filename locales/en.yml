@@ -204,6 +204,7 @@ en:
      created_a_group:  Has created team
      created_a_match:  Has updated scorecard with
      created_a_schedule: Has created event
+     created_a_user:  Has signed up.
      credit: Payment   
      credit_amount: Credit Amount   
      credit_amount_description:  Credit Amount Details
@@ -1297,7 +1298,15 @@ en:
      update_type: Update Type   
      update_user: Update profile   
      update_venue: Update Venue   
-     updated: updated correctly.   
+     updated: updated correctly.    
+     updated_at:  Fecha de creación
+     updated_a_challenge:  Ha actualizado el reto
+     updated_a_cup:  Has updated the tournament
+     updated_a_game:  Has updated the game  
+     updated_a_group:  Ha updated the team
+     updated_a_match:  Ha updated the match
+     updated_a_schedule: Ha updated the event 
+     updated_a_user:  ha updated the perfil  
      upload:  Upload
      url_group: Link to Team   
      use_at_discretion: New option to enter. If you have a go with your original account.

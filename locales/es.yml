@@ -205,6 +205,7 @@ es:
      created_a_group:  Ha creado el equipo
      created_a_match:  Ha actualizado el resultado
      created_a_schedule: Ha creado el evento 
+     created_a_user:  ha creado su perfil.
      credit: Pago   
      credit_amount: A recibir   
      credit_amount_description:  Lo que recibes
@@ -1298,7 +1299,15 @@ es:
      update_type: Actualiza un tipo   
      update_user: Actualiza tu perfil   
      update_venue: Actualiza el centro deportivo   
-     updated: se ha actualizado correctamente.   
+     updated: se ha actualizado correctamente.    
+     updated_at:  Fecha de creación
+     updated_a_challenge:  Ha actualizado el reto
+     updated_a_cup:  Ha actualizado la copa
+     updated_a_game:  Ha actualizado el partido  
+     updated_a_group:  Ha actualizado el equipo
+     updated_a_match:  Ha actualizado el resultado
+     updated_a_schedule: Ha actualizado el evento 
+     updated_a_user:  ha actualizado el perfil 
      upload:  Subir
      url_group: Vincular a Equipo   
      use_at_discretion: Nueva opción para entrar.  Si tienes una cuenta entra con tu cuenta original.
