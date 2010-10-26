@@ -1,9 +1,10 @@
 class HomeController < ApplicationController  
   before_filter :require_user, :except => [:index, :about, :help, :welcome, :pricing, :about, :terms_of_use, :privacy_policy, :faq, :openid]
-  before_filter :get_user_mates #, :get_tag
+  # before_filter :get_user_mates 
   before_filter :get_home,        :only => [:index]
   before_filter :get_upcoming,    :only => [:index, :upcoming]
-
+  
+  
   def index
   end
 
@@ -24,18 +25,12 @@ class HomeController < ApplicationController
   end
 
   private
-  def get_user_mates
-    @users = current_user.find_mates if current_user
-    @has_activities = Activity.all_activities(current_user) if current_user
-
-    @my_activities = Activity.related_activities(current_user) if @has_activities
-    @my_activities = Activity.current_activities unless @has_activities
-  end
-
-  # def get_tag    
-  #   # @tags = Schedule.tag_counts_on(:tags, :at_least => TAG_LEAST, :limit => TAG_LIMIT, :order => "name")
+  # def get_user_mates
+  #   @users = current_user.find_mates if current_user
+  #   @my_activities = Activity.related_activities(current_user) if current_user
+  #   @my_activities = Activity.current_activities if @my_activities.blank?
   # end
-
+  
   def get_upcoming 
     @upcoming_schedules ||= Schedule.upcoming_schedules(session[:schedule_hide_time])
     @upcoming_classifieds ||= Classified.upcoming_classifieds(session[:classified_hide_time])
@@ -57,9 +52,13 @@ class HomeController < ApplicationController
     Schedule.latest_matches(@items)    
     Game.latest_items(@items)
     Group.latest_updates(@items)
-    # User.latest_updates(@items)   
+    # User.latest_profiles(@items)  
+    
+    if current_user
+      Comment.latest_items(@items, current_user)
+      Match.latest_items(@items, current_user)
+    end
 
-    # @items.sort { |a,b| a.created_at <=> b.created_at }.reverse!
     @items = @items.sort_by(&:created_at).reverse!
   end
 

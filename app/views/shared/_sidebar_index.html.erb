@@ -8,7 +8,8 @@
 
 <% content_for :sidebar, render(:partial => '/shared/latest_payment') -%>
 <% content_for :sidebar, render(:partial => '/shared/upcoming_classified') unless @upcoming_classifieds.blank?  -%>
-<% content_for :sidebar, render(:partial => '/shared/active_comment', :locals => {:my_activities => @my_activities}) unless @my_activities.blank? -%>
+
+<%# content_for :sidebar, render(:partial => '/shared/active_comment', :locals => {:my_activities => @my_activities}) unless @my_activities.blank? -%>
 <%# content_for :sidebar, render(:partial => 'shared/share_object', :locals => {:schedule => @upcoming_schedules.first}) if has_schedules -%>
 
 

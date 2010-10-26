@@ -16,6 +16,17 @@ class Comment < ActiveRecord::Base
   belongs_to :user
 
 
+  # method section  
+  def self.latest_items(items, user)
+    find(:all, :select => "distinct comments.id, comments.user_id, comments.commentable_id, comments.commentable_type, comments.updated_at as created_at", 
+         :joins => "left join groups_users on groups_users.user_id = comments.user_id left join challenges_users on challenges_users.user_id = comments.user_id",    
+         :conditions => ["(groups_users.group_id in (?)  or challenges_users.challenge_id in (?)) and comments.updated_at >= ?", user.groups, user.challenges, LAST_WEEK], 
+         :limit => GLOBAL_FEED_SIZE).each do |item| 
+      items << item
+    end
+    return items 
+  end
+  
   private
 
   def format_body
