@@ -27,14 +27,14 @@
 
 	<td class="name_and_date">
 		<%= request_link %>&nbsp;
-		<%= has_joined ? "#{label_name(:petition_to_join_accepted).downcase} <wbr/> #{item_link}" : "#{label_name(:petition_to_join)} <wbr/> #{item_link}" %>
+		<%= has_joined ? "#{label_name(:petition_to_join_accepted).downcase} <wbr/> #{item_link}." : "#{label_name(:petition_to_join)} <wbr/> #{item_link}." %>
 		<span class="date">
 			<% unless has_sub_item %>
 			<br/>
 			<%= sub_item_link %>
 			<br/>
 			<% end %>
-		<%= has_joined ? nice_full_date(teammate.accepted_at) : nice_full_date(teammate.created_at) %>	
+		<%= has_joined ? ago(teammate.accepted_at) : ago(teammate.created_at) %>	
 		</span>
 	</td>
 
