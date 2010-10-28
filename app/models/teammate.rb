@@ -38,34 +38,61 @@ class Teammate < ActiveRecord::Base
 
   end
   
+  def self.is_breakable_item(leave_user, item, sub_item)
+    is_same_user = false
+    
+    the_creator = RolesUsers.find_item_creator(item)
+    the_managers = RolesUsers.find_all_item_managers(item)
+    
+    is_same_user = (User.find(the_creator.user_id) ==  leave_user)
+    
+    the_managers.each do |manager| 
+      is_same_user = (User.find(manager.user_id) == leave_user) unless is_same_user
+    end
+    
+    unless is_same_user      
+      transaction do    
+        the_managers.each do |manager| 
+          the_manager = User.find(manager.user_id)
+          
+          the_teammate = self.find_user_manager_item(leave_user, the_manager, item, sub_item)
+          the_teammate.each {|teammate| teammate.destroy} unless the_teammate.nil?
+          
+          the_teammate = self.find_user_manager_item(the_manager, leave_user, item, sub_item)
+          the_teammate.each {|teammate| teammate.destroy} unless the_teammate.nil?
+           
+        end
+      end
+    end
+    
+    return is_same_user
+  end
+  
   def self.create_teammate_leave_item(leave_user, item, sub_item)
-    @role_user = RolesUsers.find_item_manager(item)
-    @manager = User.find(@role_user.user_id) 
+    
+    return if is_breakable_item(leave_user, item, sub_item)
+    
+    leave_user.has_no_role!(:member, item)
+    case item.class.to_s
+    when "Group"
+      GroupsUsers.leave_team(leave_user, item)  
+      Scorecard.set_archive_flag(leave_user, item, true)
+      Match.set_archive_flag(leave_user, item, true)
 
-    return if @manager == leave_user
-      self.breakup_item(leave_user, @manager)   
-      leave_user.has_no_role!(:member, item)
+    when "Challenge"
+      ChallengesUsers.leave_item(leave_user, item)
+      Standing.set_archive_flag(leave_user, item, true)
+      Cast.set_remove_cast(leave_user, item)   
+      Fee.set_archive_flag(leave_user, item, item, true)
 
-      case item.class.to_s
-      when "Group"
-        GroupsUsers.leave_team(leave_user, item)  
-        Scorecard.set_archive_flag(leave_user, item, true)
-        Match.set_archive_flag(leave_user, item, true)
+    when "Cup"
+      # TODO:  remove escuadra from cup
+      CupsEscuadras.leave_escuadra(escuadra, item) 
+      Standing.set_archive_flag(leave_user, item, true)
+      Fee.set_archive_flag(leave_user, item, item, true)
 
-      when "Challenge"
-        ChallengesUsers.leave_item(leave_user, item)
-        Standing.set_archive_flag(leave_user, item, true)
-        Cast.set_remove_cast(leave_user, item)   
-        Fee.set_archive_flag(leave_user, item, item, true)
-
-      when "Cup"
-        # TODO:  remove escuadra from cup
-        CupsEscuadras.leave_escuadra(escuadra, item) 
-        Standing.set_archive_flag(leave_user, item, true)
-        Fee.set_archive_flag(leave_user, item, item, true)
-
-      else
-      end    
+    else
+    end    
   end
 
   def self.create_teammate_join_item(requester, approver, item, sub_item)

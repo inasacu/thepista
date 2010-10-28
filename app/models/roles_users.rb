@@ -14,4 +14,16 @@ class RolesUsers < ActiveRecord::Base
     :conditions => ["role_id in (select id from roles where roles.authorizable_id = ? and roles.authorizable_type = ? and roles.name = 'manager')", 
       item.id, item.class.to_s])
   end
+
+  def self.find_all_item_managers(item)
+    find(:all, 
+    :conditions => ["role_id in (select id from roles where roles.authorizable_id = ? and roles.authorizable_type = ? and roles.name = 'manager')", 
+      item.id, item.class.to_s])
+  end
+
+  def self.find_item_creator(item)
+    find(:first, 
+    :conditions => ["role_id in (select id from roles where roles.authorizable_id = ? and roles.authorizable_type = ? and roles.name = 'creator')", 
+      item.id, item.class.to_s])
+  end  
 end
