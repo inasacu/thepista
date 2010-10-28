@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   before_filter :require_no_user, :only => [:signup, :new, :create, :rpx_new, :rpx_create, :rpx_associate]
-  before_filter :require_user, :only => [:index, :show, :edit, :update, :petition] 
+  before_filter :require_user, :only => [:index, :list, :show, :edit, :update, :petition, :recent_activity] 
   
   before_filter :get_user,            :only => [:show] 
   before_filter :get_user_member,     :only => [:show] 
@@ -77,7 +77,9 @@ class UsersController < ApplicationController
   end
 
   def recent_activity
-    @user = current_user      
+    @user = current_user    
+    redirect_to :action => 'index'  
+    return
   end
   
   def petition
