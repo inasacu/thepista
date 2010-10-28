@@ -154,7 +154,15 @@ class User < ActiveRecord::Base
     
     def self.contact_emails(email)
       User.find(:first, :conditions => ["email = ?", email])
-    end  
+    end 
+    
+    def forum_message?
+      self.forum_comment_notification?
+    end
+    
+    def blog_message?
+      self.blog_comment_notification?
+    end       
 
     def self.latest_updates(items)
       find(:all, :select => "id, name, photo_file_name, updated_at as created_at", :conditions => ["updated_at >= ?", LAST_WEEK], :order => "updated_at desc").each do |item| 
