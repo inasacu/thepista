@@ -24,8 +24,8 @@ class TeammatesController < ApplicationController
 
   def leave_item
     @leave_user = User.find(params[:teammate])   
-    Teammate.create_teammate_leave_item(@leave_user, @item, @sub_item)
-    # Teammate.send_later(:create_teammate_leave_item, @leave_user, @item, @sub_item)
+    # Teammate.create_teammate_leave_item(@leave_user, @item, @sub_item)
+    Teammate.send_later(:create_teammate_leave_item, @leave_user, @item, @sub_item)
 
     flash[:notice] = I18n.t(:to_leave_item_message_sent)
     redirect_to petition_url
