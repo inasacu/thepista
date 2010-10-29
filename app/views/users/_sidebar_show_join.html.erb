@@ -11,7 +11,7 @@
 %>
 			<li>
 				<%= link_to(the_label, join_item_path(:id => group, :item => group.class.to_s, :teammate => @user), 
-						:confirm => the_confirmation) %>
+						:confirm => the_confirmation) if current_user.is_manager_of?(group) %>
 			</li>
 <% 
 		else 
@@ -19,7 +19,7 @@
 			the_confirmation = "#{ label_name(:fire_from_item)} #{the_group} #{ label_name(:to)} #{h(@user.name)}?"
 %> 
 		<li>
-			<%= link_to(the_label, leave_item_path(:id => group, :item => group.class.to_s, :teammate => @user), :confirm => the_confirmation) %>
+			<%= link_to(the_label, leave_item_path(:id => group, :item => group.class.to_s, :teammate => @user), :confirm => the_confirmation) if current_user.is_manager_of?(group) %>
 		</li>
 <% 
 		end 

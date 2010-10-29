@@ -5,6 +5,33 @@ task :the_archive_challenge => :environment do |t|
 
   ActiveRecord::Base.establish_connection(RAILS_ENV.to_sym)
 
+  # archive all challenges and cast for cups archived
+  @cups = Cup.find(:all, :conditions => "archive = true")
+  @cups.each do |cup|
+    @challenges = Challenge.find(:all, :conditions => ["cup_id = ?", cup])
+    @challenges.each do |challenge|
+      
+      # archive the challenge
+      challenge.archive = true
+      challenge.save!
+      
+      puts "archived challenge:  #{challenge.id}"
+      
+      # archive the casts for the challenge
+      @casts = Cast.find(:all, :conditions => ["challenge_id = ?", challenge])
+      @casts.each do |cast|
+        cast.archive = true
+        cast.save!
+        
+        puts "archived cast:  #{cast.id}"
+        
+      end
+      
+    end
+  end
+  
+
+  # archive all chanllenges and cast w/ 
   @cups = Cup.find(:all, :conditions => "archive = false and official = true")
   @cups.each do |cup|
 
@@ -24,7 +51,7 @@ task :the_archive_challenge => :environment do |t|
       total_null_cast = Cast.find(:first, :select => "count(*) as total", 
       :conditions => ["challenge_id = ? and home_score is null and away_score is null", challenge]).total
 
-      if (total_cast.to_i ==total_null_cast.to_i)
+      if (total_cast.to_i == total_null_cast.to_i)
         puts "cup: #{cup.name}"
         puts "number_of_games: #{number_of_games.to_i}"
         puts "challenge: #{challenge.name}"

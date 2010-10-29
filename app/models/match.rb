@@ -31,7 +31,7 @@ class Match < ActiveRecord::Base
   
   # method section
   def self.latest_items(items, user)
-    find(:all, :select => "distinct matches.id, matches.user_id, matches.schedule_id, matches.status_at as created_at", 
+    find(:all, :select => "matches.id, matches.user_id, matches.schedule_id, matches.status_at as created_at", 
          :joins => "left join groups_users on groups_users.user_id = matches.user_id",    
          :conditions => ["groups_users.group_id in (?) and matches.status_at >= ?", user.groups, LAST_WEEK], 
          :limit => GLOBAL_FEED_SIZE).each do |item| 

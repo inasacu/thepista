@@ -4,20 +4,23 @@
 	the_label = label_with_name('create_game', cup.name)
 	the_confirmation = "#{ label_name(:cups_destroy) } #{the_cup}" 
 	has_escuadras = (object_counter(cup.escuadras) > 0)
+	
+	final_played ||= false
+	the_game = Game.final_game(@cup)
+	final_played = the_game.played unless (the_game.nil? or the_game.blank?)
 %>
 <div class="block">
 	
 	<h3><%= label_name('options') %></h3>
 	
-	<ul class="navigation">		
+	<ul class="navigation">	
+		<% 	unless final_played  %>	
 		<li><%= link_to label_name(:games_create), new_game_path(:id => cup) if has_escuadras %></li>
 		<li><%= link_to label_name(:escuadras_create), new_escuadra_path(:id => cup) if cup.official %></li>
-		<li><%= link_to label_name(:cups_edit), edit_cup_path(cup) %></li> 
-		<li><%= link_to(label_name(:group_stage_set), 
-					set_group_stage_url(:id => cup), :title => "#{label_name(:group_stage_set_full) }") if current_user.is_manager_of?(cup) %></li> 
-		<li>
-			<%= link_to(the_confirmation, cup_path(cup), :method => :delete, :confirm => "#{the_confirmation}?") unless cup.has_game? %>
-		</li>		
+		<li><%= link_to(label_name(:group_stage_set), set_group_stage_url(:id => cup), :title => "#{label_name(:group_stage_set_full) }") if current_user.is_manager_of?(cup) %></li> 
+		<li><%= link_to(the_confirmation, cup_path(cup), :method => :delete, :confirm => "#{the_confirmation}?") unless cup.has_game? %></li>
+		<% end %>
+		<li><%= link_to label_name(:cups_edit), edit_cup_path(cup)  %></li>		
 	</ul>
 	
 </div>

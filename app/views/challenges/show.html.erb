@@ -47,11 +47,6 @@
 		<%= tr_td_action(:time_zone, @challenge.time_zone) %>		
 		<%= tr_td_action(:users, t(:has_challenge_users, :count => @challenge.users.count)) %>
 		
-		<!-- <tr>
-			<%#= content_tag :td, label_name(:challenges_points), :class => "label" %>
-			<%#= content_tag :td, @challenge.points_for_double, :class => get_the_action %>
-		</tr> -->
-		
 		<tr>
 			<%= content_tag :td, link_to(label_name(:points_full), show_list_standings_path(:id => @challenge)), :class => "label" %>
 		</tr>
@@ -91,8 +86,7 @@
 
 
 <%  if @cup  %>
-
 <%# content_for :sidebar, render(:partial => 'cups/sidebar_cup_additional', :locals => {:cup => @cup}) if current_user.is_manager_of?(@cup) -%>
-<% content_for :sidebar, :render("cups/sidebar_cup_additional", :cup => @cup) if current_user.is_manager_of?(@cup) -%>
+<% content_for :sidebar, render('cups/sidebar_cup_additional', :cup => @cup) if current_user.is_manager_of?(@cup) -%>
 <% content_for :sidebar, render(:partial => 'shared/sidebar_show_cup', :locals => {:cup => @cup}) if current_user.is_manager_of?(@cup) -%>
 <% end -%>

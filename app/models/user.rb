@@ -214,10 +214,6 @@ class User < ActiveRecord::Base
     def is_member_of?(group)
       self.has_role?('member', group)
     end
-
-    def is_tour_member_of?(tournament)
-      self.has_role?('member', tournament)
-    end
       
     def is_user_manager_of?(user)
       is_manager = (self == user) 

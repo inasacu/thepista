@@ -50,16 +50,16 @@ class Teammate < ActiveRecord::Base
       is_same_user = (User.find(manager.user_id) == leave_user) unless is_same_user
     end
     
-    unless is_same_user      
+    unless is_same_user   
       transaction do    
         the_managers.each do |manager| 
           the_manager = User.find(manager.user_id)
           
           the_teammate = self.find_user_manager_item(leave_user, the_manager, item, sub_item)
-          the_teammate.each {|teammate| teammate.destroy} unless the_teammate.nil?
+          the_teammate.destroy unless the_teammate.nil? 
           
           the_teammate = self.find_user_manager_item(the_manager, leave_user, item, sub_item)
-          the_teammate.each {|teammate| teammate.destroy} unless the_teammate.nil?
+          the_teammate.destroy unless the_teammate.nil? 
            
         end
       end
