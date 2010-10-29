@@ -1,3 +1,5 @@
+<% unless items.nil? or items.blank? %>
+
 <div class="block">
 	<h3><%= label_name(:challenge_option) %></h3>
 <ul class="navigation">
@@ -28,3 +30,5 @@
 </ul>
 	
 </div>
+
+<% end -%>
