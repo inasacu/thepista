@@ -51,7 +51,7 @@ es:
      ausente: Ausente   
      authorizable_id: Codigo    
      authorizable_type: Tipo    
-     available: Disponibilidad
+     available: Disponible
      available_description: (Si estas disponible para jugar o si no quieres que te molesten...)   
      avatar: Gravatar   
      away_group: Fuera   
@@ -144,7 +144,7 @@ es:
      change_roster_status: Pasa a 
      change_wo_access: Es posible que hayas intentado cambiar algo a lo que no tenias acceso.  
      change_your_roster_status:  Cambia tu convocatoria
-     changed_description: cambio en la descripción
+     changed_description: ha cambiado su <strong>PERFIL</strong>
      changes_in_roster_status: Ha cambiado su <strong>CONVOCATORIA</strong>
      character_limit: Máximo 255 carácteres   
      check_all: Todos   
@@ -166,7 +166,9 @@ es:
      coeficient_full_points: Puntos Obtenidos * Coeficiente
      comment: Comentario   
      comment_not_saved: Comentarios no guardados!!!   
-     comment_saved: Comentarios guardados!!!   
+     comment_saved: Comentarios guardados!!!  
+     company:  Empresa 
+     company_description: Nombre de empresa
      connect:  Conectar
      concept: Concepto
      concept_description:  Concepto   
@@ -942,13 +944,13 @@ es:
      previous_schedules: Anteriores eventos
      previous_meet: Anterior evento 
      previous_meets: Anteriores eventos de torneo         
-     previous_profile_set:  Obtener
+     previous_profile_set:  Obtener perfil de jornada
      previous_profile_set_full:  Obtener los perfiles de la jornada anterior.
      pricing:  Precios
      privacy: privacidad   
      private_email: Correo oculto   
      private_option_description: (Marcar opción como privada a todos...)   
-     private_phone: Ocultar el teléfono   
+     private_phone: Ocultar teléfono   
      private_phone_description: (Quieres ocultar tu numero de telefono...)   
      private_profile: Ocultar el perfil   
      problem_field: Hemos tenido problemas con algunos de los campos.   
@@ -957,8 +959,10 @@ es:
      profile_position: Posición   
      profile_private: Ocultar el perfil   
      profile_rating: Calificación   
-     profile_set:  Actualizar
+     profile_set:  Actualizar perfiles
      profile_set_full:  Actualizar los perfiles de la jornada.
+     profile_user_set:  Obtener perfil del jugador
+     profile_user_set_full:  Obtener los perfiles del perfil del jugador
      profile_technical: Nivel tecnico 
      protect_your_privacy: "Protegemos tu privacidad. HayPista en ningún momento le ha proporcionado tu dirección de correo electrónico a ningún otro usuario de HayPista sin tu permiso. © 2007-2010, HayPista"  
      provider_not_supported: "provider is not supported, try another email address."   

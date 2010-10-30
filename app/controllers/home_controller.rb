@@ -52,7 +52,7 @@ class HomeController < ApplicationController
     Schedule.latest_matches(@items)    
     Game.latest_items(@items)
     Group.latest_updates(@items)
-    # User.latest_profiles(@items)  
+    User.latest_updates(@items)  
     
     if current_user
       Comment.latest_items(@items, current_user)

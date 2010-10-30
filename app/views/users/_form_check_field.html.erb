@@ -19,12 +19,14 @@
   <span class="description"><%= label_name('available', 'description') %></span>
 </div>
 
+<% if @user.is_manager? %>
 <!-- check_box -->
 <div class="group">
   <%= f.label :teammate_notification, label_name('teammate_notification'), :class => :label %>
   <%= f.check_box :teammate_notification, :class => 'textfield' %>
   <span class="description"><%= label_name('teammate_notification', 'description') %></span>
 </div>
+<% end -%>
 
  <!-- check_box -->
 <div class="group">
@@ -32,13 +34,6 @@
   <%= f.check_box :private_phone, :class => 'textfield' %>
   <span class="description"><%= label_name('private_phone', 'description') %></span>
 </div>  
-
-<!-- check_box -->
-<div class="group">
-  <%= f.label :teammate_notification, label_name('teammate_notification'), :class => :label %>
-  <%= f.check_box :teammate_notification, :class => 'textfield' %>
-  <span class="description"><%= label_name('teammate_notification', 'description') %></span>
-</div>
 
 <div class="group">
   <%= f.label :message_notification, label_name('message_notification'), :class => :label %>

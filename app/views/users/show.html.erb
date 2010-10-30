@@ -53,9 +53,19 @@
 							</td>
 						</tr>
 						
+						<%= tr_td_action(:position, @user.position) %>
+						
+						<tr>
+							<td class="label"><%= "#{label_name(:technical)}  /  #{label_name(:physical)}" %></td>
+							<td class="show">
+								<%= "#{ @user.technical}  /  #{ @user.physical}" %>
+							</td>
+						</tr>						
+						
 						<%= tr_td_action(:time_zone, @user.time_zone) %>
 						<%= tr_td_action(:phone, @user.phone) unless @user.private_phone %>
-						<%= tr_td_action(:gender, label_name(@user.gender, 'value')) unless @user.gender.blank? %>			
+						<%= tr_td_action(:company, @user.company) %>
+						<%#= tr_td_action(:gender, label_name(@user.gender, 'value')) unless @user.gender.blank? %>			
 
 						<% 
 							the_label = h(label_name(@user.available, 'value'))

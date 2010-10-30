@@ -91,7 +91,8 @@ ActionController::Routing::Routes.draw do |map|
   
   map.set_score             'games/:id/set_score',                        :controller => 'games',           :action => 'set_score'
   map.set_profile           'matches/:id/set_profile',                    :controller => 'matches',         :action => 'set_profile'
-  map.set_group_stage       'standings/:id/set_group_stage',           :controller => 'standings',       :action => 'set_group_stage'
+  map.set_user_profile      'matches/:id/set_user_profile',               :controller => 'matches',         :action => 'set_user_profile'
+  map.set_group_stage       'standings/:id/set_group_stage',              :controller => 'standings',       :action => 'set_group_stage'
   
   map.resources   :user_sessions,   :as => 'repitelo'
   map.resources   :users,           :as => 'jugadores',                   :collection => { :rpx_create => :post, :rpx_associate => :post, :list => :get, :recent_activity => :get, :search => :get }  

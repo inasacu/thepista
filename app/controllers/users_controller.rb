@@ -65,6 +65,8 @@ class UsersController < ApplicationController
     @user = current_user
   
     @user.attributes = params[:user]
+    @user.profile_at = Time.zone.now
+    
     @user.save do |result|
       if result
         flash[:success] = I18n.t(:successful_update)

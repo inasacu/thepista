@@ -1,9 +1,6 @@
 class MatchesController < ApplicationController
   before_filter :require_user
   before_filter :get_match_and_user_x_two, :only =>[:set_status, :set_team]
-
-  # in_place_edit_for :match, :technical
-  # in_place_edit_for :roster, :physical
     
   def index
     redirect_to :controller => 'schedules', :action => 'index'
@@ -20,6 +17,26 @@ class MatchesController < ApplicationController
       return
     end    
   end
+  
+  def set_user_profile
+    @schedule = Schedule.find(params[:id])
+
+    unless current_user.is_manager_of?(@schedule.group)
+      flash[:warning] = I18n.t(:unauthorized)
+      redirect_back_or_default('/index')
+      return
+    end
+
+    @schedule.matches.each do |match|
+      match.technical = match.user.technical.to_i
+      match.physical = match.user.physical.to_i
+      match.save!
+    end
+
+    flash[:success] = I18n.t(:successful_update)
+    redirect_back_or_default('/index')
+  end
+  
 
   def edit
     @match = Match.find(params[:id])

@@ -165,7 +165,9 @@ en:
      coeficient_full_points: Points Received * Coeficient
      comment: Comment   
      comment_not_saved: Comments NOT saved!!!   
-     comment_saved: Comments save!!!   
+     comment_saved: Comments save!!!
+     company:  Company
+     company_description: Name of Company   
      connect:  Connect
      concept: Concept
      concept_description:  Concept   
@@ -957,7 +959,9 @@ en:
      profile_private: Private Profile   
      profile_rating: Rating
      profile_set:  Update Profiles.
-     profile_set_full:  Set current event's profiles.   
+     profile_set_full:  Set current event's profiles. 
+     profile_user_set:  Update from User Profile.
+     profile_user_set_full:  Update profile from user's profile  
      profile_technical: Technical Level 
      protect_your_privacy: "We protect your privacy. HayPista at no time has provided your email address to any other user of HayPista without your permission. © 2007-2010, HayPista"  
      provider_not_supported: "provider is not supported, try another email address."   

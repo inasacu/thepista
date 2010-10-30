@@ -125,9 +125,10 @@ hr {
 }
 
 #sidebar h3 {
-/*	background: #009933;*/
-	background: #60AD35;	
-	color: #F7F7F8;
+	background: #60AD35;
+	background: #EEEEEE;	
+	color: #F7F7F8;	
+	color: #000;
 	border-bottom: 2px solid #cfcfcf;
 }
 
