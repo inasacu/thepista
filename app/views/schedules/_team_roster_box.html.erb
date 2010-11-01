@@ -1,6 +1,3 @@
-<%#= stylesheet_link_tag "in_place_styles"  %>
-<%# inplace_error_div %>
-
 <% 
 	counter = 0 
 	roster_count = (object_counter(the_roster) > 0)
@@ -35,7 +32,6 @@
 	physical["percentage"] = 0.0
 	
 	is_manager ||=false
-	#is_manager = current_user.is_manager_of?(@schedule.group)
 	is_sub_manager = current_user.is_sub_manager_of?(@schedule.group)
 	
 	@positions = Type.find(:all, :conditions => "table_type = 'User'", :order => "id")
@@ -151,17 +147,13 @@ end
 -%>
 
 </table>
-</div>
 
-<div class="inner">
 <% if get_the_action.gsub(' ','_') == 'team_roster' %>
 
 	<%= render :partial => '/schedules/team_level', :locals => {:home => home, :away => away, :technical => technical, :physical => physical} %>
 
 <% end -%>
 
-
-</div>
 <% 
 end
 %>
