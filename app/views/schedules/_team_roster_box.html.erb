@@ -150,14 +150,14 @@ end
 end 
 -%>
 
-</table>
-
 <% if get_the_action.gsub(' ','_') == 'team_roster' %>
 
 	<%= render :partial => '/schedules/team_level', :locals => {:home => home, :away => away, :technical => technical, :physical => physical} %>
 
 <% end -%>
 
+
+</table>
 <% 
 end
 %>
