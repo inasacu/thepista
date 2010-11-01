@@ -33,6 +33,7 @@
 	
 	is_manager ||=false
 	is_sub_manager = current_user.is_sub_manager_of?(@schedule.group)
+	is_action = get_the_action.gsub(' ','_') == 'team_roster'
 	
 	@positions = Type.find(:all, :conditions => "table_type = 'User'", :order => "id")
 	
@@ -146,13 +147,13 @@ end
 end 
 -%>
 
+<%= render "schedules/team_level", :home => home, :away => away, :technical => technical, :physical => physical if is_action %>
+
 </table>
 
-<% if get_the_action.gsub(' ','_') == 'team_roster' %>
-
-	<%= render :partial => '/schedules/team_level', :locals => {:home => home, :away => away, :technical => technical, :physical => physical} %>
-
-<% end -%>
+<%# if get_the_action.gsub(' ','_') == 'team_roster' %>
+	<%#= render :partial => '/schedules/team_level', :locals => {:home => home, :away => away, :technical => technical, :physical => physical} %>
+<%# end -%>
 
 <% 
 end
