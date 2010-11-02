@@ -23,7 +23,12 @@ module SchedulesHelper
   
   def schedule_image_small(schedule)
     image_tag(schedule.sport.icon, options={:style => "height: 15px; width: 15px;"})
-  end   
+  end  
+  
+  def schedule_image_link_roster(schedule)
+    link_to(image_tag(schedule.sport.icon, options={:style => "height: 15px; width: 15px;"}), team_roster_path(:id => schedule))
+  end    
+    
 end
 
 

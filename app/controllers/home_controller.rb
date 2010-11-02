@@ -43,23 +43,26 @@ class HomeController < ApplicationController
 
   def get_home
     @items = []
+    @all_items = []
     
-    Teammate.latest_teammates(@items) 
-    Cup.latest_items(@items)
-    Group.latest_items(@items) 
-    Schedule.latest_items(@items)
-    Challenge.latest_items(@items)    
-    Schedule.latest_matches(@items)    
-    Game.latest_items(@items)
-    Group.latest_updates(@items)
-    User.latest_updates(@items)  
+    Teammate.latest_teammates(@all_items) 
+    Cup.latest_items(@all_items)
+    Group.latest_items(@all_items) 
+    Schedule.latest_items(@all_items)
+    Challenge.latest_items(@all_items)    
+    Schedule.latest_matches(@all_items)    
+    Game.latest_items(@all_items)
+    Group.latest_updates(@all_items)
+    User.latest_updates(@all_items)  
     
     if current_user
-      Comment.latest_items(@items, current_user)
-      Match.latest_items(@items, current_user)
+      Comment.latest_items(@all_items, current_user)
+      Match.latest_items(@all_items, current_user)
     end
 
-    @items = @items.sort_by(&:created_at).reverse!
+    @all_items = @all_items.sort_by(&:created_at).reverse!    
+    @all_items[0..GLOBAL_FEED_SIZE].each {|item| @items << item }
+    # @all_items.each {|item| @items << item }
   end
 
 end
