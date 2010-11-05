@@ -39,7 +39,7 @@
 	the_groups.each do |group, the_total|
 %>
 <div class="block"> 
-	<%= content_tag 'h3', "#{label_name(:fees)} #{label_name(:to)} #{h(group.name)}" %>
+	<%= content_tag 'h3', h(group.name) %>
   <div class="sidebar-block"> 
 	
 	<table class="table">		

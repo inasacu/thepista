@@ -180,3 +180,5 @@
 <%# content_for :sidebar, render(:partial => '/users/sidebar_show_item_manager', :locals => {:items => current_user.challenges})  %>
 <% content_for :sidebar, render('users/sidebar_show_item_manager', :items => current_user.challenges) %>
 <% end %>
+
+<% content_for :sidebar, render(:partial => '/shared/sidebar_index') -%>

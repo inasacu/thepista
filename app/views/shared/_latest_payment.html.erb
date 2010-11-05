@@ -8,7 +8,7 @@
 	@users << current_user
 	@groups = current_user.groups
 	
-	current_user.groups.each do |group|
+	@groups.each do |group|
 		Schedule.match_participation(group, @users, @schedules) unless current_user.is_subscriber_of?(group)
 	end
 
