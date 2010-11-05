@@ -258,7 +258,7 @@ es:
      debit_amount: A pagar   
      debit_amount_description: Lo que debes pagar
      debit_total:  Cargo total
-     debit_to_group:  Debes a tu equipo
+     debit_to_group:  Deuda a tu equipo
      debits: Cargos   
      default_reliable: Fiable   
      defense:  Defensa
