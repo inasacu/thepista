@@ -133,7 +133,7 @@ es:
      challenges_update: Actualizar reto
      change: Cambia idioma   
      change_available: Cambia la disponibilidad de   
-     change_at:  Fecha de cambio
+     change_at:  Cambiado
      change_message_notification: Cambio de recibida de correo de   
      change_email_configuration: Cambia tu configuración de mensajes.
      change_group: Cambia de equipo   
@@ -143,7 +143,7 @@ es:
      change_rejected_explained: "Es posible que no tuvieses acceso a esa zona, lo sentimos!"	 
      change_roster_status: Pasa a 
      change_wo_access: Es posible que hayas intentado cambiar algo a lo que no tenias acceso.  
-     change_your_roster_status:  Cambia tu convocatoria
+     change_your_roster_status:  Cambia convocatoria
      changed_description: ha cambiado su <strong>PERFIL</strong>
      changes_in_roster_status: Ha cambiado su <strong>CONVOCATORIA</strong>
      character_limit: Máximo 255 carácteres   
@@ -1394,9 +1394,9 @@ es:
      birth_at_description:  Fecha de nacimiento
      position:  Posición
      position_description:  Posición en el campo
-     technical:  Nivel tecnico
+     technical:  Tecnico
      technical_description:  Nivel tecnico
-     physical:  Nivel fisico
+     physical:  Fisico
      physical_description: Nivel fisico
      language_description:  Idioma preferible
      country_description:  Pais donde te encuentras

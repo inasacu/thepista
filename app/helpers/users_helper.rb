@@ -46,6 +46,15 @@ module UsersHelper
       return item_image_link_large(user)
     end
   end	
+  	  
+  def subscription_image_link(user, is_subscriber, the_label="")
+    star_image = "star_#{is_subscriber}.png"
+    link_to(image_tag(star_image, options={:title => the_label, :style => "height: 15px; width: 15px;"}), user_path(user))
+  end
+    
+  def user_avatar_image_link(user)
+    link_to(image_tag('avatar.png', options={:style => "height: 15px; width: 15px;"}), user_path(user)) 
+  end
 
   def image_link_smaller(user)
     link_to(image_tag(user.avatar, options={:style => "height: 22px; width: 22px;"}), user_path(user)) 

@@ -213,6 +213,10 @@ text_area.textfield {
   margin-left: 10px;
 }
 
+.table tr.false {
+	background-color: #005573;
+}
+
 .table td {
   padding: 15px;
 }

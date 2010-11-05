@@ -47,37 +47,40 @@ if roster_count
 		 <th><%= label_name(:name) %></th>
 		 <th align="center" title = "<%= label_name(:games_played_full) %>"><%= label_name(:games_played) %></th>
 		 <th align="center" title = "<%= label_name(:position) %>"><%= label_name(:position) %></th>
-		 <th align="center" title = "<%= label_name(:technical) %>"><%= label_name(:technical) %></th>
-		 <th align="center" title = "<%= label_name(:physical) %>"><%= label_name(:physical) %></th>
+		 <th align="center" title = "<%= label_name(:profile_technical) %>"><%= label_name(:technical) %></th>
+		 <th align="center" title = "<%= label_name(:profile_physical) %>"><%= label_name(:physical) %></th>
 		 <th><%= label_name(:group) %></th>
-		 <%= content_tag 'th', label_name(:score), :class => "last" if @schedule.played? %>
+		 <%= content_tag 'th', label_name(:score) if @schedule.played? %>
 		 <%= content_tag 'th', label_name(:change_at) unless @schedule.played? %>
-		 <%= content_tag 'th', label_name(:change_your_roster_status), :class => "last" unless @schedule.played? %>	
+		 <%= content_tag 'th' unless @schedule.played? %>
 		</tr>
 
         
-       	<% the_roster.each do |match| -%>
+       	<% the_roster.each do |match| 
+			is_second_team = !(match.group_id > 0)
+			second_team = ""
+			second_team = "second_team" if is_second_team
+	-%>
         <tr>
-			<td>
+			<td class="<%= second_team %>" >
 				<%= image_link_smaller match.user %>
 			</td>
 			
 			<% 				
-				subscriber = match.user.is_subscriber_of?(@schedule.group)
-			    the_label =  label_name("subscription_#{subscriber}") unless subscriber 
-				the_klass = "subscription_#{subscriber}" unless subscriber 
+				is_subscriber = match.user.is_subscriber_of?(@schedule.group)
+			    the_label =  label_name("subscription_#{is_subscriber}")
 			%>
 			
-			<td class="<%= the_klass %>" title = "<%= the_label %>">
-				<%= counter +=1 %>.
+			<td class="<%= second_team %>" >
+				<%= subscription_image_link(match.user, is_subscriber, the_label) %>&nbsp;&nbsp;&nbsp;<%= counter +=1 %>.
 			</td>
 			
-			<td>
+			<td class="<%= second_team %>" >
 				<%= user_link_limit match.user %><br />
 				<%= "  ( #{label_name(:no_jugado)} )" if match.type_id == 4 %>
 			</td>
 			
-			<td align="left"><%= match.scorecard_played %></td>
+			<td class="<%= second_team %>" align="left"><%= match.scorecard_played %></td>
 <% 		
 		case match.position.name
 		when "defense"
@@ -93,34 +96,37 @@ if roster_count
 				
 		@roster = match  
 %>		
-		<td>
+		<td class="<%= second_team %>" >
 			<%= match.position_name %>
 		</td>
 	
-		<td align="center">
+		<td class="<%= second_team %>" align="center">
 			<%=  match.technical %>
 		</td>	
 			
-		<td align="center">	
+		<td class="<%= second_team %>" align="center">	
 			<%= match.physical %>
 		</td>
 		
-		<td><%= is_sub_manager ? link_to(match.team_name(@schedule), match_team_path(:id => match.id), :title => label_name(:change_group)) :  match.team_name(@schedule) %></td>
+		<td class="<%= second_team %>" >
+			<%= is_sub_manager ? link_to(match.team_name(@schedule), match_team_path(:id => match.id), :title => label_name(:change_group)) :  
+							match.team_name(@schedule) %>
+		</td>
 <% 
 	
 	if @schedule.played? 
 %>	
-		<td class="last"><%= group_score_link @schedule if match.type_id == 1 %></td>
+		<td class="<%= second_team %>" ><%= group_score_link @schedule if match.type_id == 1 %></td>
 <%		
 	end 
  
 	unless @schedule.played?  %>
-		<td class="name_and_date">
+		<td class="<%= second_team %>" >
 			<span class="date">
 				<%= ago(match.status_at) %>
 			</span>
 		</td>	
-		<td class="last">
+		<td class="<%= second_team %>" >
 <% 
 	if current_user == match.user or current_user.is_manager_of?(@schedule.group) 
 		@match_type.each do |type|  
@@ -150,10 +156,6 @@ end
 <%= render "schedules/team_level", :home => home, :away => away, :technical => technical, :physical => physical if is_action %>
 
 </table>
-
-<%# if get_the_action.gsub(' ','_') == 'team_roster' %>
-	<%#= render :partial => '/schedules/team_level', :locals => {:home => home, :away => away, :technical => technical, :physical => physical} %>
-<%# end -%>
 
 <% 
 end

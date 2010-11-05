@@ -192,20 +192,23 @@ hr {
 
 /* tables */
 .table th {
-/*	border-bottom: 2px solid #6D98AB;*/
 	border-bottom: 2px solid #cfcfcf;
 	color: #001C26;
 	background: #EEEEEE;
 }
 
 .table td {
-  border-bottom: 1px solid #cfcfcf;
+  border-bottom: 1px dotted #cfcfcf;
 }
 
 .table td.letter-divider {
   color: #0F7D00;
-  border-bottom: 0px solid #cfcfcf;
+  border-bottom: 0px dotted #cfcfcf;
   font-size: 14px;
+}
+
+.table td.second_team {
+	background: #EEEEEE;
 }
 
 /* forms */

@@ -1,6 +1,6 @@
 class HomeController < ApplicationController  
   before_filter :require_user, :except => [:index, :about, :help, :welcome, :pricing, :about, :terms_of_use, :privacy_policy, :faq, :openid]
-  # before_filter :get_user_mates 
+
   before_filter :get_home,        :only => [:index]
   before_filter :get_upcoming,    :only => [:index, :upcoming]
   
@@ -25,11 +25,6 @@ class HomeController < ApplicationController
   end
 
   private
-  # def get_user_mates
-  #   @users = current_user.find_mates if current_user
-  #   @my_activities = Activity.related_activities(current_user) if current_user
-  #   @my_activities = Activity.current_activities if @my_activities.blank?
-  # end
   
   def get_upcoming 
     @upcoming_schedules ||= Schedule.upcoming_schedules(session[:schedule_hide_time])
@@ -62,7 +57,6 @@ class HomeController < ApplicationController
 
     @all_items = @all_items.sort_by(&:created_at).reverse!    
     @all_items[0..GLOBAL_FEED_SIZE].each {|item| @items << item }
-    # @all_items.each {|item| @items << item }
   end
 
 end

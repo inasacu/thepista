@@ -146,7 +146,7 @@ class Group < ActiveRecord::Base
   end
   
   def self.latest_items(items)
-    find(:all, :conditions => ["created_at >= ?", LAST_WEEK]).each do |item| 
+    find(:all, :select => "id, name, photo_file_name, updated_at as created_at", :conditions => ["created_at >= ?", LAST_WEEK]).each do |item| 
       items << item
     end
     return items 
