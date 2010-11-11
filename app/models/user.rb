@@ -22,6 +22,7 @@ class User < ActiveRecord::Base
   # validates_format_of   :name,            :with =>  /^[A-Z a-z 0-9]*\z/
   # validates_acceptance_of :terms_of_service
   # validates_inclusion_of :gender, :in => ['male','female'], :allow_nil => true
+  # validates_format_of :email,:with => /^([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})$/i, :on => :create #, :message => "es invalido"
  
   before_destroy    :destroy_activities, :destroy_feeds  
   before_destroy    :unmap_rpx

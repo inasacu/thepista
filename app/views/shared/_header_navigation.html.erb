@@ -68,7 +68,9 @@
 	
 	when 'message'
 		the_message = "active"
-		
+	
+	when 'venue'
+		the_venue = "active"	
 	end
 %>
 
@@ -87,11 +89,13 @@
 			<%= content_tag 'li', link_to(label_name(:users), users_url, :class => the_users) %>
 			<%= content_tag 'li', link_to(label_name(:groups), groups_url, :class => the_group) %>		
 			<%= content_tag 'li', link_to(label_name(:schedules), schedules_url, :class => the_schedule) if has_group %>
+			<%#= content_tag 'li', link_to(label_name(:venues), venues_url, :class => the_venue) if development? %>
 			<%= content_tag 'li', link_to(label_name(:cups), cups_url, :class => the_cup)  %>	
 			<%= content_tag 'li', link_to(label_name(:challenges), challenges_url, :class => the_challenge) %>
 			<%= content_tag 'li', link_to(label_name(:scorecards), scorecards_url, :class => get_control_active('scorecard')) %>	
 			<%= content_tag 'li', link_to(label_name(:markers), markers_url, :class => get_control_active('marker')) %>
-			<%= content_tag 'li', link_to(label_name(:announcements), announcements_url, :class => get_control_active('announcement')) if current_user.is_maximo? %>
+			<%= content_tag 'li', link_to(label_name(:announcements), announcements_url, 
+						:class => get_control_active('announcement')) if current_user.is_maximo? %>
 			<% end %>
 		</ul>
 

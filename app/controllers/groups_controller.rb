@@ -4,7 +4,8 @@ class GroupsController < ApplicationController
   before_filter :has_manager_access, :only => [:edit, :update, :destroy, :set_available, :set_enable_comments, :set_looking]
 
   def index
-    @groups = current_user.groups.paginate :page => params[:page], :order => 'name' 
+    @groups = Group.paginate(:all, :conditions => ["archive = false and id in (?)", current_user.groups], 
+    :page => params[:page], :order => 'name') unless current_user.groups.blank?
 
     if @groups.nil? or @groups.blank?
       redirect_to :action => 'list'

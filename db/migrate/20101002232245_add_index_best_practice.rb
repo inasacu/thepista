@@ -53,6 +53,7 @@ class AddIndexBestPractice < ActiveRecord::Migration
     add_index :teammates, :sub_item_id
     add_index :types, :table_id
     add_index :users, :rpxnow_id
+    add_index :taggings,    :taggable_id
   end
 
   def self.down

@@ -28,7 +28,7 @@ es:
      all_scorecard:  Todos las Clasificaciones
      all_tournament:  Todos los torneos  
      all_user:   Todos los jugadores
-     all_venue:  Todos los centros deportivos    
+     all_venue:  Todos los lugares de encuentro    
      already_exist: ya existe  
      and: y   
      announcement: Comunicación
@@ -156,6 +156,7 @@ es:
      city: Ciudad  
      click_to_edit:  "Haz clic para editar!" 
      close: Cerrar 
+     closes_at:  Horario de Cierre
      club:  Torneo solo para equipos
      club_description:  Torneo solo para equipos  
      code: Codigo 
@@ -372,7 +373,10 @@ es:
      exit_tournament: Desapuntate del torneo   
      explore:  Explorar
      facility: Instalaciones 
-     facilitiess_create:  Nueva Instalación 
+     facilities: Instalaciones
+     facilities_create:  Nueva Instalación 
+     facilities_name_description:  Nombre de la nueva instalación
+     facilities_new:  Nueva Instalación 
      failed_login: Error de inicio de sesión      
      false_value: "No"
      feature: Prestación
@@ -583,7 +587,11 @@ es:
      has_user_scorecard_played:
         zero: "No ha participado en un evento." 
         one:  "Ha participado en 1 evento." 
-        other: "Ha participado en {{count}} eventos."                        
+        other: "Ha participado en {{count}} eventos."  
+     has_venue_facilities:
+        zero: "Este lugar de encuentro no tiene instalaciones."
+        one: "Este lugar de encuentro tiene 1 instalación."
+        other: "Este lugar de encuentro tiene {{count}} instalaciones."                              
      has_left:
         zero: "No quedan" 
         one:  "Queda {{count}} "       
@@ -786,7 +794,7 @@ es:
      no_photo_for_cup:  Esta copa no tiene foto
      no_photo_for_user: Este jugador no tiene foto
      no_photo_for_group: Este equipo no tiene foto
-     no_photo_for_tournament: Este torneo no tiene foto         
+     no_photo_for_venue: Este lungar de encuentro no tiene foto         
      no_recent_activity: No hay actividades recientes   
      no_role: No tienes ningun papel   
      no_schedule: No tienes eventos para tu Equipo   
@@ -819,6 +827,7 @@ es:
      official:  Copa Oficial
      official_description:  Copa oficial
      open: Abrir   
+     opens_at:  Horario de Apertura
      openid_identifier: OpenID URL
      open_id_explanation: "OpenID es un sistema de autentificación seguro, libre y muy facil de usar, que te facilitara la identificación en muchas páginas web con solo introducir tu dirección uRL de OpenID,   de  forma que solo mantendra  una  ID  global  para tus  accesos  a web  con soporte OpenID "  
      open_id_logged_in: Identificado con éxito.   
@@ -1334,7 +1343,7 @@ es:
      Venue: Lugar de Encuentro
      venues: Lugares de Encuentro
      venues_create:    Nuevo lugar de encuentro
-     venues_index: Centros 
+     venues_index: Lugares de Encuentro 
      venues_name_description:  Nombre del lugar de encuentro
      venues_edit:  Actualizar lugar de encuentro
      venues_new:  Nuevo lugar de encuentro

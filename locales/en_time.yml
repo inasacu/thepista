@@ -136,6 +136,7 @@ en:
       day_date_wo_year: "%A, %e of %B" # this is my code
       day_time_wo_year: "%A, %e of %B at %H:%M" # this is my code
       time_at: "at %H:%M" # this is my code
+      simple_time_at: "%H:%M" # this is my code
       full_date: "%e of %B, %Y" # this is my code
       month_year:  "%B %Y"
     am: "am"

@@ -25,19 +25,25 @@
 	
 	<link rel="home" href="http://www.haypista.com">
     <link rel="shortcut icon" type="image/ico" href="/favicon.ico">
-    
+	
+	<%= javascript_include_tag :defaults %>
+	<%= ajaxful_rating_style %>
+	<%= javascript_include_tag 'jquery-1.3.2', 'jquery.google-analytics' %>
+	<%= javascript_include_tag 'jquery.google-analytics' %>
+	<%= javascript_include_tag 'jquery.notifyBar' %>
+	<%= javascript_include_tag 'fullcalendar/jquery', 'fullcalendar/jquery-ui', 'fullcalendar/jrails' %>
+	<%= javascript_include_tag 'fullcalendar/fullcalendar', 'fullcalendar/gcal', 'fullcalendar/application' %>
+
 	<%= stylesheet_link_tag 'reset', 'web_app_theme', 'haypista' %>
 	<%= stylesheet_link_tag 'application' %>
 	<%= stylesheet_link_tag 'header' %>	
 	<%= stylesheet_link_tag get_the_action if is_action('show') %>
-	
-	<%= javascript_include_tag :defaults %>
-	<%= ajaxful_rating_style %>
-
-	<%= javascript_include_tag 'jquery-1.3.1', 'jquery.google-analytics' %>
-	
 	<%= stylesheet_link_tag 'jquery.notifyBar' %>
-	<%= javascript_include_tag 'jquery.notifyBar' %>
+	
+	<%#= stylesheet_link_tag "fullcalendar/style" %>
+	<%#= stylesheet_link_tag 'fullcalendar/fullcalendar' %>
+	<%#= stylesheet_link_tag 'fullcalendar/jquery-ui' %>
+	<%#= stylesheet_link_tag 'fullcalendar/dialog' %>
 	
 	<%= render :partial => 'utilities/google_analytics' %>
 	
@@ -75,7 +81,7 @@
   </div>
 
   <%= render :partial => 'utilities/browser_detect' if development? %>
-  <%= render :partial => 'utilities/uservoice' unless development? %> 
+  <%#= render :partial => 'utilities/uservoice' unless development? %> 
   <%#= render :partial => 'utilities/facebook_badge' if development? %> 
   <%#= render :partial => 'utilities/envolve' unless development? %> 
   <%#= render :partial => 'utilities/secure_site' unless current_user %>

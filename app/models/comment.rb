@@ -10,7 +10,8 @@ class Comment < ActiveRecord::Base
   default_scope :order => 'created_at DESC'
 
   before_create   :format_body
-  after_create    :log_activity, :send_message_blog
+  # after_create    :log_activity, :send_message_blog
+  after_create :send_message_blog
 
   # NOTE: Comments belong to a user
   belongs_to :user
@@ -20,7 +21,7 @@ class Comment < ActiveRecord::Base
   def self.latest_items(items, user)
     find(:all, :select => "distinct comments.id, comments.user_id, comments.commentable_id, comments.commentable_type, comments.updated_at as created_at", 
          :joins => "left join groups_users on groups_users.user_id = comments.user_id left join challenges_users on challenges_users.user_id = comments.user_id",    
-         :conditions => ["(groups_users.group_id in (?)  or challenges_users.challenge_id in (?)) and comments.updated_at >= ?", user.groups, user.challenges, LAST_WEEK], 
+         :conditions => ["(groups_users.group_id in (?)  or challenges_users.challenge_id in (?)) and comments.updated_at >= ? and comments.archive = false", user.groups, user.challenges, LAST_WEEK], 
          :limit => GLOBAL_FEED_SIZE).each do |item| 
       items << item
     end
@@ -33,13 +34,13 @@ class Comment < ActiveRecord::Base
     self.body.gsub!(/\r?\n/, "<br>") unless self.body.nil?
   end
 
-  def log_activity
-    unless (self.user.nil?) 
-      if Comment.exists?(self.commentable_id, self.commentable_type, self.user)
-        activity = Activity.create!(:item => self, :user => self.user)
-      end
-    end
-  end
+  # def log_activity
+  #   unless (self.user.nil?) 
+  #     if Comment.exists?(self.commentable_id, self.commentable_type, self.user)
+  #       activity = Activity.create!(:item => self, :user => self.user)
+  #     end
+  #   end
+  # end
 
   def send_message_blog      
     @item = ''

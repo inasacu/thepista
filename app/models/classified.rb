@@ -24,8 +24,8 @@ class Classified < ActiveRecord::Base
                      
     before_create       :format_description
 
-    after_create        :log_activity
-    after_update        :log_activity_played
+    # after_create        :log_activity
+    # after_update        :log_activity_played
 
     # method section
     def self.find_classifieds(item, page = 1)
@@ -62,13 +62,13 @@ class Classified < ActiveRecord::Base
       # self.ends_at = self.ends_at.utc
     end
 
-    def log_activity
-      # add_activities(:item => self, :user => self.group.all_the_managers.first) 
-    end
+    # def log_activity
+    #   # add_activities(:item => self, :user => self.group.all_the_managers.first) 
+    # end
 
-    def log_activity_played
-      # add_activities(:item => self, :user => self.group.all_the_managers.first) if self.played?
-    end
+    # def log_activity_played
+    #   # add_activities(:item => self, :user => self.group.all_the_managers.first) if self.played?
+    # end
 
     def validate
       # self.errors.add(:starts_at, I18n.t(:must_be_before_ends_at)) if self.starts_at >= self.ends_at

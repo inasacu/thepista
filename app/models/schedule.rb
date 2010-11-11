@@ -87,8 +87,8 @@ class Schedule < ActiveRecord::Base
   before_create       :format_description
   before_update       :set_time_to_utc, :format_description
 
-  after_create        :log_activity
-  after_update        :log_activity_played
+  # after_create        :log_activity
+  # after_update        :log_activity_played
   
   # method section
   def self.match_participation(group, users, schedules)
@@ -198,7 +198,7 @@ class Schedule < ActiveRecord::Base
   end
   
   def self.latest_items(items)
-    find(:all, :conditions => ["schedules.created_at >= ?", LAST_WEEK], :order => "schedules.id desc").each do |item| 
+    find(:all, :conditions => ["schedules.created_at >= ? and archive = false", LAST_WEEK], :order => "schedules.id desc").each do |item| 
       items << item
     end
     return items 
@@ -206,7 +206,7 @@ class Schedule < ActiveRecord::Base
   
   def self.latest_matches(items)
     find(:all, :select => "distinct schedules.id, schedules.concept, schedules.group_id, schedules.played, schedules.updated_at as created_at", :joins => "left join matches on matches.schedule_id = schedules.id",
-          :conditions => ["matches.updated_at >= ? and group_score is not null and invite_score is not null", LAST_24_HOURS]).each do |item| 
+          :conditions => ["matches.updated_at >= ? and matches.archive = false and group_score is not null and invite_score is not null", LAST_24_HOURS]).each do |item| 
       items << item
     end
     return items
@@ -414,18 +414,20 @@ class Schedule < ActiveRecord::Base
     # self.ends_at = self.ends_at.utc
   end
 
-  def log_activity
-    add_activities(:item => self, :user => self.group.all_the_managers.first) 
-  end
+  # def log_activity
+  #   add_activities(:item => self, :user => self.group.all_the_managers.first) 
+  # end
 
-  def log_activity_played
-    add_activities(:item => self, :user => self.group.all_the_managers.first) if self.played?
-  end
+  # def log_activity_played
+  #   add_activities(:item => self, :user => self.group.all_the_managers.first) if self.played?
+  # end
 
   def validate
-    self.errors.add(:reminder_at, I18n.t(:must_be_before_starts_at)) if self.reminder_at >= self.starts_at
-    self.errors.add(:starts_at, I18n.t(:must_be_before_ends_at)) if self.starts_at >= self.ends_at
-    self.errors.add(:ends_at, I18n.t(:must_be_after_starts_at)) if self.ends_at <= self.starts_at
+    if self.archive == false
+      self.errors.add(:reminder_at, I18n.t(:must_be_before_starts_at)) if self.reminder_at >= self.starts_at 
+      self.errors.add(:starts_at, I18n.t(:must_be_before_ends_at)) if self.starts_at >= self.ends_at
+      self.errors.add(:ends_at, I18n.t(:must_be_after_starts_at)) if self.ends_at <= self.starts_at 
+    end
   end
 
 end

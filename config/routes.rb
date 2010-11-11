@@ -132,17 +132,13 @@ ActionController::Routing::Routes.draw do |map|
   map.resources   :casts,           :as => 'pronostico',                  :collection => { :list => :get, :list_guess => :get }
   map.resources   :escuadras
   
+  map.resources   :venues,          :as => 'deportivos',                  :collection => { :list => :get }
+  map.resources   :facilities,      :as => 'instalaciones',               :collection => { :list => :get }
+  map.resources   :agendas,         :as => 'agendas',                     :collection => { :list => :get }
+
   map.resources   :users do |user|
     user.resources :messages
   end
-
-  # See how all your routes lay out with "rake routes"
-
-  # Install the default routes as the lowest priority.
-  # Note: These default routes make all actions in every controller accessible via GET requests. You should
-  # consider removing the them or commenting them out if you're using named routes and resources.
-  # map.connect ':controller/:action/:id'
-  # map.connect ':controller/:action/:id.:format'
   
   map.connect ":controller/:action.:format"
 end

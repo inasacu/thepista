@@ -154,7 +154,8 @@ en:
      check_out_users: Show Players   
      city: City  
      click_to_edit:  "Click to edit!" 
-     close: Close   
+     close: Close  
+     closes_at:  Closes at 
      club:  "Team Tournament Only"
      club_description:  Tournament for teams only
      code: Code
@@ -370,8 +371,11 @@ en:
      exit_group: Opt-out of the Team   
      exit_tournament: Opt-out of the Tournament   
      explore:  Explore
-     facility: Instalations 
-     facilitiess_create:  Create Instalation  
+     facility: Instalations
+     facilities: Instalations
+     facilities_create:  Create Instalation 
+     facilities_name_description:  New Instalation Name
+     facilities_new:  Create Instalation 
      failed_login: Failed Login      
      false_value: "No"
      feature: Feature
@@ -583,6 +587,10 @@ en:
         zero: "Has not participated in any events." 
         one:  "Has participated in 1 event." 
         other: "Has participated in {{count}} events."   
+     has_venue_facilities:
+        zero: "Venue has no instalations."
+        one: "Venue has 1 instalation."
+        other: "Venue has {{count}} instalations." 
      has_left:
         zero: "Zero until game" 
         one:  "{{count}} until game"
@@ -785,7 +793,7 @@ en:
      no_photo_for_cup:  Tournament without a photo
      no_photo_for_user: Player without a photo
      no_photo_for_group: Team without a photo
-     no_photo_for_tournament: Tournament without a photo         
+     no_photo_for_venue: Venue without a photo         
      no_recent_activity: No recent activities   
      no_role: No Role   
      no_schedule: No events for your Team   
@@ -817,7 +825,8 @@ en:
      office_hours:  Office Hours
      official:  Official Tournament
      official_description:  Official Tournament
-     open: Open   
+     open: Open 
+     opens_at: Opens at  
      openid_identifier: OpenID URL
      open_id_explanation: "The OpenID authentication system is a safe, free and very easy to use.  It will enable identification of many web pages when you enter your OpenID URL, it also gives you access to sites that support OpenID "  
      open_id_logged_in: Successfully Logged In.   

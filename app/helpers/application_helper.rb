@@ -125,6 +125,11 @@ module ApplicationHelper
   end
 
   # a las 20:30
+  def nice_simple_time_at(time_at)
+    return I18n.l(time_at, :format => :simple_time_at) unless time_at.nil?
+  end
+
+  # a las 20:30
   def nice_time_at(time_at)
     return I18n.l(time_at, :format => :time_at) unless time_at.nil?
   end
