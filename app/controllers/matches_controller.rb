@@ -69,19 +69,6 @@ class MatchesController < ApplicationController
     end
   end 
 
-  # def set_match_technical_physical
-  #   @match = Match.find(params[:id])
-  #   unless current_user.is_manager_of?(@match.schedule.group)
-  #     flash[:warning] = I18n.t(:unauthorized)
-  #     redirect_back_or_default('/index')
-  #     return
-  #   end
-  #   if @match.update_attributes(params[:match])
-  #     flash[:success] = I18n.t(:successful_update)
-  #   end
-  #   redirect_back_or_default('/index')
-  # end
-
   def set_status
     unless current_user == @match.user or current_user.is_manager_of?(@match.schedule.group) 
       flash[:warning] = I18n.t(:unauthorized)
@@ -95,7 +82,7 @@ class MatchesController < ApplicationController
 
     if @match.update_attributes(:type_id => @type.id, :played => played, :user_x_two => @user_x_two, :status_at => Time.zone.now)
       Scorecard.calculate_user_played_assigned_scorecard(@match.user, @match.schedule.group)
-      Match.log_activity_convocado(@match)
+      # Match.log_activity_convocado(@match)
 
       flash[:success] = I18n.t(:is_available_user) 
     end 
