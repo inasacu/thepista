@@ -24,7 +24,7 @@ class Match < ActiveRecord::Base
   attr_accessible :position_id, :technical, :physical
   attr_accessible :goals_scored, :game_started, :field_goal_attempt, :field_goal_made, :free_throw_attempt, :free_throw_made
   attr_accessible :three_point_attempt, :three_point_made, :rebounds, :rebounds_defense, :rebounds_offense 
-  attr_accessible :minutes_played, :assists, :steals, :blocks, :turnovers, :personal_fouls
+  attr_accessible :minutes_played, :assists, :steals, :blocks, :turnovers, :personal_fouls, :archive
 
 
   before_create   :format_description

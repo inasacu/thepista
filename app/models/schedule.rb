@@ -77,7 +77,7 @@ class Schedule < ActiveRecord::Base
   # variables to access
   attr_accessible :concept, :description, :season, :jornada, :starts_at, :ends_at, :reminder_at, :reminder
   attr_accessible :fee_per_game, :fee_per_pista, :time_zone, :group_id, :sport_id, :marker_id, :player_limit
-  attr_accessible :public, :season_ends_at
+  attr_accessible :public, :season_ends_at, :archive
 
   # NOTE:  MUST BE DECLARED AFTER attr_accessible otherwise you get a 'RuntimeError: Declare either attr_protected or attr_accessible' 
   has_friendly_id :concept, :use_slug => true, :approximate_ascii => true, 
