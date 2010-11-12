@@ -128,17 +128,18 @@ if roster_count
 		</td>	
 		<td class="<%= second_team %>" >
 <% 
-	if current_user == match.user or current_user.is_manager_of?(@schedule.group) 
+	is_manager = current_user.is_manager_of?(@schedule.group) 
+	
+	if current_user == match.user or is_manager
 		@match_type.each do |type|  
 			unless type.id == match.type_id			
 				if type.id == 4
 %>
-					<%= render :partial => '/schedules/team_roster_option', 
-						:locals => {:type => type, :match => match} if current_user.is_manager_of?(@schedule.group) %>
+					<%= match_roster_change_link(match, type) if is_manager %>
 <% 			
 				else
 %>
-					<%= render :partial => '/schedules/team_roster_option', :locals => {:type => type, :match => match} %>
+					<%= match_roster_change_link(match, type) %>
 <%
 				end 
 			end
