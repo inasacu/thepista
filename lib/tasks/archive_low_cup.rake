@@ -1,48 +1,25 @@
-# to run:    sudo rake the_archive_challenge
+# to run:    sudo rake the_archive_cup
 
-desc "archive challenges and cast"
-task :the_archive_challenge => :environment do |t|
+desc "archive cups with few casts"
+task :the_archive_cup => :environment do |t|
 
   ActiveRecord::Base.establish_connection(RAILS_ENV.to_sym)
-
-  # archive all challenges and cast for cups archived
-  @cups = Cup.find(:all, :conditions => "archive = true")
-  @cups.each do |cup|
-    @challenges = Challenge.find(:all, :conditions => ["cup_id = ?", cup])
-    @challenges.each do |challenge|
-      
-      # archive the challenge
-      challenge.archive = true
-      challenge.save!
-      
-      puts "archived challenge:  #{challenge.id}"
-      
-      # archive the casts for the challenge
-      @casts = Cast.find(:all, :conditions => ["challenge_id = ?", challenge])
-      @casts.each do |cast|
-        cast.archive = true
-        cast.save!
-        
-        puts "archived cast:  #{cast.id}"
-        
-      end
-      
-    end
-  end
   
+  # archive flag
+  has_to_archive = true
 
   # archive all chanllenges and cast w/ 
   @cups = Cup.find(:all, :conditions => "archive = false and official = true")
   @cups.each do |cup|
 
-    # puts "cup: #{cup.name}"
+    puts "cup: #{cup.name}"
 
     final_played ||= false
     the_game = Game.final_game(cup)
     final_played = the_game.played unless (the_game.nil? or the_game.blank?)
 
     number_of_games = Game.find(:first, :select => "count(*) as total", :conditions => ["cup_id = ?", cup]).total
-    # puts "number_of_games: #{number_of_games.to_i}"
+    puts "number_of_games: #{number_of_games.to_i}"
 
     @challenges = Challenge.find(:all, :conditions => ["cup_id = ?", cup])
     @challenges.each do |challenge|
@@ -58,14 +35,8 @@ task :the_archive_challenge => :environment do |t|
         puts "total_cast: #{total_cast.to_i}"
         puts "total_null_cast: #{total_null_cast.to_i}"
         
-        challenge.archive = true
-        challenge.save!
-        
-        @casts = Cast.find(:all, :conditions => ["challenge_id = ?", challenge])
-        @casts.each do |cast|
-          cast.archive = true
-          cast.save!
-        end
+        cup.archive = true
+        cup.save if has_to_archive
         
       end
       

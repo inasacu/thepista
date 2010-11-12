@@ -122,6 +122,10 @@ class Cup < ActiveRecord::Base
     end
     return items
   end
+  
+  def self.has_official_cup?
+    !(find(:first, :conditions => "archive = false and official = true").nil?)
+  end
    
   def has_standing    
     @standing = Cup.find(:first, :select => "count(*) as total", 
