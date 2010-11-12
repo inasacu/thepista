@@ -19,7 +19,7 @@ class Comment < ActiveRecord::Base
 
   # method section  
   def self.latest_items(items, user)
-    find(:all, :select => "DISTINCT comments.id, comments.user_id, comments.commentable_id, comments.commentable_type, comments.updated_at as created_at", 
+    find(:all, :select => "distinct on (comments.id, comments.user_id, comments.commentable_id, comments.commentable_type, comments.updated_at as created_at)", 
          :joins => "left join groups_users on groups_users.user_id = comments.user_id left join challenges_users on challenges_users.user_id = comments.user_id",    
          :conditions => ["(groups_users.group_id in (?)  or challenges_users.challenge_id in (?)) and 
                           comments.updated_at >= ? and comments.archive = false", user.groups, user.challenges, LAST_WEEK],
