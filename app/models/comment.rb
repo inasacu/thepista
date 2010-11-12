@@ -1,7 +1,6 @@
 class Comment < ActiveRecord::Base
 
   include ActsAsCommentable::Comment
-
   include ActivityLogger
 
   belongs_to :commentable, :polymorphic => true
@@ -10,7 +9,6 @@ class Comment < ActiveRecord::Base
   default_scope :order => 'created_at DESC'
 
   before_create   :format_body
-  # after_create    :log_activity, :send_message_blog
   after_create :send_message_blog
 
   # NOTE: Comments belong to a user
@@ -19,10 +17,9 @@ class Comment < ActiveRecord::Base
 
   # method section  
   def self.latest_items(items, user)
-    find(:all, :select => "comments.id, comments.user_id, comments.commentable_id, comments.commentable_type, comments.updated_at as created_at", 
+    find(:all, :select => "distinct comments.id, comments.user_id, comments.commentable_id, comments.commentable_type, comments.updated_at as created_at", 
          :joins => "left join groups_users on groups_users.user_id = comments.user_id left join challenges_users on challenges_users.user_id = comments.user_id",    
-         :conditions => ["(groups_users.group_id in (?)  or challenges_users.challenge_id in (?)) and 
-                          comments.updated_at >= ? and comments.archive = false", user.groups, user.challenges, LAST_WEEK]).each do |item| 
+         :conditions => ["(groups_users.group_id in (?)  or challenges_users.challenge_id in (?)) and comments.updated_at >= ? and comments.archive = false", user.groups, user.challenges, LAST_24_HOURS]).each do |item| 
       items << item
     end
     return items 
@@ -34,17 +31,8 @@ class Comment < ActiveRecord::Base
     self.body.gsub!(/\r?\n/, "<br>") unless self.body.nil?
   end
 
-  # def log_activity
-  #   unless (self.user.nil?) 
-  #     if Comment.exists?(self.commentable_id, self.commentable_type, self.user)
-  #       activity = Activity.create!(:item => self, :user => self.user)
-  #     end
-  #   end
-  # end
-
   def send_message_blog      
     @item = ''
-    # send_mail = false
     
     case self.commentable_type
     when "Forum"
@@ -52,7 +40,6 @@ class Comment < ActiveRecord::Base
       @group = @item.schedule.group
 
       @group.users.each do |user|
-        # send_mail = user.forum_comment_notification?
         UserMailer.send_later(:deliver_message_blog, user, self.user, self) if user.forum_message?
       end      
 
