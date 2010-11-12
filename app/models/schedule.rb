@@ -205,10 +205,9 @@ class Schedule < ActiveRecord::Base
   end
   
   def self.latest_matches(items)
-    find(:all, :select => "DISTINCT schedules.id, schedules.concept, schedules.group_id, schedules.played, schedules.updated_at as created_at", 
+    find(:all, :select => "distinct schedules.id, schedules.concept, schedules.group_id, schedules.played, schedules.updated_at as created_at", 
          :joins => "left join matches on matches.schedule_id = schedules.id",
-         :conditions => ["matches.updated_at >= ? and matches.archive = false and group_score is not null and invite_score is not null", LAST_24_HOURS],
-         :order => "schedules.id, schedules.concept, schedules.group_id, schedules.played, schedules.updated_at").each do |item| 
+         :conditions => ["matches.updated_at >= ? and matches.archive = false and group_score is not null and invite_score is not null", LAST_24_HOURS]).each do |item| 
       items << item
     end
     return items
