@@ -41,14 +41,16 @@
 	<%= stylesheet_link_tag 'application' %>
 	<%= stylesheet_link_tag 'header' %>	
 	<%= stylesheet_link_tag get_the_action if is_action('show') %>
-	<%= stylesheet_link_tag 'jquery.notifyBar' %>
 	
 	<%= render :partial => 'utilities/google_analytics' %>
 	
 </head>
 <body>
+	<% show_facebook_sdk = ['home_upcoming', 'schedule_index', 'schedule_my_list', 'schedule_list'] %>
+	<% show_ajax_rating = ['home_upcoming', 'schedule_index', 'schedule_my_list', 'schedule_list'] %>
+	
 	<%= render :partial => 'utilities/visible_script' %>	
-	<%= render :partial => 'utilities/facebook_sdk' %>
+	<%= render :partial => 'utilities/facebook_sdk' if show_facebook_sdk.include?(get_controller_action) %>
 	
 	<%= render :partial => 'shared/flash', :locals => {:flash => flash } %>
 	

@@ -1437,7 +1437,9 @@ en:
      faq: FAQ
      openid:  Login with your OpenID account
      faq_acceso_con_tu_cuenta:  FAQ about your personal Account
-     follow_twitter:  Follow us Twitter
+     follow_twitter:  Follow us on Twitter
+     follow_facebook:  Follow us on Facebook
+     follow_linkedin:  Follow us on Linkedin
      classified:  Announcement
      classifieds:  Announcements
      classified_description:  Announcement Details
