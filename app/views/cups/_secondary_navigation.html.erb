@@ -4,6 +4,8 @@
 	has_escuadras = false 
 	has_escuadras = (object_counter(cup.escuadras) > 0 ) unless @cups 
 	is_not_new_item = !is_action('new')
+	
+	content_for(:description, "#{h(@cup.name)},  #{h(@cup.description) }.") unless @cups 							
 %>
 
 <div class="secondary-navigation">

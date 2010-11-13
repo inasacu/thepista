@@ -242,7 +242,10 @@ module ApplicationHelper
   end
 
   def page_description
-    @content_for_description.to_s
+    value = 140
+    text = h(@content_for_description).to_s
+    text = "#{text.to_s.strip[0..value]}..." if text.to_s.length > value
+    return @content_for_description = (text.blank? ? label_name(:modo) : "#{app_name} | #{text}")
   end
 
   def show_heading(text)

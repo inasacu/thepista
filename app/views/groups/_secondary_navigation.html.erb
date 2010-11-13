@@ -10,6 +10,8 @@
 	the_controller = ['blog', 'classified', 'fee', 'payment']
 	active_classified ||= ""
 	active_classified = get_active("#{get_the_controller}_#{get_the_action}") if the_controller.include?(get_the_controller)
+	
+	content_for(:description, "#{h(@group.name)} / #{@group.sport.name},  #{h(@group.description) }.  #{@group.marker.name}, #{@group.time_zone}") if @group
 %>
 
 <div class="secondary-navigation">
