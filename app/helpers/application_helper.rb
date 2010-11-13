@@ -143,6 +143,11 @@ module ApplicationHelper
   def nice_day_of_week(time_at)
     return I18n.l(time_at, :format => :day_week) unless time_at.nil?
   end
+  
+  # 12 de Junio de 2010 a las 20:30
+  def nice_date_hour(time_at)
+    return I18n.l(time_at, :format => :date_hour) unless time_at.nil?
+  end
 
   # translation missing: es, 2010-06-12 20:30:00 +0200
   def nice_day_date(time_at)

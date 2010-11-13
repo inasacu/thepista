@@ -253,7 +253,7 @@ class MessagesController < ApplicationController
     @message = Message.find_all_parent_messages(params[:id])
     @message.each do |message| 
       if message.trash(current_user)
-        flash[:notice] = I18n.t(:recycled_message)
+        # flash[:notice] = I18n.t(:recycled_message)
       else
         # This should never happen...
         flash[:error] = I18n.t(:invalid_action)
@@ -269,7 +269,7 @@ class MessagesController < ApplicationController
     @message = Message.find_all_parent_messages(params[:id])
     @message.each do |message| 
       if message.untrash(current_user)
-        flash[:notice] = I18n.t(:recycled_message)
+        # flash[:notice] = I18n.t(:recycled_message)
       else
         # This should never happen...
         flash[:error] = I18n.t(:invalid_action)

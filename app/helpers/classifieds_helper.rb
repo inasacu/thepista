@@ -5,7 +5,14 @@ module ClassifiedsHelper
     item_concept_link(text, item, html_options)
   end
   
-  def classified_icon(classified)
-      image_tag("icons/email_add.png", :class => "icon")
+  # def classified_icon(classified)
+  #     image_tag("icons/email_add.png", :class => "icon")
+  # end
+  
+  def classified_image_link(classified)    
+    the_image = 'icons/comment_delete.png' 
+    the_label = label_name(:classified_delete)
+    # the_confirmation =  %(#{the_label}?)
+    link_to(image_tag(the_image, :title => the_label, :style => "height: 16px; width: 16px;"), classified_path(classified), :method => :delete, :title => the_label)
   end
 end

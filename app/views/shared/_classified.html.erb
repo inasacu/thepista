@@ -1,27 +1,26 @@
-<%- unless classified.nil? 
+<%- 
+unless classified.nil? 
 	recent ||= false 
 	the_label = ago(classified.created_at) 
 	the_classified = classified.concept	
 	the_classified = "#{classified.concept.strip[0..45]}..." if the_classified.length > 45	
-	the_group = Group.find(classified.table_id)
+	group = Group.find(classified.table_id)
 -%>
-
 	<tr>
-	  <td class="name_and_date">
-		<%= image_link_small(the_group) %>
-			<span class="date"><%= group_link(the_group) %></span>
-	  </td>
-	  </td>
-	
 		<td class="name_and_date">
-			<span class="date">
-				<%= classified_link(classified) %><br />
-				<%= link_to(image_tag("icons/comment_delete.png"), 
-							classified_path(classified), :method => :delete, 
-							 :confirm => %(#{label_name(:delete_classified)}?),
-							 :title => label_name(:delete_classified)) if current_user.is_manager_of?(the_group) %>
-							<%= "&nbsp;&nbsp;[#{the_label}]" %>
-			</span>
+			<%= image_link_small(group) %>
+			<span class="date"><%= group_link(group) %></span>
 		</td>
-		</tr>
-<%- end -%>
+	</td>
+
+	<td class="name_and_date">
+		<span class="date">
+			<%= classified_link(classified) %><br />
+			<%= "&nbsp;&nbsp;[#{the_label}]" %>				
+			<%= classified_image_link(classified)  if current_user.is_manager_of?(group)   %>				
+		</span>
+	</td>
+	</tr>
+<%- 
+end 
+-%>

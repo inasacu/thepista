@@ -19,7 +19,7 @@
 	
 		<br />
 		<span class="date">
-			<%= nice_day_of_week(message.created_at) %>
+			<%= nice_date_hour(message.created_at) %>
 		</span>
 	</td>
 	<td>
@@ -32,7 +32,8 @@
 		</span>
 	</td>
 	<td class="last">
-		<%= render :partial => 'action', :locals => {:message => message} %>
+		<%#= render :partial => 'action', :locals => {:message => message} %>
+		<%= message_image_link(message) unless message.trashed?(current_user) %>
 	</td>
 </tr>
 

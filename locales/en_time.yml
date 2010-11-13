@@ -128,7 +128,8 @@ en:
       default: "%m/%d/%Y %I:%M %p"
       time: "%I:%M %p"
       short: "%d %b %H:%M"
-      long: "%B %d, %Y %H:%M" 
+      long: "%B %d, %Y %H:%M"       
+      date_hour: "%e de %B de %Y a las %H:%M" # this is my code
       day_week: "%A, %e of %B, %Y at %H:%M" # this is my code
       day_time: "%A, at %H:%M" # this is my code
       day_weekday: "%A" # this is my code
