@@ -28,7 +28,7 @@ task :self_cron => :environment do
   puts "done."
 
   puts "Sitemap Refresh..."
-  Rake::Task['sitemap:refresh'].invoke
+  # Rake::Task['sitemap:refresh'].invoke
 
 
   ActiveRecord::Base.establish_connection(RAILS_ENV.to_sym)
