@@ -32,8 +32,6 @@ HOURS_BEFORE_GAME = Time.zone.now + 4.hours
 TIME_AGO_FOR_MOSTLY_ACTIVE = 1.month.ago
 TRASH_TIME_AGO = 1.month.ago
 ACTIVITY_TIME_AGO = 6.months.ago
-TWELVE_MONTHS_AGO = 12.months.ago
-EIGHTEEN_MONTHS_AGO = 18.months.ago
 
 # variable for pagination
 BLOGS_PER_PAGE = 8

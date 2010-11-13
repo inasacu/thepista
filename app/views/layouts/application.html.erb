@@ -31,11 +31,9 @@
 	<%= javascript_include_tag :defaults %>
 	<%= ajaxful_rating_style %>
 	
-	<%#= javascript_include_tag 'jquery-1.3.2', 'jquery.google-analytics' %>
-	
-	<%= javascript_include_tag  "http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js" %>
+	<%= javascript_include_tag  "http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js" unless development? %>	
+	<%= javascript_include_tag 'jquery-1.4.2.min' if development? %>
 	<%= javascript_include_tag 'jquery.google-analytics' %>
-	<%#= javascript_include_tag 'jquery.google-analytics' %>
 	<%= javascript_include_tag 'jquery.notifyBar' %>
 	<%#= javascript_include_tag 'fullcalendar/jquery', 'fullcalendar/jquery-ui', 'fullcalendar/jrails' %>
 	<%#= javascript_include_tag 'fullcalendar/fullcalendar', 'fullcalendar/gcal', 'fullcalendar/application' %>
