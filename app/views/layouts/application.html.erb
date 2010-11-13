@@ -33,21 +33,15 @@
 	
 	<%= javascript_include_tag  "http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js" unless development? %>	
 	<%= javascript_include_tag 'jquery-1.4.2.min' if development? %>
+	
 	<%= javascript_include_tag 'jquery.google-analytics' %>
 	<%= javascript_include_tag 'jquery.notifyBar' %>
-	<%#= javascript_include_tag 'fullcalendar/jquery', 'fullcalendar/jquery-ui', 'fullcalendar/jrails' %>
-	<%#= javascript_include_tag 'fullcalendar/fullcalendar', 'fullcalendar/gcal', 'fullcalendar/application' %>
 
 	<%= stylesheet_link_tag 'reset', 'web_app_theme', 'haypista' %>
 	<%= stylesheet_link_tag 'application' %>
 	<%= stylesheet_link_tag 'header' %>	
 	<%= stylesheet_link_tag get_the_action if is_action('show') %>
 	<%= stylesheet_link_tag 'jquery.notifyBar' %>
-	
-	<%#= stylesheet_link_tag "fullcalendar/style" %>
-	<%#= stylesheet_link_tag 'fullcalendar/fullcalendar' %>
-	<%#= stylesheet_link_tag 'fullcalendar/jquery-ui' %>
-	<%#= stylesheet_link_tag 'fullcalendar/dialog' %>
 	
 	<%= render :partial => 'utilities/google_analytics' %>
 	
