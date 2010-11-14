@@ -28,10 +28,6 @@ task :cron => :environment do
     Schedule.send_after_scorecards
     puts "done."
 
-    puts "Sitemap Refresh..."
-    # Rake::Task['sitemap:refresh'].invoke
-
-
     ActiveRecord::Base.establish_connection(RAILS_ENV.to_sym)
 
     @archive_messages = Message.find(:all, :select => "distinct parent_id", :conditions => ["created_at <= ?", 1.month.ago])
