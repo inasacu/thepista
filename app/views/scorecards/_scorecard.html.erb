@@ -18,7 +18,7 @@
 %>
 
 <tr>
-	<td class="puntos"><%#= "*" if ((scorecard.played.to_i + less_games) < games_played.to_i) %>&nbsp;<%= scorecard.ranking %></td>
+	<td class="puntos" align="center"><%= scorecard.ranking %></td>
 	<td class="equipos"><%= mailer ? "&nbsp;" : item_image_link_tiny(scorecard.user) %></td>
 	<td class="equipos">
 		<span>
