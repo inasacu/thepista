@@ -61,7 +61,10 @@ if roster_count
        	<% the_roster.each do |match| 
 			is_second_team = !(match.group_id > 0)
 			second_team = ""
-			second_team = "second_team" if is_second_team			
+			second_team = "second_team" if is_second_team
+			puntos = "puntos"
+			puntos = "second_team_puntos" if is_second_team
+					
 			coeficient_played = 100 *(match.scorecard_played.to_f / group_games_played)
 	-%>
         <tr>
@@ -113,8 +116,8 @@ if roster_count
 			<%= is_sub_manager ? link_to(match.team_name(@schedule), match_team_path(:id => match.id), :title => label_name(:change_group)) :  
 							match.team_name(@schedule) %>
 		</td>
-		<td class="<%= second_team %>" align="left"><%= match.ranking %></td>
-		<td class="<%= second_team %>" align="left"><%= sprintf( "%0.00f", coeficient_played) %><%= "%" %></td>
+		<td class="<%= puntos %>" align="left"><%= match.ranking %></td>
+		<td class="<%= puntos %>" align="left"><%= sprintf( "%0.00f", coeficient_played) %><%= "%" %></td>
 <% 
 	
 	if @schedule.played? 

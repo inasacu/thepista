@@ -211,6 +211,12 @@ hr {
 	background: #EEEEEE;
 }
 
+.table td.second_team_puntos { 
+	background: #EEEEEE;
+	color: darkblue; 
+	font-weight: bold; 
+}
+
 /* forms */
 
 .form input.text_field, .form textarea.text_area {
