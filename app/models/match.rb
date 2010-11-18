@@ -71,6 +71,12 @@ class Match < ActiveRecord::Base
              :conditions =>["(group_id = #{scorecard.group_id} or invite_id = #{scorecard.group_id}) and user_id = #{scorecard.user_id} " +
                             "and type_id = 1 and played = true and archive = false"])
   end
+
+  def self.user_assists(scorecard)
+        find(:first, :select => "sum(assists) as total", 
+             :conditions =>["(group_id = #{scorecard.group_id} or invite_id = #{scorecard.group_id}) and user_id = #{scorecard.user_id} " +
+                            "and type_id = 1 and played = true and archive = false"])
+  end
   
   def self.find_user_group_matches(user_id, group_id)
     find_by_sql(["select matches.id, matches.schedule_id, matches.user_id, matches.one_x_two, matches.user_x_two, matches.type_id, matches.played, " +

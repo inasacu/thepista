@@ -5,11 +5,17 @@
 		
 	<div class="column left"> 
 		
+		<table class="table" id="<%= get_the_controller.gsub(' ','_') %>">
+			
+		<%= render :partial => 'match_basket_label' if @is_basket %>
+		<%= render :partial => 'match_futbol_label' unless @is_basket %>
+			
+		</table>
+		
 		<div class="columns"> 
+			
 			<div class="column left"> 
-				<table>
-					
-					<%= render :partial => 'match_label' if @is_basket %>
+				<table>					
 					<%= render :partial =>'match', :collection => @matches, :locals => {:first_team => true} %>
 				</table>
 			</div>

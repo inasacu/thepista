@@ -2,6 +2,9 @@
 	new_or_existing = match.new_record? ? 'new' : 'existing' 
 	prefix = "match[match_attributes][]" 
 %>
+
+
+
 	  
 <!-- field_for start -->		
 <% 
@@ -16,7 +19,7 @@ fields_for prefix, match do |match_form|
 		<td>&nbsp;&nbsp;<td/>		
 		<td>&nbsp;&nbsp;<td/>	
 		
-		<%= render :partial => 'futbol', :locals => {:match_form => match_form} if @is_futbol %>		
+		<%= render :partial => 'futbol', :locals => {:match_form => match_form} if @is_futbol %>
 		<%= render :partial => 'basket', :locals => {:match_form => match_form} if @is_basket %>			 
 			
 	</tr>
@@ -24,6 +27,5 @@ fields_for prefix, match do |match_form|
  	end
 end 
 -%>
-	
 <!-- field_for end -->
 

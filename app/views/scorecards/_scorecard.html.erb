@@ -38,12 +38,13 @@
 	
 	<%  if group.is_futbol?  %>
 	<td class="puntos"><%= scorecard.goals_scored %></td>
+	<td class="puntos"><%= scorecard.assists %></td>
 	<td class="afavor"><%= scorecard.goals_for %></td>
 	<td class="encontra"><%= scorecard.goals_against %></td>
 	<td class="encontra"><%= scorecard.goals_for - scorecard.goals_against %></td>
 	<% end %>
 		
-	<td class="puntos"><%= sprintf( "%0.00f", coeficient) %><%= "%" %></td>
+	<!-- <td class="puntos"><%#= sprintf( "%0.00f", coeficient) %><%= "%" %></td> -->
 	<td class="jugados"><%= scorecard.played %></td>
 	<td class="jugados"><%= scorecard.assigned %></td>
 	<td class="puntos"><%= mailer ? sprintf( "%0.0f", coeficient_points)  : coeficient_points.round %></td>

@@ -58,7 +58,7 @@ class Scorecard < ActiveRecord::Base
     # default variables      
     wins, losses, draws = 0, 0, 0
     played, assigned = 0, 0
-    goals_for, goals_against, goals_scored = 0, 0, 0
+    goals_for, goals_against, goals_scored, assists = 0, 0, 0, 0
     prev_wins, prev_losses, prev_draws, prev_played = 0, 0, 0, 0
     the_points, the_previous_played, the_previous_points = 0, 0, 0
 
@@ -96,6 +96,7 @@ class Scorecard < ActiveRecord::Base
     played = Match.user_played(scorecard).total
     assigned = Match.user_assigned(scorecard).total
     goals_scored = Match.user_goals_scored(scorecard).total
+    assists = Match.user_assists(scorecard).total
 
     # ticker all the results for the user, group conbination and points relate to team activity
     the_points = (wins * scorecard.group.points_for_win) + 
@@ -115,12 +116,14 @@ class Scorecard < ActiveRecord::Base
       scorecard.update_attributes(:wins => wins, :losses => losses, :draws => draws, :played => played, :assigned => assigned.to_i,
                                   :points => the_points, :previous_points => the_previous_points,
                                   :previous_played => the_previous_played, 
-                                  :goals_for => goals_for, :goals_against => goals_against, :goals_scored => goals_scored.to_i)
+                                  :goals_for => goals_for, :goals_against => goals_against, :goals_scored => goals_scored.to_i,
+                                  :assists => assists.to_i)
     else
       scorecard.update_attributes(:wins => wins, :losses => losses, :draws => draws, 
                                   :played => played, :assigned => assigned.to_i,
                                   :points => the_points, 
-                                  :goals_for => goals_for, :goals_against => goals_against, :goals_scored => goals_scored.to_i)
+                                  :goals_for => goals_for, :goals_against => goals_against, :goals_scored => goals_scored.to_i,
+                                  :assists => assists.to_i)
     end
   end
   
