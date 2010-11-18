@@ -44,7 +44,6 @@
 	<td class="encontra"><%= scorecard.goals_for - scorecard.goals_against %></td>
 	<% end %>
 		
-	<!-- <td class="puntos"><%#= sprintf( "%0.00f", coeficient) %><%= "%" %></td> -->
 	<td class="jugados"><%= scorecard.played %></td>
 	<td class="jugados"><%= scorecard.assigned %></td>
 	<td class="puntos"><%= mailer ? sprintf( "%0.0f", coeficient_points)  : coeficient_points.round %></td>
