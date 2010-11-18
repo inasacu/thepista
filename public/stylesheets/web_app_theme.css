@@ -1,3 +1,5 @@
+/* @override http://thepista.local/stylesheets/web_app_theme.css?1285956657 */
+
 * {margin:0;padding:0}
 .clear { clear: both; height: 0; }
 
@@ -178,9 +180,9 @@ body {
 
 /* tables */
 .table {
-  width: 100%;
+  width: 99%;
   border-collapse: collapse;  
-  margin-bottom: 15px;
+  margin-bottom: 1px;
 }
 
 .table th {
@@ -198,6 +200,11 @@ body {
 	width: 130px;
 }
 
+.table th.last_roster {
+  width: 200px;  
+	/*width: 130px;*/
+}
+
 .table .checkbox {
   margin-left: 10px;
 }
@@ -207,6 +214,11 @@ body {
 }
 
 .table td.last {
+  text-align: right;
+}
+
+
+.table td.last_roster {
   text-align: right;
 }
 

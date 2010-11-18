@@ -15,7 +15,7 @@ module MatchesHelper
     when 4
       the_image = 'status_offline.png'
     end      
-    link_to(image_tag(the_image, :title => the_label, :size => '22x22'), match_status_path(:id => match.id, :type => type.id), :title => the_label)      
+    link_to(image_tag(the_image, :title => the_label, :style => "height: 16px; width: 16px;"), match_status_path(:id => match.id, :type => type.id), :title => the_label)      
   end
 
   def match_roster_link(text, match = nil, html_options = nil)

@@ -54,7 +54,7 @@ if roster_count
 		 <th align="center" title = "<%= label_name(:participation_full) %>"><%= label_name(:participation) %></th>
 		 <%= content_tag 'th', label_name(:score) if @schedule.played? %>
 		 <%= content_tag 'th', label_name(:change_at) unless @schedule.played? %>
-		 <%= content_tag 'th' unless @schedule.played? %>
+		 <%= content_tag('th', "", :class => 'last_roster') unless @schedule.played? %>
 		</tr>
 
         
@@ -132,7 +132,7 @@ if roster_count
 				<%= ago(match.status_at) %>
 			</span>
 		</td>	
-		<td class="<%= second_team %>" >
+		<td class="last_roster" >
 <% 
 	is_manager = current_user.is_manager_of?(@schedule.group) 
 	

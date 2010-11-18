@@ -1,3 +1,5 @@
+/* @override http://thepista.local/stylesheets/application.css?1289680709 */
+
 /* initialize */
 html {
           overflow-y: scroll;
@@ -223,6 +225,10 @@ text_area.textfield {
 
 .table td.last {
   text-align: right;
+}
+
+.table td.last_roster {
+	padding:  15px 5px;	
 }
 
 #team_roster td{
