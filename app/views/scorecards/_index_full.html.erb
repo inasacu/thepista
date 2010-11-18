@@ -26,9 +26,9 @@
 	  <td>
 		
 		<% unless @archive %>
-			<%= link_to group.name, scorecard_path(:id => group) %>
+			<%= link_to h(group.name), scorecard_path(:id => group) %>
 		<% else %>
-		<%= link_to group.name, show_archive_path(:id => group) %>
+		<%= link_to h(group.name), show_archive_path(:id => group) %>
 		<% end %>
 		
 	  </td>

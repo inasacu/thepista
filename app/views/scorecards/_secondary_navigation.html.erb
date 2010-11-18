@@ -3,9 +3,19 @@
 %>
 <div class="secondary-navigation">
 
-<ul>	
+<ul>
+<%
+	unless is_action('show') 
+%>
 	<li class="<%= get_first_active %>"><%=  link_to(label_name(:my_scorecard), scorecards_path) %></li>
 	<li class="<%= get_active('scorecard_list') %>"><%=  link_to(label_name(:all_scorecard) , list_scorecards_path) %></li>
+<%
+	else
+%>
+	<li class="<%= get_first_active('scorecard_show') %>"><%= link_to label_name(:scorecard), scorecard_path(:id => @group) %></li>	
+<%
+	end
+%>
 </ul>
 
 <div class="clear"></div>
