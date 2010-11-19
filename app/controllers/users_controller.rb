@@ -66,7 +66,7 @@ class UsersController < ApplicationController
     @user.attributes = params[:user]
     @user.profile_at = Time.zone.now
   
-    update_match_profile = @the_user.technical != @user.technical #or @the_user.physical.to_i != @user.physical.to_i)
+    update_match_profile = (@the_user.technical != @user.technical or @the_user.physical.to_i != @user.physical)
     
     @user.save do |result|
       
