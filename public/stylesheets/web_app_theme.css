@@ -201,8 +201,8 @@ body {
 }
 
 .table th.last_roster {
-  width: 200px;  
-	/*width: 130px;*/
+/*  width: 150px;  */
+	width: 100px;
 }
 
 .table .checkbox {
