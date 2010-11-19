@@ -98,6 +98,7 @@ body {
 
 #main .block .content .inner {
   padding: 0 15px 15px;  
+  width: 100;
 }
 
 #main .main p.first {
@@ -205,6 +206,17 @@ body {
 	width: 100px;
 }
 
+.table th.next_to_last {
+ /* width: 200px;  */
+	width: 130px;
+}
+
+.table th.next_to_last {
+/*  width: 150px;  */
+	width: 100px;
+}
+
+
 .table .checkbox {
   margin-left: 10px;
 }
@@ -213,12 +225,7 @@ body {
   padding: 10px;
 }
 
-.table td.last {
-  text-align: right;
-}
-
-
-.table td.last_roster {
+.table td.last td.last_roster {
   text-align: right;
 }
 

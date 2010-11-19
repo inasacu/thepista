@@ -64,6 +64,8 @@ if roster_count
 			second_team = "second_team" if is_second_team
 			puntos = "puntos"
 			puntos = "second_team_puntos" if is_second_team
+			last_roster = "last_roster"
+			last_roster = "second_team_last_roster" if is_second_team
 					
 			coeficient_played = 100 *(match.scorecard_played.to_f / group_games_played)
 	-%>
@@ -98,7 +100,7 @@ if roster_count
 		(match.group_id > 0) ? home["physical"] += match.physical : away["physical"] += match.physical
 		(match.group_id > 0) ? home["total"] += 1 : away["total"] += 1
 				
-		@roster = match  
+		@roster = match 
 %>		
 		<td class="<%= second_team %>" >
 			<%= match.position_name %>
@@ -132,7 +134,7 @@ if roster_count
 				<%= ago(match.status_at) %>
 			</span>
 		</td>	
-		<td class="last_roster" >
+		<td class="<%= last_roster %>" >
 <% 
 	is_manager = current_user.is_manager_of?(@schedule.group) 
 	

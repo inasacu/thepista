@@ -60,7 +60,9 @@ hr {
   margin-left: 15px;
 }
 
-
+#main .block .content inner {
+  margin-left: 15px;
+}
 
 /* @group Main navigation */
 
@@ -217,6 +219,15 @@ hr {
 	font-weight: bold; 
 }
 
+
+.table td.no_line {
+  border-bottom: 0px solid #cfcfcf;
+}
+
+
+.table td.second_team_last_roster {	
+	background: #EEEEEE;
+}
 /* forms */
 
 .form input.text_field, .form textarea.text_area {
