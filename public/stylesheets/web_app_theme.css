@@ -97,8 +97,12 @@ body {
 }
 
 #main .block .content .inner {
-  padding: 0 15px 15px;  
-  width: 100;
+  padding: 0 15px 15px;
+width: 97%;  
+}
+
+#main .inner {
+/*   width: 100%;	*/
 }
 
 #main .main p.first {
