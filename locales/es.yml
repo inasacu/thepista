@@ -1406,8 +1406,12 @@ es:
      position_description:  Posición en el campo
      technical:  Tecnico
      technical_description:  Nivel tecnico
+     technical_total: "Total<br/>tecnico"
+     technical_difference:  "Diferencia<br/>tecnica"
      physical:  Fisico
      physical_description: Nivel fisico
+     physical_total: "Total<br/>fisico"
+     physical_difference: "Diferencia<br/>physica"
      language_description:  Idioma preferible
      country_description:  Pais donde te encuentras
      time_zone:  Horario
@@ -1804,6 +1808,7 @@ es:
      users_rpx_new: Nuevo jugador
      users_rpx_create:  Nuevo jugador
      users_teammate: Mis compañeros de equipo
+     users_total: "Total<br/>jugadores"
      users_update:  Actualizar jugador
      your:  Tu 
      true: "Si"

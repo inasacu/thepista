@@ -51,9 +51,7 @@ class UsersController < ApplicationController
     @user = User.new(params[:user])
 
     @user.save do |result|
-      if result
-        # flash[:notice] = I18n.t(:successful_signup) + I18n.t("#{ verify_recaptcha() }_value")
-        
+      if result        
         redirect_to root_url
       else
         render :action => 'signup'
@@ -63,14 +61,27 @@ class UsersController < ApplicationController
 
   def update
     @user = current_user
-  
+    @the_user = User.find(current_user.id)
+    
     @user.attributes = params[:user]
     @user.profile_at = Time.zone.now
+  
+    update_match_profile = @the_user.technical != @user.technical #or @the_user.physical.to_i != @user.physical.to_i)
     
     @user.save do |result|
+      
+      # update user profile for current match
+      if update_match_profile
+        Match.user_upcoming_match(@user).each do |match|
+          match.technical = @user.technical.to_i
+          match.physical = @user.physical.to_i
+          match.save!
+        end
+      end
+      
       if result
         flash[:success] = I18n.t(:successful_update)
-        redirect_back_or_default('/index')
+        redirect_to :action => 'show'
         return
       else
         render :action => 'edit'

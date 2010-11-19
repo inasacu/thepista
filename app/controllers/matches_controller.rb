@@ -27,11 +27,7 @@ class MatchesController < ApplicationController
       return
     end
 
-    @schedule.matches.each do |match|
-      match.technical = match.user.technical.to_i
-      match.physical = match.user.physical.to_i
-      match.save!
-    end
+    @schedule.update_profile_from_user
 
     flash[:success] = I18n.t(:successful_update)
     redirect_back_or_default('/index')

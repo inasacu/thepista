@@ -107,6 +107,13 @@ class Match < ActiveRecord::Base
                          "and user_id = #{user_id} and type_id = 1 and archive = false"],
          :order => "id")
   end
+    
+  def self.user_upcoming_match(user)
+    find(:all,
+         :conditions => ["matches.user_id = ? and matches.schedule_id in (select id from schedules where schedules.starts_at >= ? and schedules.ends_at <= ?) and 
+                          matches.played = false and matches.archive = false", user, LAST_24_HOURS, NEXT_WEEK])
+  end
+  
   
   def self.set_archive_flag(user, group, flag)
     @matches = Match.find(:all, :conditions => ["user_id = ? and (group_id = ? or invite_id = ?)", user.id, group.id, group.id])

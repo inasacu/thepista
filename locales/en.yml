@@ -1405,8 +1405,12 @@ en:
      position_description:  Position on the field
      technical:  Technical 
      technical_description:  Technical 
+     technical_total:  "Total<br/>Technical"
+     technical_difference:  "Technical<br/>Difference"
      physical:  Physical 
      physical_description: Physical 
+     physical_total:  "Total<br/>Physical"
+     physical_difference: "Physical<br/>Difference"
      language_description:  Language Preference
      country_description:  Time Zone
      time_zone:  Time Zone
@@ -1803,6 +1807,7 @@ en:
      users_rpx_new: New Player
      users_rpx_create:  New Player
      users_teammate: My Teammates 
+     users_total: "Total<br/>Players"
      users_update:  Edit Player
      your:  Your   
      true: "Yes"

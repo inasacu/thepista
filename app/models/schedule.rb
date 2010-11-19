@@ -273,8 +273,6 @@ class Schedule < ActiveRecord::Base
   def create_schedule_details(user, schedule_update=false)
     unless schedule_update
       @forum = Forum.create_schedule_forum(self)
-      # @topic = Topic.create_forum_topic(@forum, user) 
-      # Post.create_topic_post(@forum, @topic, user, self.description)
     end
     Match.create_schedule_match(self) 
     Fee.create_group_fees(self)    
@@ -284,6 +282,14 @@ class Schedule < ActiveRecord::Base
   def create_join_user_schedule_details
     Match.create_schedule_match(self) 
     Fee.create_user_fees(self)
+  end
+  
+  def update_profile_from_user
+    self.matches.each do |match|
+      match.technical = match.user.technical.to_i
+      match.physical = match.user.physical.to_i
+      match.save!
+    end
   end
 
   def self.send_reminders

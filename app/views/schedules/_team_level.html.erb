@@ -5,6 +5,23 @@
 	physical["minimum"] = ((home["physical"] > away["physical"]) ? away["physical"] : home["physical"])
 	technical["percentage"] = technical["difference"].abs / technical["minimum"].to_f unless technical["minimum"] == 0 
 	physical["percentage"] = physical["difference"].abs / physical["minimum"].to_f unless physical["minimum"] == 0 
+	
+	is_home_technical = (home["technical"] > away["technical"])
+	is_home_physical = (home["physical"] > away["physical"])
+	
+	home["total"] = home["technical"] + home["physical"]
+	away["total"] = away["technical"] + away["physical"]
+	
+	the_technical = "#{sprintf( "%0.00f", technical["difference"].abs)}%"
+	the_physical = "#{sprintf( "%0.00f", physical["difference"].abs)}%"
+	
+	home["image"] = "table-arrow-top.gif" if home["total"] > away["total"]
+	home["image"] = "table-arrow-bottom.gif" if home["total"] < away["total"]
+	home["image"] = "table-arrow-right.gif" if home["total"] == away["total"]
+	
+	away["image"] = "table-arrow-top.gif" if away["total"] > home["total"]
+	away["image"] = "table-arrow-bottom.gif" if away["total"] < home["total"]
+	away["image"] = "table-arrow-right.gif" if away["total"] == home["total"]	
 
 	the_label = "#{label_name(:previous_profile_set_full) }"
 	the_label_set = "#{label_name(:profile_set_full) }"
@@ -24,6 +41,18 @@
 	<%= content_tag :td, "&nbsp;", :class => "no_line" %>
 </tr>
 <tr>
+	<%= content_tag :th, "&nbsp;", :class => "no_line" %>
+	<%= content_tag :th, "&nbsp;", :class => "no_line" %>
+	<%= content_tag :th, label_name(:groups), :class => "no_line", :align => "center" %>
+	<%= content_tag :th, "&nbsp;", :class => "no_line" %>
+	<%= content_tag :th, label_name(:technical_total), :class => "no_line", :align => "center" %>
+	<%= content_tag :th, label_name(:physical_total), :class => "no_line", :align => "center" %>
+	<%= content_tag :th, label_name(:users_total), :class => "no_line", :align => "center" %>
+	<%= content_tag :th, label_name(:technical_difference), :class => "no_line", :align => "center" %>
+	<%= content_tag :th, label_name(:physical_difference), :class => "no_line", :align => "center" %>
+	<%= content_tag :th, "", :class => "no_line", :align => "center" %>
+</tr>
+<tr>
 	<%= content_tag(:td, "&nbsp;", :class => "no_line") %>
 	<%= content_tag(:td, "&nbsp;", :class => "no_line") %>
 	<%= content_tag(:td, link_to(@schedule.home_group, group_path(@schedule.group)), :class => "no_line") %>
@@ -31,8 +60,9 @@
 	<%= content_tag(:td, home["technical"], :class => "no_line", :align => "center") %>
 	<%= content_tag(:td, home["physical"], :class => "no_line", :align => "center") %>
 	<%= content_tag(:td, home["total"], :class => "no_line", :align => "center") %>
-	<%= content_tag(:td, "&nbsp;", :class => "no_line") %>
-	<%= content_tag(:td, "&nbsp;", :class => "no_line") %>
+	<%= content_tag(:td, is_home_technical ? the_technical : "#{technical["difference"]}%", :class => "no_line") %>
+	<%= content_tag(:td, is_home_physical ? the_physical : "#{physical["difference"]}%", :class => "no_line") %>
+	<%= content_tag(:td, image_tag(home["image"]), :class => "no_line", :align => "center") %>		
 	<td class="no_line">
 		<span class="action">
 			<%= link_to(label_name(:profile_set), set_profile_url(:id => @schedule), 
@@ -44,13 +74,14 @@
 <tr>
 	<%= content_tag(:td, "&nbsp;", :class => "no_line") %>
 	<%= content_tag(:td, "&nbsp;", :class => "no_line") %>
-	<%= content_tag(:td, link_to(@schedule.away_group, group_path(@schedule.group)), :class => "") %>	
-	<%= content_tag(:td, "&nbsp;", :class => "no_line") %>		
-	<%= content_tag(:td, away["technical"], :class => "", :align => "center") %>
-	<%= content_tag(:td, away["physical"], :class => "", :align => "center") %>
-	<%= content_tag(:td, away["total"], :class => "", :align => "center") %>
-	<%= content_tag(:td, "&nbsp;", :class => "no_line") %>
-	<%= content_tag(:td, "&nbsp;", :class => "no_line") %>			
+	<%= content_tag(:td, link_to(@schedule.away_group, group_path(@schedule.group))) %>	
+	<%= content_tag(:td, "&nbsp;") %>		
+	<%= content_tag(:td, away["technical"], :align => "center") %>
+	<%= content_tag(:td, away["physical"], :align => "center") %>
+	<%= content_tag(:td, away["total"], :align => "center") %>
+	<%= content_tag(:td, is_home_technical ? "#{technical["difference"]}%" : the_technical) %>
+	<%= content_tag(:td, is_home_physical ? "#{physical["difference"]}%" : the_physical) %>
+	<%= content_tag(:td, image_tag(away["image"]), :align => "center") %>		
 	<td class="no_line">
 		<span class="action">
 			<%= link_to(label_name(:previous_profile_set), set_previous_profile_url(:id => @schedule.id), 
@@ -62,10 +93,10 @@
 <tr>
 	<%= content_tag(:td, "&nbsp;", :class => "no_line") %>
 	<%= content_tag(:td, "&nbsp;", :class => "no_line") %>
-	<%= content_tag(:td, "% #{label_name(:difference)}:", :class => "no_line") %>
 	<%= content_tag(:td, "&nbsp;", :class => "no_line") %>
-	 <%= content_tag(:td, "#{sprintf( "%0.00f", technical["difference"].abs)}%", :class => "no_line", :align => "center") %>
-	 <%= content_tag(:td, "#{sprintf( "%0.00f", physical["difference"].abs)}%", :class => "no_line", :align => "center") %>
+	<%= content_tag(:td, "&nbsp;", :class => "no_line") %>
+	<%= content_tag(:td, "&nbsp;", :class => "no_line") %>
+	<%= content_tag(:td, "&nbsp;", :class => "no_line") %>
 	<%= content_tag(:td, "&nbsp;", :class => "no_line") %>
 	<%= content_tag(:td, "&nbsp;", :class => "no_line") %>
 	<%= content_tag(:td, "&nbsp;", :class => "no_line") %>
