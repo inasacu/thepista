@@ -191,10 +191,11 @@ en:
      create_name: Create Name   
      create_note: Create a Note 
      create_new_challenge:  Create a Challenge
+     create_new_classified:  Create an Announcement
      create_new_cup:  Create a Tournament
      create_new_group:  Create a Team
      create_new_marker:  Create a Sport Center
-     create_new_schedule:  Create a new Schedule 
+     create_new_schedule:  Create a Schedule 
      create_new_invitation:  Invite your friends 
      create_profile: Add a Profile   
      create_reminder: Add a Reminder   
