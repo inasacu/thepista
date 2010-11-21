@@ -189,7 +189,13 @@ en:
      create_invitation: Send an Invitation   
      create_manager: Add a Manager  
      create_name: Create Name   
-     create_note: Create a Note   
+     create_note: Create a Note 
+     create_new_challenge:  Create a Challenge
+     create_new_cup:  Create a Tournament
+     create_new_group:  Create a Team
+     create_new_marker:  Create a Sport Center
+     create_new_schedule:  Create a new Schedule 
+     create_new_invitation:  Invite your friends 
      create_profile: Add a Profile   
      create_reminder: Add a Reminder   
      create_role: Add a Role    
@@ -599,6 +605,7 @@ en:
      has_updated_scorecard: Has updated the <strong>SCORECARD</strong> with   
      have_an_account: If you have an account  
      have_changed_language: Language has been changed
+     haypista_howto:  Things you can do.
      help: Help 
      help_amateur:  Helping Amateurs... 
      hide:  Hide
@@ -622,7 +629,7 @@ en:
      invalid_action: Invalid Action   
      invalid_login: Invalid Login   
      invitation: Invitation
-     invitation_to: You have an invitation to HayPista   
+     Ï_to: You have an invitation to HayPista   
      invitation_to_group: Invite a friend to join the Team   
      invitation_to_schedule: Invite a friend   
      invitations: Connect with friends 

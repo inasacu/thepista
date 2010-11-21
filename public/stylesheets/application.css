@@ -106,6 +106,7 @@ input#user_openid_identifier, input#user_session_openid_identifier {
 .textfield:focus { 
 	background: rgb(255, 254, 244) url('../../images/textfield-focus-bg.gif') repeat-x scroll 0pt 1px; 
 }
+
 input.textfield { 
 	width: 400px; 
 }
@@ -127,6 +128,18 @@ input.textfield_login {
 }
 input.textscore { 
 	width: 100px; 
+}
+
+.textphoto{ 
+	border: 1px solid rgb(205, 205, 205); 
+	padding: 0.4em; 
+	background: rgb(255, 255, 255) url('../../images/textfield-bg.gif') repeat-x scroll 0pt 1px; 
+}
+.textphoto:focus { 
+	background: rgb(255, 254, 244) url('../../images/textfield-focus-bg.gif') repeat-x scroll 0pt 1px; 
+}
+input.textphoto { 
+	width: 375px; 
 }
 
 

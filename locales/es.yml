@@ -190,7 +190,13 @@ es:
      create_invitation: Manda una invitación   
      create_manager: Nuevo mister   
      create_name: Nuevo nombre   
-     create_note: Nueva nota        
+     create_note: Nueva nota
+     create_new_challenge:  Crear un nuevo reto
+     create_new_cup:  Crear un nuevo torneo
+     create_new_group:  Crear un nuevo equipo
+     create_new_marker:  Crear un nuevo centro deportivo
+     create_new_schedule:  Crear un nuevo evento 
+     create_new_invitation:  Invitar a tus amigos 
      create_profile: Nuevo perfil   
      create_reminder: Nuevo recordatorio   
      create_role: Nueva responsabilidad    
@@ -600,6 +606,7 @@ es:
      has_updated_scorecard: Ha actualizado el <strong>RESULTADO</strong>  
      have_an_account: Si tienes una cuenta     
      have_changed_language: Has cambiado el idioma
+     haypista_howto:  Cosas que puedes hacer.
      help: Ayuda 
      help_amateur:  "Una ayuda a los aficionados..." 
      hide:  Ocultar 
