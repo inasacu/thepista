@@ -224,10 +224,6 @@ hr {
   border-bottom: 0px solid #cfcfcf;
 }
 
-
-.table td.second_team_last_roster {	
-	background: #EEEEEE;
-}
 /* forms */
 
 .form input.text_field, .form textarea.text_area {

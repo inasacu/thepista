@@ -2,6 +2,7 @@
 	a_roster = !(@schedule.convocados.empty?)
 	the_label = "#{control_action_label("#{a_roster}")} #{label_name(:in)} #{sanitize(@schedule.concept)}"
 	content_for(:title, sanitize(@schedule.concept))
+	is_action = get_the_action.gsub(' ','_') == 'team_roster'
 %>
 
 
@@ -28,8 +29,9 @@
 <% content_for :sidebar, render(:partial => '/shared/latest_payment') -%>
 
 <% if @schedule -%>
-	<% content_for :sidebar, render("schedules/sidebar_show", :schedule => @schedule) %>
-	<% content_for :sidebar, render("shared/share_object", :schedule => @schedule) %>
+	<% content_for(:sidebar, render("schedules/sidebar_show", :schedule => @schedule)) -%>
+	<% content_for(:sidebar, render("shared/share_object", :schedule => @schedule)) if is_action and current_user.is_manager_of?(@schedule.group) -%>
+	<% content_for(:sidebar, render('schedules/sidebar_level', :schedule => @schedule )) -%>
 <% end %>
 
 

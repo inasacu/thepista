@@ -193,8 +193,6 @@ text_area.textfield {
 	background-repeat: no-repeat; 
 }
 .next_message:hover, .previous_message:hover { 
-/*	background-color: #005573; */
-/*	background-position: 4px 4px; */
 	text-decoration: none; 
 }
 
@@ -203,11 +201,10 @@ text_area.textfield {
 
 
 /* tables */
-.table table.scorecard{
+.table table.scorecard {
   width: 100%;
   border-collapse: collapse;  
   margin-bottom: 15px;
-
 }
 
 .table th {
@@ -221,7 +218,8 @@ text_area.textfield {
 }
 
 .table th.last {
-	width: 150px;
+/*	width: 150px;*/
+	width: 120px;
 }
 
 .table .checkbox {
@@ -242,6 +240,13 @@ text_area.textfield {
 
 .table td.last_roster {
 	padding:  15px 5px;	
+	text-align: right;
+}
+
+.table td.second_team_last_roster {	
+	background: #EEEEEE;
+	padding:  15px 5px;	
+	text-align: right;
 }
 
 #team_roster td{
