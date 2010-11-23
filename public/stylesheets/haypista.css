@@ -199,6 +199,11 @@ hr {
 	background: #EEEEEE;
 }
 
+.table th.clear {
+	background: #F7F7F8;
+}
+
+
 .table td {
   border-bottom: 1px dotted #cfcfcf;
 }

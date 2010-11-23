@@ -1,30 +1,27 @@
 <%
-	the_label = label_with_name('note', sanitize(@schedule.concept))
+the_label = label_with_name('note', sanitize(@schedule.concept))
 %>
 <div class="block">
+	<%= render "shared/previous_next_message", :schedule => @schedule, :the_previous => @the_previous, :the_next => @the_next -%>
 
-  <%#= render :partial => '/shared/previous_next_message', :locals => {:the_controller => @schedule} if @schedule -%>
-  <%= render "shared/previous_next_message", :schedule => @schedule, :the_previous => @the_previous, :the_next => @the_next -%>
-
-  <h2 class="title"><%= the_label %></h2>
+	<h2 class="title"><%= the_label %></h2>
 
 	<div class="inner">
 
-	      <table class="table">
+		<%= render :partial => 'comments/new', :locals => { :label => label_name(:write_comment) } %>
+
+		<table class="table">
 			<tr>             
-	          <th class="first">&nbsp;</th>
-	          <th>&nbsp;</th>
-	          <th>&nbsp;</th>
-	          <th class="last">&nbsp;</th>
-	        </tr>
-
+				<th class="clear">&nbsp;</th>
+				<th class="clear">&nbsp;</th>
+				<th class="clear">&nbsp;</th>
+				<th class="clear">&nbsp;</th>
+			</tr>
 			<%= render :partial => 'comments/comments', :locals => { :comments => @comments } %>
-	      </table>
+		</table>			
 
-		<%= render :partial => 'comments/new', :locals => { :label => label_name(:write_comment) } %>				
-
-    </div>
-  </div>
+	</div>
+</div>
 </div>
 
 <% content_for :sidebar, render(:partial => '/schedules/sidebar_show') -%>

@@ -1,28 +1,21 @@
 <% 
-	@comment = Comment.new 
-	textfield ||= false
+@comment = Comment.new 
+textfield ||= false
 %>
 <div class="inner">
 
-<% form_for :comment, :url => comments_path, :html => { :class => :form } do |f| -%>
 	<h5 class="title"><%= label %></h5>
+	
+<% form_for :comment, :url => comments_path, :html => { :class => :form } do |f| -%>
 	<br />
-<% 
-	if textfield 
-%>
-		<%= f.text_area :body, :class => 'textfield' -%>&nbsp;&nbsp;<%= f.submit label_name(:share) %>		
-<% 
-	else 
-%>
-		<%= f.text_area :body, :class => 'textfield' -%>
-		<br /><br />
-		<%= f.submit label_name(:share) %>
-<% 
-	end 
-%>
+	<%= f.text_area :body, :class => 'text_message' -%>	
+	<br />
+	<br />
+	<%= f.submit label_name(:share) %>
+
 	<%= hidden_field :blog, :id %>
 	<%= hidden_field :forum, :id %>
 <% end -%>
 
-	<div class="clear"></div>
+<div class="clear"></div>
 </div>

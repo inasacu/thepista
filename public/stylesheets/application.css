@@ -98,12 +98,22 @@ input#user_openid_identifier, input#user_session_openid_identifier {
 
 
 /* forms */
-.textfield { 
+.textfield .text_message { 
 	border: 1px solid rgb(205, 205, 205); 
 	padding: 0.4em; 
 	background: rgb(255, 255, 255) url('../../images/textfield-bg.gif') repeat-x scroll 0pt 1px; 
 }
-.textfield:focus { 
+.textfield:focus .text_message:focus { 
+	background: rgb(255, 254, 244) url('../../images/textfield-focus-bg.gif') repeat-x scroll 0pt 1px; 
+}
+
+.text_message { 
+	border: 1px solid rgb(205, 205, 205); 
+	padding: 0.4em; 
+	background: rgb(255, 255, 255) url('../../images/textfield-bg.gif') repeat-x scroll 0pt 1px; 
+}
+
+.text_message:focus { 
 	background: rgb(255, 254, 244) url('../../images/textfield-focus-bg.gif') repeat-x scroll 0pt 1px; 
 }
 
@@ -115,9 +125,16 @@ textarea.textfield {
 	height: 80px; 
 }
 
+textarea.text_message { 
+	width: 500px;
+	height: 40px; 
+	font-size: 14px;
+}
+
 input.textfield_login { 
 	width: 300px; 
 }
+
 .textscore{ 
 	border: 1px solid rgb(205, 205, 205); 
 	padding: 0.4em; 

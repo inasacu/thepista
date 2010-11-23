@@ -33,19 +33,18 @@
     <div class="inner">
 	
 	<%= render :partial => 'comments/new', :locals => { :label => label_name(:what_are_you_practicing), :textfield => true } if is_same_user %>
+	<%= render :partial => 'comments/new', :locals => { :label => label_name(:write_comment) } unless is_same_user %>
 
       <table class="table">
 		<tr>             
-          <th class="first">&nbsp;</th>
-          <th>&nbsp;</th>
-          <th>&nbsp;</th>
-          <th class="last">&nbsp;</th>
+          <th class="clear">&nbsp;</th>
+          <th class="clear">&nbsp;</th>
+          <th class="clear">&nbsp;</th>
+          <th class="clear">&nbsp;</th>
         </tr>
 
 		<%= render :partial => 'comments/comments', :locals => { :comments => @comments } %>
       </table>
-
-	<%= render :partial => 'comments/new', :locals => { :label => label_name(:write_comment) } unless is_same_user %>
 					
     </div>
   </div>
