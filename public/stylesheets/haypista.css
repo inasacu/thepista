@@ -197,6 +197,7 @@ hr {
 	border-bottom: 2px solid #cfcfcf;
 	color: #001C26;
 	background: #EEEEEE;
+	padding: 8px;
 }
 
 .table th.clear {
