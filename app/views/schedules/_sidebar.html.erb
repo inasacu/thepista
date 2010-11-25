@@ -3,7 +3,7 @@
 	<div class="content">
 <% 
 		if current_user.is_manager? %>
-			<p><%= link_to(control_label('create') , new_schedule_url)  %></p>
+			<p><%= option_image_link('schedule') %>&nbsp;&nbsp;<%= link_to(control_label('create') , new_schedule_url)  %></p>
 <% 		
 		else 
 %>

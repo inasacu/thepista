@@ -64,8 +64,7 @@
 						
 						<%= tr_td_action(:time_zone, @user.time_zone) %>
 						<%= tr_td_action(:phone, @user.phone) unless @user.private_phone %>
-						<%= tr_td_action(:company, @user.company) %>
-						<%#= tr_td_action(:gender, label_name(@user.gender, 'value')) unless @user.gender.blank? %>			
+						<%= tr_td_action(:company, @user.company) %>		
 
 						<% 
 							the_label = h(label_name(@user.available, 'value'))

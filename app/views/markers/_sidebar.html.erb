@@ -1,35 +1,6 @@
 <div class="block">
 	<h3><%= label_name(:options) %></h3>
 	<div class="content">
-		<p><%= link_to(control_label('create') , new_marker_url) %></p>
-		
-		<!-- <%#= form_remote_tag(:url => {:action => :find}) %>
-	      <div id="form" >
-		<label for="zip">Zip:</label>
-
-		<%#= text_field_tag "zip" %>
-		<%#= submit_tag "Find" %>
-	      </div>
-	    <%#= form_tag %> -->
-	    
-	
-		<!-- <%# form_for :marker, :url => markers_path, :html => { :class => :form } do |f| -%>
-			<%#= f.hidden_field :group_id %>
-
-		  <div class="group">
-		    <%#= f.label :marker, label_name('marker'), :class => :label %>
-		    <%#= f.text_field :marker, :class => 'textfield' %>
-		    <span class="description"><%#= label_name('marker', 'description') %></span>
-		  </div>
-		
-	       	<div class="clear"></div> 
-
-			<div class="group navform">
-				<%#= submit_tag label_name(:map_it), :class => "button" %> 
-			</div>
-			
-	      <%# end -%> -->
-		
-		
+		<p><%= option_image_link('marker') %>&nbsp;&nbsp;<%= link_to(control_label('create') , new_marker_url) %></p>		
 	</div>
 </div>

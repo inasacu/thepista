@@ -60,9 +60,7 @@
 			  <td class="last">
 				<span class="action">
 					<%  if user.available and user != current_user %>
-						<%= link_to label_name(:send_message_to), new_message_path(:id => user.id) %><br/>
-						<%#= link_to label_name(:follow), new_message_path(:id => user.id) %>
-						<%#= link_to label_name(:hide), new_message_path(:id => user.id) %>						
+						<%= link_to label_name(:send_message_to), new_message_path(:id => user.id) %>			
 					<% end %>
 				</span>
 	          </td>	
@@ -78,5 +76,3 @@
   </div>
   
 </div>
-
-<%# content_for :sidebar, render(:partial => '/shared/sidebar_index') -%>
