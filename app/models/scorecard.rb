@@ -258,10 +258,11 @@ class Scorecard < ActiveRecord::Base
   end
   
   def self.users_group_scorecard(group)
-     find(:all, 
-              :joins => "LEFT JOIN users on users.id = scorecards.user_id",
-              :conditions => ["group_id in (?) and user_id > 0 and played > 0 and scorecards.archive = false", group],
-              :order => "group_id, points DESC, ranking, users.name")
+     find(:all, :select => "scorecards.*, matches.type_id",
+              :joins => "LEFT JOIN users on users.id = scorecards.user_id LEFT JOIN matches on matches.user_id = scorecards.user_id",
+              :conditions => ["scorecards.group_id in (?) and scorecards.user_id > 0 and scorecards.played > 0 and scorecards.archive = false 
+                               and matches.schedule_id = ( select max(id) as schedule_id from schedules where group_id = ? and played = true) and matches.archive = false", group, group],
+              :order => "scorecards.points DESC, scorecards.ranking, users.name")
   end
 
 end

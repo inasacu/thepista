@@ -33,14 +33,12 @@ a:hover { text-decoration: underline; }
 }
 
 #about .block h2 {
-/*  background: #0F7D00;*/
   color: #0F7D00;
 }
 
 
 /* faq */
 #faq { 
-/*	margin: 80px auto 0pt; */
 	background: transparent url('') repeat-y scroll 0% 0%; 
 	clear: both; 
 	width: 780px; 
@@ -106,13 +104,11 @@ input#user_openid_identifier, input#user_session_openid_identifier {
 .textfield:focus .text_message:focus { 
 	background: rgb(255, 254, 244) url('../../images/textfield-focus-bg.gif') repeat-x scroll 0pt 1px; 
 }
-
 .text_message { 
 	border: 1px solid rgb(205, 205, 205); 
 	padding: 0.4em; 
 	background: rgb(255, 255, 255) url('../../images/textfield-bg.gif') repeat-x scroll 0pt 1px; 
 }
-
 .text_message:focus { 
 	background: rgb(255, 254, 244) url('../../images/textfield-focus-bg.gif') repeat-x scroll 0pt 1px; 
 }
@@ -126,9 +122,9 @@ textarea.textfield {
 }
 
 textarea.text_message { 
-	width: 600px;
+	width: 850px;
 	height: 80px; 
-	font-size: 14px;
+	font-size: 13px;
 }
 
 input.textfield_login { 
@@ -172,19 +168,6 @@ input.text_tiny_score {
 	width: 25px; 
 }
 
-
-.inplace_text_field{ 
-	border: 1px solid rgb(205, 205, 205); 
-	padding: 0.4em; 
-	background: rgb(255, 255, 255) url('../../images/textfield-bg.gif') repeat-x scroll 0pt 1px; 
-}
-.inplace_text_field:focus { 
-	background: rgb(255, 254, 244) url('../../images/textfield-focus-bg.gif') repeat-x scroll 0pt 1px; 
-}
-input.inplace_text_field { 
-	width: 15px; 
-}
-
 .text_field{ 
 	border: 1px solid rgb(205, 205, 205); 
 	padding: 0.4em; 
@@ -196,6 +179,21 @@ input.inplace_text_field {
 input.text_field { 
 	width: 200px; 
 }
+
+
+/*.inplace_text_field{ 
+	border: 1px solid rgb(205, 205, 205); 
+	padding: 0.4em; 
+	background: rgb(255, 255, 255) url('../../images/textfield-bg.gif') repeat-x scroll 0pt 1px; 
+}
+.inplace_text_field:focus { 
+	background: rgb(255, 254, 244) url('../../images/textfield-focus-bg.gif') repeat-x scroll 0pt 1px; 
+}
+input.inplace_text_field { 
+	width: 15px; 
+}*/
+
+
 
 text_area.textfield { 
 	width: 200px;
@@ -344,7 +342,7 @@ td.sub_true {
 .name_and_date_second_team { background: #EEEEEE; }
 .name_and_date .date { padding: 1px 0pt 0pt; display: block; font-size: 11px; color: rgb(119, 119, 119); }
 .name_and_date_second_team .date { padding: 1px 0pt 0pt; display: block; font-size: 11px; color: rgb(119, 119, 119); }
-.name_and_date .date .date_tiny { padding: 1px 0pt 0pt; display: block; font-size: 9px; color: rgb(119, 119, 119); }
+.name_and_date .date_tiny { padding: 1px 0pt 0pt; display: block; font-size: 10px; color: rgb(119, 119, 119); }
 .name_and_date_second_team .date_tiny { padding: 1px 0pt 0pt; display: block; font-size: 9px; color: rgb(119, 119, 119); }
 .last .action  { padding: 1px 0pt 0pt; display: block; font-size: 10px; color: rgb(119, 119, 119); }
 

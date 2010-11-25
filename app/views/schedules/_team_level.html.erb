@@ -21,13 +21,7 @@
 	
 	away["image"] = "table-arrow-top.gif" if away["total"] > home["total"]
 	away["image"] = "table-arrow-bottom.gif" if away["total"] < home["total"]
-	away["image"] = "table-arrow-right.gif" if away["total"] == home["total"]	
-
-	# the_label = "#{label_name(:previous_profile_set_full) }"
-	# the_label_set = "#{label_name(:profile_set_full) }"
-	# the_label_user_set = "#{label_name(:profile_user_set_full) }"
-	# the_confirmation = "#{the_label}?"	
-	# the_confirmation_user_set = "#{the_label_user_set}?"
+	away["image"] = "table-arrow-right.gif" if away["total"] == home["total"]
 %>
 <tr>
 	<%= content_tag :td, "&nbsp;", :class => "no_line" %>
@@ -56,26 +50,26 @@
 <tr>
 	<%= content_tag(:td, "&nbsp;", :class => "no_line") %>
 	<%= content_tag(:td, "&nbsp;", :class => "no_line") %>
-	<%= content_tag(:td, link_to(@schedule.home_group, group_path(@schedule.group)), :class => "no_line") %>
+	<%= content_tag(:td, link_to(@schedule.home_group, group_path(@schedule.group)), :class => "no_line", :align => "center") %>
 	<%= content_tag(:td, "&nbsp;", :class => "no_line") %>
 	<%= content_tag(:td, home["technical"], :class => "no_line", :align => "center") %>
 	<%= content_tag(:td, home["physical"], :class => "no_line", :align => "center") %>
 	<%= content_tag(:td, home["total"], :class => "no_line", :align => "center") %>
-	<%= content_tag(:td, is_home_technical ? the_technical : "#{technical["difference"]}%", :class => "no_line") %>
-	<%= content_tag(:td, is_home_physical ? the_physical : "#{physical["difference"]}%", :class => "no_line") %>
+	<%= content_tag(:td, is_home_technical ? the_technical : "#{technical["difference"]}%", :class => "no_line", :align => "center") %>
+	<%= content_tag(:td, is_home_physical ? the_physical : "#{physical["difference"]}%", :class => "no_line", :align => "center") %>
 	<%= content_tag(:td, image_tag(home["image"]), :class => "no_line", :align => "center") %>
 </tr>
 
 <tr>
 	<%= content_tag(:td, "&nbsp;", :class => "no_line") %>
 	<%= content_tag(:td, "&nbsp;", :class => "no_line") %>
-	<%= content_tag(:td, link_to(@schedule.away_group, group_path(@schedule.group))) %>	
+	<%= content_tag(:td, link_to(@schedule.away_group, group_path(@schedule.group)), :align => "center") %>	
 	<%= content_tag(:td, "&nbsp;") %>		
 	<%= content_tag(:td, away["technical"], :align => "center") %>
 	<%= content_tag(:td, away["physical"], :align => "center") %>
 	<%= content_tag(:td, away["total"], :align => "center") %>
-	<%= content_tag(:td, is_home_technical ? "#{technical["difference"]}%" : the_technical) %>
-	<%= content_tag(:td, is_home_physical ? "#{physical["difference"]}%" : the_physical) %>
+	<%= content_tag(:td, is_home_technical ? "#{technical["difference"]}%" : the_technical, :align => "center") %>
+	<%= content_tag(:td, is_home_physical ? "#{physical["difference"]}%" : the_physical, :align => "center") %>
 	<%= content_tag(:td, image_tag(away["image"]), :class => "", :align => "center") %>	
 </tr>
 

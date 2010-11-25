@@ -287,6 +287,18 @@ module ApplicationHelper
     return text
   end
   
+  def option_image_link(item)
+    the_image = "icons/#{item}.png"
+    return image_tag(the_image, options={:style => 'height: 15px; width: 15px;'})
+  end
+  
+  def option_link(item) 
+    the_image = "icons/#{item}.png"
+    the_label = I18n.t("create_new_#{item}")
+    the_path = "new_#{item}_url"
+    return link_to(the_label, send(:"#{the_path}"))
+  end
+  
   def item_image_link_tiny(item)
     the_path = "#{item.class.to_s.downcase.chomp}_path"
     link_to(image_tag(item.avatar, options={:style => "height: 15px; width: 15px;"}), send(:"#{the_path}", item)) 

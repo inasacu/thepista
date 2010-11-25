@@ -2,37 +2,14 @@
 
 <div class="block">
 	<h3><%= label_name(:haypista_howto) %></h3>
-	<div class="content">
-		
-
-		<p>
-			<b>*&nbsp;</b>
-			<%= link_to(label_name(:create_new_group), new_group_url) %>
-		</p>
-		<p>
-			<b>*&nbsp;</b>
-			<%= link_to(label_name(:create_new_schedule), new_schedule_url) %>
-		</p>
-		<p>
-			<b>*&nbsp;</b>
-			<%= link_to(label_name(:create_new_classified), groups_url) %>
-		</p>
-		<p>
-			<b>*&nbsp;</b>
-			<%= link_to(label_name(:create_new_marker), new_marker_url) %>
-		</p>
-		<p>
-			<b>*&nbsp;</b>
-			<%= link_to(label_name(:create_new_cup), new_cup_url) %>
-		</p>
-		<p>
-			<b>*&nbsp;</b>
-			<%= link_to(label_name(:create_new_challenge), cups_url) %>
-		</p>
-		<p>
-			<b>*&nbsp;</b>
-			<%= link_to(label_name(:create_new_invitation), new_invitation_url) %>
-		</p>	
+	<div class="content">		
+		<p><%= option_image_link('group') %>&nbsp;&nbsp;<%= option_link('group') %></p>
+		<p><%= option_image_link('schedule') %>&nbsp;&nbsp;<%= option_link('schedule') %></p>
+		<p><%= option_image_link('classified') %>&nbsp;&nbsp;<%= option_link('classified') %></p>
+		<p><%= option_image_link('marker') %>&nbsp;&nbsp;<%= option_link('marker') %></p>
+		<p><%= option_image_link('cup') %>&nbsp;&nbsp;<%= option_link('cup') %></p>
+		<p><%= option_image_link('challenge') %>&nbsp;&nbsp;<%= option_link('challenge') %></p>
+		<p><%= option_image_link('invitation') %>&nbsp;&nbsp;<%= option_link('invitation') %></p>	
 	</div>
 </div>
 

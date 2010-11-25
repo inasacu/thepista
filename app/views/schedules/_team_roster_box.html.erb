@@ -53,7 +53,7 @@ if roster_count
 		 </th>
 		 <th align="center" title = "<%= label_name(:ranking_full) %>"><%= label_name(:ranking) %></th>
 		 <th align="center" title = "<%= label_name(:participation_full) %>"><%= label_name(:participation) %></th>
-		 <th align="center" title = "<%= label_name(:position) %>"><%= label_name(:position) %></th>
+		 <th align="" title = "<%= label_name(:position) %>"><%= label_name(:position) %></th>
 		 <th align="center" title = "<%= label_name(:profile_technical) %>"><%= label_name(:technical) %></th>
 		 <th align="center" title = "<%= label_name(:profile_physical) %>"><%= label_name(:physical) %></th>
 		 <th><%= label_name(:group) %></th>
@@ -116,7 +116,7 @@ if roster_count
 				
 		@roster = match 
 %>		
-		<td class="<%= second_team %>" >
+		<td class="<%= second_team %>">
 			<%= match.position_name %>
 		</td>
 	
@@ -140,12 +140,7 @@ if roster_count
 <%		
 	end 
  
-	unless @schedule.played?  %>
-		<!-- <td class="<%= second_team %>" >
-			<span class="date">
-				<%#= ago(match.status_at) %>
-			</span>
-		</td> -->	
+	unless @schedule.played?  %>	
 		<td class="<%= last_roster %>" >
 <% 
 	is_manager = current_user.is_manager_of?(@schedule.group) 

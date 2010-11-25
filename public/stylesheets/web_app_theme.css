@@ -98,11 +98,10 @@ body {
 
 #main .block .content .inner {
   padding: 0 15px 15px;
-/*  width: 97%;  */
 }
 
 #main .inner {
-   width: 99.5%;	
+   width: 97%;	
 }
 
 #main .main p.first {
@@ -200,15 +199,15 @@ body {
   width: 30px;
 }
 
-.table th.last {
+.table th.last th.last_roster {
  /* width: 200px;  */
 	width: 100px;
 }
 
-.table th.last_roster {
-/*  width: 150px;  */
+/*.table th.last_roster {
+  width: 150px;  
 	width: 100px;
-}
+}*/
 
 /*.table th.next_to_last {
 	width: 130px;

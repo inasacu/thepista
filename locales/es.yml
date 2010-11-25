@@ -444,6 +444,8 @@ es:
      games_show: Detalles del evento
      game_lost: Derrota   
      game_notes: Notas de futbol
+     game_played_true:  Ha jugado el ultimo partido
+     game_played_false:  No ha jugado el ultimo partido
      game_played:  Partido jugado
      game_started:  Titular
      game_not_played:  Partido no jugado   
@@ -1816,7 +1818,7 @@ es:
      users_rpx_new: Nuevo jugador
      users_rpx_create:  Nuevo jugador
      users_teammate: Mis compañeros de equipo
-     users_total: "Total<br/>jugadores"
+     users_total: "Total"
      users_update:  Actualizar jugador
      your:  Tu 
      true: "Si"

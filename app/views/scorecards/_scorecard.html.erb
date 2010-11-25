@@ -14,11 +14,15 @@
 	
 	ranking_change = "-#{scorecard.ranking - scorecard.previous_ranking}" if (scorecard.ranking > scorecard.previous_ranking)  
 	ranking_change = "+#{scorecard.previous_ranking - scorecard.ranking}" if (scorecard.ranking < scorecard.previous_ranking)  	
-	ranking_change = "=" if (scorecard.ranking == scorecard.previous_ranking or scorecard.previous_ranking == 0) 
+	ranking_change = "=" if (scorecard.ranking == scorecard.previous_ranking or scorecard.previous_ranking == 0)
+	user_played = scorecard.type_id.to_i == 1 
 %>
 
 <tr>
-	<td class="puntos" align="center"><%= scorecard.ranking %></td>
+	<td class="puntos" align="center">
+		<%= scorecard.ranking %>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		<%= subscription_image_link(scorecard.user, user_played ? "orange_#{user_played}" : "#{user_played}", label_name("game_played_#{user_played}")) %>		
+	</td>
 	<td class="equipos"><%= mailer ? "&nbsp;" : item_image_link_tiny(scorecard.user) %></td>
 	<td class="equipos">
 		<span>

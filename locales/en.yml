@@ -452,7 +452,9 @@ en:
      games_assigned: GA   
      games_assigned_full: Games Assigned   
      games_lost: GL   
-     games_lost_full: Games Lost   
+     games_lost_full: Games Lost
+     game_played_true:  Played Last Game 
+     game_played_false:  Did not Play Last Game     
      games_played: GP   
      games_played_full: Games Played  
      games_started: GS
@@ -1815,7 +1817,7 @@ en:
      users_rpx_new: New Player
      users_rpx_create:  New Player
      users_teammate: My Teammates 
-     users_total: "Total<br/>Players"
+     users_total: "Total"
      users_update:  Edit Player
      your:  Your   
      true: "Yes"
