@@ -126,8 +126,8 @@ textarea.textfield {
 }
 
 textarea.text_message { 
-	width: 500px;
-	height: 40px; 
+	width: 600px;
+	height: 80px; 
 	font-size: 14px;
 }
 
@@ -340,9 +340,12 @@ td.sub_true {
 
 
 /* table rows */
-.table .name_and_date .name { overflow: hidden; display: block; width: 150px; margin-right: 20px; white-space: nowrap; }
+.table .name_and_date .name_and_date_second_team .name { overflow: hidden; display: block; width: 150px; margin-right: 20px; white-space: nowrap; }
+.name_and_date_second_team { background: #EEEEEE; }
 .name_and_date .date { padding: 1px 0pt 0pt; display: block; font-size: 11px; color: rgb(119, 119, 119); }
-.name_and_date .date_tiny { padding: 1px 0pt 0pt; display: block; font-size: 9px; color: rgb(119, 119, 119); }
+.name_and_date_second_team .date { padding: 1px 0pt 0pt; display: block; font-size: 11px; color: rgb(119, 119, 119); }
+.name_and_date .date .date_tiny { padding: 1px 0pt 0pt; display: block; font-size: 9px; color: rgb(119, 119, 119); }
+.name_and_date_second_team .date_tiny { padding: 1px 0pt 0pt; display: block; font-size: 9px; color: rgb(119, 119, 119); }
 .last .action  { padding: 1px 0pt 0pt; display: block; font-size: 10px; color: rgb(119, 119, 119); }
 
 /*  new footer */

@@ -45,15 +45,19 @@ if roster_count
 		<tr>
 		 <th class="first">&nbsp;</th>
 		 <th>&nbsp;</th>
-		 <th><%= label_name(:name) %></th>
+		 <th>
+			<%= label_name(:name) %>
+			<%  unless @schedule.played? %>			
+			<%= "<br/> / #{label_name(:change_at)}" %>
+			<% end -%>
+		 </th>
+		 <th align="center" title = "<%= label_name(:ranking_full) %>"><%= label_name(:ranking) %></th>
+		 <th align="center" title = "<%= label_name(:participation_full) %>"><%= label_name(:participation) %></th>
 		 <th align="center" title = "<%= label_name(:position) %>"><%= label_name(:position) %></th>
 		 <th align="center" title = "<%= label_name(:profile_technical) %>"><%= label_name(:technical) %></th>
 		 <th align="center" title = "<%= label_name(:profile_physical) %>"><%= label_name(:physical) %></th>
 		 <th><%= label_name(:group) %></th>
-		 <th align="center" title = "<%= label_name(:ranking_full) %>"><%= label_name(:ranking) %></th>
-		 <th align="center" title = "<%= label_name(:participation_full) %>"><%= label_name(:participation) %></th>
 		 <%= content_tag 'th', label_name(:score) if @schedule.played? %>
-		 <%= content_tag 'th', label_name(:change_at) unless @schedule.played? %>
 		 <%= content_tag('th', "", :class => 'last_roster') unless @schedule.played? %>
 		</tr>
 
@@ -64,6 +68,9 @@ if roster_count
 			second_team = "second_team" if is_second_team
 			puntos = "puntos"
 			puntos = "second_team_puntos" if is_second_team
+			name_and_date = "name_and_date"
+			name_and_date = "name_and_date_second_team" if is_second_team
+			
 			last_roster = "last_roster"
 			last_roster = "second_team_last_roster" if is_second_team
 					
@@ -83,10 +90,17 @@ if roster_count
 				<%= subscription_image_link(match.user, is_subscriber, the_label) %>&nbsp;&nbsp;&nbsp;<%= counter +=1 %>.
 			</td>
 			
-			<td class="<%= second_team %>" >
-				<%= user_link_limit match.user %><br />
-				<%= "  ( #{label_name(:no_jugado)} )" if match.type_id == 4 %>
+				<td class="<%= name_and_date %>">
+				<%= user_link_limit match.user %>
+					<span class="date_tiny">
+						<%= "#{ago(match.status_at)}" unless @schedule.played? %>
+						<%= "<br />( #{label_name(:no_jugado)} )" if match.type_id == 4 %>
+					</span>
 			</td>
+		
+			<td class="<%= puntos %>" align="left"><%= match.ranking %></td>
+			<td class="<%= puntos %>" align="left"><%= sprintf( "%0.00f", coeficient_played) %><%= "%" %></td>	
+			
 <% 		
 		case match.position.name
 		when "defense"
@@ -118,8 +132,6 @@ if roster_count
 			<%= is_sub_manager ? link_to(match.team_name(@schedule), match_team_path(:id => match.id), :title => label_name(:change_group)) :  
 							match.team_name(@schedule) %>
 		</td>
-		<td class="<%= puntos %>" align="left"><%= match.ranking %></td>
-		<td class="<%= puntos %>" align="left"><%= sprintf( "%0.00f", coeficient_played) %><%= "%" %></td>
 <% 
 	
 	if @schedule.played? 
@@ -129,11 +141,11 @@ if roster_count
 	end 
  
 	unless @schedule.played?  %>
-		<td class="<%= second_team %>" >
-			<!-- <span class="date"> -->
-				<%= ago(match.status_at) %>
-			<!-- </span> -->
-		</td>	
+		<!-- <td class="<%= second_team %>" >
+			<span class="date">
+				<%#= ago(match.status_at) %>
+			</span>
+		</td> -->	
 		<td class="<%= last_roster %>" >
 <% 
 	is_manager = current_user.is_manager_of?(@schedule.group) 

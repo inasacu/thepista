@@ -98,11 +98,11 @@ body {
 
 #main .block .content .inner {
   padding: 0 15px 15px;
-  width: 97%;  
+/*  width: 97%;  */
 }
 
 #main .inner {
-/*   width: 100%;	*/
+   width: 99.5%;	
 }
 
 #main .main p.first {
