@@ -2,7 +2,7 @@
 
 <div class="block">
 	<h3><%= label_name(:challenge_option) %></h3>
-<ul class="navigation">
+<div class="content">
 <%
 	items.each do |item| 
 		the_item = h(item.name)
@@ -11,23 +11,25 @@
 			the_label = label_with_name('petition_to_join', item.name)
 			the_confirmation = "#{ label_name(:petition_to_join)} #{h(@user.name)} #{ label_name(:to) } #{the_item}?"
 %>
-        	<li><%= link_to(the_label, join_item_path(:id => item, :item => item.class.to_s, :teammate => current_user), 
-					:confirm => the_confirmation) %>
-			</li>
+        	<p>
+			<%= option_image_link('user_add') %>&nbsp;&nbsp;
+			<%= link_to(the_label, join_item_path(:id => item, :item => item.class.to_s, :teammate => current_user), :confirm => the_confirmation) %>
+			</p>
 <% 
 		else 
 			the_label = label_with_name('fire_from_item', item.name)
 			the_confirmation = "#{ label_name(:fire_from_item)} #{the_item} #{ label_name(:to)} #{h(@user.name)}?"
 %> 
-		<li><%= link_to(the_label, leave_item_path(:id => item, :item => item.class.to_s, :teammate => current_user), 
-				:confirm => the_confirmation) %>
-		</li>
+		<p>
+		<%= option_image_link('user_remove') %>&nbsp;&nbsp;
+		<%= link_to(the_label, leave_item_path(:id => item, :item => item.class.to_s, :teammate => current_user), :confirm => the_confirmation) %>
+		</p>
 <% 
 		end 
 	end 
 %>
 
-</ul>
+</div>
 	
 </div>
 

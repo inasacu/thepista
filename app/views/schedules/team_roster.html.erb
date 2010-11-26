@@ -30,8 +30,8 @@
 
 <% if @schedule -%>
 	<% content_for(:sidebar, render("schedules/sidebar_show", :schedule => @schedule)) -%>
-	<% content_for(:sidebar, render("shared/share_object", :schedule => @schedule)) -%>
 	<% content_for(:sidebar, render('schedules/sidebar_level', :schedule => @schedule )) if is_action and current_user.is_manager_of?(@schedule.group)-%>
+	<% content_for(:sidebar, render("shared/share_object", :schedule => @schedule)) -%>
 <% end %>
 
 

@@ -15,13 +15,13 @@
 	the_technical = "#{sprintf( "%0.00f", technical["difference"].abs)}%"
 	the_physical = "#{sprintf( "%0.00f", physical["difference"].abs)}%"
 	
-	home["image"] = "table-arrow-top.gif" if home["total"] > away["total"]
-	home["image"] = "table-arrow-bottom.gif" if home["total"] < away["total"]
-	home["image"] = "table-arrow-right.gif" if home["total"] == away["total"]
+	home["image"] = scorecard_image_link("arrow_up.png") if home["total"] > away["total"]
+	home["image"] = scorecard_image_link("arrow_down.png") if home["total"] < away["total"]
+	home["image"] = scorecard_image_link("arrow_right.png") if home["total"] == away["total"]
 	
-	away["image"] = "table-arrow-top.gif" if away["total"] > home["total"]
-	away["image"] = "table-arrow-bottom.gif" if away["total"] < home["total"]
-	away["image"] = "table-arrow-right.gif" if away["total"] == home["total"]
+	away["image"] = scorecard_image_link("arrow_up.png") if away["total"] > home["total"]
+	away["image"] = scorecard_image_link("arrow_down.png") if away["total"] < home["total"]
+	away["image"] = scorecard_image_link("arrow_right.png") if away["total"] == home["total"]
 %>
 <tr>
 	<%= content_tag :td, "&nbsp;", :class => "no_line" %>
@@ -57,7 +57,7 @@
 	<%= content_tag(:td, home["total"], :class => "no_line", :align => "center") %>
 	<%= content_tag(:td, is_home_technical ? the_technical : "#{technical["difference"]}%", :class => "no_line", :align => "center") %>
 	<%= content_tag(:td, is_home_physical ? the_physical : "#{physical["difference"]}%", :class => "no_line", :align => "center") %>
-	<%= content_tag(:td, image_tag(home["image"]), :class => "no_line", :align => "center") %>
+	<%= content_tag(:td, home["image"], :class => "no_line", :align => "center") %>
 </tr>
 
 <tr>
@@ -70,7 +70,7 @@
 	<%= content_tag(:td, away["total"], :align => "center") %>
 	<%= content_tag(:td, is_home_technical ? "#{technical["difference"]}%" : the_technical, :align => "center") %>
 	<%= content_tag(:td, is_home_physical ? "#{physical["difference"]}%" : the_physical, :align => "center") %>
-	<%= content_tag(:td, image_tag(away["image"]), :class => "", :align => "center") %>	
+	<%= content_tag(:td, away["image"], :class => "", :align => "center") %>	
 </tr>
 
 <tr>

@@ -7,10 +7,10 @@
 	coeficient_points = scorecard_other.points.to_f * (scorecard_other.points.to_f/max_points.to_f) 
 	coeficient_played = 100 *(scorecard_other.played.to_f / games_played.to_f)
 	
-	image = "table-arrow-bottom.gif" if (scorecard_other.ranking > scorecard_other.previous_ranking) 
-	image = "table-arrow-top.gif" if (scorecard_other.ranking < scorecard_other.previous_ranking)  		
-	image = "table-arrow-right.gif" if (scorecard_other.ranking == scorecard_other.previous_ranking) 
-	image = "table-arrow-right.gif" if (scorecard_other.previous_ranking == 0) 
+	image = scorecard_image_link("arrow_down.png") if (scorecard_other.ranking > scorecard_other.previous_ranking) 
+	image = scorecard_image_link("arrow_up.png") if (scorecard_other.ranking < scorecard_other.previous_ranking)  		
+	image = scorecard_image_link("arrow_right.png") if (scorecard_other.ranking == scorecard_other.previous_ranking) 
+	image = scorecard_image_link("arrow_right.png") if (scorecard_other.previous_ranking == 0) 
 	
 	ranking_change = "-#{scorecard_other.ranking - scorecard_other.previous_ranking}" if (scorecard_other.ranking > scorecard_other.previous_ranking)  
 	ranking_change = "+#{scorecard_other.previous_ranking - scorecard_other.ranking}" if (scorecard_other.ranking < scorecard_other.previous_ranking)  	
@@ -29,7 +29,7 @@
 		<% end %>
 		</span>
 	</td>
-	<td class="jugados"><%= mailer ? "&nbsp;" : image_tag(image) %></td>
+	<td class="jugados"><%= mailer ? "&nbsp;" : image %></td>
 	<td class="jugados"><%= ranking_change %></td>
 	<td class="puntos"><%= scorecard_other.points.round %></td>
 	<td class="ganados"><%= scorecard_other.wins %></td>
