@@ -1,8 +1,13 @@
 <% the_value = @group.is_futbol? %>
 
+
 <div class="block">
-	<h3><%= control_label('legend') %></h3>
-	<div class="content">
+	<div class="sidebar-block" class="extra">
+		
+	<a href="#" onclick="toggle_visibility('abc');"><h5><%= control_label('legend') %></h5></a>
+
+	<div id="abc" style='display:none;'>
+		
 		<p>
 			<b><%= label_name(:ranking) %></b>
 			<%= label_name(:ranking_full) %>
@@ -91,6 +96,7 @@
 		</p>				
 
 	</div>
+</div>
 </div>
 
 <% if current_user.is_maximo? %>

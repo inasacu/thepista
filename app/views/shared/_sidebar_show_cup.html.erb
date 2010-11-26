@@ -13,15 +13,34 @@
 	
 	<h3><%= label_name('options') %></h3>
 	
-	<ul class="navigation">	
+	<div class="content">	
 		<% 	unless final_played  %>	
-		<li><%= link_to label_name(:games_create), new_game_path(:id => cup) if has_escuadras %></li>
-		<li><%= link_to label_name(:escuadras_create), new_escuadra_path(:id => cup) if cup.official %></li>
-		<li><%= link_to(label_name(:group_stage_set), set_group_stage_url(:id => cup), :title => "#{label_name(:group_stage_set_full) }") if current_user.is_manager_of?(cup) %></li> 
-		<li><%= link_to(the_confirmation, cup_path(cup), :method => :delete, :confirm => "#{the_confirmation}?") unless cup.has_game? %></li>
+		
+		<%  if has_escuadras %>
+		<p><%= option_image_link('schedule') %>&nbsp;&nbsp;<%= link_to label_name(:games_create), new_game_path(:id => cup) %></p>
+		<% end -%>
+		
+		<%  if cup.official %>
+		<p><%= option_image_link('group_add') %>&nbsp;&nbsp;<%= link_to label_name(:escuadras_create), new_escuadra_path(:id => cup) %></p>
+		<% end -%>
+		
+		<% if current_user.is_manager_of?(cup) %>
+		<p>
+		<%= option_image_link('cup') %>&nbsp;&nbsp;
+		<%= link_to(label_name(:group_stage_set), set_group_stage_url(:id => cup), :title => "#{label_name(:group_stage_set_full) }")  %>
+		</p> 
 		<% end %>
-		<li><%= link_to label_name(:cups_edit), edit_cup_path(cup)  %></li>		
-	</ul>
+		
+		<% unless cup.has_game? %>
+		<p>
+		<%= option_image_link('cup') %>&nbsp;&nbsp;<%= link_to(the_confirmation, cup_path(cup), :method => :delete, :confirm => "#{the_confirmation}?") %>
+		</p>
+		<% end %>
+		
+		<% end %>
+		
+		<p><%= option_image_link('cup') %>&nbsp;&nbsp;<%= link_to label_name(:cups_edit), edit_cup_path(cup)  %></p>		
+	</div>
 	
 </div>
 <% end %>
