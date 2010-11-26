@@ -14,7 +14,7 @@
 	
 	ranking_change = "-#{scorecard.ranking - scorecard.previous_ranking}" if (scorecard.ranking > scorecard.previous_ranking)  
 	ranking_change = "+#{scorecard.previous_ranking - scorecard.ranking}" if (scorecard.ranking < scorecard.previous_ranking)  	
-	ranking_change = "=" if (scorecard.ranking == scorecard.previous_ranking or scorecard.previous_ranking == 0)
+	ranking_change = " " if (scorecard.ranking == scorecard.previous_ranking or scorecard.previous_ranking == 0)
 	user_played = scorecard.type_id.to_i == 1 
 %>
 
@@ -33,8 +33,7 @@
 		<% end %>
 		</span>
 	</td>
-	<td class="jugados"><%= mailer ? "&nbsp;" : image %></td>
-	<td class="jugados"><%= mailer ? "&nbsp;" : ranking_change %></td>
+	<td class="jugados"><%= mailer ? "&nbsp;" : image %>&nbsp;<%= mailer ? "&nbsp;" : ranking_change %></td>
 	<td class="puntos"><%= scorecard.points.round %></td>
 	<td class="ganados"><%= scorecard.wins %></td>
 	<td class="empatados"><%= scorecard.draws %></td>
@@ -49,8 +48,8 @@
 	<% end %>
 		
 	<td class="jugados"><%= scorecard.played %></td>
-	<td class="jugados"><%= scorecard.assigned %></td>
-	<td class="puntos"><%= mailer ? sprintf( "%0.0f", coeficient_points)  : coeficient_points.round %></td>
+	<!-- <td class="jugados"><%#= scorecard.assigned %></td> -->
+	<!-- <td class="puntos"><%#= mailer ? sprintf( "%0.0f", coeficient_points)  : coeficient_points.round %></td> -->
 	<td class="puntos"><%= sprintf( "%0.00f", coeficient_played) %><%= "%" %></td>
 </tr>
 

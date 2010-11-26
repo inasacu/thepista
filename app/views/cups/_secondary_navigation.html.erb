@@ -6,7 +6,7 @@
 	is_not_new_item = !is_action('new')
 	
 	if is_not_new_item
-		has_escuadras = (object_counter(cup.escuadras) > 0 ) unless @cups 
+		has_escuadras = (object_counter(@cup.escuadras) > 0 ) unless @cups 
 	end
 	
 	content_for(:description, "#{h(@cup.name)},  #{h(@cup.description) }.") unless @cups 							
@@ -15,7 +15,7 @@
 <div class="secondary-navigation">
 <ul>
 	<% if is_not_new_item %>
-	<%= item_new(cup) unless @cups %>
+	<%= item_new(@cup) unless @cups %>
 	<% end -%>
 	<li>
 	<% if @cups %>
@@ -24,12 +24,12 @@
 		<% end %>
 		<li class="<%= get_active('cup_list') %>"><%=  link_to(label_name(:cups_list) , list_cups_path) %></li>
 	<% else %>
-		<li class="<%= get_active('cup_show') %>"><%=  item_name_link(cup.name, cup, nil, 21) if is_not_new_item %></li>
+		<li class="<%= get_active('cup_show') %>"><%=  item_name_link(@cup.name, @cup, nil, 21) if is_not_new_item %></li>
 	
 		<% if has_escuadras %>			
-		<li class="<%= get_active('escuadra_index') %>"><%=  link_to(label_name(:escuadras), escuadras_url(:id => cup)) %></li>		
-		<li class="<%= get_active('game_index') %>"><%= link_to(label_name(:group_stage) , games_url(:id => cup)) %>	</li>
-		<li class="<%= "#{get_active('game_list')}"%>"><%= link_to(label_name(:group_round) , list_games_path(:id => cup)) %></li>
+		<li class="<%= get_active('escuadra_index') %>"><%=  link_to(label_name(:escuadras), escuadras_url(:id => @cup)) %></li>		
+		<li class="<%= get_active('game_index') %>"><%= link_to(label_name(:group_stage) , games_url(:id => @cup)) %>	</li>
+		<li class="<%= "#{get_active('game_list')}"%>"><%= link_to(label_name(:group_round) , list_games_path(:id => @cup)) %></li>
 		
 		<% if @game and get_controller_action != 'game_new' %>
 		<li class="<%= "#{get_active('game_edit')}"  "#{get_active('game_set_score')}" %>">
@@ -38,15 +38,15 @@
 		<% end %>
 		
 		<li class="<%= "#{get_active('standing_show')}#{get_active('standing_index')}" %>">
-			<%= link_to(label_name(:scorecards) , standings_path(:id => cup)) if cup.has_standing %>
+			<%= link_to(label_name(:scorecards) , standings_path(:id => @cup)) if cup.has_standing %>
 		</li>
 		
 		<% if cup.official %>
 		<li class="<%= get_active('cast_list_gues') %>">
-			<%=  link_to(label_name(:cast_right_guess) , list_guess_casts_path(:id => cup)) %>
+			<%=  link_to(label_name(:cast_right_guess) , list_guess_casts_path(:id => @cup)) %>
 		</li>
 		<li class="<%= get_active('standing_show all') %>">
-			<%=  link_to(label_name(:cast_right_guess_all) , show_all_standings_path(:id => cup)) %>
+			<%=  link_to(label_name(:cast_right_guess_all) , show_all_standings_path(:id => @cup)) %>
 		</li>	
 		<% end %>
 		

@@ -122,7 +122,7 @@ textarea.textfield {
 }
 
 textarea.text_message { 
-	width: 80%;
+	width: 85%;
 	height: 80px; 
 	font-size: 13px;
 }
@@ -131,51 +131,49 @@ input.textfield_login {
 	width: 300px; 
 }
 
-.textscore{ 
+.textscore, .text_field, .textphoto, .text_tiny_score, .text_field, .inplace_text_field { 
 	border: 1px solid rgb(205, 205, 205); 
 	padding: 0.4em; 
 	background: rgb(255, 255, 255) url('../../images/textfield-bg.gif') repeat-x scroll 0pt 1px; 
 }
-.textscore:focus { 
+
+.textscore:focus, .text_field:focus, .textphoto:focus, .text_tiny_score:focus, .text_field:focus, .inplace_text_field:focus { 
 	background: rgb(255, 254, 244) url('../../images/textfield-focus-bg.gif') repeat-x scroll 0pt 1px; 
 }
-input.textscore { 
-	width: 100px; 
-}
 
-.textphoto{ 
+/*.textphoto{ 
 	border: 1px solid rgb(205, 205, 205); 
 	padding: 0.4em; 
 	background: rgb(255, 255, 255) url('../../images/textfield-bg.gif') repeat-x scroll 0pt 1px; 
 }
 .textphoto:focus { 
 	background: rgb(255, 254, 244) url('../../images/textfield-focus-bg.gif') repeat-x scroll 0pt 1px; 
-}
+}*/
 input.textphoto { 
 	width: 375px; 
 }
 
 
-.text_tiny_score{ 
+/*.text_tiny_score{ 
 	border: 1px solid rgb(205, 205, 205); 
 	padding: 0.4em; 
 	background: rgb(255, 255, 255) url('../../images/textfield-bg.gif') repeat-x scroll 0pt 1px; 
 }
 .text_tiny_score:focus { 
 	background: rgb(255, 254, 244) url('../../images/textfield-focus-bg.gif') repeat-x scroll 0pt 1px; 
-}
+}*/
 input.text_tiny_score { 
 	width: 25px; 
 }
 
-.text_field{ 
+/*.text_field{ 
 	border: 1px solid rgb(205, 205, 205); 
 	padding: 0.4em; 
 	background: rgb(255, 255, 255) url('../../images/textfield-bg.gif') repeat-x scroll 0pt 1px; 
 }
 .text_field:focus { 
 	background: rgb(255, 254, 244) url('../../images/textfield-focus-bg.gif') repeat-x scroll 0pt 1px; 
-}
+}*/
 input.text_field { 
 	width: 200px; 
 }
@@ -189,9 +187,11 @@ input.text_field {
 .inplace_text_field:focus { 
 	background: rgb(255, 254, 244) url('../../images/textfield-focus-bg.gif') repeat-x scroll 0pt 1px; 
 }
+*/
+
 input.inplace_text_field { 
 	width: 15px; 
-}*/
+}
 
 
 

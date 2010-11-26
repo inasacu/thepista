@@ -1,11 +1,9 @@
 <% the_value = @group.is_futbol? %>
 <tr align="left">           
 	<th align="center" title="<%= I18n.t(:ranking_full) %>"><%= I18n.t(:ranking) %></th>
-	<th>&nbsp;</th>
 	
-	<th><%= I18n.t(:name) %></th>
-	
-	<th>&nbsp;</th>
+	<th>&nbsp;</th>	
+	<th><%= I18n.t(:name) %></th>	
 	<th>&nbsp;</th>
 	
 	<th title="<%= I18n.t(:points_full) %>"><%= I18n.t(:points) %></th>
@@ -20,9 +18,9 @@
 	<th title="<%= I18n.t("goals_against_full_#{the_value}") %>"><%= I18n.t("goals_against_#{the_value}") %></th>
 	<th title="<%= I18n.t("goal_difference_full_#{the_value}") %>"><%= I18n.t("goal_difference_#{the_value}") %></th>
 	
-	<th title="<%= I18n.t(:coeficient_full) %>"><%= I18n.t(:coeficient) %></th>
+	<!-- <th title="<%#= I18n.t(:coeficient_full) %>"><%#= I18n.t(:coeficient) %></th> -->
 	<th title="<%= I18n.t(:games_played_full) %>"><%= I18n.t(:games_played) %></th>
 	<!-- <th title="<%#= I18n.t(:games_assigned_full) %>"><%#= I18n.t(:games_assigned) %></th> -->
-	<th title="<%= I18n.t(:coeficient_full) %>"><%= I18n.t(:coeficient_points) %></th>
+	<!-- <th title="<%#= I18n.t(:coeficient_full) %>"><%#= I18n.t(:coeficient_points) %></th> -->
 	<th title="<%= I18n.t(:participation_full) %>"><%= I18n.t(:participation) %></th>
 </tr>
