@@ -5,6 +5,7 @@ class User < ActiveRecord::Base
    include ActivityLogger
    
    # allows user to rate a model 
+   ajaxful_rateable :stars => 5, :dimensions => [:technical, :physical]
    ajaxful_rater
       
   acts_as_authentic do |c|

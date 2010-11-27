@@ -19,13 +19,12 @@ Rails::Initializer.run do |config|
   
   # Specify gems that this application depends on and have them installed with rake gems:install
   config.gem "authlogic"
-  config.gem "will_paginate"
+  config.gem "will_paginate",                     :version => "2.3.15"
   config.gem "authlogic-oid",                     :lib => "authlogic_openid"
   config.gem "ruby-openid",                       :lib => "openid"
   config.gem "acl9",                              :lib => "acl9",                         :source => "http://gemcutter.org"
   config.gem "contacts"  
   config.gem 'sitemap_generator',                 :lib => false,                          :source => 'http://gemcutter.org'
-  config.gem "edgarjs-ajaxful_rating",            :lib => "ajaxful_rating",               :source => "http://gems.github.com"
   config.gem 'jackdempsey-acts_as_commentable',   :lib => 'acts_as_commentable',          :source => "http://gems.github.com"
   config.gem "acts-as-taggable-on",                                                       :source => "http://gemcutter.org"
   config.gem 'hoptoad_notifier'

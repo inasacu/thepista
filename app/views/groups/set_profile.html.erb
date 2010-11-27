@@ -19,12 +19,17 @@
 					<th class="first">&nbsp;</th>
 					<th>&nbsp;</th>
 					<th>&nbsp;</th>
-					<th align="center"><%= label_name(:profile_technical) %></th>
+					<th align=""><%= label_name(:technical) %></th>
 					<th>&nbsp;</th>
-					<th align="center"><%= label_name(:profile_physical) %></th>
+					<th align=""><%= label_name(:physical) %></th>
+					<th>&nbsp;|&nbsp;</th>
+					<th align=""><%= label_name(:profile_technical_average) %></th>
+					<th>&nbsp;</th>
+					<th align=""><%= label_name(:profile_physical_average) %></th>
 					<th class="last" width="400">&nbsp;</th>
 				</tr>
 
+				
 				<% @matches.each do |match| %>
 				<%= render "groups/profile", :match => match %>
 				<%- end -%>
@@ -38,5 +43,3 @@
 	</div>
 
 </div>
-
-<!-- end of the line -->

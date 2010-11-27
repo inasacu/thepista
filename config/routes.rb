@@ -140,6 +140,7 @@ ActionController::Routing::Routes.draw do |map|
     user.resources :messages
   end
   
+  map.resources :users, :member => {:rate => :post}
   map.resources :matches, :member => {:rate => :post}
   map.resources :schedules, :member => {:rate => :post}
   

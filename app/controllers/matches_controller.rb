@@ -8,7 +8,7 @@ class MatchesController < ApplicationController
   
   def set_match_profile
     @schedule = Schedule.find(params[:id])
-    @group = @schedule.group
+    @group = @schedule.group    
     @the_first_schedule = @group.schedules.first
     @matches = Match.find(:all, :joins   => "LEFT JOIN users on matches.user_id = users.id",
     :conditions => ["schedule_id = ? and user_id != ? and matches.archive = false and users.available = true and users.archive = false", @the_first_schedule, current_user],
@@ -45,22 +45,12 @@ class MatchesController < ApplicationController
 
   def rate
     @match = Match.find(params[:id])
-    @match.rate(params[:stars], current_user, params[:dimension])
-    id = "ajaxful-rating-#{!params[:dimension].blank? ? "#{params[:dimension]}-" : ''}match-#{@match.id}"
+    @match.rate(params[:stars], current_user, params[:dimension])    
     render :update do |page|
-      page.replace_html id, ratings_for(@match, :wrap => false, :dimension => params[:dimension], :small_stars => true)
-      page.visual_effect :highlight, id
+      page.replace_html @match.wrapper_dom_id(params), ratings_for(@match, params.merge(:wrap => false))
+      page.visual_effect :highlight, @match.wrapper_dom_id(params)
     end
   end
-  
-  # def rate
-  #   @match = Match.find(params[:id])
-  #   @match.rate(params[:stars], current_user, params[:dimension])
-  #   render :update do |page|
-  #     page.replace_html @match.wrapper_dom_id(params), ratings_for(@match, params.merge(:wrap => false))
-  #     page.visual_effect :highlight, @match.wrapper_dom_id(params)
-  #   end
-  # end
 
   def edit
     @match = Match.find(params[:id])

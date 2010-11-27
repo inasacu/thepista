@@ -978,7 +978,8 @@ en:
      private_profile: Private Profile   
      problem_field: We had problems with some of the fields.  
      profile: Profile    
-     profile_physical: Physical Level   
+     profile_physical: Physical Level 
+     profile_physical_average:  Physical Average Level  
      profile_position: Position   
      profile_private: Private Profile   
      profile_rating: Rating
@@ -986,7 +987,8 @@ en:
      profile_set_full:  Set current event's profiles. 
      profile_user_set:  Update from User Profile.
      profile_user_set_full:  Update profile from user's profile  
-     profile_technical: Technical Level 
+     profile_technical: Technical Level
+     profile_technical_average: Technical Average Level
      protect_your_privacy: "We protect your privacy. HayPista at no time has provided your email address to any other user of HayPista without your permission. © 2007-2010, HayPista"  
      provider_not_supported: "provider is not supported, try another email address."   
      public:  Open to the Public

@@ -978,7 +978,8 @@ es:
      private_profile: Ocultar perfil   
      problem_field: Hemos tenido problemas con algunos de los campos.   
      profile: Perfil        
-     profile_physical: Nivel fisico   
+     profile_physical: Nivel fisico 
+     profile_physical_average:  Fisico Medio  
      profile_position: Posición   
      profile_private: Ocultar el perfil   
      profile_rating: Calificación   
@@ -987,6 +988,7 @@ es:
      profile_user_set:  Obtener perfil del jugador
      profile_user_set_full:  Obtener los perfiles del perfil del jugador
      profile_technical: Nivel tecnico 
+     profile_technical_average:  Tecnico Medio
      protect_your_privacy: "Protegemos tu privacidad. HayPista en ningún momento le ha proporcionado tu dirección de correo electrónico a ningún otro usuario de HayPista sin tu permiso. © 2007-2010, HayPista"  
      provider_not_supported: "provider is not supported, try another email address."   
      public:  Abierto al publico
