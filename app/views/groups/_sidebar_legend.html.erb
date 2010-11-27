@@ -1,6 +1,7 @@
 <div class="block">
-	<h3><%= label_name(:groups_howto) %></h3>
-	<div class="content">
+	<div class="sidebar-block" class="extra">
+	<a href="#" onclick="toggle_visibility('abc');"><h5><%= label_name(:groups_howto) %></h5></a>
+	<div id="abc" style='display:none;'>
 		
 		<p>
 			<b>1.&nbsp;</b>
@@ -26,11 +27,6 @@
 			<b>6.&nbsp;</b>
 			<%= label_name(:groups_howto_fillin) %>
 		<p>
-
-		<!-- <p>
-			<b>7.&nbsp;</b>
-			<%#= label_name(:groups_howto_convocatoria) %>
-		<p> -->
 				
 		<p>
 			<b>8.&nbsp;</b>
@@ -42,21 +38,12 @@
 			<%= label_name(:groups_howto_petition) %>
 		<p>
 
-		<!-- <p>
-			<b>10.&nbsp;</b>
-			<%#= label_name(:challenges_howto_petition_done) %>
-		<p>	 -->		
-
-		<!-- <p>
-			<b>11.&nbsp;</b>
-			<%#= label_name(:challenges_howto_petition_accept) %>
-		<p> -->
-
 		<p>
 			<b>* &nbsp;</b>
 			<%= label_name(:groups_howto_gameday) %>
 		<p>
 
+		</div>
 	</div>
 </div>
 

@@ -49,8 +49,7 @@
 		<%= tr_td_action(:group_stage_advance, @cup.group_stage_advance) if (@cup.group_stage_advance.to_i > 0) if current_user.is_maximo? %>
 		
 		<tr>
-			<%= content_tag :td, link_to(label_name(:standing), standing_path(:id => @cup)), 
-					:class => "label" if @cup.has_standing %>
+			<%= content_tag :td, link_to(label_name(:standing), standing_path(:id => @cup)), :class => "label" if @cup.has_standing %>
 		</tr>
 
 		<tr>
@@ -64,7 +63,7 @@
 		</tr>
 
 		<tr>
-		<%= render :partial => 'shared/show_images', :locals => {:collection => @the_escuadras} %>			
+			<%= render :partial => 'shared/show_images', :locals => {:collection => @the_escuadras} %>			
 		</tr>
 
 		</table>

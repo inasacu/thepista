@@ -4,7 +4,7 @@ class User < ActiveRecord::Base
 
    include ActivityLogger
    
-   # allows user to rate a model (currently only schedule)
+   # allows user to rate a model 
    ajaxful_rater
       
   acts_as_authentic do |c|

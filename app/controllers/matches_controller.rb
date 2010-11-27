@@ -1,23 +1,33 @@
 class MatchesController < ApplicationController
   before_filter :require_user
   before_filter :get_match_and_user_x_two, :only =>[:set_status, :set_team]
-    
+
   def index
     redirect_to :controller => 'schedules', :action => 'index'
+  end
+  
+  def set_match_profile
+    @schedule = Schedule.find(params[:id])
+    @group = @schedule.group
+    @the_first_schedule = @group.schedules.first
+    @matches = Match.find(:all, :joins   => "LEFT JOIN users on matches.user_id = users.id",
+    :conditions => ["schedule_id = ? and user_id != ? and matches.archive = false and users.available = true and users.archive = false", @the_first_schedule, current_user],
+    :order => "users.name")
+    render :template => 'groups/set_profile'       
   end
   
   def set_profile
     @schedule = Schedule.find(params[:id])
     @match = @schedule.matches.first
     @matches = @schedule.the_roster
-    
+
     unless current_user.is_manager_of?(@schedule.group)
       flash[:warning] = I18n.t(:unauthorized)
       redirect_back_or_default('/index')
       return
     end    
   end
-  
+
   def set_user_profile
     @schedule = Schedule.find(params[:id])
 
@@ -32,14 +42,32 @@ class MatchesController < ApplicationController
     flash[:success] = I18n.t(:successful_update)
     redirect_back_or_default('/index')
   end
+
+  def rate
+    @match = Match.find(params[:id])
+    @match.rate(params[:stars], current_user, params[:dimension])
+    id = "ajaxful-rating-#{!params[:dimension].blank? ? "#{params[:dimension]}-" : ''}match-#{@match.id}"
+    render :update do |page|
+      page.replace_html id, ratings_for(@match, :wrap => false, :dimension => params[:dimension], :small_stars => true)
+      page.visual_effect :highlight, id
+    end
+  end
   
+  # def rate
+  #   @match = Match.find(params[:id])
+  #   @match.rate(params[:stars], current_user, params[:dimension])
+  #   render :update do |page|
+  #     page.replace_html @match.wrapper_dom_id(params), ratings_for(@match, params.merge(:wrap => false))
+  #     page.visual_effect :highlight, @match.wrapper_dom_id(params)
+  #   end
+  # end
 
   def edit
     @match = Match.find(params[:id])
     @match.description = nil
     @schedule = @match.schedule
     @matches = @schedule.the_roster
-    
+
     unless current_user.is_manager_of?(@schedule.group)
       flash[:warning] = I18n.t(:unauthorized)
       redirect_back_or_default('/index')
@@ -71,7 +99,7 @@ class MatchesController < ApplicationController
       redirect_to root_url
       return
     end
-      
+
     @type = Type.find(params[:type])
 
     played = (@type.id == 1 and !@match.group_score.nil? and !@match.invite_score.nil?)

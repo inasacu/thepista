@@ -94,10 +94,11 @@
 					<% 
 					  	else
 							unless current_user.has_item_petition?(current_user, cup)
-								the_label = label_with_name('add_to_item', the_cup)
- 								the_confirmation = "#{ label_name(:petition_to_join) } #{the_cup}?"
+								# the_label = label_with_name('add_to_item', the_cup)
+ 								# the_confirmation = "#{ label_name(:petition_to_join) } #{the_cup}?"
 					%> 
-						<%= link_to(the_label,	
+						<%= join_item_link_to(current_user, cup) %>
+						<%#= link_to(the_label,	
 									join_item_path(:id => cup, 
 												   :item => cup.class.to_s, 
 												   :teammate => current_user), 

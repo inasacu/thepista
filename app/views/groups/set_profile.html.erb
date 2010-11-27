@@ -1,0 +1,42 @@
+<% 
+	the_label = "#{label_name(:users)} #{label_name(:from)} #{sanitize(@group.name)}"
+	content_for(:title, sanitize(@group.name))
+%>
+
+<div class="block">
+
+	<%= render :partial => '/schedules/secondary_navigation' %>
+
+	<div class="content">   
+
+		<h2 class="title"><%= the_label %></h2>
+
+		<div class="inner">
+
+			<table class="table" id="<%= get_the_controller.gsub(' ','_') %>">
+
+				<tr>             
+					<th class="first">&nbsp;</th>
+					<th>&nbsp;</th>
+					<th>&nbsp;</th>
+					<th align="center"><%= label_name(:profile_technical) %></th>
+					<th>&nbsp;</th>
+					<th align="center"><%= label_name(:profile_physical) %></th>
+					<th class="last" width="400">&nbsp;</th>
+				</tr>
+
+				<% @matches.each do |match| %>
+				<%= render "groups/profile", :match => match %>
+				<%- end -%>
+
+			</table>
+
+			<div class="clear"></div> 
+
+		</div>
+
+	</div>
+
+</div>
+
+<!-- end of the line -->

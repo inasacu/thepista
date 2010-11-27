@@ -106,7 +106,7 @@ module ApplicationHelper
   def get_the_action
     return self.controller.action_name.singularize.gsub("_", " ")
   end
-  
+
   def get_controller_action
     return "#{get_the_controller}_#{get_the_action}".gsub(' ','_')
   end
@@ -114,7 +114,7 @@ module ApplicationHelper
   def ago(time_at)
     I18n.t(:ago, :count => time_ago_in_words(time_at).capitalize) 
   end
-  
+
   def has_left(time_at)
     I18n.t(:has_left, :count => time_ago_in_words(time_at).capitalize) 
   end
@@ -143,7 +143,7 @@ module ApplicationHelper
   def nice_day_of_week(time_at)
     return I18n.l(time_at, :format => :day_week) unless time_at.nil?
   end
-  
+
   # 12 de Junio de 2010 a las 20:30
   def nice_date_hour(time_at)
     return I18n.l(time_at, :format => :date_hour) unless time_at.nil?
@@ -176,13 +176,13 @@ module ApplicationHelper
     text = text.split.collect {|i| i.capitalize}.join(' ')
     return text
   end
-  
+
   # def truncate(str, length)
   #   return '' if str.blank?
   #   truncated = str.size > length
   #   (str.mb_chars[0..(truncated ? length - 3 : length)] + (truncated ? "..." : '')).to_s
   # end
-  
+
   def current_announcements
     unless session[:announcement_hide_time].nil?
       time = session[:announcement_hide_time]
@@ -191,7 +191,7 @@ module ApplicationHelper
     end
     @current_announcements ||= Announcement.current_announcements(time)
   end
-  
+
   def upcoming_schedules
     @upcoming_schedules ||= Schedule.upcoming_schedules(session[:schedule_hide_time])
   end
@@ -265,7 +265,7 @@ module ApplicationHelper
     text = limit_item_link_length(text, limit) unless (limit == nil)
     link_to(h(text), item, html_options)
   end
-    
+
   # Link to a item (default is by concept).
   def item_concept_link(text, item = nil, html_options = nil, limit = nil)
     if item.nil?
@@ -276,29 +276,29 @@ module ApplicationHelper
       item = text
       text = item.concept
     end
-      text = limit_item_link_length(text, limit) unless (limit == nil)
-      link_to(h(text), item, html_options)
-    end
-    
+    text = limit_item_link_length(text, limit) unless (limit == nil)
+    link_to(h(text), item, html_options)
+  end
+
   def limit_item_link_length(text, value)
     text = h(text)
     text = "#{text.to_s.strip[0..value]}..." if text.to_s.length > value
     text = text.split.collect {|i| i.capitalize}.join(' ')
     return text
   end
-  
+
   def option_image_link(item)
     the_image = "icons/#{item}.png"
     return image_tag(the_image, options={:style => 'height: 16px; width: 16px;'})
   end
-  
+
   def option_link(item) 
     the_image = "icons/#{item}.png"
     the_label = I18n.t("create_new_#{item}")
     the_path = "new_#{item}_url"
     return link_to(the_label, send(:"#{the_path}"))
   end
-  
+
   def item_image_link_tiny(item)
     the_path = "#{item.class.to_s.downcase.chomp}_path"
     link_to(image_tag(item.avatar, options={:style => "height: 15px; width: 15px;"}), send(:"#{the_path}", item)) 
@@ -318,7 +318,7 @@ module ApplicationHelper
     the_path = "#{item.class.to_s.downcase.chomp}_path"
     link_to(image_tag(item.avatar, options={:style => "height: 30px; width: 30px;", :title => h(item.name)}), send(:"#{the_path}", item))
   end
-  
+
   def item_image_link_medium(item)
     the_path = "#{item.class.to_s.downcase.chomp}_path"
     link_to(image_tag(item.avatar, options={:style => "height: 55px; width: 55px;"}), send(:"#{the_path}", item))   
@@ -328,7 +328,7 @@ module ApplicationHelper
     the_path = "#{item.class.to_s.downcase.chomp}_path"
     link_to(image_tag(item.avatar, options={:style => "height: 80px; width: 80px;"}), send(:"#{the_path}", item))  
   end 
-  
+
   def item_list(items)    
     the_link = "#{items.first.class.to_s.downcase.chomp}_link"
     list_of_items = ""
@@ -338,9 +338,9 @@ module ApplicationHelper
     end
     return list_of_items.chop.chop
   end
-  
+
   def item_new(item)    
     the_url = "new_#{item.class.to_s.downcase.chomp}_url"
-  	content_tag('li', link_to(control_action_label, send(:"#{the_url}")), :class =>  get_first_active ) if is_action('new')
-	end
+    content_tag('li', link_to(control_action_label, send(:"#{the_url}")), :class =>  get_first_active ) if is_action('new')
+  end
 end

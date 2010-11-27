@@ -9,7 +9,7 @@ task :the_duplicate_match => :environment do |t|
   :group => "schedule_id, user_id", :having => "count(*) > 1")
 
   @matches.each do |match|
-    puts "group / schedule: #{match.schedule.group.name} (#{match.schedule.concept}), #{match.user_id } - #{match.total}"
+    # puts "group / schedule: #{match.schedule.group.name} (#{match.schedule.concept}), #{match.user_id } - #{match.total}"
     
     a_match = Match.find(:all, :conditions => ["schedule_id = ? and user_id = ? and archive = false and type_id = 3 and group_score is null and invite_score is null ", match.schedule_id, match.user_id])
     a_match.each do |the_match|

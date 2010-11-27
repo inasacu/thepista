@@ -9,7 +9,7 @@ en:
      accounts: Accounts 
      add_email: "Accept, Create your account"  
      add_to_group: Petition to join 
-     add_to_item: Request to unirse a
+     add_to_item: Request to unirse
      add_to_tournament: Petition to join 
      address: Address   
      addresses: Addresses   
@@ -186,16 +186,19 @@ en:
      create_debit: New Fee
      create_description: New Details 
      create_information: New Details   
-     create_invitation: Send an Invitation   
+     create_invitation: Send an Invitation 
+     create_join_group:  Join an existing team.
+     create_join_challenge:  Joina an existing chanllenge.  
      create_manager: Add a Manager  
      create_name: Create Name   
      create_note: Create a Note 
-     create_new_challenge:  Create a Challenge
-     create_new_classified:  Create an Announcement
-     create_new_cup:  Create a Tournament
-     create_new_group:  Create a Team
-     create_new_marker:  Create a Sport Center
-     create_new_schedule:  Create a Schedule 
+     create_new_challenge:  Create a Challenge.
+     create_new_classified:  Place an Announcement for your team.
+     create_new_cup:  Start your own tournament.
+     create_new_group:  Setup your own team.
+     create_join_group:  Join an existing team.
+     create_new_marker:  Add a sport center on the map.
+     create_new_schedule:  Add an event to your team. 
      create_new_invitation:  Invite your friends 
      create_profile: Add a Profile   
      create_reminder: Add a Reminder   
@@ -553,7 +556,8 @@ en:
      groups_howto_gameday:  Upcoming events will appear on the home page.
      groups_howto_petition:  Your friends will need to request to join your team.
      groups_howto_convocatoria:  Teammates will need to set squad status per event.
-     groups_howto_show:  Go to the Team details.         
+     groups_howto_show:  Go to the Team details. 
+     has: has        
      has_been_sent: has been sent.  
      has_been_sent_female: has been sent. 
      has_been_taken: "name not availble, try another."
@@ -905,6 +909,7 @@ en:
      petitions: Requests 
      petition_to_join_approved: Request to join has been approved.
      petition_to_join_declined:  Request to join has been denied.
+     petition_to_join_pending:  Request to join pending for
      petition_to_leave_approved: Request to opt-out has been approved. 
      no_petition_to_join: No Request to join the challenge!                    
      no_petition_to_join_group: No Request to join a team! 
@@ -1249,8 +1254,7 @@ en:
      to_join_challenge_message: Request to join a  
      to_join_group_message: Request to join a 
      to_join_item_message_sent: Request to join has been sent.
-     to_join_tournament: Join a Tournament 
-     to_join_round: Join a Tournament  
+     to_join_cup: Join a Tournament 
      to_leave_challenge_message:  Request to opt-out of
      to_leave_challenge_message_sent: Request to opt-out has been sent. 
      to_leave_group_message: Request to opt-out of
@@ -1258,8 +1262,6 @@ en:
      to_join_tour: Join a Team   
      to_join_tour_message: Request to join a 
      to_join_tour_message_sent: Request to join has been sent.
-     to_join_tournament: Join a Tournament 
-     to_join_round: Join a Tournament  
      to_join_venue:  Join a Venue
      to_leave_tour_message: Request to opt-out of
      to_leave_tour_message_sent: Request to opt-out has been sent.          

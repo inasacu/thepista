@@ -1,5 +1,3 @@
-/* @override http://thepista.local/stylesheets/application.css?1289680709 */
-
 /* initialize */
 html {
           overflow-y: scroll;
@@ -33,12 +31,14 @@ a:hover { text-decoration: underline; }
 }
 
 #about .block h2 {
+/*  background: #0F7D00;*/
   color: #0F7D00;
 }
 
 
 /* faq */
 #faq { 
+/*	margin: 80px auto 0pt; */
 	background: transparent url('') repeat-y scroll 0% 0%; 
 	clear: both; 
 	width: 780px; 
@@ -96,23 +96,14 @@ input#user_openid_identifier, input#user_session_openid_identifier {
 
 
 /* forms */
-.textfield .text_message { 
+.textfield { 
 	border: 1px solid rgb(205, 205, 205); 
 	padding: 0.4em; 
 	background: rgb(255, 255, 255) url('../../images/textfield-bg.gif') repeat-x scroll 0pt 1px; 
 }
-.textfield:focus .text_message:focus { 
+.textfield:focus { 
 	background: rgb(255, 254, 244) url('../../images/textfield-focus-bg.gif') repeat-x scroll 0pt 1px; 
 }
-.text_message { 
-	border: 1px solid rgb(205, 205, 205); 
-	padding: 0.4em; 
-	background: rgb(255, 255, 255) url('../../images/textfield-bg.gif') repeat-x scroll 0pt 1px; 
-}
-.text_message:focus { 
-	background: rgb(255, 254, 244) url('../../images/textfield-focus-bg.gif') repeat-x scroll 0pt 1px; 
-}
-
 input.textfield { 
 	width: 400px; 
 }
@@ -121,61 +112,60 @@ textarea.textfield {
 	height: 80px; 
 }
 
-textarea.text_message { 
-	width: 85%;
-	height: 80px; 
-	font-size: 13px;
-}
-
 input.textfield_login { 
 	width: 300px; 
 }
-
-.textscore, .text_field, .textphoto, .text_tiny_score, .text_field, .inplace_text_field { 
+.textscore{ 
 	border: 1px solid rgb(205, 205, 205); 
 	padding: 0.4em; 
 	background: rgb(255, 255, 255) url('../../images/textfield-bg.gif') repeat-x scroll 0pt 1px; 
 }
-
-.textscore:focus, .text_field:focus, .textphoto:focus, .text_tiny_score:focus, .text_field:focus, .inplace_text_field:focus { 
+.textscore:focus { 
 	background: rgb(255, 254, 244) url('../../images/textfield-focus-bg.gif') repeat-x scroll 0pt 1px; 
 }
-
-/*.textphoto{ 
-	border: 1px solid rgb(205, 205, 205); 
-	padding: 0.4em; 
-	background: rgb(255, 255, 255) url('../../images/textfield-bg.gif') repeat-x scroll 0pt 1px; 
-}
-.textphoto:focus { 
-	background: rgb(255, 254, 244) url('../../images/textfield-focus-bg.gif') repeat-x scroll 0pt 1px; 
-}*/
-input.textphoto { 
-	width: 375px; 
+input.textscore { 
+	width: 100px; 
 }
 
 
-/*.text_tiny_score{ 
+.text_tiny_score{ 
 	border: 1px solid rgb(205, 205, 205); 
 	padding: 0.4em; 
 	background: rgb(255, 255, 255) url('../../images/textfield-bg.gif') repeat-x scroll 0pt 1px; 
 }
 .text_tiny_score:focus { 
 	background: rgb(255, 254, 244) url('../../images/textfield-focus-bg.gif') repeat-x scroll 0pt 1px; 
-}*/
+}
 input.text_tiny_score { 
 	width: 25px; 
 }
 
-/*.text_field{ 
+.textphoto { 
 	border: 1px solid rgb(205, 205, 205); 
 	padding: 0.4em; 
 	background: rgb(255, 255, 255) url('../../images/textfield-bg.gif') repeat-x scroll 0pt 1px; 
 }
-.text_field:focus { 
+
+.textphoto:focus { 
 	background: rgb(255, 254, 244) url('../../images/textfield-focus-bg.gif') repeat-x scroll 0pt 1px; 
-}*/
-input.text_field { 
-	width: 200px; 
+}
+
+input.textphoto { 
+	width: 375px; 
+}
+
+.text_message { 
+	border: 1px solid rgb(205, 205, 205); 
+	padding: 0.4em; 
+	background: rgb(255, 255, 255) url('../../images/textfield-bg.gif') repeat-x scroll 0pt 1px; 
+}
+.text_message:focus { 
+	background: rgb(255, 254, 244) url('../../images/textfield-focus-bg.gif') repeat-x scroll 0pt 1px; 
+}
+textarea.text_message { 
+	width: 85%;
+	height: 80px; 
+	font-size: 13px;
 }
 
 
@@ -187,13 +177,21 @@ input.text_field {
 .inplace_text_field:focus { 
 	background: rgb(255, 254, 244) url('../../images/textfield-focus-bg.gif') repeat-x scroll 0pt 1px; 
 }
-*/
-
 input.inplace_text_field { 
 	width: 15px; 
 }
-
-
+*/
+.text_field{ 
+	border: 1px solid rgb(205, 205, 205); 
+	padding: 0.4em; 
+	background: rgb(255, 255, 255) url('../../images/textfield-bg.gif') repeat-x scroll 0pt 1px; 
+}
+.text_field:focus { 
+	background: rgb(255, 254, 244) url('../../images/textfield-focus-bg.gif') repeat-x scroll 0pt 1px; 
+}
+input.text_field { 
+	width: 200px; 
+}
 
 text_area.textfield { 
 	width: 200px;
@@ -216,14 +214,15 @@ text_area.textfield {
 
 
 /* tables */
-.table table.scorecard {
+.table table.scorecard{
   width: 100%;
   border-collapse: collapse;  
   margin-bottom: 15px;
+
 }
 
 .table th {
-  padding: 8px;
+  padding: 10px;
   font-weight: bold;
   text-align: left;
 }
@@ -281,7 +280,6 @@ text_area.textfield {
 }
 
 #escuadra td{
-/*	padding: 1px 4px;*/
 	padding: 4px 10px;
 }
 
@@ -300,6 +298,11 @@ text_area.textfield {
 #standing td{
 	padding: 4px 10px;
 }
+
+#match	 td{
+	padding: 10px 10px;
+}
+
 
 #fee td{
 	padding: 3px 8px;
@@ -351,7 +354,7 @@ div#footer div.col_wrapper { padding-top: 1.0em; text-align: center; }
 div#footer p, ol, li { margin: 0pt; font-size: 1.0em; line-height: 1.0em; }
 div#footer a { color: lightgray;  }
 div#footer a:hover { color: black; }
-div#footer div.link_wrapper { position: relative; float: left; left: 30%; }
+div#footer div.link_wrapper { position: relative; float: left; left: 50%; }
 div#footer ol { position: relative; left: -50%; font-size: 1.0em; }
 div#footer ol li { margin: 0pt 1em; position: relative; float: left; }
 

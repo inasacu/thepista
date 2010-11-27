@@ -61,8 +61,7 @@ ActionController::Routing::Routes.draw do |map|
   
   map.set_group_enable_comments   'groups/:id/set_enable_comments',  		  :controller => 'groups',    		  :action => 'set_enable_comments'
   map.set_group_available         'groups/:id/set_available',  		        :controller => 'groups',    		  :action => 'set_available'
-  map.set_group_looking           'groups/:id/set_looking',  	            :controller => 'groups',    		  :action => 'set_looking'
-  
+  map.set_group_looking           'groups/:id/set_looking',  	            :controller => 'groups',    		  :action => 'set_looking'  
   
   map.match_team            'matches/:id/set_team',                       :controller => 'matches',         :action => 'set_team'
   map.match_status          'matches/:id/set_status/:type',               :controller => 'matches',         :action => 'set_status'
@@ -91,6 +90,7 @@ ActionController::Routing::Routes.draw do |map|
   
   map.set_score             'games/:id/set_score',                        :controller => 'games',           :action => 'set_score'
   map.set_profile           'matches/:id/set_profile',                    :controller => 'matches',         :action => 'set_profile'
+  map.set_match_profile     'groups/:id/set_match_profile',               :controller => 'matches',          :action => 'set_match_profile'
   map.set_user_profile      'matches/:id/set_user_profile',               :controller => 'matches',         :action => 'set_user_profile'
   map.set_group_stage       'standings/:id/set_group_stage',              :controller => 'standings',       :action => 'set_group_stage'
   
@@ -139,6 +139,9 @@ ActionController::Routing::Routes.draw do |map|
   map.resources   :users do |user|
     user.resources :messages
   end
+  
+  map.resources :matches, :member => {:rate => :post}
+  map.resources :schedules, :member => {:rate => :post}
   
   map.connect ":controller/:action.:format"
 end

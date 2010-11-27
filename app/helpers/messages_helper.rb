@@ -23,5 +23,11 @@ module MessagesHelper
     the_label = label_name(:message_delete)
     # the_confirmation =  %(#{the_label}?)
     link_to(image_tag(the_image, :title => the_label, :style => "height: 16px; width: 16px;"), message_path(message), :method => :delete, :title => the_label)
-  end											
+  end		
+
+  # def message_link_to(item, extend_image=true)
+  #   the_image = ""
+  #   the_image = "#{option_image_link('message')}  " if extend_image
+  #   return " #{the_image}#{link_to(label_name(:send_message_to), new_message_path(:item_id => item))}"
+  # end 								
 end

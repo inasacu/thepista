@@ -59,16 +59,17 @@
 				<span class="action">
 					<% unless final_played %>
 					<% if current_user.is_member_of?(challenge) %>
-						<%= link_to("#{label_name(:invitations_your_friend)} #{the_challenge}" , 
-											new_invitation_url(:challenge_id => challenge)) %><br />
+						<%= link_to("#{label_name(:invitations_your_friend)} #{the_challenge}", new_invitation_url(:challenge_id => challenge)) %><br />
 					<% 
 					  	else
 							unless current_user.has_item_petition?(current_user, challenge) 
-								the_label = label_with_name('add_to_item', the_challenge)
- 								the_confirmation = "#{ label_name(:petition_to_join) } #{the_challenge}?"
+								# the_label = label_with_name('add_to_item', the_challenge)
+								# the_label = label_name(:add_to_item)
+ 								# the_confirmation = "#{ label_name(:petition_to_join) } #{the_challenge}?"
+								# the_confirmation = the_add_item_petition(current_user, the_challenge)
 					%> 
-							<%= link_to(the_label, join_item_path(:id => challenge, :item => challenge.class.to_s, :teammate => current_user), 
-									:confirm => the_confirmation) %>
+						<%= join_item_link_to(current_user, challenge) %>
+						<%#= link_to(the_label, join_item_path(:id => challenge, :item => challenge.class.to_s, :teammate => current_user), :confirm => the_confirmation) %>
 					<% 	end 
 					   end
 					-%>

@@ -4,11 +4,10 @@
 	the_label = h(@user.name)
 	content_for(:title, the_label)
 	is_group_manager =  false
-	# current_user.groups.each {|group| is_group_manager = (current_user.is_manager_of?(group) and !is_group_manager) }
 %>
 <div class="block">
 
-  <%= render :partial => '/users/secondary_navigation' %>   
+  <%= render :partial => 'users/secondary_navigation' %>   
 
   <div class="content">
 	
@@ -53,14 +52,14 @@
 							</td>
 						</tr>
 						
-						<%= tr_td_action(:position, @user.position) %>
+						<%#= tr_td_action(:position, @user.position) %>
 						
-						<tr>
-							<td class="label"><%= "#{label_name(:profile_technical)}  /  #{label_name(:profile_physical)}" %></td>
+						<!-- <tr>
+							<td class="label"><%#= "#{label_name(:profile_technical)}  /  #{label_name(:profile_physical)}" %></td>
 							<td class="show">
-								<%= "#{ @user.technical}  /  #{ @user.physical}" %>
+								<%#= "#{ @user.technical}  /  #{ @user.physical}" %>
 							</td>
-						</tr>						
+						</tr> -->						
 						
 						<%= tr_td_action(:time_zone, @user.time_zone) %>
 						<%= tr_td_action(:phone, @user.phone) unless @user.private_phone %>
@@ -68,83 +67,76 @@
 
 						<% 
 							the_label = h(label_name(@user.available, 'value'))
-							the_confirmation = label_with_name('set_available', "#{@user.name}?") 
+							# the_confirmation = label_with_name('set_available', "#{@user.name}?") 
 						%>			
 						<tr>
 							<%= content_tag :td, label_name(:available), :class => "label" %>
-							<%= content_tag :td, 
-									(is_user_manager ? link_to(the_label, set_available_path(:id => @user), 
-													:confirm => the_confirmation) : the_label), 
-													:class => get_the_action %>
+							<%= content_tag :td, (is_user_manager ? link_to(the_label, set_available_path(:id => @user)) : the_label), :class => get_the_action %>
 						</tr>
 						<% 
 							the_label = h(label_name(@user.looking, 'value'))
-							the_confirmation = label_name(:change_option) 
+							# the_confirmation = label_name(:change_option) 
 						%>
 						<tr>
 							  <%= content_tag :td, label_name(:looking_for_my_group), :class => "label" %>
-							  <%= content_tag :td, 
-									(@user == current_user ? link_to(the_label, set_user_looking_path(:id => @user), :confirm => the_confirmation) : the_label), 
-									:class => get_the_action %>
+							  <%= content_tag :td, (@user == current_user ? link_to(the_label, set_user_looking_path(:id => @user)) : the_label), :class => get_the_action %>
 						</tr>
 		
 						<% 
 							the_label = h(label_name(@user.private_phone, 'value'))
-							the_confirmation = label_with_name('set_private_phone', "#{@user.name}?") 
+							# the_confirmation = label_with_name('set_private_phone', "#{@user.name}?") 
 						%>
 						<tr>
 							<%= content_tag :td, label_name(:private_phone), :class => "label" %>
-							<%= content_tag :td, (can_modify ? link_to(the_label, set_private_phone_path(:id => @user), 
-													:confirm => the_confirmation) : the_label), 
-													:class => get_the_action %>
+							<%= content_tag :td, (can_modify ? link_to(the_label, set_private_phone_path(:id => @user)) : the_label), :class => get_the_action %>
+						</tr>
+
+						<% 
+							the_label = h(label_name(@user.private_profile, 'value'))
+							# the_confirmation = label_with_name('set_private_profile', "#{@user.name}?") 
+						%>
+						<tr>
+							<%= content_tag :td, label_name(:private_profile), :class => "label" %>
+							<%= content_tag :td, (can_modify ? link_to(the_label, set_private_profile_path(:id => @user)) : the_label), :class => get_the_action %>
 						</tr>
 
 						<% if @user.has_role?('manager') %>
 						<%
 							the_label = h(label_name(@user.teammate_notification, 'value'))
-							the_confirmation = label_with_name('set_teammate_notification', "#{@user.name}?") 
+							# the_confirmation = label_with_name('set_teammate_notification', "#{@user.name}?") 
 						%>
 						<tr>
 							<%= content_tag :td, label_name(:teammate_notification), :class => "label" %>
-							<%= content_tag :td, 
-									(can_modify ? link_to(the_label, set_teammate_notification_path(:id => @user), 
-												:confirm => the_confirmation) : the_label), 
-												:class => get_the_action %>
+							<%= content_tag :td, (can_modify ? link_to(the_label, set_teammate_notification_path(:id => @user)) : the_label), :class => get_the_action %>
 						</tr>
 						<% end %>
 						
 						<% 
 							the_label = h(label_name(@user.message_notification, 'value'))
-							the_confirmation = label_with_name('set_message_notification', "#{@user.name}?") 
+							# the_confirmation = label_with_name('set_message_notification', "#{@user.name}?") 
 						%>
 						
 						<tr>
 							<%= content_tag :td, label_name(:message_notification), :class => "label" %>
-							<%= content_tag :td, (can_modify ? link_to(the_label, set_message_notification_path(:id => @user), 
-												:confirm => the_confirmation) : the_label), 
-												:class => get_the_action %>
+							<%= content_tag :td, (can_modify ? link_to(the_label, set_message_notification_path(:id => @user)) : the_label), :class => get_the_action %>
 						</tr>
 
 						<% 
 							the_label = h(label_name(@user.blog_comment_notification, 'value'))
-							the_confirmation = label_with_name('set_blog_notification', "#{@user.name}?") 
+							# the_confirmation = label_with_name('set_blog_notification', "#{@user.name}?") 
 						%>
 						<tr>
 							<%= content_tag :td, label_name(:blog_notification), :class => "label" %>
-							<%= content_tag :td, (can_modify ? link_to(the_label, set_blog_notification_path(:id => @user), 
-												:confirm => the_confirmation) : the_label), 
-												:class => get_the_action %>
+							<%= content_tag :td, (can_modify ? link_to(the_label, set_blog_notification_path(:id => @user)) : the_label), :class => get_the_action %>
 						</tr>
 		
 						<% 
 							the_label = h(label_name(@user.forum_comment_notification, 'value'))
-							the_confirmation = label_with_name('set_forum_notification', "#{@user.name}?") 
+							# the_confirmation = label_with_name('set_forum_notification', "#{@user.name}?") 
 						%>
 						<tr>
 							<%= content_tag :td, label_name(:forum_notification), :class => "label" %>
-							<%= content_tag :td, (can_modify ? link_to(the_label, set_forum_notification_path(:id => @user), 
-												:confirm => the_confirmation) : the_label), 
-												:class => get_the_action %>
+							<%= content_tag :td, (can_modify ? link_to(the_label, set_forum_notification_path(:id => @user)) : the_label), :class => get_the_action %>
 						</tr>
 						
 						<tr>

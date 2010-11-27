@@ -2,30 +2,31 @@
 
 	<h3><%= label_name(:options) %></h3>
 	
-<ul class="navigation">
+<div class="content">
 <%	
 	if current_user.is_member_of?(@group)  %> 
-	<li><%= link_to(label_name(:send_message_to), new_message_path(:group_id => @group)) %></li>
-	<li><%= link_to(label_name(:invitations_create_group) , new_invitation_url(:group_id => @group)) %></li>
-	<li><%= link_to label_name(:send_scorecard), new_message_path(:scorecard_id => @group.schedules.first) unless @group.schedules.blank? %></li>
+	<p><%= link_to(label_name(:send_message_to), new_message_path(:group_id => @group)) %></p>
+	<p><%= link_to(label_name(:invitations_create_group) , new_invitation_url(:group_id => @group)) %></p>
+	<p><%= link_to label_name(:send_scorecard), new_message_path(:scorecard_id => @group.schedules.first) unless @group.schedules.blank? %></p>
 <% 
 	else
 %>
-	<li><%= link_to(label_name(:send_message_to), new_message_path(:id => @group.all_the_managers.first)) %></li>
+	<p><%= link_to(label_name(:send_message_to), new_message_path(:id => @group.all_the_managers.first)) %></p>
 <%
 	unless current_user.has_item_petition?(current_user, @group)
-		the_label = label_with_name('add_to_group', @group.name)
-		the_confirmation = "#{ label_name(:petition_to_join) } #{current_user.name} #{ label_name(:to) } #{@group.name}?"
+		# the_label = label_with_name('add_to_group', @group.name)
+		# the_confirmation = "#{ label_name(:petition_to_join) } #{current_user.name} #{ label_name(:to) } #{@group.name}?"
 %> 
-		<li>
+		<p>
+			<%= option_image_link('user_add') %>&nbsp;&nbsp;<%= join_item_link_to(current_user, @group, true) %>
 			<%#= link_to(the_label, join_team_path(:id => @group, :teammate => current_user), :confirm => the_confirmation) %>
-			<%= link_to(the_label, join_item_path(:id => @group, :item => @group.class.to_s, :teammate => current_user), 
+			<%#= link_to(the_label, join_item_path(:id => @group, :item => @group.class.to_s, :teammate => current_user), 
 					:confirm => the_confirmation) %>
-		</li>
+		</p>
 <% 
 	end 
 end 
 %>
-</ul>
+</div>
 	
 </div>

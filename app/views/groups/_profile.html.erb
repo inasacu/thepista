@@ -1,0 +1,17 @@
+<tr>
+	<td class="first">&nbsp;</td>
+	<td><%= image_link_small(match.user) %></td>
+	<td><%= user_link(match.user) %></td>
+	
+	<td class="name_and_date">
+	<%= ratings_for(match, :small_stars => false, :dimension => :technical, :show_user_rating => true) %>
+	</td>
+	
+	<td>&nbsp;</td>
+	
+	<td class="name_and_date">
+	<%= ratings_for(match, :small => true, :dimension => :physical, :show_user_rating => true) %>
+	</td>
+
+	<td class="last" width="400">&nbsp;</td>
+</tr>

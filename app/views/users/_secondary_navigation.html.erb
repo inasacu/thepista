@@ -31,7 +31,7 @@
 	else 
 %>
 		<li class="<%= get_active('user_show') %>">
-			<%= user_link("#{label_name(:profile)}", the_user) if current_user.is_user_member_of?(the_user) %>
+			<%= user_link("#{label_name(:profile)}", the_user) %>
 		</li>
 <%
 	 	if current_user.is_user_member_of?(the_user) 

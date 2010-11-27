@@ -36,7 +36,6 @@ end
 		<li class="<%= get_active('fee_item_list') %>"><%= link_to(label_name(:payments), item_list_fees_path(:id => @group, :item => @group.class.to_s)) %></li>
 		<li class="<%= get_active('fee_complete') %>"><%=  link_to(label_name(:fees_complete) , complete_fees_path(:id => @group)) %></li>
 		<% end -%>
-		
 <%			
 		end
 	end

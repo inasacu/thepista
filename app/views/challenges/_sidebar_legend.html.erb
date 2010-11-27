@@ -1,6 +1,8 @@
 <div class="block">
-	<h3><%= label_name(:challenges_howto) %></h3>
-	<div class="content">
+	<div class="sidebar-block" class="extra">
+	<a href="#" onclick="toggle_visibility('abc');"><h5><%= label_name(:challenges_howto) %></h5></a>
+	<div id="abc" style='display:none;'>
+		
 		<p>
 			<b>1.&nbsp;</b>
 			<%= label_name(:challenges_howto_tab) %>&nbsp;<%= link_to(label_name(:cups), cups_url) %>
@@ -41,6 +43,7 @@
 			<%= label_name(:challenges_howto_gameday) %>
 		<p>
 
+		</div>
 	</div>
 </div>
 

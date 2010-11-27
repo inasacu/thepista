@@ -1,9 +1,9 @@
 <%
-the_label = "#{label_name(:previous_profile_set_full) }"
-the_label_set = "#{label_name(:profile_set_full) }"
-the_label_user_set = "#{label_name(:profile_user_set_full) }"
-the_confirmation = "#{the_label}?"	
-the_confirmation_user_set = "#{the_label_user_set}?"
+	the_label = "#{label_name(:previous_profile_set_full) }"
+	the_label_set = "#{label_name(:profile_set_full) }"
+	the_label_user_set = "#{label_name(:profile_user_set_full) }"
+	the_confirmation = "#{the_label}?"	
+	the_confirmation_user_set = "#{the_label_user_set}?"
 %>
 
 <div class="block">
@@ -11,6 +11,14 @@ the_confirmation_user_set = "#{the_label_user_set}?"
 	<h3><%= label_name(:options) %></h3>
 	
 <div class="content">
+	
+	<p>
+	<%= option_image_link('user') %>&nbsp;&nbsp;
+	<%=  link_to(label_name(:profile_set) , set_match_profile_path(:id => @schedule)) %>
+	</p>
+
+	<% if current_user.is_manager_of?(@schedule.group)  %>
+	
 	<p>
 	<%= option_image_link('user_update') %>&nbsp;&nbsp;
 	<%= link_to(label_name(:profile_set), set_profile_url(:id => schedule), :title => the_label_set) %>
@@ -25,6 +33,8 @@ the_confirmation_user_set = "#{the_label_user_set}?"
 	<%= option_image_link('user_update') %>&nbsp;&nbsp;
 	<%= link_to(label_name(:profile_user_set), set_user_profile_url(:id => schedule), :title => the_label_user_set, :confirm => the_confirmation_user_set) %>
 	</p>
+	<% end -%>
+	
 </div>
 	
 </div>

@@ -31,23 +31,23 @@
   <span class="description"><%= label_name('company', 'description') %></span>
 </div>
 
-<div class="group">
-  <%= f.label :position, label_name('position'), :class => :label %>
-  <%= f.text_field :position, :class => 'textfield' %><br />
-  <span class="description"><%= label_name('position', 'description') %></span>
-</div>
+<!-- <div class="group">
+  <%#= f.label :position, label_name('position'), :class => :label %>
+  <%#= f.text_field :position, :class => 'textfield' %><br />
+  <span class="description"><%#= label_name('position', 'description') %></span>
+</div> -->
 
-<div class="group">
-  <%= f.label :technical, label_name('technical'), :class => :label %>
-  <%= f.select(:technical, the_technical, {:selected => @user.technical, :include_blank => false}) %><br />
-  <span class="description"><%= label_name('technical', 'description') %></span>
-</div>
+<!-- <div class="group">
+  <%#= f.label :technical, label_name('technical'), :class => :label %>
+  <%#= f.select(:technical, the_technical, {:selected => @user.technical, :include_blank => false}) %><br />
+  <span class="description"><%#= label_name('technical', 'description') %></span>
+</div> -->
 
-<div class="group">
-  <%= f.label :physical, label_name('physical'), :class => :label %>
-  <%= f.select(:physical, the_technical, {:selected => @user.physical, :include_blank => false}) %><br />
-  <span class="description"><%= label_name('physical', 'description') %></span>
-</div>
+<!-- <div class="group">
+  <%#= f.label :physical, label_name('physical'), :class => :label %>
+  <%#= f.select(:physical, the_technical, {:selected => @user.physical, :include_blank => false}) %><br />
+  <span class="description"><%#= label_name('physical', 'description') %></span>
+</div> -->
 
 <div class="group">
   <%= f.label :language, label_name('language'), :class => :label %>

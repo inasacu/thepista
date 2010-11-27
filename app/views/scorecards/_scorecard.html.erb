@@ -40,16 +40,16 @@
 	<td class="perdidos"><%= scorecard.losses %></td>
 	
 	<%  if group.is_futbol?  %>
-	<td class="puntos"><%= scorecard.goals_scored %></td>
-	<td class="puntos"><%= scorecard.assists %></td>
-	<td class="afavor"><%= scorecard.goals_for %></td>
-	<td class="encontra"><%= scorecard.goals_against %></td>
-	<td class="encontra"><%= scorecard.goals_for - scorecard.goals_against %></td>
+	<td class="jugados"><%= scorecard.goals_scored %></td>
+	<td class="jugados"><%= scorecard.assists %></td>
+	<!-- <td class="afavor"><%#= scorecard.goals_for %></td> -->
+	<!-- <td class="encontra"><%#= scorecard.goals_against %></td> -->
+	<!-- <td class="encontra"><%#= scorecard.goals_for - scorecard.goals_against %></td> -->
 	<% end %>
 		
 	<td class="jugados"><%= scorecard.played %></td>
 	<!-- <td class="jugados"><%#= scorecard.assigned %></td> -->
-	<!-- <td class="puntos"><%#= mailer ? sprintf( "%0.0f", coeficient_points)  : coeficient_points.round %></td> -->
-	<td class="puntos"><%= sprintf( "%0.00f", coeficient_played) %><%= "%" %></td>
+	<td class="puntos"><%= mailer ? sprintf( "%0.0f", coeficient_points)  : coeficient_points.round %></td>
+	<td class="jugados"><%= sprintf( "%0.00f", coeficient_played) %><%= "%" %></td>
 </tr>
 

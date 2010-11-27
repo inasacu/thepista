@@ -8,36 +8,48 @@
 @user.groups.each do |group| 
 
 	if current_user.is_manager_of?(group) 
-		the_label = label_with_name('fire_from_item', group.name)
-		the_confirmation = "#{ label_name(:fire_from_item)} #{group.name} #{ label_name(:to)} #{@user.name}?"
+		# the_label = label_with_name('fire_from_item', group.name)
+		# the_confirmation = "#{ label_name(:fire_from_item)} #{group.name} #{ label_name(:to)} #{@user.name}?"
 
 		unless @user.is_sub_manager_of?(group) 
-			the_label = label_with_name('role_add_sub_manager', group.name)
-			the_confirmation = "#{ label_name(:role_add_sub_manager)} #{ label_name(:to) } #{@user.name} #{ label_name(:to) } #{group.name}?"
+			# the_label = label_with_name('role_add_sub_manager', group.name)
+			# the_confirmation = "#{ label_name(:role_add_sub_manager)} #{ label_name(:to) } #{@user.name} #{ label_name(:to) } #{group.name}?"
 %>		
-			<p><%= option_image_link('group_add') %>&nbsp;&nbsp;<%= link_to(the_label , set_sub_manager_path(:id => @user, :group => group), :confirm => the_confirmation) %></p>
+			<p>
+			<%= option_image_link('user_add') %>&nbsp;&nbsp;<%= set_role_add_sub_manager(@user, group) %>
+			<%#= link_to(the_label , set_sub_manager_path(:id => @user, :group => group), :confirm => the_confirmation) %>
+			</p>
 <% 
 		else
 			if @user != current_user
-			the_label = label_with_name('role_remove_sub_manager', group.name)
-			the_confirmation = "#{ label_name(:role_remove_sub_manager)} #{ label_name(:to) } #{@user.name} #{ label_name(:to) } #{group.name}?"
+			# the_label = label_with_name('role_remove_sub_manager', group.name)
+			# the_confirmation = "#{ label_name(:role_remove_sub_manager)} #{ label_name(:to) } #{@user.name} #{ label_name(:to) } #{group.name}?"
 %>					
-			<p><%= option_image_link('group_remove') %>&nbsp;&nbsp;<%= link_to(the_label, remove_sub_manager_path(:id => @user, :group => group), :confirm => the_confirmation)  %></p>			
+			<p>
+			<%= option_image_link('user_remove') %>&nbsp;&nbsp;<%= set_role_remove_sub_manager(@user, group) %>
+			<%#= link_to(the_label, remove_sub_manager_path(:id => @user, :group => group), :confirm => the_confirmation)  %>
+			</p>			
 <% 
 			end
 		end 
 
 		unless @user.is_subscriber_of?(group) 
-			the_label = label_with_name('role_add_subscription', group.name)
-			the_confirmation = "#{ label_name(:role_add_subscription)} #{ label_name(:to) } #{@user.name} #{ label_name(:to) } #{group.name}?"
+			# the_label = label_with_name('role_add_subscription', group.name)
+			# the_confirmation = "#{ label_name(:role_add_subscription)} #{ label_name(:to) } #{@user.name} #{ label_name(:to) } #{group.name}?"
 %>
-			<p><%= option_image_link('group_add') %>&nbsp;&nbsp;<%= link_to(the_label, set_subscription_path(:id => @user, :group => group), :confirm => the_confirmation) %></p> 	
+			<p>
+			<%= option_image_link('user_add') %>&nbsp;&nbsp;<%= set_role_add_subscription(@user, group) %>
+			<%#= link_to(the_label, set_subscription_path(:id => @user, :group => group), :confirm => the_confirmation) %>
+			</p> 	
 <% 
 		else
-			the_label = label_with_name('role_remove_subscription', group.name)
-			the_confirmation = "#{ label_name(:role_remove_subscription) } #{ label_name(:to) } #{@user.name} #{ label_name(:to) } #{group.name}?" 
+			# the_label = label_with_name('role_remove_subscription', group.name)
+			# the_confirmation = "#{ label_name(:role_remove_subscription) } #{ label_name(:to) } #{@user.name} #{ label_name(:to) } #{group.name}?" 
 %>		
-			<p><%= option_image_link('group_remove') %>&nbsp;&nbsp;<%= link_to(the_label, remove_subscription_path(:id => @user, :group => group), :confirm => the_confirmation) %></p> 	
+			<p>
+			<%= option_image_link('user_remove') %>&nbsp;&nbsp;<%= set_role_remove_subscription(@user, group) %>
+			<%#= link_to(the_label, remove_subscription_path(:id => @user, :group => group), :confirm => the_confirmation) %>
+			</p> 	
 <% 
 		end 
   

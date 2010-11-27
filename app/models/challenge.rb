@@ -66,6 +66,18 @@ class Challenge < ActiveRecord::Base
     return counter
   end
 
+  def avatar
+    self.cup.photo.url
+  end
+
+  def thumbnail
+    self.cup.photo.url
+  end
+
+  def icon
+    self.cup.photo.url
+  end
+  
   def has_cast?
     self.casts.count > 0
   end

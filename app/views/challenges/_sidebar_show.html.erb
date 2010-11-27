@@ -52,12 +52,12 @@
 		</p>
 <%
 		unless current_user.has_item_petition?(current_user, @challenge)
-			the_label = label_with_name('add_to_item', the_challenge)
-			the_confirmation = "#{ label_name(:petition_to_join) } #{the_challenge}?"
+			# the_label = label_with_name('add_to_item', the_challenge)
+			# the_confirmation = "#{ label_name(:petition_to_join) } #{the_challenge}?"
 %> 
 			<p>
-			<%= option_image_link('user_add') %>&nbsp;&nbsp;
-			<%= link_to(the_label, join_item_path(:id => @challenge, :item => @challenge.class.to_s, :teammate => current_user), :confirm => the_confirmation) %>
+			<%= option_image_link('user_add') %>&nbsp;&nbsp;<%= join_item_link_to(current_user, @challenge, true) %>
+			<%#= link_to(the_label, join_item_path(:id => @challenge, :item => @challenge.class.to_s, :teammate => current_user), :confirm => the_confirmation) %>
 			</p>
 <% 
 		end 

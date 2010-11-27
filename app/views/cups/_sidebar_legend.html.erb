@@ -1,7 +1,8 @@
 <div class="block">
-	<h3><%= label_name(:cups_howto) %></h3>
-	<div class="content">
-		
+	<div class="sidebar-block" class="extra">
+	<a href="#" onclick="toggle_visibility('abc');"><h5><%= label_name(:cups_howto) %></h5></a>
+	<div id="abc" style='display:none;'>
+
 		<p>
 			<b>1.&nbsp;</b>
 			<%= label_name(:cups_howto_create) %>
@@ -36,12 +37,9 @@
 			<b>7.&nbsp;</b>
 			<%= label_name(:cups_howto_petition) %>
 		<p>
-
-		<!-- <p>
-			<b>* &nbsp;</b>
-			<%#= label_name(:cups_howto_gameday) %>
-		<p> -->
-
+		</div>
 	</div>
 </div>
+
+
 

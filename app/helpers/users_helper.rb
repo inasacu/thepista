@@ -56,6 +56,10 @@ module UsersHelper
     link_to(image_tag('avatar.png', options={:style => "height: 15px; width: 15px;"}), user_path(user)) 
   end
 
+  def image_link_tiny(user)
+    link_to(image_tag(user.avatar, options={:style => "height: 15px; width: 15px;"}), user_path(user)) 
+  end
+  
   def image_link_smaller(user)
     link_to(image_tag(user.avatar, options={:style => "height: 22px; width: 22px;"}), user_path(user)) 
   end

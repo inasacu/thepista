@@ -44,7 +44,7 @@
 			
 			  <td class="name_and_date">
 				<%= I18n.t(:has_group_users, :count => object_counter(group.users)) %><br />
-				<span class="date">
+				<span class="date">										
 					<%= I18n.t(:has_group_schedules, :count => object_counter(group.schedules)) %>
 				</span>
 			  </td>
@@ -65,10 +65,14 @@
 				
 					<%
 						unless current_user.has_item_petition?(current_user, group) 
-							the_label = label_with_name('add_to_group', group.name)
-							the_confirmation = "#{ label_name(:petition_to_join) } #{current_user.name} #{ label_name(:to) } #{group.name}?"
+							# the_label = label_with_name('add_to_group', group.name)
+							# the_label = label_name(:add_to_group)
+							# the_confirmation = "#{ label_name(:petition_to_join) } #{current_user.name} #{ label_name(:to) } #{group.name}?"
+							# the_confirmation = the_add_item_petition(current_user, group)
+							
 					%> 
-							<%= link_to(the_label, join_item_path(:id => group, :item => group.class.to_s, :teammate => current_user), 
+							<%= join_item_link_to(current_user, group) %>
+							<%#= link_to(the_label, join_item_path(:id => group, :item => group.class.to_s, :teammate => current_user), 
 									:confirm => the_confirmation) %>
 					<% 	end 
 					   end

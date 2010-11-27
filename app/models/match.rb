@@ -1,5 +1,8 @@
 class Match < ActiveRecord::Base
           
+  # allows user to rate a model 
+  ajaxful_rateable :stars => 5, :dimensions => [:technical, :physical]
+  
   belongs_to      :user
   belongs_to      :group
   belongs_to      :schedule

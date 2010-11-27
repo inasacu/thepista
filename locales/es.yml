@@ -8,8 +8,8 @@ es:
      account_created:  Tu cuenta ha sido creada y activada.
      accounts: Cuentas   
      add_email: "Acepto, crea mi cuenta"     
-     add_to_group: Petición para unirse a  
-     add_to_item: Petición para unirse a
+     add_to_group: Petición para unirse  
+     add_to_item: Petición para unirse
      add_to_tournament: Petición para unirse a 
      address: Dirección   
      addresses: Direcciones   
@@ -187,16 +187,18 @@ es:
      create_debit: Nuevo cargo   
      create_description: Nuevo detalles   
      create_information: Nuevo detalles   
-     create_invitation: Manda una invitación   
+     create_invitation: Manda una invitación  
+     create_join_group:  Unirte a un equipo existente.
+     create_join_challenge:  Unirte a un reto existente. 
      create_manager: Nuevo mister   
      create_name: Nuevo nombre   
      create_note: Nueva nota
-     create_new_challenge:  Crear un nuevo reto
-     create_new_classified:  Crear un anuncio
-     create_new_cup:  Crear un nueva copa
-     create_new_group:  Crear un nuevo equipo
-     create_new_marker:  Crear un nuevo centro deportivo
-     create_new_schedule:  Crear un nuevo evento 
+     create_new_challenge:  Hacer un reto de una copa.
+     create_new_classified:  Poner un anuncio de tu equipo.
+     create_new_cup:  Organizar una copa.
+     create_new_group:  Hacer tu equipo.
+     create_new_marker:  Poner un centro deportivo en el mapa.
+     create_new_schedule:  Añadir un evento a tu equipo.
      create_new_invitation:  Invitar a tus amigos 
      create_profile: Nuevo perfil   
      create_reminder: Nuevo recordatorio   
@@ -555,6 +557,7 @@ es:
      groups_howto_petition:  Acepta las peticiones de tus amigos para unirse a tu equipo.
      groups_howto_convocatoria:  "¡Los participantes estan listos para convocarse a los eventos!"
      groups_howto_show:  Entra en los detalles del equipo. 
+     has:  tiene
      has_been_sent: ha sido mandado correctamente.  
      has_been_sent_female: has sido mandada correctamente. 
      has_been_taken: ya se ha elegido.  Intenta otro nombre.
@@ -906,6 +909,7 @@ es:
      petitions: Peticiones 
      petition_to_join_approved: Petición aprobada para unirse.
      petition_to_join_declined:  Petición cancelada para unirse.
+     petition_to_join_pending:  Petición pendiente para unirse a
      petition_to_leave_approved: Petición aprobada para desapuntarse. 
      no_petition_to_join: No hay peticiones para unirse a un reto!                
      no_petition_to_join_group: No hay peticiones para unirse a un equipo! 
@@ -971,7 +975,7 @@ es:
      private_option_description: (Marcar opción como privada a todos...)   
      private_phone: Ocultar teléfono   
      private_phone_description: (Quieres ocultar tu numero de telefono...)   
-     private_profile: Ocultar el perfil   
+     private_profile: Ocultar perfil   
      problem_field: Hemos tenido problemas con algunos de los campos.   
      profile: Perfil        
      profile_physical: Nivel fisico   
@@ -1250,8 +1254,7 @@ es:
      to_join_group: unirte a un equipo   
      to_join_group_message: Petición para unirte a 
      to_join_item_message_sent: Petición para unirte a sido enviada.
-     to_join_tournament: unirte a un torneo 
-     to_join_round: unirte a un torneo  
+     to_join_cup: Unirte a una copa 
      to_leave_challenge_message: Petición para desapuntarte de
      to_leave_challenge_message_sent: Petición para desapuntarte a sido enviada.
      to_leave_group_message: Petición para desapuntarte de
@@ -1259,8 +1262,6 @@ es:
      to_join_tour: unirte a un equipo   
      to_join_tour_message: Petición para unirte a 
      to_join_tour_message_sent: Petición para unirte a sido enviada
-     to_join_tournament: unirte a un torneo 
-     to_join_round: unirte a un torneo
      to_join_venue:  unirte a un centro deportivo
      to_leave_tour_message: Petición para desapuntarte de
      to_leave_tour_message_sent: Petición para desapuntarte a sido enviada.          

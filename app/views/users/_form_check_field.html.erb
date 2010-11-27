@@ -33,7 +33,13 @@
   <%= f.label :private_phone, label_name('private_phone'), :class => :label %>
   <%= f.check_box :private_phone, :class => 'textfield' %>
   <span class="description"><%= label_name('private_phone', 'description') %></span>
-</div>  
+</div> 
+
+<div class="group">
+  <%= f.label :private_profile, label_name('private_profile'), :class => :label %>
+  <%= f.check_box :private_profile, :class => 'textfield' %>
+  <span class="description"><%= label_name('private_profile', 'description') %></span>
+</div> 
 
 <div class="group">
   <%= f.label :message_notification, label_name('message_notification'), :class => :label %>

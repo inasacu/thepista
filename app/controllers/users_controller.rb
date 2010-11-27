@@ -2,7 +2,7 @@ class UsersController < ApplicationController
   before_filter :require_no_user, :only => [:signup, :new, :create, :rpx_new, :rpx_create, :rpx_associate]
   before_filter :require_user, :only => [:index, :list, :show, :edit, :update, :petition, :recent_activity] 
   
-  before_filter :get_user,            :only => [:show] 
+  # before_filter :get_user,            :only => [:show] 
   before_filter :get_user_member,     :only => [:show] 
   before_filter :get_user_manager,    :only => [:set_available]
   
@@ -97,8 +97,6 @@ class UsersController < ApplicationController
   
   def petition
     if current_user.requested_managers.empty? and current_user.pending_managers.empty?  
-      # flash[:notice] = I18n.t(:petition_no)
-      # redirect_back_or_default('/index')
       redirect_to root_url
       return
     end
@@ -257,6 +255,17 @@ class UsersController < ApplicationController
   def set_private_phone
     if @user.update_attribute("private_phone", !@user.private_phone)
       @user.update_attribute("private_phone", @user.private_phone)  
+
+      flash[:success] = I18n.t(:successful_update)
+      redirect_back_or_default('/index')
+    else
+      render :action => 'index'
+    end
+  end
+
+  def set_private_profile
+    if @user.update_attribute("private_profile", !@user.private_profile)
+      @user.update_attribute("private_profile", @user.private_profile)  
 
       flash[:success] = I18n.t(:successful_update)
       redirect_back_or_default('/index')
@@ -496,8 +505,10 @@ private
   
   def get_user_member
     @user = User.find(params[:id])
-
-    unless current_user.is_user_member_of?(@user)
+    
+    if current_user.is_user_member_of?(@user)      
+    elsif !@user.private_profile
+    else
       flash[:warning] = I18n.t(:unauthorized)
       redirect_to root_url
       return

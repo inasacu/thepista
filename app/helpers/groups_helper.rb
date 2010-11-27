@@ -10,7 +10,7 @@ module GroupsHelper
       return item_image_link_large(group)
     end
     if current_user.is_manager_of?(group)
-      "#{label_name(:no_photo_for, get_the_controller)}.  #{link_to(label_name(:upload), edit_group_path(group))}"
+      "#{I18n.t(:no_photo_for, get_the_controller)}.  #{link_to(I18n.t(:upload), edit_group_path(group))}"
     else  
       return item_image_link_large(group)
     end
@@ -31,5 +31,30 @@ module GroupsHelper
   def group_list(objects)
     return item_list(objects)
   end
+  
+  def set_role_add_sub_manager(user, group)
+    the_label = label_with_name('role_add_sub_manager', h(group.name))
+    # the_confirmation = "#{ I18n.t(:role_add_sub_manager)} #{ I18n.t(:to) } #{@user.name} #{ I18n.t(:to) } #{group.name}?"    
+		link_to(the_label , set_sub_manager_path(:id => user, :group => group))
+  end
+  
+  def set_role_remove_sub_manager(user, group)
+    the_label = label_with_name('role_remove_sub_manager', h(group.name))
+    # the_confirmation = "#{ I18n.t(:role_remove_sub_manager)} #{ I18n.t(:to) } #{@user.name} #{ I18n.t(:to) } #{group.name}?"    
+		link_to(the_label , remove_sub_manager_path(:id => user, :group => group))
+  end
+  
+  def set_role_add_subscription(user, group)
+    the_label = label_with_name('role_add_subscription', h(group.name))
+    # the_confirmation = "#{ I18n.t(:role_add_subscription)} #{ I18n.t(:to) } #{@user.name} #{ I18n.t(:to) } #{group.name}?"    
+		link_to(the_label , set_subscription_path(:id => user, :group => group))
+  end
+  
+  def set_role_remove_subscription(user, group)
+    the_label = label_with_name('role_remove_subscription', h(group.name))
+    # the_confirmation = "#{ I18n.t(:role_remove_subscription)} #{ I18n.t(:to) } #{@user.name} #{ I18n.t(:to) } #{group.name}?"    
+		link_to(the_label , remove_subscription_path(:id => user, :group => group))
+  end
+  		
   
 end
