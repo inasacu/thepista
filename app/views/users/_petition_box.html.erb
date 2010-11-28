@@ -15,6 +15,7 @@
 	has_joined ||= false
 	has_joined = (teammate.status == 'accepted')
 	the_icon = group_avatar_image_link(teammate.item) 
+	the_icon = challenge_avatar_image_link(teammate.item) if teammate.item.class.to_s == 'Challenge'
 %>	
 
 <tr>
@@ -36,7 +37,7 @@
 			<%= sub_item_link %>
 			<br/>
 			<% end %>
-		<%= the_icon %>&nbsp;&nbsp;<%= has_joined ? ago(teammate.accepted_at) : ago(teammate.created_at) %>	
+			<%= the_icon %>&nbsp;&nbsp;<%= has_joined ? ago(teammate.accepted_at) : ago(teammate.created_at) %>	
 		</span>
 	</td>
 
