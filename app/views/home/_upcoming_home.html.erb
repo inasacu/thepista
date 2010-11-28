@@ -39,6 +39,8 @@
 		item_image = item_image_link_small(the_manager)
 		
 		the_icon = group_avatar_image_link(teammate) if teammate.class.to_s == "Group"
+		the_icon = challenge_avatar_image_link(teammate) if teammate.class.to_s == "Challenge"
+		the_icon = cup_avatar_image_link(teammate) if teammate.class.to_s == "Cup"
 		
 		the_label = label_name(:"updated_a_#{teammate.class.to_s.downcase}") + " <wbr/> #{item_link}" 
 
