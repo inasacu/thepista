@@ -121,7 +121,7 @@ class Teammate < ActiveRecord::Base
       Standing.create_cup_challenge_standing(item)
       Cast.create_challenge_cast(item) 
       Fee.create_user_challenge_fees(item)  
-      Standing.set_archive_flag(requester, item, false)
+     #  Standing.set_archive_flag(requester, item, false)
       Fee.set_archive_flag(requester, item, item, false) 
       approver.has_role!(:member, item)
 
