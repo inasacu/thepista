@@ -11,7 +11,7 @@ class MatchesController < ApplicationController
     @group = @schedule.group    
     @the_first_schedule = @group.schedules.first
     @matches = Match.find(:all, :joins   => "LEFT JOIN users on matches.user_id = users.id",
-    :conditions => ["schedule_id = ? and user_id != ? and matches.archive = false and users.available = true and users.archive = false", @the_first_schedule, current_user],
+    :conditions => ["schedule_id = ? and matches.archive = false and users.available = true and users.archive = false", @the_first_schedule],
     :order => "users.name")
     render :template => 'groups/set_profile'       
   end

@@ -4,13 +4,13 @@
 	<td><%= user_link(match.user) %></td>
 
 	<td class="name_and_date">
-		<%= ratings_for match, :show_user_rating => true, :dimension => :technical, :small => true %>
+		<%= ratings_for match, :show_user_rating => true, :dimension => :technical, :small => true unless match.user == current_user %>
 	</td>
 
 	<td>&nbsp;</td>
 
 	<td class="name_and_date">
-		<%= ratings_for match, :show_user_rating => true, :dimension => :physical, :small => true %>
+		<%= ratings_for match, :show_user_rating => true, :dimension => :physical, :small => true unless match.user == current_user %>
 	</td>
 
 	<td>&nbsp;|&nbsp;</td>
