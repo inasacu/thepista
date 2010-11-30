@@ -1774,7 +1774,7 @@ es:
      topics_create:  Nuevo evento
      topics_edit:  Actualizar evento
      topic_options:  Opciones    
-     total_difference: "Diferencia<br/>Total"    
+     total_difference: "Diferencia<br/>total"    
      tournament_options:  Opciones 
      tournament_starts_ends_at:  Fechas del torneo
      tournaments_create:  Nuevo torneo 
