@@ -1424,7 +1424,7 @@ es:
      physical:  Fisico
      physical_description: Nivel fisico
      physical_total: "Total<br/>fisico"
-     physical_difference: "Diferencia<br/>physica"
+     physical_difference: "Diferencia<br/>fisica"
      language_description:  Idioma preferible
      country_description:  Pais donde te encuentras
      time_zone:  Horario
