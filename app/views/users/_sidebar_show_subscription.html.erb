@@ -1,9 +1,8 @@
 <div class="block">
-	
-	<h3><%= label_name(:subscription_option) %></h3>
-	
-<div class="content">
-		
+	<div class="sidebar-block" class="extra">
+	<a href="#" onclick="toggle_visibility('abc');"><h5><%= label_name(:subscription_option) %></h5></a>
+	<div id="abc" style='display:none;'>
+			
 <% 
 @user.groups.each do |group| 
 
@@ -58,5 +57,5 @@ end
 %>
 
 </div>
-	
+</div>
 </div>

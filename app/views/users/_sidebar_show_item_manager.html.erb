@@ -1,8 +1,10 @@
 <% unless items.nil? or items.blank? %>
 
 <div class="block">
-	<h3><%= label_name(:challenge_option) %></h3>
-<div class="content">
+	<div class="sidebar-block" class="extra">
+	<a href="#" onclick="toggle_visibility('abc');"><h5><%= label_name(:challenge_option) %></h5></a>
+	<div id="abc" style='display:none;'>
+			
 <%
 	items.each do |item| 
 		the_item = h(item.name)
@@ -30,7 +32,7 @@
 %>
 
 </div>
-	
 </div>
-
+</div>
+	
 <% end -%>
