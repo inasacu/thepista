@@ -1664,7 +1664,8 @@ es:
      schedule_excess_player:  Demasiados jugadores convocados
      schedule_ultima_hora:   Ninguno en ultima hora para mostrar.
      schedule_no_disponible:  Ninguno no disponible para mostrar.
-     schedule_rate: Valoración del evento     
+     schedule_rate: Valoración del evento
+     schedule_rate_average: Valoración media del evento         
      schedules_team_roster_false:  Ningun convocado para mostrar.
      schedules_team_last_minute_false:   Ninguno en ultima hora para mostrar.
      schedules_team_no_show_false:  Ningun ausente para mostrar.

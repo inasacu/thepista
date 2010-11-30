@@ -1,12 +1,14 @@
 class MatchesController < ApplicationController
   before_filter :require_user
   before_filter :get_match_and_user_x_two, :only =>[:set_status, :set_team]
+  before_filter :has_member_access, :only => [:set_match_profile]
+  before_filter :has_match_access, :only => [:rate]
 
   def index
     redirect_to :controller => 'schedules', :action => 'index'
   end
   
-  def set_match_profile
+  def star_rate
     @schedule = Schedule.find(params[:id])
     @group = @schedule.group    
     @the_first_schedule = @group.schedules.first
@@ -44,8 +46,7 @@ class MatchesController < ApplicationController
   end
 
   def rate
-    @match = Match.find(params[:id])
-    @match.rate(params[:stars], current_user, params[:dimension])    
+    @match.rate(params[:stars], current_user, params[:dimension])   
     render :update do |page|
       page.replace_html @match.wrapper_dom_id(params), ratings_for(@match, params.merge(:wrap => false))
       page.visual_effect :highlight, @match.wrapper_dom_id(params)
@@ -152,4 +153,25 @@ class MatchesController < ApplicationController
     @user_x_two = "X" if (@match.group_score.to_i == @match.invite_score.to_i)
     @user_x_two = "2" if (@match.group_id.to_i == 0 and @match.invite_id.to_i > 0)
   end
+  
+  def has_member_access
+    @schedule = Schedule.find(params[:id])
+    unless current_user.is_member_of?(@schedule.group) 
+      flash[:warning] = I18n.t(:unauthorized)
+      redirect_back_or_default('/index')
+      return
+    end
+  end
+  
+  
+  def has_match_access
+    @match = Match.find(params[:id])
+    @schedule = @match.schedule
+    unless current_user.is_member_of?(@schedule.group) 
+      flash[:warning] = I18n.t(:unauthorized)
+      redirect_back_or_default('/index')
+      return
+    end
+  end
+  
 end

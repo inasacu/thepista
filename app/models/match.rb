@@ -1,7 +1,7 @@
 class Match < ActiveRecord::Base
           
   # allows user to rate a model 
-  ajaxful_rateable :stars => 5, :dimensions => [:technical, :physical]
+  ajaxful_rateable :stars => 5, :dimensions => [:technical, :physical]  
   
   belongs_to      :user
   belongs_to      :group
@@ -28,7 +28,7 @@ class Match < ActiveRecord::Base
   attr_accessible :goals_scored, :game_started, :field_goal_attempt, :field_goal_made, :free_throw_attempt, :free_throw_made
   attr_accessible :three_point_attempt, :three_point_made, :rebounds, :rebounds_defense, :rebounds_offense 
   attr_accessible :minutes_played, :assists, :steals, :blocks, :turnovers, :personal_fouls, :archive
-
+  attr_accessible :technical_average, :physical_average
 
   before_create   :format_description
   

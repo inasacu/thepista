@@ -9,26 +9,26 @@
 	technical = {}
 	physical = {}
 		
-	home["defense"] = 0
-	home["center"] = 0
-	home["attack"] = 0
-	home["technical"] = 0
-	home["physical"] = 0
-	home["total"] = 0
+	home["defense"] = 0.0
+	home["center"] = 0.0
+	home["attack"] = 0.0
+	home["technical"] = 0.0
+	home["physical"] = 0.0
+	home["total"] = 0.0
 	
-	away["defense"] = 0
-	away["center"] = 0
-	away["attack"] = 0
-	away["technical"] = 0
-	away["physical"] = 0
-	away["total"] = 0
+	away["defense"] = 0.0
+	away["center"] = 0.0
+	away["attack"] = 0.0
+	away["technical"] = 0.0
+	away["physical"] = 0.0
+	away["total"] = 0.0
 	
-	technical["difference"] = 0
-	technical["minimum"] = 0
+	technical["difference"] = 0.0
+	technical["minimum"] = 0.0
 	technical["percentage"] = 0.0
 		
-	physical["difference"] = 0
-	physical["minimum"] = 0
+	physical["difference"] = 0.0
+	physical["minimum"] = 0.0
 	physical["percentage"] = 0.0
 	
 	is_manager ||=false
@@ -37,6 +37,8 @@
 	group_games_played = @schedule.group.games_played.to_f
 	
 	@positions = Type.find(:all, :conditions => "table_type = 'User'", :order => "id")
+	
+	first_schedule = @schedule.group.schedules.first
 	
 if roster_count 
 %>
@@ -75,6 +77,11 @@ if roster_count
 			last_roster = "second_team_last_roster" if is_second_team
 					
 			coeficient_played = 100 *(match.scorecard_played.to_f / group_games_played)
+						
+			the_user_match = Match.find(:first, :conditions => ["schedule_id = ? and user_id = ?", first_schedule.id, match.user_id])
+			
+			rating_technical = the_user_match.rating_average_technical.to_f
+			rating_physical = the_user_match.rating_average_physical.to_f
 	-%>
         <tr>
 			<td class="<%= second_team %>" >
@@ -110,8 +117,10 @@ if roster_count
 		when "attack"
 			(match.group_id > 0) ? home["attack"] += 1 : away["attack"] += 1
 		end
-		(match.group_id > 0) ? home["technical"] += match.technical : away["technical"] += match.technical
-		(match.group_id > 0) ? home["physical"] += match.physical : away["physical"] += match.physical
+		# (match.group_id > 0) ? home["technical"] += match.technical : away["technical"] += match.technical
+		# (match.group_id > 0) ? home["physical"] += match.physical : away["physical"] += match.physical
+		(match.group_id > 0) ? home["technical"] += rating_technical : away["technical"] += rating_technical
+		(match.group_id > 0) ? home["physical"] += rating_physical : away["physical"] += rating_physical
 		(match.group_id > 0) ? home["total"] += 1 : away["total"] += 1
 				
 		@roster = match 
@@ -121,11 +130,13 @@ if roster_count
 		</td>
 	
 		<td class="<%= second_team %>" align="center">
-			<%=  match.technical %>
+			<%#=  match.technical %>
+			<%= rating_technical %>
 		</td>	
 			
 		<td class="<%= second_team %>" align="center">	
-			<%= match.physical %>
+			<%#= match.physical %>
+			<%= rating_physical%>
 		</td>
 		
 		<td class="<%= second_team %>" >

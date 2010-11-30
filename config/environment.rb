@@ -70,16 +70,28 @@ Rails::Initializer.run do |config|
 end
 
 ActionMailer::Base.default_content_type = "text/html"
-ActionMailer::Base.smtp_settings = {
-   :tls => true,
-   :enable_starttls_auto => true,
-   :address => "smtp.gmail.com",
-   :port => "587",
-   :domain => "haypista.com",
-   :authentication => :plain,
-   :user_name => "haypista@gmail.com",
-   :password => "72dae4bc40" 
- }
+# ActionMailer::Base.smtp_settings = {
+#    :tls => true,
+#    :enable_starttls_auto => true,
+#    :address => "smtp.gmail.com",
+#    :port => "587",
+#    :domain => "haypista.com",
+#    :authentication => :plain,
+#    :user_name => "haypista@gmail.com",
+#    :password => "72dae4bc40" 
+#  }
+ 
+ ActionMailer::Base.smtp_settings = {
+    :tls => true,
+    :enable_starttls_auto => true,
+    :address => "smtp.gmail.com",
+    :port => "587",
+    :domain => "haypista.com",
+    :authentication => :plain,
+    :user_name => "support@haypista.com",
+    :password => "19ti79q42e" 
+  }
+  
 
 # this code from http://gravityblast.com/
 # shows form error messages inside the auto generated forms 

@@ -1664,7 +1664,8 @@ en:
      schedule_excess_player:  Too many Players on Squad
      schedule_ultima_hora:   Noone on Last Minute to show.
      schedule_no_disponible:  Noone on unavailable to show.
-     schedule_rate: Rate the Event     
+     schedule_rate: Rate the Event  
+     schedule_rate_average: Rate Event Average   
      schedules_team_roster_false:  Noone on Squad to show.
      schedules_team_last_minute_false:   Noone on Last Minute to show.
      schedules_team_no_show_false:  Noone on No-Shows to show.
