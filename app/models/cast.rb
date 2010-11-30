@@ -73,7 +73,7 @@ class Cast < ActiveRecord::Base
   
   def self.current_challenge(users, challenge, page = 1)
     self.paginate(:all, :joins => "left join games on games.id = casts.game_id left join users on users.id = casts.user_id",
-                  :conditions => ["user_id in (?) and challenge_id = ?", users, challenge], 
+                  :conditions => ["user_id in (?) and challenge_id = ? and casts.home_score is not null and casts.away_score is not null", users, challenge], 
                   :order => 'games.jornada, users.name', :page => page, :per_page => ESCUADRAS_PER_PAGE)
   end
   
