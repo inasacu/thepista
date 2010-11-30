@@ -121,8 +121,6 @@ if roster_count
 		when "attack"
 			(match.group_id > 0) ? home["attack"] += 1 : away["attack"] += 1
 		end
-		# (match.group_id > 0) ? home["technical"] += match.technical : away["technical"] += match.technical
-		# (match.group_id > 0) ? home["physical"] += match.physical : away["physical"] += match.physical
 		(match.group_id > 0) ? home["technical"] += rating_technical : away["technical"] += rating_technical
 		(match.group_id > 0) ? home["physical"] += rating_physical : away["physical"] += rating_physical
 		(match.group_id > 0) ? home["total"] += 1 : away["total"] += 1
@@ -134,12 +132,10 @@ if roster_count
 		</td>
 	
 		<td class="<%= second_team %>" align="center">
-			<%#=  match.technical %>
 			<%= rating_technical %>
 		</td>	
 			
 		<td class="<%= second_team %>" align="center">	
-			<%#= match.physical %>
 			<%= rating_physical%>
 		</td>
 		

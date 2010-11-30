@@ -1,27 +1,55 @@
 <% 
-	technical["difference"] = home["technical"] - away["technical"] 
-	physical["difference"] = home["physical"] - away["physical"] 
-	technical["minimum"] = ((home["technical"] > away["technical"]) ? away["technical"] : home["technical"]) 
-	physical["minimum"] = ((home["physical"] > away["physical"]) ? away["physical"] : home["physical"])
-	technical["percentage"] = technical["difference"].abs / technical["minimum"].to_f unless technical["minimum"] == 0 
-	physical["percentage"] = physical["difference"].abs / physical["minimum"].to_f unless physical["minimum"] == 0 
+	home["total"] = home["technical"].to_f + home["physical"].to_f
+	away["total"] = away["technical"].to_f + away["physical"].to_f
+
+	home["technical_difference"] = 0.0
+	away["technical_difference"] =  0.0
 	
-	is_home_technical = (home["technical"] > away["technical"])
-	is_home_physical = (home["physical"] > away["physical"])
+	home["physical_difference"] =  0.0
+	away["physical_difference"] =  0.0
 	
-	home["total"] = home["technical"] + home["physical"]
-	away["total"] = away["technical"] + away["physical"]
+	home["total_difference"] =  0.0
+	away["total_difference"] =  0.0
 	
-	the_technical = "#{sprintf( "%0.00f", technical["difference"].abs)}%"
-	the_physical = "#{sprintf( "%0.00f", physical["difference"].abs)}%"
+	home["has_technical_value"] = home["technical"] > 0
+	home["has_physical_value"] = home["physical"] > 0
+	home["has_total_value"] = home["total"] > 0
 	
-	home["image"] = scorecard_image_link("arrow_up.png") if home["total"] > away["total"]
-	home["image"] = scorecard_image_link("arrow_down.png") if home["total"] < away["total"]
-	home["image"] = scorecard_image_link("arrow_right.png") if home["total"] == away["total"]
+	away["has_technical_value"] = away["technical"] > 0
+	away["has_physical_value"] = away["physical"] > 0
+	away["has_total_value"] = away["total"] > 0
 	
-	away["image"] = scorecard_image_link("arrow_up.png") if away["total"] > home["total"]
-	away["image"] = scorecard_image_link("arrow_down.png") if away["total"] < home["total"]
-	away["image"] = scorecard_image_link("arrow_right.png") if away["total"] == home["total"]
+	if home["has_technical_value"] and away["has_technical_value"]
+		home["technical_difference"] = (home["technical"] - away["technical"]).to_f / away["technical"] * 100
+		away["technical_difference"] = (away["technical"] - home["technical"]).to_f / home["technical"] * 100
+	end
+
+	if home["has_physical_value"] and away["has_physical_value"]
+		home["physical_difference"] = (home["physical"] - away["physical"]).to_f / away["physical"] * 100
+		away["physical_difference"] = (away["physical"] - home["physical"]).to_f / home["physical"] * 100
+	end
+
+	if home["has_total_value"] and away["has_total_value"] 		
+		home["total_difference"] = (home["total"] - away["total"]).to_f / away["total"] * 100
+		away["total_difference"] = (away["total"] - home["total"]).to_f / home["total"] * 100 
+	end
+		
+	home["technical_difference"] = "#{sprintf( "%.2f", home["technical_difference"].abs)}%"
+	away["technical_difference"] = "#{sprintf( "%.2f", away["technical_difference"].abs)}%"
+ 
+	home["physical_difference"] = "#{sprintf( "%.2f", home["physical_difference"].abs)}%"
+	away["physical_difference"] = "#{sprintf( "%.2f", away["physical_difference"].abs)}%"
+	
+	home["total_difference"] = "#{sprintf( "%.2f", home["total_difference"].abs)}%"
+	away["total_difference"] = "#{sprintf( "%.2f", away["total_difference"].abs)}%"
+	
+	home["image"] = scorecard_image_link("arrow_up.png") if home["total_difference"] > away["total_difference"]
+	home["image"] = scorecard_image_link("arrow_down.png") if home["total_difference"] < away["total_difference"]
+	home["image"] = scorecard_image_link("arrow_right.png") if home["total_difference"] == away["total_difference"]
+	
+	away["image"] = scorecard_image_link("arrow_up.png") if away["total_difference"] > home["total_difference"]
+	away["image"] = scorecard_image_link("arrow_down.png") if away["total_difference"] < home["total_difference"]
+	away["image"] = scorecard_image_link("arrow_right.png") if away["total_difference"] == home["total_difference"]
 %>
 <tr>
 	<%= content_tag :td, "&nbsp;", :class => "no_line" %>
@@ -37,40 +65,48 @@
 <tr>
 	<%= content_tag :th, "&nbsp;", :class => "no_line" %>
 	<%= content_tag :th, "&nbsp;", :class => "no_line" %>
-	<%= content_tag :th, label_name(:groups), :class => "no_line", :align => "center" %>
-	<%= content_tag :th, "&nbsp;", :class => "no_line" %>
-	<%= content_tag :th, label_name(:technical_total), :class => "no_line", :align => "center" %>
-	<%= content_tag :th, label_name(:physical_total), :class => "no_line", :align => "center" %>
-	<%= content_tag :th, label_name(:users_total), :class => "no_line", :align => "center" %>
-	<%= content_tag :th, label_name(:technical_difference), :class => "no_line", :align => "center" %>
-	<%= content_tag :th, label_name(:physical_difference), :class => "no_line", :align => "center" %>
-	<%= content_tag :th, "", :class => "no_line", :align => "center" %>
-	<%= content_tag :th, "", :class => "no_line", :align => "center" %>
+	<%= content_tag :th, label_name(:groups), :class => "no_line", :align => "" %>
+	<%= content_tag :th, label_name(:technical_total), :class => "no_line", :align => "" %>
+	<%= content_tag :th, label_name(:physical_total), :class => "no_line", :align => "" %>
+	<%= content_tag :th, label_name(:users_total), :class => "no_line", :align => "" %>
+	<%= content_tag :th, label_name(:technical_difference), :class => "no_line", :align => "" %>
+	<%= content_tag :th, label_name(:physical_difference), :class => "no_line", :align => "" %>
+	<%= content_tag :th, label_name(:total_difference), :class => "no_line", :align => "" %>
+	<%= content_tag :th, "", :class => "no_line", :align => "" %>
+	<%= content_tag :th, "", :class => "no_line", :align => "" %>
+	<%= content_tag :th, "", :class => "no_line", :align => "" %>
 </tr>
 <tr>
 	<%= content_tag(:td, "&nbsp;", :class => "no_line") %>
-	<%= content_tag(:td, "&nbsp;", :class => "no_line") %>
-	<%= content_tag(:td, link_to(@schedule.home_group, group_path(@schedule.group)), :class => "no_line", :align => "center") %>
-	<%= content_tag(:td, "&nbsp;", :class => "no_line") %>
-	<%= content_tag(:td, home["technical"], :class => "no_line", :align => "center") %>
-	<%= content_tag(:td, home["physical"], :class => "no_line", :align => "center") %>
-	<%= content_tag(:td, home["total"], :class => "no_line", :align => "center") %>
-	<%= content_tag(:td, is_home_technical ? the_technical : "#{technical["difference"]}%", :class => "no_line", :align => "center") %>
-	<%= content_tag(:td, is_home_physical ? the_physical : "#{physical["difference"]}%", :class => "no_line", :align => "center") %>
 	<%= content_tag(:td, home["image"], :class => "no_line", :align => "center") %>
+	<%= content_tag(:td, link_to(@schedule.home_group, group_path(@schedule.group)), :class => "no_line", :align => "") %>
+	<%= content_tag(:td, home["technical"], :class => "no_line", :align => "") %>
+	<%= content_tag(:td, home["physical"], :class => "no_line", :align => "") %>
+	<%= content_tag(:td, home["total"], :class => "no_line", :align => "") %>
+	<%= content_tag(:td, home["technical_difference"], :class => "no_line", :align => "") %>
+	<%= content_tag(:td, home["physical_difference"], :class => "no_line", :align => "") %>
+	<%= content_tag(:td, home["total_difference"], :class => "no_line", :align => "") %>
+	
+	
+	<%#= content_tag(:td, is_home_technical ? the_technical : "#{technical["difference"]}%", :class => "no_line", :align => "center") %>
+	<%#= content_tag(:td, is_home_physical ? the_physical : "#{physical["difference"]}%", :class => "no_line", :align => "center") %>	
+	<%#= content_tag(:td, "&nbsp;") %>
 </tr>
 
 <tr>
-	<%= content_tag(:td, "&nbsp;", :class => "no_line") %>
-	<%= content_tag(:td, "&nbsp;", :class => "no_line") %>
-	<%= content_tag(:td, link_to(@schedule.away_group, group_path(@schedule.group)), :align => "center") %>	
-	<%= content_tag(:td, "&nbsp;") %>		
-	<%= content_tag(:td, away["technical"], :align => "center") %>
-	<%= content_tag(:td, away["physical"], :align => "center") %>
-	<%= content_tag(:td, away["total"], :align => "center") %>
-	<%= content_tag(:td, is_home_technical ? "#{technical["difference"]}%" : the_technical, :align => "center") %>
-	<%= content_tag(:td, is_home_physical ? "#{physical["difference"]}%" : the_physical, :align => "center") %>
-	<%= content_tag(:td, away["image"], :class => "", :align => "center") %>	
+	<%= content_tag(:td, "&nbsp;", :class => "no_line") %>	
+	<%= content_tag(:td, away["image"], :class => "", :align => "center") %>
+	<%= content_tag(:td, link_to(@schedule.away_group, group_path(@schedule.group)), :align => "") %>	
+	<%= content_tag(:td, away["technical"], :align => "") %>
+	<%= content_tag(:td, away["physical"], :align => "") %>
+	<%= content_tag(:td, away["total"], :align => "") %>
+	<%= content_tag(:td, away["technical_difference"], :class => "no_line", :align => "") %>
+	<%= content_tag(:td, away["physical_difference"], :class => "no_line", :align => "") %>
+	<%= content_tag(:td, away["total_difference"], :class => "no_line", :align => "") %>
+	
+	<%#= content_tag(:td, is_home_technical ? "#{technical["difference"]}%" : the_technical, :align => "center") %>
+	<%#= content_tag(:td, is_home_physical ? "#{physical["difference"]}%" : the_physical, :align => "center") %>
+	<%#= content_tag(:td, "&nbsp;") %>
 </tr>
 
 <tr>

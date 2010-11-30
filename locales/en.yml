@@ -1773,7 +1773,8 @@ en:
      tags:  Tags     
      topics_create:  New Event
      topics_edit:  Edit Event
-     topic_options:  Options      
+     topic_options:  Options 
+     total_difference: "Total<br/>Difference"     
      tournament_options:  Options
      tournament_starts_ends_at:  Tournament Dates
      tournaments_create:  New Tournament 
