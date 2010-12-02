@@ -12,9 +12,7 @@ class MatchesController < ApplicationController
     @schedule = Schedule.find(params[:id])
     @group = @schedule.group    
     @the_first_schedule = @group.schedules.first
-    @matches = Match.find(:all, :joins   => "LEFT JOIN users on matches.user_id = users.id",
-    :conditions => ["schedule_id = ? and matches.archive = false and users.available = true and users.archive = false", @the_first_schedule],
-    :order => "users.name")
+    @matches = Match.get_matches_users(@the_first_schedule)
     render :template => 'groups/set_profile'       
   end
   
@@ -117,7 +115,8 @@ class MatchesController < ApplicationController
   end
 
   def set_team 
-    unless current_user.is_sub_manager_of?(@match.schedule.group) 
+    unless current_user.is_member_of?(@match.schedule.group) 
+    # unless current_user.is_sub_manager_of?(@match.schedule.group) 
       flash[:warning] = I18n.t(:unauthorized)
       redirect_back_or_default('/index')
       return

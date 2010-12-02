@@ -10,7 +10,15 @@
     <%= render "shared/previous_next_message", :schedule => @schedule, :the_previous => @the_previous, :the_next => @the_next -%>
 	<%= show_heading(the_label) %>
 
-		<div class="inner">
+	<div class="inner">
+
+			<div class="description">
+	    		<span class="q">
+					<%= nice_day_of_week(@schedule.starts_at) %>
+				</span>
+	  		</div>
+			<br/>
+			<br/>
 <% 
 	if a_roster
 %>
@@ -26,5 +34,9 @@
 </div>
 
 <% content_for :sidebar, render(:partial => '/shared/latest_payment') -%>
-<% content_for :sidebar, render(:partial => '/schedules/sidebar_show') if @schedule -%>
-<% content_for :sidebar, render(:partial => 'shared/share_object', :locals => {:schedule => @schedule}) if @schedule -%>
+
+<% if @schedule -%>
+	<% content_for(:sidebar, render("schedules/sidebar_show", :schedule => @schedule)) -%>
+	<%# content_for(:sidebar, render('schedules/sidebar_level', :schedule => @schedule )) if current_user.is_member_of?(@schedule.group) -%>
+	<% content_for(:sidebar, render("shared/share_object", :schedule => @schedule)) -%>
+<% end %>

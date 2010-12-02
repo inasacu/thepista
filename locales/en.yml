@@ -371,7 +371,8 @@ en:
      ends_at: Ends at   
      ends_at_match: Match Ends At   
      ends_at_description: (What time does the event end?)   
-     ends_at_venue: Hours  
+     ends_at_venue: Hours 
+     evaluation:  Evaluation 
      events:
         one:  "has 1 event." 
         other: "has {{count}} events."        

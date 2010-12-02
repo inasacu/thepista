@@ -33,73 +33,23 @@ module GroupsHelper
   end
   
   def set_role_add_sub_manager(user, group)
-    the_label = label_with_name('role_add_sub_manager', h(group.name))
-    # the_confirmation = "#{ I18n.t(:role_add_sub_manager)} #{ I18n.t(:to) } #{@user.name} #{ I18n.t(:to) } #{group.name}?"    
+    the_label = label_with_name('role_add_sub_manager', h(group.name))  
 		link_to(the_label , set_sub_manager_path(:id => user, :group => group))
   end
   
   def set_role_remove_sub_manager(user, group)
-    the_label = label_with_name('role_remove_sub_manager', h(group.name))
-    # the_confirmation = "#{ I18n.t(:role_remove_sub_manager)} #{ I18n.t(:to) } #{@user.name} #{ I18n.t(:to) } #{group.name}?"    
+    the_label = label_with_name('role_remove_sub_manager', h(group.name))   
 		link_to(the_label , remove_sub_manager_path(:id => user, :group => group))
   end
   
   def set_role_add_subscription(user, group)
-    the_label = label_with_name('role_add_subscription', h(group.name))
-    # the_confirmation = "#{ I18n.t(:role_add_subscription)} #{ I18n.t(:to) } #{@user.name} #{ I18n.t(:to) } #{group.name}?"    
+    the_label = label_with_name('role_add_subscription', h(group.name)) 
 		link_to(the_label , set_subscription_path(:id => user, :group => group))
   end
   
   def set_role_remove_subscription(user, group)
     the_label = label_with_name('role_remove_subscription', h(group.name))
-    # the_confirmation = "#{ I18n.t(:role_remove_subscription)} #{ I18n.t(:to) } #{@user.name} #{ I18n.t(:to) } #{group.name}?"    
 		link_to(the_label , remove_subscription_path(:id => user, :group => group))
   end
-  
-  #   def set_role_add_sub_manager(user, group, display_image_title=false)
-  #     the_label = label_with_name('role_add_sub_manager', h(group.name))   
-  # if display_image_title
-  #   the_title = "add sub manager role"
-  #   the_image = image_tag('icons/user_add.png')
-  #   star_image = "star_#{is_subscriber}.png"
-  #   link_to(image_tag(star_image, options={:title => the_label, :style => "height: 15px; width: 15px;"}), user_path(user))
-  #   link_to(the_image, set_sub_manager_path(:id => user, :group => group))
-  # else
-  #   return link_to(the_label , set_sub_manager_path(:id => user, :group => group))
-  # end
-  #   end
-  #   
-  #   def set_role_remove_sub_manager(user, group, display_image_title=false)
-  #     the_label = label_with_name('role_remove_sub_manager', h(group.name))   
-  # if display_image_title
-  #   the_title = "add sub manager role"
-  #   the_image = image_tag('icons/user_add.png')
-  #   link_to(the_image, remove_sub_manager_path(:id => user, :group => group))
-  # else
-  #   return link_to(the_label , remove_sub_manager_path(:id => user, :group => group))
-  # end
-  #   end
-  #   
-  #   def set_role_add_subscription(user, group, display_image_title=false)
-  #     the_label = label_with_name('role_add_subscription', h(group.name))   
-  # if display_image_title
-  #   the_title = "add subscription role"
-  #   the_image = image_tag('icons/user_add.png')
-  #   link_to(the_image, set_subscription_path(:id => user, :group => group))
-  # else
-  #   return link_to(the_label , set_subscription_path(:id => user, :group => group))
-  # end
-  #   end
-  #   
-  #   def set_role_remove_subscription(user, group, display_image_title=false)
-  #     the_label = label_with_name('role_add_subscription', h(group.name))   
-  #     if display_image_title
-  #       the_title = "remove subscription role"
-  #       the_image = image_tag('icons/user_delete.png')
-  #       link_to(the_image, remove_subscription_path(:id => user, :group => group))
-  #     else
-  #       return link_to(the_label , remove_subscription_path(:id => user, :group => group))
-  #     end
-  #   end     
 end
 

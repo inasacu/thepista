@@ -36,15 +36,6 @@ class SchedulesController < ApplicationController
   def show
     store_location    
   end
-
-  # def rate
-  #   @schedule.rate(params[:stars], current_user, params[:dimension])
-  #   id = "ajaxful-rating-#{!params[:dimension].blank? ? "#{params[:dimension]}-" : ''}schedule-#{@schedule.id}"
-  #   render :update do |page|
-  #     page.replace_html id, ratings_for(@schedule, :wrap => false, :dimension => params[:dimension])
-  #     page.visual_effect :highlight, id
-  #   end
-  # end
   
   def rate
     @schedule.rate(params[:stars], current_user, params[:dimension])    

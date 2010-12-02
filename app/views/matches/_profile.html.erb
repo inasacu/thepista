@@ -12,8 +12,8 @@
 	    <td><%= image_link_small(match.user) %></td>
 		<td><%= user_link(match.user) %></td>
 		<td><%= match_form.select(:position_id, positions.map {|e| [I18n.t(e.name), e.id] }) %></td>
-		<td><%= match_form.select(:technical, the_technical, {:selected => match.technical, :include_blank => false}) %></td>
-		<td><%= match_form.select(:physical, the_physical, {:selected => match.physical, :include_blank => false}) %></td>
+		<td><%#= match_form.select(:technical, the_technical, {:selected => match.technical, :include_blank => false}) %></td>
+		<td><%#= match_form.select(:physical, the_physical, {:selected => match.physical, :include_blank => false}) %></td>
 	    <td class="last" width="400">&nbsp;</td>
 	</tr>
 <%

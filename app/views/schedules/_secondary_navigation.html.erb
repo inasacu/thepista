@@ -3,8 +3,8 @@
 <ul>
 <%
 the_controller = ['forums', 'topics', 'posts', 'match']
-the_action = ['show', 'edit', 'team roster', 'team no show', 'team last minute', 'team unavailable' 'star rate']
-unless the_action.include?(get_the_action) or the_controller.include?(get_the_controller) 
+the_action = ['show', 'edit', 'team roster', 'team no show', 'team last minute', 'team unavailable', 'star rate']
+unless the_action.include?(get_the_action) or the_controller.include?(get_the_controller)
 %>
 	<li class="<%= get_active('schedule_my_list') %>"><%= link_to(label_name(:my_schedule) , my_list_schedules_path(:id => current_user)) %></li>
 	<li class="<%= get_first_active %>"><%= link_to(label_name(:upcoming_schedule) , schedules_url) unless @has_no_schedules %></li>
@@ -18,7 +18,7 @@ else
 	if current_user.is_member_of?(@schedule.group) or @schedule.public
 		the_label = label_name(:wall)
 %>
-		<li class="<%= get_first_active('schedule_show') %>">  <%= item_concept_link(@schedule.concept, @schedule, nil, 25) %></li>	
+		<li class="<%= get_first_active('schedule_show') %>"><%= item_concept_link(@schedule.concept, @schedule, nil, 25) %></li>	
 		<li class="<%= get_active('forum_show') %>"><%= link_to(the_label, forum_path(@schedule.forum)) if current_user.is_member_of?(@schedule.group) %></li>	
 		
 		<% unless (@schedule.the_roster.empty?)		

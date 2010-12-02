@@ -372,6 +372,7 @@ es:
      ends_at_match: Finalización   
      ends_at_description: (¿Ha que hora termina el evento?)   
      ends_at_venue: Horario   
+     evaluation:  Evaluación
      events:
         one:  "tiene 1 evento." 
         other: "tiene {{count}} eventos."        

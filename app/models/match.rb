@@ -49,6 +49,12 @@ class Match < ActiveRecord::Base
 				:joins => "left join schedules on schedules.id = matches.schedule_id",
 				:conditions => ["matches.user_id = ? and schedules.group_id = ?", match.user_id, group.id])
 		end
+		
+	def self.get_matches_users(schedule)
+	  find(:all, :joins   => "LEFT JOIN users on matches.user_id = users.id",
+    :conditions => ["schedule_id = ? and matches.archive = false and users.available = true and users.archive = false", schedule],
+    :order => "users.name")
+  end
   
   def position_name
     I18n.t(self.position.name)

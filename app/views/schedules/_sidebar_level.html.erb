@@ -12,16 +12,11 @@
 	
 <div class="content">
 	
-	<p>
-	<%= option_image_link('user') %>&nbsp;&nbsp;
-	<%= link_to(label_name(:profile_set) , star_rate_path(:id => @schedule)) %>
-	</p>
-	
 	<% if current_user.is_maximo? %>
 	
 	<p>
-	<%= option_image_link('user_update') %>&nbsp;&nbsp;
-	<%= link_to(label_name(:profile_set), set_profile_url(:id => schedule), :title => the_label_set) %>
+	<%= option_image_link('user') %>&nbsp;&nbsp;
+	<%= link_to(label_name(:profile_set) , star_rate_path(:id => schedule)) %>
 	</p>
 
 	<p>
@@ -35,6 +30,11 @@
 	</p>
 	
 	<% end -%>
+	
+	<p>
+	<%= option_image_link('user_update') %>&nbsp;&nbsp;
+	<%= link_to(label_name(:profile_set), set_profile_url(:id => schedule), :title => the_label_set) %>
+	</p>
 	
 </div>
 	

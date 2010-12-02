@@ -15,6 +15,7 @@ class UsersController < ApplicationController
   before_filter :setup_rpx_api_key,   :only => [:rpx_new, :rpx_create, :rpx_associate]
   
   before_filter :get_activities,      :only => [:index, :list]
+  before_filter :has_member_access,     :only => [:rate]
   
   # ssl_required :signup, :new, :create
   # ssl_allowed :index, :list, :show
@@ -89,6 +90,14 @@ class UsersController < ApplicationController
     end
   end
 
+  def rate
+    @user.rate(params[:stars], current_user, params[:dimension])   
+    render :update do |page|
+      page.replace_html @user.wrapper_dom_id(params), ratings_for(@user, params.merge(:wrap => false))
+      page.visual_effect :highlight, @user.wrapper_dom_id(params)
+    end
+  end
+  
   def recent_activity
     @user = current_user    
     redirect_to :action => 'index'  
@@ -531,9 +540,20 @@ private
   end
   
   def get_activities    
-    @has_activities = Activity.all_activities(current_user) if current_user
-    
+    @has_activities = Activity.all_activities(current_user) if current_user    
     @my_activities = Activity.related_activities(current_user) if @has_activities
     @my_activities = Activity.current_activities unless @has_activities    
   end
+  
+  def has_member_access
+    @user = User.find(params[:id])
+    has_access = false
+    has_access = current_user.is_user_member_of?(@user)
+
+    unless has_access 
+      redirect_to root_url
+      return
+    end
+  end
+  
 end
