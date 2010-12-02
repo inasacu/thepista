@@ -1211,6 +1211,8 @@ es:
      subject: Asunto  
      subject_description:  Titulo del asunto
      sub_manager_updated:  Actualización de sub manager.
+     sub_manager_false:  ""
+     sub_manager_true: Coordinador del Equipo
      manager_updated:  Actualización de manager.  
      subscription_option:  Opciones de abonado   
      subscription_at: Finalización para convocarse el abonado  
@@ -1702,7 +1704,8 @@ es:
      standings_no: Ninguna clasificación de torneo para mostrar.
      standings_option:  Opciones
      standings_less_games:  ( * ) Jugadores con menos asistencias a eventos
-     standings_legend:  Leyenda     
+     standings_legend:  Leyenda 
+     sub_manager_option:  Opciones de Sub-Manager    
      recaptcha_ask_question: "Haz una pregunta, recibe una respuesta!"
      recaptcha_question:  Haz la pregunta
      recaptcha_question:  Pregunta

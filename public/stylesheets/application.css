@@ -232,9 +232,21 @@ text_area.textfield {
 }
 
 .table th.last {
-/*	width: 150px;*/
 	width: 120px;
 }
+/*
+.table th.last_roster {
+	width: 120px;
+}
+
+.table th.second_team {
+	width: 120px;
+}
+
+.table th.last_roster_second_team {
+	width: 120px;
+}*/
+
 
 .table .checkbox {
   margin-left: 10px;
@@ -258,7 +270,7 @@ text_area.textfield {
 }
 
 .table td.second_team_last_roster {	
-	background: #EEEEEE;
+	background: #FFF1A8;
 	padding:  15px 5px;	
 	text-align: right;
 }
@@ -303,7 +315,6 @@ text_area.textfield {
 	padding: 10px 10px;
 }
 
-
 #fee td{
 	padding: 3px 8px;
 }
@@ -332,9 +343,9 @@ td.sub_true {
 }
 
 .form input.text_field {
-  width:90%;
+  width: 90%;
 }
-
+ÎÏ
 .form textarea.text_area {
   width: 75%;
 }
@@ -342,7 +353,7 @@ td.sub_true {
 
 /* table rows */
 .table .name_and_date .name_and_date_second_team .name { overflow: hidden; display: block; width: 150px; margin-right: 20px; white-space: nowrap; }
-.name_and_date_second_team { background: #EEEEEE; }
+.name_and_date_second_team { background: #FFF1A8; }
 .name_and_date .date { padding: 1px 0pt 0pt; display: block; font-size: 11px; color: rgb(119, 119, 119); }
 .name_and_date_second_team .date { padding: 1px 0pt 0pt; display: block; font-size: 11px; color: rgb(119, 119, 119); }
 .name_and_date .date_tiny { padding: 1px 0pt 0pt; display: block; font-size: 10px; color: rgb(119, 119, 119); }
@@ -385,9 +396,9 @@ div#footer ol li { margin: 0pt 1em; position: relative; float: left; }
 
 /* ::::: new cloud taggings ::::: */
 
-#sidebar .block .extra h2 { font-size: 1.3em; color: rgb(204, 204, 204); font-weight: normal; margin-bottom: 10px; }
+/*#sidebar .block .extra h2 { font-size: 1.3em; color: rgb(204, 204, 204); font-weight: normal; margin-bottom: 10px; }*/
 
-#tagcloud a { margin: 5px 5px 5px 0pt; padding: 1px 3px; white-space: nowrap; text-decoration: none; color: rgb(102, 102, 102); font-size: 0.90em; line-height: 1.4em; }
+/*#tagcloud a { margin: 5px 5px 5px 0pt; padding: 1px 3px; white-space: nowrap; text-decoration: none; color: rgb(102, 102, 102); font-size: 0.90em; line-height: 1.4em; }
 #tagcloud a.cloud_0 { font-size: 12px; color: rgb(204, 204, 204); }
 #tagcloud a.cloud_1 { font-size: 0.85em; }
 #tagcloud a.cloud_2 { font-size: 0.95em; }
@@ -398,7 +409,7 @@ div#footer ol li { margin: 0pt 1em; position: relative; float: left; }
 #tagcloud a.cloud_7 { font-size: 1.4em; }
 #tagcloud a.cloud_8 { font-size: 1.5em; color: rgb(162, 198, 9); }
 #tagcloud a.cloud_9 { font-size: 1.6em; color: rgb(162, 198, 9); }
-#tagcloud a.cloud_10 { padding: 0pt; font-size: 1.8em; line-height: 1em; color: rgb(162, 198, 9); font-weight: normal; }
+#tagcloud a.cloud_10 { padding: 0pt; font-size: 1.8em; line-height: 1em; color: rgb(162, 198, 9); font-weight: normal; }*/
 
 /* ::::: message counter ::::: */
 

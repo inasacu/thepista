@@ -216,11 +216,11 @@ hr {
 }
 
 .table td.second_team {
-	background: #EEEEEE;
+	background: #FFF1A8;
 }
 
 .table td.second_team_puntos { 
-	background: #EEEEEE;
+	background: #FFF1A8;
 	color: darkblue; 
 	font-weight: bold; 
 }

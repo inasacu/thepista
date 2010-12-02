@@ -1210,7 +1210,9 @@ en:
      Store: Store 
      subject: Subject  
      subject_description:  Subject
-     sub_manager_updated:  Update sub-manager.     
+     sub_manager_updated:  Update sub-manager.  
+     sub_manager_false: ""
+     sub_manager_true:  Team Organizer  
      manager_updated:  Update manager.     
      subscription_option:  Options for subscribers
      subscription_at: Last Day to add squad status change for subscriber  
@@ -1702,7 +1704,8 @@ en:
      standings_no: No Scorecard de Tournament to show.
      standings_option:  Options 
      standings_less_games:  ( * ) Players con menos asistencias a events
-     standings_legend:  Leyend     
+     standings_legend:  Leyend   
+     sub_manager_option:  Sub-Manager Options
      recaptcha_ask_question: "Ask a question, receive an answer!"
      recaptcha_question:  Question
      recaptcha_question:  Question

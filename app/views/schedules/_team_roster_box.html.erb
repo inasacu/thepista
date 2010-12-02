@@ -33,153 +33,152 @@
 	
 	is_manager ||=false
 	group = @schedule.group
-	is_sub_manager = current_user.is_sub_manager_of?(group)
+	
 	is_action = get_the_action.gsub(' ','_') == 'team_roster'
 	group_games_played = @schedule.group.games_played.to_f
 	
 	@positions = Type.find(:all, :conditions => "table_type = 'User'", :order => "id")
 	
 	first_schedule = @schedule.group.schedules.first
+	has_been_played = @schedule.played? 
+	
+	is_sub_manager = !has_been_played
+	# is_sub_manager = current_user.is_sub_manager_of?(group)
 	
 if roster_count 
 %>
       <table class="table" id="<%= get_the_action.gsub(' ','_') %>">
 	  
 		<tr>
-		 <th class="first">&nbsp;</th>
-		 <th>&nbsp;</th>
-		 <th>
-			<%= label_name(:name) %>
-			<%  unless @schedule.played? %>			
-			<%= "<br/> / #{label_name(:change_at)}" %>
-			<% end -%>
-		 </th>
-		 <th align="center" title = "<%= label_name(:ranking_full) %>"><%= label_name(:ranking) %></th>
-		 <th align="center" title = "<%= label_name(:participation_full) %>"><%= label_name(:participation) %></th>
-		 <th align="" title = "<%= label_name(:position) %>"><%= label_name(:position) %></th>
-		 <th align="center" title = "<%= label_name(:profile_technical) %>"><%= label_name(:technical) %></th>
-		 <th align="center" title = "<%= label_name(:profile_physical) %>"><%= label_name(:physical) %></th>
-		 <th><%= label_name(:group) %></th>
-		 <%= content_tag 'th', label_name(:score) if @schedule.played? %>
-		 <%= content_tag('th', "", :class => 'last_roster') unless @schedule.played? %>
+			<%= content_tag :th, "&nbsp;", :class => "no_line" %>
+			<%= content_tag :th, "&nbsp;", :class => "no_line" %>
+			<%#= content_tag :th, "&nbsp;", :class => "no_line" %>
+			<%= content_tag :th, has_been_played ? label_name(:name) : "#{label_name(:name)} <br/> / #{label_name(:change_at)}", :class => "no_line" %>
+			<%= content_tag :th, label_name(:ranking), :title => label_name(:ranking_full), :class => "no_line" %>
+			<%= content_tag :th, label_name(:participation), :title => label_name(:participation_full), :class => "no_line" %>
+			<%= content_tag :th, label_name(:position), :title => label_name(:position), :class => "no_line", :align => "center" %>
+			<%= content_tag :th, label_name(:technical), :title => label_name(:profile_technical), :class => "no_line" %>
+			<%= content_tag :th, label_name(:physical), :title => label_name(:profile_physical), :class => "no_line" %>
+			<%= content_tag :th, label_name(:group), :class => "no_line" %>
+			<%= content_tag :th, label_name(:score), :class => "no_line" if has_been_played %>
+			<%= content_tag :th, "", :class => "no_line" unless has_been_played %>
 		</tr>
+<% 
+the_roster.each do |match| 
+	is_second_team = !(match.group_id > 0)
 
-        
-       	<% the_roster.each do |match| 
-			is_second_team = !(match.group_id > 0)
-			second_team = ""
-			second_team = "second_team" if is_second_team
-			puntos = "puntos"
-			puntos = "second_team_puntos" if is_second_team
-			name_and_date = "name_and_date"
-			name_and_date = "name_and_date_second_team" if is_second_team
-			
-			last_roster = "last_roster"
-			last_roster = "second_team_last_roster" if is_second_team
-					
-			coeficient_played = 100 *(match.scorecard_played.to_f / group_games_played)
-						
-			the_user_match = Match.find(:first,
-					:select => "max(matches.rating_average_technical) as rating_average_technical, max(matches.rating_average_physical) as rating_average_physical",
-					:joins => "left join schedules on schedules.id = matches.schedule_id",
-					:conditions => ["matches.user_id = ? and schedules.group_id = ?", match.user_id, group.id])
-			
-			rating_technical = the_user_match.rating_average_technical.to_f
-			rating_physical = the_user_match.rating_average_physical.to_f
-	-%>
-        <tr>
-			<td class="<%= second_team %>" >
-				<%= image_link_smaller match.user %>
-			</td>
-			
-			<% 				
-				is_subscriber = match.user.is_subscriber_of?(@schedule.group)
-			    the_label =  label_name("subscription_#{is_subscriber}")
-			%>
-			
-			<td class="<%= second_team %>" >
-				<%= subscription_image_link(match.user, is_subscriber, the_label) %>&nbsp;&nbsp;&nbsp;<%= counter +=1 %>.
-			</td>
-			
-				<td class="<%= name_and_date %>">
-				<%= user_link_limit match.user %>
-					<span class="date_tiny">
-						<%= "#{ago(match.status_at)}" unless @schedule.played? %>
-						<%= "<br />( #{label_name(:no_jugado)} )" if match.type_id == 4 %>
-					</span>
-			</td>
-		
-			<td class="<%= puntos %>" align="left"><%= match.ranking %></td>
-			<td class="<%= second_team %>" align="left"><%= sprintf( "%0.00f", coeficient_played) %><%= "%" %></td>	
-			
-<% 		
-		case match.position.name
-		when "defense"
-			(match.group_id > 0) ? home["defense"] += 1 : away["defense"] += 1
-		when "center"
-			(match.group_id > 0) ? home["center"] += 1 : away["center"] += 1
-		when "attack"
-			(match.group_id > 0) ? home["attack"] += 1 : away["attack"] += 1
-		end
-		(match.group_id > 0) ? home["technical"] += rating_technical : away["technical"] += rating_technical
-		(match.group_id > 0) ? home["physical"] += rating_physical : away["physical"] += rating_physical
-		(match.group_id > 0) ? home["total"] += 1 : away["total"] += 1
-				
-		@roster = match 
-%>		
-		<td class="<%= second_team %>">
-			<%= match.position_name %>
-		</td>
+	second_team = ""
+	second_team = "second_team" if is_second_team
+
+	puntos = "puntos"
+	puntos = "second_team_puntos" if is_second_team
+
+	name_and_date = "name_and_date"
+	name_and_date = "name_and_date_second_team" if is_second_team
+
+	last_roster = "last"
+	last_roster = "second_team_last_roster" if is_second_team
+
+	coeficient_played = 100 *(match.scorecard_played.to_f / group_games_played)
+
+	the_user_match = Match.get_rating_average(match, group)
+
+	rating_technical = the_user_match.rating_average_technical.to_f
+	rating_physical = the_user_match.rating_average_physical.to_f
+
+	# is_subscriber = true
+	is_subscriber = match.user.is_subscriber_of?(group)
 	
-		<td class="<%= second_team %>" align="center">
-			<%= rating_technical %>
-		</td>	
-			
-		<td class="<%= second_team %>" align="center">	
-			<%= rating_physical%>
-		</td>
-		
-		<td class="<%= second_team %>" >
-			<%= is_sub_manager ? link_to(match.team_name(@schedule), match_team_path(:id => match.id), :title => label_name(:change_group)) :  
-							match.team_name(@schedule) %>
-		</td>
-<% 
-	
-	if @schedule.played? 
-%>	
-		<td class="<%= second_team %>" ><%= group_score_link @schedule if match.type_id == 1 %></td>
-<%		
-	end 
- 
-	unless @schedule.played?  %>	
-		<td class="<%= last_roster %>" >
-<% 
-	is_manager = current_user.is_manager_of?(@schedule.group) 
-	
-	if current_user == match.user or is_manager
-		@match_type.each do |type|  
-			unless type.id == match.type_id			
-				if type.id == 4
-%>
-					<%= match_roster_change_link(match, type) if is_manager %>
-<% 			
-				else
-%>
-					<%= match_roster_change_link(match, type) %>
-<%
-				end 
-			end
- 		end
+	the_label =  label_name("subscription_#{is_subscriber}")
+
+	case match.position.name
+	when "defense"
+		(match.group_id > 0) ? home["defense"] += 1 : away["defense"] += 1
+	when "center"
+		(match.group_id > 0) ? home["center"] += 1 : away["center"] += 1
+	when "attack"
+		(match.group_id > 0) ? home["attack"] += 1 : away["attack"] += 1
 	end
+	(match.group_id > 0) ? home["technical"] += rating_technical : away["technical"] += rating_technical
+	(match.group_id > 0) ? home["physical"] += rating_physical : away["physical"] += rating_physical
+	(match.group_id > 0) ? home["total"] += 1 : away["total"] += 1
+
+	@roster = match
+	is_manager = current_user.is_manager_of?(group) 
+	
+	# is_sub_manager = match.user.is_sub_manager_of?(group)
+	# is_subscriber = match.user.is_subscriber_of?(group)
+	# the_subscription_label =  label_name("subscription_#{is_subscriber}")
+	# the_sub_manager_label =  label_name("sub_manager_#{is_sub_manager}")
+-%>
+<tr>
+	<td class="<%= second_team %>" ><%= image_link_smaller match.user %></td>
+	
+	<!-- <td class="<%= second_team %>" >
+		<%#= subscription_image_link(match.user, is_sub_manager, the_sub_manager_label) %>
+		<%# if is_manager %> 
+			<%#= set_role_add_sub_manager(match.user, group, true) if is_sub_manager %>
+			<%#= set_role_remove_sub_manager(match.user, group, true) unless is_sub_manager %>
+		<%# end -%>
+	</td> -->	
+
+	<td class="<%= second_team %>" >
+		<%= subscription_image_link(match.user, is_subscriber, the_label) %>&nbsp;&nbsp;&nbsp;<%= counter +=1 %>.
+	</td>
+
+	<td class="<%= name_and_date %>">
+		<%= user_link_limit match.user %>
+		<span class="date_tiny">
+		<%= "#{ago(match.status_at)}" unless has_been_played %>
+		<%= "<br />( #{label_name(:no_jugado)} )" if match.type_id == 4 %>
+		</span>
+	</td>
+	<td class="<%= puntos %>" align="left"><%= match.ranking %></td>
+	<td class="<%= second_team %>" align="left"><%= "#{sprintf( "%.0f", coeficient_played)}%" %></td>	
+	<td class="<%= second_team %>"><%= match.position_name %></td>		
+	<td class="<%= second_team %>" ><%= rating_technical %></td>			
+	<td class="<%= second_team %>" ><%= rating_physical %></td>
+	<td class="<%= second_team %>" >
+		<%= is_sub_manager ? link_to(match.team_name(@schedule), 
+						match_team_path(:id => match.id), :title => label_name(:change_group)) :  match.team_name(@schedule) %>
+	</td>
+<% 	
+if has_been_played 
+%>	
+	<td class="<%= second_team %>" ><%= group_score_link @schedule if match.type_id == 1 %></td>
+<%		
+end 
+
+unless has_been_played  
+%>	
+	<td class="<%= second_team %>" >
+<% 	
+if current_user == match.user or is_manager
+@match_type.each do |type|  
+	unless type.id == match.type_id			
+		if type.id == 4
+%>
+			<%= match_roster_change_link(match, type) if is_manager %>
+<% 			
+		else
+%>
+			<%= match_roster_change_link(match, type) %>
+<%
+		end 
+	end
+	end
+end
+%>
+	</td>
+</tr>
+<%
 end 
 %>
 
-</td>
-</tr>          
 <% 
 end 
 -%>
-
+        
 <%= render "schedules/team_level", :home => home, :away => away, :technical => technical, :physical => physical if is_action %>
 
 </table>

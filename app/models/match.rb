@@ -42,6 +42,14 @@ class Match < ActiveRecord::Base
     return items 
   end
   
+  
+  def self.get_rating_average(match, group)
+    Match.find(:first,
+				:select => "max(matches.rating_average_technical) as rating_average_technical, max(matches.rating_average_physical) as rating_average_physical",
+				:joins => "left join schedules on schedules.id = matches.schedule_id",
+				:conditions => ["matches.user_id = ? and schedules.group_id = ?", match.user_id, group.id])
+		end
+  
   def position_name
     I18n.t(self.position.name)
   end
