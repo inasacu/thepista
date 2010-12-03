@@ -17,10 +17,22 @@ class Comment < ActiveRecord::Base
 
   # method section  
   def self.latest_items(items, user)
+    user_id = ""
+    commentable_id = ""
+    commentable_type = ""
+    
     find(:all, :select => "distinct comments.id, comments.user_id, comments.commentable_id, comments.commentable_type, comments.updated_at as created_at", 
          :joins => "left join groups_users on groups_users.user_id = comments.user_id left join challenges_users on challenges_users.user_id = comments.user_id",    
-         :conditions => ["(groups_users.group_id in (?)  or challenges_users.challenge_id in (?)) and comments.updated_at >= ? and comments.archive = false", user.groups, user.challenges, LAST_WEEK]).each do |item| 
-      items << item
+         :conditions => ["(groups_users.group_id in (?)  or challenges_users.challenge_id in (?)) and comments.updated_at >= ? and comments.archive = false", user.groups, user.challenges, LAST_WEEK],
+         :order => "comments.user_id, comments.commentable_id, comments.commentable_type, comments.updated_at desc").each do |item| 
+           
+           # only add unique values
+           unless (user_id == item.user_id and commentable_id == item.commentable_id and commentable_type == item.commentable_type)
+             user_id = item.user_id 
+             commentable_id = item.commentable_id 
+             commentable_type = item.commentable_type
+             items << item  
+           end
     end
     return items 
   end
