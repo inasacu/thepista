@@ -367,7 +367,7 @@ div#footer a { color: lightgray;  }
 div#footer a:hover { color: black; }
 div#footer div.link_wrapper { 
 	position: relative; 
-	float: left; 
+	float: right; 
 /*	left: 50%; */
 }
 div#footer ol { position: relative; left: -50%; font-size: 1.0em; }
