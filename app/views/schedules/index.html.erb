@@ -38,6 +38,8 @@
 			the_missing = "#{label_name(:missing)}:  #{schedule.player_limit.to_i - schedule.convocados.count}"
 			the_url = team_roster_path(:id => schedule)
 			show_start_rating = (current_user.is_member_of?(schedule.group) and schedule.game_played?)
+			# the_users = []
+			# schedule.the_roster.each {|match| the_users << match.user } 
 		-%>
         <tr>
 			<td>
@@ -49,7 +51,10 @@
 				<%= (current_user.is_member_of?(schedule.group) or schedule.public) ? 
 							link_to(sanitize(schedule.concept), team_roster_path(:id => schedule)) : sanitize(schedule.concept) unless schedule.game_played? %>	
 				<%= (current_user.is_member_of?(schedule.group) or schedule.public) ? 
-										link_to(sanitize(schedule.concept), schedule_path(:id => schedule)) : sanitize(schedule.concept) if schedule.game_played? %>					
+										link_to(sanitize(schedule.concept), schedule_path(:id => schedule)) : sanitize(schedule.concept) if schedule.game_played? %>
+				<span class="date">
+					<%= nice_full_date(schedule.starts_at) %>
+				</span>					
 			</td>
 
 			<td class="name_and_date">
@@ -63,15 +68,11 @@
 			<td class="name_and_date">
 				<% if schedule.game_played? %>
 		        	<%= item_name_link(schedule.group) %>
-		          	&nbsp;&nbsp;
+					&nbsp;&nbsp;
 		          	<%= schedule.home_score %>&nbsp;&nbsp;-&nbsp;&nbsp;<%= schedule.away_score %>
 		          	&nbsp;&nbsp;
 		          	<%= link_to h(schedule.group.second_team), group_path(schedule.group) %>
-					<span class="date">
-						<%= nice_day_of_week(schedule.starts_at) %>
-					</span>
-			    <% else %>			
-					<%= nice_day_of_week(schedule.starts_at) %><br />
+			    <% else %>				
 					<span class="date">
 						<%= has_left(schedule.starts_at) if Time.zone.now < schedule.starts_at %>
 					</span>
@@ -94,8 +95,11 @@
 			
 			<td class="name_and_date">&nbsp;</td>
 
-			<td class="last">				
-				<%= marker_link(schedule.group.marker) %><br/><br/>
+			<td class="last">	
+				<span class="action" align="left">			
+					<%= marker_link(schedule.group.marker) %>
+				</span>
+				<br/><br/>
 				<fb:like href="haypista.com<%= the_url %>" layout="button_count" show_faces="false" action="recommend" font="arial"></fb:like>
 			</td>
 			
