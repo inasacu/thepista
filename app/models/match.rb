@@ -200,7 +200,7 @@ class Match < ActiveRecord::Base
         physical = @previous_match.physical
       end
 
-      self.create!(:name => schedule.concept, :description => schedule.description, 
+      self.create!(:name => schedule.concept, :description => schedule.description, :status_at => Time.zone.now, 
                    :schedule_id => schedule.id, :group_id => schedule.group_id, 
                    :user_id => user.id, :available => user.available, 
                    :type_id => type_id, :position_id => position_id, :technical => technical, :physical => physical,
