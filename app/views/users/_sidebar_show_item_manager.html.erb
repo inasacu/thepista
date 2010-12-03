@@ -1,31 +1,19 @@
 <% unless items.nil? or items.blank? %>
-
 <div class="block">
 	<div class="sidebar-block" class="extra">
-	<a href="#" onclick="toggle_visibility('jkl');"><h5><%= label_name(:challenge_option) %></h5></a>
+	<a href="#" onclick="toggle_visibility('jkl');"><h5><%= label_name("#{items.first.class.to_s}_option") %></h5></a>
 	<div id="jkl" style='display:none;'>
-			
 <%
 	items.each do |item| 
 		the_item = h(item.name)
 
  		unless @user.is_member_of?(item)  
-			# the_label = label_with_name('petition_to_join', item.name)
-			# the_confirmation = "#{ label_name(:petition_to_join)} #{h(@user.name)} #{ label_name(:to) } #{the_item}?"
 %>
-        	<p>
-			<%= option_image_link('user_add') %>&nbsp;&nbsp;<%= join_item_link_to(@user, item, true) %>
-			<%#= link_to(the_label, join_item_path(:id => item, :item => item.class.to_s, :teammate => current_user), :confirm => the_confirmation) %>
-			</p>
+        	<p><%= option_image_link('user_add') %>&nbsp;&nbsp;<%= join_item_link_to(@user, item, true) %></p>
 <% 
-		else 
-			# the_label = label_with_name('fire_from_item', item.name)
-			# the_confirmation = "#{ label_name(:fire_from_item)} #{the_item} #{ label_name(:to)} #{h(@user.name)}?"
+		else
 %> 
-		<p>
-			<%= option_image_link('user_remove') %>&nbsp;&nbsp;<%= leave_item_link_to(@user, item) %>
-			<%#= link_to(the_label, leave_item_path(:id => item, :item => item.class.to_s, :teammate => current_user), :confirm => the_confirmation) %>
-		</p>
+		<p><%= option_image_link('user_remove') %>&nbsp;&nbsp;<%= leave_item_link_to(@user, item) %></p>
 <% 
 		end 
 	end 

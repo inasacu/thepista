@@ -365,7 +365,11 @@ div#footer div.col_wrapper { padding-top: 1.0em; text-align: center; }
 div#footer p, ol, li { margin: 0pt; font-size: 1.0em; line-height: 1.0em; }
 div#footer a { color: lightgray;  }
 div#footer a:hover { color: black; }
-div#footer div.link_wrapper { position: relative; float: left; left: 50%; }
+div#footer div.link_wrapper { 
+	position: relative; 
+	float: left; 
+/*	left: 50%; */
+}
 div#footer ol { position: relative; left: -50%; font-size: 1.0em; }
 div#footer ol li { margin: 0pt 1em; position: relative; float: left; }
 

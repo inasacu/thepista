@@ -9,8 +9,7 @@ task :the_archive_dependent => :environment do |t|
   has_to_archive = true  
 
   # archive all challenges for cups archived 
-  the_archive = Challenge.find(:all, :select => "distinct *", 
-  :conditions => "archive = false and cup_id in (select id from cups where archive = true)")
+  the_archive = Challenge.find(:all, :select => "distinct *", :conditions => "archive = false and cup_id in (select id from cups where archive = true)")
   the_archive.each do |challenge|
     puts "archive challenge => #{challenge.id}, cup => #{challenge.cup.name}"
     challenge.archive = true
@@ -27,8 +26,7 @@ task :the_archive_dependent => :environment do |t|
   end 
   
   # archive all schedules for groups archived 
-  the_archive = Schedule.find(:all, :select => "distinct *", 
-  :conditions => "archive = false and group_id in (select id from groups where archive = true)")  
+  the_archive = Schedule.find(:all, :select => "distinct *", :conditions => "archive = false and group_id in (select id from groups where archive = true)")  
   the_archive.each do |schedule|
     puts "archive schedule => #{schedule.concept}, group => #{schedule.group.name}"
     schedule.archive = true
@@ -36,8 +34,7 @@ task :the_archive_dependent => :environment do |t|
   end
 
   # archive all matches for schedules archived 
-  the_archive = Match.find(:all, :select => "distinct *", 
-  :conditions => "archive = false and schedule_id in (select id from schedules where archive = true)") 
+  the_archive = Match.find(:all, :select => "distinct *", :conditions => "archive = false and schedule_id in (select id from schedules where archive = true)") 
   the_archive.each do |match|
     puts "archive match => #{match.name}, schedule => #{match.schedule.concept}"
     match.archive = true
@@ -46,8 +43,7 @@ task :the_archive_dependent => :environment do |t|
   end
 
   # archive all scorecards for groups archived 
-  the_archive = Scorecard.find(:all, :select => "distinct *", 
-  :conditions => "archive = false and group_id in (select id from groups where archive = true)")
+  the_archive = Scorecard.find(:all, :select => "distinct *", :conditions => "archive = false and group_id in (select id from groups where archive = true)")
   the_archive.each do |scorecard|
     puts "archive scorecard => #{scorecard.id}, group => #{scorecard.group.name}"
     scorecard.archive = true
@@ -55,8 +51,7 @@ task :the_archive_dependent => :environment do |t|
   end
 
   # archive all forums for schedules archived 
-  the_archive = Forum.find(:all, :select => "distinct *", 
-  :conditions => "archive = false and schedule_id in (select id from schedules where archive = true)")
+  the_archive = Forum.find(:all, :select => "distinct *", :conditions => "archive = false and schedule_id in (select id from schedules where archive = true)")
   the_archive.each do |forum|
     puts "archive forum => #{forum.name} #{forum.schedule.concept}"
     forum.archive = true

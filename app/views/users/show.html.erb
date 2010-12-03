@@ -50,16 +50,7 @@
 								<% counter = 0; @user.scorecards.each {|scorecard| counter += scorecard.played} %>
 								<%= I18n.t(:has_user_scorecard_played, :count => counter) %>
 							</td>
-						</tr>
-						
-						<%#= tr_td_action(:position, @user.position) %>
-						
-						<!-- <tr>
-							<td class="label"><%#= "#{label_name(:profile_technical)}  /  #{label_name(:profile_physical)}" %></td>
-							<td class="show">
-								<%#= "#{ @user.technical}  /  #{ @user.physical}" %>
-							</td>
-						</tr> -->						
+						</tr>						
 						
 						<%= tr_td_action(:time_zone, @user.time_zone) %>
 						<%= tr_td_action(:phone, @user.phone) unless @user.private_phone %>
@@ -67,7 +58,6 @@
 
 						<% 
 							the_label = h(label_name(@user.available, 'value'))
-							# the_confirmation = label_with_name('set_available', "#{@user.name}?") 
 						%>			
 						<tr>
 							<%= content_tag :td, label_name(:available), :class => "label" %>
@@ -75,7 +65,6 @@
 						</tr>
 						<% 
 							the_label = h(label_name(@user.looking, 'value'))
-							# the_confirmation = label_name(:change_option) 
 						%>
 						<tr>
 							  <%= content_tag :td, label_name(:looking_for_my_group), :class => "label" %>
@@ -84,7 +73,6 @@
 		
 						<% 
 							the_label = h(label_name(@user.private_phone, 'value'))
-							# the_confirmation = label_with_name('set_private_phone', "#{@user.name}?") 
 						%>
 						<tr>
 							<%= content_tag :td, label_name(:private_phone), :class => "label" %>
@@ -93,7 +81,6 @@
 
 						<% 
 							the_label = h(label_name(@user.private_profile, 'value'))
-							# the_confirmation = label_with_name('set_private_profile', "#{@user.name}?") 
 						%>
 						<tr>
 							<%= content_tag :td, label_name(:private_profile), :class => "label" %>
@@ -103,7 +90,6 @@
 						<% if @user.has_role?('manager') %>
 						<%
 							the_label = h(label_name(@user.teammate_notification, 'value'))
-							# the_confirmation = label_with_name('set_teammate_notification', "#{@user.name}?") 
 						%>
 						<tr>
 							<%= content_tag :td, label_name(:teammate_notification), :class => "label" %>
@@ -113,7 +99,6 @@
 						
 						<% 
 							the_label = h(label_name(@user.message_notification, 'value'))
-							# the_confirmation = label_with_name('set_message_notification', "#{@user.name}?") 
 						%>
 						
 						<tr>
@@ -123,7 +108,6 @@
 
 						<% 
 							the_label = h(label_name(@user.blog_comment_notification, 'value'))
-							# the_confirmation = label_with_name('set_blog_notification', "#{@user.name}?") 
 						%>
 						<tr>
 							<%= content_tag :td, label_name(:blog_notification), :class => "label" %>
@@ -132,7 +116,6 @@
 		
 						<% 
 							the_label = h(label_name(@user.forum_comment_notification, 'value'))
-							# the_confirmation = label_with_name('set_forum_notification', "#{@user.name}?") 
 						%>
 						<tr>
 							<%= content_tag :td, label_name(:forum_notification), :class => "label" %>
@@ -169,7 +152,7 @@
 <% content_for :sidebar, render('/users/sidebar_show_join')  %>
 <% content_for :sidebar, render('/users/sidebar_show_sub_manager') if current_user.is_user_manager_of?(@user) %>
 <% content_for :sidebar, render('/users/sidebar_show_manager') if current_user.is_user_manager_of?(@user) %>
-<% content_for :sidebar, render('users/sidebar_show_item_manager', :items => current_user.challenges) %>
+<% content_for :sidebar, render('users/sidebar_show_item_manager', :items => current_user.challenges.find(:all, :conditions => ["ends_at > ?", Time.zone.now])) %>
 <% end %>
 
 <% content_for :sidebar, render(:partial => '/shared/sidebar_index') -%>
