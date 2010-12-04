@@ -19,6 +19,7 @@ ActionController::Routing::Routes.draw do |map|
   map.team_last_minute		  'team_last_minute',		                        :controller => 'schedules',       :action => 'team_last_minute'
   map.team_no_show		      'team_no_show',			                          :controller => 'schedules',       :action => 'team_no_show'
   map.team_unavailable      'team_unavailable',			                      :controller => 'schedules',       :action => 'team_unavailable'
+  map.schedule_list	        'schedule_list',			                        :controller => 'schedules',       :action => 'schedule_list'
   map.marker_list		        'marker_list',			                          :controller => 'markers',         :action => 'marker_list'
   map.challenge_list			  'challenge_list',			                        :controller => 'challenges',      :action => 'challenge_list'
 

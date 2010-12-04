@@ -5,12 +5,14 @@
 	is_my_list = (get_controller_action == "schedule_my_list")
 	the_label = "#{the_label} #{label_name(:from_de)} #{h(@user.name)}" if is_my_list	
 	is_my_list = is_my_list ? (@user == current_user) : true
+	group_schedule_list = (get_controller_action == "schedule_schedule_list")
 %>
 
 <div class="block">
 
-  <%= render :partial => '/schedules/secondary_navigation' if is_my_list %>
-  <%= render :partial => '/users/secondary_navigation' unless is_my_list %>
+  <%= render 'schedules/secondary_navigation' if is_my_list and !group_schedule_list %>
+  <%= render 'users/secondary_navigation' unless is_my_list or !group_schedule_list %>
+  <%= render 'groups/secondary_navigation', :group => @group if group_schedule_list %>
 
   <div class="content">   
   
@@ -114,5 +116,11 @@
 		</div>
 	</div>
 	
-
-	<% content_for :sidebar, render(:partial => '/schedules/sidebar') if current_user.is_manager? -%>
+	
+	<% content_for :sidebar, render(:partial => '/schedules/sidebar') if current_user.is_manager? and !group_schedule_list -%>
+	
+	<% if group_schedule_list -%>
+	<% content_for :sidebar, render(:partial => 'groups/sidebar_show') -%>
+	<% content_for :sidebar, render(:partial => 'shared/sidebar_show_team', :locals => {:group => @group}) if current_user.is_manager_of?(@group) %>
+	<% content_for :sidebar, render('shared/share_object', :group => @group, :schedule => @group.schedules.first) if @group -%>
+	<% end -%>

@@ -39,7 +39,11 @@
 		the_schedule = the_schedule ? (@user == current_user) : true
 		the_schedule = the_schedule ? "active" : " "
 		the_user = "active" if the_controller_action.include?(get_controller_action)
-
+		if get_controller_action == 'schedule_schedule_list'
+			the_group = "active" 
+			the_schedule = ""
+		end
+		
 	when 'challenge', 'cast'
 		the_cup = "active" if is_action('list gues')
 		the_challenge = "active" unless is_action('list gues')

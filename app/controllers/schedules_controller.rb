@@ -3,7 +3,7 @@ class SchedulesController < ApplicationController
 
   before_filter :get_schedule, :only => [:show, :rate, :edit, :update, :destroy, :set_public, :set_reminder, :team_roster, :team_last_minute, :team_no_show, :team_unavailable]
   before_filter :get_current_schedule, :only => [:index, :list, :my_list]
-  before_filter :get_group, :only => [:new]
+  before_filter :get_group, :only => [:new, :schedule_list]
   before_filter :get_match_type, :only => [:team_roster, :team_last_minute, :team_no_show, :team_unavailable]
   before_filter :has_manager_access, :only => [:edit, :update, :destroy, :set_public, :set_reminder]
   before_filter :has_member_access, :only => [:show, :rate]
@@ -27,6 +27,12 @@ class SchedulesController < ApplicationController
     render :template => '/schedules/index'       
   end
 
+  def schedule_list
+    @schedules = @group.schedules.paginate(:page => params[:page], :per_page => SCHEDULES_PER_PAGE)
+    # @total = @group.schedules.count
+    render :template => '/schedules/index'
+  end
+  
   def archive_list
     # @schedules = Schedule.archive_schedules(current_user, params[:page])    
     @schedules = Schedule.current_schedules(current_user, params[:page])
