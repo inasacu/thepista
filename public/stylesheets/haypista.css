@@ -389,18 +389,4 @@ ul.list li .item .avatar {
 .left { float: left; }
 .right { float: right; }
 
-div.rpx { 
-/*	width: 745px; */
-	height: 240px; 
-}
 
-div.rpx fieldset > div { 
-	margin-bottom: 19px; 
-	padding-left:60px; 
-	padding-top: 35px;
-}
-
-div.rpx fieldset.right > div { width: 373px; }
-div.rpx fieldset.right > div a { margin-bottom: 17px; margin-top: 8px; }
-div.rpx label { margin-right: 10px; display: inline-block; width: 70px; }
-div.rpx input.text { display: inline-block; width: 204px; font-size: 12px; }

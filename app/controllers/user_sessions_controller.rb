@@ -12,23 +12,11 @@ class UserSessionsController < ApplicationController
     @user_session = UserSession.new(params[:user_session])
     @user_session.save do |result|
       if result
-        # flash[:notice] = I18n.t(:successful_logged_in) # + I18n.t("#{ verify_recaptcha() }_value")
-        # redirect_back_or_default root_url
       else
-        # flash[:error] = I18n.t(:unsuccessful_logged_in)
         render :action => 'new'
         return
       end
     end
-    
-    # # use recaptcha to control user access...
-    # unless verify_recaptcha() 
-    #   flash[:error] = I18n.t(:recaptcha_type_words) 
-    #   render :action => 'new'    
-    #   return
-    # end
-    
-    # flash[:notice] = I18n.t(:successful_logged_in)
     redirect_back_or_default root_url    
   end
 
@@ -39,9 +27,8 @@ class UserSessionsController < ApplicationController
     # Avoid session fixation attacks. 
     session[:test_that_this_disappears] = 'ok' 
     reset_session 
-    # flash[:notice] = I18n.t(:successful_logged_out)
-    
-    redirect_back_or_default new_user_session_url 
+    # redirect_back_or_default new_user_session_url 
+    redirect_to root_url
   end
 
   def rpx_create

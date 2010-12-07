@@ -8,7 +8,7 @@ ActionController::Routing::Routes.draw do |map|
   
   map.login                 'login',                                      :controller => 'user_sessions',   :action => 'new'
   map.logout                'logout',                                     :controller => 'user_sessions',   :action => 'destroy'
-  map.signup                'signup',                                     :controller => 'users',           :action => 'signup'  
+  # map.signup                'signup',                                     :controller => 'users',           :action => 'signup'  
   map.language              'set_language',                               :controller => 'users',           :action => 'set_language'
   map.remove_openid         'remove_openid',                              :controller => 'users',           :action => 'remove_openid'
 

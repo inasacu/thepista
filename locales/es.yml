@@ -662,7 +662,7 @@ es:
      last_minute: Ultima hora   
      last_schedule_description: Ultimo evento    
      last_scorecard: Ultimos resultados  
-     latest_activities:  Recientes actividades 
+     latest_activities:  Actividades Recientes
      leave_comment: Deja un comentario...   
      leave_group: Desapuntate del equipo   
      left_comment_on_wall: Ha dejado un <strong>COMENTARIO</strong> a    
@@ -720,8 +720,8 @@ es:
      modified_email: Modificada la disponibilidad de recibir correos a  
      modified_phone: Modificada la opción de ocultar el telefono de   
      modified_profile: Modificada la opción de ocultar tu perfil de   
-     modified_reliable: Modificada la fiabilidad del jugardor para atender   
-     modo: HayPista te quiere ayudar a organizar tu equipo o encontrar donde jugar...   
+     modified_reliable: Modificada la fiabilidad del jugador para atender   
+     modo: HayPista te ayuda a organizar tu equipo.   
      Monday: Lunes        
      more:  mas
      must_be_logged_in:  Tienes que estar registrado para acceder a esta página
@@ -1832,14 +1832,14 @@ es:
      your:  Tu 
      true: "Si"
      false: "No"
-     get_rolling:  Pónte en marcha en cuestión de segundos
+     get_rolling:  Pónte en marcha en cuestión de segundos!
      upcoming_schedules_screen:  "Al entrar, puedes ver los próximos eventos de tu equipo, y actividades de tus compañeros..."
      users_screen:   "Puedes ver todos tus compañeros de equipo y sus perfiles..."
      groups_screen:  "Todos los equipos a los que perteneces se pueden ver aquí..."
      schedules_screen:  "Muestra la lista de los proximos eventos, e incluso anteriores eventos..."
      schedule_screen:  "Muestra los detalles del evento, un muro, lista de convocados, ultima hora y ausentes..."
      scorecards_screen:  "Los resultados de cada evento permite mantener la clasificación de tu equipo..."
-     what_is_haypista_details:  "HayPista es un portal que te ayuda a organizar partidos entre amigos, buscar un centro donde puedas jugar, encontrar a gente con los mismos intereses y sobetodo disfrutar el deporte."
+     what_is_haypista_details:  "HayPista es un portal que te ayuda a organizar partidos entre amigos, buscar un centro donde jugar, encontrar a gente con los mismos intereses y sobretodo disfrutar el deporte."
      how_does_haypista:  "¿Como funciona HayPista?"
      how_does_haypista_details:  "Simplemente crea un equipo, busca un centro deportivo, crea un evento, envía invitaciones a tus amigos y ya está. Asi de fácil."
      what_other_haypista: "¿Qué otras cosas hace HayPista?"

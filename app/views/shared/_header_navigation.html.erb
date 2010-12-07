@@ -12,9 +12,10 @@
 	the_users = ""
 	the_user = ""
 	the_petition = ""
-	the_controller = get_the_controller
 	the_home = ""
+	the_login = ""
 	the_controller_action = ['user_list', 'user_index']
+	the_controller = get_the_controller
 
 	case the_controller
 	when 'home'
@@ -33,7 +34,10 @@
 			the_petition = "active" 
 			the_user = ""
 		end 
-		
+	
+	when 'user session'
+		the_login = "active"
+			
 	when 'schedule', 'forum'
 		the_schedule = (get_controller_action == "schedule_my_list")
 		the_schedule = the_schedule ? (@user == current_user) : true
@@ -108,13 +112,11 @@
 	<%= content_tag 'li', link_to(label_name(:home), root_url, :class => the_home) %>
 	<% if current_user %>	
 		<%= content_tag('li', (link_to label_name(:petitions), petition_path(current_user), :class => the_petition)) if current_user.has_pending_petition?(current_user) %>
-	
-		<li><%= user_link(label_name(:profile), current_user, :class => the_user) %></li>
-		<li><%= link_to(label_name(:messages), messages_url, :class => the_message) %></li>
-		<li><%= link_to label_name(:logout), logout_path %></li>		
+		<%= content_tag('li', user_link(label_name(:profile), current_user, :class => the_user)) %>
+		<%= content_tag('li', link_to(label_name(:messages), messages_url, :class => the_message)) %>
+		<%= content_tag('li', link_to(label_name(:logout), logout_path)) %>
 	<% else %>
-		<li><%= link_to label_name(:signup), signup_path %></li>
-		<li><%= link_to label_name(:login), login_path %></li>
+		<%= content_tag('li', link_to(label_name(:login), login_path, :class => the_login)) %>
   <% end -%>
 </ul>
 

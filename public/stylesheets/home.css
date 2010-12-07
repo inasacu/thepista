@@ -1,4 +1,3 @@
-
 body { background-color: white; }
 	
 #home .announce { 
@@ -6,21 +5,13 @@ body { background-color: white; }
 	margin-top: -1em; 
 }
 #home .announce h1 { 
-	padding: 0.75em 0pt; 
-		font-size: 215%; 
+
+	font-family:"Lucida Grande",Verdana,"Bitstream Vera Sans",Arial,sans-serif;
+	font-size: 215%; 
 	text-align: center; 
 	font-weight: normal; 
+	padding: 0.75em 0pt; 
 }
-
-#home .featured { border: 2px solid rgb(242, 242, 242); padding: 0.4em 0.5em; margin-top: 1.5em; background-color: white; position: relative; margin-right: 0.3em; }
-#home .featured img { position: absolute; left: -2.549em; top: 0pt; width: 3.073em; height: 4.798em; }
-#home .featured .meta a { color: rgb(51, 102, 153); }
-#home .featured .meta .user { font-weight: bold; }
-#home .featured .meta .repo { font-weight: bold; font-size: 270%; margin-top: -0.2em; }
-#home .featured .meta .when { float: right; font-weight: bold; color: rgb(199, 199, 199); font-size: 95%; }
-#home .featured .blurb { color: rgb(136, 136, 136); }
-#home .featured .blurb p { font-size: 110%; }
-#home .featured .blurb span { color: black; font-size: 105%; }
 
 #home .headline { 
 	font-family: "HelveticaNeue-Light",Helvetica,Arial,FreeSans,sans-serif; 
@@ -41,15 +32,79 @@ body { background-color: white; }
 }
 
 
-#home .features { border-top: 5px solid rgb(221, 221, 221); padding: 1em 2em 3em; overflow: hidden; background-color: rgb(237, 242, 246); }
-#home .features h3 { font-size: 150%; margin-top: 1em; }
-#home .features p { font-size: 120%; color: rgb(68, 68, 68); padding-bottom: 1em; }
-#home .features .left { margin-left: 7em; float: left; width: 25em; }
-#home .features .right { margin-right: 7em; float: right; width: 25em; }
+#home .features { 
+	padding: 1em 2em 3em; 
+	overflow: hidden; 
+	background-color: rgb(237, 242, 246); 
+	
+	border-top: 1px solid #cfcfcf;
+	border-bottom: 1px solid #cfcfcf;
+	border-left: 1px solid #cfcfcf;
+	border-right: 1px solid #cfcfcf;
 
+	border-top-left-radius: 5px;
+	border-top-right-radius: 5px;
+	border-bottom-left-radius: 5px;
+	border-bottom-right-radius: 5px;	
+	
+/*	background: url('../images/login.png') no-repeat scroll 0pt 0pt transparent; */
+}
+	
+#home .features h3 { 
+	font-size: 150%; 
+	margin-top: 1em; 
+	}
+#home .features p { 
+	font-size: 120%; 
+	color: rgb(68, 68, 68); 
+	padding-bottom: 1em; 
+	}
+#home .features .left { 
+	float: left; 
+	width: 30em; 
+	margin-top: 2.75em; 
+	margin-left: -2em;
+	}
+#home .features .right { 
+	margin-right: 7em; 
+	float: right; 
+	width: 30em; 
+	margin-top: 2em;
+	margin-right: 4em;
+	}
+
+#home .features .rpx { 
+/*	border: 1px solid #cfcfcf;*/
+	margin-right: 7em; 
+	float: right; 
+	width: 33em; 
+	margin-top: 3em;
+	margin-right: -3em;
+	}
+
+div.rpx label { 
+	font-weight: bold;
+	margin-right: 10px;
+	display: inline-block; 
+	width: 70px; 
+}
+
+div.rpx input.text { 
+	border: 1px solid rgb(205, 205, 205); 
+	padding: 0.4em; 
+	background: rgb(255, 255, 255) url('../../images/textfield-bg.gif') repeat-x scroll 0pt 1px; 
+	font-size: 16px;
+}
+div.rpx input.text:focus { 
+	background: rgb(255, 254, 244) url('../../images/textfield-focus-bg.gif') repeat-x scroll 0pt 1px; 
+}
+div.rpx input.text { 
+	width: 260px; 
+}
+		
 #home .screens { 
-	border-top: 5px solid rgb(221, 221, 221); 
-	border-bottom: 5px solid rgb(221, 221, 221); 
+	border-top: 2px solid rgb(221, 221, 221); 
+	border-bottom: 2px solid rgb(221, 221, 221); 
 	padding: 2em 0pt 2.5em; 
 	overflow: hidden; 
 	font-family: helvetica,arial,freesans,clean,sans-serif; 

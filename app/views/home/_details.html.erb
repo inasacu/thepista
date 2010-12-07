@@ -3,29 +3,23 @@
 <div id="home">
 
 	<div class="announce">
-		<h1><%= label_name(:modo) %></h1>
+		<h1><strong><%= label_name(:modo) %></strong></h1>
 	</div>
 	<div class="features">
-		<div class="site">
-			<div class="left">
-				<div class="headline">
-					<div class="words">
-						<h1><%= label_name(:get_rolling) %></h1>
-					</div>
-					<div class="tour">						
-						<h1><%= link_to label_name(:signup), signup_path %></h1>						
-					</div>
+		<div class="left" >
+			<%= RPXNow.embed_code(APP_CONFIG['rpx_api']['realm'],rpx_token_sessions_url, :language => I18n.locale)  if SHOW_RPX_NOW %>
+		</div>
+		<div class="right">	
+			<div class="headline">
+				<div class="words">
+					<h1><%= label_name(:get_rolling) %></h1>
 				</div>
-				<h3><%= label_name(:what_is_haypista) %></h3>
-				<p><%= label_name(:what_is_haypista_details) %></p>
-			</div>
-			<div class="right">				
-				<h3><%= label_name(:how_does_haypista) %></h3>
-				<p><%= label_name(:how_does_haypista_details) %></p>
-				<h3><%= label_name(:what_other_haypista) %></h3>
-				<p><%= label_name(:what_other_haypista_details) %></p>
+				<br/>
+				<div class="tour">						
+					<h3><strong><%= label_name(:what_is_haypista) %></strong></h3>
+					<p><%= label_name(:what_is_haypista_details) %></p>						
+				</div>
 			</div>
 		</div>
 	</div>
-	<%= render :partial => 'screens' %>
 </div>
