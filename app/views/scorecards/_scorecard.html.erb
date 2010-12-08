@@ -7,11 +7,13 @@
 	coeficient_points = scorecard.points.to_f * (scorecard.points.to_f/max_points.to_f) 
 	coeficient_played = 100 *(scorecard.played.to_f / games_played.to_f)
 	
-	image = scorecard_image_link("arrow_down.png") if (scorecard.ranking > scorecard.previous_ranking) 
-	image = scorecard_image_link("arrow_up.png") if (scorecard.ranking < scorecard.previous_ranking)  		
-	image = scorecard_image_link("arrow_right.png") if (scorecard.ranking == scorecard.previous_ranking) 
-	image = scorecard_image_link("arrow_right.png") if (scorecard.previous_ranking == 0) 
-	
+	unless mailer
+		image = scorecard_image_link("arrow_down.png") if (scorecard.ranking > scorecard.previous_ranking) 
+		image = scorecard_image_link("arrow_up.png") if (scorecard.ranking < scorecard.previous_ranking)  		
+		image = scorecard_image_link("arrow_right.png") if (scorecard.ranking == scorecard.previous_ranking) 
+		image = scorecard_image_link("arrow_right.png") if (scorecard.previous_ranking == 0) 
+	end
+
 	ranking_change = "-#{scorecard.ranking - scorecard.previous_ranking}" if (scorecard.ranking > scorecard.previous_ranking)  
 	ranking_change = "+#{scorecard.previous_ranking - scorecard.ranking}" if (scorecard.ranking < scorecard.previous_ranking)  	
 	ranking_change = " " if (scorecard.ranking == scorecard.previous_ranking or scorecard.previous_ranking == 0)
@@ -21,7 +23,7 @@
 <tr>
 	<td class="puntos" align="center">
 		<%= scorecard.ranking %>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-		<%= subscription_image_link(scorecard.user, user_played ? "orange_#{user_played}" : "#{user_played}", label_name("game_played_#{user_played}")) %>		
+		<%= subscription_image_link(scorecard.user, user_played ? "orange_#{user_played}" : "#{user_played}", I18n.t("game_played_#{user_played}")) unless mailer %>		
 	</td>
 	<td class="equipos"><%= mailer ? "&nbsp;" : item_image_link_tiny(scorecard.user) %></td>
 	<td class="equipos">
