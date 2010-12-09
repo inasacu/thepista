@@ -343,4 +343,14 @@ module ApplicationHelper
     the_url = "new_#{item.class.to_s.downcase.chomp}_url"
     content_tag('li', link_to(control_action_label, send(:"#{the_url}")), :class =>  get_first_active ) if is_action('new')
   end
+
+  def sort_link(title, column, options = {})
+    condition = options[:unless] if options.has_key?(:unless)
+    sort_dir = params[:d] == 'up' ? 'down' : 'up'
+    link_to_unless condition, title, request.parameters.merge( {:c => column, :d => sort_dir} )
+  end
+
+  # def sort_order(default)
+  #   "#{(params[:c] || default.to_s).gsub(/[\s;'\"]/,'')} #{params[:d] == 'down' ? 'DESC' : 'ASC'}"
+  # end
 end

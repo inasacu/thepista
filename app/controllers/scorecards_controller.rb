@@ -20,7 +20,12 @@ class ScorecardsController < ApplicationController
 
   def show
     @group = Group.find(params[:id])
-    @scorecards = Scorecard.users_group_scorecard(@group)
+    # @scorecards = Scorecard.users_group_scorecard(@group)
+    @scorecards = Scorecard.users_group_scorecard(@group, sort_order('created_at'))
+  end  
+
+  def sort_order(default)
+    "#{(params[:c] || default.to_s).gsub(/[\s;'\"]/,'')} #{params[:d] == 'down' ? 'DESC' : 'ASC'}"
   end
 
   def show_archive

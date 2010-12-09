@@ -257,12 +257,24 @@ class Scorecard < ActiveRecord::Base
     return self.archive
   end
   
-  def self.users_group_scorecard(group)
-     find(:all, :select => "scorecards.*, matches.type_id",
-              :joins => "LEFT JOIN users on users.id = scorecards.user_id LEFT JOIN matches on matches.user_id = scorecards.user_id",
-              :conditions => ["scorecards.group_id in (?) and scorecards.user_id > 0 and scorecards.played > 0 and scorecards.archive = false 
-                               and matches.schedule_id = ( select max(id) as schedule_id from schedules where group_id = ? and played = true) and matches.archive = false", group, group],
-              :order => "scorecards.points DESC, scorecards.ranking, users.name")
+  def self.users_group_scorecard(group, sort="")
+    the_schedules = Schedule.find(:all, :conditions => ["group_id = ? and played = true", group], :order => "starts_at desc")
+    played_games = 0
+    played_games = the_schedules.count
+    
+    the_sort = "scorecards.points DESC, scorecards.ranking, users.name"
+    the_sort = sort unless sort.blank?
+    
+     find(:all, :select => "scorecards.*, matches.type_id, (scorecards.played * groups.points_for_win) as max_points, 
+                            (100 * scorecards.points / (scorecards.played * groups.points_for_win)) as coeficient,
+                            scorecards.points * (scorecards.points / (scorecards.played * groups.points_for_win)) as coeficient_points,
+                            100 * (scorecards.played / #{played_games}) as coeficient_played",
+                :joins => "LEFT JOIN groups on groups.id = scorecards.group_id
+                         LEFT JOIN users on users.id = scorecards.user_id 
+                         LEFT JOIN matches on matches.user_id = scorecards.user_id",
+                :conditions => ["scorecards.group_id = ? and scorecards.user_id > 0 and scorecards.played > 0 and scorecards.archive = false 
+                               and matches.schedule_id = ? and matches.archive = false", group, the_schedules.first.id],
+                :order => the_sort)
   end
 
 end
