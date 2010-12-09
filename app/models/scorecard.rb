@@ -263,12 +263,12 @@ class Scorecard < ActiveRecord::Base
     the_schedules.each {|schedule| played_games += 1 }
     
     the_sort = "scorecards.points DESC, scorecards.ranking, users.name"
-    the_sort = sort unless sort.blank?
+    the_sort = "#{sort}, #{the_sort}" if (sort != " ASC" and sort != " DESC") 
     
      find(:all, :select => "scorecards.*, matches.type_id,  
                             (100 * scorecards.points / (scorecards.played * groups.points_for_win)) as coeficient,
-                            (scorecards.points * (scorecards.points / (scorecards.played * groups.points_for_win))) as coeficient_points,
-                            (100 * (scorecards.played / #{played_games})) as coeficient_played",
+                            scorecards.points * (scorecards.points / (scorecards.played * groups.points_for_win)) as coeficient_points,
+                            100 * (scorecards.played / #{played_games}) as coeficient_played",
                 :joins => "LEFT JOIN groups on groups.id = scorecards.group_id
                          LEFT JOIN users on users.id = scorecards.user_id 
                          LEFT JOIN matches on matches.user_id = scorecards.user_id",

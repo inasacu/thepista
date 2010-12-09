@@ -21,7 +21,7 @@ class ScorecardsController < ApplicationController
   def show
     @group = Group.find(params[:id])
     # @scorecards = Scorecard.users_group_scorecard(@group)
-    @scorecards = Scorecard.users_group_scorecard(@group, sort_order('created_at'))
+    @scorecards = Scorecard.users_group_scorecard(@group, sort_order(''))
   end  
 
   def sort_order(default)
