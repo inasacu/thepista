@@ -260,7 +260,7 @@ class Scorecard < ActiveRecord::Base
   def self.users_group_scorecard(group, sort="")
     the_schedules = Schedule.find(:all, :conditions => ["group_id = ? and played = true", group], :order => "starts_at desc")
     played_games = 0
-    played_games = the_schedules.count
+    the_schedules.each {|schedule| played_games += 1 }
     
     the_sort = "scorecards.points DESC, scorecards.ranking, users.name"
     the_sort = sort unless sort.blank?
