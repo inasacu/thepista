@@ -7,6 +7,14 @@ class User < ActiveRecord::Base
    # allows user to rate a model 
    ajaxful_rateable :stars => 5, :dimensions => [:evaluation]
    ajaxful_rater
+   
+   define_completeness_scoring do
+     check :phone,                lambda { |per| per.phone.present? },            :high     # => defaults to 60
+     check :company,              lambda { |per| per.company.present? },          :medium   # => defaults to 40
+     check :description,          lambda { |per| per.description.present? },      :medium   # => defaults to 40
+     check :photo_file_name,      lambda { |per| per.photo_file_name? },          :low      # => defaults to 20
+   end
+   
       
   acts_as_authentic do |c|
     c.openid_required_fields = [:nickname, :email]

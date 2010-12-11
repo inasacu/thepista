@@ -16,21 +16,19 @@
     <div class="inner">
 	
 		<div class="description">
-        <span class="q">
+			<span class="q">
 				<%=sanitize @user.description.blank? ? control_label('description_no') : @user.description %>
 			</span>
-      </div>
+		</div>
 
 		<div class="columns"> 
 			<div class="column left"> 
 				<div class="description">
-                     <%= image_tag @user.thumbnail %>
-                   </div>
+                	<%= image_tag @user.thumbnail %>
+                </div>
 			</div>
 		</div>
-		
 
-	<!-- new table -->
 		<table>
 			<tr>
 				<td>
@@ -53,7 +51,22 @@
 						</tr>						
 						
 						<%= tr_td_action(:time_zone, @user.time_zone) %>
-						<%= tr_td_action(:phone, @user.phone) unless @user.private_phone %>
+		
+						<% 	
+							if @user.private_phone
+								the_label = label_name(:display)
+							else
+								the_label = "&nbsp;&nbsp;&nbsp;&nbsp;#{label_name(:hide)}"
+							end
+						%>						
+						<tr>
+							<td class="label"><%= label_name(:phone) %></td>
+							<td class="show">
+								<%= h(@user.phone) unless @user.private_phone %>
+								<%= link_to(the_label, set_private_phone_path(:id => @user)) if can_modify and !@user.phone.blank? %>
+							</td>
+						</tr>
+						
 						<%= tr_td_action(:company, @user.company) %>		
 
 						<% 
@@ -71,21 +84,21 @@
 							  <%= content_tag :td, (@user == current_user ? link_to(the_label, set_user_looking_path(:id => @user)) : the_label), :class => get_the_action %>
 						</tr>
 		
-						<% 
+						<%# 
 							the_label = h(label_name(@user.private_phone, 'value'))
 						%>
-						<tr>
-							<%= content_tag :td, label_name(:private_phone), :class => "label" %>
-							<%= content_tag :td, (can_modify ? link_to(the_label, set_private_phone_path(:id => @user)) : the_label), :class => get_the_action %>
-						</tr>
+						<!-- <tr>
+							<%#= content_tag :td, label_name(:private_phone), :class => "label" %>
+							<%#= content_tag :td, (can_modify ? link_to(the_label, set_private_phone_path(:id => @user)) : the_label), :class => get_the_action %>
+						</tr> -->
 
-						<% 
-							the_label = h(label_name(@user.private_profile, 'value'))
+						<%# 
+							#the_label = h(label_name(@user.private_profile, 'value'))
 						%>
-						<tr>
-							<%= content_tag :td, label_name(:private_profile), :class => "label" %>
-							<%= content_tag :td, (can_modify ? link_to(the_label, set_private_profile_path(:id => @user)) : the_label), :class => get_the_action %>
-						</tr>
+						<!-- <tr>
+							<%#= content_tag :td, label_name(:private_profile), :class => "label" %>
+							<%#= content_tag :td, (can_modify ? link_to(the_label, set_private_profile_path(:id => @user)) : the_label), :class => get_the_action %>
+						</tr> -->
 
 						<% if @user.has_role?('manager') %>
 						<%
@@ -123,8 +136,8 @@
 						</tr>
 						
 						<tr>
-					     <%= content_tag :td, label_name(:users_teammate), :class => "label" %>
-					     <%= content_tag :td, item_list(@user.friends), :class => get_the_action %>
+					     	<%= content_tag :td, label_name(:users_teammate), :class => "label" %>
+					     	<%= content_tag :td, item_list(@user.friends), :class => get_the_action %>
 					    </tr>
 					
 						<%= render :partial => 'show_admin' if current_user.is_maximo? %>
@@ -147,12 +160,14 @@
 
 <% content_for :sidebar, render(:partial => 'sidebar_show') -%>
 
+<% content_for :sidebar, render('shared/completeness', :user => @user) unless @user.percent_complete == 100 -%>
+
 <% if current_user.is_group_manager_of? %>
-<% content_for :sidebar, render('/users/sidebar_show_subscription') if current_user.is_user_manager_of?(@user) %>
-<% content_for :sidebar, render('/users/sidebar_show_join')  %>
-<% content_for :sidebar, render('/users/sidebar_show_sub_manager') if current_user.is_user_manager_of?(@user) %>
-<% content_for :sidebar, render('/users/sidebar_show_manager') if current_user.is_user_manager_of?(@user) %>
-<% content_for :sidebar, render('users/sidebar_show_item_manager', :items => current_user.challenges.find(:all, :conditions => ["ends_at > ?", Time.zone.now])) %>
+	<% content_for :sidebar, render('/users/sidebar_show_subscription') if current_user.is_user_manager_of?(@user) %>
+	<% content_for :sidebar, render('/users/sidebar_show_join')  %>
+	<% content_for :sidebar, render('/users/sidebar_show_sub_manager') if current_user.is_user_manager_of?(@user) and current_user != @user %>
+	<% content_for :sidebar, render('/users/sidebar_show_manager') if current_user.is_user_manager_of?(@user) %>
+	<% content_for :sidebar, render('users/sidebar_show_item_manager', :items => current_user.challenges.find(:all, :conditions => ["ends_at > ?", Time.zone.now])) %>
 <% end %>
 
 <% content_for :sidebar, render(:partial => '/shared/sidebar_index') -%>

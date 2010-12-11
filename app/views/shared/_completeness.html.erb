@@ -1,0 +1,69 @@
+
+<style type="text/css">
+
+
+.progress-meter, .progress-meter .has-progress, .progress-meter .no-progress { 
+	height: 18px; 
+	display: block; 
+	}
+
+.progress-meter { 
+	border: 1px solid rgb(102, 102, 102); 
+	overflow: hidden; 
+	background: url('../../images/progress_meter.png') repeat-x scroll 0pt 0pt transparent; 
+	width: 150px; 
+	}
+	
+.progress-meter .has-progress { 
+	border-right: 1px solid rgb(102, 102, 102); 
+	background: url('../../images/progress_meter.png') repeat-x scroll 0pt -50px transparent; 
+	}
+
+.profile-completeness { 
+	margin-bottom: 10px; 
+	padding: 10px; 
+	}
+
+.progress { 
+	clear: both; 
+	color: rgb(0, 102, 153); 
+	font-size: 125%; 
+	display: inline; 
+	}
+
+.progress .meter, .progress-meter { 
+	width: 40%; 
+	margin: 0pt 5px 10px 0pt; 
+	float: left; 
+	overflow: hidden; 
+	}
+
+.profile-completeness { }
+
+.profile-completeness h4 { 
+	color: rgb(75, 145, 28); 
+	font-weight: bold; 
+	font-size: 125%; 
+	}
+
+
+
+</style>
+
+
+<%
+	the_completeness = user.percent_complete.round
+	the_label = " #{label_name(:profile_completeness)}"
+%>
+
+<div class="block"> 
+	<%#= content_tag 'h3', label_name(:profile_completion) %>
+	<div class="content"> 
+		<br/>
+		<div class="profile-completeness">
+			<span class="progress-meter" title="<%= the_completeness %>% <%= label_name(:complete) %>"><span class="has-progress" style="width: <%= the_completeness %>%;"></span></span>
+			<p class="progress"><strong>&nbsp;<%= the_completeness %>%</strong><%= is_action('show') ? the_label : link_to( the_label, user_url(current_user)) %></p>			
+		</div>
+		
+	</div> 
+</div>

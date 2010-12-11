@@ -168,7 +168,8 @@ en:
      comment_not_saved: Comments NOT saved!!!   
      comment_saved: Comments save!!!
      company:  Company
-     company_description: Name of Company   
+     company_description: Name of Company  
+     complete:  complete 
      connect:  Connect
      concept: Concept
      concept_description:  Concept   
@@ -322,6 +323,7 @@ en:
      destroy_user: Remove the Player   
      destroy_venue: Remove the Venue
      difference:  Difference
+     display:  Show
      documentation: Documentation
      does_not_exist: "The page your are trying to access does not exist, Sorry!"
      does_not_exist_explained: "It is possible that the page has been modified and no longer exist, Sorry!"	  
@@ -978,7 +980,9 @@ en:
      private_phone_description: (Mark to setup your phone as private...)   
      private_profile: Private Profile   
      problem_field: We had problems with some of the fields.  
-     profile: Profile    
+     profile: Profile   
+     profile_completeness: profile completeness.
+     profile_completion:  Complete your profile.
      profile_physical: Physical Level 
      profile_physical_average:  Physical Average Level  
      profile_position: Position   

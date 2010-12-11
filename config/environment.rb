@@ -1,7 +1,8 @@
 # Be sure to restart your server when you modify this file
 
 # Specifies gem version of Rails to use when vendor/rails is not present
-RAILS_GEM_VERSION = '2.3.2' unless defined? RAILS_GEM_VERSION
+# RAILS_GEM_VERSION = '2.3.2' unless defined? RAILS_GEM_VERSION
+RAILS_GEM_VERSION = '2.3.3' unless defined? RAILS_GEM_VERSION
 # RAILS_GEM_VERSION = '2.3.8' unless defined? RAILS_GEM_VERSION    # requires bamboo upgrade
 
 # Bootstrap the Rails environment, frameworks, and default configuration
@@ -34,6 +35,7 @@ Rails::Initializer.run do |config|
   config.gem "ambethia-recaptcha",                :lib => "recaptcha/rails",              :source => "http://gems.github.com"
   config.gem "friendly_id",                       :version => "~> 3.1"
   config.gem "geokit"
+  config.gem "completeness-fu"
   # config.gem "rails_best_practices"
   
   # config.gem "aws-s3"

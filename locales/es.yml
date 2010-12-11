@@ -170,6 +170,7 @@ es:
      comment_saved: Comentarios guardados!!!  
      company:  Empresa 
      company_description: Nombre de empresa
+     complete:  completo
      connect:  Conectar
      concept: Concepto
      concept_description:  Concepto   
@@ -322,6 +323,7 @@ es:
      destroy_user: Borra el jugador   
      destroy_venue: Borra el centro deportivo 
      difference:  Diferencia
+     display:  Mostrar
      documentation: El manual
      does_not_exist: "Lo sentimos, pero la página a la que intentas acceder no existe."
      does_not_exist_explained: Es posible que la pagina se haya cambiado.	   
@@ -978,7 +980,9 @@ es:
      private_phone_description: (Quieres ocultar tu numero de telefono...)   
      private_profile: Ocultar perfil   
      problem_field: Hemos tenido problemas con algunos de los campos.   
-     profile: Perfil        
+     profile: Perfil    
+     profile_completeness:  perfil completo. 
+     profile_completion:  Rellena tu perfil.   
      profile_physical: Nivel fisico 
      profile_physical_average:  Fisico Medio  
      profile_position: Posición   
