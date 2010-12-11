@@ -1,6 +1,4 @@
-
 <style type="text/css">
-
 
 .progress-meter, .progress-meter .has-progress, .progress-meter .no-progress { 
 	height: 13px; 
@@ -51,16 +49,15 @@
 
 <%
 	the_completeness = user.percent_complete.round
-	the_label = " #{label_name(:profile_completeness)}"
+	the_label = " <strong>#{the_completeness}%</strong> #{label_name(:profile_completeness)}"
 %>
 
 <div class="block"> 
-	<%#= content_tag 'h3', label_name(:profile_completion) %>
 	<div class="content"> 
 		<br/>
 		<div class="profile-completeness">
 			<span class="progress-meter" title="<%= the_completeness %>% <%= label_name(:complete) %>"><span class="has-progress" style="width: <%= the_completeness %>%;"></span></span>
-			<p class="progress"><strong>&nbsp;<%= the_completeness %>%</strong><%= is_action('show') ? the_label : link_to( the_label, user_url(current_user)) %></p>			
+			<p class="progress"><%= is_action('show') ? the_label : link_to( the_label, user_url(current_user)) %></p>			
 		</div>
 		
 	</div> 

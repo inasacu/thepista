@@ -477,6 +477,7 @@ es:
      games_won_full: Partidos Ganados   
      gender: Genero   
      general_information:  Información general
+     get_up_and_running: "¡Pónte en marcha!"
      goal_difference: GD   
      goal_difference_full: Gol Diferencial   
      goals_against: GC   
@@ -781,6 +782,7 @@ es:
      name_description: "(El nombre del equipo tiene que empezar con una leta, sin espacios e caracteres speciales excepto _ o . )"  
      name_sport: Nombre del deporte que practicas   
      names: Nombres   
+     need_help:  ¿Necesitas ayuda?
      new: Nuevo
      new_low: nuevo   
      new_openid: Nueva cuenta   
@@ -860,7 +862,8 @@ es:
      or_use: ...o utiliza   
      organize:  Organizar
      our_philosophy:  Nuestra filosofía
-     overview: descripción general   
+     overview: descripción general 
+     overview_title:  Resumen  
      page_does_not_exist: La pagina que querias no exite.
      participate_challenge: Participa en el reto
      participate_challenge_afterwards: "Despues de registrate y ser aceptado, sigue este enlace para participa en el reto" 
@@ -1112,7 +1115,8 @@ es:
      send_scorecard: Manda la clasificación
      send_standing: Manda la clasificación
      send_to_all: Mandar a todos   
-     send_type: Manda un tipo   
+     send_type: Manda un tipo 
+     send_us_email:  Mandanos un mensaje  
      send_venue: Manda el URL del centro deportivo   
      sent_a_message: Ha mandado un mensaje   
      sent_invitation: Has mandado una invitación de HayPista a los siguientes          

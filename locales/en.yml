@@ -477,6 +477,7 @@ en:
      games_won_full: Games Won   
      gender: Gender   
      general_information:  General Information
+     get_up_and_running:  Get up and running!
      goal_difference: GD   
      goal_difference_full: Goal Difference   
      goals_against: GA   
@@ -781,6 +782,7 @@ en:
      name_description: "(The Team name should start with a letter and contain no special characters, exceptions:  _ o . )"  
      name_sport: Name of the sport you practice   
      names: Names   
+     need_help:  Need Support?
      new: New   
      new_low: new
      new_openid: New OpenID  
@@ -860,7 +862,8 @@ en:
      or_use: ...or user   
      organize:  Organize
      our_philosophy:  Our Philosophy
-     overview: overview   
+     overview: overview 
+     overview_title:  Overview  
      page_does_not_exist: The page you wanted does not exist.     
      participate_challenge: Participate in the challenge
      participate_challenge_afterwards: "After you signup, follow the link to signup for the challenge" 
@@ -1113,6 +1116,7 @@ en:
      send_standing: Send the Scorecard
      send_to_all: Send to All   
      send_type: Send a Type   
+     send_us_email:  Send un an email
      send_venue: Send the URL for the Venue   
      sent_a_message: Message Sent   
      sent_invitation: An invitation for HayPista has been sent to the following          

@@ -1,4 +1,4 @@
-rails -v 2.3.3
+rails -v 2.3.2
 pg
 rack-cache -v=0.5
 rack -v=1.0
