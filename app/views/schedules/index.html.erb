@@ -3,8 +3,9 @@
 	content_for(:title, the_label)
 	
 	is_my_list = (get_controller_action == "schedule_my_list")
-	the_label = "#{the_label} #{label_name(:from_de)} #{h(@user.name)}" if is_my_list	
-	is_my_list = is_my_list ? (@user == current_user) : true
+	the_label = "#{the_label} #{label_name(:from_de)} #{h(@user.name)}" if is_my_list
+		
+	is_my_list = is_my_list ? current_user.is_user_member_of?(@user) : true
 	group_schedule_list = (get_controller_action == "schedule_schedule_list")
 %>
 
@@ -102,7 +103,7 @@
 					<%= marker_link(schedule.group.marker) %>
 				</span>
 				<br/><br/>
-				<fb:like href="haypista.com<%= the_url %>" layout="button_count" show_faces="false" action="recommend" font="arial"></fb:like>
+				<!-- <fb:like href="haypista.com<%= the_url %>" layout="button_count" show_faces="false" action="recommend" font="arial"></fb:like> -->
 			</td>
 			
         </tr>          

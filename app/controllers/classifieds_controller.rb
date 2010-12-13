@@ -49,6 +49,7 @@ class ClassifiedsController < ApplicationController
       return
     end
     
+    @classified.item = @group
     @classified.time_zone = @group.time_zone
 
     if @classified.save      

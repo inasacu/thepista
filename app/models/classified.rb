@@ -41,7 +41,7 @@ class Classified < ActiveRecord::Base
     end
     
     def self.item_classifieds(item)
-      find(:all, :conditions => ["item_id = ? and item_type = ?", item, item.class.to_s])
+      find(:all, :conditions => ["table_id = ? and table_type = ?", item, item.class.to_s])
     end   
 
     def self.upcoming_classifieds(hide_time)
