@@ -6,7 +6,10 @@ class Standing < ActiveRecord::Base
   
   validates_format_of   :group_stage_name,            :with =>  /^[A-Z]*\z/
   
-  attr_accessible       :group_stage_name
+  # variables to access
+  attr_accessible      :cup_id, :challenge_id, :item_id, :item_type, :group_stage_name
+  attr_accessible      :wins, :losses, :draws, :points, :goals_for, :goals_against, :played
+  attr_accessible      :ranking, :archive  
     
   # method section
   def self.create_cup_escuadra_standing(cup)
@@ -126,12 +129,12 @@ class Standing < ActiveRecord::Base
 
   # record if user and group do not exist
   def self.create_cup_challenge_item_standing(cup, challenge, item)
-    self.create!(:cup => cup, :challenge => challenge, :item => item) if self.cup_challenge_item_exists?(cup, challenge, item)
+    self.create!(:cup_id => cup.id, :challenge_id => challenge.id, :item_id => item.id, :item_type => item.class.to_s) if self.cup_challenge_item_exists?(cup, challenge, item)
   end
 
   # record if cup and item do not exist
   def self.create_cup_item_standing(cup, item)
-    self.create!(:cup => cup, :item => item, :group_stage_name => 'A') if self.cup_item_exists?(cup, item)
+    self.create!(:cup_id => cup.id, :item_id => item.id, :item_type => item.class.to_s, :group_stage_name => 'A') if self.cup_item_exists?(cup, item)
   end
   
   def self.cup_escuadras_standing(cup)

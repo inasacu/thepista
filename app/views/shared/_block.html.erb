@@ -1,6 +1,7 @@
 <div class="block">
 
-  <%= render :partial => 'shared/secondary_navigation' %>
+  <%= get_secondary_navigation %>
+  <%= get_secondary_navigation %> 
   
   <% content_for :content, render(:partial => 'shared/content', :locals => {:content_title => :edit_user}) -%>
   

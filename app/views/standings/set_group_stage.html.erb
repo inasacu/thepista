@@ -4,7 +4,7 @@
 
 <div class="block">
 
-	<%= render "cups/secondary_navigation", :cup => @cup %>
+	<%= get_secondary_navigation(@cup) %>
 
 	<div class="content">   
 
@@ -14,12 +14,12 @@
 		
 			<table class="table">
 
-			<tr align="left">        
-			    <th class="first"><%= label_name(:ranking) %></th>
-			    <th align="center"><%= label_name(:group_stage_name) %></th>
-			    <th>&nbsp;</th>
-			    <th><%= label_name(:name) %></th>
-			    <th class="last" width="600">&nbsp;</th>
+			<tr align="left">      
+				<%= content_tag :th, label_name(:ranking), :class => "first" %>
+				<%= content_tag :th, label_name(:group_stage_name), :class => "heading", :align => "center" %>
+				<%= content_tag :th, "&nbsp;", :class => "heading" %>
+				<%= content_tag :th, label_name(:name), :class => "heading" %>
+				<%= content_tag :th, "&nbsp;", :class => "last", :width => "600" %>
 			</tr>
 			
       <% form_for @standing, :url => standing_path(@standing), :html => { :class => :form } do |f| -%>

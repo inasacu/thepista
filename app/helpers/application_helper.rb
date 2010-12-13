@@ -350,7 +350,22 @@ module ApplicationHelper
     link_to_unless condition, title, request.parameters.merge( {:c => column, :d => sort_dir} )
   end
 
-  # def sort_order(default)
-  #   "#{(params[:c] || default.to_s).gsub(/[\s;'\"]/,'')} #{params[:d] == 'down' ? 'DESC' : 'ASC'}"
-  # end
+
+  def get_secondary_navigation(item=nil, game=nil)
+    the_controller = is_controller('home') ? "#{get_the_controller}" : "#{get_the_controller}s"
+    return render("#{the_controller}/secondary_navigation") if item.nil? 
+    return render("#{(item.class.to_s).downcase}s/secondary_navigation", :item => item) if game.nil?
+    return render("#{(item.class.to_s).downcase}s/secondary_navigation", :item => item, :game => game) 
+  end
+  
+  def get_class_table_id_controller
+    the_controller = get_the_controller.gsub(' ','_')
+    "<table class='table' id='#{the_controller}'>"
+  end
+  
+  def get_class_table_id_action
+    the_action = get_the_action.gsub(' ','_')
+    "<table class='table' id='#{the_action}'>"
+  end
+
 end

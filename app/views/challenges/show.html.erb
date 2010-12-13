@@ -9,9 +9,8 @@
 %>
 
 <div class="block">
-
-  <%#= render :partial => 'challenges/secondary_navigation' %>
-  <%= render "challenges/secondary_navigation", :challenge => @challenge %>   
+ 
+  <%= get_secondary_navigation(@challenge) %> 
   
   <div class="content">
 	        
@@ -19,7 +18,7 @@
 
     <div class="inner">
 
-	<!-- new table -->
+	
 	<table>
 	<thead>
 	<tr>
@@ -74,7 +73,7 @@
 	</tr>
 
 	</table>
-	<!-- new table -->
+	
 
 
 			 

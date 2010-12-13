@@ -1,19 +1,19 @@
-<h2 class="title"><%= get_collection_label(@challenges) %></h2>
+<h2 class="title"><%= get_collection_label(challenges) %></h2>
 
 <div class="inner">
 	
 	<table class="table">
 
-	  <tr>             
-	    <th class="first">&nbsp;</th>
-	    <th><%= label_name(:name) %></th>
-	    <th><%= label_name(:manager) %></th>	   
-	    <th><%= label_name(:general_information) %></th>
-	    <th>&nbsp;</th>
-	    <th class="last">&nbsp;</th>
+	  <tr> 
+		<%= content_tag :th, "&nbsp;", :class => "first" %>
+		<%= content_tag :th, label_name(:name), :class => "heading" %>
+		<%= content_tag :th, label_name(:manager), :class => "heading" %>
+		<%= content_tag :th, label_name(:general_information), :class => "heading" %>
+		<%= content_tag :th, "&nbsp;", :class => "heading" %>	
+		<%= content_tag :th, "&nbsp;", :class => "last" %>
 	  </tr>
 
-	  <% @challenges.each do |challenge| 
+	  <% challenges.each do |challenge| 
 		the_description = sanitize(challenge.description)
 		the_description = "#{the_description.to_s.strip[0..60]}..." if the_description.to_s.length > 60
 		the_description = the_description.gsub(" ", "<wbr> ")
@@ -63,13 +63,8 @@
 					<% 
 					  	else
 							unless current_user.has_item_petition?(current_user, challenge) 
-								# the_label = label_with_name('add_to_item', the_challenge)
-								# the_label = label_name(:add_to_item)
- 								# the_confirmation = "#{ label_name(:petition_to_join) } #{the_challenge}?"
-								# the_confirmation = the_add_item_petition(current_user, the_challenge)
 					%> 
 						<%= join_item_link_to(current_user, challenge) %>
-						<%#= link_to(the_label, join_item_path(:id => challenge, :item => challenge.class.to_s, :teammate => current_user), :confirm => the_confirmation) %>
 					<% 	end 
 					   end
 					-%>
@@ -83,6 +78,6 @@
 
 	</table>	
 	
-	<%= render :partial => 'shared/action_bar', :locals => { :collection => @challenges } %>
+	<%= render :partial => 'shared/action_bar', :locals => { :collection => challenges } %>
 
 </div>

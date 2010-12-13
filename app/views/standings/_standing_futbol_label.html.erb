@@ -4,18 +4,18 @@
 %>
 <tr align="left">           
 	<th class="first" title="<%= the_label %>"><%= the_label %></th>
-	<th>&nbsp;</th>
+	<th class="heading">&nbsp;</th>
 
-	<th><span><%= I18n.t(:name) %></span></th>
+	<th class="heading"><span><%= I18n.t(:name) %></span></th>
 
-	<th title="<%= I18n.t(:points_full) %>"><%= I18n.t(:points) %></th>
-	<th title="<%= I18n.t(:games_won_full) %>"><%= I18n.t(:games_won) if is_escuadra %></th>
-	<th title="<%= I18n.t(:games_tied_full) %>"><%= I18n.t(:games_tied) if is_escuadra %></th>
-	<th title="<%= I18n.t(:games_lost_full) %>"><%= I18n.t(:games_lost) if is_escuadra %></th>
+	<th class="heading" title="<%= I18n.t(:points_full) %>"><%= I18n.t(:points) %></th>
+	<th class="heading" title="<%= I18n.t(:games_won_full) %>"><%= I18n.t(:games_won) if is_escuadra %></th>
+	<th class="heading" title="<%= I18n.t(:games_tied_full) %>"><%= I18n.t(:games_tied) if is_escuadra %></th>
+	<th class="heading" title="<%= I18n.t(:games_lost_full) %>"><%= I18n.t(:games_lost) if is_escuadra %></th>
 
-	<th title="<%= I18n.t("goals_for_full_#{the_value}") %>"><%= I18n.t("goals_for_#{the_value}") if is_escuadra %></th>
-	<th title="<%= I18n.t("goals_against_full_#{the_value}") %>"><%= I18n.t("goals_against_#{the_value}") if is_escuadra %></th>
-	<th title="<%= I18n.t("goal_difference_full_#{the_value}") %>"><%= I18n.t("goal_difference_#{the_value}") if is_escuadra %></th>
-	<th title="<%= I18n.t(:games_played_full) %>"><%= I18n.t(:games_played) if is_escuadra %></th>
+	<th class="heading" title="<%= I18n.t("goals_for_full_#{the_value}") %>"><%= I18n.t("goals_for_#{the_value}") if is_escuadra %></th>
+	<th class="heading" title="<%= I18n.t("goals_against_full_#{the_value}") %>"><%= I18n.t("goals_against_#{the_value}") if is_escuadra %></th>
+	<th class="heading" title="<%= I18n.t("goal_difference_full_#{the_value}") %>"><%= I18n.t("goal_difference_#{the_value}") if is_escuadra %></th>
+	<th class="last" title="<%= I18n.t(:games_played_full) %>"><%= I18n.t(:games_played) if is_escuadra %></th>
 
 </tr>

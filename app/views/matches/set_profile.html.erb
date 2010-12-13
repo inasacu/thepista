@@ -14,7 +14,7 @@ content_for(:title, sanitize(@schedule.concept))
 
 <div class="block">
 
-	<%= render :partial => '/schedules/secondary_navigation' %>
+	  <%= get_secondary_navigation(@schedule) %>
 
 	<div class="content">   
 
@@ -25,13 +25,13 @@ content_for(:title, sanitize(@schedule.concept))
 			<table class="table">
 
 			  <tr>             
-			    <th class="first">&nbsp;</th>
-			    <th>&nbsp;</th>
-			    <th>&nbsp;</th>
-			    <th align="center"><%= label_name(:position) %></th>
-			    <th align="center"><%#= label_name(:profile_technical) %></th>
-			    <th align="center"><%#= label_name(:profile_physical) %></th>
-			    <th class="last" width="400">&nbsp;</th>
+				<%= content_tag :th, "&nbsp;", :class => "first" %>
+				<%= content_tag :th, "&nbsp;", :class => "heading" %>
+				<%= content_tag :th, "&nbsp;", :class => "heading" %>
+				<%= content_tag :th, label_name(:position), :class => "heading", :align => "center" %>
+				<%= content_tag :th, "&nbsp;", :class => "heading", :align => "center" %>
+				<%= content_tag :th, "&nbsp;", :class => "heading", :align => "center" %>
+				<%= content_tag :th, "&nbsp;", :class => "last", :width => "400" %>
 			  </tr>
 			
       <% form_for @match, :url => match_path(@match), :html => { :class => :form } do |f| -%>

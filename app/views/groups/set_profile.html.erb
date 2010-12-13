@@ -5,7 +5,7 @@
 
 <div class="block">
 
-	<%= render :partial => '/schedules/secondary_navigation' %>
+	<%= get_secondary_navigation(@schedule) %>
 
 	<div class="content">   
 
@@ -13,20 +13,20 @@
 
 		<div class="inner">
 
-			<table class="table" id="<%= get_the_controller.gsub(' ','_') %>">
+			<%= get_class_table_id_controller %>
 
-				<tr>             
-					<th class="first">&nbsp;</th>
-					<th>&nbsp;</th>
-					<th>&nbsp;</th>
-					<th align=""><%= label_name(:technical) %></th>
-					<th>&nbsp;</th>
-					<th align=""><%= label_name(:physical) %></th>
-					<th>&nbsp;|&nbsp;</th>
-					<th align=""><%= label_name(:profile_technical_average) %></th>
-					<th>&nbsp;</th>
-					<th align=""><%= label_name(:profile_physical_average) %></th>
-					<th class="last" width="400">&nbsp;</th>
+				<tr>   
+					<%= content_tag :th, "&nbsp;", :class => "first" %>
+					<%= content_tag :th, "&nbsp;", :class => "heading" %>
+					<%= content_tag :th, "&nbsp;", :class => "heading" %>
+					<%= content_tag :th, label_name(:technical), :class => "heading" %>	
+					<%= content_tag :th, "&nbsp;", :class => "heading" %>				
+					<%= content_tag :th, label_name(:physical), :class => "heading" %>
+					<%= content_tag :th, "&nbsp;|&nbsp;", :class => "heading" %>
+					<%= content_tag :th, label_name(:profile_technical_average), :class => "heading" %>	
+					<%= content_tag :th, "&nbsp;", :class => "heading" %>
+					<%= content_tag :th, label_name(:profile_physical_average), :class => "heading" %>	
+					<%= content_tag :th, "&nbsp;", :class => "last", :width => "400" %>
 				</tr>
 
 				

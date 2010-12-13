@@ -1,6 +1,6 @@
 <div class="block">
 
-  <%= render :partial => 'secondary_navigation' %>  
+  <%= get_secondary_navigation(Group.new) %>
 
   <div class="content">   
   
@@ -11,12 +11,12 @@
       <table class="table">
 	  
 		<tr>             
-			<th class="first">&nbsp;</th>
-			<th><%=label_name(:name) %></th>
-			<th><%=label_name(:group) %></th>
-			<th><%=label_name(:time_zone) %></th>
-			<th><%=label_name(:last_game_played) %></th>
-			<th class="last">&nbsp;</th>
+			<%= content_tag :th, "&nbsp;", :class => "first" %>
+			<%= content_tag :th, "#{label_name(:name)}<br />#{label_name(:last_game_played)}", :class => "heading" %>
+			<%= content_tag :th, label_name(:group), :class => "heading" %>
+			<%= content_tag :th, label_name(:time_zone), :class => "heading" %>
+			<%#= content_tag :th, label_name(:last_game_played), :class => "heading" %>
+			<%= content_tag :th, "&nbsp;", :class => "last" %>
 		</tr>
 		
         <% @users.each do |user| 
@@ -24,10 +24,16 @@
 	    -%>
 			<tr>
 			  <td><%= image_link_small user %></td>					
-			  <td><%= user_link user %></td>
+			  <!-- <td><%#= user_link user %></td> -->
+				<td class="name_and_date">
+					<%= user_link user %><br />
+					<span class="date">
+					<%= nice_day_date(schedule.starts_at) unless schedule.nil? %>
+					</span>
+				</td>
 			  <td><%= user.has_group? ? group_list(user.groups) : label_name('groups_none') %></td>		 
 			  <td><%= user.time_zone %></td>			  
-			  <td><%= nice_day_date(schedule.starts_at) unless schedule.nil? %></td>	
+			  <!-- <td><%#= nice_day_date(schedule.starts_at) unless schedule.nil? %></td>	 -->
 			  <td class="last"><%= link_to label_name(:send_message_to), new_message_path(:id => user) %></td>		  
 			</tr>
         <% end -%>

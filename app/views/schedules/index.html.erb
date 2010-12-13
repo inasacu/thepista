@@ -10,9 +10,9 @@
 
 <div class="block">
 
-  <%= render 'schedules/secondary_navigation' if is_my_list and !group_schedule_list %>
-  <%= render 'users/secondary_navigation' unless is_my_list or !group_schedule_list %>
-  <%= render 'groups/secondary_navigation', :group => @group if group_schedule_list %>
+  <%= get_secondary_navigation(Schedule.new) if is_my_list and !group_schedule_list %>
+  <%= get_secondary_navigation(Use.new) unless is_my_list or !group_schedule_list %>
+  <%= get_secondary_navigation(@group) if group_schedule_list %>
 
   <div class="content">   
   
@@ -25,14 +25,14 @@
       <table class="table">
 	  
         <tr> 
-        <th class="first">&nbsp;</th>
-        <th><%= label_name(:concept) %></th>
-        <th><%= label_name(:group) %>&nbsp;<%#= label_name(:sport) %></th> 
-        <th><%#= label_name(:matches) %>&nbsp;<%#= label_name(:gameday_at) %></th>
-        <th>&nbsp;</th>	
-        <th>&nbsp;</th>
-        <%= "<th>&nbsp;</th>" if current_user.is_member_of?(@schedules.first.group) %> 
-		<th class="last">&nbsp;</th>
+			<%= content_tag :th, "&nbsp;", :class => "first" %>
+			<%= content_tag :th, label_name(:concept), :class => "heading" %>
+			<%= content_tag :th, label_name(:group), :class => "heading" %>	
+			<%= content_tag :th, "&nbsp;", :class => "heading" %>
+			<%= content_tag :th, "&nbsp;", :class => "heading" %>
+			<%= content_tag :th, "&nbsp;", :class => "heading" %>
+			<%= content_tag :th, "&nbsp;", :class => "heading" if current_user.is_member_of?(@schedules.first.group) %>
+			<%= content_tag :th, "&nbsp;", :class => "last" %>
 		</tr>
         
         <% @schedules.each do |schedule| 

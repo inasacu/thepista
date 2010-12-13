@@ -4,7 +4,9 @@
 %>
 
 <div class="block">
-	<%= render :partial => '/groups/secondary_navigation' %>  
+	
+	<%= get_secondary_navigation(Group.new) %>
+	 
 	<div class="content">  
 			<% if object_counter(@groups) > 0 %>
 				<%= render :partial => '/groups/index_full' %>

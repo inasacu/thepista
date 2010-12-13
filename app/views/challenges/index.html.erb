@@ -4,12 +4,11 @@
 %>
 <div class="block">
 	
-	
-    <%= render "challenges/secondary_navigation", :challenges => @challenges %> 
+	<%= get_secondary_navigation(@challenges.first) %>
 	
 	<div class="content">  
 			<% if object_counter(@challenges) > 0 %>
-				<%= render :partial => '/challenges/index_full' %>
+				<%= render '/challenges/index_full', :challenges => @challenges %>
 			<% else %>
 				<%= render :partial => '/challenges/index_blank' %>
 			<% end %>

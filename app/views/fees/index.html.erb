@@ -13,10 +13,9 @@
 %>
 <div class="block">
 
-  <%= render :partial => '/users/secondary_navigation' if @user %>
-  <%= render :partial => '/groups/secondary_navigation' if @group %>
-  <%#= render :partial => '/challenges/secondary_navigation' if @challenge %>
-  <%= render "challenges/secondary_navigation", :challenge => @challenge if @challenge %>
+  <%= get_secondary_navigation(@user) if @user %>
+  <%= get_secondary_navigation(@group) if @group %>
+  <%= get_secondary_navigation(@challenge) if @challenge %>
           
   <div class="content">  
 	        
@@ -24,7 +23,7 @@
 
     <div class="inner">
 		
-      <table class="table" id="<%= get_the_controller.gsub(' ','_') %>">
+      <%= get_class_table_id_controller %>
 	
         <tr>            
           <th class="first">&nbsp;</th>

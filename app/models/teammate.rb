@@ -118,11 +118,16 @@ class Teammate < ActiveRecord::Base
     when "Challenge"
       ChallengesUsers.join_item(approver, item) 
       ChallengesUsers.join_item(requester, item)
-      Standing.create_cup_challenge_standing(item)
       Cast.create_challenge_cast(item) 
-      Fee.create_user_challenge_fees(item)  
-     #  Standing.set_archive_flag(requester, item, false)
-      Fee.set_archive_flag(requester, item, item, false) 
+      Fee.create_user_challenge_fees(item)        
+      Fee.set_archive_flag(requester, item, item, false)
+      Standing.create_cup_challenge_standing(item)
+      Standing.set_archive_flag(requester, item, false)
+      Cast.update_cast_details(item)         
+      Standing.calculate_cup_standing(item.cup)
+      Standing.cup_challenges_user_standing(item.cup) 
+      Standing.update_cup_challenge_item_ranking(item.cup)
+        
       approver.has_role!(:member, item)
 
     when "Cup"   

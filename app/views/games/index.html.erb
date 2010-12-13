@@ -9,7 +9,7 @@
 
 <div class="block">
 		
-	<%= render "cups/secondary_navigation", :cup => @cup %>
+	<%= get_secondary_navigation(@cup) %>
 
   <div class="content">   
   
@@ -19,18 +19,17 @@
 	
 	<% if object_counter(@games) > 0 %>
 	
-      <table class="table" id="<%= get_the_controller.gsub(' ','_') %>">
+      <%= get_class_table_id_controller %>
 	  
         <tr> 
-          <th class="first"><%= label_name(:jornada) %></th>
-	      <th><%= label_name(:name) %>&nbsp;/<br />
-			  <%= label_name(:gameday_at) %></th>
-          <th>&nbsp;</th>
-          <th>&nbsp;</th>
-		  <th align="center"><%= label_name(:matches) %></th>
-          <th>&nbsp;</th>
-          <th>&nbsp;</th>
-          <th class="last">&nbsp;</th>
+			<%= content_tag :th, label_name(:jornada), :class => "first" %>
+			<%= content_tag :th, "#{label_name(:name)}<br/>#{label_name(:gameday_at)}", :class => "heading" %>
+			<%= content_tag :th, "&nbsp;", :class => "heading" %>
+			<%= content_tag :th, "&nbsp;", :class => "heading" %>
+			<%= content_tag :th, label_name(:matches), :class => "heading" %>	
+			<%= content_tag :th, "&nbsp;", :class => "heading" %>
+			<%= content_tag :th, "&nbsp;", :class => "heading" %>
+			<%= content_tag :th, "&nbsp;", :class => "last" %>
 		</tr>
         
         <% @games.each do |game| 

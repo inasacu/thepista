@@ -5,9 +5,10 @@ ActionController::Routing::Routes.draw do |map|
   map.rpx_token_sessions    'rpx_token_sessions',                         :controller => "user_sessions",   :action => "rpx_create"
   map.rpx_signup            '/rpx_signup',                                :controller => 'users',           :action => 'rpx_new'
   map.rpx_create            'users/rpx_create',                           :controller => 'users',           :action => 'rpx_create'
+  map.signup                'signup',                                     :controller => 'users',           :action => 'signup'
   
-  map.login                 'acceso_session',                                      :controller => 'user_sessions',   :action => 'new'
-  map.logout                'cierra_session',                                     :controller => 'user_sessions',   :action => 'destroy'
+  map.login                 'acceso_session',                             :controller => 'user_sessions',   :action => 'new'
+  map.logout                'cierra_session',                             :controller => 'user_sessions',   :action => 'destroy'
   
   map.language              'configurar_idioma',                          :controller => 'users',           :action => 'set_language'
   
@@ -138,8 +139,6 @@ ActionController::Routing::Routes.draw do |map|
   map.resources   :venues,          :as => 'deportivos',                  :collection => { :list => :get }
   map.resources   :facilities,      :as => 'instalaciones',               :collection => { :list => :get }
   map.resources   :agendas,         :as => 'agendas',                     :collection => { :list => :get }
-    
-  # map.signup                'signup',                                     :controller => 'users',           :action => 'signup'
 
   map.resources   :users do |user|
     user.resources :messages

@@ -8,15 +8,15 @@
 
 <div class="inner">
 	
-	<table class="table" id="<%= get_the_controller.gsub(' ','_') %>"> 
+	<%= get_class_table_id_controller %> 
 
-	  <tr>             
-	    <th class="first">&nbsp;</th>
-	    <th><%= label_name(:name) %></th>
-	    <th>&nbsp;</th>
-	    <th>&nbsp;</th>
-	    <th>&nbsp;</th>
-	    <th class="last">&nbsp;</th>
+	  <tr>   
+		<%= content_tag :th, "&nbsp;", :class => "first" %>
+		<%= content_tag :th, label_name(:name), :class => "heading" %>
+		<%= content_tag :th, "&nbsp;", :class => "heading" %>
+		<%= content_tag :th, "&nbsp;", :class => "heading" %>
+		<%= content_tag :th, "&nbsp;", :class => "heading" %>	
+		<%= content_tag :th, "&nbsp;", :class => "last" %>
 	  </tr>
 
 	  <% @escuadras.each do |escuadra| 

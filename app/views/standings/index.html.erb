@@ -16,12 +16,10 @@
 %>
 <div class="block">
 
-<% if is_challenge_standing  %>
-	
-	<%= render "challenges/secondary_navigation", :challenge => @challenge %>
-<% else %>
-	
-	<%= render "cups/secondary_navigation", :cup => @cup %>
+<% if is_challenge_standing  %>	
+	<%= get_secondary_navigation(@challenge) %>	
+<% else %>	
+	<%= get_secondary_navigation(@cup) %>
 <% end -%>
 
 <%
@@ -33,7 +31,7 @@
 
 	<div class="inner">
 
-		<table class="table" id="<%= get_the_controller.gsub(' ','_') %>">
+		<%= get_class_table_id_controller %>
 
 			<% if @cup.is_futbol? 
 				group_stage = 'Z'

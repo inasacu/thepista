@@ -194,7 +194,34 @@ hr {
 
 /* tables */
 .table th {
-	border-bottom: 2px solid #cfcfcf;
+	border-bottom: 1px solid #cfcfcf;
+	
+	color: #001C26;
+	background: #EEEEEE;
+	padding: 8px;
+}
+
+.table th.first {
+	border-top: 1px solid #cfcfcf;	
+	border-left: 1px solid #cfcfcf;
+	
+	color: #001C26;
+	background: #EEEEEE;
+	padding: 8px;
+}
+
+.table th.heading {	
+	border-top: 1px solid #cfcfcf;	
+	
+	color: #001C26;
+	background: #EEEEEE;
+	padding: 8px;
+}
+
+.table th.last {
+	border-top: 1px solid #cfcfcf;	
+	border-right: 1px solid #cfcfcf;
+	
 	color: #001C26;
 	background: #EEEEEE;
 	padding: 8px;
@@ -203,7 +230,6 @@ hr {
 .table th.clear {
 	background: #F7F7F8;
 }
-
 
 .table td {
   border-bottom: 1px dotted #cfcfcf;
@@ -249,31 +275,6 @@ hr {
   color: #8C8C8C;
   font-size: .9em;
 }
-
-/* @group Flash messages */
-
-/*.flash .message {
-  -moz-border-radius: 3px;
-  -webkit-border-radius: 3px;
-  text-align:center;
-  margin: 0 auto 15px;
-}
-
-.flash .message p {
-  margin:8px;
-}
-.flash .error {
-  border: 1px solid #fbb;
-  background-color: #fdd;
-}
-.flash .warning {
-  border: 1px solid #e0d300;
-  background-color: #ffffcc;
-}
-.flash .notice {
-  border: 1px solid #cfcfcf;
-  background-color: #EEF0F0;
-}*/
 
 /* @end */
 

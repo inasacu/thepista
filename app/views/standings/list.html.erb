@@ -8,8 +8,7 @@
 
 <div class="block">
 
-   
-  <%= render "challenges/secondary_navigation" %> 
+   <%= get_secondary_navigation(Challenge.new) %>
 
 <%
 	if @standings	
@@ -21,7 +20,7 @@
 
 	<div class="inner">
 
-		<table class="table" id="<%= get_the_controller.gsub(' ','_') %>">
+		<%= get_class_table_id_controller %>
 
 			<% if @cup.is_futbol? 
 				group_stage = 'Z'

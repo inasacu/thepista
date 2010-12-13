@@ -5,7 +5,7 @@
 
 <div class="block">
 
-  <%= render :partial => 'secondary_navigation' %>  
+  <%= get_secondary_navigation %>  
 
   <div class="content">   
   
@@ -15,14 +15,14 @@
 	
       <table class="table">
 	  
-        <tr>            
-          <th class="first">&nbsp;</th>
-          <th><%= label_name(:name) %></th>
-          <th><%= label_name(:points_for_win)%></th>
-          <th><%=label_name(:points_for_lose)%></th>
-          <th><%=label_name(:points_for_draw) %></th>
-          <th><%= label_name(:icon_name) %></th>
-          <th class="last"><%= label_name(:icon) %></th>
+        <tr>   
+			<%= content_tag :th, "&nbsp;", :class => "first" %>
+			<%= content_tag :th, label_name(:name), :class => "heading" %>
+			<%= content_tag :th, label_name(:points_for_win), :class => "heading" %>
+			<%= content_tag :th, label_name(:points_for_lose), :class => "heading" %>
+			<%= content_tag :th, label_name(:points_for_draw), :class => "heading" %>
+			<%= content_tag :th, label_name(:icon_name), :class => "heading" %>
+			<%= content_tag :th, label_name(:icon), :class => "last" %>
         </tr>
         <% @sports.each do |sport| -%>
 		<tr>

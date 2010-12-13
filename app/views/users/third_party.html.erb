@@ -2,7 +2,7 @@
 
 <div class="block">
 
-  <%= render :partial => 'secondary_navigation' %>   
+  <%= get_secondary_navigation %>   
 
   <div class="content">
 	
@@ -14,15 +14,14 @@
   
     <div class="inner">
 
-	<!-- new table -->
+	
 		<table class="table">
 			<thead>
 
-				<tr>             
-					<th class="first"><%= label_name(:type_account) %></th>
-					<th><%= label_name(:destroy) %>?</th>
-					<!-- <th><%#=label_name(:name_account) %></th> -->
-					<th class="last"></th>
+				<tr>  
+					<%= content_tag :th, label_name(:type_account), :class => "first" %>
+					<%= content_tag :th, "#{label_name(:destroy)}?", :class => "heading" %>	
+					<%= content_tag :th, "&nbsp;", :class => "last" %>
 				</tr>
 			</thead>
 
@@ -42,11 +41,9 @@
 					<td class="remove"></td>
 				</tr>
 				<% end %>
-			<% end %>
-			
+			<% end %>			
 		
-		</table>
-	<!-- new table -->
+		</table>	
 	
 		<p><%= label_name(:myopenid_select) %></p>
 

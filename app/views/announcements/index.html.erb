@@ -4,8 +4,8 @@
 %>
 
 <div class="block">
-
-	<%= render :partial => 'secondary_navigation' %>  
+ 
+	<%= get_secondary_navigation(Announcement.new) %>
 
 	<div class="content">   
 
@@ -16,14 +16,12 @@
 			<% if object_counter(@announcements) > 0 %>
 
 			<table class="table">
-				<tr>            
-				  <th class="first">&nbsp;</th>
-				  <th><%= label_name(:created_at)%></th>
-				  <th><%= label_name(:starts_at)%>&nbsp;&nbsp;<br/>
-					  <%=label_name(:ends_at)%>
-				  </th>
-				  <th><%= label_name(:message) %></th>
-				  <th class="last">&nbsp;</th>
+				<tr> 
+					<%= content_tag :th, "&nbsp;", :class => "first" %>
+					<%= content_tag :th, label_name(:created_at), :class => "heading" %>
+					<%= content_tag :th, "#{label_name(:starts_at)}<br/>#{label_name(:ends_at)}", :class => "heading" %>
+					<%= content_tag :th, label_name(:message), :class => "heading" %>
+					<%= content_tag :th, "&nbsp;", :class => "last" %>
 				</tr>
 
 			<%= render :partial => 'announcement', :collection => @announcements %>

@@ -5,17 +5,16 @@
 %>
 <div class="block">
 
-	<%= render :partial => 'secondary_navigation' %>
+	<%= get_secondary_navigation(@challenge) %>  
 
 	<div class="content">  
 
-		<h2 class="title"><%= "#{control_action_label} #{label_name('for')} " %><%= item_name_link(@cup)
- %></h2>
+		<h2 class="title"><%= "#{control_action_label} #{label_name('for')} " %>
+		<%= item_name_link(@cup) %></h2>
 
 		<div class="inner">
 
 		<% form_for :challenge, :url => challenges_path, :html => { :class => :form } do |f| -%>
-		<%#= f.hidden_field :cup_id if @cup %>
 		<%= render :partial => "form", :locals => {:f => f} %>
 		<% end -%>
 

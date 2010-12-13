@@ -8,7 +8,6 @@ class ChallengesController < ApplicationController
   before_filter :has_member_access, :only => [:challenge_list]
   
   def index
-    # @challenges = current_user.challenges.paginate :page => params[:page], :order => 'name' 
     @challenges = Challenge.current_challenges(params[:page])
 
     if @challenges.nil? or @challenges.blank?

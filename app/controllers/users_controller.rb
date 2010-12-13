@@ -36,10 +36,10 @@ class UsersController < ApplicationController
     store_location
   end
 
-  # def signup
-  #   @user = User.new
-  #   redirect_to :controller => 'home'
-  # end  
+  def signup
+    @user = User.new
+    redirect_to :controller => 'home'
+  end  
 
   def new
     @user = User.new

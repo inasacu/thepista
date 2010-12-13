@@ -213,6 +213,7 @@ en:
      created: has been created correctly.   
      created_at:  Date Created
      created_a_challenge:  Has created challenge
+     created_a_classified:  Has added the <strong>announcement<strong>
      created_a_cup:  Has create tournament
      created_a_game:  Has added game  
      created_a_group:  Has created team

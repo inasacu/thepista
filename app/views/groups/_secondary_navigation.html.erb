@@ -1,4 +1,6 @@
-<% 	get_first_active ||=""
+<% 		
+	# group = item
+	get_first_active ||=""
 	get_first_active = get_active("#{get_the_controller}_#{get_the_action}") if is_controller('group') and is_action('index') 
 	is_not_new_item = !is_action('new')
 	
@@ -12,14 +14,15 @@
 	active_classified = get_active("#{get_the_controller}_#{get_the_action}") if the_controller.include?(get_the_controller)
 	
 	unless is_action('new')
-	content_for(:description, "#{h(@group.name)} / #{@group.sport.name},  #{h(@group.description) }.  #{@group.marker.name}, #{@group.time_zone}") if @group
-end
+		content_for(:description, "#{h(@group.name)} / #{@group.sport.name},  #{h(@group.description) }.  #{@group.marker.name}, #{@group.time_zone}") if @group
+	end
 %>
 
 <div class="secondary-navigation">
 	
 <ul>
-	<%= item_new(@group) %>	
+	<%= item_new(@group) %>		
+	
 	<li class="<%= get_first_active %>"><%=  link_to(label_name(:my_group), groups_path) unless @group %></li>
 	<li class="<%= get_active('group_list') %>"><%=  link_to(label_name(:all_group) , list_groups_path) unless @group %></li>
 	<li class="<%= get_active('group_show') %>"><%=  group_link(@group) if @group and is_not_new_item %></li>
@@ -41,9 +44,9 @@ end
 		end
 	end
 	
-	if has_classifieds 
+	if has_classifieds and is_not_new_item
 %>
-	<li class="<%= get_active('classified_index') %>">
+	<li class="<%= active_classified %>">
 		<%= link_to(label_name(:classifieds), classifieds_url(:id => @group)) if @group and is_not_new_item %>
 	</li>
 <%

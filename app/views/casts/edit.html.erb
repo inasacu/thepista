@@ -10,8 +10,7 @@
 
 <div class="block">
 
-  
-  <%= render "challenges/secondary_navigation", :challenge => @challenge %>
+  <%= get_secondary_navigation(@challenge) %>
 
   <div class="content">   
   
@@ -19,20 +18,19 @@
 	
     <div class="inner">
 	
-      <table class="table" id="<%= get_the_controller.gsub(' ','_') %>">
+      <%= get_class_table_id_controller %>
 	  
         <tr> 
-          <th class="first"><%= label_name(:jornada) %></th>
-	      <th><%= label_name(:name) %>&nbsp;/<br />
-			  <%= label_name(:gameday_at) %></th>
-		  <th>&nbsp;</th>
-		  <th>&nbsp;</th>
-		  <th>&nbsp;</th>
-		  <th><%= label_name(:matches) %></th>
-          <th>&nbsp;</th>
-          <th>&nbsp;</th>
-          <th>&nbsp;</th>
-          <th class="last">&nbsp;</th>
+			<%= content_tag :th, label_name(:jornada), :class => "first" %>
+			<%= content_tag :th, "#{label_name(:name)}<br />#{label_name(:gameday_at)}", :class => "heading" %>
+			<%= content_tag :th, "", :class => "heading" %>
+			<%= content_tag :th, "", :class => "heading" %>
+			<%= content_tag :th, "", :class => "heading" %>
+			<%= content_tag :th, label_name(:matches), :class => "heading" %>
+			<%= content_tag :th, "", :class => "heading" %>
+			<%= content_tag :th, "", :class => "heading" %>
+			<%= content_tag :th, "", :class => "heading" %>	
+			<%= content_tag :th, "&nbsp;", :class => "last" %>
 		</tr>
         
 		<% form_for @cast, :url => cast_path(@cast), :html => { :class => :form } do |f| -%>
@@ -128,7 +126,7 @@
 
 		<% end -%>
 		
-		<table class="table" id="<%= get_the_controller.gsub(' ','_') %>">
+		<%= get_class_table_id_controller %>
 
 	        <tr>
 

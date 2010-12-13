@@ -1,9 +1,11 @@
-<% 	get_first_active ||=""
-	get_first_active = get_active("#{get_the_controller}_#{get_the_action}") if is_controller('challenge') and is_action('index')
+<% 	
+	challenge = item
+	get_first_active ||=""
 		
 	the_controller = ['challenges', 'cast']	
 	the_action = ['show', 'edit', 'challenge list', 'show list', "item list", "item complete"]
-	# the_label = "" 
+	
+	get_first_active = get_active("#{get_the_controller}_#{get_the_action}") if is_controller('challenge') and is_action('index')
 	is_cast_edit = get_active("#{get_the_controller}_#{get_the_action}") if is_controller('cast') and is_action('edit')
 %>
 
@@ -18,38 +20,37 @@
 <%
 	else
 -%>
-	<li class="<%= get_active('challenge_show') %>"><%= item_name_link(
-@challenge) %></li>
+	<li class="<%= get_active('challenge_show') %>"><%= item_name_link(challenge) %></li>
 <% 
 	if the_action.include?(get_the_action) or the_controller.include?(get_the_controller)
-		if current_user.is_member_of?(@challenge) 
-		the_blog = Blog.find_item(@challenge)
+		if current_user.is_member_of?(challenge) 
+		the_blog = Blog.find_item(challenge)
 %>		
 		<li class="<%= get_active('blog_show') %>"><%= blog_link(the_blog) %></li>
 		<li class="<%= get_active('challenge_challenge_list') %>">
-				<%=  link_to(label_name(:participants) , challenge_list_path(:id => @challenge)) %>
+				<%=  link_to(label_name(:participants) , challenge_list_path(:id => challenge)) %>
 		</li>
 		<li class="<%= get_active('cast_index') %>">
-				<%=  link_to(label_name(:casts_index) , casts_path(:id => @challenge, :user_id => current_user)) %>
+				<%=  link_to(label_name(:casts_index) , casts_path(:id => challenge, :user_id => current_user)) %>
 		</li>
 		<li class="<%= get_active('cast_list') %>">
-				<%=  link_to(label_name(:casts_list) , list_casts_path(:id => @challenge)) %>
+				<%=  link_to(label_name(:casts_list) , list_casts_path(:id => challenge)) %>
 		</li>
 		<li class="<%= get_active('cast_edit') %>">
-					<%= link_to label_name(:casts_edit), edit_cast_path(:id => @challenge) if is_cast_edit %>
+					<%= link_to label_name(:casts_edit), edit_cast_path(:id => challenge) if is_cast_edit %>
 		</li>
 		
-		<% if current_user.is_manager_of?(@challenge) %>
+		<% if current_user.is_manager_of?(challenge) %>
 		<!-- <li class="<%#= get_active('fee_item_list') %>">
-			<%#= link_to(label_name(:fees), item_list_fees_path(:id => @challenge, :item => @challenge.class.to_s)) %>
+			<%#= link_to(label_name(:fees), item_list_fees_path(:id => challenge, :item => challenge.class.to_s)) %>
 		</li> -->
 		<!-- <li class="<%#= get_active('fee_item_complete') %>">
-			<%#= link_to(label_name(:fees_complete), item_complete_fees_path(:id => @challenge, :item => @challenge.class.to_s)) %>
+			<%#= link_to(label_name(:fees_complete), item_complete_fees_path(:id => challenge, :item => challenge.class.to_s)) %>
 		</li> -->
 		<% end -%>	
 		
 		<li class="<%= get_active('standing_show') %><%= get_active('standing_show_list') %>">
-				<%= link_to(label_name(:points_full) , show_list_standings_path(:id => @challenge)) %>
+				<%= link_to(label_name(:points_full) , show_list_standings_path(:id => challenge)) %>
 		</li>
 <%		
 		end

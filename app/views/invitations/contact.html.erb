@@ -1,8 +1,6 @@
 <div class="block">
 
-    
-
-  <%= render :partial => '/users/secondary_navigation' %>
+  <%= get_secondary_navigation(User.new) %>
 
 	<div class="content">   
 
@@ -15,13 +13,13 @@
 			<% counter ||= 0 %>
 		
 		<fieldset id="roster">
-			<table class="table" id="<%= get_the_action.gsub(' ','_') %>">
+			<%= get_class_table_id_action %>
 
 				<tr>
-					<th class="first">&nbsp;</th>
-					<th><%= label_name(:name) %></th>
-					<th><%= label_name(:email) %></th>
-					<th class="last">&nbsp;</th>
+					<%= content_tag :th, "&nbsp;", :class => "first" %>
+					<%= content_tag :th, label_name(:name), :class => "heading" %>
+					<%= content_tag :th, label_name(:email), :class => "heading" %>	
+					<%= content_tag :th, "&nbsp;", :class => "last" %>
 				</tr>
 				
 				<% form_for :invitation, :url => invite_contact_url, :html => { :class => :form } do |f| -%>

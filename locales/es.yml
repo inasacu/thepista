@@ -213,6 +213,7 @@ es:
      created: se ha creado correctamente.   
      created_at:  Fecha de creación
      created_a_challenge:  Ha creado el reto
+     created_a_classified:  Ha puesto el <strong>anuncio</strong>
      created_a_cup:  Ha creado la copa
      created_a_game:  Ha añadido el partido  
      created_a_group:  Ha creado el equipo

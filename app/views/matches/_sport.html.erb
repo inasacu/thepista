@@ -5,7 +5,7 @@
 		
 	<div class="column left"> 
 		
-		<table class="table" id="<%= get_the_controller.gsub(' ','_') %>">
+		<%= get_class_table_id_controller %>
 			
 		<%= render :partial => 'match_basket_label' if @is_basket %>
 		<%= render :partial => 'match_futbol_label' unless @is_basket %>

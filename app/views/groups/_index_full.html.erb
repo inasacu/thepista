@@ -4,16 +4,14 @@
 	
 	<table class="table">
 
-	  <tr>             
-	    <th class="first">&nbsp;</th>
-	    <th><%= label_name(:name) %>&nbsp;/<br />
-			  <%= label_name(:gameday_at) %></th>
-	    <th><%= label_name(:manager) %>&nbsp;/<br />
-			  <%= label_name(:sport) %></th>
-	    <th><%= label_name(:time_zone) %></th>
-	    <th><%= label_name(:general_information) %></th>
-	    <th><%= label_name(:last_game_played) %></th>
-	    <th class="last">&nbsp;</th>
+	  <tr>     
+		<%= content_tag :th, "&nbsp;", :class => "first" %>
+		<%= content_tag :th, "#{label_name(:name)}<br />#{label_name(:gameday_at)}", :class => "heading" %>
+		<%= content_tag :th, "#{label_name(:manager)}<br />#{label_name(:sport)}", :class => "heading" %>
+		<%= content_tag :th, label_name(:time_zone), :class => "heading" %>
+		<%= content_tag :th, label_name(:general_information), :class => "heading" %>
+		<%= content_tag :th, "#{label_name(:scorecard)}<br />#{label_name(:last_game_played)}", :class => "heading" %>
+		<%= content_tag :th, "&nbsp;", :class => "last" %>
 	  </tr>
 
 	  <% @groups.each do |group| 

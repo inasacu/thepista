@@ -1,6 +1,6 @@
 <div class="block">
 
-  <%= render :partial => 'secondary_navigation' %>  
+  <%= get_secondary_navigation %>  
 
   <div class="content">   
   
@@ -10,11 +10,11 @@
 	
       <table class="table">
 	  
-        <tr>            
-          <th class="first">&nbsp;</th>
-          <th>Name</th>
-          <th>Created at</th>
-          <th class="last">&nbsp;</th>
+        <tr>         
+			<%= content_tag :th, "&nbsp;", :class => "first" %>
+			<%= content_tag :th, label_name(:name), :class => "heading" %>
+			<%= content_tag :th, label_name(:created_at), :class => "heading" %>	
+			<%= content_tag :th, "&nbsp;", :class => "last" %>
         </tr>
         <% @roles.each do |role| -%>
         <tr>

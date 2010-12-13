@@ -47,23 +47,23 @@
 		
 if roster_count 
 %>
-      <table class="table" id="<%= get_the_action.gsub(' ','_') %>">
+      <%= get_class_table_id_action %>
 	  
 		<tr>
-			<%= content_tag :th, "&nbsp;", :class => "no_line" %>
-			<%= content_tag :th, "&nbsp;", :class => "no_line" %>
-			<%= content_tag :th, has_been_played ? label_name(:name) : "#{label_name(:name)} <br/> / #{label_name(:change_at)}", :class => "no_line" %>
-			<%= content_tag :th, label_name(:ranking), :title => label_name(:ranking_full), :class => "no_line" %>
-			<%= content_tag :th, label_name(:participation), :title => label_name(:participation_full), :class => "no_line" %>
-			<%= content_tag :th, label_name(:position), :title => label_name(:position), :class => "no_line", :align => "center" %>
-			<%= content_tag :th, label_name(:technical), :title => label_name(:profile_technical), :class => "no_line" %>
-			<%= content_tag :th, label_name(:physical), :title => label_name(:profile_physical), :class => "no_line" %>
-			<%= content_tag :th, has_been_played ? label_name(:evaluation) : label_name(:group), :class => "no_line" if is_action %>
+			<%= content_tag :th, "&nbsp;", :class => "first" %>
+			<%= content_tag :th, "&nbsp;", :class => "heading" %>
+			<%= content_tag :th, has_been_played ? label_name(:name) : "#{label_name(:name)}<br/>#{label_name(:change_at)}", :class => "heading" %>
+			<%= content_tag :th, label_name(:ranking), :title => label_name(:ranking_full), :class => "heading" %>
+			<%= content_tag :th, label_name(:participation), :title => label_name(:participation_full), :class => "heading" %>
+			<%= content_tag :th, label_name(:position), :title => label_name(:position), :class => "heading", :align => "center" %>
+			<%= content_tag :th, label_name(:technical), :title => label_name(:profile_technical), :class => "heading" %>
+			<%= content_tag :th, label_name(:physical), :title => label_name(:profile_physical), :class => is_action('team roster') ? "heading" : "last" %>
+			<%= content_tag :th, has_been_played ? label_name(:evaluation) : label_name(:group), :class => "heading" if is_action %>
 			
 			<% if has_been_played and is_action %>
-			<%= content_tag :th, label_name(:score), :class => "no_line" %>
-			<% elsif !has_been_played %>
-			<%= content_tag :th, "", :class => "no_line" %>
+			<%= content_tag :th, label_name(:score), :class => "last" %>
+			<% elsif !has_been_played and is_action %>
+			<%= content_tag :th, "", :class => "last" %>
 			<% end -%>
 		</tr>
 <% 
@@ -150,14 +150,14 @@ the_roster.each do |match|
 		
 	</td>
 <% 	
-	if has_been_played 
+	if has_been_played and is_action
 %>	
 		<td class="<%= second_team %>" ><%= group_score_link @schedule if was_convocado %></td>
 <%		
 	end 
 	end
 
-unless has_been_played  
+unless has_been_played or !is_action
 %>	
 	<td class="<%= second_team %>" >
 <% 	

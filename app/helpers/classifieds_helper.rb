@@ -15,4 +15,10 @@ module ClassifiedsHelper
     # the_confirmation =  %(#{the_label}?)
     link_to(image_tag(the_image, :title => the_label, :style => "height: 16px; width: 16px;"), classified_path(classified), :method => :delete, :title => the_label)
   end
+  
+  
+
+  def classified_image_link_small(classified, image="")
+    link_to(image_tag(image, options={:style => "height: 15px; width: 15px;"}), classified_path(classified))
+  end
 end

@@ -19,10 +19,10 @@
 
 <div class="block">
 
-	<% unless is_right_guess %>	
-		<%= render "challenges/secondary_navigation", :challenge => @challenge %>
+	<% unless is_right_guess %>
+		<%= get_secondary_navigation(@challenge) %>	
 	<% else %>	
-		<%= render "cups/secondary_navigation", :cup => @cup %>
+		<%= get_secondary_navigation(@cup) %>
 	<% end %>
 
   <div class="content">   
@@ -33,28 +33,18 @@
 	
 	<% if object_counter(@casts) > 0 %>
 	
-      <table class="table" id="<%= get_the_controller.gsub(' ','_') %>">
+      <%= get_class_table_id_controller %>
 	  
         <tr> 
-          <th class="first"><%= label_name(:jornada) %></th>
-	      <th>	
-			<% unless is_right_guess %>
-				<%= label_name(:name) %>&nbsp;/<br />
-			  	<%= label_name(:gameday_at) %>
-			<% else %>
-				<%= label_name(:name) %>&nbsp;/<br />
-				<%= label_name(:challenge) %>
-			<% end %>
-			
-			
-		   </th>
-          <th><%= label_name(:participant) %>&nbsp;/<br />
-			  <%= label_name(:points) %></th>
-	      <th>&nbsp;</th>
-	          <th>&nbsp;</th>
-		  <th align="center"><%= label_name(:casts) %></th>
-          <th>&nbsp;</th>
-          <th class="last">&nbsp;</th>
+			<%= content_tag :th, label_name(:jornada), :class => "first" %>
+			<%= content_tag :th, "#{label_name(:name)}<br />#{label_name(:gameday_at)}", :class => "heading" unless is_right_guess %>
+			<%= content_tag :th, "#{label_name(:name)}<br />#{label_name(:challenge)}", :class => "heading" if is_right_guess %>			
+			<%= content_tag :th, "#{label_name(:participant)}<br />#{label_name(:points)}", :class => "heading" %>
+			<%= content_tag :th, "&nbsp;", :class => "heading" %>
+			<%= content_tag :th, "&nbsp;", :class => "heading" %>
+			<%= content_tag :th, label_name(:casts), :class => "heading", :align => "center" %>	
+			<%= content_tag :th, "&nbsp;", :class => "heading" %>
+			<%= content_tag :th, "&nbsp;", :class => "last" %>
 		</tr>
         
         <% @casts.each do |cast| 

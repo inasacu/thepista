@@ -1,6 +1,6 @@
 <div class="block">
 
-  <%= render :partial => 'secondary_navigation' %>  
+  <%= get_secondary_navigation %>  
 
   <div class="content">   
   
@@ -10,15 +10,13 @@
 	
       <table class="table">
 	  
-		<tr>             
-			<th class="first">&nbsp;</th>
-			<th><%=label_name(:name) %>&nbsp;/<br />
-				<%=label_name(:last_login_at) %>
-			</th>
-			<th><%=label_name(:group) %></th>
-			<th><%=label_name(:time_zone) %></th>
-			<th><%=label_name(:sport) %></th>
-			<th class="last">&nbsp;</th>
+		<tr>  
+			<%= content_tag :th, "&nbsp;", :class => "first" %> 
+			<%= content_tag :th, "#{label_name(:name)}<br />#{label_name(:last_login_at)}", :class => "heading" %>
+			<%= content_tag :th, label_name(:group), :class => "heading" %>
+			<%= content_tag :th, label_name(:time_zone), :class => "heading" %>
+			<%= content_tag :th, label_name(:sport), :class => "heading" %>	
+			<%= content_tag :th, "&nbsp;", :class => "last" %>
 		</tr>
 		
         <% @users.each do |user| -%>		

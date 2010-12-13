@@ -12,10 +12,10 @@ the_label = label_with_name('note', sanitize(@schedule.concept))
 
 		<table class="table">
 			<tr>             
-				<th class="clear">&nbsp;</th>
-				<th class="clear">&nbsp;</th>
-				<th class="clear">&nbsp;</th>
-				<th class="clear">&nbsp;</th>
+				<%= content_tag :th, "&nbsp;", :class => "clear" %>
+				<%= content_tag :th, "&nbsp;", :class => "clear" %>
+				<%= content_tag :th, "&nbsp;", :class => "clear" %>
+				<%= content_tag :th, "&nbsp;", :class => "clear" %>
 			</tr>
 			<%= render :partial => 'comments/comments', :locals => { :comments => @comments } %>
 		</table>			

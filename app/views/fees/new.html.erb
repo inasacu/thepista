@@ -1,26 +1,10 @@
 <% 
-@group = Group.find(@fee.credit_id) 
-
-# get subscription and non subscription users
-# @non_subscriptions = []
-# @subscriptions = []
-# @group.the_subscriptions.each do |subs|
-  # @subscriptions << subs.user_id 
-# end 
-
-# users who do not have subscriptions
-# @group.users.each do |user|
-  # @non_subscriptions << user.id unless @subscriptions.include?(user.id)
-# end
-
-# @user_subscription = User.find(:all, :conditions => ["id in (?)", @subscriptions], :order => 'name')
-# @user_non_subscription = User.find(:all, :conditions => ["id in (?)", @non_subscriptions], :order => 'name')
-
+	@group = Group.find(@fee.credit_id) 
 %>
 
 <div class="block">
 
-  <%= render :partial => '/groups/secondary_navigation' %>
+  <%= get_secondary_navigation(@group) %>
 
 	<div class="content">  
 

@@ -161,6 +161,11 @@ font-family:"Lucida Grande",Verdana,"Bitstream Vera Sans",Arial,sans-serif;
   padding: 10px 15px;  
 }
 
+.description {
+	text-align: left;
+	font-size: 1.25em;
+}
+
 #footer {
   padding-bottom: 20px;
 }

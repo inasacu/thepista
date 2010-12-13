@@ -42,7 +42,8 @@ class HomeController < ApplicationController
     
     Teammate.latest_teammates(@all_items) 
     Cup.latest_items(@all_items)
-    Group.latest_items(@all_items) 
+    Group.latest_items(@all_items)
+    Classified.latest_items(@all_items)
     Schedule.latest_items(@all_items)
     Challenge.latest_items(@all_items)    
     Schedule.latest_matches(@all_items)    
