@@ -264,6 +264,7 @@ es:
      current_time_zone: Zona del usuario   
      current_user: Usuario 
      dates:  Fechas  
+     days_left:  Faltan
      deadline_at:  Fecha de cierre de inscripción 
      deadline_at_description:  Fecha de cierre de inscripción 
      debit: Cargo   

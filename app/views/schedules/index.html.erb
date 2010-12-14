@@ -27,13 +27,13 @@
 	  
         <tr> 
 			<%= content_tag :th, "&nbsp;", :class => "first" %>
-			<%= content_tag :th, label_name(:concept), :class => "heading" %>
-			<%= content_tag :th, label_name(:group), :class => "heading" %>	
+			<%= content_tag :th, "#{label_name(:concept)}<br/>#{label_name(:gameday_at)}", :class => "heading" %>
+			<%= content_tag :th, "#{label_name(:group)}<br/>#{label_name(:sport)}", :class => "heading" %>	
 			<%= content_tag :th, "&nbsp;", :class => "heading" %>
-			<%= content_tag :th, "&nbsp;", :class => "heading" %>
-			<%= content_tag :th, "&nbsp;", :class => "heading" %>
+			<%= content_tag :th, label_name(:convocados), :class => "heading" %>
+			<%= content_tag :th, label_name(:evaluation), :class => "heading" %>
 			<%= content_tag :th, "&nbsp;", :class => "heading" if current_user.is_member_of?(@schedules.first.group) %>
-			<%= content_tag :th, "&nbsp;", :class => "last" %>
+			<%= content_tag :th, label_name(:marker), :class => "last" %>
 		</tr>
         
         <% @schedules.each do |schedule| 

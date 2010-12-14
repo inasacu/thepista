@@ -264,6 +264,7 @@ en:
      current_time_zone: Player Time Zone  
      current_user: Player 
      dates:  Dates  
+     days_left:  Days Left
      deadline_at:  Subscription Deadline
      deadline_at_description:  Subscription Deadline 
      debit: Fee   
