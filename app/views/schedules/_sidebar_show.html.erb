@@ -32,10 +32,10 @@
 		<%= link_to control_label('edit'), edit_schedule_path(@schedule) unless @schedule.last_season?(current_user) %>
 		</p>  
 		
-		<%  unless get_the_controller == 'topic' %> 
+		<%  if get_the_controller != 'topic' and !@schedule.played? %> 
 		<p>
 		<%= option_image_link('schedule') %>&nbsp;&nbsp;
-		<%= link_to control_label('destroy'), schedule_path(@schedule), :method => :delete, :confirm => label_name(:are_you_sure) unless @schedule.played? %>
+		<%= link_to control_label('destroy'), schedule_path(@schedule), :method => :delete, :confirm => label_name(:are_you_sure) %>
 		</p>
 		<% end -%>
 		
