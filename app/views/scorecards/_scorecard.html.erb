@@ -22,7 +22,7 @@
 
 <tr>
 	<td class="puntos" align="center">
-		<%= scorecard.ranking %>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		<%= scorecard.ranking %>&nbsp;&nbsp;
 		<%= subscription_image_link(scorecard.user, user_played ? "orange_#{user_played}" : "#{user_played}", I18n.t("game_played_#{user_played}")) unless mailer %>		
 	</td>
 	<td class="equipos"><%= mailer ? "&nbsp;" : item_image_link_tiny(scorecard.user) %></td>

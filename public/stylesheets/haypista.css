@@ -218,6 +218,11 @@ hr {
 	padding: 8px;
 }
 
+.table th.heading_last {
+	border-top: 1px solid #cfcfcf;	
+	border-right: 1px solid #cfcfcf;
+}
+
 .table th.last {
 	border-top: 1px solid #cfcfcf;	
 	border-right: 1px solid #cfcfcf;

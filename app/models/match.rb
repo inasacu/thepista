@@ -107,22 +107,25 @@ class Match < ActiveRecord::Base
                 "order by schedules.starts_at desc", user_id, group_id])
   end
 
-  def self.find_all_previous_schedules(user_id, group_id)
-    find(:all, 
-         :conditions => ["schedule_id in (" +
-                        "select id from schedules where group_id = #{group_id} and played = true and id not in " +
-                        "(select max(id) as id from schedules where group_id = #{group_id} and played = true)) " +
-                         "and (group_id = #{group_id} or invite_id = #{group_id}) " +
-                         "and user_id = #{user_id} and type_id = 1 and archive = false"],
-         :order => "id")
-  end
+  # def self.find_all_previous_schedules(user_id, group_id)
+  #   find(:all, 
+  #        :conditions => ["schedule_id in (" +
+  #                       "select id from schedules where group_id = #{group_id} and played = true and id not in " +
+  #                       "(select max(id) as id from schedules where group_id = #{group_id} and played = true)) " +
+  #                        "and (group_id = #{group_id} or invite_id = #{group_id}) " +
+  #                        "and user_id = #{user_id} and type_id = 1 and archive = false"],
+  #        :order => "id")
+  # end
     
-  def self.find_all_schedules(user_id, group_id)
-    find(:all, 
-         :conditions => ["schedule_id in (select id from schedules where group_id = #{group_id} and played = true) " +
-                         "and (group_id = #{group_id} or invite_id = #{group_id}) " +
-                         "and user_id = #{user_id} and type_id = 1 and archive = false"],
-         :order => "id")
+  def self.find_all_schedules(user_id, group_id, previous_matches=true)
+    matches = []
+    all_matches = Match.find(:all, :joins => "LEFT JOIN schedules on matches.schedule_id = schedules.id",
+                                   :conditions => ["schedules.group_id = #{group_id} and schedules.played = true and schedules.archive = false and
+                                                    matches.user_id = #{user_id} and matches.type_id = 1 and matches.archive = false"], :order => "schedules.starts_at DESC")
+
+    first = previous_matches
+    all_matches.each {|match| matches << match unless first; first = false;}	
+    return matches
   end
     
   def self.user_upcoming_match(user)
