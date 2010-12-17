@@ -1353,6 +1353,7 @@ es:
      use_at_discretion: Nueva opción para entrar.  Si tienes una cuenta entra con tu cuenta original.
      use_openid: O entra con OpenID 
      use_login:  O entra con tu cuenta de correo
+     user_private_profile:  Jugador tiene el perfil oculto.
      user_haypista_signup: O Registrate con tu cuenta de correo.
      use_standard_login: utiliza el estándar de acceso de usuario / contraseña     
      user: Jugador   

@@ -1353,6 +1353,7 @@ en:
      use_at_discretion: New option to enter. If you have a go with your original account.
      use_openid: Or use your OpenID 
      use_login:  Or use your email 
+     user_private_profile:  Player has private profile set.
      user_haypista_signup: Or Signup with your email account.
      use_standard_login: access using a username and password     
      user: Player   

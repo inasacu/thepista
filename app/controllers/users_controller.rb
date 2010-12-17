@@ -515,13 +515,13 @@ private
   
   def get_user_member
     @user = User.find(params[:id])
-    
-    if current_user.is_user_member_of?(@user)      
-    elsif !@user.private_profile
-    else
-      flash[:warning] = I18n.t(:unauthorized)
-      redirect_to root_url
-      return
+
+    if @user.private_profile
+      unless current_user.is_user_member_of?(@user)    
+        flash[:warning] = I18n.t(:user_private_profile)
+        redirect_to root_url
+        return
+      end
     end
   end
   
