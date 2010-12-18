@@ -26,7 +26,8 @@ class Scorecard < ActiveRecord::Base
         @scorecards = Scorecard.find(:all, :conditions =>["group_id = ? and user_id > 0 and archive = ?", group, false])
 
         @scorecards.each do |scorecard|  
-          @matches = Match.find_all_previous_schedules(scorecard.user_id, scorecard.group_id)
+          # @matches = Match.find_all_previous_schedules(scorecard.user_id, scorecard.group_id)
+          @matches = Match.find_all_schedules(scorecard.user_id, scorecard.group_id)
           update_group_user_scorecard(group, user, scorecard, @matches, true)
           previous_matches = true
           
@@ -42,7 +43,7 @@ class Scorecard < ActiveRecord::Base
         @scorecards = Scorecard.find(:all, :conditions =>["group_id = ? and user_id > 0 and archive = ?", group, false])
 
         @scorecards.each do |scorecard|  
-          @matches = Match.find_all_schedules(scorecard.user_id, scorecard.group_id)
+          @matches = Match.find_all_schedules(scorecard.user_id, scorecard.group_id, false)
           update_group_user_scorecard(group, user, scorecard, @matches, false)
           previous_matches = true
           
@@ -171,15 +172,15 @@ class Scorecard < ActiveRecord::Base
 
     # ranking
     unless previous_matches
-      @scorecards = Scorecard.find(:all, 
-      :conditions =>["group_id = ? and user_id > 0 and played > 0 and archive = false", group.id], 
-      :order => 'points desc, (scorecards.points / (scorecards.played * 10)) desc')
+      @scorecards = Scorecard.find(:all, :joins => "LEFT JOIN users on users.id = scorecards.user_id",
+                        :conditions =>["scorecards.group_id = ? and scorecards.user_id > 0 and scorecards.played > 0 and scorecards.archive = false", group.id], 
+                        :order => 'points desc, users.name')
       
     # previous ranking
     else
-      @scorecards = Scorecard.find(:all, 
-      :conditions =>["group_id = ? and user_id > 0 and played > 0 and archive = false", group.id], 
-      :order => 'previous_points desc, (scorecards.points / (scorecards.played * 10)) desc')
+      @scorecards = Scorecard.find(:all, :joins => "LEFT JOIN users on users.id = scorecards.user_id",
+                      :conditions =>["scorecards.group_id = ? and scorecards.user_id > 0 and scorecards.played > 0 and scorecards.archive = false", group.id], 
+                      :order => 'scorecards.previous_points desc, users.name')
     end
 
     @scorecards.each do |scorecard| 
@@ -197,20 +198,26 @@ class Scorecard < ActiveRecord::Base
         first, ranking, past_points, last = scorecard.group_id, 0, 0, 1
       end 
 
-      if (past_points == points) 
-        last += 1          
-      else
-        ranking += last
-        last = 1          
-      end
+      # using ranking system, where if two users have same points ranking is the same
+      # if (past_points == points) 
+      #   last += 1          
+      # else
+      #   ranking += last
+      #   last = 1          
+      # end
+      
+      # using european ranking system where regardless of users having same points, ranking is based on points and name order 
+      ranking += 1
       past_points = points  
 
+      the_scorecard = Scorecard.find(scorecard.id)
+      
       # current ranking
       unless previous_matches
-        scorecard.update_attribute(:ranking, ranking)
+        the_scorecard.update_attribute(:ranking, ranking)
         # previous ranking
       else
-        scorecard.update_attribute(:previous_ranking, ranking)
+        the_scorecard.update_attribute(:previous_ranking, ranking)
       end
 
     end
@@ -243,14 +250,12 @@ class Scorecard < ActiveRecord::Base
   # Return true if the group nil
   def self.group_exists?(group)
     find(:first, :conditions => ["group_id = ? and (archive = ? or season_ends_at is null or season_ends_at < ?)", group.id, false, Time.zone.now]).nil?
-    # find_by_group_id(group).nil?
   end
   
   # Return true if the user and group nil
   def self.user_group_exists?(user, group)
     find(:first, 
     :conditions => ["user_id = ? and group_id = ? and (archive = ? or season_ends_at is null or season_ends_at < ?)", user.id, group.id, false, Time.zone.now]).nil?
-    # find_by_group_id_and_user_id(group, user).nil?
   end
   
   def self.archive?
