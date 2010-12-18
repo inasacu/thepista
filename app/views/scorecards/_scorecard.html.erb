@@ -21,7 +21,7 @@
 %>
 
 <tr>
-	<td class="puntos" align="center">
+	<td class="ranking" align="center">
 		<%= scorecard.ranking %>&nbsp;&nbsp;
 		<%= subscription_image_link(scorecard.user, user_played ? "orange_#{user_played}" : "#{user_played}", I18n.t("game_played_#{user_played}")) unless mailer %>		
 	</td>
@@ -37,12 +37,12 @@
 	</td>
 	<td class="jugados"><%= mailer ? "&nbsp;" : image %>&nbsp;<%= mailer ? "&nbsp;" : ranking_change %></td>
 	<td class="puntos"><%= scorecard.points.round %></td>
-	<td class="ganados"><%= scorecard.wins %></td>
-	<td class="empatados"><%= scorecard.draws %></td>
-	<td class="perdidos"><%= scorecard.losses %></td>
+	<td class="partidos"><%= scorecard.wins %></td>
+	<td class="partidos"><%= scorecard.draws %></td>
+	<td class="partidos"><%= scorecard.losses %></td>
 	
 	<%  if group.is_futbol?  %>
-	<td class="jugados"><%= scorecard.goals_scored %></td>
+	<td class="goles"><%= scorecard.goals_scored %></td>
 	<!-- <td class="jugados"><%#= scorecard.assists %></td> -->
 	<!-- <td class="afavor"><%#= scorecard.goals_for %></td> -->
 	<!-- <td class="encontra"><%#= scorecard.goals_against %></td> -->
@@ -51,7 +51,7 @@
 		
 	<td class="jugados"><%= scorecard.played %></td>
 	<!-- <td class="jugados"><%#= scorecard.assigned %></td> -->
-	<td class="puntos"><%= mailer ? sprintf( "%0.0f", scorecard.coeficient_points)  : scorecard.coeficient_points.to_f.round %></td>
+	<td class="jugados"><%= mailer ? sprintf( "%0.0f", scorecard.coeficient_points)  : scorecard.coeficient_points.to_f.round %></td>
 	<td class="jugados"><%= sprintf( "%0.00f", scorecard.coeficient_played) %><%= "%" %></td>
 </tr>
 

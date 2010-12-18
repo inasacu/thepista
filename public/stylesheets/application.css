@@ -327,10 +327,32 @@ text_area.textfield {
 	padding: 4px 10px;
 }
 
+.table td.ranking { 
+	color: black; 
+	font-weight: bold; 
+}
+
+.table td.jugados { 
+	color: gray; 
+	font-weight: bold; 
+}
+
+
 .table td.puntos { 
 	color: darkblue; 
 	font-weight: bold; 
 }
+
+.table td.partidos { 
+	color: green; 
+	font-weight: bold; 
+}
+
+.table td.goles { 
+	color: purple; 
+	font-weight: bold; 
+}
+
 
 td.subscription_false { 
 	color: darkred; 
