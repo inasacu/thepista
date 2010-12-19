@@ -1,11 +1,6 @@
 <%
  	mailer ||= false
 	switch ||= false
-	# max_points = scorecard.played.to_i * group.points_for_win.to_i
-	# coeficient = 0
-	# coeficient = 100 *(scorecard.points.to_f/max_points.to_f) 
-	# coeficient_points = scorecard.points.to_f * (scorecard.points.to_f/max_points.to_f) 
-	# coeficient_played = 100 *(scorecard.played.to_f / games_played.to_f)
 	
 	unless mailer
 		image = scorecard_image_link("arrow_down.png") if (scorecard.ranking > scorecard.previous_ranking) 
@@ -22,7 +17,7 @@
 
 <tr>
 	<td class="ranking" align="center">
-		<%= scorecard.ranking %>&nbsp;&nbsp;
+		<%= scorecard.ranking %>.&nbsp;&nbsp;
 		<%= subscription_image_link(scorecard.user, user_played ? "orange_#{user_played}" : "#{user_played}", I18n.t("game_played_#{user_played}")) unless mailer %>		
 	</td>
 	<td class="equipos"><%= mailer ? "&nbsp;" : item_image_link_tiny(scorecard.user) %></td>
@@ -51,7 +46,7 @@
 		
 	<td class="jugados"><%= scorecard.played %></td>
 	<!-- <td class="jugados"><%#= scorecard.assigned %></td> -->
-	<td class="jugados"><%= mailer ? sprintf( "%0.0f", scorecard.coeficient_points)  : scorecard.coeficient_points.to_f.round %></td>
+	<td class="puntos"><%= mailer ? sprintf( "%0.0f", scorecard.coeficient_points)  : scorecard.coeficient_points.to_f.round %></td>
 	<td class="jugados"><%= sprintf( "%0.00f", scorecard.coeficient_played) %><%= "%" %></td>
 </tr>
 

@@ -328,12 +328,14 @@ text_area.textfield {
 }
 
 .table td.ranking { 
-	color: black; 
+/*	color: black; */
+	color: darkblue; 	
 	font-weight: bold; 
 }
 
 .table td.jugados { 
-	color: gray; 
+/*	color: gray; */
+	color: #052B43;
 	font-weight: bold; 
 }
 
@@ -344,7 +346,7 @@ text_area.textfield {
 }
 
 .table td.partidos { 
-	color: green; 
+	color: #3F6B00;
 	font-weight: bold; 
 }
 
