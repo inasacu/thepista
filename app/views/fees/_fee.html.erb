@@ -17,17 +17,13 @@
 	
 	<td class="name_and_date">
 		<% unless credit_link.blank? %>
-		<span class="label"><%= label_name(:from) %>:</span>
+		<span class="label"><%= label_name(:from_up) %>:</span>
 		<%= credit_link %><br/>
 		<% end %>
 		</span>
-		<span class="label"><%= label_name(:to) %>:</span>
-		<%= debit_link %>
 	</td>
 
-	<td>
-		<%= item_link %>&nbsp;
-	</td>
+	<td><%= item_link %></td>
 
 	<td class="name_and_date">
 		<%= nice_full_date(fee.created_at) %><br />

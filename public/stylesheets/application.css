@@ -209,8 +209,8 @@ text_area.textfield {
 	text-decoration: none; 
 }
 
-.next_message { float: left; background-image: url('../../images/resultset_previous.png'); }
-.previous_message { float: right; background-image: url('../../images/resultset_next.png'); }
+.next_message { float: left; background-image: url('../../images/previo-evento.png'); }
+.previous_message { float: right; background-image: url('../../images/proximo-evento.png'); }
 
 
 /* tables */

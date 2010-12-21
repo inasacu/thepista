@@ -421,7 +421,8 @@ es:
      enable_comments:  Habilitar comentarios
      for:  para
      from: de  
-     from_de: de 
+     from_de: de
+     from_up: De 
      from_Ausente: Pasate a Ultima hora   
      from_Convocado: Pasate a ausente
      from_message: De   

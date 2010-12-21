@@ -60,13 +60,13 @@
 	home["total_difference"] = "-#{home["total_difference"]}" if home["is_total_lower"] and !away["is_total_lower"] 
 	away["total_difference"] = "-#{away["total_difference"]}" if !home["is_total_lower"] and away["is_total_lower"]
 	
-	home["image"] = scorecard_image_link("arrow_up.png") if home["total_difference"] > away["total_difference"]
-	home["image"] = scorecard_image_link("arrow_down.png") if home["total_difference"] < away["total_difference"]
-	home["image"] = scorecard_image_link("arrow_right.png") if home["total_difference"] == away["total_difference"]
+	home["image"] = scorecard_image_link("subir-clasificacion.png") if home["total_difference"] > away["total_difference"]
+	home["image"] = scorecard_image_link("bajar-clasificacion.png") if home["total_difference"] < away["total_difference"]
+	home["image"] = scorecard_image_link("mantener-clasificacion.png") if home["total_difference"] == away["total_difference"]
 	
-	away["image"] = scorecard_image_link("arrow_up.png") if away["total_difference"] > home["total_difference"]
-	away["image"] = scorecard_image_link("arrow_down.png") if away["total_difference"] < home["total_difference"]
-	away["image"] = scorecard_image_link("arrow_right.png") if away["total_difference"] == home["total_difference"]
+	away["image"] = scorecard_image_link("subir-clasificacion.png") if away["total_difference"] > home["total_difference"]
+	away["image"] = scorecard_image_link("bajar-clasificacion.png") if away["total_difference"] < home["total_difference"]
+	away["image"] = scorecard_image_link("mantener-clasificacion.png") if away["total_difference"] == home["total_difference"]
 %>
 <tr>
 	<%= content_tag :td, "&nbsp;", :class => "no_line" %>

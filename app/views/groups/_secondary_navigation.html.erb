@@ -11,7 +11,7 @@
 	the_action = ['show','edit', 'team list', 'schedule list']
 	the_controller = ['blog', 'classified', 'fee', 'payment']
 	active_classified ||= ""
-	active_classified = get_active("#{get_the_controller}_#{get_the_action}") if the_controller.include?(get_the_controller)
+	active_classified = get_active("#{get_the_controller}_#{get_the_action}") if is_controller('classified')
 	
 	unless is_action('new')
 		content_for(:description, "#{h(@group.name)} / #{@group.sport.name},  #{h(@group.description) }.  #{@group.marker.name}, #{@group.time_zone}") if @group

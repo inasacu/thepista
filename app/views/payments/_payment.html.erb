@@ -19,33 +19,17 @@
 	</td>
 		
 	<td class="name_and_date">
-		<span class="label"><%= label_name(:from) %>:</span>
-		<%= debit_link %><br/>
-		
-		<% unless credit_link.blank? %>
-		<span class="label"><%= label_name(:to) %>:</span>
-		<%= credit_link %><br/>
-		<% end %>
-		
-		</span>
+		<span class="label"><%= label_name(:from_up) %>:</span>
+		<%= debit_link %>
 		<span class="date">			
-		<%= ago(payment.created_at) %>
+		<%= nice_full_date(payment.created_at) %>
 		</span>
 	</td>
 
-	<td>
-		<%= item_link %>
-	</td>
-	
-	<td class="name_and_date">
-		<%= nice_full_date(payment.created_at) %><br />
-		<span class="date">
-			<%= has_left(payment.created_at) if Time.zone.now < payment.created_at %>
-		</span>
-	</td
-		
+	<td><%= item_link %></td>
 	<td>&nbsp;</td>
 	<td><%= number_to_currency(payment.debit_amount) %></td>
+	<td>&nbsp;</td>
 	
    <td class="last">
 	<span class="action">

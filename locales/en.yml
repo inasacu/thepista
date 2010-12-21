@@ -422,6 +422,7 @@ en:
      for:  for
      from: from 
      from_de:  for  
+     from_up:  From
      from_Ausente: Change to Last Minute   
      from_Convocado: Change to No-Show   
      from_message: from   

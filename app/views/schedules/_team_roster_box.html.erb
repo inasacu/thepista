@@ -57,12 +57,12 @@ if roster_count
 			<%= content_tag :th, label_name(:participation), :title => label_name(:participation_full), :class => "heading" %>
 			<%= content_tag :th, label_name(:position), :title => label_name(:position), :class => "heading", :align => "center" %>
 			<%= content_tag :th, label_name(:technical), :title => label_name(:profile_technical), :class => "heading" %>
-			<%= content_tag :th, label_name(:physical), :title => label_name(:profile_physical), :class => is_action('team roster') ? "heading" : "last" %>
+			<%= content_tag :th, label_name(:physical), :title => label_name(:profile_physical), :class => "heading" %>
 			<%= content_tag :th, has_been_played ? label_name(:evaluation) : label_name(:group), :class => "heading" if is_action %>
 			
-			<% if has_been_played and is_action %>
+			<% if has_been_played %>
 			<%= content_tag :th, label_name(:score), :class => "last" %>
-			<% elsif !has_been_played and is_action %>
+			<% elsif !has_been_played %>
 			<%= content_tag :th, "", :class => "last" %>
 			<% end -%>
 		</tr>
@@ -157,7 +157,7 @@ the_roster.each do |match|
 	end 
 	end
 
-unless has_been_played or !is_action
+unless has_been_played 
 %>	
 	<td class="<%= second_team %>" >
 <% 	

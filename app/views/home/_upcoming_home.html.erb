@@ -25,7 +25,7 @@
 		
 		item_group_link = item_name_link(teammate.group)
 		
-		the_icon = schedule_image_link_small(teammate, "calendar.png")
+		the_icon = schedule_image_link_small(teammate, "calendario.png")
 		
 		is_member = current_user.is_member_of?(teammate.group)
 		if teammate.played?
@@ -73,7 +73,7 @@
 				item_group_link = item_name_link(group)
 
 				the_icon = group_avatar_image_link(teammate) if teammate.class.to_s == "Group"
-				the_icon = classified_image_link_small(teammate, "icons/classified.png")
+				the_icon = classified_image_link_small(teammate, "icons/anuncio-deportivo.png")
 			end
 		
 	when "User"
