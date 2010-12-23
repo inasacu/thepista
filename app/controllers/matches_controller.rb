@@ -73,7 +73,7 @@ class MatchesController < ApplicationController
     end
     if @match.update_attributes(params[:match])
       Match.save_matches(@match, params[:match][:match_attributes]) if params[:match][:match_attributes]
-      Match.update_match_details(@match, current_user)
+      Match.update_match_details(@match)
 
       flash[:success] = I18n.t(:successful_update)
       redirect_to :controller => 'schedules', :action => 'show', :id => @match.schedule
@@ -95,8 +95,11 @@ class MatchesController < ApplicationController
 
     if @match.update_attributes(:type_id => @type.id, :played => played, :user_x_two => @user_x_two, :status_at => Time.zone.now)
       Scorecard.calculate_user_played_assigned_scorecard(@match.user, @match.schedule.group)
-      # Match.log_activity_convocado(@match)
-
+      
+      # set fee type_id to same as match type_id
+      the_fee = Fee.find(:all, :conditions => ["debit_type = 'User' and debit_id = ? and item_type = 'Schedule' and item_id = ?", @match.user_id, @match.schedule_id])
+      the_fee.each {|fee| fee.type_id = @type.id; fee.save}
+      
       flash[:success] = I18n.t(:is_available_user) 
     end 
 

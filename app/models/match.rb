@@ -106,27 +106,24 @@ class Match < ActiveRecord::Base
                 "and schedules.group_id = ? " +
                 "order by schedules.starts_at desc", user_id, group_id])
   end
-
-  # def self.find_all_previous_schedules(user_id, group_id)
-  #   find(:all, 
-  #        :conditions => ["schedule_id in (" +
-  #                       "select id from schedules where group_id = #{group_id} and played = true and id not in " +
-  #                       "(select max(id) as id from schedules where group_id = #{group_id} and played = true)) " +
-  #                        "and (group_id = #{group_id} or invite_id = #{group_id}) " +
-  #                        "and user_id = #{user_id} and type_id = 1 and archive = false"],
-  #        :order => "id")
-  # end
     
   def self.find_all_schedules(user_id, group_id, previous_matches=true)
     matches = []
     all_matches = Match.find(:all, :joins => "LEFT JOIN schedules on matches.schedule_id = schedules.id",
                                    :conditions => ["schedules.group_id = #{group_id} and schedules.played = true and schedules.archive = false and
-                                                    matches.user_id = #{user_id} and matches.type_id = 1 and matches.archive = false"], :order => "schedules.starts_at DESC")
+                                                    matches.user_id = #{user_id} and matches.archive = false"], :order => "schedules.starts_at DESC")
 
-    first = previous_matches
-    all_matches.each {|match| matches << match unless first; first = false;}	
-    return matches
-  end
+      first = previous_matches        # remove previous match
+      
+      all_matches.each do |match| 
+        unless first
+          matches << match if match.type_id == 1
+        end
+        first = false
+      end	
+
+      return matches
+    end
     
   def self.user_upcoming_match(user)
     find(:all,
@@ -143,7 +140,7 @@ class Match < ActiveRecord::Base
     Scorecard.send_later(:calculate_group_scorecard, group)
   end
   
-  def self.update_match_details(the_match, user)
+  def self.update_match_details(the_match, forum_comment=true)
     @schedule = the_match.schedule    
     @schedule.played = (!the_match.group_score.nil? and !the_match.invite_score.nil?)
     @schedule.save!
@@ -175,8 +172,7 @@ class Match < ActiveRecord::Base
     the_match ||= "..."
     @schedule.forum.description = the_match.description
     Scorecard.send_later(:calculate_group_scorecard, @schedule.group)
-    # Post.create_topic_post(@schedule.forum, @schedule.forum.topics.first, user, the_match.description) if @schedule.played?
-    @schedule.forum.comments.create(:body => the_match.description, :user => user)  if @schedule.played?   
+    @schedule.forum.comments.create(:body => the_match.description, :user => user)  if @schedule.played? and forum_comment
   end
 
   def self.save_matches(the_match, match_attributes)
