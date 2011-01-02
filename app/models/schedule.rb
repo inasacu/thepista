@@ -94,7 +94,7 @@ class Schedule < ActiveRecord::Base
   def self.match_participation(group, users, schedules)
     find(:all, :select => "distinct schedules.*",  
                :joins => "left join matches on matches.schedule_id  = schedules.id",
-               :conditions => ["schedule_id in (?) and user_id in (?) and type_id = 1", group.schedules, users]).each do |schedule|
+               :conditions => ["user_id in (?) and type_id = 1 and schedule_id in (?)", users, group.schedules]).each do |schedule|
       schedules << schedule
     end
   end
@@ -231,14 +231,16 @@ class Schedule < ActiveRecord::Base
 
   def self.previous(schedule, option=false)
     if self.count(:conditions => ["id < ? and group_id = ?", schedule.id, schedule.group_id] ) > 0
-      return find(:first, :select => "max(id) as id", :conditions => ["id < ? and group_id = ?", schedule.id, schedule.group_id]) 
+      # return find(:first, :select => "max(id) as id", :conditions => ["id < ? and group_id = ?", schedule.id, schedule.group_id]) 
+      return find(:first, :select => "id", :conditions => ["group_id = ? and starts_at < ?", schedule.group_id, schedule.starts_at], :order => "starts_at desc")
     end
     return schedule
   end 
 
   def self.next(schedule, option=false)
     if self.count(:conditions => ["id > ? and group_id = ?", schedule.id, schedule.group_id]) > 0
-      return find(:first, :select => "min(id) as id", :conditions => ["id > ? and group_id = ?", schedule.id, schedule.group_id])
+      # return find(:first, :select => "min(id) as id", :conditions => ["id > ? and group_id = ?", schedule.id, schedule.group_id])
+      return find(:first, :select => "id", :conditions => ["group_id = ? and starts_at > ?", schedule.group_id, schedule.starts_at], :order => "starts_at")
     end
     return schedule
   end

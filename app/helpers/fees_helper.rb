@@ -18,7 +18,7 @@ module FeesHelper
       debit_object = Marker.find(fee.debit_id)
     when 'Challenge'
       debit_link =  item_name_link(
-fee.debit)
+      fee.debit)
       debit_object = Challenge.find(fee.debit_id)
     end
     return debit_link, debit_object
@@ -42,7 +42,7 @@ fee.debit)
       credit_object = Marker.find(fee.credit_id)
     when 'Challenge'
       credit_link =  item_name_link(
-fee.credit)
+      fee.credit)
       credit_object = Challenge.find(fee.credit_id)
     end
     return credit_link, credit_object
@@ -66,11 +66,20 @@ fee.credit)
       item_object = Marker.find(fee.item_id)  
     when 'Challenge'
       item_link =  item_name_link(
-fee.item)
+      fee.item)
       item_object = Challenge.find(fee.item_id)
     end
     return item_link, item_object
   end
   
+  def fee_group_user(group, user)
+    fees, payments, debit_fee, debit_payment = [], [], [], []
+		
+    fees = Fee.debit_user_item_schedule(user, group)
+    payments = Payment.debit_user_item_schedule(user, group)	
+    debit_fee = Fee.sum_debit_amount_fee(fees)
+    debit_payment = Payment.sum_debit_payment(payments)
+    return fees, payments, debit_fee, debit_payment
+  end
 end
 

@@ -1,0 +1,110 @@
+<% 
+total_fees = 0.0
+total_payments = 0.0
+
+users.each do |user| 
+	has_fees = false
+	current_debit, current_crebit, total_debit_amount, total_credit_amount, fee_debit_id = 0.0,  0.0,  0.0,  0.0,  0
+	
+	fees, payments, debit_fee, debit_payment = fee_group_user(group, user)
+
+	total_debit_amount = debit_fee.debit_amount
+	total_credit_amount = debit_payment.debit_amount
+
+	total_owe = total_debit_amount.to_f - total_credit_amount.to_f
+	payment_due = total_owe > 0.0
+
+	total_fees += total_debit_amount
+	total_payments += total_credit_amount
+
+	total_debit_amount =  number_to_currency(total_debit_amount)
+	total_credit_amount =  number_to_currency(total_credit_amount)
+	total_owe = number_to_currency(total_owe)
+	
+	credit_link, credit_object = fee_credit(fees.first)
+-%>	
+	<tr>
+	  <td><%= image_link_small(user) %></td>			  
+	  <td class="name_and_date">
+		<%= user_link(user) %>
+		<span class="date"><%= h(credit_object.name) %></span>
+	  </td>
+	  	 
+	  <td class="name_and_date">
+		<% fees.each do |fee| 					
+			item_link, item_object = fee_item(fee)
+		%>
+			<%= item_link %>					
+			<span class="date">&nbsp;</span>
+		<% end -%>
+	  </td>
+	<td class="name_and_date">
+		<%  					
+			fees.each do |fee| 	
+			current_debit =  number_to_currency(fee.debit_amount.to_f)
+		%>
+			<%= current_debit %>
+			<span class="date">&nbsp;</span>
+		<% end -%>
+	</td>	
+	<td class="name_and_date">
+		<%
+			payments.each do |payment| 	
+			current_crebit =  number_to_currency(payment.debit_amount.to_f)
+		%>
+			<%= current_crebit %>
+			<span class="date">&nbsp;</span>
+		<% end -%>
+	</td>
+	
+	<td>&nbsp;</td>
+	<td><%= total_debit_amount %></td>			
+	<td><%= total_credit_amount %></td>
+	<td><%= total_owe %></td>
+	
+	  <td class="last">
+		<span class="action">	
+			<%= link_to label_name(:send_message_to), new_message_path(:id => user.id) %>
+			<%#  if user.available and user != current_user %>	
+				<%= render "fees/fee_box", :fee => fees.first, :payment_due => payment_due, :user => user, :group => @group %>		
+			<%# end %>
+		</span>
+      </td>	
+	</tr>
+<% 
+end
+
+total_fees =  number_to_currency(total_fees)
+total_payments =  number_to_currency(total_payments)
+total_fee_payments = number_to_currency(total_fees.to_f - total_payments.to_f)
+-%>
+	<tr>  
+		<td>&nbsp;</td>
+		<td>&nbsp;</td>
+		<td>&nbsp;</td>
+	</tr>			
+	<tr>   
+		<%= content_tag :th, "&nbsp;", :class => "first" %>
+		<%= content_tag :th, "&nbsp;", :class => "heading" %>
+		<%= content_tag :th, "&nbsp;", :class => "heading" %>
+		<%= content_tag :th, "&nbsp;", :class => "heading" %>
+		<%= content_tag :th, "&nbsp;", :class => "heading" %>
+		<%= content_tag :th, "&nbsp;", :class => "heading" %>
+		<%= content_tag :th, label_name(:debit_total), :class => "heading" %>
+		<%= content_tag :th, label_name(:credit_total), :class => "heading" %>
+		<%= content_tag :th, label_name(:pending), :class => "heading" %>
+		<%= content_tag :th, "&nbsp;", :class => "last" %>
+	</tr>
+	
+	<tr>  
+		<td>&nbsp;</td>
+		<td>&nbsp;</td>
+		<td>&nbsp;</td>
+		<td>&nbsp;</td>
+		<td>&nbsp;</td>
+		<td>&nbsp;</td>
+		<td align="left"><%= total_fees %></td>
+		<td align="left"><%= total_payments %></td>
+		<td align="left"><%= total_fee_payments %></td>
+	   	<td class="last">&nbsp;</td>
+	</tr>

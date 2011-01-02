@@ -38,13 +38,26 @@ class PaymentsController < ApplicationController
       
       @users = User.find(:all, :conditions => ["id = ?", @fee.debit_id])
 
-      @debit_fee = Fee.debit_item_amount(@users, @item)
-      @debit_payment = Payment.debit_item_amount(@users, @item)
-
-      @payment.concept = @fee.concept
-      @payment.debit_amount = @debit_fee.debit_amount.to_f - @debit_payment.debit_amount.to_f
-      @payment.description = @fee.description
-      @payment.fee_id = @fee.id
+      fees = Fee.debit_user_item_schedule(@users, @item)
+      payments = Payment.debit_user_item_schedule(@users, @item)
+      
+      debit_amount = 0.0
+      credit_amount = 0.0
+      
+      fees.each{|fee| debit_amount += fee.debit_amount}
+      payments.each{|payment| credit_amount += payment.debit_amount}
+      
+      @payment.fee_id = fees.first.id
+      @payment.concept = fees.first.concept
+      @payment.debit_amount = debit_amount.to_f - credit_amount.to_f
+      
+      # @debit_fee = Fee.debit_item_amount(@users, @item)
+      # @debit_payment = Payment.debit_item_amount(@users, @item)
+      # 
+      # @payment.concept = @fee.concept
+      # @payment.debit_amount = @debit_fee.debit_amount.to_f - @debit_payment.debit_amount.to_f
+      # # @payment.description = @fee.description
+      # @payment.fee_id = @fee.id
       
     end
   end
@@ -87,8 +100,8 @@ class PaymentsController < ApplicationController
     if @payment.save and @payment_credit.save
       flash[:notice] = I18n.t(:successful_create)
       # redirect_to fees_url(:id => @user) and return
-      # redirect_back_or_default('/index')
-      redirect_to root_url and return
+      redirect_back_or_default('/index')
+      # redirect_to root_url and return
     else
       render :action => 'new', :id => @payment
     end

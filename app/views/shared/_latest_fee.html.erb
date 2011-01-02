@@ -45,7 +45,7 @@
 	<table class="table">		
 		<tr>
 			<td align="center" class="no_line">
-				<%=  link_to("#{label_name(:fees)}:&nbsp;&nbsp;&nbsp;&nbsp;#{number_to_currency(the_groups[group])}", complete_fees_path(:id => group)) %>
+				<%=  link_to("#{label_name(:fees)}:&nbsp;&nbsp;&nbsp;&nbsp;#{number_to_currency(the_groups[group])}", due_fees_path(:id => group)) %>
 	  		</td>
 		</tr>
 	</table>

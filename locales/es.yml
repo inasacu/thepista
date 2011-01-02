@@ -189,18 +189,18 @@ es:
      create_description: Nuevo detalles   
      create_information: Nuevo detalles   
      create_invitation: Manda una invitación  
-     create_join_group:  Unirte a un equipo existente.
-     create_join_challenge:  Unirte a un reto existente. 
+     create_join_group:  Unete a un equipo existente.
+     create_join_challenge:  Unete a un reto existente. 
      create_manager: Nuevo mister   
      create_name: Nuevo nombre   
      create_note: Nueva nota
-     create_new_challenge:  Hacer un reto de una copa.
-     create_new_classified:  Poner un anuncio de tu equipo.
-     create_new_cup:  Organizar una copa.
-     create_new_group:  Hacer tu equipo.
-     create_new_marker:  Poner un centro deportivo en el mapa.
-     create_new_schedule:  Añadir un evento a tu equipo.
-     create_new_invitation:  Invitar a tus amigos 
+     create_new_challenge:  Haz un reto de una copa.
+     create_new_classified:  Pon un anuncio de tu equipo.
+     create_new_cup:  Organiza una copa.
+     create_new_group:  Haz tu equipo.
+     create_new_marker:  Pon un centro deportivo en el mapa.
+     create_new_schedule:  Añade un evento a tu equipo.
+     create_new_invitation:  Invita a tus amigos 
      create_profile: Nuevo perfil   
      create_reminder: Nuevo recordatorio   
      create_role: Nueva responsabilidad    
@@ -223,7 +223,7 @@ es:
      credit: Pago   
      credit_amount: A recibir   
      credit_amount_description:  Lo que recibes
-     credit_total:  Pago total
+     credit_total:  Pagos totales
      credits: Pagos
      cup:  Copa  
      cups:  Copas
@@ -270,7 +270,7 @@ es:
      debit: Cargo   
      debit_amount: A pagar   
      debit_amount_description: Lo que debes pagar
-     debit_total:  Cargo total
+     debit_total:  Cargos totales
      debit_to_group:  Deuda a tu equipo
      debits: Cargos   
      default_reliable: Fiable   
@@ -904,6 +904,7 @@ es:
      payed_description:  Han sido pagadas las cargos? 
      payment: Pago  
      payments: Pagos   
+     payment_due:  Vencimiento del pago
      pending: Pendiente   
      percentage: %   
      percentage_full: Porcentaje       
@@ -1534,7 +1535,7 @@ es:
      fee_to_description:  A quien son los cargos
      fee_user_for_group:  Anotar cargo a los jugadores de
      fee_user_for_tournament:  Anotar cargo a los jugadores de
-     fees_complete:  Cargos pendiente
+     fees_due:  Cargos pendiente
      fees_create:  Nueva cargo
      fees_destroy: Borrar cargo
      fees_index:   Cargo
@@ -1560,7 +1561,7 @@ es:
      payment_full:  Pago total
      payment_greater_than:  Pago superior
      payment_less_than:  Pago inferior
-     payment_for_bill:  Paga este cargo
+     payment_for_bill:  Pagar cargos
      payment_type:  Tipo de pago
      payments_create:  Nuevo pago
      payments_index:   Pagos

@@ -903,7 +903,8 @@ en:
      payed:  Charges Payed  
      payed_description:  Charges have been paid?
      payment: Payment  
-     payments: Payments   
+     payments: Payments 
+     payment_due:  Payment Due  
      pending: Pending   
      percentage: %   
      percentage_full: Percent        
@@ -1534,7 +1535,7 @@ en:
      fee_to_description:  Charges Details
      fee_user_for_group:  Add a change to all players
      fee_user_for_tournament:  Add a change to all players 
-     fees_complete:  Pending Charges
+     fees_due:  Pending Charges
      fees_create:  New Charge
      fees_destroy: Remove Charge
      fees_index:   Charge

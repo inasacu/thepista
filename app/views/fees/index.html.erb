@@ -2,62 +2,46 @@
 	the_label = label_name(:fees)
 	content_for(:title, the_label)
 	
-	the_name = ""
-	if @user
-		the_name = sanitize(@user.name)
-	elsif @group
-		the_name = sanitize(@group.name)
-	elsif @challenge
-		the_name = sanitize(@challenge.name)
-	end
+	the_controller_action = ['fee_due']
+	only_payment_due = the_controller_action.include?(get_controller_action)
 %>
+
 <div class="block">
 
   <%= get_secondary_navigation(@user) if @user %>
   <%= get_secondary_navigation(@group) if @group %>
   <%= get_secondary_navigation(@challenge) if @challenge %>
-          
-  <div class="content">  
-	        
-    <h2 class="title"><%= "#{the_label} #{label_name(:from_de)}  #{the_name}" %></h2>
 
-    <div class="inner">
-		
-      <%= get_class_table_id_controller %>
+  <div class="content">   
+  
+    <h2 class="title"><%= get_collection_label(@users) %></h2>
 	
-        <tr>            
+    <div class="inner">
+	<% if object_counter(@users) > 0 %>
+	
+	<%= get_class_table_id_controller %>
+	  
+		<tr>   
 			<%= content_tag :th, "&nbsp;", :class => "first" %>
-			<%= content_tag :th, "#{label_name(:from_up)}<br/>#{label_name(:created_at)}", :class => "heading" %>
+			<%= content_tag :th, "#{label_name(:name)}<br/>#{label_name(:group)}", :class => "heading" %>
 			<%= content_tag :th, label_name(:concept), :class => "heading" %>
-			<%= content_tag :th, label_name(:debit), :class => "heading" %>
-			<%= content_tag :th, label_name(:credit), :class => "heading" %>
+			<%= content_tag :th, label_name(:debits), :class => "heading" %>
+			<%= content_tag :th, label_name(:credits), :class => "heading" %>
 			<%= content_tag :th, "&nbsp;", :class => "heading" %>
+			<%= content_tag :th, label_name(:debit_total), :class => "heading" %>
+			<%= content_tag :th, label_name(:credit_total), :class => "heading" %>
+			<%= content_tag :th, label_name(:pending), :class => "heading" %>
 			<%= content_tag :th, "&nbsp;", :class => "last" %>
-        </tr>
-
-		<%= render :partial => 'fees/fee', :collection => @fees if @fees %>
-		<%= render :partial => 'payments/payment', :collection => @payments if @payments %>
-
-		<tr>  
-			<td>&nbsp;</td>
-			<td>&nbsp;</td>
-			<td>&nbsp;</td>
-			<td align="left">
-				<%= "#{label_name(:debit_total)}:  #{number_to_currency(@debit_fee.debit_amount.to_f)}" if @fees %>
-			</td>
-			<td align="left">
-				<%= "#{label_name(:credit_total)}:  #{number_to_currency(@debit_payment.debit_amount.to_f + @credit_payment.credit_amount.to_f)}" if @payments %>
-			</td>
-			
-			<td>&nbsp;</td>
-		   <td class="last">&nbsp;</td>
 		</tr>
+		<% @the_groups.each do |group| %>
+		<%= render 'fees/fee_list', :users => @users, :group => group %>
+		<% end %>		
+      </table>		
 
-      </table>
-
-	<%= render :partial => 'shared/action_bar', :locals => { :collection => @fees } if @fees %>
-	<%= render :partial => 'shared/action_bar', :locals => { :collection => @payments } if @payments %>
-
-	</div>
-	</div>
+	  <% end %>
+	  <%= render :partial => 'shared/action_bar', :locals => { :collection => @users } %>	  	  
+    </div>
+	
+  </div>
+  
 </div>

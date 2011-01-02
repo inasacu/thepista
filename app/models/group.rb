@@ -105,6 +105,18 @@ class Group < ActiveRecord::Base
     the_users = User.find(:all, :conditions => ["id in (?)", ids], :order => "name")
   end
   
+  def all_subscribers
+    ids = []
+    self.users.each {|user| ids << user.user_id if user.is_subscriber_of?(self)}
+    the_users = User.find(:all, :conditions => ["id in (?)", ids], :order => "name")
+  end
+
+  def all_non_subscribers
+    ids = []
+    self.users.each {|user| ids << user.user_id unless user.is_subscriber_of?(self)}
+    the_users = User.find(:all, :conditions => ["id in (?)", ids], :order => "name")
+  end
+  
   def total_managers
     counter = 0
     self.all_the_managers.each {|user| counter += 1}

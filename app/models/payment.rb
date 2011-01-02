@@ -32,6 +32,19 @@ class Payment < ActiveRecord::Base
                    :reserved_words => ["new", "create", "index", "list", "signup", "edit", "update", "destroy", "show"]
   
   # method section
+  def self.debit_user_item_schedule(debits, credits)
+    find(:all, :joins => "JOIN groups on groups.id = payments.credit_id",
+               :conditions => ["payments.debit_id in (?) and payments.debit_type = 'User' and 
+                                payments.credit_id in (?) and payments.credit_type = 'Group' and payments.archive = false", debits, credits])
+  end
+
+  def self.sum_debit_payment(the_payments)
+    debit_payment = Payment.new
+    debit_payment.debit_amount = 0.0
+    the_payments.each {|the_payment| debit_payment.debit_amount += the_payment.debit_amount.to_f}
+    return debit_payment        
+  end  
+  
   def self.sum_debit_amount_payment(the_payments)
     debit_payment = Payment.new
     credit_payment = Payment.new
@@ -55,13 +68,6 @@ class Payment < ActiveRecord::Base
   def self.page_all_payments(the_payments, page=1)
     paginate(:all, :conditions => ["id in (?)", the_payments], :order => 'payments.id DESC', :page => page, :per_page => FEES_PER_PAGE)
   end
-  
-  
-  
-  
-  
-  
-  ##########################################################
   
   def self.debit_item_amount(debits, item)    
     unless (debits.first.class.to_s == item.class.to_s)

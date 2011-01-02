@@ -1,2 +1,11 @@
-<% content_for :sidebar, render('/shared/latest_payment') -%>
-<% content_for :sidebar, render('/shared/latest_fee') if current_user.is_manager? -%>
+<% 
+	my_groups = []				# my teams
+	manager_groups = []			# my manage teams
+
+	current_user.groups.each do |group| 
+		my_groups << group
+		manager_groups << group if current_user.is_manager_of?(group)
+	end
+%>
+<%= render 'shared/latest_fee_box', :groups => my_groups %>
+<%= render 'shared/latest_fee_box', :groups => manager_groups, :is_manager => true %>
