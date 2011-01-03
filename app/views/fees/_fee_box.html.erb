@@ -5,7 +5,7 @@
 			<%= link_to  label_name(:payment_for_bill), new_payment_path(:id => fee) %><br /><br />
 			<%#= link_to label_name(:fees_edit), edit_fee_path(:id => fee) %><br /><br />
 			
-			<% unless @user.is_subscriber_of?(group) %>
+			<% unless user.is_subscriber_of?(group) %>
 				<%= set_role_add_subscription(user, group) %><br /><br />
 			<% end %>
 			<%#= link_to label_name(:fees_destroy), fee_path(fee), :method => :delete, :confirm => %(#{label_name(:fees_destroy) }?) %><br />

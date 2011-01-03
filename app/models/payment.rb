@@ -32,10 +32,13 @@ class Payment < ActiveRecord::Base
                    :reserved_words => ["new", "create", "index", "list", "signup", "edit", "update", "destroy", "show"]
   
   # method section
-  def self.debit_user_item_schedule(debits, credits)
-    find(:all, :joins => "JOIN groups on groups.id = payments.credit_id",
+  def self.debit_user_item_schedule(debits, credits, the_payments)
+    payments = find(:all, :joins => "JOIN groups on groups.id = payments.credit_id",
                :conditions => ["payments.debit_id in (?) and payments.debit_type = 'User' and 
-                                payments.credit_id in (?) and payments.credit_type = 'Group' and payments.archive = false", debits, credits])
+                                payments.credit_id in (?) and payments.credit_type = 'Group' and 
+                                payments.debit_amount > 0 and payments.archive = false", debits, credits])
+    payments.each {|payment| the_payments << payment}
+    return the_payments
   end
 
   def self.sum_debit_payment(the_payments)

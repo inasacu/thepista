@@ -34,13 +34,23 @@ class Fee < ActiveRecord::Base
 
 
   # method section
-  def self.debit_user_item_schedule(debits, credits)
-    find(:all, :select => "schedules.starts_at, fees.*",
-               :joins => "JOIN users on users.id = debit_id JOIN groups on groups.id = fees.credit_id JOIN schedules on schedules.id = fees.item_id ",
+  def self.debit_user_item_schedule(debits, credits, the_fees, is_subscriber)
+    if is_subscriber
+      fees = find(:all, :joins => "JOIN users on users.id = debit_id JOIN groups on groups.id = fees.credit_id",
+                 :conditions => ["fees.debit_id in (?) and fees.debit_type = 'User' and 
+                                  fees.item_id in (?) and fees.item_type = 'Group' and fees.archive = false", debits, credits],
+                 :order => "users.name")
+      fees.each {|fee| the_fees << fee}
+    else
+      fees = find(:all, :joins => "JOIN users on users.id = debit_id JOIN groups on groups.id = fees.credit_id JOIN schedules on schedules.id = fees.item_id ",
                :conditions => ["fees.season_player = false and fees.type_id = 1 and fees.debit_id in (?) and fees.debit_type = 'User' and 
                                 fees.credit_id in (?) and fees.credit_type = 'Group' and fees.archive = false and 
                                 schedules.played = true and fees.item_type = 'Schedule'", debits, credits],
-               :order => "users.name, schedules.starts_at")
+               :order => "users.name")
+      fees.each {|fee| the_fees << fee}
+    end
+
+    return the_fees
   end
   
   def self.sum_debit_amount_fee(the_fees)

@@ -36,10 +36,13 @@ class PaymentsController < ApplicationController
       else
       end
       
-      @users = User.find(:all, :conditions => ["id = ?", @fee.debit_id])
+      @users = User.find(:first, :conditions => ["id = ?", @fee.debit_id])
 
-      fees = Fee.debit_user_item_schedule(@users, @item)
-      payments = Payment.debit_user_item_schedule(@users, @item)
+      fees = []
+      payments = []
+      
+      Fee.debit_user_item_schedule(@users, @item, fees, @users.is_subscriber_of?(@item))
+      Payment.debit_user_item_schedule(@users, @item, payments)
       
       debit_amount = 0.0
       credit_amount = 0.0
@@ -49,16 +52,7 @@ class PaymentsController < ApplicationController
       
       @payment.fee_id = fees.first.id
       @payment.concept = fees.first.concept
-      @payment.debit_amount = debit_amount.to_f - credit_amount.to_f
-      
-      # @debit_fee = Fee.debit_item_amount(@users, @item)
-      # @debit_payment = Payment.debit_item_amount(@users, @item)
-      # 
-      # @payment.concept = @fee.concept
-      # @payment.debit_amount = @debit_fee.debit_amount.to_f - @debit_payment.debit_amount.to_f
-      # # @payment.description = @fee.description
-      # @payment.fee_id = @fee.id
-      
+      @payment.debit_amount = debit_amount.to_f - credit_amount.to_f      
     end
   end
 

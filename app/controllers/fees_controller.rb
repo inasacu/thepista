@@ -16,6 +16,9 @@ class FeesController < ApplicationController
       if !@user.is_subscriber_of?(group) and get_fee_user(group, @user)
         @the_users << @user 
         @the_groups << group
+      else
+        @the_users << @user 
+        @the_groups << group
       end
     end  
 
@@ -31,8 +34,8 @@ class FeesController < ApplicationController
 
     @group.users.each do |user|
       @has_fees = false
-        get_fee_user(@group, user)
-        @the_users << user if @has_fees
+      get_fee_user(@group, user)
+      @the_users << user if @has_fees
     end
     @users = User.paginate(:all, :conditions => ["id in (?) and archive = false", @the_users], :order => "name", :page => params[:page], :per_page => USERS_PER_PAGE)    
     render :template => 'fees/index'
@@ -239,9 +242,12 @@ class FeesController < ApplicationController
     has_fees = false
     only_payment_due = false
     current_debit, current_crebit, total_debit_amount, total_credit_amount, fee_debit_id = 0.0,  0.0,  0.0,  0.0,  0
-
-    fees = Fee.debit_user_item_schedule(user, group)
-    payments = Payment.debit_user_item_schedule(user, group)	
+    
+    fees = []
+    payments = []
+    
+    Fee.debit_user_item_schedule(user, group, fees, user.is_subscriber_of?(group))
+    Payment.debit_user_item_schedule(user, group, payments)	
 
     debit_fee = Fee.sum_debit_amount_fee(fees)
     total_debit_amount = debit_fee.debit_amount

@@ -18,7 +18,7 @@
 		end
 
 		the_users.each do |user| 
-			fees, payments, debit_fee, debit_payment = fee_group_user(group, user)
+			fees, payments, debit_fee, debit_payment = fee_group_user(group, user, user.is_subscriber_of?(group))
 
 			total_debit_amount = debit_fee.debit_amount
 			total_credit_amount = debit_payment.debit_amount

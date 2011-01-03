@@ -72,11 +72,11 @@ module FeesHelper
     return item_link, item_object
   end
   
-  def fee_group_user(group, user)
+  def fee_group_user(group, user, is_subscriber)
     fees, payments, debit_fee, debit_payment = [], [], [], []
 		
-    fees = Fee.debit_user_item_schedule(user, group)
-    payments = Payment.debit_user_item_schedule(user, group)	
+    Fee.debit_user_item_schedule(user, group, fees, is_subscriber)
+    Payment.debit_user_item_schedule(user, group, payments)	
     debit_fee = Fee.sum_debit_amount_fee(fees)
     debit_payment = Payment.sum_debit_payment(payments)
     return fees, payments, debit_fee, debit_payment

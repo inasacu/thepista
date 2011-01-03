@@ -5,8 +5,11 @@ total_payments = 0.0
 users.each do |user| 
 	has_fees = false
 	current_debit, current_crebit, total_debit_amount, total_credit_amount, fee_debit_id = 0.0,  0.0,  0.0,  0.0,  0
-	
-	fees, payments, debit_fee, debit_payment = fee_group_user(group, user)
+
+    fees = []
+    payments = []
+
+	fees, payments, debit_fee, debit_payment = fee_group_user(group, user, user.is_subscriber_of?(group))
 
 	total_debit_amount = debit_fee.debit_amount
 	total_credit_amount = debit_payment.debit_amount
@@ -21,13 +24,21 @@ users.each do |user|
 	total_credit_amount =  number_to_currency(total_credit_amount)
 	total_owe = number_to_currency(total_owe)
 	
+	number_of_fees = 0
+	fees.each {|fee| number_of_fees += 1}	
+	has_charges = (number_of_fees > 0)
+	
+	if has_charges
+		
 	credit_link, credit_object = fee_credit(fees.first)
+	the_label = "subscription_#{user.is_subscriber_of?(group)}"
+	
 -%>	
 	<tr>
 	  <td><%= image_link_small(user) %></td>			  
 	  <td class="name_and_date">
 		<%= user_link(user) %>
-		<span class="date"><%= h(credit_object.name) %></span>
+		<span class="date"><%= h(credit_object.name) %><br/><%= label_name(the_label) %></span>
 	  </td>
 	  	 
 	  <td class="name_and_date">
@@ -65,18 +76,21 @@ users.each do |user|
 	  <td class="last">
 		<span class="action">	
 			<%= link_to label_name(:send_message_to), new_message_path(:id => user.id) %>
-			<%#  if user.available and user != current_user %>	
-				<%= render "fees/fee_box", :fee => fees.first, :payment_due => payment_due, :user => user, :group => @group %>		
-			<%# end %>
+			<%= render "fees/fee_box", :fee => fees.first, :payment_due => payment_due, :user => user, :group => group %>
 		</span>
       </td>	
 	</tr>
 <% 
+	end
 end
+
+has_charges = (total_fees > 0)
 
 total_fees =  number_to_currency(total_fees)
 total_payments =  number_to_currency(total_payments)
 total_fee_payments = number_to_currency(total_fees.to_f - total_payments.to_f)
+
+if has_charges
 -%>
 	<tr>  
 		<td>&nbsp;</td>
@@ -108,3 +122,6 @@ total_fee_payments = number_to_currency(total_fees.to_f - total_payments.to_f)
 		<td align="left"><%= total_fee_payments %></td>
 	   	<td class="last">&nbsp;</td>
 	</tr>
+<%
+end
+-%>
