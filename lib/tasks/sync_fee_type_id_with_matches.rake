@@ -9,6 +9,7 @@ task :sync_fee_type_match => :environment do |t|
   all_match_fees.each do |fee|
     the_match = Match.find(:first, :conditions =>["archive = false and user_id = ? and schedule_id = ?", fee.debit_id, fee.item_id])
 
+    puts "fee:  #{fee.id}"
     if (fee.type_id != the_match.type_id and the_match.user_id == fee.debit_id)
       puts "the_match.user_id: #{the_match.user_id}, fee.debit_id: #{fee.debit_id}, fee.type_id: #{fee.type_id}, the_match.type_id: #{the_match.type_id}"
       fee.type_id = the_match.type_id 
