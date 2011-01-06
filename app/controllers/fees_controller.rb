@@ -63,7 +63,11 @@ class FeesController < ApplicationController
     @the_groups = []
     @the_groups << @group     
 
-    @group.all_non_subscribers.each do |user|
+    # @group.all_non_subscribers.each do |user|
+    #   @the_users << user if get_fee_user(@group, user)     
+    # end
+    
+    @group.users.each do |user|
       @the_users << user if get_fee_user(@group, user)     
     end
     @users = User.paginate(:all, :conditions => ["id in (?) and archive = false", @the_users], :order => "name", :page => params[:page], :per_page => USERS_PER_PAGE)    

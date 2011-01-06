@@ -10,7 +10,10 @@
 		the_users = []
 
 		if is_manager
-			group.all_non_subscribers.each do |user|
+			# group.all_non_subscribers.each do |user|
+			# 	the_users << user 
+			# end
+			group.users.each do |user|
 				the_users << user 
 			end
 		else

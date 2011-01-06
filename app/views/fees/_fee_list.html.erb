@@ -46,7 +46,7 @@ users.each do |user|
 			item_link, item_object = fee_item(fee)
 		%>
 			<%= item_link %>					
-			<span class="date">&nbsp;</span>
+			<span class="date">&nbsp;<%= h(fee.concept) if fee.item.class.to_s != "Schedule" %></span>
 		<% end -%>
 	  </td>
 	<td class="name_and_date">
