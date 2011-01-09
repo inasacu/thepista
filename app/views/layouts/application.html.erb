@@ -41,25 +41,27 @@
 	<%= stylesheet_link_tag 'header' %>	
 	<%= stylesheet_link_tag get_the_action if is_action('show') %>
 	
-	<%= render :partial => 'utilities/google_analytics' %>
+	<% if development? %>
+		<%= javascript_include_tag 'jquery.cluetip' %>
+		<%= javascript_include_tag 'jquery.hoverIntent' %>
+		
+		<%= javascript_include_tag 'application' %>
+		
+		<%= stylesheet_link_tag 'jquery.cluetip' %>
+	<% end %> 
 	
+	<%= render :partial => 'utilities/google_analytics' %>
 </head>
 <body>
-	<% show_facebook_sdk = ['home_upcoming', 'schedule_index', 'schedule_my_list', 'schedule_list'] %>
 	<% show_ajax_rating = ['home_upcoming', 'schedule_index', 'schedule_my_list', 'schedule_list'] %>
 	
-	<%= render :partial => 'utilities/visible_script' %>	
-	<%#= render :partial => 'utilities/facebook_sdk' if show_facebook_sdk.include?(get_controller_action) %>
-	
+	<%= render :partial => 'utilities/visible_script' %>		
 	<%= render :partial => 'shared/flash', :locals => {:flash => flash } %>
 	
-  <div id="container">
+	<%# show_facebook_sdk = show_ajax_rating %>
+	<%#= render :partial => 'utilities/facebook_sdk' if show_facebook_sdk.include?(get_controller_action) %>
 	
-	<% about = ['about', 'terms of use', 'privacy policy', 'faq']%>
-	<% login_action = ['signup', 'create', 'new', 'rpx_create', 'rpx_new'] %>
-	<% login_controller =['user_sessions', 'users', ''] %>	
-	<% login_session = (login_controller.include?(controller.controller_name) and login_action.include?(controller.action_name)) %>
-	<% logout =  !current_user and is_controller('home') and is_action('index') %>
+  <div id="container">
   
 	<%= render :partial => "utilities/ie_nomore" %>
 	<%= render :partial => "utilities/ie_better_image" %>
@@ -67,25 +69,12 @@
 	<%= render :partial => 'shared/header_navigation' %>
 	<%= render :partial => "shared/notice" if current_user %>
 	
-	<% if login_session %>
-		<%= render :partial => "shared/box" %>
-	<% elsif about.include?(get_the_action) %>
-		<%= render :partial => "shared/about" %>
-	<% elsif logout %>
-		<%= render :partial => "shared/about" %>
-	<% else %>
-		<%= render :partial => "shared/wrapper" %>	
-	<% end %>
+	<%= render :partial => "shared/wrapper" %>	
+	<%= render :partial => "shared/footer" %>	
 	
   </div>
 
   <%= render :partial => 'utilities/browser_detect' if development? %>
-  <%#= render :partial => 'utilities/uservoice' unless development? %> 
-  <%#= render :partial => 'utilities/facebook_badge' if development? %> 
-  <%#= render :partial => 'utilities/envolve' unless development? %> 
-  <%#= render :partial => 'utilities/secure_site' unless current_user %>
-  <%#= render :partial => 'utilities/nurph' unless production? %>
-  <%#= render :partial => 'utilities/mouse_trace' %>
 
 </body>
 </html>

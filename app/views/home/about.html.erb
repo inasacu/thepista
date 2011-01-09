@@ -1,32 +1,27 @@
-<div class="block">
+<%= stylesheet_link_tag 'home' %>
 
-	<%= render :partial => 'secondary_info' %>
+<div id="home">
 
-	<div id="faq">
-		<div id="faq_content">
-			<h3>
-				<%= label_name(:what_is_haypista) %>
-			</h3>
-
-			<p>
-				<strong>
-					HayPista 
-				</strong>
-				es un portal que te ayuda a organizar partidos entre amigos, 
-				buscar un centro donde puedas jugar, 
-				encontrar a gente con los mismos intereses y sobretodo disfrutar el deporte. 
-			</p>
-
-			<h4>
-				<%= label_name(:our_philosophy) %>
-			</h4>
-			<p>
-				<%= label_name(:modo) %>
-			</p>
-			
-		
-		</div>
-
+	<div class="announce">
+		<h1><strong><%= "#{label_name(:about)} #{app_name}" %></strong></h1>
 	</div>
 
+	<div class="features">
+
+		<h3><%= label_name(:what_is_haypista) %></h3>
+		<p><%= "#{label_name(:haypista_pronunciation)} #{label_name(:what_is_haypista_details)}" %></p>						
+
+
+		<h3><%= label_name(:our_philosophy) %></h3>
+		<p>
+		Ayudarte a organizar partidos entre amigos, 
+		buscar un centro donde puedas jugar, 
+		encontrar a gente con los mismos intereses y sobretodo disfrutar el deporte. 
+		</p>
+
+		<h3><%= label_name(:our_story) %></h3>
+		<p><%= app_name %> a salido de nuestra propia experiencia.  Llevamos años con un equipo de futbol, jugando en varios campos y siempre con problemas para reunir bastantes jugadores para tener un partido decente.  Siempre con una hoja de calculo y todos los contactos, partidos jugados y todos los pagos hechos por los jugados.  Siempre creando correos masivos a todos los jugadores en la lista.  Esperando a respuestas y marcando quien juega y quien no, y asi hasta llegar a jugar un partido.  Al final nos dimos cuenta que dedicabamos demasiadas horas semanales para organizar un partido y de hay surgio nuestro portal.
+		</p>				
+
+	</div>
 </div>

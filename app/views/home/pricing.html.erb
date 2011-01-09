@@ -1,0 +1,341 @@
+<% 
+	annual_discount = 0.33 
+%>
+
+<style type="text/css">
+
+table { 
+	border-collapse: separate; 
+	border-spacing: 0pt; 
+	background-color: rgb(255, 255, 255); 
+	width: auto; 
+	height: auto; 
+	border: 1px solid #cfcfcf;
+}
+
+.center_wide p { margin: 0pt 0pt 5px; }
+
+table.static th, td { padding: 0px 8px 8px 0pt; line-height: 18px; position: relative; }
+
+.choose-plan { padding: 10px 0pt 0pt; text-align: center; }
+.amount { text-align: center; font-size: 15pt; color: rgb(102, 189, 82); font-weight: bold; }
+.plan { text-align: center; font-size: 15pt; color: rgb(19, 56, 85); font-weight: bold; }
+
+table.pricing-table { margin: 20px auto 0pt; padding: 3px 0px 10px; width: 100%; clear: both; color: rgb(241, 241, 241); }
+table.pricing-table tr th { 
+	border: 0pt none ; padding: 0px 10px; 
+	background: rgb(255, 255, 255) none repeat scroll 0% 0%; 
+	font-weight: bold; 
+	text-align: center; 
+}
+table.pricing-table tr td { border-bottom: 1px dotted rgb(201, 201, 201); margin: 0pt 20px; height: 20px; }
+table.pricing-table tr td.feature { text-align: left; width: 235px; font-weight: bold; font-size: 10pt; }
+table.pricing-table tr.even td { 
+	background: rgb(238, 238, 238) none repeat scroll 0% 0%; 
+}
+table.pricing-table tr.choose-plan td { border: 0pt none ; vertical-align: middle; }
+table.pricing-table tr.choose-plan td.enterprise { border: 0pt none ; padding: 0pt 0pt 0pt 20px; vertical-align: middle; }
+table.pricing-table td { 
+	border: 0pt none ; 
+	padding: 0px 10px; 
+	background: rgb(255, 255, 255) none repeat scroll 0% 0%; 
+	color: rgb(0, 0, 0); 
+	font-size: 10pt; 
+	font-weight: normal; 
+	}
+table.pricing-table td { border: 0pt none ; padding: 3px 10px; text-align: center; }
+.pricing-faq { 
+	margin: 15px 10px 0pt; 
+	padding: 0px 0pt 10px 15px; 
+	overflow: auto; 
+	background-color: rgb(239, 239, 239); 
+	}
+.pricing-faq h1 { margin: 15px 0pt 5px; font-size: 130%; font-weight: bold; }
+.pricing-faq-left { margin: 0pt 30px 0pt 0pt; float: left; width: 400px; }
+
+</style>
+
+<%= stylesheet_link_tag 'home' %>
+
+<div id="home">
+
+	<div class="announce">
+	<h1><strong><%= label_name(:pricing_and_signup) %></strong></h1>
+	</div>
+
+<div class="features">
+
+<div class="center_wide">
+
+<table class="pricing-table" border="0" cellpadding="0" cellspacing="0">
+	
+	<thead>
+	<tr>
+	<th></th>
+	<th><span class="plan">Premium</span></th>
+	<th><span class="plan">Basic</span></th>
+	<th><span class="plan">Free</span></th>
+	</tr>
+	</thead>
+
+	<tbody>
+	<tr>
+		<td>
+		</td>
+	<td>You get everything!</td>
+	<td>Just the essentials</td>
+	<td>Ad-supported</td>
+	</tr>
+	
+	<tr class="even">
+		<td class="feature">
+			<%=get_cluetip("Team", "group", "Shows team name, photo, and contact info. Detailed player profiles accessible with a click.") %>
+		</td>		
+		<td><%=get_cluetip("Unlimited", "tick", "Unlimited Teams.", true) %></td>
+		<td><%=get_cluetip("10", "tick", "Maximum of 10 Teams.", true) %></td>
+		<td><%=get_cluetip("2", "tick", "Maximum of 2 Teams.", true) %></td>
+	</tr>
+
+	<tr>
+		<td class="feature">
+			<%=get_cluetip("Players per Team", "user", "Shows player name, photo, contact info and position. Detailed player profiles accessible with a click.") %>
+		</td>
+		<td><%=get_cluetip("Unlimited", "tick", "Unlimited Players per Team.", true) %></td>
+		<td><%=get_cluetip("100", "tick", "Maximum of 100 Players per Teams.", true) %></td>
+		<td><%=get_cluetip("28", "tick", "Maximum of 28 Players per Teams.", true) %></td>
+	</tr>
+
+	<tr class="even">
+		<td class="feature">
+			<%=get_cluetip("Team Events", "schedule", "See game info, including opponent, date/time, location and result. View locations in Google Maps.") %>
+		</td>
+		<td><%=get_cluetip("Unlimited", "tick", "Unlimited Team Events.", true) %></td>
+		<td><%=get_cluetip("120", "tick", "Maximum of 120 Team Events.", true) %></td>
+		<td><%=get_cluetip("32", "tick", "Maximum of 32 Team Events.", true) %></td>
+	</tr>
+
+	<tr>
+		<td class="feature">
+			<%=get_cluetip("Team Scorecards", "scorecard", "Team Scorecards.") %>
+		</td>
+		<td><%=get_cluetip("Unlimited", "tick", "Unlimited Team Scorecards.", true) %></td>
+		<td><%=get_cluetip("Maximum of 10", "tick", "Maximum of 10 Team Scorecards.", true) %></td>
+		<td><%=get_cluetip("Maximum of 2", "tick", "Maximum of 2 Team Scorecards.", true) %></td>
+	</tr>
+
+	<tr class="even">	
+	<td class="feature">	
+			<%=get_cluetip("Team Forum", "comment", "A private message forum just for your team. Important messages can be broadcast to the entire team via email.") %>
+		</td>
+		<td><%=get_cluetip("Priority", "tick", "Messages from Team Forum is prioritized before other outgoing messages.", true) %></td>
+		<td><%=get_cluetip("Queue", "tick", "Messages are queued and released after all priority messages are expedited.", true) %></td>
+		<td><%=get_cluetip("Queue", "tick", "Messages are queued and released after all priority messages are expedited.", true) %></td>
+	</tr>
+		
+	<tr>	
+	<td class="feature">
+			<%=get_cluetip("Season Player", "star_true", "Season Player	.") %>
+		</td>
+	<td><%= option_image_link('tick') %></td>
+	<td><%= option_image_link('tick') %></td>
+	<td>&nbsp;</td>
+	</tr>
+
+	<tr class="even">
+	<td class="feature">
+			<%=get_cluetip("Player Available", "tick", "See who can attend which games/events and who can't") %>
+		</td>
+	<td><%= option_image_link('tick') %></td>
+	<td><%= option_image_link('tick') %></td>
+	<td><%= option_image_link('tick') %></td>
+	</tr>
+
+	<tr>
+	<td class="feature">	
+			<%=get_cluetip("Team Privacy", "security", "All your team data is 100% private and password-protected &mdash; nobody can access your team info without specific permission from you.") %>
+		</td>
+	<td><%=get_cluetip("Unlimited", "tick", "Unlimited Team Privacy on all teams available.", true) %></td>
+	<td><%=get_cluetip("Maximum of 10", "tick", "Maximum of 10 Teams with Privacy settings.", true) %></td>
+	<td>&nbsp;</td>
+	</tr>
+
+	<tr class="even">
+	<td class="feature">
+			<%=get_cluetip("Team Announcements", "announcement", "Team Announcements.") %>
+		</td>
+		<td><%=get_cluetip("Unlimited", "tick", "Unlimited Team announcements.", true) %></td>
+		<td><%=get_cluetip("Maximum of 10", "tick", "Maximum of 10 Announcements per Team.", true) %></td>
+	<td>&nbsp;</td>
+	</tr>
+
+	<tr>
+	<td class="feature">	
+			<%=get_cluetip("Tournaments", "cup", "Tournaments.") %>
+		</td>
+		<td><%=get_cluetip("Unlimited", "tick", "Unlimited Tournaments.", true) %></td>
+		<td><%=get_cluetip("Maximum of 10", "tick", "Maximum of 10 Tournaments.", true) %></td>
+		<td><%=get_cluetip("Maximum of 2", "tick", "Maximum of 2 Tournaments.", true) %></td>
+	</tr>
+	
+	<tr class="even">	
+	<td class="feature">	
+			<%=get_cluetip("Tournament Forum", "comment", "A private message forum just for your team. Important messages can be broadcast to the entire team via email.") %>
+		</td>
+		<td><%=get_cluetip("Priority", "tick", "Messages from Tournament Forum are prioritized before other outgoing messages.", true) %></td>
+		<td><%=get_cluetip("Queue", "tick", "Messages are queued and released after all priority messages are expedited.", true) %></td>
+		<td><%=get_cluetip("Queue", "tick", "Messages are queued and released after all priority messages are expedited.", true) %></td>
+	</tr>
+		
+	<tr>	
+	<td class="feature">	
+			<%=get_cluetip("Challenges", "cup", "Challenges.") %>
+		</td>
+		<td><%= option_image_link('tick') %></td>
+		<td><%= option_image_link('tick') %></td>
+		<td><%= option_image_link('tick') %></td>
+	</tr>
+
+	<tr class="even">	
+	<td class="feature">	
+			<%=get_cluetip("Challenge Forum", "comment", "A private message forum just for your team. Important messages can be broadcast to the entire team via email.") %>
+		</td>
+		<td><%=get_cluetip("Priority", "tick", "Messages from Tournament Forum are prioritized before other outgoing messages.", true) %></td>
+		<td><%=get_cluetip("Queue", "tick", "Messages are queued and released after all priority messages are expedited.", true) %></td>
+		<td><%=get_cluetip("Queue", "tick", "Messages are queued and released after all priority messages are expedited.", true) %></td>
+	</tr>
+
+	<tr class="even">	
+	<td class="feature">	
+			<%=get_cluetip("Statistics", "statistics", "Easily track points, penalties, or anything else. Customize virtually every aspect of your statistics.") %>
+		</td>
+	<td><%= option_image_link('tick') %></td>
+	<td> </td>
+	<td> </td>
+	</tr>
+	
+	<tr>
+	<td class="feature">
+			<%=get_cluetip("Email Reminders", "reminder", "Get automatic email reminders of upcoming games and events.") %>
+		</td>
+	<td><%=get_cluetip("Priority", "tick", "Messages from Email Reminders are prioritized before other outgoing messages.", true) %></td>
+	<td><%=get_cluetip("Queue", "tick", "Messages are queued and released after all priority messages are expedited.", true) %></td>
+	<td> </td>
+	</tr>
+
+	<tr class="even">	
+	<td class="feature">	
+			<%=get_cluetip("Text Messaging", "sms", "Send mobile phone text messages to your entire team, or pick specific recipients.") %>
+		</td>
+	<td><%= option_image_link('tick') %></td>
+	<td> </td>
+	<td> </td>
+	</tr>
+	
+	<tr>	
+	<td class="feature">
+			<%=get_cluetip("Photos & Files", "file", "Easily share photos and files with the entire team. Premium teams get unlimited storage for their photos and files, Basic teams get 100MB.") %>
+		</td>
+	<td><%=get_cluetip("Unlimited", "tick", "Unlimited Photos & Files.", true) %></td>
+	<td><%=get_cluetip("Maximum of 100MB", "tick", "Limit of 100MB for Photos & Files.", true) %></td>
+	<td>&nbsp;</td>
+	</tr>
+
+	<tr class="even">	
+	<td class="feature">	
+			<%=get_cluetip("Photobooks", "photo", "Share your team's best moments with a custom photobook. Choose from a variety of styles and formats.") %>
+		</td>
+	<td><%= option_image_link('tick') %></td>
+	<td><%= option_image_link('tick') %></td>
+	<td>&nbsp;</td>
+	</tr>
+	
+	<tr>	
+	<td class="feature">	
+			<%=get_cluetip("Payment Tracking", "fee", "Accurately track team fees and payments, showing who has paid and who hasn't.") %>
+		</td>
+	<td><%= option_image_link('tick') %></td>
+	<td><%= option_image_link('tick') %></td>
+	<td>&nbsp;</td>
+	</tr>
+	
+	<tr class="even">	
+	<td class="feature">	
+			<%=get_cluetip("No Banner Advertising", "announcement", "The Free plan is ad-supported. The Premium and Basic plans are 100% ad-free.") %>
+		</td>
+	<td><%= option_image_link('tick') %></td>
+	<td><%= option_image_link('tick') %></td>
+	<td>&nbsp;</td>
+	</tr>
+
+	<tr>
+	<td class="feature">
+			<%=get_cluetip("Season Archiving", "archive", "Season Archiving.") %>
+		</td>
+	<td><%= option_image_link('tick') %></td>
+	<td><%= option_image_link('tick') %></td>
+	<td>&nbsp;</td>
+	</tr>
+	
+	<tr class="even">	
+	<td class="feature">
+			<%=get_cluetip("Weather Forecasts", "weather", "Get weather forecasts targeted to your exact zip code.") %>
+		</td>
+	<td><%= option_image_link('tick') %></td>
+	<td><%= option_image_link('tick') %></td>
+	<td>&nbsp;</td>
+	</tr>
+
+	<tr>
+	<td class="feature">
+			<%=get_cluetip("Priority Email Support", "help", "Basic and Premium users receive priority email support from our friendly support team. Free plan users can use the HayPista Online Help website.") %>
+		</td>
+	<td><%=get_cluetip("Priority", "tick", "Messages from Priority Email Support are prioritized before other received messages.", true) %></td>
+	<td><%=get_cluetip("Queue", "tick", "Messages are queued and released after all priority messages are expedited.", true) %></td>
+	<td><%=get_cluetip("Queue", "tick", "Messages are queued and released after all priority messages are expedited.", true) %></td>
+	</tr>
+
+		
+	<%= render "home/pricing_box", :annual_discount => annual_discount %>
+	
+	</tbody>
+</table>
+
+<div class="clear"></div>
+
+	<div class="pricing-faq">
+	
+		<div class="pricing-faq-left">
+			<h1>You're in control</h1>			
+			<p>All plans are billed monthly and can be cancelled, upgraded or downgraded at any time. No contract and no setup fees. Save yourself just one hour of tedious work per month and HayPista pays for itself.</p>
+			
+			<h1>Do I have to pay during the off-season?</h1>
+			<p>Nope! Just switch your team site to the Free Plan during the off season. You don't pay anything but still have all your team data 100% saved. When a new season starts, you just reactivate your team and are ready to roll. (Not applicable to Annual Plans.)</p>
+			
+			<h1>Does every player on the team have to pay?</h1>
+			<p>Nope. There's a flat monthly charge for the entire team (paid by the "Team Manager").</p>
+			
+			<h1>What payment methods do you accept?</h1>
+			<p>We currently accept Visa, Mastercard, PayPal and IBN Transfers.</p>
+		</div>
+
+		<div class="pricing-faq-right">
+		
+		<h1>Can I prepay for 6-months, a year?</h1>
+		<p>We do have yearly plans, which saves you <%= sprintf( "%0.00f", annual_discount*100) %>%. Please check out our Annual Plans page for details.</p>
+
+			<h1>How does the Free Plan work?</h1>
+			<p>You can use the Free Plan as long as you like. There is no time limit and there are no hidden costs.</p>
+
+			<h1>Can I cancel at any time?</h1>
+			<p>Of course.</p>
+
+			<h1>What web browsers work with HayPista?</h1>
+			<p>We support Firefox, Chrome, Safari and Internet Explorer 7 or 8.</p>
+			
+		</div>
+
+	</div>
+	
+</div>
+</div>
+</div>

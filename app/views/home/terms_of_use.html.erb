@@ -1,41 +1,23 @@
-<div class="block">
+<%= stylesheet_link_tag 'home' %>
 
-	<%= render :partial => 'secondary_info' %>
+<div id="home">
+	
+	<div class="announce">
+		<h1><strong><%= label_name(:terms_of_use) %></strong></h1>
+	</div>
+	
+	<div class="features">
 
-	<div id="faq">
-		<div id="faq_content">
-			<h3>
-				<%= label_name(:terms_of_use) %>
-			</h3>
+		<%= render :partial => 'terms_default_es' %>
 
-			<p>
-				<strong>
-					HayPista 
-				</strong>
-				es un portal que te ayuda a organizar partidos entre amigos, 
-				buscar un centro donde puedas jugar, 
-				encontrar a gente con los mismos intereses y sobretodo disfrutar el deporte. 
-			</p>
-
-			<h4>
-				<%= label_name(:our_philosophy) %>
-			</h4>
-			<p>
-				<%= label_name(:modo) %>
-			</p>
-
-			<%= render :partial => 'terms_default_es' %>
-
-			<br/><br/><br/><br/>
-			<p>
-				<%= label_name(:question_or_comment) %>
-				<a href="mailto:support@HayPista.com">
-					<%= label_name(:drop_us_a_note) %>
-				</a>
-			</p>
-
-		</div>
-
+		<br/>
+		<p>
+			<%= label_name(:question_or_comment) %>
+			<a href="mailto:support@HayPista.com">
+				<%= label_name(:drop_us_a_note) %>
+			</a>
+		</p>				
+		
 	</div>
 
 </div>

@@ -1,0 +1,94 @@
+<%
+	billing_months = 12
+	monthly_basic_plan = 3.99
+	monthly_premium_plan = 7.99 
+	annual_basic_plan = (monthly_basic_plan * billing_months) - (monthly_basic_plan * billing_months * annual_discount)
+	annual_premium_plan = (monthly_premium_plan * billing_months)  - (monthly_premium_plan * billing_months * annual_discount)
+	
+	monthly_basic_plan = number_to_currency(monthly_basic_plan)
+	monthly_premium_plan = number_to_currency(monthly_premium_plan)
+	annual_basic_plan = number_to_currency(annual_basic_plan)
+	annual_premium_plan = number_to_currency(annual_premium_plan)
+%>
+
+<tr>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+</tr>
+	
+<tr>
+<td class="feature">Monthly Plan</td>
+<td><span class="amount"><%= monthly_premium_plan %></span></td>
+<td><span class="amount"><%= monthly_basic_plan %></span></td>
+<td><span class="amount"><%= "#{label_name(:free)}!" %></span></td>
+</tr>	
+	
+<tr class="choose-plan">
+
+<td class="feature"></td>
+
+<td>
+	<form action="../confirm_plan_change/" class="edit_site" id="edit_site_1039" method="post">
+		<div style="margin: 0pt; padding: 0pt; display: inline;">
+			<input name="_method" value="put" type="hidden"><input name="authenticity_token" value="/=" type="hidden">
+		</div>
+		<input src="../../images/choose-plan-sm.png" type="image">
+	</form>
+</td>
+<td>
+	<form action="../confirm_plan_change/" class="edit_site" id="edit_site_1039" method="post">
+		<div style="margin: 0pt; padding: 0pt; display: inline;">
+			<input name="_method" value="put" type="hidden"><input name="authenticity_token" value="/=" type="hidden">
+		</div>
+		<input src="../../images/choose-plan-sm-green.png" type="image">
+	</form>
+</td>
+<td>
+	<form action="../confirm_plan_change/" class="edit_site" id="edit_site_1039" method="post">
+		<div style="margin: 0pt; padding: 0pt; display: inline;">
+			<input name="_method" value="put" type="hidden"><input name="authenticity_token" value="/=" type="hidden">
+		</div>
+		<input src="../../images/choose-plan-sm.png" type="image">
+	</form>
+</td>
+</tr>
+	
+<tr>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+</tr>
+
+<tr>
+<td class="feature">Annual Plan</td>
+<td><span class="amount"><%= annual_premium_plan %></span></td>
+<td><span class="amount"><%= annual_basic_plan %></span></td>
+<td>&nbsp;</td>
+</tr>
+
+<tr class="choose-plan">
+
+<td class="feature"></td>
+
+<td>
+	<form action="../confirm_plan_change/" class="edit_site" id="edit_site_1039" method="post">
+		<div style="margin: 0pt; padding: 0pt; display: inline;">
+			<input name="_method" value="put" type="hidden"><input name="authenticity_token" value="/=" type="hidden">
+		</div>
+		<input src="../../images/choose-plan-sm.png" type="image">
+	</form>
+</td>
+<td>
+	<form action="../confirm_plan_change/" class="edit_site" id="edit_site_1039" method="post">
+		<div style="margin: 0pt; padding: 0pt; display: inline;">
+			<input name="_method" value="put" type="hidden"><input name="authenticity_token" value="/=" type="hidden">
+		</div>
+		<input src="../../images/choose-plan-sm-green.png" type="image">
+	</form>
+</td>
+<td>		
+</td>
+</tr>

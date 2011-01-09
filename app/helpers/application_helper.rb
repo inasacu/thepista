@@ -367,5 +367,22 @@ module ApplicationHelper
     the_action = get_the_action.gsub(' ','_')
     "<table class='table' id='#{the_action}'>"
   end
+  
+  def get_cluetip(the_label, image_name, the_description, icon_only=false)
+    the_image = option_image_link(image_name)
+    the_title = "<strong>#{the_label}</strong>"
+    the_id = "tip-#{the_label.downcase.gsub(' ','-')}-#{rand(10000)}"
+    the_content = ""
+    
+    if icon_only
+    the_content = content_tag(:span, the_image, :class => 'tooltip', :title => the_title, :rel => "##{the_id}")
+    the_image=""
+    else
+    the_content = content_tag(:span, the_label, :class => 'tooltip', :title => the_title, :rel => "##{the_id}")
+    end
+    the_content_div = content_tag(:div, the_description, :id => the_id, :style => 'display:none')
+    
+    return "#{the_image}&nbsp;&nbsp;#{the_content} #{the_content_div}"
+	end
 
 end

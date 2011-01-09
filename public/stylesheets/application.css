@@ -384,23 +384,47 @@ td.sub_true {
 .name_and_date_second_team .date_tiny { padding: 1px 0pt 0pt; display: block; font-size: 9px; color: rgb(119, 119, 119); }
 .last .action  { padding: 1px 0pt 0pt; display: block; font-size: 10px; color: rgb(119, 119, 119); }
 
-/*  new footer */
+/*  footer */
+#footer {
+  padding-bottom: 20px;
+}
+
+#footer {
+  border-top: 1px solid #cfcfcf;
+}
+
+#footer .block {
+  background: #EEF0F0;
+}
+
+#footer .block p {
+  margin: 0;
+  padding: 10px;
+}
+
 div#footer div.col_wrapper { padding-top: 1.0em; text-align: center; }
 div#footer p, ol, li { margin: 0pt; font-size: 1.0em; line-height: 1.0em; }
-div#footer a { color: lightgray;  }
-div#footer a:hover { color: black; }
+div#footer a { color: #8C8C8C;  }
+div#footer a:hover { color: blue; }
 div#footer div.link_wrapper { 
 	position: relative; 
 	float: right; 
-/*	left: 50%; */
 }
-div#footer ol { position: relative; left: -50%; font-size: 1.0em; }
-div#footer ol li { margin: 0pt 1em; position: relative; float: left; }
+div#footer ol { 
+	position: relative; 
+	left: -25%; 
+	font-size: 1.0em; 
+}
 
+div#footer ol li { 
+	margin: 0pt 1em; 
+	position: relative; 
+	float: left; 
+}
 
  /*user navigation*/
 #user-navigation a.logout {
-  background: #cc0000;
+  background: #CC0000;
   padding: 1px 4px;
   -moz-border-radius: 4px;
 -webkit-border-radius: 3px;

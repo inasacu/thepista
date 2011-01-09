@@ -420,6 +420,7 @@ en:
      teammate_notification:  Receive notice to join your team.
      enable_comments:  Enable Comments
      for:  for
+     free:  Free
      from: from 
      from_de:  for  
      from_up:  From
@@ -865,6 +866,7 @@ en:
      or_use: ...or user   
      organize:  Organize
      our_philosophy:  Our Philosophy
+     our_story:  Our Story
      overview: overview 
      overview_title:  Overview  
      page_does_not_exist: The page you wanted does not exist.     
@@ -930,6 +932,7 @@ en:
      you_petition_to_join: Request to join a team  
      team_petition: Request for Team
      error_petition_to_join:  Error in the request to join 
+     per: per
      phase:  Round
      phone: Telephone   
      phone_description: (In case your team needs to contact you.  You do have the a choise to set the phone to private...)   
@@ -980,6 +983,7 @@ en:
      previous_profile_set:  Get Profiles.
      previous_profile_set_full:  Get previous event's profiles.
      pricing:  Pricing
+     pricing_and_signup:  "Pricing & Sign Up"
      privacy: privacy     
      private_email: Private Email   
      private_option_description: (Mark as private option for all...)   
@@ -1720,6 +1724,7 @@ en:
      standings_less_games:  ( * ) Players con menos asistencias a events
      standings_legend:  Leyend   
      sub_manager_option:  Sub-Manager Options
+     success_story:  Success Stories
      recaptcha_ask_question: "Ask a question, receive an answer!"
      recaptcha_question:  Question
      recaptcha_question:  Question
@@ -1852,9 +1857,9 @@ en:
      schedules_screen:  "Shows all the upcoming events, as well as previous events..."
      schedule_screen:  "View all the details for the event, the wall, the squad, last minute and no-shows..."
      scorecards_screen:  "All match results allows to maintain a scorecard for your team..."
-     what_is_haypista_details:  "HayPista helps you organize matches find where to play so that you can enjoy practicing sports."
+     what_is_haypista_details:  "helps you organize matches find where to play so that you can enjoy practicing sports."
      how_does_haypista:  "How does HayPista work?"
      how_does_haypista_details:  "Simply create a team, find a sports center, create an event, send invitations to your friends and you're done. That easy!"
      what_other_haypista: "What else can you do on HayPista?"
      what_other_haypista_details:  "HayPista will help you organize your team.  It allows you to select who will be on the squad for each event, create different groups within each event, send the squad list and write the match result after the event.  It also uses these results to maintain a scorecard for each player on the team."
-     haypista_pronunciation:  "ˈɑi-peɪs-tɑ"
+     haypista_pronunciation:  "HayPista (pronounced ˈɑi-peɪs-tɑ) "

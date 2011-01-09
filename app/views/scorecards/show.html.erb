@@ -7,6 +7,7 @@
 	
 	the_label = label_name(:scorecard)
 	content_for(:title, the_label)
+	even_or_odd = true
 %>
 
 <div class="block">
@@ -27,8 +28,10 @@
 
 			<% if @group.is_futbol? %>
 			<%= render :partial => 'scorecard_futbol_label' %>
-			<%= render :partial => 'scorecard', :collection => @scorecards, 
-							:locals => {:group => @group, :games_played => @games_played, :less_games => @less_games} %>
+			<% @scorecards.each do |scorecard| %>
+			<%= render :partial => 'scorecard', 
+							:locals => {:scorecard => scorecard, :group => @group, :games_played => @games_played, :less_games => @less_games, :even_or_odd => (even_or_odd = !even_or_odd)        } %>
+			<% end %>
 			<% end %>
 			
 			<%  if @group.is_basket?  %>

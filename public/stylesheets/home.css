@@ -31,7 +31,6 @@ body { background-color: white; }
 	color: rgb(19, 56, 85);
 }
 
-
 #home .features { 
 	padding: 1em 2em 3em; 
 	overflow: hidden; 
@@ -46,8 +45,6 @@ body { background-color: white; }
 	border-top-right-radius: 5px;
 	border-bottom-left-radius: 5px;
 	border-bottom-right-radius: 5px;	
-	
-/*	background: url('../images/login.png') no-repeat scroll 0pt 0pt transparent; */
 }
 	
 #home .features h3 { 
@@ -74,7 +71,6 @@ body { background-color: white; }
 	}
 
 #home .features .rpx { 
-/*	border: 1px solid #cfcfcf;*/
 	margin-right: 7em; 
 	float: right; 
 	width: 33em; 

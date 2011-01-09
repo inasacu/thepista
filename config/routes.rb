@@ -89,7 +89,9 @@ ActionController::Routing::Routes.draw do |map|
   map.terms_of_use          'terminos',                                         :controller => 'home',            :action => 'terms_of_use'
   map.privacy_policy        'privacidad',                                       :controller => 'home',            :action => 'privacy_policy'
   map.faq                   'ayuda',                                            :controller => 'home',            :action => 'faq'
+  map.pricing               'precios',                                          :controller => 'home',            :action => 'pricing'
   map.openid                'openid',                                           :controller => 'home',            :action => 'openid'
+  map.success               'success',                                         :controller => 'home',            :action => 'success'
   
   map.hide_announcements    '/ocultar_aviso',                                   :controller => 'javascripts',     :action => 'hide_announcements'
   

@@ -1,64 +1,38 @@
-<div class="block">
+<%= stylesheet_link_tag 'home' %>
 
-	<%= render :partial => 'secondary_info' %>
+<div id="home">
 
-	<div id="faq">
-		<div id="faq_content">
-			<h3>
-				<%= label_name(:faq) %>
-			</h3>
-			<h4>
-				<%= label_name(:what_is_haypista) %>
-			</h4>
-			<p>
-				<strong>HayPista</strong> es un portal que te ayuda a organizar partidos entre amigos, 
-				buscar un centro donde puedas jugar, 
-				encontrar a gente con los mismos intereses y 
-				sobretodo disfrutar el deporte.
-			</p>
-			<h4>
-				¿Cómo te puede ayudar HayPista?
-			</h4>
-			<p>
-				<strong>HayPista</strong> te ayuda a organizar tu equipo atraves de internet:
-			</p>
-			<ul>
-				<li>
-					<%= link_to("Te permite organizar equipos y eventos.", schedules_url) %>
-				</li>
-				<li>
-					 <%= link_to("Puedes ver quien se ha convocado al evento, quien esta para ultima hora y quien sera ausente.", schedules_url) %>
-				</li>
-				<li>
-					<%= link_to("Controlar los pagos y deudas del equipo", schedules_url) %>
-				</li>
-				<li>
-					<%= link_to("Dejar mensajes en el muro del equipo o de tus companeros e incluso en el evento", schedules_url) %>
-				</li>
-				<li>
-					<%= link_to("Podras mandar mensajes a tu equipo", schedules_url) %>
-				</li>
-				<li>
-					<%= link_to("Controlar las estadisticas de tu equipo", schedules_url) %>
-				</li>
-				<li>
-					<%= link_to("Ver y subir el logo de tu equipo o tu propia foto", schedules_url) %>
-				</li>
-				<li>
-					<%= link_to("Ver los centros mas cercanos a donde tu juegas", schedules_url) %>
-				</li>
-			</ul>
-
-			<div id="leaguenotify" class="mailing_list">
-				<p>
-					<%= label_name(:question_or_comment) %>
-					<a href="mailto:support@HayPista.com">
-						<%= label_name(:drop_us_a_note) %>
-					</a>
-				</p>
-			</div>
-		</div>
-
+	<div class="announce">
+		<h1><strong><%= label_name(:faq) %></strong></h1>
 	</div>
 
+	<div class="features">
+
+		<h3>¿Cómo te puede ayudar HayPista?</h3>
+		
+		<p>*  Te permite organizar equipos y eventos.</p>
+		
+		<p>*  Puedes ver quien se ha convocado al evento, quien esta para ultima hora y quien sera ausente.</p>
+		
+		<p>*  Controlar los pagos y deudas del equipo</p>
+		
+		<p>*  Dejar mensajes en el muro del equipo o de tus companeros e incluso en el evento</p>
+		
+		<p>*  Podras mandar mensajes a tu equipo</p>
+		
+		<p>*  Controlar las estadisticas de tu equipo</p>
+		
+		<p>*  Ver y subir el logo de tu equipo o tu propia foto</p>
+		
+		<p>*  Ver los centros mas cercanos a donde tu juegas</p>
+
+		<br/>
+		<p>
+			<%= label_name(:question_or_comment) %>
+			<a href="mailto:support@HayPista.com">
+				<%= label_name(:drop_us_a_note) %>
+			</a>
+		</p>
+
+	</div>
 </div>

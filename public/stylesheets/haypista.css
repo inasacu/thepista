@@ -158,21 +158,6 @@ hr {
   color: #F7F7F8;
 }
 
-#footer {
-/*  background-color: #ddd;*/
-  border-top: 1px solid #cfcfcf;
-}
-
-#footer .block {
-/*  background: #0F7D00;*/
-  background: #EEF0F0;
-}
-
-#footer .block p {
-  margin: 0;
-  padding: 10px;
-}
-
 /* pagination */
 
 .pagination span.current {
@@ -238,6 +223,10 @@ hr {
 
 .table td {
   border-bottom: 1px dotted #cfcfcf;
+}
+
+.table tr.even_true td { 
+	background: rgb(238, 238, 238) none repeat scroll 0% 0%; 
 }
 
 .table td.letter-divider {

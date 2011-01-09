@@ -420,6 +420,7 @@ es:
      teammate_notification:  Recibir notificación para unirse a tu equipo en tu cuenta de correo.
      enable_comments:  Habilitar comentarios
      for:  para
+     free:  Gratis
      from: de  
      from_de: de
      from_up: De 
@@ -857,14 +858,15 @@ es:
      openid_cancelled: Autorización a la cuenta OpenID ha sido cancelada   
      openid_failed: Autorización a la OpenID ha fallado   
      openid_replace_account: Reemplaza el OpenID   
-     openid_user_not_saved: Información del usuario nuevo nO ha sido guardada   
+     openid_user_not_saved: Información del usuario nuevo no ha sido guardada   
      openid_user_saved: Información del usuario nuevo ha sido guardada correctamente   
      optional: opciónal 
      options: Opciones  
      or: o   
      or_use: ...o utiliza   
      organize:  Organizar
-     our_philosophy:  Nuestra filosofía
+     our_philosophy:  Nuestra Filosofía
+     our_story:  Nuestra Historia
      overview: descripción general 
      overview_title:  Resumen  
      page_does_not_exist: La pagina que querias no exite.
@@ -930,6 +932,7 @@ es:
      you_petition_to_join: Petición para unirte a un equipo  
      team_petition: Solicitud de equipo
      error_petition_to_join: Error en la petición para unirse a
+     per: por
      phase:  Fase
      phone: Teléfono   
      phone_description: (Por si te tiene que llamar tu equipo. Hay opción de poner este numero en privado...)   
@@ -980,6 +983,7 @@ es:
      previous_profile_set:  Obtener perfil de jornada
      previous_profile_set_full:  Obtener los perfiles de la jornada anterior.
      pricing:  Precios
+     pricing_and_signup:  Precios y Registrarse
      privacy: privacidad   
      private_email: Correo oculto   
      private_option_description: (Marcar opción como privada a todos...)   
@@ -1471,7 +1475,7 @@ es:
      privacy_policy: Privacidad
      faq: Preguntas Frecuentes
      openid:  Acceso con tu cuenta
-     faq_acceso_con_tu_cuenta:  Preguntas sobre Acceso con tu cuenta
+     faq_acceso_con_tu_cuenta:  Preguntas sobre como acceder a Haypista con tu cuenta
      follow_twitter:  Siguenos en Twitter
      follow_facebook:  Siguenos en Facebook
      follow_linkedin:  Siguenos en Linkedin
@@ -1720,6 +1724,7 @@ es:
      standings_less_games:  ( * ) Jugadores con menos asistencias a eventos
      standings_legend:  Leyenda 
      sub_manager_option:  Opciones de Sub-Manager    
+     success_story:  Historia de éxitos
      recaptcha_ask_question: "Haz una pregunta, recibe una respuesta!"
      recaptcha_question:  Haz la pregunta
      recaptcha_question:  Pregunta
@@ -1852,9 +1857,9 @@ es:
      schedules_screen:  "Muestra la lista de los proximos eventos, e incluso anteriores eventos..."
      schedule_screen:  "Muestra los detalles del evento, un muro, lista de convocados, ultima hora y ausentes..."
      scorecards_screen:  "Los resultados de cada evento permite mantener la clasificación de tu equipo..."
-     what_is_haypista_details:  "HayPista te ayuda a organizar partidos, buscar donde jugar, y disfrutar del deporte."
+     what_is_haypista_details:  "te ayuda a organizar partidos, buscar donde jugar, y disfrutar del deporte."
      how_does_haypista:  "¿Como funciona HayPista?"
      how_does_haypista_details:  "Simplemente crea un equipo, busca un centro deportivo, crea un evento, envía invitaciones a tus amigos y ya está. Asi de fácil."
      what_other_haypista: "¿Qué otras cosas hace HayPista?"
      what_other_haypista_details:  "HayPista te permite organizar quién del equipo puede participar en cada evento, hacer diferentes equipos por evento, mandar la convocatoria y poner el resultado del evento. También mantiene los resultados de cada evento y la clasificación de cada jugador en tu equipo."
-     haypista_pronunciation:  "ˈɑi-peɪs-tɑ"
+     haypista_pronunciation:  "HayPista (pronunciado ˈɑi-peɪs-tɑ) "
