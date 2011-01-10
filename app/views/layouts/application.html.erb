@@ -41,7 +41,7 @@
 	<%= stylesheet_link_tag 'header' %>	
 	<%= stylesheet_link_tag get_the_action if is_action('show') %>
 	
-	<% if development? %>
+	<% unless production? %>
 		<%= javascript_include_tag 'jquery.cluetip' %>
 		<%= javascript_include_tag 'jquery.hoverIntent' %>
 		
