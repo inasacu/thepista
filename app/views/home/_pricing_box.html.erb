@@ -1,7 +1,11 @@
 <%
+	default_monthly_basic = 3.99
+	default_monthly_premium = 7.99
+	
 	billing_months = 12
-	monthly_basic_plan = 3.99
-	monthly_premium_plan = 7.99 
+	monthly_basic_plan = 0.99
+	monthly_premium_plan = 3.99 
+	
 	annual_basic_plan = (monthly_basic_plan * billing_months) - (monthly_basic_plan * billing_months * annual_discount)
 	annual_premium_plan = (monthly_premium_plan * billing_months)  - (monthly_premium_plan * billing_months * annual_discount)
 	
