@@ -6,7 +6,8 @@ body { background-color: white; }
 }
 #home .announce h1 { 
 
-	font-family:"Lucida Grande",Verdana,"Bitstream Vera Sans",Arial,sans-serif;
+	font-family: "HelveticaNeue-Light",Helvetica,Arial,FreeSans,sans-serif;
+/*	font-family:"Lucida Grande",Verdana,"Bitstream Vera Sans",Arial,sans-serif;*/
 	font-size: 215%; 
 	text-align: center; 
 	font-weight: normal; 
