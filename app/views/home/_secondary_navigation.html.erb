@@ -14,7 +14,7 @@ if current_user
 		<li class="message">
 			<%= link_to label_name(:messages_inbox) , :controller => 'messages', :action => 'index' %>			
 		</li>		
-		<li><div class="comment-bubble"><%= unread_count %></div></li>
+		<li class="message_count"><div class="comment-bubble"><%= unread_count %></div></li>
 	<% end %>		
 <% 
 end 

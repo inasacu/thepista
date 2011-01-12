@@ -117,6 +117,12 @@ hr {
 .secondary-navigation ul li.active, .secondary-navigation ul li.active a:hover {
 	background-color: #60AD35;
 }
+
+.secondary-navigation ul li.message_count {
+	background-color: transparent;
+}
+
+
 /* @end */
 
 /* @group Sidebar */
