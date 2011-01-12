@@ -76,13 +76,6 @@
 							<%= content_tag :td, label_name(:available), :class => "label" %>
 							<%= content_tag :td, (is_user_manager ? link_to(the_label, set_available_path(:id => @user)) : the_label), :class => get_the_action %>
 						</tr>
-						<% 
-							the_label = h(label_name(@user.looking, 'value'))
-						%>
-						<tr>
-							  <%= content_tag :td, label_name(:looking_for_my_group), :class => "label" %>
-							  <%= content_tag :td, (@user == current_user ? link_to(the_label, set_user_looking_path(:id => @user)) : the_label), :class => get_the_action %>
-						</tr>
 		
 						<%# 
 							the_label = h(label_name(@user.private_phone, 'value'))
@@ -92,31 +85,20 @@
 							<%#= content_tag :td, (can_modify ? link_to(the_label, set_private_phone_path(:id => @user)) : the_label), :class => get_the_action %>
 						</tr> -->
 
-						<% 
+						<%# 
 							the_label = h(label_name(@user.private_profile, 'value'))
 						%>
-						<tr>
-							<%= content_tag :td, label_name(:private_profile), :class => "label" %>
-							<%= content_tag :td, (can_modify ? link_to(the_label, set_private_profile_path(:id => @user)) : the_label), :class => get_the_action %>
-						</tr>
+						<!-- <tr>
+							<%#= content_tag :td, label_name(:private_profile), :class => "label" %>
+							<%#= content_tag :td, (can_modify ? link_to(the_label, set_private_profile_path(:id => @user)) : the_label), :class => get_the_action %>
+						</tr> -->
 
-						<% if @user.has_role?('manager') %>
-						<%
-							the_label = h(label_name(@user.teammate_notification, 'value'))
-						%>
-						<tr>
-							<%= content_tag :td, label_name(:teammate_notification), :class => "label" %>
-							<%= content_tag :td, (can_modify ? link_to(the_label, set_teammate_notification_path(:id => @user)) : the_label), :class => get_the_action %>
-						</tr>
-						<% end %>
-						
 						<% 
-							the_label = h(label_name(@user.message_notification, 'value'))
+							the_label = h(label_name(@user.forum_comment_notification, 'value'))
 						%>
-						
 						<tr>
-							<%= content_tag :td, label_name(:message_notification), :class => "label" %>
-							<%= content_tag :td, (can_modify ? link_to(the_label, set_message_notification_path(:id => @user)) : the_label), :class => get_the_action %>
+							<%= content_tag :td, label_name(:forum_notification), :class => "label" %>
+							<%= content_tag :td, (can_modify ? link_to(the_label, set_forum_notification_path(:id => @user)) : the_label), :class => get_the_action %>
 						</tr>
 
 						<% 
@@ -126,13 +108,31 @@
 							<%= content_tag :td, label_name(:blog_notification), :class => "label" %>
 							<%= content_tag :td, (can_modify ? link_to(the_label, set_blog_notification_path(:id => @user)) : the_label), :class => get_the_action %>
 						</tr>
-		
+
 						<% 
-							the_label = h(label_name(@user.forum_comment_notification, 'value'))
+							the_label = h(label_name(@user.message_notification, 'value'))
 						%>
 						<tr>
-							<%= content_tag :td, label_name(:forum_notification), :class => "label" %>
-							<%= content_tag :td, (can_modify ? link_to(the_label, set_forum_notification_path(:id => @user)) : the_label), :class => get_the_action %>
+							<%= content_tag :td, label_name(:message_notification), :class => "label" %>
+							<%= content_tag :td, (can_modify ? link_to(the_label, set_message_notification_path(:id => @user)) : the_label), :class => get_the_action %>
+						</tr>
+						
+						<% if @user.has_role?('manager') %>
+						<%
+							the_label = h(label_name(@user.teammate_notification, 'value'))
+						%>
+						<tr>
+							<%= content_tag :td, label_name(:teammate_notification), :class => "label" %>
+							<%= content_tag :td, (can_modify ? link_to(the_label, set_teammate_notification_path(:id => @user)) : the_label), :class => get_the_action %>
+						</tr>
+						<% end %>
+					
+						<% 
+							the_label = h(label_name(@user.looking, 'value'))
+						%>
+						<tr>
+							  <%= content_tag :td, label_name(:looking_for_my_group), :class => "label" %>
+							  <%= content_tag :td, (@user == current_user ? link_to(the_label, set_user_looking_path(:id => @user)) : the_label), :class => get_the_action %>
 						</tr>
 						
 						<tr>
