@@ -8,9 +8,9 @@ module MessagesHelper
 
   def message_icon(message)
     if message.new?(current_user)
-      image_tag("icons/email_add.png", :class => "icon")
+      image_tag("icons/email_add.png", :style => "height: 16px; width: 16px;", :class => "icon")
     elsif message.replied_to?
-      image_tag("icons/email_go.png", :class => "icon")
+      image_tag("icons/email_go.png", :style => "height: 16px; width: 16px;", :class => "icon")
     end
   end
 
