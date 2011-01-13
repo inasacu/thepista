@@ -234,18 +234,19 @@ text_area.textfield {
 .table th.last {
 	width: 120px;
 }
-/*
+
+
 .table th.last_roster {
-	width: 120px;
+	width: 150px;
 }
 
-.table th.second_team {
-	width: 120px;
-}
-
-.table th.last_roster_second_team {
+/*.table th.second_team {
 	width: 120px;
 }*/
+
+.table th.second_team_last_roster {
+	width: 150px;
+}
 
 
 .table .checkbox {

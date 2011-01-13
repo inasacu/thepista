@@ -61,9 +61,9 @@ if roster_count
 			<%= content_tag :th, has_been_played ? label_name(:evaluation) : label_name(:group), :class => "heading" if is_action %>
 			
 			<% if has_been_played %>
-			<%= content_tag :th, label_name(:score), :class => "last" %>
+			<%= content_tag :th, label_name(:score), :class => "last_roster" %>
 			<% elsif !has_been_played %>
-			<%= content_tag :th, "", :class => "last" %>
+			<%= content_tag :th, "", :class => "last_roster" %>
 			<% end -%>
 		</tr>
 <% 
@@ -166,11 +166,11 @@ if current_user == the_user or is_manager
 	unless type.id == match.type_id			
 		if type.id == 4
 %>
-			<%= match_roster_change_link(match, type) if is_manager %>
+			<%= "#{match_roster_change_link(match, type)}<br/>" if is_manager %>
 <% 			
 		else
 %>
-			<%= match_roster_change_link(match, type) %>
+			<%= match_roster_change_link(match, type) %><br/>
 <%
 		end 
 	end
