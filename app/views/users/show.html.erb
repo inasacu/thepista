@@ -32,7 +32,7 @@
 		<table>
 			<tr>
 				<td>
-					<table border="1">
+					<table border="0">
 						
 						<%= tr_td_action(:name, @user.name) %>
 						<%= tr_td_action(:language, label_name(@user.language)) %>						
@@ -122,7 +122,8 @@
 							the_label = h(label_name(@user.teammate_notification, 'value'))
 						%>
 						<tr>
-							<%= content_tag :td, label_name(:teammate_notification), :class => "label" %>
+							<%= get_cluetip_td("teammate_notification", "Como manager de un equipo, puedes recibir las peticiones a tu equipo en tu cuenta de correo.", "label") %>
+							<%#= content_tag :td, label_name(:teammate_notification), :class => "label" %>
 							<%= content_tag :td, (can_modify ? link_to(the_label, set_teammate_notification_path(:id => @user)) : the_label), :class => get_the_action %>
 						</tr>
 						<% end %>

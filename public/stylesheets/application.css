@@ -168,19 +168,6 @@ textarea.text_message {
 	font-size: 13px;
 }
 
-
-/*.inplace_text_field{ 
-	border: 1px solid rgb(205, 205, 205); 
-	padding: 0.4em; 
-	background: rgb(255, 255, 255) url('../../images/textfield-bg.gif') repeat-x scroll 0pt 1px; 
-}
-.inplace_text_field:focus { 
-	background: rgb(255, 254, 244) url('../../images/textfield-focus-bg.gif') repeat-x scroll 0pt 1px; 
-}
-input.inplace_text_field { 
-	width: 15px; 
-}
-*/
 .text_field{ 
 	border: 1px solid rgb(205, 205, 205); 
 	padding: 0.4em; 
@@ -237,7 +224,7 @@ text_area.textfield {
 
 
 .table th.last_roster {
-	width: 150px;
+	width: 120px;
 }
 
 /*.table th.second_team {
@@ -245,7 +232,7 @@ text_area.textfield {
 }*/
 
 .table th.second_team_last_roster {
-	width: 150px;
+	width: 120px;
 }
 
 
@@ -274,6 +261,21 @@ text_area.textfield {
 	background: #FFF1A8;
 	padding:  15px 5px;	
 	text-align: right;
+}
+
+.table td.first_left {
+	width: 86%;
+	padding:  8px 8px 8px 8px;
+	border-bottom: 0px solid #cfcfcf;
+/*    font-weight: bold;*/
+  	color: #336699;
+	font-size: 14px;
+}
+
+.table td.last_left {
+	width: 150px;
+	padding:  5px 5px;	
+	border-bottom: 0px solid #cfcfcf;
 }
 
 #team_roster td{

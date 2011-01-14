@@ -29,18 +29,40 @@ class SchedulesController < ApplicationController
 
   def schedule_list
     @schedules = @group.schedules.paginate(:page => params[:page], :per_page => SCHEDULES_PER_PAGE)
-    # @total = @group.schedules.count
     render :template => '/schedules/index'
   end
   
-  def archive_list
-    # @schedules = Schedule.archive_schedules(current_user, params[:page])    
+  def archive_list 
     @schedules = Schedule.current_schedules(current_user, params[:page])
     render :template => '/schedules/index'       
   end
 
   def show
     store_location    
+  end
+  
+  def team_roster
+    @has_a_roster = !(@schedule.convocados.empty?)
+    @the_roster = @schedule.the_roster
+    render :template => 'schedules/team_roster'       
+  end
+  
+  def team_last_minute
+    @has_a_roster = !(@schedule.last_minute.empty?)
+    @the_roster = @schedule.the_last_minute
+    render :template => 'schedules/team_roster'
+  end
+  
+  def team_no_show
+    @has_a_roster = !(@schedule.no_shows.empty?)
+    @the_roster = @schedule.the_no_show
+    render :template => 'schedules/team_roster'
+  end
+  
+  def team_unavailable
+    @has_a_roster = !(@schedule.the_unavailable.empty?)
+    @the_roster = @schedule.the_unavailable
+    render :template => 'schedules/team_roster'
   end
   
   def rate

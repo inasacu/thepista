@@ -34,7 +34,7 @@
 	<td valign="top" width="105"><%= cup_show_photo(@cup, current_user) %></td>
 
 	<td>
-	<table border="1">
+	<table border="0">
 		
 		<%= tr_td_action(:name, @cup.name) %>
 		<%= tr_td_action(:official, label_name(@cup.official, 'value')) if current_user.is_maximo? %>
