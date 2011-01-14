@@ -20,18 +20,18 @@
 	away["has_total_value"] = away["total"] > 0
 	
 	if home["has_technical_value"] and away["has_technical_value"]
-		home["technical_difference"] = (home["technical"] - away["technical"]).to_f / away["technical"] * 100
-		away["technical_difference"] = (away["technical"] - home["technical"]).to_f / home["technical"] * 100
+		home["technical_difference"] = (home["technical"] - away["technical"]).to_f / (away["technical"] + home["technical"]) * 100
+		away["technical_difference"] = (away["technical"] - home["technical"]).to_f / (home["technical"] + away["technical"]) * 100
 	end
 
 	if home["has_physical_value"] and away["has_physical_value"]
-		home["physical_difference"] = (home["physical"] - away["physical"]).to_f / away["physical"] * 100
-		away["physical_difference"] = (away["physical"] - home["physical"]).to_f / home["physical"] * 100
+		home["physical_difference"] = (home["physical"] - away["physical"]).to_f / (away["physical"] + home["physical"]) * 100
+		away["physical_difference"] = (away["physical"] - home["physical"]).to_f / (home["physical"] + away["physical"]) * 100
 	end
 
 	if home["has_total_value"] and away["has_total_value"] 		
-		home["total_difference"] = (home["total"] - away["total"]).to_f / away["total"] * 100
-		away["total_difference"] = (away["total"] - home["total"]).to_f / home["total"] * 100 
+		home["total_difference"] = (home["total"] - away["total"]).to_f / (away["total"] + home["total"]) * 100
+		away["total_difference"] = (away["total"] - home["total"]).to_f / (home["total"] + away["total"]) * 100 
 	end
 		
 	home["technical_difference"] = "#{sprintf( "%.2f", home["technical_difference"].abs)}%"
