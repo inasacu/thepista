@@ -62,7 +62,7 @@
 <td valign="top" width="105">&nbsp;</td>
 
 <td>
-<table border="0">
+<table>
 
     <tr>
       <%= content_tag :td, label_name(:concept), :class => "label" %>            
@@ -114,12 +114,12 @@
 		
 	<tr>
 		<%= content_tag :td,"#{label_name(:schedule_rate)}", :class => "label" %>		
-		<%= content_tag :td, ratings_for(@schedule, :show_user_rating => true, :dimension => :performance, :small => true) %>
+		<%= content_tag :td, ratings_for(@schedule, :show_user_rating => true, :dimension => :performance, :small => true), :class => get_the_action %>
 	</tr>	
 
 	<tr>
 		<%= content_tag :td,"#{label_name(:schedule_rate_average)}", :class => "label" %>
-		<%= content_tag :td, ratings_for( @schedule, :static, :dimension => :performance, :small => true) %>
+		<%= content_tag :td, ratings_for( @schedule, :static, :dimension => :performance, :small => true), :class => get_the_action %>
 	</tr>
 	
 	<tr>
