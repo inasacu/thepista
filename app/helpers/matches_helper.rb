@@ -71,7 +71,7 @@ module MatchesHelper
     the_current_label = "#{label_name(:change)} #{label_name(:from)} #{label_name(the_match_type.name).downcase}"
 
     the_action = get_the_action.downcase.gsub(' ','_')
-    
+
     case the_match_type.id
     when 1
       show_link = (the_action == "team_roster")
@@ -82,8 +82,10 @@ module MatchesHelper
     when 4
       show_link = (the_action == "team unavailable")
     end
-    
-    return match_roster_link(the_current_label, my_current_match) unless show_link
+
+    unless schedule.played?
+      return match_roster_link(the_current_label, my_current_match) unless show_link
+    end
   end
 end
 
