@@ -96,9 +96,9 @@
 	<%= content_tag(:td, home["technical"], :class => "no_line") %>
 	<%= content_tag(:td, home["physical"], :class => "no_line") %>
 	<%= content_tag(:td, home["total"], :class => "no_line") %>
-	<%= content_tag(:td, home["technical_difference"], :class => "no_line") if (home["technical_difference"].to_f > 0.0) %>
-	<%= content_tag(:td, home["physical_difference"], :class => "no_line") if (home["physical_difference"].to_f > 0.0) %>
-	<%= content_tag(:td, home["total_difference"], :class => "no_line") if (home["total_difference"].to_f > 0.0) %>
+	<%= content_tag(:td, home["technical_difference"], :class => "no_line") %>
+	<%= content_tag(:td, home["physical_difference"], :class => "no_line") %>
+	<%= content_tag(:td, home["total_difference"], :class => "no_line") %>
 </tr>
 
 <tr>
@@ -108,9 +108,9 @@
 	<%= content_tag(:td, away["technical"]) %>
 	<%= content_tag(:td, away["physical"]) %>
 	<%= content_tag(:td, away["total"]) %>
-	<%= content_tag(:td, away["technical_difference"]) if (away["technical_difference"].to_f > 0.0) %>
-	<%= content_tag(:td, away["physical_difference"]) if (away["physical_difference"].to_f > 0.0) %>
-	<%= content_tag(:td, away["total_difference"]) if (away["total_difference"].to_f > 0.0) %>
+	<%= content_tag(:td, away["technical_difference"]) %>
+	<%= content_tag(:td, away["physical_difference"]) %>
+	<%= content_tag(:td, away["total_difference"]) %>
 </tr>
 
 <tr><% 10.times {|i| "#{content_tag(:td, '&nbsp;', :class => 'no_line')}"} %></tr>
