@@ -11,14 +11,16 @@
 	<%= show_heading(the_label) %>
 
 	<div class="inner">
-
-			<div class="description">
-	    		<span class="q">
-					<%= nice_day_of_week(@schedule.starts_at) %>
-				</span>
-	  		</div>
-			<br/>
-			<br/>
+		<div class="columns"> 
+			<div class="column left"> 
+				<span class="description"><%= nice_day_of_week(@schedule.starts_at) %></span>
+			</div> 
+			<div class="column right"> 
+				<span class="description"><%= match_my_current_link(@schedule, @match_type, current_user) %></span>
+			</div> 
+		</div>	
+		<br/>
+		<br/>
 <% 
 	if a_roster
 %>

@@ -122,6 +122,10 @@
 		<%= content_tag :td, ratings_for( @schedule, :static, :dimension => :performance, :small => true) %>
 	</tr>
 	
+	<tr>
+		<%= content_tag :td, link_to(label_name(:scorecard), scorecard_path(:id => @schedule.group)), :class => "label" %>
+	</tr>
+	
 	<%= tr_td_action(:season, @schedule.season) %>
 	<%= tr_td_action(:sport, @schedule.sport.name) %>
 	<%= tr_td_action(:fee_per_game, number_to_currency(@schedule.fee_per_game)) %>

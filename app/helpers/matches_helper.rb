@@ -15,7 +15,7 @@ module MatchesHelper
     when 4
       the_image = 'estatus-no-disponible.png'
     end      
-    "#{link_to(image_tag(the_image, :title => the_label, :style => 'height: 16px; width: 16px;'), match_status_path(:id => match.id, :type => type.id), :title => the_label)}#{link_to(the_label, match_status_path(:id => match.id, :type => type.id))}    "  
+    "#{link_to(image_tag(the_image, :title => the_label, :style => 'height: 16px; width: 16px;'), match_status_path(:id => match.id, :type => type.id), :title => the_label)}  #{link_to(the_label, match_status_path(:id => match.id, :type => type.id))}    "  
   end
 
   def match_roster_link(text, match = nil, html_options = nil)
@@ -61,6 +61,29 @@ module MatchesHelper
       return link_to(image_tag(the_image, :title => the_label, :style => "height: 15px; width: 15px;"), team_unavailable_path(:id => the_schedule), :title => the_label)
     end    
   end
+  
+  def match_my_current_link(schedule, match_type, user)
+    my_current_match = ''
+    the_match_type = ''	
 
+    schedule.matches.each{|match| my_current_match = match if match.user_id == current_user.id}
+    match_type.each {|type| the_match_type = type if type.id == my_current_match.type_id}		
+    the_current_label = "#{label_name(:change)} #{label_name(:from)} #{label_name(the_match_type.name).downcase}"
+
+    the_action = get_the_action.downcase.gsub(' ','_')
+    
+    case the_match_type.id
+    when 1
+      show_link = (the_action == "team_roster")
+    when 2
+      show_link = (the_action == "team_last_minute")
+    when 3
+      show_link = (the_action == "team_no_show")
+    when 4
+      show_link = (the_action == "team unavailable")
+    end
+    
+    return match_roster_link(the_current_label, my_current_match) unless show_link
+  end
 end
 
