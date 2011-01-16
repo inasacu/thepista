@@ -76,22 +76,6 @@
 							<%= content_tag :td, label_name(:available), :class => "label" %>
 							<%= content_tag :td, (is_user_manager ? link_to(the_label, set_available_path(:id => @user)) : the_label), :class => get_the_action %>
 						</tr>
-		
-						<%# 
-							the_label = h(label_name(@user.private_phone, 'value'))
-						%>
-						<!-- <tr>
-							<%#= content_tag :td, label_name(:private_phone), :class => "label" %>
-							<%#= content_tag :td, (can_modify ? link_to(the_label, set_private_phone_path(:id => @user)) : the_label), :class => get_the_action %>
-						</tr> -->
-
-						<%# 
-							the_label = h(label_name(@user.private_profile, 'value'))
-						%>
-						<!-- <tr>
-							<%#= content_tag :td, label_name(:private_profile), :class => "label" %>
-							<%#= content_tag :td, (can_modify ? link_to(the_label, set_private_profile_path(:id => @user)) : the_label), :class => get_the_action %>
-						</tr> -->
 
 						<% 
 							the_label = h(label_name(@user.forum_comment_notification, 'value'))
@@ -122,8 +106,8 @@
 							the_label = h(label_name(@user.teammate_notification, 'value'))
 						%>
 						<tr>
-							<%= get_cluetip_td("teammate_notification", "Como manager de un equipo, puedes recibir las peticiones a tu equipo en tu cuenta de correo.", "label") %>
-							<%#= content_tag :td, label_name(:teammate_notification), :class => "label" %>
+							<%#= get_cluetip_td("teammate_notification", "Como manager de un equipo, puedes recibir las peticiones a tu equipo en tu cuenta de correo.", "label") %>
+							<%= content_tag :td, label_name(:teammate_notification), :class => "label" %>
 							<%= content_tag :td, (can_modify ? link_to(the_label, set_teammate_notification_path(:id => @user)) : the_label), :class => get_the_action %>
 						</tr>
 						<% end %>
