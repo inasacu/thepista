@@ -73,7 +73,7 @@ class MatchesController < ApplicationController
     end
     if @match.update_attributes(params[:match])
       Match.save_matches(@match, params[:match][:match_attributes]) if params[:match][:match_attributes]
-      Match.update_match_details(@match)
+      Match.update_match_details(@match, current_user)
 
       flash[:success] = I18n.t(:successful_update)
       redirect_to :controller => 'schedules', :action => 'show', :id => @match.schedule

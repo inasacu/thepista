@@ -140,7 +140,7 @@ class Match < ActiveRecord::Base
     Scorecard.send_later(:calculate_group_scorecard, group)
   end
   
-  def self.update_match_details(the_match, forum_comment=true)
+  def self.update_match_details(the_match, user, forum_comment=true)
     @schedule = the_match.schedule    
     @schedule.played = (!the_match.group_score.nil? and !the_match.invite_score.nil?)
     @schedule.save!
