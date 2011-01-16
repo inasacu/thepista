@@ -52,6 +52,7 @@ es:
      authorizable_id: Codigo    
      authorizable_type: Tipo    
      available: Disponible
+     available_cluetip: "Estar disponible permite que otros jugadores sepan que estas para jugar. De lo contrario permite que no tienes interes en jugar y que no se te moleste."
      available_description: (Si estas disponible para jugar o si no quieres que te molesten...)   
      avatar: Gravatar   
      away_group: Fuera   
@@ -62,7 +63,8 @@ es:
      birth_at:  Fecha de nacimiento
      birth_description: (Escribe fecha de nacimiento...Solo se utiliza para calcular la edad media del equipo...)      
      blog_haypista: Blog
-     blog_notification: Recibir comentarios de tu muro
+     blog_notification: Comentarios de tu muro
+     blog_notification_cluetip:  "Esta opción permite que recibas los mensajes dejados en tu muro en tu cuenta de correo."
      blogs_my_wall:  Mi muro
      blogs_option:  Opciones 
      body: Contenido 
@@ -414,10 +416,11 @@ es:
      forward: Adelante   
      Friday: Viernes 
      profile:  Perfil
-     forum_notification:  Recibir comentarios de eventos
+     forum_notification:  Comentarios de eventos
+     forum_notification_cluetip:  "Esta opción permite que recibas los mensajes dejados en el muro del evento en tu cuenta de correo."
      forum_options:  Opciones
-     message_notification:  Recibir correos.
-     teammate_notification:  Recibir notificación para unirse a tu equipo en tu cuenta de correo.
+     message_notification:  Correos
+     message_notification_cluetip:  "Esta opción permite que recibas mensajes en tu cuenta de correo."
      enable_comments:  Habilitar comentarios
      for:  para
      free:  Gratis
@@ -716,7 +719,6 @@ es:
      member_since: Miembro desde   
      message: Mensaje
      message_description: Escribe el mensaje.
-     message_notification: Recibir correo  
      message_notification_description: (Quieres recibir notificaciones atraves del correo electronico...)   
      messages: Mensajes   
      missing:  Faltan
@@ -1253,7 +1255,8 @@ es:
      t_zone: Horario   
      table_id: Codigo de tabla   
      table_type: Tipo de tabla  
-     teammate_notification:  Recibir peticiones
+     teammate_notification:  Peticiones
+     teammate_notification_cluetip:  "Como manager de un equipo, puedes recibir las peticiones a tu equipo en tu cuenta de correo."
      technical_level_description: "(Del 1 al 5, pon el nivel tecnico que crees que tienes comparado con los de tu equipo...)"  
      terms: terminos   
      terms_message: Please accept the terms to proceed   

@@ -4,20 +4,22 @@
 
 // jquery cluetip script
 $(document).ready(function() {
-  $('span').cluetip({
-				attribute: 'rel',
-				local: true,
-				hideLocal: true,
-				arrows: true,
-				cluetipClass: 'jtip'
+	$('span').cluetip({
+		attribute: 'rel',
+		local: true,
+		hideLocal: true,
+		arrows: true, 
+		cursor: 'pointer',
+		cluetipClass: 'jtip'
 	});
-			
+
 	$('a').cluetip({
-					attribute: 'rel',
-					local: true,
-					hideLocal: true,
-					arrows: true,
-					cluetipClass: 'jtip'
+		attribute: 'rel',
+		local: true,
+		hideLocal: true,
+		arrows: true, 
+		cursor: 'pointer',
+		cluetipClass: 'jtip'
 	});
-						
+	$('a.title').cluetip({splitTitle: '|'});
 });

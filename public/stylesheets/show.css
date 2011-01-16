@@ -36,6 +36,12 @@ td.label {
     border: 1px solid white;
 }
 
+td.label_tip {
+    font-weight: bold;
+    padding: 10px 0 5px 10px;
+/*    width: 200px;*/
+    border: 1px solid white;
+}
 td.show {
     padding: 10px 0 5px 10px;
     text-align: left;

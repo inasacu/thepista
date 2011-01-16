@@ -52,6 +52,7 @@ en:
      authorizable_id: Code    
      authorizable_type: Type    
      available: Available
+     available_cluetip: "Set to available allows others to know that you have an interest in played. Setting this option to 'No', tells others that you aren't available to play or to be contacted."
      available_description: (Are you available to Play?)   
      avatar: Gravatar   
      away_group: Visiting 
@@ -62,7 +63,8 @@ en:
      birth_at:  Date of Birth
      birth_description: (Write your Date of Birth.  This is only used to calculate the medium Age for a Team.) 
      blog_haypista: Blog
-     blog_notification: Receive comments from your wall
+     blog_notification: Comments from your wall
+     blog_notification_cluetip:  "This option allows you to receive messages left on your personal wall in your email inbox."
      blogs_my_wall:  My Wall
      blogs_option:  Options
      body: Body 
@@ -414,10 +416,11 @@ en:
      forward: Forward   
      Friday: Friday 
      profile:  Profile
-     forum_notification:  Receive comments from your events.
+     forum_notification:  Comments from your events.
+     forum_notification_cluetip:  "This option allows you to receive messages left on your events' wall in your email inbox."
      forum_options:  Options
-     message_notification:  Receive emails.
-     teammate_notification:  Receive notice to join your team.
+     message_notification:  Emails
+     message_notification_cluetip:  "This option allows you to receive messages in your email inbox."
      enable_comments:  Enable Comments
      for:  for
      free:  Free
@@ -715,8 +718,7 @@ en:
      Medium: Medium   
      member_since: Member since   
      message: Message
-     message_description: Write a message.
-     message_notification: Message Notice  
+     message_description: Write a message. 
      message_notification_description: (Do you want to receive email notifications...)   
      messages: Messages   
      missing:  Missing
@@ -1254,6 +1256,7 @@ en:
      table_id: Table ID   
      table_type: Table Type  
      teammate_notification:  Teammate Notice
+     teammate_notification_cluetip:  "As a team manager, you can received petitions to join your team en your email account."
      technical_level_description: "(From 1 to 5, put the technical level that you think you have compared to your teammates...)"  
      terms: terms   
      terms_message: Please accept the terms to proceed   
