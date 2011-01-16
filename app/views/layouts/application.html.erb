@@ -41,14 +41,10 @@
 	<%= stylesheet_link_tag 'header' %>	
 	<%= stylesheet_link_tag get_the_action if is_action('show') %>
 	
-	<% unless production? %>
-		<%= javascript_include_tag 'jquery.cluetip' %>
-		<%= javascript_include_tag 'jquery.hoverIntent' %>
-		
-		<%= javascript_include_tag 'application' %>
-		
-		<%= stylesheet_link_tag 'jquery.cluetip' %>
-	<% end %> 
+	<%= javascript_include_tag 'jquery.cluetip' %>
+	<%= javascript_include_tag 'jquery.hoverIntent' %>
+	<%= javascript_include_tag 'application' %>
+	<%= stylesheet_link_tag 'jquery.cluetip' %>
 	
 	<%= render :partial => 'utilities/google_analytics' %>
 </head>
