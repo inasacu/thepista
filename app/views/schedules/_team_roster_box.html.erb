@@ -158,10 +158,9 @@ the_roster.each do |match|
 unless has_been_played 
 %>	
 	<td class="<%= second_team %>" >
-	<%= match_all_my_link(@schedule, @match_type, current_user, true) if current_user != the_user and is_manager %>
-
+	<%= match_all_my_link(@schedule, @match_type, the_user, true) if (current_user != the_user and is_manager) %>
 	</td>
-	<% end %>
+<% end %>
 </tr>
 <%
 end 
