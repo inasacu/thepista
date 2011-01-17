@@ -6,26 +6,27 @@
 	  the_object_path = User.find(recipient.id)
 	%>
 	<%= link_to(image_tag(recipient.avatar, options={:style => "height: 24px; width: 24px;", :title => h(recipient.name), :class =>"photo fn"}), 
-	the_object_path, :class => "url", :hreflang => "en", :rel => "contact") %>
+	the_object_path, :class => "url", :hreflang => "en") %>
 	<%
 	when 'Group'
 	  the_link =   group_link(recipient)
 	  the_object_path = Group.find(recipient.id)
 	%>
 	<%= link_to(image_tag(recipient.avatar, options={:style => "height: 24px; width: 24px;", :title => h(recipient.name), :class =>"photo fn"}), 
-	the_object_path, :class => "url", :hreflang => "en", :rel => "contact") %>
+	the_object_path, :class => "url", :hreflang => "en") %>
+	
 	<%
 	when 'Escuadra'
 	  the_link =  escuadra_link(recipient)
 	  the_object_path = Escuadra.find(recipient.id)
 	%>
 	<%= link_to(image_tag(recipient.avatar, options={:style => "height: 22px; width: 28px;", :title => h(recipient.name), :class =>"photo fn"}), 
-	the_object_path, :class => "url", :hreflang => "en", :rel => "contact") %>
+	the_object_path, :class => "url", :hreflang => "en") %>
 	<%
 	else
 	%>
 	<%= link_to(image_tag(recipient.avatar, options={:style => "height: 24px; width: 24px;", :title => h(recipient.name), :class =>"photo fn"}), 
-	the_object_path, :class => "url", :hreflang => "en", :rel => "contact") %>
+	the_object_path, :class => "url", :hreflang => "en") %>
 	<%
 	end
 %>
