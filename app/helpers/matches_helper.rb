@@ -95,20 +95,23 @@ module MatchesHelper
   def match_all_my_link(schedule, match_types, user, is_manager)
 
     unless schedule.played?
-      my_current_match = ''
-      the_match_link = ""
+      my_current_match = nil
+      the_match_link = ''
       schedule.matches.each{|match| my_current_match = match if match.user_id == user.id}
 
-      match_types.each do |type| 
-        unless type.id == my_current_match.type_id 	          
-          if type.id == 4
-            the_match_link = "#{the_match_link} #{match_roster_change_link(my_current_match, type, is_manager)}  "  if is_manager
-          else
-            the_match_link = "#{the_match_link} #{match_roster_change_link(my_current_match, type, is_manager)}  " 
+      unless my_current_match.nil?
+        match_types.each do |type| 
+          unless type.id == my_current_match.type_id 	          
+            if type.id == 4
+              the_match_link = "#{the_match_link} #{match_roster_change_link(my_current_match, type, is_manager)}  "  if is_manager
+            else
+              the_match_link = "#{the_match_link} #{match_roster_change_link(my_current_match, type, is_manager)}  " 
+            end
           end
         end
+        return the_match_link
       end
-      return the_match_link
+
     end
 
   end
