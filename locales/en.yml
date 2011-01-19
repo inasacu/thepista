@@ -1692,7 +1692,7 @@ en:
      schedules_team_roster_false:  Noone on Squad to show.
      schedules_team_last_minute_false:   Noone on Last Minute to show.
      schedules_team_no_show_false:  Noone on No-Shows to show.
-     schedules_team_unavailable_true_false:  Noone on Unavailable to show.
+     schedules_team_unavailable_false:  Noone on Unavailable to show.
      schedules_team_roster_true:  Squad
      schedules_team_last_minute_true:   Last Minute
      schedules_team_no_show_true:  No-Shows

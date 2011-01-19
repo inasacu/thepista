@@ -71,7 +71,9 @@ the_roster.each do |match|
 	
 	the_user = match.user
 	
-	is_second_team = !(match.group_id > 0)
+	if match.type_id == 1
+		is_second_team = !(match.group_id > 0)
+	end
 
 	second_team = ""
 	second_team = "second_team" if is_second_team

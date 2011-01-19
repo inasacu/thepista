@@ -59,10 +59,10 @@
 		
 		<tr>
 		     <%= content_tag :td, label_name(:escuadras_available), :class => "label" %>
-		     <%= content_tag :td, item_list(@the_escuadras), :class => get_the_action %>
-		</tr>
+		     <%#= content_tag :td, item_list(@the_escuadras), :class => get_the_action %>
+		<!-- </tr>
 
-		<tr>
+		<tr> -->
 			<%= render :partial => 'shared/show_images', :locals => {:collection => @the_escuadras} %>			
 		</tr>
 

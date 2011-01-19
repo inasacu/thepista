@@ -1,0 +1,1098 @@
+
+*,#header h1,#sidebar h3,#sidebar ul.navigation,.secondary-navigation ul,#main-navigation ul,#user-navigation ul,input.checkbox,.form textarea.text_area,.form input.text_field,.form label.label,ul.list,#box .block h2,#about .block h2,#footer .block p,li,ol,div#footer p,.cluetip-default #cluetip-outer,.ajaxful-rating {
+	margin:0
+}
+
+*,#sidebar ul.navigation,.secondary-navigation ul,#main-navigation ul,#user-navigation ul,input.checkbox,ul.list,.ajaxful-rating {
+	padding:0
+}
+
+.clear,#faq {
+	clear:both
+}
+
+.clear {
+	height:0
+}
+
+h1,h2,p {
+	margin:15px 0
+}
+
+h1,h2 {
+	font-size:22px
+}
+
+h1,h2,h3,h4,span.q,.cluetip-default h3#cluetip-title,.cluetip-jtip h3#cluetip-title {
+	font-weight:normal
+}
+
+h3 {
+	font-size:18px
+}
+
+h3,h4 {
+	margin:10px 0
+}
+
+h4 {
+	font-size:16px
+}
+
+hr {
+	height:1px;
+	color:#eef0f0
+}
+
+hr,#cluetip-close img {
+	border:0
+}
+
+a img,.ajaxful-rating .show-value,.ajaxful-rating span,.ajaxful-rating a {
+	border:none
+}
+
+body {
+	font:12px arial,verdana,sans-serif;
+	color:#222;
+	font-family:"Helvetica Neue",Helvetica,Arial,"Bitstream Vera Sans",sans-serif
+}
+
+#container {
+	min-width:960px
+}
+
+#wrapper,#header {
+	padding:0 20px
+}
+
+#header,#faq_content li,div#footer div.link_wrapper,div#footer ol,div#footer ol li,.comment-bubble,.header a.logo:active,#cluetip-title #cluetip-close,.cluetip-default #cluetip-outer,.cluetip-jtip #cluetip-outer,.cluetip-rounded #cluetip-title,.cluetip-rounded #cluetip-inner,.ajaxful-rating {
+	position:relative
+}
+
+#header,#main .block,#main .block .content {
+	padding-top:1px
+}
+
+#header h1 {
+	padding:10px 0;
+	font-size:30px;
+	padding:16px 0
+}
+
+#header h1 a:visited,#header h1 a:hover,#header h1 a:active,#header h1 a:link,#user-navigation ul li a:active,#user-navigation ul li a:hover,#user-navigation ul li a:visited,#user-navigation ul li a:link,.secondary-navigation ul li a:active,.secondary-navigation ul li a:hover,.secondary-navigation ul li a:visited,.secondary-navigation ul li a:link,#main-navigation ul li a:active,#main-navigation ul li a:hover,#main-navigation ul li a:visited,#main-navigation ul li a:link,.pagination a,#sidebar ul li a:visited,#sidebar ul li a:link,#user-navigation ul li a:active,#user-navigation ul li a:hover,#user-navigation ul li a:visited,#user-navigation ul li a:link,.secondary-navigation ul li a:active,.secondary-navigation ul li a:hover,.secondary-navigation ul li a:visited,.secondary-navigation ul li a:link,#main-navigation ul li a:active,#main-navigation ul li a:hover,#main-navigation ul li a:visited,#main-navigation ul li a:link,a,.previous_message:hover,.next_message:hover,.header li a.active,.header li a:hover {
+	text-decoration:none
+}
+
+#main {
+	width:70%
+}
+
+#main,.actions-bar .actions,.secondary-navigation ul li,#main-navigation ul li,#user-navigation ul li,.pagination span,.pagination a,.form div.left,.form .columns .left,ul.list li .left,ul.list li .item .avatar,.left,.next_message,div#footer ol li,.header div.logo,.header a.logo,.header li,.header li a,.sections {
+	float:left
+}
+
+.actions-bar {
+	padding:10px 1px
+}
+
+.actions-bar .pagination,#sidebar,.form div.right,.form .columns .right,.right,.previous_message,div#footer div.link_wrapper,.settings,#cluetip-title #cluetip-close {
+	float:right
+}
+
+.actions-bar .pagination,.form textarea.text_area,.form input.text_field,.form label.label {
+	padding:1px 0
+}
+
+#sidebar {
+	width:25%
+}
+
+#sidebar h3,#sidebar ul.navigation li a:visited,#sidebar ul.navigation li a:link,.secondary-navigation ul li a,#box .block h2,#about .block h2 {
+	padding:10px 15px
+}
+
+#sidebar h3,#main-navigation ul li a,#user-navigation,#main-navigation ul li a,textarea.text_message,.cluetip-jtip #cluetip-inner {
+	font-size:13px
+}
+
+#sidebar .block,#main .block,#box .block,#about .block {
+	margin-bottom:20px
+}
+
+#sidebar .block {
+	padding-bottom:10px;
+	border:1px solid #cfcfcf
+}
+
+#sidebar .block .content {
+	padding:0 15px
+}
+
+#sidebar ul.navigation li a:visited,#sidebar ul.navigation li a:link,#main-navigation ul li a,.secondary-navigation ul li a,.pagination span,.pagination a,.form label.label,.previous_message,.next_message,.table .name_and_date .name_and_date_second_team .name,.name_and_date .date,.name_and_date_second_team .date,.name_and_date .date_tiny,.name_and_date_second_team .date_tiny,.last .action,.header div.logo,.header a.logo,.header li a,.cluetip-rounded #cluetip-extra {
+	display:block
+}
+
+#sidebar .notice,#sidebar .block .sidebar-block,.table th,.table td,.table th,#footer .block p,.cluetip-default #cluetip-inner {
+	padding:10px
+}
+
+#wrapper {
+	padding-top:20px
+}
+
+#main .block .content .inner {
+	padding:0 15px 15px;
+	width:97%
+}
+
+#main .main p.first {
+	margin-top:0
+}
+
+#user-navigation,.notify-bar-close,#cluetip-waitimage,.cluetip-arrows,.cluetip-rounded #cluetip-extra,.ajaxful-rating .show-value,.ajaxful-rating span,.ajaxful-rating a {
+	position:absolute
+}
+
+#user-navigation,.jquery-notify-bar,.cluetip-arrows,.cluetip-rounded #cluetip-extra,.ajaxful-rating .show-value,.ajaxful-rating span,.ajaxful-rating a {
+	top:0
+}
+
+#user-navigation {
+	right:20px;
+	top:auto;
+	bottom:2px;
+	right:25px
+}
+
+#main-navigation,.form textarea.text_area,.form input.text_field,.form textarea.text_area,.form input.text_field,.table table.scorecard,.jquery-notify-bar {
+	width:100%
+}
+
+#sidebar ul.navigation,.secondary-navigation ul,#main-navigation ul,#user-navigation ul,ul.list {
+	list-style-type:none
+}
+
+#main-navigation ul li,.pagination span,.pagination a,.form input.radio,.form input.checkbox {
+	margin-right:5px
+}
+
+#user-navigation ul li {
+	padding:5px 10px
+}
+
+#main-navigation ul li a {
+	padding:8px 15px;
+	padding:8px 8px
+}
+
+.secondary-navigation,#faq_content,.sections {
+	font-size:12px
+}
+
+.secondary-navigation {
+	border-bottom-width:10px;
+	background:#eef0f0;
+	border-bottom-width:0
+}
+
+.secondary-navigation,ul.list li {
+	border-bottom-style:solid;
+	border-bottom-color:#eef0f0
+}
+
+.description,.table th,.table th,.header,.description,td.show {
+	text-align:left
+}
+
+.description {
+	font-size:1.25em;
+	font-size:1.5em;
+	margin:5px 0 20px 0
+}
+
+.pagination span,.pagination a,.form input.button,.cluetip-jtip h3#cluetip-title {
+	padding:2px 5px
+}
+
+.pagination span,.pagination a,.form textarea.text_area,.form input.text_field,ul.list li .item .avatar {
+	border-style:solid;
+	border-width:1px
+}
+
+.pagination span.current,.table th,.form label.label,.table td.second_team_puntos,#faq_content h4,.table th,.table td.ranking,.table td.jugados,.table td.puntos,.table td.partidos,.table td.goles,td.subscription_false,td.sub_true,.sections a.active,td.label,td.label_tip {
+	font-weight:bold
+}
+
+.table {
+	width:99%;
+	margin-bottom:1px
+}
+
+.table,.table table.scorecard,table {
+	border-collapse:collapse
+}
+
+.table th.first,ul.list li .item .avatar,.table th.first {
+	width:30px
+}
+
+.table th.last,.table th.last_roster,.table th.second_team_last_roster,input.textscore {
+	width:100px
+}
+
+.table .checkbox,.table .checkbox,.header div.logo {
+	margin-left:10px
+}
+
+.table td.last,.table td.last_roster,.table td.second_team_last_roster,.form label.right,.table td.last,.table td.last_roster,.table td.second_team_last_roster,.cluetip-default div#cluetip-close,.cluetip-jtip div#cluetip-close,.cluetip-rounded div#cluetip-close {
+	text-align:right
+}
+
+.form .group,.table table.scorecard {
+	margin-bottom:15px
+}
+
+.form div.left,.table td.last_left {
+	width:20%
+}
+
+.form div.right,ÎÏ
+.form textarea.text_area {
+	width:75%
+}
+
+.form .columns .column {
+	width:48%
+}
+
+.form textarea.text_area,.form input.text_field,.form label.label {
+	font-size:1.2em
+}
+
+.form label.radio,.form label.checkbox {
+	line-height:1.5em
+}
+
+.form label.label {
+	padding-bottom:2px
+}
+
+.form div.fieldWithErrors label.label,.ajaxful-rating li {
+	display:inline
+}
+
+.form .fieldWithErrors .error {
+	color:red
+}
+
+ul.list li {
+	clear:left;
+	padding-bottom:5px;
+	border-bottom-width:1px
+}
+
+ul.list li .left .avatar {
+	width:50px;
+	height:50px
+}
+
+ul.list li .item {
+	margin-left:80px
+}
+
+ul.list li .item .avatar {
+	margin:0 5px 5px 0;
+	border-color:#eef0f0;
+	padding:2px
+}
+
+ul.list li .item .avatar,.cluetip-rounded #cluetip-extra {
+	height:30px
+}
+
+#box,td.show {
+	width:500px
+}
+
+#box,#box {
+	margin:50px auto
+}
+
+#box .block .content,#box .block .content,#box .block .content_register,#about .block .content {
+	padding:10px 20px
+}
+
+#box .block .content,#box .block .content,#box .block .content_register {
+	border-width:6px;
+	border-color:#fbb
+}
+
+.small,.name_and_date .date,.name_and_date_second_team .date,.sections a.active,.notify-bar-close {
+	font-size:11px
+}
+
+.gray {
+	color:#999
+}
+
+.hightlight {
+	background:#ffc
+}
+
+h3,h2,h1,a:active,a:hover,a:visited,a:link {
+	color:#069
+}
+
+body,hr,#footer .block {
+	background:#eef0f0
+}
+
+#header,.secondary-navigation ul li,.pagination span.current,.pagination a:hover,#box .block h2,.header li a.active,.header li a:hover,.header {
+	background:#0f7d00
+}
+
+#header h1 a:visited,#header h1 a:hover,#header h1 a:active,#header h1 a:link,.secondary-navigation,#sidebar h3,#user-navigation ul li a:active,#user-navigation ul li a:hover,#user-navigation ul li a:visited,#user-navigation ul li a:link,.secondary-navigation ul li a:active,.secondary-navigation ul li a:hover,.secondary-navigation ul li a:visited,.secondary-navigation ul li a:link,#main-navigation ul li a:active,#main-navigation ul li a:hover,#main-navigation ul li a:visited,#main-navigation ul li a:link,#main-navigation ul li.active a:active,#main-navigation ul li.active a:hover,#main-navigation ul li.active a:visited,#main-navigation ul li.active a:link,.pagination span.current,.pagination a:hover,#box .block h2 {
+	color:#f7f7f8
+}
+
+#main .block .content,#sidebar .block,#sidebar ul li a:visited,#sidebar ul li a:link,.table th.clear,#box .block,#about .block {
+	background:#f7f7f8
+}
+
+#main .block .content,.table th.first,.table th.heading,.table th.heading_last,.table th.last,.table th.last_roster,#box .block .content,#box .block .content_register,#footer {
+	border-top:1px solid #cfcfcf
+}
+
+#main .block .content,.table th,#box .block .content,#box .block .content_register {
+	border-bottom:1px solid #cfcfcf
+}
+
+#main .block .content,.table th.first,#box .block .content,#box .block .content_register {
+	border-left:1px solid #cfcfcf
+}
+
+#main .block .content,.table th.heading_last,.table th.last,.table th.last_roster,#box .block .content,#box .block .content_register {
+	border-right:1px solid #cfcfcf
+}
+
+#main .block .content,.secondary-navigation ul li,.secondary-navigation li a:hover,#box .block .content,#box .block .content_register {
+	border-top-right-radius:5px
+}
+
+#main .block .content,#box .block .content,#box .block .content_register {
+	border-bottom-left-radius:5px;
+	border-bottom-right-radius:5px
+}
+
+#main .block .content h2,#main .block .content inner {
+	margin-left:15px
+}
+
+#main-navigation ul li,.comment-bubble {
+	padding-left:0
+}
+
+#main-navigation {
+	background:#0f7d00
+}
+
+#main-navigation ul li a:hover,#main-navigation ul li.active a,.secondary-navigation li a:hover,.secondary-navigation ul li.active a:hover,.secondary-navigation ul li.active {
+	background:#60ad35
+}
+
+.secondary-navigation ul li,.secondary-navigation li a:hover,#box .block .content,#box .block .content_register {
+	border-top-left-radius:5px
+}
+
+.secondary-navigation ul li,.header li {
+	margin-right:1px
+}
+
+.secondary-navigation ul li.message_count,.cluetip-jtip,.cluetip-rounded #cluetip-title {
+	background:transparent
+}
+
+#sidebar h3 {
+	background:#60ad35;
+	border-bottom:2px solid #cfcfcf
+}
+
+#sidebar h3,.table th,.table th.first,.table th.heading,.table th.last,.table th.last_roster {
+	background:#eee
+}
+
+#sidebar h3,input#user_session_openid_identifier,input#user_openid_identifier,.jquery-notify-bar {
+	color:#000
+}
+
+.pagination span.current,.pagination span,.pagination a {
+	border-color:#0f7d00
+}
+
+.pagination span,.pagination a,.table th,.table th.first,.table th.heading,.table th.last,.table th.last_roster,.form input.button {
+	color:#001c26
+}
+
+.table th,.table th.first,.table th.heading,.table th.last,.table th.last_roster {
+	padding:8px
+}
+
+.table td {
+	border-bottom:1px dotted #cfcfcf;
+	padding:15px
+}
+
+.table tr.even_true td {
+	background:rgb(238,238,238) none repeat scroll 0% 0%
+}
+
+.table td.letter-divider,#about .block h2 {
+	color:#0f7d00
+}
+
+.table td.letter-divider {
+	border-bottom:0 dotted #cfcfcf
+}
+
+.table td.letter-divider,#faq_content h4,.table td.first_left {
+	font-size:14px
+}
+
+.table td.second_team,.table td.second_team_puntos,.table td.second_team_last_roster,.name_and_date_second_team {
+	background:#fff1a8
+}
+
+.table td.second_team_puntos,.table td.ranking,.table td.puntos,td.sub_true {
+	color:darkblue
+}
+
+.table td.no_line,.table td.first_left,.table td.last_left {
+	border-bottom:0 solid #cfcfcf
+}
+
+.form textarea.text_area,.form input.text_field,.form input.button {
+	border:1px solid #001c26
+}
+
+.form input.button {
+	background:#EEE
+}
+
+.form input.button,a {
+	cursor:pointer
+}
+
+.form .description,div#footer a {
+	color:#8c8c8c
+}
+
+.form .description {
+	font-size:.9em
+}
+
+#box .block h2,#box .block,.form input.button,#footer .block,ul.list li,#sidebar h3,#sidebar .block,#main .block,.secondary-navigation,#main-navigation li a,#main-navigation li,#main-navigation,#main,.table th.first,.table th.first,.secondary-navigation ul li.first,.secondary-navigation li.first a,.secondary-navigation ul li.first {
+	-moz-border-radius-topleft:4px;
+	-webkit-border-top-left-radius:4px
+}
+
+#box .block h2,#box .block,.form input.button,#footer .block,ul.list li,#sidebar h3,#sidebar .block,#main .block,.secondary-navigation,#main-navigation li a,#main-navigation li,#main-navigation,#main,.table th.last {
+	-moz-border-radius-topright:4px;
+	-webkit-border-top-right-radius:4px
+}
+
+#box .block,.form input.button,#footer .block,ul.list li,#sidebar ul.navigation,#main .block,#sidebar .block,#sidebar {
+	-moz-border-radius-bottomleft:4px;
+	-webkit-border-bottom-left-radius:4px;
+	-moz-border-radius-bottomright:4px;
+	-webkit-border-bottom-right-radius:4px
+}
+
+#box {
+	width:798px
+}
+
+#box .block .content {
+	background:url('../images/login.png') no-repeat scroll 0 0 transparent
+}
+
+#box .block .content,#box .block .content_register {
+	height:245px
+}
+
+#box .block .content_register {
+	background:url('') no-repeat scroll 0 0 transparent
+}
+
+html {
+	overflow-y:scroll
+}
+
+a {
+	color:rgb(59,89,152);
+	outline-style:none
+}
+
+a:hover {
+	text-decoration:underline
+}
+
+#about {
+	width:900px;
+	margin:0 auto
+}
+
+#faq {
+	background:transparent url('') repeat-y scroll 0% 0%;
+	width:780px
+}
+
+#faq,#faq_content,.comment-bubble {
+	-moz-background-clip:border;
+	-moz-background-origin:padding;
+	-moz-background-inline-policy:continuous
+}
+
+#faq_content {
+	padding:40px 100px;
+	background:transparent url('') no-repeat scroll center top;
+	width:580px
+}
+
+#faq_content h3 {
+	font:24px helvetica,arial,sans-serif bold;
+	margin-top:18px;
+	padding-bottom:6px;
+	color:rgb(127,191,48)
+}
+
+#faq_content h3,.comment-bubble {
+	letter-spacing:-1px
+}
+
+#faq_content h4 {
+	margin-top:22px;
+	color:rgb(0,0,0);
+	line-height:18px
+}
+
+#faq_content p {
+	line-height:16px
+}
+
+#faq_content li {
+	background:transparent url('../images/bullet_yellow.gif') no-repeat scroll left 8px ! important;
+	line-height:22px;
+	padding-left:16px;
+	-moz-background-clip:border ! important;
+	-moz-background-origin:padding ! important;
+	-moz-background-inline-policy:continuous ! important
+}
+
+#faq_content li,.cluetip-rounded,.clue-left-rounded .cluetip-arrows {
+	margin-left:12px
+}
+
+#faq_content .mailing_list {
+	margin:10px 0 20px
+}
+
+#faq_content .mailing_list,.cluetip-arrows,#cluetip-extra {
+	display:none
+}
+
+#faq_content .mailing_list,div#footer div.col_wrapper,.comment-bubble,.jquery-notify-bar {
+	text-align:center
+}
+
+input#user_session_openid_identifier,input#user_openid_identifier {
+	background:#fff 0 50%;
+	background:url(../../images/login-bg.gif) no-repeat;
+	padding-left:18px
+}
+
+#mapwrap,#map {
+	width:948px
+}
+
+#mapwrap,body.v1 
+#mapwrap,body.v2 
+#mapwrap,#map,body.v1 
+#map,body.v2 
+#map {
+	border:2px solid #gray
+}
+
+body.v1 
+#mapwrap,body.v1 
+#map {
+	width:528px
+}
+
+body.v2 
+#mapwrap,body.v2 
+#map {
+	width:533px
+}
+
+#map {
+	height:400px
+}
+
+.textfield,.textscore,.text_tiny_score,.textphoto,.text_message,.text_field {
+	border:1px solid rgb(205,205,205);
+	padding:0.4em;
+	background:rgb(255,255,255) url('../../images/textfield-bg.gif') repeat-x scroll 0 1px
+}
+
+.textfield:focus,.textscore:focus,.text_tiny_score:focus,.textphoto:focus,.text_message:focus,.text_field:focus {
+	background:rgb(255,254,244) url('../../images/textfield-focus-bg.gif') repeat-x scroll 0 1px
+}
+
+input.textfield,textarea.textfield {
+	width:400px
+}
+
+textarea.textfield,textarea.text_message,text_area.textfield {
+	height:80px
+}
+
+input.textfield_login {
+	width:300px
+}
+
+input.text_tiny_score {
+	width:25px
+}
+
+input.textphoto {
+	width:375px
+}
+
+textarea.text_message {
+	width:85%
+}
+
+input.text_field,text_area.textfield,td.label {
+	width:200px
+}
+
+.previous_message,.next_message {
+	background:no-repeat;
+	width:20px;
+	margin-left:4px
+}
+
+.previous_message,.next_message,.comment-bubble {
+	height:20px
+}
+
+.next_message {
+	background:url('../../images/previo-evento.png')
+}
+
+.previous_message {
+	background:url('../../images/proximo-evento.png')
+}
+
+.table th.last,.table th.last_roster,.table th.second_team_last_roster {
+	width:120px
+}
+
+.table tr.false {
+	background:#005573
+}
+
+.table td.last_roster,.table td.second_team_last_roster {
+	padding:15px 5px
+}
+
+.table td.first_left {
+	width:80%;
+	padding:8px 8px 8px 8px
+}
+
+.table td.first_left,span.q {
+	color:#369
+}
+
+.table td.last_left {
+	padding:5px 5px
+}
+
+#team_roster td,#team_no_show td,#team_ultima_hora td,#contact td,#escuadra td,#scorecard	 td,#standing td,#user td {
+	padding:4px 10px
+}
+
+#game td,#cast td,#home td {
+	padding:2px 6px
+}
+
+#match	 td {
+	padding:10px 10px
+}
+
+#fee td {
+	padding:3px 8px
+}
+
+.table td.jugados {
+	color:#052b43
+}
+
+.table td.partidos {
+	color:#3f6b00
+}
+
+.table td.goles {
+	color:purple
+}
+
+td.subscription_false {
+	color:darkred
+}
+
+.form input.text_field {
+	width:90%
+}
+
+.table .name_and_date .name_and_date_second_team .name,.header,#cluetip-title,.ajaxful-rating,.ajaxful-rating .show-value,.ajaxful-rating span,.ajaxful-rating a {
+	overflow:hidden
+}
+
+.table .name_and_date .name_and_date_second_team .name {
+	width:150px;
+	margin-right:20px;
+	white-space:nowrap
+}
+
+.name_and_date .date,.name_and_date_second_team .date,.name_and_date .date_tiny,.name_and_date_second_team .date_tiny,.last .action {
+	padding:1px 0 0;
+	color:rgb(119,119,119)
+}
+
+.name_and_date .date_tiny,.last .action {
+	font-size:10px
+}
+
+.name_and_date_second_team .date_tiny {
+	font-size:9px
+}
+
+#footer {
+	padding-bottom:20px
+}
+
+div#footer div.col_wrapper {
+	padding-top:1.0em
+}
+
+li,ol,div#footer p,div#footer ol {
+	font-size:1.0em
+}
+
+li,ol,div#footer p {
+	line-height:1.0em
+}
+
+div#footer a:hover {
+	color:blue
+}
+
+div#footer ol {
+	left:-30%
+}
+
+div#footer ol li {
+	margin:0 1em
+}
+
+#user-navigation a.logout,#user-navigation a.petition {
+	background:#c00
+}
+
+#user-navigation a.logout,#user-navigation a.petition,#user-navigation a.twitter {
+	padding:1px 4px;
+	-moz-border-radius:4px;
+	-webkit-border-radius:3px
+}
+
+#user-navigation a.twitter {
+	background:#4493b4
+}
+
+#user-navigation ul li a:hover,td.show {
+	color:black
+}
+
+.comment-bubble {
+	font:13px helvetica,arial-boldmt,geneva,sans-serif normal normal bold /normal;
+	background:transparent url('../images/sprite.png') no-repeat scroll -2px -90px;
+	width:24px;
+	padding-top:4px;
+	color:rgb(255,255,255);
+	font-size-adjust:none;
+	font-stretch:normal;
+	-x-system-font:none;
+	text-shadow:-1px -1px 1px rgb(135,21,33);
+	padding-right:1px;
+	margin-left:0;
+	left:-19px;
+	top:-9px
+}
+
+.comment-bubble,.ajaxful-rating .show-value {
+	z-index:1
+}
+
+#sidebar .table td {
+	padding:5px
+}
+
+.header {
+	height:39px;
+	min-width:954px
+}
+
+.header div.logo,.header a.logo {
+	background:#0f7d00 url(../images/logo_white.png) no-repeat top left;
+	width:130px;
+	height:32px
+}
+
+.header a.logo:active {
+	top:1px
+}
+
+.header li a {
+	padding:11px 10px
+}
+
+.header li a,.header li a.active,.header li a:hover {
+	color:#FFF
+}
+
+.header li a.active,.header li a:hover {
+	background:#60ad35 bottom left;
+	position:static
+}
+
+.sections {
+	padding-left:20px;
+	width:695px
+}
+
+td.label,td.label_tip,td.show {
+	padding:10px 0 5px 10px;
+	border:1px solid white
+}
+
+.jquery-notify-bar {
+	font:15px arial,verdana,sans-serif bold;
+	background:#efefef;
+	position:fixed;
+	z-index:32768;
+	padding:20px 0;
+	border-bottom:1px solid #bbb
+}
+
+.jquery-notify-bar,.ajaxful-rating .show-value,.ajaxful-rating span,.ajaxful-rating a {
+	left:0
+}
+
+.jquery-notify-bar.notice,.cluetip-jtip h3#cluetip-title {
+	background:#ccc
+}
+
+.jquery-notify-bar.notice,.jquery-notify-bar.success {
+	color:#ffc
+}
+
+.jquery-notify-bar.error {
+	background:#fdd;
+	color:#f00
+}
+
+.jquery-notify-bar.success {
+	background:#369
+}
+
+.notify-bar-close {
+	left:95%
+}
+
+#cluetip-waitimage {
+	background:url(../../images/cluetip/wait.gif);
+	width:43px
+}
+
+#cluetip-waitimage,.clue-top-default .cluetip-arrows,.clue-bottom-default .cluetip-arrows,.clue-top-jtip .cluetip-arrows,.clue-bottom-jtip .cluetip-arrows,.clue-top-rounded .cluetip-arrows,.clue-bottom-rounded .cluetip-arrows {
+	height:11px
+}
+
+.cluetip-arrows {
+	background:no-repeat 0 0;
+	left:-11px;
+	height:22px;
+	width:11px
+}
+
+.cluetip-default,.cluetip-default #cluetip-outer {
+	background:#d9d9c2
+}
+
+.cluetip-default h3#cluetip-title {
+	background:#87876a;
+	padding:8px 10px 4px;
+	font-size:1.1em;
+	color:#fff
+}
+
+.cluetip-default h3#cluetip-title,.cluetip-jtip h3#cluetip-title {
+	margin:0 0 5px
+}
+
+.cluetip-default #cluetip-title a {
+	color:#d9d9c2;
+	font-size:0.95em
+}
+
+.cluetip-default div#cluetip-close,.cluetip-jtip div#cluetip-close,.cluetip-rounded div#cluetip-close {
+	margin:0 5px 5px
+}
+
+.cluetip-default div#cluetip-close,.cluetip-jtip div#cluetip-close {
+	color:#900
+}
+
+.clue-right-default .cluetip-arrows {
+	background:url(../../images/cluetip/darrowleft.gif)
+}
+
+.clue-left-default .cluetip-arrows {
+	background:url(../../images/cluetip/darrowright.gif)
+}
+
+.clue-left-default .cluetip-arrows,.clue-left-jtip .cluetip-arrows,.clue-left-rounded .cluetip-arrows {
+	left:100%
+}
+
+.clue-left-default .cluetip-arrows,.clue-left-jtip .cluetip-arrows {
+	margin-right:-11px
+}
+
+.clue-top-default .cluetip-arrows {
+	background:url(../../images/cluetip/darrowdown.gif)
+}
+
+.clue-top-default .cluetip-arrows,.clue-top-jtip .cluetip-arrows,.clue-top-rounded .cluetip-arrows {
+	top:100%
+}
+
+.clue-top-default .cluetip-arrows,.clue-bottom-default .cluetip-arrows,.clue-top-jtip .cluetip-arrows,.clue-bottom-jtip .cluetip-arrows,.clue-top-rounded .cluetip-arrows,.clue-bottom-rounded .cluetip-arrows {
+	left:50%;
+	margin-left:-11px;
+	width:22px
+}
+
+.clue-bottom-default .cluetip-arrows {
+	background:url(../../images/cluetip/darrowup.gif)
+}
+
+.clue-bottom-default .cluetip-arrows,.clue-bottom-jtip .cluetip-arrows {
+	top:-11px
+}
+
+.cluetip-jtip {
+	font-family:arial,sans-serif
+}
+
+.cluetip-jtip #cluetip-outer {
+	background:#fff;
+	border:2px solid #ccc
+}
+
+.cluetip-jtip h3#cluetip-title {
+	font-size:15px;
+	color:#333
+}
+
+.cluetip-jtip #cluetip-inner {
+	padding:0 5px 5px;
+	display:inline-block;
+	color:#666
+}
+
+.clue-right-jtip .cluetip-arrows {
+	background:url(../../images/cluetip/arrowleft.gif)
+}
+
+.clue-left-jtip .cluetip-arrows {
+	background:url(../../images/cluetip/arrowright.gif)
+}
+
+.clue-top-jtip .cluetip-arrows {
+	background:url(../../images/cluetip/arrowdown.gif)
+}
+
+.clue-bottom-jtip .cluetip-arrows {
+	background:url(../../images/cluetip/arrowup.gif)
+}
+
+.cluetip-rounded {
+	background:transparent url(../../images/cluetip/bl.gif) no-repeat 0 100%;
+	margin-top:10px
+}
+
+.cluetip-rounded #cluetip-outer {
+	background:transparent url(../../images/cluetip/tl.gif) no-repeat 0 0;
+	margin-top:-12px
+}
+
+.cluetip-rounded #cluetip-title {
+	padding:12px 12px 0;
+	margin:0 -12px 0 0
+}
+
+.cluetip-rounded #cluetip-extra {
+	background:transparent url(../../images/cluetip/tr.gif) no-repeat 100% 0;
+	right:0;
+	width:12px;
+	margin:-12px -12px 0 0
+}
+
+.cluetip-rounded #cluetip-inner {
+	background:url(../../images/cluetip/br.gif) no-repeat 100% 100%;
+	padding:5px 12px 12px;
+	margin:-18px -12px 0 0
+}
+
+.cluetip-rounded div#cluetip-close {
+	color:#009;
+	background:transparent
+}
+
+.cluetip-rounded div#cluetip-close a {
+	color:#777
+}
+
+.clue-right-rounded .cluetip-arrows {
+	background:url(../../images/cluetip/rarrowleft.gif)
+}
+
+.clue-left-rounded .cluetip-arrows {
+	background:url(../../images/cluetip/rarrowright.gif)
+}
+
+.clue-top-rounded .cluetip-arrows {
+	background:url(../../images/cluetip/rarrowdown.gif)
+}
+
+.clue-bottom-rounded .cluetip-arrows {
+	background:url(../../images/cluetip/rarrowup.gif);
+	top:-23px
+}
+
+.cluetip-rounded #cluetip-inner,.cluetip-rounded #cluetip-title {
+	zoom:1
+}

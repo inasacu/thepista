@@ -27,3 +27,6 @@
 #list-panel input { float: left; clear: left; margin-left: 5px; margin-right: 5px; padding: 0pt 0pt 4px; }
 #list-panel ul { list-style: none outside none; padding: 0pt; margin: 0pt; height: 400px; overflow-y: auto; overflow-x: hidden; }
 #list-panel ul li { background: repeat-x scroll 0pt 0pt transparent; padding: 8px 10px 10px 0pt; cursor: pointer; overflow: hidden; }
+
+.table .checkbox {  margin-left: 1px; }
+.table td { padding: 4px; text-align: left; font-size: 12.5px; }

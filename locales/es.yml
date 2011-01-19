@@ -1692,7 +1692,7 @@ es:
      schedules_team_roster_false:  Ningun convocado para mostrar.
      schedules_team_last_minute_false:   Ninguno en ultima hora para mostrar.
      schedules_team_no_show_false:  Ningun ausente para mostrar.
-     schedules_team_unavailable_true_false:  Ninguno no disponible para mostrar.
+     schedules_team_unavailable_false:  Ninguno no disponible para mostrar.
      schedules_team_roster_true:  Convocados
      schedules_team_last_minute_true:   Ultima hora
      schedules_team_no_show_true:  Ausentes

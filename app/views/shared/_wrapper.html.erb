@@ -6,7 +6,10 @@
 	logout =  !current_user and is_controller('home') and is_action('index') 
 %>
 
+
 <% if login_session %>
+<%= stylesheet_link_tag 'home' %>
+
 	<div id="box">
 	  <%= yield %>    
 	</div>
@@ -15,6 +18,7 @@
 	</div>
 	
 <% elsif about.include?(get_the_action) or logout %>
+<%= stylesheet_link_tag 'home' %>
 	
 	<div id="about">
 	<h2>&nbsp;</h2> 

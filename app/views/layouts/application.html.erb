@@ -11,7 +11,7 @@
 	<meta name="title" content="<%= page_title %>" />
 	<META NAME="description" CONTENT="HayPista.com - Te ayudamos a organizar partidos.">
 		
-	<META NAME="keywords" CONTENT="hay pista, organiza partido, reserva pista, futbol 7, futbol sala, baloncesto, padel, jugar futbol sala, jugar futbol 7, jugar baloncesto, gente para jugar, busco equipo futbol, busco equipo baloncesto, busco jugador, clasificacion futbol, clasificacion padel, clasificacion baloncesto, club deportivo, jornada deportiva, proximos partidos, futbol femenino"/> 
+	<META NAME="keywords" CONTENT="hay pista, organiza partido, reserva pista, futbol 7, futbol sala, baloncesto, padel, jugar futbol sala, jugar futbol 7, jugar baloncesto, gente para jugar, busco equipo futbol, busco equipo baloncesto, busco jugador, clasificacion futbol, clasificacion padel, clasificacion baloncesto, club deportivo, jornada deportiva, proximos partidos, futbol femenino, jornada, convocado, ultima hora, ausente"/> 
 	
 	<meta name="vw96.objectype" content="Document" />
 	<meta name="resource-type" content="Document" />
@@ -29,22 +29,14 @@
 	<%= javascript_include_tag :defaults %>
 	<%= ajaxful_rating_style %>
 	
-	<%= javascript_include_tag  "http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js" unless development? %>	
-	<%= javascript_include_tag 'jquery-1.4.2.min' if development? %>
-	
+	<%= javascript_include_tag  "http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js" %>
 	<%= javascript_include_tag 'jquery.google-analytics' %>
 	<%= javascript_include_tag 'jquery.notifyBar' %>
-	
-	<%= stylesheet_link_tag 'jquery.notifyBar' %>	
-	<%= stylesheet_link_tag 'reset', 'main', 'haypista' %>
-	<%= stylesheet_link_tag 'application' %>
-	<%= stylesheet_link_tag 'header' %>	
-	<%= stylesheet_link_tag get_the_action if is_action('show') %>
-	
 	<%= javascript_include_tag 'jquery.cluetip' %>
 	<%= javascript_include_tag 'jquery.hoverIntent' %>
 	<%= javascript_include_tag 'application' %>
-	<%= stylesheet_link_tag 'jquery.cluetip' %>
+	
+	<%= stylesheet_link_tag 'reset', 'primary' %>
 	
 	<%= render :partial => 'utilities/google_analytics' %>
 </head>
