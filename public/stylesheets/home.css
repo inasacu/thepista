@@ -120,3 +120,52 @@ div.rpx input.text {
 #home .screens .screenshot { margin: 0pt 1em 2em 0pt; float: left; text-align: center; width: 275px; }
 #home .screens .screenshot img { margin-bottom: 0.1em; }
 
+
+table { 
+	border-collapse: separate; 
+	border-spacing: 0pt; 
+	background-color: rgb(255, 255, 255); 
+	width: auto; 
+	height: auto; 
+	border: 1px solid #cfcfcf;
+}
+
+.center_wide p { margin: 0pt 0pt 5px; }
+
+table.static th, td { padding: 0px 8px 8px 0pt; line-height: 18px; position: relative; }
+
+.choose-plan { padding: 10px 0pt 0pt; text-align: center; }
+.amount { text-align: center; font-size: 15pt; color: rgb(102, 189, 82); font-weight: bold; }
+.plan { text-align: center; font-size: 15pt; color: rgb(19, 56, 85); font-weight: bold; }
+
+table.pricing-table { margin: 20px auto 0pt; padding: 3px 0px 10px; width: 100%; clear: both; color: rgb(241, 241, 241); }
+table.pricing-table tr th { 
+	border: 0pt none ; padding: 0px 10px; 
+	background: rgb(255, 255, 255) none repeat scroll 0% 0%; 
+	font-weight: bold; 
+	text-align: center; 
+}
+table.pricing-table tr td { border-bottom: 1px dotted rgb(201, 201, 201); margin: 0pt 20px; height: 20px; }
+table.pricing-table tr td.feature { text-align: left; width: 235px; font-weight: bold; font-size: 10pt; }
+table.pricing-table tr.even td { 
+	background: rgb(238, 238, 238) none repeat scroll 0% 0%; 
+}
+table.pricing-table tr.choose-plan td { border: 0pt none ; vertical-align: middle; }
+table.pricing-table tr.choose-plan td.enterprise { border: 0pt none ; padding: 0pt 0pt 0pt 20px; vertical-align: middle; }
+table.pricing-table td { 
+	border: 0pt none ; 
+	padding: 0px 10px; 
+	background: rgb(255, 255, 255) none repeat scroll 0% 0%; 
+	color: rgb(0, 0, 0); 
+	font-size: 10pt; 
+	font-weight: normal; 
+	}
+table.pricing-table td { border: 0pt none ; padding: 3px 10px; text-align: center; }
+.pricing-faq { 
+	margin: 15px 10px 0pt; 
+	padding: 0px 0pt 10px 15px; 
+	overflow: auto; 
+	background-color: rgb(239, 239, 239); 
+	}
+.pricing-faq h1 { margin: 15px 0pt 5px; font-size: 130%; font-weight: bold; }
+.pricing-faq-left { margin: 0pt 30px 0pt 0pt; float: left; width: 400px; }

@@ -1,28 +1,5 @@
 <% unless current_announcements.empty? %>
 
-<style type="text/css">
-#promo { 
-	border: 1px solid rgb(255, 241, 168); 
-	margin: 1em 0pt; 
-	padding: 4px 20px 4px 4px; 
-	background-color: rgb(255, 255, 204); 
-}
-#promo-new { 
-font-family: Arial,Helvetica,sans-serif;
-	font-weight: bold; 
-	color: red; 
-}
-.hide { 
-	clear: both; 
-	font-family: Arial,Helvetica,sans-serif; 
-	font-size: 10px; 
-	font-weight: bold; 
-	margin: 0pt 3px ! important; 
-	text-decoration: none; 
-}
-</style>
-
-
 <div id="wrapper">	
 	<div class="flash">
 		<% for announcement in current_announcements %>

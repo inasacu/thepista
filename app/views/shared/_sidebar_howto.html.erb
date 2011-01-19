@@ -1,20 +1,17 @@
 <% content_for :sidebar, render('/shared/upcoming_classified') unless @upcoming_classifieds.blank? -%>
 
 <div class="block">
-	<div class="sidebar-block" class="extra">
-		<a href="#" onclick="toggle_visibility('abc');"><h4><%= label_name(:get_up_and_running) %></h4></a>
-		<div id="abc" style='display:none;'>
-			<p><%= option_image_link('group') %>&nbsp;&nbsp;<%= option_link('group') %></p>
-			<p><%= option_image_link('user_add') %>&nbsp;&nbsp;<%= link_to(label_name(:create_join_group), list_groups_url) %></p>
-			<p><%= option_image_link('schedule') %>&nbsp;&nbsp;<%= option_link('schedule') %></p>
-			<p><%= option_image_link('classified') %>&nbsp;&nbsp;<%= link_to(label_name(:create_new_classified), groups_url) %></p>
-			<p><%= option_image_link('marker') %>&nbsp;&nbsp;<%= option_link('marker') %></p>
-			<p><%= option_image_link('cup') %>&nbsp;&nbsp;<%= option_link('cup') %></p>
-			<p><%= option_image_link('challenge') %>&nbsp;&nbsp;<%= link_to(label_name(:create_new_challenge), cups_url) %></p>
-			<p><%= option_image_link('challenge_join') %>&nbsp;&nbsp;<%= link_to(label_name(:create_join_challenge), challenges_url) %></p>
-			<p><%= option_image_link('invitation') %>&nbsp;&nbsp;<%= option_link('invitation') %></p>
-		</div>
+	<%= content_tag 'h3', label_name(:get_up_and_running) %>
+	<div class="sidebar-block">
+		<p><%= option_image_link('group') %>&nbsp;&nbsp;<%= option_link('group') %></p>
+		<p><%= option_image_link('user_add') %>&nbsp;&nbsp;<%= link_to(label_name(:create_join_group), list_groups_url) %></p>
+		<p><%= option_image_link('schedule') %>&nbsp;&nbsp;<%= option_link('schedule') %></p>
+		<p><%= option_image_link('classified') %>&nbsp;&nbsp;<%= link_to(label_name(:create_new_classified), groups_url) %></p>
+		<p><%= option_image_link('marker') %>&nbsp;&nbsp;<%= option_link('marker') %></p>
+		<p><%= option_image_link('cup') %>&nbsp;&nbsp;<%= option_link('cup') %></p>
+		<p><%= option_image_link('challenge') %>&nbsp;&nbsp;<%= link_to(label_name(:create_new_challenge), cups_url) %></p>
+		<p><%= option_image_link('challenge_join') %>&nbsp;&nbsp;<%= link_to(label_name(:create_join_challenge), challenges_url) %></p>
+		<p><%= option_image_link('invitation') %>&nbsp;&nbsp;<%= option_link('invitation') %></p>
 	</div>
 </div>
-
 

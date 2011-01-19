@@ -1,32 +1,3 @@
 
-#abook-group { display: none; }
-.js #abook-group { display: block; }
-#abook-wrapper { width: 290px; float: right; clear: left; position: relative; }
-.abook-header { width: 290px; }
-
-.abook-header h2 { display: none; }
-.abook-column-headers { background: repeat-x scroll left 40% transparent; border-bottom: 2px solid rgb(236, 236, 236); overflow: hidden; }
-.abook-column-headers h3 { height: 14px; line-height: 14px; font-weight: normal; 
-						   margin: 0pt; color: rgb(102, 102, 102); font-size: 110%; float: left; padding: 5px 6px; border-right: 2px solid rgb(236, 236, 236); }
-						
-.abook-column-headers .filter-header { width: 274px; }
-.abook-column-headers .list-header { width: 268px; }
-.abook-column-headers .detail-header { width: 288px; border-right-width: 0pt; visibility: hidden; }
-
-.abook-column-headers h3 span { color: rgb(0, 102, 153); cursor: pointer; }
-.abook-column-headers h3 span:hover { text-decoration: underline; }
-.abook-column-headers h3 em { font-style: normal; }
-.abook-column-headers h3 .alpha-link { display: block; float: right; background: no-repeat scroll 25px -573px transparent; cursor: pointer; padding-right: 9px; }
-.abook-column-headers h3 .alpha-link:hover { cursor: pointer; }
-.abook-column-headers .list-header .select-controls { color: rgb(102, 102, 102); cursor: default; float: left; }
-.abook-column-headers .list-header .select-controls:hover { text-decoration: none; }
-.abook-column { border-width: 2px 0pt 2px 2px; border-style: solid; border-color: rgb(236, 236, 236); height: 402px; float: left; position: relative; }
-
-#filter-list-panel { clear: both; }
-#list-panel { width: 280px; line-height: 1.3; }
-#list-panel input { float: left; clear: left; margin-left: 5px; margin-right: 5px; padding: 0pt 0pt 4px; }
-#list-panel ul { list-style: none outside none; padding: 0pt; margin: 0pt; height: 400px; overflow-y: auto; overflow-x: hidden; }
-#list-panel ul li { background: repeat-x scroll 0pt 0pt transparent; padding: 8px 10px 10px 0pt; cursor: pointer; overflow: hidden; }
-
 .table .checkbox {  margin-left: 1px; }
 .table td { padding: 4px; text-align: left; font-size: 12.5px; }

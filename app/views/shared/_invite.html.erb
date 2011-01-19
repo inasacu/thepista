@@ -1,24 +1,17 @@
-<style type="text/css">
-
-.see-more { clear: both; float: right; font-family: Arial,Helvetica,sans-serif; font-size: 10px; font-weight: bold; margin: 0pt 3px ! important; text-decoration: none; }
-.see-more:after { content: " »"; font-size: 11px; }
-.see-more:hover { text-decoration: underline; }
-.see-more-left:before { content: "» "; }
-</style>
-
 <% @invitation = Invitation.new %>
+
 <div class="block">
 	<div class="sidebar-block" class="extra">
 
-	<%= content_tag 'h5', t(:invitations_import) %><br />
-				<%= link_to(image_tag('icons/microsoft.png', options={:style => "height: 30px; width: 90px;"}) ,
-								{:controller => 'invitations', :action => 'invite'}, :alt => label_name(:invitations_import)) %>
-				<%= link_to(image_tag('icons/google.png', options={:style => "height: 30px; width: 90px;"}) ,
-								{:controller => 'invitations', :action => 'invite'}, :alt => label_name(:invitations_import)) %>
-				<%= link_to(image_tag('icons/yahoo.png', options={:style => "height: 30px; width: 90px;"}) , 
-								{:controller => 'invitations', :action => 'invite'}, :alt => label_name(:invitations_import)) %>
-			
-				<%= link_to(label_name(:more) , {:controller => 'invitations', :action => 'invite'}, :class => "see-more") %>
+		<%= content_tag 'h5', t(:invitations_import) %><br />
+		<%= link_to(image_tag('icons/microsoft.png', options={:style => "height: 30px; width: 90px;"}) ,
+		{:controller => 'invitations', :action => 'invite'}, :alt => label_name(:invitations_import)) %>
+		<%= link_to(image_tag('icons/google.png', options={:style => "height: 30px; width: 90px;"}) ,
+		{:controller => 'invitations', :action => 'invite'}, :alt => label_name(:invitations_import)) %>
+		<%= link_to(image_tag('icons/yahoo.png', options={:style => "height: 30px; width: 90px;"}) , 
+		{:controller => 'invitations', :action => 'invite'}, :alt => label_name(:invitations_import)) %>
+
+		<%= link_to(label_name(:more) , {:controller => 'invitations', :action => 'invite'}, :class => "see-more") %>
 
 
 	</div>
