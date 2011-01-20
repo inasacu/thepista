@@ -20,13 +20,13 @@
 	away["has_total_value"] = away["total"] > 0
 	
 	if home["has_technical_value"] and away["has_technical_value"]
-		home["technical_difference"] = (home["technical"] - away["technical"]).to_f / (away["technical"] + home["technical"]) * 100
-		away["technical_difference"] = (away["technical"] - home["technical"]).to_f / (home["technical"] + away["technical"]) * 100
+		home["technical_difference"] = (home["technical"] - away["technical"]).to_f / (away["technical"] ) * 100
+		away["technical_difference"] = (away["technical"] - home["technical"]).to_f / (home["technical"]) * 100
 	end
 
 	if home["has_physical_value"] and away["has_physical_value"]
-		home["physical_difference"] = (home["physical"] - away["physical"]).to_f / (away["physical"] + home["physical"]) * 100
-		away["physical_difference"] = (away["physical"] - home["physical"]).to_f / (home["physical"] + away["physical"]) * 100
+		home["physical_difference"] = (home["physical"] - away["physical"]).to_f / (away["physical"]) * 100
+		away["physical_difference"] = (away["physical"] - home["physical"]).to_f / (home["physical"]) * 100
 	end
 
 	if home["has_total_value"] and away["has_total_value"] 		
@@ -67,6 +67,18 @@
 	away["image"] = scorecard_image_link("subir-clasificacion.png") if away["total_difference"] > home["total_difference"]
 	away["image"] = scorecard_image_link("bajar-clasificacion.png") if away["total_difference"] < home["total_difference"]
 	away["image"] = scorecard_image_link("mantener-clasificacion.png") if away["total_difference"] == home["total_difference"]
+	
+	
+	home["technical_difference"] = "" if home["technical_difference"].to_f < 0 
+	away["technical_difference"] = "" if away["technical_difference"].to_f < 0 
+ 
+	home["physical_difference"] = "" if home["physical_difference"].to_f < 0 
+	away["physical_difference"] = "" if away["physical_difference"].to_f < 0  
+	
+	home["total_difference"] = "" if home["total_difference"].to_f < 0 
+	away["total_difference"] = "" if away["total_difference"].to_f < 0 
+	
+	
 %>
 <tr>
 	<%= content_tag :td, "&nbsp;", :class => "no_line" %>
