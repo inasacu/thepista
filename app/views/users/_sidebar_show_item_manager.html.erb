@@ -1,8 +1,13 @@
 <% unless items.nil? or items.blank? %>
 <div class="block">
+	
 	<div class="sidebar-block" class="extra">
-	<a href="#" onclick="toggle_visibility('jkl');"><h5><%= label_name("#{items.first.class.to_s}_option") %></h5></a>
+	<a href="#" onclick="toggle_visibility('jkl');">
+		<!-- <h5><%#= label_name("#{items.first.class.to_s}_option") %></h5> -->
+		<h5><%= get_cluetip_toggle("#{items.first.class.to_s}_option") %></h5>
+	</a>
 	<div id="jkl" style='display:none;'>
+	
 <%
 	items.each do |item| 
 		the_item = h(item.name)

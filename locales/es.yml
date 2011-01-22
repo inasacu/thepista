@@ -662,7 +662,8 @@ es:
      join_cup:  Únete a un reto
      join_group: Únete al equipo   
      join_group_message: Mensaje para unirte al equipo ha sido mandado correctamente.   
-     join_option:  Opciones para apuntar / desapuntar
+     join_option:  Opciones de Equipo
+     join_option_cluetip:  Estas opciones permiten al Manager apuntar o desapuntar a un jugador del equipo.
      join_tournament: Únete al torneo   
      jornada:  Jornada
      jornada_description:  Jornada
@@ -691,6 +692,7 @@ es:
      look: Mira 
      looking_for_group:  Jugador que busca Equipo
      looking_for_my_group:  Busco equipo
+     looking_for_my_group_cluetip:  Esta option permite dejar saber a otros que buscan a otros equipos con quien jugar.
      looking_for_groups:  Jugadores que buscan equipo
      looking_for_group_description:  Jugador que busca Equipo
      looking_for_user:  Equipo que busca jugadores
@@ -700,7 +702,8 @@ es:
      male_value: Masculino        
      manager: Responsable   
      managers: Responsable(s) 
-     manager_option:  Opciones para borrar / añadir responsable  
+     manager_option:  Opciones de Manager 
+     manager_option_cluetip:  Estas opciones permiten al Manager añadir o quitar a un jugador como Manager del equipo. Managers tienen opciones additionales sobre el equipo. 
      map: Mapa    
      map_it: Ubicalo
      maps: Mapas   
@@ -1233,7 +1236,8 @@ es:
      sub_manager_false:  ""
      sub_manager_true: Coordinador del Equipo
      manager_updated:  Actualización de manager.  
-     subscription_option:  Opciones de abonado   
+     subscription_option:  Opciones de Abonado   
+     subscription_option_cluetip:  Ser abonado de un equipo permite pagar una cuota anual al equipo.  Lo contrario seria pagar por cada partido jugado.
      subscription_at: Finalización para convocarse el abonado  
      subscription_at_match: Finalización para convocarse el abonado   
      subscription_at_description: (¿Ha que hora termina la opción para apuntarse a un evento el abonado...(ej- 1 dia antes del evento)) 
@@ -1727,7 +1731,8 @@ es:
      standings_option:  Opciones
      standings_less_games:  ( * ) Jugadores con menos asistencias a eventos
      standings_legend:  Leyenda 
-     sub_manager_option:  Opciones de Sub-Manager    
+     sub_manager_option:  Opciones de Sub-Manager
+     sub_manager_option_cluetip:  Estas opciones permiten al Sub-Manager añadir o quitar a un jugador como Sub-Manager del equipo. Sub-Managers tienen opciones otros jugadores normalmente no tienen sobre el equipo.    
      success_story:  Historia de éxitos
      recaptcha_ask_question: "Haz una pregunta, recibe una respuesta!"
      recaptcha_question:  Haz la pregunta

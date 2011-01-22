@@ -51,6 +51,9 @@
 	elsif !is_squad
 		show_right_border = false unless is_manager
 	end
+	
+	show_right_evaluation = is_manager
+	show_right_evaluation = true if (!is_manager and has_been_played)
 		
 if roster_count 
 %>
@@ -65,7 +68,7 @@ if roster_count
 			<%= content_tag :th, label_name(:position), :title => label_name(:position), :class => "heading", :align => "center" %>
 			<%= content_tag :th, label_name(:technical), :title => label_name(:profile_technical), :class => "heading" %>
 			<%= content_tag :th, label_name(:physical), :title => label_name(:profile_physical), :class => "heading_#{show_right_border}" %>
-			<%= content_tag :th, has_been_played ? label_name(:evaluation) : label_name(:group), :class => "heading_#{is_manager}" if is_squad %>
+			<%= content_tag :th, has_been_played ? label_name(:evaluation) : label_name(:group), :class => "heading_#{show_right_evaluation}" if is_squad %>
 			
 			<% if has_been_played %>
 			<%= content_tag :th, label_name(:score), :class => "last_roster" %>
@@ -176,7 +179,7 @@ if !has_been_played and is_manager
 end 
 %>
         
-<%= render "schedules/team_level", :home => home, :away => away, :technical => technical, :physical => physical, :is_manager => is_manager if is_squad %>
+<%= render "schedules/team_level", :home => home, :away => away, :technical => technical, :physical => physical, :is_manager => is_manager, :has_been_played => has_been_played if is_squad %>
 
 </table>
 

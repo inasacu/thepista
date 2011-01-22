@@ -73,8 +73,7 @@
 							the_label = h(label_name(@user.available, 'value'))
 						%>			
 						<tr>
-							<%= get_cluetip_td(:available, "label") %>
-							<%#= content_tag :td, label_name(:available), :class => "label" %>
+							<%= content_tag :td, get_cluetip_show('available'), :class =>"label" %>
 							<%= content_tag :td, (is_user_manager ? link_to(the_label, set_available_path(:id => @user)) : the_label), :class => get_the_action %>
 						</tr>
 
@@ -82,8 +81,7 @@
 							the_label = h(label_name(@user.forum_comment_notification, 'value'))
 						%>
 						<tr>
-							<%= get_cluetip_td(:forum_notification, "label") %>
-							<%#= content_tag :td, label_name(:forum_notification), :class => "label" %>
+							<%= content_tag :td, get_cluetip_show('forum_notification'), :class =>"label" %>
 							<%= content_tag :td, (can_modify ? link_to(the_label, set_forum_notification_path(:id => @user)) : the_label), :class => get_the_action %>
 						</tr>
 
@@ -91,8 +89,7 @@
 							the_label = h(label_name(@user.blog_comment_notification, 'value'))
 						%>
 						<tr>
-							<%= get_cluetip_td(:blog_notification, "label") %>
-							<%#= content_tag :td, label_name(:blog_notification), :class => "label" %>
+							<%= content_tag :td, get_cluetip_show('blog_notification'), :class =>"label" %>
 							<%= content_tag :td, (can_modify ? link_to(the_label, set_blog_notification_path(:id => @user)) : the_label), :class => get_the_action %>
 						</tr>
 
@@ -100,8 +97,7 @@
 							the_label = h(label_name(@user.message_notification, 'value'))
 						%>
 						<tr>
-							<%= get_cluetip_td(:message_notification, "label") %>
-							<%#= content_tag :td, label_name(:message_notification), :class => "label" %>
+							<%= content_tag :td, get_cluetip_show('message_notification'), :class =>"label" %>
 							<%= content_tag :td, (can_modify ? link_to(the_label, set_message_notification_path(:id => @user)) : the_label), :class => get_the_action %>
 						</tr>
 						
@@ -110,7 +106,7 @@
 							the_label = h(label_name(@user.teammate_notification, 'value'))
 						%>
 						<tr>
-							<%= get_cluetip_td(:teammate_notification, "label") %>
+							<%= content_tag :td, get_cluetip_show('teammate_notification'), :class =>"label" %>
 							<%= content_tag :td, (can_modify ? link_to(the_label, set_teammate_notification_path(:id => @user)) : the_label), :class => get_the_action %>
 						</tr>
 						<% end %>
@@ -119,8 +115,8 @@
 							the_label = h(label_name(@user.looking, 'value'))
 						%>
 						<tr>
-							  <%= content_tag :td, label_name(:looking_for_my_group), :class => "label" %>
-							  <%= content_tag :td, (@user == current_user ? link_to(the_label, set_user_looking_path(:id => @user)) : the_label), :class => get_the_action %>
+							<%= content_tag :td, get_cluetip_show('looking_for_my_group'), :class =>"label" %>
+							<%= content_tag :td, (@user == current_user ? link_to(the_label, set_user_looking_path(:id => @user)) : the_label), :class => get_the_action %>
 						</tr>
 						
 						<tr>
@@ -142,7 +138,7 @@
   </div>
 </div>
 
-<% content_for :sidebar, render(:partial => 'sidebar_show') -%>
+<% content_for :sidebar, render(:partial => 'users/sidebar_show') -%>
 
 <% content_for :sidebar, render('shared/completeness', :user => @user) unless @user.percent_complete == 100 or @user != current_user -%>
 

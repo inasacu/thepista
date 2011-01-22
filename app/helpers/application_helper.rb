@@ -294,9 +294,9 @@ module ApplicationHelper
     return text
   end
 
-  def option_image_link(item)
+  def option_image_link(item, align='')
     the_image = "icons/#{item}.png"
-    return image_tag(the_image, options={:style => 'height: 16px; width: 16px;'})
+    return image_tag(the_image, options={:style => 'height: 16px; width: 16px;', :align => align})
   end
 
   def option_link(item) 
@@ -375,8 +375,8 @@ module ApplicationHelper
     "<table class='table' id='#{the_action}'>"
   end
   
-  def get_cluetip(the_label, image_name, the_description, icon_only=false)
-    the_image = option_image_link(image_name)
+  def get_cluetip(the_label, image_name, the_description, icon_only=false, align='')
+    the_image = option_image_link(image_name, align)
     the_title = "<strong>#{the_label}</strong>"
     the_id = "tip-#{the_label.downcase.gsub(' ','-')}-#{rand(10000)}"
     the_content = ""
@@ -391,31 +391,37 @@ module ApplicationHelper
     
     return "#{the_image}&nbsp;&nbsp;#{the_content} #{the_content_div}"
 	end
+	
+	def get_cluetip_show(the_label, align='right')	  
+	  the_description = I18n.t("#{the_label}_cluetip") 
+    the_label = I18n.t(the_label)
+		return "#{the_label}#{get_cluetip(the_label, 'info', the_description, true, align)}"
+	end
 
-  def get_cluetip_td(the_label, the_description, the_class="") 
+  def get_cluetip_toggle(the_label) 
     the_description = I18n.t("#{the_label}_cluetip") 
     the_label = I18n.t(the_label)  
+    the_random = rand(10000)
     the_title = "<strong>#{the_label}</strong>"
-    the_id = "tip-#{the_label.downcase.gsub(' ','-')}-#{rand(10000)}"
+    the_id = "tip-#{the_label.downcase.gsub(' ','-')}-#{the_random}"
 
-    the_content = content_tag(:span, the_label, :class => 'tooltip', :title => the_title, :rel => "##{the_id}")
+    the_content = content_tag :h5, (content_tag(:span, the_label, :class => 'tooltip', :title => the_title, :rel => "##{the_id}"))
     the_content_div = content_tag(:div, the_description, :id => the_id, :style => 'display:none')
-    # the_content = "<td class='#{the_class}'>#{the_content} #{the_content_div}<td>"    
-    the_content = "<td class='label'><a href='#'>#{the_content}</a>#{the_content_div}</td>"    
+    the_content = "#{the_content} #{the_content_div}"    
     return the_content
   end
-
-  def get_cluetip_td_class(the_label, second_label, the_class="") 
-    the_description = I18n.t("#{the_label}_cluetip") 
-    the_label = I18n.t(the_label)  
-    the_title = "<strong>#{the_label}</strong>"
-    the_id = "tip-#{the_label.downcase.gsub(' ','-')}-#{rand(10000)}"
-
-    the_content = content_tag(:span, "#{the_label}#{second_label}", :class => 'tooltip', :title => the_title, :rel => "##{the_id}")
-    the_content_div = content_tag(:div, the_description, :id => the_id, :style => 'display:none')
-    the_content = "<td class='#{the_class}'>#{the_content} #{option_image_link('info')} #{the_content_div}<td>"    
-    # the_content = "<td class='label'><a href='#'>#{the_content}</a>#{the_content_div}</td>"    
-    return the_content
-  end
+  
+  # def get_cluetip_td(the_label, the_description, the_class="") 
+  #   the_description = I18n.t("#{the_label}_cluetip") 
+  #   the_label = I18n.t(the_label)  
+  #   the_title = "<strong>#{the_label}</strong>"
+  #   the_id = "tip-#{the_label.downcase.gsub(' ','-')}-#{rand(10000)}"
+  # 
+  #   the_content = content_tag(:span, the_label, :class => 'tooltip', :title => the_title, :rel => "##{the_id}")
+  #   the_content_div = content_tag(:div, the_description, :id => the_id, :style => 'display:none')
+  #   # the_content = "<td class='#{the_class}'>#{the_content} #{the_content_div}<td>"    
+  #   the_content = "<td class='label'><a href='#'>#{the_content}</a>#{the_content_div}</td>"    
+  #   return the_content
+  # end
 
 end

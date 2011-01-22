@@ -662,7 +662,8 @@ en:
      join_cup:  Join the challenge  
      join_group: Join the Team   
      join_group_message: Message para unirte al team ha sido mandado correctamente. 
-     join_option:  Options to Join / Opt-out  
+     join_option:  Options for Team
+     join_option_cluetip:  These options allow a Manager to sign-up or kick-off a player from the team.
      join_tournament: Join the Tournament   
      jornada:  Event
      jornada_description:  Event
@@ -691,6 +692,7 @@ en:
      look: Look  
      looking_for_group:  Looking for Team
      looking_for_my_group:  Looking for Team
+     looking_for_my_group_cluetip:  This option allows others to know that you are looking to play on other teams.
      looking_for_groups:  Looking for Team
      looking_for_group_description:  Looking for Team
      looking_for_user:  Looking for Players
@@ -700,7 +702,8 @@ en:
      male_value: Male          
      manager: Manager   
      managers: Manager(s) 
-     manager_option:  Options to Add / Remove Manager
+     manager_option:  Options for Managers
+     manager_option_cluetip:  These options allow a Manager to set another player as an additional Manager of the team.  Manager have team additional options over the team.
      map: Map   
      map_it: Map It
      maps: Maps   
@@ -1234,6 +1237,7 @@ en:
      sub_manager_true:  Team Organizer  
      manager_updated:  Update manager.     
      subscription_option:  Options for subscribers
+     subscription_option_cluetip:  "Being an annual subscriber allows you to pay a set fee for the team.  On the contrary, players would pay for each individual game played."
      subscription_at: Last Day to add squad status change for subscriber  
      subscription_at_match: Last Day to add squad status change for subscriber    
      subscription_at_description: (Last Day to add squad status change for subscriber  ...(ex- 1 day before the event)) 
@@ -1727,7 +1731,8 @@ en:
      standings_option:  Options 
      standings_less_games:  ( * ) Players con menos asistencias a events
      standings_legend:  Leyend   
-     sub_manager_option:  Sub-Manager Options
+     sub_manager_option:  Options for Sub-Manager
+     sub_manager_option_cluetip:  These options allow a Sub-Manager to set another player as an additional Sub-Manager of the team.  Sub-Manager have team options other basic users do not have.
      success_story:  Success Stories
      recaptcha_ask_question: "Ask a question, receive an answer!"
      recaptcha_question:  Question

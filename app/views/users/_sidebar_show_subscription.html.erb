@@ -1,8 +1,9 @@
 <div class="block">
 	<div class="sidebar-block" class="extra">
-	<a href="#" onclick="toggle_visibility('abc');"><h5><%= label_name(:subscription_option) %></h5></a>
-	<div id="abc" style='display:none;'>
-			
+	<a href="#" onclick="toggle_visibility('abc');">
+		<h5><%= get_cluetip_toggle('subscription_option') %></h5>
+	</a>
+	<div id="abc" style='display:none;'>			
 <% 
 @user.groups.each do |group| 
 

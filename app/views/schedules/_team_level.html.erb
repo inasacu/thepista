@@ -88,6 +88,11 @@
 	
 	home["total_difference"] = "" if home["total_difference"].to_f <= 0 
 	away["total_difference"] = "" if away["total_difference"].to_f <= 0
+	
+	show_right_border = true
+	if !has_been_played
+		show_right_border = false unless is_manager
+	end	
 %>
 <tr>
 	<%= content_tag :td, "&nbsp;", :class => "no_line" %>
@@ -107,8 +112,8 @@
 	<%= content_tag :th, label_name(:users_total), :class => "heading" %>
 	<%= content_tag :th, label_name(:technical_difference), :class => "heading" %>
 	<%= content_tag :th, label_name(:physical_difference), :class => "heading" %>
-	<%= content_tag :th, label_name(:total_difference), :class => "heading_#{is_manager}" %>
-	<%= content_tag :th, "", :class => "last" if is_manager %>
+	<%= content_tag :th, label_name(:total_difference), :class => "heading_#{show_right_border}" %>
+	<%= content_tag :th, "", :class => "last" if show_right_border %>
 </tr>
 <tr>
 	<%= content_tag(:td, "&nbsp;", :class => "no_line") %>
