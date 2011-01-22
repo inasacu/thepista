@@ -1,6 +1,7 @@
 /* @override 
 	http://thepista.local/stylesheets/primary.css?1295483164
 	http://thepista.local/stylesheets/primary.css?1295717469
+	http://thepista.local/stylesheets/primary.css?1295739363
 */
 
 html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td,#status a,#list-panel ul,.abook-column-headers h3,*,#header h1,#sidebar h3,#sidebar ul.navigation,.secondary-navigation ul,#main-navigation ul,#user-navigation ul,input.checkbox,.form textarea.text_area,.form input.text_field,.form label.label,ul.list,#box .block h2,#about .block h2,#footer .block p,li,ol,div#footer p,.cluetip-default #cluetip-outer,.ajaxful-rating {
@@ -742,6 +743,9 @@ input.text_field,text_area.textfield,td.label {
 	padding:8px 8px 8px 8px
 }
 
+.table td.first_home {	
+	width: 55px;
+}
 /*.table td.first_left,span.q {
 	color:#369
 }*/
@@ -756,6 +760,10 @@ span.q {
 
 #team_roster td,#team_no_show td,#team_ultima_hora td,#contact td,#escuadra td,#scorecard	 td,#standing td,#user td {
 	padding:1px 10px
+}
+
+#user td{
+	padding:15px
 }
 
 #game td,#cast td,#home td {
