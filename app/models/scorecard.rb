@@ -268,7 +268,7 @@ class Scorecard < ActiveRecord::Base
     the_schedules.each {|schedule| played_games += 1 }
     
     the_sort = "scorecards.points DESC, scorecards.ranking, users.name"
-    the_sort = "#{sort}, #{the_sort}" if (sort != " ASC" and sort != " DESC") 
+    the_sort = "#{sort}, #{the_sort}" if (sort != " ASC" and sort != " DESC" and !sort.blank? and !sort.empty?) 
     
      find(:all, :select => "scorecards.*, matches.type_id,  
                             (100 * scorecards.points / (scorecards.played * groups.points_for_win)) as coeficient,

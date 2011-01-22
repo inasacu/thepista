@@ -13,13 +13,12 @@ $(document).ready(function() {
 		cluetipClass: 'jtip'
 	});
 
-	$('a').cluetip({
-		attribute: 'rel',
-		local: true,
-		hideLocal: true,
-		arrows: true, 
-		cursor: 'pointer',
-		cluetipClass: 'jtip'
-	});
-	$('a.title').cluetip({splitTitle: '|'});
+	// $('a').cluetip({
+	// 	attribute: 'rel',
+	// 	local: true,
+	// 	hideLocal: true,
+	// 	arrows: true, 
+	// 	cursor: 'pointer',
+	// 	cluetipClass: 'jtip'
+	// });
 });

@@ -1,6 +1,7 @@
 <%
  	mailer ||= false
 	switch ||= false
+	even_or_odd ||= false
 	
 	unless mailer
 		image = scorecard_image_link("bajar-clasificacion.png") if (scorecard.ranking > scorecard.previous_ranking) 
@@ -23,8 +24,11 @@
 	<td class="equipos"><%= mailer ? "&nbsp;" : item_image_link_tiny(scorecard.user) %></td>
 	<td class="equipos">
 		<span>
-		<% if mailer %>
-		<%= link_to((scorecard.user.name.to_s.length > 14) ? "#{scorecard.user.name.to_s.strip[0..12]}..." : scorecard.user.name, {:host => 'haypista.com', :controller => 'users', :action => 'show', :id => scorecard.user}) %>
+		<% if mailer 
+			the_name = scorecard.user.name.split.collect {|i| i.capitalize}.join(' ') 
+			%>
+		<%= link_to((the_name.to_s.length > 14) ? "#{the_name.to_s.strip[0..12]}..." : 
+					the_name, {:host => 'haypista.com', :controller => 'users', :action => 'show', :id => scorecard.user}) %>
 		<% else %>
 		<%= user_link_limit(scorecard.user) %>
 		<% end %>

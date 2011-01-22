@@ -87,6 +87,7 @@ module UsersHelper
       end
       
       # limit name length
+      text = proper_case(text)
       text = limit_url_length(text)      
       link_to(text, user, html_options)
   end

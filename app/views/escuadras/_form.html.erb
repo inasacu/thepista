@@ -14,13 +14,10 @@
 	  <span class="description"><%= label_name('photo', 'description') %></span>
 	</div>
 
-
   </div> 
 
   <div class="column right">
-
-	<%= render :partial => "item_list", :locals => {:escuadras => escuadras} %>
-	
+	<%= render :partial => "messages/message_item_list", :locals => {:recipients => escuadras} %>
   </div> 
 
 </div>

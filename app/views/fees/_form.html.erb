@@ -30,7 +30,7 @@
 	<div class="column right"> 
 			
 	<% if @fee.new_record? %>
-		<%= render :partial => "/messages/recipient_item_list", :locals => {:recipients => @recipients, :subscription => true} %>
+		<%= render :partial => "/messages/message_item_list", :locals => {:recipients => @recipients, :subscription => true} %>
 	<% end %>
 	
 	</div>

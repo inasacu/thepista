@@ -1,0 +1,83 @@
+<%
+	convocados ||= false
+	subscription ||= false
+	the_check ||= false
+	the_label ||= label_name(:users)
+
+	if recipients
+		the_class = recipients.first.class.to_s 
+		case the_class
+		when "Escuadra"										
+			the_label = label_name(:users)
+		when "User"											
+			the_label = label_name(:escuadras_false)
+		else
+		end
+	end
+%>
+
+<body class="js">
+	<div id="abook-group">
+		<div id="abook-wrapper">
+			
+			<div class="abook-column-headers">
+				<h3 class="filter-header"><%= the_label %></h3>
+
+				<h3 style="visibility: visible;" class="list-header">
+					<%= render :partial => '/shared/check_radio_button' if recipients %>
+				</h3>
+			</div>
+			
+			<div id="filter-list-panel">
+				<div id="list-panel" class="abook-column">
+					<ul>
+						<fieldset id="roster">
+
+							<table class="table">
+								<tbody>
+									<% 
+									first_character = ''
+									counter = 0
+									recipients.each do |recipient| 
+
+										if (first_character != (recipient.name.chars.first).upcase)
+											first_character = (recipient.name.chars.first).upcase
+											counter = 0
+										else
+											counter = 1
+										end 
+										if (counter == 0)
+									%>
+											<tr>
+												<td class="letter-divider">	
+													<span class="<%= first_character %>"><%= first_character %></span>
+												</td> 
+											</tr>
+											<% 
+										end
+										
+										case the_class
+										when "Escuadra"										
+											%>											
+											<%= render :partial => "item_single", :locals => {:escuadra => recipient, :checked => false} %>
+											<%
+										when "User"											
+											%>											
+											<%= render :partial => "/messages/recipient_item_single", 
+													   :locals => {:recipient => recipient, :checked => the_check, :convocados => convocados} %>
+											<%
+										else
+										end
+										
+									end
+									%>		
+								</tbody>
+							</table>
+
+						</fieldset>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>

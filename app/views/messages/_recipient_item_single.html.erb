@@ -1,10 +1,14 @@
+<style type="text/css"> 
+	.table td { padding: 4px; text-align: left; font-size: 12.5px; }
+</style>
+
 <% 
 checked ? checkmark = 'checked' : checkmark = '' 
 checkmark = 'checked' if (convocados and recipient.type_id.to_i == 1)
 %>
 
 <tr>
-	<td>	
+	<td>
 		<input type="checkbox" id="roster" name="recipient_ids[]" value="<%= recipient.id %>" <%= checkmark %> >
 	</td>        
 	<td>

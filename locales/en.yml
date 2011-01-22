@@ -1094,7 +1094,7 @@ en:
      season_description:  Season 
      second_team: Segundo Team   
      second_team_description: "(If you play within your team, set a different name to differentiate the teams when organizing the different teams within the event...) "  
-     select: Seelct   
+     select: Select   
      select_venue: New Venue  
      select_contacts:  Select the contacts you want to invite from this list.
      self_description: "(Escribe algo sobre ti...)"       

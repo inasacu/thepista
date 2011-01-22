@@ -232,6 +232,12 @@ module ApplicationHelper
       yield t.name, classes[(t.count.to_i - min) / divisor]          
     }  
   end
+  
+  def proper_case(text)
+    text = h(text)
+    text = text.split.collect {|i| i.capitalize}.join(' ') 
+    return text
+  end
 
   def page_title
     "HayPista" + ( " | " + @content_for_title if @content_for_title).to_s
@@ -263,6 +269,7 @@ module ApplicationHelper
       text = item.name
     end
     text = limit_item_link_length(text, limit) unless (limit == nil)
+    text = proper_case(text) if item.class.to_s == 'User'
     link_to(h(text), item, html_options)
   end
 

@@ -50,24 +50,20 @@
 		@schedule = @scorecard
 	%>
 			
-	<%#= render :partial => '/messages/recipient_list', :locals => {:recipients => @recipients, :checked => check } %>
-	<%= render :partial => "/messages/recipient_item_list", :locals => {:recipients => @recipients, :checked => check} %>
+	<%= render :partial => "/messages/message_item_list", :locals => {:recipients => @recipients, :checked => check} %>
 	<%= hidden_field :scorecard, :id %>
 	
 	<% elsif @match %>
-	<%#= render :partial => '/messages/recipient_roster', :locals => {:schedule => @schedule, :checked => check } %>
-	<%= render :partial => "/messages/recipient_item_list", :locals => {:recipients => @recipients, :checked => check} %>
+	<%= render :partial => "/messages/message_item_list", :locals => {:recipients => @recipients, :checked => check} %>
 	<%= hidden_field :match, :id %>
 	<%= hidden_field :schedule, :id %>
 
 	<% elsif @schedule %>
-	<%#= render :partial => '/messages/recipient_roster', :locals => {:schedule => @schedule, :checked => check } %>
-	<%= render :partial => "/messages/recipient_item_list", :locals => {:recipients => @recipients, :checked => check, :convocados => true} %>
+	<%= render :partial => "/messages/message_item_list", :locals => {:recipients => @recipients, :checked => check, :convocados => true} %>
 	<%= hidden_field :schedule, :id %>
 
 	<% elsif @challenge %>
-	<%#= render :partial => '/messages/recipient_list', :locals => {:recipients => @recipients, :checked => check } %>
-	<%= render :partial => "/messages/recipient_item_list", :locals => {:recipients => @recipients, :checked => check} %>
+	<%= render :partial => "/messages/message_item_list", :locals => {:recipients => @recipients, :checked => check} %>
 	<%= hidden_field :challenge, :id %>
 	
 	<% elsif @recipient %>
@@ -76,12 +72,10 @@
 	<% elsif @the_schedule 
 		@schedule = @the_schedule
 	%>	 
-	<%#= render :partial => '/messages/recipient_roster', :locals => {:schedule => @schedule, :checked => check } %>
-	<%= render :partial => "/messages/recipient_item_list", :locals => {:recipients => @recipients, :checked => check} %>
+	<%= render :partial => "/messages/message_item_list", :locals => {:recipients => @recipients, :checked => check} %>
 	
 	<% else %>
-	<%#= render :partial => '/messages/recipient_list', :locals => {:recipients => @recipients, :checked => check } %>
-	<%= render :partial => "/messages/recipient_item_list", :locals => {:recipients => @recipients, :checked => check} %>
+	<%= render :partial => "/messages/message_item_list", :locals => {:recipients => @recipients, :checked => check} %>
 	
 	<% end %>
 
