@@ -1685,6 +1685,7 @@ es:
      schedule_ausentes:  Ningun ausente para mostrar.
      schedule_convocados:  Ningun convocado para mostrar.
      schedule_excess_player:  Demasiados jugadores convocados
+     schedule_excess_player_cluetip:  El limite de jugadores del evento ha sido superado.  Para ver la maxima cantidad de jugadores puedes consultarlo en los detalles del evento.
      schedule_ultima_hora:   Ninguno en ultima hora para mostrar.
      schedule_no_disponible:  Ninguno no disponible para mostrar.
      schedule_rate: Valoración del evento

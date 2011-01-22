@@ -1,4 +1,6 @@
 <% 
+	is_manager ||= false
+	
 	home["total"] = home["technical"].to_f + home["physical"].to_f
 	away["total"] = away["technical"].to_f + away["physical"].to_f
 
@@ -30,8 +32,8 @@
 	end
 
 	if home["has_total_value"] and away["has_total_value"] 		
-		home["total_difference"] = (home["total"] - away["total"]).to_f / (away["total"] + home["total"]) * 100
-		away["total_difference"] = (away["total"] - home["total"]).to_f / (home["total"] + away["total"]) * 100 
+		home["total_difference"] = (home["total"] - away["total"]).to_f / (away["total"]) * 100
+		away["total_difference"] = (away["total"] - home["total"]).to_f / (home["total"]) * 100 
 	end
 		
 	home["technical_difference"] = "#{sprintf( "%.2f", home["technical_difference"].abs)}%"
@@ -69,16 +71,23 @@
 	away["image"] = scorecard_image_link("mantener-clasificacion.png") if away["total_difference"] == home["total_difference"]
 	
 	
-	home["technical_difference"] = "" if home["technical_difference"].to_f < 0 
-	away["technical_difference"] = "" if away["technical_difference"].to_f < 0 
+	home["technical"] = "" if home["technical"].to_f <= 0 
+	away["technical"] = "" if away["technical"].to_f <= 0 
+	 
+	home["physical"] = "" if home["physical"].to_f <= 0 
+	away["physical"] = "" if away["physical"].to_f <= 0  
+	
+	home["total"] = "" if home["total"].to_f <= 0 
+	away["total"] = "" if away["total"].to_f <= 0
+	
+	home["technical_difference"] = "" if home["technical_difference"].to_f <= 0 
+	away["technical_difference"] = "" if away["technical_difference"].to_f <= 0 
  
-	home["physical_difference"] = "" if home["physical_difference"].to_f < 0 
-	away["physical_difference"] = "" if away["physical_difference"].to_f < 0  
+	home["physical_difference"] = "" if home["physical_difference"].to_f <= 0 
+	away["physical_difference"] = "" if away["physical_difference"].to_f <= 0  
 	
-	home["total_difference"] = "" if home["total_difference"].to_f < 0 
-	away["total_difference"] = "" if away["total_difference"].to_f < 0 
-	
-	
+	home["total_difference"] = "" if home["total_difference"].to_f <= 0 
+	away["total_difference"] = "" if away["total_difference"].to_f <= 0
 %>
 <tr>
 	<%= content_tag :td, "&nbsp;", :class => "no_line" %>
@@ -98,13 +107,13 @@
 	<%= content_tag :th, label_name(:users_total), :class => "heading" %>
 	<%= content_tag :th, label_name(:technical_difference), :class => "heading" %>
 	<%= content_tag :th, label_name(:physical_difference), :class => "heading" %>
-	<%= content_tag :th, label_name(:total_difference), :class => "heading" %>
-	<%= content_tag :th, "", :class => "last" %>
+	<%= content_tag :th, label_name(:total_difference), :class => "heading_#{is_manager}" %>
+	<%= content_tag :th, "", :class => "last" if is_manager %>
 </tr>
 <tr>
 	<%= content_tag(:td, "&nbsp;", :class => "no_line") %>
 	<%= content_tag(:td, home["image"], :class => "no_line", :align => "center") %>
-	<%= content_tag(:td, link_to(@schedule.home_group, group_path(@schedule.group)), :class => "no_line") %>
+	<%= content_tag(:td, "#{link_to(@schedule.home_group, group_path(@schedule.group))}&nbsp;&nbsp;(#{home['players']})", :class => "no_line") %>
 	<%= content_tag(:td, home["technical"], :class => "no_line") %>
 	<%= content_tag(:td, home["physical"], :class => "no_line") %>
 	<%= content_tag(:td, home["total"], :class => "no_line") %>
@@ -115,8 +124,8 @@
 
 <tr>
 	<%= content_tag(:td, "&nbsp;", :class => "no_line") %>	
-	<%= content_tag(:td, away["image"], :class => "", :align => "center") %>
-	<%= content_tag(:td, link_to(@schedule.away_group, group_path(@schedule.group))) %>	
+	<%= content_tag(:td, away["image"], :class => "", :align => "center") %>	
+	<%= content_tag(:td, "#{link_to(@schedule.away_group, group_path(@schedule.group))}&nbsp;&nbsp;(#{away['players'].to_s})") %>	
 	<%= content_tag(:td, away["technical"]) %>
 	<%= content_tag(:td, away["physical"]) %>
 	<%= content_tag(:td, away["total"]) %>
@@ -125,7 +134,7 @@
 	<%= content_tag(:td, away["total_difference"]) %>
 </tr>
 
-<tr><% 10.times {|i| "#{content_tag(:td, '&nbsp;', :class => 'no_line')}"} %></tr>
-<tr><% 10.times {|i| "#{content_tag(:td, '&nbsp;', :class => 'no_line')}"} %></tr>
+<tr><% 9.times {|i| "#{content_tag(:td, '&nbsp;', :class => 'no_line')}"} %></tr>
+<tr><% 9.times {|i| "#{content_tag(:td, '&nbsp;', :class => 'no_line')}"} %></tr>
 
 </table>

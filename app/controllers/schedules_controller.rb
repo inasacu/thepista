@@ -308,9 +308,9 @@ class SchedulesController < ApplicationController
   end
 
   def excess_players
-    unless @schedule.convocados.empty? or @schedule.player_limit == 0
-      flash[:warning] = I18n.t(:schedule_excess_player) if (@schedule.convocados.count > @schedule.player_limit)  
-    end
+    # unless @schedule.convocados.empty? or @schedule.player_limit == 0
+    #   flash[:warning] = I18n.t(:schedule_excess_player) if (@schedule.convocados.count > @schedule.player_limit)  
+    # end
   end
 end
 

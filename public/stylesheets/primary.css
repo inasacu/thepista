@@ -1,4 +1,7 @@
-/* @override http://thepista.local/stylesheets/primary.css?1295483164 */
+/* @override 
+	http://thepista.local/stylesheets/primary.css?1295483164
+	http://thepista.local/stylesheets/primary.css?1295717469
+*/
 
 html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td,#status a,#list-panel ul,.abook-column-headers h3,*,#header h1,#sidebar h3,#sidebar ul.navigation,.secondary-navigation ul,#main-navigation ul,#user-navigation ul,input.checkbox,.form textarea.text_area,.form input.text_field,.form label.label,ul.list,#box .block h2,#about .block h2,#footer .block p,li,ol,div#footer p,.cluetip-default #cluetip-outer,.ajaxful-rating {
 	margin:0
@@ -403,7 +406,7 @@ h3,h2,h1,a:active,a:hover,a:visited,a:link {
 	background:#f7f7f8
 }
 
-#main .block .content,.table th.first,.table th.heading,.table th.heading_last,.table th.last,.table th.last_roster,#box .block .content,#box .block .content_register,#footer {
+#main .block .content,.table th.first,.table th.heading,.table th.heading_false, .table th.heading_true, .table th.heading_last,.table th.last,.table th.last_roster,#box .block .content,#box .block .content_register,#footer {
 	border-top:1px solid #cfcfcf
 }
 
@@ -415,7 +418,7 @@ h3,h2,h1,a:active,a:hover,a:visited,a:link {
 	border-left:1px solid #cfcfcf
 }
 
-#main .block .content,.table th.heading_last,.table th.last,.table th.last_roster,#box .block .content,#box .block .content_register {
+#main .block .content,.table th.heading_false,.table th.heading_last,.table th.last,.table th.last_roster,#box .block .content,#box .block .content_register {
 	border-right:1px solid #cfcfcf
 }
 
@@ -715,11 +718,11 @@ input.text_field,text_area.textfield,td.label {
 }
 
 .next_message {
-	background:url('../../images/previo-evento.png')
+	background:url('../images/previo-evento.png') no-repeat scroll 0 0 transparent
 }
 
 .previous_message {
-	background:url('../../images/proximo-evento.png')
+	background:url('../images/proximo-evento.png') no-repeat scroll 0 0 transparent
 }
 
 .table th.last,.table th.last_roster,.table th.second_team_last_roster {
@@ -739,7 +742,11 @@ input.text_field,text_area.textfield,td.label {
 	padding:8px 8px 8px 8px
 }
 
-.table td.first_left,span.q {
+/*.table td.first_left,span.q {
+	color:#369
+}*/
+
+span.q {
 	color:#369
 }
 
@@ -748,7 +755,7 @@ input.text_field,text_area.textfield,td.label {
 }
 
 #team_roster td,#team_no_show td,#team_ultima_hora td,#contact td,#escuadra td,#scorecard	 td,#standing td,#user td {
-	padding:4px 10px
+	padding:1px 10px
 }
 
 #game td,#cast td,#home td {

@@ -1684,7 +1684,8 @@ en:
      schedules_show: Event Details
      schedule_ausentes:  Noone on No-Show to show.
      schedule_convocados:  Noone on Squad to show.
-     schedule_excess_player:  Too many Players on Squad
+     schedule_excess_player:  Too many players on squad
+     schedule_excess_player_cluetip:  The player limit for this event has been reached.  Check the event details to view the maximum number of players allowed for this event.
      schedule_ultima_hora:   Noone on Last Minute to show.
      schedule_no_disponible:  Noone on unavailable to show.
      schedule_rate: Rate the Event  

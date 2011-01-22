@@ -3,7 +3,10 @@
 
 # add self to manage any team
 insert into roles_users (role_id, user_id) values (72573, 2001)
-	
+delete from roles_users where role_id = 72573 and user_id = 2001
+
+
+		
 	
 select * 
 from matches

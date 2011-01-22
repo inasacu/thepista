@@ -15,6 +15,7 @@
 	home["technical"] = 0.0
 	home["physical"] = 0.0
 	home["total"] = 0.0
+	home["players"] = 0
 	
 	away["defense"] = 0.0
 	away["center"] = 0.0
@@ -22,6 +23,7 @@
 	away["technical"] = 0.0
 	away["physical"] = 0.0
 	away["total"] = 0.0
+	away["players"] = 0
 	
 	technical["difference"] = 0.0
 	technical["minimum"] = 0.0
@@ -34,16 +36,21 @@
 	group = @schedule.group
 	is_manager = current_user.is_manager_of?(group)
 	
-	is_action = get_the_action.gsub(' ','_') == 'team_roster'
+	is_squad = get_the_action.gsub(' ','_') == 'team_roster'
 	group_games_played = @schedule.group.games_played.to_f
 	
 	@positions = Type.find(:all, :conditions => "table_type = 'User'", :order => "id")
 	
 	first_schedule = @schedule.group.schedules.first
-	has_been_played = @schedule.played? 
-	
+	has_been_played = @schedule.played? 	
 	is_sub_manager = !has_been_played
-	# is_sub_manager = current_user.is_sub_manager_of?(group)
+	
+	show_right_border = true
+	if is_squad
+		show_right_border = true 
+	elsif !is_squad
+		show_right_border = false unless is_manager
+	end
 		
 if roster_count 
 %>
@@ -52,17 +59,17 @@ if roster_count
 		<tr>
 			<%= content_tag :th, "&nbsp;", :class => "first" %>
 			<%= content_tag :th, "&nbsp;", :class => "heading" %>
-			<%= content_tag :th, has_been_played ? label_name(:name) : "#{label_name(:name)}<br/>#{label_name(:change_at)}", :class => "heading" %>
+			<%= content_tag :th, label_name(:name), :class => "heading" %>
 			<%= content_tag :th, label_name(:ranking), :title => label_name(:ranking_full), :class => "heading" %>
 			<%= content_tag :th, label_name(:participation), :title => label_name(:participation_full), :class => "heading" %>
 			<%= content_tag :th, label_name(:position), :title => label_name(:position), :class => "heading", :align => "center" %>
 			<%= content_tag :th, label_name(:technical), :title => label_name(:profile_technical), :class => "heading" %>
-			<%= content_tag :th, label_name(:physical), :title => label_name(:profile_physical), :class => "heading" %>
-			<%= content_tag :th, has_been_played ? label_name(:evaluation) : label_name(:group), :class => "heading" if is_action %>
+			<%= content_tag :th, label_name(:physical), :title => label_name(:profile_physical), :class => "heading_#{show_right_border}" %>
+			<%= content_tag :th, has_been_played ? label_name(:evaluation) : label_name(:group), :class => "heading_#{is_manager}" if is_squad %>
 			
 			<% if has_been_played %>
 			<%= content_tag :th, label_name(:score), :class => "last_roster" %>
-			<% elsif !has_been_played %>
+			<% elsif !has_been_played and is_manager %>
 			<%= content_tag :th, "", :class => "last_roster" %>
 			<% end -%>
 		</tr>
@@ -73,6 +80,9 @@ the_roster.each do |match|
 	
 	if match.type_id == 1
 		is_second_team = !(match.group_id > 0)
+
+		home["players"] += 1 unless is_second_team
+		away["players"] += 1 if is_second_team
 	end
 
 	second_team = ""
@@ -94,9 +104,7 @@ the_roster.each do |match|
 	rating_technical = the_user_match.rating_average_technical.to_f
 	rating_physical = the_user_match.rating_average_physical.to_f
 
-	# is_subscriber = true
-	is_subscriber = the_user.is_subscriber_of?(group)
-	
+	is_subscriber = the_user.is_subscriber_of?(group)	
 	the_label =  label_name("subscription_#{is_subscriber}")
 
 	case match.position.name
@@ -136,7 +144,7 @@ the_roster.each do |match|
 	<td class="<%= second_team %>" ><%= rating_technical %></td>			
 	<td class="<%= second_team %>" ><%= rating_physical %></td>
 	
-	<% if is_action %>
+	<% if is_squad %>
 	<td class="<%= second_team %>" >
 
 	<% if has_been_played %>
@@ -150,14 +158,14 @@ the_roster.each do |match|
 		
 	</td>
 <% 	
-	if has_been_played and is_action
+	if has_been_played and is_squad
 %>	
 		<td class="<%= second_team %>" ><%= group_score_link @schedule if was_convocado %></td>
 <%		
 	end 
 	end
 
-unless has_been_played 
+if !has_been_played and is_manager
 %>	
 	<td class="<%= second_team %>" >
 	<%= match_all_my_link(@schedule, @match_type, the_user, true) if (current_user != the_user and is_manager) %>
@@ -168,7 +176,7 @@ unless has_been_played
 end 
 %>
         
-<%= render "schedules/team_level", :home => home, :away => away, :technical => technical, :physical => physical if is_action %>
+<%= render "schedules/team_level", :home => home, :away => away, :technical => technical, :physical => physical, :is_manager => is_manager if is_squad %>
 
 </table>
 

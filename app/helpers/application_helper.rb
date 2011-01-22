@@ -405,4 +405,17 @@ module ApplicationHelper
     return the_content
   end
 
+  def get_cluetip_td_class(the_label, second_label, the_class="") 
+    the_description = I18n.t("#{the_label}_cluetip") 
+    the_label = I18n.t(the_label)  
+    the_title = "<strong>#{the_label}</strong>"
+    the_id = "tip-#{the_label.downcase.gsub(' ','-')}-#{rand(10000)}"
+
+    the_content = content_tag(:span, "#{the_label}#{second_label}", :class => 'tooltip', :title => the_title, :rel => "##{the_id}")
+    the_content_div = content_tag(:div, the_description, :id => the_id, :style => 'display:none')
+    the_content = "<td class='#{the_class}'>#{the_content} #{option_image_link('info')} #{the_content_div}<td>"    
+    # the_content = "<td class='label'><a href='#'>#{the_content}</a>#{the_content_div}</td>"    
+    return the_content
+  end
+
 end
