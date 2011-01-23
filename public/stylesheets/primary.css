@@ -759,11 +759,11 @@ span.q {
 }
 
 #team_roster td,#team_no_show td,#team_ultima_hora td,#contact td,#escuadra td,#scorecard	 td,#standing td,#user td {
-	padding:1px 10px
+	padding: 4px 10px
 }
 
 #user td{
-	padding:15px
+	padding:10px 5px 0px 5px
 }
 
 #game td,#cast td,#home td {
@@ -779,7 +779,7 @@ span.q {
 }
 
 #scorecard th {
-	padding:4px 8px
+	padding: 8px
 }
 
 .table td.jugados {
