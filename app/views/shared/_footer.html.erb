@@ -8,9 +8,9 @@
 				<ol class="horizontal_list">
 					<li><%= link_to label_name(:about), about_url %></li>
 					<li><%= link_to label_name(:terms_of_use), terms_of_use_url %></li>
-					<li><%= link_to label_name(:pricing), pricing_url unless production? %></li>
+					<li><%= link_to label_name(:classifieds), root_url %></li>
 					<li><%= link_to label_name(:faq), faq_url %></li>
-					<li><%= link_to label_name(:success_story), success_url %></li>
+					<li><%= link_to label_name(:success_story), root_url %></li>
 					<li><%= link_to label_name(:openid), openid_url %></li>
 					<li><%= mail_to CONTACT_RECIPIENT, label_name(:contact) %></li>
 					<li>
