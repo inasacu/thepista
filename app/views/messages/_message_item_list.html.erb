@@ -8,10 +8,11 @@
 		the_class = recipients.first.class.to_s 
 		case the_class
 		when "Escuadra"										
-			the_label = label_name(:users)
-		when "User"											
 			the_label = label_name(:escuadras_false)
+		when "User"											
+			the_label = label_name(:users)
 		else
+			the_label = label_name(:users)
 		end
 	end
 %>
