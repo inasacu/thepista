@@ -972,7 +972,8 @@ en:
      possible_spam:  Possible SPAM!  
      position_description: (The position on the field that you are better at. if it is relevant!)   
      post: Post   
-     post_not_saved: Comments NOT saved!!!   
+     post_not_saved: Comments NOT saved!!! 
+     post_pre_match: Post prematch teams  
      post_saved: Comments saved!!!   
      pre_match: On the Squad   
      preference: Preferences

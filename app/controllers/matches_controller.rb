@@ -131,7 +131,7 @@ class MatchesController < ApplicationController
       :played => played, :user_x_two => @user_x_two)
 
       Scorecard.calculate_user_played_assigned_scorecard(@match.user, @match.schedule.group)
-      flash[:notice] = I18n.t(:change_group)
+      # flash[:notice] = I18n.t(:change_group)
     end
     redirect_back_or_default('/index')
   end

@@ -7,15 +7,37 @@
 <div class="content">
 <%	
 	if current_user.is_member_of?(@group) %> 
-		<p><%= option_image_link('message') %>&nbsp;&nbsp;<%= link_to label_name(:send_message_to), new_message_path(:group_id => @group, :roster_id => @schedule) %></p>
-		<p><%= option_image_link('invitation') %>&nbsp;&nbsp;<%= link_to(label_name(:invitations_create_schedule) , new_invitation_url(:schedule_id => @schedule)) %></p>
+		<p>
+			<%= option_image_link('message') %>&nbsp;&nbsp;
+			<%= link_to label_name(:send_message_to), new_message_path(:group_id => @group, :roster_id => @schedule) %>
+		</p>
+		<p>
+			<%= option_image_link('invitation') %>&nbsp;&nbsp;
+			<%= link_to(label_name(:invitations_create_schedule) , new_invitation_url(:schedule_id => @schedule)) %>
+		</p>
+		
 		<% unless @schedule.played? %>
-		<p><%= option_image_link('schedule') %>&nbsp;&nbsp;<%= link_to label_name(:send_pre_match), new_message_path(:schedule_id => @schedule) %></p>
+		<p>
+			<%= option_image_link('schedule') %>&nbsp;&nbsp;
+			<%= link_to label_name(:send_pre_match), new_message_path(:schedule_id => @schedule) %>
+			</p>
+		<p>
+			<%= option_image_link('classified') %>&nbsp;&nbsp;
+			<%= link_to(label_name(:post_pre_match), forum_path(@schedule.forum, :schedule_id => @schedule)) %>
+		</p>
 		<% end -%>
+		
 		<% if @schedule.played? %>
-		<p><%= option_image_link('schedule') %>&nbsp;&nbsp;<%= link_to label_name(:send_match), new_message_path(:match_id => @schedule.matches.first) %></p>
+		<p>
+			<%= option_image_link('schedule') %>&nbsp;&nbsp;
+			<%= link_to label_name(:send_match), new_message_path(:match_id => @schedule.matches.first) %>
+		</p>
 		<% end -%>
-		<p><%= option_image_link('scorecard') %>&nbsp;&nbsp;<%= link_to label_name(:send_scorecard), new_message_path(:scorecard_id => @schedule) %></p>
+		
+		<p>
+			<%= option_image_link('scorecard') %>&nbsp;&nbsp;
+			<%= link_to label_name(:send_scorecard), new_message_path(:scorecard_id => @schedule) %>
+		</p>
 <% 
 	end 
 	
