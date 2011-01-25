@@ -372,6 +372,7 @@ es:
      email_time_zone: Horario para mandar correos antes de un encuentro.  
      email_addresses: "Correo(s)"
      email_addresses_description:  "Escribe las cuentas de correo separadas por espacios. (Limite:  25)"
+     email_new_user: "Esta es la dirección de correo electrónico que utilizaremos para comunicarte importante información. Por favor, actualiza este campo con una dirección de correo electrónico correcta."
      enable_comments: Recibirir aviso de comentarios
      enable_comments_description: Opción para recibir aviso cuando se deja un comentario.
      ends_at: Finalización   

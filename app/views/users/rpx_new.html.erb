@@ -1,3 +1,17 @@
+<style type="text/css"> 
+	div.notice { 
+		display: inline-block; 
+		padding: 5px 10px; 
+		position: relative; 
+		margin: 10px 0pt; 
+		-moz-border-radius: 5px 5px 5px 5px;
+		-webkit-border-radius:3px
+ 	}
+	div.notice { background-color: rgb(100, 174, 41); color: rgb(255, 255, 255); }
+	div.notice.top_left:before { content: ""; display: block; width: 20px; height: 10px; position: absolute; top: -10px; left: 50px; }
+	div.notice.top_left:before { background: url('../../images/half_arrow_up.png') no-repeat scroll 0% 0% transparent; }
+</style>
+
 <div class="block">
 
 	<div class="content_register">  
@@ -16,14 +30,15 @@
 			</div>
 
 			<div class="group">
+			  <%= f.label :phone, label_name('phone'), :class => :label %>
+			  <%= f.text_field :phone, :class => 'textfield' %>
+			</div>
+
+			<div class="group">
 			  <%= f.label :email, label_name('email'), :class => :label %>
 			  <%= f.text_field :email, :class => 'textfield' %>
-			</div>
-			
-			<div class="group">
-			  <%= f.label :time_zone, label_name('time_zone'), :class => :label %>
-			  <%= f.time_zone_select :time_zone, ActiveSupport::TimeZone.us_zones %><br />
-			  <span class="description"><%= label_name('time_zone', 'description') %></span>
+				<br>
+				<div class="notice top_left" style="width: 315px;"><%= I18n.t(:email_new_user) %></div>
 			</div>
 			
 			<div class="group"></div>
