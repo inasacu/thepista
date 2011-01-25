@@ -976,7 +976,7 @@ es:
      position_description: (El puesto en el campo que mejor se te da. si es relevante!)   
      post: Publica   
      post_not_saved: Comentarios no guardados!!!   
-     post_pre_match: Publica equipos previo al partido   
+     post_pre_match: Publica los equipos en el muro   
      post_saved: Comentarios guardados!!!   
      pre_match: Convocatoria   
      preference: preferencias
