@@ -385,6 +385,7 @@ es:
      event_details:  "(Escribe algun detalle del evento...)" 
      event_participation:  Paticipación en eventos
      error_when_create_account: "Fallo al intentar crear tu cuenta, intentalo de nuevo."  
+     excess:  Exceso
      exit_group: Desapuntate del equipo   
      exit_tournament: Desapuntate del torneo   
      explore:  Explorar
@@ -673,7 +674,7 @@ es:
      last_minute: Ultima hora   
      last_schedule_description: Ultimo evento    
      last_scorecard: Ultimos resultados  
-     latest_activities:  Actividades Recientes
+     latest_activities:  Últimas actividades
      leave_comment: Deja un comentario...   
      leave_group: Desapuntate del equipo   
      left_comment_on_wall: Ha dejado un <strong>COMENTARIO</strong> a    
@@ -734,6 +735,8 @@ es:
      modified_profile: Modificada la opción de ocultar tu perfil de   
      modified_reliable: Modificada la fiabilidad del jugador para atender   
      modo: "HayPista, te ayudamos a organizar partidos. "  
+     modo_key_title: "Te ayudamos a organizar partidos, buscar gente para jugar, buscar centro deportivo para jugar.  Con Hay Pista puedes organizar partidos de empresa, ver tu jornada deportiva e incluso tu clasificacion en tu equipo. Tambien puedes ver actividades de cada jugador, quien esta convocado, quien esta en ultima hora o quien esta ausente para el partido."
+     modo_keywords: "hay pista, organizar partidos, gente para jugar, buscar centro deportivo jugar, partidos de empresa, ver jornada deportiva, clasificacion equipo, actividades jugador, quien esta convocado, quien esta ultima hora, quien esta ausente"
      Monday: Lunes        
      more:  mas
      must_be_logged_in:  Tienes que estar registrado para acceder a esta página
@@ -1434,6 +1437,7 @@ es:
      your_sent_message: Tu mensaje ha sido enviada   
      your_team_notification: Petición para tu equipo.   
      your_thoughts: ¿Qué estás pensando?   
+     your_upcoming: Tus próximos eventos  
      zip: Codigo postal
      user_create_notice:  Regístrado éxito...
      user_update_notice: Actualización éxitosa... 

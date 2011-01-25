@@ -3,7 +3,11 @@
 <% 
 	upcoming_schedules.each do |schedule| 
 	the_sport = "#{label_name(:rosters)}:  #{schedule.convocados.count}"
-	the_missing = "#{label_name(:missing)}:  #{schedule.player_limit.to_i - schedule.convocados.count}"
+	
+	the_missing = ""
+	the_missing = "#{label_name(:missing)}:  #{schedule.player_limit.to_i - schedule.convocados.count}" if schedule.player_limit.to_i > schedule.convocados.count
+	the_missing = "#{label_name(:excess)}:  #{schedule.convocados.count - schedule.player_limit.to_i}" if schedule.player_limit.to_i < schedule.convocados.count
+	
 	is_gameday = (schedule.starts_at.to_date == Time.zone.today)
 	the_url = team_roster_path(:id => schedule)
 -%>		

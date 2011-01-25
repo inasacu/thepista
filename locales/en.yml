@@ -385,6 +385,7 @@ en:
      event_details:  "(Write a comment about the event...)" 
      event_participation:  Events Participation
      error_when_create_account: "your account was not created, please try again."
+     excess:  Excess
      exit_group: Opt-out of the Team   
      exit_tournament: Opt-out of the Tournament   
      explore:  Explore
@@ -673,7 +674,7 @@ en:
      last_minute: Last Minute   
      last_schedule_description: Recent event    
      last_scorecard: Recent Results   
-     latest_activities:  Recent Activities
+     latest_activities:  Latest Activities
      leave_comment: Leave a comment...   
      leave_group: Leave the Team   
      left_comment_on_wall: Has left a <strong>COMMENT</strong> for    
@@ -733,7 +734,9 @@ en:
      modified_phone: Edit option to hide email for    
      modified_profile: Edit option to hide profile for   
      modified_reliable: Edit reliability for    
-     modo: HayPista helps you organize your team...   
+     modo: HayPista helps you organize your team. 
+     modo_key_title: "Te ayudamos a organizar partidos, buscar gente para jugar, buscar centro deportivo para jugar.  Con Hay Pista puedes organizar partidos de empresa, ver tu jornada deportiva e incluso tu clasificacion en tu equipo. Tambien puedes ver quien esta convocado, quien esta en ultima hora o quien esta ausente para el partido."
+     modo_keywords: "hay pista, organizar partidos, gente para jugar, buscar centro deportivo jugar, partidos de empresa, ver jornada deportiva, clasificacion equipo, quien esta convocado, quien esta ultima hora, quien esta ausente"
      Monday: Monday 
      more:  more       
      must_be_logged_in:  You need to be logged in to access this page
@@ -1434,6 +1437,7 @@ en:
      your_sent_message: Your message has been sent   
      your_team_notification: Request for your team.   
      your_thoughts: What are you doing?   
+     your_upcoming: Your upcoming events
      zip: Postal Code
      user_create_notice:  Registration successful...
      user_update_notice: Update successful... 

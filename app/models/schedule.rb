@@ -231,7 +231,6 @@ class Schedule < ActiveRecord::Base
 
   def self.previous(schedule, option=false)
     if self.count(:conditions => ["id < ? and group_id = ?", schedule.id, schedule.group_id] ) > 0
-      # return find(:first, :select => "max(id) as id", :conditions => ["id < ? and group_id = ?", schedule.id, schedule.group_id]) 
       return find(:first, :select => "id", :conditions => ["group_id = ? and starts_at < ?", schedule.group_id, schedule.starts_at], :order => "starts_at desc")
     end
     return schedule
@@ -239,7 +238,6 @@ class Schedule < ActiveRecord::Base
 
   def self.next(schedule, option=false)
     if self.count(:conditions => ["id > ? and group_id = ?", schedule.id, schedule.group_id]) > 0
-      # return find(:first, :select => "min(id) as id", :conditions => ["id > ? and group_id = ?", schedule.id, schedule.group_id])
       return find(:first, :select => "id", :conditions => ["group_id = ? and starts_at > ?", schedule.group_id, schedule.starts_at], :order => "starts_at")
     end
     return schedule
@@ -295,37 +293,41 @@ class Schedule < ActiveRecord::Base
   end
 
   def self.send_reminders
-    schedules = Schedule.find(:all, :conditions => ["played = false and send_reminder_at is null and reminder = true and reminder_at >= ? and reminder_at <= ?", PAST_THREE_DAYS, Time.zone.now])
+    schedules = Schedule.find(:all, 
+                  :conditions => ["played = false and send_reminder_at is null and reminder = true and reminder_at >= ? and reminder_at <= ?", PAST_THREE_DAYS, Time.zone.now])
+    
     schedules.each do |schedule|
+
       total_schedules = Schedule.count(:conditions => ["group_id = ?", schedule.group])
-      one_third = total_schedules.to_f / 5
+      total_match_users = Match.count(:conditions => ["schedule_id = ? and type_id = 1", schedule.id])
+      players_needed = total_match_users.to_i < schedule.player_limit.to_i
       manager_id = RolesUsers.find_item_manager(schedule.group).user_id
 
-      schedule.group.users.each do |user|
-        scorecard = Scorecard.find(:first, :conditions => ["user_id = ? and group_id = ?", user, schedule.group])
+      if players_needed
+        schedule.group.users.each do |user|
+          if user.message_notification? 
 
-        # send email to user and request to have a email sent
-        if scorecard.played.to_i >= one_third.round and user.message_notification?   
+            message = Message.new
+            message.subject = "#{I18n.t(:reminder_at)}:  #{schedule.concept}"
+            message.body = "#{I18n.t(:reminder_at_message)}  #{schedule.concept}  #{I18n.t(:reminder_at_salute)}"
+            message.item = schedule
+            message.sender_id = manager_id
+            message.recipient_id = user.id
+            message.sender_read_at = Time.zone.now
+            message.recipient_read_at = Time.zone.now
+            message.sender_deleted_at = Time.zone.now
+            message.recipient_deleted_at = Time.zone.now        
+            message.save!
 
-          message = Message.new
-          message.subject = "#{I18n.t(:reminder_at)}:  #{schedule.concept}"
-          message.body = "#{I18n.t(:reminder_at_message)}  #{schedule.concept}  #{I18n.t(:reminder_at_salute)}"
-          message.item = schedule
-          message.sender_id = manager_id
-          message.recipient_id = user.id
-          message.sender_read_at = Time.zone.now
-          message.recipient_read_at = Time.zone.now
-          message.sender_deleted_at = Time.zone.now
-          message.recipient_deleted_at = Time.zone.now        
-          message.save!
-
+          end
         end
+
+        schedule.send_reminder_at = Time.zone.now
+        schedule.save!
       end
 
-      schedule.send_reminder_at = Time.zone.now
-      schedule.save!
-
     end
+
   end
 
   def self.send_results
