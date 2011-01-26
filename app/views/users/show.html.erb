@@ -35,7 +35,8 @@
 					<table border="0">
 						
 						<%= tr_td_action(:name, @user.name) %>
-						<%= tr_td_action(:language, label_name(@user.language)) %>						
+						<%= tr_td_action(:email, @user.email) if @user == current_user %>
+						<%= tr_td_action(:language, label_name(@user.language)) %>					
 						
 						<tr>
 							<td class="label"><%= label_name(:groups) %></td>
