@@ -23,3 +23,11 @@ production:
 
 
 # http://codetunes.com/2008/10/26/uploading-to-multiple-s3-buckets-with-paperclip-and-rails/
+
+# backup your database to s3 via cron jobs
+# https://github.com/jslag/heroku_s3_backup
+# http://trevorturk.com/2010/04/14/automated-heroku-backups/
+# adding s3 keys to heroku
+# heroku config:add S3_KEY=1Z36VBYX179XC52VJWR2 S3_SECRET=XB/iiMMjSyZM+bjG+l/8HxrAzGEPylcWu05Zd7/W --app haypista
+
+
