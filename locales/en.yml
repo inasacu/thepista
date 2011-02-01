@@ -135,6 +135,7 @@ en:
      change: Change    
      change_available: Change available status   
      change_at:  Last Changed
+     change_at_full:  Last Time status was changed.
      change_message_notification: Change Message Notice
      change_email_configuration: Change Email Configuration.
      change_group: Change Team   
@@ -1431,6 +1432,7 @@ en:
      your_join_notification: Request to join a team.   
      your_on_roster: You are on the Squad -   
      your_openid: Your OpenID Accounts
+     your_roster_status:  You status is
      your_schedule: "In your time zone, the event would be at "  
      your_meet: "In your time zone, the event would be at " 
      your_sent_beta: "Thanks for your interest, your email has been added to receive an invitation."   

@@ -2,6 +2,7 @@
 	http://thepista.local/stylesheets/primary.css?1295483164
 	http://thepista.local/stylesheets/primary.css?1295717469
 	http://thepista.local/stylesheets/primary.css?1295739363
+	http://thepista.local/stylesheets/primary.css?1296325250
 */
 
 html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td,#status a,#list-panel ul,.abook-column-headers h3,*,#header h1,#sidebar h3,#sidebar ul.navigation,.secondary-navigation ul,#main-navigation ul,#user-navigation ul,input.checkbox,.form textarea.text_area,.form input.text_field,.form label.label,ul.list,#box .block h2,#about .block h2,#footer .block p,li,ol,div#footer p,.cluetip-default #cluetip-outer,.ajaxful-rating {
@@ -407,7 +408,7 @@ h3,h2,h1,a:active,a:hover,a:visited,a:link {
 	background:#f7f7f8
 }
 
-#main .block .content,.table th.first,.table th.heading,.table th.heading_false, .table th.heading_true, .table th.heading_last,.table th.last,.table th.last_roster,#box .block .content,#box .block .content_register,#footer {
+#main .block .content,.table th.first,.table th.heading,.table th.heading_false, .table th.heading_true, .table th.heading_last,.table th.last,.table th.last_roster, .table th.last_index, #box .block .content,#box .block .content_register,#footer {
 	border-top:1px solid #cfcfcf
 }
 
@@ -419,7 +420,7 @@ h3,h2,h1,a:active,a:hover,a:visited,a:link {
 	border-left:1px solid #cfcfcf
 }
 
-#main .block .content,.table th.heading_false,.table th.heading_last,.table th.last,.table th.last_roster,#box .block .content,#box .block .content_register {
+#main .block .content,.table th.heading_false,.table th.heading_last,.table th.last,.table th.last_roster, .table th.last_index, #box .block .content,#box .block .content_register {
 	border-right:1px solid #cfcfcf
 }
 
@@ -456,7 +457,7 @@ h3,h2,h1,a:active,a:hover,a:visited,a:link {
 	border-bottom:2px solid #cfcfcf
 }
 
-#sidebar h3,.table th,.table th.first,.table th.heading,.table th.last,.table th.last_roster {
+#sidebar h3,.table th,.table th.first,.table th.heading,.table th.last,.table th.last_roster, .table th.last_index {
 	background:#eee
 }
 
@@ -468,11 +469,11 @@ h3,h2,h1,a:active,a:hover,a:visited,a:link {
 	border-color:#0f7d00
 }
 
-.pagination span,.pagination a,.table th,.table th.first,.table th.heading,.table th.last,.table th.last_roster,.form input.button {
+.pagination span,.pagination a,.table th,.table th.first,.table th.heading,.table th.last,.table th.last_roster, .table th.last_index,.form input.button {
 	color:#001c26
 }
 
-.table th,.table th.first,.table th.heading,.table th.last,.table th.last_roster {
+.table th,.table th.first,.table th.heading,.table th.last,.table th.last_roster, .table th.last_index {
 	padding:8px
 }
 
@@ -534,7 +535,7 @@ h3,h2,h1,a:active,a:hover,a:visited,a:link {
 	-webkit-border-top-left-radius:4px
 }
 
-#box .block h2,#box .block,.form input.button,#footer .block,ul.list li,#sidebar h3,#sidebar .block,#main .block,.secondary-navigation,#main-navigation li a,#main-navigation li,#main-navigation,#main,.table th.last {
+#box .block h2,#box .block,.form input.button,#footer .block,ul.list li,#sidebar h3,#sidebar .block,#main .block,.secondary-navigation,#main-navigation li a,#main-navigation li,#main-navigation,#main,.table th.last, .table th.last_index {
 	-moz-border-radius-topright:4px;
 	-webkit-border-top-right-radius:4px
 }
@@ -747,9 +748,14 @@ input.text_field,text_area.textfield,td.label {
 .table td.first_home {	
 	width: 55px;
 }
-/*.table td.first_left,span.q {
-	color:#369
-}*/
+
+.table td.last_upcoming {
+	text-align: left
+}
+
+.table th.last_index {
+	width:150px	
+}
 
 span.q {
 	color:#369
@@ -1290,3 +1296,63 @@ td.label,td.label_tip,td.show {
 	zoom:1
 }
 
+/** search button */
+.SearchInput { border: 0pt none; }
+.SearchInput input { 
+	width: 300px;
+	font: 16px; 
+	
+/*	font:12px arial,verdana,sans-serif;
+	font-size:100%;*/
+/*	color:#222;*/
+/*	font-family:"Helvetica Neue",Helvetica,Arial,"Bitstream Vera Sans",sans-serif*/
+	
+	}
+
+.SearchInput { 
+	background: none repeat scroll 0% 0% rgb(255, 255, 255); 
+/*	border-width: 1px; 
+	border-style: solid; 
+	border: 1px solid rgb(237, 237, 237); */	 
+	display: inline-block; 
+	}
+	
+.SearchInput span { 
+	border-right: 0pt none; 
+	border-width: 1px 0pt 0pt; 
+	border-style: solid none none; 
+	border-color: rgb(237, 237, 237) -moz-use-text-color -moz-use-text-color; 
+	display: inline-block; 
+/*	padding: 1px 0pt 2px; */
+/*	padding: 5px 5px 5px 5px; */
+/*	margin: 0pt 22px 0pt 5px; */
+	position: relative; 	
+	border:1px solid rgb(205,205,205);
+	padding:0.4em;	
+	}
+	
+.SearchInput input { 	
+/*	border-width: 0pt 1px 0pt 0pt; */
+/*	border-style: none solid none none; 	*/
+	border-color: -moz-use-text-color rgb(229, 229, 229) -moz-use-text-color -moz-use-text-color; 
+	margin: 0pt 22px 0pt 0pt;
+	outline: medium none; 
+	padding: 5px 5px 5px 5px; 
+	height: 20px;		
+	}
+	
+.SearchInput button { 	
+	background:rgb(255,255,255) url('../../images/busqueda.png') repeat-x scroll;	
+	border: 0pt none; 
+	cursor: pointer; 
+	display: block; 
+	padding: 0pt; 
+	position: absolute; 
+	
+	right: 2px; 
+	top: 5px; 
+	width: 22px; 
+	height: 22px;	
+	}
+	
+.SearchInput input { padding-bottom: 1px ! important; }

@@ -1,6 +1,6 @@
 class Schedule < ActiveRecord::Base
 
-  include ActivityLogger
+  index{ concept }
 
   # tagging
   # acts_as_taggable_on :tags
@@ -86,11 +86,18 @@ class Schedule < ActiveRecord::Base
   # after_update        :save_matches
   before_create       :format_description
   before_update       :set_time_to_utc, :format_description
-
-  # after_create        :log_activity
-  # after_update        :log_activity_played
   
   # method section
+  def the_roster_sort(sort="")
+    the_sort = "users.name"
+    the_sort = "#{sort}, #{the_sort}" if (sort != " ASC" and sort != " DESC" and !sort.blank? and !sort.empty?) 
+     Match.find(:all, :select => "matches.*, users.name as user_name, types.name as type_name, scorecards.id as scorecard_id, " +
+                                 "scorecards.played as scorecard_played, scorecards.ranking, scorecards.points",
+                :joins => "left join users on users.id = matches.user_id left join types on types.id = matches.type_id left join scorecards on scorecards.user_id = matches.user_id",
+                :conditions => ["matches.schedule_id = ? and matches.archive = false and matches.type_id = 1  and scorecards.group_id = ? and users.available = true ", self.id, self.group_id],
+                :order => the_sort)
+  end
+  
   def self.match_participation(group, users, schedules)
     find(:all, :select => "distinct schedules.*",  
                :joins => "left join matches on matches.schedule_id  = schedules.id",
@@ -424,14 +431,6 @@ class Schedule < ActiveRecord::Base
     # self.starts_at = self.starts_at.utc
     # self.ends_at = self.ends_at.utc
   end
-
-  # def log_activity
-  #   add_activities(:item => self, :user => self.group.all_the_managers.first) 
-  # end
-
-  # def log_activity_played
-  #   add_activities(:item => self, :user => self.group.all_the_managers.first) if self.played?
-  # end
 
   def validate
     if self.archive == false

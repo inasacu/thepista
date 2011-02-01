@@ -1,0 +1,48 @@
+<tr>  
+		<td>
+			<%#= item_image_name_link_small(item) %>
+		</td>
+
+		<td class="name_and_date">
+			<%= item_name_link(item) %><br />
+			
+			<span class="date">
+			<%#= nice_full_date(item.starts_at) %>
+			<%#= "<br/>#{has_left(item.starts_at)}" if Time.zone.now < item.starts_at %>
+			</span>
+		</td>
+
+		<td class="name_and_date">
+			<%#= item_list(item.all_the_managers) %><br />
+			<span class="date">
+			<%#= item.sport.name %>
+			</span>
+		</td>
+
+			<td>
+				<%#= item.time_zone %>
+			</td>
+
+		<td class="name_and_date">
+			<%#= I18n.t(:has_cup_escuadras, :count => object_counter(item.escuadras)) %><br />
+			<span class="date">
+			<%#= I18n.t(:has_cup_games, :count => object_counter(item.games)) %>
+			</span>
+		</td>
+
+		<td class="name_and_date">
+			<%#= link_to(label_name(:standing), standing_path(:id => item))  if object_counter(item.standings) > 1 and !final_played %>
+			<span class="date">
+				<%# if final_played %>
+				<%#= link_to(label_name(:final) , list_games_path(:id => item)) %>
+				<%# end %>
+			</span>
+		</td>
+
+     <td class="last">
+			<span class="action">
+				<%#= link_to label_name(:challenges_create), new_challenge_path(:id => item) if item.official and !final_played %>
+			</span>
+     </td>
+
+</tr> 

@@ -1,0 +1,38 @@
+<% schedule = Schedule.last_schedule_played(item) -%>	
+<tr>
+  <td>
+	<%= image_link_small(item) %>
+  </td>			
+  <td class="name_and_date">
+	<%= user_link(item) %>
+	<span class="date">
+		<%= nice_full_date(schedule.starts_at) unless schedule.nil? %> 
+	</span>
+  </td>
+  <td class="name_and_date">
+	<%= item.has_group? ? group_list(item.groups) : label_name('groups_none') %><br />
+	<span class="date">
+		<%= item.has_sport? ? sport_list(item.groups) : label_name('sports_none') %>
+	</span>
+  </td>			  
+
+  <td>
+	<%= item.time_zone %>
+  </td>
+
+	<td class="name_and_date">
+		<span class="date">						
+			<% counter = 0; item.scorecards.each {|scorecard| counter += scorecard.played} %>
+			<%= I18n.t(:has_user_scorecard_played, :count => counter) %>
+		</span>
+		</td>
+	</td>
+
+  <td class="last">
+	<span class="action">
+		<%  if item.available and item != current_user %>
+			<%= link_to label_name(:send_message_to), new_message_path(:id => item.id) %>			
+		<% end %>
+	</span>
+     </td>	
+</tr>

@@ -56,8 +56,17 @@ class Match < ActiveRecord::Base
     :order => "users.name")
   end
   
+  
+  def self.get_match_type
+    return Type.find(:all, :conditions => "id in (1, 2, 3, 4)", :order => "id")
+  end
+  
   def position_name
     I18n.t(self.position.name)
+  end
+  
+  def type_name
+    I18n.t(self.type.name)
   end
   
   def team_name(schedule)
@@ -215,12 +224,6 @@ class Match < ActiveRecord::Base
   def self.schedule_user_exists?(schedule, user)
     find_by_schedule_id_and_user_id(schedule, user).nil?    
   end 
-
-  # def self.log_activity_convocado(match)
-  #   if Activity.exists?(match, match.user)
-  #     activity = Activity.create!(:item => match, :user => match.user)
-  #   end
-  # end   
   
   def self.find_score(schedule)
     find(:first, :conditions => ["schedule_id = ? and group_score is not null and invite_score is not null", schedule])

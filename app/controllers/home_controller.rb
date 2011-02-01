@@ -2,15 +2,20 @@ class HomeController < ApplicationController
   before_filter :require_user, :except => [:index, :about, :help, :welcome, :pricing, :about, :terms_of_use, :privacy_policy, :faq, :openid, :success]
 
   before_filter :get_home,        :only => [:index]
-  before_filter :get_upcoming,    :only => [:index, :upcoming]
+  before_filter :get_upcoming,    :only => [:index, :upcoming, :search]
 
   def privacy_policy
     render :template => '/home/terms_of_use'    
+  end
+  
+  def search
+    @item_results = Search.new(params[:search])  
   end
 
   private
   
   def get_upcoming 
+    store_location
     @upcoming_schedules ||= Schedule.upcoming_schedules(session[:schedule_hide_time])
     @upcoming_classifieds ||= Classified.upcoming_classifieds(session[:classified_hide_time])
     @upcoming_games ||= Game.upcoming_games(session[:game_hide_time])

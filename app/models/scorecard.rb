@@ -267,6 +267,7 @@ class Scorecard < ActiveRecord::Base
     played_games = 0
     the_schedules.each {|schedule| played_games += 1 }
     
+    if played_games > 0
     the_sort = "scorecards.points DESC, scorecards.ranking, users.name"
     the_sort = "#{sort}, #{the_sort}" if (sort != " ASC" and sort != " DESC" and !sort.blank? and !sort.empty?) 
     
@@ -280,6 +281,9 @@ class Scorecard < ActiveRecord::Base
                 :conditions => ["scorecards.group_id = ? and scorecards.user_id > 0 and scorecards.played > 0 and scorecards.archive = false 
                                and matches.schedule_id = ? and matches.archive = false", group, the_schedules.first.id],
                 :order => the_sort)
+    else
+      return nil
+    end
   end
 
 end

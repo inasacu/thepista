@@ -1,9 +1,9 @@
 module MatchesHelper
 
-  def match_roster_change_link(match, type, show_label=true)    
+  def match_roster_change_link(match, type, show_label=true, show_icon=true)    
     the_schedule = match.schedule
     the_image = 'estatus-convocado.png'
-    # the_label = 
+
     the_label = "#{I18n.t(:change_roster_status) } #{I18n.t(type.name).downcase}"
     the_link = show_label ? "" : link_to(the_label, match_status_path(:id => match.id, :type => type.id)) 
     the_break = (show_label ? "" : "<br/>")
@@ -18,7 +18,9 @@ module MatchesHelper
     when 4
       the_image = 'estatus-no-disponible.png'
     end      
-    "#{link_to(image_tag(the_image, :title => the_label, :style => 'height: 16px; width: 16px;'), match_status_path(:id => match.id, :type => type.id), :title => the_label)} #{the_link} #{the_break}"  
+    return "#{link_to(image_tag(the_image, :title => the_label, :style => 'height: 16px; width: 16px;'), 
+                    match_status_path(:id => match.id, :type => type.id), :title => the_label)} #{the_link} #{the_break}" if show_icon
+    return "#{the_link} #{the_break}" unless show_icon
   end
 
   def match_roster_link(text, match = nil, html_options = nil)
@@ -92,8 +94,7 @@ module MatchesHelper
     end
   end
   
-  def match_all_my_link(schedule, match_types, user, is_manager)
-
+  def match_all_my_link(schedule, match_types, user, is_manager, show_icon=true)
     unless schedule.played?
       my_current_match = nil
       the_match_link = ''
@@ -105,17 +106,14 @@ module MatchesHelper
             if type.id == 4
               the_match_link = "#{the_match_link} #{match_roster_change_link(my_current_match, type, is_manager)}  "  if is_manager
             else
-              the_match_link = "#{the_match_link} #{match_roster_change_link(my_current_match, type, is_manager)}  " 
+              the_match_link = "#{the_match_link} #{match_roster_change_link(my_current_match, type, is_manager, show_icon)}  " 
             end
           end
         end
         return the_match_link
       end
-
     end
-
   end
-  
   
 end
 

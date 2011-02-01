@@ -62,13 +62,14 @@ if roster_count
 		<tr>
 			<%= content_tag :th, "&nbsp;", :class => "first" %>
 			<%= content_tag :th, "&nbsp;", :class => "heading" %>
-			<%= content_tag :th, label_name(:name), :class => "heading" %>
-			<%= content_tag :th, label_name(:ranking), :title => label_name(:ranking_full), :class => "heading" %>
-			<%= content_tag :th, label_name(:participation), :title => label_name(:participation_full), :class => "heading" %>
+			
+			<%= content_tag :th, is_squad ? "#{label_name(:name)}<br/>#{sort_link(label_name(:change_at), :status_at)}" : "#{label_name(:name)}<br/>#{label_name(:change_at)}", :title => label_name(:change_at_full), :class => "heading" %>
+			<%= content_tag :th, is_squad ? sort_link(label_name(:ranking), :ranking) : label_name(:ranking), :title => label_name(:ranking_full), :class => "heading" %>
+			<%= content_tag :th, is_squad ? sort_link(label_name(:participation), :scorecard_played) : label_name(:participation), :title => label_name(:participation_full), :class => "heading" %>
 			<%= content_tag :th, label_name(:position), :title => label_name(:position), :class => "heading", :align => "center" %>
 			<%= content_tag :th, label_name(:technical), :title => label_name(:profile_technical), :class => "heading" %>
 			<%= content_tag :th, label_name(:physical), :title => label_name(:profile_physical), :class => "heading_#{show_right_border}" %>
-			<%= content_tag :th, has_been_played ? label_name(:evaluation) : label_name(:group), :class => "heading_#{show_right_evaluation}" if is_squad %>
+			<%= content_tag :th, has_been_played ? label_name(:evaluation) : is_squad ? sort_link(label_name(:group), :group_id) : label_name(:group), :class => "heading_#{show_right_evaluation}" if is_squad %>
 			
 			<% if has_been_played %>
 			<%= content_tag :th, label_name(:score), :class => "last_roster" %>

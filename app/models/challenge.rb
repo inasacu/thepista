@@ -1,4 +1,9 @@
 class Challenge < ActiveRecord::Base
+
+  index do
+    name
+    description
+  end
   
   # validations 
   validates_uniqueness_of       :name,            :case_sensitive => false

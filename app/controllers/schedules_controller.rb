@@ -11,6 +11,7 @@ class SchedulesController < ApplicationController
   before_filter :get_user, :only => [:my_list]
 
   def index
+    store_location
     if @has_no_schedules
       redirect_to :action => 'list'
       return
@@ -40,26 +41,35 @@ class SchedulesController < ApplicationController
   def show
     store_location    
   end
-  
+   
+
   def team_roster
+    store_location
     @has_a_roster = !(@schedule.convocados.empty?)
-    @the_roster = @schedule.the_roster
-    render :template => 'schedules/team_roster'       
+    @the_roster = @schedule.the_roster_sort(sort_order(''))
+    render :template => 'schedules/team_roster'
+  end  
+
+  def sort_order(default)
+    "#{(params[:c] || default.to_s).gsub(/[\s;'\"]/,'')} #{params[:d] == 'down' ? 'DESC' : 'ASC'}"
   end
   
   def team_last_minute
+    store_location
     @has_a_roster = !(@schedule.last_minute.empty?)
     @the_roster = @schedule.the_last_minute
     render :template => 'schedules/team_roster'
   end
   
   def team_no_show
+    store_location
     @has_a_roster = !(@schedule.no_shows.empty?)
     @the_roster = @schedule.the_no_show
     render :template => 'schedules/team_roster'
   end
   
   def team_unavailable
+    store_location
     @has_a_roster = !(@schedule.the_unavailable.empty?)
     @the_roster = @schedule.the_unavailable
     render :template => 'schedules/team_roster'
@@ -284,7 +294,8 @@ class SchedulesController < ApplicationController
       redirect_to :action => 'index'
       return
     end
-    @match_type = Type.find(:all, :conditions => "id in (1, 2, 3, 4)", :order => "id")
+    # @match_type = Type.find(:all, :conditions => "id in (1, 2, 3, 4)", :order => "id")
+    @match_type = Match.get_match_type
   end
 
   def get_group

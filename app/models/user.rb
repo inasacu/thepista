@@ -1,8 +1,10 @@
-require "paperclip"
-
 class User < ActiveRecord::Base
 
-   include ActivityLogger
+  index do
+    name
+    description
+    company
+  end
    
    # allows user to rate a model 
    ajaxful_rateable :stars => 5, :dimensions => [:evaluation]

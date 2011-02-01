@@ -1,4 +1,10 @@
 class Group < ActiveRecord::Base
+
+  index do
+    name
+    description
+    second_team
+  end
                   
   has_attached_file :photo, :styles => {:icon => "25x25>", :thumb  => "80x80>", :medium => "160x160>",  },
     :storage => :s3,

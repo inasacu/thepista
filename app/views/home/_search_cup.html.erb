@@ -1,0 +1,82 @@
+<%
+	the_description = sanitize(item.description)
+	the_description = "#{the_description.to_s.strip[0..60]}..." if the_description.to_s.length > 60
+	the_description = the_description.gsub(" ", "<wbr> ")
+	the_cup = sanitize(item.name)
+	 
+	final_played ||= false
+	the_game = Game.final_game(item)
+	final_played = the_game.played unless (the_game.nil? or the_game.blank?)
+-%>
+
+<tr>  
+		<td>
+			<%= item_image_name_link_small(item) %>
+		</td>
+
+		<td class="name_and_date">
+			<%= item_name_link(item) %><br />
+			
+			<span class="date">
+			<%= nice_full_date(item.starts_at) %>
+			<%= "<br/>#{has_left(item.starts_at)}" if Time.zone.now < item.starts_at %>
+			</span>
+		</td>
+
+		<td class="name_and_date">
+			<%= item_list(item.all_the_managers) %><br />
+			<span class="date">
+			<%= item.sport.name %>
+			</span>
+		</td>
+
+			<td>
+				<%= item.time_zone %>
+			</td>
+
+		<td class="name_and_date">
+			<%= I18n.t(:has_cup_escuadras, :count => object_counter(item.escuadras)) %><br />
+			<span class="date">
+			<%= I18n.t(:has_cup_games, :count => object_counter(item.games)) %>
+			</span>
+		</td>
+
+		<td class="name_and_date">
+			<%= link_to(label_name(:standing), standing_path(:id => item))  if object_counter(item.standings) > 1 and !final_played %>
+			<span class="date">
+				<% if final_played %>
+				<%= link_to(label_name(:final) , list_games_path(:id => item)) %>
+				<% end %>
+			</span>
+		</td>
+
+     <td class="last">
+			<span class="action">
+				<% if current_user.is_manager_of?(item) and !final_played %>
+				 	<br/>
+					<%= link_to label_name(:games_create), new_game_path(:id => item)  %><br/>
+					<%= link_to label_name(:escuadras_create), new_escuadra_path(:id => item)  %><br/><br/>
+		        <% end %>
+		
+				<% if !item.official %> 
+				<% 
+				   if current_user.is_member_of?(item) %>
+					<%= link_to("#{label_name(:invitations_your_friend)} #{the_cup}" , 
+										new_invitation_url(:cup_id => item)) %><br />
+				<% 
+				  	else
+						unless current_user.has_item_petition?(current_user, item)
+				%> 
+					<%= join_item_link_to(current_user, item) %>
+				<% 		
+						end 
+				   end
+				end
+				-%>
+				
+				<%= link_to label_name(:challenges_create), new_challenge_path(:id => item) if item.official and !final_played %>
+				
+			</span>
+     </td>
+
+</tr> 

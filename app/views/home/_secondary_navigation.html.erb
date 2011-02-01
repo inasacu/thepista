@@ -1,24 +1,21 @@
 <div class="secondary-navigation">
 
 <ul>
-	<li class="<%= get_first_active %>"><%= link_to(label_name(:home) , '/') %></li>
+	<%= content_tag 'li', link_to (label_name(:home), '/'), :class => get_first_active  %>
 <% 
 if current_user 
+	unread_count = current_user.unread_messages_count 
 %>
-	<li class="<%= get_active('home_upcoming') %>">
-		<%= link_to label_name(:upcoming) , :controller => 'home', :action => 'upcoming' if @upcoming %>
-	</li>
+	<%= content_tag 'li', link_to (label_name(:upcoming), upcoming_path), :class => get_active('home_upcoming') if @upcoming %>
 	
-	<% unread_count = current_user.unread_messages_count %>
 	<%  if unread_count > 0 %>	
-		<li class="message">
-			<%= link_to label_name(:messages_inbox) , :controller => 'messages', :action => 'index' %>			
-		</li>		
-		<li class="message_count"><div class="comment-bubble"><%= unread_count %></div></li>
+		<%= content_tag 'li', link_to (label_name(:messages_inbox), messages_path), :class => "message" %>	
+		<%= content_tag 'li', content_tag('div', unread_count, :class => "comment-bubble"), :class => "message_count"%>
 	<% end %>		
 <% 
 end 
 %>
+	<%= content_tag 'li', link_to (label_name(:search_result), '#'), :class => get_active('home_search') if @item_results %>
 </ul>
 
 <div class="clear"></div>

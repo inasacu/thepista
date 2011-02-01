@@ -75,6 +75,7 @@ ActionController::Routing::Routes.draw do |map|
   map.untrash_message       'mensajes/:id/recuperar',                           :controller => 'messages',        :action => 'undestroy'
          
   map.upcoming              'proximos_partidos',                                :controller => 'home',            :action => 'upcoming'         
+  map.search                'buqueda',                                          :controller => 'home',            :action => 'search'
   
   map.archive_scorecard     'clasificacion/:id/archivar',                       :controller => 'scorecards',      :action => 'archive'
   map.show_archive          'clasificacion/:id/mostrar_archivado',              :controller => 'scorecards',      :action => 'show_archive'
@@ -102,9 +103,9 @@ ActionController::Routing::Routes.draw do |map|
   map.set_group_stage       'encasillado/:id/fase_de_grupos',                   :controller => 'standings',       :action => 'set_group_stage'
   
   map.resources   :user_sessions,   :as => 'repitelo'
-  map.resources   :users,           :as => 'jugadores',                   :collection => { :rpx_create => :post, :rpx_associate => :post, :list => :get, :recent_activity => :get, :search => :get }  
-  map.resources   :schedules,       :as => 'eventos',                     :collection => { :list => :get, :archive_list => :get, :search => :get, :my_list => :get }          
-  map.resources   :groups,          :as => 'equipos',                     :collection => { :list => :get, :search => :get }
+  map.resources   :users,           :as => 'jugadores',                   :collection => { :rpx_create => :post, :rpx_associate => :post, :list => :get, :recent_activity => :get }  
+  map.resources   :schedules,       :as => 'eventos',                     :collection => { :list => :get, :archive_list => :get, :my_list => :get }          
+  map.resources   :groups,          :as => 'equipos',                     :collection => { :list => :get }
   map.resources   :markers,         :as => 'centros_deportivos'
   map.resources   :scorecards,      :as => 'classificaciones',            :collection => { :list => :get }
 

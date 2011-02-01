@@ -1,5 +1,7 @@
 class Marker < ActiveRecord::Base
 
+  index{ name }
+  
   acts_as_mappable     :default_units => :kms
 
   # NOTE:  MUST BE DECLARED AFTER attr_accessible otherwise you get a 'RuntimeError: Declare either attr_protected or attr_accessible' 

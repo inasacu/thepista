@@ -1,0 +1,57 @@
+<%  schedule = Schedule.last_schedule_group_played(item)
+	-%>
+<tr>  
+		<td>
+			<%= item_image_link_small(item) %>
+		</td>
+
+		<td class="name_and_date">
+			<%= group_link(item) %>
+			<span class="date">
+				<%= nice_day_time item.gameday_at %>
+			</span>
+		</td>
+
+		<td class="name_and_date">
+			<%= item_list(item.all_the_managers) %><br />
+			<span class="date">
+			<%= item.sport.name %>
+			</span>
+		</td>
+
+		<td>
+			<%= item.time_zone %>
+		</td>
+		
+		  <td class="name_and_date">
+			<%= I18n.t(:has_group_users, :count => object_counter(item.users)) %><br />
+			<span class="date">										
+				<%= I18n.t(:has_group_schedules, :count => object_counter(item.schedules)) %>
+			</span>
+		  </td>
+
+		<td class="name_and_date">
+			<%= link_to(label_name(:scorecard), scorecard_path(:id => item)) %>
+			<span class="date">
+				<%= nice_full_date(schedule.starts_at) unless schedule.nil? %> 
+			</span>
+		</td>
+
+     <td class="last">
+			<span class="action">
+				<% if current_user.is_member_of?(item) %>
+					<%= link_to(label_name(:send_message_to), new_message_path(:group_id => item)) %><br />
+				<% else %>
+					<%= link_to(label_name(:send_message_to), new_message_path(:id => item.all_the_managers.first)) %><br />
+			
+				<%
+					unless current_user.has_item_petition?(current_user, item) 
+						
+				%> 
+						<%= join_item_link_to(current_user, item) %>
+				<% 	end 
+				   end
+				-%>			
+			</span>
+     </td>
+</tr>

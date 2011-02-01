@@ -22,3 +22,8 @@ $(document).ready(function() {
 	// 	cluetipClass: 'jtip'
 	// });
 });
+
+// jquery clear-input
+$(document).ready(function(){
+    $("input[type='text']").clearInput();
+});

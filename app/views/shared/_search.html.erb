@@ -1,17 +1,21 @@
-<% if use_solr? %>
 <% search_by = control_label('search') %>
 
-<div class="block">
-	<h3><%= control_label('search') %></h3>
-	<div class="content">
-		<p>
-			<% form_tag search_users_path, :method => 'get' do %>
+<!-- <div class="block"> -->
+
+	<% form_tag search_path, :method => 'get' do %>
+
+	<span class="SearchInput">
+		<span>
 			<div class="group">
-				<%= text_field_tag :search, h(params[:search]) %>
-				<%= submit_tag label_name(:search), :name => nil %>
+				<%= text_field_tag :search, h(params[:search]), :class => 'textfield', :value => label_name(:searching) %>
+				<button type="submit" title="<%= label_name(:search) %>"></button>
 			</div>
-			<% end -%>
-		</p>
-	</div>
-</div>
-<% end %>
+		</span>
+	</span>
+
+	<% end -%>
+	
+<!-- </div> -->
+
+<br/>
+

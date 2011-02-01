@@ -7,6 +7,7 @@
 		
 	is_my_list = is_my_list ? current_user.is_user_member_of?(@user) : true
 	group_schedule_list = (get_controller_action == "schedule_schedule_list")
+	@match_type = Match.get_match_type
 %>
 
 <div class="block">
@@ -27,86 +28,22 @@
 	  
         <tr> 
 			<%= content_tag :th, "&nbsp;", :class => "first" %>
-			<%= content_tag :th, "#{label_name(:concept)}<br/>#{label_name(:gameday_at)}", :class => "heading" %>
-			<%= content_tag :th, "#{label_name(:group)}<br/>#{label_name(:sport)}", :class => "heading" %>	
-			<%= content_tag :th, "&nbsp;", :class => "heading" %>
-			<%= content_tag :th, label_name(:convocados), :class => "heading" %>
-			<%= content_tag :th, label_name(:evaluation), :class => "heading" %>
-			<%= content_tag :th, "&nbsp;", :class => "heading" if current_user.is_member_of?(@schedules.first.group) %>
-			<%= content_tag :th, label_name(:marker), :class => "last" %>
+			<%= content_tag :th, label_name(:concept), :class => "heading" %>
+			<%= content_tag :th, label_name(:group), :class => "heading" %>
+			<%= content_tag :th, label_name(:gameday_at), :class => "heading" %>
+			<%= content_tag :th, label_name(:marker), :class => "heading" %>
+			<%= content_tag :th, "&nbsp;", :class => "last_index" %>
 		</tr>
         
-        <% @schedules.each do |schedule| 
-			the_sport = "#{label_name(:rosters)}:  #{schedule.convocados.count}"
-			the_missing = "#{label_name(:missing)}:  #{schedule.player_limit.to_i - schedule.convocados.count}"
-			the_url = team_roster_path(:id => schedule)
-			show_start_rating = (current_user.is_member_of?(schedule.group) and schedule.game_played?)
-			# the_users = []
-			# schedule.the_roster.each {|match| the_users << match.user } 
-		-%>
-        <tr>
-			<td>
-				<%= (current_user.is_member_of?(schedule.group) or schedule.public) ? 
-							schedule_image_link_small(schedule) : schedule_image_small(schedule) %>
-			</td>
-
-			<td class="name_and_date">
-				<%= (current_user.is_member_of?(schedule.group) or schedule.public) ? 
-							link_to(sanitize(schedule.concept), team_roster_path(:id => schedule)) : sanitize(schedule.concept) unless schedule.game_played? %>	
-				<%= (current_user.is_member_of?(schedule.group) or schedule.public) ? 
-										link_to(sanitize(schedule.concept), schedule_path(:id => schedule)) : sanitize(schedule.concept) if schedule.game_played? %>
-				<span class="date">
-					<%= nice_full_date(schedule.starts_at) %>
-				</span>					
-			</td>
-
-			<td class="name_and_date">
-				<%= item_name_link(schedule.group)
- %><br />
-				<span class="date">
-					<%= schedule.group.sport.name %>
-				</span>
-			</td>
-
-			<td class="name_and_date">
-				<% if schedule.game_played? %>
-		        	<%= item_name_link(schedule.group) %>
-					&nbsp;&nbsp;
-		          	<%= schedule.home_score %>&nbsp;&nbsp;-&nbsp;&nbsp;<%= schedule.away_score %>
-		          	&nbsp;&nbsp;
-		          	<%= link_to h(schedule.group.second_team), group_path(schedule.group) %>
-			    <% else %>				
-					<span class="date">
-						<%= has_left(schedule.starts_at) if Time.zone.now < schedule.starts_at %>
-					</span>
-				<% end %>
-			</td>		
-
-
-			<td class="name_and_date">			
-					<%= the_sport %><br />
-				<span class="date">
-					<%= the_missing if Time.zone.now < schedule.starts_at %>
-				</span>
-			</td>
-			
-			<td class="">
-			<%= ratings_for schedule, :show_user_rating => true, :dimension => :performance, :small => true %>&nbsp;&nbsp;
-			<%= ratings_for schedule, :static, :dimension => :performance, :small => true %>
-			
-			</td>
-			
-			<td class="name_and_date">&nbsp;</td>
-
-			<td class="last">	
-				<span class="action" align="left">			
-					<%= marker_link(schedule.group.marker) %>
-				</span>
-				<br/><br/>
-				<!-- <fb:like href="haypista.com<%= the_url %>" layout="button_count" show_faces="false" action="recommend" font="arial"></fb:like> -->
-			</td>
-			
-        </tr>          
+        <% @schedules.each do |schedule| -%>
+		<tr>
+			<%= view_schedule_icon(schedule) %>
+			<%= view_schedule_concept(schedule) %>
+			<%= view_schedule_group(schedule) %>
+			<%= view_schedule_played(schedule) %>
+			<%= view_schedule_marker(schedule) %>
+			<%= view_schedule_rating(schedule) %>
+		</tr>          
         <% end -%>
       </table>
 
@@ -117,6 +54,7 @@
 		</div>
 	</div>
 	
+	<% content_for :sidebar, render('/shared/sidebar_index') -%>
 	
 	<% content_for :sidebar, render(:partial => '/schedules/sidebar') if current_user.is_manager? and !group_schedule_list -%>
 	

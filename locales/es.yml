@@ -136,6 +136,7 @@ es:
      change: Cambia    
      change_available: Cambia la disponibilidad de   
      change_at:  Cambiado
+     change_at_full:  Ultima vez que se cambio el estado.
      change_message_notification: Cambio de recibida de correo de   
      change_email_configuration: Cambia tu configuración de mensajes.
      change_group: Cambia de equipo   
@@ -1073,6 +1074,8 @@ es:
      scorecard_updated: Resultados actualizados  
      scorecard_latest:  "Ultimos resultados de "
      search: busca   
+     searching:  Buscar...
+     search_result:  Resultado de Busqueda
      search_announcements: Buscar anuncios   
      search_descriptions: Buscar detalles   
      search_fees: Buscar cargos 
@@ -1431,6 +1434,7 @@ es:
      your_join_notification: Petición para un equipo.   
      your_on_roster: Estas convocado -   
      your_openid: Tus cuentas de OpenID   
+     your_roster_status:  Tu estado es 
      your_schedule: "En tu horario, el evento seria el "  
      your_meet: "En tu horario, el evento seria el " 
      your_sent_beta: "Muchas gracias por tu interés, tu correo ha sido añadido para recibir una invitación."   

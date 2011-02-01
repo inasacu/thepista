@@ -103,17 +103,17 @@ class MatchesController < ApplicationController
       flash[:success] = I18n.t(:is_available_user) 
     end 
 
-    select case @type.id
-    when 1
-      redirect_to :controller => 'schedules', :action => 'team_roster', :id => @match.schedule_id
-      return
-    when 2
-      redirect_to :controller => 'schedules', :action => 'team_last_minute', :id => @match.schedule_id
-      return
-    when 3, 4
-      redirect_to :controller => 'schedules', :action => 'team_no_show', :id => @match.schedule_id 
-      return 
-    end
+    # select case @type.id
+    # when 1
+    #   redirect_to :controller => 'schedules', :action => 'team_roster', :id => @match.schedule_id
+    #   return
+    # when 2
+    #   redirect_to :controller => 'schedules', :action => 'team_last_minute', :id => @match.schedule_id
+    #   return
+    # when 3, 4
+    #   redirect_to :controller => 'schedules', :action => 'team_no_show', :id => @match.schedule_id 
+    #   return 
+    # end
     redirect_back_or_default('index')
   end
 

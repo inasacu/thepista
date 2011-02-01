@@ -1,5 +1,7 @@
 class Sport < ActiveRecord::Base
 
+  index{ name }
+
   has_many :cups
   has_many :groups
   has_many :markers

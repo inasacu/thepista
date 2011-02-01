@@ -1,4 +1,9 @@
 class Cup < ActiveRecord::Base
+
+  index do
+    name
+    description
+  end
                   
   has_attached_file :photo,
   :styles => {

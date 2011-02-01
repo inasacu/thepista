@@ -1,7 +1,5 @@
 class Classified < ActiveRecord::Base
 
-    include ActivityLogger
-    
     belongs_to      :table,           :polymorphic => true
     belongs_to      :item,            :polymorphic => true
   
@@ -23,9 +21,6 @@ class Classified < ActiveRecord::Base
                      :reserved_words => ["new", "create", "index", "list", "signup", "edit", "update", "destroy", "show", "petition"]
                      
     before_create       :format_description
-
-    # after_create        :log_activity
-    # after_update        :log_activity_played
 
     # method section
     def self.latest_items(items)
@@ -68,14 +63,6 @@ class Classified < ActiveRecord::Base
       # self.starts_at = self.starts_at.utc
       # self.ends_at = self.ends_at.utc
     end
-
-    # def log_activity
-    #   # add_activities(:item => self, :user => self.group.all_the_managers.first) 
-    # end
-
-    # def log_activity_played
-    #   # add_activities(:item => self, :user => self.group.all_the_managers.first) if self.played?
-    # end
 
     def validate
       # self.errors.add(:starts_at, I18n.t(:must_be_before_ends_at)) if self.starts_at >= self.ends_at

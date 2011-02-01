@@ -11,6 +11,9 @@ require 'tasks/rails'
 
 require 'sitemap_generator/tasks' rescue LoadError
 
+require 'rubygems'
+require "#{RAILS_ROOT}/vendor/plugins/texticle/lib/texticle/tasks" 
+  
 begin
    require 'sitemap_generator/tasks'
  rescue Exception => e

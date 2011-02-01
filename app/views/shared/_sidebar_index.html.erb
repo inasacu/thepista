@@ -7,5 +7,7 @@
 		manager_groups << group if current_user.is_manager_of?(group)
 	end
 %>
+
+<% content_for :search, render('shared/search') -%>
 <%= render 'shared/latest_fee_box', :groups => my_groups %>
 <%= render 'shared/latest_fee_box', :groups => manager_groups, :is_manager => true %>

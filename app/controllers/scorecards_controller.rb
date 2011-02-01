@@ -20,8 +20,9 @@ class ScorecardsController < ApplicationController
 
   def show
     @group = Group.find(params[:id])
-    # @scorecards = Scorecard.users_group_scorecard(@group)
     @scorecards = Scorecard.users_group_scorecard(@group, sort_order(''))
+    
+    redirect_to root_url if @scorecards.nil?
   end  
 
   def sort_order(default)

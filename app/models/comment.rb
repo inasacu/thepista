@@ -1,8 +1,7 @@
 class Comment < ActiveRecord::Base
 
   include ActsAsCommentable::Comment
-  include ActivityLogger
-
+  
   belongs_to :commentable, :polymorphic => true
   belongs_to  :entry
 
