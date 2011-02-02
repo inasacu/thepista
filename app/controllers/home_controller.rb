@@ -9,7 +9,9 @@ class HomeController < ApplicationController
   end
   
   def search
-    @item_results = Search.new(params[:search])  
+    @item_results = []
+    @all_items =  Search.new(params[:search])   
+    @all_items[0..GLOBAL_SEARCH_SIZE].each {|item| @item_results << item }
   end
 
   private

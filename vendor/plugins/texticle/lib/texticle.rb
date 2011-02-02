@@ -56,7 +56,7 @@ module Texticle
 
   ###
   # Create an index with +name+ using +dictionary+
-  def index name = nil, dictionary = 'english', &block
+  def index name = nil, dictionary = 'spanish', &block
     search_name = ['search', name].compact.join('_')
     index_name  = [table_name, name, 'fts_idx'].compact.join('_')
     this_index  = FullTextIndex.new(index_name, dictionary, self, &block)

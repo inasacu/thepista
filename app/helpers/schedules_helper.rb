@@ -70,7 +70,7 @@ module SchedulesHelper
       the_missing = ", #{I18n.t(:excess)}:  #{schedule.convocados.count - schedule.player_limit.to_i}" if schedule.player_limit.to_i < schedule.convocados.count
     end
     
-	  the_span = content_tag('span', "#{the_sport}, #{the_missing}", :class => 'date')
+	  the_span = content_tag('span', "#{the_sport} #{the_missing}", :class => 'date')
 	  return content_tag('td', "#{marker_link(schedule.group.marker)}<br />#{the_span}", :class => 'name_and_date')
   end
 
