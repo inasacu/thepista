@@ -1,9 +1,4 @@
-/* @override 
-	http://thepista.local/stylesheets/primary.css?1295483164
-	http://thepista.local/stylesheets/primary.css?1295717469
-	http://thepista.local/stylesheets/primary.css?1295739363
-	http://thepista.local/stylesheets/primary.css?1296325250
-*/
+/* @override http://thepista.local/stylesheets/primary.css?1296766134 */
 
 html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td,#status a,#list-panel ul,.abook-column-headers h3,*,#header h1,#sidebar h3,#sidebar ul.navigation,.secondary-navigation ul,#main-navigation ul,#user-navigation ul,input.checkbox,.form textarea.text_area,.form input.text_field,.form label.label,ul.list,#box .block h2,#about .block h2,#footer .block p,li,ol,div#footer p,.cluetip-default #cluetip-outer,.ajaxful-rating {
 	margin:0
@@ -161,13 +156,23 @@ a img,.ajaxful-rating .show-value,.ajaxful-rating span,.ajaxful-rating a {
 	font-size:13px
 }
 
-#sidebar .block,#main .block,#box .block,#about .block {
+#sidebar .block, #sidebar .block_search, #main .block,#box .block,#about .block {
 	margin-bottom:20px
 }
 
-#sidebar .block {
+
+#sidebar .block, #sidebar .block_search {
 	padding-bottom:10px;
 	border:1px solid #cfcfcf
+}
+
+#sidebar .block_search {
+	padding-bottom:2px;
+	border:1px solid transparent
+}
+
+#sidebar .block_search {
+	padding-bottom:10px
 }
 
 #sidebar .block .content {
@@ -1300,22 +1305,13 @@ td.label,td.label_tip,td.show {
 .SearchInput { border: 0pt none; }
 .SearchInput input { 
 	width: 300px;
-	font: 16px; 
-	
-/*	font:12px arial,verdana,sans-serif;
-	font-size:100%;*/
-/*	color:#222;*/
-/*	font-family:"Helvetica Neue",Helvetica,Arial,"Bitstream Vera Sans",sans-serif*/
-	
-	}
+	font: 16px; 	
+}
 
 .SearchInput { 
-	background: none repeat scroll 0% 0% rgb(255, 255, 255); 
-/*	border-width: 1px; 
-	border-style: solid; 
-	border: 1px solid rgb(237, 237, 237); */	 
+	background: none repeat scroll 0% 0% rgb(255, 255, 255); 	 
 	display: inline-block; 
-	}
+}
 	
 .SearchInput span { 
 	border-right: 0pt none; 
@@ -1323,23 +1319,18 @@ td.label,td.label_tip,td.show {
 	border-style: solid none none; 
 	border-color: rgb(237, 237, 237) -moz-use-text-color -moz-use-text-color; 
 	display: inline-block; 
-/*	padding: 1px 0pt 2px; */
-/*	padding: 5px 5px 5px 5px; */
-/*	margin: 0pt 22px 0pt 5px; */
 	position: relative; 	
 	border:1px solid rgb(205,205,205);
 	padding:0.4em;	
-	}
+}
 	
 .SearchInput input { 	
-/*	border-width: 0pt 1px 0pt 0pt; */
-/*	border-style: none solid none none; 	*/
 	border-color: -moz-use-text-color rgb(229, 229, 229) -moz-use-text-color -moz-use-text-color; 
 	margin: 0pt 22px 0pt 0pt;
 	outline: medium none; 
 	padding: 5px 5px 5px 5px; 
 	height: 20px;		
-	}
+}
 	
 .SearchInput button { 	
 	background:rgb(255,255,255) url('../../images/busqueda.png') repeat-x scroll;	
@@ -1347,12 +1338,11 @@ td.label,td.label_tip,td.show {
 	cursor: pointer; 
 	display: block; 
 	padding: 0pt; 
-	position: absolute; 
-	
+	position: absolute; 	
 	right: 2px; 
 	top: 5px; 
 	width: 22px; 
 	height: 22px;	
-	}
+}
 	
 .SearchInput input { padding-bottom: 1px ! important; }
