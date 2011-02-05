@@ -1784,6 +1784,8 @@ en:
      rounds_search_to_join: Search for Round to join. 
      rounds_show:  Show Round 
      rounds_update: Edit Round       
+     cups_name_description:  Cup Name
+     escuadras_name_description:  Team Name
      rounds_name_description:  Tournament Round Name
      groups_name_description:  Team Name
      markers_name_description:  Sport Center Name

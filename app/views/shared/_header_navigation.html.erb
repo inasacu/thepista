@@ -104,6 +104,14 @@
 			<%= content_tag 'li', link_to(label_name(:markers), markers_url, :class => get_control_active('marker')) %>
 			<%= content_tag 'li', link_to(label_name(:announcements), announcements_url, 
 						:class => get_control_active('announcement')) if current_user.is_maximo? %>
+						
+			<li class="search">	
+				<% form_tag search_path, :method => 'get' do %>
+				<%= text_field_tag :search, h(params[:search]), :id => 'location_search_text_input', :value => label_name(:searching) %>
+				<%= submit_tag "", :id => "searchButton" %>
+				<% end -%>
+			</li>
+						
 			<% end %>
 		</ul>
 

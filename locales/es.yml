@@ -1785,7 +1785,9 @@ es:
      rounds_search: Busqueda de fases
      rounds_search_to_join: Puedes buscar una fase al cual unierte. 
      rounds_show:  Mostrar fase 
-     rounds_update: Actualizar fase       
+     rounds_update: Actualizar fase  
+     cups_name_description:  Nombre de la copa
+     escuadras_name_description:  Nombre del equipo     
      rounds_name_description:  Nombre de la fase de torneo
      groups_name_description:  Nombre del equipo
      markers_name_description:  Nombre del centro deportivo

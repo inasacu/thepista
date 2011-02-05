@@ -423,5 +423,11 @@ module ApplicationHelper
   #   the_content = "<td class='label'><a href='#'>#{the_content}</a>#{the_content_div}</td>"    
   #   return the_content
   # end
+  
+  def control_description(value, no_description=false)
+    the_description = I18n.t(value)
+    the_description = control_label("#{value}_description") unless no_description
+    return "#{the_description}..."
+  end
 
 end

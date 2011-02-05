@@ -15,16 +15,14 @@
 	</h2>
 	
 	<div class="inner"> 
-      <%# form_tag :action => 'import', :id => @user do %>
 	  <% form_for :invitation, :url => import_contact_url, :html => { :class => :form } do |f| -%>
 
-		<div class="columns"> 
-		
+		<div class="columns">		
 		  <div class="column left"> 
-		  
+					  
 			<div class="group">
 			  <%= f.label :your_email, label_name('your_email'), :class => :label %>
-			  <input type="text" class="inputtext" id="login" name="login" value="" onblur="update_ms_login();" />
+			  <input type="text" class="inputtext" id="login" name="login" onblur="update_ms_login();" value="<%= label_name(:your_email) %>"/>
 				&nbsp;@
 				<select name="from" id="from">
 				<option value="gmail">Gmail</option>

@@ -677,23 +677,33 @@ body.v2 #mapwrap,body.v2 #map {
 	border: 1px solid rgb(205,205,205);
 }
 
-.textfield,.textscore,.text_tiny_score,.textphoto,.text_message,.text_field {
+.textfield,.textscore,.text_tiny_score,.textphoto,.text_message,.text_field, .text_search {
 	border:1px solid rgb(205,205,205);
 	padding:0.4em;
 	background:rgb(255,255,255) url('../../images/textfield-bg.gif') repeat-x scroll 0 1px
 }
 
-.textfield:focus,.textscore:focus,.text_tiny_score:focus,.textphoto:focus,.text_message:focus,.text_field:focus {
+.textfield:focus,.textscore:focus,.text_tiny_score:focus,.textphoto:focus,.text_message:focus,.text_field:focus, .text_search:focus{
 	background:rgb(255,254,244) url('../../images/textfield-focus-bg.gif') repeat-x scroll 0 1px
 }
 
-input.textfield,textarea.textfield {
+input.textfield, textarea.textfield {
 	width:400px
+}
+
+text.text_search {
+	width: 300px
+}
+
+text.text_search {
+	height:90px
 }
 
 textarea.textfield,textarea.text_message,text_area.textfield {
 	height:80px
 }
+
+
 
 input.textfield_login {
 	width:300px
@@ -1303,8 +1313,10 @@ td.label,td.label_tip,td.show {
 
 /** search button */
 .SearchInput { border: 0pt none; }
+
 .SearchInput input { 
-	width: 300px;
+/*	width: 300px;*/	
+	width: 255px;
 	font: 16px; 	
 }
 
@@ -1346,3 +1358,43 @@ td.label,td.label_tip,td.show {
 }
 	
 .SearchInput input { padding-bottom: 1px ! important; }
+
+/* header search */
+
+input, textarea { 
+	background-color: rgb(255, 255, 255); 
+	background-position: 0pt -611px; 
+	padding: 5px 4px 4px; 
+	color: rgb(51, 51, 51); 
+	font: 12px Arial,Helvetica,sans-serif; 
+	border: 1px solid rgb(204, 204, 204); -moz-border-radius: 2px 2px 2px 2px; 
+}
+
+input.focus, input.active, textarea.focus, select.focus, input:focus, textarea:focus, select:focus { 
+	border: 1px solid rgb(148, 180, 209); 
+}
+.header li.search { 
+	padding: 8px 7px; 
+}
+.header li.search input { 
+	width: 110px; 
+	padding-right: 18px; 
+	border: 0px none; 
+	color: rgb(138, 138, 138); 
+	font-size: 11px; 
+	background: url('../images/buscar-en-haypista.png') no-repeat 100% 100% rgb(255, 255, 255);
+}
+.header li input#searchButton { 
+	background: none repeat scroll 0% 0% transparent; 
+	border: medium none; 
+	cursor: pointer; 
+	display: block; 
+	height: 24px;
+	margin-left: -28px; 
+	margin-top: 8px; 
+	position: absolute; 
+	text-indent: -9999px; 
+	width: 20px; 
+}
+
+/* header search end *?

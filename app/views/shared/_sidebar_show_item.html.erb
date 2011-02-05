@@ -5,26 +5,19 @@
 <div class="content">
 <% 
 	if current_user.is_member_of?(@item) 
-		# the_confirmation = label_with_name(:do_leave_item, "#{@item.name}?")
 %>
 		<p><%= option_image_link('message') %>&nbsp;&nbsp;<%= link_to(label_name(:send_message_to), new_message_path(:item_id => @item)) %></p>
-		<p>111<%= link_to("#{label_name(:invitations_create_item)} #{label_name(@item.class.to_s).downcase}", new_invitation_url(:item_id => @item)) %></p>	
+		<p><%= link_to("#{label_name(:invitations_create_item)} #{label_name(@item.class.to_s).downcase}", new_invitation_url(:item_id => @item)) %></p>	
 <% 
 	else
 %>
 		<p><%= option_image_link('message') %>&nbsp;&nbsp;<%= link_to(label_name(:send_message_to), new_message_path(:id => @item.all_the_managers.first)) %></p>
 <%
-		unless current_user.has_item_petition?(current_user, @item)
-			# the_item = h(current_user.name)			
-			# the_label = label_with_name('add_to_group', @item.name) 
-			# the_label+= " -   #{label_name(current_user.class.to_s)}: #{the_item}"
-			# the_confirmation = "#{ label_name(:petition_to_join) } #{current_user.name} #{ label_name(:by) } #{@item.name}?"
-			
+		unless current_user.has_item_petition?(current_user, @item)			
 			unless @item.club
 %> 
 			<p>
 			<%= option_image_link('user_add') %>&nbsp;&nbsp;<%= join_item_link_to(current_user, @item, true) %>
-			<%#= link_to(the_label, join_item_path(:id => @item, :item => @item.class.to_s, :teammate => current_user), :confirm => the_confirmation) unless @item.club %>
 			</p>
 <% 
 			end
@@ -36,29 +29,17 @@
 			# the_item = h(item.name)
 
 	 		unless item.is_group_member_of?(@cup)  
-				# the_label = label_with_name('add_to_group', @cup.name)
-				# the_label += " #{label_name(:by)} #{the_item}"
-				# the_confirmation = "#{ label_name(:petition_to_join)} #{h(@cup.name)} #{ label_name(:by) } #{the_item}?"
 %>
 	        	<p>
 				<%= option_image_link('group_add') %>&nbsp;&nbsp;
 				<%= join_item_sub_item_link_to(current_user, @cup, item) %>
-					<%#= link_to(the_label, 
-						join_item_path(:id => @cup, :item => @cup.class.to_s, :sub_id => item, :sub_item => item.class.to_s, :teammate => current_user), 
-						:confirm => the_confirmation) unless Teammate.has_item_petition?(item, @cup) %>
 				</p>
 <% 
 			else 
-				# the_label = label_with_name('fire_from_item', item.name)
-				# the_label += " #{label_name(:to)} #{the_item}"
-				# the_confirmation = "#{ label_name(:fire_from_item)} #{h(@cup.name)} #{ label_name(:by) } #{the_item}?"
 %> 
 			<p>
 				<%= option_image_link('group_remove') %>&nbsp;&nbsp;
 				<%= leave_item_sub_item_link_to(current_user, @cup, item) %>
-					
-			<%#= link_to(the_label, leave_item_path(:id => @cup, :item => @cup.class.to_s, :sub_id => item, :sub_item => item.class.to_s, :teammate => current_user), 
-					:confirm => the_confirmation) %>
 			</p>
 <% 
 			end 
