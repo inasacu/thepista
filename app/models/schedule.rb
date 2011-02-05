@@ -89,7 +89,7 @@ class Schedule < ActiveRecord::Base
   
   # method section
   def the_roster_sort(sort="")
-    the_sort = "users.name"
+    the_sort = "matches.group_id DESC, users.name"
     the_sort = "#{sort}, #{the_sort}" if (sort != " ASC" and sort != " DESC" and !sort.blank? and !sort.empty?) 
      Match.find(:all, :select => "matches.*, users.name as user_name, types.name as type_name, scorecards.id as scorecard_id, " +
                                  "scorecards.played as scorecard_played, scorecards.ranking, scorecards.points",
