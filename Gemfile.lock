@@ -36,7 +36,7 @@ GEM
     crack (0.1.8)
     erubis (2.6.6)
       abstract (>= 1.0.0)
-    friendly_id (3.2.0)
+    friendly_id (3.2.1)
       babosa (~> 0.2.1)
     gdata (1.1.1)
     geokit (1.5.0)
@@ -44,7 +44,7 @@ GEM
     hashie (0.1.4)
     heroku_s3_backup (0.0.1)
       right_aws (~> 1.10)
-    hoptoad_notifier (2.4.2)
+    hoptoad_notifier (2.4.5)
       activesupport
       builder
     httparty (0.4.5)
@@ -91,7 +91,7 @@ GEM
       hashie (= 0.1.4)
       httparty (= 0.4.5)
     will_paginate (2.3.15)
-    xml-simple (1.0.13)
+    xml-simple (1.0.14)
 
 PLATFORMS
   ruby
