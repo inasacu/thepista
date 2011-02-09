@@ -44,11 +44,15 @@ class CreateSearches < ActiveRecord::Migration
     and cups.sport_id = sports.id
     
     SQL
+    
+    # rake db:migrate VERSION=20101221224647
+    # rake db:migrate
+    
   end
 
   def self.down
-    ActiveRecord::Base.connection.execute <<-SQL
-      DROP VIEW searches
-    SQL
+    # ActiveRecord::Base.connection.execute <<-SQL
+    #   DROP VIEW searches
+    # SQL
   end
 end

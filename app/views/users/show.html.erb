@@ -71,12 +71,12 @@
 						<%= tr_td_action(:company, @user.company) %>		
 
 						<% 
-							the_label = h(label_name(@user.available, 'value'))
+							#the_label = h(label_name(@user.available, 'value'))
 						%>			
-						<tr>
-							<%= content_tag :td, get_cluetip_show('available'), :class =>"label" %>
-							<%= content_tag :td, (is_user_manager ? link_to(the_label, set_available_path(:id => @user)) : the_label), :class => get_the_action %>
-						</tr>
+						<!-- <tr>
+							<%#= content_tag :td, get_cluetip_show('available'), :class =>"label" %>
+							<%#= content_tag :td, (is_user_manager ? link_to(the_label, set_available_path(:id => @user)) : the_label), :class => get_the_action %>
+						</tr> -->
 
 						<% 
 							the_label = h(label_name(@user.forum_comment_notification, 'value'))
