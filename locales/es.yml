@@ -381,6 +381,7 @@ es:
      ends_at_description: (¿Ha que hora termina el evento?)   
      ends_at_venue: Horario   
      evaluation:  Evaluación
+     evaluation_cluetip:  "La evaluación te la ponen tus compañeros despues de un evento.  Esta evaluación la puedes ver en la convocatoria del evento que has participado."
      events:
         one:  "tiene 1 evento." 
         other: "tiene {{count}} eventos."        
@@ -561,7 +562,8 @@ es:
      group_second_stage_single:  La eliminatoria se juega a un partido.
      group_final_stage_single:  La final se juega a un partido.
      group_round:  Ronda de Eliminación   
-     groups: Equipos 
+     groups: Equipos
+     groups_full:  Detalles de equipos 
      groups_howto:  Crea tu equipo en 9 pasos.
      groups_howto_create:  Haz click en la opción de 'Nuevo equipo'.
      groups_howto_event:  Haz click en la opción de 'Nuevo evento'.

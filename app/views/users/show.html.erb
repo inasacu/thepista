@@ -4,6 +4,8 @@
 	the_label = h(@user.name)
 	content_for(:title, the_label)
 	is_group_manager =  false
+	participation = 0; @user.scorecards.each {|scorecard| participation += scorecard.played}
+	the_participation_label = I18n.t(:has_user_scorecard_played, :count => participation)
 %>
 <div class="block">
   
@@ -36,22 +38,6 @@
 						
 						<%= tr_td_action(:name, @user.name) %>
 						<%= tr_td_action(:email, @user.email) if @user == current_user %>
-						<%= tr_td_action(:language, label_name(@user.language)) %>					
-						
-						<tr>
-							<td class="label"><%= label_name(:groups) %></td>
-							<td class="show"><%= @user.has_group? ? group_list(@user.groups) : label_name('groups_none') %></td>
-						</tr>
-
-						<tr>
-							<td class="label"><%= label_name(:event_participation) %></td>
-							<td class="show">
-								<% counter = 0; @user.scorecards.each {|scorecard| counter += scorecard.played} %>
-								<%= I18n.t(:has_user_scorecard_played, :count => counter) %>
-							</td>
-						</tr>						
-						
-						<%= tr_td_action(:time_zone, @user.time_zone) %>
 		
 						<% 	
 							if @user.private_phone
@@ -68,15 +54,53 @@
 							</td>
 						</tr>
 						
-						<%= tr_td_action(:company, @user.company) %>		
+						<%= tr_td_action(:company, @user.company) %>			
+											
+						<tr>
+							<td class="label"><%= label_name(:groups) %></td>
+							<td class="show"><%= @user.has_group? ? group_list(@user.groups) : label_name('groups_none') %></td>
+						</tr>
 
-						<% 
-							#the_label = h(label_name(@user.available, 'value'))
-						%>			
-						<!-- <tr>
-							<%#= content_tag :td, get_cluetip_show('available'), :class =>"label" %>
-							<%#= content_tag :td, (is_user_manager ? link_to(the_label, set_available_path(:id => @user)) : the_label), :class => get_the_action %>
-						</tr> -->
+						<tr>
+							<td class="label"><%= label_name(:event_participation) %></td>
+							<td class="show"><%= participation.to_i > 0 ? link_to(the_participation_label, my_list_schedules_path(:id => @user)) : the_participation_label %></td>
+						</tr>
+
+						<tr>
+							<%= content_tag :td, get_cluetip_show('evaluation'), :class =>"label" %>
+							<%= content_tag :td, ratings_for( @user, :static, :dimension => :evaluation, :small => true), :class => get_the_action %>
+						</tr>
+						
+						<% if @user.has_group? 							
+							group_scorecards = []
+							Match.last_games_played(@user).each {|match| group_scorecards << match.group_id unless group_scorecards.include?(match.group_id)}
+						%>
+						<tr>
+							<td class="label"><%= label_name(:groups_full) %></td>
+							<td>
+								<table border="0">
+						
+								<% @user.groups.each do |group| 
+									if group_scorecards.include?(group.id) 
+								%>
+								<tr>
+									<td class="show">
+									<%= item_name_link(group) %>
+									<span class="date">
+										<%= "<br/>#{group.sport.name}<br/>#{item_name_link(group.marker)}<br/>#{link_to(label_name(:scorecard), scorecard_path(:id => group))}" %>
+									</span>
+									</td>							      	
+								</tr>
+								<% end 
+								end %>
+						
+								</table>
+							</td>
+						</tr>		
+						<% end %>				
+												
+						<%= tr_td_action(:time_zone, @user.time_zone) %>
+						<%= tr_td_action(:language, label_name(@user.language)) %>
 
 						<% 
 							the_label = h(label_name(@user.forum_comment_notification, 'value'))
@@ -122,7 +146,7 @@
 						
 						<tr>
 					     	<%= content_tag :td, label_name(:users_teammate), :class => "label" %>
-							<%= render :partial => '/shared/show_images', :locals => {:collection => @user.friends} %>		
+							<%= render :partial => '/shared/show_images', :locals => {:collection => @user.friends} %>
 					    </tr>
 					
 						<%= render :partial => 'show_admin' if current_user.is_maximo? %>

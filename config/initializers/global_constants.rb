@@ -20,6 +20,7 @@ LAST_WEEK = Time.zone.now - 7.days
 TWO_WEEKS_AGO = Time.zone.now - 14.days
 THREE_WEEKS_AGO = Time.zone.now - 21.days
 TWO_MONTHS_AGO = Time.zone.now - 60.days
+FOUR_MONTHS_AGO = Time.zone.now - 120.days
 SIX_MONTHS_AGO = Time.zone.now - 180.days
 NINE_MONTHS_AGO = Time.zone.now - 270.days
 TWELVE_MONTHS_AGO = Time.zone.now - 365.days
@@ -59,6 +60,9 @@ CLASSIFIEDS_PER_PAGE = 25
 CUPS_PER_PAGE = 8
 ESCUADRAS_PER_PAGE = 48
 ESCUADRAS_LIST_PER_PAGE = 32
+
+
+GAMES_PLAYED = 12
 
 #variables for login
 SHOW_OPENID_LOGIN = false

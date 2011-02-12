@@ -381,6 +381,7 @@ en:
      ends_at_description: (What time does the event end?)   
      ends_at_venue: Hours 
      evaluation:  Evaluation 
+     evaluation_cluetip:  "The evaluation is given to you by your teammates after an event. You can view this evaluation within any event you have participated in."
      events:
         one:  "has 1 event." 
         other: "has {{count}} events."        
@@ -562,6 +563,7 @@ en:
      group_final_stage_single:  Single game for the final.
      group_round:  Elimination Round   
      groups: Teams  
+     groups_full:  Team details
      groups_howto:  Create your team in 9 steps.
      groups_howto_create:  Click option 'New team'.
      groups_howto_event:  Click option 'New event'.

@@ -43,6 +43,13 @@ class Match < ActiveRecord::Base
   end
   
   
+  def self.last_games_played(user)
+    find(:all, :select => "schedules.group_id",
+         :joins => "left join schedules on schedules.id = matches.schedule_id",
+         :conditions => ["matches.user_id = ? and matches.type_id = 1 and schedules.played = true", user],
+         :order => "schedules.starts_at DESC", :limit => GAMES_PLAYED)
+  end
+  
   def self.get_rating_average(match, group)
     Match.find(:first,
 				:select => "max(matches.rating_average_technical) as rating_average_technical, max(matches.rating_average_physical) as rating_average_physical",
