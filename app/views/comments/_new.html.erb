@@ -11,7 +11,7 @@ textfield ||= false
 	<%= f.text_area :body, :class => 'text_message' -%>	
 	<br />
 	<br />
-	<%= f.submit label_name(:share) %>
+	<%= submit_tag label_name(:share),  :class => "button" %>
 
 	<%= hidden_field :blog, :id %>
 	<%= hidden_field :forum, :id %>

@@ -76,9 +76,10 @@ class UserMailer < ActionMailer::Base
     @content_type     = "text/html"
   end
   
-  def message_blog(recipient, user, message)
+  def message_blog(recipient, user, message, label="")
+    label = "#{label} - " unless label.blank?
     @recipients = recipient.email
-    @subject = "#{user.name}  #{I18n.t(:comments_on_blog)}!"
+    @subject = "#{label}#{I18n.t(:comments_on_blog)}!"
     @sent_on = Time.zone.now
     @body[:user] = user
     @body[:message] = message
