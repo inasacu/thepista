@@ -5,10 +5,11 @@
 	
 	has_been_played = @schedule.played? 
 	is_manager = current_user.is_manager_of?(@schedule.group)
+	is_squad = get_the_action.gsub(' ','_') == 'team_roster'
 	
 	the_start_at_label = " <br/>#{nice_day_of_week(@schedule.starts_at)}"
 	the_start_at_label = "#{the_start_at_label}#{get_cluetip(label_name(:schedule_excess_player), 'info', 
-							label_name('schedule_excess_player_cluetip'), true)}" if (@the_roster.count > @schedule.player_limit)
+							label_name('schedule_excess_player_cluetip'), true)}" if (@the_roster.count > @schedule.player_limit and is_squad)
 %>
 
 <div class="block">
