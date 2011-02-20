@@ -232,6 +232,13 @@ class Schedule < ActiveRecord::Base
     :order => 'starts_at, group_id', :page => page, :per_page => SCHEDULES_PER_PAGE)
   end
 
+  def self.schedule_number(schedule)
+    schedule_number = count(:conditions => ["group_id = ? and played = true and archive = false and starts_at < 
+                            (select starts_at from schedules where group_id = ? and schedules.id = ?)", schedule.group, schedule.group, schedule])
+    schedule_number = 1 if schedule_number == 0
+    return schedule_number
+  end
+    
   def self.max(schedule)
     find(:first, :conditions => ["group_id = ? and played = true", schedule.group_id], :order => "starts_at desc")    
   end

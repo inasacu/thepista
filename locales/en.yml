@@ -1838,7 +1838,13 @@ en:
      tournaments_search: Search for Tournaments
      tournaments_search_to_join:  Search for a Tournament to join. 
      tournaments_show:  Show Tournament
-     tournaments_update: Edit Tournament          
+     tournaments_update: Edit Tournament   
+     true_skill_deviation:  Level
+     true_skill_deviation_difference:  "Difference<br/>Level"
+     true_skill_deviation_total:  "Total<br/>Level"
+     true_skill_mean:  Points
+     true_skill_mean_difference:  "Difference<br/>Points"
+     true_skill_mean_total:  "Total<br/>Points"      
      types_index:  Types
      types_maximo_option:  Admin Access Only.
      types_option:  Options  

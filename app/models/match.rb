@@ -18,8 +18,8 @@ class Match < ActiveRecord::Base
   validates_numericality_of :technical,    :greater_than_or_equal_to => 0, :less_than_or_equal_to => 5
   validates_numericality_of :physical,     :greater_than_or_equal_to => 0, :less_than_or_equal_to => 5
 
-  validates_presence_of         :description
-  validates_length_of           :description,                     :within => DESCRIPTION_RANGE_LENGTH
+  # validates_presence_of         :description
+  # validates_length_of           :description,                     :within => DESCRIPTION_RANGE_LENGTH
   
   # variables to access
   attr_accessible :name, :schedule_id, :user_id, :group_id, :invite_id, :group_score, :invite_score
@@ -41,8 +41,7 @@ class Match < ActiveRecord::Base
     end
     return items 
   end
-  
-  
+    
   def self.last_games_played(user)
     find(:all, :select => "schedules.group_id",
          :joins => "left join schedules on schedules.id = matches.schedule_id",
@@ -51,11 +50,24 @@ class Match < ActiveRecord::Base
   end
   
   def self.get_rating_average(match, group)
-    Match.find(:first,
-				:select => "max(matches.rating_average_technical) as rating_average_technical, max(matches.rating_average_physical) as rating_average_physical",
-				:joins => "left join schedules on schedules.id = matches.schedule_id",
-				:conditions => ["matches.user_id = ? and schedules.group_id = ?", match.user_id, group.id])
-		end
+    find(:first,	:select => "max(matches.rating_average_technical) as rating_average_technical, max(matches.rating_average_physical) as rating_average_physical",
+          :joins => "left join schedules on schedules.id = matches.schedule_id",
+          :conditions => ["matches.user_id = ? and schedules.group_id = ?", match.user_id, group.id])
+  end
+  
+  def self.get_previous_user_match(match, schedule_number) 
+    find(:first, :select => "matches.mean_skill, matches.skill_deviation, matches.game_number, matches.user_id, matches.id", 
+          :conditions => ["user_id = ? and type_id = 1 and game_number > 0 and game_number < ?", match.user_id, schedule_number],
+          :order => "game_number DESC")
+  end
+		
+  def self.get_user_group_skill(user, group)
+    find(:first, :select => "matches.id, matches.schedule_id, matches.user_id, matches.group_id, matches.invite_id, matches.group_score, matches.invite_score, 
+                             matches.mean_skill, matches.skill_deviation, matches.game_number",
+         :joins => "left join schedules on schedules.id = matches.schedule_id",
+         :conditions => ["schedules.group_id = ? and schedules.played = true and matches.user_id = ? and matches.archive = false", group, user],
+         :order => "matches.game_number DESC")
+  end
 		
 	def self.get_matches_users(schedule)
 	  find(:all, :joins   => "LEFT JOIN users on matches.user_id = users.id",

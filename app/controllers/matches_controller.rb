@@ -94,13 +94,14 @@ class MatchesController < ApplicationController
     played = (@type.id == 1 and !@match.group_score.nil? and !@match.invite_score.nil?)
 
     if @match.update_attributes(:type_id => @type.id, :played => played, :user_x_two => @user_x_two, :status_at => Time.zone.now)
-      Scorecard.calculate_user_played_assigned_scorecard(@match.user, @match.schedule.group)
+      # Scorecard.calculate_user_played_assigned_scorecard(@match.user, @match.schedule.group)
+      Scorecard.send_later(:calculate_user_played_assigned_scorecard, @match.user, @match.schedule.group)
       
       # set fee type_id to same as match type_id
       the_fee = Fee.find(:all, :conditions => ["debit_type = 'User' and debit_id = ? and item_type = 'Schedule' and item_id = ?", @match.user_id, @match.schedule_id])
       the_fee.each {|fee| fee.type_id = @type.id; fee.save}
       
-      flash[:success] = I18n.t(:is_available_user) 
+      # flash[:success] = I18n.t(:is_available_user) 
     end 
 
     # select case @type.id

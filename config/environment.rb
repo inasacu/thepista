@@ -35,6 +35,8 @@ Rails::Initializer.run do |config|
   gem "rails_best_practices"
   gem 'texticle' 
   gem 'heroku_s3_backup'
+  gem 'trueskill'
+  
   
   # gem "aws-s3"												, "0.6.2"
   # gem "paperclip"												, "~> 2.3"

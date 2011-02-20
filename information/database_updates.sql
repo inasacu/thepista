@@ -33,3 +33,47 @@ and age(matches.status_at, matches.created_at) > '00:00:00'
 
 
 
+
+
+select matches.id, matches.schedule_id, matches.user_id, matches.group_id, matches.invite_id, matches.group_score, matches.invite_score, 
+       matches.rating_average_technical, rating_average_physical,
+       matches.mean_skill, matches.skill_deviation, matches.game_number, matches.type_id, matches.archive
+from matches 
+left join schedules on schedules.id = matches.schedule_id
+where schedules.group_id = 9
+and schedules.played = true
+and matches.type_id = 1
+order by schedule_id , group_id desc
+
+
+
+select matches.*
+from schedules, matches
+where schedules.group_id = 9
+and schedules.played = true
+and schedules.id = matches.schedule_id
+and matches.type_id = 1
+order by matches.user_id, schedules.starts_at
+
+
+select matches.id, matches.schedule_id, matches.user_id, matches.group_id, matches.invite_id, matches.group_score, matches.invite_score, 
+       matches.rating_average_technical, rating_average_physical,
+       matches.mean_skill, matches.skill_deviation, matches.game_number, matches.type_id, matches.archive
+from matches 
+left join schedules on schedules.id = matches.schedule_id
+where schedules.group_id = 9
+and schedules.played = true
+and matches.type_id = 1
+order by schedules.starts_at , group_id desc, user_id
+
+
+
+select matches.id, matches.schedule_id, matches.user_id, matches.group_id, matches.invite_id, matches.group_score, matches.invite_score, 
+       matches.mean_skill, matches.skill_deviation, matches.game_number
+from matches 
+left join schedules on schedules.id = matches.schedule_id
+where schedules.group_id = 9
+and schedules.played = true
+and matches.type_id = 1
+and matches.user_id = 2001
+order by schedules.starts_at , group_id desc, user_id

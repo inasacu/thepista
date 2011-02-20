@@ -1457,13 +1457,13 @@ es:
      position:  Posición
      position_description:  Posición en el campo
      technical:  Tecnico
-     technical_description:  Nivel tecnico
-     technical_total: "Total<br/>tecnico"
-     technical_difference:  "Diferencia<br/>tecnica"
+     technical_description:  Nivel Tecnico
+     technical_total: "Total<br/>Tecnico"
+     technical_difference:  "Diferencia<br/>Tecnica"
      physical:  Fisico
-     physical_description: Nivel fisico
-     physical_total: "Total<br/>fisico"
-     physical_difference: "Diferencia<br/>fisica"
+     physical_description: Nivel Fisico
+     physical_total: "Total<br/>Fisico"
+     physical_difference: "Diferencia<br/>Fisica"
      language_description:  Idioma preferible
      country_description:  Pais donde te encuentras
      time_zone:  Horario
@@ -1819,7 +1819,7 @@ es:
      topics_create:  Nuevo evento
      topics_edit:  Actualizar evento
      topic_options:  Opciones    
-     total_difference: "Diferencia<br/>total"    
+     total_difference: "Diferencia<br/>Total"    
      tournament_options:  Opciones 
      tournament_starts_ends_at:  Fechas del torneo
      tournaments_create:  Nuevo torneo 
@@ -1840,7 +1840,16 @@ es:
      tournaments_search: Busqueda de torneos
      tournaments_search_to_join: Puedes buscar un torneo al cual unierte. 
      tournaments_show:  Mostrar torneo
-     tournaments_update: Actualizar torneo          
+     tournaments_update: Actualizar torneo 
+     true_skill_deviation:  Difusión
+     true_skill_deviation_difference:  "Diferencia<br/>Difusión"
+     true_skill_deviation_total:  "Total<br/>Difusión"
+     true_skill_level:  Nivel
+     true_skill_level_difference:  "Diferencia<br/>Nivel"
+     true_skill_level_total:  "Total<br/>Nivel"
+     true_skill_mean:  Puntos
+     true_skill_mean_difference:  "Diferencia<br/>Puntos" 
+     true_skill_mean_total:  "Total<br/>Puntos"     
      types_index:  Tipos
      types_maximo_option:  Requiere responsable de administrador para ver mas opciones.
      types_option:  Opciones 

@@ -1,0 +1,90 @@
+<tr>
+	<% 7.times do |i| %>
+	<%= content_tag :td, "&nbsp;", :class => "no_line" %>
+	<% end %>
+</tr>
+<tr>
+	<%= content_tag :th, label_name(:groups), :class => "first" %>
+	<%= content_tag :th, label_name(:users), :class => "heading" %>
+	<%= content_tag :th, "&nbsp;", :class => "heading" %>
+	<%= content_tag :th, label_name(:true_skill_mean_total), :class => "heading" %>
+	<%= content_tag :th, label_name(:true_skill_level_total), :class => "heading" %>
+	<%= content_tag :th, "&nbsp;", :class => "heading" unless show_deviation %>
+	<%= content_tag :th, label_name(:true_skill_deviation_total), :class => "heading" if show_deviation %>
+	<%= content_tag :th, label_name(:true_skill_mean_difference), :class => "heading" %>
+	<%= content_tag :th, label_name(:true_skill_level_difference), :class => "heading" %>
+	<%= content_tag :th, "", :class => "heading_#{show_right_border}" unless show_deviation %>
+	<%= content_tag :th, label_name(:true_skill_deviation_difference), :class => "heading_#{show_right_border}" if show_deviation %>
+	<%= content_tag :th, "&nbsp;", :class => "last" if show_right_border %>
+</tr>
+<tr>
+	<%= content_tag(:td, link_to(@schedule.home_group, group_path(@schedule.group)), :class => "no_line") %>
+	<%= content_tag(:td, home['players'], :class => "no_line", :align => "center") %>
+	<%= content_tag(:td, home["true_skill_image"], :class => "no_line", :align => "center") %>
+	<%= content_tag(:td, home["mean"], :class => "no_line") %>
+	<%= content_tag(:td, home["level"], :class => "no_line") %>
+	<%= content_tag(:td, "&nbsp;", :class => "no_line") unless show_deviation %>
+	<%= content_tag(:td, home["deviation"], :class => "no_line") if show_deviation %>
+	<%= content_tag(:td, home["mean_difference"], :class => "no_line") %>	
+	<%= content_tag(:td, home["level_difference"], :class => "no_line") %>
+	<%= content_tag(:td, "&nbsp;", :class => "no_line") unless show_deviation %>
+	<%= content_tag(:td, home["deviation_difference"], :class => "no_line") if show_deviation %>
+</tr>
+
+<tr>
+	<%= content_tag(:td, link_to(@schedule.away_group, group_path(@schedule.group))) %>
+	<%= content_tag(:td, away['players'], :align => "center") %>
+	<%= content_tag(:td, away["true_skill_image"], :align => "center") %>
+	<%= content_tag(:td, away["mean"]) %>
+	<%= content_tag(:td, away["level"]) %>
+	<%= content_tag(:td, "&nbsp;") unless show_deviation %>
+	<%= content_tag(:td, away["deviation"]) if show_deviation %>
+	<%= content_tag(:td, away["mean_difference"]) %>
+	<%= content_tag(:td, away["level_difference"]) %>
+	<%= content_tag(:td, "&nbsp;") unless show_deviation %>
+	<%= content_tag(:td, away["deviation_difference"]) if show_deviation %>
+</tr>
+
+<tr>
+	<% 7.times do |i| %>
+	<%= content_tag :td, "&nbsp;", :class => "no_line" %>
+	<% end %>
+</tr>
+<tr>
+	<%= content_tag :th, "&nbsp;", :class => "first" %>
+	<%= content_tag :th, "&nbsp;", :class => "heading" %>
+	<%= content_tag :th, "&nbsp;", :class => "heading" %>
+	<%= content_tag :th, label_name(:technical_total), :class => "heading" %>
+	<%= content_tag :th, label_name(:physical_total), :class => "heading" %>
+	<%= content_tag :th, "&nbsp;", :class => "heading" %>
+	<%= content_tag :th, label_name(:technical_difference), :class => "heading" %>
+	<%= content_tag :th, label_name(:physical_difference), :class => "heading" %>
+	<%= content_tag :th, label_name(:total_difference), :class => "heading_#{show_right_border}" %>
+	<%= content_tag :th, "", :class => "last" if show_right_border %>
+</tr>
+<tr>
+	<%= content_tag(:td, link_to(@schedule.home_group, group_path(@schedule.group)), :class => "no_line") %>
+	<%= content_tag(:td, home['players'], :class => "no_line", :align => "center") %>
+	<%= content_tag(:td, home["image"], :class => "no_line", :align => "center") %>
+	<%= content_tag(:td, home["technical"], :class => "no_line") %>
+	<%= content_tag(:td, home["physical"], :class => "no_line") %>
+	<%= content_tag(:td, "&nbsp;", :class => "no_line") %>
+	<%= content_tag(:td, home["technical_difference"], :class => "no_line") %>
+	<%= content_tag(:td, home["physical_difference"], :class => "no_line") %>
+	<%= content_tag(:td, home["total_difference"], :class => "no_line") %>
+</tr>
+
+<tr>
+	<%= content_tag(:td, link_to(@schedule.away_group, group_path(@schedule.group))) %>
+	<%= content_tag(:td, away['players'], :align => "center") %>
+	<%= content_tag(:td, away["image"], :align => "center") %>
+	<%= content_tag(:td, away["technical"]) %>
+	<%= content_tag(:td, away["physical"]) %>
+	<%= content_tag(:td, "&nbsp;") %>
+	<%= content_tag(:td, away["technical_difference"]) %>
+	<%= content_tag(:td, away["physical_difference"]) %>
+	<%= content_tag(:td, away["total_difference"]) %>
+</tr>
+
+<tr><% 7.times {|i| "#{content_tag(:td, '&nbsp;', :class => 'no_line')}"} %></tr>
+<tr><% 7.times {|i| "#{content_tag(:td, '&nbsp;', :class => 'no_line')}"} %></tr>

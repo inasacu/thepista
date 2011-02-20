@@ -1,0 +1,206 @@
+<% 
+	is_manager ||= false
+	show_deviation ||= true
+	
+	home["total"] = home["technical"].to_f + home["physical"].to_f
+	away["total"] = away["technical"].to_f + away["physical"].to_f
+
+	home["technical_difference"] = 0.0
+	away["technical_difference"] = 0.0
+	
+	home["physical_difference"] =  0.0
+	away["physical_difference"] =  0.0
+	
+	home["total_difference"] = 0.0
+	away["total_difference"] = 0.0	
+	
+	home["has_technical_value"] = home["technical"] > 0
+	home["has_physical_value"] = home["physical"] > 0
+	home["has_total_value"] = home["total"] > 0
+	
+	away["has_technical_value"] = away["technical"] > 0
+	away["has_physical_value"] = away["physical"] > 0
+	away["has_total_value"] = away["total"] > 0
+	
+	if home["has_technical_value"] and away["has_technical_value"]
+		home["technical_difference"] = (home["technical"] - away["technical"]).to_f / (away["technical"] ) * 100
+		away["technical_difference"] = (away["technical"] - home["technical"]).to_f / (home["technical"]) * 100
+	end
+
+	if home["has_physical_value"] and away["has_physical_value"]
+		home["physical_difference"] = (home["physical"] - away["physical"]).to_f / (away["physical"]) * 100
+		away["physical_difference"] = (away["physical"] - home["physical"]).to_f / (home["physical"]) * 100
+	end
+
+	if home["has_total_value"] and away["has_total_value"] 		
+		home["total_difference"] = (home["total"] - away["total"]).to_f / (away["total"]) * 100
+		away["total_difference"] = (away["total"] - home["total"]).to_f / (home["total"]) * 100 
+	end
+		
+	home["technical_difference"] = "#{sprintf( "%.2f", home["technical_difference"].abs)}%"
+	away["technical_difference"] = "#{sprintf( "%.2f", away["technical_difference"].abs)}%"
+ 
+	home["physical_difference"] = "#{sprintf( "%.2f", home["physical_difference"].abs)}%"
+	away["physical_difference"] = "#{sprintf( "%.2f", away["physical_difference"].abs)}%"
+	
+	home["total_difference"] = "#{sprintf( "%.2f", home["total_difference"].abs)}%"
+	away["total_difference"] = "#{sprintf( "%.2f", away["total_difference"].abs)}%"
+	
+	home["is_technical_lower"] = home["technical"] < away["technical"]
+	home["is_physical_lower"] = home["physical"] < away["physical"]
+	home["is_total_lower"] = home["total"] < away["total"]
+
+	away["is_technical_lower"] = home["technical"] > away["technical"]
+	away["is_physical_lower"] = home["physical"] > away["physical"]
+	away["is_total_lower"] = home["total"] > away["total"]
+	
+	home["technical_difference"] = "-#{home["technical_difference"]}" if home["is_technical_lower"] and !away["is_technical_lower"] 
+	away["technical_difference"] = "-#{away["technical_difference"]}" if !home["is_technical_lower"] and away["is_technical_lower"] 
+	
+	home["physical_difference"] = "-#{home["physical_difference"]}" if home["is_physical_lower"] and !away["is_physical_lower"] 
+	away["physical_difference"] = "-#{away["physical_difference"]}" if !home["is_physical_lower"] and away["is_physical_lower"] 
+	
+	home["total_difference"] = "-#{home["total_difference"]}" if home["is_total_lower"] and !away["is_total_lower"] 
+	away["total_difference"] = "-#{away["total_difference"]}" if !home["is_total_lower"] and away["is_total_lower"]
+	
+	home["image"] = scorecard_image_link("subir-clasificacion.png") if home["total_difference"] > away["total_difference"]
+	home["image"] = scorecard_image_link("bajar-clasificacion.png") if home["total_difference"] < away["total_difference"]
+	home["image"] = scorecard_image_link("mantener-clasificacion.png") if home["total_difference"] == away["total_difference"]
+	
+	away["image"] = scorecard_image_link("subir-clasificacion.png") if away["total_difference"] > home["total_difference"]
+	away["image"] = scorecard_image_link("bajar-clasificacion.png") if away["total_difference"] < home["total_difference"]
+	away["image"] = scorecard_image_link("mantener-clasificacion.png") if away["total_difference"] == home["total_difference"]
+	
+	
+	home["technical"] = "" if home["technical"].to_f <= 0 
+	away["technical"] = "" if away["technical"].to_f <= 0 
+	 
+	home["physical"] = "" if home["physical"].to_f <= 0 
+	away["physical"] = "" if away["physical"].to_f <= 0  
+	
+	home["total"] = "" if home["total"].to_f <= 0 
+	away["total"] = "" if away["total"].to_f <= 0
+	
+	home["technical_difference"] = "" if home["technical_difference"].to_f <= 0 
+	away["technical_difference"] = "" if away["technical_difference"].to_f <= 0 
+ 
+	home["physical_difference"] = "" if home["physical_difference"].to_f <= 0 
+	away["physical_difference"] = "" if away["physical_difference"].to_f <= 0  
+	
+	home["total_difference"] = "" if home["total_difference"].to_f <= 0 
+	away["total_difference"] = "" if away["total_difference"].to_f <= 0	
+	
+	home["mean_difference"] = 0.0
+	away["mean_difference"] = 0.0
+	
+	home["deviation_difference"] =  0.0
+	away["deviation_difference"] =  0.0
+	
+	home["level_difference"] =  0.0
+	away["level_difference"] =  0.0	
+	
+	home["has_mean_value"] = home["mean"].to_f > 0
+	home["has_deviation_value"] = home["deviation"].to_f > 0
+	home["has_level_value"] = home["level"].to_f > 0
+	
+	away["has_mean_value"] = away["mean"].to_f > 0
+	away["has_deviation_value"] = away["deviation"].to_f > 0
+	away["has_level_value"] = away["level"].to_f > 0
+	
+	if home["has_mean_value"] and away["has_mean_value"]
+		home["mean_difference"] = (home["mean"] - away["mean"]).to_f / (away["mean"] ) * 100
+		away["mean_difference"] = (away["mean"] - home["mean"]).to_f / (home["mean"]) * 100
+	end
+
+	if home["has_deviation_value"] and away["has_deviation_value"]
+		home["deviation_difference"] = (home["deviation"] - away["deviation"]).to_f / (away["deviation"]) * 100
+		away["deviation_difference"] = (away["deviation"] - home["deviation"]).to_f / (home["deviation"]) * 100
+	end
+
+	if home["has_level_value"] and away["has_level_value"]
+		home["level_difference"] = (home["level"] - away["level"]).to_f / (away["level"]) * 100
+		away["level_difference"] = (away["level"] - home["level"]).to_f / (home["level"]) * 100
+	end
+	
+	
+	home["is_mean_lower"] = home["mean"] < away["mean"]
+	home["is_deviation_lower"] = home["deviation"] < away["deviation"]
+	home["is_level_lower"] = home["level"] < away["level"]
+
+	away["is_mean_lower"] = home["mean"] > away["mean"]
+	away["is_deviation_lower"] = home["deviation"] > away["deviation"]
+	away["is_level_lower"] = home["level"] > away["level"]
+
+	
+	home["mean_difference"] = "-#{home["mean_difference"]}" if home["is_mean_lower"] and !away["is_mean_lower"] 
+	away["mean_difference"] = "-#{away["mean_difference"]}" if !home["is_mean_lower"] and away["is_mean_lower"] 
+	
+	home["deviation_difference"] = "-#{home["deviation_difference"]}" if home["is_deviation_lower"] and !away["is_deviation_lower"] 
+	away["deviation_difference"] = "-#{away["deviation_difference"]}" if !home["is_deviation_lower"] and away["is_deviation_lower"] 
+
+	home["level_difference"] = "-#{home["level_difference"]}" if home["is_level_lower"] and !away["is_level_lower"] 
+	away["level_difference"] = "-#{away["level_difference"]}" if !home["is_level_lower"] and away["is_level_lower"]
+	
+			
+	home["mean_difference"] = (home["mean_difference"].to_f <= 0) ? "" : "#{sprintf( "%.2f", home["mean_difference"].abs)}%"
+	away["mean_difference"] = (away["mean_difference"].to_f <= 0) ? "" : "#{sprintf( "%.2f", away["mean_difference"].abs)}%"
+ 
+	home["deviation_difference"] = (home["deviation_difference"].to_f <= 0) ? "" : "#{sprintf( "%.2f", home["deviation_difference"].abs)}%"
+	away["deviation_difference"] = (away["deviation_difference"].to_f <= 0) ? "" : "#{sprintf( "%.2f", away["deviation_difference"].abs)}%"
+ 
+	home["level_difference"] = (home["level_difference"].to_f <= 0) ? "" : "#{sprintf( "%.2f", home["level_difference"].abs)}%"
+	away["level_difference"] = (away["level_difference"].to_f <= 0) ? "" : "#{sprintf( "%.2f", away["level_difference"].abs)}%"
+	
+	
+	home["mean_image"] = scorecard_image_link("subir-clasificacion.png") if home["mean_difference"] > away["mean_difference"]
+	home["mean_image"] = scorecard_image_link("bajar-clasificacion.png") if home["mean_difference"] < away["mean_difference"]
+	home["mean_image"] = scorecard_image_link("mantener-clasificacion.png") if home["mean_difference"] == away["mean_difference"]
+	
+	away["mean_image"] = scorecard_image_link("subir-clasificacion.png") if away["mean_difference"] > home["mean_difference"]
+	away["mean_image"] = scorecard_image_link("bajar-clasificacion.png") if away["mean_difference"] < home["mean_difference"]
+	away["mean_image"] = scorecard_image_link("mantener-clasificacion.png") if away["mean_difference"] == home["mean_difference"]
+
+	home["deviation_image"] = scorecard_image_link("subir-clasificacion.png") if home["deviation_difference"] > away["deviation_difference"]
+	home["deviation_image"] = scorecard_image_link("bajar-clasificacion.png") if home["deviation_difference"] < away["deviation_difference"]
+	home["deviation_image"] = scorecard_image_link("mantener-clasificacion.png") if home["deviation_difference"] == away["deviation_difference"]
+	
+	away["deviation_image"] = scorecard_image_link("subir-clasificacion.png") if away["deviation_difference"] > home["deviation_difference"]
+	away["deviation_image"] = scorecard_image_link("bajar-clasificacion.png") if away["deviation_difference"] < home["deviation_difference"]
+	away["deviation_image"] = scorecard_image_link("mantener-clasificacion.png") if away["deviation_difference"] == home["deviation_difference"]
+
+	home["level_image"] = scorecard_image_link("subir-clasificacion.png") if home["level_difference"] > away["level_difference"]
+	home["level_image"] = scorecard_image_link("bajar-clasificacion.png") if home["level_difference"] < away["level_difference"]
+	home["level_image"] = scorecard_image_link("mantener-clasificacion.png") if home["level_difference"] == away["level_difference"]
+	
+	away["level_image"] = scorecard_image_link("subir-clasificacion.png") if away["level_difference"] > home["level_difference"]
+	away["level_image"] = scorecard_image_link("bajar-clasificacion.png") if away["level_difference"] < home["level_difference"]
+	away["level_image"] = scorecard_image_link("mantener-clasificacion.png") if away["level_difference"] == home["level_difference"]	
+	
+	
+	if show_deviation
+		home["true_skill_image"] = "#{home["mean_image"]} #{home["level_image"]} #{home["deviation_image"]}"
+		away["true_skill_image"] = "#{away["mean_image"]} #{away["level_image"]} #{away["deviation_image"]}"
+	else
+		home["true_skill_image"] = "#{home["mean_image"]} #{home["level_image"]}"
+		away["true_skill_image"] = "#{away["mean_image"]} #{away["level_image"]}"
+	end
+	
+	home["mean"] = (home["mean"].to_f <= 0) ? "" : "#{sprintf( "%.2f", home["mean"])}"
+	away["mean"] = (away["mean"].to_f <= 0) ? "" : "#{sprintf( "%.2f", away["mean"])}"
+	 
+	home["deviation"] = (home["deviation"].to_f <= 0) ? "" : "#{sprintf( "%.2f", home["deviation"])}"
+	away["deviation"] = (away["deviation"].to_f <= 0) ? "" : "#{sprintf( "%.2f", away["deviation"])}"  
+	 
+	home["level"] = (home["level"].to_f <= 0) ? "" : "#{sprintf( "%.0f", home["level"])}" 
+	away["level"] = (away["level"].to_f <= 0) ? "" : "#{sprintf( "%.0f", away["level"])}"
+	
+	
+	show_right_border = true
+	if !has_been_played
+		show_right_border = false unless is_manager
+	end	
+%>
+
+<%= render 'team_skill_total', :home => home, :away => away, :show_right_border => show_right_border, :show_deviation => show_deviation %>
+
+</table>
