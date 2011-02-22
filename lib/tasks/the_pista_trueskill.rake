@@ -11,6 +11,12 @@ task :the_pista_trueskill => :environment do |t|
   ActiveRecord::Base.establish_connection(RAILS_ENV.to_sym)
   the_group = Group.find(9)
   
+    
+  InitialMean = 25
+  InitialStandardDeviation = InitialMean / 3
+  Beta = InitialStandardDeviation / 2 
+  Tau = InitialStandardDeviation / 100
+  TrueSkill = InitialMean - 3 * InitialStandardDeviation
   
   # set all records in match
   all_user_matches = Match.find(:all, :conditions => ["archive = false and schedule_id in (select id from schedules where schedules.group_id = ?)", the_group])
@@ -38,7 +44,7 @@ task :the_pista_trueskill => :environment do |t|
     end  
     game_number += 1
         
-    if game_number != match.game_number
+    if game_number != match.game_number or game_number.nil?
       match.mean_skill = 0.0
       match.skill_deviation = 0.0
       match.game_number = game_number
@@ -51,24 +57,23 @@ task :the_pista_trueskill => :environment do |t|
   home_rating = []
   away_rating = []
   the_match_home = []  
-  game_number  = 1
   
   the_schedules_played = Schedule.find(:all, :conditions => ["group_id = ? and played = true and archive = false", the_group], :order => "starts_at")
   the_schedules_played.each do |schedule|
     
-    # schedule_number = Schedule.count(:conditions => ["group_id = ? and played = true and archive = false and starts_at < 
-    #                                       (select starts_at from schedules where group_id = ? and played = true and schedules.id = ?)", the_group, the_group, schedule])
+  # schedule = the_schedules_played.first
+  # schedule = Schedule.find(111)
+    puts "schedule: [ #{schedule.id} ]#{schedule.concept}"
+    
+           
+    # home_rating = []
+    # away_rating = []
+    # the_match_home = []
+    
+    home_score, away_score = 0, 0
+    play_activity = 0.0
     
     schedule_number = Schedule.schedule_number(schedule)    
-    # puts "_____________________________________"                                 
-    # puts "#{schedule_number}"   
-    # puts "_____________________________________"    
-    
-    # puts "#{schedule.concept}"
-        
-    the_match_home = []
-    home_score, away_score = 0, 0
-    
   
     the_matches = Match.find(:all, :select => "matches.*",
                       :joins => "left join schedules on schedules.id = matches.schedule_id",
@@ -76,20 +81,16 @@ task :the_pista_trueskill => :environment do |t|
                       :order => "matches.group_id DESC")
                     
     the_matches.each do |match|
-  
+
+      mean_skill = InitialMean
+      skill_deviation = InitialStandardDeviation
+
       is_second_team = !(match.group_id > 0)    
       home_score, away_score = match.group_score, match.invite_score
-  
-      mean_skill = MEAN_SKILL
-      skill_deviation = SKILL_DEVIATION
       game_number = 1
     
       # get users previous games skill levels
       if schedule_number > 1
-        # previous_user_match = Match.find(:first, :select => "matches.mean_skill, matches.skill_deviation, matches.game_number, matches.user_id, matches.id", 
-        #                                              :conditions => ["user_id = ? and type_id = 1 and game_number > 0 and game_number < ?", match.user_id, schedule_number],
-        #                                              :order => "game_number DESC")
-        
         previous_user_match = Match.get_previous_user_match(match, schedule_number) 
   
         unless previous_user_match.nil? 
@@ -100,10 +101,10 @@ task :the_pista_trueskill => :environment do |t|
           end
         end
       end
-        
-      play_activity = game_number / schedule_number
+
+      play_activity = game_number.to_f / schedule_number.to_f
   
-      # puts " #{match.user_id} - μ = #{mean_skill} σ = #{skill_deviation}, #{play_activity} = #{game_number} / #{schedule_number}"
+      puts " #{match.user_id} - μ = #{mean_skill} σ = #{skill_deviation}, play_activity: #{play_activity} = #{game_number} / #{schedule_number}"
   
       if is_second_team
         away_rating << Rating.new(mean_skill, skill_deviation, play_activity) 
@@ -121,25 +122,25 @@ task :the_pista_trueskill => :environment do |t|
     graph = FactorGraph.new([home_rating, away_rating], [the_first, the_second])
     graph.update_skills
   
-    index = -1
+    jornada = 0
+    index = 0
     graph.teams.each do |teams|
-      # puts "__________________________________________"
-     
+      puts "___________________________________#{jornada += 1}_______"     
       teams.each do |player|  
-        # puts "user:  #{the_match_home[index].user_id} #{player.mean} #{player.deviation}"
-     
+        puts "user:  #{the_match_home[index].user_id} μ = #{player.mean} σ = #{player.deviation}, index = #{index}"     
         the_match_home[index].mean_skill = player.mean
         the_match_home[index].skill_deviation = player.deviation
-        the_match_home[index].save
-        index +=1
-     
-      end
-     
+        the_match_home[index].save        
+        index +=1     
+      end     
     end
     
+    home_rating.clear
+    away_rating.clear
+    the_match_home.clear
+
   end
-  
-  
+    
   # # display all user results
   user_true_skill = []
   the_user = []
@@ -153,12 +154,17 @@ task :the_pista_trueskill => :environment do |t|
   
   puts "---------CURRENT PLAYER SKILL SET ----------"  
   user_true_skill.each do |match| 
-    puts "#{match.user_id}:  #{match.mean_skill} / #{match.skill_deviation} <> #{match.game_number}"
-    # puts "CSE = μ - k*σ"
-    CSE = match.mean_skill - (K_FACTOR * match.skill_deviation)
-    puts "SKILL:  #{K_FACTOR * match.skill_deviation}"
-    puts "#{sprintf( "%.0f", CSE * 10)}"
-    puts "_________________________________________"
+    InitialMean = match.mean_skill
+    InitialStandardDeviation = InitialMean / 3
+    Beta = InitialStandardDeviation / 2 
+    Tau = InitialStandardDeviation / 100
+    TrueSkill = InitialMean - 3 * InitialStandardDeviation
+
+    puts "#{match.user_id}:  #{InitialMean} #{InitialStandardDeviation} / #{match.skill_deviation}] #{Beta} LEVEL: #{TrueSkill}"
+    puts "#{match.user_id}:  #{InitialMean} #{match.skill_deviation} #{match.skill_deviation / 2 } LEVEL: #{InitialMean - 3 * match.skill_deviation}"
+    puts "-----------------------------------------------"  
   end
+
+  
   
 end

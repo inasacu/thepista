@@ -9,6 +9,11 @@
 	technical = {}
 	physical = {}
 		
+	is_manager ||= false
+	show_deviation ||= false
+	show_position ||= true
+	show_mean ||= true
+		
 	home["defense"] = 0.0
 	home["center"] = 0.0
 	home["attack"] = 0.0
@@ -67,11 +72,12 @@ if roster_count
 			
 			<%= content_tag :th, (is_squad and !has_been_played) ? "#{label_name(:name)}<br/>#{sort_link(label_name(:change_at), :status_at)}" :
 			 													   "#{label_name(:name)}", 
-																:title => label_name(:change_at_full), :class => "heading" %>		
-			<%= content_tag :th, label_name(:true_skill_mean), :class => "heading" %>
+																:title => label_name(:change_at_full), :class => "heading" %>
+
+			<%#= content_tag :th, show_mean ? label_name(:true_skill_mean) : "", :class => "heading" %>
+			<%#= content_tag :th, label_name(:true_skill_deviation), :class => "heading" %>
 			<%= content_tag :th, label_name(:true_skill_level), :class => "heading" %>
-			<%= content_tag :th, label_name(:true_skill_deviation), :class => "heading" %>
-			<%= content_tag :th, label_name(:position), :title => label_name(:position), :class => "heading", :align => "center" %>
+			<%= content_tag :th, label_name(:position), :title => label_name(:position), :class => "heading", :align => "center" if show_position %>
 			<%= content_tag :th, label_name(:technical), :title => label_name(:profile_technical), :class => "heading" %>
 			<%= content_tag :th, label_name(:physical), :title => label_name(:profile_physical), :class => "heading_#{show_right_border}" %>
 			<%= content_tag :th, has_been_played ? "" : is_squad ? sort_link(label_name(:group), :group_id) : 
@@ -163,22 +169,18 @@ the_roster.each do |match|
 		</span>
 	</td>
 
-	<td class="<%= second_team %>"><%= "#{sprintf( "%.1f", mean_skill)}" %></td>
-	<td class="<%= second_team %>"><%= "#{sprintf( "%.0f", skill_level)}" %></td>
-	<td class="<%= second_team %>"><%= "#{sprintf( "%.2f", skill_deviation)}" %></td>
-
-	<td class="<%= second_team %>"><%= match.position_name %></td>		
-	<td class="<%= second_team %>" ><%= rating_technical %></td>			
-	<td class="<%= second_team %>" ><%= rating_physical %></td>
+	<%#= content_tag(:td, "#{sprintf( "%.0f", mean_skill)}", :class => second_team) %>
+	<%#= content_tag(:td, "#{sprintf( "%.0f", skill_deviation)}", :class => second_team) %>
+	<%= content_tag(:td, "#{sprintf( "%.0f", skill_level)}", :class => second_team) %>
+	<%= content_tag(:td, match.position_name, :class => second_team) if show_position %>
+	<%= content_tag(:td, rating_technical, :class => second_team) %>
+	<%= content_tag(:td, rating_physical, :class => second_team) %>
 	
 	<% if is_squad %>
 	<% if !has_been_played  %>
 	<td class="<%= second_team %>" >
 
 		<% if has_been_played %>
-			<%#= ratings_for the_user, :show_user_rating => true, :dimension => :evaluation, :small => true if can_evaluate and was_convocado %>
-			<%#= ratings_for the_user, :static, :dimension => :evaluation, :small => true if was_convocado %>
-
 		<% else %>
 			<%= is_sub_manager ? link_to(match.team_name(@schedule), 
 								match_team_path(:id => match.id), :title => label_name(:change_group)) :  match.team_name(@schedule) %>
@@ -206,7 +208,8 @@ end
 %>
         
 <% if is_squad %>
-<%= render "schedules/team_skill", :home => home, :away => away, :is_manager => is_manager, :has_been_played => has_been_played %>
+<%= render "schedules/team_skill", :home => home, :away => away, :is_manager => is_manager, :has_been_played => has_been_played,
+ 								:show_mean => show_mean, :show_position => show_position, :show_deviation => show_deviation %>
 <% end %>
 
 </table>

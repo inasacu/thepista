@@ -1,7 +1,4 @@
-<% 
-	is_manager ||= false
-	show_deviation ||= true
-	
+<% 	
 	home["total"] = home["technical"].to_f + home["physical"].to_f
 	away["total"] = away["technical"].to_f + away["physical"].to_f
 
@@ -181,8 +178,11 @@
 		home["true_skill_image"] = "#{home["mean_image"]} #{home["level_image"]} #{home["deviation_image"]}"
 		away["true_skill_image"] = "#{away["mean_image"]} #{away["level_image"]} #{away["deviation_image"]}"
 	else
-		home["true_skill_image"] = "#{home["mean_image"]} #{home["level_image"]}"
-		away["true_skill_image"] = "#{away["mean_image"]} #{away["level_image"]}"
+		# home["true_skill_image"] = "#{home["mean_image"]} #{home["level_image"]}"
+		# away["true_skill_image"] = "#{away["mean_image"]} #{away["level_image"]}"
+		
+		home["true_skill_image"] = home["level_image"]
+		away["true_skill_image"] = away["level_image"]
 	end
 	
 	home["mean"] = (home["mean"].to_f <= 0) ? "" : "#{sprintf( "%.2f", home["mean"])}"
@@ -201,6 +201,7 @@
 	end	
 %>
 
-<%= render 'team_skill_total', :home => home, :away => away, :show_right_border => show_right_border, :show_deviation => show_deviation %>
+<%= render 'schedules/team_skill_total', :home => home, :away => away, :show_right_border => show_right_border, 
+									:show_deviation => show_deviation, :show_position => show_position, :show_mean => show_mean %>
 
 </table>
