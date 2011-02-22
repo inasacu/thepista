@@ -473,7 +473,8 @@ es:
      games_lost: PP   
      games_lost_full: Partidos Perdidos   
      games_played: PJ   
-     games_played_full: Partidos Jugados  
+     games_played_full: Partidos Jugados 
+     games_played_full_2:  "Partidos<br/>Jugados" 
      games_started: PT
      games_started_full:  Partidos Titular 
      games_ranking: R   

@@ -76,6 +76,7 @@ if roster_count
 
 			<%#= content_tag :th, show_mean ? label_name(:true_skill_mean) : "", :class => "heading" %>
 			<%#= content_tag :th, label_name(:true_skill_deviation), :class => "heading" %>
+			<%= content_tag :th, label_name(:games_played_full_2), :class => "heading" %>
 			<%= content_tag :th, label_name(:true_skill_level), :class => "heading" %>
 			<%= content_tag :th, label_name(:position), :title => label_name(:position), :class => "heading", :align => "center" if show_position %>
 			<%= content_tag :th, label_name(:technical), :title => label_name(:profile_technical), :class => "heading" %>
@@ -122,11 +123,13 @@ the_roster.each do |match|
 	rating_physical = the_user_match.rating_average_physical.to_f
 
     mean_skill = MEAN_SKILL
-    skill_deviation = SKILL_DEVIATION
+    skill_deviation = MEAN_SKILL 
+	game_number = 1
 
 	unless previous_user_match.nil?
 		mean_skill = previous_user_match.mean_skill 
 		skill_deviation = previous_user_match.skill_deviation
+		game_number = previous_user_match.game_number
 	end
 	skill_level = (mean_skill - (K_FACTOR * skill_deviation)) * 10
 	
@@ -171,6 +174,7 @@ the_roster.each do |match|
 
 	<%#= content_tag(:td, "#{sprintf( "%.0f", mean_skill)}", :class => second_team) %>
 	<%#= content_tag(:td, "#{sprintf( "%.0f", skill_deviation)}", :class => second_team) %>
+	<%= content_tag(:td, game_number, :class => second_team) %>
 	<%= content_tag(:td, "#{sprintf( "%.0f", skill_level)}", :class => second_team) %>
 	<%= content_tag(:td, match.position_name, :class => second_team) if show_position %>
 	<%= content_tag(:td, rating_technical, :class => second_team) %>

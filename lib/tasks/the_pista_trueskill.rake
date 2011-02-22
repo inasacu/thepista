@@ -1,5 +1,7 @@
 # to run:    sudo rake the_pista_trueskill
 
+#  heroku rake the_pista_trueskill --app thepista
+
 require 'rubygems'
 require 'saulabs/trueskill'
 
@@ -25,7 +27,7 @@ task :the_pista_trueskill => :environment do |t|
     match.skill_deviation = 0.0
     match.game_number = 0
     match.save!
-    # puts "reset match_id:  #{match.id}"
+    puts "reset match_id:  #{match.id}"
   end
   
   # # set all matches where user has played to corresponding correct game number played per player
@@ -49,7 +51,7 @@ task :the_pista_trueskill => :environment do |t|
       match.skill_deviation = 0.0
       match.game_number = game_number
       match.save!
-      # puts "reset user:  #{match.user_id} - #{game_number}"
+      puts "reset user:  #{match.user_id} - #{game_number}"
     end
     
   end
@@ -60,15 +62,8 @@ task :the_pista_trueskill => :environment do |t|
   
   the_schedules_played = Schedule.find(:all, :conditions => ["group_id = ? and played = true and archive = false", the_group], :order => "starts_at")
   the_schedules_played.each do |schedule|
-    
-  # schedule = the_schedules_played.first
-  # schedule = Schedule.find(111)
+
     puts "schedule: [ #{schedule.id} ]#{schedule.concept}"
-    
-           
-    # home_rating = []
-    # away_rating = []
-    # the_match_home = []
     
     home_score, away_score = 0, 0
     play_activity = 0.0
