@@ -61,11 +61,11 @@ CUPS_PER_PAGE = 8
 ESCUADRAS_PER_PAGE = 48
 ESCUADRAS_LIST_PER_PAGE = 32
 
-
 GAMES_PLAYED = 12
 
-MEAN_SKILL = 25
-SKILL_DEVIATION = 8.3
+# true skill values
+InitialMean = 25.0
+# InitialMean = 1200.0
 K_FACTOR = 3
 
 #variables for login

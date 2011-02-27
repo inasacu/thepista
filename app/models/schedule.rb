@@ -235,7 +235,7 @@ class Schedule < ActiveRecord::Base
   def self.schedule_number(schedule)
     schedule_number = count(:conditions => ["group_id = ? and played = true and archive = false and starts_at < 
                             (select starts_at from schedules where group_id = ? and schedules.id = ?)", schedule.group, schedule.group, schedule])
-    schedule_number = 1 if schedule_number == 0
+    schedule_number += 1 
     return schedule_number
   end
     

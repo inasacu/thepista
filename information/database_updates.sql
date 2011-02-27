@@ -1,4 +1,30 @@
 
+select schedule_id, user_id, initial_mean-(3*initial_deviation) as true_skill, initial_mean, initial_deviation, final_mean, final_deviation, game_number, group_id, invite_id, group_score, invite_score
+from matches
+where schedule_id in (select id from schedules where played = true and group_id = 9)
+and type_id = 1
+and user_id = 3007
+order by schedule_id, game_number, group_id desc, user_id
+
+
+select name, schedule_id, user_id, group_id, invite_id, group_score, invite_score, mean_skill, skill_deviation, game_number
+from matches
+where mean_skill > 0
+order by user_id, schedule_id
+
+
+
+
+select matches.id, matches.schedule_id, matches.user_id, matches.group_id, matches.invite_id, matches.group_score, matches.invite_score, 
+       matches.initial_mean, matches.initial_deviation, matches.game_number
+from matches 
+left join schedules on schedules.id = matches.schedule_id
+where schedules.group_id = 9
+and schedules.played = true
+and matches.type_id = 1
+and matches.user_id = 2001
+order by schedules.starts_at , group_id desc, user_id
+
 
 
 # add self to manage any team
@@ -37,7 +63,7 @@ and age(matches.status_at, matches.created_at) > '00:00:00'
 
 select matches.id, matches.schedule_id, matches.user_id, matches.group_id, matches.invite_id, matches.group_score, matches.invite_score, 
        matches.rating_average_technical, rating_average_physical,
-       matches.mean_skill, matches.skill_deviation, matches.game_number, matches.type_id, matches.archive
+       matches.initial_mean, matches.initial_deviation, matches.game_number, matches.type_id, matches.archive
 from matches 
 left join schedules on schedules.id = matches.schedule_id
 where schedules.group_id = 9
@@ -58,7 +84,7 @@ order by matches.user_id, schedules.starts_at
 
 select matches.id, matches.schedule_id, matches.user_id, matches.group_id, matches.invite_id, matches.group_score, matches.invite_score, 
        matches.rating_average_technical, rating_average_physical,
-       matches.mean_skill, matches.skill_deviation, matches.game_number, matches.type_id, matches.archive
+       matches.initial_mean, matches.initial_deviation, matches.game_number, matches.type_id, matches.archive
 from matches 
 left join schedules on schedules.id = matches.schedule_id
 where schedules.group_id = 9
@@ -66,14 +92,3 @@ and schedules.played = true
 and matches.type_id = 1
 order by schedules.starts_at , group_id desc, user_id
 
-
-
-select matches.id, matches.schedule_id, matches.user_id, matches.group_id, matches.invite_id, matches.group_score, matches.invite_score, 
-       matches.mean_skill, matches.skill_deviation, matches.game_number
-from matches 
-left join schedules on schedules.id = matches.schedule_id
-where schedules.group_id = 9
-and schedules.played = true
-and matches.type_id = 1
-and matches.user_id = 2001
-order by schedules.starts_at , group_id desc, user_id

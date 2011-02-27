@@ -951,7 +951,7 @@ es:
      phone_description: (Por si te tiene que llamar tu equipo. Hay opción de poner este numero en privado...)   
      photo: Foto 
      photo_description: "(Opción para subir una imagen...{formato: jpeg, gif, png, jpg}{tamaño: 5mb})"  
-     physical_level_description: "(Del 1 al 5, pon el nivel fisico que crees que tienes comparado con los de tu equipo...)"  
+     physical_level_description: "(Del 1 al 5, pon el nivel físico que crees que tienes comparado con los de tu equipo...)"  
      player_limit:  Limite de jugadores
      player_limit_description:  Limite de jugadores que puede tener el equipo. 
      player_with: "Jugadores con"
@@ -1008,7 +1008,7 @@ es:
      profile: Perfil    
      profile_completeness:  perfil completo. 
      profile_completion:  Rellena tu perfil.   
-     profile_physical: Nivel fisico 
+     profile_physical: Nivel físico 
      profile_physical_average:  Fisico Medio  
      profile_position: Posición   
      profile_private: Ocultar el perfil   
@@ -1017,7 +1017,7 @@ es:
      profile_set_full:  Actualizar los perfiles de la jornada.
      profile_user_set:  Obtener perfil del jugador
      profile_user_set_full:  Obtener los perfiles del perfil del jugador
-     profile_technical: Nivel tecnico 
+     profile_technical: Nivel técnico 
      profile_technical_average:  Tecnico Medio
      protect_your_privacy: "Protegemos tu privacidad. HayPista en ningún momento le ha proporcionado tu dirección de correo electrónico a ningún otro usuario de HayPista sin tu permiso. © 2007-2010, HayPista"  
      provider_not_supported: "provider is not supported, try another email address."   
@@ -1272,7 +1272,7 @@ es:
      table_type: Tipo de tabla  
      teammate_notification:  Peticiones
      teammate_notification_cluetip:  "Como manager de un equipo, puedes recibir las peticiones a tu equipo en tu cuenta de correo."
-     technical_level_description: "(Del 1 al 5, pon el nivel tecnico que crees que tienes comparado con los de tu equipo...)"  
+     technical_level_description: "(Del 1 al 5, pon el nivel físico que crees que tienes comparado con los de tu equipo...)"  
      terms: terminos   
      terms_message: Please accept the terms to proceed   
      test_beta: "Si tienes interes in formar del equipo para probar la herramienta, pasanos tu cuenta de correo."   
@@ -1846,10 +1846,12 @@ es:
      true_skill_deviation_difference:  "Diferencia<br/>Difusión"
      true_skill_deviation_total:  "Total<br/>Difusión"
      true_skill_level:  Nivel
-     true_skill_level_difference:  "Diferencia<br/>Nivel"
-     true_skill_level_total:  "Total<br/>Nivel"
+     true_skill_level_difference:  "Diferencia<br/>Puntos"
+     true_skill_level_total:  "Total<br/>Puntos"
      true_skill_mean:  Puntos
      true_skill_mean_difference:  "Diferencia<br/>Puntos" 
+     true_skill_mean_initial:  "Nivel Inicial"
+     true_skill_mean_final:  "Nivel Final"
      true_skill_mean_total:  "Total<br/>Puntos"     
      types_index:  Tipos
      types_maximo_option:  Requiere responsable de administrador para ver mas opciones.

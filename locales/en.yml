@@ -1845,6 +1845,8 @@ en:
      true_skill_deviation_total:  "Total<br/>Level"
      true_skill_mean:  Points
      true_skill_mean_difference:  "Difference<br/>Points"
+     true_skill_mean_initial:  "Initial Level"
+     true_skill_mean_final:  "Final Level"
      true_skill_mean_total:  "Total<br/>Points"      
      types_index:  Types
      types_maximo_option:  Admin Access Only.

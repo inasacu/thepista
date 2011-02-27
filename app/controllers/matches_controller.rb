@@ -66,14 +66,19 @@ class MatchesController < ApplicationController
 
   def update
     @match = Match.find(params[:id])
-    unless current_user.is_manager_of?(@match.schedule.group)
+    the_group = @match.schedule.group
+    
+    unless current_user.is_manager_of?(the_group)
       flash[:warning] = I18n.t(:unauthorized)
       redirect_back_or_default('/index')
       return
     end
+    
     if @match.update_attributes(params[:match])
       Match.save_matches(@match, params[:match][:match_attributes]) if params[:match][:match_attributes]
       Match.update_match_details(@match, current_user)
+      Match.send_later(:set_default_skill, the_group)
+      Match.send_later(:set_true_skill, the_group)
 
       flash[:success] = I18n.t(:successful_update)
       redirect_to :controller => 'schedules', :action => 'show', :id => @match.schedule
@@ -90,7 +95,6 @@ class MatchesController < ApplicationController
     end
 
     @type = Type.find(params[:type])
-
     played = (@type.id == 1 and !@match.group_score.nil? and !@match.invite_score.nil?)
 
     if @match.update_attributes(:type_id => @type.id, :played => played, :user_x_two => @user_x_two, :status_at => Time.zone.now)
@@ -100,21 +104,7 @@ class MatchesController < ApplicationController
       # set fee type_id to same as match type_id
       the_fee = Fee.find(:all, :conditions => ["debit_type = 'User' and debit_id = ? and item_type = 'Schedule' and item_id = ?", @match.user_id, @match.schedule_id])
       the_fee.each {|fee| fee.type_id = @type.id; fee.save}
-      
-      # flash[:success] = I18n.t(:is_available_user) 
     end 
-
-    # select case @type.id
-    # when 1
-    #   redirect_to :controller => 'schedules', :action => 'team_roster', :id => @match.schedule_id
-    #   return
-    # when 2
-    #   redirect_to :controller => 'schedules', :action => 'team_last_minute', :id => @match.schedule_id
-    #   return
-    # when 3, 4
-    #   redirect_to :controller => 'schedules', :action => 'team_no_show', :id => @match.schedule_id 
-    #   return 
-    # end
     redirect_back_or_default('index')
   end
 

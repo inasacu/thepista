@@ -1,3 +1,8 @@
+require 'rubygems'
+require 'saulabs/trueskill'
+
+include Saulabs::TrueSkill
+
 class Match < ActiveRecord::Base
           
   # allows user to rate a model 
@@ -56,14 +61,13 @@ class Match < ActiveRecord::Base
   end
   
   def self.get_previous_user_match(match, schedule_number) 
-    find(:first, :select => "matches.mean_skill, matches.skill_deviation, matches.game_number, matches.user_id, matches.id", 
+    find(:first, :select => "matches.*", 
           :conditions => ["user_id = ? and type_id = 1 and game_number > 0 and game_number < ?", match.user_id, schedule_number],
           :order => "game_number DESC")
   end
 		
   def self.get_user_group_skill(user, group)
-    find(:first, :select => "matches.id, matches.schedule_id, matches.user_id, matches.group_id, matches.invite_id, matches.group_score, matches.invite_score, 
-                             matches.mean_skill, matches.skill_deviation, matches.game_number",
+    find(:first, :select => "matches.*",
          :joins => "left join schedules on schedules.id = matches.schedule_id",
          :conditions => ["schedules.group_id = ? and schedules.played = true and matches.user_id = ? and matches.archive = false", group, user],
          :order => "matches.game_number DESC")
@@ -232,6 +236,144 @@ class Match < ActiveRecord::Base
                    :user_id => user.id, :available => user.available, 
                    :type_id => type_id, :position_id => position_id, :technical => technical, :physical => physical,
                    :played => schedule.played) if self.schedule_user_exists?(schedule, user)
+    end
+  end
+  
+  def self.set_default_skill(group)
+    the_initial_standard_deviation = (InitialMean / K_FACTOR).to_f
+    
+    # set all records in match
+    all_user_matches = Match.find(:all, :conditions => ["archive = false and schedule_id in (select id from schedules where schedules.group_id = ?)", group])
+    all_user_matches.each do |match|
+      match.initial_mean = 0.0
+      match.initial_deviation = 0.0
+      match.final_mean = 0.0
+      match.final_deviation = 0.0
+      match.game_number = 0
+      match.save!
+    end
+
+    # set all matches where user has played to corresponding correct game number played per player
+    all_user_played_matches = Match.find(:all, :select => "matches.*",
+    :joins => "left join schedules on schedules.id = matches.schedule_id",
+    :conditions => ["schedules.group_id = ? and schedules.played = true and matches.type_id = 1 and schedules.archive = false and matches.archive = false", group],
+    :order => "matches.user_id, schedules.starts_at")
+    user_id = 0
+    game_number = 0
+
+    all_user_played_matches.each do |match|
+
+      unless user_id == match.user_id
+        user_id = match.user_id
+        game_number = 0
+      end  
+      game_number += 1
+
+      if game_number != match.game_number or game_number.nil?
+        if game_number == 1
+          match.initial_mean = InitialMean
+          match.initial_deviation = the_initial_standard_deviation
+          match.game_number = game_number
+          match.save!
+        else
+          match.initial_mean = 0
+          match.initial_deviation = 0
+          match.game_number = game_number
+          match.save!
+        end
+      end
+
+    end
+  end
+  
+  def self.set_true_skill(group)     
+    the_initial_standard_deviation = (InitialMean / K_FACTOR).to_f
+       
+    home_rating = []
+    away_rating = []
+    the_match_home = []  
+
+    the_schedules_played = Schedule.find(:all, :conditions => ["group_id = ? and played = true and archive = false", group], :order => "starts_at")
+    the_schedules_played.each do |schedule|
+
+      home_score, away_score = 0, 0
+      play_activity = 0.0
+
+      schedule_number = Schedule.schedule_number(schedule)   
+
+      the_matches = Match.find(:all, :select => "matches.*",
+      :joins => "left join schedules on schedules.id = matches.schedule_id",
+      :conditions => ["schedules.id = ? and schedules.played = true and matches.type_id = 1 and schedules.archive = false and matches.archive = false", schedule],
+      :order => "matches.group_id DESC")
+
+      the_matches.each do |match|
+
+        previous_final_mean = InitialMean
+        previous_final_deviation = the_initial_standard_deviation
+
+        mean_skill = InitialMean
+        skill_deviation = the_initial_standard_deviation
+
+        is_second_team = !(match.group_id > 0)    
+        home_score, away_score = match.group_score, match.invite_score
+        game_number = 1
+
+        # get users previous games skill levels
+        if schedule_number > 1
+          previous_user_match = Match.get_previous_user_match(match, schedule_number) 
+          unless previous_user_match.nil?
+
+            if  previous_user_match.game_number > 0 and previous_user_match.final_deviation > 0.0                    
+              mean_skill = previous_user_match.final_mean 
+              skill_deviation = previous_user_match.final_deviation            
+            end          
+            game_number  = previous_user_match.game_number
+          end        
+        end
+
+        play_activity = game_number.to_f / schedule_number.to_f     
+
+        if is_second_team
+          away_rating << Rating.new(mean_skill, skill_deviation, play_activity) 
+        else
+          home_rating << Rating.new(mean_skill, skill_deviation, play_activity)
+        end        
+        the_match_home << match      
+
+      end
+
+      the_first, the_second = 1, 2  if (home_score.to_i > away_score.to_i)
+      the_first, the_second = 1, 1 if (home_score.to_i == away_score.to_i)
+      the_first, the_second = 2, 1 if (home_score.to_i < away_score.to_i)
+
+      graph = FactorGraph.new([home_rating, away_rating], [the_first, the_second])
+      graph.update_skills
+
+      jornada = 0
+      index = 0
+      graph.teams.each do |teams|
+        
+        teams.each do |player| 
+          the_match_home[index].final_mean = player.mean
+          the_match_home[index].final_deviation = player.deviation
+          the_match_home[index].save 
+
+          if the_match_home[index].game_number > 1       
+            the_previous_user_match = Match.get_previous_user_match(the_match_home[index], the_match_home[index].game_number) 
+            unless the_previous_user_match.nil?    
+              the_match_home[index].initial_mean = the_previous_user_match.final_mean 
+              the_match_home[index].initial_deviation = the_previous_user_match.final_deviation 
+              the_match_home[index].save
+            end
+          end
+
+          index +=1     
+        end     
+      end
+
+      home_rating.clear
+      away_rating.clear
+      the_match_home.clear
     end
   end
   

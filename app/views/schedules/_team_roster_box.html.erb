@@ -51,6 +51,7 @@
 	first_schedule = @schedule.group.schedules.first
 	has_been_played = @schedule.played? 	
 	is_sub_manager = !has_been_played
+	has_been_played_squad = has_been_played and is_squad
 	
 	show_right_border = true
 	if is_squad
@@ -74,10 +75,9 @@ if roster_count
 			 													   "#{label_name(:name)}", 
 																:title => label_name(:change_at_full), :class => "heading" %>
 
-			<%#= content_tag :th, show_mean ? label_name(:true_skill_mean) : "", :class => "heading" %>
-			<%#= content_tag :th, label_name(:true_skill_deviation), :class => "heading" %>
 			<%= content_tag :th, label_name(:games_played_full_2), :class => "heading" %>
-			<%= content_tag :th, label_name(:true_skill_level), :class => "heading" %>
+			<%= content_tag :th, label_name(:true_skill_mean_initial), :class => "heading" %>
+			<%= content_tag :th, label_name(:true_skill_mean_final), :class => "heading" if has_been_played_squad %>
 			<%= content_tag :th, label_name(:position), :title => label_name(:position), :class => "heading", :align => "center" if show_position %>
 			<%= content_tag :th, label_name(:technical), :title => label_name(:profile_technical), :class => "heading" %>
 			<%= content_tag :th, label_name(:physical), :title => label_name(:profile_physical), :class => "heading_#{show_right_border}" %>
@@ -114,24 +114,32 @@ the_roster.each do |match|
 	last_roster = "second_team_last_roster" if is_second_team
 
 	coeficient_played = 100 *(match.scorecard_played.to_f / group_games_played)
-
-	# the_user_skill = Match.get_user_group_skill(match.user, group)
 	previous_user_match = Match.get_previous_user_match(match, schedule_number)
 	the_user_match = Match.get_rating_average(match, group)
 
 	rating_technical = the_user_match.rating_average_technical.to_f
 	rating_physical = the_user_match.rating_average_physical.to_f
 
-    mean_skill = MEAN_SKILL
-    skill_deviation = MEAN_SKILL 
+    initial_mean = InitialMean
+    initial_deviation = (InitialMean / K_FACTOR).to_f 
+	final_mean = 0.0
+	final_deviation = 0.0
 	game_number = 1
 
 	unless previous_user_match.nil?
-		mean_skill = previous_user_match.mean_skill 
-		skill_deviation = previous_user_match.skill_deviation
+		initial_mean = previous_user_match.initial_mean 
+		initial_deviation = previous_user_match.initial_deviation
 		game_number = previous_user_match.game_number
 	end
-	skill_level = (mean_skill - (K_FACTOR * skill_deviation)) * 10
+	
+	final_mean = match.final_mean 
+	final_deviation = match.final_deviation
+	
+	initial_skill_level = initial_mean - K_FACTOR * initial_deviation
+	initial_skill_level = (initial_skill_level < 0.0) ? 0.0 : initial_skill_level
+	
+	final_skill_level = (has_been_played_squad) ? ((final_mean - (K_FACTOR * final_deviation)) * 10) : 0.0
+	final_skill_level = (final_skill_level < 0.0) ? 0.0 : final_skill_level
 	
 	is_subscriber = the_user.is_subscriber_of?(group)	
 	the_label =  label_name("subscription_#{is_subscriber}")
@@ -149,10 +157,10 @@ the_roster.each do |match|
 	(match.group_id > 0) ? home["physical"] += rating_physical : away["physical"] += rating_physical
 	(match.group_id > 0) ? home["total"] += 1 : away["total"] += 1
 	
-	(match.group_id > 0) ? home["mean"] += mean_skill : away["mean"] += mean_skill
-	(match.group_id > 0) ? home["deviation"] += skill_deviation : away["deviation"] += skill_deviation
-	(match.group_id > 0) ? home["level"] += skill_level : away["level"] += skill_level
-	
+	(match.group_id > 0) ? home["mean"] += initial_mean : away["mean"] += initial_mean
+	(match.group_id > 0) ? home["deviation"] += initial_deviation : away["deviation"] += initial_deviation
+	(match.group_id > 0) ? home["level"] += initial_skill_level : away["level"] += initial_skill_level
+		
 	@roster = match	
 	can_evaluate = current_user != the_user and the_roster.include?(current_user)
 	was_convocado =  match.type_id == 1	
@@ -172,10 +180,9 @@ the_roster.each do |match|
 		</span>
 	</td>
 
-	<%#= content_tag(:td, "#{sprintf( "%.0f", mean_skill)}", :class => second_team) %>
-	<%#= content_tag(:td, "#{sprintf( "%.0f", skill_deviation)}", :class => second_team) %>
 	<%= content_tag(:td, game_number, :class => second_team) %>
-	<%= content_tag(:td, "#{sprintf( "%.0f", skill_level)}", :class => second_team) %>
+	<%= content_tag(:td, "#{sprintf( "%.0f", initial_mean)}", :class => second_team) %>
+	<%= content_tag(:td, "#{sprintf( "%.0f", final_mean)}", :class => second_team) if has_been_played %>
 	<%= content_tag(:td, match.position_name, :class => second_team) if show_position %>
 	<%= content_tag(:td, rating_technical, :class => second_team) %>
 	<%= content_tag(:td, rating_physical, :class => second_team) %>
@@ -193,7 +200,7 @@ the_roster.each do |match|
 	</td>
 <% 	
 	end
-	if has_been_played and is_squad
+	if has_been_played_squad
 %>	
 		<td class="<%= second_team %>" ><%= group_score_link @schedule if was_convocado %></td>
 <%		
