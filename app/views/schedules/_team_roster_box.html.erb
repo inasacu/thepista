@@ -69,12 +69,9 @@ if roster_count
 	  
 		<tr>
 			<%= content_tag :th, "&nbsp;", :class => "first" %>
-			<%= content_tag :th, "&nbsp;", :class => "heading" %>
-			
+			<%= content_tag :th, "&nbsp;", :class => "heading" %>			
 			<%= content_tag :th, (is_squad and !has_been_played) ? "#{label_name(:name)}<br/>#{sort_link(label_name(:change_at), :status_at)}" :
-			 													   "#{label_name(:name)}", 
-																:title => label_name(:change_at_full), :class => "heading" %>
-
+			 													   "#{label_name(:name)}", :title => label_name(:change_at_full), :class => "heading" %>
 			<%= content_tag :th, label_name(:games_played_full_2), :class => "heading" %>
 			<%= content_tag :th, label_name(:true_skill_mean_initial), :class => "heading" %>
 			<%= content_tag :th, label_name(:true_skill_mean_final), :class => "heading" if has_been_played_squad %>
@@ -114,7 +111,7 @@ the_roster.each do |match|
 	last_roster = "second_team_last_roster" if is_second_team
 
 	coeficient_played = 100 *(match.scorecard_played.to_f / group_games_played)
-	previous_user_match = Match.get_previous_user_match(match, schedule_number)
+	previous_user_match = Match.get_previous_user_match(match, schedule_number, group)
 	the_user_match = Match.get_rating_average(match, group)
 
 	rating_technical = the_user_match.rating_average_technical.to_f
@@ -131,15 +128,15 @@ the_roster.each do |match|
 		initial_deviation = previous_user_match.initial_deviation
 		game_number = previous_user_match.game_number
 	end
-	
+
 	final_mean = match.final_mean 
 	final_deviation = match.final_deviation
 	
-	initial_skill_level = initial_mean - K_FACTOR * initial_deviation
-	initial_skill_level = (initial_skill_level < 0.0) ? 0.0 : initial_skill_level
+	# initial_skill_level = initial_mean - K_FACTOR * initial_deviation
+	# initial_skill_level = (initial_skill_level < 0.0) ? 0.0 : initial_skill_level
 	
-	final_skill_level = (has_been_played_squad) ? ((final_mean - (K_FACTOR * final_deviation)) * 10) : 0.0
-	final_skill_level = (final_skill_level < 0.0) ? 0.0 : final_skill_level
+	# final_skill_level = (has_been_played_squad) ? ((final_mean - (K_FACTOR * final_deviation)) * 10) : 0.0
+	# final_skill_level = (final_skill_level < 0.0) ? 0.0 : final_skill_level
 	
 	is_subscriber = the_user.is_subscriber_of?(group)	
 	the_label =  label_name("subscription_#{is_subscriber}")
@@ -159,7 +156,7 @@ the_roster.each do |match|
 	
 	(match.group_id > 0) ? home["mean"] += initial_mean : away["mean"] += initial_mean
 	(match.group_id > 0) ? home["deviation"] += initial_deviation : away["deviation"] += initial_deviation
-	(match.group_id > 0) ? home["level"] += initial_skill_level : away["level"] += initial_skill_level
+	# (match.group_id > 0) ? home["level"] += initial_skill_level : away["level"] += initial_skill_level
 		
 	@roster = match	
 	can_evaluate = current_user != the_user and the_roster.include?(current_user)

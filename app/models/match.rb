@@ -60,9 +60,9 @@ class Match < ActiveRecord::Base
           :conditions => ["matches.user_id = ? and schedules.group_id = ?", match.user_id, group.id])
   end
   
-  def self.get_previous_user_match(match, schedule_number) 
+  def self.get_previous_user_match(match, schedule_number, group) 
     find(:first, :select => "matches.*", 
-          :conditions => ["user_id = ? and type_id = 1 and game_number > 0 and game_number < ?", match.user_id, schedule_number],
+          :conditions => ["user_id = ? and type_id = 1 and game_number > 0 and game_number < ? and archive = false and schedule_id in (select id from schedules where schedules.group_id = ?)", match.user_id, schedule_number, group],
           :order => "game_number DESC")
   end
 		
@@ -320,7 +320,7 @@ class Match < ActiveRecord::Base
 
         # get users previous games skill levels
         if schedule_number > 1
-          previous_user_match = Match.get_previous_user_match(match, schedule_number) 
+          previous_user_match = Match.get_previous_user_match(match, schedule_number, group) 
           unless previous_user_match.nil?
 
             if  previous_user_match.game_number > 0 and previous_user_match.final_deviation > 0.0                    
@@ -359,7 +359,7 @@ class Match < ActiveRecord::Base
           the_match_home[index].save 
 
           if the_match_home[index].game_number > 1       
-            the_previous_user_match = Match.get_previous_user_match(the_match_home[index], the_match_home[index].game_number) 
+            the_previous_user_match = Match.get_previous_user_match(the_match_home[index], the_match_home[index].game_number, group) 
             unless the_previous_user_match.nil?    
               the_match_home[index].initial_mean = the_previous_user_match.final_mean 
               the_match_home[index].initial_deviation = the_previous_user_match.final_deviation 

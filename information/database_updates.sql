@@ -1,10 +1,10 @@
 
-select schedule_id, user_id, initial_mean-(3*initial_deviation) as true_skill, initial_mean, initial_deviation, final_mean, final_deviation, game_number, group_id, invite_id, group_score, invite_score
+select game_number, schedule_id, name, initial_mean, initial_deviation, final_mean, final_deviation,  group_id, invite_id, group_score, invite_score
 from matches
 where schedule_id in (select id from schedules where played = true and group_id = 9)
 and type_id = 1
-and user_id = 3007
-order by schedule_id, game_number, group_id desc, user_id
+and user_id = 2001
+order by game_number, group_id desc, user_id
 
 
 select name, schedule_id, user_id, group_id, invite_id, group_score, invite_score, mean_skill, skill_deviation, game_number
