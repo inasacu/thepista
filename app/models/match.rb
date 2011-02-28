@@ -242,16 +242,10 @@ class Match < ActiveRecord::Base
   def self.set_default_skill(group)
     the_initial_standard_deviation = (InitialMean / K_FACTOR).to_f
     
-    # set all records in match
-    all_user_matches = Match.find(:all, :conditions => ["archive = false and schedule_id in (select id from schedules where schedules.group_id = ?)", group])
-    all_user_matches.each do |match|
-      match.initial_mean = 0.0
-      match.initial_deviation = 0.0
-      match.final_mean = 0.0
-      match.final_deviation = 0.0
-      match.game_number = 0
-      match.save!
-    end
+    sql = %(UPDATE matches set initial_mean = 0.0, initial_deviation = 0.0, final_mean = 0.0, final_deviation = 0.0, game_number = 0
+             where archive = false and schedule_id in (select id from schedules where schedules.played = true and schedules.group_id = #{group.id}))
+    ActiveRecord::Base.connection.execute(sql)
+    
 
     # set all matches where user has played to corresponding correct game number played per player
     all_user_played_matches = Match.find(:all, :select => "matches.*",
