@@ -72,12 +72,12 @@ if roster_count
 			<%= content_tag :th, "&nbsp;", :class => "heading" %>			
 			<%= content_tag :th, (is_squad and !has_been_played) ? "#{label_name(:name)}<br/>#{sort_link(label_name(:change_at), :status_at)}" :
 			 													   "#{label_name(:name)}", :title => label_name(:change_at_full), :class => "heading" %>
-			<%= content_tag :th, label_name(:games_played_full_2), :class => "heading" %>
-			<%= content_tag :th, label_name(:true_skill_mean_initial), :class => "heading" %>
-			<%= content_tag :th, label_name(:true_skill_mean_final), :class => "heading" if has_been_played_squad %>
 			<%= content_tag :th, label_name(:position), :title => label_name(:position), :class => "heading", :align => "center" if show_position %>
 			<%= content_tag :th, label_name(:technical), :title => label_name(:profile_technical), :class => "heading" %>
 			<%= content_tag :th, label_name(:physical), :title => label_name(:profile_physical), :class => "heading_#{show_right_border}" %>
+			<%= content_tag :th, label_name(:games_played_full_2), :class => "heading" %>
+			<%= content_tag :th, label_name(:true_skill_mean_initial), :class => "heading" %>
+			<%= content_tag :th, label_name(:true_skill_mean_final), :class => "heading" if has_been_played_squad %>
 			<%= content_tag :th, has_been_played ? "" : is_squad ? sort_link(label_name(:group), :group_id) : 
 							label_name(:group), :class => "heading_#{show_right_evaluation}" if is_squad and !has_been_played %>		
 			<% if has_been_played %>
@@ -177,12 +177,12 @@ the_roster.each do |match|
 		</span>
 	</td>
 
-	<%= content_tag(:td, game_number, :class => second_team) %>
-	<%= content_tag(:td, "#{sprintf( "%.0f", initial_mean)}", :class => second_team) %>
-	<%= content_tag(:td, "#{sprintf( "%.0f", final_mean)}", :class => second_team) if has_been_played %>
 	<%= content_tag(:td, match.position_name, :class => second_team) if show_position %>
 	<%= content_tag(:td, rating_technical, :class => second_team) %>
 	<%= content_tag(:td, rating_physical, :class => second_team) %>
+	<%= content_tag(:td, game_number, :class => second_team) %>
+	<%= content_tag(:td, "#{sprintf( "%.0f", initial_mean)}", :class => second_team) %>
+	<%= content_tag(:td, "#{sprintf( "%.0f", final_mean)}", :class => second_team) if has_been_played %>
 	
 	<% if is_squad %>
 	<% if !has_been_played  %>

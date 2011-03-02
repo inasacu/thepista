@@ -1849,10 +1849,10 @@ es:
      true_skill_level_difference:  "Diferencia<br/>Puntos"
      true_skill_level_total:  "Total<br/>Puntos"
      true_skill_mean:  Puntos
-     true_skill_mean_difference:  "Diferencia<br/>Puntos" 
-     true_skill_mean_initial:  "Nivel Inicial"
-     true_skill_mean_final:  "Nivel Final"
-     true_skill_mean_total:  "Total<br/>Puntos"     
+     true_skill_mean_difference:  "Diferencia<br/>Indices" 
+     true_skill_mean_initial:  "Indice Inicial"
+     true_skill_mean_final:  "Indice Final"
+     true_skill_mean_total:  "Total<br/>Indices"     
      types_index:  Tipos
      types_maximo_option:  Requiere responsable de administrador para ver mas opciones.
      types_option:  Opciones 
