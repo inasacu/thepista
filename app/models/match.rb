@@ -286,6 +286,8 @@ class Match < ActiveRecord::Base
     home_rating = []
     away_rating = []
     the_match_home = []  
+    home_match = []
+    away_match = []
 
     the_schedules_played = Schedule.find(:all, :conditions => ["group_id = ? and played = true and archive = false", group], :order => "starts_at")
     the_schedules_played.each do |schedule|
@@ -329,18 +331,32 @@ class Match < ActiveRecord::Base
 
         if is_second_team
           away_rating << Rating.new(mean_skill, skill_deviation, play_activity) 
+          away_match << match
         else
-          home_rating << Rating.new(mean_skill, skill_deviation, play_activity)
-        end        
-        the_match_home << match      
-
+          home_rating << Rating.new(mean_skill, skill_deviation, play_activity) 
+          home_match << match
+        end    
       end
 
-      the_first, the_second = 1, 2  if (home_score.to_i > away_score.to_i)
-      the_first, the_second = 1, 1 if (home_score.to_i == away_score.to_i)
-      the_first, the_second = 2, 1 if (home_score.to_i < away_score.to_i)
+      if (home_score.to_i > away_score.to_i)
+        # puts "home_rating"
+        home_match.each {|home| the_match_home << home}
+        away_match.each {|away| the_match_home << away}
+      elsif (home_score.to_i < away_score.to_i)
+        # puts "away_rating"
+        away_match.each {|away| the_match_home << away}
+        home_match.each {|home| the_match_home << home}
+      else 
+        # puts "a tie" 
+        home_match.each {|home| the_match_home << home}
+        away_match.each {|away| the_match_home << away}
+      end
 
-      graph = FactorGraph.new([home_rating, away_rating], [the_first, the_second])
+      the_first, the_second = 1, 2 
+      the_first, the_second = 1, 1  if (home_score.to_i == away_score.to_i)
+
+      graph = FactorGraph.new([home_rating, away_rating], [the_first, the_second]) unless (home_score.to_i < away_score.to_i)
+      graph = FactorGraph.new([away_rating, home_rating], [the_first, the_second]) if (home_score.to_i < away_score.to_i)
       graph.update_skills
 
       jornada = 0
@@ -368,6 +384,8 @@ class Match < ActiveRecord::Base
       home_rating.clear
       away_rating.clear
       the_match_home.clear
+      home_match.clear
+      away_match.clear
     end
   end
   

@@ -13,12 +13,14 @@ task :the_pista_trueskill => :environment do |t|
 
   groups = Group.find(:all)
   groups.each do |group| 
-
-    if (group.id == 9)
+    puts "Analizing #{group.name} = #{group.id}"
+    # if (group.id != 1)
+    if group.id == 9
       Match.set_default_skill(group)
       Match.set_true_skill(group)
-      puts group.name
+      puts "completed #{group.name} = #{group.id}"
     end
   end
+  # end
 
 end

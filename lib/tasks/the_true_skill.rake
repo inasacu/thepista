@@ -13,28 +13,19 @@ task :the_true_skill => :environment do |t|
 
   the_group = Group.find(9)
 
-  # InitialMean = 1200
-  # InitialStandardDeviation = 400
+  InitialMean = 25
+  Initial_Factor = 3
+  
+  # InitialMean = 120
+  # Initial_Factor = 4   
   # Beta = 200
   # DynamicsFactor/Tau= 4
   # Draw Probability = 0.04
 
-  the_initial_standard_deviation = (InitialMean / K_FACTOR).to_f
-  the_beta = (the_initial_standard_deviation / 2).to_f 
-  the_tau = (the_initial_standard_deviation / 100).to_f
-  the_true_skill = (InitialMean - (K_FACTOR * the_initial_standard_deviation)).to_f
-  # puts "#{InitialMean} #{the_initial_standard_deviation} #{the_beta} #{the_tau} #{the_true_skill}"
-  
-  # set all records in match
-  # all_user_matches = Match.find(:all, :conditions => ["archive = false and schedule_id in (select id from schedules where schedules.group_id = ?)", the_group])
-  # all_user_matches.each do |match|
-  #   match.initial_mean = 0.0
-  #   match.initial_deviation = 0.0
-  #   match.final_mean = 0.0
-  #   match.final_deviation = 0.0
-  #   match.game_number = 0
-  #   match.save!
-  # end
+  the_initial_standard_deviation = (InitialMean / Initial_Factor).to_f
+  # the_beta = (the_initial_standard_deviation / 2).to_f 
+  # the_tau = (the_initial_standard_deviation / 100).to_f
+  # the_true_skill = (InitialMean - (K_FACTOR * the_initial_standard_deviation)).to_f
   
   # set all records in match related to team 
   sql = %(UPDATE matches set initial_mean = 0.0, initial_deviation = 0.0, final_mean = 0.0, final_deviation = 0.0, game_number = 0
@@ -72,15 +63,21 @@ task :the_true_skill => :environment do |t|
     end  
   end
   
-  
-  
+    
   home_rating = []
   away_rating = []
   the_match_home = []  
+  home_match = []
+  away_match = []
+  
+  home_total = 0
+  away_total = 0
   
   the_schedules_played = Schedule.find(:all, :conditions => ["group_id = ? and played = true and archive = false", the_group], :order => "starts_at")
   the_schedules_played.each do |schedule|
   
+    # schedule = the_group.schedules.first
+    
     home_score, away_score = 0, 0
     play_activity = 0.0
   
@@ -116,35 +113,48 @@ task :the_true_skill => :environment do |t|
           game_number  = previous_user_match.game_number
         end        
         # puts "** #{previous_user_match.game_number} [#{previous_user_match.user_id}] #{previous_user_match.final_mean} #{previous_user_match.final_deviation} **"
-      end
-  
+      end      
+      # puts "@@ [#{match.user_id}] - μ = #{mean_skill} σ = #{skill_deviation}, play_activity: #{play_activity} = #{game_number.to_f} / #{schedule_number.to_f} @@"
   
       play_activity = game_number.to_f / schedule_number.to_f     
-      
-      # puts "@@ [#{match.user_id}] - μ = #{mean_skill} σ = #{skill_deviation}, play_activity: #{play_activity} = #{game_number.to_f} / #{schedule_number.to_f} @@"
   
       if is_second_team
         away_rating << Rating.new(mean_skill, skill_deviation, play_activity) 
+        away_match << match
       else
-        home_rating << Rating.new(mean_skill, skill_deviation, play_activity)
+        home_rating << Rating.new(mean_skill, skill_deviation, play_activity) 
+        home_match << match
       end        
-      the_match_home << match      
-  
+    end
+    
+    if (home_score.to_i > away_score.to_i)
+      # puts "home_rating"
+      home_match.each {|home| the_match_home << home}
+      away_match.each {|away| the_match_home << away}
+    elsif (home_score.to_i < away_score.to_i)
+      # puts "away_rating"
+      away_match.each {|away| the_match_home << away}
+      home_match.each {|home| the_match_home << home}
+    else 
+      # puts "a tie" 
+      home_match.each {|home| the_match_home << home}
+      away_match.each {|away| the_match_home << away}
     end
   
-    the_first, the_second = 1, 2  if (home_score.to_i > away_score.to_i)
-    the_first, the_second = 1, 1 if (home_score.to_i == away_score.to_i)
-    the_first, the_second = 2, 1 if (home_score.to_i < away_score.to_i)
+    the_first, the_second = 1, 2 
+    the_first, the_second = 1, 1  if (home_score.to_i == away_score.to_i)
   
-    graph = FactorGraph.new([home_rating, away_rating], [the_first, the_second])
+    graph = FactorGraph.new([home_rating, away_rating], [the_first, the_second]) unless (home_score.to_i < away_score.to_i)
+    graph = FactorGraph.new([away_rating, home_rating], [the_first, the_second]) if (home_score.to_i < away_score.to_i)
     graph.update_skills
   
     jornada = 0
     index = 0
     graph.teams.each do |teams|
-      puts "___________________________________ #{schedule_number} _______"     
+      puts "Game: #{schedule_number} Score:  #{home_score} - #{away_score} "     
       teams.each do |player|  
-        # puts "user:  #{the_match_home[index].user_id} μ = #{player.mean} σ = #{player.deviation}, index = #{index}"     
+        # puts "user:  #{the_match_home[index].user_id} μ = #{player.mean} σ = #{player.deviation}, index = #{index}"
+        # puts "μ = #{player.mean} σ = #{player.deviation}, index = #{index}" 
   
         the_match_home[index].final_mean = player.mean
         the_match_home[index].final_deviation = player.deviation
@@ -154,15 +164,27 @@ task :the_true_skill => :environment do |t|
           the_previous_user_match = Match.get_previous_user_match(the_match_home[index], the_match_home[index].game_number, the_group)
           
           unless the_previous_user_match.nil?            
-            puts "previous match:  #{the_match_home[index].id} [ #{the_match_home[index].user_id} ] #{the_previous_user_match.final_mean} #{the_previous_user_match.final_deviation}"
+            # puts "previous match:  #{the_match_home[index].id} [ #{the_match_home[index].user_id} ] #{the_previous_user_match.final_mean} #{the_previous_user_match.final_deviation}"
             the_match_home[index].initial_mean = the_previous_user_match.final_mean 
             the_match_home[index].initial_deviation = the_previous_user_match.final_deviation 
             the_match_home[index].save
-            puts "match:  #{the_match_home[index].id} [ #{the_match_home[index].user_id} ]  #{the_match_home[index].initial_mean} #{the_match_home[index].initial_deviation} #{the_match_home[index].final_mean} #{the_match_home[index].final_deviation}"
+            # puts "match:  #{the_match_home[index].id} [ #{the_match_home[index].user_id} ]  #{the_match_home[index].initial_mean} #{the_match_home[index].initial_deviation} #{the_match_home[index].final_mean} #{the_match_home[index].final_deviation}"
           end
         
         end
-        
+
+          first_mean = "#{sprintf( "%.3f", the_match_home[index].initial_mean)}"
+          last_mean = "#{sprintf( "%.3f", the_match_home[index].final_mean)}"
+
+          first_deviation = "#{sprintf( "%.3f", the_match_home[index].initial_deviation)}"
+          last_deviation = "#{sprintf( "%.3f", the_match_home[index].final_deviation)}"
+          
+          true_skill = the_match_home[index].final_mean - (K_FACTOR*the_match_home[index].final_deviation)
+          true_skill = 0 if true_skill < 0
+
+          true_skill = "#{sprintf( "%.0f", true_skill)}"
+          
+        puts "user: [ #{the_match_home[index].user_id} ] #{first_mean} => #{last_mean}, #{first_deviation} => #{last_deviation},  #{true_skill}"
                
         index +=1     
       end     
@@ -171,6 +193,8 @@ task :the_true_skill => :environment do |t|
     home_rating.clear
     away_rating.clear
     the_match_home.clear
+    home_match.clear
+    away_match.clear
   
   end
 
