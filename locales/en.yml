@@ -1844,6 +1844,7 @@ en:
      true_skill_deviation_difference:  "Difference<br/>Level"
      true_skill_deviation_total:  "Total<br/>Level"
      true_skill_mean:  Points
+     true_skill_mean_cluetip: "The index system is a skill level based on a classification system. The purpose of an index system is to identify and control the players' skills to be able to level the teams in games. The index system is only calculated when the event is given the result to update the skill estimates (indices) of all players in the game. "
      true_skill_mean_difference:  "Difference<br/>Indexes"
      true_skill_mean_initial:  "Initial Index"
      true_skill_mean_final:  "Final Index"

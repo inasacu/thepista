@@ -1849,6 +1849,7 @@ es:
      true_skill_level_difference:  "Diferencia<br/>Puntos"
      true_skill_level_total:  "Total<br/>Puntos"
      true_skill_mean:  Puntos
+     true_skill_mean_cluetip: "El sistema de índices es un nivel de habilidad basada en un sistema de clasificación.  El propósito de un sistema de índices es para identificar y controlar las habilidades de los jugadores con el fin de ser capaces de nivelar los equipos en partidos. El sistema de índice sólo se calcula cuando al evento se le da el resultado con el fin de actualizar las estimaciones de habilidad (índices) de todos los jugadores que participan en el partido. "
      true_skill_mean_difference:  "Diferencia<br/>Indices" 
      true_skill_mean_initial:  "Indice Inicial"
      true_skill_mean_final:  "Indice Final"

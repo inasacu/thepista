@@ -62,6 +62,9 @@
 	
 	show_right_evaluation = is_manager
 	show_right_evaluation = true if (!is_manager and has_been_played)
+	
+	the_trueskill_label = get_cluetip(label_name(:true_skill_mean_initial), 'info', label_name('true_skill_mean_cluetip'))
+	the_trueskill_label_final = get_cluetip(label_name(:true_skill_mean_final), 'info', label_name('true_skill_mean_cluetip'))
 		
 if roster_count 
 %>
@@ -76,8 +79,8 @@ if roster_count
 			<%= content_tag :th, label_name(:technical), :title => label_name(:profile_technical), :class => "heading" %>
 			<%= content_tag :th, label_name(:physical), :title => label_name(:profile_physical), :class => "heading" %>
 			<%= content_tag :th, label_name(:games_played_full_2), :class => "heading" %>
-			<%= content_tag :th, label_name(:true_skill_mean_initial), :class => "heading_#{show_right_border}" %>
-			<%= content_tag :th, label_name(:true_skill_mean_final), :class => "heading" if has_been_played and is_squad %>
+			<%= content_tag :th, the_trueskill_label, :class => "heading_#{show_right_border}" %>
+			<%= content_tag :th, the_trueskill_label_final, :class => "heading" if has_been_played and is_squad %>
 			<%= content_tag :th, has_been_played ? "" : is_squad ? sort_link(label_name(:group), :group_id) : 
 							label_name(:group), :class => "heading_#{show_right_evaluation}" if is_squad and !has_been_played %>		
 			<% if has_been_played %>
