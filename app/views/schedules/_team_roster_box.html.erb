@@ -127,19 +127,13 @@ the_roster.each do |match|
 	game_number = 1
 
 	unless previous_user_match.nil?
-		initial_mean = previous_user_match.initial_mean 
-		initial_deviation = previous_user_match.initial_deviation
+		initial_mean = previous_user_match.final_mean 
+		initial_deviation = previous_user_match.final_deviation
 		game_number = previous_user_match.game_number
 	end
 
 	final_mean = match.final_mean 
 	final_deviation = match.final_deviation
-	
-	# initial_skill_level = initial_mean - K_FACTOR * initial_deviation
-	# initial_skill_level = (initial_skill_level < 0.0) ? 0.0 : initial_skill_level
-	
-	# final_skill_level = (has_been_played_squad) ? ((final_mean - (K_FACTOR * final_deviation)) * 10) : 0.0
-	# final_skill_level = (final_skill_level < 0.0) ? 0.0 : final_skill_level
 	
 	is_subscriber = the_user.is_subscriber_of?(group)	
 	the_label =  label_name("subscription_#{is_subscriber}")
