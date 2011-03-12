@@ -127,8 +127,14 @@ the_roster.each do |match|
 	game_number = 1
 
 	unless previous_user_match.nil?
-		initial_mean = previous_user_match.final_mean 
-		initial_deviation = previous_user_match.final_deviation
+
+		if has_been_played
+			initial_mean = previous_user_match.initial_mean 
+			initial_deviation = previous_user_match.initial_deviation
+		else
+			initial_mean = previous_user_match.final_mean 
+			initial_deviation = previous_user_match.final_deviation
+		end
 		game_number = previous_user_match.game_number
 	end
 
