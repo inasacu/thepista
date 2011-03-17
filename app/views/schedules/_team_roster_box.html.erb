@@ -127,20 +127,18 @@ the_roster.each do |match|
 	game_number = 1
 
 	unless previous_user_match.nil?
-
-		if has_been_played
-			initial_mean = previous_user_match.initial_mean 
-			initial_deviation = previous_user_match.initial_deviation
-		else
-			initial_mean = previous_user_match.final_mean 
-			initial_deviation = previous_user_match.final_deviation
-		end
+		initial_mean = previous_user_match.final_mean 
+		initial_deviation = previous_user_match.final_deviation
 		game_number = previous_user_match.game_number
 	end
 
-	final_mean = match.final_mean 
-	final_deviation = match.final_deviation
-	
+	if has_been_played
+		initial_mean = match.initial_mean 
+		initial_deviation = match.initial_deviation
+		final_mean = match.final_mean 
+		final_deviation = match.final_deviation
+	end
+
 	is_subscriber = the_user.is_subscriber_of?(group)	
 	the_label =  label_name("subscription_#{is_subscriber}")
 
@@ -159,7 +157,6 @@ the_roster.each do |match|
 	
 	(match.group_id > 0) ? home["mean"] += initial_mean : away["mean"] += initial_mean
 	(match.group_id > 0) ? home["deviation"] += initial_deviation : away["deviation"] += initial_deviation
-	# (match.group_id > 0) ? home["level"] += initial_skill_level : away["level"] += initial_skill_level
 		
 	@roster = match	
 	can_evaluate = current_user != the_user and the_roster.include?(current_user)
