@@ -40,12 +40,9 @@ class ForumsController < ApplicationController
           end
         end        
       end
-      
-      the_home_players = home_team['players'].chop 
-      the_away_players = away_team['players'].chop
 
-      home_team['team'] = "#{@schedule.home_group}: (#{home_team['total_players']}) #{the_home_players}"
-      away_team['team'] = "#{@schedule.away_group}: (#{away_team['total_players']}) #{the_away_players}"
+      home_team['team'] = "#{@schedule.home_group}: (#{home_team['total_players']}) #{home_team['players']}".chop
+      away_team['team'] = "#{@schedule.away_group}: (#{away_team['total_players']}) #{away_team['players']}".chop
       
       @comment = Comment.new(:body => "#{I18n.t(:groups)}\r\n#{home_team['team']}\r\n#{away_team['team']}\r\n")
     end
