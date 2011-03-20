@@ -1,4 +1,20 @@
 
+select * from delayed_jobs where handler like '%- AR:User:2001
+- AR:User:2001%'
+
+delete from delayed_jobs where handler not like '%args: 
+- AR:User:2001
+- AR:User:2001%'
+
+delete from delayed_jobs
+
+	select * from delayed_jobs
+	where handler like '%args: 
+	- AR:User:2001
+	- AR:User:2001%'
+	
+
+
 select game_number, schedule_id, name, initial_mean, initial_deviation, final_mean, final_deviation,  group_id, invite_id, group_score, invite_score
 from matches
 where schedule_id in (select id from schedules where played = true and group_id = 9)

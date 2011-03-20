@@ -5,6 +5,7 @@
 	case @message.commentable_type
 	when "Forum"
 		@item = Forum.find(@message.commentable_id)
+		@schedule = @item.schedule
   		the_label = @item.schedule.concept
 
 	when "Blog"
@@ -43,7 +44,54 @@
     <td style="width:1%; color:#999999; vertical-align: top;">&nbsp;</td>
     <td style="width:99%">&nbsp;<%= @message.body %></td>
   </tr>
+  <br/>
+
+<% if @schedule 
+	the_schedule_label = ""
+	@schedule.matches.each {|match| the_schedule_label = "#{I18n.t(:your_roster_status) } #{(match.type_name).downcase}" if match.user == @user}
+%>
+	<br/>
+	<br/>
+	<br/>
+	<tr>
+	  <td style="width:1%; color:#999999; vertical-align: top;">&nbsp;</td>
+	  <td style="width:99%">&nbsp;<%= the_schedule_label %></td>
+	</tr>
+<% end %>
+
+
+<% 
+if @schedule 
+	unless @schedule.played?
+		my_current_match = nil
+		@schedule.matches.each{|match| my_current_match = match if match.user_id == @user.id}
+
+		unless my_current_match.nil?
+			match_types = Match.get_match_type
+
+			match_types.each do |type| 
+				unless type.id == my_current_match.type_id
+
+					the_schedule_label = "#{I18n.t(:change_roster_status) } #{I18n.t(type.name).downcase}"
+					# the_link = link_to(the_schedule_label, match_status_path(:id => my_current_match.id, :type => type.id))
+%>
+					<tr>
+					  <td style="width:1%; color:#999999; vertical-align: top;">&nbsp;</td>
+					  <td style="width:99%">&nbsp;<%= link_to(the_schedule_label, match_status_url(:id => my_current_match.id, :type => type.id))  if type.id.to_i < 4 %></td>
+					</tr>
+<%					
+				end
+			end
+		end
+%>
 <br/>
+<br/>
+<br/>
+<%
+	end 
+end
+%>
+
   <tr>
     <td style="width:1%; color:#999999; vertical-align: top;">&nbsp;</td>
     <td style="width:99%">

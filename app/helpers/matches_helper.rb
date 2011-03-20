@@ -94,7 +94,9 @@ module MatchesHelper
     end
   end
   
-  def match_all_my_link(schedule, match_types, user, is_manager, show_icon=true)
+  def match_all_my_link(schedule, user, is_manager, show_icon=true)
+    match_types = Match.get_match_type
+    
     unless schedule.played?
       my_current_match = nil
       the_match_link = ''

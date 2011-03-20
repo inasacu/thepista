@@ -7,7 +7,6 @@
 		
 	is_my_list = is_my_list ? current_user.is_user_member_of?(@user) : true
 	group_schedule_list = (get_controller_action == "schedule_schedule_list")
-	@match_type = Match.get_match_type
 %>
 
 <div class="block">
