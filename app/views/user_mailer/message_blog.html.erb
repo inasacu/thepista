@@ -48,7 +48,12 @@
 
 <% if @schedule 
 	the_schedule_label = ""
-	@schedule.matches.each {|match| the_schedule_label = "#{I18n.t(:your_roster_status) } #{(match.type_name).downcase}" if match.user == @user}
+	# @schedule.matches.each {|match| the_schedule_label = "#{I18n.t(:your_roster_status) } #{(match.type_name).downcase}" if match.user == @user}
+		
+	my_current_match = nil
+	@schedule.matches.each{|match| my_current_match = match if match.user_id == @user.id}
+	@schedule.matches.each {|match| the_schedule_label = "#{I18n.t(:your_roster_status) } #{(my_current_match.type_name).downcase}" if match.user == @user}
+		
 %>
 	<br/>
 	<br/>
@@ -73,13 +78,15 @@ if @schedule
 				unless type.id == my_current_match.type_id
 
 					the_schedule_label = "#{I18n.t(:change_roster_status) } #{I18n.t(type.name).downcase}"
-					# the_link = link_to(the_schedule_label, match_status_path(:id => my_current_match.id, :type => type.id))
+					the_link = link_to(the_schedule_label, match_status_path(:id => my_current_match.id, :type => type.id))
+					 if type.id.to_i < 4 
 %>
-					<tr>
-					  <td style="width:1%; color:#999999; vertical-align: top;">&nbsp;</td>
-					  <td style="width:99%">&nbsp;<%= link_to(the_schedule_label, match_status_url(:id => my_current_match.id, :type => type.id))  if type.id.to_i < 4 %></td>
-					</tr>
-<%					
+						<tr>
+						  <td style="width:1%; color:#999999; vertical-align: top;">&nbsp;</td>
+						  <td style="width:99%">&nbsp;<%= link_to(the_schedule_label, match_status_url(:id => my_current_match.id, :type => type.id))%></td>
+						</tr>
+<%			
+					end
 				end
 			end
 		end
