@@ -53,7 +53,6 @@ class User < ActiveRecord::Base
     belongs_to                :identity_user,   :class_name => 'User',              :foreign_key => 'rpxnow_id'
     
     has_and_belongs_to_many   :groups,                :conditions => 'archive = false',   :order => 'name'
-    has_and_belongs_to_many   :tournaments,           :conditions => 'archive = false',   :order => 'name'
     has_and_belongs_to_many   :challenges,            :conditions => 'archive = false',   :order => 'name'
     
     has_many    :addresses

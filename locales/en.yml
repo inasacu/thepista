@@ -255,8 +255,6 @@ en:
      cup_options:  Options
      cups_options_without: "What options do you have since you are not part of a tournament?"
      cups_option:  Options 
-     cups_search: Search for tournaments
-     cups_search_to_join: You can find a tournament to join. 
      cups_show:  Show tournament
      cups_to_join:   signup to a tournament 
      cups_upcoming: Upcoming Tournaments  
@@ -392,11 +390,11 @@ en:
      exit_group: Opt-out of the Team   
      exit_tournament: Opt-out of the Tournament   
      explore:  Explore
-     facility: Instalations
-     facilities: Instalations
-     facilities_create:  Create Instalation 
-     facilities_name_description:  New Instalation Name
-     facilities_new:  Create Instalation 
+     installation: Installation
+     installations: Installations
+     installations_create:  Create Installation 
+     installations_name_description:  New Installation Name
+     installations_new:  Create Installation 
      failed_login: Failed Login      
      false_value: "No"
      feature: Feature
@@ -617,7 +615,7 @@ en:
         zero: "Has not participated in any events." 
         one:  "Has participated in 1 event." 
         other: "Has participated in {{count}} events."   
-     has_venue_facilities:
+     has_venue_installations:
         zero: "Venue has no instalations."
         one: "Venue has 1 instalation."
         other: "Venue has {{count}} instalations." 
@@ -1055,7 +1053,9 @@ en:
      reply_message: Reply Message   
      reply_to_this_message: Reply to this message  
      request_petition: New Petición   
-     request_invitation: Request an Invitation   
+     request_invitation: Request an Invitation  
+     reservation:  Reservation
+     reservations: Reservations
      restored_message: Message Restored   
      role: Role
      roles: Roles   
@@ -1098,7 +1098,6 @@ en:
      search_schedules: Search for Events   
      search_scorecards: Search for Scorecards   
      search_sports: Search for Sports   
-     search_tournaments: Search for Tournaments   
      search_types: Search for Types   
      search_users: Search for Players   
      search_venues: Search for Venues 
@@ -1306,9 +1305,7 @@ en:
      to_message: A   
      to_payment: Payment    
      topic: Topic  
-     total:  Total 
-     tournament: Tournament   
-     tournaments: Tournaments    
+     total:  Total   
      trash: Trash   
      trash_message: Trash     
      true_value: "Yes"   
@@ -1794,7 +1791,6 @@ en:
      markers_name_description:  Sport Center Name
      roles_name_description:  Role Name
      sports_name_description:  Sport Name
-     tournaments_name_description:  Tournament Name
      types_name_description:  Type Name
      users_name_description:  Player Name
      fees_concept_description:  Fee Concept
@@ -1818,28 +1814,7 @@ en:
      topics_create:  New Event
      topics_edit:  Edit Event
      topic_options:  Options 
-     total_difference: "Total<br/>Difference"     
-     tournament_options:  Options
-     tournament_starts_ends_at:  Tournament Dates
-     tournaments_create:  New Tournament 
-     tournaments_destroy:  Remove Tournament
-     tournaments_edit:  Edit Tournament
-     tournaments_index:   Tournaments
-     tournaments_index_option: Options
-     tournaments_invitations_create:  Invite a friend to the Tournament
-     tournaments_join:  Signup for the Tournament
-     tournaments_joined:  Date Joined
-     tournaments_list:  Rest of the Tournaments
-     tournaments_new:  New Tournament
-     tournaments_new_option: Options
-     tournaments_no:  No Tournaments to show.
-     tournaments_none:  No Tournament.
-     tournaments_options_without: "What options do you have since you are not signed up for a Tournament?"
-     tournaments_option:  Options 
-     tournaments_search: Search for Tournaments
-     tournaments_search_to_join:  Search for a Tournament to join. 
-     tournaments_show:  Show Tournament
-     tournaments_update: Edit Tournament   
+     total_difference: "Total<br/>Difference" 
      true_skill_deviation:  Level
      true_skill_deviation_difference:  "Difference<br/>Level"
      true_skill_deviation_total:  "Total<br/>Level"

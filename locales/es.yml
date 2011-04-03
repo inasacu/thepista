@@ -255,8 +255,6 @@ es:
      cup_options:  Opciones
      cups_options_without: "¿Qué opciones tienes ya que no estas apuntado a una copa?"
      cups_option:  Opciones 
-     cups_search: Busqueda de copas
-     cups_search_to_join: Puedes buscar una copa para unirte. 
      cups_show:  Mostrar copa
      cups_to_join:   inscribirte a una copa 
      cups_upcoming: Próximas Copas  
@@ -392,11 +390,11 @@ es:
      exit_group: Desapuntate del equipo   
      exit_tournament: Desapuntate del torneo   
      explore:  Explorar
-     facility: Instalaciones 
-     facilities: Instalaciones
-     facilities_create:  Nueva Instalación 
-     facilities_name_description:  Nombre de la nueva instalación
-     facilities_new:  Nueva Instalación 
+     installation: Instalación 
+     installations: Instalaciones
+     installations_create:  Nueva Instalación 
+     installations_name_description:  Nombre de la nueva instalación
+     installations_new:  Nueva Instalación 
      failed_login: Error de inicio de sesión      
      false_value: "No"
      feature: Prestación
@@ -617,7 +615,7 @@ es:
         zero: "No ha participado en un evento." 
         one:  "Ha participado en 1 evento." 
         other: "Ha participado en {{count}} eventos."  
-     has_venue_facilities:
+     has_venue_installations:
         zero: "Este lugar de encuentro no tiene instalaciones."
         one: "Este lugar de encuentro tiene 1 instalación."
         other: "Este lugar de encuentro tiene {{count}} instalaciones."                              
@@ -1056,6 +1054,8 @@ es:
      reply_to_this_message: Responde a este mensaje  
      request_petition: Nueva petición   
      request_invitation: Pide una invitación   
+     reservation:  Reserva
+     reservations: Reservas
      restored_message: Mensaje restaurado   
      role: Responsabilidad
      roles: Responsabilidades   
@@ -1099,8 +1099,7 @@ es:
      search_roles: Buscar    
      search_schedules: Buscar evento   
      search_scorecards: Buscar resultados   
-     search_sports: Buscar deporte   
-     search_tournaments: Buscar torneos   
+     search_sports: Buscar deporte     
      search_types: Buscar tipos   
      search_users: Buscar jugador   
      search_venues: Buscar centro  
@@ -1308,9 +1307,7 @@ es:
      to_message: A   
      to_payment: Pago de   
      topic: Asunto   
-     total:  Total 
-     tournament: Torneo   
-     tournaments: Torneos    
+     total:  Total   
      trash: Basura   
      trash_message: Papelera     
      true_value: "Si"   
@@ -1796,7 +1793,6 @@ es:
      markers_name_description:  Nombre del centro deportivo
      roles_name_description:  Nombre del role
      sports_name_description:  Nombre del deporte
-     tournaments_name_description:  Nombre del torneo
      types_name_description:  Nombre de tipo
      users_name_description:  Nombre del jugador
      fees_concept_description:  Concepto del cargo
@@ -1821,27 +1817,6 @@ es:
      topics_edit:  Actualizar evento
      topic_options:  Opciones    
      total_difference: "Diferencia<br/>Total"    
-     tournament_options:  Opciones 
-     tournament_starts_ends_at:  Fechas del torneo
-     tournaments_create:  Nuevo torneo 
-     tournaments_destroy:  Borrar torneo
-     tournaments_edit:  Actualizar torneo
-     tournaments_index:   Torneos
-     tournaments_index_option: Opciones
-     tournaments_invitations_create:  Invita a un amigo al torneo
-     tournaments_join:  Unete al torneo
-     tournaments_joined:  Fecha de inscripción
-     tournaments_list:  Resto de torneo
-     tournaments_new:  Nuevo torneo
-     tournaments_new_option: Opciones 
-     tournaments_no:  Ningun torneo para mostrar.
-     tournaments_none:  Ningun torneo.
-     tournaments_options_without: "¿Qué opciones tienes ya que no tienes un torneo?"
-     tournaments_option:  Opciones 
-     tournaments_search: Busqueda de torneos
-     tournaments_search_to_join: Puedes buscar un torneo al cual unierte. 
-     tournaments_show:  Mostrar torneo
-     tournaments_update: Actualizar torneo 
      true_skill_deviation:  Difusión
      true_skill_deviation_difference:  "Diferencia<br/>Difusión"
      true_skill_deviation_total:  "Total<br/>Difusión"
