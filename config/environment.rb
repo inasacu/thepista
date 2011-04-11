@@ -36,6 +36,7 @@ Rails::Initializer.run do |config|
   gem 'texticle' 
   gem 'heroku_s3_backup'
   gem 'trueskill'
+  gem 'delayed_job',                        :version => "2.0.7"
   
   
   # gem "aws-s3"												, "0.6.2"
