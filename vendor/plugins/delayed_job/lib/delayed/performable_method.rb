@@ -1,31 +1,55 @@
-require 'active_support/core_ext/module/delegation'
-
 module Delayed
-  class PerformableMethod < Struct.new(:object, :method_name, :args)
-    delegate :method, :to => :object
+  class PerformableMethod < Struct.new(:object, :method, :args)
+    CLASS_STRING_FORMAT = /^CLASS\:([A-Z][\w\:]+)$/
+    AR_STRING_FORMAT    = /^AR\:([A-Z][\w\:]+)\:(\d+)$/
 
-    def initialize(object, method_name, args)
-      raise NoMethodError, "undefined method `#{method_name}' for #{object.inspect}" unless object.respond_to?(method_name, true)
+    def initialize(object, method, args)
+      raise NoMethodError, "undefined method `#{method}' for #{self.inspect}" unless object.respond_to?(method)
 
-      self.object       = object
-      self.args         = args
-      self.method_name  = method_name.to_sym
+      self.object = dump(object)
+      self.args   = args.map { |a| dump(a) }
+      self.method = method.to_sym
     end
-
-    def display_name
-      "#{object.class}##{method_name}"
-    end
+    
+    def display_name  
+      case self.object
+      when CLASS_STRING_FORMAT then "#{$1}.#{method}"
+      when AR_STRING_FORMAT    then "#{$1}##{method}"
+      else "Unknown##{method}"
+      end      
+    end    
 
     def perform
-      object.send(method_name, *args) if object
+      load(object).send(method, *args.map{|a| load(a)})
+    rescue ActiveRecord::RecordNotFound
+      # We cannot do anything about objects which were deleted in the meantime
+      true
     end
 
-    def method_missing(symbol, *args)
-      object.send(symbol, *args)
+    private
+
+    def load(arg)
+      case arg
+      when CLASS_STRING_FORMAT then $1.constantize
+      when AR_STRING_FORMAT    then $1.constantize.find($2)
+      else arg
+      end
     end
 
-    def respond_to?(symbol, include_private=false)
-      super || object.respond_to?(symbol, include_private)
+    def dump(arg)
+      case arg
+      when Class              then class_to_string(arg)
+      when ActiveRecord::Base then ar_to_string(arg)
+      else arg
+      end
+    end
+
+    def ar_to_string(obj)
+      "AR:#{obj.class}:#{obj.id}"
+    end
+
+    def class_to_string(obj)
+      "CLASS:#{obj.name}"
     end
   end
 end
