@@ -1,0 +1,10 @@
+<div class="Reservable" style="height: 66px;">
+	<div class="Cabecera HoraReserva">
+		<span>
+			<%= "#{nice_simple_time_at(starts_at)} - #{nice_simple_time_at(starts_at+time_frame)}" %>
+		</span>
+	</div>
+	<div class="NombreReserva">
+		<%= link_to label_name(:reservations_new), new_reservation_path(:id => @installation, :starts_at => starts_at) %>
+	</div>
+</div>

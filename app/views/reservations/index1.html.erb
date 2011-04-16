@@ -1,0 +1,67 @@
+<%
+	the_label = label_name(:reservations)
+	content_for(:title, the_label)
+	counter = 0
+%>
+
+<div class="block">
+
+  <%= get_secondary_navigation(@venue) %>
+
+  <div class="content">   
+  
+    <h2 class="title"><%= the_label %></h2>
+	
+    <div class="inner">
+	
+	<% if object_counter(@reservations) > 0 %>
+	
+      <table class="table">
+	  
+        <tr> 
+			<%= content_tag :th, "&nbsp;", :class => "first" %>
+			<%= content_tag :th, label_name(:name), :class => "heading" %>
+			<%= content_tag :th, label_name(:venue), :class => "heading" %>
+			<%#= content_tag :th, label_name(:installation), :class => "heading" %>
+			<%= content_tag :th, label_name(:time_zone), :class => "heading" %>
+			<%= content_tag :th, label_name(:marker), :class => "heading" %>
+			<%= content_tag :th, "&nbsp;", :class => "last_index" %>
+		</tr>
+        
+        <% @reservations.each do |reservation| -%>
+		<tr>
+			<%= view_reservation_icon(reservation) %>
+			<%= view_reservation_concept(reservation) %>
+			<%= view_reservation_venue(reservation) %>
+			<%#= view_reservation_installation(reservation) %>
+			<%= view_reservation_played(reservation) %>
+			<%= view_reservation_marker(reservation) %>		
+
+	       <td class="last">
+				<span class="action">
+					<% if current_user.is_manager_of?(reservation.venue) %> 
+						<%= link_to label_name(:reservations_create), new_reservation_path(:id => reservation) %>
+			        <% end %>					
+				</span>
+	       </td>
+	
+		</tr>          
+        <% end -%>
+      </table>
+
+		<% end %>
+		<%= render :partial => 'shared/action_bar', :locals => { :collection => @reservation } %>
+
+		</div>
+		</div>
+	</div>
+	
+	<% content_for :sidebar, render('/shared/sidebar_index') -%>
+	
+	<% content_for :sidebar, render(:partial => '/reservations/sidebar') if current_user.is_manager? -%>
+	
+	<%# if venue_reservation_list -%>
+	<%# content_for :sidebar, render(:partial => 'venues/sidebar_show') -%>
+	<%# content_for :sidebar, render(:partial => 'shared/sidebar_show_team', :locals => {:venue => @venue}) if current_user.is_manager_of?(@venue) %>
+	<%# content_for :sidebar, render('shared/share_object', :venue => @venue, :reservation => @venue.reservations.first) if @venue -%>
+	<%# end -%>

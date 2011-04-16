@@ -1,0 +1,52 @@
+<% 
+	first_day = @current_user_zone
+	time_frame = 1.hour
+%>
+<%= stylesheet_link_tag 'venue' %>
+
+<%#= render 'select_day_of_week' %>
+
+<table id="ctl00_C1_tabPistas" class="Cuadrante" border="0">
+	<tbody>
+		<tr>
+			@time_locally:  <%= @time_locally.rfc822 %><br/>
+			@time_in_zone:  <%= @time_in_zone.rfc822  %><br/>			
+			Time.now:  <%= Time.now %></br>
+			current_user.time_zone:  <%= current_user.time_zone %><br/>
+			
+			<% 7.times.each do |x| 
+				
+				current_day = first_day + x.day 
+				starts_at = convert_to_datetime (current_day, @installation.starts_at)
+				ends_at = convert_to_datetime ((current_day + 1.day).midnight, @installation.ends_at)
+				available = (starts_at > first_day)
+				reserved = false
+			%>
+			
+			<td class="ColPista">
+				
+				<%= render 'day_of_week', :the_date => current_day, :available => available %>	
+							
+				<%  				
+					while (starts_at < ends_at)
+						@reservations.each {|reservation| reserved = (reservation.starts_at == starts_at)}
+						if reserved 
+				%>
+							<%= render "hour_reserved", :starts_at => starts_at, :time_frame => time_frame %>
+					<% else %>
+							<%= render "hour_available_#{available}", :starts_at => starts_at, :time_frame => time_frame %>
+				<% 
+						end 
+				 		starts_at += time_frame
+					end 
+				%>
+								
+			</td>
+			
+			<% end %>
+		
+		</tr>
+	</tbody>
+</table>
+
+

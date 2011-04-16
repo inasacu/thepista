@@ -16,6 +16,10 @@
 	when "Challenge"
 		@challenge = @blog.item
 		the_label = label_with_name('the_wall', h(@challenge.name))
+		   
+	when "Venue"
+		@venue = @blog.item
+		the_label = label_with_name('the_wall', h(@venue.name))
 	else
 	end
 	content_for(:title, the_label)
@@ -25,6 +29,7 @@
   <%= get_secondary_navigation(@user) if @user %>
   <%= get_secondary_navigation(@group) if @group %>
   <%= get_secondary_navigation(@challenge) if @challenge %>
+  <%= get_secondary_navigation(@venue) if @venue %>
 
   <div class="content">
 	
@@ -53,3 +58,4 @@
 <% content_for :sidebar, render(:partial => '/users/sidebar_show') if @user -%>
 <% content_for :sidebar, render(:partial => '/groups/sidebar_show') if @group -%>
 <% content_for :sidebar, render(:partial => '/challenges/sidebar_show') if @challenge -%>
+<% content_for :sidebar, render(:partial => '/venues/sidebar_show') if @venue -%>

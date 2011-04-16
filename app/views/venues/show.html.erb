@@ -1,0 +1,58 @@
+<% 
+	is_user_manager = (current_user.is_manager_of?(@venue))
+%>
+
+<div class="block">
+
+  <%= get_secondary_navigation(@venue) %> 
+  
+  <div class="content">
+	        
+  <h2 class="title"><%= h(@venue.name) %></h2>
+
+  <div class="inner">
+	
+		<div class="description">
+      <span class="q">
+				<%=sanitize @venue.description.blank? ? control_label('description_no') : @venue.description %>
+			</span>
+    </div>
+
+		<div class="columns"> 
+			<div class="column left"> 
+				<div class="description">
+                   <%= image_tag @venue.thumbnail %>
+                 </div>
+			</div>
+		</div>
+	
+	<table>
+
+	<tr>
+	<td>		
+		<table border="0">
+			<%= tr_td_action(:name, @venue.name) %>
+			<tr>
+				<%= content_tag :td, label_name(:manager), :class => "label" %>
+				<%= content_tag :td, user_list(@venue.all_the_managers), :class => get_the_action %>
+			</tr>
+			<tr>
+				<%= content_tag :td, label_name(:marker), :class => "label" %>
+				<%= content_tag :td, marker_link(@venue.marker), :class => get_the_action %>
+			</tr>
+			<%= tr_td_action(:time_zone,  "#{nice_simple_time_at(@venue.starts_at)} - #{nice_simple_time_at(@venue.ends_at)}" ) %>
+			<%= tr_td_action(:time_zone, @venue.time_zone) %>
+
+		</table>
+	</td>
+	</tr>
+	</table>
+
+			 
+    </div>
+  </div>
+</div>
+
+<% content_for :sidebar, render(:partial => 'venues/sidebar_show') -%>
+<% content_for :sidebar, render(:partial => 'shared/sidebar_show_venue', :locals => {:venue => @venue}) if current_user.is_manager_of?(@venue) %>
+<% content_for :sidebar, render(:partial => 'shared/share_object', :locals => {:venue => @venue}) if @venue -%>

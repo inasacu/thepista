@@ -1,4 +1,7 @@
-/* @override http://thepista.local/stylesheets/primary.css?1296766134 */
+/* @override 
+	http://thepista.local/stylesheets/primary.css?1296766134
+	http://thepista.local/stylesheets/primary.css?1302128350
+*/
 
 html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td,#status a,#list-panel ul,.abook-column-headers h3,*,#header h1,#sidebar h3,#sidebar ul.navigation,.secondary-navigation ul,#main-navigation ul,#user-navigation ul,input.checkbox,.form textarea.text_area,.form input.text_field,.form label.label,ul.list,#box .block h2,#about .block h2,#footer .block p,li,ol,div#footer p,.cluetip-default #cluetip-outer,.ajaxful-rating {
 	margin:0
@@ -947,7 +950,7 @@ div#footer ol li {
 
 .sections {
 	padding-left:20px;
-	width:695px
+	width:775px
 }
 
 td.label,td.label_tip,td.show {

@@ -2,9 +2,6 @@ class Schedule < ActiveRecord::Base
 
   index{ concept }
 
-  # tagging
-  # acts_as_taggable_on :tags
-
   ajaxful_rateable :stars => 5, :dimensions => [:performance]
 
   has_many  :matches,  :conditions => "matches.archive = false",    :dependent => :destroy

@@ -118,6 +118,8 @@
         	when "Group", "Challenge"
           		is_member = current_user.is_member_of?(blog.item)
           		the_label = %(#{I18n.t(:left_post_on_forum)}  #{is_member ? blog_link_item(blog) : sanitize(blog.item.name)})
+        	when "Venue"
+          		the_label = %(#{I18n.t(:left_post_on_forum)}  #{blog_link_item(blog)})
         	end
 
 		when "Forum"

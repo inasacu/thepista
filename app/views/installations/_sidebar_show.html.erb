@@ -1,0 +1,36 @@
+<div class="block">
+
+	<h3><%= label_name(:options) %></h3>
+	
+<div class="content">
+	<p>
+		<%= option_image_link('message') %>&nbsp;&nbsp;
+		<%= link_to label_name(:send_message_to), new_message_path(:venue_id => @venue, :roster_id => @installation) %>
+	</p>
+	<!-- <p>
+		<%#= option_image_link('invitation') %>&nbsp;&nbsp;
+		<%#= link_to(label_name(:invitations_create_installation) , new_invitation_url(:installation_id => @installation)) %>
+	</p> -->
+<% 	
+	if current_user.is_manager_of?(@venue) and !is_controller('forum')
+		the_confirmation = "#{ label_name(:destroy_installation) } #{ label_name(:from) } #{@venue.name}?" 
+%> 
+		<p><%= option_image_link('installation') %>&nbsp;&nbsp;<%= link_to control_label('create'), new_installation_path(:id => @installation.venue) %></p>
+
+		<p>
+		<%= option_image_link('installation') %>&nbsp;&nbsp;
+		<%= link_to control_label('edit'), edit_installation_path(@installation) %>
+		</p>  
+		
+		<%  if get_the_controller != 'topic' %> 
+		<p>
+		<%= option_image_link('installation') %>&nbsp;&nbsp;
+		<%= link_to control_label('destroy'), installation_path(@installation), :method => :delete, :confirm => label_name(:are_you_sure) %>
+		</p>
+		<% end -%>
+<% 
+	end 
+%>routelksjdflkj
+</div>
+	
+</div>

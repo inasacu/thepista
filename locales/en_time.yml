@@ -132,8 +132,10 @@ en:
       date_hour: "%e de %B de %Y a las %H:%M" # this is my code
       day_week: "%A, %e of %B, %Y at %H:%M" # this is my code
       day_time: "%A, at %H:%M" # this is my code
-      day_weekday: "%A" # this is my code
+      day_weekday: "%A"
+      day_of_week: "%A"
       day_date: "%A, %e of %B, %Y" # this is my code
+      date_wo_year: "%e de %B" # this is my code
       day_date_wo_year: "%A, %e of %B" # this is my code
       day_time_wo_year: "%A, %e of %B at %H:%M" # this is my code
       time_at: "at %H:%M" # this is my code

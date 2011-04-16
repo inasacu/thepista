@@ -99,6 +99,7 @@ en:
      cast_right_guess_all:  All Points
      challenge:  Challenge
      challenge_option:  Options for Challenges
+     challenge_option_cluetip:  These options allow the Challenge Manager the option to join or kick off a player.
      challenges:  Challenges
      challenges_all:  All Challenges
      challenges_create:  Create your challenge 
@@ -109,7 +110,7 @@ en:
      challenges_howto_tab:  Click tab 
      challenges_howto_fillin:  Fill in all the fields and click the 'Create' button.
      challenges_howto_gameday:  Game results will be updated automatically.
-     challenges_howto_petition:  "Accept your friends's petitions to join your challenge."  
+     challenges_howto_petition:  "Accept your friend's petitions to join your challenge."  
      challenges_howto_petition_done: A 'Requests' tab appears afer the join request by friends.
      challenges_howto_petition_accept:  Click 'Requests' tab and accept the requests.
      challenges_howto_pronostico:  "Participants are ready to add their forecasts!"
@@ -125,7 +126,6 @@ en:
      challenges_no:  No challenge to display.
      challenges_none:  No challenge.
      challenges_options_without: "What options do you have since you don't have any challenges?"
-     challenge_option:  Opciones para retos 
      challenges_points:  Points / Game
      challenges_search: Search for challenges
      challenges_search_to_join: You can search for challenge to join. 
@@ -403,7 +403,11 @@ en:
      fee_per_challenge:  Fee / Participation
      fee_per_challenge_description:  (This is the price the manager sets to participate...)  
      fee_per_game: Fee / Game   
-     fee_per_game_description: (This is the price player has to pay for the event...)   
+     fee_per_game_description: (This is the price player has to pay for the event...) 
+     fee_per_game_time:  Fee / Hour   
+     fee_per_game_time_description: (This is the price for the pista per hour...)
+     fee_per_lighting: Fee / Lighting   
+     fee_per_lighting_description: (This is the price for lighting in outdoor pista...)  
      fee_per_pista: Fee / Pista   
      fee_per_pista_description: (This is the price for the pista...) 
      fee_per_tour: Fee / Tournament   
@@ -681,9 +685,11 @@ en:
      leave_comment: Leave a comment...   
      leave_group: Leave the Team   
      left_comment_on_wall: Has left a <strong>COMMENT</strong> for    
-     left_post_on_forum: Has left a <strong>COMMENT</strong> on    
+     left_post_on_forum: Has left a <strong>COMMENT</strong> on   
+     lighting:  Lighting
+     lighting_description: (Is there lighting in the pista?) 
      list: List   
-     list_marker: List of Sport Centers   
+     list_marker: List of Locations   
      list_user: List   
      list_venue: List of Venues   
      locale_name: English     
@@ -713,12 +719,12 @@ en:
      maps: Maps   
      mark_as_read: Mark as Read   
      mark_as_unread: Mark as Unread   
-     marker: Sport Center
-     marker_id: Sport Center   
+     marker: Location
+     marker_id: Location   
      marker_description: (Mark where you play on the map if it is not on the list...)   
-     markers: Sport Centers 
-     markers_list: List of Sport Centers
-     markers_create:  New Sport Center  
+     markers: Locations 
+     markers_list: List of Locations
+     markers_create:  New Location  
      match: Match Result   
      matches: Match Results   
      maybe_available: Maybe Available   
@@ -878,6 +884,8 @@ en:
      organize:  Organize
      our_philosophy:  Our Philosophy
      our_story:  Our Story
+     outdoor:  Outdoor
+     outdoor_description: Is pista outdoors?
      overview: overview 
      overview_title:  Overview  
      page_does_not_exist: The page you wanted does not exist.     
@@ -1054,8 +1062,32 @@ en:
      reply_to_this_message: Reply to this message  
      request_petition: New Petición   
      request_invitation: Request an Invitation  
-     reservation:  Reservation
-     reservations: Reservations
+     reservationtion:  Reservation
+     reservationtions: Reservations
+     reservationtions_add:  Reservations
+     reservationtions_all:  All reservationtions
+     reservationtions_available:  All reservationtions
+     reservationtions_concept_description:  Reservation Name
+     reservationtions_create:  New reservation 
+     reservationtions_destroy:  Remove reservation
+     reservationtions_edit:  Update reservation
+     reservationtions_index:   Reservation
+     reservationtions_index_option: Options 
+     reservationtions_invitations_create:  Invite a friend to this reservation
+     reservationtions_join:  Join the reservation
+     reservationtions_list:  reservations
+     reservationtions_name_description:  Name on reservation
+     reservationtions_new:  New reservation
+     reservationtions_new_option: Options 
+     reservationtions_no:  No reservations to display.
+     reservationtions_none:  No reservation.
+     reservationtion_options:  Options
+     reservationtions_options_without: "¿What options do you have since you dont have reservations?"
+     reservationtions_option:  Options 
+     reservationtions_search: Search for reservations
+     reservationtions_search_to_join: You can search for reservation. 
+     reservationtions_show:  Display reservation
+     reservationtions_update: Update reservations
      restored_message: Message Restored   
      role: Role
      roles: Roles   
@@ -1086,7 +1118,7 @@ en:
      search_invitations: Search for Invitations   
      search_managers: Search for Managers   
      search_maps: Search for Venues   
-     search_markers: Search for Sport Centers   
+     search_markers: Search for Locations   
      search_messages: Search for Messages   
      search_names: Search for Names   
      search_notes: Search for Notes   
@@ -1118,7 +1150,7 @@ en:
      send_fee: Send the Charges   
      send_information: Send the Details   
      send_invitation: Send an Invitation   
-     send_marker: Send the URL for the Sport Center 
+     send_marker: Send the URL for the Location 
      send_clash: Send the Results
      send_match: Send the Results
      send_message_to: Send a Message  
@@ -1340,7 +1372,7 @@ en:
      update_invitation: Update Invitation   
      update_manager: Update Manager   
      update_map: Update Mapa   
-     update_marker: Update Sport Center   
+     update_marker: Update Location   
      update_match: Update Match Result  
      update_match_message:  "Hi,<br><br>Just a reminder to enter the results for the previous event.<br><br>" 
      update_message: Update Message   
@@ -1614,14 +1646,14 @@ en:
      groups_search_to_join: Search for a team to join. 
      groups_show:  Show Team
      groups_update: Edit Team 
-     markers_create: New Sport Center
-     markers_index:  Sport Centers
+     markers_create: New Location
+     markers_index:  Locations
      markers_index_option: Options 
-     markers_new: New Sport Center
-     markers_no: No Sport Center to show.
-     markers_edit: Edit Sport Center
+     markers_new: New Location
+     markers_no: No Location to show.
+     markers_edit: Edit Location
      markers_option:  Options
-     markers_show: Show Sport Center     
+     markers_show: Show Location     
      matches_edit:  Match Results
      meets_archive_list:  Previous Season
      meets_concept_description:  Event Concept 
@@ -1788,7 +1820,7 @@ en:
      escuadras_name_description:  Team Name
      rounds_name_description:  Tournament Round Name
      groups_name_description:  Team Name
-     markers_name_description:  Sport Center Name
+     markers_name_description:  Location Name
      roles_name_description:  Role Name
      sports_name_description:  Sport Name
      types_name_description:  Type Name

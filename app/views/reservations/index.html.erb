@@ -1,0 +1,32 @@
+<%
+	the_label = label_name(:reservations)
+	content_for(:title, the_label)
+%>
+
+<div class="block">
+
+	<%= get_secondary_navigation(@venue) %>
+
+	<div class="content">   
+
+		<h2 class="title"><%= "#{the_label} #{label_name(:in)} #{item_name_link(@venue)}, #{item_name_link(@installation)}" %></h2>
+
+		<div class="inner">
+
+			<%= render 'index_boxes' %>
+
+			<%#= render :partial => 'shared/action_bar', :locals => { :collection => @reservation } %>
+
+		</div>
+	</div>
+</div>
+
+<% content_for :sidebar, render('/shared/sidebar_index') -%>
+
+<% content_for :sidebar, render(:partial => '/reservations/sidebar') if current_user.is_manager? -%>
+
+<%# if venue_reservation_list -%>
+<%# content_for :sidebar, render(:partial => 'venues/sidebar_show') -%>
+<%# content_for :sidebar, render(:partial => 'shared/sidebar_show_team', :locals => {:venue => @venue}) if current_user.is_manager_of?(@venue) %>
+<%# content_for :sidebar, render('shared/share_object', :venue => @venue, :reservation => @venue.reservations.first) if @venue -%>
+<%# end -%>

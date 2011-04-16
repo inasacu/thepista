@@ -28,7 +28,7 @@ es:
      all_scorecard:  Todos las Clasificaciones
      all_tournament:  Todos los torneos  
      all_user:   Todos los jugadores
-     all_venue:  Todos los lugares de encuentro    
+     all_venue:  Todos los centros deportivos    
      already_exist: ya existe  
      and: y   
      announcement: Comunicación
@@ -99,6 +99,7 @@ es:
      cast_right_guess_all:  Todos los Puntos
      challenge:  Reto
      challenge_option:  Opciones de Retos
+     challenge_option_cluetip:  Estas opciones permiten al Manager del reto apuntar o desapuntar a un jugador.
      challenges:  Retos
      challenges_all:  Todos los retos
      challenges_create:  Crea tu reto 
@@ -211,7 +212,7 @@ es:
      create_type: Nuevo tipo   
      create_url_venue: nuevo marcador para indicar donde vas a jugar   
      create_user: Invita a un amigo   
-     create_venue: Nuevo centro deportivo   
+     create_venue: Nueva ubicación   
      create_your_own: crear tu propio      
      created: se ha creado correctamente.   
      created_at:  Fecha de creación
@@ -403,7 +404,11 @@ es:
      fee_per_challenge:  Tarifa / Participar
      fee_per_challenge_description:  (Este es el precio que pone el manager por participar...)
      fee_per_game: Tarifa / Partido   
-     fee_per_game_description: (Este es el precio del evento por jugador...)   
+     fee_per_game_description: (Este es el precio del evento por jugador...) 
+     fee_per_game_time:  Tarifa / Hora   
+     fee_per_game_time_description: (Este es el precio de la pista por hora...)
+     fee_per_lighting: Tarifa / Luces   
+     fee_per_lighting_description: (Este es el precio de la luz en la pista or cancha...)  
      fee_per_pista: Tarifa / Pista   
      fee_per_pista_description: (Este es el precio de la pista or cancha...) 
      fee_per_tour: Tarifa / Torneo   
@@ -616,9 +621,9 @@ es:
         one:  "Ha participado en 1 evento." 
         other: "Ha participado en {{count}} eventos."  
      has_venue_installations:
-        zero: "Este lugar de encuentro no tiene instalaciones."
-        one: "Este lugar de encuentro tiene 1 instalación."
-        other: "Este lugar de encuentro tiene {{count}} instalaciones."                              
+        zero: "Este centro deportivo no tiene instalaciones."
+        one: "Este centro deportivo tiene 1 instalación."
+        other: "Este centro deportivo tiene {{count}} instalaciones."                              
      has_left:
         zero: "No quedan" 
         one:  "Queda {{count}} "       
@@ -681,11 +686,13 @@ es:
      leave_comment: Deja un comentario...   
      leave_group: Desapuntate del equipo   
      left_comment_on_wall: Ha dejado un <strong>COMENTARIO</strong> a    
-     left_post_on_forum: Ha dejado un <strong>COMENTARIO</strong> en    
+     left_post_on_forum: Ha dejado un <strong>COMENTARIO</strong> en   
+     lighting:  Luces
+     lighting_description: (Hay luces en la pista?) 
      list: Listado   
-     list_marker: Lista de centros deportivos   
+     list_marker: Lista de ubicaciones   
      list_user: Listado   
-     list_venue: Lista de centros deportivos   
+     list_venue: Lista de ubicaciones   
      locale_name: Español    
      location_sport: Lugar donde practicas tu deporte. 
      login:  Entrar	 
@@ -713,12 +720,12 @@ es:
      maps: Mapas   
      mark_as_read: Marcar como leido   
      mark_as_unread: Marcar como no leido   
-     marker: Centro deportivo
-     marker_id: Centro deportivo   
+     marker: Ubicación
+     marker_id: Ubicación   
      marker_description: (Localiza en el mapa donde juega el equipo si no esta en la lista...)   
-     markers: Centros Deportivos 
-     markers_list: Listado de centros deportivos
-     markers_create:  Nuevo centro deportivo  
+     markers: Ubicaciones 
+     markers_list: Listado de ubicaciones
+     markers_create:  Nueva ubicación  
      match: Resultado 
      matches: Resultados   
      maybe_available: Posiblemente   
@@ -763,7 +770,7 @@ es:
      my_invitation: Mis invitaciones   
      my_manager: Mis misters   
      my_map: Mis mapas   
-     my_marker: Mis lugares de encuentro   
+     my_marker: Mis centros deportivos   
      my_match: Mis resultado   
      my_message: Mis mensajes   
      my_name: Mi nombre   
@@ -778,7 +785,7 @@ es:
      my_teammate: Mis compañeros de equipo   
      my_tournament: Mis torneos   
      my_type: Mi tipo     
-     my_venue: Mis lugares de encuentro 
+     my_venue: Mis centros deportivos 
      my_wall: Mi muro  
      myopenid: Mi OpenID   
      myopenid_association: "Una de las mejores características aquí en HayPista es su capacidad de acceso mediante cuentas que ya tienen. <br />Nos hemos asociado con algunos de los principales proveedores de servicios en un esfuerzo para hacer de su experiencia que HayPista mucho más fácil."   
@@ -878,6 +885,8 @@ es:
      organize:  Organizar
      our_philosophy:  Nuestra Filosofía
      our_story:  Nuestra Historia
+     outdoor:  Al aire libre
+     outdoor_description: (La pista esta al arie libre?)
      overview: descripción general 
      overview_title:  Resumen  
      page_does_not_exist: La pagina que querias no exite.
@@ -1056,6 +1065,30 @@ es:
      request_invitation: Pide una invitación   
      reservation:  Reserva
      reservations: Reservas
+     reservations_add:  Reservas
+     reservations_all:  Todos las reservas
+     reservations_available:  Todos las reservas
+     reservations_concept_description:  Concepto de la reserva
+     reservations_create:  Reservar 
+     reservations_destroy:  Borrar reserva
+     reservations_edit:  Actualizar reserva
+     reservations_index:   Reserva
+     reservations_index_option: Opciones 
+     reservations_invitations_create:  Invita a un amigo a esta reserva
+     reservations_join:  Unete a la reserva
+     reservations_list:  reservas
+     reservations_name_description:  Nombre de la reserva
+     reservations_new:  Reservar
+     reservations_new_option: Opciones 
+     reservations_no:  Ninguna reserva para mostrar.
+     reservations_none:  Ninguna reserva.
+     reservation_options:  Opciones
+     reservations_options_without: "¿Qué opciones tienes ya que no hay reservas?"
+     reservations_option:  Opciones 
+     reservations_search: Busqueda de reservas
+     reservations_search_to_join: Puedes buscar una reserva. 
+     reservations_show:  Mostrar reserva
+     reservations_update: Actualizar reservas
      restored_message: Mensaje restaurado   
      role: Responsabilidad
      roles: Responsabilidades   
@@ -1108,7 +1141,7 @@ es:
      second_team: Segundo equipo   
      second_team_description: "(Si jugais entre el mismo equipo, pon algun significativo para diferenciar a la hora de hacer equipos...) "  
      select: Seleccióna   
-     select_venue: Nuevo centro deportivo  
+     select_venue: Nueva ubicación  
      select_contacts:  Seleccione los contactos que quiere invitar a partir de la esta lista. 
      self_description: "(Escribe algo sobre ti...)"  
      send:  Enviar     
@@ -1388,16 +1421,16 @@ es:
      username_password_donot_match: Nombre de usuario y contraseña no coinciden
      users_activate:  "Es necesario activar tu cuenta"     
      validate_openid: valida tu OpenID   
-     venue: Lugar de Encuentro    
-     Venue: Lugar de Encuentro
-     venues: Lugares de Encuentro
-     venues_create:    Nuevo lugar de encuentro
-     venues_index: Lugares de Encuentro 
-     venues_name_description:  Nombre del lugar de encuentro
-     venues_edit:  Actualizar lugar de encuentro
-     venues_new:  Nuevo lugar de encuentro
+     venue: Centro Deportivo    
+     Venue: Centro Deportivo
+     venues: Centros Deportivos
+     venues_create:    Nuevo centro deportivo
+     venues_index: Centros Deportivos 
+     venues_name_description:  Nombre del centro deportivo
+     venues_edit:  Actualizar centro deportivo
+     venues_new:  Nuevo centro deportivo
      venues_option:  Opciones
-     venues_options_without:  "¿Qué opciones tienes ya que no estas apuntado a un lugar de encuentro?"
+     venues_options_without:  "¿Qué opciones tienes ya que no estas apuntado a un centro deportivo?"
      venues_starts_at:  Hora de apertura
      venues_ends_at:  Hora de cierre
      verification_canceled: OpenID verificación fue cancelada.   
@@ -1616,10 +1649,10 @@ es:
      groups_search_to_join: Puedes buscar un equipo a quien unierte. 
      groups_show:  Mostrar equipo
      groups_update: Actualizar equipo 
-     markers_create: Nuevo centro deportivo
-     markers_index:  Centros Deportivos
+     markers_create: Nueva ubicación
+     markers_index:  Ubicaciones
      markers_index_option: Opciones 
-     markers_new: Nuevo centro deportivo
+     markers_new: Nueva ubicación
      markers_no: Ningun centro deportivo para mostrar.
      markers_edit: Actualizar centro deportivo
      markers_option:  Opciones 

@@ -124,7 +124,7 @@ module ApplicationHelper
     return I18n.l(time_at, :format => :day_time) unless time_at.nil?
   end
 
-  # a las 20:30
+  # 20:30
   def nice_simple_time_at(time_at)
     return I18n.l(time_at, :format => :simple_time_at) unless time_at.nil?
   end
@@ -144,6 +144,11 @@ module ApplicationHelper
     return I18n.l(time_at, :format => :day_week) unless time_at.nil?
   end
 
+  # Sábado, 12 de Junio de 2010 a las 20:30
+  def nice_weekday(time_at)
+    return I18n.l(time_at, :format => :day_of_week) unless time_at.nil?
+  end
+
   # 12 de Junio de 2010 a las 20:30
   def nice_date_hour(time_at)
     return I18n.l(time_at, :format => :date_hour) unless time_at.nil?
@@ -159,6 +164,11 @@ module ApplicationHelper
     return I18n.t(time_at, :format => :day_weekday) unless time_at.nil?
   end
 
+  # 12 de Junio
+  def nice_date_wo_year(time_at)
+    return I18n.l(time_at, :format => :date_wo_year) unless time_at.nil?
+  end
+
   # Sábado, 12 de Junio
   def nice_day_date_wo_year(time_at)
     return I18n.l(time_at, :format => :day_date_wo_year) unless time_at.nil?
@@ -167,6 +177,12 @@ module ApplicationHelper
   # Sábado, 12 de Junio a las 20:30
   def nice_day_time_wo_year(time_at)
     return I18n.l(time_at, :format => :day_time_wo_year) unless time_at.nil?
+  end
+  
+  # converts two dates and get date and time from first and second
+  def convert_to_datetime(the_date, the_time)
+  	the_datetime = "#{the_date.strftime('%Y%m%d')} #{nice_simple_time_at(the_time)}"
+  	return DateTime.strptime(the_datetime, '%Y%m%d %H:%M')
   end
 
   def limit_url_length(text)
@@ -232,7 +248,7 @@ module ApplicationHelper
       yield t.name, classes[(t.count.to_i - min) / divisor]          
     }  
   end
-  
+
   def proper_case(text)
     text = h(text)
     text = text.split.collect {|i| i.capitalize}.join(' ') 
@@ -364,39 +380,39 @@ module ApplicationHelper
     return render("#{(item.class.to_s).downcase}s/secondary_navigation", :item => item) if game.nil?
     return render("#{(item.class.to_s).downcase}s/secondary_navigation", :item => item, :game => game) 
   end
-  
+
   def get_class_table_id_controller
     the_controller = get_the_controller.gsub(' ','_')
     "<table class='table' id='#{the_controller}'>"
   end
-  
+
   def get_class_table_id_action
     the_action = get_the_action.gsub(' ','_')
     "<table class='table' id='#{the_action}'>"
   end
-  
+
   def get_cluetip(the_label, image_name, the_description, icon_only=false, align='')
     the_image = option_image_link(image_name, align)
     the_title = "<strong>#{the_label}</strong>"
     the_id = "tip-#{the_label.downcase.gsub(' ','-')}-#{rand(10000)}"
     the_content = ""
-    
+
     if icon_only
-    the_content = content_tag(:span, the_image, :class => 'tooltip', :title => the_title, :rel => "##{the_id}")
-    the_image=""
+      the_content = content_tag(:span, the_image, :class => 'tooltip', :title => the_title, :rel => "##{the_id}")
+      the_image=""
     else
-    the_content = content_tag(:span, the_label, :class => 'tooltip', :title => the_title, :rel => "##{the_id}")
+      the_content = content_tag(:span, the_label, :class => 'tooltip', :title => the_title, :rel => "##{the_id}")
     end
     the_content_div = content_tag(:div, the_description, :id => the_id, :style => 'display:none')
-    
+
     return "#{the_image}&nbsp;&nbsp;#{the_content} #{the_content_div}"
-	end
-	
-	def get_cluetip_show(the_label, align='right')	  
-	  the_description = I18n.t("#{the_label}_cluetip") 
+  end
+
+  def get_cluetip_show(the_label, align='right')	  
+    the_description = I18n.t("#{the_label}_cluetip") 
     the_label = I18n.t(the_label)
-		return "#{the_label}#{get_cluetip(the_label, 'info', the_description, true, align)}"
-	end
+    return "#{the_label}#{get_cluetip(the_label, 'info', the_description, true, align)}"
+  end
 
   def get_cluetip_toggle(the_label) 
     the_description = I18n.t("#{the_label}_cluetip") 
@@ -410,7 +426,7 @@ module ApplicationHelper
     the_content = "#{the_content} #{the_content_div}"    
     return the_content
   end
-  
+
   # def get_cluetip_td(the_label, the_description, the_class="") 
   #   the_description = I18n.t("#{the_label}_cluetip") 
   #   the_label = I18n.t(the_label)  
@@ -423,7 +439,7 @@ module ApplicationHelper
   #   the_content = "<td class='label'><a href='#'>#{the_content}</a>#{the_content_div}</td>"    
   #   return the_content
   # end
-  
+
   def control_description(value, no_description=false)
     the_description = I18n.t(value)
     the_description = control_label("#{value}_description") unless no_description

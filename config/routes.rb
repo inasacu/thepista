@@ -106,7 +106,7 @@ ActionController::Routing::Routes.draw do |map|
   map.resources   :users,           :as => 'jugadores',                   :collection => { :rpx_create => :post, :rpx_associate => :post, :list => :get, :recent_activity => :get }  
   map.resources   :schedules,       :as => 'eventos',                     :collection => { :list => :get, :archive_list => :get, :my_list => :get }          
   map.resources   :groups,          :as => 'equipos',                     :collection => { :list => :get }
-  map.resources   :markers,         :as => 'centros_deportivos'
+  map.resources   :markers,         :as => 'ubicaciones'
   map.resources   :scorecards,      :as => 'classificaciones',            :collection => { :list => :get }
 
   map.resources   :matches,         :as => 'jornadas'
@@ -136,13 +136,13 @@ ActionController::Routing::Routes.draw do |map|
   map.resources   :cups,            :as => 'copas',                       :collection => { :list => :get }
   map.resources   :games,           :as => 'partidos',                    :collection => { :list => :get }
   map.resources   :challenges,                                            :collection => { :list => :get }
-  map.resources   :casts,           :as => 'pronostico',                  :collection => { :list => :get, :list_guess => :get }
+  map.resources   :casts,           :as => 'pronosticos',                 :collection => { :list => :get, :list_guess => :get }
   map.resources   :escuadras
   
-  map.resources   :venues,          :as => 'deportivos',                  :collection => { :list => :get }
-  map.resources   :facilities,      :as => 'instalaciones',               :collection => { :list => :get }
-  map.resources   :agendas,         :as => 'agendas',                     :collection => { :list => :get }
-
+  map.resources   :venues,          :as => 'centros_deportivos',          :collection => { :list => :get }
+  map.resources   :installations,   :as => 'instalaciones',               :collection => { :list => :get }
+  map.resources   :reservations,    :as => 'reservas',                    :collection => { :list => :get }
+  
   map.resources   :users do |user|
     user.resources :messages
   end

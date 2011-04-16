@@ -3,8 +3,7 @@
 	
 	<div class="sidebar-block" class="extra">
 	<a href="#" onclick="toggle_visibility('jkl');">
-		<!-- <h5><%#= label_name("#{items.first.class.to_s}_option") %></h5> -->
-		<h5><%= get_cluetip_toggle("#{items.first.class.to_s}_option") %></h5>
+		<h5><%= get_cluetip_toggle("#{items.first.class.to_s.downcase}_option") %></h5>
 	</a>
 	<div id="jkl" style='display:none;'>
 	

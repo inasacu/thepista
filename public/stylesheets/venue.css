@@ -1,0 +1,121 @@
+a { color: rgb(0, 0, 255); text-decoration: none; }
+a:hover { text-decoration: underline; }
+
+.Reservada, .Reservable, .FueraPlazo {
+/*	border-top: 1px solid gray;*/
+	border-bottom: 1px solid gray;
+	border-right: 1px solid gray;	
+	border-left: 1px solid gray;
+/*	border: 1px solid gray; */
+	background-position: center bottom; 
+	text-align: center; 
+}
+
+.Reservable { background-color: rgb(255, 255, 255); }
+.FueraPlazo { background-color: #E3E3E3; }
+.Reservada { background-color: rgb(000, 255, 000); }
+
+.NombreReserva { height: 80%; }
+
+.NombreReserva a:hover { 
+	background-color: rgb(193, 196, 255); 
+}
+
+.Reservada a, .Reservable a, .FueraPlazo a { border: medium none; display: block; color: Black; padding-left: 3px; }
+.Reservable a, .FueraPlazo a { height: 100%; }
+
+.Cabecera { 
+	color: White; 
+	background-color: #0f7d00; 
+	background-position: center bottom; 
+	background-repeat: repeat-x; 
+	font-weight: normal; 
+	vertical-align: bottom; 
+	padding: 2px 3px; 
+}
+
+.HoraReserva {  }
+
+input, option, textarea, .input { border: 1px inset rgb(198, 137, 137); }
+
+.CuerpoPagina { 
+	width: auto; 
+	border-left: 1px solid rgb(164, 175, 148); 
+	border-right: 1px solid rgb(164, 175, 148); 
+	border-bottom: 1px solid rgb(164, 175, 148); 
+	background-color: rgb(241, 244, 255); 
+	padding-bottom: 5px; 
+	}
+
+#MargenIzquierdo, #MargenDerecho { width: 10px; }
+
+.CalendarioCuadrante { 
+	background-color: #0f7d00; 
+}
+
+.CalendarioCuadrante .MuestraCal { 
+	font-size: 12px; 
+	margin-top: 5px; }
+
+/*.MenuReservar .Agrupacion { margin-bottom: 15px; }*/
+
+/*.LeyendaClase > div { margin-bottom: 5px; }
+.LeyendaClase .TextoLeyenda { position: relative; top: -3px; font-size: 10px; }
+.LeyendaClase .Reservada, .LeyendaClase .Reservable, .LeyendaClase .FueraPlazo { width: 12px; height: 12px; border: 1px solid black; margin-right: 5px; }
+*/
+
+.ColPista { vertical-align: top; }
+.ColPistaCab, .ColPistaCab_false, .ColPistaCab_true { 
+	text-align: center; 
+	border: 0px none; 
+	font-size: 12px; 
+	background-color: #0f7d00; 
+	color: rgb(255, 255, 255); 
+	margin-top: 1px; 
+	margin-bottom: 1px; 
+	padding-top: 2px; 
+	padding-bottom: 2px; 
+	height: 30px; 
+	overflow: hidden; 
+}
+
+.ColPistaCab_false { 
+	color: #eef0f0; 
+}
+
+
+.CabCuadrante { border-collapse: collapse; min-width: 800px; font-size: 11px; height: 30px; }
+.CabCuadrante .Cabecera { vertical-align: middle; }
+.CabCuadrante .FechaCuadrante { width: 230px; }
+.CabCuadrante .FechaCuadrante { padding-left: 5px; }
+
+.CabCuadrante .FechaCuadrante select { 
+	border: 1px solid #eef0f0; 
+/*	background-color: #0f7d00; */
+/*	color: White; */
+	float: left; 
+	font-size: 120%; 
+	height: 25px; 
+	overflow: hidden; 
+	padding-left: 5px; width: 270px; 
+	}
+	
+.CabCuadrante .FechaCuadrante select option { 
+	padding-top: 8px; 
+	padding-bottom: 8px; 
+	background-color: rgb(255, 255, 255); 
+	color: rgb(50, 101, 168); 
+}
+
+.CabCuadrante .TipoReserva { width: 170px; }
+.CabCuadrante .TipoReserva select { width: 150px; }
+.CabCuadrante .GrupoPistas { width: 170px; }
+.CabCuadrante .GrupoPistas select { width: 150px; }
+
+/*.PiePagina { font-size: 12px; text-align: center; }
+.PiePagina img { height: 12px; width: 12px; }*/
+
+/*div, table, td, .Boton, input { -moz-border-radius: 3px 3px 3px 3px; }*/
+
+.ColPista .NombreReserva { width: 120px; }
+.ColPistaCab { width: 122px; }

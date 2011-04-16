@@ -26,6 +26,8 @@ class BlogsController < ApplicationController
         has_access = current_user.is_user_member_of?(@blog.item)
       when "Group", "Challenge"
         has_access = current_user.is_member_of?(@blog.item)
+      when "Venue"
+        has_access = true
       end
 
       unless has_access 

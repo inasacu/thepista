@@ -1,0 +1,54 @@
+<% 
+	is_user_manager = (current_user.is_manager_of?(@installation))
+%>
+
+<div class="block">
+
+  <%= get_secondary_navigation(Venue.new) %>
+  
+  <div class="content">
+	        
+  <h2 class="title"><%= h(@installation.name) %></h2>
+
+  <div class="inner">
+	
+		<div class="description">
+      <span class="q">
+				<%=sanitize @installation.description.blank? ? control_label('description_no') : @installation.description %>
+			</span>
+    </div>
+
+		<div class="columns"> 
+			<div class="column left"> 
+				<div class="description">
+                   <%= image_tag @installation.venue.thumbnail %>
+                 </div>
+			</div>
+		</div>
+	
+	<table>
+
+	<tr>
+	<td>		
+		<table border="0">
+			<%= tr_td_action(:name, @installation.name) %>
+			<tr>
+				<%= content_tag :td, label_name(:marker), :class => "label" %>
+				<%= content_tag :td, marker_link(@installation.marker), :class => get_the_action %>
+			</tr>
+			<%= tr_td_action(:time_zone,  "#{nice_simple_time_at(@installation.starts_at)} - #{nice_simple_time_at(@installation.ends_at)}" ) %>
+				<%= tr_td_action(:time_zone, @installation.venue.time_zone) %>
+
+		</table>
+	</td>
+	</tr>
+	</table>
+
+			 
+    </div>
+  </div>
+</div>
+
+<% content_for :sidebar, render(:partial => 'installations/sidebar_show') -%>
+<% content_for :sidebar, render(:partial => 'shared/sidebar_show_installation', :locals => {:installation => @installation}) if current_user.is_manager_of?(@installation) %>
+<% content_for :sidebar, render(:partial => 'shared/share_object', :locals => {:installation => @installation}) if @installation -%>
