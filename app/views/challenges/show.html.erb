@@ -55,17 +55,12 @@
 			<%= content_tag :td, sanitize(@challenge.conditions), :class => get_the_action %>	
 		</tr>
 
-	 <% if current_user.is_member_of?(@challenge) %>
-	   <tr>
-	     <%= content_tag :td, label_name(:participants), :class => "label" %>
-	     <%= content_tag :td, user_list(@challenge.users), :class => get_the_action %>
-	   </tr>
-
+		<% if current_user.is_member_of?(@challenge) %>
 		<tr>
-		<%= render :partial => '/shared/show_images', :locals => {:collection => @challenge.users} %>			
+			<%= content_tag :td, label_name(:participants), :class => "label" %>
+			<%= render :partial => '/shared/show_images', :locals => {:collection => @challenge.users} %>			
 		</tr>	
-	
-	 <% end %>
+		<% end %>
 
 		</table>
 

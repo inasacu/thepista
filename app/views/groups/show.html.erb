@@ -85,13 +85,8 @@
 	 <% if current_user.is_member_of?(@group) and !@group.available_users.empty? %>
 	   <tr>
 	     <%= content_tag :td, label_name(:users_available), :class => "label" %>
-	     <%#= content_tag :td, user_list(@group.users), :class => get_the_action %>
-	   <!-- </tr>
-
-		<tr> -->
-		<%= render :partial => '/shared/show_images', :locals => {:collection => @group.users} %>			
+		 <%= render :partial => '/shared/show_images', :locals => {:collection => @group.users} %>			
 		</tr>	
-	
 	 <% end %>
 
 		</table>

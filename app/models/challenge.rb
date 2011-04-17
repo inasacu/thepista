@@ -114,7 +114,7 @@ class Challenge < ActiveRecord::Base
   end 
   
   def self.current_challenges(page = 1)
-    self.paginate(:all, :conditions => ["archive = false"], :order => 'name', :page => page, :per_page => CUPS_PER_PAGE)
+    self.paginate(:all, :conditions => ["cup_id in (select id from cups where archive = false)"], :order => 'name', :page => page, :per_page => CUPS_PER_PAGE)
   end 
   
   def self.latest_items(items)

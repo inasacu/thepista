@@ -20,9 +20,9 @@
 	<li>
 	<% if @cups %>
 		<%  unless @has_no_cups %>
-		<li class="<%= get_first_active %>"><%=  link_to(label_name(:cups_upcoming), cups_path) %></li>
+		<li class="<%= get_first_active %>"><%=  link_to(label_name(:cups), cups_path) %></li>
 		<% end %>
-		<li class="<%= get_active('cup_list') %>"><%=  link_to(label_name(:cups_list) , list_cups_path) %></li>
+		<!-- <li class="<%#= get_active('cup_list') %>"><%#=  link_to(label_name(:cups_list) , list_cups_path) %></li> -->
 	<% else %>
 		<li class="<%= get_active('cup_show') %>"><%=  item_name_link(@cup.name, @cup, nil, 21) if is_not_new_item %></li>
 	
