@@ -185,6 +185,9 @@ class Game < ActiveRecord::Base
     Standing.send_later(:calculate_cup_standing, self.cup)
     Game.send_later(:update_cast_details, self.cup)
     Game.send_later(:set_final_stage, self.cup) if self.all_group_stage_played(self.cup)
+       
+    Standing.send_later(:cup_challenges_user_standing, self.cup) 
+    Standing.send_later(:update_cup_challenge_item_ranking, self.cup)
   end
   
   def self.update_cast_details(cup)

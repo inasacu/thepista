@@ -96,6 +96,7 @@ class GamesController < ApplicationController
 
   def update
     if @game.update_attributes(params[:game]) 
+      Standing.create_cup_escuadra_standing(@game.cup)
       flash[:success] = I18n.t(:successful_update)
       
       unless @game.all_group_stage_played(@game.cup)
