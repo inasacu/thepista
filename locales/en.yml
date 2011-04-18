@@ -121,6 +121,7 @@ en:
      challenges_join:  Join challenge
      challenges_my:  My Challenges
      challenges_list:  Rest of challenges
+     challenges_name_description:  Challenge name
      challenges_new:  New challenge
      challenges_new_option: Options 
      challenges_no:  No challenge to display.
