@@ -10,6 +10,10 @@
 #     ]
 # end
 
+require 'delayed_job'
+require 'hirefire'
+HireFire::Initializer.initialize!
+
 
 HireFire.configure do |config|
   config.max_workers = 5
