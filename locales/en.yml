@@ -558,14 +558,14 @@ en:
      group_b:  Second Team 
      group_fee: Team Fees
      group_id: Team  
-     group_stage:  Group Stage
+     group_stage:  Groups
      group_stage_advance:  Continue to next round
      group_stage_advance_description:  Total teams that move to next round.
      group_stage_name:  Team
      group_stage_single:  Single game in Group Stage.
      group_second_stage_single:  Single game elimination.
      group_final_stage_single:  Single game for the final.
-     group_round:  Elimination Round   
+     group_round:  Knock-Out   
      groups: Teams  
      groups_full:  Team details
      groups_howto:  Create your team in 9 steps.

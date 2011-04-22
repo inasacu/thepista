@@ -174,8 +174,9 @@ class Standing < ActiveRecord::Base
           cast = Cast.find(:first, :select => "sum(points) as points", :conditions => ["challenge_id = ? and user_id = ?", challenge, user])
           points = cast.points.to_i unless cast.nil?    
 
-          standing.points = points
-          standing.save!
+          # standing.points = points
+          # standing.save!
+          standing.update_attribute(:points, points)
         end
       end
     end
