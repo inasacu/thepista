@@ -647,7 +647,14 @@ es:
      icon: Icono
      icon_name: Nombre del icono
      ie_no_more_out_dated:  "Usted está usando un navegador obsoleto."
-     ie_no_more_better:  "Para navegar mejor por este sitio, por favor, actualice su navegador."      
+     ie_no_more_better:  "Para navegar mejor por este sitio, por favor, actualice su navegador." 
+     ie_no_more_read:  "Por favor lea esto!"
+     ie_no_more_may: "Se recomienda actualizar el navegador or cambiar a otro."
+     ie_no_more_using_ie:  "Estás usando Internet Explorer 6 para navegar en este portal. Este portal funciona mejor con otro navegador."
+     ie_no_more_switch_safari:  "Cambiar a Safari"
+     ie_no_more_switch_chrome:  "Cambiar a Google Chrome"
+     ie_no_more_switch_firefox:  "Cambiar a FireFox"
+     ie_no_more_switch_ie:  "Cambiar a Internet Explorer 9"     
      import_contact: Importa contactos de tu correo   
      in: en   
      inbox: Bandeja de entrada   

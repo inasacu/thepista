@@ -646,7 +646,14 @@ en:
      icon: Icon
      icon_name: Icon Name 
      ie_no_more_out_dated:  "You are using an outdated browser."
-     ie_no_more_better:  "For a better experience using this site, please upgrade to a modern web browser."   
+     ie_no_more_better:  "For a better experience using this site, please upgrade to a modern web browser." 
+     ie_no_more_read:  "Please Read This!"
+     ie_no_more_may: "You may want to upgrade your browser."
+     ie_no_more_using_ie:  "You're using Internet Explorer 6 to browse this site right now. This site will work better for you upgrade or switch to another browser."
+     ie_no_more_switch_safari:  "Switch to Safari"
+     ie_no_more_switch_chrome:  "Switch to Google Chrome"
+     ie_no_more_switch_firefox:  "Switch to FireFox"
+     ie_no_more_switch_ie:  "Switch to Internet Explorer 8"
      import_contact: Import your email contacts       
      in: in   
      inbox: Inbox   
