@@ -35,7 +35,7 @@ class User < ActiveRecord::Base
   # validates_inclusion_of :gender, :in => ['male','female'], :allow_nil => true
   # validates_format_of :email,:with => /^([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})$/i, :on => :create #, :message => "es invalido"
  
-  before_destroy    :destroy_activities, :destroy_feeds  
+  # before_destroy    :destroy_activities, :destroy_feeds  
   before_destroy    :unmap_rpx
   
   acts_as_authorization_subject
@@ -101,10 +101,10 @@ class User < ActiveRecord::Base
     has_one     :blog  
     has_many    :feeds
 
-    has_many    :activities,
-                :conditions => {:created_at => LAST_THREE_DAYS},
-                :order => "created_at DESC",
-                :limit => 1
+    # has_many    :activities,
+    #             :conditions => {:created_at => LAST_THREE_DAYS},
+    #             :order => "created_at DESC",
+    #             :limit => 1
 
     # NOTE:  MUST BE DECLARED AFTER attr_accessible otherwise you get a 'RuntimeError: Declare either attr_protected or attr_accessible' 
     has_friendly_id :name, :use_slug => true, :approximate_ascii => true, 
@@ -516,12 +516,12 @@ class User < ActiveRecord::Base
     end
 
     # Clear out all activities associated with this user.
-    def destroy_activities
-      Activity.find_all_by_user_id(self).each {|a| a.destroy}
-    end
+    # def destroy_activities
+    #   Activity.find_all_by_user_id(self).each {|a| a.destroy}
+    # end
 
-    def destroy_feeds
-      Feed.find_all_by_user_id(self).each {|f| f.destroy}
-    end
+    # def destroy_feeds
+    #   Feed.find_all_by_user_id(self).each {|f| f.destroy}
+    # end
     
   end

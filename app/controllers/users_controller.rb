@@ -14,7 +14,6 @@ class UsersController < ApplicationController
                                           
   before_filter :setup_rpx_api_key,   :only => [:rpx_new, :rpx_create, :rpx_associate]
   
-  before_filter :get_activities,      :only => [:index, :list]
   before_filter :has_member_access,     :only => [:rate]
   
   # ssl_required :signup, :new, :create
@@ -538,12 +537,6 @@ private
   def get_user_group
     @user = User.find(params[:id])
     @group = Group.find(params[:group])
-  end
-  
-  def get_activities    
-    @has_activities = Activity.all_activities(current_user) if current_user    
-    @my_activities = Activity.related_activities(current_user) if @has_activities
-    @my_activities = Activity.current_activities unless @has_activities    
   end
   
   def has_member_access

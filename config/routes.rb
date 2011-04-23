@@ -111,7 +111,6 @@ ActionController::Routing::Routes.draw do |map|
 
   map.resources   :matches,         :as => 'jornadas'
   map.resources   :invitations,     :as => 'invitaciones'
-  map.resources   :activities,      :as => 'actividades'
   map.resources   :teammates,       :as => 'mi_equipo'
 
   map.resources   :comments,        :as => 'comentario'
