@@ -36,7 +36,7 @@ Rails::Initializer.run do |config|
   gem 'texticle' 
   gem 'heroku_s3_backup'
   gem 'trueskill'
-  gem 'hirefire'
+  # gem 'hirefire'
   
   # gem "aws-s3"												, "0.6.2"
   # gem "paperclip"												, "~> 2.3"
@@ -120,3 +120,5 @@ I18n.backend.class.send(:include, I18n::Backend::Fallbacks)
 # I18n.fallbacks.map('en' => 'es')
 I18n.reload!
 
+require 'delayed_job'
+require 'hirefire'

@@ -35,7 +35,7 @@ gem 'texticle'
 gem "aws-s3"												, "0.6.2"
 gem 'heroku_s3_backup'
 gem 'trueskill'
-gem 'hirefire'
+# gem 'hirefire'
 
 
 # gem "paperclip"											, "~> 2.3"
