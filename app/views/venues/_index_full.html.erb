@@ -43,7 +43,7 @@
 								
 					<% if current_user.is_manager_of?(venue) %> 
 						<%= link_to label_name(:installations_create), new_installation_path(:id => venue) %><br />
-						<%= link_to label_name(:reservations_create), installation_path(:id => venue) %>
+						<%#= link_to label_name(:reservations_create), installation_path(:id => venue) %>
 			        <% end %>
 					
 				</span>

@@ -45,6 +45,8 @@ class ChallengesController < ApplicationController
     
     if @cup
       @challenge.cup_id = @cup.id 
+      @challenge.description = @cup.description
+      @challenge.conditions = @cup.conditions
       @challenge.starts_at = @cup.starts_at
       @challenge.ends_at = @cup.ends_at
       @challenge.reminder_at = @cup.starts_at - 7.days     

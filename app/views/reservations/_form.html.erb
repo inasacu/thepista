@@ -18,9 +18,19 @@
   </div>
 
   <div class="group">
-    <%= f.label :reminder_at, label_name('reminder_at'), :class => :label %>
-	<%= nice_day_of_week(@reservation.reminder_at) %>
+    <%= f.label :fee_per_game, label_name('fee_per_game'), :class => :label %>
+    <%= @reservation.fee_per_game %>
   </div>
+
+  <div class="group">
+    <%= f.label :fee_per_lighting, label_name('fee_per_lighting'), :class => :label %>
+    <%= @reservation.fee_per_lighting %>
+  </div>
+
+  <!-- <div class="group">
+    <%#= f.label :reminder_at, label_name('reminder_at'), :class => :label %>
+	<%#= nice_day_of_week(@reservation.reminder_at) %>
+  </div> -->
 
   <div class="group">
     <%= f.label :description, label_name('description'), :class => :label %>
@@ -32,27 +42,27 @@
 
   <div class="column right"> 
 
-  <div class="group">
-    <%= f.label :fee_per_game, label_name('fee_per_game'), :class => :label %>
-    <%= @reservation.fee_per_game %>
-  </div>
+  <!-- <div class="group">
+    <%#= f.label :fee_per_game, label_name('fee_per_game'), :class => :label %>
+    <%#= @reservation.fee_per_game %>
+  </div> -->
 
-  <div class="group">
-    <%= f.label :fee_per_lighting, label_name('fee_per_lighting'), :class => :label %>
-    <%= @reservation.fee_per_lighting %>
-  </div>
+  <!-- <div class="group">
+    <%#= f.label :fee_per_lighting, label_name('fee_per_lighting'), :class => :label %>
+    <%#= @reservation.fee_per_lighting %>
+  </div> -->
 
-  <div class="group">
-    <%= f.label :reminder, label_name('reminder'), :class => :label %>
-    <%= f.check_box :reminder, :class => 'check_box' %>
-    <span class="description"><%= label_name('reminder', 'description') %></span>
-  </div>
+  <!-- <div class="group">
+    <%#= f.label :reminder, label_name('reminder'), :class => :label %>
+    <%#= f.check_box :reminder, :class => 'check_box' %>
+    <span class="description"><%#= label_name('reminder', 'description') %></span>
+  </div> -->
 
-  <div class="group">
-    <%= f.label :public, label_name('public'), :class => :label %>
-    <%= f.check_box :public, :class => 'check_box' %>
-    <span class="description"><%= label_name('public', 'description') %></span>
-  </div>
+  <!-- <div class="group">
+    <%#= f.label :public, label_name('public'), :class => :label %>
+    <%#= f.check_box :public, :class => 'check_box' %>
+    <span class="description"><%#= label_name('public', 'description') %></span>
+  </div> -->
 
   </div> 
 

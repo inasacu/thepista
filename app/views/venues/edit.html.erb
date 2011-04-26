@@ -1,6 +1,6 @@
 <div class="block">
 
-	<%= get_secondary_navigation(@group) %>
+	<%= get_secondary_navigation(@venue) %>
 
 	<div class="content">   
 
@@ -8,7 +8,7 @@
 
 		<div class="inner">
 
-			<% form_for(@group, :html => { :multipart => true, :class => :form  }) do |f| -%>
+			<% form_for(@venue, :html => { :multipart => true, :class => :form  }) do |f| -%>
 			<%= render :partial => "form", :locals => {:f => f} %>
 			<% end -%>
 

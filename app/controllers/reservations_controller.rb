@@ -1,5 +1,6 @@
 require 'active_support'  # needs rubygems
-    
+require "base64"
+
 class ReservationsController < ApplicationController
   before_filter :require_user
 
@@ -7,31 +8,19 @@ class ReservationsController < ApplicationController
   before_filter   :get_venue,           :only => [:list]
   before_filter   :get_reservation,     :only => [:show, :edit, :update, :destroy]
   before_filter   :has_manager_access,  :only => [:edit, :update, :destroy]
+  # before_filter   :get_offset,          :only =>[:index, :new]
 
 
   def index  
     store_location
-
-    my_offset = 3600 * +2  # MADRID
-
-    # find the zone with that offset
-    zone_name = ActiveSupport::TimeZone::MAPPING.keys.find do |name|
-      ActiveSupport::TimeZone[name].utc_offset == my_offset
-    end
-    zone = ActiveSupport::TimeZone[zone_name]
-
-    @time_locally = Time.now
-    @time_in_zone = zone.at(@time_locally)
-
-    # p time_locally.rfc822   # => "Fri, 28 May 2010 09:51:10 -0400"
-    # p time_in_zone.rfc822   # => "Fri, 28 May 2010 06:51:10 -0700"
     
-    
-    @current_user_zone = @time_in_zone
-    starts_at = @current_user_zone.beginning_of_day
-    ends_at = (@current_user_zone + 1.day).midnight
-    @reservations = Reservation.weekly_reservations(@installation, starts_at, ends_at)
-    
+    # @current_user_zone = @time_in_zone
+    # starts_at = @current_user_zone.beginning_of_day
+    # ends_at = (@current_user_zone + 1.day).midnight
+    # @reservations = Reservation.weekly_reservations(@installation, starts_at, ends_at)
+    @current_user_zone = Time.zone.now
+    @current_user_zone = Time.now
+    @reservations = Reservation.weekly_reservations(@installation)    
   end
   
   def list
@@ -48,9 +37,9 @@ class ReservationsController < ApplicationController
 
   def new
     @reservation = Reservation.new
+    @reservation.concept = Base64::decode64(params[:block])
+    # @reservation.starts_at = Time.zone.at(Base64::decode64(params[:block].to_s).to_i)
     @reservation.starts_at = params[:starts_at]
-    @reservation.starts_at = @reservation.starts_at
-
     @reservation.ends_at = @reservation.starts_at + 1.hour
     @reservation.reminder_at = @reservation.starts_at - 2.days
 
@@ -156,6 +145,22 @@ class ReservationsController < ApplicationController
       redirect_back_or_default('/index')
       return
     end
+  end
+  
+  def get_offset
+    my_offset = 3600 * +2  # MADRID
+    
+    # find the zone with that offset
+    @zone_name = ActiveSupport::TimeZone::MAPPING.keys.find do |name|
+      ActiveSupport::TimeZone[name].utc_offset == my_offset
+    end
+    @zone = ActiveSupport::TimeZone[@zone_name]
+    
+    @time_locally = Time.now
+    @time_in_zone = @zone.at(@time_locally)
+
+    # p time_locally.rfc822   # => "Fri, 28 May 2010 09:51:10 -0400"
+    # p time_in_zone.rfc822   # => "Fri, 28 May 2010 06:51:10 -0700"
   end
 
 end

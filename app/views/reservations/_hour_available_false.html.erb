@@ -1,11 +1,7 @@
+<a name="<%= Base64::b64encode(starts_at.to_i.to_s) %>"></a>
+
 <div title="Fuera del plazo de reserva permitido" class="FueraPlazo" style="height: 66px;">
-	
 	<div class="Cabecera HoraReserva">
-		
-		<span>
-			<%= "#{nice_simple_time_at(starts_at)} - #{nice_simple_time_at(starts_at+time_frame)}" %>
-		</span>
-		
+		<%= "#{nice_simple_time_at(starts_at)} - #{nice_simple_time_at(starts_at+time_frame)}" %>
 	</div>
-	
 </div>

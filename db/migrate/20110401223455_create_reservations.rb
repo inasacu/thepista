@@ -1,6 +1,6 @@
 class CreateReservations < ActiveRecord::Migration
   def self.up
-    # drop_table :reservations
+    drop_table :reservations
 
     create_table :reservations do |t|
       t.string        :concept

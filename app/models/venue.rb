@@ -41,7 +41,7 @@ class Venue < ActiveRecord::Base
   :conditions => ["roles.name = 'manager' and roles.authorizable_type = 'Venue'"]
 
   
-  has_many      :installations
+  has_many      :installations,   :order => 'name'
   belongs_to    :sport   
   belongs_to    :marker 
   has_one       :blog  
@@ -51,7 +51,7 @@ class Venue < ActiveRecord::Base
   before_update :format_description
   after_create  :create_venue_blog_details
 
-  acts_as_authorization_subject
+  # acts_as_authorization_subject
 
   # method section
   def object_counter(objects)

@@ -38,8 +38,8 @@ class Reservation < ActiveRecord::Base
                         :order => 'concept', :page => page, :per_page => INSTALLATIONS_PER_PAGE)
   end
   
-  def self.weekly_reservations(installation, starts_at, ends_at)
-    self.find(:all, :conditions => ["installation_id = ? and starts_at >= ? and ends_at < ?", installation, starts_at, ends_at], :order => 'starts_at')
+  def self.weekly_reservations(installation)
+    self.find(:all, :conditions => ["installation_id = ? and starts_at >= ? and ends_at < ?", installation, installation.starts_at, installation.ends_at], :order => 'starts_at')
   end
   
   def self.list_reservations(venue, page = 1)

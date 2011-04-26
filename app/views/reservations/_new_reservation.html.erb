@@ -1,0 +1,65 @@
+<%= stylesheet_link_tag 'venue' %>
+
+<table style="width: 100%;">
+<tbody>
+<tr>			
+<td class="CuerpoPagina">
+
+	<div style="width: 100%;">
+		<div>
+
+		<table class="Cuadrante" border="0">
+			<tbody>
+
+				<tr>
+					<% 7.times.each do |x| 
+						current_day = first_day + x.day 
+						starts_at = convert_to_datetime (current_day, @installation.starts_at)
+						ends_at = convert_to_datetime ((current_day + 1.day).midnight, @installation.ends_at)
+						available = (starts_at > first_day)
+						reserved = false
+						block_number = 1
+						%>
+
+						<td class="ColPista">
+
+							<%= render 'reservations/day_of_week', :current_day => current_day, :available => available %>	
+
+							<%  				
+							while (starts_at < ends_at)
+								@reservations.each {|reservation| reserved = (reservation.starts_at == starts_at)}
+								the_block = Base64::b64encode(block_number.to_s)
+								# the_block = Base64::b64encode(starts_at.to_i.to_s)
+								# the_block = starts_at
+
+								if reserved 
+									%>
+									<%= render "hour_reserved", :starts_at => starts_at, :time_frame => time_frame %>
+									<% else %>
+									<%= render "hour_available_#{available}", :starts_at => starts_at, :time_frame => time_frame, 
+													:block => the_block %>
+									<% 
+								end 
+								starts_at += time_frame
+								block_number +=1
+							end 
+							%>
+
+						</td>
+						<% end %>		
+					</tr>
+
+				</tbody>
+			</table>
+
+
+
+		</div>
+	
+		</div>
+	</div>
+
+</td>			
+</tr>
+</tbody>
+</table>
