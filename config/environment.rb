@@ -36,7 +36,7 @@ Rails::Initializer.run do |config|
   gem 'texticle' 
   gem 'heroku_s3_backup'
   gem 'trueskill'
-  # gem 'hirefire'
+  gem "heroku"
   
   # gem "aws-s3"												, "0.6.2"
   # gem "paperclip"												, "~> 2.3"
