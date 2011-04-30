@@ -158,7 +158,7 @@ class Message < ActiveRecord::Base
     @send_mail ||= recipient.message_notification?   
     return unless @send_mail
 
-    UserMailer.send_later(:deliver_message_notification, self) 
+    UserMailer.delay.deliver_message_notification(self) 
   end
 
   def send_schedule_reminder
@@ -169,7 +169,7 @@ class Message < ActiveRecord::Base
 
     case self.item.class.to_s      
     when "Schedule", "Match", "Scorecard"
-      UserMailer.send_later(:deliver_message_schedule, self)
+      UserMailer.delay.deliver_message_schedule(self)
     else
       return
     end

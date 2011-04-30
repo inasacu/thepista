@@ -56,7 +56,7 @@ class Comment < ActiveRecord::Base
       the_label = @item.schedule.concept.to_s.strip[0..25]
       
       @group.users.each do |user|
-        UserMailer.send_later(:deliver_message_blog, user, self.user, self, the_label) if user.forum_message?
+        UserMailer.delay.deliver_message_blog(user, self.user, self, the_label) if user.forum_message?
       end      
 
     when "Blog"
@@ -66,14 +66,14 @@ class Comment < ActiveRecord::Base
       when "User"
         if self.commentable.user 
           the_label = self.commentable.user.name.to_s.strip[0..25]
-          UserMailer.send_later(:deliver_message_blog, self.commentable.user, self.user, self, the_label) if self.commentable.user.blog_message?
+          UserMailer.delay.deliver_message_blog(self.commentable.user, self.user, self, the_label) if self.commentable.user.blog_message?
         end
       when "Group"
         @group = Group.find(@item.item_id)
 
         @group.users.each do |user|
           the_label = @group.name.to_s.strip[0..25]
-          UserMailer.send_later(:deliver_message_blog, user, self.user, self, the_label) if user.blog_message?
+          UserMailer.delay.deliver_message_blog(user, self.user, self, the_label) if user.blog_message?
         end
           
       when "Challenge"
@@ -81,7 +81,7 @@ class Comment < ActiveRecord::Base
         
         @challenge.users.each do |user|
           the_label = @challenge.name.to_s.strip[0..25]
-          UserMailer.send_later(:deliver_message_blog, user, self.user, self, the_label) if user.blog_message?
+          UserMailer.delay.deliver_message_blog(user, self.user, self, the_label) if user.blog_message?
         end
         
       else

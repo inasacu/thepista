@@ -155,7 +155,7 @@ class SchedulesController < ApplicationController
       match.archive = false
       match.save!
     end
-    Scorecard.send_later(:calculate_group_scorecard, @schedule.group)
+    Scorecard.delay.calculate_group_scorecard(@schedule.group)
     @schedule.destroy
 
     flash[:notice] = I18n.t(:successful_destroy)

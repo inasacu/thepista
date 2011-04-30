@@ -108,9 +108,9 @@ class Challenge < ActiveRecord::Base
 
     ChallengesUsers.join_item(user, self)
     Blog.create_item_blog(self)
-    Standing.send_later(:create_cup_challenge_standing, self)
-    Cast.send_later(:create_challenge_cast, self) 
-    Fee.send_later(:create_user_challenge_fees, self)
+    Standing.delay.create_cup_challenge_standing(self)
+    Cast.delay.create_challenge_cast(self) 
+    Fee.delay.create_user_challenge_fees(self)
   end 
   
   def self.current_challenges(page = 1)

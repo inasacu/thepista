@@ -25,7 +25,7 @@ class TeammatesController < ApplicationController
   def leave_item
     @leave_user = User.find(params[:teammate])   
     # Teammate.create_teammate_leave_item(@leave_user, @item, @sub_item)
-    Teammate.send_later(:create_teammate_leave_item, @leave_user, @item, @sub_item)
+    Teammate.delay.create_teammate_leave_item(@leave_user, @item, @sub_item)
 
     flash[:notice] = I18n.t(:to_leave_item_message_sent)
     redirect_to petition_url
@@ -33,7 +33,7 @@ class TeammatesController < ApplicationController
 
   def join_item_accept
     if @requester.requested_managers.include?(@approver)
-      Teammate.send_later(:create_teammate_join_item, @requester, @approver, @item, @sub_item)
+      Teammate.delay.create_teammate_join_item(@requester, @approver, @item, @sub_item)
       flash[:notice] = I18n.t(:petition_to_join_approved)
     end    
     redirect_to petition_url

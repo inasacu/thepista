@@ -62,8 +62,7 @@ class Invitation < ActiveRecord::Base
 
   protected
   def send_invite_contact
-    UserMailer.send_later(:deliver_signup_invitation, self)
-    # UserMailer.deliver_signup_invitation(self)
+    UserMailer.delay.deliver_signup_invitation(self)
   end
 
 end
