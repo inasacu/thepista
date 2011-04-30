@@ -4,8 +4,8 @@
 # bundle show
 # bundle exec
 
-source :gemcutter
-source :rubyforge
+# source :gemcutter
+# source :rubyforge
 
 source "http://gems.github.com"	
 source "http://rubygems.org"
@@ -17,7 +17,7 @@ gem "rack-cache"											, "0.5", :require => "rack/cache"
 gem "authlogic"												, "2.1.6"
 gem "will_paginate"											, "2.3.15"
 gem "authlogic-oid"											, :require => "authlogic_openid"
-gem "openid"	
+gem "openid"												, "0.0.1"
 gem "ruby-openid"											, :require => "openid"	
 gem "acl9"													, "0.12.0"
 gem "geokit"												, "1.5.0"
@@ -44,3 +44,14 @@ group :development do
   gem "mysql"
   gem "rails_best_practices"
 end	
+
+
+group :staging do
+  gem 'heroku'
+  gem 'rush'
+  gem 'rspec'
+  gem 'mocha'
+  gem 'infinity_test'
+  gem 'fuubar'
+  gem 'timecop'
+end
