@@ -1,9 +1,8 @@
 GEM
-  remote: http://rubygems.org/
-  remote: http://rubygems.org/
   remote: http://gems.github.com/
   remote: http://rubygems.org/
   specs:
+	abstract (1.0.0)
     acl9 (0.12.0)
     actionmailer (2.3.8)
       actionpack (= 2.3.8)
@@ -26,32 +25,21 @@ GEM
       xml-simple
     babosa (0.3.3)
     builder (3.0.0)
-    chalofa_ruby-progressbar (0.0.9.1)
     colored (1.2)
     completeness-fu (0.5.2)
       activerecord (>= 2.3.3)
-    configuration (1.2.0)
     contacts (1.2.4)
       gdata (= 1.1.1)
       json (>= 0.4.1)
     crack (0.1.8)
-    diff-lcs (1.1.2)
-    erubis (2.7.0)
-    fattr (2.2.0)
+    erubis (2.6.6)
+	abstract (>= 1.0.0)
     friendly_id (3.2.1.1)
       babosa (~> 0.3.0)
-    fuubar (0.0.4)
-      chalofa_ruby-progressbar (~> 0.0.9)
-      rspec (~> 2.0)
-      rspec-instafail (~> 0.1.4)
     gdata (1.1.1)
     geokit (1.5.0)
-    haml (3.1.1)
+    haml (3.0.25)
     hashie (0.1.4)
-    heroku (2.0.4)
-      launchy (>= 0.3.2)
-      rest-client (>= 1.4.0, < 1.7.0)
-      term-ansicolor (~> 1.0.5)
     heroku_s3_backup (0.0.1)
       right_aws (~> 1.10)
     hoptoad_notifier (2.4.9)
@@ -60,18 +48,10 @@ GEM
     httparty (0.4.5)
       crack (>= 0.1.1)
     i18n (0.4.0)
-    infinity_test (1.0.2)
-      notifiers (>= 1.1.0)
-      watchr (>= 0.7)
     json (1.5.1)
     json_pure (1.4.6)
-    launchy (0.4.0)
-      configuration (>= 0.0.5)
-      rake (>= 0.8.1)
     mime-types (1.16)
-    mocha (0.9.12)
     mysql (2.8.1)
-    notifiers (1.1.0)
     openid (0.0.1)
     pg (0.11.0)
     rack (1.1.2)
@@ -84,49 +64,28 @@ GEM
       activeresource (= 2.3.8)
       activesupport (= 2.3.8)
       rake (>= 0.8.3)
-    rails_best_practices (0.8.2)
+    rails_best_practices (0.8.1)
       activesupport
-      colored
-      erubis
-      haml
       i18n
-      ruby-progressbar
-      ruby_parser
+	  ruby-progressbar (~> 0.0.9)
+	  ruby_parser (~> 2.0.4)
     rake (0.8.7)
-    rest-client (1.6.1)
-      mime-types (>= 1.16)
     right_aws (1.10.0)
       right_http_connection (>= 1.2.4)
     right_http_connection (1.3.0)
     rpx_now (0.6.23)
       json_pure
-    rspec (2.5.0)
-      rspec-core (~> 2.5.0)
-      rspec-expectations (~> 2.5.0)
-      rspec-mocks (~> 2.5.0)
-    rspec-core (2.5.1)
-    rspec-expectations (2.5.0)
-      diff-lcs (~> 1.1.2)
-    rspec-instafail (0.1.7)
-    rspec-mocks (2.5.0)
     ruby-openid (2.1.8)
     ruby-progressbar (0.0.10)
     ruby_parser (2.0.6)
       sexp_processor (~> 3.0)
-    rush (0.6.7)
-      session
-    session (3.1.0)
-      fattr
     sexp_processor (3.0.5)
     sitemap_generator (1.3.5)
-    term-ansicolor (1.0.5)
     texticle (1.0.4.20101004123327)
-    timecop (0.3.5)
     trueskill (1.0.0)
     url_shortener (0.0.6)
       hashie (= 0.1.4)
       httparty (= 0.4.5)
-    watchr (0.7)
     will_paginate (2.3.15)
     xml-simple (1.0.15)
 
@@ -142,15 +101,11 @@ DEPENDENCIES
   completeness-fu (= 0.5.2)
   contacts (= 1.2.4)
   friendly_id (~> 3.1)
-  fuubar
   geokit (= 1.5.0)
-  heroku
   heroku_s3_backup
   hoptoad_notifier
   i18n (= 0.4)
-  infinity_test
   json_pure (= 1.4.6)
-  mocha
   mysql
   openid (= 0.0.1)
   pg
@@ -158,12 +113,9 @@ DEPENDENCIES
   rails (= 2.3.8)
   rails_best_practices
   rpx_now (= 0.6.23)
-  rspec
   ruby-openid
-  rush
   sitemap_generator (= 1.3.5)
   texticle
-  timecop
   trueskill
   url_shortener (= 0.0.6)
   will_paginate (= 2.3.15)

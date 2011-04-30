@@ -35,7 +35,6 @@ gem 'texticle'
 gem "aws-s3"												, "0.6.2"
 gem 'heroku_s3_backup'
 gem 'trueskill'
-# gem "heroku"
 
 # gem "paperclip"											, "~> 2.3"
 
@@ -44,14 +43,3 @@ group :development do
   gem "mysql"
   gem "rails_best_practices"
 end	
-
-
-group :staging do
-  gem 'heroku'
-  gem 'rush'
-  gem 'rspec'
-  gem 'mocha'
-  gem 'infinity_test'
-  gem 'fuubar'
-  gem 'timecop'
-end
