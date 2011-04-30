@@ -120,5 +120,5 @@ I18n.backend.class.send(:include, I18n::Backend::Fallbacks)
 # I18n.fallbacks.map('en' => 'es')
 I18n.reload!
 
-require 'delayed_job'
-require 'hirefire'
+# require 'delayed_job'
+# require 'hirefire'

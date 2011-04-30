@@ -2,7 +2,6 @@ GEM
   remote: http://gems.github.com/
   remote: http://rubygems.org/
   specs:
-	abstract (1.0.0)
     acl9 (0.12.0)
     actionmailer (2.3.8)
       actionpack (= 2.3.8)
@@ -32,13 +31,12 @@ GEM
       gdata (= 1.1.1)
       json (>= 0.4.1)
     crack (0.1.8)
-    erubis (2.6.6)
-	abstract (>= 1.0.0)
+    erubis (2.7.0)
     friendly_id (3.2.1.1)
       babosa (~> 0.3.0)
     gdata (1.1.1)
     geokit (1.5.0)
-    haml (3.0.25)
+    haml (3.1.1)
     hashie (0.1.4)
     heroku_s3_backup (0.0.1)
       right_aws (~> 1.10)
@@ -64,11 +62,14 @@ GEM
       activeresource (= 2.3.8)
       activesupport (= 2.3.8)
       rake (>= 0.8.3)
-    rails_best_practices (0.8.1)
+    rails_best_practices (0.8.2)
       activesupport
+      colored
+      erubis
+      haml
       i18n
-	  ruby-progressbar (~> 0.0.9)
-	  ruby_parser (~> 2.0.4)
+      ruby-progressbar
+      ruby_parser
     rake (0.8.7)
     right_aws (1.10.0)
       right_http_connection (>= 1.2.4)

@@ -4,9 +4,6 @@
 # bundle show
 # bundle exec
 
-# source :gemcutter
-# source :rubyforge
-
 source "http://gems.github.com"	
 source "http://rubygems.org"
 
