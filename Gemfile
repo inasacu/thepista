@@ -43,8 +43,8 @@ end
 
 # Define gems to be used in the 'test' environment
 group :test, :staging do
-  gem 'heroku'
-  gem 'rush'
+  gem 'heroku'												, "2.0.0"
+  gem 'rush'												, "0.6.7"
   gem 'rspec'
   gem 'mocha'
   gem 'infinity_test'
