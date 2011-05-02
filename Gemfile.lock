@@ -79,7 +79,7 @@ GEM
       ruby-progressbar
       ruby_parser
     rake (0.8.7)
-    rest-client (1.6.1)
+    rest-client (1.4.2)
       mime-types (>= 1.16)
     right_aws (1.10.0)
       right_http_connection (>= 1.2.4)
@@ -128,6 +128,7 @@ DEPENDENCIES
   rack-cache (= 0.5)
   rails (= 2.3.8)
   rails_best_practices
+  rest-client (= 1.4.2)
   rpx_now (= 0.6.23)
   ruby-openid
   rush (= 0.6.7)

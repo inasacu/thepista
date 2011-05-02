@@ -32,6 +32,7 @@ gem 'texticle'
 gem "aws-s3"												, "0.6.2"
 gem 'heroku_s3_backup'
 gem 'trueskill'
+gem 'rest-client'											, "1.6.2"
 gem 'heroku'												, "1.20.1"
 gem 'rush'													, "0.6.7"
 
