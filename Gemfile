@@ -40,3 +40,14 @@ group :development do
   gem "mysql"
   gem "rails_best_practices"
 end	
+
+# Define gems to be used in the 'test' environment
+group :test, :staging do
+  gem 'heroku'
+  gem 'rush'
+  gem 'rspec'
+  gem 'mocha'
+  gem 'infinity_test'
+  gem 'fuubar'
+  gem 'timecop'
+end
