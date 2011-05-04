@@ -8,9 +8,9 @@ task :cron => :environment do
   puts "Time now:  #{Time.now}"
   if Time.zone.now.hour == 23 or Time.zone.now.hour == 0 # run at hour before midnight
 
-    puts "Heroku to S3 database backup..."
-    HerokuS3Backup.backup
-    puts "done."
+    # puts "Heroku to S3 database backup..."
+    # HerokuS3Backup.backup
+    # puts "done."
 
     puts "Sending schedule reminders..."
     Schedule.send_reminders
