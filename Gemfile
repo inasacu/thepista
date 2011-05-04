@@ -32,10 +32,6 @@ gem 'texticle'
 gem "aws-s3"												, "0.6.2"
 gem 'heroku_s3_backup'
 gem 'trueskill'
-gem 'rest-client'											, :git => "git://github.com/archiloque/rest-client.git"
-gem 'heroku'												, "1.20.1"
-gem 'rush'													, "0.6.7"
-
 
 # gem "paperclip"											, "~> 2.3"
 
