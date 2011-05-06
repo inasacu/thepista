@@ -83,10 +83,49 @@ module SchedulesHelper
       
     elsif Time.zone.now < schedule.starts_at
       the_label = ""
-      schedule.matches.each {|match| the_label = "#{I18n.t(:your_roster_status) } #{(match.type_name).downcase}" if match.user == current_user}
+      schedule.matches.each {|match| the_label = "#{I18n.t(:your_roster_status) } #{( match.type_name).downcase}" if match.user == current_user}
       return content_tag 'td', "#{the_label}<br/>#{match_all_my_link(schedule, current_user, false, false)}", :class => "last_upcoming"
     end
   end
+  
+  def recent_activities_schedules(schedule_items)
+    the_activities = ""
+		the_user_schedules = []
+		total_items = 0
+		counter = 0
+		
+		schedule_items.each {|item| total_items += 1}
+
+		schedule_items.each do |item| 
+			counter += 1
+
+			same_previous_schedule = false														
+			if the_user_schedules.empty?
+				the_user_schedules << item 								
+				same_previous_schedule = true
+
+			else
+				the_user_schedules.each do |the_schedule|
+					same_previous_schedule = (the_schedule.group == item.group)
+				end
+
+				the_user_schedules << item if same_previous_schedule
+			end
+
+			if (same_previous_schedule and counter < total_items)
+			else
+			   the_activities = %(#{the_activities} #{render('home/upcoming_schedules', :schedules => the_user_schedules)})
+
+				#reset the_user_match and add new match
+				the_user_schedules = []
+				the_user_schedules << item
+			end																
+
+		end
+		return the_activities
+	end
+  
+  
 end
 
 

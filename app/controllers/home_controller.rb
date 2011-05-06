@@ -2,7 +2,7 @@ class HomeController < ApplicationController
   before_filter :require_user, :except => [:index, :about, :help, :welcome, :pricing, :about, :terms_of_use, :privacy_policy, :faq, :openid, :success]
 
   before_filter :get_home,        :only => [:index]
-  before_filter :get_upcoming,    :only => [:index, :upcoming, :search]
+  before_filter :get_upcoming,    :only => [:upcoming, :search]
 
   def privacy_policy
     render :template => '/home/terms_of_use'    
@@ -11,7 +11,7 @@ class HomeController < ApplicationController
   def search
     @item_results = []
     @all_items =  Search.new(params[:search])   
-    @all_items[0..GLOBAL_SEARCH_SIZE].each {|item| @item_results << item }
+    @all_items[0..LARGE_FEED_SIZE].each {|item| @item_results << item }
   end
 
   private
@@ -19,36 +19,58 @@ class HomeController < ApplicationController
   def get_upcoming 
     store_location
     @upcoming_schedules ||= Schedule.upcoming_schedules(session[:schedule_hide_time])
-    @upcoming_classifieds ||= Classified.upcoming_classifieds(session[:classified_hide_time])
-    @upcoming_games ||= Game.upcoming_games(session[:game_hide_time])
     @upcoming_cups ||= Cup.upcoming_cups(session[:cup_hide_time])
+    @upcoming_games ||= Game.upcoming_games(session[:game_hide_time])
+    @upcoming_classifieds ||= Classified.upcoming_classifieds(session[:classified_hide_time])
 
     @upcoming ||=  false
     @upcoming = (!@upcoming_schedules.empty? or !@upcoming_classifieds.empty? or !@upcoming_cups.empty? or !@upcoming_games.empty?)
   end
 
-  def get_home
+  def get_home    
     @items = []
     @all_items = []
     
-    Teammate.latest_teammates(@all_items) 
-    Cup.latest_items(@all_items)
-    Group.latest_items(@all_items)
+    @has_values = false
+    
+    @match_items = []
+    @all_match_items = []
+    
+    @schedule_items = []
+    @all_schedule_items = []
+    
+    Teammate.latest_teammates(@all_items)     
+    Group.latest_items(@all_items)      
+    
+    Schedule.latest_matches(@all_items)     
+    Group.latest_updates(@all_items)   
+    User.latest_updates(@all_items)      
     Classified.latest_items(@all_items)
-    Schedule.latest_items(@all_items)
-    Challenge.latest_items(@all_items)    
-    Schedule.latest_matches(@all_items)    
-    Game.latest_items(@all_items)
-    Group.latest_updates(@all_items)
-    User.latest_updates(@all_items)  
+    
+    Cup.latest_items(@all_items, @has_values)    
+    if @has_values
+      Challenge.latest_items(@all_items)  
+      Game.latest_items(@all_items)
+      # @has_values = false
+    end
+        
+    Schedule.latest_items(@all_schedule_items)
     
     if current_user
-      Comment.latest_items(@all_items, current_user)
-      Match.latest_items(@all_items, current_user)
+      Comment.latest_items(@all_match_items, current_user)
+      Match.latest_items(@all_match_items, current_user)
     end
 
     @all_items = @all_items.sort_by(&:created_at).reverse!    
-    @all_items[0..GLOBAL_FEED_SIZE].each {|item| @items << item }
+    @all_items[0..MEDIUM_FEED_SIZE].each {|item| @items << item }
+    
+    @all_schedule_items = @all_schedule_items.sort_by(&:created_at).reverse!    
+    @all_schedule_items[0..SMALL_FEED_SIZE].each {|item| @schedule_items << item }
+    
+    
+    @all_match_items = @all_match_items.sort_by(&:created_at).reverse!    
+    @all_match_items[0..MEDIUM_FEED_SIZE].each {|item| @match_items << item }
+    
   end
 
 end

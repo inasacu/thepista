@@ -117,5 +117,52 @@ module MatchesHelper
     end
   end
   
+  def recent_activities_matches(match_items)
+    the_activities = ""
+  	the_user_matches = []
+		total_items = 0
+		counter = 0
+		
+		match_items.each {|item| total_items += 1}
+    
+    match_items.each do |item| 
+      counter += 1
+			
+			if item.class.to_s == 'Match'
+
+				same_previous_user = false														
+				if the_user_matches.empty?
+					the_user_matches << item 								
+					same_previous_user = true
+					
+				else
+          # the_match = item
+					the_user = item.user
+					the_type = item.type_id 
+					the_group = item.schedule.group
+
+					the_user_matches.each do |the_match|
+						same_previous_user = (the_match.user == the_user and the_match.type_id == the_type and the_match.schedule.group == the_group)
+					end
+					
+					the_user_matches << item if same_previous_user								
+				end
+				
+				if (same_previous_user and counter < total_items)
+  			else
+				  the_activities = %(#{the_activities} #{render('home/upcoming_matches', :matches => the_user_matches)})
+				  
+					#reset the_user_match and add new match
+					the_user_matches = []
+					the_user_matches << item
+				end																
+
+			else
+			  the_activities = %(#{the_activities} #{render('home/upcoming_home', :teammate => item)})
+			end
+		end
+		return the_activities
+	end  
+  
 end
 

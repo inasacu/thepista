@@ -74,16 +74,6 @@ SHOW_OPENID_LOGIN = false
 SHOW_LOGIN = true
 SHOW_RPX_NOW = true
 
-# tag variable
-TAG_LIMIT = 30
-TAG_LEAST = 8
-
-
-# Column sizes
-# FULL = 20
-# LEFT = LARGER_COLUMN = 14
-# RIGHT = SMALLER_COLUMN = 6
-
 # Database strings typically can't be longer than 255.
 MAX_STRING_LENGTH = 255
 MEDIUM_STRING_LENGTH = 100
@@ -93,20 +83,14 @@ MAX_TEXT_LENGTH = 5000
 MEDIUM_TEXT_LENGTH = 500
 SMALL_TEXT_LENGTH = 300
 
-# The number of raster colums.
-N_COLUMNS = 4
-# The number of raster results per page.
-RASTER_PER_PAGE = 3 * N_COLUMNS
-
-
-#RICH TEXT EDITOR SIZE (pixels)
-RICH_TEXT_HEIGHT = '350px'
-
 
 EMAIL_REGEX = /\A[A-Z0-9\._%+-]+@([A-Z0-9-]+\.)+[A-Z]{2,4}\z/i
-FEED_SIZE = 1
-GLOBAL_FEED_SIZE = 12
-GLOBAL_SEARCH_SIZE = 20
+# FEED_SIZE = 1
+
+# Recent activities feed size
+SMALL_FEED_SIZE = 8
+MEDIUM_FEED_SIZE = 15
+LARGE_FEED_SIZE = 20
 
 LOOKING_USERS = 24
 LOOKING_GROUPS = 24

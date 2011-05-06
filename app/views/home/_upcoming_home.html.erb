@@ -97,8 +97,8 @@
 		item_group_link = item_name_link(teammate.schedule.group)
 
         is_member = current_user.is_member_of?(teammate.schedule.group)
-		the_label = %(#{I18n.t(:changes_in_roster_status) } #{I18n.t(:in)} 
-							#{is_member ? match_roster_link(teammate) : sanitize(teammate.schedule.concept)})
+		# the_label = %(#{I18n.t(:changes_in_roster_status) } #{I18n.t(:in)} #{is_member ? match_roster_link(teammate) : sanitize(teammate.schedule.concept)})
+		the_label = %(#{I18n.t(:passed_to)} <STRONG>#{teammate.type_name}</STRONG> #{I18n.t(:in)} #{is_member ? match_roster_link(teammate) : sanitize(teammate.schedule.concept)})
 			
     when "Comment"
 		request_image = item_image_link_small(teammate.user)

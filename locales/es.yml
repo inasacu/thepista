@@ -149,8 +149,8 @@ es:
      change_roster_status: Pasa a 
      change_wo_access: Es posible que hayas intentado cambiar algo a lo que no tenias acceso.  
      change_your_roster_status:  Cambia convocatoria
-     changed_description: ha cambiado su <strong>PERFIL</strong>
-     changes_in_roster_status: Ha cambiado su <strong>CONVOCATORIA</strong>
+     changed_description: ha cambiado su PERFIL
+     changes_in_roster_status: Ha cambiado su CONVOCATORIA
      character_limit: Máximo 255 carácteres   
      check_all: Todos   
      check_invert: Inverso   
@@ -218,7 +218,7 @@ es:
      created: se ha creado correctamente.   
      created_at:  Fecha de creación
      created_a_challenge:  Ha creado el reto
-     created_a_classified:  Ha puesto el <strong>anuncio</strong>
+     created_a_classified:  Ha puesto el anuncio
      created_a_cup:  Ha creado la copa
      created_a_game:  Ha añadido el partido  
      created_a_group:  Ha creado el equipo
@@ -435,11 +435,11 @@ es:
      from: de  
      from_de: de
      from_up: De 
-     from_Ausente: Pasate a Ultima hora   
+     from_Ausente: Pasate a suplente   
      from_Convocado: Pasate a ausente
      from_message: De   
      from_payment: Pago a   
-     from_Ultima_Hora: Pasate a convocado 
+     from_ultima_hora: Pasate a convocado 
      game: Evento 
      games:  Eventos  
      games_archive_list:  Temporada anterior
@@ -630,7 +630,7 @@ es:
         one:  "Queda {{count}} "       
         other: "Quedan {{count}} "        
      has_not_been_sent: no ha sido mandado correctamente.   
-     has_updated_scorecard: Ha actualizado el <strong>RESULTADO</strong>  
+     has_updated_scorecard: Ha actualizado el RESULTADO  
      have_an_account: Si tienes una cuenta     
      have_changed_language: Has cambiado el idioma
      haypista_howto:  Cosas que puedes hacer.
@@ -687,14 +687,14 @@ es:
      language: Idioma 
      last_game_played: Ultima jornada	 
      last_login_at: conecto la ultima vez   
-     last_minute: Ultima hora   
+     last_minute: Suplentes   
      last_schedule_description: Ultimo evento    
      last_scorecard: Ultimos resultados  
      latest_activities:  Últimas actividades
      leave_comment: Deja un comentario...   
      leave_group: Desapuntate del equipo   
-     left_comment_on_wall: Ha dejado un <strong>COMENTARIO</strong> a    
-     left_post_on_forum: Ha dejado un <strong>COMENTARIO</strong> en   
+     left_comment_on_wall: Ha dejado un COMENTARIO a    
+     left_post_on_forum: Ha dejado un COMENTARIO en   
      lighting:  Luces
      lighting_description: (Hay luces en la pista?) 
      list: Listado   
@@ -753,8 +753,8 @@ es:
      modified_profile: Modificada la opción de ocultar tu perfil de   
      modified_reliable: Modificada la fiabilidad del jugador para atender   
      modo: "HayPista, te ayudamos a organizar partidos. "  
-     modo_key_title: "Te ayudamos a organizar partidos, buscar gente para jugar, buscar centro deportivo para jugar.  Con Hay Pista puedes organizar partidos de empresa, ver tu jornada deportiva e incluso tu clasificacion en tu equipo. Tambien puedes ver actividades de cada jugador, quien esta convocado, quien esta en ultima hora o quien esta ausente para el partido."
-     modo_keywords: "hay pista, organizar partidos, gente para jugar, buscar centro deportivo jugar, partidos de empresa, ver jornada deportiva, clasificacion equipo, actividades jugador, quien esta convocado, quien esta ultima hora, quien esta ausente"
+     modo_key_title: "Te ayudamos a organizar partidos, buscar gente para jugar, buscar centro deportivo para jugar.  Con Hay Pista puedes organizar partidos de empresa, ver tu jornada deportiva e incluso tu clasificacion en tu equipo. Tambien puedes ver actividades de cada jugador, quien esta convocado, quien esta en suplente o quien esta ausente para el partido."
+     modo_keywords: "hay pista, organizar partidos, gente para jugar, buscar centro deportivo jugar, partidos de empresa, ver jornada deportiva, clasificacion equipo, actividades jugador, quien esta convocado, quien esta suplente, quien esta ausente"
      Monday: Lunes        
      more:  mas
      must_be_logged_in:  Tienes que estar registrado para acceder a esta página
@@ -930,6 +930,7 @@ es:
      password_request_made:  "En caso contrario haga clic en el siguiente enlace:"           
      request_url_does_not_work:  "Si la URL no funciona trate de copiarla y pegarla en su navegador."
      request_url_issue:   "Si continua teniendo problemas por favor no dude en contactarnos."     
+     passed_to:  Ha pasado a 
      payed:  Tasa pagada  
      payed_description:  Han sido pagadas las cargos? 
      payment: Pago  
@@ -1358,7 +1359,7 @@ es:
      type: Tipo   
      type_account: Tipo de cuenta 
      types: Tipos   
-     ultima_hora: Ultima hora  
+     ultima_hora: Suplente  
      unauthorized_user:  Jugador no autorizado 
      unauthorized:  No autorizado.
      unavailable: No disponible
@@ -1686,14 +1687,14 @@ es:
      meet_ausentes:  Ningun ausente para mostrar.
      meet_convocados:  Ningun convocado para mostrar.
      meet_excess_player:  Demasiados jugadores convocados.
-     meet_ultima_hora:   Ninguno en ultima hora para mostrar.
+     meet_ultima_hora:   Ninguno en suplente para mostrar.
      meet_no_disponible:  Ninguno no disponible para mostrar.     
      meets_tour_roster_false:  Ningun convocado para mostrar.
-     meets_tour_last_minute_false:   Ninguno en ultima hora para mostrar.
+     meets_tour_last_minute_false:   Ninguno en suplente para mostrar.
      meets_tour_no_show_false:  Ningun ausente para mostrar.
      meets_tour_unavailable_true_false:  Ninguno no disponible para mostrar.
      meets_tour_roster_true:  Convocados
-     meets_tour_last_minute_true:   Ultima hora
+     meets_tour_last_minute_true:   Suplente
      meets_tour_no_show_true:  Ausentes
      meets_tour_unavailable_true:  No disponibles             
      message_delete: Borra este mensaje
@@ -1741,16 +1742,16 @@ es:
      schedule_convocados:  Ningun convocado para mostrar.
      schedule_excess_player:  Demasiados jugadores convocados
      schedule_excess_player_cluetip:  El limite de jugadores del evento ha sido superado.  Para ver la maxima cantidad de jugadores puedes consultarlo en los detalles del evento.
-     schedule_ultima_hora:   Ninguno en ultima hora para mostrar.
+     schedule_ultima_hora:   Ninguno en suplente para mostrar.
      schedule_no_disponible:  Ninguno no disponible para mostrar.
      schedule_rate: Valoración del evento
      schedule_rate_average: Valoración media del evento         
      schedules_team_roster_false:  Ningun convocado para mostrar.
-     schedules_team_last_minute_false:   Ninguno en ultima hora para mostrar.
+     schedules_team_last_minute_false:   Ninguno en suplente para mostrar.
      schedules_team_no_show_false:  Ningun ausente para mostrar.
      schedules_team_unavailable_false:  Ninguno no disponible para mostrar.
      schedules_team_roster_true:  Convocados
-     schedules_team_last_minute_true:   Ultima hora
+     schedules_team_last_minute_true:   Suplente
      schedules_team_no_show_true:  Ausentes
      schedules_team_unavailable_true:  No disponibles
      scorecard_list:  Clasificaciones anteriores
@@ -1907,7 +1908,7 @@ es:
      users_screen:   "Puedes ver todos tus compañeros de equipo y sus perfiles..."
      groups_screen:  "Todos los equipos a los que perteneces se pueden ver aquí..."
      schedules_screen:  "Muestra la lista de los proximos eventos, e incluso anteriores eventos..."
-     schedule_screen:  "Muestra los detalles del evento, un muro, lista de convocados, ultima hora y ausentes..."
+     schedule_screen:  "Muestra los detalles del evento, un muro, lista de convocados, suplente y ausentes..."
      scorecards_screen:  "Los resultados de cada evento permite mantener la clasificación de tu equipo..."
      what_is_haypista_details:  "te ayuda a organizar partidos, buscar donde jugar, y disfrutar del deporte."
      how_does_haypista:  "¿Como funciona HayPista?"

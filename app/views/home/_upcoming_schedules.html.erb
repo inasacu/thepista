@@ -1,0 +1,70 @@
+<%
+	the_manager = nil
+	request_image = ""
+	request_link = ""
+
+	item_link = ""
+	item_image = ""
+
+	item_group_link = ""
+
+	the_label = ""
+	four_spaces = ".&nbsp;&nbsp;&nbsp;&nbsp;"
+
+	first_icon = ""
+	the_icon = ""
+	
+	the_schedule = schedules.first
+	the_group = the_schedule.group
+
+	the_manager = the_group.all_the_managers.first
+	request_image = item_image_link_small(the_manager)
+	request_link = item_name_link(the_manager)
+
+	# item_link = item_concept_link(the_schedule)
+	item_image = item_image_link_small(the_group)	
+	item_group_link = item_name_link(the_group)
+	
+	the_icon = schedule_image_link_small(the_schedule, "calendario.png")
+	
+	is_member = current_user.is_member_of?(the_group)
+	if the_schedule.played?
+		the_label = %(#{I18n.t(:has_updated_scorecard) } #{the_label} )
+	else
+		the_label = %(#{I18n.t(:created_a_schedule) } )
+	end
+	
+	the_links = ""	
+	schedules.each do |schedule|
+		the_links = %(#{the_links} #{is_member ? item_concept_link(schedule) : sanitize(schedule.concept)}, )
+	end
+	
+	the_links = %(#{the_links.chop.chop})	
+	the_label = %(#{the_label} #{the_links})
+%>	
+<tr>
+	<td class="first_home">
+		<%= request_image %>
+	</td>
+	<td class="name_and_date">
+		<%= first_icon %> <%= request_link %> <%= "#{the_label.downcase}." %>
+		<span class="date">
+			<%= the_icon %>&nbsp;&nbsp;<%= ago(the_schedule.created_at) %>
+			
+			<% unless item_group_link == "" %>
+				&nbsp;&nbsp;<%= "&nbsp;&nbsp;#{item_group_link}" %>
+			<% end -%>
+				
+		</span>
+	</td>
+	<td>&nbsp;</td>
+	<td>&nbsp;</td>			  
+	<td class="last">&nbsp;</td>	
+
+</tr>
+
+
+
+
+
+

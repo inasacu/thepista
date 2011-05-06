@@ -148,7 +148,7 @@ en:
      change_wo_access: "It is possible that you tried to change something you did not have access to, Sorry!"  
      change_your_roster_status:  Change your Squad Status
      changed_description: Change Details
-     changes_in_roster_status: Has changed <strong>SQUAD</strong> status   
+     changes_in_roster_status: Has changed SQUAD status   
      character_limit: Max characters is 255   
      check_all: Select All   
      check_invert: Inverse   
@@ -217,7 +217,7 @@ en:
      created: has been created correctly.   
      created_at:  Date Created
      created_a_challenge:  Has created challenge
-     created_a_classified:  Has added the <strong>announcement<strong>
+     created_a_classified:  Has added the announcement
      created_a_cup:  Has create tournament
      created_a_game:  Has added game  
      created_a_group:  Has created team
@@ -434,11 +434,11 @@ en:
      from: from 
      from_de:  for  
      from_up:  From
-     from_Ausente: Change to Last Minute   
+     from_Ausente: Change to Reserve   
      from_Convocado: Change to No-Show   
      from_message: from   
      from_payment: Payment from   
-     from_Ultima_Hora: Change to Squad  
+     from_ultima_hora: Change to Squad  
      game: Game 
      games:  Games  
      games_archive_list:  Previous Season
@@ -629,7 +629,7 @@ en:
         one:  "{{count}} until game"
         other: "{{count}} until game"
      has_not_been_sent: does not havet been sent correctly.   
-     has_updated_scorecard: Has updated the <strong>SCORECARD</strong> with   
+     has_updated_scorecard: Has updated the SCORECARD with   
      have_an_account: If you have an account  
      have_changed_language: Language has been changed
      haypista_howto:  Things you can do.
@@ -686,14 +686,14 @@ en:
      language: Language 
      last_game_played: Last Recent Game	 
      last_login_at: last login at   
-     last_minute: Last Minute   
+     last_minute: Reserve   
      last_schedule_description: Recent event    
      last_scorecard: Recent Results   
      latest_activities:  Latest Activities
      leave_comment: Leave a comment...   
      leave_group: Leave the Team   
-     left_comment_on_wall: Has left a <strong>COMMENT</strong> for    
-     left_post_on_forum: Has left a <strong>COMMENT</strong> on   
+     left_comment_on_wall: Has left a COMMENT for    
+     left_post_on_forum: Has left a COMMENT on   
      lighting:  Lighting
      lighting_description: (Is there lighting in the pista?) 
      list: List   
@@ -928,7 +928,8 @@ en:
      password_request_ignore:  "If you have not made this request, simply ignore this message."
      password_request_made:  "Otherwise click the link below:"           
      request_url_does_not_work:  "If the URL does not work try to copy and paste it into your browser."
-     request_url_issue:   "If you still have problems please do not hesitate to contact us."     
+     request_url_issue:   "If you still have problems please do not hesitate to contact us."  
+     passed_to:  Has changed to   
      payed:  Charges Payed  
      payed_description:  Charges have been paid?
      payment: Payment  
@@ -1355,7 +1356,7 @@ en:
      type: Type   
      type_account: Type of Account 
      types: Types   
-     ultima_hora: Last Minute  
+     ultima_hora: Reserve  
      unauthorized_user:  Player not authorized. 
      unauthorized:  Not Authorized.
      unavailable:  Unavailable
@@ -1683,14 +1684,14 @@ en:
      meet_ausentes:  No No-Show to show.
      meet_convocados:  No Squad to show.
      meet_excess_player:  Too many Players on the Squad.
-     meet_ultima_hora:   Noone on Last Minute to show.
+     meet_ultima_hora:   Noone on reserve to show.
      meet_no_disponible:  Noone on Unavailable to show.     
      meets_tour_roster_false:  Noone on Squad to show.
-     meets_tour_last_minute_false:   Noone on Last Minute to show.
+     meets_tour_last_minute_false:   Noone on reserve to show.
      meets_tour_no_show_false:  Noone on No-Show to show.
      meets_tour_unavailable_true_false:  Noone on Unavailable to show.
      meets_tour_roster_true:  Squad
-     meets_tour_last_minute_true:   Last Minute
+     meets_tour_last_minute_true:   Reserve
      meets_tour_no_show_true:  No-Shows
      meets_tour_unavailable_true:  Unavailable             
      message_delete: Delete this message
@@ -1738,16 +1739,16 @@ en:
      schedule_convocados:  Noone on Squad to show.
      schedule_excess_player:  Too many players on squad
      schedule_excess_player_cluetip:  The player limit for this event has been reached.  Check the event details to view the maximum number of players allowed for this event.
-     schedule_ultima_hora:   Noone on Last Minute to show.
+     schedule_ultima_hora:   Noone on reserve to show.
      schedule_no_disponible:  Noone on unavailable to show.
      schedule_rate: Rate the Event  
      schedule_rate_average: Rate Event Average   
      schedules_team_roster_false:  Noone on Squad to show.
-     schedules_team_last_minute_false:   Noone on Last Minute to show.
+     schedules_team_last_minute_false:   Noone on reserve to show.
      schedules_team_no_show_false:  Noone on No-Shows to show.
      schedules_team_unavailable_false:  Noone on Unavailable to show.
      schedules_team_roster_true:  Squad
-     schedules_team_last_minute_true:   Last Minute
+     schedules_team_last_minute_true:   Reserve
      schedules_team_no_show_true:  No-Shows
      schedules_team_unavailable_true:  Unavailable
      scorecard_list:  Previous Scorecards

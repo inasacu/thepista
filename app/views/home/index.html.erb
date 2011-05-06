@@ -2,6 +2,8 @@
 if current_user
 	the_label = label_name(:latest_activities)
 	content_for(:title, the_label)
+	
+	counter = 0
 %> 
 	<div class="block">
 		
@@ -11,12 +13,15 @@ if current_user
 			<h2 class="title"><%= label_name(:latest_activities) %></h2>
 			<div class="inner">	
 					
-			<%= get_class_table_id_controller %>
+				<%= get_class_table_id_controller %>
+				<%= recent_activities_matches(@match_items) %>      				
+			
+				<% @items.each do |item| %>								
+					<%= render "home/upcoming_home", :teammate => item unless (item.class.to_s == 'Teammate') %>
+					<%= render "users/petition_box", :teammate => item if (item.class.to_s == 'Teammate') %>	
+				<% end %>  
 				
-				<% @items. each do |item| %>								
-				<%= render "home/upcoming_home", :teammate => item unless (item.class.to_s == 'Teammate') %>
-				<%= render "users/petition_box", :teammate => item if (item.class.to_s == 'Teammate') %>	
-				<% end %>
+				<%= recent_activities_schedules(@schedule_items) %>
 				
 			</table>
 			

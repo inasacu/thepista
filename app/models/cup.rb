@@ -121,9 +121,10 @@ class Cup < ActiveRecord::Base
     self.paginate(:all, :conditions => ["ends_at < ? and archive = false", Time.zone.now], :order => 'starts_at', :page => page, :per_page => CUPS_PER_PAGE)
   end
   
-  def self.latest_items(items)
+  def self.latest_items(items, has_values)
     find(:all, :conditions => ["created_at >= ?", LAST_WEEK], :order => "id desc").each do |item| 
       items << item
+      has_values = true
     end
     return items
   end

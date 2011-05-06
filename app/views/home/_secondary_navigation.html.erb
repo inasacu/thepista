@@ -6,7 +6,7 @@
 if current_user 
 	unread_count = current_user.unread_messages_count 
 %>
-	<%= content_tag 'li', link_to(label_name(:upcoming), upcoming_path), :class => get_active('home_upcoming') if @upcoming %>
+	<%= content_tag 'li', link_to(label_name(:upcoming), upcoming_path), :class => get_active('home_upcoming') %>
 	
 	<%  if unread_count > 0 %>	
 		<%= content_tag 'li', link_to(label_name(:messages_inbox), messages_path), :class => "message" %>	

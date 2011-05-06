@@ -176,7 +176,7 @@ class User < ActiveRecord::Base
     end       
 
     def self.latest_updates(items)
-      find(:all, :select => "id, name, photo_file_name, profile_at as created_at", :conditions => ["profile_at >= ?", THREE_WEEKS_AGO], :order => "updated_at desc").each do |item| 
+      find(:all, :select => "id, name, photo_file_name, profile_at as created_at", :conditions => ["profile_at >= ?", TWO_WEEKS_AGO], :order => "updated_at desc").each do |item| 
         items << item
       end
       return items 
