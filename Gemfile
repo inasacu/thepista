@@ -33,6 +33,7 @@ gem "aws-s3"												, "0.6.2"
 gem 'heroku_s3_backup'
 gem 'trueskill'
 
+
 # gem "paperclip"											, "~> 2.3"
 
 group :development do

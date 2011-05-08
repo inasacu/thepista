@@ -13,3 +13,15 @@ group :test do
   gem 'fuubar'
   gem 'timecop'
 end
+
+##
+# Define gems to be used in the 'staging' environment
+group :staging do
+  gem 'heroku'
+  gem 'rush'
+  gem 'rspec'
+  gem 'mocha'
+  gem 'infinity_test'
+  gem 'fuubar'
+  gem 'timecop'
+end
