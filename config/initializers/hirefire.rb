@@ -1,5 +1,5 @@
-require 'delayed_job'
-require 'hirefire'
+# require 'delayed_job'
+# require 'hirefire'
 # HireFire::Initializer.initialize!
 
 HireFire.configure do |config|

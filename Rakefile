@@ -15,7 +15,13 @@ require 'rubygems'
 require "#{RAILS_ROOT}/vendor/plugins/texticle/lib/texticle/tasks" 
   
 begin
-   require 'sitemap_generator/tasks'
- rescue Exception => e
-   puts "Warning, couldn't load gem tasks: #{e.message}! Skipping..."
- end
+  require 'sitemap_generator/tasks'
+rescue Exception => e
+  puts "Warning, couldn't load gem tasks: #{e.message}! Skipping..."
+end
+
+begin
+  require 'delayed/tasks'
+rescue LoadError
+  STDERR.puts "Run `rake gems:install` to install delayed_job"
+end
