@@ -143,6 +143,12 @@ the_roster.each do |match|
 	the_label =  label_name("subscription_#{is_subscriber}")
 
 	if is_squad
+		# initialize values if nil
+		rating_technical = 0.0  if rating_technical.nil?
+		rating_physical = 0.0  if rating_physical.nil?		
+		initial_mean = 0.0  if initial_mean.nil?
+		initial_deviation = 0.0  if initial_deviation.nil?
+				
 		case match.position.name
 		when "defense"
 			(match.group_id > 0) ? home["defense"] += 1 : away["defense"] += 1

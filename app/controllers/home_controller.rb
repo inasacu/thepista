@@ -2,7 +2,7 @@ class HomeController < ApplicationController
   before_filter :require_user, :except => [:index, :about, :help, :welcome, :pricing, :about, :terms_of_use, :privacy_policy, :faq, :openid, :success]
 
   before_filter :get_home,        :only => [:index]
-  before_filter :get_upcoming,    :only => [:upcoming, :search]
+  before_filter :get_upcoming,    :only => [:index, :upcoming, :search]
 
   def privacy_policy
     render :template => '/home/terms_of_use'    
