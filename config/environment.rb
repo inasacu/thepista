@@ -40,7 +40,7 @@ Rails::Initializer.run do |config|
   gem "hirefire"
   
   # gem "aws-s3"												, "0.6.2"
-  # gem "paperclip"												, "~> 2.3"
+  gem "paperclip"                       , "~> 2.3"
   
     
   # Only load the plugins named here, in the order given (default is alphabetical).

@@ -37,7 +37,7 @@ gem "hirefire"
 
 
 
-# gem "paperclip"											, "~> 2.3"
+gem "paperclip"											, "~> 2.3"
 
 group :development do
   # bundler requires these gems in development
