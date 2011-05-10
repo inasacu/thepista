@@ -39,7 +39,7 @@ class HomeController < ApplicationController
     @schedule_items = []
     @all_schedule_items = []
     
-    @my_schedules ||= Schedule.my_current_schedules(current_user)
+    @my_schedules = []
     
     Teammate.latest_teammates(@all_items)     
     Group.latest_items(@all_items)      
@@ -59,6 +59,8 @@ class HomeController < ApplicationController
     Schedule.latest_items(@all_schedule_items)
     
     if current_user
+      @my_schedules ||= Schedule.my_current_schedules(current_user)
+      
       Comment.latest_items(@all_match_items, current_user)
       Match.latest_items(@all_match_items, current_user)
     end
