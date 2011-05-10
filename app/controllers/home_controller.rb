@@ -4,6 +4,10 @@ class HomeController < ApplicationController
   before_filter :get_home,        :only => [:index]
   before_filter :get_upcoming,    :only => [:upcoming, :search]
 
+  def index
+    store_location
+  end
+  
   def privacy_policy
     render :template => '/home/terms_of_use'    
   end
