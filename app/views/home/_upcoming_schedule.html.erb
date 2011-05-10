@@ -1,10 +1,6 @@
 <table class="table">
 
-<% 
-	# @match_type = Match.get_match_type
-	
-	upcoming_schedules.each do |schedule| 
--%>		
+<% upcoming_schedules.each do |schedule| -%>		
 	<tr>
 		<%= view_schedule_icon(schedule) %>
 		<%= view_schedule_concept(schedule) %>
@@ -13,7 +9,7 @@
 		<%= view_schedule_marker(schedule) %>
 		<%= view_schedule_rating(schedule) %>
 	</tr>
-	<% end -%>
+<% end -%>
 
 </table> 
 

@@ -8,30 +8,20 @@
 	has_cup ||= false	
 	has_cup = true unless upcoming_cups.empty?
 
-	the_label = label_name(:upcoming)
+	the_label = label_name(:my_upcoming)
 	content_for(:title, the_label)
 %> 
 
 
-<h2 class="title"><%= the_label %></h2>
+<h2 class="title"><%= option_image_link('events') %>&nbsp;&nbsp;<%= the_label %></h2>
+
 
 <%  if has_schedule %>
 <div class="inner">
-	<%= render :partial => "upcoming_schedule", :locals => {:upcoming_schedules => @upcoming_schedules} %>
+	<%= render :partial => "upcoming_schedule", :locals => {:upcoming_schedules => @my_schedules} %>
 </div>
 <% end %>
 
-<%  if has_cup %>
-<div class="inner">
-	<%= render :partial => "upcoming_cup", :locals => {:upcoming_cups => @upcoming_cups} %>
-</div>
-<% end %>
-
-<%  if has_game %>
-<div class="inner">
-	<%= render :partial => "upcoming_game", :locals => {:upcoming_games => @upcoming_games} %>
-</div>
-<% end %>
 
 
 

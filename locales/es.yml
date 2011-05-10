@@ -1484,7 +1484,7 @@ es:
      your_sent_message: Tu mensaje ha sido enviada   
      your_team_notification: Petición para tu equipo.   
      your_thoughts: ¿Qué estás pensando?   
-     your_upcoming: Tus próximos eventos  
+     my_upcoming: Mi Próximo Evento  
      zip: Codigo postal
      user_create_notice:  Regístrado éxito...
      user_update_notice: Actualización éxitosa... 

@@ -13,8 +13,7 @@ if current_user
 			
 			<%= render 'home/upcoming' %>
 			
-			
-			<h2 class="title"><%= label_name(:latest_activities) %></h2>
+			<h2 class="title"><%= option_image_link('activities') %>&nbsp;&nbsp;<%= label_name(:latest_activities) %></h2>
 			<div class="inner">	
 					
 				<%= get_class_table_id_controller %>

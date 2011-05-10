@@ -2,7 +2,7 @@ class HomeController < ApplicationController
   before_filter :require_user, :except => [:index, :about, :help, :welcome, :pricing, :about, :terms_of_use, :privacy_policy, :faq, :openid, :success]
 
   before_filter :get_home,        :only => [:index]
-  before_filter :get_upcoming,    :only => [:index, :upcoming, :search]
+  before_filter :get_upcoming,    :only => [:upcoming, :search]
 
   def privacy_policy
     render :template => '/home/terms_of_use'    
@@ -38,6 +38,8 @@ class HomeController < ApplicationController
     
     @schedule_items = []
     @all_schedule_items = []
+    
+    @my_schedules ||= Schedule.my_current_schedules(current_user)
     
     Teammate.latest_teammates(@all_items)     
     Group.latest_items(@all_items)      
