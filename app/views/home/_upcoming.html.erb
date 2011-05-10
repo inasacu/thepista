@@ -1,25 +1,13 @@
 <%  
-	has_schedule ||= false	
-	has_schedule = true unless upcoming_schedules.empty? 
-
-	has_game ||= false	
-	has_game = true unless upcoming_games.empty?
-
-	has_cup ||= false	
-	has_cup = true unless upcoming_cups.empty?
-
 	the_label = label_name(:my_upcoming)
 	content_for(:title, the_label)
-%> 
+	unless my_schedules.empty? 
+%>
+	<h2 class="title"><%= option_image_link('events') %>&nbsp;&nbsp;<%= the_label %></h2>
 
-
-<h2 class="title"><%= option_image_link('events') %>&nbsp;&nbsp;<%= the_label %></h2>
-
-
-<%  if has_schedule %>
-<div class="inner">
-	<%= render :partial => "upcoming_schedule", :locals => {:upcoming_schedules => @my_schedules} %>
-</div>
+	<div class="inner">
+		<%= render :partial => "home/upcoming_schedule", :locals => {:upcoming_schedules => my_schedules} %>
+	</div>
 <% end %>
 
 
