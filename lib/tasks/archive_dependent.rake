@@ -59,23 +59,20 @@ task :the_archive_dependent => :environment do |t|
   end
 
   # archive all comments for all commentable_type archived 
-  the_item_types = Comment.find(:all, :select => "distinct commentable_type")
-  the_item_types.each do |comment|
-    # puts "commentable_type => #{comment.commentable_type}"
-    the_archive = []    
-    case comment.commentable_type
-    when "Blog"
-      the_archive = Comment.find(:all, :select => "distinct *", 
-      :conditions => "archive = false and commentable_type = 'Blog' and commentable_id in (select id from blogs where archive = true)")
-    when "Forum"
-      the_archive = Comment.find(:all, :select => "distinct *", 
-      :conditions => "archive = false and commentable_type = 'Forum' and commentable_id in (select id from forums where archive = true)")
-    end  
-    the_archive.each do |comment|
-      puts "archive comment => #{comment.id},  #{comment.commentable_id} #{comment.commentable_type}"
-      comment.archive = true
-      comment.save if has_to_archive
-    end
+  the_archive = Comment.find(:all, :select => "distinct *", 
+  :conditions => "archive = false and commentable_type = 'Blog' and commentable_id in (select id from blogs where archive = true)")
+  the_archive.each do |comment|
+    puts "archive comment => #{comment.id},  #{comment.commentable_id} #{comment.commentable_type}"
+    comment.archive = true
+    comment.save if has_to_archive
+  end
+  
+  the_archive = Comment.find(:all, :select => "distinct *", 
+        :conditions => "archive = false and commentable_type = 'Forum' and commentable_id in (select id from forums where archive = true)")
+  the_archive.each do |comment|
+    puts "archive comment => #{comment.id},  #{comment.commentable_id} #{comment.commentable_type}"
+    comment.archive = true
+    comment.save if has_to_archive
   end
 
   # archive all blogs for all item_type archived 

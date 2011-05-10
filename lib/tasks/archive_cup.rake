@@ -9,7 +9,7 @@ task :the_archive_cup => :environment do |t|
   has_to_archive = true
 
   # archive all chanllenges and cast w/ 
-  @cups = Cup.find(:all, :conditions => "archive = false and official = true")
+  @cups = Cup.find(:all, :conditions => "archive = true and official = true")
   @cups.each do |cup|
 
     puts "cup: #{cup.name}"
