@@ -68,7 +68,7 @@
 
 						<tr>
 							<%= content_tag :td, get_cluetip_show('evaluation'), :class =>"label" %>
-							<%= content_tag :td, ratings_for( @user, :static, :dimension => :evaluation, :small => true), :class => get_the_action %>
+							<%= content_tag :td, ratings_for( @user, :static, :dimension => :evaluation, :size => "small" ), :class => get_the_action %>
 						</tr>
 						
 						<% if @user.has_group? 							

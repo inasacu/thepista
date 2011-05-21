@@ -26,9 +26,13 @@
     <link rel="shortcut icon" type="image/ico" href="/favicon.ico">
 		
 	<%= javascript_include_tag :defaults %>
-	<%= ajaxful_rating_style %>
+	<%#= ajaxful_rating_style %>
 	
-	<%= javascript_include_tag  "http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js" %>
+	<%= javascript_include_tag "http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js" %>
+	<%= ajaxful_rating_style %>
+	<%= ajaxful_rating_script %>
+	
+	<%#= javascript_include_tag  "http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js" %>
 	<%= javascript_include_tag 'jquery.google-analytics', 'jquery.notifyBar', 'jquery.cluetip', 'jquery.hoverIntent' %>
 	<%= javascript_include_tag 'jquery.clearinput' %>
 	<%= javascript_include_tag 'application' %>

@@ -1,3 +1,6 @@
+== 2.2.9 Sept 30, 2010
+* Released as a separate ajaxful_rating_jquery gem.
+
 == 2.2.8.1 Jul 02, 2010
 * Call html_safe only when it's available.
 

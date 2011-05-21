@@ -44,11 +44,16 @@ class MatchesController < ApplicationController
   end
 
   def rate
-    @match.rate(params[:stars], current_user, params[:dimension])   
-    render :update do |page|
-      page.replace_html @match.wrapper_dom_id(params), ratings_for(@match, params.merge(:wrap => false))
-      page.visual_effect :highlight, @match.wrapper_dom_id(params)
-    end
+    # @match.rate(params[:stars], current_user, params[:dimension])   
+    # render :update do |page|
+    #   page.replace_html @match.wrapper_dom_id(params), ratings_for(@match, params.merge(:wrap => false))
+    #   page.visual_effect :highlight, @match.wrapper_dom_id(params)
+    # end
+
+    @match.rate(params[:stars], current_user, params[:dimension])
+    average = @match.rate_average(true, params[:dimension])
+    width = (average / @match.class.max_stars.to_f) * 100
+    render :json => {:id => @match.wrapper_dom_id(params), :average => average, :width => width}
   end
 
   def edit

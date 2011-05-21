@@ -76,11 +76,16 @@ class SchedulesController < ApplicationController
   end
   
   def rate
-    @schedule.rate(params[:stars], current_user, params[:dimension])    
-    render :update do |page|
-      page.replace_html @schedule.wrapper_dom_id(params), ratings_for(@schedule, params.merge(:wrap => false))
-      page.visual_effect :highlight, @schedule.wrapper_dom_id(params)
-    end
+    # @schedule.rate(params[:stars], current_user, params[:dimension])    
+    # render :update do |page|
+    #   page.replace_html @schedule.wrapper_dom_id(params), ratings_for(@schedule, params.merge(:wrap => false))
+    #   page.visual_effect :highlight, @schedule.wrapper_dom_id(params)
+    # end
+
+    @schedule.rate(params[:stars], current_user, params[:dimension])
+    average = @schedule.rate_average(true, params[:dimension])
+    width = (average / @schedule.class.max_stars.to_f) * 100
+    render :json => {:id => @schedule.wrapper_dom_id(params), :average => average, :width => width}
   end
 
   def new

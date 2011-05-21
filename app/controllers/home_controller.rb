@@ -6,6 +6,11 @@ class HomeController < ApplicationController
 
   def index
     store_location
+    unless current_user
+
+      redirect_to(:controller => 'user_sessions', :action => 'new')
+      return
+    end
   end
   
   def privacy_policy
@@ -76,7 +81,7 @@ class HomeController < ApplicationController
     @all_schedule_items[0..SMALL_FEED_SIZE].each {|item| @schedule_items << item }
     
     
-    @all_match_items = @all_match_items.sort_by(&:created_at).reverse!    
+    # @all_match_items = @all_match_items.sort_by(&:created_at).reverse!    
     @all_match_items[0..MEDIUM_FEED_SIZE].each {|item| @match_items << item }
     
   end

@@ -3,6 +3,7 @@ class Schedule < ActiveRecord::Base
   index{ concept }
 
   ajaxful_rateable :stars => 5, :dimensions => [:performance]
+  
 
   has_many  :matches,  :conditions => "matches.archive = false",    :dependent => :destroy
   has_many  :fees,                                                  :dependent => :destroy 
@@ -216,7 +217,7 @@ class Schedule < ActiveRecord::Base
   
   def self.latest_matches(items)
     find(:all, :select => "distinct schedules.id, schedules.concept, schedules.group_id, schedules.played, schedules.updated_at as created_at", 
-         :conditions => ["schedules.played = true and schedules.updated_at >= ?", THREE_WEEKS_AGO],
+         :conditions => ["schedules.played = true and schedules.updated_at >= ?", TWO_WEEKS_AGO],
          :order => "created_at desc").each do |item| 
       items << item
     end

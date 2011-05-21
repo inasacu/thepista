@@ -81,7 +81,7 @@ GEM
       activeresource (= 2.3.8)
       activesupport (= 2.3.8)
       rake (>= 0.8.3)
-    rails_best_practices (0.8.2)
+    rails_best_practices (0.9.0)
       activesupport
       colored
       erubis
@@ -89,7 +89,7 @@ GEM
       i18n
       ruby-progressbar
       ruby_parser
-    rake (0.8.7)
+    rake (0.9.0)
     rest-client (1.6.1)
       mime-types (>= 1.16)
     right_aws (1.10.0)

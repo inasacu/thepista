@@ -7,7 +7,7 @@ class User < ActiveRecord::Base
   end
    
    # allows user to rate a model 
-   ajaxful_rateable :stars => 5, :dimensions => [:evaluation]
+   # ajaxful_rateable :stars => 5, :dimensions => [:evaluation]
    ajaxful_rater
    
    define_completeness_scoring do
@@ -176,7 +176,7 @@ class User < ActiveRecord::Base
     end       
 
     def self.latest_updates(items)
-      find(:all, :select => "id, name, photo_file_name, profile_at as created_at", :conditions => ["profile_at >= ?", TWO_WEEKS_AGO], :order => "updated_at desc").each do |item| 
+      find(:all, :select => "id, name, photo_file_name, profile_at as created_at", :conditions => ["profile_at >= ?", LAST_WEEK], :order => "updated_at desc").each do |item| 
         items << item
       end
       return items 

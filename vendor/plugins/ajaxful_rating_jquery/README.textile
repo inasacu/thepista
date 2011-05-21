@@ -1,19 +1,21 @@
-h1. Ajaxful Rating
+h1. Ajaxful Rating jQuery
 
-Provides a simple way to add rating functionality to your application.
+Provides a simple way to add rating functionality to your application. This fork uses jQuery instead of prototype and uses unobtrusive javascript. Currently, it only supports Rails 2.3.x.
 
 !http://s3.amazonaws.com/ember/v9SvvO3rdSkA40e1sXBf8JgpuaWCC0uB_o.png!
 
 h2. Repository
 
-Find it at "github.com/edgarjs/ajaxful-rating":http://github.com/edgarjs/ajaxful-rating
+Find it at "http://github.com/kamui/ajaxful_rating_jquery":http://github.com/kamui/ajaxful_rating_jquery
+
+The original repository, which uses Prototype, is located at "http://github.com/edgarjs/ajaxful-rating":http://github.com/edgarjs/ajaxful-rating
 
 h2. Demo
 
-You can find a demo working app for this plugin at "http://github.com/edgarjs/ajaxful-rating_demo_app":http://github.com/edgarjs/ajaxful-rating_demo_app
+There's a working demo project at "http://github.com/kamui/ajaxful_rating_jquery_demo":http://github.com/kamui/ajaxful_rating_jquery_demo
 Just migrate and run...
 
-Or view it live: "http://axr.heroku.com":http://axr.heroku.com
+Or view it live: "http://axrj.heroku.com":http://axrj.heroku.com
 
 *******************************************************************
 
@@ -23,11 +25,11 @@ h3. Install
 
 To install the gem run the next command:
 
-  @gem install ajaxful_rating@
+  @gem install ajaxful_rating_jquery@
   
 You can configure it in your environment.rb file also:
 
-  @config.gem "ajaxful_rating"@
+  @config.gem "ajaxful_rating_jquery"@
 
 h3. Generate
 
@@ -36,7 +38,7 @@ h3. Generate
 The generator takes one argument: UserModelName, which is the name of your *current*
 user model. This is necessary to link both the rate and user models.
 
-Also this generator copies the necesary images, styles, etc.
+Also this generator copies the necessary images, styles, etc.
 
 Example:
 _I suppose you have generated already an authenticated model..._
@@ -51,7 +53,7 @@ So this call will create a Rate model and will link it to your User model.
 h3. Prepare
 
 To let a model be rateable just add @ajaxful_rateable@. You can pass a hash of options to
-customise this call:
+customize this call:
 * @:stars@ Max number of stars that can be submitted.
 * @:allow_update@ Set to true if you want users to be able to update their votes.
 * @:cache_column@ Name of the column for storing the cached rating average.
@@ -72,7 +74,7 @@ class User < ActiveRecord::Base
 end
 </pre>
 
-Finally, as a mere recomendation to make it even easier, modify your routes to
+Finally, as a mere recommendation to make it even easier, modify your routes to
 map a rate action:
 
   @map.resources :cars, :member => {:rate => :post}@
@@ -109,6 +111,9 @@ For example:
 # To display the rating for the current user (current_user):
 <%= ratings_for @article, :show_user_rating => true %>
 
+# To change the size of the stars you can also specify an optional :size value. If none is set it uses the large size, otherwise you can specify medium or small:
+<%= ratings_for @article, :size => "medium" %>
+
 # To display the rating for the user specified by @user:
 <%= ratings_for @article, @user, :show_user_rating => true %>
 </pre>
@@ -118,20 +123,21 @@ There's a condition here, if you didn't add the route @rate@ to your resource
 correct action in your controller:
 
 <pre>
-<%= ratings_for @article, :remote_options => {:url => your_rate_path(@article)} %>
+<%= ratings_for @article, :url => your_rate_path(@article) %>
 </pre>
 
-h3. Important!
++h3. Important!
 
 *To display the stars properly you need to add a call in the head of your layout, which will generate the
-required CSS style for the list. Also don't forget to include the javascripts.*
+required CSS style for the list. Also don't forget to include jQ--uery.*
 
 It's also important to note that this call MUST be within your head tags in your layout, as for now it seems to doesn't work with the @content_for@ tag.
 
 <pre>
   #within the head tags of your layout...
-  <%= javascript_include_tag :defaults %>
+  <%= javascript_include_tag "http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js" %>
   <%= ajaxful_rating_style %>
+  <%= ajaxful_rating_script %>
 </pre>
     
 When a user submits a rating it will call the action in your controller, for
@@ -141,10 +147,9 @@ example (if you added the @rate@ route):
   def rate
     @car = Car.find(params[:id])
     @car.rate(params[:stars], current_user, params[:dimension])
-    render :update do |page|
-      page.replace_html @car.wrapper_dom_id(params), ratings_for(@car, params.merge(:wrap => false))
-      page.visual_effect :highlight, @car.wrapper_dom_id(params)
-    end
+    average = @product.rate_average(true, params[:dimension])
+    width = (average / @car.class.max_stars.to_f) * 100
+    render :json => {:id => @car.wrapper_dom_id(params), :average => average, :width => width}
   end
 </pre>
 
@@ -177,7 +182,7 @@ map.namespace :admin do |admin|
 end
 
 views/admin/articles/show.html.erb
-<%= ratings_for @article, :remote_options => {:url => rate_admin_article_path(@article)} %>
+<%= ratings_for @article, :url => rate_admin_article_path(@article) %>
 </pre>
 
 h3. Cache
@@ -196,7 +201,7 @@ class AddRatingAverageToArticles < ActiveRecord::Migration
 end
 </pre>
 
-If you want to customise the name of the cache column just pass it in the options hash:
+If you want to customize the name of the cache column just pass it in the options hash:
 
 <pre>
 class Article < ActiveRecord::Base
@@ -208,20 +213,15 @@ To use caching with dimensions, make sure you have a cache column defined for ea
 So if you want to cache the @spelling@ dimension, you’ll need to have a column called @rating_average_spelling@ on the articles table.
 If you use a custom cache column name, follow the pattern @cache_column_name_dimension_name@ to add cache columns for dimensions.
 
-h2. About backwards compatibility
-
-*Version 2.0 of the plugin works only from Rails 2.2 and on. It uses the module @I18n@ which is new in rails 2.2. Please note that you can use it in past versions as long as you _customise_ the source code.*
-
-I decided to jump directly to version 2.0 because there are many important changes. You can always
-checkout the version 1.0 from the repository though.
-
 h2. Feedback
 
-If you find bugs please open a ticket at "http://github.com/edgarjs/ajaxful-rating/issues":http://github.com/edgarjs/ajaxful-rating/issues
+If you find bugs please open a ticket at "http://github.com/kamui/ajaxful_rating_jquery/issues":http://github.com/kamui/ajaxful_rating_jquery/issues
 
-I'll really appreciate your feedback, please contact me at e[at]dgar[dot]org
+I'll really appreciate your feedback, please contact me at kamuigt[at]gmail[dot]com
 
 h2. Credits
+
+The original developer of ajaxify_rating, "Edgar J. Suarez":http://github.com/edgarjs
 
 The helper's style is from "komodomedia":http://www.komodomedia.com/blog/2007/01/css-star-rating-redux/ with author's permission.
 

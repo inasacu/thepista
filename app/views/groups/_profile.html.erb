@@ -5,25 +5,25 @@
 	<td><%= user_link(match.user) %></td>
 
 	<td class="name_and_date">
-		<%= ratings_for match, :show_user_rating => true, :dimension => :technical, :small => true if can_be_modified %>
+		<%= ratings_for match, :show_user_rating => true, :dimension => :technical, :size => "small" if can_be_modified %>
 	</td>
 
 	<td>&nbsp;</td>
 
 	<td class="name_and_date">
-		<%= ratings_for match, :show_user_rating => true, :dimension => :physical, :small => true if can_be_modified %>
+		<%= ratings_for match, :show_user_rating => true, :dimension => :physical, :size => "small" if can_be_modified %>
 	</td>
 
 	<td>&nbsp;|&nbsp;</td>
 
 	<td class="name_and_date">
-		<%= ratings_for match, :static, :dimension => :technical, :small => true %>  
+		<%= ratings_for match, :static, :dimension => :technical, :size => "small" %>  
 	</td>
 
 	<td>&nbsp;</td>
 
 	<td class="name_and_date">
-		<%= ratings_for match, :static, :dimension => :physical, :small => true %>
+		<%= ratings_for match, :static, :dimension => :physical, :size => "small" %>
 	</td>
 
 	<td class="last" width="400">&nbsp;</td>

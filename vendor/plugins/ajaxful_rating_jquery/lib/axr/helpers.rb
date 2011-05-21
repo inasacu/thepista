@@ -10,11 +10,73 @@ module AjaxfulRating # :nodoc:
         content_tag(:style, @axr_css.to_css, :type => "text/css")
     end
     
+    def ajaxful_rating_script
+      if protect_against_forgery?
+        authenticity_script = %{
+          csrf_param = "authenticity_token";
+          csrf_token = #{form_authenticity_token.inspect};
+
+          // Always send the authenticity_token with ajax
+          $(document).ajaxSend(function(event, request, settings) {
+            if ( settings.type == 'post' ) {
+              settings.data = (settings.data ? settings.data + "&" : "")
+                + encodeURIComponent( csrf_param ) + "=" + encodeURIComponent( csrf_token );
+            }
+          });
+        }
+      end
+
+      %{<script>
+        #{authenticity_script}
+
+        $(document).ready(function(){
+          $('.ajaxful-rating a').bind('click',function(event){
+            event.preventDefault();
+            $.ajax({
+              type: $(this).attr('data-method'),
+              url: $(this).attr('href'),
+              data: {
+                      stars: $(this).attr('data-stars'),
+                      dimension: $(this).attr('data-dimension'),
+                      size: $(this).attr('data-size'),
+                      show_user_rating: $(this).attr('data-show_user_rating')
+                    },
+              success: function(response){
+                $('#' + response.id + ' .show-value').css('width', response.width + '%');
+              }
+            });
+          });
+        });
+      </script>}
+    end
+    
+    def ajaxful_rating_script_prototype
+      %{
+        $$('.ajaxful-rating a').observe('click', rateProduct);
+        
+        function rateProduct(event) {
+          var element = event.element();
+
+          new Ajax.Request(element.readAttribute('data-url'), {
+            method: element.readAttribute('data-method'),
+            parameters: {
+              data-stars: element.readAttribute('data-stars'),
+              data-dimension: element.readAttribute('data-dimension'),
+              data-size: element.readAttribute('data-size'),
+              data-show_user_rating: element.readAttribute('data-show_user_rating')
+            },
+            onSuccess: function(transport, json){
+              alert(json ? Object.inspect(json) : "no JSON object");
+            }
+          });
+        }
+      }
+    end
+    
     # Generates the stars list to submit a rate.
     # 
     # It accepts the next options:
-    # * <tt>:small</tt> Set this param to true to display smaller images. Default is false.
-    # * <tt>:remote_options</tt> Hash of options for the link_to_remote function.
+    # * <tt>:size</tt> Set this param to medium or small to display medium/small images. Default is false.
     # Default is {:method => :post, :url => rate_rateablemodel_path(rateable)}.
     # * <tt>:wrap</tt> Whether the star list is wrapped within a div tag or not. This is useful when page updating. Default is true.
     # * <tt>:show_user_rating</tt> Set to true if you want to display only the current user's rating, instead of the global average.
@@ -36,10 +98,10 @@ module AjaxfulRating # :nodoc:
     # or pass <tt>:static</tt> to leave the list of stars static.
     # 
     # Example:
-    #   <%= ratings_for @article, @user, :small => true %>
+    #   <%= ratings_for @article, @user, :size => 'small' %>
     #   # => Will use @user instead <tt>current_user</tt>
     #   
-    #   <%= ratings_for @article, :static, :small => true %>
+    #   <%= ratings_for @article, :static, :size => 'medium' %>
     #   # => Will produce a static list of stars showing the current rating average for @article.
     #   
     # The user passed here will *not* be the one who submits the rate. It will be used only for the display behavior of the stars.
@@ -74,12 +136,11 @@ module AjaxfulRating # :nodoc:
     #       hover: "Rate {{value}} out of {{max}}"    def ratings_for(*args)
     def ratings_for(*args)
       @axr_css ||= CSSBuilder.new
-      options = args.extract_options!.symbolize_keys.slice(:small, :remote_options,
+      options = args.extract_options!.symbolize_keys.slice(:size, :url, :method,
         :wrap, :show_user_rating, :dimension, :force_static, :current_user)
-      remote_options = options.delete(:remote_options) || {}
       rateable = args.shift
       user = args.shift || (respond_to?(:current_user) ? current_user : raise(NoUserSpecified))
-      StarsBuilder.new(rateable, user, self, @axr_css, options, remote_options).render
+      StarsBuilder.new(rateable, user, self, @axr_css, options).render
     end
   end
 end

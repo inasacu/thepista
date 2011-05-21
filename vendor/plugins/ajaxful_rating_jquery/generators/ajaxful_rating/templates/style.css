@@ -68,6 +68,21 @@ z-index: 2;
     background-position: left center;
 }
 
+/* medium star */
+.ajaxful-rating.medium{
+    /*width: 54px; this is setted dynamically */
+    height: 18px;
+}
+.ajaxful-rating.medium,
+.ajaxful-rating.medium a:hover,
+.ajaxful-rating.medium a:active,
+.ajaxful-rating.medium a:focus,
+.ajaxful-rating.medium .show-value{
+    background-image: url(/images/ajaxful_rating/star_medium.png);
+    line-height: 18px;
+    height: 18px;
+}
+
 /* smaller star */
 .ajaxful-rating.small{
     /*width: 50px; this is setted dynamically */

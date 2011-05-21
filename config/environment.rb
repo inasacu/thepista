@@ -26,7 +26,7 @@ Rails::Initializer.run do |config|
   gem 'sitemap_generator'                  
   gem 'acts_as_commentable',                :version => "2.1.1"           
   gem 'hoptoad_notifier'
-  gem 'rpx_now'
+  gem 'rpx_now',                            :version => "0.6.24"
   gem "url_shortener"
   gem "i18n",                               :version => "0.4"
   gem "friendly_id"                       

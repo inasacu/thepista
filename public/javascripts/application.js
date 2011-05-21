@@ -24,6 +24,6 @@ $(document).ready(function() {
 });
 
 // jquery clear-input
-$(document).ready(function(){
-    $("input[type='text']").clearInput();
-});
+// $(document).ready(function(){
+//     $("input[type='text']").clearInput();
+// });
