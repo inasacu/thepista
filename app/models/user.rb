@@ -7,7 +7,7 @@ class User < ActiveRecord::Base
   end
    
    # allows user to rate a model 
-   # ajaxful_rateable :stars => 5, :dimensions => [:evaluation]
+   ajaxful_rateable :stars => 5, :dimensions => [:evaluation]
    ajaxful_rater
    
    define_completeness_scoring do
