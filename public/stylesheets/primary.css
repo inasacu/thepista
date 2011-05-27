@@ -1,6 +1,7 @@
 /* @override 
 	http://thepista.local/stylesheets/primary.css?1296766134
 	http://thepista.local/stylesheets/primary.css?1302128350
+	http://thepista.local/stylesheets/primary.css?1305021359
 */
 
 html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td,#status a,#list-panel ul,.abook-column-headers h3,*,#header h1,#sidebar h3,#sidebar ul.navigation,.secondary-navigation ul,#main-navigation ul,#user-navigation ul,input.checkbox,.form textarea.text_area,.form input.text_field,.form label.label,ul.list,#box .block h2,#about .block h2,#footer .block p,li,ol,div#footer p,.cluetip-default #cluetip-outer,.ajaxful-rating {
@@ -182,7 +183,7 @@ a img,.ajaxful-rating .show-value,.ajaxful-rating span,.ajaxful-rating a {
 	padding:0 15px
 }
 
-#status a,.abook-column-headers h3 .alpha-link,.js #abook-group,.progress-meter,.progress-meter .has-progress,.progress-meter .no-progress,#sidebar ul.navigation li a:visited,#sidebar ul.navigation li a:link,#main-navigation ul li a,.secondary-navigation ul li a,.pagination span,.pagination a,.form label.label,.previous_message,.next_message,.table .name_and_date .name_and_date_second_team .name,.name_and_date .date,.name_and_date_second_team .date,.name_and_date .date_tiny,.name_and_date_second_team .date_tiny,.last .action,.header div.logo,.header a.logo,.header li a,.cluetip-rounded #cluetip-extra {
+#status a,.abook-column-headers h3 .alpha-link,.js #abook-group,.progress-meter,.progress-meter .has-progress,.progress-meter .no-progress,#sidebar ul.navigation li a:visited,#sidebar ul.navigation li a:link,#main-navigation ul li a,.secondary-navigation ul li a,.pagination span,.pagination a,.form label.label,.previous_message,.next_message,.table .name_and_date .name_and_date_second_team .name,.name_and_date .date,  .name_and_date .date_created_at, .name_and_date_second_team .date,.name_and_date .date_tiny,.name_and_date_second_team .date_tiny,.last .action,.header div.logo,.header a.logo,.header li a,.cluetip-rounded #cluetip-extra {
 	display:block
 }
 
@@ -388,7 +389,7 @@ ul.list li .item .avatar,.cluetip-rounded #cluetip-extra {
 	border-color:#fbb
 }
 
-.scorecard,.see-more:after,.small,.name_and_date .date,.name_and_date_second_team .date,.sections a.active,.notify-bar-close {
+.scorecard,.see-more:after,.small,.name_and_date .date, .name_and_date .date_created_at, .name_and_date_second_team .date,.sections a.active,.notify-bar-close {
 	font-size:11px
 }
 
@@ -837,9 +838,13 @@ td.subscription_false {
 	white-space:nowrap
 }
 
-.name_and_date .date,.name_and_date_second_team .date,.name_and_date .date_tiny,.name_and_date_second_team .date_tiny,.last .action {
+.name_and_date .date,  .name_and_date .date_created_at, .name_and_date_second_team .date, .name_and_date .date_tiny,.name_and_date_second_team .date_tiny,.last .action {
 	padding:1px 0 0;
-	color:rgb(119,119,119)
+	color:rgb(119,119,119);
+}
+
+ .name_and_date .date_created_at {
+	width:  150px;
 }
 
 #status a,.name_and_date .date_tiny,.last .action {

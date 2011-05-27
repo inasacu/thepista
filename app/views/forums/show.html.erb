@@ -1,6 +1,24 @@
 <%
-the_label = label_with_name('note', sanitize(@schedule.concept))
+	the_label = label_with_name('note', sanitize(@schedule.concept))
+
+	the_comments = []
+	items = []
+
+	@comments.each do |item| 
+		if item.created_at >= THREE_WEEKS_AGO
+
+			# only add unique values
+			has_the_item = false
+			the_comments.each do |comment|             
+				has_the_item = (comment.user_id == item.user_id and comment.body == item.body ) if !has_the_item          
+			end           
+			items << item unless has_the_item
+			the_comments << item
+
+		end
+	end
 %>
+
 <div class="block">
 	<%= render "shared/previous_next_message", :schedule => @schedule, :the_previous => @the_previous, :the_next => @the_next -%>
 
@@ -11,13 +29,21 @@ the_label = label_with_name('note', sanitize(@schedule.concept))
 		<%= render :partial => 'comments/new', :locals => { :label => label_name(:write_comment) } %>
 
 		<table class="table">
-			<tr>             
-				<%= content_tag :th, "&nbsp;", :class => "clear" %>
-				<%= content_tag :th, "&nbsp;", :class => "clear" %>
-				<%= content_tag :th, "&nbsp;", :class => "clear" %>
-				<%= content_tag :th, "&nbsp;", :class => "clear" %>
+			<tr>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td class="last"></td>
 			</tr>
-			<%= render :partial => 'comments/comments', :locals => { :comments => @comments } %>
+			
+			
+			<% items.each do |comment| -%> 
+						<%= render :partial => 'forums/comment', :locals => {:comment => comment} %>
+			<% end %>
+			
+			<%#= render :partial => 'comments/comments', :locals => { :comments => @comments } %>
+			<%#= render :partial => 'new_comment', :locals => { :comments => @comments } %>
+			
 		</table>			
 
 	</div>
