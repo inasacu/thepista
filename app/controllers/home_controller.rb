@@ -62,7 +62,6 @@ class HomeController < ApplicationController
     if @has_values
       Challenge.latest_items(@all_items)  
       Game.latest_items(@all_items)
-      # @has_values = false
     end
         
     Schedule.latest_items(@all_schedule_items)
@@ -81,8 +80,8 @@ class HomeController < ApplicationController
     @all_schedule_items[0..MEDIUM_FEED_SIZE].each {|item| @schedule_items << item }
     
     
-    # @all_match_items = @all_match_items.sort_by(&:created_at).reverse!    
-    @all_match_items[0..MEDIUM_FEED_SIZE].each {|item| @match_items << item }
+    @all_match_items = @all_match_items.sort_by(&:created_at).reverse!    
+    @all_match_items[0..EXTENDED_FEED_SIZE].each {|item| @match_items << item }
     
   end
 

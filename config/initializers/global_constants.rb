@@ -17,6 +17,8 @@ LAST_THREE_DAYS = Time.zone.now - 3.days..Time.zone.now + 1.day
 
 NEXT_WEEK = Time.zone.now + 7.days
 LAST_WEEK = Time.zone.now - 7.days
+LAST_TWO_DAYS = Time.zone.now - 2.days
+LAST_SIX_DAYS = Time.zone.now - 6.days
 TWO_WEEKS_AGO = Time.zone.now - 14.days
 THREE_WEEKS_AGO = Time.zone.now - 21.days
 TWO_MONTHS_AGO = Time.zone.now - 60.days
@@ -91,6 +93,7 @@ EMAIL_REGEX = /\A[A-Z0-9\._%+-]+@([A-Z0-9-]+\.)+[A-Z]{2,4}\z/i
 SMALL_FEED_SIZE = 8
 MEDIUM_FEED_SIZE = 15
 LARGE_FEED_SIZE = 20
+EXTENDED_FEED_SIZE = 200
 
 LOOKING_USERS = 24
 LOOKING_GROUPS = 24

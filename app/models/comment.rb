@@ -16,22 +16,22 @@ class Comment < ActiveRecord::Base
 
   # method section  
   def self.latest_items(items, user)
-    user_id = ""
-    commentable_id = ""
-    commentable_type = ""
+    the_comments = []
     
     find(:all, :select => "distinct comments.id, comments.user_id, comments.commentable_id, comments.commentable_type, comments.updated_at as created_at", 
          :joins => "left join groups_users on groups_users.user_id = comments.user_id left join challenges_users on challenges_users.user_id = comments.user_id",    
-         :conditions => ["(groups_users.group_id in (?)  or challenges_users.challenge_id in (?)) and comments.updated_at >= ? and comments.archive = false", user.groups, user.challenges, LAST_WEEK],
+         :conditions => ["(groups_users.group_id in (?)  or challenges_users.challenge_id in (?)) 
+                          and comments.updated_at >= ? and comments.archive = false", user.groups, user.challenges, LAST_WEEK],
          :order => "comments.commentable_type DESC, comments.commentable_id DESC, comments.updated_at DESC").each do |item| 
            
+           has_the_item = false
+           
            # only add unique values
-           unless (user_id == item.user_id and commentable_id == item.commentable_id and commentable_type == item.commentable_type)
-             user_id = item.user_id 
-             commentable_id = item.commentable_id 
-             commentable_type = item.commentable_type
-             items << item  
-           end
+           the_comments.each do |comment|             
+             has_the_item = (comment.user_id == item.user_id and comment.commentable_id == item.commentable_id and comment.commentable_type == item.commentable_type) if !has_the_item          
+           end           
+           items << item unless has_the_item
+           the_comments << item           
     end
     return items 
   end
