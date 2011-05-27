@@ -6,11 +6,11 @@ class HomeController < ApplicationController
 
   def index
     store_location
-    unless current_user
-
-      redirect_to(:controller => 'user_sessions', :action => 'new')
-      return
-    end
+    # unless current_user
+    # 
+    #   redirect_to(:controller => 'user_sessions', :action => 'new')
+    #   return
+    # end
   end
   
   def privacy_policy
