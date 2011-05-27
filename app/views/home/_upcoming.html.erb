@@ -6,7 +6,7 @@
 	<h2 class="title"><%= option_image_link('events') %>&nbsp;&nbsp;<%= the_label %></h2>
 
 	<div class="inner">
-		<%= render :partial => "home/upcoming_schedule", :locals => {:upcoming_schedules => my_schedules} %>
+		<%= render :partial => "home/upcoming_schedule", :locals => {:upcoming_schedules => my_schedules, :add_style => true} %>
 	</div>
 <% end %>
 

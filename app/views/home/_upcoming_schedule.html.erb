@@ -1,7 +1,12 @@
+<% 
+	add_style ||= false 
+	the_style = add_style ? "border:1px solid rgb(205,205,205);" : ""
+%>
+
 <table class="table">
 
 <% upcoming_schedules.each do |schedule| -%>		
-	<tr>
+	<tr style="<%= the_style %>" >
 		<%= view_schedule_icon(schedule) %>
 		<%= view_schedule_concept(schedule) %>
 		<%= view_schedule_group(schedule) %>
