@@ -55,7 +55,7 @@ class HomeController < ApplicationController
     Venue.latest_items(@all_items)  
     
     Schedule.latest_matches(@all_items) 
-    Reservation.latest_items(@all_items)
+    Reservation.latest_items(@all_items) if development?
     
     Group.latest_updates(@all_items)   
     User.latest_updates(@all_items)      
