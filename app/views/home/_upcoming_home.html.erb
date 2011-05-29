@@ -115,6 +115,19 @@
 		
 		the_label = "#{label_name(:changed_description)}"
 	
+	when "Scorecard"
+		request_image = item_image_link_small(teammate.user)
+		request_link = item_name_link(teammate.user)
+
+		# item_link = item_name_link(teammate.group)
+		# item_image = item_image_link_small(teammate.group)
+				
+		item_group_link = item_name_link(teammate.group)
+	
+		the_icon = user_avatar_image_link(teammate.user)
+	
+		the_label = "#{label_name(:created_a_available)}"
+	
 	when "Match"
 		request_image = item_image_link_small(teammate.user)
 		request_link = item_name_link(teammate.user)

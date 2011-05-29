@@ -52,7 +52,7 @@ class HomeController < ApplicationController
     
     Teammate.latest_teammates(@all_items)     
     Group.latest_items(@all_items)   
-    Venue.latest_items(@all_items)   
+    Venue.latest_items(@all_items)  
     
     Schedule.latest_matches(@all_items) 
     Reservation.latest_items(@all_items)
@@ -72,8 +72,11 @@ class HomeController < ApplicationController
     if current_user
       @my_schedules = Schedule.my_current_schedules(current_user)
       
+      current_user.groups.each {|group| Scorecard.latest_items(@all_items, group)}
+      
       Comment.latest_items(@all_match_items, current_user)
       Match.latest_items(@all_match_items, current_user)
+      Match.last_minute_items(@all_match_items, current_user)
     end
 
     @all_items = @all_items.sort_by(&:created_at).reverse!    

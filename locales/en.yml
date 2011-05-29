@@ -216,6 +216,7 @@ en:
      create_your_own: Create your own       
      created: has been created correctly.   
      created_at:  Date Created
+     created_a_available:  is amongs the player with more games played
      created_a_challenge:  Has created challenge
      created_a_classified:  Has added the announcement
      created_a_cup:  Has create tournament
