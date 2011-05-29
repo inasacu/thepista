@@ -223,8 +223,10 @@ es:
      created_a_game:  Ha añadido el partido  
      created_a_group:  Ha creado el equipo
      created_a_match:  Ha actualizado el resultado
+     created_a_reservation:  Ha hecho una reserva
      created_a_schedule: Ha creado el evento 
      created_a_user:  ha creado su perfil.
+     created_a_venue:  Ha create el centro deportivo
      credit: Pago   
      credit_amount: A recibir   
      credit_amount_description:  Lo que recibes

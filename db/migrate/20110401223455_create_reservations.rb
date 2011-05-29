@@ -18,13 +18,12 @@ class CreateReservations < ActiveRecord::Migration
       t.float         :fee_per_game,        :default => 0.0
       t.float         :fee_per_lighting,    :default => 0.0
 
-      # t.integer       :player_limit,        :default => 99
-
       t.boolean       :available,           :default => true
       t.boolean       :reminder,            :default => true
       t.boolean       :public,              :default => true
 
       t.text          :description
+      t.string        :block_token
       t.boolean       :archive,             :default => false
 
       t.timestamps

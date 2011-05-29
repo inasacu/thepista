@@ -5,6 +5,6 @@
 		<%= "#{nice_simple_time_at(starts_at)} - #{nice_simple_time_at(starts_at+time_frame)}" %>
 	</div>
 	<div class="NombreReserva">
-		<%= link_to label_name(:reservations_new), new_reservation_path(:id => @installation, :starts_at => starts_at, :block => block) %>
+		<%= link_to label_name(:reservations_new), new_reservation_path(:id => @installation, :block_token => block_token) %>
 	</div>
 </div>

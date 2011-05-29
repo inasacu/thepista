@@ -4,4 +4,10 @@
 	<div class="Cabecera HoraReserva">
 		<%= "#{nice_simple_time_at(starts_at)} - #{nice_simple_time_at(starts_at+time_frame)}" %>
 	</div>
+		<div class="NombreReserva">
+			<%#= link_to label_name(:reservations_new), new_reservation_path(:id => @installation, :block => block) %>
+			<%#= nice_simple_time_at(starts_at) %> <%#= nice_simple_time_at(Time.zone.now) %>
+			<!-- <br/> -->
+			<%#= starts_at > Time.zone.now %>
+		</div>
 </div>

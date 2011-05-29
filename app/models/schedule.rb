@@ -224,6 +224,13 @@ class Schedule < ActiveRecord::Base
     return items
   end
   
+  def self.weekly_reservations(marker, installation, starts_at, ends_at)
+    find(:all, :joins => "LEFT JOIN groups on groups.id = schedules.group_id",
+               :conditions => ["groups.marker_id = ? and schedules.played = false and schedules.archive = false and
+                                     schedules.starts_at >= ? and schedules.ends_at < ?", marker, starts_at, ends_at], 
+               :order => 'starts_at')
+  end
+  
   def self.find_all_played(user, page = 1)
     self.paginate(:all, :joins => "left join matches on matches.schedule_id = schedules.id",
                   :conditions => ["matches.user_id = ? and matches.type_id = 1 and matches.archive = false", user], 

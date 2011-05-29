@@ -222,8 +222,10 @@ en:
      created_a_game:  Has added game  
      created_a_group:  Has created team
      created_a_match:  Has updated scorecard with
+     created_a_reservation:  Has made a reservation
      created_a_schedule: Has created event
      created_a_user:  Has signed up.
+     created_a_venue:  Has create venue
      credit: Payment   
      credit_amount: Credit Amount   
      credit_amount_description:  Credit Amount Details

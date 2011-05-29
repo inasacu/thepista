@@ -129,6 +129,11 @@ module ApplicationHelper
     return I18n.l(time_at, :format => :simple_time_at) unless time_at.nil?
   end
 
+  # 20:30 +0200
+  def nice_simple_time_zone_at(time_at)
+    return I18n.l(time_at, :format => :simple_time_zone_at) unless time_at.nil?
+  end
+  
   # a las 20:30
   def nice_time_at(time_at)
     return I18n.l(time_at, :format => :time_at) unless time_at.nil?
@@ -178,11 +183,19 @@ module ApplicationHelper
   def nice_day_time_wo_year(time_at)
     return I18n.l(time_at, :format => :day_time_wo_year) unless time_at.nil?
   end
+
+  # Sábado, 12 de Junio 20:30
+  def nice_day_time_wo_year_exact(time_at)
+    return I18n.l(time_at, :format => :day_time_wo_year_exact) unless time_at.nil?
+  end
   
   # converts two dates and get date and time from first and second
-  def convert_to_datetime(the_date, the_time)
-  	the_datetime = "#{the_date.strftime('%Y%m%d')} #{nice_simple_time_at(the_time)}"
-  	return DateTime.strptime(the_datetime, '%Y%m%d %H:%M')
+  def convert_to_datetime_zone(the_date, the_time)
+    # the_datetime = "#{the_date.strftime('%Y%m%d')} #{nice_simple_time_at(the_time)} "
+    # return DateTime.strptime(the_datetime, '%Y%m%d %H:%M')
+
+    the_datetime = "#{the_date.strftime('%Y%m%d')} #{nice_simple_time_zone_at(the_time)} "
+    return DateTime.strptime(the_datetime, '%Y%m%d %H:%M %z')
   end
 
   def limit_url_length(text)

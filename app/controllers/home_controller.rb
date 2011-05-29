@@ -1,5 +1,5 @@
 class HomeController < ApplicationController  
-  before_filter :require_user, :except => [:index, :about, :help, :welcome, :pricing, :about, :terms_of_use, :privacy_policy, :faq, :openid, :success]
+  before_filter :require_user, :except => [:index, :about, :help, :welcome, :pricing, :about, :terms_of_use, :privacy_policy, :faq, :openid, :success, :blog]
 
   before_filter :get_home,        :only => [:index]
   before_filter :get_upcoming,    :only => [:upcoming, :search]
@@ -51,9 +51,12 @@ class HomeController < ApplicationController
     @my_schedules = []
     
     Teammate.latest_teammates(@all_items)     
-    Group.latest_items(@all_items)      
+    Group.latest_items(@all_items)   
+    Venue.latest_items(@all_items)   
     
-    Schedule.latest_matches(@all_items)     
+    Schedule.latest_matches(@all_items) 
+    Reservation.latest_items(@all_items)
+    
     Group.latest_updates(@all_items)   
     User.latest_updates(@all_items)      
     Classified.latest_items(@all_items)
@@ -63,8 +66,8 @@ class HomeController < ApplicationController
       Challenge.latest_items(@all_items)  
       Game.latest_items(@all_items)
     end
-        
-    Schedule.latest_items(@all_schedule_items)
+
+    Schedule.latest_items(@all_schedule_items)    
     
     if current_user
       @my_schedules = Schedule.my_current_schedules(current_user)
@@ -78,7 +81,6 @@ class HomeController < ApplicationController
     
     @all_schedule_items = @all_schedule_items.sort_by(&:created_at).reverse!    
     @all_schedule_items[0..MEDIUM_FEED_SIZE].each {|item| @schedule_items << item }
-    
     
     @all_match_items = @all_match_items.sort_by(&:created_at).reverse!    
     @all_match_items[0..EXTENDED_FEED_SIZE].each {|item| @match_items << item }

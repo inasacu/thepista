@@ -12,7 +12,7 @@ module VenuesHelper
   end	
   
   def venue_avatar_image_link(venue)
-    link_to(image_tag('venue_avatar.png', options={:style => "height: 15px; width: 15px;"}), venue_path(venue)) 
+    link_to(image_tag('icons/venue.png', options={:style => "height: 15px; width: 15px;"}), venue_path(venue)) 
   end
   
   def venue_vs_invite(schedule)

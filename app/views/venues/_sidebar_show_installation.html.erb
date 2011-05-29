@@ -1,15 +1,22 @@
+<%
+installations = @venue.installations
+if object_counter(installations) > 0
+%>
 <div class="block">
 
-<h3><%= label_name(:options) %></h3>
+<h3><%= label_name(:installations) %></h3>
 
 <div class="content">
-<% @venue.installations.each do |installation| 
+<% installations.each do |installation| 
 	the_label = h(installation.name)
 %>					
-	<p><%= option_image_link('installation') %>&nbsp;&nbsp;<%#= item_name_link(installation) %>
-		<%= link_to the_label, reservations_path(:id => installation) %>
+	<p>
+	<%= option_image_link('installation') %>&nbsp;&nbsp;
+	<%#= item_name_link(installation) %>
+	<%= link_to the_label, reservations_path(:id => installation) %>
 	</p>		
 <% end %>
 </div>
 
 </div>
+<% end %>

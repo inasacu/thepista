@@ -13,11 +13,7 @@ a:hover { text-decoration: underline; }
 
 .Reservable { background-color: rgb(255, 255, 255); }
 .FueraPlazo { background-color: #E3E3E3; }
-.Reservada { background-color: rgb(000, 255, 000); }
-
-/*.FueraPlazo { background-color: rgb(255, 255, 212); }*/
-/*.Reservada { background-color: rgb(246, 187, 191); }*/
-
+.Reservada { background-color: #F68340; }
 
 .NombreReserva { height: 80%; }
 

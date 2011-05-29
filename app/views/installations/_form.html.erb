@@ -20,6 +20,12 @@
 	</div>
 
 	<div class="group">
+		<%= f.label :timeframe, label_name('timeframe'), :class => :label %>
+		<%= f.text_field :timeframe, :class => 'textscore' %><br />
+		<span class="description"><%= label_name('timeframe', 'description') %></span>
+	</div>
+
+	<div class="group">
 		<%= f.label :sport_id, label_name('sport'), :class => :label %>
 		<%= f.select(:sport_id, Sport.sport_name, {:selected => @installation.sport_id, :include_blank => true}) %><br />
 		<span class="description"><%= label_name('sport', 'description') %></span>

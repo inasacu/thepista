@@ -11,6 +11,7 @@ class CreateInstallations < ActiveRecord::Migration
 
       t.datetime        :starts_at
       t.datetime        :ends_at
+      t.float           :timeframe,           :default => 1.0
 
       t.float           :fee_per_game,        :default => 0.0
       t.float           :fee_per_lighting,    :default => 0.0

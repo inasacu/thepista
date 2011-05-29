@@ -5,8 +5,8 @@
 		<tr>			
 			<% 7.times.each do |x| 
 				current_day = first_day + x.day 
-				starts_at = convert_to_datetime (current_day, @installation.starts_at)
-				ends_at = convert_to_datetime ((current_day + 1.day).midnight, @installation.ends_at)
+				starts_at = convert_to_datetime_zone(current_day, @installation.starts_at)
+				ends_at = convert_to_datetime_zone((current_day + 1.day).midnight, @installation.ends_at)
 				available = (starts_at > first_day)
 				reserved = false
 				block_number = 1

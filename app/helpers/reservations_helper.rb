@@ -13,6 +13,10 @@ module ReservationsHelper
     link_to(image_tag(reservation.sport.icon, options={:style => "height: 15px; width: 15px;"}), team_roster_path(:id => reservation))
   end 
 
+  def reservation_avatar_image_link(reservation)
+    link_to(image_tag('icons/reservation.png', options={:style => "height: 15px; width: 15px;"}), installation_path(reservation.installation)) 
+  end
+
   def view_reservation_concept(reservation)      
     return content_tag('td', (current_user.is_member_of?(reservation.venue) or reservation.public) ? 
     link_to(sanitize(reservation.concept), reservation_path(:id => reservation)) : sanitize(reservation.concept))
@@ -37,20 +41,17 @@ module ReservationsHelper
   def view_reservation_icon(reservation)
     return content_tag('td', (current_user.is_member_of?(reservation.venue) or reservation.public) ? reservation_image_link_small(reservation.installation) : reservation_image_small(reservation.installation))
   end
-  
+
   def view_reservation_played(reservation)
     the_span = ""
     the_span = content_tag('span', nice_day_time_wo_year(reservation.ends_at), :class => 'date') 
     the_score = nice_day_time_wo_year(reservation.starts_at)
     return content_tag('td', "#{the_score}<br />#{the_span}", :class => 'name_and_date')
   end
-  
-   def view_reservation_marker(reservation)
-     the_installation = reservation.installation
-     the_span = content_tag('span', h(the_installation.name), :class => 'date')
-     return content_tag('td', "#{marker_link(the_installation.marker)}<br />#{the_span}", :class => 'name_and_date')
-   end
-   
+
+  def view_reservation_marker(reservation)
+    the_installation = reservation.installation
+    the_span = content_tag('span', h(the_installation.name), :class => 'date')
+    return content_tag('td', "#{marker_link(the_installation.marker)}<br />#{the_span}", :class => 'name_and_date')
+  end
 end
-
-

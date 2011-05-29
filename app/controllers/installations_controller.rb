@@ -28,6 +28,25 @@ class InstallationsController < ApplicationController
       @installation.ends_at = @venue.ends_at
       @installation.marker_id = @venue.marker_id
       @installation.public = @venue.public
+      
+      @previous_installation = Installation.find(:first, :conditions => ["venue_id = ? and archive = false", @venue.id], :order => "created_at DESC")
+      
+      unless @previous_installation.nil?
+        @installation.name = @previous_installation.name
+        @installation.description = @previous_installation.description        
+        @installation.conditions = @previous_installation.conditions
+        @installation.fee_per_game = @previous_installation.fee_per_game
+        @installation.fee_per_lighting = @previous_installation.fee_per_lighting
+        @installation.sport_id = @previous_installation.sport_id
+        @installation.lighting = @previous_installation.lighting
+        @installation.outdoor = @previous_installation.outdoor
+        
+        @installation.photo_file_name = @previous_installation.photo_file_name        
+        @installation.photo_content_type = @previous_installation.photo_content_type        
+        @installation.photo_file_size = @previous_installation.photo_file_size
+        @installation.photo_updated_at = @previous_installation.photo_updated_at
+      end
+      
     end
 
   end
