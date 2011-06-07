@@ -36,7 +36,7 @@ class MessagesController < ApplicationController
     @messages.each { |message| message.mark_as_read if current_user == message.recipient }        
     @recipients = current_user.find_user_in_conversation(@message, false)      
     
-    @all_messages =  @message.conversation.messages 
+    @all_messages =  @message.conversation.messages unless @message.nil?
           
     respond_to do |format|
       format.html
