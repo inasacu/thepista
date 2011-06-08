@@ -52,7 +52,7 @@ class HomeController < ApplicationController
     
     Teammate.latest_teammates(@all_items)     
     Group.latest_items(@all_items)   
-    Venue.latest_items(@all_items)  
+    # Venue.latest_items(@all_items)  
     
     Schedule.latest_matches(@all_items) 
     Reservation.latest_items(@all_items) if development?
