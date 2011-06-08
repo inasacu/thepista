@@ -37,7 +37,7 @@ Rails::Initializer.run do |config|
   gem 'heroku_s3_backup'
   gem 'trueskill'
   gem 'delayed_job',                        :version => "2.0.7"
-  gem "hirefire"
+  # gem "hirefire"
   
   # gem "aws-s3"												, "0.6.2"
   gem "paperclip"                       , "~> 2.3"
@@ -120,6 +120,3 @@ I18n.default_locale = 'es'
 I18n.backend.class.send(:include, I18n::Backend::Fallbacks)
 # I18n.fallbacks.map('en' => 'es')
 I18n.reload!
-
-# require 'delayed_job'
-# require 'hirefire'

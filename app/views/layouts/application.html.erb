@@ -69,7 +69,7 @@
 	
   </div>
 
-  <%= render :partial => 'shared/share_google' %>
+  <%= render :partial => 'shared/share_google' if development? %>
   <%= render :partial => 'utilities/browser_detect' if development? %>
 
 </body>
