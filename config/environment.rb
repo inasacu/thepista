@@ -37,9 +37,8 @@ Rails::Initializer.run do |config|
   gem 'heroku_s3_backup'
   gem 'trueskill'
   gem 'delayed_job',                        :version => "2.0.7"
-  # gem "hirefire"
   gem 'hirefireapp'
-  
+    
   # gem "aws-s3"												, "0.6.2"
   gem "paperclip"                       , "~> 2.3"
   
@@ -68,6 +67,8 @@ Rails::Initializer.run do |config|
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.raise_delivery_errors = true
   config.action_view.sanitized_allowed_tags = 'br' 
+  
+  config.middleware.use "HireFireApp::Middleware"
   
 end
 
