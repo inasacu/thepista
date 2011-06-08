@@ -38,6 +38,7 @@ Rails::Initializer.run do |config|
   gem 'trueskill'
   gem 'delayed_job',                        :version => "2.0.7"
   # gem "hirefire"
+  gem 'hirefireapp'
   
   # gem "aws-s3"												, "0.6.2"
   gem "paperclip"                       , "~> 2.3"

@@ -34,6 +34,7 @@ gem 'heroku_s3_backup'
 gem 'trueskill'
 gem 'delayed_job'											, "2.0.7"
 # gem 'hirefire'
+gem 'hirefireapp'
 
 gem "paperclip"											, "~> 2.3"
 
