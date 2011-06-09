@@ -33,10 +33,9 @@ gem "aws-s3"												, "0.6.2"
 gem 'heroku_s3_backup'
 gem 'trueskill'
 gem 'delayed_job'											, "2.0.7"
-# gem 'hirefire'
 gem 'hirefireapp'
-
-gem "paperclip"											, "~> 2.3"
+gem 'paperclip'												, "~> 2.3"
+gem 'disqus'
 
 group :development do
   # bundler requires these gems in development

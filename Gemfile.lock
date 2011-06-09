@@ -35,6 +35,8 @@ GEM
     delayed_job (2.0.7)
       activesupport (~> 2.0)
       daemons (= 1.0.10)
+    disqus (1.0.4)
+      json
     erubis (2.7.0)
     friendly_id (3.2.1.1)
       babosa (~> 0.3.0)
@@ -110,6 +112,7 @@ DEPENDENCIES
   completeness-fu (= 0.5.2)
   contacts (= 1.2.4)
   delayed_job (= 2.0.7)
+  disqus
   friendly_id (~> 3.1)
   geokit (= 1.5.0)
   heroku_s3_backup

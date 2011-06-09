@@ -1,0 +1,16 @@
+<%
+	Disqus::defaults[:account] = "haypista"
+	Disqus::defaults[:developer] = true, # allows threads to work on localhost
+	Disqus::defaults[:container_id] = item_concept_link(@schedule)
+	Disqus::defaults[:avatar_size] = 32 # squared pixel size of avatars
+	Disqus::defaults[:color] = "green" # theme color
+	Disqus::defaults[:default_tab] = "recent" # default widget tab
+	Disqus::defaults[:hide_avatars] = false # hide or show avatars
+	Disqus::defaults[:hide_mods] = true # hide or show moderation
+	Disqus::defaults[:num_items] = 20 # number of comments to display
+	Disqus::defaults[:show_powered_by] = false # show or hide powered by line
+	Disqus::defaults[:orientation] = "horizontal" # comment orientation
+%>
+
+<%= disqus_thread %>
+<%= disqus_comment_counts %>

@@ -38,9 +38,10 @@ Rails::Initializer.run do |config|
   gem 'trueskill'
   gem 'delayed_job',                        :version => "2.0.7"
   gem 'hirefireapp'
+  gem 'paperclip',                          :version => "~> 2.3"
+  gem 'disqus'
     
   # gem "aws-s3"												, "0.6.2"
-  gem "paperclip"                       , "~> 2.3"
   
     
   # Only load the plugins named here, in the order given (default is alphabetical).
@@ -122,3 +123,6 @@ I18n.default_locale = 'es'
 I18n.backend.class.send(:include, I18n::Backend::Fallbacks)
 # I18n.fallbacks.map('en' => 'es')
 I18n.reload!
+
+
+Disqus::defaults[:account] = "haypista"
