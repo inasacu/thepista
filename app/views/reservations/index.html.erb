@@ -28,9 +28,11 @@
 		<div class="inner">
 		
 			<table class="table">	
-				<%= render 'reservations/weekdays', :first_day => @first_day %>
+				<%#= render 'reservations/weekdays', :first_day => @first_day %>
 				<%#= render 'reservations/index_boxes', :first_day => first_day, :time_frame => time_frame %>
+				
 				<%= render 'reservations/new_reservation', :first_day => @first_day, :time_frame => @time_frame %>
+				
 			</table>
 	
 		</div>

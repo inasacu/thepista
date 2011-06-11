@@ -26,9 +26,9 @@
 
 	<div class="inner">
 
-		<%= render 'forums/disqus' unless production? %>
+		<%#= render 'forums/disqus' unless production? %>
 
-		<%= render :partial => 'comments/new', :locals => { :label => label_name(:write_comment) } if production? %>
+		<%= render :partial => 'comments/new', :locals => { :label => label_name(:write_comment) } %>
 
 		<table class="table">
 			<tr>

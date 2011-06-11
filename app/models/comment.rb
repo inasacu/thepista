@@ -5,7 +5,7 @@ class Comment < ActiveRecord::Base
   belongs_to :commentable, :polymorphic => true
   belongs_to  :entry
 
-  default_scope :order => 'created_at DESC'
+  default_scope :order => 'created_at'
 
   before_create   :format_body
   after_create :send_message_blog

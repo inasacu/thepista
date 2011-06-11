@@ -1,3 +1,5 @@
+<% if DISPLAY_SOCIAL_MEDIA %>
+
 <% authorize = UrlShortener::Authorize.new( APP_CONFIG['bit_ly_api']['login'], APP_CONFIG['bit_ly_api']['key']) %>
 <% client = UrlShortener::Client.new(authorize) %>
 
@@ -48,3 +50,4 @@
 
 	</div>
 </div>
+<% end %>

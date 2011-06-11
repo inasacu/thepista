@@ -1,16 +1,14 @@
 <%= stylesheet_link_tag 'venue' %>
 
-<table style="width: 100%;">
+<table style="width: 97%;">
 <tbody>
 <tr>			
-<td class="CuerpoPagina">
-
-	<div><div>
-
-		<table class="Cuadrante" border="0">
-			<tbody>
-
-				<tr>
+	<!-- <td class="CuerpoPagina"> -->
+		
+		<!-- <div> -->
+			<!-- <div> -->
+				<!-- <tr> -->
+					
 					<% 7.times.each do |x| 
 						current_day = first_day + x.day 
 						starts_at = convert_to_datetime_zone(current_day, @installation.starts_at)
@@ -26,28 +24,28 @@
 								reserved = false
 								available = false
 								the_item = []
-								
+							
 								@reservations.each do |reservation| 
 									if reservation.starts_at == starts_at
 										reserved = true
 										the_item << reservation
 									end
 								end 
-								
+							
 								@schedules.each do |schedule| 
 									if schedule.starts_at == starts_at
 										reserved = true
 										the_item << schedule
 									end
 								end
-									
+								
 								block_token = Base64::b64encode(starts_at.to_i.to_s)
 								available = (starts_at > Time.zone.now + @minutes_to_reserve)
 
 								if reserved 
 					%>
 									<%= render "hour_reserved", :starts_at => starts_at, :time_frame => time_frame, :items => the_item %>
-									
+								
 									<% else %>
 									<%= render "hour_available_#{available}", :starts_at => starts_at, :ends_at => ends_at, 
 																			  :time_frame => time_frame, :block_token => block_token %>
@@ -58,20 +56,15 @@
 					%>
 
 						</td>
-						<% end %>		
-					</tr>
-
-				</tbody>
-			</table>
-
-
-
-		</div>
+					<% 
+						end 
+					%>	
+						
+				<!-- </tr> -->
+			<!-- </div> -->
+		<!-- </div> -->
+	<!-- </td>			 -->
 	
-		</div>
-	</div>
-
-</td>			
 </tr>
 </tbody>
 </table>

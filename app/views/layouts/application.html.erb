@@ -38,6 +38,16 @@
 	<%= stylesheet_link_tag 'primary' %>
 	
 	<%= render :partial => 'utilities/google_analytics' %>	
+	
+	<script type="text/javascript" src=" https://ajax.googleapis.com/ajax/libs/jquery/1.6.1/jquery.js"></script>
+	<script type="text/javascript">
+	$(document).ready(function() {
+
+	});
+
+	</script>
+	
+	
 </head>
 <body>
 	<% show_ajax_rating = ['home_upcoming', 'schedule_index', 'schedule_my_list', 'schedule_list'] %>
@@ -53,6 +63,7 @@
 		<%= render :partial => "utilities/ie_better_image" %>
 
 		<%= render :partial => 'shared/header_navigation' %>
+		<%#= render 'shared/main_navigation' %>
 		<%= render :partial => "shared/notice" if current_user %>
 
 		<%= render :partial => "shared/wrapper" %>	

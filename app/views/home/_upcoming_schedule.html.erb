@@ -8,8 +8,8 @@
 <% upcoming_schedules.each do |schedule| -%>		
 	<tr style="<%= the_style %>" >
 		<%= view_schedule_icon(schedule) %>
-		<%#= view_schedule_concept(schedule) %>
-		<td><%= item_concept_link(schedule) %><br/><%= "<g:plusone size=\"small\" count=\"true\" href=\"#{item_concept_link(schedule)}\"></g:plusone>" %></td>
+		<%= view_schedule_concept(schedule) %>
+		<!-- <td><%= item_concept_link(schedule) %><br/><%#= "<g:plusone size=\"small\" count=\"true\" href=\"#{item_concept_link(schedule)}\"></g:plusone>" %></td> -->
 		<%= view_schedule_group(schedule) %>
 		<%= view_schedule_played(schedule) %>
 		<%= view_schedule_marker(schedule) %>

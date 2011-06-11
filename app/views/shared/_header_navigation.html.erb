@@ -83,18 +83,19 @@
 	end
 %>
 
-<div id="container" class="container">
 
+<div id="header" class="header">
 
-	<div id="header" class="header">
-
-
-	<div class="headerContent">
+	<ul>
 
 		<%= link_to("", root_url, :class => "logo") %>
 
-		<ul id="sections" class="sections">
-			<% if current_user %>		
+		<%= content_tag 'li', link_to(label_name(:home), root_url, :class => the_home) %>
+
+		<% if current_user %>		
+
+			<%= content_tag('li', user_link(label_name(:profile), current_user, :class => the_user)) %>
+			<%= content_tag('li', link_to(label_name(:messages), messages_url, :class => the_message)) %>
 			<%= content_tag 'li', link_to(label_name(:users), users_url, :class => the_users) %>
 			<%= content_tag 'li', link_to(label_name(:groups), groups_url, :class => the_group) %>		
 			<%= content_tag 'li', link_to(label_name(:schedules), schedules_url, :class => the_schedule) if has_group %>
@@ -103,32 +104,22 @@
 			<%= content_tag 'li', link_to(label_name(:challenges), challenges_url, :class => the_challenge) if Cup.has_official_cup? %>
 			<%= content_tag 'li', link_to(label_name(:scorecards), scorecards_url, :class => get_control_active('scorecard')) %>	
 			<%= content_tag 'li', link_to(label_name(:markers), markers_url, :class => get_control_active('marker')) %>
-			<%= content_tag 'li', link_to(label_name(:announcements), announcements_url, 
-						:class => get_control_active('announcement')) if current_user.is_maximo? %>
-						
+			<%= content_tag 'li', link_to(label_name(:announcements), announcements_url, :class => get_control_active('announcement')) if current_user.is_maximo? %>
+
 			<li class="search">	
 				<% form_tag search_path, :method => 'get' do %>
 				<%= text_field_tag :search, h(params[:search]), :id => 'location_search_text_input', :value => label_name(:searching) %>
 				<%= submit_tag "", :id => "searchButton" %>
 				<% end -%>
 			</li>
-						
-			<% end %>
-		</ul>
 
-<ul class="settings">
+			<%= content_tag('li', (link_to label_name(:petitions), petition_path(current_user), :class => the_petition)) if current_user.has_pending_petition?(current_user) %>
+			<%= content_tag('li', link_to(label_name(:logout), logout_path)) %>		
 
-	<%= content_tag 'li', link_to(label_name(:home), root_url, :class => the_home) %>
-	<% if current_user %>	
-		<%= content_tag('li', (link_to label_name(:petitions), petition_path(current_user), :class => the_petition)) if current_user.has_pending_petition?(current_user) %>
-		<%= content_tag('li', user_link(label_name(:profile), current_user, :class => the_user)) %>
-		<%= content_tag('li', link_to(label_name(:messages), messages_url, :class => the_message)) %>
-		<%= content_tag('li', link_to(label_name(:logout), logout_path)) %>
-	<% else %>
+		<% else %>
 		<%= content_tag('li', link_to(label_name(:login), login_path, :class => the_login)) %>
-  <% end -%>
-</ul>
+		<% end -%>
+		
+	</ul>
 
-</div>
-</div>
 </div>

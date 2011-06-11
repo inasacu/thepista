@@ -2,6 +2,15 @@
 	http://thepista.local/stylesheets/primary.css?1296766134
 	http://thepista.local/stylesheets/primary.css?1302128350
 	http://thepista.local/stylesheets/primary.css?1305021359
+	http://thepista.local/stylesheets/primary.css?1307728751
+	http://thepista.local/stylesheets/primary.css?1307731052
+	http://thepista.local/stylesheets/primary.css?1307734746
+	http://thepista.local/stylesheets/primary.css?1307735187
+	http://thepista.local/stylesheets/primary.css?1307735761
+	http://thepista.local/stylesheets/primary.css?1307737817
+	http://thepista.local/stylesheets/primary.css?1307738132
+	http://thepista.local/stylesheets/primary.css?1307752566
+	http://thepista.local/stylesheets/primary.css?1307753072
 */
 
 html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td,#status a,#list-panel ul,.abook-column-headers h3,*,#header h1,#sidebar h3,#sidebar ul.navigation,.secondary-navigation ul,#main-navigation ul,#user-navigation ul,input.checkbox,.form textarea.text_area,.form input.text_field,.form label.label,ul.list,#box .block h2,#about .block h2,#footer .block p,li,ol,div#footer p,.cluetip-default #cluetip-outer,.ajaxful-rating {
@@ -129,7 +138,7 @@ a img,.ajaxful-rating .show-value,.ajaxful-rating span,.ajaxful-rating a {
 }
 
 #main {
-	width:70%
+	width:74%
 }
 
 #list-panel input,.abook-column,.abook-column-headers .list-header .select-controls,.abook-column-headers h3,.progress .meter,.progress-meter,#main,.actions-bar .actions,.secondary-navigation ul li,#main-navigation ul li,#user-navigation ul li,.pagination span,.pagination a,.form div.left,.form .columns .left,ul.list li .left,ul.list li .item .avatar,.left,.next_message,div#footer ol li,.header div.logo,.header a.logo,.header li,.header li a,.sections {
@@ -149,7 +158,7 @@ a img,.ajaxful-rating .show-value,.ajaxful-rating span,.ajaxful-rating a {
 }
 
 #sidebar {
-	width:25%
+	width:24%
 }
 
 #sidebar h3,#sidebar ul.navigation li a:visited,#sidebar ul.navigation li a:link,.secondary-navigation ul li a,#box .block h2,#about .block h2 {
@@ -192,12 +201,15 @@ a img,.ajaxful-rating .show-value,.ajaxful-rating span,.ajaxful-rating a {
 }
 
 #wrapper {
-	padding-top:20px
+	padding-top:20px;
+	padding-bottom: 20px;
+	padding-left: 170px;
+	padding-right: 170px;
 }
 
 #main .block .content .inner {
-	padding:0 15px 15px;
-	width:97%
+	padding: 0 15px 15px;
+	width: 97%
 }
 
 #main .main p.first {
@@ -240,7 +252,7 @@ a img,.ajaxful-rating .show-value,.ajaxful-rating span,.ajaxful-rating a {
 	padding:8px 8px
 }
 
-.secondary-navigation,#faq_content,.sections {
+.secondary-navigation, #faq_content, .sections, .settings {
 	font-size:12px
 }
 
@@ -488,7 +500,7 @@ h3,h2,h1,a:active,a:hover,a:visited,a:link {
 
 .table td {
 	border-bottom:1px dotted #cfcfcf;
-	padding:15px
+	padding: 10px 5px;
 }
 
 .table tr.even_true td {
@@ -692,7 +704,7 @@ body.v2 #mapwrap,body.v2 #map {
 }
 
 input.textfield, textarea.textfield {
-	width:400px
+	width:350px
 }
 
 text.text_search {
@@ -718,7 +730,7 @@ input.text_tiny_score {
 }
 
 input.textphoto {
-	width:375px
+	width:325px
 }
 
 textarea.text_message {
@@ -765,7 +777,8 @@ input.text_field,text_area.textfield,td.label {
 }
 
 .table td.first_home {	
-	width: 55px;
+	width: 40px;	
+	padding: 10px 10px 15px 10px;
 }
 
 .table td.last_upcoming {
@@ -792,11 +805,15 @@ span.q {
 	padding:10px 5px 0px 5px
 }
 
-#game td,#cast td,#home td {
+#game td, #cast td {
 	padding:2px 6px
 }
 
-#match	 td {
+#home td {
+	padding: 12px 0 8px 4px;
+}
+
+#match td {
 	padding:10px 10px
 }
 
@@ -933,7 +950,8 @@ div#footer ol li {
 .header div.logo,.header a.logo {
 	background:#0f7d00 url(../images/logo_white.png) no-repeat top left;
 	width:130px;
-	height:32px
+	height:32px;
+	padding-right: 20px;
 }
 
 .header a.logo:active {
@@ -941,7 +959,7 @@ div#footer ol li {
 }
 
 .header li a {
-	padding:11px 10px
+	padding: 13px 9px;
 }
 
 .header li a,.header li a.active,.header li a:hover {
@@ -951,11 +969,6 @@ div#footer ol li {
 .header li a.active,.header li a:hover {
 	background:#60ad35 bottom left;
 	position:static
-}
-
-.sections {
-	padding-left:20px;
-	width:775px
 }
 
 td.label,td.label_tip,td.show {

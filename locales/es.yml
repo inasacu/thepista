@@ -1511,6 +1511,7 @@ es:
      country_description:  Pais donde te encuentras
      time_zone:  Horario
      time_zone_description:  Horario
+     timeframe:  Cambio de Hora
      available_description: ""
      private_phone_description: ""
      private_profile_description: ""

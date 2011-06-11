@@ -1508,6 +1508,7 @@ en:
      country_description:  Time Zone
      time_zone:  Time Zone
      time_zone_description:  Time Zone
+     timeframe:  Time Frame
      available_description: ""
      private_phone_description: ""
      private_profile_description: ""

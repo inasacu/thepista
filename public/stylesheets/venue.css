@@ -1,3 +1,4 @@
+/* @override http://thepista.local/stylesheets/venue.css?1306604624 */
 
 body { font-size: 12px; padding: 0pt; margin: 0pt; font-family: Tahoma,Arial,Helvetica,sans-serif; }
 a { color: rgb(0, 0, 255); text-decoration: none; }
@@ -15,14 +16,24 @@ a:hover { text-decoration: underline; }
 .FueraPlazo { background-color: #E3E3E3; }
 .Reservada { background-color: #F68340; }
 
-.NombreReserva { height: 80%; }
+.NombreReserva { 
+	height: 80%; 
+}
 
 .NombreReserva a:hover { 
 	font-weight: bold;	
 }
 
-.Reservada a, .Reservable a, .FueraPlazo a { border: medium none; display: block; color: Black; padding-left: 3px; }
-.Reservable a, .FueraPlazo a { height: 100%; }
+.Reservada a, .Reservable a, .FueraPlazo a { 
+	border: medium none; 
+	display: block; 
+	color: Black; 
+	padding-left: 3px; 
+}
+
+.Reservable a, .FueraPlazo a { 
+	height: 100%; 
+}
 
 .Cabecera { 
 	color: black; 
@@ -43,7 +54,9 @@ a:hover { text-decoration: underline; }
 	color:  black; 
 }
 
-input, option, textarea, .input { border: 1px inset rgb(198, 137, 137); }
+input, option, textarea, .input { 
+	border: 1px inset rgb(198, 137, 137); 
+}
 
 .CuerpoPagina { 
 	width: auto; 
@@ -52,26 +65,20 @@ input, option, textarea, .input { border: 1px inset rgb(198, 137, 137); }
 	border-bottom: 1px solid rgb(164, 175, 148); 
 	background-color: rgb(241, 244, 255); 
 	padding-bottom: 5px; 
-	}
+}
 
 .CalendarioCuadrante { 
 	background-color: #0f7d00; 
 }
 
-
 .ColPista { vertical-align: top; }
 .ColPistaCab, .ColPistaCab_false, .ColPistaCab_true { 
 	text-align: center; 
-/*	border: 0px none; */
 	font-size: 12px; 
-	color: #e2edde; 
-	background-color: #0f7d00;
+	/*color: #e2edde; */
+	/*background-color: #0f7d00;*/
 	border: 1px solid lightgray;
 	font-weight: bold;
-/*	margin-top: 8px; */
-/*	margin-bottom: 8px; */
-/*	padding-top: 2px; */
-/*	padding-bottom: 2px; */
 	height: 35px; 
 	overflow: hidden; 
 }
@@ -79,8 +86,6 @@ input, option, textarea, .input { border: 1px inset rgb(198, 137, 137); }
 .ColPistaCab_false { 
 	color: #eef0f0; 
 }
-
-/*.NombreReserva a:hover { background-color: rgb(193, 196, 255); }*/
 
 .Reservada a, .Reservable a, .FueraPlazo a { 
 	border: medium none; 
@@ -92,7 +97,8 @@ input, option, textarea, .input { border: 1px inset rgb(198, 137, 137); }
 .HoraReserva {  }
 input, option, textarea, .input { border: 1px inset rgb(198, 137, 137); }
 
-div, table, td, .Boton, input { -moz-border-radius: 3px 3px 3px 3px; }
+/*div, table, td, .Boton, input { -moz-border-radius: 3px 3px 3px 3px; }*/
 
-.ColPista .NombreReserva { width: 120px; }
-.ColPistaCab { width: 122px; }
+.ColPista .NombreReserva { width: 106px; }
+
+.ColPistaCab { width: 106px; }
