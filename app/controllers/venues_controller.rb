@@ -1,9 +1,8 @@
 class VenuesController < ApplicationController
   before_filter :require_user    
   before_filter :get_venue, :only => [:show, :edit, :update]
-  # before_filter :has_manager_access, :only => [:edit, :update]
+  before_filter :has_manager_access, :only => [:edit, :update]
   
-
   def index
     @venues = Venue.paginate(:all, :conditions => ["archive = false"], :page => params[:page], :order => 'name') 
   end

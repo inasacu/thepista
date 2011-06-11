@@ -1074,32 +1074,33 @@ en:
      reply_to_this_message: Reply to this message  
      request_petition: New Petición   
      request_invitation: Request an Invitation  
-     reservationtion:  Reservation
-     reservationtions: Reservations
-     reservationtions_add:  Reservations
-     reservationtions_all:  All reservationtions
-     reservationtions_available:  All reservationtions
-     reservationtions_concept_description:  Reservation Name
-     reservationtions_create:  New reservation 
-     reservationtions_destroy:  Remove reservation
-     reservationtions_edit:  Update reservation
-     reservationtions_index:   Reservation
-     reservationtions_index_option: Options 
-     reservationtions_invitations_create:  Invite a friend to this reservation
-     reservationtions_join:  Join the reservation
-     reservationtions_list:  reservations
-     reservationtions_name_description:  Name on reservation
-     reservationtions_new:  New reservation
-     reservationtions_new_option: Options 
-     reservationtions_no:  No reservations to display.
-     reservationtions_none:  No reservation.
-     reservationtion_options:  Options
-     reservationtions_options_without: "¿What options do you have since you dont have reservations?"
-     reservationtions_option:  Options 
-     reservationtions_search: Search for reservations
-     reservationtions_search_to_join: You can search for reservation. 
-     reservationtions_show:  Display reservation
-     reservationtions_update: Update reservations
+     reservation:  Reservation
+     reservations: Reservations
+     reservations_add:  Reservations
+     reservations_all:  All reservations
+     reservations_available:  All reservations
+     reservations_unavailable:  Reservation Unavailable
+     reservations_concept_description:  Reservation Name
+     reservations_create:  New reservation 
+     reservations_destroy:  Remove reservation
+     reservations_edit:  Update reservation
+     reservations_index:   Reservation
+     reservations_index_option: Options 
+     reservations_invitations_create:  Invite a friend to this reservation
+     reservations_join:  Join the reservation
+     reservations_list:  reservations
+     reservations_name_description:  Name on reservation
+     reservations_new:  New reservation
+     reservations_new_option: Options 
+     reservations_no:  No reservations to display.
+     reservations_none:  No reservation.
+     reservation_options:  Options
+     reservations_options_without: "¿What options do you have since you dont have reservations?"
+     reservations_option:  Options 
+     reservations_search: Search for reservations
+     reservations_search_to_join: You can search for reservation. 
+     reservations_show:  Display reservation
+     reservations_update: Update reservations
      restored_message: Message Restored   
      role: Role
      roles: Roles   

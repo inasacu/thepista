@@ -52,12 +52,13 @@ class InstallationsController < ApplicationController
   end
 
   def create
-    @installation = Installation.new(params[:installation])    
-    unless current_user.is_manager_of?(@installation.venue)
-      flash[:warning] = I18n.t(:unauthorized)
-      redirect_back_or_default('/index')
-      return
-    end
+    @installation = Installation.new(params[:installation])  
+      
+    # unless current_user.is_manager_of?(@installation.venue)
+    #   flash[:warning] = I18n.t(:unauthorized)
+    #   redirect_back_or_default('/index')
+    #   return
+    # end
 
     if @installation.save 
       flash[:notice] = I18n.t(:successful_create)

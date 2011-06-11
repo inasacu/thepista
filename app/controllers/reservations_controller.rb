@@ -7,7 +7,7 @@ class ReservationsController < ApplicationController
   before_filter   :get_installation,    :only => [:new, :index]
   # before_filter   :get_venue,           :only => [:list]
   before_filter   :get_reservation,     :only => [:show, :edit, :update, :destroy]
-  # before_filter   :has_manager_access,  :only => [:edit, :update, :destroy]
+  before_filter   :has_manager_access,  :only => [:edit, :update, :destroy]
 
 
   def index  
@@ -58,7 +58,17 @@ class ReservationsController < ApplicationController
     @reservation.ends_at = @reservation.starts_at + time_frame 
     @reservation.reminder_at = @reservation.starts_at - 2.days    
     @reservation.block_token = Base64::b64encode(@reservation.starts_at.to_i.to_s)   
-    @reservation.description =  params[:block_token]
+    # @reservation.description =  params[:block_token]
+    
+    # verify reservation has not already been made
+    reservation_available = Reservation.find(:first, :conditions =>["starts_at = ? and ends_at = ? and 
+                        item_id is not null and item_type is not null", @reservation.starts_at, @reservation.ends_at]).nil?
+    
+    unless reservation_available      
+        flash[:notice] = I18n.t(:reservations_unavailable)
+        redirect_to :action => 'index', :id => @installation
+      return
+    end    
     
     if @installation
       @reservation.installation_id = @installation.id
@@ -74,6 +84,16 @@ class ReservationsController < ApplicationController
     @reservation = Reservation.new(params[:reservation]) 
     @installation = @reservation.installation
     @venue = @installation.venue
+    
+    # verify reservation has not already been made
+    reservation_available = Reservation.find(:first, :conditions =>["starts_at = ? and ends_at = ? and 
+                        item_id is not null and item_type is not null", @reservation.starts_at, @reservation.ends_at]).nil?
+    
+    unless reservation_available      
+        flash[:notice] = I18n.t(:reservations_unavailable)
+        redirect_to :action => 'index', :id => @installation
+      return
+    end
 
     if @installation
       @reservation.installation_id = @installation.id
@@ -89,16 +109,15 @@ class ReservationsController < ApplicationController
     @reservation.item = current_user   
      
     @reservation.starts_at = Time.zone.at(block_token)
-    # @reservation.starts_at = convert_to_datetime(@reservation.starts_at, @reservation.starts_at) # date must be saved in user's timezone
     @reservation.starts_at = @reservation.starts_at.change(:offset => "+0000")
     @reservation.ends_at = @reservation.starts_at + time_frame 
     @reservation.reminder_at = @reservation.starts_at - 2.days    
 
-    unless current_user.is_manager_of?(@venue)
-      flash[:warning] = I18n.t(:unauthorized)
-      redirect_back_or_default('/index')
-      return
-    end
+    # unless current_user.is_manager_of?(@venue)
+    #   flash[:warning] = I18n.t(:unauthorized)
+    #   redirect_back_or_default('/index')
+    #   return
+    # end
 
     if @reservation.save    
       flash[:notice] = I18n.t(:successful_create)
@@ -114,28 +133,6 @@ class ReservationsController < ApplicationController
       redirect_to @reservation
     else
       render :action => 'edit'
-    end
-  end
-
-  def set_reminder
-    if @reservation.update_attribute("reminder", !@reservation.reminder)
-      @reservation.update_attribute("reminder", @reservation.reminder)  
-
-      flash[:success] = I18n.t(:successful_update)
-      redirect_back_or_default('/index')
-    else
-      render :action => 'index'
-    end
-  end
-
-  def set_public
-    if @reservation.update_attribute("public", !@reservation.public)
-      @reservation.update_attribute("public", @reservation.public)  
-
-      flash[:success] = I18n.t(:successful_update)
-      redirect_back_or_default('/index')
-    else
-      render :action => 'index'
     end
   end
 
@@ -155,32 +152,32 @@ class ReservationsController < ApplicationController
     @installation = @reservation.installation
     @venue = @reservation.venue
     
-    unless current_user.is_manager_of?(@venue)
-      flash[:warning] = I18n.t(:unauthorized)
-      redirect_back_or_default('/index')
-      return
-    end
+    # unless current_user.is_manager_of?(@venue)
+    #   flash[:warning] = I18n.t(:unauthorized)
+    #   redirect_back_or_default('/index')
+    #   return
+    # end
   end
 
   def get_installation
     @installation = Installation.find(params[:id])
     @venue = @installation.venue
     
-    unless current_user.is_manager_of?(@venue)
-      flash[:warning] = I18n.t(:unauthorized)
-      redirect_back_or_default('/index')
-      return
-    end
+    # unless current_user.is_manager_of?(@venue)
+    #   flash[:warning] = I18n.t(:unauthorized)
+    #   redirect_back_or_default('/index')
+    #   return
+    # end
   end
 
   def get_venue
     @venue = Venue.find(params[:id])
 
-    unless current_user.is_manager_of?(@venue)
-      flash[:warning] = I18n.t(:unauthorized)
-      redirect_back_or_default('/index')
-      return
-    end
+    # unless current_user.is_manager_of?(@venue)
+    #   flash[:warning] = I18n.t(:unauthorized)
+    #   redirect_back_or_default('/index')
+    #   return
+    # end
   end
 
 end

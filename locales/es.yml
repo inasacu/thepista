@@ -1080,6 +1080,7 @@ es:
      reservations_add:  Reservas
      reservations_all:  Todos las reservas
      reservations_available:  Todos las reservas
+     reservations_unavailable:  Reserva no Disponible
      reservations_concept_description:  Concepto de la reserva
      reservations_create:  Reservar 
      reservations_destroy:  Borrar reserva
