@@ -1,0 +1,30 @@
+<% form_for :comment, :url => comments_path, :html => { :class => :form } do |f| 
+	@comment.body = "" if @comment
+	-%>
+
+<div id="disqus_thread">
+	<div class="clearfix" style="display: block;" id="dsq-content">
+		<div class="dsq-reply " id="dsq-reply">
+
+			<h3><%= label_name(:reminder_wall_message) %></h3>
+
+			<div class="dsq-avatar"><%= image_link(current_user) %></div>
+
+			<div class="dsq-textarea dsq-textarea-reply">
+					<%= f.text_area :body, :class => 'text_message' -%>	
+			</div>
+			
+		</div>
+	
+	<div id="dsq-sort-by">
+		<%= submit_tag label_name(:share),  :class => "button" %>
+	</div>
+
+</div>
+<div>
+</div>
+</div>
+
+<%= hidden_field :blog, :id %>
+<%= hidden_field :forum, :id %>
+<% end %>

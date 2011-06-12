@@ -3,8 +3,12 @@
 	get_first_active = get_active("#{get_the_controller}_#{get_the_action}") if is_controller('group') and is_action('index') 
 	is_not_new_item = !is_action('new')
 	
-	the_classifieds = Classified.item_classifieds(@group)
-	has_classifieds = !the_classifieds.nil? or !the_classifieds.blank?
+	has_classifieds = false
+	
+	if DISPLAY_CLASSIFIEDS
+		the_classifieds = Classified.item_classifieds(@group) 
+		has_classifieds = !the_classifieds.nil? or !the_classifieds.blank?
+	end
 	
 	the_label = "" 
 	the_action = ['show','edit', 'team list', 'schedule list']
@@ -42,7 +46,7 @@
 		end
 	end
 	
-	if has_classifieds and is_not_new_item
+	if has_classifieds and is_not_new_item 
 %>
 	<li class="<%= active_classified %>">
 		<%= link_to(label_name(:classifieds), classifieds_url(:id => @group)) if @group and is_not_new_item %>

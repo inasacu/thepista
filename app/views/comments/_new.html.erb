@@ -1,9 +1,3 @@
-<% textfield ||= false %>
-
-<!-- <div class="inner"> -->
-
-	<h5 class="title"><%= label %></h5>
-	
 <% form_for :comment, :url => comments_path, :html => { :class => :form } do |f| -%>
 	<br />
 	<%= f.text_area :body, :class => 'text_message' -%>	
@@ -14,6 +8,3 @@
 	<%= hidden_field :blog, :id %>
 	<%= hidden_field :forum, :id %>
 <% end -%>
-
-<div class="clear"></div>
-<!-- </div> -->

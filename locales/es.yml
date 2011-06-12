@@ -427,7 +427,7 @@ es:
      forward: Adelante   
      Friday: Viernes 
      profile:  Perfil
-     forum_notification:  Comentarios de eventos
+     forum_notification:  Suscríbete por e-mail
      forum_notification_cluetip:  "Esta opción permite que recibas los mensajes dejados en el muro del evento en tu cuenta de correo."
      forum_options:  Opciones
      message_notification:  Correos
@@ -596,7 +596,11 @@ es:
      has_challenge_casts:
         zero: "Este reto no tiene pronósticos." 
         one:  "Este reto tiene 1 pronóstico." 
-        other: "Este reto tiene {{count}} pronósticos."        
+        other: "Este reto tiene {{count}} pronósticos."
+     has_comments:
+        zero: "Ningun comentario" 
+        one:  "Mostrando <span id='dsq-num-posts'>1</span> comentario" 
+        other: "Mostrando <span id='dsq-num-posts'>{{count}}</span> comentarios"
      has_cup_escuadras:
         zero: "Esta copa no tiene equipos." 
         one:  "Esta copa tiene 1 equipo." 

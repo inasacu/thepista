@@ -30,7 +30,7 @@ class HomeController < ApplicationController
     @upcoming_schedules ||= Schedule.upcoming_schedules(session[:schedule_hide_time])
     @upcoming_cups ||= Cup.upcoming_cups(session[:cup_hide_time])
     @upcoming_games ||= Game.upcoming_games(session[:game_hide_time])
-    @upcoming_classifieds ||= Classified.upcoming_classifieds(session[:classified_hide_time])
+    @upcoming_classifieds ||= Classified.upcoming_classifieds(session[:classified_hide_time]) if DISPLAY_CLASSIFIEDS
 
     @upcoming ||=  false
     @upcoming = (!@upcoming_schedules.empty? or !@upcoming_classifieds.empty? or !@upcoming_cups.empty? or !@upcoming_games.empty?)
@@ -59,7 +59,7 @@ class HomeController < ApplicationController
     
     Group.latest_updates(@all_items)   
     User.latest_updates(@all_items)      
-    Classified.latest_items(@all_items)
+    Classified.latest_items(@all_items) if DISPLAY_CLASSIFIEDS
     
     Cup.latest_items(@all_items, @has_values)    
     if @has_values

@@ -1,0 +1,43 @@
+<%= stylesheet_link_tag 'comment' %>
+
+<div id="disqus_thread">
+	
+	<div class="clearfix" style="display: block;" id="dsq-content">
+	
+	<% form_for :comment, :url => comments_path, :html => { :class => :form } do |f| -%>
+	
+		<div class="dsq-reply " id="dsq-reply">
+			<h3><%= label_name(:reminder_wall_message) %></h3>
+			<div class="dsq-avatar"><%= image_link(current_user) %></div>
+			<div class="dsq-textarea dsq-textarea-reply">
+				<%= f.text_area :body, :class => 'text_message' -%>	
+			</div>			
+		</div>
+	
+		<div id="dsq-sort-by">
+			<%= submit_tag label_name(:share),  :class => "button" %>
+		</div>
+
+	<%= hidden_field :blog, :id %>
+	<%= hidden_field :forum, :id %>
+	<% end %>
+	
+	<h3><%= I18n.t(:has_comments, :count => item_counter) %></h3>
+	
+	<% items.each do |comment| %>
+	<%= render 'comments/discussion_thread', :comment => comment %>
+	<% end %>
+	
+	<div id="dsq-pagination">
+		<ul id="dsq-footer" class="dsq-clearfix">
+			<div id="dsq-subscribe">
+				<li><%#= link_to(label_name(:forum_notification), 
+								set_forum_notification_path(:id => current_user)) unless current_user.forum_comment_notification %></li>
+			</div>
+		</ul>
+	</div>
+
+</div>
+<div>
+</div>
+</div>

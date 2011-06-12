@@ -83,7 +83,7 @@ module SchedulesHelper
       
     elsif Time.zone.now < schedule.starts_at
       the_label = ""
-      schedule.matches.each {|match| the_label = "#{I18n.t(:your_roster_status) } #{( match.type_name).downcase}" if match.user == current_user}
+      schedule.matches.each {|match| the_label = "<STRONG>#{I18n.t(:your_roster_status) } #{( match.type_name).downcase}</STRONG>" if match.user == current_user}
       return content_tag 'td', "#{the_label}<br/>#{match_all_my_link(schedule, current_user, false, false)}", :class => "last_upcoming"
     end
   end

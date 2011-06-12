@@ -3,6 +3,7 @@
 
 	the_comments = []
 	items = []
+	item_counter = 0
 
 	@comments.each do |item| 
 		if item.created_at >= THREE_WEEKS_AGO
@@ -12,7 +13,10 @@
 			the_comments.each do |comment|             
 				has_the_item = (comment.user_id == item.user_id and comment.body == item.body ) if !has_the_item          
 			end           
-			items << item unless has_the_item
+			unless has_the_item
+				items << item 
+				item_counter += 1
+			end
 			the_comments << item
 
 		end
@@ -26,27 +30,19 @@
 
 	<div class="inner">
 
-		<%#= render 'forums/disqus' unless production? %>
+		<%= render 'comments/disqus', :item => @schedule unless production? %>
+		<%= render 'comments/discussion', :items => items, :item_counter => item_counter %>
 
-		<%= render :partial => 'comments/new', :locals => { :label => label_name(:write_comment) } %>
+		
+		
+		<%#= render 'comments/facebook_comment' %>		
+		<%#= render 'comments/new_comment', :comments => items %>
 
-		<table class="table">
-			<tr>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td class="last"></td>
-			</tr>
-			
-			
-			<% items.each do |comment| -%> 
-						<%= render :partial => 'forums/comment', :locals => {:comment => comment} %>
-			<% end %>
-			
-			<%#= render :partial => 'comments/comments', :locals => { :comments => @comments } %>
-			<%#= render :partial => 'new_comment', :locals => { :comments => @comments } %>
-			
-		</table>			
+		<%# items.each do |comment| -%> 
+		<%#= render :partial => 'forums/comment', :locals => {:comment => comment} %>
+		<%#= render :partial => 'new_comment', :locals => { :comment => comment } %>
+		<%# end %>
+
 
 	</div>
 </div>

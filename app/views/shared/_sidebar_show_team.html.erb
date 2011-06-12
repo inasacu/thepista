@@ -12,7 +12,9 @@
 	<div class="content">
 
 		<p><%= option_image_link('schedule') %>&nbsp;&nbsp;<%= link_to label_name(:schedules_create), new_schedule_path(:id => group) %></p>
-		<p><%= option_image_link('classified') %>&nbsp;&nbsp;<%= link_to label_name(:classifieds_create), new_classified_path(:id => group) %></p>
+		<% if DISPLAY_CLASSIFIEDS %>
+			<p><%= option_image_link('classified') %>&nbsp;&nbsp;<%= link_to label_name(:classifieds_create), new_classified_path(:id => group) %></p>
+		<% end %>
 		<p><%= option_image_link('group') %>&nbsp;&nbsp;<%= link_to label_name(:groups_edit), edit_group_path(group) %></p>  
 		<p><%= option_image_link('fee') %>&nbsp;&nbsp;<%= link_to "#{label_name(:fee_user_for_group)} #{the_group}", new_fee_path(:id => group) %></p>
 		<% unless group.has_schedule? %>
