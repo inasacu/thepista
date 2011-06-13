@@ -34,12 +34,32 @@ module SchedulesHelper
     return content_tag('td', (current_user.is_member_of?(schedule.group) or schedule.public) ? schedule_image_link_small(schedule) : schedule_image_small(schedule))
   end
 
-  def view_schedule_concept(schedule)      
-      return content_tag('td', (current_user.is_member_of?(schedule.group) or schedule.public) ? 
-            link_to(sanitize(schedule.concept), team_roster_path(:id => schedule)) : sanitize(schedule.concept)) unless schedule.game_played?
-            
-      return content_tag('td', (current_user.is_member_of?(schedule.group) or schedule.public) ? 
-                  link_to(sanitize(schedule.concept), schedule_path(:id => schedule)) : sanitize(schedule.concept)) if schedule.game_played?
+  def view_schedule_concept(schedule) 
+    the_sport = ""  
+    the_missing = ""
+    the_concept = ""
+
+    if schedule.game_played?
+      #   the_concept = (current_user.is_member_of?(schedule.group) or schedule.public) ? 
+      #            link_to(sanitize(schedule.concept), schedule_path(:id => schedule)) : sanitize(schedule.concept)
+    else
+      the_concept = (current_user.is_member_of?(schedule.group) or schedule.public) ? 
+      link_to(sanitize(schedule.concept), team_roster_path(:id => schedule)) : sanitize(schedule.concept)
+
+      the_sport = "#{label_name(:rosters)}:  #{schedule.convocados.count}"
+      the_missing = ", #{I18n.t(:missing)}:  #{schedule.player_limit.to_i - schedule.convocados.count}" if schedule.player_limit.to_i > schedule.convocados.count
+      the_missing = ", #{I18n.t(:excess)}:  #{schedule.convocados.count - schedule.player_limit.to_i}" if schedule.player_limit.to_i < schedule.convocados.count
+    end
+
+    the_span = content_tag('span', "#{the_sport} #{the_missing}", :class => 'date')
+    return content_tag('td', "#{the_concept}<br />#{the_span}", :class => 'name_and_date')   
+
+
+    # return content_tag('td', (current_user.is_member_of?(schedule.group) or schedule.public) ? 
+    #       link_to(sanitize(schedule.concept), team_roster_path(:id => schedule)) : sanitize(schedule.concept)) unless schedule.game_played?
+    #       
+    # return content_tag('td', (current_user.is_member_of?(schedule.group) or schedule.public) ? 
+    #             link_to(sanitize(schedule.concept), schedule_path(:id => schedule)) : sanitize(schedule.concept)) if schedule.game_played?
   end
 	
 	def view_schedule_group(schedule)
