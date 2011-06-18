@@ -1,10 +1,5 @@
 class CreateVenues < ActiveRecord::Migration
-  def self.up
-    
-    drop_table :venues
-    # drop_table :installations
-    # drop_table :reservations
-        
+  def self.up        
     create_table :venues do |t|
       t.string          :name
       
@@ -28,11 +23,7 @@ class CreateVenues < ActiveRecord::Migration
       t.boolean         :archive,                 :default => false
       t.timestamps
     end
-    add_index   :venues,  :marker_id
-    
-    # rake db:migrate VERSION=20110215202650
-    # rake db:migrate
-    
+    add_index   :venues,  :marker_id    
   end
 
   def self.down
