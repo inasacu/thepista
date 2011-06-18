@@ -1,7 +1,7 @@
 class CreateVenues < ActiveRecord::Migration
   def self.up
     
-    # drop_table :venues
+    drop_table :venues
     # drop_table :installations
     # drop_table :reservations
         
