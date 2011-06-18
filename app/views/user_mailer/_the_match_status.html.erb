@@ -1,0 +1,50 @@
+<p style="margin: 15px 0 2px 0"><strong><%= "#{I18n.t(:change_your_roster_status)}:  " %></strong></p>
+<br/>
+
+<table width="100%" border="0" cellpadding="0" cellspacing="0" style="font: 13px arial;">
+
+<% 
+if @schedule 
+	unless @schedule.played?
+		my_current_match = nil
+		
+		@schedule.matches.each{|match| my_current_match = match if match.user_id == @recipient.id}		
+		the_schedule_label = "<STRONG>#{I18n.t(:your_roster_status) } #{( my_current_match.type_name).downcase}</STRONG>"
+%>
+		<tr>
+		  <td style="width:1%; color:#999999; vertical-align: top;">&nbsp;</td>
+		  <td style="width:99%">&nbsp;<%= the_schedule_label %></td>
+		</tr>
+
+<%
+		unless my_current_match.nil?
+			match_types = Match.get_match_type
+
+			match_types.each do |type| 
+				unless type.id == my_current_match.type_id
+
+					the_schedule_label = "#{I18n.t(:change_roster_status) } #{I18n.t(type.name).downcase}"
+					the_status_link = match_token_url(:id => my_current_match.id, :type => type.id, :block_token => my_current_match.block_token)
+
+					 if type.id.to_i < 4 
+%>
+						<tr>
+						  <td style="width:1%; color:#999999; vertical-align: top;">&nbsp;</td>
+						  <td style="width:99%">&nbsp;<%= link_to(the_schedule_label, the_status_link) %></td>
+						</tr>
+<%			
+					end
+				end
+			end
+		end
+%>
+
+<tr/>
+<br/>
+
+<%
+	end 
+end
+%>
+
+</table>

@@ -17,6 +17,19 @@
 		end
 	end 
 %>
+
+<%
+	current_user.groups.each do |group| 
+		the_group = h(group.name)
+
+ 		unless @user.is_member_of?(group)  
+%>
+			<p><%= option_image_link('user_add') %>&nbsp;&nbsp;<%= join_item_link_to(@user, group, true) %></p>
+<% 
+		end 
+	end 
+%>
+
 	</div>
 </div>
 

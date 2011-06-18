@@ -33,3 +33,5 @@
 	<%= render :partial => 'message_list_box', 
 			   :locals => { :label => I18n.t(:last_minute), :the_roster => @schedule.the_last_minute, :schedule => @schedule } %>
 <% end %>
+
+<%= render :partial => 'the_match_status' %>

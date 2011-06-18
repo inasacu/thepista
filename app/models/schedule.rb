@@ -322,34 +322,36 @@ class Schedule < ActiveRecord::Base
                   :conditions => ["played = false and send_reminder_at is null and reminder = true and reminder_at >= ? and reminder_at <= ?", PAST_THREE_DAYS, Time.zone.now])
     
     schedules.each do |schedule|
-
-      total_schedules = Schedule.count(:conditions => ["group_id = ?", schedule.group])
-      total_match_users = Match.count(:conditions => ["schedule_id = ? and type_id = 1", schedule.id])
-      players_needed = total_match_users.to_i < schedule.player_limit.to_i
+      
+      # players_needed = true
+      # total_schedules = Schedule.count(:conditions => ["group_id = ?", schedule.group])
+      # total_match_users = Match.count(:conditions => ["schedule_id = ? and type_id = 1", schedule.id])
       manager_id = RolesUsers.find_item_manager(schedule.group).user_id
+      # players_needed = total_match_users.to_i < schedule.player_limit.to_i
 
-      if players_needed
+      # if players_needed
         schedule.group.users.each do |user|
           if user.message_notification? 
+            create_notification_email(schedule, schedule, manager_id, user.id, true)
 
-            message = Message.new
-            message.subject = "#{I18n.t(:reminder_at)}:  #{schedule.concept}"
-            message.body = "#{I18n.t(:reminder_at_message)}  #{schedule.concept}  #{I18n.t(:reminder_at_salute)}"
-            message.item = schedule
-            message.sender_id = manager_id
-            message.recipient_id = user.id
-            message.sender_read_at = Time.zone.now
-            message.recipient_read_at = Time.zone.now
-            message.sender_deleted_at = Time.zone.now
-            message.recipient_deleted_at = Time.zone.now        
-            message.save!
+            # message = Message.new
+            # message.subject = "#{I18n.t(:reminder_at)}:  #{schedule.concept}"
+            # message.body = "#{I18n.t(:reminder_at_message)}  #{schedule.concept}  #{I18n.t(:reminder_at_salute)}"
+            # message.item = schedule
+            # message.sender_id = manager_id
+            # message.recipient_id = user.id
+            # message.sender_read_at = Time.zone.now
+            # message.recipient_read_at = Time.zone.now
+            # message.sender_deleted_at = Time.zone.now
+            # message.recipient_deleted_at = Time.zone.now        
+            # message.save!
 
           end
         end
 
         schedule.send_reminder_at = Time.zone.now
         schedule.save!
-      end
+      # end
 
     end
 
@@ -364,18 +366,20 @@ class Schedule < ActiveRecord::Base
       manager = User.find(manager_id)
 
       # send email to manager to update match result
-      if !match.nil?  and manager.message_notification?   
-        message = Message.new
-        message.subject = "#{I18n.t(:update_match)}:  #{schedule.concept}"
-        message.body = "#{I18n.t(:update_match_message)}  #{schedule.concept}  #{I18n.t(:reminder_at_salute)}"
-        message.item = match
-        message.sender_id = manager_id
-        message.recipient_id = manager_id
-        message.sender_read_at = Time.zone.now
-        message.recipient_read_at = Time.zone.now
-        message.sender_deleted_at = Time.zone.now
-        message.recipient_deleted_at = Time.zone.now        
-        message.save!
+      if !match.nil? and manager.message_notification?           
+        create_notification_email(match, schedule, manager_id, manager_id)
+        
+        # message = Message.new
+        # message.subject = "#{I18n.t(:update_match)}:  #{schedule.concept}"
+        # message.body = "#{I18n.t(:update_match_message)}  #{schedule.concept}  #{I18n.t(:reminder_at_salute)}"
+        # message.item = match
+        # message.sender_id = manager_id
+        # message.recipient_id = manager_id
+        # message.sender_read_at = Time.zone.now
+        # message.recipient_read_at = Time.zone.now
+        # message.sender_deleted_at = Time.zone.now
+        # message.recipient_deleted_at = Time.zone.now        
+        # message.save!
       end  
 
       schedule.send_result_at = Time.zone.now
@@ -388,21 +392,23 @@ class Schedule < ActiveRecord::Base
     schedules = Schedule.find(:all, :conditions => ["send_comment_at is null and starts_at >= ? and starts_at <= ?", PAST_THREE_DAYS, Time.zone.now])
     schedules.each do |schedule|
 
-      scorecard = schedule.group.scorecards.first
+      # scorecard = schedule.group.scorecards.first
       manager_id = RolesUsers.find_item_manager(schedule.group).user_id
 
-      schedule.the_roster.each do |match|
-        message = Message.new
-        message.subject = "#{I18n.t(:reminder_wall_message)}:  #{schedule.concept}"
-        message.body = "#{I18n.t(:reminder_after_game_message)}  #{schedule.concept}  #{I18n.t(:reminder_at_salute)}"
-        message.item = schedule
-        message.sender_id = manager_id
-        message.recipient_id = match.user_id
-        message.sender_read_at = Time.zone.now
-        message.recipient_read_at = Time.zone.now
-        message.sender_deleted_at = Time.zone.now
-        message.recipient_deleted_at = Time.zone.now        
-        message.save! 
+      schedule.the_roster.each do |match|        
+        create_notification_email(schedule, schedule, manager_id, match.user_id)
+        
+        # message = Message.new
+        # message.subject = "#{I18n.t(:reminder_wall_message)}:  #{schedule.concept}"
+        # message.body = "#{I18n.t(:reminder_after_game_message)}  #{schedule.concept}  #{I18n.t(:reminder_at_salute)}"
+        # message.item = schedule
+        # message.sender_id = manager_id
+        # message.recipient_id = match.user_id
+        # message.sender_read_at = Time.zone.now
+        # message.recipient_read_at = Time.zone.now
+        # message.sender_deleted_at = Time.zone.now
+        # message.recipient_deleted_at = Time.zone.now        
+        # message.save! 
       end
 
       schedule.send_comment_at = Time.zone.now
@@ -422,21 +428,61 @@ class Schedule < ActiveRecord::Base
       # once game has been played then the scorecard will be automatically sent
       if schedule.played?
         schedule.group.users.each do |user|
-          message = Message.new
-          message.subject = "#{I18n.t(:scorecard_latest)}:  #{schedule.group.name}"
-          message.body = "#{I18n.t(:scorecard_latest)}  #{schedule.group.name}  #{I18n.t(:reminder_at_salute)}"
-          message.item = scorecard
-          message.sender_id = manager_id
-          message.recipient_id = user.id
-          message.sender_read_at = Time.zone.now
-          message.recipient_read_at = Time.zone.now
-          message.sender_deleted_at = Time.zone.now
-          message.recipient_deleted_at = Time.zone.now        
-          message.save!
+          create_notification_email(scorecard, schedule, manager_id, user.id)
+          
+          # message = Message.new
+          # message.subject = "#{I18n.t(:scorecard_latest)}:  #{schedule.group.name}"
+          # message.body = "#{I18n.t(:scorecard_latest)}  #{schedule.group.name}  #{I18n.t(:reminder_at_salute)}"
+          # message.item = scorecard
+          # message.sender_id = manager_id
+          # message.recipient_id = user.id
+          # message.sender_read_at = Time.zone.now
+          # message.recipient_read_at = Time.zone.now
+          # message.sender_deleted_at = Time.zone.now
+          # message.recipient_deleted_at = Time.zone.now        
+          # message.save!
         end
       end
 
     end
+  end
+  
+  def self.create_notification_email(item, schedule, manager_id, user_id, reminder=false)
+
+    the_subject = ""
+    the_body = ""
+
+    case item.class.to_s
+    when "Schedule"
+      
+      if reminder
+        the_subject = "#{I18n.t(:reminder_at)}:  #{schedule.concept}"
+        the_body = "#{I18n.t(:reminder_at_message)}  #{schedule.concept}  #{I18n.t(:reminder_at_salute)}"
+      else
+        the_subject = "#{I18n.t(:reminder_wall_message)}:  #{schedule.concept}"
+        the_body = "#{I18n.t(:reminder_after_game_message)}  #{schedule.concept}  #{I18n.t(:reminder_at_salute)}"
+      end
+      
+    when "Scorecard"
+      the_subject = "#{I18n.t(:scorecard_latest)}:  #{schedule.group.name}"
+      the_body = "#{I18n.t(:scorecard_latest)}  #{schedule.group.name}  #{I18n.t(:reminder_at_salute)}"
+    when "Match"
+      the_subject = "#{I18n.t(:update_match)}:  #{schedule.concept}"
+      the_body = "#{I18n.t(:update_match_message)}  #{schedule.concept}  #{I18n.t(:reminder_at_salute)}"
+    end
+
+    message = Message.new
+    message.subject = the_subject
+    message.body = the_body
+    message.item = item
+    message.sender_id = manager_id
+    message.recipient_id = user_id
+    message.sender_read_at = Time.zone.now
+    message.recipient_read_at = Time.zone.now
+    message.sender_deleted_at = Time.zone.now
+    message.recipient_deleted_at = Time.zone.now        
+    message.save!
+
   end
 
   private

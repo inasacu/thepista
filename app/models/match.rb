@@ -1,5 +1,6 @@
 require 'rubygems'
 require 'saulabs/trueskill'
+require "base64"
 
 include Saulabs::TrueSkill
 
@@ -29,7 +30,7 @@ class Match < ActiveRecord::Base
   # variables to access
   attr_accessible :name, :schedule_id, :user_id, :group_id, :invite_id, :group_score, :invite_score
   attr_accessible :roster_position, :played, :available, :one_x_two, :user_x_two, :type_id, :status_at, :description
-  attr_accessible :position_id, :technical, :physical
+  attr_accessible :position_id, :technical, :physical, :block_token
   attr_accessible :goals_scored, :game_started, :field_goal_attempt, :field_goal_made, :free_throw_attempt, :free_throw_made
   attr_accessible :three_point_attempt, :three_point_made, :rebounds, :rebounds_defense, :rebounds_offense 
   attr_accessible :minutes_played, :assists, :steals, :blocks, :turnovers, :personal_fouls, :archive
@@ -211,6 +212,8 @@ class Match < ActiveRecord::Base
       match.user_x_two = "1" if (match.group_id.to_i > 0 and match.invite_id.to_i == 0)
       match.user_x_two = "X" if (match.group_score.to_i == match.invite_score.to_i)
       match.user_x_two = "2" if (match.group_id.to_i == 0 and match.invite_id.to_i > 0)
+      
+      match.block_token = '' if @schedule.played
 
       match.save!  
     end       
@@ -244,12 +247,15 @@ class Match < ActiveRecord::Base
         technical = @previous_match.technical
         physical = @previous_match.physical
       end
+      
+      # assign unique user id and start_date code for changing status through email
+      the_encode = "#{rand(36**8).to_s(36)}#{schedule.id}#{rand(36**8).to_s(36)}"
+      block_token  = Base64::b64encode(the_encode)
 
       self.create!(:name => schedule.concept, :description => schedule.description, :status_at => Time.zone.now, 
-                   :schedule_id => schedule.id, :group_id => schedule.group_id, 
-                   :user_id => user.id, :available => user.available, 
+                   :schedule_id => schedule.id, :group_id => schedule.group_id, :user_id => user.id, :available => user.available, 
                    :type_id => type_id, :position_id => position_id, :technical => technical, :physical => physical,
-                   :played => schedule.played) if self.schedule_user_exists?(schedule, user)
+                   :played => schedule.played, :block_token => block_token) if self.schedule_user_exists?(schedule, user)
     end
   end
   
@@ -294,7 +300,7 @@ class Match < ActiveRecord::Base
     end
   end
   
-  def self.set_true_skill(group)     
+  def self.set_true_skill(group)
     the_initial_standard_deviation = (InitialMean / K_FACTOR).to_f
        
     home_rating = []

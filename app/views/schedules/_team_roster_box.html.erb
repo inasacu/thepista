@@ -63,9 +63,11 @@
 	show_right_evaluation = is_manager
 	show_right_evaluation = true if (!is_manager and has_been_played)
 	
-	the_trueskill_label = get_cluetip(label_name(:true_skill_mean_initial), 'info', label_name('true_skill_mean_cluetip'))
-	the_trueskill_label_final = get_cluetip(label_name(:true_skill_mean_final), 'info', label_name('true_skill_mean_cluetip'))
-		
+	if DISPLAY_TRUESKILL
+		the_trueskill_label = get_cluetip(label_name(:true_skill_mean_initial), 'info', label_name('true_skill_mean_cluetip'))
+		the_trueskill_label_final = get_cluetip(label_name(:true_skill_mean_final), 'info', label_name('true_skill_mean_cluetip'))
+	end
+	
 if roster_count 
 %>
       <%= get_class_table_id_action %>
@@ -79,8 +81,8 @@ if roster_count
 			<%= content_tag :th, label_name(:technical), :title => label_name(:profile_technical), :class => "heading" %>
 			<%= content_tag :th, label_name(:physical), :title => label_name(:profile_physical), :class => "heading" %>
 			<%= content_tag :th, label_name(:games_played_full_2), :class => "heading" %>
-			<%= content_tag :th, the_trueskill_label, :class => "heading_#{show_right_border}" %>
-			<%= content_tag :th, the_trueskill_label_final, :class => "heading" if has_been_played and is_squad %>
+			<%= content_tag :th, the_trueskill_label, :class => "heading_#{show_right_border}" if DISPLAY_TRUESKILL %>
+			<%= content_tag :th, the_trueskill_label_final, :class => "heading" if has_been_played and is_squad and DISPLAY_TRUESKILL %>
 			<%= content_tag :th, has_been_played ? "" : is_squad ? sort_link(label_name(:group), :group_id) : 
 							label_name(:group), :class => "heading_#{show_right_evaluation}" if is_squad and !has_been_played %>		
 			<% if has_been_played %>
@@ -112,6 +114,8 @@ the_roster.each do |match|
 
 	last_roster = "last"
 	last_roster = "second_team_last_roster" if is_second_team
+	
+	game_number = 1
 
 	coeficient_played = 100 *(match.scorecard_played.to_f / group_games_played)
 	previous_user_match = Match.get_previous_user_match(match, schedule_number, group)
@@ -120,24 +124,26 @@ the_roster.each do |match|
 	rating_technical = the_user_match.rating_average_technical.to_f
 	rating_physical = the_user_match.rating_average_physical.to_f
 
-    initial_mean = (InitialMean).to_f
-    initial_deviation = (InitialMean / K_FACTOR).to_f 
-	final_mean = 0.0
-	final_deviation = 0.0
-	game_number = 1
+	if DISPLAY_TRUESKILL
+		initial_mean = (InitialMean).to_f
+		initial_deviation = (InitialMean / K_FACTOR).to_f 
+		final_mean = 0.0
+		final_deviation = 0.0
 
-	unless previous_user_match.nil?
-		initial_mean = previous_user_match.final_mean 
-		initial_deviation = previous_user_match.final_deviation
-		game_number = previous_user_match.game_number
-	end
+		unless previous_user_match.nil?
+			initial_mean = previous_user_match.final_mean 
+			initial_deviation = previous_user_match.final_deviation
+		end
 
-	if has_been_played
-		initial_mean = match.initial_mean 
-		initial_deviation = match.initial_deviation
-		final_mean = match.final_mean 
-		final_deviation = match.final_deviation
+		if has_been_played
+			initial_mean = match.initial_mean 
+			initial_deviation = match.initial_deviation
+			final_mean = match.final_mean 
+			final_deviation = match.final_deviation
+		end
 	end
+	
+	game_number = previous_user_match.game_number unless previous_user_match.nil?
 
 	is_subscriber = the_user.is_subscriber_of?(group)	
 	the_label =  label_name("subscription_#{is_subscriber}")
@@ -145,9 +151,12 @@ the_roster.each do |match|
 	if is_squad
 		# initialize values if nil
 		rating_technical = 0.0  if rating_technical.nil?
-		rating_physical = 0.0  if rating_physical.nil?		
-		initial_mean = 0.0  if initial_mean.nil?
-		initial_deviation = 0.0  if initial_deviation.nil?
+		rating_physical = 0.0  if rating_physical.nil?	
+		
+		if DISPLAY_TRUESKILL
+			initial_mean = 0.0  if initial_mean.nil?
+			initial_deviation = 0.0  if initial_deviation.nil?
+		end
 				
 		case match.position.name
 		when "defense"
@@ -160,10 +169,12 @@ the_roster.each do |match|
 
 		(match.group_id > 0) ? home["technical"] += rating_technical : away["technical"] += rating_technical
 		(match.group_id > 0) ? home["physical"] += rating_physical : away["physical"] += rating_physical
-		(match.group_id > 0) ? home["total"] += 1 : away["total"] += 1
-
-		(match.group_id > 0) ? home["mean"] += initial_mean : away["mean"] += initial_mean
-		(match.group_id > 0) ? home["deviation"] += initial_deviation : away["deviation"] += initial_deviation
+		(match.group_id > 0) ? home["total"] += 1 : away["total"] += 1	
+		
+		if DISPLAY_TRUESKILL
+			(match.group_id > 0) ? home["mean"] += initial_mean : away["mean"] += initial_mean
+			(match.group_id > 0) ? home["deviation"] += initial_deviation : away["deviation"] += initial_deviation
+		end
 	end
 
 	@roster = match	
@@ -189,8 +200,8 @@ the_roster.each do |match|
 	<%= content_tag(:td, rating_technical, :class => second_team) %>
 	<%= content_tag(:td, rating_physical, :class => second_team) %>
 	<%= content_tag(:td, game_number, :class => second_team) %>
-	<%= content_tag(:td, "#{sprintf( "%.2f", initial_mean)}", :class => second_team) %>
-	<%= content_tag(:td, "#{sprintf( "%.2f", final_mean)}", :class => second_team) if has_been_played and is_squad %>
+	<%= content_tag(:td, "#{sprintf( "%.2f", initial_mean)}", :class => second_team) if DISPLAY_TRUESKILL %>
+	<%= content_tag(:td, "#{sprintf( "%.2f", final_mean)}", :class => second_team) if has_been_played and is_squad and DISPLAY_TRUESKILL %>
 	
 	<% if is_squad %>
 	<% if !has_been_played  %>

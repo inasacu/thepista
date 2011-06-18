@@ -3,12 +3,12 @@ class RemoveCommentTableFields < ActiveRecord::Migration
     remove_column     :comments,      :entry_id
     remove_column     :comments,      :group_id
     
-    add_column        :comments,      :parent_id,   :integer
-    add_column        :comments,      :lft,         :integer
-    add_column        :comments,      :rgt,         :integer
+    add_column        :comments,      :parent_id,     :integer
+    # add_column        :comments,      :lft,         :integer
+    # add_column        :comments,      :rgt,         :integer
+    
+    add_column        :matches,       :block_token,   :string
   
-    # add_index "comments", "user_id"
-    # add_index "comments", "commentable_id"
   end
 
   def self.down
@@ -16,7 +16,9 @@ class RemoveCommentTableFields < ActiveRecord::Migration
     add_column        :comments,      :group_id,    :integer
     
     remove_column     :comments,      :parent_id
-    remove_column     :comments,      :lft
-    remove_column     :comments,      :rgt
+    # remove_column     :comments,      :lft
+    # remove_column     :comments,      :rgt
+    
+    remove_column     :matches,       :block_token
   end
 end

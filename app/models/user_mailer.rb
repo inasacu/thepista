@@ -83,6 +83,7 @@ class UserMailer < ActionMailer::Base
     @sent_on = Time.zone.now
     @body[:user] = user
     @body[:message] = message
+    @body[:recipient] = recipient
     @from  =  "#{user.name} <#{user.email}>"
     sent_on       Time.zone.now
     content_type  "text/html"
@@ -136,6 +137,7 @@ class UserMailer < ActionMailer::Base
       @body[:group]       = message.item
     when "Schedule"
       @body[:schedule]    = message.item
+      @body[:recipient]   = message.recipient
     when "Scorecard"
       @body[:scorecard]    = message.item
     end

@@ -96,8 +96,9 @@ module MatchesHelper
   
   def match_all_my_link(schedule, user, is_manager, show_icon=true)
     match_types = Match.get_match_type
-    
-    unless schedule.played?
+    has_match_date_passed = (schedule.starts_at < THREE_WEEKS_AGO ) or schedule.played?
+        
+    unless has_match_date_passed
       my_current_match = nil
       the_match_link = ''
       schedule.matches.each{|match| my_current_match = match if match.user_id == user.id}

@@ -1,6 +1,5 @@
 class CreateInstallations < ActiveRecord::Migration
   def self.up
-    drop_table :installations
     
     create_table :installations do |t|
       t.string          :name

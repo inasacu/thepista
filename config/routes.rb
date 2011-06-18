@@ -69,7 +69,8 @@ ActionController::Routing::Routes.draw do |map|
   map.set_group_looking           'equipos/:id/buscar_jugado',  	              :controller => 'groups',    		  :action => 'set_looking'  
   
   map.match_team            'jornadas/:id/cambio_equipo',                       :controller => 'matches',         :action => 'set_team'
-  map.match_status          'jornadas/:id/cambio_convocatoria/:type',           :controller => 'matches',         :action => 'set_status'
+  map.match_status          'jornadas/:id/cambio_convocatoria/:type',                 :controller => 'matches',         :action => 'set_status'
+  map.match_token           'jornadas/:id/cambio_convocatoria/:type/:block_token',    :controller => 'matches',         :action => 'set_status_link'
   
   map.reply_message         'mensajes/:id/responder',                           :controller => 'messages',        :action => 'reply'
   map.untrash_message       'mensajes/:id/recuperar',                           :controller => 'messages',        :action => 'undestroy'

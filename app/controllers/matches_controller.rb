@@ -1,8 +1,9 @@
 class MatchesController < ApplicationController
-  before_filter :require_user
-  before_filter :get_match_and_user_x_two, :only =>[:set_status, :set_team]
-  before_filter :has_member_access, :only => [:set_match_profile]
-  before_filter :has_match_access, :only => [:rate]
+  before_filter :require_user,              :except => [:set_status_link]
+  
+  before_filter :get_match_and_user_x_two,  :only =>[:set_status, :set_team, :set_status_link]
+  before_filter :has_member_access,         :only => [:set_match_profile]
+  before_filter :has_match_access,          :only => [:rate]
 
   def index
     redirect_to :controller => 'schedules', :action => 'index'
@@ -44,12 +45,6 @@ class MatchesController < ApplicationController
   end
 
   def rate
-    # @match.rate(params[:stars], current_user, params[:dimension])   
-    # render :update do |page|
-    #   page.replace_html @match.wrapper_dom_id(params), ratings_for(@match, params.merge(:wrap => false))
-    #   page.visual_effect :highlight, @match.wrapper_dom_id(params)
-    # end
-
     @match.rate(params[:stars], current_user, params[:dimension])
     average = @match.rate_average(true, params[:dimension])
     width = (average / @match.class.max_stars.to_f) * 100
@@ -82,8 +77,11 @@ class MatchesController < ApplicationController
     if @match.update_attributes(params[:match])
       Match.save_matches(@match, params[:match][:match_attributes]) if params[:match][:match_attributes]
       Match.update_match_details(@match, current_user)
-      Match.delay.set_default_skill(the_group)
-      Match.delay.set_true_skill(the_group)
+      
+      if DISPLAY_TRUESKILL
+        Match.delay.set_default_skill(the_group)
+        Match.delay.set_true_skill(the_group)
+      end
 
       flash[:success] = I18n.t(:successful_update)
       redirect_to :controller => 'schedules', :action => 'show', :id => @match.schedule
@@ -120,6 +118,29 @@ class MatchesController < ApplicationController
       render :template => 'matches/set_status'
       return
     end
+    redirect_back_or_default('/index')
+  end 
+
+  def set_status_link
+    unless (@match.block_token == params[:block_token])
+      flash[:warning] = I18n.t(:unauthorized)
+      redirect_to root_url
+      return
+    end
+
+    @type = Type.find(params[:type])
+    played = (@type.id == 1 and !@match.group_score.nil? and !@match.invite_score.nil?)
+    
+    if @match.update_attributes(:type_id => @type.id, :played => played, :user_x_two => @user_x_two, :status_at => Time.zone.now)
+      
+      manager_id = RolesUsers.find_item_manager(@match.schedule.group).user_id
+      Schedule.delay.create_notification_email(@match.schedule, @match.schedule, manager_id, @match.user_id, true)      
+      Scorecard.delay.calculate_user_played_assigned_scorecard(@match.user, @match.schedule.group)
+      
+      # set fee type_id to same as match type_id
+      the_fee = Fee.find(:all, :conditions => ["debit_type = 'User' and debit_id = ? and item_type = 'Schedule' and item_id = ?", @match.user_id, @match.schedule_id])
+      the_fee.each {|fee| fee.type_id = @type.id; fee.save}
+    end 
     redirect_back_or_default('/index')
   end
 

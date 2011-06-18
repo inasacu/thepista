@@ -11,9 +11,9 @@
 	<%= content_tag :th, label_name(:technical_difference), :class => "heading" %>
 	<%= content_tag :th, label_name(:physical_difference), :class => "heading" %>
 	<%= content_tag :th, label_name(:total_difference), :class => "heading" %>
-	<%= content_tag :th, "&nbsp;&nbsp;", :class => "heading" if has_been_played %>
-	<%= content_tag :th, "&nbsp;", :class => "heading" unless has_been_played  %>
-	<%= content_tag :th, "&nbsp;", :class => "heading_#{show_right_border}" %>
+	<%#= content_tag :th, "&nbsp;&nbsp;", :class => "heading" if has_been_played %>
+	<%#= content_tag :th, "&nbsp;", :class => "heading" unless has_been_played  %>
+	<%= content_tag :th, "&nbsp;", :class => "heading_#{show_right_border}" unless has_been_played  %>
 	<%= content_tag :th, "", :class => "last" if show_right_border %>
 </tr>
 <tr>
@@ -33,12 +33,13 @@
 	<%= content_tag(:td, away["technical_difference"]) %>
 	<%= content_tag(:td, away["physical_difference"]) %>
 	<%= content_tag(:td, away["total_difference"]) %>
-	<%= content_tag(:td, "&nbsp;") %>
-	<%= content_tag :td, "&nbsp;"  if has_been_played %>
-	<%= content_tag(:td, "&nbsp;") unless has_been_played  %>
+	<%#= content_tag :td, "&nbsp;"  if has_been_played %>
+	<%#= content_tag(:td, "&nbsp;") unless has_been_played  %>
+	<%= content_tag(:td, "&nbsp;") unless show_right_border %>
 	<%= content_tag(:td, "&nbsp;", :class => "last") if show_right_border %>
 </tr>
 
+<% if DISPLAY_TRUESKILL %>
 <tr>
 	<% 5.times do |i| %>
 	<%= content_tag :td, "&nbsp;", :class => "no_line" %>
@@ -80,3 +81,4 @@
 </tr>
 <tr><% 5.times {|i| "#{content_tag(:td, '&nbsp;', :class => 'no_line')}"} %></tr>
 <tr><% 5.times {|i| "#{content_tag(:td, '&nbsp;', :class => 'no_line')}"} %></tr>
+<% end %>

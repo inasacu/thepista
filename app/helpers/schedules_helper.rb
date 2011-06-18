@@ -40,11 +40,11 @@ module SchedulesHelper
     the_concept = ""
 
     if schedule.game_played?
-      #   the_concept = (current_user.is_member_of?(schedule.group) or schedule.public) ? 
-      #            link_to(sanitize(schedule.concept), schedule_path(:id => schedule)) : sanitize(schedule.concept)
+        the_concept = (current_user.is_member_of?(schedule.group) or schedule.public) ? 
+                        link_to(sanitize(schedule.concept), schedule_path(:id => schedule)) : sanitize(schedule.concept)
     else
       the_concept = (current_user.is_member_of?(schedule.group) or schedule.public) ? 
-      link_to(sanitize(schedule.concept), team_roster_path(:id => schedule)) : sanitize(schedule.concept)
+                      link_to(sanitize(schedule.concept), team_roster_path(:id => schedule)) : sanitize(schedule.concept)
 
       the_sport = "#{label_name(:rosters)}:  #{schedule.convocados.count}"
       the_missing = ", #{I18n.t(:missing)}:  #{schedule.player_limit.to_i - schedule.convocados.count}" if schedule.player_limit.to_i > schedule.convocados.count
