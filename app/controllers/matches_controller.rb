@@ -141,7 +141,7 @@ class MatchesController < ApplicationController
       the_fee = Fee.find(:all, :conditions => ["debit_type = 'User' and debit_id = ? and item_type = 'Schedule' and item_id = ?", @match.user_id, @match.schedule_id])
       the_fee.each {|fee| fee.type_id = @type.id; fee.save}
     end 
-    redirect_back_or_default('/index')
+    redirect_to root_url
   end
 
   def set_team 
