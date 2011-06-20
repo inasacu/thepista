@@ -1,5 +1,5 @@
-<% if current_user.last_login_at < ONE_MONTH_AGO or current_user.last_login_at.nil? %>
+<%# if current_user.last_login_at < ONE_MONTH_AGO or current_user.last_login_at.nil? %>
 	<% content_for :sidebar, render('/shared/sidebar_howto') unless is_action('search')  -%>
-<% end %>
+<%# end %>
 <% content_for :sidebar, render('/shared/sidebar_index') -%>
 <% content_for :sidebar, render('shared/completeness', :user => current_user) unless (current_user.percent_complete == 100) or is_action('search') -%>
