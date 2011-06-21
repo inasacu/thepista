@@ -51,9 +51,10 @@ class ReservationsController < ApplicationController
   def new
     block_token = Base64::decode64(params[:block_token].to_s).to_i
     time_frame = (@installation.timeframe).hour
-    
+        
     @reservation = Reservation.new    
-    @reservation.concept = "#{@venue.name}"    
+    # @reservation.concept = "#{@venue.name}"
+    @reservation.concept = "#{current_user.name}"   
     @reservation.starts_at = Time.zone.at(block_token)
     @reservation.ends_at = @reservation.starts_at + time_frame 
     @reservation.reminder_at = @reservation.starts_at - 2.days    
@@ -61,8 +62,7 @@ class ReservationsController < ApplicationController
     # @reservation.description =  params[:block_token]
     
     # verify reservation has not already been made
-    reservation_available = Reservation.find(:first, :conditions =>["starts_at = ? and ends_at = ? and 
-                        item_id is not null and item_type is not null", @reservation.starts_at, @reservation.ends_at]).nil?
+    reservation_available = Reservation.reservation_available(@venue, @installation, @reservation)
     
     unless reservation_available      
         flash[:notice] = I18n.t(:reservations_unavailable)
@@ -85,12 +85,27 @@ class ReservationsController < ApplicationController
     @installation = @reservation.installation
     @venue = @installation.venue
     
-    # verify reservation has not already been made
-    reservation_available = Reservation.find(:first, :conditions =>["starts_at = ? and ends_at = ? and 
-                        item_id is not null and item_type is not null", @reservation.starts_at, @reservation.ends_at]).nil?
+    @reservation.code = "#{rand(36**8).to_s(36)}#{rand(36**8).to_s(36)}".strip[0..10].upcase
     
-    unless reservation_available      
-        flash[:notice] = I18n.t(:reservations_unavailable)
+    block_token = Base64::decode64(@reservation.block_token.to_s).to_i
+    time_frame = (@installation.timeframe).hour
+
+    @reservation.concept = current_user.name
+    @reservation.item = current_user   
+     
+    @reservation.starts_at = Time.zone.at(block_token)
+    @reservation.starts_at = @reservation.starts_at.change(:offset => "+0000")
+    @reservation.ends_at = @reservation.starts_at + time_frame 
+    @reservation.reminder_at = @reservation.starts_at - 2.days
+    
+    # verify reservation has not already been made
+    if @reservation.starts_at.nil? or @reservation.ends_at.nil?
+    else
+      reservation_available = Reservation.reservation_available(@venue, @installation, @reservation)
+    end
+    
+    unless reservation_available 
+          flash[:notice] = I18n.t(:reservations_unavailable)
         redirect_to :action => 'index', :id => @installation
       return
     end
@@ -103,15 +118,7 @@ class ReservationsController < ApplicationController
       @reservation.fee_per_lighting = @installation.fee_per_lighting
     end
 
-    block_token = Base64::decode64(@reservation.block_token.to_s).to_i
-    time_frame = (@installation.timeframe).hour
-
-    @reservation.item = current_user   
-     
-    @reservation.starts_at = Time.zone.at(block_token)
-    @reservation.starts_at = @reservation.starts_at.change(:offset => "+0000")
-    @reservation.ends_at = @reservation.starts_at + time_frame 
-    @reservation.reminder_at = @reservation.starts_at - 2.days    
+   
 
     # unless current_user.is_manager_of?(@venue)
     #   flash[:warning] = I18n.t(:unauthorized)

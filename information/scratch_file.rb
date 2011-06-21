@@ -1,30 +1,27 @@
 
 
 
- select * from delayed_jobs
+paypal sandbox accounts
 
-delete from delayed_jobs where handler not like '%args: 
-- LOAD;User;2001%'
-
-
-thepista.local/jornadas/5949/cambio_convocatoria/1/am93cTB2a3I1OTQ5aWk1Mjhvd3Q=%0A
-thepista.local/jornadas/5949/cambio_convocatoria/2/am93cTB2a3I1OTQ5aWk1Mjhvd3Q=%0A
-thepista.local/jornadas/5949/cambio_convocatoria/3/am93cTB2a3I1OTQ5aWk1Mjhvd3Q=%0A
+raulmpadilla@gmail.com 19ti79q42e
 
 
+test accounts 
+
+raulmp_1308505502_per@gmail.com   308508306
+
+raulmp_1308504683_biz@gmail.com   308504544
 
 
-select * from schedules where id = 151
+Test Account  Date Created
+Test Account: raulmp_1308504683_biz@gmail.com Jun. 19, 2011 10:31:32 PDT
+API Username: raulmp_1308504683_biz_api1.gmail.com
+API Password: 1308504692
+Signature:   AFcWxV21C7fd0v3bYYYRCpSSRl31AEhy4Ky1dOMe7W5n8hrUF5zlgF6b
+
+thepista.local/jornadas/5949/cambio_convocatoria/2/dWIxYmt6Z2o1OTQ5eWpqaXY5cmw=%0A
+thepista.local/jornadas/5949/cambio_convocatoria/3/dWIxYmt6Z2o1OTQ5eWpqaXY5cmw=%0A
+thepista.local/jornadas/5949/cambio_convocatoria/1/dWIxYmt6Z2o1OTQ5eWpqaXY5cmw=%0A
 
 
-
-
-
-<tr>
-  <td style="width:1%; color:#999999; vertical-align: top;">&nbsp;</td>
-  <td style="width:99%">&nbsp;<%= the_schedule_label %></td>
-</tr>
-<tr/>
-<br />
-<br/>
-<br/>
+Quieres que tus amigos se apunten a este partido?  Compartelo

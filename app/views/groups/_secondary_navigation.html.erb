@@ -16,7 +16,8 @@
 	active_classified ||= ""
 	active_classified = get_active("#{get_the_controller}_#{get_the_action}") if is_controller('classified')
 	
-	unless is_action('new')
+	is_new_group = (is_action('new') or is_action('create'))
+	unless is_new_group
 		content_for(:description, "#{h(@group.name)} / #{@group.sport.name},  #{h(@group.description) }.  #{@group.marker.name}, #{@group.time_zone}") if @group
 	end
 %>
@@ -26,9 +27,11 @@
 <ul>
 	<%= item_new(@group) %>		
 	
-	<li class="<%= get_first_active %>"><%=  link_to(label_name(:my_group), groups_path) unless @group %></li>
-	<li class="<%= get_active('group_list') %>"><%=  link_to(label_name(:all_group) , list_groups_path) unless @group %></li>
-	<li class="<%= get_active('group_show') %>"><%=  group_link(@group) if @group and is_not_new_item %></li>
+	<% unless is_new_group %>
+		<li class="<%= get_first_active %>"><%=  link_to(label_name(:my_group), groups_path) unless @group %></li>
+		<li class="<%= get_active('group_list') %>"><%=  link_to(label_name(:all_group) , list_groups_path) unless @group %></li>
+		<li class="<%= get_active('group_show') %>"><%=  group_link(@group) if @group and is_not_new_item %></li>
+	<% end %>
 <% 	
 	if the_action.include?(get_the_action) or the_controller.include?(get_the_controller)
 		if current_user.is_member_of?(@group) 

@@ -10,7 +10,7 @@ class Reservation < ActiveRecord::Base
   # validations  
   validates_presence_of         :concept
   validates_length_of           :concept,                         :within => NAME_RANGE_LENGTH
-  validates_format_of           :concept,                         :with => /^[A-z 0-9 _.-]*$/ 
+  # validates_format_of           :concept,                         :with => /^[A-z 0-9 _.-]*$/ 
 
   validates_presence_of         :description
   validates_length_of           :description,                     :within => DESCRIPTION_RANGE_LENGTH
@@ -23,7 +23,7 @@ class Reservation < ActiveRecord::Base
   # variables to access
   attr_accessible :concept, :description, :starts_at, :ends_at, :reminder_at
   attr_accessible :fee_per_game, :fee_per_lighting, :venue_id, :installation_id
-  attr_accessible :item_id, :item_type, :block_token
+  attr_accessible :item_id, :item_type, :block_token, :code
   attr_accessible :public, :archive, :reminder, :available
 
   # NOTE:  MUST BE DECLARED AFTER attr_accessible otherwise you get a 'RuntimeError: Declare either attr_protected or attr_accessible' 
@@ -64,6 +64,11 @@ class Reservation < ActiveRecord::Base
       the_reservations << item           
     end
     return items
+  end
+  
+  def self.reservation_available(venue, installation, reservation)
+      find(:first, :conditions =>["venue_id = ? and installation_id = ? and starts_at = ? and ends_at = ? and 
+                                   item_id is not null and item_type is not null", venue, installation, reservation.starts_at, reservation.ends_at]).nil?
   end
 
   private
