@@ -24,8 +24,7 @@ class Venue < ActiveRecord::Base
   validates_format_of       :name,            :with => /^[A-z 0-9 _.-]*$/ 
 
   # variables to access
-  attr_accessible :name, :description, :starts_at, :ends_at, :time_zone, :marker_id
-  attr_accessible :description, :photo, :enable_comments, :public, :day_light_savings,  :day_light_starts_at, :day_light_ends_at
+  attr_accessible :name, :description, :starts_at, :ends_at, :time_zone, :marker_id, :description, :photo, :enable_comments, :public
     
   # NOTE:  MUST BE DECLARED AFTER attr_accessible otherwise you get a 'RuntimeError: Declare either attr_protected or attr_accessible' 
   has_friendly_id :name, :use_slug => true, :approximate_ascii => true, 

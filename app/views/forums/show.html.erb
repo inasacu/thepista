@@ -1,10 +1,48 @@
+<%
+	the_label = label_with_name('note', sanitize(@schedule.concept))
+
+	the_comments = []
+	items = []
+	item_counter = 0
+
+	@comments.each do |item| 
+		if item.created_at >= THREE_WEEKS_AGO
+
+			# only add unique values
+			has_the_item = false
+			the_comments.each do |comment|             
+				has_the_item = (comment.user_id == item.user_id and comment.body == item.body ) if !has_the_item          
+			end           
+			unless has_the_item
+				items << item 
+				item_counter += 1
+			end
+			the_comments << item
+
+		end
+	end
+%>
+
 <div class="block">
 	<%= render "shared/previous_next_message", :schedule => @schedule, :the_previous => @the_previous, :the_next => @the_next -%>
 
+	<h2 class="title"><%= the_label %></h2>
+
 	<div class="inner">
 
-		<%= render 'comments/disqus' %>
-		<%= render 'comments/discussion', :comments => @comments %>
+		<%= render 'comments/disqus', :item => @schedule unless production? %>
+		<%= render 'comments/discussion', :items => items, :item_counter => item_counter %>
+
+		
+		
+		<%#= render 'comments/facebook_comment' %>		
+		<%#= render 'comments/new_comment', :comments => items %>
+
+		<%# items.each do |comment| -%> 
+		<%#= render :partial => 'forums/comment', :locals => {:comment => comment} %>
+		<%#= render :partial => 'new_comment', :locals => { :comment => comment } %>
+		<%# end %>
+
 
 	</div>
 </div>

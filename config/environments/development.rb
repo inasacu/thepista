@@ -23,9 +23,3 @@ ENV['RECAPTCHA_PRIVATE_KEY'] = '6LfhKAgAAAAAAAivbLUYGmNpdRwKQJL57V8I53o0'
 
 Paperclip.options[:command_path] = "/opt/local/bin"
 # Paperclip.options[:command_path] = "/opt/local/var/macports/software"
-
-
-
-config.after_initialize do
-  ActiveMerchant::Billing::Base.gateway_mode = :test
-end

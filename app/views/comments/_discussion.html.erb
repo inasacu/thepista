@@ -1,36 +1,5 @@
 <%= stylesheet_link_tag 'comment' %>
 
-<% 
-	the_label = ""
-	the_label = sanitize(@schedule.concept) if @schedule
-	the_label = sanitize(@user.name) if @user
-	the_label = sanitize(@group.name) if @group
-	the_label = sanitize(@challenge.name) if @challenge
-	the_label = sanitize(@venue.name) if @venue
-	the_label = "#{label_name(:reminder_wall_message)} - #{the_label}"
-
-	the_comments = []
-	items = []
-	item_counter = 0
-
-	@comments.each do |item| 
-		# if item.created_at >= THREE_WEEKS_AGO
-
-		# only add unique values
-		has_the_item = false
-		the_comments.each do |comment|             
-			has_the_item = (comment.user_id == item.user_id and comment.body == item.body ) if !has_the_item          
-		end           
-		unless has_the_item
-			items << item 
-			item_counter += 1
-		end
-		the_comments << item
-
-		# end
-	end
-%>
-
 <div id="disqus_thread">
 	
 	<div class="clearfix" style="display: block;" id="dsq-content">
@@ -38,29 +7,35 @@
 	<% form_for :comment, :url => comments_path, :html => { :class => :form } do |f| -%>
 	
 		<div class="dsq-reply " id="dsq-reply">
-			<h3><%= the_label %></h3>
+			<h3><%= label_name(:reminder_wall_message) %></h3>
 			<div class="dsq-avatar"><%= image_link(current_user) %></div>
 			<div class="dsq-textarea dsq-textarea-reply">
 				<%= f.text_area :body, :class => 'text_message' -%>	
+			</div>			
+		</div>
 	
-				<div id="dsq-sort-by">
-					<%= submit_tag label_name(:share),  :class => "button" %>
-				</div>
-			</div>
-			</div>
+		<div id="dsq-sort-by">
+			<%= submit_tag label_name(:share),  :class => "button" %>
+		</div>
 
 	<%= hidden_field :blog, :id %>
 	<%= hidden_field :forum, :id %>
 	<% end %>
-	
-	<br/>
-	<br/>
 	
 	<h3><%= I18n.t(:has_comments, :count => item_counter) %></h3>
 	
 	<% items.each do |comment| %>
 	<%= render 'comments/discussion_thread', :comment => comment %>
 	<% end %>
+	
+	<div id="dsq-pagination">
+		<ul id="dsq-footer" class="dsq-clearfix">
+			<div id="dsq-subscribe">
+				<li><%#= link_to(label_name(:forum_notification), 
+								set_forum_notification_path(:id => current_user)) unless current_user.forum_comment_notification %></li>
+			</div>
+		</ul>
+	</div>
 
 </div>
 <div>

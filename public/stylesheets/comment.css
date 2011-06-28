@@ -25,11 +25,7 @@
 .dsq-post-tools .dsq-post-as .dsq-button:hover { background: url('../images/backgrounds-sprite.png') repeat-x scroll 0pt -310px transparent; }
 .dsq-post-tools .dsq-post-as .dsq-button:active { background: url('../images/backgrounds-sprite.png') repeat-x scroll 0pt -370px transparent; -moz-box-shadow: 0pt 1px 0pt rgba(255, 255, 255, 0.8); padding-top: 9px; padding-bottom: 7px; }
 #dsq-account-dropdown { float: right; }
-#dsq-sort-by { 
-	float: left; 
-	margin: 0pt 10px 0pt 0pt; 
-	padding: 4px 0pt; 
-}
+#dsq-sort-by { float: right; }
 #dsq-sort-by select { margin: 0pt; }
 #dsq-comments a:focus { outline: 0pt none; }
 #dsq-content .dsq-comment { position: relative; margin: 0pt 0pt 1.5em; clear: both; }
