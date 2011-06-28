@@ -1,6 +1,6 @@
 require 'rubygems'
 require 'active_support'
-require 'active_merchant'
+require 'lib/active_merchant'
 
 
 class GatewaySupport #:nodoc:

@@ -21,7 +21,7 @@ module ActiveMerchant #:nodoc:
       self.homepage_url = 'http://www.paymentexpress.com/'
       self.display_name = 'PaymentExpress'
       
-      URL = 'https://sec.paymentexpress.com/pxpost.aspx'
+      URL = 'https://www.paymentexpress.com/pxpost.aspx'
       
       APPROVED = '1'
       
@@ -64,16 +64,11 @@ module ActiveMerchant #:nodoc:
       end
       
       # Refund funds to the card holder
-      def refund(money, identification, options = {})
+      def credit(money, identification, options = {})
         requires!(options, :description)
         
         request = build_capture_or_credit_request(money, identification, options)                                            
         commit(:credit, request)
-      end
-
-      def credit(money, identification, options = {})
-        deprecated CREDIT_DEPRECATION_MESSAGE
-        refund(money, identification, options)
       end
       
       # token based billing
@@ -192,7 +187,7 @@ module ActiveMerchant #:nodoc:
         response = parse( ssl_post(URL, request.to_s) )
         
         # Return a response
-        PaymentExpressResponse.new(response[:success] == APPROVED, response[:card_holder_help_text], response,
+        PaymentExpressResponse.new(response[:success] == APPROVED, response[:response_text], response,
           :test => response[:test_mode] == '1',
           :authorization => response[:dps_txn_ref]
         )

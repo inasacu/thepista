@@ -48,7 +48,7 @@ module ActiveMerchant #:nodoc:
 
           # the money amount we received in X.2 decimal.
           def gross
-            sprintf("%.2f", params['amount'].to_f)
+            params['amount']
           end
 
           # Was this a test transaction?

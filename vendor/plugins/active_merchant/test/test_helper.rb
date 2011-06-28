@@ -1,27 +1,12 @@
 #!/usr/bin/env ruby
-$:.unshift File.expand_path('../../lib', __FILE__)
+$:.unshift(File.dirname(__FILE__) + '/../lib')
 
-begin
-  require 'rubygems'
-  require 'bundler'
-  Bundler.setup
-rescue LoadError => e
-  puts "Error loading bundler (#{e.message}): \"gem install bundler\" for bundler support."
-end
-
-require 'test/unit'
+require 'active_merchant'
+require 'rubygems'
 require 'money'
+require 'test/unit'
 require 'mocha'
 require 'yaml'
-require 'active_merchant'
-
-require 'active_support/core_ext/integer/time'
-require 'active_support/core_ext/numeric/time'
-
-begin
-  require 'active_support/core_ext/time/acts_like'
-rescue LoadError
-end
 
 begin
   gem 'actionpack'
@@ -30,22 +15,10 @@ rescue LoadError
 end
 
 require 'action_controller'
-require "action_view/template"
-begin
-  require 'active_support/core_ext/module/deprecation'
-  require 'action_dispatch/testing/test_process'
-rescue LoadError
-  require 'action_controller/test_process'
-end
+require 'action_controller/test_process'
 require 'active_merchant/billing/integrations/action_view_helper'
 
 ActiveMerchant::Billing::Base.mode = :test
-
-if ENV['DEBUG_ACTIVE_MERCHANT'] == 'true'
-  require 'logger'
-  ActiveMerchant::Billing::Gateway.logger = Logger.new(STDOUT)
-  ActiveMerchant::Billing::Gateway.wiredump_device = STDOUT
-end
 
 # Test gateways
 class SimpleTestGateway < ActiveMerchant::Billing::Gateway
@@ -57,8 +30,6 @@ end
 
 module ActiveMerchant
   module Assertions
-    AssertionClass = RUBY_VERSION > '1.9' ? MiniTest::Assertion : Test::Unit::AssertionFailedError
-    
     def assert_field(field, value)
       clean_backtrace do 
         assert_equal value, @helper.fields[field]
@@ -118,18 +89,13 @@ module ActiveMerchant
         assert_false validateable.valid?, "Expected to not be valid"
       end
     end
-
-    def assert_deprecation_warning(message, target)
-      target.expects(:deprecated).with(message)
-      yield
-    end
     
     private
     def clean_backtrace(&block)
-      yield    
-    rescue AssertionClass => e
+      yield
+    rescue Test::Unit::AssertionFailedError => e
       path = File.expand_path(__FILE__)
-      raise AssertionClass, e.message, e.backtrace.reject { |line| File.expand_path(line) =~ /#{path}/ }
+      raise Test::Unit::AssertionFailedError, e.message, e.backtrace.reject { |line| File.expand_path(line) =~ /#{path}/ }
     end
   end
   

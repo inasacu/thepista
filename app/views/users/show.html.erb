@@ -50,7 +50,7 @@
 							<td class="label"><%= label_name(:phone) %></td>
 							<td class="show">
 								<%= h(@user.phone) unless @user.private_phone %>
-								<%= link_to(the_label, set_private_phone_path(:id => @user)) if can_modify and !@user.phone.blank? %>
+								<%= link_to(the_label, set_private_phone_path(:id => @user)) if can_modify and !@user.phone.blank? %><br/>
 							</td>
 						</tr>
 						

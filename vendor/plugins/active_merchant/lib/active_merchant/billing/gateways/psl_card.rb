@@ -1,3 +1,5 @@
+# Author::    MoneySpyder, http://moneyspyder.co.uk
+
 module ActiveMerchant
   module Billing
     #
@@ -97,7 +99,7 @@ module ActiveMerchant
       # Purchase the item straight away
       # 
       # Parameters:
-      #   -money: Amount to be charged as an Integer value in cents
+      #   -money: Money object for the total to be charged
       #   -authorization: the PSL cross reference from the previous authorization
       #   -options:
       #
@@ -125,7 +127,7 @@ module ActiveMerchant
       # is available and only 'reserves' the nominal amount (currently a pound and a penny)
       # 
       # Parameters:
-      #   -money: Amount to be charged as an Integer value in cents
+      #   -money: Money object for the total to be charged
       #   -authorization: the PSL cross reference from the previous authorization
       #   -options:
       #
@@ -149,7 +151,7 @@ module ActiveMerchant
       # Captures the funds from an authorized transaction. 
       # 
       # Parameters:
-      #   -money: Amount to be charged as an Integer value in cents
+      #   -money: Money object for the total to be charged
       #   -authorization: The PSL Cross Reference
       #   -options:
       #
@@ -228,7 +230,7 @@ module ActiveMerchant
       # however PSL requires the ISO 4217:2001 Numeric code.
       # 
       # Parameters:
-      #   -money: Integer value in cents
+      #   -money: Money object with the amount and currency
       #   
       # Returns:
       #   -the ISO 4217:2001 Numberic currency code

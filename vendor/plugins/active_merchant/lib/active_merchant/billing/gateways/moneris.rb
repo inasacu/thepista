@@ -14,7 +14,7 @@ module ActiveMerchant #:nodoc:
       LIVE_URL = 'https://www3.moneris.com/gateway2/servlet/MpgRequest'
       
       self.supported_countries = ['CA']
-      self.supported_cardtypes = [:visa, :master, :american_express, :diners_club, :discover]
+      self.supported_cardtypes = [:visa, :master, :american_express]
       self.homepage_url = 'http://www.moneris.com/'
       self.display_name = 'Moneris'
   
@@ -71,13 +71,9 @@ module ActiveMerchant #:nodoc:
       # Moneris interface consistent with other gateways. (See +capture+ for 
       # details.)
       def credit(money, authorization, options = {})
-        deprecated CREDIT_DEPRECATION_MESSAGE
-        refund(money, authorization, options)
-      end
-   
-      def refund(money, authorization, options = {})
         commit 'refund', crediting_params(authorization, :amount => amount(money))
       end
+   
     private # :nodoc: all
     
       def expdate(creditcard)

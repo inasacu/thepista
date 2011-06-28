@@ -1047,6 +1047,14 @@ es:
      public:  Abierto al publico
      public_description:  Selecciona opción si esta abierto al publico.
      publish_in: Publica en HayPista   
+     purchases_create:  Pagar
+     purchases_credit_card:  "Pagar con Tarjeta de Credito..."
+     purchases_expiration:  "Fecha de Caducación"
+     purchases_card_security_code:  "CVV"
+     purchases_card_name: "Titular de la Tarjeta (Nombre, Apellidos)"
+     purchases_card_number: "Numero de la Tarjeta"
+     purchases_paypal:  "...o con PayPal"
+     purchases_type_of_card: "Tipo de Tarjeta"
      question_or_comment: Pregunta o comentario?
      ranking: Ranking   
      ranking_full: Posición del jugador en la clasificación   

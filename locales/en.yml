@@ -1045,7 +1045,15 @@ en:
      provider_not_supported: "provider is not supported, try another email address."   
      public:  Open to the Public
      public_description:  Select option if open to the public.
-     publish_in: Publish on HayPista     
+     publish_in: Publish on HayPista   
+     purchases_create:  Pay
+     purchases_credit_card:  "Pay by Credit Card..."  
+     purchases_expiration:  "Expiration"
+     purchases_card_security_code:  "CVV"
+     purchases_card_name: "Name on Card (first, last)"
+     purchases_card_number: "Card Number"
+     purchases_paypal:  "...or by PayPal"
+     purchases_type_of_card: "Type of Card"
      question_or_comment: Feedback?
      ranking: Ranking   
      ranking_full: Player Ranking    

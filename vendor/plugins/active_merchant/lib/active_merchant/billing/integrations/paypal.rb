@@ -1,10 +1,11 @@
+require 'active_merchant/billing/integrations/paypal/helper.rb'
+require 'active_merchant/billing/integrations/paypal/notification.rb'
+require 'active_merchant/billing/integrations/paypal/return.rb'
+
 module ActiveMerchant #:nodoc:
   module Billing #:nodoc:
     module Integrations #:nodoc:
       module Paypal
-        autoload :Return, 'active_merchant/billing/integrations/paypal/return.rb'
-        autoload :Helper, 'active_merchant/billing/integrations/paypal/helper.rb'
-        autoload :Notification, 'active_merchant/billing/integrations/paypal/notification.rb'
         
         # Overwrite this if you want to change the Paypal test url
         mattr_accessor :test_url
@@ -26,11 +27,11 @@ module ActiveMerchant #:nodoc:
           end
         end
             
-        def self.notification(post, options = {})
+        def self.notification(post)
           Notification.new(post)
         end
         
-        def self.return(query_string, options = {})
+        def self.return(query_string)
           Return.new(query_string)
         end
       end

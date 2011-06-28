@@ -62,9 +62,7 @@ module ActiveMerchant #:nodoc:
       include Utils
       
       DEBIT_CARDS = [ :switch, :solo ]
-      CURRENCIES_WITHOUT_FRACTIONS = [ 'JPY' ]
-      CREDIT_DEPRECATION_MESSAGE = "Support for using credit to refund existing transactions is deprecated and will be removed from a future release of ActiveMerchant. Please use the refund method instead."
-            
+      
       cattr_reader :implementations
       @@implementations = []
       
@@ -76,22 +74,22 @@ module ActiveMerchant #:nodoc:
       # The format of the amounts used by the gateway
       # :dollars => '12.50'
       # :cents => '1250'
-      class_attribute :money_format
+      class_inheritable_accessor :money_format
       self.money_format = :dollars
       
       # The default currency for the transactions if no currency is provided
-      class_attribute :default_currency
+      class_inheritable_accessor :default_currency
       
       # The countries of merchants the gateway supports
-      class_attribute :supported_countries
+      class_inheritable_accessor :supported_countries
       self.supported_countries = []
       
       # The supported card types for the gateway
-      class_attribute :supported_cardtypes
+      class_inheritable_accessor :supported_cardtypes
       self.supported_cardtypes = []
       
-      class_attribute :homepage_url
-      class_attribute :display_name
+      class_inheritable_accessor :homepage_url
+      class_inheritable_accessor :display_name
       
       # The application making the calls to the gateway
       # Useful for things like the PayPal build notation (BN) id fields
@@ -134,15 +132,10 @@ module ActiveMerchant #:nodoc:
       
       def amount(money)
         return nil if money.nil?
-        cents = if money.respond_to?(:cents)
-          deprecated "Support for Money objects is deprecated and will be removed from a future release of ActiveMerchant. Please use an Integer value in cents"
-          money.cents
-        else
-          money
-        end
+        cents = money.respond_to?(:cents) ? money.cents : money 
 
-        if money.is_a?(String) 
-          raise ArgumentError, 'money amount must be a positive Integer in cents.' 
+        if money.is_a?(String) or cents.to_i < 0
+          raise ArgumentError, 'money amount must be either a Money object or a positive integer in cents.' 
         end
 
         if self.money_format == :cents
@@ -150,11 +143,6 @@ module ActiveMerchant #:nodoc:
         else
           sprintf("%.2f", cents.to_f / 100)
         end
-      end
-
-      def localized_amount(money, currency)
-        amount = amount(money)
-        CURRENCIES_WITHOUT_FRACTIONS.include?(currency.to_s) ? amount.split('.').first : amount
       end
       
       def currency(money)

@@ -4,14 +4,14 @@ module ActiveMerchant #:nodoc:
       def self.included(base)
         base.default_currency = 'USD'
           
-        base.class_attribute :partner
+        base.class_inheritable_accessor :partner
         
         # Set the default partner to PayPal
         base.partner = 'PayPal'
         
         base.supported_countries = ['US', 'CA', 'SG', 'AU']
         
-        base.class_attribute :timeout
+        base.class_inheritable_accessor :timeout
         base.timeout = 60
         
         # Enable safe retry of failed connections
@@ -67,27 +67,27 @@ module ActiveMerchant #:nodoc:
       
       def capture(money, authorization, options = {})
         request = build_reference_request(:capture, money, authorization, options)
-        commit(request, options)
+        commit(request)
       end
       
       def void(authorization, options = {})
         request = build_reference_request(:void, nil, authorization, options)
-        commit(request, options)
+        commit(request)
       end
   
       private      
-      def build_request(body, options = {})
+      def build_request(body, request_type = nil)
         xml = Builder::XmlMarkup.new
         xml.instruct!
-        xml.tag! 'XMLPayRequest', 'Timeout' => timeout.to_s, 'version' => "2.1", "xmlns" => XMLNS do
+        xml.tag! 'XMLPayRequest', 'Timeout' => 30, 'version' => "2.1", "xmlns" => XMLNS do
           xml.tag! 'RequestData' do
             xml.tag! 'Vendor', @options[:login]
             xml.tag! 'Partner', @options[:partner]
-            if options[:request_type] == :recurring
+            if request_type == :recurring
               xml << body
             else
               xml.tag! 'Transactions' do
-                xml.tag! 'Transaction', 'CustRef' => options[:customer] do
+                xml.tag! 'Transaction' do
                   xml.tag! 'Verbosity', 'MEDIUM'
                   xml << body
                 end
@@ -182,15 +182,15 @@ module ActiveMerchant #:nodoc:
         {
           "Content-Type" => "text/xml",
           "Content-Length" => content_length.to_s,
-      	  "X-VPS-Client-Timeout" => timeout.to_s,
+      	  "X-VPS-Timeout" => timeout.to_s,
       	  "X-VPS-VIT-Integration-Product" => "ActiveMerchant",
       	  "X-VPS-VIT-Runtime-Version" => RUBY_VERSION,
       	  "X-VPS-Request-ID" => Utils.generate_unique_id
     	  }
     	end
     	
-    	def commit(request_body, options  = {})
-        request = build_request(request_body, options)
+    	def commit(request_body, request_type = nil)
+        request = build_request(request_body, request_type)
         headers = build_headers(request.size)
         
     	  response = parse(ssl_post(test? ? TEST_URL : LIVE_URL, request, headers))

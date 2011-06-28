@@ -100,7 +100,7 @@ module ActiveMerchant #:nodoc:
       
       def parse(body)
         response = {}
-        body.to_s.each_line do |l| 
+        body.collect do |l| 
           key, value = l.split(":", 2)
           response[key.to_s.downcase.to_sym] = value.strip
         end

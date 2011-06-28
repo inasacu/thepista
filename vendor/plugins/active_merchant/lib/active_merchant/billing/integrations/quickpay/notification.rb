@@ -18,7 +18,7 @@ module ActiveMerchant #:nodoc:
           end
 
           def received_at
-            Time.parse("20#{params['time']}")
+            Time.local(*params['time'].scan(/../))
           end
 
           def gross
@@ -55,7 +55,7 @@ module ActiveMerchant #:nodoc:
           ]
 
           def generate_md5string
-            MD5_CHECK_FIELDS.map { |key| params[key.to_s] } * "" + @options[:credential2]
+            MD5_CHECK_FIELDS.map { |key| params[key.to_s] } * "" + @options[:md5secret]
           end
           
           def generate_md5check

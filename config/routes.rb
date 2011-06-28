@@ -103,6 +103,9 @@ ActionController::Routing::Routes.draw do |map|
   map.set_user_profile      'jornadas/:id/habilitar_perfil_jugador',            :controller => 'matches',         :action => 'set_user_profile'
   map.set_group_stage       'encasillado/:id/fase_de_grupos',                   :controller => 'standings',       :action => 'set_group_stage'
   
+  map.express               'compra/:id/:block_token',                          :controller => 'purchases',       :action => 'express'
+  
+  
   map.resources   :user_sessions,   :as => 'repitelo'
   map.resources   :users,           :as => 'jugadores',                   :collection => { :rpx_create => :post, :rpx_associate => :post, :list => :get, :recent_activity => :get }  
   map.resources   :schedules,       :as => 'eventos',                     :collection => { :list => :get, :archive_list => :get, :my_list => :get }          
@@ -142,6 +145,8 @@ ActionController::Routing::Routes.draw do |map|
   map.resources   :venues,          :as => 'centros_deportivos',          :collection => { :list => :get }
   map.resources   :installations,   :as => 'instalaciones',               :collection => { :list => :get }
   map.resources   :reservations,    :as => 'reservas',                    :collection => { :list => :get }
+  map.resources   :purchases,       :as => 'compras'
+  
   
   map.resources   :users do |user|
     user.resources :messages

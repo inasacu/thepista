@@ -1,4 +1,4 @@
-require 'action_pack'
+require_library_or_gem 'action_pack'
 
 module ActiveMerchant #:nodoc:
   module Billing #:nodoc:
@@ -21,7 +21,7 @@ module ActiveMerchant #:nodoc:
         #    <% service.customer :first_name => 'Cody',
         #                       :last_name => 'Fauser',
         #                       :phone => '(555)555-5555',
-        #                       :email => 'cody@example.com' %>
+        #                       :email => 'codyfauser@gmail.com' %>
         #
         #    <% service.billing_address :city => 'Ottawa',
         #                              :address1 => '21 Snowy Brook Lane',
@@ -42,25 +42,36 @@ module ActiveMerchant #:nodoc:
         def payment_service_for(order, account, options = {}, &proc)          
           raise ArgumentError, "Missing block" unless block_given?
 
-          integration_module = ActiveMerchant::Billing::Integrations.const_get(options.delete(:service).to_s.camelize)
+          integration_module = ActiveMerchant::Billing::Integrations.const_get(options.delete(:service).to_s.classify)
 
-          result = []
-          result << form_tag(integration_module.service_url, options.delete(:html) || {})
+          if ignore_binding?
+            concat(form_tag(integration_module.service_url, options.delete(:html) || {}))
+          else
+            concat(form_tag(integration_module.service_url, options.delete(:html) || {}), proc.binding)
+          end
+          result = "\n"
           
           service_class = integration_module.const_get('Helper')
           service = service_class.new(order, account, options)
-
-          result << capture(service, &proc)
-
-          service.form_fields.each do |field, value|
-            result << hidden_field_tag(field, value)
-          end
-         
-          result << '</form>'
-          result= result.join("\n")
+          yield service
           
-          concat(result.respond_to?(:html_safe) ? result.html_safe : result)
-          nil
+          result << service.form_fields.collect do |field, value|
+            hidden_field_tag(field, value)
+          end.join("\n")
+
+          result << "\n"
+          result << '</form>' 
+
+          if ignore_binding?
+            concat(result)
+          else
+            concat(result, proc.binding)
+          end
+        end
+        
+        private
+        def ignore_binding?
+          ActionPack::VERSION::MAJOR >= 2 && ActionPack::VERSION::MINOR >= 2
         end
       end
     end

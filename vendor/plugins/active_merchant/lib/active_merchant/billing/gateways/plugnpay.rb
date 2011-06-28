@@ -156,8 +156,9 @@ module ActiveMerchant
         add_amount(post, money, options)
        
         if identification_or_creditcard.is_a?(String)
-          deprecated CREDIT_DEPRECATION_MESSAGE
-          refund(money, identification_or_creditcard, options)
+          post[:orderID] = identification_or_creditcard
+          
+          commit(:refund, post)
         else
           add_creditcard(post, identification_or_creditcard)        
           add_addresses(post, options)   
@@ -165,13 +166,6 @@ module ActiveMerchant
           
           commit(:credit, post)
         end
-      end
-
-      def refund(money, reference, options = {})
-        post = PlugnpayPostData.new
-        add_amount(post, money, options)
-        post[:orderID] = reference
-        commit(:refund, post)
       end
       
       private                                 

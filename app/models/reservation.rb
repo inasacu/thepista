@@ -2,18 +2,19 @@ class Reservation < ActiveRecord::Base
 
   index{ concept }
 
-  has_many    :fees,            :dependent => :destroy 
+  # has_many    :fees,            :dependent => :destroy 
   belongs_to  :item,            :polymorphic => true
   belongs_to  :installation
   belongs_to  :venue
+  has_one     :purchase
   
   # validations  
   validates_presence_of         :concept
   validates_length_of           :concept,                         :within => NAME_RANGE_LENGTH
   # validates_format_of           :concept,                         :with => /^[A-z 0-9 _.-]*$/ 
 
-  validates_presence_of         :description
-  validates_length_of           :description,                     :within => DESCRIPTION_RANGE_LENGTH
+  # validates_presence_of         :description
+  # validates_length_of           :description,                     :within => DESCRIPTION_RANGE_LENGTH
 
   validates_presence_of         :fee_per_game,  :fee_per_lighting
   validates_numericality_of     :fee_per_game,  :fee_per_lighting

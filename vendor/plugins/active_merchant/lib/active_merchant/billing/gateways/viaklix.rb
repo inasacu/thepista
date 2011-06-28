@@ -1,16 +1,8 @@
 module ActiveMerchant #:nodoc:
   module Billing #:nodoc:
     class ViaklixGateway < Gateway
-      class_attribute :test_url, :live_url, :delimiter, :actions
-
-      self.test_url = 'https://demo.viaklix.com/process.asp'
-      self.live_url = 'https://www.viaklix.com/process.asp'
-      self.delimiter = "\r\n"
-      
-      self.actions = {
-        :purchase => 'SALE',
-        :credit => 'CREDIT'
-      }
+      TEST_URL = 'https://demo.viaklix.com/process.asp'
+      LIVE_URL = 'https://www.viaklix.com/process.asp'
       
       APPROVED = '0'
       
@@ -43,7 +35,7 @@ module ActiveMerchant #:nodoc:
         add_creditcard(form, creditcard)        
         add_address(form, options)   
         add_customer_data(form, options)
-        commit(:purchase, money, form)
+        commit('SALE', money, form)
       end
       
       # Make a credit to a card (Void can only be done from the virtual terminal)
@@ -58,13 +50,13 @@ module ActiveMerchant #:nodoc:
         add_creditcard(form, creditcard)        
         add_address(form, options)   
         add_customer_data(form, options)
-        commit(:credit, money, form)
+        commit('CREDIT', money, form)
       end
       
       private
       def add_customer_data(form, options)
         form[:email] = options[:email].to_s.slice(0, 100) unless options[:email].blank?
-        form[:customer_code] = options[:customer].to_s.slice(0, 10) unless options[:customer].blank?
+        form[:customer_code] = options[:customer].to_s.slice(0, 17) unless options[:customer].blank?
       end
       
       def add_invoice(form,options)
@@ -112,16 +104,12 @@ module ActiveMerchant #:nodoc:
         form[:exp_date] = expdate(creditcard)
         
         if creditcard.verification_value?
-          add_verification_value(form, creditcard)
+          form[:cvv2cvc2] = creditcard.verification_value 
+          form[:cvv2] = 'present'
         end
         
         form[:first_name] = creditcard.first_name.to_s.slice(0, 20)
         form[:last_name] = creditcard.last_name.to_s.slice(0, 30)
-      end
-      
-      def add_verification_value(form, creditcard)
-        form[:cvv2cvc2] = creditcard.verification_value 
-        form[:cvv2] = 'present'
       end
       
       def preamble
@@ -129,7 +117,7 @@ module ActiveMerchant #:nodoc:
           'merchant_id'   => @options[:login],
           'pin'           => @options[:password],
           'show_form'     => 'false',
-          'test_mode'     => test? ? 'TRUE' : 'FALSE',
+          'test_mode'     => @options[:test] ? 'TRUE' : 'FALSE',
           'result_format' => 'ASCII',          
         }
         
@@ -137,30 +125,18 @@ module ActiveMerchant #:nodoc:
         result
       end
       
-      def test?
-        @options[:test] || super
-      end
-      
       def commit(action, money, parameters)
         parameters[:amount] = amount(money)
-        parameters[:transaction_type] = self.actions[action]
+        parameters[:transaction_type] = action
             
-        response = parse( ssl_post(test? ? self.test_url : self.live_url, post_data(parameters)) )
+        response = parse( ssl_post(test? ? TEST_URL : LIVE_URL, post_data(parameters)) )
 
-        Response.new(response['result'] == APPROVED, message_from(response), response, 
+        Response.new(response['result'] == APPROVED, response['result_message'], response, 
           :test => @options[:test] || test?, 
-          :authorization => authorization_from(response),
+          :authorization => response['txn_id'],
           :avs_result => { :code => response['avs_response'] },
           :cvv_result => response['cvv2_response']
         )
-      end
-      
-      def authorization_from(response)
-        response['txn_id']
-      end
-      
-      def message_from(response)
-        response['result_message']
       end
       
       def post_data(parameters)
@@ -178,9 +154,9 @@ module ActiveMerchant #:nodoc:
       # Parse the response message
       def parse(msg)
         resp = {}
-        msg.split(self.delimiter).collect{|li|
+        msg.split("\r\n").collect{|li|
             key, value = li.split("=")
-            resp[key.strip.gsub(/^ssl_/, '')] = value.to_s.strip
+            resp[key.gsub(/^ssl_/, '')] = value.to_s.strip
           }
         resp
       end

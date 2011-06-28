@@ -4,7 +4,7 @@ module ActiveMerchant #:nodoc:
       TEST_URL = "https://secure.modpay.com/netservices/test/ModpayTest.asmx"
       LIVE_URL = 'https://secure.modpay.com/ws/modpay.asmx'
       
-      LIVE_XMLNS = "https://secure.modpay.com/ws/"
+      LIVE_XMLNS = "http://secure.modpay.com:81/ws/"
       TEST_XMLNS = "https://secure.modpay.com/netservices/test/"
       
       self.supported_countries = ['US']
@@ -102,7 +102,7 @@ module ActiveMerchant #:nodoc:
         post[:zip]       = address[:zip]
         post[:phone]     = address[:phone]
         post[:fax]       = address[:fax]
-        post[:email]     = options[:email]
+        post[:email]     = address[:email]
       end
       
       def add_credit_card(post, credit_card)
@@ -162,21 +162,15 @@ module ActiveMerchant #:nodoc:
       end
       
       def authorization_from(action, response)
-        response[authorization_key(action)]
+        response[result_key(action)]
       end
       
-      def authorization_key(action)
+      def result_key(action)
         action == "AuthorizeCreditCardPayment" ? :trans_id : "#{action.underscore}_result".to_sym
       end
       
       def successful?(action, response)
-        key = authorization_key(action)
-        
-        if key == :trans_id
-          response[:approved] == "true"
-        else
-          response[key].to_i > 0
-        end
+        response[result_key(action)].to_i > 0
       end
       
       def message_from(action, response)
@@ -211,7 +205,7 @@ module ActiveMerchant #:nodoc:
         if node.has_elements?
           node.elements.each{|e| parse_element(response, e) }
         else
-          response[node.name.underscore.to_sym] = node.text.to_s.strip
+          response[node.name.underscore.to_sym] = node.text
         end
       end
     end

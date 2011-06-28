@@ -1,0 +1,54 @@
+<%
+	the_label = ""
+	# the_label = "#{@reservation.concept} esta reservando #{@venue.name}, #{@installation.name}"
+%>
+
+<div class="block">
+
+	<%= content_tag('div', "There was an error processing your payment: #{@paypal_error}", :class => 'error') if @paypal_error %>
+
+	<% if @creditcard.errors.any? %>
+	  <div class="error">
+	    Errors encountered with your credit card information:
+	    <ul>
+	      <%= @creditcard.errors.full_messages.map {|m| content_tag('li', m)} %>
+	    </ul>
+	  </div>
+	<% end %>
+	
+	<div class="content">  
+
+		<h2 class="title"><%= label_name(:purchases_credit_card) %></h2>
+			
+		<div class="inner">
+			
+			<table border="0">
+				<%#= tr_td_action(:concept, the_label) %>
+				<%#= tr_td_action(:starts_at, nice_day_time(@reservation.starts_at)) %>
+				<%#= tr_td_action(:ends_at, nice_day_time(@reservation.ends_at)) %>
+				<%#= tr_td_action(:fee_per_game, @reservation.fee_per_game) %>
+				<%#= tr_td_action(:fee_per_lighting, @reservation.fee_per_lighting) %>
+			</table>
+			<br/>
+			<br/>
+	
+			<% form_for :creditcard, @creditcard, :url => { :action => 'credit' }, :html => { :multipart => true, :class => :form  } do |f| %>
+				<%= render :partial => "form", :locals => {:f => f} %>
+			<% end -%>
+			
+			<p><%= label_name(:purchases_paypal) %></p>
+
+			<% form_tag :action => 'express' do %>	
+				<%  if @installation and @block_token %>
+					<%= link_to image_tag('paypal.gif'), express_url(:id => @installation, :block_token => @block_token) %>
+				<% else %>
+					<input type="image" src="<%= image_path('paypal.gif') %>">
+				<% end %>
+			<% end %>
+
+		</div>
+
+	</div>
+
+</div>
+

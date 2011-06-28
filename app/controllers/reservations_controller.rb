@@ -1,4 +1,3 @@
-require 'active_support'  # needs rubygems
 require "base64"
 
 class ReservationsController < ApplicationController
@@ -53,7 +52,6 @@ class ReservationsController < ApplicationController
     time_frame = (@installation.timeframe).hour
         
     @reservation = Reservation.new    
-    # @reservation.concept = "#{@venue.name}"
     @reservation.concept = "#{current_user.name}"   
     @reservation.starts_at = Time.zone.at(block_token)
     @reservation.ends_at = @reservation.starts_at + time_frame 

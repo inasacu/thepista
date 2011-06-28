@@ -4,7 +4,7 @@ module ActiveMerchant
       def self.included(base)
         base.cattr_accessor :test_redirect_url
         base.cattr_accessor :live_redirect_url
-        base.live_redirect_url = 'https://www.paypal.com/cgibin/webscr'
+        base.live_redirect_url = 'https://www.paypal.com/cgibin/webscr?cmd=_express-checkout&token='
       end
       
       def redirect_url
@@ -12,13 +12,8 @@ module ActiveMerchant
       end
       
       def redirect_url_for(token, options = {})
-        options = {:review => true, :mobile => false}.update(options)
-
-        cmd  = options[:mobile] ? '_express-checkout-mobile' : '_express-checkout'
-        url  = "#{redirect_url}?cmd=#{cmd}&token=#{token}"
-        url += '&useraction=commit' unless options[:review]
-
-        url
+        options = {:review => true}.update(options)
+        options[:review] ? "#{redirect_url}#{token}" : "#{redirect_url}#{token}&useraction=commit"
       end
     end
   end

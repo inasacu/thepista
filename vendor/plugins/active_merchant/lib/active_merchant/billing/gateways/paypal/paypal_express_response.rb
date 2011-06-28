@@ -2,46 +2,35 @@ module ActiveMerchant #:nodoc:
   module Billing #:nodoc:
     class PaypalExpressResponse < Response
       def email
-        info['Payer']
-      end
-
-      def info
-        (@params['PayerInfo']||{})
+        @params['payer']
       end
       
       def name
-        payer = (info['PayerName']||{})
-        [payer['FirstName'], payer['MiddleName'], payer['LastName']].compact.join(' ')
+        [@params['first_name'], @params['middle_name'], @params['last_name']].compact.join(' ')
       end
       
       def token
-        @params['Token']
+        @params['token']
       end
       
       def payer_id
-        info['PayerID']
+        @params['payer_id']
       end
       
       def payer_country
-        info['PayerCountry']
-      end
-      
-      # PayPal returns a contact telephone number only if your Merchant account profile settings require that the buyer enter one.
-      def contact_phone
-        @params['ContactPhone']
+        @params['payer_country']
       end
       
       def address
-        address = (@params['PaymentDetails']||{})['ShipToAddress']
-        {  'name'       => address['Name'],
-           'company'    => info['PayerBusiness'],
-           'address1'   => address['Street1'],
-           'address2'   => address['Street2'],
-           'city'       => address['CityName'],
-           'state'      => address['StateOrProvince'],
-           'country'    => address['Country'],
-           'zip'        => address['PostalCode'],
-           'phone'      => (contact_phone || address['Phone'])
+        {  'name'       => @params['name'],
+           'company'    => @params['payer_business'],
+           'address1'   => @params['street1'],
+           'address2'   => @params['street2'],
+           'city'       => @params['city_name'],
+           'state'      => @params['state_or_province'],
+           'country'    => @params['country'],
+           'zip'        => @params['postal_code'],
+           'phone'      => nil
         }
       end
     end

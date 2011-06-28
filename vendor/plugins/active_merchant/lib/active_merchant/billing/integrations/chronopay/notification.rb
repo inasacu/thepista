@@ -59,9 +59,7 @@ module ActiveMerchant #:nodoc:
           end
 
           def received_at
-            # Date should be formatted "dd-mm-yy" to be parsed by 1.8 and 1.9 the same way
-            formatted_date = Date.strptime(date, "%m/%d/%Y").strftime("%d-%m-%Y")
-            Time.parse("#{formatted_date} #{time}") unless date.blank? || time.blank?
+            Time.parse("#{date} #{time}") unless date.blank? || time.blank?
           end
 
           # Date of transaction in MM/DD/YYYY format
