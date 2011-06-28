@@ -1,12 +1,12 @@
 <% if DISPLAY_DISQUS
 	the_item_link = nil
 	
-	case item.class.to_s
-	when "Schedule"
-		the_item_link = item_concept_link(item)
-	when "Group", "Challenge", "Venue", "User"
-		the_item_link = item_name_link(item)
-	end
+	# case item.class.to_s
+	# when "Schedule"
+	# 	the_item_link = item_concept_link(item)
+	# when "Group", "Challenge", "Venue", "User"
+	# 	the_item_link = item_name_link(item)
+	# end
 
 	# Disqus::defaults[:account] = "haypista"
 	Disqus::defaults[:developer] = true, # allows threads to work on localhost

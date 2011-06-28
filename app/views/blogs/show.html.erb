@@ -22,7 +22,7 @@
 		the_label = label_with_name('the_wall', h(@venue.name))
 	else
 	end
-	content_for(:title, the_label)
+	content_for(:title, the_label)	
 %>
 <div class="block">
 
@@ -33,37 +33,17 @@
 
   <div class="content">
 	
-	<h2 class="title"><%= the_label %></h2>
-	
     <div class="inner">
 	
-	<% unless production? %>
-	<%= render 'comments/disqus', :item => @user if @user %>
-	<%= render 'comments/disqus', :item => @group if @group %>
-	<%= render 'comments/disqus', :item => @challenge if @challenge %>
-	<%= render 'comments/disqus', :item => @venue if @venue %>
-	<% end %>
-			
-			
-	<%#= render :partial => 'comments/new', :locals => { :label => label_name(:what_are_you_practicing), :textfield => true } if is_same_user %>
-	<%#= render :partial => 'comments/new', :locals => { :label => label_name(:write_comment) } unless is_same_user %>
+	<%= render 'comments/disqus' %>			
+	<%= render 'comments/discussion', :comments => @comments %>
 
-      <!-- <table class="table">
-		<tr>   
-			<%#= content_tag :th, "&nbsp;", :class => "clear" %>
-			<%#= content_tag :th, "&nbsp;", :class => "clear" %>
-			<%#= content_tag :th, "&nbsp;", :class => "clear" %>
-			<%#= content_tag :th, "&nbsp;", :class => "clear" %>
-		</tr>
-
-		<%#= render :partial => 'comments/comments', :locals => { :comments => @comments } %>
-      </table> -->
 					
     </div>
   </div>
 </div>
 
-<%# content_for :sidebar, render(:partial => '/users/sidebar_show') if @user -%>
+<% content_for :sidebar, render(:partial => '/users/sidebar_show') if @user -%>
 <% content_for :sidebar, render(:partial => '/groups/sidebar_show') if @group -%>
-<%# content_for :sidebar, render(:partial => '/challenges/sidebar_show') if @challenge -%>
-<%# content_for :sidebar, render(:partial => '/venues/sidebar_show') if @venue -%>
+<% content_for :sidebar, render(:partial => '/challenges/sidebar_show') if @challenge -%>
+<% content_for :sidebar, render(:partial => '/venues/sidebar_show') if @venue -%>

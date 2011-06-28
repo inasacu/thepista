@@ -51,11 +51,8 @@
 
 	<% hide_if_ie6 do %>
 		<%= render :partial => "utilities/ie_better_image" %>
-
 		<%= render :partial => 'shared/header_navigation' %>
-		<%#= render 'shared/main_navigation' %>
 		<%= render :partial => "shared/notice" if current_user %>
-
 		<%= render :partial => "shared/wrapper" %>	
 		<%= render :partial => "shared/footer" %>
 	<% end %>
