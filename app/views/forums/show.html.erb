@@ -2,7 +2,8 @@
 	<%= render "shared/previous_next_message", :schedule => @schedule, :the_previous => @the_previous, :the_next => @the_next -%>
 
 	<div class="inner">
-
+		
+		<%#= render 'schedules/game_played' %>
 		<%= render 'comments/disqus' %>
 		<%= render 'comments/discussion', :comments => @comments %>
 

@@ -170,9 +170,9 @@ class Schedule < ActiveRecord::Base
     return (self.season_ends_at < Time.zone.now() and user.is_manager_of?(self.group))
   end
 
-  def sport
-    self.group.sport
-  end
+  #def sport
+  #  self.group.sport
+  #end
 
   def home_group
     self.group.name
