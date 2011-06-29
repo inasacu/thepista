@@ -8,70 +8,36 @@
 		<div id="dsq-comment-body-<%= comment.id %>" class="dsq-comment-body">
 			
 			<div class="dsq-comment-header">
-				
 				<span class="dsq-commenter-name">
 					<%= h(comment.user.name) %>
 				</span>
-				
-				<!-- <span class="dsq-collapsed-count">
-					1 comentarios escondido 
-				</span> -->
-				<!-- <a href="http://thepista.local/muro_evento/comments.collapse" class="dsq-collapse-toggle dsq-collapse" title="Cerrar este intercambio">
-					<span>
-						Cerrar
-					</span>
-				</a> -->
-				<!-- <a href="http://thepista.local/muro_evento/comments.expand" class="dsq-collapse-toggle dsq-expand" title="Mostrar el intercambio">
-					<span>
-						Expandir
-					</span>
-				</a> -->
-				
+					<ul class="dsq-comment-actions">					
+						<li class="name_and_date">
+							<span class="date">
+								<%= nice_day_time_wo_year(comment.created_at) %>
+							</span>	
+						</li>
+					</ul>
 			</div>
 			
 			<div class="dsq-comment-message" id="dsq-comment-message-<%= comment.id %>">
-				
 				<div class="dsq-comment-text" id="dsq-comment-text-<%= comment.id %>">
 					<%=sanitize comment.body %>		
 				</div>
-				
 			</div>
 			
 			<!-- edit box dynamically inserted here -->
 			
-			<div id="dsq-append-edit-<%= comment.id %>">
-			</div>
-			
-			<div class="dsq-comment-footer">
-				
-				<ul class="dsq-comment-actions">
-					
-					<li id="dsq-like-<%= comment.id %>">
-						<%= nice_day_time_wo_year(comment.created_at) %>
-					</li>
-					
-					<li>
-						
-						<% if test? %>
-						<a href="#" onclick="toggle_visibility('comment<%= comment.id %>');" class="dsq-comment-reply">
-							<%= label_name(:share) %>
-						</a>
-						<% end %>
-					</li>
-					
-				</ul>
-		
-			
-			</div>
+			<div id="dsq-append-edit-<%= comment.id %>"></div>
 			
 			<!-- reply box dynamically inserted here -->
-			<div id="dsq-append-reply-<%= comment.id %>">
+			<!-- <div id="dsq-append-reply-<%= comment.id %>">
 					
 					<div id="comment<%= comment.id %>" style='display:none;'>			
-						<%= render 'comments/discuss_form' %>	
+						<%#= render 'comments/discuss_form' %>	
 					</div>
 						
-			</div>
+			</div> -->
 			
 		</div>
 		
@@ -81,4 +47,3 @@
 	<li id="dsq-append-post-<%= comment.id %>">
 	</li>
 </ul>
-
