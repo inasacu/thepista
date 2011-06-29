@@ -32,8 +32,8 @@
 <ul id="dsq-comments">
 	<li id="dsq-comment-<%= @schedule.id %>" data-dsq-comment-id="<%= @schedule.id %>" class="dsq-comment dsq-clearfix dsq-moderator" style="margin-left: 0px;">
 		
-		<div class="dsq-avatar dsq-tt" title="Mostrar el perfil de %(name)">
-			<%= item_image_link_small(@schedule.group) %>
+		<div class="dsq-avatar dsq-tt">
+			<%= group_image_link_small(@schedule.group) %>
 		</div>
 		
 		<div id="dsq-comment-body-<%= @schedule.id %>" class="dsq-comment-body">

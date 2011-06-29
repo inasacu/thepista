@@ -19,6 +19,10 @@ module GroupsHelper
   def group_avatar_image_link(group)
     link_to(image_tag('group_avatar.png', options={:style => "height: 15px; width: 15px;"}), group_path(group)) 
   end
+
+  def group_image_link_small(group)
+    link_to(image_tag(group.avatar, options={:style => "height: 30px; width: 30px;", :title => h(group.name)}), group_path(group))
+  end
   
   def group_vs_invite(schedule)
     item_name_link(schedule.group)  
