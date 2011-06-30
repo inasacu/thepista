@@ -44,7 +44,8 @@
 		<% if current_user.is_manager_of?(@group)  %>
 		<li class="<%= get_active('fee_list') %>"><%= link_to(label_name(:fees) , list_fees_path(:id => @group)) %></li>
 		<li class="<%= get_active('fee_due') %>"><%= link_to(label_name(:fees_due) , due_fees_path(:id => @group)) %></li>
-		<% end -%>
+		<% end -%>		
+		<li class="<%= get_active('scorecard_show') %>"><%= link_to(label_name(:scorecard), scorecard_path(:id => @group)) %></li>
 <%			
 		end
 	end

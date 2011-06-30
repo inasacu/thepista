@@ -35,7 +35,7 @@ body { background-color: white; }
 #home .features { 
 	padding: 1em 2em 3em; 
 	overflow: hidden; 
-	background-color: rgb(237, 242, 246); 
+/*	background-color: rgb(237, 242, 246); */
 	
 	border-top: 1px solid #cfcfcf;
 	border-bottom: 1px solid #cfcfcf;

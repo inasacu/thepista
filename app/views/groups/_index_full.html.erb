@@ -6,9 +6,9 @@
 
 	  <tr>     
 		<%= content_tag :th, "&nbsp;", :class => "first" %>
-		<%= content_tag :th, "#{label_name(:name)}<br />#{label_name(:gameday_at)}", :class => "heading" %>
-		<%= content_tag :th, "#{label_name(:manager)}<br />#{label_name(:sport)}", :class => "heading" %>
-		<%= content_tag :th, label_name(:time_zone), :class => "heading" %>
+		<%= content_tag :th, "#{label_name(:name)}<br />#{label_name(:sport)}", :class => "heading" %>
+		<%= content_tag :th, "#{label_name(:manager)}<br />#{label_name(:time_zone)}", :class => "heading" %>
+		<%#= content_tag :th, label_name(:time_zone), :class => "heading" %>
 		<%= content_tag :th, label_name(:general_information), :class => "heading" %>
 		<%= content_tag :th, "#{label_name(:scorecard)}<br />#{label_name(:last_game_played)}", :class => "heading" %>
 		<%= content_tag :th, "&nbsp;", :class => "last" %>
@@ -25,20 +25,22 @@
 			<td class="name_and_date">
 				<%= group_link(group) %>
 				<span class="date">
-					<%= nice_day_time group.gameday_at %>
+					<%#= nice_day_time group.gameday_at %>
+					<%= group.sport.name %>
 				</span>
 			</td>
 
 			<td class="name_and_date">
 				<%= item_list(group.all_the_managers) %><br />
 				<span class="date">
-				<%= group.sport.name %>
+				<%#= group.sport.name %>
+				<%= group.time_zone %>
 				</span>
 			</td>
 
-			<td>
-				<%= group.time_zone %>
-			</td>
+			<!-- <td>
+				<%#= group.time_zone %>
+			</td> -->
 			
 			  <td class="name_and_date">
 				<%= I18n.t(:has_group_users, :count => object_counter(group.users)) %><br />

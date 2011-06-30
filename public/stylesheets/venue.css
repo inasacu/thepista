@@ -45,7 +45,7 @@ a:hover { text-decoration: underline; }
 
 .HoraReserva , .HoraReserva_true, .HoraReserva_false{ 
 	background-color: #0f7d00;
-	color:  #e2edde; 
+/*	color:  #e2edde; */
 }
 
 .HoraReserva_false{ 
