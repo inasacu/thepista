@@ -37,31 +37,22 @@
 
   <%= show_heading(the_label) %>
 
-<div class="inner">
+<div class="inner">	
+	
+		<div class="description">
+			<span class="q">
+					<%=sanitize @schedule.description.blank? ? control_label('description_no') : @schedule.description %>
+			</span>
+		</div>
 
+		<div class="columns"> 
+			<div class="column left"> 
+				<div class="description">
+				<%= render 'shared/qr_code' %>	
+              </div>
+			</div>
+		</div>
 
-<table>
-<thead>
-
-<tr>
-<th colspan="2">
-
-	<div class="description">
-		<span class="q">
-			<%=sanitize @schedule.description.blank? ? control_label('description_no') : @schedule.description %>
-		</span>
-	</div>
-
-
-</th>
-
-</tr>
-</thead>
-
-<tr>
-<td valign="top" width="105">&nbsp;</td>
-
-<td>
 <table>
 
     <tr>
@@ -136,27 +127,32 @@
     </tr>
 
 
-	<% unless @schedule.convocados.empty? %>
-	<tr>
-		<%= content_tag :td, "#{label_name(:convocados)}   (#{@schedule.convocados.count})", :class => "label" %>
-		<%= content_tag :td, user_list(@schedule.convocados), :class => get_the_action %>
-	</tr>
+	<% unless @schedule.convocados.empty? %>	 
+	   <tr>
+	     <%= content_tag :td, label_name(:convocados), :class => "label" %>
+		 <%= render :partial => '/shared/show_images', :locals => {:collection => @schedule.convocados} %>			
+		</tr>
 	<% end %>
 
 	<% unless @schedule.last_minute.empty? %>
-	<tr>
-		<%= content_tag :td, "#{label_name(:last_minute)}   (#{@schedule.last_minute.count})", :class => "label" %>
-		<%= content_tag :td, user_list(@schedule.last_minute), :class => get_the_action %>
-	</tr>
+	   <tr>
+	     <%= content_tag :td, label_name(:last_minute), :class => "label" %>
+		 <%= render :partial => '/shared/show_images', :locals => {:collection => @schedule.last_minute} %>			
+		</tr>
 	<% end %>
+	
 	<% unless @schedule.no_shows.empty? %>
-	<tr>
-		<%= content_tag :td, "#{label_name(:no_shows)}   (#{@schedule.no_shows.count})", :class => "label" %>
-		<%= content_tag :td, item_list(@schedule.no_shows), :class => get_the_action %>
-	</tr>
+	   <tr>
+	     <%= content_tag :td, label_name(:no_shows), :class => "label" %>
+		 <%= render :partial => '/shared/show_images', :locals => {:collection => @schedule.no_shows} %>			
+		</tr>
 	<% end %>
 	
 	<% unless @schedule.no_jugado.empty? %>
+	   <tr>
+	     <%= content_tag :td, label_name(:no_jugado), :class => "label" %>
+		 <%= render :partial => '/shared/show_images', :locals => {:collection => @schedule.no_jugado} %>			
+		</tr>
 	<tr>
 		<%= content_tag :td, "#{label_name(:no_jugado)}   (#{@schedule.no_jugado.count})", :class => "label" %>
 		<%= content_tag :td, item_list(@schedule.no_jugado), :class => get_the_action %>
@@ -193,10 +189,6 @@
 	
 </table>
 
-</td>
-</tr>
-
-</table>
 
 
 </div>

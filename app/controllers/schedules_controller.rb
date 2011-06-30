@@ -1,3 +1,6 @@
+require 'rubygems'
+require 'rqrcode'
+
 class SchedulesController < ApplicationController
   before_filter :require_user
 

@@ -1,3 +1,6 @@
+require 'rubygems'
+require 'rqrcode'
+
 class UsersController < ApplicationController
   before_filter :require_no_user, :only => [:signup, :new, :create, :rpx_new, :rpx_create, :rpx_associate]
   before_filter :require_user, :only => [:index, :list, :show, :edit, :update, :petition, :recent_activity] 
