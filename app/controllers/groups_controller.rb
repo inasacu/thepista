@@ -1,3 +1,6 @@
+require 'rubygems'
+require 'rqrcode'
+
 class GroupsController < ApplicationController
   before_filter :require_user    
   before_filter :get_group, :only => [:team_list, :show, :edit, :update, :set_available, :set_enable_comments, :set_looking, :destroy]
@@ -28,7 +31,6 @@ class GroupsController < ApplicationController
 
   def show
     store_location 
-    # @group = Group.find(params[:id])
   end
 
   def new

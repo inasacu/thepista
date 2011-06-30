@@ -1405,4 +1405,26 @@ input.focus, input.active, textarea.focus, select.focus, input:focus, textarea:f
 	width: 20px; 
 }
 
-/* header search end *?
+/* header search end */
+
+
+table.qr_code {
+	border-width: 0;
+	border-style: none;
+	border-color: #0000ff;
+	border-collapse: collapse;
+}
+table.qr_code td {
+	border-width: 0; 
+	border-style: none;
+	border-color: #0000ff; 
+	border-collapse: collapse; 
+	padding: 0; 
+	margin: 0; 
+	width: 2px; 
+	height: 2px; 
+}
+table.qr_code td.black { background-color: #000; }
+table.qr_code td.white { background-color: #fff; }
+
+

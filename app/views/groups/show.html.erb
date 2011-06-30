@@ -3,6 +3,8 @@
 %>
 
 <div class="block">
+	
+
 
   <%= get_secondary_navigation(@group) %> 
   
@@ -22,6 +24,9 @@
 			<div class="column left"> 
 				<div class="description">
                    <%= image_tag @group.thumbnail %>
+
+				   <%= render 'qr_code' %>
+	
                  </div>
 			</div>
 		</div>
