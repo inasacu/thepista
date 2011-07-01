@@ -55,8 +55,8 @@
 	
 	<br/>
 	<br/>
-	
-	<%= render 'comments/game_played' if @schedule.played? %>
+		
+	<%= render 'comments/game_played' if @schedule and @schedule.played? %>
 	
 	<h3><%= I18n.t(:has_comments, :count => item_counter) %></h3>
 	
