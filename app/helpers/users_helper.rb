@@ -109,5 +109,31 @@ module UsersHelper
     
     link_to(text, user, html_options)
   end
+  
+  def petition_box(teammate)
+    has_sub_item = teammate.sub_item.nil?
+
+  	is_manager = current_user.is_manager_of?(teammate.item)
+  	can_decline = teammate.user == current_user
+
+  	request_image = item_image_link_small(teammate.user)
+  	request_link = item_name_link(teammate.user)
+
+  	item_link = item_name_link(teammate.item)
+  	item_image = item_image_link_small(teammate.item)
+
+  	sub_item_link = has_sub_item ?  "" : item_name_link(teammate.sub_item) 
+  	sub_item_image = has_sub_item ? "" : item_image_link_small(teammate.sub_item)
+
+  	manager_link = "#{link_to(label_name(:petition_join_item_accept), join_item_accept_path(teammate))}  #{(can_decline or is_manager) ? '/' : ''}  " if is_manager
+
+
+  	has_joined ||= false
+  	has_joined = (teammate.status == 'accepted')
+  	the_icon = group_avatar_image_link(teammate.item) 
+  	the_icon = challenge_avatar_image_link(teammate.item) if teammate.item.class.to_s == 'Challenge'
+  	
+  	return has_sub_item, request_image, sub_item_image, request_link, has_joined, item_link, has_sub_item, sub_item_link, the_icon, has_joined, manager_link, is_manager, can_decline
+	end
 end
 

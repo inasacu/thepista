@@ -23,15 +23,17 @@ if current_user
 					<td></td>
 					<td class="last"></td>
 				</tr>
+								
+				<% @requested_teammates.each do |teammate| %>
+					<%= render :partial => '/users/petition_box', :locals => {:teammate => teammate} %>
+				<% end %>
 				
 				<%= recent_activities_matches(@match_items) %>      				
-			
 				<% @items.each do |item| %>								
 					<%= render "home/upcoming_home", :teammate => item unless (item.class.to_s == 'Teammate') %>
 					<%= render "users/petition_box", :teammate => item if (item.class.to_s == 'Teammate') %>	
 				<% end %>  
-
-					<%= recent_activities_schedules(@schedule_items) %>
+				<%= recent_activities_schedules(@schedule_items) %>
 				
 			</table>
 			

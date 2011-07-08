@@ -41,6 +41,7 @@ es:
      announcements_no:  Ninguna communicación para mostrar. 
      announcements_option: Opciones
      announcements_previous:  Anteriores communicaciones
+     app_name: HayPista
      archive: Archiva  
      archive_description:  Archiva registro
      archive_list_schedules:  Temporada anterior
@@ -916,11 +917,11 @@ es:
      participation_full:  Porcentaje de participación 
      participant:  Participante 
      participants:  Participantes   
-     password: Clave
+     password: Contraseña
      password_change: Cambiar contraseña
      password_confirmation: Confirmación	
      password_confirmation_description: Necesita 5 characteres. 
-     password_description:  Clave
+     password_description:  Contraseña
      password_instructions: "Las instrucciones para restablecer su contraseña han sido enviadas a su cuenta de correo. Por favor, revisalo."
      password_issue:  "Lo sentimos, pero no hemos podido localizar su cuenta.  Si tiene problemas intente copiar y pegar la URL desde tu cuenta de correo al navegador o reiniciar el proceso de restablecimiento la contraseña."
      password_updated:    Su contraseña ha sido actualizada.
@@ -931,7 +932,7 @@ es:
      password_resets_new:  Restablecer contraseña  
      password_recover_instructions: Instrucciones para recupera tu clave!  
      password_forgotten:  ¿Has olvidado tu contraseña?	
-     confirmation_password: Clave confirmación     
+     confirmation_password: Contraseña confirmación     
      password_request_reset:  "Este e-mail es la respuesta a su solicitud para restablecer su contraseña."
      password_request_ignore:  "Si no ha realizado esta solicitud, simplemente ignore este mensaje."
      password_request_made:  "En caso contrario haga clic en el siguiente enlace:"           

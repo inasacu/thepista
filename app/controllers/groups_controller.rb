@@ -35,7 +35,10 @@ class GroupsController < ApplicationController
 
   def new
     @group = Group.new
+    # @group.name = "#{I18n.t(:name)} I"
+    # @group.second_team = "#{I18n.t(:second_team)} II" 
     @group.time_zone = current_user.time_zone if !current_user.time_zone.nil?
+    @group.player_limit = DUNBAR_NUMBER
     @markers = Marker.find(:all)
     @sports = Sport.find(:all)
   end

@@ -56,13 +56,13 @@
 <% 
 		end 
 
-		if current_user.has_pending_petition?(current_user) and the_user == current_user 
+		# if current_user.has_pending_petition?(current_user) and the_user == current_user 
 %>
-			<li class="<%= get_active('user_petition') %>">
-				<%= link_to(label_name(:petitions), petition_path(current_user)) %>
-			</li>
+			<!-- <li class="<%#= get_active('user_petition') %>">
+				<%#= link_to(label_name(:petitions), petition_path(current_user)) %>
+			</li> -->
 <% 		
-		end 
+		# end 
 	end 
 %>
 </ul>

@@ -6,11 +6,6 @@ class HomeController < ApplicationController
 
   def index
     store_location
-    # unless current_user
-    # 
-    #   redirect_to(:controller => 'user_sessions', :action => 'new')
-    #   return
-    # end
   end
   
   def privacy_policy
@@ -50,6 +45,8 @@ class HomeController < ApplicationController
     
     @my_schedules = []
     
+    @requested_teammates = []    
+    
     Teammate.latest_teammates(@all_items)     
     Group.latest_items(@all_items)   
     Venue.latest_items(@all_items) if development?
@@ -77,6 +74,9 @@ class HomeController < ApplicationController
       Comment.latest_items(@all_match_items, current_user)
       Match.latest_items(@all_match_items, current_user)
       Match.last_minute_items(@all_match_items, current_user) if development?
+      
+      Teammate.my_groups_petitions(@requested_teammates, current_user.groups)
+      Teammate.my_challenges_petitions(@requested_teammates, current_user.challenges)      
     end
 
     @all_items = @all_items.sort_by(&:created_at).reverse!    

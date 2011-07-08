@@ -13,7 +13,21 @@ class Teammate < ActiveRecord::Base
   after_create    :send_manager_join_item
   before_destroy  :send_manager_leave_item
   
-  # pre join item based teammate
+  # pre join item based teammate  
+  def self.my_groups_petitions(items, groups)
+    find(:all, :conditions => ["status = 'pending' and (item_type = 'Group' and item_id in (?))", groups]).each do |item| 
+      items << item
+    end
+    return items 
+  end
+  
+  def self.my_challenges_petitions(items, challenges)
+    find(:all, :conditions => ["status = 'pending' and (item_type = 'Challenge' and item_id in (?))", challenges]).each do |item| 
+      items << item
+    end
+    return items 
+  end
+  
   def self.create_teammate_pre_join_item(join_user, manager, item, sub_item)
     
     return if join_user == manager    

@@ -113,17 +113,20 @@ class UsersController < ApplicationController
   end
   
   def petition
-    if current_user.requested_managers.empty? and current_user.pending_managers.empty?  
-      redirect_to root_url
-      return
-    end
-
-    unless current_user.requested_managers.empty?
-      @requested_teammates = Teammate.find(:all, :conditions => ["manager_id = ? and status = 'pending'", current_user.id])
-    end
-    unless current_user.pending_managers.empty? 
-      @pending_teammates = Teammate.find(:all, :conditions => ["user_id = ? and status = 'pending'", current_user.id])
-    end 
+    redirect_to root_url
+    return
+    
+    # if current_user.requested_managers.empty? and current_user.pending_managers.empty?  
+    #   redirect_to root_url
+    #   return
+    # end
+    # 
+    # unless current_user.requested_managers.empty?
+    #   @requested_teammates = Teammate.find(:all, :conditions => ["manager_id = ? and status = 'pending'", current_user.id])
+    # end
+    # unless current_user.pending_managers.empty? 
+    #   @pending_teammates = Teammate.find(:all, :conditions => ["user_id = ? and status = 'pending'", current_user.id])
+    # end 
   end
 
   def third_party

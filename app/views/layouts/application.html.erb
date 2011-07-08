@@ -39,35 +39,35 @@
 	
 	<%= render :partial => 'utilities/google_analytics' %>	
 </head>
-<body>
+<body>	
 	<% show_ajax_rating = ['home_upcoming', 'schedule_index', 'schedule_my_list', 'schedule_list'] %>
-	
+
 	<%= render :partial => 'utilities/visible_script' %>		
 	<%= render :partial => 'shared/flash', :locals => {:flash => flash } %>
-	
-  <div id="container">
 
-	<%= smack_down_ie6 %>
+	<div id="container">
 
-	<% hide_if_ie6 do %>
+		<%= smack_down_ie6 %>
+
+		<% hide_if_ie6 do %>
 		<%= render :partial => "utilities/ie_better_image" %>
 
 		<%= render :partial => 'shared/header_navigation' %>
-		<%#= render 'shared/main_navigation' %>
+
 		<%= render :partial => "shared/notice" if current_user %>
 
 		<%= render :partial => "shared/wrapper" %>	
 		<%= render :partial => "shared/footer" %>
-	<% end %>
+		<% end %>
 
-	<% show_if_ie6 do %>
+		<% show_if_ie6 do %>
 		<%= render :partial => "utilities/ie_nomore" %>
-	<% end %>
+		<% end %>
+
+	</div>
+
+	<%= render :partial => 'shared/share_google' if DISPLAY_GOOGLE_PLUS %>
+	<%= render :partial => 'utilities/browser_detect' if development? %>
 	
-  </div>
-
-  <%= render :partial => 'shared/share_google' %>
-  <%= render :partial => 'utilities/browser_detect' if development? %>
-
 </body>
 </html>

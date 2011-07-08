@@ -45,9 +45,10 @@ module MatchesHelper
     end    
   end
 
-  def match_image_link(match, the_image="")    
+  def match_image_link(match, the_image="")   
+    
+     
     the_schedule = match.schedule
-    # the_image = the_schedule.sport.icon
     the_label = ""
     the_label = "#{I18n.t(match.type_name)}" if the_image.blank?
 
@@ -164,6 +165,47 @@ module MatchesHelper
 		end
 		return the_activities
 	end  
-  
+    
+  def upcoming_matches(matches)
+    the_manager = nil
+  	request_image = ""
+  	request_link = ""
+
+  	item_link = ""
+  	item_image = ""
+
+  	item_group_link = ""
+
+  	the_label = ""
+  	four_spaces = ".&nbsp;&nbsp;&nbsp;&nbsp;"
+
+  	first_icon = ""
+  	the_icon = ""
+
+  	the_match = matches.first
+
+  	request_image = item_image_link_small(the_match.user)
+  	request_link = item_name_link(the_match.user)
+
+  	first_icon = match_image_link(the_match)
+  	the_icon = match_image_link(the_match, the_match.schedule.sport.icon)
+
+  	item_group_link = item_name_link(the_match.schedule.group)
+
+  	is_member = current_user.is_member_of?(the_match.schedule.group)
+
+
+  	the_label = %(#{I18n.t(:passed_to)} #{the_match.type_name} #{I18n.t(:in)})
+
+  	the_links = ""	
+  	matches.each do |match|
+  		the_links = %(#{the_links} #{is_member ? match_roster_link(match) : sanitize(match.schedule.concept)}, )
+  	end
+
+  	the_links = %(#{the_links.chop.chop})	
+  	the_label = %(#{the_label} #{the_links})
+
+  	return request_image, first_icon, request_link, the_label, the_icon, item_group_link, item_group_link, the_match
+  end
 end
 
