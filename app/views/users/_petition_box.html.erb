@@ -1,5 +1,6 @@
 <% has_sub_item, request_image, sub_item_image, request_link, has_joined, item_link, has_sub_item, sub_item_link, the_icon, has_joined, manager_link, is_manager, can_decline = petition_box(teammate) %>	
 
+<% unless (is_manager and current_user == teammate.user) %>
 <tr>
 	<td>
 		<% if has_sub_item %>		
@@ -32,7 +33,7 @@
 		<% end %>
 	</td>
 </tr>
-
+<% end %>
 
 
 
