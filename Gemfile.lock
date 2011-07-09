@@ -52,7 +52,7 @@ GEM
       crack (>= 0.1.1)
     i18n (0.4.0)
     json (1.5.1)
-    json_pure (1.4.6)
+    json_pure (1.5.3)
     mime-types (1.16)
     mysql (2.8.1)
     openid (0.0.1)
@@ -116,7 +116,7 @@ DEPENDENCIES
   hirefireapp
   hoptoad_notifier
   i18n (= 0.4)
-  json_pure (= 1.4.6)
+  json_pure (= 1.5.3)
   mysql
   openid (= 0.0.1)
   paperclip (~> 2.3)

@@ -33,6 +33,19 @@ development:
         app_id: 4uSWOoTV34EAizCZbcobagFpBQVErwkVJwnS8OUagpua3nJpKtTcfNr16X9yOIo-
             
 
+    # * The SUBSCRIBE KEY is always public information.
+    # * Never Share the SECRET KEY.
+    # * Hide the PUBLISH KEY For a Secure Application
+    pubhub:    
+        publish_key: pub-4a29a03a-6f61-461f-a21b-75c61f73b55f
+        subscribe_key:  sub-2f610f4c-a98d-11e0-a8dc-f9b6701e4370
+        secret_key:  sec-ecc86188-966a-473c-9bc0-bb0ae1f33227
+            
+    pusher:
+        app_id:     '6771'
+        key:        'afb05b8322614fad0a71'
+        secret:     'fb1a66006db46476d0cc'
+
 # http://thepista.heroku.com/
 test:
     google_api:

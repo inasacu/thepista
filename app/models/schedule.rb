@@ -75,10 +75,10 @@ class Schedule < ActiveRecord::Base
   # variables to access
   attr_accessible :concept, :description, :season, :jornada, :starts_at, :ends_at, :reminder_at, :reminder
   attr_accessible :fee_per_game, :fee_per_pista, :time_zone, :group_id, :sport_id, :marker_id, :player_limit
-  attr_accessible :public, :season_ends_at, :archive
+  attr_accessible :public, :season_ends_at, :archive, :concept_and_name
 
   # NOTE:  MUST BE DECLARED AFTER attr_accessible otherwise you get a 'RuntimeError: Declare either attr_protected or attr_accessible' 
-  has_friendly_id :concept, :use_slug => true, :approximate_ascii => true, 
+  has_friendly_id :concept_and_name, :use_slug => true, :approximate_ascii => true, 
                    :reserved_words => ["new", "create", "index", "list", "signup", "edit", "update", "destroy", "show"]
 
   # after_update        :save_matches
@@ -86,6 +86,10 @@ class Schedule < ActiveRecord::Base
   before_update       :set_time_to_utc, :format_description
   
   # method section
+  def concept_and_name
+    "#{group.name} #{concept}"
+  end
+  
   def the_roster_sort(sort="")
     the_sort = "matches.group_id DESC, users.name"
     the_sort = "#{sort}, #{the_sort}" if (sort != " ASC" and sort != " DESC" and !sort.blank? and !sort.empty?) 

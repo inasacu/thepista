@@ -123,6 +123,13 @@ class SchedulesController < ApplicationController
       @schedule.starts_at = @previous_schedule.starts_at + 7.days
       @schedule.ends_at = @previous_schedule.ends_at + 7.days
       @schedule.reminder_at = @previous_schedule.starts_at + 4.days
+      
+      if @schedule.starts_at < Time.zone.now
+        @schedule.starts_at = Time.zone.now + 7.days
+        @schedule.ends_at = @schedule.starts_at + 1.hour
+        @schedule.reminder_at = @schedule.starts_at - 2.days
+      end
+      
     end
   end
 
