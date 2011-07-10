@@ -194,6 +194,16 @@ class Schedule < ActiveRecord::Base
     return Match.find_score(self).invite_score
   end
   
+  def self.group_current_schedules(group, page = 1)
+    self.paginate(:all, :conditions => ["starts_at >= ? and group_id = ?", Time.zone.now, group],
+                  :order => 'starts_at', :page => page, :per_page => SCHEDULES_PER_PAGE)
+  end
+
+  def self.group_previous_schedules(group, page = 1)
+    self.paginate(:all, :conditions => ["starts_at < ? and (season_ends_at is null or season_ends_at > ?) and group_id = ?", Time.zone.now, Time.zone.now, group],
+                  :order => 'starts_at desc', :page => page, :per_page => SCHEDULES_PER_PAGE)
+  end
+  
   def self.my_current_schedules(user)
     self.find(:all, 
     :conditions => ["starts_at >= ? and group_id in (select group_id from groups_users where user_id = ?)", Time.zone.now, user.id],

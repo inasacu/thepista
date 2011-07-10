@@ -4,21 +4,28 @@
 <% client = UrlShortener::Client.new(authorize) %>
 
 <% 
-	the_url = ""
+	the_url = "http://haypista.com"
+	the_description = label_name(:modo)
+	the_name="HayPista"
+	
 	case get_the_controller
 	when 'schedule', 'home'
-		the_url = "http://haypista.com#{team_roster_path(:id => schedule)}"
-		the_description = h("#{sanitize(schedule.concept)} #{label_name(:for)} #{schedule.group.name} (#{label_name(:rosters).downcase} #{schedule.convocados.count})")	
-		the_name = sanitize(schedule.concept)
+		if schedule
+			the_url = "http://haypista.com#{team_roster_path(:id => schedule)}"
+			the_description = h("#{sanitize(schedule.concept)} #{label_name(:for)} #{schedule.group.name} (#{label_name(:rosters).downcase} #{schedule.convocados.count})")	
+			the_name = sanitize(schedule.concept) 
+		end
 
 	when 'group'
-		the_url = "http://haypista.com#{group_path(:id => group)}"
-		the_description = sanitize(group.name)
-		the_name = sanitize(group.name)
-	else
-		the_url = "http://haypista.com"
-		the_description = label_name(:modo)
-		the_name="HayPista"
+		if group
+			the_url = "http://haypista.com#{group_path(:id => group)}"
+			the_description = sanitize(group.name)
+			the_name = sanitize(group.name)
+		end
+	# else
+	# 	the_url = "http://haypista.com"
+	# 	the_description = label_name(:modo)
+	# 	the_name="HayPista"
 	end
 	shorten = client.shorten(the_url) 
 %>

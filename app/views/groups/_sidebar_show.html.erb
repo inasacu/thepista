@@ -20,14 +20,8 @@
 		<p><%= option_image_link('message') %>&nbsp;&nbsp;<%= link_to(label_name(:send_message_to), new_message_path(:id => @group.all_the_managers.first)) %></p>
 <%
 		unless current_user.has_item_petition?(current_user, @group)
-			# the_label = label_name(:add_to_item)
-			# the_confirmation = "#{ label_name(:petition_to_join) } #{current_user.name} #{ label_name(:to) } #{@group.name}?"
-			# the_confirmation = the_add_item_petition(current_user, @group)
 %> 
-			<p>
-			<%= option_image_link('user_add') %>&nbsp;&nbsp;<%= join_item_link_to(current_user, @group, true) %>
-			<%#= link_to(the_label, join_item_path(:id => @group, :item => @group.class.to_s, :teammate => current_user), :confirm => the_confirmation) %>
-			</p>
+			<p><%= option_image_link('user_add') %>&nbsp;&nbsp;<%= join_item_link_to(current_user, @group, true) %></p>
 <% 
 		end 
 	end

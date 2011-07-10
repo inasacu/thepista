@@ -64,6 +64,10 @@ ActionController::Routing::Routes.draw do |map|
   map.set_previous_profile  'eventos/:id/habilitar_perfil_previo',              :controller => 'schedules',       :action => 'set_previous_profile'
   map.set_reminder          'eventos/:id/marcar_recordatorio',                  :controller => 'schedules',       :action => 'set_reminder'
   
+  map.group_current         'eventos/:id/actual_evento',                        :controller => 'schedules',       :action => 'group_current_list'
+  map.group_previous        'eventos/:id/previo_evento',                        :controller => 'schedules',       :action => 'group_previous_list'
+  
+  
   map.set_group_enable_comments   'equipos/:id/habilitar_comentarios_equipo',   :controller => 'groups',    		  :action => 'set_enable_comments'
   map.set_group_available         'equipos/:id/equipo_disponible',  		        :controller => 'groups',    		  :action => 'set_available'
   map.set_group_looking           'equipos/:id/buscar_jugado',  	              :controller => 'groups',    		  :action => 'set_looking'  

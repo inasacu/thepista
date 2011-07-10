@@ -8,7 +8,6 @@
 		<%= content_tag :th, "&nbsp;", :class => "first" %>
 		<%= content_tag :th, "#{label_name(:name)}<br />#{label_name(:sport)}", :class => "heading" %>
 		<%= content_tag :th, "#{label_name(:manager)}<br />#{label_name(:time_zone)}", :class => "heading" %>
-		<%#= content_tag :th, label_name(:time_zone), :class => "heading" %>
 		<%= content_tag :th, label_name(:general_information), :class => "heading" %>
 		<%= content_tag :th, "#{label_name(:scorecard)}<br />#{label_name(:last_game_played)}", :class => "heading" %>
 		<%= content_tag :th, "&nbsp;", :class => "last" %>
@@ -25,7 +24,6 @@
 			<td class="name_and_date">
 				<%= group_link(group) %>
 				<span class="date">
-					<%#= nice_day_time group.gameday_at %>
 					<%= group.sport.name %>
 				</span>
 			</td>
@@ -37,10 +35,6 @@
 				<%= group.time_zone %>
 				</span>
 			</td>
-
-			<!-- <td>
-				<%#= group.time_zone %>
-			</td> -->
 			
 			  <td class="name_and_date">
 				<%= I18n.t(:has_group_users, :count => object_counter(group.users)) %><br />
@@ -66,16 +60,15 @@
 					<%
 						unless current_user.has_item_petition?(current_user, group) 							
 					%> 
-							<%= join_item_link_to(current_user, group) %>
+						<strong><%= join_item_link_to(current_user, group) %></strong>
 					<% 	end 
 					   end
 					-%>
 				
 					<% if current_user.is_manager_of?(group) %> 
-						<%= link_to label_name(:schedules_create), new_schedule_path(:id => group) %><br />
-						<%= link_to label_name(:classifieds_create), new_classified_path(:id => group) %>
+						<strong><%= link_to label_name(:schedules_create), new_schedule_path(:id => group) %></strong>
+						<%#= link_to label_name(:classifieds_create), new_classified_path(:id => group) %>
 			        <% end %>
-					
 				</span>
 	       </td>
 	  </tr>   

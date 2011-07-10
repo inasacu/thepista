@@ -6,7 +6,7 @@ class SchedulesController < ApplicationController
 
   before_filter :get_schedule, :only => [:show, :rate, :edit, :update, :destroy, :set_public, :set_reminder, :team_roster, :team_last_minute, :team_no_show, :team_unavailable]
   before_filter :get_current_schedule, :only => [:index, :list, :my_list]
-  before_filter :get_group, :only => [:new, :schedule_list]
+  before_filter :get_group, :only => [:new, :schedule_list, :group_current_list, :group_previous_list]
   before_filter :get_match_type, :only => [:team_roster, :team_last_minute, :team_no_show, :team_unavailable]
   before_filter :has_manager_access, :only => [:edit, :update, :destroy, :set_public, :set_reminder]
   before_filter :has_member_access, :only => [:show, :rate]
@@ -19,6 +19,16 @@ class SchedulesController < ApplicationController
       redirect_to :action => 'list'
       return
     end
+  end
+  
+  def group_current_list
+    @schedules = Schedule.group_current_schedules(@group, params[:page])
+    render :template => '/schedules/index'
+  end
+  
+  def group_previous_list
+    @schedules = Schedule.group_previous_schedules(@group, params[:page])
+    render :template => '/schedules/index'
   end
 
   def list

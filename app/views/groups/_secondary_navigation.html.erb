@@ -11,11 +11,14 @@
 	end
 	
 	the_label = "" 
-	the_action = ['show','edit', 'team list', 'schedule list']
-	the_controller = ['blog', 'classified', 'fee', 'payment']
-	active_classified ||= ""
-	active_classified = get_active("#{get_the_controller}_#{get_the_action}") if is_controller('classified')
+	the_action = ['show','edit', 'team list', 'schedule list', 'group current list', 'group previous list']
+	the_controller = ['blog', 'classified', 'fee', 'payment', 'schedule']
 	
+	if DISPLAY_CLASSIFIEDS
+		active_classified ||= ""
+		active_classified = get_active("#{get_the_controller}_#{get_the_action}") if is_controller('classified')
+	end
+
 	is_new_group = (is_action('new') or is_action('create'))
 	unless is_new_group
 		content_for(:description, "#{h(@group.name)} / #{@group.sport.name},  #{h(@group.description) }.  #{@group.marker.name}, #{@group.time_zone}") if @group
@@ -39,7 +42,8 @@
 %>		
 		<li class="<%= get_active('blog_show') %>"><%=  blog_link(the_blog) %></li>
 		<li class="<%= get_active('group_team_list') %>"><%=  link_to(label_name(:users) , team_list_path(:id => @group)) %></li>
-		<li class="<%= get_active('schedule_schedule_list') %>"><%=  link_to(label_name(:schedules) , schedule_list_path(:id => @group)) %></li>
+		<li class="<%= get_active('schedule_group_current_list') %>"><%=  link_to(label_name(:upcoming_schedules) , group_current_path(:id => @group)) %></li>
+		<li class="<%= get_active('schedule_group_previous_list') %>"><%=  link_to(label_name(:previous_schedules) , group_previous_path(:id => @group)) %></li>
 		
 		<% if current_user.is_manager_of?(@group)  %>
 		<li class="<%= get_active('fee_list') %>"><%= link_to(label_name(:fees) , list_fees_path(:id => @group)) %></li>

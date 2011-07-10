@@ -1,24 +1,28 @@
-<% 
-	add_style ||= false 
-	the_style = add_style ? "border:1px solid rgb(205,205,205);" : ""
+<%  
+	the_label = label_name(:my_upcoming)
+	the_style = "border:1px solid rgb(205,205,205);"
+		
+	unless my_schedules.empty? 
 %>
+	<h2 class="title"><%= option_image_link('events') %>&nbsp;&nbsp;<%= the_label %></h2>
 
-<table class="table">
+	<div class="inner">
 
-<% upcoming_schedules.each do |schedule| -%>		
-	<tr style="<%= the_style %>" >
-		<%= view_schedule_icon(schedule) %>
-		<%= view_schedule_concept(schedule) %>
-		<%= view_schedule_group(schedule) %>
-		<%= view_schedule_played(schedule) %>
-		<%#= view_schedule_marker(schedule) %>
-		<%= view_schedule_rating(schedule) %>
-	</tr>
-<% end -%>
+		<table class="table">
 
-</table> 
+		<% my_schedules.each do |schedule| -%>		
+			<tr style="<%= the_style %>" >
+				<%= view_schedule_icon(schedule) %>
+				<%= view_schedule_concept(schedule) %>
+				<%= view_schedule_group(schedule) %>
+				<%= view_schedule_played(schedule) %>
+				<%= view_schedule_rating(schedule) %>
+			</tr>
+		<% end -%>
 
-
+		</table>
+	</div>
+<% end %>
 
 
 

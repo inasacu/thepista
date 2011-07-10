@@ -2,11 +2,17 @@
 	the_label = label_name(:schedules)
 	content_for(:title, the_label)
 	
-	is_my_list = (get_controller_action == "schedule_my_list")
+	the_control_action = get_controller_action
+	
+	is_my_list = (the_control_action == "schedule_my_list")
 	the_label = "#{the_label} #{label_name(:from_de)} #{h(@user.name)}" if is_my_list
 		
 	is_my_list = is_my_list ? current_user.is_user_member_of?(@user) : true
-	group_schedule_list = (get_controller_action == "schedule_schedule_list")
+	
+	group_list = ['schedule_schedule_list', 'schedule_group_current_list', 'schedule_group_previous_list']
+	group_schedule_list = (group_list.include?(the_control_action))
+	
+	the_label = label_name(:upcoming_schedules) if the_control_action == 'schedule_group_current_list' or the_control_action = 'schedule_index'
 %>
 
 <div class="block">

@@ -38,10 +38,10 @@ class Group < ActiveRecord::Base
   validates_format_of       :name,            :with => /^[A-z 0-9 _.-]*$/ 
   validates_format_of       :second_team,     :with => /^[A-z 0-9 _.-]*$/ 
     
-  validates_numericality_of :points_for_win,  :greater_than_or_equal_to => 0, :less_than_or_equal_to => 100
-  validates_numericality_of :points_for_lose, :greater_than_or_equal_to => 0, :less_than_or_equal_to => 100
-  validates_numericality_of :points_for_draw, :greater_than_or_equal_to => 0, :less_than_or_equal_to => 100
-  validates_numericality_of :player_limit,    :greater_than_or_equal_to => 0, :less_than_or_equal_to => 100
+  validates_numericality_of :points_for_win,  :greater_than_or_equal_to => 0, :less_than_or_equal_to => 20
+  validates_numericality_of :points_for_lose, :greater_than_or_equal_to => 0, :less_than_or_equal_to => 20
+  validates_numericality_of :points_for_draw, :greater_than_or_equal_to => 0, :less_than_or_equal_to => 20
+  validates_numericality_of :player_limit,    :greater_than_or_equal_to => 0, :less_than_or_equal_to => 150
 
   # variables to access
   attr_accessible :name, :second_team, :gameday_at, :points_for_win, :points_for_draw, :points_for_lose, :player_limit
