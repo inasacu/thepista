@@ -1,7 +1,7 @@
 <% 
 	counter = 0 
 	roster_count = (object_counter(the_roster) > 0)
-
+	
 	type_id = [1, 4]
 	
 	home = {}
@@ -10,6 +10,7 @@
 	physical = {}
 		
 	is_manager ||= false
+	is_member ||= false
 	show_deviation ||= false
 	show_position ||= true
 	show_mean ||= true
@@ -40,6 +41,7 @@
 	
 	group = @schedule.group
 	is_manager = current_user.is_manager_of?(group)
+	is_member = current_user.is_member_of?(group)
 	
 	is_squad = get_the_action.gsub(' ','_') == 'team_roster'
 	group_games_played = @schedule.group.games_played.to_f
@@ -209,8 +211,8 @@ the_roster.each do |match|
 
 		<% if has_been_played %>
 		<% else %>
-			<%= is_sub_manager ? link_to(match.team_name(@schedule), 
-								match_team_path(:id => match.id), :title => label_name(:change_group)) :  match.team_name(@schedule) %>
+			<%#= is_sub_manager ? link_to(match.team_name(@schedule), match_team_path(:id => match.id), :title => label_name(:change_group)) :  match.team_name(@schedule) %>
+			<%= is_member ? link_to(match.team_name(@schedule), match_team_path(:id => match.id), :title => label_name(:change_group)) :  match.team_name(@schedule) %>
 		<% end -%>		
 		
 	</td>

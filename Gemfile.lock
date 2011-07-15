@@ -53,8 +53,13 @@ GEM
     i18n (0.4.0)
     json (1.5.1)
     json_pure (1.5.3)
+    linkedin (0.2.2)
+      nokogiri (~> 1.4.4)
+      oauth (~> 0.4.0)
     mime-types (1.16)
     mysql (2.8.1)
+    nokogiri (1.4.7)
+    oauth (0.4.5)
     openid (0.0.1)
     paperclip (2.3.11)
       activerecord (>= 2.3.0)
@@ -117,6 +122,7 @@ DEPENDENCIES
   hoptoad_notifier
   i18n (= 0.4)
   json_pure (= 1.5.3)
+  linkedin
   mysql
   openid (= 0.0.1)
   paperclip (~> 2.3)

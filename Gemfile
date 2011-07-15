@@ -34,7 +34,7 @@ gem 'trueskill'
 gem 'delayed_job'											, '2.0.7'
 gem 'hirefireapp'
 gem 'paperclip'												, '~> 2.3'
-
+gem 'linkedin'
 
 # gem 'right_aws' 											, '2.0.0'
 

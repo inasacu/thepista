@@ -147,6 +147,8 @@ ActionController::Routing::Routes.draw do |map|
   map.resources   :installations,   :as => 'instalaciones',               :collection => { :list => :get }
   map.resources   :reservations,    :as => 'reservas',                    :collection => { :list => :get }
   
+  map.resources   :linkedin,        :as => 'opensocial'
+  
   map.resources   :users do |user|
     user.resources :messages
   end
