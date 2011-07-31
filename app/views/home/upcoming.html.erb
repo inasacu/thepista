@@ -1,12 +1,12 @@
 <%  
-	has_schedule ||= false	
-	has_schedule = true unless upcoming_schedules.empty? 
-
-	has_game ||= false	
-	has_game = true unless upcoming_games.empty?
-
-	has_cup ||= false	
-	has_cup = true unless upcoming_cups.empty?
+	# has_schedule ||= false	
+	# has_schedule = true unless upcoming_schedules.empty? 
+	# 
+	# has_game ||= false	
+	# has_game = true unless upcoming_games.empty?
+	# 
+	# has_cup ||= false	
+	# has_cup = true unless upcoming_cups.empty?
 	
 	the_label = label_name(:upcoming)
 	content_for(:title, the_label)
@@ -22,19 +22,19 @@
 
     <div class="inner">
 
-	<%= render :partial => "upcoming_schedule", :locals => {:upcoming_schedules => @upcoming_schedules} if has_schedule %>
+	<%= render :partial => "home/all_upcoming_schedules", :locals => {:upcoming_schedules => @upcoming_schedules} %>
 
     </div>
 
     <div class="inner">
 
-	<%= render :partial => "upcoming_cup", :locals => {:upcoming_cups => @upcoming_cups} if has_cup %>
+	<%= render :partial => "home/upcoming_cup", :locals => {:upcoming_cups => @upcoming_cups} %>
 
     </div>
 
     <div class="inner">
 
-	<%= render :partial => "upcoming_game", :locals => {:upcoming_games => @upcoming_games} if has_game %>
+	<%= render :partial => "home/upcoming_game", :locals => {:upcoming_games => @upcoming_games} %>
 	
     </div>
 
