@@ -43,7 +43,7 @@ class UsersController < ApplicationController
   end  
 
   def new
-    redirect_to :action => 'signup'
+    redirect_to :signup
   end
 
   def edit
@@ -58,7 +58,6 @@ class UsersController < ApplicationController
       if result        
         redirect_to root_url
       else
-        # render :action => 'signup'
         redirect_to :signup
         return
       end
