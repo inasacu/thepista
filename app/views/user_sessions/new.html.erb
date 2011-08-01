@@ -1,5 +1,3 @@
-
-
 <div id="home">
 
 	<div class="announce">
@@ -11,7 +9,7 @@
 		</div>
 		<div class="rpx">
 			
-			<p><%= "#{label_name(:use_login)}." %></p>
+			<p><%= label_name(:use_login) %></p>
 			
 			<% form_for @user_session, :html => {:class => 'form login'} do |f| %>
 				<%= render :partial => '/user_sessions/login', :locals => {:f => f, :the_label =>  label_name(:login)}  if SHOW_LOGIN %>			

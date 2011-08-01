@@ -2,7 +2,7 @@ require 'rubygems'
 require 'rqrcode'
 
 class UsersController < ApplicationController
-  before_filter :require_no_user, :only => [:signup, :new, :create, :rpx_new, :rpx_create, :rpx_associate]
+  before_filter :require_no_user, :only => [:signup, :create, :rpx_new, :rpx_create, :rpx_associate]
   before_filter :require_user, :only => [:index, :list, :show, :edit, :update, :petition, :recent_activity] 
   
   # before_filter :get_user,            :only => [:show] 
@@ -40,11 +40,10 @@ class UsersController < ApplicationController
 
   def signup
     @user = User.new
-    redirect_to :controller => 'home'
   end  
 
   def new
-    @user = User.new
+    redirect_to :action => 'signup'
   end
 
   def edit
@@ -53,12 +52,15 @@ class UsersController < ApplicationController
 
   def create
     @user = User.new(params[:user])
-
+    @user.email_to_name
+    
     @user.save do |result|
       if result        
         redirect_to root_url
       else
-        render :action => 'signup'
+        # render :action => 'signup'
+        redirect_to :signup
+        return
       end
     end
   end

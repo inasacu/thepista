@@ -150,6 +150,10 @@ class User < ActiveRecord::Base
       self.groups.count > 0
     end
 
+    def email_to_name
+      self.name = self.email[/[^@]+/]
+      self.name.split(".").map {|n| n.capitalize }.join(" ")
+    end
 
     def my_groups
       @my_groups = []
