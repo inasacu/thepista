@@ -28,14 +28,14 @@ ActionController::Routing::Routes.draw do |map|
   map.challenge_list			  'retos_copa',			                            :controller => 'challenges',      :action => 'challenge_list'
 
   map.join_team   			    'mi_equipo/:id/unirse_equipo/:teammate',    	:controller => 'teammates',       :action => 'join_team'
-  map.leave_team		  	    'mi_equipo/:id/dejar_equipo/:teammate',    	:controller => 'teammates',       :action => 'leave_team'
-  map.join_team_accept	    'mi_equipo/:id/acepta_unirse_equipo/',       :controller => 'teammates',       :action => 'join_team_accept'
-  map.join_team_decline	    'mi_equipo/:id/deniega_unirse_equipo/',      :controller => 'teammates',       :action => 'join_team_decline' 
+  map.leave_team		  	    'mi_equipo/:id/dejar_equipo/:teammate',    	  :controller => 'teammates',       :action => 'leave_team'
+  map.join_team_accept	    'mi_equipo/:id/acepta_unirse_equipo/',        :controller => 'teammates',       :action => 'join_team_accept'
+  map.join_team_decline	    'mi_equipo/:id/deniega_unirse_equipo/',       :controller => 'teammates',       :action => 'join_team_decline' 
    
-  map.join_item   			    'mi_equipo/:id/unirse/:teammate',    	      :controller => 'teammates',       :action => 'join_item'
+  map.join_item   			    'mi_equipo/:id/unirse/:teammate',    	        :controller => 'teammates',       :action => 'join_item'
   map.leave_item		  	    'mi_equipo/:id/dejar/:teammate',    	        :controller => 'teammates',       :action => 'leave_item'
-  map.join_item_accept	    'mi_equipo/:id/acepta_unirse',               :controller => 'teammates',       :action => 'join_item_accept'
-  map.join_item_decline	    'mi_equipo/:id/deniega_unirse',              :controller => 'teammates',       :action => 'join_item_decline'
+  map.join_item_accept	    'mi_equipo/:id/acepta_unirse',                :controller => 'teammates',       :action => 'join_item_accept'
+  map.join_item_decline	    'mi_equipo/:id/deniega_unirse',               :controller => 'teammates',       :action => 'join_item_decline'
   
   map.set_manager     	    'jugadores/:id/marcar_manager/:group',    		:controller => 'users',    		    :action => 'set_manager'
   map.remove_manager  	    'jugadores/:id/borrar_manager/:group', 		    :controller => 'users',     	    :action => 'remove_manager'
@@ -57,22 +57,24 @@ ActionController::Routing::Routes.draw do |map|
   map.set_blog_notification       'jugadores/:id/habilitar_muro',  	            :controller => 'users',    	      :action => 'set_blog_notification'
   map.set_forum_notification      'jugadores/:id/habilitar_foro',  	            :controller => 'users',    	      :action => 'set_forum_notification'
   
-  map.third_party           'jugadores/third_party',                            :controller => 'users',           :action => 'third_party'
-  map.associate_return      'jugadores/associate_return',                       :controller => 'users',           :action => 'associate_return'
+  map.third_party           'jugadores/third_party',                      :controller => 'users',           :action => 'third_party'
+  map.associate_return      'jugadores/associate_return',                 :controller => 'users',           :action => 'associate_return'
     
-  map.set_public            'eventos/:id/marcar_como_publico',                  :controller => 'schedules',       :action => 'set_public'
-  map.set_previous_profile  'eventos/:id/habilitar_perfil_previo',              :controller => 'schedules',       :action => 'set_previous_profile'
-  map.set_reminder          'eventos/:id/marcar_recordatorio',                  :controller => 'schedules',       :action => 'set_reminder'
+  map.set_public            'eventos/:id/marcar_como_publico',            :controller => 'schedules',       :action => 'set_public'
+  map.set_previous_profile  'eventos/:id/habilitar_perfil_previo',        :controller => 'schedules',       :action => 'set_previous_profile'
+  map.set_reminder          'eventos/:id/marcar_recordatorio',            :controller => 'schedules',       :action => 'set_reminder'
   
-  map.group_current         'eventos/:id/actual_evento',                        :controller => 'schedules',       :action => 'group_current_list'
-  map.group_previous        'eventos/:id/previo_evento',                        :controller => 'schedules',       :action => 'group_previous_list'
-  
+  map.group_current         'eventos/:id/actual_evento',                  :controller => 'schedules',       :action => 'group_current_list'
+  map.group_previous        'eventos/:id/previo_evento',                  :controller => 'schedules',       :action => 'group_previous_list'
   
   map.set_group_enable_comments   'equipos/:id/habilitar_comentarios_equipo',   :controller => 'groups',    		  :action => 'set_enable_comments'
   map.set_group_available         'equipos/:id/equipo_disponible',  		        :controller => 'groups',    		  :action => 'set_available'
-  map.set_group_looking           'equipos/:id/buscar_jugado',  	              :controller => 'groups',    		  :action => 'set_looking'  
+  map.set_group_looking           'equipos/:id/buscar_jugado',  	              :controller => 'groups',    		  :action => 'set_looking' 
   
-  map.match_team            'jornadas/:id/cambio_equipo',                       :controller => 'matches',         :action => 'set_team'
+  map.set_group_auto       'equipos/:id/unirse_automaticamente',     :controller => 'groups',          :action => 'set_automatic_petition' 
+  map.set_challenge_auto   'retos_copa/:id/unirse_automaticamente',  :controller => 'challenges',      :action => 'set_automatic_petition'
+  
+  map.match_team            'jornadas/:id/cambio_equipo',                             :controller => 'matches',         :action => 'set_team'
   map.match_status          'jornadas/:id/cambio_convocatoria/:type',                 :controller => 'matches',         :action => 'set_status'
   map.match_token           'jornadas/:id/cambio_convocatoria/:type/:block_token',    :controller => 'matches',         :action => 'set_status_link'
   
@@ -87,9 +89,9 @@ ActionController::Routing::Routes.draw do |map|
   
   map.ratings_rate          'calificaciones/:id/calificacion/:type',                         :controller => 'ratings',         :action => 'rate'
   
-  map.import_contact        'invitaciones/importar_contacto',                    :controller => 'invitations',     :action => 'contact'
-  map.invite_contact        'invitaciones/invita_contacto',                      :controller => 'invitations',     :action => 'invite_contact'
-  map.invite                'invitaciones/invita',                               :controller => 'invitations',     :action => 'invite'
+  map.import_contact        'invitaciones/importar_contacto',                   :controller => 'invitations',     :action => 'contact'
+  map.invite_contact        'invitaciones/invita_contacto',                     :controller => 'invitations',     :action => 'invite_contact'
+  map.invite                'invitaciones/invita',                              :controller => 'invitations',     :action => 'invite'
   
   map.about                 'sobre',                                            :controller => 'home',            :action => 'about'
   map.terms_of_use          'terminos',                                         :controller => 'home',            :action => 'terms_of_use'
@@ -97,7 +99,7 @@ ActionController::Routing::Routes.draw do |map|
   map.faq                   'ayuda',                                            :controller => 'home',            :action => 'faq'
   map.pricing               'precios',                                          :controller => 'home',            :action => 'pricing'
   map.openid                'openid',                                           :controller => 'home',            :action => 'openid'
-  map.success               'success',                                         :controller => 'home',            :action => 'success'
+  map.success               'success',                                          :controller => 'home',            :action => 'success'
   
   map.hide_announcements    '/ocultar_aviso',                                   :controller => 'javascripts',     :action => 'hide_announcements'
   

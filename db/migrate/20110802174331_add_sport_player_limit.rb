@@ -9,3 +9,6 @@ class AddSportPlayerLimit < ActiveRecord::Migration
     change_column       :groups,        :player_limit,      :integer,       :default => 99
   end
 end
+
+
+# rake db:migrate VERSION=20110802174331

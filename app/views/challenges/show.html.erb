@@ -43,7 +43,17 @@
 			<%= content_tag :td, label_name(:manager), :class => "label" %>
 			<%= content_tag :td, user_list(@challenge.all_the_managers), :class => get_the_action %>
 		</tr>
-		<%= tr_td_action(:time_zone, @challenge.time_zone) %>		
+		<%= tr_td_action(:time_zone, @challenge.time_zone) %>	
+
+	<% 
+		the_label = h(label_name(@challenge.automatic_petition, 'value'))
+		the_confirmation = label_with_name('automatic_petition', "#{@challenge.name}?") 
+	%>
+		<tr>
+		  <%= content_tag :td, label_name(:automatic_petition), :class => "label" %>
+		  <%= content_tag :td, (is_user_manager ? link_to(the_label, set_group_auto_path(:id => @challenge)) : the_label), :class => get_the_action %>
+		</tr>
+			
 		<%= tr_td_action(:users, t(:has_challenge_users, :count => @challenge.users.count)) %>
 		
 		<tr>

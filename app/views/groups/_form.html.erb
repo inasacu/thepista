@@ -46,6 +46,12 @@
     <span class="description"><%= label_name('marker', 'description') %></span>
   </div>
 
+  <div class="group">
+    <%= f.label :automatic_petition, label_name('automatic_petition'), :class => :label %>
+    <%= f.check_box :automatic_petition, :class => 'check_box' %>
+    <span class="description"><%= label_name('automatic_petition', 'description') %></span>
+  </div>
+
 <% if is_group_edit %>
 
 <div class="group">

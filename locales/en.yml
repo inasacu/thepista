@@ -51,7 +51,9 @@ en:
      attend_schedule: Attend the Event 
      ausente: No-Show     
      authorizable_id: Code    
-     authorizable_type: Type    
+     authorizable_type: Type 
+     automatic_petition:  Automatic Approval
+     automatic_petition_description:  Approval by manager is not required 
      available: Available
      available_cluetip: "Set to available allows others to know that you have an interest in played. Setting this option to 'No', tells others that you aren't available to play or to be contacted."
      available_description: (Are you available to Play?)   

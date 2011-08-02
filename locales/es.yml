@@ -51,7 +51,9 @@ es:
      attend_schedule: Asiste al evento     
      ausente: Ausente   
      authorizable_id: Codigo    
-     authorizable_type: Tipo    
+     authorizable_type: Tipo  
+     automatic_petition:  Aceptación Automática
+     automatic_petition_description:  Permite unirse sin aprovación del organizador
      available: Disponible
      available_cluetip: "Estar disponible permite que otros jugadores sepan que estas para jugar. De lo contrario permite que no tienes interes en jugar y que no se te moleste."
      available_description: (Si estas disponible para jugar o si no quieres que te molesten...)   
@@ -87,7 +89,7 @@ es:
      casts_index_option: Opciones 
      casts_list:  Todos los pronósticos
      casts_list_no: Ningun pronóstico previo para mostrar.
-     casts_manager_option:  Requiere responsable de reto para ver mas opciones.
+     casts_manager_option:  Requiere organizador de reto para ver mas opciones.
      casts_new: Nuevo pronóstico
      casts_no: Ningun pronóstico para mostrar.
      casts_edit: Actualizar pronóstico
@@ -474,7 +476,7 @@ es:
      games_invitations_create:  Invita a un amigo al evento
      games_list:  Anteriores eventos
      games_list_no: Ningun evento previo para mostrar.
-     games_manager_option:  Requiere responsable de equipo para ver mas opciones.
+     games_manager_option:  Requiere organizador de equipo para ver mas opciones.
      games_new: Nuevo evento
      games_no: Ningun evento para mostrar.
      games_create: Nuevo Evento
@@ -744,10 +746,10 @@ es:
      looking_for_user_description:  Equipo que busca jugadores 
      Low: Bajo   
      male_value: Masculino        
-     manager: Responsable   
-     managers: Responsable(s) 
-     manager_option:  Opciones de Manager 
-     manager_option_cluetip:  Estas opciones permiten al Manager añadir o quitar a un jugador como Manager del equipo. Managers tienen opciones additionales sobre el equipo. 
+     manager: Organizador   
+     managers: Organizador(es) 
+     manager_option:  Opciones de Organizador 
+     manager_option_cluetip:  Estas opciones permiten al Organizador añadir o quitar a un jugador como Organizador del equipo. Organizadores tienen opciones additionales sobre el equipo. 
      map: Mapa    
      map_it: Ubicalo
      maps: Mapas   
@@ -1632,7 +1634,7 @@ es:
      fees_index_option: Opciones
      fees_list:  Cargos
      fees_item_list:  Cargos
-     fees_manager_option:  Requiere responsable de equipo para ver mas opciones.
+     fees_manager_option:  Requiere organizador de equipo para ver mas opciones.
      fees_new:  Nuevo cargo
      fees_no:  Ningun cargo para mostrar.
      fees_edit:  Actualizar cargo
@@ -1657,7 +1659,7 @@ es:
      payments_index:   Pagos
      payments_index_option: Opciones 
      payments_list:  Payments
-     payments_manager_option:  Requiere responsable de equipo para ver mas opciones.
+     payments_manager_option:  Requiere organizador de equipo para ver mas opciones.
      payments_new:  Nuevo pago
      payments_no:  Ningun pago para mostrar.
      payments_destroy:  Borrar pago
@@ -1703,7 +1705,7 @@ es:
      meets_invitations_create:  Invita a un amigo al evento 
      meets_list:  Anteriores eventos 
      meets_list_no: Ningun eventoprevio para mostrar.
-     meets_manager_option:  Requiere responsable de equipo para ver mas opciones.
+     meets_manager_option:  Requiere organizador de equipo para ver mas opciones.
      meets_new: Nuevo evento 
      meets_no: Ningun evento para mostrar.
      meets_edit: Actualizar evento 
@@ -1757,7 +1759,7 @@ es:
      schedules_list_no: Ningun evento previo para mostrar.
      schedules_my_list: Mis eventos 
      schedules_my_list_no: Ningun evento para mostrar.
-     schedules_manager_option:  Requiere responsable de equipo para ver mas opciones.
+     schedules_manager_option:  Requiere organizador de equipo para ver mas opciones.
      schedules_new: Nuevo evento
      schedules_no: Ningun evento para mostrar.
      schedules_edit: Actualizar evento
@@ -1786,7 +1788,7 @@ es:
      scorecard_options:  Opciones 
      scorecards_archive:  Archivar la clasificación
      scorecards_index:   Clasificaciones
-     scorecards_manager_option:  Requiere responsable de equipo para ver mas opciones.
+     scorecards_manager_option:  Requiere organizador de equipo para ver mas opciones.
      scorecards_no: Ninguna clasificación para mostrar.
      scorecards_option:  Opciones 
      scorecards_less_games:  ( * ) Jugadores con menos asistencias a eventos
@@ -1805,7 +1807,7 @@ es:
      standing_options:  Opciones 
      standings_archive:  Archivar la clasificación de torneo
      standings_index:   Clasificaciones de torneo
-     standings_manager_option:  Requiere responsable de equipo para ver mas opciones.
+     standings_manager_option:  Requiere organizador de equipo para ver mas opciones.
      standings_no: Ninguna clasificación de torneo para mostrar.
      standings_option:  Opciones
      standings_less_games:  ( * ) Jugadores con menos asistencias a eventos
@@ -1832,7 +1834,7 @@ es:
      role_remove_manager: Borra manager   
      role_remove_subscription: Borra abonado     
      roles_index:   Responsabilidades
-     roles_maximo_option:  Requiere responsable de administrador para ver mas opciones.
+     roles_maximo_option:  Requiere organizador de administrador para ver mas opciones.
      roles_option:  Opciones 
      round_options:  Opciones  
      round_starts_ends_at:  Fechas de fase 
@@ -1875,7 +1877,7 @@ es:
      sports_edit: Actualizar deporte
      sports_index:  Deportes
      sports_index_option: Opciones 
-     sports_maximo_option:  Requiere responsable de administrador para ver mas opciones.
+     sports_maximo_option:  Requiere organizador de administrador para ver mas opciones.
      sports_new: Nuevo deporte
      sports_no: Ningun deporte para mostrar.
      sports_none:  Ningun deporte.
@@ -1899,7 +1901,7 @@ es:
      true_skill_mean_final:  "Indice Final"
      true_skill_mean_total:  "Total<br/>Indices"     
      types_index:  Tipos
-     types_maximo_option:  Requiere responsable de administrador para ver mas opciones.
+     types_maximo_option:  Requiere organizador de administrador para ver mas opciones.
      types_option:  Opciones 
      type_groupstage: Fase de grupo
      type_firstgame:  Ronda de eliminación

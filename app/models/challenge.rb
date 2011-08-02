@@ -22,10 +22,10 @@ class Challenge < ActiveRecord::Base
 
   validates_format_of           :name,            :with => /^[A-z 0-9 _.-]*$/ 
 
-  validates_numericality_of     :player_limit,    :greater_than_or_equal_to => 0, :less_than_or_equal_to => 100
+  validates_numericality_of     :player_limit,    :greater_than_or_equal_to => 1, :less_than_or_equal_to => DUNBAR_NUMBER
 
   # variables to access
-  attr_accessible :name, :cup_id, :starts_at, :ends_at, :reminder_at, :fee_per_game, :time_zone, :description, :conditions, :player_limit, :archive
+  attr_accessible :name, :cup_id, :starts_at, :ends_at, :reminder_at, :fee_per_game, :time_zone, :description, :conditions, :player_limit, :archive, :automatic_petition
   
   # NOTE:  MUST BE DECLARED AFTER attr_accessible otherwise you get a 'RuntimeError: Declare either attr_protected or attr_accessible' 
   has_friendly_id :name, :use_slug => true, :approximate_ascii => true, 

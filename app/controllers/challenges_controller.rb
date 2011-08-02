@@ -1,6 +1,6 @@
 class ChallengesController < ApplicationController
   before_filter :require_user    
-  before_filter :get_challenge, :only => [:challenge_list, :show, :edit, :update]
+  before_filter :get_challenge, :only => [:challenge_list, :show, :edit, :update, :set_automatic_petition]
   before_filter :has_manager_access, :only => [:edit, :update, :destroy]
 
   before_filter :get_cup, :only =>[:new]
@@ -67,6 +67,17 @@ class ChallengesController < ApplicationController
       redirect_to @challenge
     else
       render :action => 'new'
+    end
+  end 
+  
+  def set_automatic_petition
+    if @group.update_attribute("automatic_petition", !@group.automatic_petition)
+      @group.update_attribute("automatic_petition", @group.automatic_petition)  
+
+      flash[:success] = I18n.t(:successful_update)
+      redirect_back_or_default('/index')
+    else
+      render :action => 'index'
     end
   end
 

@@ -3,8 +3,8 @@ require 'rqrcode'
 
 class GroupsController < ApplicationController
   before_filter :require_user    
-  before_filter :get_group, :only => [:team_list, :show, :edit, :update, :set_available, :set_enable_comments, :set_looking, :destroy]
-  before_filter :has_manager_access, :only => [:edit, :update, :destroy, :set_available, :set_enable_comments, :set_looking]
+  before_filter :get_group, :only => [:team_list, :show, :edit, :update, :set_available, :set_enable_comments, :set_automatic_petition, :set_looking, :destroy]
+  before_filter :has_manager_access, :only => [:edit, :update, :destroy, :set_available, :set_enable_comments, :set_automatic_petition, :set_looking]
 
   def index
     @groups = Group.paginate(:all, :conditions => ["archive = false and id in (?)", current_user.groups], 
@@ -75,6 +75,17 @@ class GroupsController < ApplicationController
       render :action => 'edit'
     end
   end 
+  
+  def set_automatic_petition
+    if @group.update_attribute("automatic_petition", !@group.automatic_petition)
+      @group.update_attribute("automatic_petition", @group.automatic_petition)  
+
+      flash[:success] = I18n.t(:successful_update)
+      redirect_back_or_default('/index')
+    else
+      render :action => 'index'
+    end
+  end
 
   def set_looking
     if @group.update_attribute("looking", !@group.looking)

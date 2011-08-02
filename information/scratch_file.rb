@@ -1,4 +1,39 @@
 
+db:migrate in app thepista
+
+==  AddReservationCode: migrating =============================================
+-- add_column(:reservations, :code, :string)
+   -> 0.2118s
+-- add_column(:venues, :day_light_savings, :boolean, {:default=>true})
+   -> 0.1436s
+-- add_column(:venues, :day_light_starts_at, :datetime)
+   -> 0.0043s
+-- add_column(:venues, :day_light_ends_at, :datetime)
+   -> 0.0027s
+==  AddReservationCode: migrated (0.3630s) ====================================
+
+Migrating to AddUserLastMinuteNotification (20110709111214)
+==  AddUserLastMinuteNotification: migrating ==================================
+-- add_column(:users, :last_minute_notification, :boolean, {:default=>true})
+   -> 0.0434s
+==  AddUserLastMinuteNotification: migrated (0.0435s) =========================
+
+Migrating to AddSportPlayerLimit (20110802174331)
+==  AddSportPlayerLimit: migrating ============================================
+-- add_column(:sports, :player_limit, :integer, {:default=>150})
+   -> 0.0230s
+-- change_column(:groups, :player_limit, :integer, {:default=>150})
+   -> 0.7598s
+==  AddSportPlayerLimit: migrated (0.7831s) ===================================
+
+
+
+
+
+
+
+
+
 def show_index
   # get your api keys at https://www.linkedin.com/secure/developer
   client = LinkedIn::Client.new(APP_CONFIG['linkedin']['api_key'], APP_CONFIG['linkedin']['secret_key'])
@@ -89,9 +124,6 @@ API Username: raulmp_1308504683_biz_api1.gmail.com
 API Password: 1308504692
 Signature:   AFcWxV21C7fd0v3bYYYRCpSSRl31AEhy4Ky1dOMe7W5n8hrUF5zlgF6b
 
-thepista.local/jornadas/5949/cambio_convocatoria/2/dWIxYmt6Z2o1OTQ5eWpqaXY5cmw=%0A
-thepista.local/jornadas/5949/cambio_convocatoria/3/dWIxYmt6Z2o1OTQ5eWpqaXY5cmw=%0A
-thepista.local/jornadas/5949/cambio_convocatoria/1/dWIxYmt6Z2o1OTQ5eWpqaXY5cmw=%0A
 
 
-Quieres que tus amigos se apunten a este partido?  Compartelo
+
