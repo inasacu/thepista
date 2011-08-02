@@ -104,7 +104,6 @@ class SchedulesController < ApplicationController
   def new
     # editing is limited to administrator or creator
     @schedule = Schedule.new
-
     unless current_user.is_manager_of?(@group)
       flash[:warning] = I18n.t(:unauthorized)
       redirect_back_or_default('/index')
@@ -112,19 +111,34 @@ class SchedulesController < ApplicationController
     end
 
     if @group
+      @schedule.jornada = 1
+      @schedule.concept = "#{I18n.t(:jornada)} #{@schedule.jornada}"
       @schedule.group_id = @group.id
       @schedule.sport_id = @group.sport_id
       @schedule.marker_id = @group.marker_id
       @schedule.time_zone = @group.time_zone
-    end
+      @schedule.player_limit = @group.player_limit
+      
+      @schedule.fee_per_game = 1
+      @schedule.fee_per_pista = 1
+      @schedule.fee_per_pista = @group.player_limit * @schedule.fee_per_game if @group.player_limit > 0
 
-    @schedule.jornada = 1
-    @schedule.season = Time.zone.now.year
-    @schedule.season_ends_at = Time.utc(Time.zone.now.year + 1, 8, 1)
+      @schedule.starts_at = Time.zone.now.change(:hour => 12, :min => 0, :sec => 0) + 7.days
+      
+      @schedule.ends_at = @schedule.starts_at + 1.hour
+      @schedule.reminder_at = @schedule.starts_at - 2.days
+      
+      @schedule.season = Time.zone.now.year
+      @schedule.season_ends_at = Time.utc(Time.zone.now.year + 1, 8, 1)
+      
+      @schedule.description = I18n.t(:description)
+    end
 
     @previous_schedule = Schedule.find(:first, :conditions => ["id = (select max(id) from schedules where group_id = ?) ", @group.id])    
     unless @previous_schedule.nil?
       @schedule.jornada = @previous_schedule.jornada + 1
+      @schedule.concept = "#{I18n.t(:jornada)} #{@schedule.jornada}"
+      
       @schedule.season = @previous_schedule.season
       @schedule.fee_per_game = @previous_schedule.fee_per_game
       @schedule.fee_per_pista = @previous_schedule.fee_per_pista

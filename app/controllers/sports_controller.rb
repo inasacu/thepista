@@ -3,7 +3,7 @@ class SportsController < ApplicationController
   before_filter :the_maximo
 
   def index    
-    @sports = Sport.paginate(:per_page => 10, :page => params[:page])
+    @sports = Sport.paginate(:per_page => SPORTS_PER_PAGE, :page => params[:page])
   end
   
   def show
@@ -32,7 +32,8 @@ class SportsController < ApplicationController
     @sport = Sport.find(params[:id])
     if @sport.update_attributes(params[:sport])
       flash[:success] = I18n.t(:successful_update)
-      redirect_to @sport
+      redirect_to sports_url
+      return
     else
       render :action => 'edit'
     end

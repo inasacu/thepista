@@ -278,7 +278,24 @@ en:
      debit_amount_description: What needs to be Payed
      debit_total:  Total Charges
      debit_to_group:  Debt owed to your team
-     debits: Charges   
+     debits: Charges
+     default_group_conditions:  "All players have until 48 hours before the game to join.
+
+     Earlier in the day of the Called party are:
+
+     1. If more than the limit of players who are paid the most games played will be moved to alternate.
+
+     2. If there is a mixture of paid and not SUBSCRIBERS has the fewest games to pass PAID NO Substitute.
+
+     3. SUBSCRIBERS Players who are required to move to alternate and in the end play have priority the next game.
+
+     4. Any player points within 48 hours before the game PAID be composted or not play depending on when he noted.
+
+     The idea is to be preferred to subscribers, then to that point before.
+
+     The moment you change the status of a player to summon Deputy or vice versa, the organizer will send an email to you are all informed.
+
+     On the other side and fellowship, if you come join me and can not tell time or contact with someone from the team that you can substitute."  
      default_reliable: Reliable   
      defense:  Defense
      delete_activity: Remove Activity    
@@ -405,16 +422,16 @@ en:
      feature: Feature
      features: Features
      fee: Fee 
-     fee_per_challenge:  Fee / Participation
+     fee_per_challenge:  Fee for Participation
      fee_per_challenge_description:  (This is the price the manager sets to participate...)  
-     fee_per_game: Fee / Game   
+     fee_per_game: Fee for Game   
      fee_per_game_description: (This is the price player has to pay for the event...) 
-     fee_per_game_time:  Fee / Hour   
+     fee_per_game_time:  Fee per Hour   
      fee_per_game_time_description: (This is the price for the pista per hour...)
-     fee_per_lighting: Fee / Lighting   
-     fee_per_lighting_description: (This is the price for lighting in outdoor pista...)  
-     fee_per_pista: Fee / Pista   
-     fee_per_pista_description: (This is the price for the pista...) 
+     fee_per_lighting: Fee for Lighting   
+     fee_per_lighting_description: (This is the price for lighting in outdoor pitch...)  
+     fee_per_pista: Fee for Pitch   
+     fee_per_pista_description: (This is the price for the pitch...) 
      fee_per_tour: Fee / Tournament   
      fee_per_tour_description: (This is the price for the tournament...)  
      feedback: feedback   
@@ -976,7 +993,7 @@ en:
      photo_description: "(Option to upload an image...{format: jpeg, gif, png, jpg}{size: 5mb})"  
      physical_level_description: "(From 1 to 5, put the physical level that you think you have compared to your team...)"  
      player_limit:  Player Limit
-     player_limit_description:  Player limit on the team.
+     player_limit_description:  Player limit
      player_with: "Players with"
      player_with_less_games: has less assistance to events then the rest.
      points: Pts.

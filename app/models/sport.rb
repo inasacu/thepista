@@ -22,7 +22,7 @@ class Sport < ActiveRecord::Base
   validates_numericality_of :points_for_draw, :greater_than_or_equal_to => 0, :less_than_or_equal_to => 100
 
   # variables to access
-  attr_accessible :name, :points_for_win, :points_for_draw, :points_for_lose
+  attr_accessible :name, :points_for_win, :points_for_draw, :points_for_lose, :player_limit
   attr_accessible :description, :icon
   
   def self.sport_name

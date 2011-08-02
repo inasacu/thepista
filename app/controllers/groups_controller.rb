@@ -35,16 +35,19 @@ class GroupsController < ApplicationController
 
   def new
     @group = Group.new
-    # @group.name = "#{I18n.t(:name)} I"
-    # @group.second_team = "#{I18n.t(:second_team)} II" 
-    @group.time_zone = current_user.time_zone if !current_user.time_zone.nil?
-    @group.player_limit = DUNBAR_NUMBER
     @markers = Marker.find(:all)
     @sports = Sport.find(:all)
+    # @group.conditions = I18n.t(:default_group_conditions)
   end
 
   def create
-    @group = Group.new(params[:group])		
+    @group = Group.new(params[:group])	
+    @group.name_to_second_team
+    @group.name_to_description
+    @group.default_conditions
+    @group.sport_to_points_player_limit
+    @group.time_zone = current_user.time_zone if !current_user.time_zone.nil?
+    
     @user = current_user
 
     if @group.save and @group.create_group_details(current_user)
@@ -53,10 +56,6 @@ class GroupsController < ApplicationController
     else
       render :action => 'new'
     end
-  end
-
-  def edit
-    # @group = Group.find(params[:id])
   end
 
   def update

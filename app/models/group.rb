@@ -5,23 +5,23 @@ class Group < ActiveRecord::Base
     description
     second_team
   end
-                  
-  has_attached_file :photo, :styles => {:icon => "25x25>", :thumb  => "80x80>", :medium => "160x160>",  },
-    :storage => :s3,
-    :s3_credentials => "#{RAILS_ROOT}/config/s3.yml",
-    :url => "/assets/groups/:id/:style.:extension",
-    :path => ":assets/groups/:id/:style.:extension",
-    :default_url => "group_avatar.png"  
 
-    
-    
-    validates_attachment_content_type :photo, :content_type => ['image/jpeg', 'image/png', 'image/gif', 'image/jpg', 'image/pjpeg']
-    validates_attachment_size         :photo, :less_than => 5.megabytes
-    
+  has_attached_file :photo, :styles => {:icon => "25x25>", :thumb  => "80x80>", :medium => "160x160>",  },
+  :storage => :s3,
+  :s3_credentials => "#{RAILS_ROOT}/config/s3.yml",
+  :url => "/assets/groups/:id/:style.:extension",
+  :path => ":assets/groups/:id/:style.:extension",
+  :default_url => "group_avatar.png"  
+
+
+
+  validates_attachment_content_type :photo, :content_type => ['image/jpeg', 'image/png', 'image/gif', 'image/jpg', 'image/pjpeg']
+  validates_attachment_size         :photo, :less_than => 5.megabytes
+
 
   # validations 
   validates_uniqueness_of   :name,    :case_sensitive => false
-  
+
   validates_presence_of     :name
   validates_presence_of     :second_team
   validates_presence_of     :description
@@ -29,15 +29,15 @@ class Group < ActiveRecord::Base
   validates_presence_of     :time_zone
   validates_presence_of     :sport_id
   validates_presence_of     :marker_id
-  
+
   validates_length_of       :name,            :within => NAME_RANGE_LENGTH
   validates_length_of       :second_team,     :within => NAME_RANGE_LENGTH
   validates_length_of       :description,     :within => DESCRIPTION_RANGE_LENGTH
   validates_length_of       :conditions,      :within => DESCRIPTION_RANGE_LENGTH
-      
+
   validates_format_of       :name,            :with => /^[A-z 0-9 _.-]*$/ 
   validates_format_of       :second_team,     :with => /^[A-z 0-9 _.-]*$/ 
-    
+
   validates_numericality_of :points_for_win,  :greater_than_or_equal_to => 0, :less_than_or_equal_to => 20
   validates_numericality_of :points_for_lose, :greater_than_or_equal_to => 0, :less_than_or_equal_to => 20
   validates_numericality_of :points_for_draw, :greater_than_or_equal_to => 0, :less_than_or_equal_to => 20
@@ -46,11 +46,11 @@ class Group < ActiveRecord::Base
   # variables to access
   attr_accessible :name, :second_team, :gameday_at, :points_for_win, :points_for_draw, :points_for_lose, :player_limit
   attr_accessible :time_zone, :sport_id, :marker_id, :description, :conditions, :photo, :available, :looking, :enable_comments
-    
+
   # NOTE:  MUST BE DECLARED AFTER attr_accessible otherwise you get a 'RuntimeError: Declare either attr_protected or attr_accessible' 
   has_friendly_id :name, :use_slug => true, :approximate_ascii => true, 
-                   :reserved_words => ["new", "create", "index", "list", "signup", "edit", "update", "destroy", "show"]
-                  
+  :reserved_words => ["new", "create", "index", "list", "signup", "edit", "update", "destroy", "show"]
+
   has_and_belongs_to_many :users,           :join_table => "groups_users",   :order => "name"
 
   has_many      :classifieds
@@ -61,12 +61,12 @@ class Group < ActiveRecord::Base
   has_many      :accounts  
   has_many      :payments
   has_many      :scorecards, :conditions => "user_id > 0 and played > 0 and archive = false", :order => "points DESC, ranking"
-  
+
   has_many      :archive_scorecards, 
-                :through => :scorecards,
-                :conditions => ["user_id > 0 and played > 0 and season_ends_at < ?", Time.zone.now], 
-                :order => "points DESC, ranking"
-                
+  :through => :scorecards,
+  :conditions => ["user_id > 0 and played > 0 and season_ends_at < ?", Time.zone.now], 
+  :order => "points DESC, ranking"
+
   has_many      :fees   
 
   has_many :the_managers,
@@ -77,7 +77,7 @@ class Group < ActiveRecord::Base
   :class_name => "Role", 
   :foreign_key => "authorizable_id", 
   :conditions => ["roles.name = 'manager' and roles.authorizable_type = 'Group'"]
-  
+
   has_many :the_subscriptions,
   :through => :subscription_roles,
   :source => :roles_users
@@ -110,7 +110,7 @@ class Group < ActiveRecord::Base
     self.the_managers.each {|user| ids << user.user_id }
     the_users = User.find(:all, :conditions => ["id in (?)", ids], :order => "name")
   end
-  
+
   def all_subscribers
     ids = []
     self.users.each {|user| ids << user.user_id if user.is_subscriber_of?(self)}
@@ -122,7 +122,7 @@ class Group < ActiveRecord::Base
     self.users.each {|user| ids << user.user_id unless user.is_subscriber_of?(self)}
     the_users = User.find(:all, :conditions => ["id in (?)", ids], :order => "name")
   end
-  
+
   def total_managers
     counter = 0
     self.all_the_managers.each {|user| counter += 1}
@@ -132,7 +132,7 @@ class Group < ActiveRecord::Base
   def avatar
     self.photo.url
   end
-  
+
   def mediam
     self.photo.url(:medium)
   end
@@ -144,32 +144,52 @@ class Group < ActiveRecord::Base
   def icon
     self.photo.url(:icon)
   end
+
+  def name_to_second_team
+    self.second_team = "#{self.name} II"
+    self.second_team.split(".").map {|n| n.capitalize }.join(" ")
+  end
+
+  def name_to_description
+    self.description = I18n.t(:description)
+  end
   
+  def default_conditions
+    self.conditions = I18n.t(:default_group_conditions)
+  end
+  
+  def sport_to_points_player_limit
+    self.points_for_win = self.sport.points_for_win
+    self.points_for_draw = self.sport.points_for_draw
+    self.points_for_lose = self.sport.points_for_lose
+    self.player_limit = self.sport.player_limit    
+  end
+    
   def has_schedule?
     self.schedules.count > 0
   end
-  
+
   def is_futbol?
-   	# sports related to goals
+    # sports related to goals
     return [1, 2, 3, 4, 5].include?(self.sport_id)
   end
-  
+
   def is_basket?
-   	# sports related to basket
+    # sports related to basket
     return [7].include?(self.sport_id)
   end
 
   def is_group_member_of?(item)
     self.has_role?('member', item)
   end
-  
+
   def self.latest_items(items)
     find(:all, :select => "id, name, photo_file_name, updated_at as created_at", :conditions => ["created_at >= ? and archive = false", LAST_WEEK]).each do |item| 
       items << item
     end
     return items 
   end
-  
+
   def self.latest_updates(items)
     find(:all, :select => "id, name, photo_file_name, updated_at as created_at", :conditions => ["updated_at >= ? and archive = false", LAST_WEEK]).each do |item| 
       items << item
@@ -181,13 +201,13 @@ class Group < ActiveRecord::Base
     find(:all, 
     :conditions => ["id not in (?) and archive = false and looking = true and time_zone = ?", user.groups, user.time_zone],
     :order => "updated_at",
-     :limit => LOOKING_USERS) 
+    :limit => LOOKING_USERS) 
   end
-  
+
   def available_users
-      self.users.find(:all, :conditions => 'available = true', :order => 'users.name')      
+    self.users.find(:all, :conditions => 'available = true', :order => 'users.name')      
   end
-  
+
   def games_played
     games_played = 0
     self.schedules.each {|schedule| games_played += 1 if schedule.played}
@@ -202,16 +222,16 @@ class Group < ActiveRecord::Base
     Scorecard.create_user_scorecard(user, self)    
     GroupsUsers.join_team(user, self)
   end
-  
+
   def format_description
     self.description.gsub!(/\r?\n/, "<br>") unless self.description.nil?
   end
-  
+
   def format_conditions
     self.conditions.gsub!(/\r?\n/, "<br>") unless self.conditions.nil?
   end
 
-private
+  private
   def create_group_marker
     GroupsMarkers.join_marker(self, self.marker)
   end

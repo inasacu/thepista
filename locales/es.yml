@@ -195,17 +195,17 @@ es:
      create_description: Nuevo detalles   
      create_information: Nuevo detalles   
      create_invitation: Manda una invitación  
-     create_join_group:  Unete a un equipo existente.
-     create_join_challenge:  Unete a un reto existente. 
+     create_join_group:  Unete a un equipo
+     create_join_challenge:  Unete a un reto 
      create_manager: Nuevo mister   
      create_name: Nuevo nombre   
      create_note: Nueva nota
      create_new_challenge:  Haz un reto de una copa.
-     create_new_classified:  Pon un anuncio de tu equipo.
-     create_new_cup:  Organiza una copa.
-     create_new_group:  Haz tu equipo.
-     create_new_marker:  Pon un centro deportivo en el mapa.
-     create_new_schedule:  Añade un evento a tu equipo.
+     create_new_classified:  Pon un anuncio de tu equipo
+     create_new_cup:  Organiza una copa
+     create_new_group:  Haz tu equipo
+     create_new_marker:  Pon un centro deportivo en el mapa
+     create_new_schedule:  Añade un evento a tu equipo
      create_new_invitation:  Invita a tus amigos 
      create_profile: Nuevo perfil   
      create_reminder: Nuevo recordatorio   
@@ -279,7 +279,24 @@ es:
      debit_amount_description: Lo que debes pagar
      debit_total:  Cargos totales
      debit_to_group:  Deuda a tu equipo
-     debits: Cargos   
+     debits: Cargos 
+     default_group_conditions:  "Todos los jugadores tienen hasta 48 horas antes del partido para apuntarse.
+
+     A primera hora del dia del partido los Convocados son:
+
+     1. Si hay más del limite de jugadores que son ABONADOS el que mas partidos ha jugado sera pasado a Suplente.
+
+     2. Si hay una mezcla de ABONADOS y NO ABONADOS el que tiene menos partidos como NO ABONADO pasara a Suplente.
+
+     3. Los jugadores ABONADOS que estén obligados a pasar a Suplente y al final no jueguen, tendrán prioridad el siguiente partido.
+
+     4. Cualquier jugador que se apunte dentro de las 48 horas antes del partido, sea ABONADO o NO ABONADO jugara en función de cuando se apunto.
+
+     La idea es que se de preferencia a los ABONADOS, luego a los que se apunten antes.
+
+     En el momento en que cambie el estado de un jugador, de Convocado a Suplente o viceversa, el organizador mandara un correo para todos estéis informados.
+
+     Por otro lado y por compañerismo, si os apuntáis y no podéis venir avisad con tiempo o contactar con alguien del equipo que os pueda sustituir."  
      default_reliable: Fiable   
      defense:  Defensa
      delete_activity: Borrar actividad    
@@ -406,16 +423,16 @@ es:
      feature: Prestación
      features: Prestaciones
      fee: Honorarios   
-     fee_per_challenge:  Tarifa / Participar
+     fee_per_challenge:  Tarifa a pagar el Participar
      fee_per_challenge_description:  (Este es el precio que pone el manager por participar...)
-     fee_per_game: Tarifa / Partido   
-     fee_per_game_description: (Este es el precio del evento por jugador...) 
+     fee_per_game: Tarifa a pagar el Jugador    
+     fee_per_game_description: (Este es el precio que se le cobra al jugador no abonado...) 
      fee_per_game_time:  Tarifa / Hora   
      fee_per_game_time_description: (Este es el precio de la pista por hora...)
-     fee_per_lighting: Tarifa / Luces   
-     fee_per_lighting_description: (Este es el precio de la luz en la pista or cancha...)  
-     fee_per_pista: Tarifa / Pista   
-     fee_per_pista_description: (Este es el precio de la pista or cancha...) 
+     fee_per_lighting: Tarifa por tener las Luces   
+     fee_per_lighting_description: (Este es el precio de la luz en la pista o cancha...)  
+     fee_per_pista: Tarifa de la Pista   
+     fee_per_pista_description: (Este es el precio de la pista o cancha...) 
      fee_per_tour: Tarifa / Torneo   
      fee_per_tour_description: (Este es el precio del torneo...)  
      feedback: feedback   
@@ -977,7 +994,7 @@ es:
      photo_description: "(Opción para subir una imagen...{formato: jpeg, gif, png, jpg}{tamaño: 5mb})"  
      physical_level_description: "(Del 1 al 5, pon el nivel físico que crees que tienes comparado con los de tu equipo...)"  
      player_limit:  Limite de jugadores
-     player_limit_description:  Limite de jugadores que puede tener el equipo. 
+     player_limit_description:  Limite de jugadores 
      player_with: "Jugadores con"
      player_with_less_games: asistencias a eventos menos que el resto.
      points: Ptos.

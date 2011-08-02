@@ -31,40 +31,15 @@
     <span class="description"><%= label_name('description') %></span>
   </div>
 
-  <!-- <div class="group">
-    <%#= f.label :remind_before, label_name('remind_before'), :class => :label %>
-    <%#= f.text_field :remind_before, :class => 'textfield' %>
-    <span class="description"><%#= label_name('remind_before', 'description') %></span>
-  </div> -->
-
-  <!-- <div class="group">
-    <%#= f.label :marker_id, label_name('marker'), :class => :label %>
-    <%#= f.select(:marker_id, Marker.marker_name, 
-	{:selected => @group.marker_id, :include_blank => true}) %>&nbsp;<%#= link_to label_name(:markers_create), new_marker_url %><br />
-    <span class="description"><%#= label_name('marker', 'description') %></span>
-  </div> -->
-
-  <!-- <div class="group">
-    <%#= f.label :season_ends_at, label_name('season_ends_at'), :class => :label %>
-    <%#= f.date_select :season_ends_at, :class => 'datetime_select' %><br />
-    <span class="description"><%#= label_name('season_ends_at', 'description') %></span>
-  </div> -->
-
   </div> 
 
-  <div class="column right"> 
+  <div class="column right">
 
-  <div class="group">
-    <%= f.label :season, label_name('season'), :class => :label %>
-    <%= f.text_field :season, :class => 'textscore' %><br />
-    <span class="description"><%= label_name('season', 'description') %></span>
-  </div>
-
-  <div class="group">
-    <%= f.label :jornada, label_name('jornada'), :class => :label %>
-    <%= f.text_field :jornada, :class => 'textscore' %><br />
-    <span class="description"><%= label_name('jornada', 'description') %></span>
-  </div>
+  <!-- <div class="group">
+    <%#= f.label :jornada, label_name('jornada'), :class => :label %>
+    <%#= f.text_field :jornada, :class => 'textscore' %><br />
+    <span class="description"><%#= label_name('jornada', 'description') %></span>
+  </div>  -->
 
   <div class="group">
     <%= f.label :fee_per_game, label_name('fee_per_game'), :class => :label %>
@@ -85,12 +60,6 @@
   </div>
 
   <div class="group">
-    <%= f.label :reminder, label_name('reminder'), :class => :label %>
-    <%= f.check_box :reminder, :class => 'check_box' %>
-    <span class="description"><%= label_name('reminder', 'description') %></span>
-  </div>
-
-  <div class="group">
     <%= f.label :public, label_name('public'), :class => :label %>
     <%= f.check_box :public, :class => 'check_box' %>
     <span class="description"><%= label_name('public', 'description') %></span>
@@ -104,6 +73,8 @@
 <%= f.hidden_field :group_id %>
 <%= f.hidden_field :sport_id %>
 <%= f.hidden_field :time_zone %>
+<%= f.hidden_field :season %>
+<%= f.hidden_field :jornada %>
 
 <div class="clear"></div> 
 
