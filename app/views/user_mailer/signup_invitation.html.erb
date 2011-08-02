@@ -22,16 +22,29 @@
 <% if @group %>
 
 <%= I18n.t(:participate_group_afterwards) %><br /><br />
-<%= link_to(@group.name, group_url(@group)) %>
-<br /><br />
+<%#= link_to(@group.name, group_url(@group)) %>
+<!-- <br /><br /> -->
+
+<%
+	item = @group
+	the_label = "#{I18n.t(:add_to_item)} #{I18n.t(:to)} #{sanitize(item.name)}"
+%>
+<%=  link_to(the_label, join_item_url(:id => item, :item => item.class.to_s, :teammate => @user)) %><br /><br />
+
 <% end %>
 
 
 <% if @schedule %>
 
 <%= I18n.t(:participate_group_afterwards) %><br /><br />
-<%= link_to(@schedule.group.name, group_url(@schedule.group)) %>
-<br /><br />
+<%#= link_to(@schedule.group.name, group_url(@schedule.group)) %>
+<!-- <br /><br /> -->
+
+<%
+	item = @schedule.group
+	the_label = "#{I18n.t(:add_to_item)} #{I18n.t(:to)} #{sanitize(item.name)}"
+%>
+<%=  link_to(the_label, join_item_url(:id => item, :item => item.class.to_s, :teammate => @user)) %><br /><br />
 
 <%= I18n.t(:participate_schedule_afterwards) %><br /><br />
 <%= link_to(@schedule.concept, schedule_url(@schedule)) %>
@@ -44,6 +57,12 @@
 <%= I18n.t(:participate_challenge_afterwards) %><br /><br />
 <%= link_to(@challenge.name, challenge_url(@challenge)) %>
 <br /><br />
+
+<%
+	item = @challenge
+	the_label = "#{I18n.t(:add_to_item)} #{I18n.t(:to)} #{sanitize(item.name)}"
+%>
+<%=  link_to(the_label, join_item_url(:id => item, :item => item.class.to_s, :teammate => @user)) %><br /><br />
 <% end %>
 
 <% if @cup %>
