@@ -769,8 +769,13 @@ input.text_field,text_area.textfield,td.label {
 }
 
 .table td.last_upcoming {
-	text-align: left
+	text-align: left;
+/*	font-size: 15px;*/
 }
+
+/*.table td.last_upcoming a  {
+	font-size: 12px;
+}*/
 
 .table th.last_index {
 	width:150px	

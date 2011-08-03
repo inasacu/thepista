@@ -719,7 +719,8 @@ en:
      latest_activities:  Latest Activities
      leave_comment: Leave a comment...   
      leave_group: Leave the Team   
-     left_comment_on_wall: Has left a COMMENT for    
+     left_comment_on_wall: Has left a COMMENT for  
+     left_post_teams_on_forum: Has left a team PROPOSAL on  
      left_post_on_forum: Has left a COMMENT on   
      lighting:  Lighting
      lighting_description: (Is there lighting in the pista?) 
@@ -969,7 +970,7 @@ en:
      petition_at:  Requested Date
      petition_join_item_accept:  Accept
      petition_join_item_decline: Decline
-     petition_no:  No Requests to show.
+     petition_no:  No Requests to diplay
      petition_to_join: Request to join
      petition_to_join_accepted: Has joined
      petition_pending: Pending Request   
@@ -1575,7 +1576,7 @@ en:
      classifieds_edit:  Edit Announcement
      classifieds_index:  Announcements
      classifieds_new:  New Announcement
-     classifieds_no:  No Announcements to show.
+     classifieds_no:  No Announcements to diplay
      classifieds_option:  Options
      classified_options: Options
      classifieds_create:  New Announcement
@@ -1595,7 +1596,7 @@ en:
      invitations_index:  Invitations Sent
      invitations_import:  Invite Your Contacts
      invitations_for_your_friends:  Invite your friends to join HayPista
-     invitations_no:  No Invitation to show.
+     invitations_no:  No Invitation to diplay
      invitations_option:  Options
      invitations_create:  Invite Your Friends 
      invitations_create_cup: Invite your friends to this tournament
@@ -1633,7 +1634,7 @@ en:
      fees_item_list:  Charges
      fees_manager_option:  Requires team manager position to view more options.
      fees_new:  New Charge
-     fees_no:  No Charge to show.
+     fees_no:  No Charge to diplay
      fees_edit:  Edit Charge
      fees_option:  Options
      fees_show:  Show Charge
@@ -1658,7 +1659,7 @@ en:
      payments_list:  Payments
      payments_manager_option:  Requires team manager position to view more options.
      payments_new:  New Payment
-     payments_no:  No Payment to show.
+     payments_no:  No Payment to diplay
      payments_destroy:  Remove Payment
      payments_edit:  Edit Payment
      payments_option:  Options
@@ -1676,7 +1677,7 @@ en:
      groups_list:  Rest of the Teams
      groups_new:  New Team
      groups_new_option: Options
-     groups_no:  No Teams to show.
+     groups_no:  No Teams to diplay
      groups_none:  No Teams.
      groups_options_without: "What options do you have since you are not on a team?"
      groups_option:  Options
@@ -1688,7 +1689,7 @@ en:
      markers_index:  Locations
      markers_index_option: Options 
      markers_new: New Location
-     markers_no: No Location to show.
+     markers_no: No Location to diplay
      markers_edit: Edit Location
      markers_option:  Options
      markers_show: Show Location     
@@ -1701,24 +1702,24 @@ en:
      meets_index_option: Options 
      meets_invitations_create:  Invite a friend to the Event 
      meets_list:  Previous Events 
-     meets_list_no: No Previous Events to show.
+     meets_list_no: No Previous Events to diplay
      meets_manager_option:  Requires team manager position to view more options.
      meets_new: New Event 
-     meets_no: No events to show.
+     meets_no: No events to diplay
      meets_edit: Edit Event 
      meets_update: Edit Event 
      meets_option:  Options
      meet_options:  Options 
      meets_show: Tournament Details
-     meet_ausentes:  No No-Show to show.
-     meet_convocados:  No Squad to show.
-     meet_excess_player:  Too many Players on the Squad.
-     meet_ultima_hora:   Noone on reserve to show.
-     meet_no_disponible:  Noone on Unavailable to show.     
-     meets_tour_roster_false:  Noone on Squad to show.
-     meets_tour_last_minute_false:   Noone on reserve to show.
-     meets_tour_no_show_false:  Noone on No-Show to show.
-     meets_tour_unavailable_true_false:  Noone on Unavailable to show.
+     meet_ausentes:  No No-Show to display
+     meet_convocados:  No Squad to display
+     meet_excess_player:  Too many Players on the Squad
+     meet_ultima_hora:   Noone on reserve to show
+     meet_no_disponible:  Noone on Unavailable to show     
+     meets_tour_roster_false:  Noone on Squad to show
+     meets_tour_last_minute_false:   Noone on reserve to show
+     meets_tour_no_show_false:  Noone on No-Show to display
+     meets_tour_unavailable_true_false:  Noone on Unavailable to show
      meets_tour_roster_true:  Squad
      meets_tour_last_minute_true:   Reserve
      meets_tour_no_show_true:  No-Shows
@@ -1736,7 +1737,7 @@ en:
      messages_index:  Messages
      messages_index_option: Options
      messages_new: New Message
-     messages_no: No Messages to show.
+     messages_no: No Messages to diplay
      messages_edit: Edit Message
      messages_option:  Options
      messages_send:  Send Message
@@ -1753,29 +1754,29 @@ en:
      schedules_index_option: Options
      schedules_invitations_create:  Invite a friend to the Event
      schedules_list:  Previous Events
-     schedules_list_no: No previous events to show.
+     schedules_list_no: No previous events to diplay
      schedules_my_list: My Events 
-     schedules_my_list_no: No events to show.
+     schedules_my_list_no: No events to diplay
      schedules_manager_option:  Requires team manger to see additional options.
      schedules_new: New Event
-     schedules_no: No events to show.
+     schedules_no: No events to diplay
      schedules_edit: Edit Event
      schedules_update: Edit Event
      schedules_option:  Options 
      schedule_options:  Options 
      schedules_show: Event Details
-     schedule_ausentes:  Noone on No-Show to show.
-     schedule_convocados:  Noone on Squad to show.
+     schedule_ausentes:  Noone on No-Show to display
+     schedule_convocados:  Noone on Squad to display
      schedule_excess_player:  Too many players on squad
      schedule_excess_player_cluetip:  The player limit for this event has been reached.  Check the event details to view the maximum number of players allowed for this event.
-     schedule_ultima_hora:   Noone on reserve to show.
-     schedule_no_disponible:  Noone on unavailable to show.
+     schedule_ultima_hora:   Noone on reserve to display
+     schedule_no_disponible:  Noone on unavailable to diplay
      schedule_rate: Rate the Event  
      schedule_rate_average: Rate Event Average   
-     schedules_team_roster_false:  Noone on Squad to show.
-     schedules_team_last_minute_false:   Noone on reserve to show.
-     schedules_team_no_show_false:  Noone on No-Shows to show.
-     schedules_team_unavailable_false:  Noone on Unavailable to show.
+     schedules_team_roster_false:  Noone on Squad to diplay
+     schedules_team_last_minute_false:   Noone on reserve to diplay
+     schedules_team_no_show_false:  Noone on No-Shows to diplay
+     schedules_team_unavailable_false:  Noone on Unavailable to diplay
      schedules_team_roster_true:  Squad
      schedules_team_last_minute_true:   Reserve
      schedules_team_no_show_true:  No-Shows
@@ -1786,7 +1787,7 @@ en:
      scorecards_archive:  Archive Scorecard
      scorecards_index:   Scorecards
      scorecards_manager_option:  Requires team manager position to view more options.
-     scorecards_no: No Scorecard to show.
+     scorecards_no: No Scorecard to diplay
      scorecards_option:  Options
      scorecards_less_games:  ( * ) Players with less event attendances
      scorecards_legend:  Leyend
@@ -1805,7 +1806,7 @@ en:
      standings_archive:  Archivar la Scorecard de Tournament
      standings_index:   Scorecards de Tournament
      standings_manager_option:  Requires team manager position to view more options.
-     standings_no: No Scorecard de Tournament to show.
+     standings_no: No Scorecard de Tournament to diplay
      standings_option:  Options 
      standings_less_games:  ( * ) Players con menos asistencias a events
      standings_legend:  Leyend   
@@ -1846,7 +1847,7 @@ en:
      rounds_list:  Rest of the Rounds 
      rounds_new:  New Round 
      rounds_new_option: Options
-     rounds_no:  No Round to show.
+     rounds_no:  No Round to diplay
      rounds_none:  No Round.
      rounds_options_without: "What options do you have since you do not have a tournament round?"
      rounds_option:  Options
@@ -1876,7 +1877,7 @@ en:
      sports_index_option: Options
      sports_maximo_option:   Admin Access Only.
      sports_new: New Sport
-     sports_no: No Sport to show.
+     sports_no: No Sport to diplay
      sports_none:  No Sports.
      sports_option:  Options
      sports_show: Show Sport     
@@ -1910,7 +1911,7 @@ en:
      users_edit_option:  Options
      users_list:  Rest of the Players
      users_new:  New Player
-     users_no:  No Players to show.
+     users_no:  No Players to diplay
      users_petition:  Player Request
      users_search:  Search for Players
      users_show: Show Player

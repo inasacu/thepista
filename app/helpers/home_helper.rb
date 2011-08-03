@@ -168,14 +168,17 @@ module HomeHelper
 
   		when "Forum"
   		    forum = teammate.commentable
-  			the_icon = comment_image_link_small(forum)
+  			  the_icon = comment_image_link_small(forum)
 
   		    if forum.schedule        
   		      	is_member = current_user.is_member_of?(forum.schedule.group)  
-  				item_group_link = item_name_link(forum.schedule.group)
+  				    item_group_link = item_name_link(forum.schedule.group)
 
-  		        the_label = %(#{I18n.t(:left_post_on_forum) } 
-  								#{is_member ? forum_link(forum): sanitize(forum.schedule.concept)})
+  		        the_label = %(#{I18n.t(:left_post_on_forum) } #{is_member ? forum_link(forum): sanitize(forum.schedule.concept)})
+  		        if teammate.title == 'Schedule'
+                the_label = %(#{I18n.t(:left_post_teams_on_forum) } #{is_member ? forum_link(forum): sanitize(forum.schedule.concept)})
+              end
+              
   		    end
 
   		end

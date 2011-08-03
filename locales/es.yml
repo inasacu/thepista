@@ -22,7 +22,7 @@ es:
      agendas_create:  Nueva Agenda  
      agendas_index:  Agendas
      agendas_new:  Nueva Agenda    
-     agendas_no:  Ninguna agenda para mostrar.
+     agendas_no:  Ninguna agenda para mostrar
      ago:  "Hace {{count}}" 
      all_group:  Todos los equipos 
      all_scorecard:  Todos las Clasificaciones
@@ -38,7 +38,7 @@ es:
      announcements_index:  Comunicaciones 
      announcements_list:    Anteriores communicaciones
      announcements_new:    Nueva communicación
-     announcements_no:  Ninguna communicación para mostrar. 
+     announcements_no:  Ninguna communicación para mostrar 
      announcements_option: Opciones
      announcements_previous:  Anteriores communicaciones
      app_name: HayPista
@@ -88,10 +88,10 @@ es:
      casts_index: Mis pronósticos
      casts_index_option: Opciones 
      casts_list:  Todos los pronósticos
-     casts_list_no: Ningun pronóstico previo para mostrar.
+     casts_list_no: Ningun pronóstico previo para mostrar
      casts_manager_option:  Requiere organizador de reto para ver mas opciones.
      casts_new: Nuevo pronóstico
-     casts_no: Ningun pronóstico para mostrar.
+     casts_no: Ningun pronóstico para mostrar
      casts_edit: Actualizar pronóstico
      casts_update: Actualizar pronóstico
      casts_option:  Opciones 
@@ -129,7 +129,7 @@ es:
      challenges_name_description:  Nombre del reto
      challenges_new:  Nuevo reto
      challenges_new_option: Opciones 
-     challenges_no:  Ningun reto para mostrar.
+     challenges_no:  Ningun reto para mostrar
      challenges_none:  Ningun reto.
      challenges_options_without: "¿Qué opciones tienes ya que no tienes un reto?"
      challenges_points:  Puntos / Partido
@@ -258,7 +258,7 @@ es:
      cups_list:  Anteriores Copas
      cups_new:  Nueva copa
      cups_new_option: Opciones 
-     cups_no:  Ninguna copa para mostrar.
+     cups_no:  Ninguna copa para mostrar
      cups_none:  Ninguna copa.
      cup_options:  Opciones
      cups_options_without: "¿Qué opciones tienes ya que no estas apuntado a una copa?"
@@ -475,10 +475,10 @@ es:
      games_index_option: Opciones 
      games_invitations_create:  Invita a un amigo al evento
      games_list:  Anteriores eventos
-     games_list_no: Ningun evento previo para mostrar.
+     games_list_no: Ningun evento previo para mostrar
      games_manager_option:  Requiere organizador de equipo para ver mas opciones.
      games_new: Nuevo evento
-     games_no: Ningun evento para mostrar.
+     games_no: Ningun evento para mostrar
      games_create: Nuevo Evento
      games_edit: Actualizar evento
      games_update: Actualizar evento
@@ -720,8 +720,9 @@ es:
      latest_activities:  Últimas actividades
      leave_comment: Deja un comentario...   
      leave_group: Desapuntate del equipo   
-     left_comment_on_wall: Ha dejado un COMENTARIO a    
-     left_post_on_forum: Ha dejado un COMENTARIO en   
+     left_comment_on_wall: Ha dejado un COMENTARIO a 
+     left_post_teams_on_forum: Ha hecho una PROPUESTO de equipos en
+     left_post_on_forum: Ha dejado un COMENTARIO en 
      lighting:  Luces
      lighting_description: (Hay luces en la pista?) 
      list: Listado   
@@ -970,7 +971,7 @@ es:
      petition_at:  Fecha de la petición
      petition_join_item_accept:  Acepto
      petition_join_item_decline: Rechazo
-     petition_no:  Ninguna petición para mostrar.  
+     petition_no:  Ninguna petición para mostrar  
      petition_to_join: Unirse a
      petition_to_join_accepted: Se ha unido a
      petition_pending: Peticiones pendiente   
@@ -1117,7 +1118,7 @@ es:
      reservations_name_description:  Nombre de la reserva
      reservations_new:  Reservar
      reservations_new_option: Opciones 
-     reservations_no:  Ninguna reserva para mostrar.
+     reservations_no:  Ninguna reserva para mostrar
      reservations_none:  Ninguna reserva.
      reservation_options:  Opciones
      reservations_options_without: "¿Qué opciones tienes ya que no hay reservas?"
@@ -1291,7 +1292,7 @@ es:
      escuadras_name_description:  Nombre del equipo
      escuadras_new:  Nuevo equipo
      escuadras_new_option: Opciones 
-     escuadras_no:  Ningun equipo para mostrar.
+     escuadras_no:  Ningun equipo para mostrar
      escuadras_none:  Ningun equipo.
      escuadra_options:  Opciones
      escuadras_options_without: "¿Qué opciones tienes ya que no hay equipos?"
@@ -1636,7 +1637,7 @@ es:
      fees_item_list:  Cargos
      fees_manager_option:  Requiere organizador de equipo para ver mas opciones.
      fees_new:  Nuevo cargo
-     fees_no:  Ningun cargo para mostrar.
+     fees_no:  Ningun cargo para mostrar
      fees_edit:  Actualizar cargo
      fees_option:  Opciones
      fees_show:  Mostrar cargo
@@ -1661,7 +1662,7 @@ es:
      payments_list:  Payments
      payments_manager_option:  Requiere organizador de equipo para ver mas opciones.
      payments_new:  Nuevo pago
-     payments_no:  Ningun pago para mostrar.
+     payments_no:  Ningun pago para mostrar
      payments_destroy:  Borrar pago
      payments_edit:  Actualizar pago
      payments_option:  Opciones 
@@ -1679,7 +1680,7 @@ es:
      groups_list:  Resto de equipo
      groups_new:  Nuevo equipo
      groups_new_option: Opciones 
-     groups_no:  Ningun equipo para mostrar.
+     groups_no:  Ningun equipo para mostrar
      groups_none:  Ningun equipo.
      groups_options_without: "¿Qué opciones tienes ya que no tienes un equipo?"
      groups_option:  Opciones 
@@ -1691,7 +1692,7 @@ es:
      markers_index:  Ubicaciones
      markers_index_option: Opciones 
      markers_new: Nueva ubicación
-     markers_no: Ningun centro deportivo para mostrar.
+     markers_no: Ningun centro deportivo para mostrar
      markers_edit: Actualizar centro deportivo
      markers_option:  Opciones 
      markers_show: Mostrar centro deportivo     
@@ -1704,24 +1705,24 @@ es:
      meets_index_option: Opciones  
      meets_invitations_create:  Invita a un amigo al evento 
      meets_list:  Anteriores eventos 
-     meets_list_no: Ningun eventoprevio para mostrar.
+     meets_list_no: Ningun eventoprevio para mostrar
      meets_manager_option:  Requiere organizador de equipo para ver mas opciones.
      meets_new: Nuevo evento 
-     meets_no: Ningun evento para mostrar.
+     meets_no: Ningun evento para mostrar
      meets_edit: Actualizar evento 
      meets_update: Actualizar evento 
      meets_option:  Opciones 
      meet_options:  Opciones 
      meets_show: Detalles del evento de torneo
-     meet_ausentes:  Ningun ausente para mostrar.
-     meet_convocados:  Ningun convocado para mostrar.
+     meet_ausentes:  Ningun ausente para mostrar
+     meet_convocados:  Ningun convocado para mostrar
      meet_excess_player:  Demasiados jugadores convocados.
-     meet_ultima_hora:   Ninguno en suplente para mostrar.
-     meet_no_disponible:  Ninguno no disponible para mostrar.     
-     meets_tour_roster_false:  Ningun convocado para mostrar.
-     meets_tour_last_minute_false:   Ninguno en suplente para mostrar.
-     meets_tour_no_show_false:  Ningun ausente para mostrar.
-     meets_tour_unavailable_true_false:  Ninguno no disponible para mostrar.
+     meet_ultima_hora:   Ninguno en suplente para mostrar
+     meet_no_disponible:  Ninguno no disponible para mostrar    
+     meets_tour_roster_false:  Ningun convocado para mostrar
+     meets_tour_last_minute_false:   Ninguno en suplente para mostrar
+     meets_tour_no_show_false:  Ningun ausente para mostrar
+     meets_tour_unavailable_true_false:  Ninguno no disponible para mostrar
      meets_tour_roster_true:  Convocados
      meets_tour_last_minute_true:   Suplente
      meets_tour_no_show_true:  Ausentes
@@ -1739,7 +1740,7 @@ es:
      messages_index:  Mensajes
      messages_index_option: Opciones 
      messages_new: Nuevo mensaje
-     messages_no: Ningun mensaje para mostrar.
+     messages_no: Ningun mensaje para mostrar
      messages_edit: Actualizar mensaje
      messages_option:  Opciones 
      messages_send:  Manda mensaje
@@ -1756,29 +1757,29 @@ es:
      schedules_index_option: Opciones 
      schedules_invitations_create:  Invita a un amigo al evento
      schedules_list:  Anteriores eventos
-     schedules_list_no: Ningun evento previo para mostrar.
+     schedules_list_no: Ningun evento previo para mostrar
      schedules_my_list: Mis eventos 
-     schedules_my_list_no: Ningun evento para mostrar.
+     schedules_my_list_no: Ningun evento para mostrar
      schedules_manager_option:  Requiere organizador de equipo para ver mas opciones.
      schedules_new: Nuevo evento
-     schedules_no: Ningun evento para mostrar.
+     schedules_no: Ningun evento para mostrar
      schedules_edit: Actualizar evento
      schedules_update: Actualizar evento
      schedules_option:  Opciones 
      schedule_options:  Opciones 
      schedules_show: Detalles del evento
-     schedule_ausentes:  Ningun ausente para mostrar.
-     schedule_convocados:  Ningun convocado para mostrar.
+     schedule_ausentes:  Ningun ausente para mostrar
+     schedule_convocados:  Ningun convocado para mostrar
      schedule_excess_player:  Demasiados jugadores convocados
      schedule_excess_player_cluetip:  El limite de jugadores del evento ha sido superado.  Para ver la maxima cantidad de jugadores puedes consultarlo en los detalles del evento.
-     schedule_ultima_hora:   Ninguno en suplente para mostrar.
-     schedule_no_disponible:  Ninguno no disponible para mostrar.
+     schedule_ultima_hora:   Ninguno en suplente para mostrar
+     schedule_no_disponible:  Ninguno no disponible para mostrar
      schedule_rate: Valoración del evento
      schedule_rate_average: Valoración media del evento         
-     schedules_team_roster_false:  Ningun convocado para mostrar.
-     schedules_team_last_minute_false:   Ninguno en suplente para mostrar.
-     schedules_team_no_show_false:  Ningun ausente para mostrar.
-     schedules_team_unavailable_false:  Ninguno no disponible para mostrar.
+     schedules_team_roster_false:  Ningun convocado para mostrar
+     schedules_team_last_minute_false:   Ninguno en suplente para mostrar
+     schedules_team_no_show_false:  Ningun ausente para mostrar
+     schedules_team_unavailable_false:  Ninguno no disponible para mostrar
      schedules_team_roster_true:  Convocados
      schedules_team_last_minute_true:   Suplente
      schedules_team_no_show_true:  Ausentes
@@ -1789,7 +1790,7 @@ es:
      scorecards_archive:  Archivar la clasificación
      scorecards_index:   Clasificaciones
      scorecards_manager_option:  Requiere organizador de equipo para ver mas opciones.
-     scorecards_no: Ninguna clasificación para mostrar.
+     scorecards_no: Ninguna clasificación para mostrar
      scorecards_option:  Opciones 
      scorecards_less_games:  ( * ) Jugadores con menos asistencias a eventos
      scorecards_legend:  Leyenda
@@ -1808,7 +1809,7 @@ es:
      standings_archive:  Archivar la clasificación de torneo
      standings_index:   Clasificaciones de torneo
      standings_manager_option:  Requiere organizador de equipo para ver mas opciones.
-     standings_no: Ninguna clasificación de torneo para mostrar.
+     standings_no: Ninguna clasificación de torneo para mostrar
      standings_option:  Opciones
      standings_less_games:  ( * ) Jugadores con menos asistencias a eventos
      standings_legend:  Leyenda 
@@ -1849,7 +1850,7 @@ es:
      rounds_list:  Resto de la fase 
      rounds_new:  Nueva fase 
      rounds_new_option: Opciones  
-     rounds_no:  Ninguna fase para mostrar.
+     rounds_no:  Ninguna fase para mostrar
      rounds_none:  Ninguna fase.
      rounds_options_without: "¿Qué opciones tienes ya que no tienes una fase de torneo?"
      rounds_option:  Opciones 
@@ -1879,7 +1880,7 @@ es:
      sports_index_option: Opciones 
      sports_maximo_option:  Requiere organizador de administrador para ver mas opciones.
      sports_new: Nuevo deporte
-     sports_no: Ningun deporte para mostrar.
+     sports_no: Ningun deporte para mostrar
      sports_none:  Ningun deporte.
      sports_option:  Opciones 
      sports_show: Mostrar deporte     
@@ -1916,7 +1917,7 @@ es:
      users_edit_option:  Opciones 
      users_list:  Resto de jugadores
      users_new:  Nuevo jugador
-     users_no:  Ningun Jugador para mostrar.
+     users_no:  Ningun Jugador para mostrar
      users_petition:  Petición del jugador
      users_search:  Busqueda de jugadores
      users_show: Mostrar jugadores

@@ -8,14 +8,14 @@ class CommentsController < ApplicationController
       @blog = Blog.find(params[:blog][:id])
 
       @comment = Comment.new(params[:comment])
-      @blog.comments.create(:body => @comment.body, :user => current_user)    
+      @blog.comments.create(:body => @comment.body, :user => current_user, :title => @comment.title)     
       redirect_to blog_url(@blog)
       return
     end
     
     if @forum
       @comment = Comment.new(params[:comment])
-      @forum.comments.create(:body => @comment.body, :user => current_user)    
+      @forum.comments.create(:body => @comment.body, :user => current_user, :title => @comment.title)    
       redirect_to forum_url(@forum)
       return
     end

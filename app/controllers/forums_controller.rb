@@ -17,7 +17,7 @@ class ForumsController < ApplicationController
       @group = @schedule.group
       @the_roster = @schedule.the_roster     
       @comment = Comment.new
-      @comment.body = "there is a roster"
+      @comment.body = ""
 
       home_team = {}
     	away_team = {}
@@ -44,7 +44,7 @@ class ForumsController < ApplicationController
       home_team['team'] = "#{@schedule.home_group}: (#{home_team['total_players']}) #{home_team['players']}".chop
       away_team['team'] = "#{@schedule.away_group}: (#{away_team['total_players']}) #{away_team['players']}".chop
       
-      @comment = Comment.new(:body => "#{I18n.t(:groups)}\r\n#{home_team['team']}\r\n#{away_team['team']}\r\n")
+      @comment = Comment.new(:body => "#{I18n.t(:groups)}\r\n#{home_team['team']}\r\n#{away_team['team']}\r\n", :title => @schedule.class.to_s)
     end
     
   end

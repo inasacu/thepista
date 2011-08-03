@@ -98,7 +98,25 @@ module SchedulesHelper
 
     elsif Time.zone.now < schedule.starts_at
       the_label = ""
-      schedule.matches.each {|match| the_label = "<STRONG>#{I18n.t(:your_roster_status) } #{( match.type_name).downcase}</STRONG>" if match.user == current_user}
+      
+      schedule.matches.each do |match| 
+        the_font_begin =  ""
+        the_font_end = ""
+
+        case match.type_id
+        when 1
+          the_font_begin = "<font color='#0f7d00'>"
+          the_font_end = "</font>"
+        when 2
+          the_font_begin = "<font color='#ff9933'>"
+          the_font_end = "</font>"
+        when 3
+          the_font_begin = "<font color='#ff3300'>"
+          the_font_end = "</font>"
+        end
+        the_label = "#{I18n.t(:your_roster_status) } #{the_font_begin}#{(match.type_name).downcase}#{the_font_end}" if match.user == current_user
+      end
+      
       return content_tag 'td', "#{the_label}<br/>#{match_all_my_link(schedule, current_user, false, false)}", :class => "last_upcoming"
     end
   end
