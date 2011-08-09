@@ -1,7 +1,3 @@
-<% display_qr_code = false %>
-
-<% if display_qr_code %>
-
 <%# 
 	my_venues = []				# my venues
 	manager_venues = []			# my manage teams
@@ -14,29 +10,7 @@
 
 <%#= render 'shared/latest_fee_box', :venues => my_venues %>
 <%#= render 'shared/latest_fee_box', :venues => manager_venues, :is_manager => true %>
-<%
-	the_link = "http://haypista.com"
-	@qr = RQRCode::QRCode.new(the_link, :size => 10, :level => :h )
-%>
-<div class="block">
-	<%= content_tag 'h3', "Escanea el Codigo con tu movil." %>
-	<div class="sidebar-block">
-		<p>
-			<table class="qr_code">
-				<% @qr.modules.each_index do |x| %>
-				<tr>  
-					<% @qr.modules.each_index do |y| %>
-						<% if @qr.dark?(x,y) %>
-							<td class="black"/>
-						<% else %>
-							<td class="white"/>
-						<% end %>
-					<% end %>
-				</tr>
-				<% end %>
-			</table>
-			
-		</p>
-	</div>
-</div>
-<% end -%>
+
+
+
+

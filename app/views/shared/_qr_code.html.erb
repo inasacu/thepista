@@ -1,4 +1,4 @@
-<%
+<%  if DISPLAY_QR_CODE
 	the_link = "http://haypista.com#{request.request_uri}"
 	@qr = RQRCode::QRCode.new(the_link, :size => 10, :level => :h )
 %>
@@ -17,7 +17,7 @@
 </table>
 
 
-
+<% end -%>
 
 		
 

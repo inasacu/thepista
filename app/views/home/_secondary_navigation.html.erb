@@ -1,7 +1,7 @@
 <div class="secondary-navigation">
 
 <ul>
-	<%= content_tag 'li', link_to(label_name(:home), '/'), :class => get_first_active  %>
+	<%#= content_tag 'li', link_to(label_name(:home), '/'), :class => get_first_active  %>
 <% 
 if current_user 
 	unread_count = current_user.unread_messages_count 

@@ -1,0 +1,20 @@
+<!-- maps api, ajax search api, map search solution code -->  
+<!--
+<script src="http://maps.google.com/maps?file=api&amp;v=2&amp;key=<%= APP_CONFIG['google_api']['key'] %>" type="text/javascript"></script> 
+<script src="http://maps.google.com/maps?file=api&amp;v=2.92&amp;key=<%= APP_CONFIG['google_api']['key'] %>"></script>
+<script src="http://maps.google.com/intl/en_ALL/mapfiles/92/maps2.api/main.js"></script>
+
+<script src="http://maps.google.com/maps?file=api&amp;v=2&amp;key=<%= APP_CONFIG['google_api']['key'] %>" type="text/javascript"></script>
+<script src="http://gmaps-utility-library.googlecode.com/svn/trunk/dragzoom/release/src/dragzoom.js" type="text/javascript"></script>
+-->
+
+<!-- <script src="http://maps.googleapis.com/maps/api/js?v=3&sensor=false" type="text/javascript"></script> -->
+<%= javascript_include_tag('marker', 'prototype') %>
+
+<div class="block">
+	<%= get_secondary_navigation %>  
+	<div class="content">   
+		<div id="map" width="99.5%"; height="400px"></div>	
+	</div>
+</div>
+

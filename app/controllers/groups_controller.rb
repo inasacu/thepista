@@ -35,6 +35,10 @@ class GroupsController < ApplicationController
 
   def new
     @group = Group.new
+    
+    marker = Marker.find(params[:marker_id]) if params[:marker_id]
+    @group.marker = marker
+    
     @markers = Marker.find(:all)
     @sports = Sport.find(:all)
     # @group.conditions = I18n.t(:default_group_conditions)

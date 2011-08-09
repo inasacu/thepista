@@ -1,0 +1,55 @@
+
+<style>
+body{
+	text-align:center;
+}
+</style>
+
+<script type="text/javascript">
+	$(function(){
+
+		$('#test1')
+		.gmap3(
+			{ action:'init',
+			options:{
+				center:[46.578498,2.457275],
+				zoom: 5
+			}
+		},
+		
+		{ action: 'addMarkers',
+		markers:[
+		{lat:48.8620722, lng:2.352047, data:'Paris !'},
+		{lat:46.59433,lng:0.342236, data:'Poitiers : great city !'},
+		{lat:42.704931, lng:2.894697, data:'Perpignan ! <br> GO USAP !'}
+		],
+		marker:{
+			options:{
+				draggable: false
+			},
+			events:{
+				mouseover: function(marker, event, data){
+					var map = $(this).gmap3('get'),
+					infowindow = $(this).gmap3({action:'get', name:'infowindow'});
+					if (infowindow){
+						infowindow.open(map, marker);
+						infowindow.setContent(data);
+					} else {
+						$(this).gmap3({action:'addinfowindow', anchor:marker, options:{content: data}});
+					}
+				},
+				mouseout: function(){
+					var infowindow = $(this).gmap3({action:'get', name:'infowindow'});
+					if (infowindow){
+						infowindow.close();
+					}
+				}
+			}
+		}
+	}
+	);
+	});
+</script>
+
+<div id="test1" class="gmap3"></div>
+when mouse is over a marker, an unique info window appear (it is create at the first time, and then is recycled) 

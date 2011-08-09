@@ -1,3 +1,10 @@
+<% 
+	is_edit = is_action('edit')
+
+%>
+<div class="columns"> 
+
+  <div class="column left"> 	
 
   <div class="group">
     <%= f.label :name, label_name('name'), :class => :label %>
@@ -5,75 +12,42 @@
   </div>
 
   <div class="group">
-    <%= f.label :latitude, label_name('latitude'), :class => :label %>
-    <%= f.text_field :latitude, :class => 'textfield' %>
-    <span class="description"><%= label_name('latitude', 'description') %></span>
-  </div>
-
-  <div class="group">
-    <%= f.label :longitude, label_name('longitude'), :class => :label %>
-    <%= f.text_field :longitude, :class => 'textfield' %>
-    <span class="description"><%= label_name('longitude', 'description') %></span>
-  </div>
-
-  <div class="group">
-    <%= f.label :url, label_name('url'), :class => :label %>
-    <%= f.text_field :url, :class => 'textfield' %>
-    <span class="description"><%= label_name('url', 'description') %></span>
-  </div>
-
-  <div class="group">
     <%= f.label :address, label_name('address'), :class => :label %>
     <%= f.text_field :address, :class => 'textfield' %>
-    <span class="description"><%= label_name('address', 'description') %></span>
   </div>
 
   <div class="group">
-    <%= f.label :city, label_name('city'), :class => :label %>
-    <%= f.text_field :city, :class => 'textfield' %>
-    <span class="description"><%= label_name('city', 'description') %></span>
+    <%= f.label :city, label_name('city'), :class => :label %>&nbsp;&nbsp;<%= @marker.city %>
   </div>
 
   <div class="group">
-   <%= f.label :region, label_name('region'), :class => :label %>
-    <%= f.text_field :region, :class => 'textfield' %>
-    <span class="description"><%= label_name('region', 'description') %></span>
+    <%= f.label :region, label_name('region'), :class => :label %>&nbsp;&nbsp;<%= @marker.region %>
   </div>
 
   <div class="group">
-    <%= f.label :name, label_name('name'), :class => :label %>
-    <%= f.text_field :zip, :class => 'textfield' %>
-    <span class="description"><%= control_label('name_description') %></span>
+    <%= f.label :zip, label_name('zip'), :class => :label %>&nbsp;&nbsp;<%= @marker.zip %>
   </div>
 
   <div class="group">
-    <%= f.label :time_zone, label_name('time_zone'), :class => :label %>
-    <%= f.text_field :time_zone, :class => 'textfield' %>
-    <span class="description"><%= label_name('time_zone', 'description') %></span>
+    <%#= f.label :latitude, label_name('latitude'), :class => :label %>&nbsp;&nbsp;<%#= @marker.latitude %>
+    <%= f.hidden_field :latitude %>
   </div>
 
   <div class="group">
-    <%= f.label :public, label_name('public'), :class => :label %>
-    <%= f.check_box :public, :class => 'check_box' %>
-    <span class="description"><%= label_name('public', 'description') %></span>
+    <%#= f.label :longitude, label_name('longitude'), :class => :label %>&nbsp;&nbsp;<%#= @marker.longitude %>
+    <%= f.hidden_field :longitude %>
   </div>
 
+  </div> 
 
-  <div class="group">
-    <%= f.label :description, label_name('description'), :class => :label %>
-    <%= f.text_area :description, :class => 'textfield' %>
-    <span class="description"><%= label_name('description') %></span>
-  </div>
-
-  <div class="group">
-    <%= f.label :icon, label_name('icon'), :class => :label %>
-    <%= f.text_field :icon, :class => 'textfield' %>
-    <span class="description"><%= label_name('icon', 'description') %></span>
-  </div>
-
+</div>
+ 
 <div class="clear"></div> 
+<br/>
+<br/>
 
 <div class="group navform">
 	<%= submit_tag @marker.new_record? ? control_label('create') : control_label('edit'), 
 			:class => "button" %> <%= label_name(:or) %> <%= link_to label_name(:cancel), markers_path %>
 </div>
+

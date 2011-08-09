@@ -25,19 +25,27 @@
 	<link rel="home" href="http://www.haypista.com">
     <link rel="shortcut icon" type="image/ico" href="/favicon.ico">
 		
-	<%= javascript_include_tag :defaults %>	
-	<%= javascript_include_tag "http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js" %>
+	<% if DISPLAY_QR_CODE %>	
+	<%= javascript_include_tag :defaults %>		
+	<% end -%>
+	
+	<%= javascript_include_tag "http://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js" %>	
+	<script type="text/javascript" src="http://maps.google.com/maps/api/js?v=3&sensor=true&region=ES"></script> 
+	
 	<%= ajaxful_rating_style %>
 	<%= ajaxful_rating_script %>
 	
 	<%= javascript_include_tag 'jquery.google-analytics', 'jquery.notifyBar', 'jquery.cluetip', 'jquery.hoverIntent' %>
 	<%= javascript_include_tag 'jquery.clearinput' %>
+	
+	<%= javascript_include_tag "gmap3" %>
+	
 	<%= javascript_include_tag 'application' %>	
-	<%= javascript_include_tag "ie_no_more.js" %>
+	<%= javascript_include_tag "ie_no_more" %>
 	
 	<%= stylesheet_link_tag 'primary' %>
 	
-	<%= render :partial => 'utilities/google_analytics' %>	
+	<%= render :partial => 'utilities/google_analytics' %>
 </head>
 <body>	
 	<% show_ajax_rating = ['home_upcoming', 'schedule_index', 'schedule_my_list', 'schedule_list'] %>

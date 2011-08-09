@@ -729,6 +729,7 @@ en:
      list_user: List   
      list_venue: List of Venues   
      locale_name: English     
+     location_group: Location where the team plays
      location_sport: Location where you practice sports. 
      login:  Log In	 
      log_in: Log In   
@@ -759,8 +760,17 @@ en:
      marker_id: Location   
      marker_description: (Mark where you play on the map if it is not on the list...)   
      markers: Locations 
+     markers_address:  Location where to play
      markers_list: List of Locations
-     markers_create:  New Location  
+     markers_create:  New Location 
+     markers_index:  Locations
+     markers_index_option: Options 
+     markers_new: New Location
+     markers_no: No Location to diplay
+     markers_edit: Edit Location
+     markers_option:  Options
+     markers_search:  Search Map
+     markers_show: Show Location 
      match: Match Result   
      matches: Match Results   
      maybe_available: Maybe Available   
@@ -1488,7 +1498,20 @@ en:
      write_comment: Write a comment...   
      writes: writes   
      yes_openid: OpenID's associated to this account   
-     you: You   
+     you: You
+     you_are_center_here: "Center here"
+     you_are_create_group:  "Organize your team here"
+     you_are_create_installation:  "Organize your pitch here"
+     you_are_create_marker:  "Mark your pitch here"
+     you_are_create_venue: "Organize your center here"
+     you_are_directions: Right click Map to get directions.
+     you_are_direction_instructions:  "Right click the map to get the directions."
+     you_are_directions_from_here:  "Directions from here"
+     you_are_directions_to_here: "Directions to here"
+     you_are_here:  "You are Here!"
+     you_are_not_here:  "Unable to find your location!"
+     you_are_zoom_in:  "Zoom In"
+     you_are_zoom_out: "Zoom Out"
      you_can: You can   
      you_can_search: You can search for 
      you_have: You have         
@@ -1499,7 +1522,8 @@ en:
      your_interest_group: Are you interested in setting up a team or joining one?   
      your_interest_schedule: Are you interested in setting up an event or joining one?   
      your_interest_user: Are you interested in playing with other players or do you rather have someone join your team?   
-     your_join_notification: Request to join a team.   
+     your_join_notification: Request to join a team. 
+     your_location:  "Your Location"  
      your_on_roster: You are on the Squad -   
      your_openid: Your OpenID Accounts
      your_roster_status:  You status is
@@ -1684,15 +1708,7 @@ en:
      groups_search: Search for Teams
      groups_search_to_join: Search for a team to join. 
      groups_show:  Show Team
-     groups_update: Edit Team 
-     markers_create: New Location
-     markers_index:  Locations
-     markers_index_option: Options 
-     markers_new: New Location
-     markers_no: No Location to diplay
-     markers_edit: Edit Location
-     markers_option:  Options
-     markers_show: Show Location     
+     groups_update: Edit Team    
      matches_edit:  Match Results
      meets_archive_list:  Previous Season
      meets_concept_description:  Event Concept 
@@ -1766,6 +1782,7 @@ en:
      schedule_options:  Options 
      schedules_show: Event Details
      schedule_ausentes:  Noone on No-Show to display
+     schedule_a_match:  "Organize match here"
      schedule_convocados:  Noone on Squad to display
      schedule_excess_player:  Too many players on squad
      schedule_excess_player_cluetip:  The player limit for this event has been reached.  Check the event details to view the maximum number of players allowed for this event.

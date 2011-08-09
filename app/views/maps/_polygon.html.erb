@@ -1,0 +1,54 @@
+
+
+<script type="text/javascript">
+
+$(function(){
+
+
+	$('#test1').gmap3(
+		{ action: 'init', center:{lat:24.886436490787712,lng:-70.2685546875}, zoom:3, mapTypeId: google.maps.MapTypeId.TERRAIN },
+		{ action: 'addPolygon',
+		options:{
+			strokeColor: "#FF0000",
+			strokeOpacity: 0.8,
+			strokeWeight: 2,
+			fillColor: "#FF0000",
+			fillOpacity: 0.35
+		},
+		paths:[
+		[25.774252, -80.190262],
+		[18.466465, -66.118292],
+		[32.321384, -64.75737],
+		[25.774252, -80.190262]
+		],
+		onces:{
+			click: function(polygon, event){
+
+				var vertices = polygon.getPath();
+
+				var contentString = 'Bermuda Triangle Polygon</br>';
+				contentString += 'Clicked Location: ' + event.latLng.lat() + ',' + event.latLng.lng() + '</br>';
+
+				for(var i=0; i<vertices.length; i++){
+					var xy = vertices.getAt(i);
+					contentString += '<br>Coordinate ' + i + ' : ' + xy.lat() +', ' + xy.lng();
+				}
+
+				$(this).gmap3({
+					action:'addInfoWindow',
+					latLng:event.latLng, 
+					infowindow:{
+						options:{
+							content: contentString
+						}
+					}
+				});
+			}
+		}
+	}
+);
+
+});
+</script>
+
+<div id="test1" class="gmap3"></div>

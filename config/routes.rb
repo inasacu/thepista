@@ -7,6 +7,8 @@ ActionController::Routing::Routes.draw do |map|
   map.rpx_create            'users/rpx_create',                           :controller => 'users',           :action => 'rpx_create'
   map.signup                'signup',                                     :controller => 'users',           :action => 'signup'
   
+  map.qr                    'qr',                                         :controller => 'home',            :action => 'qr'
+  
   map.login                 'acceso_session',                             :controller => 'user_sessions',   :action => 'new'
   map.logout                'cierra_session',                             :controller => 'user_sessions',   :action => 'destroy'
   
@@ -83,6 +85,9 @@ ActionController::Routing::Routes.draw do |map|
          
   map.upcoming              'proximos_partidos',                                :controller => 'home',            :action => 'upcoming'         
   map.search                'buqueda',                                          :controller => 'home',            :action => 'search'
+        
+  map.search_map            'buscar_en_mapa',                                   :controller => 'markers',         :action => 'search'
+  map.address_map           'address_map',                                      :controller => 'markers',         :action => 'address'
   
   map.archive_scorecard     'clasificacion/:id/archivar',                       :controller => 'scorecards',      :action => 'archive'
   map.show_archive          'clasificacion/:id/mostrar_archivado',              :controller => 'scorecards',      :action => 'show_archive'
@@ -113,7 +118,7 @@ ActionController::Routing::Routes.draw do |map|
   map.resources   :users,           :as => 'jugadores',                   :collection => { :rpx_create => :post, :rpx_associate => :post, :list => :get, :recent_activity => :get }  
   map.resources   :schedules,       :as => 'eventos',                     :collection => { :list => :get, :archive_list => :get, :my_list => :get }          
   map.resources   :groups,          :as => 'equipos',                     :collection => { :list => :get }
-  map.resources   :markers,         :as => 'ubicaciones'
+  map.resources   :markers,         :as => 'mapa'
   map.resources   :scorecards,      :as => 'classificaciones',            :collection => { :list => :get }
 
   map.resources   :matches,         :as => 'jornadas'

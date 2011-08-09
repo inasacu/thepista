@@ -1,6 +1,8 @@
 class Marker < ActiveRecord::Base
 
   index{ name }
+    
+  belongs_to      :item,           :polymorphic => true
   
   acts_as_mappable     :default_units => :kms
 

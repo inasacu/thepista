@@ -1,4 +1,7 @@
-/* @override http://thepista.local/stylesheets/primary.css?1308426061 */
+/* @override 
+	http://thepista.local/stylesheets/primary.css?1308426061
+	http://thepista.local/stylesheets/primary.css?1312405306
+*/
 
 html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td,#status a,#list-panel ul,.abook-column-headers h3,*,#header h1,#sidebar h3,#sidebar ul.navigation,.secondary-navigation ul,#main-navigation ul,#user-navigation ul,input.checkbox,.form textarea.text_area,.form input.text_field,.form label.label,ul.list,#box .block h2,#about .block h2,#footer .block p,li,ol,div#footer p,.cluetip-default #cluetip-outer,.ajaxful-rating {
 	margin:0
@@ -125,7 +128,11 @@ a img,.ajaxful-rating .show-value,.ajaxful-rating span,.ajaxful-rating a {
 }
 
 #main {
-	width:74%
+	width: 70%;
+}
+
+#sidebar {
+	width: 28%;
 }
 
 #list-panel input,.abook-column,.abook-column-headers .list-header .select-controls,.abook-column-headers h3,.progress .meter,.progress-meter,#main,.actions-bar .actions,.secondary-navigation ul li,#main-navigation ul li,#user-navigation ul li,.pagination span,.pagination a,.form div.left,.form .columns .left,ul.list li .left,ul.list li .item .avatar,.left,.next_message,div#footer ol li,.header div.logo,.header a.logo,.header li,.header li a,.sections {
@@ -142,10 +149,6 @@ a img,.ajaxful-rating .show-value,.ajaxful-rating span,.ajaxful-rating a {
 
 .actions-bar .pagination,.form textarea.text_area,.form input.text_field,.form label.label {
 	padding:1px 0
-}
-
-#sidebar {
-	width:24%
 }
 
 #sidebar h3,#sidebar ul.navigation li a:visited,#sidebar ul.navigation li a:link,.secondary-navigation ul li a,#box .block h2,#about .block h2 {
@@ -190,8 +193,8 @@ a img,.ajaxful-rating .show-value,.ajaxful-rating span,.ajaxful-rating a {
 #wrapper {
 	padding-top:20px;
 	padding-bottom: 20px;
-	padding-left: 150px;
-	padding-right: 150px;
+	padding-left: 155px;
+	padding-right: 155px;
 }
 
 #main .block .content .inner {
@@ -660,7 +663,7 @@ input#user_session_openid_identifier,input#user_openid_identifier {
 }
 
 #mapwrap,#map {
-	width:948px
+	width: 98%;
 }
 
 #mapwrap,body.v1 #mapwrap,body.v2 #mapwrap,#map,body.v1 #map,body.v2 #map {
@@ -852,6 +855,12 @@ td.subscription_false {
 	color:rgb(119,119,119);
 }
 
+.name_and_date .strong {
+/*	padding: 1px 0 0;*/
+	padding:  1px 1px;
+	font-weight:bold;
+/*	color: green;*/
+}
  .name_and_date .date_created_at {
 	width:  150px;
 }
@@ -1433,3 +1442,15 @@ table.qr_code td.black { background-color: #0f7d00; }
 table.qr_code td.white { background-color: #ffffff; }
 
 
+.gmap3{
+  margin: 20px auto;
+  border: 1px solid #C0C0C0;
+  width: 100%;
+  height: 500px;
+}
+
+#googleMap{
+	border: 1px dashed #C0C0C0;
+	width: 100%;
+	height: 500px;
+}

@@ -142,6 +142,7 @@ function listMarkers() {
   //tell the request what to do when the state changes.
   request.onreadystatechange = function() {
     if (request.readyState == 4) {
+	
       //parse the result to JSON,by eval-ing it.
       //The response is an array of markers
       markers=eval( "(" + request.responseText + ")" );

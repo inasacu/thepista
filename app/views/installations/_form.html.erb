@@ -35,7 +35,7 @@
 	<div class="group">
 		<%= f.label :marker_id, label_name('marker'), :class => :label %>
 		<%= f.select(:marker_id, Marker.marker_name, 
-		{:selected => @installation.marker_id, :include_blank => true})%>&nbsp;<%= link_to label_name(:markers_create), new_marker_url %><br />
+		{:selected => @installation.marker_id, :include_blank => true})%>&nbsp;<%= link_to label_name(:search_maps), search_map_url %><br />
 		<span class="description"><%= label_name('marker', 'description') %></span>
 	</div>
 

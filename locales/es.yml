@@ -180,7 +180,7 @@ es:
      company_description: Nombre de empresa
      complete:  completo
      connect:  Conectar
-     concept: Concepto
+     concept: Nombre del partido
      concept_description:  Concepto   
      contact: Contacto   
      contact_us: contáctenos 
@@ -199,7 +199,7 @@ es:
      create_invitation: Manda una invitación  
      create_join_group:  Unete a un equipo
      create_join_challenge:  Unete a un reto 
-     create_manager: Nuevo mister   
+     create_manager: Nuevo organizador   
      create_name: Nuevo nombre   
      create_note: Nueva nota
      create_new_challenge:  Haz un reto de una copa.
@@ -207,6 +207,7 @@ es:
      create_new_cup:  Organiza una copa
      create_new_group:  Haz tu equipo
      create_new_marker:  Pon un centro deportivo en el mapa
+     create_new_marker:  Busca donde jugar
      create_new_schedule:  Añade un evento a tu equipo
      create_new_invitation:  Invita a tus amigos 
      create_profile: Nuevo perfil   
@@ -312,7 +313,7 @@ es:
      description_group: Detalles del equipo   
      description_invitation: Detalles de la invitación  
      description_login: Necesita 5 characteres. 
-     description_manager: Detalles del mister   
+     description_manager: Detalles del organizador   
      description_marker: Detalles del centro deportivo   
      description_match: Detalles del partido   
      description_message: Detalles del mensaje   
@@ -331,7 +332,7 @@ es:
      destroy_group: Borra el equipo   
      destroy_information: Borra un detalles   
      destroy_invitation: Borra la invitación   
-     destroy_manager: Borra un mister   
+     destroy_manager: Borra un organizador   
      destroy_map: Borra el mapa   
      destroy_marker: Borra el centro deportivo   
      destroy_match: Borra una resultado   
@@ -372,7 +373,7 @@ es:
      edit_group: Actualiza el equipo   
      edit_information: Actualiza un detalles   
      edit_invitation: Actualiza la invitación   
-     edit_manager: Actualiza un mister   
+     edit_manager: Actualiza un organizador   
      edit_map: Actualiza el mapa   
      edit_marker: Actualiza el centro deportivo   
      edit_match: Guardar el resultado   
@@ -726,10 +727,11 @@ es:
      lighting:  Luces
      lighting_description: (Hay luces en la pista?) 
      list: Listado   
-     list_marker: Lista de ubicaciones   
+     list_marker: Lista de lugares donde jugar   
      list_user: Listado   
-     list_venue: Lista de ubicaciones   
+     list_venue: Lista de lugares donde jugar   
      locale_name: Español    
+     location_group: Lugar donde juega el equipo.
      location_sport: Lugar donde practicas tu deporte. 
      login:  Entrar	 
      log_in: Entrar   
@@ -752,16 +754,25 @@ es:
      manager_option:  Opciones de Organizador 
      manager_option_cluetip:  Estas opciones permiten al Organizador añadir o quitar a un jugador como Organizador del equipo. Organizadores tienen opciones additionales sobre el equipo. 
      map: Mapa    
-     map_it: Ubicalo
+     map_it: Localización
      maps: Mapas   
      mark_as_read: Marcar como leido   
      mark_as_unread: Marcar como no leido   
-     marker: Ubicación
-     marker_id: Ubicación   
+     marker: Lugar donde jugar
+     marker_id: Lugar donde jugar   
      marker_description: (Localiza en el mapa donde juega el equipo si no esta en la lista...)   
-     markers: Ubicaciones 
-     markers_list: Listado de ubicaciones
-     markers_create:  Nueva ubicación  
+     markers: Donde Jugar 
+     markers_address:  Lugar donde jugar
+     markers_list: Listado de lugares donde jugar
+     markers_create:  Nueva lugar donde jugar
+     markers_index:  Mapa
+     markers_index_option: Opciones 
+     markers_new: Nueva sitio donde jugar
+     markers_no: Ningun centro deportivo para mostrar
+     markers_edit: Actualizar centro deportivo
+     markers_option:  Opciones 
+     markers_search:  Buscar en el Map
+     markers_show: Mostrar centro deportivo
      match: Resultado 
      matches: Resultados   
      maybe_available: Posiblemente   
@@ -804,7 +815,7 @@ es:
      my_group: Mis equipos 
      my_information: Mis detalles   
      my_invitation: Mis invitaciones   
-     my_manager: Mis misters   
+     my_manager: Mis organizadores   
      my_map: Mis mapas   
      my_marker: Mis centros deportivos   
      my_match: Mis resultado   
@@ -1157,9 +1168,9 @@ es:
      search_imports: Buscar datos importados   
      search_informations: Buscar detalles   
      search_invitations: Buscar Invitación   
-     search_managers: Buscar mister   
-     search_maps: Buscar centro deportivo   
-     search_markers: Buscar centro deportivo   
+     search_managers: Buscar organizador   
+     search_maps: Busca donde jugar   
+     search_markers: Busca centro deportivo   
      search_messages: Buscar mensaje   
      search_names: Buscar nombres   
      search_notes: Buscar notas   
@@ -1246,7 +1257,7 @@ es:
      show_group: Presenta el equipo   
      show_information: Presenta un detalles   
      show_invitation: Presenta la invitación   
-     show_manager: Presenta un mister   
+     show_manager: Presenta un organizador   
      show_map: Presenta el mapa   
      show_marker: Presenta el centro deportivo   
      show_match: Presenta el resultado   
@@ -1411,7 +1422,7 @@ es:
      update_group: Actualiza el equipo   
      update_information: Actualiza un detalles   
      update_invitation: Actualiza la invitación   
-     update_manager: Actualiza un mister   
+     update_manager: Actualiza un organizador   
      update_map: Actualiza el mapa   
      update_marker: Actualiza el centro deportivo   
      update_match: Actualiza el resultado 
@@ -1492,6 +1503,19 @@ es:
      writes: escribe   
      yes_openid: OpenIDs associados a esta cuenta   
      you: Tu   
+     you_are_center_here: "Centra aquí"
+     you_are_create_group:  "Organiza tu equipo aqui"
+     you_are_create_installation:  "Organiza tu instalacion aqui"
+     you_are_create_marker:  "Coloca tu partido aqui"
+     you_are_create_venue: "Organiza tu centro aqui"
+     you_are_directions: Dirección 
+     you_are_direction_instructions:  "Para obtener la direccion, usa el boton derecho sobre el mapa."
+     you_are_directions_from_here:  "Direccion desde aquí"
+     you_are_directions_to_here: "Direccion hasta de aquí"
+     you_are_here:  "Estas aquí!"
+     you_are_not_here:  "No es posible situarte en el map!"
+     you_are_zoom_in:  "Ampliar"
+     you_are_zoom_out: "Reducir"
      you_can: Puedes   
      you_can_search: Puedes buscar un   
      you_have: Tienes         
@@ -1502,7 +1526,8 @@ es:
      your_interest_group: ¿Estás interesado en crear o unirte a un equipo?   
      your_interest_schedule: ¿Estás interesado en crear o unirte a un evento?   
      your_interest_user: ¿Estás interesado en gente con quien jugar or que alquien se una a tu equipo?   
-     your_join_notification: Petición para un equipo.   
+     your_join_notification: Petición para un equipo. 
+     your_location:  "Estas Aqui!"
      your_on_roster: Estas convocado -   
      your_openid: Tus cuentas de OpenID   
      your_roster_status:  Tu estado es 
@@ -1687,15 +1712,7 @@ es:
      groups_search: Busqueda de equipos
      groups_search_to_join: Puedes buscar un equipo a quien unierte. 
      groups_show:  Mostrar equipo
-     groups_update: Actualizar equipo 
-     markers_create: Nueva ubicación
-     markers_index:  Ubicaciones
-     markers_index_option: Opciones 
-     markers_new: Nueva ubicación
-     markers_no: Ningun centro deportivo para mostrar
-     markers_edit: Actualizar centro deportivo
-     markers_option:  Opciones 
-     markers_show: Mostrar centro deportivo     
+     groups_update: Actualizar equipo    
      matches_edit:  Resultados
      meets_archive_list:  Temporada anterior
      meets_concept_description:  Concepto del evento 
@@ -1769,6 +1786,7 @@ es:
      schedule_options:  Opciones 
      schedules_show: Detalles del evento
      schedule_ausentes:  Ningun ausente para mostrar
+     schedule_a_match:  "Organiza partido aquí"
      schedule_convocados:  Ningun convocado para mostrar
      schedule_excess_player:  Demasiados jugadores convocados
      schedule_excess_player_cluetip:  El limite de jugadores del evento ha sido superado.  Para ver la maxima cantidad de jugadores puedes consultarlo en los detalles del evento.

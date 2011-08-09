@@ -1,3 +1,6 @@
 <% content_for :sidebar, render('/shared/sidebar_howto') unless is_action('search')  -%>
+<% content_for :sidebar, render('shared/sidebar_schedules', :upcoming_schedules => @upcoming_schedules) %>
+<% content_for :sidebar, render('/shared/sidebar_gmap') -%>
+<% content_for :sidebar, render('/shared/sidebar_qr_code') -%>
 <% content_for :sidebar, render('/shared/sidebar_index') -%>
 <% content_for :sidebar, render('shared/completeness', :user => current_user) unless (current_user.percent_complete == 100) or is_action('search') -%>

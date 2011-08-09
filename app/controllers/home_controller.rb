@@ -1,14 +1,20 @@
 require 'rubygems'
 require 'rqrcode'
+require 'ym4r_gm'
 
 class HomeController < ApplicationController  
   before_filter :require_user, :except => [:index, :about, :help, :welcome, :pricing, :about, :terms_of_use, :privacy_policy, :faq, :openid, :success, :blog]
 
   before_filter :get_home,        :only => [:index]
-  before_filter :get_upcoming,    :only => [:upcoming, :search]
+  before_filter :get_upcoming,    :only => [:upcoming, :search, :index]
+  before_filter :get_map,         :only => [:index]
 
   def index
     store_location
+  end
+  
+  def qr
+    redirect_to root_url
   end
   
   def privacy_policy
@@ -34,7 +40,7 @@ class HomeController < ApplicationController
     @upcoming = (!@upcoming_schedules.empty? or !@upcoming_classifieds.empty? or !@upcoming_cups.empty? or !@upcoming_games.empty?)
   end
 
-  def get_home    
+  def get_home
     @items = []
     @all_items = []
     
@@ -93,4 +99,40 @@ class HomeController < ApplicationController
     
   end
 
+  def get_map
+    @markers = Marker.all_markers
+    
+    @map = GMap.new("map")
+    @map.control_init(:large_map => true, :map_type => true)
+    # @map.center_zoom_init(@coord, 12)
+        
+     #  # Define the start and end icons  
+     # @map.icon_global_init( GIcon.new( :image => "/images/pin_icon.png", 
+     #                                        :icon_size => GSize.new(24,24), 
+     #                                        :icon_anchor => GPoint.new(12,38), 
+     #                                        :info_window_anchor => GPoint.new(9,2) ), "icon")  
+     #    
+     #  icon = Variable.new("icon")
+     # :icon => icon
+     
+    @markers.each do |marker|
+       
+      the_groups = "<br /><strong>" + I18n.t(:groups) + ":</strong><br />" unless marker.groups.empty?
+      
+      marker.groups.each do |group|
+        group_url = url_for(:controller => 'groups', :action => 'show', :id => group.id)   
+        the_groups = the_groups + "<a href=\"#{group_url}\">#{group.name}</a>&nbsp;&nbsp;#{group.sport.name}<br />"
+      end
+        
+      theMarker = GMarker.new([marker.latitude, marker.longitude], 
+                              :info_window => "<strong>#{marker.name}</strong><br />
+                                              #{marker.address}<br >
+                                              #{marker.city}, #{marker.zip}<br />
+                                              #{the_groups}",
+                              :title => marker.name)
+      @map.overlay_init(theMarker)
+    end  
+    @map.overlay_init(@marker) if @marker
+  end
+  
 end

@@ -1,0 +1,40 @@
+
+            
+    
+    
+    <style>
+      body{
+        text-align:center;
+      }
+      .gmap3{
+        margin: 20px auto;
+        border: 1px dashed #C0C0C0;
+        width: 500px;
+        height: 250px;
+      }
+    </style>
+    
+    <script type="text/javascript">
+    
+      $(function(){
+      
+        $('#test').gmap3({
+          events:{
+            click: function(map, latLng){
+              $(this).gmap3({
+                action:'getMaxZoom', 
+                latLng:latLng,
+                callback:function(zoom){
+                  $('#result').html('Max Zoom : ' + (zoom !== false ? zoom : 'not available'));
+                }
+              });
+            }
+          }
+        });
+        
+      });
+    </script>  
+  
+    <div id="result">&nbsp;</div>  
+    <div id="test" class="gmap3"></div>
+    click on the map to get the max zoom of the clicked position
