@@ -426,17 +426,17 @@ es:
      feature: Prestación
      features: Prestaciones
      fee: Honorarios   
-     fee_per_challenge:  Tarifa a pagar el Participar
+     fee_per_challenge:  "¿Cuánto cuesta el torneo?"
      fee_per_challenge_description:  (Este es el precio que pone el manager por participar...)
-     fee_per_game: Tarifa a pagar el Jugador    
+     fee_per_game: "¿Cuánto cuesta jugar por persona?"  
      fee_per_game_description: (Este es el precio que se le cobra al jugador no abonado...) 
-     fee_per_game_time:  Tarifa / Hora   
+     fee_per_game_time:  "¿Cuánto cuesta la pista?"  
      fee_per_game_time_description: (Este es el precio de la pista por hora...)
-     fee_per_lighting: Tarifa por tener las Luces   
+     fee_per_lighting: "¿Cuánto cuesta la pista con aluminación?"
      fee_per_lighting_description: (Este es el precio de la luz en la pista o cancha...)  
-     fee_per_pista: Tarifa de la Pista   
+     fee_per_pista: "¿Cuánto cuesta la pista?"
      fee_per_pista_description: (Este es el precio de la pista o cancha...) 
-     fee_per_tour: Tarifa / Torneo   
+     fee_per_tour: "¿Cuánto cuesta el torneo?"  
      fee_per_tour_description: (Este es el precio del torneo...)  
      feedback: feedback   
      fees: Cargos   
@@ -731,7 +731,7 @@ es:
      list_user: Listado   
      list_venue: Lista de lugares donde jugar   
      locale_name: Español    
-     location_group: Lugar donde juega el equipo.
+     location_group: Lugar donde juega el equipo
      location_sport: Lugar donde practicas tu deporte. 
      login:  Entrar	 
      log_in: Entrar   

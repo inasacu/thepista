@@ -31,7 +31,7 @@ class Marker < ActiveRecord::Base
   end
 
   def self.marker_name
-    find(:all, :order => "name").collect {|p| [ p.name, p.id ] }
+    find(:all, :order => "name").collect {|p| [ "#{p.name} (#{p.city.capitalize})", p.id ] }
   end  
 
   def my_sports

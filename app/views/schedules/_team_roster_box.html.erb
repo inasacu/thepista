@@ -178,6 +178,8 @@ the_roster.each do |match|
 			(match.group_id > 0) ? home["deviation"] += initial_deviation : away["deviation"] += initial_deviation
 		end
 	end
+	
+	game_number = "#{match.scorecard_played}%"
 
 	@roster = match	
 	can_evaluate = current_user != the_user and the_roster.include?(current_user)

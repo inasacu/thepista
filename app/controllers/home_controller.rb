@@ -37,7 +37,7 @@ class HomeController < ApplicationController
     @upcoming_classifieds ||= Classified.upcoming_classifieds(session[:classified_hide_time]) if DISPLAY_CLASSIFIEDS
 
     @upcoming ||=  false
-    @upcoming = (!@upcoming_schedules.empty? or !@upcoming_classifieds.empty? or !@upcoming_cups.empty? or !@upcoming_games.empty?)
+    # @upcoming = (!@upcoming_schedules.empty? or !@upcoming_classifieds.empty? or !@upcoming_cups.empty? or !@upcoming_games.empty?)
   end
 
   def get_home

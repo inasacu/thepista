@@ -21,7 +21,7 @@ class Venue < ActiveRecord::Base
   validates_presence_of     :name,            :description, :time_zone, :starts_at,     :ends_at
   validates_length_of       :name,            :within => NAME_RANGE_LENGTH
   validates_length_of       :description,     :within => DESCRIPTION_RANGE_LENGTH
-  validates_format_of       :name,            :with => /^[A-z 0-9 _.-]*$/ 
+  # validates_format_of       :name,            :with => /^[A-z 0-9 _.-]*$/ 
 
   # variables to access
   attr_accessible :name, :description, :starts_at, :ends_at, :time_zone, :marker_id
