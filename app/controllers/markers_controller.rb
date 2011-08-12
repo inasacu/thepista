@@ -2,9 +2,11 @@ require 'ym4r_gm'
 
 class MarkersController < ApplicationController
   before_filter :require_user
-  before_filter :the_maximo,      :only => [:edit, :update]
+  before_filter :the_maximo,        :only => [:edit, :update]
 
-  before_filter :get_all_markers, :only => [:index, :search, :address, :show]
+  before_filter :get_my_markers,    :only => [:index, :show]
+  before_filter :get_list_markers,  :only => [:search]
+  before_filter :get_all_markers,   :only => [:index, :search, :address, :show]
 
   include GeoKit::Geocoders
 
@@ -16,6 +18,9 @@ class MarkersController < ApplicationController
 
       @marker.latitude = params[:lat]
       @marker.longitude = params[:lng]
+
+      @marker.lat = params[:lat]
+      @marker.lng = params[:lng]
 
       @marker.address = @location.street_address
       @marker.city = @location.city
@@ -49,7 +54,7 @@ class MarkersController < ApplicationController
 
 
   def edit  
-      @marker = Marker.find(params[:id])
+    @marker = Marker.find(params[:id])
   end
 
   def update
@@ -65,28 +70,78 @@ class MarkersController < ApplicationController
 
   private
 
-  def get_all_markers    
-
-    @location = IpGeocoder.geocode(current_user.current_login_ip)
-    # @location = IpGeocoder.geocode('80.58.61.254')
-
-    @the_markers = [] 
-    the_groups = ""   
+  def get_my_markers
+    if (current_user.current_login_ip != '127.0.0.1')
+      @location = IpGeocoder.geocode(current_user.current_login_ip)
+    else
+      @location = GoogleGeocoder.geocode(current_user.city.name)
+    end  
 
     if (params[:id])
-      simple_marker = Marker.find(params[:id])
-      # @markers = Marker.find(:all, :conditions => ["id = ?", simple_marker.id], :within => 15)  
-      
-      @markers = Marker.find(:all, :origin =>[37.792,-122.393], :within=>10) 
+      simple_marker = Marker.find(params[:id])      
+      @markers = Marker.find(:all, :origin =>[simple_marker.lat, simple_marker.lng], :within => NUMBER_LOCAL_KM)
 
     else
-      @markers = Marker.all_markers
+
+      if (@location.lat.nil? or @location.lng.nil?)
+        @markers = Marker.all_markers
+      else
+        @markers = Marker.find(:all, :origin =>[@location.lat, @location.lng], :within => NUMBER_LOCAL_KM) 
+      end
     end
+  end
+
+  def get_list_markers
+    if (current_user.current_login_ip != '127.0.0.1')
+      @location = IpGeocoder.geocode(current_user.current_login_ip)
+    else
+      @location = GoogleGeocoder.geocode(current_user.city.name)
+    end
+
+
+    if (params[:id])
+      simple_marker = Marker.find(params[:id])      
+      @markers = Marker.find(:all, :origin =>[simple_marker.lat, simple_marker.lng], :within => NUMBER_NATIONAL_KM)
+    else
+      if (@location.lat.nil? or @location.lng.nil?)
+        @markers = Marker.all_markers
+      else
+        @markers = Marker.find(:all, :origin =>[@location.lat, @location.lng], :within => NUMBER_NATIONAL_KM) 
+      end
+    end
+  end
+
+
+  def get_all_markers    
+
+    # if (current_user.current_login_ip != '127.0.0.1')
+    #   @location = IpGeocoder.geocode(current_user.current_login_ip)
+    #   # @location = IpGeocoder.geocode('83.50.97.61')
+    # else
+    #   @location = GoogleGeocoder.geocode(current_user.city.name)
+    # end
+    
+    @the_markers = [] 
+    the_groups = ""   
+    
+    # if (params[:id])
+    #   simple_marker = Marker.find(params[:id])      
+    #   # @markers = Marker.find(:all, :origin =>[40.4855346857, -3.7153476477], :within => NUMBER_LOCAL_KM)
+    #   @markers = Marker.find(:all, :origin =>[simple_marker.lat, simple_marker.lng], :within => NUMBER_LOCAL_KM)
+    # 
+    # else
+    # 
+    #   if (@location.lat.nil? or @location.lng.nil?)
+    #     # @markers = Marker.all_markers
+    #   else
+    #     @markers = Marker.find(:all, :origin =>[@location.lat, @location.lng], :within => NUMBER_LOCAL_KM) 
+    #   end
+    # end
 
     @markers.each do |marker|      
 
       the_groups = "<br /><strong>" + I18n.t(:groups) + ":</strong><br />" unless marker.groups.empty?
-      
+
       marker.groups.each do |group|
         group_url = url_for(:controller => 'groups', :action => 'show', :id => group.id)   
         the_groups = the_groups + "<a href=\"#{group_url}\">#{group.name}</a>&nbsp;&nbsp;#{group.sport.name}<br />"

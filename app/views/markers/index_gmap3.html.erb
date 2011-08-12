@@ -22,9 +22,10 @@
 	
 	<% else %>
 	<%= content_tag 'h4', label_name(:you_are_direction_instructions) -%>
-	
+
 	<% end -%>
-	
+
+	<!-- <p><%#= @location %></p> -->
 </div>
 
 <% content_for :sidebar, render('maps/sidebar_directions') unless is_map_search -%>

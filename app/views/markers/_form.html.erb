@@ -31,11 +31,13 @@
   <div class="group">
     <%#= f.label :latitude, label_name('latitude'), :class => :label %>&nbsp;&nbsp;<%#= @marker.latitude %>
     <%= f.hidden_field :latitude %>
+    <%= f.hidden_field :lat %>
   </div>
 
   <div class="group">
     <%#= f.label :longitude, label_name('longitude'), :class => :label %>&nbsp;&nbsp;<%#= @marker.longitude %>
     <%= f.hidden_field :longitude %>
+    <%= f.hidden_field :lng %>
   </div>
 
   </div> 

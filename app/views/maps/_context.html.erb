@@ -356,7 +356,11 @@ callback : function(latLng){
 			latLng:latLng,
 			map:{
 				center: latLng
-			}				
+			},	
+				options:{
+					draggable:true,
+					icon:new google.maps.MarkerImage('http://maps.gstatic.com/mapfiles/icon_green.png')
+				}		
 		},
 		"autofit");
 	} else {
