@@ -791,9 +791,9 @@ es:
      modified_phone: Modificada la opción de ocultar el telefono de   
      modified_profile: Modificada la opción de ocultar tu perfil de   
      modified_reliable: Modificada la fiabilidad del jugador para atender   
-     modo: "HayPista, te ayudamos a organizar partidos. "  
-     modo_key_title: "Te ayudamos a organizar partidos, buscar gente para jugar, buscar centro deportivo para jugar.  Con Hay Pista puedes organizar partidos de empresa, ver tu jornada deportiva e incluso tu clasificacion en tu equipo. Tambien puedes ver actividades de cada jugador, quien esta convocado, quien esta en suplente o quien esta ausente para el partido."
-     modo_keywords: "hay pista, organizar partidos, gente para jugar, buscar centro deportivo jugar, partidos de empresa, ver jornada deportiva, clasificacion equipo, actividades jugador, quien esta convocado, quien esta suplente, quien esta ausente"
+     modo: "<strong>Practica deporte</strong><br/>no estas solo."  
+     modo_key_title: "Practica deporte, no hay mejor sitio, organizar partidos, buscar gente para jugar, buscar centro deportivo para jugar.  Con Hay Pista puedes organizar partidos de empresa, ver tu jornada deportiva e incluso tu clasificacion en tu equipo. Tambien puedes ver quien esta convocado, quien esta en ultima hora o quien esta ausente para el partido."
+     modo_keywords: "hay pista, organizar partidos, gente para jugar, buscar centro deportivo jugar, partidos de empresa, ver jornada deportiva, clasificacion equipo, quien esta convocado, quien esta ultima hora, quien esta ausente"
      Monday: Lunes        
      more:  mas
      must_be_logged_in:  Tienes que estar registrado para acceder a esta página
@@ -1958,7 +1958,7 @@ es:
      schedules_screen:  "Muestra la lista de los proximos eventos, e incluso anteriores eventos..."
      schedule_screen:  "Muestra los detalles del evento, un muro, lista de convocados, suplente y ausentes..."
      scorecards_screen:  "Los resultados de cada evento permite mantener la clasificación de tu equipo..."
-     what_is_haypista_details:  "te ayuda a organizar partidos, buscar donde jugar, y disfrutar del deporte."
+     what_is_haypista_details:  "te ayuda a buscar con quien jugar, organizar partidos, lugar donde jugar, y disfrutar del deporte."
      how_does_haypista:  "¿Como funciona HayPista?"
      how_does_haypista_details:  "Simplemente crea un equipo, busca un centro deportivo, crea un evento, envía invitaciones a tus amigos y ya está. Asi de fácil."
      what_other_haypista: "¿Qué otras cosas hace HayPista?"

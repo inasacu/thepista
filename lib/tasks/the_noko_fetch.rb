@@ -1,7 +1,7 @@
 # to run:    sudo rake the_noko_fetch
 
 require 'nokogiri'
-require 'open-uri'
+require 'open-uri'                                                                                                                                                                                                                                                                                                                                                                                                                                                                     
 
 desc "Fetch Market from munimadrid.es"
 task :the_noko_fetch => :environment do|t|

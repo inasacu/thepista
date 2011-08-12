@@ -4,9 +4,6 @@
 %>
 
 <div id="home">
-	<div class="announce">
-		<h1><%= label_name(:modo) %></h1>
-	</div>
 	<div class="features">
 		<div class="left" >
 			<%= RPXNow.embed_code(APP_CONFIG['rpx_api']['realm'],rpx_token_sessions_url, :language => I18n.locale) if SHOW_RPX_NOW %>
@@ -16,7 +13,7 @@
 			<p><%= label_name(:user_signup) %></p>
 			
 			<% form_for @user, :html => {:class => 'form login'} do |f| %>
-				<%= render :partial => 'utilities/login', :locals => {:f => f, :the_label => label_name('signup') } %>		
+				<%= render :partial => 'users/login', :locals => {:f => f, :the_label => label_name('signup') } %>		
 			<% end -%>			
 			
 		</div>

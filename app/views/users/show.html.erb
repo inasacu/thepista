@@ -99,7 +99,8 @@
 							</td>
 						</tr>		
 						<% end %>				
-												
+											
+						<%= tr_td_action(:city, @user.city.name) %>	
 						<%= tr_td_action(:time_zone, @user.time_zone) %>
 						<%= tr_td_action(:language, label_name(@user.language)) %>
 

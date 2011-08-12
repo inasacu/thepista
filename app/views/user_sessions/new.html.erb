@@ -1,8 +1,4 @@
 <div id="home">
-
-	<div class="announce">
-		<h1><strong><%= label_name(:modo) %></strong></h1>
-	</div>
 	<div class="features">
 		<div class="left" >
 			<%= RPXNow.embed_code(APP_CONFIG['rpx_api']['realm'],rpx_token_sessions_url, :language => I18n.locale)  if SHOW_RPX_NOW %>

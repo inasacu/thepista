@@ -23,15 +23,17 @@ class UsersController < ApplicationController
   # ssl_allowed :index, :list, :show
   
   def index
-    store_location
-    @users = current_user.page_mates(params[:page])
+    # store_location
+    # @users = current_user.page_mates(params[:page])
+    redirect_to root_url
   end
   
   
   def list
-    store_location
-    @users = current_user.other_mates(params[:page])
-    render :template => '/users/index'       
+    # store_location
+    # @users = current_user.other_mates(params[:page])
+    # render :template => '/users/index' 
+    redirect_to root_url      
   end
 
   def show

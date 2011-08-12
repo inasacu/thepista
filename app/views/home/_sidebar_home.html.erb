@@ -1,5 +1,5 @@
 <% content_for :sidebar, render('/shared/sidebar_howto') unless is_action('search')  -%>
-<% content_for :sidebar, render('shared/sidebar_schedules', :upcoming_schedules => @upcoming_schedules) %>
+<% content_for :sidebar, render('shared/sidebar_schedules', :upcoming_schedules => @upcoming_schedules) unless (@upcoming_schedules.nil? or @upcoming_schedules.blank?) %>
 <% content_for :sidebar, render('/shared/sidebar_gmap') -%>
 <% content_for :sidebar, render('/shared/sidebar_qr_code') -%>
 <% content_for :sidebar, render('/shared/sidebar_index') -%>

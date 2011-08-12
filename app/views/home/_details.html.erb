@@ -1,10 +1,4 @@
-
-
 <div id="home">
-
-	<div class="announce">
-		<h1><strong><%= label_name(:modo) %></strong></h1>
-	</div>
 	<div class="features">
 		<div class="left" >
 			<%= RPXNow.embed_code(APP_CONFIG['rpx_api']['realm'],rpx_token_sessions_url, :language => I18n.locale)  if SHOW_RPX_NOW %>
@@ -12,12 +6,11 @@
 		<div class="right">	
 			<div class="headline">
 				<div class="words">
-					<h1><%= label_name(:get_rolling) %></h1>
+					<h1><%= label_name(:modo) %></h1>
 				</div>
 				<br/>
 				<div class="tour">						
-					<h3><strong><%= label_name(:what_is_haypista) %></strong></h3>
-					<p><%= "#{app_name} #{label_name(:what_is_haypista_details)}" %></p>						
+					<h3><%= "<strong>#{app_name}</strong> #{label_name(:what_is_haypista_details)}" %></h3>						
 				</div>
 			</div>
 		</div>
