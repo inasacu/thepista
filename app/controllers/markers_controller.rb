@@ -85,6 +85,14 @@ class MarkersController < ApplicationController
 
     @markers.each do |marker|      
 
+      the_groups = "<br /><strong>" + I18n.t(:groups) + ":</strong><br />" unless marker.groups.empty?
+      
+      marker.groups.each do |group|
+        group_url = url_for(:controller => 'groups', :action => 'show', :id => group.id)   
+        the_groups = the_groups + "<a href=\"#{group_url}\">#{group.name}</a>&nbsp;&nbsp;#{group.sport.name}<br />"
+      end      
+      the_groups = "#{the_groups}<br/>"
+
       the_new_model_url = "<br /><strong>" + I18n.t(:create) + ":</strong><br />"
 
       the_group_url = url_for(:controller => 'groups', :action => 'new', :marker_id => marker)
@@ -99,7 +107,7 @@ class MarkersController < ApplicationController
       end
 
       @the_markers << Marker.new(:latitude => marker.latitude, :longitude => marker.longitude, 
-      :description => "<strong>#{marker.name}</strong><br/>#{marker.address}<br/>#{marker.city}, #{marker.zip}<br/>#{the_new_model_url}",
+      :description => "<strong>#{marker.name}</strong><br/>#{marker.address}<br/>#{marker.city}, #{marker.zip}<br/>#{the_groups}<br/>#{the_new_model_url}",
       :name => marker.name)
     end
 
