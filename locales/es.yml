@@ -1931,7 +1931,7 @@ es:
      users_index:  Jugadores
      users_index_option: Opciones 
      users_description_no:  Ningun detalle del jugador.
-     users_edit:  Actualizar jugador
+     users_edit:  Actualiza tu perfil
      users_edit_option:  Opciones 
      users_list:  Resto de jugadores
      users_new:  Nuevo jugador
@@ -1947,7 +1947,7 @@ es:
      users_rpx_create:  Nuevo jugador
      users_teammate: Mis compañeros de equipo
      users_total: "Total"
-     users_update:  Actualizar jugador
+     users_update:  Actualiza tu perfil
      your:  Tu 
      true: "Si"
      false: "No"

@@ -24,6 +24,17 @@
 </div>
 
 <div class="group">
+<%= f.label :city_id, label_name('city'), :class => :label %>
+<%= f.select(:city_id, City.city_name, {:selected => @user.city_id, :include_blank => false})%>
+</div>
+
+<div class="group">
+  <%= f.label :sport, label_name('sport'), :class => :label %>
+  <%= f.text_field :sport, :id => 'autofill', :class => 'textfield' %><br />
+  <span class="description"><%= label_name('sport', 'description') %></span>
+</div>
+
+<div class="group">
   <%= f.label :company, label_name('company'), :class => :label %>
   <%= f.text_field :company, :class => 'textfield' %><br />
   <span class="description"><%= label_name('company', 'description') %></span>

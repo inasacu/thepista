@@ -2,10 +2,11 @@ require 'rubygems'
 require 'rqrcode'
 
 class UsersController < ApplicationController
-  before_filter :require_no_user, :only => [:signup, :create, :rpx_new, :rpx_create, :rpx_associate]
-  before_filter :require_user, :only => [:index, :list, :show, :edit, :update, :petition, :recent_activity] 
-  
-  # before_filter :get_user,            :only => [:show] 
+  before_filter :require_no_user,     :only => [:signup, :create, :rpx_new, :rpx_create, :rpx_associate]
+  before_filter :require_user,        :only => [:index, :list, :show, :edit, :update, :petition, :recent_activity] 
+    
+  before_filter :get_sports,          :only => [:new, :edit, :signup, :rpx_new]
+
   before_filter :get_user_member,     :only => [:show] 
   before_filter :get_user_manager,    :only => [:set_available]
   
@@ -17,7 +18,7 @@ class UsersController < ApplicationController
                                           
   before_filter :setup_rpx_api_key,   :only => [:rpx_new, :rpx_create, :rpx_associate]
   
-  before_filter :has_member_access,     :only => [:rate]
+  before_filter :has_member_access,   :only => [:rate]
   
   # ssl_required :signup, :new, :create
   # ssl_allowed :index, :list, :show
@@ -55,6 +56,7 @@ class UsersController < ApplicationController
   def create
     @user = User.new(params[:user])
     @user.email_to_name
+    @user.email_backup = @user.email
     
     @user.save do |result|
       if result        
@@ -562,6 +564,10 @@ private
       redirect_to root_url
       return
     end
+  end
+  
+  def get_sports
+    @items = Sport.find(:all, :select => "name", :order => "name")
   end
   
 end

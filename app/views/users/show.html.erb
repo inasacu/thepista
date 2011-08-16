@@ -61,15 +61,12 @@
 							<td class="label"><%= label_name(:groups) %></td>
 							<td class="show"><%= @user.has_group? ? group_list(@user.groups) : label_name('groups_none') %></td>
 						</tr>
+						
+						<%= tr_td_action(:sports, @user.sport.chop.chop) %>
 
 						<tr>
 							<td class="label"><%= label_name(:event_participation) %></td>
 							<td class="show"><%= participation.to_i > 0 ? link_to(the_participation_label, my_list_schedules_path(:id => @user)) : the_participation_label %></td>
-						</tr>
-
-						<tr>
-							<%= content_tag :td, get_cluetip_show('evaluation'), :class =>"label" %>
-							<%= content_tag :td, ratings_for( @user, :static, :dimension => :evaluation, :size => "small" ), :class => get_the_action %>
 						</tr>
 						
 						<% if @user.has_group? 							
@@ -145,11 +142,18 @@
 							<%= content_tag :td, get_cluetip_show('looking_for_my_group'), :class =>"label" %>
 							<%= content_tag :td, (@user == current_user ? link_to(the_label, set_user_looking_path(:id => @user)) : the_label), :class => get_the_action %>
 						</tr>
+
+							<tr>
+								<%= content_tag :td, get_cluetip_show('evaluation'), :class =>"label" %>
+								<%= content_tag :td, ratings_for( @user, :static, :dimension => :evaluation, :size => "small" ), :class => get_the_action %>
+							</tr>
 						
+						<% if @user.friends.count > 0 %>
 						<tr>
 					     	<%= content_tag :td, label_name(:users_teammate), :class => "label" %>
 							<%= render :partial => '/shared/show_images', :locals => {:collection => @user.friends} %>
 					    </tr>
+						<% end -%>
 					
 						<%= render :partial => 'show_admin' if current_user.is_maximo? %>
 	

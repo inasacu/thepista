@@ -38,6 +38,7 @@ class MarkersController < ApplicationController
 
     @location = GoogleGeocoder.reverse_geocode([@marker.latitude, @marker.longitude])  
 
+    @marker.address = @location.street_address
     @marker.city = @location.city
     @marker.region = @location.state
     @marker.zip = @location.zip

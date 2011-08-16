@@ -1,3 +1,5 @@
+<%= render 'shared/textfield_autofill' %>
+
 <div class="columns"> 
 	<div class="column left"> 
 		<%= render :partial => 'users/form_text_field', :locals => {:f => f} %>
@@ -13,3 +15,5 @@
 	<%= submit_tag @user.new_record? ? control_label('create') : control_label('edit'), 
 			:class => "button" %> <%= label_name(:or) %> <%= link_to label_name(:cancel), users_path %>
 </div>
+
+

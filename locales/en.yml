@@ -1924,7 +1924,7 @@ en:
      users_index:  Players
      users_index_option: Options
      users_description_no:  No Details for Player.
-     users_edit:  Edit Player
+     users_edit:  Update your profile
      users_edit_option:  Options
      users_list:  Rest of the Players
      users_new:  New Player
@@ -1940,7 +1940,7 @@ en:
      users_rpx_create:  New Player
      users_teammate: My Teammates 
      users_total: "Total"
-     users_update:  Edit Player
+     users_update:  Update your profile
      your:  Your   
      true: "Yes"
      false: "No"
