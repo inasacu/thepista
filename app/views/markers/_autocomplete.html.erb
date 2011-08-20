@@ -1,10 +1,10 @@
-<script type="text/javascript" src="javascripts/jquery-ui-1.8.12.custom.min.js"></script>        
+<%= javascript_include_tag "jquery-ui-1.8.12.custom.min" %>
 <%= stylesheet_link_tag 'jquery-ui-1.8.12.custom' %>
 
-<% the_label = "#{I18n.t(:create)} #{I18n.t(:marker)}".capitalize %>
-
-<%#= link_to(the_label, new_marker_url(:lat => 'lat', :lng => 'lng')) %>
-
+<% 
+	the_label = "#{I18n.t(:create)} #{I18n.t(:marker)}".capitalize
+	counter = @default_min_points 
+%>
 	
     <style>
       *{
@@ -39,7 +39,7 @@
 			markers:[	
 
 			<% @the_markers.each do |marker| %>
-			<%= "{lat:#{marker.latitude}, lng:#{marker.longitude}, data:'#{marker.description}'}," %>
+			<%= "{lat:#{marker.latitude}, lng:#{marker.longitude}, data:'#{marker.description}'}," if (counter+=1) <= @default_max_points %>
 			<% end -%>	
 
 			],

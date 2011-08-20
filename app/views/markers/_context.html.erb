@@ -1,3 +1,4 @@
+<% counter = @default_min_points %>
 
 <style>
 #menu{
@@ -155,7 +156,7 @@ Menu.prototype.close = function(){
 
 $(function(){
 
-	var the_center = [51.488224, -0.131836];
+	var the_center = [<%= @default_latitude %>, <%= @default_longitude %>];
 
 	var $map = $('#googleMap'), 
 	menu = new Menu($map),            
@@ -268,7 +269,7 @@ $(function(){
 		{action: 'init',
 		options:{
 			center: the_center,
-			zoom: 8,
+			zoom: <%= @default_zoom %>,
 			mapTypeControl: true,
 			navigationControl: true,
 			scrollwheel: true,
@@ -305,16 +306,10 @@ $(function(){
 id : 'directions'
 }
 
-
+<% @the_markers.each do |marker| %>
 // add markers from database table
 ,{ action: 'addMarkers',
-markers:[	
-
-<% @the_markers.each do |marker| %>
-<%= "{lat:#{marker.latitude}, lng:#{marker.longitude}, data:'#{marker.description}'}," %>
-<% end -%>	
-
-],
+markers:[ <%= "{lat:#{marker.latitude}, lng:#{marker.longitude}, data:'#{marker.description}'}," if (counter+=1) <= @default_max_points %> ],
 marker:{
 	options:{
 		draggable: false
@@ -345,6 +340,7 @@ marker:{
 	}
 }
 
+<% end -%>
 
 // geo code user location
 ,{ action : 'geoLatLng',

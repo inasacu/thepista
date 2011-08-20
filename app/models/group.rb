@@ -44,8 +44,8 @@ class Group < ActiveRecord::Base
   validates_numericality_of :player_limit,    :greater_than_or_equal_to => 1, :less_than_or_equal_to => DUNBAR_NUMBER
 
   # variables to access
-  attr_accessible :name, :second_team, :gameday_at, :points_for_win, :points_for_draw, :points_for_lose, :player_limit, :automatic_petition
-  attr_accessible :time_zone, :sport_id, :marker_id, :description, :conditions, :photo, :available, :looking, :enable_comments
+  attr_accessible :name, :second_team, :gameday_at, :sport_id, :points_for_win, :points_for_draw, :points_for_lose, :player_limit, :automatic_petition
+  attr_accessible :time_zone, :marker_id, :description, :conditions, :photo, :available, :looking, :enable_comments
 
   # NOTE:  MUST BE DECLARED AFTER attr_accessible otherwise you get a 'RuntimeError: Declare either attr_protected or attr_accessible' 
   has_friendly_id :name, :use_slug => true, :approximate_ascii => true, 
@@ -146,25 +146,29 @@ class Group < ActiveRecord::Base
   end
 
   def name_to_second_team
-    self.second_team = "#{self.name} II"
-    self.second_team.split(".").map {|n| n.capitalize }.join(" ")
+    unless self.name.blank?
+      self.second_team = "#{self.name} II"
+      self.second_team.split(".").map {|n| n.capitalize }.join(" ")
+    end
   end
 
   def name_to_description
     self.description = I18n.t(:description)
   end
-  
+
   def default_conditions
     self.conditions = I18n.t(:default_group_conditions)
   end
-  
+
   def sport_to_points_player_limit
-    self.points_for_win = self.sport.points_for_win
-    self.points_for_draw = self.sport.points_for_draw
-    self.points_for_lose = self.sport.points_for_lose
-    self.player_limit = self.sport.player_limit    
+    if self.sport
+      self.points_for_win = self.sport.points_for_win
+      self.points_for_draw = self.sport.points_for_draw
+      self.points_for_lose = self.sport.points_for_lose
+      self.player_limit = self.sport.player_limit    
+    end
   end
-    
+
   def has_schedule?
     self.schedules.count > 0
   end

@@ -1,17 +1,17 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html lang="<%= I18n.locale %>" id="loading" xml:lang="<%= I18n.locale %>" xmlns="http://www.w3.org/1999/xhtml">
-  <head>
-	
+<head>
+
 	<meta http-equiv="Content-Type" content="application/xhtml+xml; charset=utf-8"?> 
 	<meta http-equiv="Content-Language" content="<%= I18n.locale %>"/>
-	
+
 	<title><%= page_title %></title>
-		
+
 	<meta name="Author" content="HayPista"/> 	
 	<meta name="title" content="<%= page_title %>.  <%= I18n.t(:modo_key_title) %>" />
 	<meta name="description" content="<%= I18n.t(:modo) %>">		
 	<meta name="keywords" content="<%= I18n.t(:modo_keywords) %>"/> 
-	
+
 	<meta name="vw96.objectype" content="Document" />
 	<meta name="resource-type" content="Document" />
 	<meta name="distribution" content="all" />
@@ -19,63 +19,58 @@
 	<meta name="revisit" content="15 days" />
 	<meta name="google-site-verification" content="qyTyrJH8o08Ur15mr5hUYjVNyWcbfQatF3yar3Ry2ws" />
 	<meta name="google-site-verification" content="OJzCfMpdsascUFtDoxXJpZGEIsjXjKG1691P1FC5pIc" />
-		
+
 	<link rel="image_src" href="http://haypista.com/images/haypista.png" />
 	<link  rel="apple-touch-icon" href="/apple-touch-icon.png" />
 	<link rel="home" href="http://www.haypista.com">
-    <link rel="shortcut icon" type="image/ico" href="/favicon.ico">
-		
-	<% if DISPLAY_QR_CODE %>	
+	<link rel="shortcut icon" type="image/ico" href="/favicon.ico">
+
+	<% if DISPLAY_DEFAULTS %>	
 	<%= javascript_include_tag :defaults %>		
 	<% end -%>
-	
+
 	<%= javascript_include_tag "http://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js" %>	
-	<script type="text/javascript" src="http://maps.google.com/maps/api/js?v=3&sensor=true&region=ES"></script> 
-	
+	<script type="text/javascript" src="http://maps.google.com/maps/api/js?v=3.3&sensor=true&Language=es"></script> 
+
 	<%= ajaxful_rating_style %>
 	<%= ajaxful_rating_script %>
-	
+
 	<%= javascript_include_tag 'jquery.google-analytics', 'jquery.notifyBar', 'jquery.cluetip', 'jquery.hoverIntent' %>
 	<%= javascript_include_tag 'jquery.clearinput' %>
-	
+
 	<%= javascript_include_tag "gmap3" %>
 	
+
 	<%= javascript_include_tag 'application' %>	
 	<%= javascript_include_tag "ie_no_more" %>
-	
-	<%= stylesheet_link_tag 'primary' %>
-	
+
+	<%= stylesheet_link_tag 'primary' unless is_ie6? %>
+
 	<%= render :partial => 'utilities/google_analytics' %>
 </head>
 <body>	
-	<% show_ajax_rating = ['home_upcoming', 'schedule_index', 'schedule_my_list', 'schedule_list'] %>
+	
+	<% show_if_ie6 do %>
+		<%= render :partial => "utilities/ie_no_more" %>
+	<% end %>
 
-	<%= render :partial => 'utilities/visible_script' %>		
-	<%= render :partial => 'shared/flash', :locals => {:flash => flash } %>
+	<% hide_if_ie6 do %>
+		<% show_ajax_rating = ['home_upcoming', 'schedule_index', 'schedule_my_list', 'schedule_list'] %>
 
-	<div id="container">
+		<%= render :partial => 'utilities/visible_script' %>		
+		<%= render :partial => 'shared/flash', :locals => {:flash => flash } %>
 
-		<%= smack_down_ie6 %>
-
-		<% hide_if_ie6 do %>
-		<%= render :partial => "utilities/ie_better_image" %>
-
-		<%= render :partial => 'shared/header_navigation' %>
-
-		<%= render :partial => "shared/notice" if current_user %>
-
-		<%= render :partial => "shared/wrapper" %>	
-		<%= render :partial => "shared/footer" %>
-		<% end %>
-
-		<% show_if_ie6 do %>
-		<%= render :partial => "utilities/ie_nomore" %>
-		<% end %>
-
-	</div>
+		<div id="container">
+			<%= render :partial => "utilities/ie_better_image" %>
+			<%= render :partial => 'shared/header_navigation' %>
+			<%= render :partial => "shared/notice" if current_user %>
+			<%= render :partial => "shared/wrapper" %>	
+			<%= render :partial => "shared/footer" %>
+		</div>
+	<% end %>
 
 	<%= render :partial => 'shared/share_google' if DISPLAY_GOOGLE_PLUS %>
 	<%= render :partial => 'utilities/browser_detect' if development? %>
-	
+
 </body>
 </html>

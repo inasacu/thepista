@@ -2,7 +2,7 @@
 	is_group_edit = is_action('edit')
 
 %>
-<div class="columns"> 
+<div class="columns">
 
   <div class="column left"> 	
 
@@ -42,7 +42,7 @@
   <div class="group">
     <%= f.label :marker_id, label_name('marker'), :class => :label %>
     <%= f.select(:marker_id, Marker.marker_name, 
-	{:selected => @group.marker_id, :include_blank => true})%>&nbsp;<%= link_to label_name(:search_maps), search_map_url %><br />
+	{:selected => @group.marker_id, :include_blank => true})%><br/><%= link_to label_name(:search_maps), search_map_url %><br />
     <span class="description"><%= label_name('marker', 'description') %></span>
   </div>
 

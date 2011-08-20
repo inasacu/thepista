@@ -4,7 +4,7 @@ require 'nokogiri'
 require 'open-uri'                                                                                                                                                                                                                                                                                                                                                                                                                                                                     
 
 desc "Fetch Market from munimadrid.es"
-task :the_noko_fetch => :environment do|t|
+task :the_noko_fetch => :environment do |t|
 
   ActiveRecord::Base.establish_connection(RAILS_ENV.to_sym)
 
@@ -223,4 +223,77 @@ end
 
 # review
 # http://www.espormadrid.es/2009/01/centros-deportivos-municipales-de.html
+
+
+
+# 
+# 
+# 
+# 
+# 
+# ActiveRecord::Base.establish_connection(RAILS_ENV.to_sym)
+# 
+# url = "http://www.madrid.es/portal/site/munimadrid/menuitem.8b2184148b70b0aa7d245f019fc08a0c/?vgnextoid=15efe8ae8d81c010VgnVCM1000000b205a0aRCRD&vgnextchannel=8db7566813946010VgnVCM100000dc0ca8c0RCRD"
+# 
+# doc = Nokogiri::HTML(open(url))
+# doc.css("panel5").each do |node|
+# 
+#   # doc.xpath('//id[@class="method-name"]').each do | node |  
+#       puts node.content  
+#       puts node.path  
+#       puts
+#       
+#     # puts "_________________________________________"
+#     
+#     # puts node.parent                   #=> parent node
+#     # puts node.children                 #=> children nodes
+#     # puts node.next_sibling             #=> next sibling node
+#     # puts node.previous_sibling         #=> previous sibling node
+#     # puts node.keys                     #=> list of attribute name
+#     # puts node.values                   #=> list of attribute values
+#     
+#     # node.xpath('//p[starts-with(@id, "co")]').each { |x| puts x['id'] }
+#     # puts node.content
+#     # puts node.path
+#     # puts
+# 
+#   
+# 
+# 
+# 
+# 
+# 
+# 
+# # begin
+# #         puts "==============================="
+# #         puts a_tag.content
+# #         puts a_tag['href']
+# # 
+# #         doc2 = Nokogiri::HTML(open(a_tag['href']))
+# #         doc2.css('.post-body').each do |article|
+# #           puts article.content
+# #         end
+# #         puts "==============================="
+# #       rescue
+# #         puts "ERROR DOWNLOADING:"+ a_tag['href']
+# #         puts "ERROR DOWNLOADING:"+ a_tag['href']
+# #       end
+# 
+# 
+# 
+# 
+#     end
+#     
+#     
+#     # url = 'http://www.ruby-doc.org/core/classes/Bignum.html'
+#     
+#     doc = Nokogiri::HTML(open(url))  
+#     
+#     doc.xpath('//id[@class="method-name"]').each do | method_span |  
+#         puts method_span.content  
+#         puts method_span.path  
+#         puts  
+#     end
+
+# end
 

@@ -1,8 +1,6 @@
 <%
 	the_label = label_name(:markers)
 	content_for(:title, the_label)
-	
-	is_map_search = is_action('search')
 %>
 
 <div class="block">
@@ -10,67 +8,18 @@
   <%= get_secondary_navigation %>
 
 	<div class="content">	
-		<%= render 'maps/context' unless is_map_search %>
-		<%= render 'maps/autocomplete' if is_map_search %>
-		<%#= render 'maps/address' %>
+		<%= render 'markers/context' if is_action('index') %>
+		<%= render 'markers/autocomplete' if is_action('search') %>
+		<%= render 'markers/map_v3' if is_action('list') %>
 	</div>	
 	
-	<% if is_map_search  %>
-	
-	<br/>
-	<%= "<strong>#{label_name(:markers_search)}</strong>"%>:&nbsp;&nbsp;<input type="text" id="address" size="60">
-	
-	<% else %>
-	<%= content_tag 'h4', label_name(:you_are_direction_instructions) -%>
-
+	<% if is_action('search')  %>	
+		<br/>
+		<%= "<strong>#{label_name(:markers_search)}</strong>"%>:&nbsp;&nbsp;<input type="text" id="address" size="60">	
+	<% elsif is_action('index') %>
+		<%= content_tag 'h4', "* <strong>#{label_name(:you_are_direction_instructions)}</strong>" -%>
 	<% end -%>
 
-	<!-- <p><%#= @location %></p> -->
 </div>
 
-<% content_for :sidebar, render('maps/sidebar_directions') unless is_map_search -%>
-
-
-
-
-<%#= render 'maps/context' %>
-<%#= render 'maps/autocomplete' %>
-<%#= render 'maps/form' %>
-
-
-<!-- this will work -->
-<%#= render 'maps/geoloc' %>
-<%#= render 'maps/address' %>
-<%#= render 'maps/markers' %>
-
-<!-- this code is not valuable -->
-<%#= render 'maps/on_init' does not work %>
-<%#= render 'maps/rightclick' %>
-
-
-<!-- useful but not now -->
-<%#= render 'maps/polygon' %>
-<%#= render 'maps/overlay' %>
-<%#= render 'maps/polyline' %>
-<%#= render 'maps/rectangle' %>
-
-<%#= render 'maps/autofit' %>
-
-<%#= render 'maps/fix_panel' %>
-<%#= render 'maps/mixed' %>
-<%#= render 'maps/debug' %>
-<%#= render 'maps/elevation-path' %>
-<%#= render 'maps/elevation' %>
-<%#= render 'maps/circle' %>
-<%#= render 'maps/map_options' %>
-
-
-<%#= render 'maps/gmap_v3' %>
-
-<%#= render 'maps/basic' %>
-<%#= render 'maps/clear' %>
-<%#= render 'maps/clustered_marker' %>
-<%#= render 'maps/streetviewpanorama' %>
-<%#= render 'maps/autocomplete' %>
-
-<%#= render 'maps/selector' %>
+<% content_for :sidebar, render('maps/sidebar_directions') unless is_action('search') -%>

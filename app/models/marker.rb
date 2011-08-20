@@ -1,15 +1,20 @@
 class Marker < ActiveRecord::Base
 
-  index{ name }
-    
+  # index{ name }
+
   belongs_to      :item,           :polymorphic => true
-  
+
   acts_as_mappable     :default_units => :kms
 
+  validates_presence_of   :name, :latitude, :longitude, :lat, :lng
+
+  # variables to access
+  attr_accessible :name, :latitude, :longitude, :lat, :lng, :phone, :address, :city, :region, :zip, :description
+
   # NOTE:  MUST BE DECLARED AFTER attr_accessible otherwise you get a 'RuntimeError: Declare either attr_protected or attr_accessible' 
-  has_friendly_id :name, :use_slug => true, :approximate_ascii => true, 
-                   :reserved_words => ["new", "create", "index", "list", "signup", "edit", "update", "destroy", "show"]
-                   
+  # has_friendly_id :name, :use_slug => true, :approximate_ascii => true, 
+  #                  :reserved_words => ["new", "create", "index", "list", "signup", "edit", "update", "destroy", "show"]
+
   # example
   # acts_as_mappable :default_units => :miles, 
   #                  :default_formula => :sphere, 
@@ -25,18 +30,31 @@ class Marker < ActiveRecord::Base
   :through => :groups,
   :order => "name"
 
-
   def self.all_markers
-    find(:all, :conditions => "latitude is not null and longitude is not null")
+    find(:all, :select => "distinct markers.*", :joins => "left join groups on groups.marker_id = markers.id", 
+    :conditions => "markers.archive = false", :limit => DISPLAY_MAP_POINTS)
+  end
+
+  def self.get_markers_within_local(lat, lng)
+    find(:all, :select => "distinct markers.*", :joins => "left join groups on groups.marker_id = markers.id", 
+    :conditions => "markers.archive = false", :origin =>[lat, lng], :within => NUMBER_LOCAL_KM, :limit => DISPLAY_MAP_POINTS)
+  end
+
+  def self.get_markers_within_national(lat, lng)
+    find(:all, :origin =>[lat, lng], :within => NUMBER_NATIONAL_KM, :limit => DISPLAY_MAP_POINTS)
+  end
+
+  def self.get_markers_within_meters(lat, lng)
+    find(:all, :origin =>[lat, lng], :within => NUMBER_LOCAL_METER)
   end
 
   def self.marker_name
-    find(:all, :order => "name").collect {|p| [ "#{p.name} (#{p.city.capitalize})", p.id ] }
+    find(:all, :select => "distinct markers.*", :joins => "join groups on groups.marker_id = markers.id").collect {|p| [ "#{p.name} (#{p.city})", p.id ] }
   end  
 
   def my_sports
     @my_sports = []
     self.sports.each { |sport| @my_sports << sport.id unless @my_sports.include?(sport.id) } 
-    Sport.find(:all, :conditions => ["id in (?)", @my_sports], :order => "name")
+    Sport.find(:all, :conditions => ["id in (?)", @my_sports], :order => "sports.name")
   end
 end

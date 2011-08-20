@@ -118,7 +118,7 @@ ActionController::Routing::Routes.draw do |map|
   map.resources   :users,           :as => 'jugadores',                   :collection => { :rpx_create => :post, :rpx_associate => :post, :list => :get, :recent_activity => :get }  
   map.resources   :schedules,       :as => 'eventos',                     :collection => { :list => :get, :archive_list => :get, :my_list => :get }          
   map.resources   :groups,          :as => 'equipos',                     :collection => { :list => :get }
-  map.resources   :markers,         :as => 'mapa'
+  map.resources   :markers,         :as => 'mapa',                        :collection => { :list => :get }
   map.resources   :scorecards,      :as => 'classificaciones',            :collection => { :list => :get }
 
   map.resources   :matches,         :as => 'jornadas'

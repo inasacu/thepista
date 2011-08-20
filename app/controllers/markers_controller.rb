@@ -1,20 +1,48 @@
-require 'ym4r_gm'
+# require 'ym4r_gm'
 
 class MarkersController < ApplicationController
   before_filter :require_user
-  before_filter :the_maximo,        :only => [:edit, :update]
+  before_filter :the_maximo,            :only => [:edit, :update]
 
-  before_filter :get_my_markers,    :only => [:index, :show]
-  before_filter :get_list_markers,  :only => [:search]
-  before_filter :get_all_markers,   :only => [:index, :search, :address, :show]
+  before_filter :get_complete_markers,  :only => [:list]
+  before_filter :get_my_markers,        :only => [:index, :show]
+  before_filter :get_list_markers,      :only => [:search]
+  before_filter :get_all_markers,       :only => [:index, :show, :list, :search, :address]
 
   include GeoKit::Geocoders
+  
+  def index    
+    @default_min_points = 0
+    @default_max_points = 35
+    @default_zoom = 8
+    render :template => "markers/index_gmap3"
+  end
 
+  def search
+    @default_min_points = 0
+    @default_max_points = 35
+    @default_zoom = 10
+    render :template => "markers/index_gmap3"
+  end
+
+  def show
+    @default_min_points = 0
+    @default_max_points = 35
+    @default_zoom = 10
+    render :template => "markers/index_gmap3"
+  end
+
+  def list
+    @default_zoom = 5
+    render :template => "markers/index_gmap3"
+  end
+  
   def new
-    if params[:lat] and params[:lng]
-      @location = GoogleGeocoder.reverse_geocode([params[:lat], params[:lng]])  
-
+    if params[:lat] and params[:lng] 
       @marker = Marker.new()
+      @location = GoogleGeocoder.reverse_geocode([params[:lat], params[:lng]]) 
+      
+      @near_markers = Marker.get_markers_within_meters(params[:lat], params[:lng])
 
       @marker.latitude = params[:lat]
       @marker.longitude = params[:lng]
@@ -70,8 +98,16 @@ class MarkersController < ApplicationController
   end
 
   private
-
-  def get_my_markers
+  def get_complete_markers
+    if (current_user.current_login_ip != '127.0.0.1')
+      @location = IpGeocoder.geocode(current_user.current_login_ip)
+    else
+      @location = GoogleGeocoder.geocode(current_user.city.name)
+    end
+    @markers = Marker.all_markers
+  end
+  
+  def get_my_markers      
     if (current_user.current_login_ip != '127.0.0.1')
       @location = IpGeocoder.geocode(current_user.current_login_ip)
     else
@@ -80,14 +116,14 @@ class MarkersController < ApplicationController
 
     if (params[:id])
       simple_marker = Marker.find(params[:id])      
-      @markers = Marker.find(:all, :origin =>[simple_marker.lat, simple_marker.lng], :within => NUMBER_LOCAL_KM)
+      @markers = Marker.get_markers_within_local(simple_marker.lat, simple_marker.lng)
 
     else
 
       if (@location.lat.nil? or @location.lng.nil?)
         @markers = Marker.all_markers
       else
-        @markers = Marker.find(:all, :origin =>[@location.lat, @location.lng], :within => NUMBER_LOCAL_KM) 
+        @markers = Marker.get_markers_within_local(@location.lat, @location.lng)
       end
     end
   end
@@ -101,45 +137,36 @@ class MarkersController < ApplicationController
 
 
     if (params[:id])
-      simple_marker = Marker.find(params[:id])      
-      @markers = Marker.find(:all, :origin =>[simple_marker.lat, simple_marker.lng], :within => NUMBER_NATIONAL_KM)
+      simple_marker = Marker.find(params[:id])  
+      @markers = Marker.get_markers_within_national(simple_marker.lat, simple_marker.lng)    
     else
       if (@location.lat.nil? or @location.lng.nil?)
         @markers = Marker.all_markers
       else
-        @markers = Marker.find(:all, :origin =>[@location.lat, @location.lng], :within => NUMBER_NATIONAL_KM) 
+        @markers = Marker.get_markers_within_national(@location.lat, @location.lng)
       end
     end
   end
 
 
   def get_all_markers    
-
-    # if (current_user.current_login_ip != '127.0.0.1')
-    #   @location = IpGeocoder.geocode(current_user.current_login_ip)
-    #   # @location = IpGeocoder.geocode('83.50.97.61')
-    # else
-    #   @location = GoogleGeocoder.geocode(current_user.city.name)
-    # end
+    @the_markers = []    
     
-    @the_markers = [] 
-    the_groups = ""   
+    @default_latitude = 40.4855346857
+    @default_longitude = -3.7153476477
     
-    # if (params[:id])
-    #   simple_marker = Marker.find(params[:id])      
-    #   # @markers = Marker.find(:all, :origin =>[40.4855346857, -3.7153476477], :within => NUMBER_LOCAL_KM)
-    #   @markers = Marker.find(:all, :origin =>[simple_marker.lat, simple_marker.lng], :within => NUMBER_LOCAL_KM)
-    # 
-    # else
-    # 
-    #   if (@location.lat.nil? or @location.lng.nil?)
-    #     # @markers = Marker.all_markers
-    #   else
-    #     @markers = Marker.find(:all, :origin =>[@location.lat, @location.lng], :within => NUMBER_LOCAL_KM) 
-    #   end
-    # end
+    @default_latitude = @location.lat unless @location.lat.nil?
+    @default_longitude = @location.lng unless @location.lng.nil?
+    
+    has_access = current_user.is_maximo?
 
-    @markers.each do |marker|      
+    @markers.each do |marker|  
+
+      the_groups = ""  
+      the_new_model_url = ""
+      the_group_url = ""
+      the_installation_url = ""
+      the_venue_url = ""
 
       the_groups = "<br /><strong>" + I18n.t(:groups) + ":</strong><br />" unless marker.groups.empty?
 
@@ -149,25 +176,28 @@ class MarkersController < ApplicationController
       end      
       the_groups = "#{the_groups}<br/>"
 
-      the_new_model_url = "<br /><strong>" + I18n.t(:create) + ":</strong><br />"
 
-      the_group_url = url_for(:controller => 'groups', :action => 'new', :marker_id => marker)
-      the_installation_url = url_for(:controller => 'installations', :action => 'new', :marker_id => marker)
-      the_venue_url = url_for(:controller => 'venues', :action => 'new', :marker_id => marker)
+      if has_access
+        the_new_model_url = "<br /><strong>" + I18n.t(:create) + ":</strong><br />"
+        the_installation_url = url_for(:controller => 'installations', :action => 'new', :marker_id => marker)
+        the_venue_url = url_for(:controller => 'venues', :action => 'new', :marker_id => marker)
 
-      the_new_model_url = the_new_model_url + "<a href=\"#{the_group_url}\">#{I18n.t(:you_are_create_group)}</a>&nbsp;&nbsp;"
-
-      if current_user.is_maximo?
         the_new_model_url = the_new_model_url + "<a href=\"#{the_installation_url}\">#{I18n.t(:you_are_create_installation)}</a><br/>"
         the_new_model_url = the_new_model_url + "<a href=\"#{the_venue_url}\">#{I18n.t(:you_are_create_venue)}</a>"
+
+      else
+        the_new_model_url = "<br /><strong>" + I18n.t(:create) + ":</strong><br />"
+        the_group_url = url_for(:controller => 'groups', :action => 'new', :marker_id => marker)
+
+        the_new_model_url = the_new_model_url + "<a href=\"#{the_group_url}\">#{I18n.t(:you_are_create_group)}</a>&nbsp;&nbsp;"
       end
+
 
       @the_markers << Marker.new(:latitude => marker.latitude, :longitude => marker.longitude, 
       :description => "<strong>#{marker.name}</strong><br/>#{marker.address}<br/>#{marker.city}, #{marker.zip}<br/>#{the_groups}<br/>#{the_new_model_url}",
       :name => marker.name)
     end
 
-    render :template => "markers/index_gmap3" 
   end
 
   def the_maximo

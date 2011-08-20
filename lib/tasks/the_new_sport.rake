@@ -5,43 +5,52 @@ task :the_new_sport => :environment do |t|
 
   ActiveRecord::Base.establish_connection(RAILS_ENV.to_sym)
 
-  [['Handball', 'Balonmano, Handball', 'futbol.gif', 1,  0,  0,  12], ['Baseball', 'Beisbol, Baseball', 'baseball.jpg', 1,  0,  0,  16],
-  ['Rugby', 'Rugby', 'football.gif',  1,  0,  0,  30]].each do |sport|
-    Sport.create(:name => sport[0], :description => sport[1], :icon => sport[2],  
-    :points_for_win => sport[3], :points_for_lose => sport[4], :points_for_draw => sport[5], :player_limit => sport[6] )
-  
-  end
-  
-  the_sport = Sport.find(8)
-  the_sport.icon = 'volleyball.png'
-  the_sport.player_limit = 12
-  the_sport.save
-  
-  the_sport = Sport.find(1)
-  the_sport.player_limit = 14
-  the_sport.save
-  
-  the_sport = Sport.find(12)
-  the_sport.player_limit = 4
-  the_sport.save
-  
-  the_sport = Sport.find(:all, :conditions => "id in (2,4,5)")
-  the_sport.each do |sport|
-    sport.player_limit = 22
-    sport.save
-  end
-  
-  the_sport = Sport.find(:all, :conditions => "id in (3,7,10)")
-  the_sport.each do |sport|
-    sport.player_limit = 10
-    sport.save
-  end
-  
-  the_sport = Sport.find(:all, :conditions => "id in (6,9,11)")
-  the_sport.each do |sport|
-    sport.player_limit = 2
-    sport.save
-  end
+  # [
+  #     ['Balonmano', 'Balonmano, Handball', 'volleyball.png', 1,  0,  0,  12], 
+  #     ['Baseball', 'Beisbol, Baseball', 'baseball.jpg', 1,  0,  0,  16],
+  #     ['Rugby', 'Rugby', 'football.gif',  1,  0,  0,  30],
+  #     ['Bádminton', 'Bádminton', 'volleyball.png',  1,  0,  0,  30],
+  #     ['Escalada', 'Escalada', 'volleyball.png',  1,  0,  0,  10],
+  #     ['Natación', 'Natación', 'volleyball.png',  1,  0,  0,  10],
+  #     ['Musculación', 'Musculación', 'volleyball.png',  1,  0,  0,  10],
+  #     ['Aeróbic', 'Aeróbic', 'volleyball.png',  1,  0,  0,  10] 
+  #     
+  # ].each do |sport|
+  #   Sport.create(:name => sport[0], :description => sport[1], :icon => sport[2],  
+  #   :points_for_win => sport[3], :points_for_lose => sport[4], :points_for_draw => sport[5], :player_limit => sport[6] )
+  # 
+  # end
+  # 
+  # the_sport = Sport.find(8)
+  # the_sport.icon = 'volleyball.png'
+  # the_sport.player_limit = 12
+  # the_sport.save
+  # 
+  # the_sport = Sport.find(1)
+  # the_sport.player_limit = 14
+  # the_sport.save
+  # 
+  # the_sport = Sport.find(12)
+  # the_sport.player_limit = 4
+  # the_sport.save
+  # 
+  # the_sport = Sport.find(:all, :conditions => "id in (2,4,5)")
+  # the_sport.each do |sport|
+  #   sport.player_limit = 22
+  #   sport.save
+  # end
+  # 
+  # the_sport = Sport.find(:all, :conditions => "id in (3,7,10)")
+  # the_sport.each do |sport|
+  #   sport.player_limit = 10
+  #   sport.save
+  # end
+  # 
+  # the_sport = Sport.find(:all, :conditions => "id in (6,9,11)")
+  # the_sport.each do |sport|
+  #   sport.player_limit = 2
+  #   sport.save
+  # end
 
 
 
@@ -93,23 +102,5 @@ task :the_new_sport => :environment do |t|
         
         City.create(:name => city[0].strip, :state_id => city[1])
       end
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+      
 end

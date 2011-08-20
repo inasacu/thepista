@@ -1,0 +1,197 @@
+<%= javascript_include_tag "markerclusterer" %>
+<% the_label = "#{I18n.t(:create)} #{I18n.t(:marker)}".capitalize %>
+
+<div class="block">
+
+	<%= get_secondary_navigation %>
+
+	<div class="content">
+
+		<script type="text/javascript"> 
+		
+		(function() { 
+
+		  window.onload = function() { 
+
+		    // Creating a map 
+		    var options = { 
+		      zoom: <%= @default_zoom %>, 
+		      center: new google.maps.LatLng(<%= @default_latitude %>, <%= @default_longitude %>), 
+		      mapTypeId: google.maps.MapTypeId.ROADMAP 
+		    }; 
+		    var map = new google.maps.Map(document.getElementById('googleMap'), options); 
+
+		    google.maps.event.addListenerOnce(map, 'bounds_changed', function() { 
+
+		      // Getting the boundaries of the map 
+		      var bounds = map.getBounds(); 
+
+		      // Getting the corners of the map 
+		      var southWest = bounds.getSouthWest(); 
+		      var northEast = bounds.getNorthEast(); 
+
+		      // Calculating the distance from the top to the bottom of the map 
+		      var latSpan = northEast.lat() - southWest.lat(); 
+
+		      // Calculating the distance from side to side 
+		      var lngSpan = northEast.lng() - southWest.lng(); 
+
+		      // Creating an array that will store the markers 
+		      var markers = []; 
+
+		      // Creating a loop 
+			 <% @the_markers.each do |marker| %>
+		      // for (var i = 0; i < 1; i++) { 
+
+		        // Creating a random position 
+		        // var lat = southWest.lat() + latSpan * Math.random(); 
+		        // var lng = southWest.lng() + lngSpan * Math.random(); 
+		
+				var lat = <%= marker.latitude %>;
+				var lng = <%= marker .longitude %>;
+				
+		        var latlng = new google.maps.LatLng(lat, lng); 
+
+				// var content = "<br/><br/><br/>" + "<a href='<%= new_marker_url %>?lat=" + lat + "&lng=" + lng + "'><%=the_label%></a>";
+				// content = "";
+				// 
+				// var contentString = '<div id="content">'+
+				//     '<div id="siteNotice">'+
+				//     '</div>'+
+				//     '<h1 id="firstHeading" class="firstHeading"><%= I18n.t(:you_are_here) %></h1>'+
+				//     '<div id="bodyContent">'+
+				//     '<p>' + content + '</p>' +
+				//     '</div>'+
+				//     '</div>';
+				// 
+				// var infowindow = new google.maps.InfoWindow({
+				//     content: contentString
+				// });
+				
+				// Creating a marker. Note that we don't add it to the map 
+				// var marker = new google.maps.Marker({
+				// 	position: latlng, 
+				// 	map: map, 
+				// 	title: "<%= I18n.t(:you_are_here) %>"
+				// });
+				
+				
+		        // Creating a marker. Note that we don't add it to the map 
+				var marker = new google.maps.Marker({ 
+					position: latlng 
+				}); 
+
+		        // Adding the marker to the markers array 
+		        markers.push(marker); 
+		
+		      // } 
+
+			  <% end -%>
+			
+		      // Creating a MarkerClusterer object and adding the markers array to it 
+		      var markerclusterer = new MarkerClusterer(map, markers); 
+
+		    }); 
+
+		  }; 
+
+		})();
+		</script>
+
+		<script type="text/javascript"> 
+		// function success(position) {
+		// 	var s = document.querySelector('#status');
+		// 
+		// 	if (s.className == 'success') {
+		// 		return;
+		// 	}
+		// 
+		// 	s.innerHTML = "<%= I18n.t(:your_location) %>";
+		// 	s.className = 'success';
+		// 
+		// 	var mapcanvas = document.createElement('div');
+		// 	mapcanvas.id = 'mapcanvas';
+		// 	mapcanvas.style.height = '100%';
+		// 	mapcanvas.style.width = '100%';
+		// 
+		// 	document.querySelector('#googleMap').appendChild(mapcanvas);
+		// 	
+		// 	// begin loop code 
+		// 	
+		// 	var latlng = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
+		// 
+		// 	var myOptions = {
+		// 		zoom: 10,
+		// 		center: latlng,
+		// 		mapTypeControl: true,
+		// 		navigationControlOptions: {style: google.maps.NavigationControlStyle.SMALL},
+		// 		mapTypeId: google.maps.MapTypeId.ROADMAP
+		// 	};
+		// 
+		// 	var map = new google.maps.Map(document.getElementById("mapcanvas"), myOptions);
+		// 
+		// 	var content = "<br/><br/><br/>" + "<a href='<%= new_marker_url %>?lat=" + position.coords.latitude + "&lng=" + position.coords.longitude + "'><%=the_label%></a>";
+		// 	// content = "";
+		// 
+		// 	var contentString = '<div id="content">'+
+		// 	    '<div id="siteNotice">'+
+		// 	    '</div>'+
+		// 	    '<h1 id="firstHeading" class="firstHeading"><%= I18n.t(:you_are_here) %></h1>'+
+		// 	    '<div id="bodyContent">'+
+		// 	    '<p>' + content + '</p>' +
+		// 	    '</div>'+
+		// 	    '</div>';
+		// 
+		// 	var infowindow = new google.maps.InfoWindow({
+		// 	    content: contentString
+		// 	});
+		// 
+		// 	var marker = new google.maps.Marker({
+		// 		position: latlng, 
+		// 		map: map, 
+		// 		title: "<%= I18n.t(:you_are_here) %>"
+		// 	});
+		// 
+		// 	google.maps.event.addListener(marker, 'click', function() {
+		// 	  infowindow.open(map,marker);
+		// 	});
+		// 				
+		// 	// end loop code
+		// 
+		// 	$.cookie("MyLat", position.coords.latitude);
+		// 	$.cookie("MyLon", position.coords.longitude);
+		// }
+		
+		function error(msg) {
+			var s = document.querySelector('#status');
+			s.innerHTML = typeof msg == 'string' ? msg : "failed";
+			s.className = 'fail';
+			// console.log(arguments);
+		}
+		
+		if (navigator.geolocation) {
+			navigator.geolocation.getCurrentPosition(success, error);
+		} else {
+			error('not supported');
+		}
+		
+		$(document).ready(function()
+		{
+			$("#check").click(function()
+			{
+				var lat  = $.cookie("MyLat");
+				var lon = $.cookie("MyLon");
+				alert('Latitued: '+lat);
+				alert('Longitude: '+lon);
+				var url="http://maps.googleapis.com/maps/api/geocode/json?latlng="+lat+","+lon+"&sensor=false";
+				alert('Google Map API: '+url);
+		
+			});
+		});
+		</script> 
+
+		<div id="googleMap"></div>
+	
+	</div>
+	
+</div>

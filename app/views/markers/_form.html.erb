@@ -12,7 +12,8 @@
   </div>
 
   <div class="group">
-  	<%= f.label :address, label_name('zip'), :class => :label %>&nbsp;&nbsp;<%= @marker.address %>
+    <%= f.label :address, label_name('address'), :class => :label %>
+    <%= f.text_field :address, :class => 'textfield' %>
   </div>
 
   <div class="group">
