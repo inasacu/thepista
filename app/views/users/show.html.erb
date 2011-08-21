@@ -6,6 +6,12 @@
 	is_group_manager =  false
 	participation = 0; @user.scorecards.each {|scorecard| participation += scorecard.played}
 	the_participation_label = I18n.t(:has_user_scorecard_played, :count => participation)
+		
+	# the_length = @user.sport.strip.length
+	# the_sport = @user.sport.strip           
+	# the_index = @user.sport.rindex(',') 
+	the_sport = ""
+	the_sport = @user.sport.strip.chomp(',') if @user.sport.blank?
 %>
 <div class="block">
   
@@ -62,7 +68,7 @@
 							<td class="show"><%= @user.has_group? ? group_list(@user.groups) : label_name('groups_none') %></td>
 						</tr>
 						
-						<%= tr_td_action(:sports, @user.sport.chop.chop) %>
+						<%= tr_td_action(:sports, the_sport) %>
 
 						<tr>
 							<td class="label"><%= label_name(:event_participation) %></td>
