@@ -22,7 +22,7 @@ Rails::Initializer.run do |config|
   gem "authlogic-oid",                      :lib => "authlogic_openid"
   gem "ruby-openid",                        :lib => "openid"
   gem "acl9",                               :lib => "acl9",                         :source => "http://gemcutter.org"
-  gem "contacts"  
+  # gem "contacts"   
   gem 'sitemap_generator'                  
   gem 'acts_as_commentable',                :version => "2.1.1"           
   gem 'hoptoad_notifier'

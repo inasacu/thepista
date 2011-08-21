@@ -37,7 +37,6 @@ class UserSessionsController < ApplicationController
       
     if data.blank?
       @user_session = UserSession.new
-      # flash[:error] = I18n.t(:unauthorized)
       respond_to do |format|
         format.html { render :action => :new }
       end
@@ -61,16 +60,16 @@ class UserSessionsController < ApplicationController
         end
         
         UserSession.create(@user)
-        
-        # user has not sent an invitation in the last three weeks
-        # redirect to get contacts
-        # unless has_invitations and @user.created_at <= THREE_WEEKS_AGO
-        #   redirect_back_or_default invite_url
-        #   return
-        # end
-        
+      
         respond_to do |format|
-          format.html { redirect_back_or_default root_url }
+          format.html { 
+            # send user to invitation if last login is older than 21 days
+            if (@user.last_login_at < LAST_THREE_DAYS or @user.last_login_at.nil?)
+              redirect_to :invite
+              return
+            end
+            redirect_back_or_default root_url
+          }
         end
 
       elsif @user_openid
@@ -94,7 +93,14 @@ class UserSessionsController < ApplicationController
           if @user
             UserSession.create(@user)
             respond_to do |format|
-              format.html { redirect_back_or_default root_url }
+              format.html { 
+                # send user to invitation if last login is older than 21 days
+                if (@user.last_login_at < LAST_THREE_DAYS or @user.last_login_at.nil?)
+                  redirect_to :invite
+                  return
+                end
+                redirect_back_or_default root_url
+              }
             end
           else
             flash[:error] = "Unable to find the user that your third-party account maps to. Please contact support@haypista.com for help."

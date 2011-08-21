@@ -19,17 +19,17 @@ def env_is(env)
   ENV['RAILS_ENV'] == env
 end
 
-def display?
-  # display? = false
-  false
-end
+# def display?
+#   # display? = false
+#   false
+# end
 
-def use_solr?
-  false
-  # true if development?
-  # false if production?
-end
+# def use_solr?
+#   false
+#   # true if development?
+#   # false if production?
+# end
 
-def allow_plugins?
-  false
-end
+# def allow_plugins?
+#   false
+# end

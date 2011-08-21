@@ -17,7 +17,9 @@ gem 'openid'												, '0.0.1'
 gem 'ruby-openid'											, :require => 'openid'	
 gem 'acl9'													, '0.12.0'
 gem 'geokit'												, '1.5.0'
-gem 'contacts'												, '1.2.4'
+
+# gem 'contacts'												, '1.2.4'
+
 gem 'sitemap_generator'										, '1.3.5'
 gem 'acts_as_commentable'									, '2.1.1'
 gem 'hoptoad_notifier'	
