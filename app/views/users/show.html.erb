@@ -11,7 +11,7 @@
 	# the_sport = @user.sport.strip           
 	# the_index = @user.sport.rindex(',') 
 	the_sport = ""
-	the_sport = @user.sport.strip.chomp(',') if @user.sport.blank?
+	the_sport = @user.sport.strip.chomp(',') unless @user.sport.blank? or @user.sport.nil?
 %>
 <div class="block">
   
