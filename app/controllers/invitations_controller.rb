@@ -98,7 +98,7 @@ class InvitationsController < ApplicationController
         if (user = User.contact_emails(contact[1]) or user = Invitation.contact_emails(contact[1]))              
           @users << user
         else
-          @no_users << {:name => contact[0] , :email => contact[1]}
+          @no_users << {:name => contact[0].nil? ? Invitation.email_to_name(contact[1]) : contact[0].capitalize , :email => contact[1]}
         end
       end
       return true
@@ -106,14 +106,6 @@ class InvitationsController < ApplicationController
     rescue Contacts::AuthenticationError
       flash[:notice] = I18n.t(:username_password_donot_match)
       redirect_to :action => 'invite'
-      
-      # return false
-    # rescue Exception => exc
-    #   logger.error("Message for the log file #{exc.message}")
-    #   # flash[:notice] = "Store error message"
-    #   # redirect_to(:action => 'index')
-    #     flash[:notice] = I18n.t(:username_password_donot_match)
-    #     redirect_to :action => 'invite'
 
     end
   end

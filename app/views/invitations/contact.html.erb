@@ -1,6 +1,6 @@
 <div class="block">
 
-  <%= get_secondary_navigation(User.new) %>
+  <%= get_secondary_navigation(Message.new) %>
 
 	<div class="content">   
 
@@ -11,6 +11,11 @@
 		<div class="inner">
 
 			<% counter ||= 0 %>
+			
+			<div class="group">
+				<%= render :partial => '/shared/check_radio_button' if @contacts %>
+			</div>
+			<br/>
 		
 		<fieldset id="roster">
 			<%= get_class_table_id_action %>
@@ -47,10 +52,6 @@
 			</table>
 			
 			</fieldset>
-			
-			<div class="group">
-				<%= render :partial => '/shared/check_radio_button' if @contacts %>
-			</div>
 
 		</div>
 	</div>

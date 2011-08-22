@@ -33,6 +33,12 @@ class Invitation < ActiveRecord::Base
   before_create :format_message
   after_save :send_invite_contact
 
+  def self.email_to_name(email)
+    contact = email[/[^@]+/]
+    contact.split(".").map {|n| n.capitalize }.join(" ")
+    return contact
+  end
+  
   def sender
     self.user
   end
