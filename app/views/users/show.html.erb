@@ -75,7 +75,7 @@
 							<td class="show"><%= participation.to_i > 0 ? link_to(the_participation_label, my_list_schedules_path(:id => @user)) : the_participation_label %></td>
 						</tr>
 						
-						<% if @user.has_group? 							
+						<% if @user.has_group? and DISPLAY_USER_GROUP_FULL							
 							group_scorecards = []
 							Match.last_games_played(@user).each {|match| group_scorecards << match.group_id unless group_scorecards.include?(match.group_id)}
 						%>
@@ -111,7 +111,7 @@
 							the_label = h(label_name(@user.forum_comment_notification, 'value'))
 						%>
 						<tr>
-							<%= content_tag :td, get_cluetip_show('forum_notification'), :class =>"label" %>
+							<%= content_tag :td, label_name('forum_notification'), :class =>"label" %>
 							<%= content_tag :td, (can_modify ? link_to(the_label, set_forum_notification_path(:id => @user)) : the_label), :class => get_the_action %>
 						</tr>
 
@@ -119,7 +119,7 @@
 							the_label = h(label_name(@user.blog_comment_notification, 'value'))
 						%>
 						<tr>
-							<%= content_tag :td, get_cluetip_show('blog_notification'), :class =>"label" %>
+							<%= content_tag :td, label_name('blog_notification'), :class =>"label" %>
 							<%= content_tag :td, (can_modify ? link_to(the_label, set_blog_notification_path(:id => @user)) : the_label), :class => get_the_action %>
 						</tr>
 
@@ -127,16 +127,16 @@
 							the_label = h(label_name(@user.message_notification, 'value'))
 						%>
 						<tr>
-							<%= content_tag :td, get_cluetip_show('message_notification'), :class =>"label" %>
+							<%= content_tag :td, label_name('message_notification'), :class =>"label" %>
 							<%= content_tag :td, (can_modify ? link_to(the_label, set_message_notification_path(:id => @user)) : the_label), :class => get_the_action %>
 						</tr>
 						
-						<% if @user.has_role?('manager') %>
+						<% if @user.has_role?('manager') and DISPLAY_USER_PETITION %>
 						<%
 							the_label = h(label_name(@user.teammate_notification, 'value'))
 						%>
 						<tr>
-							<%= content_tag :td, get_cluetip_show('teammate_notification'), :class =>"label" %>
+							<%= content_tag :td, label_name('teammate_notification'), :class =>"label" %>
 							<%= content_tag :td, (can_modify ? link_to(the_label, set_teammate_notification_path(:id => @user)) : the_label), :class => get_the_action %>
 						</tr>
 						<% end %>
@@ -145,12 +145,12 @@
 							the_label = h(label_name(@user.looking, 'value'))
 						%>
 						<tr>
-							<%= content_tag :td, get_cluetip_show('looking_for_my_group'), :class =>"label" %>
+							<%= content_tag :td, label_name('looking_for_my_group'), :class =>"label" %>
 							<%= content_tag :td, (@user == current_user ? link_to(the_label, set_user_looking_path(:id => @user)) : the_label), :class => get_the_action %>
 						</tr>
 
 							<tr>
-								<%= content_tag :td, get_cluetip_show('evaluation'), :class =>"label" %>
+								<%= content_tag :td, label_name('evaluation'), :class =>"label" %>
 								<%= content_tag :td, ratings_for( @user, :static, :dimension => :evaluation, :size => "small" ), :class => get_the_action %>
 							</tr>
 						

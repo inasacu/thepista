@@ -1,31 +1,28 @@
 <div class="block">
-	<div class="sidebar-block" class="extra">
-	<a href="#" onclick="toggle_visibility('abc');">
-		<h5><%= get_cluetip_toggle('subscription_option') %></h5>
-	</a>
-	<div id="abc" style='display:none;'>			
-<% 
-@user.groups.each do |group| 
+	<h3><%= label_name('subscription_option') %></h3>
+	<div class="content">
 
-	if current_user.is_manager_of?(group) 
+<% 
+	@user.groups.each do |group| 
 
-		unless @user.is_subscriber_of?(group) 
-%>
-			<p>
-			<%= option_image_link('user_add') %>&nbsp;&nbsp;<%= set_role_add_subscription(@user, group) %>
-			</p> 	
-<% 
-		else
-%>		
-			<p>
-			<%= option_image_link('user_remove') %>&nbsp;&nbsp;<%= set_role_remove_subscription(@user, group) %>
-			</p> 	
-<% 
+		if current_user.is_manager_of?(group) 
+
+			unless @user.is_subscriber_of?(group) 
+				%>
+				<p>
+					<%= option_image_link('user_add') %>&nbsp;&nbsp;<%= set_role_add_subscription(@user, group) %>
+				</p> 	
+				<% 
+			else
+				%>		
+				<p>
+					<%= option_image_link('user_remove') %>&nbsp;&nbsp;<%= set_role_remove_subscription(@user, group) %>
+				</p> 	
+				<% 
+			end 
 		end 
 	end 
-end 
 %>
 
-</div>
-</div>
+	</div>
 </div>

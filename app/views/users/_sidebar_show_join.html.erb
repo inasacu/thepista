@@ -1,31 +1,25 @@
 <div class="block">
-	<div class="sidebar-block" class="extra">
-	<a href="#" onclick="toggle_visibility('def');">
-			<h5><%= get_cluetip_toggle('join_option') %></h5>
-	</a>
-	<div id="def" style='display:none;'>
-
+	<h3><%= label_name('join_option') %></h3>
+	<div class="content">
 <%
-	current_user.groups.each do |group| 
-		the_group = h(group.name)
+		current_user.groups.each do |group| 
+			the_group = h(group.name)
 
- 		unless @user.is_member_of?(group)  
-			
-			if current_user.is_manager_of?(group)
-%>
-			<p><%= option_image_link('user_add') %>&nbsp;&nbsp;<%= join_item_link_to(@user, group, true) %></p>
-<% 
-			end
-		else 
-			if current_user.is_manager_of?(group)
-%> 
-		<p><%= option_image_link('group_remove') %>&nbsp;&nbsp;<%= leave_item_link_to(@user, group) %></p>
-<% 
-			end
+			unless @user.is_member_of?(group)  
+
+				if current_user.is_manager_of?(group)
+					%>
+					<p><%= option_image_link('user_add') %>&nbsp;&nbsp;<%= join_item_link_to(@user, group, true) %></p>
+					<% 
+				end
+			else 
+				if current_user.is_manager_of?(group)
+					%> 
+					<p><%= option_image_link('group_remove') %>&nbsp;&nbsp;<%= leave_item_link_to(@user, group) %></p>
+					<% 
+				end
+			end 
 		end 
-	end 
 %>
-
-</div>
-</div>
+	</div>
 </div>

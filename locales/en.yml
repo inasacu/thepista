@@ -1652,7 +1652,8 @@ en:
      fees_due:  Pending Charges
      fees_create:  New Charge
      fees_destroy: Remove Charge
-     fees_index:   Charge
+     fees_index:   Charges
+     fees_item:  Payments
      fees_index_option: Options
      fees_list:  Charges
      fees_item_list:  Charges

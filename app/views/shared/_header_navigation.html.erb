@@ -42,7 +42,7 @@
 	when 'user session'
 		the_login = "active" 
 			
-	when 'schedule', 'forum'
+	when 'schedule', 'forum', 'match'
 		the_schedule = (get_controller_action == "schedule_my_list")
 		the_schedule = the_schedule ? (@user == current_user) : true
 		the_schedule = the_schedule ? "active" : " "

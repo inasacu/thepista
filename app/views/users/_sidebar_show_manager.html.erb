@@ -1,11 +1,8 @@
 <div class="block">
-	<div class="sidebar-block" class="extra">
-		<a href="#" onclick="toggle_visibility('ghi');">	
-			<h5><%= get_cluetip_toggle('manager_option') %></h5>
-		</a>
-	<div id="ghi" style='display:none;'>
+	<h3><%= label_name('manager_option') %></h3>
+	<div class="content">
 
-<%
+		<%
 	current_user.groups.each do |group| 
 		the_group = h(group.name)
 		
@@ -53,6 +50,5 @@
 	end 
 %>
 
-</div>
 </div>
 </div>

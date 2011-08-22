@@ -388,7 +388,7 @@ class User < ActiveRecord::Base
         "where users.id = groups_users.user_id " +
         "and groups_users.group_id in (?) " +
         "and groups_users.user_id != ? " +
-        "and users.available = true " +
+        "and users.archive = false " +
         "order by name", user.groups, user.id])
     end
 
@@ -397,7 +397,7 @@ class User < ActiveRecord::Base
             "where users.id = groups_users.user_id " +
             "and groups_users.group_id in (?) " +
             "and groups_users.user_id != ? " +
-            "and users.available = true " +
+            "and users.archive = false " +
             "order by name", group.id, self.id])
     end
     

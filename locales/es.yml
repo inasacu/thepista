@@ -1656,7 +1656,8 @@ es:
      fees_due:  Cargos pendiente
      fees_create:  Nueva cargo
      fees_destroy: Borrar cargo
-     fees_index:   Cargo
+     fees_index:   Cargos
+     fees_item:  Pagos
      fees_index_option: Opciones
      fees_list:  Cargos
      fees_item_list:  Cargos

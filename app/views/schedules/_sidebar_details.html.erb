@@ -1,10 +1,7 @@
 <%
 	is_user_manager = current_user.is_manager_of?(@schedule.group)
 	the_label = "#{h(@schedule.group.name)} - #{sanitize(@schedule.concept)}"
-	# content_for(:title, sanitize(@schedule.concept))	
-
-	show_start_rating = (current_user.is_member_of?(@schedule.group) and @schedule.game_played?)
-	
+	show_start_rating = (current_user.is_member_of?(@schedule.group) and @schedule.game_played?)	
 	show_individual_score = (@schedule.group.is_futbol? and @schedule.played?)
 	
 	if show_individual_score
@@ -42,8 +39,12 @@
 
 			<tr>
 				<td class="name_and_date">
-					<%= item_name_link(@schedule.group) %>
-					<br/>
+					<%= item_name_link(@schedule.group) %>&nbsp;&nbsp;<%= content_tag 'td', link_to(label_name(:scorecard), scorecard_path(:id => @schedule.group)), :class=> 'last' %>	
+				</td>
+			</tr>
+
+			<tr>
+				<td class="name_and_date">
 					<span class="strong"><%= label_name(:sport) %></span>:
 					<%= @schedule.sport.name %>
 				</td>
@@ -52,64 +53,16 @@
 			<tr>
 				<td class="name_and_date">
 					<span class="strong"><%= label_name(:starts_at) %></span>:
-					<%= nice_day_time_wo_year(schedule.starts_at) %>
-					<br/>
-					<span class="strong"><%= label_name(:ends_at) %></span>:
-					<%= nice_day_time_wo_year(schedule.ends_at) %>
+					<%= nice_day_time_wo_year_exact(schedule.starts_at) %>
 				</td>
 			</tr>
-		
-			<tr>
-				<td class="name_and_date">
-					<span class="strong"><%= label_name(:fee_per_game) %></span>:
-					<%= number_to_currency(@schedule.fee_per_game) %>
-					<br/>
-					<span class="strong"><%= label_name(:fee_per_pista) %></span>:
-					<%= number_to_currency(@schedule.fee_per_pista) %>
-				</td>
-			</tr>
-
-			<% unless @schedule.convocados.empty? %>	 
+			
 			<tr>
 				<td class="name_and_date">
 					<span class="strong"><%= label_name(:convocado) %></span>:
-					<%=  @schedule.convocados.count %>	
+					<%= @schedule.convocados.count %>&nbsp;/&nbsp;<%= @schedule.player_limit %>
 				</td>
 			</tr>
-			<% end %>
-
-			<% unless @schedule.last_minute.empty? %>	 
-			<tr>
-				<td class="name_and_date">
-					<span class="strong"><%= label_name(:last_minute) %></span>:
-					<%= label_name(:last_minute) %>:  <%=  @schedule.last_minute.count %>	
-				</td>
-			</tr>
-			<% end %>
-
-			<% unless @schedule.no_shows.empty? %>
-			<tr>
-				<td class="name_and_date">
-					<span class="strong"><%= label_name(:no_shows) %></span>:
-					<%=  @schedule.no_shows.count %>	
-				</td>
-			</tr>
-			<% end %>
-
-			<tr>
-				<td class="name_and_date">
-					<span class="strong"><%= label_name(:player_limit) %></span>:
-					<%=  @schedule.player_limit %>	
-				</td>
-			</tr>
-
-			<tr>
-				<td class="name_and_date">
-					<%= link_to(label_name(:scorecard), scorecard_path(:id => @schedule.group)) %>	
-				</td>
-			</tr>
-			
-			
 
 		    <% if @schedule.game_played? %>
 
@@ -135,6 +88,7 @@
 		</table>
 		
 		</p>
+		
 </div>
 	
 </div>

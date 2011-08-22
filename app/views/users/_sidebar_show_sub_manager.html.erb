@@ -1,34 +1,30 @@
 <div class="block">
-	<div class="sidebar-block" class="extra">
-		<a href="#" onclick="toggle_visibility('xyz');">
-			<h5><%= get_cluetip_toggle('sub_manager_option') %></h5>
-		</a>
-	<div id="xyz" style='display:none;'>
-			
-<% 
-@user.groups.each do |group| 
+	<h3><%= label_name('sub_manager_option') %></h3>
+	<div class="content">
 
-	if current_user.is_manager_of?(group) 
+<% 
+	@user.groups.each do |group| 
 
-		unless @user.is_sub_manager_of?(group) 
-%>		
-			<p>
-			<%= option_image_link('user_add') %>&nbsp;&nbsp;<%= set_role_add_sub_manager(@user, group) %>
-			</p>
-<% 
-		else
-			if @user != current_user
-%>					
-			<p>
-			<%= option_image_link('user_remove') %>&nbsp;&nbsp;<%= set_role_remove_sub_manager(@user, group) %>
-			</p>			
-<% 
-			end
-		end   
+		if current_user.is_manager_of?(group) 
+
+			unless @user.is_sub_manager_of?(group) 
+	%>		
+				<p>
+				<%= option_image_link('user_add') %>&nbsp;&nbsp;<%= set_role_add_sub_manager(@user, group) %>
+				</p>
+	<% 
+			else
+				if @user != current_user
+	%>					
+				<p>
+				<%= option_image_link('user_remove') %>&nbsp;&nbsp;<%= set_role_remove_sub_manager(@user, group) %>
+				</p>			
+	<% 
+				end
+			end   
+		end 
 	end 
-end 
 %>
 
-</div>
-</div>
+	</div>
 </div>
