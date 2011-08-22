@@ -377,7 +377,7 @@ module ApplicationHelper
 
   def item_new(item)    
     the_url = "new_#{item.class.to_s.downcase.chomp}_url"
-    content_tag('li', link_to(control_action_label, send(:"#{the_url}")), :class =>  get_first_active ) if is_action('new') or is_action('create')
+    content_tag('li', link_to(control_action_label, send(:"#{the_url}")), :class => 'first active') if (is_action('new') or is_action('create'))
   end
 
   def sort_link(title, column, options = {})

@@ -52,7 +52,7 @@
 
 		<%= tr_td_action(:sports, @group.sport.name) %>
 		<%= tr_td_action(:game_day, nice_day_time(@group.schedules.first.starts_at)) unless @group.schedules.blank? %>
-		<%= tr_td_action(:time_zone, @group.time_zone) %>
+		<%= tr_td_action(:city, @group.marker.city) %>
 
 	<% 
 		the_label = h(label_name(@group.automatic_petition, 'value'))

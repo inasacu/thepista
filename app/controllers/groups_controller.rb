@@ -7,21 +7,25 @@ class GroupsController < ApplicationController
   before_filter :has_manager_access, :only => [:edit, :update, :destroy, :set_available, :set_enable_comments, :set_automatic_petition, :set_looking]
 
   def index
-    @groups = Group.paginate(:all, :conditions => ["archive = false and id in (?)", current_user.groups], 
-    :page => params[:page], :order => 'name') unless current_user.groups.blank?
+    @groups = Group.paginate(:all, :conditions => ["groups.archive = false "], :order => "groups.created_at DESC", :page => params[:page])
+    # @groups = Group.paginate(:all, :conditions => ["archive = false and id in (?)", current_user.groups], 
+    # :page => params[:page], :order => 'name') unless current_user.groups.blank?
 
-    if @groups.nil? or @groups.blank?
-      redirect_to :action => 'list'
-      return
-    end
+    # if @groups.nil? or @groups.blank?
+    #   redirect_to :action => 'list'
+    #   return
+    # end
   end
 
   def list
-    @groups = Group.paginate(:all, :conditions => ["archive = false and id not in (?)", current_user.groups], 
-    :page => params[:page], :order => 'name') unless current_user.groups.blank?
-    @groups = Group.paginate(:all, :conditions =>["archive = false"], 
-    :page => params[:page], :order => 'name') if current_user.groups.blank?
-    render :template => '/groups/index'       
+    redirect_to :action => 'list'
+      return
+    
+    # @groups = Group.paginate(:all, :conditions => ["archive = false and id not in (?)", current_user.groups], 
+    # :page => params[:page], :order => 'name') unless current_user.groups.blank?
+    # @groups = Group.paginate(:all, :conditions =>["archive = false"], 
+    # :page => params[:page], :order => 'name') if current_user.groups.blank?
+    # render :template => '/groups/index'       
   end
 
   def team_list

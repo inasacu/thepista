@@ -119,7 +119,7 @@
 	<%= tr_td_action(:sport, @schedule.sport.name) %>
 	<%= tr_td_action(:fee_per_game, number_to_currency(@schedule.fee_per_game)) %>
 	<%= tr_td_action(:fee_per_pista, number_to_currency(@schedule.fee_per_pista)) %>
-	<%= tr_td_action(:time_zone, @schedule.time_zone) %>
+	<%= tr_td_action(:city, @schedule.group.marker.city) %>
 	
     <tr>
       <%= content_tag :td, label_name(:marker), :class => "label" %>       

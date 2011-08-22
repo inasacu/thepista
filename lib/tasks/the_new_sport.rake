@@ -20,57 +20,57 @@ task :the_new_sport => :environment do |t|
   #   :points_for_win => sport[3], :points_for_lose => sport[4], :points_for_draw => sport[5], :player_limit => sport[6] )
   # 
   # end
-  
-  the_sport = Sport.find(:all, :conditions => "name = 'Volleyball'")
-  the_sport.each do |sport|
-    sport.icon = 'volleyball.png'
-    sport.description = sport.name
-    sport.player_limit = 12
-    sport.save
-    puts sport.name
-  end
-
-  the_sport = Sport.find(:all, :conditions => "name = 'Futbol 7'")
-  the_sport.each do |sport|
-    sport.description = sport.name
-    sport.player_limit = 14
-    sport.save
-    puts sport.name
-  end
-
-  the_sport = Sport.find(:all, :conditions => "name = 'Padel'")
-  the_sport.each do |sport|
-    sport.description = sport.name
-    sport.player_limit = 4
-    sport.save
-    puts sport.name
-  end
-
-  the_sport = Sport.find(:all, :conditions => "name in ('Futbol 11', 'Football', 'Soccer')")
-  the_sport.each do |sport|
-    sport.description = sport.name
-    sport.player_limit = 22
-    sport.save
-    puts sport.name
-  end
-
-  the_sport = Sport.find(:all, :conditions => "name in ('FutSal', 'Basketball', 'Hockey')")
-  the_sport.each do |sport|  
-    sport.description = sport.name
-    sport.player_limit = 10
-    sport.save
-    puts sport.name
-  end
-
-  the_sport = Sport.find(:all, :conditions => "name in ('Golf', 'Tennis', 'Other')")
-  the_sport.each do |sport|
-    sport.description = sport.name
-    sport.player_limit = 2
-    sport.save
-    puts sport.name
-  end
-
-
+  # 
+  # the_sport = Sport.find(:all, :conditions => "name = 'Volleyball'")
+  # the_sport.each do |sport|
+  #   sport.icon = 'volleyball.png'
+  #   sport.description = sport.name
+  #   sport.player_limit = 12
+  #   sport.save
+  #   puts sport.name
+  # end
+  # 
+  # the_sport = Sport.find(:all, :conditions => "name = 'Futbol 7'")
+  # the_sport.each do |sport|
+  #   sport.description = sport.name
+  #   sport.player_limit = 14
+  #   sport.save
+  #   puts sport.name
+  # end
+  # 
+  # the_sport = Sport.find(:all, :conditions => "name = 'Padel'")
+  # the_sport.each do |sport|
+  #   sport.description = sport.name
+  #   sport.player_limit = 4
+  #   sport.save
+  #   puts sport.name
+  # end
+  # 
+  # the_sport = Sport.find(:all, :conditions => "name in ('Futbol 11', 'Football', 'Soccer')")
+  # the_sport.each do |sport|
+  #   sport.description = sport.name
+  #   sport.player_limit = 22
+  #   sport.save
+  #   puts sport.name
+  # end
+  # 
+  # the_sport = Sport.find(:all, :conditions => "name in ('FutSal', 'Basketball', 'Hockey')")
+  # the_sport.each do |sport|  
+  #   sport.description = sport.name
+  #   sport.player_limit = 10
+  #   sport.save
+  #   puts sport.name
+  # end
+  # 
+  # the_sport = Sport.find(:all, :conditions => "name in ('Golf', 'Tennis', 'Other')")
+  # the_sport.each do |sport|
+  #   sport.description = sport.name
+  #   sport.player_limit = 2
+  #   sport.save
+  #   puts sport.name
+  # end
+  # 
+  # 
   # 
   # [['Madrid'],['Álava'],['Albacete'],['Alicante'],['Almería'],['Asturias'],['Ávila'],['Badajoz'],['Illes Baleares'],['Barcelona'],['Burgos'],
   # ['Cáceres'],['Cádiz'],['Cantabria'],['Castellón'],['Ceuta'],['Ciudad Real'],['Córdoba'],['Cuenca'],['Girona'],['Granada'],['Guadalajara'],['Guipúzcoa'],
@@ -80,8 +80,8 @@ task :the_new_sport => :environment do |t|
   # ['Zaragoza']].each do |state|
   #   State.create(:name => state[0])
   # end
-  
-
+  # 
+  # 
   # # add cities w/ coresponding state
   #  [['Madrid ',1], [' Adra ',5], [' Aguadulce ',5], [' Albacete ',3], [' Alba de Tormes ',40], [' Alberca ',40], [' Albir  ',4], ['Albufeira (La)',48], [' Alcalá de Henares ',1], 
   #   [' Alhama ',21], [' Alicante ',4], [' Allora ',33], [' Almería ',5], [' Almerimar ',5], [' Almodovar ',18], [' Almuñecar ',21], ['Alpujarra (La)',21], [' Altea  ',4], 
@@ -118,7 +118,21 @@ task :the_new_sport => :environment do |t|
   #   [' Valladolid ',49], [' Valor ',21], [' Vélez ',33], [' Vera ',5], [' Viana ',36], [' Vigo',39], [' Vilafranca ',10], [' Villafranca ',11], [' Vitoria-Gasteiz',2], 
   #   ['Yesa ',36], [' Yesa ',52], ['Zahara de Los Atunes ',13], [' Zamora ',51], [' Zaragoza',52]].each do |city|
   #        
-  #        City.create(:name => city[0].strip, :state_id => city[1])
-  #      end
+  #     City.create(:name => city[0].strip, :state_id => city[1])
+  #   end
+              
+              
+    include GeoKit::Geocoders      
+    
+    the_markers = Marker.find(:all, :conditions => "region is null or region = ''")
+    the_markers.each do |marker|
+      
+      @location = GoogleGeocoder.reverse_geocode([marker.lat, marker.lng])      
+      puts "#{marker.region} => #{@location.state}"
+      puts marker.name
+      marker.region = @location.state
+      marker.save
+
+    end
       
 end
