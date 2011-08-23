@@ -328,6 +328,11 @@ module ApplicationHelper
     return image_tag(the_image, options={:style => 'height: 24px; width: 24px;', :align => align})
   end
 
+    def option_image_small_link(item, align='')
+      the_image = "icons/#{item}.png"
+      return image_tag(the_image, options={:style => 'height: 16px; width: 16px;', :align => align})
+    end
+
   def option_link(item) 
     the_image = "icons/#{item}.png"
     the_label = I18n.t("create_new_#{item}")

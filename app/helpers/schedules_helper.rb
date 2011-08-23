@@ -117,7 +117,7 @@ module SchedulesHelper
         the_label = "#{I18n.t(:your_roster_status) } #{the_font_begin}#{(match.type_name).downcase}#{the_font_end}" if match.user == current_user
       end
       
-      return content_tag 'td', "#{the_label}<br/>#{match_all_my_link(schedule, current_user, false, false)}", :class => "last_upcoming"
+      return content_tag 'td', "#{the_label}<br/>#{match_all_my_link(schedule, current_user, false, true)}", :class => "last_upcoming"
     end
   end
 
