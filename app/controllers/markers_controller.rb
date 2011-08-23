@@ -5,73 +5,69 @@ class MarkersController < ApplicationController
   before_filter :the_maximo,            :only => [:edit, :update]
 
   before_filter :get_complete_markers,  :only => [:list]
-  before_filter :get_my_markers,        :only => [:index, :show]
+  before_filter :get_my_markers,        :only => [:index, :show, :original]
   before_filter :get_list_markers,      :only => [:search]
   before_filter :get_all_markers,       :only => [:index, :show, :list, :search, :address]
 
   include GeoKit::Geocoders
-  
+
   def index    
-    # @default_min_points = 0
-    # @default_max_points = 35
-    # @default_zoom = 8
-    # render :template => "markers/index_gmap3"
-    
-    #####################################################
-    # @location = IpGeocoder.geocode(current_user.current_login_ip)
-    # @location = IpGeocoder.geocode(request.remote_ip)
-    # 
+    @default_min_points = 0
+    @default_max_points = 25
+    @default_zoom = 8
+    render :template => "markers/index_gmap3"
+  end
+
+  def original
     @coord = [40.4166909, -3.7003454]
     # @coord = [0, 0]
     if @location.success
       @coord =  [@location.lat, @location.lng]  
-    #   @marker = GMarker.new(@coord, :info_window => @location, :title => @location)
     end
 
     location = "#{current_user.time_zone.to_s}"
-  
+
     results = Geocoding::get(location)
-     if results.status == Geocoding::GEO_SUCCESS
-       @coord = results[0].latlon
-       @marker = GMarker.new(@coord, :info_window => location, :title => location)
-     end
-  
+    if results.status == Geocoding::GEO_SUCCESS
+      @coord = results[0].latlon
+      @marker = GMarker.new(@coord, :info_window => location, :title => location)
+    end
+
     @markers = Marker.all_markers
-    
+
     @map = GMap.new("map")
     @map.control_init(:large_map => true, :map_type => true)
     @map.center_zoom_init(@coord, 12)
-     
+
     @markers.each do |marker|
       the_new_model_url = ""
-       
+
       the_groups = "<br /><strong>" + I18n.t(:groups) + ":</strong><br />" unless marker.groups.empty?
-      
+
       marker.groups.each do |group|
         group_url = url_for(:controller => 'groups', :action => 'show', :id => group.id)   
         the_groups = the_groups + "<a href=\"#{group_url}\">#{group.name}</a>&nbsp;&nbsp;#{group.sport.name}<br />"
-    end    
-      
+      end    
+
       the_new_model_url = "<br /><strong>" + I18n.t(:create) + ":</strong><br />"
       the_group_url = url_for(:controller => 'groups', :action => 'new', :marker_id => marker)
 
       the_new_model_url = the_new_model_url + "<a href=\"#{the_group_url}\">#{I18n.t(:you_are_create_group)}</a>&nbsp;&nbsp;"
-        
+
       theMarker = GMarker.new([marker.latitude, marker.longitude], 
-                              :info_window => "<strong>#{marker.name}</strong><br />
-                                              #{marker.address}<br >
-                                              #{marker.city}, #{marker.zip}<br />
-                                              #{the_groups}<br/><br/>#{the_new_model_url}",
-                              :title => marker.name)
+      :info_window => "<strong>#{marker.name}</strong><br />
+      #{marker.address}<br >
+      #{marker.city}, #{marker.zip}<br />
+      #{the_groups}<br/><br/>#{the_new_model_url}",
+      :title => marker.name)
       @map.overlay_init(theMarker)
     end  
-    @map.overlay_init(@marker) if @marker
-    
+    @map.overlay_init(@marker) if @marker    
   end
 
   def search
     @default_min_points = 0
-    @default_max_points = 35
+    @default_max_points = 25
     @default_zoom = 10
     render :template => "markers/index_gmap3"
   end
@@ -87,12 +83,12 @@ class MarkersController < ApplicationController
     @default_zoom = 5
     render :template => "markers/index_gmap3"
   end
-  
+
   def new
     if params[:lat] and params[:lng] 
       @marker = Marker.new()
       @location = GoogleGeocoder.reverse_geocode([params[:lat], params[:lng]]) 
-      
+
       @near_markers = Marker.get_markers_within_meters(params[:lat], params[:lng])
 
       @marker.latitude = params[:lat]
@@ -157,7 +153,7 @@ class MarkersController < ApplicationController
     end
     @markers = Marker.all_markers
   end
-  
+
   def get_my_markers      
     if (current_user.current_login_ip != '127.0.0.1')
       @location = IpGeocoder.geocode(current_user.current_login_ip)
@@ -202,13 +198,13 @@ class MarkersController < ApplicationController
 
   def get_all_markers    
     @the_markers = []    
-    
+
     @default_latitude = 40.4855346857
     @default_longitude = -3.7153476477
-    
+
     @default_latitude = @location.lat unless @location.lat.nil?
     @default_longitude = @location.lng unless @location.lng.nil?
-    
+
     has_access = current_user.is_maximo?
 
     @markers.each do |marker|  
