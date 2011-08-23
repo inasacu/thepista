@@ -64,7 +64,7 @@
 		<% unless @schedule.last_season?(current_user)  %>
 		<p>
 		<%= option_image_link('schedule') %>&nbsp;&nbsp;
-		<%= link_to label_name(:matches), edit_match_path(@schedule.matches.first)  %>
+		<%= link_to label_name(:matches_edit), edit_match_path(@schedule.matches.first)  %>
 		</p>
 		<% end -%>
 <% 

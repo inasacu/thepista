@@ -471,7 +471,7 @@ es:
      game_day: Encuentro 
      gameday_at_description:  Dia de la semana del encuentro  
      games_concept_description:  Concepto del evento
-     games_destroy:  Borrar evento
+     games_destroy:  Borra el partido
      games_index:  Eventos
      games_index_option: Opciones 
      games_invitations_create:  Invita a un amigo al evento
@@ -774,7 +774,8 @@ es:
      markers_search:  Buscar en el Map
      markers_show: Mostrar centro deportivo
      match: Resultado 
-     matches: Resultados   
+     matches: Resultados 
+     matches_edit:  Introduce el resultado  
      maybe_available: Posiblemente   
      Medium: Medio   
      member_since: Miembro desde   
@@ -1713,12 +1714,11 @@ es:
      groups_search: Busqueda de equipos
      groups_search_to_join: Puedes buscar un equipo a quien unierte. 
      groups_show:  Mostrar equipo
-     groups_update: Cambia el equipo    
-     matches_edit:  Resultados
+     groups_update: Cambia el equipo 
      meets_archive_list:  Temporada anterior
      meets_concept_description:  Concepto del evento 
      meets_create:  Organiza un partido 
-     meets_destroy:  Borrar evento 
+     meets_destroy:  Borra el partido 
      meets_index:  Eventos de torneo  
      meets_index_option: Opciones  
      meets_invitations_create:  Invita a un amigo al evento 
@@ -1770,7 +1770,7 @@ es:
      schedules: Eventos
      schedules_archive_list:  Temporada anterior
      schedules_create:  Organiza un partido
-     schedules_destroy:  Borrar evento
+     schedules_destroy:  Borra el partido
      schedules_index:  Eventos
      schedules_index_option: Opciones 
      schedules_invitations_create:  Invita a un amigo al evento

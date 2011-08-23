@@ -772,7 +772,8 @@ en:
      markers_search:  Search Map
      markers_show: Show Location 
      match: Match Result   
-     matches: Match Results   
+     matches: Match Results
+     matches_edit:  Enter Results   
      maybe_available: Maybe Available   
      Medium: Medium   
      member_since: Member since   
@@ -1709,8 +1710,7 @@ en:
      groups_search: Search for Teams
      groups_search_to_join: Search for a team to join. 
      groups_show:  Show Team
-     groups_update: Edit Team    
-     matches_edit:  Match Results
+     groups_update: Edit Team   
      meets_archive_list:  Previous Season
      meets_concept_description:  Event Concept 
      meets_create:  New Event 
