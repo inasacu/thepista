@@ -12,6 +12,7 @@
 	# the_index = @user.sport.rindex(',') 
 	the_sport = ""
 	the_sport = @user.sport.strip.chomp(',') unless @user.sport.blank? or @user.sport.nil?
+	is_notice = get_controller_action == 'user_notice'
 %>
 <div class="block">
   
@@ -42,6 +43,8 @@
 			<tr>
 				<td>
 					<table border="0">
+						
+						<% unless is_notice %>
 						
 						<%= tr_td_action(:name, @user.name) %>
 						<%= tr_td_action(:email, @user.email) if @user == current_user %>
@@ -107,6 +110,9 @@
 						<%= tr_td_action(:time_zone, @user.time_zone) %>
 						<%= tr_td_action(:language, label_name(@user.language)) %>
 
+						<% end -%>
+
+						<% if is_notice %>
 						<% 
 							the_label = h(label_name(@user.forum_comment_notification, 'value'))
 						%>
@@ -140,7 +146,7 @@
 							<%= content_tag :td, (can_modify ? link_to(the_label, set_teammate_notification_path(:id => @user)) : the_label), :class => get_the_action %>
 						</tr>
 						<% end %>
-					
+											
 						<% 
 							the_label = h(label_name(@user.looking, 'value'))
 						%>
@@ -148,7 +154,10 @@
 							<%= content_tag :td, label_name('looking_for_my_group'), :class =>"label" %>
 							<%= content_tag :td, (@user == current_user ? link_to(the_label, set_user_looking_path(:id => @user)) : the_label), :class => get_the_action %>
 						</tr>
-
+						<% end -%>
+						
+						<% unless is_notice %>
+						
 							<tr>
 								<%= content_tag :td, label_name('evaluation'), :class =>"label" %>
 								<%= content_tag :td, ratings_for( @user, :static, :dimension => :evaluation, :size => "small" ), :class => get_the_action %>
@@ -162,6 +171,7 @@
 						<% end -%>
 					
 						<%= render :partial => 'show_admin' if current_user.is_maximo? %>
+						<% end -%>
 	
 					</table>
 					

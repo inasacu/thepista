@@ -245,7 +245,7 @@ es:
      cups_edit:  Actualiza copa
      cups_howto:  Crea tu copa en 7 pasos.
      cups_howto_create:  Haz click en la opción de 'Nuevo copa'.
-     cups_howto_event:  Haz click en la opción de 'Nuevo evento'.
+     cups_howto_event:  Haz click en la opción de 'Organiza un partido'.
      cups_howto_tab:  Haz click en la pestaña 
      cups_howto_fillin:  Rellena todos los campos y haz click en el boton 'Nuevo'.
      cups_howto_gameday:  Los proximos eventos salen en la pagina de inicio.
@@ -478,11 +478,11 @@ es:
      games_list:  Anteriores eventos
      games_list_no: Ningun evento previo para mostrar
      games_manager_option:  Requiere organizador de equipo para ver mas opciones.
-     games_new: Nuevo evento
+     games_new: Organiza un partido
      games_no: Ningun evento para mostrar
      games_create: Nuevo Evento
-     games_edit: Actualizar evento
-     games_update: Actualizar evento
+     games_edit: Cambia el partido
+     games_update: Cambia el partido
      games_option:  Opciones 
      game_options:  Opciones 
      games_show: Detalles del evento
@@ -595,7 +595,7 @@ es:
      groups_full:  Detalles de equipos 
      groups_howto:  Crea tu equipo en 9 pasos.
      groups_howto_create:  Haz click en la opción de 'Nuevo equipo'.
-     groups_howto_event:  Haz click en la opción de 'Nuevo evento'.
+     groups_howto_event:  Haz click en la opción de 'Organiza un partido'.
      groups_howto_tab:  Haz click en la pestaña 
      groups_howto_fillin:  Rellena todos los campos y haz click en el boton 'Nuevo'.
      groups_howto_gameday:  Los proximos eventos salen en la pagina de inicio.
@@ -1294,7 +1294,7 @@ es:
      escuadras_available:  Todos los equipos
      escuadras_create:  Nuevo equipo 
      escuadras_destroy:  Borrar equipo
-     escuadras_edit:  Actualizar equipo
+     escuadras_edit:  Cambia el equipo
      escuadras_index:   Equipo
      escuadras_index_option: Opciones 
      escuadras_invitations_create:  Invita a un amigo a este equipe
@@ -1314,7 +1314,7 @@ es:
      escuadras_to_join:   crea un equipo 
      escuadras_true:  Escuadras en la lista
      escuadras_false: Escuadras no en la lista
-     escuadras_update: Actualizar equipo
+     escuadras_update: Cambia el equipo
      start_session: inicia tu sesión   
      starts_at: Inicio  
      starts_at_description: (¿Ha que hora empieza el evento?) 
@@ -1651,8 +1651,8 @@ es:
      fee_options: Opciones 
      fee_to: Cargos de 
      fee_to_description:  A quien son los cargos
-     fee_user_for_group:  Anotar cargo a los jugadores de
-     fee_user_for_tournament:  Anotar cargo a los jugadores de
+     fee_user_for_group:  Anotar cargo a los jugadores
+     fee_user_for_tournament:  Anotar cargo a los jugadores
      fees_due:  Cargos pendiente
      fees_create:  Nueva cargo
      fees_destroy: Borrar cargo
@@ -1698,7 +1698,7 @@ es:
      group_stage_set_full:  Actualizar grupo
      groups_create:  Nuevo equipo 
      groups_destroy:  Borrar equipo
-     groups_edit:  Actualizar equipo
+     groups_edit:  Cambia el equipo
      groups_index:   Equipos
      groups_index_option: Opciones 
      groups_invitations_create:  Invita a un amigo al equipo
@@ -1713,11 +1713,11 @@ es:
      groups_search: Busqueda de equipos
      groups_search_to_join: Puedes buscar un equipo a quien unierte. 
      groups_show:  Mostrar equipo
-     groups_update: Actualizar equipo    
+     groups_update: Cambia el equipo    
      matches_edit:  Resultados
      meets_archive_list:  Temporada anterior
      meets_concept_description:  Concepto del evento 
-     meets_create:  Nuevo evento 
+     meets_create:  Organiza un partido 
      meets_destroy:  Borrar evento 
      meets_index:  Eventos de torneo  
      meets_index_option: Opciones  
@@ -1725,10 +1725,10 @@ es:
      meets_list:  Anteriores eventos 
      meets_list_no: Ningun eventoprevio para mostrar
      meets_manager_option:  Requiere organizador de equipo para ver mas opciones.
-     meets_new: Nuevo evento 
+     meets_new: Organiza un partido 
      meets_no: Ningun evento para mostrar
-     meets_edit: Actualizar evento 
-     meets_update: Actualizar evento 
+     meets_edit: Cambia el partido 
+     meets_update: Cambia el partido 
      meets_option:  Opciones 
      meet_options:  Opciones 
      meets_show: Detalles del evento de torneo
@@ -1769,7 +1769,7 @@ es:
      schedule_description: (Escribe algun detalle del equipo...)  
      schedules: Eventos
      schedules_archive_list:  Temporada anterior
-     schedules_create:  Nuevo evento
+     schedules_create:  Organiza un partido
      schedules_destroy:  Borrar evento
      schedules_index:  Eventos
      schedules_index_option: Opciones 
@@ -1779,10 +1779,10 @@ es:
      schedules_my_list: Mis eventos 
      schedules_my_list_no: Ningun evento para mostrar
      schedules_manager_option:  Requiere organizador de equipo para ver mas opciones.
-     schedules_new: Nuevo evento
+     schedules_new: Organiza un partido
      schedules_no: Ningun evento para mostrar
-     schedules_edit: Actualizar evento
-     schedules_update: Actualizar evento
+     schedules_edit: Cambia el partido
+     schedules_update: Cambia el partido
      schedules_option:  Opciones 
      schedule_options:  Opciones 
      schedules_show: Detalles del evento
@@ -1904,8 +1904,8 @@ es:
      sports_option:  Opciones 
      sports_show: Mostrar deporte     
      tags:  Etiquetas     
-     topics_create:  Nuevo evento
-     topics_edit:  Actualizar evento
+     topics_create:  Organiza un partido
+     topics_edit:  Cambia el partido
      topic_options:  Opciones    
      total_difference: "Diferencia<br/>Total"    
      true_skill_deviation:  Difusión

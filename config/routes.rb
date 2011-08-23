@@ -115,7 +115,8 @@ ActionController::Routing::Routes.draw do |map|
   map.set_group_stage       'encasillado/:id/fase_de_grupos',                   :controller => 'standings',       :action => 'set_group_stage'
   
   map.resources   :user_sessions,   :as => 'repitelo'
-  map.resources   :users,           :as => 'jugadores',                   :collection => { :rpx_create => :post, :rpx_associate => :post, :list => :get, :recent_activity => :get }  
+  map.resources   :users,           :as => 'jugadores',                   :collection => { :rpx_create => :post, :rpx_associate => :post, :list => :get, 
+                                                                                           :recent_activity => :get, :notice => :get }  
   map.resources   :schedules,       :as => 'eventos',                     :collection => { :list => :get, :archive_list => :get, :my_list => :get }          
   map.resources   :groups,          :as => 'equipos',                     :collection => { :list => :get }
   map.resources   :markers,         :as => 'mapa',                        :collection => { :list => :get }

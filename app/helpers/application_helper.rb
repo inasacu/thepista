@@ -325,7 +325,7 @@ module ApplicationHelper
 
   def option_image_link(item, align='')
     the_image = "icons/#{item}.png"
-    return image_tag(the_image, options={:style => 'height: 16px; width: 16px;', :align => align})
+    return image_tag(the_image, options={:style => 'height: 24px; width: 24px;', :align => align})
   end
 
   def option_link(item) 

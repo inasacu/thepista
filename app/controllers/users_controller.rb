@@ -3,11 +3,11 @@ require 'rqrcode'
 
 class UsersController < ApplicationController
   before_filter :require_no_user,     :only => [:signup, :create, :rpx_new, :rpx_create, :rpx_associate]
-  before_filter :require_user,        :only => [:index, :list, :show, :edit, :update, :petition, :recent_activity] 
+  before_filter :require_user,        :only => [:index, :list, :show, :notice, :edit, :update, :petition, :recent_activity] 
     
   before_filter :get_sports,          :only => [:new, :edit, :signup, :rpx_new]
 
-  before_filter :get_user_member,     :only => [:show] 
+  before_filter :get_user_member,     :only => [:show, :notice] 
   before_filter :get_user_manager,    :only => [:set_available]
   
   before_filter :get_user_self,       :only => [:set_private_phone, :set_private_profile, :set_enable_comments, :set_looking, 
@@ -39,6 +39,11 @@ class UsersController < ApplicationController
 
   def show
     store_location
+  end
+  
+  def notice
+    store_location
+    render :template => '/users/show'
   end
 
   def signup
