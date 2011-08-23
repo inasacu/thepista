@@ -1,4 +1,4 @@
-# require 'ym4r_gm'
+require 'ym4r_gm'
 
 class MarkersController < ApplicationController
   before_filter :require_user
@@ -12,10 +12,61 @@ class MarkersController < ApplicationController
   include GeoKit::Geocoders
   
   def index    
-    @default_min_points = 0
-    @default_max_points = 35
-    @default_zoom = 8
-    render :template => "markers/index_gmap3"
+    # @default_min_points = 0
+    # @default_max_points = 35
+    # @default_zoom = 8
+    # render :template => "markers/index_gmap3"
+    
+    #####################################################
+    # @location = IpGeocoder.geocode(current_user.current_login_ip)
+    # @location = IpGeocoder.geocode(request.remote_ip)
+    # 
+    @coord = [40.4166909, -3.7003454]
+    # @coord = [0, 0]
+    if @location.success
+      @coord =  [@location.lat, @location.lng]  
+    #   @marker = GMarker.new(@coord, :info_window => @location, :title => @location)
+    end
+
+    location = "#{current_user.time_zone.to_s}"
+  
+    results = Geocoding::get(location)
+     if results.status == Geocoding::GEO_SUCCESS
+       @coord = results[0].latlon
+       @marker = GMarker.new(@coord, :info_window => location, :title => location)
+     end
+  
+    @markers = Marker.all_markers
+    
+    @map = GMap.new("map")
+    @map.control_init(:large_map => true, :map_type => true)
+    @map.center_zoom_init(@coord, 12)
+     
+    @markers.each do |marker|
+      the_new_model_url = ""
+       
+      the_groups = "<br /><strong>" + I18n.t(:groups) + ":</strong><br />" unless marker.groups.empty?
+      
+      marker.groups.each do |group|
+        group_url = url_for(:controller => 'groups', :action => 'show', :id => group.id)   
+        the_groups = the_groups + "<a href=\"#{group_url}\">#{group.name}</a>&nbsp;&nbsp;#{group.sport.name}<br />"
+    end    
+      
+      the_new_model_url = "<br /><strong>" + I18n.t(:create) + ":</strong><br />"
+      the_group_url = url_for(:controller => 'groups', :action => 'new', :marker_id => marker)
+
+      the_new_model_url = the_new_model_url + "<a href=\"#{the_group_url}\">#{I18n.t(:you_are_create_group)}</a>&nbsp;&nbsp;"
+        
+      theMarker = GMarker.new([marker.latitude, marker.longitude], 
+                              :info_window => "<strong>#{marker.name}</strong><br />
+                                              #{marker.address}<br >
+                                              #{marker.city}, #{marker.zip}<br />
+                                              #{the_groups}<br/><br/>#{the_new_model_url}",
+                              :title => marker.name)
+      @map.overlay_init(theMarker)
+    end  
+    @map.overlay_init(@marker) if @marker
+    
   end
 
   def search

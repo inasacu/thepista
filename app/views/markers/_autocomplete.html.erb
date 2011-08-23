@@ -147,7 +147,7 @@
             //This bit is executed upon selection of an address
             select: function(event, ui) {
 			  $("#googleMap").gmap3(
-                {action:'clear', name:'marker'},
+                // {action:'clear', name:'marker'},
                 {action:'addMarker',
                   latLng:ui.item.latLng,
                   map:{center:true, zoom: 14},

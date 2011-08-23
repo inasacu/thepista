@@ -50,7 +50,7 @@
 			</td>
 
 	       <td class="last">
-				<span class="action">
+				<span class="action" align="left">
 					<% if current_user.is_member_of?(group) %>
 						<%= option_image_small_link('message') %>&nbsp;&nbsp;<%= link_to(label_name(:send_message_to), new_message_path(:group_id => group)) %><br />
 					<% else %>

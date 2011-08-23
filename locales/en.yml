@@ -763,6 +763,7 @@ en:
      markers_address:  Location where to play
      markers_list: List of Locations
      markers_create:  New Location 
+     markers_instructions:  Instructions
      markers_index:  Locations
      markers_index_option: Options 
      markers_new: New Location

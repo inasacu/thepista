@@ -3,21 +3,24 @@
 		<%= (current_user.is_member_of?(schedule.group) or schedule.public) ? schedule_image_link_small(schedule) : schedule_image_small(schedule) %>
 		<%= (current_user.is_member_of?(schedule.group) or schedule.public) ? link_to(sanitize(schedule.concept), team_roster_path(:id => schedule)) : sanitize(schedule.concept) %>
 		<br/>
-	
-		<span class="date">
-			<%= nice_day_time_wo_year(schedule.starts_at) %>
-		</span>		
+
+
+			<%= nice_day_time_wo_year_exact(schedule.starts_at) %><br/>
+			<%= schedule.group.marker.city.capitalize %><br>
+			<%= the_sport %><br/>	
+			<%= marker_link(schedule.group.marker) %>			
+
 	</td>
 </tr>
-<tr>
+<!-- <tr>
 	<td class="name_and_date">
-		<%= item_name_link(schedule.group) %>	
+		<%#= item_name_link(schedule.group) %>	
 		<span class="date">
-			<%= the_sport %>, <%= the_missing %>
+			<%#= the_sport %><%#= the_missing %>
 		</span>
 		
 		<td class="last">
-			<%= marker_link(schedule.group.marker) %>			
+			<%#= marker_link(schedule.group.marker) %>			
 		</td>
 	</td>
-</tr>
+</tr> -->

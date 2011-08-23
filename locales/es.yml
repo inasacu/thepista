@@ -8,9 +8,9 @@ es:
      account_created:  Tu cuenta ha sido creada y activada.
      accounts: Cuentas   
      add_email: "Acepto, crea mi cuenta"     
-     add_to_group: Petición para unirse  
-     add_to_item: Petición para unirse
-     add_to_tournament: Petición para unirse a 
+     add_to_group: Unite al equipo  
+     add_to_item: Unite al equipo
+     add_to_tournament: Unete a 
      address: Dirección   
      addresses: Direcciones   
      administrator: Administrador   
@@ -765,13 +765,14 @@ es:
      markers_address:  Lugar donde jugar
      markers_list: Listado de lugares donde jugar
      markers_create:  Nueva lugar donde jugar
+     markers_instructions:  Instruciones
      markers_index:  Mapa
      markers_index_option: Opciones 
      markers_new: Nueva sitio donde jugar
      markers_no: Ningun centro deportivo para mostrar
      markers_edit: Actualizar centro deportivo
      markers_option:  Opciones 
-     markers_search:  Buscar en el Map
+     markers_search:  Busca en el Map
      markers_show: Mostrar centro deportivo
      match: Resultado 
      matches: Resultados 
@@ -1506,6 +1507,7 @@ es:
      you: Tu   
      you_are_center_here: "Centra aquí"
      you_are_create_group:  "Organiza tu equipo aqui"
+     you_are_create_group_instruction:  Para organizar tu equipo pica en el punto.
      you_are_create_installation:  "Organiza tu instalacion aqui"
      you_are_create_marker:  "Coloca tu partido aqui"
      you_are_create_venue: "Organiza tu centro aqui"

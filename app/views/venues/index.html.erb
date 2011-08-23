@@ -17,5 +17,5 @@
 </div>
 
 <% content_for :sidebar, render('/shared/sidebar_index') -%>
-<% content_for :sidebar, render(:partial => 'venues/sidebar') -%>
+<% content_for :sidebar, render(:partial => 'venues/sidebar')  if current_user.is_maximo? -%>
 <% content_for :sidebar, render(:partial => '/venues/sidebar_legend') if is_action('list') -%>
