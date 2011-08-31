@@ -1,10 +1,5 @@
-<% unless items.nil? or items.blank? %>
-<div class="block">
-	<h3><%= label_name("#{items.first.class.to_s.downcase}_option") %></h3>
-	<div class="content">
-		
 <%
-	items.each do |item| 
+	@items.each do |item| 
 		the_item = h(item.name)
 
 		unless @user.is_member_of?(item)  
@@ -18,8 +13,3 @@
 		end 
 	end 
 %>
-
-</div>
-</div>
-
-<% end -%>

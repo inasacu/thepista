@@ -18,14 +18,16 @@ class Venue < ActiveRecord::Base
 
   # validations 
   validates_uniqueness_of   :name,            :case_sensitive => false  
-  validates_presence_of     :name,            :description, :time_zone, :starts_at,     :ends_at
+  validates_presence_of     :name,            :description,               :starts_at,     :ends_at
   validates_length_of       :name,            :within => NAME_RANGE_LENGTH
   validates_length_of       :description,     :within => DESCRIPTION_RANGE_LENGTH
+  validates_uniqueness_of   :marker_id        # do not allow 1 venue per marker
+  
   # validates_format_of       :name,            :with => /^[A-z 0-9 _.-]*$/ 
 
   # variables to access
   attr_accessible :name, :description, :starts_at, :ends_at, :time_zone, :marker_id
-  attr_accessible :description, :photo, :enable_comments, :public, :day_light_savings,  :day_light_starts_at, :day_light_ends_at
+  attr_accessible :photo, :enable_comments, :public, :day_light_savings,  :day_light_starts_at, :day_light_ends_at
     
   # NOTE:  MUST BE DECLARED AFTER attr_accessible otherwise you get a 'RuntimeError: Declare either attr_protected or attr_accessible' 
   has_friendly_id :name, :use_slug => true, :approximate_ascii => true, 
@@ -52,7 +54,7 @@ class Venue < ActiveRecord::Base
   before_update :format_description
   after_create  :create_venue_blog_details
 
-  # acts_as_authorization_subject
+  acts_as_authorization_subject
 
   # method section
   def object_counter(objects)
@@ -120,7 +122,7 @@ class Venue < ActiveRecord::Base
   def create_venue_details(user)
     user.has_role!(:manager, self)
     user.has_role!(:creator, self)
-    user.has_role!(:member,  self)
+    # user.has_role!(:member,  self)
   end
   
   def format_description

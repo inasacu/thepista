@@ -5,20 +5,13 @@ class MarkersController < ApplicationController
   before_filter :the_maximo,            :only => [:edit, :update]
 
   before_filter :get_complete_markers,  :only => [:list]
-  before_filter :get_my_markers,        :only => [:index, :show, :original]
+  before_filter :get_my_markers,        :only => [:index, :original]
   before_filter :get_list_markers,      :only => [:search]
-  before_filter :get_all_markers,       :only => [:index, :show, :list, :search, :address]
+  before_filter :get_all_markers,       :only => [:index, :list, :search, :address]
 
   include GeoKit::Geocoders
 
-  def index    
-    @default_min_points = 0
-    @default_max_points = 25
-    @default_zoom = 8
-    render :template => "markers/index_gmap3"
-  end
-
-  def original
+  def index
     @coord = [40.4166909, -3.7003454]
     # @coord = [0, 0]
     if @location.success
@@ -62,7 +55,14 @@ class MarkersController < ApplicationController
       :title => marker.name)
       @map.overlay_init(theMarker)
     end  
-    @map.overlay_init(@marker) if @marker    
+    @map.overlay_init(@marker) if @marker   
+  end
+
+  def direction
+    @default_min_points = 0
+    @default_max_points = 25
+    @default_zoom = 8
+    render :template => "markers/index_gmap3"
   end
 
   def search
@@ -73,11 +73,23 @@ class MarkersController < ApplicationController
   end
 
   def show
-    @default_min_points = 0
-    @default_max_points = 35
-    @default_zoom = 10
-    render :template => "markers/index_gmap3"
+    @marker = Marker.find(params[:id])
+    @map = GMap.new("map")
+    @map.control_init(:large_map => true, :map_type => true)
+    @map.center_zoom_init([@marker.latitude, @marker.longitude], 15)
+    @marker = Marker.find(:all, :conditions => "latitude is not null and longitude is not null").each do |marker|
+      theMarker = GMarker.new([marker.latitude, marker.longitude], :title => marker.name, :info_window =>  marker.name + "! ") 
+      @map.overlay_init(theMarker)
+    end  
+    render :template => '/markers/index'  
   end
+  
+  # def show
+  #   @default_min_points = 0
+  #   @default_max_points = 35
+  #   @default_zoom = 10
+  #   render :template => "markers/index_gmap3"
+  # end
 
   def list
     @default_zoom = 5

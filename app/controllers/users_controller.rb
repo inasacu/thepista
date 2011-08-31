@@ -11,10 +11,11 @@ class UsersController < ApplicationController
   before_filter :get_user_manager,    :only => [:set_available]
   
   before_filter :get_user_self,       :only => [:set_private_phone, :set_private_profile, :set_enable_comments, :set_looking, 
-                                          :set_teammate_notification, :set_message_notification, :set_blog_notification, :set_forum_notification]
+                                                :set_teammate_notification, :set_message_notification, :set_blog_notification, 
+                                                :set_forum_notification, :set_last_minute_notification]
                                                                                                          
   before_filter :get_user_group,      :only =>[:set_manager, :remove_manager, :set_sub_manager, :remove_sub_manager, 
-                                          :set_subscription, :remove_subscription, :set_moderator, :remove_moderator]
+                                               :set_subscription, :remove_subscription, :set_moderator, :remove_moderator]
                                           
   before_filter :setup_rpx_api_key,   :only => [:rpx_new, :rpx_create, :rpx_associate]
   
@@ -39,6 +40,7 @@ class UsersController < ApplicationController
 
   def show
     store_location
+    @items = current_user.challenges.find(:all, :conditions => ["ends_at > ?", Time.zone.now])
   end
   
   def notice
@@ -302,6 +304,17 @@ class UsersController < ApplicationController
   def set_private_profile
     if @user.update_attribute("private_profile", !@user.private_profile)
       @user.update_attribute("private_profile", @user.private_profile)  
+
+      flash[:success] = I18n.t(:successful_update)
+      redirect_back_or_default('/index')
+    else
+      render :action => 'index'
+    end
+  end
+
+  def set_last_minute_notification
+    if @user.update_attribute("last_minute_notification", !@user.last_minute_notification)
+      @user.update_attribute("last_minute_notification", @user.last_minute_notification)  
 
       flash[:success] = I18n.t(:successful_update)
       redirect_back_or_default('/index')

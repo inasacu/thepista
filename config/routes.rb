@@ -49,16 +49,17 @@ ActionController::Routing::Routes.draw do |map|
   map.remove_moderator   	  'jugadores/:id/borrar_moderador/:group',  		:controller => 'users',    		    :action => 'remove_moderator'   
   map.petition              'jugadores/:id/peticiones_equipo',            :controller => 'users',           :action => 'petition'
   
-  map.set_user_looking            'jugadores/:id/buscar_equipo',  	            :controller => 'users',    		    :action => 'set_looking'
-  map.set_available               'jugadores/:id/jugador_disponible',  		      :controller => 'users',    		    :action => 'set_available'
-  map.set_private_phone           'jugadores/:id/ocultar_telefono',  		        :controller => 'users',    		    :action => 'set_private_phone'
-  map.set_private_profile         'jugadores/:id/ocultar_perfil',  		          :controller => 'users',    		    :action => 'set_private_profile'
-  map.set_enable_comments         'jugadores/:id/habilitar_comentarios',  		  :controller => 'users',    		    :action => 'set_enable_comments'
-  map.set_teammate_notification   'jugadores/:id/habilitar_notificaciones',     :controller => 'users',    		    :action => 'set_teammate_notification'
-  map.set_message_notification    'jugadores/:id/habilitar_mensajes',  	        :controller => 'users',    		    :action => 'set_message_notification'
-  map.set_blog_notification       'jugadores/:id/habilitar_muro',  	            :controller => 'users',    	      :action => 'set_blog_notification'
-  map.set_forum_notification      'jugadores/:id/habilitar_foro',  	            :controller => 'users',    	      :action => 'set_forum_notification'
-  
+  map.set_user_looking                'jugadores/:id/buscar_equipo',  	            :controller => 'users',    		    :action => 'set_looking'
+  map.set_available                   'jugadores/:id/jugador_disponible',  		      :controller => 'users',    		    :action => 'set_available'
+  map.set_private_phone               'jugadores/:id/ocultar_telefono',  		        :controller => 'users',    		    :action => 'set_private_phone'
+  map.set_private_profile             'jugadores/:id/ocultar_perfil',  		          :controller => 'users',    		    :action => 'set_private_profile'
+  map.set_enable_comments             'jugadores/:id/habilitar_comentarios',  		  :controller => 'users',    		    :action => 'set_enable_comments'
+  map.set_teammate_notification       'jugadores/:id/habilitar_notificaciones',     :controller => 'users',    		    :action => 'set_teammate_notification'
+  map.set_message_notification        'jugadores/:id/habilitar_mensajes',  	        :controller => 'users',    		    :action => 'set_message_notification'
+  map.set_blog_notification           'jugadores/:id/habilitar_muro',  	            :controller => 'users',    	      :action => 'set_blog_notification'
+  map.set_forum_notification          'jugadores/:id/habilitar_foro',  	            :controller => 'users',    	      :action => 'set_forum_notification'
+  map.set_last_minute_notification    'jugadores/:id/habilitar_ultima_hora',  	    :controller => 'users',    	      :action => 'set_last_minute_notification'
+    
   map.third_party           'jugadores/third_party',                      :controller => 'users',           :action => 'third_party'
   map.associate_return      'jugadores/associate_return',                 :controller => 'users',           :action => 'associate_return'
     
@@ -119,7 +120,7 @@ ActionController::Routing::Routes.draw do |map|
                                                                                            :recent_activity => :get, :notice => :get }  
   map.resources   :schedules,       :as => 'eventos',                     :collection => { :list => :get, :archive_list => :get, :my_list => :get }          
   map.resources   :groups,          :as => 'equipos',                     :collection => { :list => :get }
-  map.resources   :markers,         :as => 'mapa',                        :collection => { :list => :get }
+  map.resources   :markers,         :as => 'mapa',                        :collection => { :list => :get , :direction => :get}
   map.resources   :scorecards,      :as => 'classificaciones',            :collection => { :list => :get }
 
   map.resources   :matches,         :as => 'jornadas'
@@ -155,7 +156,9 @@ ActionController::Routing::Routes.draw do |map|
   map.resources   :installations,   :as => 'instalaciones',               :collection => { :list => :get }
   map.resources   :reservations,    :as => 'reservas',                    :collection => { :list => :get }
   
-  map.resources   :linkedin,        :as => 'opensocial'
+  map.resources   :auth,            :as => 'opensocial'
+  map.resources   :timetables,           :as => 'horario'
+  
   
   map.resources   :users do |user|
     user.resources :messages

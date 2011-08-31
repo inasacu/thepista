@@ -1,0 +1,13 @@
+<div class="block">
+
+	<%= content_tag 'h3', label_name(:connect_to_your_linkedin) %>
+
+	<div class="content">
+		<br/>
+		
+	<a href="../auth"><%= image_tag('icons/linkedin.gif', :title => label_name(:connect_to_your_linkedin), 
+							:style => "height: 32px; width: 32px;", :alt => 'linkedin logo') %>&nbsp;&nbsp;<%= h(current_user.name) %>
+	</a>
+		
+	</div>
+</div>

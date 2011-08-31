@@ -4,7 +4,7 @@ if object_counter(installations) > 0
 %>
 <div class="block">
 
-<h3><%= label_name(:installations) %></h3>
+<h3><%= label_name(:reservations) %></h3>
 
 <div class="content">
 <% installations.each do |installation| 
@@ -12,7 +12,6 @@ if object_counter(installations) > 0
 %>					
 	<p>
 	<%= option_image_link('installation') %>&nbsp;&nbsp;
-	<%#= item_name_link(installation) %>
 	<%= link_to the_label, reservations_path(:id => installation) %>
 	</p>		
 <% end %>

@@ -34,7 +34,7 @@ es:
      announcement: Comunicación
      announcements: Comunicaciones 
      announcements_create:  Nueva communicación
-     announcements_delete:  Borrar communicación
+     announcements_delete:  Borra la communicación
      announcements_index:  Comunicaciones 
      announcements_list:    Anteriores communicaciones
      announcements_new:    Nueva communicación
@@ -84,7 +84,7 @@ es:
      casts: Pronósticos
      casts_archive_list:  Pronósticos anteriores
      casts_create:  Nuevo pronóstico
-     casts_destroy:  Borrar pronóstico
+     casts_destroy:  Borra tu pronóstico
      casts_index: Mis pronósticos
      casts_index_option: Opciones 
      casts_list:  Todos los pronósticos
@@ -92,8 +92,8 @@ es:
      casts_manager_option:  Requiere organizador de reto para ver mas opciones.
      casts_new: Nuevo pronóstico
      casts_no: Ningun pronóstico para mostrar
-     casts_edit: Actualizar pronóstico
-     casts_update: Actualizar pronóstico
+     casts_edit: Actualiza tu pronóstico
+     casts_update: Actualiza tu pronóstico
      casts_option:  Opciones 
      cast_options:  Opciones 
      casts_show: Detalles del pronóstico
@@ -107,8 +107,8 @@ es:
      challenges_all:  Todos los retos
      challenges_create:  Crea tu reto 
      challenges_howto_tab:  Haz click en la pestaña
-     challenges_destroy:  Borrar reto
-     challenges_edit:  Actualizar reto
+     challenges_destroy:  Borra tu reto
+     challenges_edit:  Actualiza tu reto
      challenges_howto:  Crea tu reto en 7 pasos.
      challenges_howto_create:  Selecciona la opción de 'Crea tu reto'.
      challenges_howto_cup:  Haz click en la pestaña 
@@ -137,7 +137,7 @@ es:
      challenges_search_to_join: Puedes buscar un reto al que unierte. 
      challenges_show:  Mostrar reto
      challenges_shows:  Mostrar retos
-     challenges_update: Actualizar reto
+     challenges_update: Actualiza tu reto
      change: Cambia    
      change_available: Cambia la disponibilidad de   
      change_at:  Cambiado
@@ -180,6 +180,7 @@ es:
      company_description: Nombre de empresa
      complete:  completo
      connect:  Conectar
+     connect_to_your_linkedin:  Conecta tu cuenta de LinkedIn
      concept: Nombre del partido
      concept_description:  Concepto   
      contact: Contacto   
@@ -267,7 +268,7 @@ es:
      cups_show:  Mostrar copa
      cups_to_join:   inscribirte a una copa 
      cups_upcoming: Próximas Copas  
-     cups_update: Actualizar copa
+     cups_update: Actualiza la copa
      current_accounts: Cuentas actuales   
      current_language: Español    
      current_time: La hora   
@@ -302,7 +303,7 @@ es:
      Por otro lado y por compañerismo, si os apuntáis y no podéis venir avisad con tiempo o contactar con alguien del equipo que os pueda sustituir."  
      default_reliable: Fiable   
      defense:  Defensa
-     delete_activity: Borrar actividad    
+     delete_activity: Borra tu actividad    
      deleted: se ha borrado correctamente.   
      deny: Rechazo   
      deny_player: "DENIEGA"  
@@ -411,6 +412,7 @@ es:
         other: "tiene {{count}} eventos."        
      event_details:  "(Escribe algun detalle del evento...)" 
      event_participation:  Paticipación en eventos
+     every:  cada 
      error_when_create_account: "Fallo al intentar crear tu cuenta, intentalo de nuevo."  
      excess:  Exceso
      exit_group: Desapuntate del equipo   
@@ -418,7 +420,8 @@ es:
      explore:  Explorar
      installation: Instalación 
      installations: Instalaciones
-     installations_create:  Nueva Instalación 
+     installations_create:  Nueva Instalación
+     installations_edit:  Modifica la Instalación 
      installations_name_description:  Nombre de la nueva instalación
      installations_new:  Nueva Instalación 
      failed_login: Error de inicio de sesión      
@@ -656,7 +659,11 @@ es:
      has_left:
         zero: "No quedan" 
         one:  "Queda {{count}} "       
-        other: "Quedan {{count}} "        
+        other: "Quedan {{count}} "   
+     has_hour:
+         zero:      "Cero minutos"
+         one:       "cada hora"
+         other:     "cada {{count}} horas."
      has_not_been_sent: no ha sido mandado correctamente.   
      has_updated_scorecard: Ha actualizado el RESULTADO  
      have_an_account: Si tienes una cuenta     
@@ -667,6 +674,7 @@ es:
      hide:  Ocultar 
      hi_email_header: Hola   
      High: Alto   
+     Holiday:  Festivo
      home: Inicio   
      home_group: Equipo       
      home_stage_name:  Grupo
@@ -716,6 +724,8 @@ es:
      last_game_played: Ultima jornada	 
      last_login_at: conecto la ultima vez   
      last_minute: Suplentes   
+     last_minute_notification:  Notificación de ultima hora
+     last_minute_notification_description:  "Permite que si un equipo necesita alguien a ultima hora, pueden contactar contigo"
      last_schedule_description: Ultimo evento    
      last_scorecard: Ultimos resultados  
      latest_activities:  Últimas actividades
@@ -763,6 +773,7 @@ es:
      marker_description: (Localiza en el mapa donde juega el equipo si no esta en la lista...)   
      markers: Donde Jugar 
      markers_address:  Lugar donde jugar
+     markers_direction:  Direcciones
      markers_list: Listado de lugares donde jugar
      markers_create:  Nueva lugar donde jugar
      markers_instructions:  Instruciones
@@ -770,7 +781,7 @@ es:
      markers_index_option: Opciones 
      markers_new: Nueva sitio donde jugar
      markers_no: Ningun centro deportivo para mostrar
-     markers_edit: Actualizar centro deportivo
+     markers_edit: Actualiza el centro deportivo
      markers_option:  Opciones 
      markers_search:  Busca en el Map
      markers_show: Mostrar centro deportivo
@@ -1008,7 +1019,7 @@ es:
      phone_description: (Por si te tiene que llamar tu equipo. Hay opción de poner este numero en privado...)   
      photo: Foto 
      photo_description: "(Opción para subir una imagen...{formato: jpeg, gif, png, jpg}{tamaño: 5mb})"  
-     physical_level_description: "(Del 1 al 5, pon el nivel físico que crees que tienes comparado con los de tu equipo...)"  
+     physical_level_description: "(Del 1 al 5, pon el nivel físico que crees que tienes comparado con los de tu equipo...)" 
      player_limit:  Limite de jugadores
      player_limit_description:  Limite de jugadores 
      player_with: "Jugadores con"
@@ -1071,7 +1082,7 @@ es:
      profile_private: Ocultar el perfil   
      profile_rating: Calificación   
      profile_set:  Valoración
-     profile_set_full:  Actualizar los perfiles de la jornada.
+     profile_set_full:  Actualiza los perfiles de la jornada.
      profile_user_set:  Obtener perfil del jugador
      profile_user_set_full:  Obtener los perfiles del perfil del jugador
      profile_technical: Nivel técnico 
@@ -1114,15 +1125,15 @@ es:
      request_petition: Nueva petición   
      request_invitation: Pide una invitación   
      reservation:  Reserva
-     reservations: Reservas
+     reservations: Haz tu reserva
      reservations_add:  Reservas
      reservations_all:  Todos las reservas
      reservations_available:  Todos las reservas
      reservations_unavailable:  Reserva no Disponible
      reservations_concept_description:  Concepto de la reserva
      reservations_create:  Reservar 
-     reservations_destroy:  Borrar reserva
-     reservations_edit:  Actualizar reserva
+     reservations_destroy:  Borra la reserva
+     reservations_edit:  Actualiza la reserva
      reservations_index:   Reserva
      reservations_index_option: Opciones 
      reservations_invitations_create:  Invita a un amigo a esta reserva
@@ -1139,7 +1150,7 @@ es:
      reservations_search: Busqueda de reservas
      reservations_search_to_join: Puedes buscar una reserva. 
      reservations_show:  Mostrar reserva
-     reservations_update: Actualizar reservas
+     reservations_update: Actualiza las reservas
      restored_message: Mensaje restaurado   
      role: Responsabilidad
      roles: Responsabilidades   
@@ -1233,6 +1244,7 @@ es:
      set_private_phone:  Ocultar teléfono de 
      set_private_profile:  Ocultar perfil de
      set_enable_comments:  Quieres recibir notificaciones de comentarios dejados en el muro de
+     set_last_minute_notification:  Quieres recibir notificaciones de algun equipo que necesita algien a ultima hora
      set_teammate_notification:  Quieres recibir peticiones para unirse al equipo de
      set_message_notification:  Quieres recibir notificaciones en la cuenta de correo de
      set_blog_notification:  Quieres recibir notificaciones de comentarios dejados en el muro de    
@@ -1295,7 +1307,7 @@ es:
      escuadras_all:  Todos los equipos
      escuadras_available:  Todos los equipos
      escuadras_create:  Nuevo equipo 
-     escuadras_destroy:  Borrar equipo
+     escuadras_destroy:  Borra el equipo
      escuadras_edit:  Cambia el equipo
      escuadras_index:   Equipo
      escuadras_index_option: Opciones 
@@ -1366,6 +1378,15 @@ es:
      Therapist: Terapeuta   
      thread_message: Mensaje(s)   
      Thursday: Jueves   
+     timeframe:  Cambio de turno
+     timeframe_description:  Cambio de turno
+     timetable:  Horario
+     timetables:  Horarios
+     timetables_create:  Nuevo horario
+     timetables_edit:  Modifica el horario
+     timetable_description:  Los horarios se utilizan para poner los horarios diarios de cada centro
+     time_zone:  Horario
+     time_zone_description:  Horario
      time_zone_description: (Zona donde tienes interes en practicar algun deporte...)   
      to: a   
      to_email: Email del amigo       
@@ -1478,7 +1499,7 @@ es:
      venues_create:    Nuevo centro deportivo
      venues_index: Centros Deportivos 
      venues_name_description:  Nombre del centro deportivo
-     venues_edit:  Actualizar centro deportivo
+     venues_edit:  Actualiza el centro deportivo
      venues_new:  Nuevo centro deportivo
      venues_option:  Opciones
      venues_options_without:  "¿Qué opciones tienes ya que no estas apuntado a un centro deportivo?"
@@ -1507,7 +1528,7 @@ es:
      you: Tu   
      you_are_center_here: "Centra aquí"
      you_are_create_group:  "Organiza tu equipo aqui"
-     you_are_create_group_instruction:  Para organizar tu equipo pica en el punto.
+     you_are_create_group_instruction:  Organiza tu equipo picando el punto en el mapa
      you_are_create_installation:  "Organiza tu instalacion aqui"
      you_are_create_marker:  "Coloca tu partido aqui"
      you_are_create_venue: "Organiza tu centro aqui"
@@ -1563,9 +1584,6 @@ es:
      physical_difference: "Diferencia<br/>Fisica"
      language_description:  Idioma preferible
      country_description:  Pais donde te encuentras
-     time_zone:  Horario
-     time_zone_description:  Horario
-     timeframe:  Cambio de Hora
      available_description: ""
      private_phone_description: ""
      private_profile_description: ""
@@ -1603,8 +1621,8 @@ es:
      classified_deleted: Anuncios borrados
      classified_successful_create: Los anuncios han sido creatos.
      classifieds_concept_description:  Concepto del anuncio
-     classifieds_destroy:  Borrar anuncio
-     classifieds_edit:  Actualizar anuncio
+     classifieds_destroy:  Borra el anuncio
+     classifieds_edit:  Actualiza el anuncio
      classifieds_index:  Anuncios
      classifieds_new:  Nuevo anuncio
      classifieds_no:  Ningun anuncio para mostrar
@@ -1658,7 +1676,7 @@ es:
      fee_user_for_tournament:  Anotar cargo a los jugadores
      fees_due:  Cargos pendiente
      fees_create:  Nueva cargo
-     fees_destroy: Borrar cargo
+     fees_destroy: Borra el cargo
      fees_index:   Cargos
      fees_item:  Pagos
      fees_index_option: Opciones
@@ -1667,10 +1685,10 @@ es:
      fees_manager_option:  Requiere organizador de equipo para ver mas opciones.
      fees_new:  Nuevo cargo
      fees_no:  Ningun cargo para mostrar
-     fees_edit:  Actualizar cargo
+     fees_edit:  Actualiza el cargo
      fees_option:  Opciones
      fees_show:  Mostrar cargo
-     fees_update:  Actualizar cargo     
+     fees_update:  Actualiza el cargo     
      home_index: Inicio
      home_search:  Buscar
      home_about_us: About Us
@@ -1692,15 +1710,15 @@ es:
      payments_manager_option:  Requiere organizador de equipo para ver mas opciones.
      payments_new:  Nuevo pago
      payments_no:  Ningun pago para mostrar
-     payments_destroy:  Borrar pago
-     payments_edit:  Actualizar pago
+     payments_destroy:  Borra el pago
+     payments_edit:  Actualiza el pago
      payments_option:  Opciones 
      payments_show:  Mostrar pago          
      group_options:  Opciones
-     group_stage_set:  Actualizar grupo
-     group_stage_set_full:  Actualizar grupo
+     group_stage_set:  Actualiza el grupo
+     group_stage_set_full:  Actualiza el grupo
      groups_create:  Nuevo equipo 
-     groups_destroy:  Borrar equipo
+     groups_destroy:  Borra el equipo
      groups_edit:  Cambia el equipo
      groups_index:   Equipos
      groups_index_option: Opciones 
@@ -1753,7 +1771,7 @@ es:
      message_reply_to: Responde a este mensaje
      message_send:  Manda mensaje
      message_sent: Mensajes enviados
-     message_trash:  Borrar mensaje
+     message_trash:  Borra el mensaje
      message_untrash: Recuperar   
      messages_create:  Manda un mensaje
      messages_inbox:  Mensajes recibidos
@@ -1761,7 +1779,7 @@ es:
      messages_index_option: Opciones 
      messages_new: Nuevo mensaje
      messages_no: Ningun mensaje para mostrar
-     messages_edit: Actualizar mensaje
+     messages_edit: Actualiza el mensaje
      messages_option:  Opciones 
      messages_send:  Manda mensaje
      messages_sent:  Mensajes mandados
@@ -1861,8 +1879,8 @@ es:
      round_options:  Opciones  
      round_starts_ends_at:  Fechas de fase 
      rounds_create:  Nueva fase
-     rounds_destroy:  Borrar fase 
-     rounds_edit:  Actualizar fase 
+     rounds_destroy:  Borra la fase 
+     rounds_edit:  Actualiza la fase 
      rounds_index:  Fases de torneo 
      rounds_index_option: Opciones  
      rounds_invitations_create:  Invita a un amigo a la fase 
@@ -1878,7 +1896,7 @@ es:
      rounds_search: Busqueda de fases
      rounds_search_to_join: Puedes buscar una fase al cual unierte. 
      rounds_show:  Mostrar fase 
-     rounds_update: Actualizar fase  
+     rounds_update: Actualiza la fase  
      cups_name_description:  Nombre de la copa
      escuadras_name_description:  Nombre del equipo     
      rounds_name_description:  Nombre de la fase de torneo
@@ -1896,7 +1914,7 @@ es:
      sports: Deportes      
      sport_description: (¿Qué tipo de deporte practica el equipo?)      
      sports_create: Nuevo deporte
-     sports_edit: Actualizar deporte
+     sports_edit: Actualiza el deporte
      sports_index:  Deportes
      sports_index_option: Opciones 
      sports_maximo_option:  Requiere organizador de administrador para ver mas opciones.

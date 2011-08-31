@@ -4,7 +4,7 @@
 
 <div class="block">
 
-  <%= get_secondary_navigation(Venue.new) %>
+  <%= get_secondary_navigation(@venue) %>
   
   <div class="content">
 	        
@@ -36,8 +36,23 @@
 				<%= content_tag :td, label_name(:marker), :class => "label" %>
 				<%= content_tag :td, marker_link(@installation.marker), :class => get_the_action %>
 			</tr>
-			<%= tr_td_action(:time_zone,  "#{nice_simple_time_at(@installation.starts_at)} - #{nice_simple_time_at(@installation.ends_at)}" ) %>
-				<%= tr_td_action(:time_zone, @installation.venue.time_zone) %>
+			
+			<% first = true %>
+			<% @installation.timetables.each do |timetable| %>
+			
+			<tr>
+				<%= content_tag :td, label_name(:timetable), :class => "label" if first %>
+				<%= content_tag :td, "&nbsp;&nbsp;", :class => "label" unless first %>
+				<%= content_tag :td, "#{timetable.day_of_week}, 
+								#{nice_simple_time_at(timetable.starts_at)} -  
+								#{nice_simple_time_at(timetable.ends_at)}, 
+								#{I18n.t(:has_hour, :count => timetable.timeframe)}", :class => get_the_action %>
+				
+				<%= content_tag :td, link_to(label_name(:edit), edit_timetable_path(:id => timetable)), :class => get_the_action if current_user.is_manager_of?(@installation.venue) %>
+			</tr>
+			
+			<% first = false
+				end -%>
 
 		</table>
 	</td>
@@ -50,5 +65,6 @@
 </div>
 
 <% content_for :sidebar, render(:partial => 'installations/sidebar_show') -%>
-<% content_for :sidebar, render(:partial => 'shared/sidebar_show_installation', :locals => {:installation => @installation}) if current_user.is_manager_of?(@installation) %>
+<% content_for :sidebar, render(:partial => 'shared/sidebar_show_reservations', :locals =>{:installations => @installations}) %>
+<%# content_for :sidebar, render(:partial => 'shared/sidebar_show_installation', :locals => {:installation => @installation}) if current_user.is_manager_of?(@installation) %>
 <% content_for :sidebar, render(:partial => 'shared/share_object', :locals => {:installation => @installation}) if @installation -%>

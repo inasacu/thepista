@@ -36,11 +36,8 @@
 			<%= view_installation_marker(installation) %>			
 
 	       <td class="last">
-				<span class="action">
-					<% if current_user.is_manager_of?(installation.venue) %> 
-						<%#= link_to label_name(:reservations_create), new_reservation_path(:id => installation) %><br/>
-						<%= link_to label_name(:reservations), reservations_path(:id => installation) %>
-			        <% end %>					
+				<span class="action" align="left">
+					<%= option_image_small_link('reservation') %>&nbsp;&nbsp;<strong><%= link_to label_name(:reservations), reservations_path(:id => installation) %></strong>
 				</span>
 	       </td>
 	
@@ -55,9 +52,9 @@
 		</div>
 	</div>
 	
-	<% content_for :sidebar, render('/shared/sidebar_index') -%>
-	
-	<% content_for :sidebar, render(:partial => '/installations/sidebar') if current_user.is_manager? -%>
+	<% content_for :sidebar, render('/shared/sidebar_index') -%>	
+	<% content_for :sidebar, render(:partial => '/installations/sidebar') if current_user.is_manager? -%>	
+	<% content_for :sidebar, render(:partial => 'shared/sidebar_show_reservations', :locals => {:installations => @installations}) %>
 	
 	<%# if venue_installation_list -%>
 	<%# content_for :sidebar, render(:partial => 'venues/sidebar_show') -%>

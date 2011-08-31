@@ -48,6 +48,10 @@ development:
     linkedin:
         api_key:        bMT6ozAQuigLB3B0rRvthjUdVucw9KaPmst3SI9-Ph6KPG9-T6Og5LGvcWF6hqS8
         secret_key:     hWzelp5eIWkFX6wUTID6Dj3ljYnq6pTATQyYwtljCnH-azO4PJ1__N1nOThE-5fg
+        access_1_key:   05984f88-e096-4fae-8f2d-13915bf87f4f
+        access_2_key:   8c4b59f5-6046-4155-8c4a-44a4d80e791a
+        # ["05984f88-e096-4fae-8f2d-13915bf87f4f", "8c4b59f5-6046-4155-8c4a-44a4d80e791a"]
+        # client.authorize_from_access("05984f88-e096-4fae-8f2d-13915bf87f4f", "8c4b59f5-6046-4155-8c4a-44a4d80e791a")
 
 # http://thepista.heroku.com/
 test:
@@ -93,6 +97,10 @@ test:
     linkedin:
         api_key:        bMT6ozAQuigLB3B0rRvthjUdVucw9KaPmst3SI9-Ph6KPG9-T6Og5LGvcWF6hqS8
         secret_key:     hWzelp5eIWkFX6wUTID6Dj3ljYnq6pTATQyYwtljCnH-azO4PJ1__N1nOThE-5fg
+        access_1_key:   05984f88-e096-4fae-8f2d-13915bf87f4f
+        access_2_key:   8c4b59f5-6046-4155-8c4a-44a4d80e791a
+        # ["05984f88-e096-4fae-8f2d-13915bf87f4f", "8c4b59f5-6046-4155-8c4a-44a4d80e791a"]
+        # client.authorize_from_access("05984f88-e096-4fae-8f2d-13915bf87f4f", "8c4b59f5-6046-4155-8c4a-44a4d80e791a")
         
         
 
@@ -140,6 +148,10 @@ staging:
     linkedin:
         api_key:        bMT6ozAQuigLB3B0rRvthjUdVucw9KaPmst3SI9-Ph6KPG9-T6Og5LGvcWF6hqS8
         secret_key:     hWzelp5eIWkFX6wUTID6Dj3ljYnq6pTATQyYwtljCnH-azO4PJ1__N1nOThE-5fg
+        access_1_key:   05984f88-e096-4fae-8f2d-13915bf87f4f
+        access_2_key:   8c4b59f5-6046-4155-8c4a-44a4d80e791a
+        # ["05984f88-e096-4fae-8f2d-13915bf87f4f", "8c4b59f5-6046-4155-8c4a-44a4d80e791a"]
+        # client.authorize_from_access("05984f88-e096-4fae-8f2d-13915bf87f4f", "8c4b59f5-6046-4155-8c4a-44a4d80e791a")
         
         
                
@@ -191,5 +203,9 @@ production:
     linkedin:
         api_key:        bMT6ozAQuigLB3B0rRvthjUdVucw9KaPmst3SI9-Ph6KPG9-T6Og5LGvcWF6hqS8
         secret_key:     hWzelp5eIWkFX6wUTID6Dj3ljYnq6pTATQyYwtljCnH-azO4PJ1__N1nOThE-5fg
+        access_1_key:   05984f88-e096-4fae-8f2d-13915bf87f4f
+        access_2_key:   8c4b59f5-6046-4155-8c4a-44a4d80e791a
+        # ["05984f88-e096-4fae-8f2d-13915bf87f4f", "8c4b59f5-6046-4155-8c4a-44a4d80e791a"]
+        # client.authorize_from_access("05984f88-e096-4fae-8f2d-13915bf87f4f", "8c4b59f5-6046-4155-8c4a-44a4d80e791a")
         
         

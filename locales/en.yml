@@ -178,6 +178,7 @@ en:
      company_description: Name of Company  
      complete:  complete 
      connect:  Connect
+     connect_to_your_linkedin:  Connect your linkedIn Account
      concept: Match name
      concept_description:  Concept   
      contact: Contact   
@@ -409,6 +410,7 @@ en:
         other: "has {{count}} events."        
      event_details:  "(Write a comment about the event...)" 
      event_participation:  Events Participation
+     every:  every
      error_when_create_account: "your account was not created, please try again."
      excess:  Excess
      exit_group: Opt-out of the Team   
@@ -417,6 +419,7 @@ en:
      installation: Installation
      installations: Installations
      installations_create:  Create Installation 
+     installations_edit:  Update Instalation
      installations_name_description:  New Installation Name
      installations_new:  Create Installation 
      failed_login: Failed Login      
@@ -655,6 +658,10 @@ en:
         zero: "Zero until game" 
         one:  "{{count}} until game"
         other: "{{count}} until game"
+     has_hour:
+         zero:      "Zero minutes"
+         one:       "every hour"
+         other:     "every {{count}} hours."
      has_not_been_sent: does not havet been sent correctly.   
      has_updated_scorecard: Has updated the SCORECARD with   
      have_an_account: If you have an account  
@@ -665,6 +672,7 @@ en:
      hide:  Hide
      hi_email_header: Hi   
      High: High   
+     Holiday:  Holiday
      home: Home   
      home_group: Home Team       
      home_stage_name:  Group
@@ -713,7 +721,8 @@ en:
      language: Language 
      last_game_played: Last Recent Game	 
      last_login_at: last login at   
-     last_minute: Reserve   
+     last_minute: Reserve
+     last_minute_notification:  Last minute notice
      last_schedule_description: Recent event    
      last_scorecard: Recent Results   
      latest_activities:  Latest Activities
@@ -761,6 +770,7 @@ en:
      marker_description: (Mark where you play on the map if it is not on the list...)   
      markers: Locations 
      markers_address:  Location where to play
+     markers_direction:  Directions
      markers_list: List of Locations
      markers_create:  New Location 
      markers_instructions:  Instructions
@@ -1229,6 +1239,7 @@ en:
      set_private_phone:  Set Phone Private 
      set_private_profile:  Set Private Profile
      set_enable_comments:  Want to receive notices for comments left on the wall
+     set_last_minute_notification:  Want to receive notices from a team with a last minute signup
      set_teammate_notification:  Want to receive requests to join the team of
      set_message_notification:  Want to receive email notices in your email account
      set_blog_notification:  Want to receive notices for comments left on the wall
@@ -1361,8 +1372,17 @@ en:
      the_wall: Wall -    
      Therapist: Therapist   
      thread_message: Message (s)   
-     Thursday: Thursday   
-     time_zone_description: (Location where you have interest in playing sports...)   
+     Thursday: Thursday  
+     timeframe:  Timeframe
+     timeframe_description:  Timeframe
+     timetable:  Timetable
+     timetables:  Timetables
+     timetables_create:  New Timetable
+     timetables_edit:  Edit Timetable
+     timetable_description:  Timetables are used to set the specific dates and times a venue is open
+     time_zone:  Time Zone
+     time_zone_description:  Time Zone 
+     time_zone_description: (Location where you have interest in playing sports...)
      to: to   
      to_email: Friend's Email       
      to_join: Join   
@@ -1503,6 +1523,7 @@ en:
      you: You
      you_are_center_here: "Center here"
      you_are_create_group:  "Organize your team here"
+     you_are_create_group_instruction:  Organize your team by selection location on map
      you_are_create_installation:  "Organize your pitch here"
      you_are_create_marker:  "Mark your pitch here"
      you_are_create_venue: "Organize your center here"
@@ -1558,9 +1579,6 @@ en:
      physical_difference: "Physical<br/>Difference"
      language_description:  Language Preference
      country_description:  Time Zone
-     time_zone:  Time Zone
-     time_zone_description:  Time Zone
-     timeframe:  Time Frame
      available_description: ""
      private_phone_description: ""
      private_profile_description: ""

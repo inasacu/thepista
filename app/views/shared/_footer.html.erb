@@ -45,6 +45,9 @@
 			<br/>
 			<div class="col_wrapper"><p><%= app_name %> &copy; 2011.</p></div>
 			
+			<br/>			
+			<%= render :partial => 'utilities/browser_detect' if development? %>
+			
 		</div>
 	</div>
 

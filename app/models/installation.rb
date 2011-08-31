@@ -12,18 +12,18 @@ class Installation < ActiveRecord::Base
       validates_attachment_content_type :photo, :content_type => ['image/jpeg', 'image/png', 'image/gif', 'image/jpg', 'image/pjpeg']
       validates_attachment_size         :photo, :less_than => 5.megabytes
 
-    has_many    :fees,                                                  :dependent => :destroy 
-    has_one     :forum,                                                 :dependent => :destroy
+    has_many        :fees,                                                  :dependent => :destroy 
+    has_one         :forum,                                                 :dependent => :destroy
 
-    belongs_to  :venue
-    belongs_to  :marker
-    belongs_to  :sport  
-    has_many    :reservations
+    belongs_to      :venue
+    belongs_to      :marker
+    belongs_to      :sport  
+    has_many        :reservations
+    has_many        :timetables,        :order => "timetables.type_id, timetables.starts_at"
 
     # validations  
     validates_presence_of         :name
-    validates_length_of           :name,                         :within => NAME_RANGE_LENGTH
-    validates_format_of           :name,                         :with => /^[A-z 0-9 _.-]*$/ 
+    validates_length_of           :name,                            :within => NAME_RANGE_LENGTH
 
     validates_presence_of         :description
     validates_length_of           :description,                     :within => DESCRIPTION_RANGE_LENGTH

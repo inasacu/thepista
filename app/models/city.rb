@@ -5,6 +5,7 @@ class City < ActiveRecord::Base
     has_many      :groups
     has_many      :schedules
     has_many      :venues
+    has_many      :holidays
     
     def self.city_name
       find(:all, :select => "cities.id, cities.name as city_name, states.name as state_name", 

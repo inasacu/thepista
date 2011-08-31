@@ -13,6 +13,8 @@ class VenuesController < ApplicationController
 
   def new
     @venue = Venue.new
+    @venue.starts_at = Time.zone.now.change(:hour => 8, :min => 0, :sec => 0)
+    @venue.ends_at  = Time.zone.now.change(:hour => 23, :min => 0, :sec => 0)
     @venue.time_zone = current_user.time_zone if !current_user.time_zone.nil?
   end
 

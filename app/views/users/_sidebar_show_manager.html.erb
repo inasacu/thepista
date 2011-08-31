@@ -1,8 +1,4 @@
-<div class="block">
-	<h3><%= label_name('manager_option') %></h3>
-	<div class="content">
-
-		<%
+<%
 	current_user.groups.each do |group| 
 		the_group = h(group.name)
 		
@@ -49,6 +45,3 @@
 		end	
 	end 
 %>
-
-</div>
-</div>

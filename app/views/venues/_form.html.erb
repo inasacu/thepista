@@ -26,11 +26,17 @@
 	    <span class="description"><%= label_name('marker', 'description') %></span>
 	  </div>
 
-	<div class="group">
-		<%= f.label :time_zone, label_name('time_zone'), :class => :label %>
-		<%= f.time_zone_select :time_zone, ActiveSupport::TimeZone.us_zones %><br />
-		<span class="description"><%= label_name('time_zone', 'description') %></span>
-	</div>
+	<!-- <div class="group">
+		<%#= f.label :day_light_starts_at, label_name('day_light_starts_at'), :class => :label %>
+		<%#= f.time_select :day_light_starts_at, :class => 'datetime_select' %><br />
+		<span class="description"><%#= label_name('day_light_starts_at', 'description') %></span>
+	</div> -->
+
+	<!-- <div class="group">
+		<%#= f.label :day_light_ends_at, label_name('day_light_ends_at'), :class => :label %>
+		<%#= f.time_select :day_light_ends_at, :class => 'datetime_select' %><br />
+		<span class="description"><%#= label_name('day_light_ends_at', 'description') %></span>
+	</div> -->
 
 	<div class="group">
 		<%= f.label :description, label_name('description'), :class => :label %>
@@ -47,6 +53,12 @@
 		<%= f.file_field :photo, :class => 'textphoto' %><br />
 		<span class="description"><%= label_name('photo', 'description') %></span>
 	</div>
+
+	<!-- <div class="group">
+		<%#= f.label :day_light_savings, label_name('day_light_savings'), :class => :label %>
+		<%#= f.check_box :day_light_savings, :class => 'check_box' %>
+		<span class="description"><%#= label_name('day_light_savings', 'description') %></span>
+	</div> -->
 
 	<div class="group">
 		<%= f.label :public, label_name('public'), :class => :label %>

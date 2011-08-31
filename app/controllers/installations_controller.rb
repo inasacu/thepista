@@ -12,9 +12,8 @@ class InstallationsController < ApplicationController
   end
 
   def show
-    # store_location    
-    @venue = @installation.venue
-    redirect_to :action => 'index', :id => @venue
+    store_location    
+    @timetables = Timetable.find(:all, :conditions => ["installation_id = ?", @installation])
   end
 
   def new
@@ -33,6 +32,8 @@ class InstallationsController < ApplicationController
       
       unless @previous_installation.nil?
         @installation.name = @previous_installation.name
+        @installation.starts_at = @previous_installation.starts_at
+        @installation.ends_at = @previous_installation.ends_at
         @installation.description = @previous_installation.description        
         @installation.conditions = @previous_installation.conditions
         @installation.fee_per_game = @previous_installation.fee_per_game
@@ -53,12 +54,6 @@ class InstallationsController < ApplicationController
 
   def create
     @installation = Installation.new(params[:installation])  
-      
-    # unless current_user.is_manager_of?(@installation.venue)
-    #   flash[:warning] = I18n.t(:unauthorized)
-    #   redirect_back_or_default('/index')
-    #   return
-    # end
 
     if @installation.save 
       flash[:notice] = I18n.t(:successful_create)
@@ -86,28 +81,6 @@ class InstallationsController < ApplicationController
     redirect_to :action => 'index'  
   end
 
-  def set_reminder
-    if @installation.update_attribute("reminder", !@installation.reminder)
-      @installation.update_attribute("reminder", @installation.reminder)  
-
-      flash[:success] = I18n.t(:successful_update)
-      redirect_back_or_default('/index')
-    else
-      render :action => 'index'
-    end
-  end
-
-  def set_public
-    if @installation.update_attribute("public", !@installation.public)
-      @installation.update_attribute("public", @installation.public)  
-
-      flash[:success] = I18n.t(:successful_update)
-      redirect_back_or_default('/index')
-    else
-      render :action => 'index'
-    end
-  end
-
   private
   def has_manager_access
     unless current_user.is_manager_of?(@installation.venue)
@@ -119,7 +92,9 @@ class InstallationsController < ApplicationController
 
   def get_installation
     @installation = Installation.find(params[:id])
-    unless current_user.is_manager_of?(@installation.venue)
+    @venue = @installation.venue
+    
+    unless current_user.is_manager_of?(@venue)
       flash[:warning] = I18n.t(:unauthorized)
       redirect_back_or_default('/index')
       return
@@ -136,4 +111,3 @@ class InstallationsController < ApplicationController
   end
 
 end
-

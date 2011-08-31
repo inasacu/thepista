@@ -114,6 +114,14 @@
 
 						<% if is_notice %>
 						<% 
+							the_label = h(label_name(@user.last_minute_notification, 'value'))
+						%>
+						<tr>
+							<%= content_tag :td, label_name('last_minute_notification'), :class =>"label" %>
+							<%= content_tag :td, (can_modify ? link_to(the_label, set_last_minute_notification_path(:id => @user)) : the_label), :class => get_the_action %>
+						</tr>
+						
+						<% 
 							the_label = h(label_name(@user.forum_comment_notification, 'value'))
 						%>
 						<tr>
@@ -190,11 +198,25 @@
 <% content_for :sidebar, render('shared/completeness', :user => @user) unless @user.percent_complete == 100 or @user != current_user -%>
 
 <% if current_user.is_group_manager_of? %>
-	<% content_for :sidebar, render('/users/sidebar_show_subscription') if current_user.is_user_manager_of?(@user) %>
-	<% content_for :sidebar, render('/users/sidebar_show_join')  %>
-	<% content_for :sidebar, render('/users/sidebar_show_sub_manager') if current_user.is_user_manager_of?(@user) and current_user != @user %>
-	<% content_for :sidebar, render('/users/sidebar_show_manager') if current_user.is_user_manager_of?(@user) %>
-	<% content_for :sidebar, render('users/sidebar_show_item_manager', :items => current_user.challenges.find(:all, :conditions => ["ends_at > ?", Time.zone.now])) %>
+	<% content_for :sidebar, render(:partial => '/shared/sidebar_basic_legend', 
+						:locals => {:the_render => '/users/sidebar_show_subscription', 
+									:the_label => label_name('subscription_option')}) if current_user.is_user_manager_of?(@user) %>
+
+	<% content_for :sidebar, render(:partial => '/shared/sidebar_basic_legend', 
+						:locals => {:the_render => '/users/sidebar_show_join', :the_label => label_name('join_option')}) %>
+						
+	<% content_for :sidebar, render(:partial => '/shared/sidebar_basic_legend', 
+					:locals => {:the_render => '/users/sidebar_show_sub_manager', 
+								:the_label => label_name('sub_manager_option')})  if current_user.is_user_manager_of?(@user) and current_user != @user %>
+	
+	<% content_for :sidebar, render(:partial => '/shared/sidebar_basic_legend', 
+					:locals => {:the_render => '/users/sidebar_show_manager', 
+								:the_label => label_name('manager_option')}) if current_user.is_user_manager_of?(@user) %>
+		
+	<% content_for :sidebar, render(:partial => '/shared/sidebar_basic_legend', 
+					:locals => {:the_render => '/users/sidebar_show_item_manager', 
+								:the_label => label_name("#{@items.first.class.to_s.downcase}_option"),
+								:items => @items}) unless @items.nil? or @items.blank? %>
 <% end %>
 
 <% content_for :sidebar, render(:partial => '/shared/sidebar_index') if @user == current_user -%>

@@ -3,23 +3,32 @@
 <table style="width: 97%;">
 <tbody>
 <tr>			
-	<!-- <td class="CuerpoPagina"> -->
+	<!-- <td class="CuerpoPagina">
 		
-		<!-- <div> -->
-			<!-- <div> -->
-				<!-- <tr> -->
+		<div>
+			<div>
+				<tr> -->
 					
 					<% 7.times.each do |x| 
-						current_day = first_day + x.day 
-						starts_at = convert_to_datetime_zone(current_day, @installation.starts_at)
-						ends_at = convert_to_datetime_zone(current_day.midnight, @installation.ends_at)
-					%>
-
+						current_day = first_day + x.day
+					%>					
 						<td class="ColPista">
-
 							<%= render 'reservations/day_of_week', :current_day => current_day %>	
 
-					<%  				
+					<% 
+						
+						the_timetables = Timetable.find(:all, :select => "timetables.starts_at, timetables.ends_at, timetables.timeframe",
+									:joins => "join types on types.id = timetables.type_id", 
+									:conditions => ["installation_id = ? and types.table_type = 'Timetable' and types.name =  ?", @installation, Date::DAYNAMES[current_day.wday]],
+ 									:order => "timetables.type_id, timetables.starts_at")
+
+									
+						the_timetables.each do |timetable|
+				
+							starts_at = convert_to_datetime_zone(current_day, timetable.starts_at)
+							ends_at = convert_to_datetime_zone(current_day.midnight, timetable.ends_at)
+							time_frame = timetable.timeframe.hour
+						
 							while (starts_at < ends_at )
 								reserved = false
 								available = false
@@ -53,17 +62,20 @@
 								end 
 								starts_at += time_frame
 							end 
+						end
 					%>
-
+					
+					<%=  "" %>
+					
 						</td>
 					<% 
 						end 
 					%>	
 						
-				<!-- </tr> -->
-			<!-- </div> -->
-		<!-- </div> -->
-	<!-- </td>			 -->
+				<!-- </tr>
+			</div>
+		</div>
+	</td>	 -->		
 	
 </tr>
 </tbody>

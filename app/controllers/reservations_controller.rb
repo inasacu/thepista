@@ -4,7 +4,6 @@ class ReservationsController < ApplicationController
   before_filter :require_user
 
   before_filter   :get_installation,    :only => [:new, :index]
-  # before_filter   :get_venue,           :only => [:list]
   before_filter   :get_reservation,     :only => [:show, :edit, :update, :destroy]
   before_filter   :has_manager_access,  :only => [:edit, :update, :destroy]
 
@@ -20,6 +19,8 @@ class ReservationsController < ApplicationController
         
 		starts_at = convert_to_datetime_zone(@first_day, @installation.starts_at.utc)
 		ends_at = convert_to_datetime_zone(last_day.midnight, @installation.ends_at.utc)
+		
+		@timetables = Timetable.installation_timetable(@intallation)
 		
     @reservations = Reservation.weekly_reservations(@installation, starts_at, ends_at)   
     @schedules = Schedule.weekly_reservations(@venue.marker, @installation, starts_at, ends_at) 

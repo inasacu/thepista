@@ -1,13 +1,18 @@
-<% is_new_group = (is_action('new') or is_action('create')) %>
+<%
+is_new_item = (is_action('new') or is_action('create')) 
+
+%>
 
 <div class="secondary-navigation">
 	<ul>
 		<%= item_new(@marker) %>	
 
-		<% unless is_new_group %>
+		<% unless is_new_item %>
 			<li class="<%= get_first_active %>"><%= link_to(control_label('index') , markers_path) %></li>
 			<li class="<%= get_active('marker_search')  %>"><%= link_to(control_label('search') , search_map_url) %></li>
 			<li class="<%= get_active('marker_list')  %>"><%= link_to(control_label('list') , list_markers_url) %></li>
+			<li class="<%= get_active('marker_direction')  %>"><%= link_to(control_label('direction') , direction_markers_url) %></li>
+			<!-- <li class="<%#= get_active('marker_show') %>"><%#=  item_name_link(@marker) if @marker %><%#= @marker.name %></li> -->
 		<% end %>
 	</ul>
 	
