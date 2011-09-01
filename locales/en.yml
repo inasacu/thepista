@@ -185,6 +185,7 @@ en:
      contact_us: contact us 
      convocado: Squad
      convocados: Squad
+     copy:  copy
      could_not_log_you: Could not log your session    
      could_not_setup_account: "We could not setup your account, Sorry!"   
      country: Country    
@@ -1377,6 +1378,7 @@ en:
      timeframe_description:  Timeframe
      timetable:  Timetable
      timetables:  Timetables
+     timetables_copy:  Copy Timetable
      timetables_create:  New Timetable
      timetables_edit:  Edit Timetable
      timetable_description:  Timetables are used to set the specific dates and times a venue is open

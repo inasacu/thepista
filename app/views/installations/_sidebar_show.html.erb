@@ -1,32 +1,12 @@
 <div class="block">
 
 	<h3><%= label_name(:options) %></h3>
-	
-<div class="content">
-	<p>
-		<%= option_image_link('message') %>&nbsp;&nbsp;
-		<%= link_to label_name(:send_message_to), new_message_path(:venue_id => @venue, :roster_id => @installation) %>
-	</p>
-<% 	
-	if current_user.is_manager_of?(@venue) and !is_controller('forum')
-		the_confirmation = "#{ label_name(:destroy_installation) } #{ label_name(:from) } #{@venue.name}?" 
-%> 
-		<p><%= option_image_link('installation') %>&nbsp;&nbsp;
-		<%= link_to control_label('create'), new_installation_path(:id => @installation.venue) %>
-		</p>
 
+	<div class="content">
 		<p>
-		<%= option_image_link('installation') %>&nbsp;&nbsp;
-		<%= link_to control_label('edit'), edit_installation_path(@installation) %>
-		</p>  
-		
-		<p>
-		<%= option_image_link('schedule_blue') %>&nbsp;&nbsp;
-		<%= link_to label_name('timetables_create'), new_timetable_path(:id => @installation) %>
+			<%= option_image_link('message') %>&nbsp;&nbsp;
+			<%= link_to label_name(:send_message_to), new_message_path(:venue_id => @venue, :roster_id => @installation) %>
 		</p>
-<% 
-	end 
-%>
-</div>
-	
+	</div>
+
 </div>

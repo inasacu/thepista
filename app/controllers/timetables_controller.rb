@@ -41,14 +41,34 @@ class TimetablesController < ApplicationController
     end
   end
 
-
   def update
-    if @installation.update_attributes(params[:installation])  
+    if @timetable.update_attributes(params[:timetable])  
       flash[:success] = I18n.t(:successful_update)
       redirect_to @installation
     else
       render :action => 'edit'
     end
+  end
+
+  def set_copy_timetable
+    @installation = Installation.find(params[:id])
+    @current_intallation = Installation.find(params[:current_id])
+
+    unless @installation.nil?
+      @the_timetables = Timetable.installation_timetable(@installation)
+      
+      @the_timetables.each do |the_timetable|
+        @timetable = Timetable.new
+        @timetable = the_timetable
+        @timetable.installation = @current_intallation
+        @timetable.save
+      end
+      
+      flash[:success] = I18n.t(:successful_update)
+      redirect_to @current_intallation
+      return
+    end
+    redirect_to root_url
   end
 
   private

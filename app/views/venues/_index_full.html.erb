@@ -27,26 +27,16 @@
 			</td>
 
 			<td class="name_and_date">
-				<%= item_list(venue.all_the_managers) %><br />
-				<span class="date">
 				<%= marker_link(venue.marker) %>
-				</span>
 			</td>
 
 			  <td class="name_and_date">
-				<%= I18n.t(:has_venue_installations, :count => object_counter(venue.installations)) %><br />
-				<span class="date">										
-					<%#= I18n.t(:has_group_schedules, :count => object_counter(venue.installations)) %>
-				</span>
+				<%= I18n.t(:has_venue_installations, :count => object_counter(venue.installations)) %>
 			  </td>
 
 		       <td class="last">
 					<span class="action" align="left">
-						<%= option_image_small_link('message') %>&nbsp;&nbsp;<%= link_to(label_name(:send_message_to), new_message_path(:venue_id => venue)) %><br />								
-						<% if current_user.is_manager_of?(venue) %> 
-							<strong><%= option_image_small_link('installation') %>&nbsp;&nbsp;
-									<%= link_to label_name(:installations_create), new_installation_path(:id => venue) %></strong>
-				        <% end %>
+						<%= option_image_small_link('message') %>&nbsp;&nbsp;<%= link_to(label_name(:send_message_to), new_message_path(:venue_id => venue)) %>
 					</span>
 		       </td>
 	  </tr>   

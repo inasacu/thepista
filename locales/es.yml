@@ -187,6 +187,7 @@ es:
      contact_us: contáctenos 
      convocado: Convocado
      convocados: Convocados
+     copy:  copia
      could_not_log_you: No se ha podido iniciar la sesión en la que como   
      could_not_setup_account: "No pudimos crear la cuenta, lo sentimos!"   
      country: Pais        
@@ -1382,6 +1383,7 @@ es:
      timeframe_description:  Cambio de turno
      timetable:  Horario
      timetables:  Horarios
+     timetables_copy:  Copia un horario
      timetables_create:  Nuevo horario
      timetables_edit:  Modifica el horario
      timetable_description:  Los horarios se utilizan para poner los horarios diarios de cada centro

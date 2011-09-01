@@ -115,6 +115,8 @@ ActionController::Routing::Routes.draw do |map|
   map.set_user_profile      'jornadas/:id/habilitar_perfil_jugador',            :controller => 'matches',         :action => 'set_user_profile'
   map.set_group_stage       'encasillado/:id/fase_de_grupos',                   :controller => 'standings',       :action => 'set_group_stage'
   
+  map.set_copy_timetable    'horario/:id/replica/:current_id',                  :controller => 'timetables',      :action => 'set_copy_timetable'
+  
   map.resources   :user_sessions,   :as => 'repitelo'
   map.resources   :users,           :as => 'jugadores',                   :collection => { :rpx_create => :post, :rpx_associate => :post, :list => :get, 
                                                                                            :recent_activity => :get, :notice => :get }  
@@ -157,7 +159,7 @@ ActionController::Routing::Routes.draw do |map|
   map.resources   :reservations,    :as => 'reservas',                    :collection => { :list => :get }
   
   map.resources   :auth,            :as => 'opensocial'
-  map.resources   :timetables,           :as => 'horario'
+  map.resources   :timetables,      :as => 'horario'
   
   
   map.resources   :users do |user|

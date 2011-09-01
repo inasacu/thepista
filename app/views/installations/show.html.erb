@@ -48,11 +48,13 @@
 								#{nice_simple_time_at(timetable.ends_at)}, 
 								#{I18n.t(:has_hour, :count => timetable.timeframe)}", :class => get_the_action %>
 				
-				<%= content_tag :td, link_to(label_name(:edit), edit_timetable_path(:id => timetable)), :class => get_the_action if current_user.is_manager_of?(@installation.venue) %>
+				<%= content_tag :td, link_to(label_name(:edit), edit_timetable_path(:id => timetable)), :class => get_the_action if current_user.is_manager_of?(@venue) %>
 			</tr>
 			
-			<% first = false
-				end -%>
+			<% 
+				first = false
+				end 
+			-%>
 
 		</table>
 	</td>
@@ -66,5 +68,17 @@
 
 <% content_for :sidebar, render(:partial => 'installations/sidebar_show') -%>
 <% content_for :sidebar, render(:partial => 'shared/sidebar_show_reservations', :locals =>{:installations => @installations}) %>
-<%# content_for :sidebar, render(:partial => 'shared/sidebar_show_installation', :locals => {:installation => @installation}) if current_user.is_manager_of?(@installation) %>
+
+<% if current_user.is_manager_of?(@venue) %>
+
+<% content_for :sidebar, render(:partial => '/shared/sidebar_basic_legend', 
+					:locals => {:the_render => '/installations/sidebar_installation_manager', 
+					:the_label => label_name('manager_option')}) if !is_controller('forum') %>
+					
+<% content_for :sidebar, render(:partial => '/shared/sidebar_basic_legend', 
+					:locals => {:the_render => '/timetables/sidebar_copy_timetable', 
+								:the_label => "#{label_name(:timetables_copy)}".capitalize,
+								:installation => @installation}) if object_counter(@venue.installations) > 0 %>
+<% end -%>
+
 <% content_for :sidebar, render(:partial => 'shared/share_object', :locals => {:installation => @installation}) if @installation -%>
