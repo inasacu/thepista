@@ -1,0 +1,30 @@
+<% 
+	@holiday = Holiday.new 
+	@holiday.venue = @venue
+	@holiday.starts_at = current_day
+	@holiday.ends_at = current_day
+    @holiday.starts_at = @holiday.starts_at.change(:hour => 8, :min => 0, :sec => 0)
+    @holiday.ends_at  = @holiday.ends_at.change(:hour => 23, :min => 0, :sec => 0)    
+%>
+
+<!-- <div class="block">
+
+	
+
+	<div class="content">  
+		<div class="inner"> -->
+		
+			<% form_for :holiday, :url => holidays_path, :html => { :class => :form } do |f| -%>
+			<%= f.hidden_field :venue_id %>
+			<%= f.hidden_field :starts_at %>
+			<%= f.hidden_field :ends_at %>
+			<%= %>
+			<%= submit_tag "#{label_name(:holiday)}?", :class => "button" %> 
+			<% end -%>
+
+		<!-- </div>
+
+	</div>
+
+</div> -->
+

@@ -48,6 +48,7 @@ class Venue < ActiveRecord::Base
   belongs_to    :sport   
   belongs_to    :marker 
   has_one       :blog  
+  has_many      :holidays
   
 
   before_create :format_description

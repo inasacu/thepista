@@ -51,13 +51,13 @@
 		</div>
 		</div>
 	</div>
+
 	
-	<% content_for :sidebar, render('/shared/sidebar_index') -%>	
-	<% content_for :sidebar, render(:partial => '/installations/sidebar') if current_user.is_manager? -%>	
-	<% content_for :sidebar, render(:partial => 'shared/sidebar_show_reservations', :locals => {:installations => @installations}) %>
-	
-	<%# if venue_installation_list -%>
-	<%# content_for :sidebar, render(:partial => 'venues/sidebar_show') -%>
-	<%# content_for :sidebar, render(:partial => 'shared/sidebar_show_team', :locals => {:venue => @venue}) if current_user.is_manager_of?(@venue) %>
-	<%# content_for :sidebar, render('shared/share_object', :venue => @venue, :installation => @venue.installations.first) if @venue -%>
-	<%# end -%>
+<% content_for :sidebar, render(:partial => 'venues/sidebar_show') -%>
+<% content_for :sidebar, render(:partial => 'shared/sidebar_show_reservations', :locals =>{:installations => @installations}) %>
+
+<% content_for :sidebar, render(:partial => '/shared/sidebar_basic_legend', 
+					:locals => {:the_render => '/shared/sidebar_show_venue', 
+					:the_label => label_name('manager_option')}) if current_user.is_manager_of?(@venue) %>
+
+<% content_for :sidebar, render(:partial => 'shared/share_object', :locals => {:venue => @venue}) if @venue -%>

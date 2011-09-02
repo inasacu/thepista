@@ -1,0 +1,17 @@
+<table class="Cuadrante" border="0">
+	<tbody>
+		<tr>			
+			<td class="ColPista">
+				<div class="ColPistaCab">
+					<span>
+						<%#= link_to label_name(:holidays_new), new_holiday_path(:block_token => block_token) %>
+						
+						<%= render 'holidays/new', :current_day => current_day %>
+					</span>
+				</div>		
+			</td>
+		</tr>
+	</tbody>
+</table>
+
+

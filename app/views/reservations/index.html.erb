@@ -19,26 +19,18 @@
 				<table class="table">
 				<tr>
 					<%= content_tag :td, right_label, :class =>"first_left" %>
-					<%#= content_tag :td, right_label, :class =>"last_left" %>
 				</tr>
 				</table>
 		</div>
 		<br/>
 		
 		<div class="inner">
-		
 			<table class="table">	
-				<%#= render 'reservations/weekdays', :first_day => @first_day %>
-				<%#= render 'reservations/index_boxes', :first_day => first_day, :time_frame => time_frame %>
-				
-				<%= render 'reservations/new_reservation', :first_day => @first_day, :time_frame => @time_frame %>
-				
+				<%= render 'reservations/new_reservation', :first_day => @first_day, :time_frame => @time_frame, :installation => @installation %>
 			</table>
-	
 		</div>
+
 	</div>
 </div>
 
-
-<%# content_for :sidebar, render('/shared/sidebar_index') -%>
-<%# content_for :sidebar, render(:partial => '/reservations/sidebar') if current_user.is_manager? -%>
+<% content_for :sidebar, render('/shared/sidebar_index') -%>

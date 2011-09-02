@@ -676,6 +676,8 @@ es:
      hi_email_header: Hola   
      High: Alto   
      Holiday:  Festivo
+     holiday:  festivo
+     holidays_new:  Marca como festivo
      home: Inicio   
      home_group: Equipo       
      home_stage_name:  Grupo

@@ -160,6 +160,7 @@ ActionController::Routing::Routes.draw do |map|
   
   map.resources   :auth,            :as => 'opensocial'
   map.resources   :timetables,      :as => 'horario'
+  map.resources   :holidays,        :as => 'festivo'
   
   
   map.resources   :users do |user|
