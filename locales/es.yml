@@ -743,6 +743,7 @@ es:
      list_marker: Lista de lugares donde jugar   
      list_user: Listado   
      list_venue: Lista de lugares donde jugar   
+     loading:  Cargando
      locale_name: Español    
      location_group: Lugar donde juega el equipo
      location_sport: Lugar donde practicas tu deporte. 

@@ -117,14 +117,6 @@ class ReservationsController < ApplicationController
       @reservation.fee_per_lighting = @installation.fee_per_lighting
     end
 
-   
-
-    # unless current_user.is_manager_of?(@venue)
-    #   flash[:warning] = I18n.t(:unauthorized)
-    #   redirect_back_or_default('/index')
-    #   return
-    # end
-
     if @reservation.save    
       flash[:notice] = I18n.t(:successful_create)
       redirect_to :action => 'index', :id => @installation
@@ -157,33 +149,15 @@ class ReservationsController < ApplicationController
     @reservation = Reservation.find(params[:id])
     @installation = @reservation.installation
     @venue = @reservation.venue
-    
-    # unless current_user.is_manager_of?(@venue)
-    #   flash[:warning] = I18n.t(:unauthorized)
-    #   redirect_back_or_default('/index')
-    #   return
-    # end
   end
 
   def get_installation
     @installation = Installation.find(params[:id])
     @venue = @installation.venue
-    
-    # unless current_user.is_manager_of?(@venue)
-    #   flash[:warning] = I18n.t(:unauthorized)
-    #   redirect_back_or_default('/index')
-    #   return
-    # end
   end
 
   def get_venue
     @venue = Venue.find(params[:id])
-
-    # unless current_user.is_manager_of?(@venue)
-    #   flash[:warning] = I18n.t(:unauthorized)
-    #   redirect_back_or_default('/index')
-    #   return
-    # end
   end
 
 end

@@ -2,21 +2,30 @@ class ScorecardsController < ApplicationController
   before_filter :require_user
 
   def index
-    @groups = current_user.groups.paginate :page => params[:page], :order => 'name'
-
-    if @groups.nil? or @groups.blank?
-      redirect_to :action => 'list'
-      return
-    end
+    @groups = Group.paginate(:all, :conditions => ["groups.archive = false "], :order => "groups.created_at DESC", :page => params[:page])
   end
-
+  
   def list
-    @groups = Group.paginate(:all, :conditions => ["archive = false and id not in (?)", current_user.groups], 
-    :page => params[:page], :order => 'name') unless current_user.groups.blank?
-    @groups = Group.paginate(:all, :conditions =>["archive = false"], 
-    :page => params[:page], :order => 'name') if current_user.groups.blank?
-    render :template => '/scorecards/index'       
+    redirect_to :action => 'index'
+    return      
   end
+  
+  # def index
+  #   @groups = current_user.groups.paginate :page => params[:page], :order => 'name'
+  # 
+  #   # if @groups.nil? or @groups.blank?
+  #   #   redirect_to :action => 'list'
+  #   #   return
+  #   # end
+  # end
+
+  # def list
+  #   @groups = Group.paginate(:all, :conditions => ["archive = false and id not in (?)", current_user.groups], 
+  #   :page => params[:page], :order => 'name') unless current_user.groups.blank?
+  #   @groups = Group.paginate(:all, :conditions =>["archive = false"], 
+  #   :page => params[:page], :order => 'name') if current_user.groups.blank?
+  #   render :template => '/scorecards/index'       
+  # end
 
   def show
     @group = Group.find(params[:id])

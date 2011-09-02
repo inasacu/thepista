@@ -1,0 +1,12 @@
+
+<%# content_for :sidebar, render(:partial => '/schedules/sidebar_show') -%>
+
+<% content_for :sidebar, render(:partial => '/shared/latest_payment') -%>
+
+<% if @schedule -%>
+	<% content_for(:sidebar, render("schedules/sidebar_show", :schedule => @schedule)) -%>
+	<% content_for(:sidebar, render("schedules/sidebar_details", :schedule => @schedule)) -%>
+	<% content_for :sidebar, render(:partial => 'shared/sidebar_geo_group', :locals => {:group => @schedule.group}) if @schedule.group -%>	
+	<%# content_for(:sidebar, render('schedules/sidebar_level', :schedule => @schedule )) if is_manager -%>
+	<% content_for(:sidebar, render("shared/share_object", :schedule => @schedule)) -%>
+<% end %>

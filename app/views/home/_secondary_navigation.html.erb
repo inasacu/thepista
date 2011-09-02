@@ -1,11 +1,11 @@
 <div class="secondary-navigation">
 
 <ul>
-	<%= content_tag 'li', link_to(label_name(:home), '/'), :class => get_first_active if DISPLAY_UPCOMING and @upcoming %>
+	<%= content_tag 'li', link_to(label_name(:home), '/'), :class => get_first_active if DISPLAY_UPCOMING %>
 <% 
 if current_user 
 %>
-	<%= content_tag 'li', link_to(label_name(:upcoming), upcoming_path), :class => get_active('home_upcoming') if DISPLAY_UPCOMING and @upcoming %>
+	<%= content_tag 'li', link_to(label_name(:upcoming), upcoming_path), :class => get_active('home_upcoming') if DISPLAY_UPCOMING %>
 	
 	<%  if DISPLAY_MESSAGE_FLAG 		
 			if current_user.unread_messages_count  > 0

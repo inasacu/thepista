@@ -7,8 +7,8 @@
 <%
 	unless is_action('show') 
 %>
-	<li class="<%= get_first_active %>"><%=  link_to(label_name(:my_scorecard), scorecards_path) %></li>
-	<li class="<%= get_active('scorecard_list') %>"><%=  link_to(label_name(:all_scorecard) , list_scorecards_path) %></li>
+	<li class="<%= get_first_active %>"><%=  link_to(label_name(:scorecards), scorecards_path) %></li>
+	<!-- <li class="<%#= get_active('scorecard_list') %>"><%#=  link_to(label_name(:all_scorecard) , list_scorecards_path) %></li> -->
 <%
 	else
 %>

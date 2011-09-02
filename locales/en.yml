@@ -739,7 +739,8 @@ en:
      list: List   
      list_marker: List of Locations   
      list_user: List   
-     list_venue: List of Venues   
+     list_venue: List of Venues
+     loading:  Loading   
      locale_name: English     
      location_group: Location where the team plays
      location_sport: Location where you practice sports. 

@@ -9,7 +9,7 @@ class Message < ActiveRecord::Base
   belongs_to :conversation
   belongs_to :item,           :polymorphic => true
 
-  validates_presence_of   :subject, :body
+  validates_presence_of   :subject #, :body
 
   before_create   :assign_conversation, :format_body, :set_mark_as_read
 

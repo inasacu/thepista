@@ -79,11 +79,11 @@ module SchedulesHelper
     the_sport = ""
     the_missing = ""
 
-    unless schedule.played?
-      the_sport = "#{label_name(:rosters)}:  #{schedule.convocados.count}"
-      the_missing = ", #{I18n.t(:missing)}:  #{schedule.player_limit.to_i - schedule.convocados.count}" if schedule.player_limit.to_i > schedule.convocados.count
-      the_missing = ", #{I18n.t(:excess)}:  #{schedule.convocados.count - schedule.player_limit.to_i}" if schedule.player_limit.to_i < schedule.convocados.count
-    end
+    # unless schedule.played?
+    #   the_sport = "#{label_name(:rosters)}:  #{schedule.convocados.count}"
+    #   the_missing = ", #{I18n.t(:missing)}:  #{schedule.player_limit.to_i - schedule.convocados.count}" if schedule.player_limit.to_i > schedule.convocados.count
+    #   the_missing = ", #{I18n.t(:excess)}:  #{schedule.convocados.count - schedule.player_limit.to_i}" if schedule.player_limit.to_i < schedule.convocados.count
+    # end
 
     the_span = content_tag('span', "#{the_sport} #{the_missing}", :class => 'date')
     return content_tag('td', "#{marker_link(schedule.group.marker)}<br />#{the_span}", :class => 'name_and_date')
