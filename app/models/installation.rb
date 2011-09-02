@@ -37,8 +37,9 @@ class Installation < ActiveRecord::Base
     attr_accessible :fee_per_game, :fee_per_lighting, :venue_id, :sport_id, :marker_id
     attr_accessible :public, :lighting, :outdoor, :archive, :photo
 
+
     # NOTE:  MUST BE DECLARED AFTER attr_accessible otherwise you get a 'RuntimeError: Declare either attr_protected or attr_accessible' 
-    has_friendly_id :name, :use_slug => true, :approximate_ascii => true, 
+    has_friendly_id :venue_and_name, :use_slug => true, :approximate_ascii => true, 
                      :reserved_words => ["new", "create", "index", "list", "signup", "edit", "update", "destroy", "show"]
 
     # after_update        :save_matches
@@ -46,6 +47,10 @@ class Installation < ActiveRecord::Base
     before_update       :format_description, :format_conditions
 
     # method section
+    def venue_and_name
+      "#{venue.name} #{name}"
+    end
+    
     def self.current_installations(venue, page = 1)
       self.paginate(:all, :conditions => ["venue_id = ?", venue], :order => 'name', :page => page, :per_page => INSTALLATIONS_PER_PAGE)
     end

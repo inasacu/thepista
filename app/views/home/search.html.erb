@@ -18,7 +18,7 @@ if current_user
 				<% @item_results.each do |item| 
 					the_class = item.class.to_s.downcase
 				%>
-					<%= render "search_#{item.class.to_s.downcase}", :item => item unless block_model.include?(the_class)%>
+					<%= render "search_#{item.class.to_s.downcase}", :item => item unless block_model.include?(the_class) %>
 				<% end -%>
 				
 				</table>

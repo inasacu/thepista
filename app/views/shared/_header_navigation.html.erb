@@ -101,7 +101,7 @@
 			<%= content_tag('li', link_to(label_name(:messages), messages_url, :class => the_message)) %>
 			<%= content_tag 'li', link_to(label_name(:groups), groups_url, :class => the_group) %>		
 			<%= content_tag 'li', link_to(label_name(:schedules), schedules_url, :class => the_schedule) if has_group %>
-			<%= content_tag 'li', link_to(label_name(:venues), venues_url, :class => the_venue) unless production? %>
+			<%= content_tag 'li', link_to(label_name(:venues), venues_url, :class => the_venue) %>
 			<%= content_tag 'li', link_to(label_name(:cups), cups_url, :class => the_cup)  if Cup.has_official_cup? or current_user.is_maximo?  %>	
 			<%= content_tag 'li', link_to(label_name(:challenges), challenges_url, :class => the_challenge) if Cup.has_official_cup? %>
 			<%= content_tag 'li', link_to(label_name(:scorecards), scorecards_url, :class => get_control_active('scorecard')) %>	
@@ -110,12 +110,16 @@
 
 			<li class="search">	
 				<% form_tag search_path, :method => 'get' do %>
-				<%= text_field_tag :search, h(params[:search]), :id => 'location_search_text_input', :value => label_name(:searching) %>
+				<%= text_field_tag :search, h(params[:search]), :id => 'location_search_text_input', :value => "" %>
 				<%= submit_tag "", :id => "searchButton" %>
 				<% end -%>
 			</li>
 
-			<%#= content_tag('li', (link_to label_name(:petitions), petition_path(current_user), :class => the_petition)) if current_user.has_pending_petition?(current_user) %>
+			<% if DISPLAY_USER_PETITION %>
+				<%= content_tag('li', (link_to label_name(:petitions), petition_path(current_user), 
+						:class => the_petition)) if current_user.has_pending_petition?(current_user) %>
+			<% end -%>
+			
 			<%= content_tag('li', link_to(label_name(:logout), logout_path)) %>		
 
 		<% else %>

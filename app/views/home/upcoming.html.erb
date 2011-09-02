@@ -1,13 +1,4 @@
 <%  
-	# has_schedule ||= false	
-	# has_schedule = true unless upcoming_schedules.empty? 
-	# 
-	# has_game ||= false	
-	# has_game = true unless upcoming_games.empty?
-	# 
-	# has_cup ||= false	
-	# has_cup = true unless upcoming_cups.empty?
-	
 	the_label = label_name(:upcoming)
 	content_for(:title, the_label)
 %> 
@@ -18,7 +9,7 @@
   
   <div class="content">   
   
- 	<%= show_heading(the_label) %>
+ 	<%= show_heading(@upcoming ? the_label : label_name(:upcoming_no)) %>
 
     <div class="inner">
 

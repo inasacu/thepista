@@ -1438,7 +1438,8 @@ es:
      upcoming_schedule: Próximo evento  
      upcoming_schedules: Próximos Eventos 
      upcoming_meet: Próximo evento
-     upcoming_meets: Próximos eventos de torneo     
+     upcoming_meets: Próximos eventos de torneo 
+     upcoming_no:  Ningun evento para mostrar   
      update: Actualiza   
      update_address: Actualiza la dirección   
      update_announcement: Actualiza un anuncio   
@@ -1747,7 +1748,7 @@ es:
      meets_index_option: Opciones  
      meets_invitations_create:  Invita a un amigo al evento 
      meets_list:  Anteriores eventos 
-     meets_list_no: Ningun eventoprevio para mostrar
+     meets_list_no: Ningun evento previo para mostrar
      meets_manager_option:  Requiere organizador de equipo para ver mas opciones.
      meets_new: Organiza un partido 
      meets_no: Ningun evento para mostrar

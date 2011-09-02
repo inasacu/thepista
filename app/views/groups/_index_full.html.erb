@@ -13,63 +13,8 @@
 		<%= content_tag :th, "&nbsp;", :class => "last" %>
 	  </tr>
 
-	  <% @groups.each do |group| 
-		schedule = Schedule.last_schedule_group_played(group)
-		-%>
-	  <tr>  
-			<td>
-				<%= item_image_link_small(group) %>
-			</td>
-
-			<td class="name_and_date">
-				<%= group_link(group) %>
-				<span class="date">
-					<%= group.sport.name %>
-				</span>
-			</td>
-
-			<td class="name_and_date">
-				<%= item_list(group.all_the_managers) %><br />
-				<span class="date">
-				<%= group.marker.city %>
-				</span>
-			</td>
-			
-			  <td class="name_and_date">
-				<%= I18n.t(:has_group_users, :count => object_counter(group.users)) %><br />
-				<span class="date">										
-					<%= I18n.t(:has_group_schedules, :count => object_counter(group.schedules)) %>
-				</span>
-			  </td>
-
-			<td class="name_and_date">
-				<%= link_to(label_name(:scorecard), scorecard_path(:id => group)) %>
-				<span class="date">
-					<%= nice_full_date(schedule.starts_at) unless schedule.nil? %> 
-				</span>
-			</td>
-
-	       <td class="last">
-				<span class="action" align="left">
-					<% if current_user.is_member_of?(group) %>
-						<%= option_image_small_link('message') %>&nbsp;&nbsp;<%= link_to(label_name(:send_message_to), new_message_path(:group_id => group)) %><br />
-					<% else %>
-				
-					<%
-						unless current_user.has_item_petition?(current_user, group) 							
-					%> 
-						<%= option_image_small_link('user_add') %>&nbsp;&nbsp;<strong><%= join_item_link_to(current_user, group) %></strong>
-					<% 	end 
-					   end
-					-%>
-				
-					<% if current_user.is_manager_of?(group) %> 
-						<strong><%= option_image_small_link('schedule') %>&nbsp;&nbsp;<%= link_to label_name(:schedules_create), new_schedule_path(:id => group) %></strong>
-			        <% end %>
-				</span>
-	       </td>
-	  </tr>   
- 
+	  <% @groups.each do |group| -%>		
+		<%= render 'groups/group_full', :group => group, :display_icons => true %> 
 	  <% end -%>
 
 	</table>	

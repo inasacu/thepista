@@ -12,35 +12,8 @@
 		<%= content_tag :th, "&nbsp;", :class => "last" %>
 	  </tr>
 
-	  <% @venues.each do |venue|  	
-		-%>
-	  <tr>  
-			<td>
-				<%= item_image_link_small(venue) %>
-			</td>
-
-			<td class="name_and_date">
-				<%= item_name_link(venue) %>
-				<span class="date">
-					<%= nice_simple_time_at(venue.starts_at) %> - <%= nice_simple_time_at(venue.ends_at) %>
-				</span>
-			</td>
-
-			<td class="name_and_date">
-				<%= marker_link(venue.marker) %>
-			</td>
-
-			  <td class="name_and_date">
-				<%= I18n.t(:has_venue_installations, :count => object_counter(venue.installations)) %>
-			  </td>
-
-		       <td class="last">
-					<span class="action" align="left">
-						<%= option_image_small_link('message') %>&nbsp;&nbsp;<%= link_to(label_name(:send_message_to), new_message_path(:venue_id => venue)) %>
-					</span>
-		       </td>
-	  </tr>   
- 
+	  <% @venues.each do |venue| -%>
+  		<%= render 'venues/venue_full', :venue => venue, :display_icons => true %> 
 	  <% end -%>
 
 	</table>	

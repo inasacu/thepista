@@ -1433,7 +1433,8 @@ en:
      upcoming_schedule: Upcoming Event   
      upcoming_schedules: Upcoming Events 
      upcoming_meet: Upcoming Event 
-     upcoming_meets: Upcoming Tournament Event     
+     upcoming_meets: Upcoming Tournament Event 
+     upcoming_no:  No events to display    
      update: Update   
      update_address: Update Address   
      update_announcement: Update Announcement   
