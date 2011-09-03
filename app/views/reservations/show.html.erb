@@ -47,7 +47,7 @@
 	<%= tr_td_action(:ends_at, nice_day_of_week(@reservation.ends_at)) %>
 	<%= tr_td_action(:reminder_at, nice_day_of_week(@reservation.reminder_at)) %>
 	<%= tr_td_action(:sport, @reservation.installation.sport.name) %>
-	<%= tr_td_action(:fee_per_game, number_to_currency(@reservation.fee_per_game)) %>
+	<%= tr_td_action(:fee_per_pista, number_to_currency(@reservation.fee_per_pista)) %>
 	<%= tr_td_action(:fee_per_lighting, number_to_currency(@reservation.fee_per_lighting)) %>
 	
     <tr>

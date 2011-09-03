@@ -28,13 +28,13 @@ class Installation < ActiveRecord::Base
     validates_presence_of         :description
     validates_length_of           :description,                     :within => DESCRIPTION_RANGE_LENGTH
 
-    validates_presence_of         :fee_per_game,  :fee_per_lighting, :timeframe
-    validates_numericality_of     :fee_per_game,  :fee_per_lighting, :timeframe
+    validates_presence_of         :fee_per_pista,  :fee_per_lighting, :timeframe
+    validates_numericality_of     :fee_per_pista,  :fee_per_lighting, :timeframe
     validates_presence_of         :starts_at,     :ends_at 
 
     # variables to access
     attr_accessible :name, :description, :conditions, :starts_at, :ends_at, :timeframe
-    attr_accessible :fee_per_game, :fee_per_lighting, :venue_id, :sport_id, :marker_id
+    attr_accessible :fee_per_pista, :fee_per_lighting, :venue_id, :sport_id, :marker_id
     attr_accessible :public, :lighting, :outdoor, :archive, :photo
 
 

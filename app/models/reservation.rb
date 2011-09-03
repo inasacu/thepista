@@ -15,14 +15,14 @@ class Reservation < ActiveRecord::Base
   validates_presence_of         :description
   validates_length_of           :description,                     :within => DESCRIPTION_RANGE_LENGTH
 
-  validates_presence_of         :fee_per_game,  :fee_per_lighting
-  validates_numericality_of     :fee_per_game,  :fee_per_lighting
+  validates_presence_of         :fee_per_pista,  :fee_per_lighting
+  validates_numericality_of     :fee_per_pista,  :fee_per_lighting
 
   # validates_presence_of         :starts_at, :ends_at
 
   # variables to access
   attr_accessible :concept, :description, :starts_at, :ends_at, :reminder_at
-  attr_accessible :fee_per_game, :fee_per_lighting, :venue_id, :installation_id
+  attr_accessible :fee_per_pista, :fee_per_lighting, :venue_id, :installation_id
   attr_accessible :item_id, :item_type, :block_token, :code
   attr_accessible :public, :archive, :reminder, :available
 

@@ -21,4 +21,11 @@ class Timetable < ActiveRecord::Base
     find(:all, :conditions => ["installation_id = ?", installation], :order => "type_id, starts_at")
   end
   
+  def self.installation_week_day(installation, current_day)
+    find(:all, :select => "timetables.starts_at, timetables.ends_at, timetables.timeframe",
+				:joins => "join types on types.id = timetables.type_id", 
+				:conditions => ["timetables.archive = false and installation_id = ? and types.table_type = 'Timetable' and types.name =  ?", installation.id, Date::DAYNAMES[current_day.wday]],
+					:order => "timetables.type_id, timetables.starts_at")
+	end			
+  
 end

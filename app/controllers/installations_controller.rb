@@ -36,7 +36,7 @@ class InstallationsController < ApplicationController
         @installation.ends_at = @previous_installation.ends_at
         @installation.description = @previous_installation.description        
         @installation.conditions = @previous_installation.conditions
-        @installation.fee_per_game = @previous_installation.fee_per_game
+        @installation.fee_per_pista = @previous_installation.fee_per_pista
         @installation.fee_per_lighting = @previous_installation.fee_per_lighting
         @installation.sport_id = @previous_installation.sport_id
         @installation.lighting = @previous_installation.lighting

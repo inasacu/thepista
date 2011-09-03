@@ -59,9 +59,8 @@
 		</div>
 	</div>
 	
-	<% content_for :sidebar, render('/shared/sidebar_index') -%>
 	
-	<% content_for :sidebar, render(:partial => '/schedules/sidebar') if current_user.is_manager? and !group_schedule_list -%>
+	<% content_for :sidebar, render(:partial => '/schedules/sidebar') if current_user.is_manager? and !group_schedule_list -%>	
 	
 	<% if group_schedule_list -%>
 	<% content_for :sidebar, render(:partial => 'groups/sidebar_show') -%>

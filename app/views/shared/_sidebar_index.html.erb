@@ -1,16 +1,12 @@
-<%# 
-	my_venues = []				# my venues
-	manager_venues = []			# my manage teams
+<% 
+	my_groups = []				# my groups
+	manager_groups = []			# my manage teams
 
-	current_user.venues.each do |venue| 
-		my_venues << venue
-		manager_venues << venue if current_user.is_manager_of?(venue)
+	current_user.groups.each do |group| 
+		my_groups << group
+		manager_groups << group if current_user.is_manager_of?(group)
 	end
 %>
 
-<%#= render 'shared/latest_fee_box', :venues => my_venues %>
-<%#= render 'shared/latest_fee_box', :venues => manager_venues, :is_manager => true %>
-
-
-
-
+<%= render 'shared/latest_fee_box', :groups => my_groups %>
+<%= render 'shared/latest_fee_box', :groups => manager_groups, :is_manager => true %>

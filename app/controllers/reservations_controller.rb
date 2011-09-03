@@ -73,7 +73,7 @@ class ReservationsController < ApplicationController
       @reservation.installation_id = @installation.id
       @reservation.venue_id = @venue.id
 
-      @reservation.fee_per_game = @installation.fee_per_game
+      @reservation.fee_per_pista = @installation.fee_per_pista
       @reservation.fee_per_lighting = @installation.fee_per_lighting
     end
     
@@ -113,7 +113,7 @@ class ReservationsController < ApplicationController
       @reservation.installation_id = @installation.id
       @reservation.venue_id = @venue.id
 
-      @reservation.fee_per_game = @installation.fee_per_game
+      @reservation.fee_per_pista = @installation.fee_per_pista
       @reservation.fee_per_lighting = @installation.fee_per_lighting
     end
 

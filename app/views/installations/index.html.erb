@@ -37,7 +37,8 @@
 
 					<td class="last">
 						<span class="action" align="left">
-							<%= option_image_small_link('reservation') %>&nbsp;&nbsp;<strong><%= link_to label_name(:reservations), reservations_path(:id => installation) %></strong>
+							<%= option_image_small_link('reservation') %>&nbsp;&nbsp;
+								<strong><%= link_to "#{label_name(:reservations)} #{label_name(:for)}<br/> #{h(installation.name)}", reservations_path(:id => installation) %></strong>
 						</span>
 					</td>
 

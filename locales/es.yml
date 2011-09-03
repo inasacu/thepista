@@ -52,7 +52,7 @@ es:
      ausente: Ausente   
      authorizable_id: Codigo    
      authorizable_type: Tipo  
-     automatic_petition:  Aceptación Automática
+     automatic_petition:  Aceptación automática
      automatic_petition_description:  Permite unirse sin aprovación del organizador
      available: Disponible
      available_cluetip: "Estar disponible permite que otros jugadores sepan que estas para jugar. De lo contrario permite que no tienes interes en jugar y que no se te moleste."
@@ -436,10 +436,12 @@ es:
      fee_per_game_description: (Este es el precio que se le cobra al jugador no abonado...) 
      fee_per_game_time:  "¿Cuánto cuesta la pista?"  
      fee_per_game_time_description: (Este es el precio de la pista por hora...)
-     fee_per_lighting: "¿Cuánto cuesta la pista con aluminación?"
+     fee_per_lighting: "¿Cuánto cuesta la aluminación?"
      fee_per_lighting_description: (Este es el precio de la luz en la pista o cancha...)  
      fee_per_pista: "¿Cuánto cuesta la pista?"
      fee_per_pista_description: (Este es el precio de la pista o cancha...) 
+     fee_per_pista_time:  "¿Cuánto cuesta la pista?"  
+     fee_per_pista_time_description: (Este es el precio de la pista por hora...)
      fee_per_tour: "¿Cuánto cuesta el torneo?"  
      fee_per_tour_description: (Este es el precio del torneo...)  
      feedback: feedback   
