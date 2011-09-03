@@ -420,6 +420,7 @@ en:
      installation: Installation
      installations: Installations
      installations_create:  Create Installation 
+     installations_destroy:  Remove Installation
      installations_edit:  Update Instalation
      installations_name_description:  New Installation Name
      installations_new:  Create Installation 
@@ -664,7 +665,7 @@ en:
      has_hour:
          zero:      "Zero minutes"
          one:       "every hour"
-         other:     "every {{count}} hours."
+         other:     "every {{count}} hours"
      has_not_been_sent: does not havet been sent correctly.   
      has_updated_scorecard: Has updated the SCORECARD with   
      have_an_account: If you have an account  

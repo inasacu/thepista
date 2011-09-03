@@ -59,8 +59,11 @@ class TimetablesController < ApplicationController
       
       @the_timetables.each do |the_timetable|
         @timetable = Timetable.new
-        @timetable = the_timetable
-        @timetable.installation = @current_intallation
+        @timetable.type_id = the_timetable.type_id
+        @timetable.starts_at = the_timetable.starts_at
+        @timetable.ends_at = the_timetable.ends_at
+        @timetable.timeframe = the_timetable.timeframe
+        @timetable.installation_id = @current_intallation.id
         @timetable.save
       end
       

@@ -14,7 +14,7 @@
 	
 		<div class="description">
       <span class="q">
-				<%=sanitize @venue.description.blank? ? control_label('description_no') : @venue.description %>
+				<%=sanitize @venue.description.blank? ? control_label('description_no') : limit_item_link_length(@venue.description, 50) %>
 			</span>
     </div>
 
@@ -42,6 +42,30 @@
 			</tr>
 			<%= tr_td_action(:time_zone,  "#{nice_simple_time_at(@venue.starts_at)} - #{nice_simple_time_at(@venue.ends_at)}" ) %>
 			<%= tr_td_action(:city, @venue.marker.city) %>
+
+			
+			
+			<% first = true %>
+			<% @venue.installations.each do |installation| %>
+			
+			<tr>
+				<%= content_tag :td, label_name(:installation), :class => "label" if first %>
+				<%= content_tag :td, "&nbsp;&nbsp;", :class => "label" unless first %>
+				<%= content_tag :td, "#{item_name_link(installation)}, 
+								#{nice_simple_time_at(installation.starts_at)} -  
+								#{nice_simple_time_at(installation.ends_at)}", :class => get_the_action %>				
+				<%#= content_tag :td, link_to(label_name(:edit), edit_installation_path(:id => installation)), :class => get_the_action if current_user.is_manager_of?(@venue) %>
+			</tr>
+			
+			<% 
+				first = false
+				end 
+			-%>
+			
+			<tr>
+				<%= content_tag :td, label_name(:description), :class => "label" %>
+				<%= content_tag :td, sanitize(@venue.description), :class => get_the_action %>	
+			</tr>
 
 		</table>
 	</td>

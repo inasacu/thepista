@@ -422,6 +422,7 @@ es:
      installation: Instalación 
      installations: Instalaciones
      installations_create:  Nueva Instalación
+     installations_destroy:  Borrar Instalación
      installations_edit:  Modifica la Instalación 
      installations_name_description:  Nombre de la nueva instalación
      installations_new:  Nueva Instalación 
@@ -666,7 +667,7 @@ es:
      has_hour:
          zero:      "Cero minutos"
          one:       "cada hora"
-         other:     "cada {{count}} horas."
+         other:     "cada {{count}} horas"
      has_not_been_sent: no ha sido mandado correctamente.   
      has_updated_scorecard: Ha actualizado el RESULTADO  
      have_an_account: Si tienes una cuenta     

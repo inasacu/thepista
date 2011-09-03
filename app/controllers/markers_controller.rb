@@ -243,10 +243,10 @@ class MarkersController < ApplicationController
 
       if has_access
         the_new_model_url = "<br /><strong>" + I18n.t(:create) + ":</strong><br />"
-        the_installation_url = url_for(:controller => 'installations', :action => 'new', :marker_id => marker)
+        # the_installation_url = url_for(:controller => 'installations', :action => 'new', :marker_id => marker)
         the_venue_url = url_for(:controller => 'venues', :action => 'new', :marker_id => marker)
 
-        the_new_model_url = the_new_model_url + "<a href=\"#{the_installation_url}\">#{I18n.t(:you_are_create_installation)}</a><br/>"
+        # the_new_model_url = the_new_model_url + "<a href=\"#{the_installation_url}\">#{I18n.t(:you_are_create_installation)}</a><br/>"
         the_new_model_url = the_new_model_url + "<a href=\"#{the_venue_url}\">#{I18n.t(:you_are_create_venue)}</a>"
 
       else

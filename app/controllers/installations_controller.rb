@@ -2,9 +2,8 @@ class InstallationsController < ApplicationController
   before_filter :require_user
 
   before_filter   :get_venue,           :only => [:new, :index]
-  before_filter   :get_installation,    :only => [:show, :edit, :update, :destroy]
-  before_filter   :has_manager_access,  :only => [:edit, :update, :destroy]
-
+  before_filter   :get_installation,    :only => [:show, :edit, :update]
+  before_filter   :has_manager_access,  :only => [:edit, :update]
 
   def index  
     store_location
@@ -63,7 +62,6 @@ class InstallationsController < ApplicationController
     end
   end
 
-
   def update
     if @installation.update_attributes(params[:installation])  
       flash[:success] = I18n.t(:successful_update)
@@ -74,11 +72,18 @@ class InstallationsController < ApplicationController
   end
 
   def destroy
-    # @installation.played = false
-    # @installation.save
+    @installation = Installation.find(params[:id])
+    @venue = @installation.venue
+    
+    unless current_user.is_manager_of?(@venue)
+      flash[:warning] = I18n.t(:unauthorized)
+      redirect_back_or_default('/index')
+      return
+    end
 
+    @installation.destroy
     flash[:notice] = I18n.t(:successful_destroy)
-    redirect_to :action => 'index'  
+    redirect_to @venue
   end
 
   private
@@ -94,11 +99,11 @@ class InstallationsController < ApplicationController
     @installation = Installation.find(params[:id])
     @venue = @installation.venue
     
-    unless current_user.is_manager_of?(@venue)
-      flash[:warning] = I18n.t(:unauthorized)
-      redirect_back_or_default('/index')
-      return
-    end
+    # unless current_user.is_manager_of?(@venue)
+    #   flash[:warning] = I18n.t(:unauthorized)
+    #   redirect_back_or_default('/index')
+    #   return
+    # end
   end
 
   def get_venue
