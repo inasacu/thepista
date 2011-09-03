@@ -11,7 +11,7 @@ task :the_new_sport => :environment do |t|
       ['Rugby', 'Rugby', 'football.gif',  1,  0,  0,  30],
       ['Bádminton', 'Bádminton', 'volleyball.png',  1,  0,  0,  30],
       ['Natación', 'Natación', 'volleyball.png',  1,  0,  0,  10],
-      ['Musculación', 'Musculación', 'volleyball.png',  1,  0,  0,  10],
+      ['Musculación', 'Musculación', 'weight.png',  1,  0,  0,  10],
       ['Aeróbic', 'Aeróbic', 'volleyball.png',  1,  0,  0,  10] 
       
   ].each do |sport|
