@@ -73,7 +73,7 @@ class HomeController < ApplicationController
     if current_user
       @my_schedules = Schedule.my_current_schedules(current_user)
       
-      current_user.groups.each {|group| Scorecard.latest_items(@all_items, group)}
+      current_user.groups.each {|group| Scorecard.latest_items(@all_items, group)} 
       
       Comment.latest_items(@all_match_items, current_user)
       Match.latest_items(@all_match_items, current_user)

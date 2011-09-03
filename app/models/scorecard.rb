@@ -290,7 +290,7 @@ class Scorecard < ActiveRecord::Base
       find(:all, :select => "distinct scorecards.id, scorecards.group_id, scorecards.user_id, scorecards.played, 
                             (100 * scorecards.played / 34) as coeficient_played, scorecards.updated_at as created_at",    
                  :conditions => ["scorecards.group_id in (?) and scorecards.user_id > 0 and
-                                  scorecards.played > 0 and scorecards.archive = false and scorecards.updated_at >= ?", group, ONE_MONTH_AGO],
+                                  scorecards.played > 0 and scorecards.archive = false and scorecards.updated_at >= ?", group, LAST_WEEK],
                  :order => "coeficient_played DESC", 
                  :limit => 3).each do |item| 
         items << item
