@@ -96,8 +96,6 @@
 		<%= content_tag 'li', link_to(label_name(:home), root_url, :class => the_home) %>
 
 		<% if current_user %>		
-
-			<%= content_tag('li', user_link(label_name(:profile), current_user, :class => the_user)) %>
 			<%= content_tag('li', link_to(label_name(:messages), messages_url, :class => the_message)) %>
 			<%= content_tag 'li', link_to(label_name(:groups), groups_url, :class => the_group) %>		
 			<%= content_tag 'li', link_to(label_name(:schedules), schedules_url, :class => the_schedule) if has_group %>
@@ -119,7 +117,8 @@
 				<%= content_tag('li', (link_to label_name(:petitions), petition_path(current_user), 
 						:class => the_petition)) if current_user.has_pending_petition?(current_user) %>
 			<% end -%>
-			
+
+			<%= content_tag('li', user_link(h(current_user.name), current_user, :class => the_user)) %>
 			<%= content_tag('li', link_to(label_name(:logout), logout_path)) %>		
 
 		<% else %>

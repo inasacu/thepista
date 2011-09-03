@@ -88,7 +88,7 @@ class InstallationsController < ApplicationController
 
   private
   def has_manager_access
-    unless current_user.is_manager_of?(@installation.venue)
+    unless current_user.is_manager_of?(@venue)
       flash[:warning] = I18n.t(:unauthorized)
       redirect_back_or_default('/index')
       return
@@ -98,21 +98,10 @@ class InstallationsController < ApplicationController
   def get_installation
     @installation = Installation.find(params[:id])
     @venue = @installation.venue
-    
-    # unless current_user.is_manager_of?(@venue)
-    #   flash[:warning] = I18n.t(:unauthorized)
-    #   redirect_back_or_default('/index')
-    #   return
-    # end
   end
 
   def get_venue
     @venue = Venue.find(params[:id])
-    unless current_user.is_manager_of?(@venue)
-      flash[:warning] = I18n.t(:unauthorized)
-      redirect_back_or_default('/index')
-      return
-    end
   end
 
 end
