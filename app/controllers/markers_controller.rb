@@ -2,8 +2,9 @@ require 'ym4r_gm'
 
 class MarkersController < ApplicationController
   before_filter :require_user
-  before_filter :the_maximo,            :only => [:edit, :update]
+  before_filter :the_maximo,            :only => [:full_list, :edit, :update]
 
+  before_filter :get_marker,            :only => [:edit, :update]
   before_filter :get_complete_markers,  :only => [:list]
   before_filter :get_my_markers,        :only => [:index, :original, :direction]
   before_filter :get_list_markers,      :only => [:search]
@@ -84,6 +85,10 @@ class MarkersController < ApplicationController
     render :template => '/markers/index'  
   end
   
+  def full_list
+    @markers = Marker.paginate(:all, :conditions => ["archive = false"], :order => "markers.name DESC", :page => params[:page], :per_page => MARKERS_PER_PAGE)
+  end
+  
   # def show
   #   @default_min_points = 0
   #   @default_max_points = 35
@@ -145,7 +150,9 @@ class MarkersController < ApplicationController
   end
 
   def update
-    @marker = Marker.find(params[:id])
+    @marker.lat = @marker.latitude
+    @marker.lng = @marker.longitude
+        
     if @marker.update_attributes(params[:marker])
       flash[:success] = I18n.t(:successful_update)
       redirect_to markers_url
@@ -255,6 +262,10 @@ class MarkersController < ApplicationController
       :name => marker.name)
     end
 
+  end
+  
+  def get_marker
+    @marker = Marker.find(params[:id])  
   end
 
   def the_maximo

@@ -731,6 +731,8 @@ en:
      last_schedule_description: Recent event    
      last_scorecard: Recent Results   
      latest_activities:  Latest Activities
+     latitude: Latitude
+     longitude: longitude
      leave_comment: Leave a comment...   
      leave_group: Leave the Team   
      left_comment_on_wall: Has left a COMMENT for  

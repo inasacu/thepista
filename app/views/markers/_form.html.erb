@@ -17,15 +17,30 @@
   </div>
 
   <div class="group">
-    <%= f.label :city, label_name('city'), :class => :label %>&nbsp;&nbsp;<%= @marker.city %>
+    <%= f.label :city, label_name('city'), :class => :label %>
+    <%= f.text_field :city, :class => 'textfield' %>
   </div>
 
   <div class="group">
-    <%= f.label :region, label_name('region'), :class => :label %>&nbsp;&nbsp;<%= @marker.region %>
+    <%= f.label :region, label_name('region'), :class => :label %>
+    <%= f.text_field :region, :class => 'textfield' %>
   </div>
 
   <div class="group">
-    <%= f.label :zip, label_name('zip'), :class => :label %>&nbsp;&nbsp;<%= @marker.zip %>
+    <%= f.label :zip, label_name('zip'), :class => :label %>
+    <%= f.text_field :zip, :class => 'textfield' %>
+  </div>
+
+  <div class="group">
+    <%= f.label :latitude, label_name('latitude'), :class => :label %>
+    <%= f.text_field :latitude, :class => 'textscore' %><br />
+    <span class="description"><%= label_name('latitude', 'description') %></span>
+  </div>
+
+  <div class="group">
+    <%= f.label :longitude, label_name('longitude'), :class => :label %>
+    <%= f.text_field :longitude, :class => 'textscore' %><br />
+    <span class="description"><%= label_name('longitude', 'description') %></span>
   </div>
 
   </div> 
