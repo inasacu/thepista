@@ -1,8 +1,6 @@
 class AddSearchScript < ActiveRecord::Migration
   def self.up
     ActiveRecord::Base.connection.execute <<-SQL
-
-    DROP VIEW searches
     
     CREATE VIEW searches AS
     
