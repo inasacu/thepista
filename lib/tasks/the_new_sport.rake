@@ -10,7 +10,6 @@ task :the_new_sport => :environment do |t|
       ['Baseball', 'Beisbol, Baseball', 'baseball.jpg', 1,  0,  0,  16],
       ['Rugby', 'Rugby', 'football.gif',  1,  0,  0,  30],
       ['Bádminton', 'Bádminton', 'volleyball.png',  1,  0,  0,  30],
-      ['Escalada', 'Escalada', 'volleyball.png',  1,  0,  0,  10],
       ['Natación', 'Natación', 'volleyball.png',  1,  0,  0,  10],
       ['Musculación', 'Musculación', 'volleyball.png',  1,  0,  0,  10],
       ['Aeróbic', 'Aeróbic', 'volleyball.png',  1,  0,  0,  10] 
