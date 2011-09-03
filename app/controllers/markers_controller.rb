@@ -5,9 +5,9 @@ class MarkersController < ApplicationController
   before_filter :the_maximo,            :only => [:edit, :update]
 
   before_filter :get_complete_markers,  :only => [:list]
-  before_filter :get_my_markers,        :only => [:index, :original]
+  before_filter :get_my_markers,        :only => [:index, :original, :direction]
   before_filter :get_list_markers,      :only => [:search]
-  before_filter :get_all_markers,       :only => [:index, :list, :search, :address]
+  before_filter :get_all_markers,       :only => [:index, :list, :search, :direction]
 
   include GeoKit::Geocoders
 
@@ -140,8 +140,7 @@ class MarkersController < ApplicationController
     end
   end
 
-
-  def edit  
+  def edit
     @marker = Marker.find(params[:id])
   end
 
@@ -206,7 +205,6 @@ class MarkersController < ApplicationController
       end
     end
   end
-
 
   def get_all_markers    
     @the_markers = []    
