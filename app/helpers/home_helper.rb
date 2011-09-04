@@ -35,7 +35,7 @@ module HomeHelper
 
   		is_member = current_user.is_member_of?(teammate.group)
   		if teammate.played?
-  			the_label = %(#{I18n.t(:has_updated_scorecard) } #{the_label} #{is_member ? item_link : sanitize(teammate.concept)} &nbsp;&nbsp;&nbsp; #{the_google_plus_one})
+  			the_label = %(#{I18n.t(:has_updated_scorecard) } #{the_label} #{is_member ? item_link : sanitize(teammate.concept)}#{the_google_plus_one})
   		else
   			the_label = %(#{I18n.t(:created_a_schedule) } #{the_label} #{is_member ? item_link : sanitize(teammate.concept)})
   		end
