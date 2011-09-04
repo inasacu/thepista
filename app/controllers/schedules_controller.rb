@@ -139,6 +139,7 @@ class SchedulesController < ApplicationController
       @schedule.jornada = @previous_schedule.jornada + 1
       @schedule.concept = "#{I18n.t(:jornada)} #{@schedule.jornada}"
       
+      @schedule.description = @previous_schedule.description      
       @schedule.season = @previous_schedule.season
       @schedule.fee_per_game = @previous_schedule.fee_per_game
       @schedule.fee_per_pista = @previous_schedule.fee_per_pista
