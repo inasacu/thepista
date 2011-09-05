@@ -5,7 +5,8 @@
   function Menu($div){  }
 
 $(function(){
-	var the_center = [51.488224, -0.131836];	
+	// var the_center = [51.488224, -0.131836];
+	var the_center = [<%= NUMBER_LATITUDE %>, <%= NUMBER_LONGITUDE %>];
 
 	var $map = $('#map'), 
 	menu = new Menu($map),            

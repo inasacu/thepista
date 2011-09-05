@@ -51,23 +51,24 @@ class Group < ActiveRecord::Base
   has_friendly_id :name, :use_slug => true, :approximate_ascii => true, 
   :reserved_words => ["new", "create", "index", "list", "signup", "edit", "update", "destroy", "show"]
 
-  has_and_belongs_to_many :users,           :join_table => "groups_users",   :order => "name"
+  has_and_belongs_to_many :users,           :join_table => "groups_users", :conditions => "users.archive = false", :order => "name"
 
-  has_many      :classifieds
-  has_many      :schedules
-  has_many      :addresses  
-  has_many      :accounts 
-  has_many      :messages
-  has_many      :accounts  
-  has_many      :payments
-  has_many      :scorecards, :conditions => "user_id > 0 and played > 0 and archive = false", :order => "points DESC, ranking"
+  has_many      :classifieds,       :conditions => "classifieds.archive = false"
+  has_many      :schedules,         :conditions => "schedules.archive = false"
+  # has_many      :addresses  
+  # has_many      :accounts 
+  # has_many      :messages
+  # has_many      :accounts 
+  has_many      :fees,              :conditions => "fees.archive = false"   
+  has_many      :payments,          :conditions => "payments.archive = false"
+  has_many      :scorecards,        :conditions => "user_id > 0 and played > 0 and archive = false", :order => "points DESC, ranking"
 
-  has_many      :archive_scorecards, 
-  :through => :scorecards,
-  :conditions => ["user_id > 0 and played > 0 and season_ends_at < ?", Time.zone.now], 
-  :order => "points DESC, ranking"
+  # has_many      :archive_scorecards, 
+  # :through => :scorecards,
+  # :conditions => ["user_id > 0 and played > 0 and season_ends_at < ?", Time.zone.now], 
+  # :order => "points DESC, ranking"
 
-  has_many      :fees   
+ 
 
   has_many :the_managers,
   :through => :manager_roles,

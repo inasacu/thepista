@@ -13,8 +13,8 @@ class MarkersController < ApplicationController
   include GeoKit::Geocoders
 
   def index
-    @coord = [40.4166909, -3.7003454]
-    # @coord = [0, 0]
+    # @coord = [40.4166909, -3.7003454]
+    @coord = [NUMBER_LATITUDE, NUMBER_LONGITUDE]
     if @location.success
       @coord =  [@location.lat, @location.lng]  
     end
@@ -215,9 +215,9 @@ class MarkersController < ApplicationController
 
   def get_all_markers    
     @the_markers = []    
-
-    @default_latitude = 40.4855346857
-    @default_longitude = -3.7153476477
+    
+    @default_latitude = NUMBER_LATITUDE
+    @default_longitude = NUMBER_LONGITUDE
 
     @default_latitude = @location.lat unless @location.lat.nil?
     @default_longitude = @location.lng unless @location.lng.nil?
