@@ -1,9 +1,11 @@
-# to run:    sudo rake the_archive_slug_role
+# to run:    sudo rake the_archive_slug
 
 desc "ARCHIVE dependent records to already archived"
-task :the_archive_slug_role => :environment do |t|
+task :the_archive_slug => :environment do |t|
 
   ActiveRecord::Base.establish_connection(RAILS_ENV.to_sym)
+  
+  has_to_archive = true
   
   # ARCHIVE all slugs for all sluggable_type archived 
   the_item_types = Slug.find(:all, :select => "distinct sluggable_type")
