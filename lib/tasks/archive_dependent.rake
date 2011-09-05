@@ -39,7 +39,7 @@ task :the_archive_dependent => :environment do |t|
   the_match = Match.find(:all, :select => "distinct *", :conditions => "archive = false and schedule_id in (select id from schedules where archive = true)") 
   
   the_match.each do |match|
-    puts "ARCHIVE match => #{match.name}, schedule => #{match.schedule.concept}"
+    puts "ARCHIVE match => #{match.id}, schedule => #{match.schedule.concept}"
     match.archive = true
     match.description = match.schedule.concept if match.description.blank?
     match.save! if has_to_archive
@@ -55,106 +55,106 @@ task :the_archive_dependent => :environment do |t|
   end
 
   # ARCHIVE all FORUMS for SCHEDULES archived 
-  # the_forum = Forum.find(:all, :select => "distinct *", :conditions => "archive = false and schedule_id in (select id from schedules where archive = true)")
-  # 
-  # the_forum.each do |forum|
-  #   puts "ARCHIVE forum => #{forum.name} #{forum.schedule.concept}"
-  #   forum.archive = true
-  #   forum.save if has_to_archive
-  # end
+  the_forum = Forum.find(:all, :select => "distinct *", :conditions => "archive = false and schedule_id in (select id from schedules where archive = true)")
+  
+  the_forum.each do |forum|
+    puts "ARCHIVE forum => #{forum.id} #{forum.schedule.concept}"
+    forum.archive = true
+    forum.save if has_to_archive
+  end
   
   # ARCHIVE all BLOGS for all ITEM_TYPE archived 
-  # the_item_types = Blog.find(:all, :select => "distinct item_type")
-  # the_item_types.each do |blog|
-  #   puts "item_type => #{blog.item_type}"
-  #   the_archive = []    
-  #   case blog.item_type
-  #   when "User"
-  #     the_archive = Blog.find(:all, :select => "distinct *", 
-  #     :conditions => "archive = false and item_type = 'User' and item_id in (select id from users where archive = true)")
-  #   when "Group"
-  #     the_archive = Blog.find(:all, :select => "distinct *", 
-  #     :conditions => "archive = false and item_type = 'Group' and item_id in (select id from groups where archive = true)")
-  #   when "Challenge"
-  #     the_archive = Blog.find(:all, :select => "distinct *", 
-  #     :conditions => "archive = false and item_type = 'Challenge' and item_id in (select id from challenges where archive = true)")
-  #   when "Venue"
-  #     the_archive = Blog.find(:all, :select => "distinct *", 
-  #     :conditions => "archive = false and item_type = 'Venue' and item_id in (select id from venues where archive = true)")
-  #   end
-  # 
-  #   the_archive.each do |blog|
-  #     puts "ARCHIVE blog => #{blog.id},  #{blog.item_id} #{blog.item_type}"
-  #     blog.archive = true
-  #     blog.save if has_to_archive
-  #   end
-  # 
-  # end  
+  the_item_types = Blog.find(:all, :select => "distinct item_type")
+  the_item_types.each do |blog|
+    puts "item_type => #{blog.item_type}"
+    the_archive = []    
+    case blog.item_type
+    when "User"
+      the_archive = Blog.find(:all, :select => "distinct *", 
+      :conditions => "archive = false and item_type = 'User' and item_id in (select id from users where archive = true)")
+    when "Group"
+      the_archive = Blog.find(:all, :select => "distinct *", 
+      :conditions => "archive = false and item_type = 'Group' and item_id in (select id from groups where archive = true)")
+    when "Challenge"
+      the_archive = Blog.find(:all, :select => "distinct *", 
+      :conditions => "archive = false and item_type = 'Challenge' and item_id in (select id from challenges where archive = true)")
+    when "Venue"
+      the_archive = Blog.find(:all, :select => "distinct *", 
+      :conditions => "archive = false and item_type = 'Venue' and item_id in (select id from venues where archive = true)")
+    end
+  
+    the_archive.each do |blog|
+      puts "ARCHIVE blog => #{blog.id},  #{blog.item_id} #{blog.item_type}"
+      blog.archive = true
+      blog.save if has_to_archive
+    end
+  
+  end  
   
   # ARCHIVE all COMMENTS for all COMMENTABLE_TYPE archived 
-  # the_archive = Comment.find(:all, :select => "distinct *", 
-  #                :conditions => "archive = false and commentable_type = 'Blog' and commentable_id in (select id from blogs where archive = true)")               
-  #                
-  # the_archive.each do |comment|
-  #   puts "ARCHIVE comment => #{comment.id},  #{comment.commentable_id} #{comment.commentable_type}"
-  #   comment.archive = true
-  #   comment.save if has_to_archive
-  # end
-  # 
-  # the_archive = Comment.find(:all, :select => "distinct *", 
-  #                :conditions => "archive = false and commentable_type = 'Forum' and commentable_id in (select id from forums where archive = true)")               
-  #                
-  # the_archive.each do |comment|
-  #   puts "ARCHIVE comment => #{comment.id},  #{comment.commentable_id} #{comment.commentable_type}"
-  #   comment.archive = true
-  #   comment.save if has_to_archive
-  # end
+  the_archive = Comment.find(:all, :select => "distinct *", 
+                 :conditions => "archive = false and commentable_type = 'Blog' and commentable_id in (select id from blogs where archive = true)")               
+                 
+  the_archive.each do |comment|
+    puts "ARCHIVE comment => #{comment.id},  #{comment.commentable_id} #{comment.commentable_type}"
+    comment.archive = true
+    comment.save if has_to_archive
+  end
+  
+  the_archive = Comment.find(:all, :select => "distinct *", 
+                 :conditions => "archive = false and commentable_type = 'Forum' and commentable_id in (select id from forums where archive = true)")               
+                 
+  the_archive.each do |comment|
+    puts "ARCHIVE comment => #{comment.id},  #{comment.commentable_id} #{comment.commentable_type}"
+    comment.archive = true
+    comment.save if has_to_archive
+  end
   
   # ARCHIVE all FEES for all ITEM_TYPE archived 
-  # the_item_types = Fee.find(:all, :select => "distinct item_type")
-  # the_item_types.each do |fee|
-  #   puts "item_type => #{fee.item_type}"
-  #   the_archive = []    
-  #   case fee.item_type
-  #   when "Schedule"
-  #     the_archive = Fee.find(:all, :select => "distinct *", 
-  #     :conditions => "archive = false and item_type = 'Schedule' and item_id in (select id from schedules where archive = true)")
-  #   when "Group"
-  #     the_archive = Fee.find(:all, :select => "distinct *", 
-  #     :conditions => "archive = false and item_type = 'Group' and item_id in (select id from groups where archive = true)")
-  #   when "Challenge"
-  #     the_archive = Fee.find(:all, :select => "distinct *", 
-  #     :conditions => "archive = false and item_type = 'Challenge' and item_id in (select id from challenges where archive = true)")
-  #   end  
-  #   the_archive.each do |fee|
-  #     puts "ARCHIVE fee => #{fee.id},  #{fee.item_id} #{fee.item_type}"
-  #     fee.archive = true
-  #     fee.save if has_to_archive
-  #   end
-  # end
+  the_item_types = Fee.find(:all, :select => "distinct item_type")
+  the_item_types.each do |fee|
+    puts "item_type => #{fee.item_type}"
+    the_archive = []    
+    case fee.item_type
+    when "Schedule"
+      the_archive = Fee.find(:all, :select => "distinct *", 
+      :conditions => "archive = false and item_type = 'Schedule' and item_id in (select id from schedules where archive = true)")
+    when "Group"
+      the_archive = Fee.find(:all, :select => "distinct *", 
+      :conditions => "archive = false and item_type = 'Group' and item_id in (select id from groups where archive = true)")
+    when "Challenge"
+      the_archive = Fee.find(:all, :select => "distinct *", 
+      :conditions => "archive = false and item_type = 'Challenge' and item_id in (select id from challenges where archive = true)")
+    end  
+    the_archive.each do |fee|
+      puts "ARCHIVE fee => #{fee.id},  #{fee.item_id} #{fee.item_type}"
+      fee.archive = true
+      fee.save if has_to_archive
+    end
+  end
   
   # ARCHIVE all PAYMENTS for all ITEM_TYPE archived 
-  # the_item_types = Payment.find(:all, :select => "distinct item_type")
-  # the_item_types.each do |payment|
-  #   puts "item_type => #{payment.item_type}"
-  #   the_archive = []    
-  #   case payment.item_type
-  #   when "Schedule"
-  #     the_archive = Payment.find(:all, :select => "distinct *", 
-  #     :conditions => "archive = false and item_type = 'Schedule' and item_id in (select id from schedules where archive = true)")
-  #   when "Group"
-  #     the_archive = Payment.find(:all, :select => "distinct *", 
-  #     :conditions => "archive = false and item_type = 'Group' and item_id in (select id from groups where archive = true)")
-  #   when "Challenge"
-  #     the_archive = Payment.find(:all, :select => "distinct *", 
-  #     :conditions => "archive = false and item_type = 'Challenge' and item_id in (select id from challenges where archive = true)")
-  #   end  
-  #   the_archive.each do |payment|
-  #     puts "ARCHIVE fee => #{payment.id},  #{payment.item_id} #{payment.item_type}"
-  #     payment.archive = true
-  #     payment.save if has_to_archive
-  #   end
-  # end  
+  the_item_types = Payment.find(:all, :select => "distinct item_type")
+  the_item_types.each do |payment|
+    puts "item_type => #{payment.item_type}"
+    the_archive = []    
+    case payment.item_type
+    when "Schedule"
+      the_archive = Payment.find(:all, :select => "distinct *", 
+      :conditions => "archive = false and item_type = 'Schedule' and item_id in (select id from schedules where archive = true)")
+    when "Group"
+      the_archive = Payment.find(:all, :select => "distinct *", 
+      :conditions => "archive = false and item_type = 'Group' and item_id in (select id from groups where archive = true)")
+    when "Challenge"
+      the_archive = Payment.find(:all, :select => "distinct *", 
+      :conditions => "archive = false and item_type = 'Challenge' and item_id in (select id from challenges where archive = true)")
+    end  
+    the_archive.each do |payment|
+      puts "ARCHIVE fee => #{payment.id},  #{payment.item_id} #{payment.item_type}"
+      payment.archive = true
+      payment.save if has_to_archive
+    end
+  end  
   
   
   # unarchive group 
