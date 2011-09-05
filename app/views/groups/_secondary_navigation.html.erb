@@ -31,7 +31,7 @@
 	<%= item_new(@group) %>		
 	
 	<% unless is_new_group %>
-		<li class="<%= get_first_active %>"><%=  link_to(label_name(:all_group), groups_path) unless @group %></li>
+		<li class="<%= get_first_active %>"><%=  link_to(label_name(:groups), groups_path) unless @group %></li>
 		<!-- <li class="<%#= get_active('group_list') %>"><%#=  link_to(label_name(:all_group) , list_groups_path) unless @group %></li> -->
 		<li class="<%= get_active('group_show') %>"><%=  group_link(@group) if @group and is_not_new_item %></li>
 	<% end %>
