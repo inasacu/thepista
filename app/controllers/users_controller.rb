@@ -562,7 +562,8 @@ private
   def get_user_member
     @user = User.find(params[:id])
 
-    if @user.private_profile
+
+    if @user.private_profile and DISPLAY_PRIVATE_PROFILE
       unless current_user.is_user_member_of?(@user)    
         flash[:warning] = I18n.t(:user_private_profile)
         redirect_to root_url
