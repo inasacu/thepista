@@ -432,10 +432,13 @@ class UsersController < ApplicationController
       session[:rpx_token] = nil
       respond_to do |format|
         format.html { 
-          # send user to invitation if last login is older than 21 days
-          if (@user.last_login_at < LAST_THREE_DAYS or @user.last_login_at.nil?)
-            redirect_to :invite
-            return
+          
+          if DISPLAY_INVITATION_AT_LOGIN
+            # send user to invitation if last login is older than 21 days
+            if (@user.last_login_at < LAST_THREE_DAYS or @user.last_login_at.nil?)
+              redirect_to :invite
+              return
+            end
           end
           redirect_back_or_default root_url
         }          
