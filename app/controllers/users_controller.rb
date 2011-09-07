@@ -440,6 +440,7 @@ class UsersController < ApplicationController
               return
             end
           end
+          
           redirect_back_or_default root_url
         }          
       end

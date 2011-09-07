@@ -1,7 +1,7 @@
 class UserSessionsController < ApplicationController
   before_filter :require_no_user, :only => [:new, :create, :verify_recaptcha]
   before_filter :require_user, :only => :destroy
-  
+
   # ssl_required :new, :create, :rpx_create, :destroy
 
   def new
@@ -34,7 +34,7 @@ class UserSessionsController < ApplicationController
   def rpx_create
     RPXNow.api_key = APP_CONFIG['rpx_api']['key']
     data = RPXNow.user_data(params[:token], :extended => 'true')
-      
+
     if data.blank?
       @user_session = UserSession.new
       respond_to do |format|
@@ -50,24 +50,28 @@ class UserSessionsController < ApplicationController
       @user_openid = User.find_by_openid_identifier(openid_identifier)
 
       if @user
-        
+
         has_invitations = false
         has_invitations = Invitation.has_sent_invitation(@user)
-        
+
         if LANGUAGES.include?(I18n.locale)
           @user.language = I18n.locale 
           @user.save!
         end
-        
+
         UserSession.create(@user)
-      
+
         respond_to do |format|
           format.html { 
-            # send user to invitation if last login is older than 21 days
-            if (@user.last_login_at < LAST_THREE_DAYS or @user.last_login_at.nil?)
-              redirect_to :invite
-              return
+            
+            if DISPLAY_INVITATION_AT_LOGIN
+              # send user to invitation if last login is older than 21 days
+              if (@user.last_login_at < LAST_THREE_DAYS or @user.last_login_at.nil?)
+                redirect_to :invite
+                return
+              end
             end
+            
             redirect_back_or_default root_url
           }
         end
@@ -94,11 +98,15 @@ class UserSessionsController < ApplicationController
             UserSession.create(@user)
             respond_to do |format|
               format.html { 
-                # send user to invitation if last login is older than 21 days
-                if (@user.last_login_at < LAST_THREE_DAYS or @user.last_login_at.nil?)
-                  redirect_to :invite
-                  return
+                
+                if DISPLAY_INVITATION_AT_LOGIN
+                  # send user to invitation if last login is older than 21 days
+                  if (@user.last_login_at < LAST_THREE_DAYS or @user.last_login_at.nil?)
+                    redirect_to :invite
+                    return
+                  end
                 end
+                
                 redirect_back_or_default root_url
               }
             end
@@ -113,10 +121,10 @@ class UserSessionsController < ApplicationController
       end
 
     end
-  
+
     # this code has been set to prevent failure when user goes to myopenid and selects cancel
-    rescue RPXNow::ApiError
-      redirect_to root_url
+  rescue RPXNow::ApiError
+    redirect_to root_url
 
   end
 

@@ -1,4 +1,4 @@
-<% has_sub_item, request_image, sub_item_image, request_link, has_joined, item_link, has_sub_item, sub_item_link, the_icon, has_joined, manager_link, is_manager, can_decline = petition_box(teammate) %>	
+<% has_sub_item, request_image, sub_item_image, request_link, has_joined, item_link, has_sub_item, sub_item_link, the_icon, has_joined, manager_link, decline_link, is_manager, can_decline  = petition_box(teammate) %>	
 
 <% unless (is_manager and current_user == teammate.user) %>
 <tr>
@@ -27,10 +27,7 @@
 	<td>&nbsp;</td>	  
 
 	<td class="last">
-		<% unless has_joined %>
-		<%= manager_link %>	
-		<%= link_to label_name(:petition_join_item_decline), join_item_decline_path(teammate) if (is_manager or can_decline) %>
-		<% end %>
+		<%= manager_link %>&nbsp;&nbsp;<%= decline_link unless has_joined %>
 	</td>
 </tr>
 <% end %>

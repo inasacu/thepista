@@ -235,7 +235,7 @@ class Teammate < ActiveRecord::Base
   end
   
   def self.latest_teammates(items)
-    all_teammates = find(:all, :select => "id", :conditions => ["accepted_at >= ? and status = 'accepted'", LAST_WEEK], :order => "id") 
+    all_teammates = find(:all, :select => "id", :conditions => ["accepted_at >= ? and status = 'accepted'", LAST_FIVE_DAYS], :order => "id") 
     first_teammates = []
 
     first_only = true
