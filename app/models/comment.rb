@@ -17,22 +17,44 @@ class Comment < ActiveRecord::Base
   # method section  
   def self.latest_items(items, user)
     the_comments = []
-    
-    find(:all, :select => "distinct comments.id, comments.user_id, comments.commentable_id, comments.commentable_type, comments.updated_at as created_at, comments.title", 
-         :joins => "left join groups_users on groups_users.user_id = comments.user_id left join challenges_users on challenges_users.user_id = comments.user_id",    
-         :conditions => ["(groups_users.group_id in (?)  or challenges_users.challenge_id in (?)) 
-                          and comments.updated_at >= ? and comments.archive = false", user.groups, user.challenges, LAST_THREE_DAYS],
-         :order => "comments.commentable_type DESC, comments.commentable_id DESC, comments.updated_at DESC").each do |item| 
-           
-           has_the_item = false
-           
-           # only add unique values
-           the_comments.each do |comment|             
-             has_the_item = (comment.user_id == item.user_id and comment.commentable_id == item.commentable_id and comment.commentable_type == item.commentable_type) if !has_the_item          
-           end           
-           items << item unless has_the_item
-           the_comments << item           
+
+    if user.groups.count > 0
+
+      find(:all, :select => "distinct comments.id, comments.user_id, comments.commentable_id, comments.commentable_type, comments.updated_at as created_at, comments.title", 
+      :joins => "left join groups_users on groups_users.user_id = comments.user_id",    
+      :conditions => ["groups_users.group_id in (?) and comments.updated_at >= ? and comments.archive = false", user.groups, LAST_THREE_DAYS],
+      :order => "comments.commentable_type DESC, comments.commentable_id DESC, comments.updated_at DESC").each do |item| 
+
+        has_the_item = false
+
+        # only add unique values
+        the_comments.each do |comment|             
+          has_the_item = (comment.user_id == item.user_id and comment.commentable_id == item.commentable_id and comment.commentable_type == item.commentable_type) if !has_the_item          
+        end           
+        items << item unless has_the_item
+        the_comments << item           
+      end
+      
     end
+
+    if user.challenges.count > 0
+      find(:all, :select => "distinct comments.id, comments.user_id, comments.commentable_id, comments.commentable_type, comments.updated_at as created_at, comments.title", 
+      :joins => "left join challenges_users on challenges_users.user_id = comments.user_id",    
+      :conditions => ["challenges_users.challenge_id in (?) and comments.updated_at >= ? and comments.archive = false", user.challenges, LAST_THREE_DAYS],
+      :order => "comments.commentable_type DESC, comments.commentable_id DESC, comments.updated_at DESC").each do |item| 
+
+        has_the_item = false
+
+        # only add unique values
+        the_comments.each do |comment|             
+          has_the_item = (comment.user_id == item.user_id and comment.commentable_id == item.commentable_id and comment.commentable_type == item.commentable_type) if !has_the_item          
+        end           
+        items << item unless has_the_item
+        the_comments << item           
+      end
+      
+    end   
+
     return items 
   end
   
@@ -44,10 +66,7 @@ class Comment < ActiveRecord::Base
 
   def send_message_blog      
     @item = ''
-    
-    
-    
-    
+        
     case self.commentable_type
     when "Forum"
       @item = Forum.find(self.commentable_id)

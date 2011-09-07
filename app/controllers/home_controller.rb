@@ -37,51 +37,49 @@ class HomeController < ApplicationController
 
   def get_home
     @items = []
-    @all_items = []
-    
-    @has_values = false
-    
+    @all_items = []    
     @match_items = []
-    @all_match_items = []
-    
+    @all_match_items = []    
     @schedule_items = []
-    @all_schedule_items = []
+    @all_schedule_items = []    
+    @my_schedules = []    
+    @requested_teammates = [] 
     
-    @my_schedules = []
+    @has_values = false   
     
-    @requested_teammates = []    
-    
-    Teammate.latest_teammates(@all_items)     
-    Group.latest_items(@all_items)   
-    Venue.latest_items(@all_items) 
-    
+    Teammate.latest_teammates(@all_items) 
     Schedule.latest_matches(@all_items) 
-    Reservation.latest_items(@all_items)
-    
-    Group.latest_updates(@all_items)   
-    User.latest_updates(@all_items)      
-    Classified.latest_items(@all_items) if DISPLAY_CLASSIFIEDS
-    
-    Cup.latest_items(@all_items, @has_values)    
-    if @has_values
-      Challenge.latest_items(@all_items)  
-      Game.latest_items(@all_items)
-    end
-
-    Schedule.latest_items(@all_schedule_items)    
+    Schedule.latest_items(@all_schedule_items)   
+    Group.latest_items(@all_items)    
     
     if current_user
       @my_schedules = Schedule.my_current_schedules(current_user)
-      
-      current_user.groups.each {|group| Scorecard.latest_items(@all_items, group)} if DISPLAY_MAX_GAMES_PLAYED
       
       Comment.latest_items(@all_match_items, current_user)
       Match.latest_items(@all_match_items, current_user)
       Match.last_minute_items(@all_match_items, current_user) 
       
       Teammate.my_groups_petitions(@requested_teammates, current_user)
-      Teammate.my_challenges_petitions(@requested_teammates, current_user)      
+      Teammate.my_challenges_petitions(@requested_teammates, current_user)   
+      
+      current_user.groups.each {|group| Scorecard.latest_items(@all_items, group)} if DISPLAY_MAX_GAMES_PLAYED   
     end
+        
+    Group.latest_updates(@all_items) if @all_items.count < MEDIUM_FEED_SIZE     
+    User.latest_updates(@all_items) if @all_items.count < MEDIUM_FEED_SIZE 
+    Venue.latest_items(@all_items) if @all_items.count < MEDIUM_FEED_SIZE  
+    Reservation.latest_items(@all_items) if @all_items.count < MEDIUM_FEED_SIZE  
+
+    if @all_items.count < MEDIUM_FEED_SIZE
+      Classified.latest_items(@all_items) if DISPLAY_CLASSIFIEDS
+
+      Cup.latest_items(@all_items, @has_values)    
+      if @has_values
+        Challenge.latest_items(@all_items)  
+        Game.latest_items(@all_items)
+      end
+    end
+    
 
     @all_items = @all_items.sort_by(&:created_at).reverse!    
     @all_items[0..MEDIUM_FEED_SIZE].each {|item| @items << item }
