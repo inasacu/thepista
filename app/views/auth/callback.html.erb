@@ -2,12 +2,34 @@
 <%#= @connections %>
 
 <!-- # get the profile for the authenticated user -->
-<%= @client.profile %>
+<%= @client.profile.first_name %>, <%= @client.profile.last_name %><br/>
+<%= @client.profile.headline %><br/>
+<%#= @client.profile.picture_url %><br/>
+<%= @client.profile.site_standard_profile_request %><br/>
+<%= @client.profile.location.name %><br/>
+
+<%#= @client.profile.public_profile_url %>
+
 
 <!-- # get a profile for someone found in network via ID -->
 <%#= @client.profile(:id => 'gNma67_AdI') %>
 
 <!-- # get a profile for someone via their public profile url -->
-<%= @client.profile(:url => 'http://www.linkedin.com/in/netherland') %>
+<%#= @client.profile(:url => 'http://www.linkedin.com/in/netherland') %>
+<%#= @client.profile(:url => 'http://es.linkedin.com/in/raulmpadilla').first_name %><br/>
+<!-- [<%#= @client.network_updates %>]<br/> -->
+<!-- <%#= @client.network_updates(:type => 'PICT') %><br/> -->
+<!-- (<%#= @client.connections %>)<br/> -->
+<!-- <%#= @client.update_status('is playing with the LinkedIn Ruby gem') %><br/> -->
+<!-- {<%#= @client.clear_status %>}<br/> -->
+
+<% url = 'http://es.linkedin.com/in/raulmpadilla'
+	url = ''
+ %>
 
 
+<% unless url.blank? %> 
+
+<a href="<%= url %>" style="text-decoration:none;"><span style="font: 80% Arial,sans-serif; color:#0783B6;"><img src="http://www.linkedin.com/img/webpromo/btn_in_20x15.png" width="20" height="15" alt="View Raúl Padilla's LinkedIn profile" style="vertical-align:middle" border="0">View Raúl Padilla's profile</span></a>
+
+<% end -%>
