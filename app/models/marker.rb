@@ -3,6 +3,8 @@ class Marker < ActiveRecord::Base
   # index{ name }
 
   belongs_to      :item,           :polymorphic => true
+  has_many        :groups
+  has_one         :venue
 
   acts_as_mappable     :default_units => :kms
 

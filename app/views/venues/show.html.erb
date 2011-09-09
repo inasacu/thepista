@@ -78,6 +78,6 @@
 </div>
 
 <%= render 'venues/sidebar_venue' %>
-
+<% content_for :sidebar, render(:partial => 'shared/sidebar_geo_group', :locals => {:group => @group, :venue => @venue}) -%>
 
 

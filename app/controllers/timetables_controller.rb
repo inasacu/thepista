@@ -52,7 +52,7 @@ class TimetablesController < ApplicationController
 
   def set_copy_timetable
     @installation = Installation.find(params[:id])
-    @current_intallation = Installation.find(params[:current_id])
+    @current_installation = Installation.find(params[:current_id])
 
     unless @installation.nil?
       @the_timetables = Timetable.installation_timetable(@installation)
@@ -63,12 +63,12 @@ class TimetablesController < ApplicationController
         @timetable.starts_at = the_timetable.starts_at
         @timetable.ends_at = the_timetable.ends_at
         @timetable.timeframe = the_timetable.timeframe
-        @timetable.installation_id = @current_intallation.id
+        @timetable.installation_id = @current_installation.id
         @timetable.save
       end
       
       flash[:success] = I18n.t(:successful_update)
-      redirect_to @current_intallation
+      redirect_to @current_installation
       return
     end
     redirect_to root_url

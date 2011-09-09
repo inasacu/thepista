@@ -93,9 +93,18 @@ $(function(){
 	
 </script>  
 
+<%
+	the_item_link  = ""
+	if @venue
+		the_item_link = label_name(:location_venue)
+	elsif @group
+		the_item_link = "#{label_name(:location_group)} #{item_name_link(group)}" 
+	end
+%>
+
 <div class="block">
 
-	<h3><div id="search_result"><%= "#{label_name(:location_group)} #{item_name_link(group)}" %></div></h3>
+	<h3><div id="search_result"><%= the_item_link %></div></h3>
 
 	<div class="content">
 

@@ -20,7 +20,7 @@ class ReservationsController < ApplicationController
 		starts_at = convert_to_datetime_zone(@first_day, @installation.starts_at.utc)
 		ends_at = convert_to_datetime_zone(last_day.midnight, @installation.ends_at.utc)
 		
-		@timetables = Timetable.installation_timetable(@intallation)
+		@timetables = Timetable.installation_timetable(@installation)
 		
     @reservations = Reservation.weekly_reservations(@installation, starts_at, ends_at)   
     @schedules = Schedule.weekly_reservations(@venue.marker, @installation, starts_at, ends_at) 

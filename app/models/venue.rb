@@ -32,7 +32,6 @@ class Venue < ActiveRecord::Base
   # NOTE:  MUST BE DECLARED AFTER attr_accessible otherwise you get a 'RuntimeError: Declare either attr_protected or attr_accessible' 
   has_friendly_id :name, :use_slug => true, :approximate_ascii => true, 
                    :reserved_words => ["new", "create", "index", "list", "signup", "edit", "update", "destroy", "show"]
-                  
 
   has_many :the_managers,
   :through => :manager_roles,
@@ -42,7 +41,6 @@ class Venue < ActiveRecord::Base
   :class_name => "Role", 
   :foreign_key => "authorizable_id", 
   :conditions => ["roles.name = 'manager' and roles.authorizable_type = 'Venue'"]
-
   
   has_many      :installations,   :order => 'name'
   belongs_to    :sport   
@@ -50,7 +48,6 @@ class Venue < ActiveRecord::Base
   has_one       :blog  
   has_many      :holidays
   
-
   before_create :format_description
   before_update :format_description
   after_create  :create_venue_blog_details

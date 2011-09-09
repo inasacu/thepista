@@ -19,6 +19,7 @@ class Installation < ActiveRecord::Base
     belongs_to      :marker
     belongs_to      :sport  
     has_many        :reservations
+    has_many        :groups,            :conditions => "groups.archive = false"
     has_many        :timetables,        :order => "timetables.type_id, timetables.starts_at"
 
     # validations  
@@ -49,6 +50,11 @@ class Installation < ActiveRecord::Base
     # method section
     def venue_and_name
       "#{venue.name} #{name}"
+    end
+        
+    def self.installation_name(venue)
+      find(:all, :select => "distinct installations.id, installations.name", 
+           :conditions => ["venue_id = ?", venue], :order => "name").collect {|p| [p.name, p.id ] }
     end
     
     def self.current_installations(venue, page = 1)

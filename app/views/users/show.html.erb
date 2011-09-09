@@ -64,7 +64,8 @@
 							</td>
 						</tr>
 						
-						<%= tr_td_action(:company, @user.company) %>			
+						<%= tr_td_action(:company, @no_linkedin_profile ? @user.company : link_to(@user.company, @user.linkedin_url, :target => "_blank"))  %>
+						<%= tr_td_action(:linkedin_headline, link_to(@profile.headline, @user.linkedin_url, :target => "_blank")) unless @profile.blank? %>
 											
 						<tr>
 							<td class="label"><%= label_name(:groups) %></td>

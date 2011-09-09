@@ -239,9 +239,9 @@ class Schedule < ActiveRecord::Base
   end
   
   def self.weekly_reservations(marker, installation, starts_at, ends_at)
-    find(:all, :joins => "LEFT JOIN groups on groups.id = schedules.group_id",
-               :conditions => ["groups.marker_id = ? and schedules.played = false and schedules.archive = false and
-                                     schedules.starts_at >= ? and schedules.ends_at < ?", marker, starts_at, ends_at], 
+    find(:all, :joins => "JOIN groups on groups.id = schedules.group_id",
+               :conditions => ["groups.marker_id = ?  and groups.installation_id = ? and schedules.played = false and schedules.archive = false and
+                                schedules.starts_at >= ? and schedules.ends_at < ?", marker, installation, starts_at, ends_at], 
                :order => 'starts_at')
   end
   

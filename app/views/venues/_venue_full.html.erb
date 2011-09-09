@@ -12,10 +12,12 @@
 
 	<td class="name_and_date">
 		<%= marker_link(venue.marker) %>
-	</td>
+		<span class="date">
+	<!-- </td>
 
-	<td class="name_and_date">
+	<td class="name_and_date"> -->
 		<%= I18n.t(:has_venue_installations, :count => object_counter(venue.installations)) %>
+	</span>
 	</td>
 	
 	<td class="last">

@@ -204,6 +204,7 @@ es:
      create_manager: Nuevo organizador   
      create_name: Nuevo nombre   
      create_note: Nueva nota
+     create_new_auth:  Connecta tu cuenta de LinkedIn
      create_new_challenge:  Haz un reto de una copa.
      create_new_classified:  Pon un anuncio de tu equipo
      create_new_cup:  Organiza una copa
@@ -744,6 +745,9 @@ es:
      left_post_on_forum: Ha dejado un COMENTARIO en 
      lighting:  Luces
      lighting_description: (Hay luces en la pista?) 
+     linkedin_headline:  Titulo en la empresa
+     linkedin_profile:  LinkedIn
+     linkedin_update_status:  esta utilizando http://haypista.com para practicar deportes.
      list: Listado   
      list_marker: Lista de lugares donde jugar   
      list_user: Listado   
@@ -752,6 +756,7 @@ es:
      locale_name: Español    
      location_group: Lugar donde juega el equipo
      location_sport: Lugar donde practicas tu deporte. 
+     location_venue: Lugar del centro deportivo
      login:  Entrar	 
      log_in: Entrar   
      logged_out: Se ha cerrado la sesión.   

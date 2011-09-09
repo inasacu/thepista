@@ -13,22 +13,10 @@
 
 	<% if is_group_edit %>
 	
-  <div class="group">
-    <%= f.label :second_team, label_name('second_team'), :class => :label %>
-    <%= f.text_field :second_team, :class => 'textfield' %>
-  </div>
-
-  <div class="group">
-    <%= f.label :gameday_at, label_name('gameday_at'), :class => :label %>
-    <%= f.datetime_select :gameday_at, :class => 'datetime_select' %><br />
-    <span class="description"><%= label_name('gameday_at', 'description') %></span>
-  </div>
-
-<div class="group">
-  <%= f.label :time_zone, label_name('time_zone'), :class => :label %>
-  <%= f.time_zone_select :time_zone, ActiveSupport::TimeZone.us_zones %><br />
-  <span class="description"><%= label_name('time_zone', 'description') %></span>
-</div>
+	<div class="group">
+		<%= f.label :second_team, label_name('second_team'), :class => :label %>
+		<%= f.text_field :second_team, :class => 'textfield' %>
+	</div>
 	
 	<% end -%>
 
@@ -37,7 +25,6 @@
    	<%= f.select(:sport_id, Sport.sport_name, {:selected => @group.sport_id, :include_blank => true}) %><br />
     <span class="description"><%= label_name('sport', 'description') %></span>
   </div>
-<%# end %>
 
   <div class="group">
     <%= f.label :marker_id, label_name('marker'), :class => :label %>
@@ -46,19 +33,37 @@
     <span class="description"><%= label_name('marker', 'description') %></span>
   </div>
 
-<% if is_group_edit %>
+<% if is_group_edit %>	
 
-<div class="group">
-	<%= f.label :description, label_name('description'), :class => :label %>
-	<%= f.text_area :description, :class => 'textfield' %><br />
-	<span class="description"><%= label_name('description') %></span>
-</div>
+	<!-- <div class="group">
+	<%#= f.label :gameday_at, label_name('gameday_at'), :class => :label %>
+	<%#= f.datetime_select :gameday_at, :class => 'datetime_select' %><br />
+	<span class="description"><%#= label_name('gameday_at', 'description') %></span>
+	</div> -->
 
-<div class="group">
-	<%= f.label :conditions, label_name('conditions'), :class => :label %>
-	<%= f.text_area :conditions, :class => 'text_message' %><br />
-	<span class="description"><%= label_name('conditions') %></span>
-</div>
+	<div class="group">
+		<%= f.label :time_zone, label_name('time_zone'), :class => :label %>
+		<%= f.time_zone_select :time_zone, ActiveSupport::TimeZone.us_zones %><br />
+		<span class="description"><%= label_name('time_zone', 'description') %></span>
+	</div>
+
+	<div class="group">
+		<%= f.label :installation_id, label_name('installation'), :class => :label %>
+		<%= f.select(:installation_id, Installation.installation_name(@group.venue), {:selected => @group.installation_id, :include_blank => true}) %><br />
+		<span class="description"><%= label_name('installation', 'description') %></span>
+	</div>
+
+	<div class="group">
+		<%= f.label :description, label_name('description'), :class => :label %>
+		<%= f.text_area :description, :class => 'textfield' %><br />
+		<span class="description"><%= label_name('description') %></span>
+	</div>
+
+	<div class="group">
+		<%= f.label :conditions, label_name('conditions'), :class => :label %>
+		<%= f.text_area :conditions, :class => 'text_message' %><br />
+		<span class="description"><%= label_name('conditions') %></span>
+	</div>
 
 
 <% end -%>

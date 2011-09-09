@@ -23,7 +23,7 @@
 					<%= content_tag :th, label_name(:name), :class => "heading" %>
 					<%= content_tag :th, label_name(:venue), :class => "heading" %>
 					<%= content_tag :th, label_name(:time_zone), :class => "heading" %>
-					<%= content_tag :th, label_name(:marker), :class => "heading" %>
+					<%#= content_tag :th, label_name(:marker), :class => "heading" %>
 					<%= content_tag :th, "&nbsp;", :class => "last_index" %>
 				</tr>
 
@@ -33,7 +33,7 @@
 					<%= view_installation_name(installation) %>
 					<%= view_installation_venue(installation) %>
 					<%= view_installation_times(installation) %>
-					<%= view_installation_marker(installation) %>			
+					<%#= view_installation_marker(installation) %>			
 
 					<td class="last">
 						<span class="action" align="left">

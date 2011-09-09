@@ -45,6 +45,8 @@ class VenuesController < ApplicationController
   private
   def get_venue
     @venue = Venue.find(params[:id])
+    @group = []
+    @venue.marker.groups.each {|group| @group = group}
   end
 
   def has_manager_access

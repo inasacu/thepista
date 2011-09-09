@@ -45,11 +45,22 @@
 			<%= content_tag :td, user_list(@group.all_the_managers), :class => get_the_action %>
 		</tr>
 
-		<tr>
-			<%= content_tag :td, label_name(:marker), :class => "label" %>
-			<%= content_tag :td, marker_link(@group.marker), :class => get_the_action %>
-		</tr>
-
+		<% 
+		if @group.venue 
+			the_venue_link = item_name_link(@group.venue)
+			the_venue_link = item_name_link(@group.venue.name, @group.installation) if @group.installation
+		%>
+			<tr>
+				<%= content_tag :td, label_name(:venue), :class => "label" %>
+				<%= content_tag :td, the_venue_link, :class => get_the_action %>
+			</tr>		
+		<% else %>
+			<tr>
+				<%= content_tag :td, label_name(:marker), :class => "label" %>
+				<%= content_tag :td, marker_link(@group.marker), :class => get_the_action %>
+			</tr>
+		<% end %>
+		
 		<%= tr_td_action(:sports, @group.sport.name) %>
 		<%= tr_td_action(:game_day, nice_day_time(@group.schedules.first.starts_at)) unless @group.schedules.blank? %>
 		<%= tr_td_action(:city, @group.marker.city) %>
@@ -101,10 +112,7 @@
 	</tr>
 
 	</table>
-	
-
-
-			 
+				 
     </div>
   </div>
 </div>

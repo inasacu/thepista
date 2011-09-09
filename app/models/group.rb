@@ -45,7 +45,7 @@ class Group < ActiveRecord::Base
 
   # variables to access
   attr_accessible :name, :second_team, :gameday_at, :sport_id, :points_for_win, :points_for_draw, :points_for_lose, :player_limit, :automatic_petition
-  attr_accessible :time_zone, :marker_id, :description, :conditions, :photo, :available, :looking, :enable_comments
+  attr_accessible :time_zone, :marker_id, :description, :conditions, :photo, :available, :looking, :enable_comments, :installation_id
 
   # NOTE:  MUST BE DECLARED AFTER attr_accessible otherwise you get a 'RuntimeError: Declare either attr_protected or attr_accessible' 
   has_friendly_id :name, :use_slug => true, :approximate_ascii => true, 
@@ -55,20 +55,16 @@ class Group < ActiveRecord::Base
 
   has_many      :classifieds,       :conditions => "classifieds.archive = false"
   has_many      :schedules,         :conditions => "schedules.archive = false"
-  # has_many      :addresses  
-  # has_many      :accounts 
-  # has_many      :messages
-  # has_many      :accounts 
   has_many      :fees,              :conditions => "fees.archive = false"   
   has_many      :payments,          :conditions => "payments.archive = false"
   has_many      :scorecards,        :conditions => "user_id > 0 and played > 0 and archive = false", :order => "points DESC, ranking"
-
-  # has_many      :archive_scorecards, 
-  # :through => :scorecards,
-  # :conditions => ["user_id > 0 and played > 0 and season_ends_at < ?", Time.zone.now], 
-  # :order => "points DESC, ranking"
-
  
+  belongs_to    :sport   
+  belongs_to    :marker 
+  belongs_to    :installation
+
+  has_one       :blog
+
 
   has_many :the_managers,
   :through => :manager_roles,
@@ -87,11 +83,6 @@ class Group < ActiveRecord::Base
   :class_name => "Role", 
   :foreign_key => "authorizable_id", 
   :conditions => ["roles.name = 'subscription' and roles.authorizable_type = 'Group'"]
-
-  belongs_to    :sport   
-  belongs_to    :marker 
-
-  has_one       :blog
 
   before_create :format_description, :format_conditions
   before_update :format_description, :format_conditions
@@ -186,6 +177,10 @@ class Group < ActiveRecord::Base
 
   def is_group_member_of?(item)
     self.has_role?('member', item)
+  end
+  
+  def venue
+    self.marker.venue
   end
 
   def self.latest_items(items)

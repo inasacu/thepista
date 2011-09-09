@@ -202,6 +202,7 @@ en:
      create_manager: Add a Manager  
      create_name: Create Name   
      create_note: Create a Note 
+     create_new_auth:  Connect your LinkedIn account
      create_new_challenge:  Create a Challenge.
      create_new_classified:  Place an Announcement for your team.
      create_new_cup:  Start your own tournament.
@@ -741,6 +742,9 @@ en:
      left_post_on_forum: Has left a COMMENT on   
      lighting:  Lighting
      lighting_description: (Is there lighting in the pista?) 
+     linkedin_headline:  Job Title at Company   
+     linkedin_profile:  LinkedIn 
+     linkedin_update_status:  is using HayPista.com to practice sports.
      list: List   
      list_marker: List of Locations   
      list_user: List   
@@ -749,6 +753,7 @@ en:
      locale_name: English     
      location_group: Location where the team plays
      location_sport: Location where you practice sports. 
+     location_venue: Sport center location
      login:  Log In	 
      log_in: Log In   
      logged_out: Logged Out.   

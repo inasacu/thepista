@@ -2,7 +2,8 @@
 	the_label = "" 
 	my_openid = false
 
-	the_profile = ["blog_show", "user_show", "fee_item_list", "fee_index", "user_petition", "schedule_my_list", "payment_new", "user_edit", "user_update", "fee_item", 'user_notice']
+	the_profile = ["blog_show", "user_show", "fee_item_list", "fee_index", "user_petition", "schedule_my_list", "payment_new", 
+				   "user_edit", "user_update", "fee_item", 'user_notice', "auth_callback"]
 	is_profile = (the_profile.include?(get_controller_action))? true : false
 		
 	user_access = ['login','logout','signup']
@@ -26,16 +27,13 @@
 	unless is_profile 
 %>
 		<%= content_tag 'li',  link_to(label_name(:users_teammate), users_url), :class => get_first_active('user_index') %>
-		<!--><li class="<%#= get_first_active('user_index') %>"><%#= link_to(label_name(:users_teammate), users_url) %></li>-->
 		<li class="<%= get_active('user_list') %>"><%= link_to(label_name(:all_user) , list_users_path) %></li>
 <% 
 	else 
 %>
 		<%= content_tag 'li',  user_link("#{label_name(:profile)}", the_user), :class => get_first_active('user_show') %>
+		<%= content_tag 'li',  user_link("#{label_name(:linkedin_profile)}", the_user), :class => get_first_active('user_show') if is_controller('auth') %>
 		<%= content_tag 'li',  link_to("#{label_name(:notifications)}", notice_users_url(:id => @user)), :class => get_first_active('user_notice') %>
-		<!--><li class="<%#= get_active('user_show') %>">
-			<%#= user_link("#{label_name(:profile)}", the_user) %>
-		</li>-->
 <%
 		if DISPLAY_USER_BLOG
 		 	if current_user.is_user_member_of?(the_user) 
@@ -46,7 +44,6 @@
 				end		
 %>
 				<li class="<%= get_active('blog_show') %>"><%= blog_link(the_blog) %></li>
-				<!-- <li class="<%#= get_active('schedule_my_list') %>"><%#= link_to(label_name(:schedules) , my_list_schedules_path(:id => the_user)) %></li> -->
 <% 
 			end
 		
@@ -58,14 +55,6 @@
 		<li class="<%= get_active('fee_item') %>"><%= link_to(label_name(:payments), item_fees_path(:id => the_user)) %></li>
 <% 
 		end 
-
-		# if current_user.has_pending_petition?(current_user) and the_user == current_user 
-%>
-			<!-- <li class="<%#= get_active('user_petition') %>">
-				<%#= link_to(label_name(:petitions), petition_path(current_user)) %>
-			</li> -->
-<% 		
-		# end 
 	end 
 %>
 </ul>

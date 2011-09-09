@@ -36,7 +36,7 @@
 			<%= content_tag :th, label_name(:concept), :class => "heading" %>
 			<%= content_tag :th, label_name(:group), :class => "heading" %>
 			<%= content_tag :th, label_name(:gameday_at), :class => "heading" %>
-			<%= content_tag :th, label_name(:marker), :class => "heading" %>
+			<%#= content_tag :th, label_name(:marker), :class => "heading" %>
 			<%= content_tag :th, "&nbsp;", :class => "last" %>
 		</tr>
         
@@ -46,7 +46,7 @@
 			<%= view_schedule_concept(schedule) %>
 			<%= view_schedule_group(schedule) %>
 			<%= view_schedule_played(schedule) %>
-			<%= view_schedule_marker(schedule) %>
+			<%#= view_schedule_marker(schedule) %>
 			<%= view_schedule_rating(schedule) %>
 		</tr>          
         <% end -%>
