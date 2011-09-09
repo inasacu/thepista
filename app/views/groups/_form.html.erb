@@ -35,22 +35,16 @@
 
 <% if is_group_edit %>	
 
-	<!-- <div class="group">
-	<%#= f.label :gameday_at, label_name('gameday_at'), :class => :label %>
-	<%#= f.datetime_select :gameday_at, :class => 'datetime_select' %><br />
-	<span class="description"><%#= label_name('gameday_at', 'description') %></span>
-	</div> -->
+	<div class="group">
+		<%= f.label :installation_id, "#{item_name_link(@group.venue)}<br/>#{label_name('installation')}", :class => :label %>
+		<%= f.select(:installation_id, Installation.installation_name(@group.venue), {:selected => @group.installation_id, :include_blank => true}) %><br />
+		<span class="description"><%= label_name('installations', 'description') %></span>
+	</div>
 
 	<div class="group">
 		<%= f.label :time_zone, label_name('time_zone'), :class => :label %>
 		<%= f.time_zone_select :time_zone, ActiveSupport::TimeZone.us_zones %><br />
 		<span class="description"><%= label_name('time_zone', 'description') %></span>
-	</div>
-
-	<div class="group">
-		<%= f.label :installation_id, "#{@group.venue.name}<br/>#{label_name('installation')}", :class => :label %>
-		<%= f.select(:installation_id, Installation.installation_name(@group.venue), {:selected => @group.installation_id, :include_blank => true}) %><br />
-		<span class="description"><%= label_name('installations', 'description') %></span>
 	</div>
 
 	<div class="group">
