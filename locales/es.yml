@@ -423,6 +423,7 @@ es:
      installation: Instalación 
      installations: Instalaciones
      installations_create:  Nueva Instalación
+     installations_description:  Nombre de la instalación en el centro deportivo
      installations_destroy:  Borrar Instalación
      installations_edit:  Modifica la Instalación 
      installations_name_description:  Nombre de la nueva instalación

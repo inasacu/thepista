@@ -48,9 +48,9 @@
 	</div>
 
 	<div class="group">
-		<%= f.label :installation_id, label_name('installation'), :class => :label %>
+		<%= f.label :installation_id, "#{@group.venue.name}<br/>#{label_name('installation')}", :class => :label %>
 		<%= f.select(:installation_id, Installation.installation_name(@group.venue), {:selected => @group.installation_id, :include_blank => true}) %><br />
-		<span class="description"><%= label_name('installation', 'description') %></span>
+		<span class="description"><%= label_name('installations', 'description') %></span>
 	</div>
 
 	<div class="group">

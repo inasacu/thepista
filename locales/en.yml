@@ -420,7 +420,8 @@ en:
      explore:  Explore
      installation: Installation
      installations: Installations
-     installations_create:  Create Installation 
+     installations_create:  Create Installation
+     installations_description:  "Instalation name at the sport's center" 
      installations_destroy:  Remove Installation
      installations_edit:  Update Instalation
      installations_name_description:  New Installation Name
