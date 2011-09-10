@@ -1,8 +1,9 @@
 class Holiday < ActiveRecord::Base
   belongs_to    :venue 
+  belongs_to    :type
 
   # variables to access
-  attr_accessible :venue_id, :name, :starts_at, :ends_at, :holiday_hour, :archive
+  attr_accessible :venue_id, :type_id, :name, :starts_at, :ends_at, :holiday_hour, :archive
 
   def self.holiday_week_day(venue, starts_at, ends_at)
     find(:all, :joins => "JOIN venues on venues.id = holidays.venue_id",

@@ -2,8 +2,9 @@ require "base64"
 
 class HolidaysController < ApplicationController  
   before_filter   :require_user
+  
   before_filter   :get_venue,             :only => [:set_holiday_open, :set_holiday_closed, :set_holiday_none]
-  before_filter   :is_venue_manager,      :only => [:set_holiday_open, :set_holiday_closed, :set_holiday_none]
+  # before_filter   :is_venue_manager,      :only => [:set_holiday_open, :set_holiday_closed, :set_holiday_none]
 
   def index
     redirect_to root_url
@@ -52,13 +53,15 @@ class HolidaysController < ApplicationController
   def get_venue
     @venue = Venue.find(params[:venue_id])
     @block_token = Base64::decode64(params[:block_token].to_s).to_i
+    @type = Type.default_holiday_type
 
     @holiday = Holiday.new 
     @holiday.venue = @venue
+    @holiday.type = @type
     @holiday.starts_at = Time.zone.at(@block_token)
     @holiday.ends_at = Time.zone.at(@block_token)
-    @holiday.starts_at = @holiday.starts_at.change(:hour => 2, :min => 0, :sec => 0)
-    @holiday.ends_at  = @holiday.ends_at.change(:hour => 2, :min => 59, :sec => 59)
+    @holiday.starts_at = @holiday.starts_at.change(:hour => 0, :min => 0, :sec => 0)
+    @holiday.ends_at  = @holiday.ends_at.change(:hour => 23, :min => 59, :sec => 59)
 
     @the_holiday = Holiday.holiday_available(@venue, @holiday)
   end  
