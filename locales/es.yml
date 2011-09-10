@@ -683,6 +683,9 @@ es:
      Holiday:  Festivo
      holiday:  festivo
      holidays_new:  Marca como festivo
+     holidays_none: No Festivo
+     holidays_open: Festivo Horario
+     holidays_closed:  Festivo Cerrado
      home: Inicio   
      home_group: Equipo       
      home_stage_name:  Grupo

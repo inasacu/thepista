@@ -191,9 +191,6 @@ module ApplicationHelper
   
   # converts two dates and get date and time from first and second
   def convert_to_datetime_zone(the_date, the_time)
-    # the_datetime = "#{the_date.strftime('%Y%m%d')} #{nice_simple_time_at(the_time)} "
-    # return DateTime.strptime(the_datetime, '%Y%m%d %H:%M')
-
     the_datetime = "#{the_date.strftime('%Y%m%d')} #{nice_simple_time_zone_at(the_time)} "
     return DateTime.strptime(the_datetime, '%Y%m%d %H:%M %z')
   end

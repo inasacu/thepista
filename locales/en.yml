@@ -681,6 +681,9 @@ en:
      Holiday:  Holiday
      holiday:  holiday
      holidays_new:  Set as holiday
+     holidays_none: None Holiday
+     holidays_open: Holiday Hours
+     holidays_closed:  Holiday Closed
      home: Home   
      home_group: Home Team       
      home_stage_name:  Group

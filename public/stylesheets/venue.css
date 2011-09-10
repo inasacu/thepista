@@ -73,12 +73,12 @@ input, option, textarea, .input {
 .ColPista { vertical-align: top; }
 .ColPistaCab, .ColPistaCab_false, .ColPistaCab_true { 
 	text-align: center; 
-	font-size: 12px; 
+	font-size: 10px; 
 	/*color: #e2edde; */
 	/*background-color: #0f7d00;*/
 	border: 1px solid lightgray;
-	font-weight: bold;
-	height: 35px; 
+/*	font-weight: bold;*/
+	height: 45px; 
 	overflow: hidden; 
 }
 

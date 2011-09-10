@@ -117,6 +117,10 @@ ActionController::Routing::Routes.draw do |map|
   
   map.set_copy_timetable    'horario/:id/replica/:current_id',                  :controller => 'timetables',      :action => 'set_copy_timetable'
   
+  map.set_holiday_open      'festivo/:venue_id/abierto/:block_token',           :controller => 'holidays',        :action => 'set_holiday_open'  
+  map.set_holiday_closed    'festivo/:venue_id/cerrado/:block_token',           :controller => 'holidays',        :action => 'set_holiday_closed'  
+  map.set_holiday_none      'festivo/:venue_id/nada/:block_token',              :controller => 'holidays',        :action => 'set_holiday_none'
+  
   map.resources   :user_sessions,   :as => 'repitelo'
   map.resources   :users,           :as => 'jugadores',                   :collection => { :rpx_create => :post, :rpx_associate => :post, :list => :get, 
                                                                                            :recent_activity => :get, :notice => :get }  
