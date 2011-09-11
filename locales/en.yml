@@ -428,6 +428,35 @@ en:
      installations_new:  Create Installation 
      failed_login: Failed Login      
      false_value: "No"
+     faq: FAQ
+     faq_acceso_con_tu_cuenta:  FAQ about your personal Account
+     faq_how_can_help:  "How can HayPista help you?"
+     faq_helps_organize:  "*  Helps you organize teams and events."
+     faq_keep_track:  "*  You are able to keep track of who is pon squad, who is in last minute and y is not available to play."
+     faq_manage_payment:  "*  Allows you to manage player payments and charges for the team."
+     faq_event_wall:  "*  Able to leave messages on team wall as well as event wall."
+     faq_teammate_message:  "*  Able to send messages to teammtes."
+     faq_scorecard_statistics:  "*  Able to manage team scorecard and statistics."
+     faq_sport_center_area:  "*  Able to see all sport centers located in the area."
+     faq_our_philosophy:  Our Philosophy
+     faq_our_philosophy_description:  "We help organize eventes with friends, help find a sport center to play at, find players to play with and mostly important enjoy practicing sports."
+     faq_our_story:  Our Story
+     faq_our_story_description:  "is based on our own experience.  We have been playing many years on a football team, 
+                                 playing in various fields and always finding some issue getting enough players to have an enjoyable match.  
+                                 We have always managed our team with an excel sheet, where we maintained all team members, 
+                                 scheduled games, games played, payments, and scorecard.  
+                                 We have always create huge emails to get word out to everyone about the next event and players 
+                                 who would be playing in the next event.  Emails back and forward until a final roster was completed.  
+                                 At the end we realized there had to be a better way to manage our events and from that our site."
+     faq_why_use_your_account:  Why access with your personal account?
+     faq_what_is_your_account: "What is access with your personal account?"
+     faq_registration_ease: " Registration in HayPista is simple and fast!  Here, at HayPistaa, we believe that we should not need to save your username and password.  We work with other services that are available to you.  Simply select the account that you wish to use to access haypista and we will handle the rest!"
+     faq_why_use_your_account_description: "Accessing with our account is a simple way to identify yourself with different services.  This will prevent from having to remember your ( username / password ) for every site you visit."
+     faq_why_your_account_is_secure:  "Why is accessing with your account is secure?"
+     faq_why_your_account_is_secure_description: "With this service, <strong>HayPista DOES NOT HAVE access to your password</strong>, 
+                                                  on the contrary to other traditional web sites.  
+                                                  Our site only has access to whichever data you prefer to give us (email) and 
+                                                  whenever you wish to give it to us at."
      feature: Feature
      features: Features
      fee: Fee 
@@ -958,8 +987,6 @@ en:
      or: or   
      or_use: ...or user   
      organize:  Organize
-     our_philosophy:  Our Philosophy
-     our_story:  Our Story
      outdoor:  Outdoor
      outdoor_description: Is pista outdoors?
      overview: overview 
@@ -1533,9 +1560,7 @@ en:
      what_is_important:  What is important 
      what_is_haypista:  What is HayPista?
      what_is_this:   What is this? 
-     what_is_your_account: "What is access with your personal account?"
      what_are_you_practicing: Share an update  
-     why_use_your_account:  Why access with your personal account?
      whats_new: What is new in HayPista?   
      write_comment: Write a comment...   
      writes: writes   
@@ -1623,9 +1648,7 @@ en:
      abou:  About
      terms_of_use: Terms of Use
      privacy_policy: Privacy Policy
-     faq: FAQ
-     openid:  Login with your OpenID account
-     faq_acceso_con_tu_cuenta:  FAQ about your personal Account
+     openid:  Login with your account
      follow_twitter:  Follow us on Twitter
      follow_facebook:  Follow us on Facebook
      follow_linkedin:  Follow us on Linkedin
@@ -1991,7 +2014,7 @@ en:
      schedules_screen:  "Shows all the upcoming events, as well as previous events..."
      schedule_screen:  "View all the details for the event, the wall, the squad, last minute and no-shows..."
      scorecards_screen:  "All match results allows to maintain a scorecard for your team..."
-     what_is_haypista_details:  "helps you organize matches find where to play so that you can enjoy practicing sports."
+     what_is_haypista_details:  "helps you organize matches, find where to play so that you can enjoy practicing sports."
      how_does_haypista:  "How does HayPista work?"
      how_does_haypista_details:  "Simply create a team, find a sports center, create an event, send invitations to your friends and you're done. That easy!"
      what_other_haypista: "What else can you do on HayPista?"

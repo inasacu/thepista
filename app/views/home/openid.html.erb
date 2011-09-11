@@ -1,35 +1,13 @@
-
-
 <div id="home">
-
 	<div class="announce">
 		<h1><strong><%= label_name(:faq_acceso_con_tu_cuenta) %></strong></h1>
 	</div>
-
 	<div class="features">
-
-		<h3><%= label_name(:why_use_your_account) %></h3>
-		<p>
-			Registrarse en HayPista es rápido y fácil! Aquí, en HayPista, no creemos que debes tener que crear otro nombre de usuario y clave. 
-			Nosotros trabajamos con varios sitios que ya puedes utilizar. 
-			Simplemente selecciona la cuenta con la que quieres acceder a HayPista y nosotros nos encargamos del resto!
-		</p>
-
-		<h3>		
-			<%= label_name(:what_is_your_account) %>
-		</h3>
-		<p>				
-			Acceso con tu cuenta es una manera sencilla de identificarte en multitud de sitios web con los mismos datos, 
-			sin tener que recordar diferentes datos de acceso ( usuario / clave ) para cada una de los sitios web que visites.
-		</p>
-
-		<h3>
-			¿Por qué acceso con tu cuenta es seguro?
-		</h3>
-		<p>
-			Con este servicio, <strong>HayPista no tiene acceso a tu clave</strong>, 
-			al contrario de los sistemas tradicionales. Solo tiene acceso a los datos que tú quieras darnos y en el momento que quieras darnos.
-		</p>				
-
+		<%= content_tag 'h3', label_name(:faq_why_use_your_account) %>
+		<%= content_tag 'p', label_name(:faq_registration_ease) %>
+		<%= content_tag 'h3', label_name(:faq_what_is_your_account) %>
+		<%= content_tag 'p', label_name(:faq_why_use_your_account_description) %>
+		<%= content_tag 'h3', label_name(:faq_why_your_account_is_secure) %>
+		<%= content_tag 'p', label_name(:faq_why_your_account_is_secure_description) %>						
 	</div>
 </div>

@@ -430,6 +430,40 @@ es:
      installations_new:  Nueva Instalación 
      failed_login: Error de inicio de sesión      
      false_value: "No"
+     faq: Preguntas Frecuentes
+     faq_acceso_con_tu_cuenta:  Preguntas sobre como acceder a Haypista con tu cuenta
+     faq_how_can_help:  "¿Cómo te puede ayudar HayPista?"
+     faq_helps_organize:  "*  Te permite organizar equipos y eventos."
+     faq_keep_track:  "*  Puedes ver quien se ha convocado al evento, quien esta para ultima hora y quien sera ausente."
+     faq_manage_payment:  "*  Controlar los pagos y deudas del equipo."
+     faq_event_wall:  "*  Dejar mensajes en el muro del equipo o de tus companeros e incluso en el evento."
+     faq_teammate_message:  "*  Podras mandar mensajes a tu equipo."
+     faq_scorecard_statistics:  "*  Controlar las estadisticas de tu equipo"
+     faq_sport_center_area:  "*  Ver los centros mas cercanos a donde tu juegas."
+     faq_our_philosophy:  Nuestra Filosofía
+     faq_our_philosophy_description:  "Ayudarte a organizar partidos entre amigos, 
+     buscar un centro donde puedas jugar, 
+     encontrar a gente con los mismos intereses y sobretodo disfrutar el deporte."
+     faq_our_story:  Nuestra Historia
+     faq_our_story_description:  "a salido de nuestra propia experiencia.  Llevamos años con un equipo de futbol, 
+                                 jugando en varios campos y siempre con 										
+                                 problemas para reunir bastantes jugadores para tener un partido decente.  
+                                 Siempre con una hoja de calculo y todos los contactos, partidos jugados y todos los pagos hechos por los jugados.  
+                                 Siempre creando correos masivos a todos los jugadores en la lista.  
+                                 Esperando a respuestas y marcando quien juega y quien no, y asi hasta llegar a jugar un partido.  
+                                 Al final nos dimos cuenta que dedicabamos demasiadas horas semanales para organizar un partido y 
+                                 de hay surgio nuestro portal."
+     faq_why_use_your_account:  "¿Por qué acceder con tu cuenta?"
+     faq_what_is_your_account: "¿Qué es acceso con tu cuenta?"
+     faq_registration_ease: " Registrarse en HayPista es rápido y fácil! Aquí, en HayPista, no creemos que debes tener que crear otro nombre de usuario y clave. 
+                              Nosotros trabajamos con varios sitios que ya puedes utilizar. 
+                              Simplemente selecciona la cuenta con la que quieres acceder a HayPista y nosotros nos encargamos del resto!"
+     faq_why_use_your_account_description: "Acceso con tu cuenta es una manera sencilla de identificarte en multitud de sitios web con los mismos datos, 
+                                sin tener que recordar diferentes datos de acceso ( usuario / clave ) para cada una de los sitios web que visites."
+     faq_why_your_account_is_secure:  "¿Por qué acceso con tu cuenta es seguro?"
+     faq_why_your_account_is_secure_description: "Con este servicio, <strong>HayPista NO TIENE acceso a tu clave</strong>, 
+                                                  al contrario de los sistemas tradicionales. Solo tiene acceso a los datos 
+                                                  que tú quieras darnos (cuenta de correo) y en el momento que quieras darnoslo."
      feature: Prestación
      features: Prestaciones
      fee: Honorarios   
@@ -961,8 +995,6 @@ es:
      or: o   
      or_use: ...o utiliza   
      organize:  Organizar
-     our_philosophy:  Nuestra Filosofía
-     our_story:  Nuestra Historia
      outdoor:  Al aire libre
      outdoor_description: (La pista esta al arie libre?)
      overview: descripción general 
@@ -1538,9 +1570,7 @@ es:
      what_is_important:  Lo importante 
      what_is_haypista:  ¿Qué es HayPista?
      what_is_this:   ¿Qué es esto? 
-     what_is_your_account: "¿Qué es acceso con tu cuenta?"
      what_are_you_practicing: Comparte una actualización  
-     why_use_your_account:  ¿Por qué acceder con tu cuenta?
      whats_new: ¿Qué hay de nuevo en HayPista?   
      write_comment: Escribe un comentario...   
      writes: escribe   
@@ -1628,9 +1658,7 @@ es:
      abou:  Acerca de
      terms_of_use: Terminos de Uso
      privacy_policy: Privacidad
-     faq: Preguntas Frecuentes
      openid:  Acceso con tu cuenta
-     faq_acceso_con_tu_cuenta:  Preguntas sobre como acceder a Haypista con tu cuenta
      follow_twitter:  Siguenos en Twitter
      follow_facebook:  Siguenos en Facebook
      follow_linkedin:  Siguenos en Linkedin

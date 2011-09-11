@@ -1,27 +1,15 @@
-
-
 <div id="home">
-
 	<div class="announce">
 		<h1><strong><%= "#{label_name(:about)} #{app_name}" %></strong></h1>
 	</div>
-
 	<div class="features">
+		<%= content_tag 'h3', label_name(:what_is_haypista) %>
+		<%= content_tag 'p', "#{label_name(:haypista_pronunciation)} #{label_name(:what_is_haypista_details)}" %>
 
-		<h3><%= label_name(:what_is_haypista) %></h3>
-		<p><%= "#{label_name(:haypista_pronunciation)} #{label_name(:what_is_haypista_details)}" %></p>						
+		<%= content_tag 'h3', label_name(:faq_our_philosophy) %>
+		<%= content_tag 'p', label_name(:faq_our_philosophy_description) %>					
 
-
-		<h3><%= label_name(:our_philosophy) %></h3>
-		<p>
-		Ayudarte a organizar partidos entre amigos, 
-		buscar un centro donde puedas jugar, 
-		encontrar a gente con los mismos intereses y sobretodo disfrutar el deporte. 
-		</p>
-
-		<h3><%= label_name(:our_story) %></h3>
-		<p><%= app_name %> a salido de nuestra propia experiencia.  Llevamos años con un equipo de futbol, jugando en varios campos y siempre con problemas para reunir bastantes jugadores para tener un partido decente.  Siempre con una hoja de calculo y todos los contactos, partidos jugados y todos los pagos hechos por los jugados.  Siempre creando correos masivos a todos los jugadores en la lista.  Esperando a respuestas y marcando quien juega y quien no, y asi hasta llegar a jugar un partido.  Al final nos dimos cuenta que dedicabamos demasiadas horas semanales para organizar un partido y de hay surgio nuestro portal.
-		</p>				
-
+		<%= content_tag 'h3', label_name(:faq_our_story) %>
+		<%= content_tag 'p', "#{app_name} #{label_name(:faq_our_story_description)}" %>
 	</div>
 </div>
