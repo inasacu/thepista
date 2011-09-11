@@ -1,4 +1,4 @@
-# to run:    sudo rake add_holiday_type
+# to run:    heroku rake add_holiday_type  --app haypista
 
 desc "add new entries in type table related to timetable"
 task :add_holiday_type => :environment do |t|
