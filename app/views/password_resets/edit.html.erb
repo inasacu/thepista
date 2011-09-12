@@ -1,70 +1,46 @@
-<div class="block">
+<div id="home">
+	<div class="features">
 
-<div class="secondary-navigation">
+		<%= content_tag 'h2', "<strong>#{label_name(:password_change)}</strong>" %>	
 
-	<ul>
-		<li class="<%= get_first_active('password_reset_edit') %>">
-			<%=link_to label_name(:password_change), :controller => 'password_resets', :action => 'edit' %>
-		</li>
-	</ul>
+		<div class="inner">
 
-	<div class="clear"></div>
+			<% form_for @user, :url => password_reset_path, :method => :put do |f| %>
 
-</div>
-
-<div class="content">  
-
-	<h2 class="title"><%= label_name(:password_change) %></h2>
-
-	<div class="inner">
-
-	<% form_for @user, :url => password_reset_path, :method => :put do |f| %>
-	<%= f.error_messages %>
-	
-	<div class="group">
-		
-		<br />
-	
-		<table>
-			<tr>
-				<td valign="top" width="180">
+				<div class="group">
 					<%= f.label :password, label_name(:password), :class => :label %>
-				</td>
-				<td>
-					<%= f.password_field :password, :class => 'textfield' %>
-				</td>
-			</tr>
-			
-		</table>
-		
-		<table>
-			<tr>
-				<td valign="top" width="180">
-					<%= f.label :password_confirmation, label_name(:password_confirmation), :class => :label %>
-				</td>
+					<%= f.password_field :password, :class => 'textfield' %>	    
+				</div>
+
 				<br />
-				<td>
-					<%= f.password_field :password_confirmation, :class => 'textfield' %>
-				</td>
-			</tr>
+				<br />
 			
-		</table>
-		
-						
-	</div><br /><br /><br />
+				<div class="group">
+					<%= f.label :password_confirmation, label_name(:password_confirmation), :class => :label %>
+					<%= f.password_field :password_confirmation, :class => 'textfield' %>   
+				</div>
 
-	<%#= render :partial => 'utilities/recaptcha' %>
+				<br />
+				<br />
 
-	<br /><br /><br />
+				<div class="clear"></div>
 
-	<div class="group navform"> 
-		<%= submit_tag label_name(:password_update_and_login), :class => "button" %>
+				<br/>
+				<%= label_name(:recaptcha_type_words) %>
+				<br/>
+				<%= recaptcha_tags %>
+
+				<br />
+				<br />
+
+				<div class="group navform"> 
+					<%= submit_tag label_name(:password_update_and_login), :class => "button" %>
+				</div>
+
+			<% end -%>
+
+		</div>
+
 	</div>
-
-	<% end -%>
-
-	</div>
-
-</div>
 
 </div>

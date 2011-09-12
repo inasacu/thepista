@@ -29,5 +29,5 @@ config.action_controller.allow_forgery_protection    = false
 
 #recapture keys
 # thepista.heroku.com
-ENV['RECAPTCHA_PUBLIC_KEY'] = '6LfiKAgAAAAAAHRhcX9WTEdGbXW9B3hlFbea1RZZ'
-ENV['RECAPTCHA_PRIVATE_KEY'] = '6LfiKAgAAAAAABzbnVm1Km4oWJU6FsKqJaEtjuVa'
+# ENV['RECAPTCHA_PUBLIC_KEY'] = '6LfiKAgAAAAAAHRhcX9WTEdGbXW9B3hlFbea1RZZ'
+# ENV['RECAPTCHA_PRIVATE_KEY'] = '6LfiKAgAAAAAABzbnVm1Km4oWJU6FsKqJaEtjuVa'

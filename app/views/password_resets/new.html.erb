@@ -1,53 +1,38 @@
-<div class="block">
+<div id="home">
+	<div class="features">
 
-	<div class="secondary-navigation">
-
-	<ul>
-	<li class="<%= get_first_active('password_reset_new') %>">
-		<%=link_to label_name(:password_forgotten), :controller => 'password_resets', :action => 'new' %>
-	</li>
-	</ul>
-
-	<div class="clear"></div>
-
-	</div>
-
-	<div class="content">  
-
-		<h2 class="title"><%= control_action_label %></h2>
-		<h4>&nbsp;&nbsp;&nbsp;&nbsp;<%= label_name(:password_reset_instructions) %></h4><br /><br />
+		<%= content_tag 'h2', "<strong>#{control_action_label}</strong>" %>		
+		<%= content_tag 'p', label_name(:password_reset_instructions) %>
 
 		<div class="inner">
-		
-      		<% form_tag password_resets_path do %>
+
+			<% form_tag password_resets_path do %>
 
 			<div class="group">
-		    <%= label :email, label_name(:email) %>&nbsp;&nbsp;<%= text_field_tag :email, nil, :class => 'textfield' %>	    
-		  	</div>
+				<%= label :email, label_name(:email) %>&nbsp;&nbsp;<%= text_field_tag :email, nil, :class => 'textfield' %>	    
+			</div>
+
 			<br />
 			<br />
+
 			<div class="clear"></div>
 
-			<%#= render :partial => 'utilities/recaptcha' %>
-			
+			<br/>
+			<%= label_name(:recaptcha_type_words) %>
+			<br/>
+			<%= recaptcha_tags %>
+
 			<br />
 			<br />
-			
+
 			<div class="group navform"> 
 				<%= submit_tag label_name(:password_reset), :class => "button" %>
 			</div>
 
 			<% end -%>
-			
+
 		</div>
 
 	</div>
 
 </div>
-
-
-
-
-
-
-

@@ -429,7 +429,7 @@ en:
      failed_login: Failed Login      
      false_value: "No"
      faq: FAQ
-     faq_acceso_con_tu_cuenta:  FAQ about your personal Account
+     faq_acceso_con_tu_cuenta:  FAQ about access to HayPista with your account
      faq_how_can_help:  "How can HayPista help you?"
      faq_helps_organize:  "*  Helps you organize teams and events."
      faq_keep_track:  "*  You are able to keep track of who is pon squad, who is in last minute and y is not available to play."
@@ -1008,7 +1008,9 @@ en:
      password_confirmation: Pasword Confirmation	
      password_confirmation_description: Requires at least 5 characters. 
      password_description:  Password
+     password_email_conbination_issue:  "Se ha producido un error en la cuenta de correo o la contraseña, vuelva a insertar los datos."
      password_instructions: "The instructions to reset your password have been sent to your email account. Please, check your account."
+     password_instructions_issue: "The instructions to reset your password will be sent to you if you have an account on our site. Please, check your email."
      password_issue:  "Sorry, we could not locate your account. If you have problems try copying and pasting the URL from your email account to the browser or restart the process of resetting the password."
      password_updated:    Your password has been reset.
      password_update_and_login: Update my password and login.
@@ -1894,6 +1896,7 @@ en:
      sub_manager_option_cluetip:  These options allow a Sub-Manager to set another player as an additional Sub-Manager of the team.  Sub-Manager have team options other basic users do not have.
      success_story:  Success Stories
      recaptcha_ask_question: "Ask a question, receive an answer!"
+     recaptcha_failure:  "There was an error with the reCAPTCHA code below. Please re-enter the code."
      recaptcha_question:  Question
      recaptcha_question:  Question
      recaptcha_human_test:  Human Test
@@ -1902,7 +1905,7 @@ en:
      rpx_third_party_error:  "could not recover data from third party accounts, Please try again."
      rpx_association_email_msg: We found an existing account which is already using the e-mail address
      rpx_association_login_msg: We found an existing account which is already using the username
-     rpx_unable_to_associate: "Unable to associate the new account of third parties Haypista existing account because your email address or password are incorrect. "
+     rpx_unable_to_associate: "Unable to associate the new account of third parties HayPista existing account because your email address or password are incorrect. "
      role_add_moderator:  New Moderador
      role_add_sub_manager:  New Sub-Manager
      role_add_manager:  New Manager

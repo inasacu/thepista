@@ -74,23 +74,27 @@ class UsersController < ApplicationController
 
   def create
     @user = User.new(params[:user])
-    @user.email_to_name
-    @user.email_backup = @user.email
-    
-    @user.save do |result|
-      if result        
-        # send user to invitation if last login is older than 21 days 
-        # if (@user.last_login_at < LAST_THREE_DAYS or @user.last_login_at.nil?)
-          redirect_to :invite
-          return
-        # end
-        # redirect_to root_url
-          
+
+    if verify_recaptcha      
+      @user.name = @user.email      
+      if @user.save
+        @user.email_to_name
+        @user.email_backup = @user.email
+        @user.save
       else
+        flash[:warning] = I18n.t(:password_email_conbination_issue)
         redirect_to :signup
         return
       end
-    end
+      
+    else 
+      flash[:warning] = I18n.t(:recaptcha_failure)
+      redirect_to :signup
+      return
+    end  
+        
+    flash[:success] = I18n.t(:successful_create)
+    redirect_to @user
   end
 
   def update
