@@ -167,6 +167,11 @@ es:
   time:
     formats:
       default: "%A, %e de %B de %Y %H:%M:%S %z"
+      hour: "%H"
+      minute: "%M"
+      day:  	"%e"
+      month:  	"%m"
+      year:   	"%Y"
       short: "%e de %b %H:%M" 
       long: "%e de %B de %Y %H:%M" 
       date_hour: "%e de %B de %Y a las %H:%M" # this is my code

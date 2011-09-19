@@ -499,7 +499,44 @@ en:
      from_Convocado: Change to No-Show   
      from_message: from   
      from_payment: Payment from   
-     from_ultima_hora: Change to Squad  
+     from_ultima_hora: Change to Squad
+     full_calendar_begin: full calendar
+     Sun: Sun
+     Mon: Mon
+     Tue: Tue
+     Wed: Wed
+     Thu: Thu
+     Fri: Fri
+     Sat: Sat
+     January: January
+     February:  February
+     March:  March
+     April: April
+     May:  May
+     June:  June
+     July:  July
+     August:  August
+     September:  September
+     October:  October
+     November:  November
+     December:  December
+     Jan_short:  Jan
+     Feb_short:  Feb
+     Mar_short:  Mar
+     Apr_short:  Apr
+     May_short:  May
+     Jun_short:  Jun
+     Jul_short:  Jul
+     Aug_short:  Aug
+     Sep_short:  Sep
+     Oct_short:  Oct
+     Nov_short:  Nov
+     Dec_short:  Dec
+     today:  today
+     month:  month
+     week:   week
+     day:    day
+     full_calendar_end: full calendar  
      game: Game 
      games:  Games  
      games_archive_list:  Previous Season
@@ -1191,6 +1228,7 @@ en:
      reservation_options:  Options
      reservations_options_without: "¿What options do you have since you dont have reservations?"
      reservations_option:  Options 
+     reservations_out:  Unavailable
      reservations_search: Search for reservations
      reservations_search_to_join: You can search for reservation. 
      reservations_show:  Display reservation

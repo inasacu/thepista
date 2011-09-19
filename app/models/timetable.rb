@@ -29,6 +29,12 @@ class Timetable < ActiveRecord::Base
 				:joins => "join types on types.id = timetables.type_id", 
 				:conditions => ["timetables.archive = false and installation_id = ? and types.table_type = 'Timetable' and types.name =  ?", installation.id, the_day_of_week],
 					:order => "timetables.type_id, timetables.starts_at")
-	end			
+	end	
+	
+	def self.venue_min_max_timetable(venue)
+	  find(:first, :select => "min(timetables.starts_at) as starts_at, max(timetables.ends_at) as ends_at",
+	       :joins => "LEFT JOIN installations on installations.id = timetables.installation_id",
+	       :conditions => ["installations.venue_id = ?", venue])
+	end   		
   
 end

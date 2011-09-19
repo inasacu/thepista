@@ -129,6 +129,31 @@ module ApplicationHelper
     return I18n.l(time_at, :format => :simple_time_at) unless time_at.nil?
   end
 
+  # day: 18
+  def nice_day_time_at(time_at)
+    return I18n.l(time_at, :format => :day) unless time_at.nil?
+  end
+  
+  # hour: 20
+  def nice_hour_time_at(time_at)
+    return I18n.l(time_at, :format => :hour) unless time_at.nil?
+  end
+
+  # minute: 30
+  def nice_minute_time_at(time_at)
+    return I18n.l(time_at, :format => :minute) unless time_at.nil?
+  end
+
+  # month: 9
+  def nice_month_time_at(time_at)
+    return I18n.l(time_at, :format => :month) unless time_at.nil?
+  end
+  
+  # year: 11
+  def nice_year_time_at(time_at)
+    return I18n.l(time_at, :format => :year) unless time_at.nil?
+  end
+
   # 20:30 +0200
   def nice_simple_time_zone_at(time_at)
     return I18n.l(time_at, :format => :simple_time_zone_at) unless time_at.nil?

@@ -126,6 +126,11 @@ en:
   time:
     formats:
       default: "%m/%d/%Y %I:%M %p"
+      hour: "%H"
+      minute: "%M"
+      day:  "%e"
+      month:  "%m"
+      year:  "%Y"
       time: "%I:%M %p"
       short: "%d %b %H:%M"
       long: "%B %d, %Y %H:%M"       

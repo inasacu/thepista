@@ -25,6 +25,7 @@ class ReservationsController < ApplicationController
     @reservations = Reservation.weekly_reservations(@installation, starts_at, ends_at)   
     @schedules = Schedule.weekly_reservations(@venue.marker, @installation, starts_at, ends_at) 
     @holidays = Holiday.holiday_week_day(@venue, starts_at, ends_at) 
+    @venue_min_max_timetable = Timetable.venue_min_max_timetable(@venue)
   end
   
   def convert_to_datetime_zone(the_date, the_time)

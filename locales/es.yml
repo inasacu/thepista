@@ -506,7 +506,44 @@ es:
      from_Convocado: Pasate a ausente
      from_message: De   
      from_payment: Pago a   
-     from_ultima_hora: Pasate a convocado 
+     from_ultima_hora: Pasate a convocado
+     full_calendar_begin: full calendar
+     Sun: Dom
+     Mon: Lun
+     Tue: Mar
+     Wed: Mie
+     Thu: Jue
+     Fri: Vie
+     Sat: Sab
+     January: Enero
+     February:  Febrero
+     March:  Marzo
+     April: Abril
+     May:  Mayo
+     June:  Junio
+     July:  Julio
+     August:  Agosto
+     September:  Septiembre
+     October:  Octubre
+     November:  Noviembre
+     December:  Diciembre
+     Jan_short:  Ene
+     Feb_short:  Feb
+     Mar_short:  Mar
+     Apr_short:  Abr
+     May_short:  May
+     Jun_short:  Jun
+     Jul_short:  Jul
+     Aug_short:  Ago
+     Sep_short:  Sep
+     Oct_short:  Oct
+     Nov_short:  Nov
+     Dec_short:  Dic
+     today:  hoy
+     month:  mes
+     week:   semana
+     day:    dia
+     full_calendar_end: full calendar
      game: Evento 
      games:  Eventos  
      games_archive_list:  Temporada anterior
@@ -1199,6 +1236,7 @@ es:
      reservation_options:  Opciones
      reservations_options_without: "¿Qué opciones tienes ya que no hay reservas?"
      reservations_option:  Opciones 
+     reservations_out:  Fuera de Plazo
      reservations_search: Busqueda de reservas
      reservations_search_to_join: Puedes buscar una reserva. 
      reservations_show:  Mostrar reserva

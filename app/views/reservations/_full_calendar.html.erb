@@ -1,0 +1,102 @@
+<%
+@events = []
+
+7.times.each do |x| 
+	current_day = first_day + x.day
+	block_token = Base64::b64encode(current_day.to_i.to_s)
+	is_holiday = false
+	holiday_hour = false
+
+	@holidays.each do |holiday| 
+		if holiday.starts_at == convert_to_datetime_zone(current_day, holiday.starts_at)
+			is_holiday = true
+			holiday_hour = holiday.holiday_hour
+		end
+	end		
+
+	the_timetables = Timetable.installation_week_day(installation, current_day, is_holiday)
+
+	the_timetables.each do |timetable|
+
+		starts_at = convert_to_datetime_zone(current_day, timetable.starts_at)
+		ends_at = convert_to_datetime_zone(current_day.midnight, timetable.ends_at)
+		time_frame = timetable.timeframe.hour
+
+
+		while ( starts_at < ends_at )
+			reserved = false
+			available = false
+			the_item = []
+			
+			 # values
+			title = label_name(:reservations_create)					# event[0]
+
+			the_starts_at = nice_date_wo_year(starts_at)				# event[1]
+			the_ends_at = (starts_at + time_frame)						# event[2]
+			the_starts_hour_at = nice_hour_time_at(starts_at)			# event[3]
+			the_starts_minute_at = nice_minute_time_at(starts_at)		# event[4]
+			the_ends_hour_at = nice_hour_time_at(the_ends_at)			# event[5]
+			the_ends_minute_at = nice_minute_time_at(the_ends_at)		# event[6]
+			the_starts_year_at = nice_year_time_at(starts_at)			# event[7]
+			the_starts_month_at = nice_month_time_at(starts_at)			# event[8]
+			
+			the_starts_day_at = nice_day_time_at(Time.zone.now).to_i	# event[9]
+			
+			the_starts_day_at = (the_starts_day_at - nice_day_time_at(starts_at).to_i) 
+			the_starts_day_at = (the_starts_day_at * -1) if nice_day_time_at(Time.zone.now) < nice_day_time_at(starts_at)			
+			
+			url = ""													# event[10]
+			color = ""													# event[11]
+			text_color = ""												# event[12]
+			
+			@reservations.each do |reservation| 
+				if reservation.starts_at == starts_at
+					reserved = true
+					the_item << reservation
+				end
+			end 
+
+			@schedules.each do |schedule| 
+				if schedule.starts_at == starts_at
+					reserved = true
+					the_item << schedule
+				end
+			end
+
+			reserved = true if (is_holiday and !holiday_hour)
+
+			if reserved 
+				the_item.each do |item| 
+					case item.class.to_s
+					when "Schedule"
+						title = "#{item.group.name}   #{item.concept}"
+						url = url_for(item)
+						
+					when "Reservation"
+						title = item.item.name
+						url = url_for(item.item)
+					end
+				end
+				color = "#CDCD44"
+				text_color = "black" 
+			else
+				block_token = Base64::b64encode(starts_at.to_i.to_s)
+				available = (starts_at > Time.zone.now + @minutes_to_reserve)
+				url = url_for(:host => 'thepista.local', :controller => 'reservations',  :action => 'new', 
+							  :id => @installation, :block_token => block_token, :only_path => false, :protocol => 'http') if available
+			end 
+
+			starts_at += time_frame	
+			
+			if available or reserved		
+				@events << [title, the_starts_at, the_ends_at, the_starts_hour_at, 
+						the_starts_minute_at, the_ends_hour_at, the_ends_minute_at, 
+						the_starts_year_at.to_i, the_starts_month_at.to_i, the_starts_day_at.to_i, url, color, text_color]			
+			end
+			
+		end 
+	end
+end 
+%>
+
+<%= render 'reservations/full_calendar_box', :the_events => @events %>
