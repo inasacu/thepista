@@ -56,7 +56,7 @@ class Match < ActiveRecord::Base
          :conditions => ["schedules.archive = false and matches.type_id = 3 and schedules.played = true and groups_users.group_id in (?) and 
               age(matches.status_at, matches.created_at) > '00:00:00' and 
               matches.status_at != matches.created_at and matches.status_at >= schedules.starts_at - INTERVAL '1 days' 
-              and matches.status_at >= ?", user.groups, THREE_WEEKS_AGO]).each do |item| 
+              and matches.status_at >= ?", user.groups, LAST_THREE_DAYS]).each do |item| 
       items << item
     end
     return items 

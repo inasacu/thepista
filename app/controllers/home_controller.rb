@@ -59,7 +59,7 @@ class HomeController < ApplicationController
       
       Comment.latest_items(@all_match_items, current_user)
       Match.latest_items(@all_match_items, current_user)
-      Match.last_minute_items(@all_match_items, current_user) 
+      Match.last_minute_items(@all_match_items, current_user) if DISPLAY_LAST_MINUTE_CANCEL
       
       Teammate.my_groups_petitions(@requested_teammates, current_user)
       Teammate.my_challenges_petitions(@requested_teammates, current_user)   
