@@ -16,13 +16,8 @@ label_confirm = "#{field_label_name(:password_confirmation)}<br/>#{field_label_n
 	<% if the_signup %>
 
 		<label><%= label_confirm %></label><%= f.password_field :password_confirmation, :class => 'username text' %>
-		<br/>
-		<br/>
-		<br/>
-		<%= label_name(:recaptcha_type_words) %>
-		<br/>
-		<%= recaptcha_tags %>
-		<br/>
+
+		<%= render 'utilities/recaptcha' %>
 
 	<% end %>
 
