@@ -69,25 +69,26 @@ $(function(){
 	}
 
 
+	<% if DISPLAY_GEO_CODE %>
 	// geo code user location
 	,{ action : 'geoLatLng',
-	callback : function(latLng){
-		if (latLng){
-			$(this).gmap3({
-				action: 'addMarker', 
-				latLng:latLng,
-				map:{
-					center: latLng
-				}				
-			},
-			"autofit");
-		} else {
-			$('#search_result').html('<%= I18n.t(:you_are_not_here) %>');
+		callback : function(latLng){
+			if (latLng){
+				$(this).gmap3({
+					action: 'addMarker', 
+					latLng:latLng,
+					map:{
+						center: latLng
+					}				
+				},
+				"autofit");
+			} else {
+				$('#search_result').html('<%= I18n.t(:you_are_not_here) %>');
+			}
 		}
 	}
-}
 
-
+	<% end -%>
 );
 });
 	
@@ -104,8 +105,10 @@ $(function(){
 
 <div class="block">
 
-	<h3><div id="search_result"><%= the_item_link %></div></h3>
-
+	<% if DISPLAY_GEO_CODE %>
+		<h3><div id="search_result"><%= the_item_link %></div></h3>
+	<% end -%>
+	
 	<div class="content">
 
 		<br/>
