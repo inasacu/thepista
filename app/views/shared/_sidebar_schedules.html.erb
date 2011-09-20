@@ -17,10 +17,11 @@
 				<td class="name_and_date">
 					<%= (current_user.is_member_of?(schedule.group) or schedule.public) ? schedule_image_link_small(schedule) : schedule_image_small(schedule) %>
 					<%= (current_user.is_member_of?(schedule.group) or schedule.public) ? link_to(sanitize(schedule.concept), 
-										team_roster_path(:id => schedule)) : sanitize(schedule.concept) %><br/>
+										team_roster_path(:id => schedule)) : sanitize(schedule.concept) %>,&nbsp;
+					<%= item_name_link(schedule.group) %><br/>
 					<%= nice_day_time_wo_year_exact(schedule.starts_at) %><br/>
-					<%= schedule.group.marker.city.capitalize %><br>
 					<%= the_sport %><br/>	
+					<%= schedule.group.marker.city.capitalize %><br>
 					<%= marker_link(schedule.group.marker) %>
 				</td>
 			</tr>
