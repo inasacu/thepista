@@ -82,7 +82,7 @@
 			else
 				block_token = Base64::b64encode(starts_at.to_i.to_s)
 				available = (starts_at > Time.zone.now + @minutes_to_reserve)
-				url = url_for(:host => 'thepista.local', :controller => 'reservations',  :action => 'new', 
+				url = url_for(:host => 'haypista.com', :controller => 'reservations',  :action => 'new', 
 							  :id => @installation, :block_token => block_token, :only_path => false, :protocol => 'http') if available
 			end 
 
