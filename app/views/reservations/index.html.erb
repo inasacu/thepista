@@ -27,8 +27,8 @@
 		<div class="inner">
 			<table class="table">
 				
-				<%= render 'reservations/full_calendar', :first_day => @first_day, :time_frame => @time_frame, :installation => @installation unless production? %>	
-				<%= render 'reservations/new_reservation', :first_day => @first_day, :time_frame => @time_frame, :installation => @installation if production? %>
+				<%= render 'reservations/full_calendar', :first_day => @first_day, :time_frame => @time_frame, :installation => @installation %>	
+				<%#= render 'reservations/new_reservation', :first_day => @first_day, :time_frame => @time_frame, :installation => @installation if production? %>
 			</table>
 		</div>
 
