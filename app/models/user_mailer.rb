@@ -25,9 +25,6 @@ class UserMailer < ActionMailer::Base
     if teammate.group
       @subject          = "#{the_subject} #{teammate.group.name} " 
       @body[:group]     = teammate.group 
-    # elsif teammate.tournament
-    #   @subject          = "#{the_subject} #{teammate.tournament.name} " 
-    #   @body[:group]     = teammate.tournament 
     end
     @recipients       = recipient.email
     @from             = "#{sender.name} <#{sender.email}>"
@@ -42,9 +39,6 @@ class UserMailer < ActionMailer::Base
     if teammate.group
       @subject          = "#{the_subject} #{teammate.group.name} " 
       @body[:group]     = teammate.group 
-    # elsif teammate.tournament
-    #   @subject          = "#{the_subject} #{teammate.tournament.name} " 
-    #   @body[:group]     = teammate.tournament 
     end
     @recipients       = recipient.email
     @from             = "#{sender.name} <#{sender.email}>"
@@ -90,14 +84,17 @@ class UserMailer < ActionMailer::Base
   end
 
   def message_notification(message)
+    I18n.locale = message.sender.language
     setup_message_email(message)
   end
 
   def message_schedule(message)
+    I18n.locale = message.sender.language
     setup_message_email(message)
   end
 
   def signup_invitation(invitation)
+    I18n.locale = message.sender.language
     setup_invitation_email(invitation)
   end
 

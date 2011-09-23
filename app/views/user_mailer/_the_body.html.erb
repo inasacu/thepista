@@ -9,7 +9,15 @@
     <td style="width:1%; color:#999999; vertical-align: top;">&nbsp;</td>
     <td style="width:99%">&nbsp;
 		<%= link_to(I18n.t(:reply), message_url(@message)) unless (@schedule or !@message.recipient_deleted_at.nil?) %>
-		<%= link_to(@schedule.concept, forum_url(@schedule.forum)) if @schedule %>  
+		
+		<% if @schedule %>		
+			<%= link_to(@schedule.concept, forum_url(@schedule.forum))  %><br/>
+			<%= link_to(@schedule.group.name, group_url(@schedule.group))  %><br/>
+			<%= I18n.l(@schedule.starts_at, :format => :day_time_wo_year_exact) %><br/>
+			<%= @schedule.group.marker.city.capitalize %><br>
+			<%= link_to(@schedule.group.marker.name, marker_url(@schedule.group.marker)) %><br/>
+		<% end -%>
+		
 	</td>
   </tr>
 </table>
