@@ -743,11 +743,11 @@ input.text_field,text_area.textfield,td.label {
 }
 
 .next_message {
-	background:url('../images/previo-evento.png') no-repeat scroll 0 0 transparent
+	background:url('../images/arrow_left.gif') no-repeat scroll 0 0 transparent
 }
 
 .previous_message {
-	background:url('../images/proximo-evento.png') no-repeat scroll 0 0 transparent
+	background:url('../images/arrow_right.gif') no-repeat scroll 0 0 transparent
 }
 
 .table th.last,.table th.last_roster,.table th.second_team_last_roster {

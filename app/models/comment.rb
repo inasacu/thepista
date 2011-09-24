@@ -20,7 +20,7 @@ class Comment < ActiveRecord::Base
 
     if user.groups.count > 0
 
-      find(:all, :select => "distinct comments.id, comments.user_id, comments.commentable_id, comments.commentable_type, comments.updated_at as created_at, comments.title", 
+      find(:all, :select => "distinct comments.id, comments.user_id, comments.commentable_id, comments.commentable_type, comments.updated_at as created_at, comments.title, comments.body", 
       :joins => "left join groups_users on groups_users.user_id = comments.user_id",    
       :conditions => ["groups_users.group_id in (?) and comments.updated_at >= ? and comments.archive = false", user.groups, LAST_THREE_DAYS],
       :order => "comments.commentable_type DESC, comments.commentable_id DESC, comments.updated_at DESC").each do |item| 

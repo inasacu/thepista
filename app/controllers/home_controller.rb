@@ -6,6 +6,9 @@ class HomeController < ApplicationController
 
   def index
     store_location  
+    # render :template => 'home/facebook_comments'
+    # render :template => 'home/pricing'
+    # render :template => 'home/tooltip'
   end
   
   def qr
@@ -45,6 +48,9 @@ class HomeController < ApplicationController
     @my_schedules = []    
     @requested_teammates = [] 
     
+    @all_comment_items = []
+    @comment_items = []
+    
     @has_values = false   
     
     Teammate.latest_teammates(@all_items) 
@@ -57,7 +63,8 @@ class HomeController < ApplicationController
       
       @my_schedules = Schedule.my_current_schedules(current_user)
       
-      Comment.latest_items(@all_match_items, current_user)
+      Comment.latest_items(@all_comment_items, current_user)
+      
       Match.latest_items(@all_match_items, current_user)
       Match.last_minute_items(@all_match_items, current_user) if DISPLAY_LAST_MINUTE_CANCEL
       
@@ -88,6 +95,9 @@ class HomeController < ApplicationController
     
     @all_schedule_items = @all_schedule_items.sort_by(&:created_at).reverse!    
     @all_schedule_items[0..MEDIUM_FEED_SIZE].each {|item| @schedule_items << item }
+    
+    @all_comment_items = @all_comment_items.sort_by(&:created_at).reverse!    
+    @all_comment_items[0..EXTENDED_FEED_SIZE].each {|item| @comment_items << item }
     
     @all_match_items = @all_match_items.sort_by(&:created_at).reverse!    
     @all_match_items[0..EXTENDED_FEED_SIZE].each {|item| @match_items << item }

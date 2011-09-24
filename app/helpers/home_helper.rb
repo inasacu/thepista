@@ -154,31 +154,34 @@ module HomeHelper
         	case teammate.commentable_type
         	when "Blog"
           	blog = teammate.commentable
-  			the_icon = comment_image_link_small(blog)
+  			    the_icon = comment_image_link_small(blog)
+				    the_blog_link = item_name_link(blog.name, blog, {:title => teammate.body, :class => "vtip"})
 
           	case blog.item_type
           	when "User"
-  				the_user = blog.item
+  				      the_user = blog.item
   	          	is_member = current_user.is_user_member_of?(the_user)
-              	the_label = %(#{I18n.t(:left_comment_on_wall)}  #{is_member ? blog_link_item(blog) : sanitize(blog.item.name)})
+    				    
+              	the_label = %(#{I18n.t(:left_comment_on_wall)}  #{is_member ? the_blog_link : sanitize(blog.item.name)})
           	when "Group", "Challenge"
             		is_member = current_user.is_member_of?(blog.item)
-            		the_label = %(#{I18n.t(:left_post_on_forum)}  #{is_member ? blog_link_item(blog) : sanitize(blog.item.name)})
+            		the_label = %(#{I18n.t(:left_post_on_forum)}  #{is_member ? the_blog_link : sanitize(blog.item.name)})
           	when "Venue"
-            		the_label = %(#{I18n.t(:left_post_on_forum)}  #{blog_link_item(blog)})
+            		the_label = %(#{I18n.t(:left_post_on_forum)}  #{the_blog_link})
           	end
 
   		when "Forum"
   		    forum = teammate.commentable
   			  the_icon = comment_image_link_small(forum)
+			    the_forum_link = item_name_link(forum.name, forum, {:title => teammate.body, :class => "vtip"})
 
   		    if forum.schedule        
   		      	is_member = current_user.is_member_of?(forum.schedule.group)  
   				    item_group_link = item_name_link(forum.schedule.group)
-
-  		        the_label = %(#{I18n.t(:left_post_on_forum) } #{is_member ? forum_link(forum): sanitize(forum.schedule.concept)})
+  				    
+  		        the_label = %(#{I18n.t(:left_post_on_forum) } #{is_member ? the_forum_link : sanitize(forum.schedule.concept)})
   		        if teammate.title == 'Schedule'
-                the_label = %(#{I18n.t(:left_post_teams_on_forum) } #{is_member ? forum_link(forum): sanitize(forum.schedule.concept)})
+                the_label = %(#{I18n.t(:left_post_teams_on_forum) } #{is_member ? the_forum_link : sanitize(forum.schedule.concept)})
               end
               
   		    end

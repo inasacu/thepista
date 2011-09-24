@@ -42,8 +42,12 @@
 
 	<%= javascript_include_tag 'application' %>	
 	<%= javascript_include_tag "ie_no_more" %>
+	<%= javascript_include_tag "vtip" %>
 
-	<%= stylesheet_link_tag 'primary' unless is_ie6? %>
+	<%  unless is_ie6? %>
+		<%= stylesheet_link_tag 'primary' %>
+		<%= stylesheet_link_tag 'vtip' %>
+	<% end -%>
 
 	<%= render :partial => 'utilities/google_analytics' %>
 </head>
