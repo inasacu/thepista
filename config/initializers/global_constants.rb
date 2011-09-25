@@ -38,6 +38,10 @@ NEXT_24_HOURS = Time.zone.now + 1.day
 TWO_DAYS_AFTER = Time.zone.now + 2.days
 HOURS_BEFORE_GAME = Time.zone.now + 4.hours
 
+TIME_ONE_DAY_AGO = 1.day.ago
+TIME_THREE_DAYS_AGO = 2.days.ago
+TIME_WEEK_AGO = 1.week.ago
+
 TIME_AGO_FOR_MOSTLY_ACTIVE = 1.month.ago
 TRASH_TIME_AGO = 1.month.ago
 ACTIVITY_TIME_AGO = 6.months.ago

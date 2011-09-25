@@ -5,8 +5,13 @@ task :the_message_archive => :environment do |t|
 
   ActiveRecord::Base.establish_connection(RAILS_ENV.to_sym)
 
-  @archive_messages = Message.find(:all, :select => "distinct parent_id", :conditions => ["created_at <= ?", 1.month.ago])
-  @archive_messages.each do |archive|
+  the_archive_messages = []
+
+  @archive_messages = Message.find(:all, :select => "distinct parent_id", :conditions => ["created_at <= ?", TIME_WEEK_AGO])
+  @archive_messages.each {|message| the_archive_messages << message}
+
+  # archive all messages older than 1 week, any scorecard or scheduls
+  the_archive_messages.each do |archive|
 
     @parent_messages = Message.find_all_parent_messages(archive.parent_id)
     @parent_messages.each do |message|
@@ -33,6 +38,22 @@ task :the_message_archive => :environment do |t|
     message.save!
     puts "#{message.created_at} - mark as red"
   end
+
+
+  the_archive_messages = []
+
+  @archive_messages = Message.find(:all, :conditions => ["item_type = 'Scorecard'"])
+  @archive_messages.each {|message| the_archive_messages << message}
+
+  @archive_messages = Message.find(:all, :conditions => ["item_type = 'Schedule'"])
+  @archive_messages.each {|message| the_archive_messages << message}
+
+
+  the_archive_messages.each do |message|
+    puts "#{message.id}, #{message.parent_id}, #{message.conversation_id} - message removed"
+    message.destroy
+  end
+
 
 end
 
