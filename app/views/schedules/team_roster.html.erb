@@ -1,6 +1,6 @@
-
 <% 
-	the_label = "#{control_action_label("#{@has_a_roster}")} #{label_name(:in)} #{sanitize(@schedule.concept)}"
+	the_label = "#{control_action_label("#{@has_a_roster}")} #{label_name(:in)} #{sanitize(@schedule.concept)} (#{h(@schedule.group.name)})"
+	
 	content_for(:title, sanitize(@schedule.concept))
 	
 	has_been_played = @schedule.played? 
