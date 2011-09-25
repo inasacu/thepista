@@ -156,16 +156,4 @@ task :the_archive_dependent => :environment do |t|
     end
   end  
   
-  
-  # unarchive group 
-  group_id = [6]  
-
-  # unarchive groups listed above
-  the_archive = Group.find(:all, :conditions => ["id in (?)", group_id])
-  the_archive.each do |group|    
-    puts "unarchive group => #{group.name}"
-    group.archive = false
-    group.save if has_to_archive
-  end 
-  
 end

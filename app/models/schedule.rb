@@ -5,9 +5,9 @@ class Schedule < ActiveRecord::Base
   ajaxful_rateable :stars => 5, :dimensions => [:performance]
   
 
-  has_many  :matches,  :conditions => "matches.archive = false",    :dependent => :destroy
-  has_many  :fees,                                                  :dependent => :destroy 
-  has_one   :forum,                                                 :dependent => :destroy
+  has_many  :matches,  :conditions => "matches.archive = false"#,    :dependent => :destroy
+  has_many  :fees#,                                                  :dependent => :destroy 
+  has_one   :forum#,                                                 :dependent => :destroy
 
   has_many :home_roster,
   :through => :matches,

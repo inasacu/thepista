@@ -12,9 +12,6 @@ class Installation < ActiveRecord::Base
       validates_attachment_content_type :photo, :content_type => ['image/jpeg', 'image/png', 'image/gif', 'image/jpg', 'image/pjpeg']
       validates_attachment_size         :photo, :less_than => 5.megabytes
 
-    # has_many        :fees,                                                  :dependent => :destroy 
-    # has_one         :forum,                                                 :dependent => :destroy
-
     belongs_to      :venue
     belongs_to      :marker
     belongs_to      :sport  

@@ -2,7 +2,7 @@ class Reservation < ActiveRecord::Base
 
   index{ concept }
 
-  has_many    :fees,            :dependent => :destroy 
+  has_many    :fees #,            :dependent => :destroy 
   belongs_to  :item,            :polymorphic => true
   belongs_to  :installation
   belongs_to  :venue

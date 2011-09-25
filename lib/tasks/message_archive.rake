@@ -50,7 +50,7 @@ task :the_message_archive => :environment do |t|
 
 
   the_archive_messages.each do |message|
-    puts "#{message.id}, #{message.parent_id}, #{message.conversation_id} - message removed"
+    puts "#{message.id}, #{message.item_type} - message removed"
     message.destroy
   end
 
