@@ -94,7 +94,7 @@ class UserMailer < ActionMailer::Base
   end
 
   def signup_invitation(invitation)
-    I18n.locale = message.sender.language
+    # I18n.locale = message.sender.language
     setup_invitation_email(invitation)
   end
 
