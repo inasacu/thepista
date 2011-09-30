@@ -57,6 +57,7 @@ class HomeController < ApplicationController
     Schedule.latest_matches(@all_items) 
     Schedule.latest_items(@all_schedule_items)   
     Group.latest_items(@all_items)    
+    User.latest_items(@all_items)
     
     if current_user      
       @no_linkedin_profile = (current_user.linkedin_url.nil? or current_user.linkedin_url.blank? or current_user.linkedin_url.empty?)

@@ -185,12 +185,16 @@ class User < ActiveRecord::Base
         items << item
       end
       return items 
-    end    
+    end 
+
+    def self.latest_items(items)
+      find(:all, :select => "id, name, photo_file_name, created_at", :conditions => ["created_at >= ? and archive = false", LAST_THREE_DAYS]).each do |item| 
+        items << item
+      end
+      return items 
+    end   
     
     def friends
-      # User.find(:all, :select => "distinct users.*", :joins => "LEFT JOIN groups_users on groups_users.user_id = users.id", 
-                      # :conditions => ["users.id != ? and groups_users.group_id in (?)", self, self.groups], :order => "users.name")
-                      
       User.find(:all, :select => "distinct users.*", :joins => "LEFT JOIN groups_users on groups_users.user_id = users.id", 
                                         :conditions => ["users.archive = false and users.id != ? and groups_users.group_id in (select distinct group_id from groups_users where user_id = ?)", self, self], :order => "users.name")
     end
