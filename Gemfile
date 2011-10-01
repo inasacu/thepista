@@ -17,16 +17,13 @@ gem 'openid'												, '0.0.1'
 gem 'ruby-openid'											, :require => 'openid'	
 gem 'acl9'													, '0.12.0'
 gem 'geokit'												, '1.5.0'
-
-# gem 'contacts'												, '1.2.4'
-
 gem 'sitemap_generator'										, '1.3.5'
 gem 'acts_as_commentable'									, '2.1.1'
 gem 'hoptoad_notifier'	
 gem 'rpx_now'												, '0.6.23'
 gem 'url_shortener'											, '0.0.6'
 gem 'i18n'   												, '0.4'
-gem 'friendly_id'											, '~>3.1'
+gem 'friendly_id'											, '~> 3.1.7'
 gem 'completeness-fu'										, '0.5.2'
 gem 'json_pure'												, '1.5.3'
 gem 'texticle' 
@@ -37,11 +34,4 @@ gem 'delayed_job'											, '2.0.7'
 gem 'hirefireapp'
 gem 'paperclip'												, '~> 2.3'
 gem 'linkedin'
-
-# gem 'right_aws' 											, '2.0.0'
-
-group :development do
-  # bundler requires these gems in development
-  gem 'mysql'
-  gem 'rails_best_practices'
-end	
+gem 'composite_primary_keys'								, '~> 2.3.5.1'

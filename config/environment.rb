@@ -22,25 +22,22 @@ Rails::Initializer.run do |config|
   gem "authlogic-oid",                      :lib => "authlogic_openid"
   gem "ruby-openid",                        :lib => "openid"
   gem "acl9",                               :lib => "acl9",                         :source => "http://gemcutter.org"
-  # gem "contacts"   
   gem 'sitemap_generator'                  
   gem 'acts_as_commentable',                :version => "2.1.1"           
   gem 'hoptoad_notifier'
   gem 'rpx_now',                            :version => "0.6.24"
   gem "url_shortener"
   gem "i18n",                               :version => "0.4"
-  gem "friendly_id"                       
+  # gem "friendly_id"                       
   gem "geokit"
   gem "completeness-fu"
-  gem "rails_best_practices"
   gem 'texticle' 
   gem 'heroku_s3_backup'
   gem 'trueskill'
   gem 'delayed_job',                        :version => "2.0.7"
   gem 'hirefireapp'
   gem 'paperclip',                          :version => "~> 2.3"
-     
-  # gem "aws-s3"												, "0.6.2"
+  gem 'composite_primary_keys',             :version => "~> 2.3.5.1"
   
     
   # Only load the plugins named here, in the order given (default is alphabetical).
