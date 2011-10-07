@@ -7,7 +7,7 @@
 source 'http://gems.github.com'	
 source 'http://rubygems.org'
 
-gem 'rails'													, '2.3.8'
+gem 'rails'													, '~> 2.3.8'
 gem 'pg'
 gem 'rack-cache'											, '0.5', :require => 'rack/cache' 	
 gem 'authlogic'												, '2.1.6'

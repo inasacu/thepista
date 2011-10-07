@@ -127,7 +127,7 @@ ActionController::Routing::Routes.draw do |map|
   map.resources   :schedules,       :as => 'eventos',                     :collection => { :list => :get, :archive_list => :get, :my_list => :get }          
   map.resources   :groups,          :as => 'equipos',                     :collection => { :list => :get }
   map.resources   :markers,         :as => 'mapa',                        :collection => { :list => :get , :direction => :get, :full_list => :get}
-  map.resources   :scorecards,      :as => 'classificaciones',            :collection => { :list => :get }
+  map.resources   :scorecards,      :as => 'clasificaciones',            :collection => { :list => :get }
 
   map.resources   :matches,         :as => 'jornadas'
   map.resources   :invitations,     :as => 'invitaciones'

@@ -14,7 +14,7 @@ development:
         realm:          thepista-local
         
     server_name: 
-        key:            thepista.local
+        key:            thepista.dev
         
     bit_ly_api:
         login:          haypista
