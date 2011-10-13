@@ -34,12 +34,16 @@
   </div>
 
 <% if is_group_edit %>	
+	
+	<% if @group.venue %>
 
 	<div class="group">
 		<%= f.label :installation_id, "#{item_name_link(@group.venue)}<br/>#{label_name('installation')}", :class => :label %>
 		<%= f.select(:installation_id, Installation.installation_name(@group.venue), {:selected => @group.installation_id, :include_blank => true}) %><br />
 		<span class="description"><%= label_name('installations', 'description') %></span>
 	</div>
+	
+	<% end -%>
 
 	<div class="group">
 		<%= f.label :time_zone, label_name('time_zone'), :class => :label %>
