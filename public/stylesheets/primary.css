@@ -129,7 +129,7 @@ a img,.ajaxful-rating .show-value,.ajaxful-rating span,.ajaxful-rating a {
 }
 
 #main {
-	width: 70%;
+	width: 55em;
 }
 
 #sidebar {
@@ -194,8 +194,8 @@ a img,.ajaxful-rating .show-value,.ajaxful-rating span,.ajaxful-rating a {
 #wrapper {
 	padding-top:20px;
 	padding-bottom: 20px;
-	padding-left: 155px;
-	padding-right: 155px;
+	padding-left: 135px;
+	padding-right: 135px;
 }
 
 #main .block .content .inner {

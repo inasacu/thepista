@@ -30,14 +30,14 @@
 	
 	<div class="inner">
 		
-		<div class="columns"> 
+		<!-- <div class="columns">  -->
 				<table class="table">
 				<tr>
 					<%= content_tag :td, the_start_at_label, :class =>"first_left" %>
 					<%= content_tag :td, match_all_my_link(@schedule, current_user, false), :class =>"last_left" %>
 				</tr>
 				</table>
-		</div>
+		<!-- </div> -->
 <% 
 	if @has_a_roster
 %>
