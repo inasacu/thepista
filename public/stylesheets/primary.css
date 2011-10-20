@@ -1,8 +1,3 @@
-/* @override 
-	http://thepista.local/stylesheets/primary.css?1308426061
-	http://thepista.local/stylesheets/primary.css?1312405306
-*/
-
 html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td,#status a,#list-panel ul,.abook-column-headers h3,*,#header h1,#sidebar h3,#sidebar ul.navigation,.secondary-navigation ul,#main-navigation ul,#user-navigation ul,input.checkbox,.form textarea.text_area,.form input.text_field,.form label.label,ul.list,#box .block h2,#about .block h2,#footer .block p,li,ol,div#footer p,.cluetip-default #cluetip-outer,.ajaxful-rating {
 	margin:0
 }
@@ -32,7 +27,6 @@ body {
 	line-height:1;
 	font:12px arial,verdana,sans-serif;
 	color:#222;
-/*	font-family:"Helvetica Neue",Helvetica,Arial,"Bitstream Vera Sans",sans-serif;	*/
 	font-family: "Lucida Grande",Helvetica,Arial,Verdana,sans-serif;
 }
 
@@ -129,11 +123,11 @@ a img,.ajaxful-rating .show-value,.ajaxful-rating span,.ajaxful-rating a {
 }
 
 #main {
-	width: 55em;
+	width: 65%;
 }
 
 #sidebar {
-	width: 28%;
+	width: 25%;
 }
 
 #list-panel input,.abook-column,.abook-column-headers .list-header .select-controls,.abook-column-headers h3,.progress .meter,.progress-meter,#main,.actions-bar .actions,.secondary-navigation ul li,#main-navigation ul li,#user-navigation ul li,.pagination span,.pagination a,.form div.left,.form .columns .left,ul.list li .left,ul.list li .item .avatar,.left,.next_message,div#footer ol li,.header div.logo,.header a.logo,.header li,.header li a,.sections {
