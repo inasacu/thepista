@@ -14,8 +14,8 @@ class Marker < ActiveRecord::Base
   attr_accessible :name, :latitude, :longitude, :lat, :lng, :phone, :address, :city, :region, :zip, :description
 
   # NOTE:  MUST BE DECLARED AFTER attr_accessible otherwise you get a 'RuntimeError: Declare either attr_protected or attr_accessible' 
-  # has_friendly_id :name, :use_slug => true, :approximate_ascii => true, 
-  #                  :reserved_words => ["new", "create", "index", "list", "signup", "edit", "update", "destroy", "show"]
+  has_friendly_id :name, :use_slug => true, :approximate_ascii => true, 
+                   :reserved_words => ["new", "create", "index", "list", "signup", "edit", "update", "destroy", "show"]
 
   # example
   # acts_as_mappable :default_units => :miles, 
@@ -50,8 +50,13 @@ class Marker < ActiveRecord::Base
     find(:all, :origin =>[lat, lng], :within => NUMBER_LOCAL_METER)
   end
 
-  def self.marker_name
-    find(:all, :select => "distinct markers.*", :joins => "join groups on groups.marker_id = markers.id").collect {|p| [ "#{p.name} (#{p.city})", p.id ] }
+  def self.marker_name(user)
+    if user.city_id > 0 
+
+      find(:all, :select => "distinct markers.*", :conditions =>[ "upper(markers.city) = upper(?)", user.city.name], :order => "markers.name").collect {|p| [ "#{p.name} (#{p.city})", p.id ] }
+    else
+      find(:all, :select => "distinct markers.*", :joins => "join groups on groups.marker_id = markers.id").collect {|p| [ "#{p.name} (#{p.city})", p.id ] }
+    end
   end  
 
   def my_sports

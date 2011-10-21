@@ -9,9 +9,9 @@
 			<li class="<%= get_active('marker_search')  %>"><%= link_to(control_label('search') , search_map_url) %></li>
 			<li class="<%= get_active('marker_list')  %>"><%= link_to(control_label('list') , list_markers_url) %></li>
 			<li class="<%= get_active('marker_direction')  %>"><%= link_to(control_label('direction') , direction_markers_url) %></li>
-			<% if current_user.is_maximo?  %>
+			<%# if current_user.is_maximo?  %>
 			<li class="<%= get_active('marker_full_list') %>"><%=  link_to(label_name(:list), full_list_markers_url) %></li>
-			<% end %>
+			<%# end %>
 		<% end %>
 	</ul>
 	

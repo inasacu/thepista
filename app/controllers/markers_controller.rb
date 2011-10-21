@@ -2,7 +2,8 @@ require 'ym4r_gm'
 
 class MarkersController < ApplicationController
   before_filter :require_user
-  before_filter :the_maximo,            :only => [:full_list, :edit, :update]
+  # before_filter :the_maximo,            :only => [:full_list, :edit, :update]
+  before_filter :the_maximo,            :only => [:edit, :update]
 
   before_filter :get_marker,            :only => [:edit, :update]
   before_filter :get_complete_markers,  :only => [:list]

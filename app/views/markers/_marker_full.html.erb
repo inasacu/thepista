@@ -1,5 +1,6 @@
 <tr>  
 	<td>
+		<%= option_image_link('installation') %>
 	</td>
 
 	<td class="name_and_date">
@@ -16,7 +17,7 @@
 	</td>
 
 	<td>
-		<%= "#{marker.latitude}<br/>#{marker.longitude}" %>
+		<%= "#{marker.latitude}<br/>#{marker.longitude}" if current_user.is_maximo? %>
 	</td>
 
 	<% if display_icons %>
