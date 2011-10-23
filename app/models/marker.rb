@@ -52,8 +52,7 @@ class Marker < ActiveRecord::Base
 
   def self.marker_name(user)
     if user.city_id > 0 
-
-      find(:all, :select => "distinct markers.*", :conditions =>[ "upper(markers.city) = upper(?)", user.city.name], :order => "markers.name").collect {|p| [ "#{p.name} (#{p.city})", p.id ] }
+      find(:all, :select => "distinct markers.*", :conditions =>[ "markers.archive = false and upper(markers.city) = upper(?)", user.city.name], :order => "markers.name").collect {|p| [ "#{p.name} (#{p.city})", p.id ] }
     else
       find(:all, :select => "distinct markers.*", :joins => "join groups on groups.marker_id = markers.id").collect {|p| [ "#{p.name} (#{p.city})", p.id ] }
     end
