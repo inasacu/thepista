@@ -1,17 +1,16 @@
-# to run:    sudo rake the_archive_marker  heroku rake the_archive_marker --app  thepista
+# to run:    sudo rake the_archive_marker  heroku rake the_archive_marker --app  haypista
 
 desc "ARCHIVE a marker"
 task :the_archive_marker => :environment do |t|
 
   ActiveRecord::Base.establish_connection(RAILS_ENV.to_sym)
-  
-  the_marker = Marker.find(:first, :conditions => "id = 80")
-  puts the_marker.name
-  the_marker.archive = true
-  the_marker.save
-    
-  the_marker.destroy
-  
+
+  the_markers = Marker.find(:all, :conditions => "id in (17,79,44,15,52,76,45)")
+  the_markers.each do |marker|
+    puts marker.name    
+    marker.destroy
+  end
+
 end
 
 
