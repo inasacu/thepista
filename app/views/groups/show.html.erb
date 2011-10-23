@@ -46,7 +46,7 @@
 		</tr>
 
 		<% 
-		if @group.venue 
+		if @group.venue and current_user.is_maximo?
 			the_venue_link = item_name_link(@group.venue)
 			the_venue_link = item_name_link(@group.venue.name, @group.installation) if @group.installation
 		%>
