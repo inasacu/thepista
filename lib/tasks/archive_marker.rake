@@ -9,6 +9,8 @@ task :the_archive_marker => :environment do |t|
   puts the_marker.name
   the_marker.archive = true
   the_marker.save
+    
+  the_marker.destroy
   
 end
 
