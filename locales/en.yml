@@ -219,7 +219,7 @@ en:
      create_url_venue: new marker to indicate where you play   
      create_user: Invite a friend   
      create_venue: New Club   
-     create_your_own: Create your own       
+     create_your_own: make your own       
      created: has been created correctly.   
      created_at:  Date Created
      created_a_available:  is amongs the player with more games played
@@ -1453,6 +1453,9 @@ en:
      terms_message: Please accept the terms to proceed   
      test_beta: "If you are interested in forming part of the team to test the tool, pass your email account."   
      thanx_sign_up: Thanks for signing up!   
+     the_el: the
+     the_la: the
+     the_los: the
      the_haypista_team: The HayPista Team...   
      the_schedule: The Event   
      the_wall: Wall -    

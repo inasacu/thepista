@@ -1,23 +1,13 @@
-
 <h2 class="title"><%= label_name(:challenges_options_without) %></h2>
-
 <div class="inner">
-
-<p>
-	<span class="large">*&nbsp;&nbsp;
-		<%= link_to("#{label_name(:you_can)} #{label_name(:create_your_own)} #{label_name(:challenge)}", cups_url) %>
-	</span>
-</p>
-<p>
-	<span class="large">*&nbsp;&nbsp;
-		<%= link_to("#{label_name(:you_can)} #{label_name(:to_join_challenge)}", list_challenges_path) %>
-		<%#=  link_to(label_name(:all_challenge) , list_challenges_path) %>
-	</span>
-</p>
-<!-- <p>
-	<span class="large">*&nbsp;&nbsp;
-		<%#= label_name(:challenges_search_to_join) %>
-	</span>
-</p> -->
-
+	<p>
+		<span class="large">*&nbsp;&nbsp;
+			<%= link_to("#{label_name(:you_can)} #{label_name(:create_your_own)} #{label_name(:challenge).downcase}", cups_url) %>
+		</span>
+	</p>
+	<p>
+		<span class="large">*&nbsp;&nbsp;
+			<%= link_to("#{label_name(:you_can)} #{label_name(:to_join_challenge)}", list_challenges_path) %>
+		</span>
+	</p>
 </div>

@@ -221,7 +221,7 @@ es:
      create_url_venue: nuevo marcador para indicar donde vas a jugar   
      create_user: Invita a un amigo   
      create_venue: Nueva ubicación   
-     create_your_own: crear tu propio      
+     create_your_own: hacer tu propio      
      created: se ha creado correctamente.   
      created_at:  Fecha de creación
      created_a_available:  esta entre los que más partidos ha jugado
@@ -1463,6 +1463,9 @@ es:
      terms_message: Please accept the terms to proceed   
      test_beta: "Si tienes interes in formar del equipo para probar la herramienta, pasanos tu cuenta de correo."   
      thanx_sign_up: Gracias por registrarte!   
+     the_el: el
+     the_la: la
+     the_los: los
      the_haypista_team: The HayPista Team...  
      the_schedule: La jornada   
      the_wall: Muro de   
@@ -1819,6 +1822,7 @@ es:
      groups_no:  Ningun equipo para mostrar
      groups_none:  Ningun equipo.
      groups_options_without: "¿Qué opciones tienes ya que no tienes un equipo?"
+     groups_options_without: "Parece que no tienes un equipo, puedes hacer lo siguiente:"
      groups_option:  Opciones 
      groups_search: Busqueda de equipos
      groups_search_to_join: Puedes buscar un equipo a quien unierte. 

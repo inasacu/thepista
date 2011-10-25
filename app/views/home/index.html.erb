@@ -2,6 +2,9 @@
 if current_user
 	the_label = label_name(:latest_activities)
 	content_for(:title, the_label)
+	
+	has_activities = @comment_items.count + @match_items.count + @schedule_items.count + @items.count + @requested_teammates.count > 0	
+	has_team = current_user.groups.count > 0
 %> 
 	<div class="block">
 		
@@ -11,35 +14,42 @@ if current_user
 			
 			<%= render 'home/upcoming_schedule', :my_schedules => @my_schedules %>
 			
-			<h2 class="title"><%= option_image_link('activities') %>&nbsp;&nbsp;<%= the_label %></h2>
-			<div class="inner">	
-					
-				<%= get_class_table_id_controller %>
-							
-				<tr>
-					<td class="first_home"></td>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td class="last"></td>
-				</tr>
-								
-				<% @requested_teammates.each do |teammate| %>
-					<%= render :partial => '/users/petition_box', :locals => {:teammate => teammate} %>
-				<% end %>
+			<% if has_activities %>
+			
+				<h2 class="title"><%= option_image_link('activities') %>&nbsp;&nbsp;<%= the_label %></h2>
 
-				<%= recent_activities_matches(@comment_items) %>
-				<%= recent_activities_matches(@match_items) %>     				
-				
-				<% @items.each do |item| %>								
+				<div class="inner">	
+
+					<%= get_class_table_id_controller %>
+
+					<tr>
+						<td class="first_home"></td>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td class="last"></td>
+					</tr>
+
+					<% @requested_teammates.each do |teammate| %>
+					<%= render :partial => '/users/petition_box', :locals => {:teammate => teammate} %>
+					<% end %>
+
+					<%= recent_activities_matches(@comment_items) %>
+					<%= recent_activities_matches(@match_items) %>     				
+
+					<% @items.each do |item| %>								
 					<%= render "home/upcoming_home", :teammate => item unless (item.class.to_s == 'Teammate') %>
 					<%= render "users/petition_box", :teammate => item if (item.class.to_s == 'Teammate') %>	
-				<% end %>  
-				<%= recent_activities_schedules(@schedule_items) %>
-				
-			</table>
+					<% end %>  
+					<%= recent_activities_schedules(@schedule_items) %>
+
+				</table>
+
+				</div>
 			
-			</div>
+			<% end %>
+			<%= render :partial => '/groups/index_blank' unless has_team %>
+				
 		</div>
 	</div>
 	
