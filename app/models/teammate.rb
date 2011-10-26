@@ -291,10 +291,14 @@ class Teammate < ActiveRecord::Base
 
     if (@manager == user or @manager == manager)
       request = self.find_user_manager_item(user, manager, item, sub_item) 
-      request.status = 'accepted'
-      request.accepted_at = accepted_at
-      request.teammate_code = nil
-      request.save!
+      
+      unless request.nil?
+        request.status = 'accepted'
+        request.accepted_at = accepted_at
+        request.teammate_code = nil
+        request.save!
+      end
+      
     end
   end
 
