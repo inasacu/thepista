@@ -24,7 +24,7 @@ class Classified < ActiveRecord::Base
 
     # method section
     def self.latest_items(items)
-      find(:all, :select => "id, concept, created_at, table_type, table_id", :conditions => ["created_at >= ? and archive = false", LAST_WEEK]).each do |item| 
+      find(:all, :select => "id, concept, created_at, item_type, item_id", :conditions => ["created_at >= ? and archive = false", LAST_WEEK]).each do |item| 
         items << item
       end
       return items 
@@ -32,7 +32,12 @@ class Classified < ActiveRecord::Base
     
     def self.find_classifieds(item, page = 1)
       self.paginate(:all, :conditions => ["table_type = ? and table_id = ?", item.class.to_s, item],
-                          :order => 'starts_at DESC', :page => page, :per_page => CLASSIFIEDS_PER_PAGE)
+      :order => 'starts_at DESC', :page => page, :per_page => CLASSIFIEDS_PER_PAGE)
+    end
+
+    def self.find_all_classifieds(page = 1)
+      self.paginate(:all, :conditions => ["created_at >= ? and archive = false", LAST_WEEK],
+      :order => 'starts_at DESC', :page => page, :per_page => CLASSIFIEDS_PER_PAGE)
     end
     
     def self.item_classifieds(item)

@@ -1030,6 +1030,7 @@ es:
      openid_user_saved: Información del usuario nuevo ha sido guardada correctamente   
      optional: opciónal 
      options: Opciones  
+     options_for_manager:  Opciones del organizador
      or: o   
      or_use: ...o utiliza   
      organize:  Organizar

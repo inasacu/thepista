@@ -1,8 +1,9 @@
 class HomeController < ApplicationController  
   before_filter :require_user, :except => [:index, :about, :help, :welcome, :pricing, :about, :terms_of_use, :privacy_policy, :faq, :openid, :success, :blog]
 
-  before_filter :get_home,        :only => [:index]
-  before_filter :get_upcoming,    :only => [:upcoming]
+  before_filter :get_home,            :only => [:index]
+  before_filter :get_upcoming,        :only => [:upcoming]
+  before_filter :get_advertisement,   :only => [:advertisement, :upcoming]
 
   def index
     store_location  
@@ -24,6 +25,13 @@ class HomeController < ApplicationController
     @all_items =  Search.new(params[:search])
     @all_items[0..LARGE_FEED_SIZE].each {|item| @item_results << item }
   end
+  
+  def advertisement
+    # @all_classifieds = @all_classifieds.sort_by(&:created_at).reverse!    
+    # @all_classifieds[0..MEDIUM_FEED_SIZE].each {|item| @classifieds << item }          
+    
+    @classifieds = Classified.find_all_classifieds(params[:page])
+  end
 
   private
   
@@ -37,6 +45,14 @@ class HomeController < ApplicationController
     @upcoming ||=  false
     @upcoming = (!@upcoming_schedules.empty? or !@upcoming_cups.empty? or !@upcoming_games.empty?)
   end
+  
+  def get_advertisement     
+    @all_classifieds = []
+    @has_classifieds = false  
+     
+    Classified.latest_items(@all_classifieds) if DISPLAY_CLASSIFIEDS 
+    @has_classifieds = @all_classifieds.count > 0
+  end  
 
   def get_home
     @items = []
@@ -46,18 +62,18 @@ class HomeController < ApplicationController
     @schedule_items = []
     @all_schedule_items = []    
     @my_schedules = []    
-    @requested_teammates = [] 
-    
+    @requested_teammates = []    
     @all_comment_items = []
     @comment_items = []
     
-    @has_values = false   
+    @all_classifieds = []
+    Classified.latest_items(@all_classifieds) if DISPLAY_CLASSIFIEDS
+    @has_classifieds = @all_classifieds.count > 0
     
     Teammate.latest_teammates(@all_items) 
     Schedule.latest_matches(@all_items) 
     Schedule.latest_items(@all_schedule_items)   
-    Group.latest_items(@all_items)    
-    User.latest_items(@all_items)
+
     
     if current_user      
       @no_linkedin_profile = (current_user.linkedin_url.nil? or current_user.linkedin_url.blank? or current_user.linkedin_url.empty?)
@@ -74,22 +90,23 @@ class HomeController < ApplicationController
       
       current_user.groups.each {|group| Scorecard.latest_items(@all_items, group)} if DISPLAY_MAX_GAMES_PLAYED   
     end
-        
-    Group.latest_updates(@all_items) if @all_items.count < MEDIUM_FEED_SIZE     
-    User.latest_updates(@all_items) if @all_items.count < MEDIUM_FEED_SIZE 
+    
+    
+    Group.latest_items(@all_items) if @all_items.count < MEDIUM_FEED_SIZE     
+    # User.latest_items(@all_items) if @all_items.count < MEDIUM_FEED_SIZE     
+    # Group.latest_updates(@all_items) if @all_items.count < MEDIUM_FEED_SIZE     
+    # User.latest_updates(@all_items) if @all_items.count < MEDIUM_FEED_SIZE 
     Venue.latest_items(@all_items) if @all_items.count < MEDIUM_FEED_SIZE  
     Reservation.latest_items(@all_items) if @all_items.count < MEDIUM_FEED_SIZE  
 
-    if @all_items.count < MEDIUM_FEED_SIZE
-      Classified.latest_items(@all_items) if DISPLAY_CLASSIFIEDS
-
-      Cup.latest_items(@all_items, @has_values)    
-      if @has_values
-        Challenge.latest_items(@all_items)  
-        Game.latest_items(@all_items)
-      end
-    end
-    
+    # if @all_items.count < MEDIUM_FEED_SIZE
+    #   has_values = false   
+    #   Cup.latest_items(@all_items, has_values)    
+    #   if @all_values.count > 0
+    #     Challenge.latest_items(@all_items)  
+    #     Game.latest_items(@all_items)
+    #   end      
+    # end    
 
     @all_items = @all_items.sort_by(&:created_at).reverse!    
     @all_items[0..MEDIUM_FEED_SIZE].each {|item| @items << item }

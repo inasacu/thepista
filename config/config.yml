@@ -7,7 +7,8 @@
 # thepista.local
 development: 
     google_api:
-        key:            ABQIAAAACEstwoTkWwNQXJRd_oxlohQcuuUAALNd07C6qfGBYEYuSAyTnhR7YxsrQg3X4P7h718oyo40Ap6xiQ
+        # key:            ABQIAAAACEstwoTkWwNQXJRd_oxlohQcuuUAALNd07C6qfGBYEYuSAyTnhR7YxsrQg3X4P7h718oyo40Ap6xiQ
+        key:            ABQIAAAACEstwoTkWwNQXJRd_oxlohSUSx-MY4mDXI31yLoG3nSQfTBNrhQlx595OTo0JB9r-YrOsXEpb_ut0A
     
     rpx_api: 
         key:            f7bbfeed95a9e71fe994397d496614da8972aa2c

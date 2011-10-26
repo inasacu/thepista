@@ -85,8 +85,9 @@ ActionController::Routing::Routes.draw do |map|
   map.untrash_message       'mensajes/:id/recuperar',                           :controller => 'messages',        :action => 'undestroy'
          
   map.upcoming              'proximos_partidos',                                :controller => 'home',            :action => 'upcoming'         
-  map.search                'busqueda',                                          :controller => 'home',            :action => 'search'
-        
+  map.search                'busqueda',                                         :controller => 'home',            :action => 'search'
+  map.advertisement         'comunicado',                                       :controller => 'home',            :action => 'advertisement'
+     
   map.search_map            'buscar_en_mapa',                                   :controller => 'markers',         :action => 'search'
   map.address_map           'address_map',                                      :controller => 'markers',         :action => 'address'
   

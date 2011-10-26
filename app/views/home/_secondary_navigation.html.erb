@@ -15,7 +15,10 @@ if current_user
 	<%
  			end
 		end 
-	%>		
+	%>	
+	
+	<%= content_tag 'li', link_to(label_name(:classifieds), advertisement_url), :class => get_active('home_advertisement') if @has_classifieds %>
+			
 <% 
 end 
 %>

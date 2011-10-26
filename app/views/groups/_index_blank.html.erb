@@ -1,19 +1,31 @@
-<h2 class="title"><%= option_image_link('group') %>&nbsp;&nbsp;<%= label_name(:groups_options_without) %></h2>
-
 <div class="inner">
-	<p>
-		<span class="large">*&nbsp;&nbsp;
-			<%= link_to("#{label_name(:you_can)} #{label_name(:create_your_own)} #{label_name(:group).downcase}", new_group_url) %>
-		</span>
-	</p>
-	<p>
-		<span class="large">*&nbsp;&nbsp;
-			<%= link_to("#{label_name(:you_can)} #{label_name(:to_join_group)}", list_groups_path) %>
-		</span>
-	</p>
-	<p>
-		<span class="large">*&nbsp;&nbsp;
-			<%= link_to("#{label_name(:you_can)} #{label_name(:view).downcase} #{label_name(:the_los)} #{label_name(:upcoming).downcase}", upcoming_path) if DISPLAY_UPCOMING %>
-		</span>
-	</p>
+
+<h3 class="title"><%= option_image_link('group') %>&nbsp;&nbsp;<%= label_name(:groups_options_without) %></h3>
+
+	<table class="table">
+
+		<tr>
+			<td>
+				<p>
+					<span class="large">*&nbsp;&nbsp;
+						<%= link_to("#{label_name(:you_can)} #{label_name(:create_your_own)} #{label_name(:group).downcase}", new_group_url) %>
+					</span>
+				</p>
+				<p>
+					<span class="large">*&nbsp;&nbsp;
+						<%= link_to("#{label_name(:you_can)} #{label_name(:to_join_group)}", list_groups_path) %>
+					</span>
+				</p>
+				<p>
+					<span class="large">*&nbsp;&nbsp;
+						<%= link_to("#{label_name(:you_can)} #{label_name(:view).downcase} #{label_name(:the_los)} #{label_name(:upcoming).downcase}", upcoming_path) if DISPLAY_UPCOMING %>
+						<%= link_to("#{label_name(:you_can)} #{label_name(:to_join_group)}", list_groups_path) %>
+						<%= option_image_link('invitation') %>&nbsp;&nbsp;<%= option_link('invitation') %>
+					</span>
+				</p>
+			</td>
+		</tr>
+	</table>
+
 </div>
+

@@ -12,6 +12,8 @@ if current_user
 		
 		<div class="content">   
 			
+			<%= render :partial => '/groups/index_blank' unless has_team %>
+			
 			<%= render 'home/upcoming_schedule', :my_schedules => @my_schedules %>
 			
 			<% if has_activities %>
@@ -48,7 +50,6 @@ if current_user
 				</div>
 			
 			<% end %>
-			<%= render :partial => '/groups/index_blank' unless has_team %>
 				
 		</div>
 	</div>

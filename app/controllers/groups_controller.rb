@@ -24,13 +24,14 @@ class GroupsController < ApplicationController
     store_location 
   end
 
-  def new
-    @group = Group.new
+  def new    
     
     marker = Marker.find(params[:marker_id]) if params[:marker_id]
+    
+    @group = Group.new
     @group.marker = marker
     
-    @markers = Marker.find(:all)
+    # @markers = Marker.find(:all)
     @sports = Sport.find(:all)
     # @group.conditions = I18n.t(:default_group_conditions)
   end

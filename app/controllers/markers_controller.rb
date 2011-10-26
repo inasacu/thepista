@@ -69,7 +69,7 @@ class MarkersController < ApplicationController
 
   def search
     @default_min_points = 0
-    @default_max_points = 25
+    @default_max_points = 120
     @default_zoom = 10
     render :template => "markers/index_gmap3"
   end
