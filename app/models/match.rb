@@ -36,9 +36,17 @@ class Match < ActiveRecord::Base
   attr_accessible :minutes_played, :assists, :steals, :blocks, :turnovers, :personal_fouls, :archive
   attr_accessible :technical_average, :physical_average
 
+  # NOTE:  MUST BE DECLARED AFTER attr_accessible otherwise you get a 'RuntimeError: Declare either attr_protected or attr_accessible' 
+  has_friendly_id :match_name, :use_slug => true, :approximate_ascii => true, 
+  :reserved_words => ["new", "create", "index", "list", "signup", "edit", "update", "destroy", "show"]
+  
   before_create   :format_description
   
   # method section
+  def match_name
+    "#{group.name} #{name} #{I18n.t(:match)}"
+  end
+  
   def self.latest_items(items, user)
     find(:all, :select => "distinct matches.id, matches.user_id, matches.schedule_id, matches.type_id, types.name as type_name, matches.status_at as created_at", 
          :joins => "left join groups_users on groups_users.user_id = matches.user_id left join types on types.id = matches.type_id left join schedules on schedules.id = matches.schedule_id",    

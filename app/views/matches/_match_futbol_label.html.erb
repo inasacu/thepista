@@ -1,4 +1,9 @@
+<%
+	the_label = label_name(:goals_scored_full)
+	the_label = "#{label_name(:goals_scored_full)} / #{label_name(:assists_full)}" if DISPLAY_FUTBOL_ASSIST
+%>
+
 <th>&nbsp;&nbsp;<th/>
-<th title="<%= "label_name(:goals_scored_full) / label_name(:assists_full)" %>">
-	<%= label_name(:goals_scored_full) %>&nbsp;&nbsp;/&nbsp;&nbsp;<%= label_name(:assists_full) %>
+<th title="<%= the_label %>">
+	<%= the_label %>
 </th>
