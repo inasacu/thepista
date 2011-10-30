@@ -1,5 +1,11 @@
+<% 
+	x = 7
+	x = 8  if DISPLAY_PLAYER_POSITION
+	show_last_td = show_right_border and DISPLAY_PLAYER_POSITION 
+%>
+
 <tr>
-	<% 7.times do |i| %>
+	<% x.times do |i| %>
 	<%= content_tag :td, "&nbsp;", :class => "no_line" %>
 	<% end %>
 </tr>
@@ -10,11 +16,9 @@
 	<%= content_tag :th, label_name(:physical_total), :class => "heading" %>
 	<%= content_tag :th, label_name(:technical_difference), :class => "heading" %>
 	<%= content_tag :th, label_name(:physical_difference), :class => "heading" %>
-	<%= content_tag :th, label_name(:total_difference), :class => "heading" %>
-	<%#= content_tag :th, "&nbsp;&nbsp;", :class => "heading" if has_been_played %>
-	<%#= content_tag :th, "&nbsp;", :class => "heading" unless has_been_played  %>
-	<%= content_tag :th, "&nbsp;", :class => "heading_#{show_right_border}" unless has_been_played  %>
-	<%= content_tag :th, "", :class => "last" if show_right_border %>
+	<%= content_tag :th, label_name(:total_difference), :class => "heading_#{show_right_border}" %>
+	<%= content_tag :th, "&nbsp;", :class => "heading_#{show_right_border}" unless has_been_played or !DISPLAY_PLAYER_POSITION %>
+	<%= content_tag :th, "", :class => "last" if show_last_td %>
 </tr>
 <tr>
 	<%= content_tag(:td, link_to(@schedule.home_group, group_path(@schedule.group)), :class => "no_line") %>
@@ -35,50 +39,7 @@
 	<%= content_tag(:td, away["total_difference"]) %>
 	<%#= content_tag :td, "&nbsp;"  if has_been_played %>
 	<%#= content_tag(:td, "&nbsp;") unless has_been_played  %>
-	<%= content_tag(:td, "&nbsp;") unless show_right_border %>
-	<%= content_tag(:td, "&nbsp;", :class => "last") if show_right_border %>
+	<%= content_tag(:td, "&nbsp;") unless show_right_border or !DISPLAY_PLAYER_POSITION %>
+	<%= content_tag(:td, "&nbsp;", :class => "last") if show_last_td %>
 </tr>
 
-<% if DISPLAY_TRUESKILL %>
-<tr>
-	<% 5.times do |i| %>
-	<%= content_tag :td, "&nbsp;", :class => "no_line" %>
-	<% end %>
-<tr>
-	<%= content_tag :th, label_name(:groups), :class => "first" %>
-	<%= content_tag :th, "&nbsp;", :class => "heading" %>
-	<%= content_tag :th, label_name(:users), :class => "heading", :align => "left" %>
-	<%= content_tag :th, label_name(:true_skill_mean_total), :class => "heading" %>
-	<%= content_tag :th, label_name(:true_skill_mean_difference), :class => "heading" %>
-	<%= content_tag :th, "&nbsp;&nbsp;", :class => "heading" %>
-	<%= content_tag :th, "&nbsp;&nbsp;", :class => "heading" %>
-	<%= content_tag :th, "&nbsp;&nbsp;", :class => "heading" if has_been_played %>
-	<%= content_tag :th, "&nbsp;&nbsp;", :class => "heading" unless has_been_played  %>
-	<%= content_tag :th, "&nbsp;", :class => "heading_#{show_right_border}" %>
-	<%= content_tag :th, "&nbsp;", :class => "last" if show_right_border %>
-</tr>
-<tr>
-	<%= content_tag(:td, link_to(@schedule.home_group, group_path(@schedule.group)), :class => "no_line") %>
-	<%= content_tag(:td, home["level_image"], :class => "no_line", :align => "center") %>
-	<%= content_tag(:td, home['players'], :class => "no_line", :align => "left") %>
-	<%= content_tag(:td, home["level"], :class => "no_line") %>
-	<%= content_tag(:td, home["level_difference"], :class => "no_line") %>
-	<%= content_tag(:td, "&nbsp;", :class => "no_line") %>
-</tr>
-<tr>
-	<%= content_tag(:td, link_to(@schedule.away_group, group_path(@schedule.group))) %>
-	<%= content_tag(:td, away["level_image"], :align => "center") %>
-	<%= content_tag(:td, away['players'], :align => "left") %>
-	<%= content_tag(:td, away["level"]) %>
-	<%= content_tag(:td, away["level_difference"]) %>
-	<%= content_tag(:td, "&nbsp;") %>
-	<%= content_tag(:td, "&nbsp;") %>
-	<%= content_tag(:td, "&nbsp;") %>
-	<%= content_tag :td, "&nbsp;" if has_been_played %>
-	<%= content_tag(:td, "&nbsp;") unless has_been_played  %>
-	<%= content_tag(:td, "&nbsp;", :class => "last") if show_right_border %>
-</tr>
-</tr>
-<tr><% 5.times {|i| "#{content_tag(:td, '&nbsp;', :class => 'no_line')}"} %></tr>
-<tr><% 5.times {|i| "#{content_tag(:td, '&nbsp;', :class => 'no_line')}"} %></tr>
-<% end %>
