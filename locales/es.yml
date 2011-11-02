@@ -184,7 +184,7 @@ es:
      concept: Nombre del partido
      concept_description:  Concepto   
      contact: Contacto   
-     contact_us: contáctenos 
+     contact_us: "contacta con nosotros &rarr;" 
      convocado: Convocado
      convocados: Convocados
      copy:  copia
@@ -955,6 +955,7 @@ es:
      name_sport: Nombre del deporte que practicas   
      names: Nombres   
      need_help:  ¿Necesitas ayuda?
+     need_quick_help: "Para obtener respuestas rápidas o ayuda"
      new: Nuevo
      new_low: nuevo   
      new_openid: Nueva cuenta   

@@ -182,7 +182,7 @@ en:
      concept: Match name
      concept_description:  Concept   
      contact: Contact   
-     contact_us: contact us 
+     contact_us: "email us &rarr;" 
      convocado: Squad
      convocados: Squad
      copy:  copy
@@ -946,7 +946,8 @@ en:
      name_description: "(The Team name should start with a letter and contain no special characters, exceptions:  _ o . )"  
      name_sport: Name of the sport you practice   
      names: Names   
-     need_help:  Need Support?
+     need_help:  Need Help?
+     need_quick_help: "For quick answers or help"
      new: New   
      new_low: new
      new_openid: New OpenID  
