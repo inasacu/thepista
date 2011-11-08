@@ -205,6 +205,33 @@ module SchedulesHelper
     return request_image, first_icon, request_link, the_label, the_icon, item_group_link, item_group_link, the_schedule
   end
 
+  def get_team_roster
+    the_label = "#{control_action_label("#{@has_a_roster}")} #{label_name(:in)} #{sanitize(@schedule.concept)} (#{h(@schedule.group.name)})"
+
+    the_content = content_for(:title, sanitize(@schedule.concept))
+
+    has_been_played = @schedule.played? 
+    is_manager = current_user.is_manager_of?(@schedule.group)
+    is_squad = get_the_action.gsub(' ','_') == 'team_roster'
+
+    the_sport = ""
+    the_missing = ""
+
+    unless @schedule.played?
+      the_sport = "#{label_name(:rosters)}:  #{@schedule.convocados.count}"
+      the_missing = ", #{I18n.t(:missing)}:  #{@schedule.player_limit.to_i - @schedule.convocados.count}" if @schedule.player_limit.to_i > @schedule.convocados.count
+      the_missing = ", #{I18n.t(:excess)}:  #{@schedule.convocados.count - @schedule.player_limit.to_i}" if @schedule.player_limit.to_i < @schedule.convocados.count
+    end
+
+    the_span = "#{the_sport} #{the_missing}"
+
+    the_start_at_label = "#{nice_day_of_week(@schedule.starts_at)}<br/>#{the_span}"
+    the_start_at_label = "#{the_start_at_label}#{get_cluetip(label_name(:schedule_excess_player), 'info', 
+    label_name('schedule_excess_player_cluetip'), true)}" if (@the_roster.count > @schedule.player_limit and is_squad)
+    
+    return the_label, the_content, has_been_played, is_manager, is_squad, the_sport, the_missing, the_span, the_start_at_label 
+  end
+  
 end
 
 

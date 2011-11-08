@@ -413,12 +413,13 @@ module ApplicationHelper
     link_to_unless condition, title, request.parameters.merge( {:c => column, :d => sort_dir} )
   end
 
-
   def get_secondary_navigation(item=nil, game=nil)
-    the_controller = is_controller('home') ? "#{get_the_controller}" : "#{get_the_controller}s"
-    return render("#{the_controller}/secondary_navigation") if item.nil? 
-    return render("#{(item.class.to_s).downcase}s/secondary_navigation", :item => item) if game.nil?
-    return render("#{(item.class.to_s).downcase}s/secondary_navigation", :item => item, :game => game) 
+    if DISPLAY_SECONDARY_NAVIGATION
+      the_controller = is_controller('home') ? "#{get_the_controller}" : "#{get_the_controller}s"
+      return render("#{the_controller}/secondary_navigation") if item.nil? 
+      return render("#{(item.class.to_s).downcase}s/secondary_navigation", :item => item) if game.nil?
+      return render("#{(item.class.to_s).downcase}s/secondary_navigation", :item => item, :game => game) 
+    end
   end
 
   def get_class_table_id_controller
@@ -467,23 +468,107 @@ module ApplicationHelper
     return the_content
   end
 
-  # def get_cluetip_td(the_label, the_description, the_class="") 
-  #   the_description = I18n.t("#{the_label}_cluetip") 
-  #   the_label = I18n.t(the_label)  
-  #   the_title = "<strong>#{the_label}</strong>"
-  #   the_id = "tip-#{the_label.downcase.gsub(' ','-')}-#{rand(10000)}"
-  # 
-  #   the_content = content_tag(:span, the_label, :class => 'tooltip', :title => the_title, :rel => "##{the_id}")
-  #   the_content_div = content_tag(:div, the_description, :id => the_id, :style => 'display:none')
-  #   # the_content = "<td class='#{the_class}'>#{the_content} #{the_content_div}<td>"    
-  #   the_content = "<td class='label'><a href='#'>#{the_content}</a>#{the_content_div}</td>"    
-  #   return the_content
-  # end
-
   def control_description(value, no_description=false)
     the_description = I18n.t(value)
     the_description = control_label("#{value}_description") unless no_description
     return "#{the_description}..."
   end
+  
+  def get_header_navigation
+    has_group ||= false
 
+  	if current_user 
+  		has_group = current_user.has_group? 
+  	end
+
+  	the_cup = ""
+  	the_challenge = ""
+  	the_schedule = ""
+  	the_group = ""
+  	the_users = ""
+  	the_user = ""
+  	the_petition = ""
+  	the_home = ""
+  	the_login = ""
+  	the_signup = ""
+  	the_venue = ""
+  	the_message = ""
+  	the_controller_action = ['user_list', 'user_index']
+  	the_controller = get_the_controller
+
+  	case the_controller
+  	when 'home'
+  		the_home = "active"
+
+  	when 'cup', 'game', 'escuadra'
+  		the_cup = "active"
+
+  	when 'group', 'classified'
+  		the_group = "active"
+
+  	when 'user'
+  		the_users = "active" if the_controller_action.include?(get_controller_action)
+  		the_user = "active" unless the_controller_action.include?(get_controller_action)
+  		if get_controller_action == 'user_petition'
+  			the_petition = "active" 
+  			the_user = ""
+  		end 
+
+  		the_signup = "active" if is_action('signup')
+
+  	when 'user session'
+  		the_login = "active" 
+
+  	when 'schedule', 'forum', 'match'
+  		the_schedule = (get_controller_action == "schedule_my_list")
+  		the_schedule = the_schedule ? (@user == current_user) : true
+  		the_schedule = the_schedule ? "active" : " "
+  		the_user = "active" if the_controller_action.include?(get_controller_action)
+  		if get_controller_action == 'schedule_schedule_list'
+  			the_group = "active" 
+  			the_schedule = ""
+  		end
+
+  	when 'challenge', 'cast'
+  		the_cup = "active" if is_action('list gues')
+  		the_challenge = "active" unless is_action('list gues')
+
+  	when 'standing'
+  		the_cup = "active" unless is_action('show list')
+  		the_challenge = "active" if is_action('show list')
+
+  	when 'blog'
+  		if @user
+  			the_user = "active"
+  		elsif @group
+  			the_group = "active"
+  		else @challenge
+  			the_challenge = "active" 
+  		end
+
+  	when 'fee', 'payment'
+  		if @item and @item.class.to_s == 'Challenge' 
+  			the_challenge = "active" 
+  		elsif @user
+  			the_user = "active"
+  		elsif @group
+  			the_group = "active"
+  		end
+
+  	when 'message', 'invitation'
+  		the_message = "active"
+
+  	when 'venue', "installation", "reservation"
+  		the_venue = "active"	
+  	end
+  	
+  	return has_group, the_cup, the_challenge, the_schedule, the_group, the_users, the_user, the_petition, the_home, the_login, the_signup, the_venue, the_message, the_controller_action , the_controller
+  	
+	end
+	
+	def set_title_w_image(the_label, image_label='')
+    return content_tag(:h2, "#{option_image_link(image_label)}  #{the_label}", :class => 'title')
+  end
+
+  
 end

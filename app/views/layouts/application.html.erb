@@ -47,6 +47,10 @@
 	<%  unless is_ie6? %>
 		<%= stylesheet_link_tag 'primary' %>
 		<%= stylesheet_link_tag 'vtip' %>
+		
+		<!-- Included CSS Files -->
+		<%= stylesheet_link_tag 'zurb/grid' %>
+		
 	<% end -%>
 
 	<%= render :partial => 'utilities/google_analytics' %>

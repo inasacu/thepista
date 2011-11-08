@@ -13,7 +13,10 @@ class ApplicationController < ActionController::Base
 
   before_filter :set_time_zone   
   before_filter :set_user_language
-  
+
+  # before_filter :set_template
+  # layout 'zurb'
+
   private  
   def set_user_language    
     I18n.locale = current_user.language if current_user 
@@ -58,5 +61,11 @@ class ApplicationController < ActionController::Base
   def redirect_back_or_default(default)
     redirect_to(session[:return_to] || default)
     session[:return_to] = nil
+  end
+
+  def set_template
+    the_action = self.action_name.singularize
+    the_controller = self.class.to_s.gsub('Controller', '').downcase
+    @the_template = "#{the_controller}/#{the_action}_zurb"
   end
 end

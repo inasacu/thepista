@@ -31,7 +31,10 @@
 <% else %>
 	<div id="wrapper">	
 		<div id="main">
-			<%= yield %>	
+			<div class="row">
+			<%= yield %>
+			</div>	
+		
 		</div>	  
 		<%= render :partial => 'shared/sidebar' %>	
 		<div class="clear"></div>	
