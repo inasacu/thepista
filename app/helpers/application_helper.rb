@@ -414,12 +414,10 @@ module ApplicationHelper
   end
 
   def get_secondary_navigation(item=nil, game=nil)
-    if DISPLAY_SECONDARY_NAVIGATION
-      the_controller = is_controller('home') ? "#{get_the_controller}" : "#{get_the_controller}s"
-      return render("#{the_controller}/secondary_navigation") if item.nil? 
-      return render("#{(item.class.to_s).downcase}s/secondary_navigation", :item => item) if game.nil?
-      return render("#{(item.class.to_s).downcase}s/secondary_navigation", :item => item, :game => game) 
-    end
+    the_controller = is_controller('home') ? "#{get_the_controller}" : "#{get_the_controller}s"
+    return render("#{the_controller}/secondary_navigation") if item.nil? 
+    return render("#{(item.class.to_s).downcase}s/secondary_navigation", :item => item) if game.nil?
+    return render("#{(item.class.to_s).downcase}s/secondary_navigation", :item => item, :game => game) 
   end
 
   def get_class_table_id_controller
