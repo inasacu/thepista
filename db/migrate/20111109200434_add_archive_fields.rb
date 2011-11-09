@@ -1,7 +1,7 @@
 class AddArchiveFields < ActiveRecord::Migration
   def self.up
 
-    # add_column        :rates,               :archive,     :boolean,       :default => false
+    add_column        :rates,               :archive,     :boolean,       :default => false
     add_column        :conversations,       :archive,     :boolean,       :default => false
     add_column        :challenges_users,    :archive,     :boolean,       :default => false
     add_column        :cups_escuadras,      :archive,     :boolean,       :default => false
