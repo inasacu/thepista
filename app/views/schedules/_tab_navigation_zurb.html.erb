@@ -1,0 +1,64 @@
+
+<%
+	the_controller = ['forums', 'topics', 'posts', 'match']
+	the_action = ['show', 'edit', 'team roster', 'team no show', 'team last minute', 'team unavailable', 'star rate']
+	is_new_schedule = (get_controller_action =='schedule_new' or get_controller_action == 'schedule_create')
+
+	if is_new_schedule 
+%>
+		<%= item_new(@schedule) %>
+<%		
+	else 
+
+	unless the_action.include?(get_the_action) or the_controller.include?(get_the_controller)
+%>
+		<dd class="<%= get_active('schedule_my_list') %>"><%= link_to(label_name(:my_schedule) , my_list_schedules_path(:id => current_user)) %></li>
+		<dd class="<%= get_first_active %>"><%= link_to(label_name(:upcoming_schedules) , schedules_url) unless @has_no_schedules %></li>
+		<dd class="<%= get_active('schedule_list') %>"><%= link_to(label_name(:previous_schedules) , list_schedules_path) %></li>
+<% 
+	else
+	
+		content_for(:description, "#{h(@schedule.group.name)} / #{@schedule.sport.name},  #{h(@schedule.concept)} - #{h(@schedule.description) }.  
+								   #{@schedule.group.marker.name}, #{@schedule.time_zone}")
+	
+		if current_user.is_member_of?(@schedule.group) or @schedule.public
+			the_label = label_name(:wall)
+%>
+			<%= content_tag :dd, item_concept_link(@schedule.concept, @schedule, {:class => get_first_active('schedule_show')}, 25) %>
+			<%= content_tag :dd, link_to(the_label, forum_path(@schedule.forum), :class => get_active('forum_show')) if current_user.is_member_of?(@schedule.group)  %>
+					
+			<% unless (@schedule.the_roster.empty?)		
+				the_active = get_active("#{get_the_controller}_team_roster")
+			%>
+				<%= content_tag :dd, 
+					link_to("#{label_name(:rosters)} (#{@schedule.the_roster_count})", team_roster_path(:id => @schedule), :class => the_active) %>
+			<% end %>
+				
+			<% unless (@schedule.the_last_minute.empty?)		
+				the_active = get_active("#{get_the_controller}_team_last_minute")
+			%>
+				<%= content_tag :dd, 
+					link_to("#{label_name(:last_minute)} (#{@schedule.the_last_minute_count})", team_last_minute_path(:id => @schedule), :class => the_active) %>
+			<% end %>
+						
+			<% unless (@schedule.the_no_show.empty?)		
+				the_active = get_active("#{get_the_controller}_team_no_show")
+			%>
+				<%= content_tag :dd, 
+					link_to("#{label_name(:no_shows)} (#{@schedule.the_no_show_count})", team_no_show_path(:id => @schedule), :class => the_active) %>
+			<% end %>
+						
+			<% unless (@schedule.the_unavailable.empty?)		
+				the_active = get_active("#{get_the_controller}_team_unavailable")
+			%>
+				<%= content_tag :dd, 
+					link_to("#{label_name(:unavailable)} (#{@schedule.the_unavailable_count})", team_unavailable_path(:id => @schedule), :class => the_active) %>
+			<% end %>
+
+			<% the_active = get_active("match_star_rate") %>
+			<%= content_tag :dd, link_to("#{label_name(:profile_set)}", star_rate_path(:id => @schedule), :class => the_active) %>		
+<% 
+		end
+	end
+end
+%>

@@ -7,7 +7,7 @@ task :the_archive_group => :environment do |t|
 
   # archive group 
   has_to_archive = true
-  group_id = [5, 6, 9, 10, 11]  
+  group_id = [6, 8]  
 
   # archive groups listed above
   the_archive = Group.find(:all, :conditions => ["id in (?) and archive = false", group_id])

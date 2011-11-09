@@ -1,11 +1,12 @@
-# to run:    sudo rake the_database_destroy
+# to run:    sudo rake the_remove_archive_data
 
 desc "remove all archived files not needed"
-task :the_database_destroy => :environment do |t|
+task :the_remove_archive_data => :environment do |t|
 
   ActiveRecord::Base.establish_connection(RAILS_ENV.to_sym)
 
   the_archives = []
+  counter = 1
 
   @archive = Cast.find(:all, :conditions => ["archive = true"])
   @archive.each {|archive_file| the_archives << archive_file}
@@ -48,8 +49,9 @@ task :the_database_destroy => :environment do |t|
   
 
   the_archives.each do |the_archive|
-    puts "#{the_archive.id}  remove #{the_archive.class.to_s} archived files"
+    puts "#{the_archive.id}  remove #{the_archive.class.to_s} archived files removed (#{counter})"
     the_archive.destroy
+    counter += 1
   end
 
   the_archives = []
@@ -61,8 +63,9 @@ task :the_database_destroy => :environment do |t|
   @archive.each {|archive_file| the_archives << archive_file}
 
   the_archives.each do |the_archive|
-    puts "#{the_archive.id}  remove #{the_archive.class.to_s} archived files"
+    puts "#{the_archive.id}  remove #{the_archive.class.to_s} archived files removed (#{counter})"
     the_archive.destroy
+    counter += 1
   end
 
 end
