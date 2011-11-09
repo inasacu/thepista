@@ -9,7 +9,6 @@ class AddArchiveFields < ActiveRecord::Migration
     add_column        :groups_markers,      :archive,     :boolean,       :default => false
     add_column        :groups_roles,        :archive,     :boolean,       :default => false
     add_column        :groups_users,        :archive,     :boolean,       :default => false
-    add_column        :pre_purchases,       :archive,     :boolean,       :default => false
     add_column        :purchases,           :archive,     :boolean,       :default => false
     add_column        :teammates,           :archive,     :boolean,       :default => false
 
