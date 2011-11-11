@@ -1,27 +1,29 @@
 <% the_label, the_content, has_been_played, is_manager, is_squad, the_sport, the_missing, the_span, the_start_at_label = get_team_roster %>
 
-<div class="block">
-  	
-    <%= render "shared/previous_next_message", :schedule => @schedule, :the_previous => @the_previous, :the_next => @the_next -%>
-	<%= show_heading(the_label) %> 
-	
-	<div class="inner">
+<div class="row">
+	<div class="block">
 
-				<table class="table">
+		<%= render "shared/previous_next_message", :schedule => @schedule, :the_previous => @the_previous, :the_next => @the_next -%>
+		<%= show_heading(the_label) %> 
+
+		<div class="inner">
+
+			<table class="table">
 				<tr>
 					<%= content_tag :td, the_start_at_label, :class =>"first_left" %>
 					<%= content_tag :td, match_all_my_link(@schedule, current_user, false), :class =>"last_left" %>
 				</tr>
-				</table>
-<% 
-	if @has_a_roster
-%>
-		<%= render :partial => '/schedules/team_roster_box', 
-					:locals => {:previous_show => @previous, :next_show => @next,  
-								:schedule => @schedule, :the_roster => @the_roster, :match_type => @match_type} %>
-<% 
-	end 
-%>
+			</table>
+			<% 
+			if @has_a_roster
+				%>
+				<%= render :partial => '/schedules/team_roster_box', 
+				:locals => {:previous_show => @previous, :next_show => @next,  
+					:schedule => @schedule, :the_roster => @the_roster, :match_type => @match_type} %>
+					<% 
+				end 
+				%>
+			</div>
 		</div>
 	</div>
 </div>
