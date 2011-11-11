@@ -1,13 +1,12 @@
 <% the_label, the_content, has_been_played, is_manager, is_squad, the_sport, the_missing, the_span, the_start_at_label = get_team_roster %>
 
-<div class="row">
-	<div class="block">
+<div class="block">
 
-		<%= render "shared/previous_next_message", :schedule => @schedule, :the_previous => @the_previous, :the_next => @the_next -%>
-		<%= show_heading(the_label) %> 
+	<%= render "shared/previous_next_message", :schedule => @schedule, :the_previous => @the_previous, :the_next => @the_next -%>
+	<%= show_heading(the_label) %> 
 
-		<div class="inner">
-
+	<div class="inner">
+		<div clas="row">
 			<table class="table">
 				<tr>
 					<%= content_tag :td, the_start_at_label, :class =>"first_left" %>
