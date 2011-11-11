@@ -31,7 +31,7 @@ class Challenge < ActiveRecord::Base
   has_friendly_id :name, :use_slug => true, :approximate_ascii => true, 
                    :reserved_words => ["new", "create", "index", "list", "signup", "edit", "update", "destroy", "show"]
                    
-  has_and_belongs_to_many :users,   :conditions => 'archive = false',   :order => 'name'
+  has_and_belongs_to_many :users,   :conditions => 'users.archive = false',   :order => 'name'
 
   belongs_to    :cup
   has_many      :casts

@@ -30,7 +30,7 @@ class Escuadra < ActiveRecord::Base
       
   validates_format_of       :name,            :with => /^[A-z 0-9 _.-]*$/
 
-  has_and_belongs_to_many   :cups,          :conditions => 'archive = false',   :order => 'name'
+  has_and_belongs_to_many   :cups,          :conditions => 'cups.archive = false',   :order => 'name'
 
   # variables to access
   attr_accessible :name, :photo, :description
