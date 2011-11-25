@@ -886,7 +886,7 @@ en:
      modified_phone: Edit option to hide email for    
      modified_profile: Edit option to hide profile for   
      modified_reliable: Edit reliability for    
-     modo: "<strong>Practice more,</strong>organize less with <strong>HayPista.</strong>"  
+     modo: "<strong>Practice more,</strong> organize less with <strong>HayPista.</strong>"  
      modo_key_title: "Practica deporte, no hay mejor sitio, organizar partidos, buscar gente para jugar, buscar centro deportivo para jugar.  Con Hay Pista puedes organizar partidos de empresa, ver tu jornada deportiva e incluso tu clasificacion en tu equipo. Tambien puedes ver quien esta convocado, quien esta en ultima hora o quien esta ausente para el partido."
      modo_keywords: "hay pista, organizar partidos, gente para jugar, buscar centro deportivo jugar, partidos de empresa, ver jornada deportiva, clasificacion equipo, quien esta convocado, quien esta ultima hora, quien esta ausente"
      Monday: Monday 
@@ -1158,7 +1158,7 @@ en:
      private_profile: Private Profile   
      problem_field: We had problems with some of the fields.  
      profile: Profile   
-     profile_completeness: profile completeness.
+     profile_completeness: Profile Completeness.
      profile_completion:  Complete your profile.
      profile_physical: Physical Level 
      profile_physical_average:  Physical Average Level  
@@ -1945,7 +1945,7 @@ en:
      recaptcha_question:  Question
      recaptcha_human_test:  Human Test
      recaptcha_type_words:  Write the two words or numbers you see separated by a space.     
-     rpx_login: Sign in using your account with
+     rpx_login: Sign in using <strong>your account</strong>...
      rpx_third_party_error:  "could not recover data from third party accounts, Please try again."
      rpx_association_email_msg: We found an existing account which is already using the e-mail address
      rpx_association_login_msg: We found an existing account which is already using the username
