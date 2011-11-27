@@ -5,6 +5,7 @@ task :the_archive_role => :environment do |t|
 
   ActiveRecord::Base.establish_connection(RAILS_ENV.to_sym)
 
+
   # ARCHIVE all roles for all authorizable_type archived 
    the_item_types = Role.find(:all, :select => "distinct authorizable_type")
    the_item_types.each do |role|
@@ -63,6 +64,15 @@ task :the_archive_role => :environment do |t|
        role.save
      end
    end
+     
+
+   # set all roles users to archive = false
+   the_archive = RolesUsers.find(:all)
+   the_archive.each do |role|
+     role.archive = false
+     role.save
+   end
+   
    
    # ARCHIVE all roles_users for roles archived 
    the_archive = RolesUsers.find(:all, :select => "distinct *", 

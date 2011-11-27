@@ -46,6 +46,12 @@ task :the_remove_archive_data => :environment do |t|
 
   @archive = RolesUsers.find(:all, :conditions => ["archive = true"])
   @archive.each {|archive_file| the_archives << archive_file}
+
+  @archive = GroupsUsers.find(:all, :conditions => ["archive = true"])
+  @archive.each {|archive_file| the_archives << archive_file}
+
+  @archive = Group.find(:all, :conditions => ["archive = true"])
+  @archive.each {|archive_file| the_archives << archive_file}
   
 
   the_archives.each do |the_archive|

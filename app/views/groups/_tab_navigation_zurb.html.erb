@@ -19,18 +19,23 @@
 		active_classified = get_active("#{get_the_controller}_#{get_the_action}") if is_controller('classified')
 	end
 
-	is_new_group = (is_action('new') or is_action('create'))
-	unless is_new_group
+	is_new_item = (is_action('new') or is_action('create'))
+	unless is_new_item
 		content_for(:description, "#{h(@group.name)} / #{@group.sport.name},  #{h(@group.description) }.  #{@group.marker.name}, #{@group.time_zone}") if @group
 	end
 %>
 	<%= item_new(@group) %>		
 	
-	<% unless is_new_group %>
+	<% unless is_new_item %>
 	
-		<%= content_tag :dd, link_to(label_name(:groups), groups_path, :class => get_first_active) unless @group %>
-		<%= content_tag :dd, link_to(label_name(:scorecards), scorecards_path, :class => get_active('scorecard_index')) unless @group %>
-		<%= content_tag :dd, group_link(@group, {:class => get_active('group_show')}) if @group and is_not_new_item %>
+	
+		<%= set_tab_navigation(link_to(label_name(:groups), groups_path, set_tab_navigation_active('group_index'))) unless @group %>
+		<%= set_tab_navigation(link_to(label_name(:scorecards), scorecards_path, set_tab_navigation_active('scorecard_index'))) unless @group %>
+		<%= set_tab_navigation(group_link(@group, set_tab_navigation_active('group_show'))) if @group and is_not_new_item %>
+		
+		<%#= content_tag :dd, link_to(label_name(:groups), groups_path, :class => get_first_active) unless @group %>
+		<%#= content_tag :dd, link_to(label_name(:scorecards), scorecards_path, :class => get_active('scorecard_index')) unless @group %>
+		<%#= content_tag :dd, group_link(@group, {:class => get_active('group_show')}) if @group and is_not_new_item %>
 		
 	<% end %>
 <% 	

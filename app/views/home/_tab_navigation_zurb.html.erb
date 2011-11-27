@@ -1,8 +1,8 @@
 
-<%= content_tag 'dd', link_to(label_name(:home), '/', :class => get_active)  if DISPLAY_UPCOMING %>
+<%= content_tag :dd, link_to(label_name(:home), '/', :class => get_active)  if DISPLAY_UPCOMING %>
 
-<%= content_tag 'dd', link_to(label_name(:upcoming), upcoming_path, :class => get_active('home_upcoming')) if DISPLAY_UPCOMING %>
+<%= content_tag :dd, link_to(label_name(:upcoming), upcoming_path, :class => get_active('home_upcoming')) if DISPLAY_UPCOMING %>
 
-<%= content_tag 'dd', link_to(label_name(:classifieds), advertisement_url, :class => get_active('home_advertisement')) if @has_classifieds %>
+<%= content_tag :dd, link_to(label_name(:classifieds), advertisement_url, :class => get_active('home_advertisement')) if @has_classifieds %>
 
-<%= content_tag 'dd', link_to(label_name(:search_result), '#', :class => get_active('home_search')) if @item_results %>
+<%= content_tag :dd, link_to(label_name(:search_result), '#', :class => get_active('home_search')) if @item_results %>

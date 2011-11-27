@@ -4,15 +4,50 @@ desc "ARCHIVE dependent records to already archived"
 task :the_archive_dependent => :environment do |t|
 
   ActiveRecord::Base.establish_connection(RAILS_ENV.to_sym)
+  
+  counter = 0
+
+  # unarchive several userss
+  the_unarchives = User.find(:all, :conditions => "id in ('2901', '2940')")
+  the_unarchives.each do |user|
+    user.archive = false
+    user.save
+  end
+  
+  # email backup
+  the_user = User.find(:all, :conditions => "email_backup is null")
+  the_user.each do |user|
+    puts "EMAIL BACKUP user => #{user.name}"
+    user.email_backup = user.email
+    user.save
+  end
+  
+  # archive users last_login_at older than 1 years
+  counter = 0
+  the_archive = User.find(:all, :conditions => ["archive = false and id not in (select distinct user_id from groups_users where archive = false) and last_login_at < ?", Time.zone.now - 180.days])
+  the_archive.each do |user|
+    puts "ARCHIVE user => #{user.name} - (#{counter +=1})"
+    user.archive = true
+    user.save
+  end
 
   # archive group 
   has_to_archive = true
   group_id = [6, 8, 12]  
-
-  # archive groups listed above
+  
   the_archive = Group.find(:all, :conditions => ["id in (?) and archive = false", group_id])
   the_archive.each do |group|    
     puts "archive group => #{group.name}"
+    group.archive = true
+    group.save if has_to_archive
+  end
+  
+  # ARCHIVE all GROUPS_USERS for GROUPS archived 
+  the_archive = GroupsUsers.find(:all, :select => "distinct *", 
+  :conditions => "archive = false and group_id in (select distinct groups.id from groups where groups.archive = true)") 
+
+  the_archive.each do |group|
+    puts "ARCHIVE groups_users => #{group.group_id} #{Group.find(group.group_id).name}"
     group.archive = true
     group.save if has_to_archive
   end
@@ -112,7 +147,9 @@ task :the_archive_dependent => :environment do |t|
   # ARCHIVE all RATES for all RATEABLE_TYPE archived 
   the_rate_types = Rate.find(:all, :select => "distinct rateable_type")
   the_rate_types.each do |rate|
-    puts "rateable_type => #{rate.rateable_type}"
+    
+    # puts "rateable_type => #{rate.rateable_type}"
+    
     the_archive = []    
     case rate.rateable_type
     when "Schedule"
@@ -152,7 +189,9 @@ task :the_archive_dependent => :environment do |t|
   # ARCHIVE all BLOGS for all ITEM_TYPE archived 
   the_item_types = Blog.find(:all, :select => "distinct item_type")
   the_item_types.each do |blog|
-    puts "item_type => #{blog.item_type}"
+    
+    # puts "item_type => #{blog.item_type}"
+    
     the_archive = []    
     case blog.item_type
     when "User"
@@ -199,7 +238,9 @@ task :the_archive_dependent => :environment do |t|
   # ARCHIVE all FEES for all ITEM_TYPE archived 
   the_item_types = Fee.find(:all, :select => "distinct item_type")
   the_item_types.each do |fee|
-    puts "item_type => #{fee.item_type}"
+    
+    # puts "item_type => #{fee.item_type}"
+    
     the_archive = []    
     case fee.item_type
     when "Schedule"
@@ -219,10 +260,13 @@ task :the_archive_dependent => :environment do |t|
     end
   end
 
+
   # ARCHIVE all PAYMENTS for all ITEM_TYPE archived 
   the_item_types = Payment.find(:all, :select => "distinct item_type")
   the_item_types.each do |payment|
-    puts "item_type => #{payment.item_type}"
+    
+    # puts "item_type => #{payment.item_type}"
+    
     the_archive = []    
     case payment.item_type
     when "Schedule"

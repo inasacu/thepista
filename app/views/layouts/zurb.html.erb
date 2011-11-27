@@ -60,7 +60,6 @@
 	
 	<!-- Included CSS Files -->
 
-	<%= stylesheet_link_tag 'zurb/haypista' %>
 	<%= stylesheet_link_tag 'zurb/globals' %>
 	<%= stylesheet_link_tag 'zurb/typography' %>
 	<%= stylesheet_link_tag 'zurb/grid' %>
@@ -71,7 +70,19 @@
 	<%= stylesheet_link_tag 'zurb/app' %>
 	<%= stylesheet_link_tag 'zurb/mobile' %>
 	<%= stylesheet_link_tag 'zurb/presentation' %>
-
+	<%= stylesheet_link_tag 'zurb/app' %>
+	<%#= stylesheet_link_tag 'zurb/haypista' %>
+	
+	<%#= stylesheet_link_tag 'zurb/notably' %>
+	
+	<%#= stylesheet_link_tag 'zurb/verify' %>
+	<%#= stylesheet_link_tag 'zurb/verify_app' %>
+	<%#= stylesheet_link_tag 'zurb/marketing' %>
+	<%#= stylesheet_link_tag 'zurb/verify_annotatable' %>
+	
+	
+	<%#= stylesheet_link_tag "http://www.zurb.com/blog/assets/all.css" %>
+	<%#= stylesheet_link_tag "http://www.zurb.com/blog/assets/public.css" %>
 
 	<!--[if lt IE 9]>
 		<link rel="stylesheet" href="../../stylesheets/zurb/ie.css">
@@ -99,19 +110,19 @@
 
 <body id="-page" class="">
 
-	<%= render 'layouts/header_zurb' %>
+	<%= render 'shared/header_zurb' %>
 
 	<div class="container">
 		
-		<%= render 'layouts/flash_zurb' if current_user %>
+		<%= render 'shared/flash_zurb' %>
 
-		<%= render 'layouts/wrapper_zurb' %>
+		<%= render 'shared/wrapper_zurb' %>
 
-		<%#= render 'layouts/twelve_columns_zurb' %>
-		<%#= render 'layouts/eight_columns_zurb' %>
+		<%#= render 'templates/twelve_columns_zurb' %>
+		<%#= render 'templates/eight_columns_zurb' %>
 
-		<%#= render 'layouts/tabs_mobile_show_zurb' %>
-		<%#= render 'layouts/footer_zurb' %>
+		<%#= render 'shared/tabs_mobile_show_zurb' %>
+		<%= render 'shared/footer_zurb' %>
 
 	</div>
 

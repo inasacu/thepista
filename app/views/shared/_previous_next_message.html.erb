@@ -36,8 +36,8 @@ if is_controller("schedule")
 	
 elsif is_controller("forum")
 %>
-		<p><%= content_tag :b, link_to("", forum_path(the_previous.forum), :class => 'next_message') %></p>
-		<p><%= content_tag :b, link_to("", forum_path(the_next.forum), :class => 'previous_message') %></p>
+		<p><%= content_tag :b, link_to("", forum_path(@forum), :class => 'next_message') %></p>
+		<p><%= content_tag :b, link_to("", forum_path(@forum), :class => 'previous_message') %></p>
 <%	
 end
 %>
