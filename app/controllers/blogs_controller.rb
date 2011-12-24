@@ -5,7 +5,8 @@ class BlogsController < ApplicationController
 
   def show
     @blog = Blog.find(params[:id]) 
-    @comments = @blog.comments.recent.limit(COMMENTS_PER_PAGE).all    
+    @comments = @blog.comments.recent.limit(COMMENTS_PER_PAGE).all   
+    render @the_template 
   end
 
   private
@@ -14,7 +15,9 @@ class BlogsController < ApplicationController
     unless params[:id].blank?
       @blog = Blog.find(params[:id])
     end
+    render @the_template
   end
+
 
   def has_member_access
     # blog comment

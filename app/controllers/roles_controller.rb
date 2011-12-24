@@ -4,14 +4,17 @@ class RolesController < ApplicationController
 
   def index
     @roles = Role.paginate(:per_page => 10, :page => params[:page])
+    render @the_template  
   end
 
   def show
     @roles = Role.find(params[:id])
+    render @the_template  
   end
 
   def new
     @roles = Role.new
+    render @the_template  
   end
 
   def create
@@ -26,6 +29,8 @@ class RolesController < ApplicationController
 
   def edit
     @roles = Role.find(params[:id])
+    set_the_template('roles/new')
+    render @the_template
   end
 
   def update

@@ -7,10 +7,12 @@ class TimetablesController < ApplicationController
   def index  
     store_location
     @installations = Installation.current_installations(@venue, params[:page])
+    render @the_template
   end
 
   def show
     redirect_to show_installation_url(:id => @installation)
+    render @the_template
   end
 
   def new
@@ -27,7 +29,7 @@ class TimetablesController < ApplicationController
       @timetable.ends_at = @previous_timetable.ends_at
       @timetable.timeframe = @previous_timetable.timeframe
     end
-    
+    render @the_template
   end
 
   def create
@@ -39,6 +41,11 @@ class TimetablesController < ApplicationController
     else
       render :action => 'new'
     end
+  end
+
+  def edit
+    set_the_template('timetables/new')
+    render @the_template
   end
 
   def update
@@ -56,7 +63,7 @@ class TimetablesController < ApplicationController
 
     unless @installation.nil?
       @the_timetables = Timetable.installation_timetable(@installation)
-      
+
       @the_timetables.each do |the_timetable|
         @timetable = Timetable.new
         @timetable.type_id = the_timetable.type_id
@@ -66,7 +73,7 @@ class TimetablesController < ApplicationController
         @timetable.installation_id = @current_installation.id
         @timetable.save
       end
-      
+
       flash[:success] = I18n.t(:successful_update)
       redirect_to @current_installation
       return
@@ -75,12 +82,12 @@ class TimetablesController < ApplicationController
   end
 
   private
-  
+
   def get_timetable
     @timetable = Timetable.find(params[:id]) if params[:id]
     @installation = @timetable.installation
     @venue = @installation.venue
-    
+
     unless current_user.is_manager_of?(@venue)
       flash[:warning] = I18n.t(:unauthorized)
       redirect_back_or_default('/index')
@@ -92,7 +99,7 @@ class TimetablesController < ApplicationController
     @installation = Installation.find(params[:id]) if params[:id]
     @installation = Installation.find(params[:timetable][:installation_id]) if params[:timetable]
     @venue = @installation.venue
-    
+
     unless current_user.is_manager_of?(@venue)
       flash[:warning] = I18n.t(:unauthorized)
       redirect_back_or_default('/index')

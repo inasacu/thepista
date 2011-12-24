@@ -8,11 +8,13 @@ class InstallationsController < ApplicationController
   def index  
     store_location
     @installations = Installation.current_installations(@venue, params[:page])
+    render @the_template   
   end
 
   def show
     store_location    
     @timetables = Timetable.find(:all, :conditions => ["installation_id = ?", @installation])
+    render @the_template   
   end
 
   def new
@@ -26,9 +28,9 @@ class InstallationsController < ApplicationController
       @installation.ends_at = @venue.ends_at
       @installation.marker_id = @venue.marker_id
       @installation.public = @venue.public
-      
+
       @previous_installation = Installation.find(:first, :conditions => ["venue_id = ? and archive = false", @venue.id], :order => "created_at DESC")
-      
+
       unless @previous_installation.nil?
         @installation.name = @previous_installation.name
         @installation.starts_at = @previous_installation.starts_at
@@ -40,15 +42,16 @@ class InstallationsController < ApplicationController
         @installation.sport_id = @previous_installation.sport_id
         @installation.lighting = @previous_installation.lighting
         @installation.outdoor = @previous_installation.outdoor
-        
+
         @installation.photo_file_name = @previous_installation.photo_file_name        
         @installation.photo_content_type = @previous_installation.photo_content_type        
         @installation.photo_file_size = @previous_installation.photo_file_size
         @installation.photo_updated_at = @previous_installation.photo_updated_at
       end
-      
+
     end
 
+    render @the_template   
   end
 
   def create
@@ -60,6 +63,11 @@ class InstallationsController < ApplicationController
     else
       render :action => 'new'
     end
+  end
+
+  def edit
+    set_the_template('installations/new')
+    render @the_template
   end
 
   def update
@@ -74,7 +82,7 @@ class InstallationsController < ApplicationController
   def destroy
     @installation = Installation.find(params[:id])
     @venue = @installation.venue
-    
+
     unless current_user.is_manager_of?(@venue)
       flash[:warning] = I18n.t(:unauthorized)
       redirect_back_or_default('/index')

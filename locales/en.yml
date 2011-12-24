@@ -68,6 +68,7 @@ en:
      blog_haypista: Blog
      blog_notification: Comments from your wall
      blog_notification_cluetip:  "This option allows you to receive messages left on your personal wall in your email inbox."
+     blogs_create:  Share
      blogs_my_wall:  My Wall
      blogs_option:  Options
      body: Body 
@@ -890,6 +891,8 @@ en:
      modo_key_title: "Practica deporte, no hay mejor sitio, organizar partidos, buscar gente para jugar, buscar centro deportivo para jugar.  Con Hay Pista puedes organizar partidos de empresa, ver tu jornada deportiva e incluso tu clasificacion en tu equipo. Tambien puedes ver quien esta convocado, quien esta en ultima hora o quien esta ausente para el partido."
      modo_keywords: "hay pista, organizar partidos, gente para jugar, buscar centro deportivo jugar, partidos de empresa, ver jornada deportiva, clasificacion equipo, quien esta convocado, quien esta ultima hora, quien esta ausente"
      Monday: Monday 
+     moral:  Drive
+     moral_difference:  "Interest<br/>Difference"
      more:  more       
      must_be_logged_in:  You need to be logged in to access this page
      must_be_logged_out:  You need to logged out to access this page
@@ -1160,6 +1163,8 @@ en:
      profile: Profile   
      profile_completeness: Profile Completeness.
      profile_completion:  Complete your profile.
+     profile_moral:  Drive Level
+     profile_moral_average:  Drive Average Level
      profile_physical: Physical Level 
      profile_physical_average:  Physical Average Level  
      profile_position: Position   

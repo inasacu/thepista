@@ -13,50 +13,50 @@
 	the_action = controller.action_name
 	
 	the_fee = ["fee_item_list", "fee_index", "payment_new"]
-	the_active_fee =  get_active(get_controller_action) if the_fee.include?(get_controller_action)
+	the_active_fee =  get_controller_action if the_fee.include?(get_controller_action)
 	
 	controls = ['blog', 'comments', 'fees', 'payments'] 
 	actions = ['show','edit','third_party', 'recent_activity']
 	the_user = (@user ? @user : current_user)
 	label_the_user = (the_user == current_user ? "" : "#{label_name(:from_de)} #{h(the_user.name)}")
+	
+	is_new_item = (is_action('new') or is_action('create'))
 %>
 
-<div class="secondary-navigation">
-<ul>
-<%
-	unless is_profile 
-%>
-		<%= content_tag 'li',  link_to(label_name(:users_teammate), users_url), :class => get_first_active('user_index') %>
-		<li class="<%= get_active('user_list') %>"><%= link_to(label_name(:all_user) , list_users_path) %></li>
+
+<%= content_tag 'li',  link_to(label_name(:users_teammate), users_url), :class => get_first_active('user_index') unless is_profile %>
+
+
+<% if is_profile %>
+<%= set_tab_navigation(item_name_link(the_user, set_tab_navigation_active('user_show'))) %>
+<%= set_tab_navigation(item_name_link("#{label_name(:linkedin_profile)}", the_user, set_tab_navigation_active('user_show'))) if is_controller('auth') %>
+<%= set_tab_navigation(link_to("#{label_name(:notifications)}", notice_users_url(:id => @user), set_tab_navigation_active('user_notice'))) %>
+
+
 <% 
-	else 
+
+if DISPLAY_USER_BLOG
+	if current_user.is_user_member_of?(the_user) 
+		unless actions.include?(the_action) or controls.include?(the_controller) 
+			the_blog = Blog.find_item(current_user)
+		else
+			the_blog = Blog.find_item(the_user)
+		end		
 %>
-		<%= content_tag 'li',  user_link("#{label_name(:profile)}", the_user), :class => get_first_active('user_show') %>
-		<%= content_tag 'li',  user_link("#{label_name(:linkedin_profile)}", the_user), :class => get_first_active('user_show') if is_controller('auth') %>
-		<%= content_tag 'li',  link_to("#{label_name(:notifications)}", notice_users_url(:id => @user)), :class => get_first_active('user_notice') %>
-<%
-		if DISPLAY_USER_BLOG
-		 	if current_user.is_user_member_of?(the_user) 
-				unless actions.include?(the_action) or controls.include?(the_controller) 
-					the_blog = Blog.find_item(current_user)
-				else
-					the_blog = Blog.find_item(the_user)
-				end		
+	<%= set_tab_navigation(item_name_link(the_blog, set_tab_navigation_active('blog_show'))) %>
+
+
+<% end %>
+
+<% end
+
+if current_user.is_user_manager_of?(the_user) or the_user == current_user 
 %>
-				<li class="<%= get_active('blog_show') %>"><%= blog_link(the_blog) %></li>
+
+	<%= set_tab_navigation(link_to(label_name(:fees), fees_path(:id => the_user), set_tab_navigation_active(the_active_fee))) %>
+	<%= set_tab_navigation(link_to(label_name(:payments), item_fees_path(:id => the_user), set_tab_navigation_active('fee_item'))) %>
+
 <% 
-			end
-		
-		end
-		
-		if current_user.is_user_manager_of?(the_user) or the_user == current_user 
+end 
+end 
 %>
-		<li class="<%= the_active_fee %>"><%= link_to(label_name(:fees), fees_path(:id => the_user)) %></li>
-		<li class="<%= get_active('fee_item') %>"><%= link_to(label_name(:payments), item_fees_path(:id => the_user)) %></li>
-<% 
-		end 
-	end 
-%>
-</ul>
-<div class="clear"></div>
-</div>

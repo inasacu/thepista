@@ -13,7 +13,8 @@ class ChallengesController < ApplicationController
     if @challenges.nil? or @challenges.blank?
       redirect_to :action => 'list'
       return
-    end
+    end   
+	render @the_template
   end
 
   def list
@@ -26,17 +27,21 @@ class ChallengesController < ApplicationController
       redirect_to :controller => 'cups'
       return
     end
-    
-    render :template => '/challenges/index'       
+       
+    set_the_template('challenges/index')
+	render @the_template  
   end
 
   def challenge_list
     @users = @challenge.users.paginate(:page => params[:page], :per_page => USERS_PER_PAGE)
-    @total = @challenge.users.count
+    @total = @challenge.users.count   
+    set_the_template('casts/index')
+	render @the_template
   end
 
   def show
-    store_location 
+    store_location    
+	render @the_template
   end
 
   def new
@@ -50,7 +55,8 @@ class ChallengesController < ApplicationController
       @challenge.starts_at = @cup.starts_at
       @challenge.ends_at = @cup.ends_at
       @challenge.reminder_at = @cup.starts_at - 7.days     
-    end
+    end   
+	render @the_template
   end
 
   def create
@@ -80,6 +86,10 @@ class ChallengesController < ApplicationController
       render :action => 'index'
     end
   end
+  
+  def edit
+	render @the_template
+	end
 
   def update
     @original_challenge = Challenge.find(params[:id])

@@ -46,8 +46,7 @@ module MatchesHelper
   end
 
   def match_image_link(match, the_image="")   
-    
-     
+         
     the_schedule = match.schedule
     the_label = ""
     the_label = "#{I18n.t(match.type_name)}" if the_image.blank?
@@ -152,15 +151,21 @@ module MatchesHelper
 				
 				if (same_previous_user and counter < total_items)
   			else
-				  the_activities = %(#{the_activities} #{render('home/upcoming_matches', :matches => the_user_matches)})
+  			  the_render = 'home/upcoming_matches' if DISPLAY_HAYPISTA_TEMPLATE
+  			  the_render = 'home/upcoming_matches_zurb' unless DISPLAY_HAYPISTA_TEMPLATE
+  			  
+				  the_activities = %(#{the_activities} #{render(the_render, :matches => the_user_matches)})
 				  
 					#reset the_user_match and add new match
 					the_user_matches = []
 					the_user_matches << item
 				end																
 
-			else
-			  the_activities = %(#{the_activities} #{render('home/upcoming_home', :teammate => item)})
+			else  
+        the_render = 'home/upcoming_home' if DISPLAY_HAYPISTA_TEMPLATE
+        the_render = 'home/upcoming_home_zurb' unless DISPLAY_HAYPISTA_TEMPLATE
+
+        the_activities = %(#{the_activities} #{render(the_render, :teammate => item)})
 			end
 		end
 		return the_activities
@@ -207,5 +212,217 @@ module MatchesHelper
 
   	return request_image, first_icon, request_link, the_label, the_icon, item_group_link, item_group_link, the_match
   end
+
+  def set_team_roster_box(the_roster, schedule)
+    counter = 0 
+  	roster_count = (object_counter(the_roster) > 0)
+
+  	type_id = [1, 4]
+
+  	home = {}
+  	away = {}
+  	technical = {}
+  	physical = {}
+
+  	is_manager ||= false
+  	is_member ||= false
+  	show_deviation ||= false
+  	show_mean ||= true
+
+  	home["defense"] = 0.0
+  	home["center"] = 0.0
+  	home["attack"] = 0.0
+  	home["technical"] = 0.0
+  	home["physical"] = 0.0
+  	home["total"] = 0.0
+  	home["mean"] = 0.0
+  	home["deviation"] = 0.0
+  	home["level"] = 0.0
+  	home["total_skill"] = 0.0
+  	home["players"] = 0
+
+  	away["defense"] = 0.0
+  	away["center"] = 0.0
+  	away["attack"] = 0.0
+  	away["technical"] = 0.0
+  	away["physical"] = 0.0
+  	away["total"] = 0.0
+  	away["mean"] = 0.0
+  	away["deviation"] = 0.0
+  	away["level"] = 0.0
+  	away["total_skill"] = 0.0
+  	away["players"] = 0
+
+  	group = schedule.group
+  	is_manager = current_user.is_manager_of?(group)
+  	is_member = current_user.is_member_of?(group)
+
+  	is_squad = get_the_action.gsub(' ','_') == 'team_roster'
+  	group_games_played = schedule.group.games_played.to_f
+
+    # positions = Type.find(:all, :conditions => "table_type = 'User'", :order => "id")
+
+  	schedule_number = Schedule.schedule_number(schedule)  
+
+  	first_schedule = schedule.group.schedules.first
+  	has_been_played = schedule.played? 	
+  	is_sub_manager = !has_been_played
+  	has_been_played_squad = has_been_played and is_squad
+
+  	show_right_border = true
+  	if is_squad
+  		show_right_border = true 
+  	elsif !is_squad
+  		show_right_border = false unless is_manager
+  	end
+
+  	show_right_evaluation = is_manager
+  	show_right_evaluation = true if (!is_manager and has_been_played)
+
+  	if DISPLAY_TRUESKILL
+  		the_trueskill_label = get_cluetip(label_name(:true_skill_mean_initial), 'info', label_name('true_skill_mean_cluetip'))
+  		the_trueskill_label_final = get_cluetip(label_name(:true_skill_mean_final), 'info', label_name('true_skill_mean_cluetip'))
+  	end
+  	
+  	return roster_count, is_squad, has_been_played, show_right_evaluation, is_manager, is_member, home, away, group_games_played, schedule_number, 
+  	          group, has_been_played_squad, show_right_border, show_right_evaluation, show_deviation, show_mean
+            	
+	end
+	
+	def set_team_skill(home, away, is_manager, has_been_played=false)
+	  home["level"] = home["mean"]
+  	away["level"] = away["mean"]
+
+  	home["total"] = home["technical"].to_f + home["physical"].to_f
+  	away["total"] = away["technical"].to_f + away["physical"].to_f
+
+  	home["technical_difference"] = 0.0
+  	away["technical_difference"] = 0.0
+
+  	home["physical_difference"] =  0.0
+  	away["physical_difference"] =  0.0
+
+  	home["total_difference"] = 0.0
+  	away["total_difference"] = 0.0	
+
+  	home["has_technical_value"] = home["technical"] > 0
+  	home["has_physical_value"] = home["physical"] > 0
+  	home["has_total_value"] = home["total"] > 0
+
+  	away["has_technical_value"] = away["technical"] > 0
+  	away["has_physical_value"] = away["physical"] > 0
+  	away["has_total_value"] = away["total"] > 0
+
+  	if home["has_technical_value"] and away["has_technical_value"]
+  		home["technical_difference"] = (home["technical"] - away["technical"]).to_f / (away["technical"] ) * 100
+  		away["technical_difference"] = (away["technical"] - home["technical"]).to_f / (home["technical"]) * 100
+  	end
+
+  	if home["has_physical_value"] and away["has_physical_value"]
+  		home["physical_difference"] = (home["physical"] - away["physical"]).to_f / (away["physical"]) * 100
+  		away["physical_difference"] = (away["physical"] - home["physical"]).to_f / (home["physical"]) * 100
+  	end
+
+  	if home["has_total_value"] and away["has_total_value"] 		
+  		home["total_difference"] = (home["total"] - away["total"]).to_f / (away["total"]) * 100
+  		away["total_difference"] = (away["total"] - home["total"]).to_f / (home["total"]) * 100 
+  	end
+
+  	home["technical_difference"] = "#{sprintf( "%.2f", home["technical_difference"].abs)}%"
+  	away["technical_difference"] = "#{sprintf( "%.2f", away["technical_difference"].abs)}%"
+
+  	home["physical_difference"] = "#{sprintf( "%.2f", home["physical_difference"].abs)}%"
+  	away["physical_difference"] = "#{sprintf( "%.2f", away["physical_difference"].abs)}%"
+
+  	home["total_difference"] = "#{sprintf( "%.2f", home["total_difference"].abs)}%"
+  	away["total_difference"] = "#{sprintf( "%.2f", away["total_difference"].abs)}%"
+
+  	home["is_technical_lower"] = home["technical"] < away["technical"]
+  	home["is_physical_lower"] = home["physical"] < away["physical"]
+  	home["is_total_lower"] = home["total"] < away["total"]
+
+  	away["is_technical_lower"] = home["technical"] > away["technical"]
+  	away["is_physical_lower"] = home["physical"] > away["physical"]
+  	away["is_total_lower"] = home["total"] > away["total"]
+
+  	home["technical_difference"] = "-#{home["technical_difference"]}" if home["is_technical_lower"] and !away["is_technical_lower"] 
+  	away["technical_difference"] = "-#{away["technical_difference"]}" if !home["is_technical_lower"] and away["is_technical_lower"] 
+
+  	home["physical_difference"] = "-#{home["physical_difference"]}" if home["is_physical_lower"] and !away["is_physical_lower"] 
+  	away["physical_difference"] = "-#{away["physical_difference"]}" if !home["is_physical_lower"] and away["is_physical_lower"] 
+
+  	home["total_difference"] = "-#{home["total_difference"]}" if home["is_total_lower"] and !away["is_total_lower"] 
+  	away["total_difference"] = "-#{away["total_difference"]}" if !home["is_total_lower"] and away["is_total_lower"]
+
+  	home["image"] = scorecard_image_link("subir-clasificacion.png") if home["total_difference"] > away["total_difference"]
+  	home["image"] = scorecard_image_link("bajar-clasificacion.png") if home["total_difference"] < away["total_difference"]
+  	home["image"] = scorecard_image_link("mantener-clasificacion.png") if home["total_difference"] == away["total_difference"]
+
+  	away["image"] = scorecard_image_link("subir-clasificacion.png") if away["total_difference"] > home["total_difference"]
+  	away["image"] = scorecard_image_link("bajar-clasificacion.png") if away["total_difference"] < home["total_difference"]
+  	away["image"] = scorecard_image_link("mantener-clasificacion.png") if away["total_difference"] == home["total_difference"]
+
+  	home["technical"] = "" if home["technical"].to_f <= 0 
+  	away["technical"] = "" if away["technical"].to_f <= 0 
+
+  	home["physical"] = "" if home["physical"].to_f <= 0 
+  	away["physical"] = "" if away["physical"].to_f <= 0  
+
+  	home["total"] = "" if home["total"].to_f <= 0 
+  	away["total"] = "" if away["total"].to_f <= 0
+
+  	home["technical_difference"] = "" if home["technical_difference"].to_f <= 0 
+  	away["technical_difference"] = "" if away["technical_difference"].to_f <= 0 
+
+  	home["physical_difference"] = "" if home["physical_difference"].to_f <= 0 
+  	away["physical_difference"] = "" if away["physical_difference"].to_f <= 0  
+
+  	home["total_difference"] = "" if home["total_difference"].to_f <= 0 
+  	away["total_difference"] = "" if away["total_difference"].to_f <= 0	
+
+  	home["level_difference"] = 0.0
+  	away["level_difference"] = 0.0	
+
+  	home["has_level_value"] = home["level"] > 0
+  	away["has_level_value"] = away["level"] > 0
+
+  	if home["has_level_value"] and away["has_level_value"] 		
+  		home["level_difference"] = (home["level"] - away["level"]).to_f / (away["level"]) * 100
+  		away["level_difference"] = (away["level"] - home["level"]).to_f / (home["level"]) * 100 
+  	end
+
+  	home["level_difference"] = "#{sprintf( "%.2f", home["level_difference"].abs)}%"
+  	away["level_difference"] = "#{sprintf( "%.2f", away["level_difference"].abs)}%"
+
+  	home["level"] = "#{sprintf( "%.0f", home["level"].abs)}"
+  	away["level"] = "#{sprintf( "%.0f", away["level"].abs)}"
+
+  	home["is_level_lower"] = home["level"] < away["level"]
+  	away["is_level_lower"] = home["level"] > away["level"]
+
+  	home["level_difference"] = "-#{home["level_difference"]}" if home["is_level_lower"] and !away["is_level_lower"] 
+  	away["level_difference"] = "-#{away["level_difference"]}" if !home["is_level_lower"] and away["is_level_lower"]
+
+  	home["level_image"] = scorecard_image_link("subir-clasificacion.png") if home["level_difference"] > away["level_difference"]
+  	home["level_image"] = scorecard_image_link("bajar-clasificacion.png") if home["level_difference"] < away["level_difference"]
+  	home["level_image"] = scorecard_image_link("mantener-clasificacion.png") if home["level_difference"] == away["level_difference"]
+
+  	away["level_image"] = scorecard_image_link("subir-clasificacion.png") if away["level_difference"] > home["level_difference"]
+  	away["level_image"] = scorecard_image_link("bajar-clasificacion.png") if away["level_difference"] < home["level_difference"]
+  	away["level_image"] = scorecard_image_link("mantener-clasificacion.png") if away["level_difference"] == home["level_difference"]
+
+  	home["level"] = "" if home["level"].to_f <= 0 
+  	away["level"] = "" if away["level"].to_f <= 0
+
+  	home["level_difference"] = "" if home["level_difference"].to_f <= 0 
+  	away["level_difference"] = "" if away["level_difference"].to_f <= 0	
+
+  	show_right_border = true
+  	if !has_been_played
+  		show_right_border = false unless is_manager
+  	end
+  	return home, away, show_right_border
+	end
+	
 end
 

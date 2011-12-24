@@ -6,12 +6,14 @@ class CastsController < ApplicationController
     @user = User.find(params[:user_id])    
     @casts = Cast.current_challenge(@user, @challenge, params[:page])
     @cup = @challenge.cup
+	render @the_template
   end
   
   def list
     @casts = Cast.current_challenge(@challenge.users, @challenge, params[:page])
     @cup = @challenge.cup    
-    render :template => '/casts/index'
+    set_the_template('casts/index')
+	render @the_template
   end
   
   def list_guess
@@ -20,8 +22,9 @@ class CastsController < ApplicationController
     @users = []
     @challenges.each {|challenge| challenge.users.each {|user| @users << user}}
     # @users = User.find(@challenges.users)
-    @casts = Cast.guess_casts(@users, @challenges, params[:page])   
-    render :template => '/casts/index'    
+    @casts = Cast.guess_casts(@users, @challenges, params[:page])      
+    set_the_template('casts/index')
+	render @the_template
   end
 
   def edit
@@ -33,7 +36,8 @@ class CastsController < ApplicationController
     unless counter > 0
       redirect_back_or_default('/index') 
       return 
-    end
+    end   
+	render @the_template
   end
 
   def update

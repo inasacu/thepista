@@ -2,13 +2,15 @@ class VenuesController < ApplicationController
   before_filter :require_user    
   before_filter :get_venue, :only => [:show, :edit, :update]
   before_filter :has_manager_access, :only => [:edit, :update]
-  
+
   def index
     @venues = Venue.paginate(:all, :conditions => ["archive = false"], :page => params[:page], :order => 'name') 
+    render @the_template
   end
 
   def show
     store_location 
+    render @the_template
   end
 
   def new
@@ -16,6 +18,7 @@ class VenuesController < ApplicationController
     @venue.starts_at = Time.zone.now.change(:hour => 8, :min => 0, :sec => 0)
     @venue.ends_at  = Time.zone.now.change(:hour => 23, :min => 0, :sec => 0)
     @venue.time_zone = current_user.time_zone if !current_user.time_zone.nil?
+    render @the_template
   end
 
   def create
@@ -31,6 +34,8 @@ class VenuesController < ApplicationController
   end
 
   def edit
+    set_the_template('venues/new')
+    render @the_template
   end
 
   def update

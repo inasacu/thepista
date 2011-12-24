@@ -4,20 +4,24 @@ class AnnouncementsController < ApplicationController
   
   def index
     @announcements = Announcement.paginate(:per_page => SCHEDULES_PER_PAGE, :page => params[:page])
+	render @the_template
   end
   
   def list
     @announcements = Announcement.previous_announcement
-      render :template => '/announcements/index'
+    set_the_template('announcements/index')
+	render @the_template
   end
 
   def show
     @announcement = Announcement.find(params[:id])
+	render @the_template
   end
 
   def new
     @announcement = Announcement.new
     @announcement.ends_at = Time.zone.now + 1.day
+	render @the_template
   end
 
   def create
@@ -32,6 +36,7 @@ class AnnouncementsController < ApplicationController
 
   def edit
     @announcement = Announcement.find(params[:id])
+	render @the_template
   end
 
   def update

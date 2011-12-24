@@ -72,5 +72,34 @@ payment.item)
     return item_link, item_object
   end
   
+  
+  def set_latest_payment
+    users = [] 
+    groups = []
+    schedules = []
+    the_fees = []
+    the_payments = []
+
+    users << current_user
+    groups = current_user.groups
+
+    groups.each do |group|
+      Schedule.match_participation(group, users, schedules) unless current_user.is_subscriber_of?(group)
+    end
+
+    Fee.debits_credits_items_fees(users, groups, groups, the_fees) 
+    Fee.debits_credits_items_fees(users, groups, schedules, the_fees)
+    debit_fee = Fee.sum_debit_amount_fee(the_fees)    
+
+    Payment.debits_credits_items_payments(users, groups, groups, the_payments) 
+    Payment.debits_credits_items_payments(users, groups, schedules, the_payments)    
+    debit_payment, credit_payment = Payment.sum_debit_amount_payment(the_payments)
+
+    the_total = debit_fee.debit_amount.to_f - (debit_payment.debit_amount.to_f + credit_payment.credit_amount.to_f)
+    the_label = label_name(:debit_to_group)
+    
+    return 
+  end
+
 end
 

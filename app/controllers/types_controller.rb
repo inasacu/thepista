@@ -2,8 +2,11 @@ class TypesController < ApplicationController
   before_filter :require_user
   before_filter :the_maximo
 
+  before_filter :get_types,		:only => [:edit, :update]
+
   def index
     @types = Type.paginate(:per_page => 10, :page => params[:page])
+    render @the_template
   end
 
   def show
@@ -12,6 +15,7 @@ class TypesController < ApplicationController
 
   def new
     @types = Type.new
+    render @the_template
   end
 
   def create
@@ -25,11 +29,11 @@ class TypesController < ApplicationController
   end
 
   def edit
-    @types = Type.find(params[:id])
+    set_the_template('types/new')
+    render @the_template
   end
 
   def update
-    @types = Type.find(params[:id])
     if @types.update_attributes(params[:types])
       flash[:notice] = I18n.t(:succesfully_updated)
       redirect_to @types
@@ -44,5 +48,9 @@ class TypesController < ApplicationController
       redirect_to root_url
       return
     end
+  end
+
+  def get_types
+    @types = Type.find(params[:id])
   end
 end

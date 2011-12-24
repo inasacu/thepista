@@ -8,21 +8,25 @@ class CupsController < ApplicationController
     if @has_no_cups
       redirect_to :action => 'list'
       return
-    end
+    end 
+    render @the_template
   end
 
   def list    
     @cups = Cup.previous_cups(params[:page])
-    render :template => '/cups/index'       
+    set_the_template('cups/index')
+    render @the_template    
   end
 
   def squad_list
     @squads = @cup.squads.paginate(:page => params[:page], :per_page => USERS_PER_PAGE)
-    @total = @cup.squads.count
+    @total = @cup.squads.count 
+    render @the_template
   end
 
   def show
-    store_location 
+    store_location  
+    render @the_template
   end
 
   def new
@@ -31,7 +35,8 @@ class CupsController < ApplicationController
     @cup.deadline_at = (Time.now + 7.days).midnight 
     @cup.starts_at = (@cup.deadline_at + 1.day) + 19.hours
     @cup.ends_at = (@cup.deadline_at + 60.day) + 21.hours
-    @sports = Sport.find(:all) 
+    @sports = Sport.find(:all)  
+    render @the_template
   end
 
   def create
@@ -46,9 +51,14 @@ class CupsController < ApplicationController
     end
   end
 
+  def edit
+    set_the_template('cups/new')
+    render @the_template
+  end
+
   def update
     @original_cup = Cup.find(params[:id])
-    
+
     if @cup.update_attributes(params[:cup]) 
       if (@original_cup.points_for_win != @cup.points_for_win) or 
         (@original_cup.points_for_lose != @cup.points_for_lose) or 
@@ -77,7 +87,7 @@ class CupsController < ApplicationController
   def get_cup
     @cup = Cup.find(params[:id])
   end
-  
+
   def get_current_cup
     @cups = Cup.current_cups(params[:page])
     @has_no_cups = (@cups.nil? or @cups.blank?)
@@ -90,5 +100,5 @@ class CupsController < ApplicationController
       return
     end
   end 
-  
+
 end

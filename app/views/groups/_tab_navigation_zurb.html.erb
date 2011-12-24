@@ -33,10 +33,6 @@
 		<%= set_tab_navigation(link_to(label_name(:scorecards), scorecards_path, set_tab_navigation_active('scorecard_index'))) unless @group %>
 		<%= set_tab_navigation(group_link(@group, set_tab_navigation_active('group_show'))) if @group and is_not_new_item %>
 		
-		<%#= content_tag :dd, link_to(label_name(:groups), groups_path, :class => get_first_active) unless @group %>
-		<%#= content_tag :dd, link_to(label_name(:scorecards), scorecards_path, :class => get_active('scorecard_index')) unless @group %>
-		<%#= content_tag :dd, group_link(@group, {:class => get_active('group_show')}) if @group and is_not_new_item %>
-		
 	<% end %>
 <% 	
 	if the_action.include?(get_the_action) or the_controller.include?(get_the_controller)
@@ -45,8 +41,8 @@
 %>		
 		<%= content_tag :dd, blog_link(the_blog, {:class => get_active('blog_show')}) %>
 		<%= content_tag :dd, link_to(label_name(:users) , team_list_path(:id => @group), :class => get_active('group_team_list')) %>
-		<%= content_tag :dd, link_to(label_name(:upcoming_schedules) , group_current_path(:id => @group), :class => get_active('schedule_group_current_list')) %>
-		<%= content_tag :dd, link_to(label_name(:previous_schedules) , group_previous_path(:id => @group), :class => get_active('schedule_group_previous_list')) %>
+		<%#= content_tag :dd, link_to(label_name(:upcoming_schedules) , group_current_path(:id => @group), :class => get_active('schedule_group_current_list')) %>
+		<%#= content_tag :dd, link_to(label_name(:previous_schedules) , group_previous_path(:id => @group), :class => get_active('schedule_group_previous_list')) %>
 		
 		<% if current_user.is_manager_of?(@group)  %>
 			<%= content_tag :dd, link_to(label_name(:fees) , list_fees_path(:id => @group), :class => get_active('fee_list')) %>

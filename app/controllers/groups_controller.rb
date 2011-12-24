@@ -8,6 +8,7 @@ class GroupsController < ApplicationController
 
   def index
     @groups = Group.paginate(:all, :conditions => ["groups.archive = false "], :order => "groups.created_at DESC", :page => params[:page])
+    render @the_template
   end
 
   def list
@@ -18,22 +19,20 @@ class GroupsController < ApplicationController
   def team_list
     @users = @group.users.paginate(:page => params[:page], :per_page => USERS_PER_PAGE)
     @total = @group.users.count
+    render @the_template
   end
 
   def show
     store_location 
+    render @the_template
   end
 
   def new    
-    
-    marker = Marker.find(params[:marker_id]) if params[:marker_id]
-    
+    marker = Marker.find(params[:marker_id]) if params[:marker_id]    
     @group = Group.new
     @group.marker = marker
-    
-    # @markers = Marker.find(:all)
     @sports = Sport.find(:all)
-    # @group.conditions = I18n.t(:default_group_conditions)
+    render @the_template
   end
 
   def create
@@ -53,6 +52,11 @@ class GroupsController < ApplicationController
       render :action => 'new'
     end
   end
+  
+  def edit
+	set_the_template('groups/new')
+	render @the_template   
+   end
 
   def update
     @original_group = Group.find(params[:id])

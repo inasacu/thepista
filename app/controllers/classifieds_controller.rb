@@ -40,15 +40,15 @@ class ClassifiedsController < ApplicationController
   def create
     @classified = Classified.new(params[:classified]) 
     @classified.ends_at = @classified.starts_at + 7.days
-    
+
     @group = Group.find(@classified.table_id) if @classified.table_type == "Group"
-    
+
     unless current_user.is_manager_of?(@group)
       flash[:warning] = I18n.t(:unauthorized)
       redirect_back_or_default('/index')
       return
     end
-    
+
     @classified.item = @group
     @classified.time_zone = @group.time_zone
 
@@ -59,10 +59,11 @@ class ClassifiedsController < ApplicationController
       render :action => 'new'
     end
   end
-  
+
   def show
     @classified = Classified.find(params[:id])    
-    @group = Group.find(@classified.table_id) if @classified.table_type == "Group"
+    @group = Group.find(@classified.table_id) if @classified.table_type == "Group"   
+    render @the_template
   end
 
   def edit
@@ -73,8 +74,9 @@ class ClassifiedsController < ApplicationController
       flash[:warning] = I18n.t(:unauthorized)
       redirect_back_or_default('/index')
       return
-    end
-
+    end 
+    set_the_template('classifieds/new')
+    render @the_template
   end
 
   def update

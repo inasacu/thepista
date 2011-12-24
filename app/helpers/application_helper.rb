@@ -79,12 +79,12 @@ module ApplicationHelper
     return @counter
   end
 
-  #   <tr>
-  #   <%= content_tag 'td', label_name(:name), :class => "label" %>
-  #   <%= content_tag 'td', h(@group.name), :class => get_the_action %>
-  # </tr>
   def tr_td_action(label, value)
-    content_tag(:tr, content_tag(:td, label_name(label), :class => "label") + content_tag(:td, h(value), :class => get_the_action))
+    if DISPLAY_HAYPISTA_TEMPLATE
+      content_tag(:tr, content_tag(:td, label_name(label), :class => "label") + content_tag(:td, h(value), :class => get_the_action)) 
+    else  
+      content_tag(:tr, content_tag(:td, label_name(label)) + content_tag(:td, h(value)))
+    end
   end
 
   # returns true / false if controller name passed is same is current
@@ -133,7 +133,7 @@ module ApplicationHelper
   def nice_day_time_at(time_at)
     return I18n.l(time_at, :format => :day) unless time_at.nil?
   end
-  
+
   # hour: 20
   def nice_hour_time_at(time_at)
     return I18n.l(time_at, :format => :hour) unless time_at.nil?
@@ -148,7 +148,7 @@ module ApplicationHelper
   def nice_month_time_at(time_at)
     return I18n.l(time_at, :format => :month) unless time_at.nil?
   end
-  
+
   # year: 11
   def nice_year_time_at(time_at)
     return I18n.l(time_at, :format => :year) unless time_at.nil?
@@ -158,7 +158,7 @@ module ApplicationHelper
   def nice_simple_time_zone_at(time_at)
     return I18n.l(time_at, :format => :simple_time_zone_at) unless time_at.nil?
   end
-  
+
   # a las 20:30
   def nice_time_at(time_at)
     return I18n.l(time_at, :format => :time_at) unless time_at.nil?
@@ -213,7 +213,7 @@ module ApplicationHelper
   def nice_day_time_wo_year_exact(time_at)
     return I18n.l(time_at, :format => :day_time_wo_year_exact) unless time_at.nil?
   end
-  
+
   # converts two dates and get date and time from first and second
   def convert_to_datetime_zone(the_date, the_time)
     the_datetime = "#{the_date.strftime('%Y%m%d')} #{nice_simple_time_zone_at(the_time)} "
@@ -306,7 +306,51 @@ module ApplicationHelper
   end
 
   def show_heading(text)
-    content_tag(:h2, h(text), :class => :title )
+    if DISPLAY_HAYPISTA_TEMPLATE
+      content_tag(:h2, h(text), :class => :title )
+    else
+      content_tag(:h4, h(text), :class => :title )
+    end
+  end
+
+  def set_content_tag(text)
+    if DISPLAY_HAYPISTA_TEMPLATE
+      content_tag :h3, text
+    else
+      content_tag :h4, text
+    end
+  end
+
+  def set_title_class(text, image_label=nil)
+    if DISPLAY_HAYPISTA_TEMPLATE
+      content_tag :h2, "#{image_label.nil? ? '' : option_image_link(image_label)}  #{text}", :class => "title"
+    else
+      content_tag :h4, "#{image_label.nil? ? '' : option_image_small_link(image_label)}  #{text}", :class => "title"
+    end
+  end
+
+  def set_image_and_link(the_link, image_label=nil)
+    if DISPLAY_HAYPISTA_TEMPLATE
+      content_tag :p, "#{image_label.nil? ? '' : option_image_link(image_label)}  #{the_link}"
+    else
+      content_tag :p, "#{image_label.nil? ? '' : option_image_small_link(image_label)}  #{the_link}"
+    end
+  end
+
+  def set_sidebar(the_render=nil)
+    if DISPLAY_HAYPISTA_TEMPLATE
+      if the_render.nil?
+        content_for :sidebar, render("#{get_the_controller}/sidebar")
+      else
+        content_for :sidebar, the_render
+      end
+      # else  
+      #   if the_render.nil?
+      #     content_for :sidebar, render("#{get_the_controller}/sidebar_zurb")
+      #   else
+      #     content_for :sidebar, the_render
+      #   end
+    end
   end
 
   # Link to a item (default is by name).
@@ -350,10 +394,10 @@ module ApplicationHelper
     return image_tag(the_image, options={:style => 'height: 24px; width: 24px;', :align => align})
   end
 
-    def option_image_small_link(item, align='')
-      the_image = "icons/#{item}.png"
-      return image_tag(the_image, options={:style => 'height: 16px; width: 16px;', :align => align})
-    end
+  def option_image_small_link(item, align='')
+    the_image = "icons/#{item}.png"
+    return image_tag(the_image, options={:style => 'height: 16px; width: 16px;', :align => align})
+  end
 
   def option_link(item) 
     the_image = "icons/#{item}.png"
@@ -402,9 +446,19 @@ module ApplicationHelper
     return list_of_items.chop.chop
   end
 
-  def item_new(item)    
-    the_url = "new_#{item.class.to_s.downcase.chomp}_url"
-    content_tag('li', link_to(control_action_label, send(:"#{the_url}")), :class => 'first active') if (is_action('new') or is_action('create'))
+  def item_new(item)   
+
+    if (is_action('new') or is_action('create'))
+      the_url = "new_#{item.class.to_s.downcase.chomp}_url"
+
+      if DISPLAY_HAYPISTA_TEMPLATE
+        content_tag(:li, link_to(control_action_label, send(:"#{the_url}")), :class => 'first active') if (is_action('new') or is_action('create'))
+      else
+        content_tag(:dd, link_to(control_action_label, send(:"#{the_url}"))) 
+      end
+
+    end
+
   end
 
   def sort_link(title, column, options = {})
@@ -414,6 +468,7 @@ module ApplicationHelper
   end
 
   def get_secondary_navigation(item=nil, game=nil)
+    return "" unless DISPLAY_HAYPISTA_TEMPLATE
     the_controller = is_controller('home') ? "#{get_the_controller}" : "#{get_the_controller}s"
     return render("#{the_controller}/secondary_navigation") if item.nil? 
     return render("#{(item.class.to_s).downcase}s/secondary_navigation", :item => item) if game.nil?
@@ -471,102 +526,222 @@ module ApplicationHelper
     the_description = control_label("#{value}_description") unless no_description
     return "#{the_description}..."
   end
-  
+
   def get_header_navigation
     has_group ||= false
 
-  	if current_user 
-  		has_group = current_user.has_group? 
-  	end
+    if current_user 
+      has_group = current_user.has_group? 
+    end
 
-  	the_cup = ""
-  	the_challenge = ""
-  	the_schedule = ""
-  	the_group = ""
-  	the_users = ""
-  	the_user = ""
-  	the_petition = ""
-  	the_home = ""
-  	the_login = ""
-  	the_signup = ""
-  	the_venue = ""
-  	the_message = ""
-  	the_controller_action = ['user_list', 'user_index']
-  	the_controller = get_the_controller
+    the_cup = ""
+    the_challenge = ""
+    the_schedule = ""
+    the_group = ""
+    the_users = ""
+    the_user = ""
+    the_petition = ""
+    the_home = ""
+    the_login = ""
+    the_signup = ""
+    the_venue = ""
+    the_message = ""
+    the_controller_action = ['user_list', 'user_index']
+    the_controller = get_the_controller
 
-  	case the_controller
-  	when 'home'
-  		the_home = "active"
+    case the_controller
+    when 'home'
+      the_home = "active"
 
-  	when 'cup', 'game', 'escuadra'
-  		the_cup = "active"
+    when 'cup', 'game', 'escuadra'
+      the_cup = "active"
 
-  	when 'group', 'classified'
-  		the_group = "active"
+    when 'group', 'classified'
+      the_group = "active"
 
-  	when 'user'
-  		the_users = "active" if the_controller_action.include?(get_controller_action)
-  		the_user = "active" unless the_controller_action.include?(get_controller_action)
-  		if get_controller_action == 'user_petition'
-  			the_petition = "active" 
-  			the_user = ""
-  		end 
+    when 'user'
+      the_users = "active" if the_controller_action.include?(get_controller_action)
+      the_user = "active" unless the_controller_action.include?(get_controller_action)
+      if get_controller_action == 'user_petition'
+        the_petition = "active" 
+        the_user = ""
+      end 
 
-  		the_signup = "active" if is_action('signup')
+      the_signup = "active" if is_action('signup')
 
-  	when 'user session'
-  		the_login = "active" 
+    when 'user session'
+      the_login = "active" 
 
-  	when 'schedule', 'forum', 'match'
-  		the_schedule = (get_controller_action == "schedule_my_list")
-  		the_schedule = the_schedule ? (@user == current_user) : true
-  		the_schedule = the_schedule ? "active" : " "
-  		the_user = "active" if the_controller_action.include?(get_controller_action)
-  		if get_controller_action == 'schedule_schedule_list'
-  			the_group = "active" 
-  			the_schedule = ""
-  		end
+    when 'schedule', 'forum', 'match'
+      the_schedule = (get_controller_action == "schedule_my_list")
+      the_schedule = the_schedule ? (@user == current_user) : true
+      the_schedule = the_schedule ? "active" : " "
+      the_user = "active" if the_controller_action.include?(get_controller_action)
+      if get_controller_action == 'schedule_schedule_list'
+        the_group = "active" 
+        the_schedule = ""
+      end
 
-  	when 'challenge', 'cast'
-  		the_cup = "active" if is_action('list gues')
-  		the_challenge = "active" unless is_action('list gues')
+    when 'challenge', 'cast'
+      the_cup = "active" if is_action('list gues')
+      the_challenge = "active" unless is_action('list gues')
 
-  	when 'standing'
-  		the_cup = "active" unless is_action('show list')
-  		the_challenge = "active" if is_action('show list')
+    when 'standing'
+      the_cup = "active" unless is_action('show list')
+      the_challenge = "active" if is_action('show list')
 
-  	when 'blog'
-  		if @user
-  			the_user = "active"
-  		elsif @group
-  			the_group = "active"
-  		else @challenge
-  			the_challenge = "active" 
-  		end
+    when 'blog'
+      if @user
+        the_user = "active"
+      elsif @group
+        the_group = "active"
+      else @challenge
+        the_challenge = "active" 
+      end
 
-  	when 'fee', 'payment'
-  		if @item and @item.class.to_s == 'Challenge' 
-  			the_challenge = "active" 
-  		elsif @user
-  			the_user = "active"
-  		elsif @group
-  			the_group = "active"
-  		end
+    when 'fee', 'payment'
+      if @item and @item.class.to_s == 'Challenge' 
+        the_challenge = "active" 
+      elsif @user
+        the_user = "active"
+      elsif @group
+        the_group = "active"
+      end
 
-  	when 'message', 'invitation'
-  		the_message = "active"
+    when 'message', 'invitation'
+      the_message = "active"
 
-  	when 'venue', "installation", "reservation"
-  		the_venue = "active"	
-  	end
-  	
-  	return has_group, the_cup, the_challenge, the_schedule, the_group, the_users, the_user, the_petition, the_home, the_login, the_signup, the_venue, the_message, the_controller_action , the_controller
-  	
-	end
-	
-	def set_title_w_image(the_label, image_label='')
-    return content_tag(:h2, "#{option_image_link(image_label)}  #{the_label}", :class => 'title')
+    when 'venue', "installation", "reservation"
+      the_venue = "active"	
+    end
+
+    return has_group, the_cup, the_challenge, the_schedule, the_group, the_users, the_user, the_petition, the_home, the_login, the_signup, the_venue, the_message, the_controller_action , the_controller
+
   end
 
+
+  def set_form_button_submit(item)
+    return "#{set_form_button(item)} #{label_name(:or)} #{set_form_cancel(item)}"
+  end
+
+  def set_form_button(item, the_label='', the_button='')
+    the_button_class = "button"
+    the_button_class = "small white nice button radius"
+    the_button_class = the_button unless the_button.blank?
+    return submit_tag(item.new_record? ? control_label('create') : control_label('edit'), :class => the_button_class) #unless the_label.blank?
+    return submit_tag(label_name(the_label), :class => the_button_class)
+  end 
+
+  def set_form_cancel(item)
+    the_path = "#{item.class.to_s.downcase.chomp}s_path"
+    link_to(I18n.t(:cancel), send(:"#{the_path}"))    
+  end
+
+  def set_form_label(form, field, the_label='')
+    form_label = (the_label.blank? ? field : the_label)
+    return form.label :"#{field}", label_name(form_label)
+  end
+
+  def set_form_text_field(form, field, the_class, placeholder=false)
+    if placeholder
+      return form.text_field :"#{field}", :class => the_class, :placeholder => label_name(:"#{field}") 
+    else  
+      return form.text_field :"#{field}", :class => the_class
+    end
+  end
+
+  def set_form_password(form, field, the_class, placeholder=false)
+    if placeholder
+      return form.password_field :"#{field}", :class => the_class, :placeholder => label_name(:"#{field}") 
+    else  
+      return form.password_field :"#{field}", :class => the_class
+    end
+  end
+
+  def set_form_select(form, field_id, field_name, selection, include_blank=true)
+    form.select(:"#{field_id}", field_name, {:selected => selection, :include_blank => include_blank})
+  end 
+
+  def set_form_text_area(form, field, placeholder=false, cols="40px%", rows="5px")
+    if placeholder
+      return form.text_area :"#{field}", :placeholder => label_name(:"#{field}"), :cols => cols, :rows => rows
+    else
+      return form.text_area :"#{field}", :cols => cols, :rows => rows
+    end
+  end
+
+  def set_form_checkbox(form, field)
+    return form.check_box, :"#{field}"
+  end
+
+  def set_form_time_select(form, field)
+    return form.time_select, :"#{field}", :class => 'datetime_select'
+  end
+
+  def set_form_datetime_select(form, field)
+    return form.datetime_select, :"#{field}", :class => 'datetime_select'
+  end
+
+  def set_form_date_select(form, field)
+    return form.date_select, :"#{field}", :class => 'datetime_select'
+  end
+
+  def set_timezone_select(form)
+    return form.time_zone_select :time_zone, ActiveSupport::TimeZone.us_zones
+  end
+
+  def set_form_file_field(form, field)
+    return form.file_field, :"#{field}", :class => 'textphoto'
+  end
+
+  def render_show_detail_zurb(item_label, item_link, unique_label=false)
+    return render('shared/show_detail_zurb', :item_label => item_label, :item_link => item_link, :unique_label => unique_label)
+  end
+
+  def set_tab_navigation(the_label)
+    return content_tag(:dd, the_label) 
+  end
+
+  def set_tab_navigation_active(controller_action)
+    return :class => get_active(controller_action)
+  end
+
+  def set_form_create(item)
+    the_item = item.class.to_s.downcase.chomp
+    the_path = "new_#{the_item}_url"
+    the_label = "#{the_item}s_create"
+    link_to(I18n.t(:"#{the_label}"), send(:"#{the_path}", item))
+  end
+
+  def set_form_create_image_link(item)
+    the_item = item.class.to_s.downcase.chomp
+    set_image_and_link(set_form_create(item), the_item)
+  end
+
+  def set_form_edit(item, label='')
+    the_path = "edit_#{item.class.to_s.downcase.chomp}_path"
+    the_label = label.blank? ? I18n.t(:edit) : I18n.t(label)
+    link_to(the_label, send(:"#{the_path}", item))
+  end
+
+  def set_form_edit_image_link(item, label='')
+    set_image_and_link(set_form_edit(item, label), item.class.to_s.downcase.chomp)
+  end
+
+  def set_form_create_id(item, id, item_id, label='')
+    the_item = item.class.to_s.downcase.chomp
+    the_path = "new_#{the_item}_url"
+    the_label = label.blank? ? I18n.t(:create) : I18n.t(label)
+    link_to(the_label, send(:"#{the_path}", :"#{id}" => item_id))
+  end
+
+  def set_form_create_id_image_link(item, id, item_id, label='',image='')
+    set_image_and_link(set_form_create_id(item, id, item_id, label),( image.blank? ? item.class.to_s.downcase.chomp : image))
+  end  
+
+  def set_class_name_and_date(first_item, second_item)
+    the_span = content_tag('span', second_item, :class => 'date')
+    return content_tag('td', "#{first_item}<br />#{the_span}", :class => 'name_and_date')
+  end
   
 end

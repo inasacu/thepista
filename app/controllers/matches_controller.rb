@@ -1,6 +1,6 @@
 class MatchesController < ApplicationController
   before_filter :require_user,              :except => [:set_status_link]
-  
+
   before_filter :get_match_and_user_x_two,  :only =>[:set_status, :set_team, :set_status_link]
   before_filter :has_member_access,         :only => [:set_match_profile]
   before_filter :has_match_access,          :only => [:rate]
@@ -8,15 +8,16 @@ class MatchesController < ApplicationController
   def index
     redirect_to :controller => 'schedules', :action => 'index'
   end
-  
+
   def star_rate
     @schedule = Schedule.find(params[:id])
     @group = @schedule.group    
     @the_first_schedule = @group.schedules.first
     @matches = Match.get_matches_users(@the_first_schedule)
-    render :template => 'groups/set_profile'       
+    set_the_template('groups/set_profile')
+    render @the_template   
   end
-  
+
   def set_profile
     @schedule = Schedule.find(params[:id])
     @match = @schedule.matches.first
@@ -26,7 +27,8 @@ class MatchesController < ApplicationController
       flash[:warning] = I18n.t(:unauthorized)
       redirect_back_or_default('/index')
       return
-    end    
+    end   
+    render @the_template    
   end
 
   def set_user_profile
@@ -62,22 +64,25 @@ class MatchesController < ApplicationController
       redirect_back_or_default('/index')
       return
     end    
+
+    set_the_template('matches/new')
+    render @the_template 
   end
 
   def update
     @match = Match.find(params[:id])
     the_group = @match.schedule.group
-    
+
     unless current_user.is_manager_of?(the_group)
       flash[:warning] = I18n.t(:unauthorized)
       redirect_back_or_default('/index')
       return
     end
-    
+
     if @match.update_attributes(params[:match])
       Match.save_matches(@match, params[:match][:match_attributes]) if params[:match][:match_attributes]
       Match.update_match_details(@match, current_user)
-      
+
       if DISPLAY_TRUESKILL
         Match.delay.set_default_skill(the_group)
         Match.delay.set_true_skill(the_group)
@@ -101,15 +106,15 @@ class MatchesController < ApplicationController
     played = (@type.id == 1 and !@match.group_score.nil? and !@match.invite_score.nil?)
 
     ask_for_comment = (current_user == @match.user and Time.zone.now + 1.days > @match.schedule.starts_at)
-    
+
     if @match.update_attributes(:type_id => @type.id, :played => played, :user_x_two => @user_x_two, :status_at => Time.zone.now)
       Scorecard.delay.calculate_user_played_assigned_scorecard(@match.user, @match.schedule.group)
-      
+
       # set fee type_id to same as match type_id
       the_fee = Fee.find(:all, :conditions => ["debit_type = 'User' and debit_id = ? and item_type = 'Schedule' and item_id = ?", @match.user_id, @match.schedule_id])
       the_fee.each {|fee| fee.type_id = @type.id; fee.save}
     end 
-    
+
     if ask_for_comment
       @schedule = @match.schedule
       @the_previous = Schedule.previous(@schedule)
@@ -130,13 +135,13 @@ class MatchesController < ApplicationController
 
     @type = Type.find(params[:type])
     played = (@type.id == 1 and !@match.group_score.nil? and !@match.invite_score.nil?)
-    
+
     if @match.update_attributes(:type_id => @type.id, :played => played, :user_x_two => @user_x_two, :status_at => Time.zone.now)
-      
+
       manager_id = RolesUsers.find_item_manager(@match.schedule.group).user_id
       Schedule.delay.create_notification_email(@match.schedule, @match.schedule, manager_id, @match.user_id, true)      
       Scorecard.delay.calculate_user_played_assigned_scorecard(@match.user, @match.schedule.group)
-      
+
       # set fee type_id to same as match type_id
       the_fee = Fee.find(:all, :conditions => ["debit_type = 'User' and debit_id = ? and item_type = 'Schedule' and item_id = ?", @match.user_id, @match.schedule_id])
       the_fee.each {|fee| fee.type_id = @type.id; fee.save}
@@ -146,7 +151,7 @@ class MatchesController < ApplicationController
 
   def set_team 
     unless current_user.is_member_of?(@match.schedule.group) 
-    # unless current_user.is_sub_manager_of?(@match.schedule.group) 
+      # unless current_user.is_sub_manager_of?(@match.schedule.group) 
       flash[:warning] = I18n.t(:unauthorized)
       redirect_back_or_default('/index')
       return
@@ -182,7 +187,7 @@ class MatchesController < ApplicationController
     @user_x_two = "X" if (@match.group_score.to_i == @match.invite_score.to_i)
     @user_x_two = "2" if (@match.group_id.to_i == 0 and @match.invite_id.to_i > 0)
   end
-  
+
   def has_member_access
     @schedule = Schedule.find(params[:id])
     unless current_user.is_member_of?(@schedule.group) 
@@ -191,8 +196,8 @@ class MatchesController < ApplicationController
       return
     end
   end
-  
-  
+
+
   def has_match_access
     @match = Match.find(params[:id])
     @schedule = @match.schedule
@@ -202,5 +207,5 @@ class MatchesController < ApplicationController
       return
     end
   end
-  
+
 end

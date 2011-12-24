@@ -14,8 +14,25 @@ class ApplicationController < ActionController::Base
   before_filter :set_time_zone   
   before_filter :set_user_language
 
-  # before_filter :set_template
-  # layout 'zurb'
+  before_filter :set_the_template   #unless DISPLAY_HAYPISTA_TEMPLATE
+  layout 'zurb'                     unless DISPLAY_HAYPISTA_TEMPLATE
+
+
+  # this probably needs to go in the helper
+  def set_the_template(default_template='')
+    the_action = self.action_name.singularize
+    the_controller = self.class.to_s.gsub('Controller', '').downcase
+    the_controller = 'user_sessions' if the_controller == 'usersessions'
+    
+    @the_template = "#{the_controller}/#{the_action}" if DISPLAY_HAYPISTA_TEMPLATE
+    @the_template = "#{the_controller}/#{the_action}_zurb" unless DISPLAY_HAYPISTA_TEMPLATE
+  
+    unless (default_template.blank?)
+      @the_template = default_template if DISPLAY_HAYPISTA_TEMPLATE
+      @the_template = "#{default_template}_zurb" unless DISPLAY_HAYPISTA_TEMPLATE
+    end
+  
+  end
 
   private  
   def set_user_language    
@@ -64,8 +81,7 @@ class ApplicationController < ActionController::Base
   end
 
   def set_template
-    the_action = self.action_name.singularize
-    the_controller = self.class.to_s.gsub('Controller', '').downcase
-    @the_template = "#{the_controller}/#{the_action}_zurb"
+    set_the_template
   end
+
 end

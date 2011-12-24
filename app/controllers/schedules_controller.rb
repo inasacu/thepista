@@ -19,49 +19,57 @@ class SchedulesController < ApplicationController
       redirect_to :action => 'list'
       return
     end
+        render @the_template
   end
   
   def group_current_list
     @schedules = Schedule.group_current_schedules(@group, params[:page])
-    render :template => '/schedules/index'
+    set_the_template('schedules/index')
+    render @the_template
   end
   
   def group_previous_list
     @schedules = Schedule.group_previous_schedules(@group, params[:page])
-    render :template => '/schedules/index'
+    set_the_template('schedules/index')
+    render @the_template
   end
 
   def list
     @schedules = Schedule.previous_schedules(current_user, params[:page])
-    render :template => '/schedules/index'       
+    set_the_template('schedules/index')
+    render @the_template      
   end
 
   def my_list
     @schedules = Schedule.find_all_played(@user, params[:page])
-    render :template => '/schedules/index'       
+    set_the_template('schedules/index')
+    render @the_template     
   end
 
   def schedule_list
     @schedules = @group.schedules.paginate(:page => params[:page], :per_page => SCHEDULES_PER_PAGE)
-    render :template => '/schedules/index'
+    set_the_template('schedules/index')
+    render @the_template
   end
-  
+
   def archive_list 
     @schedules = Schedule.current_schedules(current_user, params[:page])
-    render :template => '/schedules/index'       
+    set_the_template('schedules/index')
+    render @the_template
   end
 
   def show
     store_location    
+    render @the_template
   end
    
-
   def team_roster
     store_location
     @has_a_roster = !(@schedule.convocados.empty?)
     @the_roster = @schedule.the_roster_sort(sort_order(''))
-    render :template => 'schedules/team_roster'
-  end  
+      set_the_template('schedules/team_roster')
+      render @the_template 
+    end
 
   def sort_order(default)
     "#{(params[:c] || default.to_s).gsub(/[\s;'\"]/,'')} #{params[:d] == 'down' ? 'DESC' : 'ASC'}"
@@ -71,22 +79,25 @@ class SchedulesController < ApplicationController
     store_location
     @has_a_roster = !(@schedule.last_minute.empty?)
     @the_roster = @schedule.the_last_minute
-    render :template => 'schedules/team_roster'
-  end
+      set_the_template('schedules/team_roster')
+      render @the_template 
+    end
   
   def team_no_show
     store_location
     @has_a_roster = !(@schedule.no_shows.empty?)
     @the_roster = @schedule.the_no_show
-    render :template => 'schedules/team_roster'
-  end
+      set_the_template('schedules/team_roster')
+      render @the_template 
+    end
   
   def team_unavailable
     store_location
     @has_a_roster = !(@schedule.the_unavailable.empty?)
     @the_roster = @schedule.the_unavailable
-    render :template => 'schedules/team_roster'
-  end
+      set_the_template('schedules/team_roster')
+      render @the_template 
+    end
   
   def rate
     # @schedule.rate(params[:stars], current_user, params[:dimension])    
@@ -156,6 +167,7 @@ class SchedulesController < ApplicationController
       end
       
     end
+        render @the_template
   end
 
   def create
@@ -177,6 +189,8 @@ class SchedulesController < ApplicationController
   # set the end of season, 1 august current_year + 1
   def edit
     @schedule.season_ends_at = Time.utc(Time.zone.now.year + 1, 8, 1)
+      set_the_template('schedules/new')
+      render @the_template
   end
 
   def update

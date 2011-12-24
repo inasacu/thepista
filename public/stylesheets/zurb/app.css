@@ -13,6 +13,8 @@
    Shared Styles
 ----------------------------------------- */
 
+.row.display { background: transparent; }
+.row.display .column, .row.display .columns { background: transparent; }
 
 
 

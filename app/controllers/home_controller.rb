@@ -7,9 +7,7 @@ class HomeController < ApplicationController
 
   def index
     store_location  
-    # render :template => 'home/facebook_comments'
-    # render :template => 'home/pricing'
-    # render :template => 'home/tooltip'
+    render @the_template
   end
   
   def qr
@@ -17,20 +15,20 @@ class HomeController < ApplicationController
   end
   
   def privacy_policy
-    render :template => '/home/terms_of_use'    
+    set_the_template('home/terms_of_use')
+	render @the_template   
   end
   
   def search
     @item_results = []
     @all_items =  Search.new(params[:search])
     @all_items[0..LARGE_FEED_SIZE].each {|item| @item_results << item }
+	render @the_template   
   end
   
   def advertisement
-    # @all_classifieds = @all_classifieds.sort_by(&:created_at).reverse!    
-    # @all_classifieds[0..MEDIUM_FEED_SIZE].each {|item| @classifieds << item }          
-    
     @classifieds = Classified.find_all_classifieds(params[:page])
+	render @the_template   
   end
 
   private

@@ -33,7 +33,7 @@ task :the_archive_dependent => :environment do |t|
 
   # archive group 
   has_to_archive = true
-  group_id = [6, 8, 12]  
+  group_id = [6, 8, 12, 15, 16]  
   
   the_archive = Group.find(:all, :conditions => ["id in (?) and archive = false", group_id])
   the_archive.each do |group|    

@@ -3,10 +3,8 @@ require 'rqrcode'
 
 class UsersController < ApplicationController
   before_filter :require_no_user,     :only => [:signup, :create, :rpx_new, :rpx_create, :rpx_associate]
-  before_filter :require_user,        :only => [:index, :list, :show, :notice, :edit, :update, :petition, :recent_activity] 
-    
+  before_filter :require_user,        :only => [:index, :list, :show, :notice, :edit, :update, :petition, :recent_activity]     
   before_filter :get_sports,          :only => [:new, :edit, :signup, :rpx_new]
-
   before_filter :get_user_member,     :only => [:show, :notice] 
   before_filter :get_user_manager,    :only => [:set_available]
   
@@ -17,24 +15,18 @@ class UsersController < ApplicationController
   before_filter :get_user_group,      :only =>[:set_manager, :remove_manager, :set_sub_manager, :remove_sub_manager, 
                                                :set_subscription, :remove_subscription, :set_moderator, :remove_moderator]
                                           
-  before_filter :setup_rpx_api_key,   :only => [:rpx_new, :rpx_create, :rpx_associate]
-  
+  before_filter :setup_rpx_api_key,   :only => [:rpx_new, :rpx_create, :rpx_associate]  
   before_filter :has_member_access,   :only => [:rate]
   
   # ssl_required :signup, :new, :create
   # ssl_allowed :index, :list, :show
   
   def index
-    # store_location
-    # @users = current_user.page_mates(params[:page])
     redirect_to root_url
   end
   
   
   def list
-    # store_location
-    # @users = current_user.other_mates(params[:page])
-    # render :template => '/users/index' 
     redirect_to root_url      
   end
 
@@ -53,15 +45,18 @@ class UsersController < ApplicationController
     end
 
     @items = current_user.challenges.find(:all, :conditions => ["ends_at > ?", Time.zone.now])
+    render @the_template    
   end
   
   def notice
     store_location
-    render :template => '/users/show'
+	set_template('/users/show')
+	render @the_template     
   end
 
   def signup
     @user = User.new
+    render :template => 'home/index_zurb'  unless DISPLAY_HAYPISTA_TEMPLATE
   end  
 
   def new
@@ -149,18 +144,6 @@ class UsersController < ApplicationController
   def petition
     redirect_to root_url
     return
-    
-    # if current_user.requested_managers.empty? and current_user.pending_managers.empty?  
-    #   redirect_to root_url
-    #   return
-    # end
-    # 
-    # unless current_user.requested_managers.empty?
-    #   @requested_teammates = Teammate.find(:all, :conditions => ["manager_id = ? and status = 'pending'", current_user.id])
-    # end
-    # unless current_user.pending_managers.empty? 
-    #   @pending_teammates = Teammate.find(:all, :conditions => ["user_id = ? and status = 'pending'", current_user.id])
-    # end 
   end
 
   def third_party

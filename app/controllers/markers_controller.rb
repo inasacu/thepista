@@ -58,20 +58,23 @@ class MarkersController < ApplicationController
       @map.overlay_init(theMarker)
     end  
     @map.overlay_init(@marker) if @marker   
+    render @the_template   
   end
 
   def direction
     @default_min_points = 0
     @default_max_points = 25
     @default_zoom = 8
-    render :template => "markers/index_gmap3"
+    set_the_template('markers/index_gmap3')
+    render @the_template   
   end
 
   def search
     @default_min_points = 0
     @default_max_points = 120
     @default_zoom = 10
-    render :template => "markers/index_gmap3"
+    set_the_template('markers/index_gmap3')
+    render @the_template   
   end
 
   def show
@@ -83,13 +86,15 @@ class MarkersController < ApplicationController
       theMarker = GMarker.new([marker.latitude, marker.longitude], :title => marker.name, :info_window =>  marker.name + "! ") 
       @map.overlay_init(theMarker)
     end  
-    render :template => '/markers/index'  
+    set_the_template('markers/index')
+    render @the_template   
   end
-  
+
   def full_list
     @markers = Marker.paginate(:all, :conditions => ["archive = false"], :order => "markers.name DESC", :page => params[:page], :per_page => MARKERS_PER_PAGE)
+    render @the_template   
   end
-  
+
   # def show
   #   @default_min_points = 0
   #   @default_max_points = 35
@@ -99,7 +104,8 @@ class MarkersController < ApplicationController
 
   def list
     @default_zoom = 5
-    render :template => "markers/index_gmap3"
+    set_the_template('markers/index_gmap3')
+    render @the_template   
   end
 
   def new
@@ -124,6 +130,7 @@ class MarkersController < ApplicationController
       redirect_to markers_url
       return
     end
+    render @the_template   
   end
 
   def create
@@ -148,12 +155,14 @@ class MarkersController < ApplicationController
 
   def edit
     @marker = Marker.find(params[:id])
+    set_the_template('markers/new')
+    render @the_template
   end
 
   def update
     @marker.lat = @marker.latitude
     @marker.lng = @marker.longitude
-        
+
     if @marker.update_attributes(params[:marker])
       flash[:success] = I18n.t(:successful_update)
       redirect_to markers_url
@@ -216,7 +225,7 @@ class MarkersController < ApplicationController
 
   def get_all_markers    
     @the_markers = []    
-    
+
     @default_latitude = NUMBER_LATITUDE
     @default_longitude = NUMBER_LONGITUDE
 
@@ -264,7 +273,7 @@ class MarkersController < ApplicationController
     end
 
   end
-  
+
   def get_marker
     @marker = Marker.find(params[:id])  
   end

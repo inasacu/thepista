@@ -1,11 +1,12 @@
 class EscuadrasController < ApplicationController
   before_filter :require_user
-    
+
   def index
     @cup = Cup.find(params[:id])
-    @escuadras = Escuadra.cup_escuadras(@cup, params[:page])
+    @escuadras = Escuadra.cup_escuadras(@cup, params[:page]) 
+    render @the_template
   end
-  
+
   def show
     @escuadra = Escuadra.find(params[:id])
     @cup = @escuadra.cups.first
@@ -15,15 +16,13 @@ class EscuadrasController < ApplicationController
 
   def new
     @escuadra = Escuadra.new
-    @cup = Cup.find(params[:id])   
-    # @cup_escuadras = @cup.escuadras
-    # @escuadras = Escuadra.find(:all, :conditions => ["item_type = 'Escuadra' and id not in (select escuadra_id from cups_escuadras where cup_id = ?)", @cup], :order => 'name')
-    # @escuadras = Escuadra.find(:all, :conditions => ["item_type = 'Escuadra'"], :order => 'name')
+    @cup = Cup.find(params[:id])  
+    render @the_template
   end
 
   def create
     @cup = Cup.find(params[:cup][:id])
-    
+
     # escuadras for cup    
     if params[:escuadra_ids]
       @escuadras = Escuadra.find(params[:escuadra_ids])
@@ -33,32 +32,34 @@ class EscuadrasController < ApplicationController
       flash[:notice] = I18n.t(:successful_create)
       redirect_to escuadras_path(:id => @cup) and return
     end
-    
+
     @escuadra = Escuadra.new(params[:escuadra])
     @escuadra.description = @escuadra.name
-     
+
     if @escuadra.save and @escuadra.join_escuadra(@cup)
-      
+
       if @cup.official
         @escuadra.item = @escuadra
         @escuadra.save
       end
-      
+
       if @escuadra.item.nil?
         @escuadra.item = @escuadra
         @escuadra.save
       end
-      
+
       flash[:notice] = I18n.t(:successful_create)
       redirect_to escuadras_path(:id => @cup) and return
     else
       render :action => 'new'
     end
   end
-  
+
   def edit
     @escuadra = Escuadra.find(params[:id])
-    @cup = @escuadra.cups.first
+    @cup = @escuadra.cups.first 
+    set_the_template('escuadras/new')
+    render @the_template
   end
 
   def update

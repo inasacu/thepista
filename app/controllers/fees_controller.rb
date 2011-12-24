@@ -11,7 +11,7 @@ class FeesController < ApplicationController
     store_location
     @the_users = []  
     @the_groups = []
-    
+
     @user.groups.each do |group| 
       if !@user.is_subscriber_of?(group) and get_fee_user(group, @user)
         @the_users << @user 
@@ -23,7 +23,8 @@ class FeesController < ApplicationController
     end  
 
     @users = User.paginate(:all, :conditions => ["id in (?) and archive = false", @the_users], :order => "name", :page => params[:page], :per_page => USERS_PER_PAGE)    
-    render :template => 'fees/index'
+    set_the_template('fees/index')
+    render @the_template
   end
 
   def list
@@ -38,14 +39,15 @@ class FeesController < ApplicationController
       @the_users << user if @has_fees
     end
     @users = User.paginate(:all, :conditions => ["id in (?) and archive = false", @the_users], :order => "name", :page => params[:page], :per_page => USERS_PER_PAGE)    
-    render :template => 'fees/index'
+    set_the_template('fees/index')
+    render @the_template
   end
 
   def item
     store_location
     @the_users = []  
     @the_groups = []
-    
+
     @user.groups.each do |group| 
       if get_fee_user(group, @user)
         @the_users << @user 
@@ -54,7 +56,8 @@ class FeesController < ApplicationController
     end  
 
     @users = User.paginate(:all, :conditions => ["id in (?) and archive = false", @the_users], :order => "name", :page => params[:page], :per_page => USERS_PER_PAGE)    
-    render :template => 'fees/index'
+    set_the_template('fees/index')
+    render @the_template
   end
 
   def due
@@ -66,12 +69,13 @@ class FeesController < ApplicationController
     # @group.all_non_subscribers.each do |user|
     #   @the_users << user if get_fee_user(@group, user)     
     # end
-    
+
     @group.users.each do |user|
       @the_users << user if get_fee_user(@group, user)     
     end
     @users = User.paginate(:all, :conditions => ["id in (?) and archive = false", @the_users], :order => "name", :page => params[:page], :per_page => USERS_PER_PAGE)    
-    render :template => 'fees/index'
+    set_the_template('fees/index')
+    render @the_template
   end
 
   def new
@@ -85,6 +89,7 @@ class FeesController < ApplicationController
     end
 
     @fee.credit = @group
+    render @the_template
   end
 
   def create
@@ -126,6 +131,11 @@ class FeesController < ApplicationController
     else
       render :action => 'new'
     end
+  end
+
+  def edit
+    set_the_template('fees/new')
+    render @the_template
   end
 
   def update
@@ -246,10 +256,10 @@ class FeesController < ApplicationController
     has_fees = false
     only_payment_due = false
     current_debit, current_crebit, total_debit_amount, total_credit_amount, fee_debit_id = 0.0,  0.0,  0.0,  0.0,  0
-    
+
     fees = []
     payments = []
-    
+
     Fee.debit_user_item_schedule(user, group, fees, user.is_subscriber_of?(group))
     Payment.debit_user_item_schedule(user, group, payments)	
 
@@ -258,7 +268,7 @@ class FeesController < ApplicationController
 
     debit_payment = Payment.sum_debit_payment(payments)
     total_credit_amount = debit_payment.debit_amount
-    
+
     @has_fees = (total_debit_amount > 0.0)
     @has_fees = total_credit_amount > 0.0 unless @has_fees
     total_owe = total_debit_amount.to_f - total_credit_amount.to_f

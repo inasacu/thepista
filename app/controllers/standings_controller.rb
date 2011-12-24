@@ -4,17 +4,20 @@ class StandingsController < ApplicationController
   before_filter :standing_challenge, :only => [:show_list]
   
   def show
-    render :template => '/standings/index'
+    set_the_template('standings/index')
+    render @the_template  
   end
   
   def show_list
-    render :template => '/standings/index'
+    set_the_template('standings/index')
+    render @the_template  
   end
   
   def show_all
     @cup = Cup.find(params[:id])
     @standings = Standing.cup_items_standing(@cup, current_user)
-    render :template => '/standings/index'
+    set_the_template('standings/index')
+    render @the_template  
   end
   
   def set_group_stage
@@ -27,6 +30,11 @@ class StandingsController < ApplicationController
       redirect_back_or_default('/index')
       return
     end    
+    render @the_template 
+  end
+  
+  def edit
+    render @the_template 
   end
 
   def update
@@ -65,6 +73,7 @@ class StandingsController < ApplicationController
       end
       redirect_to standings_path(:id => @cup)
       return
+    render @the_template 
   end
   
   def standing_challenge
@@ -76,6 +85,7 @@ class StandingsController < ApplicationController
   def standing_cup
     @cup = Cup.find(params[:id])
     @standings = Standing.cup_escuadras_standing(@cup)
+    render @the_template 
   end
 
 end

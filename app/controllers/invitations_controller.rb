@@ -21,6 +21,7 @@ class InvitationsController < ApplicationController
     respond_to do |format|
       format.html
     end
+	render @the_template   
   end
   
   def create
@@ -77,6 +78,7 @@ class InvitationsController < ApplicationController
   end
   
   def invite
+	render @the_template   
   end
   
   def contact
@@ -108,6 +110,7 @@ class InvitationsController < ApplicationController
       redirect_to :action => 'invite'
 
     end
+	render @the_template   
   end
   
   def invite_contact 

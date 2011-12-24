@@ -4,16 +4,19 @@ class SportsController < ApplicationController
 
   def index    
     @sports = Sport.paginate(:per_page => SPORTS_PER_PAGE, :page => params[:page])
+    render @the_template
   end
-  
+
   def show
     @sport = Sport.find(params[:id])
+    render @the_template
   end
-  
+
   def new
     @sport = Sport.new
+    render @the_template
   end
-  
+
   def create
     @sport = Sport.new(params[:sport])
     if @sport.save
@@ -23,11 +26,13 @@ class SportsController < ApplicationController
       render :action => 'new'
     end
   end
-  
+
   def edit
     @sport = Sport.find(params[:id])
+    set_the_template('sports/new')
+    render @the_template
   end
-  
+
   def update
     @sport = Sport.find(params[:id])
     if @sport.update_attributes(params[:sport])
@@ -38,7 +43,7 @@ class SportsController < ApplicationController
       render :action => 'edit'
     end
   end
-  
+
   private 
   def the_maximo
     unless current_user.is_maximo? 
@@ -46,5 +51,5 @@ class SportsController < ApplicationController
       return
     end
   end
-  
+
 end

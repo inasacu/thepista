@@ -8,7 +8,8 @@
 body { padding-bottom: 60px; }
 
 /*div.foundation-header { margin: 0 0 40px 0; padding: 30px 0 0 0; border-bottom: solid 1px #ccc; }*/
-div.foundation-header { margin: 0 0 40px 0; padding: 30px 0 0 0; }
+/*div.foundation-header { margin: 0 0 40px 0; padding: 30px 0 0 0; }*/
+div.foundation-header { margin: 0 0 20px 0; padding: 15px 0 0 0; }
 div.foundation-header h1 { margin-bottom: 0; padding: 0; }
 div.foundation-header h1 a { color: #181818; }
 div.foundation-header h1 a:hover { color: #181818; }
@@ -165,7 +166,7 @@ footer.row a:hover {
 
 
 /* Font-Face */
-@font-face {
+/*@font-face {
 font-family: 'Proxima';
 	src: url(../fonts/proximanova-regular-webfont.eot);
 	src: url('../fonts/proximanova-regular-webfont.eot?iefix') format('eot'),url(../fonts/proximanova-regular-webfont.woff) format('woff'),url(../fonts/proximanova-regular-webfont.ttf) format('truetype'),url('../fonts/proximanova-regular-webfont.svg#webfont2rpW2ohz') format('svg')
@@ -213,7 +214,7 @@ font-family: 'Proxima';
 	font-weight: 900;
 	src: url(../fonts/proximanova-extrabold-webfont.eot);
 	src: url('../fonts/proximanova-extrabold-webfont.eot?iefix') format('eot'),url(../fonts/proximanova-extrabold-webfont.woff) format('woff'),url(../fonts/proximanova-extrabold-webfont.ttf) format('truetype'),url('../fonts/proximanova-extrabold-webfont.svg#webfont2rpW2ohz') format('svg')
-}
+}*/
 
 h1, h2, h3, h4, h5, h6 {
   font-family: "Proxima", "Helvetica Neue", "Helvetica", Arial, sans-serif; }
