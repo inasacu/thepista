@@ -1,0 +1,15 @@
+<div id="home">
+	<div class="announce">
+		<h1><strong><%= "#{label_name(:about)} #{app_name}" %></strong></h1>
+	</div>
+	<div class="features">
+		<%= content_tag 'h3', label_name(:what_is_haypista) %>
+		<%= content_tag 'p', "#{label_name(:haypista_pronunciation)} #{label_name(:what_is_haypista_details)}" %>
+
+		<%= content_tag 'h3', label_name(:faq_our_philosophy) %>
+		<%= content_tag 'p', label_name(:faq_our_philosophy_description) %>					
+
+		<%= content_tag 'h3', label_name(:faq_our_story) %>
+		<%= content_tag 'p', "#{app_name} #{label_name(:faq_our_story_description)}" %>
+	</div>
+</div>

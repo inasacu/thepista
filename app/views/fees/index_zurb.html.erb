@@ -1,0 +1,47 @@
+<%
+	the_label = label_name(:fees)
+	content_for(:title, the_label)
+	
+	the_controller_action = ['fee_due']
+	only_payment_due = the_controller_action.include?(get_controller_action)
+%>
+
+<div class="block">
+
+  <%= get_secondary_navigation(@user) if @user %>
+  <%= get_secondary_navigation(@group) if @group %>
+  <%= get_secondary_navigation(@challenge) if @challenge %>
+
+  <div class="content">   
+  
+    <h2 class="title"><%= get_collection_label(@users) %></h2>
+	
+    <div class="inner">
+	<% if object_counter(@users) > 0 %>
+	
+	<%= get_class_table_id_controller %>
+	  
+		<tr>   
+			<%= content_tag :th, "&nbsp;", :class => "first" %>
+			<%= content_tag :th, "#{label_name(:name)}<br/>#{label_name(:group)}", :class => "heading" %>
+			<%= content_tag :th, label_name(:concept), :class => "heading" %>
+			<%= content_tag :th, label_name(:debits), :class => "heading" %>
+			<%= content_tag :th, label_name(:credits), :class => "heading" %>
+			<%= content_tag :th, "&nbsp;", :class => "heading" %>
+			<%= content_tag :th, label_name(:debit_total), :class => "heading" %>
+			<%= content_tag :th, label_name(:credit_total), :class => "heading" %>
+			<%= content_tag :th, label_name(:pending), :class => "heading" %>
+			<%= content_tag :th, "&nbsp;", :class => "last" %>
+		</tr>
+		<% @the_groups.each do |group| %>
+		<%= render 'fees/fee_list_zurb', :users => @users, :group => group %>
+		<% end %>		
+      </table>		
+
+	  <% end %>
+	  <%= render :partial => 'shared/action_bar_zurb', :locals => { :collection => @users } %>	  	  
+    </div>
+	
+  </div>
+  
+</div>

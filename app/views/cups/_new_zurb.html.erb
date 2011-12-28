@@ -1,0 +1,10 @@
+<% form_for :comment, :url => comments_path, :html => { :class => :form } do |f| -%>
+	<br />
+	<%= f.text_area :body, :class => 'text_message' -%>	
+	<br />
+	<br />
+	<%= submit_tag label_name(:share),  :class => "button" %>
+
+	<%= hidden_field :blog, :id %>
+	<%= hidden_field :forum, :id %>
+<% end -%>

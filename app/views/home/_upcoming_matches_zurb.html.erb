@@ -1,0 +1,18 @@
+<%	
+	request_image, first_icon, request_link, the_label, the_icon, item_group_link, item_group_link, the_match = upcoming_matches(matches) 
+	
+	first_item = "#{} #{request_link} #{the_label.downcase}."
+	the_item_group_link = " - #{item_group_link}" unless item_group_link.blank?
+	second_item = "#{first_icon} #{ago(the_match.created_at)}#{the_item_group_link}"
+%>	
+
+<tr>
+	<%= content_tag :td, request_image %>
+	<%= set_class_name_and_date(first_item, second_item) %>
+</tr>
+
+
+
+
+
+

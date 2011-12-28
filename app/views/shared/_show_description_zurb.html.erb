@@ -1,0 +1,36 @@
+<% 
+	the_label ||= ''
+	
+	is_label_blank = the_label.blank?
+	
+	case item.class.to_s
+	when 'Group', 'User'
+		the_label = "#{item_image_link_small(item)} #{is_label_blank ? h(item.name) : the_label}"
+	when "Schedule"
+		the_label = "#{item_image_link_small(item.group)} #{is_label_blank ? h(item.concept) : the_label}"	
+	when "Challenge"
+		the_label = challenge_show_photo(item, current_user)
+	when "Installation"
+		the_label = "#{item_image_link_small(item.venue)} #{is_label_blank ? h(item..venue.name) : the_label}"	
+	when "Cup"
+		the_label = cup_show_photo(item, current_user)
+	end
+%>
+
+<div class="row">
+	
+	<div class="twelve columns">
+		
+		<div class="foundation-header">
+			
+			<%= content_tag :h5, the_label %>
+			
+			<hr />
+			
+			<%= content_tag :h6, sanitize(item.description.blank? ? control_label('description_no') : item.description), :class => "subheader" %>
+			
+		</div>
+	</div>
+	
+</div>
+

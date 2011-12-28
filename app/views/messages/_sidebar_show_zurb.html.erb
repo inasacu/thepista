@@ -1,0 +1,24 @@
+<div class="row">
+	<h3><%= label_name(:options) %></h3>
+	<ul class="navigation">
+		
+
+		<li><%= link_to label_name(:messages_new), new_message_path(@user) %></li>
+
+		<!-- <li><%#= link_to label_name(:message_reply_to), 
+			                reply_message_path(@message),
+			                :title => label_name(:message_reply_to) %></li> -->
+		<% unless @message.trashed?(current_user) -%>
+		<% the_confirmation = label_name(:message_delete) %>
+			<li><%= link_to label_name(:message_trash), message_path(@message), 
+															:method => :delete, 
+															:confirm => %(#{the_confirmation}?),
+															:title => the_confirmation  %></li>
+		<% else -%>	
+			<li><%= link_to label_name(:message_untrash), :controller => 'messages', :action => 'undestroy', :id => @message %></li>
+		<% end -%>
+
+
+</ul>
+	
+</div>

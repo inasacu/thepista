@@ -1,0 +1,46 @@
+- mailer ||= false
+%tr{:align => "center"}
+  %td.puntos
+    = "*" if ((scorecard_basket.played.to_i + less_games) < games_played.to_i)
+    \&nbsp;#{scorecard_basket.ranking}
+  %td.equipos{:align => "left"}
+    %span
+      - if mailer
+        = link_to(scorecard_basket.user.name, {:host => 'haypista.com', :controller => 'users', :action => 'show', :id => scorecard_basket.user})
+      - else
+        = user_link(scorecard_basket.user)
+  %td.puntos= scorecard_basket.points.round
+  %td.ganados= scorecard_basket.wins
+  %td.ganados= scorecard_basket.losses
+  %td.ganados
+    = scorecard_basket.field_goal_made
+    \&nbsp;/&nbsp;#{scorecard_basket.field_goal_attempt}
+  %td.puntos
+    = sprintf( "%0.00f", 100 * (scorecard_basket.field_goal_made.to_f/scorecard_basket.field_goal_attempt.to_f))
+    = "%"
+  %td.ganados
+    = scorecard_basket.three_point_made
+    \&nbsp;/&nbsp;#{scorecard_basket.three_point_attempt}
+  %td.puntos
+    = sprintf( "%0.00f", 100 * (scorecard_basket.three_point_made.to_f/scorecard_basket.three_point_attempt.to_f))
+    = "%"
+  %td.ganados
+    = scorecard_basket.free_throw_made
+    \&nbsp;/&nbsp;#{scorecard_basket.free_throw_attempt}
+  %td.puntos
+    = sprintf( "%0.00f", 100 * (scorecard_basket.free_throw_made.to_f/scorecard_basket.free_throw_attempt.to_f))
+    = "%"
+  %td.ganados
+    = scorecard_basket.rebounds_offense
+    \&nbsp;/&nbsp;#{scorecard_basket.rebounds_defense}
+  %td.puntos= scorecard_basket.rebounds_defense + scorecard_basket.rebounds_offense
+  %td.ganados= scorecard_basket.minutes_played
+  %td.ganados= scorecard_basket.assists
+  %td.ganados= scorecard_basket.steals
+  %td.ganados= scorecard_basket.blocks
+  %td.ganados= scorecard_basket.turnovers
+  %td.ganados= scorecard_basket.personal_fouls
+  %td.puntos
+    = sprintf("%00.00f", scorecard_basket.assists.to_f/scorecard_basket.turnovers.to_f)
+  %td.ganados= scorecard_basket.played
+  %td.ganados= scorecard_basket.started

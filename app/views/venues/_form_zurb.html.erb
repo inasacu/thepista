@@ -1,0 +1,40 @@
+
+
+<%= set_form_label(the_form, :name) %>
+<%= set_form_text_field(the_form, :name, 'large input-text', true) %><br />
+
+<%= set_form_label(the_form, :starts_at) %>
+<%= set_form_time_select(the_form, :starts_at) %><br />
+
+<%= set_form_label(the_form, :ends_at) %>
+<%= set_form_time_select(the_form, :ends_at) %><br />
+
+<%= set_form_label(the_form, :marker_id) %>
+<%= f.select(:marker_id, Marker.marker_name(current_user), {:selected => @venue.marker_id, :include_blank => true}) %>&nbsp;
+<%= link_to label_name(:search_maps), search_map_url %><br />
+
+<!-- 
+<%#= set_form_label(the_form, :day_light_starts_at) %>
+<%#= set_form_time_select(the_form, :day_light_starts_at) %><br />
+
+<%#= set_form_label(the_form, :day_light_ends_at) %>
+<%#= set_form_time_select(the_form, :day_light_ends_at) %><br />
+-->
+
+<%= set_form_label(the_form, :description) %>
+<%= set_form_text_area(the_form, :description, true) %><br />
+
+<%= set_form_label(the_form, :photo) %>
+<%= set_form_file_field(the_form, :photo) %><br />
+
+<!-- 
+<%#= set_form_label(the_form, :day_light_savings) %>
+<%#= set_form_checkbox(the_form, :day_light_savings) %><br />
+-->
+
+<%= set_form_label(the_form, :public) %>
+<%= set_form_checkbox(the_form, :public) %><br />
+
+
+<%= set_form_label(the_form, :enable_comments) %>
+<%= set_form_checkbox(the_form, :enable_comments) %><br />

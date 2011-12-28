@@ -1,0 +1,48 @@
+<% 
+	is_user_manager = (current_user.is_manager_of?(@challenge))
+	is_user_member = (current_user.is_member_of?(@challenge))
+	# the_challenge = sanitize(@challenge.name)
+	content_for(:title, the_challenge)
+	
+	final_played ||= false
+	the_game = Game.final_game(@challenge.cup)
+	final_played = the_game.played unless (the_game.nil? or the_game.blank?)
+	
+	the_petition_label = h(label_name(@challenge.automatic_petition, 'value'))
+	
+%>
+
+
+<%= render 'shared/show_description_zurb', :item => @challenge %>
+	
+	
+<div class="row">
+
+	<div class="twelve columns"> 
+		
+		<table>
+		<tbody>
+		<tr>
+		<td>
+			
+		<%= render_show_detail_zurb(:name, item_name_link(@challenge)) %>
+		<%= render_show_detail_zurb(:manager, user_list(@challenge.all_the_managers)) %>
+		<%= render_show_detail_zurb(:automatic_petition, 
+			(is_user_manager ? link_to(the_petition_label, set_group_auto_path(:id => @challenge)) : the_petition_label)) %>
+
+		<%= render_show_detail_zurb(:users, t(:has_challenge_users, :count => @challenge.users.count)) %>
+		<%= render_show_detail_zurb(:points_full, show_list_standings_path(:id => @challenge)) %>
+
+		<%= render_show_detail_zurb(:conditions, @challenge.conditions) %>
+		<%= render_show_detail_zurb(:participants, 
+			render('shared/show_images_zurb', :collection => @challenge.users) if is_user_member %>
+		
+		</td>	
+		</tr>
+		</tbody>
+		</table>
+		
+	</div>
+</div>
+
+

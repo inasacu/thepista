@@ -1,0 +1,35 @@
+<%   
+	is_manager ||= false
+	the_groups = get_latest_fee(groups, is_manager)
+	
+	the_groups.each do |group, the_total|
+	the_fee_label = "#{label_name(:fees)}:&nbsp;&nbsp;&nbsp;&nbsp;#{the_groups[group]}"
+	the_label = is_manager ? group.name : "#{label_name(:debit_to_group)} #{h(group.name)}"
+%>
+
+<div class="row"> 
+	
+	<%= set_content_tag(the_label) %>
+
+	<hr></hr>
+
+  <div class="twelve columns"> 
+	
+	<table>		
+		<tr>
+			<td>
+				<%=  link_to(the_fee_label, due_fees_path(:id => group)) if is_manager %>
+				<%=  link_to(the_fee_label, fees_url(:id => current_user)) unless is_manager %>
+	  		</td>
+		</tr>
+	</table>
+		
+  </div> 
+
+	<hr></hr>
+</div>
+<% 
+	end
+%>
+
+

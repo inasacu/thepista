@@ -1,0 +1,15 @@
+<div class="row display">
+
+	<div class="four columns">
+		<strong>
+		<%#= label_name(item_label) unless item_label.blank? %>	
+		<%= label_name(item_label) unless unique_label %>
+		<%= item_label if unique_label %>	
+		</strong>
+	</div>
+
+	<div class="eight columns">
+		<%= item_link %>	
+	</div>
+	
+</div>

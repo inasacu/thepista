@@ -1,0 +1,34 @@
+<%
+	the_item_link  = ""
+	if @venue
+		the_item_link = label_name(:location_venue)
+	elsif @group
+		the_item_link = "#{label_name(:location_group)} #{item_name_link(@group)}" 
+	end
+%>
+
+
+
+<% if DISPLAY_GROUP_GMAP %>
+
+<%= javascript_include_tag "group_gmap" %>
+
+<%= set_title_class(the_item_link) %>
+<hr/>
+
+<div class="row">
+	<div class="twelve columns">
+
+
+		<% if DISPLAY_GEO_CODE %>
+		<h3><div id="search_result">&nbsp;</div></h3>
+		<% end -%>
+
+		<div id="map"></div>
+
+	</div>
+</div>
+
+<% end -%>
+
+

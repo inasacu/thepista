@@ -1,0 +1,72 @@
+<%
+	the_controller = get_the_controller
+	the_tab_navigation = "#{the_controller}s"
+	
+	case the_controller
+	when 'home'
+		the_tab_navigation = "#{get_the_controller}"
+		
+	when 'forum', 'match'
+		the_tab_navigation = "schedules"
+		
+	when 'blog', 'fee', 'payment', 'classified'
+		the_tab_navigation = "users" if @user
+		the_tab_navigation = "groups" if @group
+		the_tab_navigation = "challenges" if @challenge
+		the_tab_navigation = "venues" if @venue
+		
+	when 'scorecard'	
+		the_tab_navigation = "groups"
+		
+	end	
+	
+	password_reset_actions = ['password_reset_new', 'password_reset_edit']
+	is_password_reset = password_reset_actions.include?(get_controller_action)
+%>
+
+
+<div class="row">
+
+	<div class="twelve columns">		
+
+		<div class="foundation-header">
+			
+			<% if current_user %>
+				<%#= render :partial => 'shared/flash', :locals => {:flash => flash } %>
+				<%#= render 'layouts/notice_zurb' %>
+				
+			<% else %>
+			
+				<br />
+				<br />
+			
+				<%= content_tag :h3, link_to(app_name, root_url) %>
+				<%= content_tag :h6, label_name(:modo), :class => "subheader" %>
+				<hr />
+				<br />
+				<br />
+				
+				<%= render 'home/details_zurb' unless current_user or is_password_reset %>
+				<%= render 'password_resets/new_zurb' if is_password_reset %>
+				<br />
+				<br />
+				
+				
+				
+				
+			<% end %>
+			
+		</div>
+		
+		<% if current_user %>
+
+			<dl class="nice tabs mobile hide-on-phones">	
+				<%= render "#{the_tab_navigation}/tab_navigation_zurb" %>				
+			</dl>
+		
+		<% end %>
+
+	</div>
+
+</div>
+

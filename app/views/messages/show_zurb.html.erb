@@ -1,0 +1,40 @@
+
+
+
+<%= render 'shared/show_description_zurb', :item => @group %>
+<%= link_to "", schedule_path(:id => @next), :class => 'previous_message' if @next %>
+<%= link_to "", schedule_path(:id => @previous), :class => 'next_message' if @previous %>
+
+<div class="row">
+
+	<div class="twelve columns"> 
+		
+		<table>
+		<tbody>
+		<tr>
+		<td>
+			
+
+		<%= h @all_messages.first.subject %>
+		<%= render_show_detail_zurb(:between) %>:
+		<%= user_list(@recipients) %>
+		<%= render 'message_zurb', :collection => @all_messages, :full_message => true} %>
+		<%= render '/messages/reply_zurb', :message => @message, :recipient => current_user} %>
+		
+		</td>	
+		</tr>
+		</tbody>
+		</table>
+		
+	</div>
+</div>
+
+
+
+
+
+
+
+
+
+

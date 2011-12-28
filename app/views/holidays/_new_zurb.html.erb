@@ -1,0 +1,26 @@
+<% 
+	@holiday = Holiday.new 
+	@holiday.venue = @venue
+	@holiday.starts_at = current_day
+	@holiday.ends_at = current_day
+    @holiday.starts_at = @holiday.starts_at.change(:hour => 8, :min => 0, :sec => 0)
+    @holiday.ends_at  = @holiday.ends_at.change(:hour => 23, :min => 0, :sec => 0)    
+
+	the_label = label_name(:markers_new)
+	@item = @holiday
+%>
+
+<div class="row">
+
+	<div class="twelve columns">  
+
+		<%= set_title_class(the_label) %>
+		
+		<hr />
+
+		<%= render 'shared/new_edit_multipart_zurb', :item => @item %>
+
+	</div>
+
+</div>
+

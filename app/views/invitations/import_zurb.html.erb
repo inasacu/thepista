@@ -1,0 +1,63 @@
+<div class="block" id="block-forms-2"> 
+  	  
+  	<%= get_secondary_navigation(Message.new) %>  
+  
+  <div class="content"> 
+  
+	<h2 class="title">
+		<%= "#{label_name(:invitations_for_your_friends)} "  %><br />
+
+		  <span style="color: rgb(119, 119, 119); font-weight: normal; font-size: 11px;">
+		    <%= "#{label_name(:invitations_contacts)}  #{label_name(:invitations_email)}" %><br/>
+		    <%= label_name(:invitation_notice) %>
+		  </span>
+
+	</h2>
+	
+	<div class="inner"> 
+	<%# form_tag :action => 'contact', :id => @invitation do %>
+	
+	  <% form_for :invitation, :url => import_contact_url, :html => { :class => :form } do |f| -%>
+
+		<div class="columns"> 
+		
+		  <div class="column left"> 
+		  
+			<div class="group">
+			  <%= f.label :your_email, label_name('your_email'), :class => :label %>
+			  <input type="text" class="inputtext" id="login" name="login" value="" onblur="update_ms_login();" />
+				&nbsp;@
+				<select name="from" id="from">
+				<option value="">Select Id</option>
+				<option value="gmail">Gmail</option>
+				<option value="yahoo">Yahoo</option>
+				<option value="hotmail">Hotmail</option>
+				</select>		
+			</div>
+			
+			<div class="group">
+			  <%= f.label :password, label_name(:password), :class => :label %>
+			  <input type="password" class="inputpassword" id="password" name="password" value=""autocomplete=off />	
+			</div>
+			
+		  </div> 
+		  
+		  <div class="column right"> </div> 
+		  
+		</div> 
+		
+		<div class="clear"></div> 
+		
+		<div class="group navform">
+			<%= submit_tag @invitation.new_record? ? control_label('create') : control_label('edit'), 
+							:class => "button" %> <%= label_name(:or) %> <%= link_to label_name(:cancel), invitations_path %>
+		</div>
+		
+	  <% end %>
+	  
+	</div> 
+	
+  </div> 
+  
+</div>
+

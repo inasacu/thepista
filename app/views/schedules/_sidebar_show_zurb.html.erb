@@ -1,0 +1,76 @@
+<%
+	the_label = label_name(:options) 
+	has_been_played = @schedule.played?
+
+	is_group_manager = @group ? current_user.is_manager_of?(@group) : false
+	is_group_member = @group ? current_user.is_member_of?(@group) : false
+	has_group = @group ? true : false
+
+	the_group_name = ""
+	the_label = label_name(:options)
+	the_manager_label = ""
+	the_confirmation = ""
+
+	is_manager_not_forum = (is_group_manager and !is_controller('forum'))
+	is_not_topic_not_played = (get_the_controller != 'topic' and !@schedule.played?)
+
+	if has_group
+		the_group_name = h(@group.name) 
+
+		# the_label = label_with_name('create_schedule', @group.name)
+		the_manager_label = label_name(:options_for_manager)
+		# the_confirmation = "#{ label_name(:destroy_group) } #{the_group_name}?"
+
+		has_schedule_blank = @group.schedules.blank? 
+		has_user_petition = current_user.has_item_petition?(current_user, @group)
+		the_confirmation = label_with_name(:do_leave_item, "#{@group.name}?")
+		
+		the_confirmation = "#{ label_name(:destroy_schedule) } #{ label_name(:from) } #{@group.name}?" 
+		
+	end
+%>
+
+
+
+<% if has_group %>
+
+<%= set_title_class(the_label) %>
+<hr/>
+
+<div class="row">
+	<div class="twelve columns">
+	
+		<% if is_group_member %>
+			<%= set_image_and_link(link_to(label_name(:post_pre_match), forum_path(@schedule.forum, :schedule_id => @schedule)), 'classified') unless has_been_played %>
+			<%= set_form_create_id_image_link(Message.new, :group_id, @group, :send_message_to) %>
+			<%= set_form_create_id_image_link(Invitation.new, :schedule_id, @schedule, :invitations_create_schedule) unless has_schedule_blank %>
+			<%= set_image_and_link(link_to(label_name(:send_pre_match), new_message_path(:schedule_id => @schedule)), 'schedule') unless has_been_played %>
+			<%= set_image_and_link(link_to(label_name(:send_scorecard), new_message_path(:scorecard_id => @schedule)), 'scorecard') if has_been_played %>
+			<%= set_form_create_id_image_link(Message.new, :scorecard_id, @group.schedules.first, :send_scorecard, 'scorecard') unless has_schedule_blank %>
+
+		<% elsif !is_group_manager %>	
+			<%= set_form_create_id_image_link(Message.new, :id, @group.all_the_managers.first, :send_message_to) %>
+			<%= set_image_and_link(join_item_link_to(current_user, @group, true), 'user_add') if has_user_petition %>
+
+		<% end %>
+		
+		
+		<% if is_group_manager %>
+		
+			<%= set_image_and_link(link_to(control_label('create'), new_schedule_path(:id => @schedule.group)), 'schedule') if is_manager_not_forum %> 
+			<%= set_image_and_link(link_to(control_label('edit'), edit_schedule_path(@schedule)), 'schedule') %>
+			<%= set_image_and_link(link_to(control_label('destroy'), schedule_path(@schedule), 
+					:method => :delete, :confirm => label_name(:are_you_sure)), 'schedule') if is_not_topic_not_played %>
+			<%= set_image_and_link(link_to(label_name(:matches_edit), edit_match_path(@schedule.matches.first)), 'schedule') %>
+
+		<% end %>
+	
+	</div>
+</div>
+
+<hr/>
+<br/>
+
+<% end -%>
+
+

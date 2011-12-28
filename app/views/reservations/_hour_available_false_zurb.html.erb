@@ -1,0 +1,13 @@
+<a name="<%= Base64::b64encode(starts_at.to_i.to_s) %>"></a>
+
+<div title="Fuera del plazo de reserva permitido" class="FueraPlazo" style="height: 66px;">
+	<div class="Cabecera HoraReserva">
+		<%= "#{nice_simple_time_at(starts_at)} - #{nice_simple_time_at(starts_at+time_frame)}" %>
+	</div>
+		<div class="NombreReserva">
+			<%#= link_to label_name(:reservations_new), new_reservation_path(:id => @installation, :block => block) %>
+			<%#= nice_simple_time_at(starts_at) %> <%#= nice_simple_time_at(Time.zone.now) %>
+			<!-- <br/> -->
+			<%#= starts_at > Time.zone.now %>
+		</div>
+</div>

@@ -1,0 +1,37 @@
+<% has_sub_item, request_image, sub_item_image, request_link, has_joined, item_link, has_sub_item, sub_item_link, the_icon, has_joined, manager_link, decline_link, is_manager, can_decline  = petition_box(teammate) %>	
+
+<% unless (is_manager and current_user == teammate.user) %>
+<tr>
+	<td>
+		<% if has_sub_item %>		
+		<%= request_image %>
+		<% else %>
+		<%= sub_item_image %>
+		<% end %>
+	</td>
+
+	<td class="name_and_date">
+		<%= request_link %>&nbsp;
+		<%= has_joined ? "#{label_name(:petition_to_join_accepted).downcase} <wbr/> #{item_link}." : 
+						 "#{label_name(:has)} #{(label_name(:petition_to_join_pending)).downcase} <wbr/> #{item_link}." %>
+		<span class="date">
+			<% unless has_sub_item %>
+			<br/>
+			<%= sub_item_link %>
+			<br/>
+			<% end %>
+			<%= the_icon %>&nbsp;&nbsp;<%= has_joined ? ago(teammate.accepted_at) : ago(teammate.created_at) %>	
+		</span>
+	</td>
+
+	<td>&nbsp;</td>	  
+
+	<td class="last">
+		<%= manager_link %>&nbsp;&nbsp;<%= decline_link unless has_joined %>
+	</td>
+</tr>
+<% end %>
+
+
+
+

@@ -1,0 +1,23 @@
+<div class="Reservada" style="height: 66px;">
+	<div class="Cabecera HoraReserva_true">
+		<%= "#{nice_simple_time_at(starts_at)} - #{nice_simple_time_at(starts_at+time_frame)}" %>
+	</div>
+	<div class="NombreReserva">
+		<% 
+			items.each do |item| 
+			
+				case item.class.to_s
+				when "Schedule"
+		%>
+					<%= item_name_link(item.group) %>
+					<%= item_concept_link(item) %>
+		<%  
+				when "Reservation"
+		%>
+					<%= item_name_link(item.item) %>
+		<% 
+				end
+			end 
+		%>
+	</div>
+</div>

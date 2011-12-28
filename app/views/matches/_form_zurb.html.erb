@@ -1,0 +1,74 @@
+<% 
+	the_teams_label = "#{@schedule.home_group} vs. #{@schedule.away_group}"
+	
+	
+%>
+		
+<%= set_form_label(the_form, :score) %>
+<%= set_form_text_field(the_form, :group_score, 'small input-text') %><br />
+<%= set_form_text_field(the_form, :invite_score, 'small input-text') %><br />
+
+<%= item_name_link(@schedule.group)  %>&nbsp;&nbsp;
+
+<%= @schedule.away_group %>
+
+<%= set_form_label(the_form, :description) %>
+<%= set_form_text_area(the_form, :description) %><br />
+		
+		
+<% if @is_futbol or @is_basket %>	
+
+<%= set_form_label(the_form, :score) %>
+
+<div class="row">
+
+	<div class="twelve columns">  
+
+		<%= set_title_class(the_teams_label) %>
+		
+		<hr />
+		
+		<%= render 'matches/match_basket_label_zurb' if @is_basket %>
+		<%= render 'matches/match_futbol_label_zurb' unless @is_basket %>
+				
+		<%= render 'matches/match', :collection => @matches, :first_team => true %>
+		<%= render 'matches/match', :collection => @matches, :first_team => false unless @is_basket %>
+		
+	</div>
+
+</div>
+
+
+
+
+
+
+		
+			
+
+			
+		
+		<div class="columns"> 
+			
+			<div class="column left"> 
+				<table>					
+					<%= render 'match_zurb', :collection => @matches, :locals => {:first_team => true} %>
+				</table>
+			</div>
+			<div class="column right">
+				<table>
+					<%= render 'match_zurb', :collection => @matches, :locals => {:first_team => false} unless @is_basket %>
+				</table>
+			</div>
+		</div>
+	
+	</div> 
+
+	<div class="column right">
+	</div> 
+
+</div>
+
+
+<% end %>
+		

@@ -1,0 +1,73 @@
+<!-- ZURBar -->
+
+<% 
+	has_group, the_cup, the_challenge, the_schedule, the_group, the_users, the_user, the_petition, the_home, the_login, the_signup, the_venue, the_message, the_controller_action , the_controller = get_header_navigation
+%>
+
+<div id="zurBar" class="container">
+
+  <div class="row">
+
+    <div class="four columns">
+
+      <h1><%= link_to(app_name, root_url) %></h1>
+
+    </div>
+
+    <div class="eight columns hide-on-phones">
+
+    	<strong class="right">
+
+			<%= link_to(label_name(:home), root_url, :class => the_home) %>
+
+			<% if current_user %>
+			
+			<%  if DISPLAY_MESSAGE_FLAG 		
+					if current_user.unread_messages_count  > 0
+			%>	
+				<%= content_tag :dd, link_to(label_name(:messages_inbox), messages_path), :class => "message" %>	
+				<%= content_tag :dd, content_tag('div', unread_count, :class => "comment-bubble"), :class => "message_count"%>
+			<%
+		 			end
+				end 
+			%>
+					
+				<%= link_to(label_name(:messages), messages_url, :class => the_message) %>
+				<%= link_to(label_name(:groups), groups_url, :class => the_group) %>		
+				<%= link_to(label_name(:schedules), schedules_url, :class => the_schedule) if has_group %>
+				<%= link_to(label_name(:venues), venues_url, :class => the_venue) if current_user.is_maximo? %>	
+				<%= link_to(label_name(:cups), cups_url, :class => the_cup)  if Cup.has_official_cup? or current_user.is_maximo? %>	
+				<%= link_to(label_name(:challenges), challenges_url, :class => the_challenge) if Cup.has_official_cup? %>
+				<%= link_to(label_name(:scorecards), scorecards_url, :class => get_control_active('scorecard')) %>	
+				<%= link_to(label_name(:markers), markers_url, :class => get_control_active('marker')) %>
+				<%= link_to(label_name(:announcements), announcements_url, :class => get_control_active('announcement')) if current_user.is_maximo? %>
+
+				<% if DISPLAY_HAYPISTA_TEMPLATE %>
+					<% form_tag search_path, :method => 'get' do %>
+					<%= text_field_tag :search, h(params[:search]), :id => 'location_search_text_input', :value => "" %>
+					<%= submit_tag "", :id => "searchButton" %>
+					<% end -%>
+				<% end -%>
+
+				<% if DISPLAY_USER_PETITION %>
+					<%= link_to(label_name(:petitions), petition_path(current_user), :class => the_petition) if current_user.has_pending_petition?(current_user) %>
+				<% end -%>
+
+				<%= user_link(h(current_user.name), current_user, :class => the_user) %>
+				<%= link_to(label_name(:logout), logout_path) %>		
+
+			<% else %>
+				<%= link_to(label_name(:login), login_path, :class => the_login) %>
+				<%= link_to(label_name(:signup), signup_path, :class => the_signup) if DISPLAY_REGISTER %>
+			<% end -%>
+			
+
+    	</strong>
+
+    </div>
+
+  </div>
+
+</div>
+
+<!-- /ZURBar -->

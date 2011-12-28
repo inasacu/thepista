@@ -1,0 +1,12 @@
+<%
+	the_label = label_name(:my_schedule)
+	the_label = label_name(:upcoming_schedules) if is_action('index')
+	the_label = label_name(:previous_schedules) if is_action('list')
+	
+	content_for(:title, the_label)
+
+	group_schedule_list = ['schedule_schedule_list', 'schedule_group_current_list', 'schedule_group_previous_list'].include?(get_controller_action)
+%>
+
+<%= render 'home/upcoming_schedule_zurb', :my_schedules => @schedules, :the_label => the_label unless @schedules.empty? %>
+

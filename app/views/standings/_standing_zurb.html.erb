@@ -1,0 +1,37 @@
+  - mailer ||= false
+  - switch ||= false
+  - escuadra = ''
+  - is_escuadra = (standing.item_type == "Escuadra")
+  - final_played ||= false
+  - the_game = Game.final_game(@cup)
+  - final_played = the_game.played unless (the_game.nil? or the_game.blank?)
+  - escuadra = standing.item
+  - played = standing.wins.to_i + standing.draws.to_i + standing.losses.to_i
+  - @stand = standing
+  - is_manager = current_user.is_manager_of?(@cup)
+  - has_challenge = !standing.challenge_id.nil?
+  - the_challenge = has_challenge ? h(standing.challenge.name) : ""
+  %tr
+    %td.puntos
+      = standing.ranking
+      \&nbsp;&nbsp;
+      - if is_escuadra
+        = standing.group_stage_name
+    %td.equipos= mailer ? "&nbsp;" : item_image_link_tiny(escuadra)
+    %td.equipos
+      %span
+        - if mailer and is_escuadra
+          = link_to((escuadra.name.to_s.length > 14) ? "#{escuadra.name.to_s.strip[0..12]}..." : escuadra.name, {:host => 'haypista.com', :controller => 'escuadras', :action => 'show', :id => escuadra})
+        - else
+          = escuadra_link(escuadra)
+          %br/
+          = (final_played ? the_challenge : item_name_link(standing.challenge)) if has_challenge
+    %td.puntos= standing.points.round
+    %td.ganados= standing.wins if is_escuadra
+    %td.empatados= standing.draws if is_escuadra
+    %td.perdidos= standing.losses if is_escuadra
+    - if @cup.is_futbol? and is_escuadra
+      %td.afavor= standing.goals_for
+      %td.encontra= standing.goals_against
+      %td.encontra= standing.goals_for - standing.goals_against
+    %td.encontra= played if is_escuadra

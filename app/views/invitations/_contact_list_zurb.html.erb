@@ -1,0 +1,4 @@
+- for i in @contacts
+  %input{:id => "email_#{i}", :name => "email[]", :type => "checkbox", :value => i}/
+  = i
+  %br/

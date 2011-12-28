@@ -1,0 +1,6 @@
+%p
+  = option_image_link('installation')
+  \&nbsp;&nbsp;#{link_to label_name(:installations_create), new_installation_path(:id => @venue)}
+%p
+  = option_image_link('venue')
+  \&nbsp;&nbsp;#{link_to label_name(:venues_edit), edit_venue_path(@venue)}

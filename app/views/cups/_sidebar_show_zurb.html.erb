@@ -1,0 +1,10 @@
+<div class="row">
+
+<%= set_title_class(the_label) %>
+
+<ul class="navigation">
+	<li><%= link_to label_name(:challenges_create), new_challenge_path(:id => cup) %></li>
+	<li><%= link_to(label_name(:invitations_create_cup), new_invitation_url(:cup_id => cup)) %></li>
+</ul>
+
+</div>

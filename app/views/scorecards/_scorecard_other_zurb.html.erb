@@ -1,0 +1,45 @@
+<%
+ 	mailer ||= false
+	switch ||= false
+	max_points = scorecard_other.played.to_i * group.points_for_win.to_i
+	coeficient = 0
+	coeficient = 100 *(scorecard_other.points.to_f/max_points.to_f) 
+	coeficient_points = scorecard_other.points.to_f * (scorecard_other.points.to_f/max_points.to_f) 
+	coeficient_played = 100 *(scorecard_other.played.to_f / games_played.to_f)
+	
+	image = scorecard_image_link("bajar-clasificacion.png") if (scorecard_other.ranking > scorecard_other.previous_ranking) 
+	image = scorecard_image_link("subir-clasificacion.png") if (scorecard_other.ranking < scorecard_other.previous_ranking)  		
+	image = scorecard_image_link("mantener-clasificacion.png") if (scorecard_other.ranking == scorecard_other.previous_ranking) 
+	image = scorecard_image_link("mantener-clasificacion.png") if (scorecard_other.previous_ranking == 0) 
+	
+	ranking_change = "-#{scorecard_other.ranking - scorecard_other.previous_ranking}" if (scorecard_other.ranking > scorecard_other.previous_ranking)  
+	ranking_change = "+#{scorecard_other.previous_ranking - scorecard_other.ranking}" if (scorecard_other.ranking < scorecard_other.previous_ranking)  	
+	ranking_change = "=" if (scorecard_other.ranking == scorecard_other.previous_ranking or scorecard_other.previous_ranking == 0) 
+%>
+
+<tr align="center"> 
+	<td class="puntos"><%= "*" if ((scorecard_other.played.to_i + less_games) < games_played.to_i) %>&nbsp;<%= scorecard_other.ranking %></td>
+	<td align="left" class="equipos"><%= mailer ? "&nbsp;" : item_image_link_tiny(scorecard_other.user) %></td>
+	<td class="equipos">
+		<span>
+		<% if mailer %>
+		<%= link_to(scorecard_other.user.name, {:host => 'haypista.com', :controller => 'users', :action => 'show', :id => scorecard_other.user}) %>
+		<% else %>
+		<%= user_link(scorecard_other.user) %>
+		<% end %>
+		</span>
+	</td>
+	<td class="jugados"><%= mailer ? "&nbsp;" : image %></td>
+	<td class="jugados"><%= ranking_change %></td>
+	<td class="puntos"><%= scorecard_other.points.round %></td>
+	<td class="ganados"><%= scorecard_other.wins %></td>
+	<td class="empatados"><%= scorecard_other.draws %></td>
+	<td class="perdidos"><%= scorecard_other.losses %></td>
+		
+	<td class="puntos"><%= sprintf( "%0.00f", coeficient) %><%= "%" %></td>
+	<td class="jugados"><%= scorecard_other.played %></td>
+	<td class="jugados"><%= scorecard_other.assigned %></td>
+	<td class="puntos"><%= mailer ? sprintf( "%0.0f", coeficient_points)  : coeficient_points.round %></td>
+	<td class="puntos"><%= sprintf( "%0.00f", coeficient_played) %><%= "%" %></td>
+</tr>
+

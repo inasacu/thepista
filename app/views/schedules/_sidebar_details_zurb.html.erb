@@ -1,0 +1,58 @@
+<%
+	is_user_manager = current_user.is_manager_of?(@schedule.group)
+	the_label = "#{h(@schedule.group.name)} - #{sanitize(@schedule.concept)}"
+	show_start_rating = (current_user.is_member_of?(@schedule.group) and @schedule.game_played?)	
+	show_individual_score = (@schedule.group.is_futbol? and @schedule.played?)
+	is_played =  @schedule.game_played?
+	
+	if show_individual_score
+		@the_home_score = ""
+		@the_away_score = ""
+		
+		@has_score = false
+
+		@schedule.matches.find(:all, :conditions => ["group_id != 0 and goals_scored > 0"]).each do |match| 
+			@the_home_score += "#{item_name_link(match.user)}&nbsp;&nbsp;-&nbsp;&nbsp;#{match.goals_scored}, " 
+			@has_score = true
+		end
+
+		@schedule.matches.find(:all, :conditions => ["group_id = 0 and goals_scored > 0"]).each do |match| 
+			@the_away_score += "#{item_name_link(match.user)}&nbsp;&nbsp;-&nbsp;&nbsp;#{match.goals_scored}, " 
+			@has_score = true
+		end
+		@the_home_score = @the_home_score.chop.chop
+		@the_away_score = @the_away_score.chop.chop
+		
+		show_individual_score = (show_individual_score and @has_score)
+	end
+	
+	the_label = sanitize(@schedule.concept)
+%>
+
+<%= set_title_class(the_label) %>
+<hr/>
+
+<div class="row">
+	<div class="twelve columns">
+
+		<%= item_name_link(@schedule.group) %><br/>
+		<%= @schedule.sport.name %><br/>
+		<%= nice_day_time_wo_year_exact(schedule.starts_at) %><br/>
+		<%= label_name(:convocado) %>:  <%= @schedule.convocados.count %>&nbsp;/&nbsp;<%= @schedule.player_limit %><br/>
+
+		<% if is_played %>
+		<%= item_name_link(@schedule.group) %>&nbsp;&nbsp;
+		<%= @schedule.home_score %>&nbsp;&nbsp;-&nbsp;&nbsp;<%= @schedule.away_score %>&nbsp;&nbsp;
+		<%= link_to h(@schedule.group.second_team), group_path(@schedule.group) %><br/>
+		<%= @the_home_score %> <%= @the_away_score if show_individual_score %>
+		<% end %>
+
+	</div>
+
+</div>
+
+<hr/>
+<br/>
+
+
+

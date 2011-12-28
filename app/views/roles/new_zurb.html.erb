@@ -1,0 +1,18 @@
+<% 
+	the_label = control_action_label 
+	@item = @role
+%>
+
+<div class="row">
+
+	<div class="twelve columns">  
+
+		<%= set_title_class(the_label) %>
+		
+		<hr />
+
+		<%= render 'shared/new_edit_multipart_zurb', :item => @item %>
+
+	</div>
+
+</div>

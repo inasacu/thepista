@@ -1,0 +1,40 @@
+<%
+	the_label = ""
+	is_same_user = false
+
+	case @blog.item.class.to_s
+	when "User"
+		@user = @blog.item
+		is_same_user = (@user == current_user)
+		the_label = label_with_name('the_wall', h(@user.name))
+		the_label = control_label('my_wall') if is_same_user
+		
+	when "Group"
+		@group = @blog.item  
+		the_label = label_with_name('the_wall', h(@group.name))
+		   
+	when "Challenge"
+		@challenge = @blog.item
+		the_label = label_with_name('the_wall', h(@challenge.name))
+		   
+	when "Venue"
+		@venue = @blog.item
+		the_label = label_with_name('the_wall', h(@venue.name))
+	else
+	end
+	content_for(:title, the_label)	
+%>
+
+
+
+<div class="row">
+
+	<div class="twelve columns">
+					
+		<%= render 'comments/discussion_zurb', :comments => @comments %> <%= @comments.count %>
+		
+	</div>
+	
+</div>
+
+

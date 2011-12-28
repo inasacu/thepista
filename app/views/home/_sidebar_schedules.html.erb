@@ -1,0 +1,38 @@
+<% the_label = label_name(:upcoming) %>
+
+<div class="twelve columns">
+
+	<%= set_content_tag(the_label) %>
+
+	<hr></hr>
+			
+	<% 
+		upcoming_schedules.each do |schedule| 
+		the_sport = "#{label_name(:rosters)}:  #{schedule.convocados.count} / #{schedule.player_limit}"
+
+		is_gameday = (schedule.starts_at.to_date == Time.zone.today)
+		the_url = team_roster_path(:id => schedule)
+		is_member = (current_user.is_member_of?(schedule.group) or schedule.public)
+	-%>	
+
+	<table>
+		<tbody>
+			<tr>
+				<%= content_tag :td, 
+					is_member ? "#{schedule_image_link_small(schedule)} 
+								#{link_to(sanitize(schedule.concept), team_roster_path(:id => schedule))}  -  #{item_name_link(schedule.group)}" : 
+									"#{schedule_image_small(schedule)} #{sanitize(schedule.concept)}  -  #{item_name_link(schedule.group)}" 
+				%>				
+			</tr>
+			<tr><%= content_tag :td, nice_day_time_wo_year_exact(schedule.starts_at) %></tr>
+			<tr><%= content_tag :td, the_sport %></tr>
+			<tr><%= content_tag :td, " #{marker_link(schedule.group.marker)}, #{schedule.group.marker.city.capitalize}" %></tr>
+		</tbody>
+	</table>
+
+	<% end -%>
+	
+</div>
+
+
+

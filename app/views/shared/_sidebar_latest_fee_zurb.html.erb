@@ -1,0 +1,12 @@
+<% 
+	my_groups = []				# my groups
+	manager_groups = []			# my manage teams
+
+	current_user.groups.each do |group| 
+		my_groups << group
+		manager_groups << group if current_user.is_manager_of?(group)
+	end
+%>
+
+<%= render 'shared/latest_fee_box_zurb', :groups => my_groups %>
+<%= render 'shared/latest_fee_box_zurb', :groups => manager_groups, :is_manager => true %>

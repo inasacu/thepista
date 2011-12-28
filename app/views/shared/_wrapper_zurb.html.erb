@@ -1,0 +1,81 @@
+<% 
+	about = ['about', 'terms of use', 'privacy policy', 'faq', 'pricing', 'succes','openid']
+	login_action = ['signup', 'create', 'new', 'rpx_create', 'rpx_new'] 
+	login_controller =['user_sessions', 'users', ''] 
+	login_session = (login_controller.include?(controller.controller_name) and login_action.include?(controller.action_name)) 
+	logout =  !current_user and is_controller('home') and is_action('index') 
+%>
+
+<%
+	the_controller = get_the_controller
+	the_sidebar = "#{the_controller}s"
+	
+	case the_controller
+	when 'home'
+		the_sidebar = "#{get_the_controller}"
+		
+	when 'forum', 'match'
+		the_sidebar = "schedules"
+		
+	when 'blog', 'fee', 'payment', 'classified'
+		the_sidebar = "users" if @user
+		the_sidebar = "groups" if @group
+		the_sidebar = "challenges" if @challenge
+		the_sidebar = "venues" if @venue
+		
+	when 'scorecard'	
+		the_sidebar = "groups"		
+	end
+%>
+
+
+<% if current_user %>
+
+<div class="row">
+
+	<div class="eight columns">
+		<%= yield %>
+	</div>
+	
+  	<div class="four columns">
+	<!-- SIDEBAR BEGIN -->
+	
+		<%= render "shared/search_zurb" if DISPLAY_SEARCH_OPTION %>			
+		<%= render "#{the_sidebar}/sidebar_zurb" %>				
+		
+	<!-- SIDEBAR END -->
+  	</div> 
+	
+</div>
+
+<% end -%>
+
+
+
+<!-- <%# if login_session %>
+<%#= stylesheet_link_tag 'home' %>
+
+	<div id="box">
+	  <%#= yield %>    
+	</div>
+	<div id="wrapper">	
+		<div class="clear"></div>
+	</div>
+	
+<%# elsif about.include?(get_the_action) or logout %>
+<%#= stylesheet_link_tag 'home' %>
+	
+	<div id="about">
+	<h2>&nbsp;</h2> 
+	  <%#= yield %>    	
+	</div>
+	<div id="wrapper">	
+		<div class="clear"></div>    
+	</div>
+	
+<%# else %>
+
+
+
+	
+<%# end %> -->

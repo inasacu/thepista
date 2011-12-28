@@ -1,0 +1,71 @@
+<% 
+	is_user_manager = (current_user.is_manager_of?(@group)) 
+	# is_venue_maximo = @group.venue and current_user.is_maximo?
+	is_venue_maximo = @group.venue 
+	is_member = current_user.is_member_of?(@group) and !@group.available_users.empty?
+	
+	the_venue_link = ""
+	
+	if is_venue_maximo
+		the_venue_link = item_name_link(@group.venue)
+		the_venue_link = item_name_link(@group.venue.name, @group.installation) if @group.installation
+	end
+	
+	
+	the_automatic_petition = h(label_name(@group.automatic_petition, 'value'))
+	the_confirmation = label_with_name('automatic_petition', "#{@group.name}?")
+	
+	the_looking_for_user = h(label_name(@group.looking, 'value'))
+	the_confirmation = label_with_name('looking_for_user', "#{@group.name}?")
+	
+%>
+
+<%= render 'shared/show_description_zurb', :item => @group %>
+	
+	
+<div class="row">
+
+	<div class="twelve columns"> 
+		
+		<table>
+		<tbody>
+		<tr>
+		<td>
+			
+		<%= render_show_detail_zurb(:name, item_name_link(@group)) %>
+		<%= render_show_detail_zurb(:second_team, h(@group.second_team)) %>
+		<%= render_show_detail_zurb(:manager, user_list(@group.all_the_managers)) %>
+
+		<%  if is_venue_maximo %>
+		<%= render_show_detail_zurb(:venue, the_venue_link) %>
+		<% else %>
+		<%= render_show_detail_zurb(:marker, marker_link(@group.marker)) %>
+		<% end %>
+		
+		<%= render_show_detail_zurb(:sports, @group.sport.name) %>
+		<%= render_show_detail_zurb(link_to(label_name(:scorecard), scorecard_path(:id => @group)), '', true) %>
+		<%= render_show_detail_zurb(:game_day, nice_day_time(@group.schedules.first.starts_at)) unless @group.schedules.blank? %>
+		<%= render_show_detail_zurb(:city, @group.marker.city) %>
+
+		<%= render_show_detail_zurb(:automatic_petition, 
+		(is_user_manager ? link_to(the_automatic_petition, set_group_auto_path(:id => @group)) : the_automatic_petition)) %>
+
+		<%= render_show_detail_zurb(:looking_for_user, 
+		(is_user_manager ? link_to(the_looking_for_user, set_group_looking_path(:id => @group)) : the_looking_for_user)) %>
+
+		<%= render_show_detail_zurb(:users, t(:has_group_users, :count => @group.users.count)) %>
+		<%= render_show_detail_zurb(:schedules, t(:has_group_schedules, :count => @group.schedules.count)) unless @group.schedules.blank? %>
+		<%= render_show_detail_zurb(:points_for_win, @group.points_for_win) %>
+		<%= render_show_detail_zurb(:points_for_draw, @group.points_for_draw) %>
+		<%= render_show_detail_zurb(:points_for_lose, @group.points_for_lose) %>		
+		<%= render_show_detail_zurb(:player_limit, @group.player_limit) %>
+		<%= render_show_detail_zurb(:conditions, sanitize(@group.conditions)) %>	
+		<%= render_show_detail_zurb(:users_available, render('/shared/show_images_zurb', :collection => @group.users)) if is_member %>	
+		
+		</td>	
+		</tr>
+		</tbody>
+		</table>
+		
+	</div>
+</div>

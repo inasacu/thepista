@@ -1,0 +1,22 @@
+<style type="text/css"> 
+
+textarea
+{
+	border: 1px solid rgb(204, 204, 204); -moz-border-radius: 2px 2px 2px 2px;
+    width:95%;
+    margin:5px 0;
+    padding:3px;
+}
+</style>
+
+<%= hidden_field :blog, :id %>
+<%= hidden_field :forum, :id %>
+<%= hidden_field :comment, :title %>
+
+<%= set_form_text_area(the_form, :body) %><br />
+
+
+
+
+
+

@@ -1,0 +1,40 @@
+- mailer ||= false
+- switch ||= false
+- max_points = scorecard_other.played.to_i * group.points_for_win.to_i
+- coeficient = 0
+- coeficient = 100 *(scorecard_other.points.to_f/max_points.to_f)
+- coeficient_points = scorecard_other.points.to_f * (scorecard_other.points.to_f/max_points.to_f)
+- coeficient_played = 100 *(scorecard_other.played.to_f / games_played.to_f)
+- image = scorecard_image_link("bajar-clasificacion.png") if (scorecard_other.ranking > scorecard_other.previous_ranking)
+- image = scorecard_image_link("subir-clasificacion.png") if (scorecard_other.ranking < scorecard_other.previous_ranking)
+- image = scorecard_image_link("mantener-clasificacion.png") if (scorecard_other.ranking == scorecard_other.previous_ranking)
+- image = scorecard_image_link("mantener-clasificacion.png") if (scorecard_other.previous_ranking == 0)
+- ranking_change = "-#{scorecard_other.ranking - scorecard_other.previous_ranking}" if (scorecard_other.ranking > scorecard_other.previous_ranking)
+- ranking_change = "+#{scorecard_other.previous_ranking - scorecard_other.ranking}" if (scorecard_other.ranking < scorecard_other.previous_ranking)
+- ranking_change = "=" if (scorecard_other.ranking == scorecard_other.previous_ranking or scorecard_other.previous_ranking == 0)
+%tr{:align => "center"}
+  %td.puntos
+    = "*" if ((scorecard_other.played.to_i + less_games) < games_played.to_i)
+    \&nbsp;#{scorecard_other.ranking}
+  %td.equipos{:align => "left"}= mailer ? "&nbsp;" : item_image_link_tiny(scorecard_other.user)
+  %td.equipos
+    %span
+      - if mailer
+        = link_to(scorecard_other.user.name, {:host => 'haypista.com', :controller => 'users', :action => 'show', :id => scorecard_other.user})
+      - else
+        = user_link(scorecard_other.user)
+  %td.jugados= mailer ? "&nbsp;" : image
+  %td.jugados= ranking_change
+  %td.puntos= scorecard_other.points.round
+  %td.ganados= scorecard_other.wins
+  %td.empatados= scorecard_other.draws
+  %td.perdidos= scorecard_other.losses
+  %td.puntos
+    = sprintf( "%0.00f", coeficient)
+    = "%"
+  %td.jugados= scorecard_other.played
+  %td.jugados= scorecard_other.assigned
+  %td.puntos= mailer ? sprintf( "%0.0f", coeficient_points)  : coeficient_points.round
+  %td.puntos
+    = sprintf( "%0.00f", coeficient_played)
+    = "%"

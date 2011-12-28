@@ -1,0 +1,76 @@
+<div class="block">
+  
+  <%= get_secondary_navigation(current_user) %>
+
+  <div class="content">
+	
+  <%#= show_heading(the_label) %>
+  
+    <div class="inner">
+	
+		<div class="description">
+			<span class="q">
+				<%=sanitize current_user.description.blank? ? control_label('description_no') : current_user.description %>
+			</span>
+		</div>
+
+		<div class="columns"> 
+			<div class="column left"> 
+				<div class="description">
+                	<%= image_tag current_user.thumbnail %>
+					<%= render 'shared/qr_code_zurb' %>	
+                </div>
+			</div>
+		</div>
+
+		<table>
+			<tr>
+				<td>
+					<table border="0">
+											
+						
+						<%= tr_td_action(:name, "#{@profile.first_name} #{@profile.last_name}") %>
+						<%= tr_td_action(:title, @profile.headline) %>
+						<%= tr_td_action(:picture, @profile.picture_url) %>
+						<%= tr_td_action(:profile_request, @profile.site_standard_profile_request) %>
+						<%= tr_td_action(:picture_url, @profile.picture_url) %>
+						<%= tr_td_action(:current_status, @profile.current_status) %>
+						<%= tr_td_action(:location, @profile.location) %>
+						<%= tr_td_action(:location, @profile.location.id) %>
+						<%#= tr_td_action(:id, @profile.id) %>
+						<%#= tr_td_action(:url, @profile.url) %>
+						<%#= tr_td_action(:company, @profile.company_name) %>
+						<%#= tr_td_action(:location, @profile.location.title) %>
+						<%#= tr_td_action(:location, @profile.location.summary) %>
+						<%#= tr_td_action(:location, @profile.location.start_date) %>
+						<%#= tr_td_action(:location, @profile.location.end_date) %>
+						<%#= tr_td_action(:location, @profile.location.is_current) %>
+						<%#= tr_td_action(:position, @profile.position) %>
+						<%#= tr_td_action(:distance, @profile.distance) %>
+						<%#= tr_td_action(:id, @profile.id) %>
+						<%#= tr_td_action(:public_profile_url, @profile.public_profile_url) %>
+						<%#= tr_td_action(:industry, @profile.industry) %>
+						<%#= tr_td_action(:summary, @profile.summary) %>
+						<%#= tr_td_action(:specialties, @profile.specialties) %>
+						<%#= tr_td_action(:positions, @profile.positions) %>
+						<%#= tr_td_action(:num_recommenders, @profile.num_recommenders) %>
+						<%#= tr_td_action(:educations, @profile.educations) %>
+						<%#= tr_td_action(:connection, @connections) %>
+						
+						<%= @client.update_status(label_name(:linkedin_update_status)) if test? %>
+						<%#= @client.clear_status %>
+						
+						<%#= tr_td_action(:network_updates, @client.network_updates) %>
+						<%#= tr_td_action(:pict, @client.network_updates(:type => 'PICT')) %>
+	
+					</table>
+					
+				</td>
+			</tr>
+			
+		</table>
+	
+	  
+    </div>
+  </div>
+</div>

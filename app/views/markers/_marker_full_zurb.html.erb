@@ -1,0 +1,33 @@
+<tr>  
+	<td>
+		<%= option_image_link('installation') %>
+	</td>
+
+	<td class="name_and_date">
+		<%= marker_link(marker) %>
+		<span class="date">
+		</span>
+	</td>
+
+	<td class="name_and_date">
+		<%= marker.address %>
+		<span class="date">
+			<%= "#{marker.city}, #{marker.region}, #{marker.zip}" %>
+		</span>
+	</td>
+
+	<td>
+		<%= "#{marker.latitude}<br/>#{marker.longitude}" if current_user.is_maximo? %>
+	</td>
+
+	<% if display_icons %>
+	<td class="last">
+		<span class="action" align="left">
+			<% if current_user.is_maximo? %> 
+			<strong><%= option_image_small_link('marker') %>&nbsp;&nbsp;<%= link_to label_name(:markers_edit), edit_marker_path(:id => marker) %></strong>
+			<% end %>
+		</span>
+	</td>
+	<% end -%>
+
+</tr>

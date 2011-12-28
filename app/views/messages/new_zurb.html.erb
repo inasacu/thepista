@@ -1,0 +1,36 @@
+<% 
+	the_label = control_action_label 
+	
+	if @scorecard 
+		the_label = "#{label_name(:send_scorecard)} #{label_name(:from)} #{group_link(@group)}" if @scorecard
+	elsif @match
+		the_label = "#{label_name(:send_match)} #{schedule_link(@schedule)}" if @match
+	elsif @schedule
+		the_label = "#{label_name(:send_pre_match)} #{schedule_link(@schedule)}" unless @schedule.played?
+	elsif @challenge
+		the_label = "#{label_name(:message)} #{item_name_link(@challenge)}"			
+	elsif @group
+		the_label = "#{label_name(:message)} - #{item_concept_link(@the_schedule)}" if @the_schedule	
+		the_label = "#{label_name(:message)} - #{item_name_link(@group)}" unless @the_schedule	
+	else
+		the_label = "#{label_name(:message)} " 
+	end
+
+	the_label = "#{the_label} #{label_name(:to)} #{user_link(@recipient)}" if @recipient			
+	@item = @message
+%>
+
+<div class="row">
+
+	<div class="twelve columns">  
+
+		<%= set_title_class(the_label) %>
+		
+		<hr />
+
+		<%= render 'shared/new_edit_multipart_zurb', :item => @item %>
+
+	</div>
+
+</div>
+

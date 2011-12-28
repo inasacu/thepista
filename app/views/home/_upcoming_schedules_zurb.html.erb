@@ -1,0 +1,21 @@
+<% request_image, first_icon, request_link, the_label, the_icon, item_group_link, item_group_link, the_schedule = upcoming_schedules(schedules) %>
+	
+<tr>
+	<td class="first_home">
+		<%= request_image %>
+	</td>
+	<td class="name_and_date">
+		<%= first_icon %> <%= request_link %> <%= "#{the_label.downcase}." %>
+		<span class="date">
+			<%= the_icon %>&nbsp;&nbsp;&nbsp;
+			<%= ago(the_schedule.created_at) %>&nbsp;&nbsp;&nbsp;
+			<%= "&nbsp;&nbsp;#{item_group_link}" unless item_group_link == "" %>
+		</span>
+	</td>
+</tr>
+
+
+
+
+
+

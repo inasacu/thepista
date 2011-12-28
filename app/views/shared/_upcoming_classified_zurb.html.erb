@@ -1,0 +1,5 @@
+.block
+  = content_tag 'h3', label_name(:classifieds)
+  .sidebar-block
+    %table.table
+      = render :partial => 'shared/classified', :collection => @upcoming_classifieds

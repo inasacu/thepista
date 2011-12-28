@@ -1,0 +1,38 @@
+<%
+	the_label = label_name(:reservations)
+	content_for(:title, the_label)
+	
+	the_new_label = "#{the_label} (#{item_name_link(@installation)})"
+	left_label = ""
+	right_label = "#{item_name_link(@installation)}<br/>#{nice_day_time_wo_year_exact(Time.zone.now)}"
+%>
+
+<div class="block">
+
+	<%= get_secondary_navigation(@venue) %>
+
+	<div class="content">   
+
+		<h2 class="title"><%= the_new_label %></h2>
+		
+		<div class="columns"> 
+				<table class="table">
+				<tr>
+					<%= content_tag :td, right_label, :class =>"first_left" %>
+				</tr>
+				</table>
+		</div>
+		<br/>
+		
+		<div class="inner">
+			<table class="table">
+				
+				<%= render 'reservations/full_calendar_zurb', :first_day => @first_day, :time_frame => @time_frame, :installation => @installation %>	
+				<%#= render 'reservations/new_reservation_zurb', :first_day => @first_day, :time_frame => @time_frame, :installation => @installation if production? %>
+			</table>
+		</div>
+
+	</div>
+</div>
+
+<%= render 'venues/sidebar_venue' %>

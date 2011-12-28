@@ -1,0 +1,70 @@
+<%= render 'shared/textfield_autofill' %>
+
+<style type="text/css"> 
+	div.notice { 
+		display: inline-block; 
+		padding: 5px 10px; 
+		position: relative; 
+		margin: 10px 0pt; 
+		-moz-border-radius: 5px 5px 5px 5px;
+		-webkit-border-radius:3px
+ 	}
+	div.notice { background-color: rgb(100, 174, 41); color: rgb(255, 255, 255); }
+	div.notice.top_left:before { content: ""; display: block; width: 20px; height: 10px; position: absolute; top: -10px; left: 50px; }
+	div.notice.top_left:before { background: url('../../images/half_arrow_up.png') no-repeat scroll 0% 0% transparent; }
+</style>
+
+<div class="row">
+
+	<div class="content_register">  
+
+		<%= set_title_class(control_action_label) %>
+
+		
+		
+			<% form_for @user, :url => rpx_create_path, :html => { :class => :form } do |f| -%>
+			
+			<div class="group"></div>
+						
+			<div class="group">
+			  <%= f.label :name, label_name('name'), :class => :label %>
+			  <%= f.text_field :name, :class => 'textfield' %>
+			</div>	
+
+			<div class="group">
+			  <%= f.label :email, label_name('email'), :class => :label %>
+			  <%= f.text_field :email, :class => 'textfield' %><br>
+				<!-- <div class="notice top_left" style="width: 315px;"><%#= I18n.t(:email_new_user) %></div> -->
+			</div>
+
+				<div class="group">
+				  <%= f.label :phone, label_name('phone'), :class => :label %>
+				  <%= f.text_field :phone, :class => 'textfield' %>
+				</div>
+
+			<div class="group">
+			  <%= f.label :sport, label_name('sport'), :class => :label %>
+			  <%= f.text_field :sport, :id => 'autofill', :class => 'textfield' %><br />
+			</div>
+
+		  <div class="group">
+		    <%= f.label :city_id, label_name('city'), :class => :label %>
+		    <%= f.select(:city_id, City.city_name, {:selected => @user.city_id, :include_blank => false})%>
+		  </div>
+			
+			<div class="group"></div>
+			
+			<div class="group navform">
+				<%= submit_tag label_name(:create), :class => "button" %> <%= label_name(:or) %> <%= link_to label_name(:cancel), users_path %>
+			</div>
+			
+			<% end -%>
+
+
+		</div>
+
+	</div>
+
+</div>
+
+<% content_for :sidebar, render(:partial => 'sidebar') -%>

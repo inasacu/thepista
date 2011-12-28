@@ -1,0 +1,124 @@
+<% 
+	can_modify = (@user == current_user) 
+	is_user_manager = current_user.is_user_manager_of?(@user)
+	the_label = h(@user.name)
+	content_for(:title, the_label)
+	
+	is_group_manager =  false
+	participation = 0; @user.scorecards.each {|scorecard| participation += scorecard.played}
+	the_participation_label = I18n.t(:has_user_scorecard_played, :count => participation)
+		
+
+	the_sport = ""
+	the_sport = @user.sport.strip.chomp(',') unless @user.sport.blank? or @user.sport.nil?
+	is_notice = get_controller_action == 'user_notice'
+%>
+
+<%= render 'shared/show_description_zurb', :item => @user, :the_label => the_label %>
+
+
+<div class="row">
+
+	<div class="twelve columns">
+		
+			
+<% unless is_notice %>
+
+<%= render_show_detail_zurb(:name, @user.name) %>
+<%= render_show_detail_zurb(:email, @user.email) if @user == current_user %>
+
+<% 	
+if @user.private_phone
+	the_label = label_name(:display)
+else
+	the_label = "&nbsp;&nbsp;&nbsp;&nbsp;#{label_name(:hide)}"
+end
+%>						
+
+<%= render_show_detail_zurb(:phone, h(@user.phone)) unless @user.private_phone %>
+<%= render_show_detail_zurb(:phone, link_to(the_label, set_private_phone_path(:id => @user))) if can_modify and !@user.phone.blank? %>
+<%= render_show_detail_zurb(:company, @no_linkedin_profile ? @user.company : link_to(@user.company, @user.linkedin_url, :target => "_blank"))  %>
+<%= render_show_detail_zurb(:linkedin_headline, link_to(@profile.headline, @user.linkedin_url, :target => "_blank")) unless @profile.blank? %>
+<%= render_show_detail_zurb(:groups, (@user.has_group? ? group_list(@user.groups) : label_name('groups_none'))) %>
+<%= render_show_detail_zurb(:sports, the_sport) %>
+<%= render_show_detail_zurb(:event_participation, (participation.to_i > 0 ? link_to(the_participation_label, my_list_schedules_path(:id => @user)) : the_participation_label)) %>
+
+
+<% if @user.has_group? and DISPLAY_USER_GROUP_FULL							
+group_scorecards = []
+Match.last_games_played(@user).each {|match| group_scorecards << match.group_id unless group_scorecards.include?(match.group_id)}
+%>
+
+<%= label_name(:groups_full) %>
+
+
+	<% @user.groups.each do |group| 
+		if group_scorecards.include?(group.id) 
+	%>
+	
+		<td class="show">
+		<%= item_name_link(group) %>
+		<span class="date">
+			<%= "<br/>#{group.sport.name}<br/>#{item_name_link(group.marker)}<br/>#{link_to(label_name(:scorecard), scorecard_path(:id => group))}" %>
+		</span>
+									      	
+	
+	<% end 
+	end %>
+
+
+	
+<% end %>				
+				
+<%= render_show_detail_zurb(:city, @user.city.name) %>	
+<%= render_show_detail_zurb(:time_zone, @user.time_zone) %>
+<%= render_show_detail_zurb(:language, label_name(@user.language)) %>
+
+<% end -%>
+
+<% if is_notice %>
+<% 
+the_label = h(label_name(@user.last_minute_notification, 'value'))
+%>
+
+<%= render_show_detail_zurb(:last_minute_notification, (can_modify ? link_to(the_label, set_last_minute_notification_path(:id => @user)) : the_label)) %>
+
+
+<% the_label = h(label_name(@user.forum_comment_notification, 'value')) %>
+<%= render_show_detail_zurb(:forum_notification, (can_modify ? link_to(the_label, set_forum_notification_path(:id => @user)) : the_label)) %>
+
+
+<% the_label = h(label_name(@user.blog_comment_notification, 'value')) %>
+<%= render_show_detail_zurb(:blog_notification, (can_modify ? link_to(the_label, set_blog_notification_path(:id => @user)) : the_label)) %>
+
+
+<% the_label = h(label_name(@user.message_notification, 'value')) %>
+<%= render_show_detail_zurb(:message_notification, (can_modify ? link_to(the_label, set_message_notification_path(:id => @user)) : the_label)) %>
+
+
+<% if @user.has_role?('manager') and DISPLAY_USER_PETITION %>
+
+<% the_label = h(label_name(@user.teammate_notification, 'value')) %>
+
+<%= render_show_detail_zurb(:teammate_notification, (can_modify ? link_to(the_label, set_teammate_notification_path(:id => @user)) : the_label)) %>
+
+<% end %>
+				
+<% the_label = h(label_name(@user.looking, 'value')) %>
+<%= render_show_detail_zurb(:looking_for_my_group, (@user == current_user ? link_to(the_label, set_user_looking_path(:id => @user)) : the_label)) %>
+
+<% end -%>
+
+<% unless is_notice %>
+
+
+<%= render_show_detail_zurb(:evaluation, ratings_for(@user, :static, :dimension => :evaluation, :size => "small")) %>
+<%= render_show_detail_zurb(:users_teammate, render('shared/show_images_zurb', :collection => @user.friends)) if @user.friends.count > 0 %>
+  
+
+<%= render :partial => 'show_admin_zurb' if current_user.is_maximo? %>
+<% end -%>
+
+
+	</div>
+</div>

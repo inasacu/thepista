@@ -1,0 +1,18 @@
+<%#= render 'home/details_zurb' unless current_user %>
+
+<% if current_user
+
+	the_label = label_name(:latest_activities)
+	content_for(:title, the_label)
+
+	has_activities = @comment_items.count + @match_items.count + @schedule_items.count + @items.count + @requested_teammates.count > 0	
+	has_team = current_user.groups.count > 0
+%>
+
+	<%= render 'groups/index_blank_zurb' unless has_team %>
+
+	<%= render 'home/upcoming_schedule_zurb', :my_schedules => @my_schedules, :the_label => label_name(:my_upcoming) unless @my_schedules.empty? %>
+
+	<%= render 'home/latest_activities_zurb', :the_label => the_label if has_activities %>
+
+<% end -%>

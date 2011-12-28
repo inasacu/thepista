@@ -1,0 +1,20 @@
+<% 
+	the_group = Group.find(@classified.table_id) 
+
+	the_label = "#{control_action_label} #{label_name(:from)} #{group_link(the_group)} " 
+	@item = @classified
+%>
+
+<div class="row">
+
+	<div class="twelve columns">  
+
+		<%= set_title_class(the_label) %>
+		
+		<hr />
+
+		<%= render 'shared/new_edit_multipart_zurb', :item => @item %>
+
+	</div>
+
+</div>

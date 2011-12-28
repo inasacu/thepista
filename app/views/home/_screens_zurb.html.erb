@@ -1,0 +1,42 @@
+<div class="screens">
+	<h2><%= label_name(:help_amateur) %></h2>
+	<ul class="site">
+		<li class="screenshot">
+			<p><b><%= label_name(:upcoming_schedules) %></b><br/>
+			<%= label_name(:upcoming_schedules_screen) %></p>
+			<%= link_to(image_tag("screens/upcoming.png"), :controller => 'home', :action => 'upcoming') %>
+		</li>
+
+		<li class="screenshot">
+			<p><b><%= label_name(:users) %></b><br/>
+			<%= label_name(:users_screen) %></p>
+			<%= link_to(image_tag("screens/player.png"), users_url) %>
+		</li>
+
+		<li class="screenshot">
+			<p><b><%= label_name(:groups) %></b><br/>
+			<%= label_name(:groups_screen) %></p>
+			<%= link_to(image_tag("screens/team.png"), groups_url) %>			
+		</li>
+
+		<li class="screenshot">
+			<p><b><%= label_name(:schedules) %></b><br/>
+			<%= label_name(:schedules_screen) %></p>
+			<%= link_to(image_tag("screens/events.png"), schedules_url) %>
+		</li>
+		
+		<li class="screenshot">
+			<p><b><%= label_name(:schedule) %></b><br/>
+				<%= label_name(:schedule_screen) %></p>
+			<%= link_to(image_tag("screens/event.png"), markers_url) %>
+		</li>
+
+		<li class="screenshot">
+			<p><b><%= label_name(:scorecards) %></b><br/>
+				<%= label_name(:scorecards_screen) %>
+			</p>
+			<%= link_to(image_tag("screens/scorecard.png"), scorecards_url) %>
+		</li>
+
+	</ul>
+</div>

@@ -1,0 +1,39 @@
+<%
+if current_user
+	the_label = label_name(:search_result)
+	content_for(:title, the_label)
+	
+	block_model = ['cup', 'challenge']
+%> 
+	<div class="block">
+		
+		<%= get_secondary_navigation %>
+		
+		<div class="content">   
+			<%= set_title_class(the_label) %>
+			
+			<div class="inner">
+				<%= get_class_table_id_controller %>
+			
+				<% @item_results.each do |item| 
+					the_class = item.class.to_s.downcase
+				%>
+					<%= render "search_#{item.class.to_s.downcase}_zurb", :item => item unless block_model.include?(the_class) %>
+				<% end -%>
+				
+				</table>
+	    	</div>
+			
+			</div>
+		</div>
+	</div>
+	
+	<%= set_sidebar %>
+<% 
+else 
+%>
+	<%= render 'home/details' %>	
+<% 
+end 
+-%>
+

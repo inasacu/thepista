@@ -1,0 +1,11 @@
+<div class="row">
+
+<h3><%= label_name(:options) %></h3>
+
+<ul class="navigation">
+
+<%= link_to(label_name(:edit_marker), edit_marker_path(marker)) if current_user.is_manager_of?(marker) %> 
+
+</ul>
+
+</div>

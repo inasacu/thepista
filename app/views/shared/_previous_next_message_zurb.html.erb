@@ -1,0 +1,59 @@
+<%
+	the_action = get_the_action.gsub(" ", "_")
+	the_next_link = ''
+	the_previous_link = ''
+
+	if is_controller("schedule")
+		case the_action
+		when"show"
+			the_next_link = link_to(label_name(:previous), schedule_path(the_previous)) 
+			the_previous_link = link_to(label_name(:next), schedule_path(the_next)) 
+
+		when "team_roster" 
+			the_next_link = link_to(label_name(:previous), team_roster_path(:id => the_previous))
+			the_previous_link = link_to(label_name(:next), team_roster_path(:id => the_next))
+
+		when "team_last_minute" 
+			the_next_link = link_to(label_name(:previous), team_last_minute_path(:id => the_previous))
+			the_previous_link = link_to(label_name(:next), team_last_minute_path(:id => the_next))
+
+		when "team_no_show" 
+			the_next_link = link_to(label_name(:previous), team_no_show_path(:id => the_previous))
+			the_previous_link = link_to(label_name(:next), team_no_show_path(:id => the_next))
+
+		when "team_unavailable" 
+			the_next_link = link_to(label_name(:previous), team_unavailable_path(:id => the_previous))
+			the_previous_link = link_to(label_name(:next), team_unavailable_path(:id => the_next))
+
+		end
+
+	elsif is_controller("forum")
+		the_next_link = link_to(label_name(:previous), forum_path(@forum))
+		the_previous_link = link_to(label_name(:next), forum_path(@forum))
+	end
+%>
+
+
+<div class="row">
+
+	<div class="twelve columns"> 
+
+		<div class="row">
+			<div class="three columns">
+				<%= the_next_link %>
+			</div>
+			<div class="three columns">
+			</div>
+			<div class="three columns">
+			</div>
+			<div class="three columns" align="right">
+				<%= the_previous_link %>
+			</div>
+		</div>
+
+	</div>
+
+</div>
+
+<hr />
+<br />

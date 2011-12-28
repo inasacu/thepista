@@ -1,0 +1,68 @@
+<%
+	final_played ||= false
+	the_game = Game.final_game(@challenge.cup)
+	final_played = the_game.played unless (the_game.nil? or the_game.blank?)
+-%>
+
+
+<div class="row">
+
+<%= set_title_class(the_label) %>
+
+<div class="twelve columns">
+<% 
+	if current_user.is_member_of?(@challenge) 
+		the_challenge = sanitize(@challenge.name)
+		the_confirmation = label_with_name(:do_leave_challenge, "#{the_challenge}?")
+		can_edit = false
+		
+		@casts = Cast.current_casts(current_user, @challenge)
+		@casts.each {|cast| can_edit = true  if (current_user == cast.user and cast.starts_at >= HOURS_BEFORE_GAME)	}
+		
+		can_edit = false if is_controller('cast') and is_action('edit')
+%>
+		<%= link_to(label_name(:send_message_to), new_message_path(:challenge_id => @challenge.id)) %>
+		
+		<% unless final_played %>
+		
+		<%= option_image_link('invitation') ***
+		<%= link_to("#{label_name(:invitations_your_friend)} #{the_challenge}", new_invitation_url(:challenge_id => @challenge)) %>
+		
+		<% end -%>
+		
+		<%  if current_user.is_manager_of?(@challenge) and !final_played %>
+		
+		<%= option_image_link('challenge') ***
+		<%= link_to label_name(:challenges_edit), edit_challenge_path(@challenge) %>
+		
+		<% end -%>
+		
+		<% if can_edit and !final_played %>
+		
+		<%= option_image_link('challenge') ***
+		<%= link_to label_name(:casts_edit), edit_cast_path(:id => @challenge) %>
+		
+		<% end -%>
+<% 
+	else
+%>
+		
+		<%= option_image_link('message') ***
+		<%= link_to(label_name(:send_message_to), new_message_path(:id => @challenge.all_the_managers.first)) %>
+		
+<%
+		unless current_user.has_item_petition?(current_user, @challenge)
+			# the_label = label_with_name('add_to_item', the_challenge)
+			# the_confirmation = "#{ label_name(:petition_to_join) } #{the_challenge}?"
+%> 
+			
+			<%= "#{option_image_link('user_add')} ***  #{join_item_link_to(current_user, @challenge, true)}" %>
+			<%#= link_to(the_label, join_item_path(:id => @challenge, :item => @challenge.class.to_s, :teammate => current_user), :confirm => the_confirmation) %>
+			
+<% 
+		end 
+	end
+%>
+</div>
+
+</div>

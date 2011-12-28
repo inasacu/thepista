@@ -1,0 +1,54 @@
+<table class="table">
+
+<% 
+	upcoming_cups.each do |cup| 
+		the_sport = label_name(:join_cup)
+-%>		
+	<tr>
+		<td>
+			<%= item_image_name_link_small(cup) %>
+		</td>
+
+		<td class="name_and_date">
+			<%= item_name_link cup %><br />
+			<span class="date">
+			<%= cup.sport.name %>
+			</span>
+		</td>
+
+		<td class="name_and_date">
+			<%= nice_day_of_week(cup.starts_at) %><br />
+			<span class="date">
+			<%= has_left(cup.starts_at) if Time.zone.now < cup.starts_at %>
+			</span>
+		</td>		
+
+		<td class="name_and_date">
+			<%= I18n.t(:has_cup_escuadras, :count => object_counter(cup.escuadras)) %><br />
+			<span class="date">
+			<%= I18n.t(:has_cup_games, :count => object_counter(cup.games)) %>
+			</span>
+		</td>
+		
+		<td class="name_and_date">
+			<%= (cup.deadline_at < Time.zone.now) ? link_to(label_name(:challenges_shows), challenges_url) : link_to(the_sport, challenges_url) if cup.official %>
+		</td>
+
+		<td class="name_and_date">	
+			<%= link_to label_name(:challenges_create), new_challenge_path(:id => cup)  unless (cup.deadline_at < Time.zone.now) if cup.official %>
+		</td>
+		
+		<td class="last">
+			&nbsp;
+		</td>
+
+	</tr>
+	<% end -%>
+
+</table> 
+
+
+
+
+
+

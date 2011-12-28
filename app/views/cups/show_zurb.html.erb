@@ -1,0 +1,57 @@
+<% 
+	is_user_manager = (current_user.is_manager_of?(@cup))
+	is_maximo = current_user.is_maximo?
+	
+	@the_escuadras = []
+	@cup.escuadras.each {|escuadra| @the_escuadras << escuadra.item}
+	the_label = @cup.name
+%>
+
+
+<%= render 'shared/show_description_zurb', :item => @cup %>
+	
+	
+<div class="row">
+
+	<div class="twelve columns"> 
+		
+		<table>
+		<tbody>
+		<tr>
+		<td>
+			
+		
+		
+<%= render_show_detail_zurb(:official, label_name(@cup.official, 'value')) if is_maximo %>
+<%= render_show_detail_zurb(:sports, @cup.sport.name) %>
+<%= render_show_detail_zurb(:time_zone, @cup.time_zone) %>
+<%= render_show_detail_zurb(:starts_at, nice_day_of_week(@cup.starts_at)) %>
+<%= render_show_detail_zurb(:ends_at, nice_day_of_week(@cup.ends_at)) %>
+<%= render_show_detail_zurb(:deadline_at, nice_day_of_week(@cup.deadline_at)) %>
+<%= render_show_detail_zurb(:club, label_name(@cup.club, 'value')) %>		
+<%= render_show_detail_zurb(:escuadras, t(:has_cup_escuadras, :count => @cup.escuadras.count)) %>
+<%= render_show_detail_zurb(:games, t(:has_cup_games, :count => @cup.games.count)) %>		
+<%= render_show_detail_zurb(:group_stage_advance, @cup.group_stage_advance) if (@cup.group_stage_advance.to_i > 0) if is_maximo %>
+
+
+<%= render_show_detail_zurb(:standing, link_to(label_name(:standing), standing_path(:id => @cup)) if @cup.has_standing %>
+<%= render_show_detail_zurb(:conditions, sanitize(@cup.conditions) %>	
+<%= render_show_detail_zurb(:escuadras_available, item_list(@the_escuadras) %>
+<%= render 'shared/show_images_zurb', :collection => @the_escuadras} %>			
+
+		
+		</td>	
+		</tr>
+		</tbody>
+		</table>
+		
+	</div>
+</div>
+
+
+  	
+  
+  
+
+
+		

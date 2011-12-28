@@ -1,0 +1,23 @@
+<h2 class="title"><%= get_collection_label(@venues) %></h2>
+
+<div class="inner">
+	
+	<table class="table">
+
+	  <tr>     
+		<%= content_tag :th, "&nbsp;", :class => "first" %>
+		<%= content_tag :th, "#{label_name(:name)}<br />#{label_name(:time_zone)}", :class => "heading" %>
+		<%= content_tag :th, "#{label_name(:marker)}<br />#{label_name(:installations)}", :class => "heading" %>
+		<%#= content_tag :th, label_name(:general_information), :class => "heading" %>
+		<%= content_tag :th, "&nbsp;", :class => "last" %>
+	  </tr>
+
+	  <% @venues.each do |venue| -%>
+  		<%= render 'venues/venue_full', :venue => venue, :display_icons => true %> 
+	  <% end -%>
+
+	</table>	
+	
+	<%= render :partial => 'shared/action_bar', :locals => { :collection => @venues } %>
+
+</div>

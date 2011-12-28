@@ -1,0 +1,10 @@
+<a name="H<%= Base64::b64encode(starts_at.to_i.to_s) %>"></a>
+
+<div class="Reservable" style="height: 66px;">
+	<div class="Cabecera HoraReserva_true">
+		<%= "#{nice_simple_time_at(starts_at)} - #{nice_simple_time_at(starts_at+time_frame)}" %>
+	</div>
+	<div class="NombreReserva">
+		<%= link_to label_name(:reservations_new), new_reservation_path(:id => @installation, :block_token => block_token) %>
+	</div>
+</div>

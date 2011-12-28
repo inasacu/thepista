@@ -1,0 +1,68 @@
+
+<div class="row">
+
+	<div id="one columns">
+	</div>
+
+	<div class="ten columns">
+
+
+
+		<% if get_controller_action == 'password_reset_new' %>
+		
+			<% @user = User.new %>
+		
+			<%= content_tag :h5, "<strong>#{control_action_label}</strong>" %>		
+			<%= content_tag :p, label_name(:password_reset_instructions) %>
+			<hr />
+
+
+			<% form_tag password_resets_path do %>
+
+			<%= label :email, label_name(:email) %>
+			<%= text_field_tag :email, nil, :class => 'oversize input-text' %>	    
+
+
+			<%= render 'utilities/recaptcha' %>
+
+			<hr />
+
+			<%= set_form_button(@user, 'signup', 'medium white nice button radius') %>
+
+			<% end -%>
+
+
+		<% elsif  get_controller_action == 'password_reset_edit' %>
+
+
+			<%= content_tag :h5, "<strong>#{label_name(:password_change)}</strong>" %>	
+			<hr />
+
+			<% form_for @user, :url => password_reset_path, :method => :put do |the_form| %>
+
+				<%= set_form_label(the_form, :password) %>
+				<%= set_form_password(the_form, :password, 'oversize input-text', true) %><br />
+
+
+				<%= set_form_label(the_form, :password_confirmation) %>
+				<%= set_form_password(the_form, :password_confirmation, 'oversize input-text', true) %><br />
+
+
+				<%= render 'utilities/recaptcha' %>
+
+				<hr />
+
+				<%= set_form_button(@user, 'password_update_and_login', 'medium white nice button radius') %>
+				<%= submit_tag label_name(:password_update_and_login), :class => "button" %>
+
+			<% end -%>
+
+
+		<% end -%>
+
+	</div>
+
+	<div id="one columns">
+	</div>
+
+</div>

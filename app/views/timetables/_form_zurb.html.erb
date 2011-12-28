@@ -1,0 +1,22 @@
+
+<%= f.hidden_field :installation_id %>
+<%= f.hidden_field :installation_id if @installation %>
+
+
+
+
+	<%= set_form_label(the_form, :type_id, :timetable) %>
+	<%= f.select(:type_id, Type.timetable_type, {:selected => @timetable.type_id, :include_blank => false}) %><br />
+
+
+	<%= set_form_label(the_form, :starts_at) %>
+	<%= set_form_time_select(the_form, :starts_at) %><br />
+
+
+	<%= set_form_label(the_form, :ends_at) %>
+	<%= set_form_time_select(the_form, :ends_at) %><br />
+
+
+	<%= set_form_label(the_form, :timeframe) %>
+	<%= set_form_text_field(the_form, :timeframe, 'small input-text') %><br />
+

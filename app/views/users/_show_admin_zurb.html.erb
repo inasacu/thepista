@@ -1,0 +1,19 @@
+
+<%= tr_td_action(:birth_at, nice_day_date(@user.birth_at)) %>
+<%= tr_td_action(:enable_comments, label_name(@user.enable_comments, 'value')) %>
+
+<%= tr_td_action(:last_login_at, nice_day_date(@user.last_login_at)) %>
+
+<%= tr_td_action(:teammate_notification, label_name(@user.teammate_notification, 'value')) %>
+
+<%= tr_td_action(:message_notification, label_name(@user.message_notification, 'value')) %>
+<%= tr_td_action(:blog_notification, label_name(@user.blog_comment_notification, 'value')) %>
+<%= tr_td_action(:forum_notification, label_name(@user.forum_comment_notification, 'value')) %>
+
+<%= tr_td_action(:login_count, @user.login_count) %>
+
+<%= tr_td_action(:last_request_at, nice_day_date(@user.last_request_at)) %>
+<%= tr_td_action(:last_login_at, nice_day_date(@user.last_login_at)) %>
+<%= tr_td_action(:current_login_at, nice_day_date(@user.current_login_at)) %>
+<%= tr_td_action(:last_login_ip, @user.last_login_ip) %>
+<%= tr_td_action(:current_login_ip, @user.current_login_ip) %>

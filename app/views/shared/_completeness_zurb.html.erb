@@ -1,0 +1,37 @@
+<%
+	the_completeness = user.percent_complete.round
+	the_label = label_name(:profile_completeness)
+	the_profile_label = " <strong>#{the_completeness}%</strong> #{the_label.downcase}"
+%>
+
+<style>
+
+.profile-completeness {
+	padding: 10px;	
+	margin-bottom: 10px;
+	font-weight: bold;
+}
+
+.profile-completeness h4,.progress {
+	color: rgb(75,145,28);
+	font-weight: bold;
+	font-size: 125%;
+}
+</style>
+
+<div class="row"> 
+
+		<%= set_content_tag(the_label) %>
+
+		<hr></hr>
+
+	  <div class="twelve columns">
+		
+		<br/>
+		<div class="profile-completeness">
+			<span class="progress-meter" title="<%= the_completeness %>% <%= label_name(:complete) %>"><span class="has-progress" style="width: <%= the_completeness %>%;"></span></span>
+			<p class="progress"><%= is_action('show') ? the_profile_label : link_to( the_profile_label, user_url(current_user)) %></p>			
+		</div>
+		
+	</div> 
+</div>

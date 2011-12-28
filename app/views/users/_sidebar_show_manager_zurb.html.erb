@@ -1,0 +1,47 @@
+<%
+	current_user.groups.each do |group| 
+		the_group = h(group.name)
+		
+		if @user == current_user and @user.is_creator_of?(group)  
+			if @user.is_manager_of?(group)
+				the_label = "#{ label_name(:role_remove_manager)} #{ label_name(:for) } #{the_group}"
+				the_confirmation = "#{ label_name(:role_remove_manager)}, #{h(@user.name)} #{ label_name(:for) } #{the_group}?"
+%>					
+				<p>
+				<%= option_image_link('user_remove') %>&nbsp;&nbsp;<%= link_to(the_label , remove_manager_path(:id => @user, :group => group), :confirm => the_confirmation) %>
+				</p>
+<% 
+			else
+				the_label = "#{ label_name(:role_add_manager)} #{ label_name(:from) } #{the_group}"
+				the_confirmation = "#{ label_name(:role_add_manager)} #{ label_name(:to) } #{@user.name} #{ label_name(:to) } #{the_group}?"
+%>		
+				<p>
+				<%= option_image_link('user_add') %>&nbsp;&nbsp;<%= link_to(the_label , set_manager_path(:id => @user, :group => group), :confirm => the_confirmation) %>
+				</p>		
+<% 
+			end 
+		end
+	
+		if @user != current_user  and @user.is_member_of?(group) and current_user.is_creator_of?(group)
+			if @user.is_manager_of?(group)
+				the_label = "#{ label_name(:role_remove_manager)} #{ label_name(:from) } #{the_group}"
+				the_confirmation = "#{ label_name(:role_remove_manager)} #{ label_name(:from) } #{the_group}?"
+%>					
+				<p>
+				<%= option_image_link('user_remove') %>&nbsp;&nbsp;<%= link_to(the_label , remove_manager_path(:id => @user, :group => group), :confirm => the_confirmation) %>
+				</p>		
+<%
+			else
+				unless @user.is_manager_of?(group) and group.total_managers.to_i <= 2
+				the_label = "#{ label_name(:role_add_manager)} #{ label_name(:for) } #{the_group}"
+				the_confirmation = "#{ label_name(:role_add_manager)} #{ label_name(:for) } #{the_group}?"
+%>		
+				<p>
+				<%= option_image_link('user_add') %>&nbsp;&nbsp;<%= link_to(the_label , set_manager_path(:id => @user, :group => group), :confirm => the_confirmation) %>
+				</p>
+<% 
+				end
+			end		
+		end	
+	end 
+%>

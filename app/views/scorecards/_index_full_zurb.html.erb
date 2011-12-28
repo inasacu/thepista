@@ -1,0 +1,63 @@
+	<h2 class="title"><%= get_collection_label(@groups) %></h2>
+
+   <div class="inner">
+
+     <table class="table">
+
+       <tr>        
+		<%= content_tag :th, "&nbsp;", :class => "first" %>
+		<%= content_tag :th, "#{label_name(:name)}<br />#{label_name(:gameday_at)}", :class => "heading" %>
+		<%= content_tag :th, "#{label_name(:manager)}<br />#{label_name(:sport)}", :class => "heading" %>
+		<%= content_tag :th, label_name(:time_zone), :class => "heading" %>
+		<%= content_tag :th, label_name(:general_information), :class => "heading" %>
+		<%= content_tag :th, label_name(:created_at), :class => "heading" %>	
+		<%= content_tag :th, "&nbsp;", :class => "last" %>
+       </tr>
+
+       <% @groups.each do |group| -%>
+
+       <tr>  
+	  <td>
+		<%= item_image_link_small(group) %>
+	  </td>
+	  
+	  <td>
+		
+		<% unless @archive %>
+			<%= link_to h(group.name), scorecard_path(:id => group) %>
+		<% else %>
+		<%= link_to h(group.name), show_archive_path(:id => group) %>
+		<% end %>
+		
+	  </td>
+	
+	  <td>
+		<%= user_list group.all_the_managers %><br />
+		<%= group.sport.name %>
+	  </td>
+
+		  <td>
+			<%= group.time_zone %>
+		  </td>
+               
+         <td>
+		<%= I18n.t(:has_group_users, :count => object_counter(group.users)) %><br />
+		<%= I18n.t(:has_group_schedules, :count => object_counter(group.schedules)) %>
+         </td>
+
+         <td>
+           <%#= nice_full_date group.created_at %>
+         </td>
+
+         <td class="last">
+		<%= link_to(label_name(:send_message_to), new_message_path(:group_id => group.id)) %><br />
+         </td>
+       </tr>   
+      
+       <% end -%>
+
+     </table>
+
+	<%= render :partial => 'shared/action_bar_zurb', :locals => { :collection => @groups } unless is_controller('cloud') %>
+</div>
+

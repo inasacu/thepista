@@ -1,0 +1,52 @@
+<% 
+	the_challenge = sanitize(@challenge.name)
+	content_for(:title, the_challenge)
+%>
+<div class="block">
+
+  <%= get_secondary_navigation(@challenge) %> 
+
+  <div class="content">   
+  
+    <h2 class="title"><%= I18n.t(:has_challenge_users, :count => @total) %></h2>
+	
+    <div class="inner">
+	
+      <table class="table">
+	  
+		<tr>             
+			<%= content_tag :th, "&nbsp;", :class => "first" %>
+			<%= content_tag :th, label_name(:name), :class => "heading" %>
+			<%= content_tag :th, label_name(:challenge), :class => "heading" %>
+			<%= content_tag :th, label_name(:time_zone), :class => "heading" %>
+			<%= content_tag :th, "&nbsp;", :class => "heading" %>	
+			<%= content_tag :th, "&nbsp;", :class => "last" %>
+		</tr>
+		
+        <% @users.each do |user| 
+			user_casts = Cast.ready_casts(user, @challenge)
+	    -%>
+			<tr>
+			  <td><%= image_link_small user %></td>					
+			  <td><%= user_link user %></td>
+			  <td><%= user.has_challenge? ? item_list(user.challenges) : label_name('challenges_none') %></td>		 
+			  <td><%= user.time_zone %></td>			  
+			  <td class="name_and_date">
+				<%=  link_to(label_name(:cast) , casts_path(:id => @challenge, :user_id => user)) %>
+				<span class="date">
+					<%= I18n.t(:has_casts_ready_users, :count => user_casts.total) %>
+				</span>
+			  </td>
+			
+			  <td class="last"><%= link_to label_name(:send_message_to), new_message_path(:id => user) unless current_user == user %></td>		  
+			</tr>
+        <% end -%>
+		
+      </table>
+	  <%= render 'shared/action_bar_zurb', :locals => { :collection => @users } %>
+	  
+    </div>
+	
+  </div>
+  
+</div>

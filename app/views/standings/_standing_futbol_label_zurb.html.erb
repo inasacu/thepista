@@ -1,0 +1,15 @@
+- the_value = @cup.is_futbol?
+- the_label = is_escuadra ? label_name(:group_stage_name) : label_name(:ranking)
+%tr{:align => "left"}
+  %th.first{:title => the_label}= the_label
+  %th.heading &nbsp;
+  %th.heading
+    %span= I18n.t(:name)
+  %th.heading{:title => I18n.t(:points_full)}= I18n.t(:points)
+  %th.heading{:title => I18n.t(:games_won_full)}= I18n.t(:games_won) if is_escuadra
+  %th.heading{:title => I18n.t(:games_tied_full)}= I18n.t(:games_tied) if is_escuadra
+  %th.heading{:title => I18n.t(:games_lost_full)}= I18n.t(:games_lost) if is_escuadra
+  %th.heading{:title => I18n.t("goals_for_full_#{the_value}")}= I18n.t("goals_for_#{the_value}") if is_escuadra
+  %th.heading{:title => I18n.t("goals_against_full_#{the_value}")}= I18n.t("goals_against_#{the_value}") if is_escuadra
+  %th.heading{:title => I18n.t("goal_difference_full_#{the_value}")}= I18n.t("goal_difference_#{the_value}") if is_escuadra
+  %th.last{:title => I18n.t(:games_played_full)}= I18n.t(:games_played) if is_escuadra

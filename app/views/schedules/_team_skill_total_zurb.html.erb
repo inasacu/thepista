@@ -1,0 +1,33 @@
+<table>
+	<thead>
+		<tr>
+			<%= content_tag :th, label_name(:groups) %>
+			<%= content_tag :th, "&nbsp;" %>
+			<%= content_tag :th, label_name(:technical_total) %>
+			<%= content_tag :th, label_name(:physical_total) %>
+			<%= content_tag :th, label_name(:technical_difference) %>
+			<%= content_tag :th, label_name(:physical_difference) %>
+			<%= content_tag :th, label_name(:total_difference) %>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<%= content_tag(:td, link_to(@schedule.home_group, group_path(@schedule.group))) %>
+			<%= content_tag(:td, home["image"]) %>
+			<%= content_tag(:td, home["technical"]) %>
+			<%= content_tag(:td, home["physical"]) %>
+			<%= content_tag(:td, home["technical_difference"]) %>
+			<%= content_tag(:td, home["physical_difference"]) %>
+			<%= content_tag(:td, home["total_difference"]) %>
+		</tr>
+		<tr>
+			<%= content_tag(:td, link_to(@schedule.away_group, group_path(@schedule.group))) %>
+			<%= content_tag(:td, away["image"]) %>
+			<%= content_tag(:td, away["technical"]) %>
+			<%= content_tag(:td, away["physical"]) %>
+			<%= content_tag(:td, away["technical_difference"]) %>
+			<%= content_tag(:td, away["physical_difference"]) %>
+			<%= content_tag(:td, away["total_difference"]) %>
+		</tr>
+	</tbody>	
+</table>

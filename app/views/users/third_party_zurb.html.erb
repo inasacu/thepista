@@ -1,0 +1,58 @@
+<% myOpenID = RPXNow.mappings(current_user.id) %>
+
+<div class="block">
+
+  <%= get_secondary_navigation %>   
+
+  <div class="content">
+	
+	<h2 class="title"><%= label_name(:your_openid) %><br />
+		  <span style="color: rgb(119, 119, 119); font-weight: normal; font-size: 11px;">
+		    <%= label_name(:myopenid_association) %>
+		  </span>
+	</h2>  
+  
+    <div class="inner">
+
+	
+		<table class="table">
+			<thead>
+
+				<tr>  
+					<%= content_tag :th, label_name(:type_account), :class => "first" %>
+					<%= content_tag :th, "#{label_name(:destroy)}?", :class => "heading" %>	
+					<%= content_tag :th, "&nbsp;", :class => "last" %>
+				</tr>
+			</thead>
+
+			<% if myOpenID.length > 0 %>
+				<% myOpenID.each do |identifier| 	%>
+				<tr>
+					<td>
+						<%= image_tag('auth-openid-tiny.gif') if identifier.include?('myopenid.com') %>
+						<%= image_tag('auth-live-tiny.gif') if identifier.include?('live.com') %>
+						<%= image_tag('auth-facebook-tiny.gif') if identifier.include?('facebook.com') %>
+						<%= image_tag('auth-google-tiny.gif') if identifier.include?('google.com') %>
+						<%= image_tag('auth-yahoo-tiny.gif') if identifier.include?('yahoo.com') %>
+						<%= image_tag('auth-myspace-tiny.gif') if identifier.include?('myspace.com') %>			
+					</td>
+					<td><%= link_to t(:destroy), remove_openid_url(:openid => identifier) %></td>
+					<!-- <td><%#= h(identifier) %></td> -->
+					<td class="remove"></td>
+				</tr>
+				<% end %>
+			<% end %>			
+		
+		</table>	
+	
+		<p><%= label_name(:myopenid_select) %></p>
+
+	<h2>
+		<%=RPXNow.popup_code("#{t(:add_openid)  }",APP_CONFIG['rpx_api']['realm'], rpx_token_sessions_url, :language=>'es') %>	
+	</h2>
+	  
+    </div>
+  </div>
+</div>
+
+<%= render :partial => 'utilities/rpx_script' if current_user %>

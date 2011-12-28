@@ -1,0 +1,25 @@
+<%
+	the_label = label_name(:markers)
+	content_for(:title, the_label)
+%>
+
+<div class="block">
+	
+  <%= get_secondary_navigation %>
+
+	<div class="content">	
+		<%= render 'markers/context_zurb' if is_action('direction') %>
+		<%= render 'markers/autocomplete_zurb' if is_action('search') %>
+		<%= render 'markers/map_v3_zurb' if is_action('list') %>
+	</div>	
+	
+	<% if is_action('search')  %>	
+		<br/>
+		<%= "<strong>#{label_name(:markers_search)}</strong>"%>:&nbsp;&nbsp;<input type="text" id="address" size="60">	
+	<% elsif is_action('direction') %>
+		<%= content_tag 'h4', "* <strong>#{label_name(:you_are_direction_instructions)}</strong>" -%>
+	<% end -%>
+
+</div>
+
+<% content_for :sidebar, render('maps/sidebar_directions_zurb') if is_action('direction') -%>

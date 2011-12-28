@@ -1,0 +1,210 @@
+<% 
+
+	counter = 0
+
+	roster_count, is_squad, has_been_played, show_right_evaluation, is_manager, is_member, home, away, group_games_played, schedule_number, 
+          group, has_been_played_squad, show_right_border, show_right_evaluation, show_deviation, show_mean = set_team_roster_box(the_roster, @schedule)
+%>
+
+<% if roster_count %>	  
+
+
+<table>
+	
+	<thead>
+		<tr>
+			<%= content_tag :th, "&nbsp;" %>
+			<%= content_tag :th, "&nbsp;" %>			
+			<%= content_tag :th, (is_squad and !has_been_played) ? "#{label_name(:name)}<br/>#{sort_link(label_name(:change_at), :status_at)}" :
+			"#{label_name(:name)}", :title => label_name(:change_at_full) %>
+			<%= content_tag :th, label_name(:position), 
+			:title => label_name(:position), :align => "center" if DISPLAY_PLAYER_POSITION %>
+			<%= content_tag :th, label_name(:technical), :title => label_name(:profile_technical) %>
+			<%= content_tag :th, label_name(:physical), :title => label_name(:profile_physical) %>
+			<%= content_tag :th, label_name(:games_played_full_2) %>
+			<%= content_tag :th, the_trueskill_label if DISPLAY_TRUESKILL %>
+			<%= content_tag :th, the_trueskill_label_final if has_been_played and is_squad and DISPLAY_TRUESKILL %>
+			<%= content_tag :th, has_been_played ? "" : is_squad ? sort_link(label_name(:group), :group_id) : 
+			label_name(:group) if is_squad and !has_been_played %>		
+			<% if has_been_played %>
+			<%= content_tag :th, label_name(:score) if is_squad %>
+			<% elsif !has_been_played and is_manager %>
+			<%= content_tag :th, "" %>
+			<% end -%>
+			<%= content_tag :th, "" %>
+		</tr>
+	</thead>
+
+	<tbody>
+				
+<% 
+the_roster.each do |match| 
+	
+	the_user = match.user
+	
+	if match.type_id == 1
+		is_second_team = !(match.group_id > 0)
+
+		home["players"] += 1 unless is_second_team
+		away["players"] += 1 if is_second_team
+	end
+
+	second_team = ""
+	second_team = "second_team" if is_second_team
+
+	puntos = "puntos"
+	puntos = "second_team_puntos" if is_second_team
+
+	name_and_date = "name_and_date"
+	name_and_date = "name_and_date_second_team" if is_second_team
+
+	last_roster = "last"
+	last_roster = "second_team_last_roster" if is_second_team
+	
+	game_number = 1
+
+	coeficient_played = 100 *(match.scorecard_played.to_f / group_games_played)
+	previous_user_match = Match.get_previous_user_match(match, schedule_number, group)
+	the_user_match = Match.get_rating_average(match, group)
+
+	rating_technical = the_user_match.rating_average_technical.to_f
+	rating_physical = the_user_match.rating_average_physical.to_f
+
+	if DISPLAY_TRUESKILL
+		initial_mean = (InitialMean).to_f
+		initial_deviation = (InitialMean / K_FACTOR).to_f 
+		final_mean = 0.0
+		final_deviation = 0.0
+
+		unless previous_user_match.nil?
+			initial_mean = previous_user_match.final_mean 
+			initial_deviation = previous_user_match.final_deviation
+		end
+
+		if has_been_played
+			initial_mean = match.initial_mean 
+			initial_deviation = match.initial_deviation
+			final_mean = match.final_mean 
+			final_deviation = match.final_deviation
+		end
+	end
+	
+	game_number = previous_user_match.game_number unless previous_user_match.nil?
+
+	is_subscriber = the_user.is_subscriber_of?(group)	
+	the_label =  label_name("subscription_#{is_subscriber}")
+
+	if is_squad
+		# initialize values if nil
+		rating_technical = 0.0  if rating_technical.nil?
+		rating_physical = 0.0  if rating_physical.nil?
+		
+		if DISPLAY_TRUESKILL
+			initial_mean = 0.0  if initial_mean.nil?
+			initial_deviation = 0.0  if initial_deviation.nil?
+		end
+				
+		case match.position.name
+		when "defense"
+			(match.group_id > 0) ? home["defense"] += 1 : away["defense"] += 1
+		when "center"
+			(match.group_id > 0) ? home["center"] += 1 : away["center"] += 1
+		when "attack"
+			(match.group_id > 0) ? home["attack"] += 1 : away["attack"] += 1
+		end
+
+		(match.group_id > 0) ? home["technical"] += rating_technical : away["technical"] += rating_technical
+		(match.group_id > 0) ? home["physical"] += rating_physical : away["physical"] += rating_physical
+		(match.group_id > 0) ? home["total"] += 1 : away["total"] += 1	
+		
+		if DISPLAY_TRUESKILL
+			(match.group_id > 0) ? home["mean"] += initial_mean : away["mean"] += initial_mean
+			(match.group_id > 0) ? home["deviation"] += initial_deviation : away["deviation"] += initial_deviation
+		end
+	end
+	
+	game_number = "#{match.scorecard_played}"
+
+	@roster = match	
+	can_evaluate = current_user != the_user and the_roster.include?(current_user)
+	was_convocado =  match.type_id == 1	
+	
+	not_played = "<br />(#{label_name(:no_jugado)})"
+	user_status_at = "#{user_link_limit the_user} <br/> <span class='date_tiny'> #{has_been_played ? '' : ago(match.status_at)} #{match.type_id == 4 ? not_played : ''} </span>"
+	
+	change_group_link = is_member ? link_to(match.team_name(@schedule), match_team_path(:id => match.id), :title => label_name(:change_group)) :  match.team_name(@schedule)
+	
+	is_different_user_manager = (current_user != the_user and is_manager)
+	has_not_been_played_manager = !has_been_played and is_manager
+	
+-%>
+
+
+<tr>
+	
+	<%= content_tag(:td, image_link_smaller(the_user), :class => second_team) %>
+	<%= content_tag(:td, "#{subscription_image_link(the_user, is_subscriber, the_label)} #{counter +=1}.", :class => second_team) %>
+	<%= content_tag(:td, user_status_at, :class => second_team) %>
+	<%= content_tag(:td, match.position_name, :class => second_team) if DISPLAY_PLAYER_POSITION %>
+	<%= content_tag(:td, rating_technical, :class => second_team) %>
+	<%= content_tag(:td, rating_physical, :class => second_team) %>
+	<%= content_tag(:td, game_number, :class => second_team) %>
+	<%= content_tag(:td, "#{sprintf( "%.2f", initial_mean)}", :class => second_team) if DISPLAY_TRUESKILL %>
+	<%= content_tag(:td, "#{sprintf( "%.2f", final_mean)}", :class => second_team) if has_been_played and is_squad and DISPLAY_TRUESKILL %>
+	
+	<% if is_squad %>
+		<% if !has_been_played  %>
+
+			<%= content_tag(:td, change_group_link, :class => second_team) unless has_been_played %>
+
+		<% 	end %>
+
+		<%= content_tag(:td, was_convocado ? (group_score_link(@schedule)) : '', :class => second_team) if has_been_played_squad %>	
+
+	<% end %> 
+
+	<%= content_tag(:td, is_different_user_manager ? (match_all_my_link(@schedule, the_user, true)) : '', :class => second_team) if has_not_been_played_manager %>
+
+
+</tr>
+
+<% end %>
+
+</tbody>
+</table>
+
+
+<% 	
+	home, away, show_right_border = set_team_skill(home, away, is_manager, has_been_played) 
+%>
+
+	<% if is_squad %>
+		<%= render 'schedules/team_skill_total_zurb', :home => home, :away => away, :show_right_border => show_right_border, :has_been_played => has_been_played,
+											:show_deviation => show_deviation, :show_mean => show_mean %>
+
+		<%= render 'schedules/team_skill_total_true_zurb', :home => home, :away => away, :show_right_border => show_right_border, :has_been_played => has_been_played,
+											:show_deviation => show_deviation, :show_mean => show_mean %>
+	<% end -%>
+
+
+<% end %>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

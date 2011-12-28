@@ -1,0 +1,25 @@
+
+<%= set_title_class(get_collection_label(challenges)) %>
+
+<div class="inner">
+	
+	<table class="table">
+
+	  <tr> 
+		<%= content_tag :th, "&nbsp;", :class => "first" %>
+		<%= content_tag :th, label_name(:name), :class => "heading" %>
+		<%= content_tag :th, label_name(:manager), :class => "heading" %>
+		<%= content_tag :th, label_name(:general_information), :class => "heading" %>
+		<%= content_tag :th, "&nbsp;", :class => "heading" %>	
+		<%= content_tag :th, "&nbsp;", :class => "last" %>
+	  </tr>
+
+	  <% challenges.each do |challenge| 
+		<%= render 'cups/cup_full_zurb', :cup => cup, :display_icons => true %>
+	  <% end -%>
+
+	</table>	
+	
+	<%= render 'shared/action_bar_zurb', :locals => { :collection => challenges } %>
+
+</div>

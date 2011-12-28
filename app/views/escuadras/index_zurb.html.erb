@@ -1,0 +1,24 @@
+<%
+	the_label = label_name(:escuadras)
+	content_for(:title, the_label)
+	has_escuadras = (object_counter(@cup.escuadras) > 0 )
+%>
+
+<div class="block">
+	
+	<%= get_secondary_navigation(@cup) %>
+
+	<div class="content">  
+			<% if has_escuadras %>
+				<%= render :partial => '/escuadras/index_full_zurb' %>
+			<% else %>
+				<% if @cup.official %>
+				<%= render :partial => '/escuadras/index_blank_zurb' %>
+				<% else %>
+				<%= render :partial => '/groups/index_blank_zurb' %>
+				<% end %>
+			<% end %>
+	</div>	
+</div>
+
+<% content_for :sidebar, render(:partial => 'shared/sidebar_show_final_played_zurb') -%>

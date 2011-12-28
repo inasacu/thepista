@@ -1,0 +1,16 @@
+<style type="text/css"> 
+	.table td { padding: 4px; text-align: left; font-size: 12.5px; }
+</style>
+
+<% checked ? checkmark = 'checked' : checkmark = '' %>
+
+<tr>
+	<td class="list">		
+		<input type="checkbox" id="roster" name="escuadra_ids[]" value="<%= escuadra.id %>" <%= checkmark %> >
+	</td>        
+	<td>
+		<%= escuadra_image_link_smaller(escuadra) %>&nbsp;&nbsp;<%= escuadra_link(escuadra) %>
+	</td> 
+</tr>
+
+

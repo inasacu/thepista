@@ -1,0 +1,127 @@
+
+<%
+	show_schedules = !((@upcoming_schedules.nil? or @upcoming_schedules.blank?))
+	show_howto = !(is_action('search'))
+	show_completeness = !((current_user.percent_complete == 100) or is_action('search'))
+
+	is_group_manager = false
+	is_group_manager = current_user.is_manager_of?(@group) if @group
+
+	has_schedule_blank = false
+	has_schedule_blank = !@group.schedules.blank? if @group
+
+	show_schedules = !((@upcoming_schedules.nil? or @upcoming_schedules.blank?))
+	show_howto = !(is_action('search'))
+	show_completeness = !((current_user.percent_complete == 100) or is_action('search'))
+
+	is_schedule_manager = @schedule ? current_user.is_manager_of?(@schedule.group) : false 
+	is_group_manager = @group ? current_user.is_manager_of?(@group) : false
+	is_manager = current_user.is_manager? 
+	is_manager = false if @schedule
+
+	is_user_member = current_user.is_member_of?(@group) if @group
+
+	is_user_member = current_user.is_member_of?(@group) if @group
+	has_group_petition = current_user.has_item_petition?(current_user, @group) if @group
+%>
+
+
+<%#= render('shared/sidebar_create_zurb', :item => @challenge) %>
+<%#= render('challenges/sidebar_show') %>
+<%#= render('cups/sidebar_cup_additional', :cup => @cup) if current_user.is_manager_of?(@cup) %>
+<%#= render('cups/sidebar_cup_additional', :cup => @cup) if current_user.is_manager_of?(@cup) %>
+<%#= render('shared/sidebar_show_cup', :cup => @cup}) if current_user.is_manager_of?(@cup) %>
+<%#= render('/challenges/sidebar_legend_zurb') %>
+<%#= render('/challenges/sidebar_legend') %>
+<%#= render('challenges/sidebar_show') %>
+<%#= render('shared/sidebar_create_zurb', :item => @classified %>
+<%#= render('shared/sidebar_create_zurb', :item => @fee %>
+<%#= render('shared/sidebar_create_id_zurb', :item => @escuadra, :id => 'id', :item_id => @cup %>
+<%#= option_image_link('group')  link_to(label_name(:escuadras_create) , new_escuadra_url(:id => @cup)) %>
+<%#= render('shared/sidebar_create_zurb', :item => @cup %>
+<%#= render('shared/sidebar_howto_zurb') if show_howto %>
+<%#= render('shared/sidebar_schedules_zurb', :upcoming_schedules => @upcoming_schedules) if show_schedules %>
+<%#= render('shared/sidebar_latest_fee_zurb') %>
+<%#= render('shared/completeness_zurb', :user => current_user) if show_completeness %>
+<%#= render('shared/sidebar_create_zurb', :item => @schedule if @schedule %>
+<%#= render('/shared/latest_payment_zurb') %>
+<%#= render('schedules/sidebar_schedule_zurb' %>
+<%#= render('/schedules/sidebar_show') if @schedule %>
+
+<%# if @schedule %>
+<%#= render('schedules/sidebar_show_zurb', :schedule => @schedule) %>
+<%#= render('schedules/sidebar_details_zurb', :schedule => @schedule) %>
+<%#= render('shared/sidebar_geo_group_zurb', :schedule => @schedule) %>	
+<%#= render('schedules/sidebar_level_zurb', :schedule => @schedule ) if is_schedule_manager %>
+<%#= render('shared/share_object_zurb', :schedule => @schedule) %>
+<%# end %>
+
+<%# if group_schedule_list %>
+<%#= render('groups/sidebar_show_zurb') %>
+<%#= render('shared/share_object_zurb', :group => @group, :schedule => @group.schedules.first) if @group %>
+<%# end %>
+
+
+<%#	if is_user_member  %> 
+<%#= link_to(label_name(:send_message_to), new_message_path(:group_id => @group)) %>
+<%#= link_to(label_name(:invitations_create_group) , new_invitation_url(:group_id => @group)) %>
+<%#= link_to label_name(:send_scorecard), new_message_path(:scorecard_id => @group.schedules.first) unless @group.schedules.blank? %>
+<%# else %>
+
+<%#= option_image_link('message')  link_to(label_name(:send_message_to), new_message_path(:id => @group.all_the_managers.first)) %>
+<%# unless current_user.has_item_petition?(current_user, @group) %> 
+<%#= option_image_link('group')  join_item_link_to(current_user, @group, true) %>
+<%#= link_to(the_label, join_item_path(:id => @group, :item => @group.class.to_s, :teammate => current_user), :confirm => the_confirmation) %>
+<%#= render('shared/sidebar_create_zurb', :item => @sport %>
+
+<%# if is_user_member  %> 
+	<%#= link_to(label_name(:send_message_to), new_message_path(:group_id => @group)) %>
+	<%#= link_to(label_name(:invitations_create_group) , new_invitation_url(:group_id => @group)) %>
+	<%#= link_to label_name(:send_scorecard), new_message_path(:scorecard_id => @group.schedules.first) unless @group.schedules.blank? %>	
+<%# else %>
+	<%#= link_to(label_name(:send_message_to), new_message_path(:id => @group.all_the_managers.first)) %>	
+<%# unless has_group_petition %> 		
+	<%#= option_image_link('user_add')  join_item_link_to(current_user, @group, true) %>
+	<%#= link_to(the_label, join_team_path(:id => @group, :teammate => current_user), :confirm => the_confirmation) %>
+	<%#= link_to(the_label, join_item_path(:id => @group, :item => @group.class.to_s, :teammate => current_user), :confirm => the_confirmation) %>
+		
+<% #end 
+#end 
+%>
+
+
+<%#= link_to(label_name(:escuadras_create) , new_escuadra_url(:id => @cup)) %>
+<%#= link_to(label_name(:send_message_to), new_message_path(:id => @group.all_the_managers.first)) %>
+<%#= link_to(label_name(:send_message_to), new_message_path(:group_id => @group)) %>
+<%#= link_to(label_name(:send_message_to), new_message_path(:id => @group.all_the_managers.first)) %>
+<%#= link_to(label_name(:send_message_to), new_message_path(:group_id => @group)) %>
+<%#= link_to(label_name(:invitations_create_group) , new_invitation_url(:group_id => @group)) %>
+<%#= link_to label_name(:send_scorecard), new_message_path(:scorecard_id => @group.schedules.first) %>
+<%#= render('challenges/sidebar_show_zurb') unless is_right_guess %>
+<%#= render('shared/sidebar_show_final_played_zurb') %>
+<%#= render('challenges/sidebar_show') %>
+<%#= render('/users/sidebar_show_zurb') if @user %>
+<%#= render('/groups/sidebar_show_zurb') if @group %>
+<%#= render('/challenges/sidebar_show_zurb') if @challenge %>
+<%#= render('/venues/sidebar_venue') if @venue %>
+<%#= render('shared/sidebar_create_zurb', :item => Announcement.new unless @announcement %>
+<%#= render('shared/sidebar_edit_zurb', :item => @announcement unless @announcement %>
+<%#= render('shared/sidebar_edit_zurb', :item => @user %>
+<%#= render('shared/sidebar_create_zurb', :item => @venue %>
+<%#= render('shared/sidebar_create_zurb', :item => @type %>
+<%#= render('shared/sidebar_create_zurb', :item => @role %>
+<%#= render('shared/sidebar_create_zurb', :item => @marker %>
+<%#= render('shared/sidebar_create_zurb', :item => @message %>
+<%#= render('shared/sidebar_create_zurb', :item => @schedule %>
+<%#= render('groups/sidebar_show_zurb') %>
+<%#= render('groups/sidebar_legend_zurb') if is_action('list') %>
+<%#= render('schedules/sidebar_schedule_zurb') if has_schedule_blank %>
+<%#= render('shared/sidebar_geo_group_zurb', :group => @group) if @group %>
+<%#= render('shared/share_object_zurb', :group => @group) if @group %>
+<%#= render('shared/sidebar_create_zurb', :item => Group.new unless @group %>
+<%#= render('shared/sidebar_edit_zurb', :item => @group unless @group %>
+<%#= render('shared/sidebar_howto_zurb') if show_howto %>
+<%#= render('shared/sidebar_schedules_zurb', :upcoming_schedules => @upcoming_schedules) if show_schedules %>
+<%#= render('shared/sidebar_latest_fee_zurb') %>
+<%#= render('shared/completeness_zurb', :user => current_user) if show_completeness %>
+

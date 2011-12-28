@@ -1,0 +1,31 @@
+<% if DISPLAY_TRUESKILL %>
+
+<table>
+	<thead>
+		<tr>
+			<%= content_tag :th, label_name(:groups) %>
+			<%= content_tag :th, "&nbsp;" %>
+			<%= content_tag :th, label_name(:users), :align => "left" %>
+			<%= content_tag :th, label_name(:true_skill_mean_total) %>
+			<%= content_tag :th, label_name(:true_skill_mean_difference) %>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<%= content_tag(:td, link_to(@schedule.home_group, group_path(@schedule.group))) %>
+			<%= content_tag(:td, home["level_image"]) %>
+			<%= content_tag(:td, home['players']) %>
+			<%= content_tag(:td, home["level"]) %>
+			<%= content_tag(:td, home["level_difference"]) %>
+		</tr>
+		<tr>
+			<%= content_tag(:td, link_to(@schedule.away_group, group_path(@schedule.group))) %>
+			<%= content_tag(:td, away["level_image"]) %>
+			<%= content_tag(:td, away['players']) %>
+			<%= content_tag(:td, away["level"]) %>
+			<%= content_tag(:td, away["level_difference"]) %>
+		</tr>
+	</tbody>	
+</table>
+
+<% end %>

@@ -1,0 +1,36 @@
+<%
+	the_label = label_name(:announcements)
+	content_for(:title, the_label)
+%>
+
+<div class="block">
+ 
+	<%= get_secondary_navigation(Announcement.new) %>
+
+	<div class="content">   
+
+		<%= set_title_class(get_collection_label(@announcements)) %>
+
+		<div class="inner">
+
+			<% if object_counter(@announcements) > 0 %>
+
+			<table class="table">
+				<tr> 
+					<%= content_tag :th, "&nbsp;", :class => "first" %>
+					<%= content_tag :th, label_name(:created_at), :class => "heading" %>
+					<%= content_tag :th, "#{label_name(:starts_at)}<br/>#{label_name(:ends_at)}", :class => "heading" %>
+					<%= content_tag :th, label_name(:message), :class => "heading" %>
+					<%= content_tag :th, "&nbsp;", :class => "last" %>
+				</tr>
+
+			<%= render 'announcement_zurb', :collection => @announcements %>
+				
+			</table>
+
+			<% end %>
+			<%= render 'shared/action_bar_zurb', :locals => { :collection => @announcement } %>
+
+		</div>
+	</div>
+</div>

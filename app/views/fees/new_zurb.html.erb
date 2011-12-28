@@ -1,0 +1,48 @@
+<% 
+	@group = Group.find(@fee.credit_id) 
+	the_label = "#{control_action_label} #{label_name('for')} #{item_name_link(@group)}" 
+	@item = @fee
+%>
+
+<div class="row">
+
+	<div class="twelve columns">  
+
+		<%= set_title_class(the_label) %>
+		
+		<hr />
+
+		<%= render 'shared/new_edit_multipart_zurb', :item => @item %>
+
+	
+	</div>
+
+</div> 
+
+
+----------------------------
+
+
+<%
+	debit_link, debit_object = fee_debit(@fee)
+	the_label = "#{control_action_label} #{label_name(:to)} #{debit_link}"
+
+	@group = Group.find(@fee.credit_id) 
+	the_label = "#{control_action_label} #{label_name('for')} #{item_name_link(@group)}" 
+	@item = @fee
+%>
+
+<div class="row">
+
+	<div class="twelve columns">  
+
+		<%= set_title_class(the_label) %>
+		
+		<hr />
+
+		<%= render 'shared/new_edit_multipart_zurb', :item => @item %>
+
+	
+	</div>
+
+</div> 

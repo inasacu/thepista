@@ -1,0 +1,18 @@
+<% the_label = label_name(:escuadras_options_without) %>
+
+<%= set_title_class(the_label) %>
+
+<div class="inner">
+
+<p>
+	<span class="large">*&nbsp;&nbsp;
+		<%= link_to("#{label_name(:you_can)} #{label_name(:create_your_own)} #{label_name(:escuadra).downcase}", new_escuadra_url(:id => @cup)) %>
+	</span>
+</p>
+<p>
+	<span class="large">*&nbsp;&nbsp;
+		<%= link_to("#{label_name(:you_can)} #{label_name(:escuadras_join)}", escuadras_path) %>
+		<%#=  link_to(label_name(:all_escuadra) , escuadras_path) %>
+	</span>
+</p>
+</div>

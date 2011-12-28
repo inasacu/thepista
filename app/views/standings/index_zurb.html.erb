@@ -1,0 +1,40 @@
+- standings = false
+- @standings.each {|card| standings = true }
+- the_label = @cup.name
+- the_label = label_name(:standings)
+- content_for(:title, the_label)
+- the_challenges = ['standing_list', 'standing_show_list']
+- is_challenge_standing = the_challenges.include?("#{get_the_controller}_#{get_the_action}".gsub(' ', '_'))
+- all_results = is_action('show all')
+- all_rank = 0
+- final_played ||= false
+- the_game = Game.final_game(@cup)
+- final_played = the_game.played unless (the_game.nil? or the_game.blank?)
+.block
+  - if is_challenge_standing
+    = get_secondary_navigation(@challenge)
+  - else
+    = get_secondary_navigation(@cup)
+  - if @standings
+    .content
+      %h2.title= is_challenge_standing ? item_name_link(@challenge)  : item_name_link(@cup)
+      .inner
+        = get_class_table_id_controller
+        - if @cup.is_futbol?
+        - group_stage = 'Z'
+          - @standings.each do |standing|
+          - standing.ranking = (all_rank+=1) if all_results
+          - unless (group_stage == standing.group_stage_name)
+          - group_stage = standing.group_stage_name
+          = render :partial => 'standing_futbol_label', :locals => { :group_stage => group_stage, :is_escuadra => (standing.item_type == "Escuadra")}
+        = render :partial => 'standing', :locals => {:standing => standing}
+  - if @cup.is_basket?
+    - @standing_baskets = @standings
+    = render :partial => 'standing_basket_label'
+    = render :partial => 'standing_basket', :collection => @standing_baskets
+  - unless @cup.is_futbol? or @cup.is_basket?
+    - @standing_others = @standings
+    = render :partial => 'standing_other_label'
+    = render :partial => 'standing_other', :collection => @standing_others
+- content_for :sidebar, render(:partial => 'challenges/sidebar_show') if is_action('show list')
+- content_for :sidebar, render(:partial => 'shared/sidebar_show_final_played')

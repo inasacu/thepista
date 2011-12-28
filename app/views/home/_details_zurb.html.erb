@@ -1,0 +1,82 @@
+
+<div class="row">
+
+	<div id="one columns">
+	</div>
+
+	<div class="five columns">
+
+		<% unless get_controller_action == 'home_index' %>
+		
+			<%= content_tag :h6, label_name(:rpx_login), :class => "subheader" %>
+			<hr />
+		
+		<% end -%>
+		
+		<%= RPXNow.embed_code(APP_CONFIG['rpx_api']['realm'],rpx_token_sessions_url, :language => I18n.locale)  if SHOW_RPX_NOW %>
+		
+	</div>
+
+	<div class="five columns">
+
+		<div class="row">
+			<div class="twelve columns">
+			</div>
+		</div>
+
+		
+		<% if get_controller_action == 'home_index' %>
+
+			<div class="row">
+				<div class="twelve columns">
+					<%= content_tag :h4, label_name(:modo) %><br>
+					<%= content_tag :h6, "<strong>#{app_name}</strong> #{label_name(:what_is_haypista_details)}" %>
+				</div>
+			</div>
+
+		<% elsif get_controller_action == 'user_session_new' %>
+
+			<div class="row">
+				<div class="twelve columns">
+
+					<%= content_tag :h6, label_name(:use_login), :class => "subheader" %>
+					<hr />
+
+					<% form_for @user_session, :html => {:class => 'form login'} do |the_form| %>
+						<%= render 'users/login_zurb', :item => @user_session, :the_form => the_form  if SHOW_LOGIN %>			
+					<% end -%>
+					
+				</div>
+			</div>
+
+		<% elsif get_controller_action == 'user_signup' %>
+
+		<% 
+			the_label = label_name('signup') 
+			@user_session = UserSession.new
+		%>
+		
+			<div class="row">
+				<div class="twelve columns">
+
+					<%= content_tag :h6, label_name(:user_signup), :class => "subheader" %>
+					<hr />
+
+					<% form_for @user, :html => {:class => 'form login'} do |the_form| %>
+						<%= render 'users/login_zurb', :item => @user, :the_form => the_form %>		
+					<% end -%>
+					
+				</div>
+			</div>
+
+		<% end -%>
+		
+
+	</div>
+
+	<div id="one columns">
+	</div>
+	
+</div>
+
+

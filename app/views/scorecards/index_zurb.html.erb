@@ -1,0 +1,18 @@
+<% 
+	the_label = label_name(:scorecards)
+	content_for(:title, the_label)
+%>
+<div class="block">
+	
+	<%= get_secondary_navigation(Scorecard.new) %>
+	 
+	<div class="content">  
+			<% if object_counter(@groups) > 0 %>
+				<%= render :partial => '/groups/index_full_zurb' %>
+			<% else %>
+				<%= render :partial => '/groups/index_blank_zurb' %>
+			<% end %>
+	</div>	
+</div>
+
+<% content_for :sidebar, render(:partial => '/groups/sidebar_zurb') -%>

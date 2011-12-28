@@ -1,0 +1,46 @@
+<%
+	the_signup = is_action('signup')
+	label_confirm = "#{field_label_name(:password_confirmation)}<br/>#{field_label_name(:password)}"
+%>
+
+
+<%= set_form_label(the_form, :email) %>
+<%= set_form_text_field(the_form, :email, 'oversize input-text', true) %><br />
+
+<%= set_form_label(the_form, :password) %>
+<%= set_form_password(the_form, :password, 'oversize input-text', true) %><br />
+
+
+<% if the_signup %>
+
+	<%= set_form_label(the_form, :password_confirmation) %>
+	<%= set_form_password(the_form, :password_confirmation, 'oversize input-text', true) %><br />
+
+	
+	<hr />
+	
+	<%= render 'utilities/recaptcha' %>
+
+	
+	<%#= submit_tag label_name(:signup), :class => "button" %>
+	<%#= set_form_button(item, 'signup') %>
+	
+<% else %>
+
+	<%= link_to(label_name(:password_forgotten), :controller => 'password_resets', :action => 'new') %><br />
+
+	<hr />
+	
+	<%#= submit_tag label_name(:login), :class => "button" %>
+	<%#= set_form_button(item, 'login') %>
+	<%#= set_form_button(@user, 'signup', 'medium white nice button radius') %>
+
+<% end %>
+
+<%= set_form_button(item, 'signup', 'medium white nice button radius') %>
+
+
+
+
+
+

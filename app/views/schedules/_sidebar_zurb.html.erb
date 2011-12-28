@@ -1,0 +1,17 @@
+<% 
+	is_schedule_manager = @schedule ? current_user.is_manager_of?(@schedule.group) : false 
+%>
+
+
+<%= render('/shared/latest_payment_zurb') -%>
+
+<% if @schedule -%>
+	<%= render("schedules/sidebar_show_zurb", :schedule => @schedule) -%>
+	<%= render("schedules/sidebar_details_zurb", :schedule => @schedule) -%>
+	<%#= render('shared/sidebar_geo_group_zurb', :schedule => @schedule) -%>	
+	<%#= render('schedules/sidebar_level_zurb', :schedule => @schedule ) if is_schedule_manager -%>
+	<%= render('shared/sidebar_create_zurb', :item => @schedule) if is_schedule_manager -%>
+<% end %>
+
+
+

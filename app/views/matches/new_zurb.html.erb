@@ -1,0 +1,27 @@
+<% 
+@schedule ||= @match.schedule
+@matches ||= @schedule.the_roster
+
+@is_futbol = @schedule.group.is_futbol?
+@is_basket = @schedule.group.is_basket?
+
+<% 
+	the_label = #{item_name_link(@schedule.group)} vs. #{@schedule.away_group}"
+	@item = @match
+%>
+
+
+<div class="row">
+
+	<div class="twelve columns">  
+
+		<%= set_title_class(the_label) %>
+		
+		<hr />
+
+		<%= render 'shared/new_edit_multipart_zurb', :item => @item %>
+
+	</div>
+
+</div>
+

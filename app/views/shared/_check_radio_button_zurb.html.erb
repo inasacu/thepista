@@ -1,0 +1,34 @@
+%label
+  %strong>= label_name(:select)
+  \:
+\&nbsp;&nbsp;
+%a{:href => "#select_all", :rel => "roster"}= label_name(:check_all)
+\&nbsp;&nbsp;
+%a{:href => "#select_none", :rel => "roster"}= label_name(:check_none)
+\&nbsp;&nbsp;
+%a{:href => "#invert_selection", :rel => "roster"}= label_name(:check_invert)
+:javascript
+  $(document).ready( function() {
+     
+      // Select all
+      $("A[href='#select_all']").click( function() {
+          $("#" + $(this).attr('rel') + " INPUT[type='checkbox']").attr('checked', true);
+          return false;
+      });
+     
+      // Select none
+      $("A[href='#select_none']").click( function() {
+          $("#" + $(this).attr('rel') + " INPUT[type='checkbox']").attr('checked', false);
+          return false;
+      });
+     
+      // Invert selection
+      $("A[href='#invert_selection']").click( function() {
+          $("#" + $(this).attr('rel') + " INPUT[type='checkbox']").each( function() {
+              $(this).attr('checked', !$(this).attr('checked'));
+          });
+          return false;
+      }); 
+     
+  });
+%br/

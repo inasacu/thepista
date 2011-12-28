@@ -1,0 +1,26 @@
+<% 
+	the_label = control_action_label 
+	@item = @cast
+	
+	the_label = is_action('index') ? label_name(:group_stage) : label_name(:group_round)
+	content_for(:title, the_label)
+	is_manager = current_user.is_manager_of?(@cup)	
+
+	new_or_existing = 'existing' 
+	prefix = "cast[cast_attributes][]"
+	
+%>
+
+<div class="row">
+
+	<div class="twelve columns">  
+
+		<%= set_title_class(the_label) %>
+		
+		<hr />
+
+		<%= render 'shared/new_edit_multipart_zurb', :item => @item %>
+
+	</div>
+
+</div>

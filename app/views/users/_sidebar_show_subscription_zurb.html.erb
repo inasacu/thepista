@@ -1,0 +1,24 @@
+<% 
+	@user.groups.each do |group| 
+
+		if current_user.is_manager_of?(group) 
+
+			unless @user.is_subscriber_of?(group) 
+				%>
+				<p>
+					<%= option_image_link('user_add') %>&nbsp;&nbsp;<%= set_role_add_subscription(@user, group) %>
+				</p> 	
+				<% 
+			else
+				%>		
+				<p>
+					<%= option_image_link('user_remove') %>&nbsp;&nbsp;<%= set_role_remove_subscription(@user, group) %>
+				</p> 	
+				<% 
+			end 
+		end 
+	end 
+%>
+
+
+

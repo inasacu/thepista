@@ -1,0 +1,15 @@
+<%= f.hidden_field :credit_id %>
+<%= f.hidden_field :credit_type %>
+
+
+
+<%= set_form_label(the_form, :concept) %>
+<%= set_form_text_field(the_form, :concept, 'input-text') %>
+
+
+<%= set_form_label(the_form, :debit_amount) %>
+<%= set_form_text_field(the_form, :debit_amount, 'small input-text', true) %><br />
+
+
+<%= set_form_label(the_form, :description) %>
+<%= set_form_text_area(the_form, :description) %><br />

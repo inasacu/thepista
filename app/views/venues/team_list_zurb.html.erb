@@ -1,0 +1,47 @@
+<div class="block">
+
+  <%= get_secondary_navigation(Venue.new) %>
+
+  <div class="content">   
+  
+	<%= set_title_class(I18n.t(:has_group_users, :count => @total)) %> 
+	
+    <div class="inner">
+	
+      <table class="table">
+	  
+		<tr>             
+			<%= content_tag :th, "&nbsp;", :class => "first" %>
+			<%= content_tag :th, "#{label_name(:name)}<br />#{label_name(:last_game_played)}", :class => "heading" %>
+			<%= content_tag :th, label_name(:group), :class => "heading" %>
+			<%= content_tag :th, label_name(:time_zone), :class => "heading" %>
+			<%= content_tag :th, "&nbsp;", :class => "last" %>
+		</tr>
+		
+        <% @users.each do |user| 
+			schedule = Schedule.last_schedule_played(user)
+	    -%>
+			<tr>
+			  <td><%= image_link_small user %></td>		
+				<td class="name_and_date">
+					<%= user_link user %><br />
+					<span class="date">
+					<%= nice_day_date(schedule.starts_at) unless schedule.nil? %>
+					</span>
+				</td>
+			  <td><%#= user.has_group? ? group_list(user.groups) : label_name('groups_none') %></td>		 
+			  <td><%#= user.time_zone %></td>			  
+			  <td class="last"><%#= link_to label_name(:send_message_to), new_message_path(:id => user) %></td>		  
+			</tr>
+        <% end -%>
+		
+      </table>
+	  <%= render :partial => 'shared/action_bar', :locals => { :collection => @users } %>
+	  
+    </div>
+	
+  </div>
+  
+</div>
+
+<% content_for :sidebar, render(:partial => 'sidebar_show') -%>

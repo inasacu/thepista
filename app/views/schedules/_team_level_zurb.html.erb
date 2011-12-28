@@ -1,0 +1,145 @@
+<% 
+	is_manager ||= false
+	
+	home["total"] = home["technical"].to_f + home["physical"].to_f
+	away["total"] = away["technical"].to_f + away["physical"].to_f
+
+	home["technical_difference"] = 0.0
+	away["technical_difference"] =  0.0
+	
+	home["physical_difference"] =  0.0
+	away["physical_difference"] =  0.0
+	
+	home["total_difference"] =  0.0
+	away["total_difference"] =  0.0
+	
+	home["has_technical_value"] = home["technical"] > 0
+	home["has_physical_value"] = home["physical"] > 0
+	home["has_total_value"] = home["total"] > 0
+	
+	away["has_technical_value"] = away["technical"] > 0
+	away["has_physical_value"] = away["physical"] > 0
+	away["has_total_value"] = away["total"] > 0
+	
+	if home["has_technical_value"] and away["has_technical_value"]
+		home["technical_difference"] = (home["technical"] - away["technical"]).to_f / (away["technical"] ) * 100
+		away["technical_difference"] = (away["technical"] - home["technical"]).to_f / (home["technical"]) * 100
+	end
+
+	if home["has_physical_value"] and away["has_physical_value"]
+		home["physical_difference"] = (home["physical"] - away["physical"]).to_f / (away["physical"]) * 100
+		away["physical_difference"] = (away["physical"] - home["physical"]).to_f / (home["physical"]) * 100
+	end
+
+	if home["has_total_value"] and away["has_total_value"] 		
+		home["total_difference"] = (home["total"] - away["total"]).to_f / (away["total"]) * 100
+		away["total_difference"] = (away["total"] - home["total"]).to_f / (home["total"]) * 100 
+	end
+		
+	home["technical_difference"] = "#{sprintf( "%.2f", home["technical_difference"].abs)}%"
+	away["technical_difference"] = "#{sprintf( "%.2f", away["technical_difference"].abs)}%"
+ 
+	home["physical_difference"] = "#{sprintf( "%.2f", home["physical_difference"].abs)}%"
+	away["physical_difference"] = "#{sprintf( "%.2f", away["physical_difference"].abs)}%"
+	
+	home["total_difference"] = "#{sprintf( "%.2f", home["total_difference"].abs)}%"
+	away["total_difference"] = "#{sprintf( "%.2f", away["total_difference"].abs)}%"
+	
+	home["is_technical_lower"] = home["technical"] < away["technical"]
+	home["is_physical_lower"] = home["physical"] < away["physical"]
+	home["is_total_lower"] = home["total"] < away["total"]
+
+	away["is_technical_lower"] = home["technical"] > away["technical"]
+	away["is_physical_lower"] = home["physical"] > away["physical"]
+	away["is_total_lower"] = home["total"] > away["total"]
+	
+	home["technical_difference"] = "-#{home["technical_difference"]}" if home["is_technical_lower"] and !away["is_technical_lower"] 
+	away["technical_difference"] = "-#{away["technical_difference"]}" if !home["is_technical_lower"] and away["is_technical_lower"] 
+	
+	home["physical_difference"] = "-#{home["physical_difference"]}" if home["is_physical_lower"] and !away["is_physical_lower"] 
+	away["physical_difference"] = "-#{away["physical_difference"]}" if !home["is_physical_lower"] and away["is_physical_lower"] 
+	
+	home["total_difference"] = "-#{home["total_difference"]}" if home["is_total_lower"] and !away["is_total_lower"] 
+	away["total_difference"] = "-#{away["total_difference"]}" if !home["is_total_lower"] and away["is_total_lower"]
+	
+	home["image"] = scorecard_image_link("subir-clasificacion.png") if home["total_difference"] > away["total_difference"]
+	home["image"] = scorecard_image_link("bajar-clasificacion.png") if home["total_difference"] < away["total_difference"]
+	home["image"] = scorecard_image_link("mantener-clasificacion.png") if home["total_difference"] == away["total_difference"]
+	
+	away["image"] = scorecard_image_link("subir-clasificacion.png") if away["total_difference"] > home["total_difference"]
+	away["image"] = scorecard_image_link("bajar-clasificacion.png") if away["total_difference"] < home["total_difference"]
+	away["image"] = scorecard_image_link("mantener-clasificacion.png") if away["total_difference"] == home["total_difference"]
+	
+	
+	home["technical"] = "" if home["technical"].to_f <= 0 
+	away["technical"] = "" if away["technical"].to_f <= 0 
+	 
+	home["physical"] = "" if home["physical"].to_f <= 0 
+	away["physical"] = "" if away["physical"].to_f <= 0  
+	
+	home["total"] = "" if home["total"].to_f <= 0 
+	away["total"] = "" if away["total"].to_f <= 0
+	
+	home["technical_difference"] = "" if home["technical_difference"].to_f <= 0 
+	away["technical_difference"] = "" if away["technical_difference"].to_f <= 0 
+ 
+	home["physical_difference"] = "" if home["physical_difference"].to_f <= 0 
+	away["physical_difference"] = "" if away["physical_difference"].to_f <= 0  
+	
+	home["total_difference"] = "" if home["total_difference"].to_f <= 0 
+	away["total_difference"] = "" if away["total_difference"].to_f <= 0
+	
+	show_right_border = true
+	if !has_been_played
+		show_right_border = false unless is_manager
+	end	
+%>
+<tr>
+	<%= content_tag :td, "&nbsp;", :class => "no_line" %>
+	<%= content_tag :td, "&nbsp;", :class => "no_line" %>
+	<%= content_tag :td, "&nbsp;", :class => "no_line" %>
+	<%= content_tag :td, "&nbsp;", :class => "no_line" %>
+	<%= content_tag :td, "&nbsp;", :class => "no_line" %>
+	<%= content_tag :td, "&nbsp;", :class => "no_line" %>
+	<%= content_tag :td, "&nbsp;", :class => "no_line" %>
+</tr>
+<tr>
+	<%= content_tag :th, "&nbsp;", :class => "first" %>
+	<%= content_tag :th, "&nbsp;", :class => "heading" %>
+	<%= content_tag :th, label_name(:groups), :class => "heading" %>
+	<%= content_tag :th, label_name(:technical_total), :class => "heading" %>
+	<%= content_tag :th, label_name(:physical_total), :class => "heading" %>
+	<%= content_tag :th, label_name(:users_total), :class => "heading" %>
+	<%= content_tag :th, label_name(:technical_difference), :class => "heading" %>
+	<%= content_tag :th, label_name(:physical_difference), :class => "heading" %>
+	<%= content_tag :th, label_name(:total_difference), :class => "heading_#{show_right_border}" %>
+	<%= content_tag :th, "", :class => "last" if show_right_border %>
+</tr>
+<tr>
+	<%= content_tag(:td, "&nbsp;", :class => "no_line") %>
+	<%= content_tag(:td, home["image"], :class => "no_line", :align => "center") %>
+	<%= content_tag(:td, "#{link_to(@schedule.home_group, group_path(@schedule.group))}&nbsp;&nbsp;(#{home['players']})", :class => "no_line") %>
+	<%= content_tag(:td, home["technical"], :class => "no_line") %>
+	<%= content_tag(:td, home["physical"], :class => "no_line") %>
+	<%= content_tag(:td, home["total"], :class => "no_line") %>
+	<%= content_tag(:td, home["technical_difference"], :class => "no_line") %>
+	<%= content_tag(:td, home["physical_difference"], :class => "no_line") %>
+	<%= content_tag(:td, home["total_difference"], :class => "no_line") %>
+</tr>
+
+<tr>
+	<%= content_tag(:td, "&nbsp;", :class => "no_line") %>	
+	<%= content_tag(:td, away["image"], :class => "", :align => "center") %>	
+	<%= content_tag(:td, "#{link_to(@schedule.away_group, group_path(@schedule.group))}&nbsp;&nbsp;(#{away['players'].to_s})") %>	
+	<%= content_tag(:td, away["technical"]) %>
+	<%= content_tag(:td, away["physical"]) %>
+	<%= content_tag(:td, away["total"]) %>
+	<%= content_tag(:td, away["technical_difference"]) %>
+	<%= content_tag(:td, away["physical_difference"]) %>
+	<%= content_tag(:td, away["total_difference"]) %>
+</tr>
+
+<tr><% 9.times {|i| "#{content_tag(:td, '&nbsp;', :class => 'no_line')}"} %></tr>
+<tr><% 9.times {|i| "#{content_tag(:td, '&nbsp;', :class => 'no_line')}"} %></tr>
+
+</table>

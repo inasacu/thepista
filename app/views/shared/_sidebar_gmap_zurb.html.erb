@@ -1,0 +1,93 @@
+<% the_label = "#{I18n.t(:create)} #{I18n.t(:marker)}".capitalize %>
+
+<script type="text/javascript"> 
+ 
+function success(position) {
+	var s = document.querySelector('#status');
+
+	if (s.className == 'success') {
+		return;
+	}
+
+	s.innerHTML = "<%= I18n.t(:your_location) %>";
+	s.className = 'success';
+
+	var mapcanvas = document.createElement('div');
+	mapcanvas.id = 'mapcanvas';
+	mapcanvas.style.height = '100%';
+	mapcanvas.style.width = '100%';
+
+	document.querySelector('#map').appendChild(mapcanvas);
+
+	var latlng = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
+	
+	var myOptions = {
+		zoom: 10,
+		center: latlng,
+		mapTypeControl: true,
+		navigationControlOptions: {style: google.maps.NavigationControlStyle.SMALL},
+		mapTypeId: google.maps.MapTypeId.ROADMAP
+	};
+
+	var map = new google.maps.Map(document.getElementById("mapcanvas"), myOptions);
+
+	var content = "<br/><br/><br/>" + "<a href='<%= new_marker_url %>?lat=" + position.coords.latitude + "&lng=" + position.coords.longitude + "'><%=the_label%></a>";
+	content = "";
+	
+	var contentString = '<div id="content">'+
+	    '<div id="siteNotice">'+
+	    '</div>'+
+	    '<h1 id="firstHeading" class="firstHeading"><%= I18n.t(:you_are_here) %></h1>'+
+	    '<div id="bodyContent">'+
+	    '<p>' + content + '</p>' +
+	    '</div>'+
+	    '</div>';
+	
+	var infowindow = new google.maps.InfoWindow({
+	    content: contentString
+	});
+
+	var marker = new google.maps.Marker({
+		position: latlng, 
+		map: map, 
+		title: "<%= I18n.t(:you_are_here) %>"
+	});
+
+	google.maps.event.addListener(marker, 'click', function() {
+	  infowindow.open(map,marker);
+	});
+	
+	$.cookie("MyLat", position.coords.latitude);
+	$.cookie("MyLon", position.coords.longitude);
+}
+ 
+function error(msg) {
+	var s = document.querySelector('#status');
+	s.innerHTML = typeof msg == 'string' ? msg : "failed";
+	s.className = 'fail';
+
+	// console.log(arguments);
+}
+ 
+if (navigator.geolocation) {
+	navigator.geolocation.getCurrentPosition(success, error);
+} else {
+	error('not supported');
+}
+ 
+$(document).ready(function()
+{
+	$("#check").click(function()
+	{
+		var lat  = $.cookie("MyLat");
+		var lon = $.cookie("MyLon");
+		alert('Latitude: '+lat);
+		alert('Longitude: '+lon);
+		var url="http://maps.googleapis.com/maps/api/geocode/json?latlng="+lat+","+lon+"&sensor=false";
+		alert('Google Map API: '+url);
+
+	});
+});
+</script> 
+ 
+<div id="map"></div>

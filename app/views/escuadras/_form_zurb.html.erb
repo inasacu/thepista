@@ -1,0 +1,12 @@
+
+
+<%= set_form_label(the_form, :name) %>
+<%= set_form_text_field(the_form, :name, 'input-text') %>
+
+
+<%= set_form_label(the_form, :photo) %>
+<%= set_form_file_field(the_form, :photo) %><br />
+
+
+<%= render :partial => "messages/message_item_list_zurb", :locals => {:recipients => escuadras} %>
+

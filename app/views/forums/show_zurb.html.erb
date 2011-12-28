@@ -1,0 +1,43 @@
+<% 
+	the_label = "#{control_action_label("#{@has_a_roster}")} #{label_name(:in)} #{sanitize(@schedule.concept)} (#{h(@schedule.group.name)})"
+		
+	has_been_played = @schedule.played? 
+	is_manager = current_user.is_manager_of?(@schedule.group)
+	is_squad = get_the_action.gsub(' ','_') == 'team_roster'
+	
+	the_sport = ""
+    the_missing = ""
+    
+    unless @schedule.played?
+      the_sport = "#{label_name(:rosters)}:  #{@schedule.convocados.count}"
+      the_missing = ", #{I18n.t(:missing)}:  #{@schedule.player_limit.to_i - @schedule.convocados.count}" if @schedule.player_limit.to_i > @schedule.convocados.count
+      the_missing = ", #{I18n.t(:excess)}:  #{@schedule.convocados.count - @schedule.player_limit.to_i}" if @schedule.player_limit.to_i < @schedule.convocados.count
+    end
+    
+	the_span = "#{the_sport} #{the_missing}"
+	the_start_at_label = "#{nice_day_of_week(@schedule.starts_at)}<br/>#{the_span}"
+%>
+
+
+<%= render "shared/previous_next_message_zurb", :schedule => @schedule, :the_previous => @the_previous, :the_next => @the_next -%>
+
+<%= set_title_class(the_label, 'events') %>
+
+<%= render('schedules/team_roster_change_schedule', :the_start_at_label => the_start_at_label) %>
+
+
+<div class="row">
+
+	<div class="twelve columns">
+					
+		<%= render 'comments/discussion_zurb', :comments => @comments %>
+		
+	</div>
+	
+</div>
+	
+ 
+
+
+
+

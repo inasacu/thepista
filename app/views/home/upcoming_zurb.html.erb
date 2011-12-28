@@ -1,0 +1,24 @@
+<%  
+the_label = label_name(:upcoming)
+content_for(:title, the_label)
+%> 
+
+
+<%= render 'home/upcoming_schedule_zurb', :my_schedules => @upcoming_schedules, :the_label => the_label unless @upcoming_schedules.empty? %>
+
+<%#= render :partial => "home/all_upcoming_schedules", :locals => {:upcoming_schedules => @upcoming_schedules} %>
+<%#= render :partial => "home/upcoming_cup", :locals => {:upcoming_cups => @upcoming_cups} %>
+
+
+
+<% unless @upcoming %>
+
+<div class="row">
+	<div class="twelve columns">   
+
+		<%= show_heading(label_name(:upcoming_no)) %>
+
+	</div> 
+</div>
+
+<% end -%>
