@@ -14,6 +14,7 @@ class BlogsController < ApplicationController
   def get_blog
     unless params[:id].blank?
       @blog = Blog.find(params[:id])
+      @comments = @blog.comments.recent.limit(COMMENTS_PER_PAGE).all
     end
     render @the_template
   end
