@@ -65,8 +65,8 @@ class MatchesController < ApplicationController
       return
     end    
 
-    set_the_template('matches/new')
-    render @the_template 
+    # set_the_template('matches/new')
+    # render @the_template 
   end
 
   def update
