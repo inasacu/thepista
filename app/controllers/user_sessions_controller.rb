@@ -6,8 +6,8 @@ class UserSessionsController < ApplicationController
 
   def new
     @user_session = UserSession.new
-    set_the_template('home/index_zurb')
-	render @the_template
+    # set_the_template('home/index_zurb')
+  # render @the_template
   end
 
   def create   
