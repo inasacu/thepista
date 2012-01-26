@@ -25,7 +25,6 @@ class UsersController < ApplicationController
     redirect_to root_url
   end
   
-  
   def list
     redirect_to root_url      
   end
@@ -50,8 +49,8 @@ class UsersController < ApplicationController
   
   def notice
     store_location
-	set_template('/users/show')
-	render @the_template     
+	  set_template('/users/show')
+	  render @the_template     
   end
 
   def signup
@@ -60,8 +59,19 @@ class UsersController < ApplicationController
   end  
 
   def new
-    redirect_to :signup
+    if DISPLAY_HAYPISTA_SIGNUP
+      return redirect_to :signup
+    end 
+    redirect_to root_url
   end
+
+  def signup
+    unless DISPLAY_HAYPISTA_SIGNUP
+      redirect_to root_url 
+      return
+    end
+  end
+
 
   def edit
     @user = current_user

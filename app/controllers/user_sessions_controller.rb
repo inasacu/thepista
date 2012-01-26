@@ -22,16 +22,16 @@ class UserSessionsController < ApplicationController
     redirect_back_or_default root_url    
   end
 
-  # def destroy
-    # @user_session = UserSession.find
-    # @user_session.destroy
+  def destroy
+    @user_session = UserSession.find
+    @user_session.destroy
 
-    # # Avoid session fixation attacks. 
-    # session[:test_that_this_disappears] = 'ok' 
-    # reset_session 
-    # # redirect_back_or_default new_user_session_url 
-    # redirect_to root_url
-  # end
+    # Avoid session fixation attacks. 
+    session[:test_that_this_disappears] = 'ok' 
+    reset_session 
+    # redirect_back_or_default new_user_session_url 
+    redirect_to root_url
+  end
 
   def rpx_create
     RPXNow.api_key = APP_CONFIG['rpx_api']['key']
