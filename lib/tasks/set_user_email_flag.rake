@@ -5,7 +5,7 @@ task :the_email_flag => :environment do |t|
 
   ActiveRecord::Base.establish_connection(RAILS_ENV.to_sym)
   
-  User.find(:all, :conditions => ["email in ('eeuumsr31@hotmail.com','rami.malas@chep.com','Luimibanez@gmail.com','chuck@yahoo.es','foo@bar.net')"]).each do |user|
+  User.find(:all, :conditions => ["email in ('antoinegicqueau@yahoo.fr')"]).each do |user|
     puts user.name
     puts user.email
     
