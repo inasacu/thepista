@@ -59,3 +59,11 @@
   <%= date_select :user, :birth_at, :start_year => (Time.zone.now.year.to_i - 70), :end_year => Time.zone.now.year.to_i, :class => 'textfield' %><br />
   <span class="description"><%= label_name('birth_at', 'description') %></span>
 </div>
+
+<% if current_user.is_maximo? %>
+<div class="group">
+  <%= f.label :archive, label_name('archive'), :class => :label %>
+  <%= f.check_box :archive, :class => 'textfield' %>
+  <!-- <span class="description"><%#= label_name('archive', 'description') %></span> -->
+</div>
+<% end -%>

@@ -97,7 +97,8 @@
 
 		<% if current_user %>		
 			<%= content_tag('li', link_to(label_name(:messages), messages_url, :class => the_message)) %>
-			<%= content_tag 'li', link_to(label_name(:groups), groups_url, :class => the_group) %>		
+			<%= content_tag 'li', link_to(label_name(:users), users_url, :class => the_group) if current_user.is_maximo? %>
+			<%= content_tag 'li', link_to(label_name(:groups), groups_url, :class => the_group) %>
 			<%= content_tag 'li', link_to(label_name(:schedules), schedules_url, :class => the_schedule) if has_group %>
 			<%= content_tag 'li', link_to(label_name(:venues), venues_url, :class => the_venue) if current_user.is_maximo? %>	
 			<%= content_tag 'li', link_to(label_name(:cups), cups_url, :class => the_cup)  if Cup.has_official_cup? or current_user.is_maximo? %>	

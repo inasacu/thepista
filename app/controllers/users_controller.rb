@@ -22,7 +22,12 @@ class UsersController < ApplicationController
   # ssl_allowed :index, :list, :show
   
   def index
-    redirect_to root_url
+    unless current_user.is_maximo?
+      redirect_to root_url 
+      return
+    end
+    @users = User.paginate(:conditions => ["users.archive = false and users.id != ?", current_user], :per_page => USERS_PER_PAGE, :page => params[:page])
+    render @the_template
   end
   
   def list
@@ -73,6 +78,10 @@ class UsersController < ApplicationController
 
 
   def edit
+    if current_user.is_maximo?
+      @user = User.find(params[:id])
+      return
+    end 
     @user = current_user
   end
 
