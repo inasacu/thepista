@@ -7,7 +7,7 @@ class InvitationsController < ApplicationController
   
   def new
     @invitation = Invitation.new
-    
+
     if (params[:group_id])
       @group = Group.find(params[:group_id])
     elsif (params[:schedule_id])
@@ -17,11 +17,9 @@ class InvitationsController < ApplicationController
     elsif (params[:cup_id])
       @cup = Cup.find(params[:cup_id])
     end
-    
-    respond_to do |format|
-      format.html
-    end
-	render @the_template   
+
+    render @the_template  
+    return 
   end
   
   def create

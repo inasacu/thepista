@@ -41,7 +41,8 @@ module SchedulesHelper
     the_sport = ""  
     the_missing = ""
     the_concept = ""
-    the_image = is_member ? schedule_image_link_small(schedule) : schedule_image_small(schedule)
+    the_image = ""
+    # the_image = is_member ? schedule_image_link_small(schedule) : schedule_image_small(schedule)
 
     if schedule.game_played?
       the_concept = is_member ? link_to(sanitize(limit_url_length(schedule.concept)), schedule_path(:id => schedule)) : sanitize(limit_url_length(schedule.concept))

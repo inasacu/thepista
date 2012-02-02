@@ -49,8 +49,7 @@ class UsersController < ApplicationController
   
   def notice
     store_location
-	  set_template('/users/show')
-	  render @the_template     
+    render :template => '/users/show'
   end
 
   def signup
