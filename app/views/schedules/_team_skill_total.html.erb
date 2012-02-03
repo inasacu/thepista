@@ -17,8 +17,8 @@
 	<%= content_tag :th, label_name(:technical_difference), :class => "heading" %>
 	<%= content_tag :th, label_name(:physical_difference), :class => "heading" %>
 	<%= content_tag :th, label_name(:total_difference), :class => "heading_#{show_right_border}" %>
-	<%= content_tag :th, "&nbsp;", :class => "heading_#{show_right_border}" unless has_been_played or !DISPLAY_PLAYER_POSITION %>
-	<%= content_tag :th, "", :class => "last" if show_last_td %>
+	<%#= content_tag :th, "&nbsp;", :class => "heading_#{show_right_border}" unless has_been_played or !DISPLAY_PLAYER_POSITION %>
+	<%#= content_tag :th, "", :class => "last" if show_last_td %>
 </tr>
 <tr>
 	<%= content_tag(:td, link_to(@schedule.home_group, group_path(@schedule.group)), :class => "no_line") %>
@@ -39,7 +39,7 @@
 	<%= content_tag(:td, away["total_difference"]) %>
 	<%#= content_tag :td, "&nbsp;"  if has_been_played %>
 	<%#= content_tag(:td, "&nbsp;") unless has_been_played  %>
-	<%= content_tag(:td, "&nbsp;") unless show_right_border or !DISPLAY_PLAYER_POSITION %>
-	<%= content_tag(:td, "&nbsp;", :class => "last") if show_last_td %>
+	<%#= content_tag(:td, "&nbsp;") unless show_right_border or !DISPLAY_PLAYER_POSITION %>
+	<%#= content_tag(:td, "&nbsp;", :class => "last") if show_last_td %>
 </tr>
 
