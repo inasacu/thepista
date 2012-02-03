@@ -7,12 +7,6 @@ task :the_archive_dependent => :environment do |t|
   
   counter = 0
 
-  # unarchive several userss
-  the_unarchives = User.find(:all, :conditions => "id in ('2901', '2940')")
-  the_unarchives.each do |user|
-    user.archive = false
-    user.save
-  end
   
   # email backup
   the_user = User.find(:all, :conditions => "email_backup is null")
@@ -24,7 +18,8 @@ task :the_archive_dependent => :environment do |t|
   
   # archive users last_login_at older than 1 years
   counter = 0
-  the_archive = User.find(:all, :conditions => ["archive = false and id not in (select distinct user_id from groups_users where archive = false) and last_login_at < ?", Time.zone.now - 180.days])
+  the_archive = User.find(:all, 
+  :conditions => ["archive = false and id not in (select distinct user_id from groups_users where archive = false) and last_login_at < ?", Time.zone.now - 365.days])
   the_archive.each do |user|
     puts "ARCHIVE user => #{user.name} - (#{counter +=1})"
     user.archive = true

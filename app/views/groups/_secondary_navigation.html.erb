@@ -40,7 +40,9 @@
 		if current_user.is_member_of?(@group) 
 			the_blog = Blog.find_item(@group)
 %>		
+		<% if DISPLAY_GROUP_BLOG %>
 		<li class="<%= get_active('blog_show') %>"><%=  blog_link(the_blog) %></li>
+		<% end %>
 		<!-- <li class="<%#= get_active('group_team_list') %>"><%#=  link_to(label_name(:users) , team_list_path(:id => @group)) %></li> -->
 		<li class="<%= get_active('schedule_group_current_list') %>"><%=  link_to(label_name(:upcoming_schedules) , group_current_path(:id => @group)) %></li>
 		<li class="<%= get_active('schedule_group_previous_list') %>"><%=  link_to(label_name(:previous_schedules) , group_previous_path(:id => @group)) %></li>
