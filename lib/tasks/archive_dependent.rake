@@ -7,6 +7,32 @@ task :the_archive_dependent => :environment do |t|
   
   counter = 0
 
+  all_archive = Comment.find(:all, :conditions => "archive is null")
+  all_archive.each do |the_archive|
+    the_archive.archive = false
+    the_archive.save
+  end
+  
+  all_remove = Comment.find(:all, :conditions => "commentable_type is null")
+  all_remove.each do |the_remove|
+    puts "#{the_remove.id} - #{the_remove.user_id} = #{the_remove.group_id}"
+    the_remove.destroy
+  end
+  
+  
+  all_remove = Slug.find(:all, :conditions => "sluggable_type = 'Blog'")
+  all_remove.each do |the_remove|
+    puts "#{the_remove.id}"
+    the_remove.destroy
+  end
+
+  # set all slugs to archive false where archive is null
+  all_archive = Slug.find(:all, :conditions => "archive is null")
+  all_archive.each do |the_archive|
+    the_archive.archive = false
+    the_archive.save
+  end
+  
   
   # email backup
   the_user = User.find(:all, :conditions => "email_backup is null")
@@ -234,7 +260,7 @@ task :the_archive_dependent => :environment do |t|
   the_item_types = Fee.find(:all, :select => "distinct item_type")
   the_item_types.each do |fee|
     
-    # puts "item_type => #{fee.item_type}"
+    puts "item_type => #{fee.item_type}"
     
     the_archive = []    
     case fee.item_type
@@ -254,13 +280,20 @@ task :the_archive_dependent => :environment do |t|
       fee.save if has_to_archive
     end
   end
+  
+  the_archive = Fee.find(:all, :conditions => "item_type = 'Schedule' and item_id not in (select id from schedules where archive = false)")
+  the_archive.each do |fee|
+    puts "ARCHIVE fee => #{fee.id},  #{fee.item_id} #{fee.item_type}"
+    fee.archive = true
+    fee.save if has_to_archive
+  end
 
 
   # ARCHIVE all PAYMENTS for all ITEM_TYPE archived 
   the_item_types = Payment.find(:all, :select => "distinct item_type")
   the_item_types.each do |payment|
     
-    # puts "item_type => #{payment.item_type}"
+    puts "item_type => #{payment.item_type}"
     
     the_archive = []    
     case payment.item_type
