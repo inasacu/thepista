@@ -43,8 +43,8 @@ task :the_image_verification => :environment do |t|
 
 
   # Load custom config file for current environment
-  S3_CREDENTIALS = File.read("#{RAILS_ROOT}/config/s3.yml")
-  S3_CONFIG = YAML.load(S3_CREDENTIALS)[RAILS_ENV]
+  S3_CREDENTIALS = File.read("#{Rails.root}/config/s3.yml")
+  S3_CONFIG = YAML.load(S3_CREDENTIALS)[Rails.env]
 
   @the_s3_url = "http://s3.amazonaws.com/"
   @the_bucket_url = S3_CONFIG['bucket']
@@ -57,7 +57,7 @@ task :the_image_verification => :environment do |t|
   # url = URI.parse("http://example.com/images/yer_img_here.foo")
 
 
-  ActiveRecord::Base.establish_connection(RAILS_ENV.to_sym)
+  ActiveRecord::Base.establish_connection(Rails.env.to_sym)
 
   # verify user pictures still active
   the_item = User.find(:all, :select => "id, photo_file_name", :conditions => "photo_file_name is not null")

@@ -1,10 +1,12 @@
 class Installation < ActiveRecord::Base
   
-    index{ name }
+		# extend FriendlyId
+	
+    # index{ name }
 
     has_attached_file :photo, :styles => {:icon => "25x25>", :thumb  => "80x80>", :medium => "160x160>",  },
       :storage => :s3,
-      :s3_credentials => "#{RAILS_ROOT}/config/s3.yml",
+      :s3_credentials => "#{Rails.root}/config/s3.yml",
       :url => "/assets/installations/:id/:style.:extension",
       :path => ":assets/installations/:id/:style.:extension",
       :default_url => "group_avatar.png"  
@@ -37,8 +39,8 @@ class Installation < ActiveRecord::Base
 
 
     # NOTE:  MUST BE DECLARED AFTER attr_accessible otherwise you get a 'RuntimeError: Declare either attr_protected or attr_accessible' 
-    has_friendly_id :venue_and_name, :use_slug => true, :approximate_ascii => true, 
-                     :reserved_words => ["new", "create", "index", "list", "signup", "edit", "update", "destroy", "show"]
+    # friendly_id :venue_and_name, :use => :slugged, :approximate_ascii => true, 
+                     # :reserved_words => ["new", "create", "index", "list", "signup", "edit", "update", "destroy", "show"]
 
     # after_update        :save_matches
     before_create       :format_description, :format_conditions

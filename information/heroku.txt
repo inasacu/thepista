@@ -35,7 +35,7 @@ heroku create haypista-production --remote production
 Since we'll be pushing to two applications we are using the --remote argument to make two sensibly named remotes.
 Environment specific variables
 
-Heroku has a nice interface for setting up application specific settings, but I will assume your application configures itself according to the RAILS_ENV variable. Check out Heroku's docs if you need more control.
+Heroku has a nice interface for setting up application specific settings, but I will assume your application configures itself according to the Rails.env variable. Check out Heroku's docs if you need more control.
 
 If you run your staging server in the production environment, you can skip this step.
 

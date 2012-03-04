@@ -2,14 +2,13 @@
 # Likewise, all the methods added will be available for all controllers.
 
 class ApplicationController < ActionController::Base
-  helper :all # include all helpers, all the time
   protect_from_forgery # See ActionController::RequestForgeryProtection for details
 
-  include SslRequirement
+  # include SslRequirement
 
   helper :all
   helper_method :current_user_session, :current_user
-  filter_parameter_logging :password, :password_confirmation
+  # filter_parameter_logging :password, :password_confirmation
 
   before_filter :set_time_zone   
   before_filter :set_user_language

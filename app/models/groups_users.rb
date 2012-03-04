@@ -1,6 +1,6 @@
 class GroupsUsers < ActiveRecord::Base
 
-  set_primary_keys :user_id, :group_id 
+  self.primary_keys = :user_id, :group_id 
   
   # record a group join
   def self.join_team(user, group)

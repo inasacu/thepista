@@ -3,7 +3,7 @@
 desc "archive specified groups"
 task :the_archive_group => :environment do |t|
 
-  ActiveRecord::Base.establish_connection(RAILS_ENV.to_sym)
+  ActiveRecord::Base.establish_connection(Rails.env.to_sym)
 
   # archive group 
   has_to_archive = true

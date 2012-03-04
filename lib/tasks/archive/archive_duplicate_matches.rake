@@ -3,7 +3,7 @@
 desc "archive duplicate matches"
 task :the_duplicate_match => :environment do |t|
 
-  ActiveRecord::Base.establish_connection(RAILS_ENV.to_sym)
+  ActiveRecord::Base.establish_connection(Rails.env.to_sym)
 
   @matches = Match.find(:all, :select => "schedule_id, user_id, count(*) as total", :conditions => "matches.archive = false",
   :group => "schedule_id, user_id", :having => "count(*) > 1")

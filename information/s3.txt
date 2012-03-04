@@ -19,7 +19,7 @@ So all we need to do is to make Paperclip upload to different buckets and return
 class User < ActiveRecord::Base
 has_attached_file :avatar,
 :storage => :s3,
-:s3_credentials => "#{RAILS_ROOT}/config/s3.yml",
+:s3_credentials => "#{Rails.root}/config/s3.yml",
 :path => "avatars/:id/:style_:extension",
 :bucket => lambda do |attachment|
 i = attachment.instance.id % 4

@@ -1,5 +1,7 @@
 class Payment < ActiveRecord::Base
   
+	# extend FriendlyId
+	
   belongs_to    :manager,        :class_name => 'User',        :foreign_key => 'manager_id'
   belongs_to    :debit,          :polymorphic => true
   belongs_to    :credit,         :polymorphic => true
@@ -28,8 +30,8 @@ class Payment < ActiveRecord::Base
   attr_accessible :credit_id, :credit_type, :item_id, :item_type, :manager_id, :fee_id
 
   # NOTE:  MUST BE DECLARED AFTER attr_accessible otherwise you get a 'RuntimeError: Declare either attr_protected or attr_accessible' 
-  has_friendly_id :concept, :use_slug => true, :approximate_ascii => true, 
-                   :reserved_words => ["new", "create", "index", "list", "signup", "edit", "update", "destroy", "show"]
+  # friendly_id :concept, :use => :slugged, :approximate_ascii => true, 
+                   # :reserved_words => ["new", "create", "index", "list", "signup", "edit", "update", "destroy", "show"]
   
   # method section
   def self.debit_user_item_schedule(debits, credits, the_payments)

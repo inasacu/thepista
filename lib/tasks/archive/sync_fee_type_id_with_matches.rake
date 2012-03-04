@@ -3,7 +3,7 @@
 desc "sync fees type id with match type id"
 task :sync_fee_type_match => :environment do |t|
 
-  ActiveRecord::Base.establish_connection(RAILS_ENV.to_sym)
+  ActiveRecord::Base.establish_connection(Rails.env.to_sym)
 
   counter = 0
   all_fees = Fee.find(:all, :select => "fees.*, matches.type_id as match_type_id",

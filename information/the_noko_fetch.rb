@@ -6,7 +6,7 @@ require 'open-uri'
 desc "Fetch Market from munimadrid.es"
 task :the_noko_fetch => :environment do |t|
 
-  ActiveRecord::Base.establish_connection(RAILS_ENV.to_sym)
+  ActiveRecord::Base.establish_connection(Rails.env.to_sym)
 
   
   original_url = "http://www.munimadrid.es"
@@ -231,7 +231,7 @@ end
 # 
 # 
 # 
-# ActiveRecord::Base.establish_connection(RAILS_ENV.to_sym)
+# ActiveRecord::Base.establish_connection(Rails.env.to_sym)
 # 
 # url = "http://www.madrid.es/portal/site/munimadrid/menuitem.8b2184148b70b0aa7d245f019fc08a0c/?vgnextoid=15efe8ae8d81c010VgnVCM1000000b205a0aRCRD&vgnextchannel=8db7566813946010VgnVCM100000dc0ca8c0RCRD"
 # 

@@ -3,7 +3,7 @@
 desc "add new entries in type table related to timetable"
 task :the_type_timetable => :environment do |t|
   
-  ActiveRecord::Base.establish_connection(RAILS_ENV.to_sym)
+  ActiveRecord::Base.establish_connection(Rails.env.to_sym)
   
   # adding more types
   [['Monday', 'Timetable'],['Tuesday', 'Timetable'],['Wednesday', 'Timetable'],['Thursday', 'Timetable'],['Friday', 'Timetable'],

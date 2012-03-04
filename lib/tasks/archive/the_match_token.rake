@@ -3,7 +3,7 @@
 desc "add a token per match not played"
 task :the_match_token => :environment do |t|
 
-  ActiveRecord::Base.establish_connection(RAILS_ENV.to_sym)
+  ActiveRecord::Base.establish_connection(Rails.env.to_sym)
 
   @matches = Match.find(:all, :conditions => "archive = false and played = false")
   @matches.each do |match|

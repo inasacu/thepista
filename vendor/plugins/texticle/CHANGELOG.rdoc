@@ -8,7 +8,7 @@
 
 * 2 major enhancements
 
-  * use Rails.root instead of RAILS_ROOT
+  * use Rails.root instead of Rails.root
   * refactored tasks to ease maintainance and patchability
 
 * 3 minor enhancements

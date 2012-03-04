@@ -1,6 +1,8 @@
 class Schedule < ActiveRecord::Base
 
-  index{ concept }
+	# extend FriendlyId
+	
+  # index{ concept }
 
   ajaxful_rateable :stars => 5, :dimensions => [:performance]
   
@@ -78,8 +80,8 @@ class Schedule < ActiveRecord::Base
   attr_accessible :public, :season_ends_at, :archive, :concept_and_name
 
   # NOTE:  MUST BE DECLARED AFTER attr_accessible otherwise you get a 'RuntimeError: Declare either attr_protected or attr_accessible' 
-  has_friendly_id :concept_and_name, :use_slug => true, :approximate_ascii => true, 
-                   :reserved_words => ["new", "create", "index", "list", "signup", "edit", "update", "destroy", "show"]
+  # friendly_id :concept_and_name, :use => :slugged, :approximate_ascii => true, 
+                   # :reserved_words => ["new", "create", "index", "list", "signup", "edit", "update", "destroy", "show"]
 
   # after_update        :save_matches
   before_create       :format_description

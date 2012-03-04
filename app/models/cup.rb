@@ -1,9 +1,11 @@
 class Cup < ActiveRecord::Base
 
-  index do
-    name
-    description
-  end
+	# extend FriendlyId
+	
+  # index do
+  #   name
+  #   description
+  # end
                   
   has_attached_file :photo,
   :styles => {
@@ -11,7 +13,7 @@ class Cup < ActiveRecord::Base
     :medium => "160x160>",
     },
     :storage => :s3,
-    :s3_credentials => "#{RAILS_ROOT}/config/s3.yml",
+    :s3_credentials => "#{Rails.root}/config/s3.yml",
     :url => "/assets/cups/:id/:style.:extension",
     :path => ":assets/cups/:id/:style.:extension",
     :default_url => "group_avatar.png"  
@@ -47,8 +49,8 @@ class Cup < ActiveRecord::Base
   attr_accessible :group_stage_advance, :group_stage, :group_stage_single, :second_stage_single, :final_stage_single
     
   # NOTE:  MUST BE DECLARED AFTER attr_accessible otherwise you get a 'RuntimeError: Declare either attr_protected or attr_accessible' 
-  has_friendly_id :name, :use_slug => true, :approximate_ascii => true, 
-                   :reserved_words => ["new", "create", "index", "list", "signup", "edit", "update", "destroy", "show"]
+  # friendly_id :name, :use => :slugged, :approximate_ascii => true, 
+                   # :reserved_words => ["new", "create", "index", "list", "signup", "edit", "update", "destroy", "show"]
 
   has_and_belongs_to_many :escuadras,     :join_table => "cups_escuadras",   :order => "name"
   has_many                :games

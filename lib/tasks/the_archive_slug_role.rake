@@ -3,7 +3,7 @@
 desc "ARCHIVE dependent records to already archived"
 task :the_archive_slug => :environment do |t|
 
-  ActiveRecord::Base.establish_connection(RAILS_ENV.to_sym)
+  ActiveRecord::Base.establish_connection(Rails.env.to_sym)
   
   has_to_archive = true
   

@@ -1,39 +1,67 @@
-# Using the following gems after running:
-# bundle install
-# bundle update
-# bundle show
-# bundle exec
+source 'https://rubygems.org'
 
-source 'http://gems.github.com'	
-source 'http://rubygems.org'
+gem 'rails', '3.2.1'
 
-gem 'rails'													, '~> 2.3.8'
-gem 'pg'
-gem 'rack-cache'											, '0.5', :require => 'rack/cache' 	
-gem 'authlogic'												, '2.1.6'
-gem 'will_paginate'											, '2.3.15'
-gem 'authlogic-oid'											, :require => 'authlogic_openid'
-gem 'openid'												, '0.0.1'
-gem 'ruby-openid'											, :require => 'openid'	
-gem 'acl9'													, '0.12.0'
-gem 'geokit'												, '1.5.0'
-gem 'sitemap_generator'										, '1.3.5'
-gem 'acts_as_commentable'									, '2.1.1'
-gem 'hoptoad_notifier'	
-gem 'rpx_now'												, '0.6.23'
-gem 'url_shortener'											, '0.0.6'
-gem 'i18n'   												, '0.4'
-gem 'friendly_id'											, '~> 3.1.7'
-gem 'completeness-fu'										, '0.5.2'
-gem 'json_pure'												, '1.5.3'
+#### this all from version 2.3.14
+gem "pg"
+gem "authlogic"
+gem "will_paginate"
+gem "authlogic-oid"
+gem "ruby-openid"
+gem "acl9"
+gem 'sitemap_generator'                  
+gem 'acts_as_commentable'      
+gem 'hoptoad_notifier'
+gem 'rpx_now'
+gem "url_shortener"
+gem "geokit"
+# gem "completeness-fu"
 gem 'texticle' 
-gem 'aws-s3'												, '0.6.2'
-gem 'heroku_s3_backup'
+# gem 'heroku_s3_backup'
 gem 'trueskill'
-gem 'delayed_job'											, '2.0.7'
+gem 'delayed_job'
 gem 'hirefireapp'
-gem 'paperclip'												, '~> 2.3'
-gem 'nokogiri'												, '1.5.0'
-gem 'linkedin'
-gem 'composite_primary_keys'								, '~> 2.3.5.1'
-gem 'rdoc'
+gem 'paperclip'
+gem 'composite_primary_keys'
+gem 'nokogiri'
+# gem 'open_id_authentication'
+# gem 'ym4r_gm'
+
+
+
+
+
+# Gems used only for assets and not required
+# in production environments by default.
+group :assets do
+  gem 'sass-rails',   '~> 3.2.3'
+  gem 'coffee-rails', '~> 3.2.1'
+
+  # See https://github.com/sstephenson/execjs#readme for more supported runtimes
+  # gem 'therubyracer'
+
+  gem 'uglifier', '>= 1.0.3'
+end
+
+gem 'jquery-rails'
+
+gem 'google_map'
+gem 'ssl_requirement'
+gem 'jquery_notify_bar'
+gem 'acts_as_tree'
+gem 'ajaxful_rating_jquery'
+# gem 'kaminari'
+# gem 'aws-sdk'
+
+
+gem 'friendly_id'
+
+# gem 'contacts'
+# gem 'openid'
+# gem 'ruby-openid'											, :require => 'openid'
+# gem 'linkedin'
+# gem 'composite_primary_keys'
+# gem 'delayed_job_active_record'
+# gem 'jquery-ui'
+# gem 'rails_config'
+

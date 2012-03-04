@@ -16,5 +16,5 @@ def test?
 end
 
 def env_is(env)
-  ENV['RAILS_ENV'] == env
+  ENV['Rails.env'] == env
 end

@@ -11,8 +11,8 @@ Installation
 
     script/plugin install git://github.com/xasedy/notify_bar.git
 
-Copy RAILS_ROOT/vendor/plugins/notify_bar/public/javascripts/jquery.notifyBar.js to RAILS_ROOT/public/javascripts directory.
-Copy RAILS_ROOT/vendor/plugins/notify_bar/public/stylesheets/jquery.notifyBar.css to RAILS_ROOT/public/stylesheets directory.
+Copy Rails.root/vendor/plugins/notify_bar/public/javascripts/jquery.notifyBar.js to Rails.root/public/javascripts directory.
+Copy Rails.root/vendor/plugins/notify_bar/public/stylesheets/jquery.notifyBar.css to Rails.root/public/stylesheets directory.
 
 Usage
 =====

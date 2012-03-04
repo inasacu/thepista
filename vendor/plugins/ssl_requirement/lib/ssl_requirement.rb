@@ -42,7 +42,7 @@ module SslRequirement
     end
     
     def ssl_allowed?
-      return true if %w(development test).include?(RAILS_ENV)
+      return true if %w(development test).include?(Rails.env)
       (self.class.read_inheritable_attribute(:ssl_allowed_actions) || []).include?(action_name.to_sym)
     end
 

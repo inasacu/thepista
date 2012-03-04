@@ -3,7 +3,7 @@
 desc "  # create slugs for all models"
 task :the_slugs => :environment do |t|
 
-  ActiveRecord::Base.establish_connection(RAILS_ENV.to_sym)
+  ActiveRecord::Base.establish_connection(Rails.env.to_sym)
 
   the_make_slugs = true
   the_redo_slugs = true

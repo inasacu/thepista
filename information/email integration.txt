@@ -100,7 +100,7 @@ This gem will only work on Ruby 1.8.6. If you're on Ruby 1.8.7 and Rails >= 2.2.
 
 sudo gem install openrain-action_mailer_tls -s http://gems.github.com
 ./script/generate action_mailer_tls
-Copy RAILS_ROOT/config/smtp_gmail.yml.sample to RAILS_ROOT/config/smtp_gmail.yml
+Copy Rails.root/config/smtp_gmail.yml.sample to Rails.root/config/smtp_gmail.yml
 Update the configuration file with your settings
 
 

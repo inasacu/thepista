@@ -1,5 +1,7 @@
 class Game < ActiveRecord::Base
 
+	# extend FriendlyId
+	
   acts_as_tree :foreign_key => :next_game_id
 
   # alias_method :next_game, :parent
@@ -54,8 +56,8 @@ class Game < ActiveRecord::Base
   attr_accessible :home_score, :away_score, :played, :home_ranking, :away_ranking, :home_stage_name, :away_stage_name
   
   # NOTE:  MUST BE DECLARED AFTER attr_accessible otherwise you get a 'RuntimeError: Declare either attr_protected or attr_accessible' 
-  has_friendly_id :concept, :use_slug => true, :approximate_ascii => true, 
-                   :reserved_words => ["new", "create", "index", "list", "signup", "edit", "update", "destroy", "show", "petition"]
+  # friendly_id :concept, :use => :slugged, :approximate_ascii => true, 
+                   # :reserved_words => ["new", "create", "index", "list", "signup", "edit", "update", "destroy", "show", "petition"]
                    
   before_update :set_game_winner
   after_update  :calculate_standing

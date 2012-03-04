@@ -1,4 +1,4 @@
-# # RAILS_ROOT/config.ru
+# # Rails.root/config.ru
 # require "config/environment"
 # 
 # use Rails::Rack::LogTailer

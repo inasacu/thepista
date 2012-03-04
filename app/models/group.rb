@@ -1,14 +1,16 @@
 class Group < ActiveRecord::Base
 
-  index do
-    name
-    description
-    second_team
-  end
+	# extend FriendlyId
+	
+  # index do
+  #   name
+  #   description
+  #   second_team
+  # end
 
   has_attached_file :photo, :styles => {:icon => "25x25>", :thumb  => "80x80>", :medium => "160x160>",  },
   :storage => :s3,
-  :s3_credentials => "#{RAILS_ROOT}/config/s3.yml",
+  :s3_credentials => "#{Rails.root}/config/s3.yml",
   :url => "/assets/groups/:id/:style.:extension",
   :path => ":assets/groups/:id/:style.:extension",
   :default_url => "group_avatar.png"  
@@ -48,8 +50,8 @@ class Group < ActiveRecord::Base
   attr_accessible :time_zone, :marker_id, :description, :conditions, :photo, :available, :looking, :enable_comments, :installation_id
 
   # NOTE:  MUST BE DECLARED AFTER attr_accessible otherwise you get a 'RuntimeError: Declare either attr_protected or attr_accessible' 
-  has_friendly_id :name, :use_slug => true, :approximate_ascii => true, 
-  :reserved_words => ["new", "create", "index", "list", "signup", "edit", "update", "destroy", "show"]
+  # friendly_id :name, :use => :slugged, :approximate_ascii => true, 
+  # :reserved_words => ["new", "create", "index", "list", "signup", "edit", "update", "destroy", "show"]
 
   has_and_belongs_to_many :users,           :join_table => "groups_users", :conditions => "users.archive = false", :order => "name"
 

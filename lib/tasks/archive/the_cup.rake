@@ -3,7 +3,7 @@
 desc "create games based on cup teams and groups..."
 task :the_cup => :environment do |t|
   # 
-  # ActiveRecord::Base.establish_connection(RAILS_ENV.to_sym)
+  # ActiveRecord::Base.establish_connection(Rails.env.to_sym)
   # 
   # @cup = Cup.find(:first)
   # 

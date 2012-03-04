@@ -9,7 +9,7 @@ include Saulabs::TrueSkill
 desc "  # use the trueskill ranking system for players"
 task :the_true_skill => :environment do |t|
 
-  ActiveRecord::Base.establish_connection(RAILS_ENV.to_sym)
+  ActiveRecord::Base.establish_connection(Rails.env.to_sym)
 
   the_group = Group.find(9)
 

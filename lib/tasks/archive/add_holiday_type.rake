@@ -3,7 +3,7 @@
 desc "add new entries in type table related to timetable"
 task :add_holiday_type => :environment do |t|
   
-  ActiveRecord::Base.establish_connection(RAILS_ENV.to_sym)
+  ActiveRecord::Base.establish_connection(Rails.env.to_sym)
   
   # adding more types
   [['Local', 'Holiday'],['Regional', 'Holiday'],['National', 'Holiday'],['International', 'Holiday']].each do |type|

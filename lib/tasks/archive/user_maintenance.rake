@@ -3,7 +3,7 @@
 desc "  # clear foto for dev and test"
 task :the_user_maintenance => :environment do |t|
 
-  ActiveRecord::Base.establish_connection(RAILS_ENV.to_sym)
+  ActiveRecord::Base.establish_connection(Rails.env.to_sym)
    
   # unless production?
   #   users = (User.find :all).collect {|user| user unless user.email.blank? }.compact

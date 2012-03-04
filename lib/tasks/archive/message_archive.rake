@@ -3,7 +3,7 @@
 desc "archive all messages older than 1 month, set all other emails to mark as read"
 task :the_message_archive => :environment do |t|
 
-  ActiveRecord::Base.establish_connection(RAILS_ENV.to_sym)
+  ActiveRecord::Base.establish_connection(Rails.env.to_sym)
 
   the_archive_messages = []
   

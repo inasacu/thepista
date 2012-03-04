@@ -1,13 +1,15 @@
 class Venue < ActiveRecord::Base
 
-  index do
-    name
-    description
-  end
+	# extend FriendlyId
+	
+  # index do
+  #   name
+  #   description
+  # end
                   
   has_attached_file :photo, :styles => {:icon => "25x25>", :thumb  => "80x80>", :medium => "160x160>",  },
     :storage => :s3,
-    :s3_credentials => "#{RAILS_ROOT}/config/s3.yml",
+    :s3_credentials => "#{Rails.root}/config/s3.yml",
     :url => "/assets/venues/:id/:style.:extension",
     :path => ":assets/venues/:id/:style.:extension",
     :default_url => "group_avatar.png"  
@@ -30,8 +32,8 @@ class Venue < ActiveRecord::Base
   attr_accessible :photo, :enable_comments, :public, :day_light_savings,  :day_light_starts_at, :day_light_ends_at
     
   # NOTE:  MUST BE DECLARED AFTER attr_accessible otherwise you get a 'RuntimeError: Declare either attr_protected or attr_accessible' 
-  has_friendly_id :name, :use_slug => true, :approximate_ascii => true, 
-                   :reserved_words => ["new", "create", "index", "list", "signup", "edit", "update", "destroy", "show"]
+  # friendly_id :name, :use => :slugged, :approximate_ascii => true, 
+                   # :reserved_words => ["new", "create", "index", "list", "signup", "edit", "update", "destroy", "show"]
 
   has_many :the_managers,
   :through => :manager_roles,

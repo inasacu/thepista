@@ -3,7 +3,7 @@
 desc "archive specified groups"
 task :the_automatic_petition_group => :environment do |t|
 
-  ActiveRecord::Base.establish_connection(RAILS_ENV.to_sym)
+  ActiveRecord::Base.establish_connection(Rails.env.to_sym)
 
   the_group = Group.find(:all)
   the_group.each do |group|    

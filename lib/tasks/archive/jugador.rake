@@ -3,7 +3,7 @@
 desc "update user technical and physical levels if null"
 task :thejugador => :environment do |t|
 
-  ActiveRecord::Base.establish_connection(RAILS_ENV.to_sym)
+  ActiveRecord::Base.establish_connection(Rails.env.to_sym)
 
   users = User.find(:all, :conditions => 'technical is null or physical is null')
   users.each do |user|

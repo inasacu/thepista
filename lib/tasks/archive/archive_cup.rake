@@ -3,7 +3,7 @@
 desc "archive cups with few casts"
 task :the_archive_cup => :environment do |t|
 
-  ActiveRecord::Base.establish_connection(RAILS_ENV.to_sym)
+  ActiveRecord::Base.establish_connection(Rails.env.to_sym)
 
   # archive flag
   has_to_archive = true

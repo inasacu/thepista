@@ -3,7 +3,7 @@
 desc "turn of email notices for specific users"
 task :the_email_flag => :environment do |t|
 
-  ActiveRecord::Base.establish_connection(RAILS_ENV.to_sym)
+  ActiveRecord::Base.establish_connection(Rails.env.to_sym)
   
   User.find(:all, :conditions => ["email in ('antoinegicqueau@yahoo.fr')"]).each do |user|
     puts user.name

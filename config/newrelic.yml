@@ -169,7 +169,7 @@ common: &default_settings
 # Application Environments
 # ------------------------------------------
 # Environment specific settings are in this section.
-# For Rails applications, RAILS_ENV is used to determine the environment
+# For Rails applications, Rails.env is used to determine the environment
 # For Java applications, pass -Dnewrelic.environment <environment> to set
 # the environment
 

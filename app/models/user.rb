@@ -1,21 +1,23 @@
 class User < ActiveRecord::Base
 
-  index do
-    name
-    description
-    company
-  end
+	# extend FriendlyId
+	
+  # index do
+  #   name
+  #   description
+  #   company
+  # end
    
    # allows user to rate a model 
    ajaxful_rateable :stars => 5, :dimensions => [:evaluation]
    ajaxful_rater
    
-   define_completeness_scoring do
-     check :phone,                lambda { |per| per.phone.present? },            :high     # => defaults to 60
-     check :company,              lambda { |per| per.company.present? },          :medium   # => defaults to 40
-     check :description,          lambda { |per| per.description.present? },      :medium   # => defaults to 40
-     check :photo_file_name,      lambda { |per| per.photo_file_name? },          :low      # => defaults to 20
-   end
+   # define_completeness_scoring do
+   #   check :phone,                lambda { |per| per.phone.present? },            :high     # => defaults to 60
+   #   check :company,              lambda { |per| per.company.present? },          :medium   # => defaults to 40
+   #   check :description,          lambda { |per| per.description.present? },      :medium   # => defaults to 40
+   #   check :photo_file_name,      lambda { |per| per.photo_file_name? },          :low      # => defaults to 20
+   # end
    
       
   acts_as_authentic do |c|
@@ -42,7 +44,7 @@ class User < ActiveRecord::Base
   
   has_attached_file :photo, :styles => {:icon => "25x25>", :thumb  => "80x80>", :medium => "160x160>", :large => "500x500>" }, 
     :storage => :s3,
-    :s3_credentials => "#{RAILS_ROOT}/config/s3.yml",
+    :s3_credentials => "#{Rails.root}/config/s3.yml",
     :url => "/assets/users/:id/:style.:extension",
     :path => ":assets/users/:id/:style.:extension",
     :default_url => "avatar.png"  
@@ -108,8 +110,8 @@ class User < ActiveRecord::Base
     #             :limit => 1
 
     # NOTE:  MUST BE DECLARED AFTER attr_accessible otherwise you get a 'RuntimeError: Declare either attr_protected or attr_accessible' 
-    has_friendly_id :name, :use_slug => true, :approximate_ascii => true, 
-                    :reserved_words => ["new", "create", "index", "list", "signup", "edit", "update", "destroy", "show", "petition"]
+    # friendly_id :name, :use => :slugged, :approximate_ascii => true, 
+                    # :reserved_words => ["new", "create", "index", "list", "signup", "edit", "update", "destroy", "show", "petition"]
                       
     before_update   :format_description
     after_create    :create_user_blog_details, :deliver_signup_notification
