@@ -1,6 +1,7 @@
-<%= stylesheet_link_tag 'comment' %>
+<%#= stylesheet_link_tag 'comment' %>
 
-<% 
+<% unless DISPLAY_DISQUS 
+
 	the_label = ""
 	the_label = sanitize(@schedule.concept) if @schedule
 	the_label = sanitize(@user.name) if @user
@@ -69,3 +70,4 @@
 <div>
 </div>
 </div>
+<% end %>

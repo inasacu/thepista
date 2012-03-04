@@ -19,6 +19,9 @@
 	the_span = "#{the_sport} #{the_missing}"
 	the_start_at_label = "#{nice_day_of_week(@schedule.starts_at)}<br/>#{the_span}"
 %>
+
+<%= stylesheet_link_tag 'comment' %>
+
 <div class="block">
 	<%= render "shared/previous_next_message", :schedule => @schedule, :the_previous => @the_previous, :the_next => @the_next -%>
 	<%= show_heading(the_label) %> 

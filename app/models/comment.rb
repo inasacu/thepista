@@ -118,5 +118,21 @@ class Comment < ActiveRecord::Base
     end
     return true
   end
+  
+  def self.archive_comments    
+    the_archive_comments = []  
+    comment_counter = 1 
+
+    @archive_comments = Comment.find(:all, :conditions => ["created_at <= ?", TIME_2_WEEKS_AGO])
+    @archive_comments.each {|comment| the_archive_comments << comment}
+
+    # archive all comment older than 2 week
+    the_archive_comments.each do |comment|
+      puts "ARCHIVE COMMENT #{comment.id} - message removed (#{comment_counter})"
+      comment.destroy
+      comment_counter += 1
+    end
+    
+  end
 
 end

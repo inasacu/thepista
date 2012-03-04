@@ -1,26 +1,38 @@
 <% if DISPLAY_DISQUS
 	the_item_link = nil
 	
-	case item.class.to_s
+	case @item.class.to_s
 	when "Schedule"
-		the_item_link = item_concept_link(item)
+		the_item_link = item_concept_link(@item)
 	when "Group", "Challenge", "Venue", "User"
-		the_item_link = item_name_link(item)
+		the_item_link = item_name_link(@item)
 	end
 
-	# Disqus::defaults[:account] = "haypista"
+	Disqus::defaults[:account] = "haypista"
 	Disqus::defaults[:developer] = true, # allows threads to work on localhost
 	Disqus::defaults[:container_id] = the_item_link
 	Disqus::defaults[:avatar_size] = 32 # squared pixel size of avatars
-	Disqus::defaults[:color] = "green" # theme color
+	Disqus::defaults[:color] = "grey" # theme color
 	Disqus::defaults[:default_tab] = "recent" # default widget tab
 	Disqus::defaults[:hide_avatars] = false # hide or show avatars
 	Disqus::defaults[:hide_mods] = true # hide or show moderation
 	Disqus::defaults[:num_items] = 20 # number of comments to display
 	Disqus::defaults[:show_powered_by] = false # show or hide powered by line
 	Disqus::defaults[:orientation] = "horizontal" # comment orientation
+	Disqus::defaults[:message] = "works...works"
+	Disqus::defaults[:api_key] = APP_CONFIG['disqus']['secret_key']
+	
+	# Disqus::Api.create_post(
+	# 	post_data = {:thread_id => the_item_link, 
+	# 				 :message => 'message.....', 
+	# 				 :author_name => current_user.name, 
+	# 				 :author_email  => current_user.email}
+	# )
+
 %>
 
+<%#= Disqus::Api.get_forum_api_key %>
+<%= disqus_recent_comments %>
 <%= disqus_thread %>
 <%= disqus_comment_counts %>
 

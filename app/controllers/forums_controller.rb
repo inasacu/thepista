@@ -45,8 +45,11 @@ class ForumsController < ApplicationController
       away_team['team'] = "#{@schedule.away_group}: (#{away_team['total_players']}) #{away_team['players']}".chop
       
       @comment = Comment.new(:body => "#{I18n.t(:groups)}\r\n#{home_team['team']}\r\n#{away_team['team']}\r\n", :title => @schedule.class.to_s)
+      
+      
     end
     
+    # @item = @hschedule
     render @the_template
   end
 

@@ -29,6 +29,9 @@ development:
     weather_bug:
         code: YOUR_API_CODE
     
+    disqus:
+        secret_key:  JKdz3WgZFZq7lmfV1whprURJk8QjIgVX6jV2LIqubmLvkbpLmZPfRlPWTm9Hg7YD
+        
     # eg. Yahoo! Placemaker
     yahoo:
         app_id: 4uSWOoTV34EAizCZbcobagFpBQVErwkVJwnS8OUagpua3nJpKtTcfNr16X9yOIo-
@@ -77,6 +80,9 @@ test:
     # eg. weatherbug.com
     weather_bug:
         code: YOUR_API_CODE
+    
+    disqus:
+        secret_key:  JKdz3WgZFZq7lmfV1whprURJk8QjIgVX6jV2LIqubmLvkbpLmZPfRlPWTm9Hg7YD
     
     # eg. Yahoo! Placemaker
     yahoo:
@@ -128,6 +134,9 @@ staging:
     # eg. weatherbug.com
     weather_bug:
         code: YOUR_API_CODE
+    
+    disqus:
+        secret_key:  JKdz3WgZFZq7lmfV1whprURJk8QjIgVX6jV2LIqubmLvkbpLmZPfRlPWTm9Hg7YD
     
     # eg. Yahoo! Placemaker
     yahoo:
@@ -183,6 +192,9 @@ production:
     # eg. weatherbug.com
     weather_bug:
         code: YOUR_API_CODE
+    
+    disqus:
+        secret_key:  JKdz3WgZFZq7lmfV1whprURJk8QjIgVX6jV2LIqubmLvkbpLmZPfRlPWTm9Hg7YD
     
     # eg. Yahoo! Placemaker
     yahoo:

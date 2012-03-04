@@ -28,6 +28,10 @@ task :cron => :environment do
     puts "Archive all messages older than 1 month, set all other emails to mark as read..."
       Message.archive_messages
     puts "done."
+    
+    puts "Archive all messages older than 1 month, set all other emails to mark as read..."
+      # Comment.archive_comments
+    puts "done. 
   
   # end
 

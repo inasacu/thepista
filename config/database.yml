@@ -1,7 +1,7 @@
 # POSTGRESQL DATABASE
 common: &common
   adapter: postgresql
-  username: raulmpadilla
+  username: postgres
   password: 72dae4 # from psql setup, see Postgresql
 
 development:
