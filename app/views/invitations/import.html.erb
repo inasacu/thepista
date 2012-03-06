@@ -17,7 +17,7 @@
 	<div class="inner"> 
 	<%# form_tag :action => 'contact', :id => @invitation do %>
 	
-	  <% form_for :invitation, :url => import_contact_url, :html => { :class => :form } do |f| -%>
+	  <%= form_for (@invitation), :url => import_contact_url, :html => { :class => :form } do |f| -%>
 
 		<div class="columns"> 
 		

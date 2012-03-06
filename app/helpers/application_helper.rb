@@ -44,12 +44,12 @@ module ApplicationHelper
   # I18n.t library methods
   def field_label_name(value, text="")
     text.insert(0, '_') unless text.blank?
-    return I18n.t(:"#{ value.to_s.humanize.downcase.gsub(' ','_') }#{ text }")
+    return I18n.t(:"#{ value.to_s.humanize.downcase.gsub(' ','_') }#{ text }").html_safe
   end
 
   def label_name(value, text="")
     text.insert(0, '_') unless text.blank?
-    return I18n.t(:"#{ value.to_s.downcase.gsub(' ','_') }#{ text }")
+    return I18n.t(:"#{ value.to_s.downcase.gsub(' ','_') }#{ text }").html_safe
   end
 
   def label_with_name(value, name="", text="")
@@ -58,12 +58,12 @@ module ApplicationHelper
 
   def control_label(text="")
     text.insert(0, '_') unless text.blank?
-    return I18n.t(:"#{ controller.controller_name.to_s.downcase.gsub(' ','_') }#{ text }")
+    return I18n.t(:"#{ controller.controller_name.to_s.downcase.gsub(' ','_') }#{ text }").html_safe
   end
 
   def control_action_label(text="")
     text.insert(0, '_') unless text.blank?
-    return I18n.t(:"#{ controller.controller_name.to_s.downcase.gsub(' ','_') }_#{ controller.action_name.to_s.downcase.gsub(' ','_') }#{ text }")
+    return I18n.t(:"#{ controller.controller_name.to_s.downcase.gsub(' ','_') }_#{ controller.action_name.to_s.downcase.gsub(' ','_') }#{ text }").html_safe
   end
 
   def get_collection_label(collection)
@@ -112,36 +112,36 @@ module ApplicationHelper
   end
 
   def ago(time_at)
-    I18n.t(:ago, :count => time_ago_in_words(time_at).capitalize) 
+    return I18n.t(:ago, :count => time_ago_in_words(time_at).capitalize).html_safe
   end
 
   def has_left(time_at)
-    I18n.t(:has_left, :count => time_ago_in_words(time_at).capitalize) 
+    return I18n.t(:has_left, :count => time_ago_in_words(time_at).capitalize).html_safe
   end
 
   # Sábado, a las 20:30
   def nice_day_time(time_at)
-    return I18n.l(time_at, :format => :day_time) unless time_at.nil?
+    return I18n.l(time_at, :format => :day_time).html_safe unless time_at.nil?
   end
 
   # 20:30
   def nice_simple_time_at(time_at)
-    return I18n.l(time_at, :format => :simple_time_at) unless time_at.nil?
+    return I18n.l(time_at, :format => :simple_time_at).html_safe unless time_at.nil?
   end
 
   # day: 18
   def nice_day_time_at(time_at)
-    return I18n.l(time_at, :format => :day) unless time_at.nil?
+    return I18n.l(time_at, :format => :day).html_safe unless time_at.nil?
   end
 
   # hour: 20
   def nice_hour_time_at(time_at)
-    return I18n.l(time_at, :format => :hour) unless time_at.nil?
+    return I18n.l(time_at, :format => :hour).html_safe unless time_at.nil?
   end
 
   # minute: 30
   def nice_minute_time_at(time_at)
-    return I18n.l(time_at, :format => :minute) unless time_at.nil?
+    return I18n.l(time_at, :format => :minute).html_safe unless time_at.nil?
   end
 
   # month: 9
@@ -151,22 +151,22 @@ module ApplicationHelper
 
   # year: 11
   def nice_year_time_at(time_at)
-    return I18n.l(time_at, :format => :year) unless time_at.nil?
+    return I18n.l(time_at, :format => :year).html_safe unless time_at.nil?
   end
 
   # 20:30 +0200
   def nice_simple_time_zone_at(time_at)
-    return I18n.l(time_at, :format => :simple_time_zone_at) unless time_at.nil?
+    return I18n.l(time_at, :format => :simple_time_zone_at).html_safe unless time_at.nil?
   end
 
   # a las 20:30
   def nice_time_at(time_at)
-    return I18n.l(time_at, :format => :time_at) unless time_at.nil?
+    return I18n.l(time_at, :format => :time_at).html_safe unless time_at.nil?
   end
 
   # 12 de Junio de 2010
   def nice_full_date(time_at)
-    return I18n.l(time_at, :format => :full_date) unless time_at.nil?
+    return I18n.l(time_at, :format => :full_date).html_safe unless time_at.nil?
   end
 
   # Sábado, 12 de Junio de 2010 a las 20:30
@@ -176,27 +176,27 @@ module ApplicationHelper
 
   # Sábado, 12 de Junio de 2010 a las 20:30
   def nice_weekday(time_at)
-    return I18n.l(time_at, :format => :day_of_week) unless time_at.nil?
+    return I18n.l(time_at, :format => :day_of_week).html_safe unless time_at.nil?
   end
 
   # 12 de Junio de 2010 a las 20:30
   def nice_date_hour(time_at)
-    return I18n.l(time_at, :format => :date_hour) unless time_at.nil?
+    return I18n.l(time_at, :format => :date_hour).html_safe unless time_at.nil?
   end
 
   # translation missing: es, 2010-06-12 20:30:00 +0200
   def nice_day_date(time_at)
-    return I18n.l(time_at, :format => :day_date) unless time_at.nil?
+    return I18n.l(time_at, :format => :day_date).html_safe unless time_at.nil?
   end
 
   # translation missing: es, 2010-06-12 20:30:00 +0200
   def nice_day_weekday(time_at)
-    return I18n.t(time_at, :format => :day_weekday) unless time_at.nil?
+    return I18n.t(time_at, :format => :day_weekday).html_safe unless time_at.nil?
   end
 
   # 12 de Junio
   def nice_date_wo_year(time_at)
-    return I18n.l(time_at, :format => :date_wo_year) unless time_at.nil?
+    return I18n.l(time_at, :format => :date_wo_year).html_safe unless time_at.nil?
   end
 
   # Sábado, 12 de Junio
@@ -206,12 +206,12 @@ module ApplicationHelper
 
   # Sábado, 12 de Junio a las 20:30
   def nice_day_time_wo_year(time_at)
-    return I18n.l(time_at, :format => :day_time_wo_year) unless time_at.nil?
+    return I18n.l(time_at, :format => :day_time_wo_year).html_safe unless time_at.nil?
   end
 
   # Sábado, 12 de Junio 20:30
   def nice_day_time_wo_year_exact(time_at)
-    return I18n.l(time_at, :format => :day_time_wo_year_exact) unless time_at.nil?
+    return I18n.l(time_at, :format => :day_time_wo_year_exact).html_safe unless time_at.nil?
   end
 
   # converts two dates and get date and time from first and second

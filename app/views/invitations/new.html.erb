@@ -27,7 +27,7 @@
 	
 	<div class="inner"> 
 	
-	  <% form_for :invitation, :url => invitations_path, :html => { :class => :form } do |f| -%>
+	  <%= form_for (@invitation), :url => invitations_path, :html => { :class => :form } do |f| -%>
 	  
 		<%= hidden_field :schedule, :id %>
 		<%= hidden_field :group, :id %>

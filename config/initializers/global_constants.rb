@@ -157,3 +157,5 @@ DISPLAY_SEND_REMINDERS = false
 
 ALLOW_REMOVE_GROUP = false
 
+CONTACT_RECIPIENT = 'support@haypista.com'
+LANGUAGES = ['es', 'en']

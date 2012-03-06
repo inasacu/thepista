@@ -27,7 +27,7 @@
 					<%= content_tag :th, "&nbsp;", :class => "last" %>
 				</tr>
 				
-				<% form_for :invitation, :url => invite_contact_url, :html => { :class => :form } do |f| -%>
+				<%= form_for (@invitation), :url => invite_contact_url, :html => { :class => :form } do |f| -%>
 				<% @no_users.each do |contact| -%>
 				<tr>
 					<td class="first"><%= counter +=1 %>.</td>

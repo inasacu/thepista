@@ -11,7 +11,7 @@
 
 		<div class="inner">
 
-      <% form_for @fee, :url => fee_path(@fee), :html => { :class => :form } do |f| -%>		
+      <%= form_for (@fee), :url => fee_path(@fee), :html => { :class => :form } do |f| -%>		
         <%= render :partial => "form", :locals => {:f => f} %>
       <% end -%>
 

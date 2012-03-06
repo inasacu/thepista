@@ -34,7 +34,7 @@ content_for(:title, sanitize(@schedule.concept))
 				<%= content_tag :th, "&nbsp;", :class => "last", :width => "400" %>
 			  </tr>
 			
-      <% form_for @match, :url => match_path(@match), :html => { :class => :form } do |f| -%>
+      <%= form_for (@match), :url => match_path(@match), :html => { :class => :form } do |f| -%>
 		
 		<% @matches.each do |match| %>
 		<%= render "matches/profile_zurb", :f => f, :match => match, :positions => @positions %>

@@ -11,7 +11,7 @@ the_group = Group.find(@classified.table_id)
 
 		<div class="inner">
 		
-			<% form_for :classified, :url => classifieds_path, :html => { :class => :form } do |f| -%>
+			<%= form_for (@ classified), :url => classifieds_path, :html => { :class => :form } do |f| -%>
 			<%= f.hidden_field :table_id %>
 			<%= f.hidden_field :table_type %>
 			<%= render :partial => "form", :locals => {:f => f} %>

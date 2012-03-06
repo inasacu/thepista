@@ -12,7 +12,7 @@
 
 		<div class="inner">
 		
-	      <% form_for :payment, :url => payments_path, :html => { :class => :form } do |f| -%>		
+	      <%= form_for (@payment), :url => payments_path, :html => { :class => :form } do |f| -%>		
 			<%= f.hidden_field :fee_id %>
 	        <%= render :partial => "form", :locals => {:f => f} %>
 	      <% end -%>

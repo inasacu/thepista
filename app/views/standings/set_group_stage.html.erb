@@ -22,7 +22,7 @@
 				<%= content_tag :th, "&nbsp;", :class => "last", :width => "600" %>
 			</tr>
 			
-      <% form_for @standing, :url => standing_path(@standing), :html => { :class => :form } do |f| -%>
+      <%= form_for (@standing), :url => standing_path(@standing), :html => { :class => :form } do |f| -%>
 		
 		<% @standings.each do |standing| %>
 		<%= render "standings/group_stage", :f => f, :standing => standing %>

@@ -8,7 +8,7 @@
 
 		<div class="inner">
 		
-      <% form_for @role, :url => role_path(@role), :html => { :class => :form } do |f| -%>
+      <%= form_for (@role), :url => role_path(@role), :html => { :class => :form } do |f| -%>
         <%= render :partial => "form", :locals => {:f => f} %>
       <% end -%>
 

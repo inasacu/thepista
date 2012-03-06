@@ -33,7 +33,7 @@
 			<%= content_tag :th, "&nbsp;", :class => "last" %>
 		</tr>
         
-		<% form_for @cast, :url => cast_path(@cast), :html => { :class => :form } do |f| -%>
+		<%= form_for (@cast), :url => cast_path(@cast), :html => { :class => :form } do |f| -%>
 
 		
         <% @casts.each do |cast| 

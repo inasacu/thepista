@@ -8,7 +8,7 @@
 
 		<div class="inner">
 		
-      <% form_for @marker, :url => marker_path(@marker), :html => { :class => :form } do |f| -%>
+      <%= form_for (@marker), :url => marker_path(@marker), :html => { :class => :form } do |f| -%>
         <%= render :partial => "form", :locals => {:f => f} %>
       <% end -%>
 

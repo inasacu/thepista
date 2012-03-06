@@ -5,7 +5,7 @@
 	<div class="sidebar-block">
 		<p><%= option_image_link('group') %>&nbsp;&nbsp;<%= option_link('group') %></p>
 		<p><%= option_image_link('user_add') %>&nbsp;&nbsp;<%= link_to(label_name(:create_join_group), list_groups_url) %></p>
-		<p><%= option_image_link('installation') %>&nbsp;&nbsp;<%= link_to(label_name(:search_maps), search_map_url) %></p>
+		<p><%= option_image_link('installation') %>&nbsp;&nbsp;<%#= link_to(label_name(:search_maps), search_map_url) %></p>
 		<p><%= option_image_link('invitation') %>&nbsp;&nbsp;<%= option_link('invitation') %></p>
 			
 		<% if @no_linkedin_profile %>

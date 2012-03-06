@@ -14,7 +14,7 @@
 	<div class="content">  
 		<div class="inner"> -->
 		
-			<% form_for :holiday, :url => holidays_path, :html => { :class => :form } do |f| -%>
+			<%= form_for (@ holiday), :url => holidays_path, :html => { :class => :form } do |f| -%>
 			<%= f.hidden_field :venue_id %>
 			<%= f.hidden_field :starts_at %>
 			<%= f.hidden_field :ends_at %>

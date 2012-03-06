@@ -15,7 +15,7 @@
 	</h2>
 	
 	<div class="inner"> 
-	  <% form_for :invitation, :url => import_contact_url, :html => { :class => :form } do |f| -%>
+	  <%= form_for (@invitation), :url => import_contact_url, :html => { :class => :form } do |f| -%>
 
 		<div class="columns">		
 		  <div class="column left"> 

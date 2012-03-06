@@ -8,7 +8,7 @@
 
 		<div class="inner">
 		
-      <% form_for :sport, :url => sports_path, :html => { :class => :form } do |f| -%>
+      <%= form_for (@sport), :url => sports_path, :html => { :class => :form } do |f| -%>
         <%= render :partial => "form", :locals => {:f => f} %>
       <% end -%>
 

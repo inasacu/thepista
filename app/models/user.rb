@@ -21,7 +21,7 @@ class User < ActiveRecord::Base
    
       
   acts_as_authentic do |c|
-    c.openid_required_fields = [:nickname, :email]
+    # c.openid_required_fields = [:nickname, :email]
     login_field :email
     validate_login_field :false
     UserSession.find_by_login_method = 'find_by_email'
@@ -40,7 +40,8 @@ class User < ActiveRecord::Base
   # before_destroy    :destroy_activities, :destroy_feeds  
   before_destroy    :unmap_rpx
   
-  acts_as_authorization_subject
+  # related to gem acl9
+  acts_as_authorization_subject :association_name => :roles, :join_table_name => :roles_users
   
   has_attached_file :photo, :styles => {:icon => "25x25>", :thumb  => "80x80>", :medium => "160x160>", :large => "500x500>" }, 
     :storage => :s3,

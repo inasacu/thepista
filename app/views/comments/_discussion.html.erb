@@ -36,7 +36,7 @@
 	
 	<div class="clearfix" style="display: block;" id="dsq-content">
 	
-	<% form_for :comment, :url => comments_path, :html => { :class => :form } do |f| -%>
+	<%= form_for (@comment), :url => comments_path, :html => { :class => :form } do |f| -%>
 	
 		<div class="dsq-reply " id="dsq-reply">
 			<h3><%= the_label %></h3>

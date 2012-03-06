@@ -7,13 +7,17 @@ gem "pg"
 gem "authlogic"
 gem "will_paginate"
 gem "authlogic-oid"
-gem "ruby-openid"
+
+# gem "ruby-openid"
+
+gem 'httparty',	'>= 0.8.1'
+
 gem "acl9"
 gem 'sitemap_generator'                  
 gem 'acts_as_commentable'      
 gem 'hoptoad_notifier'
 gem 'rpx_now'
-gem "url_shortener"
+# gem "url_shortener"
 gem "geokit"
 # gem "completeness-fu"
 gem 'texticle' 
@@ -51,7 +55,7 @@ gem 'jquery_notify_bar'
 gem 'acts_as_tree'
 gem 'ajaxful_rating_jquery'
 # gem 'kaminari'
-# gem 'aws-sdk'
+gem 'aws-sdk'
 
 
 gem 'friendly_id'

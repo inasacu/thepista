@@ -9,7 +9,7 @@
 
 		<h5 class="title"><%= label_name(:write_comment) %></h5>
 
-		<% form_for :comment, :url => comments_path, :html => { :class => :form } do |f| -%>
+		<%= form_for (@comment), :url => comments_path, :html => { :class => :form } do |f| -%>
 		<br />
 		<%= f.text_area :body, :class => 'text_message' -%>	
 		<br />

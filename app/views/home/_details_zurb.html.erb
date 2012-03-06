@@ -13,7 +13,7 @@
 		
 		<% end -%>
 		
-		<%= RPXNow.embed_code(APP_CONFIG['rpx_api']['realm'],rpx_token_sessions_url, :language => I18n.locale)  if SHOW_RPX_NOW %>
+		<%= render 'utilities/rpx_now'  %>
 		
 	</div>
 
@@ -42,7 +42,7 @@
 					<%= content_tag :h6, label_name(:use_login), :class => "subheader" %>
 					<hr />
 
-					<% form_for @user_session, :html => {:class => 'form login'} do |the_form| %>
+					<%= form_for (@user_session), :html => {:class => 'form login'} do |the_form| %>
 						<%= render 'users/login_zurb', :item => @user_session, :the_form => the_form  if SHOW_LOGIN %>			
 					<% end -%>
 					
@@ -62,7 +62,7 @@
 					<%= content_tag :h6, label_name(:user_signup), :class => "subheader" %>
 					<hr />
 
-					<% form_for @user, :html => {:class => 'form login'} do |the_form| %>
+					<%= form_for (@user), :html => {:class => 'form login'} do |the_form| %>
 						<%= render 'users/login_zurb', :item => @user, :the_form => the_form %>		
 					<% end -%>
 					

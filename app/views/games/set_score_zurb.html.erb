@@ -9,7 +9,7 @@
 
 		<div class="inner">
 		
-      <% form_for @game, :url => game_path(@game), :html => { :class => :form } do |f| -%>
+      <%= form_for (@game), :url => game_path(@game), :html => { :class => :form } do |f| -%>
 
 		<div class="group">
 			<%= f.label :score, label_name(:score), :class => :label %><br />

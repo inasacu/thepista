@@ -9,7 +9,7 @@
 					<%= content_tag 'li', link_to(label_name(:about), about_url) %>
 					<%= content_tag 'li', link_to(label_name(:terms_of_use), terms_of_use_url) %>
 					<%= content_tag 'li', link_to(label_name(:faq), faq_url) %>
-					<%= content_tag 'li', "<a target='_blank' href='http://haypista.tumblr.com' class=''>Blog</a>" %>
+					<%= content_tag 'li', "<a target='_blank' href='http://haypista.tumblr.com' class=''>Blog</a>".html_safe %>
 					<%= content_tag 'li', link_to(label_name(:openid), openid_url) %>
 					<%= content_tag 'li', mail_to(CONTACT_RECIPIENT, label_name(:contact)) %>
 					

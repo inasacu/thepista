@@ -54,7 +54,8 @@ class Venue < ActiveRecord::Base
   before_update :format_description
   after_create  :create_venue_blog_details
 
-  acts_as_authorization_subject
+  # related to gem acl9
+  acts_as_authorization_subject :association_name => :roles, :join_table_name => :roles_venues
 
   # method section
   def object_counter(objects)

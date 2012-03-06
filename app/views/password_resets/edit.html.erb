@@ -5,7 +5,7 @@
 
 		<div class="inner">
 
-			<% form_for @user, :url => password_reset_path, :method => :put do |f| %>
+			<%= form_for (@user), :url => password_reset_path, :method => :put do |f| %>
 
 				<div class="group">
 					<%= f.label :password, label_name(:password), :class => :label %>

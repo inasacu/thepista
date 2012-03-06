@@ -90,7 +90,8 @@ class Group < ActiveRecord::Base
   before_update :format_description, :format_conditions
   after_create  :create_group_blog_details, :create_group_marker, :create_group_scorecard
 
-  acts_as_authorization_subject
+  # related to gem acl9
+  acts_as_authorization_subject :association_name => :roles, :join_table_name => :roles_groups
 
   # method section
   def object_counter(objects)

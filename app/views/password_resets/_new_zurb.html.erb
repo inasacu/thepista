@@ -38,7 +38,7 @@
 			<%= content_tag :h5, "<strong>#{label_name(:password_change)}</strong>" %>	
 			<hr />
 
-			<% form_for @user, :url => password_reset_path, :method => :put do |the_form| %>
+			<%= form_for (@user), :url => password_reset_path, :method => :put do |the_form| %>
 
 				<%= set_form_label(the_form, :password) %>
 				<%= set_form_password(the_form, :password, 'oversize input-text', true) %><br />

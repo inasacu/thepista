@@ -11,7 +11,7 @@
  	}
 	div.notice { background-color: rgb(100, 174, 41); color: rgb(255, 255, 255); }
 	div.notice.top_left:before { content: ""; display: block; width: 20px; height: 10px; position: absolute; top: -10px; left: 50px; }
-	div.notice.top_left:before { background: url('../../images/half_arrow_up.png') no-repeat scroll 0% 0% transparent; }
+	div.notice.top_left:before { background: url('../../assets/half_arrow_up.png') no-repeat scroll 0% 0% transparent; }
 </style>
 
 <div class="row">
@@ -22,7 +22,7 @@
 
 		
 		
-			<% form_for @user, :url => rpx_create_path, :html => { :class => :form } do |f| -%>
+			<%= form_for (@user), :url => rpx_create_path, :html => { :class => :form } do |f| -%>
 			
 			<div class="group"></div>
 						

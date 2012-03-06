@@ -13,3 +13,32 @@
 //= require jquery
 //= require jquery_ujs
 //= require_tree .
+
+
+
+
+// jquery cluetip script
+$(document).ready(function() {
+	$('span').cluetip({
+		attribute: 'rel',
+		local: true,
+		hideLocal: true,
+		arrows: true, 
+		cursor: 'pointer',
+		cluetipClass: 'jtip'
+	});
+
+	// $('a').cluetip({
+	// 	attribute: 'rel',
+	// 	local: true,
+	// 	hideLocal: true,
+	// 	arrows: true, 
+	// 	cursor: 'pointer',
+	// 	cluetipClass: 'jtip'
+	// });
+});
+
+// jquery clear-input
+// $(document).ready(function(){
+//     $("input[type='text']").clearInput();
+// });

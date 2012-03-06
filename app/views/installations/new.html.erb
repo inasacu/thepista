@@ -11,7 +11,7 @@
 
 		<div class="inner">
 		
-      <% form_for :installation, :url => installations_path, :html => { :class => :form } do |f| -%>
+      <%= form_for (@ installation), :url => installations_path, :html => { :class => :form } do |f| -%>
 		<%= f.hidden_field :venue_id if @venue %>
         <%= render :partial => "form", :locals => {:f => f, :label_name => label_name(:create)} %>
       <% end -%>

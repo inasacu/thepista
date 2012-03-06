@@ -3,6 +3,6 @@
 the_controller = item.class.to_s.downcase.chomp
 the_path = "#{the_controller}s_path"
 	
-<% form_for item, :url => send(:"#{the_path}", item), :html => { :class => :form } do |f| -%>
+<%= form_foritem, :url => send(:"#{the_path}", item), :html => { :class => :form } do |f| -%>
 	<%= render :partial => "#{the_controller}/form_zurb", :locals => {:f => f} %>
 <% end -%>

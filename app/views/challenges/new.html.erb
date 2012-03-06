@@ -14,7 +14,7 @@
 
 		<div class="inner">
 
-		<% form_for :challenge, :url => challenges_path, :html => { :class => :form } do |f| -%>
+		<%= form_for (@challenge), :url => challenges_path, :html => { :class => :form } do |f| -%>
 		<%= render :partial => "form", :locals => {:f => f} %>
 		<% end -%>
 
