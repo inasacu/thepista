@@ -107,7 +107,7 @@ module UsersHelper
     text = text.gsub(" ", "<wbr> ")
     text = text.split.collect {|i| i.capitalize}.join(' ')
 
-    link_to(text, user, html_options)
+    link_to(text.html_safe, user, html_options)
   end
 
   def petition_box(teammate)

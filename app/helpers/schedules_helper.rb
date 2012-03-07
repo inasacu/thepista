@@ -54,13 +54,13 @@ module SchedulesHelper
       the_missing = ", #{I18n.t(:excess)}:  #{schedule.convocados.count - schedule.player_limit.to_i}" if schedule.player_limit.to_i < schedule.convocados.count
     end
 
-    the_span = content_tag('span', "    #{the_sport} #{the_missing}", :class => 'date')
-    return content_tag(:td, "#{the_image}  #{the_concept}<br />#{the_span}", :class => 'name_and_date')   
+    the_span = content_tag('span', "    #{the_sport} #{the_missing}".html_safe, :class => 'date')
+    return content_tag(:td, "#{the_image}  #{the_concept}<br />#{the_span}".html_safe, :class => 'name_and_date')   
   end
 
   def view_schedule_group(schedule)
     the_span = content_tag('span', schedule.sport.name, :class => 'date')
-    return content_tag(:td, "#{item_name_link(schedule.group)}<br />#{the_span}", :class => 'name_and_date')
+    return content_tag(:td, "#{item_name_link(schedule.group)}<br />#{the_span}".html_safe, :class => 'name_and_date')
   end
 
   def view_schedule_played(schedule)
@@ -73,7 +73,7 @@ module SchedulesHelper
       the_span = content_tag('span', has_left(schedule.starts_at), :class => 'date') if Time.zone.now < schedule.starts_at
       the_score = nice_day_time_wo_year_exact(schedule.starts_at)
     end
-    return content_tag(:td, "#{the_score}<br />#{the_span}", :class => 'name_and_date')
+    return content_tag(:td, "#{the_score}<br />#{the_span}".html_safe, :class => 'name_and_date')
   end
 
   def view_schedule_marker(schedule)
@@ -86,8 +86,8 @@ module SchedulesHelper
     #   the_missing = ", #{I18n.t(:excess)}:  #{schedule.convocados.count - schedule.player_limit.to_i}" if schedule.player_limit.to_i < schedule.convocados.count
     # end
 
-    the_span = content_tag('span', "#{the_sport} #{the_missing}", :class => 'date')
-    return content_tag(:td, "#{marker_link(schedule.group.marker)}<br />#{the_span}", :class => 'name_and_date')
+    the_span = content_tag('span', "#{the_sport} #{the_missing}".html_safe, :class => 'date')
+    return content_tag(:td, "#{marker_link(schedule.group.marker)}<br />#{the_span}".html_safe, :class => 'name_and_date')
   end
 
   def view_schedule_rating(schedule)
@@ -118,7 +118,7 @@ module SchedulesHelper
         the_label = "#{I18n.t(:your_roster_status) } #{the_font_begin}#{(match.type_name).downcase}#{the_font_end}" if match.user == current_user
       end
       
-      return content_tag :td, "#{the_label}<br/>#{match_all_my_link(schedule, current_user, false, true)}", :class => "last_upcoming" 
+      return content_tag :td, "#{the_label}<br/>#{match_all_my_link(schedule, current_user, false, true)}".html_safe, :class => "last_upcoming" 
     end
   end
 
