@@ -54,13 +54,16 @@ module SchedulesHelper
       the_missing = ", #{I18n.t(:excess)}:  #{schedule.convocados.count - schedule.player_limit.to_i}" if schedule.player_limit.to_i < schedule.convocados.count
     end
 
-    the_span = content_tag('span', "    #{the_sport} #{the_missing}".html_safe, :class => 'date')
-    return content_tag(:td, "#{the_image}  #{the_concept}<br />#{the_span}".html_safe, :class => 'name_and_date')   
+    # the_span = content_tag('span', "    #{the_sport} #{the_missing}".html_safe, :class => 'date')
+    the_span = set_content_tag_safe('span', "    #{the_sport} #{the_missing}", 'date')
+    # return content_tag(:td, "#{the_image}  #{the_concept}<br />#{the_span}".html_safe, :class => 'name_and_date')   
+		return set_content_tag_safe('td', "#{the_image}  #{the_concept}<br />#{the_span}", 'name_and_date')
   end
 
   def view_schedule_group(schedule)
     the_span = content_tag('span', schedule.sport.name, :class => 'date')
-    return content_tag(:td, "#{item_name_link(schedule.group)}<br />#{the_span}".html_safe, :class => 'name_and_date')
+    # return content_tag(:td, "#{item_name_link(schedule.group)}<br />#{the_span}".html_safe, :class => 'name_and_date')
+    return set_content_tag_safe(:td, "#{item_name_link(schedule.group)}<br />#{the_span}", 'name_and_date')
   end
 
   def view_schedule_played(schedule)
@@ -73,7 +76,8 @@ module SchedulesHelper
       the_span = content_tag('span', has_left(schedule.starts_at), :class => 'date') if Time.zone.now < schedule.starts_at
       the_score = nice_day_time_wo_year_exact(schedule.starts_at)
     end
-    return content_tag(:td, "#{the_score}<br />#{the_span}".html_safe, :class => 'name_and_date')
+    # return content_tag(:td, "#{the_score}<br />#{the_span}".html_safe, :class => 'name_and_date')
+		return set_content_tag_safe(:td, "#{the_score}<br />#{the_span}", 'name_and_date')
   end
 
   def view_schedule_marker(schedule)
@@ -86,8 +90,11 @@ module SchedulesHelper
     #   the_missing = ", #{I18n.t(:excess)}:  #{schedule.convocados.count - schedule.player_limit.to_i}" if schedule.player_limit.to_i < schedule.convocados.count
     # end
 
-    the_span = content_tag('span', "#{the_sport} #{the_missing}".html_safe, :class => 'date')
-    return content_tag(:td, "#{marker_link(schedule.group.marker)}<br />#{the_span}".html_safe, :class => 'name_and_date')
+    # the_span = content_tag('span', "#{the_sport} #{the_missing}".html_safe, :class => 'date')
+    # return content_tag(:td, "#{marker_link(schedule.group.marker)}<br />#{the_span}".html_safe, :class => 'name_and_date')
+
+    the_span = set_content_tag_safe('span', "#{the_sport} #{the_missing}", 'date')
+    return set_content_tag_safe(:td, "#{marker_link(schedule.group.marker)}<br />#{the_span}", 'name_and_date')
   end
 
   def view_schedule_rating(schedule)
@@ -95,7 +102,8 @@ module SchedulesHelper
       my_rating = ""
       my_rating = ratings_for(schedule, :show_user_rating => true, :dimension => :performance, :size => "small" ) if current_user.is_member_of?(schedule.group)
       overall_rating = ratings_for(schedule, :static, :dimension => :performance, :size => "small" )
-      return content_tag :td, "#{my_rating}&nbsp;&nbsp;#{overall_rating}", :class => "last_upcoming"
+      # return content_tag :td, "#{my_rating}&nbsp;&nbsp;#{overall_rating}", :class => "last_upcoming"
+      return set_content_tag_safe(:td, "#{my_rating}&nbsp;&nbsp;#{overall_rating}", "last_upcoming")
 
     elsif Time.zone.now < schedule.starts_at
       the_label = ""
@@ -118,7 +126,8 @@ module SchedulesHelper
         the_label = "#{I18n.t(:your_roster_status) } #{the_font_begin}#{(match.type_name).downcase}#{the_font_end}" if match.user == current_user
       end
       
-      return content_tag :td, "#{the_label}<br/>#{match_all_my_link(schedule, current_user, false, true)}".html_safe, :class => "last_upcoming" 
+      # return content_tag :td, "#{the_label}<br/>#{match_all_my_link(schedule, current_user, false, true)}".html_safe, :class => "last_upcoming"
+      return set_content_tag_safe(:td, "#{the_label}<br/>#{match_all_my_link(schedule, current_user, false, true)}", "last_upcoming")
     end
   end
 
@@ -149,7 +158,7 @@ module SchedulesHelper
 
       if (same_previous_schedule and counter < total_items)
       else
-        the_activities = %(#{the_activities} #{render(the_template, :schedules => the_user_schedules)})
+        the_activities = %(#{the_activities} #{render(the_template, :schedules => the_user_schedules).html_safe})
 
         #reset the_user_match and add new match
         the_user_schedules = []

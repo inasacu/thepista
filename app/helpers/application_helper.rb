@@ -470,19 +470,19 @@ module ApplicationHelper
   def get_secondary_navigation(item=nil, game=nil)
     return "" unless DISPLAY_HAYPISTA_TEMPLATE
     the_controller = is_controller('home') ? "#{get_the_controller}" : "#{get_the_controller}s"
-    return render("#{the_controller}/secondary_navigation") if item.nil? 
-    return render("#{(item.class.to_s).downcase}s/secondary_navigation", :item => item) if game.nil?
-    return render("#{(item.class.to_s).downcase}s/secondary_navigation", :item => item, :game => game) 
+    return render("#{the_controller}/secondary_navigation".html_safe) if item.nil? 
+    return render("#{(item.class.to_s).downcase}s/secondary_navigation".html_safe, :item => item) if game.nil?
+    return render("#{(item.class.to_s).downcase}s/secondary_navigation".html_safe, :item => item, :game => game) 
   end
 
   def get_class_table_id_controller
     the_controller = get_the_controller.gsub(' ','_')
-    "<table class='table' id='#{the_controller}'>"
+    "<table class='table' id='#{the_controller}'>".html_safe
   end
 
   def get_class_table_id_action
     the_action = get_the_action.gsub(' ','_')
-    "<table class='table' id='#{the_action}'>"
+    "<table class='table' id='#{the_action}'>".html_safe
   end
 
   def get_cluetip(the_label, image_name, the_description, icon_only=false, align='')
@@ -499,13 +499,13 @@ module ApplicationHelper
     end
     the_content_div = content_tag(:div, the_description, :id => the_id, :style => 'display:none')
 
-    return "#{the_image}&nbsp;&nbsp;#{the_content} #{the_content_div}"
+    return "#{the_image}&nbsp;&nbsp;#{the_content} #{the_content_div}".html_safe
   end
 
   def get_cluetip_show(the_label, align='right')	  
     the_description = I18n.t("#{the_label}_cluetip") 
     the_label = I18n.t(the_label)
-    return "#{the_label}#{get_cluetip(the_label, 'info', the_description, true, align)}"
+    return "#{the_label}#{get_cluetip(the_label, 'info', the_description, true, align)}".html_safe
   end
 
   def get_cluetip_toggle(the_label) 
@@ -518,13 +518,13 @@ module ApplicationHelper
     the_content = content_tag :h5, (content_tag(:span, the_label, :class => 'tooltip', :title => the_title, :rel => "##{the_id}"))
     the_content_div = content_tag(:div, the_description, :id => the_id, :style => 'display:none')
     the_content = "#{the_content} #{the_content_div}"    
-    return the_content
+    return the_content.html_safe
   end
 
   def control_description(value, no_description=false)
     the_description = I18n.t(value)
     the_description = control_label("#{value}_description") unless no_description
-    return "#{the_description}..."
+    return "#{the_description}...".html_safe
   end
 
   def get_header_navigation
@@ -621,7 +621,7 @@ module ApplicationHelper
 
 
   def set_form_button_submit(item)
-    return "#{set_form_button(item)} #{label_name(:or)} #{set_form_cancel(item)}"
+    return "#{set_form_button(item)} #{label_name(:or)} #{set_form_cancel(item)}".html_safe
   end
 
   def set_form_button(item, the_label='', the_button='')
@@ -741,7 +741,11 @@ module ApplicationHelper
 
   def set_class_name_and_date(first_item, second_item)
     the_span = content_tag('span', second_item, :class => 'date')
-    return content_tag('td', "#{first_item}<br />#{the_span}", :class => 'name_and_date')
+    return content_tag('td', "#{first_item}<br />#{the_span}".html_safe, :class => 'name_and_date')
   end
+
+	def set_content_tag_safe(html_value, display_value, class_value)
+		content_tag(:"#{html_value}", display_value.html_safe, :class => class_value)
+	end
   
 end

@@ -12,12 +12,12 @@
 
 	<td class="name_and_date">
 		<%= request_link %>&nbsp;
-		<%= has_joined ? "#{label_name(:petition_to_join_accepted).downcase} <wbr/> #{item_link}." : 
-						 "#{label_name(:has)} #{(label_name(:petition_to_join_pending)).downcase} <wbr/> #{item_link}." %>
+		<%= has_joined ? "#{label_name(:petition_to_join_accepted).downcase} <wbr/> #{item_link}.".html_safe : 
+						 "#{label_name(:has)} #{(label_name(:petition_to_join_pending)).downcase} <wbr/> #{item_link}.".html_safe %>
 		<span class="date">
 			<% unless has_sub_item %>
 			<br/>
-			<%= sub_item_link %>
+			<%= "sub_item_link".html_safe %>
 			<br/>
 			<% end %>
 			<%= the_icon %>&nbsp;&nbsp;<%= has_joined ? ago(teammate.accepted_at) : ago(teammate.created_at) %>	
@@ -27,7 +27,7 @@
 	<td>&nbsp;</td>	  
 
 	<td class="last">
-		<%= manager_link %>&nbsp;&nbsp;<%= decline_link unless has_joined %>
+		<%= manager_link %>&nbsp;&nbsp;<%= "decline_link".html_safe unless has_joined %>
 	</td>
 </tr>
 <% end %>

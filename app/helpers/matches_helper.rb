@@ -154,7 +154,7 @@ module MatchesHelper
   			  the_render = 'home/upcoming_matches' if DISPLAY_HAYPISTA_TEMPLATE
   			  the_render = 'home/upcoming_matches_zurb' unless DISPLAY_HAYPISTA_TEMPLATE
   			  
-				  the_activities = %(#{the_activities} #{render(the_render, :matches => the_user_matches)})
+				  the_activities = %(#{the_activities.html_safe} #{render(the_render.html_safe, :matches => the_user_matches).html_safe})
 				  
 					#reset the_user_match and add new match
 					the_user_matches = []
@@ -165,10 +165,10 @@ module MatchesHelper
         the_render = 'home/upcoming_home' if DISPLAY_HAYPISTA_TEMPLATE
         the_render = 'home/upcoming_home_zurb' unless DISPLAY_HAYPISTA_TEMPLATE
 
-        the_activities = %(#{the_activities} #{render(the_render, :teammate => item)})
+        the_activities = %(#{the_activities.html_safe} #{render(the_render.html_safe, :teammate => item).html_safe})
 			end
 		end
-		return the_activities
+		return the_activities.html_safe
 	end  
     
   def upcoming_matches(matches)
@@ -210,7 +210,7 @@ module MatchesHelper
   	the_links = %(#{the_links.chop.chop})	
   	the_label = %(#{the_label} #{the_links})
 
-  	return request_image, first_icon, request_link, the_label, the_icon, item_group_link, item_group_link, the_match
+  	return request_image, first_icon, request_link, the_label, the_icon, item_group_link, the_match
   end
 
   def set_team_roster_box(the_roster, schedule)
