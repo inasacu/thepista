@@ -3,7 +3,7 @@ class RolesController < ApplicationController
   before_filter :the_maximo
 
   def index
-    @roles = Role.paginate(:per_page => 10, :page => params[:page])
+    @roles = Role.page(params[:page])
     render @the_template  
   end
 

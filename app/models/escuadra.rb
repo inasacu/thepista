@@ -60,8 +60,7 @@ class Escuadra < ActiveRecord::Base
   end
   
   def self.cup_escuadras(cup, page = 1)
-    self.paginate(:all, :conditions => ["id in (select escuadra_id from cups_escuadras where cup_id = ?)", cup], 
-    :order => 'name', :page => page, :per_page => ESCUADRAS_PER_PAGE)
+    self.where("id in (select escuadra_id from cups_escuadras where cup_id = ?)", cup).page(page).order('name')
   end
   
   private

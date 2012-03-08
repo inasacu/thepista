@@ -181,7 +181,11 @@ class User < ActiveRecord::Base
     
     def blog_message?
       self.blog_comment_notification?
-    end       
+    end   
+
+    def self.user_fees(the_users)
+			find.where("id in (?) and archive = false", the_users).page(params[:page]).order('users.name')
+		end
 
     def self.latest_updates(items)
       find(:all, :select => "id, name, photo_file_name, profile_at as created_at", :conditions => ["profile_at >= ?", LAST_THREE_DAYS], :order => "updated_at desc").each do |item| 
@@ -320,11 +324,11 @@ class User < ActiveRecord::Base
     end
     
     def received_messages(page = 1)
-      _received_messages.paginate(:page => page, :per_page => MESSAGES_PER_PAGE)
+      _received_messages.page(params[:page])
     end
   
     def sent_messages(page = 1)
-      _sent_messages.paginate(:page => page, :per_page => MESSAGES_PER_PAGE)
+      _sent_messages.page(params[:page])
     end
     
     def find_user_in_conversation(parent_id, exclude_self = true)
@@ -361,10 +365,7 @@ class User < ActiveRecord::Base
                       (recipient_id = :user AND recipient_deleted_at > :t)),
                     { :user => id, :t => TRASH_TIME_AGO }]
       order = 'created_at DESC'
-      trashed = Message.paginate(:all, :conditions => conditions,
-                                       :order => order,
-                                       :page => page,
-                                       :per_page => MESSAGES_PER_PAGE)
+      trashed = Message.where(conditions).page(page).order(order)
     end
   
     def recent_messages
@@ -418,42 +419,25 @@ class User < ActiveRecord::Base
     end
 
     def page_mates(page = 1)  
-      mates = User.paginate(:all, 
-      :conditions => ["id in (select distinct user_id from groups_users where group_id in (?))", self.groups],
-      :order => "name",
-      :page => page, 
-      :per_page => USERS_PER_PAGE)
+      mates = User.where("id in (select distinct user_id from groups_users where group_id in (?))", self.groups).page(page).order('name')
 
       if object_counter(mates) == 0
-        mates = User.paginate(:all, 
-        :conditions => ["id = ?", self.id],
-        :order => "name",
-        :page => page, 
-        :per_page => USERS_PER_PAGE)
+        mates = User.hwere("id = ?", self.id).page(page).order('name')
       end
       return mates
     end
     
     def other_mates(page = 1)      
-      mates = User.paginate(:all, 
-      :conditions => ["archive = false and id not in (select user_id from groups_users where group_id in (?))", self.groups],
-      :order => "name",
-      :page => page, 
-      :per_page => USERS_PER_PAGE)
+      mates = User.where("archive = false and id not in (select user_id from groups_users where group_id in (?))", self.groups).page(page).order('name')
 
       if object_counter(mates) == 0
-        mates = User.paginate(:all, 
-        :conditions => ["id = ?", self.id],
-        :order => "name",
-        :page => page, 
-        :per_page => USERS_PER_PAGE)
+        mates = User.where("id = ?", self.id).page(name).order("name")
       end
       return mates
     end      
 
     def find_mates                         
-      mates = User.find(:all, :conditions => ["id in (select distinct user_id from groups_users where group_id in (?))", self.groups], 
-                 :order => "name")
+      mates = User.find(:all, :conditions => ["id in (select distinct user_id from groups_users where group_id in (?))", self.groups], :order => "name")
     end
     
     def create_user_fees(schedule)

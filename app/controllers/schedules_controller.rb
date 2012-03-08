@@ -47,7 +47,7 @@ class SchedulesController < ApplicationController
   end
 
   def schedule_list
-    @schedules = @group.schedules.paginate(:page => params[:page], :per_page => SCHEDULES_PER_PAGE)
+    @schedules = @group.schedules.page(params[:page])
     set_the_template('schedules/index')
     render @the_template
   end

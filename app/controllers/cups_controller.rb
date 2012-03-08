@@ -19,7 +19,7 @@ class CupsController < ApplicationController
   end
 
   def squad_list
-    @squads = @cup.squads.paginate(:page => params[:page], :per_page => USERS_PER_PAGE)
+    @squads = @cup.squads.page(params[:page])
     @total = @cup.squads.count 
     render @the_template
   end

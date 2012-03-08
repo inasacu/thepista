@@ -2,7 +2,7 @@ class ScorecardsController < ApplicationController
   before_filter :require_user
 
   def index
-    @groups = Group.paginate(:all, :conditions => ["groups.archive = false "], :order => "groups.created_at DESC", :page => params[:page])
+    @groups = Group.where("groups.archive = false ").page(params[:page]).order('groups.created_at DESC')
     render @the_template
   end
   

@@ -57,7 +57,7 @@ class Installation < ActiveRecord::Base
     end
     
     def self.current_installations(venue, page = 1)
-      self.paginate(:all, :conditions => ["venue_id = ?", venue], :order => 'name', :page => page, :per_page => INSTALLATIONS_PER_PAGE)
+      self.where("venue_id = ?", venue).page(page).order('name')
     end
     
     private

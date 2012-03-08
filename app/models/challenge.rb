@@ -114,9 +114,13 @@ class Challenge < ActiveRecord::Base
     Cast.delay.create_challenge_cast(self) 
     Fee.delay.create_user_challenge_fees(self)
   end 
-  
+
+	def self.get_challenge_list
+		find.where("archive = false and id not in (?)", current_user.challenges).page(params[:page]).order('challenges.name') 
+  end
+
   def self.current_challenges(page = 1)
-    self.paginate(:all, :conditions => ["cup_id in (select id from cups where archive = false)"], :order => 'name', :page => page, :per_page => CUPS_PER_PAGE)
+    self.where("cup_id in (select id from cups where archive = false)").page(page).order('name')
   end 
   
   def self.latest_items(items)

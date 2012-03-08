@@ -5,7 +5,7 @@ class TypesController < ApplicationController
   before_filter :get_types,		:only => [:edit, :update]
 
   def index
-    @types = Type.paginate(:per_page => 10, :page => params[:page])
+    @types = Type.page(params[:page])
     render @the_template
   end
 

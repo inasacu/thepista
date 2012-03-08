@@ -9,6 +9,8 @@ class Message < ActiveRecord::Base
   belongs_to :conversation
   belongs_to :item,           :polymorphic => true
 
+	self.per_page = MESSAGES_PER_PAGE
+
   validates_presence_of   :subject #, :body
 
   before_create   :assign_conversation, :format_body, :set_mark_as_read

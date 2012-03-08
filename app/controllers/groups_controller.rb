@@ -7,7 +7,7 @@ class GroupsController < ApplicationController
   before_filter :has_manager_access, :only => [:edit, :update, :destroy, :set_available, :set_enable_comments, :set_automatic_petition, :set_looking]
 
   def index
-    @groups = Group.paginate(:all, :conditions => ["groups.archive = false "], :order => "groups.created_at DESC", :page => params[:page])
+		@groups = Group.where("groups.archive = false ").page(params[:page]).order('groups.created_at DESC')
     render @the_template
   end
 
@@ -17,7 +17,7 @@ class GroupsController < ApplicationController
   end
 
   def team_list
-    @users = @group.users.paginate(:page => params[:page], :per_page => USERS_PER_PAGE)
+    @users = @group.users.page(params[:page])
     @total = @group.users.count
     render @the_template
   end

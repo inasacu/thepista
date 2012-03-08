@@ -84,7 +84,7 @@ class Fee < ActiveRecord::Base
   
   def self.page_all_fees(the_fees, page=1)
     paginate(:all, :select => "fees.*", :joins => "JOIN users on users.id = fees.debit_id",
-                   :conditions => ["fees.id in (?)", the_fees], :order => 'users.name', :page => page, :per_page => FEES_PER_PAGE)
+                   :conditions => ["fees.id in (?)", the_fees], :order => 'users.name', :page => page)
   end
 
   def self.debit_item_amount(debits, credit)

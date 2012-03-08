@@ -47,6 +47,22 @@ class ApplicationController < ActionController::Base
   end
 
 
+  def has_member_access(item)
+    unless current_user.is_member_of?(item)
+      flash[:warning] = I18n.t(:unauthorized)
+      redirect_to root_url
+      return
+    end
+  end
+
+  def has_manager_access(item)
+    unless current_user.is_manager_of?(item)
+      flash[:warning] = I18n.t(:unauthorized)
+      redirect_to root_url
+      return
+    end
+  end
+
   private  
   def set_user_language    
     I18n.locale = current_user.language if current_user 

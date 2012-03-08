@@ -71,7 +71,7 @@ class Payment < ActiveRecord::Base
   end
 
   def self.page_all_payments(the_payments, page=1)
-    paginate(:all, :conditions => ["id in (?)", the_payments], :order => 'payments.id DESC', :page => page, :per_page => FEES_PER_PAGE)
+    paginate(:all, :conditions => ["id in (?)", the_payments], :order => 'payments.id DESC', :page => page)
   end
   
   def self.debit_item_amount(debits, item)    
@@ -119,15 +119,15 @@ class Payment < ActiveRecord::Base
         debits, debits.first.class.to_s, 
         credit, credit.class.to_s, 
         item, item.class.to_s],
-        :order => 'id', :page => page, :per_page => FEES_PER_PAGE)
+        :order => 'id', :page => page)
     else
           paginate(:all, :conditions => ["debit_id in (?) and debit_type = ? and archive = false and debit_amount > 0", debits, debits.first.class.to_s],
-            :order => 'id', :page => page, :per_page => FEES_PER_PAGE)
+            :order => 'id', :page => page)
     end
   end
   
   def self.payments_for_fee(fee, page=1)
-    paginate(:all, :conditions => ["fee_id = ? and debit_amount > 0 and archive = false", fee], :order => 'created_at', :page => page,  :per_page => FEES_PER_PAGE)
+    paginate(:all, :conditions => ["fee_id = ? and debit_amount > 0 and archive = false", fee], :order => 'created_at', :page => page)
   end
     
   def self.credit_payments(debits, credits, page=1)
@@ -135,10 +135,10 @@ class Payment < ActiveRecord::Base
       paginate(:all, :conditions => ["debit_id in (?) and debit_type = ? and 
                                     credit_id in (?) and credit_type = ? and 
                                     archive = false and debit_amount > 0", debits, debits.first.class.to_s, credits, credits.first.class.to_s],
-             :order => 'id DESC', :page => page,  :per_page => FEES_PER_PAGE)
+             :order => 'id DESC', :page => page)
     else
      paginate(:all, :conditions => ["debit_id in (?) and debit_type = ? and archive = false and debit_amount > 0", debits, debits.first.class.to_s],
-                    :order => 'id DESC', :page => page,  :per_page => FEES_PER_PAGE)
+                    :order => 'id DESC', :page => page)
     end
   end
 

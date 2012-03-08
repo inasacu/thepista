@@ -33,13 +33,11 @@ class Classified < ActiveRecord::Base
     end
     
     def self.find_classifieds(item, page = 1)
-      self.paginate(:all, :conditions => ["table_type = ? and table_id = ?", item.class.to_s, item],
-      :order => 'starts_at DESC', :page => page, :per_page => CLASSIFIEDS_PER_PAGE)
+      self.where("table_type = ? and table_id = ?", item.class.to_s, item).page(page).order('starts_at DESC')
     end
 
     def self.find_all_classifieds(page = 1)
-      self.paginate(:all, :conditions => ["created_at >= ? and archive = false", LAST_WEEK],
-      :order => 'starts_at DESC', :page => page, :per_page => CLASSIFIEDS_PER_PAGE)
+      self.where("created_at >= ? and archive = false", LAST_WEEK).page(page).order('starts_at DESC')
     end
     
     def self.item_classifieds(item)

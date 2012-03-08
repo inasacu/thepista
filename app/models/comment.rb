@@ -13,6 +13,7 @@ class Comment < ActiveRecord::Base
   # NOTE: Comments belong to a user
   belongs_to :user
 
+	self.per_page = COMMENTS_PER_PAGE
 
   # method section  
   def self.latest_items(items, user)

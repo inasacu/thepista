@@ -3,7 +3,7 @@ class SportsController < ApplicationController
   before_filter :the_maximo
 
   def index    
-    @sports = Sport.paginate(:per_page => SPORTS_PER_PAGE, :page => params[:page])
+    @sports = Sport.page(params[:page])
     render @the_template
   end
 

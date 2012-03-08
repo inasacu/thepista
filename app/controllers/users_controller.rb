@@ -26,7 +26,7 @@ class UsersController < ApplicationController
       redirect_to root_url 
       return
     end
-    @users = User.paginate(:conditions => ["users.archive = false and users.id != ?", current_user], :per_page => USERS_PER_PAGE, :page => params[:page])
+    @users = User.where("users.archive = false and users.id != ?", current_user).page(params[:page])
     render @the_template
   end
   
@@ -183,7 +183,7 @@ class UsersController < ApplicationController
 
   def search
     count = User.count_by_solr(params[:search])
-    @users = User.paginate_all_by_solr(params[:search], :page => params[:page], :per_page => USERS_PER_PAGE, :operator => :or)
+    @users = User.paginate_all_by_solr(params[:search], :page => params[:page], :operator => :or)
     render :template => '/users/index'
   end 
 

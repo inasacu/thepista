@@ -18,11 +18,7 @@ class ChallengesController < ApplicationController
   end
 
   def list
-    @challenges = Challenge.paginate(:all, :conditions => ["archive = false and id not in (?)", current_user.challenges], 
-    :page => params[:page], :order => 'name') unless current_user.challenges.blank?
-    # @challenges = Challenge.paginate(:all, :conditions =>["archive = false"], 
-    # :page => params[:page], :order => 'name') if current_user.challenges.blank?
-    
+    @challenges = Challenge.get_challenge_list unless current_user.challenges.blank?
     if @challenges.nil? or @challenges.blank?
       redirect_to :controller => 'cups'
       return
@@ -33,7 +29,7 @@ class ChallengesController < ApplicationController
   end
 
   def challenge_list
-    @users = @challenge.users.paginate(:page => params[:page], :per_page => USERS_PER_PAGE)
+    @users = @challenge.users.page(params[:page])
     @total = @challenge.users.count   
     set_the_template('casts/index')
 	render @the_template

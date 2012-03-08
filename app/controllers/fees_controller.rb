@@ -21,8 +21,9 @@ class FeesController < ApplicationController
         @the_groups << group
       end
     end  
-
-    @users = User.paginate(:all, :conditions => ["id in (?) and archive = false", @the_users], :order => "name", :page => params[:page], :per_page => USERS_PER_PAGE)    
+  
+		@users = User.user_fees(@the_users)
+		 
     set_the_template('fees/index')
     render @the_template
   end
@@ -38,7 +39,9 @@ class FeesController < ApplicationController
       get_fee_user(@group, user)
       @the_users << user if @has_fees
     end
-    @users = User.paginate(:all, :conditions => ["id in (?) and archive = false", @the_users], :order => "name", :page => params[:page], :per_page => USERS_PER_PAGE)    
+    
+		@users = User.user_fees(@the_users)
+   
     set_the_template('fees/index')
     render @the_template
   end
@@ -55,7 +58,8 @@ class FeesController < ApplicationController
       end
     end  
 
-    @users = User.paginate(:all, :conditions => ["id in (?) and archive = false", @the_users], :order => "name", :page => params[:page], :per_page => USERS_PER_PAGE)    
+    @users = User.user_fees(@the_users)
+    
     set_the_template('fees/index')
     render @the_template
   end
@@ -73,7 +77,9 @@ class FeesController < ApplicationController
     @group.users.each do |user|
       @the_users << user if get_fee_user(@group, user)     
     end
-    @users = User.paginate(:all, :conditions => ["id in (?) and archive = false", @the_users], :order => "name", :page => params[:page], :per_page => USERS_PER_PAGE)    
+    
+		@users = User.user_fees(@the_users)
+   
     set_the_template('fees/index')
     render @the_template
   end

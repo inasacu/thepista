@@ -197,31 +197,23 @@ class Schedule < ActiveRecord::Base
   end
   
   def self.group_current_schedules(group, page = 1)
-    self.paginate(:all, :conditions => ["schedules.archive = false and starts_at >= ? and group_id = ?", Time.zone.now, group],
-                  :order => 'starts_at', :page => page, :per_page => SCHEDULES_PER_PAGE)
+    self.where("schedules.archive = false and starts_at >= ? and group_id = ?", Time.zone.now, group).page(page).order('starts_at')
   end
 
   def self.group_previous_schedules(group, page = 1)
-    self.paginate(:all, :conditions => ["schedules.archive = false and starts_at < ? and (season_ends_at is null or season_ends_at > ?) and group_id = ?", Time.zone.now, Time.zone.now, group],
-                  :order => 'starts_at desc', :page => page, :per_page => SCHEDULES_PER_PAGE)
+    self.where("schedules.archive = false and starts_at < ? and (season_ends_at is null or season_ends_at > ?) and group_id = ?", Time.zone.now, Time.zone.now, group).page(page).order('starts_at DESC')
   end
   
   def self.my_current_schedules(user)
-    self.find(:all, 
-    :conditions => ["schedules.archive = false and starts_at >= ? and group_id in (select group_id from groups_users where user_id = ?)", Time.zone.now, user.id],
-    :order => 'starts_at, group_id', :limit => 1)
+    self.find(:all, :conditions => ["schedules.archive = false and starts_at >= ? and group_id in (select group_id from groups_users where user_id = ?)", Time.zone.now, user.id],:order => 'starts_at, group_id', :limit => 1)
   end
 
   def self.current_schedules(user, page = 1)
-    self.paginate(:all, 
-    :conditions => ["schedules.archive = false and starts_at >= ? and group_id in (select group_id from groups_users where user_id = ?)", Time.zone.now, user.id],
-    :order => 'starts_at, group_id', :page => page, :per_page => SCHEDULES_PER_PAGE)
+    self.where("schedules.archive = false and starts_at >= ? and group_id in (select group_id from groups_users where user_id = ?)", Time.zone.now, user.id).page(page).order('starts_at, group_id')
   end
 
   def self.previous_schedules(user, page = 1)
-    self.paginate(:all, 
-    :conditions => ["schedules.archive = false and starts_at < ? and (season_ends_at is null or season_ends_at > ?) and group_id in (select group_id from groups_users where user_id = ?)", Time.zone.now, Time.zone.now, user.id],
-    :order => 'starts_at desc, group_id', :page => page, :per_page => SCHEDULES_PER_PAGE)
+    self.where("schedules.archive = false and starts_at < ? and (season_ends_at is null or season_ends_at > ?) and group_id in (select group_id from groups_users where user_id = ?)", Time.zone.now, Time.zone.now, user.id).page(page).order('starts_at desc, group_id')
   end
   
   def self.latest_items(items)
@@ -248,15 +240,11 @@ class Schedule < ActiveRecord::Base
   end
   
   def self.find_all_played(user, page = 1)
-    self.paginate(:all, :joins => "left join matches on matches.schedule_id = schedules.id",
-                  :conditions => ["matches.user_id = ? and matches.type_id = 1 and matches.archive = false", user], 
-                  :order => 'schedules.starts_at desc', :page => page, :per_page => SCHEDULES_PER_PAGE)
+    self.where("matches.user_id = ? and matches.type_id = 1 and matches.archive = false", user).joins("left join matches on matches.schedule_id = schedules.id").page(params[:page]).order('schedules.starts_at desc')
   end
 
   def self.archive_schedules(user, page = 1)
-    self.paginate(:all, 
-    :conditions => ["season_ends_at < ? and group_id in (select group_id from groups_users where user_id = ?)", Time.zone.now, user.id],
-    :order => 'starts_at, group_id', :page => page, :per_page => SCHEDULES_PER_PAGE)
+    self.where("season_ends_at < ? and group_id in (select group_id from groups_users where user_id = ?)", Time.zone.now, user.id).page(params[:page]).order('starts_at, group_id')
   end
 
   def self.schedule_number(schedule)

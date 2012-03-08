@@ -91,16 +91,11 @@ class MarkersController < ApplicationController
   end
 
   def full_list
-    @markers = Marker.paginate(:all, :conditions => ["archive = false"], :order => "markers.name DESC", :page => params[:page], :per_page => MARKERS_PER_PAGE)
+		@markers = Marker.where("markers.archive = false").page(params[:page]).order('markers.name DESC')
+		
     render @the_template   
   end
 
-  # def show
-  #   @default_min_points = 0
-  #   @default_max_points = 35
-  #   @default_zoom = 10
-  #   render :template => "markers/index_gmap3"
-  # end
 
   def list
     @default_zoom = 5

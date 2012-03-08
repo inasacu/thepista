@@ -64,15 +64,11 @@ class Game < ActiveRecord::Base
 
   # method section 
   def self.group_stage_games(cup, page = 1)
-    self.paginate(:all, 
-    :conditions => ["cup_id = ? and type_name = 'GroupStage'", cup],
-    :order => 'jornada', :page => page, :per_page => ESCUADRAS_PER_PAGE)
+    self.where("cup_id = ? and type_name = 'GroupStage'", cup).page(page).order('jornada')
   end
 
   def self.group_round_games(cup, page = 1)
-    self.paginate(:all, 
-    :conditions => ["cup_id = ? and (type_name != 'GroupStage' or type_name is null)", cup],
-    :order => 'jornada', :page => page, :per_page => ESCUADRAS_PER_PAGE)
+    self.where("cup_id = ? and (type_name != 'GroupStage' or type_name is null)", cup.page(page).order('jornada')
   end
 
   def self.upcoming_games(hide_time)

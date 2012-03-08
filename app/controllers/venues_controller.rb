@@ -4,7 +4,7 @@ class VenuesController < ApplicationController
   before_filter :has_manager_access, :only => [:edit, :update]
 
   def index
-    @venues = Venue.paginate(:all, :conditions => ["archive = false"], :page => params[:page], :order => 'name') 
+    @venues = Venue.where("archive = false"].page(params[:page]).order('name') 
     render @the_template
   end
 

@@ -116,11 +116,11 @@ class Cup < ActiveRecord::Base
   end
   
   def self.current_cups(page = 1)
-    self.paginate(:all, :conditions => ["ends_at > ? and archive = false", Time.zone.now], :order => 'starts_at', :page => page, :per_page => CUPS_PER_PAGE)
+    self.where("ends_at > ? and archive = false", Time.zone.now).page(page).order('starts_at')
   end
 
   def self.previous_cups(page = 1)
-    self.paginate(:all, :conditions => ["ends_at < ? and archive = false", Time.zone.now], :order => 'starts_at', :page => page, :per_page => CUPS_PER_PAGE)
+    self.where("ends_at < ? and archive = false", Time.zone.now).page(page).order('starts_at')
   end
   
   def self.latest_items(items, has_values)

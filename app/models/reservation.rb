@@ -38,8 +38,7 @@ class Reservation < ActiveRecord::Base
   
   # method section
   def self.current_reservations(installation, page = 1)
-    self.paginate(:all, :conditions => ["installation_id = ? and starts_at >= ? and ends_at <= ?", installation, installation.starts_at, installation.ends_at], 
-                        :order => 'concept', :page => page, :per_page => INSTALLATIONS_PER_PAGE)
+    self.where("installation_id = ? and starts_at >= ? and ends_at <= ?", installation, installation.starts_at, installation.ends_at).page(page).order('concept')
   end
   
   def self.weekly_reservations(installation, starts_at, ends_at)
@@ -47,7 +46,7 @@ class Reservation < ActiveRecord::Base
   end
   
   def self.list_reservations(venue, page = 1)
-    self.paginate(:all, :conditions => ["venue_id = ?", venue], :order => 'concept', :page => page, :per_page => INSTALLATIONS_PER_PAGE)
+    self.where("venue_id = ?", venue).page(page).order('concept')
   end
 
   def self.latest_items(items)

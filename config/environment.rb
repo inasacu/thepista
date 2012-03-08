@@ -6,3 +6,4 @@ Thepista::Application.initialize!
 
 
 RPXNow.api_key = "f7bbfeed95a9e71fe994397d496614da8972aa2c"
+WillPaginate.per_page = 10
