@@ -74,7 +74,7 @@ class Game < ActiveRecord::Base
   def self.upcoming_games(hide_time)
     with_scope :find => {:conditions=>{:starts_at => YESTERDAY_TO_TODAY, :played => false}, :order => "starts_at"} do
       if hide_time.nil?
-        find(:all)
+        find.all()
       else
         find(:all, :conditions => ["starts_at >= ?", hide_time, hide_time])
       end
@@ -166,14 +166,14 @@ class Game < ActiveRecord::Base
 
   private
   def self.set_final_stage(cup)
-    @first_games = Game.find(:all, :conditions => ["cup_id = ? and type_name = 'FirstGame' and (home_id is null or away_id is null)", cup], :order => "id")
+    @first_games = Game.where("cup_id = ? and type_name = 'FirstGame' and (home_id is null or away_id is null)", cup).order("id")
+
     @first_games.each do |first|
-      standing = Standing.find(:first, 
-      :conditions => ["cup_id = ? and item_type = 'Escuadra' and group_stage_name = ? and ranking = ?", cup.id, first.home_stage_name, first.home_ranking])
+      standing = Standing.find(:first, :conditions => ["cup_id = ? and item_type = 'Escuadra' and group_stage_name = ? and ranking = ?", cup.id, first.home_stage_name, first.home_ranking])
       first.home_id = standing.item_id
 
-      standing = Standing.find(:first, 
-      :conditions => ["cup_id = ? and item_type = 'Escuadra' and group_stage_name = ? and ranking = ?", cup.id, first.away_stage_name, first.away_ranking])
+      standing = Standing.find(:first, :conditions => ["cup_id = ? and item_type = 'Escuadra' and group_stage_name = ? and ranking = ?", cup.id, first.away_stage_name, first.away_ranking])
+
       first.away_id = standing.item_id
       first.save!
     end

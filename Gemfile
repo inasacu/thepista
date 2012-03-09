@@ -31,6 +31,9 @@ gem 'nokogiri'
 # gem 'open_id_authentication'
 # gem 'ym4r_gm'
 
+gem 'ajaxful_rating_jquery'
+gem 'rqrcode'
+gem 'recaptcha'
 
 
 

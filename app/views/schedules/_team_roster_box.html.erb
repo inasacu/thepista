@@ -69,17 +69,17 @@
 		the_trueskill_label_final = get_cluetip(label_name(:true_skill_mean_final), 'info', label_name('true_skill_mean_cluetip'))
 	end
 	
+	the_is_squad = (is_squad and !has_been_played) ? "#{label_name(:name)}<br/>#{sort_link(label_name(:change_at), :status_at)}".html_safe : "#{label_name(:name)}".html_safe 
+	
 if roster_count 
 %>
       <%= get_class_table_id_action %>
 	  
 		<tr>
-			<%= content_tag :th, "&nbsp;", :class => "first" %>
-			<%= content_tag :th, "&nbsp;", :class => "heading" %>			
-			<%= content_tag :th, (is_squad and !has_been_played) ? "#{label_name(:name)}<br/>#{sort_link(label_name(:change_at), :status_at)}" :
-			 													   "#{label_name(:name)}", :title => label_name(:change_at_full), :class => "heading" %>
-			<%= content_tag :th, label_name(:position), 
-							:title => label_name(:position), :class => "heading", :align => "center" if DISPLAY_PLAYER_POSITION %>
+			<%= set_content_tag_safe(:th, "&nbsp;", "first") %>
+			<%= content_tag :th, "&nbsp;".html_safe, :class => "heading" %>			
+			<%= content_tag :th, the_is_squad, :title => label_name(:change_at_full), :class => "heading" %>
+			<%= content_tag :th, label_name(:position), :title => label_name(:position), :class => "heading", :align => "center" if DISPLAY_PLAYER_POSITION %>
 			<%= content_tag :th, label_name(:technical), :title => label_name(:profile_technical), :class => "heading" %>
 			<%= content_tag :th, label_name(:physical), :title => label_name(:profile_physical), :class => "heading" %>
 			<%= content_tag :th, label_name(:games_played_full_2), :class => "heading" %>
@@ -213,7 +213,6 @@ the_roster.each do |match|
 
 		<% if has_been_played %>
 		<% else %>
-			<%#= is_sub_manager ? link_to(match.team_name(@schedule), match_team_path(:id => match.id), :title => label_name(:change_group)) :  match.team_name(@schedule) %>
 			<%= is_member ? link_to(match.team_name(@schedule), match_team_path(:id => match.id), :title => label_name(:change_group)) :  match.team_name(@schedule) %>
 		<% end -%>		
 		

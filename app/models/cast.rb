@@ -76,9 +76,7 @@ class Cast < ActiveRecord::Base
   end
   
   def self.current_casts(user, challenge)
-    find(:all, :joins => "LEFT JOIN games on games.id = casts.game_id",
-         :conditions => ["casts.user_id = ? and casts.challenge_id = ?", user, challenge], 
-         :order => 'games.jornada')
+    find.where("casts.user_id = ? and casts.challenge_id = ?", user, challenge).joins("LEFT JOIN games on games.id = casts.game_id").order('games.jornada')
   end
   
   def self.guess_casts(users, challenges, page = 1)
@@ -86,7 +84,7 @@ class Cast < ActiveRecord::Base
   end
     
   def self.ready_casts(user, challenge)
-    find(:first, :select => "count(*) as total", :conditions => ["user_id = ? and challenge_id = ? and home_score is not null and away_score is not null", user.id, challenge.id])
+    find.where("user_id = ? and challenge_id = ? and home_score is not null and away_score is not null", user.id, challenge.id).select("count(*) as total").first()
   end
   
   def self.save_casts(the_cast, cast_attributes)
@@ -115,7 +113,7 @@ class Cast < ActiveRecord::Base
   # :points_for_goal_total        => 5
   # :points_for_winner            => 10
   def self.update_cast_details(challenge)
-    @casts = Cast.find(:all, :conditions => ["challenge_id = ?", challenge])
+    @casts = Cast.where("challenge_id = ?", challenge)
     @casts.each do |cast|
       points = 0
       unless cast.game.home_score.nil? or cast.game.away_score.nil? 
@@ -167,7 +165,7 @@ class Cast < ActiveRecord::Base
     
   # archive or unarchive a cast 
   def self.set_remove_cast(user, challenge)
-    @casts = Cast.find(:all, :conditions => ["user_id = ? and challenge_id = ?", user.id, challenge.id])
+    @casts = Cast.where("user_id = ? and challenge_id = ?", user.id, challenge.id)
     @casts.each {|cast| cast.destroy}
   end
   

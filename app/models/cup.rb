@@ -171,7 +171,7 @@ class Cup < ActiveRecord::Base
   def self.upcoming_cups(hide_time)
     with_scope :find => {:conditions=>{:starts_at => MAJOR_EVENT_TWO_MONTHS, :archive => false}, :order => "starts_at"} do
       if hide_time.nil?
-        find(:all)
+        find.all()
       else
         find(:all, :conditions => ["starts_at >= ?", hide_time, hide_time])
       end

@@ -106,7 +106,7 @@ class Match < ActiveRecord::Base
   
   
   def self.get_match_type
-    return Type.find(:all, :conditions => "id in (1, 2, 3, 4)", :order => "id")
+    return Type.where("id in (1, 2, 3, 4)").order("id")
   end
   
   def position_name

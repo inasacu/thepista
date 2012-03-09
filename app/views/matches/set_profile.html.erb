@@ -8,7 +8,7 @@
 a_roster = !(@schedule.convocados.empty?)
 the_label = "#{label_name(:rosters)} #{label_name(:in)} #{sanitize(@schedule.concept)}"
 content_for(:title, sanitize(@schedule.concept))
-@positions = Type.find(:all, :conditions => "table_type = 'User'", :order => "id")
+@positions = Type.find(table_type = 'User'", :order => "id")
 
 %>
 

@@ -28,9 +28,7 @@ Thepista::Application.routes.draw do
 	match 'jornada_deportiva_no_disponible' => 'schedules#team_unavailable', :as => :team_unavailable
 
 	match 'eventos_equipo' => 'schedules#schedule_list', :as => :schedule_list
-
 	match 'lista_marcadores' => 'markers#marker_list', :as => :marker_list
-
 	match 'retos_copa' => 'challenges#challenge_list', :as => :challenge_list
 
 	match 'mi_equipo/:id/unirse_equipo/:teammate' => 'teammates#join_team', :as => :join_team
@@ -67,9 +65,15 @@ Thepista::Application.routes.draw do
 	match 'eventos/:id/habilitar_perfil_previo' => 'schedules#set_previous_profile', :as => :set_previous_profile
 	match 'eventos/:id/marcar_recordatorio' => 'schedules#set_reminder', :as => :set_reminder
 
+	match 'eventos/:id/actual_evento' => 'schedules#group_current', :as => :group_current
+	match 'eventos/:id/previo_evento' => 'schedules#group_previous', :as => :group_previous
+	
 	match 'equipos/:id/habilitar_comentarios_equipo' => 'groups#set_enable_comments', :as => :set_group_enable_comments
 	match 'equipos/:id/equipo_disponible' => 'groups#set_available', :as => :set_group_available
 	match 'equipos/:id/buscar_jugado' => 'groups#set_looking', :as => :set_group_looking
+
+  match 'equipos/:id/unirse_automaticamente' => 'groups#set_group_auto', :as => :set_automatic_petition
+  match 'retos_copa/:id/unirse_automaticamente' => 'challenges#set_challenge_auto',  :as => :set_automatic_petition
 
 	match 'jornadas/:id/cambio_equipo' => 'matches#set_team', :as => :match_team
 	match 'jornadas/:id/cambio_convocatoria/:type' => 'matches#set_status', :as => :match_status
@@ -79,12 +83,15 @@ Thepista::Application.routes.draw do
 	match 'mensajes/:id/recuperar' => 'messages#undestroy', :as => :untrash_message
 
 	match 'proximos_partidos' => 'home#upcoming', :as => :upcoming
-
 	match 'buqueda' => 'home#search', :as => :search
-
-	match 'clasificacion/:id/archivar' => 'scorecards#archive', :as => :archive_scorecard
-	match 'clasificacion/:id/mostrar_archivado' => 'scorecards#show_archive', :as => :show_archive
-
+	match 'comunicado' => 'home#advertisement', :as => :advertisement
+	   
+  match 'buscar_en_mapa' => 'markers#search_map', :as => :search
+  match 'address_map' => 'markers#address_map', :as => :address
+  
+  match 'clasificacion/:id/archivar' => 'scorecards#archive_scorecard', :as => :archive
+  match 'clasificacion/:id/mostrar_archivado' => 'scorecards#show_archive', :as => :show_archive
+  
 	match 'calificaciones/:id/calificacion/:type' => 'ratings#rate', :as => :ratings_rate
 
 	match 'invitaciones/importar_contacto' => 'invitations#contact', :as => :import_contact
@@ -92,32 +99,27 @@ Thepista::Application.routes.draw do
 	match 'invitaciones/invita' => 'invitations#invite', :as => :invite
 
 	match 'sobre' => 'home#about', :as => :about
-
 	match 'terminos' => 'home#terms_of_use', :as => :terms_of_use
-
 	match 'privacidad' => 'home#privacy_policy', :as => :privacy_policy
-
 	match 'ayuda' => 'home#faq', :as => :faq
-
 	match 'precios' => 'home#pricing', :as => :pricing
-
 	match 'openid' => 'home#openid', :as => :openid
-
 	match 'success' => 'home#success', :as => :success
 
 	match '/ocultar_aviso' => 'javascripts#hide_announcements', :as => :hide_announcements
 
 	match 'partidos/:id/poner_resultado' => 'games#set_score', :as => :set_score
-
 	match 'jornadas/:id/habilitar_perfil' => 'matches#set_profile', :as => :set_profile
-
 	match 'equipos/:id/valoracion' => 'matches#star_rate', :as => :star_rate
-
 	match 'jornadas/:id/habilitar_perfil_jugador' => 'matches#set_user_profile', :as => :set_user_profile
-
 	match 'encasillado/:id/fase_de_grupos' => 'standings#set_group_stage', :as => :set_group_stage
 
-	match 'compra/:id/:block_token' => 'purchases#express', :as => :express
+  match 'horario/:id/replica/:current_id' => 'timetables#set_copy_timetable', :as => :set_copy_timetable
+  
+  match 'festivo/:venue_id/abierto/:block_token' => 'holidays#set_holiday_open', :as => :set_holiday_open
+  match 'festivo/:venue_id/cerrado/:block_token' => 'holidays#set_holiday_closed', :as => :set_holiday_closed
+  match 'festivo/:venue_id/nada/:block_token'=> 'holidays#set_holiday_none', :as => :set_holiday_none
+
 
 	resources :user_sessions
 	resources :users do

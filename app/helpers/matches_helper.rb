@@ -260,8 +260,6 @@ module MatchesHelper
   	is_squad = get_the_action.gsub(' ','_') == 'team_roster'
   	group_games_played = schedule.group.games_played.to_f
 
-    # positions = Type.find(:all, :conditions => "table_type = 'User'", :order => "id")
-
   	schedule_number = Schedule.schedule_number(schedule)  
 
   	first_schedule = schedule.group.schedules.first

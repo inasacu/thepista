@@ -747,5 +747,4 @@ module ApplicationHelper
 	def set_content_tag_safe(html_value, display_value, class_value)
 		content_tag(:"#{html_value}", display_value.html_safe, :class => class_value)
 	end
-  
 end

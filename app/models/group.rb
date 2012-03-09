@@ -16,7 +16,6 @@ class Group < ActiveRecord::Base
   :default_url => "group_avatar.png"  
 
 
-
   validates_attachment_content_type :photo, :content_type => ['image/jpeg', 'image/png', 'image/gif', 'image/jpg', 'image/pjpeg']
   validates_attachment_size         :photo, :less_than => 5.megabytes
 
@@ -64,8 +63,6 @@ class Group < ActiveRecord::Base
   belongs_to    :sport   
   belongs_to    :marker 
   belongs_to    :installation
-
-  has_one       :blog
 
 
   has_many :the_managers,

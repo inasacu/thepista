@@ -48,7 +48,7 @@ class UsersController < ApplicationController
       @profile = @client.profile
     end
 
-    @items = current_user.challenges.find(:all, :conditions => ["ends_at > ?", Time.zone.now])
+    @items = current_user.challenges.where("ends_at > ?", Time.zone.now)
     render @the_template    
   end
   
@@ -183,7 +183,7 @@ class UsersController < ApplicationController
 
   def search
     count = User.count_by_solr(params[:search])
-    @users = User.paginate_all_by_solr(params[:search], :page => params[:page], :operator => :or)
+    @users = User.where(paginate_all_by_solr(params[:search], :page => params[:page], :operator => :or)
     render :template => '/users/index'
   end 
 
@@ -515,7 +515,7 @@ class UsersController < ApplicationController
         RPXNow.map(identifier, current_user.id, APP_CONFIG['rpx_api']['key'])
         
         ## assign user to original user
-        @lastUser = User.find(:first, :conditions => ["identity_url = ? ", identifier])    
+        @lastUser = User.where("identity_url = ? ", identifier).first()    
         unless @lastUser.nil?
           @lastUser.update_attributes("name" => current_user.name, "email" => current_user.email, "rpxnow_id" => current_user.id)
           @lastUser.save!
@@ -620,7 +620,7 @@ private
   end
   
   def get_sports
-    @items = Sport.find(:all, :select => "name", :order => "name")
+    @items = Sport.get_sport_name
   end
   
 end

@@ -9,16 +9,16 @@
 		<div clas="row">
 			<table class="table">
 				<tr>
-					<%= content_tag :td, the_start_at_label, :class =>"first_left" %>
-					<%= content_tag :td, match_all_my_link(@schedule, current_user, false), :class =>"last_left" %>
+					<%= content_tag :td, the_start_at_label.html_safe, :class =>"first_left" %>
+					<%= content_tag :td, match_all_my_link(@schedule, current_user, false).html_safe, :class =>"last_left" %>
 				</tr>
 			</table>
 			<% 
 			if @has_a_roster
 				%>
-				<%= render :partial => '/schedules/team_roster_box', 
+				<%= render(:partial => '/schedules/team_roster_box', 
 				:locals => {:previous_show => @previous, :next_show => @next,  
-					:schedule => @schedule, :the_roster => @the_roster, :match_type => @match_type} %>
+					:schedule => @schedule, :the_roster => @the_roster, :match_type => @match_type}).html_safe %>
 					<% 
 				end 
 				%>

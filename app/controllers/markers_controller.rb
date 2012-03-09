@@ -82,7 +82,7 @@ class MarkersController < ApplicationController
     @map = GMap.new("map")
     @map.control_init(:large_map => true, :map_type => true)
     @map.center_zoom_init([@marker.latitude, @marker.longitude], 15)
-    @marker = Marker.find(:all, :conditions => "latitude is not null and longitude is not null and archive = false").each do |marker|
+    @marker = Marker.where("latitude is not null and longitude is not null and archive = false").each do |marker|
       theMarker = GMarker.new([marker.latitude, marker.longitude], :title => marker.name, :info_window =>  marker.name + "! ") 
       @map.overlay_init(theMarker)
     end  

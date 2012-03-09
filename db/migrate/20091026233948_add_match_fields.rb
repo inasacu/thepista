@@ -11,10 +11,10 @@ class AddMatchFields < ActiveRecord::Migration
     add_column         :matches,         :physical,           :integer,             :default => 3
     change_column      :matches,         :type_id,            :integer,             :detault => 3
 
-    # @matches = Match.find(:all, :conditions => "description is null")
+    # @matches = Match.where("description is null")
     # @matches.each { |match| match.description = '.....'; match.position_id = @type.id; match.save! }
     # 
-    # Match.find(:all, :conditions => "description is not null").each { |match| match.position_id = @type.id; match.save! }
+    # Match.find(description is not null").each { |match| match.position_id = @type.id; match.save! }
         
   end
 

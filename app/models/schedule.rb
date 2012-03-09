@@ -275,7 +275,7 @@ class Schedule < ActiveRecord::Base
   def self.upcoming_schedules(hide_time)
     with_scope :find => {:conditions=>{:starts_at => ONE_WEEK_FROM_TODAY, :played => false}, :order => "starts_at"} do
       if hide_time.nil?
-        find(:all)
+        find.all()
       else
         find(:all, :conditions => ["starts_at >= ?", hide_time, hide_time])
       end

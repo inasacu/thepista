@@ -5,12 +5,12 @@
 	<table class="table">
 
 	  <tr>     
-		<%= content_tag :th, "&nbsp;", :class => "first" %>
-		<%= content_tag :th, "#{label_name(:name)}<br />#{label_name(:sport)}", :class => "heading" %>
-		<%= content_tag :th, "#{label_name(:manager)}<br />#{label_name(:city)}", :class => "heading" %>
-		<%= content_tag :th, label_name(:general_information), :class => "heading" %>
-		<%= content_tag :th, "#{label_name(:scorecard)}<br />#{label_name(:last_game_played)}", :class => "heading" %>
-		<%= content_tag :th, "&nbsp;", :class => "last" %>
+		<%= set_content_tag_safe(:th, "&nbsp;", "first") %>
+		<%= set_content_tag_safe(:th, "#{label_name(:name)}<br />#{label_name(:sport)}", "heading") %>
+		<%= set_content_tag_safe(:th, "#{label_name(:manager)}<br />#{label_name(:city)}", "heading") %>
+		<%= set_content_tag_safe(:th, label_name(:general_information), "heading") %>
+		<%= set_content_tag_safe(:th, "#{label_name(:scorecard)}<br />#{label_name(:last_game_played)}", "heading") %>
+		<%= set_content_tag_safe(:th, "&nbsp;", "last") %>
 	  </tr>
 
 	  <% @groups.each do |group| -%>		

@@ -348,7 +348,6 @@ class SchedulesController < ApplicationController
       redirect_to :action => 'index'
       return
     end
-    # @match_type = Type.find(:all, :conditions => "id in (1, 2, 3, 4)", :order => "id")
     @match_type = Match.get_match_type
   end
 
@@ -360,7 +359,7 @@ class SchedulesController < ApplicationController
       return
 
     elsif current_user.groups.count == 1 
-      @group = current_user.groups.find(:first)
+      @group = current_user.groups.find.first()
 
     elsif current_user.groups.count > 1 and !params[:id].nil?
       @group = Group.find(params[:id])

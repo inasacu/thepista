@@ -12,7 +12,7 @@
 	</td>
 
 	<td class="name_and_date">
-		<%= item_list(group.all_the_managers) %><br />
+		<%= "#{item_list(group.all_the_managers)}".html_safe %><br />
 		<span class="date">
 		<%= group.marker.city %>
 		</span>

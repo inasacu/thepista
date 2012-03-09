@@ -163,7 +163,7 @@ class FeesController < ApplicationController
       return
 
     elsif current_user.groups.count == 1 
-      @group = current_user.groups.find(:first)
+      @group = current_user.groups.find.first()
 
     elsif current_user.groups.count > 1 and !params[:id].nil?
       @group = Group.find(params[:id])
@@ -203,7 +203,7 @@ class FeesController < ApplicationController
       when "User"
         @item = User.find(params[:id])
         @user = @item
-        @users = User.find(:all, :conditions => ['id = ?', @user.id])
+        @users = User.where('id = ?', @user.id)
       else
       end
 

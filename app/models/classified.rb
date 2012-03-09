@@ -26,7 +26,7 @@ class Classified < ActiveRecord::Base
 
     # method section
     def self.latest_items(items)
-      find(:all, :select => "id, concept, created_at, item_type, item_id", :conditions => ["created_at >= ? and archive = false", LAST_WEEK]).each do |item| 
+      find.where("created_at >= ? and archive = false", LAST_WEEK).select("id, concept, created_at, item_type, item_id").each do |item| 
         items << item
       end
       return items 
@@ -41,21 +41,21 @@ class Classified < ActiveRecord::Base
     end
     
     def self.item_classifieds(item)
-      find(:all, :conditions => ["table_id = ? and table_type = ?", item, item.class.to_s])
+      find.where("table_id = ? and table_type = ?", item, item.class.to_s)
     end   
 
     def self.upcoming_classifieds(hide_time)
       with_scope :find => {:conditions=>{:starts_at => ONE_WEEK_FROM_TODAY, :archive => false}, :order => "starts_at"} do
         if hide_time.nil?
-          find(:all)
+          find.all()
         else
-          find(:all, :conditions => ["starts_at >= ?", hide_time, hide_time])
+          find.where("starts_at >= ?", hide_time, hide_time)
         end
       end
     end
     
     def self.find_classified_item(item)
-      find(:first, :conditions => ["id = (select max(id) from classifieds where table_id = ? and table_type = ?) ", item, item.class.to_s])
+      find.where("id = (select max(id) from classifieds where table_id = ? and table_type = ?) ", item, item.class.to_s).first()
     end
 
     private
