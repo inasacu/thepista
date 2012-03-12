@@ -35,7 +35,7 @@ class CupsController < ApplicationController
     @cup.deadline_at = (Time.now + 7.days).midnight 
     @cup.starts_at = (@cup.deadline_at + 1.day) + 19.hours
     @cup.ends_at = (@cup.deadline_at + 60.day) + 21.hours
-    @sports = Sport.find.all()  
+    @sports = Sport.all()  
     render @the_template
   end
 

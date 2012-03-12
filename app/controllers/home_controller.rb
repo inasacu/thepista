@@ -39,7 +39,7 @@ class HomeController < ApplicationController
 
   def get_upcoming 
     store_location
-
+		
     @upcoming_schedules ||= Schedule.upcoming_schedules(session[:schedule_hide_time])
     @upcoming_cups ||= Cup.upcoming_cups(session[:cup_hide_time])
     @upcoming_games ||= Game.upcoming_games(session[:game_hide_time])

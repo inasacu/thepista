@@ -168,15 +168,26 @@ class Cup < ActiveRecord::Base
     self.conditions.gsub!(/\r?\n/, "<br>") unless self.conditions.nil?
   end
     
-  def self.upcoming_cups(hide_time)
-    with_scope :find => {:conditions=>{:starts_at => MAJOR_EVENT_TWO_MONTHS, :archive => false}, :order => "starts_at"} do
-      if hide_time.nil?
-        find.all()
-      else
-        find(:all, :conditions => ["starts_at >= ?", hide_time, hide_time])
-      end
-    end
-  end
+  # def self.upcoming_cups(hide_time)
+  #   with_scope :find => {:conditions=>{:starts_at => MAJOR_EVENT_TWO_MONTHS, :archive => false}, :order => "starts_at"} do
+  #     if hide_time.nil?
+  #       self.all()
+  #     else
+  #       find(:all, :conditions => ["starts_at >= ?", hide_time, hide_time])
+  #     end
+  #   end
+  # end
+
+	def self.upcoming_cups(hide_time)
+		with_scope(:find => where(:starts_at => MAJOR_EVENT_TWO_MONTHS, :archive => false).order("starts_at")) do
+			if hide_time.nil?
+				self.all()
+			else
+				self.where("starts_at >= ?", hide_time)
+			end
+		end
+	end
+	
   
   # group stage games
   def create_group_stage(teams)

@@ -25,7 +25,7 @@ class Sport < ActiveRecord::Base
   attr_accessible :name, :points_for_win, :points_for_draw, :points_for_lose, :player_limit, :description, :icon
   
   def self.sport_name
-    find.all().order("name").collect {|p| [ p.name, p.id ] }
+    self.all().order("name").collect {|p| [ p.name, p.id ] }
   end  
 
 	def self.get_sport_name

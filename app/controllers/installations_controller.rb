@@ -19,8 +19,8 @@ class InstallationsController < ApplicationController
 
 	def new
 		@installation = Installation.new
-		@markers = Marker.find.all()
-		@sports = Sport.find.all()
+		@markers = Marker.all()
+		@sports = Sport.all()
 
 		if @venue
 			@installation.venue_id = @venue.id

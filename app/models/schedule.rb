@@ -272,15 +272,15 @@ class Schedule < ActiveRecord::Base
     return schedule
   end
 
-  def self.upcoming_schedules(hide_time)
-    with_scope :find => {:conditions=>{:starts_at => ONE_WEEK_FROM_TODAY, :played => false}, :order => "starts_at"} do
-      if hide_time.nil?
-        find.all()
-      else
-        find(:all, :conditions => ["starts_at >= ?", hide_time, hide_time])
-      end
-    end
-  end
+	def self.upcoming_schedules(hide_time)
+		with_scope(:find => where(:starts_at => ONE_WEEK_FROM_TODAY, :played => false).order("starts_at")) do
+			if hide_time.nil?
+				self.all()
+			else
+				self.where("starts_at >= ?", hide_time)
+			end
+		end
+	end
 
   def self.last_schedule_played(user)
     find(:first, :select => "starts_at", :conditions => ["id = (select max(schedule_id) from matches where user_id = ? and type_id = 1  and played = true)", user.id])
