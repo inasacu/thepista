@@ -74,6 +74,7 @@ class UsersController < ApplicationController
       redirect_to root_url 
       return
     end
+		@user = User.new
   end
 
 
@@ -181,11 +182,12 @@ class UsersController < ApplicationController
     redirect_back_or_default('/index')
   end
 
-  def search
-    count = User.count_by_solr(params[:search])
-    @users = User.where(paginate_all_by_solr(params[:search], :page => params[:page], :operator => :or)
-    render :template => '/users/index'
-  end 
+  # def search
+  #   count = User.count_by_solr(params[:search])
+  #   @users = User.where(paginate_all_by_solr(params[:search], :page => params[:page], :operator => :or)
+  #   set_the_template('users/index')
+  #   render @the_template
+  # end
 
   def set_looking
     if @user.update_attribute("looking", !@user.looking)

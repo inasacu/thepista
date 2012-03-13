@@ -4,12 +4,13 @@
 			<%= render 'utilities/rpx_now'  %>
 		</div>
 		<div class="rpx">
-			
+
 			<p><%= label_name(:use_login) %></p>
-			
-			<%= form_for (@user_session), :html => {:class => 'form login'} do |f| %>
-				<%= render :partial => '/user_sessions/login', :locals => {:f => f, :the_label =>  label_name(:login)}  if SHOW_LOGIN %>			
+
+			<%= form_for @user_session, :html => {:class => 'form login'} do |f| %>
+				<%= render '/user_sessions/login', :f => f, :the_label =>  label_name(:login)  if SHOW_LOGIN %>			
 			<% end -%>
+			
 		</div>
 	</div>
 </div>

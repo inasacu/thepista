@@ -24,13 +24,13 @@
 	<link  rel="apple-touch-icon" href="/apple-touch-icon.png" />
 	<link rel="home" href="http://www.haypista.com">
     <link rel="shortcut icon" type="image/ico" href="/favicon.ico">
-
+ 
 	<%= stylesheet_link_tag    "application", :media => "all" %>
 	<%= javascript_include_tag "application" %>
 	<%= csrf_meta_tags %>
 
 	<%#= javascript_include_tag :defaults %>	
-	<%#= javascript_include_tag "http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js" %>
+	<%= javascript_include_tag "http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js" %>
 	<%#= ajaxful_rating_style %>
 	<%#= ajaxful_rating_script %>
 
@@ -67,7 +67,7 @@
 	
   </div>
 
-  <%= render :partial => 'shared/share_google' %>
+  <%#= render :partial => 'shared/share_google' %>
   <%= render :partial => 'utilities/browser_detect' if development? %>
 
 </body>

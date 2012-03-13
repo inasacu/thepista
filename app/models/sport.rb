@@ -29,7 +29,7 @@ class Sport < ActiveRecord::Base
   end  
 
 	def self.get_sport_name
-		find.select('name').order('name')
+		self.select('name').order('name')
 	end
 	
 end

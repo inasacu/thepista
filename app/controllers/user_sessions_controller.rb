@@ -1,5 +1,4 @@
 class UserSessionsController < ApplicationController
-	
 	skip_before_filter :verify_authenticity_token, :only => [:create]
 
   def index
@@ -11,6 +10,7 @@ class UserSessionsController < ApplicationController
   end
 
   def new
+		@user_session = UserSession.new
   end
 
   def rpx_create
@@ -41,18 +41,18 @@ class UserSessionsController < ApplicationController
   # # render @the_template
   # end
   # 
-  # def create   
-  #   @user_session = UserSession.new(params[:user_session])
-  #   @user_session.save do |result|
-  #     if result
-  #     else
-  #       render :action => 'new'
-  #       return
-  #     end
-  #   end
-  #   redirect_back_or_default root_url    
-  # end
-  # 
+  def create   
+    @user_session = UserSession.new(params[:user_session])
+    @user_session.save do |result|
+      if result
+      else
+        render :action => 'new'
+        return
+      end
+    end
+    redirect_back_or_default root_url    
+  end
+  
   # def destroy
   #   @user_session = UserSession.find
   #   @user_session.destroy
