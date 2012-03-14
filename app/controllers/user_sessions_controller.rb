@@ -10,7 +10,21 @@ class UserSessionsController < ApplicationController
   end
 
   def new
-		@user_session = UserSession.new
+    @user_session = UserSession.new
+  end
+
+  def create
+    @user_session = UserSession.new(params[:user_session])
+    if @user_session.save
+      redirect_to root_url
+    else
+      render :action => :new
+    end
+  end
+
+  def destroy
+    current_user_session.destroy
+    redirect_to new_user_session_url
   end
 
   def rpx_create
@@ -25,10 +39,10 @@ class UserSessionsController < ApplicationController
     end
   end
 
-  def destroy
-    self.current_user = nil
-    redirect_to :action => :new
-  end
+  # def destroy
+  #   self.current_user = nil
+  #   redirect_to :action => :new
+  # end
 
   # before_filter :require_no_user, :only => [:new, :create, :verify_recaptcha]
   # before_filter :require_user, :only => :destroy
@@ -41,18 +55,18 @@ class UserSessionsController < ApplicationController
   # # render @the_template
   # end
   # 
-  def create   
-    @user_session = UserSession.new(params[:user_session])
-    @user_session.save do |result|
-      if result
-      else
-        render :action => 'new'
-        return
-      end
-    end
-    redirect_back_or_default root_url    
-  end
-  
+  # def create   
+  #   @user_session = UserSession.new(params[:user_session])
+  #   @user_session.save do |result|
+  #     if result
+  #     else
+  #       render :action => 'new'
+  #       return
+  #     end
+  #   end
+  #   redirect_back_or_default root_url    
+  # end
+  # 
   # def destroy
   #   @user_session = UserSession.find
   #   @user_session.destroy

@@ -7,7 +7,7 @@ class ApplicationController < ActionController::Base
   # include SslRequirement
 
   helper :all
-  # helper_method :current_user_session, :current_user
+  helper_method :current_user_session, :current_user
 
   before_filter :set_time_zone , :set_user_language, :set_the_template   
   layout 'zurb'                     unless DISPLAY_HAYPISTA_TEMPLATE
@@ -34,7 +34,7 @@ class ApplicationController < ActionController::Base
   def current_user
     @current_user ||= User.find_by_id(session[:user_id])
   end
-  helper_method :current_user
+  # helper_method :current_user
 
   def current_user=(user)
     session[:user_id] = user.try(:id)
@@ -63,7 +63,17 @@ class ApplicationController < ActionController::Base
     end
   end
 
-  private  
+  private
+    def current_user_session
+      return @current_user_session if defined?(@current_user_session)
+      @current_user_session = UserSession.find
+    end
+
+    def current_user
+      return @current_user if defined?(@current_user)
+      @current_user = current_user_session && current_user_session.user
+    end
+  
   def set_user_language    
     I18n.locale = current_user.language if current_user 
   end
@@ -81,6 +91,8 @@ class ApplicationController < ActionController::Base
   #   return @current_user if defined?(@current_user)
   #   @current_user = current_user_session && current_user_session.record
   # end
+
+
 
   def require_user
     unless current_user

@@ -26,6 +26,7 @@ class User < ActiveRecord::Base
     validate_login_field :false
     UserSession.find_by_login_method = 'find_by_email'
   end
+
   
   # Validations
   validates_presence_of :email

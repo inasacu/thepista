@@ -7,9 +7,9 @@
 
 			<p><%= label_name(:use_login) %></p>
 
-			<%= form_for @user_session, :html => {:class => 'form login'} do |f| %>
+			<%= form_for @user_session do |f| %>
 				<%= render '/user_sessions/login', :f => f, :the_label =>  label_name(:login)  if SHOW_LOGIN %>			
-			<% end -%>
+			<% end -%>			
 			
 		</div>
 	</div>
