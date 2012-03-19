@@ -22,11 +22,6 @@ class UserSessionsController < ApplicationController
     end
   end
 
-  def destroy
-    current_user_session.destroy
-    redirect_to new_user_session_url
-  end
-
   def rpx_create
     if data = RPXNow.user_data(params[:token])
       data = {:name => data[:username], :email => data[:email], :identifier => data[:identifier]}
@@ -39,10 +34,15 @@ class UserSessionsController < ApplicationController
     end
   end
 
-  # def destroy
-  #   self.current_user = nil
-  #   redirect_to :action => :new
-  # end
+	  # def destroy
+	  #   current_user_session.destroy
+	  #   redirect_to new_user_session_url
+	  # end
+
+  def destroy
+    self.current_user = nil
+    redirect_to :action => :new
+  end
 
   # before_filter :require_no_user, :only => [:new, :create, :verify_recaptcha]
   # before_filter :require_user, :only => :destroy

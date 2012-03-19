@@ -91,12 +91,17 @@ class Schedule < ActiveRecord::Base
   def concept_and_name
     "#{group.name} #{concept}"
   end
-  
+
   def the_roster_sort(sort="")
+    the_schedules = Schedule.find(:all, :conditions => ["group_id = ? and played = true", self.group], :order => "starts_at desc")
+    played_games = 0
+    the_schedules.each {|schedule| played_games += 1 }
+
     the_sort = "matches.group_id DESC, users.name"
     the_sort = "#{sort}, #{the_sort}" if (sort != " ASC" and sort != " DESC" and !sort.blank? and !sort.empty?) 
      Match.find(:all, :select => "matches.*, users.name as user_name, types.name as type_name, scorecards.id as scorecard_id, " +
-                                 "scorecards.played as scorecard_played, scorecards.ranking, scorecards.points",
+                                 "scorecards.played as scorecard_played, scorecards.ranking, scorecards.points, 
+                                 (100 * scorecards.played / #{played_games}) as coeficient_played",
                 :joins => "left join users on users.id = matches.user_id left join types on types.id = matches.type_id left join scorecards on scorecards.user_id = matches.user_id",
                 :conditions => ["matches.schedule_id = ? and matches.archive = false and matches.type_id = 1  and scorecards.group_id = ? and users.available = true ", self.id, self.group_id],
                 :order => the_sort)
@@ -130,38 +135,53 @@ class Schedule < ActiveRecord::Base
     :conditions => ["matches.schedule_id = ?  and matches.archive = false and matches.type_id in (1,2,3,4) and scorecards.group_id = ? and users.available = false ", self.id, self.group_id])
   end
 
-
   def the_roster
+    the_schedules = Schedule.find(:all, :conditions => ["group_id = ? and played = true", self.group], :order => "starts_at desc")
+    played_games = 0
+    the_schedules.each {|schedule| played_games += 1 }
+    
     Match.find(:all,    
     :select => "matches.*, users.name as user_name, types.name as type_name, scorecards.id as scorecard_id, " +
-    "scorecards.played as scorecard_played, scorecards.ranking, scorecards.points ",
+    "scorecards.played as scorecard_played, scorecards.ranking, scorecards.points, (100 * scorecards.played / #{played_games}) as coeficient_played",
     :joins => "left join users on users.id = matches.user_id left join types on types.id = matches.type_id left join scorecards on scorecards.user_id = matches.user_id",
     :conditions => ["matches.schedule_id = ? and matches.archive = false and matches.type_id = 1  and scorecards.group_id = ? and users.available = true ", self.id, self.group_id],
     :order => "matches.group_id desc, users.name")
   end
 
   def the_last_minute
+    the_schedules = Schedule.find(:all, :conditions => ["group_id = ? and played = true", self.group], :order => "starts_at desc")
+    played_games = 0
+    the_schedules.each {|schedule| played_games += 1 }
+    
     Match.find(:all,    
     :select => "matches.*, users.name as user_name, types.name as type_name, scorecards.id as scorecard_id, " +
-    "scorecards.played as scorecard_played, scorecards.ranking, scorecards.points ",
+    "scorecards.played as scorecard_played, scorecards.ranking, scorecards.points, (100 * scorecards.played / #{played_games}) as coeficient_played",
     :joins => "left join users on users.id = matches.user_id left join types on types.id = matches.type_id left join scorecards on scorecards.user_id = matches.user_id",
     :conditions => ["matches.schedule_id = ?  and matches.archive = false and matches.type_id = 2 and scorecards.group_id = ? and users.available = true ", self.id, self.group_id],
     :order => "matches.group_id desc, users.name")
   end
 
   def the_no_show
+    the_schedules = Schedule.find(:all, :conditions => ["group_id = ? and played = true", self.group], :order => "starts_at desc")
+    played_games = 0
+    the_schedules.each {|schedule| played_games += 1 }
+    
     Match.find(:all,    
     :select => "matches.*, users.name as user_name, types.name as type_name, scorecards.id as scorecard_id, " +
-    "scorecards.played as scorecard_played, scorecards.ranking, scorecards.points ",
+    "scorecards.played as scorecard_played, scorecards.ranking, scorecards.points, (100 * scorecards.played / #{played_games}) as coeficient_played",
     :joins => "left join users on users.id = matches.user_id left join types on types.id = matches.type_id left join scorecards on scorecards.user_id = matches.user_id",
     :conditions => ["matches.schedule_id = ?  and matches.archive = false and matches.type_id in (3,4) and scorecards.group_id = ? and users.available = true ", self.id, self.group_id],
     :order => "matches.group_id desc, users.name")
   end
 
   def the_unavailable
+    the_schedules = Schedule.find(:all, :conditions => ["group_id = ? and played = true", self.group], :order => "starts_at desc")
+    played_games = 0
+    the_schedules.each {|schedule| played_games += 1 }
+    
     Match.find(:all,    
     :select => "matches.*, users.name as user_name, types.name as type_name, scorecards.id as scorecard_id, " +
-    "scorecards.played as scorecard_played, scorecards.ranking, scorecards.points ",
+    "scorecards.played as scorecard_played, scorecards.ranking, scorecards.points, (100 * scorecards.played / #{played_games}) as coeficient_played",
     :joins => "left join users on users.id = matches.user_id left join types on types.id = matches.type_id left join scorecards on scorecards.user_id = matches.user_id",
     :conditions => ["matches.schedule_id = ?  and matches.archive = false and matches.type_id in (1,2,3,4) and scorecards.group_id = ? and users.available = false ", self.id, self.group_id],
     :order => "matches.group_id desc, users.name")

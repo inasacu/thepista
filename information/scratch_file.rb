@@ -1,129 +1,25 @@
-
-db:migrate in app thepista
-
-==  AddReservationCode: migrating =============================================
--- add_column(:reservations, :code, :string)
-   -> 0.2118s
--- add_column(:venues, :day_light_savings, :boolean, {:default=>true})
-   -> 0.1436s
--- add_column(:venues, :day_light_starts_at, :datetime)
-   -> 0.0043s
--- add_column(:venues, :day_light_ends_at, :datetime)
-   -> 0.0027s
-==  AddReservationCode: migrated (0.3630s) ====================================
-
-Migrating to AddUserLastMinuteNotification (20110709111214)
-==  AddUserLastMinuteNotification: migrating ==================================
--- add_column(:users, :last_minute_notification, :boolean, {:default=>true})
-   -> 0.0434s
-==  AddUserLastMinuteNotification: migrated (0.0435s) =========================
-
-Migrating to AddSportPlayerLimit (20110802174331)
-==  AddSportPlayerLimit: migrating ============================================
--- add_column(:sports, :player_limit, :integer, {:default=>150})
-   -> 0.0230s
--- change_column(:groups, :player_limit, :integer, {:default=>150})
-   -> 0.7598s
-==  AddSportPlayerLimit: migrated (0.7831s) ===================================
+Started POST "/user_sessions" for 127.0.0.1 at 2012-03-17 20:30:06 +0100
+Processing by UserSessionsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"i0JkEezjah8++gvYqkQiqVP9l3eGBywClBLndnxlcuI=", "user_session"=>{"email"=>"raulmpadilla@gmail.com", "password"=>"[FILTERED]"}, "commit"=>"Entrar"}
+  [1m[36mUser Load (1.2ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."email" = 'raulmpadilla@gmail.com' LIMIT 1[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36m (0.6ms)[0m  [1mUPDATE "users" SET "login_count" = 1566, "last_login_at" = '2012-03-17 18:00:25.239989', "current_login_at" = '2012-03-17 19:30:06.435283', "last_login_ip" = '88.25.225.91', "current_login_ip" = '127.0.0.1', "last_request_at" = '2012-03-17 19:30:06.435643', "perishable_token" = 'J7qOhGqy5LTTJvWLw7D1', "updated_at" = '2012-03-17 19:30:06.437324' WHERE "users"."id" = 2001[0m
+[paperclip] Saving attachments.
+  [1m[35m (0.7ms)[0m  COMMIT
+Redirected to http://thepista.dev/
+Completed 302 Found in 12ms (ActiveRecord: 2.6ms)
 
 
-
-
-
-
-
-
-
-def show_index
-  # get your api keys at https://www.linkedin.com/secure/developer
-  client = LinkedIn::Client.new(APP_CONFIG['linkedin']['api_key'], APP_CONFIG['linkedin']['secret_key'])
-  request_token = client.request_token(:oauth_callback => "http://#{request.host_with_port}/auth/callback")
-  session[:rtoken] = request_token.token
-  session[:rsecret] = request_token.secret
-  redirect_to client.request_token.authorize_url
-end
-
-def callback
-  client = LinkedIn::Client.new("your_api_key", "your_secret")
-  if session[:atoken].nil?
-    pin = params[:oauth_verifier]
-    atoken, asecret = client.authorize_from_request(session[:rtoken], session[:rsecret], pin)
-    session[:atoken] = atoken
-    session[:asecret] = asecret
-  else
-    client.authorize_from_access(session[:atoken], session[:asecret])
-  end
-  @profile = client.profile
-  @connections = client.connections
-end
+Started GET "/" for 127.0.0.1 at 2012-03-17 20:30:06 +0100
+Processing by HomeController#index as HTML
+  [1m[36mUser Load (0.8ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = 2001 LIMIT 1[0m
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36m (0.5ms)[0m  [1mUPDATE "users" SET "last_request_at" = '2012-03-17 19:30:06.466332', "perishable_token" = 'MQ2x0RVEYf8fxZylfpe', "updated_at" = '2012-03-17 19:30:06.467107' WHERE "users"."id" = 2001[0m
+[paperclip] Saving attachments.
+  [1m[35m (0.7ms)[0m  COMMIT
+  [1m[36mTeammate Load (1.6ms)[0m  [1mSELECT id FROM "teammates" WHERE (accepted_at >= '2012-03-14 19:27:52.220857' and status = 'accepted') ORDER BY id[0m
+  [1m[35mTeammate Load (0.7ms)[0m  SELECT "teammates".* FROM "teammates" WHERE (id in (NULL)) ORDER BY accepted_at desc
   
-def show
-  store_location
-  # get your api keys at https://www.linkedin.com/secure/developer
-  
-  # client = LinkedIn::Client.new(APP_CONFIG['linkedin']['api_key'], APP_CONFIG['linkedin']['secret_key'])
-  # rtoken = client.request_token.token
-  # rsecret = client.request_token.secret
-  # 
-  # # to test from your desktop, open the following url in your browser
-  # # and record the pin it gives you
-  # client.request_token.authorize_url
-  # => "https://api.linkedin.com/uas/oauth/authorize?oauth_token=<generated_token>"
-  # 
-  # # then fetch your access keys
-  # client.authorize_from_request(rtoken, rsecret, pin)
-  # => ["05984f88-e096-4fae-8f2d-13915bf87f4f", "8c4b59f5-6046-4155-8c4a-44a4d80e791a"] # <= save these for future requests
-  # 
-  # # or authorize from previously fetched access keys
-  # client.authorize_from_access("05984f88-e096-4fae-8f2d-13915bf87f4f", "8c4b59f5-6046-4155-8c4a-44a4d80e791a")
-
-  # you're now free to move about the cabin, call any API method
-  
-  # >> client = LinkedIn::Client.new(APP_CONFIG['linkedin']['api_key'], APP_CONFIG['linkedin']['secret_key'])
-  # => #<LinkedIn::Client:0x5891610 @csecret="hWzelp5eIWkFX6wUTID6Dj3ljYnq6pTATQyYwtljCnH-azO4PJ1__N1nOThE-5fg", @ctoken="bMT6ozAQuigLB3B0rRvthjUdVucw9KaPmst3SI9-Ph6KPG9-T6Og5LGvcWF6hqS8", @consumer_options={:authorize_path=>"/uas/oauth/authorize", :access_token_path=>"/uas/oauth/accessToken", :request_token_path=>"/uas/oauth/requestToken"}>
-  
-  # >> rtoken = client.request_token.token
-  # .=> "3cb25ceb-2030-4802-9e96-0454b81aa27a"
-  
-  # >> rsecret = client.request_token.secret
-  # => "582a5f0c-5bc6-4e80-abd1-ecfa49c917b8"
-  
-  # >> client.request_token.authorize_url
-  # => "https://api.linkedin.com/uas/oauth/authorize?oauth_token=3cb25ceb-2030-4802-9e96-0454b81aa27a"
-  
-  # >> pin=91443
-  # => 91443
-  
-  # >> client.authorize_from_request(rtoken, rsecret, pin)
-  # => ["05984f88-e096-4fae-8f2d-13915bf87f4f", "8c4b59f5-6046-4155-8c4a-44a4d80e791a"]
-  
-  # >> client.authorize_from_access("05984f88-e096-4fae-8f2d-13915bf87f4f", "8c4b59f5-6046-4155-8c4a-44a4d80e791a")
-  # => ["05984f88-e096-4fae-8f2d-13915bf87f4f", "8c4b59f5-6046-4155-8c4a-44a4d80e791a"]
-  
-  
-end
-
-
-
-
-paypal sandbox accounts
-
-raulmpadilla@gmail.com 19ti79q42e
-
-
-test accounts 
-
-raulmp_1308505502_per@gmail.com   308508306
-
-raulmp_1308504683_biz@gmail.com   308504544
-
-
-Test Account  Date Created
-Test Account: raulmp_1308504683_biz@gmail.com Jun. 19, 2011 10:31:32 PDT
-API Username: raulmp_1308504683_biz_api1.gmail.com
-API Password: 1308504692
-Signature:   AFcWxV21C7fd0v3bYYYRCpSSRl31AEhy4Ky1dOMe7W5n8hrUF5zlgF6b
-
 
 
 

@@ -494,6 +494,7 @@ es:
      Friday: Viernes 
      profile:  Perfil
      forum_notification:  Suscríbete por e-mail
+     forum_notification_false:  No recibe mensajes del muro.
      forum_notification_cluetip:  "Esta opción permite que recibas los mensajes dejados en el muro del evento en tu cuenta de correo."
      forum_options:  Opciones
      message_notification:  Correos

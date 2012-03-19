@@ -487,6 +487,7 @@ en:
      Friday: Friday 
      profile:  Profile
      forum_notification:  Subscribe by email.
+     forum_notification_false:  Doesn't receive wall notices.
      forum_notification_cluetip:  "This option allows you to receive messages left on your events' wall in your email inbox."
      forum_options:  Options
      message_notification:  Emails
