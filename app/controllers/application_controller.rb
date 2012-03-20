@@ -2,16 +2,14 @@
 # Likewise, all the methods added will be available for all controllers.
 
 class ApplicationController < ActionController::Base
-	protect_from_forgery # See ActionController::RequestForgeryProtection for details
-
-	# include SslRequirement
-
 	helper :all
-	# helper_method :current_user_session, 
+	protect_from_forgery
+	
 	helper_method :current_user
+	helper_method :current_user_session
 
 	before_filter :set_time_zone , :set_user_language, :set_the_template   
-	layout 'zurb'                     unless DISPLAY_HAYPISTA_TEMPLATE
+	layout 'zurb'                     																			unless DISPLAY_HAYPISTA_TEMPLATE
 
 
 	# this probably needs to go in the helper
@@ -31,22 +29,19 @@ class ApplicationController < ActionController::Base
 	end
 
 	protected
-
-	def current_user
-		@current_user ||= User.find_by_id(session[:user_id])
-	end
-	# helper_method :current_user
-
-	def current_user=(user)
-		session[:user_id] = user.try(:id)
-		@current_user = user
-	end
+	# # def current_user
+	# # 	@current_user ||= User.find_by_id(session[:user_id])
+	# # end
+	# # 
+	# # def current_user=(user)
+	# # 	session[:user_id] = user.try(:id)
+	# # 	@current_user = user
+	# # end
 
 	def access_denied
 		flash[:error] = "You do not have access!"
 		redirect_to :controller => :user, :action => :new
 	end
-
 
 	def has_member_access(item)
 		unless current_user.is_member_of?(item)
@@ -65,15 +60,15 @@ class ApplicationController < ActionController::Base
 	end
 
 	private
-	# def current_user_session
-	# 	return @current_user_session if defined?(@current_user_session)
-	# 	@current_user_session = UserSession.find
-	# end
-	# 
-	# def current_user
-	# 	return @current_user if defined?(@current_user)
-	# 	@current_user = current_user_session && current_user_session.user
-	# end
+	def current_user_session
+		return @current_user_session if defined?(@current_user_session)
+		@current_user_session = UserSession.find
+	end
+	
+	def current_user
+		return @current_user if defined?(@current_user)
+		@current_user = current_user_session && current_user_session.user
+	end
 
 	def set_user_language    
 		I18n.locale = current_user.language if current_user 
@@ -111,5 +106,4 @@ class ApplicationController < ActionController::Base
 	def set_template
 		set_the_template
 	end
-
 end

@@ -4,10 +4,10 @@ Thepista::Application.routes.draw do
 	
 	match '/' => 'home#index'
 
-	match 'rpx_token_sessions' => 'user_sessions#rpx_create', :as => :rpx_token_sessions
+	match 'rpx_token_sessions' => 'users#rpx_create', :as => :rpx_token_sessions
 
 	match '/rpx_signup' => 'users#rpx_new', :as => :rpx_signup
-	match 'users/rpx_create' => 'users#rpx_create', :as => :rpx_create
+	# match 'users/rpx_create' => 'users#rpx_create', :as => :rpx_create
 	match 'signup' => 'users#signup', :as => :signup
 
 	match 'acceso_session' => 'user_sessions#new', :as => :login

@@ -8,7 +8,24 @@
 			<p><%= label_name(:use_login) %></p>
 
 			<%= form_for @user_session do |f| %>
-				<%= render '/user_sessions/login', :f => f, :the_label =>  label_name(:login)  if SHOW_LOGIN %>			
+				<div class="group">		
+					<label><%= field_label_name(:email) %></label><%= f.text_field :email, :class => 'username text' %>	
+					<br/>
+					<br/>
+
+					<label><%= field_label_name(:password) %></label><%= f.password_field :password, :class => 'username text' %>
+					<br/>
+					<br/>
+					<br/>
+
+					<label>&nbsp;</label><%= link_to(label_name(:password_forgotten), :controller => 'password_resets', :action => 'new') %>
+					<br/>
+					<br/>
+
+					<div class="group navform" align="">
+						<%= submit_tag label_name(:login), :class => "button" %>	 
+					</div>		
+				</div>			
 			<% end -%>			
 			
 		</div>
