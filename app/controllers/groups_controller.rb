@@ -31,7 +31,7 @@ class GroupsController < ApplicationController
     marker = Marker.find(params[:marker_id]) if params[:marker_id]    
     @group = Group.new
     @group.marker = marker
-    @sports = Sport.find().all()
+    @sports = Sport.find(:all)
     render @the_template
   end
 

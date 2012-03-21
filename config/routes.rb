@@ -128,6 +128,7 @@ Thepista::Application.routes.draw do
 			post :rpx_associate
 			get :list
 			get :recent_activity
+			get :notice
 		end
 	end
 

@@ -12,6 +12,7 @@ class ApplicationController < ActionController::Base
 	layout 'zurb'                     																			unless DISPLAY_HAYPISTA_TEMPLATE
 
 
+	protected
 	# this probably needs to go in the helper
 	def set_the_template(default_template='')
 		the_action = self.action_name.singularize
@@ -27,17 +28,7 @@ class ApplicationController < ActionController::Base
 		end
 
 	end
-
-	protected
-	# # def current_user
-	# # 	@current_user ||= User.find_by_id(session[:user_id])
-	# # end
-	# # 
-	# # def current_user=(user)
-	# # 	session[:user_id] = user.try(:id)
-	# # 	@current_user = user
-	# # end
-
+	
 	def access_denied
 		flash[:error] = "You do not have access!"
 		redirect_to :controller => :user, :action => :new
@@ -78,30 +69,36 @@ class ApplicationController < ActionController::Base
 		Time.zone = @current_user.time_zone if @current_user
 	end
 
-	def require_user
-		unless current_user
-			store_location
-			redirect_to new_user_session_url
-			return false
-		end
-	end
+  def require_user
+    unless current_user
+      store_location
+      flash[:notice] = "You must be logged in to access this page"
+      redirect_to new_user_session_url
+      return false
+    end
+  end
 
-	def require_no_user
-		if current_user
-			store_location
-			redirect_to root_url
-			return false
-		end
-	end
+  def require_no_user
+    if current_user
+      store_location
+      flash[:notice] = "You must be logged out to access this page"
+      redirect_to user_url( :current )
+      return false
+    end
+  end
+  
+  def store_location
+    session[:return_to] = request.url
+  end
 
-	def store_location
-		session[:return_to] = request.url
-	end
+  def clear_location
+    session[:return_to] = nil
+  end
 
-	def redirect_back_or_default(default)
-		redirect_to(session[:return_to] || default)
-		session[:return_to] = nil
-	end
+  def redirect_back_or_default(default)
+    redirect_to(session[:return_to] || default)
+    session[:return_to] = nil
+  end
 
 	def set_template
 		set_the_template

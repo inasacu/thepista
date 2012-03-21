@@ -64,8 +64,8 @@
 							</td>
 						</tr>
 						
-						<%= tr_td_action(:company, @no_linkedin_profile ? @user.company : link_to(@user.company, @user.linkedin_url, :target => "_blank"))  %>
-						<%= tr_td_action(:linkedin_headline, link_to(@profile.headline, @user.linkedin_url, :target => "_blank")) unless @profile.blank? %>
+						<%#= tr_td_action(:company, @no_linkedin_profile ? @user.company : link_to(@user.company, @user.linkedin_url, :target => "_blank"))  %>
+						<%#= tr_td_action(:linkedin_headline, link_to(@profile.headline, @user.linkedin_url, :target => "_blank")) unless @profile.blank? %>
 											
 						<tr>
 							<td class="label"><%= label_name(:groups) %></td>
@@ -168,8 +168,8 @@
 						<% unless is_notice %>
 						
 							<tr>
-								<%= content_tag :td, label_name('evaluation'), :class =>"label" %>
-								<%= content_tag :td, ratings_for( @user, :static, :dimension => :evaluation, :size => "small" ), :class => get_the_action %>
+								<%#= content_tag :td, label_name('evaluation'), :class =>"label" %>
+								<%#= content_tag :td, ratings_for( @user, :static, :dimension => :evaluation, :size => "small" ), :class => get_the_action %>
 							</tr>
 						
 						<% if @user.friends.count > 0 %>
@@ -196,7 +196,7 @@
 
 <% content_for :sidebar, render(:partial => 'users/sidebar_show') -%>
 
-<% content_for :sidebar, render('shared/completeness', :user => @user) unless @user.percent_complete == 100 or @user != current_user -%>
+<%# content_for :sidebar, render('shared/completeness', :user => @user) unless @user.percent_complete == 100 or @user != current_user -%>
 
 <% if current_user.is_group_manager_of? %>
 	<% content_for :sidebar, render(:partial => '/shared/sidebar_basic_legend', 

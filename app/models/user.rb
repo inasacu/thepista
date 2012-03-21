@@ -21,17 +21,18 @@ class User < ActiveRecord::Base
    
       
   acts_as_authentic do |c|
-    # c.openid_required_fields = [:nickname, :email]
     login_field :email
-    validate_login_field :false
+    # validate_login_field :false
+		# validate_password_confirmation_field	:false
+		# validate_password_field	:false
     UserSession.find_by_login_method = 'find_by_email'
   end
 
   
   # Validations
-  validates_presence_of :email
-  validates_length_of   :name,            :within => NAME_RANGE_LENGTH
-  # validates_inclusion_of   :language,     :in => ['en', 'es'],    :allow_nil => false
+  validates_presence_of 			:email
+  validates_length_of   			:name,            :within => NAME_RANGE_LENGTH
+  validates_inclusion_of   		:language,     		:in => ['en', 'es'],    :allow_nil => false, :default => 'es'
   
   # validates_format_of   :name,            :with =>  /^[A-Z a-z 0-9]*\z/
   # validates_acceptance_of :terms_of_service
@@ -463,7 +464,7 @@ class User < ActiveRecord::Base
     end
 
     def deliver_signup_notification
-      UserMailer.delay.deliver_signup_notification(self)
+      # UserMailer.delay.deliver_signup_notification(self)
     end
     
     def deliver_password_reset_instructions!  

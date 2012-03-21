@@ -2,7 +2,8 @@ class UserSessionsController < ApplicationController
 	skip_before_filter :verify_authenticity_token, :only => [:create]
 
 	def index
-		redirect_to root_url
+		# this is where RPX will return to if the user cancelled the login process
+		redirect_to current_user ? root_url : new_user_session_url
 	end
 
 	def show
