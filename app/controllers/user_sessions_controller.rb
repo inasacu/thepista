@@ -22,6 +22,26 @@ class UserSessionsController < ApplicationController
 		end
 	end
 
+	def rpx_create			
+		if data = RPXNow.user_data(params[:token])
+			data = {:name => data[:username], :email => data[:email], :identifier => data[:identifier]}
+			the_user = User.find_by_email(data[:email]) 
+
+			if the_user.nil?
+				# Need to "sign up", store the token so we can get the data again later...
+				session[:rpx_token] = params[:token]
+				redirect_to :rpx_signup
+				return
+			end
+			@user_session = UserSession.new(the_user)
+			if @user_session.save
+				redirect_to root_url
+			else
+				redirect_to root_url
+			end
+		end
+	end
+	
 	# def rpx_create
 	# 	if data = RPXNow.user_data(params[:token])
 	# 		data = {:name => data[:username], :email => data[:email], :identifier => data[:identifier]}
