@@ -1,17 +1,9 @@
-# review peepcode-code-review.pdf
-# to access the configuration settings 
-# for the current environment with a simple lookup:
-
-# APP_CONFIG['flickr_api']['key']
+# APP_CONFIG['rpx_api_realm']
 
 # thepista.local
 development: 
     google_api:
-        # key:            ABQIAAAACEstwoTkWwNQXJRd_oxlohQcuuUAALNd07C6qfGBYEYuSAyTnhR7YxsrQg3X4P7h718oyo40Ap6xiQ
         key:            ABQIAAAACEstwoTkWwNQXJRd_oxlohSUSx-MY4mDXI31yLoG3nSQfTBNrhQlx595OTo0JB9r-YrOsXEpb_ut0A
-    
-    rpx_api_key:            f7bbfeed95a9e71fe994397d496614da8972aa2c
-    rpx_api_realm:          thepista-local
         
     server_name: 
         key:            thepista.dev
@@ -23,21 +15,13 @@ development:
     weather:
         partner: YOUR_PARTNER_KEY
         license: YOUR_LICENSE_KEY
-
-    # eg. weatherbug.com
-    weather_bug:
-        code: YOUR_API_CODE
     
     disqus:
         secret_key:  JKdz3WgZFZq7lmfV1whprURJk8QjIgVX6jV2LIqubmLvkbpLmZPfRlPWTm9Hg7YD
-        
-    # eg. Yahoo! Placemaker
+
     yahoo:
         app_id: 4uSWOoTV34EAizCZbcobagFpBQVErwkVJwnS8OUagpua3nJpKtTcfNr16X9yOIo-
 
-    # * The SUBSCRIBE KEY is always public information.
-    # * Never Share the SECRET KEY.
-    # * Hide the PUBLISH KEY For a Secure Application
     pubhub:    
         publish_key: pub-4a29a03a-6f61-461f-a21b-75c61f73b55f
         subscribe_key:  sub-2f610f4c-a98d-11e0-a8dc-f9b6701e4370
@@ -53,17 +37,11 @@ development:
         secret_key:     hWzelp5eIWkFX6wUTID6Dj3ljYnq6pTATQyYwtljCnH-azO4PJ1__N1nOThE-5fg
         access_1_key:   05984f88-e096-4fae-8f2d-13915bf87f4f
         access_2_key:   8c4b59f5-6046-4155-8c4a-44a4d80e791a
-        # ["05984f88-e096-4fae-8f2d-13915bf87f4f", "8c4b59f5-6046-4155-8c4a-44a4d80e791a"]
-        # client.authorize_from_access("05984f88-e096-4fae-8f2d-13915bf87f4f", "8c4b59f5-6046-4155-8c4a-44a4d80e791a")
 
 # http://thepista.heroku.com/
 test:
     google_api:
         key:            ABQIAAAACEstwoTkWwNQXJRd_oxlohSq-oAE0ua8qdLg2ooJ1gPBC3o68hSzsTAi3Ohp8MXoYZjPHRLMnqEGxw
-    
-    rpx_api: 
-        key:            59b7bd4a615a2c17439b6a4ca064a1d5f482944e
-        realm:          thepista-heroku 
         
     server_name: 
         key:            thepista.heroku.com
@@ -75,21 +53,13 @@ test:
     weather:
         partner: YOUR_PARTNER_KEY
         license: YOUR_LICENSE_KEY
-
-    # eg. weatherbug.com
-    weather_bug:
-        code: YOUR_API_CODE
     
     disqus:
         secret_key:  JKdz3WgZFZq7lmfV1whprURJk8QjIgVX6jV2LIqubmLvkbpLmZPfRlPWTm9Hg7YD
     
-    # eg. Yahoo! Placemaker
     yahoo:
         app_id: 4uSWOoTV34EAizCZbcobagFpBQVErwkVJwnS8OUagpua3nJpKtTcfNr16X9yOIo-
-
-    # * The SUBSCRIBE KEY is always public information.
-    # * Never Share the SECRET KEY.
-    # * Hide the PUBLISH KEY For a Secure Application
+    
     pubhub:    
         publish_key: pub-4a29a03a-6f61-461f-a21b-75c61f73b55f
         subscribe_key:  sub-2f610f4c-a98d-11e0-a8dc-f9b6701e4370
@@ -105,19 +75,11 @@ test:
         secret_key:     hWzelp5eIWkFX6wUTID6Dj3ljYnq6pTATQyYwtljCnH-azO4PJ1__N1nOThE-5fg
         access_1_key:   05984f88-e096-4fae-8f2d-13915bf87f4f
         access_2_key:   8c4b59f5-6046-4155-8c4a-44a4d80e791a
-        # ["05984f88-e096-4fae-8f2d-13915bf87f4f", "8c4b59f5-6046-4155-8c4a-44a4d80e791a"]
-        # client.authorize_from_access("05984f88-e096-4fae-8f2d-13915bf87f4f", "8c4b59f5-6046-4155-8c4a-44a4d80e791a")
-        
-        
 
 # http://thepista.heroku.com/
 staging:
     google_api:
         key:            ABQIAAAACEstwoTkWwNQXJRd_oxlohSq-oAE0ua8qdLg2ooJ1gPBC3o68hSzsTAi3Ohp8MXoYZjPHRLMnqEGxw
-    
-    rpx_api: 
-        key:            59b7bd4a615a2c17439b6a4ca064a1d5f482944e
-        realm:          thepista-heroku
         
     server_name: 
         key:            thepista.heroku.com
@@ -129,21 +91,13 @@ staging:
     weather:
         partner: YOUR_PARTNER_KEY
         license: YOUR_LICENSE_KEY
-
-    # eg. weatherbug.com
-    weather_bug:
-        code: YOUR_API_CODE
-    
+   
     disqus:
         secret_key:  JKdz3WgZFZq7lmfV1whprURJk8QjIgVX6jV2LIqubmLvkbpLmZPfRlPWTm9Hg7YD
     
-    # eg. Yahoo! Placemaker
     yahoo:
         app_id: 4uSWOoTV34EAizCZbcobagFpBQVErwkVJwnS8OUagpua3nJpKtTcfNr16X9yOIo-
 
-    # * The SUBSCRIBE KEY is always public information.
-    # * Never Share the SECRET KEY.
-    # * Hide the PUBLISH KEY For a Secure Application
     pubhub:    
         publish_key: pub-4a29a03a-6f61-461f-a21b-75c61f73b55f
         subscribe_key:  sub-2f610f4c-a98d-11e0-a8dc-f9b6701e4370
@@ -159,23 +113,11 @@ staging:
         secret_key:     hWzelp5eIWkFX6wUTID6Dj3ljYnq6pTATQyYwtljCnH-azO4PJ1__N1nOThE-5fg
         access_1_key:   05984f88-e096-4fae-8f2d-13915bf87f4f
         access_2_key:   8c4b59f5-6046-4155-8c4a-44a4d80e791a
-        # ["05984f88-e096-4fae-8f2d-13915bf87f4f", "8c4b59f5-6046-4155-8c4a-44a4d80e791a"]
-        # client.authorize_from_access("05984f88-e096-4fae-8f2d-13915bf87f4f", "8c4b59f5-6046-4155-8c4a-44a4d80e791a")
-        
-        
-               
+
+# haypista.heroku.com
 production:
-    # haypista.heroku.com
     google_api:
         key:            ABQIAAAACEstwoTkWwNQXJRd_oxlohRJsBlthpMFqyH8uqiMijHv-RMFmBTkGqR7rVuhstoeKCeFz7pjFx3ieA            
-    
-    # haypista.com
-    # google_api:
-    # key:                ABQIAAAACEstwoTkWwNQXJRd_oxlohRJsBlthpMFqyH8uqiMijHv-RMFmBTkGqR7rVuhstoeKCeFz7pjFx3ieA             
-    
-    rpx_api: 
-        key:   2acf2c6b39e3d1d988629e0cb41c675827c2f45e
-        realm: haypista
         
     server_name: 
         key:            haypista.com
@@ -187,21 +129,13 @@ production:
     weather:
         partner: YOUR_PARTNER_KEY
         license: YOUR_LICENSE_KEY
-
-    # eg. weatherbug.com
-    weather_bug:
-        code: YOUR_API_CODE
     
     disqus:
         secret_key:  JKdz3WgZFZq7lmfV1whprURJk8QjIgVX6jV2LIqubmLvkbpLmZPfRlPWTm9Hg7YD
     
-    # eg. Yahoo! Placemaker
     yahoo:
         app_id: 4uSWOoTV34EAizCZbcobagFpBQVErwkVJwnS8OUagpua3nJpKtTcfNr16X9yOIo-
-
-    # * The SUBSCRIBE KEY is always public information.
-    # * Never Share the SECRET KEY.
-    # * Hide the PUBLISH KEY For a Secure Application
+    
     pubhub:    
         publish_key: pub-4a29a03a-6f61-461f-a21b-75c61f73b55f
         subscribe_key:  sub-2f610f4c-a98d-11e0-a8dc-f9b6701e4370
@@ -217,7 +151,3 @@ production:
         secret_key:     hWzelp5eIWkFX6wUTID6Dj3ljYnq6pTATQyYwtljCnH-azO4PJ1__N1nOThE-5fg
         access_1_key:   05984f88-e096-4fae-8f2d-13915bf87f4f
         access_2_key:   8c4b59f5-6046-4155-8c4a-44a4d80e791a
-        # ["05984f88-e096-4fae-8f2d-13915bf87f4f", "8c4b59f5-6046-4155-8c4a-44a4d80e791a"]
-        # client.authorize_from_access("05984f88-e096-4fae-8f2d-13915bf87f4f", "8c4b59f5-6046-4155-8c4a-44a4d80e791a")
-        
-        

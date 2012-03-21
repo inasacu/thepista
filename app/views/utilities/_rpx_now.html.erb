@@ -1,1 +1,1 @@
-<%=raw RPXNow.embed_code('thepista-local', rpx_token_sessions_url, :language => I18n.locale)  if SHOW_RPX_NOW %>
+<%=raw RPXNow.embed_code(RPX_APP_NAME, rpx_token_sessions_url, :language => I18n.locale, :options => {:width => '400', :height => '240'})  if SHOW_RPX_NOW %>
