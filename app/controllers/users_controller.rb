@@ -7,11 +7,7 @@ class UsersController < ApplicationController
 	before_filter :get_user_self,       :only => [:set_private_phone, :set_private_profile, :set_enable_comments, :set_looking, :set_teammate_notification, :set_message_notification, :set_blog_notification, :set_forum_notification, :set_last_minute_notification]
 	before_filter :get_user_group,      :only =>[:set_manager, :remove_manager, :set_sub_manager, :remove_sub_manager, :set_subscription, :remove_subscription, :set_moderator, :remove_moderator]
 
-	# before_filter :setup_rpx_api_key,   :only => [:rpx_new, :rpx_create, :rpx_associate]  
 	before_filter :has_member_access,   :only => [:rate]
-
-	# ssl_required :signup, :new, :create
-	# ssl_allowed :index, :list, :show
 
 	def index
 		unless current_user.is_maximo?
@@ -34,10 +30,12 @@ class UsersController < ApplicationController
 		@profile = ""
 		@no_linkedin_profile = (@user.linkedin_url.nil? or @user.linkedin_url.blank? or @user.linkedin_url.empty?)
 
-		unless @no_linkedin_profile
-			@client = LinkedIn::Client.new(APP_CONFIG['linkedin']['api_key'], APP_CONFIG['linkedin']['secret_key'])
-			@client.authorize_from_access(@user.linkedin_token, @user.linkedin_secret)
-			@profile = @client.profile
+		if DISPLAY_LINKEDIN
+			unless @no_linkedin_profile
+				@client = LinkedIn::Client.new(APP_CONFIG['linkedin']['api_key'], APP_CONFIG['linkedin']['secret_key'])
+				@client.authorize_from_access(@user.linkedin_token, @user.linkedin_secret)
+				@profile = @client.profile
+			end
 		end
 
 		@items = current_user.challenges.where("ends_at > ?", Time.zone.now)
@@ -47,7 +45,7 @@ class UsersController < ApplicationController
 	def notice
 		store_location
 		set_the_template('users/show')
-		return @the_template
+		render @the_template
 	end
 
 	def signup
@@ -82,7 +80,7 @@ class UsersController < ApplicationController
 	def create
 		@user = User.new(params[:user])
 
-		# if verify_recaptcha      
+		if verify_recaptcha      
 			@user.name = @user.email      
 			if @user.save
 				@user.email_to_name
@@ -94,11 +92,11 @@ class UsersController < ApplicationController
 				return
 			end
 
-		# else 
-		# 	flash[:warning] = I18n.t(:recaptcha_failure)
-		# 	redirect_to :signup
-		# 	return
-		# end  
+		else 
+			flash[:warning] = I18n.t(:recaptcha_failure)
+			redirect_to :signup
+			return
+		end  
 
 		flash[:success] = I18n.t(:successful_create)
 		redirect_to @user
@@ -410,7 +408,7 @@ class UsersController < ApplicationController
 			session[:rpx_identifier] = nil
 			session[:rpx_token] = nil
 		else
-			 render :rpx_new 
+			render :rpx_new 
 			return
 		end	
 
@@ -458,10 +456,9 @@ class UsersController < ApplicationController
 
 	def has_member_access
 		@user = User.find(params[:id])
-		has_access = false
-		has_access = current_user.is_user_member_of?(@user)
+		# has_access = current_user.is_user_member_of?(@user) || false
 
-		unless has_access 
+		unless (current_user.is_user_member_of?(@user) || false) 
 			redirect_to root_url
 			return
 		end

@@ -1,6 +1,6 @@
 class GroupsRoles < ActiveRecord::Base
 
-  self.primary_keys = :group_id, :role_id 
+  self.primary_keys :group_id, :role_id 
 
   # remove all groups_roles not in roles
   def self.remove_groups_roles

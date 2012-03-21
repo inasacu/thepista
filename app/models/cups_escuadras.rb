@@ -1,6 +1,6 @@
 class CupsEscuadras < ActiveRecord::Base
 
-  self.primary_keys = :escuadra_id, :cup_id 
+  self.primary_keys :escuadra_id, :cup_id 
   
   # record a cup join
   def self.join_escuadra(escuadra, cup)

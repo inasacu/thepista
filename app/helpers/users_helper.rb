@@ -125,10 +125,10 @@ module UsersHelper
     end
 
     manager_link = ""
-    manager_link = "#{link_to(label_name(:petition_join_item_accept), join_item_accept_path(teammate))}" if is_manager
+    manager_link = "#{link_to(label_name(:petition_join_item_accept), join_item_accept_path(teammate))}".html_safe if is_manager
 
     decline_link = ""
-    decline_link = "#{link_to label_name(:petition_join_item_decline), join_item_decline_path(teammate)}" if can_decline
+    decline_link = "#{link_to label_name(:petition_join_item_decline), join_item_decline_path(teammate)}".html_safe if can_decline
 
     request_image = item_image_link_small(teammate.user)
     request_link = item_name_link(teammate.user)

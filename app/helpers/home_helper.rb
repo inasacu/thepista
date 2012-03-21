@@ -24,7 +24,7 @@ module HomeHelper
   		request_image = item_image_link_small(the_manager)
   		request_link = item_name_link(the_manager)
 
-  		the_google_plus_one = "<g:plusone size=\"small\" count=\"true\" href=\"#{item_concept_link(teammate)}\"></g:plusone>" if DISPLAY_GOOGLE_PLUS
+  		the_google_plus_one = "<g:plusone size=\"small\" count=\"true\" href=\"#{item_concept_link(teammate)}\"></g:plusone>".html_safe  if DISPLAY_GOOGLE_PLUS
 
   		item_link = item_concept_link(teammate)
   		item_image = item_image_link_small(teammate.group)
@@ -35,9 +35,9 @@ module HomeHelper
 
   		is_member = current_user.is_member_of?(teammate.group)
   		if teammate.played?
-  			the_label = %(#{I18n.t(:has_updated_scorecard) } #{the_label} #{is_member ? item_link : sanitize(teammate.concept)}#{the_google_plus_one})
+  			the_label = %(#{I18n.t(:has_updated_scorecard) } #{the_label} #{is_member ? item_link : teammate.concept}#{the_google_plus_one})
   		else
-  			the_label = %(#{I18n.t(:created_a_schedule) } #{the_label} #{is_member ? item_link : sanitize(teammate.concept)})
+  			the_label = %(#{I18n.t(:created_a_schedule) } #{the_label} #{is_member ? item_link : teammate.concept})
   		end
 
   	when "Group", "Cup", "Challenge"
@@ -52,7 +52,7 @@ module HomeHelper
   		the_icon = challenge_avatar_image_link(teammate) if teammate.class.to_s == "Challenge"
   		the_icon = cup_avatar_image_link(teammate) if teammate.class.to_s == "Cup"
 
-  		the_label = label_name(:"updated_a_#{teammate.class.to_s.downcase}") + " <wbr/> #{item_link}" 
+  		the_label = label_name(:"updated_a_#{teammate.class.to_s.downcase}") + " <wbr/> #{item_link}".html_safe 
 
   	when "Reservation"
   		case teammate.item_type
@@ -68,7 +68,7 @@ module HomeHelper
   		when ""
   		end
 
-  		the_label = "#{label_name(:created_a_reservation)} <wbr/> #{item_link}"
+  		the_label = "#{label_name(:created_a_reservation)} <wbr/> #{item_link}".html_safe 
 
   	when "Venue"
   		the_manager = teammate.all_the_managers.first
@@ -80,7 +80,7 @@ module HomeHelper
 
   		the_icon = venue_avatar_image_link(teammate)
 
-  		the_label = "#{label_name(:created_a_venue)} <wbr/> #{item_link}"
+  		the_label = "#{label_name(:created_a_venue)} <wbr/> #{item_link}".html_safe 
 
   	when "Game"
   		the_manager = teammate.cup.all_the_managers.first
@@ -90,7 +90,7 @@ module HomeHelper
   		item_link = item_name_link(teammate.cup)
   		item_image = item_image_link_small(teammate.cup)
 
-  		the_label = "#{label_name(:created_a_match)} <wbr/> #{item_link}"
+  		the_label = "#{label_name(:created_a_match)} <wbr/> #{item_link}".html_safe 
 
   	when "Classified"
 
@@ -144,7 +144,7 @@ module HomeHelper
   		item_group_link = item_name_link(teammate.schedule.group)
 
           is_member = current_user.is_member_of?(teammate.schedule.group)
-  		the_label = %(#{I18n.t(:passed_to)} <STRONG>#{teammate.type_name}</STRONG> #{I18n.t(:in)} #{is_member ? match_roster_link(teammate) : sanitize(teammate.schedule.concept)})
+  		the_label = %(#{I18n.t(:passed_to)} <STRONG>#{teammate.type_name}</STRONG> #{I18n.t(:in)} #{is_member ? match_roster_link(teammate) : teammate.schedule.concept})
 
       when "Comment"
   		request_image = item_image_link_small(teammate.user)
@@ -162,10 +162,10 @@ module HomeHelper
   				      the_user = blog.item
   	          	is_member = current_user.is_user_member_of?(the_user)
     				    
-              	the_label = %(#{I18n.t(:left_comment_on_wall)}  #{is_member ? the_blog_link : sanitize(blog.item.name)})
+              	the_label = %(#{I18n.t(:left_comment_on_wall)}  #{is_member ? the_blog_link : blog.item.name})
           	when "Group", "Challenge"
             		is_member = current_user.is_member_of?(blog.item)
-            		the_label = %(#{I18n.t(:left_post_on_forum)}  #{is_member ? the_blog_link : sanitize(blog.item.name)})
+            		the_label = %(#{I18n.t(:left_post_on_forum)}  #{is_member ? the_blog_link : blog.item.name})
           	when "Venue"
             		the_label = %(#{I18n.t(:left_post_on_forum)}  #{the_blog_link})
           	end
@@ -179,9 +179,9 @@ module HomeHelper
   		      	is_member = current_user.is_member_of?(forum.schedule.group)  
   				    item_group_link = item_name_link(forum.schedule.group)
   				    
-  		        the_label = %(#{I18n.t(:left_post_on_forum) } #{is_member ? the_forum_link : sanitize(forum.schedule.concept)})
+  		        the_label = %(#{I18n.t(:left_post_on_forum) } #{is_member ? the_forum_link : forum.schedule.concept})
   		        if teammate.title == 'Schedule'
-                the_label = %(#{I18n.t(:left_post_teams_on_forum) } #{is_member ? the_forum_link : sanitize(forum.schedule.concept)})
+                the_label = %(#{I18n.t(:left_post_teams_on_forum) } #{is_member ? the_forum_link : forum.schedule.concept})
               end
               
   		    end
@@ -189,7 +189,7 @@ module HomeHelper
   		end
   	end
 
-  	the_label = label_name(:"created_a_#{teammate.class.to_s.downcase}") + " <wbr/> #{item_link}" if the_label == ""
+  	the_label = label_name(:"created_a_#{teammate.class.to_s.downcase}") + " <wbr/> #{item_link}".html_safe if the_label == ""
 
   	return request_image, first_icon,  request_link,  the_label, the_icon, item_group_link
   end

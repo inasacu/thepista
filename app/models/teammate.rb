@@ -260,7 +260,7 @@ class Teammate < ActiveRecord::Base
     return unless @send_mail 
 
     if self.status == "pending"   
-      UserMailer.delay.deliver_teammate_join(self, self.manager, self.user) if self.group    
+      # UserMailer.delay.deliver_teammate_join(self, self.manager, self.user) if self.group    
     end       
   end
 
@@ -269,20 +269,20 @@ class Teammate < ActiveRecord::Base
     return unless @send_mail 
 
     if self.status == "pending"       
-      UserMailer.delay.deliver_teammate_leave(self, self.user, self.manager) if self.group
+      # UserMailer.delay.deliver_teammate_leave(self, self.user, self.manager) if self.group
     end       
   end 
   
   def send_manager_join_item
     @send_mail ||= self.manager.teammate_notification?   
     return unless @send_mail 
-    UserMailer.delay.deliver_manager_join_item(self, self.manager, self.user) if self.status == "pending"   
+    # UserMailer.delay.deliver_manager_join_item(self, self.manager, self.user) if self.status == "pending"   
   end
 
   def send_manager_leave_item
     @send_mail ||= self.manager.teammate_notification?   
     return unless @send_mail 
-    UserMailer.delay.deliver_manager_leave_item(self, self.user, self.manager) if self.status == "pending" 
+    # UserMailer.delay.deliver_manager_leave_item(self, self.user, self.manager) if self.status == "pending" 
   end 
 
   def self.accept_one_item(user, manager, item, sub_item, accepted_at)

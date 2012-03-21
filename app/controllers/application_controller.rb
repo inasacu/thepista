@@ -1,18 +1,13 @@
-# Filters added to this controller apply to all controllers in the application.
-# Likewise, all the methods added will be available for all controllers.
-
 class ApplicationController < ActionController::Base
 	helper :all
 	protect_from_forgery
 	
-	helper_method :current_user
-	helper_method :current_user_session
+	helper_method :current_user, :current_user_session
 
 	before_filter :set_time_zone , :set_user_language, :set_the_template   
-	layout 'zurb'                     																			unless DISPLAY_HAYPISTA_TEMPLATE
-
-
-	protected
+	layout 'zurb' 	unless DISPLAY_HAYPISTA_TEMPLATE
+	
+	
 	# this probably needs to go in the helper
 	def set_the_template(default_template='')
 		the_action = self.action_name.singularize
@@ -26,8 +21,10 @@ class ApplicationController < ActionController::Base
 			@the_template = default_template if DISPLAY_HAYPISTA_TEMPLATE
 			@the_template = "#{default_template}_zurb" unless DISPLAY_HAYPISTA_TEMPLATE
 		end
+	end                    																		
 
-	end
+
+	protected
 	
 	def access_denied
 		flash[:error] = "You do not have access!"

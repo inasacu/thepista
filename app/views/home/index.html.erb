@@ -33,7 +33,7 @@ if current_user
 					</tr>
 
 					<% @requested_teammates.each do |teammate| %>
-					<%= render :partial => '/users/petition_box', :locals => {:teammate => teammate} %>
+					<%= render 'users/petition_box', :teammate => teammate %>
 					<% end %>
 
 					<%= recent_activities_matches(@comment_items) %>

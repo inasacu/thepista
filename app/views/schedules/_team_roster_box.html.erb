@@ -1,68 +1,9 @@
 <% 
-	counter = 0 
-	roster_count = (object_counter(the_roster) > 0)
-	
-	type_id = [1, 4]
-	
-	home = {}
-	away = {}
-	technical = {}
-	physical = {}
-		
-	is_manager ||= false
-	is_member ||= false
-	show_deviation ||= false
-	show_mean ||= true
-		
-	home["defense"] = 0.0
-	home["center"] = 0.0
-	home["attack"] = 0.0
-	home["technical"] = 0.0
-	home["physical"] = 0.0
-	home["total"] = 0.0
-	home["mean"] = 0.0
-	home["deviation"] = 0.0
-	home["level"] = 0.0
-	home["total_skill"] = 0.0
-	home["players"] = 0
-	
-	away["defense"] = 0.0
-	away["center"] = 0.0
-	away["attack"] = 0.0
-	away["technical"] = 0.0
-	away["physical"] = 0.0
-	away["total"] = 0.0
-	away["mean"] = 0.0
-	away["deviation"] = 0.0
-	away["level"] = 0.0
-	away["total_skill"] = 0.0
-	away["players"] = 0
-	
-	group = @schedule.group
-	is_manager = current_user.is_manager_of?(group)
-	is_member = current_user.is_member_of?(group)
-	
-	is_squad = get_the_action.gsub(' ','_') == 'team_roster'
-	group_games_played = @schedule.group.games_played.to_f
-	
-	@positions = Type.find(:all, :conditions => "table_type = 'User'", :order => "id")
-	
-	schedule_number = Schedule.schedule_number(schedule)  
-	
-	first_schedule = @schedule.group.schedules.first
-	has_been_played = @schedule.played? 	
-	is_sub_manager = !has_been_played
-	has_been_played_squad = has_been_played and is_squad
-	
-	show_right_border = true
-	if is_squad
-		show_right_border = true 
-	elsif !is_squad
-		show_right_border = false unless is_manager
-	end
-	
-	show_right_evaluation = is_manager
-	show_right_evaluation = true if (!is_manager and has_been_played)
+	counter = 0
+
+	roster_count, is_squad, has_been_played, show_right_evaluation, is_manager, is_member, home, away, group_games_played, schedule_number, 
+          group, has_been_played_squad, show_right_border, show_right_evaluation, show_deviation, show_mean = set_team_roster_box(the_roster, @schedule)
+
 	
 	if DISPLAY_TRUESKILL
 		the_trueskill_label = get_cluetip(label_name(:true_skill_mean_initial), 'info', label_name('true_skill_mean_cluetip'))
@@ -91,7 +32,7 @@ if roster_count
 			<%= content_tag :th, label_name(:score), :class => "last_roster" if is_squad %>
 			<% elsif !has_been_played and is_manager %>
 			<%= content_tag :th, "", :class => "last_roster" %>
-			<% end -%>
+			<% end %>
 		</tr>
 <% 
 the_roster.each do |match| 
@@ -192,8 +133,7 @@ the_roster.each do |match|
 		the_match_status = ""
 		the_match_status = ago(match.status_at) unless has_been_played
 		the_match_status = "#{the_match_status} <br /> ( #{label_name(:no_jugado)} )" if match.type_id == 4
-		the_match_status = "<font color='orange' title='#{label_name('forum_notification_false')}'> #{the_match_status} </font>" unless the_user.forum_comment_notification
-	-%>
+		the_match_status = "<font color='orange' title='#{label_name('forum_notification_false')}'> #{the_match_status} </font>".html_safe unless the_user.forum_comment_notification
 -%>
 <tr>
 	<td class="<%= second_team %>" ><%= image_link_smaller the_user %></td>
@@ -212,7 +152,7 @@ the_roster.each do |match|
 	<%= content_tag(:td, match.position_name, :class => second_team) if DISPLAY_PLAYER_POSITION %>
 	<%= content_tag(:td, rating_technical, :class => second_team) %>
 	<%= content_tag(:td, rating_physical, :class => second_team) %>
-	<%= content_tag(:td, game_number, :class => second_team) %>
+	<%= content_tag(:td, game_number.html_safe, :class => second_team) %>
 	<%= content_tag(:td, "#{sprintf( "%.2f", initial_mean)}", :class => second_team) if DISPLAY_TRUESKILL %>
 	<%= content_tag(:td, "#{sprintf( "%.2f", final_mean)}", :class => second_team) if has_been_played and is_squad and DISPLAY_TRUESKILL %>
 	
@@ -223,7 +163,7 @@ the_roster.each do |match|
 		<% if has_been_played %>
 		<% else %>
 			<%= is_member ? link_to(match.team_name(@schedule), match_team_path(:id => match.id), :title => label_name(:change_group)) :  match.team_name(@schedule) %>
-		<% end -%>		
+		<% end %>		
 		
 	</td>
 <% 	
