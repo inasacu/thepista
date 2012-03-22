@@ -13,8 +13,9 @@
 //= require jquery
 //= require jquery_ujs
 //= require_tree .
+//= require jquery-ui
 
-
+require jquery-star-rating
 
 
 // jquery cluetip script
@@ -27,30 +28,8 @@ $(document).ready(function() {
 		cursor: 'pointer',
 		cluetipClass: 'jtip'
 	});
-
-	// $('a').cluetip({
-	// 	attribute: 'rel',
-	// 	local: true,
-	// 	hideLocal: true,
-	// 	arrows: true, 
-	// 	cursor: 'pointer',
-	// 	cluetipClass: 'jtip'
-	// });
 });
 
-// jquery clear-input
-// $(document).ready(function(){
-//     $("input[type='text']").clearInput();
-// });
-
-<%= stylesheet_link_tag 'jquery-ui/themes/base/jquery.ui.all' %>
-<%= javascript_include_tag "jquery-ui/ui/jquery.ui.core" %>	
-<%= javascript_include_tag "jquery-ui/ui/jquery.ui.widget" %>
-<%= javascript_include_tag "jquery-ui/ui/jquery.ui.position" %>
-<%= javascript_include_tag "jquery-ui/ui/jquery.ui.menu" %>
-<%= javascript_include_tag "jquery-ui/ui/jquery.ui.autocomplete" %>
-
-<script>
 $(function() {
 	var availableTags = [];
 	<% 
@@ -99,7 +78,7 @@ $(function() {
 			}
 		});
 });
-</script>
+
 
 
 

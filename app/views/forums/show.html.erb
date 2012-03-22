@@ -16,8 +16,8 @@
       the_missing = ", #{I18n.t(:excess)}:  #{@schedule.convocados.count - @schedule.player_limit.to_i}" if @schedule.player_limit.to_i < @schedule.convocados.count
     end
     
-	the_span = "#{the_sport} #{the_missing}"
-	the_start_at_label = "#{nice_day_of_week(@schedule.starts_at)}<br/>#{the_span}"
+	the_span = "#{the_sport} #{the_missing}".html_safe
+	the_start_at_label = "#{nice_day_of_week(@schedule.starts_at)}<br/>#{the_span}".html_safe
 %>
 
 <%= stylesheet_link_tag 'comment' %>
@@ -31,8 +31,8 @@
 		<div class="columns"> 
 				<table class="table">
 				<tr>
-					<%= content_tag :td, the_start_at_label, :class =>"first_left" %>
-					<%= content_tag :td, match_all_my_link(@schedule, current_user, false), :class =>"last_left" %>
+					<%= set_content_tag_safe(:td, the_start_at_label, "first_left") %>
+					<%= set_content_tag_safe(:td, match_all_my_link(@schedule, current_user, false), "last_left") %>
 				</tr>
 				</table>
 		</div>

@@ -8,8 +8,6 @@ gem "authlogic"
 gem "will_paginate"
 gem "authlogic-oid"
 
-# gem "ruby-openid"
-
 gem 'httparty',	'>= 0.8.1'
 
 gem "acl9"
@@ -17,24 +15,16 @@ gem 'sitemap_generator'
 gem 'acts_as_commentable'      
 gem 'hoptoad_notifier'
 gem 'rpx_now'
-# gem "url_shortener"
 gem "geokit"
-# gem "completeness-fu"
-gem 'texticle' 
-# gem 'heroku_s3_backup'
+gem 'texticle'
 gem 'trueskill'
 gem 'delayed_job'
 gem 'hirefireapp'
 gem 'paperclip'
 gem 'composite_primary_keys'
 gem 'nokogiri'
-# gem 'open_id_authentication'
-# gem 'ym4r_gm'
-
-gem 'ajaxful_rating_jquery'
-gem 'rqrcode'
 gem 'recaptcha'
-
+gem 'ajaxful_rating', '>= 3.0.0.beta8'
 
 
 
@@ -51,19 +41,25 @@ group :assets do
 end
 
 gem 'jquery-rails'
-
 gem 'google_map'
 gem 'ssl_requirement'
 gem 'jquery_notify_bar'
 gem 'acts_as_tree'
-gem 'ajaxful_rating_jquery'
-# gem 'kaminari'
 gem 'aws-sdk'
-
-
 gem 'friendly_id'
-
+gem 'rqrcode'
 # gem 'contacts'
+
+
+# gem "gmaps4rails", "~> 1.4.8"
+# gem "url_shortener"
+# gem "ruby-openid"
+# gem "completeness-fu", "~> 0.6.0"
+# gem 'heroku_s3_backup'
+# gem 'open_id_authentication'
+# gem 'ym4r_gm'
+# gem 'ajaxful_rating_jquery'
+# gem 'kaminari'
 # gem 'openid'
 # gem 'ruby-openid'											, :require => 'openid'
 # gem 'linkedin'

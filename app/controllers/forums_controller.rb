@@ -46,7 +46,6 @@ class ForumsController < ApplicationController
       
       @comment = Comment.new(:body => "#{I18n.t(:groups)}\r\n#{home_team['team']}\r\n#{away_team['team']}\r\n", :title => @schedule.class.to_s)
       
-      
     end
     
     # @item = @hschedule

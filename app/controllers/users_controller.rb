@@ -393,10 +393,8 @@ class UsersController < ApplicationController
 	def rpx_create
 		@user = User.new(params[:user])
 
-		@user.identifier = session[:identifier]
+		@user.identity_url = session[:identifier]
 		@user.openid_identifier = session[:identifier]
-		# @user.name = session[:name]
-		# @user.email = session[:email]
 		@user.login = session[:login]
 		@user.active = true
 		@user.password = session[:identifier]

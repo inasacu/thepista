@@ -168,8 +168,8 @@
 						<% unless is_notice %>
 						
 							<tr>
-								<%#= content_tag :td, label_name('evaluation'), :class =>"label" %>
-								<%#= content_tag :td, ratings_for( @user, :static, :dimension => :evaluation, :size => "small" ), :class => get_the_action %>
+								<%= content_tag :td, label_name('evaluation'), :class =>"label" %>
+								<%= content_tag :td, ratings_for( @user, :static, :dimension => :evaluation, :size => "small" ), :class => get_the_action %>
 							</tr>
 						
 						<% if @user.friends.count > 0 %>

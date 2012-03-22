@@ -1,4 +1,7 @@
-<% can_be_modified = (match.user != current_user) %>
+<% 
+	can_be_modified = (match.user != current_user) 
+%>
+
 <tr>
 	<td class="first">&nbsp;</td>
 	<td><%= image_link_tiny(match.user) %></td>

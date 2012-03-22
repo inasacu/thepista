@@ -1,10 +1,12 @@
-# This file is auto-generated from the current state of the database. Instead of editing this file, 
-# please use the migrations feature of Active Record to incrementally modify your database, and
-# then regenerate this schema definition.
+# encoding: UTF-8
+# This file is auto-generated from the current state of the database. Instead
+# of editing this file, please use the migrations feature of Active Record to
+# incrementally modify your database, and then regenerate this schema definition.
 #
-# Note that this schema.rb definition is the authoritative source for your database schema. If you need
-# to create the application database on another system, you should be using db:schema:load, not running
-# all the migrations from scratch. The latter is a flawed and unsustainable approach (the more migrations
+# Note that this schema.rb definition is the authoritative source for your
+# database schema. If you need to create the application database on another
+# system, you should be using db:schema:load, not running all the migrations
+# from scratch. The latter is a flawed and unsustainable approach (the more migrations
 # you'll amass, the slower it'll run and the greater likelihood for issues).
 #
 # It's strongly recommended to check this file into your version control system.
@@ -564,36 +566,6 @@ ActiveRecord::Schema.define(:version => 20120204172315) do
   add_index "payments", ["fee_id"], :name => "index_payments_on_fee_id"
   add_index "payments", ["item_id", "item_type"], :name => "index_payments_on_item_id_and_item_type"
   add_index "payments", ["manager_id"], :name => "index_payments_on_manager_id"
-
-  create_table "pre_purchases", :force => true do |t|
-    t.integer  "installation_id"
-    t.string   "block_token"
-    t.integer  "item_id"
-    t.string   "item_type"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.boolean  "archive",         :default => false
-  end
-
-  add_index "pre_purchases", ["installation_id", "block_token"], :name => "index_pre_purchases_on_installation_id_and_block_token"
-  add_index "pre_purchases", ["item_id", "item_type"], :name => "index_pre_purchases_on_item_id_and_item_type"
-
-  create_table "purchases", :force => true do |t|
-    t.string   "transaction_id"
-    t.integer  "item_id"
-    t.string   "item_type"
-    t.decimal  "amount"
-    t.string   "token"
-    t.integer  "installation_id"
-    t.string   "block_token"
-    t.string   "cvv2_code"
-    t.string   "avs_code"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.boolean  "archive",         :default => false
-  end
-
-  add_index "purchases", ["item_id", "item_type"], :name => "index_purchases_on_item_id_and_item_type"
 
   create_table "rates", :force => true do |t|
     t.integer  "rater_id"

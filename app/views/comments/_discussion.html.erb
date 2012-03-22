@@ -36,7 +36,7 @@
 	
 	<div class="clearfix" style="display: block;" id="dsq-content">
 	
-	<%= form_for (@comment), :url => comments_path, :html => { :class => :form } do |f| -%>
+		<%= form_for :comment, :url => comments_path, :html => { :class => :form } do |f| -%>
 	
 		<div class="dsq-reply " id="dsq-reply">
 			<h3><%= the_label %></h3>
@@ -60,7 +60,7 @@
 		
 	<%= render 'comments/game_played' if @schedule and @schedule.played? %>
 	
-	<h3><%= I18n.t(:has_comments, :count => item_counter) %></h3>
+	<h3><%= "#{I18n.t(:has_comments, :count => item_counter)}".html_safe %></h3>
 	
 	<% items.each do |comment| %>
 	<%= render 'comments/discussion_thread', :comment => comment %>

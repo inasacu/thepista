@@ -2,6 +2,8 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>currentDocument</key>
+	<string>app/helpers/matches_helper.rb</string>
 	<key>documents</key>
 	<array>
 		<dict>
@@ -110,7 +112,7 @@
 			<key>filename</key>
 			<string>Gemfile</string>
 			<key>lastUsed</key>
-			<date>2012-03-19T20:12:00Z</date>
+			<date>2012-03-21T17:32:52Z</date>
 		</dict>
 		<dict>
 			<key>filename</key>
@@ -142,7 +144,7 @@
 		</dict>
 	</array>
 	<key>fileHierarchyDrawerWidth</key>
-	<integer>209</integer>
+	<integer>329</integer>
 	<key>metaData</key>
 	<dict>
 		<key>Rakefile</key>
@@ -187,34 +189,34 @@
 			<key>firstVisibleLine</key>
 			<integer>0</integer>
 		</dict>
-		<key>app/helpers/schedules_helper.rb</key>
+		<key>app/helpers/matches_helper.rb</key>
 		<dict>
 			<key>caret</key>
 			<dict>
 				<key>column</key>
-				<integer>26</integer>
+				<integer>38</integer>
 				<key>line</key>
-				<integer>99</integer>
+				<integer>153</integer>
 			</dict>
 			<key>columnSelection</key>
 			<false/>
 			<key>firstVisibleColumn</key>
 			<integer>0</integer>
 			<key>firstVisibleLine</key>
-			<integer>80</integer>
+			<integer>120</integer>
 			<key>selectFrom</key>
-			<dict>
-				<key>column</key>
-				<integer>6</integer>
-				<key>line</key>
-				<integer>99</integer>
-			</dict>
-			<key>selectTo</key>
 			<dict>
 				<key>column</key>
 				<integer>26</integer>
 				<key>line</key>
-				<integer>99</integer>
+				<integer>153</integer>
+			</dict>
+			<key>selectTo</key>
+			<dict>
+				<key>column</key>
+				<integer>42</integer>
+				<key>line</key>
+				<integer>153</integer>
 			</dict>
 		</dict>
 		<key>app/models/cast.rb</key>
@@ -335,6 +337,36 @@
 				<integer>6</integer>
 			</dict>
 		</dict>
+		<key>app/views/home/_upcoming_matches.html.erb</key>
+		<dict>
+			<key>caret</key>
+			<dict>
+				<key>column</key>
+				<integer>27</integer>
+				<key>line</key>
+				<integer>5</integer>
+			</dict>
+			<key>columnSelection</key>
+			<false/>
+			<key>firstVisibleColumn</key>
+			<integer>0</integer>
+			<key>firstVisibleLine</key>
+			<integer>0</integer>
+			<key>selectFrom</key>
+			<dict>
+				<key>column</key>
+				<integer>17</integer>
+				<key>line</key>
+				<integer>5</integer>
+			</dict>
+			<key>selectTo</key>
+			<dict>
+				<key>column</key>
+				<integer>34</integer>
+				<key>line</key>
+				<integer>5</integer>
+			</dict>
+		</dict>
 		<key>app/views/home/_upcoming_schedule.html.erb</key>
 		<dict>
 			<key>caret</key>
@@ -393,6 +425,66 @@
 				<integer>28</integer>
 				<key>line</key>
 				<integer>12</integer>
+			</dict>
+		</dict>
+		<key>app/views/home/_upcoming_template.html.erb</key>
+		<dict>
+			<key>caret</key>
+			<dict>
+				<key>column</key>
+				<integer>4</integer>
+				<key>line</key>
+				<integer>12</integer>
+			</dict>
+			<key>columnSelection</key>
+			<false/>
+			<key>firstVisibleColumn</key>
+			<integer>0</integer>
+			<key>firstVisibleLine</key>
+			<integer>0</integer>
+			<key>selectFrom</key>
+			<dict>
+				<key>column</key>
+				<integer>0</integer>
+				<key>line</key>
+				<integer>12</integer>
+			</dict>
+			<key>selectTo</key>
+			<dict>
+				<key>column</key>
+				<integer>4</integer>
+				<key>line</key>
+				<integer>12</integer>
+			</dict>
+		</dict>
+		<key>app/views/home/index.html.erb</key>
+		<dict>
+			<key>caret</key>
+			<dict>
+				<key>column</key>
+				<integer>18</integer>
+				<key>line</key>
+				<integer>39</integer>
+			</dict>
+			<key>columnSelection</key>
+			<false/>
+			<key>firstVisibleColumn</key>
+			<integer>0</integer>
+			<key>firstVisibleLine</key>
+			<integer>15</integer>
+			<key>selectFrom</key>
+			<dict>
+				<key>column</key>
+				<integer>9</integer>
+				<key>line</key>
+				<integer>39</integer>
+			</dict>
+			<key>selectTo</key>
+			<dict>
+				<key>column</key>
+				<integer>34</integer>
+				<key>line</key>
+				<integer>39</integer>
 			</dict>
 		</dict>
 		<key>app/views/user_mailer/_the_match_status.html.erb</key>
@@ -454,9 +546,16 @@
 			<integer>0</integer>
 		</dict>
 	</dict>
+	<key>openDocuments</key>
+	<array>
+		<string>app/views/home/index.html.erb</string>
+		<string>app/helpers/matches_helper.rb</string>
+		<string>app/views/home/_upcoming_matches.html.erb</string>
+		<string>app/views/home/_upcoming_template.html.erb</string>
+	</array>
 	<key>showFileHierarchyDrawer</key>
 	<true/>
 	<key>windowFrame</key>
-	<string>{{0, 46}, {1701, 1012}}</string>
+	<string>{{0, 46}, {1576, 732}}</string>
 </dict>
 </plist>
