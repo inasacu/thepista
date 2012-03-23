@@ -9,7 +9,7 @@ task :the_match_token => :environment do |t|
   @matches.each do |match|
 
     the_encode = "#{rand(36**8).to_s(36)}#{match.id}#{rand(36**8).to_s(36)}"
-    block_token  = Base64::b64encode(the_encode)
+    block_token  = Base64::encode64(the_encode)
 
     puts "match.id:  #{match.id} - #{match.user_id} - #{the_encode} - #{block_token}"  
 

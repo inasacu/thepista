@@ -260,7 +260,7 @@ class Match < ActiveRecord::Base
       
       # assign unique user id and start_date code for changing status through email
       the_encode = "#{rand(36**8).to_s(36)}#{schedule.id}#{rand(36**8).to_s(36)}"
-      block_token  = Base64::b64encode(the_encode)
+      block_token  = Base64::encode64(the_encode)
 
       self.create!(:name => schedule.concept, :description => schedule.description, :status_at => Time.zone.now, 
                    :schedule_id => schedule.id, :group_id => schedule.group_id, :user_id => user.id, :available => user.available, 

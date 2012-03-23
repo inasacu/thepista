@@ -26,7 +26,7 @@
 			<%= content_tag :th, label_name(:matches), :class => "heading" %>	
 			<%= content_tag :th, "&nbsp;", :class => "heading" %>
 			<%= content_tag :th, "&nbsp;", :class => "heading" %>
-			<%= content_tag :th, "&nbsp;", :class => "last" %>
+			<%= set_content_tag_safe(:th, "&nbsp;", "last") %>
 		</tr>
         
         <% @games.each do |game| 

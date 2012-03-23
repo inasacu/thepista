@@ -104,7 +104,7 @@
 	<%= content_tag :td, "&nbsp;", :class => "no_line" %>
 </tr>
 <tr>
-	<%= content_tag :th, "&nbsp;", :class => "first" %>
+	<%= set_content_tag_safe(:th, "&nbsp;", "first") %>
 	<%= content_tag :th, "&nbsp;", :class => "heading" %>
 	<%= content_tag :th, label_name(:groups), :class => "heading" %>
 	<%= content_tag :th, label_name(:technical_total), :class => "heading" %>

@@ -1,4 +1,4 @@
-require "base64"
+# require "base64"
 
 class ReservationsController < ApplicationController
   before_filter :require_user
@@ -62,7 +62,7 @@ class ReservationsController < ApplicationController
     @reservation.starts_at = Time.zone.at(block_token)
     @reservation.ends_at = @reservation.starts_at + time_frame 
     @reservation.reminder_at = @reservation.starts_at - 2.days    
-    @reservation.block_token = Base64::b64encode(@reservation.starts_at.to_i.to_s)   
+    @reservation.block_token = Base64::encode64(@reservation.starts_at.to_i.to_s)   
     # @reservation.description =  params[:block_token]
 
     # verify reservation has not already been made

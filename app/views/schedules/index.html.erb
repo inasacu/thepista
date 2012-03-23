@@ -32,12 +32,12 @@
       <table class="table">
 	  
         <tr> 
-			<%= content_tag :th, "&nbsp;", :class => "first" %>
+			<%= set_content_tag_safe(:th, "&nbsp;", "first") %>
 			<%= content_tag :th, label_name(:concept), :class => "heading" %>
 			<%= content_tag :th, label_name(:group), :class => "heading" %>
 			<%= content_tag :th, label_name(:gameday_at), :class => "heading" %>
 			<%#= content_tag :th, label_name(:marker), :class => "heading" %>
-			<%= content_tag :th, "&nbsp;", :class => "last" %>
+			<%= set_content_tag_safe(:th, "&nbsp;", "last") %>
 		</tr>
         
         <% @schedules.each do |schedule| -%>

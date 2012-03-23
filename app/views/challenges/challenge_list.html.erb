@@ -15,12 +15,12 @@
       <table class="table">
 	  
 		<tr>             
-			<%= content_tag :th, "&nbsp;", :class => "first" %>
+			<%= set_content_tag_safe(:th, "&nbsp;", "first") %>
 			<%= content_tag :th, label_name(:name), :class => "heading" %>
 			<%= content_tag :th, label_name(:challenge), :class => "heading" %>
 			<%= content_tag :th, label_name(:time_zone), :class => "heading" %>
 			<%= content_tag :th, "&nbsp;", :class => "heading" %>	
-			<%= content_tag :th, "&nbsp;", :class => "last" %>
+			<%= set_content_tag_safe(:th, "&nbsp;", "last") %>
 		</tr>
 		
         <% @users.each do |user| 

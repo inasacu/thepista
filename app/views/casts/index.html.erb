@@ -44,7 +44,7 @@
 			<%= content_tag :th, "&nbsp;", :class => "heading" %>
 			<%= content_tag :th, label_name(:casts), :class => "heading", :align => "center" %>	
 			<%= content_tag :th, "&nbsp;", :class => "heading" %>
-			<%= content_tag :th, "&nbsp;", :class => "last" %>
+			<%= set_content_tag_safe(:th, "&nbsp;", "last") %>
 		</tr>
         
         <% @casts.each do |cast| 

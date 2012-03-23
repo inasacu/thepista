@@ -98,7 +98,7 @@ if has_charges
 		<td>&nbsp;</td>
 	</tr>			
 	<tr>   
-		<%= content_tag :th, "&nbsp;", :class => "first" %>
+		<%= set_content_tag_safe(:th, "&nbsp;", "first") %>
 		<%= content_tag :th, "&nbsp;", :class => "heading" %>
 		<%= content_tag :th, "&nbsp;", :class => "heading" %>
 		<%= content_tag :th, "&nbsp;", :class => "heading" %>
@@ -107,7 +107,7 @@ if has_charges
 		<%= content_tag :th, label_name(:debit_total), :class => "heading" %>
 		<%= content_tag :th, label_name(:credit_total), :class => "heading" %>
 		<%= content_tag :th, label_name(:pending), :class => "heading" %>
-		<%= content_tag :th, "&nbsp;", :class => "last" %>
+		<%= set_content_tag_safe(:th, "&nbsp;", "last") %>
 	</tr>
 	
 	<tr>  

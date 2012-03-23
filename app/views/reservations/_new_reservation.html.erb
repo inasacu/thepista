@@ -5,7 +5,7 @@
 <tr>						
 <% 7.times.each do |x| 
 	current_day = first_day + x.day
-	block_token = Base64::b64encode(current_day.to_i.to_s)
+	block_token = Base64::encode64(current_day.to_i.to_s)
 	
 	is_holiday = false
 	holiday_hour = false
@@ -57,7 +57,7 @@
 				<%= render "hour_reserved", :starts_at => starts_at, :time_frame => time_frame, :items => the_item %>
 <% 
 			else
-				block_token = Base64::b64encode(starts_at.to_i.to_s)
+				block_token = Base64::encode64(starts_at.to_i.to_s)
 				available = (starts_at > Time.zone.now + @minutes_to_reserve)
 %>
 				<%= render "hour_available_#{available}", :starts_at => starts_at, :ends_at => ends_at, 

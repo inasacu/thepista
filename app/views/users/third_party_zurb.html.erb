@@ -21,7 +21,7 @@
 				<tr>  
 					<%= content_tag :th, label_name(:type_account), :class => "first" %>
 					<%= content_tag :th, "#{label_name(:destroy)}?", :class => "heading" %>	
-					<%= content_tag :th, "&nbsp;", :class => "last" %>
+					<%= set_content_tag_safe(:th, "&nbsp;", "last") %>
 				</tr>
 			</thead>
 

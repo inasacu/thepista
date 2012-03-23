@@ -30,7 +30,7 @@
 			<%= content_tag :th, "", :class => "heading" %>
 			<%= content_tag :th, "", :class => "heading" %>
 			<%= content_tag :th, "", :class => "heading" %>	
-			<%= content_tag :th, "&nbsp;", :class => "last" %>
+			<%= set_content_tag_safe(:th, "&nbsp;", "last") %>
 		</tr>
         
 		<%= form_for (@cast), :url => cast_path(@cast), :html => { :class => :form } do |f| -%>

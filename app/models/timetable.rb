@@ -18,22 +18,24 @@ class Timetable < ActiveRecord::Base
 	end
 
 	def self.installation_timetable(installation)
-		find.where("installation_id = ?", installation).order("type_id, starts_at")
+		self.where("installation_id = ?", installation).order("type_id, starts_at")
 	end
 
 	def self.get_installations_timetable(installation)
-		find.where("installation_id = ?", installation)
+		self.where("installation_id = ?", installation)
 	end
 
 	def self.installation_week_day(installation, current_day, is_holiday=false)
 		the_day_of_week = 'Holiday'
 		the_day_of_week = Date::DAYNAMES[current_day.wday] unless is_holiday
 
-		find.where("timetables.archive = false and installation_id = ? and types.table_type = 'Timetable' and types.name =  ?", installation.id, the_day_of_week).select("timetables.starts_at, timetables.ends_at, timetables.timeframe").joins("join types on types.id = timetables.type_id").order("timetables.type_id, timetables.starts_at")
+		self.where("timetables.archive = false and installation_id = ? and types.table_type = 'Timetable' and types.name =  ?", installation.id, the_day_of_week).select("timetables.starts_at, timetables.ends_at, timetables.timeframe").joins("join types on types.id = timetables.type_id").order("timetables.type_id, timetables.starts_at")
 	end	
 
 	def self.venue_min_max_timetable(venue)
-		find.where("installations.venue_id = ?", venue).select("min(timetables.starts_at) as starts_at, max(timetables.ends_at) as ends_at").joins("LEFT JOIN installations on installations.id = timetables.installation_id").first()
+		self.where("installations.venue_id = ?", venue).select("min(timetables.starts_at) as starts_at, max(timetables.ends_at) as ends_at").joins("LEFT JOIN installations on installations.id = timetables.installation_id").first()
 	end   		
 
 end
+
+

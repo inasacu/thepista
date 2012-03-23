@@ -5,11 +5,11 @@
 	<table class="table">
 
 	  <tr>     
-		<%= content_tag :th, "&nbsp;", :class => "first" %>
+		<%= set_content_tag_safe(:th, "&nbsp;", "first") %>
 		<%= content_tag :th, "#{label_name(:name)}<br />#{label_name(:time_zone)}", :class => "heading" %>
 		<%= content_tag :th, "#{label_name(:marker)}<br />#{label_name(:installations)}", :class => "heading" %>
 		<%#= content_tag :th, label_name(:general_information), :class => "heading" %>
-		<%= content_tag :th, "&nbsp;", :class => "last" %>
+		<%= set_content_tag_safe(:th, "&nbsp;", "last") %>
 	  </tr>
 
 	  <% @venues.each do |venue| -%>

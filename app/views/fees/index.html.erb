@@ -22,7 +22,7 @@
 	<%= get_class_table_id_controller %>
 	  
 		<tr>   
-			<%= content_tag :th, "&nbsp;", :class => "first" %>
+			<%= set_content_tag_safe(:th, "&nbsp;", "first") %>
 			<%= content_tag :th, "#{label_name(:name)}<br/>#{label_name(:group)}", :class => "heading" %>
 			<%= content_tag :th, label_name(:concept), :class => "heading" %>
 			<%= content_tag :th, label_name(:debits), :class => "heading" %>
@@ -31,7 +31,7 @@
 			<%= content_tag :th, label_name(:debit_total), :class => "heading" %>
 			<%= content_tag :th, label_name(:credit_total), :class => "heading" %>
 			<%= content_tag :th, label_name(:pending), :class => "heading" %>
-			<%= content_tag :th, "&nbsp;", :class => "last" %>
+			<%= set_content_tag_safe(:th, "&nbsp;", "last") %>
 		</tr>
 		<% @the_groups.each do |group| %>
 		<%= render 'fees/fee_list', :users => @users, :group => group %>

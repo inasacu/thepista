@@ -25,7 +25,7 @@ content_for(:title, sanitize(@schedule.concept))
 			<table class="table">
 
 			  <tr>             
-				<%= content_tag :th, "&nbsp;", :class => "first" %>
+				<%= set_content_tag_safe(:th, "&nbsp;", "first") %>
 				<%= content_tag :th, "&nbsp;", :class => "heading" %>
 				<%= content_tag :th, "&nbsp;", :class => "heading" %>
 				<%= content_tag :th, label_name(:position), :class => "heading", :align => "center" %>

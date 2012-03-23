@@ -11,12 +11,12 @@
 	<%= get_class_table_id_controller %> 
 
 	  <tr>   
-		<%= content_tag :th, "&nbsp;", :class => "first" %>
+		<%= set_content_tag_safe(:th, "&nbsp;", "first") %>
 		<%= content_tag :th, label_name(:name), :class => "heading" %>
 		<%= content_tag :th, "&nbsp;", :class => "heading" %>
 		<%= content_tag :th, "&nbsp;", :class => "heading" %>
 		<%= content_tag :th, "&nbsp;", :class => "heading" %>	
-		<%= content_tag :th, "&nbsp;", :class => "last" %>
+		<%= set_content_tag_safe(:th, "&nbsp;", "last") %>
 	  </tr>
 
 	  <% @escuadras.each do |escuadra| 
