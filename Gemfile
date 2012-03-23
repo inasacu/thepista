@@ -16,6 +16,7 @@ gem 'acts_as_commentable'
 gem 'hoptoad_notifier'
 gem 'rpx_now'
 gem "geokit"
+gem "geokit-rails"
 gem 'texticle'
 gem 'trueskill'
 gem 'delayed_job'
@@ -26,7 +27,7 @@ gem 'nokogiri'
 gem 'recaptcha'
 gem 'ajaxful_rating', '>= 3.0.0.beta8'
 
-
+gem 'iron_worker'
 
 # Gems used only for assets and not required
 # in production environments by default.

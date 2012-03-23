@@ -35,3 +35,8 @@ Thepista::Application.configure do
   # Expands the lines which load the assets
   config.assets.debug = true
 end
+
+
+ENV['IRON_WORKER_TOKEN'] = 'rnGSf-X4vhYYhtlFoZoPxc676Ys'
+ENV['IRON_WORKER_PROJECT_ID'] = '4ef1b366066bce69d100080d'
+
