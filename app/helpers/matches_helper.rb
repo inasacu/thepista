@@ -18,9 +18,8 @@ module MatchesHelper
     when 4
       the_image = 'estatus-no-disponible.png'
     end      
-    return "#{link_to(image_tag(the_image, :title => the_label, :style => 'height: 16px; width: 16px;'), 
-                    match_status_path(:id => match.id, :type => type.id), :title => the_label)} #{the_link} #{the_break}" if show_icon
-    return "#{the_link} #{the_break}" unless show_icon
+    return "#{link_to(image_tag(the_image, :title => the_label, :style => 'height: 16px; width: 16px;'), match_status_path(:id => match.id, :type => type.id), :title => the_label)} #{the_link} #{the_break}".html_safe if show_icon
+    return "#{the_link} #{the_break}".html_safe unless show_icon
   end
 
   def match_roster_link(text, match = nil, html_options = nil)

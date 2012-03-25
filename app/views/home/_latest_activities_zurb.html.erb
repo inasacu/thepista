@@ -8,7 +8,7 @@
 
 
 			<% @requested_teammates.each do |teammate| %>
-			<%= render :partial => '/users/petition_box_zurb', :locals => {:teammate => teammate} %>
+			<%= render '/users/petition_box_zurb', :teammate => teammate %>
 			<% end %>
 
 			<%= recent_activities_matches(@comment_items) %>

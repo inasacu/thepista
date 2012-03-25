@@ -20,10 +20,10 @@
 	<meta name="google-site-verification" content="qyTyrJH8o08Ur15mr5hUYjVNyWcbfQatF3yar3Ry2ws" />
 	<meta name="google-site-verification" content="OJzCfMpdsascUFtDoxXJpZGEIsjXjKG1691P1FC5pIc" />
 		
-	<link rel="image_src" href="http://haypista.com/images/haypista.png" />
-	<link  rel="apple-touch-icon" href="/apple-touch-icon.png" />
+	<link rel="image_src" href="http://haypista.com/assets/haypista.png" />
+	<link  rel="apple-touch-icon" href="assets/apple-touch-icon.png" />
 	<link rel="home" href="http://www.haypista.com">
-    <link rel="shortcut icon" type="image/ico" href="/favicon.ico">
+    <link rel="shortcut icon" type="image/ico" href="assets/favicon.ico">
  
 	<%= stylesheet_link_tag    "application", :media => "all" %>
 	<%= javascript_include_tag "application" %>
@@ -34,10 +34,10 @@
     <%= javascript_include_tag :defaults %>
     <%= ajaxful_rating_style %>
 
-	<%#= javascript_include_tag "http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js" %>
-	<%#= javascript_include_tag 'jquery.google-analytics', 'jquery.notifyBar', 'jquery.cluetip', 'jquery.hoverIntent' %>
-	<%#= javascript_include_tag 'jquery.clearinput' %>
-	<%#= render :partial => 'utilities/google_analytics' %>	
+	<%= javascript_include_tag "http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js" %>
+	<%= javascript_include_tag 'jquery.google-analytics', 'jquery.notifyBar', 'jquery.cluetip', 'jquery.hoverIntent' %>
+	<%= javascript_include_tag 'jquery.clearinput' %>
+	<%= render :partial => 'utilities/google_analytics' %>	
 	
 </head>
 <body>

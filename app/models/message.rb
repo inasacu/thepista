@@ -22,7 +22,7 @@ class Message < ActiveRecord::Base
 
   # Return all messages in the same parent group          
   def self.find_all_parent_messages(parent_id)
-    find(:all, :conditions => ["parent_id = (select parent_id from messages where id = ?)", parent_id])
+    self.where("parent_id = (select parent_id from messages where id = ?)", parent_id)
   end
 
   def parent

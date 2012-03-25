@@ -323,17 +323,17 @@ module ApplicationHelper
 
   def set_title_class(text, image_label=nil)
     if DISPLAY_HAYPISTA_TEMPLATE
-      content_tag :h2, "#{image_label.nil? ? '' : option_image_link(image_label)}  #{text}", :class => "title"
+      set_content_tag_safe(:h2, "#{image_label.nil? ? '' : option_image_link(image_label)}  #{text}", "title")
     else
-      content_tag :h4, "#{image_label.nil? ? '' : option_image_small_link(image_label)}  #{text}", :class => "title"
+      set_content_tag_safe(:h4, "#{image_label.nil? ? '' : option_image_small_link(image_label)}  #{text}", "title")
     end
   end
 
   def set_image_and_link(the_link, image_label=nil)
     if DISPLAY_HAYPISTA_TEMPLATE
-      content_tag :p, "#{image_label.nil? ? '' : option_image_link(image_label)}  #{the_link}"
+      cset_content_tag_safe(:p, "#{image_label.nil? ? '' : option_image_link(image_label)}  #{the_link}", "")
     else
-      content_tag :p, "#{image_label.nil? ? '' : option_image_small_link(image_label)}  #{the_link}"
+      set_content_tag_safe(:p, "#{image_label.nil? ? '' : option_image_small_link(image_label)}  #{the_link}", "")
     end
   end
 

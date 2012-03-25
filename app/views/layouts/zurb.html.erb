@@ -31,32 +31,46 @@
 	<title><%= page_title %></title>
 
 	<link rel="image_src" href="http://haypista.com/images/haypista.png" />
-	<link  rel="apple-touch-icon" href="/apple-touch-icon.png" />
+	<link  rel="apple-touch-icon" href="assets/apple-touch-icon.png" />
 	<link rel="home" href="http://www.haypista.com">
-	<link rel="shortcut icon" type="image/ico" href="/favicon.ico">
+	<link rel="shortcut icon" type="image/ico" href="assets/favicon.ico">
   
+	<%= stylesheet_link_tag    "application", :media => "all" %>
+	<%= javascript_include_tag "application" %>
+	<%= csrf_meta_tags %>
 
-	<% if DISPLAY_DEFAULTS %>	
-	<%= javascript_include_tag :defaults %>		
-	<% end -%>
+	<%= stylesheet_link_tag 'primary' %>
 
-	<%= javascript_include_tag "http://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js" %>	
-	<script type="text/javascript" src="http://maps.google.com/maps/api/js?v=3.3&sensor=true&Language=es"></script> 
+    <%= javascript_include_tag :defaults %>
+    <%= ajaxful_rating_style %>
 
-	<%= ajaxful_rating_style %>
-	<%= ajaxful_rating_script %>
-
+	<%= javascript_include_tag "http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js" %>
 	<%= javascript_include_tag 'jquery.google-analytics', 'jquery.notifyBar', 'jquery.cluetip', 'jquery.hoverIntent' %>
 	<%= javascript_include_tag 'jquery.clearinput' %>
-	<%= javascript_include_tag "jquery.cook" %>	
-	<%= javascript_include_tag "gmap3" %>	
-
-	<%= javascript_include_tag 'application' %>	
-	<%= javascript_include_tag "vtip" %>
-
-	<%= stylesheet_link_tag 'vtip' %>
-	
 	<%= render :partial => 'utilities/google_analytics' %>
+	
+
+	<%# if DISPLAY_DEFAULTS %>	
+	<%#= javascript_include_tag :defaults %>		
+	<%# end -%>
+
+	<%#= javascript_include_tag "http://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js" %>	
+	<!-- <script type="text/javascript" src="http://maps.google.com/maps/api/js?v=3.3&sensor=true&Language=es"></script> -->
+
+	<%#= ajaxful_rating_style %>
+	<%#= ajaxful_rating_script %>
+
+	<%#= javascript_include_tag 'jquery.google-analytics', 'jquery.notifyBar', 'jquery.cluetip', 'jquery.hoverIntent' %>
+	<%#= javascript_include_tag 'jquery.clearinput' %>
+	<%#= javascript_include_tag "jquery.cook" %>	
+	<%#= javascript_include_tag "gmap3" %>	
+
+	<%#= javascript_include_tag 'application' %>	
+	<%#= javascript_include_tag "vtip" %>
+
+	<%#= stylesheet_link_tag 'vtip' %>
+	
+	<%#= render :partial => 'utilities/google_analytics' %>
 	
 	<!-- Included CSS Files -->
 
@@ -95,7 +109,7 @@
 	<![endif]-->
 
 
-	<%= javascript_include_tag "vtip" %>
+	<%#= javascript_include_tag "vtip" %>
 	<%= javascript_include_tag "jquery-1.6.1.min" %>
 	<%= javascript_include_tag "zurb/jquery.reveal" %>
 	<%= javascript_include_tag "zurb/jquery.orbit-1.3.0" %>
@@ -120,8 +134,8 @@
 
 		<%#= render 'templates/twelve_columns_zurb' %>
 		<%#= render 'templates/eight_columns_zurb' %>
-
 		<%#= render 'shared/tabs_mobile_show_zurb' %>
+		
 		<%= render 'shared/footer_zurb' %>
 
 	</div>

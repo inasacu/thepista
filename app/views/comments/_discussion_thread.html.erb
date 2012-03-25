@@ -25,25 +25,13 @@
 					<%=sanitize comment.body %>		
 				</div>
 			</div>
-			
-			<!-- edit box dynamically inserted here -->
-			
-			<div id="dsq-append-edit-<%= comment.id %>"></div>
-			
-			<!-- reply box dynamically inserted here -->
-			<!-- <div id="dsq-append-reply-<%= comment.id %>">
-					
-					<div id="comment<%= comment.id %>" style='display:none;'>			
-						<%#= render 'comments/discuss_form' %>	
-					</div>
 						
-			</div> -->
+			<div id="dsq-append-edit-<%= comment.id %>"></div>
 			
 		</div>
 		
 	</li>
 	
-	<!-- new replies dynamically inserted here -->
 	<li id="dsq-append-post-<%= comment.id %>">
 	</li>
 </ul>
