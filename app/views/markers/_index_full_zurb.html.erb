@@ -10,7 +10,7 @@
 		<%= set_content_tag_safe(:th, "&nbsp;", "first") %>
 		<%= content_tag :th, label_name(:name), :class => "heading" %>
 		<%= content_tag :th, label_name(:address), :class => "heading" %>
-		<%= content_tag :th, "#{label_name(:latitude)}<br/>#{label_name(:longitude)}", :class => "heading" if current_user.is_maximo? %>
+		<%= content_tag :th, "#{label_name(:latitude)}<br/>#{label_name(:longitude)}", :class => "heading" if the_maximo %>
 		<%= set_content_tag_safe(:th, "&nbsp;", "last") %>
 	  </tr>
 

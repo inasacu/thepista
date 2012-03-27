@@ -3,8 +3,8 @@
 
 		<table>
 		<tr>
-			<%= content_tag :td, the_start_at_label %>
-			<%= content_tag :td, match_all_my_link(@schedule, current_user, false) %>
+			<%= content_tag_safe :td, the_start_at_label %>
+			<%= content_tag_safe :td, match_all_my_link(@schedule, current_user, false) %>
 		</tr>
 		</table>
 		

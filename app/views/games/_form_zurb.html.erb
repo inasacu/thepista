@@ -62,7 +62,7 @@
 
 <% end -%>
 
-<% if current_user.is_maximo? %>
+<% if the_maximo %>
 
 <%= set_form_label(the_form, :points_for_single) %>
 <%= set_form_text_field(the_form, :points_for_single, 'small input-text', true) %><br />

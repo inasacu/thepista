@@ -23,6 +23,10 @@ class ApplicationController < ActionController::Base
 		end
 	end                    																		
 
+	def the_maximo
+		# the_maximo
+		true
+	end
 
 	protected
 	

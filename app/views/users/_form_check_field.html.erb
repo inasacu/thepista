@@ -60,7 +60,7 @@
   <span class="description"><%= label_name('birth_at', 'description') %></span>
 </div>
 
-<% if current_user.is_maximo? %>
+<% if the_maximo %>
 <div class="group">
   <%= f.label :archive, label_name('archive'), :class => :label %>
   <%= f.check_box :archive, :class => 'textfield' %>

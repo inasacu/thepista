@@ -57,7 +57,7 @@
 <%= set_form_checkbox(the_form, :club) %><br />
 
 
-<% if current_user.is_maximo? %>
+<% if the_maximo %>
 
 
 <%= set_form_label(the_form, :official) %>
@@ -156,7 +156,7 @@
 <%= set_form_checkbox(the_form, :club) %><br />
 
 
-<% if current_user.is_maximo? %>
+<% if the_maximo %>
 
 <%= set_form_label(the_form, :official) %>
 <%= set_form_checkbox(the_form, :official) %><br />

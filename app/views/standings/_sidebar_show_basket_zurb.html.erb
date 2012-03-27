@@ -100,7 +100,7 @@
       %b= label_name(:games_started)
       = label_name(:games_started_full)
     %p
-- if current_user.is_maximo?
+- if the_maximo
   - unless @archive
     .block
       %h3= label_name(:options)

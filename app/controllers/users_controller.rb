@@ -10,7 +10,7 @@ class UsersController < ApplicationController
 	before_filter :has_member_access,   :only => [:rate]
 
 	def index
-		unless current_user.is_maximo?
+		unless the_maximo
 			redirect_to root_url 
 			return
 		end
@@ -70,7 +70,7 @@ class UsersController < ApplicationController
 	end
 
 	def edit
-		if current_user.is_maximo?
+		if the_maximo
 			@user = User.find(params[:id])
 			return
 		end 

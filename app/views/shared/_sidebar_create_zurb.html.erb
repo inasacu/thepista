@@ -9,7 +9,7 @@
 	
 	case item.class.to_s
 	when 'Type', 'Role', 'Announcement', 'Sport'
-		is_displayable = current_user.is_maximo?
+		is_displayable = the_maximo
 	when 'User'
 		is_displayable = (item == current_user)
 	# when 'Group'

@@ -1,24 +1,23 @@
 <% the_label, the_content, has_been_played, is_manager, is_squad, the_sport, the_missing, the_span, the_start_at_label = get_team_roster %>
 
 
-
 <%= render "shared/previous_next_message_zurb", :schedule => @schedule, :the_previous => @the_previous, :the_next => @the_next -%>
 
 <%= set_title_class(the_label, 'events') %>
 
 <%= render('schedules/team_roster_change_schedule', :the_start_at_label => the_start_at_label) %>
 
-
-
 <div class="row">
-	
 	<div class="twelve columns">
-
 
 <% if @has_a_roster %>
 		
-		<%= render :partial => 'schedules/team_roster_box_zurb', 
-				   :locals => {:previous_show => @previous, :next_show => @next, :schedule => @schedule, :the_roster => @the_roster, :match_type => @match_type} %>
+		<%= render 'schedules/team_roster_box_zurb', 
+				   	:previous_show => @previous, 
+					:next_show => @next, 
+					:schedule => @schedule, 
+					:the_roster => @the_roster, 
+					:match_type => @match_type %>
 	
 <% end -%>
 

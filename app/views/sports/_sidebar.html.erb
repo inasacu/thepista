@@ -2,7 +2,7 @@
 	<h3><%= label_name(:options) %></h3>
 	<div class="content">
 <% 
-		if current_user.is_maximo? 
+		if the_maximo 
 %>
 			<p><%= option_image_link('marker') %>&nbsp;&nbsp;<%= link_to(control_label('create') , new_sport_url)  %></p>
 <%

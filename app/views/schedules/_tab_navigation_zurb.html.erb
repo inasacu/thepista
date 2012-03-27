@@ -35,29 +35,29 @@
 					link_to("#{label_name(:rosters)} (#{@schedule.the_roster_count})", team_roster_path(:id => @schedule), :class => the_active) %>
 			<% end %>
 				
-			<% unless (@schedule.the_last_minute.empty?)		
+			<%# unless (@schedule.the_last_minute.empty?)		
 				the_active = get_active("#{get_the_controller}_team_last_minute")
 			%>
-				<%= content_tag :dd, 
+				<%#= content_tag :dd, 
 					link_to("#{label_name(:last_minute)} (#{@schedule.the_last_minute_count})", team_last_minute_path(:id => @schedule), :class => the_active) %>
-			<% end %>
+			<%# end %>
 						
-			<% unless (@schedule.the_no_show.empty?)		
+			<%# unless (@schedule.the_no_show.empty?)		
 				the_active = get_active("#{get_the_controller}_team_no_show")
 			%>
-				<%= content_tag :dd, 
+				<%#= content_tag :dd, 
 					link_to("#{label_name(:no_shows)} (#{@schedule.the_no_show_count})", team_no_show_path(:id => @schedule), :class => the_active) %>
-			<% end %>
+			<%# end %>
 						
-			<% unless (@schedule.the_unavailable.empty?)		
+			<%# unless (@schedule.the_unavailable.empty?)		
 				the_active = get_active("#{get_the_controller}_team_unavailable")
 			%>
-				<%= content_tag :dd, 
+				<%#= content_tag :dd, 
 					link_to("#{label_name(:unavailable)} (#{@schedule.the_unavailable_count})", team_unavailable_path(:id => @schedule), :class => the_active) %>
-			<% end %>
+			<%# end %>
 
-			<% the_active = get_active("match_star_rate") %>
-			<%= content_tag :dd, link_to("#{label_name(:profile_set)}", star_rate_path(:id => @schedule), :class => the_active) %>		
+			<%# the_active = get_active("match_star_rate") %>
+			<%#= content_tag :dd, link_to("#{label_name(:profile_set)}", star_rate_path(:id => @schedule), :class => the_active) %>		
 <% 
 		end
 	end

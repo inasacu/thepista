@@ -26,7 +26,7 @@
 	the_total, the_label = set_latest_payment	
 -%>
 
-<% if the_total.to_f > 0.0 %>
+<% if the_total.to_f > 0.0 and DISPLAY_PAYMENT %>
 
 
 <%= set_title_class(the_label) %>

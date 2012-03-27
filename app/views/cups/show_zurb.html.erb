@@ -1,6 +1,6 @@
 <% 
 	is_user_manager = (current_user.is_manager_of?(@cup))
-	is_maximo = current_user.is_maximo?
+	is_maximo = the_maximo
 	
 	@the_escuadras = []
 	@cup.escuadras.each {|escuadra| @the_escuadras << escuadra.item}

@@ -27,11 +27,11 @@
 		<table>
 		  	<thead>
 			<tr>             
-				<%= content_tag :th, "&nbsp;" %>
+				<%= set_content_tag_safe(:th, "&nbsp;") %>
 				<%= content_tag :th, "#{label_name(:name)}<br />#{label_name(:last_game_played)}" %>
 				<%= content_tag :th, label_name(:group) %>
 				<%= content_tag :th, label_name(:city) %>
-				<%= content_tag :th, "&nbsp;" %>
+				<%= set_content_tag_safe(:th, "&nbsp;") %>
 			</tr>
 			</thead>
 			

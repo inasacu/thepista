@@ -44,7 +44,7 @@ class TypesController < ApplicationController
 
   private 
   def the_maximo
-    unless current_user.is_maximo? 
+    unless the_maximo 
       redirect_to root_url
       return
     end

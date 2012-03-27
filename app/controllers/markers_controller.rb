@@ -227,7 +227,7 @@ class MarkersController < ApplicationController
     @default_latitude = @location.lat unless @location.lat.nil?
     @default_longitude = @location.lng unless @location.lng.nil?
 
-    has_access = current_user.is_maximo?
+    has_access = the_maximo
 
     @markers.each do |marker|  
 
@@ -274,7 +274,7 @@ class MarkersController < ApplicationController
   end
 
   def the_maximo
-    unless current_user.is_maximo? 
+    unless the_maximo 
       redirect_to root_url
       return
     end

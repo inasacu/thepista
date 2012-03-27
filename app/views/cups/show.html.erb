@@ -37,7 +37,7 @@
 	<table border="0">
 		
 		<%= tr_td_action(:name, @cup.name) %>
-		<%= tr_td_action(:official, label_name(@cup.official, 'value')) if current_user.is_maximo? %>
+		<%= tr_td_action(:official, label_name(@cup.official, 'value')) if the_maximo %>
 		<%= tr_td_action(:sports, @cup.sport.name) %>
 		<%= tr_td_action(:time_zone, @cup.time_zone) %>
 		<%= tr_td_action(:starts_at, nice_day_of_week(@cup.starts_at)) %>
@@ -46,7 +46,7 @@
 		<%= tr_td_action(:club, label_name(@cup.club, 'value')) %>		
 		<%= tr_td_action(:escuadras, t(:has_cup_escuadras, :count => @cup.escuadras.count)) %>
 		<%= tr_td_action(:games, t(:has_cup_games, :count => @cup.games.count)) %>		
-		<%= tr_td_action(:group_stage_advance, @cup.group_stage_advance) if (@cup.group_stage_advance.to_i > 0) if current_user.is_maximo? %>
+		<%= tr_td_action(:group_stage_advance, @cup.group_stage_advance) if (@cup.group_stage_advance.to_i > 0) if the_maximo %>
 		
 		<tr>
 			<%= content_tag :td, link_to(label_name(:standing), standing_path(:id => @cup)), :class => "label" if @cup.has_standing %>

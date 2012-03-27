@@ -36,7 +36,7 @@
 	unless @schedule.played? 
 		the_reminder_label = h(label_name(@schedule.reminder, 'value'))
 		the_reminder_confirmation = label_with_name('reminder', "- #{sanitize(@schedule.concept)}?") 
-		the_public_label = h(label_name(@schedule.public, 'value'))
+		the_public_label = label_name(@schedule.public, 'value')
 		the_public_confirmation = label_with_name('public', "- #{sanitize(@schedule.concept)}?")
 	end
 	
@@ -79,37 +79,30 @@
 	<%= render_show_detail_zurb(:jornada, @schedule.jornada) %>
 	<%= render_show_detail_zurb(:starts_at, nice_day_of_week(@schedule.starts_at)) %>
 	<%= render_show_detail_zurb(:ends_at, nice_day_of_week(@schedule.ends_at)) %>
-	<%= render_show_detail_zurb(:reminder_at, nice_day_of_week(@schedule.reminder_at)) unless @schedule.game_played? %>
 
-	<%= render_show_detail_zurb(:schedule_rate, 
-	ratings_for(@schedule, :show_user_rating => true, :dimension => :performance, :size => "small", :allow_update => show_start_rating )) if @schedule.game_played? %>
 
-	<%= render_show_detail_zurb(:schedule_rate_average, ratings_for(@schedule, :static, :dimension => :performance, :size => "small" )) if @schedule.game_played? %>
+	<%  unless @schedule.played? %> 
+
+		<%= render_show_detail_zurb(:public, 
+		(is_user_manager ? link_to(the_public_label, set_public_path(:id => @schedule.id), :confirm => the_public_confirmation) : the_public_label)) %>
+
+		<%= render_show_detail_zurb(:player_limit, @schedule.player_limit) %>
+
+	<% end %>
+
 	<%= render_show_detail_zurb(link_to(label_name(:scorecard), scorecard_path(:id => @schedule.group)), '', true) %>
 
-	<%#= render_show_detail_zurb(:season, @schedule.season) %>
+	
+	<%= render_show_detail_zurb(:city, @schedule.group.marker.city) %>
 	<%= render_show_detail_zurb(:sport, @schedule.sport.name) %>
 	<%= render_show_detail_zurb(:fee_per_game, number_to_currency(@schedule.fee_per_game)) %>
 	<%= render_show_detail_zurb(:fee_per_pista, number_to_currency(@schedule.fee_per_pista)) %>
-	<%= render_show_detail_zurb(:city, @schedule.group.marker.city) %>
 	<%= render_show_detail_zurb(:marker, marker_link(@schedule.group.marker)) %>
 
 	<%= render_show_detail_zurb(:convocados, render('/shared/show_images_zurb', :collection => @schedule.convocados)) unless @schedule.convocados.empty? %>	
 	<%= render_show_detail_zurb(:last_minute, render('/shared/show_images_zurb', :collection => @schedule.last_minute)) unless @schedule.last_minute.empty? %>			
 	<%= render_show_detail_zurb(:no_shows, render('/shared/show_images_zurb', :collection => @schedule.no_shows)) unless @schedule.no_shows.empty? %>			
-	<%= render_show_detail_zurb(:no_jugado, render('/shared/show_images_zurb', :collection => @schedule.no_jugado)) unless @schedule.no_jugado.empty? %>		
-
-	<%  unless @schedule.played? %> 
-	
-		<%= render_show_detail_zurb(:reminder, 
-		(is_user_manager ? link_to(the_reminder_label, set_reminder_path(:id => @schedule.id), :confirm => the_reminder_confirmation) : the_label)) %>
-
-		<%= render_show_detail_zurb(:public, 
-		(is_user_manager ? link_to(the_public_label, set_public_path(:id => @schedule.id), :confirm => the_public_confirmation) : the_label)) %>
-
-		<%= render_show_detail_zurb(:player_limit, @schedule.player_limit) %>
-
-	<% end %>
+	<%= render_show_detail_zurb(:no_jugado, render('/shared/show_images_zurb', :collection => @schedule.no_jugado)) unless @schedule.no_jugado.empty? %>
 
 
 	</div>

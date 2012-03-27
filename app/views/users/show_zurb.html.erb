@@ -116,7 +116,7 @@ the_label = h(label_name(@user.last_minute_notification, 'value'))
 <%= render_show_detail_zurb(:users_teammate, render('shared/show_images_zurb', :collection => @user.friends)) if @user.friends.count > 0 %>
   
 
-<%= render :partial => 'show_admin_zurb' if current_user.is_maximo? %>
+<%= render :partial => 'show_admin_zurb' if the_maximo %>
 <% end -%>
 
 

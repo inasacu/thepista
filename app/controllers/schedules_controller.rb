@@ -63,41 +63,48 @@ class SchedulesController < ApplicationController
     render @the_template
   end
    
-  def team_roster
-    store_location
-    @has_a_roster = !(@schedule.convocados.empty?)
-    @the_roster = @schedule.the_roster_sort(sort_order(''))
-      set_the_template('schedules/team_roster')
-      render @the_template 
-    end
+	def team_roster
+		store_location
+		@has_a_roster = !(@schedule.convocados.empty?)
+		@the_roster = @schedule.the_roster_sort(sort_order(''))
+
+		@has_a_no_show_roster = !(@schedule.no_shows.empty?)
+		@the_no_show_roster = @schedule.the_no_show
+		
+		@has_a_last_roster = !(@schedule.last_minute.empty?)
+		@the_last_roster = @schedule.the_last_minute
+
+		set_the_template('schedules/team_roster')
+		render @the_template 
+	end
 
   def sort_order(default)
     "#{(params[:c] || default.to_s).gsub(/[\s;'\"]/,'')} #{params[:d] == 'down' ? 'DESC' : 'ASC'}"
   end
   
-  def team_last_minute
-    store_location
-    @has_a_roster = !(@schedule.last_minute.empty?)
-    @the_roster = @schedule.the_last_minute
-      set_the_template('schedules/team_roster')
-      render @the_template 
-    end
-  
-  def team_no_show
-    store_location
-    @has_a_roster = !(@schedule.no_shows.empty?)
-    @the_roster = @schedule.the_no_show
-      set_the_template('schedules/team_roster')
-      render @the_template 
-    end
-  
-  def team_unavailable
-    store_location
-    @has_a_roster = !(@schedule.the_unavailable.empty?)
-    @the_roster = @schedule.the_unavailable
-      set_the_template('schedules/team_roster')
-      render @the_template 
-    end
+	def team_last_minute
+		store_location
+		@has_a_roster = !(@schedule.last_minute.empty?)
+		@the_roster = @schedule.the_last_minute
+		set_the_template('schedules/team_roster')
+		render @the_template 
+	end
+
+	def team_no_show
+		store_location
+		@has_a_roster = !(@schedule.no_shows.empty?)
+		@the_roster = @schedule.the_no_show
+		set_the_template('schedules/team_roster')
+		render @the_template 
+	end
+
+	def team_unavailable
+		store_location
+		@has_a_roster = !(@schedule.the_unavailable.empty?)
+		@the_roster = @schedule.the_unavailable
+		set_the_template('schedules/team_roster')
+		render @the_template 
+	end
   
   def rate
     @schedule.rate(params[:stars], current_user, params[:dimension])

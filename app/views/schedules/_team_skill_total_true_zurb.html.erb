@@ -4,7 +4,7 @@
 	<thead>
 		<tr>
 			<%= content_tag :th, label_name(:groups) %>
-			<%= content_tag :th, "&nbsp;" %>
+			<%= set_content_tag_safe(:th, "&nbsp;") %>
 			<%= content_tag :th, label_name(:users), :align => "left" %>
 			<%= content_tag :th, label_name(:true_skill_mean_total) %>
 			<%= content_tag :th, label_name(:true_skill_mean_difference) %>

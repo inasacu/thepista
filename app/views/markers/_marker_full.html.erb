@@ -17,13 +17,13 @@
 	</td>
 
 	<td>
-		<%= "#{marker.latitude}<br/>#{marker.longitude}" if current_user.is_maximo? %>
+		<%= "#{marker.latitude}<br/>#{marker.longitude}" if the_maximo %>
 	</td>
 
 	<% if display_icons %>
 	<td class="last">
 		<span class="action" align="left">
-			<% if current_user.is_maximo? %> 
+			<% if the_maximo %> 
 			<strong><%= option_image_small_link('marker') %>&nbsp;&nbsp;<%= link_to label_name(:markers_edit), edit_marker_path(:id => marker) %></strong>
 			<% end %>
 		</span>

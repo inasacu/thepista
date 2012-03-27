@@ -2,8 +2,6 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>currentDocument</key>
-	<string>app/helpers/matches_helper.rb</string>
 	<key>documents</key>
 	<array>
 		<dict>
@@ -146,7 +144,7 @@
 		</dict>
 	</array>
 	<key>fileHierarchyDrawerWidth</key>
-	<integer>329</integer>
+	<integer>224</integer>
 	<key>metaData</key>
 	<dict>
 		<key>app/controllers/fees_controller.rb</key>
@@ -162,36 +160,6 @@
 			<integer>0</integer>
 			<key>firstVisibleLine</key>
 			<integer>231</integer>
-		</dict>
-		<key>app/helpers/matches_helper.rb</key>
-		<dict>
-			<key>caret</key>
-			<dict>
-				<key>column</key>
-				<integer>36</integer>
-				<key>line</key>
-				<integer>54</integer>
-			</dict>
-			<key>columnSelection</key>
-			<false/>
-			<key>firstVisibleColumn</key>
-			<integer>0</integer>
-			<key>firstVisibleLine</key>
-			<integer>3</integer>
-			<key>selectFrom</key>
-			<dict>
-				<key>column</key>
-				<integer>19</integer>
-				<key>line</key>
-				<integer>54</integer>
-			</dict>
-			<key>selectTo</key>
-			<dict>
-				<key>column</key>
-				<integer>36</integer>
-				<key>line</key>
-				<integer>54</integer>
-			</dict>
 		</dict>
 		<key>app/helpers/schedules_helper.rb</key>
 		<dict>
@@ -460,16 +428,9 @@
 			<integer>0</integer>
 		</dict>
 	</dict>
-	<key>openDocuments</key>
-	<array>
-		<string>app/helpers/schedules_helper.rb</string>
-		<string>app/views/home/index_zurb.html.erb</string>
-		<string>app/views/home/_latest_activities_zurb.html.erb</string>
-		<string>app/helpers/matches_helper.rb</string>
-	</array>
 	<key>showFileHierarchyDrawer</key>
 	<true/>
 	<key>windowFrame</key>
-	<string>{{0, 46}, {1581, 732}}</string>
+	<string>{{0, 46}, {1046, 732}}</string>
 </dict>
 </plist>
