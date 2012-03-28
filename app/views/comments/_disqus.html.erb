@@ -20,7 +20,7 @@
 	Disqus::defaults[:show_powered_by] = false # show or hide powered by line
 	Disqus::defaults[:orientation] = "horizontal" # comment orientation
 	Disqus::defaults[:message] = "works...works"
-	Disqus::defaults[:api_key] = APP_CONFIG['disqus']['secret_key']
+	# Disqus::defaults[:api_key] = APP_CONFIG['disqus']['secret_key']
 	
 	# Disqus::Api.create_post(
 	# 	post_data = {:thread_id => the_item_link, 
@@ -32,8 +32,8 @@
 %>
 
 <%#= Disqus::Api.get_forum_api_key %>
-<%= disqus_recent_comments %>
-<%= disqus_thread %>
-<%= disqus_comment_counts %>
+<%= "#{disqus_recent_comments}".html_safe %>
+<%= "#{disqus_thread}".html_safe %>
+<%= "#{disqus_comment_counts}".html_safe %>
 
 <% end %>

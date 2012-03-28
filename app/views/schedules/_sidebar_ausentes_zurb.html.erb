@@ -1,21 +1,19 @@
-<% the_label, the_content, has_been_played, is_manager, is_squad, the_sport, the_missing, the_span, the_start_at_label = get_team_roster %> 
+<% 
+	the_label = label_name(:group)
+%> 
    
 <%= set_title_class(the_label) %>
+
+
 <hr/>
 
 <div class="row">
 	<div class="twelve columns">
 
-		<% if @has_a_no_show_roster %>
-
-				<%= render 'schedules/team_roster_box_zurb', 
-						   	:previous_show => @previous, 
-							:next_show => @next, 
-							:schedule => @schedule, 
-							:the_roster => @the_no_show_roster, 
-							:match_type => @match_type %>
-
-		<% end -%>
+		<%= render_show_detail_zurb(:convocados, render('/shared/show_images_zurb', :collection => @schedule.convocados)) unless @schedule.convocados.empty? %>	
+		<%= render_show_detail_zurb(:last_minute, render('/shared/show_images_zurb', :collection => @schedule.last_minute)) unless @schedule.last_minute.empty? %>			
+		<%= render_show_detail_zurb(:no_shows, render('/shared/show_images_zurb', :collection => @schedule.no_shows)) unless @schedule.no_shows.empty? %>			
+		<%= render_show_detail_zurb(:no_jugado, render('/shared/show_images_zurb', :collection => @schedule.no_jugado)) unless @schedule.no_jugado.empty? %>
 
 	</div>
 </div>
