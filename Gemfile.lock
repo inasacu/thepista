@@ -56,8 +56,6 @@ GEM
       activerecord (~> 3.2.0)
     delayed_job (3.0.1)
       activesupport (~> 3.0)
-    disqus (1.0.4)
-      json
     erubis (2.7.0)
     execjs (1.3.0)
       multi_json (~> 1.0)
@@ -184,7 +182,6 @@ DEPENDENCIES
   coffee-rails (~> 3.2.1)
   composite_primary_keys
   delayed_job
-  disqus
   friendly_id
   geokit
   geokit-rails

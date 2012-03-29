@@ -29,7 +29,7 @@ gem 'ajaxful_rating', '>= 3.0.0.beta8'
 
 gem 'iron_worker'
 
-gem 'disqus'
+# gem 'disqus'
 
 # Gems used only for assets and not required
 # in production environments by default.
