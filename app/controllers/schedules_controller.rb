@@ -1,6 +1,3 @@
-require 'rubygems'
-require 'rqrcode'
-
 class SchedulesController < ApplicationController
   before_filter :require_user
 
@@ -204,7 +201,7 @@ class SchedulesController < ApplicationController
       match.archive = false
       match.save!
     end
-    Scorecard.delay.calculate_group_scorecard(@schedule.group)
+    # Scorecard.delay.calculate_group_scorecard(@schedule.group)
     @schedule.destroy
 
     flash[:notice] = I18n.t(:successful_destroy)

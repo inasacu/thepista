@@ -578,7 +578,7 @@ en:
      game_played_false:  Did not Play Last Game     
      games_played: GP   
      games_played_full: Games Played
-     games_played_full_2:  "Games<br/>Played"
+     games_played_full_2:  "Games Played"
      games_started: GS
      games_started_full:  Games Started 
      games_ranking: R.   
@@ -1078,7 +1078,8 @@ en:
      payment_due:  Payment Due  
      pending: Pending   
      percentage: "%"   
-     percentage_full: Percent        
+     percentage_full: Percent 
+     percentage_played:  Played %
      petition: Request 
      petition_at:  Requested Date
      petition_join_item_accept:  Accept

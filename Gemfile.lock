@@ -98,10 +98,9 @@ GEM
     multi_json (1.2.0)
     multi_xml (0.4.2)
     nokogiri (1.5.0)
-    paperclip (3.0.0)
-      activemodel (>= 3.0.0)
-      activerecord (>= 3.0.0)
-      activesupport (>= 3.0.0)
+    paperclip (2.7.0)
+      activerecord (>= 2.3.0)
+      activesupport (>= 2.3.2)
       cocaine (>= 0.0.2)
       mime-types
     pg (0.13.2)
@@ -139,7 +138,6 @@ GEM
       mime-types (>= 1.16)
     rpx_now (0.6.24)
       json_pure
-    rqrcode (0.4.2)
     sass (3.1.15)
     sass-rails (3.2.5)
       railties (~> 3.2.0)
@@ -193,12 +191,11 @@ DEPENDENCIES
   jquery-rails
   jquery_notify_bar
   nokogiri
-  paperclip
+  paperclip (= 2.7.0)
   pg
   rails (= 3.2.1)
   recaptcha
   rpx_now
-  rqrcode
   sass-rails (~> 3.2.3)
   sitemap_generator
   ssl_requirement

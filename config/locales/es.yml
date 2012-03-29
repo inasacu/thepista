@@ -585,7 +585,7 @@ es:
      games_lost_full: Partidos Perdidos   
      games_played: PJ   
      games_played_full: Partidos Jugados 
-     games_played_full_2:  "Partidos<br/>Jugados" 
+     games_played_full_2:  "Partidos Jugados" 
      games_started: PT
      games_started_full:  Partidos Titular 
      games_ranking: R   
@@ -1086,7 +1086,8 @@ es:
      payment_due:  Vencimiento del pago
      pending: Pendiente   
      percentage: "%"   
-     percentage_full: Porcentaje       
+     percentage_full: Porcentaje 
+     percentage_played:  Jugados %      
      petition: Petición 
      petition_at:  Fecha de la petición
      petition_join_item_accept:  Acepto

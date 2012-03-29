@@ -4,10 +4,10 @@
 	roster_count, is_squad, has_been_played, show_right_evaluation, is_manager, is_member, home, away, group_games_played, schedule_number, 
     group, has_been_played_squad, show_right_border, show_right_evaluation, show_deviation, show_mean = set_team_roster_box(the_roster, @schedule)
 
-	is_the_squad = (is_squad and !has_been_played) ? "#{label_name(:name)}<br/>#{sort_link(label_name(:change_at), :status_at)}" :
-	"#{label_name(:name)}"
+	is_the_squad = (is_squad and !has_been_played) ? "#{label_name(:name)}" : "#{label_name(:name)}"
 	
 	it_has_played = has_been_played ? "" : is_squad ? sort_link(label_name(:group), :group_id) : label_name(:group)
+	the_status = "#{sort_link(label_name(:change_at), :status_at)}"
 %>
 
 <% if roster_count %>	  
@@ -20,7 +20,7 @@
 			<%= content_tag_safe(:th, "&nbsp;") %>
 			<%= content_tag_safe(:th, "&nbsp;") %>			
 			<%= content_tag_safe(:th, is_the_squad, label_name(:change_at_full)) %>
-			<%= content_tag_safe(:th, label_name(:games_played_full_2)) %>
+			<%= content_tag_safe(:th, label_name(:percentage_played)) %>
 			
 			<%= content_tag_safe(:th, it_has_played) if is_squad and !has_been_played %>		
 			<% if has_been_played %>
@@ -29,6 +29,7 @@
 			<%= content_tag_safe :th, "" %>
 			<% end -%>
 			<%= content_tag_safe :th, "" %>
+			<%= content_tag_safe :th, the_status %>
 			
 		</tr>
 	</thead>
@@ -90,7 +91,8 @@ the_roster.each do |match|
 	the_match_status = "#{the_match_status} <br /> ( #{label_name(:no_jugado)} )" if match.type_id == 4
 	the_match_status = "<font color='orange' title='#{label_name('forum_notification_false')}'> #{the_match_status} </font>".html_safe unless the_user.forum_comment_notification
 	
-	the_match_status = "#{user_link_limit(the_user)}<br/>#{the_match_status}"
+	the_user_link = "#{user_link_limit(the_user)}"
+	the_match_status = "#{the_match_status}"
 	
 	not_played = "<br />(#{label_name(:no_jugado)})"
 	
@@ -104,18 +106,19 @@ the_roster.each do |match|
 <tr>
 	<%= content_tag_safe(:td, image_link_smaller(the_user), '', '', second_team) %>
 	<%= content_tag_safe(:td, subscription_image, '','', second_team) %>
-	<%= content_tag_safe(:td, the_match_status, '','', second_team) %>
+	<%= content_tag_safe(:td, the_user_link, '','', second_team) %>
 	<%= content_tag_safe(:td, game_number, '','', second_team) %>
 	
-	<% if is_squad %>
+	<%# if is_squad %>
 		<% if !has_been_played  %>
 			<%= content_tag_safe(:td, change_group_link, '','', second_team) unless has_been_played %>
 		<% 	end %>
 		<%= content_tag_safe(:td, was_convocado ? (group_score_link(@schedule)) : '', '','', second_team) if has_been_played_squad %>	
-	<% end %> 
+	<%# end %> 
 
 	<%= content_tag_safe(:td, is_different_user_manager ? (match_all_my_link(@schedule, the_user, true)) : '', '','', second_team) if has_not_been_played_manager %>
-
+	
+	<%= content_tag_safe(:td, the_match_status, '','', second_team) %>
 </tr>
 
 <% end %>

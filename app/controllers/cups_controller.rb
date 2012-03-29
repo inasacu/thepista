@@ -64,7 +64,7 @@ class CupsController < ApplicationController
         (@original_cup.points_for_lose != @cup.points_for_lose) or 
         (@original_cup.points_for_draw != @cup.points_for_draw)
 
-        Scorecard.delay.calculate_cup_scorecard(@cup)    
+        # Scorecard.delay.calculate_cup_scorecard(@cup)    
       end
 
       flash[:success] = I18n.t(:successful_update)

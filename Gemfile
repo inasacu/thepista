@@ -21,15 +21,22 @@ gem 'texticle'
 gem 'trueskill'
 gem 'delayed_job'
 gem 'hirefireapp'
-gem 'paperclip'
+gem 'paperclip', '2.7.0'
 gem 'composite_primary_keys'
 gem 'nokogiri'
 gem 'recaptcha'
 gem 'ajaxful_rating', '>= 3.0.0.beta8'
 
+gem 'jquery-rails'
+gem 'google_map'
+gem 'ssl_requirement'
+gem 'jquery_notify_bar'
+gem 'acts_as_tree'
+gem 'aws-sdk'
+gem 'friendly_id'
+
 gem 'iron_worker'
 
-# gem 'disqus'
 
 # Gems used only for assets and not required
 # in production environments by default.
@@ -43,17 +50,10 @@ group :assets do
   gem 'uglifier', '>= 1.0.3'
 end
 
-gem 'jquery-rails'
-gem 'google_map'
-gem 'ssl_requirement'
-gem 'jquery_notify_bar'
-gem 'acts_as_tree'
-gem 'aws-sdk'
-gem 'friendly_id'
-gem 'rqrcode'
+
+# gem 'rqrcode'
 # gem 'contacts'
-
-
+# gem 'disqus'
 # gem "gmaps4rails", "~> 1.4.8"
 # gem "url_shortener"
 # gem "ruby-openid"

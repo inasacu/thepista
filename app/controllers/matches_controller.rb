@@ -84,8 +84,8 @@ class MatchesController < ApplicationController
       Match.update_match_details(@match, current_user)
 
       if DISPLAY_TRUESKILL
-        Match.delay.set_default_skill(the_group)
-        Match.delay.set_true_skill(the_group)
+        # Match.delay.set_default_skill(the_group)
+        # Match.delay.set_true_skill(the_group)
       end
 
       flash[:success] = I18n.t(:successful_update)
@@ -105,24 +105,27 @@ class MatchesController < ApplicationController
     @type = Type.find(params[:type])
     played = (@type.id == 1 and !@match.group_score.nil? and !@match.invite_score.nil?)
 
-    ask_for_comment = (current_user == @match.user and Time.zone.now + 1.days > @match.schedule.starts_at)
-
+    
     if @match.update_attributes(:type_id => @type.id, :played => played, :user_x_two => @user_x_two, :status_at => Time.zone.now)
-      Scorecard.delay.calculate_user_played_assigned_scorecard(@match.user, @match.schedule.group)
+      # Scorecard.delay.calculate_user_played_assigned_scorecard(@match.user, @match.schedule.group)
 
       # set fee type_id to same as match type_id
       the_fee = Fee.find(:all, :conditions => ["debit_type = 'User' and debit_id = ? and item_type = 'Schedule' and item_id = ?", @match.user_id, @match.schedule_id])
       the_fee.each {|fee| fee.type_id = @type.id; fee.save}
     end 
 
-    if ask_for_comment
-      @schedule = @match.schedule
-      @the_previous = Schedule.previous(@schedule)
-      @the_next = Schedule.next(@schedule)
-      @forum = @schedule.forum
-      render :template => 'matches/set_status'
-      return
-    end
+		# forces user to comment section for comment
+		# ask_for_comment = (current_user == @match.user and Time.zone.now + 1.days > @match.schedule.starts_at)
+		#     if ask_for_comment
+		#       @schedule = @match.schedule
+		#       @the_previous = Schedule.previous(@schedule)
+		#       @the_next = Schedule.next(@schedule)
+		#       @forum = @schedule.forum
+		#       set_the_template('matches/set_status')
+		# 	render @the_template
+		#       return
+		#     end
+
     redirect_back_or_default('/index')
   end 
 
@@ -139,8 +142,8 @@ class MatchesController < ApplicationController
     if @match.update_attributes(:type_id => @type.id, :played => played, :user_x_two => @user_x_two, :status_at => Time.zone.now)
 
       manager_id = RolesUsers.find_item_manager(@match.schedule.group).user_id
-      Schedule.delay.create_notification_email(@match.schedule, @match.schedule, manager_id, @match.user_id, true)      
-      Scorecard.delay.calculate_user_played_assigned_scorecard(@match.user, @match.schedule.group)
+      # Schedule.delay.create_notification_email(@match.schedule, @match.schedule, manager_id, @match.user_id, true)      
+      # Scorecard.delay.calculate_user_played_assigned_scorecard(@match.user, @match.schedule.group)
 
       # set fee type_id to same as match type_id
       the_fee = Fee.find(:all, :conditions => ["debit_type = 'User' and debit_id = ? and item_type = 'Schedule' and item_id = ?", @match.user_id, @match.schedule_id])
