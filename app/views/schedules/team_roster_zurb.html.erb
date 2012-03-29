@@ -27,7 +27,9 @@
 
 <div class="row">
 	<div class="twelve columns">
-	<%= render 'comments/disqus' %>	
+	<%#= render 'comments/disqus' %>	
+	
+	<%= render 'utilities/disqus_display', :the_label => the_label %>
 	</div>
 </div>
 

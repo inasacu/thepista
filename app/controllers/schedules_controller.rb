@@ -68,12 +68,6 @@ class SchedulesController < ApplicationController
 		@has_a_roster = !(@schedule.convocados.empty?)
 		@the_roster = @schedule.the_roster_sort(sort_order(''))
 
-		@has_a_no_show_roster = !(@schedule.no_shows.empty?)
-		@the_no_show_roster = @schedule.the_no_show
-		
-		@has_a_last_roster = !(@schedule.last_minute.empty?)
-		@the_last_roster = @schedule.the_last_minute
-
 		set_the_template('schedules/team_roster')
 		render @the_template 
 	end

@@ -26,7 +26,7 @@
 			the_label = label_name(:wall)
 %>
 			<%= content_tag :dd, item_concept_link(@schedule.concept, @schedule, {:class => get_first_active('schedule_show')}, 25) %>
-			<%= content_tag :dd, link_to(the_label, forum_path(@schedule.forum), :class => get_active('forum_show')) if current_user.is_member_of?(@schedule.group)  %>
+			<%#= content_tag :dd, link_to(the_label, forum_path(@schedule.forum), :class => get_active('forum_show')) if current_user.is_member_of?(@schedule.group)  %>
 					
 			<% unless (@schedule.the_roster.empty?)		
 				the_active = get_active("#{get_the_controller}_team_roster")

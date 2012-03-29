@@ -1,0 +1,38 @@
+<%
+	the_item_link = item_concept_link(@schedule)
+%>
+
+<div id="disqus_thread"></div>
+
+
+<script type="text/javascript">
+    /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+    var disqus_shortname = 'haypista'; // required: replace example with your forum shortname
+
+	var disqus_title = '<%= the_label %>'; 
+	var disqus_developer = 1; // developer mode is on
+	
+	// var disqus_identifier = 'http://thepista.dev/schedule/217';
+	var disqus_identifier = '2583573';
+	// var disqus_identifier = '<%#= the_item_link %>';
+	var disqus_url = 'http://thepista.dev/schedule/217';
+	// var disqus_category_id = '123456';
+	
+	
+	
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="http://disqus.com" class="dsq-brlink">blog comments powered by <span class="logo-disqus">Disqus</span></a>
+
+
+
+<a href="http://example.com/article1.html#disqus_thread" data-disqus-identifier="article_1_identifier">First article</a>
+<a href="http://example.com/article2.html#disqus_thread">Second article</a>
+<a href="http://example.com/" data-disqus-identifier="over-9000">Anchor</a>
+
