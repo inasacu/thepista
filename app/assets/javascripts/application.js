@@ -81,6 +81,13 @@ $(function() {
 
 
 
+$(document).ready(function () {
+    // other routines here .. removed for clarity
+    $("div[id$=_commentSystem]").css({ padding: ".5em" }).appear(function () {
+        $.getScript("http://" + disqus_shortname + ".disqus.com/embed.js");
+    });
+});
+
 
 
 

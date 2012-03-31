@@ -158,7 +158,7 @@ module SchedulesHelper
 
       if (same_previous_schedule and counter < total_items)
       else
-        the_activities = %(#{the_activities} #{render(the_template, :schedules => the_user_schedules).html_safe})
+        the_activities = %(#{the_activities.html_safe} #{render(the_template.html_safe, :schedules => the_user_schedules).html_safe})
 
         #reset the_user_match and add new match
         the_user_schedules = []
@@ -166,7 +166,7 @@ module SchedulesHelper
       end																
 
     end
-    return the_activities
+    return the_activities.html_safe
   end
 
   def upcoming_schedules(schedules)

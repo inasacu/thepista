@@ -1581,12 +1581,14 @@ en:
      users: Players
      user_not_found:  "No user with that email account has been found."
      user_sessions: Login 
+     user_sessions_create:  Login
      user_fee: Player Fee
      user_last_login: Player Last Login   
      user_options:  Options 
      username_not_available: Username not available 
      username_password_donot_match: Username and Password combination are not correct
-     users_activate:  "It is necessary to activate your account"     
+     users_activate:  "It is necessary to activate your account" 
+     users_create:  Sign Up
      validate_openid: validate your OpenID   
      venue: Venue    
      Venue: Venue 

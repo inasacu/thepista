@@ -1,11 +1,11 @@
 <%  
-	schedule = Schedule.last_schedule_group_played(@group) 
-	is_member_group = current_user.is_member_of?(@group)
-	# has_petition = current_user.has_item_petition?(current_user, @group)
+	schedule = Schedule.last_schedule_group_played(group) 
+	is_member_group = current_user.is_member_of?(group)
+	# has_petition = current_user.has_item_petition?(current_user, group)
 	
-	is_group_manager = @group ? current_user.is_manager_of?(@group) : false
-	is_group_member = @group ? current_user.is_member_of?(@group) : false
-	has_group = @group ? true : false
+	is_group_manager = group ? current_user.is_manager_of?(group) : false
+	is_group_member = group ? current_user.is_member_of?(group) : false
+	has_group = group ? true : false
 	
 	the_group_name = ""
 	the_label = label_name(:options)
@@ -14,34 +14,34 @@
 	
 	
 	if has_group
-		the_group_name = h(@group.name) 
+		the_group_name = h(group.name) 
 
-		# the_label = label_with_name('create_schedule', @group.name)
+		# the_label = label_with_name('create_schedule', group.name)
 		the_manager_label = label_name(:options_for_manager)
 		the_confirmation = "#{ label_name(:destroy_group) } #{the_group_name}?"
 		
-		has_schedule_blank = @group.schedules.blank? 
-		has_user_petition = current_user.has_item_petition?(current_user, @group)
-		the_confirmation = label_with_name(:do_leave_item, "#{@group.name}?")
+		has_schedule_blank = group.schedules.blank? 
+		has_user_petition = current_user.has_item_petition?(current_user, group)
+		the_confirmation = label_with_name(:do_leave_item, "#{group.name}?")
 	end
 	
 -%>
 
 
  <tr>  
-	<%= content_tag :td, item_image_link_small(@group) %>
-	<%= content_tag :td, "#{item_name_link(@group)} <br/> #{content_tag(:span, @group.marker.city, :class =>'date')}", :class => 'name_and_date' %>
-	<%= content_tag :td, "#{item_list(@group.all_the_managers)} <br/> #{content_tag(:span, @group.marker.city, :class =>'date')}", :class => 'name_and_date' %>
+	<%= content_tag :td, item_image_link_small(group) %>
+	<%= content_tag :td, "#{item_name_link(group)} <br/> #{content_tag(:span, group.marker.city, :class =>'date')}", :class => 'name_and_date' %>
+	<%= content_tag :td, "#{item_list(group.all_the_managers)} <br/> #{content_tag(:span, group.marker.city, :class =>'date')}", :class => 'name_and_date' %>
 	
-	  <%= content_tag :td, I18n.t(:has_group_users, :count => object_counter(@group.users)) %>
+	  <%= content_tag :td, I18n.t(:has_group_users, :count => object_counter(group.users)) %>
 		
 		<br />
 		<span class="date">										
-			<%= I18n.t(:has_group_schedules, :count => object_counter(@group.schedules)) %>
+			<%= I18n.t(:has_group_schedules, :count => object_counter(group.schedules)) %>
 		</span>
 	  
 
-	<%= content_tag :td, link_to(label_name(:scorecard), scorecard_path(:id => @group)) %>
+	<%= content_tag :td, link_to(label_name(:scorecard), scorecard_path(:id => group)) %>
 		<span class="date">
 			<%= nice_full_date(schedule.starts_at) unless schedule.nil? %> 
 		</span>
@@ -51,19 +51,19 @@
       <td class="last">
 		<span class="action" align="left">
 			<% if is_member_group %>
-				<%= option_image_small_link('message') %>&nbsp;&nbsp;<%= link_to(label_name(:send_message_to), new_message_path(:group_id => @group)) %><br />
+				<%= option_image_small_link('message') %>&nbsp;&nbsp;<%= link_to(label_name(:send_message_to), new_message_path(:group_id => group)) %><br />
 			<% else %>
 		
 			<%
-				unless current_user.has_item_petition?(current_user, @group) 							
+				unless current_user.has_item_petition?(current_user, group) 							
 			%> 
-				<%= option_image_small_link('user_add') %>&nbsp;&nbsp;<strong><%= join_item_link_to(current_user, @group) %></strong>
+				<%= option_image_small_link('user_add') %>&nbsp;&nbsp;<strong><%= join_item_link_to(current_user, group) %></strong>
 			<% 	end 
 			   end
 			-%>
 		
-			<% if current_user.is_manager_of?(@group) %> 
-				<strong><%= option_image_small_link('schedule') %>&nbsp;&nbsp;<%= link_to label_name(:schedules_create), new_schedule_path(:id => @group) %></strong>
+			<% if current_user.is_manager_of?(group) %> 
+				<strong><%= option_image_small_link('schedule') %>&nbsp;&nbsp;<%= link_to label_name(:schedules_create), new_schedule_path(:id => group) %></strong>
 	        <% end %>
 		</span>
       

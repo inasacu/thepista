@@ -695,7 +695,7 @@ module ApplicationHelper
 	end
 
 	def render_show_detail_zurb(item_label, item_link, unique_label=false)
-		return render('shared/show_detail_zurb', :item_label => item_label, :item_link => item_link, :unique_label => unique_label)
+		return render('shared/show_detail_zurb'.html_safe, :item_label => item_label, :item_link => item_link, :unique_label => unique_label)
 	end
 
 	def set_tab_navigation(the_label)

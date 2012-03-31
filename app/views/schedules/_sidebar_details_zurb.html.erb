@@ -35,16 +35,16 @@
 <div class="row">
 	<div class="twelve columns">
 
-		<%= item_name_link(@schedule.group) %><br/>
-		<%= @schedule.sport.name %><br/>
-		<%= nice_day_time_wo_year_exact(schedule.starts_at) %><br/>
+		<%= "#{item_name_link(@schedule.group)}".html_safe %><br/>
+		<%= "#{@schedule.sport.name}".html_safe %><br/>
+		<%= "#{nice_day_time_wo_year_exact(schedule.starts_at)}".html_safe %><br/>
 		<%= label_name(:convocado) %>:  <%= @schedule.convocados.count %>&nbsp;/&nbsp;<%= @schedule.player_limit %><br/>
 
 		<% if is_played %>
-		<%= item_name_link(@schedule.group) %>&nbsp;&nbsp;
-		<%= @schedule.home_score %>&nbsp;&nbsp;-&nbsp;&nbsp;<%= @schedule.away_score %>&nbsp;&nbsp;
-		<%= link_to h(@schedule.group.second_team), group_path(@schedule.group) %><br/>
-		<%= @the_home_score %> <%= @the_away_score if show_individual_score %>
+		<%= "#{item_name_link(@schedule.group)}  ".html_safe %>
+		<%= "#{@schedule.home_score}  -  #{@schedule.away_score}".html_safe %>
+		<%= "#{link_to(@schedule.group.second_team, group_path(@schedule.group))}".html_safe %><br/>
+		<%= "#{@the_home_score}".html_safe %> <%= "#{@the_away_score}".html_safe if show_individual_score %>		
 		<% end %>
 
 	</div>

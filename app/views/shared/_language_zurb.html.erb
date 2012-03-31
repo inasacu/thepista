@@ -1,7 +1,8 @@
 <%
 LANGUAGES.each do |language|
 -%>
-	<%= "&nbsp;&nbsp;#{link_to(label_name(language), language_url(:id => language))}".html_safe %>
+	<%= "#{link_to(label_name(language), language_url(:id => language))}".html_safe %>
+	<br/>
 <%
 end
 -%>

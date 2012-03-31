@@ -18,6 +18,7 @@
 			<%= render "home/upcoming_home_zurb", :teammate => item unless (item.class.to_s == 'Teammate') %>
 			<%= render "users/petition_box_zurb", :teammate => item if (item.class.to_s == 'Teammate') %>	
 			<% end %>  
+			
 			<%= recent_activities_schedules(@schedule_items) %>
 
 		</table>

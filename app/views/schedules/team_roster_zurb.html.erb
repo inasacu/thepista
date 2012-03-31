@@ -5,7 +5,7 @@
 
 <%= set_title_class(the_label, 'events') %>
 
-<%= render('schedules/team_roster_change_schedule', :the_start_at_label => the_start_at_label) %>
+<%= render('schedules/team_roster_change_schedule', :the_start_at_label => the_start_at_label) unless @schedule.played %>
 
 <div class="row">
 	<div class="twelve columns">
@@ -26,9 +26,7 @@
 
 
 <div class="row">
-	<div class="twelve columns">
-	<%#= render 'comments/disqus' %>	
-	
+	<div class="twelve columns">	
 	<%= render 'utilities/disqus_display', :the_label => the_label %>
 	</div>
 </div>

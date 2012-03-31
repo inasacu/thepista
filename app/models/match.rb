@@ -1,8 +1,4 @@
-require 'rubygems'
-require 'saulabs/trueskill'
 require "base64"
-
-include Saulabs::TrueSkill
 
 class Match < ActiveRecord::Base
           

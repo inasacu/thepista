@@ -3,7 +3,7 @@
 <plist version="1.0">
 <dict>
 	<key>currentDocument</key>
-	<string>Gemfile</string>
+	<string>app/views/schedules/show_zurb.html.erb</string>
 	<key>documents</key>
 	<array>
 		<dict>
@@ -114,9 +114,7 @@
 			<key>filename</key>
 			<string>Gemfile</string>
 			<key>lastUsed</key>
-			<date>2012-03-29T01:28:24Z</date>
-			<key>selected</key>
-			<true/>
+			<date>2012-03-29T20:06:20Z</date>
 		</dict>
 		<dict>
 			<key>filename</key>
@@ -151,20 +149,6 @@
 	<integer>269</integer>
 	<key>metaData</key>
 	<dict>
-		<key>Gemfile</key>
-		<dict>
-			<key>caret</key>
-			<dict>
-				<key>column</key>
-				<integer>14</integer>
-				<key>line</key>
-				<integer>31</integer>
-			</dict>
-			<key>firstVisibleColumn</key>
-			<integer>0</integer>
-			<key>firstVisibleLine</key>
-			<integer>12</integer>
-		</dict>
 		<key>app/controllers/fees_controller.rb</key>
 		<dict>
 			<key>caret</key>
@@ -178,20 +162,6 @@
 			<integer>0</integer>
 			<key>firstVisibleLine</key>
 			<integer>231</integer>
-		</dict>
-		<key>app/models/cast.rb</key>
-		<dict>
-			<key>caret</key>
-			<dict>
-				<key>column</key>
-				<integer>0</integer>
-				<key>line</key>
-				<integer>0</integer>
-			</dict>
-			<key>firstVisibleColumn</key>
-			<integer>0</integer>
-			<key>firstVisibleLine</key>
-			<integer>132</integer>
 		</dict>
 		<key>app/views/groups/_index_full.html.erb</key>
 		<dict>
@@ -327,6 +297,50 @@
 				<integer>18</integer>
 			</dict>
 		</dict>
+		<key>app/views/schedules/show_zurb.html.erb</key>
+		<dict>
+			<key>caret</key>
+			<dict>
+				<key>column</key>
+				<integer>4</integer>
+				<key>line</key>
+				<integer>101</integer>
+			</dict>
+			<key>firstVisibleColumn</key>
+			<integer>0</integer>
+			<key>firstVisibleLine</key>
+			<integer>56</integer>
+		</dict>
+		<key>app/views/schedules/team_roster_zurb.html.erb</key>
+		<dict>
+			<key>caret</key>
+			<dict>
+				<key>column</key>
+				<integer>6</integer>
+				<key>line</key>
+				<integer>31</integer>
+			</dict>
+			<key>columnSelection</key>
+			<false/>
+			<key>firstVisibleColumn</key>
+			<integer>0</integer>
+			<key>firstVisibleLine</key>
+			<integer>0</integer>
+			<key>selectFrom</key>
+			<dict>
+				<key>column</key>
+				<integer>6</integer>
+				<key>line</key>
+				<integer>24</integer>
+			</dict>
+			<key>selectTo</key>
+			<dict>
+				<key>column</key>
+				<integer>6</integer>
+				<key>line</key>
+				<integer>31</integer>
+			</dict>
+		</dict>
 		<key>app/views/user_mailer/_the_match_status.html.erb</key>
 		<dict>
 			<key>caret</key>
@@ -357,6 +371,20 @@
 				<integer>11</integer>
 			</dict>
 		</dict>
+		<key>log/development.log</key>
+		<dict>
+			<key>caret</key>
+			<dict>
+				<key>column</key>
+				<integer>0</integer>
+				<key>line</key>
+				<integer>0</integer>
+			</dict>
+			<key>firstVisibleColumn</key>
+			<integer>0</integer>
+			<key>firstVisibleLine</key>
+			<integer>0</integer>
+		</dict>
 		<key>script/delayed_job</key>
 		<dict>
 			<key>caret</key>
@@ -374,11 +402,13 @@
 	</dict>
 	<key>openDocuments</key>
 	<array>
-		<string>Gemfile</string>
+		<string>log/development.log</string>
+		<string>app/views/schedules/show_zurb.html.erb</string>
+		<string>app/views/schedules/team_roster_zurb.html.erb</string>
 	</array>
 	<key>showFileHierarchyDrawer</key>
 	<true/>
 	<key>windowFrame</key>
-	<string>{{0, 46}, {1001, 732}}</string>
+	<string>{{0, 46}, {1641, 1012}}</string>
 </dict>
 </plist>

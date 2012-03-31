@@ -1,13 +1,10 @@
-require 'rubygems'
-require 'rqrcode'
-
 class GroupsController < ApplicationController
   before_filter :require_user    
   before_filter :get_group, :only => [:team_list, :show, :edit, :update, :set_available, :set_enable_comments, :set_automatic_petition, :set_looking, :destroy]
   before_filter :has_manager_access, :only => [:edit, :update, :destroy, :set_available, :set_enable_comments, :set_automatic_petition, :set_looking]
 
   def index
-		@groups = Group.where("groups.archive = false ").page(params[:page]).order('groups.created_at DESC')
+		@groups = Group.where("groups.archive = false").page(params[:page]).order('groups.created_at DESC')
     render @the_template
   end
 

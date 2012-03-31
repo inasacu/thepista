@@ -1087,7 +1087,7 @@ es:
      pending: Pendiente   
      percentage: "%"   
      percentage_full: Porcentaje 
-     percentage_played:  Jugados %      
+     percentage_played:  Jugado %      
      petition: Petición 
      petition_at:  Fecha de la petición
      petition_join_item_accept:  Acepto
@@ -1591,12 +1591,14 @@ es:
      users: Jugadores
      user_not_found:  "Ningún usuario con esa cuenta de correo se ha encontrado."
      user_sessions: Entrar 
+     user_sessions_create:  Entrar
      user_fee: Tasa de Jugador
      user_last_login: Última vez conectado   
      user_options:  Opciones
      username_not_available: Nombre de usuario no esta disponible 
      username_password_donot_match: Nombre de usuario y contraseña no coinciden
-     users_activate:  "Es necesario activar tu cuenta"     
+     users_activate:  "Es necesario activar tu cuenta" 
+     users_create:  Registrar   
      validate_openid: valida tu OpenID   
      venue: Centro Deportivo    
      Venue: Centro Deportivo

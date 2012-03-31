@@ -31,9 +31,9 @@
 	<title><%= page_title %></title>
 
 	<link rel="image_src" href="http://haypista.com/images/haypista.png" />
-	<link  rel="apple-touch-icon" href="assets/apple-touch-icon.png" />
+	<link  rel="apple-touch-icon" href="apple-touch-icon.png" />
 	<link rel="home" href="http://www.haypista.com">
-	<link rel="shortcut icon" type="image/ico" href="assets/favicon.ico">
+	<link rel="shortcut icon" type="image/ico" href="favicon.ico">
   
 	<%= stylesheet_link_tag    "application", :media => "all" %>
 	<%= javascript_include_tag "application" %>
@@ -47,7 +47,7 @@
 	<%= javascript_include_tag "http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js" %>
 	<%= javascript_include_tag 'jquery.google-analytics', 'jquery.notifyBar', 'jquery.cluetip', 'jquery.hoverIntent' %>
 	<%= javascript_include_tag 'jquery.clearinput' %>
-	<%= render :partial => 'utilities/google_analytics' %>
+	<%#= render :partial => 'utilities/google_analytics' %>
 	
 
 	<%# if DISPLAY_DEFAULTS %>	
@@ -108,7 +108,6 @@
 		<script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
 	<![endif]-->
 
-
 	<%#= javascript_include_tag "vtip" %>
 	<%= javascript_include_tag "jquery-1.6.1.min" %>
 	<%= javascript_include_tag "zurb/jquery.reveal" %>
@@ -118,8 +117,7 @@
 	<%= javascript_include_tag "zurb/jquery.placeholder.min" %>
 	<%= javascript_include_tag "zurb/app" %>
 	<%= javascript_include_tag "zurb/presentation" %>
-	  
-
+	
 </head>
 
 <body id="-page" class="">

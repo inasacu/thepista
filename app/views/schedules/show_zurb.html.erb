@@ -53,21 +53,21 @@
 	<div class="twelve columns"> 
 
 
-	<%= render_show_detail_zurb(:concept, sanitize(@schedule.concept)) %>
+	<%= render_show_detail_zurb(:concept, @schedule.concept) %>
 
 
 	<% if @schedule.game_played? %>
 
-		<%= render_show_detail_zurb(:group, the_score) %>
+		<%= render_show_detail_zurb(:group, "#{the_score}".html_safe) %>
 
 		<% if show_individual_score %>	
 
-			<%= render_show_detail_zurb("#{link_to(h(@schedule.home_group), @schedule.home_group)}", @the_home_score, true) %>
-			<%= render_show_detail_zurb("#{link_to(h(@schedule.away_group), @schedule.home_group)}", @the_away_score, true) %>		
+			<%= render_show_detail_zurb("#{link_to(h(@schedule.home_group), @schedule.home_group)}".html_safe, "#{@the_home_score}".html_safe, true) %>
+			<%= render_show_detail_zurb("#{link_to(h(@schedule.away_group), @schedule.home_group)}".html_safe, "#{@the_away_score}".html_safe, true) %>		
 
 		<% end %>
 
-		<%= render_show_detail_zurb(:game_notes, @schedule.matches.first.description) %>
+		<%#= render_show_detail_zurb(:game_notes, @schedule.matches.first.description) %>
 
 	<% else %>
 
@@ -78,10 +78,10 @@
 
 	<%= render_show_detail_zurb(:jornada, @schedule.jornada) %>
 	<%= render_show_detail_zurb(:starts_at, nice_day_of_week(@schedule.starts_at)) %>
-	<%= render_show_detail_zurb(:ends_at, nice_day_of_week(@schedule.ends_at)) %>
 
 
 	<%  unless @schedule.played? %> 
+		<%= render_show_detail_zurb(:ends_at, nice_day_of_week(@schedule.ends_at)) %>
 
 		<%= render_show_detail_zurb(:public, 
 		(is_user_manager ? link_to(the_public_label, set_public_path(:id => @schedule.id), :confirm => the_public_confirmation) : the_public_label)) %>
@@ -99,12 +99,14 @@
 	<%= render_show_detail_zurb(:fee_per_pista, number_to_currency(@schedule.fee_per_pista)) %>
 	<%= render_show_detail_zurb(:marker, marker_link(@schedule.group.marker)) %>
 
-	<%#= render_show_detail_zurb(:convocados, render('/shared/show_images_zurb', :collection => @schedule.convocados)) unless @schedule.convocados.empty? %>	
-	<%#= render_show_detail_zurb(:last_minute, render('/shared/show_images_zurb', :collection => @schedule.last_minute)) unless @schedule.last_minute.empty? %>			
-	<%#= render_show_detail_zurb(:no_shows, render('/shared/show_images_zurb', :collection => @schedule.no_shows)) unless @schedule.no_shows.empty? %>			
-	<%#= render_show_detail_zurb(:no_jugado, render('/shared/show_images_zurb', :collection => @schedule.no_jugado)) unless @schedule.no_jugado.empty? %>
-
-
+	<hr>
 	</div>
 
+</div>
+
+
+<div class="row">
+	<div class="twelve columns">	
+	<%= render 'utilities/disqus_display', :the_label => the_label %>
+	</div>
 </div>

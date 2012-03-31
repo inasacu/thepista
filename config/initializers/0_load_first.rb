@@ -4,17 +4,17 @@
 # The funky filename?  Rails loads the initializers in alphabetical order.
 
 def development?
-  env_is('development')
-end
-
-def production?
-  env_is('production')
+	environment_is('development')
 end
 
 def test?
-  env_is('test')
+	environment_is('test')
 end
 
-def env_is(env)
-  ENV['Rails.env'] == env
+def production?
+	environment_is('production')	
+end
+
+def environment_is(env)
+	Rails.env == env
 end

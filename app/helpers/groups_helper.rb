@@ -28,8 +28,17 @@ module GroupsHelper
     item_name_link(schedule.group)  
   end
   
-  def group_score_link(schedule)
-    return "#{schedule.home_group} ( #{schedule.home_score}  -  #{schedule.away_score} ) #{schedule.away_group}" 
+  def group_score_link(schedule, is_second_team=false)
+		the_home_group = "#{schedule.home_group}"
+		the_away_group = "#{schedule.away_group}"
+		
+		if is_second_team
+			the_away_group = "<strong>#{the_away_group}</strong>"
+		else
+			the_home_group = "<strong>#{the_home_group}</strong>"
+		end
+			
+    return "#{the_home_group} ( #{schedule.home_score}  -  #{schedule.away_score} ) #{the_away_group}".html_safe
   end    
   
   def group_list(objects)

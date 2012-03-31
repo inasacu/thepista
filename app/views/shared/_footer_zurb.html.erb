@@ -4,7 +4,7 @@
 
 <footer class="row">
 
-	<section class="three columns">
+	<section class="two columns">
 		<h6><%= "#{label_name(:about)} #{app_name}" %></h6>
 		<p>		
 			<%= link_to(label_name(:about), about_url) %><br/>
@@ -12,22 +12,24 @@
 		</p>
 	</section>
 
-	<section class="three columns">
+	<section class="two columns">
 		<h6><%= label_name(:faq) %></h6>
 		<p>	
 			<%= "<a target='_blank' href='http://haypista.tumblr.com' class=''>Blog</a>".html_safe %><br/>
 			<%= link_to(label_name(:faq), faq_url) %><br/>
-			<%#= link_to(label_name(:openid), openid_url) %>
-			<%= "#{label_name(:language)}:  #{render :partial => '/shared/language_zurb'}".html_safe %>
+		</p>
+	</section>
+
+	<section class="two columns">
+		<h6><%= label_name(:language) %></h6>
+		<p>	
+			<%= "#{render :partial => '/shared/language_zurb'}".html_safe %>
 		</p>
 	</section>
 	
 	<section class="four columns">
-		<h6><%= "#{label_name(:about)} #{app_name}" %></h6>
-		<p>
-			<%= label_name(:need_quick_help) %><br/>
-			<%= "#{mail_to(CONTACT_RECIPIENT, label_name(:contact_us))}".html_safe %>
-		</p>
+		<h6><%= "#{label_name(:need_quick_help)}".html_safe %></h6>
+		<p><%= "#{mail_to(CONTACT_RECIPIENT, label_name(:contact_us))}".html_safe %></p>
 
 		<ul class="block-grid three-up">
 			<li>
