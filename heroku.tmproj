@@ -2,8 +2,6 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>currentDocument</key>
-	<string>app/views/schedules/show_zurb.html.erb</string>
 	<key>documents</key>
 	<array>
 		<dict>
@@ -146,7 +144,7 @@
 		</dict>
 	</array>
 	<key>fileHierarchyDrawerWidth</key>
-	<integer>269</integer>
+	<integer>310</integer>
 	<key>metaData</key>
 	<dict>
 		<key>app/controllers/fees_controller.rb</key>
@@ -191,36 +189,6 @@
 				<integer>31</integer>
 				<key>line</key>
 				<integer>16</integer>
-			</dict>
-		</dict>
-		<key>app/views/groups/index.html.erb</key>
-		<dict>
-			<key>caret</key>
-			<dict>
-				<key>column</key>
-				<integer>41</integer>
-				<key>line</key>
-				<integer>11</integer>
-			</dict>
-			<key>columnSelection</key>
-			<false/>
-			<key>firstVisibleColumn</key>
-			<integer>0</integer>
-			<key>firstVisibleLine</key>
-			<integer>0</integer>
-			<key>selectFrom</key>
-			<dict>
-				<key>column</key>
-				<integer>36</integer>
-				<key>line</key>
-				<integer>11</integer>
-			</dict>
-			<key>selectTo</key>
-			<dict>
-				<key>column</key>
-				<integer>46</integer>
-				<key>line</key>
-				<integer>11</integer>
 			</dict>
 		</dict>
 		<key>app/views/home/_pricing_box.html.erb</key>
@@ -297,20 +265,6 @@
 				<integer>18</integer>
 			</dict>
 		</dict>
-		<key>app/views/schedules/show_zurb.html.erb</key>
-		<dict>
-			<key>caret</key>
-			<dict>
-				<key>column</key>
-				<integer>4</integer>
-				<key>line</key>
-				<integer>101</integer>
-			</dict>
-			<key>firstVisibleColumn</key>
-			<integer>0</integer>
-			<key>firstVisibleLine</key>
-			<integer>56</integer>
-		</dict>
 		<key>app/views/schedules/team_roster_zurb.html.erb</key>
 		<dict>
 			<key>caret</key>
@@ -371,20 +325,6 @@
 				<integer>11</integer>
 			</dict>
 		</dict>
-		<key>log/development.log</key>
-		<dict>
-			<key>caret</key>
-			<dict>
-				<key>column</key>
-				<integer>0</integer>
-				<key>line</key>
-				<integer>0</integer>
-			</dict>
-			<key>firstVisibleColumn</key>
-			<integer>0</integer>
-			<key>firstVisibleLine</key>
-			<integer>0</integer>
-		</dict>
 		<key>script/delayed_job</key>
 		<dict>
 			<key>caret</key>
@@ -400,15 +340,9 @@
 			<integer>0</integer>
 		</dict>
 	</dict>
-	<key>openDocuments</key>
-	<array>
-		<string>log/development.log</string>
-		<string>app/views/schedules/show_zurb.html.erb</string>
-		<string>app/views/schedules/team_roster_zurb.html.erb</string>
-	</array>
 	<key>showFileHierarchyDrawer</key>
 	<true/>
 	<key>windowFrame</key>
-	<string>{{0, 46}, {1641, 1012}}</string>
+	<string>{{0, 46}, {1595, 1012}}</string>
 </dict>
 </plist>

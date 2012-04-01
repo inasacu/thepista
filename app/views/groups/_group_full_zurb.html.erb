@@ -1,7 +1,6 @@
 <%  
 	schedule = Schedule.last_schedule_group_played(group) 
 	is_member_group = current_user.is_member_of?(group)
-	# has_petition = current_user.has_item_petition?(current_user, group)
 	
 	is_group_manager = group ? current_user.is_manager_of?(group) : false
 	is_group_member = group ? current_user.is_member_of?(group) : false
@@ -29,22 +28,10 @@
 
 
  <tr>  
-	<%= content_tag :td, item_image_link_small(group) %>
-	<%= content_tag :td, "#{item_name_link(group)} <br/> #{content_tag(:span, group.marker.city, :class =>'date')}", :class => 'name_and_date' %>
-	<%= content_tag :td, "#{item_list(group.all_the_managers)} <br/> #{content_tag(:span, group.marker.city, :class =>'date')}", :class => 'name_and_date' %>
-	
-	  <%= content_tag :td, I18n.t(:has_group_users, :count => object_counter(group.users)) %>
-		
-		<br />
-		<span class="date">										
-			<%= I18n.t(:has_group_schedules, :count => object_counter(group.schedules)) %>
-		</span>
-	  
-
-	<%= content_tag :td, link_to(label_name(:scorecard), scorecard_path(:id => group)) %>
-		<span class="date">
-			<%= nice_full_date(schedule.starts_at) unless schedule.nil? %> 
-		</span>
+	<%= set_content_tag_safe(:td, item_image_link_small(group)) %>
+	<%= set_content_tag_safe(:td, "#{item_name_link(group)} <br/> #{content_tag(:span, group.sport.name)}", :class => 'name_and_date') %>
+	<%= set_content_tag_safe(:td, "#{item_list(group.all_the_managers)} <br/> #{content_tag(:span, group.marker.city, :class =>'date')}", :class => 'name_and_date') %>
+	<%= set_content_tag_safe(:td, "#{link_to(label_name(:scorecard), scorecard_path(:id => group))}<br/>#{I18n.t(:has_group_users, :count => object_counter(group.users))}") %>
 	
 
    <% if display_icons %>

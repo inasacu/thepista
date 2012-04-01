@@ -1,6 +1,5 @@
 <% 
 	is_user_manager = (current_user.is_manager_of?(@group)) 
-	# is_venue_maximo = @group.venue and the_maximo
 	is_venue_maximo = @group.venue 
 	is_member = current_user.is_member_of?(@group) and !@group.available_users.empty?
 	
@@ -69,3 +68,7 @@
 		
 	</div>
 </div>
+
+<%= render 'utilities/disqus_display', :the_item => @group %>
+
+

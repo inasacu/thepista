@@ -34,7 +34,7 @@
 		<% if is_group_member %>
 			<%= set_form_create_id_image_link(Message.new, :group_id, @group, :send_message_to) %>
 			<%= set_form_create_id_image_link(Invitation.new, :group_id, @group, :invitations_create_group) %>
-			<%= set_form_create_id_image_link(Message.new, :scorecard_id, @group.schedules.first, :send_scorecard, 'scorecard') unless has_schedule_blank %>
+			<%#= set_form_create_id_image_link(Message.new, :scorecard_id, @group.schedules.first, :send_scorecard, 'scorecard') unless has_schedule_blank %>
 
 		<% else %>	
 			<%= set_form_create_id_image_link(Message.new, :id, @group.all_the_managers.first, :send_message_to) %>
@@ -60,7 +60,7 @@
 	<div class="twelve columns">
 
 		<%= set_form_create_id_image_link(Schedule.new, :id, @group, :schedules_create) %>
-		<%= set_form_create_id_image_link(Classified.new, :id, @group, :classifieds_create)  if DISPLAY_CLASSIFIEDS %>
+		<%#= set_form_create_id_image_link(Classified.new, :id, @group, :classifieds_create)  if DISPLAY_CLASSIFIEDS %>
 		<%= set_form_edit_image_link(@group, :groups_edit) %>		
 		<%= set_form_create_id_image_link(Fee.new, :id, @group, :fee_user_for_group) %>
 		

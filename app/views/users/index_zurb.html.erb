@@ -17,10 +17,10 @@
 	  
 		<tr>   
 			<%= set_content_tag_safe(:th, "&nbsp;", "first") %>
-			<%= content_tag :th, "#{label_name(:name)}<br />#{label_name(:last_login_at)}", :class => "heading" %>
-			<%= content_tag :th, "#{label_name(:groups)}<br />#{label_name(:sports)}", :class => "heading" %>
-			<%= content_tag :th, label_name(:time_zone), :class => "heading" %>
-			<%= content_tag :th, "#{label_name(:event_participation)}<br />#{label_name(:last_game_played)}", :class => "heading" %>	
+			<%= set_content_tag_safe(:th, "#{label_name(:name)}<br />#{label_name(:last_login_at)}", "heading") %>
+			<%= set_content_tag_safe(:th, "#{label_name(:groups)}<br />#{label_name(:sports)}", "heading") %>
+			<%= set_content_tag_safe(:th, label_name(:time_zone), "heading") %>
+			<%= set_content_tag_safe(:th, "#{label_name(:event_participation)}<br />#{label_name(:last_game_played)}", "heading") %>	
 			<%= set_content_tag_safe(:th, "&nbsp;", "last") %>
 		</tr>
 		

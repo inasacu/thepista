@@ -28,9 +28,8 @@
 		  	<thead>
 			<tr>             
 				<%= set_content_tag_safe(:th, "&nbsp;") %>
-				<%= content_tag :th, "#{label_name(:name)}<br />#{label_name(:last_game_played)}" %>
-				<%= content_tag :th, label_name(:group) %>
-				<%= content_tag :th, label_name(:city) %>
+				<%= set_content_tag_safe(:th, "#{label_name(:name)}<br />#{label_name(:last_game_played)}") %>
+				<%= set_content_tag_safe(:th, "#{label_name(:group)}<br />#{label_name(:city)}") %>
 				<%= set_content_tag_safe(:th, "&nbsp;") %>
 			</tr>
 			</thead>
@@ -43,11 +42,10 @@
 		    -%>
 		
 			<tr>
-				<%= content_tag :td, image_link_small(user) %>					
-				<%= content_tag :td, "#{item_name_link(user)} <br/> #{content_tag(:span, the_date, :class =>'date')}", :class => 'name_and_date' %>
-				<%= content_tag :td, (user.has_group? ? group_list(user.groups) : label_name('groups_none')) %>		 
-				<%= content_tag :td, sanitize(user.city.name) %>
-				<%= content_tag :td, link_to(label_name(:send_message_to), new_message_path(:id => user)) %>	  
+				<%= set_content_tag_safe(:td, image_link_small(user)) %>					
+				<%= set_content_tag_safe(:td, "#{item_name_link(user)} <br/> #{content_tag(:span, the_date, :class =>'date')}", :class => 'name_and_date') %>
+				<%= set_content_tag_safe(:td, "#{(user.has_group? ? group_list(user.groups) : label_name('groups_none'))}<br/>#{user.city.name}" ) %>
+				<%= set_content_tag_safe(:td, link_to(label_name(:send_message_to), new_message_path(:id => user))) %>	
 			</tr>
 			
 			<% end -%>
