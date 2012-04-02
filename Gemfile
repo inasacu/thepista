@@ -36,6 +36,7 @@ gem 'aws-sdk'
 gem 'friendly_id'
 
 gem 'iron_worker'
+gem 'typhoeus'
 
 
 # Gems used only for assets and not required

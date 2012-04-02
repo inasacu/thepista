@@ -158,6 +158,8 @@ GEM
       polyglot
       polyglot (>= 0.3.1)
     trueskill (1.0.0)
+    typhoeus (0.3.3)
+      mime-types
     tzinfo (0.3.32)
     uglifier (1.2.4)
       execjs (>= 0.3.0)
@@ -201,5 +203,6 @@ DEPENDENCIES
   ssl_requirement
   texticle
   trueskill
+  typhoeus
   uglifier (>= 1.0.3)
   will_paginate

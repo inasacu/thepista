@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120329184448) do
+ActiveRecord::Schema.define(:version => 20120402211933) do
 
   create_table "announcements", :force => true do |t|
     t.text     "message"
@@ -20,20 +20,6 @@ ActiveRecord::Schema.define(:version => 20120329184448) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
-
-  create_table "blogs", :force => true do |t|
-    t.string   "name"
-    t.integer  "entries_count", :default => 0,     :null => false
-    t.text     "description"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.integer  "item_id"
-    t.string   "item_type"
-    t.boolean  "archive",       :default => false
-  end
-
-  add_index "blogs", ["archive"], :name => "index_blogs_on_archive"
-  add_index "blogs", ["item_id"], :name => "index_blogs_on_item_id"
 
   create_table "casts", :force => true do |t|
     t.integer  "challenge_id"
