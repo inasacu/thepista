@@ -1,4 +1,4 @@
-# to run:    sudo rake the_match_token
+# to run:    rake the_match_token
 
 desc "add a token per match not played"
 task :the_match_token => :environment do |t|

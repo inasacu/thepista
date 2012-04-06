@@ -1,4 +1,4 @@
-# to run:    sudo rake the_message_archive
+# to run:    rake the_message_archive
 
 desc "archive all messages older than 1 month, set all other emails to mark as read"
 task :the_message_archive => :environment do |t|

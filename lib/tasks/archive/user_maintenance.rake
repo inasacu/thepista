@@ -1,4 +1,4 @@
-# to run:    sudo rake the_user_maintenance
+# to run:    rake the_user_maintenance
 
 desc "  # clear foto for dev and test"
 task :the_user_maintenance => :environment do |t|

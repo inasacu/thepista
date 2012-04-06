@@ -1,6 +1,7 @@
 class Cup < ActiveRecord::Base
 
-	# extend FriendlyId
+	extend FriendlyId 
+	friendly_id :name, 			use: :slugged
 	
   # index do
   #   name
@@ -48,9 +49,9 @@ class Cup < ActiveRecord::Base
   attr_accessible :starts_at, :ends_at, :deadline_at, :archive
   attr_accessible :group_stage_advance, :group_stage, :group_stage_single, :second_stage_single, :final_stage_single
     
-  # NOTE:  MUST BE DECLARED AFTER attr_accessible otherwise you get a 'RuntimeError: Declare either attr_protected or attr_accessible' 
-  # friendly_id :name, :use => :slugged, :approximate_ascii => true, 
-                   # :reserved_words => ["new", "create", "index", "list", "signup", "edit", "update", "destroy", "show"]
+  
+   
+
 
   has_and_belongs_to_many :escuadras,     :join_table => "cups_escuadras",   :order => "name"
   has_many                :games

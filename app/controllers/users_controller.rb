@@ -25,20 +25,19 @@ class UsersController < ApplicationController
 	def show
 		store_location
 
-		# linkedin information
 		@client = ""
 		@profile = ""
-		@no_linkedin_profile = (@user.linkedin_url.nil? or @user.linkedin_url.blank? or @user.linkedin_url.empty?)
 
-		if DISPLAY_LINKEDIN
+		if DISPLAY_FREMIUM_SERVICES
+			@no_linkedin_profile = (@user.linkedin_url.nil? or @user.linkedin_url.blank? or @user.linkedin_url.empty?) 
 			unless @no_linkedin_profile
 				@client = LinkedIn::Client.new(APP_CONFIG['linkedin']['api_key'], APP_CONFIG['linkedin']['secret_key'])
 				@client.authorize_from_access(@user.linkedin_token, @user.linkedin_secret)
 				@profile = @client.profile
 			end
-		end
 
-		@items = current_user.challenges.where("ends_at > ?", Time.zone.now)
+				@items = current_user.challenges.where("ends_at > ?", Time.zone.now)
+		end
 		render @the_template    
 	end
 
@@ -50,7 +49,6 @@ class UsersController < ApplicationController
 
 	def signup
 		@user = User.new
-		# render :template => 'home/index_zurb'  unless DISPLAY_HAYPISTA_TEMPLATE
 		return @the_template
 	end  
 

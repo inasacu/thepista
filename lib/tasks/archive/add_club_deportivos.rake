@@ -6,7 +6,7 @@
 # http://www.clubdeportivos.com/busqueda-clubdeportivo.php?club=&_pagi_pg=24
 
 
-# to run:    sudo rake the_club_deportivo
+# to run:    rake the_club_deportivo
 
 require 'open-uri'
 require 'nokogiri'                                                                                                                                                                                                                                                                                                                                                                                                                                                             

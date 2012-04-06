@@ -1,4 +1,4 @@
-# to run:    sudo rake calculate_group_scorecard
+# to run:    rake calculate_group_scorecard
 
 desc "calculate group scorecard"
 task :calculate_group_scorecard => :environment do |t|

@@ -1,6 +1,7 @@
 class Fee < ActiveRecord::Base
 
-	# extend FriendlyId
+	extend FriendlyId 
+	# friendly_id :concept, 			use: :slugged
 	
   belongs_to     :manager,        :class_name => 'User',        :foreign_key => 'manager_id'
   belongs_to     :debit,          :polymorphic => true
@@ -30,8 +31,8 @@ class Fee < ActiveRecord::Base
   attr_accessible :debit_id, :debit_type, :credit_id, :credit_type, :item_id, :item_type 
   attr_accessible :type_id, :manager_id
   
-  # NOTE:  MUST BE DECLARED AFTER attr_accessible otherwise you get a 'RuntimeError: Declare either attr_protected or attr_accessible' 
-  # friendly_id :concept, :use => :slugged, :approximate_ascii => true, 
+  
+   
                    # :reserved_words => ["new", "create", "index", "list", "edit", "update", "destroy", "show"]
 
 

@@ -1,12 +1,9 @@
 class User < ActiveRecord::Base
 
-	# extend FriendlyId
+	extend FriendlyId 
+	friendly_id :name, 			use: :slugged
 	
-  # index do
-  #   name
-  #   description
-  #   company
-  # end
+	acts_as_messageable :required => :body
    
    # allows user to rate a model 
    ajaxful_rateable :stars => 5, :dimensions => [:evaluation]
@@ -112,9 +109,9 @@ class User < ActiveRecord::Base
     #             :order => "created_at DESC",
     #             :limit => 1
 
-    # NOTE:  MUST BE DECLARED AFTER attr_accessible otherwise you get a 'RuntimeError: Declare either attr_protected or attr_accessible' 
-    # friendly_id :name, :use => :slugged, :approximate_ascii => true, 
-                    # :reserved_words => ["new", "create", "index", "list", "signup", "edit", "update", "destroy", "show", "petition"]
+    
+     
+                    
                       
     before_update   :format_description
     after_create    :create_user_blog_details, :deliver_signup_notification
@@ -325,15 +322,15 @@ class User < ActiveRecord::Base
       user == self or user.has_role?('maximo')
     end
     
-		def received_messages(params, page = 1)
-			# _received_messages.page(params[:page])
-			_received_messages.page(params)
-		end
-
-		def sent_messages(params, page = 1)
-			# _sent_messages.page(params[:page])
-			_sent_messages.page(params)
-		end
+		# def received_messages(params, page = 1)
+		# 	# _received_messages.page(params[:page])
+		# 	_received_messages.page(params)
+		# end
+		# 
+		# def sent_messages(params, page = 1)
+		# 	# _sent_messages.page(params[:page])
+		# 	_sent_messages.page(params)
+		# end
 
     def find_user_in_conversation(parent_id, exclude_self = true)
       @recipients = []  

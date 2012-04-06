@@ -1,4 +1,4 @@
-# to run:    sudo rake the_remove_archive_data
+# to run:    rake the_remove_archive_data
 
 desc "remove all archived files not needed"
 task :the_remove_archive_data => :environment do |t|

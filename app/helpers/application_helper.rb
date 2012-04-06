@@ -365,7 +365,7 @@ module ApplicationHelper
 		end
 		text = limit_item_link_length(text, limit) unless (limit == nil)
 		text = proper_case(text) if item.class.to_s == 'User'
-		link_to(h(text), item, html_options)
+		link_to(text.html_safe, item, html_options)
 	end
 
 	# Link to a item (default is by concept).
@@ -379,7 +379,7 @@ module ApplicationHelper
 			text = item.concept
 		end
 		text = limit_item_link_length(text, limit) unless (limit == nil)
-		link_to(h(text), item, html_options)
+		link_to(text.html_safe, item, html_options)
 	end
 
 	def limit_item_link_length(text, value)
@@ -437,7 +437,7 @@ module ApplicationHelper
 	end 
 
 	def item_list(items)    
-		the_link = "#{items.first.class.to_s.downcase.chomp}_link"
+		the_link = "#{items.first.class.to_s.downcase.chomp}_link".html_safe
 		list_of_items = ""
 		items.each do |item|
 			list_of_items += send(:"#{the_link}", item)
@@ -446,19 +446,18 @@ module ApplicationHelper
 		return list_of_items.chop.chop
 	end
 
-	def item_new(item)   
-
+	def item_new(item)  
 		if (is_action('new') or is_action('create'))
-			the_url = "new_#{item.class.to_s.downcase.chomp}_url"
+			the_controller = item.class.to_s.downcase.chomp
+			the_url = "new_#{the_controller}_url"
+			the_active = get_active("#{the_controller}_new")
 
 			if DISPLAY_HAYPISTA_TEMPLATE
 				content_tag(:li, link_to(control_action_label, send(:"#{the_url}")), :class => 'first active') if (is_action('new') or is_action('create'))
 			else
-				content_tag(:dd, link_to(control_action_label, send(:"#{the_url}"))) 
+				set_tab_navigation(link_to(control_action_label, send(:"#{the_url}"), :class => the_active)) 
 			end
-
 		end
-
 	end
 
 	def sort_link(title, column, options = {})
@@ -695,7 +694,7 @@ module ApplicationHelper
 	end
 
 	def render_show_detail_zurb(item_label, item_link, unique_label=false)
-		return render('shared/show_detail_zurb'.html_safe, :item_label => item_label, :item_link => item_link, :unique_label => unique_label)
+		return render('shared/show_detail_zurb'.html_safe, :item_label => label_name( :"#{item_label}").html_safe, :item_link => item_link, :unique_label => "#{unique_label}".html_safe)
 	end
 
 	def set_tab_navigation(the_label)
@@ -721,7 +720,7 @@ module ApplicationHelper
 	def set_form_edit(item, label='')
 		the_path = "edit_#{item.class.to_s.downcase.chomp}_path"
 		the_label = label.blank? ? I18n.t(:edit) : I18n.t(label)
-		link_to(the_label, send(:"#{the_path}", item))
+		link_to(the_label.html_safe, send(:"#{the_path}", item))
 	end
 
 	def set_form_edit_image_link(item, label='')
@@ -732,7 +731,7 @@ module ApplicationHelper
 		the_item = item.class.to_s.downcase.chomp
 		the_path = "new_#{the_item}_url"
 		the_label = label.blank? ? I18n.t(:create) : I18n.t(label)
-		link_to(the_label, send(:"#{the_path}", :"#{id}" => item_id))
+		link_to(the_label.html_safe, send(:"#{the_path}", :"#{id}" => item_id))
 	end
 
 	def set_form_create_id_image_link(item, id, item_id, label='',image='')
@@ -747,13 +746,33 @@ module ApplicationHelper
 	def set_content_tag_safe(html_value, display_value, class_value='')
 		content_tag(:"#{html_value}", display_value.html_safe, :class => class_value)
 	end
-	
+
 	def content_tag_safe(html_value, display_value, title_value='', align='', class_value='')
 		content_tag(:"#{html_value}", display_value.html_safe, :title => title_value, :align => align, :class => class_value)
 	end
 
-	def the_maximo
-		# the_maximo
-		true
+	def flash_messages(options={})
+		if !flash.empty?
+			s = "<div class=\"flash_messages_container\">"
+			s2 = ""
+			flash.each do |type, msg|
+				clazz = "flash #{type}"
+				if msg.is_a?(Array)
+					msg.each do |m|
+						s2 << content_tag(:div, m, :class =>clazz)
+					end
+				else
+					s2 << content_tag(:div, msg, :class =>clazz)
+				end
+			end
+			s << s2
+			s << "</div>"
+			s.html_safe
+		end
 	end
+
+	def the_maximo
+		current_user.is_maximo?
+	end
+	
 end

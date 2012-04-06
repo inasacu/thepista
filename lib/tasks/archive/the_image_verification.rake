@@ -1,4 +1,4 @@
-# to run:    sudo rake the_image_verification
+# to run:    rake the_image_verification
 
 require 'uri'
 require 'net/http'

@@ -39,8 +39,10 @@
       </table>		
 
 	  <% end %>
-	  <%= render :partial => 'shared/action_bar_zurb', :locals => { :collection => @users } %>	  	  
-    </div>
+	
+	  <%= render 'shared/action_bar_zurb', :collection => @users %>	  	  
+    
+	</div>
 	
   </div>
   

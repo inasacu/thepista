@@ -3,7 +3,7 @@
 <plist version="1.0">
 <dict>
 	<key>currentDocument</key>
-	<string>app/views/groups/team_list_zurb.html.erb</string>
+	<string>app/workers/mail_worker.rb</string>
 	<key>documents</key>
 	<array>
 		<dict>
@@ -27,6 +27,8 @@
 			<string>config</string>
 		</dict>
 		<dict>
+			<key>expanded</key>
+			<true/>
 			<key>name</key>
 			<string>db</string>
 			<key>regexFolderFilter</key>
@@ -53,8 +55,6 @@
 			<string>information</string>
 		</dict>
 		<dict>
-			<key>expanded</key>
-			<true/>
 			<key>name</key>
 			<string>lib</string>
 			<key>regexFolderFilter</key>
@@ -114,7 +114,7 @@
 			<key>filename</key>
 			<string>Gemfile</string>
 			<key>lastUsed</key>
-			<date>2012-03-29T20:06:20Z</date>
+			<date>2012-04-03T21:01:21Z</date>
 		</dict>
 		<dict>
 			<key>filename</key>
@@ -163,66 +163,6 @@
 			<key>firstVisibleLine</key>
 			<integer>231</integer>
 		</dict>
-		<key>app/helpers/application_helper.rb</key>
-		<dict>
-			<key>caret</key>
-			<dict>
-				<key>column</key>
-				<integer>16</integer>
-				<key>line</key>
-				<integer>331</integer>
-			</dict>
-			<key>columnSelection</key>
-			<false/>
-			<key>firstVisibleColumn</key>
-			<integer>0</integer>
-			<key>firstVisibleLine</key>
-			<integer>308</integer>
-			<key>selectFrom</key>
-			<dict>
-				<key>column</key>
-				<integer>5</integer>
-				<key>line</key>
-				<integer>331</integer>
-			</dict>
-			<key>selectTo</key>
-			<dict>
-				<key>column</key>
-				<integer>23</integer>
-				<key>line</key>
-				<integer>331</integer>
-			</dict>
-		</dict>
-		<key>app/views/groups/_group_full_zurb.html.erb</key>
-		<dict>
-			<key>caret</key>
-			<dict>
-				<key>column</key>
-				<integer>4</integer>
-				<key>line</key>
-				<integer>40</integer>
-			</dict>
-			<key>columnSelection</key>
-			<false/>
-			<key>firstVisibleColumn</key>
-			<integer>0</integer>
-			<key>firstVisibleLine</key>
-			<integer>4</integer>
-			<key>selectFrom</key>
-			<dict>
-				<key>column</key>
-				<integer>139</integer>
-				<key>line</key>
-				<integer>40</integer>
-			</dict>
-			<key>selectTo</key>
-			<dict>
-				<key>column</key>
-				<integer>4</integer>
-				<key>line</key>
-				<integer>40</integer>
-			</dict>
-		</dict>
 		<key>app/views/groups/_index_full.html.erb</key>
 		<dict>
 			<key>caret</key>
@@ -252,50 +192,6 @@
 				<key>line</key>
 				<integer>16</integer>
 			</dict>
-		</dict>
-		<key>app/views/groups/_sidebar_zurb.html.erb</key>
-		<dict>
-			<key>caret</key>
-			<dict>
-				<key>column</key>
-				<integer>108</integer>
-				<key>line</key>
-				<integer>40</integer>
-			</dict>
-			<key>columnSelection</key>
-			<false/>
-			<key>firstVisibleColumn</key>
-			<integer>0</integer>
-			<key>firstVisibleLine</key>
-			<integer>15</integer>
-			<key>selectFrom</key>
-			<dict>
-				<key>column</key>
-				<integer>3</integer>
-				<key>line</key>
-				<integer>40</integer>
-			</dict>
-			<key>selectTo</key>
-			<dict>
-				<key>column</key>
-				<integer>108</integer>
-				<key>line</key>
-				<integer>40</integer>
-			</dict>
-		</dict>
-		<key>app/views/groups/team_list_zurb.html.erb</key>
-		<dict>
-			<key>caret</key>
-			<dict>
-				<key>column</key>
-				<integer>6</integer>
-				<key>line</key>
-				<integer>47</integer>
-			</dict>
-			<key>firstVisibleColumn</key>
-			<integer>0</integer>
-			<key>firstVisibleLine</key>
-			<integer>8</integer>
 		</dict>
 		<key>app/views/home/_pricing_box.html.erb</key>
 		<dict>
@@ -401,35 +297,47 @@
 				<integer>11</integer>
 			</dict>
 		</dict>
-		<key>app/views/users/_sidebar_show_zurb.html.erb</key>
+		<key>app/workers/mail_worker.rb</key>
 		<dict>
 			<key>caret</key>
 			<dict>
 				<key>column</key>
-				<integer>44</integer>
+				<integer>3</integer>
 				<key>line</key>
-				<integer>19</integer>
+				<integer>10</integer>
 			</dict>
-			<key>columnSelection</key>
-			<false/>
 			<key>firstVisibleColumn</key>
 			<integer>0</integer>
 			<key>firstVisibleLine</key>
 			<integer>0</integer>
-			<key>selectFrom</key>
+		</dict>
+		<key>app/workers/uber_worker.rb</key>
+		<dict>
+			<key>caret</key>
 			<dict>
 				<key>column</key>
-				<integer>2</integer>
+				<integer>0</integer>
 				<key>line</key>
-				<integer>18</integer>
+				<integer>0</integer>
 			</dict>
-			<key>selectTo</key>
+			<key>firstVisibleColumn</key>
+			<integer>0</integer>
+			<key>firstVisibleLine</key>
+			<integer>0</integer>
+		</dict>
+		<key>log/development.log</key>
+		<dict>
+			<key>caret</key>
 			<dict>
 				<key>column</key>
-				<integer>44</integer>
+				<integer>0</integer>
 				<key>line</key>
-				<integer>19</integer>
+				<integer>0</integer>
 			</dict>
+			<key>firstVisibleColumn</key>
+			<integer>0</integer>
+			<key>firstVisibleLine</key>
+			<integer>0</integer>
 		</dict>
 		<key>script/delayed_job</key>
 		<dict>
@@ -448,11 +356,9 @@
 	</dict>
 	<key>openDocuments</key>
 	<array>
-		<string>app/views/groups/team_list_zurb.html.erb</string>
-		<string>app/helpers/application_helper.rb</string>
-		<string>app/views/users/_sidebar_show_zurb.html.erb</string>
-		<string>app/views/groups/_group_full_zurb.html.erb</string>
-		<string>app/views/groups/_sidebar_zurb.html.erb</string>
+		<string>log/development.log</string>
+		<string>app/workers/uber_worker.rb</string>
+		<string>app/workers/mail_worker.rb</string>
 	</array>
 	<key>showFileHierarchyDrawer</key>
 	<true/>

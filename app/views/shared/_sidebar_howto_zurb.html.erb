@@ -11,7 +11,7 @@
 	<%#= set_image_and_link(link_to(label_name(:search_maps), search_map_url), 'installation')%>
 	<%= set_image_and_link(option_link('invitation'), 'invitation')%>
 	
-	<% if @no_linkedin_profile  and DISPLAY_LINKEDIN %>
+	<% if @no_linkedin_profile  and DISPLAY_FREMIUM_SERVICES %>
 	<%= set_image_and_link(option_link('auth'), 'linkedin') if @no_linkedin_profile %>
 	<% end %>
 	

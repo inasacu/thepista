@@ -1,4 +1,4 @@
-# to run:    sudo rake self_cron
+# to run:    rake self_cron
 
 desc "set reminder dates to schedules 3 days before"
 task :self_cron => :environment do

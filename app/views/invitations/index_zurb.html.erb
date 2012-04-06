@@ -19,7 +19,8 @@
 			</table>
 
 			<% end %>
-			<%= render :partial => 'shared/action_bar_zurb', :locals => { :collection => @invitation } %>
+			
+			<%= render 'shared/action_bar_zurb', :collection => @invitation %>
 
 		</div>
 	</div>

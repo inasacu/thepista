@@ -1,6 +1,7 @@
 class Installation < ActiveRecord::Base
 
-	# extend FriendlyId
+	extend FriendlyId 
+	friendly_id :name, 			use: :slugged
 
 	# index{ name }
 
@@ -38,7 +39,7 @@ class Installation < ActiveRecord::Base
 	attr_accessible :public, :lighting, :outdoor, :archive, :photo
 
 
-	# NOTE:  MUST BE DECLARED AFTER attr_accessible otherwise you get a 'RuntimeError: Declare either attr_protected or attr_accessible' 
+	
 	# friendly_id :venue_and_name, :use => :slugged, :approximate_ascii => true, 
 	# :reserved_words => ["new", "create", "index", "list", "signup", "edit", "update", "destroy", "show"]
 

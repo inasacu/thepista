@@ -1,4 +1,4 @@
-# to run:    sudo rake the_type_timetable
+# to run:    rake the_type_timetable
 
 desc "add new entries in type table related to timetable"
 task :the_type_timetable => :environment do |t|

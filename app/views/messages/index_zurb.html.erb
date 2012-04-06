@@ -17,18 +17,16 @@
 
 			<table class="table">
 
-					<% previous = [] %>
+					<%# previous = [] %>
 					<% @messages.each do |message| %>
-					<%= render :partial => 'message_zurb', :locals => {:message => message} unless previous.include?(message.parent_id) %>
-					<% previous << message.parent_id %>
+						<%= render 'messages/message_zurb', :message => message %>
+					<%# previous << message.parent_id %>
 					<% end %>
 				
 			</table>
 
 			<% end %>
-			<%= render :partial => 'shared/action_bar_zurb', :locals => { :collection => @message } %>
-
+			
 		</div>
 	</div>
 </div>
-<% content_for :sidebar, render(:partial => 'messages/sidebar_zurb') -%>

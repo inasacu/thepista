@@ -1,4 +1,4 @@
-# to run:    sudo rake the_duplicate_match
+# to run:    rake the_duplicate_match
 
 desc "archive duplicate matches"
 task :the_duplicate_match => :environment do |t|

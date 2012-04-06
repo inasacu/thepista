@@ -30,7 +30,7 @@
     <%= f.label :marker_id, label_name('marker'), :class => :label %>
     <%= f.select(:marker_id, Marker.marker_name(current_user, @group.marker), {:selected => @group.marker_id, :include_blank => true})%><br/>	
     <span class="description"><%= label_name('marker', 'description') %></span><br/><br/>
-	<%= link_to label_name(:search_maps), search_map_url %>
+	<%#= link_to label_name(:search_maps), search_map_url %>
   </div>
 
 <% if is_group_edit %>	

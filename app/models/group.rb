@@ -1,6 +1,7 @@
 class Group < ActiveRecord::Base
 
-	# extend FriendlyId
+	extend FriendlyId 
+	friendly_id :name, 			use: :slugged
 	
   # index do
   #   name
@@ -48,8 +49,8 @@ class Group < ActiveRecord::Base
   attr_accessible :name, :second_team, :gameday_at, :sport_id, :points_for_win, :points_for_draw, :points_for_lose, :player_limit, :automatic_petition
   attr_accessible :time_zone, :marker_id, :description, :conditions, :photo, :available, :looking, :enable_comments, :installation_id
 
-  # NOTE:  MUST BE DECLARED AFTER attr_accessible otherwise you get a 'RuntimeError: Declare either attr_protected or attr_accessible' 
-  # friendly_id :name, :use => :slugged, :approximate_ascii => true, 
+  
+   
   # :reserved_words => ["new", "create", "index", "list", "signup", "edit", "update", "destroy", "show"]
 
   has_and_belongs_to_many :users,           :join_table => "groups_users", :conditions => "users.archive = false", :order => "name"

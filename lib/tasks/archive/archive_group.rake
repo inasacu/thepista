@@ -1,4 +1,4 @@
-# to run:    sudo rake the_archive_group
+# to run:    rake the_archive_group
 
 desc "archive specified groups"
 task :the_archive_group => :environment do |t|

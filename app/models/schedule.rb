@@ -1,6 +1,7 @@
 class Schedule < ActiveRecord::Base
 
-	# extend FriendlyId
+	extend FriendlyId 
+	# friendly_id :concept, 			use: :slugged
 	
   # index{ concept }
 
@@ -78,10 +79,6 @@ class Schedule < ActiveRecord::Base
   attr_accessible :concept, :description, :season, :jornada, :starts_at, :ends_at, :reminder_at, :reminder
   attr_accessible :fee_per_game, :fee_per_pista, :time_zone, :group_id, :sport_id, :marker_id, :player_limit
   attr_accessible :public, :season_ends_at, :archive, :concept_and_name
-
-  # NOTE:  MUST BE DECLARED AFTER attr_accessible otherwise you get a 'RuntimeError: Declare either attr_protected or attr_accessible' 
-  # friendly_id :concept_and_name, :use => :slugged, :approximate_ascii => true, 
-                   # :reserved_words => ["new", "create", "index", "list", "signup", "edit", "update", "destroy", "show"]
 
   # after_update        :save_matches
   before_create       :format_description

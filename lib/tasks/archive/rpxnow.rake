@@ -1,4 +1,4 @@
-# to run:    sudo rake therpxnow
+# to run:    rake therpxnow
 
 desc "associate all identifier to rpxnow_id...same as what rpxnow does but on local. call with Rails.env=production or it defaults to development"
 task :therpxnow => :environment do |t|

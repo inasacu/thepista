@@ -11,7 +11,7 @@
 
 <%= set_form_label(the_form, :marker_id) %>
 <%= f.select(:marker_id, Marker.marker_name(current_user), {:selected => @venue.marker_id, :include_blank => true}) %>&nbsp;
-<%= link_to label_name(:search_maps), search_map_url %><br />
+<%#= link_to label_name(:search_maps), search_map_url %><br />
 
 <!-- 
 <%#= set_form_label(the_form, :day_light_starts_at) %>

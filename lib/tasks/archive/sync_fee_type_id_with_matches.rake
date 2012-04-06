@@ -1,4 +1,4 @@
-# to run:    sudo rake sync_fee_type_match
+# to run:    rake sync_fee_type_match
 
 desc "sync fees type id with match type id"
 task :sync_fee_type_match => :environment do |t|

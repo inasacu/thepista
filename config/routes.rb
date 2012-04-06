@@ -160,6 +160,10 @@ Thepista::Application.routes.draw do
 	resources :types
 	resources :sports
 	resources :roles
+	resources :workers
+	
+	
+	
 	resources :payments do
 		collection do
 			get :list

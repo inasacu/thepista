@@ -1,4 +1,4 @@
-# to run:    sudo rake the_archive_cup
+# to run:    rake the_archive_cup
 
 desc "archive cups with few casts"
 task :the_archive_cup => :environment do |t|

@@ -24,8 +24,7 @@ class ApplicationController < ActionController::Base
 	end                    																		
 
 	def the_maximo
-		# the_maximo
-		true
+		current_user.is_maximo?
 	end
 
 	protected

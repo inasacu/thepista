@@ -1,4 +1,4 @@
-# to run:    sudo rake the_email_flag
+# to run:    rake the_email_flag
 
 desc "turn of email notices for specific users"
 task :the_email_flag => :environment do |t|

@@ -1,4 +1,4 @@
-# to run:    sudo rake the_archive_slug
+# to run:    rake the_archive_slug
 
 desc "ARCHIVE dependent records to already archived"
 task :the_archive_slug => :environment do |t|

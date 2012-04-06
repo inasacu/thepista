@@ -1,5 +1,5 @@
 class ChallengesUsers < ActiveRecord::Base
-	self.primary_keys :user_id, :challenge_id 
+	set_primary_keys =:user_id, :challenge_id 
 
   # record a challenge join
   def self.join_item(user, challenge)

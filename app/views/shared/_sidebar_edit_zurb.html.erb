@@ -1,6 +1,3 @@
-<!-- shared/sidebar_create_zurb.html.erb -->
-
-
 <%#= render 'shared/sidebar_edit_zurb', :item => @schedule %>
 
 <% 
@@ -13,26 +10,22 @@
 		is_displayable = the_maximo
 	when 'User'
 		is_displayable = (item == current_user)
-	when 'Group'
+	when 'Group', 'Cup', 'Challenge'
 		is_displayable = current_user.is_manager_of?(item)
 	when 'Schedule', 'Classified', 'Fee', 'Payment'
 		is_displayable = current_user.is_manager_of?(item.group)
-	when 'Cup', 'Challenge'
-		is_displayable = current_user.is_manager_of?(item)
 	end	
 %>
 
-<% 
-	the_label ||= label_name(:options)
-%>
+<% if is_displayable %>
 
 <%= set_title_class(the_label) %>
 
 <hr/>
 <div class="row">
 	<div class="twelve columns">
-		<%= set_form_edit_image_link(item, the_label) %>
+		<%= set_form_edit_image_link(item) %>
 	</div>
 </div>
 <hr/>
-
+<% end %>

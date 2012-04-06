@@ -1,6 +1,7 @@
 class Classified < ActiveRecord::Base
 
-	# extend FriendlyId
+	extend FriendlyId 
+	# friendly_id :concept, 			use: :slugged
 
 	belongs_to      :table,           :polymorphic => true
 	belongs_to      :item,            :polymorphic => true
@@ -18,9 +19,9 @@ class Classified < ActiveRecord::Base
 	# variables to access
 	attr_accessible :concept, :description, :starts_at, :table_id, :table_type
 
-	# NOTE:  MUST BE DECLARED AFTER attr_accessible otherwise you get a 'RuntimeError: Declare either attr_protected or attr_accessible' 
-	# friendly_id :concept, :use => :slugged, :approximate_ascii => true, 
-	# :reserved_words => ["new", "create", "index", "list", "signup", "edit", "update", "destroy", "show", "petition"]
+	
+	 
+	
 
 	before_create       :format_description
 

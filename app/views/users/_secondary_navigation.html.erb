@@ -35,7 +35,7 @@
 		<%= content_tag 'li',  user_link("#{label_name(:linkedin_profile)}", the_user), :class => get_first_active('user_show') if is_controller('auth') %>
 		<%= content_tag 'li',  link_to("#{label_name(:notifications)}", notice_users_url(:id => @user)), :class => get_first_active('user_notice') %>
 <%
-		if DISPLAY_USER_BLOG
+		if DISPLAY_FREMIUM_SERVICES
 		 	if current_user.is_user_member_of?(the_user) 
 				unless actions.include?(the_action) or controls.include?(the_controller) 
 					the_blog = Blog.find_item(current_user)

@@ -1,20 +1,23 @@
 <% full_message ||= false 
 	the_message = message.body	
 	the_message = "#{the_message.strip[0..140]}..." if the_message.length > 140 and !full_message
+	
+	the_sender = User.find(message.sent_messageable_id)
+	the_recepient = User.find(message.received_messageable_id)
 %>
 <tr>
 	<td>
-		<%= image_link_small message.other_user(current_user) %>
+		<%#= image_link_small message.other_user(current_user) %>
 	</td>
 
 	<td class="name_and_date">
-		<%= message_icon(message) %>
-		<%- if current_user == message.sender -%>
+		<%#= message_icon(message) %>
+		<%- if current_user == the_sender -%>
 			<span class="label"><%= label_name(:to) %>:</span>
-			<%= user_link message.recipient %>
+			<%= user_link the_recepient %>
 		<%- else -%>
 			<span class="label"><%= label_name(:from_up) %>:</span>
-			<%= user_link message.sender %>
+			<%= user_link the_sender %>
 		<%- end -%>
 	
 		<br />
@@ -24,16 +27,16 @@
 	</td>
 	<td>
 		<span class="">
-			<%= link_to h(message.subject), message unless full_message %><br />
+			<%#= link_to message.subject, message unless full_message %><br />
 			<span class="">							
 				<%#= link_to sanitize(the_message), message unless full_message %>
-				<%=sanitize the_message %>							
+				<%= the_message.html_safe %>							
 			</span>
 		</span>
 	</td>
 	<td class="last">
 		<%#= render :partial => 'action', :locals => {:message => message} %>
-		<%= message_image_link(message) unless message.trashed?(current_user) %>
+		<%#= message_image_link(message) unless message.trashed?(current_user) %>
 	</td>
 </tr>
 

@@ -1,6 +1,6 @@
 class RolesUsers < ActiveRecord::Base
 
-  self.primary_keys = :user_id, :role_id 
+  set_primary_keys = :user_id, :role_id 
 
   # remove all roles_users not in roles
   def self.remove_roles_users

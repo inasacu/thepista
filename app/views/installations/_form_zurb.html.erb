@@ -29,7 +29,7 @@
 <%= set_form_label(the_form, :marker) %>
 <%#= f.select(:marker_id, Marker.marker_name(current_user), {:selected => @installation.marker_id, :include_blank => true})%>
 <%= set_form_select(the_form, :marker_id, Marker.marker_name(current_user, @installation.marker), @installation.marker_id) %><br/>	
-<%= link_to label_name(:search_maps), search_map_url %><br />
+<%#= link_to label_name(:search_maps), search_map_url %><br />
 
 
 <%= set_form_label(the_form, :description) %>

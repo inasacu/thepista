@@ -1,6 +1,7 @@
 class Marker < ActiveRecord::Base
 
-	# extend FriendlyId
+	extend FriendlyId 
+	friendly_id :name, 			use: :slugged
 	
   # # index{ name }
 
@@ -15,9 +16,9 @@ class Marker < ActiveRecord::Base
   # variables to access
   attr_accessible :name, :latitude, :longitude, :lat, :lng, :phone, :address, :city, :region, :zip, :description
 
-  # NOTE:  MUST BE DECLARED AFTER attr_accessible otherwise you get a 'RuntimeError: Declare either attr_protected or attr_accessible' 
-  # friendly_id :name, :use => :slugged, :approximate_ascii => true, 
-                   # :reserved_words => ["new", "create", "index", "list", "signup", "edit", "update", "destroy", "show"]
+  
+   
+
 
   # example
   # acts_as_mappable :default_units => :miles, 

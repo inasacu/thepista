@@ -1,4 +1,4 @@
-# to run:    sudo rake the_cup
+# to run:    rake the_cup
 
 desc "create games based on cup teams and groups..."
 task :the_cup => :environment do |t|

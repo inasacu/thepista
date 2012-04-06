@@ -1,4 +1,4 @@
-# to run:    sudo rake update_user_city
+# to run:    rake update_user_city
 
 desc "update user city"
 task :update_user_city => :environment do |t|

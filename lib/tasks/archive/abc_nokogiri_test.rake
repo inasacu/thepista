@@ -1,4 +1,4 @@
-# # to run:    sudo rake abc_nokogiri_test
+# # to run:    rake abc_nokogiri_test
 # 
 # require 'open-uri'
 # require 'nokogiri'                                                                                                                                                                                                                                                                                                                                                                                                                                                             

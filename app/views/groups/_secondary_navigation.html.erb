@@ -5,7 +5,7 @@
 	
 	has_classifieds = false
 	
-	if DISPLAY_CLASSIFIEDS
+	if DISPLAY_FREMIUM_SERVICES
 		the_classifieds = Classified.item_classifieds(@group) 
 		has_classifieds = !the_classifieds.nil? or !the_classifieds.blank?
 	end
@@ -14,7 +14,7 @@
 	the_action = ['show','edit', 'team list', 'schedule list', 'group current list', 'group previous list']
 	the_controller = ['blog', 'classified', 'fee', 'payment', 'schedule']
 	
-	if DISPLAY_CLASSIFIEDS
+	if DISPLAY_FREMIUM_SERVICES
 		active_classified ||= ""
 		active_classified = get_active("#{get_the_controller}_#{get_the_action}") if is_controller('classified')
 	end
@@ -40,7 +40,7 @@
 		if current_user.is_member_of?(@group) 
 			the_blog = Blog.find_item(@group)
 %>		
-		<% if DISPLAY_GROUP_BLOG %>
+		<% if DISPLAY_FREMIUM_SERVICES %>
 		<li class="<%= get_active('blog_show') %>"><%=  blog_link(the_blog) %></li>
 		<% end %>
 		<!-- <li class="<%#= get_active('group_team_list') %>"><%#=  link_to(label_name(:users) , team_list_path(:id => @group)) %></li> -->

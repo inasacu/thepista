@@ -1,4 +1,4 @@
-# # to run:    sudo rake the_la_maso
+# # to run:    rake the_la_maso
 # 
 # require 'open-uri'
 # require 'nokogiri'                                                                                                                                                                                                                                                                                                                                                                                                                                                             

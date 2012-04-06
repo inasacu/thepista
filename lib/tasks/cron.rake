@@ -1,4 +1,4 @@
-# to run:    sudo rake cron
+# to run:    rake cron
 
 desc "cron job"
 task :cron => :environment do

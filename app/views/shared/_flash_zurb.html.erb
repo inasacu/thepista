@@ -17,7 +17,9 @@
 		
 	when 'scorecard'	
 		the_tab_navigation = "groups"
-		
+	
+	when 'invitation'
+		the_tab_navigation = 'messages'
 	end	
 	
 	password_reset_actions = ['password_reset_new', 'password_reset_edit']
@@ -32,6 +34,8 @@
 		<div class="foundation-header">
 			
 			<% if current_user %>
+			
+				<%= flash_messages %>
 			
 				<%#= render :partial => 'shared/flash', :locals => {:flash => flash } %>
 				<%#= render 'layouts/notice_zurb' %>

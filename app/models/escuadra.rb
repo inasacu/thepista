@@ -1,6 +1,7 @@
 class Escuadra < ActiveRecord::Base
 
-	# extend FriendlyId
+	extend FriendlyId 
+	friendly_id :name, 			use: :slugged
   
   belongs_to    :item,          :polymorphic => true
   belongs_to    :sub_item,      :polymorphic => true
@@ -37,9 +38,9 @@ class Escuadra < ActiveRecord::Base
   # variables to access
   attr_accessible :name, :photo, :description
   
-  # NOTE:  MUST BE DECLARED AFTER attr_accessible otherwise you get a 'RuntimeError: Declare either attr_protected or attr_accessible' 
-  # friendly_id :name, :use => :slugged, :approximate_ascii => true, 
-                   # :reserved_words => ["new", "create", "index", "list", "signup", "edit", "update", "destroy", "show", "petition"]
+  
+   
+                   
                    
   # method section
   def avatar

@@ -67,6 +67,18 @@ module Thepista
     config.assets.version = '1.0'
 
 		# config.action_view.javascript_expansions[:defaults] = %w(jquery rails)
+
+		config.action_mailer.delivery_method = :smtp
+		config.action_mailer.smtp_settings = {
+			# :tls => true,
+			:address => "smtp.gmail.com",
+			:port => 587,
+			:domain => 'haypista.com',
+			:user_name => "support@haypista.com",
+			:password => "19ti79q42e",
+			:authentication => 'plain',
+			:enable_starttls_auto => true
+		}
 		
   end
 end

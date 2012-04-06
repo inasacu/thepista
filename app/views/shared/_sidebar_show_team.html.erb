@@ -12,7 +12,7 @@
 	<div class="content">
 
 		<p><%= option_image_link('schedule') %>&nbsp;&nbsp;<%= link_to label_name(:schedules_create), new_schedule_path(:id => group) %></p>
-		<% if DISPLAY_CLASSIFIEDS %>
+		<% if DISPLAY_FREMIUM_SERVICES %>
 			<p><%= option_image_link('classified') %>&nbsp;&nbsp;<%= link_to label_name(:classifieds_create), new_classified_path(:id => group) %></p>
 		<% end %>
 		<p><%= option_image_link('group') %>&nbsp;&nbsp;<%= link_to label_name(:groups_edit), edit_group_path(group) %></p>  

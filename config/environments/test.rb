@@ -35,3 +35,10 @@ Thepista::Application.configure do
   # Print deprecation notices to the stderr
   config.active_support.deprecation = :stderr
 end
+
+
+ENV['IRON_WORKER_TOKEN'] = 'rnGSf-X4vhYYhtlFoZoPxc676Ys'
+ENV['IRON_WORKER_PROJECT_ID'] = '4ef1b366066bce69d100080d'
+
+
+

@@ -1,4 +1,4 @@
-# to run:    sudo rake the_automatic_petition_group
+# to run:    rake the_automatic_petition_group
 
 desc "archive specified groups"
 task :the_automatic_petition_group => :environment do |t|

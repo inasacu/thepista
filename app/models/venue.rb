@@ -1,6 +1,7 @@
 class Venue < ActiveRecord::Base
 
-	# extend FriendlyId
+	extend FriendlyId 
+	friendly_id :name, 			use: :slugged
 	
   # index do
   #   name
@@ -31,9 +32,9 @@ class Venue < ActiveRecord::Base
   attr_accessible :name, :description, :starts_at, :ends_at, :time_zone, :marker_id
   attr_accessible :photo, :enable_comments, :public, :day_light_savings,  :day_light_starts_at, :day_light_ends_at
     
-  # NOTE:  MUST BE DECLARED AFTER attr_accessible otherwise you get a 'RuntimeError: Declare either attr_protected or attr_accessible' 
-  # friendly_id :name, :use => :slugged, :approximate_ascii => true, 
-                   # :reserved_words => ["new", "create", "index", "list", "signup", "edit", "update", "destroy", "show"]
+  
+   
+
 
   has_many :the_managers,
   :through => :manager_roles,

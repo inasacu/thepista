@@ -1,4 +1,4 @@
-# to run:    sudo rake delete_group_blog_comment
+# to run:    rake delete_group_blog_comment
 
 desc "delete_group_blog_comment"
 task :delete_group_blog_comment => :environment do |t|

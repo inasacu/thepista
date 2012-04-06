@@ -1,4 +1,4 @@
-# to run:    sudo rake thejugador
+# to run:    rake thejugador
 
 desc "update user technical and physical levels if null"
 task :thejugador => :environment do |t|

@@ -1,4 +1,4 @@
-# to run:    sudo rake add_new_team_marker
+# to run:    rake add_new_team_marker
 
 require 'open-uri'
 require 'nokogiri'                                                                                                                                                                                                                                                                                                                                                                                                                                                             

@@ -1,4 +1,4 @@
-# to run:    sudo rake the_pista_trueskill
+# to run:    rake the_pista_trueskill
 #  heroku rake the_pista_trueskill --app thepista
 
 require 'rubygems'

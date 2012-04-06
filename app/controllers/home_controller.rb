@@ -5,10 +5,18 @@ class HomeController < ApplicationController
   before_filter :get_upcoming,        :only => [:upcoming]
   before_filter :get_advertisement,   :only => [:advertisement, :upcoming]
 
-  def index
-    store_location  
-    render @the_template
-  end
+	def index
+		worker = UberWorker.new
+		worker.db_config = Rails.configuration.database_configuration[Rails.env]
+		p worker
+		worker.queue(:priority=>1)
+		render @the_template
+	end
+
+	# def index
+	# 	store_location  
+	# 	render @the_template
+	# end
 
   def qr
     redirect_to root_url
@@ -52,7 +60,7 @@ class HomeController < ApplicationController
     @all_classifieds = []
     @has_classifieds = false  
 
-    Classified.latest_items(@all_classifieds) if DISPLAY_CLASSIFIEDS 
+    Classified.latest_items(@all_classifieds) if DISPLAY_FREMIUM_SERVICES 
     @has_classifieds = @all_classifieds.count > 0
   end  
 
@@ -69,7 +77,7 @@ class HomeController < ApplicationController
     @comment_items = []
 
     @all_classifieds = []
-    Classified.latest_items(@all_classifieds) if DISPLAY_CLASSIFIEDS
+    Classified.latest_items(@all_classifieds) 																					if DISPLAY_FREMIUM_SERVICES
     @has_classifieds = @all_classifieds.count > 0
 
     Teammate.latest_teammates(@all_items) 
@@ -78,7 +86,7 @@ class HomeController < ApplicationController
 
 
     if current_user      
-      @no_linkedin_profile = (current_user.linkedin_url.nil? or current_user.linkedin_url.blank? or current_user.linkedin_url.empty?)
+      @no_linkedin_profile = (current_user.linkedin_url.nil? or current_user.linkedin_url.blank? or current_user.linkedin_url.empty?) if DISPLAY_FREMIUM_SERVICES
 
       @my_schedules = Schedule.my_current_schedules(current_user)
 
@@ -98,8 +106,8 @@ class HomeController < ApplicationController
     # User.latest_items(@all_items) if @all_items.count < MEDIUM_FEED_SIZE     
     # Group.latest_updates(@all_items) if @all_items.count < MEDIUM_FEED_SIZE     
     # User.latest_updates(@all_items) if @all_items.count < MEDIUM_FEED_SIZE 
-    Venue.latest_items(@all_items) if @all_items.count < MEDIUM_FEED_SIZE  
-    Reservation.latest_items(@all_items) if @all_items.count < MEDIUM_FEED_SIZE  
+    Venue.latest_items(@all_items) if @all_items.count < MEDIUM_FEED_SIZE  						if DISPLAY_PROFESSIONAL_SERVICES
+    Reservation.latest_items(@all_items) if @all_items.count < MEDIUM_FEED_SIZE  			if DISPLAY_PROFESSIONAL_SERVICES
 
     # if @all_items.count < MEDIUM_FEED_SIZE
     #   has_values = false   

@@ -16,7 +16,7 @@
 
 <%= set_form_label(the_form, :marker) %>
 <%= set_form_select(the_form, :marker_id, Marker.marker_name(current_user, @group.marker), @group.marker_id) %>
-<%= link_to label_name(:search_maps), search_map_url %><br />
+<%#= link_to label_name(:search_maps), search_map_url %><br />
 
 
 <% if is_edit %>	

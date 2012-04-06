@@ -31,15 +31,15 @@
 if @user.private_phone
 	the_label = label_name(:display)
 else
-	the_label = "&nbsp;&nbsp;&nbsp;&nbsp;#{label_name(:hide)}"
+	the_label = "&nbsp;&nbsp;&nbsp;&nbsp;#{label_name(:hide)}".html_safe
 end
 %>						
 
-<%= render_show_detail_zurb(:phone, h(@user.phone)) unless @user.private_phone %>
-<%= render_show_detail_zurb(:phone, link_to(the_label, set_private_phone_path(:id => @user))) if can_modify and !@user.phone.blank? %>
+<%= render_show_detail_zurb(:phone, @user.phone) unless @user.private_phone %>
+<%#= render_show_detail_zurb(:phone, link_to(the_label, set_private_phone_path(:id => @user))) if can_modify and !@user.phone.blank? %>
 <%= render_show_detail_zurb(:company, @no_linkedin_profile ? @user.company : link_to(@user.company, @user.linkedin_url, :target => "_blank"))  %>
-<%= render_show_detail_zurb(:linkedin_headline, link_to(@profile.headline, @user.linkedin_url, :target => "_blank")) unless @profile.blank? %>
-<%= render_show_detail_zurb(:groups, (@user.has_group? ? group_list(@user.groups) : label_name('groups_none'))) %>
+<%= render_show_detail_zurb(:linkedin_headline, link_to(@profile.headline, @user.linkedin_url, :target => "_blank")) unless @profile.blank? if DISPLAY_FREMIUM_SERVICES %>
+<%= render_show_detail_zurb(:groups, (@user.has_group? ? "#{group_list(@user.groups)}".html_safe : "#{label_name('groups_none')}".html_safe)) %>
 <%= render_show_detail_zurb(:sports, the_sport) %>
 <%= render_show_detail_zurb(:event_participation, (participation.to_i > 0 ? link_to(the_participation_label, my_list_schedules_path(:id => @user)) : the_participation_label)) %>
 
@@ -59,7 +59,7 @@ Match.last_games_played(@user).each {|match| group_scorecards << match.group_id 
 		<td class="show">
 		<%= item_name_link(group) %>
 		<span class="date">
-			<%= "<br/>#{group.sport.name}<br/>#{item_name_link(group.marker)}<br/>#{link_to(label_name(:scorecard), scorecard_path(:id => group))}" %>
+			<%= "<br/>#{group.sport.name}<br/>#{item_name_link(group.marker)}<br/>#{link_to(label_name(:scorecard), scorecard_path(:id => group))}".html_safe %>
 		</span>
 									      	
 	
@@ -71,7 +71,7 @@ Match.last_games_played(@user).each {|match| group_scorecards << match.group_id 
 <% end %>				
 				
 <%= render_show_detail_zurb(:city, @user.city.name) %>	
-<%= render_show_detail_zurb(:time_zone, @user.time_zone) %>
+<%#= render_show_detail_zurb(:time_zone, @user.time_zone) %>
 <%= render_show_detail_zurb(:language, label_name(@user.language)) %>
 
 <% end -%>
@@ -112,7 +112,7 @@ the_label = h(label_name(@user.last_minute_notification, 'value'))
 <% unless is_notice %>
 
 
-<%= render_show_detail_zurb(:evaluation, ratings_for(@user, :static, :dimension => :evaluation, :size => "small")) %>
+<%#= render_show_detail_zurb(:evaluation, ratings_for(@user, :static, :dimension => :evaluation, :size => "small")) %>
 <%= render_show_detail_zurb(:users_teammate, render('shared/show_images_zurb', :collection => @user.friends)) if @user.friends.count > 0 %>
   
 

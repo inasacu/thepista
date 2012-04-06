@@ -1,4 +1,4 @@
-# # to run:    sudo rake the_community_madrid
+# # to run:    rake the_community_madrid
 # 
 # require 'open-uri'
 # require 'nokogiri'                                                                                                                                                                                                                                                                                                                                                                                                                                                             

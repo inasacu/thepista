@@ -1,4 +1,4 @@
-# # to run:    sudo rake the_user_last_minute
+# # to run:    rake the_user_last_minute
 # 
 # desc "copy all user emails to email backup and last_minute notification"
 # task :the_user_last_minute => :environment do |t|

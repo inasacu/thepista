@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120402211933) do
+ActiveRecord::Schema.define(:version => 20120405223531) do
 
   create_table "announcements", :force => true do |t|
     t.text     "message"
@@ -52,9 +52,11 @@ ActiveRecord::Schema.define(:version => 20120402211933) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.boolean  "automatic_petition", :default => true
+    t.string   "slug"
   end
 
   add_index "challenges", ["cup_id"], :name => "index_challenges_on_cup_id"
+  add_index "challenges", ["slug"], :name => "index_challenges_on_slug", :unique => true
 
   create_table "challenges_users", :id => false, :force => true do |t|
     t.integer  "challenge_id"
@@ -89,9 +91,11 @@ ActiveRecord::Schema.define(:version => 20120402211933) do
     t.boolean  "archive",                   :default => false
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "slug"
   end
 
   add_index "classifieds", ["item_id"], :name => "index_classifieds_on_item_id"
+  add_index "classifieds", ["slug"], :name => "index_classifieds_on_slug", :unique => true
   add_index "classifieds", ["table_id"], :name => "index_classifieds_on_table_id"
 
   create_table "comments", :force => true do |t|
@@ -146,8 +150,10 @@ ActiveRecord::Schema.define(:version => 20120402211933) do
     t.datetime "updated_at"
     t.boolean  "official",            :default => false
     t.boolean  "club",                :default => true
+    t.string   "slug"
   end
 
+  add_index "cups", ["slug"], :name => "index_cups_on_slug", :unique => true
   add_index "cups", ["sport_id"], :name => "index_cups_on_sport_id"
 
   create_table "cups_escuadras", :id => false, :force => true do |t|
@@ -186,9 +192,11 @@ ActiveRecord::Schema.define(:version => 20120402211933) do
     t.datetime "updated_at"
     t.integer  "item_id"
     t.string   "item_type"
+    t.string   "slug"
   end
 
   add_index "escuadras", ["item_id"], :name => "index_escuadras_on_item_id"
+  add_index "escuadras", ["slug"], :name => "index_escuadras_on_slug", :unique => true
 
   create_table "fees", :force => true do |t|
     t.string   "concept",       :limit => 50
@@ -207,12 +215,14 @@ ActiveRecord::Schema.define(:version => 20120402211933) do
     t.integer  "item_id"
     t.integer  "type_id"
     t.boolean  "season_player",               :default => false
+    t.string   "slug"
   end
 
   add_index "fees", ["credit_id", "credit_type"], :name => "index_fees_on_credit_id_and_credit_type"
   add_index "fees", ["debit_id", "debit_type"], :name => "index_fees_on_debit_id_and_debit_type"
   add_index "fees", ["item_id", "item_type"], :name => "index_fees_on_item_id_and_item_type"
   add_index "fees", ["manager_id"], :name => "index_fees_on_manager_id"
+  add_index "fees", ["slug"], :name => "index_fees_on_slug", :unique => true
   add_index "fees", ["type_id"], :name => "index_fees_on_type_id"
 
   create_table "forums", :force => true do |t|
@@ -261,12 +271,14 @@ ActiveRecord::Schema.define(:version => 20120402211933) do
     t.integer  "points_for_goal_total",                    :default => 0
     t.integer  "points_for_winner",                        :default => 0
     t.boolean  "archive",                                  :default => false
+    t.string   "slug"
   end
 
   add_index "games", ["away_id"], :name => "index_games_on_away_id"
   add_index "games", ["cup_id"], :name => "index_games_on_cup_id"
   add_index "games", ["home_id"], :name => "index_games_on_home_id"
   add_index "games", ["next_game_id"], :name => "index_games_on_next_game_id"
+  add_index "games", ["slug"], :name => "index_games_on_slug", :unique => true
   add_index "games", ["winner_id"], :name => "index_games_on_winner_id"
 
   create_table "groups", :force => true do |t|
@@ -298,9 +310,11 @@ ActiveRecord::Schema.define(:version => 20120402211933) do
     t.boolean  "looking",            :default => true
     t.boolean  "automatic_petition", :default => true
     t.integer  "installation_id"
+    t.string   "slug"
   end
 
   add_index "groups", ["marker_id"], :name => "index_groups_on_marker_id"
+  add_index "groups", ["slug"], :name => "index_groups_on_slug", :unique => true
   add_index "groups", ["sport_id"], :name => "index_groups_on_sport_id"
 
   create_table "groups_markers", :force => true do |t|
@@ -373,9 +387,11 @@ ActiveRecord::Schema.define(:version => 20120402211933) do
     t.boolean  "archive",            :default => false
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "slug"
   end
 
   add_index "installations", ["marker_id"], :name => "index_installations_on_marker_id"
+  add_index "installations", ["slug"], :name => "index_installations_on_slug", :unique => true
   add_index "installations", ["sport_id"], :name => "index_installations_on_sport_id"
   add_index "installations", ["venue_id"], :name => "index_installations_on_venue_id"
 
@@ -424,9 +440,11 @@ ActiveRecord::Schema.define(:version => 20120402211933) do
     t.string   "item_type"
     t.float    "lat",                                                        :default => 0.0
     t.float    "lng",                                                        :default => 0.0
+    t.string   "slug"
   end
 
   add_index "markers", ["item_id", "item_type"], :name => "index_markers_on_item_id_and_item_type"
+  add_index "markers", ["slug"], :name => "index_markers_on_slug", :unique => true
 
   create_table "matches", :force => true do |t|
     t.string   "name",                                                                :default => "Match Day"
@@ -476,17 +494,19 @@ ActiveRecord::Schema.define(:version => 20120402211933) do
     t.string   "block_token"
     t.integer  "moral",                                                               :default => 3
     t.decimal  "rating_average_moral",                  :precision => 6, :scale => 2, :default => 0.0
+    t.string   "slug"
   end
 
   add_index "matches", ["group_id"], :name => "index_matches_on_group_id"
   add_index "matches", ["invite_id"], :name => "index_matches_on_invite_id"
   add_index "matches", ["position_id"], :name => "index_matches_on_position_id"
   add_index "matches", ["schedule_id"], :name => "index_matches_on_schedule_id"
+  add_index "matches", ["slug"], :name => "index_matches_on_slug", :unique => true
   add_index "matches", ["type_id"], :name => "index_matches_on_type_id"
   add_index "matches", ["user_id"], :name => "index_matches_on_user_id"
 
   create_table "messages", :force => true do |t|
-    t.string   "subject",              :limit => 150
+    t.string   "subject",                    :limit => 150
     t.text     "body"
     t.integer  "parent_id"
     t.integer  "sender_id"
@@ -498,21 +518,33 @@ ActiveRecord::Schema.define(:version => 20120402211933) do
     t.datetime "sender_read_at"
     t.datetime "recipient_deleted_at"
     t.datetime "recipient_read_at"
-    t.integer  "replies",                             :default => 0
-    t.integer  "reviews",                             :default => 0
-    t.boolean  "archive",                             :default => false
+    t.integer  "replies",                                   :default => 0
+    t.integer  "reviews",                                   :default => 0
+    t.boolean  "archive",                                   :default => false
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "item_id"
     t.string   "item_type"
+    t.integer  "received_messageable_id"
+    t.string   "received_messageable_type"
+    t.integer  "sent_messageable_id"
+    t.string   "sent_messageable_type"
+    t.boolean  "opened",                                    :default => false
+    t.boolean  "recipient_delete",                          :default => false
+    t.boolean  "sender_delete",                             :default => false
+    t.string   "ancestry"
+    t.boolean  "recipient_permanent_delete",                :default => false
+    t.boolean  "sender_permanent_delete",                   :default => false
   end
 
+  add_index "messages", ["ancestry"], :name => "index_messages_on_ancestry"
   add_index "messages", ["conversation_id"], :name => "index_messages_on_conversation_id"
   add_index "messages", ["item_id", "item_type"], :name => "index_messages_on_item_id_and_item_type"
   add_index "messages", ["parent_id"], :name => "index_messages_on_parent_id"
   add_index "messages", ["recipient_id"], :name => "index_messages_on_recipient_id"
   add_index "messages", ["reply_id"], :name => "index_messages_on_reply_id"
   add_index "messages", ["sender_id"], :name => "index_messages_on_sender_id"
+  add_index "messages", ["sent_messageable_id", "received_messageable_id"], :name => "acts_as_messageable_ids"
 
   create_table "open_id_authentication_associations", :force => true do |t|
     t.integer "issued"
@@ -545,6 +577,7 @@ ActiveRecord::Schema.define(:version => 20120402211933) do
     t.integer  "fee_id"
     t.string   "item_type"
     t.integer  "item_id"
+    t.string   "slug"
   end
 
   add_index "payments", ["credit_id", "credit_type"], :name => "index_payments_on_credit_id_and_credit_type"
@@ -552,6 +585,7 @@ ActiveRecord::Schema.define(:version => 20120402211933) do
   add_index "payments", ["fee_id"], :name => "index_payments_on_fee_id"
   add_index "payments", ["item_id", "item_type"], :name => "index_payments_on_item_id_and_item_type"
   add_index "payments", ["manager_id"], :name => "index_payments_on_manager_id"
+  add_index "payments", ["slug"], :name => "index_payments_on_slug", :unique => true
 
   create_table "rates", :force => true do |t|
     t.integer  "rater_id"
@@ -647,10 +681,12 @@ ActiveRecord::Schema.define(:version => 20120402211933) do
     t.datetime "send_reminder_at"
     t.datetime "send_result_at"
     t.datetime "send_comment_at"
+    t.string   "slug"
   end
 
   add_index "schedules", ["group_id"], :name => "index_schedules_on_group_id"
   add_index "schedules", ["marker_id"], :name => "index_schedules_on_marker_id"
+  add_index "schedules", ["slug"], :name => "index_schedules_on_slug", :unique => true
   add_index "schedules", ["sport_id"], :name => "index_schedules_on_sport_id"
 
   create_table "scorecards", :force => true do |t|
@@ -865,6 +901,7 @@ ActiveRecord::Schema.define(:version => 20120402211933) do
     t.string   "linkedin_url"
     t.string   "linkedin_token"
     t.string   "linkedin_secret"
+    t.string   "slug"
   end
 
   add_index "users", ["email"], :name => "index_users_on_email"
@@ -875,6 +912,7 @@ ActiveRecord::Schema.define(:version => 20120402211933) do
   add_index "users", ["perishable_token"], :name => "index_users_on_perishable_token"
   add_index "users", ["persistence_token"], :name => "index_users_on_persistence_token"
   add_index "users", ["rpxnow_id"], :name => "index_users_on_rpxnow_id"
+  add_index "users", ["slug"], :name => "index_users_on_slug", :unique => true
 
   create_table "venues", :force => true do |t|
     t.string   "name"
@@ -895,8 +933,10 @@ ActiveRecord::Schema.define(:version => 20120402211933) do
     t.boolean  "day_light_savings",   :default => true
     t.datetime "day_light_starts_at"
     t.datetime "day_light_ends_at"
+    t.string   "slug"
   end
 
   add_index "venues", ["marker_id"], :name => "index_venues_on_marker_id"
+  add_index "venues", ["slug"], :name => "index_venues_on_slug", :unique => true
 
 end

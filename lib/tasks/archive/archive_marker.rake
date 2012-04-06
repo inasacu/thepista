@@ -1,4 +1,4 @@
-# to run:    sudo rake the_archive_marker  heroku rake the_archive_marker --app  haypista
+# to run:    rake the_archive_marker  heroku rake the_archive_marker --app  haypista
 
 desc "ARCHIVE a marker"
 task :the_archive_marker => :environment do |t|

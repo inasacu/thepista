@@ -1,4 +1,4 @@
-# to run:    sudo rake the_match_scorecard_update
+# to run:    rake the_match_scorecard_update
 
 desc "create games based on cup teams and groups..."
 task :the_match_scorecard_update => :environment do |t|

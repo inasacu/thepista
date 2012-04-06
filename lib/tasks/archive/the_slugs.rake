@@ -1,4 +1,4 @@
-# to run:    sudo rake the_slugs
+# to run:    rake the_slugs
 
 desc "  # create slugs for all models"
 task :the_slugs => :environment do |t|
