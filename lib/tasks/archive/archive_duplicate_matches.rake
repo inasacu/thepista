@@ -13,7 +13,7 @@ task :the_duplicate_match => :environment do |t|
     a_match = Match.find(:all, :conditions => ["schedule_id = ? and user_id = ? and archive = false and type_id = 3 and group_score is null and invite_score is null ", match.schedule_id, match.user_id])
     a_match.each do |the_match|
       
-      puts "group / schedule: #{match.schedule.group.name} (#{match.schedule.concept}), #{match.user_id } - #{match.total}"
+      puts "group / schedule: #{match.schedule.group.name} (#{match.schedule.name}), #{match.user_id } - #{match.total}"
       puts "archiving:     #{the_match.schedule_id} #{the_match.user_id}"
 
       the_match.archive = true

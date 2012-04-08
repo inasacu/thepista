@@ -1,9 +1,9 @@
 class Reservation < ActiveRecord::Base
 
-	extend FriendlyId 
-	# friendly_id :concept, 			use: :slugged
+	# extend FriendlyId 
+	# friendly_id :name, 			use: :slugged
 	
-  # index{ concept }
+  
 
   has_many    :fees #,            :dependent => :destroy 
   belongs_to  :item,            :polymorphic => true
@@ -11,9 +11,9 @@ class Reservation < ActiveRecord::Base
   belongs_to  :venue
   
   # validations  
-  validates_presence_of         :concept
-  validates_length_of           :concept,                         :within => NAME_RANGE_LENGTH
-  # validates_format_of           :concept,                         :with => /^[A-z 0-9 _.-]*$/ 
+  validates_presence_of         :name
+  validates_length_of           :name,                         :within => NAME_RANGE_LENGTH
+  # validates_format_of           :name,                         :with => /^[A-z 0-9 _.-]*$/ 
 
   validates_presence_of         :description
   validates_length_of           :description,                     :within => DESCRIPTION_RANGE_LENGTH
@@ -24,7 +24,7 @@ class Reservation < ActiveRecord::Base
   # validates_presence_of         :starts_at, :ends_at
 
   # variables to access
-  attr_accessible :concept, :description, :starts_at, :ends_at, :reminder_at
+  attr_accessible :name, :description, :starts_at, :ends_at, :reminder_at
   attr_accessible :fee_per_pista, :fee_per_lighting, :venue_id, :installation_id
   attr_accessible :item_id, :item_type, :block_token, :code
   attr_accessible :public, :archive, :reminder, :available

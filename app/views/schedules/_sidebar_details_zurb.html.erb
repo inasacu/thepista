@@ -1,6 +1,6 @@
 <%
 	is_user_manager = current_user.is_manager_of?(@schedule.group)
-	the_label = "#{h(@schedule.group.name)} - #{sanitize(@schedule.concept)}"
+	the_label = "#{h(@schedule.group.name)} - #{sanitize(@schedule.name)}"
 	show_start_rating = (current_user.is_member_of?(@schedule.group) and @schedule.game_played?)	
 	show_individual_score = (@schedule.group.is_futbol? and @schedule.played?)
 	is_played =  @schedule.game_played?
@@ -26,7 +26,7 @@
 		show_individual_score = (show_individual_score and @has_score)
 	end
 	
-	the_label = sanitize(@schedule.concept)
+	the_label = sanitize(@schedule.name)
 %>
 
 <%= set_title_class(the_label) %>

@@ -234,20 +234,24 @@ class Teammate < ActiveRecord::Base
     return petition
   end
   
-  def self.latest_teammates(items)
-    all_teammates = find(:all, :select => "id", :conditions => ["accepted_at >= ? and status = 'accepted'", LAST_THREE_DAYS], :order => "id") 
-    first_teammates = []
+	def self.latest_teammates(items)
+		all_teammates = find(:all, :select => "id", :conditions => ["accepted_at >= ? and status = 'accepted'", LAST_THREE_DAYS], :order => "id") 
+		first_teammates = []
 
-    first_only = true
-    all_teammates.each do |teammate| 
-      first_teammates << teammate.id if first_only
-      first_only = !first_only
-    end
-    find(:all, :conditions => ["id in (?)", first_teammates], :order => "accepted_at desc").each do |item| 
-      items << item
-    end
-    return items
-  end
+		first_only = true
+		all_teammates.each do |teammate| 
+			first_teammates << teammate.id if first_only
+			first_only = !first_only
+		end
+
+		unless first_teammates.nil?
+			find(:all, :conditions => ["id in (?)", first_teammates], :order => "accepted_at desc").each do |item| 
+				items << item
+			end
+		end
+		
+		return items
+	end
   
   protected    
   def make_teammate_code

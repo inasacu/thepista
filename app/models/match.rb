@@ -259,7 +259,7 @@ class Match < ActiveRecord::Base
       the_encode = "#{rand(36**8).to_s(36)}#{schedule.id}#{rand(36**8).to_s(36)}"
       block_token  = Base64::encode64(the_encode)
 
-      self.create!(:name => schedule.concept, :description => schedule.description, :status_at => Time.zone.now, 
+      self.create!(:name => schedule.name, :description => schedule.description, :status_at => Time.zone.now, 
                    :schedule_id => schedule.id, :group_id => schedule.group_id, :user_id => user.id, :available => user.available, 
                    :type_id => type_id, :position_id => position_id, :technical => technical, :physical => physical,
                    :played => schedule.played, :block_token => block_token) if self.schedule_user_exists?(schedule, user)

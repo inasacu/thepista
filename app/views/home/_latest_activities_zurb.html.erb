@@ -6,17 +6,16 @@
 
 		<table>
 
-
 			<% @requested_teammates.each do |teammate| %>
-			<%= render '/users/petition_box_zurb', :teammate => teammate %>
+				<%= render '/users/petition_box_zurb', :teammate => teammate %>
 			<% end %>
 
-			<%= recent_activities_matches(@comment_items) %>
+			<%= recent_activities_matches(@comment_items) unless DISPLAY_DISQUS %>
 			<%= recent_activities_matches(@match_items) %>     				
 
 			<% @items.each do |item| %>								
-			<%= render "home/upcoming_home_zurb", :teammate => item unless (item.class.to_s == 'Teammate') %>
-			<%= render "users/petition_box_zurb", :teammate => item if (item.class.to_s == 'Teammate') %>	
+				<%= render "home/upcoming_home_zurb", :teammate => item unless (item.class.to_s == 'Teammate') %>
+				<%= render "users/petition_box_zurb", :teammate => item if (item.class.to_s == 'Teammate') %>	
 			<% end %>  
 			
 			<%= recent_activities_schedules(@schedule_items) %>

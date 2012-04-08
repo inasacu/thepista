@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120405223531) do
+ActiveRecord::Schema.define(:version => 20120407175842) do
 
   create_table "announcements", :force => true do |t|
     t.text     "message"
@@ -78,7 +78,7 @@ ActiveRecord::Schema.define(:version => 20120405223531) do
   end
 
   create_table "classifieds", :force => true do |t|
-    t.string   "concept"
+    t.string   "name"
     t.datetime "starts_at"
     t.datetime "ends_at"
     t.datetime "reminder_at"
@@ -199,7 +199,7 @@ ActiveRecord::Schema.define(:version => 20120405223531) do
   add_index "escuadras", ["slug"], :name => "index_escuadras_on_slug", :unique => true
 
   create_table "fees", :force => true do |t|
-    t.string   "concept",       :limit => 50
+    t.string   "name",          :limit => 50
     t.text     "description"
     t.string   "payed",                       :default => "No"
     t.boolean  "archive",                     :default => false
@@ -242,7 +242,7 @@ ActiveRecord::Schema.define(:version => 20120405223531) do
   add_index "forums", ["schedule_id"], :name => "index_forums_on_schedule_id"
 
   create_table "games", :force => true do |t|
-    t.string   "concept"
+    t.string   "name"
     t.datetime "starts_at"
     t.datetime "ends_at"
     t.datetime "reminder_at"
@@ -562,7 +562,7 @@ ActiveRecord::Schema.define(:version => 20120405223531) do
   end
 
   create_table "payments", :force => true do |t|
-    t.string   "concept",       :limit => 150
+    t.string   "name",          :limit => 150
     t.float    "debit_amount",                 :default => 0.0
     t.float    "credit_amount",                :default => 0.0
     t.text     "description"
@@ -603,7 +603,7 @@ ActiveRecord::Schema.define(:version => 20120405223531) do
   add_index "rates", ["rater_id"], :name => "index_rates_on_user_id"
 
   create_table "reservations", :force => true do |t|
-    t.string   "concept"
+    t.string   "name"
     t.datetime "starts_at"
     t.datetime "ends_at"
     t.datetime "reminder_at"
@@ -653,7 +653,7 @@ ActiveRecord::Schema.define(:version => 20120405223531) do
   add_index "roles_users", ["user_id"], :name => "index_roles_users_on_user_id"
 
   create_table "schedules", :force => true do |t|
-    t.string   "concept"
+    t.string   "name"
     t.string   "season"
     t.integer  "jornada"
     t.datetime "starts_at"

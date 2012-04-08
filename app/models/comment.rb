@@ -73,7 +73,7 @@ class Comment < ActiveRecord::Base
       @item = Forum.find(self.commentable_id)
       @group = @item.schedule.group
 
-      the_label = @item.schedule.concept.to_s.strip[0..25]
+      the_label = @item.schedule.name.to_s.strip[0..25]
       
       @group.users.each do |user|
         # UserMailer.delay.deliver_message_blog(user, self.user, self, the_label) if user.forum_message?

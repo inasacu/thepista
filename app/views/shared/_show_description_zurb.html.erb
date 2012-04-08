@@ -7,7 +7,7 @@
 	when 'Group', 'User'
 		the_label = "#{item_image_link_small(item)} #{is_label_blank ? h(item.name) : the_label}"
 	when "Schedule"
-		the_label = "#{item_image_link_small(item.group)} #{is_label_blank ? h(item.concept) : the_label}"	
+		the_label = "#{item_image_link_small(item.group)} #{is_label_blank ? h(item.name) : the_label}"	
 	when "Challenge"
 		the_label = challenge_show_photo(item, current_user)
 	when "Installation"

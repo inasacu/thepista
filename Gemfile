@@ -33,7 +33,6 @@ gem 'ssl_requirement'
 gem 'jquery_notify_bar'
 gem 'acts_as_tree'
 gem 'aws-sdk'
-# gem 'friendly_id'
 gem "friendly_id", "~> 4.0.1"
 
 gem 'iron_worker'

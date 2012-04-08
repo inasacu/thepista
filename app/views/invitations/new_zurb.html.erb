@@ -2,7 +2,7 @@
 	the_label = control_action_label 
 
 	if @schedule 
-		the_label = "#{label_name(:to)} #{item_concept_link(@schedule)}" 
+		the_label = "#{label_name(:to)} #{item_name_link(@schedule)}" 
 	elsif @group 
 		the_label = "#{label_name(:to)} #{item_name_link(@group)}"  
 	elsif @challenge 

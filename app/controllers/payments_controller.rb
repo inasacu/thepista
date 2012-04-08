@@ -51,7 +51,7 @@ class PaymentsController < ApplicationController
       payments.each{|payment| credit_amount += payment.debit_amount}
 
       @payment.fee_id = fees.first.id
-      @payment.concept = fees.first.concept
+      @payment.name = fees.first.name
       @payment.debit_amount = debit_amount.to_f - credit_amount.to_f      
     end
     render @the_template  

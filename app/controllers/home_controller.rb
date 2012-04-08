@@ -60,7 +60,7 @@ class HomeController < ApplicationController
     @all_classifieds = []
     @has_classifieds = false  
 
-    Classified.latest_items(@all_classifieds) if DISPLAY_FREMIUM_SERVICES 
+    Classified.latest_items(@all_classifieds) 											if DISPLAY_FREMIUM_SERVICES 
     @has_classifieds = @all_classifieds.count > 0
   end  
 
@@ -77,20 +77,18 @@ class HomeController < ApplicationController
     @comment_items = []
 
     @all_classifieds = []
-    Classified.latest_items(@all_classifieds) 																					if DISPLAY_FREMIUM_SERVICES
     @has_classifieds = @all_classifieds.count > 0
 
     Teammate.latest_teammates(@all_items) 
     Schedule.latest_matches(@all_items) 
     Schedule.latest_items(@all_schedule_items)   
-
+    Classified.latest_items(@all_classifieds) 																					if DISPLAY_FREMIUM_SERVICES
 
     if current_user      
       @no_linkedin_profile = (current_user.linkedin_url.nil? or current_user.linkedin_url.blank? or current_user.linkedin_url.empty?) if DISPLAY_FREMIUM_SERVICES
-
       @my_schedules = Schedule.my_current_schedules(current_user)
 
-      Comment.latest_items(@all_comment_items, current_user)
+      Comment.latest_items(@all_comment_items, current_user) unless DISPLAY_DISQUS
 
       Match.latest_items(@all_match_items, current_user)
       Match.last_minute_items(@all_match_items, current_user) if DISPLAY_LAST_MINUTE_CANCEL
@@ -101,11 +99,11 @@ class HomeController < ApplicationController
       current_user.groups.each {|group| Scorecard.latest_items(@all_items, group)} if DISPLAY_MAX_GAMES_PLAYED   
     end
 
-
-    Group.latest_items(@all_items) if @all_items.count < MEDIUM_FEED_SIZE     
     # User.latest_items(@all_items) if @all_items.count < MEDIUM_FEED_SIZE     
     # Group.latest_updates(@all_items) if @all_items.count < MEDIUM_FEED_SIZE     
-    # User.latest_updates(@all_items) if @all_items.count < MEDIUM_FEED_SIZE 
+    # User.latest_updates(@all_items) if @all_items.count < MEDIUM_FEED_SIZE
+
+    Group.latest_items(@all_items) if @all_items.count < MEDIUM_FEED_SIZE
     Venue.latest_items(@all_items) if @all_items.count < MEDIUM_FEED_SIZE  						if DISPLAY_PROFESSIONAL_SERVICES
     Reservation.latest_items(@all_items) if @all_items.count < MEDIUM_FEED_SIZE  			if DISPLAY_PROFESSIONAL_SERVICES
 

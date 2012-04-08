@@ -19,7 +19,7 @@
 		# request_image = item_image_link_small(the_manager)
 		# request_link = item_name_link(the_manager)
 		# 
-		# item_link = item_concept_link(item)
+		# item_link = item_name_link(item)
 		# item_image = item_image_link_small(item.group)
 		# 
 		# item_group_link = item_name_link(item.group)
@@ -28,9 +28,9 @@
 		# 
 		# is_member = current_user.is_member_of?(item.group)
 		# if item.played?
-		# 	the_label = %(#{I18n.t(:has_updated_scorecard) } #{the_label} #{is_member ? item_link : sanitize(item.concept)})
+		# 	the_label = %(#{I18n.t(:has_updated_scorecard) } #{the_label} #{is_member ? item_link : sanitize(item.name)})
 		# else
-		# 	the_label = %(#{I18n.t(:created_a_schedule) } #{the_label} #{is_member ? item_link : sanitize(item.concept)})
+		# 	the_label = %(#{I18n.t(:created_a_schedule) } #{the_label} #{is_member ? item_link : sanitize(item.name)})
 		# end
 
 	when "Group"  #, "Cup", "Challenge"
@@ -66,7 +66,7 @@
 		# 	request_image = item_image_link_small(the_manager)
 		# 	request_link = item_name_link(the_manager)
 		# 
-		# 	item_link = item_concept_link(item)
+		# 	item_link = item_name_link(item)
 		# 	item_image = item_image_link_small(group)
 		# 
 		# 	item_group_link = item_name_link(group)
@@ -97,7 +97,7 @@
 		# 
 		#         is_member = current_user.is_member_of?(item.schedule.group)
 		# the_label = %(#{I18n.t(:changes_in_roster_status) } #{I18n.t(:in)} 
-		# 					#{is_member ? match_roster_link(item) : sanitize(item.schedule.concept)})
+		# 					#{is_member ? match_roster_link(item) : sanitize(item.schedule.name)})
 	end
     
 	# the_label = label_name(:"created_a_#{item.class.to_s.downcase}") + " <wbr/> #{item_link}" if the_label == ""

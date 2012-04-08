@@ -24,7 +24,7 @@ class Cast < ActiveRecord::Base
   end
   
   def concept
-    self.game.concept
+    self.game.name
   end
   
   def starts_at

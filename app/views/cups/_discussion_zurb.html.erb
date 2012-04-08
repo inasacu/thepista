@@ -2,7 +2,7 @@
 
 <% 
 	the_label = ""
-	the_label = sanitize(@schedule.concept) if @schedule
+	the_label = sanitize(@schedule.name) if @schedule
 	the_label = sanitize(@user.name) if @user
 	the_label = sanitize(@group.name) if @group
 	the_label = sanitize(@challenge.name) if @challenge

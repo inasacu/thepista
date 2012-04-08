@@ -1,7 +1,7 @@
 class Game < ActiveRecord::Base
 
-	extend FriendlyId 
-	# friendly_id :concept, 			use: :slugged
+	# extend FriendlyId 
+	# friendly_id :name, 			use: :slugged
 	
   acts_as_tree :foreign_key => :next_game_id
 
@@ -24,9 +24,9 @@ class Game < ActiveRecord::Base
   has_many    :casts
 
   # validations   
-  validates_presence_of         :concept
-  validates_length_of           :concept,                         :within => NAME_RANGE_LENGTH
-  validates_format_of           :concept,                         :with => /^[A-z 0-9 _.-]*$/
+  validates_presence_of         :name
+  validates_length_of           :name,                         :within => NAME_RANGE_LENGTH
+  validates_format_of           :name,                         :with => /^[A-z 0-9 _.-]*$/
   validates_numericality_of     :jornada,                         :greater_than_or_equal_to => 0,       :less_than_or_equal_to => 999
 
   validates_numericality_of     :home_ranking,                    :greater_than_or_equal_to => 0,       :less_than_or_equal_to => 8,    :allow_nil => true
@@ -51,7 +51,7 @@ class Game < ActiveRecord::Base
   validates_presence_of         :starts_at, :ends_at, :reminder_at 
 
   # variables to access
-  attr_accessible :concept, :starts_at, :ends_at, :reminder_at, :deadline_at
+  attr_accessible :name, :starts_at, :ends_at, :reminder_at, :deadline_at
   attr_accessible :points_for_single, :points_for_double, :points_for_draw, :points_for_goal_difference, :points_for_goal_total, :points_for_winner
   attr_accessible :cup_id, :home_id, :away_id, :winner_id, :next_game_id, :jornada, :round, :type_name
   attr_accessible :home_score, :away_score, :played, :home_ranking, :away_ranking, :home_stage_name, :away_stage_name

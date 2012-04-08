@@ -1,6 +1,7 @@
 <!-- Das Footer -->
 
-<%= render 'shared/facebook_script_zurb' %>
+<%= render 'shared/facebook_script_zurb' if DISPLAY_SOCIAL_MEDIA %>
+<%= render 'shared/google_plus_script_zurb' if DISPLAY_SOCIAL_MEDIA %>
 
 <footer class="row">
 
@@ -31,31 +32,34 @@
 		<h6><%= "#{label_name(:need_quick_help)}".html_safe %></h6>
 		<p><%= "#{mail_to(CONTACT_RECIPIENT, label_name(:contact_us))}".html_safe %></p>
 
+
+		<% if DISPLAY_SOCIAL_MEDIA %>
+
 		<ul class="block-grid three-up">
-			<li>
-				<!-- Place this tag where you want the +1 button to render -->
-				<g:plusone size="medium"></g:plusone>
-				<!-- Place this render call where appropriate -->
-				<script>
-				(function() {
-					var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
-					po.src = 'https://apis.google.com/js/plusone.js';
-					var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
-					})();
-					</script>
-				</li>
-				<li>
-					<iframe allowtransparency="true" frameborder="0" scrolling="no"
-					src="http://platform.twitter.com/widgets/follow_button.html?screen_name=haypista"
-					style="width:80px; height:20px;">
-					</iframe>
-				</li>
-				<li>
-					<div class="fb-like" data-href="HayPista.com" data-send="false" 
-						data-layout="button_count" data-width="450" data-show-faces="false" data-action="recommend" data-font="lucida grande">
-					</div>
-				</li>
+			
+		<li>
+			<div class="fb-like" data-href="HayPista.com" data-send="false" 
+			data-layout="button_count" data-width="450" data-show-faces="false" 
+			data-action="recommend" data-font="lucida grande">
 			</div>
+		</li>
+		
+
+		<li>
+			<iframe allowtransparency="true" frameborder="0" scrolling="no"
+			src="http://platform.twitter.com/widgets/follow_button.html?screen_name=haypista"
+			style="width:80px; height:20px;">
+			</iframe>
+		</li>
+
+		<li>
+			<g:plusone size="medium"></g:plusone>
+		</li>
+			
+		</ul>
+
+		<% end %>
+			
 		</section>		
 
 		<div class="row">
@@ -66,13 +70,15 @@
 		
 		<br/>	
 
+
+		<% if development? %>
+		<hr/>
 		<div class="row ">
 			<div class="three columns centered">
 				<%#= render 'utilities/browser_detect_zurb' %>
 			</div>
 		</div>		
+		<% end %>
 		
-		
-	</footer>
-
-	<!-- /Das Footer -->
+</footer>
+<!-- /Das Footer -->

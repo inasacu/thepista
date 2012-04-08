@@ -6,8 +6,8 @@
 @is_basket = @schedule.group.is_basket?
 
 a_roster = !(@schedule.convocados.empty?)
-the_label = "#{label_name(:rosters)} #{label_name(:in)} #{sanitize(@schedule.concept)}"
-content_for(:title, sanitize(@schedule.concept))
+the_label = "#{label_name(:rosters)} #{label_name(:in)} #{sanitize(@schedule.name)}"
+content_for(:title, sanitize(@schedule.name))
 @positions = Type.find(table_type = 'User'", :order => "id")
 
 %>

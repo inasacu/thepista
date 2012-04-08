@@ -82,7 +82,8 @@ the_roster.each do |match|
 	the_match_status = ""
 	the_match_status = ago(match.status_at) #unless has_been_played
 	the_match_status = "#{the_match_status} <br /> ( #{label_name(:no_jugado)} )" if match.type_id == 4
-	the_match_status = "<font color='orange' title='#{label_name('forum_notification_false')}'> #{the_match_status} </font>".html_safe unless the_user.forum_comment_notification
+	
+	# the_match_status = "<font color='orange' title='#{label_name('forum_notification_false')}'> #{the_match_status} </font>".html_safe unless the_user.forum_comment_notification
 	
 	the_user_link = "#{user_link_limit(the_user)}"
 	the_match_status = "#{the_match_status}"

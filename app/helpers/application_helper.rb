@@ -331,7 +331,7 @@ module ApplicationHelper
 
 	def set_image_and_link(the_link, image_label=nil)
 		if DISPLAY_HAYPISTA_TEMPLATE
-			cset_content_tag_safe(:p, "#{image_label.nil? ? '' : option_image_link(image_label)}  #{the_link}", "")
+			set_content_tag_safe(:p, "#{image_label.nil? ? '' : option_image_link(image_label)}  #{the_link}", "")
 		else
 			set_content_tag_safe(:p, "#{image_label.nil? ? '' : option_image_small_link(image_label)}  #{the_link}", "")
 		end
@@ -344,12 +344,6 @@ module ApplicationHelper
 			else
 				content_for :sidebar, the_render
 			end
-			# else  
-			#   if the_render.nil?
-			#     content_for :sidebar, render("#{get_the_controller}/sidebar_zurb")
-			#   else
-			#     content_for :sidebar, the_render
-			#   end
 		end
 	end
 
@@ -365,20 +359,6 @@ module ApplicationHelper
 		end
 		text = limit_item_link_length(text, limit) unless (limit == nil)
 		text = proper_case(text) if item.class.to_s == 'User'
-		link_to(text.html_safe, item, html_options)
-	end
-
-	# Link to a item (default is by concept).
-	def item_concept_link(text, item = nil, html_options = nil, limit = nil)
-		if item.nil?
-			item = text
-			text = item.concept
-		elsif item.is_a?(Hash)
-			html_options = item
-			item = text
-			text = item.concept
-		end
-		text = limit_item_link_length(text, limit) unless (limit == nil)
 		link_to(text.html_safe, item, html_options)
 	end
 
@@ -709,7 +689,8 @@ module ApplicationHelper
 		the_item = item.class.to_s.downcase.chomp
 		the_path = "new_#{the_item}_url"
 		the_label = "#{the_item}s_create"
-		link_to(I18n.t(:"#{the_label}"), send(:"#{the_path}", item))
+		# link_to(I18n.t(:"#{the_label}"), send(:"#{the_path}", item))
+		link_to(I18n.t(:"#{the_label}"), send(:"#{the_path}"))
 	end
 
 	def set_form_create_image_link(item)

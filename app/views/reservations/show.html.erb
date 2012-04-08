@@ -1,7 +1,7 @@
 <% 
 	is_user_manager = current_user.is_manager_of?(@reservation.venue)
-	the_label = sanitize(@reservation.concept)
-	content_for(:title, sanitize(@reservation.concept))		
+	the_label = sanitize(@reservation.name)
+	content_for(:title, sanitize(@reservation.name))		
 %>
 
 <div class="block">
@@ -40,7 +40,7 @@
 
     <tr>
       <%= content_tag :td, label_name(:concept), :class => "label" %>            
-		<%= content_tag :td, sanitize(@reservation.concept), :class => get_the_action %>
+		<%= content_tag :td, sanitize(@reservation.name), :class => get_the_action %>
     </tr>
 	
 	<%= tr_td_action(:starts_at, nice_day_of_week(@reservation.starts_at)) %>
@@ -57,7 +57,7 @@
 
 	<% 
 		the_label = h(label_name(@reservation.reminder, 'value'))
-		the_confirmation = label_with_name('reminder', "- #{sanitize(@reservation.concept)}?") 
+		the_confirmation = label_with_name('reminder', "- #{sanitize(@reservation.name)}?") 
 	%>
 	<tr>
 		<%= content_tag :td, label_name(:reminder), :class => "label" %>
@@ -68,7 +68,7 @@
 		
 	<% 
 		the_label = h(label_name(@reservation.public, 'value'))
-		the_confirmation = label_with_name('public', "- #{sanitize(@reservation.concept)}?") 
+		the_confirmation = label_with_name('public', "- #{sanitize(@reservation.name)}?") 
 	%>
 	<tr>
 		<%= content_tag :td, label_name(:public), :class => "label" %>

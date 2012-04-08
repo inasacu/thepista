@@ -1,15 +1,15 @@
 class Classified < ActiveRecord::Base
 
-	extend FriendlyId 
-	# friendly_id :concept, 			use: :slugged
+	# extend FriendlyId 
+	# friendly_id :name, 			use: :slugged
 
 	belongs_to      :table,           :polymorphic => true
 	belongs_to      :item,            :polymorphic => true
 
 	# validations  
-	validates_presence_of         :concept
-	validates_length_of           :concept,                         :within => NAME_RANGE_LENGTH
-	validates_format_of           :concept,                         :with => /^[A-z 0-9 _.-]*$/ 
+	validates_presence_of         :name
+	validates_length_of           :name,                         :within => NAME_RANGE_LENGTH
+	validates_format_of           :name,                         :with => /^[A-z 0-9 _.-]*$/ 
 
 	validates_presence_of         :description
 	validates_length_of           :description,                     :within => DESCRIPTION_RANGE_LENGTH
@@ -17,7 +17,7 @@ class Classified < ActiveRecord::Base
 	validates_presence_of         :starts_at,     :ends_at
 
 	# variables to access
-	attr_accessible :concept, :description, :starts_at, :table_id, :table_type
+	attr_accessible :name, :description, :starts_at, :table_id, :table_type
 
 	
 	 

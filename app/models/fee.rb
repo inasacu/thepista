@@ -1,7 +1,7 @@
 class Fee < ActiveRecord::Base
 
-	extend FriendlyId 
-	# friendly_id :concept, 			use: :slugged
+	# extend FriendlyId 
+	# friendly_id :name, 			use: :slugged
 	
   belongs_to     :manager,        :class_name => 'User',        :foreign_key => 'manager_id'
   belongs_to     :debit,          :polymorphic => true
@@ -10,8 +10,8 @@ class Fee < ActiveRecord::Base
   has_many       :payments
   
   # validations  
-  validates_presence_of         :concept
-  validates_length_of           :concept,                         :within => NAME_RANGE_LENGTH
+  validates_presence_of         :name
+  validates_length_of           :name,                         :within => NAME_RANGE_LENGTH
   
   validates_presence_of         :description
   validates_length_of           :description,                     :within => DESCRIPTION_RANGE_LENGTH
@@ -27,7 +27,7 @@ class Fee < ActiveRecord::Base
   validates_presence_of         :item_type
 
   # variables to access
-  attr_accessible :concept, :description, :payed, :debit_amount, :season_player
+  attr_accessible :name, :description, :payed, :debit_amount, :season_player
   attr_accessible :debit_id, :debit_type, :credit_id, :credit_type, :item_id, :item_type 
   attr_accessible :type_id, :manager_id
   
@@ -149,7 +149,7 @@ class Fee < ActiveRecord::Base
     fee_per_game = item.fee_per_pista if credit.class.to_s == "Marker"
         
     if self.debit_credit_item_exists?(debit, credit, item)       
-      self.create!(:concept => item.concept, :description => item.description, :debit_amount => fee_per_game,
+      self.create!(:name => item.name, :description => item.description, :debit_amount => fee_per_game,
                     :debit_id => debit.id, :credit_id => credit.id, :item_id => item.id, 
                     :debit_type => debit.class.to_s, :credit_type => credit.class.to_s, :item_type => item.class.to_s,
                     :season_player => season_player, :type_id => type_id)    

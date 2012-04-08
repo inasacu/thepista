@@ -1,12 +1,12 @@
 <% 
 	is_user_manager = current_user.is_manager_of?(@reservation.venue)
-	the_label = sanitize(@reservation.concept)
-	content_for(:title, sanitize(@reservation.concept))		
+	the_label = sanitize(@reservation.name)
+	content_for(:title, sanitize(@reservation.name))		
 
 	the_reservation_label = h(label_name(@reservation.reminder, 'value'))
-	the_reservation_confirmation = label_with_name('reminder', "- #{sanitize(@reservation.concept)}?")
+	the_reservation_confirmation = label_with_name('reminder', "- #{sanitize(@reservation.name)}?")
 	the_public_label = h(label_name(@reservation.public, 'value'))
-	the_public_confirmation = label_with_name('public', "- #{sanitize(@reservation.concept)}?") 
+	the_public_confirmation = label_with_name('public', "- #{sanitize(@reservation.name)}?") 
 %>
 
 
@@ -22,7 +22,7 @@
 		<tr>
 		<td>
 			
-		<%= render_show_detail_zurb(:concept, sanitize(@reservation.concept) %>
+		<%= render_show_detail_zurb(:concept, sanitize(@reservation.name) %>
 		<%= render_show_detail_zurb(:starts_at, nice_day_of_week(@reservation.starts_at)) %>
 		<%= render_show_detail_zurb(:ends_at, nice_day_of_week(@reservation.ends_at)) %>
 		<%= render_show_detail_zurb(:reminder_at, nice_day_of_week(@reservation.reminder_at)) %>

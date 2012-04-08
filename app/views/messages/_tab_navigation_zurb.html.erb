@@ -11,5 +11,5 @@
 	<%= set_tab_navigation(link_to(label_name(:inbox), messages_path, :class => get_active('message_index'))) %>
 	<%= set_tab_navigation(link_to(label_name(:message_sent), sent_messages_path, :class => get_active('message_sent'))) %>
 	<%= set_tab_navigation(link_to(label_name(:invitations_create), new_invitation_url, :class => get_active('invitation_new'))) %>
-	<%= set_tab_navigation(link_to(label_name(:invitations_import), invite_url, :class => get_active(the_invitation))) %>
+	<%#= set_tab_navigation(link_to(label_name(:invitations_import), invite_url, :class => get_active(the_invitation))) %>
 <% end -%>

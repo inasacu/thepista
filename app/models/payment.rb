@@ -1,7 +1,7 @@
 class Payment < ActiveRecord::Base
   
-	extend FriendlyId 
-	# friendly_id :concept, 			use: :slugged
+	# extend FriendlyId 
+	# friendly_id :name, 			use: :slugged
 	
   belongs_to    :manager,        :class_name => 'User',        :foreign_key => 'manager_id'
   belongs_to    :debit,          :polymorphic => true
@@ -10,8 +10,8 @@ class Payment < ActiveRecord::Base
   belongs_to    :fee
 
   # validations 
-  validates_presence_of         :concept
-  validates_length_of           :concept,                         :within => NAME_RANGE_LENGTH
+  validates_presence_of         :name
+  validates_length_of           :name,                         :within => NAME_RANGE_LENGTH
 
   validates_presence_of         :description
   validates_length_of           :description,                     :within => DESCRIPTION_RANGE_LENGTH
@@ -27,7 +27,7 @@ class Payment < ActiveRecord::Base
   validates_presence_of         :item_type
 
   # variables to access
-  attr_accessible :concept, :description, :debit_amount, :credit_amount, :debit_id, :debit_type
+  attr_accessible :name, :description, :debit_amount, :credit_amount, :debit_id, :debit_type
   attr_accessible :credit_id, :credit_type, :item_id, :item_type, :manager_id, :fee_id
 
   # method section

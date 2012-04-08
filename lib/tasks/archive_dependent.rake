@@ -136,7 +136,7 @@ task :the_archive_dependent => :environment do |t|
   :conditions => "archive = false and group_id in (select distinct groups.id from groups where groups.archive = true)") 
 
   the_schedule.each do |schedule|
-    puts "ARCHIVE schedule => #{schedule.concept}, group => #{schedule.group.name}"
+    puts "ARCHIVE schedule => #{schedule.name}, group => #{schedule.group.name}"
     schedule.archive = true
     schedule.save if has_to_archive
   end
@@ -146,9 +146,9 @@ task :the_archive_dependent => :environment do |t|
   :conditions => "archive = false and schedule_id in (select distinct schedules.id from schedules where schedules.archive = true)") 
 
   the_match.each do |match|
-    puts "ARCHIVE match => #{match.id}, schedule => #{match.schedule.concept}"
+    puts "ARCHIVE match => #{match.id}, schedule => #{match.schedule.name}"
     match.archive = true
-    match.description = match.schedule.concept if match.description.blank?
+    match.description = match.schedule.name if match.description.blank?
     match.save! if has_to_archive
   end
 
@@ -202,7 +202,7 @@ task :the_archive_dependent => :environment do |t|
   :conditions => "archive = false and schedule_id in (select distinct schedules.id from schedules where schedules.archive = true)")
 
   the_forum.each do |forum|
-    puts "ARCHIVE forum => #{forum.id} #{forum.schedule.concept}"
+    puts "ARCHIVE forum => #{forum.id} #{forum.schedule.name}"
     forum.archive = true
     forum.save if has_to_archive
   end

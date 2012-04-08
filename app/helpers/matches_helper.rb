@@ -25,11 +25,11 @@ module MatchesHelper
   def match_roster_link(text, match = nil, html_options = nil)
     if match.nil?
       match = text
-      text = match.schedule.concept
+      text = match.schedule.name
     elsif match.schedule.is_a?(Hash)
       html_options = match.schedule
       match = text
-      text = match.schedule.concept
+      text = match.schedule.name
     end
 
     case match.type_id
@@ -203,7 +203,7 @@ module MatchesHelper
 
   	the_links = ""	
   	matches.each do |match|
-  		the_links = %(#{the_links} #{is_member ? match_roster_link(match) : sanitize(match.schedule.concept)}, )
+  		the_links = %(#{the_links} #{is_member ? match_roster_link(match) : sanitize(match.schedule.name)}, )
   	end
 
   	the_links = %(#{the_links.chop.chop})	

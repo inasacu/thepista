@@ -1,14 +1,12 @@
-
-	
 <% the_label = "#{label_name(:invitations_your_friend)} #{label_name(:your).downcase} #{label_name(:group).downcase}." %>
 
-<%= content_tag :p, "#{content_tag(:b, '1. ')} #{label_name(:groups_howto_create)}" %>
-<%= content_tag :p, "#{content_tag(:b, '2. ')} #{label_name(:groups_howto_fillin)}" %>
-<%= content_tag :p, "#{content_tag(:b, '3. ')} #{label_name(:groups_howto_show)}" %>
-<%= content_tag :p, "#{content_tag(:b, '4. ')} #{label_name(:groups_howto_fillin)}" %>
-<%= content_tag :p, "#{content_tag(:b, '5. ')} #{the_label}" %>
-<%= content_tag :p, "#{content_tag(:b, '6. ')} #{label_name(:groups_howto_petition)}" %>
-<%= content_tag :p, "#{content_tag(:b, '*  ')} #{label_name(:groups_howto_gameday)}" %>
+<%= set_content_tag_safe(:p, "#{content_tag(:b, '1. ')} #{label_name(:groups_howto_create)}") %>
+<%= set_content_tag_safe(:p, "#{content_tag(:b, '2. ')} #{label_name(:groups_howto_fillin)}") %>
+<%= set_content_tag_safe(:p, "#{content_tag(:b, '3. ')} #{label_name(:groups_howto_show)}") %>
+<%= set_content_tag_safe(:p, "#{content_tag(:b, '4. ')} #{label_name(:groups_howto_fillin)}") %>
+<%= set_content_tag_safe(:p, "#{content_tag(:b, '5. ')} #{the_label}") %>
+<%= set_content_tag_safe(:p, "#{content_tag(:b, '6. ')} #{label_name(:groups_howto_petition)}") %>
+<%= set_content_tag_safe(:p, "#{content_tag(:b, '*  ')} #{label_name(:groups_howto_gameday)}") %>
 
 
 

@@ -58,7 +58,7 @@ class GamesController < ApplicationController
 
     unless @previous_game.nil?
       @game.cup_id = @cup.id  
-      @game.concept = @previous_game.concept      
+      @game.name = @previous_game.name      
 
       @game.starts_at = @previous_game.starts_at + 1.days
       @game.ends_at = @previous_game.ends_at + 1.days

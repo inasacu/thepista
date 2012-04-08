@@ -10,7 +10,7 @@
 	elsif @challenge
 		the_label = "#{label_name(:message)} #{item_name_link(@challenge)}"			
 	elsif @group
-		the_label = "#{label_name(:message)} - #{item_concept_link(@the_schedule)}" if @the_schedule	
+		the_label = "#{label_name(:message)} - #{item_name_link(@the_schedule)}" if @the_schedule	
 		the_label = "#{label_name(:message)} - #{item_name_link(@group)}" unless @the_schedule	
 	else
 		the_label = "#{label_name(:message)} " 

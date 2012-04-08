@@ -82,7 +82,7 @@ task :the_true_skill => :environment do |t|
     play_activity = 0.0
   
     schedule_number = Schedule.schedule_number(schedule)   
-    puts "event #{schedule_number} = [ #{schedule.id} ] #{schedule.concept}" 
+    puts "event #{schedule_number} = [ #{schedule.id} ] #{schedule.name}" 
   
     the_matches = Match.find(:all, :select => "matches.*",
     :joins => "left join schedules on schedules.id = matches.schedule_id",

@@ -19,7 +19,7 @@ module ReservationsHelper
 
   def view_reservation_concept(reservation)      
     return content_tag('td', (current_user.is_member_of?(reservation.venue) or reservation.public) ? 
-    link_to(sanitize(reservation.concept), reservation_path(:id => reservation)) : sanitize(reservation.concept))
+    link_to(sanitize(reservation.name), reservation_path(:id => reservation)) : sanitize(reservation.name))
   end
 
   def view_reservation_venue(reservation)

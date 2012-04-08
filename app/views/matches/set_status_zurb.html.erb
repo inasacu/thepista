@@ -1,4 +1,4 @@
-<% the_label = label_with_name('note', sanitize(@schedule.concept)) %>
+<% the_label = label_with_name('note', sanitize(@schedule.name)) %>
 
 
 	<%= render "shared/previous_next_message_zurb", :schedule => @schedule, :the_previous => @the_previous, :the_next => @the_next -%>

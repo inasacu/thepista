@@ -58,7 +58,7 @@ class ReservationsController < ApplicationController
     time_frame = (@installation.timeframe).hour
 
     @reservation = Reservation.new    
-    @reservation.concept = "#{current_user.name}"   
+    @reservation.name = "#{current_user.name}"   
     @reservation.starts_at = Time.zone.at(block_token)
     @reservation.ends_at = @reservation.starts_at + time_frame 
     @reservation.reminder_at = @reservation.starts_at - 2.days    
@@ -94,7 +94,7 @@ class ReservationsController < ApplicationController
     block_token = Base64::decode64(@reservation.block_token.to_s).to_i
     time_frame = (@installation.timeframe).hour
 
-    @reservation.concept = current_user.name
+    @reservation.name = current_user.name
     @reservation.item = current_user   
 
     @reservation.starts_at = Time.zone.at(block_token)

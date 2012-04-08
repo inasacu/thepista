@@ -115,7 +115,7 @@ class SchedulesController < ApplicationController
 
     if @group
       @schedule.jornada = 1
-      @schedule.concept = "#{I18n.t(:jornada)} #{@schedule.jornada}"
+      @schedule.name = "#{I18n.t(:jornada)} #{@schedule.jornada}"
       @schedule.group_id = @group.id
       @schedule.sport_id = @group.sport_id
       @schedule.marker_id = @group.marker_id
@@ -140,7 +140,7 @@ class SchedulesController < ApplicationController
     @previous_schedule = Schedule.find(:first, :conditions => ["id = (select max(id) from schedules where group_id = ?) ", @group.id])    
     unless @previous_schedule.nil?
       @schedule.jornada = @previous_schedule.jornada + 1
-      @schedule.concept = "#{I18n.t(:jornada)} #{@schedule.jornada}"
+      @schedule.name = "#{I18n.t(:jornada)} #{@schedule.jornada}"
       
       @schedule.description = @previous_schedule.description      
       @schedule.season = @previous_schedule.season

@@ -2,8 +2,8 @@
 unless classified.nil? 
 	recent ||= false 
 	the_label = ago(classified.created_at) 
-	the_classified = classified.concept	
-	the_classified = "#{classified.concept.strip[0..45]}..." if the_classified.length > 45	
+	the_classified = classified.name	
+	the_classified = "#{classified.name.strip[0..45]}..." if the_classified.length > 45	
 	group = Group.find(classified.table_id)
 -%>
 	<tr>

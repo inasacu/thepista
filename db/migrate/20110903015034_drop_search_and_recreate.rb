@@ -23,7 +23,7 @@ class DropSearchAndRecreate < ActiveRecord::Migration
 
     UNION 
 
-    SELECT  schedules.id AS searchable_id, schedules.concept AS term, sports.name as term2, markers.name as term3, 
+    SELECT  schedules.id AS searchable_id, schedules.name AS term, sports.name as term2, markers.name as term3, 
     CAST ('Schedule' AS varchar) AS searchable_type 
     FROM schedules, groups, sports, markers
     where schedules.archive = false

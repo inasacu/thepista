@@ -12,8 +12,8 @@
 	when 'schedule', 'home'
 		if schedule
 			the_url = "http://haypista.com#{team_roster_path(:id => schedule)}"
-			the_description = h("#{sanitize(schedule.concept)} #{label_name(:for)} #{schedule.group.name} (#{label_name(:rosters).downcase} #{schedule.convocados.count})")	
-			the_name = sanitize(schedule.concept) 
+			the_description = h("#{sanitize(schedule.name)} #{label_name(:for)} #{schedule.group.name} (#{label_name(:rosters).downcase} #{schedule.convocados.count})")	
+			the_name = sanitize(schedule.name) 
 		end
 
 	when 'group'

@@ -1,7 +1,7 @@
 <% 
 	is_user_manager = current_user.is_manager_of?(@schedule.group)
-	the_label = "#{h(@schedule.group.name)} - #{sanitize(@schedule.concept)}"
-	content_for(:title, sanitize(@schedule.concept))	
+	the_label = "#{h(@schedule.group.name)} - #{sanitize(@schedule.name)}"
+	content_for(:title, sanitize(@schedule.name))	
 
 	show_start_rating = (current_user.is_member_of?(@schedule.group) and @schedule.game_played?)
 	
@@ -57,7 +57,7 @@
 
     <tr>
       <%= content_tag :td, label_name(:concept), :class => "label" %>            
-		<%= content_tag :td, sanitize(@schedule.concept), :class => get_the_action %>
+		<%= content_tag :td, sanitize(@schedule.name), :class => get_the_action %>
     </tr>
 
     <% if @schedule.game_played? %>
@@ -163,7 +163,7 @@
 		unless  @schedule.played? 
 			
 		the_label = h(label_name(@schedule.reminder, 'value'))
-		the_confirmation = label_with_name('reminder', "- #{sanitize(@schedule.concept)}?") 
+		the_confirmation = label_with_name('reminder', "- #{sanitize(@schedule.name)}?") 
 	%>
 	<tr>
 		<%= content_tag :td, label_name(:reminder), :class => "label" %>
@@ -174,7 +174,7 @@
 		
 	<% 
 		the_label = h(label_name(@schedule.public, 'value'))
-		the_confirmation = label_with_name('public', "- #{sanitize(@schedule.concept)}?") 
+		the_confirmation = label_with_name('public', "- #{sanitize(@schedule.name)}?") 
 	%>
 	<tr>
 		<%= content_tag :td, label_name(:public), :class => "label" %>

@@ -3,7 +3,7 @@
 <plist version="1.0">
 <dict>
 	<key>currentDocument</key>
-	<string>app/workers/mail_worker.rb</string>
+	<string>app/views/messages/_tab_navigation_zurb.html.erb</string>
 	<key>documents</key>
 	<array>
 		<dict>
@@ -17,8 +17,6 @@
 			<string>doc</string>
 		</dict>
 		<dict>
-			<key>expanded</key>
-			<true/>
 			<key>name</key>
 			<string>config</string>
 			<key>regexFolderFilter</key>
@@ -27,8 +25,6 @@
 			<string>config</string>
 		</dict>
 		<dict>
-			<key>expanded</key>
-			<true/>
 			<key>name</key>
 			<string>db</string>
 			<key>regexFolderFilter</key>
@@ -55,6 +51,8 @@
 			<string>information</string>
 		</dict>
 		<dict>
+			<key>expanded</key>
+			<true/>
 			<key>name</key>
 			<string>lib</string>
 			<key>regexFolderFilter</key>
@@ -114,7 +112,7 @@
 			<key>filename</key>
 			<string>Gemfile</string>
 			<key>lastUsed</key>
-			<date>2012-04-03T21:01:21Z</date>
+			<date>2012-04-07T18:44:02Z</date>
 		</dict>
 		<dict>
 			<key>filename</key>
@@ -162,6 +160,20 @@
 			<integer>0</integer>
 			<key>firstVisibleLine</key>
 			<integer>231</integer>
+		</dict>
+		<key>app/models/challenge.rb</key>
+		<dict>
+			<key>caret</key>
+			<dict>
+				<key>column</key>
+				<integer>0</integer>
+				<key>line</key>
+				<integer>31</integer>
+			</dict>
+			<key>firstVisibleColumn</key>
+			<integer>0</integer>
+			<key>firstVisibleLine</key>
+			<integer>6</integer>
 		</dict>
 		<key>app/views/groups/_index_full.html.erb</key>
 		<dict>
@@ -267,6 +279,34 @@
 				<integer>18</integer>
 			</dict>
 		</dict>
+		<key>app/views/messages/_tab_navigation_zurb.html.erb</key>
+		<dict>
+			<key>caret</key>
+			<dict>
+				<key>column</key>
+				<integer>4</integer>
+				<key>line</key>
+				<integer>13</integer>
+			</dict>
+			<key>firstVisibleColumn</key>
+			<integer>0</integer>
+			<key>firstVisibleLine</key>
+			<integer>0</integer>
+		</dict>
+		<key>app/views/schedules/_team_roster_box_zurb.html.erb</key>
+		<dict>
+			<key>caret</key>
+			<dict>
+				<key>column</key>
+				<integer>8</integer>
+				<key>line</key>
+				<integer>85</integer>
+			</dict>
+			<key>firstVisibleColumn</key>
+			<integer>0</integer>
+			<key>firstVisibleLine</key>
+			<integer>74</integer>
+		</dict>
 		<key>app/views/user_mailer/_the_match_status.html.erb</key>
 		<dict>
 			<key>caret</key>
@@ -297,34 +337,6 @@
 				<integer>11</integer>
 			</dict>
 		</dict>
-		<key>app/workers/mail_worker.rb</key>
-		<dict>
-			<key>caret</key>
-			<dict>
-				<key>column</key>
-				<integer>3</integer>
-				<key>line</key>
-				<integer>10</integer>
-			</dict>
-			<key>firstVisibleColumn</key>
-			<integer>0</integer>
-			<key>firstVisibleLine</key>
-			<integer>0</integer>
-		</dict>
-		<key>app/workers/uber_worker.rb</key>
-		<dict>
-			<key>caret</key>
-			<dict>
-				<key>column</key>
-				<integer>0</integer>
-				<key>line</key>
-				<integer>0</integer>
-			</dict>
-			<key>firstVisibleColumn</key>
-			<integer>0</integer>
-			<key>firstVisibleLine</key>
-			<integer>0</integer>
-		</dict>
 		<key>log/development.log</key>
 		<dict>
 			<key>caret</key>
@@ -337,7 +349,7 @@
 			<key>firstVisibleColumn</key>
 			<integer>0</integer>
 			<key>firstVisibleLine</key>
-			<integer>0</integer>
+			<integer>80</integer>
 		</dict>
 		<key>script/delayed_job</key>
 		<dict>
@@ -357,12 +369,12 @@
 	<key>openDocuments</key>
 	<array>
 		<string>log/development.log</string>
-		<string>app/workers/uber_worker.rb</string>
-		<string>app/workers/mail_worker.rb</string>
+		<string>app/views/schedules/_team_roster_box_zurb.html.erb</string>
+		<string>app/views/messages/_tab_navigation_zurb.html.erb</string>
 	</array>
 	<key>showFileHierarchyDrawer</key>
 	<true/>
 	<key>windowFrame</key>
-	<string>{{0, 46}, {1595, 1012}}</string>
+	<string>{{10, 46}, {957, 732}}</string>
 </dict>
 </plist>

@@ -17,7 +17,7 @@
 		</td>
 
 		<td>
-			<%= (current_user.is_member_of?(schedule.group) or schedule.public) ? link_to(sanitize(schedule.concept), team_roster_path(:id => schedule)) : sanitize(schedule.concept) %>
+			<%= (current_user.is_member_of?(schedule.group) or schedule.public) ? link_to(sanitize(schedule.name), team_roster_path(:id => schedule)) : sanitize(schedule.name) %>
 		</td>
 
 		<td class="name_and_date">

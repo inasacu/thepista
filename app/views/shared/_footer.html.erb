@@ -16,6 +16,8 @@
 					<%#= content_tag 'li', link_to(label_name(:classifieds), root_url) %>
 					<%#= content_tag 'li', link_to(label_name(:success_story), root_url) %>
 
+					<% if production? %>
+					
 					<li>
 						<a href="http://facebook.com/haypista" target="_top">
 							<%= image_tag('icons/facebook.gif', :alt => label_name(:follow_facebook), :title => label_name(:follow_facebook), 
@@ -31,6 +33,8 @@
 							<%= image_tag('icons/linkedin.png', :alt => label_name(:follow_linkedin), :title => label_name(:follow_linkedin), 
 							 								    :style => "height: 18px; width: 18px;") %></a>
 					<li>
+						
+						<% end %>
 					<br/>
 					<br/>
 				</ol>

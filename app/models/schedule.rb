@@ -1,11 +1,9 @@
 class Schedule < ActiveRecord::Base
 
-	extend FriendlyId 
-	# friendly_id :concept, 			use: :slugged
-	
-  # index{ concept }
+	# extend FriendlyId 
+	# friendly_id :name, 			use: :slugged
 
-  ajaxful_rateable :stars => 5, :dimensions => [:performance]
+  # ajaxful_rateable :stars => 5, :dimensions => [:performance]
   
 
   has_many  :matches,  :conditions => "matches.archive = false"
@@ -60,9 +58,9 @@ class Schedule < ActiveRecord::Base
   belongs_to :invite_group,   :class_name => "Group",   :foreign_key => "invite_id"
 
   # validations  
-  validates_presence_of         :concept
-  validates_length_of           :concept,                         :within => NAME_RANGE_LENGTH
-  validates_format_of           :concept,                         :with => /^[A-z 0-9 _.-]*$/ 
+  validates_presence_of         :name
+  validates_length_of           :name,                         :within => NAME_RANGE_LENGTH
+  validates_format_of           :name,                         :with => /^[A-z 0-9 _.-]*$/ 
 
   validates_presence_of         :description
   validates_length_of           :description,                     :within => DESCRIPTION_RANGE_LENGTH
@@ -76,17 +74,25 @@ class Schedule < ActiveRecord::Base
   validates_presence_of         :starts_at,     :ends_at  
 
   # variables to access
-  attr_accessible :concept, :description, :season, :jornada, :starts_at, :ends_at, :reminder_at, :reminder
+  attr_accessible :slug, :name, :description, :season, :jornada, :starts_at, :ends_at, :reminder_at, :reminder
   attr_accessible :fee_per_game, :fee_per_pista, :time_zone, :group_id, :sport_id, :marker_id, :player_limit
-  attr_accessible :public, :season_ends_at, :archive, :concept_and_name
+  attr_accessible :public, :season_ends_at, :archive, :schedule_and_name
 
   # after_update        :save_matches
   before_create       :format_description
   before_update       :set_time_to_utc, :format_description
   
   # method section
-  def concept_and_name
-    "#{group.name} #{concept}"
+	def concept
+			self.name
+	end
+	
+	# def self.concept
+	# 		self.name
+	# end
+		
+  def schedule_and_name
+    "#{group.name} #{name}"
   end
 
   def the_roster_sort(sort="")
@@ -241,7 +247,7 @@ class Schedule < ActiveRecord::Base
   end
   
   def self.latest_matches(items)
-    find(:all, :select => "distinct schedules.id, schedules.concept, schedules.group_id, schedules.played, schedules.updated_at as created_at", 
+    find(:all, :select => "distinct schedules.id, schedules.name, schedules.group_id, schedules.played, schedules.updated_at as created_at", 
          :conditions => ["schedules.archive = false and schedules.played = true and schedules.updated_at >= ?", LAST_THREE_DAYS],
          :order => "created_at desc").each do |item| 
       items << item
@@ -356,8 +362,8 @@ class Schedule < ActiveRecord::Base
             create_notification_email(schedule, schedule, manager_id, user.id, true)
 
             # message = Message.new
-            # message.subject = "#{I18n.t(:reminder_at)}:  #{schedule.concept}"
-            # message.body = "#{I18n.t(:reminder_at_message)}  #{schedule.concept}  #{I18n.t(:reminder_at_salute)}"
+            # message.subject = "#{I18n.t(:reminder_at)}:  #{schedule.name}"
+            # message.body = "#{I18n.t(:reminder_at_message)}  #{schedule.name}  #{I18n.t(:reminder_at_salute)}"
             # message.item = schedule
             # message.sender_id = manager_id
             # message.recipient_id = user.id
@@ -391,8 +397,8 @@ class Schedule < ActiveRecord::Base
         create_notification_email(match, schedule, manager_id, manager_id)
         
         # message = Message.new
-        # message.subject = "#{I18n.t(:update_match)}:  #{schedule.concept}"
-        # message.body = "#{I18n.t(:update_match_message)}  #{schedule.concept}  #{I18n.t(:reminder_at_salute)}"
+        # message.subject = "#{I18n.t(:update_match)}:  #{schedule.name}"
+        # message.body = "#{I18n.t(:update_match_message)}  #{schedule.name}  #{I18n.t(:reminder_at_salute)}"
         # message.item = match
         # message.sender_id = manager_id
         # message.recipient_id = manager_id
@@ -420,8 +426,8 @@ class Schedule < ActiveRecord::Base
         create_notification_email(schedule, schedule, manager_id, match.user_id)
         
         # message = Message.new
-        # message.subject = "#{I18n.t(:reminder_wall_message)}:  #{schedule.concept}"
-        # message.body = "#{I18n.t(:reminder_after_game_message)}  #{schedule.concept}  #{I18n.t(:reminder_at_salute)}"
+        # message.subject = "#{I18n.t(:reminder_wall_message)}:  #{schedule.name}"
+        # message.body = "#{I18n.t(:reminder_after_game_message)}  #{schedule.name}  #{I18n.t(:reminder_at_salute)}"
         # message.item = schedule
         # message.sender_id = manager_id
         # message.recipient_id = match.user_id
@@ -477,19 +483,19 @@ class Schedule < ActiveRecord::Base
     when "Schedule"
       
       if reminder
-        the_subject = "#{I18n.t(:reminder_at)}:  #{schedule.concept}"
-        the_body = "#{I18n.t(:reminder_at_message)}  #{schedule.concept}  #{I18n.t(:reminder_at_salute)}"
+        the_subject = "#{I18n.t(:reminder_at)}:  #{schedule.name}"
+        the_body = "#{I18n.t(:reminder_at_message)}  #{schedule.name}  #{I18n.t(:reminder_at_salute)}"
       else
-        the_subject = "#{I18n.t(:reminder_wall_message)}:  #{schedule.concept}"
-        the_body = "#{I18n.t(:reminder_after_game_message)}  #{schedule.concept}  #{I18n.t(:reminder_at_salute)}"
+        the_subject = "#{I18n.t(:reminder_wall_message)}:  #{schedule.name}"
+        the_body = "#{I18n.t(:reminder_after_game_message)}  #{schedule.name}  #{I18n.t(:reminder_at_salute)}"
       end
       
     when "Scorecard"
       the_subject = "#{I18n.t(:scorecard_latest)}:  #{schedule.group.name}"
       the_body = "#{I18n.t(:scorecard_latest)}  #{schedule.group.name}  #{I18n.t(:reminder_at_salute)}"
     when "Match"
-      the_subject = "#{I18n.t(:update_match)}:  #{schedule.concept}"
-      the_body = "#{I18n.t(:update_match_message)}  #{schedule.concept}  #{I18n.t(:reminder_at_salute)}"
+      the_subject = "#{I18n.t(:update_match)}:  #{schedule.name}"
+      the_body = "#{I18n.t(:update_match_message)}  #{schedule.name}  #{I18n.t(:reminder_at_salute)}"
     end
 
     message = Message.new

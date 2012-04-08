@@ -47,7 +47,7 @@
 <%=  link_to(the_label, join_item_url(:id => item, :item => item.class.to_s, :teammate => @user)) %><br /><br />
 
 <%= I18n.t(:participate_schedule_afterwards) %><br /><br />
-<%= link_to(@schedule.concept, schedule_url(@schedule)) %>
+<%= link_to(@schedule.name, schedule_url(@schedule)) %>
 <br /><br />
 
 <% end %>

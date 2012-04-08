@@ -69,7 +69,7 @@
 				the_item.each do |item| 
 					case item.class.to_s
 					when "Schedule"
-						title = "#{item.group.name}   #{item.concept}"
+						title = "#{item.group.name}   #{item.name}"
 						url = url_for(item)
 						
 					when "Reservation"

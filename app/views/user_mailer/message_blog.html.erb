@@ -6,7 +6,7 @@
 	when "Forum"
 		@item = Forum.find(@message.commentable_id)
 		@schedule = @item.schedule
-  		the_label = @item.schedule.concept
+  		the_label = @item.schedule.name
 
 	when "Blog"
 		@item = Blog.find(@message.commentable_id)

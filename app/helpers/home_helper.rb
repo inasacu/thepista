@@ -24,9 +24,9 @@ module HomeHelper
   		request_image = item_image_link_small(the_manager)
   		request_link = item_name_link(the_manager)
 
-  		the_google_plus_one = "<g:plusone size=\"small\" count=\"true\" href=\"#{item_concept_link(teammate)}\"></g:plusone>".html_safe  if DISPLAY_GOOGLE_PLUS
+  		the_google_plus_one = "<g:plusone size=\"small\" count=\"true\" href=\"#{item_name_link(teammate)}\"></g:plusone>".html_safe  if DISPLAY_GOOGLE_PLUS
 
-  		item_link = item_concept_link(teammate)
+  		item_link = item_name_link(teammate)
   		item_image = item_image_link_small(teammate.group)
 
   		item_group_link = item_name_link(teammate.group)
@@ -35,9 +35,9 @@ module HomeHelper
 
   		is_member = current_user.is_member_of?(teammate.group)
   		if teammate.played?
-  			the_label = %(#{I18n.t(:has_updated_scorecard) } #{the_label} #{is_member ? item_link : teammate.concept}#{the_google_plus_one})
+  			the_label = %(#{I18n.t(:has_updated_scorecard) } #{the_label} #{is_member ? item_link : teammate.name}#{the_google_plus_one})
   		else
-  			the_label = %(#{I18n.t(:created_a_schedule) } #{the_label} #{is_member ? item_link : teammate.concept})
+  			the_label = %(#{I18n.t(:created_a_schedule) } #{the_label} #{is_member ? item_link : teammate.name})
   		end
 
   	when "Group", "Cup", "Challenge"
@@ -101,7 +101,7 @@ module HomeHelper
   				request_image = item_image_link_small(the_manager)
   				request_link = item_name_link(the_manager)
 
-  				item_link = item_concept_link(teammate)
+  				item_link = item_name_link(teammate)
   				item_image = item_image_link_small(group)
 
   				item_group_link = item_name_link(group)
@@ -144,7 +144,7 @@ module HomeHelper
   		item_group_link = item_name_link(teammate.schedule.group)
 
           is_member = current_user.is_member_of?(teammate.schedule.group)
-  		the_label = %(#{I18n.t(:passed_to)} <STRONG>#{teammate.type_name}</STRONG> #{I18n.t(:in)} #{is_member ? match_roster_link(teammate) : teammate.schedule.concept})
+  		the_label = %(#{I18n.t(:passed_to)} <STRONG>#{teammate.type_name}</STRONG> #{I18n.t(:in)} #{is_member ? match_roster_link(teammate) : teammate.schedule.name})
 
       when "Comment"
   		request_image = item_image_link_small(teammate.user)
@@ -179,9 +179,9 @@ module HomeHelper
   		      	is_member = current_user.is_member_of?(forum.schedule.group)  
   				    item_group_link = item_name_link(forum.schedule.group)
   				    
-  		        the_label = %(#{I18n.t(:left_post_on_forum) } #{is_member ? the_forum_link : forum.schedule.concept})
+  		        the_label = %(#{I18n.t(:left_post_on_forum) } #{is_member ? the_forum_link : forum.schedule.name})
   		        if teammate.title == 'Schedule'
-                the_label = %(#{I18n.t(:left_post_teams_on_forum) } #{is_member ? the_forum_link : forum.schedule.concept})
+                the_label = %(#{I18n.t(:left_post_teams_on_forum) } #{is_member ? the_forum_link : forum.schedule.name})
               end
               
   		    end

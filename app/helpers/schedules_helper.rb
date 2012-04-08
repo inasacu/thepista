@@ -2,17 +2,17 @@ module SchedulesHelper
 
   # Link to a schedule (default is by concept).
   def schedule_link(text, item = nil, html_options = nil)    
-    item_concept_link(text, item, html_options)
+    item_name_link(text, item, html_options)
   end 
 
   def team_roster_link(text, schedule = nil, html_options = nil)
     if schedule.nil?
       schedule = text
-      text = schedule.concept
+      text = schedule.name
     elsif schedule.is_a?(Hash)
       html_options = schedule
       schedule = text
-      text = schedule.concept
+      text = schedule.name
     end    
     link_to(h(text), team_roster_path(:id => schedule), html_options)
   end 
@@ -45,9 +45,9 @@ module SchedulesHelper
     # the_image = is_member ? schedule_image_link_small(schedule) : schedule_image_small(schedule)
 
     if schedule.game_played?
-      the_concept = is_member ? link_to(sanitize(limit_url_length(schedule.concept)), schedule_path(:id => schedule)) : sanitize(limit_url_length(schedule.concept))
+      the_concept = is_member ? link_to(sanitize(limit_url_length(schedule.name)), schedule_path(:id => schedule)) : sanitize(limit_url_length(schedule.name))
     else
-      the_concept = is_member ? link_to(sanitize(limit_url_length(schedule.concept)), team_roster_path(:id => schedule)) : sanitize(limit_url_length(schedule.concept))
+      the_concept = is_member ? link_to(sanitize(limit_url_length(schedule.name)), team_roster_path(:id => schedule)) : sanitize(limit_url_length(schedule.name))
 
       the_sport = "#{label_name(:rosters)}:  #{schedule.convocados.count}"
       the_missing = ", #{I18n.t(:missing)}:  #{schedule.player_limit.to_i - schedule.convocados.count}" if schedule.player_limit.to_i > schedule.convocados.count
@@ -192,7 +192,7 @@ module SchedulesHelper
     request_image = item_image_link_small(the_manager)
     request_link = item_name_link(the_manager)
 
-    # item_link = item_concept_link(the_schedule)
+    # item_link = item_name_link(the_schedule)
     item_image = item_image_link_small(the_group)	
     item_group_link = item_name_link(the_group)
 
@@ -207,7 +207,7 @@ module SchedulesHelper
 
     the_links = ""	
     schedules.each do |schedule|
-      the_links = %(#{the_links} #{is_member ? item_concept_link(schedule) : sanitize(schedule.concept)}, )
+      the_links = %(#{the_links} #{is_member ? item_name_link(schedule) : sanitize(schedule.name)}, )
     end
 
     the_links = %(#{the_links.chop.chop})	
@@ -217,9 +217,9 @@ module SchedulesHelper
   end
 
   def get_team_roster
-    the_label = "#{control_action_label("#{@has_a_roster}")} #{label_name(:in)} #{sanitize(@schedule.concept)} (#{h(@schedule.group.name)})"
+    the_label = "#{control_action_label("#{@has_a_roster}")} #{label_name(:in)} #{sanitize(@schedule.name)} (#{h(@schedule.group.name)})"
 
-    the_content = content_for(:title, sanitize(@schedule.concept))
+    the_content = content_for(:title, sanitize(@schedule.name))
 
     has_been_played = @schedule.played? 
     is_manager = current_user.is_manager_of?(@schedule.group)

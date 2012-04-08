@@ -1,6 +1,6 @@
 <%
 	is_user_manager = current_user.is_manager_of?(@schedule.group)
-	the_label = "#{h(@schedule.group.name)} - #{sanitize(@schedule.concept)}"
+	the_label = "#{h(@schedule.group.name)} - #{sanitize(@schedule.name)}"
 	show_start_rating = (current_user.is_member_of?(@schedule.group) and @schedule.game_played?)	
 	show_individual_score = (@schedule.group.is_futbol? and @schedule.played?)
 	
@@ -29,7 +29,7 @@
 
 <div class="block">
 
-	<h3><%= sanitize(@schedule.concept) %></h3>
+	<h3><%= sanitize(@schedule.name) %></h3>
 	
 <div class="content">
 		

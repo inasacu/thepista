@@ -14,7 +14,7 @@
 			<% elsif @challenge %>
 			<%= "#{label_name(:message)} #{item_name_link(@challenge)}" %>			
 			<% elsif @group %>
-			<%= "#{label_name(:message)} - #{item_concept_link(@the_schedule)}" if @the_schedule %>	
+			<%= "#{label_name(:message)} - #{item_name_link(@the_schedule)}" if @the_schedule %>	
 			<%= "#{label_name(:message)} - #{item_name_link(@group)}" unless @the_schedule %>	
 			<% else %>
 			<%= "#{label_name(:message)} "  %>
