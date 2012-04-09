@@ -176,18 +176,18 @@ class Game < ActiveRecord::Base
 	end
 	
 	def calculate_standing
-		# Standing.delay.calculate_cup_standing(self.cup)
-		# Game.delay.update_cast_details(self.cup)
-		# Game.delay.set_final_stage(self.cup) if self.all_group_stage_played(self.cup)
+		Standing.delay.calculate_cup_standing(self.cup)
+		Game.delay.update_cast_details(self.cup)
+		Game.delay.set_final_stage(self.cup) if self.all_group_stage_played(self.cup)
 	
-		# Standing.delay.cup_challenges_user_standing(self.cup) 
-		# Standing.delay.update_cup_challenge_item_ranking(self.cup)
+		Standing.delay.cup_challenges_user_standing(self.cup) 
+		Standing.delay.update_cup_challenge_item_ranking(self.cup)
 	end
 	
 	def self.update_cast_details(cup)
 		@cast = nil
 		cup.challenges.each do |challenge|       
-			# Cast.delay.update_cast_details(challenge)
+			Cast.delay.update_cast_details(challenge)
 			@cast = challenge.casts.first if @cast == ''
 		end
 		Cast.calculate_standing(@cast) unless (@cast == nil)

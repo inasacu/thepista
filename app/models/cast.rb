@@ -158,9 +158,9 @@ class Cast < ActiveRecord::Base
   end
   
   def self.calculate_standing(cast)  
-    # Cast.delay.update_cast_details(cast.challenge)   
-    # Standing.delay.cup_challenges_user_standing(cast.challenge.cup) 
-    # Standing.delay.update_cup_challenge_item_ranking(cast.challenge.cup)
+    Cast.delay.update_cast_details(cast.challenge)   
+    Standing.delay.cup_challenges_user_standing(cast.challenge.cup) 
+    Standing.delay.update_cup_challenge_item_ranking(cast.challenge.cup)
   end
     
   # archive or unarchive a cast 

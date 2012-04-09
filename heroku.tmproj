@@ -3,7 +3,7 @@
 <plist version="1.0">
 <dict>
 	<key>currentDocument</key>
-	<string>app/views/messages/_tab_navigation_zurb.html.erb</string>
+	<string>app/models/user_mailer.rb</string>
 	<key>documents</key>
 	<array>
 		<dict>
@@ -161,6 +161,20 @@
 			<key>firstVisibleLine</key>
 			<integer>231</integer>
 		</dict>
+		<key>app/mailers/mailer.rb</key>
+		<dict>
+			<key>caret</key>
+			<dict>
+				<key>column</key>
+				<integer>3</integer>
+				<key>line</key>
+				<integer>9</integer>
+			</dict>
+			<key>firstVisibleColumn</key>
+			<integer>0</integer>
+			<key>firstVisibleLine</key>
+			<integer>0</integer>
+		</dict>
 		<key>app/models/challenge.rb</key>
 		<dict>
 			<key>caret</key>
@@ -174,6 +188,20 @@
 			<integer>0</integer>
 			<key>firstVisibleLine</key>
 			<integer>6</integer>
+		</dict>
+		<key>app/models/user_mailer.rb</key>
+		<dict>
+			<key>caret</key>
+			<dict>
+				<key>column</key>
+				<integer>39</integer>
+				<key>line</key>
+				<integer>2</integer>
+			</dict>
+			<key>firstVisibleColumn</key>
+			<integer>0</integer>
+			<key>firstVisibleLine</key>
+			<integer>0</integer>
 		</dict>
 		<key>app/views/groups/_index_full.html.erb</key>
 		<dict>
@@ -279,34 +307,6 @@
 				<integer>18</integer>
 			</dict>
 		</dict>
-		<key>app/views/messages/_tab_navigation_zurb.html.erb</key>
-		<dict>
-			<key>caret</key>
-			<dict>
-				<key>column</key>
-				<integer>4</integer>
-				<key>line</key>
-				<integer>13</integer>
-			</dict>
-			<key>firstVisibleColumn</key>
-			<integer>0</integer>
-			<key>firstVisibleLine</key>
-			<integer>0</integer>
-		</dict>
-		<key>app/views/schedules/_team_roster_box_zurb.html.erb</key>
-		<dict>
-			<key>caret</key>
-			<dict>
-				<key>column</key>
-				<integer>8</integer>
-				<key>line</key>
-				<integer>85</integer>
-			</dict>
-			<key>firstVisibleColumn</key>
-			<integer>0</integer>
-			<key>firstVisibleLine</key>
-			<integer>74</integer>
-		</dict>
 		<key>app/views/user_mailer/_the_match_status.html.erb</key>
 		<dict>
 			<key>caret</key>
@@ -337,6 +337,36 @@
 				<integer>11</integer>
 			</dict>
 		</dict>
+		<key>config/application.rb</key>
+		<dict>
+			<key>caret</key>
+			<dict>
+				<key>column</key>
+				<integer>18</integer>
+				<key>line</key>
+				<integer>76</integer>
+			</dict>
+			<key>columnSelection</key>
+			<false/>
+			<key>firstVisibleColumn</key>
+			<integer>0</integer>
+			<key>firstVisibleLine</key>
+			<integer>46</integer>
+			<key>selectFrom</key>
+			<dict>
+				<key>column</key>
+				<integer>38</integer>
+				<key>line</key>
+				<integer>76</integer>
+			</dict>
+			<key>selectTo</key>
+			<dict>
+				<key>column</key>
+				<integer>18</integer>
+				<key>line</key>
+				<integer>76</integer>
+			</dict>
+		</dict>
 		<key>log/development.log</key>
 		<dict>
 			<key>caret</key>
@@ -349,7 +379,7 @@
 			<key>firstVisibleColumn</key>
 			<integer>0</integer>
 			<key>firstVisibleLine</key>
-			<integer>80</integer>
+			<integer>0</integer>
 		</dict>
 		<key>script/delayed_job</key>
 		<dict>
@@ -369,8 +399,9 @@
 	<key>openDocuments</key>
 	<array>
 		<string>log/development.log</string>
-		<string>app/views/schedules/_team_roster_box_zurb.html.erb</string>
-		<string>app/views/messages/_tab_navigation_zurb.html.erb</string>
+		<string>app/mailers/mailer.rb</string>
+		<string>app/models/user_mailer.rb</string>
+		<string>config/application.rb</string>
 	</array>
 	<key>showFileHierarchyDrawer</key>
 	<true/>

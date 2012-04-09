@@ -66,11 +66,11 @@ module Thepista
     # Version of your assets, change this if you want to expire all your assets
     config.assets.version = '1.0'
 
-		# config.action_view.javascript_expansions[:defaults] = %w(jquery rails)
+		# default email host
+		config.action_mailer.default_url_options = { :host => "haypista.com" }
 
 		config.action_mailer.delivery_method = :smtp
 		config.action_mailer.smtp_settings = {
-			# :tls => true,
 			:address => "smtp.gmail.com",
 			:port => 587,
 			:domain => 'haypista.com',

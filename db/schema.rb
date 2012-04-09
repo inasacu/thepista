@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120407175842) do
+ActiveRecord::Schema.define(:version => 20120409201146) do
 
   create_table "announcements", :force => true do |t|
     t.text     "message"
@@ -178,6 +178,7 @@ ActiveRecord::Schema.define(:version => 20120407175842) do
     t.text     "locked_by"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "queue"
   end
 
   create_table "escuadras", :force => true do |t|

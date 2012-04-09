@@ -142,7 +142,7 @@ class GamesController < ApplicationController
   #   #   match.archive = false
   #   #   match.save!
   #   # end
-  #   # Scorecard.delay.calculate_cup_scorecard(@game.cup)
+  #   Scorecard.delay.calculate_cup_scorecard(@game.cup)
   #   # @game.destroy
   #   # 
   #   # flash[:notice] = I18n.t(:successful_destroy)

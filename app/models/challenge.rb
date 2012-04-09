@@ -106,10 +106,9 @@ class Challenge < ActiveRecord::Base
     user.has_role!(:member,  self)
 
     ChallengesUsers.join_item(user, self)
-    # Blog.create_item_blog(self)
-    # Standing.delay.create_cup_challenge_standing(self)
-    # Cast.delay.create_challenge_cast(self) 
-    # Fee.delay.create_user_challenge_fees(self)
+    Standing.delay.create_cup_challenge_standing(self)
+    Cast.delay.create_challenge_cast(self) 
+    Fee.delay.create_user_challenge_fees(self)
   end 
 
 	def self.get_challenge_list

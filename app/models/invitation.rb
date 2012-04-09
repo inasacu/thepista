@@ -68,7 +68,7 @@ class Invitation < ActiveRecord::Base
 
   protected
   def send_invite_contact
-    # UserMailer.delay.deliver_signup_invitation(self)
+    UserMailer.delay.signup_invitation(self)
   end
 
 end

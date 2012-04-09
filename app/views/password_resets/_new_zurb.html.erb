@@ -12,12 +12,12 @@
 		
 			<% @user = User.new %>
 		
-			<%= content_tag :h5, "<strong>#{control_action_label}</strong>" %>		
-			<%= content_tag :p, label_name(:password_reset_instructions) %>
+			<%= set_content_tag_safe(:h5, "<strong>#{control_action_label}</strong>") %>		
+			<%= set_content_tag_safe(:p, label_name(:password_reset_instructions)) %>
 			<hr />
 
 
-			<% form_tag password_resets_path do %>
+			<%= form_tag password_resets_path do %>
 
 			<%= label :email, label_name(:email) %>
 			<%= text_field_tag :email, nil, :class => 'oversize input-text' %>	    
@@ -35,7 +35,7 @@
 		<% elsif  get_controller_action == 'password_reset_edit' %>
 
 
-			<%= content_tag :h5, "<strong>#{label_name(:password_change)}</strong>" %>	
+			<%= set_content_tag_safe(:h5, "<strong>#{label_name(:password_change)}</strong>") %>	
 			<hr />
 
 			<%= form_for (@user), :url => password_reset_path, :method => :put do |the_form| %>

@@ -191,7 +191,7 @@ class Match < ActiveRecord::Base
     @matches.each do |match|
       match.update_attribute(:archive, flag)
     end
-    # Scorecard.delay.calculate_group_scorecard(group)
+    Scorecard.delay.calculate_group_scorecard(group)
   end
   
   def self.update_match_details(the_match, user, forum_comment=true)
@@ -227,7 +227,7 @@ class Match < ActiveRecord::Base
         
     the_match ||= "..."
     @schedule.forum.description = the_match.description
-    # Scorecard.delay.calculate_group_scorecard(@schedule.group)
+    Scorecard.delay.calculate_group_scorecard(@schedule.group)
     @schedule.forum.comments.create(:body => the_match.description, :user => user)  if @schedule.played? and forum_comment
   end
 

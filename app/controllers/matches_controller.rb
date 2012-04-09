@@ -84,8 +84,8 @@ class MatchesController < ApplicationController
       Match.update_match_details(@match, current_user)
 
       if DISPLAY_TRUESKILL
-        # Match.delay.set_default_skill(the_group)
-        # Match.delay.set_true_skill(the_group)
+        Match.delay.set_default_skill(the_group)
+        Match.delay.set_true_skill(the_group)
       end
 
       flash[:success] = I18n.t(:successful_update)
@@ -107,7 +107,7 @@ class MatchesController < ApplicationController
 
     
     if @match.update_attributes(:type_id => @type.id, :played => played, :user_x_two => @user_x_two, :status_at => Time.zone.now)
-      # Scorecard.delay.calculate_user_played_assigned_scorecard(@match.user, @match.schedule.group)
+      Scorecard.delay.calculate_user_played_assigned_scorecard(@match.user, @match.schedule.group)
 
       # set fee type_id to same as match type_id
       the_fee = Fee.find(:all, :conditions => ["debit_type = 'User' and debit_id = ? and item_type = 'Schedule' and item_id = ?", @match.user_id, @match.schedule_id])
@@ -142,8 +142,8 @@ class MatchesController < ApplicationController
     if @match.update_attributes(:type_id => @type.id, :played => played, :user_x_two => @user_x_two, :status_at => Time.zone.now)
 
       manager_id = RolesUsers.find_item_manager(@match.schedule.group).user_id
-      # Schedule.delay.create_notification_email(@match.schedule, @match.schedule, manager_id, @match.user_id, true)      
-      # Scorecard.delay.calculate_user_played_assigned_scorecard(@match.user, @match.schedule.group)
+      Schedule.delay.create_notification_email(@match.schedule, @match.schedule, manager_id, @match.user_id, true)      
+      Scorecard.delay.calculate_user_played_assigned_scorecard(@match.user, @match.schedule.group)
 
       # set fee type_id to same as match type_id
       the_fee = Fee.find(:all, :conditions => ["debit_type = 'User' and debit_id = ? and item_type = 'Schedule' and item_id = ?", @match.user_id, @match.schedule_id])

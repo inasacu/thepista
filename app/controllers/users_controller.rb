@@ -77,8 +77,18 @@ class UsersController < ApplicationController
 
 	def create
 		@user = User.new(params[:user])
+		
+		if DISPLAY_RECAPTCHA 
+			unless verify_recaptcha   
+				flash[:warning] = I18n.t(:recaptcha_failure)
+				render :action => :new
+				return
+			end
+		end
+		
+		
 
-		if verify_recaptcha      
+		# if verify_recaptcha      
 			@user.name = @user.email      
 			if @user.save
 				@user.email_to_name
@@ -90,11 +100,11 @@ class UsersController < ApplicationController
 				return
 			end
 
-		else 
-			flash[:warning] = I18n.t(:recaptcha_failure)
-			redirect_to :signup
-			return
-		end  
+		# else 
+		# 	flash[:warning] = I18n.t(:recaptcha_failure)
+		# 	redirect_to :signup
+		# 	return
+		# end  
 
 		flash[:success] = I18n.t(:successful_create)
 		redirect_to @user

@@ -38,6 +38,8 @@ gem "friendly_id", "~> 4.0.1"
 gem 'iron_worker'
 gem 'typhoeus'
 gem 'acts-as-messageable'
+gem 'delayed_job_active_record'
+
 
 # Gems used only for assets and not required
 # in production environments by default.

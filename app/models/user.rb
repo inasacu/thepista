@@ -114,7 +114,7 @@ class User < ActiveRecord::Base
                     
                       
     before_update   :format_description
-    after_create    :create_user_blog_details, :deliver_signup_notification
+    after_create    :create_user_blog_details, :signup_notification
    
        
     # method section   
@@ -462,13 +462,13 @@ class User < ActiveRecord::Base
       !identifier.blank?
     end
 
-    def deliver_signup_notification
-      # UserMailer.delay.deliver_signup_notification(self)
+    def signup_notification
+      UserMailer.delay.signup_notification(self)
     end
     
-    def deliver_password_reset_instructions!  
+    def password_reset_instructions!  
   		reset_perishable_token!  
-      # UserMailer.delay.deliver_password_reset_instructions(self) 
+      UserMailer.delay.password_reset_instructions(self) 
   	end
   	
     protected
