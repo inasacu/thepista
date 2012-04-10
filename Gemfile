@@ -1,15 +1,11 @@
 source 'https://rubygems.org'
 
 gem 'rails', '3.2.1'
-
-#### this all from version 2.3.14
 gem "pg"
 gem "authlogic"
 gem "will_paginate"
 gem "authlogic-oid"
-
 gem 'httparty',	'>= 0.8.1'
-
 gem "acl9"
 gem 'sitemap_generator'                  
 gem 'acts_as_commentable'      
@@ -18,20 +14,16 @@ gem 'rpx_now'
 gem "geokit"
 gem "geokit-rails"
 gem 'texticle'
-gem 'trueskill'
 gem 'delayed_job'
 gem 'hirefireapp'
 gem 'paperclip', '2.7.0'
 gem 'composite_primary_keys'
 gem 'nokogiri'
 gem 'recaptcha'
-gem 'ajaxful_rating', '>= 3.0.0.beta8'
 
 gem 'jquery-rails'
 gem 'google_map'
-gem 'ssl_requirement'
-gem 'jquery_notify_bar'
-gem 'acts_as_tree'
+gem 'acts_as_tree', '0.1.1'
 gem 'aws-sdk'
 gem "friendly_id", "~> 4.0.1"
 
@@ -54,6 +46,10 @@ group :assets do
 end
 
 
+# gem 'ajaxful_rating', '>= 3.0.0.beta8'
+# gem 'ssl_requirement'
+# gem 'jquery_notify_bar'
+# gem 'trueskill'
 # gem 'rqrcode'
 # gem 'contacts'
 # gem 'disqus'

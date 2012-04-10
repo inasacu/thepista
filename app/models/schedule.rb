@@ -3,7 +3,7 @@ class Schedule < ActiveRecord::Base
 	# extend FriendlyId 
 	# friendly_id :name, 			use: :slugged
 
-  # ajaxful_rateable :stars => 5, :dimensions => [:performance]
+  # # ajaxful_rateable :stars => 5, :dimensions => [:performance]
   
 
   has_many  :matches,  :conditions => "matches.archive = false"

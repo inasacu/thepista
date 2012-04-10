@@ -1649,7 +1649,7 @@ en:
      your_location:  "Your Location"  
      your_on_roster: You are on the Squad -   
      your_openid: Your OpenID Accounts
-     your_roster_status:  You status is
+     your_roster_status:  Status in
      your_schedule: "In your time zone, the event would be at "  
      your_meet: "In your time zone, the event would be at " 
      your_sent_beta: "Thanks for your interest, your email has been added to receive an invitation."   
@@ -1736,6 +1736,7 @@ en:
      invitations_contacts:  Invite your email contacts.
      invitations_email: "Email (Hotmail, Gmail, Yahoo, etc...)"
      invitations_index:  Invitations Sent
+     invitations_new:  ""
      invitations_import:  Invite Your Contacts
      invitations_for_your_friends:  Invite your friends to join HayPista
      invitations_no:  No Invitation to diplay

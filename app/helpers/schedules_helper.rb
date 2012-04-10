@@ -100,8 +100,9 @@ module SchedulesHelper
   def view_schedule_rating(schedule)
     if schedule.played? or Time.zone.now > schedule.starts_at
       my_rating = ""
-      my_rating = ratings_for(schedule, :show_user_rating => true, :dimension => :performance, :size => "small" ) if current_user.is_member_of?(schedule.group)
-      overall_rating = ratings_for(schedule, :static, :dimension => :performance, :size => "small" )
+      # my_rating = ratings_for(schedule, :show_user_rating => true, :dimension => :performance, :size => "small" ) if current_user.is_member_of?(schedule.group)
+      # overall_rating = ratings_for(schedule, :static, :dimension => :performance, :size => "small" )
+			overall_rating = ""
       # return content_tag :td, "#{my_rating}&nbsp;&nbsp;#{overall_rating}", :class => "last_upcoming"
       return set_content_tag_safe(:td, "#{my_rating}&nbsp;&nbsp;#{overall_rating}", "last_upcoming")
 

@@ -102,13 +102,13 @@
 	<%= tr_td_action(:reminder_at, nice_day_of_week(@schedule.reminder_at)) unless @schedule.game_played? %>
 		
 	<tr>
-		<%= content_tag :td, "#{label_name(:schedule_rate)}", :class => "label" %>
-		<%= content_tag :td, ratings_for(@schedule, :show_user_rating => true, :dimension => :performance, :size => "small", :allow_update => show_start_rating ), :class => get_the_action %>
+		<%#= content_tag :td, "#{label_name(:schedule_rate)}", :class => "label" %>
+		<%#= content_tag :td, ratings_for(@schedule, :show_user_rating => true, :dimension => :performance, :size => "small", :allow_update => show_start_rating ), :class => get_the_action %>
 	</tr>	
 
 	<tr>
-		<%= content_tag :td,"#{label_name(:schedule_rate_average)}", :class => "label" %>
-		<%= content_tag :td, ratings_for( @schedule, :static, :dimension => :performance, :size => "small" ), :class => get_the_action %>
+		<%#= content_tag :td,"#{label_name(:schedule_rate_average)}", :class => "label" %>
+		<%#= content_tag :td, ratings_for( @schedule, :static, :dimension => :performance, :size => "small" ), :class => get_the_action %>
 	</tr>
 	
 	<tr>

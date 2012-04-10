@@ -93,8 +93,8 @@ Thepista::Application.routes.draw do
 	match 'calificaciones/:id/calificacion/:type' => 'ratings#rate', :as => :ratings_rate
 
 	match 'invitaciones/importar_contacto' => 'invitations#contact', :as => :import_contact
-	match 'invitaciones/invita_contacto' => 'invitations#invite_contact', :as => :invite_contact
-	match 'invitaciones/invita' => 'invitations#invite', :as => :invite
+	# match 'invitaciones/invita_contacto' => 'invitations#invite_contact', :as => :invite_contact
+	# match 'invitaciones/invita' => 'invitations#invite', :as => :invite
 
 	match 'sobre' => 'home#about', :as => :about
 	match 'terminos' => 'home#terms_of_use', :as => :terms_of_use
@@ -123,7 +123,6 @@ Thepista::Application.routes.draw do
 	resources :users do
 		collection do
 			post :rpx_create
-			# post :rpx_associate
 			get :list
 			get :recent_activity
 			get :notice

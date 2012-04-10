@@ -1659,7 +1659,7 @@ es:
      your_location:  "Estas Aqui!"
      your_on_roster: Estas convocado -   
      your_openid: Tus cuentas de OpenID   
-     your_roster_status:  Tu estado es 
+     your_roster_status:  Estas 
      your_schedule: "En tu horario, el evento seria el "  
      your_meet: "En tu horario, el evento seria el " 
      your_sent_beta: "Muchas gracias por tu interés, tu correo ha sido añadido para recibir una invitación."   
@@ -1746,6 +1746,7 @@ es:
      invitations_contacts:  Invitar a los contactos de tu libreta de direcciones de correo electrónico.
      invitations_email: "Email (Hotmail, Gmail, Yahoo, etc...)"
      invitations_index:  Invitaciones mandadas
+     invitations_new:  nueva 
      invitations_import:  Invita a tus contactos
      invitations_for_your_friends:  Invita a tus amigos a unirse a HayPista
      invitations_no:  Ninguna invitación para mostrar

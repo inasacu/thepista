@@ -6,8 +6,8 @@ class User < ActiveRecord::Base
 	acts_as_messageable :required => :body
    
    # allows user to rate a model 
-   ajaxful_rateable :stars => 5, :dimensions => [:evaluation]
-   ajaxful_rater
+   # ajaxful_rateable :stars => 5, :dimensions => [:evaluation]
+   # ajaxful_rater
    
    # define_completeness_scoring do
    #   check :phone,                lambda { |per| per.phone.present? },            :high     # => defaults to 60

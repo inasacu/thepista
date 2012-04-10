@@ -6,7 +6,7 @@ class Match < ActiveRecord::Base
 	friendly_id :name, 			use: :slugged
 	
   # allows user to rate a model 
-  ajaxful_rateable :stars => 5, :dimensions => [:technical, :physical]  
+  # ajaxful_rateable :stars => 5, :dimensions => [:technical, :physical]  
   
   belongs_to      :user
   belongs_to      :group

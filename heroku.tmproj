@@ -3,7 +3,7 @@
 <plist version="1.0">
 <dict>
 	<key>currentDocument</key>
-	<string>app/models/user_mailer.rb</string>
+	<string>log/development.log</string>
 	<key>documents</key>
 	<array>
 		<dict>
@@ -17,6 +17,8 @@
 			<string>doc</string>
 		</dict>
 		<dict>
+			<key>expanded</key>
+			<true/>
 			<key>name</key>
 			<string>config</string>
 			<key>regexFolderFilter</key>
@@ -112,7 +114,7 @@
 			<key>filename</key>
 			<string>Gemfile</string>
 			<key>lastUsed</key>
-			<date>2012-04-07T18:44:02Z</date>
+			<date>2012-04-09T20:10:33Z</date>
 		</dict>
 		<dict>
 			<key>filename</key>
@@ -144,7 +146,7 @@
 		</dict>
 	</array>
 	<key>fileHierarchyDrawerWidth</key>
-	<integer>310</integer>
+	<integer>212</integer>
 	<key>metaData</key>
 	<dict>
 		<key>app/controllers/fees_controller.rb</key>
@@ -161,47 +163,35 @@
 			<key>firstVisibleLine</key>
 			<integer>231</integer>
 		</dict>
-		<key>app/mailers/mailer.rb</key>
+		<key>app/mailers/user_mailer.rb</key>
 		<dict>
 			<key>caret</key>
 			<dict>
 				<key>column</key>
-				<integer>3</integer>
+				<integer>53</integer>
 				<key>line</key>
-				<integer>9</integer>
+				<integer>1</integer>
 			</dict>
+			<key>columnSelection</key>
+			<false/>
 			<key>firstVisibleColumn</key>
 			<integer>0</integer>
 			<key>firstVisibleLine</key>
 			<integer>0</integer>
-		</dict>
-		<key>app/models/challenge.rb</key>
-		<dict>
-			<key>caret</key>
+			<key>selectFrom</key>
 			<dict>
 				<key>column</key>
-				<integer>0</integer>
+				<integer>18</integer>
 				<key>line</key>
-				<integer>31</integer>
+				<integer>1</integer>
 			</dict>
-			<key>firstVisibleColumn</key>
-			<integer>0</integer>
-			<key>firstVisibleLine</key>
-			<integer>6</integer>
-		</dict>
-		<key>app/models/user_mailer.rb</key>
-		<dict>
-			<key>caret</key>
+			<key>selectTo</key>
 			<dict>
 				<key>column</key>
-				<integer>39</integer>
+				<integer>53</integer>
 				<key>line</key>
-				<integer>2</integer>
+				<integer>1</integer>
 			</dict>
-			<key>firstVisibleColumn</key>
-			<integer>0</integer>
-			<key>firstVisibleLine</key>
-			<integer>0</integer>
 		</dict>
 		<key>app/views/groups/_index_full.html.erb</key>
 		<dict>
@@ -337,35 +327,47 @@
 				<integer>11</integer>
 			</dict>
 		</dict>
-		<key>config/application.rb</key>
+		<key>app/views/user_mailer/password_reset_instructions.html.erb</key>
 		<dict>
 			<key>caret</key>
 			<dict>
 				<key>column</key>
-				<integer>18</integer>
+				<integer>0</integer>
 				<key>line</key>
-				<integer>76</integer>
+				<integer>22</integer>
 			</dict>
-			<key>columnSelection</key>
-			<false/>
 			<key>firstVisibleColumn</key>
 			<integer>0</integer>
 			<key>firstVisibleLine</key>
-			<integer>46</integer>
-			<key>selectFrom</key>
+			<integer>0</integer>
+		</dict>
+		<key>app/views/user_mailer/welcome_email.html.erb</key>
+		<dict>
+			<key>caret</key>
 			<dict>
 				<key>column</key>
-				<integer>38</integer>
+				<integer>8</integer>
 				<key>line</key>
-				<integer>76</integer>
+				<integer>10</integer>
 			</dict>
-			<key>selectTo</key>
+			<key>firstVisibleColumn</key>
+			<integer>0</integer>
+			<key>firstVisibleLine</key>
+			<integer>0</integer>
+		</dict>
+		<key>config/environments/development.rb</key>
+		<dict>
+			<key>caret</key>
 			<dict>
 				<key>column</key>
-				<integer>18</integer>
+				<integer>0</integer>
 				<key>line</key>
-				<integer>76</integer>
+				<integer>41</integer>
 			</dict>
+			<key>firstVisibleColumn</key>
+			<integer>0</integer>
+			<key>firstVisibleLine</key>
+			<integer>4</integer>
 		</dict>
 		<key>log/development.log</key>
 		<dict>
@@ -376,10 +378,26 @@
 				<key>line</key>
 				<integer>0</integer>
 			</dict>
+			<key>columnSelection</key>
+			<false/>
 			<key>firstVisibleColumn</key>
 			<integer>0</integer>
 			<key>firstVisibleLine</key>
 			<integer>0</integer>
+			<key>selectFrom</key>
+			<dict>
+				<key>column</key>
+				<integer>47</integer>
+				<key>line</key>
+				<integer>10</integer>
+			</dict>
+			<key>selectTo</key>
+			<dict>
+				<key>column</key>
+				<integer>0</integer>
+				<key>line</key>
+				<integer>0</integer>
+			</dict>
 		</dict>
 		<key>script/delayed_job</key>
 		<dict>
@@ -399,13 +417,14 @@
 	<key>openDocuments</key>
 	<array>
 		<string>log/development.log</string>
-		<string>app/mailers/mailer.rb</string>
-		<string>app/models/user_mailer.rb</string>
-		<string>config/application.rb</string>
+		<string>app/mailers/user_mailer.rb</string>
+		<string>config/environments/development.rb</string>
+		<string>app/views/user_mailer/password_reset_instructions.html.erb</string>
+		<string>app/views/user_mailer/welcome_email.html.erb</string>
 	</array>
 	<key>showFileHierarchyDrawer</key>
 	<true/>
 	<key>windowFrame</key>
-	<string>{{10, 46}, {957, 732}}</string>
+	<string>{{0, 46}, {1058, 732}}</string>
 </dict>
 </plist>
