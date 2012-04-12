@@ -140,34 +140,34 @@ class UsersController < ApplicationController
 		end
 	end
 
-	def rate
-		@user.rate(params[:stars], current_user, params[:dimension])
-		average = @user.rate_average(true, params[:dimension])
-		width = (average / @user.class.max_stars.to_f) * 100
-		render :json => {:id => @user.wrapper_dom_id(params), :average => average, :width => width}
-	end
+	# def rate
+	# 	@user.rate(params[:stars], current_user, params[:dimension])
+	# 	average = @user.rate_average(true, params[:dimension])
+	# 	width = (average / @user.class.max_stars.to_f) * 100
+	# 	render :json => {:id => @user.wrapper_dom_id(params), :average => average, :width => width}
+	# end
 
-	def recent_activity
-		@user = current_user    
-		redirect_to :action => 'index'  
-		return
-	end
+	# def recent_activity
+	# 	@user = current_user    
+	# 	redirect_to :action => 'index'  
+	# 	return
+	# end
 
 	def petition
 		redirect_to root_url
 		return
 	end
 
-	def set_looking
-		if @user.update_attribute("looking", !@user.looking)
-			@user.update_attribute("looking", @user.looking)  
-
-			flash[:success] = I18n.t(:successful_update)
-			redirect_back_or_default('/index')
-		else
-			render :action => 'index'
-		end
-	end 
+	# def set_looking
+	# 	if @user.update_attribute("looking", !@user.looking)
+	# 		@user.update_attribute("looking", @user.looking)  
+	# 
+	# 		flash[:success] = I18n.t(:successful_update)
+	# 		redirect_back_or_default('/index')
+	# 	else
+	# 		render :action => 'index'
+	# 	end
+	# end 
 
 	def set_language
 		I18n.locale = "es"   

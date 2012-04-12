@@ -108,13 +108,13 @@
 			<key>filename</key>
 			<string>Gemfile.lock</string>
 			<key>lastUsed</key>
-			<date>2012-03-06T22:49:58Z</date>
+			<date>2012-04-10T21:34:02Z</date>
 		</dict>
 		<dict>
 			<key>filename</key>
 			<string>Gemfile</string>
 			<key>lastUsed</key>
-			<date>2012-04-09T20:10:33Z</date>
+			<date>2012-04-10T21:45:18Z</date>
 		</dict>
 		<dict>
 			<key>filename</key>
@@ -146,9 +146,23 @@
 		</dict>
 	</array>
 	<key>fileHierarchyDrawerWidth</key>
-	<integer>212</integer>
+	<integer>231</integer>
 	<key>metaData</key>
 	<dict>
+		<key>Gemfile</key>
+		<dict>
+			<key>caret</key>
+			<dict>
+				<key>column</key>
+				<integer>13</integer>
+				<key>line</key>
+				<integer>26</integer>
+			</dict>
+			<key>firstVisibleColumn</key>
+			<integer>0</integer>
+			<key>firstVisibleLine</key>
+			<integer>18</integer>
+		</dict>
 		<key>app/controllers/fees_controller.rb</key>
 		<dict>
 			<key>caret</key>
@@ -163,35 +177,19 @@
 			<key>firstVisibleLine</key>
 			<integer>231</integer>
 		</dict>
-		<key>app/mailers/user_mailer.rb</key>
+		<key>app/helpers/schedules_helper.rb</key>
 		<dict>
 			<key>caret</key>
 			<dict>
 				<key>column</key>
-				<integer>53</integer>
+				<integer>161</integer>
 				<key>line</key>
-				<integer>1</integer>
+				<integer>102</integer>
 			</dict>
-			<key>columnSelection</key>
-			<false/>
 			<key>firstVisibleColumn</key>
 			<integer>0</integer>
 			<key>firstVisibleLine</key>
-			<integer>0</integer>
-			<key>selectFrom</key>
-			<dict>
-				<key>column</key>
-				<integer>18</integer>
-				<key>line</key>
-				<integer>1</integer>
-			</dict>
-			<key>selectTo</key>
-			<dict>
-				<key>column</key>
-				<integer>53</integer>
-				<key>line</key>
-				<integer>1</integer>
-			</dict>
+			<integer>86</integer>
 		</dict>
 		<key>app/views/groups/_index_full.html.erb</key>
 		<dict>
@@ -222,6 +220,20 @@
 				<key>line</key>
 				<integer>16</integer>
 			</dict>
+		</dict>
+		<key>app/views/groups/_profile.html.erb</key>
+		<dict>
+			<key>caret</key>
+			<dict>
+				<key>column</key>
+				<integer>0</integer>
+				<key>line</key>
+				<integer>0</integer>
+			</dict>
+			<key>firstVisibleColumn</key>
+			<integer>0</integer>
+			<key>firstVisibleLine</key>
+			<integer>0</integer>
 		</dict>
 		<key>app/views/home/_pricing_box.html.erb</key>
 		<dict>
@@ -297,6 +309,20 @@
 				<integer>18</integer>
 			</dict>
 		</dict>
+		<key>app/views/schedules/show.html.erb</key>
+		<dict>
+			<key>caret</key>
+			<dict>
+				<key>column</key>
+				<integer>5</integer>
+				<key>line</key>
+				<integer>104</integer>
+			</dict>
+			<key>firstVisibleColumn</key>
+			<integer>0</integer>
+			<key>firstVisibleLine</key>
+			<integer>83</integer>
+		</dict>
 		<key>app/views/user_mailer/_the_match_status.html.erb</key>
 		<dict>
 			<key>caret</key>
@@ -327,47 +353,63 @@
 				<integer>11</integer>
 			</dict>
 		</dict>
-		<key>app/views/user_mailer/password_reset_instructions.html.erb</key>
+		<key>app/views/users/show.html.erb</key>
 		<dict>
 			<key>caret</key>
 			<dict>
 				<key>column</key>
-				<integer>0</integer>
+				<integer>11</integer>
 				<key>line</key>
-				<integer>22</integer>
+				<integer>170</integer>
 			</dict>
 			<key>firstVisibleColumn</key>
 			<integer>0</integer>
 			<key>firstVisibleLine</key>
-			<integer>0</integer>
+			<integer>144</integer>
 		</dict>
-		<key>app/views/user_mailer/welcome_email.html.erb</key>
+		<key>app/views/users/show_zurb.html.erb</key>
 		<dict>
 			<key>caret</key>
 			<dict>
 				<key>column</key>
-				<integer>8</integer>
+				<integer>53</integer>
 				<key>line</key>
-				<integer>10</integer>
+				<integer>114</integer>
 			</dict>
+			<key>columnSelection</key>
+			<false/>
 			<key>firstVisibleColumn</key>
 			<integer>0</integer>
 			<key>firstVisibleLine</key>
-			<integer>0</integer>
+			<integer>70</integer>
+			<key>selectFrom</key>
+			<dict>
+				<key>column</key>
+				<integer>42</integer>
+				<key>line</key>
+				<integer>114</integer>
+			</dict>
+			<key>selectTo</key>
+			<dict>
+				<key>column</key>
+				<integer>53</integer>
+				<key>line</key>
+				<integer>114</integer>
+			</dict>
 		</dict>
 		<key>config/environments/development.rb</key>
 		<dict>
 			<key>caret</key>
 			<dict>
 				<key>column</key>
-				<integer>0</integer>
+				<integer>28</integer>
 				<key>line</key>
-				<integer>41</integer>
+				<integer>35</integer>
 			</dict>
 			<key>firstVisibleColumn</key>
 			<integer>0</integer>
 			<key>firstVisibleLine</key>
-			<integer>4</integer>
+			<integer>0</integer>
 		</dict>
 		<key>log/development.log</key>
 		<dict>
@@ -387,9 +429,9 @@
 			<key>selectFrom</key>
 			<dict>
 				<key>column</key>
-				<integer>47</integer>
+				<integer>52</integer>
 				<key>line</key>
-				<integer>10</integer>
+				<integer>14</integer>
 			</dict>
 			<key>selectTo</key>
 			<dict>
@@ -416,15 +458,18 @@
 	</dict>
 	<key>openDocuments</key>
 	<array>
-		<string>log/development.log</string>
-		<string>app/mailers/user_mailer.rb</string>
+		<string>Gemfile</string>
 		<string>config/environments/development.rb</string>
-		<string>app/views/user_mailer/password_reset_instructions.html.erb</string>
-		<string>app/views/user_mailer/welcome_email.html.erb</string>
+		<string>log/development.log</string>
+		<string>app/helpers/schedules_helper.rb</string>
+		<string>app/views/groups/_profile.html.erb</string>
+		<string>app/views/users/show_zurb.html.erb</string>
+		<string>app/views/users/show.html.erb</string>
+		<string>app/views/schedules/show.html.erb</string>
 	</array>
 	<key>showFileHierarchyDrawer</key>
 	<true/>
 	<key>windowFrame</key>
-	<string>{{0, 46}, {1058, 732}}</string>
+	<string>{{0, 46}, {1679, 1012}}</string>
 </dict>
 </plist>

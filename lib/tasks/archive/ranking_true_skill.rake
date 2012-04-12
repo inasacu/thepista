@@ -1,9 +1,9 @@
 # # to run: sudo rake ranking_true_skill
 # 
 # require 'rubygems'
-# require 'saulabs/trueskill'
+# # require 'saulabs/trueskill'
 # 
-# include Saulabs::TrueSkill
+# # include Saulabs::TrueSkill
 # 
 # desc "  # use the trueskill ranking system for players"
 # task :ranking_true_skill => :environment do |t|

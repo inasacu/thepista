@@ -1,7 +1,7 @@
 class Game < ActiveRecord::Base
 
-	# extend FriendlyId 
-	# friendly_id :name, 			use: :slugged
+	extend FriendlyId 
+	friendly_id :name, 			use: :slugged
 	
   acts_as_tree :foreign_key => :next_game_id
 

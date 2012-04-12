@@ -1,7 +1,7 @@
 class Classified < ActiveRecord::Base
 
-	# extend FriendlyId 
-	# friendly_id :name, 			use: :slugged
+	extend FriendlyId 
+	friendly_id :name, 			use: :slugged
 
 	belongs_to      :table,           :polymorphic => true
 	belongs_to      :item,            :polymorphic => true

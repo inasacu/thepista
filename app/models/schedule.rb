@@ -1,7 +1,7 @@
 class Schedule < ActiveRecord::Base
 
-	# extend FriendlyId 
-	# friendly_id :name, 			use: :slugged
+	extend FriendlyId 
+	friendly_id :name, 			use: :slugged
 
   # # ajaxful_rateable :stars => 5, :dimensions => [:performance]
   
@@ -74,7 +74,10 @@ class Schedule < ActiveRecord::Base
   validates_presence_of         :starts_at,     :ends_at  
 
   # variables to access
-  attr_accessible :slug, :name, :description, :season, :jornada, :starts_at, :ends_at, :reminder_at, :reminder
+	attr_accessible
+	attr_accessor :slug
+	
+  attr_accessible :name, :description, :season, :jornada, :starts_at, :ends_at, :reminder_at, :reminder
   attr_accessible :fee_per_game, :fee_per_pista, :time_zone, :group_id, :sport_id, :marker_id, :player_limit
   attr_accessible :public, :season_ends_at, :archive, :schedule_and_name
 

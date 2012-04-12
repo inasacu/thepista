@@ -2,9 +2,9 @@
 #  heroku rake the_pista_trueskill --app thepista
 
 require 'rubygems'
-require 'saulabs/trueskill'
+# require 'saulabs/trueskill'
 
-include Saulabs::TrueSkill
+# include Saulabs::TrueSkill
 
 desc "  # use the trueskill ranking system for players"
 task :the_pista_trueskill => :environment do |t|

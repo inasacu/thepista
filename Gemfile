@@ -25,7 +25,7 @@ gem 'jquery-rails'
 gem 'google_map'
 gem 'acts_as_tree', '0.1.1'
 gem 'aws-sdk'
-gem "friendly_id", "~> 4.0.1"
+gem "friendly_id"
 
 gem 'iron_worker'
 gem 'typhoeus'

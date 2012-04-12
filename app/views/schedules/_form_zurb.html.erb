@@ -1,11 +1,11 @@
 
 
-<%= f.hidden_field :group_id %>
-<%= f.hidden_field :sport_id %>
-<%= f.hidden_field :time_zone %>
-<%= f.hidden_field :season %>
-<%= f.hidden_field :jornada %>
-<%#= f.hidden_field :group_id if @group %>
+<%= the_form.hidden_field :group_id %>
+<%= the_form.hidden_field :sport_id %>
+<%= the_form.hidden_field :time_zone %>
+<%= the_form.hidden_field :season %>
+<%= the_form.hidden_field :jornada %>
+<%#= the_form.hidden_field :group_id if @group %>
 
 
 
@@ -14,19 +14,19 @@
 
 
 <%= set_form_label(the_form, :starts_at) %>
-<%= f.datetime_select :starts_at) %><br />
+<%= the_form.datetime_select :starts_at %><br />
 
 
 <%= set_form_label(the_form, :ends_at) %>
-<%= f.datetime_select :ends_at) %><br />
+<%= the_form.datetime_select :ends_at %><br />
 
 
 <%= set_form_label(the_form, :reminder_at) %>
-<%= f.datetime_select :reminder_at) %><br />
+<%= the_form.datetime_select :reminder_at %><br />
 
 
-<%= set_form_label(the_form, :description) %>
-<%= set_form_text_area(the_form, :description) %><br />
+<%#= set_form_label(the_form, :description) %>
+<%#= set_form_text_area(the_form, :description) %>
 
 
 <%= set_form_label(the_form, :fee_per_game) %>
@@ -42,4 +42,4 @@
 
 
 <%= set_form_label(the_form, :public) %>
-<%= set_form_checkbox(the_form, :public) %>
+<%#= set_form_checkbox(the_form, :public) %>

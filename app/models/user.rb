@@ -101,16 +101,8 @@ class User < ActiveRecord::Base
       user.has_many :_received_messages, :foreign_key => "recipient_id", :conditions => "recipient_deleted_at IS NULL"
     end         
     
-    has_one     :blog  
-    has_many    :feeds
-
-    # has_many    :activities,
-    #             :conditions => {:created_at => LAST_THREE_DAYS},
-    #             :order => "created_at DESC",
-    #             :limit => 1
-
-    
-     
+    # has_one     :blog  
+    # has_many    :feeds
                     
                       
     before_update   :format_description

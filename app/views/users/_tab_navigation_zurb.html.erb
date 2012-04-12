@@ -30,23 +30,22 @@
 <% if is_profile %>
 <%= set_tab_navigation(item_name_link(the_user, set_tab_navigation_active('user_show'))) %>
 <%= set_tab_navigation(item_name_link("#{label_name(:linkedin_profile)}", the_user, set_tab_navigation_active('user_show'))) if is_controller('auth') if DISPLAY_FREMIUM_SERVICES %>
-<%= set_tab_navigation(link_to("#{label_name(:notifications)}", notice_users_url(:id => @user), set_tab_navigation_active('user_notice'))) %>
+<%#= set_tab_navigation(link_to("#{label_name(:notifications)}", notice_users_url(:id => @user), set_tab_navigation_active('user_notice'))) %>
 
 
 <% 
 
-if DISPLAY_FREMIUM_SERVICES
-	if current_user.is_user_member_of?(the_user) 
-		unless actions.include?(the_action) or controls.include?(the_controller) 
-			the_blog = Blog.find_item(current_user)
-		else
-			the_blog = Blog.find_item(the_user)
-		end		
+#if DISPLAY_FREMIUM_SERVICES
+#	if current_user.is_user_member_of?(the_user) 
+		# unless actions.include?(the_action) or controls.include?(the_controller) 
+		# 	the_blog = Blog.find_item(current_user)
+		# else
+		# 	the_blog = Blog.find_item(the_user)
+		# end		
 %>
-	<%= set_tab_navigation(item_name_link(the_blog, set_tab_navigation_active('blog_show'))) %>
-<% end %>
-
-<% end
+	<%#= set_tab_navigation(item_name_link(the_blog, set_tab_navigation_active('blog_show'))) %>
+<% #end 
+# end
 
 if (current_user.is_user_manager_of?(the_user) or the_user == current_user)  and DISPLAY_FREMIUM_SERVICES
 %>

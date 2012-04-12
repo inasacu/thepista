@@ -2,9 +2,9 @@
 
 
 require 'rubygems'
-require 'saulabs/trueskill'
+# require 'saulabs/trueskill'
 
-include Saulabs::TrueSkill
+# include Saulabs::TrueSkill
 
 desc "  # use the trueskill ranking system for players"
 task :the_true_skill => :environment do |t|

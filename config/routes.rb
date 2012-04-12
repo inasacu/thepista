@@ -153,9 +153,9 @@ Thepista::Application.routes.draw do
 	resources :matches
 	resources :invitations
 	resources :teammates
-	resources :comments
-	resources :blogs
-	resources :forums
+	# resources :comments
+	# resources :blogs
+	# resources :forums
 	resources :types
 	resources :sports
 	resources :roles
