@@ -2,8 +2,8 @@ require "base64"
 
 class Match < ActiveRecord::Base
           
-	# extend FriendlyId 
-	# friendly_id :name, 			use: :slugged
+	extend FriendlyId 
+	friendly_id :name, 			use: :slugged
 	
   # allows user to rate a model 
   # ajaxful_rateable :stars => 5, :dimensions => [:technical, :physical]  

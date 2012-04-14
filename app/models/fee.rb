@@ -1,7 +1,7 @@
 class Fee < ActiveRecord::Base
 
-	# extend FriendlyId 
-	# friendly_id :name, 			use: :slugged
+	extend FriendlyId 
+	friendly_id :name, 			use: :slugged
 	
   belongs_to     :manager,        :class_name => 'User',        :foreign_key => 'manager_id'
   belongs_to     :debit,          :polymorphic => true

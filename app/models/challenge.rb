@@ -1,7 +1,7 @@
 class Challenge < ActiveRecord::Base
 
-	# extend FriendlyId 
-	# friendly_id :name, 			use: :slugged
+	extend FriendlyId 
+	friendly_id :name, 			use: :slugged
   
   # validations 
   validates_uniqueness_of       :name,            :case_sensitive => false
