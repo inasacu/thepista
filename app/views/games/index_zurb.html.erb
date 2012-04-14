@@ -1,7 +1,7 @@
 <%
 	the_label = is_action('index') ? label_name(:group_stage) : label_name(:group_round)
 	content_for(:title, the_label)
-	is_manager = current_user.is_manager_of?(@cup)	
+	is_manager = is_current_manager_of(@cup)	
 %>
 
 <div class="block">

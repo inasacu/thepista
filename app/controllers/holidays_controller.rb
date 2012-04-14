@@ -42,7 +42,7 @@ class HolidaysController < ApplicationController
     @venue = Venue.find(@holiday.venue)
 
     if @holiday.save    
-      flash[:notice] = I18n.t(:successful_create)
+      successful_create
       redirect_to @venue
     else
       redirect_to :index
@@ -67,8 +67,8 @@ class HolidaysController < ApplicationController
   end  
   
   def is_venue_manager
-    unless current_user.is_manager_of?(@venue)
-      flash[:warning] = I18n.t(:unauthorized)
+    unless is_current_manager_of(@venue)
+      warning_unauthorized
       redirect_back_or_default('/index')  
       return
     end

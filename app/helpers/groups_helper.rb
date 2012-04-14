@@ -9,7 +9,7 @@ module GroupsHelper
     if group.photo_file_name
       return item_image_link_large(group)
     end
-    if current_user.is_manager_of?(group)
+    if is_current_manager_of(group)
       "#{I18n.t(:no_photo_for, get_the_controller)}.  #{link_to(I18n.t(:upload), edit_group_path(group))}"
     else  
       return item_image_link_large(group)

@@ -53,7 +53,7 @@
 	<% if display_icons %>
     <td class="last">
 		<span class="action">
-			<% if current_user.is_manager_of?(cup) and !final_played %>
+			<% if is_current_manager_of(cup) and !final_played %>
 			 	<br/>
 				<%= link_to label_name(:games_create), new_game_path(:id => cup)  %><br/>
 				<%= link_to label_name(:escuadras_create), new_escuadra_path(:id => cup)  %><br/><br/>
@@ -61,7 +61,7 @@
 	
 			<% if !cup.official %> 
 			<% 
-			   if current_user.is_member_of?(cup) %>
+			   if is_current_member_of(cup) %>
 				<%= link_to("#{label_name(:invitations_your_friend)} #{the_cup}" , 
 									new_invitation_url(:cup_id => cup)) %><br />
 			<% 

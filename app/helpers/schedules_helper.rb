@@ -31,12 +31,12 @@ module SchedulesHelper
   end 
 
   def view_schedule_icon(schedule)
-      return content_tag(:td, (current_user.is_member_of?(schedule.group) or schedule.public) ? 
+      return content_tag(:td, (is_current_member_of(schedule.group) or schedule.public) ? 
               schedule_image_link_small(schedule) : schedule_image_small(schedule))
   end
 
-  def view_schedule_concept(schedule) 
-    is_member = (current_user.is_member_of?(schedule.group) or schedule.public)
+  def view_schedule_name(schedule) 
+    is_member = (is_current_member_of(schedule.group) or schedule.public)
     
     the_sport = ""  
     the_missing = ""
@@ -100,7 +100,7 @@ module SchedulesHelper
   def view_schedule_rating(schedule)
     if schedule.played? or Time.zone.now > schedule.starts_at
       my_rating = ""
-      # my_rating = ratings_for(schedule, :show_user_rating => true, :dimension => :performance, :size => "small" ) if current_user.is_member_of?(schedule.group)
+      # my_rating = ratings_for(schedule, :show_user_rating => true, :dimension => :performance, :size => "small" ) if is_current_member_of(schedule.group)
       # overall_rating = ratings_for(schedule, :static, :dimension => :performance, :size => "small" )
 			overall_rating = ""
       # return content_tag :td, "#{my_rating}&nbsp;&nbsp;#{overall_rating}", :class => "last_upcoming"
@@ -124,7 +124,7 @@ module SchedulesHelper
           the_font_begin = "<font color='#ff3300'>"
           the_font_end = "</font>"
         end
-        the_label = "#{I18n.t(:your_roster_status) } #{the_font_begin}#{(match.type_name).downcase}#{the_font_end}" if match.user == current_user
+        the_label = "#{I18n.t(:your_roster_status) } #{the_font_begin}#{(match.type_name).downcase}#{the_font_end}" if is_current_same_as(match.user)
       end
       
       # return content_tag :td, "#{the_label}<br/>#{match_all_my_link(schedule, current_user, false, true)}".html_safe, :class => "last_upcoming"
@@ -199,7 +199,7 @@ module SchedulesHelper
 
     the_icon = schedule_image_link_small(the_schedule, "calendario.png")
 
-    is_member = current_user.is_member_of?(the_group)
+    is_member = is_current_member_of(the_group)
     if the_schedule.played?
       the_label = %(#{I18n.t(:has_updated_scorecard) } #{the_label} )
     else
@@ -223,7 +223,7 @@ module SchedulesHelper
     the_content = content_for(:title, sanitize(@schedule.name))
 
     has_been_played = @schedule.played? 
-    is_manager = current_user.is_manager_of?(@schedule.group)
+    is_manager = is_current_manager_of(@schedule.group)
     is_squad = get_the_action.gsub(' ','_') == 'team_roster'
 
     the_sport = ""

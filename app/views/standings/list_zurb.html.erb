@@ -27,5 +27,5 @@
 - content_for :sidebar, render(:partial => 'shared/invite')
 - content_for :sidebar, render(:partial => 'shared/share_object')
 - if @cup
-  - content_for :sidebar, :render("cups/sidebar_cup_additional", :cup => @cup) if current_user.is_manager_of?(@cup)
-  - content_for :sidebar, render(:partial => 'shared/sidebar_show_cup', :locals => {:cup => @cup}) if current_user.is_manager_of?(@cup)
+  - content_for :sidebar, :render("cups/sidebar_cup_additional", :cup => @cup) if is_current_manager_of(@cup)
+  - content_for :sidebar, render(:partial => 'shared/sidebar_show_cup', :locals => {:cup => @cup}) if is_current_manager_of(@cup)

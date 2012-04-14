@@ -31,8 +31,8 @@ class GamesController < ApplicationController
   def new
     @game = Game.new
 
-    unless current_user.is_manager_of?(@cup)
-      flash[:warning] = I18n.t(:unauthorized)
+    unless is_current_manager_of(@cup)
+      warning_unauthorized
       redirect_back_or_default('/index')
       return
     end
@@ -83,14 +83,14 @@ class GamesController < ApplicationController
   def create
     @game = Game.new(params[:game]) 
 
-    unless current_user.is_manager_of?(@game.cup)
-      flash[:warning] = I18n.t(:unauthorized)
+    unless is_current_manager_of(@game.cup)
+      warning_unauthorized
       redirect_to cups_url
       return
     end
 
     if @game.save 
-      flash[:notice] = I18n.t(:successful_create)
+      successful_create
       redirect_to games_path(:id => @game.cup)
       return
     else
@@ -121,8 +121,8 @@ class GamesController < ApplicationController
 
   def set_the_game_jornada
 
-    unless current_user.is_manager_of?(@cup)
-      flash[:warning] = I18n.t(:unauthorized)
+    unless is_current_manager_of(@cup)
+      warning_unauthorized
       redirect_back_or_default('/index')
       return
     end
@@ -151,8 +151,8 @@ class GamesController < ApplicationController
 
   private
   def has_manager_access
-    unless current_user.is_manager_of?(@cup)
-      flash[:warning] = I18n.t(:unauthorized)
+    unless is_current_manager_of(@cup)
+      warning_unauthorized
       redirect_back_or_default('/index')
       return
     end

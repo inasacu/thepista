@@ -8,7 +8,7 @@
 	item_link, item_object = payment_item(payment)	
 	
 	is_manager = false
-	is_manager = current_user.is_manager_of?(credit_object) or current_user.is_manager_of?(item_object) 
+	is_manager = is_current_manager_of(credit_object) or is_current_manager_of(item_object) 
 	is_manager = is_manager and !is_action('complete') and !is_action('item complete')
 	is_complete = get_controller_action == 'fee_complete'
 %>

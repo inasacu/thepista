@@ -4,7 +4,7 @@ class UsersController < ApplicationController
 	before_filter :get_sports,          :only => [:new, :edit, :signup, :rpx_new]
 	before_filter :get_user_member,     :only => [:show, :notice] 
 	before_filter :get_user_manager,    :only => [:set_available]
-	before_filter :get_user_self,       :only => [:set_private_phone, :set_private_profile, :set_enable_comments, :set_looking, :set_teammate_notification, :set_message_notification, :set_blog_notification, :set_forum_notification, :set_last_minute_notification]
+	before_filter :get_user_self,       :only => [:set_private_phone, :set_private_profile, :set_enable_comments, :set_looking, :set_teammate_notification, :set_message_notification, :set_last_minute_notification]
 	before_filter :get_user_group,      :only =>[:set_manager, :remove_manager, :set_sub_manager, :remove_sub_manager, :set_subscription, :remove_subscription, :set_moderator, :remove_moderator]
 
 	before_filter :has_member_access,   :only => [:rate]
@@ -73,14 +73,18 @@ class UsersController < ApplicationController
 			return
 		end 
 		@user = current_user
+
+		set_the_template('users/new')
+		render @the_template   
 	end
+
 
 	def create
 		@user = User.new(params[:user])
 		
 		if DISPLAY_RECAPTCHA 
 			unless verify_recaptcha   
-				flash[:warning] = I18n.t(:recaptcha_failure)
+				recaptcha_failure
 				render :action => :new
 				return
 			end
@@ -101,7 +105,7 @@ class UsersController < ApplicationController
 			end
 
 		# else 
-		# 	flash[:warning] = I18n.t(:recaptcha_failure)
+		# 	recaptcha_failure
 		# 	redirect_to :signup
 		# 	return
 		# end  
@@ -185,7 +189,7 @@ class UsersController < ApplicationController
 
 	def set_manager 
 		unless current_user.is_creator_of?(@group)
-			flash[:warning] = I18n.t(:unauthorized)  
+			warning_unauthorized  
 			return
 		end
 		@user.has_role!(:manager, @group)
@@ -195,7 +199,7 @@ class UsersController < ApplicationController
 
 	def remove_manager 
 		unless current_user.is_creator_of?(@group)
-			flash[:warning] = I18n.t(:unauthorized)  
+			warning_unauthorized  
 			return
 		end
 		@user.has_no_role!(:manager, @group)
@@ -204,8 +208,8 @@ class UsersController < ApplicationController
 	end
 
 	def set_sub_manager 
-		unless current_user.is_manager_of?(@group)
-			flash[:warning] = I18n.t(:unauthorized)  
+		unless is_current_manager_of(@group)
+			warning_unauthorized  
 			return
 		end
 		@user.has_role!(:sub_manager, @group)
@@ -214,8 +218,8 @@ class UsersController < ApplicationController
 	end
 
 	def remove_sub_manager 
-		unless current_user.is_manager_of?(@group)
-			flash[:warning] = I18n.t(:unauthorized)  
+		unless is_current_manager_of(@group)
+			warning_unauthorized  
 			return
 		end
 		@user.has_no_role!(:sub_manager, @group)
@@ -224,8 +228,8 @@ class UsersController < ApplicationController
 	end
 
 	def set_subscription 
-		unless current_user.is_manager_of?(@group)
-			flash[:warning] = I18n.t(:unauthorized)  
+		unless is_current_manager_of(@group)
+			warning_unauthorized  
 			return
 		end
 		@user.has_role!(:subscription, @group)
@@ -236,8 +240,8 @@ class UsersController < ApplicationController
 	end 
 
 	def remove_subscription 
-		unless current_user.is_manager_of?(@group)
-			flash[:warning] = I18n.t(:unauthorized)  
+		unless is_current_manager_of(@group)
+			warning_unauthorized  
 			return
 		end
 		@user.has_no_role!(:subscription, @group)
@@ -248,8 +252,8 @@ class UsersController < ApplicationController
 	end
 
 	def set_moderator 
-		unless current_user.is_manager_of?(@group)
-			flash[:warning] = I18n.t(:unauthorized)  
+		unless is_current_manager_of(@group)
+			warning_unauthorized  
 			return
 		end
 		@user.has_role!(:moderator, @group)
@@ -258,8 +262,8 @@ class UsersController < ApplicationController
 	end 
 
 	def remove_moderator 
-		unless current_user.is_manager_of?(@group)
-			flash[:warning] = I18n.t(:unauthorized)  
+		unless is_current_manager_of(@group)
+			warning_unauthorized  
 			return
 		end
 		@user.has_no_role!(:moderator, @group)
@@ -344,27 +348,27 @@ class UsersController < ApplicationController
 		end
 	end  
 
-	def set_blog_notification
-		if @user.update_attribute("blog_comment_notification", !@user.blog_comment_notification)
-			@user.update_attribute("blog_comment_notification", @user.blog_comment_notification)  
+	# def set_blog_notification
+	# 	if @user.update_attribute("blog_comment_notification", !@user.blog_comment_notification)
+	# 		@user.update_attribute("blog_comment_notification", @user.blog_comment_notification)  
+	# 
+	# 		flash[:success] = I18n.t(:successful_update)
+	# 		redirect_back_or_default('/index')
+	# 	else
+	# 		render :action => 'index'
+	# 	end
+	# end  
 
-			flash[:success] = I18n.t(:successful_update)
-			redirect_back_or_default('/index')
-		else
-			render :action => 'index'
-		end
-	end  
-
-	def set_forum_notification
-		if @user.update_attribute("forum_comment_notification", !@user.forum_comment_notification)
-			@user.update_attribute("forum_comment_notification", @user.forum_comment_notification)  
-
-			flash[:success] = I18n.t(:successful_update)
-			redirect_back_or_default('/index')
-		else
-			render :action => 'index'
-		end
-	end  
+	# def set_forum_notification
+	# 	if @user.update_attribute("forum_comment_notification", !@user.forum_comment_notification)
+	# 		@user.update_attribute("forum_comment_notification", @user.forum_comment_notification)  
+	# 
+	# 		flash[:success] = I18n.t(:successful_update)
+	# 		redirect_back_or_default('/index')
+	# 	else
+	# 		render :action => 'index'
+	# 	end
+	# end  
 
 	def rpx_new
 		if data = RPXNow.user_data(session[:rpx_token])
@@ -428,8 +432,8 @@ class UsersController < ApplicationController
 
 	def get_user_manager
 		@user = User.find(params[:id])
-		unless current_user.is_user_manager_of?(@user)
-			flash[:warning] = I18n.t(:unauthorized)
+		unless is_user_manager_of(@user)
+			warning_unauthorized
 			redirect_to root_url
 			return
 		end
@@ -448,8 +452,8 @@ class UsersController < ApplicationController
 
 	def get_user_self
 		@user = User.find(params[:id])
-		unless @user == current_user
-			flash[:warning] = I18n.t(:unauthorized)
+		unless is_current_same_as(@user)
+			warning_unauthorized
 			redirect_to root_url
 			return
 		end

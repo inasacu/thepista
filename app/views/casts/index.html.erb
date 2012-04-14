@@ -9,7 +9,7 @@
 		the_label = label_name(:cast_right_guess)
 	end
 	content_for(:title, the_label)
-	is_manager = current_user.is_manager_of?(@cup)
+	is_manager = is_current_manager_of(@cup)
 	is_right_guess = is_action('list gues')
 	
 	final_played ||= false

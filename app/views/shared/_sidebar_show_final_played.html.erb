@@ -6,18 +6,18 @@
 	unless final_played 
 %>
 		<% if @cup.official %>
-			<% unless current_user.is_manager_of?(@cup) -%>
+			<% unless is_current_manager_of(@cup) -%>
 				<% content_for :sidebar, render("cups/sidebar_show", :cup => @cup) %>
 				<% content_for :sidebar, render(:partial => 'challenges/sidebar_legend') -%>
 			<% end %>
 		<% else 
 			@item = @cup 
 			the_groups = []
-			current_user.groups.each {|group| the_groups << group if current_user.is_manager_of?(group)}		
+			current_user.groups.each {|group| the_groups << group if is_current_manager_of(group)}		
 		%>
 			<% content_for :sidebar, render("shared/sidebar_show_item", :cup => @cup, :items => the_groups) %>
 		<% end -%>	
 <% 
 	end 
 %>
-<% content_for :sidebar, render(:partial => 'shared/sidebar_show_cup', :locals => {:cup => @cup}) if current_user.is_manager_of?(@cup) -%>
+<% content_for :sidebar, render(:partial => 'shared/sidebar_show_cup', :locals => {:cup => @cup}) if is_current_manager_of(@cup) -%>

@@ -1,12 +1,7 @@
 class Cup < ActiveRecord::Base
 
-	extend FriendlyId 
-	friendly_id :name, 			use: :slugged
-	
-  # index do
-  #   name
-  #   description
-  # end
+	# extend FriendlyId 
+	# friendly_id :name, 			use: :slugged
                   
   has_attached_file :photo,
   :styles => {
@@ -47,7 +42,7 @@ class Cup < ActiveRecord::Base
   attr_accessible :name, :points_for_win, :points_for_draw, :points_for_lose, :official, :club
   attr_accessible :time_zone, :sport_id, :description, :conditions, :photo
   attr_accessible :starts_at, :ends_at, :deadline_at, :archive
-  attr_accessible :group_stage_advance, :group_stage, :group_stage_single, :second_stage_single, :final_stage_single
+  attr_accessible :group_stage_advance, :group_stage, :group_stage_single, :second_stage_single, :final_stage_single, :slug
     
   
    

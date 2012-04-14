@@ -1,6 +1,6 @@
 <% 
-	can_modify = (@user == current_user) 
-	is_user_manager = current_user.is_user_manager_of?(@user)
+	can_modify = (is_user_manager_of(@user)) 
+	is_user_manager = is_user_manager_of(@user)
 	the_label = h(@user.name)
 	content_for(:title, the_label)
 	is_group_manager =  false
@@ -47,7 +47,7 @@
 						<% unless is_notice %>
 						
 						<%= tr_td_action(:name, @user.name) %>
-						<%= tr_td_action(:email, @user.email) if @user == current_user %>
+						<%= tr_td_action(:email, @user.email) if is_user_manager_of(@user) %>
 		
 						<% 	
 							if @user.private_phone
@@ -161,7 +161,7 @@
 						%>
 						<tr>
 							<%= content_tag :td, label_name('looking_for_my_group'), :class =>"label" %>
-							<%= content_tag :td, (@user == current_user ? link_to(the_label, set_user_looking_path(:id => @user)) : the_label), :class => get_the_action %>
+							<%= content_tag :td, (is_user_manager_of(@user) ? link_to(the_label, set_user_looking_path(:id => @user)) : the_label), :class => get_the_action %>
 						</tr>
 						<% end -%>
 						
@@ -198,21 +198,21 @@
 
 <%# content_for :sidebar, render('shared/completeness', :user => @user) unless @user.percent_complete == 100 or @user != current_user -%>
 
-<% if current_user.is_group_manager_of? %>
+<% if is_group_manager_of %>
 	<% content_for :sidebar, render(:partial => '/shared/sidebar_basic_legend', 
 						:locals => {:the_render => '/users/sidebar_show_subscription', 
-									:the_label => label_name('subscription_option')}) if current_user.is_user_manager_of?(@user) %>
+									:the_label => label_name('subscription_option')}) if is_user_manager_of(@user) %>
 
 	<% content_for :sidebar, render(:partial => '/shared/sidebar_basic_legend', 
 						:locals => {:the_render => '/users/sidebar_show_join', :the_label => label_name('join_option')}) %>
 						
 	<% content_for :sidebar, render(:partial => '/shared/sidebar_basic_legend', 
 					:locals => {:the_render => '/users/sidebar_show_sub_manager', 
-								:the_label => label_name('sub_manager_option')})  if current_user.is_user_manager_of?(@user) and current_user != @user %>
+								:the_label => label_name('sub_manager_option')})  if is_user_manager_of(@user) and !is_current_same_as(@user) %>
 	
 	<% content_for :sidebar, render(:partial => '/shared/sidebar_basic_legend', 
 					:locals => {:the_render => '/users/sidebar_show_manager', 
-								:the_label => label_name('manager_option')}) if current_user.is_user_manager_of?(@user) %>
+								:the_label => label_name('manager_option')}) if is_user_manager_of(@user) %>
 		
 	<% content_for :sidebar, render(:partial => '/shared/sidebar_basic_legend', 
 					:locals => {:the_render => '/users/sidebar_show_item_manager', 
@@ -220,4 +220,4 @@
 								:items => @items}) unless @items.nil? or @items.blank? %>
 <% end %>
 
-<% content_for :sidebar, render(:partial => '/shared/sidebar_index') if @user == current_user -%>
+<% content_for :sidebar, render(:partial => '/shared/sidebar_index') if is_user_manager_of(@user) -%>

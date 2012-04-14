@@ -1,10 +1,9 @@
 <%
-	is_group_manager = @group ? current_user.is_manager_of?(@group) : false
-	is_group_member = @group ? current_user.is_member_of?(@group) : false
+	is_group_manager = @group ? is_current_manager_of(@group) : false
+	is_group_member = @group ? is_current_member_of(@group) : false
 	has_group = @group ? true : false
 	
 	the_group_name = ""
-	the_label = label_name(:options)
 	the_manager_label = ""
 	the_confirmation = ""
 	
@@ -25,7 +24,7 @@
 
 <% if has_group %>
 
-<%= set_title_class(the_label) %>
+<%= set_title_class(the_label_options) %>
 <hr/>
 
 <div class="row">
@@ -60,11 +59,13 @@
 	<div class="twelve columns">
 
 		<%= set_form_create_id_image_link(Schedule.new, :id, @group, :schedules_create) %>
-		<%= set_form_create_id_image_link(Classified.new, :id, @group, :classifieds_create) if DISPLAY_FREMIUM_SERVICES %>
 		<%= set_form_edit_image_link(@group, :groups_edit) %>		
-		<%= set_form_create_id_image_link(Fee.new, :id, @group, :fee_user_for_group) %>
 		
-		<%= set_image_and_link(link_to(the_confirmation, group_path(group), :method => :delete, :confirm => the_confirmation), 'group') if has_schedule_blank %>
+		<%  if DISPLAY_FREMIUM_SERVICES %>
+		<%= set_form_create_id_image_link(Classified.new, :id, @group, :classifieds_create) %>		
+		<%= set_form_create_id_image_link(Fee.new, :id, @group, :fee_user_for_group) %>		
+		<%= set_image_and_link(link_to(the_confirmation, group_path(@group), :method => :delete, :confirm => the_confirmation), 'group') if has_schedule_blank %>
+		<% end %>
 		
 	</div>	
 </div>

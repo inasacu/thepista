@@ -9,11 +9,11 @@
 	when 'Type', 'Role', 'Announcement', 'Sport'
 		is_displayable = the_maximo
 	when 'User'
-		is_displayable = (item == current_user)
+		is_displayable = (is_user_manager_of(item))
 	when 'Group', 'Cup', 'Challenge'
-		is_displayable = current_user.is_manager_of?(item)
+		is_displayable = is_current_manager_of(item)
 	when 'Schedule', 'Classified', 'Fee', 'Payment'
-		is_displayable = current_user.is_manager_of?(item.group)
+		is_displayable = is_current_manager_of(item.group)
 	end	
 %>
 

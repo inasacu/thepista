@@ -1,5 +1,5 @@
 <% 
-	is_user_manager = (current_user.is_manager_of?(@challenge))
+	is_user_manager = (is_current_manager_of(@challenge))
 	the_challenge = sanitize(@challenge.name)
 	content_for(:title, the_challenge)
 	
@@ -65,7 +65,7 @@
 			<%= content_tag :td, sanitize(@challenge.conditions), :class => get_the_action %>	
 		</tr>
 
-		<% if current_user.is_member_of?(@challenge) %>
+		<% if is_current_member_of(@challenge) %>
 		<tr>
 			<%= content_tag :td, label_name(:participants), :class => "label" %>
 			<%= render :partial => '/shared/show_images', :locals => {:collection => @challenge.users} %>			
@@ -90,7 +90,7 @@
 
 
 <%  if @cup  %>
-<%# content_for :sidebar, render(:partial => 'cups/sidebar_cup_additional', :locals => {:cup => @cup}) if current_user.is_manager_of?(@cup) -%>
-<% content_for :sidebar, render('cups/sidebar_cup_additional', :cup => @cup) if current_user.is_manager_of?(@cup) -%>
-<% content_for :sidebar, render(:partial => 'shared/sidebar_show_cup', :locals => {:cup => @cup}) if current_user.is_manager_of?(@cup) -%>
+<%# content_for :sidebar, render(:partial => 'cups/sidebar_cup_additional', :locals => {:cup => @cup}) if is_current_manager_of(@cup) -%>
+<% content_for :sidebar, render('cups/sidebar_cup_additional', :cup => @cup) if is_current_manager_of(@cup) -%>
+<% content_for :sidebar, render(:partial => 'shared/sidebar_show_cup', :locals => {:cup => @cup}) if is_current_manager_of(@cup) -%>
 <% end -%>

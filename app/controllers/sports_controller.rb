@@ -20,7 +20,7 @@ class SportsController < ApplicationController
   def create
     @sport = Sport.new(params[:sport])
     if @sport.save
-      flash[:notice] = I18n.t(:successful_create)
+      successful_create
       redirect_to @sport
     else
       render :action => 'new'

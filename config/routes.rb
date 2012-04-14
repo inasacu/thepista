@@ -70,8 +70,8 @@ Thepista::Application.routes.draw do
 	match 'equipos/:id/equipo_disponible' => 'groups#set_available', :as => :set_group_available
 	match 'equipos/:id/buscar_jugado' => 'groups#set_looking', :as => :set_group_looking
 
-  match 'equipos/:id/unirse_automaticamente' => 'groups#set_group_auto', :as => :set_automatic_petition
-  match 'retos_copa/:id/unirse_automaticamente' => 'challenges#set_challenge_auto',  :as => :set_automatic_petition
+  match 'equipos/:id/unirse_automaticamente' => 'groups#set_group_auto', :as => :set_group_auto
+  match 'retos_copa/:id/unirse_automaticamente' => 'challenges#set_challenge_auto',  :as => :set_challenge_auto
 
 	match 'jornadas/:id/cambio_equipo' => 'matches#set_team', :as => :match_team
 	match 'jornadas/:id/cambio_convocatoria/:type' => 'matches#set_status', :as => :match_status

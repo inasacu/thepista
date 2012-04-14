@@ -1,5 +1,5 @@
 <span class="action">
-	<%# if current_user.is_manager_of?(credit_object) or current_user.is_manager_of?(item_object) %> 
+	<%# if is_current_manager_of(credit_object) or is_current_manager_of(item_object) %> 
 		<% if payment_due %>
 			<br />
 			<%= link_to  label_name(:payment_for_bill), new_payment_path(:id => fee) %><br /><br />

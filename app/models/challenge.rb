@@ -1,12 +1,7 @@
 class Challenge < ActiveRecord::Base
 
-	extend FriendlyId 
-	friendly_id :name, 			use: :slugged
-	
-  # index do
-  #   name
-  #   description
-  # end
+	# extend FriendlyId 
+	# friendly_id :name, 			use: :slugged
   
   # validations 
   validates_uniqueness_of       :name,            :case_sensitive => false
@@ -28,7 +23,7 @@ class Challenge < ActiveRecord::Base
   validates_numericality_of     :player_limit,    :greater_than_or_equal_to => 1, :less_than_or_equal_to => DUNBAR_NUMBER
 
   # variables to access
-  attr_accessible :name, :cup_id, :starts_at, :ends_at, :reminder_at, :fee_per_game, :time_zone, :description, :conditions, :player_limit, :archive, :automatic_petition
+  attr_accessible :name, :cup_id, :starts_at, :ends_at, :reminder_at, :fee_per_game, :time_zone, :description, :conditions, :player_limit, :archive, :automatic_petition, :slug
                    
   has_and_belongs_to_many :users,   :conditions => 'users.archive = false',   :order => 'name'
 

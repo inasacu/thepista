@@ -107,8 +107,8 @@ class SchedulesController < ApplicationController
   def new
     # editing is limited to administrator or creator
     @schedule = Schedule.new
-    unless current_user.is_manager_of?(@group)
-      flash[:warning] = I18n.t(:unauthorized)
+    unless is_current_manager_of(@group)
+      warning_unauthorized
       redirect_back_or_default('/index')
       return
     end
@@ -164,14 +164,14 @@ class SchedulesController < ApplicationController
 
   def create
     @schedule = Schedule.new(params[:schedule])    
-    unless current_user.is_manager_of?(@schedule.group)
-      flash[:warning] = I18n.t(:unauthorized)
+    unless is_current_manager_of(@schedule.group)
+      warning_unauthorized
       redirect_back_or_default('/index')
       return
     end
 
     if @schedule.save and @schedule.create_schedule_details(current_user)
-      flash[:notice] = I18n.t(:successful_create)
+      successful_create
       redirect_to @schedule
     else
       render :action => 'new'
@@ -222,8 +222,8 @@ class SchedulesController < ApplicationController
   def set_previous_profile
     @schedule = Schedule.find(params[:id])
 
-    unless current_user.is_manager_of?(@schedule.group)
-      flash[:warning] = I18n.t(:unauthorized)
+    unless is_current_manager_of(@schedule.group)
+      warning_unauthorized
       redirect_back_or_default('/index')
       return
     end
@@ -247,8 +247,8 @@ class SchedulesController < ApplicationController
   def set_roster_technical
     @match = Match.find(params[:id])
 
-    unless current_user.is_manager_of?(@match.schedule.group)
-      flash[:warning] = I18n.t(:unauthorized)
+    unless is_current_manager_of(@match.schedule.group)
+      warning_unauthorized
       redirect_back_or_default('/index')
       return
     end
@@ -263,8 +263,8 @@ class SchedulesController < ApplicationController
   def set_roster_physical
     @match = Match.find(params[:id])
 
-    unless current_user.is_manager_of?(@match.schedule.group)
-      flash[:warning] = I18n.t(:unauthorized)
+    unless is_current_manager_of(@match.schedule.group)
+      warning_unauthorized
       redirect_back_or_default('/index')
       return
     end
@@ -278,8 +278,8 @@ class SchedulesController < ApplicationController
 
   def set_roster_position_name
     @match = Match.find(params[:id])
-    unless current_user.is_manager_of?(@match.schedule.group)
-      flash[:warning] = I18n.t(:unauthorized)
+    unless is_current_manager_of(@match.schedule.group)
+      warning_unauthorized
       redirect_back_or_default('/index')
       return
     end
@@ -303,16 +303,16 @@ class SchedulesController < ApplicationController
 
   private
   def has_manager_access
-    unless current_user.is_manager_of?(@schedule.group)
-      flash[:warning] = I18n.t(:unauthorized)
+    unless is_current_manager_of(@schedule.group)
+      warning_unauthorized
       redirect_back_or_default('/index')
       return
     end
   end
 
   def has_member_access
-    unless current_user.is_member_of?(@schedule.group) or @schedule.public
-      flash[:warning] = I18n.t(:unauthorized)
+    unless is_current_member_of(@schedule.group) or @schedule.public
+      warning_unauthorized
       redirect_back_or_default('/index')
       return
     end
@@ -336,7 +336,7 @@ class SchedulesController < ApplicationController
 
   def get_match_type 
     store_location 
-    unless current_user.is_member_of?(@schedule.group) or @schedule.public 
+    unless is_current_member_of(@schedule.group) or @schedule.public 
       redirect_to :action => 'index'
       return
     end

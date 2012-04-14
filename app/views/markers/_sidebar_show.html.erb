@@ -4,7 +4,7 @@
 
 <ul class="navigation">
 
-<%= link_to(label_name(:edit_marker), edit_marker_path(marker)) if current_user.is_manager_of?(marker) %> 
+<%= link_to(label_name(:edit_marker), edit_marker_path(marker)) if is_current_manager_of(marker) %> 
 
 </ul>
 

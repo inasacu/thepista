@@ -4,7 +4,7 @@
 	# content_for(:title, sanitize(@schedule.name))
 	
 	has_been_played = @schedule.played? 
-	is_manager = current_user.is_manager_of?(@schedule.group)
+	is_manager = is_current_manager_of(@schedule.group)
 	is_squad = get_the_action.gsub(' ','_') == 'team_roster'
 	
 	the_sport = ""

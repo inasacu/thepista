@@ -23,8 +23,8 @@ class MatchesController < ApplicationController
     @match = @schedule.matches.first
     @matches = @schedule.the_roster
 
-    unless current_user.is_manager_of?(@schedule.group)
-      flash[:warning] = I18n.t(:unauthorized)
+    unless is_current_manager_of(@schedule.group)
+      warning_unauthorized
       redirect_back_or_default('/index')
       return
     end   
@@ -34,8 +34,8 @@ class MatchesController < ApplicationController
   def set_user_profile
     @schedule = Schedule.find(params[:id])
 
-    unless current_user.is_manager_of?(@schedule.group)
-      flash[:warning] = I18n.t(:unauthorized)
+    unless is_current_manager_of(@schedule.group)
+      warning_unauthorized
       redirect_back_or_default('/index')
       return
     end
@@ -59,8 +59,8 @@ class MatchesController < ApplicationController
     @schedule = @match.schedule
     @matches = @schedule.the_roster
 
-    unless current_user.is_manager_of?(@schedule.group)
-      flash[:warning] = I18n.t(:unauthorized)
+    unless is_current_manager_of(@schedule.group)
+      warning_unauthorized
       redirect_back_or_default('/index')
       return
     end    
@@ -73,8 +73,8 @@ class MatchesController < ApplicationController
     @match = Match.find(params[:id])
     the_group = @match.schedule.group
 
-    unless current_user.is_manager_of?(the_group)
-      flash[:warning] = I18n.t(:unauthorized)
+    unless is_current_manager_of(the_group)
+      warning_unauthorized
       redirect_back_or_default('/index')
       return
     end
@@ -96,8 +96,8 @@ class MatchesController < ApplicationController
   end 
 
   def set_status
-    unless current_user == @match.user or current_user.is_manager_of?(@match.schedule.group) 
-      flash[:warning] = I18n.t(:unauthorized)
+    unless current_user == @match.user or is_current_manager_of(@match.schedule.group) 
+      warning_unauthorized
       redirect_to root_url
       return
     end
@@ -131,7 +131,7 @@ class MatchesController < ApplicationController
 
   def set_status_link
     unless (@match.block_token == params[:block_token])
-      flash[:warning] = I18n.t(:unauthorized)
+      warning_unauthorized
       redirect_to root_url
       return
     end
@@ -153,9 +153,9 @@ class MatchesController < ApplicationController
   end
 
   def set_team 
-    unless current_user.is_member_of?(@match.schedule.group) 
+    unless is_current_member_of(@match.schedule.group) 
       # unless current_user.is_sub_manager_of?(@match.schedule.group) 
-      flash[:warning] = I18n.t(:unauthorized)
+      warning_unauthorized
       redirect_back_or_default('/index')
       return
     end
@@ -173,8 +173,8 @@ class MatchesController < ApplicationController
 
   private
   def has_manager_access
-    unless current_user.is_manager_of?(@schedule.group)
-      flash[:warning] = I18n.t(:unauthorized)
+    unless is_current_manager_of(@schedule.group)
+      warning_unauthorized
       redirect_back_or_default('/index')
       return
     end
@@ -193,8 +193,8 @@ class MatchesController < ApplicationController
 
   def has_member_access
     @schedule = Schedule.find(params[:id])
-    unless current_user.is_member_of?(@schedule.group) 
-      flash[:warning] = I18n.t(:unauthorized)
+    unless is_current_member_of(@schedule.group) 
+      warning_unauthorized
       redirect_back_or_default('/index')
       return
     end
@@ -204,8 +204,8 @@ class MatchesController < ApplicationController
   def has_match_access
     @match = Match.find(params[:id])
     @schedule = @match.schedule
-    unless current_user.is_member_of?(@schedule.group) 
-      flash[:warning] = I18n.t(:unauthorized)
+    unless is_current_member_of(@schedule.group) 
+      warning_unauthorized
       redirect_back_or_default('/index')
       return
     end

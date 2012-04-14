@@ -22,8 +22,8 @@ class ClassifiedsController < ApplicationController
     return unless (params[:id])
     @group = Group.find(params[:id])
 
-    unless current_user.is_manager_of?(@group)
-      flash[:warning] = I18n.t(:unauthorized)
+    unless is_current_manager_of(@group)
+      warning_unauthorized
       redirect_back_or_default('/index')
       return
     end
@@ -43,8 +43,8 @@ class ClassifiedsController < ApplicationController
 
     @group = Group.find(@classified.table_id) if @classified.table_type == "Group"
 
-    unless current_user.is_manager_of?(@group)
-      flash[:warning] = I18n.t(:unauthorized)
+    unless is_current_manager_of(@group)
+      warning_unauthorized
       redirect_back_or_default('/index')
       return
     end
@@ -53,7 +53,7 @@ class ClassifiedsController < ApplicationController
     @classified.time_zone = @group.time_zone
 
     if @classified.save      
-      flash[:notice] = I18n.t(:successful_create)
+      successful_create
       redirect_to classifieds_url and return
     else
       render :action => 'new'
@@ -70,8 +70,8 @@ class ClassifiedsController < ApplicationController
     @classified = Classified.find(params[:id])    
     @group = Group.find(@classified.table_id) if @classified.table_type == "Group"
 
-    unless current_user.is_manager_of?(@group)
-      flash[:warning] = I18n.t(:unauthorized)
+    unless is_current_manager_of(@group)
+      warning_unauthorized
       redirect_back_or_default('/index')
       return
     end 
@@ -83,8 +83,8 @@ class ClassifiedsController < ApplicationController
     @classified = Classified.find(params[:id])   
     @group = Group.find(@classified.table_id) if @classified.table_type == "Group"
 
-    unless current_user.is_manager_of?(@group)
-      flash[:warning] = I18n.t(:unauthorized)
+    unless is_current_manager_of(@group)
+      warning_unauthorized
       redirect_back_or_default('/index')
       return
     end
@@ -101,8 +101,8 @@ class ClassifiedsController < ApplicationController
     @classified = Classified.find(params[:id])   
     @group = Group.find(@classified.table_id) if @classified.table_type == "Group"
 
-    unless current_user.is_manager_of?(@group)
-      flash[:warning] = I18n.t(:unauthorized)
+    unless is_current_manager_of(@group)
+      warning_unauthorized
       redirect_back_or_default('/index')
       return
     end

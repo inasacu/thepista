@@ -112,16 +112,16 @@ class TeammatesController < ApplicationController
   end
   
   def has_item_manager_access
-    unless current_user.is_manager_of?(@item) or !current_user.is_member_of?(@item)
-      flash[:warning] = I18n.t(:unauthorized)
+    unless is_current_manager_of(@item) or !is_current_member_of(@item)
+      warning_unauthorized
       redirect_to petition_url
       return
     end
   end
 
   def has_item_member_access
-    unless current_user.is_member_of?(@item)
-      flash[:warning] = I18n.t(:unauthorized)
+    unless is_current_member_of(@item)
+      warning_unauthorized
       redirect_to petition_url
       return
     end

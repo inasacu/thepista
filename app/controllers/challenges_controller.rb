@@ -65,7 +65,7 @@ class ChallengesController < ApplicationController
     @challenge.player_limit = 99
     
     if @challenge.save and @challenge.create_challenge_details(current_user)
-      flash[:notice] = I18n.t(:successful_create)
+      successful_create
       redirect_to @challenge
     else
       render :action => 'new'
@@ -120,16 +120,16 @@ class ChallengesController < ApplicationController
   end
   
   def has_member_access
-    unless current_user.is_member_of?(@challenge)
-      flash[:warning] = I18n.t(:unauthorized)
+    unless is_current_member_of(@challenge)
+      warning_unauthorized
       redirect_to root_url
       return
     end
   end
 
   def has_manager_access
-    unless current_user.is_manager_of?(@challenge)
-      flash[:warning] = I18n.t(:unauthorized)
+    unless is_current_manager_of(@challenge)
+      warning_unauthorized
       redirect_to root_url
       return
     end

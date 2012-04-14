@@ -23,7 +23,7 @@
 
   <div class="content">   
   
-    <h2 class="title"><%= @user == current_user ? label_name(:my_schedule) : the_label %></h2>
+    <h2 class="title"><%= is_user_manager_of(@user) ? label_name(:my_schedule) : the_label %></h2>
 	
     <div class="inner">
 	
@@ -43,7 +43,7 @@
         <% @schedules.each do |schedule| -%>
 		<tr>
 			<%= view_schedule_icon(schedule) %>
-			<%= view_schedule_concept(schedule) %>
+			<%= view_schedule_name(schedule) %>
 			<%= view_schedule_group(schedule) %>
 			<%= view_schedule_played(schedule) %>
 			<%#= view_schedule_marker(schedule) %>
@@ -64,6 +64,6 @@
 	
 	<% if group_schedule_list -%>
 	<% content_for :sidebar, render(:partial => 'groups/sidebar_show') -%>
-	<% content_for :sidebar, render(:partial => 'shared/sidebar_show_team', :locals => {:group => @group}) if current_user.is_manager_of?(@group) %>
+	<% content_for :sidebar, render(:partial => 'shared/sidebar_show_team', :locals => {:group => @group}) if is_current_manager_of(@group) %>
 	<% content_for :sidebar, render('shared/share_object', :group => @group, :schedule => @group.schedules.first) if @group -%>
 	<% end -%>

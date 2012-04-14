@@ -2,7 +2,7 @@
 	current_user.groups.each do |group| 
 		the_group = h(group.name)
 		
-		if @user == current_user and @user.is_creator_of?(group)  
+		if is_user_manager_of(@user) and @user.is_creator_of?(group)  
 			if @user.is_manager_of?(group)
 				the_label = "#{ label_name(:role_remove_manager)} #{ label_name(:for) } #{the_group}"
 				the_confirmation = "#{ label_name(:role_remove_manager)}, #{h(@user.name)} #{ label_name(:for) } #{the_group}?"

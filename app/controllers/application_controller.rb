@@ -27,6 +27,39 @@ class ApplicationController < ActionController::Base
 		current_user.is_maximo?
 	end
 
+	def is_user_manager_of(item)
+		current_user.is_user_manager_of?(item)
+	end
+
+	def is_current_same_as(item)
+		current_user == item
+	end	
+
+	def is_current_manager_of(item)
+		current_user.is_manager_of?(item) 
+	end
+
+	def is_current_member_of(item)
+		current_user.is_member_of?(item)
+	end
+
+	def successful_create
+		flash[:notice] = I18n.t(:successful_create)
+	end
+	
+	def warning_unauthorized
+		flash[:warning] = I18n.t(:unauthorized)
+	end
+	
+	def recaptcha_failure
+		flash[:warning] = I18n.t(:recaptcha_failure)
+	end
+	
+	def controller_successful_create
+		flash[:notice] = I18n.t(:invitation_successful_create)
+	end
+
+
 	protected
 	
 	def access_denied
@@ -35,16 +68,16 @@ class ApplicationController < ActionController::Base
 	end
 
 	def has_member_access(item)
-		unless current_user.is_member_of?(item)
-			flash[:warning] = I18n.t(:unauthorized)
+		unless is_current_member_of(item)
+			warning_unauthorized
 			redirect_to root_url
 			return
 		end
 	end
 
 	def has_manager_access(item)
-		unless current_user.is_manager_of?(item)
-			flash[:warning] = I18n.t(:unauthorized)
+		unless is_current_manager_of(item)
+			warning_unauthorized
 			redirect_to root_url
 			return
 		end

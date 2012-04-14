@@ -40,7 +40,7 @@ module UsersHelper
       return item_image_link_large(user)
     end
 
-    if user == current_user
+    if is_current_same_as(user)
       "#{label_name(:no_photo_for, get_the_controller)}.  #{link_to(label_name(:upload), edit_user_path(user))}"
     else
       return item_image_link_large(user)
@@ -116,8 +116,8 @@ module UsersHelper
     is_manager = false
     can_decline = false 
 
-    is_manager = current_user.is_manager_of?(teammate.item) 
-    can_decline = teammate.user == current_user
+    is_manager = is_current_manager_of(teammate.item) 
+    can_decline = is_current_same_as(teammate.user)
 
     if teammate.item.class.to_s == 'Group' and teammate.item.automatic_petition 
       is_manager = false

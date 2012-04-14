@@ -44,7 +44,7 @@
      <td class="last">
 			<span class="action">
 				<% unless final_played %>
-				<% if current_user.is_member_of?(challenge) %>
+				<% if is_current_member_of(challenge) %>
 					<%= link_to("#{label_name(:invitations_your_friend)} #{the_challenge}", new_invitation_url(:challenge_id => challenge)) %><br />
 				<% 
 				  	else

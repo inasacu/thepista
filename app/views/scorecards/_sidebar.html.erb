@@ -4,7 +4,7 @@
 	
 <div class="content">
 <%	
-	if current_user.is_member_of?(@group)  %> 
+	if is_current_member_of(@group)  %> 
 	<p><%= option_image_link('message') %>&nbsp;&nbsp;<%= link_to(label_name(:send_message_to), new_message_path(:group_id => @group)) %></p>
 	<p><%= option_image_link('invitation') %>&nbsp;&nbsp;<%= link_to(label_name(:invitations_create_group) , new_invitation_url(:group_id => @group)) %></p>
 	<% unless @group.schedules.blank? %>

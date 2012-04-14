@@ -1,5 +1,5 @@
 <% 
-	is_user_manager = (current_user.is_manager_of?(@installation))
+	is_user_manager = (is_current_manager_of(@installation))
 %>
 
 <div class="block">
@@ -48,7 +48,7 @@
 								#{nice_simple_time_at(timetable.ends_at)}, 
 								#{I18n.t(:has_hour, :count => timetable.timeframe)}", :class => get_the_action %>
 				
-				<%= content_tag :td, link_to(label_name(:edit), edit_timetable_path(:id => timetable)), :class => get_the_action if current_user.is_manager_of?(@venue) %>
+				<%= content_tag :td, link_to(label_name(:edit), edit_timetable_path(:id => timetable)), :class => get_the_action if is_current_manager_of(@venue) %>
 			</tr>
 			
 			<% 
@@ -69,7 +69,7 @@
 <% content_for :sidebar, render(:partial => 'installations/sidebar_show') -%>
 <% content_for :sidebar, render(:partial => 'shared/sidebar_show_reservations', :locals =>{:installations => @installations}) %>
 
-<% if current_user.is_manager_of?(@venue) %>
+<% if is_current_manager_of(@venue) %>
 
 <% content_for :sidebar, render(:partial => '/shared/sidebar_basic_legend', 
 					:locals => {:the_render => '/installations/sidebar_installation_manager', 

@@ -1,7 +1,7 @@
 class Reservation < ActiveRecord::Base
 
-	extend FriendlyId 
-	friendly_id :name, 			use: :slugged
+	# extend FriendlyId 
+	# friendly_id :name, 			use: :slugged
 	
   
 
@@ -27,7 +27,7 @@ class Reservation < ActiveRecord::Base
   attr_accessible :name, :description, :starts_at, :ends_at, :reminder_at
   attr_accessible :fee_per_pista, :fee_per_lighting, :venue_id, :installation_id
   attr_accessible :item_id, :item_type, :block_token, :code
-  attr_accessible :public, :archive, :reminder, :available
+  attr_accessible :public, :archive, :reminder, :available, :slug
 
   # after_update        :save_matches
   before_create       :format_description

@@ -2,19 +2,17 @@
 	final_played ||= false
 	the_game = Game.final_game(@challenge.cup)
 	final_played = the_game.played unless (the_game.nil? or the_game.blank?)
-	
-	the_label= label_name(:options)
 %>
 
 
 <div class="row">
 
-<%= set_title_class(the_label) %>
+<%= set_title_class(the_label_options) %>
 
 <div class="twelve columns">
 
 <% 
-	if current_user.is_member_of?(@challenge) 
+	if is_current_member_of(@challenge) 
 		the_challenge = sanitize(@challenge.name)
 		the_confirmation = label_with_name(:do_leave_challenge, "#{the_challenge}?")
 		can_edit = false
@@ -33,7 +31,7 @@
 		
 		<% end -%>
 		
-		<%  if current_user.is_manager_of?(@challenge) and !final_played %>
+		<%  if is_current_manager_of(@challenge) and !final_played %>
 		
 		<%= option_image_link('challenge') ***
 		<%= link_to label_name(:challenges_edit), edit_challenge_path(@challenge) %>

@@ -423,7 +423,7 @@ module ApplicationHelper
 			list_of_items += send(:"#{the_link}", item)
 			list_of_items += ", "      
 		end
-		return list_of_items.chop.chop
+		return list_of_items.chop.chop.html_safe
 	end
 
 	def item_new(item)  
@@ -553,7 +553,7 @@ module ApplicationHelper
 
 		when 'schedule', 'forum', 'match'
 			the_schedule = (get_controller_action == "schedule_my_list")
-			the_schedule = the_schedule ? (@user == current_user) : true
+			the_schedule = the_schedule ? is_current_same_as(@user) : true
 			the_schedule = the_schedule ? "active" : " "
 			the_user = "active" if the_controller_action.include?(get_controller_action)
 			if get_controller_action == 'schedule_schedule_list'
@@ -721,7 +721,8 @@ module ApplicationHelper
 
 	def set_class_name_and_date(first_item, second_item)
 		the_span = content_tag('span', second_item.html_safe, :class => 'date')
-		return content_tag('td', "#{first_item}<br />#{the_span}".html_safe, :class => 'name_and_date')
+		# return content_tag('td', "#{first_item}<br />#{the_span}".html_safe, :class => 'name_and_date')
+		return set_content_tag_safe(:td, "#{first_item}<br />#{the_span}", 'name_and_date')
 	end
 
 	def set_content_tag_safe(html_value, display_value, class_value='')
@@ -754,6 +755,30 @@ module ApplicationHelper
 
 	def the_maximo
 		current_user.is_maximo?
+	end
+	
+	def is_group_manager_of
+		current_user.is_group_manager_of?
+	end
+	
+	def is_current_manager_of(item)
+		current_user.is_manager_of?(item) 
+	end
+	
+	def is_user_manager_of(item)
+		current_user.is_user_manager_of?(item)
+	end
+	
+	def is_current_same_as(item)
+		current_user == item
+	end
+	
+	def the_label_options
+		label_name(:options)
+	end
+	
+	def is_current_member_of(item)
+		current_user.is_member_of?(item)
 	end
 	
 end

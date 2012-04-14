@@ -58,7 +58,7 @@ class InstallationsController < ApplicationController
 		@installation = Installation.new(params[:installation])  
 
 		if @installation.save 
-			flash[:notice] = I18n.t(:successful_create)
+			successful_create
 			redirect_to @installation
 		else
 			render :action => 'new'
@@ -83,8 +83,8 @@ class InstallationsController < ApplicationController
 		@installation = Installation.find(params[:id])
 		@venue = @installation.venue
 
-		unless current_user.is_manager_of?(@venue)
-			flash[:warning] = I18n.t(:unauthorized)
+		unless is_current_manager_of(@venue)
+			warning_unauthorized
 			redirect_back_or_default('/index')
 			return
 		end
@@ -96,8 +96,8 @@ class InstallationsController < ApplicationController
 
 	private
 	def has_manager_access
-		unless current_user.is_manager_of?(@venue)
-			flash[:warning] = I18n.t(:unauthorized)
+		unless is_current_manager_of(@venue)
+			warning_unauthorized
 			redirect_back_or_default('/index')
 			return
 		end

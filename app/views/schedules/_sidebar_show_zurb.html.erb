@@ -1,13 +1,11 @@
 <%
-	the_label = label_name(:options) 
 	has_been_played = @schedule.played?
 
-	is_group_manager = @group ? current_user.is_manager_of?(@group) : false
-	is_group_member = @group ? current_user.is_member_of?(@group) : false
+	is_group_manager = @group ? is_current_manager_of(@group) : false
+	is_group_member = @group ? is_current_member_of(@group) : false
 	has_group = @group ? true : false
 
 	the_group_name = ""
-	the_label = label_name(:options)
 	the_manager_label = ""
 	the_confirmation = ""
 

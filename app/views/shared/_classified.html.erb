@@ -17,7 +17,7 @@ unless classified.nil?
 		<span class="date">
 			<%= classified_link(classified) %><br />
 			<%= "&nbsp;&nbsp;[#{the_label}]" %>				
-			<%= classified_image_link(classified)  if current_user.is_manager_of?(group)   %>				
+			<%= classified_image_link(classified)  if is_current_manager_of(group)   %>				
 		</span>
 	</td>
 	</tr>

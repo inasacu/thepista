@@ -8,7 +8,7 @@ class PasswordResetsController < ApplicationController
 
 		if DISPLAY_RECAPTCHA 
 			unless verify_recaptcha   
-				flash[:warning] = I18n.t(:recaptcha_failure)
+				recaptcha_failure
 				render :action => :new
 				return
 			end
@@ -32,7 +32,7 @@ class PasswordResetsController < ApplicationController
 
 		if DISPLAY_RECAPTCHA 
 			unless verify_recaptcha   
-				flash[:warning] = I18n.t(:recaptcha_failure)
+				recaptcha_failure
 				render :action => :new
 				return
 			end

@@ -20,7 +20,7 @@ class RolesController < ApplicationController
   def create
     @roles = Role.new(params[:roles])
     if @roles.save
-      flash[:notice] = I18n.t(:successful_create)
+      successful_create
       redirect_to @roles
     else
       render :action => 'new'

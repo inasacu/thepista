@@ -18,7 +18,7 @@
           %p
             = option_image_link('group_add')
             \&nbsp;&nbsp;#{link_to label_name(:escuadras_create), new_escuadra_path(:id => cup)}
-        - if current_user.is_manager_of?(cup)
+        - if is_current_manager_of(cup)
           %p
             = option_image_link('cup')
             \&nbsp;&nbsp;

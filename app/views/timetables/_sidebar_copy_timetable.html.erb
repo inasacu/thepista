@@ -5,7 +5,7 @@
 	<%= option_image_link('installation') %>&nbsp;&nbsp;
 		<%= content_tag :td, link_to(h(installation.name), 
 									 set_copy_timetable_path(:id => installation, :current_id => @installation), 
-									:confirm => label_name(:are_you_sure)), :class => get_the_action if current_user.is_manager_of?(@venue) %>
+									:confirm => label_name(:are_you_sure)), :class => get_the_action if is_current_manager_of(@venue) %>
 	</p>		
 <% end %>
 

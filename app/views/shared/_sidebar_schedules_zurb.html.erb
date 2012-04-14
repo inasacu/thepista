@@ -12,7 +12,7 @@
 
 		is_gameday = (schedule.starts_at.to_date == Time.zone.today)
 		the_url = team_roster_path(:id => schedule)
-		is_member = (current_user.is_member_of?(schedule.group) or schedule.public)
+		is_member = (is_current_member_of(schedule.group) or schedule.public)
 		
 		show_member_schedule = is_member ? "#{schedule_image_link_small(schedule)} #{link_to(sanitize(schedule.name), team_roster_path(:id => schedule))}  -  #{item_name_link(schedule.group)}" : 
 										   "#{schedule_image_small(schedule)} #{sanitize(schedule.name)}  -  #{item_name_link(schedule.group)}"

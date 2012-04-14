@@ -1,1 +1,29 @@
-<%= render 'shared/sidebar_edit_zurb', :item => @user, :label => 'edit' %>
+
+<%= render 'shared/sidebar_edit_zurb', :item => @user, :label => 'edit' if is_current_same_as(@user) %>
+
+<%= set_title_class(the_label_options) %>
+<hr/>
+
+<div class="row">
+	<div class="twelve columns">
+	
+		<% if is_group_manager_of %>
+		<%= render('/users/sidebar_show_subscription_zurb', :the_label => label_name('subscription_option')) if is_user_manager_of(@user) %>
+
+		<%= render('/users/sidebar_show_join_zurb', :the_label => label_name('join_option')) %>
+
+		<%= render('/users/sidebar_show_sub_manager_zurb', :the_label => label_name('sub_manager_option'))  if is_user_manager_of(@user) and !is_current_same_as(@user) and DISPLAY_FREMIUM_SERVICES %>
+
+		<%= render('/users/sidebar_show_manager_zurb', :the_label => label_name('manager_option')) if is_user_manager_of(@user) %>
+
+		<%= render('/users/sidebar_show_item_manager_zurb', :the_label => label_name("#{@items.first.class.to_s.downcase}_option"), :items => @items) unless @items.nil? or @items.blank? %>
+		<% end %>
+	
+	</div>
+</div>
+
+<hr/>
+<br/>
+
+
+<%= render('/shared/sidebar_index') if is_user_manager_of(@user) if DISPLAY_FREMIUM_SERVICES -%>

@@ -29,7 +29,7 @@ if current_user
 			<li class="<%= get_active %>">  <%= link_to(label_name(:recent_activities) , recent_activity_path) %></li>
 <% 		
 		else 
-			the_label = (@user == current_user ? label_name(:my_wall) : "#{t(:the_wall)} #{h(@user.name)}")	
+			the_label = (is_user_manager_of(@user) ? label_name(:my_wall) : "#{t(:the_wall)} #{h(@user.name)}")	
 			#my_openid = (@user.can_modify?(current_user) and @user.openid_login)	
 %>
 			<li class="<%= get_first_active %>">  <%#= link_to(the_label, blog_path(@user.blog)) %></li>
@@ -46,7 +46,7 @@ if current_user
 			<li class="<%= the_class %>">  <%= link_to(label_name(:groups_create) , new_group_url) %></li>
 <% 
 		else 
-			if current_user.is_member_of?(@group) 
+			if is_current_member_of(@group) 
 			the_label = "#{t(:the_wall)} #{h(@group.name)}"
 %>
 			<li class="<%= the_class %>">  <%= link_to(the_label, blog_path(@group.blog)) %></li>
@@ -59,7 +59,7 @@ if current_user
 	
 	when 'blogs', 'entries', 'comments' 
 		if @user 
-			the_label = (@user == current_user ? label_name(:my_wall) : "#{label_name(:the_wall)} #{h(@user.name)}")
+			the_label = (is_user_manager_of(@user) ? label_name(:my_wall) : "#{label_name(:the_wall)} #{h(@user.name)}")
 			my_openid = (@user.can_modify?(current_user) and @user.openid_login)			
 %>	
 			<%= list_link_with_active(the_label, blog_path(@user.blog), {:action => 'show'}) %>
@@ -71,7 +71,7 @@ if current_user
 
 <% 		
 		elsif @group 
-			if current_user.is_member_of?(@group) 
+			if is_current_member_of(@group) 
 				the_label = "#{label_name(:the_wall)} #{h(@group.name)}"
 %>
 				<li class="<%= the_class %>">  <%= link_to(the_label, blog_path(@group.blog)) %></li>
@@ -93,7 +93,7 @@ if current_user
 
 <% 
 		else 
-			if current_user.is_member_of?(@schedule.group)
+			if is_current_member_of(@schedule.group)
 				the_label = "#{label_name(:forum)} #{sanitize(@schedule.name)}"
 %>
 				<li class="<%= the_class %>">  <%= schedule_link @schedule %>

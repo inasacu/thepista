@@ -4,7 +4,7 @@
 
 <div class="content">
 <% 
-	if current_user.is_member_of?(@item) 
+	if is_current_member_of(@item) 
 %>
 		<p><%= option_image_link('message') %>&nbsp;&nbsp;<%= link_to(label_name(:send_message_to), new_message_path(:item_id => @item)) %></p>
 		<p><%= link_to("#{label_name(:invitations_create_item)} #{label_name(@item.class.to_s).downcase}", new_invitation_url(:item_id => @item)) %></p>	

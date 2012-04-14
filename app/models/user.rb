@@ -1,7 +1,7 @@
 class User < ActiveRecord::Base
 
-	extend FriendlyId 
-	friendly_id :name, 			use: :slugged
+	# extend FriendlyId 
+	# friendly_id :name, 			use: :slugged
 	
 	acts_as_messageable :required => :body
    
@@ -106,7 +106,8 @@ class User < ActiveRecord::Base
                     
                       
     before_update   :format_description
-    after_create    :create_user_blog_details, :signup_notification
+    # after_create    :create_user_blog_details, 
+		after_create		:signup_notification
    
        
     # method section   
@@ -166,13 +167,13 @@ class User < ActiveRecord::Base
       User.find(:first, :conditions => ["email = ?", email])
     end 
     
-    def forum_message?
-      self.forum_comment_notification?
-    end
+    # def forum_message?
+    #   self.forum_comment_notification?
+    # end
     
-    def blog_message?
-      self.blog_comment_notification?
-    end   
+    # def blog_message?
+    #   self.blog_comment_notification?
+    # end   
 
     def self.user_fees(the_users)
 			find.where("id in (?) and archive = false", the_users).page(params[:page]).order('users.name')
@@ -218,8 +219,7 @@ class User < ActiveRecord::Base
          
     ## methods for acl9 - authorization      
     def can_add_to_group?(current_user, group)
-      # (self == current_user and self.is_not_member_of?(group)) or (current_user.is_manager_of?(group) and self.is_not_member_of?(group))
-      (self == current_user and self.is_not_member_of?(group))
+      (is_current_same_as(self) and self.is_not_member_of?(group))
     end  
 
     def my_members?(user)

@@ -71,8 +71,8 @@ class PaymentsController < ApplicationController
     else
     end
 
-    unless current_user.is_manager_of?(@item)
-      flash[:warning] = I18n.t(:unauthorized)
+    unless is_current_manager_of(@item)
+      warning_unauthorized
       redirect_to root_url
       return
     end
@@ -93,7 +93,7 @@ class PaymentsController < ApplicationController
     @payment_credit.credit_amount = @payment.debit_amount
 
     if @payment.save and @payment_credit.save
-      flash[:notice] = I18n.t(:successful_create)
+      successful_create
       # redirect_to fees_url(:id => @user) and return
       redirect_back_or_default('/index')
       # redirect_to root_url and return
@@ -126,7 +126,7 @@ class PaymentsController < ApplicationController
 
   def get_fee    
     unless params[:id]
-      flash[:warning] = I18n.t(:unauthorized)
+      warning_unauthorized
       redirect_to root_url
       return
     end
@@ -139,8 +139,8 @@ class PaymentsController < ApplicationController
       @item = Challenge.find(@fee.credit_id)
     end
 
-    unless current_user.is_manager_of?(@item)
-      flash[:warning] = I18n.t(:unauthorized)
+    unless is_current_manager_of(@item)
+      warning_unauthorized
       redirect_to root_url
       return
     end
@@ -157,8 +157,8 @@ class PaymentsController < ApplicationController
       @item = Challenge.find(@payment.fee.credit_id)
     end
 
-    unless current_user.is_manager_of?(@item)
-      flash[:warning] = I18n.t(:unauthorized)
+    unless is_current_manager_of(@item)
+      warning_unauthorized
       redirect_to root_url
       return
     end

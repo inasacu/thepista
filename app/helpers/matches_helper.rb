@@ -196,7 +196,7 @@ module MatchesHelper
 
   	item_group_link = item_name_link(the_match.schedule.group)
 
-  	is_member = current_user.is_member_of?(the_match.schedule.group)
+  	is_member = is_current_member_of(the_match.schedule.group)
 
 
   	the_label = %(#{I18n.t(:passed_to)} #{the_match.type_name} #{I18n.t(:in)})
@@ -253,8 +253,8 @@ module MatchesHelper
   	away["players"] = 0
 
   	group = schedule.group
-  	is_manager = current_user.is_manager_of?(group)
-  	is_member = current_user.is_member_of?(group)
+  	is_manager = is_current_manager_of(group)
+  	is_member = is_current_member_of(group)
 
   	is_squad = get_the_action.gsub(' ','_') == 'team_roster'
   	group_games_played = schedule.group.games_played.to_f

@@ -1,7 +1,7 @@
 class Game < ActiveRecord::Base
 
-	extend FriendlyId 
-	friendly_id :name, 			use: :slugged
+	# extend FriendlyId 
+	# friendly_id :name, 			use: :slugged
 	
   acts_as_tree :foreign_key => :next_game_id
 
@@ -54,7 +54,7 @@ class Game < ActiveRecord::Base
   attr_accessible :name, :starts_at, :ends_at, :reminder_at, :deadline_at
   attr_accessible :points_for_single, :points_for_double, :points_for_draw, :points_for_goal_difference, :points_for_goal_total, :points_for_winner
   attr_accessible :cup_id, :home_id, :away_id, :winner_id, :next_game_id, :jornada, :round, :type_name
-  attr_accessible :home_score, :away_score, :played, :home_ranking, :away_ranking, :home_stage_name, :away_stage_name
+  attr_accessible :home_score, :away_score, :played, :home_ranking, :away_ranking, :home_stage_name, :away_stage_name, :slug
                    
   before_update :set_game_winner
   after_update  :calculate_standing

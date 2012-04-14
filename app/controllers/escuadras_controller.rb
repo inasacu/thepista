@@ -29,7 +29,7 @@ class EscuadrasController < ApplicationController
       @escuadras.each do |escuadra| 
         escuadra.join_escuadra(@cup)
       end
-      flash[:notice] = I18n.t(:successful_create)
+      successful_create
       redirect_to escuadras_path(:id => @cup) and return
     end
 
@@ -48,7 +48,7 @@ class EscuadrasController < ApplicationController
         @escuadra.save
       end
 
-      flash[:notice] = I18n.t(:successful_create)
+      successful_create
       redirect_to escuadras_path(:id => @cup) and return
     else
       render :action => 'new'

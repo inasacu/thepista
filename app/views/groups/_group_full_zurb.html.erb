@@ -1,13 +1,12 @@
 <%  
 	schedule = Schedule.last_schedule_group_played(group) 
-	is_member_group = current_user.is_member_of?(group)
+	is_member_group = is_current_member_of(group)
 	
-	is_group_manager = group ? current_user.is_manager_of?(group) : false
-	is_group_member = group ? current_user.is_member_of?(group) : false
+	is_group_manager = group ? is_current_manager_of(group) : false
+	is_group_member = group ? is_current_member_of(group) : false
 	has_group = group ? true : false
 	
-	the_group_name = ""
-	the_label = label_name(:options)
+	the_group_name = ""	
 	the_manager_label = ""
 	the_confirmation = ""
 	
@@ -15,7 +14,6 @@
 	if has_group
 		the_group_name = h(group.name) 
 
-		# the_label = label_with_name('create_schedule', group.name)
 		the_manager_label = label_name(:options_for_manager)
 		the_confirmation = "#{ label_name(:destroy_group) } #{the_group_name}?"
 		
@@ -49,7 +47,7 @@
 			   end
 			-%>
 		
-			<% if current_user.is_manager_of?(group) %> 
+			<% if is_current_manager_of(group) %> 
 				<strong><%= option_image_small_link('schedule') %>&nbsp;&nbsp;<%= link_to label_name(:schedules_create), new_schedule_path(:id => group) %></strong>
 	        <% end %>
 		</span>

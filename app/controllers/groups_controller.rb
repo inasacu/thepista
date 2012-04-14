@@ -43,17 +43,17 @@ class GroupsController < ApplicationController
     @user = current_user
 
     if @group.save and @group.create_group_details(current_user)
-      flash[:notice] = I18n.t(:successful_create)
+      successful_create
       redirect_to @group
     else
       render :action => 'new'
     end
   end
   
-  def edit
-	set_the_template('groups/new')
-	render @the_template   
-   end
+	def edit
+		set_the_template('groups/new')
+		render @the_template   
+	end
 
   def update
     @original_group = Group.find(params[:id])
@@ -134,8 +134,8 @@ class GroupsController < ApplicationController
   end
 
   def has_manager_access
-    unless current_user.is_manager_of?(@group)
-      flash[:warning] = I18n.t(:unauthorized)
+    unless is_current_manager_of(@group)
+      warning_unauthorized
       redirect_back_or_default('/index')
       return
     end

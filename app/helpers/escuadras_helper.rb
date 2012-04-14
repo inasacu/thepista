@@ -19,7 +19,7 @@ module EscuadrasHelper
     if escuadra.photo_file_name
       return escuadra_image_link_large(escuadra)
     end
-    if current_user.is_manager_of?(escuadra)
+    if is_current_manager_of(escuadra)
       "#{label_name(:no_photo_for, get_the_controller)}.  #{link_to(label_name(:upload), edit_escuadra_path(escuadra))}"
     else  
       return escuadra_image_link_large(escuadra)

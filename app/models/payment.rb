@@ -1,7 +1,7 @@
 class Payment < ActiveRecord::Base
   
-	extend FriendlyId 
-	friendly_id :name, 			use: :slugged
+	# extend FriendlyId 
+	# friendly_id :name, 			use: :slugged
 	
   belongs_to    :manager,        :class_name => 'User',        :foreign_key => 'manager_id'
   belongs_to    :debit,          :polymorphic => true
@@ -28,7 +28,7 @@ class Payment < ActiveRecord::Base
 
   # variables to access
   attr_accessible :name, :description, :debit_amount, :credit_amount, :debit_id, :debit_type
-  attr_accessible :credit_id, :credit_type, :item_id, :item_type, :manager_id, :fee_id
+  attr_accessible :credit_id, :credit_type, :item_id, :item_type, :manager_id, :fee_id, :slug
 
   # method section
   def self.debit_user_item_schedule(debits, credits, the_payments)

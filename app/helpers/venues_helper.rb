@@ -4,7 +4,7 @@ module VenuesHelper
     if venue.photo_file_name
       return item_image_link_large(venue)
     end
-    if current_user.is_manager_of?(venue)
+    if is_current_manager_of(venue)
       "#{I18n.t(:no_photo_for, get_the_controller)}.  #{link_to(I18n.t(:upload), edit_venue_path(venue))}"
     else  
       return item_image_link_large(venue)

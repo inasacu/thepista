@@ -1,13 +1,8 @@
 class Venue < ActiveRecord::Base
 
-	extend FriendlyId 
-	friendly_id :name, 			use: :slugged
-	
-  # index do
-  #   name
-  #   description
-  # end
-                  
+	# extend FriendlyId 
+	# friendly_id :name, 			use: :slugged
+	                  
   has_attached_file :photo, :styles => {:icon => "25x25>", :thumb  => "80x80>", :medium => "160x160>",  },
     :storage => :s3,
     :s3_credentials => "#{Rails.root}/config/s3.yml",
@@ -30,7 +25,7 @@ class Venue < ActiveRecord::Base
 
   # variables to access
   attr_accessible :name, :description, :starts_at, :ends_at, :time_zone, :marker_id
-  attr_accessible :photo, :enable_comments, :public, :day_light_savings,  :day_light_starts_at, :day_light_ends_at
+  attr_accessible :photo, :enable_comments, :public, :day_light_savings,  :day_light_starts_at, :day_light_ends_at, :slug
     
   
    
@@ -53,7 +48,7 @@ class Venue < ActiveRecord::Base
   
   before_create :format_description
   before_update :format_description
-  after_create  :create_venue_blog_details
+  # after_create  :create_venue_blog_details
 
   # related to gem acl9
   acts_as_authorization_subject :association_name => :roles, :join_table_name => :roles_venues
@@ -132,7 +127,7 @@ class Venue < ActiveRecord::Base
   end
 
 private
-  def create_venue_blog_details
-    @blog = Blog.create_item_blog(self)
-  end
+  # def create_venue_blog_details
+  #   @blog = Blog.create_item_blog(self)
+  # end
 end

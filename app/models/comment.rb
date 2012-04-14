@@ -65,52 +65,52 @@ class Comment < ActiveRecord::Base
     self.body.gsub!(/\r?\n/, "<br>") unless self.body.nil?
   end
 
-  def send_message_blog      
-    @item = ''
-        
-    case self.commentable_type
-    when "Forum"
-      @item = Forum.find(self.commentable_id)
-      @group = @item.schedule.group
-
-      the_label = @item.schedule.name.to_s.strip[0..25]
-      
-      @group.users.each do |user|
-        UserMailer.delay.message_blog(user, self.user, self, the_label) if user.forum_message?
-      end      
-
-    when "Blog"
-      @item = Blog.find(self.commentable_id)
-
-      case @item.item_type
-      when "User"
-        if self.commentable.user 
-          the_label = self.commentable.user.name.to_s.strip[0..25]
-          UserMailer.delay.message_blog(self.commentable.user, self.user, self, the_label) if self.commentable.user.blog_message?
-        end
-      when "Group"
-        @group = Group.find(@item.item_id)
-
-        @group.users.each do |user|
-          the_label = @group.name.to_s.strip[0..25]
-          UserMailer.delay.message_blog(user, self.user, self, the_label) if user.blog_message?
-        end
-          
-      when "Challenge"
-        @challenge = Challenge.find(@item.item_id)
-        
-        @challenge.users.each do |user|
-          the_label = @challenge.name.to_s.strip[0..25]
-          UserMailer.delay.message_blog(user, self.user, self, the_label) if user.blog_message?
-        end
-        
-      else
-      end
-      
-    else
-    end
-    
-  end
+  # def send_message_blog      
+  #   @item = ''
+  #       
+  #   case self.commentable_type
+  #   when "Forum"
+  #     @item = Forum.find(self.commentable_id)
+  #     @group = @item.schedule.group
+  # 
+  #     the_label = @item.schedule.name.to_s.strip[0..25]
+  #     
+  #     @group.users.each do |user|
+  #       UserMailer.delay.message_blog(user, self.user, self, the_label) if user.forum_message?
+  #     end      
+  # 
+  #   when "Blog"
+  #     @item = Blog.find(self.commentable_id)
+  # 
+  #     case @item.item_type
+  #     when "User"
+  #       if self.commentable.user 
+  #         the_label = self.commentable.user.name.to_s.strip[0..25]
+  #         UserMailer.delay.message_blog(self.commentable.user, self.user, self, the_label) if self.commentable.user.blog_message?
+  #       end
+  #     when "Group"
+  #       @group = Group.find(@item.item_id)
+  # 
+  #       @group.users.each do |user|
+  #         the_label = @group.name.to_s.strip[0..25]
+  #         UserMailer.delay.message_blog(user, self.user, self, the_label) if user.blog_message?
+  #       end
+  #         
+  #     when "Challenge"
+  #       @challenge = Challenge.find(@item.item_id)
+  #       
+  #       @challenge.users.each do |user|
+  #         the_label = @challenge.name.to_s.strip[0..25]
+  #         UserMailer.delay.message_blog(user, self.user, self, the_label) if user.blog_message?
+  #       end
+  #       
+  #     else
+  #     end
+  #     
+  #   else
+  #   end
+  #   
+  # end
   
   def self.exists?(commentable_id, commentable_type, user)
     if self.count(:conditions => ["commentable_id = ? and commentable_type = ? and user_id = ? and created_at >= ?", 

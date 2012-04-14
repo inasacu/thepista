@@ -1,7 +1,7 @@
 class Fee < ActiveRecord::Base
 
-	extend FriendlyId 
-	friendly_id :name, 			use: :slugged
+	# extend FriendlyId 
+	# friendly_id :name, 			use: :slugged
 	
   belongs_to     :manager,        :class_name => 'User',        :foreign_key => 'manager_id'
   belongs_to     :debit,          :polymorphic => true
@@ -29,11 +29,11 @@ class Fee < ActiveRecord::Base
   # variables to access
   attr_accessible :name, :description, :payed, :debit_amount, :season_player
   attr_accessible :debit_id, :debit_type, :credit_id, :credit_type, :item_id, :item_type 
-  attr_accessible :type_id, :manager_id
+  attr_accessible :type_id, :manager_id, :slug
   
   
    
-                   # :reserved_words => ["new", "create", "index", "list", "edit", "update", "destroy", "show"]
+                   
 
 
   # method section

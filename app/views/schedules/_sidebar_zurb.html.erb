@@ -1,5 +1,5 @@
 <% 
-	is_schedule_manager = @schedule ? current_user.is_manager_of?(@schedule.group) : false 
+	is_schedule_manager = @schedule ? is_current_manager_of(@schedule.group) : false 
 %>
 
 

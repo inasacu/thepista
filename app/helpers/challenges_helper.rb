@@ -10,7 +10,7 @@ module ChallengesHelper
     if the_first_manager.photo_file_name
       return item_image_link_medium(the_first_manager)
     end
-    if current_user.is_manager_of?(challenge)
+    if is_current_manager_of(challenge)
       "#{label_name(:no_photo_for, get_the_controller)}.  #{link_to(label_name(:upload), edit_challenge_path(challenge))}"
     else  
       return item_image_link_medium(the_first_manager)

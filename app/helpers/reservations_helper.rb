@@ -17,8 +17,8 @@ module ReservationsHelper
     link_to(image_tag('icons/reservation.png', options={:style => "height: 15px; width: 15px;"}), installation_path(reservation.installation)) 
   end
 
-  def view_reservation_concept(reservation)      
-    return content_tag('td', (current_user.is_member_of?(reservation.venue) or reservation.public) ? 
+  def view_reservation_name(reservation)      
+    return content_tag('td', (is_current_member_of(reservation.venue) or reservation.public) ? 
     link_to(sanitize(reservation.name), reservation_path(:id => reservation)) : sanitize(reservation.name))
   end
 
@@ -39,7 +39,7 @@ module ReservationsHelper
   end
 
   def view_reservation_icon(reservation)
-    return content_tag('td', (current_user.is_member_of?(reservation.venue) or reservation.public) ? reservation_image_link_small(reservation.installation) : reservation_image_small(reservation.installation))
+    return content_tag('td', (is_current_member_of(reservation.venue) or reservation.public) ? reservation_image_link_small(reservation.installation) : reservation_image_small(reservation.installation))
   end
 
   def view_reservation_played(reservation)

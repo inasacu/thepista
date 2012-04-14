@@ -88,8 +88,8 @@ class FeesController < ApplicationController
     @fee = Fee.new
     @recipients = @group.users
 
-    unless current_user.is_manager_of?(@group) 
-      flash[:warning] = I18n.t(:unauthorized)
+    unless is_current_manager_of(@group) 
+      warning_unauthorized
       redirect_to root_url
       return
     end
@@ -102,8 +102,8 @@ class FeesController < ApplicationController
     @fee = Fee.new(params[:fee])       
     @group = Group.find(@fee.credit_id) if @fee.credit_type == "Group"
 
-    unless current_user.is_manager_of?(@group)
-      flash[:warning] = I18n.t(:unauthorized)
+    unless is_current_manager_of(@group)
+      warning_unauthorized
       redirect_back_or_default('/index')
       return
     end
@@ -132,7 +132,7 @@ class FeesController < ApplicationController
         @recipient_fee.save! unless @recipients.first == recipient
       end
 
-      flash[:notice] = I18n.t(:successful_create)
+      successful_create
       redirect_to fees_url and return
     else
       render :action => 'new'
@@ -177,8 +177,8 @@ class FeesController < ApplicationController
   def has_user_access
     if params[:id]
       @user = User.find(params[:id])
-      unless current_user.is_user_manager_of?(@user) or @user == current_user
-        flash[:warning] = I18n.t(:unauthorized)
+      unless is_user_manager_of(@user) or is_current_same_as(@user)
+        warning_unauthorized
         redirect_to root_url
         return
       end
@@ -210,16 +210,16 @@ class FeesController < ApplicationController
 
       case params[:item]
       when "Challenge", "Group"
-        unless current_user.is_manager_of?(@item) 
-          flash[:warning] = I18n.t(:unauthorized)
+        unless is_current_manager_of(@item) 
+          warning_unauthorized
           redirect_to root_url
           return
         end
 
       when "User"
-        if current_user.is_user_manager_of?(@user) or @user == current_user
+        if is_user_manager_of(@user) or is_current_same_as(@user)
         else
-          flash[:warning] = I18n.t(:unauthorized)
+          warning_unauthorized
           redirect_to root_url
           return
         end
@@ -235,8 +235,8 @@ class FeesController < ApplicationController
     if params[:id]
       @group = Group.find(params[:id]) 
 
-      unless current_user.is_manager_of?(@group) 
-        flash[:warning] = I18n.t(:unauthorized)
+      unless is_current_manager_of(@group) 
+        warning_unauthorized
         redirect_to root_url
         return
       end
@@ -251,8 +251,8 @@ class FeesController < ApplicationController
     @fee = Fee.find(params[:id])    
     @group = Group.find(@fee.credit_id) if @fee.credit_type == "Group"
 
-    unless current_user.is_manager_of?(@group)
-      flash[:warning] = I18n.t(:unauthorized)
+    unless is_current_manager_of(@group)
+      warning_unauthorized
       redirect_back_or_default('/index')
       return
     end

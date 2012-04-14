@@ -1,7 +1,7 @@
 <% 
 	@user.groups.each do |group| 
 
-		if current_user.is_manager_of?(group) 
+		if is_current_manager_of(group) 
 
 			unless @user.is_sub_manager_of?(group) 
 	%>		

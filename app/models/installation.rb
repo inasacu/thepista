@@ -1,7 +1,7 @@
 class Installation < ActiveRecord::Base
 
-	extend FriendlyId 
-	friendly_id :name, 			use: :slugged
+	# extend FriendlyId 
+	# friendly_id :name, 			use: :slugged
 
 	# index{ name }
 
@@ -36,12 +36,7 @@ class Installation < ActiveRecord::Base
 	# variables to access
 	attr_accessible :name, :description, :conditions, :starts_at, :ends_at, :timeframe
 	attr_accessible :fee_per_pista, :fee_per_lighting, :venue_id, :sport_id, :marker_id
-	attr_accessible :public, :lighting, :outdoor, :archive, :photo
-
-
-	
-	# friendly_id :venue_and_name, :use => :slugged, :approximate_ascii => true, 
-	# :reserved_words => ["new", "create", "index", "list", "signup", "edit", "update", "destroy", "show"]
+	attr_accessible :public, :lighting, :outdoor, :archive, :photo, :slug
 
 	# after_update        :save_matches
 	before_create       :format_description, :format_conditions

@@ -18,7 +18,7 @@
 	controls = ['blog', 'comments', 'fees', 'payments'] 
 	actions = ['show','edit','third_party', 'recent_activity']
 	the_user = (@user ? @user : current_user)
-	label_the_user = (the_user == current_user ? "" : "#{label_name(:from_de)} #{h(the_user.name)}")
+	label_the_user = (is_user_manager_of(the_user) ? "" : "#{label_name(:from_de)} #{h(the_user.name)}")
 %>
 
 <div class="secondary-navigation">
@@ -43,13 +43,13 @@
 					the_blog = Blog.find_item(the_user)
 				end		
 %>
-				<li class="<%= get_active('blog_show') %>"><%= blog_link(the_blog) %></li>
+				<li class=""></li>
 <% 
 			end
 		
 		end
 		
-		if current_user.is_user_manager_of?(the_user) or the_user == current_user 
+		if is_user_manager_of(the_user) or is_user_manager_of(the_user) 
 %>
 		<li class="<%= the_active_fee %>"><%= link_to(label_name(:fees), fees_path(:id => the_user)) %></li>
 		<li class="<%= get_active('fee_item') %>"><%= link_to(label_name(:payments), item_fees_path(:id => the_user)) %></li>

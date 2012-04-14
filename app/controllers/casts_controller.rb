@@ -43,8 +43,8 @@ class CastsController < ApplicationController
   def update
     @cast = Cast.find(params[:id])
     
-    unless current_user.is_member_of?(@cast.challenge) and current_user == @cast.user
-      flash[:warning] = I18n.t(:unauthorized)
+    unless is_current_member_of(@cast.challenge) and current_user == @cast.user
+      warning_unauthorized
       redirect_back_or_default('/index')
       return
     end
@@ -65,8 +65,8 @@ class CastsController < ApplicationController
   
   def has_member_access
     @challenge = Challenge.find(params[:id])
-    unless current_user.is_member_of?(@challenge)
-      flash[:warning] = I18n.t(:unauthorized)
+    unless is_current_member_of(@challenge)
+      warning_unauthorized
       redirect_to root_url
       return
     end

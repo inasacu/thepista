@@ -28,7 +28,7 @@
 	</td>
 	<td class="last">
 		<%#= render :partial => 'action', :locals => {:classified => classified, :group => group} if full_classified %>		
-		<%= classified_image_link(classified)  if full_classified and current_user.is_manager_of?(group)   %>
+		<%= classified_image_link(classified)  if full_classified and is_current_manager_of(group)   %>
 	</td>
 </tr>
 

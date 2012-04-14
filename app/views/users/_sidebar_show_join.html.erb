@@ -4,13 +4,13 @@
 
 			unless @user.is_member_of?(group)  
 
-				if current_user.is_manager_of?(group)
+				if is_current_manager_of(group)
 					%>
 					<p><%= option_image_link('user_add') %>&nbsp;&nbsp;<%= join_item_link_to(@user, group, true) %></p>
 					<% 
 				end
 			else 
-				if current_user.is_manager_of?(group)
+				if is_current_manager_of(group)
 					%> 
 					<p><%= option_image_link('group_remove') %>&nbsp;&nbsp;<%= leave_item_link_to(@user, group) %></p>
 					<% 

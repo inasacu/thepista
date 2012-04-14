@@ -321,7 +321,7 @@ class MessagesController < ApplicationController
 	# This should not be the current user in order to allow multiple replies
 	# to the same message.
 	def not_current_user(message)
-		message.sender == current_user ? message.recipient : message.sender
+		is_current_same_as(message.sender) ? message.recipient : message.sender
 	end
 
 	def preview?

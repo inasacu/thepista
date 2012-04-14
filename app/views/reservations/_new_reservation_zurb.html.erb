@@ -19,7 +19,7 @@
 %>					
 <td class="ColPista">
 	<%= render 'reservations/index_holiday_zurb', :current_day => current_day, :block_token => block_token, 
-											 :is_holiday => is_holiday, :holiday_hour => holiday_hour  %> <%# if current_user.is_manager_of?(@venue) %>
+											 :is_holiday => is_holiday, :holiday_hour => holiday_hour  %> <%# if is_current_manager_of(@venue) %>
 											
 	<%= render 'reservations/day_of_week_zurb', :current_day => current_day %>	
 <% 

@@ -141,7 +141,7 @@ class MarkersController < ApplicationController
     @marker.item = current_user
 
     if @marker.save 
-      flash[:notice] = I18n.t(:successful_create)
+      successful_create
       redirect_to markers_url
     else
       render :action => 'new'

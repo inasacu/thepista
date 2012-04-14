@@ -25,8 +25,8 @@ class StandingsController < ApplicationController
     @standings = Standing.cup_escuadras_standing(@cup)
     @standing = @standings.first
     
-    unless current_user.is_manager_of?(@cup)
-      flash[:warning] = I18n.t(:unauthorized)
+    unless is_current_manager_of(@cup)
+      warning_unauthorized
       redirect_back_or_default('/index')
       return
     end    
@@ -41,8 +41,8 @@ class StandingsController < ApplicationController
     @standing = Standing.find(params[:id])
     @cup = @standing.cup
     
-    unless current_user.is_manager_of?(@cup)
-      flash[:warning] = I18n.t(:unauthorized)
+    unless is_current_manager_of(@cup)
+      warning_unauthorized
       redirect_back_or_default('/index')
       return
     end
@@ -61,8 +61,8 @@ class StandingsController < ApplicationController
       @standing = Standing.find(params[:id])
       @cup = @standing.cup
       
-      unless current_user.is_manager_of?(@cup)
-        flash[:warning] = I18n.t(:unauthorized)
+      unless is_current_manager_of(@cup)
+        warning_unauthorized
         redirect_back_or_default('/index')
         return
       end

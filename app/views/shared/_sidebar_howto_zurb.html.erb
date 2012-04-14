@@ -6,10 +6,10 @@
 
 	<hr></hr>
 
-	<%= set_image_and_link(option_link('group'), 'group')%>
-	<%= set_image_and_link(link_to(label_name(:create_join_group), list_groups_url), 'user_add')%>
-	<%#= set_image_and_link(link_to(label_name(:search_maps), search_map_url), 'installation')%>
-	<%= set_image_and_link(option_link('invitation'), 'invitation')%>
+	<%= set_image_and_link(option_link('group'), 'group') %>
+	<%= set_image_and_link(link_to(label_name(:create_join_group), list_groups_url), 'user_add') %>
+	<%#= set_image_and_link(link_to(label_name(:search_maps), search_map_url), 'installation') %>
+	<%= set_image_and_link(option_link('invitation'), 'invitation') %>
 	
 	<% if @no_linkedin_profile  and DISPLAY_FREMIUM_SERVICES %>
 	<%= set_image_and_link(option_link('auth'), 'linkedin') if @no_linkedin_profile %>

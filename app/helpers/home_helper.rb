@@ -33,7 +33,7 @@ module HomeHelper
 
   		the_icon = schedule_image_link_small(teammate, "calendario.png")
 
-  		is_member = current_user.is_member_of?(teammate.group)
+  		is_member = is_current_member_of(teammate.group)
   		if teammate.played?
   			the_label = %(#{I18n.t(:has_updated_scorecard) } #{the_label} #{is_member ? item_link : teammate.name}#{the_google_plus_one})
   		else
@@ -143,50 +143,50 @@ module HomeHelper
 
   		item_group_link = item_name_link(teammate.schedule.group)
 
-          is_member = current_user.is_member_of?(teammate.schedule.group)
+          is_member = is_current_member_of(teammate.schedule.group)
   		the_label = %(#{I18n.t(:passed_to)} <STRONG>#{teammate.type_name}</STRONG> #{I18n.t(:in)} #{is_member ? match_roster_link(teammate) : teammate.schedule.name})
 
       when "Comment"
-  		request_image = item_image_link_small(teammate.user)
-  		request_link = item_name_link(teammate.user)
-  		the_label = teammate.commentable_type
-
-        	case teammate.commentable_type
-        	when "Blog"
-          	blog = teammate.commentable
-  			    the_icon = comment_image_link_small(blog)
-				    the_blog_link = item_name_link(blog.name, blog, {:title => teammate.body, :class => "vtip"})
-
-          	case blog.item_type
-          	when "User"
-  				      the_user = blog.item
-  	          	is_member = current_user.is_user_member_of?(the_user)
-    				    
-              	the_label = %(#{I18n.t(:left_comment_on_wall)}  #{is_member ? the_blog_link : blog.item.name})
-          	when "Group", "Challenge"
-            		is_member = current_user.is_member_of?(blog.item)
-            		the_label = %(#{I18n.t(:left_post_on_forum)}  #{is_member ? the_blog_link : blog.item.name})
-          	when "Venue"
-            		the_label = %(#{I18n.t(:left_post_on_forum)}  #{the_blog_link})
-          	end
-
-  		when "Forum"
-  		    forum = teammate.commentable
-  			  the_icon = comment_image_link_small(forum)
-			    the_forum_link = item_name_link(forum.name, forum, {:title => teammate.body, :class => "vtip"})
-
-  		    if forum.schedule        
-  		      	is_member = current_user.is_member_of?(forum.schedule.group)  
-  				    item_group_link = item_name_link(forum.schedule.group)
-  				    
-  		        the_label = %(#{I18n.t(:left_post_on_forum) } #{is_member ? the_forum_link : forum.schedule.name})
-  		        if teammate.title == 'Schedule'
-                the_label = %(#{I18n.t(:left_post_teams_on_forum) } #{is_member ? the_forum_link : forum.schedule.name})
-              end
-              
-  		    end
-
-  		end
+  		# request_image = item_image_link_small(teammate.user)
+  		# request_link = item_name_link(teammate.user)
+  		# the_label = teammate.commentable_type
+  		# 
+  		#         	case teammate.commentable_type
+  		#         	when "Blog"
+  		# 				    #           	blog = teammate.commentable
+  		# 				    #   			    the_icon = comment_image_link_small(blog)
+  		# 				    # the_blog_link = item_name_link(blog.name, blog, {:title => teammate.body, :class => "vtip"})
+  		# 				    # 
+  		# 				    #           	case blog.item_type
+  		# 				    #           	when "User"
+  		# 				    #   				      the_user = blog.item
+  		# 				    #   	          	is_member = current_user.is_user_member_of?(the_user)
+  		# 				    #     				    
+  		# 				    #               	the_label = %(#{I18n.t(:left_comment_on_wall)}  #{is_member ? the_blog_link : blog.item.name})
+  		# 				    #           	when "Group", "Challenge"
+  		# 				    #             		is_member = is_current_member_of(blog.item)
+  		# 				    #             		the_label = %(#{I18n.t(:left_post_on_forum)}  #{is_member ? the_blog_link : blog.item.name})
+  		# 				    #           	when "Venue"
+  		# 				    #             		the_label = %(#{I18n.t(:left_post_on_forum)}  #{the_blog_link})
+  		# 				    #           	end
+  		# 
+  		# when "Forum"
+  		# 	  #   		    forum = teammate.commentable
+  		# 	  # the_icon = comment_image_link_small(forum)
+  		# 	  # 			    the_forum_link = item_name_link(forum.name, forum, {:title => teammate.body, :class => "vtip"})
+  		# 	  # 
+  		# 	  #   		    if forum.schedule        
+  		# 	  #   		      	is_member = is_current_member_of(forum.schedule.group)  
+  		# 	  #   				    item_group_link = item_name_link(forum.schedule.group)
+  		# 	  #   				    
+  		# 	  #   		        the_label = %(#{I18n.t(:left_post_on_forum) } #{is_member ? the_forum_link : forum.schedule.name})
+  		# 	  #   		        if teammate.title == 'Schedule'
+  		# 	  #                 the_label = %(#{I18n.t(:left_post_teams_on_forum) } #{is_member ? the_forum_link : forum.schedule.name})
+  		# 	  #               end
+  		# 	  #               
+  		# 	  #   		    end
+  		# 
+  		# end
   	end
 
   	the_label = label_name(:"created_a_#{teammate.class.to_s.downcase}") + " <wbr/> #{item_link}".html_safe if the_label == ""

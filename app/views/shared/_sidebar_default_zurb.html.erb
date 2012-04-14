@@ -5,7 +5,7 @@
 	show_completeness = !((current_user.percent_complete == 100) or is_action('search'))
 
 	is_group_manager = false
-	is_group_manager = current_user.is_manager_of?(@group) if @group
+	is_group_manager = is_current_manager_of(@group) if @group
 
 	has_schedule_blank = false
 	has_schedule_blank = !@group.schedules.blank? if @group
@@ -14,23 +14,23 @@
 	show_howto = !(is_action('search'))
 	show_completeness = !((current_user.percent_complete == 100) or is_action('search'))
 
-	is_schedule_manager = @schedule ? current_user.is_manager_of?(@schedule.group) : false 
-	is_group_manager = @group ? current_user.is_manager_of?(@group) : false
+	is_schedule_manager = @schedule ? is_current_manager_of(@schedule.group) : false 
+	is_group_manager = @group ? is_current_manager_of(@group) : false
 	is_manager = current_user.is_manager? 
 	is_manager = false if @schedule
 
-	is_user_member = current_user.is_member_of?(@group) if @group
+	is_user_member = is_current_member_of(@group) if @group
 
-	is_user_member = current_user.is_member_of?(@group) if @group
+	is_user_member = is_current_member_of(@group) if @group
 	has_group_petition = current_user.has_item_petition?(current_user, @group) if @group
 %>
 
 
 <%#= render('shared/sidebar_create_zurb', :item => @challenge) %>
 <%#= render('challenges/sidebar_show') %>
-<%#= render('cups/sidebar_cup_additional', :cup => @cup) if current_user.is_manager_of?(@cup) %>
-<%#= render('cups/sidebar_cup_additional', :cup => @cup) if current_user.is_manager_of?(@cup) %>
-<%#= render('shared/sidebar_show_cup', :cup => @cup}) if current_user.is_manager_of?(@cup) %>
+<%#= render('cups/sidebar_cup_additional', :cup => @cup) if is_current_manager_of(@cup) %>
+<%#= render('cups/sidebar_cup_additional', :cup => @cup) if is_current_manager_of(@cup) %>
+<%#= render('shared/sidebar_show_cup', :cup => @cup}) if is_current_manager_of(@cup) %>
 <%#= render('/challenges/sidebar_legend_zurb') %>
 <%#= render('/challenges/sidebar_legend') %>
 <%#= render('challenges/sidebar_show') %>

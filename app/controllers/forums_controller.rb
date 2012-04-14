@@ -64,7 +64,7 @@ class ForumsController < ApplicationController
     # forum comment
     if @forum
       unless @forum.schedule.blank?
-        unless current_user.is_member_of?(@forum.schedule.group)
+        unless is_current_member_of(@forum.schedule.group)
           redirect_to root_url
           return
         end

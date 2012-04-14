@@ -11,7 +11,7 @@
 
 <div class="content">
 <% 
-	if current_user.is_member_of?(@challenge) 
+	if is_current_member_of(@challenge) 
 		the_challenge = sanitize(@challenge.name)
 		the_confirmation = label_with_name(:do_leave_challenge, "#{the_challenge}?")
 		can_edit = false
@@ -30,7 +30,7 @@
 		</p>
 		<% end -%>
 		
-		<%  if current_user.is_manager_of?(@challenge) and !final_played %>
+		<%  if is_current_manager_of(@challenge) and !final_played %>
 		<p>
 		<%= option_image_link('challenge') %>&nbsp;&nbsp;
 		<%= link_to label_name(:challenges_edit), edit_challenge_path(@challenge) %>

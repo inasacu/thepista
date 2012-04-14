@@ -1,7 +1,7 @@
 class Classified < ActiveRecord::Base
 
-	extend FriendlyId 
-	friendly_id :name, 			use: :slugged
+	# extend FriendlyId 
+	# friendly_id :name, 			use: :slugged
 
 	belongs_to      :table,           :polymorphic => true
 	belongs_to      :item,            :polymorphic => true
@@ -17,10 +17,7 @@ class Classified < ActiveRecord::Base
 	validates_presence_of         :starts_at,     :ends_at
 
 	# variables to access
-	attr_accessible :name, :description, :starts_at, :table_id, :table_type
-
-	
-	 
+	attr_accessible :name, :description, :starts_at, :table_id, :table_type, :slug 
 	
 
 	before_create       :format_description

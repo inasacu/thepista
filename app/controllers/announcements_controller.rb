@@ -27,7 +27,7 @@ class AnnouncementsController < ApplicationController
   def create
     @announcement = Announcement.new(params[:announcement])
     if @announcement.save
-      flash[:notice] = I18n.t(:successful_create)
+      successful_create
       redirect_to @announcement
     else
       render :action => 'new'

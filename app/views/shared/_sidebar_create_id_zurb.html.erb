@@ -7,7 +7,7 @@
 	when 'Type', 'Role', 'Announcement', 'Sport'
 		is_displayable = the_maximo
 	when 'User'
-		is_displayable = (item == current_user)
+		is_displayable = (is_user_manager_of(item))
 	when 'Group', 'Schedule', 'Classified', 'Cup', 'Challenge', 'Fee', 'Payment'
 		is_displayable = current_user.is_manager?
 	end

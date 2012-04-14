@@ -1,7 +1,7 @@
 class Marker < ActiveRecord::Base
 
-	extend FriendlyId 
-	friendly_id :name, 			use: :slugged
+	# extend FriendlyId 
+	# friendly_id :name, 			use: :slugged
 	
   # # index{ name }
 
@@ -14,18 +14,7 @@ class Marker < ActiveRecord::Base
   validates_presence_of   :name, :latitude, :longitude, :lat, :lng
 
   # variables to access
-  attr_accessible :name, :latitude, :longitude, :lat, :lng, :phone, :address, :city, :region, :zip, :description
-
-  
-   
-
-
-  # example
-  # acts_as_mappable :default_units => :miles, 
-  #                  :default_formula => :sphere, 
-  #                  :distance_field_name => :distance,
-  #                  :lat_column_name => :lat,
-  #                  :lng_column_name => :lng
+  attr_accessible :name, :latitude, :longitude, :lat, :lng, :phone, :address, :city, :region, :zip, :description, :slug
 
   has_many   :groups, 
   :conditions => "groups.archive = false",

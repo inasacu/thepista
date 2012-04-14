@@ -40,7 +40,7 @@
 
 	       <td class="last">
 				<span class="action">
-					<% if current_user.is_manager_of?(@cup) and !final_played %>
+					<% if is_current_manager_of(@cup) and !final_played %>
 					<span class="action">
 						<%= link_to label_name(:escuadras_edit), edit_escuadra_path(escuadra) %><br/>
 						<%= link_to(the_label, escuadra_path(escuadra), :method => :delete, :confirm => the_confirmation) %>	

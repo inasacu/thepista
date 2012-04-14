@@ -26,7 +26,7 @@ class VenuesController < ApplicationController
     @user = current_user
 
     if @venue.save and @venue.create_venue_details(current_user)
-      flash[:notice] = I18n.t(:successful_create)
+      successful_create
       redirect_to @venue
     else
       render :action => 'new'
@@ -55,8 +55,8 @@ class VenuesController < ApplicationController
   end
 
   def has_manager_access
-    unless current_user.is_manager_of?(@venue)
-      flash[:warning] = I18n.t(:unauthorized)
+    unless is_current_manager_of(@venue)
+      warning_unauthorized
       redirect_back_or_default('/index')
       return
     end

@@ -14,7 +14,7 @@ module InstallationsHelper
   end 
 
   def view_installation_name(installation)      
-    return content_tag('td', (current_user.is_member_of?(installation.venue) or installation.public) ? 
+    return content_tag('td', (is_current_member_of(installation.venue) or installation.public) ? 
     link_to(sanitize(installation.name), installation_path(:id => installation)) : sanitize(installation.name))
   end
 
@@ -36,7 +36,7 @@ module InstallationsHelper
   end
 
   def view_installation_icon(installation)
-    return content_tag('td', (current_user.is_member_of?(installation.venue) or installation.public) ? installation_image_link_small(installation) : installation_image_small(installation))
+    return content_tag('td', (is_current_member_of(installation.venue) or installation.public) ? installation_image_link_small(installation) : installation_image_small(installation))
   end
 
 end

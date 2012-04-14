@@ -23,11 +23,11 @@
 		content_for(:description, "#{h(@schedule.group.name)} / #{@schedule.sport.name},  #{h(@schedule.name)} - #{h(@schedule.description) }.  
 								   #{@schedule.group.marker.name}, #{@schedule.time_zone}")
 	
-		if current_user.is_member_of?(@schedule.group) or @schedule.public
+		if is_current_member_of(@schedule.group) or @schedule.public
 			the_label = label_name(:wall)
 %>
 			<li class="<%= get_first_active('schedule_show') %>"><%= item_name_link(@schedule.name, @schedule, nil, 25) %></li>	
-			<li class="<%= get_active('forum_show') %>"><%= link_to(the_label, forum_path(@schedule.forum)) if current_user.is_member_of?(@schedule.group) %></li>	
+			<li class="<%= get_active('forum_show') %>"><%= link_to(the_label, forum_path(@schedule.forum)) if is_current_member_of(@schedule.group) %></li>	
 		
 			<% unless (@schedule.the_roster.empty?)		
 				the_active = get_active("#{get_the_controller}_team_roster")

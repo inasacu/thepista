@@ -5,8 +5,6 @@
 	the_confirmation = "#{the_label}?"	
 	the_confirmation_user_set = "#{the_label_user_set}?"
 	is_maximo = the_maximo
-	
-	the_label = label_name(:options)
 %>
 
 
@@ -25,7 +23,7 @@
 
 		<p>
 			<%= option_image_link('user_update') %>&nbsp;&nbsp;
-			<%= link_to(label_name(:previous_profile_set), set_previous_profile_url(:id => schedule), :title => the_label, :confirm => the_confirmation) %>
+			<%= link_to(label_name(:previous_profile_set), set_previous_profile_url(:id => schedule), :title => the_label_options, :confirm => the_confirmation) %>
 		</p>
 
 		<p>

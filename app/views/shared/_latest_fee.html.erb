@@ -3,7 +3,7 @@
     groups = []
 	the_groups = Hash.new
 
-	current_user.groups.each {|group| groups << group if current_user.is_manager_of?(group)}
+	current_user.groups.each {|group| groups << group if is_current_manager_of(group)}
 	groups.each do |group| 
 		group.users.each {|user| users << user}
 	end

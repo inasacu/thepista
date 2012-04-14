@@ -13,7 +13,7 @@
 <% 
 current_user.groups.each do |group| 
 	
-	if @user.is_not_member_of?(group) or if current_user.is_manager_of?(group)
+	if @user.is_not_member_of?(group) or if is_current_manager_of(group)
 		# the_label = label_with_name('add_to_group', group.name)
 		# the_confirmation = "#{label_name(:petition_to_join)} #{@user.name} #{label_name(:to) } #{group.name}?"
 %> 
@@ -21,7 +21,7 @@ current_user.groups.each do |group|
 		<%= option_image_link('user_add') %>&nbsp;&nbsp;<%= manage_item_link_to(@user, group) %>
 		<%#= link_to(the_label, manage_join_path(:id => group.id, :teammate => @user.id), :confirm => the_confirmation) %></p>
 <% 
-	elsif current_user.is_manager_of?(group) 
+	elsif is_current_manager_of(group) 
 		# the_label = label_with_name('fire_from_item', group.name)
 		# the_confirmation = "#{label_name(:fire_from_item)} #{group.name} #{label_name(:to)} #{@user.name}?"
 %> 

@@ -4,7 +4,7 @@
 
 	current_user.groups.each do |group| 
 		my_groups << group
-		manager_groups << group if current_user.is_manager_of?(group)
+		manager_groups << group if is_current_manager_of(group)
 	end
 %>
 

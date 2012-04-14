@@ -34,7 +34,7 @@
 <% 
 	else
 	
-		if current_user.is_member_of?(@schedule.group) or @schedule.public
+		if is_current_member_of(@schedule.group) or @schedule.public
 			the_label = label_name(:wall)
 %>
 			<%= set_tab_navigation(group_link(@schedule.group, set_tab_navigation_active('group_show'))) if single_schedule_group %>

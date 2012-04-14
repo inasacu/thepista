@@ -15,22 +15,22 @@ class Teammate < ActiveRecord::Base
   
   # pre join item based teammate  
 	def self.my_groups_petitions(items, user)
-		unless (items.nil? or items.blank? or items.empty?)
+		# unless (items.nil? or items.blank? or items.empty?)
 			find(:all, :select => "distinct teammates.*", 
 								 :conditions => ["accepted_at is null and item_type = 'Group' and (item_id in (?) or user_id = ?)", user.groups, user]).each do |item| 
 				items << item
 			end
-		end
+		# end
 		return items 
 	end
   
 	def self.my_challenges_petitions(items, user)
-		unless (items.nil? or items.blank? or items.empty?)
+		# unless (items.nil? or items.blank? or items.empty?)
 			find(:all, :select => "distinct teammates.*", 
 								 :conditions => ["accepted_at is null and item_type = 'Challenge' and (item_id in (?) or user_id = ?)", user.challenges, user]).each do |item| 
 				items << item
 			end
-		end
+		# end
 		return items
 	end
   
@@ -248,11 +248,11 @@ class Teammate < ActiveRecord::Base
 			first_only = !first_only
 		end
 
-		unless (first_teammates.nil? or first_teammates.blank? or first_teammates.empty?)
+		# unless (first_teammates.nil? or first_teammates.blank? or first_teammates.empty?)
 			find(:all, :conditions => ["id in (?)", first_teammates], :order => "accepted_at desc").each do |item| 
 				items << item
 			end
-		end
+		# end
 		
 		return items
 	end

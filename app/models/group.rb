@@ -1,13 +1,7 @@
 class Group < ActiveRecord::Base
 
-	extend FriendlyId 
-	friendly_id :name, 			use: :slugged
-	
-  # index do
-  #   name
-  #   description
-  #   second_team
-  # end
+	# extend FriendlyId 
+	# friendly_id :name, 			use: :slugged
 
   has_attached_file :photo, :styles => {:icon => "25x25>", :thumb  => "80x80>", :medium => "160x160>",  },
   :storage => :s3,
@@ -47,11 +41,7 @@ class Group < ActiveRecord::Base
 
   # variables to access
   attr_accessible :name, :second_team, :gameday_at, :sport_id, :points_for_win, :points_for_draw, :points_for_lose, :player_limit, :automatic_petition
-  attr_accessible :time_zone, :marker_id, :description, :conditions, :photo, :available, :looking, :enable_comments, :installation_id
-
-  
-   
-  # :reserved_words => ["new", "create", "index", "list", "signup", "edit", "update", "destroy", "show"]
+  attr_accessible :time_zone, :marker_id, :description, :conditions, :photo, :available, :looking, :enable_comments, :installation_id, :slug
 
   has_and_belongs_to_many :users,           :join_table => "groups_users", :conditions => "users.archive = false", :order => "name"
 
@@ -86,7 +76,8 @@ class Group < ActiveRecord::Base
 
   before_create :format_description, :format_conditions
   before_update :format_description, :format_conditions
-  after_create  :create_group_blog_details, :create_group_marker, :create_group_scorecard
+  # after_create  :create_group_blog_details, 
+	after_create	:create_group_marker, :create_group_scorecard
 
   # related to gem acl9
   acts_as_authorization_subject :association_name => :roles, :join_table_name => :roles_groups
@@ -237,9 +228,9 @@ class Group < ActiveRecord::Base
     GroupsMarkers.join_marker(self, self.marker)
   end
 
-  def create_group_blog_details
-    @blog = Blog.create_item_blog(self)
-  end
+  # def create_group_blog_details
+  #   @blog = Blog.create_item_blog(self)
+  # end
 
   def create_group_scorecard   
     Scorecard.create_group_scorecard(self)

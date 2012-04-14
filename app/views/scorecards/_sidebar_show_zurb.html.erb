@@ -108,11 +108,11 @@
 	
 <ul class="navigation">
 <% 
-	if current_user.is_manager_of?(@group) 
+	if is_current_manager_of(@group) 
 		the_confirmation = "#{ label_name(:destroy_schedule) } #{ label_name(:from) } #{@group.name}?" 
 %> 
 		<li><%= link_to control_label('archive'), archive_scorecard_path(:id => @group), 
-				:confirm => label_name(:are_you_sure)  if current_user.is_manager_of?(@group) %></li>
+				:confirm => label_name(:are_you_sure)  if is_current_manager_of(@group) %></li>
 <% 
 	end 
 %>

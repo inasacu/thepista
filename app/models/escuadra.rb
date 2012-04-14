@@ -1,7 +1,7 @@
 class Escuadra < ActiveRecord::Base
 
-	extend FriendlyId 
-	friendly_id :name, 			use: :slugged
+	# extend FriendlyId 
+	# friendly_id :name, 			use: :slugged
   
   belongs_to    :item,          :polymorphic => true
   belongs_to    :sub_item,      :polymorphic => true
@@ -36,7 +36,7 @@ class Escuadra < ActiveRecord::Base
   has_and_belongs_to_many   :cups,          :conditions => 'cups.archive = false',   :order => 'name'
 
   # variables to access
-  attr_accessible :name, :photo, :description
+  attr_accessible :name, :photo, :description, :slug
   
   
    
