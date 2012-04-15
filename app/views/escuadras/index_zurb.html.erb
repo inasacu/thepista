@@ -4,11 +4,9 @@
 	has_escuadras = (object_counter(@cup.escuadras) > 0 )
 %>
 
-<div class="block">
-	
-	<%= get_secondary_navigation(@cup) %>
+<div class="row">
 
-	<div class="content">  
+	<div class="twelve column">  
 			<% if has_escuadras %>
 				<%= render :partial => '/escuadras/index_full_zurb' %>
 			<% else %>

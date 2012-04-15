@@ -1,0 +1,16 @@
+<%
+	the_label = get_collection_label(items)
+	the_total_label = I18n.t(:groups, :count => object_counter(items))
+%>
+
+<div class="row">
+	<div class="twelve columns">
+		<div class="foundation-header">
+			
+			<%= content_tag :h5, the_label %>
+			<hr />
+			<%= content_tag :h6, the_total_label, :class => "subheader" %>
+			
+		</div>
+	</div>
+</div>

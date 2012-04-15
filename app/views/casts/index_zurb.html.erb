@@ -17,15 +17,9 @@
 	final_played = the_game.played unless (the_game.nil? or the_game.blank?)
 %>
 
-<div class="block">
+<div class="row">
 
-	<% unless is_right_guess %>
-		<%= get_secondary_navigation(@challenge) %>	
-	<% else %>	
-		<%= get_secondary_navigation(@cup) %>
-	<% end %>
-
-  <div class="content">   
+  <div class="twelve column">   
   
     <%= set_title_class(the_label) %>
 	

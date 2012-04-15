@@ -3,11 +3,9 @@
 	content_for(:title, the_label)
 %>
 
-<div class="block">
-	
-	<%= get_secondary_navigation(Venue.new) %>
+<div class="row">
 	 
-	<div class="content">  
+	<div class="twelve column">  
 			<% if object_counter(@venues) > 0 %>
 				<%= render :partial => '/venues/index_full' %>
 			<% else %>

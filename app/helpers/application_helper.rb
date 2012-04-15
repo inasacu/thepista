@@ -325,7 +325,7 @@ module ApplicationHelper
 		if DISPLAY_HAYPISTA_TEMPLATE
 			set_content_tag_safe(:h2, "#{image_label.nil? ? '' : option_image_link(image_label)}  #{text}", "title")
 		else
-			set_content_tag_safe(:h4, "#{image_label.nil? ? '' : option_image_small_link(image_label)}  #{text}", "title")
+			set_content_tag_safe(:h3, "#{image_label.nil? ? '' : option_image_small_link(image_label)}  #{text}", "title")
 		end
 	end
 
@@ -779,6 +779,10 @@ module ApplicationHelper
 	
 	def is_current_member_of(item)
 		current_user.is_member_of?(item)
+	end
+	
+	def has_current_item_petition(item)
+		current_user.has_item_petition?(current_user, item)
 	end
 	
 end

@@ -3,9 +3,6 @@ class Schedule < ActiveRecord::Base
 	extend FriendlyId 
 	friendly_id :name, 			use: :slugged
 
-  # # ajaxful_rateable :stars => 5, :dimensions => [:performance]
-  
-
   has_many  :matches,  :conditions => "matches.archive = false"
   has_many  :fees
   has_one   :forum
@@ -58,20 +55,20 @@ class Schedule < ActiveRecord::Base
   belongs_to :invite_group,   :class_name => "Group",   :foreign_key => "invite_id"
 
   # validations  
-  validates_presence_of         :name
-  validates_length_of           :name,                         :within => NAME_RANGE_LENGTH
-  validates_format_of           :name,                         :with => /^[A-z 0-9 _.-]*$/ 
-
-  validates_presence_of         :description
-  validates_length_of           :description,                     :within => DESCRIPTION_RANGE_LENGTH
-
-  validates_presence_of         :fee_per_game,  :fee_per_pista, :player_limit,  :jornada
-  validates_numericality_of     :fee_per_game,  :fee_per_pista, :player_limit,  :jornada
-
-  validates_numericality_of     :jornada,       :greater_than_or_equal_to => 0, :less_than_or_equal_to => 100
-  validates_numericality_of     :player_limit,  :greater_than_or_equal_to => 0, :less_than_or_equal_to => 100
-
-  validates_presence_of         :starts_at,     :ends_at  
+  # validates_presence_of         :name
+  # validates_length_of           :name,                         :within => NAME_RANGE_LENGTH
+  # validates_format_of           :name,                         :with => /^[A-z 0-9 _.-]*$/ 
+  # 
+  # validates_presence_of         :description
+  # validates_length_of           :description,                     :within => DESCRIPTION_RANGE_LENGTH
+  # 
+  # validates_presence_of         :fee_per_game,  :fee_per_pista, :player_limit,  :jornada
+  # validates_numericality_of     :fee_per_game,  :fee_per_pista, :player_limit,  :jornada
+  # 
+  # validates_numericality_of     :jornada,       :greater_than_or_equal_to => 0, :less_than_or_equal_to => 100
+  # validates_numericality_of     :player_limit,  :greater_than_or_equal_to => 0, :less_than_or_equal_to => 100
+  # 
+  # validates_presence_of         :starts_at,     :ends_at  
 
   # variables to access	
   attr_accessible :name, :description, :season, :jornada, :starts_at, :ends_at, :reminder_at, :reminder
@@ -323,13 +320,13 @@ class Schedule < ActiveRecord::Base
       @forum = Forum.create_schedule_forum(self)
     end
     Match.create_schedule_match(self) 
-    Fee.create_group_fees(self)    
-    Fee.create_user_fees(self)
+    Fee.create_group_fees(self) if DISPLAY_FREMIUM_SERVICES  
+    Fee.create_user_fees(self) if DISPLAY_FREMIUM_SERVICES
   end
 
   def create_join_user_schedule_details
     Match.create_schedule_match(self) 
-    Fee.create_user_fees(self)
+    Fee.create_user_fees(self) if DISPLAY_FREMIUM_SERVICES
   end
   
   def update_profile_from_user

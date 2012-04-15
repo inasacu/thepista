@@ -66,7 +66,7 @@
 									new_invitation_url(:cup_id => cup)) %><br />
 			<% 
 			  	else
-					unless current_user.has_item_petition?(current_user, cup)
+					unless has_current_item_petition(cup) )
 			%> 
 				<%= join_item_link_to(current_user, cup) %>
 			<% 		

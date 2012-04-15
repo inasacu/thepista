@@ -1,22 +1,20 @@
 <%
 	is_group_manager = @group ? is_current_manager_of(@group) : false
 	is_group_member = @group ? is_current_member_of(@group) : false
-	has_group = @group ? true : false
+	is_new_group = (get_controller_action =='group_new' or get_controller_action == 'group_create')
+	has_group = @group ? is_new_group ? false : true : false
 	
 	the_group_name = ""
 	the_manager_label = ""
-	the_confirmation = ""
-	
+	the_confirmation = ""	
 	
 	if has_group
 		the_group_name = h(@group.name) 
-
-		# the_label = label_with_name('create_schedule', @group.name)
 		the_manager_label = label_name(:options_for_manager)
 		the_confirmation = "#{ label_name(:destroy_group) } #{the_group_name}?"
 		
 		has_schedule_blank = @group.schedules.blank? 
-		has_user_petition = current_user.has_item_petition?(current_user, @group)
+		has_user_petition = has_current_item_petition(@group) 
 		the_confirmation = label_with_name(:do_leave_item, "#{@group.name}?")
 	end
 %>
@@ -24,30 +22,27 @@
 
 <% if has_group %>
 
-<%= set_title_class(the_label_options) %>
-<hr/>
+	<%= set_title_class(the_label_options) %>
+	<hr/>
 
-<div class="row">
-	<div class="twelve columns">
+	<div class="row">
+		<div class="twelve columns">
 	
-		<% if is_group_member %>
-			<%= set_form_create_id_image_link(Message.new, :group_id, @group, :send_message_to) %>
-			<%= set_form_create_id_image_link(Invitation.new, :group_id, @group, :invitations_create_group) %>
-			<%#= set_form_create_id_image_link(Message.new, :scorecard_id, @group.schedules.first, :send_scorecard, 'scorecard') unless has_schedule_blank %>
+			<% if is_group_member %>
+				<%= set_form_create_id_image_link(Message.new, :group_id, @group, :send_message_to) %>
+				<%= set_form_create_id_image_link(Invitation.new, :group_id, @group, :invitations_create_group) %>
 
-		<% else %>	
-			<%= set_form_create_id_image_link(Message.new, :id, @group.all_the_managers.first, :send_message_to) %>
-			<%= set_image_and_link(join_item_link_to(current_user, @group, true), 'user_add') if has_user_petition %>
+			<% else %>	
+				<%= set_form_create_id_image_link(Message.new, :id, @group.all_the_managers.first, :send_message_to) %>
+				<%= set_image_and_link(join_item_link_to(current_user, @group, true), 'user_add') if has_user_petition %>
 
-		<% end %>
+			<% end %>
 	
+		</div>
 	</div>
-</div>
 
-<hr/>
-<br/>
-
-<% end -%>
+	<hr/>
+	<br/>
 
 
 <% if is_group_manager %>
@@ -75,8 +70,11 @@
 
 <% end -%>
 
+
+<% end -%>
+
 <%= render 'shared/sidebar_create_zurb', :item => Group.new unless has_group %>
 
-<%#= render('shared/sidebar_geo_group_zurb', :group => @group) if has_group -%>
-<%#= render('shared/share_object_zurb', :group => @group) if has_group -%>
+<%= render('shared/sidebar_geo_group_zurb', :group => @group) if has_group and DISPLAY_FREMIUM_SERVICES -%>
+<%= render('shared/share_object_zurb', :group => @group) if has_group and DISPLAY_FREMIUM_SERVICES -%>
 <%#= render('groups/sidebar_legend_zurb') unless has_group and DISPLAY_FREMIUM_SERVICES %>

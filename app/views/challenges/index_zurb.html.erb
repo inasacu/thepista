@@ -2,11 +2,9 @@
 	the_label = label_name(:challenges)
 	content_for(:title, the_label)
 %>
-<div class="block">
+<div class="row">
 	
-	<%= get_secondary_navigation(@challenges.first) %>
-	
-	<div class="content">  
+	<div class="twelve column">  
 			<% if object_counter(@challenges) > 0 %>
 				<%= render '/challenges/index_full_zurb', :challenges => @challenges %>
 			<% else %>

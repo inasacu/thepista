@@ -3,11 +3,11 @@
 	content_for(:title, the_label)
 %>
 
-<div class="block">
+<div class="row">
 
 	<%= get_secondary_navigation %>
 
-	<div class="content">
+	<div class="twelve column">
 		<%= GMap.header(:local_search => true) %>
 		<%= GMap.header %>
 		<%= @map.to_html unless @map.blank? %>

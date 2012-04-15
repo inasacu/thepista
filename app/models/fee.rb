@@ -30,10 +30,6 @@ class Fee < ActiveRecord::Base
   attr_accessible :name, :description, :payed, :debit_amount, :season_player
   attr_accessible :debit_id, :debit_type, :credit_id, :credit_type, :item_id, :item_type 
   attr_accessible :type_id, :manager_id, :slug
-  
-  
-   
-                   
 
 
   # method section

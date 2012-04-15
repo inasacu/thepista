@@ -22,14 +22,20 @@
 		the_confirmation = label_with_name(:do_leave_item, "#{group.name}?")
 	end
 	
+	the_group_sport = "#{item_name_link(group)} <br/> 
+						#{content_tag(:span, group.marker.city, :class =>'date')} <br/> 
+						#{content_tag(:span, group.sport.name)}"
+	the_manager_city = "#{item_list(group.all_the_managers)} <br/> #{I18n.t(:has_group_users, :count => object_counter(group.users))}"
+	the_scorecard_players_count = "#{link_to(label_name(:scorecard), scorecard_path(:id => group))}"
 -%>
 
 
  <tr>  
+	<%#= view_schedule_icon(group.schedules.first) %>
 	<%= set_content_tag_safe(:td, item_image_link_small(group)) %>
-	<%= set_content_tag_safe(:td, "#{item_name_link(group)} <br/> #{content_tag(:span, group.sport.name)}", :class => 'name_and_date') %>
-	<%= set_content_tag_safe(:td, "#{item_list(group.all_the_managers)} <br/> #{content_tag(:span, group.marker.city, :class =>'date')}", :class => 'name_and_date') %>
-	<%= set_content_tag_safe(:td, "#{link_to(label_name(:scorecard), scorecard_path(:id => group))}<br/>#{I18n.t(:has_group_users, :count => object_counter(group.users))}") %>
+	<%= set_content_tag_safe(:td, the_group_sport, :class => 'name_and_date') %>
+	<%= set_content_tag_safe(:td, the_manager_city, :class => 'name_and_date') %>
+	<%= set_content_tag_safe(:td, the_scorecard_players_count) %>
 	
 
    <% if display_icons %>
@@ -40,7 +46,7 @@
 			<% else %>
 		
 			<%
-				unless current_user.has_item_petition?(current_user, group) 							
+				unless has_current_item_petition(group) 							
 			%> 
 				<%= option_image_small_link('user_add') %>&nbsp;&nbsp;<strong><%= join_item_link_to(current_user, group) %></strong>
 			<% 	end 

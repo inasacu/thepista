@@ -1,24 +1,5 @@
-<%
-	the_label = get_collection_label(@groups)
-%>
 
-<div class="row">
-	
-	<div class="twelve columns">
-		
-		<div class="foundation-header">
-			
-			<%= content_tag :h5, the_label %>
-			
-			<hr />
-			
-			<%#= content_tag :h6, the_total_label, :class => "subheader" %>
-			
-		</div>
-	</div>
-	
-</div>
-
+<%= render('shared/index_total_header_zurb', :items => @groups) %>
 
 <div class="row">
 	<div class="twelve columns"> 
@@ -45,8 +26,6 @@
 		
 	</div>
 </div>
-
-<hr/>
 
 <%= render 'shared/action_bar_zurb', :collection => @groups %>
 	  

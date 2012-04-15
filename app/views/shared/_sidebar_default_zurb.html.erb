@@ -22,7 +22,7 @@
 	is_user_member = is_current_member_of(@group) if @group
 
 	is_user_member = is_current_member_of(@group) if @group
-	has_group_petition = current_user.has_item_petition?(current_user, @group) if @group
+	has_group_petition = has_current_item_petition(@group)  if @group
 %>
 
 
@@ -69,7 +69,7 @@
 <%# else %>
 
 <%#= option_image_link('message')  link_to(label_name(:send_message_to), new_message_path(:id => @group.all_the_managers.first)) %>
-<%# unless current_user.has_item_petition?(current_user, @group) %> 
+<%# unless has_current_item_petition(@group)  %> 
 <%#= option_image_link('group')  join_item_link_to(current_user, @group, true) %>
 <%#= link_to(the_label, join_item_path(:id => @group, :item => @group.class.to_s, :teammate => current_user), :confirm => the_confirmation) %>
 <%#= render('shared/sidebar_create_zurb', :item => @sport %>

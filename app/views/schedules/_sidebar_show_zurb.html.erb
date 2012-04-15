@@ -20,7 +20,7 @@
 		# the_confirmation = "#{ label_name(:destroy_group) } #{the_group_name}?"
 
 		has_schedule_blank = @group.schedules.blank? 
-		has_user_petition = current_user.has_item_petition?(current_user, @group)
+		has_user_petition = has_current_item_petition(@group) 
 		the_confirmation = label_with_name(:do_leave_item, "#{@group.name}?")
 		
 		the_confirmation = "#{ label_name(:destroy_schedule) } #{ label_name(:from) } #{@group.name}?" 

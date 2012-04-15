@@ -2,11 +2,9 @@
 	the_challenge = sanitize(@challenge.name)
 	content_for(:title, the_challenge)
 %>
-<div class="block">
+<div class="row">
 
-  <%= get_secondary_navigation(@challenge) %> 
-
-  <div class="content">   
+  <div class="twelve column">   
   
     <h2 class="title"><%= I18n.t(:has_challenge_users, :count => @total) %></h2>
 	

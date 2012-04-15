@@ -5,24 +5,21 @@
 <%= the_form.hidden_field :time_zone %>
 <%= the_form.hidden_field :season %>
 <%= the_form.hidden_field :jornada %>
-<%#= the_form.hidden_field :group_id if @group %>
-
 
 
 <%= set_form_label(the_form, :name) %>
-<%= set_form_text_field(the_form, :name, 'input-text') %><br />
-
+<%= set_form_text_field(the_form, :name, 'input-text') %>
 
 <%= set_form_label(the_form, :starts_at) %>
-<%= the_form.datetime_select :starts_at %><br />
+<%= the_form.datetime_select :starts_at %>
 
 
 <%= set_form_label(the_form, :ends_at) %>
-<%= the_form.datetime_select :ends_at %><br />
+<%= the_form.datetime_select :ends_at %>
 
 
 <%= set_form_label(the_form, :reminder_at) %>
-<%= the_form.datetime_select :reminder_at %><br />
+<%= the_form.datetime_select :reminder_at %>
 
 
 <%#= set_form_label(the_form, :description) %>
@@ -41,5 +38,5 @@
 <%= set_form_text_field(the_form, :player_limit, 'small input-text', true) %><br />
 
 
-<%= set_form_label(the_form, :public) %>
+<%#= set_form_label(the_form, :public) %>
 <%#= set_form_checkbox(the_form, :public) %>

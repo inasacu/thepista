@@ -3,11 +3,9 @@
 	content_for(:title, the_label)
 %>
 
-<div class="block">
- 
-	<%= get_secondary_navigation(Announcement.new) %>
+<div class="row">
 
-	<div class="content">   
+	<div class="twelve column">   
 
 		<%= set_title_class(get_collection_label(@announcements)) %>
 

@@ -3,11 +3,9 @@
 	content_for(:title, the_label)
 %>
 
-<div class="block">
-	
-	<%= get_secondary_navigation(Group.new) %>
+<div class="row">
 	 
-	<div class="content">  
+	<div class="twelve column">  
 			<% if object_counter(@groups) > 0 %>
 				<%= render '/groups/index_full_zurb' %>
 			<% else %>
@@ -15,3 +13,4 @@
 			<% end %>
 	</div>	
 </div>
+

@@ -7,16 +7,14 @@
 
 a_roster = !(@schedule.convocados.empty?)
 the_label = "#{label_name(:rosters)} #{label_name(:in)} #{sanitize(@schedule.name)}"
-content_for(:title, sanitize(@schedule.name))
-@positions = Type.find(table_type = 'User'", :order => "id")
+# content_for(:title, sanitize(@schedule.name))
+@positions = Type.find(table_type = 'User', :order => "id")
 
 %>
 
-<div class="block">
+<div class="row">
 
-	  <%= get_secondary_navigation(@schedule) %>
-
-	<div class="content">   
+	<div class="twelve column">   
 
 		<%= set_title_class(the_label) %>
 

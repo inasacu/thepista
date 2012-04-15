@@ -4,11 +4,11 @@
 	has_cups = (object_counter(@cups) > 0)
 %>
 
-<div class="block">
+<div class="row">
 	
 	<%= render "cups/secondary_navigation", :cups => @cups, :has_no_cups => @has_no_cups %>
 
-	<div class="content">  
+	<div class="twelve column">  
 			<% if has_cups %>
 				<%= render :partial => '/cups/index_full_zurb' %>
 			<% else %>

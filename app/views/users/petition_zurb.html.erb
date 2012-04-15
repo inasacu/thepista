@@ -1,8 +1,6 @@
-<div class="block">
+<div class="row">
 
-	  <%= get_secondary_navigation(User.new) %>
-
-	<div class="content">   
+	<div class="twelve column">   
 
 		<h2 class="title">
 		<%= @requested_teammates ? (get_collection_label(@requested_teammates)) : (@pending_teammates ? get_collection_label(@pending_teammates) : " ") %>

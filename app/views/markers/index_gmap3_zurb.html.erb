@@ -3,11 +3,11 @@
 	content_for(:title, the_label)
 %>
 
-<div class="block">
+<div class="row">
 	
   <%= get_secondary_navigation %>
 
-	<div class="content">	
+	<div class="twelve column">	
 		<%= render 'markers/context_zurb' if is_action('direction') %>
 		<%= render 'markers/autocomplete_zurb' if is_action('search') %>
 		<%= render 'markers/map_v3_zurb' if is_action('list') %>

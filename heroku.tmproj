@@ -3,7 +3,7 @@
 <plist version="1.0">
 <dict>
 	<key>currentDocument</key>
-	<string>app/helpers/teammates_helper.rb</string>
+	<string>log/development.log</string>
 	<key>documents</key>
 	<array>
 		<dict>
@@ -146,7 +146,7 @@
 		</dict>
 	</array>
 	<key>fileHierarchyDrawerWidth</key>
-	<integer>295</integer>
+	<integer>221</integer>
 	<key>metaData</key>
 	<dict>
 		<key>app/controllers/application_controller.rb</key>
@@ -221,66 +221,6 @@
 				<integer>0</integer>
 				<key>line</key>
 				<integer>79</integer>
-			</dict>
-		</dict>
-		<key>app/helpers/application_helper.rb</key>
-		<dict>
-			<key>caret</key>
-			<dict>
-				<key>column</key>
-				<integer>60</integer>
-				<key>line</key>
-				<integer>672</integer>
-			</dict>
-			<key>columnSelection</key>
-			<false/>
-			<key>firstVisibleColumn</key>
-			<integer>0</integer>
-			<key>firstVisibleLine</key>
-			<integer>644</integer>
-			<key>selectFrom</key>
-			<dict>
-				<key>column</key>
-				<integer>14</integer>
-				<key>line</key>
-				<integer>672</integer>
-			</dict>
-			<key>selectTo</key>
-			<dict>
-				<key>column</key>
-				<integer>60</integer>
-				<key>line</key>
-				<integer>672</integer>
-			</dict>
-		</dict>
-		<key>app/helpers/teammates_helper.rb</key>
-		<dict>
-			<key>caret</key>
-			<dict>
-				<key>column</key>
-				<integer>23</integer>
-				<key>line</key>
-				<integer>11</integer>
-			</dict>
-			<key>columnSelection</key>
-			<false/>
-			<key>firstVisibleColumn</key>
-			<integer>0</integer>
-			<key>firstVisibleLine</key>
-			<integer>0</integer>
-			<key>selectFrom</key>
-			<dict>
-				<key>column</key>
-				<integer>6</integer>
-				<key>line</key>
-				<integer>11</integer>
-			</dict>
-			<key>selectTo</key>
-			<dict>
-				<key>column</key>
-				<integer>23</integer>
-				<key>line</key>
-				<integer>11</integer>
 			</dict>
 		</dict>
 		<key>app/views/groups/_index_full.html.erb</key>
@@ -494,21 +434,7 @@
 				<key>column</key>
 				<integer>0</integer>
 				<key>line</key>
-				<integer>22</integer>
-			</dict>
-			<key>firstVisibleColumn</key>
-			<integer>0</integer>
-			<key>firstVisibleLine</key>
-			<integer>0</integer>
-		</dict>
-		<key>app/views/users/new_zurb.html.erb</key>
-		<dict>
-			<key>caret</key>
-			<dict>
-				<key>column</key>
-				<integer>35</integer>
-				<key>line</key>
-				<integer>10</integer>
+				<integer>0</integer>
 			</dict>
 			<key>firstVisibleColumn</key>
 			<integer>0</integer>
@@ -561,20 +487,10 @@
 	<key>openDocuments</key>
 	<array>
 		<string>log/development.log</string>
-		<string>app/views/users/_sidebar_show_item_manager_zurb.html.erb</string>
-		<string>app/helpers/teammates_helper.rb</string>
-		<string>app/views/users/new_zurb.html.erb</string>
-		<string>app/views/users/edit.html.erb</string>
-		<string>app/controllers/users_controller.rb</string>
-		<string>app/views/users/_form_zurb.html.erb</string>
-		<string>app/views/users/_form_check_field.html.erb</string>
-		<string>app/helpers/application_helper.rb</string>
-		<string>app/controllers/application_controller.rb</string>
-		<string>app/controllers/groups_controller.rb</string>
 	</array>
 	<key>showFileHierarchyDrawer</key>
 	<true/>
 	<key>windowFrame</key>
-	<string>{{0, 46}, {1617, 1012}}</string>
+	<string>{{0, 46}, {1049, 732}}</string>
 </dict>
 </plist>

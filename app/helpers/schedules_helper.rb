@@ -54,15 +54,12 @@ module SchedulesHelper
       the_missing = ", #{I18n.t(:excess)}:  #{schedule.convocados.count - schedule.player_limit.to_i}" if schedule.player_limit.to_i < schedule.convocados.count
     end
 
-    # the_span = content_tag('span', "    #{the_sport} #{the_missing}".html_safe, :class => 'date')
-    the_span = set_content_tag_safe('span', "    #{the_sport} #{the_missing}", 'date')
-    # return content_tag(:td, "#{the_image}  #{the_concept}<br />#{the_span}".html_safe, :class => 'name_and_date')   
+    the_span = set_content_tag_safe('span', "    #{the_sport} #{the_missing}", 'date')  
 		return set_content_tag_safe('td', "#{the_image}  #{the_concept}<br />#{the_span}", 'name_and_date')
   end
 
   def view_schedule_group(schedule)
     the_span = content_tag('span', schedule.sport.name, :class => 'date')
-    # return content_tag(:td, "#{item_name_link(schedule.group)}<br />#{the_span}".html_safe, :class => 'name_and_date')
     return set_content_tag_safe(:td, "#{item_name_link(schedule.group)}<br />#{the_span}", 'name_and_date')
   end
 

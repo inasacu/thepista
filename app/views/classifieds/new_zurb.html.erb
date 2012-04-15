@@ -5,16 +5,4 @@
 	@item = @classified
 %>
 
-<div class="row">
-
-	<div class="twelve columns">  
-
-		<%= set_title_class(the_label) %>
-		
-		<hr />
-
-		<%= render 'shared/new_edit_multipart_zurb', :item => @item %>
-
-	</div>
-
-</div>
+<%= render 'shared/new_edit_multipart_zurb', :item => @item, :the_label => the_label %>

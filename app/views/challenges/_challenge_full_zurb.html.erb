@@ -48,7 +48,7 @@
 					<%= link_to("#{label_name(:invitations_your_friend)} #{the_challenge}", new_invitation_url(:challenge_id => challenge)) %><br />
 				<% 
 				  	else
-						unless current_user.has_item_petition?(current_user, challenge) 
+						unless has_current_item_petition(challenge) 
 				%> 
 					<%= join_item_link_to(current_user, challenge) %>
 				<% 	end 
