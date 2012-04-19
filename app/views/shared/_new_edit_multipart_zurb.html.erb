@@ -1,29 +1,23 @@
-<%#= render 'shared/new_edit_multipart_zurb', :item => @item %>
+<%#= render 'shared/new_edit_multipart_zurb', :item => @item, :the_label => the_label %>
 
 <% 
 	the_controller = item.class.to_s.downcase 
 	is_edit = is_action('edit') 
-	
-	share_options = ['forum', 'blog', 'comment']
-	show_share = share_options.include?(get_the_controller)
 %>
 
 <div class="row">
-
 	<div class="twelve columns">  
 
 		<%= set_title_class(the_label) %>
 		
 		<hr />
 
-		<%= form_for(item, :html => { :multipart => true, :class => :form  }) do |the_form| %>
+		<%= form_for(item, :html => { :multipart => true, :class => 'nice'  }) do |the_form| %>
 
 			<%= render "#{the_controller}s/form_zurb", :the_form => the_form, :is_edit => is_edit %>
 
-
-			<%= "<br /><br />".html_safe unless show_share %>   
-			<%= set_form_button(item, 'share') if show_share  %>
-			<%= set_form_button_submit(item) unless show_share %>
+			<br/><br/>
+			<%= set_form_button_submit(item) %>
 
 		<% end -%>
 

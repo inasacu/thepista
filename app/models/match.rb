@@ -2,8 +2,8 @@ require "base64"
 
 class Match < ActiveRecord::Base
           
-	extend FriendlyId 
-	friendly_id :name, 			use: :slugged
+	# extend FriendlyId 
+	# friendly_id :name, 			use: :slugged
 	
   # allows user to rate a model 
   # ajaxful_rateable :stars => 5, :dimensions => [:technical, :physical]  
@@ -222,9 +222,9 @@ class Match < ActiveRecord::Base
     end       
         
     the_match ||= "..."
-    @schedule.forum.description = the_match.description
+    # @schedule.forum.description = the_match.description
     Scorecard.delay.calculate_group_scorecard(@schedule.group)
-    @schedule.forum.comments.create(:body => the_match.description, :user => user)  if @schedule.played? and forum_comment
+    # @schedule.forum.comments.create(:body => the_match.description, :user => user)  if @schedule.played? and forum_comment
   end
 
   def self.save_matches(the_match, match_attributes)

@@ -3,6 +3,9 @@ class User < ActiveRecord::Base
 	extend FriendlyId 
 	friendly_id :name, 			use: :slugged
 	
+	include MethodCacheable
+	
+	
 	acts_as_messageable :required => :body
    
    # allows user to rate a model 

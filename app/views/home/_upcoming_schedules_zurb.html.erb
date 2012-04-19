@@ -5,13 +5,17 @@
 		<%= request_image %>
 	</td>
 	<td class="name_and_date">
-		<%= first_icon %> <%= "#{request_link}".html_safe %> <%= "#{the_label.downcase}.".html_safe %>
+		<%= first_icon %> <%= "#{request_link}".html_safe %> <%= "#{the_label.downcase}.".html_safe %><br/>
 		<span class="date">
 			<%= the_icon %>&nbsp;
 			<%= "#{ago(the_schedule.created_at)}".html_safe %>&nbsp;
 			<%= "&nbsp;&nbsp;#{item_group_link}".html_safe unless item_group_link == "" %>
 		</span>
 	</td>
+
+		<td>&nbsp;</td>
+
+		<td class="last">&nbsp;</td>
 </tr>
 
 

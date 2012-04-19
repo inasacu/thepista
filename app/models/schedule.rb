@@ -1,11 +1,15 @@
 class Schedule < ActiveRecord::Base
 
-	extend FriendlyId 
-	friendly_id :name, 			use: :slugged
+	# extend FriendlyId 
+	# friendly_id :name, 			use: :slugged
+	
+	include MethodCacheable
+	
+	
 
   has_many  :matches,  :conditions => "matches.archive = false"
   has_many  :fees
-  has_one   :forum
+  # has_one   :forum
 
   has_many :home_roster,
   :through => :matches,
@@ -316,9 +320,9 @@ class Schedule < ActiveRecord::Base
 
   # create forum, topic, post details for schedule
   def create_schedule_details(user, schedule_update=false)
-    unless schedule_update
-      @forum = Forum.create_schedule_forum(self)
-    end
+    # unless schedule_update
+    #   @forum = Forum.create_schedule_forum(self)
+    # end
     Match.create_schedule_match(self) 
     Fee.create_group_fees(self) if DISPLAY_FREMIUM_SERVICES  
     Fee.create_user_fees(self) if DISPLAY_FREMIUM_SERVICES
@@ -353,19 +357,6 @@ class Schedule < ActiveRecord::Base
         schedule.group.users.each do |user|
           if user.message_notification? 
             create_notification_email(schedule, schedule, manager_id, user.id, true)
-
-            # message = Message.new
-            # message.subject = "#{I18n.t(:reminder_at)}:  #{schedule.name}"
-            # message.body = "#{I18n.t(:reminder_at_message)}  #{schedule.name}  #{I18n.t(:reminder_at_salute)}"
-            # message.item = schedule
-            # message.sender_id = manager_id
-            # message.recipient_id = user.id
-            # message.sender_read_at = Time.zone.now
-            # message.recipient_read_at = Time.zone.now
-            # message.sender_deleted_at = Time.zone.now
-            # message.recipient_deleted_at = Time.zone.now        
-            # message.save!
-
           end
         end
 
@@ -388,18 +379,6 @@ class Schedule < ActiveRecord::Base
       # send email to manager to update match result
       if !match.nil? and manager.message_notification?           
         create_notification_email(match, schedule, manager_id, manager_id)
-        
-        # message = Message.new
-        # message.subject = "#{I18n.t(:update_match)}:  #{schedule.name}"
-        # message.body = "#{I18n.t(:update_match_message)}  #{schedule.name}  #{I18n.t(:reminder_at_salute)}"
-        # message.item = match
-        # message.sender_id = manager_id
-        # message.recipient_id = manager_id
-        # message.sender_read_at = Time.zone.now
-        # message.recipient_read_at = Time.zone.now
-        # message.sender_deleted_at = Time.zone.now
-        # message.recipient_deleted_at = Time.zone.now        
-        # message.save!
       end  
 
       schedule.send_result_at = Time.zone.now
@@ -417,18 +396,6 @@ class Schedule < ActiveRecord::Base
 
       schedule.the_roster.each do |match|        
         create_notification_email(schedule, schedule, manager_id, match.user_id)
-        
-        # message = Message.new
-        # message.subject = "#{I18n.t(:reminder_wall_message)}:  #{schedule.name}"
-        # message.body = "#{I18n.t(:reminder_after_game_message)}  #{schedule.name}  #{I18n.t(:reminder_at_salute)}"
-        # message.item = schedule
-        # message.sender_id = manager_id
-        # message.recipient_id = match.user_id
-        # message.sender_read_at = Time.zone.now
-        # message.recipient_read_at = Time.zone.now
-        # message.sender_deleted_at = Time.zone.now
-        # message.recipient_deleted_at = Time.zone.now        
-        # message.save! 
       end
 
       schedule.send_comment_at = Time.zone.now
@@ -449,18 +416,6 @@ class Schedule < ActiveRecord::Base
       if schedule.played?
         schedule.group.users.each do |user|
           create_notification_email(scorecard, schedule, manager_id, user.id)
-          
-          # message = Message.new
-          # message.subject = "#{I18n.t(:scorecard_latest)}:  #{schedule.group.name}"
-          # message.body = "#{I18n.t(:scorecard_latest)}  #{schedule.group.name}  #{I18n.t(:reminder_at_salute)}"
-          # message.item = scorecard
-          # message.sender_id = manager_id
-          # message.recipient_id = user.id
-          # message.sender_read_at = Time.zone.now
-          # message.recipient_read_at = Time.zone.now
-          # message.sender_deleted_at = Time.zone.now
-          # message.recipient_deleted_at = Time.zone.now        
-          # message.save!
         end
       end
 

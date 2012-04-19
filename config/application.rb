@@ -80,5 +80,10 @@ module Thepista
 			:enable_starttls_auto => true
 		}
 		
+		# method_cachable
+		config.cache_store = :dalli_store
+		
+		
   end
+
 end

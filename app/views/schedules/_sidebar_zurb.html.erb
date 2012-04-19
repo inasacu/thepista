@@ -1,11 +1,12 @@
 <% 
 	is_schedule_manager = @schedule ? is_current_manager_of(@schedule.group) : false 
+	is_new_schedule = (get_controller_action =='schedule_new' or get_controller_action == 'schedule_create')
 %>
 
 
 <%= render('/shared/latest_payment_zurb') if DISPLAY_FREMIUM_SERVICES -%>
 
-<% if @schedule -%>
+<% if @schedule and !is_new_schedule -%>
 	<%= render("schedules/sidebar_details_zurb", :schedule => @schedule) -%>
 	<%= render("schedules/sidebar_ausentes_zurb", :schedule => @schedule, ) -%>
 	<%#= render('shared/sidebar_create_zurb', :item => @schedule) if is_schedule_manager -%>

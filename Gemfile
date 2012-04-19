@@ -32,6 +32,9 @@ gem 'typhoeus'
 gem 'acts-as-messageable'
 gem 'delayed_job_active_record'
 
+gem 'method_cacheable'
+gem 'dalli'
+
 
 # Gems used only for assets and not required
 # in production environments by default.

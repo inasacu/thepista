@@ -54,16 +54,6 @@
 	<%= stylesheet_link_tag 'zurb/presentation' %>
 	<%= stylesheet_link_tag 'zurb/app' %>
 
-	<%#= javascript_include_tag "vtip" %>
-	<%= javascript_include_tag "jquery-1.6.1.min" %>
-	<%= javascript_include_tag "zurb/jquery.reveal" %>
-	<%= javascript_include_tag "zurb/jquery.orbit-1.3.0" %>
-	<%= javascript_include_tag "zurb/forms.jquery" %>
-	<%= javascript_include_tag "zurb/jquery.customforms" %>
-	<%= javascript_include_tag "zurb/jquery.placeholder.min" %>
-	<%= javascript_include_tag "zurb/app" %>
-	<%= javascript_include_tag "zurb/presentation" %>
-
 
 	<!--[if lt IE 9]>
 		<link rel="stylesheet" href="../../stylesheets/zurb/ie.css">
@@ -85,7 +75,6 @@
 	<div class="container">
 		
 		<%= render 'shared/flash_zurb' %>
-
 		<%= render 'shared/wrapper_zurb' %>
 
 		<%#= render 'templates/twelve_columns_zurb' %>
@@ -96,8 +85,17 @@
 
 	</div>
 
-
-	<%= render 'utilities/disqus_script'%>
+	<%#= javascript_include_tag "vtip" %>
+	<%= javascript_include_tag "jquery-1.6.1.min" %>
+	<%= javascript_include_tag "zurb/jquery.reveal" %>
+	<%= javascript_include_tag "zurb/jquery.orbit-1.3.0" %>
+	<%= javascript_include_tag "zurb/forms.jquery" %>
+	<%= javascript_include_tag "zurb/jquery.customforms" %>
+	<%= javascript_include_tag "zurb/jquery.placeholder.min" %>
+	<%= javascript_include_tag "zurb/app" %>
+	<%= javascript_include_tag "zurb/presentation" %>
+	<%= javascript_include_tag "disqus" %>
+	
 </body>
 
 </html>

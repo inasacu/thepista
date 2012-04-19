@@ -1,4 +1,9 @@
 
+<style type="text/css">
+	select.date { display: inline; }
+	.datetime.optional { display: inline; }
+</style>
+
 
 <%= the_form.hidden_field :group_id %>
 <%= the_form.hidden_field :sport_id %>
@@ -8,35 +13,39 @@
 
 
 <%= set_form_label(the_form, :name) %>
-<%= set_form_text_field(the_form, :name, 'input-text') %>
+<%= set_form_text_field(the_form, :name, 'input-text') %><br />
+
 
 <%= set_form_label(the_form, :starts_at) %>
-<%= the_form.datetime_select :starts_at %>
+<%= the_form.datetime_select :starts_at %><br /><br />
 
 
 <%= set_form_label(the_form, :ends_at) %>
-<%= the_form.datetime_select :ends_at %>
+<%= the_form.datetime_select :ends_at %><br /><br />
 
+<% if DISPLAY_FREMIUM_SERVICES %>
 
 <%= set_form_label(the_form, :reminder_at) %>
-<%= the_form.datetime_select :reminder_at %>
+<%= the_form.datetime_select :reminder_at %><br /><br />
 
 
-<%#= set_form_label(the_form, :description) %>
-<%#= set_form_text_area(the_form, :description) %>
+<%= set_form_label(the_form, :description) %>
+<%= set_form_text_area(the_form, :description) %><br /><br />
+
+
+<%= set_form_label(the_form, :fee_per_pista) %>
+<%= set_form_text_field(the_form, :fee_per_pista, 'small input-text', true) %><br /><br />
+
+
+<%#= set_form_label(the_form, :public) %>
+<%#= set_form_checkbox(the_form, :public) %>
+
+<% end %>
 
 
 <%= set_form_label(the_form, :fee_per_game) %>
 <%= set_form_text_field(the_form, :fee_per_game, 'small input-text', true) %><br />
 
 
-<%= set_form_label(the_form, :fee_per_pista) %>
-<%= set_form_text_field(the_form, :fee_per_pista, 'small input-text', true) %><br />
-
-
 <%= set_form_label(the_form, :player_limit) %>
 <%= set_form_text_field(the_form, :player_limit, 'small input-text', true) %><br />
-
-
-<%#= set_form_label(the_form, :public) %>
-<%#= set_form_checkbox(the_form, :public) %>
