@@ -3,7 +3,7 @@
 <plist version="1.0">
 <dict>
 	<key>currentDocument</key>
-	<string>log/development.log</string>
+	<string>lib/tasks/the_update_slugs.rake</string>
 	<key>documents</key>
 	<array>
 		<dict>
@@ -146,7 +146,7 @@
 		</dict>
 	</array>
 	<key>fileHierarchyDrawerWidth</key>
-	<integer>221</integer>
+	<integer>355</integer>
 	<key>metaData</key>
 	<dict>
 		<key>Gemfile</key>
@@ -221,35 +221,19 @@
 				<integer>56</integer>
 			</dict>
 		</dict>
-		<key>app/controllers/schedules_controller.rb</key>
+		<key>app/controllers/messages_controller.rb</key>
 		<dict>
 			<key>caret</key>
 			<dict>
 				<key>column</key>
-				<integer>50</integer>
+				<integer>42</integer>
 				<key>line</key>
-				<integer>172</integer>
+				<integer>323</integer>
 			</dict>
-			<key>columnSelection</key>
-			<false/>
 			<key>firstVisibleColumn</key>
 			<integer>0</integer>
 			<key>firstVisibleLine</key>
-			<integer>142</integer>
-			<key>selectFrom</key>
-			<dict>
-				<key>column</key>
-				<integer>36</integer>
-				<key>line</key>
-				<integer>172</integer>
-			</dict>
-			<key>selectTo</key>
-			<dict>
-				<key>column</key>
-				<integer>59</integer>
-				<key>line</key>
-				<integer>172</integer>
-			</dict>
+			<integer>0</integer>
 		</dict>
 		<key>app/controllers/users_controller.rb</key>
 		<dict>
@@ -279,36 +263,6 @@
 				<integer>0</integer>
 				<key>line</key>
 				<integer>79</integer>
-			</dict>
-		</dict>
-		<key>app/helpers/matches_helper.rb</key>
-		<dict>
-			<key>caret</key>
-			<dict>
-				<key>column</key>
-				<integer>36</integer>
-				<key>line</key>
-				<integer>153</integer>
-			</dict>
-			<key>columnSelection</key>
-			<false/>
-			<key>firstVisibleColumn</key>
-			<integer>0</integer>
-			<key>firstVisibleLine</key>
-			<integer>128</integer>
-			<key>selectFrom</key>
-			<dict>
-				<key>column</key>
-				<integer>26</integer>
-				<key>line</key>
-				<integer>153</integer>
-			</dict>
-			<key>selectTo</key>
-			<dict>
-				<key>column</key>
-				<integer>47</integer>
-				<key>line</key>
-				<integer>153</integer>
 			</dict>
 		</dict>
 		<key>app/helpers/schedules_helper.rb</key>
@@ -349,20 +303,6 @@
 				<integer>1</integer>
 				<key>line</key>
 				<integer>6</integer>
-			</dict>
-			<key>firstVisibleColumn</key>
-			<integer>0</integer>
-			<key>firstVisibleLine</key>
-			<integer>0</integer>
-		</dict>
-		<key>app/models/schedule.rb</key>
-		<dict>
-			<key>caret</key>
-			<dict>
-				<key>column</key>
-				<integer>1</integer>
-				<key>line</key>
-				<integer>7</integer>
 			</dict>
 			<key>firstVisibleColumn</key>
 			<integer>0</integer>
@@ -413,6 +353,36 @@
 				<integer>16</integer>
 			</dict>
 		</dict>
+		<key>app/views/groups/_index_full_zurb.html.erb</key>
+		<dict>
+			<key>caret</key>
+			<dict>
+				<key>column</key>
+				<integer>29</integer>
+				<key>line</key>
+				<integer>1</integer>
+			</dict>
+			<key>columnSelection</key>
+			<false/>
+			<key>firstVisibleColumn</key>
+			<integer>0</integer>
+			<key>firstVisibleLine</key>
+			<integer>0</integer>
+			<key>selectFrom</key>
+			<dict>
+				<key>column</key>
+				<integer>19</integer>
+				<key>line</key>
+				<integer>1</integer>
+			</dict>
+			<key>selectTo</key>
+			<dict>
+				<key>column</key>
+				<integer>42</integer>
+				<key>line</key>
+				<integer>1</integer>
+			</dict>
+		</dict>
 		<key>app/views/groups/_profile.html.erb</key>
 		<dict>
 			<key>caret</key>
@@ -426,6 +396,36 @@
 			<integer>0</integer>
 			<key>firstVisibleLine</key>
 			<integer>0</integer>
+		</dict>
+		<key>app/views/groups/index_zurb.html.erb</key>
+		<dict>
+			<key>caret</key>
+			<dict>
+				<key>column</key>
+				<integer>27</integer>
+				<key>line</key>
+				<integer>9</integer>
+			</dict>
+			<key>columnSelection</key>
+			<false/>
+			<key>firstVisibleColumn</key>
+			<integer>0</integer>
+			<key>firstVisibleLine</key>
+			<integer>0</integer>
+			<key>selectFrom</key>
+			<dict>
+				<key>column</key>
+				<integer>24</integer>
+				<key>line</key>
+				<integer>9</integer>
+			</dict>
+			<key>selectTo</key>
+			<dict>
+				<key>column</key>
+				<integer>39</integer>
+				<key>line</key>
+				<integer>9</integer>
+			</dict>
 		</dict>
 		<key>app/views/home/_latest_activities_zurb.html.erb</key>
 		<dict>
@@ -529,6 +529,20 @@
 			<key>firstVisibleLine</key>
 			<integer>0</integer>
 		</dict>
+		<key>app/views/home/_upcoming_schedule_zurb.html.erb</key>
+		<dict>
+			<key>caret</key>
+			<dict>
+				<key>column</key>
+				<integer>0</integer>
+				<key>line</key>
+				<integer>0</integer>
+			</dict>
+			<key>firstVisibleColumn</key>
+			<integer>0</integer>
+			<key>firstVisibleLine</key>
+			<integer>0</integer>
+		</dict>
 		<key>app/views/home/_upcoming_schedules_zurb.html.erb</key>
 		<dict>
 			<key>caret</key>
@@ -573,33 +587,107 @@
 				<integer>15</integer>
 			</dict>
 		</dict>
-		<key>app/views/schedules/_sidebar_zurb.html.erb</key>
+		<key>app/views/layouts/zurb.html.erb</key>
 		<dict>
 			<key>caret</key>
 			<dict>
 				<key>column</key>
-				<integer>37</integer>
+				<integer>28</integer>
 				<key>line</key>
-				<integer>8</integer>
+				<integer>73</integer>
+			</dict>
+			<key>columnSelection</key>
+			<false/>
+			<key>firstVisibleColumn</key>
+			<integer>0</integer>
+			<key>firstVisibleLine</key>
+			<integer>43</integer>
+			<key>selectFrom</key>
+			<dict>
+				<key>column</key>
+				<integer>21</integer>
+				<key>line</key>
+				<integer>73</integer>
+			</dict>
+			<key>selectTo</key>
+			<dict>
+				<key>column</key>
+				<integer>31</integer>
+				<key>line</key>
+				<integer>73</integer>
+			</dict>
+		</dict>
+		<key>app/views/schedules/_tab_navigation_zurb.html.erb</key>
+		<dict>
+			<key>caret</key>
+			<dict>
+				<key>column</key>
+				<integer>0</integer>
+				<key>line</key>
+				<integer>30</integer>
+			</dict>
+			<key>columnSelection</key>
+			<false/>
+			<key>firstVisibleColumn</key>
+			<integer>0</integer>
+			<key>firstVisibleLine</key>
+			<integer>16</integer>
+			<key>selectFrom</key>
+			<dict>
+				<key>column</key>
+				<integer>128</integer>
+				<key>line</key>
+				<integer>31</integer>
+			</dict>
+			<key>selectTo</key>
+			<dict>
+				<key>column</key>
+				<integer>0</integer>
+				<key>line</key>
+				<integer>30</integer>
+			</dict>
+		</dict>
+		<key>app/views/shared/_flash_zurb.html.erb</key>
+		<dict>
+			<key>caret</key>
+			<dict>
+				<key>column</key>
+				<integer>17</integer>
+				<key>line</key>
+				<integer>17</integer>
+			</dict>
+			<key>firstVisibleColumn</key>
+			<integer>0</integer>
+			<key>firstVisibleLine</key>
+			<integer>4</integer>
+		</dict>
+		<key>app/views/shared/_header_zurb.html.erb</key>
+		<dict>
+			<key>caret</key>
+			<dict>
+				<key>column</key>
+				<integer>0</integer>
+				<key>line</key>
+				<integer>24</integer>
 			</dict>
 			<key>firstVisibleColumn</key>
 			<integer>0</integer>
 			<key>firstVisibleLine</key>
 			<integer>0</integer>
 		</dict>
-		<key>app/views/schedules/show.html.erb</key>
+		<key>app/views/shared/_wrapper_zurb.html.erb</key>
 		<dict>
 			<key>caret</key>
 			<dict>
 				<key>column</key>
 				<integer>0</integer>
 				<key>line</key>
-				<integer>0</integer>
+				<integer>33</integer>
 			</dict>
 			<key>firstVisibleColumn</key>
 			<integer>0</integer>
 			<key>firstVisibleLine</key>
-			<integer>83</integer>
+			<integer>2</integer>
 		</dict>
 		<key>app/views/user_mailer/_the_match_status.html.erb</key>
 		<dict>
@@ -766,9 +854,9 @@
 			<key>caret</key>
 			<dict>
 				<key>column</key>
-				<integer>15</integer>
+				<integer>10</integer>
 				<key>line</key>
-				<integer>134</integer>
+				<integer>131</integer>
 			</dict>
 			<key>columnSelection</key>
 			<false/>
@@ -781,14 +869,14 @@
 				<key>column</key>
 				<integer>0</integer>
 				<key>line</key>
-				<integer>134</integer>
+				<integer>131</integer>
 			</dict>
 			<key>selectTo</key>
 			<dict>
 				<key>column</key>
-				<integer>24</integer>
+				<integer>22</integer>
 				<key>line</key>
-				<integer>134</integer>
+				<integer>131</integer>
 			</dict>
 		</dict>
 		<key>config/initializers/method_cacheable.rb</key>
@@ -804,6 +892,36 @@
 			<integer>0</integer>
 			<key>firstVisibleLine</key>
 			<integer>0</integer>
+		</dict>
+		<key>lib/tasks/the_update_slugs.rake</key>
+		<dict>
+			<key>caret</key>
+			<dict>
+				<key>column</key>
+				<integer>34</integer>
+				<key>line</key>
+				<integer>0</integer>
+			</dict>
+			<key>columnSelection</key>
+			<false/>
+			<key>firstVisibleColumn</key>
+			<integer>0</integer>
+			<key>firstVisibleLine</key>
+			<integer>0</integer>
+			<key>selectFrom</key>
+			<dict>
+				<key>column</key>
+				<integer>13</integer>
+				<key>line</key>
+				<integer>0</integer>
+			</dict>
+			<key>selectTo</key>
+			<dict>
+				<key>column</key>
+				<integer>34</integer>
+				<key>line</key>
+				<integer>0</integer>
+			</dict>
 		</dict>
 		<key>log/development.log</key>
 		<dict>
@@ -837,17 +955,16 @@
 	<key>openDocuments</key>
 	<array>
 		<string>log/development.log</string>
-		<string>Gemfile</string>
-		<string>config/application.rb</string>
-		<string>config/initializers/method_cacheable.rb</string>
-		<string>app/controllers/schedules_controller.rb</string>
-		<string>app/models/schedule.rb</string>
-		<string>app/models/user.rb</string>
-		<string>app/models/group.rb</string>
+		<string>lib/tasks/the_update_slugs.rake</string>
+		<string>app/views/schedules/_tab_navigation_zurb.html.erb</string>
+		<string>app/views/shared/_header_zurb.html.erb</string>
+		<string>app/views/layouts/zurb.html.erb</string>
+		<string>app/views/shared/_flash_zurb.html.erb</string>
+		<string>app/views/shared/_wrapper_zurb.html.erb</string>
 	</array>
 	<key>showFileHierarchyDrawer</key>
 	<true/>
 	<key>windowFrame</key>
-	<string>{{0, 46}, {1689, 1012}}</string>
+	<string>{{0, 46}, {1549, 1012}}</string>
 </dict>
 </plist>

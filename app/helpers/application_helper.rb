@@ -325,7 +325,7 @@ module ApplicationHelper
 		if DISPLAY_HAYPISTA_TEMPLATE
 			set_content_tag_safe(:h2, "#{image_label.nil? ? '' : option_image_link(image_label)}  #{text}", "title")
 		else
-			set_content_tag_safe(:h3, "#{image_label.nil? ? '' : option_image_small_link(image_label)}  #{text}", "title")
+			set_content_tag_safe(:h4, "#{image_label.nil? ? '' : option_image_small_link(image_label)}  #{text}", "title")
 		end
 	end
 

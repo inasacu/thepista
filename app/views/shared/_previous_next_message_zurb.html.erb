@@ -26,13 +26,10 @@
 			the_previous_link = link_to(label_name(:next), team_unavailable_path(:id => the_next))
 
 		end
-
-	# elsif is_controller("forum")
-	# 	the_next_link = link_to(label_name(:previous), forum_path(@forum))
-	# 	the_previous_link = link_to(label_name(:next), forum_path(@forum))
 	end
 %>
 
+<% if DISPLAY_HEADER_0PTIONS %>
 
 <div class="row">
 
@@ -57,3 +54,5 @@
 
 <hr />
 <br />
+
+<% end %>

@@ -17,68 +17,52 @@
 	end
 %>
 
-<body class="js">
-	<div id="abook-group">
-		<div id="abook-wrapper">
+<div class="row">
+	<div class="seven columns">	
+				
+		<fieldset id="roster">
+			<h5><%= the_label %></h5>
+			<hr/>
 			
-			<div class="abook-column-headers">
-				<h3 class="filter-header"><%= the_label %></h3>
-
-				<h3 style="visibility: visible;" class="list-header">
-					<%= render :partial => '/shared/check_radio_button_zurb' if recipients %>
-				</h3>
-			</div>
+			<%#= render 'shared/check_radio_button_zurb' if recipients %>
 			
-			<div id="filter-list-panel">
-				<div id="list-panel" class="abook-column">
-					<ul>
-						<fieldset id="roster">
+<% 
+			first_character = ''
+			counter = 0
+			recipients.each do |recipient| 
 
-							<table class="table">
-								<tbody>
-									<% 
-									first_character = ''
-									counter = 0
-									recipients.each do |recipient| 
+				if (first_character != (recipient.name.chars.first).upcase)
+					first_character = (recipient.name.chars.first).upcase
+					counter = 0
+				else
+					counter = 1
+				end 
+				if (counter == 0)
 
-										if (first_character != (recipient.name.chars.first).upcase)
-											first_character = (recipient.name.chars.first).upcase
-											counter = 0
-										else
-											counter = 1
-										end 
-										if (counter == 0)
-									%>
-											<tr>
-												<td class="letter-divider">	
-													<span class="<%= first_character %>"><%= first_character %></span>
-												</td> 
-											</tr>
-											<% 
-										end
-										
-										case the_class
-										when "Escuadra"										
-											%>											
-											<%= render :partial => "item_single_zurb", :locals => {:escuadra => recipient, :checked => false} %>
-											<%
-										when "User"											
-											%>											
-											<%= render :partial => "/messages/recipient_item_single_zurb", 
-													   :locals => {:recipient => recipient, :checked => the_check, :convocados => convocados} %>
-											<%
-										else
-										end
-										
-									end
-									%>		
-								</tbody>
-							</table>
+				end
 
-						</fieldset>
-					</ul>
-				</div>
-			</div>
-		</div>
+				case the_class
+				when "Escuadra"										
+%>											
+					<%= render :partial => "item_single_zurb", :locals => {:escuadra => recipient, :checked => false} %>
+<%
+				when "User"											
+%>											
+					<%= render :partial => "/messages/recipient_item_single_zurb", 
+					:locals => {:recipient => recipient, :checked => the_check, :convocados => convocados} %>
+<%
+				else
+				end
+
+			end
+%>
+		</fieldset>
+		
 	</div>
-</body>
+</div>
+
+
+
+
+
+

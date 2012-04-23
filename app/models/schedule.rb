@@ -318,15 +318,14 @@ class Schedule < ActiveRecord::Base
     played == false
   end
 
-  # create forum, topic, post details for schedule
-  def create_schedule_details(user, schedule_update=false)
-    # unless schedule_update
-    #   @forum = Forum.create_schedule_forum(self)
-    # end
-    Match.create_schedule_match(self) 
-    Fee.create_group_fees(self) if DISPLAY_FREMIUM_SERVICES  
-    Fee.create_user_fees(self) if DISPLAY_FREMIUM_SERVICES
-  end
+  # create fmatch details for schedule
+	def create_schedule_details
+		Match.create_schedule_match(self) 
+		if DISPLAY_FREMIUM_SERVICES  
+			Fee.create_group_fees(self) 
+			Fee.create_user_fees(self) 
+		end
+	end
 
   def create_join_user_schedule_details
     Match.create_schedule_match(self) 
@@ -345,26 +344,16 @@ class Schedule < ActiveRecord::Base
     schedules = Schedule.find(:all, 
                   :conditions => ["played = false and send_reminder_at is null and reminder = true and reminder_at >= ? and reminder_at <= ?", PAST_THREE_DAYS, Time.zone.now])
     
-    schedules.each do |schedule|
-      
-      # players_needed = true
-      # total_schedules = Schedule.count(:conditions => ["group_id = ?", schedule.group])
-      # total_match_users = Match.count(:conditions => ["schedule_id = ? and type_id = 1", schedule.id])
-      manager_id = RolesUsers.find_item_manager(schedule.group).user_id
-      # players_needed = total_match_users.to_i < schedule.player_limit.to_i
-
-      # if players_needed
-        schedule.group.users.each do |user|
-          if user.message_notification? 
-            create_notification_email(schedule, schedule, manager_id, user.id, true)
-          end
-        end
-
-        schedule.send_reminder_at = Time.zone.now
-        schedule.save!
-      # end
-
-    end
+		schedules.each do |schedule|
+			manager_id = RolesUsers.find_item_manager(schedule.group).user_id
+			schedule.group.users.each do |user|
+				if user.message_notification? 
+					create_notification_email(schedule, schedule, manager_id, user.id, true)
+				end
+			end
+			schedule.send_reminder_at = Time.zone.now
+			schedule.save!
+		end
 
   end
 

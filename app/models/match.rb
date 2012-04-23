@@ -242,14 +242,6 @@ class Match < ActiveRecord::Base
       position_id = 18    # set user position to center field 
       technical = 3       # set user technical to default value
       physical = 3        # set user physical to default value
-
-      @previous_match = Match.find(:first, 
-            :conditions => ["id = (select max(id) from matches where (group_id = ? or invite_id = ?) and user_id = ?) ", schedule.group_id, schedule.group_id, user.id])    
-      unless @previous_match.nil?
-        position_id = @previous_match.position_id
-        technical = @previous_match.technical
-        physical = @previous_match.physical
-      end
       
       # assign unique user id and start_date code for changing status through email
       the_encode = "#{rand(36**8).to_s(36)}#{schedule.id}#{rand(36**8).to_s(36)}"
@@ -258,7 +250,7 @@ class Match < ActiveRecord::Base
       self.create!(:name => schedule.name, :description => schedule.description, :status_at => Time.zone.now, 
                    :schedule_id => schedule.id, :group_id => schedule.group_id, :user_id => user.id, :available => user.available, 
                    :type_id => type_id, :position_id => position_id, :technical => technical, :physical => physical,
-                   :played => schedule.played, :block_token => block_token) if self.schedule_user_exists?(schedule, user)
+                   :played => schedule.played, :block_token => block_token) if Match.schedule_user_exists?(schedule, user)
     end
   end
   

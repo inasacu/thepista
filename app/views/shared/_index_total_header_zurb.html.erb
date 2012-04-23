@@ -3,6 +3,8 @@
 	the_total_label = I18n.t(:groups, :count => object_counter(items))
 %>
 
+<% if DISPLAY_HEADER_0PTIONS %>
+
 <div class="row">
 	<div class="twelve columns">
 		<div class="foundation-header">
@@ -14,3 +16,5 @@
 		</div>
 	</div>
 </div>
+
+<% end %>

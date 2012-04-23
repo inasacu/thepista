@@ -317,15 +317,15 @@ class User < ActiveRecord::Base
       user == self or user.has_role?('maximo')
     end
     
-		# def received_messages(params, page = 1)
-		# 	# _received_messages.page(params[:page])
-		# 	_received_messages.page(params)
-		# end
-		# 
-		# def sent_messages(params, page = 1)
-		# 	# _sent_messages.page(params[:page])
-		# 	_sent_messages.page(params)
-		# end
+		def received_messages(params, page = 1)
+			# _received_messages.page(params[:page])
+			_received_messages.page(params)
+		end
+		
+		def sent_messages(params, page = 1)
+			# _sent_messages.page(params[:page])
+			_sent_messages.page(params)
+		end
 
     def find_user_in_conversation(parent_id, exclude_self = true)
       @recipients = []  

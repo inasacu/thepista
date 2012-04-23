@@ -6,16 +6,16 @@
 	when 'home'
 		the_tab_navigation = "#{get_the_controller}"
 		
-	when 'forum', 'match'
+	when 'match'
 		the_tab_navigation = "schedules"
 		
-	when 'blog', 'fee', 'payment', 'classified'
+	when 'fee', 'payment', 'classified'
 		the_tab_navigation = "users" if @user
 		the_tab_navigation = "groups" if @group
 		the_tab_navigation = "challenges" if @challenge
 		the_tab_navigation = "venues" if @venue
 		
-	when 'scorecard'	
+	when 'scorecard'
 		the_tab_navigation = "groups"
 	
 	when 'invitation'
@@ -59,7 +59,7 @@
 		<% if current_user %>
 
 			<dl class="nice tabs mobile hide-on-phones">	
-				<%= render "#{the_tab_navigation}/tab_navigation_zurb" %>				
+				<%= render "#{the_tab_navigation}/tab_navigation_zurb" %>
 			</dl>
 		
 		<% end %>

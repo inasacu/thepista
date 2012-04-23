@@ -1,21 +1,10 @@
-<style type="text/css"> 
-	.table td { padding: 4px; text-align: left; font-size: 12.5px; }
-</style>
-
 <% 
-checked ? checkmark = 'checked' : checkmark = '' 
-checkmark = 'checked' if (convocados and recipient.type_id.to_i == 1)
+	checked ? checkmark = 'checked' : checkmark = '' 
+	checkmark = 'checked' if (convocados and recipient.type_id.to_i == 1)
 %>
 
-<tr>
-	<td>
-		<input type="checkbox" id="roster" name="recipient_ids[]" value="<%= recipient.id %>" <%= checkmark %> >
-	</td>        
-	<td>
-		<%= item_image_link_smaller(recipient) %>&nbsp;&nbsp;
-		<%= item_name_link(recipient) %>&nbsp;&nbsp;
-	</td> 
-	<td>
-		<%= label_name(recipient.types_name) if convocados %>
-	</td>
-</tr>
+<label for="niceFieldsetInput">
+	<input type="checkbox" id="roster" name="recipient_ids[]" value="<%= recipient.id %>" <%= checkmark %> >
+	<%= item_name_link(recipient) %>
+	<%= "<br/>#{label_name(recipient.types_name)}" if convocados %>
+</label>

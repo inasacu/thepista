@@ -170,7 +170,8 @@ class SchedulesController < ApplicationController
       return
     end
 
-    if @schedule.save and @schedule.create_schedule_details(current_user)
+    if @schedule.save 
+			@schedule.create_schedule_details
       successful_create
       redirect_to @schedule
     else
@@ -186,7 +187,7 @@ class SchedulesController < ApplicationController
   end
 
   def update
-    if @schedule.update_attributes(params[:schedule]) and @schedule.create_schedule_details(current_user, true)  
+    if @schedule.update_attributes(params[:schedule]) and @schedule.create_schedule_details
       flash[:success] = I18n.t(:successful_update)
       redirect_to @schedule
     else
