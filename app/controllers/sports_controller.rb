@@ -36,7 +36,7 @@ class SportsController < ApplicationController
   def update
     @sport = Sport.find(params[:id])
     if @sport.update_attributes(params[:sport])
-      flash[:success] = I18n.t(:successful_update)
+      controller_successful_update
       redirect_to sports_url
       return
     else

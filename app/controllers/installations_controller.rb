@@ -72,7 +72,7 @@ class InstallationsController < ApplicationController
 
 	def update
 		if @installation.update_attributes(params[:installation])  
-			flash[:success] = I18n.t(:successful_update)
+			controller_successful_update
 			redirect_to @installation
 		else
 			render :action => 'edit'

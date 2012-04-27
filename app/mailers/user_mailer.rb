@@ -6,35 +6,52 @@ class UserMailer < ActionMailer::Base
 	# helper ActionView::Helpers::TagHelper
 
 	def password_reset_instructions(user)  
-		# subject       I18n.t(:password_recover_instructions)
-		# from          "[HayPista] <support@haypista.com>"
-		# recipients    user.email  
-		# sent_on       Time.zone.now  
-		# body          :edit_password_reset_url => edit_password_reset_url(user.perishable_token)  
-
 		@user = user
 		email_with_name = "#{@user.name} <#{@user.email}>"
 		@url = edit_password_reset_url(@user.perishable_token)
 		mail(:to => email_with_name, :subject => I18n.t(:password_recover_instructions))
 	end 
 
-
-  # def invite(email, message, inviter, invitation_code, locale)
-  #   @inviter = inviter
-  #   @message = message
-  #   @locale = locale
-  #   @invitation_code = invitation_code
-  # 
-  #   mail_opts = {:to => email, :from => AppConfig[:smtp_sender_address],
-  #                :subject => I18n.t('notifier.invited_you', :name => @inviter.person.name),  
-  #                :host => AppConfig[:pod_uri].host}
-  # 
-  #   I18n.with_locale(locale) do
-  #     mail(mail_opts)
-  #   end
-  # end
-
-
+	 def message_notification(message)
+	   I18n.locale = message.sender.language
+	   # setup_message_email(message)
+	
+		@user = user
+		email_with_name = "#{@user.name} <#{@user.email}>"
+		@url = edit_password_reset_url(@user.perishable_token)
+		mail(:to => email_with_name, :subject => I18n.t(:password_recover_instructions))
+		
+		
+	
+	   case invitation.item.class.to_s 
+	   when "Group"
+	     @subject            = "#{I18n.t(:groups_join)} #{invitation.item.name}"
+	     @body[:group]       = invitation.item
+	   when "Schedule"
+	     @subject            = "#{invitation.user.name} #{I18n.t(:participate_schedule)}!"
+	     @body[:schedule]    = invitation.item
+	   when "Challenge"
+	     @subject            = "#{invitation.user.name} #{I18n.t(:participate_challenge)}!"
+	     @body[:challenge]   = invitation.item
+	   when "Cup"
+	     @subject            = "#{invitation.user.name} #{I18n.t(:participate_cup)}!"
+	     @body[:cup]         = invitation.item
+	   else
+	     @subject            = "#{invitation.user.name} #{I18n.t(:invitation_to_join)}!"
+	   end
+	
+	   @recipients       = "#{invitation.email}"
+	   @from             = "#{invitation.user.name} <#{invitation.user.email}>"
+	   @sent_on          = Time.zone.now
+	   @body[:user]      = invitation.user
+	   @body[:message]   = invitation
+	   @body[:url]       = signup_url
+	
+	 end
+	
+	
+	
+	
 	def signup_invitation(invitation)
 		# I18n.locale = message.sender.language
 		# setup_invitation_email(invitation)
@@ -128,10 +145,10 @@ class UserMailer < ActionMailer::Base
 	   content_type  "text/html"
 	 end
 	
-	 def message_notification(message)
-	   I18n.locale = message.sender.language
-	   setup_message_email(message)
-	 end
+	 # def message_notification(message)
+	 #   I18n.locale = message.sender.language
+	 #   setup_message_email(message)
+	 # end
 	
 	 def message_schedule(message)
 	   I18n.locale = message.sender.language

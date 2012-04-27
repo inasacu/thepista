@@ -106,7 +106,7 @@ class GamesController < ApplicationController
   def update
     if @game.update_attributes(params[:game]) 
       Standing.create_cup_escuadra_standing(@game.cup)
-      flash[:success] = I18n.t(:successful_update)
+      controller_successful_update
 
       unless @game.all_group_stage_played(@game.cup)
         redirect_to games_path(:id => @game.cup)
@@ -129,7 +129,7 @@ class GamesController < ApplicationController
 
     jornada = params[:the_game][:jornada]
     if @game.update_attributes('jornada' => jornada)
-      flash[:success] = I18n.t(:successful_update)
+      controller_successful_update
     end
     redirect_to games_path(:id => @cup)
     return

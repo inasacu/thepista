@@ -76,7 +76,7 @@
 	<% end %>
 
 
-	<%= render_show_detail_zurb(:jornada, @schedule.jornada) %>
+	<%#= render_show_detail_zurb(:jornada, @schedule.jornada) %>
 	<%= render_show_detail_zurb(:starts_at, nice_day_of_week(@schedule.starts_at)) %>
 
 
@@ -90,14 +90,13 @@
 
 	<% end %>
 
-	<%= render_show_detail_zurb(link_to(label_name(:scorecard), scorecard_path(:id => @schedule.group)), '', true) %>
-
+	<%#= render_show_detail_zurb(link_to(label_name(:scorecard), scorecard_path(:id => @schedule.group)), '', true) %>
 	
 	<%= render_show_detail_zurb(:city, @schedule.group.marker.city) %>
 	<%= render_show_detail_zurb(:sport, @schedule.sport.name) %>
 	<%= render_show_detail_zurb(:fee_per_game, number_to_currency(@schedule.fee_per_game)) %>
-	<%= render_show_detail_zurb(:fee_per_pista, number_to_currency(@schedule.fee_per_pista)) %>
-	<%= render_show_detail_zurb(:marker, marker_link(@schedule.group.marker)) %>
+	<%= render_show_detail_zurb(:fee_per_pista, number_to_currency(@schedule.fee_per_pista)) if DISPLAY_FREMIUM_SERVICES %>
+	<%= render_show_detail_zurb(:marker, marker_link(@schedule.group.marker)) if DISPLAY_FREMIUM_SERVICES %>
 
 	<hr>
 	</div>

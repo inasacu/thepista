@@ -137,7 +137,7 @@ class ReservationsController < ApplicationController
 
   def update
     if @reservation.update_attributes(params[:reservation])  
-      flash[:success] = I18n.t(:successful_update)
+      controller_successful_update
       redirect_to @reservation
     else
       render :action => 'edit'

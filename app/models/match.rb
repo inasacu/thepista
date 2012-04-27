@@ -27,14 +27,20 @@ class Match < ActiveRecord::Base
   # validates_length_of           :description,                     :within => DESCRIPTION_RANGE_LENGTH
   
   # variables to access
-  attr_accessible :name, :schedule_id, :user_id, :group_id, :invite_id, :group_score, :invite_score
-  attr_accessible :roster_position, :played, :available, :one_x_two, :user_x_two, :type_id, :status_at, :description
-  attr_accessible :position_id, :technical, :physical, :block_token
-  attr_accessible :goals_scored, :game_started, :field_goal_attempt, :field_goal_made, :free_throw_attempt, :free_throw_made
-  attr_accessible :three_point_attempt, :three_point_made, :rebounds, :rebounds_defense, :rebounds_offense 
-  attr_accessible :minutes_played, :assists, :steals, :blocks, :turnovers, :personal_fouls, :archive
-  attr_accessible :technical_average, :physical_average, :slug
-  
+	attr_accessible :name, :schedule_id, :user_id, :group_id, :invite_id, :group_score, :invite_score
+	attr_accessible :roster_position, :played, :available, :one_x_two, :user_x_two, :type_id, :status_at, :description
+	attr_accessible :position_id, :technical, :physical, :block_token
+	attr_accessible :goals_scored, :game_started, :field_goal_attempt, :field_goal_made, :free_throw_attempt, :free_throw_made
+	attr_accessible :three_point_attempt, :three_point_made, :rebounds, :rebounds_defense, :rebounds_offense 
+	attr_accessible :minutes_played, :assists, :steals, :blocks, :turnovers, :personal_fouls, :archive
+	attr_accessible :technical_average, :physical_average, :slug
+
+	attr_accessible :match_attributes
+
+	# has_many :match_attributes
+	# accepts_nested_attributes_for :match_attributes
+	
+	
   before_create   :format_description
   
   # method section

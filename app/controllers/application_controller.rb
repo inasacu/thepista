@@ -1,13 +1,13 @@
 class ApplicationController < ActionController::Base
 	helper :all
 	protect_from_forgery
-	
+
 	helper_method :current_user, :current_user_session
 
 	before_filter :set_time_zone , :set_user_language, :set_the_template   
 	layout 'zurb' 	unless DISPLAY_HAYPISTA_TEMPLATE
-	
-	
+
+
 	# this probably needs to go in the helper
 	def set_the_template(default_template='')
 		the_action = self.action_name.singularize
@@ -46,22 +46,25 @@ class ApplicationController < ActionController::Base
 	def successful_create
 		flash[:notice] = I18n.t(:successful_create)
 	end
-	
+
 	def warning_unauthorized
 		flash[:warning] = I18n.t(:unauthorized)
 	end
-	
+
 	def recaptcha_failure
 		flash[:warning] = I18n.t(:recaptcha_failure)
 	end
-	
+
 	def controller_successful_create
 		flash[:notice] = I18n.t(:invitation_successful_create)
 	end
 
+	def controller_successful_update
+		flash[:success] = I18n.t(:successful_update)
+	end
 
 	protected
-	
+
 	def access_denied
 		flash[:error] = "You do not have access!"
 		redirect_to :controller => :user, :action => :new
@@ -88,7 +91,7 @@ class ApplicationController < ActionController::Base
 		return @current_user_session if defined?(@current_user_session)
 		@current_user_session = UserSession.find
 	end
-	
+
 	def current_user
 		return @current_user if defined?(@current_user)
 		@current_user = current_user_session && current_user_session.user
@@ -102,36 +105,36 @@ class ApplicationController < ActionController::Base
 		Time.zone = @current_user.time_zone if @current_user
 	end
 
-  def require_user
-    unless current_user
-      store_location
-      flash[:notice] = "You must be logged in to access this page"
-      redirect_to new_user_session_url
-      return false
-    end
-  end
+	def require_user
+		unless current_user
+			store_location
+			flash[:notice] = "You must be logged in to access this page"
+			redirect_to new_user_session_url
+			return false
+		end
+	end
 
-  def require_no_user
-    if current_user
-      store_location
-      flash[:notice] = "You must be logged out to access this page"
-      redirect_to user_url( :current )
-      return false
-    end
-  end
-  
-  def store_location
-    session[:return_to] = request.url
-  end
+	def require_no_user
+		if current_user
+			store_location
+			flash[:notice] = "You must be logged out to access this page"
+			redirect_to user_url( :current )
+			return false
+		end
+	end
 
-  def clear_location
-    session[:return_to] = nil
-  end
+	def store_location
+		session[:return_to] = request.url
+	end
 
-  def redirect_back_or_default(default)
-    redirect_to(session[:return_to] || default)
-    session[:return_to] = nil
-  end
+	def clear_location
+		session[:return_to] = nil
+	end
+
+	def redirect_back_or_default(default)
+		redirect_to(session[:return_to] || default)
+		session[:return_to] = nil
+	end
 
 	def set_template
 		set_the_template

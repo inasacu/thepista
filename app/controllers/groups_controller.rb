@@ -66,7 +66,7 @@ class GroupsController < ApplicationController
         Scorecard.delay.calculate_group_scorecard(@group)    
       end
 
-      flash[:success] = I18n.t(:successful_update)
+      controller_successful_update
       redirect_to @group
     else
       render :action => 'edit'
@@ -77,7 +77,7 @@ class GroupsController < ApplicationController
     if @group.update_attribute("automatic_petition", !@group.automatic_petition)
       @group.update_attribute("automatic_petition", @group.automatic_petition)  
 
-      flash[:success] = I18n.t(:successful_update)
+      controller_successful_update
       redirect_back_or_default('/index')
     else
       render :action => 'index'
@@ -88,7 +88,7 @@ class GroupsController < ApplicationController
     if @group.update_attribute("looking", !@group.looking)
       @group.update_attribute("looking", @group.looking)  
 
-      flash[:success] = I18n.t(:successful_update)
+      controller_successful_update
       redirect_back_or_default('/index')
     else
       render :action => 'index'
@@ -99,7 +99,7 @@ class GroupsController < ApplicationController
     if @group.update_attribute("available", !@group.available)
       @group.update_attribute("available", @group.available)  
 
-      flash[:success] = I18n.t(:successful_update)
+      controller_successful_update
       redirect_back_or_default('/index')
     else
       render :action => 'index'
@@ -110,7 +110,7 @@ class GroupsController < ApplicationController
     if @group.update_attribute("enable_comments", !@group.enable_comments)
       @group.update_attribute("enable_comments", @group.enable_comments)  
 
-      flash[:success] = I18n.t(:successful_update)
+      controller_successful_update
       redirect_back_or_default('/index')
     else
       render :action => 'index'

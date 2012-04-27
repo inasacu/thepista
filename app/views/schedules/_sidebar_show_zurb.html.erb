@@ -8,6 +8,7 @@
 	the_group_name = ""
 	the_manager_label = ""
 	the_confirmation = ""
+	the_label ||= label_name(:options)
 
 	is_manager_not_forum = (is_group_manager and !is_controller('forum'))
 	is_not_topic_not_played = (get_the_controller != 'topic' and !@schedule.played?)
@@ -39,7 +40,7 @@
 	<div class="twelve columns">
 	
 		<% if is_group_member %>
-			<%= set_image_and_link(link_to(label_name(:post_pre_match), forum_path(@schedule.forum, :schedule_id => @schedule)), 'classified') unless has_been_played %>
+			<%#= set_image_and_link(link_to(label_name(:post_pre_match), forum_path(@schedule.forum, :schedule_id => @schedule)), 'classified') unless has_been_played %>
 			<%#= set_form_create_id_image_link(Message.new, :group_id, @group, :send_message_to) %>
 			<%= set_form_create_id_image_link(Invitation.new, :schedule_id, @schedule, :invitations_create_schedule) unless has_schedule_blank %>
 			<%#= set_image_and_link(link_to(label_name(:send_pre_match), new_message_path(:schedule_id => @schedule)), 'schedule') unless has_been_played %>

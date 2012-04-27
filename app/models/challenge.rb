@@ -103,7 +103,7 @@ class Challenge < ActiveRecord::Base
     ChallengesUsers.join_item(user, self)
     Standing.delay.create_cup_challenge_standing(self)
     Cast.delay.create_challenge_cast(self) 
-    Fee.delay.create_user_challenge_fees(self)
+    Fee.delay.create_user_challenge_fees(self) if DISPLAY_FREMIUM_SERVICES
   end 
 
 	def self.get_challenge_list

@@ -1,0 +1,26 @@
+<%
+	the_label = "#{@schedule.home_group} vs. #{@schedule.away_group}"
+	
+	counter = 0
+%>
+
+
+<%#= set_title_class(the_label) %>
+<!-- <hr/> -->
+
+<div class="row">
+	<div class="twelve columns">  
+			
+		<%= render 'matches/match_futbol_label_zurb' unless @is_basket %>
+		<%= render 'matches/match_basket_label_zurb' if @is_basket %>
+		
+		
+		<% matches.each do |match| %>	
+			<%#= render 'match_zurb', :match => match, :first_team => true %> [<%= counter +=1 %>]
+			<%= match.goals_scored %>
+		<%#= render 'matches/match_zurb', :matches => @matches, :first_team => false unless @is_basket %>
+		<% end %>
+
+	</div> 
+</div>
+

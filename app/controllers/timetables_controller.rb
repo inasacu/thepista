@@ -50,7 +50,7 @@ class TimetablesController < ApplicationController
 
   def update
     if @timetable.update_attributes(params[:timetable])  
-      flash[:success] = I18n.t(:successful_update)
+      controller_successful_update
       redirect_to @installation
     else
       render :action => 'edit'
@@ -74,7 +74,7 @@ class TimetablesController < ApplicationController
         @timetable.save
       end
 
-      flash[:success] = I18n.t(:successful_update)
+      controller_successful_update
       redirect_to @current_installation
       return
     end

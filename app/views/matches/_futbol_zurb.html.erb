@@ -1,4 +1,8 @@
 <td>
-<%= set_form_text_field(match_form, :goals_scored, 'small input-text') %><br />
-<%= set_form_text_field(match_form, :assists, :class => 'text_tiny_score' if DISPLAY_FUTBOL_ASSIST%>
+<%= set_form_text_field(match_form, :goals_scored, 'small input-text') %><br />1
+<%= set_form_text_field(match_form, :goals_scored, 'large input-text', true) %><br />2
+<td><%= match_form.text_field :goals_scored, :class => 'text_tiny_score' %></td>3
+
+<%#= match_form.goals_scored %>
+<%#= set_form_text_field(match_form, :assists, :class => 'text_tiny_score') if DISPLAY_FUTBOL_ASSIST %>
 </td>

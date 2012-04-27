@@ -109,7 +109,6 @@ class User < ActiveRecord::Base
                     
                       
     before_update   :format_description
-    # after_create    :create_user_blog_details, 
 		after_create		:signup_notification
    
        
@@ -399,13 +398,13 @@ class User < ActiveRecord::Base
         "order by name", user.groups, user.id])
     end
 
-    def self.find_group_mates(group)
+    def self.find_group_mates(user, group)
       @recipients = User.find_by_sql(["select distinct users.* from users, groups_users " +
             "where users.id = groups_users.user_id " +
             "and groups_users.group_id in (?) " +
             "and groups_users.user_id != ? " +
             "and users.archive = false " +
-            "order by name", group.id, self.id])
+            "order by name", group.id, user.id])
     end
     
     def object_counter(objects)
@@ -437,13 +436,8 @@ class User < ActiveRecord::Base
     end
     
     def create_user_fees(schedule)
-      Fee.create_user_fees(schedule)
+      Fee.create_user_fees(schedule)  if DISPLAY_FREMIUM_SERVICES
     end
-        
-    def create_user_blog_details
-      @blog = Blog.create_item_blog(self)
-    end
-
 
   # authlogic and rpxnow
     # Set the login to nil if it was blank so we avoid duplicates on ''.

@@ -36,7 +36,7 @@ class RolesController < ApplicationController
   def update
     @roles = Role.find(params[:id])
     if @roles.update_attributes(params[:roles])
-      flash[:success] = I18n.t(:successful_update)
+      controller_successful_update
       redirect_to @roles
     else
       render :action => 'edit'

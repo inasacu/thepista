@@ -40,7 +40,7 @@ class VenuesController < ApplicationController
 
   def update
     if @venue.update_attributes(params[:venue]) 
-      flash[:success] = I18n.t(:successful_update)
+      controller_successful_update
       redirect_to @venue
     else
       render :action => 'edit'

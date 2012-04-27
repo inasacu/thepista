@@ -109,7 +109,7 @@ class PaymentsController < ApplicationController
 
   def update
     if @payment.update_attributes(params[:payment])
-      flash[:success] = I18n.t(:successful_update)
+      controller_successful_update
       redirect_to fees_url and return
     else
       render :action => 'edit'

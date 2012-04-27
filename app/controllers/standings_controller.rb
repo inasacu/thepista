@@ -50,7 +50,7 @@ class StandingsController < ApplicationController
     if @standing.update_attributes(params[:standing])
       Standing.save_standings(@standing, params[:standing][:standing_attributes]) if params[:standing][:standing_attributes]
 
-      flash[:success] = I18n.t(:successful_update)
+      controller_successful_update
       redirect_to standings_path(:id => @cup)
     else
       render :action => 'edit'
@@ -69,7 +69,7 @@ class StandingsController < ApplicationController
       
       group_stage_name = params[:stand][:group_stage_name]
       if @standing.update_attributes('group_stage_name' => group_stage_name.upcase)
-        flash[:success] = I18n.t(:successful_update)
+        controller_successful_update
       end
       redirect_to standings_path(:id => @cup)
       return

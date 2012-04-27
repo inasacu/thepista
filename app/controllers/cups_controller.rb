@@ -67,7 +67,7 @@ class CupsController < ApplicationController
         Scorecard.delay.calculate_cup_scorecard(@cup)    
       end
 
-      flash[:success] = I18n.t(:successful_update)
+      controller_successful_update
       redirect_to @cup
     else
       render :action => 'edit'

@@ -53,7 +53,7 @@ class CastsController < ApplicationController
       Cast.save_casts(@cast, params[:cast][:cast_attributes]) if params[:cast][:cast_attributes]
       Cast.calculate_standing(@cast)
 
-      flash[:success] = I18n.t(:successful_update)
+      controller_successful_update
       redirect_to casts_path(:id => @cast.challenge, :user_id => current_user)
       return
     else

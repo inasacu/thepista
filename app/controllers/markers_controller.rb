@@ -159,7 +159,7 @@ class MarkersController < ApplicationController
     @marker.lng = @marker.longitude
 
     if @marker.update_attributes(params[:marker])
-      flash[:success] = I18n.t(:successful_update)
+      controller_successful_update
       redirect_to markers_url
       return
     else

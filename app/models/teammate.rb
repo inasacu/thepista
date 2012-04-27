@@ -103,13 +103,13 @@ class Teammate < ActiveRecord::Base
       ChallengesUsers.leave_item(leave_user, item)
       Standing.set_archive_flag(leave_user, item, true)
       Cast.set_remove_cast(leave_user, item)   
-      Fee.set_archive_flag(leave_user, item, item, true)
+      Fee.set_archive_flag(leave_user, item, item, true) if DISPLAY_FREMIUM_SERVICES
 
     when "Cup"
       # TODO:  remove escuadra from cup
       CupsEscuadras.leave_escuadra(escuadra, item) 
       Standing.set_archive_flag(leave_user, item, true)
-      Fee.set_archive_flag(leave_user, item, item, true)
+      Fee.set_archive_flag(leave_user, item, item, true) if DISPLAY_FREMIUM_SERVICES
 
     else
     end    
@@ -129,7 +129,7 @@ class Teammate < ActiveRecord::Base
 
       item.schedules.each do |schedule|
         Match.create_schedule_match(schedule)
-        Fee.create_user_fees(schedule)
+        Fee.create_user_fees(schedule) if DISPLAY_FREMIUM_SERVICES
       end
 
       Match.set_archive_flag(approver, item, false)
@@ -139,8 +139,8 @@ class Teammate < ActiveRecord::Base
       ChallengesUsers.join_item(approver, item) 
       ChallengesUsers.join_item(requester, item)
       Cast.create_challenge_cast(item) 
-      Fee.create_user_challenge_fees(item)        
-      Fee.set_archive_flag(requester, item, item, false)
+      Fee.create_user_challenge_fees(item)    
+      Fee.set_archive_flag(requester, item, item, false) 
       Standing.create_cup_challenge_standing(item)
       Standing.set_archive_flag(requester, item, false)
       Cast.update_cast_details(item)         

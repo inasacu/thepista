@@ -76,7 +76,7 @@ class ChallengesController < ApplicationController
     if @group.update_attribute("automatic_petition", !@group.automatic_petition)
       @group.update_attribute("automatic_petition", @group.automatic_petition)  
 
-      flash[:success] = I18n.t(:successful_update)
+      controller_successful_update
       redirect_back_or_default('/index')
     else
       render :action => 'index'
@@ -91,7 +91,7 @@ class ChallengesController < ApplicationController
     @original_challenge = Challenge.find(params[:id])
 
     if @challenge.update_attributes(params[:challenge]) 
-      flash[:success] = I18n.t(:successful_update)
+      controller_successful_update
       redirect_to @challenge
     else
       render :action => 'edit'
