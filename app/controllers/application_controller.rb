@@ -62,6 +62,12 @@ class ApplicationController < ActionController::Base
 	def controller_successful_update
 		flash[:success] = I18n.t(:successful_update)
 	end
+	
+	def object_counter(objects)
+		@counter = 0
+		objects.each { |object|  @counter += 1 }
+		return @counter
+	end
 
 	protected
 

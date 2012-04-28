@@ -786,8 +786,6 @@ en:
      invite: invite   
      invite_friend: Invite a friend     
      invite_other_friend: Invite other friend  
-     is_available: "Yes"   
-     is_available_user: Availability changed.   
      is_invalid: is invalid.   
      is_not_available: "No" 
      join_cup:  Join the challenge  
@@ -833,14 +831,6 @@ en:
      login: Login   
      logout: Logout   
      look: Look  
-     looking_for_group:  Looking for Team
-     looking_for_my_group:  Looking for Team
-     looking_for_my_group_cluetip:  This option allows others to know that you are looking to play on other teams.
-     looking_for_groups:  Looking for Team
-     looking_for_group_description:  Looking for Team
-     looking_for_user:  Looking for Players
-     looking_for_users:  Looking for Players
-     looking_for_user_description:  Looking for Players 
      Low: Low   
      male_value: Male          
      manager: Manager   
@@ -1255,8 +1245,6 @@ en:
      schedule: Event   
      schedule_description: (Write some details about the team...)  
      schedules: Events
-     season_ends_at:  End of Season 
-     season_ends_at_description:  Date for End of Season
      signup: Signup 
      score: Score   
      scorecard: Scorecard
@@ -1329,11 +1317,9 @@ en:
      sent_a_message: Message Sent   
      sent_invitation: An invitation for HayPista has been sent to the following          
      separate_by: separate with a comma   
-     server_not_available: "The OpenID Server, cannot be found, Sorry!"      
-     set_available:  Change Availability to participate in any event for 
+     server_not_available: "The OpenID Server, cannot be found, Sorry!"    
      set_private_phone:  Set Phone Private 
      set_private_profile:  Set Private Profile
-     set_enable_comments:  Want to receive notices for comments left on the wall
      set_last_minute_notification:  Want to receive notices from a team with a last minute signup
      set_teammate_notification:  Want to receive requests to join the team of
      set_message_notification:  Want to receive email notices in your email account

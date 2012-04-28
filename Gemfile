@@ -29,7 +29,7 @@ gem "friendly_id"
 
 gem 'iron_worker'
 gem 'typhoeus'
-gem 'acts-as-messageable'
+# gem 'acts-as-messageable'
 gem 'delayed_job_active_record'
 
 gem 'method_cacheable'

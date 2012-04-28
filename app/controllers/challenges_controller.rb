@@ -105,7 +105,7 @@ class ChallengesController < ApplicationController
 
     # @challenge.destroy unless counter > 0
 
-    flash[:notice] = I18n.t(:successfully_destroyed)
+    
     redirect_to challenge_url
   end
 

@@ -7,9 +7,59 @@
 	 
 	<div class="twelve column">  
 			<% if object_counter(@groups) > 0 %>
-				<%= render '/groups/index_full_zurb' %>
+				
+				<%= render('shared/index_total_header_zurb', :items => @groups) %>
+
+				<div class="row">
+					<div class="twelve columns"> 
+
+						<table>
+						  	<thead>
+							<tr>             
+								<%= set_content_tag_safe(:th, "&nbsp;") %>
+								<%= set_content_tag_safe(:th, "#{label_name(:name)}<br />#{label_name(:sport)}") %>
+								<%= set_content_tag_safe(:th, "#{label_name(:manager)}<br/>#{label_name(:city)}") %>
+								<%= set_content_tag_safe(:th, "&nbsp;") %>
+								<%= set_content_tag_safe(:th, "&nbsp;") %>
+							</tr>
+							</thead>
+
+						<tbody>
+
+							<% @groups.each do |group| -%>		
+								<%= render 'groups/group_full_zurb', :group => group, :display_icons => true %> 
+						  	<% end -%>
+
+						</tbody>
+						</table>
+
+					</div>
+				</div>
+
+				<%= render 'shared/action_bar_zurb', :collection => @groups %>
+				
 			<% else %>
-				<%= render '/groups/index_blank_zurb' %>
+				
+				<% the_label = label_name(:groups_options_without) %>
+
+				<div class="row">
+
+					<div class="twelve columns">
+
+					<%= set_title_class(the_label, 'group') %>
+
+						<table>
+							<tr><%= content_tag :td, link_to("#{label_name(:you_can)} #{label_name(:create_your_own)} #{label_name(:group).downcase}", new_group_url) %></tr>
+							<tr><%= content_tag :td, link_to("#{label_name(:you_can)} #{label_name(:to_join_group)}", list_groups_path) %></tr>
+							<tr><%= content_tag :td, link_to("#{label_name(:you_can)} #{label_name(:view).downcase} #{label_name(:the_los)} 
+													 #{label_name(:upcoming).downcase} and join a team", upcoming_path) if DISPLAY_UPCOMING %></tr>
+							<tr><%= content_tag :td, link_to("#{label_name(:you_can)} invite your friends and setup a team", list_groups_path) %><%#= option_link('invitation') %></tr>
+						</table>
+
+					</div>
+
+				</div>
+				
 			<% end %>
 	</div>	
 </div>

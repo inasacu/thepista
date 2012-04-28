@@ -3,59 +3,14 @@ class MatchesController < ApplicationController
 
 	before_filter :get_match_and_user_x_two,  :only =>[:set_status, :set_team, :set_status_link]
 	before_filter :has_member_access,         :only => [:set_match_profile]
-	before_filter :has_match_access,          :only => [:rate]
+	# before_filter :has_match_access,          :only => [:rate]
 
 	def index
 		redirect_to :controller => 'schedules', :action => 'index'
 	end
 
-	def star_rate
-		@schedule = Schedule.find(params[:id])
-		@group = @schedule.group    
-		@the_first_schedule = @group.schedules.first
-		@matches = Match.get_matches_users(@the_first_schedule)
-		set_the_template('groups/set_profile')
-		render @the_template   
-	end
-
-	def set_profile
-		@schedule = Schedule.find(params[:id])
-		@match = @schedule.matches.first
-		@matches = @schedule.the_roster
-
-		unless is_current_manager_of(@schedule.group)
-			warning_unauthorized
-			redirect_back_or_default('/index')
-			return
-		end   
-		render @the_template    
-	end
-
-	def set_user_profile
-		@schedule = Schedule.find(params[:id])
-
-		unless is_current_manager_of(@schedule.group)
-			warning_unauthorized
-			redirect_back_or_default('/index')
-			return
-		end
-
-		@schedule.update_profile_from_user
-
-		controller_successful_update
-		redirect_back_or_default('/index')
-	end
-
-	def rate
-		@match.rate(params[:stars], current_user, params[:dimension])
-		average = @match.rate_average(true, params[:dimension])
-		width = (average / @match.class.max_stars.to_f) * 100
-		render :json => {:id => @match.wrapper_dom_id(params), :average => average, :width => width}
-	end
-
 	def edit
 		@match = Match.find(params[:id])
-		@match.description = nil
 		@schedule = @match.schedule
 		@matches = @schedule.the_roster
 
@@ -81,7 +36,7 @@ class MatchesController < ApplicationController
 
 		if @match.update_attributes(params[:match])
 			
-			Match.save_matches(@match, params[:match][:match_attributes]) if params[:match][:match_attributes]
+			Match.save_matches(@match, params[:match][:match_attributes]) if params[:match][:match_attributes] # and  DISPLAY_FREMIUM_SERVICES
 			Match.update_match_details(@match, current_user)
 
 			controller_successful_update

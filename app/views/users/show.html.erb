@@ -156,13 +156,7 @@
 						</tr>
 						<% end %>
 											
-						<% 
-							the_label = h(label_name(@user.looking, 'value'))
-						%>
-						<tr>
-							<%= content_tag :td, label_name('looking_for_my_group'), :class =>"label" %>
-							<%= content_tag :td, (is_user_manager_of(@user) ? link_to(the_label, set_user_looking_path(:id => @user)) : the_label), :class => get_the_action %>
-						</tr>
+
 						<% end -%>
 						
 						<% unless is_notice %>

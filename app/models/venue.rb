@@ -54,11 +54,11 @@ class Venue < ActiveRecord::Base
   acts_as_authorization_subject :association_name => :roles, :join_table_name => :roles_venues
 
   # method section
-  def object_counter(objects)
-    @counter = 0
-    objects.each { |object|  @counter += 1 }
-    return @counter
-  end
+  # def object_counter(objects)
+  #   @counter = 0
+  #   objects.each { |object|  @counter += 1 }
+  #   return @counter
+  # end
 
   def all_the_managers
     ids = []

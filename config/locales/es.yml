@@ -793,8 +793,6 @@ es:
      invite: invita   
      invite_friend: Invita a un amigo   
      invite_other_friend: Invita a otro amigo   
-     is_available: "Si"   
-     is_available_user: Cambio de disponibilidad.   
      is_invalid: no es valido.   
      is_not_available: "No"  
      join_cup:  Únete a un reto
@@ -841,14 +839,6 @@ es:
      login: Entrar   
      logout: Salir   
      look: Mira 
-     looking_for_group:  Jugador que busca Equipo
-     looking_for_my_group:  Busco equipo
-     looking_for_my_group_cluetip:  Esta option permite dejar saber a otros que buscan a otros equipos con quien jugar.
-     looking_for_groups:  Jugadores que buscan equipo
-     looking_for_group_description:  Jugador que busca Equipo
-     looking_for_user:  Equipo que busca jugadores
-     looking_for_users:  Equipos que buscan jugadores
-     looking_for_user_description:  Equipo que busca jugadores 
      Low: Bajo   
      male_value: Masculino        
      manager: Organizador   
@@ -1263,8 +1253,6 @@ es:
      schedule: Evento   
      schedule_description: (Escribe algun detalle del equipo...)  
      schedules: Eventos
-     season_ends_at:  Finalización de temporada 
-     season_ends_at_description:  Fecha de finalización de temporada 
      signup: Regístrate 
      score: Resultados   
      scorecard: Clasificación
@@ -1340,10 +1328,8 @@ es:
      sent_invitation: Has mandado una invitación de HayPista a los siguientes          
      separate_by: separa con una comma   
      server_not_available: "Lo sentimos, el servidor de OpenID server no se pudo encontrar."      
-     set_available:  Cambiar disponibilidad de
      set_private_phone:  Ocultar teléfono de 
      set_private_profile:  Ocultar perfil de
-     set_enable_comments:  Quieres recibir notificaciones de comentarios dejados en el muro de
      set_last_minute_notification:  Quieres recibir notificaciones de algun equipo que necesita algien a ultima hora
      set_teammate_notification:  Quieres recibir peticiones para unirse al equipo de
      set_message_notification:  Quieres recibir notificaciones en la cuenta de correo de

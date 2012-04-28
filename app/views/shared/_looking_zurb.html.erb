@@ -1,9 +1,0 @@
-.block
-  .sidebar-block
-    #side
-      %h5#fm_menu.sidebar-title
-        %span
-          = label_name("looking_for", the_label)
-      %br/
-      - recipients.each do |recipient|
-        = render :partial => '/shared/vcard', :locals => {:recipient => recipient}

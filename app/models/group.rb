@@ -44,7 +44,7 @@ class Group < ActiveRecord::Base
 
   # variables to access
   attr_accessible :name, :second_team, :gameday_at, :sport_id, :points_for_win, :points_for_draw, :points_for_lose, :player_limit, :automatic_petition
-  attr_accessible :time_zone, :marker_id, :description, :conditions, :photo, :available, :looking, :enable_comments, :installation_id, :slug
+  attr_accessible :time_zone, :marker_id, :description, :conditions, :photo, :enable_comments, :installation_id, :slug
 
   has_and_belongs_to_many :users,           :join_table => "groups_users", :conditions => "users.archive = false", :order => "name"
 
@@ -79,19 +79,12 @@ class Group < ActiveRecord::Base
 
   before_create :format_description, :format_conditions
   before_update :format_description, :format_conditions
-  # after_create  :create_group_blog_details, 
 	after_create	:create_group_marker, :create_group_scorecard
 
   # related to gem acl9
   acts_as_authorization_subject :association_name => :roles, :join_table_name => :roles_groups
 
   # method section
-  def object_counter(objects)
-    @counter = 0
-    objects.each { |object|  @counter += 1 }
-    return @counter
-  end
-
   def all_the_managers
     ids = []
     self.the_managers.each {|user| ids << user.user_id }
@@ -190,17 +183,6 @@ class Group < ActiveRecord::Base
       items << item
     end
     return items 
-  end
-
-  def self.looking_for_user(user)
-    find(:all, 
-    :conditions => ["id not in (?) and archive = false and looking = true and time_zone = ?", user.groups, user.time_zone],
-    :order => "updated_at",
-    :limit => LOOKING_USERS) 
-  end
-
-  def available_users
-    self.users.find(:all, :conditions => 'available = true', :order => 'users.name')      
   end
 
   def games_played

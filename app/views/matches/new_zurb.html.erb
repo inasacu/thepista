@@ -43,19 +43,22 @@
 							prefix = "match[match_attributes][]" 
 					%>
 
-						<%= fields_for prefix, match do |match_form|  %>
 						
-						<%
-							@user = match.user
-							the_link = "#{image_link_small(@user)}    #{user_link(@user)}"
-						%>
-							<tr>
-								<%= set_content_tag_safe(:td, the_link) %>
-								<%= set_form_text_field(match_form, :goals_scored, 'small input-text') %><br />
-							</tr>
-						<%	end -%>
+						<%# if DISPLAY_FREMIUM_SERVICES %>
 						
+							<%= fields_for prefix, match do |match_form|  %>
 						
+							<%
+								@user = match.user
+								the_link = "#{image_link_small(@user)}    #{user_link(@user)}"
+							%>
+								<tr>
+									<%= set_content_tag_safe(:td, the_link) %>
+									<%= set_form_text_field(match_form, :goals_scored, 'small input-text') %><br />
+								</tr>
+							<%	end -%>
+						
+						<%# end %>
 						
 					<% end %>
 

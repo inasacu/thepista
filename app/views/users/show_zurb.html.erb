@@ -20,11 +20,7 @@
 <div class="row">
 
 	<div class="twelve columns">
-		
-			
-<%# unless is_notice %>
 
-<%#= render_show_detail_zurb(:name, @user.name) %>
 <%= render_show_detail_zurb(:email, @user.email) if @user == current_user %>
 
 <% 	
@@ -36,7 +32,6 @@ end
 %>						
 
 <%= render_show_detail_zurb(:phone, @user.phone) unless @user.private_phone %>
-<%#= render_show_detail_zurb(:phone, link_to(the_label, set_private_phone_path(:id => @user))) if can_modify and !@user.phone.blank? %>
 
 <% if DISPLAY_FREMIUM_SERVICES %>
 <%= render_show_detail_zurb(:company, @no_linkedin_profile ? @user.company : link_to(@user.company, @user.linkedin_url, :target => "_blank"))  %>
@@ -70,32 +65,12 @@ Match.last_games_played(@user).each {|match| group_scorecards << match.group_id 
 	<% end 
 	end %>
 
-
-	
-<%# end %>				
+			
 				
 <%= render_show_detail_zurb(:city, @user.city.name) %>	
-<%#= render_show_detail_zurb(:time_zone, @user.time_zone) %>
 <%= render_show_detail_zurb(:language, label_name(@user.language)) if current_user == @user %>
 
 <% end -%>
-
-<%# if is_notice %>
-<%# the_label = h(label_name(@user.last_minute_notification, 'value')) %>
-
-<%#= render_show_detail_zurb(:last_minute_notification, (can_modify ? link_to(the_label, set_last_minute_notification_path(:id => @user)) : the_label)) %>
-
-
-<%# the_label = h(label_name(@user.forum_comment_notification, 'value')) %>
-<%#= render_show_detail_zurb(:forum_notification, (can_modify ? link_to(the_label, set_forum_notification_path(:id => @user)) : the_label)) %>
-
-
-<%# the_label = h(label_name(@user.blog_comment_notification, 'value')) %>
-<%#= render_show_detail_zurb(:blog_notification, (can_modify ? link_to(the_label, set_blog_notification_path(:id => @user)) : the_label)) %>
-
-
-<%# the_label = h(label_name(@user.message_notification, 'value')) %>
-<%#= render_show_detail_zurb(:message_notification, (can_modify ? link_to(the_label, set_message_notification_path(:id => @user)) : the_label)) %>
 
 
 <% if @user.has_role?('manager') and DISPLAY_USER_PETITION %>
@@ -106,21 +81,11 @@ Match.last_games_played(@user).each {|match| group_scorecards << match.group_id 
 
 <% end %>
 			
-<% if DISPLAY_FREMIUM_SERVICES %>	
-<% the_label = h(label_name(@user.looking, 'value')) %>
-<%= render_show_detail_zurb(:looking_for_my_group, (@user == current_user ? link_to(the_label, set_user_looking_path(:id => @user)) : the_label)) %>
-<% end %>
-<%# end -%>
 
-<%# unless is_notice %>
-
-
-<%#= render_show_detail_zurb(:evaluation, ratings_for(@user, :static, :dimension => :evaluation, :size => "small")) %>
 <%= render_show_detail_zurb(:users_teammate, render('shared/show_images_zurb', :collection => @user.friends)) if @user.friends.count > 0 %>
   
 
 <%= render :partial => 'show_admin_zurb' if the_maximo %>
-<%# end -%>
 
 
 	</div>

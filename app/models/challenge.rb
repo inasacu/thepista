@@ -47,11 +47,11 @@ class Challenge < ActiveRecord::Base
   before_update :format_description, :format_conditions
 
   # method section
-  def object_counter(objects)
-    @counter = 0
-    objects.each { |object|  @counter += 1 }
-    return @counter
-  end
+  # def object_counter(objects)
+  #   @counter = 0
+  #   objects.each { |object|  @counter += 1 }
+  #   return @counter
+  # end
 
   def all_the_managers
     ids = []

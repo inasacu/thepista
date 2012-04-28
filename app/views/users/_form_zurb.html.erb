@@ -1,87 +1,62 @@
-<%#= render 'shared/textfield_autofill' %>
-
 
 <%
-	options = ""
-	LANGUAGES.each do |language|
-		options += "<option value='#{language}'>" + label_name(language) + "</option>"	
-	end
+options = ""
+LANGUAGES.each do |language|
+	options += "<option value='#{language}'>" + label_name(language) + "</option>"	
+end
 %>
 
 
 <%= set_form_label(the_form, :name) %>
 <%= set_form_text_field(the_form, :name, 'large input-text', true) %><br />
-  
+
 
 <%= set_form_label(the_form, :email) %>
 <%= set_form_text_field(the_form, :email, 'large input-text', true) %><br />
 
-  
 
-  <%= set_form_label(the_form, :phone) %>
-  <%= set_form_text_field(the_form, :phone, 'large input-text', true) %><br />
+
+<%= set_form_label(the_form, :phone) %>
+<%= set_form_text_field(the_form, :phone, 'large input-text', true) %><br />
 
 
 <%= set_form_label(the_form, :city_id) %>
-<%= the_form.select(:city_id, City.city_name, {:selected => @user.city_id, :include_blank => false})%>
+<%= the_form.select(:city_id, City.city_name, {:selected => @user.city_id, :include_blank => false}) %><br/>
 
 
-
-  <%= set_form_label(the_form, :sport) %>
-  <%= set_form_text_field(the_form, :sport, :id => 'autofill') %><br />
-
+<%= set_form_label(the_form, :sport) %>
+<%= set_form_text_field(the_form, :sport, :id => 'autofill') %><br />
 
 
-  <%#= set_form_label(the_form, :company) %>
-  <%#= set_form_text_field(the_form, :company, 'large input-text', true) %><br />
+<%= set_form_label(the_form, :photo, 'photo') %>
+<%= the_form.file_field :photo, :class => 'textphoto' %><br />
 
 
-  <%#= set_form_label(the_form, :language) %>
-  <%#= select_tag "user[language]", options %><br />
-
-
-  <%#= set_form_label(the_form, :description) %>
-  <%#= set_form_text_area(the_form, :description) %><br />
-
-
-  <%= set_form_label(the_form, :photo, 'photo') %>
-  <%#= set_form_file_field(the_form, :photo) %>
-	<%= the_form.file_field :photo, :class => 'textphoto' %><br />
-
-
-  <%= set_form_label(the_form, :private_phone) %>
-  <%#= set_form_check_box(the_form, :private_phone) %>
+<%= set_form_label(the_form, :private_phone) %>
 <%= the_form.check_box :last_minute_notification, :class => 'textfield' %>
 
 
-  <%= set_form_label(the_form, :last_minute_notification) %>
-  <%#= set_form_check_box(the_form, :last_minute_notification) %>
-<%= the_form.check_box :last_minute_notification, :class => 'textfield' %>
+<%= set_form_label(the_form, :last_minute_notification) %>
+<%= the_form.check_box :last_minute_notification, :class => 'textfield' %><br />
 
-  <%#= set_form_label(the_form, :looking_for_group) %>
-  <%#= set_form_check_box(the_form, :looking, :class => 'check_box' %><br />
-
-
-  <%= set_form_label(the_form, :message_notification) %>
-  <%#= set_form_check_box(the_form, :message_notification) %>
+<%= set_form_label(the_form, :message_notification) %>
 <%= the_form.check_box :message_notification, :class => 'textfield' %><br/>
 
 
 <% if @user.is_manager? %>
 
-  <%= set_form_label(the_form, :teammate_notification) %>
-  <%#= set_form_check_box(the_form, :teammate_notification) %>
+<%= set_form_label(the_form, :teammate_notification) %>
 <%= the_form.check_box :teammate_notification, :class => 'textfield' %><br/>
 
 <% end -%>
 
- 
-  <%= set_form_label(the_form, :gender, 'gender') %>
-  <%= "#{label_name(:male, 'value')}  " %><%= radio_button("user", "gender", "male") %>&nbsp;&nbsp;
-  <%= "#{label_name(:female, 'value')}  " %><%= radio_button("user", "gender", "female") %>
-  
 
- 
-  <%= set_form_label(the_form, :birth_at) %>
-  <%= date_select :user, :birth_at, :start_year => (Time.zone.now.year.to_i - 70), :end_year => (Time.zone.now.year.to_i) %><br />
+<%= set_form_label(the_form, :gender, 'gender') %>
+<%= "#{label_name(:male, 'value')}  " %><%= radio_button("user", "gender", "male") %>
+<%= "#{label_name(:female, 'value')}  " %><%= radio_button("user", "gender", "female") %><br />
+
+
+
+<%= set_form_label(the_form, :birth_at) %>
+<%= date_select :user, :birth_at, :start_year => (Time.zone.now.year.to_i - 70), :end_year => (Time.zone.now.year.to_i) %><br />
 

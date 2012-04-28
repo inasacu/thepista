@@ -1,7 +1,7 @@
 <% 
 	is_user_manager = (is_current_manager_of(@group)) 
 	is_venue_maximo = @group.venue 
-	is_member = is_current_member_of(@group) and !@group.available_users.empty?
+	is_member = is_current_member_of(@group) 
 	
 	the_venue_link = ""
 	
@@ -13,9 +13,6 @@
 	
 	the_automatic_petition = h(label_name(@group.automatic_petition, 'value'))
 	the_confirmation = label_with_name('automatic_petition', "#{@group.name}?")
-	
-	the_looking_for_user = h(label_name(@group.looking, 'value'))
-	the_confirmation = label_with_name('looking_for_user', "#{@group.name}?")
 	
 %>
 
@@ -48,9 +45,6 @@
 
 		<%= render_show_detail_zurb(:automatic_petition, 
 		(is_user_manager ? link_to(the_automatic_petition, set_group_auto_path(:id => @group)) : the_automatic_petition)) %>
-
-		<%= render_show_detail_zurb(:looking_for_user, 
-		(is_user_manager ? link_to(the_looking_for_user, set_group_looking_path(:id => @group)) : the_looking_for_user)) %>
 
 		<%= render_show_detail_zurb(:users, t(:has_group_users, :count => @group.users.count)) %>
 		<%= render_show_detail_zurb(:schedules, t(:has_group_schedules, :count => @group.schedules.count)) unless @group.schedules.blank? %>

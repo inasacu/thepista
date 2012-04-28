@@ -41,9 +41,7 @@
    <% if display_icons %>
       <td class="last">
 		<span class="action" align="left">
-			<% if is_member_group %>
-				<%= option_image_small_link('message') %>&nbsp;&nbsp;<%= link_to(label_name(:send_message_to), new_message_path(:group_id => group)) %><br />
-			<% else %>
+			<% unless is_member_group %>
 		
 			<%
 				unless has_current_item_petition(group) 							
@@ -52,10 +50,8 @@
 			<% 	end 
 			   end
 			-%>
-		
-			<% if is_current_manager_of(group) %> 
-				<strong><%= option_image_small_link('schedule') %>&nbsp;&nbsp;<%= link_to label_name(:schedules_create), new_schedule_path(:id => group) %></strong>
-	        <% end %>
+			<%= option_image_small_link('message') %>&nbsp;&nbsp;<%= link_to(label_name(:send_message_to), new_message_path(:group_id => group)) %><br />
+
 		</span>
       
    <% end -%>

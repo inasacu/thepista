@@ -1,12 +1,6 @@
 require "base64"
 
 class Match < ActiveRecord::Base
-          
-	# extend FriendlyId 
-	# friendly_id :name, 			use: :slugged
-	
-  # allows user to rate a model 
-  # ajaxful_rateable :stars => 5, :dimensions => [:technical, :physical]  
   
   belongs_to      :user
   belongs_to      :group
@@ -14,35 +8,14 @@ class Match < ActiveRecord::Base
   belongs_to      :convocado, :class_name => "User", :foreign_key => "user_id"  
   belongs_to      :type,      :conditions => "table_type = 'Match'"
   
-  belongs_to      :position,  
-                  :class_name => "Type", 
-                  :foreign_key => "position_id",                                 
-                  :conditions => "types.table_type = 'User'"                  
-    
-  # validations  
-  validates_numericality_of :technical,    :greater_than_or_equal_to => 0, :less_than_or_equal_to => 5
-  validates_numericality_of :physical,     :greater_than_or_equal_to => 0, :less_than_or_equal_to => 5
-
-  # validates_presence_of         :description
-  # validates_length_of           :description,                     :within => DESCRIPTION_RANGE_LENGTH
-  
   # variables to access
-	attr_accessible :name, :schedule_id, :user_id, :group_id, :invite_id, :group_score, :invite_score
-	attr_accessible :roster_position, :played, :available, :one_x_two, :user_x_two, :type_id, :status_at, :description
-	attr_accessible :position_id, :technical, :physical, :block_token
-	attr_accessible :goals_scored, :game_started, :field_goal_attempt, :field_goal_made, :free_throw_attempt, :free_throw_made
-	attr_accessible :three_point_attempt, :three_point_made, :rebounds, :rebounds_defense, :rebounds_offense 
-	attr_accessible :minutes_played, :assists, :steals, :blocks, :turnovers, :personal_fouls, :archive
-	attr_accessible :technical_average, :physical_average, :slug
+	attr_accessible :schedule_id, :user_id, :group_id, :invite_id, :group_score, :invite_score
+	attr_accessible :roster_position, :played, :one_x_two, :user_x_two, :type_id, :status_at, :block_token
+	attr_accessible :goals_scored, :archive, :slug
 
-	attr_accessible :match_attributes
-
-	# has_many :match_attributes
-	# accepts_nested_attributes_for :match_attributes
-	
-	
-  before_create   :format_description
-  
+	# attr_accessible :matches_attributes
+	#   accepts_nested_attributes_for :matches
+	  
   # method section
   def match_name
     "#{group.name} #{name} #{I18n.t(:match)}"
@@ -99,7 +72,7 @@ class Match < ActiveRecord::Base
 		
 	def self.get_matches_users(schedule)
 	  find(:all, :joins   => "LEFT JOIN users on matches.user_id = users.id",
-    :conditions => ["schedule_id = ? and matches.archive = false and users.available = true and users.archive = false", schedule],
+    :conditions => ["schedule_id = ? and matches.archive = false and users.archive = false", schedule],
     :order => "users.name")
   end
   
@@ -196,7 +169,7 @@ class Match < ActiveRecord::Base
     Scorecard.delay.calculate_group_scorecard(group)
   end
   
-  def self.update_match_details(the_match, user, forum_comment=true)
+  def self.update_match_details(the_match, user)
     @schedule = the_match.schedule    
     @schedule.played = (!the_match.group_score.nil? and !the_match.invite_score.nil?)
     @schedule.save!
@@ -204,7 +177,6 @@ class Match < ActiveRecord::Base
     @schedule.matches.each do |match|
       match.group_score = the_match.group_score
       match.invite_score = the_match.invite_score
-      match.description = the_match.description
       match.played = (match.type_id == 1 and @schedule.played)  
 
       # 1 == team one wins
@@ -226,16 +198,12 @@ class Match < ActiveRecord::Base
 
       match.save!  
     end       
-        
-    the_match ||= "..."
-    # @schedule.forum.description = the_match.description
     Scorecard.delay.calculate_group_scorecard(@schedule.group)
-    # @schedule.forum.comments.create(:body => the_match.description, :user => user)  if @schedule.played? and forum_comment
   end
 
-  def self.save_matches(the_match, match_attributes)
+  def self.save_matches(the_match, matches_attributes)
     the_match.schedule.matches.each do |match|
-      attributes = match_attributes[match.id.to_s]
+      attributes = matches_attributes[match.id.to_s]
       match.attributes = attributes if attributes
       match.save(false)
     end
@@ -245,18 +213,13 @@ class Match < ActiveRecord::Base
   def self.create_schedule_match(schedule)
     schedule.group.users.each do |user|
       type_id = 3         # set to ausente
-      position_id = 18    # set user position to center field 
-      technical = 3       # set user technical to default value
-      physical = 3        # set user physical to default value
       
       # assign unique user id and start_date code for changing status through email
       the_encode = "#{rand(36**8).to_s(36)}#{schedule.id}#{rand(36**8).to_s(36)}"
       block_token  = Base64::encode64(the_encode)
 
-      self.create!(:name => schedule.name, :description => schedule.description, :status_at => Time.zone.now, 
-                   :schedule_id => schedule.id, :group_id => schedule.group_id, :user_id => user.id, :available => user.available, 
-                   :type_id => type_id, :position_id => position_id, :technical => technical, :physical => physical,
-                   :played => schedule.played, :block_token => block_token) if Match.schedule_user_exists?(schedule, user)
+      self.create!(:status_at => Time.zone.now, :schedule_id => schedule.id, :group_id => schedule.group_id, :user_id => user.id,  
+                   :type_id => type_id, :played => schedule.played, :block_token => block_token) if Match.schedule_user_exists?(schedule, user)
     end
   end
   
@@ -408,10 +371,6 @@ class Match < ActiveRecord::Base
       home_match.clear
       away_match.clear
     end
-  end
-  
-  def format_description
-    self.description.gsub!(/\r?\n/, "<br>") unless self.description.nil?
   end
 
 	# return true if the schedule group user conbination is nil

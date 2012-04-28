@@ -1,7 +1,7 @@
 class GroupsController < ApplicationController
   before_filter :require_user    
-  before_filter :get_group, :only => [:team_list, :show, :edit, :update, :set_available, :set_enable_comments, :set_automatic_petition, :set_looking, :destroy]
-  before_filter :has_manager_access, :only => [:edit, :update, :destroy, :set_available, :set_enable_comments, :set_automatic_petition, :set_looking]
+  before_filter :get_group, :only => [:team_list, :show, :edit, :update, :set_automatic_petition,  :destroy]
+  before_filter :has_manager_access, :only => [:edit, :update, :destroy, :set_automatic_petition]
 
   def index
 		@groups = Group.where("groups.archive = false").page(params[:page]).order('groups.created_at DESC')
@@ -84,49 +84,16 @@ class GroupsController < ApplicationController
     end
   end
 
-  def set_looking
-    if @group.update_attribute("looking", !@group.looking)
-      @group.update_attribute("looking", @group.looking)  
-
-      controller_successful_update
-      redirect_back_or_default('/index')
-    else
-      render :action => 'index'
-    end
-  end   
-
-  def set_available
-    if @group.update_attribute("available", !@group.available)
-      @group.update_attribute("available", @group.available)  
-
-      controller_successful_update
-      redirect_back_or_default('/index')
-    else
-      render :action => 'index'
-    end
-  end
-
-  def set_enable_comments
-    if @group.update_attribute("enable_comments", !@group.enable_comments)
-      @group.update_attribute("enable_comments", @group.enable_comments)  
-
-      controller_successful_update
-      redirect_back_or_default('/index')
-    else
-      render :action => 'index'
-    end
-  end
-
-  def destroy
-    # @group = Group.find(params[:id])
-    counter = 0
-    @group.schedules.each {|schedule| counter += 1 }
-
-    # @group.destroy unless counter > 0
-
-    flash[:notice] = I18n.t(:successfully_destroyed)
-    redirect_to group_url
-  end
+  # def destroy
+  #   # @group = Group.find(params[:id])
+  #   counter = 0
+  #   @group.schedules.each {|schedule| counter += 1 }
+  # 
+  #   # @group.destroy unless counter > 0
+  # 
+  #   
+  #   redirect_to group_url
+  # end
 
   private
   def get_group

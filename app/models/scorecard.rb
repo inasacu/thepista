@@ -249,13 +249,13 @@ class Scorecard < ActiveRecord::Base
   
   # Return true if the group nil
   def self.group_exists?(group)
-    find(:first, :conditions => ["group_id = ? and (archive = ? or season_ends_at is null or season_ends_at < ?)", group.id, false, Time.zone.now]).nil?
+    find(:first, :conditions => ["group_id = ? and archive = ?", group.id, false]).nil?
   end
   
   # Return true if the user and group nil
   def self.user_group_exists?(user, group)
     find(:first, 
-    :conditions => ["user_id = ? and group_id = ? and (archive = ? or season_ends_at is null or season_ends_at < ?)", user.id, group.id, false, Time.zone.now]).nil?
+    :conditions => ["user_id = ? and group_id = ? and archive = ?", user.id, group.id, false]).nil?
   end
   
   def self.archive?

@@ -96,13 +96,6 @@ class SchedulesController < ApplicationController
 		set_the_template('schedules/team_roster')
 		render @the_template 
 	end
-  
-  def rate
-    @schedule.rate(params[:stars], current_user, params[:dimension])
-    average = @schedule.rate_average(true, params[:dimension])
-    width = (average / @schedule.class.max_stars.to_f) * 100
-    render :json => {:id => @schedule.wrapper_dom_id(params), :average => average, :width => width}
-  end
 
   def new
     # editing is limited to administrator or creator
@@ -132,7 +125,6 @@ class SchedulesController < ApplicationController
       @schedule.reminder_at = @schedule.starts_at - 2.days
       
       @schedule.season = Time.zone.now.year
-      @schedule.season_ends_at = Time.utc(Time.zone.now.year + 1, 8, 1)
       
       @schedule.description = I18n.t(:description)
     end
@@ -181,7 +173,6 @@ class SchedulesController < ApplicationController
 
   # set the end of season, 1 august current_year + 1
   def edit
-    @schedule.season_ends_at = Time.utc(Time.zone.now.year + 1, 8, 1)
       set_the_template('schedules/new')
       render @the_template
   end
@@ -220,62 +211,6 @@ class SchedulesController < ApplicationController
     end
   end
 
-  def set_previous_profile
-    @schedule = Schedule.find(params[:id])
-
-    unless is_current_manager_of(@schedule.group)
-      warning_unauthorized
-      redirect_back_or_default('/index')
-      return
-    end
-
-    @previous_schedule = Schedule.find(:first, 
-    :conditions => ["id = (select max(id) from schedules where group_id = ? and id < ?) ", @schedule.group.id, @schedule.id])    
-    unless @previous_schedule.nil?
-
-      @schedule.matches.each do |match|
-        @previous_match = Match.find(:first, :conditions => ["schedule_id = ? and user_id = ?", @previous_schedule.id, match.user_id])
-        match.technical = @previous_match.technical
-        match.physical = @previous_match.physical
-        match.save!
-      end
-
-      controller_successful_update
-    end
-    redirect_back_or_default('/index')
-  end
-
-  def set_roster_technical
-    @match = Match.find(params[:id])
-
-    unless is_current_manager_of(@match.schedule.group)
-      warning_unauthorized
-      redirect_back_or_default('/index')
-      return
-    end
-
-    technical = params[:roster][:technical]
-    if @match.update_attributes('technical' => technical)
-      controller_successful_update
-    end
-    redirect_back_or_default('/index')
-  end
-
-  def set_roster_physical
-    @match = Match.find(params[:id])
-
-    unless is_current_manager_of(@match.schedule.group)
-      warning_unauthorized
-      redirect_back_or_default('/index')
-      return
-    end
-
-    physical = params[:roster][:physical]
-    if @match.update_attributes('physical' => physical)
-      controller_successful_update
-    end
-    redirect_back_or_default('/index')
-  end
 
   def set_roster_position_name
     @match = Match.find(params[:id])

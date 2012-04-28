@@ -4,27 +4,10 @@ class User < ActiveRecord::Base
 	friendly_id :name, 			use: :slugged
 	
 	include MethodCacheable
-	
-	
-	acts_as_messageable :required => :body
-   
-   # allows user to rate a model 
-   # ajaxful_rateable :stars => 5, :dimensions => [:evaluation]
-   # ajaxful_rater
-   
-   # define_completeness_scoring do
-   #   check :phone,                lambda { |per| per.phone.present? },            :high     # => defaults to 60
-   #   check :company,              lambda { |per| per.company.present? },          :medium   # => defaults to 40
-   #   check :description,          lambda { |per| per.description.present? },      :medium   # => defaults to 40
-   #   check :photo_file_name,      lambda { |per| per.photo_file_name? },          :low      # => defaults to 20
-   # end
-   
+  
       
   acts_as_authentic do |c|
     login_field :email
-    # validate_login_field :false
-		# validate_password_confirmation_field	:false
-		# validate_password_field	:false
     UserSession.find_by_login_method = 'find_by_email'
   end
 
@@ -39,8 +22,6 @@ class User < ActiveRecord::Base
   # validates_inclusion_of :gender, :in => ['male','female'], :allow_nil => true
   # validates_format_of :email,:with => /^([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})$/i, :on => :create #, :message => "es invalido"
  
-  # before_destroy    :destroy_activities, :destroy_feeds  
-  before_destroy    :unmap_rpx
   
   # related to gem acl9
   acts_as_authorization_subject :association_name => :roles, :join_table_name => :roles_users
@@ -55,7 +36,7 @@ class User < ActiveRecord::Base
     validates_attachment_content_type :photo, :content_type => ['image/jpeg', 'image/png', 'image/gif', 'image/jpg', 'image/pjpeg']
     validates_attachment_size         :photo, :less_than => 5.megabytes
 
-    belongs_to          :identity_user,   :class_name => 'User',              :foreign_key => 'rpxnow_id'
+    # belongs_to          :identity_user,   :class_name => 'User',              :foreign_key => 'rpxnow_id'
     belongs_to          :city
     
     has_and_belongs_to_many   :groups,                :conditions => 'groups.archive = false',   :order => 'name'
@@ -103,23 +84,11 @@ class User < ActiveRecord::Base
       user.has_many :_sent_messages, :foreign_key => "sender_id", :conditions => "sender_deleted_at IS NULL"
       user.has_many :_received_messages, :foreign_key => "recipient_id", :conditions => "recipient_deleted_at IS NULL"
     end         
-    
-    # has_one     :blog  
-    # has_many    :feeds
-                    
-                      
-    before_update   :format_description
+
 		after_create		:signup_notification
    
        
     # method section   
-    def self.looking_for_group(user)
-      find(:all, 
-      :conditions => ["archive = false and looking = true and time_zone = ?", user.time_zone],
-      :order => "last_request_at",
-      :limit => LOOKING_GROUPS) 
-    end
-    
     def avatar
       self.photo.url
     end
@@ -407,11 +376,11 @@ class User < ActiveRecord::Base
             "order by name", group.id, user.id])
     end
     
-    def object_counter(objects)
-      @counter = 0
-      objects.each { |object|  @counter += 1 }
-      return @counter
-    end
+    # def object_counter(objects)
+    #   @counter = 0
+    #   objects.each { |object|  @counter += 1 }
+    #   return @counter
+    # end
 
     def page_mates(page = 1)  
       mates = User.where("id in (select distinct user_id from groups_users where group_id in (?))", self.groups).page(page).order('name')
@@ -447,9 +416,9 @@ class User < ActiveRecord::Base
       self[:login] = login
     end
 
-    def rpx_user?
-      !identifier.blank?
-    end
+    # def rpx_user?
+    #   !identifier.blank?
+    # end
 
     def signup_notification
       UserMailer.delay.signup_notification(self)
@@ -459,58 +428,5 @@ class User < ActiveRecord::Base
   		reset_perishable_token!  
       UserMailer.delay.password_reset_instructions(self) 
   	end
-  	
-    protected
-
-    # We need to cleanup the RPX mapping from RPXNow so that if the user tries
-    # to create a new account using RPX in the future, we don't think they should
-    # already have one and try to log them in as a deleted User.
-    def unmap_rpx
-      # api_key = [YOUR API KEY]
-      api_key = APP_CONFIG['rpx_api']['key']
-      RPXNow.mappings(self[:id], api_key).each do |identifier|
-        RPXNow.unmap(identifier, self[:id], api_key)
-      end
-    end
-
-    # Only validate uniqueness of the login if they are not an RPX user
-    # or they have actually specified one. This stops us from finding
-    # other RPX users (with NULL logins) as "duplicates".
-    def validate_unique_login_with_rpx?
-      !rpx_user? || !self.login.blank?
-    end
-
-    # We only need to validate format/length of the login if the user is NOT an RPX user
-    # or they are trying to set a username or password in their profile.
-    def validate_login_with_rpx?
-      !rpx_user? || !self.login.blank? || !self.password.blank?
-    end
-
-    # We only need to validate the password if the user is NOT an RPX user
-    # or they are trying to set a username or password in their profile.
-    def validate_password_with_rpx?
-      ( !rpx_user? || !self.password.blank? || !self.login.blank? ) && require_password?
-    end
-    
-
-    private
-    def format_description
-      self.description.gsub!(/\r?\n/, "<br>") unless self.description.nil?
-    end
-
-    # openid from authlogic authentication
-    def map_openid_registration(registration)
-      self.email = registration["email"] if email.blank?
-      self.name = registration["nickname"] if name.blank?      
-    end
-
-    # Clear out all activities associated with this user.
-    # def destroy_activities
-    #   Activity.find_all_by_user_id(self).each {|a| a.destroy}
-    # end
-
-    # def destroy_feeds
-    #   Feed.find_all_by_user_id(self).each {|f| f.destroy}
-    # end
     
   end

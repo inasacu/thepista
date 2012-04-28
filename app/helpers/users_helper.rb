@@ -1,19 +1,5 @@
 module UsersHelper
 
-  # returns a link if user can modify availability
-  # this option can remove the user from the roster list
-  def is_available(user)
-    available = globalite_b(user.available)
-    if current_user == user or user.my_managers(current_user)
-      link_to available, {:controller => "users", :action => "set_available", :id => user.id}, :confirm => "#{t :change_available } #{user.name}?"
-    else
-      return available
-    end
-  end 
-
-  #########################
-  # Return a user's image link.
-  # The default is to display the user's icon linked to the profile.
   def image_link(user, options = {})
     link = options[:link] || user
     image = options[:image] || :icon

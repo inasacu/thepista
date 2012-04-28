@@ -4,10 +4,10 @@ class UsersController < ApplicationController
 	before_filter :get_sports,          :only => [:new, :edit, :signup, :rpx_new]
 	before_filter :get_user_member,     :only => [:show, :notice] 
 	before_filter :get_user_manager,    :only => [:set_available]
-	before_filter :get_user_self,       :only => [:set_private_phone, :set_private_profile, :set_enable_comments, :set_looking, :set_teammate_notification, :set_message_notification, :set_last_minute_notification]
+	before_filter :get_user_self,       :only => [:set_private_phone, :set_private_profile,  :set_teammate_notification, :set_message_notification, :set_last_minute_notification]
 	before_filter :get_user_group,      :only =>[:set_manager, :remove_manager, :set_sub_manager, :remove_sub_manager, :set_subscription, :remove_subscription, :set_moderator, :remove_moderator]
 
-	before_filter :has_member_access,   :only => [:rate]
+	# before_filter :has_member_access,   :only => [:rate]
 
 	def index
 		unless the_maximo
@@ -121,18 +121,9 @@ class UsersController < ApplicationController
 		@user.attributes = params[:user]
 		@user.profile_at = Time.zone.now
 
-		update_match_profile = (@the_user.technical != @user.technical or @the_user.physical.to_i != @user.physical)
-
 		@user.save do |result|
 
-			# update user profile for current match
-			if update_match_profile
-				Match.user_upcoming_match(@user).each do |match|
-					match.technical = @user.technical.to_i
-					match.physical = @user.physical.to_i
-					match.save!
-				end
-			end
+
 
 			if result
 				controller_successful_update
@@ -144,34 +135,12 @@ class UsersController < ApplicationController
 		end
 	end
 
-	# def rate
-	# 	@user.rate(params[:stars], current_user, params[:dimension])
-	# 	average = @user.rate_average(true, params[:dimension])
-	# 	width = (average / @user.class.max_stars.to_f) * 100
-	# 	render :json => {:id => @user.wrapper_dom_id(params), :average => average, :width => width}
-	# end
-
-	# def recent_activity
-	# 	@user = current_user    
-	# 	redirect_to :action => 'index'  
-	# 	return
-	# end
 
 	def petition
 		redirect_to root_url
 		return
 	end
 
-	# def set_looking
-	# 	if @user.update_attribute("looking", !@user.looking)
-	# 		@user.update_attribute("looking", @user.looking)  
-	# 
-	# 		controller_successful_update
-	# 		redirect_back_or_default('/index')
-	# 	else
-	# 		render :action => 'index'
-	# 	end
-	# end 
 
 	def set_language
 		I18n.locale = "es"   
@@ -271,17 +240,6 @@ class UsersController < ApplicationController
 		redirect_back_or_default('/index')
 	end
 
-	def set_available
-		if @user.update_attribute("available", !@user.available)
-			@user.update_attribute("available", @user.available)  
-
-			controller_successful_update
-			redirect_back_or_default('/index')
-		else
-			render :action => 'index'
-		end
-	end
-
 	def set_private_phone
 		if @user.update_attribute("private_phone", !@user.private_phone)
 			@user.update_attribute("private_phone", @user.private_phone)  
@@ -315,17 +273,6 @@ class UsersController < ApplicationController
 		end
 	end
 
-	def set_enable_comments
-		if @user.update_attribute("enable_comments", !@user.enable_comments)
-			@user.update_attribute("enable_comments", @user.enable_comments)  
-
-			controller_successful_update
-			redirect_back_or_default('/index')
-		else
-			render :action => 'index'
-		end
-	end  
-
 	def set_teammate_notification
 		if @user.update_attribute("teammate_notification", !@user.teammate_notification)
 			@user.update_attribute("teammate_notification", @user.teammate_notification)  
@@ -347,28 +294,6 @@ class UsersController < ApplicationController
 			render :action => 'index'
 		end
 	end  
-
-	# def set_blog_notification
-	# 	if @user.update_attribute("blog_comment_notification", !@user.blog_comment_notification)
-	# 		@user.update_attribute("blog_comment_notification", @user.blog_comment_notification)  
-	# 
-	# 		controller_successful_update
-	# 		redirect_back_or_default('/index')
-	# 	else
-	# 		render :action => 'index'
-	# 	end
-	# end  
-
-	# def set_forum_notification
-	# 	if @user.update_attribute("forum_comment_notification", !@user.forum_comment_notification)
-	# 		@user.update_attribute("forum_comment_notification", @user.forum_comment_notification)  
-	# 
-	# 		controller_successful_update
-	# 		redirect_back_or_default('/index')
-	# 	else
-	# 		render :action => 'index'
-	# 	end
-	# end  
 
 	def rpx_new
 		if data = RPXNow.user_data(session[:rpx_token])
@@ -406,7 +331,6 @@ class UsersController < ApplicationController
 		@user = User.new(params[:user])
 
 		@user.identity_url = session[:identifier]
-		@user.openid_identifier = session[:identifier]
 		@user.login = session[:login]
 		@user.active = true
 		@user.password = session[:identifier]
@@ -466,7 +390,6 @@ class UsersController < ApplicationController
 
 	def has_member_access
 		@user = User.find(params[:id])
-		# has_access = current_user.is_user_member_of?(@user) || false
 
 		unless (current_user.is_user_member_of?(@user) || false) 
 			redirect_to root_url

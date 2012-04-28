@@ -69,11 +69,11 @@ class Cup < ActiveRecord::Base
   before_update :format_description, :format_conditions
 
   # method section    
-  def object_counter(objects)
-    @counter = 0
-    objects.each { |object|  @counter += 1 }
-    return @counter
-  end
+  # def object_counter(objects)
+  #   @counter = 0
+  #   objects.each { |object|  @counter += 1 }
+  #   return @counter
+  # end
 
   def all_the_managers
     ids = []
@@ -163,16 +163,6 @@ class Cup < ActiveRecord::Base
   def format_conditions
     self.conditions.gsub!(/\r?\n/, "<br>") unless self.conditions.nil?
   end
-    
-  # def self.upcoming_cups(hide_time)
-  #   with_scope :find => {:conditions=>{:starts_at => MAJOR_EVENT_TWO_MONTHS, :archive => false}, :order => "starts_at"} do
-  #     if hide_time.nil?
-  #       self.all()
-  #     else
-  #       find(:all, :conditions => ["starts_at >= ?", hide_time, hide_time])
-  #     end
-  #   end
-  # end
 
 	def self.upcoming_cups(hide_time)
 		with_scope(:find => where(:starts_at => MAJOR_EVENT_TWO_MONTHS, :archive => false).order("starts_at")) do
