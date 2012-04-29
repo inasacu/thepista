@@ -25,16 +25,11 @@ gem 'jquery-rails'
 gem 'google_map'
 gem 'acts_as_tree', '0.1.1'
 gem 'aws-sdk'
-gem "friendly_id"
+# gem "friendly_id"
 
 gem 'iron_worker'
 gem 'typhoeus'
-# gem 'acts-as-messageable'
 gem 'delayed_job_active_record'
-
-gem 'method_cacheable'
-gem 'dalli'
-
 
 # Gems used only for assets and not required
 # in production environments by default.
@@ -49,6 +44,7 @@ group :assets do
 end
 
 
+# gem 'acts-as-messageable'
 # gem 'ajaxful_rating', '>= 3.0.0.beta8'
 # gem 'ssl_requirement'
 # gem 'jquery_notify_bar'

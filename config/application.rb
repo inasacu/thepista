@@ -84,7 +84,7 @@ module Thepista
 		config.action_mailer.raise_delivery_errors = true
 		
 		# method_cachable
-		config.cache_store = :dalli_store
+		# config.cache_store = :dalli_store
 		
 		
   end

@@ -84,7 +84,7 @@
 		<%= render_show_detail_zurb(:ends_at, nice_day_of_week(@schedule.ends_at)) %>
 
 		<%= render_show_detail_zurb(:public, 
-		(is_user_manager ? link_to(the_public_label, set_public_path(:id => @schedule.id), :confirm => the_public_confirmation) : the_public_label)) %>
+		(is_user_manager ? link_to(the_public_label, set_public_path(:id => @schedule.id), :confirm => the_public_confirmation) : the_public_label)) if DISPLAY_FREMIUM_SERVICES %>
 
 		<%= render_show_detail_zurb(:player_limit, @schedule.player_limit) %>
 

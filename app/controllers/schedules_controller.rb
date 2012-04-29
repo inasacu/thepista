@@ -125,16 +125,13 @@ class SchedulesController < ApplicationController
       @schedule.reminder_at = @schedule.starts_at - 2.days
       
       @schedule.season = Time.zone.now.year
-      
-      @schedule.description = I18n.t(:description)
     end
 
     @previous_schedule = Schedule.find(:first, :conditions => ["id = (select max(id) from schedules where group_id = ?) ", @group.id])    
     unless @previous_schedule.nil?
       @schedule.jornada = @previous_schedule.jornada + 1
       @schedule.name = "#{I18n.t(:jornada)} #{@schedule.jornada}"
-      
-      @schedule.description = @previous_schedule.description      
+        
       @schedule.season = @previous_schedule.season
       @schedule.fee_per_game = @previous_schedule.fee_per_game
       @schedule.fee_per_pista = @previous_schedule.fee_per_pista

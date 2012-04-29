@@ -1,8 +1,7 @@
 class Schedule < ActiveRecord::Base
 	
-	include MethodCacheable
 	
-	
+		
 
   has_many  :matches,  :conditions => "matches.archive = false"
   has_many  :fees

@@ -1,10 +1,7 @@
 class User < ActiveRecord::Base
 
-	extend FriendlyId 
-	friendly_id :name, 			use: :slugged
-	
-	include MethodCacheable
-  
+	# extend FriendlyId 
+	# friendly_id :name, 			use: :slugged
       
   acts_as_authentic do |c|
     login_field :email
@@ -137,14 +134,6 @@ class User < ActiveRecord::Base
     def self.contact_emails(email)
       User.find(:first, :conditions => ["email = ?", email])
     end 
-    
-    # def forum_message?
-    #   self.forum_comment_notification?
-    # end
-    
-    # def blog_message?
-    #   self.blog_comment_notification?
-    # end   
 
     def self.user_fees(the_users)
 			find.where("id in (?) and archive = false", the_users).page(params[:page]).order('users.name')
