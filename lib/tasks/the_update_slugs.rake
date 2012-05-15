@@ -1,4 +1,4 @@
-# to run:    rake the_update_slugs
+# to run:   	 rake the_update_slugs
 
 desc "update all tables w/ slugs"
 task :the_update_slugs => :environment do |t|
@@ -67,9 +67,9 @@ task :the_update_slugs => :environment do |t|
 		when "Payment"
 			the_model = Payment.find(:first, :conditions => ["id = ?", slug.sluggable_id])
 			the_model.slug = "#{the_slug_name}_#{slug.id}"
-		when "Match"
-			the_model = Match.find(:first, :conditions => ["id = ?", slug.sluggable_id])
-			the_model.slug = "#{the_slug_name}_#{slug.id}"
+		# when "Match"
+		# 	the_model = Match.find(:first, :conditions => ["id = ?", slug.sluggable_id])
+		# 	the_model.slug = "#{the_slug_name}_#{slug.id}"
 		when "Classified"
 			the_model = Classified.find(:first, :conditions => ["id = ?", slug.sluggable_id])
 			the_model.slug = "#{the_slug_name}_#{slug.id}"

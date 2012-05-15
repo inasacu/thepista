@@ -1121,6 +1121,7 @@ en:
      points_for_single_winner: Points for guessing the winner
      points_for_single_winner_description: Points for guessing the winner
      points_for_win: Points for a Win
+     points_for_win_all: "Points for a: W / D / L"
      points_for_win_description: Points for a Won Match...
      points_full: Points   
      popular: Popular

@@ -42,6 +42,9 @@ GEM
       json (~> 1.4)
       nokogiri (>= 1.4.4)
       uuidtools (~> 2.1)
+    ayah_integration (0.6.3)
+      json
+      rest-client
     builder (3.0.0)
     cocaine (0.2.1)
     coffee-rails (3.2.2)
@@ -176,6 +179,7 @@ DEPENDENCIES
   authlogic
   authlogic-oid
   aws-sdk
+  ayah_integration
   coffee-rails (~> 3.2.1)
   composite_primary_keys
   delayed_job

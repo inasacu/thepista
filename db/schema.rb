@@ -520,21 +520,6 @@ ActiveRecord::Schema.define(:version => 20120428230748) do
   add_index "payments", ["manager_id"], :name => "index_payments_on_manager_id"
   add_index "payments", ["slug"], :name => "index_payments_on_slug", :unique => true
 
-  create_table "rates", :force => true do |t|
-    t.integer  "rater_id"
-    t.integer  "rateable_id"
-    t.string   "rateable_type"
-    t.integer  "stars"
-    t.string   "dimension"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.boolean  "archive",       :default => false
-  end
-
-  add_index "rates", ["rateable_id"], :name => "index_rates_on_rateable_id"
-  add_index "rates", ["rater_id"], :name => "index_rates_on_rater_id"
-  add_index "rates", ["rater_id"], :name => "index_rates_on_user_id"
-
   create_table "reservations", :force => true do |t|
     t.string   "name"
     t.datetime "starts_at"

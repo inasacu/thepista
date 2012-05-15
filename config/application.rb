@@ -80,12 +80,8 @@ module Thepista
 			:enable_starttls_auto => true
 		}
 		
-		config.action_mailer.perform_deliveries = true
-		config.action_mailer.raise_delivery_errors = true
-		
-		# method_cachable
-		# config.cache_store = :dalli_store
-		
+		# config.action_mailer.perform_deliveries = true
+		# config.action_mailer.raise_delivery_errors = true
 		
   end
 

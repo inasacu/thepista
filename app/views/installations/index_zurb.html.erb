@@ -9,7 +9,6 @@
 	has_team = current_user.groups.count > 0
 %>
 
-	<%= render 'groups/index_blank_zurb' unless has_team %>
 
 	<%= render 'home/upcoming_schedule_zurb', :my_schedules => @my_schedules, :the_label => label_name(:my_upcoming) unless @my_schedules.empty? %>
 

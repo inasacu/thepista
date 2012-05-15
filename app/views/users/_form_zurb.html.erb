@@ -1,11 +1,11 @@
 
 <%
-options = ""
-LANGUAGES.each do |language|
-	options += "<option value='#{language}'>" + label_name(language) + "</option>"	
-end
+	options = ""
+	LANGUAGES.each do |language|
+		options += "<option value='#{language}'>" + label_name(language) + "</option>"	
+	end
+	is_new_user = (is_action('rpx new') or is_action('signup'))
 %>
-
 
 <%= set_form_label(the_form, :name) %>
 <%= set_form_text_field(the_form, :name, 'large input-text', true) %><br />
@@ -20,9 +20,11 @@ end
 <%= set_form_text_field(the_form, :phone, 'large input-text', true) %><br />
 
 
-<%= set_form_label(the_form, :city_id) %>
+<%= set_form_label(the_form, :city) %>
 <%= the_form.select(:city_id, City.city_name, {:selected => @user.city_id, :include_blank => false}) %><br/>
 
+
+<% unless is_new_user %>
 
 <%= set_form_label(the_form, :sport) %>
 <%= set_form_text_field(the_form, :sport, :id => 'autofill') %><br />
@@ -56,7 +58,7 @@ end
 <%= "#{label_name(:female, 'value')}  " %><%= radio_button("user", "gender", "female") %><br />
 
 
-
 <%= set_form_label(the_form, :birth_at) %>
 <%= date_select :user, :birth_at, :start_year => (Time.zone.now.year.to_i - 70), :end_year => (Time.zone.now.year.to_i) %><br />
 
+<% end %>

@@ -29,9 +29,5 @@ task :send_after_scorecards => :environment do
 end
 
 
-task :archive_comments => :environment do    
-    puts "Archive all messages older than 1 month, set all other emails to mark as read..."
-    Comment.archive_comments
-    puts "done."
-end
+
 

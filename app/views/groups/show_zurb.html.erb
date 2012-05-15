@@ -39,7 +39,7 @@
 		<% end %>
 		
 		<%= render_show_detail_zurb(:sports, @group.sport.name) %>
-		<%= render_show_detail_zurb(link_to(label_name(:scorecard), scorecard_path(:id => @group)), '', true) %>
+		<%= render_show_detail_zurb(:scorecard, link_to(label_name(:scorecard), scorecard_path(:id => @group))) %>
 		<%= render_show_detail_zurb(:game_day, nice_day_time(@group.schedules.first.starts_at)) unless @group.schedules.blank? %>
 		<%= render_show_detail_zurb(:city, @group.marker.city) %>
 
@@ -48,9 +48,7 @@
 
 		<%= render_show_detail_zurb(:users, t(:has_group_users, :count => @group.users.count)) %>
 		<%= render_show_detail_zurb(:schedules, t(:has_group_schedules, :count => @group.schedules.count)) unless @group.schedules.blank? %>
-		<%= render_show_detail_zurb(:points_for_win, @group.points_for_win) %>
-		<%= render_show_detail_zurb(:points_for_draw, @group.points_for_draw) %>
-		<%= render_show_detail_zurb(:points_for_lose, @group.points_for_lose) %>		
+		<%= render_show_detail_zurb(:points_for_win_all, "#{@group.points_for_win.to_i} / #{@group.points_for_draw.to_i} / #{@group.points_for_lose.to_i}") %>		
 		<%= render_show_detail_zurb(:player_limit, @group.player_limit) %>
 		<%= render_show_detail_zurb(:conditions, sanitize(@group.conditions)) %>	
 		<%= render_show_detail_zurb(:users_available, render('/shared/show_images_zurb', :collection => @group.users)) if is_member %>	

@@ -1,50 +1,71 @@
 <% 
-	@archive ||= false 
-	# @less_games = 5 
-	# @games_played = @group.games_played
 	scorecards = false
 	@scorecards.each {|card| scorecards = true }
 	
 	the_label = label_name(:scorecard)
 	content_for(:title, the_label)
 	even_or_odd = true
-	
-	return unless scorecards
-	
+	mailer ||= false
+						
+	return unless scorecards	
 %>
+
 
 <div class="row">
+	 
+	<div class="twelve column">  
+			
+			<%= set_title_class(item_name_link(@group)) %>
+			
+				
+				<%= render('shared/index_total_header_zurb', :items => @scorecards) %>
 
+				<div class="row">
+					<div class="twelve columns"> 
 
-<%
-	if scorecards	
-%>
-<div class="twelve column">   
+						<table>
+						  	<thead>
+							<tr>             
 
-	<h2 class="title"><%= item_name_link(@group) %></h2>
+								<th class="first" align="center" title="<%= I18n.t(:ranking_full) %>"><%= mailer ? I18n.t(:ranking) : sort_link(I18n.t(:ranking), :ranking) %></th>
 
+								<th class="heading">&nbsp;</th>	
+								<th class="heading"><%= I18n.t(:name) %></th>	
+								<th class="heading">&nbsp;</th>
+								<th class="heading" title="<%= I18n.t(:points_full) %>"><%= mailer ? I18n.t(:points) : sort_link(I18n.t(:points), :points) %></th>
+								<th class="heading" title="<%= I18n.t(:games_won_full) %>"><%= mailer ? I18n.t(:games_won) : sort_link(I18n.t(:games_won), :wins) %></th>
+								<th class="heading" title="<%= I18n.t(:games_tied_full) %>"><%= mailer ? I18n.t(:games_tied) : sort_link(I18n.t(:games_tied), :draws) %></th>
+								<th class="heading" title="<%= I18n.t(:games_lost_full) %>"><%= mailer ? I18n.t(:games_lost) : sort_link(I18n.t(:games_lost), :losses) %></th>
 
-<% if @group.is_futbol? %>
-<%= render 'scorecard_futbol_label_zurb' %>
-<% @scorecards.each do |scorecard| %>
-<%= render 'scorecard', 
-:scorecard => scorecard, :group => @group, :games_played => @games_played, :less_games => @less_games, :even_or_odd => (even_or_odd = !even_or_odd) %>
-<% end %>
-<% end %>
+								<% if DISPLAY_FREMIUM_SERVICES %>
+								<th class="heading" title="<%= I18n.t(:goals_scored_full) %>"><%= mailer ? I18n.t(:goals_scored) : sort_link(I18n.t(:goals_scored), :goals_scored) %></th>
+								<% end %>
+								
+								<th class="heading" title="<%= I18n.t(:games_played_full) %>"><%= mailer ? I18n.t(:games_played) : sort_link(I18n.t(:games_played), :played) %></th>
 
-<%  if @group.is_basket?  %>
-<% @scorecard_baskets = @scorecards %>
-<%= render 'scorecard_basket_label_zurb' %>
-<%= render 'scorecard_basket_zurb', :collection => @scorecard_baskets, 
-:group => @group, :games_played => @games_played, :less_games => @less_games %>       
-<% end %> 
+								<th class="heading" title="<%= I18n.t(:coeficient_full) %>"><%= mailer ? I18n.t(:coeficient_points) : sort_link(I18n.t(:coeficient_points), :coeficient_points) %></th>
+								<th class="heading_last" title="<%= I18n.t(:participation_full) %>"><%= mailer ? I18n.t(:participation) : sort_link(I18n.t(:participation), :coeficient_played) %></th>
+								
+							</tr>
+							</thead>
 
-<% unless @group.is_futbol? or @group.is_basket? %>
-<% @scorecard_others = @scorecards %>
-<%= render 'scorecard_other_label_zurb' %>
-<%= render 'scorecard_other_zurb', :collection => @scorecard_others, 
-:group => @group, :games_played => @games_played, :less_games => @less_games %>       
-<% end %>
-<% 
-end 
--%>
+						<tbody>
+							
+
+							<% @scorecards.each do |scorecard| %>
+								<%= render 'scorecards/scorecard_zurb', 
+													:scorecard => scorecard, 
+													:group => @group, 
+													:games_played => @games_played, 
+													:less_games => @less_games, 
+													:even_or_odd => (even_or_odd = !even_or_odd) %>
+								<% end %>
+							
+						</tbody>
+						</table>
+
+					</div>
+				</div>
+
+	</div>	
+</div>

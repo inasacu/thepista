@@ -53,7 +53,7 @@
 						<%#= tr_td_action(:educations, @profile.educations) %>
 						<%#= tr_td_action(:connection, @connections) %>
 						
-						<%= @client.update_status(label_name(:linkedin_update_status)) if test? %>
+						<%= @client.update_status(label_name(:linkedin_update_status)) if Rails.env.test? %>
 						<%#= @client.clear_status %>
 						
 						<%#= tr_td_action(:network_updates, @client.network_updates) %>

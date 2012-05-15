@@ -1,69 +1,10 @@
-<%#= render 'shared/textfield_autofill' %>
+<% 
+	the_label = control_action_label 
+	@item = @user
+%>
 
-<style type="text/css"> 
-	div.notice { 
-		display: inline-block; 
-		padding: 5px 10px; 
-		position: relative; 
-		margin: 10px 0pt; 
-		-moz-border-radius: 5px 5px 5px 5px;
-		-webkit-border-radius:3px
- 	}
-	div.notice { background-color: rgb(100, 174, 41); color: rgb(255, 255, 255); }
-	div.notice.top_left:before { content: ""; display: block; width: 20px; height: 10px; position: absolute; top: -10px; left: 50px; }
-	div.notice.top_left:before { background: url('../../assets/half_arrow_up.png') no-repeat scroll 0% 0% transparent; }
-</style>
-
-<div class="block">
-
-	<div class="content_register">  
-
-		<h2 class="title"><%= control_action_label %></h2>
-
-		<div class="inner">
-		
-			<%= form_for (@user), :url => rpx_create_path, :html => { :class => :form } do |f| -%>
-			
-			<div class="group"></div>
-						
-			<div class="group">
-			  <%= f.label :name, label_name('name'), :class => :label %>
-			  <%= f.text_field :name, :class => 'textfield' %>
-			</div>	
-
-			<div class="group">
-			  <%= f.label :email, label_name('email'), :class => :label %>
-			  <%= f.text_field :email, :class => 'textfield' %><br>
-			</div>
-
-				<div class="group">
-				  <%= f.label :phone, label_name('phone'), :class => :label %>
-				  <%= f.text_field :phone, :class => 'textfield' %>
-				</div>
-
-			<div class="group">
-			  <%= f.label :sport, label_name('sport'), :class => :label %>
-			  <%= f.text_field :sport, :id => 'autofill', :class => 'textfield' %><br />
-			</div>
-
-		  <div class="group">
-		    <%= f.label :city_id, label_name('city'), :class => :label %><br/>
-		    <%= f.select(:city_id, City.city_name, {:selected => @user.city_id, :include_blank => false})%>
-		  </div>
-			
-			<div class="group"></div>
-			
-		<div class="group navform">
-			<%= submit_tag label_name(:create), :class => "button" %> <%= label_name(:or) %> <%= link_to label_name(:cancel), users_path %>
-		</div>
-			
-			<% end -%>
+<%#= render 'shared/new_edit_multipart_zurb', :item => @item, :the_label => the_label %>
 
 
-		</div>
 
-	</div>
 
-</div>
-
-<% content_for :sidebar, render(:partial => 'sidebar') -%>

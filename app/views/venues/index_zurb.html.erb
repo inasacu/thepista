@@ -7,11 +7,56 @@
 	 
 	<div class="twelve column">  
 			<% if object_counter(@venues) > 0 %>
-				<%= render :partial => '/venues/index_full' %>
+				
+				<%= render('shared/index_total_header_zurb', :items => @venues) %>
+
+				<div class="row">
+					<div class="twelve columns"> 
+
+						<table>
+						  	<thead>
+							<tr>             
+								<%= set_content_tag_safe(:th, "&nbsp;") %>
+								<%= set_content_tag_safe(:th, "#{label_name(:name)}<br />#{label_name(:time_zone)}") %>
+								<%= set_content_tag_safe(:th, "#{label_name(:marker)}<br/>#{label_name(:installations)}") %>
+								<%= set_content_tag_safe(:th, "&nbsp;") %>
+								<%= set_content_tag_safe(:th, "&nbsp;") %>
+							</tr>
+							</thead>
+
+						<tbody>
+
+							<% @venues.each do |venue| -%>		
+								<%= render 'venues/venue_full_zurb', :venue => venue, :display_icons => true %> 
+						  	<% end -%>
+
+						</tbody>
+						</table>
+
+					</div>
+				</div>
+
+				<%= render 'shared/action_bar_zurb', :collection => @venues %>
+				
 			<% else %>
-				<%= render :partial => '/venues/index_blank' %>
+				
+				<% the_label = label_name(:venues_options_without) %>
+
+				<div class="row">
+
+					<div class="twelve columns">
+
+					<%= set_title_class(the_label, 'venue') %>
+
+						<table>
+							<tr><%= content_tag :td, link_to("#{label_name(:you_can)} #{label_name(:create_your_own)} #{label_name(:venue).downcase}", new_venue_url) %></tr>
+						</table>
+
+					</div>
+
+				</div>
+				
 			<% end %>
 	</div>	
 </div>
 
-<% content_for :sidebar, render(:partial => 'venues/sidebar')  if the_maximo -%>

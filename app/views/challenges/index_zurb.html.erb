@@ -6,9 +6,51 @@
 	
 	<div class="twelve column">  
 			<% if object_counter(@challenges) > 0 %>
-				<%= render '/challenges/index_full_zurb', :challenges => @challenges %>
+				
+				<%= set_title_class(get_collection_label(@challenges)) %>
+
+				<div class="inner">
+
+					<table class="table">
+
+					  <tr> 
+						<%= set_content_tag_safe(:th, "&nbsp;", "first") %>
+						<%= content_tag :th, label_name(:name), :class => "heading" %>
+						<%= content_tag :th, label_name(:manager), :class => "heading" %>
+						<%= content_tag :th, label_name(:general_information), :class => "heading" %>
+						<%= content_tag :th, "&nbsp;", :class => "heading" %>	
+						<%= set_content_tag_safe(:th, "&nbsp;", "last") %>
+					  </tr>
+
+					  <% @challenges.each do |challenge| 
+						<%= render 'cups/cup_full_zurb', :cup => cup, :display_icons => true %>
+					  <% end -%>
+
+					</table>	
+
+					<%= render 'shared/action_bar_zurb', :locals => { :collection => challenges } %>
+
+				</div>
+				
 			<% else %>
-				<%= render '/challenges/index_blank_zurb' %>
+				
+				<% the_label =  label_name(:challenges_options_without) %>
+
+				<%= set_title_class(the_label) %>
+
+				<div class="inner">
+					<p>
+						<span class="large">*&nbsp;&nbsp;
+							<%= link_to("#{label_name(:you_can)} #{label_name(:create_your_own)} #{label_name(:challenge).downcase}", cups_url) %>
+						</span>
+					</p>
+					<p>
+						<span class="large">*&nbsp;&nbsp;
+							<%= link_to("#{label_name(:you_can)} #{label_name(:to_join_challenge)}", list_challenges_path) %>
+						</span>
+					</p>
+				</div>
+			
 			<% end %>
 	</div>	
 </div>

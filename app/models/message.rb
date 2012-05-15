@@ -69,9 +69,9 @@ class Message < ActiveRecord::Base
   def trashed?(user)
     case user
     when sender
-      !sender_deleted_at.nil? and sender_deleted_at > User::TRASH_TIME_AGO
+      !sender_deleted_at.nil? and sender_deleted_at > User::ONE_MONTH_AGO
     when recipient
-      !recipient_deleted_at.nil? and recipient_deleted_at > User::TRASH_TIME_AGO
+      !recipient_deleted_at.nil? and recipient_deleted_at > User::ONE_MONTH_AGO
     end
   end
 

@@ -26,7 +26,7 @@
 			<table class="table">
 				
 				<%= render 'reservations/full_calendar_zurb', :first_day => @first_day, :time_frame => @time_frame, :installation => @installation %>	
-				<%#= render 'reservations/new_reservation_zurb', :first_day => @first_day, :time_frame => @time_frame, :installation => @installation if production? %>
+				<%#= render 'reservations/new_reservation_zurb', :first_day => @first_day, :time_frame => @time_frame, :installation => @installation if Rails.env.production? %>
 			</table>
 		</div>
 

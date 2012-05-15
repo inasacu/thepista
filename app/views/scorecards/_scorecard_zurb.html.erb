@@ -1,0 +1,49 @@
+<%
+ 	mailer ||= false
+	switch ||= false
+	even_or_odd ||= false
+	
+	unless mailer
+		image = scorecard_image_link("bajar-clasificacion.png") if (scorecard.ranking > scorecard.previous_ranking) 
+		image = scorecard_image_link("subir-clasificacion.png") if (scorecard.ranking < scorecard.previous_ranking)  		
+		image = scorecard_image_link("mantener-clasificacion.png") if (scorecard.ranking == scorecard.previous_ranking) 
+		image = scorecard_image_link("mantener-clasificacion.png") if (scorecard.previous_ranking == 0) 
+	end
+
+	ranking_change = "-#{scorecard.ranking - scorecard.previous_ranking}" if (scorecard.ranking > scorecard.previous_ranking)  
+	ranking_change = "+#{scorecard.previous_ranking - scorecard.ranking}" if (scorecard.ranking < scorecard.previous_ranking)  	
+	ranking_change = " " if (scorecard.ranking == scorecard.previous_ranking or scorecard.previous_ranking == 0)
+	user_played = scorecard.type_id.to_i == 1 
+	user_subscription_link = subscription_image_link(scorecard.user, user_played ? "orange_#{user_played}" : "#{user_played}", I18n.t("game_played_#{user_played}"))
+	the_ranking_change = "#{mailer ? '&nbsp;' : image} #{mailer ? '&nbsp;' : ranking_change}"
+	
+	the_player_link = ""
+	
+	if mailer 
+		the_name = scorecard.user.name.split.collect {|i| i.capitalize}.join(' ') 
+	
+		the_player_link = link_to((the_name.to_s.length > 14) ? "#{the_name.to_s.strip[0..12]}..." : 
+				the_name, {:host => 'haypista.com', :controller => 'users', :action => 'show', :id => scorecard.user})
+	else
+		the_player_link = user_link_limit(scorecard.user)
+	end
+	
+	
+	
+%>
+
+
+<tr>	
+	<%= set_content_tag_safe(:td, "#{scorecard.ranking} #{user_subscription_link  unless mailer}") %>
+	<%= set_content_tag_safe(:td, "#{mailer ? "&nbsp;" : item_image_link_tiny(scorecard.user)}") %>
+	<%= set_content_tag_safe(:td, the_player_link) %>
+	<%= set_content_tag_safe(:td, the_ranking_change) %>
+	<%= set_content_tag_safe(:td, "#{scorecard.points.round}") %>
+	<%= set_content_tag_safe(:td, "#{scorecard.wins}") %>
+	<%= set_content_tag_safe(:td, "#{scorecard.draws}") %>
+	<%= set_content_tag_safe(:td, "#{scorecard.losses}") %>
+	<%= set_content_tag_safe(:td, "#{scorecard.goals_scored}") if DISPLAY_FREMIUM_SERVICES %>
+	<%= set_content_tag_safe(:td, "#{scorecard.played}") %>
+	<%= set_content_tag_safe(:td, "#{mailer ? sprintf( "%0.0f", scorecard.coeficient_points)  : scorecard.coeficient_points.to_f.round}") %>
+	<%= set_content_tag_safe(:td, "#{sprintf( '%0.00f', scorecard.coeficient_played)}%") %>
+</tr>

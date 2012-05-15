@@ -24,8 +24,10 @@
 	
 	password_reset_actions = ['password_reset_new', 'password_reset_edit']
 	is_password_reset = password_reset_actions.include?(get_controller_action)
+	is_new_user = @user ? true : false
+	the_label = label_name(:users_rpx_new) 
+	@item = @user
 %>
-
 
 <div class="row">
 
@@ -37,6 +39,10 @@
 			
 				<%#= render 'shared/notice_zurb', :notice =>  %>
 				
+			<% elsif is_new_user %>
+
+			<%= render 'shared/new_edit_multipart_zurb', :item => @item, :the_label => the_label %>
+			
 			<% else %>
 			
 				<br />
@@ -47,7 +53,7 @@
 				<hr />
 				<br />
 				
-				<%= render 'home/details_zurb' unless current_user or is_password_reset %>
+				<%= render 'home/details_zurb' unless is_password_reset %>
 				<%= render 'password_resets/new_zurb' if is_password_reset %>
 				
 				<br />
@@ -67,4 +73,8 @@
 	</div>
 
 </div>
+
+
+
+
 

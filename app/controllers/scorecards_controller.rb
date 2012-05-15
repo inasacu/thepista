@@ -2,8 +2,7 @@ class ScorecardsController < ApplicationController
   before_filter :require_user
 
   def index
-    @groups = Group.where("groups.archive = false ").page(params[:page]).order('groups.created_at DESC')
-    render @the_template
+		redirect_to groups_url
   end
   
   def list

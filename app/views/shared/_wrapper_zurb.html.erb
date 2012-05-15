@@ -32,25 +32,27 @@
 %>
 
 
-<% if current_user %>
-
 <div class="row">
 
 	<div class="eight columns">
 		<%= yield %>
 	</div>
-	
+
+
+<% if current_user %>
+
   	<div class="four columns">
 	<!-- SIDEBAR BEGIN -->
 	
-		<%= render "shared/search_zurb" if DISPLAY_SEARCH_OPTION %>			
+		<%#= render "shared/search_zurb" if DISPLAY_SEARCH_OPTION %>			
 		<%= render "#{the_sidebar}/sidebar_zurb" %>				
 		
 	<!-- SIDEBAR END -->
   	</div> 
 	
-</div>
 
 <% end -%>
 
+
+</div>
 

@@ -47,11 +47,6 @@ class UsersController < ApplicationController
 		render @the_template
 	end
 
-	def signup
-		@user = User.new
-		return @the_template
-	end  
-
 	def new
 		if DISPLAY_HAYPISTA_SIGNUP
 			return redirect_to :signup
@@ -65,6 +60,7 @@ class UsersController < ApplicationController
 			return
 		end
 		@user = User.new
+		return @the_template
 	end
 
 	def edit
@@ -78,10 +74,9 @@ class UsersController < ApplicationController
 		render @the_template   
 	end
 
-
 	def create
 		@user = User.new(params[:user])
-		
+
 		if DISPLAY_RECAPTCHA 
 			unless verify_recaptcha   
 				recaptcha_failure
@@ -89,28 +84,27 @@ class UsersController < ApplicationController
 				return
 			end
 		end
+
+		@user.name = @user.email    
+		# @user.language = "es" if @user.language.nil?
+		
+		if session[:identifier]
+			@user.password = session[:identifier]
+			@user.password_confirmation = session[:identifier]
+		end
 		
 		
+		if @user.save
+			@user.email_to_name
+			@user.email_backup = @user.email
+			@user.save
+		else
+			flash[:warning] = I18n.t(:password_email_conbination_issue)
+			redirect_to :signup
+			return
+		end 
 
-		# if verify_recaptcha      
-			@user.name = @user.email      
-			if @user.save
-				@user.email_to_name
-				@user.email_backup = @user.email
-				@user.save
-			else
-				flash[:warning] = I18n.t(:password_email_conbination_issue)
-				redirect_to :signup
-				return
-			end
-
-		# else 
-		# 	recaptcha_failure
-		# 	redirect_to :signup
-		# 	return
-		# end  
-
-		flash[:success] = I18n.t(:successful_create)
+		successful_create
 		redirect_to @user
 	end
 
@@ -122,8 +116,6 @@ class UsersController < ApplicationController
 		@user.profile_at = Time.zone.now
 
 		@user.save do |result|
-
-
 
 			if result
 				controller_successful_update
@@ -302,7 +294,7 @@ class UsersController < ApplicationController
 			session[:name] = data[:name] || data[:displayName] || data[:nickName]
 			session[:email] = data[:verifiedEmail] || data[:email]
 			session[:login] = data[:verifiedEmail] || data[:email]
-
+			
 			@user = User.new
 			@user.name = session[:name]
 			@user.email = session[:email]
@@ -319,11 +311,7 @@ class UsersController < ApplicationController
 					return
 				end
 			end
-
-		else
-			flash[:error] = I18n.t(:rpx_third_party_error)
-			redirect_to login_path
-			return
+			
 		end
 	end
 
@@ -338,6 +326,8 @@ class UsersController < ApplicationController
 
 		if @user.save
 
+			UserMailer.send_email(@user).deliver
+			
 			# Won't be needing these anymore.
 			session[:rpx_identifier] = nil
 			session[:rpx_token] = nil

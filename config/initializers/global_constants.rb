@@ -42,9 +42,12 @@ TIME_ONE_DAY_AGO = 1.day.ago
 TIME_THREE_DAYS_AGO = 2.days.ago
 TIME_WEEK_AGO = 1.week.ago
 
-TIME_AGO_FOR_MOSTLY_ACTIVE = 1.month.ago
-TRASH_TIME_AGO = 1.month.ago
-ACTIVITY_TIME_AGO = 6.months.ago
+TIME_ONE_MONTH_AGO = 1.month.ago
+TIME_TWO_MONTHS_AGO = 2.months.ago
+TIME_THREE_MONTHS_AGO = 3.months.ago
+TIME_FOUR_MONTHS_AGO = 4.months.ago
+TIME_FIVE_MONTHS_AGO = 5.months.ago
+TIME_SIX_MONTHS_AGO = 6.months.ago
 
 # variable for pagination
 COMMENTS_PER_PAGE = 100

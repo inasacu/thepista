@@ -12,7 +12,7 @@ class User < ActiveRecord::Base
   # Validations
   validates_presence_of 			:email
   validates_length_of   			:name,            :within => NAME_RANGE_LENGTH
-  validates_inclusion_of   		:language,     		:in => ['en', 'es'],    :allow_nil => false, :default => 'es'
+  # validates_inclusion_of   		:language,     		:in => ['en', 'es'],    :allow_nil => false, :default => 'es'
   
   # validates_format_of   :name,            :with =>  /^[A-Z a-z 0-9]*\z/
   # validates_acceptance_of :terms_of_service
@@ -316,7 +316,7 @@ class User < ActiveRecord::Base
     def trashed_messages(page = 1)
       conditions = [%((sender_id = :user AND sender_deleted_at > :t) OR
                       (recipient_id = :user AND recipient_deleted_at > :t)),
-                    { :user => id, :t => TRASH_TIME_AGO }]
+                    { :user => id, :t => ONE_MONTH_AGO }]
       order = 'created_at DESC'
       trashed = Message.where(conditions).page(page).order(order)
     end
@@ -410,7 +410,7 @@ class User < ActiveRecord::Base
     # end
 
     def signup_notification
-      UserMailer.delay.signup_notification(self)
+      # UserMailer.delay.signup_notification(self)
     end
     
     def password_reset_instructions!  

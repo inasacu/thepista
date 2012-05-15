@@ -88,8 +88,6 @@ class HomeController < ApplicationController
       @no_linkedin_profile = (current_user.linkedin_url.nil? or current_user.linkedin_url.blank? or current_user.linkedin_url.empty?) if DISPLAY_FREMIUM_SERVICES
       @my_schedules = Schedule.my_current_schedules(current_user)
 
-      Comment.latest_items(@all_comment_items, current_user) unless DISPLAY_DISQUS
-
       Match.latest_items(@all_match_items, current_user)
       Match.last_minute_items(@all_match_items, current_user) if DISPLAY_LAST_MINUTE_CANCEL
 

@@ -1,0 +1,28 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+  "http://www.w3.org/TR/html4/loose.dtd">
+
+<html lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <style type="text/css" media="screen">
+      h3 { color: #f00; }
+      ul { list-style: none; }
+    </style>
+  </head>
+  <body>
+    <div>
+      <h2 id = "banner">Your account signup details are below</h2>
+    </div>
+
+    <ul><br /><br />
+      <li><h2>Name: <b><%= @user.name %></b> </h2></li>
+
+      <li>Login: <%= @user.email %></li><br /><br />
+
+      <li>Image: <%= image_tag 'rails.png' %></li><br /><br />
+
+      <li>Content: <%= @user.content %></li>
+    </ul>
+   
+  </body>
+</html>

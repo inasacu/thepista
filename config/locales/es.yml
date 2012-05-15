@@ -1129,6 +1129,7 @@ es:
      points_for_single_winner: Puntuación por acertar el ganador.
      points_for_single_winner_description: Dale puntuación por acertar el ganador.
      points_for_win: Puntos por ganar
+     points_for_win_all: "Puntos por: G / E / P"
      points_for_win_description: Dale puntuación por ganar el evento...
      points_full: Puntos   
      popular: De Moda 
