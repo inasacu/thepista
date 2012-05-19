@@ -4,7 +4,7 @@ en:
      accept: "Accept"   
      accept_player: "ACCEPT"   
      account: account
-     account_activation:  Your account is now active.  
+     account_activation:  Your account in HayPista is now active.  
      account_created:  Your account has been created and active.  
      accounts: Accounts 
      add_email: "Accept, Create your account"  
@@ -1169,7 +1169,7 @@ en:
      profile_user_set_full:  Update profile from user's profile  
      profile_technical: Technical Level
      profile_technical_average: Technical Average Level
-     protect_your_privacy: "We protect your privacy. HayPista at no time has provided your email address to any other user of HayPista without your permission. © 2007-2010, HayPista"  
+     protect_your_privacy: "We protect your privacy. HayPista at no time has provided your email address to any other user of HayPista without your permission. © 2012, HayPista"  
      provider_not_supported: "provider is not supported, try another email address."   
      public:  Open to the Public
      public_description:  Select option if open to the public.

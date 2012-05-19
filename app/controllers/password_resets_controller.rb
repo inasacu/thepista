@@ -26,9 +26,9 @@ class PasswordResetsController < ApplicationController
 
 	end
 
-  def update
-    @user.password = params[:user][:password]
-    @user.password_confirmation = params[:user][:password_confirmation]
+	def update
+		@user.password = params[:user][:password]
+		@user.password_confirmation = params[:user][:password_confirmation]
 
 		if DISPLAY_RECAPTCHA 
 			unless verify_recaptcha   
@@ -37,23 +37,17 @@ class PasswordResetsController < ApplicationController
 				return
 			end
 		end
-    
-    # if verify_recaptcha      
-      if @user.save
-        flash[:success] = I18n.t(:password_updated) 
-        redirect_to root_url
-      else
-        flash[:success] = I18n.t(:password_instructions_issue)
-        render :action => :edit
-        return
-      end 
-    # else 
-    #   flash[:notice] = I18n.t(:recaptcha_failure)
-    #   render :action => :edit
-    #   return
-    # end
-    
-  end
+
+		if @user.save
+			flash[:success] = I18n.t(:password_updated) 
+			redirect_to root_url
+		else
+			flash[:success] = I18n.t(:password_instructions_issue)
+			render :action => :edit
+			return
+		end 
+
+	end
 
   private
   def load_user_using_perishable_token

@@ -1,51 +1,32 @@
-<%= render :partial => 'header' %>
+<%
+	join_accept = ""
+	join_decline = ""
 
-<h2 style="margin:0; padding:0; font:17px arial; color:#069;"><%= I18n.t(:request_petition) %>&nbsp;&nbsp;</h2>
+	if @teammate.group
+		join_accept = "join_team_accept"
+		join_decline = "join_team_decline"
+	end
+%>
 
-<table width="100%" border="0" cellpadding="0" cellspacing="0" style="font: 13px arial;">
-  <tr>
-    <td style="width:1%; color:#999999; vertical-align: top;">&nbsp;</td>
-    <td style="width:99%">&nbsp;
-		<%= "#{I18n.t(:request_petition)} #{I18n.t(:from)} 
-		 	 #{link_to(@user.name, {:host => 'haypista.com', :controller => 'users', :action => 'show', :id => @user}, 
-									:title => @user.name)} #{I18n.t(:to_join_email)} -  
-			 #{link_to(@group.name, {:host => 'haypista.com', :controller => 'groups', :action => 'show', :id => @group}, 
-									:title => @group.name)}" %>
-	</td>
-  </tr>
+<%= render :partial => 'user_mailer/header' %>
+
+<h2 style="margin:0; padding:0; font:17px arial; color:#069;"><%= I18n.t(:request_petition) %></h2>
+<br/>
+<br/>
+
+<%= "#{I18n.t(:request_petition)} #{I18n.t(:from)} 
+ 	 #{link_to(@user.name, {:host => 'haypista.com', :controller => 'users', :action => 'show', :id => @user}, 
+							:title => @user.name)} #{I18n.t(:to_join_email)} -  
+	 #{link_to(@group.name, {:host => 'haypista.com', :controller => 'groups', :action => 'show', :id => @group}, 
+							:title => @group.name)}".html_safe %>
 <br />
-  <tr>
-    <td style="width:1%; color:#999999; vertical-align: top;">&nbsp;</td>
-    <td style="width:99%">
-	<% 
-		join_accept = ""
-		join_decline = ""
-		
-		if @teammate.group
-			join_accept = "join_team_accept"
-			join_decline = "join_team_decline"
-		# elsif @teammate.tournament
-		# 	join_accept = "join_tour_accept"
-		# 	join_decline = "join_tour_decline"
-		end
-	%>
-		<%= link_to(I18n.t(:accept_player), 
-			{:host => 'haypista.com', :controller => 'teammates', :action => join_accept, :id => @teammate}) %>
-	</td>
-  </tr>
-	<br />
-  <tr>
-    <td style="width:1%; color:#999999; vertical-align: top;">&nbsp;</td>
-    <td style="width:99%">
-		<%= link_to(I18n.t(:deny_player), 
-				{:host => 'haypista.com', :controller => 'teammates', :action => join_decline, :id => @teammate}) %>
-	</td>
-  </tr>
-	<br />
-</table>
+
+<% unless @automatic_petition %>
+
+	<%= "#{link_to(I18n.t(:accept_player), {:host => 'haypista.com', :controller => 'teammates', :action => join_accept, :id => @teammate})}".html_safe %><br/><br/>
+	<%= "#{link_to(I18n.t(:deny_player), {:host => 'haypista.com', :controller => 'teammates', :action => join_decline, :id => @teammate})}".html_safe %><br/><br/>
+	
+<% end %>
 
 
-
-<div style="margin-top: 6px; border-bottom: 3px solid #ddd; line-height:3px">&nbsp;</div>
-
-<%= render :partial => 'footer' %>
+<%= render :partial => 'user_mailer/footer' %>

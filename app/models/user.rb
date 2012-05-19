@@ -410,12 +410,12 @@ class User < ActiveRecord::Base
     # end
 
     def signup_notification
-      # UserMailer.delay.signup_notification(self)
+      UserMailer.signup_notification(self).deliver
     end
     
     def password_reset_instructions!  
   		reset_perishable_token!  
-      UserMailer.delay.password_reset_instructions(self) 
+      UserMailer.password_reset_instructions(self).deliver
   	end
     
   end

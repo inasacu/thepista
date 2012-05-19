@@ -139,8 +139,8 @@ class Teammate < ActiveRecord::Base
       ChallengesUsers.join_item(approver, item) 
       ChallengesUsers.join_item(requester, item)
       Cast.create_challenge_cast(item) 
-      Fee.create_user_challenge_fees(item)    
-      Fee.set_archive_flag(requester, item, item, false) 
+      Fee.create_user_challenge_fees(item)     if DISPLAY_FREMIUM_SERVICES
+      Fee.set_archive_flag(requester, item, item, false)  if DISPLAY_FREMIUM_SERVICES
       Standing.create_cup_challenge_standing(item)
       Standing.set_archive_flag(requester, item, false)
       Cast.update_cast_details(item)         
@@ -268,7 +268,7 @@ class Teammate < ActiveRecord::Base
     return unless @send_mail 
 
     if self.status == "pending"   
-      UserMailer.delay.teammate_join(self, self.manager, self.user) if self.group    
+      UserMailer.teammate_join(self, self.manager, self.user).deliver if self.group    
     end       
   end
 
@@ -277,20 +277,20 @@ class Teammate < ActiveRecord::Base
     return unless @send_mail 
 
     if self.status == "pending"       
-      UserMailer.delay.teammate_leave(self, self.user, self.manager) if self.group
+      UserMailer.teammate_leave(self, self.user, self.manager).deliver if self.group
     end       
   end 
   
   def send_manager_join_item
     @send_mail ||= self.manager.teammate_notification?   
     return unless @send_mail 
-    UserMailer.delay.manager_join_item(self, self.manager, self.user) if self.status == "pending"   
+    UserMailer.manager_join_item(self, self.manager, self.user).deliver if self.status == "pending"   
   end
 
   def send_manager_leave_item
     @send_mail ||= self.manager.teammate_notification?   
     return unless @send_mail 
-    UserMailer.delay.manager_leave_item(self, self.user, self.manager) if self.status == "pending" 
+    UserMailer.manager_leave_item(self, self.user, self.manager).deliver if self.status == "pending" 
   end 
 
   def self.accept_one_item(user, manager, item, sub_item, accepted_at)

@@ -39,7 +39,7 @@
 			
 				<%#= render 'shared/notice_zurb', :notice =>  %>
 				
-			<% elsif is_new_user %>
+			<% elsif is_new_user and !is_password_reset %>
 
 			<%= render 'shared/new_edit_multipart_zurb', :item => @item, :the_label => the_label %>
 			

@@ -31,7 +31,7 @@
 				<%#= link_to(label_name(:markers), markers_url, :class => get_control_active('marker')) %>
 				<%#= link_to(label_name(:announcements), announcements_url, :class => get_control_active('announcement')) %> <%# if the_maximo %>
 
-				<%= user_link(h(current_user.name), current_user, :class => the_user) %>
+				<%= user_link(current_user.name, current_user, :class => the_user) %>
 				<%= link_to(label_name(:logout), logout_path) %>		
 
 			<% else %>

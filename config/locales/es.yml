@@ -4,7 +4,7 @@ es:
      accept: "Acepto"   
      accept_player: "ACEPTA"   
      account: cuenta
-     account_activation:  Tu cuenta ya ha sido activada.
+     account_activation:  Tu cuenta en HayPista ya ha sido activada.
      account_created:  Tu cuenta ha sido creada y activada.
      accounts: Cuentas   
      add_email: "Acepto, crea mi cuenta"     
@@ -1039,7 +1039,7 @@ es:
      participate_cup:  Participa en la copa 
      participate_cup_afterwards: "Despues de registrate, sigue este enlace para participa en la copa"       
      participate_schedule: Participa en el evento
-     participate_schedule_afterwards: "Despues de registrate en el equipo y ser aceptado, sigue este enlace para participa en el evento"
+     participate_schedule_afterwards: "Despues de registrate en el equipo y ser aceptado, sigue este enlace para participar en el evento"
      participate_group_afterwards: Despues de registrate sigue este enlace para unirte al equipo     
      participation:  "%"
      participation_full:  Porcentaje de participación 
@@ -1055,7 +1055,7 @@ es:
      password_instructions_issue: "Las instrucciones para restablecer su contraseña seran enviadas a su cuenta si tenemos una en nuestro portal.  Por favor, revisa tu correo."
      password_issue:  "Lo sentimos, pero no hemos podido localizar su cuenta.  Si tiene problemas intente copiar y pegar la URL desde tu cuenta de correo al navegador o reiniciar el proceso de restablecimiento la contraseña."
      password_updated:    Su contraseña ha sido actualizada.
-     password_update_and_login: Actualizar mi contraseña y entra.
+     password_update_and_login: Actualizar mi Contraseña y Entra.
      password_reset:  Restablecer contraseña
      password_reset_instructions:  "Danos tu cuenta de correo y te mandamos las instrucciones para reestablecer tu contraseña."	
      password_resets_create: Restablecer contraseña
@@ -1066,7 +1066,7 @@ es:
      password_request_reset:  "Este e-mail es la respuesta a su solicitud para restablecer su contraseña."
      password_request_ignore:  "Si no ha realizado esta solicitud, simplemente ignore este mensaje."
      password_request_made:  "En caso contrario haga clic en el siguiente enlace:"           
-     request_url_does_not_work:  "Si la URL no funciona trate de copiarla y pegarla en su navegador."
+     request_url_does_not_work:  "Si el enlace no funciona trate de copiarla y pegarla en su navegador."
      request_url_issue:   "Si continua teniendo problemas por favor no dude en contactarnos."     
      passed_to:  Ha pasado a 
      payed:  Tasa pagada  
@@ -1177,7 +1177,7 @@ es:
      profile_user_set_full:  Obtener los perfiles del perfil del jugador
      profile_technical: Nivel técnico 
      profile_technical_average:  Tecnico Medio
-     protect_your_privacy: "Protegemos tu privacidad. HayPista en ningún momento le ha proporcionado tu dirección de correo electrónico a ningún otro usuario de HayPista sin tu permiso. © 2007-2010, HayPista"  
+     protect_your_privacy: "Protegemos tu privacidad. HayPista en ningún momento le ha proporcionado tu dirección de correo electrónico a ningún otro usuario de HayPista sin tu permiso. © 2012, HayPista"  
      provider_not_supported: "provider is not supported, try another email address."   
      public:  Abierto al publico
      public_description:  Selecciona opción si esta abierto al publico.

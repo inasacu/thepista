@@ -1,6 +1,17 @@
-<%= I18n.t(:account_created) %>
 
-<%= I18n.t(:email) %>
-<%= I18n.t(:password) %>
+<%= render :partial => 'user_mailer/header' %>
 
-<%= I18n.t(:account_activation) %>
+
+<%= I18n.t(:hi_email_header) %>,<br /><br />
+
+
+<%= I18n.t(:account_created) %><br/>
+
+
+<%= I18n.t(:account_activation) %><br/>
+
+
+
+<%= render :partial => 'user_mailer/footer' %>
+
+

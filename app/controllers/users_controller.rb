@@ -127,12 +127,10 @@ class UsersController < ApplicationController
 		end
 	end
 
-
 	def petition
 		redirect_to root_url
 		return
 	end
-
 
 	def set_language
 		I18n.locale = "es"   

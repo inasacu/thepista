@@ -68,7 +68,9 @@ module Thepista
 
 		# default email host
 		config.action_mailer.default_url_options = { :host => "haypista.com" }
-
+		config.action_mailer.default_url_options = { :host => 'thepista.dev' }  if Rails.env.development?
+		config.action_mailer.default_url_options = { :host => 'thepista-heroku.com' } if Rails.env.test? or Rails.env.staging?
+					
 		config.action_mailer.delivery_method = :smtp
 		config.action_mailer.smtp_settings = {
 			:address => "smtp.gmail.com",
@@ -77,6 +79,7 @@ module Thepista
 			:user_name => "support@haypista.com",
 			:password => "19ti79q42e",
 			:authentication => 'plain',
+		  :content_type   => "text/html",
 			:enable_starttls_auto => true
 		}
 		

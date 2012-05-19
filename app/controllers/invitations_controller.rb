@@ -2,7 +2,6 @@ class InvitationsController < ApplicationController
   before_filter :require_user
   
   def index  
-    # redirect_to :action => 'invite'
     redirect_to :action => 'new'
   end
   
@@ -20,7 +19,6 @@ class InvitationsController < ApplicationController
     end
 
     render @the_template  
-    # return 
   end
   
   def create
@@ -75,75 +73,7 @@ class InvitationsController < ApplicationController
 
     # end
     # redirect_to invitations_url
-  end
-  
-	#   def invite
-	# @invitation = Invitation.new
-	# render @the_template   
-	#   end
-  
-	#   def contact
-	#     begin
-	#       @users = current_user
-	#       @sites = {"gmail"  => Contacts::Gmail, "yahoo" => Contacts::Yahoo, "hotmail" => Contacts::Hotmail}
-	#       @contacts = @sites[params[:from]].new(params[:login], params[:password]).contacts
-	# 
-	#       if @contacts.nil? or @contacts.blank?
-	#         flash[:notice] = I18n.t(:username_password_donot_match)
-	#         redirect_to :action => 'invite'
-	#         return
-	#       end
-	#       
-	#       @users , @no_users = [], []
-	#   
-	#       # verify user's email is not already a user on site nor has the user received a previous invitation
-	#       @contacts.each do |contact|        
-	#         if (user = User.contact_emails(contact[1]) or user = Invitation.contact_emails(contact[1]))              
-	#           @users << user
-	#         else
-	#           @no_users << {:name => contact[0].nil? ? Invitation.email_to_name(contact[1]) : contact[0].capitalize , :email => contact[1]}
-	#         end
-	#       end
-	#       return true
-	#       
-	#     rescue Contacts::AuthenticationError
-	#       flash[:notice] = I18n.t(:username_password_donot_match)
-	#       redirect_to :action => 'invite'
-	# 
-	#     end
-	# render @the_template   
-	#   end
-  
-  # def invite_contact 
-  #   if params[:emails]
-  # 
-  #     @contacts = []
-  #     params[:emails].each do |email|
-  #       @contacts << {:account => email}
-  #     end
-  # 
-  #     @contacts.each do |contact|
-  #       @contact_invitation = Invitation.new
-  #       @contact_invitation.user = current_user
-  #       @contact_invitation.email_addresses = contact[:account]
-  #       @contact_invitation.message = I18n.t(:invitation_message)
-  # 
-  #       if @contact_invitation.save
-  #         flash[:notice] = I18n.t(:invitation_successful_create)
-  #       end
-  #     end
-  # 
-  #   end
-  #   
-  #   redirect_to invitations_url
-  # end 
-  
-  # def destroy
-  #   @invitation = Invitation.find(params[:id])
-  #   @invitation.destroy
-  #   flash[:notice] = I18n.t(:invitation_deleted)
-  #   redirect_to invitations_url
-  # end
+  end  
 
 end
 
