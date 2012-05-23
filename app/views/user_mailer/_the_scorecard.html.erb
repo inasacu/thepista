@@ -10,12 +10,12 @@
 	collection.each {|card| scorecards = true }
 	mailer = true
 %> 
-<div class="block">
+<div class="row">
 
 <% 
 	if scorecards	
 %>
-<div class="content">   
+<div class="twelve columns">   
 
 	<h2 class="title"><%= link_to(@group.name, group_url(@group)) %></h2>
 	<p><%= link_to(I18n.t(:scorecard), scorecard_url(@group)) %></p>

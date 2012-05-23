@@ -3,6 +3,10 @@ class StandingsController < ApplicationController
   before_filter :standing_cup, :only => [:index, :show]
   before_filter :standing_challenge, :only => [:show_list]
   
+	def index
+    render @the_template
+	end
+
   def show
     set_the_template('standings/index')
     render @the_template  

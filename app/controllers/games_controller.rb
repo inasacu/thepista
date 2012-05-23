@@ -13,7 +13,7 @@ class GamesController < ApplicationController
   def list
     store_location
     @games = Game.group_round_games(@cup, params[:page])
-    set_thee_template('/games/index')
+    set_the_template('/games/index')
     render @the_template   
   end
 

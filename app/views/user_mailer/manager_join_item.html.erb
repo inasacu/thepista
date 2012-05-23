@@ -4,14 +4,14 @@
 					:title => @user.name)} #{I18n.t(:to_join_email)}".html_safe
 	the_name = @item.name	
 	the_item = "#{link_to(the_name, {:host => 'haypista.com', :controller => "#{@item.class.to_s}s".downcase, :action => 'show', :id => @item}, :title => the_name)}".html_safe
+
+	the_label = I18n.t(:request_petition) 
 %>
 
+<%= render 'user_mailer/header' %>
 
-<%= render :partial => 'user_mailer/header' %>
+<%= render  'user_mailer/title', :the_label => the_label %>
 
-<h2 style="margin:0; padding:0; font:17px arial; color:#069;"><%= I18n.t(:request_petition) %></h2>
-<br/>
-<br/>
 
 <%= "#{the_user} #{the_item}".html_safe %>
 
@@ -25,4 +25,4 @@
 <% end %>
 
 
-<%= render :partial => 'user_mailer/footer' %>
+<%= render 'user_mailer/footer' %>

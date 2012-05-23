@@ -99,8 +99,9 @@ Thepista::Application.routes.draw do
   match 'festivo/:venue_id/abierto/:block_token' => 'holidays#set_holiday_open', :as => :set_holiday_open
   match 'festivo/:venue_id/cerrado/:block_token' => 'holidays#set_holiday_closed', :as => :set_holiday_closed
   match 'festivo/:venue_id/nada/:block_token'=> 'holidays#set_holiday_none', :as => :set_holiday_none
-
-
+	
+	match 'escuadras/:id/borrar_escuadra/:cup' => 'escuadras#borrar_escuadra', :as => :borrar_escuadra
+	
 	resources :user_sessions
 	resources :users do
 		collection do
@@ -237,24 +238,6 @@ Thepista::Application.routes.draw do
 	resources :users do
 		resources :messages
 	end
-
-	# resources :users do  
-	# 	member do
-	# 		post :rate
-	# 	end  
-	# end
-
-	# resources :matches do  
-	# 	member do
-	# 		post :rate
-	# 	end  
-	# end
-
-	# resources :schedules do
-	# 	member do
-	# 		post :rate
-	# 	end  
-	# end
 
 	match ':controller/:action.:format' => '#index'
 

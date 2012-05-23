@@ -1,39 +1,23 @@
-<%= render :partial => 'user_mailer/header' %>
+<%
+	the_label = I18n.t(:request_petition) 
+%>
 
-<h2 style="margin:0; padding:0; font:17px arial; color:#069;"><%= I18n.t(:request_petition) %>:&nbsp;&nbsp;</h2>
+<%= render  'user_mailer/header' %>
 
-<p style="margin: 15px 0 2px 0"><strong>&nbsp;</strong></p>
+<%= render  'user_mailer/title', :the_label => the_label %>
 
-<table width="100%" border="0" cellpadding="0" cellspacing="0" style="font: 13px arial;">
-  <tr>
-    <td style="width:1%; color:#999999; vertical-align: top;">&nbsp;</td>
-    <td style="width:99%">&nbsp;<%= "#{I18n.t(:hi_email_header)} #{@friend.name}, " %></td>
-  </tr>
-  <tr>
-    <td style="width:1%; color:#999999; vertical-align: top;">&nbsp;</td>
-    <td style="width:99%">&nbsp;<%= "#{I18n.t(:request_petition)} #{@user.name} #{I18n.t(:to_join_email)} #{@group.name}" %></td>
-  </tr>
-</table>
+<%= "#{I18n.t(:hi_email_header)} #{@friend.name}, " %><br/>
+<%= "#{I18n.t(:request_petition)} #{@user.name} #{I18n.t(:to_join_email)} #{@group.name}" %><br/>
 
-<table width="100%" border="0" cellpadding="0" cellspacing="0" style="font: 13px arial;">
-  <tr>
-    <td style="width:1%; color:#999999; vertical-align: top;">&nbsp;</td>
-    <td style="width:99%"><a href="<%= @teammate_accept_url %>"><%= I18n.t(:accept_player) %></a></td>
-  </tr>
-  <tr>
-    <td style="width:1%; color:#999999; vertical-align: top;">&nbsp;</td>
-    <td style="width:99%"><a href="<%= @teammate_decline_url %>"><%= I18n.t(:deny_player) %></a></td>
-  </tr>
-</table>
+<a href="<%= @teammate_accept_url %>"><%= I18n.t(:accept_player) %></a><br/>
+<a href="<%= @teammate_decline_url %>"><%= I18n.t(:deny_player) %></a><br/>
 
 
 
+<%= render 'user_mailer/user' %>
 
 
-<%= render :partial => 'user' %>
+<%= render 'user_mailer/group' %>
 
 
-<%= render :partial => 'group' %>
-
-
-<%= render :partial => 'user_mailer/footer' %>
+<%= render 'user_mailer/footer' %>

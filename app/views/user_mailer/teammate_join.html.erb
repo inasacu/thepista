@@ -6,13 +6,16 @@
 		join_accept = "join_team_accept"
 		join_decline = "join_team_decline"
 	end
+	
+	the_label = I18n.t(:request_petition) 
 %>
 
-<%= render :partial => 'user_mailer/header' %>
+<%= render  'user_mailer/header' %>
 
-<h2 style="margin:0; padding:0; font:17px arial; color:#069;"><%= I18n.t(:request_petition) %></h2>
-<br/>
-<br/>
+
+<%= render  'user_mailer/title', :the_label => the_label %>
+
+
 
 <%= "#{I18n.t(:request_petition)} #{I18n.t(:from)} 
  	 #{link_to(@user.name, {:host => 'haypista.com', :controller => 'users', :action => 'show', :id => @user}, 
@@ -29,4 +32,4 @@
 <% end %>
 
 
-<%= render :partial => 'user_mailer/footer' %>
+<%= render 'user_mailer/footer' %>

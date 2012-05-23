@@ -41,20 +41,20 @@
 @schedule = @scorecard
 %>
 
-<%= render :partial => "/messages/message_item_list_zurb", :locals => {:recipients => @recipients, :checked => check} %>
+<%= render "/messages/message_item_list_zurb", :recipients => @recipients, :checked => check %>
 <%= hidden_field :scorecard, :id %>
 
 <% elsif @match %>
-<%= render :partial => "/messages/message_item_list_zurb", :locals => {:recipients => @recipients, :checked => check} %>
+<%= render "/messages/message_item_list_zurb", :recipients => @recipients, :checked => check %>
 <%= hidden_field :match, :id %>
 <%= hidden_field :schedule, :id %>
 
 <% elsif @schedule %>
-<%= render :partial => "/messages/message_item_list_zurb", :locals => {:recipients => @recipients, :checked => check, :convocados => true} %>
+<%= render "/messages/message_item_list_zurb", :recipients => @recipients, :checked => check, :convocados => true %>
 <%= hidden_field :schedule, :id %>
 
 <% elsif @challenge %>
-<%= render :partial => "/messages/message_item_list_zurb", :locals => {:recipients => @recipients, :checked => check} %>
+<%= render "/messages/message_item_list_zurb", :recipients => @recipients, :checked => check %>
 <%= hidden_field :challenge, :id %>
 
 <% elsif @recipient %>
@@ -63,10 +63,10 @@
 <% elsif @the_schedule 
 @schedule = @the_schedule
 %>	 
-<%= render :partial => "/messages/message_item_list_zurb", :locals => {:recipients => @recipients, :checked => check} %>
+<%= render "/messages/message_item_list_zurb", :recipients => @recipients, :checked => check %>
 
 <% else %>
-<%= render :partial => "/messages/message_item_list_zurb", :locals => {:recipients => @recipients, :checked => check} %>
+<%= render "/messages/message_item_list_zurb", :recipients => @recipients, :checked => check %>
 
 <% end %>
 

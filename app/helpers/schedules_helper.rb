@@ -66,14 +66,13 @@ module SchedulesHelper
   def view_schedule_played(schedule)
     if schedule.game_played?
       the_span = ""
-      the_span = content_tag('span', has_left(schedule.starts_at), :class => 'date') if Time.zone.now < schedule.starts_at
+      the_span = content_tag('span', nice_day_time_wo_year_exact(schedule.starts_at), :class => 'date') 
       the_score = "#{item_name_link(schedule.group)}&nbsp;&nbsp;#{schedule.home_score}&nbsp;&nbsp;-&nbsp;&nbsp;#{schedule.away_score}&nbsp;&nbsp;#{link_to(sanitize(schedule.group.second_team), group_path(schedule.group))}"
     else  
       the_span = ""
       the_span = content_tag('span', has_left(schedule.starts_at), :class => 'date') if Time.zone.now < schedule.starts_at
       the_score = nice_day_time_wo_year_exact(schedule.starts_at)
     end
-    # return content_tag(:td, "#{the_score}<br />#{the_span}".html_safe, :class => 'name_and_date')
 		return set_content_tag_safe(:td, "#{the_score}<br />#{the_span}", 'name_and_date')
   end
 
@@ -97,10 +96,7 @@ module SchedulesHelper
   def view_schedule_rating(schedule)
     if schedule.played? or Time.zone.now > schedule.starts_at
       my_rating = ""
-      # my_rating = ratings_for(schedule, :show_user_rating => true, :dimension => :performance, :size => "small" ) if is_current_member_of(schedule.group)
-      # overall_rating = ratings_for(schedule, :static, :dimension => :performance, :size => "small" )
 			overall_rating = ""
-      # return content_tag :td, "#{my_rating}&nbsp;&nbsp;#{overall_rating}", :class => "last_upcoming"
       return set_content_tag_safe(:td, "#{my_rating}&nbsp;&nbsp;#{overall_rating}", "last_upcoming")
 
     elsif Time.zone.now < schedule.starts_at
@@ -124,7 +120,6 @@ module SchedulesHelper
         the_label = "#{I18n.t(:your_roster_status) } #{the_font_begin}#{(match.type_name).downcase}#{the_font_end}" if is_current_same_as(match.user)
       end
       
-      # return content_tag :td, "#{the_label}<br/>#{match_all_my_link(schedule, current_user, false, true)}".html_safe, :class => "last_upcoming"
       return set_content_tag_safe(:td, "#{the_label}<br/>#{match_all_my_link(schedule, current_user, false, true)}", "last_upcoming")
     end
   end

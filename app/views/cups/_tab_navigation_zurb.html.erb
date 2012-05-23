@@ -1,15 +1,29 @@
 <% 	
 	get_first_active ||=""
-	get_first_active = get_active("#{get_the_controller}_#{get_the_action}") if is_controller('cup') and is_action('index')
-	has_escuadras = false 
+	get_first_active = get_active("#{get_the_controller}_#{get_the_action}") if is_controller('cup') and is_action('index') 
 
+	the_label = "" 
+	the_action = ['show','edit', 'team list', 'schedule list', 'cup current list', 'cup previous list']
+	the_controller = ['classified', 'fee', 'payment', 'schedule']
+
+	is_new_cup = (get_controller_action =='cup_new' or get_controller_action == 'cup_create')
+	is_not_new_item = !is_new_cup
+
+	is_single_cup = false
+	if @cup and is_not_new_item
+		is_single_cup = true
+	end
+
+	unless is_new_cup
+		content_for(:description, "#{@cup.name} / #{@cup.sport.name},  #{@cup.description}.") if @cup
+	end
+
+	get_first_active ||=""
+	has_escuadras = false 
 	is_not_new_item = !is_action('new')
-	
 	if is_not_new_item
 		has_escuadras = (object_counter(@cup.escuadras) > 0 ) unless @cups 
-	end
-	
-	content_for(:description, "#{h(@cup.name)},  #{h(@cup.description) }.") unless @cups 							
+	end							
 %>
 
 
@@ -23,7 +37,9 @@
 	<% end %>
 	<!-- <dd class="<%#= get_active('cup_list') %>"><%#=  link_to(label_name(:cups_list) , list_cups_path) %></dd> -->
 <% else %>
-	<dd class="<%= get_active('cup_show') %>"><%=  item_name_link(@cup.name, @cup, nil, 21) if is_not_new_item %></dd>
+
+	<%= set_tab_navigation(cup_link(@cup, set_tab_navigation_active('cup_show'))) if is_single_cup %>
+	
 
 	<% if has_escuadras %>			
 	<dd class="<%= get_active('escuadra_index') %>"><%=  link_to(label_name(:escuadras), escuadras_url(:id => @cup)) %></dd>		

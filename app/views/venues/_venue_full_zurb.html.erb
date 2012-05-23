@@ -4,20 +4,17 @@
 	</td>
 
 	<td class="name_and_date">
-		<%= item_name_link(venue) %>
+		<%= item_name_link(venue) %><br/>
 		<span class="date">
 			<%= nice_simple_time_at(venue.starts_at) %> - <%= nice_simple_time_at(venue.ends_at) %>
 		</span>
 	</td>
 
 	<td class="name_and_date">
-		<%= marker_link(venue.marker) %>
+		<%= marker_link(venue.marker) %><br/>
 		<span class="date">
-	<!-- </td>
-
-	<td class="name_and_date"> -->
-		<%= I18n.t(:has_venue_installations, :count => object_counter(venue.installations)) %>
-	</span>
+			<%= I18n.t(:has_venue_installations, :count => object_counter(venue.installations)) %>
+		</span>
 	</td>
 	
 	<td class="last">
@@ -25,7 +22,9 @@
 			<% if display_icons %>
 			<%= option_image_small_link('message') %>&nbsp;&nbsp;<%= link_to(label_name(:send_message_to), new_message_path(:venue_id => venue)) %><br/>
 			<%= option_image_small_link('reservation') %>&nbsp;&nbsp;
-				<strong><%= link_to "#{label_name(:reservations)} #{label_name(:in)}<br/> #{h(venue.name)}", installations_path(:id => venue) %></strong>
+				<strong>
+				<%= link_to "#{label_name(:reservations)} #{label_name(:in)}<br/>#{h(venue.name)}".html_safe, installations_path(:id => venue) %>
+				</strong>
 			<% end -%>
 		</span>
 	</td>

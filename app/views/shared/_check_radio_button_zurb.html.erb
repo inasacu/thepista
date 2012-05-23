@@ -11,3 +11,39 @@
 	</div>
 </div>
 <hr/>
+
+
+
+<label><strong><%= label_name(:select) %></strong>:</label>	
+
+&nbsp;&nbsp;<a rel="roster" href="#select_all"><%= label_name(:check_all) %></a>
+&nbsp;&nbsp;<a rel="roster" href="#select_none"><%= label_name(:check_none) %></a>
+&nbsp;&nbsp;<a rel="roster" href="#invert_selection"><%= label_name(:check_invert) %></a>
+
+
+<script type="text/javascript">
+    $(document).ready( function() {
+       
+        // Select all
+        $("A[href='#select_all']").click( function() {
+            $("#" + $(this).attr('rel') + " INPUT[type='checkbox']").attr('checked', true);
+            return false;
+        });
+       
+        // Select none
+        $("A[href='#select_none']").click( function() {
+            $("#" + $(this).attr('rel') + " INPUT[type='checkbox']").attr('checked', false);
+            return false;
+        });
+       
+        // Invert selection
+        $("A[href='#invert_selection']").click( function() {
+            $("#" + $(this).attr('rel') + " INPUT[type='checkbox']").each( function() {
+                $(this).attr('checked', !$(this).attr('checked'));
+            });
+            return false;
+        }); 
+       
+    });
+</script><br/>
+

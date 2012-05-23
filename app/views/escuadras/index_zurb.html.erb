@@ -1,102 +1,64 @@
 <%
-	the_label = label_name(:escuadras)
-	content_for(:title, the_label)
-	has_escuadras = (object_counter(@cup.escuadras) > 0 )
+		the_label = label_name(:escuadras)
+		content_for(:title, the_label)
+		has_escuadras = (object_counter(@cup.escuadras) > 0 )
+		@escuadras = @cup.escuadras 
+		
+		final_played ||= false
+		the_game = Game.final_game(@cup)
+		final_played = the_game.played unless (the_game.nil? or the_game.blank?)	
 %>
 
 <div class="row">
-
+	 
 	<div class="twelve column">  
 			<% if has_escuadras %>
 				
-				<% 
-					final_played ||= false
-					the_game = Game.final_game(@cup)
-					final_played = the_game.played unless (the_game.nil? or the_game.blank?)
-				%>
+				<%= render('shared/index_total_header_zurb', :items => @escuadras) %>
 
-				<h2 class="title"><%= get_collection_label(@escuadras) %></h2>
+				<div class="row">
+					<div class="twelve columns"> 
 
-				<div class="inner">
+						<table>
+						  	<thead>
+							<tr>             
+								<%= set_content_tag_safe(:th, "&nbsp;") %>
+								<%= set_content_tag_safe(:th, "#{label_name(:group)}") %>
+								<%= set_content_tag_safe(:th, "&nbsp;") %>
+								<%= set_content_tag_safe(:th, "&nbsp;") %>
+								<%= set_content_tag_safe(:th, "&nbsp;") %>
+								<%= set_content_tag_safe(:th, "&nbsp;") %>
+							</tr>
+							</thead>
 
-					<%= get_class_table_id_controller %> 
+						<tbody>
+								
+							<% @escuadras.each do |escuadra| -%>		
+								<%= render 'escuadras/escuadra_full_zurb', 
+											:escuadra => escuadra, 
+											:final_played => final_played, 
+											:display_icons => true %> 
+						  	<% end -%>
 
-					  <tr>   
-						<%= set_content_tag_safe(:th, "&nbsp;", "first") %>
-						<%= content_tag :th, label_name(:name), :class => "heading" %>
-						<%= content_tag :th, "&nbsp;", :class => "heading" %>
-						<%= content_tag :th, "&nbsp;", :class => "heading" %>
-						<%= content_tag :th, "&nbsp;", :class => "heading" %>	
-						<%= set_content_tag_safe(:th, "&nbsp;", "last") %>
-					  </tr>
+						</tbody>
+						</table>
 
-					  <% @escuadras.each do |escuadra| 
-							the_label = label_name(:escuadras_destroy)
-							the_confirmation = "#{ the_label }?" 			
-						-%>
-					  <tr>  
-							<td>
-								<%= escuadra_image_link_smaller(escuadra) %>
-							</td>
-
-							<td class="name_and_date">
-								<%= escuadra_link(escuadra) %>
-							</td>
-
-							<td>&nbsp;</td>
-
-							<td>&nbsp;</td>
-
-							<td class="name_and_date">&nbsp;</td>
-
-					       <td class="last">
-								<span class="action">
-									<% if is_current_manager_of(@cup) and !final_played %>
-									<span class="action">
-										<%= link_to label_name(:escuadras_edit), edit_escuadra_path(escuadra) %><br/>
-										<%= link_to(the_label, escuadra_path(escuadra), :method => :delete, :confirm => the_confirmation) %>	
-									</span>
-									<% end -%>
-
-								</span>
-					       </td>
-					  </tr>   
-
-					  <% end -%>
-
-					</table>	
-
-					<%= render 'shared/action_bar_zurb', :collection => @escuadras %>
-
+					</div>
 				</div>
-				
-			<% else %>
-				<% if @cup.official %>
-				
-				<% the_label = label_name(:escuadras_options_without) %>
 
-				<%= set_title_class(the_label) %>
-
-				<div class="inner">
-
-				<p>
-					<span class="large">*&nbsp;&nbsp;
-						<%= link_to("#{label_name(:you_can)} #{label_name(:create_your_own)} #{label_name(:escuadra).downcase}", new_escuadra_url(:id => @cup)) %>
-					</span>
-				</p>
-				<p>
-					<span class="large">*&nbsp;&nbsp;
-						<%= link_to("#{label_name(:you_can)} #{label_name(:escuadras_join)}", escuadras_path) %>
-						<%#=  link_to(label_name(:all_escuadra) , escuadras_path) %>
-					</span>
-				</p>
-				</div>
+				<%#= render 'shared/action_bar_zurb', :collection => @escuadras %>
 				
-				
-				
-				<% end %>
 			<% end %>
 	</div>	
 </div>
+
+
+
+
+
+
+
+
+
 
 <% content_for :sidebar, render(:partial => 'shared/sidebar_show_final_played_zurb') -%>

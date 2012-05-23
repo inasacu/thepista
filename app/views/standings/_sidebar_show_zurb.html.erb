@@ -1,0 +1,118 @@
+<% the_value = @group.is_futbol? %>
+
+<div class="row">
+	<h3><%= control_label('legend') %></h3>
+	<div class="twelve columns">
+		<p>
+			<b><%= label_name(:ranking) %></b>
+			<%= label_name(:ranking_full) %>
+		</p>
+		
+		<p>
+			<b><%= label_name(:previous_ranking) %></b>
+			<%= label_name(:previous_ranking_full) %>
+		<p>
+				
+		<p>
+			<b><%= label_name(:points) %></b>
+			<%= label_name(:points_full) %>
+		<p>
+
+		<p>
+			<b><%= label_name(:games_won) %></b>
+			<%= label_name(:games_won_full) %>
+		<p>
+			
+		<p>
+			<b><%= label_name(:games_tied) %></b>
+			<%= label_name(:games_tied_full) %>
+		<p>
+				
+		<p>
+			<b><%= label_name(:games_lost) %></b>
+			<%= label_name(:games_lost_full) %>
+		<p>
+		
+		<% if @group.is_futbol? %>	
+		<p>
+			<b><%= label_name(:goals_scored) %></b>
+			<%= label_name(:goals_scored_full) %>
+		<p>
+						
+		<p>
+			<b><%= label_name(:goals_for, the_value.to_s) %></b>
+			<%= label_name(:goals_for_full, the_value.to_s) %>
+		<p>			
+		
+		<p>
+			<b><%= label_name(:goals_against, the_value.to_s) %></b>
+			<%= label_name(:goals_against_full, the_value.to_s) %>
+		<p>		
+				
+		<p>
+			<b><%= label_name(:goal_difference, the_value.to_s) %></b>
+			<%= label_name(:goal_difference_full, the_value.to_s) %>
+		<p>	
+		<% end %>
+
+		<p>
+			<b><%= label_name(:coeficient) %></b>
+			<%= label_name(:coeficient_full) %>
+		<p>
+
+		<p>
+			<b><%= label_name(:coeficient_points) %></b>
+			<%= label_name(:coeficient_full_points) %>
+		<p>
+
+		<p>
+			<b><%= label_name(:games_played) %></b>
+			<%= label_name(:games_played_full) %>
+		<p>
+
+		<p>
+			<b><%= label_name(:games_assigned) %></b>
+			<%= label_name(:games_assigned_full) %>
+		<p>
+			
+		<p>
+			<b><%= label_name(:points_for_win) %></b>
+			<%= @group.points_for_win.round %>
+		</p>
+		
+		<p>
+			<b><%= label_name(:points_for_draw) %></b>
+			<%= @group.points_for_draw.round %>
+		</p>
+		
+		<p>
+			<b><%= label_name(:points_for_lose) %></b>
+			<%= @group.points_for_lose.round %>
+		</p>				
+
+	</div>
+</div>
+
+<% if current_user.is_maximo? %>
+<% unless @archive %>
+
+<div class="row">
+
+	<h3><%= label_name(:options) %></h3>
+	
+<ul class="navigation">
+<% 
+	if current_user.is_manager_of?(@group) 
+		the_confirmation = "#{ label_name(:destroy_schedule) } #{ label_name(:from) } #{@group.name}?" 
+%> 
+		<li><%= link_to control_label('archive'), archive_scorecard_path(:id => @group), 
+				:confirm => label_name(:are_you_sure)  if current_user.is_manager_of?(@group) %></li>
+<% 
+	end 
+%>
+</ul>
+	
+</div>
+
+<% end 
+end %>

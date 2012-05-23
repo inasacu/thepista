@@ -7,7 +7,7 @@
 <div class="row">
 	 
 	<div class="twelve column">  
-			<% if object_counter(@cups) > 0 %>
+			<% if has_cups %>
 				
 				<%= render('shared/index_total_header_zurb', :items => @cups) %>
 
@@ -18,8 +18,9 @@
 						  	<thead>
 							<tr>             
 								<%= set_content_tag_safe(:th, "&nbsp;") %>
-								<%= set_content_tag_safe(:th, "#{label_name(:name)}<br />#{label_name(:sport)}") %>
-								<%= set_content_tag_safe(:th, "#{label_name(:manager)}<br/>#{label_name(:city)}") %>
+								<%= set_content_tag_safe(:th, "#{label_name(:name)}") %>
+								<%= set_content_tag_safe(:th, "#{label_name(:manager)}") %>
+								<%= set_content_tag_safe(:th, "&nbsp;") %>
 								<%= set_content_tag_safe(:th, "&nbsp;") %>
 								<%= set_content_tag_safe(:th, "&nbsp;") %>
 							</tr>

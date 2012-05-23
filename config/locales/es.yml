@@ -291,17 +291,17 @@ es:
 
      A primera hora del dia del partido los Convocados son:
 
-     1. Si hay más del limite de jugadores que son ABONADOS el que mas partidos ha jugado sera pasado a Suplente.
+     1. Si hay más del limite de jugadores que son ABONADOS el que mas partidos ha jugado sera pasado a Ultima Hora.
 
-     2. Si hay una mezcla de ABONADOS y NO ABONADOS el que tiene menos partidos como NO ABONADO pasara a Suplente.
+     2. Si hay una mezcla de ABONADOS y NO ABONADOS el que tiene menos partidos como NO ABONADO pasara a Ultima Hora.
 
-     3. Los jugadores ABONADOS que estén obligados a pasar a Suplente y al final no jueguen, tendrán prioridad el siguiente partido.
+     3. Los jugadores ABONADOS que estén obligados a pasar a Ultima Hora y al final no jueguen, tendrán prioridad el siguiente partido.
 
      4. Cualquier jugador que se apunte dentro de las 48 horas antes del partido, sea ABONADO o NO ABONADO jugara en función de cuando se apunto.
 
      La idea es que se de preferencia a los ABONADOS, luego a los que se apunten antes.
 
-     En el momento en que cambie el estado de un jugador, de Convocado a Suplente o viceversa, el organizador mandara un correo para todos estéis informados.
+     En el momento en que cambie el estado de un jugador, de Convocado a Ultima Hora o viceversa, el organizador mandara un correo para todos estéis informados.
 
      Por otro lado y por compañerismo, si os apuntáis y no podéis venir avisad con tiempo o contactar con alguien del equipo que os pueda sustituir."  
      default_reliable: Fiable   
@@ -806,7 +806,7 @@ es:
      language: Idioma 
      last_game_played: Ultima jornada	 
      last_login_at: conecto la ultima vez   
-     last_minute: Suplentes   
+     last_minute: Ultima Hora   
      last_minute_notification:  Notificación de ultima hora
      last_minute_notification_description:  "Permite que si un equipo necesita alguien a ultima hora, pueden contactar contigo"
      last_schedule_description: Ultimo evento    
@@ -1513,7 +1513,7 @@ es:
      type: Tipo   
      type_account: Tipo de cuenta 
      types: Tipos   
-     ultima_hora: Suplente  
+     ultima_hora: Ultima Hora  
      unauthorized_user:  Jugador no autorizado 
      unauthorized:  No autorizado.
      unavailable: No disponible
@@ -1854,7 +1854,7 @@ es:
      meets_tour_no_show_false:  Ningun ausente para mostrar
      meets_tour_unavailable_true_false:  Ninguno no disponible para mostrar
      meets_tour_roster_true:  Convocados
-     meets_tour_last_minute_true:   Suplente
+     meets_tour_last_minute_true:   Ultima Hora
      meets_tour_no_show_true:  Ausentes
      meets_tour_unavailable_true:  No disponibles             
      message_delete: Borra este mensaje
@@ -1912,7 +1912,7 @@ es:
      schedules_team_no_show_false:  Ningun ausente para mostrar
      schedules_team_unavailable_false:  Ninguno no disponible para mostrar
      schedules_team_roster_true:  Convocados
-     schedules_team_last_minute_true:   Suplente
+     schedules_team_last_minute_true:   Ultima Hora
      schedules_team_no_show_true:  Ausentes
      schedules_team_unavailable_true:  No disponibles
      scorecard_list:  Clasificaciones anteriores

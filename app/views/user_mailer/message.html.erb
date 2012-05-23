@@ -1,5 +1,5 @@
-<%= render :partial => 'user_mailer/header' %>
+<%= render  'user_mailer/header' %>
 
 <%= render :partial => 'message_body', :locals => {:user => @user, :message => @message, :reply_url => @reply_url} %>
 
-<%= render :partial => 'user_mailer/footer' %>
+<%= render 'user_mailer/footer' %>

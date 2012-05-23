@@ -19,7 +19,7 @@
 		
 		<span class="date">
 		<%= nice_full_date(cup.starts_at) %>
-		<%= "<br/>#{has_left(cup.starts_at)}" if Time.zone.now < cup.starts_at %>
+		<%= "<br/>#{has_left(cup.starts_at)}".html_safe if Time.zone.now < cup.starts_at %>
 		</span>
 	</td>
 
@@ -29,10 +29,6 @@
 		<%= cup.sport.name %>
 		</span>
 	</td>
-
-		<td>
-			<%= cup.time_zone %>
-		</td>
 
 	<td class="name_and_date">
 		<%= I18n.t(:has_cup_escuadras, :count => object_counter(cup.escuadras)) %><br />
@@ -54,7 +50,6 @@
     <td class="last">
 		<span class="action">
 			<% if is_current_manager_of(cup) and !final_played %>
-			 	<br/>
 				<%= link_to label_name(:games_create), new_game_path(:id => cup)  %><br/>
 				<%= link_to label_name(:escuadras_create), new_escuadra_path(:id => cup)  %><br/><br/>
 	        <% end %>
@@ -62,11 +57,10 @@
 			<% if !cup.official %> 
 			<% 
 			   if is_current_member_of(cup) %>
-				<%= link_to("#{label_name(:invitations_your_friend)} #{the_cup}" , 
-									new_invitation_url(:cup_id => cup)) %><br />
+				<%= link_to("#{label_name(:invitations_your_friend)} #{the_cup}", new_invitation_url(:cup_id => cup)) %><br />
 			<% 
 			  	else
-					unless has_current_item_petition(cup) )
+					unless has_current_item_petition(cup)
 			%> 
 				<%= join_item_link_to(current_user, cup) %>
 			<% 		

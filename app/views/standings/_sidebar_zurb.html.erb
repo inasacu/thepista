@@ -1,0 +1,50 @@
+
+<%	
+	if current_user.is_member_of?(@group)  %> 
+	
+	<%= render 'shared/sidebar_create_id_zurb', :item => @message, :id => 'group_id', :item_id => @group %>
+	<%= render 'shared/sidebar_create_id_zurb', :item => @invitation, :id => 'group_id', :item_id => @group %>
+	<%= render 'shared/sidebar_create_id_zurb', 
+				:item => @message, :id => 'scorecard_id', :item_id => @group.schedules.first unless @group.schedules.blank? %>
+	
+	<%#= link_to(label_name(:send_message_to), new_message_path(:group_id => @group)) %>
+	<%#= link_to(label_name(:invitations_create_group) , new_invitation_url(:group_id => @group)) %>
+	<%#= link_to label_name(:send_scorecard), new_message_path(:scorecard_id => @group.schedules.first) unless @group.schedules.blank? %>
+<% 
+	else
+%>
+
+	<%= render 'shared/sidebar_create_id_zurb', :item => @message, :id => 'id', :item_id => @group.all_the_managers.first %>
+	
+	<%#= link_to(label_name(:send_message_to), new_message_path(:id => @group.all_the_managers.first)) %>
+<%
+	unless current_user.has_item_petition?(current_user, @group)
+		# the_label = label_with_name('add_to_group', @group.name)
+		# the_confirmation = "#{ label_name(:petition_to_join) } #{current_user.name} #{ label_name(:to) } #{@group.name}?"
+%> 
+		
+	<%= option_image_link('user_add') %>&nbsp;&nbsp;<%= join_item_link_to(current_user, @group, true) %>
+	<%#= link_to(the_label, join_team_path(:id => @group, :teammate => current_user), :confirm => the_confirmation) %>
+	<%#= link_to(the_label, join_item_path(:id => @group, :item => @group.class.to_s, :teammate => current_user), 
+					:confirm => the_confirmation) %>
+		
+<% 
+	end 
+end 
+%>
+
+
+
+
+<% content_for :sidebar, render(:partial => 'challenges/sidebar_show') if is_action('show list') %>
+<% content_for :sidebar, render(:partial => 'shared/sidebar_show_final_played') -%>
+
+
+<% content_for :sidebar, render(:partial => 'shared/invite') -%>
+<% content_for :sidebar, render(:partial => 'shared/share_object') -%>
+
+<%  if @cup  %>
+<%# content_for :sidebar, render(:partial => 'cups/sidebar_cup_additional', :locals => {:cup => @cup}) if current_user.is_manager_of?(@cup) -%>
+<% content_for :sidebar, :render("cups/sidebar_cup_additional", :cup => @cup) if current_user.is_manager_of?(@cup) -%>
+<% content_for :sidebar, render(:partial => 'shared/sidebar_show_cup', :locals => {:cup => @cup}) if current_user.is_manager_of?(@cup) -%>
+<% end -%>

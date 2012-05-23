@@ -20,6 +20,12 @@
 	
 	when 'invitation'
 		the_tab_navigation = 'messages'
+	
+	when 'escuadra', 'cup', 'game', 'standing'
+		the_tab_navigation = 'cups'
+	
+	when 'challenge'
+		the_tab_navigation = 'challenges'
 	end	
 	
 	password_reset_actions = ['password_reset_new', 'password_reset_edit']

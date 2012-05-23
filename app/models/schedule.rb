@@ -1,7 +1,4 @@
 class Schedule < ActiveRecord::Base
-	
-	
-		
 
   has_many  :matches,  :conditions => "matches.archive = false"
   has_many  :fees
