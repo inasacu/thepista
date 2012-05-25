@@ -110,6 +110,11 @@ module UsersHelper
       can_decline = false
     end
 
+		if teammate.item.class.to_s == 'Challenge' and teammate.item.automatic_petition 
+			is_manager = false
+			can_decline = false
+		end
+
     manager_link = ""
     manager_link = "#{link_to(label_name(:petition_join_item_accept), join_item_accept_path(teammate))}".html_safe if is_manager
 

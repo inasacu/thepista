@@ -5,10 +5,9 @@ content_for(:title, the_label)
 
 
 <%= render 'home/upcoming_schedule_zurb', :my_schedules => @upcoming_schedules, :the_label => the_label unless @upcoming_schedules.empty? %>
+<%= render 'home/upcoming_game_zurb', :my_schedules => @upcoming_games, :the_label => the_label unless @upcoming_games.empty? %>
 
 <%#= render :partial => "home/all_upcoming_schedules", :locals => {:upcoming_schedules => @upcoming_schedules} %>
-<%#= render :partial => "home/upcoming_cup", :locals => {:upcoming_cups => @upcoming_cups} %>
-
 
 
 <% unless @upcoming %>

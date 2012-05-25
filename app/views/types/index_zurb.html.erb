@@ -13,7 +13,7 @@
 	
     <div class="inner">
 	
-      <table class="table">
+      <table>
 	  
         <tr>            
 			<%= set_content_tag_safe(:th, "&nbsp;", "first") %>
@@ -32,7 +32,7 @@
           <td>
             <%= type.created_at %>
           </td>
-          <td class="last">
+          <td>
             <%= link_to label_name(:show), type_path(type) %> |
             <%= link_to label_name(:edit), edit_type_path(type) %> |
             <%= link_to label_name(:destroy), type_path(type), :method => :delete, :confirm => label_name(:are_you_sure) %>

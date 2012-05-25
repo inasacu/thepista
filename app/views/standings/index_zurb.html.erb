@@ -37,7 +37,8 @@
 						group_stage = standing.group_stage_name 
 				-%>
 				
-					<%= render 'standings/standing_futbol_label_zurb', :group_stage => group_stage, :is_escuadra => (standing.item_type == "Escuadra") %>
+					<%= render 'standings/standing_futbol_label_zurb', 
+					:group_stage => group_stage, :is_escuadra => (standing.item_type == "Escuadra") %>
 					
 					<% end %>
 					

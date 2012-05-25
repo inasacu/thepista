@@ -42,7 +42,7 @@
 	<%= set_content_tag_safe(:td, "#{scorecard.wins}") %>
 	<%= set_content_tag_safe(:td, "#{scorecard.draws}") %>
 	<%= set_content_tag_safe(:td, "#{scorecard.losses}") %>
-	<%= set_content_tag_safe(:td, "#{scorecard.goals_scored}") if DISPLAY_FREMIUM_SERVICES %>
+	<%= set_content_tag_safe(:td, "#{scorecard.goals_scored}") %>
 	<%= set_content_tag_safe(:td, "#{scorecard.played}") %>
 	<%= set_content_tag_safe(:td, "#{mailer ? sprintf( "%0.0f", scorecard.coeficient_points)  : scorecard.coeficient_points.to_f.round}") %>
 	<%= set_content_tag_safe(:td, "#{sprintf( '%0.00f', scorecard.coeficient_played)}%") %>

@@ -7,7 +7,7 @@
 		<%= image_link_small message.other_user(current_user) %>
 	</td>
 
-	<td class="name_and_date">
+	<td>
 		<%= message_icon(message) %>
 		<%- if current_user == message.sender -%>
 			<span class="label"><%= label_name(:to) %>:</span>
@@ -31,7 +31,7 @@
 			</span>
 		</span>
 	</td>
-	<td class="last">
+	<td>
 		<%#= render :partial => 'action', :locals => {:message => message} %>
 		<%= message_image_link(message) unless message.trashed?(current_user) %>
 	</td>

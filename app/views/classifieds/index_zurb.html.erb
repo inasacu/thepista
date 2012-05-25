@@ -8,7 +8,7 @@
 
 			<% if object_counter(@classifieds) > 0 %>
 
-			<table class="table">
+			<table>
 
 			<% @classifieds.each do |classified| %>
 			<%= render "classifieds/classified_zurb", :classified => classified, :group => @group %>

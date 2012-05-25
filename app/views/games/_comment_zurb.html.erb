@@ -3,7 +3,7 @@
 		<%= image_link_small comment.user %>
 	</td>
 
-	<td class="name_and_date">
+	<td>
 		<span class="label"><%= label_name(:from) %>:</span>
 		<%= user_link comment.user %>	
 		<span class="date_created_at">
@@ -15,7 +15,7 @@
 			<%=sanitize comment.body %>							
 		</span>
 	</td>
-	<td class="last">
+	<td>
 		<%#= comment_image_link(comment) %>
 	</td>
 </tr>

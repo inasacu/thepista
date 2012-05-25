@@ -8,7 +8,7 @@
 		<%= image_link_small(group) %>
 	</td>
 
-	<td class="name_and_date">
+	<td>
 		<span class="label"><%#= "#{label_name(:from)}:  " %></span>
 			<%= group_link(group) %>
 			<br />
@@ -26,7 +26,7 @@
 			</span>
 		</span>
 	</td>
-	<td class="last">
+	<td>
 		<%#= render :partial => 'action', :locals => {:classified => classified, :group => group} if full_classified %>		
 		<%= classified_image_link(classified)  if full_classified and is_current_manager_of(group)   %>
 	</td>

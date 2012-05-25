@@ -10,7 +10,7 @@
 	
     <div class="inner">
 	
-      <table class="table">
+      <table>
 	  
 		<tr>             
 			<%= set_content_tag_safe(:th, "&nbsp;", "first") %>
@@ -29,14 +29,14 @@
 			  <td><%= user_link user %></td>
 			  <td><%= user.has_challenge? ? item_list(user.challenges) : label_name('challenges_none') %></td>		 
 			  <td><%= user.time_zone %></td>			  
-			  <td class="name_and_date">
+			  <td>
 				<%=  link_to(label_name(:cast) , casts_path(:id => @challenge, :user_id => user)) %>
 				<span class="date">
 					<%= I18n.t(:has_casts_ready_users, :count => user_casts.total) %>
 				</span>
 			  </td>
 			
-			  <td class="last"><%= link_to label_name(:send_message_to), new_message_path(:id => user) unless current_user == user %></td>		  
+			  <td><%= link_to label_name(:send_message_to), new_message_path(:id => user) unless current_user == user %></td>		  
 			</tr>
         <% end -%>
 		

@@ -1,29 +1,31 @@
 <% 
 	the_label ||= label_name(:options)
-	
 	is_displayable = true
 	
 	case item.class.to_s
 	when 'Type', 'Role', 'Announcement', 'Sport'
 		is_displayable = the_maximo
+		
 	when 'User'
 		is_displayable = (is_user_manager_of(item))
+		
 	when 'Group', 'Schedule', 'Classified', 'Cup', 'Challenge', 'Fee', 'Payment'
 		is_displayable = current_user.is_manager?
+		
 	end
 %>
 
 <% if is_displayable %>
 
-<%= set_title_class(the_label) %>
+	<%= set_title_class(the_label) %>
 
-<hr/>
-<div class="row">
-	<div class="twelve columns">
-		<%= set_form_create_image_link(item, id, item_id) %>
+	<hr/>
+	<div class="row">
+		<div class="twelve columns">
+			<%= set_form_create_image_link(item, id, item_id) %>
+		</div>
 	</div>
-</div>
-<hr/>
+	<hr/>
 
 <% end -%>
 

@@ -1,0 +1,77 @@
+<%
+	is_manager = is_current_manager_of(@cup)
+	the_label = label_name(:games_destroy)
+	the_confirmation = "#{ the_label }?"
+	@the_game = game
+
+	no_team = (game.home_id.nil? or game.away_id.nil?) 
+	no_ranking = (game.home_ranking.nil? or game.away_ranking.nil? or game.home_stage_name.nil? or game.away_stage_name.nil? and game.type_name == 'FirstGame') 
+	the_finals = (game.type_name == 'SubsequentGame' or game.type_name == 'FinalGame')
+
+	the_previous = []
+	if the_finals
+		previous_games = Game.find(:all, :conditions => ["next_game_id = ?", game.id])
+		previous_games.each {|the_game| the_previous << the_game.jornada}
+	end
+%>
+
+<tr>
+
+  <td>
+	<%#= is_manager ? in_place_text_field(:the_game, :jornada, {:cols => 1}) : game.jornada %>
+	<%= game.jornada %>
+	<span class="date">
+		<%#= nice_date_wo_year(game.starts_at) %>
+	</span>
+  </td>
+
+  <td>
+	<%= game.name %>
+  </td>
+
+  <td>            
+    <%= escuadra_image_link_smaller(game.home) unless no_team %>
+  </td>
+
+  <td>
+  	<%= escuadra_link(game.home) unless no_team %>
+  <span class="date">
+  	<%= "#{game.home_ranking} #{game.home_stage_name}<br/>" if no_team %>
+	<%= "W#{the_previous[0]}" if (the_previous.length > 0) and no_team %>
+  </span>
+  </td>
+
+  <td align="center">
+  	<%=  (game.game_played?) ? game_score_link(game) : "  -  " %> 
+  </td>
+
+  <td>
+  	<%= escuadra_link(game.away) unless no_team %>
+  <span class="date">
+  	<%= "#{game.away_ranking} #{game.away_stage_name}<br/>" if no_team %>
+	<%= "W#{the_previous[1]}" if (the_previous.length > 0) and no_team %>
+  </span>
+  </td>
+
+  <td>
+    <%= escuadra_image_link_smaller(game.away) unless no_team %>
+  </td>
+	
+   <td>
+		<% if is_manager %>
+		<span class="action">					
+			<%= link_to label_name(:matches), set_score_url(:id => game) unless no_team %><br/>
+			<%= link_to label_name(:games_edit), edit_game_path(game) %>
+			<%#= link_to(the_label, game_path(game), :method => :delete, :confirm => the_confirmation) %>	
+		</span>
+		<% end -%>
+   </td>
+
+	<td>
+		<%= nice_date_wo_year(game.starts_at) %> 
+		<span class="date">
+			<%= ", #{nice_simple_time_at(game.starts_at)}" %>
+		</span>
+	</td>
+
+</tr>     

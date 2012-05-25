@@ -8,7 +8,7 @@
 
 		<div class="inner">
 
-			<table class="table">
+			<table>
 
 				<tr>         
 					<%= set_content_tag_safe(:th, "&nbsp;", "first") %>
@@ -27,7 +27,7 @@
 					<td>
 						<%= role.created_at %>
 					</td>
-					<td class="last">
+					<td>
 						<%= link_to label_name(:show), role_path(role) %> |
 						<%= link_to label_name(:edit), edit_role_path(role) %> |
 						<%= link_to label_name(:destroy), role_path(role), :method => :delete, :confirm => label_name(:are_you_sure) %>

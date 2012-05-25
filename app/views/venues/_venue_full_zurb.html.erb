@@ -3,21 +3,21 @@
 		<%= item_image_link_small(venue) %>
 	</td>
 
-	<td class="name_and_date">
+	<td>
 		<%= item_name_link(venue) %><br/>
 		<span class="date">
 			<%= nice_simple_time_at(venue.starts_at) %> - <%= nice_simple_time_at(venue.ends_at) %>
 		</span>
 	</td>
 
-	<td class="name_and_date">
+	<td>
 		<%= marker_link(venue.marker) %><br/>
 		<span class="date">
 			<%= I18n.t(:has_venue_installations, :count => object_counter(venue.installations)) %>
 		</span>
 	</td>
 	
-	<td class="last">
+	<td>
 		<span class="action" align="left">
 			<% if display_icons %>
 			<%= option_image_small_link('message') %>&nbsp;&nbsp;<%= link_to(label_name(:send_message_to), new_message_path(:venue_id => venue)) %><br/>

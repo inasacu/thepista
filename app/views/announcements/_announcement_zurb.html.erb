@@ -5,13 +5,13 @@
 <tr>
 	<td class="first">&nbsp;</td>
 
-	<td class="name_and_date">
+	<td>
 		<span class="date">
 			<%= nice_full_date(announcement.created_at) %>
 		</span>
 	</td>
 
-	<td class="name_and_date">
+	<td>
 		<span class="date">
 			<%= nice_full_date(announcement.starts_at) %>
 		</span><br/>
@@ -20,7 +20,7 @@
 		</span>
 	</td>
 	<td><%=sanitize the_announcement %></td>
-	<td class="last">
+	<td>
 		<%= link_to image_tag("icons/email_delete.png"), announcement_path(announcement), 
 														:method => :delete, 
 														:confirm => %(#{label_name(:announcements_delete) }?),

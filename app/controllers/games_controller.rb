@@ -48,9 +48,16 @@ class GamesController < ApplicationController
       @game.ends_at = @cup.starts_at + (60 * 60 * 2)
       @game.reminder_at = @cup.starts_at - 2.day
       @game.type_name = 'GroupStage'
-      @game.points_for_single = 0
-      @game.points_for_double = 5
       @game.jornada = 1
+
+			# default point values
+      @game.points_for_single = 0
+      @game.points_for_double = 15
+			@game.points_for_winner = 5
+			@game.points_for_draw = 3
+			@game.points_for_goal_difference = 2
+			@game.points_for_goal_total = 1
+			
     end
 
     # @previous_game = Game.find(:first, :conditions => ["id = (select max(id) from games where cup_id = ?) ", @cup.id])    

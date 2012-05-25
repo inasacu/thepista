@@ -666,7 +666,7 @@ es:
      group_b:  Segundo equipo  
      group_fee: Tasa de equipo
      group_id: Equipo
-     group_stage:  Grupos
+     group_stage:  Resultados
      group_stage_advance:  Pasan a siguiente fase
      group_stage_advance_description:  Total de equipos que pasan a siguiente fase.
      group_stage_name:  Grupo

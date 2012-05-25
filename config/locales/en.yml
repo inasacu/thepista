@@ -659,7 +659,7 @@ en:
      group_b:  Second Team 
      group_fee: Team Fees
      group_id: Team  
-     group_stage:  Groups
+     group_stage:  Results
      group_stage_advance:  Continue to next round
      group_stage_advance_description:  Total teams that move to next round.
      group_stage_name:  Team

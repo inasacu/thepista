@@ -67,7 +67,7 @@
           <td class="first" align="center">
 			<%= cast.jornada %>
           </td>		
-		  <td class="name_and_date">
+		  <td>
 			<%= cast.name %>
 			<span class="date">
 				<% unless is_right_guess %>
@@ -79,7 +79,7 @@ cast.challenge)  %>
 			</span>
 		  </td>
 
-		  <td class="name_and_date">
+		  <td>
 			<span class="date">
 				<%= user_link cast.user %><br />
 				<%= cast.points if cast.points > 0 %>
@@ -90,7 +90,7 @@ cast.challenge)  %>
             <%= escuadra_image_link_smaller cast.home unless no_team %>
           </td>
 
-		  <td class="name_and_date">
+		  <td>
 		  	<%= escuadra_link cast.home unless no_team %>
 		  <span class="date">
 		  	<%= "#{cast.home_ranking} #{cast.home_stage_name}<br/>" if no_team %>
@@ -102,7 +102,7 @@ cast.challenge)  %>
 		  	<%=  "  #{cast.home_score}  -  #{cast.away_score}  "  %> 
 		  </td>
 
-		  <td class="name_and_date">
+		  <td>
 		  	<%= escuadra_link cast.away unless no_team %>
 		  <span class="date">
 		  	<%= "#{cast.away_ranking} #{cast.away_stage_name}<br/>" if no_team %>
@@ -114,7 +114,7 @@ cast.challenge)  %>
             <%= escuadra_image_link_smaller cast.away unless no_team %>
 		  </td>
 
-		  <td class="last">&nbsp;</td>
+		  <td>&nbsp;</td>
 		
         </tr>          
         <% end -%>

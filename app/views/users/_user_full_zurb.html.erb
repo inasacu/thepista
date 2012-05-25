@@ -3,13 +3,13 @@
 	  <td>
 		<%= image_link_small(user) %>
 	  </td>			
-	  <td class="name_and_date">
+	  <td>
 		<%= user_link(user) %>
 		<span class="date">
 			<%#= nice_full_date(user.current_login_at) %> 
 		</span>
 	  </td>
-	  <td class="name_and_date">
+	  <td>
 		<%= user.has_group? ? group_list(user.groups) : label_name('groups_none') %><br />
 		<span class="date">
 			<%= user.has_sport? ? sport_list(user.groups) : label_name('sports_none') %>
@@ -20,7 +20,7 @@
 		<%= user.city.name %>
 	  </td>
 
-		<td class="name_and_date">
+		<td>
 			<% counter = 0; user.scorecards.each {|scorecard| counter += scorecard.played} %>
 			<%= I18n.t(:has_user_scorecard_played, :count => counter) %>
 			<span class="date">						
@@ -29,7 +29,7 @@
 		</td>
 	
 	<% if display_icons %>
-	  <td class="last">
+	  <td>
 		<span class="action">
 			<%  if user != current_user %>
 				<%= link_to label_name(:send_message_to), new_message_path(:id => user.id) %>			

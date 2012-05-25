@@ -1,4 +1,4 @@
-<table class="table">
+<table>
 
 <% 
 	upcoming_schedules.each do |schedule| 
@@ -20,28 +20,28 @@
 			<%= (is_current_member_of(schedule.group) or schedule.public) ? link_to(sanitize(schedule.name), team_roster_path(:id => schedule)) : sanitize(schedule.name) %>
 		</td>
 
-		<td class="name_and_date">
+		<td>
 			<%= item_name_link(schedule.group) %><br />
 			<span class="date">
 				<%= schedule.group.sport.name %>
 			</span>
 		</td>
 
-		<td class="name_and_date">
+		<td>
 			<%= nice_day_time_wo_year(schedule.starts_at) %><br />
 			<span class="date">
 				<%= has_left(schedule.starts_at) if Time.zone.now < schedule.starts_at %>
 			</span>
 		</td>		
 
-		<td class="name_and_date">
+		<td>
 			<%= the_sport %><br />
 			<span class="date">
 				<%= the_missing %>
 			</span>
 		</td>
 	
-		<td class="last">
+		<td>
 			<%= marker_link(schedule.group.marker) %>			
 		</td>
 

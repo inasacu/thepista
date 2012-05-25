@@ -14,7 +14,7 @@
 		<h2 class="title"><%= the_new_label %></h2>
 		
 		<div class="columns"> 
-				<table class="table">
+				<table>
 				<tr>
 					<%= content_tag :td, right_label, :class =>"first_left" %>
 				</tr>
@@ -23,7 +23,7 @@
 		<br/>
 		
 		<div class="inner">
-			<table class="table">
+			<table>
 				
 				<%= render 'reservations/full_calendar_zurb', :first_day => @first_day, :time_frame => @time_frame, :installation => @installation %>	
 				<%#= render 'reservations/new_reservation_zurb', :first_day => @first_day, :time_frame => @time_frame, :installation => @installation if Rails.env.production? %>

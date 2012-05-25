@@ -13,7 +13,7 @@ content_for(:title, the_label)
 
 		<div class="inner">
 
-			<table class="table">
+			<table>
 
 				<tr>   
 					<%= set_content_tag_safe(:th, "&nbsp;", "first") %>
@@ -34,7 +34,7 @@ content_for(:title, the_label)
 					<td align="center"><%= sport.points_for_draw %></td>
 					<td align="center"><%= sport.player_limit %></td>
 					<td align="left"><%= image_tag(sport.icon, options={:style => "height: 15px; width: 15px;"}) %></td>
-					<td class="last">
+					<td>
 						<span class="action">
 							<strong><%= link_to label_name(:sports_edit), edit_sport_path(:id => sport) %></strong>
 						</span>

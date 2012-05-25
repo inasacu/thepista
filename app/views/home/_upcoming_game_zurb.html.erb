@@ -1,4 +1,4 @@
-<table class="table">
+<table>
 <% 
 	upcoming_games.each do |game| 
 	
@@ -14,13 +14,13 @@
 			<%= item_name_link(game)
  %>
 		</td>
-		<td class="name_and_date">
+		<td>
 			<%= item_name_link(game.cup) %><br />
 			<span class="date">
 				<%= game.sport_name %>
 			</span>
 		</td>
-		<td class="name_and_date">
+		<td>
 			<%= nice_day_time_wo_year(game.starts_at) %><br />
 			<span class="date">
 				<%= has_left(game.starts_at) if Time.zone.now < game.starts_at %>
@@ -30,20 +30,20 @@
           <%= escuadra_image_link_smaller game.home unless no_team %>
         </td>
 
-		  <td class="name_and_date">
+		  <td>
 		  	<%= escuadra_link game.home unless no_team %>
 		  </td>
 
 		  <td align="center">vs.</td>
 
-		  <td class="name_and_date">
+		  <td>
 		  	<%= escuadra_link game.away unless no_team %>
 		  </td>
 		
 		  <td>
           <%= escuadra_image_link_smaller game.away unless no_team %>
 		  </td>		
-		<td class="last">
+		<td>
 			&nbsp;
 		</td>
 	</tr>

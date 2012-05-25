@@ -10,7 +10,6 @@
 	return unless scorecards	
 %>
 
-
 <div class="row">
 	 
 	<div class="twelve column">  
@@ -27,24 +26,18 @@
 						  	<thead>
 							<tr>             
 
-								<th class="first" align="center" title="<%= I18n.t(:ranking_full) %>"><%= mailer ? I18n.t(:ranking) : sort_link(I18n.t(:ranking), :ranking) %></th>
-
-								<th class="heading">&nbsp;</th>	
-								<th class="heading"><%= I18n.t(:name) %></th>	
-								<th class="heading">&nbsp;</th>
-								<th class="heading" title="<%= I18n.t(:points_full) %>"><%= mailer ? I18n.t(:points) : sort_link(I18n.t(:points), :points) %></th>
-								<th class="heading" title="<%= I18n.t(:games_won_full) %>"><%= mailer ? I18n.t(:games_won) : sort_link(I18n.t(:games_won), :wins) %></th>
-								<th class="heading" title="<%= I18n.t(:games_tied_full) %>"><%= mailer ? I18n.t(:games_tied) : sort_link(I18n.t(:games_tied), :draws) %></th>
-								<th class="heading" title="<%= I18n.t(:games_lost_full) %>"><%= mailer ? I18n.t(:games_lost) : sort_link(I18n.t(:games_lost), :losses) %></th>
-
-								<% if DISPLAY_FREMIUM_SERVICES %>
-								<th class="heading" title="<%= I18n.t(:goals_scored_full) %>"><%= mailer ? I18n.t(:goals_scored) : sort_link(I18n.t(:goals_scored), :goals_scored) %></th>
-								<% end %>
-								
-								<th class="heading" title="<%= I18n.t(:games_played_full) %>"><%= mailer ? I18n.t(:games_played) : sort_link(I18n.t(:games_played), :played) %></th>
-
-								<th class="heading" title="<%= I18n.t(:coeficient_full) %>"><%= mailer ? I18n.t(:coeficient_points) : sort_link(I18n.t(:coeficient_points), :coeficient_points) %></th>
-								<th class="heading_last" title="<%= I18n.t(:participation_full) %>"><%= mailer ? I18n.t(:participation) : sort_link(I18n.t(:participation), :coeficient_played) %></th>
+<%= content_tag_safe(:th, sort_link(I18n.t(:ranking), :ranking), label_name(:ranking_full), 'center') %>
+<%= set_content_tag_safe(:th, "&nbsp;") %>
+<%= set_content_tag_safe(:th, I18n.t(:name)) %>
+<%= set_content_tag_safe(:th, "&nbsp;") %>
+<%= content_tag_safe(:th, sort_link(I18n.t(:points), :points), label_name(:points_full), 'center') %>
+<%= content_tag_safe(:th, sort_link(I18n.t(:games_won), :wins), label_name(:games_won_full), 'center') %>
+<%= content_tag_safe(:th, sort_link(I18n.t(:games_tied), :draws), label_name(:games_tied_full), 'center') %>
+<%= content_tag_safe(:th, sort_link(I18n.t(:games_lost), :losses), label_name(:games_lost_full), 'center') %>
+<%= content_tag_safe(:th, sort_link(I18n.t(:goals_scored), :goals_scored), label_name(:goals_scored_full), 'center') %>
+<%= content_tag_safe(:th, sort_link(I18n.t(:games_played), :played), label_name(:games_played_full), 'center') %>
+<%= content_tag_safe(:th, sort_link(I18n.t(:coeficient_points), :coeficient_points), label_name(:coeficient_full), 'center') %>
+<%= content_tag_safe(:th, sort_link(I18n.t(:participation), :coeficient_played), label_name(:participation_full), 'center') %>
 								
 							</tr>
 							</thead>

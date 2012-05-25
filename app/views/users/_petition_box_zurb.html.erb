@@ -10,7 +10,7 @@
 		<% end %>
 	</td>
 
-	<td class="name_and_date">
+	<td>
 		<%= request_link %>&nbsp;
 		<%= has_joined ? "#{label_name(:petition_to_join_accepted).downcase} <wbr/> #{item_link}.".html_safe : 
 						 "#{label_name(:has)} #{(label_name(:petition_to_join_pending)).downcase} <wbr/> #{item_link}.".html_safe %><br/>
@@ -26,7 +26,7 @@
 
 	<td>&nbsp;</td>
 	
-	<td class="last">
+	<td>
 		<%= manager_link %>&nbsp;&nbsp;<%= decline_link unless has_joined %>
 	</td>
 </tr>

@@ -3,13 +3,13 @@
 		<%= option_image_link('installation') %>
 	</td>
 
-	<td class="name_and_date">
+	<td>
 		<%= marker_link(marker) %>
 		<span class="date">
 		</span>
 	</td>
 
-	<td class="name_and_date">
+	<td>
 		<%= marker.address %>
 		<span class="date">
 			<%= "#{marker.city}, #{marker.region}, #{marker.zip}" %>
@@ -21,7 +21,7 @@
 	</td>
 
 	<% if display_icons %>
-	<td class="last">
+	<td>
 		<span class="action" align="left">
 			<% if the_maximo %> 
 			<strong><%= option_image_small_link('marker') %>&nbsp;&nbsp;<%= link_to label_name(:markers_edit), edit_marker_path(:id => marker) %></strong>

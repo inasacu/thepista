@@ -364,12 +364,6 @@ class User < ActiveRecord::Base
             "and users.archive = false " +
             "order by name", group.id, user.id])
     end
-    
-    # def object_counter(objects)
-    #   @counter = 0
-    #   objects.each { |object|  @counter += 1 }
-    #   return @counter
-    # end
 
     def page_mates(page = 1)  
       mates = User.where("id in (select distinct user_id from groups_users where group_id in (?))", self.groups).page(page).order('name')
@@ -404,10 +398,6 @@ class User < ActiveRecord::Base
       login = nil if login.blank?
       self[:login] = login
     end
-
-    # def rpx_user?
-    #   !identifier.blank?
-    # end
 
     def signup_notification
       UserMailer.signup_notification(self).deliver

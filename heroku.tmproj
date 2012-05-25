@@ -3,7 +3,7 @@
 <plist version="1.0">
 <dict>
 	<key>currentDocument</key>
-	<string>app/views/standings/_standing_basket_label_zurb.html.erb</string>
+	<string>app/views/standings/index_zurb.html.erb</string>
 	<key>documents</key>
 	<array>
 		<dict>
@@ -192,59 +192,29 @@
 			<key>caret</key>
 			<dict>
 				<key>column</key>
-				<integer>29</integer>
+				<integer>90</integer>
 				<key>line</key>
-				<integer>448</integer>
+				<integer>731</integer>
 			</dict>
 			<key>columnSelection</key>
 			<false/>
 			<key>firstVisibleColumn</key>
 			<integer>0</integer>
 			<key>firstVisibleLine</key>
-			<integer>421</integer>
+			<integer>708</integer>
 			<key>selectFrom</key>
 			<dict>
 				<key>column</key>
 				<integer>5</integer>
 				<key>line</key>
-				<integer>448</integer>
+				<integer>731</integer>
 			</dict>
 			<key>selectTo</key>
 			<dict>
 				<key>column</key>
-				<integer>29</integer>
+				<integer>90</integer>
 				<key>line</key>
-				<integer>448</integer>
-			</dict>
-		</dict>
-		<key>app/views/challenges/_sidebar_show_zurb.html.erb</key>
-		<dict>
-			<key>caret</key>
-			<dict>
-				<key>column</key>
-				<integer>0</integer>
-				<key>line</key>
-				<integer>7</integer>
-			</dict>
-			<key>columnSelection</key>
-			<false/>
-			<key>firstVisibleColumn</key>
-			<integer>0</integer>
-			<key>firstVisibleLine</key>
-			<integer>0</integer>
-			<key>selectFrom</key>
-			<dict>
-				<key>column</key>
-				<integer>28</integer>
-				<key>line</key>
-				<integer>11</integer>
-			</dict>
-			<key>selectTo</key>
-			<dict>
-				<key>column</key>
-				<integer>0</integer>
-				<key>line</key>
-				<integer>7</integer>
+				<integer>731</integer>
 			</dict>
 		</dict>
 		<key>app/views/cups/_sidebar_cup_additional_zurb.html.erb</key>
@@ -335,147 +305,51 @@
 				<integer>12</integer>
 			</dict>
 		</dict>
-		<key>app/views/shared/_flash_zurb.html.erb</key>
+		<key>app/views/scorecards/_scorecard_zurb.html.erb</key>
 		<dict>
 			<key>caret</key>
 			<dict>
 				<key>column</key>
-				<integer>26</integer>
+				<integer>59</integer>
 				<key>line</key>
-				<integer>23</integer>
+				<integer>44</integer>
 			</dict>
 			<key>firstVisibleColumn</key>
 			<integer>0</integer>
 			<key>firstVisibleLine</key>
-			<integer>0</integer>
+			<integer>12</integer>
 		</dict>
-		<key>app/views/shared/_wrapper_zurb.html.erb</key>
+		<key>app/views/scorecards/show_zurb.html.erb</key>
 		<dict>
 			<key>caret</key>
 			<dict>
 				<key>column</key>
-				<integer>26</integer>
+				<integer>6</integer>
 				<key>line</key>
-				<integer>31</integer>
+				<integer>63</integer>
 			</dict>
+			<key>columnSelection</key>
+			<false/>
 			<key>firstVisibleColumn</key>
 			<integer>0</integer>
 			<key>firstVisibleLine</key>
-			<integer>3</integer>
-		</dict>
-		<key>app/views/standings/_group_stage_zurb.html.erb</key>
-		<dict>
-			<key>caret</key>
+			<integer>9</integer>
+			<key>selectFrom</key>
 			<dict>
 				<key>column</key>
 				<integer>0</integer>
 				<key>line</key>
-				<integer>0</integer>
+				<integer>8</integer>
 			</dict>
-			<key>firstVisibleColumn</key>
-			<integer>0</integer>
-			<key>firstVisibleLine</key>
-			<integer>0</integer>
-		</dict>
-		<key>app/views/standings/_sidebar_show_basket_zurb.html.erb</key>
-		<dict>
-			<key>caret</key>
+			<key>selectTo</key>
 			<dict>
 				<key>column</key>
-				<integer>0</integer>
+				<integer>6</integer>
 				<key>line</key>
-				<integer>0</integer>
+				<integer>63</integer>
 			</dict>
-			<key>firstVisibleColumn</key>
-			<integer>0</integer>
-			<key>firstVisibleLine</key>
-			<integer>0</integer>
-		</dict>
-		<key>app/views/standings/_sidebar_show_zurb.html.erb</key>
-		<dict>
-			<key>caret</key>
-			<dict>
-				<key>column</key>
-				<integer>0</integer>
-				<key>line</key>
-				<integer>0</integer>
-			</dict>
-			<key>firstVisibleColumn</key>
-			<integer>0</integer>
-			<key>firstVisibleLine</key>
-			<integer>0</integer>
-		</dict>
-		<key>app/views/standings/_sidebar_zurb.html.erb</key>
-		<dict>
-			<key>caret</key>
-			<dict>
-				<key>column</key>
-				<integer>10</integer>
-				<key>line</key>
-				<integer>49</integer>
-			</dict>
-			<key>firstVisibleColumn</key>
-			<integer>0</integer>
-			<key>firstVisibleLine</key>
-			<integer>0</integer>
-		</dict>
-		<key>app/views/standings/_standing_basket_label_zurb.html.erb</key>
-		<dict>
-			<key>caret</key>
-			<dict>
-				<key>column</key>
-				<integer>7</integer>
-				<key>line</key>
-				<integer>0</integer>
-			</dict>
-			<key>firstVisibleColumn</key>
-			<integer>0</integer>
-			<key>firstVisibleLine</key>
-			<integer>0</integer>
-		</dict>
-		<key>app/views/standings/_standing_basket_zurb.html.erb</key>
-		<dict>
-			<key>caret</key>
-			<dict>
-				<key>column</key>
-				<integer>0</integer>
-				<key>line</key>
-				<integer>0</integer>
-			</dict>
-			<key>firstVisibleColumn</key>
-			<integer>0</integer>
-			<key>firstVisibleLine</key>
-			<integer>0</integer>
 		</dict>
 		<key>app/views/standings/_standing_futbol_label_zurb.html.erb</key>
-		<dict>
-			<key>caret</key>
-			<dict>
-				<key>column</key>
-				<integer>0</integer>
-				<key>line</key>
-				<integer>0</integer>
-			</dict>
-			<key>firstVisibleColumn</key>
-			<integer>0</integer>
-			<key>firstVisibleLine</key>
-			<integer>0</integer>
-		</dict>
-		<key>app/views/standings/_standing_other_label_zurb.html.erb</key>
-		<dict>
-			<key>caret</key>
-			<dict>
-				<key>column</key>
-				<integer>0</integer>
-				<key>line</key>
-				<integer>0</integer>
-			</dict>
-			<key>firstVisibleColumn</key>
-			<integer>0</integer>
-			<key>firstVisibleLine</key>
-			<integer>0</integer>
-		</dict>
-		<key>app/views/standings/_standing_other_zurb.html.erb</key>
 		<dict>
 			<key>caret</key>
 			<dict>
@@ -508,43 +382,29 @@
 			<key>caret</key>
 			<dict>
 				<key>column</key>
-				<integer>3</integer>
-				<key>line</key>
-				<integer>48</integer>
-			</dict>
-			<key>firstVisibleColumn</key>
-			<integer>0</integer>
-			<key>firstVisibleLine</key>
-			<integer>0</integer>
-		</dict>
-		<key>app/views/standings/set_group_stage_zurb.html.erb</key>
-		<dict>
-			<key>caret</key>
-			<dict>
-				<key>column</key>
 				<integer>41</integer>
 				<key>line</key>
-				<integer>24</integer>
+				<integer>39</integer>
 			</dict>
 			<key>columnSelection</key>
 			<false/>
 			<key>firstVisibleColumn</key>
 			<integer>0</integer>
 			<key>firstVisibleLine</key>
-			<integer>0</integer>
+			<integer>18</integer>
 			<key>selectFrom</key>
 			<dict>
 				<key>column</key>
-				<integer>0</integer>
+				<integer>27</integer>
 				<key>line</key>
-				<integer>24</integer>
+				<integer>39</integer>
 			</dict>
 			<key>selectTo</key>
 			<dict>
 				<key>column</key>
-				<integer>0</integer>
+				<integer>53</integer>
 				<key>line</key>
-				<integer>25</integer>
+				<integer>39</integer>
 			</dict>
 		</dict>
 		<key>app/views/user_mailer/_the_scorecard.html.erb</key>
@@ -609,20 +469,6 @@
 			<dict>
 				<key>column</key>
 				<integer>0</integer>
-				<key>line</key>
-				<integer>0</integer>
-			</dict>
-			<key>firstVisibleColumn</key>
-			<integer>0</integer>
-			<key>firstVisibleLine</key>
-			<integer>0</integer>
-		</dict>
-		<key>app/views/users/_petition_box_zurb.html.erb</key>
-		<dict>
-			<key>caret</key>
-			<dict>
-				<key>column</key>
-				<integer>53</integer>
 				<key>line</key>
 				<integer>0</integer>
 			</dict>
@@ -736,21 +582,14 @@
 	<array>
 		<string>log/development.log</string>
 		<string>app/views/standings/index_zurb.html.erb</string>
-		<string>app/views/standings/set_group_stage_zurb.html.erb</string>
-		<string>app/views/standings/_group_stage_zurb.html.erb</string>
-		<string>app/views/standings/_sidebar_show_basket_zurb.html.erb</string>
-		<string>app/views/standings/_sidebar_show_zurb.html.erb</string>
-		<string>app/views/standings/_sidebar_zurb.html.erb</string>
-		<string>app/views/standings/_standing_basket_label_zurb.html.erb</string>
-		<string>app/views/standings/_standing_basket_zurb.html.erb</string>
-		<string>app/views/shared/_flash_zurb.html.erb</string>
-		<string>app/views/shared/_wrapper_zurb.html.erb</string>
+		<string>app/views/standings/_standing_futbol_label_zurb.html.erb</string>
+		<string>app/views/scorecards/show_zurb.html.erb</string>
 		<string>app/helpers/application_helper.rb</string>
-		<string>app/views/challenges/_sidebar_show_zurb.html.erb</string>
+		<string>app/views/scorecards/_scorecard_zurb.html.erb</string>
 	</array>
 	<key>showFileHierarchyDrawer</key>
 	<true/>
 	<key>windowFrame</key>
-	<string>{{137, 78}, {1672, 778}}</string>
+	<string>{{0, 46}, {1032, 732}}</string>
 </dict>
 </plist>

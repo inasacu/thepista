@@ -15,7 +15,7 @@
 		<%= (is_complete ? image_link_small(debit_object) : image_link_small(credit_object)) if is_new_debit %>
 	</td>
 	
-	<td class="name_and_date">
+	<td>
 		<% if is_new_debit %>
 		<% unless debit_link.blank? %>
 		<span class="label"><%= label_name(:to).upcase %>:&nbsp;&nbsp;</span>
@@ -32,7 +32,7 @@
 	<td>&nbsp;</td>
 	<td>&nbsp;</td>
 	
-    <td class="last">
+    <td>
 		<%= render "fees/fee_box_zurb", :fee => fee if is_new_debit %>
     </td>
 </tr>

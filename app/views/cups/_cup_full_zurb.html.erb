@@ -14,7 +14,7 @@
 		<%= item_image_name_link_small(cup) %>
 	</td>
 
-	<td class="name_and_date">
+	<td>
 		<%= item_name_link(cup) %><br />
 		
 		<span class="date">
@@ -23,21 +23,21 @@
 		</span>
 	</td>
 
-	<td class="name_and_date">
+	<td>
 		<%= item_list(cup.all_the_managers) %><br />
 		<span class="date">
 		<%= cup.sport.name %>
 		</span>
 	</td>
 
-	<td class="name_and_date">
+	<td>
 		<%= I18n.t(:has_cup_escuadras, :count => object_counter(cup.escuadras)) %><br />
 		<span class="date">
 		<%= I18n.t(:has_cup_games, :count => object_counter(cup.games)) %>
 		</span>
 	</td>
 
-	<td class="name_and_date">
+	<td>
 		<%= link_to(label_name(:standing), standing_path(:id => cup))  if object_counter(cup.standings) > 1 and !final_played %>
 		<span class="date">
 			<% if final_played %>
@@ -47,7 +47,7 @@
 	</td>
 
 	<% if display_icons %>
-    <td class="last">
+    <td>
 		<span class="action">
 			<% if is_current_manager_of(cup) and !final_played %>
 				<%= link_to label_name(:games_create), new_game_path(:id => cup)  %><br/>

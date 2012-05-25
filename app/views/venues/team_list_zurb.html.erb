@@ -6,7 +6,7 @@
 	
     <div class="inner">
 	
-      <table class="table">
+      <table>
 	  
 		<tr>             
 			<%= set_content_tag_safe(:th, "&nbsp;", "first") %>
@@ -21,7 +21,7 @@
 	    -%>
 			<tr>
 			  <td><%= image_link_small user %></td>		
-				<td class="name_and_date">
+				<td>
 					<%= user_link user %><br />
 					<span class="date">
 					<%= nice_day_date(schedule.starts_at) unless schedule.nil? %>
@@ -29,7 +29,7 @@
 				</td>
 			  <td><%#= user.has_group? ? group_list(user.groups) : label_name('groups_none') %></td>		 
 			  <td><%#= user.time_zone %></td>			  
-			  <td class="last"><%#= link_to label_name(:send_message_to), new_message_path(:id => user) %></td>		  
+			  <td><%#= link_to label_name(:send_message_to), new_message_path(:id => user) %></td>		  
 			</tr>
         <% end -%>
 		

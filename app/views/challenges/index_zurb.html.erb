@@ -11,24 +11,24 @@
 
 				<div class="inner">
 
-					<table class="table">
+					<table>
 
 					  <tr> 
-						<%= set_content_tag_safe(:th, "&nbsp;", "first") %>
-						<%= content_tag :th, label_name(:name), :class => "heading" %>
-						<%= content_tag :th, label_name(:manager), :class => "heading" %>
-						<%= content_tag :th, label_name(:general_information), :class => "heading" %>
-						<%= content_tag :th, "&nbsp;", :class => "heading" %>	
-						<%= set_content_tag_safe(:th, "&nbsp;", "last") %>
+						<%= set_content_tag_safe(:th, "&nbsp;") %>
+						<%= set_content_tag_safe(:th, label_name(:name))%>
+						<%= set_content_tag_safe(:th, label_name(:manager))%>
+						<%= set_content_tag_safe(:th, label_name(:general_information))%>
+						<%= set_content_tag_safe(:th, "&nbsp;") %>	
+						<%= set_content_tag_safe(:th, "&nbsp;") %>
 					  </tr>
 
-					  <% @challenges.each do |challenge| 
-						<%= render 'cups/cup_full_zurb', :cup => cup, :display_icons => true %>
+					  <% @challenges.each do |challenge| %>
+						<%= render 'challenges/challenge_full_zurb', :challenge => challenge, :display_icons => true %>
 					  <% end -%>
 
 					</table>	
 
-					<%= render 'shared/action_bar_zurb', :locals => { :collection => challenges } %>
+					<%#= render 'shared/action_bar_zurb', :locals => { :collection => @challenges } %>
 
 				</div>
 				
