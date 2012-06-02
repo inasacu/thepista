@@ -1,7 +1,7 @@
 class User < ActiveRecord::Base
 
-	# extend FriendlyId 
-	# friendly_id :name, 			use: :slugged
+	extend FriendlyId 
+	friendly_id :name, 			use: :slugged
       
   acts_as_authentic do |c|
     login_field :email

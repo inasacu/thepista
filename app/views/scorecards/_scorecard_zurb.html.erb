@@ -26,10 +26,30 @@
 				the_name, {:host => 'haypista.com', :controller => 'users', :action => 'show', :id => scorecard.user})
 	else
 		the_player_link = user_link_limit(scorecard.user)
+	end	
+	
+	the_coeficient_percent = (scorecard.points.to_f / (scorecard.played.to_f * scorecard.group.points_for_win) * 100)
+	
+	game_number = "#{scorecard.played}"
+	scorecard_coeficient_played = "#{sprintf('%0.00f', scorecard.coeficient_played)}%"
+	if scorecard.coeficient_played.to_f < 20
+		game_number = "<font color='red'>#{scorecard_coeficient_played}</font>" 
+	elsif scorecard.coeficient_played.to_f > 19 and scorecard.coeficient_played.to_f < 50
+		game_number = "<font color='orange'>#{scorecard_coeficient_played}</font>"
+	elsif scorecard.coeficient_played.to_f > 49
+		game_number = "<font color='green'>#{scorecard_coeficient_played}</font>"
+	end
+
+	the_coeficient_percent_full = "#{sprintf( '%0.00f', the_coeficient_percent)}%"
+	if the_coeficient_percent.to_f < 40
+		the_coeficient_percent_full = "<font color='red'>#{the_coeficient_percent_full}</font>"
+	elsif the_coeficient_percent > 39 and the_coeficient_percent < 60
+		the_coeficient_percent_full = "<font color='orange'>#{the_coeficient_percent_full}</font>"
+	elsif the_coeficient_percent > 59
+		the_coeficient_percent_full = "<font color='green'>#{the_coeficient_percent_full}</font>"
 	end
 	
-	
-	
+		
 %>
 
 
@@ -39,11 +59,12 @@
 	<%= set_content_tag_safe(:td, the_player_link) %>
 	<%= set_content_tag_safe(:td, the_ranking_change) %>
 	<%= set_content_tag_safe(:td, "#{scorecard.points.round}") %>
+	<%= set_content_tag_safe(:td, game_number) %>
+	<%= set_content_tag_safe(:td, "#{scorecard.played}") %>
 	<%= set_content_tag_safe(:td, "#{scorecard.wins}") %>
 	<%= set_content_tag_safe(:td, "#{scorecard.draws}") %>
 	<%= set_content_tag_safe(:td, "#{scorecard.losses}") %>
-	<%= set_content_tag_safe(:td, "#{scorecard.goals_scored}") %>
-	<%= set_content_tag_safe(:td, "#{scorecard.played}") %>
+	<%= set_content_tag_safe(:td, "#{scorecard.goals_scored}") if DISPLAY_FREMIUM_SERVICES %>
+	<%= set_content_tag_safe(:td, the_coeficient_percent_full) %>
 	<%= set_content_tag_safe(:td, "#{mailer ? sprintf( "%0.0f", scorecard.coeficient_points)  : scorecard.coeficient_points.to_f.round}") %>
-	<%= set_content_tag_safe(:td, "#{sprintf( '%0.00f', scorecard.coeficient_played)}%") %>
 </tr>

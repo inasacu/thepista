@@ -1,5 +1,5 @@
 <% 
-	the_label = control_action_label 
+	the_label = "" 
 
 	if @schedule 
 		the_label = "#{label_name(:to)} #{item_name_link(@schedule)}" 
@@ -11,7 +11,7 @@
 		the_label = "#{label_name(:to)} #{item_name_link(@cup)}" 
 	end
 
-	the_label = "#{label_name(:invitation)} #{the_label}"
+	the_label = "#{control_action_label} #{the_label}"
 	@item = @invitation
 %>
 

@@ -1,42 +1,40 @@
 <%
-	the_description = sanitize(cup.description)
-	the_description = "#{the_description.to_s.strip[0..60]}..." if the_description.to_s.length > 60
-	the_description = the_description.gsub(" ", "<wbr> ")
-	the_cup = sanitize(cup.name)
+	# the_description = sanitize(cup.description)
+	# the_description = "#{the_description.to_s.strip[0..60]}..." if the_description.to_s.length > 60
+	# the_description = the_description.gsub(" ", "<wbr> ")
+	the_cup = cup.name
 	 
 	final_played ||= false
 	the_game = Game.final_game(cup)
 	final_played = the_game.played unless (the_game.nil? or the_game.blank?)
+	the_sport = label_name(:join_cup)
+	
 -%>
 
-<tr>  
+<tr>
+
 	<td>
 		<%= item_image_name_link_small(cup) %>
 	</td>
 
 	<td>
-		<%= item_name_link(cup) %><br />
-		
-		<span class="date">
-		<%= nice_full_date(cup.starts_at) %>
-		<%= "<br/>#{has_left(cup.starts_at)}".html_safe if Time.zone.now < cup.starts_at %>
-		</span>
-	</td>
-
-	<td>
-		<%= item_list(cup.all_the_managers) %><br />
+		<%= item_name_link cup %><br />
 		<span class="date">
 		<%= cup.sport.name %>
 		</span>
 	</td>
 
 	<td>
-		<%= I18n.t(:has_cup_escuadras, :count => object_counter(cup.escuadras)) %><br />
-		<span class="date">
-		<%= I18n.t(:has_cup_games, :count => object_counter(cup.games)) %>
-		</span>
+		<%= item_list(cup.all_the_managers) %>
 	</td>
 
+	<td>
+		<span class="date">
+		<%= nice_full_date(cup.starts_at) %>
+		<%= "<br/>#{has_left(cup.starts_at)}".html_safe if Time.zone.now < cup.starts_at %>
+		</span>
+	</td>	
+	
 	<td>
 		<%= link_to(label_name(:standing), standing_path(:id => cup))  if object_counter(cup.standings) > 1 and !final_played %>
 		<span class="date">
@@ -46,32 +44,10 @@
 		</span>
 	</td>
 
-	<% if display_icons %>
-    <td>
-		<span class="action">
-			<% if is_current_manager_of(cup) and !final_played %>
-				<%= link_to label_name(:games_create), new_game_path(:id => cup)  %><br/>
-				<%= link_to label_name(:escuadras_create), new_escuadra_path(:id => cup)  %><br/><br/>
-	        <% end %>
+	<%  if cup.official %>
+	<%#= (cup.starts_at < Time.zone.now) ? link_to(label_name(:challenges_shows), challenges_url) : link_to(the_sport, challenges_url) %>
+	<%#= "#{link_to(label_name(:challenges_create), new_challenge_path(:id => cup))}".html_safe  unless (cup.starts_at < Time.zone.now) %>
+	<%= set_content_tag_safe(:td, link_to(label_name(:challenges_create), new_challenge_path(:id => cup))) %>
+	<% end %>
 	
-			<% if !cup.official %> 
-			<% 
-			   if is_current_member_of(cup) %>
-				<%= link_to("#{label_name(:invitations_your_friend)} #{the_cup}", new_invitation_url(:cup_id => cup)) %><br />
-			<% 
-			  	else
-					unless has_current_item_petition(cup)
-			%> 
-				<%= join_item_link_to(current_user, cup) %>
-			<% 		
-					end 
-			   end
-			end
-			-%>
-			
-			<%= link_to label_name(:challenges_create), new_challenge_path(:id => cup) if cup.official and !final_played %>
-			
-		</span>
-    </td>
-	<% end -%>
 </tr>

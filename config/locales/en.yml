@@ -169,6 +169,7 @@ en:
      code: Code
      conditions: Conditions   
      coeficient: "%"
+     coeficient_percent: "%C"
      coeficient_full: Coeficient = Points Received / Maximum Points Possible
      coeficient_points: "#"  
      coeficient_full_points: Points Received * Coeficient
@@ -590,7 +591,11 @@ en:
      games_title_stat_points: Coefficient Points (Coefficient)/(Pts.)   
      games_title_stats: "Coefficient (Pts.)/(G.P.*#)"  
      games_won: GW   
-     games_won_full: Games Won   
+     games_won_full: Games Won
+     games_won_avg: WA
+     games_won_avg_full: Winning Average
+     games_points_avg: PA
+     games_points_avg_full: Points Average
      gender: Gender   
      general_information:  General Information
      get_up_and_running:  Get up and running!
@@ -804,6 +809,7 @@ en:
      last_schedule_description: Recent event    
      last_scorecard: Recent Results   
      latest_activities:  Latest Activities
+     latest_messages:  Latest Messages
      latitude: Latitude
      longitude: longitude
      leave_comment: Leave a comment...   
@@ -1034,7 +1040,7 @@ en:
      participate_schedule_afterwards: "After you signup for the team and its accepted, follow this link to participate in the event"
      participate_group_afterwards: "After you signup, follow the link to signup for the team"   
      participation:  "%"
-     participation_full:  Participation Percentage 
+     participation_full:  Participation 
      participant:  Participant
      participants:  Participants
      password: Password
@@ -1723,7 +1729,7 @@ en:
      invitations_contacts:  Invite your email contacts.
      invitations_email: "Email (Hotmail, Gmail, Yahoo, etc...)"
      invitations_index:  Invitations Sent
-     invitations_new:  ""
+     invitations_new:  "New Invitation"
      invitations_import:  Invite Your Contacts
      invitations_for_your_friends:  Invite your friends to join HayPista
      invitations_no:  No Invitation to diplay

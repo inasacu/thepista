@@ -1,57 +1,78 @@
 <% 	
-	# challenge = item
 	get_first_active ||=""
-		
+	get_first_active = get_active("#{get_the_controller}_#{get_the_action}") if is_controller('challenge') and is_action('index') 
+	is_cast_edit = get_active("#{get_the_controller}_#{get_the_action}") if is_controller('cast') and is_action('edit')
+	
+	the_label = "" 
 	the_controller = ['challenges', 'cast']	
 	the_action = ['show', 'edit', 'challenge list', 'show list', "item list", "item complete"]
+
+	is_new_challenge = (get_controller_action =='challenge_new' or get_controller_action == 'challenge_create')
+	is_not_new_item = !is_new_challenge
+
+	is_single_challenge = false
+	if @challenge and is_not_new_item
+		is_single_challenge = true
+	end
+
+	unless is_new_challenge
+		content_for(:description, "#{@challenge.name},  #{@challenge.description}.") if @challenge
+	end
+
+	get_first_active ||=""
+	has_escuadras = false 
+	is_not_new_item = !is_action('new')
+%>
+
+
+<% if is_not_new_item %>
+	<%= item_new(@challenge) unless @challenges %>
+<% end -%>
+
+<% if @challenges %>
+
+	<%  unless @has_no_challenges %>
+		<dd class="<%= get_first_active %>"><%=  link_to(label_name(:challenges), challenges_path) %></dd>
+	<% end %>
 	
-	get_first_active = get_active("#{get_the_controller}_#{get_the_action}") if is_controller('challenge') and is_action('index')
-	is_cast_edit = get_active("#{get_the_controller}_#{get_the_action}") if is_controller('cast') and is_action('edit')
-%>
+<% else %>
 
+	<%= set_tab_navigation(challenge_link(@challenge, set_tab_navigation_active('challenge_show'))) if is_single_challenge %>
 
-<%
-	unless the_action.include?(get_the_action) or the_controller.include?(get_the_controller) 
-%>
-	<dd class="<%= get_first_active %>"><%=  link_to(label_name(:challenges), challenges_path) %></dd>
-	<!-- <dd class="<%#= get_active('challenge_list') %>"><%#=  link_to(label_name(:challenges_all) , list_challenges_path) %></dd> -->
-<%
-	else
--%>
-	<dd class="<%= get_active('challenge_show') %>"><%= item_name_link(challenge) %></dd>
 <% 
 	if the_action.include?(get_the_action) or the_controller.include?(get_the_controller)
-		if is_current_member_of(challenge) 
-		the_blog = Blog.find_item(challenge)
+		if is_current_member_of(@challenge) 
 %>		
-		
+
 		<dd class="<%= get_active('challenge_challenge_list') %>">
-				<%=  link_to(label_name(:participants) , challenge_list_path(:id => challenge)) %>
+				<%=  link_to(label_name(:participants) , challenge_list_path(:id => @challenge)) %>
 		</dd>
 		<dd class="<%= get_active('cast_index') %>">
-				<%=  link_to(label_name(:casts_index) , casts_path(:id => challenge, :user_id => current_user)) %>
+				<%=  link_to(label_name(:casts_index) , casts_path(:id => @challenge, :user_id => current_user)) %>
 		</dd>
 		<dd class="<%= get_active('cast_list') %>">
-				<%=  link_to(label_name(:casts_list) , list_casts_path(:id => challenge)) %>
+				<%=  link_to(label_name(:casts_list) , list_casts_path(:id => @challenge)) %>
 		</dd>
 		<dd class="<%= get_active('cast_edit') %>">
-					<%= link_to label_name(:casts_edit), edit_cast_path(:id => challenge) if is_cast_edit %>
+					<%= link_to label_name(:casts_edit), edit_cast_path(:id => @challenge) if is_cast_edit %>
 		</dd>
-		
-		<% if is_current_manager_of(challenge) %>
-		<!-- <dd class="<%#= get_active('fee_item_list') %>">
-			<%#= link_to(label_name(:fees), item_list_fees_path(:id => challenge, :item => challenge.class.to_s)) %>
-		</dd> -->
-		<!-- <dd class="<%#= get_active('fee_item_complete') %>">
-			<%#= link_to(label_name(:fees_due), item_list_fees_path(:id => challenge, :item => challenge.class.to_s)) %>
-		</dd> -->
-		<% end -%>	
-		
+
+			<% if is_current_manager_of(@challenge) %>
+			<!-- <dd class="<%#= get_active('fee_item_list') %>">
+				<%#= link_to(label_name(:fees), item_list_fees_path(:id => challenge, :item => challenge.class.to_s)) %>
+			</dd> -->
+			<!-- <dd class="<%#= get_active('fee_item_complete') %>">
+				<%#= link_to(label_name(:fees_due), item_list_fees_path(:id => challenge, :item => challenge.class.to_s)) %>
+			</dd> -->
+			<% end -%>	
+
 		<dd class="<%= get_active('standing_show') %><%= get_active('standing_show_list') %>">
-				<%= link_to(label_name(:points_full) , show_list_standings_path(:id => challenge)) %>
+				<%= link_to(label_name(:points_full) , show_list_standings_path(:id => @challenge)) %>
 		</dd>
 <%		
 		end
-		end
 	end 
 %>
+		
+<% end %>
+

@@ -1,5 +1,6 @@
 class CupsController < ApplicationController
   before_filter :require_user    
+
   before_filter :get_cup, :only => [:team_list, :show, :edit, :update, :destroy]
   before_filter :get_current_cup, :only => [:index, :list]
   before_filter :has_manager_access, :only => [:edit, :update, :destroy]

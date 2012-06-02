@@ -1,34 +1,46 @@
 
-
-
 <%= render 'shared/show_description_zurb', :item => @group %>
 <%= link_to "", schedule_path(:id => @next), :class => 'previous_message' if @next %>
 <%= link_to "", schedule_path(:id => @previous), :class => 'next_message' if @previous %>
 
+
 <div class="row">
+	 
+	<div class="twelve column">  
+			<% if object_counter(@all_messages) > 0 %>
+				
+				<%= render('shared/index_total_header_zurb', :items => @all_messages) %>
 
-	<div class="twelve columns"> 
-		
-		<table>
-		<tbody>
-		<tr>
-		<td>
-			
+				<div class="row">
+					<div class="twelve columns"> 
 
-		<%= h @all_messages.first.subject %>
-		<%= render_show_detail_zurb(:between) %>:
-		<%= user_list(@recipients) %>
-		<%= render 'message_zurb', :collection => @all_messages, :full_message => true} %>
-		<%= render '/messages/reply_zurb', :message => @message, :recipient => current_user} %>
-		
-		</td>	
-		</tr>
-		</tbody>
-		</table>
-		
-	</div>
+						<table>
+							<%= render 'messages/show_title_zurb', :message => @all_messages.first %>
+							<body>
+								
+
+						<%#= @all_messages.first.subject %>
+						<%#= render_show_detail_zurb(:between) %>
+						<%#= user_list(@recipients) %>
+
+						<% @all_messages.each do |message| %>
+							<%= render 'messages/message_zurb', :message => message, :full_message => true %>
+						<% end %>
+
+						<%#= render '/messages/reply_zurb', :message => @message, :recipient => current_user %>
+
+						</tbody>
+						</table>
+
+					</div>
+				</div>
+
+				<%#= render 'shared/action_bar_zurb', :collection => @all_messages %>
+
+				
+			<% end %>
+	</div>	
 </div>
-
 
 
 

@@ -46,6 +46,7 @@
 				<% unless final_played %>
 				<% if is_current_member_of(challenge) %>
 					<%= link_to("#{label_name(:invitations_your_friend)} #{the_challenge}", new_invitation_url(:challenge_id => challenge)) %><br />
+					<%= set_image_and_link(option_link('invitation'), 'invitation') %>
 				<% 
 				  	else
 						unless has_current_item_petition(challenge) 

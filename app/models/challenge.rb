@@ -104,7 +104,9 @@ class Challenge < ActiveRecord::Base
   end
 
   def self.current_challenges(page = 1)
-    self.where("cup_id in (select id from cups where archive = false)").page(page).order('name')
+    self.where("ends_at > ? and archive = false", Time.zone.now).page(page).order('starts_at')
+  # end
+    # self.where("cup_id in (select id from cups where archive = false)").page(page).order('name')
   end 
   
   def self.latest_items(items)

@@ -9,7 +9,7 @@ if @schedule
 		my_current_match = nil
 		
 		@schedule.matches.each{|match| my_current_match = match if match.user_id == @recipient.id}		
-		the_schedule_label = "<STRONG>#{I18n.t(:your_roster_status) } #{( my_current_match.type_name).downcase}</STRONG>"
+		the_schedule_label = "<STRONG>#{I18n.t(:your_roster_status) } #{( my_current_match.type_name).downcase}</STRONG>".html_safe
 %>
 		<tr>
 		  <td style="width:1%; color:#999999; vertical-align: top;">&nbsp;</td>

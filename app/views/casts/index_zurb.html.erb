@@ -1,133 +1,77 @@
 <%
-	the_label = ""
-	case "#{get_the_controller}_#{get_the_action}"
-	when "cast_index"
-		the_label = label_name(:casts_index)
-	when "cast_list"
-		the_label = label_name(:casts_list)
-	when "cast_list gues"
-		the_label = label_name(:cast_right_guess)
-	end
+	the_label = label_name(:casts)
+	content_for(:title, the_label)
+	has_cups = (object_counter(@casts) > 0)
+	
 	content_for(:title, the_label)
 	is_manager = is_current_manager_of(@cup)
 	is_right_guess = is_action('list gues')
 	
-	final_played ||= false
-	the_game = Game.final_game(@cup)
-	final_played = the_game.played unless (the_game.nil? or the_game.blank?)
 %>
 
 <div class="row">
+	 
+	<div class="twelve column">  
+			<% if has_cups %>
+				
+				<%= render('shared/index_total_header_zurb', :items => @casts) %>
 
-  <div class="twelve column">   
-  
-    <%= set_title_class(the_label) %>
-	
-    <div class="inner">
-	
-	<% if object_counter(@casts) > 0 %>
-	
-      <%= get_class_table_id_controller %>
-	  
-        <tr> 
-			<%= content_tag :th, label_name(:jornada), :class => "first" %>
-			<%= content_tag :th, "#{label_name(:name)}<br />#{label_name(:gameday_at)}", :class => "heading" unless is_right_guess %>
-			<%= content_tag :th, "#{label_name(:name)}<br />#{label_name(:challenge)}", :class => "heading" if is_right_guess %>			
-			<%= content_tag :th, "#{label_name(:participant)}<br />#{label_name(:points)}", :class => "heading" %>
-			<%= content_tag :th, "&nbsp;", :class => "heading" %>
-			<%= content_tag :th, "&nbsp;", :class => "heading" %>
-			<%= content_tag :th, label_name(:casts), :class => "heading", :align => "center" %>	
-			<%= content_tag :th, "&nbsp;", :class => "heading" %>
-			<%= set_content_tag_safe(:th, "&nbsp;", "last") %>
-		</tr>
-        
-        <% @casts.each do |cast| 
-			the_label = label_name(:casts_destroy)
-			the_confirmation = "#{ the_label }?"
-			the_challenge = h(cast.challenge.name)
-			
-			@the_cast = cast
-			no_team = (cast.home_id.nil? or cast.away_id.nil?)  
-			is_user = (current_user == cast.user) 
-			
-			no_team = (cast.home_id.nil? or cast.away_id.nil?) 
-			no_ranking = (cast.home_ranking.nil? or cast.away_ranking.nil? or 
-						  cast.home_stage_name.nil? or cast.away_stage_name.nil? and cast.type_name == 'FirstGame') 
-						
-			the_finals = (cast.type_name == 'SubsequentGame' or cast.type_name == 'FinalGame')
-			
-			the_previous = []
-			if the_finals
-				previous_games = Game.find(:all, :conditions => ["next_game_id = ?", cast.game_id])
-				previous_games.each {|the_game| the_previous << the_game.jornada}
-			end
-			
-		-%>
-        <tr>	
-          <td class="first" align="center">
-			<%= cast.jornada %>
-          </td>		
-		  <td>
-			<%= cast.name %>
-			<span class="date">
-				<% unless is_right_guess %>
-				<%= nice_day_time_wo_year cast.starts_at %>
-				<% else %>
-					<%= final_played ? the_challenge : item_name_link(
-cast.challenge)  %>
-				<% end %>
-			</span>
-		  </td>
+				<div class="row">
+					<div class="twelve columns"> 
 
-		  <td>
-			<span class="date">
-				<%= user_link cast.user %><br />
-				<%= cast.points if cast.points > 0 %>
-			</span>
-		  </td>
-		
-          <td>            
-            <%= escuadra_image_link_smaller cast.home unless no_team %>
-          </td>
+						<table>
+						  	<thead>
+							<tr>             
+								<%= set_content_tag_safe(:th, label_name(:coeficient_points)) %>
+								<%= set_content_tag_safe(:th, label_name(:gameday_at)) unless is_right_guess %>
+								<%= set_content_tag_safe(:th, "#{label_name(:name)}<br />#{label_name(:challenge)}") if is_right_guess %>			
+								<%= set_content_tag_safe(:th, "#{label_name(:participant)}<br />#{label_name(:points)}") %>
+								<%= set_content_tag_safe(:th, "&nbsp;") %>
+								<%= set_content_tag_safe(:th, "&nbsp;") %>
+								<%= set_content_tag_safe(:th, "&nbsp;") %>	
+								<%= set_content_tag_safe(:th, "&nbsp;") %>
+								<%= set_content_tag_safe(:th, "&nbsp;") %>
+								<%= set_content_tag_safe(:th, "&nbsp;") %>
+							</tr>
+							</thead>
 
-		  <td>
-		  	<%= escuadra_link cast.home unless no_team %>
-		  <span class="date">
-		  	<%= "#{cast.home_ranking} #{cast.home_stage_name}<br/>" if no_team %>
-			<%= "W#{the_previous[0]}" if (the_previous.length > 0) and no_team %>
-		  </span>
-		  </td>
+						<tbody>
 
-		  <td align="center">
-		  	<%=  "  #{cast.home_score}  -  #{cast.away_score}  "  %> 
-		  </td>
+							<% @casts.each do |cast| -%>	
+								<%= render 'casts/cast_full_zurb', :cast => cast, :display_icons => true %> 
+						  	<% end -%>
 
-		  <td>
-		  	<%= escuadra_link cast.away unless no_team %>
-		  <span class="date">
-		  	<%= "#{cast.away_ranking} #{cast.away_stage_name}<br/>" if no_team %>
-			<%= "W#{the_previous[1]}" if (the_previous.length > 0) and no_team %>
-		  </span>
-		  </td>
+						</tbody>
+						</table>
 
-		  <td>
-            <%= escuadra_image_link_smaller cast.away unless no_team %>
-		  </td>
+					</div>
+				</div>
 
-		  <td>&nbsp;</td>
-		
-        </tr>          
-        <% end -%>
-      </table>
+				<%= render 'shared/action_bar_zurb', :collection => @casts %>
+				
+			<% else %>
+				
+				<% the_label = label_name(:cups_options_without) %>
 
-	  <%= render 'shared/action_bar_zurb', :locals => { :collection => @casts } %>
+				<div class="row">
 
-		<% end %>
-		
-		</div>
-		</div>
-	</div>
+					<div class="twelve columns">
 
+					<%= set_title_class(the_label, 'cup') %>
 
-<% content_for :sidebar, render(:partial => 'challenges/sidebar_show_zurb') unless is_right_guess %>
-<% content_for :sidebar, render(:partial => 'shared/sidebar_show_final_played_zurb') -%>
+						<table>
+							<tr><%= content_tag :td, link_to("#{label_name(:you_can)} #{label_name(:create_your_own)} #{label_name(:cup).downcase}", new_cup_url) %></tr>
+							<tr><%= content_tag :td, link_to("#{label_name(:you_can)} #{label_name(:to_join_cup)}", list_cups_path) %></tr>
+							<tr><%= content_tag :td, link_to("#{label_name(:you_can)} #{label_name(:view).downcase} #{label_name(:the_los)} 
+													 #{label_name(:upcoming).downcase} and join a team", upcoming_path) if DISPLAY_UPCOMING %></tr>
+							<tr><%= content_tag :td, link_to("#{label_name(:you_can)} invite your friends and setup a team", list_cups_path) %><%#= option_link('invitation') %></tr>
+						</table>
+
+					</div>
+
+				</div>
+				
+			<% end %>
+	</div>	
+</div>
+

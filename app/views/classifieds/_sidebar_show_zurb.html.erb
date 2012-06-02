@@ -26,7 +26,8 @@
 		<% unless final_played %>
 		
 		<%= option_image_link('invitation') ***
-		<%= link_to("#{label_name(:invitations_your_friend)} #{the_challenge}", new_invitation_url(:challenge_id => @challenge)) %>
+		<%= link_to("#{label_name(:invitations_your_friend)} #{the_challenge}", new_invitation_url(:challenge_id => @challenge)) %><br/>
+		<%= set_image_and_link(option_link('invitation'), 'invitation') %>
 		
 		<% end -%>
 		

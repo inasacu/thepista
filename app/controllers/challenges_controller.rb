@@ -1,43 +1,34 @@
 class ChallengesController < ApplicationController
 	before_filter :require_user    
-	before_filter :get_challenge, :only => [:challenge_list, :show, :edit, :update, :set_automatic_petition]
+	
+	before_filter :get_challenge, :only => [:challenge_list, :edit, :update, :set_automatic_petition]
 	before_filter :has_manager_access, :only => [:edit, :update, :destroy]
 
 	before_filter :get_cup, :only =>[:new]
 	# before_filter :has_member_access, :only => :show
-	before_filter :has_member_access, :only => [:challenge_list]
+	# before_filter :has_member_access, :only => [:challenge_list]
 
 	def index
-		@challenges = Challenge.current_challenges(params[:page])
-
-		if @challenges.nil? or @challenges.blank?
-			redirect_to :action => 'list'
-			return
-		end   
-		render @the_template
+		redirect_to :cups
+		return
 	end
 
 	def list
-		@challenges = Challenge.get_challenge_list unless current_user.challenges.blank?
-		if @challenges.nil? or @challenges.blank?
-			redirect_to :controller => 'cups'
-			return
-		end
-
-		set_the_template('challenges/index')
-		render @the_template  
+		redirect_to :cups
+		return
 	end
 
 	def challenge_list
 		@users = @challenge.users.page(params[:page])
 		@total = @challenge.users.count   
-		@casts = @challenge.casts.page(params[:page], :joins => "LEFT JOIN users on users.id = casts.user_id", :order => "casts.game_id, users.name")
+		@casts = @challenge.casts.page(params[:page]).joins("LEFT JOIN users on users.id = casts.user_id").order("casts.game_id, users.name")
 		set_the_template('casts/index')
 		render @the_template
 	end
 
 	def show
 		store_location    
+		@challenge = Challenge.find(params[:id])
 		render @the_template
 	end
 
@@ -102,18 +93,15 @@ class ChallengesController < ApplicationController
 	def destroy
 		# @challenge = Challenge.find(params[:id])
 		counter = 0
-		@challenge.schedules.each {|schedule| counter += 1 }
-
+		@challenge.casts.each {|schedule| counter += 1 }
 		# @challenge.destroy unless counter > 0
-
-
 		redirect_to challenge_url
 	end
 
 	private
 	def get_challenge
 		@challenge = Challenge.find(params[:id]) 
-		@cup = @challenge.cup
+		# @cup = @challenge.cup
 	end
 
 	def get_cup

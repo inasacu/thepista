@@ -9,7 +9,7 @@ es:
      accounts: Cuentas   
      add_email: "Acepto, crea mi cuenta"     
      add_to_group: Unete al equipo  
-     add_to_item: Unete al equipo
+     add_to_item: Unete         
      add_to_tournament: Unete a 
      address: Dirección   
      addresses: Direcciones   
@@ -169,8 +169,9 @@ es:
      club:  Torneo solo para equipos
      club_description:  Torneo solo para equipos  
      code: Codigo 
-     conditions: Condiciones   
+     conditions: Condiciones  
      coeficient: "%"
+     coeficient_percent: "%C"
      coeficient_full: Coeficiente = Puntos Obtenidos / Maximo Puntos
      coeficient_points: "#"  
      coeficient_full_points: Puntos Obtenidos * Coeficiente
@@ -597,7 +598,11 @@ es:
      games_title_stat_points: Coeficiente Puntos (Coeficiente)/(Ptos.)   
      games_title_stats: "Coeficiente (Ptos.)/(P.J.*#)"   
      games_won: PG   
-     games_won_full: Partidos Ganados   
+     games_won_full: Partidos Ganados
+     games_won_avg: PV
+     games_won_avg_full: Promedio de Victorias  
+     games_points_avg: PP
+     games_points_avg_full: Promedio de Puntos 
      gender: Genero   
      general_information:  Información general
      get_up_and_running: "¡Pónte en marcha!"
@@ -812,6 +817,7 @@ es:
      last_schedule_description: Ultimo evento    
      last_scorecard: Ultimos resultados  
      latest_activities:  Últimas actividades
+     latest_messages:  Últimos Mensajes
      latitude: Latitude
      longitude: longitude
      leave_comment: Deja un comentario...   
@@ -1039,10 +1045,10 @@ es:
      participate_cup:  Participa en la copa 
      participate_cup_afterwards: "Despues de registrate, sigue este enlace para participa en la copa"       
      participate_schedule: Participa en el evento
-     participate_schedule_afterwards: "Despues de registrate en el equipo y ser aceptado, sigue este enlace para participar en el evento"
+     participate_schedule_afterwards: "Finalmente, una vez aceptado en el equipo, sigue este enlace para participar en el evento"
      participate_group_afterwards: Despues de registrate sigue este enlace para unirte al equipo     
      participation:  "%"
-     participation_full:  Porcentaje de participación 
+     participation_full:  Participación 
      participant:  Participante 
      participants:  Participantes   
      password: Contraseña
@@ -1733,7 +1739,7 @@ es:
      invitations_contacts:  Invitar a los contactos de tu libreta de direcciones de correo electrónico.
      invitations_email: "Email (Hotmail, Gmail, Yahoo, etc...)"
      invitations_index:  Invitaciones mandadas
-     invitations_new:  nueva 
+     invitations_new:  Nueva Invitación 
      invitations_import:  Invita a tus contactos
      invitations_for_your_friends:  Invita a tus amigos a unirse a HayPista
      invitations_no:  Ninguna invitación para mostrar
@@ -1745,7 +1751,7 @@ es:
      invitations_create_item:  Invita a tus amigos a este 
      invitations_create_schedule: Invita a tus amigos a este evento
      invitations_create_tournament: Invita a tus amigos a este torneo
-     invitations_create_meet: Nueva invitación al tourneo
+     invitations_create_meet: Nueva invitación al torneo
      invitations_sent:  Invitaciones mandadas
      invitations_your_friend:  Invita a tus amigos a 
      clash:  Resultado

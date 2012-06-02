@@ -29,13 +29,6 @@
 					</span>
 				</td>		
 
-				<!-- <td>
-					<%#= I18n.t(:has_cup_escuadras, :count => object_counter(cup.escuadras)) %>
-					<span class="date">
-					<%#= I18n.t(:has_cup_games, :count => object_counter(cup.games)) %>
-					</span>
-				</td> -->
-
 				<td>
 					<%  if cup.official %>
 					<%= (cup.starts_at < Time.zone.now) ? link_to(label_name(:challenges_shows), challenges_url) : link_to(the_sport, challenges_url) %>

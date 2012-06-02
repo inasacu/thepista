@@ -23,7 +23,9 @@
 	
 	when 'escuadra', 'cup', 'game', 'standing'
 		the_tab_navigation = 'cups'
-		
+	
+	when 'challenge', 'cast'
+		the_tab_navigation = 'challenges'
 	end	
 	
 	password_reset_actions = ['password_reset_new', 'password_reset_edit']
@@ -69,7 +71,7 @@
 		<% if current_user %>
 
 			<dl class="nice tabs mobile hide-on-phones">	
-				<%= render "#{the_tab_navigation}/tab_navigation_zurb" %>
+				<%= render "#{the_tab_navigation}/tab_navigation_zurb" unless the_tab_navigation.nil? %>
 			</dl>
 		
 		<% end %>

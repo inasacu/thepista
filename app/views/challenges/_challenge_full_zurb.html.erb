@@ -7,56 +7,20 @@
 	final_played ||= false
 	the_game = Game.final_game(challenge.cup)
 	final_played = the_game.played unless (the_game.nil? or the_game.blank?)
-	-%>
+	
+	show_join_item_link = !final_played and !is_current_member_of(challenge) and !has_current_item_petition(challenge)
+%>
+
 <tr>  	
-		<td>
-			<%= item_image_link_small(challenge.all_the_managers.first) %>
-		</td>
+	<%= set_content_tag_safe(:td, item_image_link_small(challenge.all_the_managers.first)) %>
+	<%= set_content_tag_safe(:td, item_name_link(challenge)) %>
+	<%= set_content_tag_safe(:td, user_list(challenge.all_the_managers)) %>
+	<%= set_content_tag_safe(:td, I18n.t(:has_challenge_users, :count => object_counter(challenge.users))) %>
+	<%= set_content_tag_safe(:td, link_to(label_name(:points_full), show_list_standings_path(:id => challenge))) %>
 
-		<td>
-			<%= item_name_link(challenge) %><br/>
-			<span class="date">
-				<%= challenge.cup.name %>
-			</span>
-		</td>
-
-		<td>
-			<%= user_list challenge.all_the_managers %><br />
-			<span class="date">
-				<%= challenge.time_zone %>
-			</span>
-		</td>
-
-		<td>
-			<%= I18n.t(:has_challenge_users, :count => object_counter(challenge.users)) %><br />
-			<span class="date">
-				<%#= the_description %>
-			</span>
-		</td>
-
-		<td>
-			<%= link_to(label_name(:points_full), show_list_standings_path(:id => challenge)) %>
-			<span class="date">
-			</span>
-		</td>
-
-	 <% if display_icons %>
-     <td>
-			<span class="action">
-				<% unless final_played %>
-				<% if is_current_member_of(challenge) %>
-					<%= link_to("#{label_name(:invitations_your_friend)} #{the_challenge}", new_invitation_url(:challenge_id => challenge)) %><br />
-				<% 
-				  	else
-						unless has_current_item_petition(challenge) 
-				%> 
-					<%= join_item_link_to(current_user, challenge) %>
-				<% 	end 
-				   end
-				-%>
-				<% end -%>
-				
-			</span>
-     </td>
-	<% end -%>
+	<% if show_join_item_link %>
+	<%= set_content_tag_safe(:td, join_item_link_to(current_user, challenge)) %>
+	<% else %>
+	<% set_content_tag_safe(:td, "&nbsp;") %>				
+	<% end %>
 </tr>

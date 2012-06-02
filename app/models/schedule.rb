@@ -83,6 +83,8 @@ class Schedule < ActiveRecord::Base
     played_games = 0
     the_schedules.each {|schedule| played_games += 1 }
 
+		played_games = 1 if played_games == 0
+
     the_sort = "matches.group_id DESC, users.name"
     the_sort = "#{sort}, #{the_sort}" if (sort != " ASC" and sort != " DESC" and !sort.blank? and !sort.empty?) 
      Match.find(:all, :select => "matches.*, users.name as user_name, types.name as type_name, scorecards.id as scorecard_id, " +
@@ -125,6 +127,8 @@ class Schedule < ActiveRecord::Base
     the_schedules = Schedule.find(:all, :conditions => ["group_id = ? and played = true", self.group], :order => "starts_at desc")
     played_games = 0
     the_schedules.each {|schedule| played_games += 1 }
+
+		played_games = 1 if played_games == 0
     
     Match.find(:all,    
     :select => "matches.*, users.name as user_name, types.name as type_name, scorecards.id as scorecard_id, " +
@@ -138,6 +142,8 @@ class Schedule < ActiveRecord::Base
     the_schedules = Schedule.find(:all, :conditions => ["group_id = ? and played = true", self.group], :order => "starts_at desc")
     played_games = 0
     the_schedules.each {|schedule| played_games += 1 }
+
+		played_games = 1 if played_games == 0
     
     Match.find(:all,    
     :select => "matches.*, users.name as user_name, types.name as type_name, scorecards.id as scorecard_id, " +
@@ -151,6 +157,8 @@ class Schedule < ActiveRecord::Base
     the_schedules = Schedule.find(:all, :conditions => ["group_id = ? and played = true", self.group], :order => "starts_at desc")
     played_games = 0
     the_schedules.each {|schedule| played_games += 1 }
+
+		played_games = 1 if played_games == 0
     
     Match.find(:all,    
     :select => "matches.*, users.name as user_name, types.name as type_name, scorecards.id as scorecard_id, " +
@@ -164,6 +172,8 @@ class Schedule < ActiveRecord::Base
     the_schedules = Schedule.find(:all, :conditions => ["group_id = ? and played = true", self.group], :order => "starts_at desc")
     played_games = 0
     the_schedules.each {|schedule| played_games += 1 }
+
+		played_games = 1 if played_games == 0
     
     Match.find(:all,    
     :select => "matches.*, users.name as user_name, types.name as type_name, scorecards.id as scorecard_id, " +

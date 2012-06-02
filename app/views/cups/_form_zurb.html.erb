@@ -1,144 +1,28 @@
 
-
-
 <%= set_form_label(the_form, :name) %>
 <%= set_form_text_field(the_form, :name, 'input-text') %>
-
-
-<%= set_form_label(the_form, :time_zone) %>
-<%= set_form_time_zone_select(f) %><br />
-
-
-<%= set_form_label(the_form, :sport_id, label_name('sport') %>
-<%= set_form_select(the_form, :sport_id, Sport.sport_name, @cup.sport_id) %><br />
-
-<%= set_form_label(the_form, :deadline_at) %>
-<%= set_form_datetime_select(the_form, :deadline_at) %><br />
-
-
-
-<%= set_form_label(the_form, :starts_at) %>
-<%= set_form_datetime_select(the_form, :starts_at) %><br />
-
-
-<%= set_form_label(the_form, :ends_at) %>
-<%= set_form_datetime_select(the_form, :ends_at) %><br />
-
-
-
-<%= set_form_label(the_form, :description) %>
-<%= set_form_text_area(the_form, :description) %><br />
-
-<%= set_form_label(the_form, :conditions) %>
-<%= set_form_text_area(the_form, :conditions) %><br />
-
-
-<%= set_form_label(the_form, :photo) %>
-<%= set_form_file_field(the_form, :photo) %><br />
-
-
-
-<%= set_form_label(the_form, :points_for_win) %>
-<%= set_form_text_field(the_form, :points_for_win, 'small input-text', true) %><br />
-
-
-
-<%= set_form_label(the_form, :points_for_draw) %>
-<%= set_form_text_field(the_form, :points_for_draw, 'small input-text', true) %><br />
-
-
-
-<%= set_form_label(the_form, :points_for_lose) %>
-<%= set_form_text_field(the_form, :points_for_lose, 'small input-text', true) %><br />
-
-
-
-<%= set_form_label(the_form, :club) %>
-<%= set_form_checkbox(the_form, :club) %><br />
-
-
-<% if the_maximo %>
-
-
-<%= set_form_label(the_form, :official) %>
-<%= set_form_checkbox(the_form, :official) %><br />
-
-
-
-<%= set_form_label(the_form, :group_stage_advance) %>
-<%= set_form_text_field(the_form, :group_stage_advance, 'small input-text', true) %><br />
-
-
-
-<%= set_form_label(the_form, :group_stage) %>
-<%= set_form_checkbox(the_form, :group_stage) %><br />
-
-
-
-<%= set_form_label(the_form, :group_stage_single) %>
-<%= set_form_checkbox(the_form, :group_stage_single) %><br />
-
-
-
-<%= set_form_label(the_form, :second_stage_single) %>
-<%= set_form_checkbox(the_form, :second_stage_single) %><br />
-
-
-
-<%= set_form_label(the_form, :final_stage_single) %>
-<%= set_form_checkbox(the_form, :final_stage_single) %><br />
-
-
-
-<%= set_form_label(the_form, :archive) %>
-<%= set_form_checkbox(the_form, :archive) %><br />
-
-
-<% end %>
-
-
-<br /><br />     
-
-<%= set_form_button_submit(item) %>
-
-
-<%= set_form_label(the_form, :name) %>
-<%= set_form_text_field(the_form, :name, 'input-text') %>
-
-
-<%= set_form_label(the_form, :time_zone) %>
-<%= set_form_time_zone_select(f) %><br />
-
 
 
 <%= set_form_label(the_form, :sport) %>
-<%= f.select(:sport_id, Sport.sport_name, {:selected => @cup.sport_id, :include_blank => true}) %><br />
-
-
-<%= set_form_label(the_form, :deadline_at) %>
-<%= set_form_datetime_select(the_form, :deadline_at) %><br />
-
-
+<%= the_form.select(:sport_id, Sport.sport_name, {:selected => @cup.sport_id, :include_blank => true}) %><br />
 
 <%= set_form_label(the_form, :starts_at) %>
-<%= set_form_datetime_select(the_form, :starts_at) %><br />
-
+<%= the_form.datetime_select :starts_at %><br /><br />
 
 
 <%= set_form_label(the_form, :ends_at) %>
-<%= set_form_datetime_select(the_form, :ends_at) %><br />
-
+<%= the_form.datetime_select :ends_at %><br /><br />
 
 
 <%= set_form_label(the_form, :description) %>
-<%= set_form_text_area(the_form, :description) %><br />
+<%= set_form_text_area(the_form, :description, true) %><br/>
 
 <%= set_form_label(the_form, :conditions) %>
-<%= set_form_text_area(the_form, :conditions) %><br />
+<%= set_form_text_area(the_form, :conditions, true) %><br/>
 
+<%= set_form_label(the_form, :photo, 'photo') %>
+<%= the_form.file_field :photo, :class => 'textphoto' %><br/><br/>
 
-<%= set_form_label(the_form, :photo) %>
-<%= set_form_file_field(the_form, :photo) %><br />
 
 <%= set_form_label(the_form, :points_for_win) %>
 <%= set_form_text_field(the_form, :points_for_win, 'small input-text', true) %><br />
@@ -152,32 +36,31 @@
 <%= set_form_text_field(the_form, :points_for_lose, 'small input-text', true) %><br />
 
 
-<%= set_form_label(the_form, :club) %>
-<%= set_form_checkbox(the_form, :club) %><br />
+
 
 
 <% if the_maximo %>
 
 <%= set_form_label(the_form, :official) %>
-<%= set_form_checkbox(the_form, :official) %><br />
+<%#= set_form_checkbox(the_form, :official) %><br />
 
 <%= set_form_label(the_form, :group_stage_advance) %>
-<%= set_form_text_field(the_form, :group_stage_advance, 'small input-text', true) %><br />
+<%#= set_form_text_field(the_form, :group_stage_advance, 'small input-text', true) %><br />
 
 <%= set_form_label(the_form, :group_stage) %>
-<%= set_form_checkbox(the_form, :group_stage) %><br />
+<%#= set_form_checkbox(the_form, :group_stage) %><br />
 
 <%= set_form_label(the_form, :group_stage_single) %>
-<%= set_form_checkbox(the_form, :group_stage_single) %><br />
+<%#= set_form_checkbox(the_form, :group_stage_single) %><br />
 
 <%= set_form_label(the_form, :second_stage_single) %>
-<%= set_form_checkbox(the_form, :second_stage_single) %><br />
+<%#= set_form_checkbox(the_form, :second_stage_single) %><br />
 
 <%= set_form_label(the_form, :final_stage_single) %>
-<%= set_form_checkbox(the_form, :final_stage_single) %><br />
+<%#= set_form_checkbox(the_form, :final_stage_single) %><br />
 
 <%= set_form_label(the_form, :archive) %>
-<%= set_form_checkbox(the_form, :archive) %><br />
+<%#= set_form_checkbox(the_form, :archive) %><br />
 
 <% end %>
 

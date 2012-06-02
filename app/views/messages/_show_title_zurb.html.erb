@@ -1,0 +1,21 @@
+<%
+
+	the_label = ""
+	the_date = nice_full_date(message.created_at)
+
+	if current_user == message.sender 
+		the_label = "#{label_name(:to)}:"
+	else
+		the_label = "#{label_name(:from_up)}"
+	end
+	the_label = "#{the_label} #{user_link(message.recipient)} <br/> #{the_date}"		
+%>
+
+
+<thead>
+	<tr>
+		<%= set_content_tag_safe(:th, "&nbsp;") %>
+		<%= set_content_tag_safe(:th, the_label) %>
+		<%= set_content_tag_safe(:th, "&nbsp;") %>
+	</tr>
+</thead>

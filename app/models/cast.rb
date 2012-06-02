@@ -72,7 +72,7 @@ class Cast < ActiveRecord::Base
   end
   
   def self.current_challenge(users, challenge, page = 1)
-		self.where("user_id in (?) and challenge_id = ? and casts.home_score is not null and casts.away_score is not null", users, challenge).joins("left join games on games.id = casts.game_id left join users on users.id = casts.user_id").page(params[:page]).order('games.jornada, users.name')
+		self.where("user_id in (?) and challenge_id = ? and casts.home_score is not null and casts.away_score is not null", users, challenge).joins("left join games on games.id = casts.game_id left join users on users.id = casts.user_id").page(page).order('games.jornada, users.name')
   end
   
   def self.current_casts(user, challenge)
@@ -80,7 +80,7 @@ class Cast < ActiveRecord::Base
   end
   
   def self.guess_casts(users, challenges, page = 1)
-    self.where("user_id in (?) and challenge_id in (?) and points > 0", users, challenges).joins("left join games on games.id = casts.game_id left join users on users.id = casts.user_id")..page(params[:page]).order('games.jornada, users.name')
+    self.where("user_id in (?) and challenge_id in (?) and points > 0", users, challenges).joins("left join games on games.id = casts.game_id left join users on users.id = casts.user_id").page(page).order('games.jornada, users.name')
   end
     
   def self.ready_casts(user, challenge)

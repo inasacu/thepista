@@ -1,8 +1,7 @@
 <% 
 	is_user_manager = (is_current_manager_of(@challenge))
 	is_user_member = (is_current_member_of(@challenge))
-	# the_challenge = sanitize(@challenge.name)
-	content_for(:title, the_challenge)
+	content_for(:title, @challenge.name)
 	
 	final_played ||= false
 	the_game = Game.final_game(@challenge.cup)
@@ -24,18 +23,14 @@
 		<tbody>
 		<tr>
 		<td>
-			
 		<%= render_show_detail_zurb(:name, item_name_link(@challenge)) %>
 		<%= render_show_detail_zurb(:manager, user_list(@challenge.all_the_managers)) %>
-		<%= render_show_detail_zurb(:automatic_petition, 
-			(is_user_manager ? link_to(the_petition_label, set_group_auto_path(:id => @challenge)) : the_petition_label)) %>
+		<%= render_show_detail_zurb(:automatic_petition, (is_user_manager ? link_to(the_petition_label, set_group_auto_path(:id => @challenge)) : the_petition_label)) %>
 
 		<%= render_show_detail_zurb(:users, t(:has_challenge_users, :count => @challenge.users.count)) %>
 		<%= render_show_detail_zurb(:points_full, show_list_standings_path(:id => @challenge)) %>
-
 		<%= render_show_detail_zurb(:conditions, @challenge.conditions) %>
-		<%= render_show_detail_zurb(:participants, 
-			render('shared/show_images_zurb', :collection => @challenge.users) if is_user_member %>
+		<%= render_show_detail_zurb(:participants, render('/shared/show_images_zurb', :collection => @challenge.users)) if is_user_member %>
 		
 		</td>	
 		</tr>

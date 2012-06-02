@@ -179,4 +179,8 @@ class UserMailer < ActionMailer::Base
 		mail(:to => email_with_name, :subject => @subject)    
   end
 
+	def message_schedule(message)
+		message_notification(message)
+	end
+	
 end
