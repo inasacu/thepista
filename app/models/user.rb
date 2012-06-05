@@ -1,7 +1,7 @@
 class User < ActiveRecord::Base
 
-	extend FriendlyId 
-	friendly_id :name, 			use: :slugged
+	# extend FriendlyId 
+	# friendly_id :name, 			use: :slugged
       
   acts_as_authentic do |c|
     login_field :email
@@ -12,6 +12,10 @@ class User < ActiveRecord::Base
   # Validations
   validates_presence_of 			:email
   validates_length_of   			:name,            :within => NAME_RANGE_LENGTH
+	
+	# validates_presence_of 			:name, :slug
+	# validates_uniqueness_of 		:name, :slug
+	
   # validates_inclusion_of   		:language,     		:in => ['en', 'es'],    :allow_nil => false, :default => 'es'
   
   # validates_format_of   :name,            :with =>  /^[A-Z a-z 0-9]*\z/
@@ -82,7 +86,8 @@ class User < ActiveRecord::Base
       user.has_many :_received_messages, :foreign_key => "recipient_id", :conditions => "recipient_deleted_at IS NULL"
     end         
 
-		after_create		:signup_notification
+		before_validation 	:generate_slug, 				:on => :create
+		after_create				:signup_notification
    
        
     # method section   
@@ -408,4 +413,21 @@ class User < ActiveRecord::Base
       UserMailer.password_reset_instructions(self).deliver
   	end
     
+		# def generate_slug
+		# 	self.slug = to_param rescue nil
+		# end
+		# 
+		# def to_s
+		# 	# name
+		# 	slug
+		# end
+		# 
+		# def to_param
+		# 	to_s.parameterize
+		# 
+		# 	the_encode = "#{self.name}#{self.id}"
+		# 	block_encode = Base64.urlsafe_encode64(the_encode) 
+		# 	return block_encode
+		# end
+		
   end

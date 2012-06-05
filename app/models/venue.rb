@@ -12,8 +12,7 @@ class Venue < ActiveRecord::Base
     
     validates_attachment_content_type :photo, :content_type => ['image/jpeg', 'image/png', 'image/gif', 'image/jpg', 'image/pjpeg']
     validates_attachment_size         :photo, :less_than => 5.megabytes
-    
-
+   
   # validations 
   validates_uniqueness_of   :name,            :case_sensitive => false  
   validates_presence_of     :name,            :description,               :starts_at,     :ends_at
@@ -26,10 +25,6 @@ class Venue < ActiveRecord::Base
   # variables to access
   attr_accessible :name, :description, :starts_at, :ends_at, :time_zone, :marker_id
   attr_accessible :photo, :enable_comments, :public, :day_light_savings,  :day_light_starts_at, :day_light_ends_at, :slug
-    
-  
-   
-
 
   has_many :the_managers,
   :through => :manager_roles,

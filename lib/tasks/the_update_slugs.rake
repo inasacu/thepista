@@ -1,5 +1,16 @@
 # to run:   	 rake the_update_slugs
 
+########################    data processing options ######################
+
+# rake the_archive_dependent
+# rake the_archive_role
+# rake the_remove_archive_data
+# rake the_update_slugs
+
+########################    data processing options ######################
+
+
+
 desc "update all tables w/ slugs"
 task :the_update_slugs => :environment do |t|
 
@@ -47,32 +58,29 @@ task :the_update_slugs => :environment do |t|
 			the_model.slug = the_slug_name
 		when "Schedule"
 			the_model = Schedule.find(:first, :conditions => ["id = ?", slug.sluggable_id])
-			the_model.slug = "#{the_slug_name}_#{slug.id}"
+			the_model.slug = "#{the_slug_name}_#{slug.id}" unless the_model.nil?
 			is_name = false
 		when "Cup"
 			the_model = Cup.find(:first, :conditions => ["id = ?", slug.sluggable_id])
 			the_model.slug = the_slug_name
 		when "Game"
 			the_model = Game.find(:first, :conditions => ["id = ?", slug.sluggable_id])
-			the_model.slug = "#{the_slug_name}_#{slug.id}"
+			the_model.slug = "#{the_slug_name}_#{slug.id}" unless the_model.nil?
 		when "Marker"
 			the_model = Marker.find(:first, :conditions => ["id = ?", slug.sluggable_id])
 			the_model.slug = the_slug_name
 		when "Challenge"
 			the_model = Challenge.find(:first, :conditions => ["id = ?", slug.sluggable_id])
-			the_model.slug = "#{the_slug_name}_#{slug.id}"
+			the_model.slug = "#{the_slug_name}_#{slug.id}" unless the_model.nil?
 		when "Fee"
 			the_model = Fee.find(:first, :conditions => ["id = ?", slug.sluggable_id])
-			the_model.slug = "#{the_slug_name}_#{slug.id}"
+			the_model.slug = "#{the_slug_name}_#{slug.id}" unless the_model.nil?
 		when "Payment"
 			the_model = Payment.find(:first, :conditions => ["id = ?", slug.sluggable_id])
-			the_model.slug = "#{the_slug_name}_#{slug.id}"
-		# when "Match"
-		# 	the_model = Match.find(:first, :conditions => ["id = ?", slug.sluggable_id])
+			the_model.slug = "#{the_slug_name}_#{slug.id}" unless the_model.nil?
+		# when "Classified"
+		# 	the_model = Classified.find(:first, :conditions => ["id = ?", slug.sluggable_id])
 		# 	the_model.slug = "#{the_slug_name}_#{slug.id}"
-		when "Classified"
-			the_model = Classified.find(:first, :conditions => ["id = ?", slug.sluggable_id])
-			the_model.slug = "#{the_slug_name}_#{slug.id}"
 
 		when "User"
 			the_model = User.find(:first, :conditions => ["id = ?", slug.sluggable_id])

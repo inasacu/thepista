@@ -8,7 +8,7 @@ task :the_archive_dependent => :environment do |t|
 
 	# archive group 
 	has_to_archive = true
-	group_id = [13]  
+	group_id = [13, 19]  
 
 	the_archive = Group.find(:all, :conditions => ["id in (?) and archive = false", group_id])
 	the_archive.each do |group|    
@@ -28,15 +28,6 @@ task :the_archive_dependent => :environment do |t|
 		challenge.archive = true
 		challenge.save if has_to_archive
 	end
-
-	# ARCHIVE all CHALLENGES USERS for CUPS archived 
-	# the_archive = ChallengesUsers.find(:all, :conditions => "archive = false")
-	# 
-	# the_archive.each do |challenge|
-	# 	puts "ARCHIVE challenge => #{challenge.challenge_id}"
-	# 	challenge.archive = true
-	# 	challenge.save if has_to_archive
-	# end
 
 	# ARCHIVE all CASTS for CHALLENGES archived 
 	the_archive = Cast.find(:all, :select => "distinct *", 

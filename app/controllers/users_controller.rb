@@ -340,10 +340,12 @@ class UsersController < ApplicationController
 	private
 	def get_user
 		@user = User.find(params[:id])
+		# @user = User.find_by_slug! params[:id]		
 	end
 
 	def get_user_manager
-		@user = User.find(params[:id])
+		get_user
+		
 		unless is_user_manager_of(@user)
 			warning_unauthorized
 			redirect_to root_url
@@ -352,7 +354,8 @@ class UsersController < ApplicationController
 	end
 
 	def get_user_member
-		@user = User.find(params[:id])
+		get_user
+		
 		if @user.private_profile and DISPLAY_PRIVATE_PROFILE
 			unless current_user.is_user_member_of?(@user)    
 				flash[:warning] = I18n.t(:user_private_profile)
@@ -363,7 +366,8 @@ class UsersController < ApplicationController
 	end
 
 	def get_user_self
-		@user = User.find(params[:id])
+		get_user
+		
 		unless is_current_same_as(@user)
 			warning_unauthorized
 			redirect_to root_url
@@ -372,12 +376,13 @@ class UsersController < ApplicationController
 	end
 
 	def get_user_group
-		@user = User.find(params[:id])
+		get_user
+		
 		@group = Group.find(params[:group])
 	end
 
 	def has_member_access
-		@user = User.find(params[:id])
+		get_user
 
 		unless (current_user.is_user_member_of?(@user) || false) 
 			redirect_to root_url

@@ -35,7 +35,7 @@ class MatchesController < ApplicationController
 		end
 
 		if @match.update_attributes(params[:match])
-			
+
 			Match.save_matches(@match, params[:match][:match_attributes]) if params[:match][:match_attributes] # and  DISPLAY_FREMIUM_SERVICES
 			Match.update_match_details(@match, current_user)
 
@@ -67,18 +67,6 @@ class MatchesController < ApplicationController
 			end
 		end 
 
-		# forces user to comment section for comment
-		# ask_for_comment = (current_user == @match.user and Time.zone.now + 1.days > @match.schedule.starts_at)
-		#     if ask_for_comment
-		#       @schedule = @match.schedule
-		#       @the_previous = Schedule.previous(@schedule)
-		#       @the_next = Schedule.next(@schedule)
-		#       @forum = @schedule.forum
-		#       set_the_template('matches/set_status')
-		# 	render @the_template
-		#       return
-		#     end
-
 		redirect_back_or_default('/index')
 	end 
 
@@ -97,19 +85,18 @@ class MatchesController < ApplicationController
 			manager_id = RolesUsers.find_item_manager(@match.schedule.group).user_id
 			Schedule.delay.create_notification_email(@match.schedule, @match.schedule, manager_id, @match.user_id, true)      
 			Scorecard.delay.calculate_user_played_assigned_scorecard(@match.user, @match.schedule.group)
-			
+
 			if DISPLAY_FREMIUM_SERVICES
-			# set fee type_id to same as match type_id
-			the_fee = Fee.find(:all, :conditions => ["debit_type = 'User' and debit_id = ? and item_type = 'Schedule' and item_id = ?", @match.user_id, @match.schedule_id])
-			the_fee.each {|fee| fee.type_id = @type.id; fee.save}
-		end
+				# set fee type_id to same as match type_id
+				the_fee = Fee.find(:all, :conditions => ["debit_type = 'User' and debit_id = ? and item_type = 'Schedule' and item_id = ?", @match.user_id, @match.schedule_id])
+				the_fee.each {|fee| fee.type_id = @type.id; fee.save}
+			end
 		end 
 		redirect_to root_url
 	end
 
 	def set_team 
-		unless is_current_member_of(@match.schedule.group) 
-			# unless current_user.is_sub_manager_of?(@match.schedule.group) 
+		unless is_current_member_of(@match.schedule.group)
 			warning_unauthorized
 			redirect_back_or_default('/index')
 			return
@@ -121,7 +108,6 @@ class MatchesController < ApplicationController
 			:played => played, :user_x_two => @user_x_two)
 
 			Scorecard.calculate_user_played_assigned_scorecard(@match.user, @match.schedule.group)
-			# flash[:notice] = I18n.t(:change_group)
 		end
 		redirect_back_or_default('/index')
 	end
