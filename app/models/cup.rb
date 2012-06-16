@@ -51,7 +51,7 @@ class Cup < ActiveRecord::Base
   has_and_belongs_to_many :escuadras,     :join_table => "cups_escuadras",   :order => "name"
   has_many                :games
   has_many                :standings,     :order => "points DESC, ranking"
-  has_many                :challenges
+  has_many                :challenges, 		:conditions => "challenges.archive = false"
   belongs_to              :sport
   
   has_many :the_managers,

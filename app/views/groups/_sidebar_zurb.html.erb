@@ -22,8 +22,7 @@
 
 <% if has_group %>
 
-	<%= set_title_class(the_label_options) %>
-	<hr/>
+
 
 	<div class="row">
 		<div class="twelve columns">
@@ -41,8 +40,7 @@
 		</div>
 	</div>
 
-	<hr/>
-	<br/>
+
 
 
 <% if is_group_manager %>
@@ -57,7 +55,7 @@
 		<%= set_form_edit_image_link(@group, :groups_edit) %>		
 		
 		<%  if DISPLAY_FREMIUM_SERVICES %>
-		<%= set_form_create_id_image_link(Classified.new, :id, @group, :classifieds_create) %>		
+		    
 		<%= set_form_create_id_image_link(Fee.new, :id, @group, :fee_user_for_group) %>		
 		<%= set_image_and_link(link_to(the_confirmation, group_path(@group), :method => :delete, :confirm => the_confirmation), 'group') if has_schedule_blank %>
 		<% end %>

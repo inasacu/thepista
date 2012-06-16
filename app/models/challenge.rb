@@ -38,6 +38,12 @@ class Challenge < ActiveRecord::Base
   :through => :manager_roles,
   :source => :roles_users
 
+  has_many  :active_users,
+  :class_name => "Cast", 
+  :foreign_key => "challenge_id", 
+	:select => "distinct casts.user_id",
+  :conditions => ["casts.archive = false and casts.home_score is not null and casts.away_score is not null"]
+
   has_many  :manager_roles,
   :class_name => "Role", 
   :foreign_key => "authorizable_id", 

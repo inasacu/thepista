@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120428230748) do
+ActiveRecord::Schema.define(:version => 20120616104507) do
 
   create_table "announcements", :force => true do |t|
     t.text     "message"
@@ -76,27 +76,6 @@ ActiveRecord::Schema.define(:version => 20120428230748) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
-
-  create_table "classifieds", :force => true do |t|
-    t.string   "name"
-    t.datetime "starts_at"
-    t.datetime "ends_at"
-    t.datetime "reminder_at"
-    t.string   "table_type",  :limit => 40
-    t.integer  "table_id"
-    t.string   "item_type",   :limit => 40
-    t.integer  "item_id"
-    t.string   "time_zone",                 :default => "UTC"
-    t.text     "description"
-    t.boolean  "archive",                   :default => false
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.string   "slug"
-  end
-
-  add_index "classifieds", ["item_id"], :name => "index_classifieds_on_item_id"
-  add_index "classifieds", ["slug"], :name => "index_classifieds_on_slug", :unique => true
-  add_index "classifieds", ["table_id"], :name => "index_classifieds_on_table_id"
 
   create_table "conversations", :force => true do |t|
     t.datetime "created_at"
@@ -655,20 +634,6 @@ ActiveRecord::Schema.define(:version => 20120428230748) do
 
   add_index "sessions", ["session_id"], :name => "index_sessions_on_session_id"
   add_index "sessions", ["updated_at"], :name => "index_sessions_on_updated_at"
-
-  create_table "slugs", :force => true do |t|
-    t.string   "name"
-    t.integer  "sluggable_id"
-    t.integer  "sequence",                     :default => 1,     :null => false
-    t.string   "sluggable_type", :limit => 40
-    t.string   "scope",          :limit => 40
-    t.datetime "created_at"
-    t.boolean  "archive",                      :default => false
-  end
-
-  add_index "slugs", ["archive"], :name => "index_slugs_on_archive"
-  add_index "slugs", ["name", "sluggable_type", "scope", "sequence"], :name => "index_slugs_on_n_s_s_and_s", :unique => true
-  add_index "slugs", ["sluggable_id"], :name => "index_slugs_on_sluggable_id"
 
   create_table "sports", :force => true do |t|
     t.string   "name",            :limit => 50

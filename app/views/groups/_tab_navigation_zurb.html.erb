@@ -32,6 +32,8 @@
 		if is_current_member_of(@group) 
 %>		
 		<%= content_tag :dd, link_to(label_name(:users) , team_list_path(:id => @group), :class => get_active('group_team_list')) %>
+		<%= content_tag :dd, link_to(label_name(:scorecard) , scorecard_path(:id => @group), :class => get_active('scorecard_show')) %>
+			
 		
 		<% if is_current_manager_of(@group) and DISPLAY_FREMIUM_SERVICES %>
 			<%= content_tag :dd, link_to(label_name(:fees) , list_fees_path(:id => @group), :class => get_active('fee_list')) %>
@@ -42,6 +44,6 @@
 	end
 %>
 
-<%= set_tab_navigation(link_to(label_name(:upcoming_schedules), schedules_url, :class => get_active('schedule_index'))) if is_single_group %>
-<%= set_tab_navigation(link_to(label_name(:previous_schedules), list_schedules_path, :class => get_active('schedule_list'))) if is_single_group %>
+<%#= set_tab_navigation(link_to(label_name(:upcoming_schedules), schedules_url, :class => get_active('schedule_index'))) if is_single_group %>
+<%#= set_tab_navigation(link_to(label_name(:previous_schedules), list_schedules_path, :class => get_active('schedule_list'))) if is_single_group %>
 

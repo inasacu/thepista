@@ -1,59 +1,36 @@
-<table>
-<% 
-	upcoming_games.each do |game| 
-	
-	no_team = (game.home_id.nil? or game.away_id.nil?) 
-	no_ranking = (game.home_ranking.nil? or game.away_ranking.nil? or game.home_stage_name.nil? or game.away_stage_name.nil? and game.type_name == 'FirstGame') 
-	the_finals = (game.type_name == 'SubsequentGame' or game.type_name == 'FinalGame')
--%>		
-	<tr>
-		<td>
-			<%= item_image_link_smaller(game.cup) %>
-		</td>
-		<td>
-			<%= item_name_link(game)
- %>
-		</td>
-		<td>
-			<%= item_name_link(game.cup) %><br />
-			<span class="date">
-				<%= game.sport_name %>
-			</span>
-		</td>
-		<td>
-			<%= nice_day_time_wo_year(game.starts_at) %><br />
-			<span class="date">
-				<%= has_left(game.starts_at) if Time.zone.now < game.starts_at %>
-			</span>
-		</td>
-        <td>            
-          <%= escuadra_image_link_smaller game.home unless no_team %>
-        </td>
+<%  
+	the_label = label_name(:upcoming)
+	content_for(:title, the_label)
+%> 
 
-		  <td>
-		  	<%= escuadra_link game.home unless no_team %>
-		  </td>
+<%= set_title_class(the_label, 'events') %>
 
-		  <td align="center">vs.</td>
+<div class="row">
+	<div class="twelve columns">
 
-		  <td>
-		  	<%= escuadra_link game.away unless no_team %>
-		  </td>
-		
-		  <td>
-          <%= escuadra_image_link_smaller game.away unless no_team %>
-		  </td>		
-		<td>
-			&nbsp;
-		</td>
-	</tr>
-<% 
-	end 
--%>
-</table> 
+		<table>
 
+			<% upcoming_games.each do |game| 
+				
+				no_team = (game.home_id.nil? or game.away_id.nil?) 
+				no_ranking = (game.home_ranking.nil? or game.away_ranking.nil? or game.home_stage_name.nil? or game.away_stage_name.nil? and game.type_name == 'FirstGame') 
+				the_finals = (game.type_name == 'SubsequentGame' or game.type_name == 'FinalGame')	
+				
+			-%>		
+			<tr>
+				<%= set_content_tag_safe(:td, item_image_link_smaller(game.cup), 'name_and_date') %>
+				<%= set_content_tag_safe(:td, "#{item_name_link(game.cup)} <br /> #{item_name_link(game)}", 'name_and_date') %>
+				<%= set_content_tag_safe(:td, "#{nice_day_time_wo_year(game.starts_at)} <br /> #{has_left(game.starts_at) if (Time.zone.now < game.starts_at)}", 'name_and_date') %>
+				<%= set_content_tag_safe(:td, "#{no_team ? '' : escuadra_image_link_smaller(game.home)}", 'name_and_date') %>
+				<%= set_content_tag_safe(:td, "#{no_team ? '' : escuadra_link(game.home)}", 'name_and_date') %>
+				<%= set_content_tag_safe(:td, " vs. ", 'name_and_date') %>
+				<%= set_content_tag_safe(:td, "#{no_team ? '' : escuadra_link(game.away)}", 'name_and_date') %>
+				<%= set_content_tag_safe(:td, "#{no_team ? '' : escuadra_image_link_smaller(game.away)}", 'name_and_date') %>
+			</tr>
+			<% end -%>
 
-
-
+		</table>
+	</div>
+</div>
 
 

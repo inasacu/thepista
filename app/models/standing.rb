@@ -148,8 +148,8 @@ class Standing < ActiveRecord::Base
 
   def self.cup_items_standing(cup, item) 
     find(:all, 
-    :joins => "LEFT JOIN users on users.id = standings.item_id",
-    :conditions => ["standings.cup_id = ? and standings.item_type = ? and standings.archive = false and standings.points > 0", cup, item.class.to_s],
+    :joins => "LEFT JOIN users on users.id = standings.item_id LEFT JOIN challenges on challenges.id = standings.challenge_id",
+    :conditions => ["challenges.archive = false and standings.cup_id = ? and standings.item_type = ? and standings.archive = false and standings.points > 0", cup, item.class.to_s],
     :order => "standings.points desc, users.name")
   end
     

@@ -14,8 +14,14 @@
 	the_url_for = "#{ENV['THE_HOST']}#{the_url_for}"
 %>
 
+
+<%= set_title_class(label_name(:latest_messages), 'activities') %>
+
+<hr/>
+
 <div class="row">
-	<div class="twelve columns">
+	<div class="twelve columns"> 
+		
 
 		<div id="disqus_thread"></div>
 
@@ -41,6 +47,8 @@
 			<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
 			<a href="http://disqus.com" class="dsq-brlink">comment system by <span class="logo-disqus">Disqus</span></a>
 		</div>
+
+
 
 	</div>
 </div>

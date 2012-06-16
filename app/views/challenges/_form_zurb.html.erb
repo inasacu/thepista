@@ -1,26 +1,22 @@
 
-<%= f.hidden_field :cup_id %>
-
+<%= the_form.hidden_field :cup_id %>
 
 
 <%= set_form_label(the_form, :name) %>
-<%= set_form_text_field(the_form, :name, 'large input-text', true) %><br />
-
-
-<%= set_form_label(the_form, :time_zone) %>
-<%= set_timezone_select(f) %><br />
-
-
+<%= set_form_text_field(the_form, :name, 'large input-text', true) %><br/>
 
 <%= set_form_label(the_form, :automatic_petition) %>
-<%= set_form_checkbox(the_form, :automatic_petition) %>
+<%= the_form.check_box :automatic_petition, :class => 'textfield' %><br/>
 
 
 <%= set_form_label(the_form, :description) %>
-<%= set_text_area(the_form, :description, true) %><br />
+<%= set_form_text_area(the_form, :description, true) %><br/>
 
 
 <%= set_form_label(the_form, :conditions) %>
-<%= set_text_area(the_form, :conditions, true) %><br />
+<%= set_form_text_area(the_form, :conditions, true) %><br/>
+
+<%= set_form_label(the_form, :archive) %>
+<%= the_form.check_box :archive, :class => 'textfield' %><br/>
 
 

@@ -4,40 +4,66 @@ desc "ARCHIVE dependent records to already archived"
 task :the_archive_dependent => :environment do |t|
 
 	ActiveRecord::Base.establish_connection(Rails.env.to_sym)
-	counter = 0
 
 	# archive group 
-	has_to_archive = true
 	group_id = [13, 19]  
 
-	the_archive = Group.find(:all, :conditions => ["id in (?) and archive = false", group_id])
-	the_archive.each do |group|    
-		puts "archive group => #{group.name}"
-		group.archive = true
-		group.save if has_to_archive
-	end
+	
+  the_archives = []
+  counter = 1
 
-	# ARCHIVE flag
-	has_to_archive = true  
+	# GROUPS
+  @archive = Group.find(:all, :conditions => ["id in (?) and archive = false", group_id])
+  @archive.each {|archive_file| the_archives << archive_file}
 
-	# ARCHIVE all CHALLENGES for CUPS archived 
-	the_archive = Challenge.find(:all, :conditions => "archive = false and cup_id in (select distinct cups.id from cups where cups.archive = true)")
+	# CUPS
+	the_archive_false = Cup.find(:all, :conditions => "archive = false")
+	the_archive_true = Cup.find(:all, :conditions => "archive = true")
 
-	the_archive.each do |challenge|
-		puts "ARCHIVE challenge => #{challenge.id}, cup => #{challenge.cup.name}"
-		challenge.archive = true
-		challenge.save if has_to_archive
-	end
+	# CHALLENGES
+  @archive = Challenge.find(:all, :conditions => ["archive = false and cup_id in (?)", the_archive_true])
+  @archive.each {|archive_file| the_archives << archive_file}
 
-	# ARCHIVE all CASTS for CHALLENGES archived 
-	the_archive = Cast.find(:all, :select => "distinct *", 
-	:conditions => "archive = false and challenge_id in (select distinct challenges.id from challenges where challenges.archive = true)")
+  @archive = Challenge.find(:all, :conditions => ["archive = false and cup_id not in (?)", the_archive_false])
+  @archive.each {|archive_file| the_archives << archive_file}
 
-	the_archive.each do |cast|
-		puts "ARCHIVE cast => #{cast.id}"
-		cast.archive = true
-		cast.save if has_to_archive
-	end 
+	# GAMES
+  @archive = Game.find(:all, :conditions => ["archive = false and cup_id in (?)", the_archive_true])
+  @archive.each {|archive_file| the_archives << archive_file}
+
+  @archive = Game.find(:all, :conditions => ["archive = false and cup_id not in (?)", the_archive_false])
+  @archive.each {|archive_file| the_archives << archive_file}
+
+	# STANDINGS
+  @archive = Standing.find(:all, :conditions => ["archive = false and cup_id in (?)", the_archive_true])
+  @archive.each {|archive_file| the_archives << archive_file}
+
+  @archive = Standing.find(:all, :conditions => ["archive = false and cup_id not in (?)", the_archive_false])
+  @archive.each {|archive_file| the_archives << archive_file}
+
+	# CASTS
+	the_archive_false = Challenge.find(:all, :conditions => "archive = false")
+	the_archive_true = Challenge.find(:all, :conditions => "archive = true")
+	
+  @archive = Cast.find(:all, :conditions => ["archive = false and challenge_id in (?)", the_archive_true])
+  @archive.each {|archive_file| the_archives << archive_file}
+
+  @archive = Cast.find(:all, :conditions => ["archive = false and challenge_id not in (?)", the_archive_false])
+  @archive.each {|archive_file| the_archives << archive_file}
+
+	@archive = Standing.find(:all, :conditions => "item_id is null and item_type is null")
+  @archive.each {|archive_file| the_archives << archive_file}
+
+  the_archives.each do |the_archive|
+    puts "#{the_archive.id}  remove #{the_archive.class.to_s} archived files removed (#{counter})"
+    the_archive.destroy
+    counter += 1
+  end
+
+  the_archives = []
+
+	
+
 
 	# ARCHIVE all SCHEDULES for GROUPS archived 
 	the_schedule = Schedule.find(:all, :select => "distinct *", 
@@ -134,7 +160,5 @@ task :the_archive_dependent => :environment do |t|
 			payment.save if has_to_archive
 		end
 	end  
-
-
 
 end

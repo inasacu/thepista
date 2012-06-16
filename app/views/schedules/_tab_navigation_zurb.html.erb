@@ -64,8 +64,8 @@
 			
 			<%#= set_tab_navigation(link_to(label_name(:users) , team_list_path(:id => @schedule.group), :class => get_active('group_team_list'))) if single_schedule_group %>
 		
-			<%= set_tab_navigation(group_link(@schedule.group, set_tab_navigation_active('group_show'))) if single_schedule_group %>
-			<%= set_tab_navigation(link_to(label_name(:schedules), schedules_url, :class => get_active('schedule_index'))) %>
+			<%#= set_tab_navigation(group_link(@schedule.group, set_tab_navigation_active('group_show'))) if single_schedule_group %>
+			<%#= set_tab_navigation(link_to(label_name(:schedules), schedules_url, :class => get_active('schedule_index'))) %>
 	
 <% 
 		end

@@ -47,7 +47,8 @@
 	<%  if cup.official %>
 	<%#= (cup.starts_at < Time.zone.now) ? link_to(label_name(:challenges_shows), challenges_url) : link_to(the_sport, challenges_url) %>
 	<%#= "#{link_to(label_name(:challenges_create), new_challenge_path(:id => cup))}".html_safe  unless (cup.starts_at < Time.zone.now) %>
-	<%= set_content_tag_safe(:td, link_to(label_name(:challenges_create), new_challenge_path(:id => cup))) %>
+	<%#= set_content_tag_safe(:td, link_to(label_name(:challenges_create), new_challenge_path(:id => cup))) %>
 	<% end %>
+	<%= set_content_tag_safe(:td, "&nbsp;") %>
 	
 </tr>

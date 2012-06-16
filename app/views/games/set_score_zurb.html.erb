@@ -1,50 +1,37 @@
+<%
+	the_label = "#{escuadra_link @game.home} vs. #{escuadra_link @game.away}"
+	the_button_class = "small white nice button radius"
+%>
+
+<%#= set_title_class(the_label) %>
+<!-- <hr/> -->
+
 <div class="row">
 	
 	<div class="twelve column">   
 
-		<h2 class="title"><%= "#{escuadra_link @game.home} vs. #{escuadra_link @game.away}" %></h2>
-		<br />
-
-		<div class="inner">
-		
-      <%= form_for (@game), :url => game_path(@game), :html => { :class => :form } do |f| -%>
-
-		<div class="group">
-			<%= f.label :score, label_name(:score), :class => :label %><br />
-			
-			<%= escuadra_image_link_smaller @game.home %>&nbsp;&nbsp;<%= escuadra_link @game.home %>&nbsp;&nbsp;
-			
-			<%= f.text_field :home_score, :class => 'textscore'  -%>&nbsp;&nbsp;vs.&nbsp;&nbsp;
-			
-			<%= f.text_field :away_score, :class => 'textscore'  -%>&nbsp;&nbsp;
-			
-			<%= escuadra_link @game.away %>&nbsp;&nbsp;<%= escuadra_image_link_smaller @game.away %>&nbsp;&nbsp;
-		</div>
-		<br />
-		<br />	
 
 		
-		<%# if @is_futbol or @is_basket %>		
+      <%= form_for (@game), :url => game_path(@game), :html => { :class => :form } do |the_form| -%>
 			
-			<%#= render :partial => '/matches/sport', :locals => {:f => f} %>
-			<%#= render "matches/sport", :f => f %>
+			<%= escuadra_image_link_smaller @game.home %>&nbsp;&nbsp;<%= escuadra_link @game.home %>
 			
-		<%# end %>
+			<%= set_form_text_field(the_form, :home_score, 'small input-text', true) %>&nbsp;&nbsp;vs.&nbsp;&nbsp;
+			<%= set_form_text_field(the_form, :away_score, 'small input-text', true) %>&nbsp;&nbsp;
+			
+			<%= escuadra_image_link_smaller @game.away %>&nbsp;&nbsp;<%= escuadra_link @game.away %>
 		
+
 		
-		<br />
-		<br />
-		<div class="group navform">
-			<%= submit_tag @game.new_record? ? control_label('create') : control_label('edit'), 
-					:class => "button" %> <%= label_name(:or) %> <%= link_to label_name(:cancel), games_url(:id => @cup) %>
-		</div>
+		<br/><br/>
+		<%= submit_tag(label_name(:save), :class => the_button_class) %> <%= label_name(:or) %> 
+		<%= link_to label_name(:cancel), games_url(:id => @cup) %>
+			
 		
       <% end -%>
 
-		</div>
 
 	</div>
 
 </div>
 
-<!-- end of the line -->

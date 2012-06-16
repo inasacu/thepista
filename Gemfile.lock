@@ -171,6 +171,9 @@ GEM
     uuidtools (2.1.2)
     will_paginate (3.0.3)
     zip (2.0.2)
+    zurb-foundation (2.2.1.2)
+      jquery-rails (>= 1.0)
+      railties (>= 3.1.0, < 4.0)
 
 PLATFORMS
   ruby
@@ -208,3 +211,4 @@ DEPENDENCIES
   typhoeus
   uglifier (>= 1.0.3)
   will_paginate
+  zurb-foundation

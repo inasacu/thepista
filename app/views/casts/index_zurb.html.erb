@@ -1,7 +1,7 @@
 <%
 	the_label = label_name(:casts)
 	content_for(:title, the_label)
-	has_cups = (object_counter(@casts) > 0)
+	has_casts = (object_counter(@casts) > 0)
 	
 	content_for(:title, the_label)
 	is_manager = is_current_manager_of(@cup)
@@ -12,7 +12,7 @@
 <div class="row">
 	 
 	<div class="twelve column">  
-			<% if has_cups %>
+			<% if has_casts %>
 				
 				<%= render('shared/index_total_header_zurb', :items => @casts) %>
 
@@ -21,17 +21,15 @@
 
 						<table>
 						  	<thead>
-							<tr>             
-								<%= set_content_tag_safe(:th, label_name(:coeficient_points)) %>
-								<%= set_content_tag_safe(:th, label_name(:gameday_at)) unless is_right_guess %>
-								<%= set_content_tag_safe(:th, "#{label_name(:name)}<br />#{label_name(:challenge)}") if is_right_guess %>			
-								<%= set_content_tag_safe(:th, "#{label_name(:participant)}<br />#{label_name(:points)}") %>
-								<%= set_content_tag_safe(:th, "&nbsp;") %>
-								<%= set_content_tag_safe(:th, "&nbsp;") %>
-								<%= set_content_tag_safe(:th, "&nbsp;") %>	
+							<tr>
+								<%= set_content_tag_safe(:th, label_name(:casts_group_matches)) %>
+								<%= set_content_tag_safe(:th, label_name(:user)) %>
 								<%= set_content_tag_safe(:th, "&nbsp;") %>
 								<%= set_content_tag_safe(:th, "&nbsp;") %>
 								<%= set_content_tag_safe(:th, "&nbsp;") %>
+								<%= set_content_tag_safe(:th, "&nbsp;") %>
+								<%= set_content_tag_safe(:th, "&nbsp;") %>
+								<%= set_content_tag_safe(:th, label_name(:points)) %>								
 							</tr>
 							</thead>
 
@@ -46,8 +44,6 @@
 
 					</div>
 				</div>
-
-				<%= render 'shared/action_bar_zurb', :collection => @casts %>
 				
 			<% else %>
 				

@@ -4,14 +4,12 @@
 %>
 
 <div class="row">
-
-  <%= get_secondary_navigation %>  
-
   <div class="twelve column">   
   
-    <h2 class="title"><%= get_collection_label(@types) %></h2>
+		<%= set_title_class(the_label, 'type') %>
+		
 	
-    <div class="inner">
+    <!-- <div class="inner"> -->
 	
       <table>
 	  
@@ -41,9 +39,8 @@
         <% end -%>
 
       </table>
-	  <%= render :partial => 'shared/action_bar', :locals => { :collection => @user } %>
 
-    </div>
+    <!-- </div> -->
 
   </div>
 

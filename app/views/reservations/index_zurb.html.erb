@@ -10,8 +10,8 @@
 <div class="row">
 
 	<div class="twelve column">   
-
-		<h2 class="title"><%= the_new_label %></h2>
+		
+		<%= set_title_class(the_label, 'reservation') %>
 		
 		<div class="columns"> 
 				<table>
@@ -22,15 +22,15 @@
 		</div>
 		<br/>
 		
-		<div class="inner">
+		<!-- <div class="inner"> -->
 			<table>
 				
 				<%= render 'reservations/full_calendar_zurb', :first_day => @first_day, :time_frame => @time_frame, :installation => @installation %>	
 				<%#= render 'reservations/new_reservation_zurb', :first_day => @first_day, :time_frame => @time_frame, :installation => @installation if Rails.env.production? %>
 			</table>
-		</div>
+		<!-- </div> -->
 
 	</div>
 </div>
 
-<%= render 'venues/sidebar_venue' %>
+<%#= render 'venues/sidebar_venue' %>

@@ -23,9 +23,11 @@
 	<meta name="resource-type" content="Document" />
 	<meta name="distribution" content="all" />
 	<meta name="robots" content="all" />
-	<!-- <meta name="revisit" content="15 days" /> -->
+	<meta name="revisit" content="15 days" />
 	<meta name="google-site-verification" content="qyTyrJH8o08Ur15mr5hUYjVNyWcbfQatF3yar3Ry2ws" />
 	<meta name="google-site-verification" content="OJzCfMpdsascUFtDoxXJpZGEIsjXjKG1691P1FC5pIc" />
+
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
 	<title><%= page_title %></title>
 
@@ -35,24 +37,27 @@
 	<link rel="shortcut icon" type="image/ico" href="../../favicon.ico">
   
 
-	<%#= stylesheet_link_tag    "application", :media => "all" %>
-	<%#= javascript_include_tag "application" %>
+	<%= stylesheet_link_tag    "application", :media => "all" %>
+	<%= javascript_include_tag "application" %>
 	<%= csrf_meta_tags %>
 
+
+	<%#= stylesheet_link_tag "foundation" %>
+	<%= javascript_include_tag "foundation" %>
+	
 	
 	<!-- Included CSS Files -->
 	<%= stylesheet_link_tag 'zurb/globals' %>
 	<%= stylesheet_link_tag 'zurb/typography' %>
 	<%= stylesheet_link_tag 'zurb/grid' %>
-	<%= stylesheet_link_tag 'zurb/ui' %>
-	<%= stylesheet_link_tag 'zurb/forms' %>
 	<%= stylesheet_link_tag 'zurb/orbit' %>
 	<%= stylesheet_link_tag 'zurb/reveal' %>
 	<%= stylesheet_link_tag 'zurb/app' %>
 	<%= stylesheet_link_tag 'zurb/mobile' %>
+	<%= stylesheet_link_tag 'zurb/ui' %>
+	<%= stylesheet_link_tag 'zurb/forms' %>
 	<%= stylesheet_link_tag 'zurb/presentation' %>
 	<%= stylesheet_link_tag 'zurb/app' %>
-
 
 	<!--[if lt IE 9]>
 		<link rel="stylesheet" href="../../stylesheets/zurb/ie.css">
@@ -80,17 +85,6 @@
 		<%= render 'shared/footer_zurb' %>
 
 	</div>
-
-	<%#= javascript_include_tag "vtip" %>
-	<%= javascript_include_tag "jquery-1.6.1.min" %>
-	<%= javascript_include_tag "zurb/jquery.reveal" %>
-	<%= javascript_include_tag "zurb/jquery.orbit-1.3.0" %>
-	<%= javascript_include_tag "zurb/forms.jquery" %>
-	<%= javascript_include_tag "zurb/jquery.customforms" %>
-	<%= javascript_include_tag "zurb/jquery.placeholder.min" %>
-	<%= javascript_include_tag "zurb/app" %>
-	<%= javascript_include_tag "zurb/presentation" %>
-	<%= javascript_include_tag "disqus" %>
 	
 </body>
 

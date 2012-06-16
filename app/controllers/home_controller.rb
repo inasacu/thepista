@@ -6,17 +6,8 @@ class HomeController < ApplicationController
   before_filter :get_advertisement,   :only => [:advertisement, :upcoming]
 
 	def index
-		worker = UberWorker.new
-		worker.db_config = Rails.configuration.database_configuration[Rails.env]
-		p worker
-		worker.queue(:priority=>1)
 		render @the_template
 	end
-
-	# def index
-	# 	store_location  
-	# 	render @the_template
-	# end
 
   def qr
     redirect_to root_url
@@ -113,6 +104,7 @@ class HomeController < ApplicationController
 			Cup.latest_items(@all_items, has_values)
 			Challenge.latest_items(@all_items)  
 			Game.latest_items(@all_items)
+			Cast.latest_items(@all_items)
 		end      
     # end    
 

@@ -41,8 +41,8 @@
 <%= set_form_label(the_form, :last_minute_notification) %>
 <%= the_form.check_box :last_minute_notification, :class => 'textfield' %><br />
 
-<%= set_form_label(the_form, :message_notification) %>
-<%= the_form.check_box :message_notification, :class => 'textfield' %><br/>
+<%#= set_form_label(the_form, :message_notification) %>
+<%#= the_form.check_box :message_notification, :class => 'textfield' %>
 
 
 <% if @user.is_manager? %>

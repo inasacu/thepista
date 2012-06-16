@@ -1,113 +1,93 @@
+<%
 
-<table>
+the_label = is_action('index') ? label_name(:group_stage) : label_name(:group_round)
+content_for(:title, the_label)
+is_manager = current_user.is_manager_of?(@cup)	
 
-  <tr> 
-		<%= content_tag :th, label_name(:jornada), :class => "first" %>
-		<%= content_tag :th, "#{label_name(:name)}<br />#{label_name(:gameday_at)}", :class => "heading" %>
-		<%= content_tag :th, "", :class => "heading" %>
-		<%= content_tag :th, "", :class => "heading" %>
-		<%= content_tag :th, "", :class => "heading" %>
-		<%= content_tag :th, label_name(:matches), :class => "heading" %>
-		<%= content_tag :th, "", :class => "heading" %>
-		<%= content_tag :th, "", :class => "heading" %>
-		<%= content_tag :th, "", :class => "heading" %>	
-		<%= set_content_tag_safe(:th, "&nbsp;", "last") %>
-	</tr>
-  
-	<%= form_for (@cast), :url => cast_path(@cast), :html => { :class => :form } do |f| -%>
+new_or_existing = 'existing' 
+prefix = "cast[cast_attributes][]"
 
-	
-  <% @casts.each do |cast| 
-		the_label = label_name(:casts_destroy)
-		the_confirmation = "#{ the_label }?"
-		@the_cast = cast
-		no_team = (cast.home_id.nil? or cast.away_id.nil?)  
-		can_edit = (current_user == cast.user and cast.starts_at >= HOURS_BEFORE_GAME and !cast.game.played?)	
+is_right_guess = is_action('list gues')
+%>
+
+<% casts.each do |cast| 
+	the_label = label_name(:casts_destroy)
+	the_confirmation = "#{ the_label }?"
 		
-		no_team = (cast.home_id.nil? or cast.away_id.nil?) 
-		no_ranking = (cast.home_ranking.nil? or cast.away_ranking.nil? or 
-					  cast.home_stage_name.nil? or cast.away_stage_name.nil? and cast.type_name == 'FirstGame') 
-					
-		the_finals = (cast.type_name == 'SubsequentGame' or cast.type_name == 'FinalGame')
-		
-		the_previous = []
-		if the_finals
-			previous_games = Game.find(:all, :conditions => ["next_game_id = ?", cast.game_id])
-			previous_games.each {|the_game| the_previous << the_game.jornada}
-		end
-	-%>
+	@the_cast = cast
+	no_team = (cast.home_id.nil? or cast.away_id.nil?)  
+	can_edit = (current_user == cast.user and cast.starts_at >= HOURS_BEFORE_GAME and !cast.game.played?)	
 	
-		<% fields_for prefix, cast do |cast_form| -%>
+	no_team = (cast.home_id.nil? or cast.away_id.nil?) 
+	no_ranking = (cast.home_ranking.nil? or cast.away_ranking.nil? or 
+				  cast.home_stage_name.nil? or cast.away_stage_name.nil? and cast.type_name == 'FirstGame') 
+				
+	the_finals = (cast.type_name == 'SubsequentGame' or cast.type_name == 'FinalGame')
 	
-  	<tr>	
-        <td class="first">
-			<%= cast.jornada %>
-        </td>
+	the_previous = []
+	if the_finals
+		previous_games = Game.find(:all, :conditions => ["next_game_id = ?", cast.game_id])
+		previous_games.each {|the_game| the_previous << the_game.jornada}
+	end
+
+	the_user = "#{user_link_limit(cast.user)}" 
+	the_points = cast.points > 0 ? "#{cast.points}" : ""
+	
+	the_cast_game_name = cast.game.name.gsub('Group Stage','')	
+	the_cast_game_not_played = cast.game.home_score.nil? and cast.game.away_score.nil?
+-%>
+
+	<tr>
+
+	<%= fields_for prefix, cast do |cast_form| -%>
+	
+		<%= set_content_tag_safe(:td, "#{the_cast_game_name} - ##{cast.jornada}") %>
+		<%#= set_content_tag_safe(:td, "#{cast.game.name}") unless is_right_guess %>
+		<%= set_content_tag_safe(:td, (final_played ? the_challenge : item_name_link(cast.challenge))) if is_right_guess %>
+		<%= set_content_tag_safe(:td, the_user) %>
+		<%= set_content_tag_safe(:td, escuadra_image_link_smaller(cast.home)) unless no_team %>
 
 		<td>
-			<%= cast.name %>
-			<span class="date">
-				<%= nice_day_of_week(cast.starts_at) %><br/>
-			</span>
-			<span class="date">
-			<%= nice_day_of_week(HOURS_BEFORE_GAME) if can_edit %><br/>
-			</span>
-			<span class="date">
-				<%= has_left(cast.starts_at) if can_edit %>
-			</span>
+			<%= escuadra_link cast.home unless no_team %>
+			<%= "#{cast.home_ranking} #{cast.home_stage_name}<br/>".html_safe if no_team %>
+			<%= "W#{the_previous[0]}".html_safe if (the_previous.length > 0) and no_team %>	
 		</td>
 
-        <td>            
-          <%= escuadra_image_link_smaller cast.home unless no_team %>
-        </td>
-
-		  <td>
-		  	<%= escuadra_link cast.home unless no_team %>
-		  <span class="date">
-		  	<%= "#{cast.home_ranking} #{cast.home_stage_name}<br/>" unless no_ranking %>
-			<%= "W#{the_previous[0]}" if (the_previous.length > 0) %>
-		  </span>
-		  </td>
-
-		  <td>
-			<% if can_edit %>
-			<%= cast_form.text_field :home_score, :class => 'text_tiny_score', :align => "center" %>
-			<% else %>
-			<%= cast.home_score %>
-			<% end -%>
-		  </td>
+		<% if can_edit %>
+			<td><%= set_form_text_field(cast_form, :home_score, 'tinier input-text', true) %></td>		
+			<%= set_content_tag_safe(:td, " vs. ") %>
+			<td><%= set_form_text_field(cast_form, :away_score, 'tinier input-text', true) %></td>		
+		<% else -%>
+			<%= set_content_tag_safe(:td, "  #{cast.home_score}  ") %>
+			<%= set_content_tag_safe(:td, "  -  ") %>
+			<%= set_content_tag_safe(:td, "  #{cast.away_score}  ") %>
+		<% end %>
 		
-		  <td al>&nbsp;vs.&nbsp;</td>
+		<td>
+			<%= escuadra_link cast.away unless no_team %>
+			<%= "#{cast.away_ranking} #{cast.away_stage_name}<br/>".html_safe if no_team %>
+			<%= "W#{the_previous[1]}".html_safe if (the_previous.length > 0) and no_team %>		
+		</td>
 
-		  <td>
-			<% if can_edit %>
-			<%= cast_form.text_field :away_score, :class => 'text_tiny_score', :align => "center" %>
-			<% else %>
-			<%= cast.away_score %>
-			<% end -%>
-		  </td>
-
-		  <td>
-		  	<%= escuadra_link cast.away unless no_team %>
-		  <span class="date">
-		  	<%= "#{cast.away_ranking} #{cast.away_stage_name}<br/>" unless no_ranking %>
-			<%= "W#{the_previous[1]}" if (the_previous.length > 0) %>
-		  </span>
-		  </td>
-
-		  <td>
-          <%= escuadra_image_link_smaller cast.away unless no_team %>
-		  </td>
-		
-	      <td>&nbsp;</td>
-
-      </tr>          
-  
-		<% end -%>
+		<%= set_content_tag_safe(:td, escuadra_image_link_smaller(cast.away)) unless no_team %>
+		<%= set_content_tag_safe(:td, the_cast_game_not_played ? "#{nice_date_wo_year(cast.starts_at)}" : "#{the_points}") %>
+        
 
 	<% end -%>
+
+    </tr>
+
+<% end -%>
+
+
+
+
+
+
+
+
+	
+
 	
 	
-	
-	<% end -%>
-	
+

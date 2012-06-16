@@ -142,7 +142,7 @@ Thepista::Application.routes.draw do
 	resources :types
 	resources :sports
 	resources :roles
-	resources :workers
+	# resources :workers
 	
 	
 	
@@ -212,6 +212,7 @@ Thepista::Application.routes.draw do
 		collection do
 			get :list
 			get :list_guess
+			get :list_guess_user
 		end
 	end
 

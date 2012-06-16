@@ -76,6 +76,7 @@ class ChallengesController < ApplicationController
 	end
 
 	def edit
+		set_the_template('challenges/new')
 		render @the_template
 	end
 
@@ -109,7 +110,7 @@ class ChallengesController < ApplicationController
 	end
 
 	def has_member_access
-		unless is_current_member_of(@challenge)
+		if is_current_member_of(@challenge) or the_maximo
 			warning_unauthorized
 			redirect_to root_url
 			return
@@ -117,7 +118,8 @@ class ChallengesController < ApplicationController
 	end
 
 	def has_manager_access
-		unless is_current_manager_of(@challenge)
+	    if is_current_manager_of(@challenge) or the_maximo
+	    else
 			warning_unauthorized
 			redirect_to root_url
 			return

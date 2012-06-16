@@ -14,6 +14,12 @@ task :the_remove_archive_data => :environment do |t|
   @archive = Challenge.find(:all, :conditions => ["archive = true"])
   @archive.each {|archive_file| the_archives << archive_file}
 
+  @archive = Game.find(:all, :conditions => ["archive = true"])
+  @archive.each {|archive_file| the_archives << archive_file}
+
+  @archive = Standing.find(:all, :conditions => ["archive = true"])
+  @archive.each {|archive_file| the_archives << archive_file}
+
   @archive = Cup.find(:all, :conditions => ["archive = true"])
   @archive.each {|archive_file| the_archives << archive_file}
 

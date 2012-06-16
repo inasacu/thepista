@@ -1,8 +1,7 @@
 
 <%= render 'shared/sidebar_edit_zurb', :item => @user, :label => 'edit' if is_current_same_as(@user) %>
 
-<%= set_title_class(the_label_options) %>
-<hr/>
+
 
 <div class="row">
 	<div class="twelve columns">
@@ -22,8 +21,6 @@
 	</div>
 </div>
 
-<hr/>
-<br/>
 
 
 <%= render('/shared/sidebar_index') if is_user_manager_of(@user) if DISPLAY_FREMIUM_SERVICES -%>

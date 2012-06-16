@@ -1,0 +1,72 @@
+<%
+	the_label = is_action('index') ? label_name(:group_stage) : label_name(:group_round)
+	content_for(:title, the_label)
+	is_manager = is_current_manager_of(@cup)	
+
+	new_or_existing = 'existing' 
+	prefix = "cast[cast_attributes][]" 
+	@item = @casts
+
+	the_label = label_name(:casts)
+	content_for(:title, the_label)
+	has_casts = (object_counter(@casts) > 0)
+
+	content_for(:title, the_label)
+	is_manager = is_current_manager_of(@cup)
+	is_right_guess = is_action('list gues')
+	
+	the_button_class = "small white nice button radius"
+
+%>
+
+<div class="row">
+	<div class="twelve column">  
+		
+			<% if has_casts %>
+				
+				<%= render('shared/index_total_header_zurb', :items => @casts) %>
+
+				
+				<%= form_for (@cast), :url => cast_path(@cast), :html => { :class => :form } do |the_form| -%>
+
+				<div class="row">
+					<div class="twelve columns"> 
+
+						<%= set_title_class(the_label) %>
+
+						<hr />
+
+						<table>
+						  	<thead>
+							<tr>
+								<%= set_content_tag_safe(:th, label_name(:casts_group_matches)) %>
+								<%= set_content_tag_safe(:th, label_name(:user)) %>
+								<%= set_content_tag_safe(:th, "&nbsp;") %>
+								<%= set_content_tag_safe(:th, "&nbsp;") %>
+								<%= set_content_tag_safe(:th, "&nbsp;") %>
+								<%= set_content_tag_safe(:th, "&nbsp;") %>
+								<%= set_content_tag_safe(:th, "&nbsp;") %>
+								<%= set_content_tag_safe(:th, "&nbsp;") %>
+								<%= set_content_tag_safe(:th, "&nbsp;") %>
+								<%= set_content_tag_safe(:th, label_name(:points)) %>
+							</tr>
+							</thead>
+
+						<tbody>
+
+							<%= render 'casts/form_zurb', :the_form => the_form, :casts => @casts %>
+							
+						</tbody>
+						</table>
+
+					</div>
+				</div>
+
+				<%= submit_tag(label_name(:save), :class => the_button_class) %>
+					
+				<% end -%>
+				
+			<% end %>
+	</div>	
+</div>
+

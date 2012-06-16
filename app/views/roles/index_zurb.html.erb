@@ -1,12 +1,14 @@
+<%
+	the_label = label_name(:roles)
+%>
+
 <div class="row">
-
-	<%= get_secondary_navigation %>  
-
 	<div class="twelve column">   
 
-		<h2 class="title"><%= get_collection_label(@roles) %></h2>
+		<%= set_title_class(the_label, 'role') %>
+		
 
-		<div class="inner">
+		<!-- <div class="inner"> -->
 
 			<table>
 
@@ -37,9 +39,7 @@
 
 			</table>
 			
-			<%= render 'shared/action_bar_zurb', :collection => @role %>
-
-		</div>
+		<!-- </div> -->
 
 	</div>
 

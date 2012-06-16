@@ -1,21 +1,20 @@
+<%#= set_title_class(the_label_options) %>
 
 <div class="row">
 
-<%= set_title_class(the_label_options) %>
 
-<ul class="navigation">
-	<li><%= link_to label_name(:challenges_create), new_challenge_path(:id => @cup) %></li>
-	<li><%= link_to(label_name(:invitations_create_cup), new_invitation_url(:cup_id => @cup)) %></li>
-	<%= set_image_and_link(option_link('invitation'), 'invitation') %>
-</ul>
+
+<div class="twelve columns">
+
+		<%= set_image_and_link(link_to(label_name(:challenges_create), new_challenge_path(@cup)), 'challenge') %>
+		<%= set_image_and_link(link_to(label_name(:invitations_create_cup), new_invitation_url(:cup_id => @cup)), 'invitation') %>
+		
+</div>
 
 </div>
 
-<hr/>
 
 <%#= render 'shared/sidebar_create_zurb', :item => @cup %>
-<%= render 'cups/sidebar_legend_zurb', :item => @cup %>
+<%#= render 'cups/sidebar_legend_zurb', :item => @cup %>
 <%#= render 'cups/sidebar_cup_additional_zurb', :item => @cup %>
-
-
-<% content_for :sidebar, render(:partial => 'shared/sidebar_show_final_played_zurb') -%>
+<%#= render  'shared/sidebar_show_final_played_zurb' -%>

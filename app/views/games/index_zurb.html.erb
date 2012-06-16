@@ -16,8 +16,7 @@
 						<table>
 						  	<thead>
 							<tr>             
-								<%= set_content_tag_safe(:th, "&nbsp;") %>
-								<%= set_content_tag_safe(:th, "&nbsp;") %>
+								<%= set_content_tag_safe(:th, label_name(:casts_group_matches)) %>
 								<%= set_content_tag_safe(:th, "&nbsp;") %>
 								<%= set_content_tag_safe(:th, "&nbsp;") %>
 								<%= set_content_tag_safe(:th, "&nbsp;") %>
@@ -40,7 +39,6 @@
 					</div>
 				</div>
 
-				<%= render 'shared/action_bar_zurb', :collection => @games %>
 			
 				
 			<% end %>

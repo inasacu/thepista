@@ -25,7 +25,10 @@
 	input.placeholder, textarea.placeholder { color: #888; }
 
 	/* Text input and textarea sizes */
-	input.input-text, textarea { width: 254px; }
+	input.input-text, textarea { width: 254px; } 
+	input.tinier, textarea.small { width: 17px; } /* mod by haypista */
+	input.tiny, textarea.small { width: 34px; } /* mod by haypista */
+	input.smaller, textarea.small { width: 74px; } /* mod by haypista */
 	input.small, textarea.small { width: 134px; }
 	input.medium, textarea.medium { width: 254px; }
 	input.large, textarea.large { width: 434px; }
@@ -41,6 +44,10 @@
 	div.form-field.error label, label.red { color: red; }
 	div.form-field.error small, small.error { margin-top: -6px; display: block; margin-bottom: 9px; font-size: 11px; color: red; width: 260px; }
 
+
+	.tinier + small.error { width: 20px; } /* mod by haypista */
+	.tiny + small.error { width: 40px; } /* mod by haypista */
+	.smaller + small.error { width: 80px; } /* mod by haypista */
 	.small + small.error { width: 140px; }
 	.medium + small.error { width: 260px; }
 	.large + small.error { width: 440px; }

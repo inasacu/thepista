@@ -11,10 +11,9 @@ class GamesController < ApplicationController
   end
 
   def list
-    # store_location
     @games = Game.group_round_games(@cup, params[:page])
     set_the_template('games/index')
-    render @the_template   
+    render @the_template  
   end
 
   def show
@@ -31,7 +30,7 @@ class GamesController < ApplicationController
   def new
     @game = Game.new
 
-    unless is_current_manager_of(@cup)
+    unless current_user.is_manager_of?(@cup)
       warning_unauthorized
       redirect_back_or_default('/index')
       return
@@ -57,7 +56,6 @@ class GamesController < ApplicationController
 			@game.points_for_draw = 3
 			@game.points_for_goal_difference = 2
 			@game.points_for_goal_total = 1
-			
     end
 
     # @previous_game = Game.find(:first, :conditions => ["id = (select max(id) from games where cup_id = ?) ", @cup.id])    
@@ -65,7 +63,7 @@ class GamesController < ApplicationController
 
     unless @previous_game.nil?
       @game.cup_id = @cup.id  
-      @game.name = @previous_game.name      
+      @game.concept = @previous_game.concept      
 
       @game.starts_at = @previous_game.starts_at + 1.days
       @game.ends_at = @previous_game.ends_at + 1.days
@@ -90,14 +88,14 @@ class GamesController < ApplicationController
   def create
     @game = Game.new(params[:game]) 
 
-    unless is_current_manager_of(@game.cup)
+    unless current_user.is_manager_of?(@game.cup)
       warning_unauthorized
       redirect_to cups_url
       return
     end
 
     if @game.save 
-      successful_create
+      flash[:notice] = I18n.t(:successful_create)
       redirect_to games_path(:id => @game.cup)
       return
     else
@@ -106,7 +104,7 @@ class GamesController < ApplicationController
   end
 
   def edit
-    set_the_template('games/new')
+    # set_the_template('games/new')
     render @the_template
   end
 
@@ -128,7 +126,7 @@ class GamesController < ApplicationController
 
   def set_the_game_jornada
 
-    unless is_current_manager_of(@cup)
+    unless current_user.is_manager_of?(@cup)
       warning_unauthorized
       redirect_back_or_default('/index')
       return
@@ -141,20 +139,6 @@ class GamesController < ApplicationController
     redirect_to games_path(:id => @cup)
     return
   end
-
-  # def destroy
-  #   # @game.played = false
-  #   # @game.save
-  #   # @game.matches.each do |match|
-  #   #   match.archive = false
-  #   #   match.save!
-  #   # end
-  #   Scorecard.delay.calculate_cup_scorecard(@game.cup)
-  #   # @game.destroy
-  #   # 
-  #   # flash[:notice] = I18n.t(:successful_destroy)
-  #   # redirect_to :action => 'index'  
-  # end
 
   private
   def has_manager_access

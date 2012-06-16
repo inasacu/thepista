@@ -13,25 +13,15 @@
 		previous_games = Game.find(:all, :conditions => ["next_game_id = ?", game.id])
 		previous_games.each {|the_game| the_previous << the_game.jornada}
 	end
+	
+	the_game_name = game.name.gsub('Group Stage', '')
+	has_result = (!game.home_score.nil? and !game.away_score.nil?)
 %>
 
 <tr>
+	<%= set_content_tag_safe(:td, "#{the_game_name} - ##{game.jornada}") %>
+	<%= set_content_tag_safe(:td, escuadra_image_link_smaller(game.home)) unless no_team %>
 
-  <td>
-	<%#= is_manager ? in_place_text_field(:the_game, :jornada, {:cols => 1}) : game.jornada %>
-	<%= game.jornada %>
-	<span class="date">
-		<%#= nice_date_wo_year(game.starts_at) %>
-	</span>
-  </td>
-
-  <td>
-	<%= game.name %>
-  </td>
-
-  <td>            
-    <%= escuadra_image_link_smaller(game.home) unless no_team %>
-  </td>
 
   <td>
   	<%= escuadra_link(game.home) unless no_team %>
@@ -53,25 +43,18 @@
   </span>
   </td>
 
-  <td>
-    <%= escuadra_image_link_smaller(game.away) unless no_team %>
-  </td>
+	<%= set_content_tag_safe(:td, escuadra_image_link_smaller(game.away)) unless no_team %>
+
 	
    <td>
 		<% if is_manager %>
 		<span class="action">					
 			<%= link_to label_name(:matches), set_score_url(:id => game) unless no_team %><br/>
-			<%= link_to label_name(:games_edit), edit_game_path(game) %>
-			<%#= link_to(the_label, game_path(game), :method => :delete, :confirm => the_confirmation) %>	
+			<%= link_to label_name(:games_edit), edit_game_path(game) %>	
 		</span>
 		<% end -%>
    </td>
 
-	<td>
-		<%= nice_date_wo_year(game.starts_at) %> 
-		<span class="date">
-			<%= ", #{nice_simple_time_at(game.starts_at)}" %>
-		</span>
-	</td>
+	<%= set_content_tag_safe(:td, !has_result ? nice_date_wo_year(game.starts_at) : "&nbsp;")  %> 
 
 </tr>     

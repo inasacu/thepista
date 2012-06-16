@@ -3,14 +3,12 @@
 %>
 
 <div class="row">
-
-	<%= get_secondary_navigation(@cup) %>
-
 	<div class="twelve columns">   
 
-		<h2 class="title"><%= the_label %></h2>
+			<%= set_title_class(the_label, 'cup') %>
+			
 
-		<div class="inner">
+		<!-- <div class="inner"> -->
 		
 			<table>
 
@@ -41,7 +39,7 @@
 		
       <% end -%>
 
-		</div>
+		<!-- </div> -->
 
 	</div>
 

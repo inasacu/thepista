@@ -4,12 +4,11 @@
 %>
 
 <div class="row"> 
-
 	<div class="twelve column">   
 
-		<h2 class="title"><%= get_collection_label(@invitations) %></h2>
+		<%= set_title_class(the_label, 'invitation') %>
 
-		<div class="inner">
+
 
 			<% if object_counter(@invitations) > 0 %>
 
@@ -19,8 +18,7 @@
 
 			<% end %>
 			
-			<%= render 'shared/action_bar_zurb', :collection => @invitation %>
 
-		</div>
+
 	</div>
 </div>

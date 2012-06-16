@@ -86,6 +86,7 @@ en:
      casts_archive_list:  All Forescasts
      casts_create:  New forecast
      casts_destroy:  Remove forecast
+     casts_group_matches:  Group Matche
      casts_index: My forecasts
      casts_index_option: Options 
      casts_list:  All Forescasts
@@ -664,6 +665,10 @@ en:
      group_b:  Second Team 
      group_fee: Team Fees
      group_id: Team  
+     group_score:  Goal
+     invite_score:  Goal
+     home_score:  Goal
+     away_score:  Goal
      group_stage:  Results
      group_stage_advance:  Continue to next round
      group_stage_advance_description:  Total teams that move to next round.

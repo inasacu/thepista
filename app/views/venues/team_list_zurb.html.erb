@@ -4,7 +4,7 @@
   
 	<%= set_title_class(I18n.t(:has_group_users, :count => @total)) %> 
 	
-    <div class="inner">
+    <!-- <div class="inner"> -->
 	
       <table>
 	  
@@ -34,12 +34,11 @@
         <% end -%>
 		
       </table>
-	  <%= render :partial => 'shared/action_bar', :locals => { :collection => @users } %>
 	  
-    </div>
+    <!-- </div> -->
 	
   </div>
   
 </div>
 
-<% content_for :sidebar, render(:partial => 'sidebar_show') -%>
+<%# content_for :sidebar, render(:partial => 'sidebar_show') -%>

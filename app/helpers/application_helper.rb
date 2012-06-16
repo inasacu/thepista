@@ -97,6 +97,13 @@ module ApplicationHelper
 		return (self.controller.action_name.singularize.gsub("_", " ") == anAction)
 	end
 
+	# returns true / false if action within controller action name passed is same is current
+	def is_controller_action(aControllerAction)
+		the_controller = self.controller.controller_name.singularize.gsub("_", " ")
+		the_action = self.controller.action_name.singularize.gsub("_", " ")
+		return ("#{the_controller}_#{the_action}" == aControllerAction)
+	end
+	
 	# returns name of current controller being used
 	def get_the_controller
 		return self.controller.controller_name.singularize.gsub("_", " ")

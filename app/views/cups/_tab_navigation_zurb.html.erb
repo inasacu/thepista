@@ -23,7 +23,24 @@
 	is_not_new_item = !is_action('new')
 	if is_not_new_item
 		has_escuadras = (object_counter(@cup.escuadras) > 0 ) unless @cups 
-	end							
+	end		
+	
+	
+	
+	the_standing_active = ['standing_show','standing_indes']
+	if the_standing_active.include?(get_controller_action)
+		the_standing_active = get_controller_action 
+	else
+		the_standing_active = 'standing_show'
+	end
+	
+	the_game_active = ['game_edit', 'game_set_score']
+	if the_game_active.include?(get_controller_action)
+		the_game_active = get_controller_action 
+	else
+		the_game_active = 'game_edit'
+	end
+					
 %>
 
 
@@ -41,28 +58,41 @@
 	<%= set_tab_navigation(cup_link(@cup, set_tab_navigation_active('cup_show'))) if is_single_cup %>
 	
 
-	<% if has_escuadras %>			
-	<dd class="<%= get_active('escuadra_index') %>"><%=  link_to(label_name(:escuadras), escuadras_url(:id => @cup)) %></dd>		
-	<dd class="<%= get_active('game_index') %>"><%= link_to(label_name(:group_stage) , games_url(:id => @cup)) %>	</dd>
-	<dd class="<%= "#{get_active('game_list')}"%>"><%= link_to(label_name(:group_round) , list_games_path(:id => @cup)) %></dd>
+	<% if has_escuadras %>	
 	
+		<%= set_tab_navigation(link_to(label_name(:escuadras), escuadras_url(:id => @cup), set_tab_navigation_active('escuadra_index'))) %>		
+		<%= set_tab_navigation(link_to(label_name(:group_stage), games_url(:id => @cup), set_tab_navigation_active('game_index'))) %>
+		<%= set_tab_navigation(link_to(label_name(:group_round), list_games_path(:id => @cup), set_tab_navigation_active('game_list'))) %>
+
+
 	<% if @game and get_controller_action != 'game_new' %>
-	<dd class="<%= "#{get_active('game_edit')}"  "#{get_active('game_set_score')}" %>">
-		<%= item_name_link(@game) %>
-	</dd>
+	
+	<%= set_tab_navigation(item_name_link(@game, set_tab_navigation_active(the_game_active))) %>
+	
+	<!-- <dd class="<%#= "#{get_active('game_edit')}"  "#{get_active('game_set_score')}" %>">
+		<%#= item_name_link(@game) %>
+	</dd> -->
 	<% end %>
 	
-	<dd class="<%= "#{get_active('standing_show')}#{get_active('standing_index')}" %>">
-		<%= link_to(label_name(:scorecards) , standings_path(:id => @cup)) if @cup.has_standing %>
-	</dd>
+	<%= set_tab_navigation(link_to(label_name(:scorecards), standings_path(:id => @cup), set_tab_navigation_active('standing_index'))) if @cup.has_standing %>
+	
+	
+	<!-- <dd class="<%#= "#{get_active('standing_show')}#{get_active('standing_index')}" %>">
+		<%#= link_to(label_name(:scorecards) , standings_path(:id => @cup)) if @cup.has_standing %>
+	</dd> -->
 	
 	<% if @cup.official %>
-	<dd class="<%= get_active('cast_list_gues') %>">
-		<%=  link_to(label_name(:cast_right_guess) , list_guess_casts_path(:id => @cup)) %>
+	<%= set_tab_navigation(link_to(label_name(:cast_right_guess), list_guess_casts_path(:id => @cup), set_tab_navigation_active('cast_list_gues'))) %>
+	<%= set_tab_navigation(link_to(label_name(:cast_right_guess_all), show_all_standings_path(:id => @cup), set_tab_navigation_active('standing_show_all'))) %>
+	
+	<!-- <dd class="<%#= get_active('cast_list_gues') %>">
+		<%#=  link_to(label_name(:cast_right_guess) , list_guess_casts_path(:id => @cup)) %>
 	</dd>
-	<dd class="<%= get_active('standing_show all') %>">
-		<%=  link_to(label_name(:cast_right_guess_all) , show_all_standings_path(:id => @cup)) %>
-	</dd>	
+	<dd class="<%#= get_active('standing_show all') %>">
+		<%#=  link_to(label_name(:cast_right_guess_all) , show_all_standings_path(:id => @cup)) %>
+	</dd> -->
+	
+		
 	<% end %>
 	
 	<% end %>

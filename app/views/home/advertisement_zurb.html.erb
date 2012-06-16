@@ -4,14 +4,11 @@
 %> 
 
 <div class="row">
-
-  <%= get_secondary_navigation %>
-
 	<div class="twelve column">   
 
-		<h2 class="title"><%#= get_collection_label(@items) %></h2>
+		<%= set_title_class(the_label, 'classified') %>
 
-		<div class="inner">
+		<!-- <div class="inner"> -->
 
 			<table>
 
@@ -29,9 +26,9 @@
 			
 			</table>
 
-			<%#= render :partial => 'shared/action_bar', :locals => { :collection => @classified } %>
+			
 
-		</div>
+		<!-- </div> -->
 	</div>
 </div>
 

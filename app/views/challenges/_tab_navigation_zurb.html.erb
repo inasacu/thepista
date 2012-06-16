@@ -1,11 +1,16 @@
 <% 	
 	get_first_active ||=""
 	get_first_active = get_active("#{get_the_controller}_#{get_the_action}") if is_controller('challenge') and is_action('index') 
-	is_cast_edit = get_active("#{get_the_controller}_#{get_the_action}") if is_controller('cast') and is_action('edit')
+	is_cast_edit = get_active("#{get_the_controller}_#{get_the_action}") if 
+	is_cast_edit = is_controller('cast') and is_action('edit')
 	
 	the_label = "" 
-	the_controller = ['challenges', 'cast']	
-	the_action = ['show', 'edit', 'challenge list', 'show list', "item list", "item complete"]
+	# the_controller = ['challenges', 'cast']	
+	# the_action = ['show', 'edit', 'challenge list', 'show list', "item list", "item complete"]
+	
+	the_controller_action = ['challenge_show','challenge_edit','challenge_challenge_list','challenge_show_list','challenge_item_list','challenge_item_complete',
+							'cast_index', 'cast_show', 'cast_edit', 'cast_list', 'cast_challenge_list', 'cast_show_list', 'cast_item_list', 'cast_item_complete',
+							'cast_list_guess_user', 'standing_show','standing_show_list' ]
 
 	is_new_challenge = (get_controller_action =='challenge_new' or get_controller_action == 'challenge_create')
 	is_not_new_item = !is_new_challenge
@@ -22,6 +27,13 @@
 	get_first_active ||=""
 	has_escuadras = false 
 	is_not_new_item = !is_action('new')
+	
+	the_standing_tab = ['standing_show','standing_show_list']
+	if the_standing_tab.include?(get_controller_action)
+		the_standing_tab = get_controller_action 
+	else
+		the_standing_tab = 'standing_show'
+	end
 %>
 
 
@@ -40,35 +52,25 @@
 	<%= set_tab_navigation(challenge_link(@challenge, set_tab_navigation_active('challenge_show'))) if is_single_challenge %>
 
 <% 
-	if the_action.include?(get_the_action) or the_controller.include?(get_the_controller)
+	# if the_action.include?(get_the_action) or the_controller.include?(get_the_controller)
+	
+	if the_controller_action.include?(get_controller_action)
 		if is_current_member_of(@challenge) 
 %>		
+		
+	<%= set_tab_navigation(	link_to(label_name(:casts_index) , casts_path(:id => @challenge, :user_id => current_user), set_tab_navigation_active('cast_index')))  %>
+	<%= set_tab_navigation(	link_to(label_name(:casts_list) , list_casts_path(:id => @challenge), set_tab_navigation_active('cast_list')))  %>
 
-		<dd class="<%= get_active('challenge_challenge_list') %>">
-				<%=  link_to(label_name(:participants) , challenge_list_path(:id => @challenge)) %>
-		</dd>
-		<dd class="<%= get_active('cast_index') %>">
-				<%=  link_to(label_name(:casts_index) , casts_path(:id => @challenge, :user_id => current_user)) %>
-		</dd>
-		<dd class="<%= get_active('cast_list') %>">
-				<%=  link_to(label_name(:casts_list) , list_casts_path(:id => @challenge)) %>
-		</dd>
-		<dd class="<%= get_active('cast_edit') %>">
-					<%= link_to label_name(:casts_edit), edit_cast_path(:id => @challenge) if is_cast_edit %>
-		</dd>
+	<% if is_current_manager_of(@challenge) and DISPLAY_FREMIUM_SERVICES %>
 
-			<% if is_current_manager_of(@challenge) %>
-			<!-- <dd class="<%#= get_active('fee_item_list') %>">
-				<%#= link_to(label_name(:fees), item_list_fees_path(:id => challenge, :item => challenge.class.to_s)) %>
-			</dd> -->
-			<!-- <dd class="<%#= get_active('fee_item_complete') %>">
-				<%#= link_to(label_name(:fees_due), item_list_fees_path(:id => challenge, :item => challenge.class.to_s)) %>
-			</dd> -->
-			<% end -%>	
+	<%#= set_tab_navigation(	link_to(label_name(:fees) , item_list_fees_path(:id => @challenge, :item => @challenge.class.to_s), set_tab_navigation_active('fee_item_list')))  %>
+	<%#= set_tab_navigation(	link_to(label_name(:fees_due) , item_list_fees_path(:id => @challenge, :item => @challenge.class.to_s), set_tab_navigation_active('fee_item_complete')))  %>
 
-		<dd class="<%= get_active('standing_show') %><%= get_active('standing_show_list') %>">
-				<%= link_to(label_name(:points_full) , show_list_standings_path(:id => @challenge)) %>
-		</dd>
+	<% end -%>	
+
+	<%= set_tab_navigation(	link_to(label_name(:cast_right_guess) , list_guess_user_casts_path(:id => @challenge), set_tab_navigation_active('cast_list_guess_user')))  %>
+	<%= set_tab_navigation(	link_to(label_name(:points_full) , show_list_standings_path(:id => @challenge), set_tab_navigation_active(the_standing_tab)))  %>
+
 <%		
 		end
 	end 

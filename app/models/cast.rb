@@ -71,12 +71,26 @@ class Cast < ActiveRecord::Base
     self.game.starts_at - 1.day
   end
   
+  def self.latest_items(items, user)
+		self.where("archive = false and create_at != updated_at").each do |item|
+			item << item
+		end
+		
+    # find(:all, :select => "distinct matches.id, matches.user_id, matches.schedule_id, matches.type_id, types.name as type_name, matches.status_at as created_at", 
+    #      :joins => "left join groups_users on groups_users.user_id = matches.user_id left join types on types.id = matches.type_id left join schedules on schedules.id = matches.schedule_id",    
+    #      :conditions => ["schedules.played = false and groups_users.group_id in (?) and 
+    #           age(matches.status_at, matches.created_at) > '00:00:00' and matches.status_at != matches.created_at and matches.status_at >= ?", user.groups, LAST_THREE_DAYS]).each do |item| 
+    #   items << item
+    # end
+    return items 
+  end
+
   def self.current_challenge(users, challenge, page = 1)
 		self.where("user_id in (?) and challenge_id = ? and casts.home_score is not null and casts.away_score is not null", users, challenge).joins("left join games on games.id = casts.game_id left join users on users.id = casts.user_id").page(page).order('games.jornada, users.name')
   end
   
   def self.current_casts(user, challenge)
-    find.where("casts.user_id = ? and casts.challenge_id = ?", user, challenge).joins("LEFT JOIN games on games.id = casts.game_id").order('games.jornada')
+    self.where("casts.user_id = ? and casts.challenge_id = ?", user, challenge).joins("LEFT JOIN games on games.id = casts.game_id").order('games.jornada')
   end
   
   def self.guess_casts(users, challenges, page = 1)
@@ -84,7 +98,7 @@ class Cast < ActiveRecord::Base
   end
     
   def self.ready_casts(user, challenge)
-    find.where("user_id = ? and challenge_id = ? and home_score is not null and away_score is not null", user.id, challenge.id).select("count(*) as total").first()
+    self.where("user_id = ? and challenge_id = ? and home_score is not null and away_score is not null", user.id, challenge.id).select("count(*) as total").first()
   end
   
   def self.save_casts(the_cast, cast_attributes)
@@ -119,36 +133,44 @@ class Cast < ActiveRecord::Base
       unless cast.game.home_score.nil? or cast.game.away_score.nil? 
         unless cast.home_score.nil? or cast.away_score.nil? 
           
-          # points for single
-          if (cast.home_score.to_i == cast.game.home_score.to_i or cast.away_score.to_i == cast.game.away_score.to_i )
-            points = cast.game.points_for_single.to_i 
-          end
-          
-          # points for double
-          if (cast.home_score.to_i == cast.game.home_score.to_i and cast.away_score.to_i == cast.game.away_score.to_i )
-            points += cast.game.points_for_double.to_i 
-          end
-          
-          # points for draw
-          if (cast.home_score.to_i == cast.away_score.to_i and cast.game.home_score.to_i == cast.game.away_score.to_i )
-            points += cast.game.points_for_draw.to_i 
-          end
-          
-          # points for goal difference
-          if (cast.home_score.to_f - cast.away_score.to_f == cast.game.home_score.to_f - cast.game.away_score.to_f )
-            points += cast.game.points_for_goal_difference.to_i 
-          end
+					is_exact_score = false
 
-          # points for goal total
-          if (cast.home_score.to_i + cast.away_score.to_i == cast.game.home_score.to_i + cast.game.away_score.to_i )
-            points += cast.game.points_for_goal_total.to_i 
-          end
-          
-          # points for winner
-          if (cast.home_score.to_i < cast.away_score.to_i and cast.game.home_score.to_i < cast.game.away_score.to_i) or
-              (cast.home_score.to_i > cast.away_score.to_i and cast.game.home_score.to_i > cast.game.away_score.to_i)
-            points += cast.game.points_for_winner.to_i 
-          end
+					# points for double
+					if (cast.home_score.to_i == cast.game.home_score.to_i and cast.away_score.to_i == cast.game.away_score.to_i )
+					  points = cast.game.points_for_single.to_i
+					  points += cast.game.points_for_double.to_i 
+					  points += cast.game.points_for_draw.to_i 
+					  points += cast.game.points_for_goal_difference.to_i 
+					  points += cast.game.points_for_goal_total.to_i 
+					  points += cast.game.points_for_winner.to_i 
+					  is_exact_score = true
+					end
+
+					# points for single
+					if (cast.home_score.to_i == cast.game.home_score.to_i or cast.away_score.to_i == cast.game.away_score.to_i )
+					  points = cast.game.points_for_single.to_i unless is_exact_score
+					end
+
+					# points for draw
+					if (cast.home_score.to_i == cast.away_score.to_i and cast.game.home_score.to_i == cast.game.away_score.to_i )
+					  points += cast.game.points_for_draw.to_i unless is_exact_score
+					end
+
+					# points for goal difference
+					if (cast.home_score.to_f - cast.away_score.to_f == cast.game.home_score.to_f - cast.game.away_score.to_f )
+					  points += cast.game.points_for_goal_difference.to_i unless is_exact_score
+					end
+
+					# points for goal total
+					if (cast.home_score.to_i + cast.away_score.to_i == cast.game.home_score.to_i + cast.game.away_score.to_i )
+					  points += cast.game.points_for_goal_total.to_i unless is_exact_score
+					end
+
+					# points for winner
+					if (cast.home_score.to_i < cast.away_score.to_i and cast.game.home_score.to_i < cast.game.away_score.to_i) or
+					    (cast.home_score.to_i > cast.away_score.to_i and cast.game.home_score.to_i > cast.game.away_score.to_i)
+					  points += cast.game.points_for_winner.to_i unless is_exact_score
+					end
           
         end
       end

@@ -1,14 +1,14 @@
 <% 
+	the_label = label_name(:challenges)
 	the_challenge = sanitize(@challenge.name)
 	content_for(:title, the_challenge)
 %>
 <div class="row">
+  <div class="twelve column">
 
-  <div class="twelve column">   
-  
-    <h2 class="title"><%= I18n.t(:has_challenge_users, :count => @total) %></h2>
+	<%= set_title_class(the_label, 'challenge') %>
 	
-    <div class="inner">
+    <!-- <div class="inner"> -->
 	
       <table>
 	  
@@ -41,9 +41,9 @@
         <% end -%>
 		
       </table>
-	  <%= render 'shared/action_bar_zurb', :locals => { :collection => @users } %>
 	  
-    </div>
+	  
+    <!-- </div> -->
 	
   </div>
   

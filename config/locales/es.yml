@@ -86,6 +86,7 @@ es:
      casts_archive_list:  Pronósticos anteriores
      casts_create:  Nuevo pronóstico
      casts_destroy:  Borra tu pronóstico
+     casts_group_matches:  Grupo
      casts_index: Mis pronósticos
      casts_index_option: Opciones 
      casts_list:  Todos los pronósticos
@@ -671,6 +672,10 @@ es:
      group_b:  Segundo equipo  
      group_fee: Tasa de equipo
      group_id: Equipo
+     group_score:  Gol
+     invite_score:  Gol
+     home_score:  Gol
+     away_score:  Gol
      group_stage:  Resultados
      group_stage_advance:  Pasan a siguiente fase
      group_stage_advance_description:  Total de equipos que pasan a siguiente fase.

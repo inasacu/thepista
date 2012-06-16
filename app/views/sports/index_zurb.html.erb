@@ -4,14 +4,13 @@ content_for(:title, the_label)
 %>
 
 <div class="row">
-
-	<%= get_secondary_navigation %>  
-
 	<div class="twelve column">   
 
-		<h2 class="title"><%= get_collection_label(@sports) %></h2>
+<%= get_secondary_navigation %>
 
-		<div class="inner">
+		<%= set_title_class(the_label, 'sport') %>
+		
+		<!-- <div class="inner"> -->
 
 			<table>
 
@@ -44,9 +43,9 @@ content_for(:title, the_label)
 
 			</table>
 
-			<%= render 'shared/action_bar_zurb', :collection => @sport %>
+		
 
-		</div>
+		<!-- </div> -->
 
 	</div>
 

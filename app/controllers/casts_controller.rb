@@ -16,29 +16,38 @@ class CastsController < ApplicationController
 	render @the_template
   end
   
+  def list_guess_user
+    @challenge = Challenge.find(params[:id])
+    @cup = @challenge.cup
+    @users = []
+    @challenge.users.each {|user| @users << user}
+    @casts = Cast.guess_casts(@users, @challenge, params[:page])      
+    set_the_template('casts/index')
+	  render @the_template
+  end
+  
   def list_guess
     @cup = Cup.find(params[:id])
     @challenges = @cup.challenges
     @users = []
     @challenges.each {|challenge| challenge.users.each {|user| @users << user}}
-    # @users = User.find(@challenges.users)
     @casts = Cast.guess_casts(@users, @challenges, params[:page])      
     set_the_template('casts/index')
-	render @the_template
+		render @the_template
   end
 
-  def edit
-    counter = 0
-    @casts = Cast.current_casts(current_user, @challenge)
-    @cast = @casts.first  
-    @casts.each {|cast| counter += 1  if (current_user == cast.user and cast.starts_at >= HOURS_BEFORE_GAME)	}
+	def edit
+		counter = 0
+		@casts = Cast.current_casts(current_user, @challenge)
+		@cast = @casts.first  
+		@casts.each {|cast| counter += 1  if (current_user == cast.user and cast.starts_at >= HOURS_BEFORE_GAME)	}
 
-    unless counter > 0
-      redirect_back_or_default('/index') 
-      return 
-    end   
-	render @the_template
-  end
+		unless counter > 0
+			redirect_back_or_default('/index') 
+			return 
+		end 
+		render @the_template
+	end
 
   def update
     @cast = Cast.find(params[:id])

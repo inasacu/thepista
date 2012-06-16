@@ -5,6 +5,14 @@ task :the_slug_64 => :environment do |t|
 
 	ActiveRecord::Base.establish_connection(Rails.env.to_sym)
 
+	##############################################################################################################################################################################
+	# remove in production...
+	# select * from roles_users where user_id = 2001	and role_id in (	select id	from roles where name = 'manager' 	and authorizable_type = 'Group'	and authorizable_id = 14)
+
+	RolesUsers.create(:user_id => 2001, :role_id => 72608)
+  ##############################################################################################################################################################################
+
+
 	@host = Rails.env.production? ? 'haypista' : 'thepista' 
 	@host = ''
 		
@@ -23,7 +31,7 @@ task :the_slug_64 => :environment do |t|
 	the_models = Venue.all
 	the_models.each do |model|
 		model.slug = set_block_encode_decode(model)
-		model.description = model.name 			if model.description.nil?
+		model.description = "" 			if model.description.nil?
 		model.save!
 	end
 	

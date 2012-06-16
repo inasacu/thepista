@@ -6,13 +6,11 @@ if current_user
 	block_model = ['cup', 'challenge']
 %> 
 	<div class="row">
-		
-		<%= get_secondary_navigation %>
-		
+
 		<div class="twelve column">   
-			<%= set_title_class(the_label) %>
+			<%#= set_title_class(the_label) %>
 			
-			<div class="inner">
+			<!-- <div class="inner"> -->
 				<%= get_class_table_id_controller %>
 			
 				<% @item_results.each do |item| 
@@ -24,7 +22,7 @@ if current_user
 				</table>
 	    	</div>
 			
-			</div>
+			<!-- </div> -->
 		</div>
 	</div>
 	

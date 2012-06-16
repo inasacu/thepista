@@ -1,0 +1,88 @@
+<% 	
+	has_standings = false
+	@standings.each {|standing| has_standings = true }	
+	the_label = @cup.name
+	the_label = label_name(:standings)
+	content_for(:title, the_label)
+	
+	the_challenges = ['standing_list', 'standing_show_list']	
+	is_challenge_standing = the_challenges.include?("#{get_the_controller}_#{get_the_action}".gsub(' ', '_')) 
+	all_results = is_action('show all')
+	all_rank = 0
+	
+	final_played ||= false
+	the_game = Game.final_game(@cup)
+	final_played = the_game.played unless (the_game.nil? or the_game.blank?)
+	group_stage = 'Z'
+	
+	if has_standings
+%>
+
+<div class="row">
+	<div class="twelve column">  
+
+		<%= render('shared/index_total_header_zurb', :items => @standings) %>
+
+		<div class="row">
+			<div class="twelve columns"> 
+
+				<table>
+
+					<% @standings.each do |standing| 
+
+							standing.ranking = (all_rank+=1) if all_results
+							is_escuadra = (standing.item_type == "Escuadra") 
+
+							unless (group_stage == standing.group_stage_name)
+								group_stage = standing.group_stage_name 
+					-%>
+								
+								<thead>
+								<tr>             
+
+									<%= set_content_tag_safe(:th, is_escuadra ? label_name(:group_stage_name) : label_name(:ranking) ) %>
+									<%= set_content_tag_safe(:th, "&nbsp;") %>
+									<%= set_content_tag_safe(:th, I18n.t(:name)) %>
+									<%= content_tag_safe(:th, label_name(:points), label_name(:points_full), 'center') %>
+
+									<% if is_escuadra %>
+
+									<%= content_tag_safe(:th, label_name(:games_won), label_name(:games_won_full), 'center')  %>
+									<%= content_tag_safe(:th, label_name(:games_tied), label_name(:games_tied_full), 'center')  %>
+									<%= content_tag_safe(:th, label_name(:games_lost), label_name(:games_lost_full), 'center') %>
+
+
+									<%= content_tag_safe(:th, label_name(:goals_for_true), label_name(:goals_for_full_true), 'center') %>
+									<%= content_tag_safe(:th, label_name(:goals_against_true), label_name(:goals_against_full_true), 'center') %>	
+									<%= content_tag_safe(:th, label_name(:goal_difference_true), label_name(:goal_difference_full_true), 'center') %>
+									<%= content_tag_safe(:th, label_name(:games_played), label_name(:games_played_full), 'center') %>
+
+									<% else %>
+
+										<% 4.times.each do |x|  %>		
+										<%= set_content_tag_safe(:th, "&nbsp;") %>		
+										<% end %>
+
+									<% end %>
+
+								</tr>
+								</thead>
+								
+								
+
+							<% end %>
+
+							<tbody>
+								<%= render 'standings/standing_zurb', :standing => standing %>
+							</tbody>
+
+						<% end %>
+
+				</table>
+
+			</div>
+		</div>
+
+	</div>	
+</div>
+<% end %>

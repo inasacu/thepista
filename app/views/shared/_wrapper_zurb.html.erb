@@ -4,20 +4,20 @@
 	login_controller =['user_sessions', 'users', ''] 
 	login_session = (login_controller.include?(controller.controller_name) and login_action.include?(controller.action_name)) 
 	logout =  !current_user and is_controller('home') and is_action('index') 
-%>
 
-<%
 	the_controller = get_the_controller
 	the_sidebar = "#{the_controller}s"
+	the_sidebar_label = label_name(:options)
 	
 	case the_controller
 	when 'home'
 		the_sidebar = "#{get_the_controller}"
+		the_sidebar_label = label_name(:get_up_and_running)
 		
-	when 'forum', 'match'
+	when 'match'
 		the_sidebar = "schedules"
 		
-	when 'blog', 'fee', 'payment', 'classified'
+	when 'fee', 'payment', 'classified'
 		the_sidebar = "users" if @user
 		the_sidebar = "groups" if @group
 		the_sidebar = "challenges" if @challenge
@@ -29,12 +29,66 @@
 	when 'invitation'
 		the_sidebar = 'messages'	
 	
-	when 'escuadra', 'cup', 'game', 'standing'
+	when 'escuadra', 'cup', 'standing'
 		the_sidebar = 'cups'
+		the_sidebar = nil if is_controller_action('cup_index')
 		
 	when 'challenge', 'cast'
 		the_sidebar = 'challenges'
+	
+	when 'game'
+		the_sidebar = nil
 	end
+	
+	the_sidebar = 'challenges' if get_controller_action == 'standing_show_list'
+	the_sidebar = 'cups' if get_controller_action == 'cast_list_gues'
+	the_sidebar = 'cups' if get_controller_action == 'game_index' or get_controller_action == 'game_list'
+	
+	
+	# case for pagination display
+	if get_controller_action == 'group_team_list'
+		@the_collection = @users if @users
+	end
+
+	if get_controller_action == 'group_list' or get_controller_action == 'group_index'
+		@the_collection = @groups if @groups
+	end
+
+	if get_controller_action == 'schedule_list' or get_controller_action == 'schedule_index'
+		@the_collection = @schedules if @schedules
+	end
+
+	if get_controller_action == 'group_team_list'
+		@the_collection = @users if @users
+	end
+
+	if get_controller_action == 'cup_index'
+		@the_collection = @cups if @cups
+	end
+
+	if get_controller_action == 'escuadra_index'
+		@the_collection = @escuadras if @escuadras
+	end	
+
+	if get_controller_action == 'game_index'
+		@the_collection = @games if @games
+	end	
+
+	the_controller_action = ['cast_index', 'challenge_challenge_list','cast_list', 'cast_list_guess_user']
+	if the_controller_action.include?(get_controller_action)
+		@the_collection = @casts if @casts
+	end
+	
+	# :collection => @challenges if @challenges 
+	# :collection => @classified if @classified 
+	# :collection => @cups if @cups 
+	# :collection => @games if @games 
+	# :collection => @invitation if @invitation 
+	# :collection => @markers if @markers 
+	# :collection => @role if @role 
+	# :collection => @schedules if @schedules 
+	# :collection => @sport if @sport 
+	# :collection => @venues if @venues 
 %>
 
 
@@ -42,6 +96,17 @@
 
 	<div class="eight columns">
 		<%= yield %>
+
+		<%= render 'shared/pagination_zurb', :collection => @the_collection if @the_collection %>
+		
+		<% unless is_action('new') %>
+		
+		<%= render 'utilities/disqus_display', :the_item => @group if @group %>
+		<%= render 'utilities/disqus_display', :the_item => @schedule if @schedule %>
+		<%= render 'utilities/disqus_display', :the_item => @cup if @cup %>
+		<%= render 'utilities/disqus_display', :the_item => @challenge if @challenge %>
+		
+		<% end %>
 	</div>
 
 
@@ -50,8 +115,18 @@
   	<div class="four columns">
 	<!-- SIDEBAR BEGIN -->
 	
-		<%#= render "shared/search_zurb" if DISPLAY_SEARCH_OPTION %>			
-		<%= render "#{the_sidebar}/sidebar_zurb" %>				
+		<%#= render "shared/search_zurb" if DISPLAY_SEARCH_OPTION %>	
+		
+		<% unless the_sidebar.nil? %>
+		<%= set_title_class(the_sidebar_label) %>
+		<hr/>
+				
+		<%= render "#{the_sidebar}/sidebar_zurb"  %>		
+		
+		<hr/>
+		<br/>		
+		
+		<% end %>
 		
 	<!-- SIDEBAR END -->
   	</div> 

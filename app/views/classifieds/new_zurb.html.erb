@@ -1,8 +1,0 @@
-<% 
-	the_group = Group.find(@classified.table_id) 
-
-	the_label = "#{control_action_label} #{label_name(:from)} #{group_link(the_group)} " 
-	@item = @classified
-%>
-
-<%= render 'shared/new_edit_multipart_zurb', :item => @item, :the_label => the_label %>
