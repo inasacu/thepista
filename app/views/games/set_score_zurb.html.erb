@@ -3,35 +3,33 @@
 	the_button_class = "small white nice button radius"
 %>
 
-<%#= set_title_class(the_label) %>
-<!-- <hr/> -->
 
 <div class="row">
-	
 	<div class="twelve column">   
 
+			<%= form_for (@game), :url => game_path(@game), :html => { :class => :form } do |the_form| -%>
 
-		
-      <%= form_for (@game), :url => game_path(@game), :html => { :class => :form } do |the_form| -%>
+			<table>
+			<tbody>
+				<tr>
+					<td><%= escuadra_image_link_smaller @game.home %>&nbsp;&nbsp;<%= escuadra_link @game.home %></td>
+					<td><%= set_form_text_field(the_form, :home_score, 'smaller input-text', true) %></td>	
+					<%= set_content_tag_safe(:td, " vs. ") %>
+					<td><%= set_form_text_field(the_form, :away_score, 'smaller input-text', true) %></td>
+					<td><%= escuadra_image_link_smaller @game.away %>&nbsp;&nbsp;<%= escuadra_link @game.away %></td>
+				</tr>
+			</tbody>
+			</table>
 			
-			<%= escuadra_image_link_smaller @game.home %>&nbsp;&nbsp;<%= escuadra_link @game.home %>
-			
-			<%= set_form_text_field(the_form, :home_score, 'small input-text', true) %>&nbsp;&nbsp;vs.&nbsp;&nbsp;
-			<%= set_form_text_field(the_form, :away_score, 'small input-text', true) %>&nbsp;&nbsp;
-			
-			<%= escuadra_image_link_smaller @game.away %>&nbsp;&nbsp;<%= escuadra_link @game.away %>
 		
 
-		
-		<br/><br/>
-		<%= submit_tag(label_name(:save), :class => the_button_class) %> <%= label_name(:or) %> 
-		<%= link_to label_name(:cancel), games_url(:id => @cup) %>
-			
-		
-      <% end -%>
+			<br/><br/>
+			<%= submit_tag(label_name(:save), :class => the_button_class) %> <%= label_name(:or) %> 
+			<%= link_to label_name(:cancel), games_url(:id => @cup) %>
 
+
+			<% end -%>
 
 	</div>
-
 </div>
 

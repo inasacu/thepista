@@ -168,13 +168,6 @@ Thepista::Application.routes.draw do
 		end
 	end
 
-	resources :classifieds do
-		collection do
-			get :sent
-			get :trash
-		end
-	end
-
 	resources :standings do
 		collection do
 			get :list

@@ -270,9 +270,6 @@ module ApplicationHelper
 		@current_messages ||= Message.current_messages(current_user)
 	end
 
-	def upcoming_classifieds
-		@upcoming_classifieds ||= Classified.upcoming_classifieds(session[:classified_hide_time])
-	end
 
 	def year_range( start_year = Time.zone.now.year )
 		[start_year, Time.zone.now.year].sort.uniq.join('-')
@@ -542,7 +539,7 @@ module ApplicationHelper
 		when 'cup', 'game', 'escuadra'
 			the_cup = "active"
 
-		when 'group', 'classified'
+		when 'group'
 			the_group = "active"
 
 		when 'user'

@@ -63,13 +63,7 @@ SitemapGenerator::Sitemap.add_links do |sitemap|
     end
   end
   
-  # add classifieds
-  Classified.find_in_batches(:batch_size => 1000) do |classifieds|
-    classifieds.each do |classified|
-      sitemap.add classified_path(classified), :lastmod => classified.updated_at, :changefreq => 'weekly'
-    end
-  end
-  
+ 
   # add escuadras
   Escuadra.find_in_batches(:batch_size => 1000) do |escuadras|
     escuadras.each do |escuadra|

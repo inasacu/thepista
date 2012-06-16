@@ -107,7 +107,7 @@ module HomeHelper
 							item_group_link = item_name_link(group)
 
 							the_icon = group_avatar_image_link(teammate) if teammate.class.to_s == "Group"
-							the_icon = classified_image_link_small(teammate, "icons/anuncio-deportivo.png")
+							# the_icon = classified_image_link_small(teammate, "icons/anuncio-deportivo.png")
   			end
 
   	when "User"

@@ -45,7 +45,6 @@ class Group < ActiveRecord::Base
 
   has_and_belongs_to_many :users,           :join_table => "groups_users", :conditions => "users.archive = false", :order => "name"
 
-  has_many      :classifieds,       :conditions => "classifieds.archive = false"
   has_many      :schedules,         :conditions => "schedules.archive = false"
   has_many      :fees,              :conditions => "fees.archive = false"   
   has_many      :payments,          :conditions => "payments.archive = false"

@@ -140,6 +140,10 @@ class GamesController < ApplicationController
     return
   end
 
+	def set_score
+		render @the_template
+	end
+	
   private
   def has_manager_access
     unless is_current_manager_of(@cup)

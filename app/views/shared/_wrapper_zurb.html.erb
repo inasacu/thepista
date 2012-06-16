@@ -17,7 +17,7 @@
 	when 'match'
 		the_sidebar = "schedules"
 		
-	when 'fee', 'payment', 'classified'
+	when 'fee', 'payment'
 		the_sidebar = "users" if @user
 		the_sidebar = "groups" if @group
 		the_sidebar = "challenges" if @challenge
@@ -80,7 +80,6 @@
 	end
 	
 	# :collection => @challenges if @challenges 
-	# :collection => @classified if @classified 
 	# :collection => @cups if @cups 
 	# :collection => @games if @games 
 	# :collection => @invitation if @invitation 
@@ -89,6 +88,8 @@
 	# :collection => @schedules if @schedules 
 	# :collection => @sport if @sport 
 	# :collection => @venues if @venues 
+	
+	discard_disqus_display = ['schedule_new', 'schedule_edit', 'cast_edit']
 %>
 
 
@@ -98,15 +99,18 @@
 		<%= yield %>
 
 		<%= render 'shared/pagination_zurb', :collection => @the_collection if @the_collection %>
+
 		
-		<% unless is_action('new') %>
+		<% unless discard_disqus_display.include?(get_controller_action) %>
 		
-		<%= render 'utilities/disqus_display', :the_item => @group if @group %>
-		<%= render 'utilities/disqus_display', :the_item => @schedule if @schedule %>
-		<%= render 'utilities/disqus_display', :the_item => @cup if @cup %>
-		<%= render 'utilities/disqus_display', :the_item => @challenge if @challenge %>
+			<%#= render 'utilities/disqus_display', :the_item => @group if @group %>
+			<%#= render 'utilities/disqus_display', :the_item => @cup if @cup %>
+		
+			<%= render 'utilities/disqus_display', :the_item => @schedule if @schedule %>
+			<%= render 'utilities/disqus_display', :the_item => @challenge if @challenge %>
 		
 		<% end %>
+		
 	</div>
 
 

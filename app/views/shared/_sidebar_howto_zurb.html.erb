@@ -1,10 +1,5 @@
-<%# the_label = label_name(:get_up_and_running) %>
-
+<div class="row">
 <div class="twelve columns">
-
-	<%#= set_content_tag(the_label) %>
-
-	<!-- <hr></hr> -->
 
 	<%= set_image_and_link(option_link('group'), 'group') %>
 	<%= set_image_and_link(link_to(label_name(:create_join_group), list_groups_url), 'user_add') %>
@@ -15,7 +10,7 @@
 	<%= set_image_and_link(option_link('auth'), 'linkedin') if @no_linkedin_profile %>
 	<% end %>
 	
-	<%= set_image_and_link(link_to(label_name(:create_new_classified), groups_url), 'classified') if DISPLAY_FREMIUM_SERVICES %>
+	<%= set_image_and_link(link_to(label_name(:create_new_challenge), groups_url), 'classified') if DISPLAY_FREMIUM_SERVICES %>
 	<%= set_image_and_link((mail_to CONTACT_RECIPIENT, label_name(:help)), 'help') 	if DISPLAY_FREMIUM_SERVICES %>
 
 	<% if DISPLAY_FREMIUM_SERVICES %>
@@ -24,7 +19,6 @@
 	<%= set_image_and_link(link_to(label_name(:create_join_challenge), challenges_url), 'challenge_join') %>
 	<%= set_image_and_link(option_link('marker'), 'marker') %>
 	<% end -%>
-
-	<!-- <hr></hr> -->
-
+	
+</div>
 </div>

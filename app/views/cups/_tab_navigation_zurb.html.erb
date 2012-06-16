@@ -4,7 +4,7 @@
 
 	the_label = "" 
 	the_action = ['show','edit', 'team list', 'schedule list', 'cup current list', 'cup previous list']
-	the_controller = ['classified', 'fee', 'payment', 'schedule']
+	the_controller = ['fee', 'payment', 'schedule']
 
 	is_new_cup = (get_controller_action =='cup_new' or get_controller_action == 'cup_create')
 	is_not_new_item = !is_new_cup
@@ -60,7 +60,7 @@
 
 	<% if has_escuadras %>	
 	
-		<%= set_tab_navigation(link_to(label_name(:escuadras), escuadras_url(:id => @cup), set_tab_navigation_active('escuadra_index'))) %>		
+		<%#= set_tab_navigation(link_to(label_name(:escuadras), escuadras_url(:id => @cup), set_tab_navigation_active('escuadra_index'))) %>		
 		<%= set_tab_navigation(link_to(label_name(:group_stage), games_url(:id => @cup), set_tab_navigation_active('game_index'))) %>
 		<%= set_tab_navigation(link_to(label_name(:group_round), list_games_path(:id => @cup), set_tab_navigation_active('game_list'))) %>
 
