@@ -40,7 +40,7 @@ class CastsController < ApplicationController
 		counter = 0
 		@casts = Cast.current_casts(current_user, @challenge)
 		@cast = @casts.first  
-		@casts.each {|cast| counter += 1  if (current_user == cast.user and cast.starts_at >= HOURS_BEFORE_GAME)	}
+		@casts.each {|cast| counter += 1  if (current_user == cast.user and cast.cast_before_game)	}
 
 		unless counter > 0
 			redirect_back_or_default('/index') 
@@ -58,8 +58,8 @@ class CastsController < ApplicationController
       return
     end
     
-    if @cast.update_attributes(params[:cast])
-      Cast.save_casts(@cast, params[:cast][:cast_attributes]) if params[:cast][:cast_attributes]
+		if params[:cast][:cast_attributes]
+      Cast.save_casts(@cast, params[:cast][:cast_attributes])
       Cast.calculate_standing(@cast)
 
       controller_successful_update

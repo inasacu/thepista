@@ -50,12 +50,12 @@ class GamesController < ApplicationController
       @game.jornada = 1
 
 			# default point values
-      @game.points_for_single = 0
-      @game.points_for_double = 15
-			@game.points_for_winner = 5
-			@game.points_for_draw = 3
-			@game.points_for_goal_difference = 2
-			@game.points_for_goal_total = 1
+      @game.points_for_single = POINTS_FOR_SINGLE
+      @game.points_for_double = POINTS_FOR_DOUBLE
+			@game.points_for_winner = POINTS_FOR_WINNER
+			@game.points_for_draw = POINTS_FOR_DRAW
+			@game.points_for_goal_difference = POINTS_FOR_GOAL_DIFFERENCE
+			@game.points_for_goal_total = POINTS_FOR_GOAL_TOTAL
     end
 
     # @previous_game = Game.find(:first, :conditions => ["id = (select max(id) from games where cup_id = ?) ", @cup.id])    
@@ -63,7 +63,7 @@ class GamesController < ApplicationController
 
     unless @previous_game.nil?
       @game.cup_id = @cup.id  
-      @game.concept = @previous_game.concept      
+      @game.name = @previous_game.name      
 
       @game.starts_at = @previous_game.starts_at + 1.days
       @game.ends_at = @previous_game.ends_at + 1.days
@@ -87,15 +87,16 @@ class GamesController < ApplicationController
 
   def create
     @game = Game.new(params[:game]) 
+		@game.reminder_at = @game.starts_at - 2.days
 
-    unless current_user.is_manager_of?(@game.cup)
+    unless is_current_manager_of(@game.cup)
       warning_unauthorized
       redirect_to cups_url
       return
     end
 
-    if @game.save 
-      flash[:notice] = I18n.t(:successful_create)
+    if @game.save 	
+      successful_create
       redirect_to games_path(:id => @game.cup)
       return
     else
@@ -104,7 +105,7 @@ class GamesController < ApplicationController
   end
 
   def edit
-    # set_the_template('games/new')
+    set_the_template('games/new')
     render @the_template
   end
 

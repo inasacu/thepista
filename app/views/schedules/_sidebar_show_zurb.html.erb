@@ -33,8 +33,6 @@
 
 <% if has_group %>
 
-<%#= set_title_class(the_label) %>
-<!-- <hr/> -->
 
 <div class="row">
 	<div class="twelve columns">
@@ -42,7 +40,6 @@
 		<% if is_group_member %>
 			<%= set_form_create_id_image_link(Message.new, :group_id, @group, :send_message_to) %>
 			<%= set_form_create_id_image_link(Invitation.new, :schedule_id, @schedule, :invitations_create_schedule) unless has_schedule_blank %>
-			<%#= option_image_link('classified') %><%#= link_to(label_name(:post_pre_match), forum_path(@schedule.forum, :schedule_id => @schedule)) %>
 			<%= set_image_and_link(link_to(label_name(:send_pre_match), new_message_path(:schedule_id => @schedule)), 'classified') unless has_been_played %>
 			<%= set_image_and_link(link_to(label_name(:send_pre_match), new_message_path(:schedule_id => @schedule)), 'schedule') unless has_been_played %>
 			<%= set_image_and_link(link_to(label_name(:send_scorecard), new_message_path(:scorecard_id => @schedule)), 'scorecard') if has_been_played %>

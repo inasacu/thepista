@@ -60,8 +60,8 @@ class StandingsController < ApplicationController
 			return
 		end
 
-		if @standing.update_attributes(params[:standing])
-			Standing.save_standings(@standing, params[:standing][:standing_attributes]) if params[:standing][:standing_attributes]
+		if params[:standing][:standing_attributes]
+			Standing.save_standings(@standing, params[:standing][:standing_attributes]) 
 
 			controller_successful_update
 			redirect_to standings_path(:id => @cup)

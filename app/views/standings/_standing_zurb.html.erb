@@ -14,7 +14,7 @@
 		
 	played = standing.wins.to_i + standing.draws.to_i + standing.losses.to_i
 	@stand = standing  
-	is_manager = current_user.is_manager_of?(@cup)
+	is_manager = is_current_manager_of(@cup)
 	
 	has_challenge = !standing.challenge_id.nil?
 	the_challenge = has_challenge ? h(standing.challenge.name) : ""

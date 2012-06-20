@@ -2,7 +2,7 @@
 
 the_label = is_action('index') ? label_name(:group_stage) : label_name(:group_round)
 content_for(:title, the_label)
-is_manager = current_user.is_manager_of?(@cup)	
+is_manager = is_current_manager_of(@cup)	
 
 new_or_existing = 'existing' 
 prefix = "cast[cast_attributes][]"
@@ -16,7 +16,7 @@ is_right_guess = is_action('list gues')
 		
 	@the_cast = cast
 	no_team = (cast.home_id.nil? or cast.away_id.nil?)  
-	can_edit = (current_user == cast.user and cast.starts_at >= HOURS_BEFORE_GAME and !cast.game.played?)	
+	can_edit = (current_user == cast.user and cast.cast_before_game and !cast.game.played?)	
 	
 	no_team = (cast.home_id.nil? or cast.away_id.nil?) 
 	no_ranking = (cast.home_ranking.nil? or cast.away_ranking.nil? or 

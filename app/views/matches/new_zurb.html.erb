@@ -12,51 +12,40 @@
 	the_second_label = "<p style='font-size:small;'>#{label_name(:goals_scored_full)}</p>"
 %>
 
-<%#= set_title_class(the_label) %>
-<!-- <hr/> -->
 
 <div class="row">
 	<div class="twelve columns">  
 				
       <%= form_for (@item), :url => match_path(@item), :html => { :class => :form , :class => 'nice' } do |the_form| -%>
 
-
-
 			<table>
 			<tbody>
 				<tr>
-					<td><%= item_name_link(@schedule.group) %</td>
+					<td><%= item_name_link(@schedule.group) %></td>
 					<td><%= set_form_text_field(the_form, :group_score, 'smaller input-text', true) %></td>	
-					<%= set_content_tag_safe(:td, " vs. ") %>
+					<%= set_content_tag_safe(:td, "  vs.  ") %>
 					<td><%= set_form_text_field(the_form, :invite_score, 'smaller input-text', true) %></td>
 					<td><%= @schedule.away_group %></td>
 				</tr>
 			</tbody>
 			</table>
-		
-		
-			<%= item_name_link(@schedule.group) %>&nbsp;&nbsp;
-			<%= set_form_text_field(the_form, :group_score, 'small input-text', true) %>&nbsp;&nbsp;vs.&nbsp;&nbsp;
-			<%= set_form_text_field(the_form, :invite_score, 'small input-text', true) %>&nbsp;&nbsp;
-			<%= @schedule.away_group %>
 
 			
 			<br/><br/>
-			<hr/>
-			<%= set_title_class(the_second_label) %>
+				<%= set_title_class(the_second_label) %>
 			<hr/>
 
 		
 			<div class="row">
-				<div class="twelve columns">  
-
+				<div class="twelve columns">  					
+					
+					<table>
+						<tbody>
+							
 
 					<% @matches.each do |match| 
 							prefix = "match[match_attributes][]" 
 					%>
-
-						
-						<%# if DISPLAY_FREMIUM_SERVICES %>
 						
 							<%= fields_for prefix, match do |match_form|  %>
 						
@@ -64,15 +53,19 @@
 								@user = match.user
 								the_link = "#{image_link_small(@user)}    #{user_link(@user)}"
 							%>
-								<tr>
-									<%= set_content_tag_safe(:td, the_link) %>
-									<%= set_form_text_field(match_form, :goals_scored, 'small input-text') %><br />
-								</tr>
-							<%	end -%>
-						
-						<%# end %>
-						
-					<% end %>
+									<tr>
+										<%#= set_content_tag_safe(:td, the_link) %>
+										<!-- <%#= set_form_text_field(match_form, :goals_scored, 'small input-text') %><br /> -->
+
+										<td><%= set_content_tag_safe(:td, the_link) %></td>
+										<td><%= set_form_text_field(match_form, :goals_scored, 'smaller input-text') %></td>
+									</tr>
+								
+							<%	end -%>						
+					<% end %>		
+					
+						</tbody>
+					</table>
 
 				</div> 
 			</div>

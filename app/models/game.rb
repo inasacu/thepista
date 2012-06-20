@@ -58,6 +58,7 @@ class Game < ActiveRecord::Base
                    
   before_update :set_game_winner
   after_update  :calculate_standing
+	after_create 	:create_challenges_cast
 
 	# method section 
 	def self.group_stage_games(cup, page = 1)
@@ -172,6 +173,13 @@ class Game < ActiveRecord::Base
 	
 			first.away_id = standing.item_id
 			first.save!
+		end
+	end
+	
+	def create_challenges_cast
+		self.cup.challenges.each do |challenge|
+			Cast.delay.create_challenge_cast(challenge) 
+			Fee.delay.create_user_challenge_fees(challenge) if DISPLAY_FREMIUM_SERVICES
 		end
 	end
 	

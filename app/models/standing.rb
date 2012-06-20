@@ -192,7 +192,7 @@ class Standing < ActiveRecord::Base
     the_standing.cup.standings.each do |standing|
       attributes = standing_attributes[standing.id.to_s]
       standing.attributes = attributes if attributes
-      standing.save(false)
+      standing.save!
     end
   end
 

@@ -70,7 +70,7 @@ task :the_archive_dependent => :environment do |t|
 	:conditions => "archive = false and group_id in (select distinct groups.id from groups where groups.archive = true)") 
 
 	the_schedule.each do |schedule|
-		puts "ARCHIVE schedule => #{schedule.concept}"
+		puts "ARCHIVE schedule => #{schedule.name}"
 		schedule.archive = true
 		schedule.save if has_to_archive
 	end
@@ -80,7 +80,7 @@ task :the_archive_dependent => :environment do |t|
 	:conditions => "archive = false and schedule_id in (select distinct schedules.id from schedules where schedules.archive = true)") 
 
 	the_match.each do |match|
-		puts "ARCHIVE match => #{match.id}, schedule => #{match.schedule.concept}"
+		puts "ARCHIVE match => #{match.id}, schedule => #{match.schedule.name}"
 		match.archive = true
 		match.save! if has_to_archive
 	end

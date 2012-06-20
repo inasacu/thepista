@@ -105,9 +105,13 @@ class Cast < ActiveRecord::Base
     the_cast.challenge.casts.each do |cast|
       attributes = cast_attributes[cast.id.to_s]
       cast.attributes = attributes if attributes
-      cast.save(false) if (cast.starts_at >= HOURS_BEFORE_GAME)
+      cast.save! if cast.cast_before_game
     end
   end
+
+	def cast_before_game
+		(self.starts_at >= HOURS_BEFORE_GAME and self.game.home_score.nil? and self.game.away_score.nil?)
+	end
   
   # points for casts
   # points for single

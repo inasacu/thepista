@@ -33,10 +33,14 @@ class MatchesController < ApplicationController
 			redirect_back_or_default('/index')
 			return
 		end
-
-		if @match.update_attributes(params[:match])
-
-			Match.save_matches(@match, params[:match][:match_attributes]) if params[:match][:match_attributes] # and  DISPLAY_FREMIUM_SERVICES
+		
+		match_values = params[:match] 
+		
+		@match.group_score = match_values['group_score']
+		@match.invite_score = match_values['invite_score']
+		
+		if @match.save and params[:match][:match_attributes]
+			Match.save_matches(@match, params[:match][:match_attributes])
 			Match.update_match_details(@match, current_user)
 
 			controller_successful_update

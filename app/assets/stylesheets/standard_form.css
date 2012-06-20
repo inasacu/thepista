@@ -1,0 +1,17 @@
+
+/* -----------------------------------------
+Standard Forms
+----------------------------------------- */
+
+input.select { display: line !important; margin-bottom: 9px; } /* mod by haypista */
+
+
+/* Text input and textarea sizes */
+input.tinier, textarea.small { width: 17px; } /* mod by haypista */
+input.tiny, textarea.small { width: 34px; } /* mod by haypista */
+input.smaller, textarea.small { width: 74px; } /* mod by haypista */
+
+/* Errors */
+.tinier + small.error { width: 20px; } /* mod by haypista */
+.tiny + small.error { width: 40px; } /* mod by haypista */
+.smaller + small.error { width: 80px; } /* mod by haypista */

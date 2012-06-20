@@ -8,13 +8,12 @@
 <head>
 
 	<meta charset="utf-8" />
-	
-	<!-- Set the viewport width to device width for mobile -->
-
 	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
-	<meta http-equiv="Content-Language" content="<%= I18n.locale %>"/>
-	<meta name="Author" content="HayPista"/> 	
+	<meta name="Generator" content="HayPista" />
+	<meta name="Origen" content="HayPista" />
+	<meta name="Author" content="HayPista" />
+	<meta name="Locality" content="Spain" />	
+	<meta name="Language" content="es" />
 	<meta name="title" content="<%= page_title %>.  <%= I18n.t(:modo_key_title) %>" />
 	<meta name="description" content="<%= I18n.t(:modo) %>">		
 	<meta name="keywords" content="<%= I18n.t(:modo_keywords) %>"/> 
@@ -23,11 +22,9 @@
 	<meta name="resource-type" content="Document" />
 	<meta name="distribution" content="all" />
 	<meta name="robots" content="all" />
-	<meta name="revisit" content="15 days" />
+	<meta name="revisit-after" content="7 days" />
 	<meta name="google-site-verification" content="qyTyrJH8o08Ur15mr5hUYjVNyWcbfQatF3yar3Ry2ws" />
 	<meta name="google-site-verification" content="OJzCfMpdsascUFtDoxXJpZGEIsjXjKG1691P1FC5pIc" />
-
-	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
 	<title><%= page_title %></title>
 
@@ -41,23 +38,24 @@
 	<%= javascript_include_tag "application" %>
 	<%= csrf_meta_tags %>
 
-
 	<%#= stylesheet_link_tag "foundation" %>
 	<%= javascript_include_tag "foundation" %>
 	
 	
 	<!-- Included CSS Files -->
-	<%= stylesheet_link_tag 'zurb/globals' %>
-	<%= stylesheet_link_tag 'zurb/typography' %>
+	<%#= stylesheet_link_tag 'zurb/globals' %>
+	<%#= stylesheet_link_tag 'zurb/typography' %>
 	<%= stylesheet_link_tag 'zurb/grid' %>
-	<%= stylesheet_link_tag 'zurb/orbit' %>
-	<%= stylesheet_link_tag 'zurb/reveal' %>
-	<%= stylesheet_link_tag 'zurb/app' %>
-	<%= stylesheet_link_tag 'zurb/mobile' %>
-	<%= stylesheet_link_tag 'zurb/ui' %>
+	<%#= stylesheet_link_tag 'zurb/orbit' %>
+	<%#= stylesheet_link_tag 'zurb/reveal' %>
+	<%#= stylesheet_link_tag 'zurb/app' %>
+	<%#= stylesheet_link_tag 'zurb/mobile' %>
+	<%#= stylesheet_link_tag 'zurb/ui' %>
 	<%= stylesheet_link_tag 'zurb/forms' %>
 	<%= stylesheet_link_tag 'zurb/presentation' %>
 	<%= stylesheet_link_tag 'zurb/app' %>
+	
+	<%= stylesheet_link_tag 'standard_form' %>
 
 	<!--[if lt IE 9]>
 		<link rel="stylesheet" href="../../stylesheets/zurb/ie.css">

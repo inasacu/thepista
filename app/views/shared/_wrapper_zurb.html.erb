@@ -74,7 +74,7 @@
 		@the_collection = @games if @games
 	end	
 
-	the_controller_action = ['cast_index', 'challenge_challenge_list','cast_list', 'cast_list_guess_user']
+	the_controller_action = ['cast_index', 'challenge_challenge_list','cast_list', 'cast_list_guess_user', 'cast_list_gues']
 	if the_controller_action.include?(get_controller_action)
 		@the_collection = @casts if @casts
 	end
@@ -89,7 +89,7 @@
 	# :collection => @sport if @sport 
 	# :collection => @venues if @venues 
 	
-	discard_disqus_display = ['schedule_new', 'schedule_edit', 'cast_edit']
+	discard_disqus_display = ['schedule_new', 'schedule_edit', 'cast_edit', 'match_edit']
 %>
 
 
@@ -122,13 +122,14 @@
 		<%#= render "shared/search_zurb" if DISPLAY_SEARCH_OPTION %>	
 		
 		<% unless the_sidebar.nil? %>
-		<%= set_title_class(the_sidebar_label) %>
-		<hr/>
+			<%= set_title_class(the_sidebar_label) %>
+			<hr/>
 				
-		<%= render "#{the_sidebar}/sidebar_zurb"  %>		
+			<%#= render 'shared/sidebar_create_zurb', :item => Group.new %>		
+			<%= render "#{the_sidebar}/sidebar_zurb"  %>		
 		
-		<hr/>
-		<br/>		
+			<hr/>
+			<br/>		
 		
 		<% end %>
 		

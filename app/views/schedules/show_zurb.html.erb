@@ -62,7 +62,7 @@
 
 			<% if @schedule.game_played? %>
 
-			<%= render_show_detail_zurb(:group, "#{the_score}".html_safe) %>
+			<%= render_show_detail_zurb(:groups, "#{the_score}".html_safe) %>
 
 			<% if show_individual_score %>	
 
@@ -77,7 +77,6 @@
 			<%= render_show_detail_zurb(:home_group, item_name_link(@schedule.group)) %>
 
 			<% end %>
-
 
 			<%#= render_show_detail_zurb(:jornada, @schedule.jornada) %>
 			<%= render_show_detail_zurb(:starts_at, nice_day_of_week(@schedule.starts_at)) %>

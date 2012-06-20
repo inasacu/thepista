@@ -1,48 +1,32 @@
 
-<%= f.hidden_field :cup_id %>
-<%#= f.hidden_field :cup_id if @cup %>
+<%= the_form.hidden_field :cup_id %>
 
 
+<%= set_form_label(the_form, :name) %>
+<%= set_form_text_field(the_form, :name, 'input-text') %><br />
 
-<%= set_form_label(the_form, :name)
-<%= set_form_field(the_form, :name)
-
-<%#= set_form_label(the_form, :name) %>
-<%#= f.text_field :name, 'input-text') %><br />
-
-<%= set_form_label(the_form, :home_id, label_name('escuadras') %>
-<%#= f.select(:home_id, @cup.the_escuadras, {:selected => @game.home_id, :include_blank => true}) %>&nbsp;&nbsp;vs.&nbsp;&nbsp;
-<%#= f.select(:away_id, @cup.the_escuadras, {:selected => @game.away_id, :include_blank => true}) %><br />
-<%= set_form_select(the_form, :home_id, @cup.the_escuadras, @game.home_id) %><br/>	
-<%= set_form_select(the_form, :away_id, @cup.the_escuadras, @game.away_id) %><br/>	
+ <%= the_form.label :home_id, label_name('escuadras'), :class => :label %>
+<%= set_form_select(the_form, :home_id, @cup.the_escuadras, @game.home_id) %>
+<%= set_form_select(the_form, :away_id, @cup.the_escuadras, @game.away_id) %><br/>
 
 
 <%= set_form_label(the_form, :starts_at) %>
-<%= set_form_datetime_select(the_form, :starts_at) %><br />
+<%= the_form.datetime_select :starts_at %><br /><br />
 
 
 <%= set_form_label(the_form, :ends_at) %>
-<%= set_form_datetime_select(the_form, :ends_at) %><br />
+<%= the_form.datetime_select :ends_at %><br /><br />
 
-
-<%= set_form_label(the_form, :reminder_at) %>
-<%= set_form_datetime_select(the_form, :reminder_at) %><br />
-
-
-<!-- 
-<%#= set_form_label(the_form, :deadline_at) %>
-<%#= set_form_datetime_select(the_form, :deadline_at) %><br />
--->
 
 <%= set_form_label(the_form, :jornada) %>
 <%= set_form_text_field(the_form, :jornada, 'small input-text', true) %><br />
 
 
 <%= set_form_label(the_form, :type_name, :round) %>
-<%= f.select(:type_name, Game.game_type, {:selected => @game.type_name, :include_blank => false}) %><br />
+<%= the_form.select(:type_name, Game.game_type, {:selected => @game.type_name, :include_blank => false}) %><br /><br/>
 
 
-<% if (@game.type_name == 'FirstGame') %>
+<%# if (@game.type_name == 'FirstGame') %>
 
 <%= set_form_label(the_form, :home_ranking) %>
 <%= set_form_text_field(the_form, :home_ranking, 'small input-text', true) %><br/>
@@ -60,12 +44,12 @@
 <%= set_form_label(the_form, :away_stage_name) %>
 <%= set_form_text_field(the_form, :away_stage_name, 'small input-text', true) %><br/>
 
-<% end -%>
+<%# end -%>
 
-<% if the_maximo %>
+<%# if the_maximo %>
 
-<%= set_form_label(the_form, :points_for_single) %>
-<%= set_form_text_field(the_form, :points_for_single, 'small input-text', true) %><br />
+<%#= set_form_label(the_form, :points_for_single) %>
+<%#= set_form_text_field(the_form, :points_for_single, 'small input-text', true) %>
 
 
 <%= set_form_label(the_form, :points_for_double) %>
@@ -87,5 +71,6 @@
 <%= set_form_label(the_form, :points_for_single_winner) %>
 <%= set_form_text_field(the_form, :points_for_winner, 'small input-text', true) %><br />
 
-<% end -%>
+<%# end -%>
 
+</div>

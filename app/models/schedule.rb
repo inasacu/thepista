@@ -1,6 +1,6 @@
 class Schedule < ActiveRecord::Base
 
-  has_many  :matches,  :conditions => "matches.archive = false"
+  has_many  :matches,  :conditions => "matches.archive = false", :order => "matches.group_score"
   has_many  :fees
 
   has_many :home_roster,

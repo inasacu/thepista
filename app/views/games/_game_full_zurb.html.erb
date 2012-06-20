@@ -20,30 +20,28 @@
 
 <tr>
 	<%= set_content_tag_safe(:td, "#{the_game_name} - ##{game.jornada}") %>
-	<%= set_content_tag_safe(:td, escuadra_image_link_smaller(game.home)) unless no_team %>
+	<%= set_content_tag_safe(:td, no_team ? "" : escuadra_image_link_smaller(game.home)) %>
 
 
   <td>
   	<%= escuadra_link(game.home) unless no_team %>
-  <span class="date">
-  	<%= "#{game.home_ranking} #{game.home_stage_name}<br/>" if no_team %>
+  	<%= "#{game.home_ranking} #{game.home_stage_name}<br/>".html_safe if no_team %>
 	<%= "W#{the_previous[0]}" if (the_previous.length > 0) and no_team %>
-  </span>
+
   </td>
 
   <td align="center">
   	<%=  (game.game_played?) ? game_score_link(game) : "  -  " %> 
   </td>
 
+
   <td>
   	<%= escuadra_link(game.away) unless no_team %>
-  <span class="date">
-  	<%= "#{game.away_ranking} #{game.away_stage_name}<br/>" if no_team %>
+  	<%= "#{game.away_ranking} #{game.away_stage_name}<br/>".html_safe if no_team %>
 	<%= "W#{the_previous[1]}" if (the_previous.length > 0) and no_team %>
-  </span>
   </td>
 
-	<%= set_content_tag_safe(:td, escuadra_image_link_smaller(game.away)) unless no_team %>
+	<%= set_content_tag_safe(:td, no_team ? "" : escuadra_image_link_smaller(game.away)) %>
 
 	
    <td>

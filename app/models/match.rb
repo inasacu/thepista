@@ -199,7 +199,7 @@ class Match < ActiveRecord::Base
     the_match.schedule.matches.each do |match|
       attributes = matches_attributes[match.id.to_s]
       match.attributes = attributes if attributes
-      match.save(false)
+      match.save!
     end
   end
   

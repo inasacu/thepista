@@ -2,7 +2,7 @@
 	final_played ||= false
 	the_game = Game.final_game(@challenge.cup)
 	final_played = the_game.played unless (the_game.nil? or the_game.blank?)
-	can_edit_challenge = (current_user.is_manager_of?(@challenge) and !final_played)
+	can_edit_challenge = (is_current_manager_of(@challenge) and !final_played)
 	can_edit_challenge = the_maximo ? true : can_edit_challenge
 	is_member_or_maximo = is_current_member_of(@challenge) 
 	is_member_or_maximo = the_maximo ? true : is_member_or_maximo
@@ -21,7 +21,7 @@
 		the_confirmation = label_with_name(:do_leave_challenge, "#{the_challenge}?")
 
 		# @casts = Cast.current_casts(current_user, @challenge)
-		# @casts.each {|cast| can_edit = true  if (current_user == cast.user and cast.starts_at >= HOURS_BEFORE_GAME)	}
+		# @casts.each {|cast| can_edit = true  if (current_user == cast.user and cast.cast_before_game)	}
 %>
 		<%= set_form_create_id_image_link(Message.new, :challenge_id, @challenge.id, :send_message_to) %>		
 		<%= set_form_create_id_image_link(Invitation.new, :challenge_id, @challenge, :invitations_create_challenge) %>
@@ -46,4 +46,4 @@
 
 <%#= render 'challenges/sidebar_show_zurb' unless is_right_guess %>
 <%#= render  'shared/sidebar_show_final_played_zurb' -%>
-<%#= render  'shared/sidebar_show_cup', :cup => @cup if current_user.is_manager_of?(@cup) -%>
+<%#= render  'shared/sidebar_show_cup', :cup => @cup if is_current_manager_of(@cup) -%>
