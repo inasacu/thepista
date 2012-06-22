@@ -1,0 +1,58 @@
+<%
+
+	case get_the_controller
+	when 'Message'
+	when 'Group'
+	when 'Cup'
+	when 'Cast'
+	when 'Venue'
+	end
+
+%>
+
+
+<hr />
+<%= content_tag :h6, label_name("#{get_the_controller}s_no"), :class => "subheader" %>
+
+
+
+<%# casts %>
+<%#the_label = label_name(:groups_options_without) %>
+<%#= set_title_class(the_label, 'group') %>
+	<%#= content_tag :td, link_to("#{label_name(:you_can)} #{label_name(:create_your_own)} #{label_name(:group).downcase}", new_group_url) %>
+	<%#= content_tag :td, link_to("#{label_name(:you_can)} #{label_name(:to_join_group)}", list_groups_path) %>
+	<%#= content_tag :td, link_to("#{label_name(:you_can)} #{label_name(:view).downcase} #{label_name(:the_los)} 
+	#{label_name(:upcoming).downcase} and join a team", upcoming_path) if DISPLAY_UPCOMING %>
+	<%#= content_tag :td, link_to("#{label_name(:you_can)} invite your friends and setup a team", list_groups_path) %><%#= option_link('invitation') %>
+
+
+
+
+
+
+<%# casts %>
+<%#the_label = label_name(:cups_options_without) %>
+<%#= set_title_class(the_label, 'cup') %>
+	<%#= content_tag :td, link_to("#{label_name(:you_can)} #{label_name(:create_your_own)} #{label_name(:cup).downcase}", new_cup_url) %>
+	<%#= content_tag :td, link_to("#{label_name(:you_can)} #{label_name(:to_join_cup)}", list_cups_path) %>
+	<%#= content_tag :td, link_to("#{label_name(:you_can)} #{label_name(:view).downcase} #{label_name(:the_los)} 
+	#{label_name(:upcoming).downcase} and join a team", upcoming_path) if DISPLAY_UPCOMING %>
+	<%#= content_tag :td, link_to("#{label_name(:you_can)} invite your friends and setup a team", list_cups_path) %><%#= option_link('invitation') %>
+
+
+<%# cups %>
+<%#the_label = label_name(:cups_options_without) %>
+<%#= set_title_class(the_label, 'cup') %>
+	<%#= content_tag :td, link_to("#{label_name(:you_can)} #{label_name(:create_your_own)} #{label_name(:cup).downcase}", new_cup_url) %>
+	<%#= content_tag :td, link_to("#{label_name(:you_can)} #{label_name(:to_join_cup)}", list_cups_path) %>
+	<%#= content_tag :td, link_to("#{label_name(:you_can)} #{label_name(:view).downcase} #{label_name(:the_los)} 
+	#{label_name(:upcoming).downcase} and join a team", upcoming_path) if DISPLAY_UPCOMING %>
+	<%#= content_tag :td, link_to("#{label_name(:you_can)} invite your friends and setup a team", list_cups_path) %><%#= option_link('invitation') %>
+
+
+<%# venues %>
+<%#the_label = label_name(:venues_options_without) %>
+<%#= set_title_class(the_label, 'venue') %>
+	<%#= content_tag :td, link_to("#{label_name(:you_can)} #{label_name(:create_your_own)} #{label_name(:venue).downcase}", new_venue_url) %>
+
+

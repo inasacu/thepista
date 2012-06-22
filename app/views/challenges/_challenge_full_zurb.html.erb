@@ -4,11 +4,11 @@
 	the_description = the_description.gsub(" ", "<wbr> ")
 	the_challenge = sanitize(challenge.name)
 	 
-	final_played ||= false
+	# final_played ||= false
 	the_game = Game.final_game(challenge.cup)
-	final_played = the_game.played unless (the_game.nil? or the_game.blank?)
+	# final_played = the_game.played unless (the_game.nil? or the_game.blank?)
 	
-	show_join_item_link = !final_played and !is_current_member_of(challenge) and !has_current_item_petition(challenge)
+	show_join_item_link = !is_current_member_of(challenge) and !has_current_item_petition(challenge)
 %>
 
 <tr>  	
@@ -17,10 +17,5 @@
 	<%= set_content_tag_safe(:td, user_list(challenge.all_the_managers)) %>
 	<%= set_content_tag_safe(:td, I18n.t(:has_challenge_users, :count => object_counter(challenge.users))) %>
 	<%= set_content_tag_safe(:td, link_to(label_name(:points_full), show_list_standings_path(:id => challenge))) %>
-
-	<% if show_join_item_link %>
-	<%= set_content_tag_safe(:td, join_item_link_to(current_user, challenge)) %>
-	<% else %>
-	<% set_content_tag_safe(:td, "&nbsp;") %>				
-	<% end %>
+	<%= set_content_tag_safe(:td, show_join_item_link ? join_item_link_to(current_user, challenge) : "&nbsp;") %>
 </tr>

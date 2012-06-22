@@ -1,25 +1,30 @@
 <%
 	the_label = label_name(:messages)
 	content_for(:title, the_label)
+	has_items = (object_counter(@messages) > 0)
 %>
 
 <div class="row">
 
 	<div class="twelve column">   
 
-			<% if object_counter(@messages) > 0 %>
+			<% if has_items %>
 
 			<table>
 
-					<%# previous = [] %>
 					<% @messages.each do |message| %>
 						<%= render 'messages/message_zurb', :message => message %>
-					<%# previous << message.parent_id %>
 					<% end %>
 				
 			</table>
 
 			<% end %>
 
+
 	</div>
 </div>
+
+<%= render 'shared/no_items_to_display' unless has_items %>
+
+
+

@@ -1,12 +1,13 @@
 <%
 	the_label = is_action('index') ? label_name(:group_stage) : label_name(:group_round)
 	content_for(:title, the_label)	
+	has_items = (object_counter(@games) > 0)
 %>
 
 <div class="row">
 	 
 	<div class="twelve column">  
-			<% if object_counter(@games) > 0 %>
+			<% if has_items %>
 				
 				<%= render('shared/index_total_header_zurb', :items => @games) %>
 
@@ -45,5 +46,5 @@
 	</div>	
 </div>
 
-
+<%= render 'shared/no_items_to_display' unless has_items %>
 

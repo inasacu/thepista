@@ -35,26 +35,6 @@
 
 					</div>
 				</div>
-
-				
-				
-			<% else %>
-				
-				<% the_label = label_name(:venues_options_without) %>
-
-				<div class="row">
-
-					<div class="twelve columns">
-
-					<%= set_title_class(the_label, 'venue') %>
-
-						<table>
-							<tr><%= content_tag :td, link_to("#{label_name(:you_can)} #{label_name(:create_your_own)} #{label_name(:venue).downcase}", new_venue_url) %></tr>
-						</table>
-
-					</div>
-
-				</div>
 				
 			<% end %>
 	</div>	

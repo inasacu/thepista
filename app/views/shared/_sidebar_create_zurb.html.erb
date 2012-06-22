@@ -1,6 +1,6 @@
 <% 
 	the_label ||= label_name(:options)
-	is_displayable = true
+	# is_displayable = true
 	
 	case item.class.to_s
 	when 'Type', 'Role', 'Announcement', 'Sport'
@@ -12,10 +12,10 @@
 	end
 %>
 
-<% if is_displayable %>
+<%# if is_displayable %>
 
 		<%= set_form_create_image_link(item) %>
 		<%= set_image_and_link(option_link('invitation'), 'invitation') %>
 
-<% end -%>
+<%# end -%>
 

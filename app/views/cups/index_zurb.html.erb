@@ -1,13 +1,13 @@
 <%
 	the_label = label_name(:cups)
 	content_for(:title, the_label)
-	has_cups = (object_counter(@cups) > 0)
+	has_items = (object_counter(@cups) > 0)
 %>
 
 <div class="row">
 	 
 	<div class="twelve column">  
-			<% if has_cups %>
+			<% if has_items %>
 				
 				<%= render('shared/index_total_header_zurb', :items => @cups) %>
 
@@ -47,31 +47,10 @@
 
 					</div>
 				</div>
-
-				
-			<% else %>
-				
-				<% the_label = label_name(:cups_options_without) %>
-
-				<div class="row">
-
-					<div class="twelve columns">
-
-					<%= set_title_class(the_label, 'cup') %>
-
-						<table>
-							<tr><%= content_tag :td, link_to("#{label_name(:you_can)} #{label_name(:create_your_own)} #{label_name(:cup).downcase}", new_cup_url) %></tr>
-							<tr><%= content_tag :td, link_to("#{label_name(:you_can)} #{label_name(:to_join_cup)}", list_cups_path) %></tr>
-							<tr><%= content_tag :td, link_to("#{label_name(:you_can)} #{label_name(:view).downcase} #{label_name(:the_los)} 
-													 #{label_name(:upcoming).downcase} and join a team", upcoming_path) if DISPLAY_UPCOMING %></tr>
-							<tr><%= content_tag :td, link_to("#{label_name(:you_can)} invite your friends and setup a team", list_cups_path) %><%#= option_link('invitation') %></tr>
-						</table>
-
-					</div>
-
-				</div>
 				
 			<% end %>
 	</div>	
 </div>
+
+<%= render 'shared/no_items_to_display' unless has_items %>
 

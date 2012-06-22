@@ -43,18 +43,8 @@
 
 <% end %>
 
-
-
-
-
-
-
-<% 	unless final_played %>
-		<% if is_official %>
-			<% unless is_current_manager_of(@cup) -%>
-				<% content_for :sidebar, render("cups/sidebar_show", :cup => @cup) %>
-			<% end %>
-		<% else 
+<% unless final_played %>
+		<% unless is_official 
 			@item = @cup 
 			the_groups = []
 			current_user.groups.each {|group| the_groups << group if is_current_manager_of(group)}		

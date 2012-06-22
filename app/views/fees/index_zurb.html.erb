@@ -4,6 +4,7 @@
 	
 	the_controller_action = ['fee_due']
 	only_payment_due = the_controller_action.include?(get_controller_action)
+	has_items = (object_counter(@users) > 0)
 %>
 
 <div class="row">
@@ -12,7 +13,7 @@
 	<%= set_title_class(the_label, 'fee') %>
 	
     
-	<% if object_counter(@users) > 0 %>
+	<% if has_items %>
 	
 	<%= get_class_table_id_controller %>
 	  
@@ -35,10 +36,8 @@
 
 	  <% end %>
 	
-	    	  
-    
-	
 	
   </div>
-  
 </div>
+
+<%= render 'shared/no_items_to_display' unless has_items %>
