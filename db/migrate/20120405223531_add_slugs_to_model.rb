@@ -14,7 +14,7 @@ class AddSlugsToModel < ActiveRecord::Migration
 		add_column			:groups,						:slug,			:string
 		add_column			:schedules,					:slug,			:string
 		add_column			:installations,			:slug,			:string
-		add_column			:classifieds,				:slug,			:string
+		add_column			:casts,							:slug,			:string
 
 
 		add_index 			:venues, 						:slug, 			unique: true
@@ -30,7 +30,7 @@ class AddSlugsToModel < ActiveRecord::Migration
 		add_index 			:groups, 						:slug, 			unique: true
 		add_index 			:schedules, 				:slug, 			unique: true
 		add_index 			:installations, 		:slug, 			unique: true
-		add_index 			:classifieds, 			:slug, 			unique: true
+		add_index 			:casts, 						:slug, 			unique: true
 
 	end
 end

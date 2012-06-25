@@ -7,22 +7,13 @@
 	
 	
 <div class="row">
-
 	<div class="twelve columns"> 
-		
-		<table>
-		<tbody>
-		<tr>
-		<td>
-			
+
 		<%= render_show_detail_zurb(:name, item_name_link(@venue)) %>		
 		<%= render_show_detail_zurb(:manager, user_list(@venue.all_the_managers)) %>
-		
 
-<%= render_show_detail_zurb(:marker, marker_link(@venue.marker) %>
-<%= render_show_detail_zurb(:city, @venue.marker.city) %>
-
-
+		<%= render_show_detail_zurb(:marker, marker_link(@venue.marker) %>
+		<%= render_show_detail_zurb(:city, @venue.marker.city) %>
 
 <% first = true %>
 <% @venue.installations.each do |installation| %>
@@ -30,25 +21,22 @@
 
 <%= render_show_detail_zurb(:installation) if first %>
 <%= content_tag :td, "&nbsp;&nbsp;" unless first %>
-<%= content_tag :td, "#{item_name_link(installation)}, #{nice_simple_time_at(installation.starts_at)} -  #{nice_simple_time_at(installation.ends_at)}" %>				
+<%= content_tag :td, "#{item_name_link(installation)}, #{nice_simple_time_at(installation.starts_at)} -  #{nice_simple_time_at(installation.ends_at)}" %>
+
+
 <%#= content_tag :td, link_to(label_name(:edit), edit_installation_path(:id => installation)) if is_user_manager %>
 
 
 <% 
 first = false
-end 
+end
 -%>
 
 
-<%= render_show_detail_zurb(:description, sanitize(@venue.description) %>	
+<%#= render_show_detail_zurb(:description, sanitize(@venue.description) %>	
 
 		
 
-		
-		</td>	
-		</tr>
-		</tbody>
-		</table>
 		
 	</div>
 </div>

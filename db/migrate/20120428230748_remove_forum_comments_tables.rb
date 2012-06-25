@@ -1,6 +1,6 @@
 class RemoveForumCommentsTables < ActiveRecord::Migration
   def up
-		drop_table 		:forums
+		# drop_table 		:forums
 		drop_table		:comments
 		drop_table		:rates
 		drop_table 		:blogs

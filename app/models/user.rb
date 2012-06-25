@@ -1,7 +1,7 @@
 class User < ActiveRecord::Base
 
-	# extend FriendlyId 
-	# friendly_id :name, 			use: :slugged
+	extend FriendlyId 
+	friendly_id :name, 			use: :slugged
       
   acts_as_authentic do |c|
     login_field :email
@@ -86,7 +86,7 @@ class User < ActiveRecord::Base
       user.has_many :_received_messages, :foreign_key => "recipient_id", :conditions => "recipient_deleted_at IS NULL"
     end         
 
-		before_validation 	:generate_slug, 				:on => :create
+		# before_validation 	:generate_slug, 				:on => :create
 		after_create				:signup_notification
    
        
@@ -207,7 +207,7 @@ class User < ActiveRecord::Base
       unless is_manager   
         user.groups.each do |group|
           unless is_manager
-            is_manager = (self.has_role?('manager', group)) # or self.has_role?('creator', group))
+            is_manager = (self.has_role?('manager', group) or self.has_role?('creator', group))
           end
         end
       end
@@ -221,7 +221,7 @@ class User < ActiveRecord::Base
       unless is_manager   
         self.groups.each do |group|
           unless is_manager
-            is_manager = (self.has_role?('manager', group)) # or self.has_role?('creator', group))
+            is_manager = (self.has_role?('manager', group) or self.has_role?('creator', group))
           end
         end
       end
@@ -280,12 +280,10 @@ class User < ActiveRecord::Base
     end
     
 		def received_messages(params, page = 1)
-			# _received_messages.page(params[:page])
 			_received_messages.page(params)
 		end
 		
 		def sent_messages(params, page = 1)
-			# _sent_messages.page(params[:page])
 			_sent_messages.page(params)
 		end
 
@@ -416,17 +414,11 @@ class User < ActiveRecord::Base
 		# def generate_slug
 		# 	self.slug = to_param rescue nil
 		# end
-		# 
-		# def to_s
-		# 	# name
-		# 	slug
-		# end
-		# 
+
 		# def to_param
-		# 	to_s.parameterize
-		# 
-		# 	the_encode = "#{self.name}#{self.id}"
-		# 	block_encode = Base64.urlsafe_encode64(the_encode) 
+		# 	name.to_s.parameterize
+		# 	the_encode = "#{self.name}#{self.id}"	
+		# 	block_encode =  Base64.urlsafe_encode64(the_encode)
 		# 	return block_encode
 		# end
 		

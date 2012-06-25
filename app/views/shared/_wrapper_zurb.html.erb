@@ -94,6 +94,8 @@
 	# :collection => @venues if @venues 
 	
 	discard_disqus_display = ['schedule_new', 'schedule_edit', 'cast_edit', 'match_edit']
+	discard_sidebar_display = ['group_index', 'schedule_index', 'schedule_list','user_index', 'venue_index', 'invitation_new']
+	the_sidebar = nil if discard_sidebar_display.include?(get_controller_action)
 %>
 
 
@@ -131,7 +133,7 @@
 			<hr/>
 				
 			<%= render 'shared/sidebar_create_zurb', :item => item_sidebar unless item_sidebar.nil? %>		
-			<%= render "#{the_sidebar}/sidebar_zurb"  %>		
+			<%= render "#{the_sidebar}/sidebar_zurb" %>		
 		
 			<hr/>
 			<br/>		

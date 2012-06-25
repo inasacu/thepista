@@ -1,5 +1,5 @@
 class InstallationsController < ApplicationController
-	before_filter :require_user
+	before_filter 	:require_user
 
 	before_filter   :get_venue,           :only => [:new, :index]
 	before_filter   :get_installation,    :only => [:show, :edit, :update]

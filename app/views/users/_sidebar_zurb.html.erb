@@ -1,26 +1,68 @@
-
-<%= render 'shared/sidebar_edit_zurb', :item => @user, :label => 'edit' if is_current_same_as(@user) %>
-
-
-
-<div class="row">
-	<div class="twelve columns">
+<%
+	@current_user_groups = current_user.groups
+	@current_manage_groups = []
+	@current_user_groups.each {|group| @current_manage_groups << group if is_current_manager_of(group)}
 	
-		<% if is_group_manager_of %>
-		<%= render('/users/sidebar_show_subscription_zurb', :the_label => label_name('subscription_option')) if is_user_manager_of(@user) %>
+	@current_user_challenges = current_user.challenges
+	@current_manage_challenges = []
+	@current_user_challenges.each {|challenge| @current_manage_challenges << challenge if is_current_manager_of(challenge)}
+%>
 
-		<%= render('/users/sidebar_show_join_zurb', :the_label => label_name('join_option')) %>
 
-		<%= render('/users/sidebar_show_sub_manager_zurb', :the_label => label_name('sub_manager_option'))  if is_user_manager_of(@user) and !is_current_same_as(@user) and DISPLAY_FREMIUM_SERVICES %>
+<%= render 'shared/sidebar_edit_zurb', :item => @user, :label => 'edit' %>
 
-		<%= render('/users/sidebar_show_manager_zurb', :the_label => label_name('manager_option')) if is_user_manager_of(@user) %>
 
-		<%= render('/users/sidebar_show_item_manager_zurb', :the_label => label_name("#{@items.first.class.to_s.downcase}_option"), :items => @items) unless @items.nil? or @items.blank? %>
+<%= set_form_create_id_image_link(Message.new, :id, @user, :send_message_to) unless current_user == @user %>
+
+<% @current_manage_groups.each do |group| 
+	
+	is_user_member = @user.is_member_of?(group) 
+	is_user_manager = @user.is_manager_of?(group)
+	is_user_sub_manager = @user.is_sub_manager_of?(group) 
+	is_user_subscriber =  @user.is_subscriber_of?(group) 
+%>
+	
+	<%= set_image_and_link(join_item_link_to(@user, group, true), 'user_add') unless is_user_member %>
+	<%= set_image_and_link(leave_item_link_to(@user, group), 'group_remove') if is_user_member and !is_user_manager %>
+
+	<% if is_user_member %>
+	<%= set_image_and_link(set_role_add_subscription(@user, group), 'user_add') unless is_user_subscriber %>
+	<%= set_image_and_link(set_role_remove_subscription(@user, group), 'user_remove') if is_user_subscriber %>
+	<% end %>
+
+	
+	<%# if DISPLAY_FREMIUM_SERVICES %>
+		
+		<% if is_user_member %>
+	
+			<hr/>
+			<%= set_image_and_link(set_role_add_sub_manager(@user, group), 'user_add') unless is_user_sub_manager %>
+			<%= set_image_and_link(set_role_remove_sub_manager(@user, group), 'user_remove') if is_user_sub_manager %>
+
+			<%= set_image_and_link(set_role_add_manager(@user, group), 'user_add') unless is_user_manager %>
+			<%= set_image_and_link(set_role_remove_manager(@user, group), 'user_remove') if is_user_manager %>
 		<% end %>
 	
-	</div>
-</div>
+	<%# end %>
+	
+<% end %>
 
 
+<% @current_manage_challenges.each do |item| 
+	
+		is_user_member = @user.is_member_of?(item)
+		is_user_manager = @user.is_manager_of?(item)		
+	
+		unless is_user_manager 
+%>
 
-<%= render('/shared/sidebar_index') if is_user_manager_of(@user) if DISPLAY_FREMIUM_SERVICES -%>
+	<hr/>
+	
+	<%= set_image_and_link(join_item_link_to(@user, item, true), 'user_add') unless is_user_member %>
+	<%= set_image_and_link(leave_item_link_to(@user, item), 'group_remove') if is_user_member %>		
+	
+<% 
+		end
+   end 
+%>
+

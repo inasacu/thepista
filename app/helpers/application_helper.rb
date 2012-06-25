@@ -766,7 +766,7 @@ module ApplicationHelper
 	end
 	
 	def is_current_manager_of(item)
-		current_user.is_manager_of?(item) 
+		current_user.is_manager_of?(item) or current_user.is_creator_of?(item)
 	end
 	
 	def is_user_manager_of(item)

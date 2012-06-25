@@ -5,6 +5,8 @@
 		options += "<option value='#{language}'>" + label_name(language) + "</option>"	
 	end
 	is_new_user = (is_action('rpx new') or is_action('signup'))
+	
+	display_gender = false
 %>
 
 <%= set_form_label(the_form, :name) %>
@@ -35,14 +37,11 @@
 
 
 <%= set_form_label(the_form, :private_phone) %>
-<%= the_form.check_box :last_minute_notification, :class => 'textfield' %>
+<%= the_form.check_box :last_minute_notification, :class => 'textfield' %><br/>
 
 
 <%= set_form_label(the_form, :last_minute_notification) %>
 <%= the_form.check_box :last_minute_notification, :class => 'textfield' %><br />
-
-<%#= set_form_label(the_form, :message_notification) %>
-<%#= the_form.check_box :message_notification, :class => 'textfield' %>
 
 
 <% if @user.is_manager? %>
@@ -51,11 +50,6 @@
 <%= the_form.check_box :teammate_notification, :class => 'textfield' %><br/>
 
 <% end -%>
-
-
-<%= set_form_label(the_form, :gender, 'gender') %>
-<%= "#{label_name(:male, 'value')}  " %><%= radio_button("user", "gender", "male") %>
-<%= "#{label_name(:female, 'value')}  " %><%= radio_button("user", "gender", "female") %><br />
 
 
 <%= set_form_label(the_form, :birth_at) %>

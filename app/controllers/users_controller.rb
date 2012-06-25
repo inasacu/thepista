@@ -70,7 +70,7 @@ class UsersController < ApplicationController
 		end 
 		@user = current_user
 
-		set_the_template('users/new')
+		# set_the_template('users/new')
 		render @the_template   
 	end
 

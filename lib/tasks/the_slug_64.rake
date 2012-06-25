@@ -31,7 +31,7 @@ task :the_slug_64 => :environment do |t|
 	the_models = Venue.all
 	the_models.each do |model|
 		model.slug = set_block_encode_decode(model)
-		model.description = "" 			if model.description.nil?
+		model.description = model.description.to_s.strip[0..255] 			#if model.description.nil?
 		model.save!
 	end
 	
@@ -105,12 +105,12 @@ task :the_slug_64 => :environment do |t|
 		model.save!
 	end
 	
-	# CLASSIFIED
-	the_models = Classified.all
-	the_models.each do |model|
-		model.slug = set_block_encode_decode(model)
-		model.save!
-	end
+	# CASTS
+	# the_models = Cast.all
+	# the_models.each do |model|
+	# 	model.slug = set_block_encode_decode(model)
+	# 	model.save!
+	# end
 
 end
 

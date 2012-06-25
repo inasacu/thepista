@@ -4,23 +4,9 @@
 %>
 
 <div class="row">
-	
 	<div class="twelve columns">
-		
-		<!-- <div class="foundation-header"> -->
-			
-			<%#= content_tag :h5, the_label %>
-			
-			<!-- <hr /> -->
-			
-			<%#= content_tag :h6, the_total_label, :class => "subheader" %>
-			
+	
 			<%= render('shared/index_total_header_zurb', :items => @users) %>
-			
-		
-	
-	
-
 
 
 <div class="row">
@@ -33,8 +19,7 @@
 				<%= set_content_tag_safe(:th, "#{label_name(:name)}<br />#{label_name(:last_game_played)}") %>
 				<%= set_content_tag_safe(:th, "#{label_name(:group)}<br />#{label_name(:city)}") %>
 				<%= set_content_tag_safe(:th, "&nbsp;") %>
-				<%= set_content_tag_safe(:th, "&nbsp;") %>
-				<%= set_content_tag_safe(:th, "&nbsp;") %>
+				<%#= set_content_tag_safe(:th, "&nbsp;") %>
 			</tr>
 			</thead>
 			
@@ -49,9 +34,8 @@
 				<%= set_content_tag_safe(:td, image_link_small(user)) %>					
 				<%= set_content_tag_safe(:td, "#{item_name_link(user)} <br/> #{content_tag(:span, the_date, :class =>'date')}", :class => 'name_and_date') %>
 				<%= set_content_tag_safe(:td, "#{(user.has_group? ? group_list(user.groups) : label_name('groups_none'))}<br/>#{user.city.name}" ) %>
-				<%= set_content_tag_safe(:th, "&nbsp;") %>
-				<%= set_content_tag_safe(:td, link_to(label_name(:send_message_to), new_message_path(:id => user))) %>	
-				<%= set_content_tag_safe(:th, "&nbsp;") %>
+				<%= set_content_tag_safe(:td, "&nbsp;") %>
+				<%#= set_content_tag_safe(:td, "&nbsp;") %>
 			</tr>
 			
 			<% end -%>

@@ -84,7 +84,7 @@ Thepista::Application.routes.draw do
 	match 'terminos' => 'home#terms_of_use', :as => :terms_of_use
 	match 'privacidad' => 'home#privacy_policy', :as => :privacy_policy
 	match 'ayuda' => 'home#faq', :as => :faq
-	match 'precios' => 'home#pricing', :as => :pricing
+	# match 'precios' => 'home#pricing', :as => :pricing
 	match 'openid' => 'home#openid', :as => :openid
 	match 'success' => 'home#success', :as => :success
 
@@ -101,6 +101,41 @@ Thepista::Application.routes.draw do
   match 'festivo/:venue_id/nada/:block_token'=> 'holidays#set_holiday_none', :as => :set_holiday_none
 	
 	match 'escuadras/:id/borrar_escuadra/:cup' => 'escuadras#borrar_escuadra', :as => :borrar_escuadra
+	
+	
+	# rename basic controller actions
+	scope :path_names => { :new => 'hacer', :create => 'introducir', :edit => 'modificar', :update => 'actualizar', :destroy => 'borrar', :list => 'listar' } do
+		
+		resources :user_sessions
+		resources :users 
+		resources :schedules 
+		resources :groups
+		resources :markers
+		resources :scorecards 
+		resources :matches
+		resources :invitations
+		resources :teammates
+		resources :types
+		resources :sports
+		resources :roles
+		resources :payments 
+		resources :fees 
+		resources :password_resets
+		resources :messages 
+		resources :standings 
+		resources :connections
+		resources :announcements 
+		resources :cups 
+		resources :games 
+		resources :challenges 
+		resources :casts 
+		resources :escuadras
+		resources :venues 
+		resources :installations 
+		resources :reservations 
+		resources :purchases
+		
+	end
 	
 	resources :user_sessions
 	resources :users do
@@ -136,13 +171,9 @@ Thepista::Application.routes.draw do
 	resources :matches
 	resources :invitations
 	resources :teammates
-	# resources :comments
-	# resources :blogs
-	# resources :forums
 	resources :types
 	resources :sports
 	resources :roles
-	# resources :workers
 	
 	
 	
@@ -234,5 +265,5 @@ Thepista::Application.routes.draw do
 	end
 
 	match ':controller/:action.:format' => '#index'
-
+	
 end
