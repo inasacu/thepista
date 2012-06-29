@@ -1,7 +1,7 @@
 class Announcement < ActiveRecord::Base
   
-  named_scope :active, lambda { { :conditions => ['starts_at <= ? and ends_at >= ?', Time.zone.now, Time.zone.now] } }
-  named_scope :since, lambda { |hide_time| { :conditions => (hide_time ? ['updated_at > ? or starts_at > ?', Time.zone.now, Time.zone.now] : nil) } }
+  # named_scope :active, lambda { { :conditions => ['starts_at <= ? and ends_at >= ?', Time.zone.now, Time.zone.now] } }
+  # named_scope :since, lambda { |hide_time| { :conditions => (hide_time ? ['updated_at > ? or starts_at > ?', Time.zone.now, Time.zone.now] : nil) } }
   def self.current_announcements(hide_time)
     active.since(hide_time)
   end
