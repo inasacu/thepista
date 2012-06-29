@@ -42,9 +42,6 @@ GEM
       json (~> 1.4)
       nokogiri (>= 1.4.4)
       uuidtools (~> 2.1)
-    ayah_integration (0.6.3)
-      json
-      rest-client
     builder (3.0.0)
     cocaine (0.2.1)
     coffee-rails (3.2.2)
@@ -64,7 +61,6 @@ GEM
     erubis (2.7.0)
     execjs (1.4.0)
       multi_json (~> 1.0)
-    ffi (1.0.11)
     friendly_id (4.0.7)
     geokit (1.6.5)
       multi_json
@@ -80,15 +76,6 @@ GEM
       multi_json (~> 1.0)
       multi_xml
     i18n (0.6.0)
-    iron_worker (2.3.14)
-      bundler
-      bundler
-      rest
-      rest
-      rest-client
-      rest-client
-      zip
-      zip
     journey (1.0.4)
     jquery-rails (2.0.2)
       railties (>= 3.2.0, < 5.0)
@@ -136,10 +123,6 @@ GEM
     rdoc (3.12)
       json (~> 1.4)
     recaptcha (0.3.4)
-    rest (1.0.0)
-      rest-client (>= 0.3.0)
-    rest-client (1.6.7)
-      mime-types (>= 1.16)
     rpx_now (0.6.24)
       json_pure
     sass (3.1.19)
@@ -160,9 +143,6 @@ GEM
     treetop (1.4.10)
       polyglot
       polyglot (>= 0.3.1)
-    typhoeus (0.4.2)
-      ffi (~> 1.0)
-      mime-types (~> 1.18)
     tzinfo (0.3.33)
     uglifier (1.2.5)
       execjs (>= 0.3.0)
@@ -172,7 +152,6 @@ GEM
     ym4r (0.6.1)
     ym4r_gm (0.2.0)
       ym4r
-    zip (2.0.2)
     zurb-foundation (2.2.1.2)
       jquery-rails (>= 1.0)
       railties (>= 3.1.0, < 4.0)
@@ -187,7 +166,6 @@ DEPENDENCIES
   authlogic
   authlogic-oid
   aws-sdk
-  ayah_integration
   coffee-rails (~> 3.2.1)
   composite_primary_keys
   delayed_job
@@ -199,7 +177,6 @@ DEPENDENCIES
   hirefireapp
   hoptoad_notifier
   httparty (>= 0.8.1)
-  iron_worker
   jquery-rails
   nokogiri
   paperclip (= 2.7.0)
@@ -210,7 +187,6 @@ DEPENDENCIES
   sass-rails (~> 3.2.3)
   sitemap_generator
   texticle
-  typhoeus
   uglifier (>= 1.0.3)
   will_paginate
   ym4r_gm

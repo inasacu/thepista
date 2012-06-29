@@ -27,11 +27,11 @@ gem 'acts_as_tree', '0.1.1'
 gem 'aws-sdk'
 gem "friendly_id", "~> 4.0.1"
 
-gem 'iron_worker'
-gem 'typhoeus'
+# gem 'iron_worker'
+# gem 'typhoeus'
 gem 'delayed_job_active_record'
 
-gem 'ayah_integration'
+# gem 'ayah_integration'
 
 gem "zurb-foundation"
 
