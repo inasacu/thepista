@@ -9,9 +9,9 @@
 <% if @schedule and !is_new_schedule -%>
 	<%#= render("schedules/sidebar_details_zurb", :schedule => @schedule) -%>
 	<%#= render("schedules/sidebar_ausentes_zurb", :schedule => @schedule, ) -%>
-	<%#= render('shared/sidebar_create_zurb', :item => @schedule) if is_schedule_manager -%>
+	<%#= render('sidebars/sidebar_create_zurb', :item => @schedule) if is_schedule_manager -%>
 	<%= render("schedules/sidebar_show_zurb", :schedule => @schedule) -%>
-	<%#= render('shared/sidebar_geo_group_zurb', :schedule => @schedule) -%>	
+	<%#= render('sidebars/sidebar_geo_group_zurb', :schedule => @schedule) -%>	
 	<%#= render('schedules/sidebar_level_zurb', :schedule => @schedule ) if is_schedule_manager -%>
 <% end %>
 

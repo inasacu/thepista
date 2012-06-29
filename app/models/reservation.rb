@@ -1,9 +1,8 @@
 class Reservation < ActiveRecord::Base
 
-	# extend FriendlyId 
-	# friendly_id :name, 			use: :slugged
-	
-  
+	extend FriendlyId 
+	friendly_id :name, 			use: :slugged
+	  
 
   has_many    :fees #,            :dependent => :destroy 
   belongs_to  :item,            :polymorphic => true

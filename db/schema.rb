@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120428230748) do
+ActiveRecord::Schema.define(:version => 20120629091150) do
 
   create_table "announcements", :force => true do |t|
     t.text     "message"
@@ -491,19 +491,6 @@ ActiveRecord::Schema.define(:version => 20120428230748) do
     t.string  "salt",       :null => false
   end
 
-  create_table "pages", :force => true do |t|
-    t.string   "title",      :null => false
-    t.string   "slug",       :null => false
-    t.text     "body",       :null => false
-    t.text     "body_html",  :null => false
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
-  end
-
-  add_index "pages", ["created_at"], :name => "index_pages_on_created_at"
-  add_index "pages", ["slug"], :name => "index_pages_on_slug"
-  add_index "pages", ["title"], :name => "index_pages_on_title"
-
   create_table "payments", :force => true do |t|
     t.string   "name",          :limit => 150
     t.float    "debit_amount",                 :default => 0.0
@@ -529,22 +516,6 @@ ActiveRecord::Schema.define(:version => 20120428230748) do
   add_index "payments", ["item_id", "item_type"], :name => "index_payments_on_item_id_and_item_type"
   add_index "payments", ["manager_id"], :name => "index_payments_on_manager_id"
   add_index "payments", ["slug"], :name => "index_payments_on_slug", :unique => true
-
-  create_table "posts", :force => true do |t|
-    t.string   "title",                             :null => false
-    t.string   "slug",                              :null => false
-    t.text     "body",                              :null => false
-    t.text     "body_html",                         :null => false
-    t.boolean  "active",          :default => true, :null => false
-    t.string   "cached_tag_list"
-    t.datetime "published_at"
-    t.datetime "edited_at",                         :null => false
-    t.datetime "created_at",                        :null => false
-    t.datetime "updated_at",                        :null => false
-  end
-
-  add_index "posts", ["published_at"], :name => "index_posts_on_published_at"
-  add_index "posts", ["slug"], :name => "index_posts_on_slug"
 
   create_table "reservations", :force => true do |t|
     t.string   "name"
@@ -724,25 +695,6 @@ ActiveRecord::Schema.define(:version => 20120428230748) do
     t.datetime "updated_at"
   end
 
-  create_table "taggings", :force => true do |t|
-    t.integer  "tag_id"
-    t.integer  "taggable_id"
-    t.string   "taggable_type"
-    t.integer  "tagger_id"
-    t.string   "tagger_type"
-    t.string   "context",       :limit => 128
-    t.datetime "created_at",                   :null => false
-    t.datetime "updated_at",                   :null => false
-  end
-
-  add_index "taggings", ["tag_id"], :name => "index_taggings_on_tag_id"
-  add_index "taggings", ["taggable_id", "taggable_type", "context"], :name => "index_taggings_on_taggable_id_and_taggable_type_and_context"
-
-  create_table "tags", :force => true do |t|
-    t.string  "name"
-    t.integer "taggings_count", :default => 0, :null => false
-  end
-
   create_table "teammates", :force => true do |t|
     t.integer  "user_id"
     t.integer  "group_id"
@@ -789,14 +741,6 @@ ActiveRecord::Schema.define(:version => 20120428230748) do
   end
 
   add_index "types", ["table_id"], :name => "index_types_on_table_id"
-
-  create_table "undo_items", :force => true do |t|
-    t.string   "type",       :null => false
-    t.datetime "created_at", :null => false
-    t.text     "data"
-  end
-
-  add_index "undo_items", ["created_at"], :name => "index_undo_items_on_created_at"
 
   create_table "users", :force => true do |t|
     t.string   "name"

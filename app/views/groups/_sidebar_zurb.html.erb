@@ -71,7 +71,7 @@
 
 <% end -%>
 
-<%#= render 'shared/sidebar_create_zurb', :item => Group.new unless has_group %>
-<%= render('shared/sidebar_geo_group_zurb', :group => @group) if has_group and DISPLAY_FREMIUM_SERVICES -%>
+<%#= render 'sidebars/sidebar_create_zurb', :item => Group.new unless has_group %>
+<%= render('sidebars/sidebar_geo_group_zurb', :group => @group) if has_group and DISPLAY_FREMIUM_SERVICES -%>
 <%= render('shared/share_object_zurb', :group => @group) if has_group and DISPLAY_FREMIUM_SERVICES -%>
 <%#= render('groups/sidebar_legend_zurb') unless has_group and DISPLAY_FREMIUM_SERVICES %>

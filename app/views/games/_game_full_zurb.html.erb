@@ -16,7 +16,12 @@
 	
 	the_game_name = game.name.gsub('Group Stage', '')
 	has_result = (!game.home_score.nil? and !game.away_score.nil?)
+	
+ 	show_third_place = (the_game_name != 'Third Place')
+	show_third_place = true if the_maximo
 %>
+
+<% if show_third_place %>
 
 <tr>
 	<%= set_content_tag_safe(:td, "#{the_game_name} - ##{game.jornada}") %>
@@ -56,3 +61,4 @@
 	<%= set_content_tag_safe(:td, !has_result ? nice_date_wo_year(game.starts_at) : "&nbsp;")  %> 
 
 </tr>     
+<% end %>

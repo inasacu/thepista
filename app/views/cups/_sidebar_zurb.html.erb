@@ -49,7 +49,7 @@
 			the_groups = []
 			current_user.groups.each {|group| the_groups << group if is_current_manager_of(group)}		
 		%>
-			<%= render("shared/sidebar_show_item_zurb", :cup => @cup, :items => the_groups) %>
+			<%= render("sidebars/sidebar_show_item_zurb", :cup => @cup, :items => the_groups) %>
 		<% end -%>	
 <% 
 	end 

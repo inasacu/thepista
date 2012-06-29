@@ -1,4 +1,9 @@
-# to run:   	 rake the_slug_64
+# to run:   	 	rake the_slug_64
+# to run:    		rake the_archive_dependent
+# to run:    		rake the_archive_role
+# to run:    		rake the_remove_archive_data
+
+
 
 desc "update all table slugs with name"
 task :the_slug_64 => :environment do |t|

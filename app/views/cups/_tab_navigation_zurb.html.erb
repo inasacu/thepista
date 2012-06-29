@@ -3,8 +3,8 @@
 	get_first_active = get_active("#{get_the_controller}_#{get_the_action}") if is_controller('cup') and is_action('index') 
 
 	the_label = "" 
-	the_action = ['show','edit', 'team list', 'schedule list', 'cup current list', 'cup previous list']
-	the_controller = ['fee', 'payment', 'schedule']
+	# the_action = ['show','edit', 'team list', 'schedule list', 'cup current list', 'cup previous list']
+	# the_controller = ['fee', 'payment', 'schedule']
 
 	is_new_cup = (get_controller_action =='cup_new' or get_controller_action == 'cup_create')
 	is_not_new_item = !is_new_cup
@@ -27,7 +27,7 @@
 	
 	
 	
-	the_standing_active = ['standing_show','standing_indes']
+	the_standing_active = ['standing_show','standing_index']
 	if the_standing_active.include?(get_controller_action)
 		the_standing_active = get_controller_action 
 	else
@@ -63,7 +63,7 @@
 		<%= set_tab_navigation(link_to(label_name(:group_stage), games_url(:id => @cup), set_tab_navigation_active('game_index'))) %>
 
 		<%= set_tab_navigation(item_name_link(@game, set_tab_navigation_active(the_game_active))) if @game and get_controller_action != 'game_new' %>
-		<%= set_tab_navigation(link_to(label_name(:scorecards), standings_path(:id => @cup), set_tab_navigation_active('standing_index'))) if @cup.has_standing %>
+		<%= set_tab_navigation(link_to(label_name(:scorecards), standings_path(:id => @cup), set_tab_navigation_active(the_standing_active))) if @cup.has_standing %>
 		<%= set_tab_navigation(link_to(label_name(:group_round), list_games_path(:id => @cup), set_tab_navigation_active('game_list'))) %>
 	
 		<% if @cup.official %>

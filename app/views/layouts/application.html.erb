@@ -37,7 +37,7 @@
 	<%= javascript_include_tag "http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js" %>
 	<%= javascript_include_tag 'jquery.google-analytics', 'jquery.notifyBar', 'jquery.cluetip', 'jquery.hoverIntent' %>
 	<%= javascript_include_tag 'jquery.clearinput' %>
-	<%= render :partial => 'utilities/google_analytics' %>	
+	<%= render 'utilities/google_analytics' %>	
 	
 </head>
 <body>
@@ -48,7 +48,6 @@
 	
   <div id="container">
 
-		<%= render :partial => "utilities/ie_better_image" %>
 		<%= render :partial => 'shared/header_navigation' %>
 		<%#= render :partial => "shared/notice" if current_user %>
 		<%= render :partial => "shared/wrapper" %>	

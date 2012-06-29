@@ -18,8 +18,6 @@ Thepista::Application.routes.draw do
 	match 'remove_openid' => 'users#remove_openid', :as => :remove_openid
 	match 'my_openid' => 'users#third_party', :as => :my_openid
 
-	match 'actividades_recientes' => 'users#recent_activity', :as => :recent_activity
-
 	match 'jugadores_de_equipo' => 'groups#team_list', :as => :team_list
 
 	match 'jornada_deportiva_convocado' => 'schedules#team_roster', :as => :team_roster
@@ -104,45 +102,44 @@ Thepista::Application.routes.draw do
 	
 	
 	# rename basic controller actions
-	scope :path_names => { :new => 'hacer', :create => 'introducir', :edit => 'modificar', :update => 'actualizar', :destroy => 'borrar', :list => 'listar' } do
-		
-		resources :user_sessions
-		resources :users 
-		resources :schedules 
-		resources :groups
-		resources :markers
-		resources :scorecards 
-		resources :matches
-		resources :invitations
-		resources :teammates
-		resources :types
-		resources :sports
-		resources :roles
-		resources :payments 
-		resources :fees 
-		resources :password_resets
-		resources :messages 
-		resources :standings 
-		resources :connections
-		resources :announcements 
-		resources :cups 
-		resources :games 
-		resources :challenges 
-		resources :casts 
-		resources :escuadras
-		resources :venues 
-		resources :installations 
-		resources :reservations 
-		resources :purchases
-		
-	end
+	# scope :path_names => { :new => 'hacer', :create => 'introducir', :edit => 'modificar', :update => 'actualizar', :destroy => 'borrar', :list => 'listar' } do
+	# 	
+	# 	resources :user_sessions
+	# 	resources :users 
+	# 	resources :schedules 
+	# 	resources :groups
+	# 	resources :markers
+	# 	resources :scorecards 
+	# 	resources :matches
+	# 	resources :invitations
+	# 	resources :teammates
+	# 	resources :types
+	# 	resources :sports
+	# 	resources :roles
+	# 	resources :payments 
+	# 	resources :fees 
+	# 	resources :password_resets
+	# 	resources :messages 
+	# 	resources :standings 
+	# 	resources :connections
+	# 	resources :announcements 
+	# 	resources :cups 
+	# 	resources :games 
+	# 	resources :challenges 
+	# 	resources :casts 
+	# 	resources :escuadras
+	# 	resources :venues 
+	# 	resources :installations 
+	# 	resources :reservations 
+	# 	resources :purchases
+	# 	
+	# end
 	
 	resources :user_sessions
 	resources :users do
 		collection do
 			post :rpx_create
 			get :list
-			get :recent_activity
 			get :notice
 		end
 	end
@@ -174,7 +171,6 @@ Thepista::Application.routes.draw do
 	resources :types
 	resources :sports
 	resources :roles
-	
 	
 	
 	resources :payments do

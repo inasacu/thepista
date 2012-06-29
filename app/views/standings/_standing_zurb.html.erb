@@ -46,10 +46,10 @@
 	<td class="perdidos"><%= standing.losses if is_escuadra %></td>
 	
 	<%  if @cup.is_futbol? and is_escuadra %>
-	<td class="afavor"><%= standing.goals_for %></td>
-	<td class="encontra"><%= standing.goals_against %></td>
+	<!-- <td class="afavor"><%#= standing.goals_for %></td> -->
+	<!-- <td class="encontra"><%#= standing.goals_against %></td> -->
 	<td class="encontra"><%= standing.goals_for - standing.goals_against %></td>
 	<% end %>
-	<td class="encontra"><%= played if is_escuadra %></td>
+	<!-- <td class="encontra"><%#= played if is_escuadra %></td> -->
 </tr>
 

@@ -78,7 +78,7 @@ class Group < ActiveRecord::Base
 	after_create	:create_group_marker, :create_group_scorecard
 
   # related to gem acl9
-  acts_as_authorization_subject :association_name => :roles, :join_table_name => :roles_groups
+  acts_as_authorization_subject :association_name => :roles, :join_table_name => :groups_roles
 
   # method section
   def all_the_managers

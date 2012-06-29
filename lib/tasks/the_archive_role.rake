@@ -54,9 +54,6 @@ task :the_archive_role => :environment do |t|
      when "Installation"
        the_archive = Role.find(:all, :select => "distinct *", 
        :conditions => "authorizable_type = 'Installation' and authorizable_id in (select id from installations where archive = true)")
-     when "Classified"
-       the_archive = Role.find(:all, :select => "distinct *", 
-       :conditions => "authorizable_type = 'Classified' and authorizable_id in (select id from classifieds where archive = true)")
      end
      
      the_archive.each do |role|

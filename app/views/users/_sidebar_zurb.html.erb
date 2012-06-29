@@ -9,7 +9,7 @@
 %>
 
 
-<%= render 'shared/sidebar_edit_zurb', :item => @user, :label => 'edit' %>
+<%= render 'sidebars/sidebar_edit_zurb', :item => @user, :label => 'edit' %>
 
 
 <%= set_form_create_id_image_link(Message.new, :id, @user, :send_message_to) unless current_user == @user %>

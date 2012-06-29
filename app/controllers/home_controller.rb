@@ -56,7 +56,7 @@ class HomeController < ApplicationController
     @comment_items = []
 
     Teammate.latest_teammates(@all_items) 
-    Schedule.latest_matches(@all_items) 
+    Schedule.latest_matches(@all_items) if @all_items.count < MEDIUM_FEED_SIZE 
     Schedule.latest_items(@all_schedule_items)   
 
     if current_user      

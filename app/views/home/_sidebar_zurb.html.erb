@@ -4,7 +4,7 @@
 	# show_completeness = !((current_user.percent_complete == 100) or is_action('search'))
 %>
 
-<%= render('shared/sidebar_howto_zurb') if show_howto -%>
-<%#= render('shared/sidebar_schedules_zurb', :upcoming_schedules => @upcoming_schedules) if show_schedules %>
-<%#= render('shared/sidebar_latest_fee_zurb') -%>
+<%= render('sidebars/sidebar_howto_zurb') if show_howto -%>
+<%#= render('sidebars/sidebar_schedules_zurb', :upcoming_schedules => @upcoming_schedules) if show_schedules %>
+<%#= render('sidebars/sidebar_latest_fee_zurb') -%>
 <%#= render('shared/completeness_zurb', :user => current_user) if show_completeness -%>

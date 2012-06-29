@@ -24,6 +24,7 @@
 				
 				<%= link_to(label_name(:venues), venues_url, :class => the_venue) if the_maximo %>	
 				<%= link_to(label_name(:cups), cups_url, :class => the_cup) if Cup.has_official_cup? or the_maximo %>	
+				
 				<%#= link_to(label_name(:challenges), challenges_url, :class => the_challenge) %> <%# if Cup.has_official_cup? %>
 				<%#= link_to(label_name(:scorecards), scorecards_url, :class => get_control_active('scorecard')) %>	
 				<%#= link_to(label_name(:markers), markers_url, :class => get_control_active('marker')) %>
