@@ -12,4 +12,4 @@ raise "RPX/Janrain Engage API key must be defined ENV['RPX_API_KEY']" unless RPX
 raise "RPX/Janrain Engage Application Name must be defined ENV['RPX_APP_NAME']" unless RPX_APP_NAME
 
 
-WillPaginate.per_page = 10
+WillPaginate.per_page = 15	
