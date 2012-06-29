@@ -62,7 +62,7 @@ end
 # gem "completeness-fu", "~> 0.6.0"
 # gem 'heroku_s3_backup'
 # gem 'open_id_authentication'
-# gem 'ym4r_gm'
+gem 'ym4r_gm'
 # gem 'ajaxful_rating_jquery'
 # gem 'kaminari'
 # gem 'openid'
