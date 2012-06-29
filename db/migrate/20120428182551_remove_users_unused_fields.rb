@@ -1,7 +1,7 @@
 class RemoveUsersUnusedFields < ActiveRecord::Migration
   def up
 
-		remove_column			:users,						:description
+		# remove_column			:users,						:description
 		remove_column			:users,						:position
 		remove_column 		:users,						:technical
 		remove_column			:users,						:physical

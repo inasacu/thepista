@@ -29,5 +29,10 @@ task :send_after_scorecards => :environment do
 end
 
 
+task :archive_messages => :environment do
+    puts "Archiving older than 1 month messages..."
+    Message.archive_messages if DISPLAY_SEND_REMINDERS
+    puts "done."
+end
 
 
