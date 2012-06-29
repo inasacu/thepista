@@ -28,7 +28,7 @@ gem 'aws-sdk'
 gem "friendly_id", "~> 4.0.1"
 
 # gem 'iron_worker'
-# gem 'typhoeus'
+gem 'typhoeus'
 gem 'delayed_job_active_record'
 
 # gem 'ayah_integration'
@@ -62,14 +62,12 @@ end
 # gem "completeness-fu", "~> 0.6.0"
 # gem 'heroku_s3_backup'
 # gem 'open_id_authentication'
-gem 'ym4r_gm'
+# gem 'ym4r_gm'
 # gem 'ajaxful_rating_jquery'
 # gem 'kaminari'
 # gem 'openid'
 # gem 'ruby-openid'											, :require => 'openid'
 # gem 'linkedin'
-# gem 'composite_primary_keys'
-# gem 'delayed_job_active_record'
 # gem 'jquery-ui'
 # gem 'rails_config'
 
