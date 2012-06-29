@@ -15,7 +15,6 @@
 //= require_tree .
 //= require jquery-ui
 
-require jquery-star-rating
 
 
 // jquery cluetip script
