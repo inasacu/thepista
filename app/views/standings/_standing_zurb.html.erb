@@ -1,5 +1,3 @@
-<%#= stylesheet_link_tag "in_place_styles"  %>
-<%# inplace_error_div %>
 <%
  	mailer ||= false
 	switch ||= false
@@ -21,14 +19,14 @@
 %>
 
 <tr>
-	<td class="puntos"><%= standing.ranking %>&nbsp;&nbsp;
+	<td><%= standing.ranking %>&nbsp;&nbsp;
 		<% if is_escuadra %>
 		<%#= is_manager ? in_place_text_field(:stand, :group_stage_name, {:cols => 1}) : standing.group_stage_name %>
 		<%=  standing.group_stage_name %>
 		<% end %>
 	</td>
-	<td class="equipos"><%= mailer ? "&nbsp;" : item_image_link_tiny(escuadra) %></td>
-	<td class="equipos">
+	<td><%= mailer ? "&nbsp;" : item_image_link_tiny(escuadra) %></td>
+	<td>
 		<span>
 	
 		<% if mailer and is_escuadra %>
@@ -40,16 +38,16 @@
 
 		</span>
 	</td>
-	<td class="puntos"><%= standing.points.round %></td>
-	<td class="ganados"><%= standing.wins if is_escuadra %></td>
-	<td class="empatados"><%= standing.draws if is_escuadra %></td>
-	<td class="perdidos"><%= standing.losses if is_escuadra %></td>
+	<td><%= standing.points.round %></td>
+	<td><%= standing.wins if is_escuadra %></td>
+	<td><%= standing.draws if is_escuadra %></td>
+	<td><%= standing.losses if is_escuadra %></td>
 	
-	<%  if @cup.is_futbol? and is_escuadra %>
-	<!-- <td class="afavor"><%#= standing.goals_for %></td> -->
-	<!-- <td class="encontra"><%#= standing.goals_against %></td> -->
-	<td class="encontra"><%= standing.goals_for - standing.goals_against %></td>
+	<%  if  is_escuadra %>
+	<td><%= standing.goals_for %></td>
+	<td><%= standing.goals_against %></td>
+	<td><%= standing.goals_for - standing.goals_against %></td>
 	<% end %>
-	<!-- <td class="encontra"><%#= played if is_escuadra %></td> -->
+	<td><%= played if is_escuadra %></td>
 </tr>
 

@@ -22,6 +22,7 @@ task :the_archive_dependent => :environment do |t|
 	# CHALLENGES
 	@archive = Challenge.find(:all, :conditions => ["archive = false and cup_id in (?)", the_archive_true])
 	@archive.each {|archive_file| the_archives << archive_file}
+	
 
 	@archive = Challenge.find(:all, :conditions => ["archive = false and cup_id not in (?)", the_archive_false])
 	@archive.each {|archive_file| the_archives << archive_file}
@@ -39,6 +40,19 @@ task :the_archive_dependent => :environment do |t|
 
 	@archive = Standing.find(:all, :conditions => ["archive = false and cup_id not in (?)", the_archive_false])
 	@archive.each {|archive_file| the_archives << archive_file}
+	the_archives = set_all_to_archive(the_archives)
+
+	# CHALLENGES 
+	the_archive_false = Challenge.find(:all, :conditions => "archive = false")
+	the_archive_true = Challenge.find(:all, :conditions => "archive = true")
+	
+	# STANDINGS
+	@archive = Standing.find(:all, :conditions => ["archive = false and challenge_id in (?)", the_archive_true])
+	@archive.each {|archive_file| the_archives << archive_file}
+
+	@archive = Standing.find(:all, :conditions => ["archive = false and challenge_id not in (?)", the_archive_false])
+	@archive.each {|archive_file| the_archives << archive_file}
+	the_archives = set_all_to_archive(the_archives)
 
 	# CASTS
 	the_archive_false = Challenge.find(:all, :conditions => "archive = false")
