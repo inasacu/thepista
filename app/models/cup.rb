@@ -102,12 +102,12 @@ class Cup < ActiveRecord::Base
   end
   
   def self.current_cups(page = 1)
-    self.where("ends_at > ? and archive = false", Time.zone.now).page(page).order('starts_at')
+    self.where("archive = false").page(page).order('starts_at')
   end
 
-  def self.previous_cups(page = 1)
-    self.where("ends_at < ? and archive = false", Time.zone.now).page(page).order('starts_at')
-  end
+  # def self.previous_cups(page = 1)
+  #   self.where("ends_at < ? and archive = false", Time.zone.now).page(page).order('starts_at')
+  # end
   
   def self.latest_items(items, has_values)
     find(:all, :conditions => ["created_at >= ?", LAST_WEEK], :order => "id desc").each do |item| 

@@ -6,18 +6,18 @@ class CupsController < ApplicationController
   before_filter :has_manager_access, :only => [:edit, :update, :destroy]
 
   def index
-    if @has_no_cups
-      redirect_to :action => 'list'
-      return
-    end 
+    # if @has_no_cups
+    #   redirect_to :action => 'list'
+    #   return
+    # end 
     render @the_template
   end
 
-  def list    
-    @cups = Cup.previous_cups(params[:page])
-    set_the_template('cups/index')
-    render @the_template    
-  end
+  # def list    
+  #   @cups = Cup.previous_cups(params[:page])
+  #   set_the_template('cups/index')
+  #   render @the_template    
+  # end
 
   def squad_list
     @squads = @cup.squads.page(params[:page])

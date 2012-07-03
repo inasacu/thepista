@@ -93,7 +93,7 @@ the_roster.each do |match|
 	change_group_link = is_member ? link_to(match.team_name(@schedule), match_team_path(:id => match.id), :title => label_name(:change_group)) :  match.team_name(@schedule)
 	
 	is_different_user_manager = (current_user != the_user and is_manager)
-	subscription_image = "#{subscription_image_link(the_user, is_subscriber, the_label)} #{counter +=1}."
+	subscription_image = "#{counter +=1}. #{subscription_image_link(the_user, is_subscriber, the_label)}"
 -%>
 
 <tr>

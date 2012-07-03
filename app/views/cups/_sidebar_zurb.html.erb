@@ -1,5 +1,4 @@
 <%
-
 	is_official = @cup.official
 	final_played ||= false
 	the_game = Game.final_game(@cup)
@@ -13,7 +12,6 @@
 	final_played ||= false
 	the_game = Game.final_game(@cup)
 	final_played = the_game.played unless (the_game.nil? or the_game.blank?)
-	
 %>
 
 <div class="row">
@@ -22,7 +20,6 @@
 
 		<%= set_image_and_link(link_to(label_name(:cups_create), new_cup_url), 'cup') if the_maximo %>
 		<%= set_image_and_link(link_to(label_name(:challenges_create), new_challenge_path(@cup)), 'challenge') %>
-		<%#= set_image_and_link(link_to(label_name(:invitations_create_cup), new_invitation_url(:cup_id => @cup)), 'invitation') %>
 
 
 <% if is_current_manager_of(@cup) %>

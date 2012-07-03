@@ -3,7 +3,7 @@
 <plist version="1.0">
 <dict>
 	<key>currentDocument</key>
-	<string>app/controllers/home_controller.rb</string>
+	<string>app/views/scorecards/_scorecard_zurb.html.erb</string>
 	<key>documents</key>
 	<array>
 		<dict>
@@ -17,8 +17,6 @@
 			<string>doc</string>
 		</dict>
 		<dict>
-			<key>expanded</key>
-			<true/>
 			<key>name</key>
 			<string>config</string>
 			<key>regexFolderFilter</key>
@@ -89,8 +87,6 @@
 			<string>vendor</string>
 		</dict>
 		<dict>
-			<key>expanded</key>
-			<true/>
 			<key>name</key>
 			<string>public</string>
 			<key>regexFolderFilter</key>
@@ -177,14 +173,14 @@
 			<key>firstVisibleLine</key>
 			<integer>2</integer>
 		</dict>
-		<key>app/controllers/home_controller.rb</key>
+		<key>app/controllers/cups_controller.rb</key>
 		<dict>
 			<key>caret</key>
 			<dict>
 				<key>column</key>
-				<integer>73</integer>
+				<integer>7</integer>
 				<key>line</key>
-				<integer>14</integer>
+				<integer>19</integer>
 			</dict>
 			<key>columnSelection</key>
 			<false/>
@@ -195,16 +191,16 @@
 			<key>selectFrom</key>
 			<dict>
 				<key>column</key>
-				<integer>85</integer>
+				<integer>0</integer>
 				<key>line</key>
-				<integer>14</integer>
+				<integer>15</integer>
 			</dict>
 			<key>selectTo</key>
 			<dict>
 				<key>column</key>
-				<integer>73</integer>
+				<integer>7</integer>
 				<key>line</key>
-				<integer>14</integer>
+				<integer>19</integer>
 			</dict>
 		</dict>
 		<key>app/controllers/scorecards_controller.rb</key>
@@ -256,30 +252,14 @@
 			<key>caret</key>
 			<dict>
 				<key>column</key>
-				<integer>40</integer>
+				<integer>32</integer>
 				<key>line</key>
-				<integer>198</integer>
+				<integer>104</integer>
 			</dict>
-			<key>columnSelection</key>
-			<false/>
 			<key>firstVisibleColumn</key>
 			<integer>0</integer>
 			<key>firstVisibleLine</key>
-			<integer>171</integer>
-			<key>selectFrom</key>
-			<dict>
-				<key>column</key>
-				<integer>34</integer>
-				<key>line</key>
-				<integer>198</integer>
-			</dict>
-			<key>selectTo</key>
-			<dict>
-				<key>column</key>
-				<integer>40</integer>
-				<key>line</key>
-				<integer>198</integer>
-			</dict>
+			<integer>80</integer>
 		</dict>
 		<key>app/models/message.rb</key>
 		<dict>
@@ -311,6 +291,50 @@
 				<integer>134</integer>
 			</dict>
 		</dict>
+		<key>app/views/cups/_sidebar_zurb.html.erb</key>
+		<dict>
+			<key>caret</key>
+			<dict>
+				<key>column</key>
+				<integer>73</integer>
+				<key>line</key>
+				<integer>13</integer>
+			</dict>
+			<key>firstVisibleColumn</key>
+			<integer>0</integer>
+			<key>firstVisibleLine</key>
+			<integer>0</integer>
+		</dict>
+		<key>app/views/cups/index_zurb.html.erb</key>
+		<dict>
+			<key>caret</key>
+			<dict>
+				<key>column</key>
+				<integer>28</integer>
+				<key>line</key>
+				<integer>32</integer>
+			</dict>
+			<key>columnSelection</key>
+			<false/>
+			<key>firstVisibleColumn</key>
+			<integer>0</integer>
+			<key>firstVisibleLine</key>
+			<integer>0</integer>
+			<key>selectFrom</key>
+			<dict>
+				<key>column</key>
+				<integer>25</integer>
+				<key>line</key>
+				<integer>32</integer>
+			</dict>
+			<key>selectTo</key>
+			<dict>
+				<key>column</key>
+				<integer>38</integer>
+				<key>line</key>
+				<integer>32</integer>
+			</dict>
+		</dict>
 		<key>app/views/groups/team_list_zurb.html.erb</key>
 		<dict>
 			<key>caret</key>
@@ -338,6 +362,64 @@
 			<integer>0</integer>
 			<key>firstVisibleLine</key>
 			<integer>0</integer>
+		</dict>
+		<key>app/views/scorecards/_scorecard_zurb.html.erb</key>
+		<dict>
+			<key>caret</key>
+			<dict>
+				<key>column</key>
+				<integer>53</integer>
+				<key>line</key>
+				<integer>56</integer>
+			</dict>
+			<key>firstVisibleColumn</key>
+			<integer>0</integer>
+			<key>firstVisibleLine</key>
+			<integer>28</integer>
+		</dict>
+		<key>app/views/scorecards/show_zurb.html.erb</key>
+		<dict>
+			<key>caret</key>
+			<dict>
+				<key>column</key>
+				<integer>39</integer>
+				<key>line</key>
+				<integer>49</integer>
+			</dict>
+			<key>columnSelection</key>
+			<false/>
+			<key>firstVisibleColumn</key>
+			<integer>89</integer>
+			<key>firstVisibleLine</key>
+			<integer>33</integer>
+			<key>selectFrom</key>
+			<dict>
+				<key>column</key>
+				<integer>31</integer>
+				<key>line</key>
+				<integer>49</integer>
+			</dict>
+			<key>selectTo</key>
+			<dict>
+				<key>column</key>
+				<integer>45</integer>
+				<key>line</key>
+				<integer>49</integer>
+			</dict>
+		</dict>
+		<key>app/views/shared/_wrapper_zurb.html.erb</key>
+		<dict>
+			<key>caret</key>
+			<dict>
+				<key>column</key>
+				<integer>5</integer>
+				<key>line</key>
+				<integer>135</integer>
+			</dict>
+			<key>firstVisibleColumn</key>
+			<integer>0</integer>
+			<key>firstVisibleLine</key>
+			<integer>22</integer>
 		</dict>
 		<key>app/views/user_mailer/_footer.html.erb</key>
 		<dict>
@@ -577,13 +659,12 @@
 	<key>openDocuments</key>
 	<array>
 		<string>log/development.log</string>
-		<string>app/controllers/home_controller.rb</string>
-		<string>app/models/cup.rb</string>
-		<string>information/group_round_tournament.rb</string>
+		<string>app/views/scorecards/show_zurb.html.erb</string>
+		<string>app/views/scorecards/_scorecard_zurb.html.erb</string>
 	</array>
 	<key>showFileHierarchyDrawer</key>
 	<true/>
 	<key>windowFrame</key>
-	<string>{{0, 46}, {1583, 732}}</string>
+	<string>{{10, 46}, {940, 732}}</string>
 </dict>
 </plist>

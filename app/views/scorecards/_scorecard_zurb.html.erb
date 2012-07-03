@@ -54,7 +54,7 @@
 
 
 <tr>	
-	<%= set_content_tag_safe(:td, "#{scorecard.ranking} #{user_subscription_link  unless mailer}") %>
+	<%= set_content_tag_safe(:td, "#{scorecard.ranking}. #{user_subscription_link  unless mailer}") %>
 	<%= set_content_tag_safe(:td, "#{mailer ? "&nbsp;" : item_image_link_tiny(scorecard.user)}") %>
 	<%= set_content_tag_safe(:td, the_player_link) %>
 	<%= set_content_tag_safe(:td, the_ranking_change) %>
