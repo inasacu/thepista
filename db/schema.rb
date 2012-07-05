@@ -767,6 +767,7 @@ ActiveRecord::Schema.define(:version => 20120428230748) do
     t.string   "current_login_ip"
     t.boolean  "private_phone",                           :default => false
     t.boolean  "private_profile",                         :default => false
+    t.text     "description"
     t.string   "gender"
     t.datetime "birth_at"
     t.boolean  "archive",                                 :default => false

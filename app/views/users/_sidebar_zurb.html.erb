@@ -36,11 +36,11 @@
 		<% if is_user_member %>
 	
 			<hr/>
-			<%= set_image_and_link(set_role_add_sub_manager(@user, group), 'user_add') unless is_user_sub_manager %>
-			<%= set_image_and_link(set_role_remove_sub_manager(@user, group), 'user_remove') if is_user_sub_manager %>
+			<%= set_image_and_link(set_role_add_sub_manager(@user, group), 'group_add') unless is_user_sub_manager %>
+			<%= set_image_and_link(set_role_remove_sub_manager(@user, group), 'group_remove') if is_user_sub_manager %>
 
-			<%= set_image_and_link(set_role_add_manager(@user, group), 'user_add') unless is_user_manager %>
-			<%= set_image_and_link(set_role_remove_manager(@user, group), 'user_remove') if is_user_manager %>
+			<%= set_image_and_link(set_role_add_manager(@user, group), 'group_add') unless is_user_manager %>
+			<%= set_image_and_link(set_role_remove_manager(@user, group), 'group_remove') if is_user_manager %>
 		<% end %>
 	
 	<%# end %>
@@ -58,7 +58,7 @@
 
 	<hr/>
 	
-	<%= set_image_and_link(join_item_link_to(@user, item, true), 'user_add') unless is_user_member %>
+	<%= set_image_and_link(join_item_link_to(@user, item, true), 'group_add') unless is_user_member %>
 	<%= set_image_and_link(leave_item_link_to(@user, item), 'group_remove') if is_user_member %>		
 	
 <% 
