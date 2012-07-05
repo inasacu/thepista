@@ -1,3 +1,11 @@
+# TABLE "roles"
+# t.string   "name"              
+# t.string   "authorizable_type" 
+# t.integer  "authorizable_id"
+# t.datetime "created_at"
+# t.datetime "updated_at"
+# t.boolean  "archive"
+
 class Role < ActiveRecord::Base
   
 	acts_as_authorization_role :join_table_name => :roles_users

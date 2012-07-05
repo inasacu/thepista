@@ -1,3 +1,10 @@
+# TABLE "types"
+# t.string   "name"       
+# t.string   "table_type" 
+# t.integer  "table_id"
+# t.datetime "created_at"
+# t.datetime "updated_at"
+
 class Type < ActiveRecord::Base
 
   has_many        :matches

@@ -1,3 +1,20 @@
+# TABLE "challenges"
+# t.string   "name"
+# t.integer  "cup_id"
+# t.datetime "starts_at"
+# t.datetime "s_at"
+# t.datetime "reminder_at"
+# t.float    "fee_per_game"       
+# t.string   "time_zone"
+# t.text     "description"
+# t.text     "conditions"
+# t.integer  "player_limit"       
+# t.boolean  "archive"            
+# t.datetime "created_at"
+# t.datetime "updated_at"
+# t.boolean  "automatic_petition" 
+# t.string   "slug"
+
 class Challenge < ActiveRecord::Base
 
 	extend FriendlyId 

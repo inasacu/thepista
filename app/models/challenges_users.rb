@@ -1,3 +1,10 @@
+# TABLE "challenges_users" 
+# t.integer  "challenge_id"
+# t.integer  "user_id"
+# t.datetime "created_at"
+# t.datetime "updated_at"
+# t.boolean  "archive"
+
 class ChallengesUsers < ActiveRecord::Base
 	set_primary_keys =:user_id, :challenge_id 
 

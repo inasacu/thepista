@@ -1,7 +1,23 @@
+# TABLE "payments"
+# t.string   "name"          
+# t.float    "debit_amount"                 
+# t.float    "credit_amount"                
+# t.text     "description"
+# t.boolean  "archive"                      
+# t.datetime "created_at"
+# t.datetime "updated_at"
+# t.integer  "debit_id"
+# t.string   "debit_type"
+# t.integer  "credit_id"
+# t.string   "credit_type"
+# t.integer  "manager_id"
+# t.integer  "fee_id"
+# t.string   "item_type"
+# t.integer  "item_id"
+# t.string   "slug"
+
 class Payment < ActiveRecord::Base
   
-	 
-	
 	
   belongs_to    :manager,        :class_name => 'User',        :foreign_key => 'manager_id'
   belongs_to    :debit,          :polymorphic => true

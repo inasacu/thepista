@@ -1,3 +1,24 @@
+# TABLE "venues"
+# t.string   "name"
+# t.datetime "starts_at"
+# t.datetime "s_at"
+# t.string   "time_zone"
+# t.integer  "marker_id"
+# t.boolean  "enable_comments"     
+# t.boolean  "public"              
+# t.string   "photo_file_name"
+# t.string   "photo_content_type"
+# t.integer  "photo_file_size"
+# t.datetime "photo_updated_at"
+# t.text     "description"
+# t.boolean  "archive"             
+# t.datetime "created_at"
+# t.datetime "updated_at"
+# t.boolean  "day_light_savings"   
+# t.datetime "day_light_starts_at"
+# t.datetime "day_light_s_at"
+# t.string   "slug"
+
 class Venue < ActiveRecord::Base
 
 	extend FriendlyId 

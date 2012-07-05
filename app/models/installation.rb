@@ -1,3 +1,27 @@
+# TABLE "installations"
+# t.string   "name"
+# t.integer  "venue_id"
+# t.integer  "sport_id"
+# t.integer  "marker_id"
+# t.datetime "starts_at"
+# t.datetime "s_at"
+# t.float    "timeframe"          
+# t.float    "fee_per_pista"      
+# t.float    "fee_per_lighting"   
+# t.boolean  "public"             
+# t.boolean  "lighting"           
+# t.boolean  "outdoor"            
+# t.string   "photo_file_name"
+# t.string   "photo_content_type"
+# t.integer  "photo_file_size"
+# t.datetime "photo_updated_at"
+# t.text     "description"
+# t.text     "conditions"
+# t.boolean  "archive"            
+# t.datetime "created_at"
+# t.datetime "updated_at"
+# t.string   "slug"
+
 class Installation < ActiveRecord::Base
 
 	extend FriendlyId 

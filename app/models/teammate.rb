@@ -1,3 +1,18 @@
+# TABLE "teammates"
+# t.integer  "user_id"
+# t.integer  "group_id"
+# t.integer  "manager_id"
+# t.string   "status"        
+# t.datetime "accepted_at"
+# t.string   "teammate_code" 
+# t.datetime "created_at"
+# t.datetime "updated_at"
+# t.integer  "item_id"
+# t.string   "item_type"
+# t.integer  "sub_item_id"
+# t.string   "sub_item_type"
+# t.boolean  "archive"
+
 class Teammate < ActiveRecord::Base
   
   belongs_to    :user

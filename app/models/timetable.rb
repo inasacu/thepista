@@ -1,3 +1,14 @@
+# TABLE "timetables"
+# t.string   "day_of_week"
+# t.integer  "installation_id"
+# t.integer  "type_id"
+# t.datetime "starts_at"
+# t.datetime "s_at"
+# t.float    "timeframe"       
+# t.boolean  "archive"         
+# t.datetime "created_at"
+# t.datetime "updated_at"
+
 class Timetable < ActiveRecord::Base
 	belongs_to    :installation
 	belongs_to    :type 

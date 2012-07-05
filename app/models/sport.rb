@@ -1,3 +1,14 @@
+# TABLE "sports"
+# t.string   "name"            
+# t.text     "description"
+# t.string   "icon"            
+# t.float    "points_for_win"                
+# t.float    "points_for_lose"               
+# t.float    "points_for_draw"               
+# t.datetime "created_at"
+# t.datetime "updated_at"
+# t.integer  "player_limit"
+
 class Sport < ActiveRecord::Base
 
 	has_many :cups

@@ -1,3 +1,27 @@
+# TABLE "groups"
+# t.string   "name"
+# t.string   "second_team"
+# t.datetime "gameday_at"
+# t.float    "points_for_win"     
+# t.float    "points_for_draw"    
+# t.float    "points_for_lose"    
+# t.string   "time_zone"          
+# t.integer  "sport_id"
+# t.integer  "marker_id"
+# t.text     "description"
+# t.text     "conditions"
+# t.integer  "player_limit"       
+# t.string   "photo_file_name"
+# t.string   "photo_content_type"
+# t.integer  "photo_file_size"
+# t.datetime "photo_updated_at"
+# t.boolean  "archive"            
+# t.datetime "created_at"
+# t.datetime "updated_at"
+# t.boolean  "automatic_petition" 
+# t.integer  "installation_id"
+# t.string   "slug"
+
 class Group < ActiveRecord::Base
 
 	extend FriendlyId 

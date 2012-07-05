@@ -1,3 +1,10 @@
+# TABLE "announcements"
+# t.text     "message"
+# t.datetime "starts_at"
+# t.datetime "s_at"
+# t.datetime "created_at"
+# t.datetime "updated_at"
+
 class Announcement < ActiveRecord::Base
   
   # named_scope :active, lambda { { :conditions => ['starts_at <= ? and ends_at >= ?', Time.zone.now, Time.zone.now] } }

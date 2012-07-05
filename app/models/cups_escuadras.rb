@@ -1,3 +1,11 @@
+# TABLE "cups_escuadras" 
+# t.integer  "cup_id"
+# t.integer  "escuadra_id"
+# t.datetime "created_at"
+# t.datetime "updated_at"
+# t.boolean  "archive"     
+
+
 class CupsEscuadras < ActiveRecord::Base
 
   set_primary_keys =:escuadra_id, :cup_id 

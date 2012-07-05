@@ -1,3 +1,24 @@
+# TABLE "reservations"
+# t.string   "name"
+# t.datetime "starts_at"
+# t.datetime "s_at"
+# t.datetime "reminder_at"
+# t.integer  "venue_id"
+# t.integer  "installation_id"
+# t.integer  "item_id"
+# t.string   "item_type"
+# t.float    "fee_per_pista"    
+# t.float    "fee_per_lighting" 
+# t.boolean  "available"        
+# t.boolean  "reminder"         
+# t.boolean  "public"           
+# t.text     "description"
+# t.string   "block_token"
+# t.boolean  "archive"          
+# t.datetime "created_at"
+# t.datetime "updated_at"
+# t.string   "code"
+
 class Reservation < ActiveRecord::Base
 
 	extend FriendlyId 

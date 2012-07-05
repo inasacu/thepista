@@ -1,3 +1,13 @@
+# TABLE "invitations"
+# t.string   "email_addresses"
+# t.text     "message"
+# t.integer  "user_id"
+# t.boolean  "archive"         
+# t.datetime "created_at"
+# t.datetime "updated_at"
+# t.integer  "item_id"
+# t.string   "item_type"
+
 class Invitation < ActiveRecord::Base
 
   belongs_to      :user

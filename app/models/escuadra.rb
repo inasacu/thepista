@@ -1,3 +1,17 @@
+# TABLE "escuadras"
+# t.string   "name"
+# t.text     "description"
+# t.string   "photo_file_name"
+# t.string   "photo_content_type"
+# t.integer  "photo_file_size"
+# t.datetime "photo_updated_at"
+# t.boolean  "archive"            
+# t.datetime "created_at"
+# t.datetime "updated_at"
+# t.integer  "item_id"
+# t.string   "item_type"
+# t.string   "slug"
+
 class Escuadra < ActiveRecord::Base
 
 	extend FriendlyId 

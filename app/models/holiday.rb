@@ -1,3 +1,14 @@
+# TABLE "holidays"
+# t.string   "name"
+# t.integer  "venue_id"
+# t.datetime "starts_at"
+# t.datetime "s_at"
+# t.boolean  "holiday_hour" 
+# t.boolean  "archive"      
+# t.datetime "created_at"
+# t.datetime "updated_at"
+# t.integer  "type_id"
+
 class Holiday < ActiveRecord::Base
   belongs_to    :venue 
   belongs_to    :type

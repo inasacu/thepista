@@ -1,3 +1,10 @@
+# TABLE "groups_roles" 
+# t.integer  "group_id"
+# t.integer  "role_id"
+# t.datetime "created_at"
+# t.datetime "updated_at"
+# t.boolean  "archive"
+
 class GroupsRoles < ActiveRecord::Base
 
   set_primary_keys =:group_id, :role_id 

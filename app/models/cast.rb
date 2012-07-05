@@ -1,3 +1,15 @@
+# TABLE "casts"
+# t.integer  "challenge_id"
+# t.integer  "user_id"
+# t.integer  "game_id"
+# t.integer  "home_score"
+# t.integer  "away_score"
+# t.integer  "points"       
+# t.datetime "created_at"
+# t.datetime "updated_at"
+# t.boolean  "archive"      
+# t.string   "slug"
+
 class Cast < ActiveRecord::Base
 
 	belongs_to  :challenge

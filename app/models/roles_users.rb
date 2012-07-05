@@ -1,3 +1,10 @@
+# TABLE "roles_users" 
+# t.integer  "user_id"
+# t.integer  "role_id"
+# t.datetime "created_at"
+# t.datetime "updated_at"
+# t.boolean  "archive"
+
 class RolesUsers < ActiveRecord::Base
 
   set_primary_keys = :user_id, :role_id 

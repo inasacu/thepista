@@ -1,3 +1,10 @@
+# TABLE "groups_markers"
+# t.integer  "group_id"
+# t.integer  "marker_id"
+# t.datetime "created_at"
+# t.datetime "updated_at"
+# t.boolean  "archive"
+
 class GroupsMarkers < ActiveRecord::Base
   
   # record a marker join

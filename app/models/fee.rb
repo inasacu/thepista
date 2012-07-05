@@ -1,7 +1,23 @@
+# TABLE "fees"
+# t.string   "name"          
+# t.text     "description"
+# t.string   "payed"                       
+# t.boolean  "archive"                     
+# t.datetime "created_at"
+# t.datetime "updated_at"
+# t.float    "debit_amount"                
+# t.integer  "debit_id"
+# t.string   "debit_type"
+# t.integer  "credit_id"
+# t.string   "credit_type"
+# t.integer  "manager_id"
+# t.string   "item_type"
+# t.integer  "item_id"
+# t.integer  "type_id"
+# t.boolean  "season_player"               
+# t.string   "slug"
+
 class Fee < ActiveRecord::Base
-
-	 
-
 	
   belongs_to     :manager,        :class_name => 'User',        :foreign_key => 'manager_id'
   belongs_to     :debit,          :polymorphic => true

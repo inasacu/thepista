@@ -1,3 +1,10 @@
+# TABLE "groups_users" 
+# t.integer  "group_id"
+# t.integer  "user_id"
+# t.datetime "created_at"
+# t.datetime "updated_at"
+# t.boolean  "archive"
+
 class GroupsUsers < ActiveRecord::Base
 
   set_primary_keys =:user_id, :group_id 
