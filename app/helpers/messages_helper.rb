@@ -8,9 +8,9 @@ module MessagesHelper
 
   def message_icon(message)
     if message.new?(current_user)
-      image_tag("icons/email_add.png", :style => "height: 16px; width: 16px;", :class => "icon")
+      image_tag(IMAGE_EMAIL_ADD, :style => "height: 16px; width: 16px;", :class => "icon")
     elsif message.replied_to?
-      image_tag("icons/email_go.png", :style => "height: 16px; width: 16px;", :class => "icon")
+      image_tag(IMAGE_EMAIL_GO, :style => "height: 16px; width: 16px;", :class => "icon")
     end
   end
 
@@ -19,7 +19,7 @@ module MessagesHelper
   end
 
   def message_image_link(message)    
-    the_image = 'icons/email_delete.png' 
+    the_image = IMAGE_EMAIL_DELETE 
     the_label = label_name(:message_delete)
     # the_confirmation =  %(#{the_label}?)
     link_to(image_tag(the_image, :title => the_label, :style => "height: 16px; width: 16px;"), message_path(message), :method => :delete, :title => the_label)

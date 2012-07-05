@@ -2,7 +2,7 @@ module MatchesHelper
 
   def match_roster_change_link(match, type, show_label=true, show_icon=true)    
     the_schedule = match.schedule
-    the_image = 'estatus-convocado.png'
+    the_image = IMAGE_CONVOCADO
 
     the_label = "#{I18n.t(:change_roster_status) } #{I18n.t(type.name).downcase}"
     the_link = show_label ? "" : link_to(the_label, match_status_path(:id => match.id, :type => type.id)) 
@@ -10,13 +10,13 @@ module MatchesHelper
 
     case type.id
     when 1
-      the_image = 'estatus-convocado.png'
+      the_image = IMAGE_CONVOCADO
     when 2
-      the_image = 'estatus-ultima-hora.png' 
+      the_image = IMAGE_ULTIMA_HORA 
     when 3
-      the_image = 'estatus-ausente.png' 
+      the_image = IMAGE_AUSENTE 
     when 4
-      the_image = 'estatus-no-disponible.png'
+      the_image = IMAGE_NO_DISPONIBLE
     end      
     return "#{link_to(image_tag(the_image, :title => the_label, :style => 'height: 16px; width: 16px;'), match_status_path(:id => match.id, :type => type.id), :title => the_label)} #{the_link} #{the_break}".html_safe if show_icon
     return "#{the_link} #{the_break}".html_safe unless show_icon
@@ -52,16 +52,16 @@ module MatchesHelper
 
     case match.type_id
     when 1
-      the_image = 'estatus-convocado.png' if the_image.blank?
+      the_image = IMAGE_CONVOCADO if the_image.blank?
       return link_to(image_tag(the_image, :title => the_label, :style => "height: 16px; width: 16px;"), team_roster_path(:id => the_schedule), :title => the_label)
     when 2
-      the_image = 'estatus-ultima-hora.png' if the_image.blank?
+      the_image = IMAGE_ULTIMA_HORA if the_image.blank?
       return link_to(image_tag(the_image, :title => the_label, :style => "height: 15px; width: 15px;"), team_last_minute_path(:id => the_schedule), :title => the_label)
     when 3
-      the_image = 'estatus-ausente.png' if the_image.blank?
+      the_image = IMAGE_AUSENTE if the_image.blank?
       return link_to(image_tag(the_image, :title => the_label, :style => "height: 15px; width: 15px;"), team_no_show_path(:id => the_schedule), :title => the_label)
     when 4
-      the_image = 'estatus-no-disponible.png' if the_image.blank?
+      the_image = IMAGE_NO_DISPONIBLE if the_image.blank?
       return link_to(image_tag(the_image, :title => the_label, :style => "height: 15px; width: 15px;"), team_unavailable_path(:id => the_schedule), :title => the_label)
     end    
   end
@@ -351,13 +351,13 @@ module MatchesHelper
   	home["total_difference"] = "-#{home["total_difference"]}" if home["is_total_lower"] and !away["is_total_lower"] 
   	away["total_difference"] = "-#{away["total_difference"]}" if !home["is_total_lower"] and away["is_total_lower"]
 
-  	home["image"] = scorecard_image_link("subir-clasificacion.png") if home["total_difference"] > away["total_difference"]
-  	home["image"] = scorecard_image_link("bajar-clasificacion.png") if home["total_difference"] < away["total_difference"]
-  	home["image"] = scorecard_image_link("mantener-clasificacion.png") if home["total_difference"] == away["total_difference"]
+  	home["image"] = scorecard_image_link(IMAGE_SUBIR_CLASIFICACION) if home["total_difference"] > away["total_difference"]
+  	home["image"] = scorecard_image_link(IMAGE_BAJAR_CLASIFICACION) if home["total_difference"] < away["total_difference"]
+  	home["image"] = scorecard_image_link(IMAGE_MANTENER_CLASIFICACION) if home["total_difference"] == away["total_difference"]
 
-  	away["image"] = scorecard_image_link("subir-clasificacion.png") if away["total_difference"] > home["total_difference"]
-  	away["image"] = scorecard_image_link("bajar-clasificacion.png") if away["total_difference"] < home["total_difference"]
-  	away["image"] = scorecard_image_link("mantener-clasificacion.png") if away["total_difference"] == home["total_difference"]
+  	away["image"] = scorecard_image_link(IMAGE_SUBIR_CLASIFICACION) if away["total_difference"] > home["total_difference"]
+  	away["image"] = scorecard_image_link(IMAGE_BAJAR_CLASIFICACION) if away["total_difference"] < home["total_difference"]
+  	away["image"] = scorecard_image_link(IMAGE_MANTENER_CLASIFICACION) if away["total_difference"] == home["total_difference"]
 
   	home["technical"] = "" if home["technical"].to_f <= 0 
   	away["technical"] = "" if away["technical"].to_f <= 0 
@@ -400,13 +400,13 @@ module MatchesHelper
   	home["level_difference"] = "-#{home["level_difference"]}" if home["is_level_lower"] and !away["is_level_lower"] 
   	away["level_difference"] = "-#{away["level_difference"]}" if !home["is_level_lower"] and away["is_level_lower"]
 
-  	home["level_image"] = scorecard_image_link("subir-clasificacion.png") if home["level_difference"] > away["level_difference"]
-  	home["level_image"] = scorecard_image_link("bajar-clasificacion.png") if home["level_difference"] < away["level_difference"]
-  	home["level_image"] = scorecard_image_link("mantener-clasificacion.png") if home["level_difference"] == away["level_difference"]
+  	home["level_image"] = scorecard_image_link(IMAGE_SUBIR_CLASIFICACION) if home["level_difference"] > away["level_difference"]
+  	home["level_image"] = scorecard_image_link(IMAGE_BAJAR_CLASIFICACION) if home["level_difference"] < away["level_difference"]
+  	home["level_image"] = scorecard_image_link(IMAGE_MANTENER_CLASIFICACION) if home["level_difference"] == away["level_difference"]
 
-  	away["level_image"] = scorecard_image_link("subir-clasificacion.png") if away["level_difference"] > home["level_difference"]
-  	away["level_image"] = scorecard_image_link("bajar-clasificacion.png") if away["level_difference"] < home["level_difference"]
-  	away["level_image"] = scorecard_image_link("mantener-clasificacion.png") if away["level_difference"] == home["level_difference"]
+  	away["level_image"] = scorecard_image_link(IMAGE_SUBIR_CLASIFICACION) if away["level_difference"] > home["level_difference"]
+  	away["level_image"] = scorecard_image_link(IMAGE_BAJAR_CLASIFICACION) if away["level_difference"] < home["level_difference"]
+  	away["level_image"] = scorecard_image_link(IMAGE_MANTENER_CLASIFICACION) if away["level_difference"] == home["level_difference"]
 
   	home["level"] = "" if home["level"].to_f <= 0 
   	away["level"] = "" if away["level"].to_f <= 0

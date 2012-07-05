@@ -15,7 +15,7 @@ class Escuadra < ActiveRecord::Base
     :s3_credentials => "#{Rails.root}/config/s3.yml",
     :url => "/assets/escuadras/:id/:style.:extension",
     :path => ":assets/escuadras/:id/:style.:extension",
-    :default_url => "group_avatar.png"
+    :default_url => IMAGE_GROUP_AVATAR
 
     
     

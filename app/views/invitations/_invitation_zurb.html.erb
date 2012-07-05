@@ -22,7 +22,7 @@
   %td
     %span
   %td.last
-    = link_to image_tag("icons/email_delete.png"), invitation_path(invitation), |
+    = link_to image_tag(IMAGE_EMAIL_DELETE), invitation_path(invitation), |
       :method => :delete,                                                       |
       :confirm => %(#{label_name(:invitation_delete) }?),                       |
       :title => label_name(:invitation_delete)                                  |

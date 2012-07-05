@@ -14,7 +14,7 @@ module ReservationsHelper
   end 
 
   def reservation_avatar_image_link(reservation)
-    link_to(image_tag('icons/reservation.png', options={:style => "height: 15px; width: 15px;"}), installation_path(reservation.installation)) 
+    link_to(image_tag(IMAGE_RESERVATION, options={:style => "height: 15px; width: 15px;"}), installation_path(reservation.installation)) 
   end
 
   def view_reservation_name(reservation)      

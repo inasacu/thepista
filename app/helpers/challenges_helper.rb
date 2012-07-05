@@ -26,7 +26,7 @@ module ChallengesHelper
   end   
   
   def challenge_avatar_image_link(challenge)
-    link_to(image_tag('icons/challenge.png', options={:style => "height: 15px; width: 15px;"}), challenge_path(challenge)) 
+    link_to(image_tag(IMAGE_CHALLENGE, options={:style => "height: 15px; width: 15px;"}), challenge_path(challenge)) 
   end
   
 end

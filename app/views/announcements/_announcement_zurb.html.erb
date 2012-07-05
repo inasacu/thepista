@@ -21,7 +21,7 @@
 	</td>
 	<td><%=sanitize the_announcement %></td>
 	<td>
-		<%= link_to image_tag("icons/email_delete.png"), announcement_path(announcement), 
+		<%= link_to image_tag(IMAGE_EMAIL_DELETE), announcement_path(announcement), 
 														:method => :delete, 
 														:confirm => %(#{label_name(:announcements_delete) }?),
 														:title => label_name(:announcements_delete) %>

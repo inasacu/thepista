@@ -151,6 +151,31 @@ POINTS_FOR_DRAW = 3
 POINTS_FOR_GOAL_DIFFERENCE = 2
 POINTS_FOR_GOAL_TOTAL = 1
 
+# image default values
+IMAGE_CONVOCADO = 'icons/status_convocado.png'
+IMAGE_ULTIMA_HORA = 'icons/status_ultima_hora.png' 
+IMAGE_AUSENTE = 'icons/status_ausente.png' 
+IMAGE_NO_DISPONIBLE = 'icons/status_no_disponible.png'
+
+IMAGE_SUBIR_CLASIFICACION = 'icons/subir_clasificacion.png'
+IMAGE_BAJAR_CLASIFICACION = 'icons/bajar_clasificacion.png'
+IMAGE_MANTENER_CLASIFICACION = 'icons/mantener_clasificacion.png'
+
+
+IMAGE_CHALLENGE = 'icons/challenge.png'
+IMAGE_CUP = 'icons/cup.png'
+IMAGE_AVATAR = "icons/avatar.png"
+IMAGE_GROUP_AVATAR = 'icons/group_avatar.png'
+IMAGE_CALENDAR = 'icons/calendar.png'
+IMAGE_EMAIL_ADD = "icons/email_add.png"
+IMAGE_EMAIL_GO = "icons/email_go.png"
+IMAGE_EMAIL_DELETE = 'icons/email_delete.png'
+IMAGE_RESERVATION = 'icons/reservation.png'
+IMAGE_VENUE = 'icons/venue.png'
+
+# .sport.icon
+
+
 
 
 

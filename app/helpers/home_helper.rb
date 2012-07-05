@@ -27,7 +27,7 @@ module HomeHelper
 
   		item_group_link = item_name_link(teammate.group)
 
-  		the_icon = schedule_image_link_small(teammate, "calendario.png")
+  		the_icon = schedule_image_link_small(teammate, IMAGE_CALENDAR)
 
   		is_member = is_current_member_of(teammate.group)
   		if teammate.played?
@@ -121,7 +121,7 @@ module HomeHelper
 
   		item_group_link = item_name_link(teammate.schedule.group)
 
-          is_member = is_current_member_of(teammate.schedule.group)
+      is_member = is_current_member_of(teammate.schedule.group)
   		the_label = %(#{I18n.t(:passed_to)} <STRONG>#{teammate.type_name}</STRONG> #{I18n.t(:in)} #{is_member ? match_roster_link(teammate) : teammate.schedule.name})
 
   	end

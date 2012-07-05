@@ -32,7 +32,7 @@ class User < ActiveRecord::Base
     :s3_credentials => "#{Rails.root}/config/s3.yml",
     :url => "/assets/users/:id/:style.:extension",
     :path => ":assets/users/:id/:style.:extension",
-    :default_url => "avatar.png"  
+    :default_url => IMAGE_AVATAR  
         
     validates_attachment_content_type :photo, :content_type => ['image/jpeg', 'image/png', 'image/gif', 'image/jpg', 'image/pjpeg']
     validates_attachment_size         :photo, :less_than => 5.megabytes

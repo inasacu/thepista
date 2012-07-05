@@ -20,7 +20,7 @@ module CupsHelper
   end
     
   def cup_avatar_image_link(cup)
-    link_to(image_tag('icons/cup.png', options={:style => "height: 15px; width: 15px;"}), cup_path(cup)) 
+    link_to(image_tag(IMAGE_CUP, options={:style => "height: 15px; width: 15px;"}), cup_path(cup)) 
   end
 
 end

@@ -189,7 +189,7 @@ module SchedulesHelper
     item_image = item_image_link_small(the_group)	
     item_group_link = item_name_link(the_group)
 
-    the_icon = schedule_image_link_small(the_schedule, "calendario.png")
+    the_icon = schedule_image_link_small(the_schedule, IMAGE_CALENDAR)
 
     is_member = is_current_member_of(the_group)
     if the_schedule.played?

@@ -17,7 +17,7 @@ module GroupsHelper
 	end	
 
 	def group_avatar_image_link(group)
-		link_to(image_tag('group_avatar.png', options={:style => "height: 15px; width: 15px;"}), group_path(group)) 
+		link_to(image_tag(IMAGE_GROUP_AVATAR, options={:style => "height: 15px; width: 15px;"}), group_path(group)) 
 	end
 
 	def group_image_link_small(group)

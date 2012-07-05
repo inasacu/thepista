@@ -1,4 +1,6 @@
-<% the_label, the_content, has_been_played, is_manager, is_squad, the_sport, the_missing, the_span, the_start_at_label = get_team_roster %>
+<% the_label, the_content, has_been_played, is_manager, is_squad, the_sport, the_missing, the_span, the_start_at_label = get_team_roster 
+	the_label = @schedule.name
+%>
 
 
 <%= render "shared/previous_next_message_zurb", :schedule => @schedule, :the_previous => @the_previous, :the_next => @the_next -%>

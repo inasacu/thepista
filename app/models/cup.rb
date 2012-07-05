@@ -12,7 +12,7 @@ class Cup < ActiveRecord::Base
     :s3_credentials => "#{Rails.root}/config/s3.yml",
     :url => "/assets/cups/:id/:style.:extension",
     :path => ":assets/cups/:id/:style.:extension",
-    :default_url => "group_avatar.png"  
+    :default_url => IMAGE_GROUP_AVATAR  
 
     
     

@@ -52,12 +52,10 @@
 <%#= render('schedules/sidebar_details_zurb', :schedule => @schedule) %>
 <%#= render('sidebars/sidebar_geo_group_zurb', :schedule => @schedule) %>	
 <%#= render('schedules/sidebar_level_zurb', :schedule => @schedule ) if is_schedule_manager %>
-<%#= render('shared/share_object_zurb', :schedule => @schedule) %>
 <%# end %>
 
 <%# if group_schedule_list %>
 <%#= render('groups/sidebar_show_zurb') %>
-<%#= render('shared/share_object_zurb', :group => @group, :schedule => @group.schedules.first) if @group %>
 <%# end %>
 
 
@@ -116,7 +114,6 @@
 <%#= render('groups/sidebar_legend_zurb') if is_action('list') %>
 <%#= render('schedules/sidebar_schedule_zurb') if has_schedule_blank %>
 <%#= render('sidebars/sidebar_geo_group_zurb', :group => @group) if @group %>
-<%#= render('shared/share_object_zurb', :group => @group) if @group %>
 <%#= render('sidebars/sidebar_create_zurb', :item => Group.new unless @group %>
 <%#= render('sidebars/sidebar_edit_zurb', :item => @group unless @group %>
 <%#= render('sidebars/sidebar_howto_zurb') if show_howto %>
