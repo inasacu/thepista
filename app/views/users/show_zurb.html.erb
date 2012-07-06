@@ -40,7 +40,7 @@ end
 
 <%= render_show_detail_zurb(:groups, (@user.has_group? ? "#{group_list(@user.groups)}".html_safe : "#{label_name('groups_none')}".html_safe)) %>
 <%= render_show_detail_zurb(:sports, the_sport) %>
-<%= render_show_detail_zurb(:event_participation, (participation.to_i > 0 ? link_to(the_participation_label, my_list_schedules_path(:id => @user)) : the_participation_label)) %>
+<%= render_show_detail_zurb(:event_participation, (participation.to_i > 0 ? the_participation_label : the_participation_label)) %>
 
 
 <% if @user.has_group? and DISPLAY_USER_GROUP_FULL							

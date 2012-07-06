@@ -284,7 +284,7 @@ class SchedulesController < ApplicationController
       return
 
     elsif current_user.groups.count == 1 
-      @group = current_user.groups.find.first()
+      @group = current_user.groups.first()
 
     elsif current_user.groups.count > 1 and !params[:id].nil?
       @group = Group.find(params[:id])

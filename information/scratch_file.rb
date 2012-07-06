@@ -13,5 +13,6 @@ rake the_remove_archive_data
 
 
 
+* add image for user that has payed the porra and those that have not...
 
 

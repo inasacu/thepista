@@ -210,26 +210,6 @@ class UsersController < ApplicationController
 		redirect_back_or_default('/index')
 	end
 
-	def set_moderator 
-		unless is_current_manager_of(@group)
-			warning_unauthorized  
-			return
-		end
-		@user.has_role!(:moderator, @group)
-		flash[:notice] = I18n.t(:moderator_updated)
-		redirect_back_or_default('/index')
-	end 
-
-	def remove_moderator 
-		unless is_current_manager_of(@group)
-			warning_unauthorized  
-			return
-		end
-		@user.has_no_role!(:moderator, @group)
-		flash[:notice] = I18n.t(:moderator_updated)
-		redirect_back_or_default('/index')
-	end
-
 	def set_private_phone
 		if @user.update_attribute("private_phone", !@user.private_phone)
 			@user.update_attribute("private_phone", @user.private_phone)  

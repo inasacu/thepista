@@ -43,27 +43,26 @@ Thepista::Application.routes.draw do
 	match 'jugadores/:id/borrar_sub_manager/:group' => 'users#remove_sub_manager', :as => :remove_sub_manager
 	match 'jugadores/:id/marcar_subscripcion/:group' => 'users#set_subscription', :as => :set_subscription
 	match 'jugadores/:id/borrar_subscripcion/:group' => 'users#remove_subscription', :as => :remove_subscription
-	match 'jugadores/:id/marcar_moderador/:group' => 'users#set_moderator', :as => :set_moderator
-	match 'jugadores/:id/borrar_moderador/:group' => 'users#remove_moderator', :as => :remove_moderator
 	match 'jugadores/:id/peticiones_equipo' => 'users#petition', :as => :petition
 	match 'jugadores/:id/ocultar_telefono' => 'users#set_private_phone', :as => :set_private_phone
-	match 'jugadores/:id/ocultar_perfil' => 'users#set_private_profile', :as => :set_private_profile
-	
+	match 'jugadores/:id/ocultar_perfil' => 'users#set_private_profile', :as => :set_private_profile	
 	match 'jugadores/:id/habilitar_notificaciones' => 'users#set_teammate_notification', :as => :set_teammate_notification
-	match 'jugadores/:id/habilitar_mensajes' => 'users#set_message_notification', :as => :set_message_notification
-	
+	match 'jugadores/:id/habilitar_mensajes' => 'users#set_message_notification', :as => :set_message_notification	
 	match 'jugadores/:id/habilitar_ultima_hora' => 'users#set_last_minute_notification', :as => :set_last_minute_notification
+	
 	match 'eventos/:id/marcar_como_publico' => 'schedules#set_public', :as => :set_public
 	match 'eventos/:id/habilitar_perfil_previo' => 'schedules#set_previous_profile', :as => :set_previous_profile
 	match 'eventos/:id/marcar_recordatorio' => 'schedules#set_reminder', :as => :set_reminder
-
 	match 'eventos/:id/actual_evento' => 'schedules#group_current', :as => :group_current
 	match 'eventos/:id/previo_evento' => 'schedules#group_previous', :as => :group_previous
 	
-
   match 'equipos/:id/unirse_automaticamente' => 'groups#set_group_auto', :as => :set_group_auto
-  match 'retos_copa/:id/unirse_automaticamente' => 'challenges#set_challenge_auto',  :as => :set_challenge_auto
 
+  match 'retos_copa/:id/unirse_automaticamente' => 'challenges#set_challenge_auto',  :as => :set_challenge_auto
+	
+	match 'retos_copa/:id/marcar_reto_subscripcion/:challenge' => 'challenges#set_challenge_subscription', :as => :set_challenge_subscription
+	match 'retos_copa/:id/borrar_reto_subscripcion/:challenge' => 'challenges#remove_challenge_subscription', :as => :remove_challenge_subscription
+	
 	match 'jornadas/:id/cambio_equipo' => 'matches#set_team', :as => :match_team
 	match 'jornadas/:id/cambio_convocatoria/:type' => 'matches#set_status', :as => :match_status
 	match 'jornadas/:id/cambio_convocatoria/:type/:block_token' => 'matches#set_status_link', :as => :match_token

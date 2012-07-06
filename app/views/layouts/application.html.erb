@@ -1,66 +1,89 @@
-<!DOCTYPE html>
-<html>
-  <head>
-	
-	<meta http-equiv="Content-Type" content="application/xhtml+xml; charset=utf-8"?> 
-	<meta http-equiv="Content-Language" content="<%= I18n.locale %>"/>
-	
-	<title><%= page_title %></title>
-		
-	<meta name="Author" content="HayPista"/> 	
+<!DOCTYPE html>	
+
+<!--[if lt IE 7]> <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang="es"> <![endif]-->
+<!--[if IE 7]>    <html class="no-js lt-ie9 lt-ie8" lang="es"> <![endif]-->
+<!--[if IE 8]>    <html class="no-js lt-ie9" lang="es"> <![endif]-->
+<!--[if gt IE 8]><!--> <html lang="es"> <!--<![endif]-->
+
+<head>
+
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<meta name="Generator" content="HayPista" />
+	<meta name="Origen" content="HayPista" />
+	<meta name="Author" content="HayPista" />
+	<meta name="Locality" content="Spain" />	
+	<meta name="Language" content="es" />
 	<meta name="title" content="<%= page_title %>.  <%= I18n.t(:modo_key_title) %>" />
 	<meta name="description" content="<%= I18n.t(:modo) %>">		
 	<meta name="keywords" content="<%= I18n.t(:modo_keywords) %>"/> 
-	
+
 	<meta name="vw96.objectype" content="Document" />
 	<meta name="resource-type" content="Document" />
 	<meta name="distribution" content="all" />
 	<meta name="robots" content="all" />
-	<meta name="revisit" content="15 days" />
+	<meta name="revisit-after" content="7 days" />
 	<meta name="google-site-verification" content="qyTyrJH8o08Ur15mr5hUYjVNyWcbfQatF3yar3Ry2ws" />
 	<meta name="google-site-verification" content="OJzCfMpdsascUFtDoxXJpZGEIsjXjKG1691P1FC5pIc" />
-		
-	<link rel="image_src" href="http://haypista.com/assets/haypista.png" />
-	<link  rel="apple-touch-icon" href="assets/apple-touch-icon.png" />
+
+	<title><%= page_title %></title>
+
+	<link rel="image_src" href="http://haypista.com/images/haypista.png" />
+	<link  rel="apple-touch-icon" href="../../apple-touch-icon.png" />
 	<link rel="home" href="http://www.haypista.com">
-    <link rel="shortcut icon" type="image/ico" href="assets/favicon.ico">
- 
-	<%#= stylesheet_link_tag    "application", :media => "all" %>
+	<%= favicon_link_tag %>
+  
+
+	<%= stylesheet_link_tag    "application", :media => "all" %>
 	<%= javascript_include_tag "application" %>
 	<%= csrf_meta_tags %>
 
-	<%#= stylesheet_link_tag 'primary' %>
-
-    <%= javascript_include_tag :defaults %>
-    <%= ajaxful_rating_style %>
-
-	<%= javascript_include_tag "http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js" %>
-	<%= javascript_include_tag 'jquery.google-analytics', 'jquery.notifyBar', 'jquery.cluetip', 'jquery.hoverIntent' %>
-	<%= javascript_include_tag 'jquery.clearinput' %>
-	<%= render 'utilities/google_analytics' %>	
+	<%#= stylesheet_link_tag "foundation" %>
+	<%= javascript_include_tag "foundation" %>
 	
+	
+	<!-- Included CSS Files -->
+	<%#= stylesheet_link_tag 'zurb/globals' %>
+	<%#= stylesheet_link_tag 'zurb/typography' %>
+	<%= stylesheet_link_tag 'zurb/grid' %>
+	<%#= stylesheet_link_tag 'zurb/orbit' %>
+	<%#= stylesheet_link_tag 'zurb/reveal' %>
+	<%#= stylesheet_link_tag 'zurb/app' %>
+	<%#= stylesheet_link_tag 'zurb/mobile' %>
+	<%#= stylesheet_link_tag 'zurb/ui' %>
+	<%= stylesheet_link_tag 'zurb/forms' %>
+	<%= stylesheet_link_tag 'zurb/presentation' %>
+	<%= stylesheet_link_tag 'zurb/app' %>
+	
+	<%= stylesheet_link_tag 'standard_form' %>
+
+	<!--[if lt IE 9]>
+		<link rel="stylesheet" href="../../stylesheets/zurb/ie.css">
+	<![endif]-->
+	<!-- IE Fix for HTML5 Tags -->
+	<!--[if lt IE 9]>
+		<script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+	<![endif]-->
+
 </head>
-<body>
 
-	<%# show_ajax_rating = ['home_upcoming', 'schedule_index', 'schedule_my_list', 'schedule_list'] %>
-	<%#= render :partial => 'utilities/visible_script' %>		
-	<%#= render :partial => 'shared/flash', :locals => {:flash => flash } %>
+<body id="-page" class="">
+
+	<%= render 'shared/header_zurb' %>
+
+	<div class="container">
+		
+		<%= render 'shared/flash_zurb' %>
+		<%= render 'shared/wrapper_zurb' %>
+
+		<%#= render 'templates/twelve_columns_zurb' %>
+		<%#= render 'templates/eight_columns_zurb' %>
+		<%#= render 'shared/tabs_mobile_show_zurb' %>
+		
+		<%= render 'shared/footer_zurb' %>
+
+	</div>
 	
-  <div id="container">
-
-		<%= render :partial => 'shared/header_navigation' %>
-		<%#= render :partial => "shared/notice" if current_user %>
-		<%= render :partial => "shared/wrapper" %>	
-		<%= render :partial => "shared/footer" %>
-
-	<%# show_if_ie6 do %>
-		<%#= render :partial => "utilities/ie_nomore" %>
-	<%# end %>
-	
-  </div>
-
-  <%#= render :partial => 'shared/share_google' %>
-  <%#= render :partial => 'utilities/browser_detect' if Rails.env.development? %>
-
 </body>
+
 </html>

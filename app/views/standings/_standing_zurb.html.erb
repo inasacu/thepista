@@ -1,5 +1,4 @@
 <%
- 	mailer ||= false
 	switch ||= false
 	escuadra = ''
 	is_escuadra = (standing.item_type == "Escuadra")
@@ -16,38 +15,45 @@
 	
 	has_challenge = !standing.challenge_id.nil?
 	the_challenge = has_challenge ? h(standing.challenge.name) : ""
+	
+	is_subscriber = false
+	subscription_image = ""
+	unless is_escuadra
+		if standing.item.class.to_s == 'User' and has_challenge
+			the_user = User.find(standing.item_id) 
+			is_subscriber = the_user.is_subscriber_of?(standing.challenge)
+			the_label =  label_name("subscription_#{is_subscriber}")
+			subscription_image = "#{subscription_image_link(the_user, is_subscriber, the_label)}"
+		end
+	end	
+	
+	subscription_image = "#{standing.ranking}. #{subscription_image} #{standing.group_stage_name if is_escuadra}"
+	
+	the_name = ""
+ 	if is_escuadra 
+		the_name = link_to((escuadra.name.to_s.length > 14) ? "#{escuadra.name.to_s.strip[0..12]}..." : 
+					escuadra.name, {:host => 'haypista.com', :controller => 'escuadras', :action => 'show', :id => escuadra})
+	else
+		the_name = "#{escuadra_link(escuadra)}<br/> #{ (final_played ? the_challenge : item_name_link(standing.challenge)) if has_challenge}" 
+	end
 %>
 
 <tr>
-	<td><%= standing.ranking %>&nbsp;&nbsp;
-		<% if is_escuadra %>
-		<%#= is_manager ? in_place_text_field(:stand, :group_stage_name, {:cols => 1}) : standing.group_stage_name %>
-		<%=  standing.group_stage_name %>
-		<% end %>
-	</td>
-	<td><%= mailer ? "&nbsp;" : item_image_link_tiny(escuadra) %></td>
-	<td>
-		<span>
-	
-		<% if mailer and is_escuadra %>
-		<%= link_to((escuadra.name.to_s.length > 14) ? "#{escuadra.name.to_s.strip[0..12]}..." : escuadra.name, {:host => 'haypista.com', :controller => 'escuadras', :action => 'show', :id => escuadra}) %>
-		<% else %>
-		<%= escuadra_link(escuadra) %><br/>
-		<%= (final_played ? the_challenge : item_name_link(standing.challenge)) if has_challenge %>
-		<% end %>
+	<%= content_tag_safe(:td, subscription_image) %>
+	<%= content_tag_safe(:td, item_image_link_tiny(escuadra)) %>
+	<%= content_tag_safe(:td, the_name) %>
 
-		</span>
-	</td>
-	<td><%= standing.points.round %></td>
-	<td><%= standing.wins if is_escuadra %></td>
-	<td><%= standing.draws if is_escuadra %></td>
-	<td><%= standing.losses if is_escuadra %></td>
+	<%= content_tag_safe(:td, "#{standing.points.round}") %>
+	<%= content_tag_safe(:td, "#{standing.wins if is_escuadra}") %>
+	<%= content_tag_safe(:td, "#{standing.draws if is_escuadra}") %>
+	<%= content_tag_safe(:td, "#{standing.losses if is_escuadra}") %>
 	
-	<%  if  is_escuadra %>
-	<td><%= standing.goals_for %></td>
-	<td><%= standing.goals_against %></td>
-	<td><%= standing.goals_for - standing.goals_against %></td>
+	<% if is_escuadra %>
+		<%= content_tag_safe(:td, "#{standing.goals_for}") %>
+		<%= content_tag_safe(:td, "#{standing.goals_against}") %>
+		<%= content_tag_safe(:td, "#{standing.goals_for - standing.goals_against}") %>
 	<% end %>
-	<td><%= played if is_escuadra %></td>
+	
+	<%= content_tag_safe(:td, "#{played if is_escuadra}") %>
 </tr>
 

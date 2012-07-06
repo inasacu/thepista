@@ -3,5 +3,11 @@
 	@item = @schedule
 %>
 
+
+
+<%= content_tag :h6, "#{the_label}".html_safe, :class => "subheader" %>
+<hr/>
+<br/>
+
 <%= render 'shared/new_edit_multipart_zurb', :item => @item, :the_label => the_label %>
 

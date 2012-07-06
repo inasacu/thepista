@@ -8,7 +8,9 @@
 	the_controller = get_the_controller
 	the_sidebar = "#{the_controller}s"
 	the_sidebar_label = label_name(:options)
-	item_sidebar = nil
+	item_new_sidebar = nil
+	
+	is_controller_index = is_action ('index')
 	
 	case the_controller
 	when 'home'
@@ -41,13 +43,24 @@
 		the_sidebar = nil
 		
 	when 'message'
-		item_sidebar = Message.new
+		item_new_sidebar = Message.new 
+	
+	when 'group'
+		item_new_sidebar = Group.new
+	
+	when 'schedule'
+		ignore_schedule = ['schedule_show', 'schedule_team_roster', 'schedule_team_no_show', 'schedule_team_last_minute', 'schedule_team_unavailable']
+		item_new_sidebar = Schedule.new unless ignore_schedule.include?(get_controller_action)
+		
 	end
 	
 	the_sidebar = 'challenges' if get_controller_action == 'standing_show_list'
 	the_sidebar = 'cups' if get_controller_action == 'cast_list_gues'
 	the_sidebar = 'cups' if get_controller_action == 'game_index' or get_controller_action == 'game_list'
 	
+	
+	
+
 	
 	# case for pagination display
 	if get_controller_action == 'group_team_list'
@@ -93,8 +106,12 @@
 	# :collection => @sport if @sport 
 	# :collection => @venues if @venues 
 	
-	discard_disqus_display = ['schedule_new', 'schedule_edit', 'cast_edit', 'match_edit']
-	discard_sidebar_display = ['group_index', 'schedule_index', 'schedule_list','user_index', 'venue_index', 'invitation_new']
+	
+	# case for displaying DISQUS
+	discard_disqus_display = ['schedule_new', 'schedule_edit', 'cast_edit', 'match_edit', 'invitation_new']
+	
+	# case for displaying SIDEBAR 
+	discard_sidebar_display = ['schedule_list', 'user_index', 'venue_index', 'invitation_new']
 	the_sidebar = nil if discard_sidebar_display.include?(get_controller_action)
 %>
 
@@ -124,15 +141,13 @@
 
   	<div class="four columns">
 	<!-- SIDEBAR BEGIN -->
-	
-		<%#= render "shared/search_zurb" if DISPLAY_SEARCH_OPTION %>	
 		
 		<% unless the_sidebar.nil? %>
 		
 			<%= set_title_class(the_sidebar_label) %>
 			<hr/>
 				
-			<%= render 'sidebars/sidebar_create_zurb', :item => item_sidebar unless item_sidebar.nil? %>		
+			<%= render 'sidebars/sidebar_create_zurb', :item => item_new_sidebar unless item_new_sidebar.nil? %>		
 			<%= render "#{the_sidebar}/sidebar_zurb" %>		
 		
 			<hr/>

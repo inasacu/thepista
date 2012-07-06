@@ -6,7 +6,7 @@
 	has_group = @group ? true : false
 
 	the_group_name = ""
-	the_manager_label = ""
+	# the_manager_label = ""
 	the_confirmation = ""
 	the_label ||= label_name(:options)
 
@@ -17,7 +17,7 @@
 		the_group_name = h(@group.name) 
 
 		# the_label = label_with_name('create_schedule', @group.name)
-		the_manager_label = label_name(:options_for_manager)
+		# the_manager_label = label_name(:options_for_manager)
 		# the_confirmation = "#{ label_name(:destroy_group) } #{the_group_name}?"
 
 		has_schedule_blank = @group.schedules.blank? 
@@ -53,6 +53,7 @@
 		
 		<% if is_group_manager %>
 		
+			<hr/>
 			<%= set_image_and_link(link_to(control_label('create'), new_schedule_path(:id => @schedule.group)), 'schedule_add') if is_manager_not_forum %> 
 			<%= set_image_and_link(link_to(control_label('edit'), edit_schedule_path(@schedule)), 'schedule_edit') %>
 			<%= set_image_and_link(link_to(control_label('destroy'), schedule_path(@schedule), 

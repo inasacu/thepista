@@ -27,7 +27,7 @@
 <%= render_show_detail_zurb(:starts_at, nice_day_of_week(@cup.starts_at)) %>
 <%= render_show_detail_zurb(:ends_at, nice_day_of_week(@cup.ends_at)) %>
 <%#= render_show_detail_zurb(:deadline_at, nice_day_of_week(@cup.deadline_at)) %>
-<%= render_show_detail_zurb(:club, label_name(@cup.club, 'value')) %>		
+<%#= render_show_detail_zurb(:club, label_name(@cup.club, 'value')) %>		
 <%= render_show_detail_zurb(:escuadras, t(:has_cup_escuadras, :count => @cup.escuadras.count)) %>
 <%= render_show_detail_zurb(:games, t(:has_cup_games, :count => @cup.games.count)) %>		
 <%= render_show_detail_zurb(:group_stage_advance, @cup.group_stage_advance) if (@cup.group_stage_advance.to_i > 0) if is_maximo %>
