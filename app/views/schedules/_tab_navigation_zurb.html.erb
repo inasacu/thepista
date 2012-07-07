@@ -6,35 +6,20 @@
 	the_action = ['show','edit', 'team list', 'schedule list', 'group current list', 'group previous list', 'list']
 	the_controller = ['classified', 'fee', 'payment', 'schedule']
 	
-	is_new_group = (get_controller_action =='group_new' or get_controller_action == 'group_create')
-	is_not_new_group = !is_new_group
-	
 	single_schedule_group = @schedule and @schedule.group
-	
-	unless is_new_group
-		content_for(:description, "#{@schedule.group.name} / #{@schedule.group.sport.name},  #{@schedule.group.description}.  #{@schedule.group.marker.name}, #{@schedule.group.time_zone}") if single_schedule_group
-	end
+	content_for(:description, "#{@schedule.group.name} / #{@schedule.group.sport.name},  #{@schedule.group.description}.  #{@schedule.group.marker.name}, #{@schedule.group.time_zone}") if single_schedule_group
 
 	the_controller = ['match']
 	the_action = ['show', 'edit', 'team roster', 'team no show', 'team last minute', 'team unavailable', 'star rate']
-	is_new_schedule = (get_controller_action =='schedule_new' or get_controller_action == 'schedule_create')
-%>
 
-		<%= item_new(@schedule) if is_new_schedule %>
-		<%= item_new(@schedule.group) if is_new_group %>	
-		
-<%		
-	unless is_new_schedule 
 
 	unless the_action.include?(get_the_action) or the_controller.include?(get_the_controller)
-		
-		#unless @has_no_schedules
+
 %>
 	<%= set_tab_navigation(link_to(label_name(:upcoming_schedules), schedules_url, :class => get_active('schedule_index'))) %>
 	<%= set_tab_navigation(link_to(label_name(:previous_schedules), list_schedules_path, :class => get_active('schedule_list'))) %>
 	
 <% 
-		#end
 	else
 	
 		if is_current_member_of(@schedule.group) or @schedule.public
@@ -67,8 +52,6 @@
 			<%#= set_tab_navigation(group_link(@schedule.group, set_tab_navigation_active('group_show'))) if single_schedule_group %>
 			<%#= set_tab_navigation(link_to(label_name(:schedules), schedules_url, :class => get_active('schedule_index'))) %>
 	
-<% 
-		end
+<%		end
 	end
-end
 %>

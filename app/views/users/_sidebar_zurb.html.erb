@@ -8,11 +8,11 @@
 	@current_user_challenges.each {|challenge| @current_manage_challenges << challenge if is_current_manager_of(challenge)}
 %>
 
+<% if current_user == @user %>
+	<%= set_form_edit_image_link(@user) %>
+	<hr/>
+<% end %>
 
-<%= render 'sidebars/sidebar_edit_zurb', :item => @user, :label => 'edit' %>
-
-
-<%= set_form_create_id_image_link(Message.new, :id, @user, :send_message_to) unless current_user == @user %>
 
 <% @current_manage_groups.each do |group| 
 	
@@ -29,21 +29,15 @@
 	<%= set_image_and_link(set_role_add_subscription(@user, group), 'user_add') unless is_user_subscriber %>
 	<%= set_image_and_link(set_role_remove_subscription(@user, group), 'user_remove') if is_user_subscriber %>
 	<% end %>
-
-	
-	<%# if DISPLAY_FREMIUM_SERVICES %>
 		
-		<% if is_user_member %>
-	
-			<hr/>
-			<%= set_image_and_link(set_role_add_sub_manager(@user, group), 'group_add') unless is_user_sub_manager %>
-			<%= set_image_and_link(set_role_remove_sub_manager(@user, group), 'group_remove') if is_user_sub_manager %>
+	<% if is_user_member %>
+		<hr/>
+		<%= set_image_and_link(set_role_add_sub_manager(@user, group), 'group_add') unless is_user_sub_manager %>
+		<%= set_image_and_link(set_role_remove_sub_manager(@user, group), 'group_remove') if is_user_sub_manager %>
 
-			<%= set_image_and_link(set_role_add_manager(@user, group), 'group_add') unless is_user_manager %>
-			<%= set_image_and_link(set_role_remove_manager(@user, group), 'group_remove') if is_user_manager %>
-		<% end %>
-	
-	<%# end %>
+		<%= set_image_and_link(set_role_add_manager(@user, group), 'group_add') unless is_user_manager %>
+		<%= set_image_and_link(set_role_remove_manager(@user, group), 'group_remove') if is_user_manager %>
+	<% end %>
 	
 <% end %>
 
@@ -56,17 +50,16 @@
 	
 		unless is_user_manager 
 %>
-
-	<hr/>
+			<hr/>
 	
-	<%= set_image_and_link(join_item_link_to(@user, item, true), 'group_add') unless is_user_member %>
-	<%= set_image_and_link(leave_item_link_to(@user, item), 'group_remove') if is_user_member %>		
+			<%= set_image_and_link(join_item_link_to(@user, item, true), 'group_add') unless is_user_member %>
+			<%= set_image_and_link(leave_item_link_to(@user, item), 'group_remove') if is_user_member %>		
 	
-	<% if is_user_member %>
-	<%= set_image_and_link(set_role_add_challenge_subscription(@user, item), 'user_add') unless is_user_subscriber %>
-	<%= set_image_and_link(set_role_remove_challenge_subscription(@user, item), 'user_remove') if is_user_subscriber %>
-	<% end %>
-	
+			<% if is_user_member %>
+			<%= set_image_and_link(set_role_add_challenge_subscription(@user, item), 'user_add') unless is_user_subscriber %>
+			<%= set_image_and_link(set_role_remove_challenge_subscription(@user, item), 'user_remove') if is_user_subscriber %>
+			<% end %>
+				
 <% 
 		end
    end 

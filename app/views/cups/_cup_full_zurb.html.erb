@@ -1,7 +1,4 @@
 <%
-	# the_description = sanitize(cup.description)
-	# the_description = "#{the_description.to_s.strip[0..60]}..." if the_description.to_s.length > 60
-	# the_description = the_description.gsub(" ", "<wbr> ")
 	the_cup = cup.name
 	 
 	final_played ||= false
@@ -9,46 +6,19 @@
 	final_played = the_game.played unless (the_game.nil? or the_game.blank?)
 	the_sport = label_name(:join_cup)
 	
+	the_cup_start = "#{nice_full_date(cup.starts_at)}" 
+	the_cup_start = "#{the_cup_start}<br/>#{has_left(cup.starts_at)}" if Time.zone.now < cup.starts_at
+	
+	the_standing = ""
+	the_standing = "#{link_to(label_name(:standing), standing_path(:id => cup))}" if object_counter(cup.standings) > 1 and !final_played
+	the_standing = "#{the_standing} #{link_to(label_name(:final) , list_games_path(:id => cup))}" if final_played
 -%>
 
 <tr>
-
-	<td>
-		<%= item_image_name_link_small(cup) %>
-	</td>
-
-	<td>
-		<%= item_name_link cup %><br />
-		<span class="date">
-		<%= cup.sport.name %>
-		</span>
-	</td>
-
-	<td>
-		<%#= item_list(cup.all_the_managers) %>
-	</td>
-
-	<td>
-		<span class="date">
-		<%= nice_full_date(cup.starts_at) %>
-		<%= "<br/>#{has_left(cup.starts_at)}".html_safe if Time.zone.now < cup.starts_at %>
-		</span>
-	</td>	
-	
-	<td>
-		<%= link_to(label_name(:standing), standing_path(:id => cup))  if object_counter(cup.standings) > 1 and !final_played %>
-		<span class="date">
-			<% if final_played %>
-			<%= link_to(label_name(:final) , list_games_path(:id => cup)) %>
-			<% end %>
-		</span>
-	</td>
-
-	<%  if cup.official %>
-	<%#= (cup.starts_at < Time.zone.now) ? link_to(label_name(:challenges_shows), challenges_url) : link_to(the_sport, challenges_url) %>
-	<%#= "#{link_to(label_name(:challenges_create), new_challenge_path(:id => cup))}".html_safe  unless (cup.starts_at < Time.zone.now) %>
-	<%#= set_content_tag_safe(:td, link_to(label_name(:challenges_create), new_challenge_path(:id => cup))) %>
-	<% end %>
+	<%= set_content_tag_safe(:td, item_image_name_link_small(cup)) %>
+	<%= set_content_tag_safe(:td, "#{item_name_link(cup)}<br/>#{cup.sport.name}") %>
 	<%= set_content_tag_safe(:td, "&nbsp;") %>
-	
+	<%= set_content_tag_safe(:td, the_cup_start) %>
+	<%= set_content_tag_safe(:td, the_standing) %>
+	<%= set_content_tag_safe(:td, "&nbsp;") %>
 </tr>

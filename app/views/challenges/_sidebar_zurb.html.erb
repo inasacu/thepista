@@ -13,37 +13,22 @@
 
 
 <div class="row">
-
-<div class="twelve columns">
+	<div class="twelve columns">
 
 <% if is_member_or_maximo
 		the_challenge = sanitize(@challenge.name)
 		the_confirmation = label_with_name(:do_leave_challenge, "#{the_challenge}?")
-
-		# @casts = Cast.current_casts(current_user, @challenge)
-		# @casts.each {|cast| can_edit = true  if (current_user == cast.user and cast.cast_before_game)	}
 %>
-		<%= set_form_create_id_image_link(Message.new, :challenge_id, @challenge.id, :send_message_to) %>		
-		<%= set_form_create_id_image_link(Invitation.new, :challenge_id, @challenge, :invitations_create_challenge) %>
 		<%= set_image_and_link(link_to(label_name(:challenges_edit), edit_challenge_path(@challenge)), 'challenge') if can_edit_challenge %>
 		<%= set_image_and_link(link_to(label_name(:casts_edit), edit_cast_path(@challenge)), 'challenge') if can_edit and !final_played %>
 
-<% 
-	else
-%>		
-		<%= set_form_create_id_image_link(Message.new, :id, @challenge.all_the_managers.first, :send_message_to) %>
+<% else %>
 		
 <%		unless has_current_item_petition(@challenge) %> 			
 			<%= "#{option_image_link('user_add')} ***  #{join_item_link_to(current_user, @challenge, true)}" %>			
 <% 		end 
 	end
 %>
+
+	</div>
 </div>
-
-</div>
-
-
-
-<%#= render 'challenges/sidebar_show_zurb' unless is_right_guess %>
-<%#= render  'sidebars/sidebar_show_final_played_zurb' -%>
-<%#= render  'sidebars/sidebar_show_cup', :cup => @cup if is_current_manager_of(@cup) -%>

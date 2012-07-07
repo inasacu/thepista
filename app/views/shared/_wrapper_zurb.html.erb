@@ -1,5 +1,5 @@
 <% 
-	about = ['about', 'terms of use', 'privacy policy', 'faq', 'pricing', 'succes','openid']
+	# login options
 	login_action = ['signup', 'create', 'new', 'rpx_create', 'rpx_new'] 
 	login_controller =['user_sessions', 'users', ''] 
 	login_session = (login_controller.include?(controller.controller_name) and login_action.include?(controller.action_name)) 
@@ -8,9 +8,9 @@
 	the_controller = get_the_controller
 	the_sidebar = "#{the_controller}s"
 	the_sidebar_label = label_name(:options)
-	item_new_sidebar = nil
+	new_item_sidebar = nil
 	
-	is_controller_index = is_action ('index')
+	is_controller_index = is_action('index')
 	
 	case the_controller
 	when 'home'
@@ -32,31 +32,42 @@
 	when 'invitation'
 		the_sidebar = 'messages'	
 	
-	when 'escuadra', 'cup', 'standing'
+	when 'escuadra'
 		the_sidebar = 'cups'
-		the_sidebar = nil if is_controller_action('cup_index')
+	
+	when 'standing'
+		the_sidebar = 'cups'
+		the_sidebar = 'challenges' if get_controller_action == 'standing_show_list'
 		
-	when 'challenge', 'cast'
+	when 'challenge'
 		the_sidebar = 'challenges'
+		
+	when 'cast'
+		the_sidebar = 'challenges'
+		the_sidebar = 'cups' if get_controller_action == 'cast_list_gues'
 	
 	when 'game'
-		the_sidebar = nil
+		the_sidebar = nil		
+		the_sidebar = 'cups' if get_controller_action == 'game_index' or get_controller_action == 'game_list'
 		
 	when 'message'
-		item_new_sidebar = Message.new 
+		new_item_sidebar = Message.new
+		
+	when 'cup'
+		new_item_sidebar = Cup.new	
+		the_sidebar = nil if is_controller_action('cup_index')
 	
 	when 'group'
-		item_new_sidebar = Group.new
+		new_item_sidebar = Group.new
 	
 	when 'schedule'
 		ignore_schedule = ['schedule_show', 'schedule_team_roster', 'schedule_team_no_show', 'schedule_team_last_minute', 'schedule_team_unavailable']
-		item_new_sidebar = Schedule.new unless ignore_schedule.include?(get_controller_action)
+		new_item_sidebar = Schedule.new unless ignore_schedule.include?(get_controller_action)
 		
 	end
 	
-	the_sidebar = 'challenges' if get_controller_action == 'standing_show_list'
-	the_sidebar = 'cups' if get_controller_action == 'cast_list_gues'
-	the_sidebar = 'cups' if get_controller_action == 'game_index' or get_controller_action == 'game_list'
+
+	
 	
 	
 	
@@ -108,11 +119,11 @@
 	
 	
 	# case for displaying DISQUS
-	discard_disqus_display = ['schedule_new', 'schedule_edit', 'cast_edit', 'match_edit', 'invitation_new']
+	discard_disqus_display = ['schedule_new', 'schedule_edit', 'cast_edit', 'match_edit', 'invitation_new', 'challenge_new', 'challenge_edit']
 	
 	# case for displaying SIDEBAR 
-	discard_sidebar_display = ['schedule_list', 'user_index', 'venue_index', 'invitation_new']
-	the_sidebar = nil if discard_sidebar_display.include?(get_controller_action)
+	ignore_sidebar = ['schedule_list', 'user_index', 'venue_index', 'invitation_new', 'challenge_new', 'challenge_create']
+	the_sidebar = nil if ignore_sidebar.include?(get_controller_action)
 %>
 
 
@@ -127,12 +138,13 @@
 		<% unless discard_disqus_display.include?(get_controller_action) %>
 		
 			<%#= render 'utilities/disqus_display', :the_item => @group if @group %>
-			<%#= render 'utilities/disqus_display', :the_item => @cup if @cup %>
-		
+			<%#= render 'utilities/disqus_display', :the_item => @cup if @cup %>		
 			<%= render 'utilities/disqus_display', :the_item => @schedule if @schedule %>
 			<%= render 'utilities/disqus_display', :the_item => @challenge if @challenge %>
 		
 		<% end %>
+		
+		
 		
 	</div>
 
@@ -147,8 +159,11 @@
 			<%= set_title_class(the_sidebar_label) %>
 			<hr/>
 				
-			<%= render 'sidebars/sidebar_create_zurb', :item => item_new_sidebar unless item_new_sidebar.nil? %>		
-			<%= render "#{the_sidebar}/sidebar_zurb" %>		
+			<%= render 'sidebars/sidebar_create_zurb', :item => new_item_sidebar unless new_item_sidebar.nil? %>	
+			
+			<%= render 'sidebars/sidebar_message' %>
+				
+			<%= render "#{the_sidebar}/sidebar_zurb" %>	
 		
 			<hr/>
 			<br/>		

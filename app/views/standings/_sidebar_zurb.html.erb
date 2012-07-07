@@ -7,9 +7,9 @@
 	<%= render 'sidebars/sidebar_create_id_zurb', 
 				:item => @message, :id => 'scorecard_id', :item_id => @group.schedules.first unless @group.schedules.blank? %>
 	
-	<%#= link_to(label_name(:send_message_to), new_message_path(:group_id => @group)) %>
-	<%#= link_to(label_name(:invitations_create_group) , new_invitation_url(:group_id => @group)) %>
-	<%#= link_to label_name(:send_scorecard), new_message_path(:scorecard_id => @group.schedules.first) unless @group.schedules.blank? %>
+	<%= link_to(label_name(:send_message_to), new_message_path(:group_id => @group)) %>
+	<%= link_to(label_name(:invitations_create_group) , new_invitation_url(:group_id => @group)) %>
+	<%= link_to label_name(:send_scorecard), new_message_path(:scorecard_id => @group.schedules.first) unless @group.schedules.blank? %>
 <% 
 	else
 %>
@@ -43,7 +43,5 @@ end
 <%= render('shared/invite') -%>
 
 <%  if @cup  %>
-	<%#= render('cups/sidebar_cup_additional', :cup => @cup) if is_current_manager_of(@cup) -%>
-	<%= render("cups/sidebar_cup_additional", :cup => @cup) if is_current_manager_of(@cup) -%>
 	<%= render('sidebars/sidebar_show_cup', :cup => @cup) if is_current_manager_of(@cup) -%>
 <% end -%>

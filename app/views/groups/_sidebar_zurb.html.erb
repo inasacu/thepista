@@ -27,12 +27,9 @@
 	<div class="row">
 		<div class="twelve columns">
 	
-			<% if is_group_member %>
-				<%= set_form_create_id_image_link(Message.new, :group_id, @group, :send_message_to) %>
-				<%= set_form_create_id_image_link(Invitation.new, :group_id, @group, :invitations_create_group) %>
-
-			<% else %>	
-				<%= set_form_create_id_image_link(Message.new, :id, @group.all_the_managers.first, :send_message_to) %>
+			<% unless is_group_member %>
+			
+				
 				<%= set_image_and_link(join_item_link_to(current_user, @group, true), 'user_add') if has_user_petition %>
 
 			<% end %>
@@ -69,6 +66,3 @@
 
 <% end -%>
 
-<%#= render 'sidebars/sidebar_create_zurb', :item => Group.new unless has_group %>
-<%= render('sidebars/sidebar_geo_group_zurb', :group => @group) if has_group and DISPLAY_FREMIUM_SERVICES -%>
-<%#= render('groups/sidebar_legend_zurb') unless has_group and DISPLAY_FREMIUM_SERVICES %>

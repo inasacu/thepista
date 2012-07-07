@@ -4,8 +4,13 @@
 	the_title = nil
 	the_label_title = label_name("#{the_controller}s")
 	
+	is_new_item = (is_action('new') or is_action('create'))
+	@new_item = nil	
 	
 	case the_controller
+	when 'announcement'
+		@new_item = @announcement if is_new_item
+	
 	when 'home'
 		the_tab_navigation = "#{get_the_controller}"
 		
@@ -23,23 +28,48 @@
 	
 	when 'invitation'
 		the_tab_navigation = 'messages'
+		@new_item = @invitation if is_new_item
 	
-	when 'escuadra', 'cup', 'game', 'standing'
+	when 'escuadra'
 		the_tab_navigation = 'cups'
-		the_title = the_controller #unless get_controller_action == 'cup_index'
+		the_title = the_controller 
 	
-	when 'challenge', 'cast'
+	when 'cup'
+		the_tab_navigation = 'cups'
+		the_title = the_controller
+		@new_item = @cup if is_new_item
+	
+	when 'game'
+		the_tab_navigation = 'cups'
+		the_title = the_controller
+	
+	when 'standing'
+		the_tab_navigation = 'cups'
+		the_title = the_controller
+	
+	when 'challenge'
+		the_tab_navigation = 'challenges'
+		@new_item = @challenge if is_new_item 
+	
+	when 'cast'
 		the_tab_navigation = 'challenges'
 		
 	when 'group'
 		the_title = the_controller
+		@new_item = @group if is_new_item
 		
 	when 'schedule'
-		# the_title = the_controller unless get_controller_action == 'schedule_team_roster', 'schedule_show'
+		@new_item = @schedule if is_new_item
+		
+	when 'venue'
+		@new_item = @venue if is_new_item
 		
 	when 'message'
+		the_tab_navigation = 'messages'
 		the_title = the_controller
 		is_display_title = false
+		@new_item = @message if is_new_item
+		
 	end	
 	
 	the_tab_navigation = 'challenges' if get_controller_action == 'standing_show_list'
@@ -90,7 +120,18 @@
 		<% if current_user %>
 
 			<dl class="nice tabs mobile hide-on-phones">	
-				<%= render "#{the_tab_navigation}/tab_navigation_zurb" unless the_tab_navigation.nil? %>
+				
+					
+				<% if @new_item.nil? %>
+				
+					<%= render "#{the_tab_navigation}/tab_navigation_zurb" unless the_tab_navigation.nil? %>
+					
+				<% else %>		
+						
+					<%= item_new(@new_item) %>
+					
+				<% end %>
+				
 			</dl>
 			
 			<%= set_title_class(the_label_title, the_title) if is_display_title %>

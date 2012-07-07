@@ -1,22 +1,11 @@
-<% 
-	the_label ||= label_name(:options)
-	# is_displayable = true
-	
-	case item.class.to_s
-	when 'Type', 'Role', 'Announcement', 'Sport'
-		is_displayable = the_maximo
-	when 'User'
-		is_displayable = (is_user_manager_of(item))
-	when 'Group', 'Schedule', 'Classified', 'Cup', 'Challenge', 'Fee', 'Payment'
-		is_displayable = current_user.is_manager?
-	end
+
+<%= set_form_create_image_link(item) %>
+<%= set_image_and_link(option_link('invitation'), 'invitation') %>
+
+<%
+	cup_create_list = ['cup', 'challenge', 'cast', 'standing']
+	is_cup_create = cup_create_list.include?(get_the_controller)
 %>
 
-<%# if is_displayable %>
-
-		<%= set_form_create_image_link(item) %>
-		<%= set_image_and_link(option_link('invitation'), 'invitation') %>
-		
-
-<%# end -%>
-
+<%= set_image_and_link(link_to(label_name(:cups_create), new_cup_url), 'cup') if is_controller('cup') or is_controller('challenge') if is_cup_create %>
+<%= set_image_and_link(link_to(label_name(:challenges_create), new_challenge_path(:cup_id => @cup)), 'challenge') if @cup %>

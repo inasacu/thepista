@@ -114,19 +114,13 @@ class ChallengesController < ApplicationController
 		end
 	end 
 
-	# def destroy
-	# 	counter = 0
-	# 	@challenge.casts.each {|schedule| counter += 1 }
-	# 	redirect_to challenge_url
-	# end
-
 	private
 	def get_challenge
 		@challenge = Challenge.find(params[:id]) 
 	end
 
 	def get_cup
-		@cup = Cup.find(params[:id])
+		@cup = Cup.find(params[:cup_id])
 	end
 	
 	def get_user_challenge

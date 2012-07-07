@@ -1,0 +1,63 @@
+<%
+	if @challenge
+		if is_current_member_of(@challenge)
+%>
+			<%= set_form_create_id_image_link(Message.new, :challenge_id, @challenge, :send_message_to) %>		
+			<%= set_form_create_id_image_link(Invitation.new, :challenge_id, @challenge, :invitations_create_challenge) %>
+			<hr/>
+<% 		else %>			
+			<%= set_form_create_id_image_link(Message.new, :id, @challenge.all_the_managers.first, :send_message_to) %>
+			<hr/>
+<% 		end
+	end
+%>
+
+<%
+	if @group and !@schedule
+		if is_current_member_of(@group)
+%>
+			<%= set_form_create_id_image_link(Message.new, :group_id, @group, :send_message_to) %>
+			<%= set_form_create_id_image_link(Invitation.new, :group_id, @group, :invitations_create_group) %>
+			<hr/>
+<% 		else %>
+			<%= set_form_create_id_image_link(Message.new, :id, @group.all_the_managers.first, :send_message_to) %>
+			<hr/>
+<% 
+		end
+	end
+%>
+
+<%
+	if @venue
+		if is_current_member_of(@venue)
+%>
+			<%= set_form_create_id_image_link(Message.new, :venue_id, @venue, :send_message_to) %>
+			<%= set_form_create_id_image_link(Invitation.new, :venue_id, @venue, :invitations_create_venue) %>
+			<hr/>
+<% 
+		end
+	end
+%>
+
+<%
+	if @schedule
+		@group = @schedule.group
+		if is_current_member_of(@group)
+			has_schedule_blank = @group.schedules.blank? 
+%>
+			<%= set_form_create_id_image_link(Message.new, :group_id, @group, :send_message_to) %>
+			<%= set_form_create_id_image_link(Invitation.new, :schedule_id, @schedule, :invitations_create_schedule) unless has_schedule_blank %>
+			<hr/>
+<% 		else %>
+			<%= set_form_create_id_image_link(Message.new, :id, @group.all_the_managers.first, :send_message_to) %>
+			<hr/>
+<% 
+		end
+	end
+%>
+
+<% if @user %>
+	<%= set_form_create_id_image_link(Message.new, :id, @user, :send_message_to) if current_user != @user %>
+	<hr/>
+<% end %>
+

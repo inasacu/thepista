@@ -38,14 +38,11 @@
 	<div class="twelve columns">
 	
 		<% if is_group_member %>
-			<%= set_form_create_id_image_link(Message.new, :group_id, @group, :send_message_to) %>
-			<%= set_form_create_id_image_link(Invitation.new, :schedule_id, @schedule, :invitations_create_schedule) unless has_schedule_blank %>
 			<%= set_image_and_link(link_to(label_name(:send_pre_match), new_message_path(:schedule_id => @schedule)), 'schedule_send') unless has_been_played %>
 			<%= set_image_and_link(link_to(label_name(:send_scorecard), new_message_path(:scorecard_id => @schedule)), 'scorecard') if has_been_played %>
 			<%= set_form_create_id_image_link(Message.new, :scorecard_id, @group.schedules.first, :send_scorecard, 'scorecard') if !has_schedule_blank and DISPLAY_FREMIUM_SERVICES %>
 
 		<% elsif !is_group_manager %>	
-			<%= set_form_create_id_image_link(Message.new, :id, @group.all_the_managers.first, :send_message_to) %>
 			<%= set_image_and_link(join_item_link_to(current_user, @group, true), 'user_add') if has_user_petition %>
 
 		<% end %>

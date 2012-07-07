@@ -20,10 +20,10 @@
 
 	get_first_active ||=""
 	has_escuadras = false 
-	is_not_new_item = !is_action('new')
-	if is_not_new_item
+	# is_not_new_item = !is_action('new')
+	# if is_not_new_item
 		has_escuadras = (object_counter(@cup.escuadras) > 0 ) unless @cups 
-	end		
+	# end		
 	
 	
 	
@@ -42,11 +42,6 @@
 	end
 					
 %>
-
-
-<% if is_not_new_item %>
-	<%= item_new(@cup) unless @cups %>
-<% end -%>
 
 <% if @cups %>
 			

@@ -1,10 +1,10 @@
 <%
-	unless @challenge.cup_id.nil?
-  		@cup = Cup.find(@challenge.cup_id)
-	end
-
-	the_label = "#{control_action_label} #{label_name('for')} #{item_name_link(@cup)}" 
+	# unless @challenge.cup_id.nil?
+	#   		@cup = Cup.find(@challenge.cup_id)
+	# end
+	# 
+	# the_label = "#{control_action_label} #{label_name('for')} #{item_name_link(@cup)}" 
 	@item = @challenge
 %>
 
-<%= render 'shared/new_edit_multipart_zurb', :item => @item, :the_label => the_label %>
+<%= render 'shared/new_edit_multipart_zurb', :item => @item %>

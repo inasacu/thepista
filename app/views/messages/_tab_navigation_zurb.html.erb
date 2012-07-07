@@ -1,15 +1,15 @@
 <% 
-	the_controller_action = ['invitation_invite', 'invitation_contact']
-	the_controller_new = ['message_new', 'message_create', 'invitation_new', 'invitation_create']
-	the_invitation = "invitation"
-	the_invitation = get_controller_action if the_controller_action.include?(get_controller_action)
-	is_new_message = the_controller_new.include?(get_controller_action)
+	# the_controller_action = ['invitation_invite', 'invitation_contact']
+	# the_controller_new = ['message_new', 'message_create', 'invitation_new', 'invitation_create']
+	# the_invitation = "invitation"
+	# the_invitation = get_controller_action if the_controller_action.include?(get_controller_action)
+	# is_new_message = the_controller_new.include?(get_controller_action)
 %>
 
-<% if is_new_message %>
-	<%= item_new(@message) if @message %>
-	<%= item_new(@invitation) if @invitation %>
-<% else %>
+<%# if is_new_message %>
+	<%#= item_new(@message) if @message %>
+	<%#= item_new(@invitation) if @invitation %>
+<%# else %>
 	<%= set_tab_navigation(link_to(label_name(:inbox), messages_path, :class => get_active('message_index'))) %>
 	<%= set_tab_navigation(link_to(label_name(:message_sent), sent_messages_path, :class => get_active('message_sent'))) %>
-<% end -%>
+<%# end -%>

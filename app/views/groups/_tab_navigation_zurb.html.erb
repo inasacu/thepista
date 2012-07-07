@@ -6,27 +6,27 @@
 	the_action = ['show','edit', 'team list', 'schedule list', 'group current list', 'group previous list']
 	the_controller = ['fee', 'payment', 'schedule']
 	
-	is_new_group = (get_controller_action =='group_new' or get_controller_action == 'group_create')
-	is_not_new_item = !is_new_group
+	# is_new_group = (get_controller_action =='group_new' or get_controller_action == 'group_create')
+	# is_not_new_item = !is_new_group
 	
 	is_single_group = false
-	if @group and is_not_new_item
+	if @group #and is_not_new_item
 		is_single_group = true
 	end
 	
-	unless is_new_group
+	# unless is_new_group
 		content_for(:description, "#{@group.name} / #{@group.sport.name},  #{@group.description}.  #{@group.marker.name}, #{@group.time_zone}") if @group
-	end
+	# end
 %>
-	<%= item_new(@group) %>		
+	<%#= item_new(@group) %>		
 	
-	<% unless is_new_group %>	
+	<%# unless is_new_group %>	
 	
 		<%= set_tab_navigation(link_to(label_name(:groups), groups_path, set_tab_navigation_active('group_index'))) unless @group %>
 		
 		<%= set_tab_navigation(group_link(@group, set_tab_navigation_active('group_show'))) if is_single_group %>
 		
-	<% end %>
+	<%# end %>
 <% 	
 	if the_action.include?(get_the_action) or the_controller.include?(get_the_controller)
 		if is_current_member_of(@group) 

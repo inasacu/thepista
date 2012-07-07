@@ -18,25 +18,20 @@
 <div class="twelve columns">
 
 
-		<%= set_image_and_link(link_to(label_name(:cups_create), new_cup_url), 'cup') if the_maximo %>
-		<%= set_image_and_link(link_to(label_name(:challenges_create), new_challenge_path(@cup)), 'challenge') %>
+		<%#= set_image_and_link(link_to(label_name(:cups_create), new_cup_url), 'cup') %>
+		<%#= set_image_and_link(link_to(label_name(:challenges_create), new_challenge_path(:cup_id => @cup)), 'challenge') %>
 
 
 <% if is_current_manager_of(@cup) %>
-
 	
 	<% 	unless final_played  %>	
 
-	<%= set_image_and_link(link_to(label_name(:games_create), new_game_path(:id => @cup)), 'schedule') if has_escuadras %>
-	<%= set_image_and_link(link_to(label_name(:escuadras_create), new_escuadra_path(:id => @cup)), 'group_add') if is_official %>
-	<%= set_image_and_link(link_to(label_name(:group_stage_set), set_group_stage_url(:id => @cup), :title => "#{label_name(:group_stage_set_full) }"), 'cup') %>
-	
-	<%#= set_image_and_link(link_to(the_confirmation, cup_path(:id => @cup), :method => :delete, :confirm => "#{the_confirmation}?"), 'cup') unless @cup.has_game? %>
-	<%= set_image_and_link(link_to(label_name(:cups_edit), edit_cup_path(@cup)), 'cup') %>
+		<%= set_image_and_link(link_to(label_name(:games_create), new_game_path(:id => @cup)), 'schedule') if has_escuadras %>
+		<%= set_image_and_link(link_to(label_name(:escuadras_create), new_escuadra_path(:id => @cup)), 'group_add') if is_official %>
+		<%= set_image_and_link(link_to(label_name(:group_stage_set), set_group_stage_url(:id => @cup), :title => "#{label_name(:group_stage_set_full) }"), 'cup') %>
+		<%= set_image_and_link(link_to(label_name(:cups_edit), edit_cup_path(@cup)), 'cup') %>
 	
 	<% end  %>
-
-
 
 <% end %>
 
@@ -51,6 +46,5 @@
 <% 
 	end 
 %>
-<%#= render 'cups/sidebar_legend_zurb', :item => @cup %>
 </div>
 </div>
