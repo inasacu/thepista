@@ -2,19 +2,19 @@
 # thepista.local
 if Rails.env.development?
 	ENV['RPX_API_KEY'] = 'f7bbfeed95a9e71fe994397d496614da8972aa2c'
-	ENV['RPX_APP_NAME'] = 'thepista-local'
+	ENV['RPX_APP_NAME'] = 'thepista-dev'
 end
 
 # thepista.heroku.com
 if Rails.env.test?
 	ENV['RPX_API_KEY'] = "59b7bd4a615a2c17439b6a4ca064a1d5f482944e" 
-	ENV['RPX_APP_NAME'] = "thepista-heroku"  
+	ENV['RPX_APP_NAME'] = "zurb-heroku"  
 end
 
 # thepista.heroku.com
 if Rails.env.staging?
 	ENV['RPX_API_KEY'] = "59b7bd4a615a2c17439b6a4ca064a1d5f482944e" 
-	ENV['RPX_APP_NAME'] = "thepista-heroku"
+	ENV['RPX_APP_NAME'] = "zurb-heroku"
 end
 
 # haypista.com
