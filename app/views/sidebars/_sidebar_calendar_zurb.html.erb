@@ -1,49 +1,205 @@
-<section id="calendar-2" class="widget widget_calendar">
+<%	
+	@my_schedules = Schedule.find(:all, 
+			:conditions => ["schedules.archive = false and starts_at >= ? and ends_at <= ? and group_id in (select group_id from groups_users where user_id = ?)", 
+				Time.zone.now.at_beginning_of_month,
+				Time.zone.now.at_end_of_month, current_user],:order => 'starts_at')
 
-	<h3 class="widgettitle">Calendario</h3>
+	all_weekday_numbers = [1,2,3,4,5,6,7]
+	the_month = []
+	the_week = []
+	
+	is_same_date = false
+	is_last_blank_days = true
+	
+	a_strong_open = "<strong>"
+	a_strong_close = "</strong>"
 
-	<div id="calendar_wrap">
+	the_current_date = Time.zone.now 
+	the_previous_date = the_current_date - 1.month
+	the_next_date = the_current_date + 1.month
 
-		<table id="wp-calendar" summary="Calendario">
-			<caption>mayo 2012</caption>
-			<thead>
-				<tr>
-					<th scope="col" title="Lunes">L</th>
-					<th scope="col" title="Martes">M</th>
-					<th scope="col" title="Miércoles">X</th>
-					<th scope="col" title="Jueves">J</th>
-					<th scope="col" title="Viernes">V</th>
-					<th scope="col" title="Sábado">S</th>
-					<th scope="col" title="Domingo">D</th>
-				</tr>
-			</thead>
+	the_current_nice_month_year = nice_month_year(the_current_date)
+	the_previous_nice_month_year = nice_month_year(the_previous_date)
+	the_next_nice_month_year = nice_month_year(the_next_date)
+	
+	the_previous_nice_month = nice_month_full(the_previous_date)
+	the_next_nice_month = nice_month_full(the_next_date)
+	
+	# the_trace_date = the_current_date.at_beginning_of_month	
+	
+	the_current_day_number = the_current_date.day
+	
+	the_first_day_of_month = 1
+	the_last_day_of_month = days_in_month(the_current_date.month)
+	
+	the_first_weekday_of_month = the_current_date.at_beginning_of_month.wday
+	the_first_weekday_of_month = 7 if the_first_weekday_of_month == 0
+	
+	blank_days_first_week = the_first_weekday_of_month - 1
+	
+	day_of_month_as_number = the_first_day_of_month
+	
+	days_in_a_week = 7
+	days_counter = blank_days_first_week
+	
+	the_week << "<td colspan=#{blank_days_first_week}>&nbsp;</td>" if blank_days_first_week > 0
+	
+	# first week
+	(days_counter...days_in_a_week).each do |x|
+				
+		the_label = "#{day_of_month_as_number}"
+		@my_schedules.each do |schedule|
+			unless is_same_date
+				is_same_date = (day_of_month_as_number == the_current_day_number or day_of_month_as_number == schedule.starts_at.day) ? true : false
+			end
+			the_label = "#{a_strong_open if is_same_date}  #{the_label}  #{a_strong_close if is_same_date}"
+		end
+			
+		the_week << "<td>#{the_label}</td>"
+		
+		day_of_month_as_number+=1
+	end
+	the_month << the_week
+	the_week = [] 
+	is_same_date = false
+	
+	# rest of weeks in month
+	while day_of_month_as_number <= the_last_day_of_month
+	
+		days_in_a_week.times.each do |x|		
+				
+			if (day_of_month_as_number > the_last_day_of_month and is_last_blank_days)
+				the_week << "<td colspan=#{days_in_a_week-x}>&nbsp;</td>"
+				is_last_blank_days = false
+			end
+			
+			if (day_of_month_as_number <= the_last_day_of_month)
+				the_label = "#{a_strong_open if is_same_date}  #{day_of_month_as_number}  #{a_strong_close if is_same_date}"
+				the_week << "<td>#{the_label}</td>"
+				is_same_date = false
+			end
+			
+			if (day_of_month_as_number <= the_last_day_of_month)
+				day_of_month_as_number += 1 
+			end
+			
+			# is_same_date = (day_of_month_as_number == the_current_day_number) ? true : false
+			@my_schedules.each do |schedule|
+				unless is_same_date
+					is_same_date = (day_of_month_as_number == the_current_day_number or day_of_month_as_number == schedule.starts_at.day) ? true : false
+				end
+			end
+			
+		end
+		
+		the_month << the_week 
+		the_week = []
+				
+	end	
+%>
 
-			<tfoot>
-				<tr>
-					<td colspan="3" id="prev"><a href="http://www.bleninser.com/2012/04/" title="Ver todas las entradas para abril 2012">&laquo; abr</a></td>
-					<td class="pad">&nbsp;</td>
-					<td colspan="3" id="next" class="pad">&nbsp;</td>
-				</tr>
-			</tfoot>
 
-			<tbody>
+
+<!-- <hr/> -->
+
+<%#= set_content_tag_safe(:caption, "the_first_day_of_month: #{the_first_day_of_month}") %>
+<%#= set_content_tag_safe(:caption, "the_last_day_of_month: #{the_last_day_of_month}") %>
+<%#= set_content_tag_safe(:caption, "the_first_weekday_of_month: #{the_first_weekday_of_month}") %>
+<%#= set_content_tag_safe(:caption, "blank_days_first_week: #{blank_days_first_week}") %>
+<%#= set_content_tag_safe(:caption, "day_of_month_as_number: #{day_of_month_as_number}") %>
+<%#= set_content_tag_safe(:caption, "days_counter: #{days_counter}") %>
+<%#= set_content_tag_safe(:caption, "days_in_a_week: #{days_in_a_week}") %>
+<%#= set_content_tag_safe(:caption, "the_current_day_number: #{the_current_day_number}") %>
+<%#= set_content_tag_safe(:caption, "is_same_date: #{is_same_date}") %>
+<%#= set_content_tag_safe(:caption, "the_trace_date: #{nice_full_date(the_trace_date)}") %>
+
+<hr/>
+
+
+<table>
+
+	<caption><%= the_current_nice_month_year %></caption>
+
+	<thead>
+		<tr>
+
+			<th scope="col" title="Lunes">Lun</th>
+			<th scope="col" title="Martes">Mar</th>
+			<th scope="col" title="Miércoles">Mie</th>
+			<th scope="col" title="Jueves">Jue</th>
+			<th scope="col" title="Viernes">Vie</th>
+			<th scope="col" title="Sábado">Sab</th>
+			<th scope="col" title="Domingo">Dom</th>
+
+		</tr>
+	</thead>
+
+
+	<tfoot>
+		<tr>
+			<td colspan="3" id="prev"><a href=".." title="Ver todas las entradas para <%= the_previous_nice_month_year %>">« <%= the_previous_nice_month %></a></td>
+			<td class="pad">&nbsp;</td>
+			<td colspan="3" id="next"><a href=".." title="Ver todas las entradas para <%= the_next_nice_month_year %>"><%= the_next_nice_month %> »</a></td>
+		</tr>
+	</tfoot>
+
+	<tbody>
+		
+		<% the_month.each do |week| %>
+			<tr>
+				<% week.each do |day| %>
+				<%= "#{day}".html_safe %>
+				<% end %>
+			<tr/>
+		<% end %>
+		
+		
+
+		<!-- <tr>
+
+
 				<tr>
-					<td colspan="1" class="pad">&nbsp;</td><td>1</td><td>2</td><td>3</td><td id="today">4</td><td>5</td><td>6</td>
+					<td><a href=".../2012/07/04/" title="/2012/07/04/">	4	</a></td>
 				</tr>
+
 				<tr>
-					<td>7</td><td>8</td><td>9</td><td>10</td><td>11</td><td>12</td><td>13</td>
-				</tr>
+					<td><strong>	9	</strong></td>
+					<td><a href=".../2012/07/11/" title="/2012/07/11">  11	</a></td>
+					<td>	12	</td>
+					<td>	13	</td>
+					<td>	14	</td>
+					<td>	15	</td>
+				</tr>	
+
 				<tr>
-					<td>14</td><td>15</td><td>16</td><td>17</td><td>18</td><td>19</td><td>20</td>
+					<td>	16	</td>
+					<td>	17	</td>
+					<td><a href=".../2012/07/18/" title="/2012/07/18">	18	</a></td>
+					<td>	19	</td>
+					<td>	20	</td>
+					<td>	21	</td>
+					<td>	22	</td>
 				</tr>
+
 				<tr>
-					<td>21</td><td>22</td><td>23</td><td>24</td><td>25</td><td>26</td><td>27</td>
+					<td>	23	</td>
+					<td>	24	</td>
+					<td>	<a href=".../2012/07/25/" title="/2012/07/25/">	25	</a></td>
+					<td>	26	</td>
+					<td>	27	</td>
+					<td>	28	</td>
+					<td>	29	</td>
 				</tr>
+
 				<tr>
-					<td>28</td><td>29</td><td>30</td><td>31</td>
-					<td class="pad" colspan="3">&nbsp;</td>
-				</tr>
-			</tbody>
-		</table>
-	</div>
-</section>
+					<td>	30	</td>
+					<td class="pad" colspan="6">	&nbsp;	</td>
+				</tr> -->
+
+	</tbody>
+
+</table>
+
+
+
+

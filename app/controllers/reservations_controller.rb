@@ -100,7 +100,7 @@ class ReservationsController < ApplicationController
     @reservation.starts_at = Time.zone.at(block_token)
     @reservation.starts_at = @reservation.starts_at.change(:offset => "+0000")
     @reservation.ends_at = @reservation.starts_at + time_frame 
-    @reservation.reminder_at = @reservation.starts_at - 2.days
+    @reservation.reminder_at = @reservation.starts_at - 2.days 
 
     # verify reservation has not already been made
     if @reservation.starts_at.nil? or @reservation.ends_at.nil?

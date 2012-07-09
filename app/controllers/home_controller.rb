@@ -60,7 +60,6 @@ class HomeController < ApplicationController
     Schedule.latest_items(@all_schedule_items)   
 
     if current_user      
-      @no_linkedin_profile = (current_user.linkedin_url.nil? or current_user.linkedin_url.blank? or current_user.linkedin_url.empty?) if DISPLAY_FREMIUM_SERVICES
       @my_schedules = Schedule.my_current_schedules(current_user)
 
       Match.latest_items(@all_match_items, current_user)

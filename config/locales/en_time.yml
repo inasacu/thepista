@@ -148,6 +148,7 @@ en:
       simple_time_at: "%H:%M" # this is my code
       simple_time_zone_at: "%H:%M %z" # this is my code
       full_date: "%e of %B, %Y" # this is my code
+      month_full:  "%B" # this is my code
       month_year:  "%B %Y"
     am: "am"
     pm: "pm"

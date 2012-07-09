@@ -28,16 +28,6 @@ class UsersController < ApplicationController
 		@client = ""
 		@profile = ""
 
-		if DISPLAY_FREMIUM_SERVICES
-			@no_linkedin_profile = (@user.linkedin_url.nil? or @user.linkedin_url.blank? or @user.linkedin_url.empty?) 
-			unless @no_linkedin_profile
-				@client = LinkedIn::Client.new(APP_CONFIG['linkedin']['api_key'], APP_CONFIG['linkedin']['secret_key'])
-				@client.authorize_from_access(@user.linkedin_token, @user.linkedin_secret)
-				@profile = @client.profile
-			end
-
-				@items = current_user.challenges.where("ends_at > ?", Time.zone.now)
-		end
 		render @the_template    
 	end
 

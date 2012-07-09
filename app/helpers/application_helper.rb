@@ -135,6 +135,17 @@ module ApplicationHelper
 	def nice_simple_time_at(time_at)
 		return I18n.l(time_at, :format => :simple_time_at).html_safe unless time_at.nil?
 	end
+	
+	# July 2012
+	def nice_month_year(time_at)
+		return I18n.l(time_at, :format => :month_year).html_safe unless time_at.nil?
+	end
+
+	# July 
+	def nice_month_full(time_at)
+		return I18n.l(time_at, :format => :month_full).html_safe unless time_at.nil?
+	end
+
 
 	# day: 18
 	def nice_day_time_at(time_at)
@@ -787,6 +798,11 @@ module ApplicationHelper
 	
 	def has_current_item_petition(item)
 		current_user.has_item_petition?(current_user, item)
+	end
+	
+	def days_in_month(month, year = Time.now.year)
+	   return 29 if month == 2 && Date.gregorian_leap?(year)
+	   COMMON_YEAR_DAYS_IN_MONTH[month]
 	end
 	
 end
