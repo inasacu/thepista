@@ -67,8 +67,8 @@ Thepista::Application.routes.draw do
 	match 'jornadas/:id/cambio_convocatoria/:type' => 'matches#set_status', :as => :match_status
 	match 'jornadas/:id/cambio_convocatoria/:type/:block_token' => 'matches#set_status_link', :as => :match_token
 
-	match 'mensajes/:id/responder' => 'messages#reply', :as => :reply_message
-	match 'mensajes/:id/recuperar' => 'messages#undestroy', :as => :untrash_message
+	# match 'mensajes/:id/responder' => 'messages#reply', :as => :reply_message
+	# match 'mensajes/:id/recuperar' => 'messages#undestroy', :as => :untrash_message
 
 	match 'proximos_partidos' => 'home#upcoming', :as => :upcoming
 	match 'buqueda' => 'home#search', :as => :search

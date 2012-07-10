@@ -1317,8 +1317,9 @@ en:
      send_pre_match_to: Send the Squad to 
      send_pre_clash: Send the Squad   
      send_pre_clash_to: Send the Squad to  
-     send_profile: Send the Profile   
-     send_reminder: Send a Reminder   
+     send_profile: Send the Profile  
+     send_reminder: Send a Reminder
+     send_reply_to: Reply to Message
      send_role: Send the Role   
      send_scorecard: Send the Scorecard
      send_standing: Send the Scorecard

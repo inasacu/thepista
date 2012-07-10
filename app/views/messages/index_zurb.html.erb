@@ -10,13 +10,15 @@
 
 			<% if has_items %>
 
-			<table>
-
-					<% @messages.each do |message| %>
-						<%= render 'messages/message_zurb', :message => message %>
-					<% end %>
+				<table>
+					
+						<% previous = [] %>
+						<% @messages.each do |message| %>
+						<%= render 'messages/message_zurb', :message => message unless previous.include?(message.parent_id) %>
+						<% previous << message.parent_id %>
+						<% end %>
 				
-			</table>
+				</table>
 
 			<% end %>
 
@@ -25,6 +27,5 @@
 </div>
 
 <%= render 'shared/no_items_to_display' unless has_items %>
-
 
 

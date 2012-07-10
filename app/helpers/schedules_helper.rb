@@ -230,7 +230,7 @@ module SchedulesHelper
     the_span = "#{the_sport} #{the_missing}"
 
     the_start_at_label = "#{nice_day_of_week(@schedule.starts_at)}<br/>#{the_span}"
-    the_start_at_label = "#{the_start_at_label}#{get_cluetip(label_name(:schedule_excess_player), 'info', 
+    the_start_at_label = "#{the_start_at_label}#{get_cluetip(label_name(:schedule_excess_player), nil, 
     label_name('schedule_excess_player_cluetip'), true)}" if (@the_roster.count > @schedule.player_limit and is_squad)
     
     return the_label, the_content, has_been_played, is_manager, is_squad, the_sport, the_missing, the_span, the_start_at_label 

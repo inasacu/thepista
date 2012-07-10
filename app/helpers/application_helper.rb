@@ -480,7 +480,8 @@ module ApplicationHelper
 	end
 
 	def get_cluetip(the_label, image_name, the_description, icon_only=false, align='')
-		the_image = option_image_link(image_name, align)
+		the_image = ''
+		the_image = option_image_link(image_name, align) unless image_name.nil?
 		the_title = "<strong>#{the_label}</strong>"
 		the_id = "tip-#{the_label.downcase.gsub(' ','-')}-#{rand(10000)}"
 		the_content = ""

@@ -1,21 +1,37 @@
-<% full_message ||= false 
-	the_message = message.body	
-	the_message = "#{the_message.strip[0..140]}..." if the_message.length > 140 and !full_message
+<% 
+	full_message ||= false 
+	
+	the_subject = sanitize(message.subject)
+	the_message = sanitize(message.body)
+	is_longer = the_message.length > 140
+	the_message = "#{the_message.strip[0..140]}..." if is_longer and !full_message
+	
+	the_message = full_message ? message.body : link_to(sanitize(the_message), message)
+	reply_to = (message.sender != current_user) ? message.sender : message.recipient
 %>
+
 <tr>
-	
-	<%= set_content_tag_safe(:td, item_image_link_small(message.other_user(current_user))) %>
-	
+	<%= set_content_tag_safe(:td, "&nbsp;") %>
+	<%= set_content_tag_safe(:td, image_link_small(message.other_user(current_user))) %>	
 	
 	<td>
-			<%= link_to h(message.subject), message unless full_message %><br />						
-				<%=sanitize the_message %>	
+		<%= message_icon(message) %>
+		<%- if current_user == message.sender -%>
+			<%= label_name(:to) %>:
+			<%= user_link message.recipient %>
+		<%- else -%>
+			<%= label_name(:from_up) %>:
+			<%= user_link message.sender %>
+		<%- end -%>
+	
+		<br />
+		<br />
+		
+		<%= "#{the_subject}<br />#{the_message}".html_safe %>							
 	</td>
 	
-	<td><%= message_image_link(message) unless message.trashed?(current_user) %><br/>
-		<%= option_image_small_link('message') %>&nbsp;&nbsp;<%= link_to(label_name(:send_message_to), new_message_path(message.recipient)) %>
+	<td>
+		<%= option_image_small_link('message') %>&nbsp;&nbsp;<%= link_to(label_name(:send_reply_to), new_message_path(:id => reply_to)) %>
 	</td>
-
 </tr>
-
 

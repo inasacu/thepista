@@ -97,47 +97,47 @@ class MessagesController < ApplicationController
     render @the_template  
   end
 
-  def reply_message    
-    @message = Message.new(params[:message])
-
-    all_parent = Message.find(:all, :conditions => ["parent_id = ?", params[:message][:parent_id]])    
-    reply_message = all_parent.first
-    @recipients = current_user.find_user_in_conversation(params[:message][:parent_id])    
-    first_in_conversation = true
-
-    unless @recipients.nil?
-      @recipients.each do |recipient| 
-
-        @recipient_message = Message.new      
-        @recipient_message.body = @message.body
-        @recipient_message.subject = reply_message.subject
-        @recipient_message.sender = current_user
-        @recipient_message.recipient = recipient
-
-        if first_in_conversation
-          @recipient_message.parent_id = params[:message][:parent_id]       
-          @recipient_message.conversation_id = reply_message.conversation_id 
-          @recipient_message.save!
-          first_in_conversation = false
-        else            
-          if @recipient_message.save               
-            @recipient_message.update_attribute('parent_id', params[:message][:parent_id]) 
-          end
-        end
-
-      end
-
-      all_parent.each do |message| 
-        if message.untrash(message.other_user(current_user))
-          flash[:notice] = I18n.t(:recycled_message)
-        end
-      end
-
-      flash[:notice] = I18n.t(:message_sent)
-    end
-    redirect_back_or_default('/index') 
-
-  end
+  # def reply_message    
+  #   @message = Message.new(params[:message])
+  # 
+  #   all_parent = Message.find(:all, :conditions => ["parent_id = ?", params[:message][:parent_id]])    
+  #   reply_message = all_parent.first
+  #   @recipients = current_user.find_user_in_conversation(params[:message][:parent_id])    
+  #   first_in_conversation = true
+  # 
+  #   unless @recipients.nil?
+  #     @recipients.each do |recipient| 
+  # 
+  #       @recipient_message = Message.new      
+  #       @recipient_message.body = @message.body
+  #       @recipient_message.subject = reply_message.subject
+  #       @recipient_message.sender = current_user
+  #       @recipient_message.recipient = recipient
+  # 
+  #       if first_in_conversation
+  #         @recipient_message.parent_id = params[:message][:parent_id]       
+  #         @recipient_message.conversation_id = reply_message.conversation_id 
+  #         @recipient_message.save!
+  #         first_in_conversation = false
+  #       else            
+  #         if @recipient_message.save               
+  #           @recipient_message.update_attribute('parent_id', params[:message][:parent_id]) 
+  #         end
+  #       end
+  # 
+  #     end
+  # 
+  #     all_parent.each do |message| 
+  #       if message.untrash(message.other_user(current_user))
+  #         flash[:notice] = I18n.t(:recycled_message)
+  #       end
+  #     end
+  # 
+  #     flash[:notice] = I18n.t(:message_sent)
+  #   end
+  #   redirect_back_or_default('/index') 
+  # 
+  # end
 
   def create
     @message = Message.new(params[:message])

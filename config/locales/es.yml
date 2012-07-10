@@ -1328,7 +1328,8 @@ es:
      send_pre_clash: Manda la convocatoria   
      send_pre_clash_to: Manda la convocatoria a  
      send_profile: Manda tu perfil   
-     send_reminder: Manda un recordatorio   
+     send_reminder: Manda un recordatorio  
+     send_reply_to: Responder a Mensaje 
      send_role: Manda una responsabilidad   
      send_scorecard: Manda la clasificación
      send_standing: Manda la clasificación
