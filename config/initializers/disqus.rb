@@ -19,6 +19,6 @@ end
 
 # haypista.com
 if Rails.env.production? 
-	ENV['THE_HOST'] = 'http://haypista'  
+	ENV['THE_HOST'] = 'http://zurb-herokuapp'  
 end
 
