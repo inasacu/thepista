@@ -8,7 +8,7 @@ gem "will_paginate"
 gem "authlogic-oid"
 gem 'httparty',	'>= 0.8.1'
 gem "acl9"
-gem 'sitemap_generator'                  
+# gem 'sitemap_generator'                  
 gem 'acts_as_commentable'      
 gem 'hoptoad_notifier'
 gem 'rpx_now'
