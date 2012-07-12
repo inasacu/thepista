@@ -33,8 +33,8 @@
 
 class Marker < ActiveRecord::Base
 
-	# extend FriendlyId 
-	# friendly_id :name, 			use: :slugged
+	extend FriendlyId 
+	friendly_id :name, 			use: :slugged
 	
   # # index{ name }
 

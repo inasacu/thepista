@@ -29,8 +29,8 @@
 
 class Schedule < ActiveRecord::Base
 
-	# extend FriendlyId 
-	# friendly_id :name, 			use: :slugged
+	extend FriendlyId 
+	friendly_id :name, 			use: :slugged
 
   has_many  :matches,  :conditions => "matches.archive = false", :order => "matches.group_score"
   has_many  :fees

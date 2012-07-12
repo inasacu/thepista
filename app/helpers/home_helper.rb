@@ -19,16 +19,17 @@ module HomeHelper
   	case teammate.class.to_s
   	when "Schedule"
   		the_manager = teammate.group.all_the_managers.first
+  		the_item = Schedule.find(teammate)
+  				
   		request_image = item_image_link_small(the_manager)
   		request_link = item_name_link(the_manager)
-
-  		item_link = item_name_link(teammate)
+  	
+  		item_link = item_name_link(the_item)
   		item_image = item_image_link_small(teammate.group)
-
   		item_group_link = item_name_link(teammate.group)
-
-  		the_icon = schedule_image_link_small(teammate, IMAGE_CALENDAR)
-
+  	
+  		the_icon = schedule_image_link_small(the_item, IMAGE_CALENDAR)
+  	
   		is_member = is_current_member_of(teammate.group)
   		if teammate.played?
   			the_label = %(#{I18n.t(:has_updated_scorecard) } #{the_label} #{is_member ? item_link : teammate.name})
@@ -36,19 +37,44 @@ module HomeHelper
   			the_label = %(#{I18n.t(:created_a_schedule) } #{the_label} #{is_member ? item_link : teammate.name})
   		end
 
-  	when "Group", "Cup", "Challenge"
+  	when "Group"
   		the_manager = teammate.all_the_managers.first
+			the_item = Group.find(teammate)
+			
   		request_image = item_image_link_small(the_manager)
   		request_link = item_name_link(the_manager)
 
-  		item_link = item_name_link(teammate)
+  		item_link = item_name_link(the_item)
   		item_image = item_image_link_small(the_manager)
-
-  		the_icon = group_avatar_image_link(teammate) if teammate.class.to_s == "Group"
-  		the_icon = challenge_avatar_image_link(teammate) if teammate.class.to_s == "Challenge"
-  		the_icon = cup_avatar_image_link(teammate) if teammate.class.to_s == "Cup"
+  		the_icon = group_avatar_image_link(the_item) 
 
   		the_label = label_name(:"updated_a_#{teammate.class.to_s.downcase}") + " <wbr/> #{item_link}".html_safe 
+
+  	when "Cup"
+  		the_manager = teammate.all_the_managers.first
+			the_item = Cup.find(teammate)
+			
+  		request_image = item_image_link_small(the_manager)
+  		request_link = item_name_link(the_manager)
+
+  		item_link = item_name_link(the_item)
+  		item_image = item_image_link_small(the_manager)
+  		the_icon = cup_avatar_image_link(teammate) 
+
+  		the_label = label_name(:"updated_a_#{teammate.class.to_s.downcase}") + " <wbr/> #{item_link}".html_safe
+
+  	when "Challenge"
+  		the_manager = teammate.all_the_managers.first
+			the_item = Challenge.find(teammate)
+			
+  		request_image = item_image_link_small(the_manager)
+  		request_link = item_name_link(the_manager)
+
+  		item_link = item_name_link(the_item)
+  		item_image = item_image_link_small(the_manager)
+  		the_icon = challenge_avatar_image_link(teammate) 
+
+  		the_label = label_name(:"updated_a_#{teammate.class.to_s.downcase}") + " <wbr/> #{item_link}".html_safe
 
   	when "Reservation"
   		case teammate.item_type

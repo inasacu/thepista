@@ -24,8 +24,8 @@
 
 class Group < ActiveRecord::Base
 
-	# extend FriendlyId 
-	# friendly_id :name, 			use: :slugged
+	extend FriendlyId 
+	friendly_id :name, 			use: :slugged
 
   has_attached_file :photo, :styles => {:icon => "25x25>", :thumb  => "80x80>", :medium => "160x160>",  },
   :storage => :s3,
