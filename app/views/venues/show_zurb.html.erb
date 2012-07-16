@@ -1,49 +1,39 @@
 <% 
-	is_user_manager = (is_current_manager_of(@venue))
-	the_label = @venue.name
+	is_user_manager = (is_current_manager_of(@venue)) 
+	is_member = is_current_member_of(@venue) 
+	first = true 	
 %>
 
 <%= render 'shared/show_description_zurb', :item => @venue %>
 	
 	
 <div class="row">
+
 	<div class="twelve columns"> 
-
-		<%= render_show_detail_zurb(:name, item_name_link(@venue)) %>		
-		<%= render_show_detail_zurb(:manager, user_list(@venue.all_the_managers)) %>
-
-		<%= render_show_detail_zurb(:marker, marker_link(@venue.marker) %>
-		<%= render_show_detail_zurb(:city, @venue.marker.city) %>
-
-<% first = true %>
-<% @venue.installations.each do |installation| %>
-
-
-<%= render_show_detail_zurb(:installation) if first %>
-<%= content_tag :td, "&nbsp;&nbsp;" unless first %>
-<%= content_tag :td, "#{item_name_link(installation)}, #{nice_simple_time_at(installation.starts_at)} -  #{nice_simple_time_at(installation.ends_at)}" %>
-
-
-<%#= content_tag :td, link_to(label_name(:edit), edit_installation_path(:id => installation)) if is_user_manager %>
-
-
-<% 
-first = false
-end
--%>
-
-
-<%#= render_show_detail_zurb(:description, sanitize(@venue.description) %>	
-
 		
+		<table>
+		<tbody>
+		<tr>
+		<td>
+			
+		<%= render_show_detail_zurb(:name, item_name_link(@venue)) %>
+		<%= render_show_detail_zurb(:city, @venue.marker.city) %>
+		<%= render_show_detail_zurb(:time_zone,  "#{nice_simple_time_at(@venue.starts_at)} - #{nice_simple_time_at(@venue.ends_at)}") %>
+		<%= render_show_detail_zurb(:marker, marker_link(@venue.marker)) %>
 
+		<%	@venue.installations.each do |installation| 
+			the_installation = "#{item_name_link(installation)}, #{nice_simple_time_at(installation.starts_at)} - #{nice_simple_time_at(installation.ends_at)}".html_safe
+			the_label = first ? 'installation' : 'blank'
+			first = false
+		%>		
+			<%= render_show_detail_zurb(the_label, the_installation) %>
+		
+		<% end %>
+
+		</td>	
+		</tr>
+		</tbody>
+		</table>
 		
 	</div>
 </div>
-
-
-
-
-
-
-

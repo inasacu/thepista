@@ -64,6 +64,12 @@
 	when 'venue'
 		@new_item = @venue if is_new_item
 		
+	when 'installation'
+		the_tab_navigation = "venues"
+		
+	when 'reservation'
+			the_tab_navigation = "venues"
+		
 	when 'message'
 		the_tab_navigation = 'messages'
 		the_title = the_controller

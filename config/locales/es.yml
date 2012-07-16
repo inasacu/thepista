@@ -64,7 +64,8 @@ es:
      back: Volver      
      between: entre   
      birth_at:  Fecha de nacimiento
-     birth_description: (Escribe fecha de nacimiento...Solo se utiliza para calcular la edad media del equipo...)      
+     birth_description: (Escribe fecha de nacimiento...Solo se utiliza para calcular la edad media del equipo...)
+     blank: ""
      blog_haypista: Blog
      blog_notification: Comentarios de tu muro
      blog_notification_cluetip:  "Esta opción permite que recibas los mensajes dejados en tu muro en tu cuenta de correo."

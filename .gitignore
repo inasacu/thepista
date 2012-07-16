@@ -15,3 +15,4 @@
 /tmp
 heroku.tmproj
 /*.tmproj
+/heroku.tmproj

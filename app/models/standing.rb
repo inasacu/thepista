@@ -1,5 +1,25 @@
+# TABLE "standings"
+# t.integer  "cup_id"
+# t.integer  "challenge_id"
+# t.integer  "user_id"
+# t.integer  "item_id"
+# t.string   "item_type"
+# t.string   "group_stage_name"
+# t.integer  "wins"             
+# t.integer  "draws"            
+# t.integer  "losses"           
+# t.integer  "points"           
+# t.integer  "played"           
+# t.integer  "ranking"          
+# t.integer  "goals_for"        
+# t.integer  "goals_against"    
+# t.boolean  "archive"          
+# t.datetime "created_at"
+# t.datetime "updated_at"
+
 class Standing < ActiveRecord::Base
 
+	belongs_to	:user
   belongs_to 	:cup
   belongs_to	:challenge
   belongs_to  :item,          :polymorphic => true
@@ -7,10 +27,11 @@ class Standing < ActiveRecord::Base
   validates_format_of   :group_stage_name,            :with =>  /^[A-Z]*\z/
   
   # variables to access
-  attr_accessible      :cup_id, :challenge_id, :item_id, :item_type, :group_stage_name
-  attr_accessible      :wins, :losses, :draws, :points, :goals_for, :goals_against, :played
-  attr_accessible      :ranking, :archive  
-    
+	attr_accessible      :cup_id, :challenge_id, :user_id, :item_id, :item_type, :group_stage_name
+	attr_accessible      :wins, :losses, :draws, :points, :goals_for, :goals_against, :played
+	attr_accessible      :ranking, :archive
+	
+	
   # method section
   def self.create_cup_escuadra_standing(cup)
     cup.escuadras.each do |escuadra|
@@ -18,12 +39,24 @@ class Standing < ActiveRecord::Base
     end
   end
 
-  def self.create_cup_challenge_standing(challenge)
-    challenge.users.each do |user|
-      Standing.create_cup_challenge_item_standing(challenge.cup, challenge, user)
-    end
-  end 
+	# old code before testing for a user based cast to escuadra games' standings
+  # def self.create_cup_challenge_standing(challenge)
+  #   challenge.users.each do |user|
+  #     Standing.create_cup_challenge_item_standing(challenge.cup, challenge, user)
+  #   end
+  # end 
 
+	def self.create_cup_challenge_standing(challenge)
+		challenge.users.each do |user|
+			Standing.create_cup_challenge_item_standing(challenge.cup, challenge, user)
+
+			challenge.cup.standings.each do |standing|
+				Standing.create_cup_challenge_item_user_standing(challenge, standing.item, standing.group_stage_name, user)
+			end
+
+		end
+	end
+	
   # calculate standing for all game in item
   def self.calculate_cup_standing(cup)  
     escuadras = []
@@ -90,19 +123,33 @@ class Standing < ActiveRecord::Base
                                :played => the_games)
   end
 
-  def self.update_cup_group_stage_ranking(standing)
-    # default variables
-    ranking = 0
-    
-    @standings = Standing.find(:all, :conditions =>["cup_id = ? and group_stage_name = ?", standing.cup_id, standing.group_stage_name], 
-    :order => "points desc, (goals_for-goals_against) desc, goals_for desc, goals_against")
-    
-     @standings.each do |standing| 
-        ranking += 1 if standing.played > 0
-        standing.update_attribute(:ranking, ranking)
-      end      
-  end
+	# old code before testing for a user based cast to escuadra games' standings
+  # def self.update_cup_group_stage_ranking(standing)
+  #   # default variables
+  #   ranking = 0
+  #   
+  #   @standings = Standing.find(:all, :conditions =>["cup_id = ? and group_stage_name = ?", standing.cup_id, standing.group_stage_name], 
+  #   :order => "points desc, (goals_for-goals_against) desc, goals_for desc, goals_against")
+  #   
+  #    @standings.each do |standing| 
+  #       ranking += 1 if standing.played > 0
+  #       standing.update_attribute(:ranking, ranking)
+  #     end      
+  # end
 
+	def self.update_cup_group_stage_ranking(standing)
+		# default variables
+		ranking = 0
+
+		@standings = Standing.find(:all, :conditions =>["cup_id = ? and group_stage_name = ? and user_id = ?", standing.cup_id, standing.group_stage_name, standing.user_id], 
+		:order => "points desc, (goals_for-goals_against) desc, goals_for desc, goals_against")
+
+		@standings.each do |standing| 
+			ranking += 1 if standing.played > 0
+			standing.update_attribute(:ranking, ranking)
+		end      
+	end
+	
   def self.update_cup_challenge_item_ranking(cup, item='User')
     cup.challenges.each do |challenge|
       # default variables
@@ -136,7 +183,12 @@ class Standing < ActiveRecord::Base
   def self.create_cup_item_standing(cup, item)
     self.create!(:cup_id => cup.id, :item_id => item.id, :item_type => item.class.to_s, :group_stage_name => 'A') if self.cup_item_exists?(cup, item)
   end
-  
+ 
+	def self.create_cup_challenge_item_user_standing(challenge, item, group_stage_name, user)
+		self.create!(:cup_id => challenge.cup.id, :challenge_id => challenge.id, 	:item_id => item.id, :item_type => item.class.to_s, :group_stage_name => group_stage_name,
+		:user_id => user.id) if self.cup_challenge_item_user_exists?(challenge.cup, challenge, item, user)
+	end
+	 
   def self.cup_escuadras_standing(cup)
     escuadras = []
     cup.escuadras.each {|escuadra| escuadras << escuadra.id} 
@@ -201,6 +253,10 @@ class Standing < ActiveRecord::Base
   def self.cup_challenge_item_exists?(cup, challenge, item)
     find(:first, :conditions => ["cup_id = ? and challenge_id = ? and item_id = ? and item_type = ?", cup, challenge, item, item.class.to_s]).nil?
   end
+
+	def self.cup_challenge_item_user_exists?(cup, challenge, item, user)
+		find(:first, :conditions => ["cup_id = ? and challenge_id = ? and item_id = ? and item_type = ? and user_id = ?", cup, challenge, item, item.class.to_s, user]).nil?
+	end
 
   # Return true if the cup and item nil
   def self.cup_item_exists?(cup, item)

@@ -1,14 +1,13 @@
 <% 
-	is_user_manager = (is_current_manager_of(@installation))
-	is_venue_manager = is_current_manager_of(@venue)
+	is_user_manager = (is_current_manager_of(@installation.venue)) 
+	is_member = is_current_member_of(@installation) 
+	first = true 	
 %>
 
-
-<%= render 'shared/show_description_zurb', :item => @installation %>
+<%= render 'shared/show_description_zurb', :item => @installation.venue %>
 	
 	
 <div class="row">
-
 	<div class="twelve columns"> 
 		
 		<table>
@@ -17,10 +16,20 @@
 		<td>
 			
 		<%= render_show_detail_zurb(:name, item_name_link(@installation)) %>
-		<%= render_show_detail_zurb(:second_team, h(@group.second_team)) %>
-		<%= render_show_detail_zurb(:manager, user_list(@group.all_the_managers)) %>
+		<%= render_show_detail_zurb(:city, @installation.marker.city) %>
+		<%= render_show_detail_zurb(:time_zone,  "#{nice_simple_time_at(@installation.starts_at)} - #{nice_simple_time_at(@installation.ends_at)}") %>
+		<%= render_show_detail_zurb(:marker, marker_link(@installation.marker)) %>
 
+		<% @installation.timetables.each do |timetable|
+			the_installation = "#{timetable.day_of_week}, #{nice_simple_time_at(timetable.starts_at)} -  #{nice_simple_time_at(timetable.ends_at)}, #{I18n.t(:has_hour, :count => timetable.timeframe)}".html_safe
+			the_label = first ? 'installation' : 'blank'
+			first = false
+		%>		
+			<%= render_show_detail_zurb(the_label, the_installation) %>
+			<%= content_tag :td, link_to(label_name(:edit), edit_timetable_path(:id => timetable)), :class => get_the_action if is_user_manager %>
 		
+		<% end %>
+
 		</td>	
 		</tr>
 		</tbody>
@@ -31,28 +40,19 @@
 
 
 
+<%# content_for :sidebar, render(:partial => 'installations/sidebar_show') -%>
+<%# content_for :sidebar, render(:partial => 'shared/sidebar_show_reservations', :locals =>{:installations => @installations}) %>
 
+<% if current_user.is_manager_of?(@venue) %>
 
+<%# content_for :sidebar, render(:partial => '/shared/sidebar_basic_legend', 
+					:locals => {:the_render => '/installations/sidebar_installation_manager', 
+					:the_label => label_name('manager_option')}) if !is_controller('forum') %>
+					
+<%# content_for :sidebar, render(:partial => '/shared/sidebar_basic_legend', 
+					:locals => {:the_render => '/timetables/sidebar_copy_timetable', 
+								:the_label => "#{label_name(:timetables_copy)}".capitalize,
+								:installation => @installation}) if object_counter(@venue.installations) > 0 and object_counter(@installation.timetables) == 0 %>
+<% end -%>
 
-		<%= render_show_detail_zurb(:td, label_name(:marker), :class => "label" %>
-		<%= render_show_detail_zurb(:td, marker_link(@installation.marker), :class => get_the_action %>
-</tr>
-
-<% first = true %>
-<% @installation.timetables.each do |timetable| %>
-
-<tr>
-<%= render_show_detail_zurb(:timetable), :class => "label" if first %>
-<%= content_tag :td, "&nbsp;&nbsp;", :class => "label" unless first %>
-<%= content_tag :td, "#{timetable.day_of_week}, 
-#{nice_simple_time_at(timetable.starts_at)} -  
-#{nice_simple_time_at(timetable.ends_at)}, 
-#{I18n.t(:has_hour, :count => timetable.timeframe)}", :class => get_the_action %>
-<%= render_show_detail_zurb(:edit, link_to(label_name(:edit), edit_timetable_path(:id => timetable)) if is_venue_manager %>
-</tr>
-
-<% 
-first = false
-end 
--%>
-
+<%# content_for :sidebar, render(:partial => 'shared/share_object', :locals => {:installation => @installation}) if @installation -%>

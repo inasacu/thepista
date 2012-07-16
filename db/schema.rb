@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120428230748) do
+ActiveRecord::Schema.define(:version => 20120713123323) do
 
   create_table "announcements", :force => true do |t|
     t.text     "message"
@@ -186,6 +186,22 @@ ActiveRecord::Schema.define(:version => 20120428230748) do
   add_index "fees", ["manager_id"], :name => "index_fees_on_manager_id"
   add_index "fees", ["slug"], :name => "index_fees_on_slug", :unique => true
   add_index "fees", ["type_id"], :name => "index_fees_on_type_id"
+
+  create_table "forums", :force => true do |t|
+    t.string   "name"
+    t.integer  "schedule_id"
+    t.integer  "topics_count", :default => 0,     :null => false
+    t.text     "description"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.boolean  "archive",      :default => false
+    t.integer  "item_id"
+    t.string   "item_type"
+  end
+
+  add_index "forums", ["archive"], :name => "index_forums_on_archive"
+  add_index "forums", ["item_id", "item_type"], :name => "index_forums_on_item_id_and_item_type"
+  add_index "forums", ["schedule_id"], :name => "index_forums_on_schedule_id"
 
   create_table "games", :force => true do |t|
     t.string   "name"
@@ -666,6 +682,7 @@ ActiveRecord::Schema.define(:version => 20120428230748) do
     t.boolean  "archive",          :default => false
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "user_id"
   end
 
   add_index "standings", ["challenge_id"], :name => "index_standings_on_challenge_id"

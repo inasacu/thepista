@@ -1,6 +1,11 @@
 <%
+	# http://help.disqus.com/customer/portal/articles/466249-can-disqus-be-loaded-in-different-languages-per-page-
+	disqus_language = 'es_ES' 
+
 	the_item_link = "#{request.env["HTTP_REFERER"]}"
 	disqus_developer = Rails.env == 'development' ? 1 : 0
+	disqus_shortname = 'zurb'	  # for current test phase
+	# disqus_shortname = 'haypista' # for future production 
 
 	the_label = ''
 	case the_item.class.to_s
@@ -11,12 +16,11 @@
 	end
 
 	the_url_for = url_for(the_item)
-	the_url_for = "#{ENV['THE_HOST']}#{the_url_for}"
+	the_url_for = "#{ENV['THE_HOST']}#{the_url_for}"	
 %>
 
 <hr/>
 <br/>
-
 
 <%= set_title_class(label_name(:latest_messages), 'activities') %>
 
@@ -24,35 +28,31 @@
 
 <div class="row">
 	<div class="twelve columns"> 
-		
 
-		<div id="disqus_thread"></div>
-
-		<div id="commentSystem" runat="server" visible="false" class="ui-widget ui-widget-content ui-corner-bottom ui-state-default">
 		<div id="disqus_thread"></div>
 			<script type="text/javascript">
 
-			var disqus_shortname = 'haypista'; 
-			var disqus_title = '<%= the_label %>'; 
-			var disqus_developer = <%= disqus_developer %>; 
-			var disqus_identifier = '<%= the_url_for %>';
-			var disqus_url = '<%= the_url_for %>';
+				var disqus_shortname = '<%= disqus_shortname %>'; 
+				var disqus_title = '<%= the_label %>'; 
+				var disqus_developer = <%= disqus_developer %>; 
+				var disqus_identifier = '<%= the_url_for %>';
+				var disqus_url = '<%= the_url_for %>';
+			
+				var disqus_config = function () { this.language = "<%= disqus_language %>"; };
+			
 
-			/* * * DON'T EDIT BELOW THIS LINE * * */
-			(function() {
-				var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-				dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
-				(document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-				})();
+				/* * * DON'T EDIT BELOW THIS LINE * * */
+				(function() {
+					var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+					dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+					(document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+					})();
 
-				</script>
+			</script>
 
 			<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-			<a href="http://disqus.com" class="dsq-brlink">comment system by <span class="logo-disqus">Disqus</span></a>
-		</div>
-
-
-
+				<a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
 	</div>
 </div>
+
 

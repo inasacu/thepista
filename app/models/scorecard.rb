@@ -36,9 +36,6 @@
 # t.integer  "started"
 
 class Scorecard < ActiveRecord::Base 
-
-  # tagging
-  # acts_as_taggable_on :tags
   
   belongs_to :user
   belongs_to :group
