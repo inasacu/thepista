@@ -10,6 +10,8 @@
 	the_status = "#{sort_link(label_name(:change_at), :status_at)}"
 	
 	has_not_been_played_manager = !has_been_played and is_manager
+	
+	display_team_link = get_controller_action == 'schedule_team_roster'
 %>
 
 <% if roster_count %>	  
@@ -83,14 +85,12 @@ the_roster.each do |match|
 	the_match_status = ago(match.status_at) #unless has_been_played
 	the_match_status = "#{the_match_status} <br /> ( #{label_name(:no_jugado)} )" if match.type_id == 4
 	
-	# the_match_status = "<font color='orange' title='#{label_name('forum_notification_false')}'> #{the_match_status} </font>".html_safe unless the_user.forum_comment_notification
-	
 	the_user_link = "#{user_link_limit(the_user)}"
 	the_match_status = "#{the_match_status}"
 	
 	not_played = "<br />(#{label_name(:no_jugado)})"
 	
-	change_group_link = is_member ? link_to(match.team_name(@schedule), match_team_path(:id => match.id), :title => label_name(:change_group)) :  match.team_name(@schedule)
+	change_group_link = (is_member & display_team_link) ? link_to(match.team_name(@schedule), match_team_path(:id => match.id), :title => label_name(:change_group)) :  match.team_name(@schedule)
 	
 	is_different_user_manager = (current_user != the_user and is_manager)
 	subscription_image = "#{counter +=1}. #{subscription_image_link(the_user, is_subscriber, the_label)}"
