@@ -13,3 +13,6 @@ raise "RPX/Janrain Engage Application Name must be defined ENV['RPX_APP_NAME']" 
 
 
 WillPaginate.per_page = 15	
+
+ENV['IRON_WORKER_TOKEN'] = '12NrL0TfkunXS0L8BPYzM5JC7ss'
+ENV['IRON_WORKER_PROJECT_ID'] = '5005be960008f24d9e0003c2'
