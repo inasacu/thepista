@@ -17,6 +17,8 @@
 
 	the_url_for = url_for(the_item)
 	the_url_for = "#{ENV['THE_HOST']}#{the_url_for}"	
+	
+	disqus_category_id = 1410371  # futbol
 %>
 
 <hr/>
@@ -36,7 +38,8 @@
 				var disqus_title = '<%= the_label %>'; 
 				var disqus_developer = <%= disqus_developer %>; 
 				var disqus_identifier = '<%= the_url_for %>';
-				var disqus_url = '<%= the_url_for %>';
+				var disqus_url = '<%= the_url_for %>';				
+				var disqus_category_id = '<%= disqus_category_id %>';
 			
 				var disqus_config = function () { this.language = "<%= disqus_language %>"; };
 			
