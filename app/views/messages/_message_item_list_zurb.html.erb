@@ -15,78 +15,47 @@
 			the_label = label_name(:users)
 		end
 	end
-	
+
 	counter = 0
-	
 %>
-
-
-<div class="row">
-	<div class="seven columns">	
-				
-		<fieldset id="roster">
-			<h5><%= the_label %></h5>
-			<hr/>
-			
-			
-			
-			<%#= render 'shared/check_radio_button_zurb' if recipients %>
 		
-			
-			
-			<div class="row">
-				<div class="twelve columns" style="border-style:Inset;height:480px;overflow:auto;">
-					<table cellpadding="0" cellspacing="0" border="0">
-			
-			
-<% 
-			first_character = ''
-			counter = 0
-			recipients.each do |recipient| 
+<fieldset id="roster">
 
-				if (first_character != (recipient.name.chars.first).upcase)
-					first_character = (recipient.name.chars.first).upcase
-					counter = 0
-				else
-					counter = 1
-				end 
-				if (counter == 0)
-%>					
-					<br/>
-					<strong><span style="padding: 4px; text-align: left; font-size: 15px;"class="<%= first_character %>"><%= first_character %></span></strong>
-					<hr/>
-<%
-				end
+	<%= render 'shared/check_radio_button_zurb' if recipients %>
 
-				case the_class
-				when "Escuadra"										
-%>											
-					<%= render "escuadras/item_single_zurb", :escuadra => recipient, :checked => false %>					
-					
-<%				when "User" %>		
-					
+	<div class="row">
+		<div class="twelve columns" style="border-style:Inset;height:300px;overflow:auto;">
+
+			<table cellpadding="0" cellspacing="0" border="0">
+
+
+				<% recipients.each do |recipient| 
+					case the_class
+					when "Escuadra"										
+				%>											
+						<%= render "escuadras/item_single_zurb", :escuadra => recipient, :checked => false %>					
+
+				<%	when "User" %>		
+
 					<%= render "messages/recipient_item_single_zurb", :recipient => recipient, :checked => the_check, :convocados => convocados %>		
-					
-<%
-				else
-				end
-			end
-%>
 
-		
-				</table>
+				<%  else
+					end
+				%>
 				
-			</div>
-		</div>			
-			<br/>
-			<hr/>
-		
-		
-		</fieldset>
-		
-	</div>
-</div>
+				<% end %>
 
+
+			</table>
+
+		</div>
+	</div>	
+
+</fieldset>	
+
+
+
+		
 
 
 

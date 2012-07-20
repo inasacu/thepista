@@ -124,31 +124,34 @@ class Standing < ActiveRecord::Base
   end
 
 	# old code before testing for a user based cast to escuadra games' standings
-  # def self.update_cup_group_stage_ranking(standing)
-  #   # default variables
-  #   ranking = 0
-  #   
-  #   @standings = Standing.find(:all, :conditions =>["cup_id = ? and group_stage_name = ?", standing.cup_id, standing.group_stage_name], 
-  #   :order => "points desc, (goals_for-goals_against) desc, goals_for desc, goals_against")
-  #   
-  #    @standings.each do |standing| 
-  #       ranking += 1 if standing.played > 0
-  #       standing.update_attribute(:ranking, ranking)
-  #     end      
-  # end
+  def self.update_cup_group_stage_ranking(standing)
+    # default variables
+    ranking = 0
+    
+    @standings = Standing.find(:all, :conditions =>["cup_id = ? and group_stage_name = ?", standing.cup_id, standing.group_stage_name], 
+    :order => "points desc, (goals_for-goals_against) desc, goals_for desc, goals_against")
+    
+     @standings.each do |standing| 
+        ranking += 1 if standing.played > 0
+        standing.update_attribute(:ranking, ranking)
+      end      
+  end
 
-	def self.update_cup_group_stage_ranking(standing)
-		# default variables
-		ranking = 0
-
-		@standings = Standing.find(:all, :conditions =>["cup_id = ? and group_stage_name = ? and user_id = ?", standing.cup_id, standing.group_stage_name, standing.user_id], 
-		:order => "points desc, (goals_for-goals_against) desc, goals_for desc, goals_against")
-
-		@standings.each do |standing| 
-			ranking += 1 if standing.played > 0
-			standing.update_attribute(:ranking, ranking)
-		end      
-	end
+	# new code for testing for a user based cast to escuadra games standings  - issue right now:
+	# [PROJECT_ROOT]models/standing.rb:147:in `update_cup_group_stage_ranking'
+	
+	# def self.update_cup_group_stage_ranking(standing)
+	# 	# default variables
+	# 	ranking = 0
+	# 
+	# 	@standings = Standing.find(:all, :conditions =>["cup_id = ? and group_stage_name = ? and user_id = ?", standing.cup_id, standing.group_stage_name, standing.user_id], 
+	# 	:order => "points desc, (goals_for-goals_against) desc, goals_for desc, goals_against")
+	# 
+	# 	@standings.each do |standing| 
+	# 		ranking += 1 if standing.played > 0
+	# 		standing.update_attribute(:ranking, ranking)
+	# 	end      
+	# end
 	
   def self.update_cup_challenge_item_ranking(cup, item='User')
     cup.challenges.each do |challenge|

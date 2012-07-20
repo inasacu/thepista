@@ -1,4 +1,6 @@
-<% @group ? check = true : check = false %>
+<% 
+	@group ? check = true : check = false 
+%>
 
 <%- if @message.reply? -%>
 <%= f.hidden_field :parent_id %>
@@ -25,53 +27,51 @@
 <% end %>
 
 
-
 <%= set_form_label(the_form, :subject) %>
 <%= set_form_text_field(the_form, :subject, 'large input-text') unless @message.reply? %>
-<%= @message.subject if @message.reply? %><br />
-
-
+<%= @message.subject if @message.reply? %><br/>
 
 <%= set_form_label(the_form, :body) %>
-<%= set_form_text_area(the_form, :body, true) %><br />
+<%= set_form_text_area(the_form, :body, true) %><br/>
 
 
+<div class="row">
+	<div class="eight columns">
+		
+	<%= set_form_label(the_form, :users) %>
 
-<% if @scorecard 
-@schedule = @scorecard
-%>
+	<% if @scorecard %>
+		<% @schedule = @scorecard %>
+		<%= render "/messages/message_item_list_zurb", :recipients => @recipients, :checked => check %>
+		<%= hidden_field :scorecard, :id %>
 
-<%= render "/messages/message_item_list_zurb", :recipients => @recipients, :checked => check %>
-<%= hidden_field :scorecard, :id %>
+	<% elsif @match %>
+		<%= render "/messages/message_item_list_zurb", :recipients => @recipients, :checked => check %>
+		<%= hidden_field :match, :id %>
+		<%= hidden_field :schedule, :id %>
 
-<% elsif @match %>
-<%= render "/messages/message_item_list_zurb", :recipients => @recipients, :checked => check %>
-<%= hidden_field :match, :id %>
-<%= hidden_field :schedule, :id %>
+	<% elsif @schedule %>
+		<%= render "/messages/message_item_list_zurb", :recipients => @recipients, :checked => check, :convocados => true %>
+		<%= hidden_field :schedule, :id %>
 
-<% elsif @schedule %>
-<%= render "/messages/message_item_list_zurb", :recipients => @recipients, :checked => check, :convocados => true %>
-<%= hidden_field :schedule, :id %>
+	<% elsif @challenge %>
+		<%= render "/messages/message_item_list_zurb", :recipients => @recipients, :checked => check %>
+		<%= hidden_field :challenge, :id %>
 
-<% elsif @challenge %>
-<%= render "/messages/message_item_list_zurb", :recipients => @recipients, :checked => check %>
-<%= hidden_field :challenge, :id %>
+	<% elsif @recipient %>
+		<%= hidden_field :recipient, :id %>
 
-<% elsif @recipient %>
-<%= hidden_field :recipient, :id %>
+	<% elsif @the_schedule  %>
+		<% @schedule = @the_schedule %>	 
+		<%= render "/messages/message_item_list_zurb", :recipients => @recipients, :checked => check %>
 
-<% elsif @the_schedule 
-@schedule = @the_schedule
-%>	 
-<%= render "/messages/message_item_list_zurb", :recipients => @recipients, :checked => check %>
+	<% else %>
+		<%= render "/messages/message_item_list_zurb", :recipients => @recipients, :checked => check %>
 
-<% else %>
-<%= render "/messages/message_item_list_zurb", :recipients => @recipients, :checked => check %>
+	<% end %>
 
-<% end %>
-
-
-
+	</div>
+</div>
 
 
 

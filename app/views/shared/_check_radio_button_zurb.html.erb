@@ -1,25 +1,14 @@
 <% the_label = label_name(:select) %>
 
-<div class="row">
-	<div class=".four.columns">
-		<%= content_tag_safe(:h7, the_label) %>:  
-		<a rel="roster" href="#select_all"><%= label_name(:check_all) %></a>,  	 
 
-		<a rel="roster" href="#select_none"><%= label_name(:check_none) %></a>,    	
+<%= content_tag_safe(:h7, the_label) %>:  
+<a rel="roster" href="#select_all"><%= label_name(:check_all) %></a>,  	 
 
-		<a rel="roster" href="#invert_selection"><%= label_name(:check_invert) %></a>	
-	</div>
-</div>
+<a rel="roster" href="#select_none"><%= label_name(:check_none) %></a>,    	
+
+<a rel="roster" href="#invert_selection"><%= label_name(:check_invert) %></a>	
+
 <hr/>
-
-
-
-<label><strong><%= label_name(:select) %></strong>:</label>	
-
-&nbsp;&nbsp;<a rel="roster" href="#select_all"><%= label_name(:check_all) %></a>
-&nbsp;&nbsp;<a rel="roster" href="#select_none"><%= label_name(:check_none) %></a>
-&nbsp;&nbsp;<a rel="roster" href="#invert_selection"><%= label_name(:check_invert) %></a>
-
 
 <script type="text/javascript">
     $(document).ready( function() {
@@ -45,5 +34,8 @@
         }); 
        
     });
-</script><br/>
+
+var count = $("[type='checkbox']:checked").length;
+
+</script>
 
