@@ -33,7 +33,7 @@
 		<p><%= "#{mail_to(CONTACT_RECIPIENT, label_name(:contact_us))}".html_safe %></p>
 
 
-		<% if DISPLAY_SOCIAL_MEDIA %>
+		<% if DISPLAY_SOCIAL_MEDIA and Rails.env.production? %>
 
 		<ul class="block-grid three-up">
 			
