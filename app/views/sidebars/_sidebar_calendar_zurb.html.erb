@@ -50,9 +50,15 @@
 		the_label = "#{day_of_month_as_number}"
 		@my_schedules.each do |schedule|
 			unless is_same_date
-				is_same_date = (day_of_month_as_number == the_current_day_number or day_of_month_as_number == schedule.starts_at.day) ? true : false
+				is_same_date = (day_of_month_as_number == the_current_day_number) ? true : false
+				is_same_link_date = (day_of_month_as_number == schedule.starts_at.day) ? true : false
+			end	
+			the_item_link = item_name_link("#{day_of_month_as_number}", schedule)
+			if is_same_link_date
+				the_label = "#{a_strong_open}#{the_item_link}#{a_strong_open}" 
+			elsif is_same_date
+				the_label = "#{a_strong_open}#{the_label}#{a_strong_open}" 
 			end
-			the_label = "#{a_strong_open if is_same_date}  #{the_label}  #{a_strong_close if is_same_date}"
 		end
 			
 		the_week << "<td>#{the_label}</td>"
@@ -66,7 +72,21 @@
 	# rest of weeks in month
 	while day_of_month_as_number <= the_last_day_of_month
 	
-		days_in_a_week.times.each do |x|		
+		days_in_a_week.times.each do |x|
+			
+			the_label = "#{day_of_month_as_number}"
+			@my_schedules.each do |schedule|
+				unless is_same_date
+					is_same_date = (day_of_month_as_number == the_current_day_number) ? true : false
+					is_same_link_date = (day_of_month_as_number == schedule.starts_at.day) ? true : false
+				end	
+				the_item_link = item_name_link("#{day_of_month_as_number}", schedule)
+				if is_same_link_date
+					the_label = "#{a_strong_open}#{the_item_link}#{a_strong_open}" 
+				elsif is_same_date
+					the_label = "#{a_strong_open}#{the_label}#{a_strong_open}" 
+				end
+			end		
 				
 			if (day_of_month_as_number > the_last_day_of_month and is_last_blank_days)
 				the_week << "<td colspan=#{days_in_a_week-x}>&nbsp;</td>"
@@ -74,20 +94,13 @@
 			end
 			
 			if (day_of_month_as_number <= the_last_day_of_month)
-				the_label = "#{a_strong_open if is_same_date}  #{day_of_month_as_number}  #{a_strong_close if is_same_date}"
+				the_label = "#{a_strong_open if is_same_date}  #{the_label}  #{a_strong_close if is_same_date}"
 				the_week << "<td>#{the_label}</td>"
 				is_same_date = false
 			end
 			
 			if (day_of_month_as_number <= the_last_day_of_month)
 				day_of_month_as_number += 1 
-			end
-			
-			# is_same_date = (day_of_month_as_number == the_current_day_number) ? true : false
-			@my_schedules.each do |schedule|
-				unless is_same_date
-					is_same_date = (day_of_month_as_number == the_current_day_number or day_of_month_as_number == schedule.starts_at.day) ? true : false
-				end
 			end
 			
 		end
@@ -98,9 +111,6 @@
 	end	
 %>
 
-
-
-<!-- <hr/> -->
 
 <%#= set_content_tag_safe(:caption, "the_first_day_of_month: #{the_first_day_of_month}") %>
 <%#= set_content_tag_safe(:caption, "the_last_day_of_month: #{the_last_day_of_month}") %>
@@ -121,25 +131,25 @@
 	<caption><%= the_current_nice_month_year %></caption>
 
 	<thead>
-		<tr>
-
-			<th scope="col" title="Lunes">Lun</th>
-			<th scope="col" title="Martes">Mar</th>
-			<th scope="col" title="Miércoles">Mie</th>
-			<th scope="col" title="Jueves">Jue</th>
-			<th scope="col" title="Viernes">Vie</th>
-			<th scope="col" title="Sábado">Sab</th>
-			<th scope="col" title="Domingo">Dom</th>
+		<tr>		
+			
+			<th scope="col" title="<%= label_name(:monday) %>"><%= label_name(:monday_short) %></th>
+			<th scope="col" title="<%= label_name(:tuesday) %>"><%= label_name(:tuesday_short) %></th>
+			<th scope="col" title="<%= label_name(:wednesday) %>"><%= label_name(:wednesday_short) %></th>
+			<th scope="col" title="<%= label_name(:thursday) %>"><%= label_name(:thursday_short) %></th>
+			<th scope="col" title="<%= label_name(:friday) %>"><%= label_name(:friday_short) %></th>
+			<th scope="col" title="<%= label_name(:saturday) %>"><%= label_name(:saturday_short) %></th>
+			<th scope="col" title="<%= label_name(:sunday) %>"><%= label_name(:sunday_short) %></th>
 
 		</tr>
 	</thead>
 
 
-	<tfoot>
+	 <tfoot>
 		<tr>
-			<td colspan="3" id="prev"><a href=".." title="Ver todas las entradas para <%= the_previous_nice_month_year %>">« <%= the_previous_nice_month %></a></td>
+			<td colspan="3" id="prev"></td>
 			<td class="pad">&nbsp;</td>
-			<td colspan="3" id="next"><a href=".." title="Ver todas las entradas para <%= the_next_nice_month_year %>"><%= the_next_nice_month %> »</a></td>
+			<td colspan="3" id="next"></td> 
 		</tr>
 	</tfoot>
 
@@ -152,49 +162,6 @@
 				<% end %>
 			<tr/>
 		<% end %>
-		
-		
-
-		<!-- <tr>
-
-
-				<tr>
-					<td><a href=".../2012/07/04/" title="/2012/07/04/">	4	</a></td>
-				</tr>
-
-				<tr>
-					<td><strong>	9	</strong></td>
-					<td><a href=".../2012/07/11/" title="/2012/07/11">  11	</a></td>
-					<td>	12	</td>
-					<td>	13	</td>
-					<td>	14	</td>
-					<td>	15	</td>
-				</tr>	
-
-				<tr>
-					<td>	16	</td>
-					<td>	17	</td>
-					<td><a href=".../2012/07/18/" title="/2012/07/18">	18	</a></td>
-					<td>	19	</td>
-					<td>	20	</td>
-					<td>	21	</td>
-					<td>	22	</td>
-				</tr>
-
-				<tr>
-					<td>	23	</td>
-					<td>	24	</td>
-					<td>	<a href=".../2012/07/25/" title="/2012/07/25/">	25	</a></td>
-					<td>	26	</td>
-					<td>	27	</td>
-					<td>	28	</td>
-					<td>	29	</td>
-				</tr>
-
-				<tr>
-					<td>	30	</td>
-					<td class="pad" colspan="6">	&nbsp;	</td>
-				</tr> -->
 
 	</tbody>
 

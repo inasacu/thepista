@@ -893,7 +893,20 @@ en:
      modo: "Practice more, organize less with HayPista."  
      modo_key_title: "Practica deporte, no hay mejor sitio, organizar partidos, buscar gente para jugar, buscar centro deportivo para jugar.  Con Hay Pista puedes organizar partidos de empresa, ver tu jornada deportiva e incluso tu clasificacion en tu equipo. Tambien puedes ver quien esta convocado, quien esta en ultima hora o quien esta ausente para el partido."
      modo_keywords: "hay pista, organizar partidos, gente para jugar, buscar centro deportivo jugar, partidos de empresa, ver jornada deportiva, clasificacion equipo, quien esta convocado, quien esta ultima hora, quien esta ausente"
-     Monday: Monday 
+     monday: Monday 
+     monday_short:  Mon
+     tuesday:  Tuesday
+     tuesday_short:  Tue
+     wednesday:  Wednesday
+     wednesday_short:  Wed
+     thursday:  Thursday
+     thursday_short:  Thu
+     friday:  Friday
+     friday_short:  Fri
+     saturday:  Saturday
+     saturday_short:  Sat
+     sunday:  Sunday
+     sunday_short:  Sun
      moral:  Drive
      moral_difference:  "Interest<br/>Difference"
      more:  more       

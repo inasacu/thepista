@@ -2,8 +2,8 @@
 	checked ? checkmark = 'checked' : checkmark = '' 
 	checkmark = 'checked' if (convocados and recipient.type_id.to_i == 1)
 	the_convocados = ""
-	the_convocados = "#{label_name(recipient.types_name)}" if convocados
-	the_item_link = "#{item_image_link_smaller(recipient)}  #{item_name_link(recipient)}  -  #{the_convocados}".html_safe
+	the_convocados = "  -  #{label_name(recipient.types_name)}" if convocados
+	the_item_link = "#{item_image_link_smaller(recipient)}  #{item_name_link(recipient)} #{the_convocados}".html_safe
 %>
 
 <label>
