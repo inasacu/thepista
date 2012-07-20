@@ -2,14 +2,13 @@
 	checked ? checkmark = 'checked' : checkmark = '' 
 	checkmark = 'checked' if (convocados and recipient.type_id.to_i == 1)
 	the_convocados = ""
-	the_convocados = "<br/>#{label_name(recipient.types_name)}".html_safe if convocados
+	the_convocados = "#{label_name(recipient.types_name)}" if convocados
+	the_item_link = "#{item_image_link_smaller(recipient)}  #{item_name_link(recipient)}  -  #{the_convocados}".html_safe
 %>
 
-<label for="niceFieldsetInput">
-	<input type="checkbox" id="roster" name="recipient_ids[]" value="<%= recipient.id %>" <%= checkmark %> >
-	
-	<%= item_image_link_smaller(recipient) %>&nbsp;&nbsp;
-	<%= "#{item_name_link(recipient)}  #{the_convocados}".html_safe %>
+<label>
+	<input type="checkbox" id="roster" name="recipient_ids[]" value="<%= recipient.id %>" <%= checkmark %> >	
+	<%= the_item_link %>
 </label>
 
 

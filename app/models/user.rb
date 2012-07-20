@@ -209,7 +209,7 @@ class User < ActiveRecord::Base
     
     def self.squad_list(schedule)
       User.find(:all, :select => "distinct users.*, matches.type_id, types.name as types_name", :joins => "LEFT JOIN matches on matches.user_id = users.id LEFT JOIN types on types.id = matches.type_id", 
-                      :conditions => ["matches.schedule_id = ?", schedule], :order => "users.name")
+                      :conditions => ["matches.schedule_id = ?", schedule], :order => "matches.type_id, users.name")
     end
 
     def has_item_petition?(current_user, item)
