@@ -4,8 +4,8 @@
 
 	the_item_link = "#{request.env["HTTP_REFERER"]}"
 	disqus_developer = Rails.env == 'development' ? 1 : 0
-	disqus_shortname = 'zurb'	  # for current test phase
-	# disqus_shortname = 'haypista' # for future production 
+	# disqus_shortname = 'zurb'	  # for current test phase
+	disqus_shortname = 'haypista' # for future production 
 
 	the_label = ''
 	case the_item.class.to_s
