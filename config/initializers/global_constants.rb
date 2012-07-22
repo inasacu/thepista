@@ -17,6 +17,7 @@ YESTERDAY_TO_TODAY = Time.zone.now - 1.day..Time.zone.now + 1.day
 
 NEXT_WEEK = Time.zone.now + 7.days
 LAST_WEEK = Time.zone.now - 7.days
+YESTERDAY = Time.zone.now - 1.day
 LAST_TWO_DAYS = Time.zone.now - 2.days
 LAST_THREE_DAYS = Time.zone.now - 3.days
 LAST_FOUR_DAYS = Time.zone.now - 4.days
@@ -177,9 +178,10 @@ IMAGE_VENUE = 'icons/venue.png'
 
 
 COMMON_YEAR_DAYS_IN_MONTH = [nil, 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]
-
-
-
+MOBILE_BROWSERS = ["smartphone", "iphone",  "blackberry", "playbook", "windows phone", "android", "ipod", 
+									 "opera mini", "palm", "hiptop", "avantgo","plucker", "xiino","blazer","elaine", 
+									"windows ce; ppc;", "windows ce; smartphone;","windows ce; iemobile", "up.browser","up.link",
+									"mmp","symbian","midp","wap","vodafone","o2","pocket","kindle", "mobile","pda","psp","treo"]
 
 
 CONTACT_RECIPIENT = 'support@haypista.com'

@@ -264,7 +264,7 @@ class Schedule < ActiveRecord::Base
   
   def self.latest_matches(items)
     find(:all, :select => "distinct schedules.id, schedules.name, schedules.group_id, schedules.played, schedules.updated_at as created_at", 
-         :conditions => ["schedules.archive = false and schedules.played = true and schedules.updated_at >= ?", LAST_THREE_DAYS],
+         :conditions => ["schedules.archive = false and schedules.played = true and schedules.updated_at >= ?", YESTERDAY],
          :order => "created_at desc", :limit => NUMBER_RECENT_MATCH_NOTES).each do |item| 
       items << item
     end

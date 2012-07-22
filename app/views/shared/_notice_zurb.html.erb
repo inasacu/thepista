@@ -1,38 +1,31 @@
+<%#=  (@browser_type == "mobile") ? true : false  %>
+
+<% if current_user.id == 2001 %>
+<div class="alert-box"><%= @browser_type  %></div>
+<% end %>
+
+<% if flash[:success] or flash[:warning] or flash[:error] %>
+	<div class="alert-box [success warning error]">Success..</div>
+
+<% end %>
 
 
-flash[:success]
-flash[:warning]
-flash[:error]
-flash[:notice]
-
-<div class="alert-box [success warning error]">
-	This is a success alert (div.alert-box.success).
-	<a href="" class="close">&times;</a>
-</div>
+<% if flash[:notice] %>
+	<div class="alert-box">Notice...</div>
+<% end %>
 
 
-
-<div class="alert-box success">
-	This is a success alert (div.alert-box.success).
-	<a href="" class="close">&times;</a>
-</div>
+<% if flash[:success] %>
+	<div class="alert-box success">Success...</div>
+<% end %>
 
 
-<div class="alert-box">
-	This is a standard alert (div.alert-box).
-	<a href="" class="close">&times;</a>
-</div>
+<% if flash[:warning] %>
+	<div class="alert-box warning">Warning...</div>
+<% end %>
 
 
-<div class="alert-box warning">
-	This is a warning alert (div.alert-box.warning).
-	<a href="" class="close">&times;</a>
-</div>
-
-
-
-<div class="alert-box error">
-	This is an error alert (div.alert-box.error).
-	<a href="" class="close">&times;</a>
-</div>
+<% if flash[:error] %>
+	<div class="alert-box error">Error...</div>
+<% end %>
 

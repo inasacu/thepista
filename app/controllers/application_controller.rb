@@ -4,9 +4,10 @@ class ApplicationController < ActionController::Base
 
 	helper_method :current_user, :current_user_session
 
-	before_filter :set_time_zone , :set_user_language, :set_the_template   
-	layout 'zurb' 	unless DISPLAY_HAYPISTA_TEMPLATE
+	before_filter :set_time_zone , :set_user_language, :set_the_template  
+	before_filter :set_browser_type
 
+	layout 'zurb' 	unless DISPLAY_HAYPISTA_TEMPLATE
 
 	# this probably needs to go in the helper
 	def set_the_template(default_template='')
@@ -21,7 +22,11 @@ class ApplicationController < ActionController::Base
 			@the_template = default_template if DISPLAY_HAYPISTA_TEMPLATE
 			@the_template = "#{default_template}_zurb" unless DISPLAY_HAYPISTA_TEMPLATE
 		end
-	end                    																		
+	end                   																		
+
+	def set_browser_type
+		@browser_type = detect_browser
+	end
 
 	def the_maximo
 		current_user.is_maximo?
@@ -36,7 +41,7 @@ class ApplicationController < ActionController::Base
 	end	
 
 	def is_current_manager_of(item)		
-			current_user.is_manager_of?(item) or current_user.is_creator_of?(item)
+		current_user.is_manager_of?(item) or current_user.is_creator_of?(item)
 	end
 
 	def is_current_member_of(item)
@@ -62,7 +67,7 @@ class ApplicationController < ActionController::Base
 	def controller_successful_update
 		flash[:success] = I18n.t(:successful_update)
 	end
-	
+
 	def object_counter(objects)
 		@counter = 0
 		objects.each { |object|  @counter += 1 }
@@ -93,6 +98,15 @@ class ApplicationController < ActionController::Base
 	end
 
 	private
+	def detect_browser
+		agent = request.headers["HTTP_USER_AGENT"].downcase
+
+		MOBILE_BROWSERS.each do |m|
+			return "mobile" if agent.match(m)
+		end
+		return "desktop"
+	end
+
 	def current_user_session
 		return @current_user_session if defined?(@current_user_session)
 		@current_user_session = UserSession.find

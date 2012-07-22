@@ -98,7 +98,7 @@
 			
 			<% if current_user %>
 			
-				<%#= render 'shared/notice_zurb', :notice =>  %>
+				<%= render 'shared/notice_zurb', :notice => flash %>
 				
 			<% elsif is_new_user and !is_password_reset %>
 
