@@ -68,12 +68,6 @@
 		
 	end
 	
-
-	
-	
-	
-	
-
 	
 	# case for pagination display
 	if get_controller_action == 'group_team_list'
@@ -140,9 +134,7 @@
 
 		
 		<% unless discard_disqus_display.include?(get_controller_action) %>
-		
-			<%#= render 'utilities/disqus_display', :the_item => @group if @group %>
-			<%#= render 'utilities/disqus_display', :the_item => @cup if @cup %>		
+				
 			<%= render 'utilities/disqus_display', :the_item => @schedule if @schedule %>
 			<%= render 'utilities/disqus_display', :the_item => @challenge if @challenge %>
 		
