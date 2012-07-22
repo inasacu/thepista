@@ -4,7 +4,9 @@
 	left_or_right = is_mobile_browser ? "left" : "right"
 %>
 
-<div id="zurBar" class="container">
+<% unless is_mobile_browser %>
+	<div id="zurBar" class="container">
+<% end %>
 
   <div class="row">
 
@@ -27,7 +29,7 @@
 				<%= link_to(label_name(:schedules), schedules_url, :class => the_schedule) if has_group %>
 				
 				<%= link_to(label_name(:venues), venues_url, :class => the_venue) unless is_mobile_browser %>	
-				<%= link_to(label_name(:cups), cups_url, :class => the_cup) if is_cup_visible %>
+				<%= link_to(label_name(:cups), cups_url, :class => the_cup) unless is_mobile_browser %>
 
 				<%= link_to(label_name(:messages), messages_url, :class => the_message) %>
 				<%= user_link(current_user.name, current_user, :class => the_user) %>
@@ -45,4 +47,6 @@
 
   </div>
 
-</div>
+<% unless is_mobile_browser %>
+	</div>
+<% end %>
