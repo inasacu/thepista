@@ -1,14 +1,8 @@
 <%#=  (@browser_type == "mobile") ? true : false  %>
 
-<% if current_user.id == 2001 %>
-<div class="alert-box"><%= @browser_type  %></div>
+<% if current_user.id == 9999 %>
+	<div class="alert-box"><%= @browser_type  %></div>
 <% end %>
-
-<% if flash[:success] or flash[:warning] or flash[:error] %>
-	<div class="alert-box [success warning error]">Success..</div>
-
-<% end %>
-
 
 <% if flash[:notice] %>
 	<div class="alert-box">Notice...</div>
@@ -29,3 +23,7 @@
 	<div class="alert-box error">Error...</div>
 <% end %>
 
+
+<%# if flash[:success] or flash[:warning] or flash[:error] %>
+	<!-- <div class="alert-box [success warning error]">Success..</div> -->
+<%# end %>

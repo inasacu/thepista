@@ -806,4 +806,8 @@ module ApplicationHelper
 	   COMMON_YEAR_DAYS_IN_MONTH[month]
 	end
 	
+	def is_mobile_browser
+		@browser_type == "mobile"
+	end
+	
 end
