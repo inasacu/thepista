@@ -102,9 +102,12 @@ class ApplicationController < ActionController::Base
 
 	private
 	def detect_user_agent
-		user_agent_string = ""
-		user_agent = AgentOrange::UserAgent.new(user_agent_string)
-		return user_agent
+		# user_agent_string = ""
+		# user_agent = AgentOrange::UserAgent.new(user_agent_string)
+		# return user_agent
+		
+		agent = request.headers["HTTP_USER_AGENT"].downcase
+		return agent
 	end
 	
 	def detect_browser

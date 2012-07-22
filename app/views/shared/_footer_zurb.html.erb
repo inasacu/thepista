@@ -1,14 +1,35 @@
-<%
-	is_media_visible = DISPLAY_SOCIAL_MEDIA and !is_mobile_browser
-%>
 <!-- Das Footer -->
 
-<%= render 'utilities/facebook_script_zurb' if is_media_visible %>
-<%= render 'utilities/google_plus_script_zurb' if is_media_visible %>
+<%= render 'utilities/facebook_script_zurb' if DISPLAY_SOCIAL_MEDIA %>
+<%= render 'utilities/google_plus_script_zurb' if DISPLAY_SOCIAL_MEDIA %>
 
 <footer class="row">
+	
+	
+	<% if is_mobile_browser %>
 
-	<% unless is_mobile_browser %>
+		<section class="six columns">
+			<h5><%= label_name(:language) %></h4>
+			<p>	
+				<%= "#{render :partial => '/shared/language_zurb'}".html_safe %>
+			</p>
+		</section>
+
+
+		<section class="six columns">
+			<h5><%= "#{label_name(:need_quick_help)}".html_safe %></h4>
+			<p><%= "#{mail_to(CONTACT_RECIPIENT, label_name(:contact_us))}".html_safe %></p>
+
+		</section>		
+
+		<div class="row">
+			<div class="three columns centered">
+				<h4><strong><%= app_name %> &copy; 2011.</strong></h4>
+			</div>
+		</div>
+	
+
+	<% else %>
 	
 	<section class="two columns">
 		<h6><%= "#{label_name(:about)} #{app_name}" %></h6>
@@ -25,10 +46,6 @@
 			<%= link_to(label_name(:faq), faq_url) %><br/>
 		</p>
 	</section>
-	
-	<% end %>
-	
-	
 
 	<section class="two columns">
 		<h6><%= label_name(:language) %></h6>
@@ -36,44 +53,44 @@
 			<%= "#{render :partial => '/shared/language_zurb'}".html_safe %>
 		</p>
 	</section>
-		
-		<section class="four columns">
-			<h6><%= "#{label_name(:need_quick_help)}".html_safe %></h6>
-			<p><%= "#{mail_to(CONTACT_RECIPIENT, label_name(:contact_us))}".html_safe %></p>
+	
+	<section class="four columns">
+		<h6><%= "#{label_name(:need_quick_help)}".html_safe %></h6>
+		<p><%= "#{mail_to(CONTACT_RECIPIENT, label_name(:contact_us))}".html_safe %></p>
 
 
-			<% if is_media_visible and Rails.env.production? %>
+		<% if DISPLAY_SOCIAL_MEDIA and Rails.env.production? %>
 
-				<ul class="block-grid three-up">
+		<ul class="block-grid three-up">
 			
-				<li>
-					<div class="fb-like" data-href="HayPista.com" data-send="false" 
-					data-layout="button_count" data-width="450" data-show-faces="false" 
-					data-action="recommend" data-font="lucida grande">
-					</div>
-				</li>
+		<li>
+			<div class="fb-like" data-href="HayPista.com" data-send="false" 
+			data-layout="button_count" data-width="450" data-show-faces="false" 
+			data-action="recommend" data-font="lucida grande">
+			</div>
+		</li>
 		
 
-				<li>
-					<iframe allowtransparency="true" frameborder="0" scrolling="no"
-					src="http://platform.twitter.com/widgets/follow_button.html?screen_name=haypista"
-					style="width:80px; height:20px;">
-					</iframe>
-				</li>
+		<li>
+			<iframe allowtransparency="true" frameborder="0" scrolling="no"
+			src="http://platform.twitter.com/widgets/follow_button.html?screen_name=haypista"
+			style="width:80px; height:20px;">
+			</iframe>
+		</li>
 
-				<li>
-					<g:plusone size="medium"></g:plusone>
-				</li>
+		<li>
+			<g:plusone size="medium"></g:plusone>
+		</li>
 			
-				</ul>
+		</ul>
 
-			<% end %>
+		<% end %>
 			
 		</section>		
 
 		<div class="row">
 			<div class="three columns centered">
-				<h5><strong><%= app_name %> &copy; 2011.</strong></h6>
+				<h6><strong><%= app_name %> &copy; 2011.</strong></h6>
 			</div>
 		</div>
 		
@@ -88,6 +105,8 @@
 			</div>
 		</div>		
 		<% end %>
+	
+	<% end %>
 		
 </footer>
 <!-- /Das Footer -->

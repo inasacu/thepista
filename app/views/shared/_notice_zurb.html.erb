@@ -1,16 +1,16 @@
 <%#=  (@browser_type == "mobile") ? true : false  %>
 
 <%
-	the_device = @user_agent.device
-	@user_agent.is_mobile?
-	the_platform = @user_agent.device.platform
-	the_engine = @user_agent.device.engine
-	the_browser = @user_agent.device.engine.browser
+	# the_device = @user_agent.device
+	# @user_agent.is_mobile?
+	# the_platform = @user_agent.device.platform
+	# the_engine = @user_agent.device.engine
+	# the_browser = @user_agent.device.engine.browser
 %>
 
 
 <% if current_user.id == 2001 %>
-	<%= @browser_type  %>
+	<%= @user_agent  %>
 	<%#= @user_agent.is_mobile?  %>
 	
 	<%#= "the_device.type: #{the_device.type}" %>
