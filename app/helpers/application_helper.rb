@@ -103,7 +103,7 @@ module ApplicationHelper
 		the_action = self.controller.action_name.singularize.gsub("_", " ")
 		return ("#{the_controller}_#{the_action}" == aControllerAction)
 	end
-	
+
 	# returns name of current controller being used
 	def get_the_controller
 		return self.controller.controller_name.singularize.gsub("_", " ")
@@ -135,7 +135,7 @@ module ApplicationHelper
 	def nice_simple_time_at(time_at)
 		return I18n.l(time_at, :format => :simple_time_at).html_safe unless time_at.nil?
 	end
-	
+
 	# July 2012
 	def nice_month_year(time_at)
 		return I18n.l(time_at, :format => :month_year).html_safe unless time_at.nil?
@@ -772,42 +772,45 @@ module ApplicationHelper
 	def the_maximo
 		current_user.is_maximo?
 	end
-	
+
 	def is_group_manager_of
 		current_user.is_group_manager_of?
 	end
-	
+
 	def is_current_manager_of(item)
 		current_user.is_manager_of?(item) or current_user.is_creator_of?(item)
 	end
-	
+
 	def is_user_manager_of(item)
 		current_user.is_user_manager_of?(item)
 	end
-	
+
 	def is_current_same_as(item)
 		current_user == item
 	end
-	
+
 	def the_label_options
 		label_name(:options)
 	end
-	
+
 	def is_current_member_of(item)
 		current_user.is_member_of?(item)
 	end
-	
+
 	def has_current_item_petition(item)
 		current_user.has_item_petition?(current_user, item)
 	end
-	
+
 	def days_in_month(month, year = Time.now.year)
-	   return 29 if month == 2 && Date.gregorian_leap?(year)
-	   COMMON_YEAR_DAYS_IN_MONTH[month]
+		return 29 if month == 2 && Date.gregorian_leap?(year)
+		COMMON_YEAR_DAYS_IN_MONTH[month]
 	end
-	
+
 	def is_mobile_browser
 		@browser_type == "mobile"
 	end	
-	
+
+	def eight_twelve_columns
+		eight_or_twelve_columns = is_mobile_browser ? "twelve columns" : "eight columns"
+	end
 end

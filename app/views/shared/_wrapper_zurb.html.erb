@@ -131,7 +131,9 @@
 
 <div class="row">
 
-	<div class="eight columns">
+	<div class="<%= eight_twelve_columns %>">
+		
+		
 		<%= yield %>
 
 		<%= render 'shared/pagination_zurb', :collection => @the_collection if @the_collection %>
@@ -145,35 +147,38 @@
 			<%= render 'utilities/disqus_display', :the_item => @challenge if @challenge %>
 		
 		<% end %>
-		
-		
+				
 		
 	</div>
 
 
 <% if current_user %>
 
-  	<div class="four columns">
-	<!-- SIDEBAR BEGIN -->
+	<% unless is_mobile_browser %>
+
+	  	<div class="four columns">
+		<!-- SIDEBAR BEGIN -->
 		
-		<% unless the_sidebar.nil? %>
+			<% unless the_sidebar.nil? %>
 		
-			<%= set_title_class(the_sidebar_label) %>
-			<hr/>
+				<%= set_title_class(the_sidebar_label) %>
+				<hr/>
 				
-			<%= render 'sidebars/sidebar_create_zurb', :item => new_item_sidebar unless new_item_sidebar.nil? %>	
+				<%= render 'sidebars/sidebar_create_zurb', :item => new_item_sidebar unless new_item_sidebar.nil? %>	
 			
-			<%= render 'sidebars/sidebar_message' %>
+				<%= render 'sidebars/sidebar_message' %>
 				
-			<%= render "#{the_sidebar}/sidebar_zurb" %>	
+				<%= render "#{the_sidebar}/sidebar_zurb" %>	
 		
-			<hr/>
-			<br/>		
+				<hr/>
+				<br/>		
 		
-		<% end %>
+			<% end %>
 		
-	<!-- SIDEBAR END -->
-  	</div> 
+		<!-- SIDEBAR END -->
+	  	</div> 
+
+	<% end %>
 	
 
 <% end -%>

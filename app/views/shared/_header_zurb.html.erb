@@ -1,16 +1,21 @@
 <% 
 	has_group, the_cup, the_challenge, the_schedule, the_group, the_users, the_user, the_petition, the_home, the_login, the_signup, the_venue, the_message, the_controller_action , the_controller = get_header_navigation
+	is_cup_visible = (Cup.has_official_cup? or the_maximo) and !is_mobile_browser
 %>
 
 <div id="zurBar" class="container">
 
   <div class="row">
 
-    <div class="four columns">
-      <h1><%= link_to(app_name, root_url) %></h1>
-    </div>
-
-    <div class="eight columns">
+	<% unless is_mobile_browser %>
+	
+	    <div class="four columns">
+	      <%= content_tag(:h1, link_to(app_name, root_url)) %>
+	    </div>
+	
+	<% end %>
+	
+    <div class="<%= eight_twelve_columns %>">
 
     	<strong class="right">
 
@@ -20,8 +25,8 @@
 				<%= link_to(label_name(:groups), groups_url, :class => the_group) %>	
 				<%= link_to(label_name(:schedules), schedules_url, :class => the_schedule) if has_group %>
 				
-				<%= link_to(label_name(:venues), venues_url, :class => the_venue) %>	
-				<%= link_to(label_name(:cups), cups_url, :class => the_cup) if Cup.has_official_cup? or the_maximo %>
+				<%= link_to(label_name(:venues), venues_url, :class => the_venue) unless is_mobile_browser %>	
+				<%= link_to(label_name(:cups), cups_url, :class => the_cup) if is_cup_visible %>
 
 				<%= link_to(label_name(:messages), messages_url, :class => the_message) %>
 				<%= user_link(current_user.name, current_user, :class => the_user) %>
