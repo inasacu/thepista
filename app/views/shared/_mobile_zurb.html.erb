@@ -86,51 +86,24 @@
 	is_new_user = @user ? true : false
 	the_label = label_name(:users_rpx_new) 
 	@item = @user
-	
-	# is_display_title = (!the_title.nil? and is_action('index')  and !is_controller_action('standing_index'))	
 %>
 
 <div class="row">
 
 	<div class="twelve columns">		
-
-		<div class="foundation-header">
-			
-			<% if current_user %>
-			
-				<%= render 'shared/notice_zurb', :notice => flash %>
-				
-			<% elsif is_new_user and !is_password_reset %>
-
-			<%= render 'shared/new_edit_multipart_zurb', :item => @item, :the_label => the_label %>
-			
-			<% else %>
-			
-				<br />
-			
-				<%= content_tag :h3, link_to(app_name, root_url) %>
-				<%= content_tag :h6, label_name(:modo), :class => "subheader" %>
-				
-				<hr />
-				<br />
-				
-				<%= render 'home/details_zurb' unless is_password_reset %>
-				<%= render 'password_resets/new_zurb' if is_password_reset %>
-				
-				<br />
-				
-			<% end %>
-			
-		</div>
 		
 		<% if current_user %>
 
-			<dl class="nice tabs mobile hide-on-phones">
-				
-					
+			<dl class="nice tabs mobile show-on-phones">
+									
 				<% if @new_item.nil? %>
 				
-					<%= render "#{the_tab_navigation}/tab_navigation_zurb" unless the_tab_navigation.nil? %>
+					<% unless the_tab_navigation.nil? %>
+					
+						<%= render "#{the_tab_navigation}/tab_navigation_zurb" %>
+						<%= render "#{the_tab_navigation}/tab_mobile_zurb" %>
+					
+					<% end %>
 					
 				<% else %>		
 						
@@ -147,5 +120,3 @@
 	</div>
 
 </div>
-
-
