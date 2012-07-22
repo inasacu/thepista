@@ -808,6 +808,6 @@ module ApplicationHelper
 	
 	def is_mobile_browser
 		@browser_type == "mobile"
-	end
+	end	
 	
 end

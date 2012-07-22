@@ -7,8 +7,7 @@ gem "authlogic"
 gem "will_paginate"
 gem "authlogic-oid"
 gem 'httparty',	'>= 0.8.1'
-gem "acl9"
-# gem 'sitemap_generator'                  
+gem "acl9"                
 gem 'acts_as_commentable'      
 gem 'hoptoad_notifier'
 gem 'rpx_now'
@@ -28,27 +27,25 @@ gem 'acts_as_tree', '0.1.1'
 gem 'aws-sdk'
 gem "friendly_id", "~> 4.0.1"
 
-gem 'iron_worker'
 gem 'typhoeus'
 gem 'delayed_job_active_record'
 
-# gem 'ayah_integration'
-
-gem "zurb-foundation"
+gem 'zurb-foundation'
+gem 'agent_orange'
+gem 'iron_worker'
 
 # Gems used only for assets and not required
 # in production environments by default.
 group :assets do
   gem 'sass-rails',   '~> 3.2.3'
   gem 'coffee-rails', '~> 3.2.1'
-
-  # See https://github.com/sstephenson/execjs#readme for more supported runtimes
-  # gem 'therubyracer'
-
   gem 'uglifier', '>= 1.0.3'
 end
 
 
+
+# gem 'sitemap_generator'
+# gem 'ayah_integration'
 # gem 'acts-as-messageable'
 # gem 'ajaxful_rating', '>= 3.0.0.beta8'
 # gem 'ssl_requirement'

@@ -1,7 +1,35 @@
 <%#=  (@browser_type == "mobile") ? true : false  %>
 
-<% if current_user.id == 9999 %>
-	<div class="alert-box"><%= @browser_type  %></div>
+<%
+	the_device = @user_agent.device
+	@user_agent.is_mobile?
+	the_platform = @user_agent.device.platform
+	the_engine = @user_agent.device.engine
+	the_browser = @user_agent.device.engine.browser
+%>
+
+
+<% if current_user.id == 2001 %>
+	<%#= @browser_type  %>
+	<%#= @user_agent.is_mobile?  %>
+	
+	<%= "the_device.type: #{the_device.type}" %><br/>
+	<%= "the_device.name: #{the_device.name}" %><br/>
+	<%= "the_device.version: #{the_device.version}" %><br/>
+	<%= "the_device.is_mobile?: #{the_device.is_mobile?}" %><br/>
+	<%= "the_device.is_computer?" "#{the_device.is_computer?}" %><br/>
+	<%= "the_device.is_bot?: #{the_device.is_bot?}" %><br/>
+	<%= "@user_agent.is_mobile?: #{@user_agent.is_mobile?}" %><br/>
+	<%= "the_platform.type: #{the_platform.type}" %><br/>
+	<%= "the_platform.name: #{the_platform.name}" %><br/>
+	<%= "the_platform.version: #{the_platform.version}" %><br/>
+	<%= "the_engine.type: #{the_engine.type}" %><br/>
+	<%= "the_engine.name: #{the_engine.name}" %><br/>
+	<%= "the_engine.version: #{the_engine.version}" %><br/>
+	<%= "the_browser.type: #{the_browser.type}" %><br/>
+	<%= "the_browser.name: #{the_browser.name}" %><br/>
+	<%= "the_browser.version: #{the_browser.version}" %><br/>
+
 <% end %>
 
 <% if flash[:notice] %>

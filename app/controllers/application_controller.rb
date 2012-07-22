@@ -5,7 +5,7 @@ class ApplicationController < ActionController::Base
 	helper_method :current_user, :current_user_session
 
 	before_filter :set_time_zone , :set_user_language, :set_the_template  
-	before_filter :set_browser_type
+	before_filter :set_browser_type, :set_user_agent
 
 	layout 'zurb' 	unless DISPLAY_HAYPISTA_TEMPLATE
 
@@ -24,6 +24,10 @@ class ApplicationController < ActionController::Base
 		end
 	end                   																		
 
+	def set_user_agent
+		@user_agent = detect_user_agent
+	end
+	
 	def set_browser_type
 		@browser_type = detect_browser
 	end
@@ -75,7 +79,6 @@ class ApplicationController < ActionController::Base
 	end
 
 	protected
-
 	def access_denied
 		flash[:error] = "You do not have access!"
 		redirect_to :controller => :user, :action => :new
@@ -98,6 +101,12 @@ class ApplicationController < ActionController::Base
 	end
 
 	private
+	def detect_user_agent
+		user_agent_string = ""
+		user_agent = AgentOrange::UserAgent.new(user_agent_string)
+		return user_agent
+	end
+	
 	def detect_browser
 		agent = request.headers["HTTP_USER_AGENT"].downcase
 
