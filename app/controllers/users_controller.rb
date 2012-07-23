@@ -77,13 +77,14 @@ class UsersController < ApplicationController
 
 		@user.name = @user.email    
 		# @user.language = "es" if @user.language.nil?
-		
+
 		if session[:identifier]
+			@user.identity_url = session[:identifier]
 			@user.password = session[:identifier]
 			@user.password_confirmation = session[:identifier]
 		end
-		
-		
+
+
 		if @user.save
 			@user.email_to_name
 			@user.email_backup = @user.email
@@ -262,12 +263,13 @@ class UsersController < ApplicationController
 			session[:name] = data[:name] || data[:displayName] || data[:nickName]
 			session[:email] = data[:verifiedEmail] || data[:email]
 			session[:login] = data[:verifiedEmail] || data[:email]
-			
+
 			@user = User.new
 			@user.name = session[:name]
 			@user.email = session[:email]
+			@user.identity_url = session[:identifier]
 
-			the_user = User.find_by_email(@user.email)
+			the_user = User.find_rpx_user(data[:identifier], @user.email)
 			if the_user
 				@email = existing_user.nil? ?   email : existing_user.email
 				@user_session = UserSession.new(:email => @email)
@@ -279,7 +281,7 @@ class UsersController < ApplicationController
 					return
 				end
 			end
-			
+
 		end
 	end
 
@@ -295,7 +297,7 @@ class UsersController < ApplicationController
 		if @user.save
 
 			UserMailer.send_email(@user).deliver
-			
+
 			# Won't be needing these anymore.
 			session[:rpx_identifier] = nil
 			session[:rpx_token] = nil
@@ -315,7 +317,7 @@ class UsersController < ApplicationController
 
 	def get_user_manager
 		get_user
-		
+
 		unless is_user_manager_of(@user)
 			warning_unauthorized
 			redirect_to root_url
@@ -325,7 +327,7 @@ class UsersController < ApplicationController
 
 	def get_user_member
 		get_user
-		
+
 		if @user.private_profile and DISPLAY_PRIVATE_PROFILE
 			unless current_user.is_user_member_of?(@user)    
 				flash[:warning] = I18n.t(:user_private_profile)
@@ -337,7 +339,7 @@ class UsersController < ApplicationController
 
 	def get_user_self
 		get_user
-		
+
 		unless is_current_same_as(@user)
 			warning_unauthorized
 			redirect_to root_url
@@ -347,7 +349,7 @@ class UsersController < ApplicationController
 
 	def get_user_group
 		get_user
-		
+
 		@group = Group.find(params[:group])
 	end
 

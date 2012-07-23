@@ -3,6 +3,12 @@
 			:conditions => ["schedules.archive = false and starts_at >= ? and ends_at <= ? and group_id in (select group_id from groups_users where user_id = ?)", 
 				Time.zone.now.at_beginning_of_month,
 				Time.zone.now.at_end_of_month, current_user],:order => 'starts_at')
+				
+	total_schedules = 0
+	@my_schedules.each {|x| total_schedules += 1}
+	
+	# do not display calendar if user has none...
+	return if total_schedules < 1
 
 	all_weekday_numbers = [1,2,3,4,5,6,7]
 	the_month = []

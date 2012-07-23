@@ -179,7 +179,11 @@ class User < ActiveRecord::Base
       self.groups.each{ |group| is_manager = user.is_manager_of?(group) } 
       return is_manager
     end
-    
+
+		def self.find_rpx_user(identity, email)
+				find(:first, :conditions => ["identity_url = ? or email = ?", identity, email])
+    end
+
     def self.contact_emails(email)
       User.find(:first, :conditions => ["email = ?", email])
     end 

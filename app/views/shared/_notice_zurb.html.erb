@@ -3,25 +3,21 @@
 <% end %>
 
 <% if flash[:notice] %>
-	<div class="alert-box">Notice...</div>
+	<div class="alert-box"><%= flash[:notice] %></div>
 <% end %>
 
 
 <% if flash[:success] %>
-	<div class="alert-box success">Success...</div>
+	<div class="alert-box success"><%= flash[:success] %></div>
 <% end %>
 
 
 <% if flash[:warning] %>
-	<div class="alert-box warning">Warning...</div>
+	<div class="alert-box warning"><%= flash[:warning] %></div>
 <% end %>
 
 
 <% if flash[:error] %>
-	<div class="alert-box error">Error...</div>
+	<div class="alert-box error"><%= flash[:error] %></div>
 <% end %>
 
-
-<%# if flash[:success] or flash[:warning] or flash[:error] %>
-	<!-- <div class="alert-box [success warning error]">Success..</div> -->
-<%# end %>

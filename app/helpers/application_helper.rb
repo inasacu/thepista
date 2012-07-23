@@ -746,7 +746,7 @@ module ApplicationHelper
 	end
 
 	def content_tag_safe(html_value, display_value, title_value='', align='', class_value='')
-		content_tag(:"#{html_value}", display_value.html_safe, :title => title_value, :align => align, :class => class_value)
+		content_tag(:"#{html_value}", "#{display_value}".html_safe, :title => title_value, :align => align, :class => class_value)
 	end
 
 	def flash_messages(options={})
