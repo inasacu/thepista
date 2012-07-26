@@ -24,22 +24,22 @@
 
 		<table>
 
-			<% if @group.is_futbol? %>
+			<%# if @group.is_futbol? %>
 				<%= render :partial => '/scorecards/scorecard_futbol_label', :locals => {:mailer => mailer} %>
 				<%= render :partial => '/scorecards/scorecard', :collection => collection, :locals => {:group => @group, :mailer => mailer} %>
-			<% end %>
+			<%# end %>
 			
-			<%  if @group.is_basket?  %>
-				<% @scorecard_baskets = @scorecards %>
-				<%= render :partial => '/scorecards/scorecard_basket_label', :locals => {:mailer => mailer} %>
-				<%= render :partial => '/scorecards/scorecard_basket', :collection => @scorecard_baskets, :locals => {:group => @group, :mailer => mailer} %>
-			<% end %> 
+			<%#  if @group.is_basket?  %>
+				<%# @scorecard_baskets = @scorecards %>
+				<%#= render :partial => '/scorecards/scorecard_basket_label', :locals => {:mailer => mailer} %>
+				<%#= render :partial => '/scorecards/scorecard_basket', :collection => @scorecard_baskets, :locals => {:group => @group, :mailer => mailer} %>
+			<%# end %> 
 			
-			<% unless @group.is_futbol? or @group.is_basket? %>
-				<% @scorecard_others = @scorecards %>
-				<%= render :partial => '/scorecards/scorecard_other_label', :locals => {:mailer => mailer} %>
-				<%= render :partial => '/scorecards/scorecard_other', :collection => @scorecard_others, :locals => {:group => @group, :mailer => mailer} %>     
-			<% end %>
+			<%# unless @group.is_futbol? or @group.is_basket? %>
+				<%# @scorecard_others = @scorecards %>
+				<%#= render :partial => '/scorecards/scorecard_other_label', :locals => {:mailer => mailer} %>
+				<%#= render :partial => '/scorecards/scorecard_other', :collection => @scorecard_others, :locals => {:group => @group, :mailer => mailer} %>     
+			<%# end %>
       
 		</table>
 		

@@ -221,11 +221,11 @@ module SchedulesHelper
     the_sport = ""
     the_missing = ""
 
-    # unless @schedule.played?
+    unless @schedule.played?
       the_sport = "#{label_name(:rosters)}:  #{@schedule.convocados.count}"
       the_missing = ", #{I18n.t(:missing)}:  #{@schedule.player_limit.to_i - @schedule.convocados.count}" if @schedule.player_limit.to_i > @schedule.convocados.count
       the_missing = ", #{I18n.t(:excess)}:  #{@schedule.convocados.count - @schedule.player_limit.to_i}" if @schedule.player_limit.to_i < @schedule.convocados.count
-    # end
+    end
 
     the_span = "#{the_sport} #{the_missing}"
 

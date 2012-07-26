@@ -30,7 +30,7 @@ if @schedule
 %>
 						<tr>
 						  <td style="width:1%; color:#999999; vertical-align: top;">&nbsp;</td>
-						  <td style="width:99%">&nbsp;<%= link_to(the_schedule_label, the_status_link) %></td>
+						  <td style="width:99%">&nbsp;<%= "#{link_to(the_schedule_label, the_status_link)}".html_safe %></td>
 						</tr>
 <%			
 					end

@@ -3,16 +3,16 @@
 
 <% if @schedule.played? %>  
 
-	<p style="margin: 15px 0 2px 0"><strong><%= "#{I18n.t(:score)}:  " %></strong></p>
+	<p style="margin: 15px 0 2px 0"><strong><%= "#{I18n.t(:score)}:  ".html_safe %></strong></p>
 
 	<table width="100%" border="0" cellpadding="0" cellspacing="0" style="font: 13px arial;">
 	  <tr>
-	    <td style="width:1%; color:#999999; vertical-align: top;">•&nbsp;</td>
+	    <td style="width:1%; color:#999999; vertical-align: top;">• </td>
 	    <td>
-			<%= link_to(@schedule.group.name, group_url(@schedule.group.name)) %>&nbsp;&nbsp; 
-			<%= @schedule.matches.first.group_score %>&nbsp;&nbsp;-&nbsp;&nbsp;
-			<%= @schedule.matches.first.invite_score %>&nbsp;&nbsp;
-			<%= @schedule.group.second_team %>          
+			<%= "#{link_to(@schedule.group.name, group_url(@schedule.group.name))}  ".html_safe %>
+			<%= "#{@schedule.matches.first.group_score}  -  ".html_safe %>
+			<%= "#{@schedule.matches.first.invite_score}  "html_safe %>
+			<%= "#{@schedule.group.second_team}".html_safe %>          
 	    </td>
 	  </tr>
 	  <tr/>
