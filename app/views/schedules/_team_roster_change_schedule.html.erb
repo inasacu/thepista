@@ -4,7 +4,7 @@
 
 	if is_pre_match
 		the_roster = the_roster.sort_by{|roster| roster.updated_at}
-		the_last_roster = the_roster.last
+		the_last_roster = the_roster.first
 
 		if the_last_roster.change_id.nil?
 			is_pre_match = false
