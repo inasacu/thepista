@@ -108,11 +108,11 @@ class MatchesController < ApplicationController
 
 		played = (@match.type_id.to_i == 1 and !@match.group_score.nil? and !@match.invite_score.nil?)
 
-		if @match.update_attributes(:group_id => @match.invite_id, :invite_id => @match.group_id, 
-			:played => played, :user_x_two => @user_x_two)
-
+		if @match.update_attributes(:group_id => @match.invite_id, :invite_id => @match.group_id, :played => played, :user_x_two => @user_x_two, :change_id => current_user.id)
 			Scorecard.calculate_user_played_assigned_scorecard(@match.user, @match.schedule.group)
+			controller_successful_update			
 		end
+		
 		redirect_back_or_default('/index')
 	end
 

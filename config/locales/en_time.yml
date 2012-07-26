@@ -143,7 +143,7 @@ en:
       date_wo_year: "%e de %B" # this is my code
       day_date_wo_year: "%A, %e of %B" # this is my code
       day_time_wo_year: "%A, %e of %B at %H:%M" # this is my code
-      day_time_wo_year_exact: "%A, %e de %B %H:%M" # this is my code
+      day_time_wo_year_exact: "%A, %e de %B - %H:%Mh" # this is my code
       time_at: "at %H:%M" # this is my code
       simple_time_at: "%H:%M" # this is my code
       simple_time_zone_at: "%H:%M %z" # this is my code

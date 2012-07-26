@@ -32,13 +32,15 @@ class Match < ActiveRecord::Base
   belongs_to      :user
   belongs_to      :group
   belongs_to      :schedule
-  belongs_to      :convocado, :class_name => "User", :foreign_key => "user_id"  
-  belongs_to      :type,      :conditions => "table_type = 'Match'"
+  belongs_to      :convocado, 		:class_name => "User", :foreign_key => "user_id"  
+  belongs_to      :team_change, 	:class_name => "User", :foreign_key => "change_id"
+
+  belongs_to      :type,      	:conditions => "table_type = 'Match'"
   
   # variables to access
 	attr_accessible :schedule_id, :user_id, :group_id, :invite_id, :group_score, :invite_score
 	attr_accessible :roster_position, :played, :one_x_two, :user_x_two, :type_id, :status_at, :block_token
-	attr_accessible :goals_scored, :archive, :slug
+	attr_accessible :goals_scored, :archive, :slug, :change_id
 
 	# attr_accessible :matches_attributes
 	#   accepts_nested_attributes_for :matches

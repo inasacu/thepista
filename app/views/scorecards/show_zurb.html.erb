@@ -31,9 +31,9 @@
 							<%= content_tag_safe(:th, sort_link(I18n.t(:games_won), :wins), label_name(:games_won_full), 'center') %>
 							<%= content_tag_safe(:th, sort_link(I18n.t(:games_tied), :draws), label_name(:games_tied_full), 'center') %>
 							<%= content_tag_safe(:th, sort_link(I18n.t(:games_lost), :losses), label_name(:games_lost_full), 'center') %>
-							<%= content_tag_safe(:th, sort_link(I18n.t(:goals_scored), :goals_scored), label_name(:goals_scored_full), 'center') if DISPLAY_FREMIUM_SERVICES %>
-							<%= content_tag_safe(:th, I18n.t(:games_won_avg), label_name(:games_won_avg_full), 'center') %>
-							<%= content_tag_safe(:th, I18n.t(:games_points_avg), label_name(:games_points_avg_full), 'center') %>
+							<%= content_tag_safe(:th, sort_link(I18n.t(:goals_scored), :goals_scored), label_name(:goals_scored_full), 'center') %> 
+							<%= content_tag_safe(:th, I18n.t(:games_won_avg), label_name(:games_won_avg_full), 'center') if DISPLAY_FREMIUM_SERVICES %>
+							<%= content_tag_safe(:th, sort_link(I18n.t(:games_points_avg), :coeficient_points), label_name(:games_points_avg_full), 'center') %>
 
 						</tr>
 					</thead>

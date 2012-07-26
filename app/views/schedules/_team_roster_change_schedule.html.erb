@@ -1,11 +1,30 @@
+<% 	
+	is_pre_match = true
+	the_pre_match_teams = ""
+
+	if is_pre_match
+		the_roster = the_roster.sort_by{|roster| roster.updated_at}
+		the_last_roster = the_roster.last
+
+		if the_last_roster.change_id.nil?
+			is_pre_match = false
+		else
+			the_user = User.find(the_last_roster.change_id)
+			the_time = the_last_roster.updated_at
+		end
+	end
+
+	the_pre_match_teams = "#{item_name_link(the_user)} #{label_name(:post_pre_match_teams)}, #{ago(the_time).downcase}." if is_pre_match
+%>
+
 <div class="row">
 	<div class="twelve columns">
 
 		<table>
 		<tr>			
-			<%= content_tag_safe :td, "#{item_name_link(@schedule.group)}<br/>#{@schedule.sport.name}" %>
-			<%= content_tag_safe :td, the_start_at_label %>
-			<%= content_tag_safe :td, match_all_my_link(@schedule, current_user, false) %>
+			<%= content_tag_safe :td, "#{item_name_link(@schedule.group)}  ( #{@schedule.sport.name} )<br/>#{link_to(label_name(:scorecard), scorecard_path(:id => @schedule.group))}" %>
+			<%= content_tag_safe :td, "#{the_start_at_label}<br/>#{the_pre_match_teams}" %>
+			<%= content_tag_safe :td, match_all_my_link(@schedule, current_user, false) unless @schedule.played %>
 		</tr>
 		</table>
 		

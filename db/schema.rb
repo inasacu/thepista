@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120713123323) do
+ActiveRecord::Schema.define(:version => 20120725225617) do
 
   create_table "announcements", :force => true do |t|
     t.text     "message"
@@ -418,7 +418,6 @@ ActiveRecord::Schema.define(:version => 20120713123323) do
     t.boolean  "archive",                                                             :default => false
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "rebounds_offense",                                                    :default => 0
     t.decimal  "rating_average_technical",              :precision => 6, :scale => 2, :default => 0.0
     t.decimal  "rating_average_physical",               :precision => 6, :scale => 2, :default => 0.0
     t.float    "initial_mean",                                                        :default => 0.0
@@ -427,6 +426,7 @@ ActiveRecord::Schema.define(:version => 20120713123323) do
     t.float    "final_deviation",                                                     :default => 0.0
     t.integer  "game_number",                                                         :default => 0
     t.string   "block_token"
+    t.integer  "change_id"
   end
 
   add_index "matches", ["group_id"], :name => "index_matches_on_group_id"

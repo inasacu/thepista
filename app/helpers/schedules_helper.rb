@@ -221,15 +221,15 @@ module SchedulesHelper
     the_sport = ""
     the_missing = ""
 
-    unless @schedule.played?
+    # unless @schedule.played?
       the_sport = "#{label_name(:rosters)}:  #{@schedule.convocados.count}"
       the_missing = ", #{I18n.t(:missing)}:  #{@schedule.player_limit.to_i - @schedule.convocados.count}" if @schedule.player_limit.to_i > @schedule.convocados.count
       the_missing = ", #{I18n.t(:excess)}:  #{@schedule.convocados.count - @schedule.player_limit.to_i}" if @schedule.player_limit.to_i < @schedule.convocados.count
-    end
+    # end
 
     the_span = "#{the_sport} #{the_missing}"
 
-    the_start_at_label = "#{nice_day_of_week(@schedule.starts_at)}<br/>#{the_span}"
+    the_start_at_label = "#{nice_day_time_wo_year_exact(@schedule.starts_at)}<br/>#{the_span}"
     the_start_at_label = "#{the_start_at_label}#{get_cluetip(label_name(:schedule_excess_player), nil, 
     label_name('schedule_excess_player_cluetip'), true)}" if (@the_roster.count > @schedule.player_limit and is_squad)
     

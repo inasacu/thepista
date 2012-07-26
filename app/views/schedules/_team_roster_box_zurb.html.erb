@@ -96,16 +96,16 @@ the_roster.each do |match|
 	subscription_image = "#{counter +=1}. #{subscription_image_link(the_user, is_subscriber, the_label)}"
 -%>
 
-<tr>
-	<%= content_tag_safe(:td, image_link_smaller(the_user), '', '', second_team) %>
-	<%= content_tag_safe(:td, subscription_image, '','', second_team) %>
-	<%= content_tag_safe(:td, the_user_link, '','', second_team) %>
-	<%= content_tag_safe(:td, the_match_status, '','', second_team) %>
-	<%= content_tag_safe(:td, game_number, '','', second_team) %>
-	<%= content_tag_safe(:td, change_group_link, '','', second_team) unless has_been_played %>
-	<%= content_tag_safe(:td, was_convocado ? (group_score_link(@schedule, is_second_team)) : '', '','', second_team) if has_been_played %>	
+<tr class='<%= second_team %>'>
+	<%= content_tag_safe(:td, image_link_smaller(the_user), '', '') %>
+	<%= content_tag_safe(:td, subscription_image, '','') %>
+	<%= content_tag_safe(:td, the_user_link, '','') %>
+	<%= content_tag_safe(:td, the_match_status, '','') %>
+	<%= content_tag_safe(:td, game_number, '','') %>
+	<%= content_tag_safe(:td, change_group_link, '','') unless has_been_played %>
+	<%= content_tag_safe(:td, was_convocado ? (group_score_link(@schedule, is_second_team)) : '', '','') if has_been_played %>	
 	
-	<%= content_tag_safe(:td, is_different_user_manager ? (match_all_my_link(@schedule, the_user, true)) : '', '','', second_team) if has_not_been_played_manager %>
+	<%= content_tag_safe(:td, is_different_user_manager ? (match_all_my_link(@schedule, the_user, true)) : '', '','') if has_not_been_played_manager %>
 	
 </tr>
 

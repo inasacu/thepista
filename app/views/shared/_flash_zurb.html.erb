@@ -75,7 +75,10 @@
 		the_title = the_controller
 		is_display_title = false
 		@new_item = @message if is_new_item
-		
+	
+	when 'user_sessions'
+		the_tab_navigation = nil
+			
 	end	
 	
 	the_tab_navigation = 'challenges' if get_controller_action == 'standing_show_list'

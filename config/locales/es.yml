@@ -1163,6 +1163,7 @@ es:
      post: Publica   
      post_not_saved: Comentarios no guardados!!!   
      post_pre_match: Publica los equipos de la jornada
+     post_pre_match_teams: ha hecho los equipos
      post_saved: Comentarios guardados!!!   
      pre_match: Convocatoria   
      preference: preferencias
