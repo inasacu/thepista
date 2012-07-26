@@ -14,8 +14,7 @@
 # t.datetime "status_at"                                                           
 # t.boolean  "archive"                                                             
 # t.datetime "created_at"
-# t.datetime "updated_at"
-# t.integer  "rebounds_offense"                                                    
+# t.datetime "updated_at"                                                
 # t.decimal  "rating_average_technical"               
 # t.decimal  "rating_average_physical"                
 # t.float    "initial_mean"                                                        
@@ -24,6 +23,7 @@
 # t.float    "final_deviation"                                                     
 # t.integer  "game_number"                                                         
 # t.string   "block_token"
+# t.integer  "change_id"
 
 require "base64"
 
@@ -33,7 +33,6 @@ class Match < ActiveRecord::Base
   belongs_to      :group
   belongs_to      :schedule
   belongs_to      :convocado, 		:class_name => "User", :foreign_key => "user_id"  
-  belongs_to      :team_change, 	:class_name => "User", :foreign_key => "change_id"
 
   belongs_to      :type,      	:conditions => "table_type = 'Match'"
   
