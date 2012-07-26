@@ -69,3 +69,11 @@ table tbody tr.lightgray { background: lightgray; }
 Alerts
 -------------------------------------------------- */
 .alert-box.success { background-color: #60AD35; color: #fff; text-shadow: 0px -1px rgba(0,0,0,0.3); }
+
+
+/* -------------------------------------------------- 
+	:: Mobile Visibility Affordances
+---------------------------------------------------*/
+.do-not-hide-on-phones { display: block !important; }
+	
+	
