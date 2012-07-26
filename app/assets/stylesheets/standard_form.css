@@ -109,7 +109,46 @@ ul.nice.contained.tabs-content li { border-color: #eee; }
 dl.tabs.mobile, dl.nice.tabs.mobile { display: block; width: auto; margin: 20px -20px 40px; height: auto; }
 dl.tabs.mobile dt, dl.tabs.mobile dd, dl.nice.tabs.mobile dt, dl.nice.tabs.mobile dd { display: block; float: none; height: auto; }
 
-dl.tabs.mobile dd a { display: block; width: auto; height: auto; padding: 18px 20px; line-height: 1; border: solid 0px #ccc; border-width: 1px 0px 0px; margin: 0; color: #555; background: #eee; font-size: 15px; font-size: 1.5rem; }
+dl.tabs.mobile dd a { 
+	display: block; 
+	width: auto; 
+	height: auto; 
+	padding: 18px 20px; 
+	line-height: 1; 
+	border: solid 1px #eee; 
+	border-width: 1px 0px 0px; 
+	margin: 0; 
+	color: #333; 
+	background: #fff; 
+	font-size: 15px; 
+	font-size: 1.5rem; 
+	}
+
+
+.nice.tabs.mobile dd a { 
+	padding: 18px 20px; 
+	border: none; 
+/*	border-left: none; */
+/*	border-right: none; */
+	border-top: 1px solid #ccc; 
+	background: #fff; 
+	border-left: 1px solid #eee; 
+	border-right: 1px solid #eee; 
+	border-top: 3px solid #eee; 
+}
+
+.nice.tabs.mobile dd a.active { 
+	background: #fff; 
+	color: #333; 
+	border-left: 1px solid #eee; 
+	border-right: 1px solid #eee; 
+	border-top: 3px solid #0f7d00; 
+	margin: 0; 
+	position: static; 
+	top: 0px; 
+	height: auto;
+}
+
 /*dl.tabs.mobile dd a.active { height: auto; margin: 0; border-width: 1px 0px 0px; }
 
 .nice.tabs.mobile { border-bottom: solid 1px #ccc; height: auto; }
