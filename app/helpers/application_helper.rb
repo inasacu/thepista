@@ -690,7 +690,14 @@ module ApplicationHelper
 	end
 
 	def render_show_detail_zurb(item_label, item_link, unique_label=false)
-		return render('shared/show_detail_zurb'.html_safe, :item_label => label_name( :"#{item_label}").html_safe, :item_link => item_link, :unique_label => "#{unique_label}".html_safe)
+		the_item_label = ""
+		if unique_label
+			the_item_label = "#{item_label}".html_safe
+		else
+			the_item_label = label_name( :"#{item_label}").html_safe
+		end
+			
+		return render('shared/show_detail_zurb'.html_safe, :item_label => the_item_label, :item_link => item_link)
 	end
 
 	def set_tab_navigation(the_label)
@@ -813,4 +820,12 @@ module ApplicationHelper
 	def eight_twelve_columns
 		eight_or_twelve_columns = is_mobile_browser ? "twelve columns" : "eight columns"
 	end
+	
+	def phone_number_link(text)
+	    sets_of_numbers = text.scan(/[0-9]+/)
+	    # number = "+1-#{sets_of_numbers.join('-')}"
+	    number = "#{sets_of_numbers.join('-')}"
+	    link_to text, "tel:#{number}"
+	end
+	
 end

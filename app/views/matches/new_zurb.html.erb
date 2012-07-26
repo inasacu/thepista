@@ -2,16 +2,17 @@
 	@schedule ||= @match.schedule
 	@matches ||= @schedule.the_roster
 
-	@is_futbol = @schedule.group.is_futbol?
-
 	the_label = "#{item_name_link(@schedule.group)} vs. #{@schedule.away_group} <br/><p style='font-size:small;'>#{label_name(:score)}</p>"
 	@item = @match
 	
 	the_button_class = "small white nice button radius"
 	new_or_existing = 'existing'
 	the_second_label = "<p style='font-size:small;'>#{label_name(:goals_scored_full)}</p>"
-%>
 
+	prefix = "match[match_attributes][]"
+	the_goal_label = label_name(:goals_scored_full)
+	first_team = true
+%>
 
 <div class="row">
 	<div class="twelve columns">  
@@ -29,45 +30,94 @@
 				</tr>
 			</tbody>
 			</table>
-
 			
-			<br/><br/>
-				<%= set_title_class(the_second_label) %>
-			<hr/>
+			<%#= set_title_class(the_second_label) %>
+			<!-- <hr/> -->
 
 		
 			<div class="row">
-				<div class="twelve columns">  					
-					
+				<div class="six columns">  					
+
 					<table>
+
+					  	<thead>
+						<tr>             
+							<%= set_content_tag_safe(:th, "&nbsp;") %>
+							<%= set_content_tag_safe(:th, item_name_link(@schedule.group)) %>
+							<%= set_content_tag_safe(:th, the_goal_label) %>
+						</tr>
+						</thead>
+												
 						<tbody>
-							
 
-					<% @matches.each do |match| 
-							prefix = "match[match_attributes][]" 
-					%>
-						
-							<%= fields_for prefix, match do |match_form|  %>
-						
-							<%
-								@user = match.user
-								the_link = "#{image_link_small(@user)}    #{user_link(@user)}"
-							%>
+							<% @matches.each do |match| %>
+
+								<%= fields_for prefix, match do |match_form|  %>
+
+									<% if (first_team == (@schedule.group_id == match.group_id)) %>
+
+									<% 
+									@user = match.user
+									the_link = "#{image_link_small(@user)}    #{user_link_limit(@user)}"
+									%>
 									<tr>
-										<%#= set_content_tag_safe(:td, the_link) %>
-										<!-- <%#= set_form_text_field(match_form, :goals_scored, 'small input-text') %><br /> -->
-
 										<td><%= set_content_tag_safe(:td, the_link) %></td>
 										<td><%= set_form_text_field(match_form, :goals_scored, 'smaller input-text') %></td>
 									</tr>
-								
-							<%	end -%>						
-					<% end %>		
-					
-						</tbody>
-					</table>
 
-				</div> 
+									<% end -%>
+
+								<% end -%>					
+
+							<% end %>		
+
+							</tbody>
+						</table>
+
+					</div> 
+					
+					<% first_team = false %>
+					
+					<div class="six columns">  					
+
+						<table>
+
+						  	<thead>
+							<tr>             
+								<%= set_content_tag_safe(:th, "&nbsp;") %>
+								<%= set_content_tag_safe(:th, @schedule.away_group) %>
+								<%= set_content_tag_safe(:th, the_goal_label) %>
+							</tr>
+							</thead>
+
+							<tbody>
+
+
+								<% @matches.each do |match| %>
+
+									<%= fields_for prefix, match do |match_form|  %>
+
+										<% if (first_team == (@schedule.group_id == match.group_id)) %>
+
+										<% 
+										@user = match.user
+										the_link = "#{image_link_small(@user)}    #{user_link_limit(@user)}"
+										%>
+										<tr>
+											<td><%= set_content_tag_safe(:td, the_link) %></td>
+											<td><%= set_form_text_field(match_form, :goals_scored, 'smaller input-text') %></td>
+										</tr>
+
+										<% end -%>
+
+									<% end -%>					
+
+								<% end %>	
+
+								</tbody>
+							</table>
+
+						</div>
 			</div>
 		
 		<br/><br/>

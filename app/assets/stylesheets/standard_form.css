@@ -20,14 +20,42 @@ input.smaller, textarea.small { width: 74px; } /* mod by haypista */
 /* ZURB bar */
 #zurBar {
 	background: #0f7d00;
-	border-bottom: solid 2px transparent;
-	padding: 15px 20px 13px 20px; }
+	font-size: 10px;
+	
+	position: fixed;
+	-moz-box-shadow: 0px 2px 6px rgba(222, 222, 222, .9);
+	-webkit-box-shadow: 0px 2px 6px rgba(222, 222, 222, .9);
+	border-bottom: 1px solid #D4D3D3;
+	box-shadow: 0px 2px 6px rgba(222, 222, 222, .9);
+	margin: 0;
+	top: 0;
+	width: 100%;
+	z-index: 10;
+}
 
-	#zurBar strong a.active { 
+#zurBar strong {
+	display: block;
+	margin: 0;
+	padding: 0;
+	height: 14px;
+	line-height: 14px;
+	position: relative;
+	bottom: 1px;
+}
+
+/*#zurBar strong a.active { 
 		background-color: #60AD35; 
-		padding: 20px 20px 18px 20px;}
+		padding: 10px 8px 13px 20px;
+}*/
 
 
+/* --------------------------------------------------
+	:: Grid
+	This is the mobile-friendly, responsive grid that
+	lets Foundation work much of its magic.
+	-------------------------------------------------- */
+.container { padding: 40px 20px; }
+			
 /*	--------------------------------------------------
 :: Tables
 -------------------------------------------------- */
@@ -38,14 +66,6 @@ table tbody tr.lightgray { background: lightgray; }
 
 
 /* --------------------------------------------------
-:: Mobile Visibility Affordances
----------------------------------------------------*/
-.show-on-phones { display: block  }
-.show-on-tablets { display: block }
-
-
-/* --------------------------------------------------
 Alerts
 -------------------------------------------------- */
-
 .alert-box.success { background-color: #60AD35; color: #fff; text-shadow: 0px -1px rgba(0,0,0,0.3); }

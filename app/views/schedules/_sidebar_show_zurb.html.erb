@@ -53,7 +53,7 @@
 			<hr/>
 			<%= set_image_and_link(link_to(control_label('create'), new_schedule_path(:id => @schedule.group)), 'schedule_add') if is_manager_not_forum %> 
 			<%= set_image_and_link(link_to(control_label('edit'), edit_schedule_path(@schedule)), 'schedule_edit') %>
-			<%= set_image_and_link(link_to(control_label('destroy'), schedule_path(@schedule), 
+			<%#= set_image_and_link(link_to(control_label('destroy'), schedule_path(@schedule), 
 					:method => :delete, :confirm => label_name(:are_you_sure)), 'schedule_remove') if is_not_topic_not_played %>
 			<%= set_image_and_link(link_to(label_name(:matches_edit), edit_match_path(@schedule.matches.first)), 'schedule') %>
 
