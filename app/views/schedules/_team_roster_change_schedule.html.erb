@@ -4,7 +4,8 @@
 
 	if is_pre_match
 		the_roster = the_roster.sort_by{|roster| roster.updated_at}
-		the_last_roster = the_roster.first
+		the_last_roster = the_roster.first	if @schedule.played
+		the_last_roster = the_roster.last	unless @schedule.played
 
 		if the_last_roster.change_id.nil?
 			is_pre_match = false
