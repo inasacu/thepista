@@ -33,21 +33,21 @@
 
 
 <%= set_form_label(the_form, :photo, 'photo') %>
-<%= the_form.file_field :photo, :class => 'textphoto' %><br />
+<%= set_form_file_field(the_form, :photo) %><br/><br/>
 
 
 <%= set_form_label(the_form, :private_phone) %>
-<%= the_form.check_box :last_minute_notification, :class => 'textfield' %><br/>
+<%= set_form_checkbox(the_form, :private_phone) %><br />
 
 
 <%= set_form_label(the_form, :last_minute_notification) %>
-<%= the_form.check_box :last_minute_notification, :class => 'textfield' %><br />
+<%= set_form_checkbox(the_form, :last_minute_notification) %><br />
 
 
 <% if @user.is_manager? %>
 
-<%= set_form_label(the_form, :teammate_notification) %>
-<%= the_form.check_box :teammate_notification, :class => 'textfield' %><br/>
+	<%= set_form_label(the_form, :teammate_notification) %>
+	<%= set_form_checkbox(the_form, :teammate_notification) %><br />
 
 <% end -%>
 

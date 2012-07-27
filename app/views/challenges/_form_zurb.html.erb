@@ -7,14 +7,15 @@
 
 <% if DISPLAY_FREMIUM_SERVICES %>
 	<%= set_form_label(the_form, :automatic_petition) %>
-	<%= the_form.check_box :automatic_petition, :class => 'textfield' %><br/>
+	<%= set_form_checkbox(the_form,  :automatic_petition) %><br/>
+	
 <% else %>
 	<%= the_form.hidden_field :automatic_petition %>
+	
 <% end %>
 
 <%#= set_form_label(the_form, :description) %>
 <%#= set_form_text_area(the_form, :description, true) %>
-
 
 <%#= set_form_label(the_form, :conditions) %>
 <%#= set_form_text_area(the_form, :conditions, true) %>
@@ -22,7 +23,7 @@
 <% if the_maximo %>
 
 	<%= set_form_label(the_form, :archive) %>
-	<%= the_form.check_box :archive, :class => 'textfield' %>
+	<%= set_form_checkbox(the_form, :archive) %><br />
 	
 <% end %>
 

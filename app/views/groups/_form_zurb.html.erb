@@ -42,7 +42,7 @@
 <% if is_edit %>
 
 <%= set_form_label(the_form, :photo, 'photo') %>
-<%= the_form.file_field :photo, :class => 'textphoto' %><br/><br/>
+<%= set_form_file_field(the_form, :photo) %><br/>
 
 <%= set_form_label(the_form, :points_for_win) %>
 <%= set_form_text_field(the_form, :points_for_win, 'small input-text', true) %><br/>
@@ -61,8 +61,12 @@
 
 
 <% if DISPLAY_FREMIUM_SERVICES %>
-<%= set_form_label(the_form, :automatic_petition) %>
-<%= the_form.check_box :automatic_petition, :class => 'textfield' %><br/>
+	<%= set_form_label(the_form, :automatic_petition) %>
+	<%= set_form_checkbox(the_form,  :automatic_petition) %><br/>
+	
+<% else %>
+	<%= the_form.hidden_field :automatic_petition %>
+	
 <% end %>
 
 <% end -%>

@@ -666,19 +666,19 @@ module ApplicationHelper
 	end
 
 	def set_form_checkbox(form, field)
-		return form.check_box, :"#{field}"
+		return form.check_box :"#{field}", :class => 'check_box'
 	end
 
 	def set_form_time_select(form, field)
-		return form.time_select, :"#{field}", :class => 'datetime_select'
+		return form.time_select :"#{field}", :class => 'datetime_select'
 	end
 
 	def set_form_datetime_select(form, field)
-		return form.datetime_select, :"#{field}", :class => 'datetime_select'
+		return form.datetime_select :"#{field}", :class => 'datetime_select'
 	end
 
 	def set_form_date_select(form, field)
-		return form.date_select, :"#{field}", :class => 'datetime_select'
+		return form.date_select :"#{field}", :class => 'datetime_select'
 	end
 
 	def set_timezone_select(form)
@@ -686,7 +686,7 @@ module ApplicationHelper
 	end
 
 	def set_form_file_field(form, field)
-		return form.file_field, :"#{field}", :class => 'textphoto'
+		return form.file_field :"#{field}", :class => 'textphoto'
 	end
 
 	def render_show_detail_zurb(item_label, item_link, unique_label=false)

@@ -21,7 +21,7 @@
 <%= set_form_text_area(the_form, :conditions, true) %><br/>
 
 <%= set_form_label(the_form, :photo, 'photo') %>
-<%= the_form.file_field :photo, :class => 'textphoto' %><br/><br/>
+<%= set_form_file_field(the_form, :photo) %><br/><br/>
 
 
 <%= set_form_label(the_form, :points_for_win) %>
@@ -36,31 +36,28 @@
 <%= set_form_text_field(the_form, :points_for_lose, 'small input-text', true) %><br />
 
 
-
-
-
 <% if the_maximo %>
 
-<%= set_form_label(the_form, :official) %>
-<%#= set_form_checkbox(the_form, :official) %><br />
+	<%= set_form_label(the_form, :official) %>
+	<%= set_form_checkbox(the_form, :official) %><br />
 
-<%= set_form_label(the_form, :group_stage_advance) %>
-<%#= set_form_text_field(the_form, :group_stage_advance, 'small input-text', true) %><br />
+	<%= set_form_label(the_form, :group_stage_advance) %>
+	<%= set_form_text_field(the_form, :group_stage_advance, 'small input-text', true) %><br />
 
-<%= set_form_label(the_form, :group_stage) %>
-<%#= set_form_checkbox(the_form, :group_stage) %><br />
+	<%= set_form_label(the_form, :group_stage) %>
+	<%= set_form_checkbox(the_form, :group_stage) %><br />
 
-<%= set_form_label(the_form, :group_stage_single) %>
-<%#= set_form_checkbox(the_form, :group_stage_single) %><br />
+	<%= set_form_label(the_form, :group_stage_single) %>
+	<%= set_form_checkbox(the_form, :group_stage_single) %><br />
 
-<%= set_form_label(the_form, :second_stage_single) %>
-<%#= set_form_checkbox(the_form, :second_stage_single) %><br />
+	<%= set_form_label(the_form, :second_stage_single) %>
+	<%= set_form_checkbox(the_form, :second_stage_single) %><br />
 
-<%= set_form_label(the_form, :final_stage_single) %>
-<%#= set_form_checkbox(the_form, :final_stage_single) %><br />
+	<%= set_form_label(the_form, :final_stage_single) %>
+	<%= set_form_checkbox(the_form, :final_stage_single) %><br />
 
-<%= set_form_label(the_form, :archive) %>
-<%#= set_form_checkbox(the_form, :archive) %><br />
+	<%= set_form_label(the_form, :archive) %>
+	<%= set_form_checkbox(the_form, :archive) %><br />
 
 <% end %>
 

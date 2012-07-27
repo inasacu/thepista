@@ -1,11 +1,15 @@
-
-<%= set_form_create_image_link(item) %>
-<%= set_image_and_link(option_link('invitation'), 'invitation') %>
-
 <%
 	cup_create_list = ['cup', 'challenge', 'cast', 'standing']
 	is_cup_create = cup_create_list.include?(get_the_controller)
+	is_official = @cup.official if @cup
+	
+	discard_controller = ['cup']
+	is_a_dicard = discard_controller.include?(get_the_controller)
 %>
 
-<%= set_image_and_link(link_to(label_name(:cups_create), new_cup_url), 'cup') if is_controller('cup') or is_controller('challenge') if is_cup_create %>
-<%= set_image_and_link(link_to(label_name(:challenges_create), new_challenge_path(:cup_id => @cup)), 'challenge') if @cup %>
+
+<%= set_form_create_image_link(item) unless is_a_dicard %>
+<%= set_image_and_link(option_link('invitation'), 'invitation') %>
+
+
+<%= set_image_and_link(link_to(label_name(:challenges_create), new_challenge_path(:cup_id => @cup)), 'challenge') if is_official %>
