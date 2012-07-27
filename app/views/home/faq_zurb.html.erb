@@ -1,12 +1,12 @@
 <div id="home">
-	
+
 	<div class="announce">
 		<%= content_tag 'h4', "#{label_name(:faq)}" %>		
 	</div>
-	
+
 	<hr/>
 	<br/>
-	
+
 	<div class="features">
 		<%= content_tag 'h5', label_name(:faq_how_can_help) %><br/>
 		<%= content_tag 'p', label_name(:faq_helps_organize) %>
@@ -16,7 +16,16 @@
 		<%= content_tag 'P', label_name(:faq_teammate_message) %>
 		<%= content_tag 'P', label_name(:faq_scorecard_statistics) %>
 		<%= content_tag 'P', label_name(:faq_sport_center_area) %>
-		
+
+		<hr/>
+
+		<p>
+			<%= label_name(:question_or_comment) %>
+			<a href="mailto:support@HayPista.com">
+				<%= label_name(:drop_us_a_note) %>
+			</a>
+		</p>
+
 		<hr/>
 
 	</div>

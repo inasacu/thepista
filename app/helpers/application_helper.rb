@@ -777,7 +777,7 @@ module ApplicationHelper
 	end
 
 	def the_maximo
-		current_user.is_maximo?
+		current_user.is_maximo? if current_user
 	end
 
 	def is_group_manager_of

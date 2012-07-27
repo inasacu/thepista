@@ -8,14 +8,13 @@
   </tr><tr>
     <td style="width:1%; color:#999999; vertical-align: top;">&nbsp;</td>
     <td style="width:99%">&nbsp;
-		<%= link_to(I18n.t(:reply), message_url(@message)) unless (@schedule or !@message.recipient_deleted_at.nil?) %>
+		<%= "#{link_to(I18n.t(:reply), message_url(@message))}".html_safe unless (@schedule or !@message.recipient_deleted_at.nil?) %>
 		
 		<% if @schedule %>		
-			<%#= link_to(@schedule.name, forum_url(@schedule.forum))  %><br/>
-			<%= link_to(@schedule.group.name, group_url(@schedule.group))  %><br/>
-			<%= I18n.l(@schedule.starts_at, :format => :day_time_wo_year_exact) %><br/>
-			<%= @schedule.group.marker.city.capitalize %><br>
-			<%= link_to(@schedule.group.marker.name, marker_url(@schedule.group.marker)) %><br/>
+			<%= "#{link_to(@schedule.group.name, group_url(@schedule.group))}".html_safe  %><br/>
+			<%= "#{I18n.l(@schedule.starts_at, :format => :day_time_wo_year_exact)}".html_safe %><br/>
+			<%= "#{@schedule.group.marker.city.capitalize}".html_safe %><br>
+			<%= "#{link_to(@schedule.group.marker.name, marker_url(@schedule.group.marker))}".html_safe %><br/>
 		<% end -%>
 		
 	</td>

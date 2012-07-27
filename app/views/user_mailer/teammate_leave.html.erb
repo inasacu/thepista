@@ -8,7 +8,7 @@
 <%= render  'user_mailer/title', :the_label => the_label %>
 
 
-<%= "#{I18n.t(:petition_to_join_declined)} -  #{link_to(@group.name, {:host => 'haypista.com', :controller => 'groups', :action => 'show', :id => @group}, :title => @group.name)}" %>
+<%= "#{I18n.t(:petition_to_join_declined)} -  #{link_to(@group.name, {:host => 'haypista.com', :controller => 'groups', :action => 'show', :id => @group}, :title => @group.name)}".html_safe %>
 
 
 <%= render 'user_mailer/footer' %>

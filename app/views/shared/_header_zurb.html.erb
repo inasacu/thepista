@@ -1,6 +1,6 @@
 <% 
 	has_group, the_cup, the_challenge, the_schedule, the_group, the_users, the_user, the_petition, the_home, the_login, the_signup, the_venue, the_message, the_controller_action , the_controller = get_header_navigation
-	# is_cup_visible = (Cup.has_official_cup? or the_maximo) and !is_mobile_browser
+	is_cup_visible = (Cup.has_official_cup? or the_maximo) and !is_mobile_browser
 	is_cup_visible = false
 	left_or_right = is_mobile_browser ? "left" : "right"
 %>

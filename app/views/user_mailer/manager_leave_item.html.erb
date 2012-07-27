@@ -7,7 +7,7 @@
 <%= render  'user_mailer/title', :the_label => the_label %>
 
 
-<%= "#{I18n.t(:petition_to_join_declined)} #{link_to(@item.name, {:host => 'haypista.com', :controller => "#{item.class.to_s}s".downcase, :action => 'show', :id => @item}, :title => @item.name)}" %>
+<%= "#{I18n.t(:petition_to_join_declined)} #{link_to(@item.name, {:host => 'haypista.com', :controller => "#{item.class.to_s}s".downcase, :action => 'show', :id => @item}, :title => @item.name)}".html_safe %>
 
 
 <%= render 'user_mailer/footer' %>

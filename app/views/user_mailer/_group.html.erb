@@ -4,7 +4,7 @@
   <tr>
     <td style="width:1%; color:#999999; vertical-align: top;">•&nbsp;</td>
     <td>
-		<%= link_to(@group.name, group_url(@group)) %>      
+		<%= "#{link_to(@group.name, group_url(@group))}".html_safe %>      
     </td>
   </tr>
 </table>

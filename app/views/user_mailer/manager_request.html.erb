@@ -6,8 +6,8 @@
 
 <%= render  'user_mailer/title', :the_label => the_label %>
 
-<%= "#{I18n.t(:hi_email_header)} #{@friend.name}, " %><br/>
-<%= "#{I18n.t(:request_petition)} #{@user.name} #{I18n.t(:to_join_email)} #{@group.name}" %><br/>
+<%= "#{I18n.t(:hi_email_header)} #{@friend.name}, ".html_safe %><br/>
+<%= "#{I18n.t(:request_petition)} #{@user.name} #{I18n.t(:to_join_email)} #{@group.name}".html_safe %><br/>
 
 <a href="<%= @teammate_accept_url %>"><%= I18n.t(:accept_player) %></a><br/>
 <a href="<%= @teammate_decline_url %>"><%= I18n.t(:deny_player) %></a><br/>
