@@ -1,5 +1,9 @@
+<%
+	ignore_home = ['home_about', 'home_terms_of_use', 'home_faq']	
+	is_diplayable = ignore_home.include?(get_controller_action) ? false : true	
+%>
 
-<%= content_tag :dd, link_to(label_name(:home), '/', :class => get_active) %>
+<%= content_tag :dd, link_to(label_name(:home), '/', :class => get_active) if is_diplayable %>
 
 <%= content_tag :dd, link_to(label_name(:upcoming), upcoming_path, :class => get_active('home_upcoming')) if DISPLAY_FREMIUM_SERVICES %>
 

@@ -1,85 +1,97 @@
 class HomeController < ApplicationController  
-  before_filter :require_user, :except => [:index, :about, :help, :welcome, :pricing, :about, :terms_of_use, :privacy_policy, :faq, :openid, :success, :blog]
+	before_filter :require_user, :except => [:index, :about, :help, :welcome, :pricing, :about, :terms_of_use, :privacy_policy, :faq, :openid, :success, :blog]
 
-  before_filter :get_home,            :only => [:index]
-  before_filter :get_upcoming,        :only => [:index, :upcoming]
-  # before_filter :get_advertisement,   :only => [:advertisement, :upcoming]
+	before_filter :get_home,            :only => [:index]
+	before_filter :get_upcoming,        :only => [:index, :upcoming]
+	# before_filter :get_advertisement,   :only => [:advertisement, :upcoming]
 
 	def index
 		render @the_template
 	end
 
-  def qr
-    redirect_to root_url
-  end
-  
-  def upcoming
-    render @the_template
-  end
+	def about
+		render @the_template
+	end
 
-  def privacy_policy
-    set_the_template('home/terms_of_use')
-    render @the_template   
-  end
+	def terms_of_use
+		render @the_template
+	end
 
-  def search
-    @item_results = []
-    @all_items =  Search.new(params[:search])
-    @all_items[0..LARGE_FEED_SIZE].each {|item| @item_results << item }
-    render @the_template   
-  end
+	def faq
+		render @the_template
+	end
 
-  private
+	def qr
+		redirect_to root_url
+	end
 
-  def get_upcoming 
-    store_location
-		
-    @upcoming_schedules ||= Schedule.upcoming_schedules(session[:schedule_hide_time])
-    @upcoming_cups ||= Cup.upcoming_cups(session[:cup_hide_time])
-    @upcoming_games ||= Game.upcoming_games(session[:game_hide_time])
+	def upcoming
+		render @the_template
+	end
 
-    @upcoming ||=  false
-    @upcoming = (!@upcoming_schedules.empty? or !@upcoming_cups.empty? or !@upcoming_games.empty?)
-  end
+	def privacy_policy
+		set_the_template('home/terms_of_use')
+		render @the_template   
+	end
 
-  def get_home
-    @items = []
-    @all_items = []  
+	def search
+		@item_results = []
+		@all_items =  Search.new(params[:search])
+		@all_items[0..LARGE_FEED_SIZE].each {|item| @item_results << item }
+		render @the_template   
+	end
+
+	private
+
+	def get_upcoming 
+		store_location
+
+		@upcoming_schedules ||= Schedule.upcoming_schedules(session[:schedule_hide_time])
+		@upcoming_cups ||= Cup.upcoming_cups(session[:cup_hide_time])
+		@upcoming_games ||= Game.upcoming_games(session[:game_hide_time])
+
+		@upcoming ||=  false
+		@upcoming = (!@upcoming_schedules.empty? or !@upcoming_cups.empty? or !@upcoming_games.empty?)
+	end
+
+	def get_home
+		@items = []
+		@all_items = []  
 		@all_values = []
-    @match_items = []
-    @all_match_items = []    
-    @schedule_items = []
-    @all_schedule_items = []    
-    @my_schedules = []    
-    @requested_teammates = []    
-    @all_comment_items = []
-    @comment_items = []
+		@match_items = []
+		@all_match_items = []    
+		@schedule_items = []
+		@all_schedule_items = []    
+		@my_schedules = []    
+		@requested_teammates = []    
+		@all_comment_items = []
+		@comment_items = []
 
-    Teammate.latest_teammates(@all_items) 
-    Schedule.latest_matches(@all_items) if @all_items.count < MEDIUM_FEED_SIZE 
-    Schedule.latest_items(@all_schedule_items)   
+		Teammate.latest_teammates(@all_items) 
+		Schedule.latest_matches(@all_items) if @all_items.count < MEDIUM_FEED_SIZE 
+		Schedule.latest_items(@all_schedule_items)   
 
-    if current_user      
-      @my_schedules = Schedule.my_current_schedules(current_user)
+		if current_user      
+			@my_schedules = Schedule.my_current_schedules(current_user)
 
-      Match.latest_items(@all_match_items, current_user)
-      Match.last_minute_items(@all_match_items, current_user) if DISPLAY_LAST_MINUTE_CANCEL
+			Match.latest_items(@all_match_items, current_user)
+			Match.last_minute_items(@all_match_items, current_user) if DISPLAY_LAST_MINUTE_CANCEL
 
-      Teammate.my_groups_petitions(@requested_teammates, current_user)
-      Teammate.my_challenges_petitions(@requested_teammates, current_user)   
+			Teammate.my_groups_petitions(@requested_teammates, current_user)
+			Teammate.my_challenges_petitions(@requested_teammates, current_user)   
 
-      current_user.groups.each {|group| Scorecard.latest_items(@all_items, group)} if DISPLAY_MAX_GAMES_PLAYED   
-    end
+			current_user.groups.each {|group| Scorecard.latest_items(@all_items, group)} if DISPLAY_MAX_GAMES_PLAYED   
+		end
 
-    # User.latest_items(@all_items) if @all_items.count < MEDIUM_FEED_SIZE     
-    # Group.latest_updates(@all_items) if @all_items.count < MEDIUM_FEED_SIZE     
-    # User.latest_updates(@all_items) if @all_items.count < MEDIUM_FEED_SIZE
+		# User.latest_items(@all_items) if @all_items.count < MEDIUM_FEED_SIZE     
+		# Group.latest_updates(@all_items) if @all_items.count < MEDIUM_FEED_SIZE     
+		# User.latest_updates(@all_items) if @all_items.count < MEDIUM_FEED_SIZE
 
-    Group.latest_items(@all_items) if @all_items.count < MEDIUM_FEED_SIZE
-    Venue.latest_items(@all_items) if @all_items.count < MEDIUM_FEED_SIZE  						if DISPLAY_PROFESSIONAL_SERVICES
-    Reservation.latest_items(@all_items) if @all_items.count < MEDIUM_FEED_SIZE  			if DISPLAY_PROFESSIONAL_SERVICES
+		Group.latest_items(@all_items) if @all_items.count < MEDIUM_FEED_SIZE
+		Venue.latest_items(@all_items) if @all_items.count < MEDIUM_FEED_SIZE  						if DISPLAY_PROFESSIONAL_SERVICES
+		Reservation.latest_items(@all_items) if @all_items.count < MEDIUM_FEED_SIZE  			if DISPLAY_PROFESSIONAL_SERVICES
 
-    # if @all_items.count < MEDIUM_FEED_SIZE
+		# if @all_items.count < MEDIUM_FEED_SIZE
 		has_values = false   
 		Cup.latest_items(@all_values, has_values)    
 		if @all_values.count > 0
@@ -88,20 +100,20 @@ class HomeController < ApplicationController
 			Game.latest_items(@all_items)
 			Cast.latest_items(@all_items)
 		end      
-    # end    
+		# end    
 
-    @all_items = @all_items.sort_by(&:created_at).reverse!    
-    @all_items[0..MEDIUM_FEED_SIZE].each {|item| @items << item }
+		@all_items = @all_items.sort_by(&:created_at).reverse!    
+		@all_items[0..MEDIUM_FEED_SIZE].each {|item| @items << item }
 
-    @all_schedule_items = @all_schedule_items.sort_by(&:created_at).reverse!    
-    @all_schedule_items[0..MEDIUM_FEED_SIZE].each {|item| @schedule_items << item }
+		@all_schedule_items = @all_schedule_items.sort_by(&:created_at).reverse!    
+		@all_schedule_items[0..MEDIUM_FEED_SIZE].each {|item| @schedule_items << item }
 
-    # @all_comment_items = @all_comment_items.sort_by(&:created_at).reverse!    
-    # @all_comment_items[0..EXTENDED_FEED_SIZE].each {|item| @comment_items << item }
+		# @all_comment_items = @all_comment_items.sort_by(&:created_at).reverse!    
+		# @all_comment_items[0..EXTENDED_FEED_SIZE].each {|item| @comment_items << item }
 
-    @all_match_items = @all_match_items.sort_by(&:created_at).reverse!    
-    @all_match_items[0..EXTENDED_FEED_SIZE].each {|item| @match_items << item }
+		@all_match_items = @all_match_items.sort_by(&:created_at).reverse!    
+		@all_match_items[0..EXTENDED_FEED_SIZE].each {|item| @match_items << item }
 
-  end
+	end
 
 end

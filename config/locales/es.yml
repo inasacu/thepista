@@ -369,7 +369,7 @@ es:
      dont_user_marks: "Por favor, no use acentos en la cuenta OpenID. Gracias!"   
      dorsal: Dorsal   
      dorsal_description: (Si te interesa poner el nombre o numero de tu camiseta...)   
-     drop_us_a_note: Envíenos una nota.
+     drop_us_a_note: Mandanos un mensaje.
      edit: Actualiza   
      edit_address: Actualiza la dirección   
      edit_announcement: Actualiza un anuncio   
@@ -452,10 +452,10 @@ es:
      faq_our_story_description:  "a salido de nuestra propia experiencia.  Llevamos años con un equipo de futbol, 
                                  jugando en varios campos y siempre con 										
                                  problemas para reunir bastantes jugadores para tener un partido decente.  
-                                 Siempre con una hoja de calculo y todos los contactos, partidos jugados y todos los pagos hechos por los jugados.  
+                                 Siempre con una hoja de calculo y todos los contactos.  
                                  Siempre creando correos masivos a todos los jugadores en la lista.  
                                  Esperando a respuestas y marcando quien juega y quien no, y asi hasta llegar a jugar un partido.  
-                                 Al final nos dimos cuenta que dedicabamos demasiadas horas semanales para organizar un partido y 
+                                 Al final nos dimos cuenta que dedicabamos demasiadas horas para organizar un partido y 
                                  de hay surgio nuestro portal."
      faq_why_use_your_account:  "¿Por qué acceder con tu cuenta?"
      faq_what_is_your_account: "¿Qué es acceso con tu cuenta?"
@@ -1616,9 +1616,9 @@ es:
      validate_openid: valida tu OpenID   
      venue: Centro Deportivo    
      Venue: Centro Deportivo
-     venues: Centros Deportivos
+     venues: Centros
      venues_create:    Nuevo centro deportivo
-     venues_index: Centros Deportivos 
+     venues_index: Centros 
      venues_name_description:  Nombre del centro deportivo
      venues_edit:  Actualiza el centro deportivo
      venues_new:  Nuevo centro deportivo

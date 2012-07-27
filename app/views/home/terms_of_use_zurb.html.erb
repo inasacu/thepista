@@ -1,21 +1,26 @@
 <div id="home">
 	
 	<div class="announce">
-		<h1><strong><%= label_name(:terms_of_use) %></strong></h1>
+		<%= content_tag 'h4', "#{label_name(:terms_of_use)}" %>		
 	</div>
+	
+	<hr/>
+	<br/>
 	
 	<div class="features">
 
-		<%= render :partial => 'terms_default_es' %>
+		<%= render 'home/terms_default_es_zurb' %>
 
-		<br/>
+		<hr/>
+		
 		<p>
 			<%= label_name(:question_or_comment) %>
 			<a href="mailto:support@HayPista.com">
 				<%= label_name(:drop_us_a_note) %>
 			</a>
-		</p>				
+		</p>
 		
-	</div>
+		<hr/>
 
+	</div>
 </div>

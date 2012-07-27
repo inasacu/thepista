@@ -56,7 +56,7 @@
 	
 	<section class="four columns">
 		<h6><%= "#{label_name(:need_quick_help)}".html_safe %></h6>
-		<p><%= "#{mail_to(CONTACT_RECIPIENT, label_name(:contact_us))}".html_safe %></p>
+		<h6><%= "#{mail_to(CONTACT_RECIPIENT, label_name(:contact_us))}".html_safe %></h6>
 
 
 		<% if DISPLAY_SOCIAL_MEDIA and Rails.env.production? %>
