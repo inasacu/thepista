@@ -23,33 +23,33 @@
 
 
 <%= set_form_label(the_form, :city) %>
-<%= the_form.select(:city_id, City.city_name, {:selected => @user.city_id, :include_blank => false}) %><br/>
+<%= the_form.select(:city_id, City.city_name, {:selected => @user.city_id, :include_blank => false}) %><br/><br/>
 
 
 <% unless is_new_user %>
 
 <%= set_form_label(the_form, :sport) %>
-<%= set_form_text_field(the_form, :sport, :id => 'autofill') %><br />
+<%= set_form_text_field(the_form, :sport, 'large input-text', true) %><br />
 
 
 <%= set_form_label(the_form, :photo, 'photo') %>
 <%= set_form_file_field(the_form, :photo) %><br/><br/>
 
 
-<%= set_form_label(the_form, :private_phone) %>
-<%= set_form_checkbox(the_form, :private_phone) %><br />
+<%#= set_form_label(the_form, :private_phone) %>
+<%#= set_form_checkbox(the_form, :private_phone) %>
 
 
-<%= set_form_label(the_form, :last_minute_notification) %>
-<%= set_form_checkbox(the_form, :last_minute_notification) %><br />
+<%#= set_form_label(the_form, :last_minute_notification) %>
+<%#= set_form_checkbox(the_form, :last_minute_notification) %>
 
 
-<% if @user.is_manager? %>
+<%# if @user.is_manager? %>
 
-	<%= set_form_label(the_form, :teammate_notification) %>
-	<%= set_form_checkbox(the_form, :teammate_notification) %><br />
+	<%#= set_form_label(the_form, :teammate_notification) %>
+	<%#= set_form_checkbox(the_form, :teammate_notification) %>
 
-<% end -%>
+<%# end -%>
 
 
 <%= set_form_label(the_form, :birth_at) %>

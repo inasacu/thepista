@@ -4,53 +4,50 @@
 	has_items = (object_counter(@cups) > 0)
 %>
 
+
+<% if has_items %>
+
+<%= render('shared/index_total_header_zurb', :items => @cups) %>
+
 <div class="row">
-	 
-	<div class="twelve column">  
-			<% if has_items %>
-				
-				<%= render('shared/index_total_header_zurb', :items => @cups) %>
+	<div class="twelve columns"> 
 
-				<div class="row">
-					<div class="twelve columns"> 
+		<table>
+			<thead>
+				<tr>             
+					<%= set_content_tag_safe(:th, "&nbsp;") %>
+					<%= set_content_tag_safe(:th, "#{label_name(:name)}") %>
+					<%= set_content_tag_safe(:th, "#{label_name(:manager)}") %>
+					<%= set_content_tag_safe(:th, "&nbsp;") %>
+					<%= set_content_tag_safe(:th, "&nbsp;") %>
+					<%= set_content_tag_safe(:th, "&nbsp;") %>
+				</tr>
+			</thead>
 
-						<table>
-						  	<thead>
-							<tr>             
-								<%= set_content_tag_safe(:th, "&nbsp;") %>
-								<%= set_content_tag_safe(:th, "#{label_name(:name)}") %>
-								<%= set_content_tag_safe(:th, "#{label_name(:manager)}") %>
-								<%= set_content_tag_safe(:th, "&nbsp;") %>
-								<%= set_content_tag_safe(:th, "&nbsp;") %>
-								<%= set_content_tag_safe(:th, "&nbsp;") %>
-							</tr>
-							</thead>
+			<tbody>
 
-						<tbody>
+				<% @cups.each do |cup| -%>		
 
-							<% @cups.each do |cup| -%>		
-							
-								<%= render 'cups/cup_full_zurb', :cup => cup, :display_icons => true %> 
-								
-								
-								
-								<% cup.challenges.each do |challenge| -%>		
-									<%= render 'challenges/challenge_full_zurb', :challenge => challenge, :display_icons => true %>
-							  	<% end -%>
-								
-								
-								
-						  	<% end -%>
+				<%= render 'cups/cup_full_zurb', :cup => cup, :display_icons => true %> 
 
-						</tbody>
-						</table>
 
-					</div>
-				</div>
-				
-			<% end %>
-	</div>	
+
+				<% cup.challenges.each do |challenge| -%>		
+				<%= render 'challenges/challenge_full_zurb', :challenge => challenge, :display_icons => true %>
+				<% end -%>
+
+
+
+				<% end -%>
+
+			</tbody>
+		</table>
+
+	</div>
 </div>
+
+<% end %>
+
 
 <%= render 'shared/no_items_to_display' unless has_items %>
 

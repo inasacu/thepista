@@ -108,11 +108,15 @@ class Cup < ActiveRecord::Base
   end
 
   def thumbnail
-    self.photo.url
+    self.photo.url(:thumb)
   end
 
-  def icon
-    self.photo.url
+  def icon      
+    self.photo.url(:icon)
+  end 
+  
+  def medium
+    self.photo.url(:medium)
   end
   
   def has_game?

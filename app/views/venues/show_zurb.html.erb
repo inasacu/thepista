@@ -6,34 +6,35 @@
 
 <%= render 'shared/show_description_zurb', :item => @venue %>
 	
-	
-<div class="row">
 
-	<div class="twelve columns"> 
-		
-		<table>
-		<tbody>
+<table>
+	<tbody>
 		<tr>
-		<td>
-			
-		<%= render_show_detail_zurb(:name, item_name_link(@venue)) %>
-		<%= render_show_detail_zurb(:city, @venue.marker.city) %>
-		<%= render_show_detail_zurb(:time_zone,  "#{nice_simple_time_at(@venue.starts_at)} - #{nice_simple_time_at(@venue.ends_at)}") %>
-		<%= render_show_detail_zurb(:marker, marker_link(@venue.marker)) %>
+			<td>
 
-		<%	@venue.installations.each do |installation| 
-			the_installation = "#{item_name_link(installation)}, #{nice_simple_time_at(installation.starts_at)} - #{nice_simple_time_at(installation.ends_at)}".html_safe
-			the_label = first ? 'installation' : 'blank'
-			first = false
-		%>		
-			<%= render_show_detail_zurb(the_label, the_installation) %>
-		
-		<% end %>
+				<div class="three columns">
+					<%= image_tag @venue.photo %>
+				</div>
 
-		</td>	
-		</tr>
+				<div class="nine columns">
+
+					<%= render_show_detail_zurb(:name, item_name_link(@venue)) %>
+					<%= render_show_detail_zurb(:city, @venue.marker.city) %>
+					<%= render_show_detail_zurb(:time_zone,  "#{nice_simple_time_at(@venue.starts_at)} - #{nice_simple_time_at(@venue.ends_at)}") %>
+					<%= render_show_detail_zurb(:marker, marker_link(@venue.marker)) %>
+
+					<%	@venue.installations.each do |installation| 
+						the_installation = "#{item_name_link(installation)}, #{nice_simple_time_at(installation.starts_at)} - #{nice_simple_time_at(installation.ends_at)}".html_safe
+						the_label = first ? 'installation' : 'blank'
+						first = false
+						%>		
+						<%= render_show_detail_zurb(the_label, the_installation) %>
+
+						<% end %>
+
+					</div>		
+
+				</td>	
+			</tr>
 		</tbody>
-		</table>
-		
-	</div>
-</div>
+	</table>

@@ -7,36 +7,34 @@
 <%= render 'shared/show_description_zurb', :item => @installation.venue %>
 	
 	
-<div class="row">
-	<div class="twelve columns"> 
+
 		
-		<table>
-		<tbody>
+<table>
+	<tbody>
 		<tr>
-		<td>
-			
-		<%= render_show_detail_zurb(:name, item_name_link(@installation)) %>
-		<%= render_show_detail_zurb(:city, @installation.marker.city) %>
-		<%= render_show_detail_zurb(:time_zone,  "#{nice_simple_time_at(@installation.starts_at)} - #{nice_simple_time_at(@installation.ends_at)}") %>
-		<%= render_show_detail_zurb(:marker, marker_link(@installation.marker)) %>
+			<td>
 
-		<% @installation.timetables.each do |timetable|
-			the_installation = "#{timetable.day_of_week}, #{nice_simple_time_at(timetable.starts_at)} -  #{nice_simple_time_at(timetable.ends_at)}, #{I18n.t(:has_hour, :count => timetable.timeframe)}".html_safe
-			the_label = first ? 'installation' : 'blank'
-			first = false
-		%>		
-			<%= render_show_detail_zurb(the_label, the_installation) %>
-			<%= content_tag :td, link_to(label_name(:edit), edit_timetable_path(:id => timetable)), :class => get_the_action if is_user_manager %>
-		
-		<% end %>
+				<%= render_show_detail_zurb(:name, item_name_link(@installation)) %>
+				<%= render_show_detail_zurb(:city, @installation.marker.city) %>
+				<%= render_show_detail_zurb(:time_zone,  "#{nice_simple_time_at(@installation.starts_at)} - #{nice_simple_time_at(@installation.ends_at)}") %>
+				<%= render_show_detail_zurb(:marker, marker_link(@installation.marker)) %>
 
-		</td>	
-		</tr>
+				<% @installation.timetables.each do |timetable|
+					the_installation = "#{timetable.day_of_week}, #{nice_simple_time_at(timetable.starts_at)} -  #{nice_simple_time_at(timetable.ends_at)}, #{I18n.t(:has_hour, :count => timetable.timeframe)}".html_safe
+					the_label = first ? 'installation' : 'blank'
+					first = false
+					%>		
+					<%= render_show_detail_zurb(the_label, the_installation) %>
+					<%= content_tag :td, link_to(label_name(:edit), edit_timetable_path(:id => timetable)), :class => get_the_action if is_user_manager %>
+
+					<% end %>
+
+				</td>	
+			</tr>
 		</tbody>
-		</table>
+	</table>
 		
-	</div>
-</div>
+
 
 
 

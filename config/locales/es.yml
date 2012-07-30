@@ -371,35 +371,35 @@ es:
      dorsal_description: (Si te interesa poner el nombre o numero de tu camiseta...)   
      drop_us_a_note: Mandanos un mensaje.
      edit: Actualiza   
-     edit_address: Actualiza la dirección   
-     edit_announcement: Actualiza un anuncio   
-     edit_credit: Actualiza un pago   
-     edit_debit: Actualiza un cargo   
-     edit_description: Actualiza un detalles   
-     edit_fee: Actualiza los cargos   
-     edit_group: Actualiza el equipo   
-     edit_information: Actualiza un detalles   
-     edit_invitation: Actualiza la invitación   
-     edit_manager: Actualiza un organizador   
-     edit_map: Actualiza el mapa   
-     edit_marker: Actualiza el centro deportivo   
-     edit_match: Guardar el resultado   
-     edit_message: Actualiza un mensaje   
-     edit_my_user: Actualiza mi Cuenta   
-     edit_name: Actualiza un nombre   
-     edit_note: Actualiza una nota   
-     edit_notification: Actualiza la notificación   
-     edit_payment: Actualiza un pago   
-     edit_profile: Actualiza tu perfil   
-     edit_reminder: Actualiza un recordatorio   
-     edit_role: Actualiza la responsabilidad   
-     edit_schedule: Actualiza  el evento   
-     edit_scorecard: Actualiza el resultado   
-     edit_sport: Actualiza el deporte   
-     edit_tournament: Actualiza el torneo   
-     edit_type: Actualiza un tipo   
-     edit_user: Actualiza tu perfil   
-     edit_venue: Actualiza el centro deportivo   
+     edit_address: Actualiza    
+     edit_announcement: Actualiza    
+     edit_credit: Actualiza 
+     edit_debit: Actualiza
+     edit_description: Actualiza
+     edit_fee: Actualiza   
+     edit_group: Actualiza   
+     edit_information: Actualiza   
+     edit_invitation: Actualiza   
+     edit_manager: Actualiza   
+     edit_map: Actualiza   
+     edit_marker: Actualiza    
+     edit_match: Actualiza    
+     edit_message: Actualiza    
+     edit_my_user: Actualiza    
+     edit_name: Actualiza   
+     edit_note: Actualiza    
+     edit_notification: Actualiza    
+     edit_payment: Actualiza    
+     edit_profile: Actualiza    
+     edit_reminder: Actualiza    
+     edit_role: Actualiza    
+     edit_schedule: Actualiza    
+     edit_scorecard: Actualiza   
+     edit_sport: Actualiza   
+     edit_tournament: Actualiza   
+     edit_type: Actualiza   
+     edit_user: Actualiza   
+     edit_venue: Actualiza   
      email: Correo   
      email_time_zone: Horario para mandar correos antes de un encuentro.  
      email_addresses: "Correo(s)"
@@ -1555,35 +1555,35 @@ es:
      upcoming_meets: Próximos eventos de torneo 
      upcoming_no:  Ningun evento para mostrar   
      update: Actualiza   
-     update_address: Actualiza la dirección   
-     update_announcement: Actualiza un anuncio   
-     update_credit: Actualiza un pago   
-     update_debit: Actualiza una cargo   
-     update_description: Actualiza un detalles   
-     update_fee: Actualiza las cargos      
-     update_group: Actualiza el equipo   
-     update_information: Actualiza un detalles   
-     update_invitation: Actualiza la invitación   
-     update_manager: Actualiza un organizador   
-     update_map: Actualiza el mapa   
-     update_marker: Actualiza el centro deportivo   
-     update_match: Actualiza el resultado 
+     update_address: Actualiza    
+     update_announcement: Actualiza   
+     update_credit: Actualiza    
+     update_debit: Actualiza    
+     update_description: Actualiza   
+     update_fee: Actualiza       
+     update_group: Actualiza    
+     update_information: Actualiza    
+     update_invitation: Actualiza   
+     update_manager: Actualiza   
+     update_map: Actualiza    
+     update_marker: Actualiza    
+     update_match: Actualiza  
      update_match_message:  "Hola,<br><br>Solo un recordatorio para que no te olvides de actualizar el resultado.<br><br>"  
-     update_message: Actualiza un mensaje   
-     update_name: Actualiza un nombre   
-     update_note: Actualiza una nota   
-     update_notification: Actualiza la notificación   
-     update_payment: Actualiza un pago   
-     update_profile: Actualiza tu perfil   
-     update_reminder: Actualiza un recordatorio   
-     update_role: Actualiza la responsabilidad   
-     update_schedule: Actualiza el evento   
-     update_scorecard: Actualiza el resultado   
-     update_sport: Actualiza el deporte   
-     update_tournament: Actualiza el torneo   
-     update_type: Actualiza un tipo   
-     update_user: Actualiza tu perfil   
-     update_venue: Actualiza el centro deportivo   
+     update_message: Actualiza    
+     update_name: Actualiza    
+     update_note: Actualiza
+     update_notification: Actualiza   
+     update_payment: Actualiza    
+     update_profile: Actualiza   
+     update_reminder: Actualiza    
+     update_role: Actualiza   
+     update_schedule: Actualiza   
+     update_scorecard: Actualiza   
+     update_sport: Actualiza   
+     update_tournament: Actualiza   
+     update_type: Actualiza   
+     update_user: Actualiza    
+     update_venue: Actualiza    
      updated: se ha actualizado correctamente.    
      updated_at:  Fecha de creación
      updated_a_challenge:  Ha actualizado el reto
@@ -2072,7 +2072,7 @@ es:
      users_index:  Jugadores
      users_index_option: Opciones 
      users_description_no:  Ningun detalle del jugador.
-     users_edit:  Actualiza tu perfil
+     users_edit:  Actualiza
      users_edit_option:  Opciones 
      users_list:  Resto de jugadores
      users_new:  Nuevo jugador
@@ -2088,7 +2088,7 @@ es:
      users_rpx_create:  Nuevo jugador
      users_teammate: Mis compañeros de equipo
      users_total: "Total"
-     users_update:  Actualiza tu perfil
+     users_update:  Actualiza
      your:  Tu 
      true: "Si"
      false: "No"

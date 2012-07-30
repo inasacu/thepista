@@ -16,7 +16,7 @@ gem "geokit-rails"
 gem 'texticle'
 gem 'delayed_job'
 gem 'hirefireapp'
-gem 'paperclip', '2.7.0'
+gem 'paperclip'#, '2.7.0'
 gem 'composite_primary_keys'
 gem 'nokogiri'
 gem 'recaptcha'
@@ -32,7 +32,7 @@ gem 'delayed_job_active_record'
 
 gem 'zurb-foundation'
 gem 'agent_orange'
-gem 'iron_worker'
+# gem 'iron_worker'
 
 # Gems used only for assets and not required
 # in production environments by default.

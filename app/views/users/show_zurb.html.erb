@@ -14,56 +14,75 @@
 	is_notice = get_controller_action == 'user_notice'
 %>
 
-<%= render 'shared/show_description_zurb', :item => @user, :the_label => the_label %>
 
-<%= render_show_detail_zurb(:email, @user.email) if @user == current_user %>
-<%= render_show_detail_zurb(:phone, phone_number_link(@user.phone)) unless @user.phone.blank? %>
-<%= render_show_detail_zurb(:groups, (@user.has_group? ? "#{group_list(@user.groups)}".html_safe : "#{label_name('groups_none')}".html_safe)) %>
-<%= render_show_detail_zurb(:sports, the_sport) %>
-<%= render_show_detail_zurb(:event_participation, (participation.to_i > 0 ? the_participation_label : the_participation_label)) %>
+<table>
+	<tbody>
+		<tr>
+			<td>
+				
+<div class="three columns">
+	<%= image_tag @user.photo %>
+</div>
 
-
-<% if @user.has_group? and DISPLAY_USER_GROUP_FULL							
-group_scorecards = []
-Match.last_games_played(@user).each {|match| group_scorecards << match.group_id unless group_scorecards.include?(match.group_id)}
-%>
-
-<%= label_name(:groups_full) %>
-
-
-	<% @user.groups.each do |group| 
-		if group_scorecards.include?(group.id) 
-	%>
+<div class="nine columns">
 	
-		<td class="show">
-		<%= item_name_link(group) %>
-		<span class="date">
-			<%= "<br/>#{group.sport.name}<br/>#{item_name_link(group.marker)}<br/>#{link_to(label_name(:scorecard), scorecard_path(:id => group))}".html_safe %>
-		</span>
+	<%= render 'shared/show_description_zurb', :item => @user, :the_label => the_label %>
+
+	<%= render_show_detail_zurb(:email, @user.email) if @user == current_user %>
+	<%= render_show_detail_zurb(:phone, phone_number_link(@user.phone)) unless @user.phone.blank? %>
+	<%= render_show_detail_zurb(:groups, (@user.has_group? ? "#{group_list(@user.groups)}".html_safe : "#{label_name('groups_none')}".html_safe)) %>
+	<%= render_show_detail_zurb(:sports, the_sport) %>
+	<%= render_show_detail_zurb(:event_participation, (participation.to_i > 0 ? the_participation_label : the_participation_label)) %>
+
+
+	<% if @user.has_group? and DISPLAY_USER_GROUP_FULL							
+	group_scorecards = []
+	Match.last_games_played(@user).each {|match| group_scorecards << match.group_id unless group_scorecards.include?(match.group_id)}
+	%>
+
+	<%= label_name(:groups_full) %>
+
+
+		<% @user.groups.each do |group| 
+			if group_scorecards.include?(group.id) 
+		%>
+	
+			<td class="show">
+			<%= item_name_link(group) %>
+			<span class="date">
+				<%= "<br/>#{group.sport.name}<br/>#{item_name_link(group.marker)}<br/>#{link_to(label_name(:scorecard), scorecard_path(:id => group))}".html_safe %>
+			</span>
 									      	
 	
-	<% end 
-	end %>
+		<% end 
+		end %>
 
 			
 				
-<%= render_show_detail_zurb(:city, @user.city.name) %>	
-<%= render_show_detail_zurb(:language, label_name(@user.language)) if current_user == @user %>
+	<%= render_show_detail_zurb(:city, @user.city.name) %>	
+	<%= render_show_detail_zurb(:language, label_name(@user.language)) if current_user == @user %>
 
-<% end -%>
+	<% end -%>
 
 
-<% if @user.has_role?('manager') and DISPLAY_USER_PETITION %>
+	<% if @user.has_role?('manager') and DISPLAY_USER_PETITION %>
 
-	<% the_label = h(label_name(@user.teammate_notification, 'value')) %>
-	<%= render_show_detail_zurb(:teammate_notification, (can_modify ? link_to(the_label, set_teammate_notification_path(:id => @user)) : the_label)) %>
+		<% the_label = h(label_name(@user.teammate_notification, 'value')) %>
+		<%= render_show_detail_zurb(:teammate_notification, (can_modify ? link_to(the_label, set_teammate_notification_path(:id => @user)) : the_label)) %>
 
-<% end %>
+	<% end %>
 			
 
-<%= render_show_detail_zurb(:users_teammate, render('shared/show_images_zurb', :collection => @user.friends)) if @user.friends.count > 0 %>
+	<%= render_show_detail_zurb(:users_teammate, render('shared/show_images_zurb', :collection => @user.friends)) if @user.friends.count > 0 %>
   
 
-<%= render :partial => 'show_admin_zurb' if the_maximo %>
+	<%= render :partial => 'show_admin_zurb' if the_maximo %>
+
+</div>
 
 
+
+	</td>	
+	</tr>
+	</tbody>
+	</table>

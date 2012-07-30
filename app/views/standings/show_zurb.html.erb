@@ -15,76 +15,64 @@
 	final_played = the_game.played unless (the_game.nil? or the_game.blank?)
 	group_stage = 'Z'
 	
-	if has_standings
+	return unless has_standings
 %>
 
-<div class="row">
-	<div class="twelve column">  
 
-		<%= render('shared/index_total_header_zurb', :items => @standings) %>
-
-		<div class="row">
-			<div class="twelve columns"> 
-
-				<table>
-
-					<% @standings.each do |standing| 
-
-							standing.ranking = (all_rank+=1) if all_results
-							is_escuadra = (standing.item_type == "Escuadra") 
-
-							unless (group_stage == standing.group_stage_name)
-								group_stage = standing.group_stage_name 
-					-%>
-								
-								<thead>
-								<tr>             
-
-									<%= set_content_tag_safe(:th, is_escuadra ? label_name(:group_stage_name) : label_name(:ranking) ) %>
-									<%= set_content_tag_safe(:th, "&nbsp;") %>
-									<%= set_content_tag_safe(:th, I18n.t(:name)) %>
-									<%= content_tag_safe(:th, label_name(:points), label_name(:points_full), 'center') %>
-
-									<% if is_escuadra %>
-
-									<%= content_tag_safe(:th, label_name(:games_won), label_name(:games_won_full), 'center')  %>
-									<%= content_tag_safe(:th, label_name(:games_tied), label_name(:games_tied_full), 'center')  %>
-									<%= content_tag_safe(:th, label_name(:games_lost), label_name(:games_lost_full), 'center') %>
+<%= render('shared/index_total_header_zurb', :items => @standings) %>
 
 
-									<%= content_tag_safe(:th, label_name(:goals_for_true), label_name(:goals_for_full_true), 'center') %>
-									<%= content_tag_safe(:th, label_name(:goals_against_true), label_name(:goals_against_full_true), 'center') %>	
-									<%= content_tag_safe(:th, label_name(:goal_difference_true), label_name(:goal_difference_full_true), 'center') %>
-									<%= content_tag_safe(:th, label_name(:games_played), label_name(:games_played_full), 'center') %>
+<table>
 
-									<% else %>
+<% @standings.each do |standing| 
 
-										<% 4.times.each do |x|  %>		
-										<%= set_content_tag_safe(:th, "&nbsp;") %>		
-										<% end %>
+standing.ranking = (all_rank+=1) if all_results
+is_escuadra = (standing.item_type == "Escuadra") 
 
-									<% end %>
+unless (group_stage == standing.group_stage_name)
+	group_stage = standing.group_stage_name 
+	-%>
 
-								</tr>
-								</thead>
-								
-								
+	<thead>
+		<tr>             
 
-							<% end %>
+			<%= set_content_tag_safe(:th, is_escuadra ? label_name(:group_stage_name) : label_name(:ranking) ) %>
+			<%= set_content_tag_safe(:th, "&nbsp;") %>
+			<%= set_content_tag_safe(:th, I18n.t(:name)) %>
+			<%= content_tag_safe(:th, label_name(:points), label_name(:points_full), 'center') %>
 
-							<tbody>
-								<%= render 'standings/standing_zurb', :standing => standing %>
-							</tbody>
+			<% if is_escuadra %>
 
-						<% end %>
+			<%= content_tag_safe(:th, label_name(:games_won), label_name(:games_won_full), 'center')  %>
+			<%= content_tag_safe(:th, label_name(:games_tied), label_name(:games_tied_full), 'center')  %>
+			<%= content_tag_safe(:th, label_name(:games_lost), label_name(:games_lost_full), 'center') %>
 
-				</table>
 
-			</div>
-		</div>
+			<%= content_tag_safe(:th, label_name(:goals_for_true), label_name(:goals_for_full_true), 'center') %>
+			<%= content_tag_safe(:th, label_name(:goals_against_true), label_name(:goals_against_full_true), 'center') %>	
+			<%= content_tag_safe(:th, label_name(:goal_difference_true), label_name(:goal_difference_full_true), 'center') %>
+			<%= content_tag_safe(:th, label_name(:games_played), label_name(:games_played_full), 'center') %>
 
-	</div>	
-</div>
+			<% else %>
 
-<%#= render 'cups/euro2012' %>
-<% end %>
+			<% 4.times.each do |x|  %>		
+			<%= set_content_tag_safe(:th, "&nbsp;") %>		
+			<% end %>
+
+			<% end %>
+
+		</tr>
+	</thead>
+
+
+
+	<% end %>
+
+	<tbody>
+		<%= render 'standings/standing_zurb', :standing => standing %>
+	</tbody>
+
+	<% end %>
+
+</table>
+

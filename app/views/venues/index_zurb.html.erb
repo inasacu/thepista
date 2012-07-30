@@ -1,42 +1,40 @@
 <%
 	the_label = label_name(:venues)
 	content_for(:title, the_label)
+	has_items = (object_counter(@venues) > 0)
 %>
 
+
+<% if has_items %>
+
+<%= render('shared/index_total_header_zurb', :items => @venues) %>
+
 <div class="row">
-	 
-	<div class="twelve column">  
-			<% if object_counter(@venues) > 0 %>
-				
-				<%= render('shared/index_total_header_zurb', :items => @venues) %>
+	<div class="twelve columns"> 
 
-				<div class="row">
-					<div class="twelve columns"> 
+		<table>
+			<thead>
+				<tr>             
+					<%= set_content_tag_safe(:th, "&nbsp;") %>
+					<%= set_content_tag_safe(:th, "#{label_name(:name)}<br />#{label_name(:time_zone)}") %>
+					<%= set_content_tag_safe(:th, "#{label_name(:marker)}<br/>#{label_name(:installations)}") %>
+					<%= set_content_tag_safe(:th, "&nbsp;") %>
 
-						<table>
-						  	<thead>
-							<tr>             
-								<%= set_content_tag_safe(:th, "&nbsp;") %>
-								<%= set_content_tag_safe(:th, "#{label_name(:name)}<br />#{label_name(:time_zone)}") %>
-								<%= set_content_tag_safe(:th, "#{label_name(:marker)}<br/>#{label_name(:installations)}") %>
-								<%= set_content_tag_safe(:th, "&nbsp;") %>
-								
-							</tr>
-							</thead>
+				</tr>
+			</thead>
 
-						<tbody>
+			<tbody>
 
-							<% @venues.each do |venue| -%>		
-								<%= render 'venues/venue_full_zurb', :venue => venue, :display_icons => true %> 
-						  	<% end -%>
+				<% @venues.each do |venue| -%>		
+				<%= render 'venues/venue_full_zurb', :venue => venue, :display_icons => true %> 
+				<% end -%>
 
-						</tbody>
-						</table>
+			</tbody>
+		</table>
 
-					</div>
-				</div>
-				
-			<% end %>
-	</div>	
+	</div>
 </div>
+
+<% end %>
+
 

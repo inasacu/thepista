@@ -4,42 +4,39 @@
 	has_items = (object_counter(@groups) > 0)
 %>
 
+
+<% if has_items %>
+
+<%= render('shared/index_total_header_zurb', :items => @groups) %>
+
 <div class="row">
-	 
-	<div class="twelve column">  
-			<% if has_items %>
-				
-				<%= render('shared/index_total_header_zurb', :items => @groups) %>
+	<div class="twelve columns"> 
 
-				<div class="row">
-					<div class="twelve columns"> 
+		<table>
+			<thead>
+				<tr>             
+					<%= set_content_tag_safe(:th, "&nbsp;") %>
+					<%= set_content_tag_safe(:th, "#{label_name(:name)}") %>
+					<%= set_content_tag_safe(:th, "#{label_name(:manager)}") %>
+					<%= set_content_tag_safe(:th, "&nbsp;") %>
+					<%= set_content_tag_safe(:th, "&nbsp;") %>
+				</tr>
+			</thead>
 
-						<table>
-						  	<thead>
-							<tr>             
-								<%= set_content_tag_safe(:th, "&nbsp;") %>
-								<%= set_content_tag_safe(:th, "#{label_name(:name)}") %>
-								<%= set_content_tag_safe(:th, "#{label_name(:manager)}") %>
-								<%= set_content_tag_safe(:th, "&nbsp;") %>
-								<%= set_content_tag_safe(:th, "&nbsp;") %>
-							</tr>
-							</thead>
+			<tbody>
 
-						<tbody>
+				<% @groups.each do |group| -%>		
+				<%= render 'groups/group_full_zurb', :group => group, :display_icons => true %> 
+				<% end -%>
 
-							<% @groups.each do |group| -%>		
-								<%= render 'groups/group_full_zurb', :group => group, :display_icons => true %> 
-						  	<% end -%>
+			</tbody>
+		</table>
 
-						</tbody>
-						</table>
-
-					</div>
-				</div>
-				
-			<% end %>
-	</div>	
+	</div>
 </div>
+
+<% end %>
+
 
 <%= render 'shared/no_items_to_display' unless has_items %>
 

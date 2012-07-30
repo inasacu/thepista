@@ -47,63 +47,59 @@
 <%= render "shared/previous_next_message_zurb", :schedule => @schedule, :the_previous => @the_previous, :the_next => @the_next -%>
 
 
-<div class="row">
 
-	<div class="twelve columns"> 
-		
-		<table>
-		<tbody>
+
+<table>
+	<tbody>
 		<tr>
-		<td>
+			<td>
 
 
-			<%= render_show_detail_zurb(:concept, @schedule.name) %>
+				<%= render_show_detail_zurb(:concept, @schedule.name) %>
 
 
-			<% if @schedule.game_played? %>
+				<% if @schedule.game_played? %>
 
-			<%= render_show_detail_zurb(:groups, "#{the_score}".html_safe) %>
+				<%= render_show_detail_zurb(:groups, "#{the_score}".html_safe) %>
 
-			<% if show_individual_score %>	
+				<% if show_individual_score %>	
 
-			<%= render_show_detail_zurb("#{link_to(h(@schedule.home_group), @schedule.home_group)}".html_safe, "#{@the_home_score}".html_safe, true) %>
-			<%= render_show_detail_zurb("#{link_to(h(@schedule.away_group), @schedule.home_group)}".html_safe, "#{@the_away_score}".html_safe, true) %>		
+				<%= render_show_detail_zurb("#{link_to(h(@schedule.home_group), @schedule.home_group)}".html_safe, "#{@the_home_score}".html_safe, true) %>
+				<%= render_show_detail_zurb("#{link_to(h(@schedule.away_group), @schedule.home_group)}".html_safe, "#{@the_away_score}".html_safe, true) %>		
 
-			<% end %>
-
-
-			<% else %>
-
-			<%= render_show_detail_zurb(:home_group, item_name_link(@schedule.group)) %>
-
-			<% end %>
-
-			<%#= render_show_detail_zurb(:jornada, @schedule.jornada) %>
-			<%= render_show_detail_zurb(:starts_at, nice_day_of_week(@schedule.starts_at)) %>
+				<% end %>
 
 
-			<%  unless @schedule.played? %> 
-			<%= render_show_detail_zurb(:ends_at, nice_day_of_week(@schedule.ends_at)) %>
+				<% else %>
 
-			<%= render_show_detail_zurb(:public, 
-			(is_user_manager ? link_to(the_public_label, set_public_path(:id => @schedule.id), :confirm => the_public_confirmation) : the_public_label)) if DISPLAY_FREMIUM_SERVICES %>
+				<%= render_show_detail_zurb(:home_group, item_name_link(@schedule.group)) %>
 
-			<%= render_show_detail_zurb(:player_limit, @schedule.player_limit) %>
+				<% end %>
 
-			<% end %>
+				<%#= render_show_detail_zurb(:jornada, @schedule.jornada) %>
+				<%= render_show_detail_zurb(:starts_at, nice_day_of_week(@schedule.starts_at)) %>
 
-			<%= render_show_detail_zurb(:scorecard, link_to(label_name(:scorecard), scorecard_path(:id => @schedule.group))) %>
 
-			<%= render_show_detail_zurb(:city, @schedule.group.marker.city) %>
-			<%= render_show_detail_zurb(:sport, @schedule.sport.name) %>
-			<%= render_show_detail_zurb(:fee_per_game, number_to_currency(@schedule.fee_per_game)) %>
-			<%= render_show_detail_zurb(:fee_per_pista, number_to_currency(@schedule.fee_per_pista)) if DISPLAY_FREMIUM_SERVICES %>
-			<%= render_show_detail_zurb(:marker, marker_link(@schedule.group.marker)) if DISPLAY_FREMIUM_SERVICES %>
+				<%  unless @schedule.played? %> 
+				<%= render_show_detail_zurb(:ends_at, nice_day_of_week(@schedule.ends_at)) %>
 
-		</td>	
+				<%= render_show_detail_zurb(:public, 
+				(is_user_manager ? link_to(the_public_label, set_public_path(:id => @schedule.id), :confirm => the_public_confirmation) : the_public_label)) if DISPLAY_FREMIUM_SERVICES %>
+
+				<%= render_show_detail_zurb(:player_limit, @schedule.player_limit) %>
+
+				<% end %>
+
+				<%= render_show_detail_zurb(:scorecard, link_to(label_name(:scorecard), scorecard_path(:id => @schedule.group))) %>
+
+				<%= render_show_detail_zurb(:city, @schedule.group.marker.city) %>
+				<%= render_show_detail_zurb(:sport, @schedule.sport.name) %>
+				<%= render_show_detail_zurb(:fee_per_game, number_to_currency(@schedule.fee_per_game)) %>
+				<%= render_show_detail_zurb(:fee_per_pista, number_to_currency(@schedule.fee_per_pista)) if DISPLAY_FREMIUM_SERVICES %>
+				<%= render_show_detail_zurb(:marker, marker_link(@schedule.group.marker)) if DISPLAY_FREMIUM_SERVICES %>
+
+			</td>	
 		</tr>
-		</tbody>
-		</table>
-		
-	</div>
-</div>
+	</tbody>
+</table>
+

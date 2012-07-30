@@ -7,37 +7,42 @@
 	has_items = (object_counter(@users) > 0)
 %>
 
+
+<% if has_items %>
+
+<%= render('shared/index_total_header_zurb', :items => @escuadras) %>
+
 <div class="row">
-  <div class="twelve column">
+	<div class="twelve columns"> 
 
-	<%= set_title_class(the_label, 'fee') %>
-	
-    
-	<% if has_items %>
-	
-	<%= get_class_table_id_controller %>
-	  
-		<tr>   
-			<%= set_content_tag_safe(:th, "&nbsp;", "first") %>
-			<%= content_tag :th, "#{label_name(:name)}<br/>#{label_name(:group)}", :class => "heading" %>
-			<%= content_tag :th, label_name(:concept), :class => "heading" %>
-			<%= content_tag :th, label_name(:debits), :class => "heading" %>
-			<%= content_tag :th, label_name(:credits), :class => "heading" %>
-			<%= content_tag :th, "&nbsp;", :class => "heading" %>
-			<%= content_tag :th, label_name(:debit_total), :class => "heading" %>
-			<%= content_tag :th, label_name(:credit_total), :class => "heading" %>
-			<%= content_tag :th, label_name(:pending), :class => "heading" %>
-			<%= set_content_tag_safe(:th, "&nbsp;", "last") %>
-		</tr>
-		<% @the_groups.each do |group| %>
-		<%= render 'fees/fee_list_zurb', :users => @users, :group => group %>
-		<% end %>		
-      </table>		
+		<table>
+			<thead>
+				<tr>             
+					<%= set_content_tag_safe(:th, "&nbsp;") %>
+					<%= set_content_tag_safe(:th, "#{label_name(:name)}<br/>#{label_name(:group)}") %>
+					<%= set_content_tag_safe(:th, label_name(:concept)) %>
+					<%= set_content_tag_safe(:th, label_name(:debits)) %>
+					<%= set_content_tag_safe(:th, label_name(:credits)) %>
+					<%= set_content_tag_safe(:th, "&nbsp;") %>
+					<%= set_content_tag_safe(:th, label_name(:debit_total)) %>
+					<%= set_content_tag_safe(:th, label_name(:credit_total)) %>
+					<%= set_content_tag_safe(:th, label_name(:pending)) %>
+				</tr>
+			</thead>
 
-	  <% end %>
-	
-	
-  </div>
+			<tbody>
+
+				<% @the_groups.each do |group| %>
+				<%= render 'fees/fee_list_zurb', :users => @users, :group => group %>
+				<% end %>
+
+			</tbody>
+		</table>
+
+	</div>
 </div>
+
+<% end %>
+
 
 <%= render 'shared/no_items_to_display' unless has_items %>

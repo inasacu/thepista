@@ -369,35 +369,35 @@ en:
      dorsal_description: (If your interest is to put your name or number on your jersey...)   
      drop_us_a_note: Drop us a note.
      edit: Edit   
-     edit_address: Edit Address   
-     edit_announcement: Edit Announcement   
-     edit_credit: Edit Payment   
-     edit_debit: Edit Charge   
-     edit_description: Edit Details  
-     edit_fee: Edit Charges    
-     edit_group: Edit Team   
-     edit_information: Edit Details   
-     edit_invitation: Edit Invitation   
-     edit_manager: Edit Manager   
-     edit_map: Edit Map  
-     edit_marker: Edit Marker   
-     edit_match: Save the Match Result   
-     edit_message: Edit Message   
-     edit_my_user: Edit My Account   
-     edit_name: Edit Name   
-     edit_note: Edit Note   
-     edit_notification: Edit Notificación   
-     edit_payment: Edit Payment   
-     edit_profile: Edit your profile   
-     edit_reminder: Edit Reminder   
-     edit_role: Edit the Responsabilidad   
-     edit_schedule: Edit the Event   
-     edit_scorecard: Edit Scorecard   
-     edit_sport: Edit the Sport   
-     edit_tournament: Edit Tournament   
-     edit_type: Edit Type   
-     edit_user: Edit your profile   
-     edit_venue: Edit Venue   
+     edit_address: Edit    
+     edit_announcement: Edit    
+     edit_credit: Edit    
+     edit_debit: Edit    
+     edit_description: Edit   
+     edit_fee: Edit     
+     edit_group: Edit    
+     edit_information: Edit    
+     edit_invitation: Edit    
+     edit_manager: Edit    
+     edit_map: Edit   
+     edit_marker: Edit    
+     edit_match: Save    
+     edit_message: Edit    
+     edit_my_user: Edit     
+     edit_name: Edit    
+     edit_note: Edit    
+     edit_notification: Edit    
+     edit_payment: Edit    
+     edit_profile: Edit    
+     edit_reminder: Edit    
+     edit_role: Edit the    
+     edit_schedule: Edit    
+     edit_scorecard: Edit    
+     edit_sport: Edit the    
+     edit_tournament: Edit    
+     edit_type: Edit    
+     edit_user: Edit    
+     edit_venue: Edit    
      email: Email   
      email_time_zone: Time Zone to send email before an event.  
      email_addresses: Email(s)
@@ -1545,35 +1545,35 @@ en:
      upcoming_meets: Upcoming Tournament Event 
      upcoming_no:  No events to display    
      update: Update   
-     update_address: Update Address   
-     update_announcement: Update Announcement   
-     update_credit: Update Payment   
-     update_debit: Update Charge   
-     update_description: Update Details   
-     update_fee: Update Charges  
-     update_group: Update Team   
-     update_information: Update Details   
-     update_invitation: Update Invitation   
-     update_manager: Update Manager   
-     update_map: Update Mapa   
-     update_marker: Update Location   
-     update_match: Update Match Result  
+     update_address: Update    
+     update_announcement: Update    
+     update_credit: Update    
+     update_debit: Update    
+     update_description: Update    
+     update_fee: Update   
+     update_group: Update    
+     update_information: Update    
+     update_invitation: Update    
+     update_manager: Update    
+     update_map: Update    
+     update_marker: Update    
+     update_match: Update   
      update_match_message:  "Hi,<br><br>Just a reminder to enter the results for the previous event.<br><br>" 
-     update_message: Update Message   
-     update_name: Update Name   
-     update_note: Update Note   
-     update_notification: Update Notice   
-     update_payment: Update Payment   
-     update_profile: Update profile   
-     update_reminder: Update Reminder   
-     update_role: Update Role   
-     update_schedule: Update Event   
-     update_scorecard: Update Scorecard   
-     update_sport: Update Sport   
-     update_tournament: Update Tournament   
-     update_type: Update Type   
-     update_user: Update profile   
-     update_venue: Update Venue   
+     update_message: Update    
+     update_name: Update    
+     update_note: Update    
+     update_notification: Update    
+     update_payment: Update    
+     update_profile: Update    
+     update_reminder: Update    
+     update_role: Update    
+     update_schedule: Update    
+     update_scorecard: Update    
+     update_sport: Update    
+     update_tournament: Update    
+     update_type: Update    
+     update_user: Update    
+     update_venue: Update    
      updated: updated correctly.    
      updated_at:  Fecha de creación
      updated_a_challenge:  Ha actualizado el reto

@@ -3,7 +3,6 @@ class MatchesController < ApplicationController
 
 	before_filter :get_match_and_user_x_two,  :only =>[:set_status, :set_team, :set_status_link]
 	before_filter :has_member_access,         :only => [:set_match_profile]
-	# before_filter :has_match_access,          :only => [:rate]
 
 	def index
 		redirect_to :controller => 'schedules', :action => 'index'

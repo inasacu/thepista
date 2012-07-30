@@ -12,48 +12,41 @@
 			
 <%= render('shared/index_total_header_zurb', :items => @scorecards) %>
 
-<div class="row">
-	<div class="twelve column">
-		<div class="row">
-			<div class="twelve columns"> 
-
-				<table>
-					<thead>
-						<tr>             
-
-							<%= content_tag_safe(:th, sort_link(I18n.t(:ranking), :ranking), label_name(:ranking_full), 'center') %>
-							<%= set_content_tag_safe(:th, "&nbsp;") %>
-							<%= set_content_tag_safe(:th, I18n.t(:name)) %>
-							<%= set_content_tag_safe(:th, "+/-") %>
-							<%= content_tag_safe(:th, sort_link(I18n.t(:points), :points), label_name(:points_full), 'center') %>
-							<%= content_tag_safe(:th, sort_link(I18n.t(:participation), :coeficient_played), label_name(:participation_full), 'center') %>
-							<%= content_tag_safe(:th, sort_link(I18n.t(:games_played), :played), label_name(:games_played_full), 'center') %>
-							<%= content_tag_safe(:th, sort_link(I18n.t(:games_won), :wins), label_name(:games_won_full), 'center') %>
-							<%= content_tag_safe(:th, sort_link(I18n.t(:games_tied), :draws), label_name(:games_tied_full), 'center') %>
-							<%= content_tag_safe(:th, sort_link(I18n.t(:games_lost), :losses), label_name(:games_lost_full), 'center') %>
-							<%= content_tag_safe(:th, sort_link(I18n.t(:goals_scored), :goals_scored), label_name(:goals_scored_full), 'center') %> 
-							<%= content_tag_safe(:th, I18n.t(:games_won_avg), label_name(:games_won_avg_full), 'center') if DISPLAY_FREMIUM_SERVICES %>
-							<%= content_tag_safe(:th, sort_link(I18n.t(:games_points_avg), :coeficient_points), label_name(:games_points_avg_full), 'center') %>
-
-						</tr>
-					</thead>
-
-					<tbody>
 
 
-						<% @scorecards.each do |scorecard| %>
-						<%= render 'scorecards/scorecard_zurb', 
-						:scorecard => scorecard, 
-						:group => @group, 
-						:games_played => @games_played, 
-						:less_games => @less_games, 
-						:even_or_odd => (even_or_odd = !even_or_odd) %>
-						<% end %>
+<table>
+	<thead>
+		<tr>             
 
-					</tbody>
-				</table>
+			<%= content_tag_safe(:th, sort_link(I18n.t(:ranking), :ranking), label_name(:ranking_full), 'center') %>
+			<%= set_content_tag_safe(:th, "&nbsp;") %>
+			<%= set_content_tag_safe(:th, I18n.t(:name)) %>
+			<%= set_content_tag_safe(:th, "+/-") %>
+			<%= content_tag_safe(:th, sort_link(I18n.t(:points), :points), label_name(:points_full), 'center') %>
+			<%= content_tag_safe(:th, sort_link(I18n.t(:participation), :coeficient_played), label_name(:participation_full), 'center') %>
+			<%= content_tag_safe(:th, sort_link(I18n.t(:games_played), :played), label_name(:games_played_full), 'center') %>
+			<%= content_tag_safe(:th, sort_link(I18n.t(:games_won), :wins), label_name(:games_won_full), 'center') %>
+			<%= content_tag_safe(:th, sort_link(I18n.t(:games_tied), :draws), label_name(:games_tied_full), 'center') %>
+			<%= content_tag_safe(:th, sort_link(I18n.t(:games_lost), :losses), label_name(:games_lost_full), 'center') %>
+			<%= content_tag_safe(:th, sort_link(I18n.t(:goals_scored), :goals_scored), label_name(:goals_scored_full), 'center') %> 
+			<%= content_tag_safe(:th, I18n.t(:games_won_avg), label_name(:games_won_avg_full), 'center') if DISPLAY_FREMIUM_SERVICES %>
+			<%= content_tag_safe(:th, sort_link(I18n.t(:games_points_avg), :coeficient_points), label_name(:games_points_avg_full), 'center') %>
 
-			</div>
-		</div>
-	</div>	
-</div>
+		</tr>
+	</thead>
+
+	<tbody>
+
+
+		<% @scorecards.each do |scorecard| %>
+		<%= render 'scorecards/scorecard_zurb', 
+		:scorecard => scorecard, 
+		:group => @group, 
+		:games_played => @games_played, 
+		:less_games => @less_games, 
+		:even_or_odd => (even_or_odd = !even_or_odd) %>
+		<% end %>
+
+	</tbody>
+</table>
+

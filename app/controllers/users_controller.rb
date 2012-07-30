@@ -101,21 +101,13 @@ class UsersController < ApplicationController
 
 	def update
 		@user = current_user
-		@the_user = User.find(current_user.id)
-
-		@user.attributes = params[:user]
-		@user.profile_at = Time.zone.now
-
-		@user.save do |result|
-
-			if result
-				controller_successful_update
-				redirect_to :action => 'show'
-				return
-			else
-				render :action => 'edit'
-			end
-		end
+		
+		if @user.update_attributes(params[:user]) 
+      controller_successful_update
+      redirect_to @user
+    else
+      render :action => 'edit'
+    end		
 	end
 
 	def petition

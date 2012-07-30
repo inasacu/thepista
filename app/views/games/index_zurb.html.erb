@@ -4,47 +4,41 @@
 	has_items = (object_counter(@games) > 0)
 %>
 
-<div class="row">
-	 
-	<div class="twelve column">  
-			<% if has_items %>
-				
-				<%= render('shared/index_total_header_zurb', :items => @games) %>
+<% if has_items %>
 
-				<div class="row">
-					<div class="twelve columns"> 
+	<%= render('shared/index_total_header_zurb', :items => @games) %>
 
-						<table>
-						  	<thead>
-							<tr>             
-								<%= set_content_tag_safe(:th, label_name(:casts_group_matches)) %>
-								<%= set_content_tag_safe(:th, "&nbsp;") %>
-								<%= set_content_tag_safe(:th, "&nbsp;") %>
-								<%= set_content_tag_safe(:th, "&nbsp;") %>
-								<%= set_content_tag_safe(:th, "&nbsp;") %>
-								<%= set_content_tag_safe(:th, "&nbsp;") %>
-								<%= set_content_tag_safe(:th, "&nbsp;") %>
-								<%= set_content_tag_safe(:th, "&nbsp;") %>
-							</tr>
-							</thead>
+	<div class="row">
+		<div class="twelve columns"> 
 
-						<tbody>
+			<table>
+				<thead>
+					<tr>             
+						<%= set_content_tag_safe(:th, label_name(:casts_group_matches)) %>
+						<%= set_content_tag_safe(:th, "&nbsp;") %>
+						<%= set_content_tag_safe(:th, "&nbsp;") %>
+						<%= set_content_tag_safe(:th, "&nbsp;") %>
+						<%= set_content_tag_safe(:th, "&nbsp;") %>
+						<%= set_content_tag_safe(:th, "&nbsp;") %>
+						<%= set_content_tag_safe(:th, "&nbsp;") %>
+						<%= set_content_tag_safe(:th, "&nbsp;") %>
+					</tr>
+				</thead>
 
-							<% @games.each do |game| -%>		
-								<%= render 'games/game_full_zurb', :game => game, :display_icons => true %> 
-						  	<% end -%>
+				<tbody>
 
-						</tbody>
-						</table>
+					<% @games.each do |game| -%>		
+					<%= render 'games/game_full_zurb', :game => game, :display_icons => true %> 
+					<% end -%>
 
-					</div>
-				</div>
+				</tbody>
+			</table>
 
-			
-				
-			<% end %>
-	</div>	
-</div>
+		</div>
+	</div>
+
+<% end %>
+
 
 <%= render 'shared/no_items_to_display' unless has_items %>
 
