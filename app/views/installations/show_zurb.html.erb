@@ -6,18 +6,13 @@
 
 <%= render 'shared/show_description_zurb', :item => @installation.venue %>
 	
-	
-
-		
 <table>
 	<tbody>
 		<tr>
 			<td>
 
 				<%= render_show_detail_zurb(:name, item_name_link(@installation)) %>
-				<%= render_show_detail_zurb(:city, @installation.marker.city) %>
 				<%= render_show_detail_zurb(:time_zone,  "#{nice_simple_time_at(@installation.starts_at)} - #{nice_simple_time_at(@installation.ends_at)}") %>
-				<%= render_show_detail_zurb(:marker, marker_link(@installation.marker)) %>
 
 				<% @installation.timetables.each do |timetable|
 					the_installation = "#{timetable.day_of_week}, #{nice_simple_time_at(timetable.starts_at)} -  #{nice_simple_time_at(timetable.ends_at)}, #{I18n.t(:has_hour, :count => timetable.timeframe)}".html_safe
@@ -29,28 +24,7 @@
 
 					<% end %>
 
-				</td>	
-			</tr>
-		</tbody>
-	</table>
-		
-
-
-
-
-<%# content_for :sidebar, render(:partial => 'installations/sidebar_show') -%>
-<%# content_for :sidebar, render(:partial => 'shared/sidebar_show_reservations', :locals =>{:installations => @installations}) %>
-
-<% if current_user.is_manager_of?(@venue) %>
-
-<%# content_for :sidebar, render(:partial => '/shared/sidebar_basic_legend', 
-					:locals => {:the_render => '/installations/sidebar_installation_manager', 
-					:the_label => label_name('manager_option')}) if !is_controller('forum') %>
-					
-<%# content_for :sidebar, render(:partial => '/shared/sidebar_basic_legend', 
-					:locals => {:the_render => '/timetables/sidebar_copy_timetable', 
-								:the_label => "#{label_name(:timetables_copy)}".capitalize,
-								:installation => @installation}) if object_counter(@venue.installations) > 0 and object_counter(@installation.timetables) == 0 %>
-<% end -%>
-
-<%# content_for :sidebar, render(:partial => 'shared/share_object', :locals => {:installation => @installation}) if @installation -%>
+			</td>	
+		</tr>
+	</tbody>
+</table>

@@ -24,19 +24,15 @@
 				</tr>
 			</thead>
 
-			<tbody>
 
-				<% @cups.each do |cup| -%>		
+			<tbody>			
 
-				<%= render 'cups/cup_full_zurb', :cup => cup, :display_icons => true %> 
+				<% @cups.each do |cup| -%>
+					<%= render 'cups/cup_full_zurb', :cup => cup, :display_icons => true %> 
 
-
-
-				<% cup.challenges.each do |challenge| -%>		
-				<%= render 'challenges/challenge_full_zurb', :challenge => challenge, :display_icons => true %>
-				<% end -%>
-
-
+					<% cup.challenges.each do |challenge| -%>		
+					<%= render 'challenges/challenge_full_zurb', :challenge => challenge, :display_icons => true %>
+					<% end -%>
 
 				<% end -%>
 

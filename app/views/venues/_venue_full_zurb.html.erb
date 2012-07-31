@@ -11,10 +11,9 @@
 	</td>
 
 	<td>
-		<%= marker_link(venue.marker) %><br/>
-		<span class="date">
-			<%= I18n.t(:has_venue_installations, :count => object_counter(venue.installations)) %>
-		</span>
+		<%	venue.installations.each do |installation| %>		
+		<%= "#{item_name_link(installation)}".html_safe %><br/>
+		<% end %>
 	</td>
 	
 	<td>

@@ -817,8 +817,12 @@ module ApplicationHelper
 		@browser_type == "mobile"
 	end	
 
-	def eight_twelve_columns
-		eight_or_twelve_columns = is_mobile_browser ? "twelve columns" : "eight columns"
+	def eight_twelve_columns(the_column_set=nil)
+		if the_column_set.nil?
+			eight_or_twelve_columns = is_mobile_browser ? "twelve columns" : "eight columns"
+		else
+				eight_or_twelve_columns = the_column_set
+		end
 	end
 	
 	def phone_number_link(text)
