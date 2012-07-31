@@ -195,19 +195,65 @@
 			<key>firstVisibleLine</key>
 			<integer>0</integer>
 		</dict>
+		<key>app/helpers/application_helper.rb</key>
+		<dict>
+			<key>caret</key>
+			<dict>
+				<key>column</key>
+				<integer>18</integer>
+				<key>line</key>
+				<integer>134</integer>
+			</dict>
+			<key>columnSelection</key>
+			<false/>
+			<key>firstVisibleColumn</key>
+			<integer>0</integer>
+			<key>firstVisibleLine</key>
+			<integer>113</integer>
+			<key>selectFrom</key>
+			<dict>
+				<key>column</key>
+				<integer>5</integer>
+				<key>line</key>
+				<integer>134</integer>
+			</dict>
+			<key>selectTo</key>
+			<dict>
+				<key>column</key>
+				<integer>24</integer>
+				<key>line</key>
+				<integer>134</integer>
+			</dict>
+		</dict>
 		<key>app/helpers/venues_helper.rb</key>
 		<dict>
 			<key>caret</key>
 			<dict>
 				<key>column</key>
-				<integer>23</integer>
+				<integer>41</integer>
 				<key>line</key>
-				<integer>55</integer>
+				<integer>73</integer>
 			</dict>
+			<key>columnSelection</key>
+			<false/>
 			<key>firstVisibleColumn</key>
 			<integer>0</integer>
 			<key>firstVisibleLine</key>
-			<integer>15</integer>
+			<integer>37</integer>
+			<key>selectFrom</key>
+			<dict>
+				<key>column</key>
+				<integer>34</integer>
+				<key>line</key>
+				<integer>73</integer>
+			</dict>
+			<key>selectTo</key>
+			<dict>
+				<key>column</key>
+				<integer>47</integer>
+				<key>line</key>
+				<integer>73</integer>
+			</dict>
 		</dict>
 		<key>app/views/home/_upcoming_matches_zurb.html.erb</key>
 		<dict>
@@ -228,30 +274,14 @@
 			<key>caret</key>
 			<dict>
 				<key>column</key>
-				<integer>7</integer>
+				<integer>2</integer>
 				<key>line</key>
-				<integer>849</integer>
+				<integer>229</integer>
 			</dict>
-			<key>columnSelection</key>
-			<false/>
 			<key>firstVisibleColumn</key>
 			<integer>0</integer>
 			<key>firstVisibleLine</key>
-			<integer>132</integer>
-			<key>selectFrom</key>
-			<dict>
-				<key>column</key>
-				<integer>0</integer>
-				<key>line</key>
-				<integer>844</integer>
-			</dict>
-			<key>selectTo</key>
-			<dict>
-				<key>column</key>
-				<integer>7</integer>
-				<key>line</key>
-				<integer>849</integer>
-			</dict>
+			<integer>82</integer>
 		</dict>
 		<key>app/views/sidebars/_sidebar_create_id_zurb.html.erb</key>
 		<dict>
@@ -288,12 +318,12 @@
 				<key>column</key>
 				<integer>0</integer>
 				<key>line</key>
-				<integer>852</integer>
+				<integer>0</integer>
 			</dict>
 			<key>firstVisibleColumn</key>
 			<integer>0</integer>
 			<key>firstVisibleLine</key>
-			<integer>797</integer>
+			<integer>2</integer>
 		</dict>
 		<key>script/delayed_job</key>
 		<dict>
@@ -330,6 +360,7 @@
 	<array>
 		<string>log/development.log</string>
 		<string>app/views/shared/_calendar_zurb.html.erb</string>
+		<string>app/helpers/application_helper.rb</string>
 		<string>app/helpers/venues_helper.rb</string>
 	</array>
 	<key>showFileHierarchyDrawer</key>
