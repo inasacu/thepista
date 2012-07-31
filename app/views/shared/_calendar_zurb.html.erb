@@ -114,19 +114,16 @@
 				
 		the_week << get_the_event_day_html(the_day_class, @day_of_month_counter, the_event_dot_color, the_event_open_color)	
 		@day_of_month_counter+=1	
-		is_same_day = false		
+		is_same_day = false	
+		the_event_dot_color = ""
+		the_event_open_color = ""
+		the_day_class = "day"	
 		
 	end
 	the_month << the_week
 	
 	# reinitialize values
 	the_week = [] 
-	the_color_class = "green"
-	the_event_length = 1
-	the_event_padding = 1
-	the_event_dot_color = ""
-	the_event_open_color = ""
-	the_day_class = "day"
 	
 	# middle weeks	
 	while (@day_of_month_counter < last_week_blank_day_counter)
@@ -152,9 +149,6 @@
 					the_week << get_the_event_day_html(the_day_class, @day_of_month_counter, the_event_dot_color, the_event_open_color)	if (@day_of_month_counter < last_week_blank_day_counter)
 					@day_of_month_counter+=1	
 					is_same_day = false
-					the_color_class = "green"
-					the_event_length = 1
-					the_event_padding = 1
 					the_event_dot_color = ""
 					the_event_open_color = ""
 					the_day_class = "day"
@@ -240,6 +234,8 @@
 						<% end %>
 					</div>
 					<%= "<!---------------------------------------- week #{counter} end ---------------------------------------->".html_safe %>
+					
+					<div class="week"></div>
 					
 				<% end %>
 		
