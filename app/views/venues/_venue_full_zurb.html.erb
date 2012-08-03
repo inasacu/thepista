@@ -1,30 +1,24 @@
+<%
+	the_installation_link = ""
+	venue.installations.each do |installation|
+		the_installation_link = "#{the_installation_link} #{link_to(installation.name, reservations_path(:id => installation))} <br/>"
+	end
+%>
+
 <tr>  
-	<td>
-		<%= item_image_link_small(venue) %>
-	</td>
+	<%= set_content_tag_safe(:td, item_image_link_small(venue)) %>
+	<%= set_content_tag_safe(:td, "#{item_name_link(venue)} <br/> #{nice_simple_time_at(venue.starts_at)}  - #{nice_simple_time_at(venue.ends_at)}", :class => 'name_and_date') %>
+	<%= set_content_tag_safe(:td, the_installation_link) %>
 
-	<td>
-		<%= item_name_link(venue) %><br/>
-		<span class="date">
-			<%= nice_simple_time_at(venue.starts_at) %> - <%= nice_simple_time_at(venue.ends_at) %>
-		</span>
-	</td>
-
-	<td>
-		<%	venue.installations.each do |installation| %>		
-		<%= "#{item_name_link(installation)}".html_safe %><br/>
-		<% end %>
-	</td>
-	
-	<td>
+   <% if display_icons %>
+   	<td>
 		<span class="action" align="left">
-			<% if display_icons %>
 			<%= option_image_small_link('message') %>&nbsp;&nbsp;<%= link_to(label_name(:send_message_to), new_message_path(:venue_id => venue)) %><br/>
 			<%= option_image_small_link('reservation') %>&nbsp;&nbsp;
 				<strong>
 				<%= link_to "#{label_name(:reservations)}".html_safe, installations_path(:id => venue) %>
-				</strong>
-			<% end -%>
+				</strong>			
 		</span>
-	</td>
+   	</td>
+   <% end -%>
 </tr>

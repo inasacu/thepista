@@ -1452,6 +1452,8 @@ en:
      subscription_at_match: Last Day to add squad status change for subscriber    
      subscription_at_description: (Last Day to add squad status change for subscriber  ...(ex- 1 day before the event)) 
      subscription_false:  Player does not have a Subscription.
+     subscription_group_true:  Season Team
+     subscription_group_false:  Non Season Team
      subscription_true:  Player has a Subscription
      subscriptions_true:  Players with a Subscription
      subscriptions_false:  Players without a Subscription
@@ -1893,6 +1895,8 @@ en:
      messages_sent:  Sent
      messages_show: Show Message
      messages_trash:  Discarted Messages
+     other:  Other
+     others:  Others
      schedule: Event   
      schedule_description: (Write some detail about the team...)  
      schedules: Events

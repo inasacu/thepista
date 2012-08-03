@@ -58,9 +58,9 @@ module UsersHelper
     link_to(image_tag(user.avatar, options={:class => the_class, :alt => user.name, :title => user.name}), user_path(user)) 
   end
 
-  def user_list(objects)
-    return item_list(objects)
-  end
+  # def user_list(objects)
+  #   return item_list(objects)
+  # end
 
   def user_link_limit(text, user = nil, html_options = nil)
     if user.nil?

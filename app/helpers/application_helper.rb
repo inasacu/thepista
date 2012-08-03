@@ -432,7 +432,8 @@ module ApplicationHelper
 	end 
 
 	def item_list(items)    
-		the_link = "#{items.first.class.to_s.downcase.chomp}_link".html_safe
+		# the_link = "#{items.first.class.to_s.downcase.chomp}_link".html_safe
+		the_link = "item_name_link".html_safe
 		list_of_items = ""
 		items.each do |item|
 			list_of_items += send(:"#{the_link}", item)

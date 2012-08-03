@@ -9,31 +9,25 @@
 
 <%= render('shared/index_total_header_zurb', :items => @venues) %>
 
-<div class="row">
-	<div class="twelve columns"> 
+<table>
+	<thead>
+		<tr>             
+			<%= set_content_tag_safe(:th, "&nbsp;") %>
+			<%= set_content_tag_safe(:th, "#{label_name(:name)}") %>
+			<%= set_content_tag_safe(:th, "#{label_name(:installations)}") %>
+			<%= set_content_tag_safe(:th, "&nbsp;") %>
 
-		<table>
-			<thead>
-				<tr>             
-					<%= set_content_tag_safe(:th, "&nbsp;") %>
-					<%= set_content_tag_safe(:th, "#{label_name(:name)}") %>
-					<%= set_content_tag_safe(:th, "#{label_name(:installations)}") %>
-					<%= set_content_tag_safe(:th, "&nbsp;") %>
+		</tr>
+	</thead>
 
-				</tr>
-			</thead>
+	<tbody>
 
-			<tbody>
+		<% @venues.each do |venue| -%>		
+		<%= render 'venues/venue_full_zurb', :venue => venue, :display_icons => true %> 
+		<% end -%>
 
-				<% @venues.each do |venue| -%>		
-				<%= render 'venues/venue_full_zurb', :venue => venue, :display_icons => true %> 
-				<% end -%>
-
-			</tbody>
-		</table>
-
-	</div>
-</div>
+	</tbody>
+</table>
 
 <% end %>
 

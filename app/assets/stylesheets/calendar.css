@@ -50,9 +50,9 @@ body{font-family:Lucida Grande;background:#fff;}*/
 .day:hover{background:#e9f0f8;cursor:pointer;}
 .daybar{width:100%;float:left;background:#f3f3f3;}
 .daybar p{margin-left:5px;margin-top:3px;margin-bottom:3px;font-size:10px;font-weight:400;color:#969696;text-shadow:0 1px 0 #ffffff;}
-.dots{width:100%;height:35px;clear:both;}
+.dots{width:100%;height:25px;clear:both;}
 .dots ul{text-align:center;white-space:nowrap;overflow:hidden;}
-.dots ul li{margin-top:10px;display:inline-block;-webkit-border-radius:14px;width:12px;height:12px;}
+.dots ul li{margin-top:10px;display:inline-block;-webkit-border-radius:14px;width:6px;height:6px;}
 .big{width:107px;float:left;}
 .big:hover{background:#e9f0f8;cursor:pointer;}
 .big .dots{height:65px;}
@@ -103,6 +103,7 @@ body{font-family:Lucida Grande;background:#fff;}*/
 .l24{height:480px;}
 
 /**************************** Amount of hours between previous event or start of the day ****************************/
+.a0{margin-top:10px;}
 .a1{margin-top:20px;}
 .a2{margin-top:40px;}
 .a3{margin-top:60px;}

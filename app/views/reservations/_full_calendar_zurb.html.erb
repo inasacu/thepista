@@ -81,7 +81,7 @@
 				text_color = "black" 
 			else
 				block_token = Base64::encode64(starts_at.to_i.to_s)
-				available = (starts_at > Time.zone.now + @minutes_to_reserve)
+				available = (starts_at > Time.zone.now + MINUTES_TO_RESERVATION )
 				url = url_for(:host => 'haypista.com', :controller => 'reservations',  :action => 'new', 
 							  :id => @installation, :block_token => block_token, :only_path => false, :protocol => 'http') if available
 			end 
@@ -99,4 +99,24 @@
 end 
 %>
 
-<%= render 'reservations/full_calendar_box_zurb', :the_events => @events %>
+<% 
+	first_hour = 8
+	last_hour = 0
+	minTime = nice_simple_time_at(@venue_min_max_timetable.starts_at) 
+	maxTime = nice_simple_time_at(@venue_min_max_timetable.ends_at) 
+%>
+
+<% @events.each do |event| %>
+	
+	<%=  event[9] %>, 
+	<%=  event[3] %>, 
+	<%=  event[4] %>, 
+	<%=  event[9] %>, 
+	<%=  event[5] %>, 
+	<%=  event[6] %>, 
+	<%=  event[10] %>, 
+	<%=  event[11] %>, 
+	<%=  event[12] %>, 
+	<%=  event[0] %>
+
+<% end -%>

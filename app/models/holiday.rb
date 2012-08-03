@@ -9,6 +9,9 @@
 # t.datetime "updated_at"
 # t.integer  "type_id"
 
+# insert into holidays (name, venue_id, starts_at, ends_at, holiday_hour) values('15 de Agosto', 1, '2012/08/14 22:00:00', '2012/08/15 21:59:59', true)
+
+
 class Holiday < ActiveRecord::Base
   belongs_to    :venue 
   belongs_to    :type

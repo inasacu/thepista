@@ -14,7 +14,7 @@
 <tr>  	
 	<%= set_content_tag_safe(:td, item_image_link_small(challenge.all_the_managers.first)) %>
 	<%= set_content_tag_safe(:td, item_name_link(challenge)) %>
-	<%= set_content_tag_safe(:td, user_list(challenge.all_the_managers)) %>
+	<%= set_content_tag_safe(:td, item_list(challenge.all_the_managers)) %>
 	<%= set_content_tag_safe(:td, I18n.t(:has_challenge_users, :count => object_counter(challenge.users))) %>
 	<%= set_content_tag_safe(:td, link_to(label_name(:points_full), show_list_standings_path(:id => challenge))) %>
 	<%= set_content_tag_safe(:td, show_join_item_link ? join_item_link_to(current_user, challenge) : "&nbsp;") %>

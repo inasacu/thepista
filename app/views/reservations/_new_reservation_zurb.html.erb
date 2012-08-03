@@ -18,10 +18,10 @@
 	end		
 %>					
 <td class="ColPista">
-	<%= render 'reservations/index_holiday_zurb', :current_day => current_day, :block_token => block_token, 
-											 :is_holiday => is_holiday, :holiday_hour => holiday_hour  %> <%# if is_current_manager_of(@venue) %>
-											
-	<%= render 'reservations/day_of_week_zurb', :current_day => current_day %>	
+	<%#= render 'reservations/index_holiday_zurb', :current_day => current_day, :block_token => block_token, 
+											 :is_holiday => is_holiday, :holiday_hour => holiday_hour  %> 
+																						
+	<%#= render 'reservations/day_of_week_zurb', :current_day => current_day %>	
 <% 
 	the_timetables = Timetable.installation_week_day(installation, current_day, is_holiday)
 
@@ -54,11 +54,11 @@
 
 			if reserved 
 %>
-				<%= render "hour_reserved_zurb", :starts_at => starts_at, :time_frame => time_frame, :items => the_item %>
+				<%#= render "hour_reserved_zurb", :starts_at => starts_at, :time_frame => time_frame, :items => the_item %>
 <% 
 			else
 				block_token = Base64::encode64(starts_at.to_i.to_s)
-				available = (starts_at > Time.zone.now + @minutes_to_reserve)
+				available = (starts_at > Time.zone.now + MINUTES_TO_RESERVATION )
 %>
 				<%= render "hour_available_#{available}_zurb", :starts_at => starts_at, :ends_at => ends_at, 
 														  :time_frame => time_frame, :block_token => block_token %>

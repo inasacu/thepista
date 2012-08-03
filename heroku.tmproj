@@ -150,7 +150,7 @@
 		</dict>
 	</array>
 	<key>fileHierarchyDrawerWidth</key>
-	<integer>284</integer>
+	<integer>378</integer>
 	<key>metaData</key>
 	<dict>
 		<key>app/assets/stylesheets/zurb/forms.css</key>
@@ -172,14 +172,30 @@
 			<key>caret</key>
 			<dict>
 				<key>column</key>
-				<integer>41</integer>
+				<integer>48</integer>
 				<key>line</key>
-				<integer>100</integer>
+				<integer>14</integer>
 			</dict>
+			<key>columnSelection</key>
+			<false/>
 			<key>firstVisibleColumn</key>
 			<integer>0</integer>
 			<key>firstVisibleLine</key>
 			<integer>0</integer>
+			<key>selectFrom</key>
+			<dict>
+				<key>column</key>
+				<integer>42</integer>
+				<key>line</key>
+				<integer>14</integer>
+			</dict>
+			<key>selectTo</key>
+			<dict>
+				<key>column</key>
+				<integer>53</integer>
+				<key>line</key>
+				<integer>14</integer>
+			</dict>
 		</dict>
 		<key>app/controllers/scorecards_controller.rb</key>
 		<dict>
@@ -194,36 +210,6 @@
 			<integer>0</integer>
 			<key>firstVisibleLine</key>
 			<integer>0</integer>
-		</dict>
-		<key>app/helpers/application_helper.rb</key>
-		<dict>
-			<key>caret</key>
-			<dict>
-				<key>column</key>
-				<integer>18</integer>
-				<key>line</key>
-				<integer>134</integer>
-			</dict>
-			<key>columnSelection</key>
-			<false/>
-			<key>firstVisibleColumn</key>
-			<integer>0</integer>
-			<key>firstVisibleLine</key>
-			<integer>113</integer>
-			<key>selectFrom</key>
-			<dict>
-				<key>column</key>
-				<integer>5</integer>
-				<key>line</key>
-				<integer>134</integer>
-			</dict>
-			<key>selectTo</key>
-			<dict>
-				<key>column</key>
-				<integer>24</integer>
-				<key>line</key>
-				<integer>134</integer>
-			</dict>
 		</dict>
 		<key>app/helpers/venues_helper.rb</key>
 		<dict>
@@ -274,14 +260,14 @@
 			<key>caret</key>
 			<dict>
 				<key>column</key>
-				<integer>2</integer>
+				<integer>41</integer>
 				<key>line</key>
-				<integer>229</integer>
+				<integer>215</integer>
 			</dict>
 			<key>firstVisibleColumn</key>
 			<integer>0</integer>
 			<key>firstVisibleLine</key>
-			<integer>82</integer>
+			<integer>173</integer>
 		</dict>
 		<key>app/views/sidebars/_sidebar_create_id_zurb.html.erb</key>
 		<dict>
@@ -323,7 +309,7 @@
 			<key>firstVisibleColumn</key>
 			<integer>0</integer>
 			<key>firstVisibleLine</key>
-			<integer>2</integer>
+			<integer>0</integer>
 		</dict>
 		<key>script/delayed_job</key>
 		<dict>
@@ -359,13 +345,12 @@
 	<key>openDocuments</key>
 	<array>
 		<string>log/development.log</string>
+		<string>app/controllers/reservations_controller.rb</string>
 		<string>app/views/shared/_calendar_zurb.html.erb</string>
-		<string>app/helpers/application_helper.rb</string>
-		<string>app/helpers/venues_helper.rb</string>
 	</array>
 	<key>showFileHierarchyDrawer</key>
 	<true/>
 	<key>windowFrame</key>
-	<string>{{0, 46}, {1626, 1012}}</string>
+	<string>{{-0, 46}, {1532, 1012}}</string>
 </dict>
 </plist>

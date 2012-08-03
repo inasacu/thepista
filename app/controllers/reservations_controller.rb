@@ -6,26 +6,34 @@ class ReservationsController < ApplicationController
   before_filter   :get_installation,    :only => [:new, :index]
   before_filter   :get_reservation,     :only => [:show, :edit, :update, :destroy]
   before_filter   :has_manager_access,  :only => [:edit, :update, :destroy]
+	
 
 
   def index  
     store_location
-    @current_user_zone = Time.zone.now
-    @time_frame = (@installation.timeframe).hour
-    @minutes_to_reserve = 15.minutes
+		if params[:block_token]
+			block_token = Base64::decode64(params[:block_token].to_s).to_i
+	    @current_user_zone = Time.zone.at(block_token)
+		else
+			@current_user_zone = Time.zone.now
+		end
 
-    @first_day = @current_user_zone
-    last_day = @first_day + 7.days
+    # @time_frame = (@installation.timeframe).hour
+    # MINUTES_TO_RESERVATION  = 15.minutes
+    
+    # # @first_day = @current_user_zone
+    # # last_day = @first_day + 7.days
+    # 
+    # starts_at = convert_to_datetime_zone(@first_day, @installation.starts_at.utc)
+    # ends_at = convert_to_datetime_zone(last_day.midnight, @installation.ends_at.utc)
+    # 
+    # @timetables = Timetable.installation_timetable(@installation)
+    # 
+    # @reservations = Reservation.weekly_reservations(@installation, starts_at, ends_at)   
+    # @schedules = Schedule.weekly_reservations(@venue.marker, @installation, starts_at, ends_at) 
+    # @holidays = Holiday.holiday_week_day(@venue, starts_at, ends_at) 
+    # @venue_min_max_timetable = Timetable.venue_min_max_timetable(@venue)
 
-    starts_at = convert_to_datetime_zone(@first_day, @installation.starts_at.utc)
-    ends_at = convert_to_datetime_zone(last_day.midnight, @installation.ends_at.utc)
-
-    @timetables = Timetable.installation_timetable(@installation)
-
-    @reservations = Reservation.weekly_reservations(@installation, starts_at, ends_at)   
-    @schedules = Schedule.weekly_reservations(@venue.marker, @installation, starts_at, ends_at) 
-    @holidays = Holiday.holiday_week_day(@venue, starts_at, ends_at) 
-    @venue_min_max_timetable = Timetable.venue_min_max_timetable(@venue)
     render @the_template  
   end
 

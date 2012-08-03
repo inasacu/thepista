@@ -22,19 +22,19 @@
 					<%= render_show_detail_zurb(:city, @venue.marker.city) %>
 					<%= render_show_detail_zurb(:time_zone,  "#{nice_simple_time_at(@venue.starts_at)} - #{nice_simple_time_at(@venue.ends_at)}") %>
 					<%= render_show_detail_zurb(:marker, marker_link(@venue.marker)) %>
-
+					
 					<%	@venue.installations.each do |installation| 
-						the_installation = "#{item_name_link(installation)}, #{nice_simple_time_at(installation.starts_at)} - #{nice_simple_time_at(installation.ends_at)}".html_safe
-						the_label = first ? 'installation' : 'blank'
+						the_label = first ? 'installations' : 'blank'
 						first = false
+						the_reservation_link = link_to(installation.name, reservations_path(:id => installation))
 						%>		
-						<%= render_show_detail_zurb(the_label, the_installation) %>
+						<%= render_show_detail_zurb(the_label, the_reservation_link) %>
 
-						<% end %>
+					<% end %>
 
-					</div>		
+				</div>		
 
-				</td>	
-			</tr>
-		</tbody>
-	</table>
+			</td>	
+		</tr>
+	</tbody>
+</table>

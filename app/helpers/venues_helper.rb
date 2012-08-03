@@ -86,6 +86,44 @@ module VenuesHelper
 	def get_the_event_open_color(the_color_class, the_event_length, the_event_padding, the_event_details)
 		return "<li class=\"#{the_color_class} l#{the_event_length} a#{the_event_padding}\"><p>#{the_event_details}</p></li>"
 	end
+	
+	def get_the_event_html(is_same_day, day_of_month_counter, the_current_day_number, is_same_month_year, the_schedules_day_numbers, the_day_class, the_schedules, the_week, is_less_than_day=true)
+		
+		the_color_class = "green"
+		the_event_length = 1
+		the_event_padding = 1
+		
+		unless is_same_day
+			is_same_day = (day_of_month_counter == the_current_day_number and is_same_month_year) 
+			is_same_schedule_date = the_schedules_day_numbers.include?(day_of_month_counter)					
+		end
+
+		the_day_class = the_day_is_today if is_same_day
+
+
+		if is_same_schedule_date				
+
+			the_actual_schedule = nil
+			the_schedules.each {|schedule| the_actual_schedule = schedule}
+
+			the_schedule = ""
+			the_schedule = "#{nice_simple_time_at(the_actual_schedule.starts_at)}  #{item_name_link(the_actual_schedule)}"
+
+			the_event_dot_color = "#{the_event_dot_color} #{get_the_event_dot_color(the_color_class)}"
+			the_event_open_color = "#{the_event_open_color} #{get_the_event_open_color(the_color_class, the_event_length, the_event_padding, the_schedule)}"
+		end
+		
+		the_week << get_the_event_day_html(the_day_class, @day_of_month_counter, the_event_dot_color, the_event_open_color)	if is_less_than_day
+		@day_of_month_counter+=1	
+		@the_day_of_month += 1.day
+		is_same_day = false
+		the_event_dot_color = ""
+		the_event_open_color = ""
+		the_day_class = "day"
+		
+		return the_day_class, the_event_dot_color, the_event_open_color, the_week
+		
+	end
 		
 end
 
