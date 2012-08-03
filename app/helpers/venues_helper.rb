@@ -115,9 +115,10 @@ module VenuesHelper
 			the_actual_schedule = nil
 			the_schedules.each {|schedule| the_actual_schedule = schedule}
 			is_venue_subscriber = the_actual_schedule.group.is_subscriber_of?(the_venue)
+			the_item_name_limit_link = item_name_link(the_actual_schedule.name, the_actual_schedule, nil, 12)
 
 			the_schedule = ""
-			the_schedule = "#{nice_simple_time_at(the_actual_schedule.starts_at)}  #{item_name_link(the_actual_schedule)}"
+			the_schedule = "#{nice_simple_time_at(the_actual_schedule.starts_at)}  #{the_item_name_limit_link}"
 			
 			the_color_class = "subscription_#{is_venue_subscriber}"
 

@@ -212,36 +212,11 @@
 	# last week
 	(last_week_blank_day_counter..the_last_day_of_month).each do |x|	
 
-		# unless is_same_day
-		# 	is_same_day = (@day_of_month_counter == the_current_day_number and is_same_month_year) 
-		# 	is_same_schedule_date = the_schedules_day_numbers.include?(@day_of_month_counter)					
-		# end
-		# 
-		# the_day_class = the_day_is_today if is_same_day
-		# 
-		# 
-		# if is_same_schedule_date				
-		# 	
-		# 	the_actual_schedule = nil
-		# 	@the_schedules.each {|schedule| the_actual_schedule = schedule}
-		# 	
-		# 	the_schedule = ""
-		# 	the_schedule = "#{nice_simple_time_at(the_actual_schedule.starts_at)}  #{item_name_link(the_actual_schedule)}"
-		# 	
-		# 	the_event_dot_color = "#{the_event_dot_color} #{get_the_event_dot_color(the_color_class)}"
-		# 	the_event_open_color = "#{the_event_open_color} #{get_the_event_open_color(the_color_class, the_event_length, the_event_padding, the_schedule)}"
-		# end
+
 				
 		the_day_class, the_event_dot_color, the_event_open_color, the_week = 
 				get_the_event_html(@venue, is_same_day, @day_of_month_counter, the_current_day_number, is_same_month_year, the_schedules_day_numbers, the_day_class, @the_schedules, the_week)	
 				
-		# the_week << get_the_event_day_html(the_day_class, @day_of_month_counter, the_event_dot_color, the_event_open_color)	
-		# @day_of_month_counter+=1	
-		# @the_day_of_month += 1.day
-		# is_same_day = false
-		# the_event_dot_color = ""
-		# the_event_open_color = ""
-		# the_day_class = "day" 
 		
 	end
 	
@@ -259,7 +234,7 @@
 	:the_current_nice_month_year => the_current_nice_month_year, :the_month => the_month %>
 
 
-
+<% if Rails.env.development? %>
 
 
 
@@ -274,7 +249,7 @@
 		SCHEDULES
 		<br/>
 		<% @the_schedules.each do |item| %>
-			<%= "#{item.class.to_s}:  #{item.name} - #{item.starts_at} : #{item.ends_at} " %><br/>
+			<%= "#{item.class.to_s}:  #{item.name} - #{nice_simple_time_at(item.starts_at)} : #{nice_simple_time_at(item.ends_at)} " %>
 			
 			
 		<% end %>
@@ -284,7 +259,7 @@
 		RESERVATIONS
 		<br/>
 		<% @the_reservations.each do |item| %>
-			<%= "#{item.class.to_s}:  #{item.name} - #{item.starts_at} : #{item.ends_at} " %><br/>
+			<%= "#{item.class.to_s}:  #{item.name} - #{nice_simple_time_at(item.starts_at)} : #{nice_simple_time_at(item.ends_at)} " %>
 			
 		<% end %>
 		<hr/>
@@ -333,6 +308,6 @@
 			<% end %>
 			<hr/>
 			<br/>
-		
-				
+
+<% end %>
 
