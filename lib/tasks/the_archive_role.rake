@@ -13,6 +13,15 @@ task :the_archive_role => :environment do |t|
     role.save
   end
 
+
+	the_archive = Role.find(:all, :conditions => ["id in (7,8,904,72632, 72633, 72634)"])
+  the_archive.each do |role|
+    role.archive = true
+    role.save
+  end
+
+
+
   # ARCHIVE all roles for all authorizable_type archived 
    the_item_types = Role.find(:all, :select => "distinct authorizable_type")
    the_item_types.each do |role|
@@ -55,6 +64,8 @@ task :the_archive_role => :environment do |t|
        the_archive = Role.find(:all, :select => "distinct *", 
        :conditions => "authorizable_type = 'Installation' and authorizable_id in (select id from installations where archive = true)")
      end
+
+
      
      the_archive.each do |role|
        puts "ARCHIVE role => #{role.id},  #{role.authorizable_id} #{role.authorizable_type}"

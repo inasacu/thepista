@@ -87,11 +87,20 @@ module VenuesHelper
 		return "<li class=\"#{the_color_class} l#{the_event_length} a#{the_event_padding}\"><p>#{the_event_details}</p></li>"
 	end
 	
-	def get_the_event_html(is_same_day, day_of_month_counter, the_current_day_number, is_same_month_year, the_schedules_day_numbers, the_day_class, the_schedules, the_week, is_less_than_day=true)
-		
-		the_color_class = "green"
+	def get_the_event_html(the_venue, is_same_day, day_of_month_counter, the_current_day_number, is_same_month_year, the_schedules_day_numbers, the_day_class, the_schedules, the_week, is_less_than_day=true)
+
+		the_day_is_today = "day today"
 		the_event_length = 1
 		the_event_padding = 1
+		the_day_class = "day"
+
+		the_color_class = "green"				#label_name(:available) 
+		# the_color_class = "none"				#label_name(:unavailable) 
+		# the_color_class = "blue"				#label_name(:subscription_group_true) 
+		# the_color_class = "yellow"			#label_name(:subscription_group_false) 
+		# the_color_class = "red"					#label_name(:others) 
+		
+				
 		
 		unless is_same_day
 			is_same_day = (day_of_month_counter == the_current_day_number and is_same_month_year) 
@@ -105,9 +114,12 @@ module VenuesHelper
 
 			the_actual_schedule = nil
 			the_schedules.each {|schedule| the_actual_schedule = schedule}
+			is_venue_subscriber = the_actual_schedule.group.is_subscriber_of?(the_venue)
 
 			the_schedule = ""
 			the_schedule = "#{nice_simple_time_at(the_actual_schedule.starts_at)}  #{item_name_link(the_actual_schedule)}"
+			
+			the_color_class = "subscription_#{is_venue_subscriber}"
 
 			the_event_dot_color = "#{the_event_dot_color} #{get_the_event_dot_color(the_color_class)}"
 			the_event_open_color = "#{the_event_open_color} #{get_the_event_open_color(the_color_class, the_event_length, the_event_padding, the_schedule)}"

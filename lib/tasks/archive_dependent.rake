@@ -6,7 +6,7 @@ task :the_archive_dependent => :environment do |t|
 	ActiveRecord::Base.establish_connection(Rails.env.to_sym)
 
 	# archive group 
-	group_id = [13, 19]  
+	group_id = [17, 18]  
 	the_archives = []
 
 	# GROUPS
@@ -45,6 +45,7 @@ task :the_archive_dependent => :environment do |t|
 	# CHALLENGES 
 	the_archive_false = Challenge.find(:all, :conditions => "archive = false")
 	the_archive_true = Challenge.find(:all, :conditions => "archive = true")
+	
 	
 	# STANDINGS
 	@archive = Standing.find(:all, :conditions => ["archive = false and challenge_id in (?)", the_archive_true])
@@ -130,6 +131,7 @@ task :the_archive_dependent => :environment do |t|
 	@archive = Payment.find(:all, :conditions => ["archive = false and item_id not in (?) and item_type = 'Schedule'", the_archive_false])
 	@archive.each {|archive_file| the_archives << archive_file}
 	the_archives = set_all_to_archive(the_archives)
+		
 
 end
 

@@ -74,5 +74,15 @@ module GroupsHelper
 		the_label = label_with_name('role_remove_subscription', h(group.name))
 		link_to(the_label , remove_subscription_path(:id => user, :group => group))
 	end
+
+	def set_role_add_venue_subscription(group, venue)
+		the_label = label_with_name('role_add_subscription', h(venue.name)) 
+		link_to(the_label , set_group_subscription_path(:id => group, :venue => venue))
+	end
+
+	def set_role_remove_venue_subscription(group, venue)
+		the_label = label_with_name('role_remove_subscription', h(venue.name))
+		link_to(the_label , remove_group_subscription_path(:id => group, :venue => venue))
+	end
 end
 

@@ -76,6 +76,21 @@ body{font-family:Lucida Grande;background:#fff;}*/
 .green{background:#94e354;}
 .green:hover{background:#98e857;}
 
+
+.available_true{background:#94e354;}
+.available_true:hover{background:#98e857;}
+.available_false{background:#d6d6d6;}
+.available_false:hover{background:#dfdfdf;}
+
+.subscription_true{background:#5496dd;}
+.subscription_true:hover{background:#5c9ef9;}
+
+.subscription_false{background:#ffac4d;}
+.subscription_false:hover{background:#ffbd6a;}
+
+.others{background:#ff454b;}
+.others:hover{background:#ff6164;}
+
 /**************************** Duration of an event ****************************/
 .l1{height:20px;overflow:hidden;}
 .l2{height:40px;overflow:hidden;}

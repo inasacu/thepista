@@ -4,6 +4,8 @@
 	is_new_group = (get_controller_action =='group_new' or get_controller_action == 'group_create')
 	has_group = @group ? is_new_group ? false : true : false
 	
+	
+	
 	the_group_name = ""
 	the_manager_label = ""
 	the_confirmation = ""	
@@ -64,5 +66,17 @@
 	<% end -%>
 
 
+	<% if the_maximo %>
+	
+		<% @the_venues = Venue.find(:all, :conditions => "venues.archive = false", :order => "name") %>
+	
+		<% @the_venues.each do |venue| %>
+		<% is_group_subscriber =  @group.is_subscriber_of?(venue) %>
+		<%= set_image_and_link(set_role_add_venue_subscription(@group, venue), 'group_add') unless is_group_subscriber %>
+		<%= set_image_and_link(set_role_remove_venue_subscription(@group, venue), 'group_remove') if is_group_subscriber %>
+		<% end %>
+		
+	<% end %>
+	
 <% end -%>
 

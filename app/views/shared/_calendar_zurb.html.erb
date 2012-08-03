@@ -2,17 +2,12 @@
 	
 <%
 
-	days_in_a_week = 7
-
-	# block_token = Base64::encode64(@current_user_zone.to_i.to_s)
-	
+	days_in_a_week = 7	
 	
 	is_holiday = nil
 	the_day_starts_at = nil
 	the_day_ends_at = nil
-	the_time_frame = nil
-
-	
+	the_time_frame = nil	
 	
 	the_previous_date = @current_user_zone - 1.month
 	the_next_date = @current_user_zone + 1.month
@@ -82,11 +77,9 @@
 	end
 	
 	
-	
-	
-	
 	@the_reservations = Reservation.find(:all,
 			:conditions => ["reservations.archive = false and reservations.starts_at >= ? and reservations.ends_at <= ?", @first_day, @last_day],:order => 'starts_at')
+	
 	
 	@the_timetables = Timetable.find(:all, :select => "timetables.id, timetables.installation_id, timetables.starts_at, timetables.ends_at, timetables.timeframe, types.id, types.name",
 			:joins => "join types on timetables.type_id = types.id",
@@ -96,6 +89,7 @@
 	
 	@the_holidays = Holiday.find(:all,
 			:conditions => ["holidays.archive = false and holidays.starts_at >= ? and holidays.ends_at <= ?", @first_day, @last_day],:order => 'starts_at')
+			
 			
 	has_month_holidays = false
 	@the_holidays.each {|x| has_month_holidays = true}
@@ -153,7 +147,7 @@
 		# end
 		
 		the_day_class, the_event_dot_color, the_event_open_color, the_week = 
-				get_the_event_html(is_same_day, @day_of_month_counter, the_current_day_number, is_same_month_year, the_schedules_day_numbers, the_day_class, @the_schedules, the_week)
+				get_the_event_html(@venue, is_same_day, @day_of_month_counter, the_current_day_number, is_same_month_year, the_schedules_day_numbers, the_day_class, @the_schedules, the_week)
 
 				
 		# the_week << get_the_event_day_html(the_day_class, @day_of_month_counter, the_event_dot_color, the_event_open_color)	
@@ -197,7 +191,7 @@
 			# end
 
 			the_day_class, the_event_dot_color, the_event_open_color, the_week = 
-					get_the_event_html(is_same_day, @day_of_month_counter, the_current_day_number, is_same_month_year, the_schedules_day_numbers, the_day_class, @the_schedules, the_week, is_less_than_day)
+					get_the_event_html(@venue, is_same_day, @day_of_month_counter, the_current_day_number, is_same_month_year, the_schedules_day_numbers, the_day_class, @the_schedules, the_week, is_less_than_day)
 
 			# the_week << get_the_event_day_html(the_day_class, @day_of_month_counter, the_event_dot_color, the_event_open_color)	if (@day_of_month_counter < last_week_blank_day_counter)
 			# @day_of_month_counter+=1	
@@ -239,7 +233,7 @@
 		# end
 				
 		the_day_class, the_event_dot_color, the_event_open_color, the_week = 
-				get_the_event_html(is_same_day, @day_of_month_counter, the_current_day_number, is_same_month_year, the_schedules_day_numbers, the_day_class, @the_schedules, the_week)	
+				get_the_event_html(@venue, is_same_day, @day_of_month_counter, the_current_day_number, is_same_month_year, the_schedules_day_numbers, the_day_class, @the_schedules, the_week)	
 				
 		# the_week << get_the_event_day_html(the_day_class, @day_of_month_counter, the_event_dot_color, the_event_open_color)	
 		# @day_of_month_counter+=1	

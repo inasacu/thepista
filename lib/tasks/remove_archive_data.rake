@@ -14,6 +14,9 @@ task :the_remove_archive_data => :environment do |t|
   @archive = Challenge.find(:all, :conditions => ["archive = true"])
   @archive.each {|archive_file| the_archives << archive_file}
 
+  @archive = ChallengesUsers.find(:all, :conditions => ["archive = true"])
+  @archive.each {|archive_file| the_archives << archive_file}
+
   @archive = Game.find(:all, :conditions => ["archive = true"])
   @archive.each {|archive_file| the_archives << archive_file}
 
@@ -38,20 +41,12 @@ task :the_remove_archive_data => :environment do |t|
   @archive = Schedule.find(:all, :conditions => ["archive = true"])
   @archive.each {|archive_file| the_archives << archive_file}
 
-  # @archive = Role.find(:all, :conditions => ["archive = true"])
-  # @archive.each {|archive_file| the_archives << archive_file}
+  @archive = Role.find(:all, :conditions => ["archive = true"])
+  @archive.each {|archive_file| the_archives << archive_file}
 
-  # @archive = Group.find(:all, :conditions => ["archive = true"])
-  # @archive.each {|archive_file| the_archives << archive_file}
+  @archive = RolesUsers.find(:all, :conditions => ["archive = true"])
+  @archive.each {|archive_file| the_archives << archive_file}
 
-  # @archive = RolesUsers.find(:all, :conditions => ["archive = true"])
-  # @archive.each {|archive_file| the_archives << archive_file}
-
-  # @archive = GroupsUsers.find(:all, :conditions => ["archive = true"])
-  # @archive.each {|archive_file| the_archives << archive_file}
-  
-  # @archive = ChallengesUsers.find(:all, :conditions => "challenge_id not in (select id from challenges)")
-  # @archive.each {|archive_file| the_archives << archive_file}
 
   the_archives.each do |the_archive|
     puts "#{the_archive.id}  remove #{the_archive.class.to_s} archived files removed (#{counter})"

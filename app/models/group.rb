@@ -78,7 +78,6 @@ class Group < ActiveRecord::Base
   belongs_to    :marker 
   belongs_to    :installation
 
-
   has_many :the_managers,
   :through => :manager_roles,
   :source => :roles_users
@@ -185,7 +184,11 @@ class Group < ActiveRecord::Base
 
   def is_group_member_of?(item)
     self.has_role?('member', item)
-  end
+  end	
+
+	def is_subscriber_of?(item)
+		self.has_role?('subscription', item) 
+	end
   
   def venue
     self.marker.venue
