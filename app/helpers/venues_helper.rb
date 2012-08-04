@@ -141,27 +141,9 @@ module VenuesHelper
 					
 				end
 			end
-		
-		# else
-			
-			
-			# the_color_class = "available_true"
-				
-							# block_token = Base64::encode64(starts_at.to_i.to_s)
-							# available = (starts_at > Time.zone.now + MINUTES_TO_RESERVATION )
-							# :starts_at => starts_at, :ends_at => ends_at,  :time_frame => time_frame, :block_token => block_token 
-							# "#{nice_simple_time_at(starts_at)} - #{nice_simple_time_at(starts_at+time_frame)}" 	
-							# link_to label_name(:reservations_new), new_reservation_path(:id => @installation, :block_token => block_token) 								
+								
 		end
-
-		
-		
-		
-		
-		
-		# a timetable for this date is found
-		
-				
+			
 		
 		the_week << get_the_event_day_html(the_day_class, @day_of_month_counter, the_event_dot_color, the_event_open_color)	if is_less_than_day
 		@day_of_month_counter+=1	
@@ -176,11 +158,26 @@ module VenuesHelper
 	end
 	
 	
-	def get_month_timetables(all_timetables, the_day_of_month, the_first_day_of_month, the_last_day_of_month, installation, is_holiday=false)
+	def get_month_timetables(the_items, the_holidays, the_day_of_month, the_first_day_of_month, the_last_day_of_month, installation)
 		
-		# all_timetables = []	
-
+		all_timetables = []
+		the_holiday_day_numbers = []
+		the_holidays.each { |item| the_holiday_day_numbers << item.starts_at.day }
+		
 		the_first_day_of_month..the_last_day_of_month.times.each do |x|	
+
+			is_holiday = false
+			holiday_hour = false			# user holiday hours if true else do not allow for reservations
+
+			if the_holiday_day_numbers.include?(the_day_of_month.day)
+				the_holidays.each do |holiday| 
+					if holiday.starts_at == convert_to_datetime_zone(the_day_of_month, holiday.starts_at)
+						is_holiday = true
+						holiday_hour = holiday.holiday_hour
+					end
+				end
+			end
+
 
 			# get only timetable associated to specific day of the month and include if holiday
 			the_timetables = Timetable.installation_week_day(installation, the_day_of_month, is_holiday)
@@ -199,11 +196,18 @@ module VenuesHelper
 					new_reservation.ends_at = starts_at + time_frame
 					new_reservation.venue_id = installation.venue.id
 					new_reservation.installation_id = installation.id
-
+					new_reservation.block_token = Base64::encode64(starts_at.to_i.to_s)
+					new_reservation.available = (starts_at > Time.zone.now + MINUTES_TO_RESERVATION )
+					
 					all_timetables << new_reservation
 					starts_at += time_frame	
 
 				end
+				
+				starts_at = nil
+				ends_at = nil
+				time_frame = nil
+				
 			end
 
 			the_day_of_month += 1.day
@@ -213,6 +217,8 @@ module VenuesHelper
 		return all_timetables
 		
 	end
+	
+	
 	
 	
 end

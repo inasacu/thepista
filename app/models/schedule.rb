@@ -278,6 +278,13 @@ class Schedule < ActiveRecord::Base
                :order => 'starts_at')
   end
   
+
+	def self.get_schedule_first_to_last_month (first_day, last_day, user)
+		find(:all, :conditions => ["schedules.archive = false and schedules.starts_at >= ? and 
+																schedules.ends_at <= ? and schedules.group_id in (select group_id from groups_users where user_id = ?)", first_day, last_day, user], :order => 'starts_at')
+	end
+				
+				
   def self.find_all_played(user, page = 1)
     self.where("matches.user_id = ? and matches.type_id = 1 and matches.archive = false", user).joins("left join matches on matches.schedule_id = schedules.id").page(params[:page]).order('schedules.starts_at desc')
   end

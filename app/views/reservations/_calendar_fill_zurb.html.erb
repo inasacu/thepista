@@ -1,5 +1,63 @@
 <%
 
+	is_holiday = nil
+	the_day_starts_at = nil
+	the_day_ends_at = nil
+	the_time_frame = nil	
+
+	the_previous_date = @current_user_zone - 1.month
+	the_next_date = @current_user_zone + 1.month
+
+	@first_day = @current_user_zone.at_beginning_of_month
+	@last_day = @current_user_zone.at_end_of_month
+
+	@the_day_of_month = @first_day
+
+	the_real_nice_month_year = nice_month_year(Time.zone.now)
+	the_current_nice_month_year = nice_month_year(@current_user_zone)
+
+	the_previous_nice_month_year = nice_month_year(the_previous_date)
+	the_next_nice_month_year = nice_month_year(the_next_date)
+
+	the_previous_nice_month = nice_month_full(the_previous_date)
+	the_next_nice_month = nice_month_full(the_next_date)
+
+	the_current_day_number = @current_user_zone.day
+
+	the_first_day_of_month = 1
+
+	the_first_weekday_of_month = @current_user_zone.at_beginning_of_month.wday
+	the_first_weekday_of_month = DAYS_IN_A_WEEK if the_first_weekday_of_month == 0
+
+	blankdays_first_week = the_first_weekday_of_month - 1
+	@day_of_month_counter = the_first_day_of_month
+
+	first_week_blank_day_counter = blankdays_first_week
+
+
+	the_last_day_of_month = days_in_month(@current_user_zone.month)
+
+	the_last_weekday_of_month = @current_user_zone.at_end_of_month.wday
+	the_last_weekday_of_month = DAYS_IN_A_WEEK if the_last_weekday_of_month == 0
+
+	blank_days_last_week = DAYS_IN_A_WEEK - the_last_weekday_of_month
+	last_week_blank_day_counter = the_last_day_of_month - (DAYS_IN_A_WEEK - blank_days_last_week) + 1
+
+	is_same_day = false
+	is_last_blank_days = true
+
+
+	all_weekday_numbers = [1,2,3,4,5,6,7]
+	the_month = []
+	the_week = []
+
+	the_green_html = "<li class=\"green\"></li>"
+	the_blue_html = "<li class=\"blue\"></li>"
+	the_yellow_html = "<li class=\"yellow\"></li>"
+	the_none_html = "<li class=\"none\"></li>"
+	the_red_html = "<li class=\"red\"></li>"
+
+
 	# show like to previous and next month
 	the_previous_block = block_token = Base64::encode64(the_previous_date.to_i.to_s)
 	the_next_block = block_token = Base64::encode64(the_next_date.to_i.to_s)

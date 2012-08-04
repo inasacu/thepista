@@ -29,4 +29,8 @@ class Holiday < ActiveRecord::Base
       find(:first, :conditions =>["venue_id = ? and starts_at = ? and ends_at = ?", venue, holiday.starts_at, holiday.ends_at])
   end  
 
+	def self.get_holiday_first_to_last_month(first_day, last_day)
+		find(:all, :conditions => ["holidays.archive = false and holidays.starts_at >= ? and holidays.ends_at <= ?", first_day, last_day], :order => 'starts_at')
+	end
+	
 end

@@ -9,6 +9,10 @@
 # t.datetime "created_at"
 # t.datetime "updated_at"
 
+# update timetables set starts_at = '2011-09-03 11:00:00', ends_at = '2011-09-03 13:00:00' where id in (43, 46, 49);
+# update timetables set starts_at = '2011-09-03 13:00:00', ends_at = '2011-09-03 19:00:00' where id in (44, 47, 50);
+
+
 class Timetable < ActiveRecord::Base
 	belongs_to    :installation
 	belongs_to    :type 
