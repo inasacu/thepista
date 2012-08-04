@@ -87,44 +87,81 @@ module VenuesHelper
 		return "<li class=\"#{the_color_class} l#{the_event_length} a#{the_event_padding}\"><p>#{the_event_details}</p></li>"
 	end
 	
-	def get_the_event_html(the_venue, is_same_day, day_of_month_counter, the_current_day_number, is_same_month_year, the_schedules_day_numbers, the_day_class, the_schedules, the_week, is_less_than_day=true)
+	def get_the_event_html(the_venue, the_items, the_timetables, the_holidays,
+						the_schedule_day_numbers, the_reservation_day_numbers, the_holiday_day_numbers,
+						is_same_day, day_of_month_counter, the_current_day_number, is_same_month_year, the_week, is_less_than_day=true)
 
 		the_day_is_today = "day today"
 		the_event_length = 1
 		the_event_padding = 1
 		the_day_class = "day"
 
-		the_color_class = "green"				#label_name(:available) 
-		# the_color_class = "none"				#label_name(:unavailable) 
-		# the_color_class = "blue"				#label_name(:subscription_group_true) 
-		# the_color_class = "yellow"			#label_name(:subscription_group_false) 
-		# the_color_class = "red"					#label_name(:others) 
+		the_event_dot_color = ""
+		the_event_open_color = ""
+		
+		the_color_class = "green"				# available_true
+		# the_color_class = "none"			# available_false
+		# the_color_class = "blue"			# subscription__true 
+		# the_color_class = "yellow"		# subscription_false
+		# the_color_class = "red"				# others 
+		
+		the_colors = ['available_true','available_false','subscription__true','subscription_false','others']
+		
+		is_same_day = (day_of_month_counter == the_current_day_number and is_same_month_year) 
+		the_day_class = the_day_is_today if is_same_day
+		is_same_schedule_date = the_schedule_day_numbers.include?(day_of_month_counter)	
+		is_same_reservation_date = the_reservation_day_numbers.include?(day_of_month_counter)
+
+		# the_items for this date is found
+		if is_same_schedule_date or is_same_reservation_date
+			
+			the_items.each do |item|
+				if (item.starts_at == (convert_to_datetime_zone(@the_day_of_month, item.starts_at)))
+				
+					
+					is_subscriber = false
+					
+					case item.class.to_s
+					when 'Schedule'
+						is_subscriber = item.group.is_subscriber_of?(the_venue)
+						the_color_class = "subscription_true"						
+					when 'Reservation'
+							the_color_class = "subscription_false"
+					end					
+					
+					
+					the_item_name_limit_link = item_name_link(item.name, item, nil, 12)
+								
+					the_item = ""
+					the_item = "#{nice_simple_time_at(item.starts_at)}  #{the_item_name_limit_link}"			
+					
+								
+					the_event_dot_color = "#{the_event_dot_color} #{get_the_event_dot_color(the_color_class)}"
+					the_event_open_color = "#{the_event_open_color} #{get_the_event_open_color(the_color_class, the_event_length, the_event_padding, the_item)}"
+					
+				end
+			end
+		
+		# else
+			
+			
+			# the_color_class = "available_true"
+				
+							# block_token = Base64::encode64(starts_at.to_i.to_s)
+							# available = (starts_at > Time.zone.now + MINUTES_TO_RESERVATION )
+							# :starts_at => starts_at, :ends_at => ends_at,  :time_frame => time_frame, :block_token => block_token 
+							# "#{nice_simple_time_at(starts_at)} - #{nice_simple_time_at(starts_at+time_frame)}" 	
+							# link_to label_name(:reservations_new), new_reservation_path(:id => @installation, :block_token => block_token) 								
+		end
+
+		
+		
+		
+		
+		
+		# a timetable for this date is found
 		
 				
-		
-		unless is_same_day
-			is_same_day = (day_of_month_counter == the_current_day_number and is_same_month_year) 
-			is_same_schedule_date = the_schedules_day_numbers.include?(day_of_month_counter)					
-		end
-
-		the_day_class = the_day_is_today if is_same_day
-
-
-		if is_same_schedule_date				
-
-			the_actual_schedule = nil
-			the_schedules.each {|schedule| the_actual_schedule = schedule}
-			is_venue_subscriber = the_actual_schedule.group.is_subscriber_of?(the_venue)
-			the_item_name_limit_link = item_name_link(the_actual_schedule.name, the_actual_schedule, nil, 12)
-
-			the_schedule = ""
-			the_schedule = "#{nice_simple_time_at(the_actual_schedule.starts_at)}  #{the_item_name_limit_link}"
-			
-			the_color_class = "subscription_#{is_venue_subscriber}"
-
-			the_event_dot_color = "#{the_event_dot_color} #{get_the_event_dot_color(the_color_class)}"
-			the_event_open_color = "#{the_event_open_color} #{get_the_event_open_color(the_color_class, the_event_length, the_event_padding, the_schedule)}"
-		end
 		
 		the_week << get_the_event_day_html(the_day_class, @day_of_month_counter, the_event_dot_color, the_event_open_color)	if is_less_than_day
 		@day_of_month_counter+=1	
@@ -137,6 +174,46 @@ module VenuesHelper
 		return the_day_class, the_event_dot_color, the_event_open_color, the_week
 		
 	end
+	
+	
+	def get_month_timetables(all_timetables, the_day_of_month, the_first_day_of_month, the_last_day_of_month, installation, is_holiday=false)
 		
+		# all_timetables = []	
+
+		the_first_day_of_month..the_last_day_of_month.times.each do |x|	
+
+			# get only timetable associated to specific day of the month and include if holiday
+			the_timetables = Timetable.installation_week_day(installation, the_day_of_month, is_holiday)
+
+			the_timetables.each do |item|
+
+				starts_at = convert_to_datetime_zone(the_day_of_month, item.starts_at)
+				ends_at = convert_to_datetime_zone(the_day_of_month.midnight, item.ends_at)
+				time_frame = item.timeframe.hour			
+
+				while ( starts_at < ends_at )
+
+					new_reservation = Reservation.new
+					new_reservation.name = label_name(:reservation)
+					new_reservation.starts_at = starts_at			
+					new_reservation.ends_at = starts_at + time_frame
+					new_reservation.venue_id = installation.venue.id
+					new_reservation.installation_id = installation.id
+
+					all_timetables << new_reservation
+					starts_at += time_frame	
+
+				end
+			end
+
+			the_day_of_month += 1.day
+
+		end
+		
+		return all_timetables
+		
+	end
+	
+	
 end
 

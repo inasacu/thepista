@@ -45,13 +45,12 @@
 	
 	day_of_month_as_number = the_first_day_of_month
 	
-	days_in_a_week = 7
 	days_counter = blank_days_first_week
 	
 	the_week << "<td colspan=#{blank_days_first_week}>&nbsp;</td>" if blank_days_first_week > 0
 	
 	# first week
-	(days_counter...days_in_a_week).each do |x|
+	(days_counter...DAYS_IN_A_WEEK).each do |x|
 				
 		the_label = "#{day_of_month_as_number}"
 		@my_schedules.each do |schedule|
@@ -78,7 +77,7 @@
 	# rest of weeks in month
 	while day_of_month_as_number <= the_last_day_of_month
 	
-		days_in_a_week.times.each do |x|
+		DAYS_IN_A_WEEK.times.each do |x|
 			
 			the_label = "#{day_of_month_as_number}"
 			@my_schedules.each do |schedule|
@@ -95,7 +94,7 @@
 			end		
 				
 			if (day_of_month_as_number > the_last_day_of_month and is_last_blank_days)
-				the_week << "<td colspan=#{days_in_a_week-x}>&nbsp;</td>"
+				the_week << "<td colspan=#{DAYS_IN_A_WEEK-x}>&nbsp;</td>"
 				is_last_blank_days = false
 			end
 			
@@ -124,7 +123,7 @@
 <%#= set_content_tag_safe(:caption, "blank_days_first_week: #{blank_days_first_week}") %>
 <%#= set_content_tag_safe(:caption, "day_of_month_as_number: #{day_of_month_as_number}") %>
 <%#= set_content_tag_safe(:caption, "days_counter: #{days_counter}") %>
-<%#= set_content_tag_safe(:caption, "days_in_a_week: #{days_in_a_week}") %>
+<%#= set_content_tag_safe(:caption, "DAYS_IN_A_WEEK: #{DAYS_IN_A_WEEK}") %>
 <%#= set_content_tag_safe(:caption, "the_current_day_number: #{the_current_day_number}") %>
 <%#= set_content_tag_safe(:caption, "is_same_date: #{is_same_date}") %>
 <%#= set_content_tag_safe(:caption, "the_trace_date: #{nice_full_date(the_trace_date)}") %>

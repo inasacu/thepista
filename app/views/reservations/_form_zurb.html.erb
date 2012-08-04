@@ -1,9 +1,7 @@
 
-<%= f.hidden_field :installation_id %>
-<%= f.hidden_field :venue_id %>
-<%= f.hidden_field :block_token %>
-
-
+<%= the_form.hidden_field :installation_id %>
+<%= the_form.hidden_field :venue_id %>
+<%= the_form.hidden_field :block_token %>
 
 
 <%= set_form_label(the_form, :concept) %>
@@ -21,7 +19,5 @@
 <%= set_form_label(the_form, :fee_per_lighting) %>
 <%= @reservation.fee_per_lighting %><br />
 
-<%= set_form_label(the_form, :description) %>
-<%= set_form_text_area(the_form, description) %><br />
 
 

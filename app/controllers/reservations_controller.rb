@@ -71,7 +71,6 @@ class ReservationsController < ApplicationController
     @reservation.ends_at = @reservation.starts_at + time_frame 
     @reservation.reminder_at = @reservation.starts_at - 2.days    
     @reservation.block_token = Base64::encode64(@reservation.starts_at.to_i.to_s)   
-    # @reservation.description =  params[:block_token]
 
     # verify reservation has not already been made
     reservation_available = Reservation.reservation_available(@venue, @installation, @reservation)

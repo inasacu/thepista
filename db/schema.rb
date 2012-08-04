@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120725225617) do
+ActiveRecord::Schema.define(:version => 20120803180051) do
 
   create_table "announcements", :force => true do |t|
     t.text     "message"
@@ -186,22 +186,6 @@ ActiveRecord::Schema.define(:version => 20120725225617) do
   add_index "fees", ["manager_id"], :name => "index_fees_on_manager_id"
   add_index "fees", ["slug"], :name => "index_fees_on_slug", :unique => true
   add_index "fees", ["type_id"], :name => "index_fees_on_type_id"
-
-  create_table "forums", :force => true do |t|
-    t.string   "name"
-    t.integer  "schedule_id"
-    t.integer  "topics_count", :default => 0,     :null => false
-    t.text     "description"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.boolean  "archive",      :default => false
-    t.integer  "item_id"
-    t.string   "item_type"
-  end
-
-  add_index "forums", ["archive"], :name => "index_forums_on_archive"
-  add_index "forums", ["item_id", "item_type"], :name => "index_forums_on_item_id_and_item_type"
-  add_index "forums", ["schedule_id"], :name => "index_forums_on_schedule_id"
 
   create_table "games", :force => true do |t|
     t.string   "name"
@@ -537,10 +521,12 @@ ActiveRecord::Schema.define(:version => 20120725225617) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "code"
+    t.string   "slug"
   end
 
   add_index "reservations", ["installation_id"], :name => "index_reservations_on_installation_id"
   add_index "reservations", ["item_id", "item_type"], :name => "index_reservations_on_item_id_and_item_type"
+  add_index "reservations", ["slug"], :name => "index_reservations_on_slug", :unique => true
   add_index "reservations", ["venue_id"], :name => "index_reservations_on_venue_id"
 
   create_table "roles", :force => true do |t|

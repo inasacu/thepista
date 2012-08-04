@@ -1,7 +1,7 @@
 # TABLE "reservations"
 # t.string   "name"
 # t.datetime "starts_at"
-# t.datetime "s_at"
+# t.datetime "ends_at"
 # t.datetime "reminder_at"
 # t.integer  "venue_id"
 # t.integer  "installation_id"
@@ -21,11 +21,10 @@
 
 class Reservation < ActiveRecord::Base
 
-	extend FriendlyId 
-	friendly_id :name, 			use: :slugged
+	# extend FriendlyId 
+	# friendly_id :name, 			use: :slugged
 	  
 
-  has_many    :fees #,            :dependent => :destroy 
   belongs_to  :item,            :polymorphic => true
   belongs_to  :installation
   belongs_to  :venue
@@ -35,8 +34,8 @@ class Reservation < ActiveRecord::Base
   validates_length_of           :name,                         :within => NAME_RANGE_LENGTH
   # validates_format_of           :name,                         :with => /^[A-z 0-9 _.-]*$/ 
 
-  validates_presence_of         :description
-  validates_length_of           :description,                     :within => DESCRIPTION_RANGE_LENGTH
+  # validates_presence_of         :description
+  # validates_length_of           :description,                     :within => DESCRIPTION_RANGE_LENGTH
 
   validates_presence_of         :fee_per_pista,  :fee_per_lighting
   validates_numericality_of     :fee_per_pista,  :fee_per_lighting
