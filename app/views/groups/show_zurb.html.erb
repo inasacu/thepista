@@ -7,7 +7,7 @@
 	
 	if is_venue_maximo
 		the_venue_link = item_name_link(@group.venue)
-		the_venue_link = item_name_link(@group.venue.name, @group.installation) if @group.installation
+		the_venue_link = item_name_link(@group.venue.name, reservations_path(:id => @group.installation)) if @group.installation
 	end
 	
 	
@@ -25,11 +25,11 @@
 <tr>
 <td>
 
-<div class="three columns">
+<div class="two columns">
 	<%= image_tag @group.photo %>
 </div>
 
-<div class="nine columns">
+<div class="ten columns">
 			
 		<%= render_show_detail_zurb(:name, item_name_link(@group)) %>
 		<%= render_show_detail_zurb(:second_team, h(@group.second_team)) %>
