@@ -144,7 +144,7 @@ def set_all_to_archive(the_archives)
 	
 	counter = 1
 	the_archives.each do |the_archive|
-		puts "#{the_archive.id}  remove #{the_archive.class.to_s} archived files removed (#{counter})"
+		puts "#{the_archive.id}  ARCHIVE #{the_archive.class.to_s} files (#{counter})"
 		the_archive.archive = true
 		the_archive.save
 		counter += 1
