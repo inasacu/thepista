@@ -5,7 +5,5 @@ class AddRecipientPermanentDeleteAndSenderPermanentDeleteToMessages < ActiveReco
   end
 
   def self.down
-    remove_column :messages, :recipient_permanent_delete
-    remove_column :messages, :sender_permanent_delete
   end
 end

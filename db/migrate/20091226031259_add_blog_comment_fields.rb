@@ -11,8 +11,5 @@ class AddBlogCommentFields < ActiveRecord::Migration
   end
 
   def self.down
-    remove_column     :comments,      :title
-    remove_column     :comments,      :commentable_type
-    remove_column     :comments,      :commentable_id
   end
 end

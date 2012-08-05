@@ -4,6 +4,5 @@ class RemoveDefaultUserScore < ActiveRecord::Migration
   end
 
   def self.down
-    change_column     :clashes,       :user_score,      :integer,        :default => 0
   end
 end

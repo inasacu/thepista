@@ -8,6 +8,5 @@ class CreateStates < ActiveRecord::Migration
   end
 
   def self.down
-    drop_table :states
   end
 end

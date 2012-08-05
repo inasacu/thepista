@@ -7,7 +7,5 @@ class AddMessagePolimorphValues < ActiveRecord::Migration
   end
 
   def self.down
-    remove_column   :messages,    :item_id
-    remove_column   :messages,    :item_type
   end
 end

@@ -16,6 +16,5 @@ class CreateHolidays < ActiveRecord::Migration
   end
 
   def self.down
-    drop_table :holidays
   end
 end

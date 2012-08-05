@@ -5,7 +5,5 @@ class AddAutomaticPetition < ActiveRecord::Migration
   end
 
   def self.down
-      remove_column      :groups,        :automatic_petition
-      remove_column      :challenges,    :automatic_petition
   end
 end

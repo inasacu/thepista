@@ -7,7 +7,5 @@ class AddForumItem < ActiveRecord::Migration
   end
 
   def self.down
-    remove_column      :forums,   :item_type
-    remove_column      :forums,   :item_id
   end
 end

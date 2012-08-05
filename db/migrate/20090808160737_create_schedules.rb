@@ -38,6 +38,5 @@ class CreateSchedules < ActiveRecord::Migration
   end
 
   def self.down
-    drop_table :schedules
   end
 end

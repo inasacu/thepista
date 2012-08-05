@@ -18,6 +18,5 @@ class CreateStandings < ActiveRecord::Migration
   end
 
   def self.down
-    drop_table :standings
   end
 end

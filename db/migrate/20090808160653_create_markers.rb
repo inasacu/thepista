@@ -39,6 +39,5 @@ class CreateMarkers < ActiveRecord::Migration
   end
 
   def self.down
-    drop_table :markers
   end
 end

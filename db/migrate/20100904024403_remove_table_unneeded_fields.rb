@@ -7,9 +7,5 @@ class RemoveTableUnneededFields < ActiveRecord::Migration
   end
 
   def self.down
-    add_column      :blogs,         :tournament_id,     :integer
-    add_column      :comments,      :tournament_id,     :integer
-    add_column      :teammates,     :tournament_id,     :integer     
-    add_column      :forums,        :meet_id,           :integer
   end
 end

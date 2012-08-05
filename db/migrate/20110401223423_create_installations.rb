@@ -33,12 +33,8 @@ class CreateInstallations < ActiveRecord::Migration
     add_index     :installations,   :venue_id
     add_index     :installations,   :sport_id
     add_index     :installations,   :marker_id
-    
-    # rake db:migrate VERSION=20110401223242
-    # rake db:migrate
   end
 
   def self.down
-    drop_table :installations
   end
 end

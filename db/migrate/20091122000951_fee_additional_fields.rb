@@ -25,19 +25,5 @@ class FeeAdditionalFields < ActiveRecord::Migration
   end
 
   def self.down
-    remove_column   :fees,        :item_type
-    remove_column   :fees,        :item_id
-    remove_column   :fees,        :type_id
-    remove_column   :fees,        :season_player
-    
-    remove_column   :payments,    :item_type
-    remove_column   :payments,    :item_id
-    
-    add_column      :payments,    :table_type,       :string
-    add_column      :payments,    :table_id,         :integer
-    # add_column      :payments,    :parent_id,       :integer
-    # add_column      :payments,    :type_id,         :integer
-        
-    add_column      :fees,        :season_payed,   :boolean,   :default => false
   end
 end

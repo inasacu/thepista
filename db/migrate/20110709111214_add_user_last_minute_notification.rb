@@ -4,6 +4,5 @@ class AddUserLastMinuteNotification < ActiveRecord::Migration
   end
 
   def self.down
-    remove_column     :users,     :last_minute_notification
   end
 end

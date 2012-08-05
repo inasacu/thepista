@@ -17,6 +17,5 @@ class CreateTimetables < ActiveRecord::Migration
   end
 
   def self.down
-    drop_table :timetables
   end
 end

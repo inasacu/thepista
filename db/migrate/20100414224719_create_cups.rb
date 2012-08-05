@@ -48,7 +48,6 @@ class CreateCups < ActiveRecord::Migration
   end
 
   def self.down
-    drop_table :cups
   end
 end
 

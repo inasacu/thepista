@@ -23,6 +23,5 @@ class CreateFees < ActiveRecord::Migration
   end
 
   def self.down
-    drop_table :fees
   end
 end

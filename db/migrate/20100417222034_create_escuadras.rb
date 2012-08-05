@@ -17,6 +17,5 @@ class CreateEscuadras < ActiveRecord::Migration
   end
 
   def self.down
-    drop_table :escuadras
   end
 end

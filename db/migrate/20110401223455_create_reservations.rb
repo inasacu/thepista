@@ -30,13 +30,8 @@ class CreateReservations < ActiveRecord::Migration
     add_index     :reservations,      :venue_id
     add_index     :reservations,      :installation_id  
     add_index     :reservations,      [:item_id, :item_type]
-
-    # rake db:migrate VERSION=20110401223423
-    # rake db:migrate
-
   end
 
   def self.down
-    drop_table :reservations
   end
 end

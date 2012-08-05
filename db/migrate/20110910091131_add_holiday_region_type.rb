@@ -6,6 +6,5 @@ class AddHolidayRegionType < ActiveRecord::Migration
   end
 
   def self.down
-    remove_column     :holidays,        :type_id
   end
 end

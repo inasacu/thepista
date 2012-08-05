@@ -5,7 +5,5 @@ class AddMatchMoral < ActiveRecord::Migration
   end
 
   def self.down
-    remove_column         :matches,         :moral
-    remove_column         :matches,         :rating_average_moral
   end
 end

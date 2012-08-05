@@ -8,7 +8,5 @@ class AddForumPracticeField < ActiveRecord::Migration
   end
 
   def self.down
-      remove_column   :forums,    :practice_id
-      change_column   :users,     :language,        :string,    :default => 'es'
   end
 end

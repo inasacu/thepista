@@ -7,7 +7,5 @@ class AddInvitationTableAndId < ActiveRecord::Migration
   end
 
   def self.down
-    remove_column      :invitations,   :item_type
-    remove_column      :invitations,   :item_id
   end
 end

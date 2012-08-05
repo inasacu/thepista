@@ -7,9 +7,5 @@ class AddGroupInstallationLinkedin < ActiveRecord::Migration
   end
 
   def self.down
-    remove_column   :users,             :linkedin_url
-    remove_column   :users,             :linkedin_token
-    remove_column   :users,             :linkedin_secret
-    remove_column   :groups ,           :installation_id
   end
 end

@@ -69,41 +69,5 @@ class AddBasketScorecard < ActiveRecord::Migration
   end
 
   def self.down
-    remove_column    :matches,      :field_goal_attempt            
-    remove_column    :matches,      :field_goal_made                
-    remove_column    :matches,      :free_throw_attempt            
-    remove_column    :matches,      :free_throw_made                
-    remove_column    :matches,      :three_point_attempt           
-    remove_column    :matches,      :three_point_made                      
-    remove_column    :matches,      :rebounds_defense                
-    remove_column    :matches,      :rebounds_offense                    
-    remove_column    :matches,      :minutes_played                  
-
-    remove_column    :matches,      :assists                         
-    remove_column    :matches,      :steals                          
-    remove_column    :matches,      :blocks                          
-    remove_column    :matches,      :turnovers                       
-    remove_column    :matches,      :personal_fouls                  
-
-    remove_column    :matches,      :started                  
-
-    # # basketball stats for scorcard
-    remove_column    :scorecards,   :field_goal_attempt            
-    remove_column    :scorecards,   :field_goal_made               
-    remove_column    :scorecards,   :free_throw_attempt            
-    remove_column    :scorecards,   :free_throw_made              
-    remove_column    :scorecards,   :three_point_attempt           
-    remove_column    :scorecards,   :three_point_made           
-    remove_column    :scorecards,   :rebounds_defense                
-    remove_column    :scorecards,   :rebounds_offense                    
-    remove_column    :scorecards,   :minutes_played                  
-
-    remove_column    :scorecards,   :assists                         
-    remove_column    :scorecards,   :steals                          
-    remove_column    :scorecards,   :blocks                          
-    remove_column    :scorecards,   :turnovers                       
-    remove_column    :scorecards,   :personal_fouls                  
-
-    remove_column    :scorecards,   :started                   
   end
 end

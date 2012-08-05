@@ -12,10 +12,5 @@ class RemoveUnneededFields < ActiveRecord::Migration
   end
 
   def self.down
-    add_column      :groups,        :technical,    :integer
-    add_column      :groups,        :physical,    :integer
-
-    add_column      :blogs,         :user_id,    :integer
-    add_column      :blogs,         :group_id,    :integer
   end
 end

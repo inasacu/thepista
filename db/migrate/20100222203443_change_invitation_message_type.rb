@@ -4,6 +4,5 @@ class ChangeInvitationMessageType < ActiveRecord::Migration
   end
 
   def self.down
-    change_column   :invitations,     :message,     :string
   end
 end

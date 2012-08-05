@@ -7,6 +7,5 @@ class CreateConversations < ActiveRecord::Migration
   end
 
   def self.down
-    drop_table :conversations
   end
 end

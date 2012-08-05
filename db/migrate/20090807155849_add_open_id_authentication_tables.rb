@@ -14,7 +14,5 @@ class AddOpenIdAuthenticationTables < ActiveRecord::Migration
   end
 
   def self.down
-    drop_table :open_id_authentication_associations
-    drop_table :open_id_authentication_nonces
   end
 end

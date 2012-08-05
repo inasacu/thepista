@@ -30,6 +30,5 @@ class CreateScorecards < ActiveRecord::Migration
   end
 
   def self.down
-    drop_table :scorecards
   end
 end

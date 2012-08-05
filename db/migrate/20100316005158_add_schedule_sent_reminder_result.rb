@@ -5,7 +5,5 @@ class AddScheduleSentReminderResult < ActiveRecord::Migration
   end
 
   def self.down
-      remove_column      :schedules,       :send_reminder_at
-      remove_column      :schedules,       :send_result_at
   end
 end

@@ -7,9 +7,5 @@ class AddTeammateSubItem < ActiveRecord::Migration
   end
 
   def self.down
-    remove_column     :teammates,     :sub_item_id
-    remove_column     :teammates,     :sub_item_type
-    remove_column     :casts,         :archive
-    remove_column     :cups,          :club
   end
 end

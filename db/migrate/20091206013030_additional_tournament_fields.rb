@@ -12,12 +12,5 @@ class AdditionalTournamentFields < ActiveRecord::Migration
   end
 
   def self.down
-    remove_column   :blogs,         :tournament_id
-    remove_column   :entries,       :tournament_id
-    remove_column   :comments,      :tournament_id
-    remove_column   :teammates,     :tournament_id
-    remove_column   :forums,        :meet_id
-    
-    add_column      :forums,         :practice_id,      :integer
   end
 end

@@ -16,10 +16,5 @@ class AddUsersPasswordResetFields < ActiveRecord::Migration
   end
 
   def self.down
-    remove_column 	:users, 	:perishable_token  
-		remove_column 	:users, 	:email  
-		add_column		:users, 	:default_email,          :boolean,     :default => true
-		add_column		:users, 	:default_available,      :booleean,     :default => true
-		add_column		:groups, 	:default_available,      :booleean,     :default => true
   end
 end

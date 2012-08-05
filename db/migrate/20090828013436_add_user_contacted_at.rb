@@ -4,6 +4,5 @@ class AddUserContactedAt < ActiveRecord::Migration
   end
 
   def self.down
-    remove_column   :users,   :last_contacted_at
   end
 end

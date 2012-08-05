@@ -4,6 +4,5 @@ class AddScheduleSendCommentAtField < ActiveRecord::Migration
   end
 
   def self.down
-      remove_column      :schedules,       :send_comment_at
   end
 end

@@ -6,8 +6,5 @@ class RemoveFeePaymentFields < ActiveRecord::Migration
   end
 
   def self.down
-    add_column      :fees,      :schedule_id,     :integer
-    add_column      :fees,      :group_id,     :integer
-    add_column      :fees,      :user_id,     :integer
   end
 end

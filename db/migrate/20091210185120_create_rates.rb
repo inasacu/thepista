@@ -14,6 +14,5 @@ class CreateRates < ActiveRecord::Migration
   end
 
   def self.down
-    drop_table :rates
   end
 end

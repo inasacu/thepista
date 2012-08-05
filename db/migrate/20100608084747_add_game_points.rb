@@ -8,10 +8,6 @@ class AddGamePoints < ActiveRecord::Migration
   end
 
   def self.down
-    remove_column  :games,       :points_for_draw
-    remove_column  :games,       :points_for_goal_difference
-    remove_column  :games,       :points_for_goal_total
-    remove_column  :games,       :points_for_winner
   end
 end
 

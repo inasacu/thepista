@@ -11,6 +11,5 @@ class CreateSessions < ActiveRecord::Migration
   end
 
   def self.down
-    drop_table :sessions
   end
 end

@@ -10,6 +10,5 @@ class CreateAnnouncements < ActiveRecord::Migration
   end
 
   def self.down
-    drop_table :announcements
   end
 end

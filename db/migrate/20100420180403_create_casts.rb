@@ -15,6 +15,5 @@ class CreateCasts < ActiveRecord::Migration
   end
 
   def self.down
-    drop_table :casts
   end
 end

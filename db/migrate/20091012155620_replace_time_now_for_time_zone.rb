@@ -4,6 +4,5 @@ class ReplaceTimeNowForTimeZone < ActiveRecord::Migration
   end
 
   def self.down
-     change_column  :matches,    :status_at,     :datetime,       :default => Time.now
   end
 end

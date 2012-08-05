@@ -5,7 +5,5 @@ class AddBlogFieldItem < ActiveRecord::Migration
   end
 
   def self.down
-    remove_column     :blogs,           :item_id
-    remove_column     :blogs,           :item_type
   end
 end

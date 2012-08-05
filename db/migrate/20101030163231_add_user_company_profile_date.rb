@@ -7,7 +7,5 @@ class AddUserCompanyProfileDate < ActiveRecord::Migration
   end
 
   def self.down
-    remove_column  :users,   :profile_at
-    remove_column  :users,   :company
   end
 end

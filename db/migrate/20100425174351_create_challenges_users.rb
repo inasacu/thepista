@@ -9,7 +9,6 @@ class CreateChallengesUsers < ActiveRecord::Migration
   end
 
   def self.down
-    drop_table :challenges_users
   end
 end
 

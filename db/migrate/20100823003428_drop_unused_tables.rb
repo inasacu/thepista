@@ -7,7 +7,7 @@ class DropUnusedTables < ActiveRecord::Migration
     drop_table :feeds
     drop_table :entries
     drop_table :posts
-    drop_table :practice_attendees
+    # drop_table :practice_attendees
     drop_table :practices
     drop_table :tournaments
     drop_table :tournaments_users

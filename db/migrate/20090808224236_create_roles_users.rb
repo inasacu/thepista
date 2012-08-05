@@ -9,6 +9,5 @@ class CreateRolesUsers < ActiveRecord::Migration
   end
 
   def self.down
-    drop_table :roles_users
   end
 end

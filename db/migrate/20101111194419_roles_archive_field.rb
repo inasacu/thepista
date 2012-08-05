@@ -17,11 +17,5 @@ class RolesArchiveField < ActiveRecord::Migration
   end
 
   def self.down
-    remove_column   :roles,         :archive
-    remove_column   :roles_users,   :archive
-    remove_column   :forums,        :archive
-    remove_column   :blogs,         :archive
-    remove_column   :comments,      :archive
-    remove_column   :slugs,         :archive
   end
 end

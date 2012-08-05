@@ -9,6 +9,5 @@ class CreateGroupsMarkers < ActiveRecord::Migration
   end
 
   def self.down
-    drop_table :groups_markers
   end
 end

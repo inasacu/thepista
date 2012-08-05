@@ -44,6 +44,5 @@ class CreateGroups < ActiveRecord::Migration
   end
 
   def self.down
-    drop_table :groups
   end
 end

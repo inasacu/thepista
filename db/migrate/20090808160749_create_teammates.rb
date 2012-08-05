@@ -18,6 +18,5 @@ class CreateTeammates < ActiveRecord::Migration
   end
 
   def self.down
-    drop_table :teammates
   end
 end

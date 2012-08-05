@@ -9,6 +9,5 @@ class CreateCities < ActiveRecord::Migration
   end
 
   def self.down
-    drop_table :cities
   end
 end

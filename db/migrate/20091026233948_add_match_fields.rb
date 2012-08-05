@@ -7,9 +7,5 @@ class AddMatchFields < ActiveRecord::Migration
   end
 
   def self.down
-    remove_column         :matches,         :position_id
-    remove_column         :matches,         :technical
-    remove_column         :matches,         :physical
-    change_column         :matches,         :type_id,            :integer
   end
 end

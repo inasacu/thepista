@@ -5,7 +5,5 @@ class AddRatingAverageToUser < ActiveRecord::Migration
   end
 
   def self.down
-    remove_column :matches, :rating_average_technical
-    remove_column :matches, :rating_average_physical
   end
 end

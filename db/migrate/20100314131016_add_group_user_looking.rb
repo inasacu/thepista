@@ -6,8 +6,5 @@ class AddGroupUserLooking < ActiveRecord::Migration
   end
 
   def self.down
-    remove_column     :schedules,     :reminder_at
-    remove_column     :groups,        :looking
-    remove_column     :users,         :looking
   end
 end

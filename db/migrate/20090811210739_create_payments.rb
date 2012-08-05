@@ -17,6 +17,5 @@ class CreatePayments < ActiveRecord::Migration
   end
 
   def self.down
-    drop_table :payments
   end
 end

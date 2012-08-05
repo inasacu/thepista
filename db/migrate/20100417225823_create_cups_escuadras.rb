@@ -9,6 +9,5 @@ class CreateCupsEscuadras < ActiveRecord::Migration
   end
 
   def self.down
-    drop_table :cups_escuadras
   end
 end

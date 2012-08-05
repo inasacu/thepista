@@ -39,6 +39,5 @@ class CreateGames < ActiveRecord::Migration
   end
 
   def self.down
-    drop_table :games
   end
 end

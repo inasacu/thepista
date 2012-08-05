@@ -4,6 +4,5 @@ class AddQueueToDelayedJobs < ActiveRecord::Migration
   end
 
   def self.down
-    remove_column :delayed_jobs, :queue
   end
 end

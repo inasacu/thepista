@@ -27,6 +27,5 @@ class CreateVenues < ActiveRecord::Migration
   end
 
   def self.down
-    drop_table :venues
   end
 end

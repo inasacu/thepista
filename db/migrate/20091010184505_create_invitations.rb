@@ -12,6 +12,5 @@ class CreateInvitations < ActiveRecord::Migration
   end
 
   def self.down
-    drop_table :invitations
   end
 end

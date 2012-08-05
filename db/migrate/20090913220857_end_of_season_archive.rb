@@ -3,7 +3,6 @@ class EndOfSeasonArchive < ActiveRecord::Migration
     add_column      :users,         :active,              :boolean,         :default => true
   end
 
-  def self.down   
-    remove_column   :users,         :active    
+  def self.down     
   end
 end
