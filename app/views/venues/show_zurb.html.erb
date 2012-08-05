@@ -24,7 +24,7 @@
 					<%= render_show_detail_zurb(:marker, marker_link(@venue.marker)) %>
 					
 					<%	@venue.installations.each do |installation| 
-						the_label = first ? 'installations' : 'blank'
+						the_label = first ? 'reservations' : 'blank'
 						first = false
 						the_reservation_link = link_to(installation.name, reservations_path(:id => installation))
 						%>		

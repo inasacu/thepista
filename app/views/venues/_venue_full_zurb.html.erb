@@ -16,7 +16,7 @@
 			<%= option_image_small_link('message') %>&nbsp;&nbsp;<%= link_to(label_name(:send_message_to), new_message_path(:venue_id => venue)) %><br/>
 			<%= option_image_small_link('reservation') %>&nbsp;&nbsp;
 				<strong>
-				<%= link_to "#{label_name(:reservations)}".html_safe, installations_path(:id => venue) %>
+				<%= link_to "#{label_name(:reservations)}".html_safe, venue_path(venue) %>
 				</strong>			
 		</span>
    	</td>
