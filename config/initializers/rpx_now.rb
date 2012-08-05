@@ -14,7 +14,7 @@ end
 # thepista.heroku.com
 if Rails.env.staging?
 	ENV['RPX_API_KEY'] = "59b7bd4a615a2c17439b6a4ca064a1d5f482944e" 
-	ENV['RPX_APP_NAME'] = "thepista-heroku"
+	ENV['RPX_APP_NAME'] = "thepista-herokuapp"
 end
 
 # haypista.com
