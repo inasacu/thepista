@@ -1,7 +1,6 @@
 class AddIndexBestPractice < ActiveRecord::Migration
   def self.up
     add_index :activities, :user_id
-    add_index :blogs, :item_id
     add_index :casts, :challenge_id
     add_index :casts, :user_id
     add_index :casts, :game_id

@@ -1,14 +1,13 @@
 class AdditionalTournamentFields < ActiveRecord::Migration
   def self.up
-    add_column      :blogs,         :tournament_id,     :integer
-    add_column      :entries,       :tournament_id,     :integer
-    add_column      :comments,      :tournament_id,     :integer
-    add_column      :teammates,     :tournament_id,     :integer 
-    
-    add_column      :forums,        :meet_id,           :integer
-    remove_column   :forums,        :practice_id
-      
-    add_index       :teammates,     :tournament_id
+		drop_table		:comments
+		# drop_table		:rates
+		drop_table 		:blogs
+		drop_table 		:forums
+		drop_table		:slugs 
+		drop_table 		:classifieds
+		# drop_table 		:taggings
+		# drop_table 		:tags
   end
 
   def self.down
