@@ -1,9 +1,5 @@
 class AdditionalTournamentFields < ActiveRecord::Migration
   def self.up
-
-		
-		
-		
 		
 	  create_table "announcements", :force => true do |t|
 	    t.text     "message"
