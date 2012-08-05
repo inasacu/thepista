@@ -133,9 +133,9 @@ task :the_archive_dependent => :environment do |t|
 	the_archives = set_all_to_archive(the_archives)
 		
 	# TEAMMATES
-	@archive = Teammate.find(:all, :conditions => ["archive = false and created_at < ?", Time.zone.now - 365])
-	@archive.each {|archive_file| the_archives << archive_file}
-	the_archives = set_all_to_archive(the_archives)
+	# @archive = Teammate.find(:all, :conditions => ["archive = false and created_at < ?", Time.zone.now - 365])
+	# @archive.each {|archive_file| the_archives << archive_file}
+	# the_archives = set_all_to_archive(the_archives)
 	
 end
 
