@@ -25,7 +25,7 @@ class CreateSports < ActiveRecord::Migration
     #   [10,'Hockey','futbol.gif'],
     #   [99999,'Other','futbol.gif']].each do |sport|
     #     Sport.create(:id => sport[0], :name => sport[1],  :icon => sport[2])
-    end
+    # end
     
     
     # update sports set id = 99999 where id = 161
