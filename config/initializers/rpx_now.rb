@@ -1,4 +1,7 @@
 
+# the way to add additional domains to the janrain:  go to the domain: haypista.com and add additional domains
+
+
 # thepista.local
 if Rails.env.development?
 	ENV['RPX_API_KEY'] = 'f7bbfeed95a9e71fe994397d496614da8972aa2c'
