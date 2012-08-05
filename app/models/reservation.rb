@@ -88,8 +88,9 @@ class Reservation < ActiveRecord::Base
                                    item_id is not null and item_type is not null", venue, installation, reservation.starts_at, reservation.ends_at]).nil?
   end
 
-	def self.get_reservation_first_to_last_month(first_day, last_day)
-		find(:all, :conditions => ["reservations.archive = false and reservations.starts_at >= ? and reservations.ends_at <= ?", first_day, last_day], :order => 'starts_at')
+	def self.get_reservation_first_to_last_month(first_day, last_day, installation)
+		find(:all, :conditions => ["installation_id = ? and reservations.archive = false and reservations.starts_at >= ? and 
+			reservations.ends_at <= ?", installation, first_day, last_day], :order => 'starts_at')
 	end
 		
   private

@@ -79,8 +79,7 @@
 	(first_week_blank_day_counter...DAYS_IN_A_WEEK).each do |x|	
 
 		the_day_class, the_event_dot_color, the_event_open_color, the_week = 
-		get_the_event_html(@venue, @the_items, @the_timetables, @the_holidays,
-		the_schedule_day_numbers, the_reservation_day_numbers, the_holiday_day_numbers,
+		get_the_event_html(@venue, @the_items, the_reservation_day_numbers, 
 		is_same_day, @day_of_month_counter, the_current_day_number, is_same_month_year, the_week)
 
 	end
@@ -93,8 +92,7 @@
 		DAYS_IN_A_WEEK.times.each do |x|
 			is_less_than_day = (@day_of_month_counter < last_week_blank_day_counter)
 			the_day_class, the_event_dot_color, the_event_open_color, the_week = 
-			get_the_event_html(@venue, @the_items, @the_timetables, @the_holidays,
-			the_schedule_day_numbers, the_reservation_day_numbers, the_holiday_day_numbers,
+			get_the_event_html(@venue, @the_items, the_reservation_day_numbers, 
 			is_same_day, @day_of_month_counter, the_current_day_number, is_same_month_year, the_week, is_less_than_day)
 
 		end
@@ -109,8 +107,7 @@
 	(last_week_blank_day_counter..the_last_day_of_month).each do |x|	
 
 		the_day_class, the_event_dot_color, the_event_open_color, the_week = 
-		get_the_event_html(@venue, @the_items, @the_timetables, @the_holidays,
-		the_schedule_day_numbers, the_reservation_day_numbers, the_holiday_day_numbers,
+		get_the_event_html(@venue, @the_items, the_reservation_day_numbers, 
 		is_same_day, @day_of_month_counter, the_current_day_number, is_same_month_year, the_week)
 
 
