@@ -1,12 +1,9 @@
-# require "base64"
-
 class ReservationsController < ApplicationController
   before_filter :require_user
 
   before_filter   :get_installation,    :only => [:new, :index]
   before_filter   :get_reservation,     :only => [:show, :edit, :update, :destroy]
   before_filter   :has_manager_access,  :only => [:edit, :update, :destroy]
-	
 
 
   def index  
@@ -17,22 +14,6 @@ class ReservationsController < ApplicationController
 		else
 			@current_user_zone = Time.zone.now
 		end
-
-    # @time_frame = (@installation.timeframe).hour
-    # MINUTES_TO_RESERVATION  = 15.minutes
-    
-    # # @first_day = @current_user_zone
-    # # last_day = @first_day + 7.days
-    # 
-    # starts_at = convert_to_datetime_zone(@first_day, @installation.starts_at.utc)
-    # ends_at = convert_to_datetime_zone(last_day.midnight, @installation.ends_at.utc)
-    # 
-    # @timetables = Timetable.installation_timetable(@installation)
-    # 
-    # @reservations = Reservation.weekly_reservations(@installation, starts_at, ends_at)   
-    # @schedules = Schedule.weekly_reservations(@venue.marker, @installation, starts_at, ends_at) 
-    # @holidays = Holiday.holiday_week_day(@venue, starts_at, ends_at) 
-    # @venue_min_max_timetable = Timetable.venue_min_max_timetable(@venue)
 
     render @the_template  
   end

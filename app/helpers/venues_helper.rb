@@ -207,7 +207,7 @@ module VenuesHelper
 						end
 					end 
 
-					# reserved = true if (is_holiday and !holiday_hour)
+					reserved = true if (is_holiday and !holiday_hour)
 
 					unless reserved 
 

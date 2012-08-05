@@ -1,3 +1,7 @@
+<%
+	is_beta_module = ['venue', 'installation', 'reservation']
+%>
+
 <% if current_user.id == 9999 %>
 	<div class="alert-box"><%= @user_agent %></div>
 <% end %>
@@ -21,3 +25,7 @@
 	<div class="alert-box error"><%= flash[:error] %></div>
 <% end %>
 
+
+<% if is_beta_module.include?(get_the_controller) %>
+	<div class="alert-box"><%= "Módulo en fase de pruebas..." %></div>
+<% end %>

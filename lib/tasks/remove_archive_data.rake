@@ -47,6 +47,12 @@ task :the_remove_archive_data => :environment do |t|
   @archive = RolesUsers.find(:all, :conditions => ["archive = true"])
   @archive.each {|archive_file| the_archives << archive_file}
 
+  @archive = Group.find(:all, :conditions => ["archive = true"])
+  @archive.each {|archive_file| the_archives << archive_file}
+
+  @archive = Teammate.find(:all, :conditions => ["archive = true"])
+  @archive.each {|archive_file| the_archives << archive_file}
+
 
   the_archives.each do |the_archive|
     puts "#{the_archive.id}  remove #{the_archive.class.to_s} archived files removed (#{counter})"

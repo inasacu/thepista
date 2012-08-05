@@ -11,7 +11,7 @@
 	the_first_day_of_month = 1	
 	the_last_day_of_month = days_in_month(@current_user_zone.month)
 	
-	@the_schedules = Schedule.get_schedule_first_to_last_month(@first_day, @last_day, current_user)
+	@the_schedules = Schedule.get_schedule_first_to_last_month(@first_day, @last_day, @installation)
 	@the_reservations = Reservation.get_reservation_first_to_last_month(@first_day, @last_day, @installation)
 	@the_holidays = Holiday.get_holiday_first_to_last_month(@first_day, @last_day)
 	

@@ -132,7 +132,11 @@ task :the_archive_dependent => :environment do |t|
 	@archive.each {|archive_file| the_archives << archive_file}
 	the_archives = set_all_to_archive(the_archives)
 		
-
+	# TEAMMATES
+	@archive = Teammate.find(:all, :conditions => ["archive = false and created_at < ?", Time.zone.now - 365])
+	@archive.each {|archive_file| the_archives << archive_file}
+	the_archives = set_all_to_archive(the_archives)
+	
 end
 
 
@@ -141,7 +145,8 @@ def set_all_to_archive(the_archives)
 	counter = 1
 	the_archives.each do |the_archive|
 		puts "#{the_archive.id}  remove #{the_archive.class.to_s} archived files removed (#{counter})"
-		the_archive.destroy
+		the_archive.archive = true
+		the_archive.save
 		counter += 1
 	end
 

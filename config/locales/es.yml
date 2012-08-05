@@ -1241,7 +1241,7 @@ es:
      request_petition: Nueva petición   
      request_invitation: Pide una invitación   
      reservation:  Reserva
-     reservations: Reserva
+     reservations: Reservas
      reservations_add:  Reservas
      reservations_all:  Todos las reservas
      reservations_available:  Todos las reservas
@@ -1462,8 +1462,8 @@ es:
      subscription_at_match: Finalización para convocarse el abonado   
      subscription_at_description: (¿Ha que hora termina la opción para apuntarse a un evento el abonado...(ej- 1 dia antes del evento)) 
      subscription_false:  Jugador no abonado.
-     subscription_group_true:  Equipo Abonado
-     subscription_group_false:  Equipo no Abonado
+     subscription_group_true:  Abonado
+     subscription_group_false:  Abonado
      subscription_true:  Jugador abonado
      subscriptions_true:  Jugadores abonados
      subscriptions_false:  Jugadores no abonados

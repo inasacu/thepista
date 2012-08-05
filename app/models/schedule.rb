@@ -227,6 +227,10 @@ class Schedule < ActiveRecord::Base
     self.group.second_team
   end
 
+	def installation
+		self.group.installation.nil? ? (return self.group.marker) : (return self.group.installation)
+	end
+
   def home_score
     return Match.find_score(self).group_score
   end
@@ -279,9 +283,10 @@ class Schedule < ActiveRecord::Base
   end
   
 
-	def self.get_schedule_first_to_last_month (first_day, last_day, user)
-		find(:all, :conditions => ["schedules.archive = false and schedules.starts_at >= ? and 
-																schedules.ends_at <= ? and schedules.group_id in (select group_id from groups_users where user_id = ?)", first_day, last_day, user], :order => 'starts_at')
+	def self.get_schedule_first_to_last_month (first_day, last_day, installation)
+		find(:all, :joins => "JOIN groups on groups.id = schedules.group_id",
+				:conditions => ["schedules.archive = false and schedules.starts_at >= ? and schedules.ends_at <= ? and 
+											  groups.archive = false and groups.installation_id = ?", first_day, last_day, installation], :order => 'starts_at')
 	end
 				
 				

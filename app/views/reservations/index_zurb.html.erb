@@ -5,7 +5,6 @@
 	the_new_label = "#{the_label} (#{item_name_link(@installation)})"
 	left_label = ""
 	right_label = "#{item_name_link(@installation)}<br/>#{nice_day_time_wo_year_exact(Time.zone.now)}".html_safe
-	first = true
 %>
 
 
@@ -15,8 +14,8 @@
 			<tr>
 				
 			<%	@venue.installations.each do |installation| %>			
-				<td><%= link_to(first ? right_label : installation.name, reservations_path(:id => installation), set_tab_navigation_active('reservation_index')) %></td>
-			<% first= false; end %>								
+				<td><%= link_to(installation.name, reservations_path(:id => installation), set_tab_navigation_active('reservation_index')) %></td>
+			<% end %>								
 					
 			</tr>
 		</table>
@@ -24,7 +23,9 @@
 </div>
 
 <hr />
+<%= content_tag :h6, right_label, :class => "subheader" %>
+<hr />
 
-<%= render 'shared/calendar_zurb' %>
+<%= render 'reservations/calendar_zurb' %>
 
 
