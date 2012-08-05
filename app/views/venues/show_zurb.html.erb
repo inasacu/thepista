@@ -21,7 +21,7 @@
 					<%= render_show_detail_zurb(:name, item_name_link(@venue)) %>
 					<%= render_show_detail_zurb(:city, @venue.marker.city) %>
 					<%= render_show_detail_zurb(:time_zone,  "#{nice_simple_time_at(@venue.starts_at)} - #{nice_simple_time_at(@venue.ends_at)}") %>
-					<%= render_show_detail_zurb(:marker, marker_link(@venue.marker)) %>
+					<%#= render_show_detail_zurb(:marker, marker_link(@venue.marker)) %>
 					
 					<%	@venue.installations.each do |installation| 
 						the_label = first ? 'reservations' : 'blank'
