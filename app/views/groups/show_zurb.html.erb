@@ -50,6 +50,9 @@
 		(is_user_manager ? link_to(the_automatic_petition, set_group_auto_path(:id => @group)) : the_automatic_petition)) %>
 
 		<%= render_show_detail_zurb(:users, t(:has_group_users, :count => @group.users.count)) %>
+		<%= render_show_detail_zurb(:blank, t(:has_group_active_users, 
+								:count => object_counter(Scorecard.get_active_players(@group)))) %>
+		
 		<%= render_show_detail_zurb(:schedules, t(:has_group_schedules, :count => @group.schedules.count)) unless @group.schedules.blank? %>
 		<%= render_show_detail_zurb(:points_for_win_all, "#{@group.points_for_win.to_i} / #{@group.points_for_draw.to_i} / #{@group.points_for_lose.to_i}") %>		
 		<%= render_show_detail_zurb(:player_limit, @group.player_limit) %>

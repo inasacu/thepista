@@ -724,7 +724,11 @@ en:
      has_group_users: 
         zero:  "Team has no players."        
         one:  "Team has 1 player." 
-        other: "Team has %{count} players."
+        other: "Team has %{count} players."        
+     has_group_active_users: 
+        zero:  ""        
+        one:  "Team has 1 active player." 
+        other: "Team has %{count} active players."
      has_tournament_rounds:
         zero: "Tournament does not have rounds." 
         one:  "Tournament has 1 round." 

@@ -731,7 +731,11 @@ es:
      has_group_users:      
         zero:  "Este equipo no tiene jugadores." 
         one:  "Este equipo tiene 1 jugador." 
-        other: "Este equipo tiene %{count} jugadores."
+        other: "Este equipo tiene %{count} jugadores."        
+     has_group_active_users:      
+        zero:  "" 
+        one:  "Este equipo tiene 1 jugador activo." 
+        other: "Este equipo tiene %{count} jugadores activos."
      has_tournament_rounds:
         zero: "Este torneo no tiene fases." 
         one:  "Este torneo tiene 1 fase." 

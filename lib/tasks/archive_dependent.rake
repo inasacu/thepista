@@ -6,7 +6,7 @@ task :the_archive_dependent => :environment do |t|
 	ActiveRecord::Base.establish_connection(Rails.env.to_sym)
 
 	# archive group 
-	group_id = [17, 18]  
+	group_id = [14]  
 	the_archives = []
 
 	# GROUPS
@@ -89,12 +89,12 @@ task :the_archive_dependent => :environment do |t|
 	the_archives = set_all_to_archive(the_archives)
 
 	# SCORECARD
-	@archive = Scorecard.find(:all, :conditions => ["archive = false and group_id in (?)", the_archive_true])
-	@archive.each {|archive_file| the_archives << archive_file}
-
-	@archive = Scorecard.find(:all, :conditions => ["archive = false and group_id not in (?)", the_archive_false])
-	@archive.each {|archive_file| the_archives << archive_file}
-	the_archives = set_all_to_archive(the_archives)
+	# @archive = Scorecard.find(:all, :conditions => ["archive = false and group_id in (?)", the_archive_true])
+	# @archive.each {|archive_file| the_archives << archive_file}
+	# 
+	# @archive = Scorecard.find(:all, :conditions => ["archive = false and group_id not in (?)", the_archive_false])
+	# @archive.each {|archive_file| the_archives << archive_file}
+	# the_archives = set_all_to_archive(the_archives)
 
 	# SCHEDULES
 	@archive = Schedule.find(:all, :conditions => ["archive = false and group_id in (?)", the_archive_true])

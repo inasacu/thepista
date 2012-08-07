@@ -27,15 +27,20 @@
 						#{content_tag(:span, group.sport.name)}"
 	the_manager_city = "#{item_list(group.all_the_managers)} <br/> #{I18n.t(:has_group_users, :count => object_counter(group.users))}"
 	the_scorecard_players_count = "#{link_to(label_name(:scorecard), scorecard_path(:id => group))}"
+	the_active_players = "<br/>#{I18n.t(:has_group_active_users, 
+										:count => object_counter(Scorecard.get_active_players(group)))}".html_safe
+	
+	the_manager_city = "#{the_manager_city}#{the_active_players}"
 -%>
 
 
  <tr>  
-	<%#= view_schedule_icon(group.schedules.first) %>
 	<%= set_content_tag_safe(:td, item_image_link_small(group)) %>
-	<%= set_content_tag_safe(:td, the_group_sport, :class => 'name_and_date') %>
-	<%= set_content_tag_safe(:td, the_manager_city, :class => 'name_and_date') %>
+	<%= set_content_tag_safe(:td, the_group_sport) %>
+	<%= set_content_tag_safe(:td, the_manager_city) %>
 	<%= set_content_tag_safe(:td, the_scorecard_players_count) %>
+	
+	
 	
 
    <% if display_icons %>

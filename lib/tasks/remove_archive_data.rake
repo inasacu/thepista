@@ -5,6 +5,20 @@ task :the_remove_archive_data => :environment do |t|
 
   ActiveRecord::Base.establish_connection(Rails.env.to_sym)
 
+	
+	schedule_id = 227	
+	group_id = 14
+	
+	@the_item = Schedule.find(schedule_id)
+	@the_item.archive = false;
+	@the_item.save
+	
+	@the_items = Match.find(:all, :conditions => ["schedule_id = ?", schedule_id])
+	@the_items.each do |item|
+		item.archive = false
+		item.save
+	end
+	
   the_archives = []
   counter = 1
 
@@ -29,9 +43,6 @@ task :the_remove_archive_data => :environment do |t|
   @archive = Match.find(:all, :conditions => ["archive = true"])
   @archive.each {|archive_file| the_archives << archive_file}
 
-  @archive = Scorecard.find(:all, :conditions => ["archive = true"])
-  @archive.each {|archive_file| the_archives << archive_file}
-
   @archive = Fee.find(:all, :conditions => ["archive = true"])
   @archive.each {|archive_file| the_archives << archive_file}
 
@@ -47,12 +58,15 @@ task :the_remove_archive_data => :environment do |t|
   @archive = RolesUsers.find(:all, :conditions => ["archive = true"])
   @archive.each {|archive_file| the_archives << archive_file}
 
-  @archive = Group.find(:all, :conditions => ["archive = true"])
-  @archive.each {|archive_file| the_archives << archive_file}
-
-  # @archive = Teammate.find(:all, :conditions => ["archive = true"])
-  # @archive.each {|archive_file| the_archives << archive_file}
-
+	
+	@the_item = Group.find(group_id)
+	@the_item.archive = false;
+	@the_item.save
+	
+	the_match = Match.find(:first, :conditions => ["schedule_id = ?", schedule_id], :order =>"matches.id")
+	the_user = @the_item.group.all_the_managers.first
+	Match.update_match_details(the_match, the_user)
+	
 
   the_archives.each do |the_archive|
     puts "#{the_archive.id}  REMOVE #{the_archive.class.to_s} archived files removed (#{counter})"

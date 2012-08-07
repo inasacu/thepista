@@ -313,6 +313,18 @@ class Scorecard < ActiveRecord::Base
       return nil
     end
   end
+	
+
+	def self.get_active_players(group)
+		the_schedules = Schedule.find(:all, :conditions => ["group_id = ? and played = true", group], :order => "starts_at desc")
+    played_games = 0
+    the_schedules.each {|schedule| played_games += 1 }
+
+		played_games = 1 if played_games == 0
+		
+		find(:all, :select => "(100 * scorecards.played / #{played_games}) as coeficient_played",
+							:conditions => ["scorecards.group_id = ? and (100 * scorecards.played / 1) > 19", group])
+	end
   
   def self.latest_items(items, group)
       find(:all, :select => "distinct scorecards.id, scorecards.group_id, scorecards.user_id, scorecards.played, 
