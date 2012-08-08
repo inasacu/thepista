@@ -3,7 +3,7 @@
 <plist version="1.0">
 <dict>
 	<key>currentDocument</key>
-	<string>db/migrate/20081103171327_create_users.rb</string>
+	<string>lib/tasks/remove_archive_data.rake</string>
 	<key>documents</key>
 	<array>
 		<dict>
@@ -17,8 +17,6 @@
 			<string>doc</string>
 		</dict>
 		<dict>
-			<key>expanded</key>
-			<true/>
 			<key>name</key>
 			<string>config</string>
 			<key>regexFolderFilter</key>
@@ -27,8 +25,6 @@
 			<string>config</string>
 		</dict>
 		<dict>
-			<key>expanded</key>
-			<true/>
 			<key>name</key>
 			<string>db</string>
 			<key>regexFolderFilter</key>
@@ -37,8 +33,6 @@
 			<string>db</string>
 		</dict>
 		<dict>
-			<key>expanded</key>
-			<true/>
 			<key>name</key>
 			<string>app</string>
 			<key>regexFolderFilter</key>
@@ -209,35 +203,49 @@
 			<key>firstVisibleLine</key>
 			<integer>0</integer>
 		</dict>
-		<key>db/migrate/20081103171327_create_users.rb</key>
+		<key>lib/tasks/archive_dependent.rake</key>
 		<dict>
 			<key>caret</key>
 			<dict>
 				<key>column</key>
-				<integer>0</integer>
+				<integer>13</integer>
 				<key>line</key>
-				<integer>805</integer>
+				<integer>0</integer>
 			</dict>
 			<key>columnSelection</key>
 			<false/>
 			<key>firstVisibleColumn</key>
 			<integer>0</integer>
 			<key>firstVisibleLine</key>
-			<integer>751</integer>
+			<integer>0</integer>
 			<key>selectFrom</key>
 			<dict>
 				<key>column</key>
-				<integer>0</integer>
+				<integer>62</integer>
 				<key>line</key>
 				<integer>0</integer>
 			</dict>
 			<key>selectTo</key>
 			<dict>
 				<key>column</key>
+				<integer>13</integer>
+				<key>line</key>
+				<integer>0</integer>
+			</dict>
+		</dict>
+		<key>lib/tasks/remove_archive_data.rake</key>
+		<dict>
+			<key>caret</key>
+			<dict>
+				<key>column</key>
 				<integer>0</integer>
 				<key>line</key>
-				<integer>805</integer>
+				<integer>59</integer>
 			</dict>
+			<key>firstVisibleColumn</key>
+			<integer>0</integer>
+			<key>firstVisibleLine</key>
+			<integer>42</integer>
 		</dict>
 		<key>log/development.log</key>
 		<dict>
@@ -287,11 +295,12 @@
 	<key>openDocuments</key>
 	<array>
 		<string>log/development.log</string>
-		<string>db/migrate/20081103171327_create_users.rb</string>
+		<string>lib/tasks/remove_archive_data.rake</string>
+		<string>lib/tasks/archive_dependent.rake</string>
 	</array>
 	<key>showFileHierarchyDrawer</key>
 	<true/>
 	<key>windowFrame</key>
-	<string>{{0, 0}, {1673, 778}}</string>
+	<string>{{10, 46}, {1030, 732}}</string>
 </dict>
 </plist>
