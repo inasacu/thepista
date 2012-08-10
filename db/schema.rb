@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120803180051) do
+ActiveRecord::Schema.define(:version => 20120810131753) do
 
   create_table "announcements", :force => true do |t|
     t.text     "message"
@@ -55,6 +55,7 @@ ActiveRecord::Schema.define(:version => 20120803180051) do
     t.datetime "updated_at"
     t.boolean  "automatic_petition", :default => true
     t.string   "slug"
+    t.integer  "service_id",         :default => 51
   end
 
   add_index "challenges", ["cup_id"], :name => "index_challenges_on_cup_id"
@@ -250,6 +251,7 @@ ActiveRecord::Schema.define(:version => 20120803180051) do
     t.boolean  "automatic_petition", :default => true
     t.integer  "installation_id"
     t.string   "slug"
+    t.integer  "service_id",         :default => 51
   end
 
   add_index "groups", ["marker_id"], :name => "index_groups_on_marker_id"
@@ -773,6 +775,7 @@ ActiveRecord::Schema.define(:version => 20120803180051) do
     t.string   "linkedin_token"
     t.string   "linkedin_secret"
     t.string   "slug"
+    t.boolean  "validation",                              :default => false
   end
 
   add_index "users", ["email"], :name => "index_users_on_email"
