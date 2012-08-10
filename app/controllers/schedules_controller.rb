@@ -168,7 +168,7 @@ class SchedulesController < ApplicationController
     end
   end
 
-  # set the end of season, 1 august current_year + 1
+
   def edit
       set_the_template('schedules/new')
       render @the_template

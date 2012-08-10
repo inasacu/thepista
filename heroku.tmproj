@@ -217,7 +217,7 @@
 			<key>firstVisibleColumn</key>
 			<integer>0</integer>
 			<key>firstVisibleLine</key>
-			<integer>0</integer>
+			<integer>117</integer>
 			<key>selectFrom</key>
 			<dict>
 				<key>column</key>
@@ -240,12 +240,28 @@
 				<key>column</key>
 				<integer>0</integer>
 				<key>line</key>
-				<integer>59</integer>
+				<integer>1</integer>
 			</dict>
+			<key>columnSelection</key>
+			<false/>
 			<key>firstVisibleColumn</key>
 			<integer>0</integer>
 			<key>firstVisibleLine</key>
-			<integer>42</integer>
+			<integer>0</integer>
+			<key>selectFrom</key>
+			<dict>
+				<key>column</key>
+				<integer>13</integer>
+				<key>line</key>
+				<integer>0</integer>
+			</dict>
+			<key>selectTo</key>
+			<dict>
+				<key>column</key>
+				<integer>0</integer>
+				<key>line</key>
+				<integer>1</integer>
+			</dict>
 		</dict>
 		<key>log/development.log</key>
 		<dict>
@@ -295,12 +311,12 @@
 	<key>openDocuments</key>
 	<array>
 		<string>log/development.log</string>
-		<string>lib/tasks/remove_archive_data.rake</string>
 		<string>lib/tasks/archive_dependent.rake</string>
+		<string>lib/tasks/remove_archive_data.rake</string>
 	</array>
 	<key>showFileHierarchyDrawer</key>
 	<true/>
 	<key>windowFrame</key>
-	<string>{{10, 46}, {1030, 732}}</string>
+	<string>{{0, 46}, {1673, 1012}}</string>
 </dict>
 </plist>
