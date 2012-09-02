@@ -6,20 +6,20 @@ task :the_remove_archive_data => :environment do |t|
 	ActiveRecord::Base.establish_connection(Rails.env.to_sym)
 
 
-	schedule_id = 227	
+	# schedule_id = 227	
 	group_id = 14
 
-	if Rails.env.development?
-		@the_item = Schedule.find(schedule_id)
-		@the_item.archive = false;
-		@the_item.save
-	
-		@the_items = Match.find(:all, :conditions => ["schedule_id = ?", schedule_id])
-		@the_items.each do |item|
-			item.archive = false
-			item.save
-		end		
-	end
+	# if Rails.env.development?
+	# 	@the_item = Schedule.find(schedule_id)
+	# 	@the_item.archive = false;
+	# 	@the_item.save
+	# 
+	# 	@the_items = Match.find(:all, :conditions => ["schedule_id = ?", schedule_id])
+	# 	@the_items.each do |item|
+	# 		item.archive = false
+	# 		item.save
+	# 	end		
+	# end
 
 	the_archives = []
 	counter = 1
@@ -65,11 +65,11 @@ task :the_remove_archive_data => :environment do |t|
 	@the_item.archive = false
 	@the_item.save
 
-	if Rails.env.development?
-		the_match = Match.find(:first, :conditions => ["schedule_id = ?", schedule_id], :order =>"matches.id")
-		the_user = @the_item.all_the_managers.first
-		Match.update_match_details(the_match, the_user)
-	end
+	# if Rails.env.development?
+	# 	the_match = Match.find(:first, :conditions => ["schedule_id = ?", schedule_id], :order =>"matches.id")
+	# 	the_user = @the_item.all_the_managers.first
+	# 	Match.update_match_details(the_match, the_user)
+	# end
 
 	the_archives.each do |the_archive|
 		puts "#{the_archive.id}  REMOVE #{the_archive.class.to_s} archived files removed (#{counter})"

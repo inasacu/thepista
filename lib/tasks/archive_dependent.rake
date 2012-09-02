@@ -6,13 +6,13 @@ task :the_archive_dependent => :environment do |t|
 	ActiveRecord::Base.establish_connection(Rails.env.to_sym)
 
 	# archive group 
-	# group_id = [14]  
+	group_id = [14]  
 	the_archives = []
 
 	# GROUPS
-	# @archive = Group.find(:all, :conditions => ["id in (?) and archive = false", group_id])
-	# @archive.each {|archive_file| the_archives << archive_file}
-	# the_archives = set_all_to_archive(the_archives)
+	@archive = Group.find(:all, :conditions => ["id in (?) and archive = false", group_id])
+	@archive.each {|archive_file| the_archives << archive_file}
+	the_archives = set_all_to_archive(the_archives)
 	
 	
 	# CUPS
