@@ -62,9 +62,10 @@ class UserMailer < ActionMailer::Base
     @teammate						= teammate
     @subject						= "[HayPista] #{I18n.t(:request_petition)} #{I18n.t(:to_join_email)} -  #{teammate.item.name} "
 		@item								= teammate.item
-	  email_with_name 		= "#{sender.name} <#{sender.email}>"
-	
-		mail(:to => email_with_name, :subject => @subject)
+
+	  to_email_with_name 			= "#{recipient.name} <#{recipient.email}>"
+	  from_email_with_name 		= "#{sender.name} <#{sender.email}>"
+		mail(:to => to_email_with_name, :subject => @subject, :from => from_email_with_name)
   end 
     
 	def manager_join_item(teammate, recipient, sender)
@@ -84,9 +85,10 @@ class UserMailer < ActionMailer::Base
 		@teammate  					= teammate
 		@subject 						= "[HayPista] #{I18n.t(:request_petition)} #{I18n.t(:to_join_email)} -  #{teammate.item.name} "
 		@item								= teammate.item
-	  email_with_name 		= "#{sender.name} <#{sender.email}>"
-	
-		mail(:to => email_with_name, :subject => @subject)
+
+	  to_email_with_name 			= "#{recipient.name} <#{recipient.email}>"
+	  from_email_with_name 		= "#{sender.name} <#{sender.email}>"
+		mail(:to => to_email_with_name, :subject => @subject, :from => from_email_with_name)
   end
   
 
@@ -107,9 +109,10 @@ class UserMailer < ActionMailer::Base
 		@teammate  					= teammate
 		@subject 						= "[HayPista] #{I18n.t(:request_petition)} #{I18n.t(:to_join_email)} -  #{teammate.item.name} "
 		@item								= teammate.item
-	  email_with_name 		= "#{sender.name} <#{sender.email}>"
-	
-		mail(:to => email_with_name, :subject => @subject)
+
+	  to_email_with_name 			= "#{recipient.name} <#{recipient.email}>"
+	  from_email_with_name 		= "#{sender.name} <#{sender.email}>"
+		mail(:to => to_email_with_name, :subject => @subject, :from => from_email_with_name)
   end 
   
   def teammate_leave(teammate, recipient, sender)
@@ -129,9 +132,10 @@ class UserMailer < ActionMailer::Base
 		@teammate  					= teammate
 		@subject 						= "[HayPista] #{I18n.t(:petition_to_join_declined)} -  #{teammate.item.name} "
 		@item								= teammate.item
-	  email_with_name 		= "#{sender.name} <#{sender.email}>"
-	
-		mail(:to => email_with_name, :subject => @subject)    
+
+	  to_email_with_name 			= "#{recipient.name} <#{recipient.email}>"
+	  from_email_with_name 		= "#{sender.name} <#{sender.email}>"
+		mail(:to => to_email_with_name, :subject => @subject, :from => from_email_with_name)  
   end
 
   def manager_leave_item(teammate, recipient, sender)
@@ -151,9 +155,10 @@ class UserMailer < ActionMailer::Base
 		@teammate  					= teammate
 		@subject 						= "[HayPista] #{I18n.t(:petition_to_join_declined)} -  #{teammate.item.name} "
 		@item								= teammate.item
-	  email_with_name 		= "#{sender.name} <#{sender.email}>"
-	
-		mail(:to => email_with_name, :subject => @subject)
+
+	  to_email_with_name 			= "#{recipient.name} <#{recipient.email}>"
+	  from_email_with_name 		= "#{sender.name} <#{sender.email}>"
+		mail(:to => to_email_with_name, :subject => @subject, :from => from_email_with_name)
   end
 
   def message_notification(message)
@@ -174,9 +179,10 @@ class UserMailer < ActionMailer::Base
   
     @subject          	= message.subject
     @recipients       	= message.recipient.email
-	  email_with_name 		= "#{message.sender.name} <#{message.sender.email}>"
+	  to_email_with_name 			= "#{message.recipient.name} <#{message.recipient.email}>"
+	  from_email_with_name 		= "#{message.sender.name} <#{message.sender.email}>"
 	
-		mail(:to => email_with_name, :subject => @subject)    
+		mail(:to => to_email_with_name, :subject => @subject, :from => from_email_with_name)    
   end
 
 	def message_schedule(message)
