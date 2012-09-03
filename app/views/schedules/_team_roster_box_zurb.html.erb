@@ -59,7 +59,7 @@ the_roster.each do |match|
 
 	coeficient_played = 100 *(match.scorecard_played.to_f / group_games_played)
 	previous_user_match = Match.get_previous_user_match(match, schedule_number, group)
-	the_user_match = Match.get_rating_average(match, group)
+	# the_user_match = Match.get_rating_average(match, group)
 	
 	game_number = previous_user_match.game_number unless previous_user_match.nil?
 

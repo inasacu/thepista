@@ -3,7 +3,7 @@
 <plist version="1.0">
 <dict>
 	<key>currentDocument</key>
-	<string>lib/tasks/the_add_type_values.rake</string>
+	<string>lib/tasks/remove_archive_data.rake</string>
 	<key>documents</key>
 	<array>
 		<dict>
@@ -179,6 +179,20 @@
 			<key>firstVisibleLine</key>
 			<integer>0</integer>
 		</dict>
+		<key>app/mailers/user_mailer.rb</key>
+		<dict>
+			<key>caret</key>
+			<dict>
+				<key>column</key>
+				<integer>86</integer>
+				<key>line</key>
+				<integer>67</integer>
+			</dict>
+			<key>firstVisibleColumn</key>
+			<integer>0</integer>
+			<key>firstVisibleLine</key>
+			<integer>138</integer>
+		</dict>
 		<key>app/views/home/_upcoming_matches_zurb.html.erb</key>
 		<dict>
 			<key>caret</key>
@@ -207,20 +221,6 @@
 			<key>firstVisibleLine</key>
 			<integer>0</integer>
 		</dict>
-		<key>db/migrate/20081103171327_create_users.rb</key>
-		<dict>
-			<key>caret</key>
-			<dict>
-				<key>column</key>
-				<integer>80</integer>
-				<key>line</key>
-				<integer>540</integer>
-			</dict>
-			<key>firstVisibleColumn</key>
-			<integer>0</integer>
-			<key>firstVisibleLine</key>
-			<integer>18</integer>
-		</dict>
 		<key>db/migrate/20120810131753_add_group_service_user_validation.rb</key>
 		<dict>
 			<key>caret</key>
@@ -235,19 +235,65 @@
 			<key>firstVisibleLine</key>
 			<integer>0</integer>
 		</dict>
-		<key>lib/tasks/the_add_type_values.rake</key>
+		<key>lib/tasks/archive_dependent.rake</key>
 		<dict>
 			<key>caret</key>
 			<dict>
 				<key>column</key>
-				<integer>1</integer>
+				<integer>13</integer>
 				<key>line</key>
-				<integer>7</integer>
+				<integer>0</integer>
 			</dict>
+			<key>columnSelection</key>
+			<false/>
 			<key>firstVisibleColumn</key>
 			<integer>0</integer>
 			<key>firstVisibleLine</key>
 			<integer>0</integer>
+			<key>selectFrom</key>
+			<dict>
+				<key>column</key>
+				<integer>62</integer>
+				<key>line</key>
+				<integer>0</integer>
+			</dict>
+			<key>selectTo</key>
+			<dict>
+				<key>column</key>
+				<integer>13</integer>
+				<key>line</key>
+				<integer>0</integer>
+			</dict>
+		</dict>
+		<key>lib/tasks/remove_archive_data.rake</key>
+		<dict>
+			<key>caret</key>
+			<dict>
+				<key>column</key>
+				<integer>13</integer>
+				<key>line</key>
+				<integer>0</integer>
+			</dict>
+			<key>columnSelection</key>
+			<false/>
+			<key>firstVisibleColumn</key>
+			<integer>0</integer>
+			<key>firstVisibleLine</key>
+			<integer>0</integer>
+			<key>selectFrom</key>
+			<dict>
+				<key>column</key>
+				<integer>64</integer>
+				<key>line</key>
+				<integer>0</integer>
+			</dict>
+			<key>selectTo</key>
+			<dict>
+				<key>column</key>
+				<integer>13</integer>
+				<key>line</key>
+				<integer>0</integer>
+			</dict>
 		</dict>
 		<key>log/development.log</key>
 		<dict>
@@ -297,13 +343,13 @@
 	<key>openDocuments</key>
 	<array>
 		<string>log/development.log</string>
-		<string>db/migrate/20081103171327_create_users.rb</string>
-		<string>lib/tasks/the_add_type_values.rake</string>
-		<string>db/migrate/20120810131753_add_group_service_user_validation.rb</string>
+		<string>app/mailers/user_mailer.rb</string>
+		<string>lib/tasks/archive_dependent.rake</string>
+		<string>lib/tasks/remove_archive_data.rake</string>
 	</array>
 	<key>showFileHierarchyDrawer</key>
 	<true/>
 	<key>windowFrame</key>
-	<string>{{-373, 46}, {1673, 732}}</string>
+	<string>{{0, 46}, {1033, 732}}</string>
 </dict>
 </plist>
