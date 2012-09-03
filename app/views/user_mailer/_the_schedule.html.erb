@@ -11,7 +11,7 @@
 	    <td>
 			<%= "#{link_to(@schedule.group.name, group_url(@schedule.group.name))}  ".html_safe %>
 			<%= "#{@schedule.matches.first.group_score}  -  ".html_safe %>
-			<%= "#{@schedule.matches.first.invite_score}  "html_safe %>
+			<%= "#{@schedule.matches.first.invite_score}  ".html_safe %>
 			<%= "#{@schedule.group.second_team}".html_safe %>          
 	    </td>
 	  </tr>
