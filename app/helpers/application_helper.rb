@@ -309,7 +309,7 @@ module ApplicationHelper
 		unless @content_for_title
 			if Rails.env.development?
 				@content_for_title = 'Development'
-			elsif Rauls.env.staging?
+			elsif Rails.env.staging?
 				@content_for_title = 'Staging'
 			end
 		end
