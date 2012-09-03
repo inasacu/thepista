@@ -307,11 +307,7 @@ module ApplicationHelper
 
 	def page_title
 		unless @content_for_title
-			if Rails.env.development?
-				@content_for_title = 'Development'
-			else
-				@content_for_title = 'Staging' #unless Rails.env.production?
-			end
+				@content_for_title = 'Development' if Rails.env.development?
 		end
 		"HayPista" + ( " | " + @content_for_title if @content_for_title).to_s
 	end

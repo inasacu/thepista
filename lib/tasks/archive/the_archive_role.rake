@@ -1,94 +1,72 @@
-# to run:    rake the_archive_role
+# to run:    heroku run rake the_archive_role -a thepista
 
 desc "ARCHIVE dependent records to already archived"
 task :the_archive_role => :environment do |t|
 
-  ActiveRecord::Base.establish_connection(Rails.env.to_sym)
+	ActiveRecord::Base.establish_connection(Rails.env.to_sym)
 
+	the_archives = []
+	counter = 0
 
-  # set all roles users to archive = false
-  the_archive = Role.find(:all, :conditions => "archive is null")
-  the_archive.each do |role|
-    role.archive = false
-    role.save
-  end
+	# set all ROLES to archive = false
+	sql = "UPDATE roles set archive = false"
+	ActiveRecord::Base.connection.insert_sql sql
 
-
-	the_archive = Role.find(:all, :conditions => ["id in (7,8,904,72632, 72633, 72634)"])
-  the_archive.each do |role|
-    role.archive = true
-    role.save
-  end
+	# set all ROLES_USERS to archive = false
+	sql = "UPDATE roles_users set archive = false"
+	ActiveRecord::Base.connection.insert_sql sql
 
 
 
-  # ARCHIVE all roles for all authorizable_type archived 
-   the_item_types = Role.find(:all, :select => "distinct authorizable_type")
-   the_item_types.each do |role|
-     
-     # puts "authorizable_type => #{role.authorizable_type}" 
-     the_archive = []    
+	# GROUPS
+	the_model_records = Group.find(:all)
 
-     case role.authorizable_type
-     when "User"
-       the_archive = Role.find(:all, :select => "distinct *", 
-       :conditions => "authorizable_type = 'User' and authorizable_id in (select id from users where archive = true)")
-     when "Group"
-       the_archive = Role.find(:all, :select => "distinct *", 
-       :conditions => "authorizable_type = 'Group' and authorizable_id in (select id from groups where archive = true)")
-     when "Challenge"
-       the_archive = Role.find(:all, :select => "distinct *", 
-       :conditions => "authorizable_type = 'Challenge' and authorizable_id in (select id from challenges where archive = true)")
-     when "Escuadra"
-       the_archive = Role.find(:all, :select => "distinct *", 
-       :conditions => "authorizable_type = 'Escuadra' and authorizable_id in (select id from escuadras where archive = true)")
-     when "Schedule"
-       the_archive = Role.find(:all, :select => "distinct *", 
-       :conditions => "authorizable_type = 'Schedule' and authorizable_id in (select id from schedules where archive = true)")
-     when "Fee"
-       the_archive = Role.find(:all, :select => "distinct *", 
-       :conditions => "authorizable_type = 'Fee' and authorizable_id in (select id from fees where archive = true)")
-     when "Payment"
-       the_archive = Role.find(:all, :select => "distinct *", 
-       :conditions => "authorizable_type = 'Payment' and authorizable_id in (select id from payments where archive = true)")
-     when "Cup"
-       the_archive = Role.find(:all, :select => "distinct *", 
-       :conditions => "authorizable_type = 'Cup' and authorizable_id in (select id from cups where archive = true)")
-     when "Game"
-       the_archive = Role.find(:all, :select => "distinct *", 
-       :conditions => "authorizable_type = 'Game' and authorizable_id in (select id from games where archive = true)")
-     when "Venue"
-       the_archive = Role.find(:all, :select => "distinct *", 
-       :conditions => "authorizable_type = 'Venue' and authorizable_id in (select id from venues where archive = true)")
-     when "Installation"
-       the_archive = Role.find(:all, :select => "distinct *", 
-       :conditions => "authorizable_type = 'Installation' and authorizable_id in (select id from installations where archive = true)")
-     end
+	# ROLES GROUPS
+	@archive = Role.find(:all, :conditions => ["archive = false and authorizable_type = 'Group' and authorizable_id not in (?)", the_model_records])
+	@archive.each {|archive_file| the_archives << archive_file}
+	the_archives = set_all_to_archive(the_archives)
+
+	# ROLES CUPS, CHALLENGES, CLASSIFIEDS, SCHEDULES
+	@archive = Role.find(:all, :conditions => "archive = false and authorizable_type in ('Cup', 'Challenge', 'Classified', 'Schedule')")
+	@archive.each {|archive_file| the_archives << archive_file}
+	the_archives = set_all_to_archive(the_archives)
+
+	#ROLES subscriptions
+	@archive = Role.find(:all, :conditions => "archive = false and name = 'subscription'")
+	@archive.each {|archive_file| the_archives << archive_file}
+	the_archives = set_all_to_archive(the_archives)
 
 
-     
-     the_archive.each do |role|
-       puts "ARCHIVE role => #{role.id},  #{role.authorizable_id} #{role.authorizable_type}"
-       role.archive = true
-       role.save
-     end
-   end
-     
+	# ROLES
+	the_archive_true = Role.find(:all, :conditions => "archive = true")
 
-   # set all roles users to archive = false
-   # the_archive = RolesUsers.find(:all)
-   # the_archive.each do |role|
-   #   role.archive = false
-   #   role.save
-   # end
-   
-   
-   # ARCHIVE all roles_users for roles archived 
-   # the_archive = RolesUsers.find(:all, :select => "distinct *", 
-   # :conditions => "role_id in (select id from roles where archive = true)")
-   # the_archive.each do |role_user|
-   #   puts "ARCHIVE role_user => #{role_user.id}, #{role_user.role_id}"
-   #   role_user.archive = true
-   #   role_user.save
-   # end
+	# ROLES_USERS
+	the_archive_true.each do |archive_file|
+		sql = "update roles_users set archive = true where archive = false and role_id = #{archive_file.id}"
+		puts "#{archive_file.id}  ARCHIVE #{archive_file.class.to_s} User files (#{counter += 1})"
+		ActiveRecord::Base.connection.insert_sql sql
+	end
+
+	
+	# DESTROY all ROLES and ROLES_USERS
+	sql = "DELETE FROM roles WHERE archive = true"
+	ActiveRecord::Base.connection.insert_sql sql
+	
+	sql = "DELETE FROM roles_users WHERE archive = true"
+	ActiveRecord::Base.connection.insert_sql sql
+
+end
+
+def set_all_to_archive(the_archives)
+
+	counter = 0
+	the_archives.each do |the_archive|
+		puts "#{the_archive.id}  ARCHIVE #{the_archive.class.to_s} files (#{counter += 1})"
+		the_archive.archive = true
+		the_archive.save
+	end
+
+	the_archives = []
+	return the_archives 
+
 end
