@@ -306,6 +306,13 @@ module ApplicationHelper
 	end
 
 	def page_title
+		unless @content_for_title
+			if Rails.env.development?
+				@content_for_title = 'Development'
+			elsif Rauls.env.staging?
+				@content_for_title = 'Staging'
+			end
+		end
 		"HayPista" + ( " | " + @content_for_title if @content_for_title).to_s
 	end
 
@@ -697,7 +704,7 @@ module ApplicationHelper
 		else
 			the_item_label = label_name( :"#{item_label}").html_safe
 		end
-			
+
 		return render('shared/show_detail_zurb'.html_safe, :item_label => the_item_label, :item_link => item_link)
 	end
 
@@ -822,15 +829,15 @@ module ApplicationHelper
 		if the_column_set.nil?
 			eight_or_twelve_columns = is_mobile_browser ? "twelve columns" : "eight columns"
 		else
-				eight_or_twelve_columns = the_column_set
+			eight_or_twelve_columns = the_column_set
 		end
 	end
-	
+
 	def phone_number_link(text)
-	    sets_of_numbers = text.scan(/[0-9]+/)
-	    # number = "+1-#{sets_of_numbers.join('-')}"
-	    number = "#{sets_of_numbers.join('-')}"
-	    link_to text, "tel:#{number}"
+		sets_of_numbers = text.scan(/[0-9]+/)
+		# number = "+1-#{sets_of_numbers.join('-')}"
+		number = "#{sets_of_numbers.join('-')}"
+		link_to text, "tel:#{number}"
 	end
-	
+
 end
