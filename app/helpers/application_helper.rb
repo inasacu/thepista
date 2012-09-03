@@ -309,8 +309,8 @@ module ApplicationHelper
 		unless @content_for_title
 			if Rails.env.development?
 				@content_for_title = 'Development'
-			elsif Rails.env.staging?
-				@content_for_title = 'Test'
+			elsif Rails.env.test?
+				@content_for_title = 'Stage'
 			end
 		end
 		"HayPista" + ( " | " + @content_for_title if @content_for_title).to_s
