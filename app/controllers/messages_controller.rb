@@ -11,13 +11,9 @@ class MessagesController < ApplicationController
 
 	def show
 		store_location
+		@messages = Message.find_all_parent_messages(params[:id])
 
-		@message = Message.find(:first, :conditions => ["id = (select parent_id from messages where id =?)", params[:id]])    
-		@messages = current_user.find_message_in_conversation(@message)
-		@messages.each { |message| message.mark_as_read if current_user == message.recipient }        
-		@recipients = current_user.find_user_in_conversation(@message, false)      
-
-		@all_messages =  @message.conversation.messages unless @message.nil?
+		set_the_template('messages/index')
 		render @the_template   
 	end
 
@@ -218,9 +214,10 @@ class MessagesController < ApplicationController
 
 	def trash
 		# @block_token = Base64::decode64(params[:block_token].to_s).to_i
+		# @messages = Message.find_all_parent_messages(@block_token)
+		@messages = Message.find_all_parent_messages(params[:block_token])
 
 		@user = User.find(current_user)
-		@messages = Message.find_all_parent_messages(params[:block_token])
 		@messages.each do |message|
 			if message.sender == @user
 				message.sender_read_at = Time.zone.now

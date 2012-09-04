@@ -5,7 +5,6 @@
 	reply_to = (message.sender != current_user) ? message.sender : message.recipient
 	the_sender = image_link_small(message.other_user(current_user))
 	
-	# the_sender = ""
 	if current_user == message.sender 
 		the_sender = "#{the_sender}<br/>#{label_name(:to)}:  #{user_link(message.recipient)} "
 	else 
