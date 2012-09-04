@@ -1,7 +1,7 @@
 <%
 	convocados ||= false
 	subscription ||= false
-	the_check ||= false
+	checked ||= false
 	the_label ||= label_name(:users)
 
 	if recipients
@@ -37,7 +37,7 @@
 
 				<%	when "User" %>		
 
-					<%= render "messages/recipient_item_single_zurb", :recipient => recipient, :checked => the_check, :convocados => convocados %>		
+					<%= render "messages/recipient_item_single_zurb", :recipient => recipient, :checked => checked, :convocados => convocados %>		
 
 				<%  else
 					end

@@ -5,7 +5,7 @@ class MessagesController < ApplicationController
 		@user = User.find(current_user)
 		@messages = Message.select("distinct messages.*").where("messages.archive = false and ((messages.recipient_id = #{@user.id} and recipient_deleted_at IS NULL) or 
 																															(messages.sender_id = #{@user.id} and sender_deleted_at IS NULL)  
-																															)").page(params[:page]).order('messages.created_at DESC')
+																															)").page(params[:page]).order('messages.parent_id, messages.created_at DESC')
 		render @the_template
 	end
 
@@ -43,13 +43,19 @@ class MessagesController < ApplicationController
 		elsif (params[:schedule_id])
 			@schedule = Schedule.find(params[:schedule_id])
 			@group = @schedule.group
-			@recipients = User.squad_list(@schedule)
+			@recipients = User.squad_list(@schedule)   
+			  
+			@message.body = @schedule.name
+			@message.subject = @schedule.name
 
 		elsif (params[:match_id])
 			@match = Match.find(params[:match_id])
 			@schedule = @match.schedule
 			@group = @schedule.group
 			@recipients = User.squad_list(@schedule)
+			  
+			@message.body = @schedule.name
+			@message.subject = @schedule.name
 
 		elsif (params[:scorecard_id])
 			@scorecard = Schedule.find(params[:scorecard_id])
@@ -59,6 +65,9 @@ class MessagesController < ApplicationController
 		elsif (params[:challenge_id])
 			@challenge = Challenge.find(params[:challenge_id])
 			@recipients = @challenge.users
+			  
+			@message.body = @challenge.name
+			@message.subject = @challenge.name
 
 		else
 			@recipients = User.find_all_by_mates(current_user)
@@ -68,43 +77,28 @@ class MessagesController < ApplicationController
 	end
 
 	def reply    
-		@message = Message.new(params[:message])
+		@the_message = Message.find(params[:block_token])
+		@the_sender = @the_message.sender
 
-		all_parent = Message.find(:all, :conditions => ["parent_id = ?", params[:message][:parent_id]])    
-		reply_message = all_parent.first
-		@recipients = current_user.find_user_in_conversation(params[:message][:parent_id])    
-		first_in_conversation = true
+		@user = User.find(current_user)
+		@recipients = current_user.find_user_in_conversation(reply_message) 
+		
+		reply_message = @the_message
 
 		unless @recipients.nil?
-			@recipients.each do |recipient| 
+			@message = Message.new      
+			@message.body = reply_message.body.gsub('<br>', ' ')
+			@message.subject = reply_message.subject
+			@message.sender = current_user
 
-				@recipient_message = Message.new      
-				@recipient_message.body = @message.body
-				@recipient_message.subject = reply_message.subject
-				@recipient_message.sender = current_user
-				@recipient_message.recipient = recipient
-
-				if first_in_conversation
-					@recipient_message.parent_id = params[:message][:parent_id]       
-					@recipient_message.conversation_id = reply_message.conversation_id 
-					@recipient_message.save!
-					first_in_conversation = false
-				else            
-					if @recipient_message.save               
-						@recipient_message.update_attribute('parent_id', params[:message][:parent_id]) 
-					end
-				end
-
+			@messages = Message.find(:all, :conditions => ["messages.sender_deleted_at is not null or messages.recipient_deleted_at is not null"])
+			@messages.each do |message|
+				message.sender_deleted_at = nil
+				message.recipient_deleted_at = nil  
+				message.save!
 			end
-
-			all_parent.each do |message| 
-				if message.untrash(message.other_user(current_user))
-					flash[:notice] = I18n.t(:recycled_message)
-				end
-			end
-
-			flash[:notice] = I18n.t(:message_sent)
 		end
+
 		set_the_template('messages/new')
 		render @the_template  
 	end

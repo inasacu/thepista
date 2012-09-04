@@ -1,5 +1,5 @@
 <% 
-	@group ? check = true : check = false 
+	@group ? checked = true : checked = false 
 %>
 
 <%- if @message.reply? -%>
@@ -42,20 +42,20 @@
 
 	<% if @scorecard %>
 		<% @schedule = @scorecard %>
-		<%= render "/messages/message_item_list_zurb", :recipients => @recipients, :checked => check %>
+		<%= render "/messages/message_item_list_zurb", :recipients => @recipients, :checked => checked %>
 		<%= hidden_field :scorecard, :id %>
 
 	<% elsif @match %>
-		<%= render "/messages/message_item_list_zurb", :recipients => @recipients, :checked => check %>
+		<%= render "/messages/message_item_list_zurb", :recipients => @recipients, :checked => checked %>
 		<%= hidden_field :match, :id %>
 		<%= hidden_field :schedule, :id %>
 
 	<% elsif @schedule %>
-		<%= render "/messages/message_item_list_zurb", :recipients => @recipients, :checked => check, :convocados => true %>
+		<%= render "/messages/message_item_list_zurb", :recipients => @recipients, :checked => checked, :convocados => true %>
 		<%= hidden_field :schedule, :id %>
 
 	<% elsif @challenge %>
-		<%= render "/messages/message_item_list_zurb", :recipients => @recipients, :checked => check %>
+		<%= render "/messages/message_item_list_zurb", :recipients => @recipients, :checked => checked %>
 		<%= hidden_field :challenge, :id %>
 
 	<% elsif @recipient %>
@@ -63,10 +63,10 @@
 
 	<% elsif @the_schedule  %>
 		<% @schedule = @the_schedule %>	 
-		<%= render "/messages/message_item_list_zurb", :recipients => @recipients, :checked => check %>
+		<%= render "/messages/message_item_list_zurb", :recipients => @recipients, :checked => checked %>
 
 	<% else %>
-		<%= render "/messages/message_item_list_zurb", :recipients => @recipients, :checked => check %>
+		<%= render "/messages/message_item_list_zurb", :recipients => @recipients, :checked => checked %>
 
 	<% end %>
 
