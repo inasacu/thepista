@@ -97,6 +97,10 @@
 	if get_controller_action == 'game_index'
 		@the_collection = @games if @games
 	end	
+	
+	if get_controller_action == 'message_index'
+		@the_collection = @messages if @messages
+	end
 
 	the_controller_action = ['cast_index', 'challenge_challenge_list','cast_list', 'cast_list_guess_user', 'cast_list_gues']
 	if the_controller_action.include?(get_controller_action)
