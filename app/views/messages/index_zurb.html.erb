@@ -4,27 +4,18 @@
 	has_items = (object_counter(@messages) > 0)
 %>
 
-<div class="row">
+		 
+<% if has_items %>
 
-	<div class="twelve column">   
-
-			<% if has_items %>
-
-				<table>
-					
-						<% previous = [] %>
-						<% @messages.each do |message| %>
-						<%= render 'messages/message_zurb', :message => message unless previous.include?(message.parent_id) %>
-						<% previous << message.parent_id %>
-						<% end %>
-				
-				</table>
-
-			<% end %>
+<% previous = [] %>
+<% @messages.each do |message| %>
+	<%= render 'messages/message_zurb', :message => message, :display_icons => true unless previous.include?(message.parent_id) %>
+	<% previous << message.parent_id %>
+<% end %>
 
 
-	</div>
-</div>
+<% end %>
+
 
 <%= render 'shared/no_items_to_display' unless has_items %>
 

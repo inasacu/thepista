@@ -364,39 +364,6 @@ class User < ActiveRecord::Base
          parents = Message.find(:all, :conditions => conditions)
        end
       
-    def trashed_messages(page = 1)
-      conditions = [%((sender_id = :user AND sender_deleted_at > :t) OR
-                      (recipient_id = :user AND recipient_deleted_at > :t)),
-                    { :user => id, :t => ONE_MONTH_AGO }]
-      order = 'created_at DESC'
-      trashed = Message.where(conditions).page(page).order(order)
-    end
-  
-    def recent_messages
-      Message.find(:all,
-                   :conditions => [%(recipient_id = ? AND
-                                     recipient_deleted_at IS NULL), id],
-                   :order => "created_at DESC",
-                   :limit => NUM_RECENT_MESSAGES)
-    end
-    
-    def unread_messages_count
-      sql = %(recipient_id = :id
-      AND sender_id != :id
-      AND recipient_deleted_at IS NULL
-      AND recipient_read_at IS NULL)
-      conditions = [sql, { :id => id }]
-      Message.count(:all, :conditions => conditions)
-    end
-    
-    def has_unread_messages?
-      sql = %(recipient_id = :id
-              AND sender_id != :id
-              AND recipient_deleted_at IS NULL
-              AND recipient_read_at IS NULL)
-      conditions = [sql, { :id => id }]
-      Message.count(:all, :conditions => conditions) > 0
-    end
  
     def self.find_all_by_mates(user)
       find_by_sql(["select distinct users.* from users, groups_users " +

@@ -69,8 +69,8 @@ Thepista::Application.routes.draw do
 	match 'jornadas/:id/cambio_convocatoria/:type' => 'matches#set_status', :as => :match_status
 	match 'jornadas/:id/cambio_convocatoria/:type/:block_token' => 'matches#set_status_link', :as => :match_token
 
-	# match 'mensajes/:id/responder' => 'messages#reply', :as => :reply_message
-	# match 'mensajes/:id/recuperar' => 'messages#undestroy', :as => :untrash_message
+	match 'mensajes/responder/:block_token' => 'messages#reply', :as => :reply_message
+	match 'mensajes/borrar/:block_token' => 'messages#trash', :as => :trash_message
 
 	match 'proximos_partidos' => 'home#upcoming', :as => :upcoming
 	match 'buqueda' => 'home#search', :as => :search
@@ -83,7 +83,6 @@ Thepista::Application.routes.draw do
 	match 'terminos' => 'home#terms_of_use', :as => :terms_of_use
 	match 'privacidad' => 'home#privacy_policy', :as => :privacy_policy
 	match 'ayuda' => 'home#faq', :as => :faq
-	# match 'precios' => 'home#pricing', :as => :pricing
 	match 'openid' => 'home#openid', :as => :openid
 	match 'success' => 'home#success', :as => :success
 

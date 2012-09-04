@@ -1,37 +1,42 @@
-<% 
-	full_message ||= false 
-	
+<% 	
 	the_subject = sanitize(message.subject)
 	the_message = sanitize(message.body)
-	is_longer = the_message.length > 140
-	the_message = "#{the_message.strip[0..140]}..." if is_longer and !full_message
-	
-	the_message = full_message ? message.body : link_to(sanitize(the_message), message)
+
 	reply_to = (message.sender != current_user) ? message.sender : message.recipient
+	the_sender = image_link_small(message.other_user(current_user))
+	
+	# the_sender = ""
+	if current_user == message.sender 
+		the_sender = "#{the_sender}<br/>#{label_name(:to)}:  #{user_link(message.recipient)} "
+	else 
+		the_sender = "#{the_sender}<br/>#{label_name(:from_up)}:  #{user_link(message.sender)} "
+	end	
+	
+	block_token = Base64::encode64(message.parent_id.to_i.to_s) 
+	block_token = message.parent_id
+	
+	the_reply = "#{option_image_small_link('message') if display_icons}  #{link_to(label_name(:send_reply_to), reply_message_path(:block_token => block_token))}"
+	the_trash = "#{option_image_small_link('message_remove') if display_icons}  #{link_to(label_name(:trash_message), trash_message_path(:block_token => block_token))}"
 %>
 
-<tr>
-	<%= set_content_tag_safe(:td, "&nbsp;") %>
-	<%= set_content_tag_safe(:td, image_link_small(message.other_user(current_user))) %>	
-	
-	<td>
-		<%= message_icon(message) %>
-		<%- if current_user == message.sender -%>
-			<%= label_name(:to) %>:
-			<%= user_link message.recipient %>
-		<%- else -%>
-			<%= label_name(:from_up) %>:
-			<%= user_link message.sender %>
-		<%- end -%>
-	
-		<br />
-		<br />
-		
-		<%= "#{the_subject}<br />#{the_message}".html_safe %>							
-	</td>
-	
-	<td>
-		<%= option_image_small_link('message') %>&nbsp;&nbsp;<%= link_to(label_name(:send_reply_to), new_message_path(:id => reply_to)) %>
-	</td>
-</tr>
+<table>
+	<thead>
+		<tr>
+			<%= set_content_tag_safe(:th, "&nbsp;") %>
+			<%= set_content_tag_safe(:th, "&nbsp;") %>
+			<%= set_content_tag_safe(:th, "#{nice_date_wo_year(message.created_at)} (#{ago(message.created_at)})") %>
+			<%= set_content_tag_safe(:th, "&nbsp;") %>
+		</tr>
+	</thead>
+
+	<tbody>
+		<%= set_content_tag_safe(:td, the_sender) %>
+		<%= set_content_tag_safe(:td, "&nbsp;") %>	
+		<%= set_content_tag_safe(:td, "<br/><strong>#{the_subject}</strong><br /><br />#{the_message}") %>
+		<%= set_content_tag_safe(:td, "#{the_reply}<br/>#{the_trash}", "last_upcoming") %>
+	</tbody>
+</table>
+
+
+
 

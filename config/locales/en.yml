@@ -1338,7 +1338,7 @@ en:
      send_pre_clash_to: Send the Squad to  
      send_profile: Send the Profile  
      send_reminder: Send a Reminder
-     send_reply_to: Reply to Message
+     send_reply_to: Reply
      send_role: Send the Role   
      send_scorecard: Send the Scorecard
      send_standing: Send the Scorecard
@@ -1528,7 +1528,7 @@ en:
      topic: Topic  
      total:  Total   
      trash: Trash   
-     trash_message: Trash     
+     trash_message: Remove     
      true_value: "Yes"   
      try_again: Sorry!   
      tu_punto_de_vista: give us your point of view on the website by contacting us through  

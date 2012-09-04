@@ -1348,7 +1348,7 @@ es:
      send_pre_clash_to: Manda la convocatoria a  
      send_profile: Manda tu perfil   
      send_reminder: Manda un recordatorio  
-     send_reply_to: Responder a Mensaje 
+     send_reply_to: Responder  
      send_role: Manda una responsabilidad   
      send_scorecard: Manda la clasificación
      send_standing: Manda la clasificación
@@ -1538,7 +1538,7 @@ es:
      topic: Asunto   
      total:  Total   
      trash: Basura   
-     trash_message: Papelera     
+     trash_message: Borrar     
      true_value: "Si"   
      try_again: Lo sentimos!   
      tu_punto_de_vista: tu punto de vista sobre el portal contactando con nosotros a traves de   
