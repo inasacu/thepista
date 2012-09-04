@@ -661,7 +661,7 @@ module ApplicationHelper
 		form.select(:"#{field_id}", field_name, {:selected => selection, :include_blank => include_blank})
 	end 
 
-	def set_form_text_area(form, field, placeholder=false, cols="40px%", rows="5px")
+	def set_form_text_area(form, field, placeholder=false, cols="40", rows="10")
 		if placeholder
 			return form.text_area :"#{field}", :placeholder => label_name(:"#{field}"), :cols => cols, :rows => rows
 		else
