@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120810131753) do
+ActiveRecord::Schema.define(:version => 20120904232245) do
 
   create_table "announcements", :force => true do |t|
     t.text     "message"
@@ -583,6 +583,7 @@ ActiveRecord::Schema.define(:version => 20120810131753) do
     t.datetime "send_result_at"
     t.datetime "send_comment_at"
     t.string   "slug"
+    t.datetime "send_created_at"
   end
 
   add_index "schedules", ["group_id"], :name => "index_schedules_on_group_id"

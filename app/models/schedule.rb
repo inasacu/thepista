@@ -22,10 +22,11 @@
 # t.datetime "updated_at"
 # t.boolean  "reminder"            
 # t.datetime "reminder_at"
-# t.datetime "s_reminder_at"
-# t.datetime "s_result_at"
-# t.datetime "s_comment_at"
+# t.datetime "send_reminder_at"
+# t.datetime "send_result_at"
+# t.datetime "send_comment_at"
 # t.string   "slug"
+# t.datetime "send_created_at"
 
 class Schedule < ActiveRecord::Base
 
@@ -387,6 +388,23 @@ class Schedule < ActiveRecord::Base
 		end
 
   end
+
+	def self.send_created
+		schedules = Schedule.find(:all, 
+		:conditions => ["played = false and send_created_at is null and created_at >= ? and created_at <= ?", PAST_THREE_DAYS, Time.zone.now])
+
+		schedules.each do |schedule|
+			manager_id = RolesUsers.find_item_manager(schedule.group).user_id
+			schedule.group.users.each do |user|
+				if user.message_notification? 
+					create_notification_email(schedule, schedule, manager_id, user.id, true)
+				end
+			end
+			schedule.send_created_at = Time.zone.now
+			schedule.save!
+		end
+
+	end
 
   def self.send_results
     schedules = Schedule.find(:all, :conditions => ["starts_at >= ? and starts_at <= ? and send_result_at is null", PAST_THREE_DAYS, Time.zone.now])
