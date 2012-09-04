@@ -222,6 +222,12 @@ class MessagesController < ApplicationController
 			if message.sender == @user
 				message.sender_read_at = Time.zone.now
 				message.sender_deleted_at = Time.zone.now
+				
+				if message.recipient == @user
+					message.recipient_read_at = Time.zone.now
+					message.recipient_deleted_at = Time.zone.now
+				end
+				
 			else
 				message.recipient_read_at = Time.zone.now
 				message.recipient_deleted_at = Time.zone.now
