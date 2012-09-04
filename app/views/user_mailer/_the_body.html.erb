@@ -1,7 +1,7 @@
 <table width="100%" border="0" cellpadding="0" cellspacing="0" style="font: 13px arial;">
   <tr>
     <td style="width:1%; color:#999999; vertical-align: top;">&nbsp;</td>
-    <td style="width:99%">&nbsp;<%= @message.body %></td>
+    <td style="width:99%">&nbsp;<%= "#{@message.body}".html_safe %></td>
   </tr><tr>
     <td style="width:1%; color:#999999; vertical-align: top;">&nbsp;</td>
     <td style="width:99%">&nbsp;</td>

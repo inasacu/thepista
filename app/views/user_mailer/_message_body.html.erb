@@ -4,5 +4,5 @@
 
 <%= render  'user_mailer/title', :the_label => the_label %>
 
-<%= @message.subject %><br/>
-<%= @message.body %><br/>
+<%= "#{@message.subject}".html_safe %><br/>
+<%= "#{@message.body}".html_safe %><br/>

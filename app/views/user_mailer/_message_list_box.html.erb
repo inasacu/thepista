@@ -14,9 +14,9 @@
 			<%= "#{link_to(the_label_name, :host => 'haypista.com', :controller => 'users', :action => 'show', :id => match.user)}".html_safe %>
 			
 		</td>
-		<td style="width:25%"><%= match.team_name(@schedule) %></td>
+		<td style="width:25%"><%= "#{match.team_name(@schedule)}".html_safe %></td>
 		<% if @schedule.played? %>
-          	<td style="width:25%"><%= match.win_loose_draw_label %></td>
+          	<td style="width:25%"><%= "#{match.win_loose_draw_label}".html_safe %></td>
 		<% elsif @receiver == match.user %>
 			<td style="width:25%"><a href="<%= schedule_url %>"><%= I18n.t(:not_able_to_attend) %></a></td>
 		<% end %>
