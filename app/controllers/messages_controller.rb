@@ -76,15 +76,14 @@ class MessagesController < ApplicationController
 		render @the_template  
 	end
 
-	def reply    
+	def reply
 		@the_message = Message.find(params[:block_token])
 		@the_sender = @the_message.sender
 
 		@user = User.find(current_user)
+		reply_message = @the_message
 		@recipients = current_user.find_user_in_conversation(reply_message) 
 		
-		reply_message = @the_message
-
 		unless @recipients.nil?
 			@message = Message.new      
 			@message.body = reply_message.body.gsub('<br>', ' ')
