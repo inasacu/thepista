@@ -493,7 +493,7 @@ en:
      forum_notification_false:  Doesn't receive wall notices.
      forum_notification_cluetip:  "This option allows you to receive messages left on your events' wall in your email inbox."
      forum_options:  Options
-     message_notification:  Emails
+     message_notification:  Messages
      message_notification_cluetip:  "This option allows you to receive messages in your email inbox."
      enable_comments:  Enable Comments
      for:  for
@@ -1475,7 +1475,7 @@ en:
      t_zone: Time Zone   
      table_id: Table ID   
      table_type: Table Type  
-     teammate_notification:  Teammate Notice
+     teammate_notification:  Teammate Messages
      teammate_notification_cluetip:  "As a team manager, you can received petitions to join your team en your email account."
      technical_level_description: "(From 1 to 5, put the technical level that you think you have compared to your teammates...)"  
      terms: terms   

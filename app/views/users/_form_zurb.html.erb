@@ -36,20 +36,8 @@
 <%= set_form_file_field(the_form, :photo) %><br/><br/>
 
 
-<%#= set_form_label(the_form, :private_phone) %>
-<%#= set_form_checkbox(the_form, :private_phone) %>
-
-
-<%#= set_form_label(the_form, :last_minute_notification) %>
-<%#= set_form_checkbox(the_form, :last_minute_notification) %>
-
-
-<%# if @user.is_manager? %>
-
-	<%#= set_form_label(the_form, :teammate_notification) %>
-	<%#= set_form_checkbox(the_form, :teammate_notification) %>
-
-<%# end -%>
+<%= set_form_label(the_form, :teammate_notification) %>
+<%= set_form_checkbox(the_form, :teammate_notification) %><br/>
 
 
 <%= set_form_label(the_form, :birth_at) %>

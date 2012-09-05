@@ -65,12 +65,15 @@
 	<% end -%>
 
 
-	<% if @user.has_role?('manager') and DISPLAY_USER_PETITION %>
+	<%# if @user.has_role?('manager') and DISPLAY_USER_PETITION %>
 
 		<% the_label = h(label_name(@user.teammate_notification, 'value')) %>
 		<%= render_show_detail_zurb(:teammate_notification, (can_modify ? link_to(the_label, set_teammate_notification_path(:id => @user)) : the_label)) %>
 
-	<% end %>
+		<%# the_label = h(label_name(@user.message_notification, 'value')) %>
+		<%#= render_show_detail_zurb(:message_notification, (can_modify ? link_to(the_label, set_message_notification_path(:id => @user)) : the_label)) %>
+		
+	<%# end %>
 			
 
 	<%= render_show_detail_zurb(:users_teammate, render('shared/show_images_zurb', :collection => @user.friends)) if @user.friends.count > 0 %>

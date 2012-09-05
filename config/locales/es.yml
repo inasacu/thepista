@@ -500,7 +500,7 @@ es:
      forum_notification_false:  No recibe mensajes del muro.
      forum_notification_cluetip:  "Esta opción permite que recibas los mensajes dejados en el muro del evento en tu cuenta de correo."
      forum_options:  Opciones
-     message_notification:  Correos
+     message_notification:  Mensajes
      message_notification_cluetip:  "Esta opción permite que recibas mensajes en tu cuenta de correo."
      enable_comments:  Habilitar comentarios
      for:  para
@@ -1485,7 +1485,7 @@ es:
      t_zone: Horario   
      table_id: Codigo de tabla   
      table_type: Tipo de tabla  
-     teammate_notification:  Peticiones
+     teammate_notification:  Mensajes de Equipo
      teammate_notification_cluetip:  "Como manager de un equipo, puedes recibir las peticiones a tu equipo en tu cuenta de correo."
      technical_level_description: "(Del 1 al 5, pon el nivel físico que crees que tienes comparado con los de tu equipo...)"  
      terms: terminos   

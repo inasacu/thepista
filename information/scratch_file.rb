@@ -1,26 +1,15 @@
 
 
 
-# local development
+select * from delayed_jobs where handler  like '%recipient_id: 2908%'
 
-rake db:migrate
-rake the_archive_dependent
-rake the_archive_role
-rake the_remove_archive_data
-rake the_slug_64
-
-# zurb.herokuapp.com
-
-heroku pgbackups:restore DATABASE `heroku pgbackups:url --app haypista` --app zurb
+update users set email='raulpadilla@haypista.com' where id = 2908
 
 
-heroku run rake db:migrate --app zurb
-heroku run rake the_archive_dependent --app zurb
-heroku run rake the_archive_role --app zurb
-heroku run rake the_remove_archive_data --app zurb
-heroku run rake the_slug_64 --app zurb
+delete from delayed_jobs where handler not like '%recipient_id: 2908%'
 
-heroku restart --app zurb
+
+update schedules set send_created_at = null
 
 
 

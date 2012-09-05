@@ -379,7 +379,7 @@ class Schedule < ActiveRecord::Base
 		schedules.each do |schedule|
 			manager_id = RolesUsers.find_item_manager(schedule.group).user_id
 			schedule.group.users.each do |user|
-				if user.message_notification? 
+				if user.teammate_notification? 
 					create_notification_email(schedule, schedule, manager_id, user.id, true)
 				end
 			end
@@ -396,7 +396,7 @@ class Schedule < ActiveRecord::Base
 		schedules.each do |schedule|
 			manager_id = RolesUsers.find_item_manager(schedule.group).user_id
 			schedule.group.users.each do |user|
-				if user.message_notification? 
+				if user.teammate_notification? 
 					create_notification_email(schedule, schedule, manager_id, user.id, true)
 				end
 			end
@@ -415,7 +415,7 @@ class Schedule < ActiveRecord::Base
       manager = User.find(manager_id)
 
       # send email to manager to update match result
-      if !match.nil? and manager.message_notification?           
+      if !match.nil? and manager.teammate_notification?           
         create_notification_email(match, schedule, manager_id, manager_id)
       end  
 

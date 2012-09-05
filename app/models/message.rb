@@ -42,11 +42,8 @@ class Message < ActiveRecord::Base
 
   validates_presence_of   :subject #, :body
 
-  before_create   :assign_conversation, :format_body, :set_mark_as_read
-
-  after_create    :update_recipient_last_contacted_at,
-  :save_recipient, :set_replied_to, 
-  :send_receipt_reminder, :send_schedule_reminder
+  before_create   :assign_conversation, :format_body
+  after_create    :update_recipient_last_contacted_at, :save_recipient, :set_replied_to, :send_receipt_reminder, :send_schedule_reminder
 
 
   # Return all messages in the same parent group          
@@ -162,10 +159,6 @@ class Message < ActiveRecord::Base
     self.conversation = parent.nil? ? Conversation.create : parent.conversation
   end
 
-  def set_mark_as_read
-    self.recipient_read_at = Time.zone.now if recipient.message_notification?  
-  end
-
   # Mark the parent message as replied to if the current message is a reply.
   def set_replied_to
     if reply?
@@ -184,18 +177,15 @@ class Message < ActiveRecord::Base
 
   def send_receipt_reminder
     return if (sender == recipient or !self.item_type.nil?)
-    # return if (self.item_type.nil?)
-
     @send_mail ||= recipient.message_notification?   
     return unless @send_mail
-
     UserMailer.delay.message_notification(self) 
   end
 
   def send_schedule_reminder
     return if (self.item_type.nil?)
 
-    @send_mail ||= recipient.message_notification?   
+    @send_mail ||= recipient.teammate_notification?   
     return unless @send_mail
 
     case self.item.class.to_s      
@@ -207,8 +197,7 @@ class Message < ActiveRecord::Base
 
   end
 
-  def self.archive_messages
-    
+  def self.archive_messages    
     the_archive_messages = []  
     message_counter = 1 
 
