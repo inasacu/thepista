@@ -27,10 +27,10 @@
 <div class="ten columns">
 	
 	<%= render 'shared/show_description_zurb', :item => @user, :the_label => the_label %>
-
+	
+	<%= render_show_detail_zurb(:groups, (@user.has_group? ? "#{group_list(@user.groups)}".html_safe : "#{label_name('groups_none')}".html_safe)) %>
 	<%= render_show_detail_zurb(:email, @user.email) if @user == current_user %>
 	<%= render_show_detail_zurb(:phone, phone_number_link(@user.phone)) unless @user.phone.blank? %>
-	<%= render_show_detail_zurb(:groups, (@user.has_group? ? "#{group_list(@user.groups)}".html_safe : "#{label_name('groups_none')}".html_safe)) %>
 	<%= render_show_detail_zurb(:sports, the_sport) %>
 	<%= render_show_detail_zurb(:event_participation, (participation.to_i > 0 ? the_participation_label : the_participation_label)) %>
 
