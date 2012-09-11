@@ -1241,7 +1241,8 @@ es:
      reply: Contestar   
      reply_all: Contestar a todos   
      reply_message: Mensaje de Respuesta   
-     reply_to_this_message: Responde a este mensaje  
+     reply_to_this_message: Responde a este mensaje 
+     reply_to_link: Enlace a el mensaje 
      request_petition: Nueva petición   
      request_invitation: Pide una invitación   
      reservation:  Reserva
@@ -1648,7 +1649,8 @@ es:
      what_are_you_practicing: Comparte una actualización  
      whats_new: ¿Qué hay de nuevo en HayPista?   
      write_comment: Escribe un comentario...   
-     writes: escribe   
+     writes: escribe 
+     wrote: escribio  
      yes_openid: OpenIDs associados a esta cuenta   
      you: Tu   
      you_are_center_here: "Centra aquí"
