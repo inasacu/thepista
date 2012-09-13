@@ -1,33 +1,35 @@
-<%= render  'user_mailer/header' %>
+<%= I18n.t(:hi_email_header) %>,
+<br>
+<br>
 
-<%= I18n.t(:hi_email_header) %>,<br /><br />
- 
-<%= "#{@user.name} #{I18n.t(:participate_schedule)}!".html_safe %><br /><br />
-
-
-
-<%= "#{@message}".html_safe %><br /><br />
+<%= "#{@user.name} #{I18n.t(:participate_schedule)}!".html_safe %>
+<br>
+<br>
 
 
+<%= "#{@message}".html_safe %>
+<br>
+<br>
 
 
-<%= "#{I18n.t(:invitation_signup_link)}".html_safe %><br /><br />
- 
+<%= "#{I18n.t(:invitation_signup_link)}".html_safe %>
+<br>
+<br>
 
-<%= "#{link_to(I18n.t(:signup), @url)}".html_safe %><br /><br />
+<%= "#{link_to(I18n.t(:signup), @url)}".html_safe %>
+<br>
+<br>
 
-
-
-<%= "#{I18n.t(:participate_schedule_afterwards)}".html_safe %><br /><br />
-
-
-<%= "#{link_to(@invitation.item_type, {:host => 'haypista.com', :controller => 'schedules', :action => 'show', :id => @schedule})}".html_safe %><br /><br />
-
-
- 
-<%= "#{I18n.t(:request_url_does_not_work)}  #{I18n.t(:request_url_issue)}".html_safe %><br /><br />
+<%= "#{I18n.t(:participate_schedule_afterwards)}".html_safe %>
+<br>
+<br>
 
 
+<%= "#{link_to(@invitation.item_type, {:host => 'haypista.com', :controller => 'schedules', :action => 'show', :id => @schedule})}".html_safe %>
+<br>
+<br>
 
-<%= render 'user_mailer/footer' %>
 
+<%= "#{I18n.t(:request_url_does_not_work)}  #{I18n.t(:request_url_issue)}".html_safe %>
+<br>
+<br>

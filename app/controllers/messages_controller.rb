@@ -28,7 +28,7 @@ class MessagesController < ApplicationController
 
 		elsif (params[:group_id])
 			@group = Group.find(params[:group_id])
-			@recipients = User.find_group_mates(current_user, @group)
+			@recipients = User.find_group_mates(@group)
 
 			if params[:roster_id]
 				users = []
@@ -56,7 +56,9 @@ class MessagesController < ApplicationController
 		elsif (params[:scorecard_id])
 			@scorecard = Schedule.find(params[:scorecard_id])
 			@group = @scorecard.group
-			@recipients = User.find_group_mates(current_user, @group)
+			@recipients = User.find_group_mates(@group)   
+			  
+			@message.subject = "#{@group.name} - #{I18n.t(:send_scorecard_subject)}"
 
 		elsif (params[:challenge_id])
 			@challenge = Challenge.find(params[:challenge_id])

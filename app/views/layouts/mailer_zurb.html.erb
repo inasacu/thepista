@@ -1,0 +1,109 @@
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"><br><br>
+
+
+<div style="margin:0;padding:0;font-size:14px;font-family:&quot;Helvetica Neue&quot;,helvetica,arial,sans-serif;color:#444">
+
+<table width="100%" cellspacing="0" style="padding:0;margin:0;border:0">
+
+	<tbody>
+
+		<tr>
+			<td colspan="3" style="font-size:1px;background:#0F7D00;border-bottom:1px solid #6c9cc7;min-height:4px"></td>
+		</tr>
+
+
+		<tr>
+			<td style="background:#0F7D00;padding:14px 0 10px;min-height:40px;min-width:10px"></td>
+			
+			<td width="600" style="background:#0F7D00;padding:14px 0 10px;min-height:40px;width:600px;margin-top:10px">
+					
+					<img alt="HayPista" border="0" src="thepista.dev/assets/logo.png" style="color:white;width:96px;min-height:21px;font-size:14pt" />
+				
+			</td>
+			
+			<td style="background:#0F7D00;padding:14px 0 10px;min-height:40px;min-width:10px"></td>
+		</tr>
+
+		<tr>
+			<td></td>
+
+			<td width="600">
+
+				<div style="width:100%">
+
+					<p style="font-size:14px;font-family:&quot;Helvetica Neue&quot;,helvetica,arial,sans-serif;line-height:20px;margin:0 0 25px;padding:20px 0 10px 0">
+						
+						<%= "#{link_to(@user.name, user_url(@user))}".html_safe %><%= "  #{I18n.t(:wrote)}: " %>
+						
+					</p>
+					
+					<% unless @message  %>
+
+						<p style="font-size:14px;font-family:&quot;Helvetica Neue&quot;,helvetica,arial,sans-serif;line-height:20px;margin:10px 0;background-color:#eee;border-radius:5px;padding:10px">
+
+												
+							<%= "#{@message.body}".html_safe %>
+							<br>
+							<br>
+						
+						</p>
+					
+					<% end %>
+					
+					
+					<%= yield %>
+					
+
+					<div style="margin:10px 0">
+
+						<p style="font-size:14px;font-family:&quot;Helvetica Neue&quot;,helvetica,arial,sans-serif;line-height:20px;margin:0;padding:1px 0">
+
+							<% if @message and !@scorecard %>
+
+							<%= "#{link_to(I18n.t(:reply_to_link), message_url(@message), 
+										  :style => 'color:##2A85E8;text-decoration:none',
+										  :target => '_blank')}".html_safe unless (@schedule or !@message.recipient_deleted_at.nil?) %>
+							
+							<% end %>
+						</p>
+
+					</div>
+
+					<br>
+					<br>
+
+					-----
+
+					<br>
+					<br>
+
+
+					<p style="font-size:14px;font-family:&quot;Helvetica Neue&quot;,helvetica,arial,sans-serif;line-height:20px;margin:0;padding:0">
+
+						<% if @message %>
+												
+						<% the_label = "To turn #{@user.teammate_notification ? 'On' : 'Off'} notifications" %>
+						<%#= "#{link_to(the_label, set_teammate_notification_url(:id => @message.recipient), 
+									  :style => 'color:##2A85E8;text-decoration:none',
+									  :target => '_blank')}".html_safe %>	
+							
+						<% end %>
+						
+					</p>
+
+
+				</div>
+
+			</td>
+
+			<td></td>
+
+		</tr>
+
+	</tbody>
+
+</table>
+
+</div>
+
+<br>

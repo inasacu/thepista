@@ -1,6 +1,7 @@
 class UserMailer < ActionMailer::Base
 	default :from => "support@haypista.com"
-	# default :from => "[HayPista] <support@haypista.com>"
+	
+	layout 'mailer_zurb' 
 
 	def invitation(invitation)		
 		case invitation.item.class.to_s 
@@ -179,6 +180,8 @@ class UserMailer < ActionMailer::Base
   
     @subject          	= message.subject
     @recipients       	= message.recipient.email
+		
+		
 	  to_email_with_name 			= "#{message.recipient.name} <#{message.recipient.email}>"
 	  from_email_with_name 		= "#{message.sender.name} <#{message.sender.email}>"
 	

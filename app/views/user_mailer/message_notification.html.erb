@@ -1,14 +1,19 @@
-<%= render  'user_mailer/header' %>
+<% if @schedule %>
 
-<%= render :partial => 'the_user' %>
+	<%= "#{link_to(@schedule.group.name, group_url(@schedule.group))}".html_safe  %>
+	<br>
+	<br>
 
+	<%= "#{I18n.l(@schedule.starts_at, :format => :day_time_wo_year_exact)}".html_safe %>
+	<br>
+	<br>
 
+	<%= "#{@schedule.group.marker.city.capitalize}".html_safe %>
+	<br>
+	<br>
 
+	<%= "#{link_to(@schedule.group.marker.name, marker_url(@schedule.group.marker))}".html_safe %>	
+	<br>
+	<br>
 
-<%= render :partial => 'the_body' %>
-
-
-
-
-
-<%= render 'user_mailer/footer' %>
+<% end -%>

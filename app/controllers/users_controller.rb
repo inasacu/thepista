@@ -303,8 +303,11 @@ class UsersController < ApplicationController
 
 	private
 	def get_user
-		@user = User.find(params[:id])
-		# @user = User.find_by_slug! params[:id]		
+		if params[:id] == 'current'
+			@user = User.find(current_user) if current_user
+		else
+			@user = User.find(params[:id]) 
+		end		
 	end
 
 	def get_user_manager

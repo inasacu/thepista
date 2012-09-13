@@ -374,13 +374,12 @@ class User < ActiveRecord::Base
         "order by name", user.groups, user.id])
     end
 
-    def self.find_group_mates(user, group)
+    def self.find_group_mates(group)
       @recipients = User.find_by_sql(["select distinct users.* from users, groups_users " +
             "where users.id = groups_users.user_id " +
             "and groups_users.group_id in (?) " +
-            "and groups_users.user_id != ? " +
             "and users.archive = false " +
-            "order by name", group.id, user.id])
+            "order by users.name", group])
     end
 
     def page_mates(page = 1)  

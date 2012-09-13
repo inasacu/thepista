@@ -1342,6 +1342,7 @@ en:
      send_reply_to: Reply
      send_role: Send the Role   
      send_scorecard: Send the Scorecard
+     send_scorecard_subject: The Scorecard
      send_standing: Send the Scorecard
      send_to_all: Send to All   
      send_type: Send a Type   

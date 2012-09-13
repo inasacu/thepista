@@ -8,21 +8,19 @@
 	the_label = I18n.t(:request_petition) 
 %>
 
-<%= render 'user_mailer/header' %>
-
-<%= render  'user_mailer/title', :the_label => the_label %>
+<%#= render  'user_mailer/title', :the_label => the_label %>
 
 
 <%= "#{the_user} #{the_item}".html_safe %>
-
-<br />
+<br>
+<br>
 
 <% unless @automatic_petition %>
 
-	<%= "#{link_to(I18n.t(:accept_player), {:host => 'haypista.com', :controller => 'teammates', :action => 'join_item_accept', :id => @teammate})}".html_safe %><br/><br/>
-	<%= "#{link_to(I18n.t(:deny_player), {:host => 'haypista.com', :controller => 'teammates', :action => 'join_item_decline', :id => @teammate})}".html_safe %><br/><br/>
-	
+<%= "#{link_to(I18n.t(:accept_player), {:host => 'haypista.com', :controller => 'teammates', :action => 'join_item_accept', :id => @teammate})}".html_safe %>  
+<%= "#{link_to(I18n.t(:deny_player), {:host => 'haypista.com', :controller => 'teammates', :action => 'join_item_decline', :id => @teammate})}".html_safe %>
+<br>
+<br>
+
 <% end %>
 
-
-<%= render 'user_mailer/footer' %>

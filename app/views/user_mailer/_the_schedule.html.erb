@@ -1,9 +1,19 @@
 
-<br>
+<p style="font-size:14px;font-family:&quot;Helvetica Neue&quot;,helvetica,arial,sans-serif;line-height:20px;margin:10px 0;background-color:#eee;border-radius:5px;padding:10px">
+
+<% if @schedule %>	
+	
+	<%= "#{link_to(@schedule.group.name, group_url(@schedule.group))}".html_safe  %>
+	<br>
+	<%= "#{I18n.l(@schedule.starts_at, :format => :day_time_wo_year_exact)}".html_safe %>
+
+<% end -%>
 
 <% if @schedule.played? %>  
 
-	<p style="margin: 15px 0 2px 0"><strong><%= "#{I18n.t(:score)}:  ".html_safe %></strong></p>
+
+	<br>
+	<%= "<STRONG>#{I18n.t(:score)}</STRONG>:  ".html_safe %>
 
 	<table width="100%" border="0" cellpadding="0" cellspacing="0" style="font: 13px arial;">
 	  <tr>
@@ -16,22 +26,24 @@
 	    </td>
 	  </tr>
 	  <tr/>
-	  <br />
+	  <br>
 	</table>
 	
 	<br>
 	
-	<br>
 <% end %>  
 
+
+</p>
+
+
 <% unless @schedule.convocados.empty? %>  
-	<%= render :partial => 'message_list_box', 
-			   :locals => { :label => I18n.t(:rosters), :the_roster => @schedule.the_roster, :schedule => @schedule } %>
+	<%= render 'user_mailer/message_list_box', :label => I18n.t(:rosters), :the_roster => @schedule.the_roster, :schedule => @schedule %>
 <% end %>
 
 <% unless @schedule.last_minute.empty? or @schedule.played? %>   
-	<%= render :partial => 'message_list_box', 
-			   :locals => { :label => I18n.t(:last_minute), :the_roster => @schedule.the_last_minute, :schedule => @schedule } %>
+	<%= render 'user_mailer/message_list_box', :label => I18n.t(:last_minute), :the_roster => @schedule.the_last_minute, :schedule => @schedule %>
 <% end %>
 
-<%= render :partial => 'the_match_status' %>
+<%= render 'user_mailer/the_match_status' %>
+

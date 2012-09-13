@@ -31,9 +31,12 @@
 <%= set_form_text_field(the_form, :subject, 'large input-text') unless @message.reply? %>
 <%= @message.subject if @message.reply? %><br/>
 
+<% unless @scorecard %>
+
 <%= set_form_label(the_form, :body) %>
 <%= set_form_text_area(the_form, :body, true) %><br/>
 
+<% end %>
 
 <div class="row">
 	<div class="eight columns">

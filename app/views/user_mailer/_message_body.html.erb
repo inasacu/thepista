@@ -1,8 +1,0 @@
-<%
-	the_label = "#{@user.name} #{I18n.t(:writes)}"
-%>
-
-<%= render  'user_mailer/title', :the_label => the_label %>
-
-<%= "#{@message.subject}".html_safe %><br/>
-<%= "#{@message.body}".html_safe %><br/>

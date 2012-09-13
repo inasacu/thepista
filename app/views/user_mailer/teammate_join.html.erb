@@ -10,26 +10,23 @@
 	the_label = I18n.t(:request_petition) 
 %>
 
-<%= render  'user_mailer/header' %>
-
-
-<%= render  'user_mailer/title', :the_label => the_label %>
-
-
+<%#= render  'user_mailer/title', :the_label => the_label %>
 
 <%= "#{I18n.t(:request_petition)} #{I18n.t(:from)} 
- 	 #{link_to(@user.name, {:host => 'haypista.com', :controller => 'users', :action => 'show', :id => @user}, 
-							:title => @user.name)} #{I18n.t(:to_join_email)} -  
-	 #{link_to(@group.name, {:host => 'haypista.com', :controller => 'groups', :action => 'show', :id => @group}, 
-							:title => @group.name)}".html_safe %>
-<br />
+#{link_to(@user.name, {:host => 'haypista.com', :controller => 'users', :action => 'show', :id => @user}, 
+:title => @user.name)} #{I18n.t(:to_join_email)} -  
+#{link_to(@group.name, {:host => 'haypista.com', :controller => 'groups', :action => 'show', :id => @group}, 
+:title => @group.name)}".html_safe %>
+<br>
+<br>
 
 <% unless @automatic_petition %>
 
-	<%= "#{link_to(I18n.t(:accept_player), {:host => 'haypista.com', :controller => 'teammates', :action => join_accept, :id => @teammate})}".html_safe %><br/><br/>
-	<%= "#{link_to(I18n.t(:deny_player), {:host => 'haypista.com', :controller => 'teammates', :action => join_decline, :id => @teammate})}".html_safe %><br/><br/>
-	
+<%= "#{link_to(I18n.t(:accept_player), {:host => 'haypista.com', :controller => 'teammates', :action => join_accept, :id => @teammate})}".html_safe %>  
+<%= "#{link_to(I18n.t(:deny_player), {:host => 'haypista.com', :controller => 'teammates', :action => join_decline, :id => @teammate})}".html_safe %>
+<br>
+<br>
+
 <% end %>
 
 
-<%= render 'user_mailer/footer' %>

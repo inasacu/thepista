@@ -1352,6 +1352,7 @@ es:
      send_reply_to: Responder  
      send_role: Manda una responsabilidad   
      send_scorecard: Manda la clasificación
+     send_scorecard_subject: La clasificación
      send_standing: Manda la clasificación
      send_to_all: Mandar a todos   
      send_type: Manda un tipo 
@@ -1762,7 +1763,7 @@ es:
      invitation_deleted: Invitación borrada
      invitation_message: Has recibido una invitation para unirte o buscar a algun equipo con quien jugar...
      invitation_notice: HayPista no almacena ni tu cuenta de correo ni tu contraseña.
-     invitation_signup_link:  Visite este enlace para registrarse
+     invitation_signup_link:  Visita este enlace para registrarse
      invitation_successful_create: La invitación ha sido mandada.
      invitation_to_join: te manda una solicitud para unirte a HayPista     
      invitations_contacts:  Invitar a los contactos de tu libreta de direcciones de correo electrónico.
