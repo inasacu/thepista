@@ -1,14 +1,18 @@
 <!-- Das Footer -->
 
-<%= render 'utilities/facebook_script_zurb' if DISPLAY_SOCIAL_MEDIA %>
-<%= render 'utilities/google_plus_script_zurb' if DISPLAY_SOCIAL_MEDIA %>
+<%
+	is_media = DISPLAY_SOCIAL_MEDIA and Rails.env.production?
+%>
+
+<%= render 'utilities/facebook_script_zurb' if is_media %>
+<%= render 'utilities/google_plus_script_zurb' if is_media %>
 
 <footer class="row">
 	
 	
 	<% if is_mobile_browser %>
 
-		<section class="six columns">
+		<section class="three columns">
 			<h5><%= label_name(:language) %></h4>
 			<p>	
 				<%= "#{render :partial => '/shared/language_zurb'}".html_safe %>
@@ -16,7 +20,7 @@
 		</section>
 
 
-		<section class="six columns">
+		<section class="nine columns">
 			<h5><%= "#{label_name(:need_quick_help)}".html_safe %></h4>
 			<p><%= "#{mail_to(CONTACT_RECIPIENT, label_name(:contact_us))}".html_safe %></p>
 
@@ -59,7 +63,7 @@
 		<h6><%= "#{mail_to(CONTACT_RECIPIENT, label_name(:contact_us))}".html_safe %></h6>
 
 
-		<% if DISPLAY_SOCIAL_MEDIA and Rails.env.production? %>
+		<% if is_media %>
 
 		<ul class="block-grid three-up">
 			

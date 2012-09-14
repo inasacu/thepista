@@ -37,12 +37,13 @@
 						
 					</p>
 					
-					<% if @message  %>
+					<% if @message or @invitation %>
 
 						<p style="font-size:14px;font-family:&quot;Helvetica Neue&quot;,helvetica,arial,sans-serif;line-height:20px;margin:10px 0;background-color:#eee;border-radius:5px;padding:10px">
 
 												
-							<%= "#{@message.body}".html_safe %>
+							<%= "#{@message.body}".html_safe if @message %>
+							<%= "#{@invitation.message}".html_safe if @invitation %>
 							<br>
 							<br>
 						

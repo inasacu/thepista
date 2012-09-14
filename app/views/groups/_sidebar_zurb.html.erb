@@ -24,7 +24,7 @@
 
 <% if has_group %>
 
-
+	<%= set_form_create_id_image_link(Message.new, :scorecard_id, @group.schedules.first, :send_scorecard, 'scorecard') unless @group.schedules.blank? %>
 
 	<div class="row">
 		<div class="twelve columns">
@@ -38,8 +38,6 @@
 	
 		</div>
 	</div>
-
-
 
 
 	<% if is_group_manager %>

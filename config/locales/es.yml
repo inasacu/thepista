@@ -1095,8 +1095,8 @@ es:
      password_request_reset:  "Este e-mail es la respuesta a su solicitud para restablecer su contraseña."
      password_request_ignore:  "Si no ha realizado esta solicitud, simplemente ignore este mensaje."
      password_request_made:  "En caso contrario haga clic en el siguiente enlace:"           
-     request_url_does_not_work:  "Si el enlace no funciona trate de copiarla y pegarla en su navegador."
-     request_url_issue:   "Si continua teniendo problemas por favor no dude en contactarnos."     
+     request_url_does_not_work:  "Si cualquier de los enlaces no funciona intenta copiarlo y pegarlo en tu navegador."
+     request_url_issue:   "Si el probrebla persiste, contacta con nosotros."     
      passed_to:  Ha pasado a 
      payed:  Tasa pagada  
      payed_description:  Han sido pagadas las cargos? 
@@ -1765,7 +1765,8 @@ es:
      invitation_notice: HayPista no almacena ni tu cuenta de correo ni tu contraseña.
      invitation_signup_link:  Visita este enlace para registrarse
      invitation_successful_create: La invitación ha sido mandada.
-     invitation_to_join: te manda una solicitud para unirte a HayPista     
+     invitation_to_join: te manda una solicitud para unirte a HayPista
+     invitation_to_join_link: "Sigue los siguientes enlaces:  "  
      invitations_contacts:  Invitar a los contactos de tu libreta de direcciones de correo electrónico.
      invitations_email: "Email (Hotmail, Gmail, Yahoo, etc...)"
      invitations_index:  Invitaciones mandadas
@@ -1901,7 +1902,7 @@ es:
      message_sent: Mensajes enviados
      message_trash:  Borra el mensaje
      message_untrash: Recuperar   
-     messages_create:  Manda un mensaje
+     messages_create:  Mandar
      messages_inbox:  Mensajes recibidos
      messages_index:  Mensajes
      messages_index_option: Opciones 

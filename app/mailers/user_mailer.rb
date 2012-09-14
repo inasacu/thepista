@@ -22,8 +22,7 @@ class UserMailer < ActionMailer::Base
 		end
 
 		@user 							= invitation.user
-		@message 						= invitation.message
-		@url 								= signup_url
+		@invitation					= invitation		
 	  email_with_name 		= "#{invitation.user.name} <#{invitation.user.email}>"
 	
 		mail(:from => email_with_name, :to => invitation.email_addresses, :subject => @subject)

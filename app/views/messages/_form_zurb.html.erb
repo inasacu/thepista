@@ -41,23 +41,31 @@
 <div class="row">
 	<div class="eight columns">
 		
-	<%= set_form_label(the_form, :users) %>
+	<%#= set_form_label(the_form, :users) %>
 
 	<% if @scorecard %>
+		
+		<%= set_form_label(the_form, :users) %>
 		<% @schedule = @scorecard %>
 		<%= render "/messages/message_item_list_zurb", :recipients => @recipients, :checked => checked %>
 		<%= hidden_field :scorecard, :id %>
 
 	<% elsif @match %>
+
+		<%= set_form_label(the_form, :users) %>
 		<%= render "/messages/message_item_list_zurb", :recipients => @recipients, :checked => checked %>
 		<%= hidden_field :match, :id %>
 		<%= hidden_field :schedule, :id %>
 
 	<% elsif @schedule %>
+
+		<%= set_form_label(the_form, :users) %>
 		<%= render "/messages/message_item_list_zurb", :recipients => @recipients, :checked => checked, :convocados => true %>
 		<%= hidden_field :schedule, :id %>
 
 	<% elsif @challenge %>
+
+		<%= set_form_label(the_form, :users) %>
 		<%= render "/messages/message_item_list_zurb", :recipients => @recipients, :checked => checked %>
 		<%= hidden_field :challenge, :id %>
 
@@ -65,10 +73,14 @@
 		<%= hidden_field :recipient, :id %>
 
 	<% elsif @the_schedule  %>
+
+		<%= set_form_label(the_form, :users) %>
 		<% @schedule = @the_schedule %>	 
 		<%= render "/messages/message_item_list_zurb", :recipients => @recipients, :checked => checked %>
 
 	<% else %>
+
+		<%= set_form_label(the_form, :users) %>
 		<%= render "/messages/message_item_list_zurb", :recipients => @recipients, :checked => checked %>
 
 	<% end %>

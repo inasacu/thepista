@@ -25,7 +25,8 @@
 	input.placeholder, textarea.placeholder { color: #888; }
 
 	/* Text input and textarea sizes */
-	input.input-text, textarea { width: 254px; } 
+/*	input.input-text, textarea { width: 254px; }*/
+	input.input-text, textarea { width: 90%; }
 	input.tinier, textarea.small { width: 17px; } /* mod by haypista */
 	input.tiny, textarea.small { width: 34px; } /* mod by haypista */
 	input.smaller, textarea.small { width: 74px; } /* mod by haypista */

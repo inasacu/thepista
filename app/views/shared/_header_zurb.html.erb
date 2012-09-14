@@ -5,30 +5,38 @@
 	left_or_right = is_mobile_browser ? "left" : "right"
 %>
 
-<%# unless is_mobile_browser %>
-	<div id="zurBar" class="container">
-<%# end %>
 
-  <div class="row">
-
-	<% unless is_mobile_browser %>
+<% unless is_mobile_browser %>
 	
-	    <div class="three columns">
-	      <%= content_tag(:h1, link_to(app_name, root_url)) %>
-	    </div>
+	<style type="text/css">
+		#zurBar {position: fixed;}
+	</style>	
 	
-	<% end %>
-	
-    <div class="nine columns">
+<% end %>
 
-    	<strong class="<%= left_or_right %>">
 
-			<%= link_to(label_name(:home), root_url, :class => the_home) %>
+<div id="zurBar" class="container">
 
-			<% if current_user %>
+	<div class="row">
+
+		<% unless is_mobile_browser %>
+
+		<div class="three columns">
+			<%= content_tag(:h1, link_to(app_name, root_url)) %>
+		</div>
+
+		<% end %>
+
+		<div class="nine columns">
+
+			<strong class="<%= left_or_right %>">
+
+				<%= link_to(label_name(:home), root_url, :class => the_home) %>
+
+				<% if current_user %>
 				<%= link_to(label_name(:groups), groups_url, :class => the_group) %>	
 				<%= link_to(label_name(:schedules), schedules_url, :class => the_schedule) if has_group %>
-				
+
 				<%= link_to(label_name(:reservations), venues_url, :class => the_venue) %>	
 				<%= link_to(label_name(:cups), cups_url, :class => the_cup) if !is_mobile_browser and is_cup_visible %>
 
@@ -36,18 +44,16 @@
 				<%= user_link(current_user.name, current_user, :class => the_user) %>
 				<%= link_to(label_name(:logout), logout_path) %>		
 
-			<% else %>
+				<% else %>
 				<%= link_to(label_name(:login), login_path, :class => the_login) %>
 				<%= link_to(label_name(:signup), signup_path, :class => the_signup) if DISPLAY_REGISTER %>
-			<% end -%>
-			
+				<% end -%>
 
-    	</strong>
 
-    </div>
+			</strong>
 
-  </div>
+		</div>
 
-<%# unless is_mobile_browser %>
 	</div>
-<%# end %>
+
+</div>

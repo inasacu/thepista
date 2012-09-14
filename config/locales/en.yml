@@ -1087,8 +1087,8 @@ en:
      password_request_reset:  "This e-mail is the answer to your request to reset your password."
      password_request_ignore:  "If you have not made this request, simply ignore this message."
      password_request_made:  "Otherwise click the link below:"           
-     request_url_does_not_work:  "If the URL does not work try to copy and paste it into your browser."
-     request_url_issue:   "If you still have problems please do not hesitate to contact us."  
+     request_url_does_not_work:  "If the URLs do not work try to copy and paste it on your browser."
+     request_url_issue:   "If the issue persist please contact us."  
      passed_to:  Has changed to   
      payed:  Charges Payed  
      payed_description:  Charges have been paid?
@@ -1755,7 +1755,8 @@ en:
      invitation_notice: HayPista DOES NOT save your email address or password.
      invitation_signup_link:  Click this link to register
      invitation_successful_create: Invitation has been sent.
-     invitation_to_join: sends you an invitation to join HayPista     
+     invitation_to_join: sends you an invitation to join HayPista   
+     invitation_to_join_link: "Follow the below links:  "  
      invitations_contacts:  Invite your email contacts.
      invitations_email: "Email (Hotmail, Gmail, Yahoo, etc...)"
      invitations_index:  Invitations Sent
@@ -1890,7 +1891,7 @@ en:
      message_sent: Messages Sent
      message_trash:  Remove Message
      message_untrash: Recover   
-     messages_create:  Send a Message
+     messages_create:  Send
      messages_inbox:  Inbox
      messages_index:  Messages
      messages_index_option: Options
