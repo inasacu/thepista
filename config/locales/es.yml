@@ -1095,7 +1095,7 @@ es:
      password_request_reset:  "Este e-mail es la respuesta a su solicitud para restablecer su contraseña."
      password_request_ignore:  "Si no ha realizado esta solicitud, simplemente ignore este mensaje."
      password_request_made:  "En caso contrario haga clic en el siguiente enlace:"           
-     request_url_does_not_work:  "Si cualquier de los enlaces no funciona intenta copiarlo y pegarlo en tu navegador."
+     request_url_does_not_work:  "Si el enlace no funciona intenta copiarlo y pegarlo en tu navegador."
      request_url_issue:   "Si el probrebla persiste, contacta con nosotros."     
      passed_to:  Ha pasado a 
      payed:  Tasa pagada  

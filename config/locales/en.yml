@@ -1087,7 +1087,7 @@ en:
      password_request_reset:  "This e-mail is the answer to your request to reset your password."
      password_request_ignore:  "If you have not made this request, simply ignore this message."
      password_request_made:  "Otherwise click the link below:"           
-     request_url_does_not_work:  "If the URLs do not work try to copy and paste it on your browser."
+     request_url_does_not_work:  "If the URL does not work try to copy and paste it on your browser."
      request_url_issue:   "If the issue persist please contact us."  
      passed_to:  Has changed to   
      payed:  Charges Payed  
