@@ -17,8 +17,10 @@
 
 <% unless @automatic_petition %>
 
-<%= "#{link_to(I18n.t(:accept_player), {:host => 'haypista.com', :controller => 'teammates', :action => 'join_item_accept', :id => @teammate})}".html_safe %>  
-<%= "#{link_to(I18n.t(:deny_player), {:host => 'haypista.com', :controller => 'teammates', :action => 'join_item_decline', :id => @teammate})}".html_safe %>
+<%= "#{link_to(I18n.t(:accept_player), {:host => 'haypista.com', :controller => 'teammates', 
+					:action => 'join_item_accept', :id => @teammate})}".html_safe %>  
+<%= "#{link_to(I18n.t(:deny_player), {:host => 'haypista.com', :controller => 'teammates', 
+					:action => 'join_item_decline', :id => @teammate})}".html_safe %>
 <br>
 <br>
 

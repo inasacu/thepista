@@ -12,10 +12,8 @@
 
 <%#= render  'user_mailer/title', :the_label => the_label %>
 
-<%= "#{I18n.t(:request_petition)} #{I18n.t(:from)} 
-#{link_to(@user.name, {:host => 'haypista.com', :controller => 'users', :action => 'show', :id => @user}, 
-:title => @user.name)} #{I18n.t(:to_join_email)} -  
-#{link_to(@group.name, {:host => 'haypista.com', :controller => 'groups', :action => 'show', :id => @group}, 
+<%= "#{I18n.t(:request_petition)} #{I18n.t(:from)} #{link_to(@user.name, user_url(@user))}, 
+:title => @user.name)} #{I18n.t(:to_join_email)} - #{link_to(@group.name, group_url(@group))}, 
 :title => @group.name)}".html_safe %>
 <br>
 <br>
