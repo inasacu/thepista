@@ -754,6 +754,7 @@ en:
          other:     "every %{count} hours"
      has_not_been_sent: does not havet been sent correctly.   
      has_updated_scorecard: Has updated the SCORECARD with   
+     whatsapp: Use WhatsApp
      have_an_account: If you have an account  
      have_changed_language: Language has been changed
      haypista_howto:  Things you can do.
@@ -1120,7 +1121,8 @@ en:
      cancel_a_petition: Cancel Request to join a team? 
      you_petition_to_join: Request to join a team  
      team_petition: Request for Team
-     error_petition_to_join:  Error in the request to join 
+     error_petition_to_join:  Error in the request to join
+     error_message_invalid:  "Is invalid."
      per: per
      phase:  Round
      phone: Telephone   

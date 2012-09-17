@@ -17,7 +17,9 @@
 <div class="row">
 	<div class="twelve columns">  
 				
-      <%= form_for (@item), :url => match_path(@item), :html => { :class => :form , :class => 'nice' } do |the_form| -%>
+      <%= form_for (@item), :url => match_path(@item), :html => { :class => :form , :class => 'nice' } do |the_form| -%>	
+
+			<%= render "shared/error_messages", :target => @item %>
 
 			<table>
 			<tbody>

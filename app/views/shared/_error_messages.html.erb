@@ -1,0 +1,54 @@
+<%
+	the_error_total = "#{pluralize(target.errors.count, "error")} prohibited this record from being saved:"
+	the_error_total = "Correct the following errors and try again."
+	is_display = false
+%>
+
+
+
+<style type="text/css">
+
+.field_with_errors {
+  display: block;
+  clear: both;
+}
+
+.field_with_errors label {
+  color: #D00;
+  padding-left: 5px;
+  font-size: 12px;
+}
+
+.field_with_errors input {
+  padding: 3px 2px;
+  border: 2px solid red;
+}
+
+</style>
+
+<% if target.errors.any? %>
+
+	<%= content_tag :h6, the_error_total, :class => "subheader" %>
+	<hr>
+
+	<div class="row">		
+		<div class="row">
+			<div class="one column">
+			</div>
+
+			<div class="eleven columns end error">
+				<% target.errors.full_messages.each do |the_error| %>
+
+				<div class="form-field error"><label>* <%= the_error %></label>&nbsp;&nbsp;</div>		
+				<% end %>
+			</div>
+		</div>
+	</div>
+
+	<hr>
+
+	<br>
+
+<% end %>
+
+

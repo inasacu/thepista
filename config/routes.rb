@@ -49,6 +49,7 @@ Thepista::Application.routes.draw do
 	match 'jugadores/:id/habilitar_notificaciones' => 'users#set_teammate_notification', :as => :set_teammate_notification
 	match 'jugadores/:id/habilitar_mensajes' => 'users#set_message_notification', :as => :set_message_notification	
 	match 'jugadores/:id/habilitar_ultima_hora' => 'users#set_last_minute_notification', :as => :set_last_minute_notification
+	match 'jugadores/:id/utilizo_whatsapp' => 'users#set_whatsapp', :as => :set_whatsapp
 	
 	match 'eventos/:id/marcar_como_publico' => 'schedules#set_public', :as => :set_public
 	match 'eventos/:id/habilitar_perfil_previo' => 'schedules#set_previous_profile', :as => :set_previous_profile

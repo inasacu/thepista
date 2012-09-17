@@ -759,8 +759,9 @@ es:
          zero:      "Cero minutos"
          one:       "cada hora"
          other:     "cada %{count} horas"
-     has_not_been_sent: no ha sido mandado correctamente.   
-     has_updated_scorecard: Ha actualizado el RESULTADO  
+     has_not_been_sent: no ha sido mandado correctamente.  
+     has_updated_scorecard: Ha actualizado el RESULTADO
+     whatsapp: Utilizo WhatsApp
      have_an_account: Si tienes una cuenta     
      have_changed_language: Has cambiado el idioma
      haypista_howto:  Cosas que puedes hacer.
@@ -1129,6 +1130,7 @@ es:
      you_petition_to_join: Petición para unirte a un equipo  
      team_petition: Solicitud de equipo
      error_petition_to_join: Error en la petición para unirse a
+     error_message_invalid:  "No es válido."
      per: por
      phase:  Fase
      phone: Teléfono   

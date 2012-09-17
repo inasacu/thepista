@@ -6,9 +6,10 @@
 <div class="row">
 	<div class="twelve columns">  
 
-
 		<%= form_for(item, :html => { :multipart => true, :class => 'nice'  }) do |the_form| %>
 
+			<%= render "shared/error_messages", :target => item %>
+			
 			<%= render "#{the_controller}s/form_zurb", :the_form => the_form, :is_edit => is_edit %>
 
 			<br/><br/>

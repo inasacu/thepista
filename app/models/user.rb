@@ -41,6 +41,7 @@
 # t.string   "linkedin_token"
 # t.string   "linkedin_secret"
 # t.string   "slug"
+# t.boolean	 "whatsapp"
 
 class User < ActiveRecord::Base
 

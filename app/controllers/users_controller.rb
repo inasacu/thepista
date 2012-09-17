@@ -4,7 +4,7 @@ class UsersController < ApplicationController
 	before_filter :get_sports,          :only => [:new, :edit, :signup, :rpx_new]
 	before_filter :get_user_member,     :only => [:show, :notice] 
 	before_filter :get_user_manager,    :only => [:set_available]
-	before_filter :get_user_self,       :only => [:set_private_phone, :set_private_profile,  :set_teammate_notification, :set_message_notification, :set_last_minute_notification]
+	before_filter :get_user_self,       :only => [:set_private_phone, :set_private_profile,  :set_teammate_notification, :set_message_notification, :set_last_minute_notification, :set_whatsapp]
 	before_filter :get_user_group,      :only =>[:set_manager, :remove_manager, :set_sub_manager, :remove_sub_manager, :set_subscription, :remove_subscription, :set_moderator, :remove_moderator]
 
 	# before_filter :has_member_access,   :only => [:rate]
@@ -191,6 +191,17 @@ class UsersController < ApplicationController
 
 		flash[:notice] = I18n.t(:subscription_updated)
 		redirect_back_or_default('/index')
+	end
+
+	def set_whatsapp
+		if @user.update_attribute("whatsapp", !@user.whatsapp)
+			@user.update_attribute("whatsapp", @user.whatsapp)  
+
+			controller_successful_update
+			redirect_back_or_default('/index')
+		else
+			render :action => 'index'
+		end
 	end
 
 	def set_private_phone

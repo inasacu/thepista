@@ -32,7 +32,7 @@ gem 'delayed_job_active_record'
 
 gem 'zurb-foundation'
 gem 'agent_orange'
-gem "client_side_validations", "~> 3.1.4"
+# gem "client_side_validations", "~> 3.1.4"
 
 # Gems used only for assets and not required
 # in production environments by default.

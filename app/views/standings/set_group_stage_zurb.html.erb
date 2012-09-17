@@ -21,6 +21,8 @@
 			</tr>
 			
       <% form_for @standing, :url => standing_path(@standing), :html => { :class => :form } do |f| -%>
+
+		<%= render "shared/error_messages", :target => @standing %>
 		
 		<% @standings.each do |standing| %>
 		<%= render "standings/group_stage", :f => f, :standing => standing %>

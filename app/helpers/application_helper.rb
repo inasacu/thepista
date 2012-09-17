@@ -636,9 +636,9 @@ module ApplicationHelper
 		link_to(I18n.t(:cancel), send(:"#{the_path}"))    
 	end
 
-	def set_form_label(form, field, the_label='')
+	def set_form_label(form, field, the_label='', required=false)
 		form_label = (the_label.blank? ? field : the_label)
-		return form.label :"#{field}", label_name(form_label)
+		return form.label :"#{field}", "#{label_name(form_label)}#{required ? '  *  ' : ''}"
 	end
 
 	def set_form_text_field(form, field, the_class, placeholder=false)
