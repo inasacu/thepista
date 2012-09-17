@@ -432,8 +432,9 @@ es:
      installations_edit:  Modifica la Instalación 
      installations_name_description:  Nombre de la nueva instalación
      installations_new:  Nueva Instalación 
-     failed_login: Error de inicio de sesión      
+     failed_login: Error de inicio de sesión  
      false_value: "No"
+     f_value: "No"
      faq: Preguntas Frecuentes
      faq_acceso_con_tu_cuenta:  Preguntas sobre como acceder a HayPista con tu cuenta
      faq_how_can_help:  "¿Cómo te puede ayudar HayPista?"
@@ -1542,8 +1543,9 @@ es:
      topic: Asunto   
      total:  Total   
      trash: Basura   
-     trash_message: Borrar     
-     true_value: "Si"   
+     trash_message: Borrar   
+     true_value: "Si"
+     t_value: "Si"
      try_again: Lo sentimos!   
      tu_punto_de_vista: tu punto de vista sobre el portal contactando con nosotros a traves de   
      Tuesday: Martes   

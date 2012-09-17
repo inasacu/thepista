@@ -48,7 +48,8 @@ module MatchesHelper
          
     the_schedule = match.schedule
     the_label = ""
-    the_label = "#{I18n.t(match.type_name)}" if the_image.blank?
+		the_match_type_label = "#{match.type_name}".downcase.gsub(' ', '_')
+    the_label = I18n.t(the_match_type_label) if the_image.blank?
 
     case match.type_id
     when 1

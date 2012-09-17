@@ -430,8 +430,9 @@ en:
      installations_edit:  Update Instalation
      installations_name_description:  New Installation Name
      installations_new:  Create Installation 
-     failed_login: Failed Login      
+     failed_login: Failed Login   
      false_value: "No"
+     f_value: "No"
      faq: FAQ
      faq_acceso_con_tu_cuenta:  FAQ about access to HayPista with your account
      faq_how_can_help:  "How can HayPista help you?"
@@ -1532,8 +1533,9 @@ en:
      topic: Topic  
      total:  Total   
      trash: Trash   
-     trash_message: Remove     
-     true_value: "Yes"   
+     trash_message: Remove   
+     true_value: "Yes"
+     t_value: "Yes"
      try_again: Sorry!   
      tu_punto_de_vista: give us your point of view on the website by contacting us through  
      Tuesday: Tuesday   
