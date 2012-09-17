@@ -13,7 +13,7 @@
 	the_sport = @user.sport.strip.chomp(',') unless @user.sport.blank? or @user.sport.nil?
 	is_notice = get_controller_action == 'user_notice'
 	
-	the_whatsapp_label = h(label_name(@user.whatsapp, 'value')) 
+	the_whatsapp_label = label_name(@user.whatsapp, 'value')
 %>
 
 
@@ -33,8 +33,11 @@
 	<%= render_show_detail_zurb(:groups, (@user.has_group? ? "#{group_list(@user.groups)}".html_safe : "#{label_name('groups_none')}".html_safe)) %>
 	<%= render_show_detail_zurb(:email, @user.email) if @user == current_user %>
 	<%= render_show_detail_zurb("#{label_name(:phone)}  #{option_image_small_link('whatsapp') if @user.whatsapp}", phone_number_link(@user.phone), true) unless @user.phone.blank? %>	
-	<%= render_show_detail_zurb(:whatsapp, (link_to(the_whatsapp_label, set_whatsapp_path(:id => @user)))) %>
 	
+	<%= render_show_detail_zurb(:whatsapp, "#{link_to(the_whatsapp_label, set_whatsapp_path(:id => @user))}".html_safe) %>	
+
+	<% the_label = h(label_name(@user.teammate_notification, 'value')) %>
+	<%= render_show_detail_zurb(:teammate_notification, (can_modify ? link_to(the_label, set_teammate_notification_path(:id => @user)) : the_label)) %>
 	
 	<br />
 	<%= render_show_detail_zurb(:sports, the_sport) %>
@@ -47,7 +50,6 @@
 	%>
 
 	<%= label_name(:groups_full) %>
-
 
 		<% @user.groups.each do |group| 
 			if group_scorecards.include?(group.id) 
@@ -62,29 +64,14 @@
 	
 		<% end 
 		end %>
-
-			
 				
 	<%= render_show_detail_zurb(:city, @user.city.name) %>	
 	<%= render_show_detail_zurb(:language, label_name(@user.language)) if current_user == @user %>
 
 	<% end -%>
 
-
-	<%# if @user.has_role?('manager') and DISPLAY_USER_PETITION %>
-
-		<% the_label = h(label_name(@user.teammate_notification, 'value')) %>
-		<%= render_show_detail_zurb(:teammate_notification, (can_modify ? link_to(the_label, set_teammate_notification_path(:id => @user)) : the_label)) %>
-
-		<%# the_label = h(label_name(@user.message_notification, 'value')) %>
-		<%#= render_show_detail_zurb(:message_notification, (can_modify ? link_to(the_label, set_message_notification_path(:id => @user)) : the_label)) %>
-		
-	<%# end %>
-			
-
 	<%= render_show_detail_zurb(:users_teammate, render('shared/show_images_zurb', :collection => @user.friends)) if @user.friends.count > 0 %>
-  
-
+	
 	<%= render :partial => 'show_admin_zurb' if the_maximo %>
 
 </div>
