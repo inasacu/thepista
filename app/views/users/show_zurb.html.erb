@@ -13,7 +13,7 @@
 	the_sport = @user.sport.strip.chomp(',') unless @user.sport.blank? or @user.sport.nil?
 	is_notice = get_controller_action == 'user_notice'
 	
-	the_whatsapp_label = label_name(@user.whatsapp, 'value')
+	the_whatsapp_label = label_name(@user.whatsapp, 'value') 
 %>
 
 
