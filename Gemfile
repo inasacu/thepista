@@ -32,7 +32,7 @@ gem 'delayed_job_active_record'
 
 gem 'zurb-foundation'
 gem 'agent_orange'
-# gem "client_side_validations", "~> 3.1.4"
+gem 'sitemap_generator'
 
 # Gems used only for assets and not required
 # in production environments by default.
@@ -44,7 +44,7 @@ end
 
 
 
-# gem 'sitemap_generator'
+# gem "client_side_validations", "~> 3.1.4"
 # gem 'ayah_integration'
 # gem 'acts-as-messageable'
 # gem 'ajaxful_rating', '>= 3.0.0.beta8'
