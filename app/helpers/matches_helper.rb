@@ -200,7 +200,7 @@ module MatchesHelper
   	is_member = is_current_member_of(the_match.schedule.group)
 
 
-  	the_label = %(#{I18n.t(:passed_to)} #{the_match.type_name} #{I18n.t(:in)})
+  	the_label = %(#{I18n.t(:passed_to)} <STRONG>#{the_match.type_name}</STRONG> #{I18n.t(:in)})
 
   	the_links = ""	
   	matches.each do |match|
