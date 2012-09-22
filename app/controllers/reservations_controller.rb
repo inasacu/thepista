@@ -12,9 +12,7 @@ class ReservationsController < ApplicationController
 			block_token = Base64::decode64(params[:block_token].to_s).to_i
 			@current_user_zone = Time.zone.at(block_token)
 		else
-			# @current_user_zone = Time.zone.now
-			redirect_to venues_url
-			return
+			@current_user_zone = Time.zone.now
 		end
 
 		render @the_template  
@@ -152,10 +150,8 @@ class ReservationsController < ApplicationController
 	end
 
 	def get_installation
-		if params[:id]
-			@installation = Installation.find(params[:id])
-			@venue = @installation.venue
-		end
+		@installation = Installation.find(params[:id])
+		@venue = @installation.venue
 	end
 
 	def get_venue

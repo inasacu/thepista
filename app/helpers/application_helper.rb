@@ -632,6 +632,8 @@ module ApplicationHelper
 	end 
 
 	def set_form_cancel(item)
+		item = Venue.new if item.class.to_s.downcase.chomp == 'reservation'
+		
 		the_path = "#{item.class.to_s.downcase.chomp}s_path"
 		link_to(I18n.t(:cancel), send(:"#{the_path}"))    
 	end
