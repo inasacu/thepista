@@ -52,6 +52,10 @@ class ApplicationController < ActionController::Base
 		current_user.is_member_of?(item)
 	end
 
+	def notice_to_create_group
+		flash[:notice] = I18n.t(:groups_howto_create)
+	end
+
 	def successful_create
 		flash[:notice] = I18n.t(:successful_create)
 	end

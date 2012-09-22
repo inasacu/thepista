@@ -109,12 +109,12 @@ es:
      challenges:  Retos
      challenges_all:  Todos los retos
      challenges_create:  Crea tu reto 
-     challenges_howto_tab:  Haz click en la pestaña
+     challenges_howto_tab:  Selecciona la pestaña
      challenges_destroy:  Borra tu reto
      challenges_edit:  Actualiza tu reto
      challenges_howto:  Crea tu reto en 7 pasos.
      challenges_howto_create:  Selecciona la opción de 'Crea tu reto'.
-     challenges_howto_cup:  Haz click en la pestaña 
+     challenges_howto_cup:  Selecciona la pestaña 
      challenges_howto_fillin:  Rellena todos los campos.
      challenges_howto_gameday:  Las apuestas y resultados se actualizan en tiempo real.
      challenges_howto_petition:  Acepta las peticiones de tus amigos para unirse tu reto.
@@ -122,7 +122,7 @@ es:
      challenges_howto_petition_accept:  Entra en peticiones y acéptalas.
      challenges_howto_pronostico:  "¡Los participantes estan listos para hacer sus apuestas!"
      challenges_howto_show:  Entra en los detalles del reto.
-     challenges_howto_tab:  Haz click en la pestaña 
+     challenges_howto_tab:  Selecciona la pestaña 
      challenges_index:   Retos
      challenges_index_option: Opciones 
      challenges_invitations_create:  Invita a un amigo a el reto
@@ -251,9 +251,9 @@ es:
      cups_destroy:  Borra copa
      cups_edit:  Actualiza copa
      cups_howto:  Crea tu copa en 7 pasos.
-     cups_howto_create:  Haz click en la opción de 'Nuevo copa'.
-     cups_howto_event:  Haz click en la opción de 'Organiza un partido'.
-     cups_howto_tab:  Haz click en la pestaña 
+     cups_howto_create:  Selecciona la opción de 'Nuevo copa'.
+     cups_howto_event:  Selecciona la opción de 'Organiza un partido'.
+     cups_howto_tab:  Selecciona la pestaña 
      cups_howto_fillin:  Rellena todos los campos y haz click en el boton 'Nuevo'.
      cups_howto_gameday:  Los proximos eventos salen en la pagina de inicio.
      cups_howto_petition:  Acepta las peticiones de tus amigos para unirse a tu copa.
@@ -689,9 +689,9 @@ es:
      groups: Equipos
      groups_full:  Detalles de equipos 
      groups_howto:  Crea tu equipo en 9 pasos.
-     groups_howto_create:  Haz click en la opción de 'Nuevo equipo'.
-     groups_howto_event:  Haz click en la opción de 'Organiza un partido'.
-     groups_howto_tab:  Haz click en la pestaña 
+     groups_howto_create:  Selecciona  la opción de 'Nuevo equipo'.
+     groups_howto_event:  Selecciona la opción de 'Organiza un partido'.
+     groups_howto_tab:  Selecciona la pestaña 
      groups_howto_fillin:  Rellena todos los campos y haz click en el boton 'Nuevo'.
      groups_howto_gameday:  Los proximos eventos salen en la pagina de inicio.
      groups_howto_petition:  Acepta las peticiones de tus amigos para unirse a tu equipo.
