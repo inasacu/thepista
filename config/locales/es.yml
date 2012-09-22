@@ -472,19 +472,26 @@ es:
      feature: Prestación
      features: Prestaciones
      fee: Honorarios   
+     fee_per_challenge_short:  "Precio del torneo"
      fee_per_challenge:  "¿Cuánto cuesta el torneo?"
      fee_per_challenge_description:  (Este es el precio que pone el manager por participar...)
-     fee_per_game: "¿Cuánto cuesta jugar por persona?"  
+     fee_per_game_short: "Precio por persona"
+     fee_per_game: "¿Cuánto cuesta jugar por persona?"
      fee_per_game_description: (Este es el precio que se le cobra al jugador no abonado...) 
-     fee_per_game_time:  "¿Cuánto cuesta la pista?"  
+     fee_per_game_time_short:  "Precio de  la pista"
+     fee_per_game_time:  "¿Cuánto cuesta la pista?"
      fee_per_game_time_description: (Este es el precio de la pista por hora...)
+     fee_per_lighting_short: "Precio de aluminación"
      fee_per_lighting: "¿Cuánto cuesta la aluminación?"
-     fee_per_lighting_description: (Este es el precio de la luz en la pista o cancha...)  
+     fee_per_lighting_description: (Este es el precio de la luz en la pista o cancha...) 
+     fee_per_pista_short: "Precio de la pista"
      fee_per_pista: "¿Cuánto cuesta la pista?"
      fee_per_pista_description: (Este es el precio de la pista o cancha...) 
-     fee_per_pista_time:  "¿Cuánto cuesta la pista?"  
+     fee_per_pista_time_short:  "Precio de  la pista"
+     fee_per_pista_time:  "¿Cuánto cuesta la pista?"
      fee_per_pista_time_description: (Este es el precio de la pista por hora...)
-     fee_per_tour: "¿Cuánto cuesta el torneo?"  
+     fee_per_tour_short: "Precio del torneo"
+     fee_per_tour: "¿Cuánto cuesta el torneo?"
      fee_per_tour_description: (Este es el precio del torneo...)  
      feedback: feedback   
      fees: Cargos   

@@ -27,8 +27,8 @@
 		<%= render_show_detail_zurb(:ends_at, nice_day_of_week(@reservation.ends_at)) %>
 		<%= render_show_detail_zurb(:reminder_at, nice_day_of_week(@reservation.reminder_at)) %>
 		<%= render_show_detail_zurb(:sport, @reservation.installation.sport.name) %>
-		<%= render_show_detail_zurb(:fee_per_pista, number_to_currency(@reservation.fee_per_pista)) %>
-		<%= render_show_detail_zurb(:fee_per_lighting, number_to_currency(@reservation.fee_per_lighting)) %>
+		<%= render_show_detail_zurb(:fee_per_pista_short, number_to_currency(@reservation.fee_per_pista)) %>
+		<%= render_show_detail_zurb(:fee_per_lighting_short, number_to_currency(@reservation.fee_per_lighting)) %>
 		<%= render_show_detail_zurb(:marker, marker_link(@reservation.installation.marker) %>
 
 		<%= render_show_detail_zurb(:reminder, 

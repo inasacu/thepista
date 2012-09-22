@@ -189,7 +189,13 @@ module ApplicationHelper
 
 	# Sábado, 12 de Junio de 2010 a las 20:30
 	def nice_day_of_week(time_at)
-		return I18n.l(time_at, :format => :day_week) unless time_at.nil?
+		# return I18n.l(time_at, :format => :day_week) unless time_at.nil?
+		return nice_day_time_strong(time_at)
+	end
+
+	# Sábado, 12 de Junio <strong>20:30</strong>
+	def nice_day_time_strong(time_at)
+		return "<strong>#{I18n.l(time_at, :format => :simple_time_at)}h</strong> - #{nice_day_date_wo_year(time_at)}".html_safe unless time_at.nil?
 	end
 
 	# Sábado, 12 de Junio de 2010 a las 20:30
@@ -229,7 +235,8 @@ module ApplicationHelper
 
 	# Sábado, 12 de Junio 20:30
 	def nice_day_time_wo_year_exact(time_at)
-		return I18n.l(time_at, :format => :day_time_wo_year_exact).html_safe unless time_at.nil?
+		# return I18n.l(time_at, :format => :day_time_wo_year_exact).html_safe unless time_at.nil?		
+		return nice_day_time_strong(time_at)
 	end
 
 	# converts two dates and get date and time from first and second
