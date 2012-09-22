@@ -30,6 +30,7 @@
 # t.float    "lat"                                                        
 # t.float    "lng"                                                        
 # t.string   "slug"
+# t.string   "short_name"
 
 class Marker < ActiveRecord::Base
 

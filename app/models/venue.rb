@@ -18,6 +18,7 @@
 # t.datetime "day_light_starts_at"
 # t.datetime "day_light_s_at"
 # t.string   "slug"
+# t.string   "short_name"
 
 class Venue < ActiveRecord::Base
 
