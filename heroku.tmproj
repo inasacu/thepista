@@ -3,7 +3,7 @@
 <plist version="1.0">
 <dict>
 	<key>currentDocument</key>
-	<string>app/views/installations/_sidebar_zurb.html.erb</string>
+	<string>app/views/reservations/_form_zurb.html.erb</string>
 	<key>documents</key>
 	<array>
 		<dict>
@@ -179,6 +179,50 @@
 			<key>firstVisibleLine</key>
 			<integer>0</integer>
 		</dict>
+		<key>app/helpers/application_helper.rb</key>
+		<dict>
+			<key>caret</key>
+			<dict>
+				<key>column</key>
+				<integer>100</integer>
+				<key>line</key>
+				<integer>197</integer>
+			</dict>
+			<key>firstVisibleColumn</key>
+			<integer>0</integer>
+			<key>firstVisibleLine</key>
+			<integer>197</integer>
+		</dict>
+		<key>app/helpers/schedules_helper.rb</key>
+		<dict>
+			<key>caret</key>
+			<dict>
+				<key>column</key>
+				<integer>42</integer>
+				<key>line</key>
+				<integer>231</integer>
+			</dict>
+			<key>columnSelection</key>
+			<false/>
+			<key>firstVisibleColumn</key>
+			<integer>0</integer>
+			<key>firstVisibleLine</key>
+			<integer>187</integer>
+			<key>selectFrom</key>
+			<dict>
+				<key>column</key>
+				<integer>28</integer>
+				<key>line</key>
+				<integer>231</integer>
+			</dict>
+			<key>selectTo</key>
+			<dict>
+				<key>column</key>
+				<integer>55</integer>
+				<key>line</key>
+				<integer>231</integer>
+			</dict>
+		</dict>
 		<key>app/views/home/_upcoming_schedule_zurb.html.erb</key>
 		<dict>
 			<key>caret</key>
@@ -206,20 +250,6 @@
 			<integer>0</integer>
 			<key>firstVisibleLine</key>
 			<integer>2</integer>
-		</dict>
-		<key>app/views/installations/_sidebar_zurb.html.erb</key>
-		<dict>
-			<key>caret</key>
-			<dict>
-				<key>column</key>
-				<integer>54</integer>
-				<key>line</key>
-				<integer>7</integer>
-			</dict>
-			<key>firstVisibleColumn</key>
-			<integer>0</integer>
-			<key>firstVisibleLine</key>
-			<integer>0</integer>
 		</dict>
 		<key>app/views/installations/index_zurb.html.erb</key>
 		<dict>
@@ -263,6 +293,64 @@
 			<key>firstVisibleLine</key>
 			<integer>0</integer>
 		</dict>
+		<key>app/views/reservations/_form_zurb.html.erb</key>
+		<dict>
+			<key>caret</key>
+			<dict>
+				<key>column</key>
+				<integer>102</integer>
+				<key>line</key>
+				<integer>7</integer>
+			</dict>
+			<key>firstVisibleColumn</key>
+			<integer>0</integer>
+			<key>firstVisibleLine</key>
+			<integer>0</integer>
+		</dict>
+		<key>app/views/reservations/show_zurb.html.erb</key>
+		<dict>
+			<key>caret</key>
+			<dict>
+				<key>column</key>
+				<integer>53</integer>
+				<key>line</key>
+				<integer>30</integer>
+			</dict>
+			<key>firstVisibleColumn</key>
+			<integer>0</integer>
+			<key>firstVisibleLine</key>
+			<integer>0</integer>
+		</dict>
+		<key>app/views/schedules/_team_roster_change_schedule.html.erb</key>
+		<dict>
+			<key>caret</key>
+			<dict>
+				<key>column</key>
+				<integer>37</integer>
+				<key>line</key>
+				<integer>27</integer>
+			</dict>
+			<key>columnSelection</key>
+			<false/>
+			<key>firstVisibleColumn</key>
+			<integer>0</integer>
+			<key>firstVisibleLine</key>
+			<integer>0</integer>
+			<key>selectFrom</key>
+			<dict>
+				<key>column</key>
+				<integer>32</integer>
+				<key>line</key>
+				<integer>27</integer>
+			</dict>
+			<key>selectTo</key>
+			<dict>
+				<key>column</key>
+				<integer>50</integer>
+				<key>line</key>
+				<integer>27</integer>
+			</dict>
+		</dict>
 		<key>app/views/schedules/edit.html.erb</key>
 		<dict>
 			<key>caret</key>
@@ -293,6 +381,66 @@
 				<integer>0</integer>
 			</dict>
 		</dict>
+		<key>app/views/schedules/show_zurb.html.erb</key>
+		<dict>
+			<key>caret</key>
+			<dict>
+				<key>column</key>
+				<integer>32</integer>
+				<key>line</key>
+				<integer>97</integer>
+			</dict>
+			<key>columnSelection</key>
+			<false/>
+			<key>firstVisibleColumn</key>
+			<integer>0</integer>
+			<key>firstVisibleLine</key>
+			<integer>51</integer>
+			<key>selectFrom</key>
+			<dict>
+				<key>column</key>
+				<integer>46</integer>
+				<key>line</key>
+				<integer>97</integer>
+			</dict>
+			<key>selectTo</key>
+			<dict>
+				<key>column</key>
+				<integer>32</integer>
+				<key>line</key>
+				<integer>97</integer>
+			</dict>
+		</dict>
+		<key>app/views/schedules/team_roster_zurb.html.erb</key>
+		<dict>
+			<key>caret</key>
+			<dict>
+				<key>column</key>
+				<integer>32</integer>
+				<key>line</key>
+				<integer>9</integer>
+			</dict>
+			<key>columnSelection</key>
+			<false/>
+			<key>firstVisibleColumn</key>
+			<integer>0</integer>
+			<key>firstVisibleLine</key>
+			<integer>0</integer>
+			<key>selectFrom</key>
+			<dict>
+				<key>column</key>
+				<integer>22</integer>
+				<key>line</key>
+				<integer>9</integer>
+			</dict>
+			<key>selectTo</key>
+			<dict>
+				<key>column</key>
+				<integer>49</integer>
+				<key>line</key>
+				<integer>9</integer>
+			</dict>
+		</dict>
 		<key>app/views/shared/_footer_zurb.html.erb</key>
 		<dict>
 			<key>caret</key>
@@ -301,6 +449,20 @@
 				<integer>12</integer>
 				<key>line</key>
 				<integer>3</integer>
+			</dict>
+			<key>firstVisibleColumn</key>
+			<integer>0</integer>
+			<key>firstVisibleLine</key>
+			<integer>0</integer>
+		</dict>
+		<key>app/views/shared/_previous_next_message_zurb.html.erb</key>
+		<dict>
+			<key>caret</key>
+			<dict>
+				<key>column</key>
+				<integer>24</integer>
+				<key>line</key>
+				<integer>0</integer>
 			</dict>
 			<key>firstVisibleColumn</key>
 			<integer>0</integer>
@@ -337,64 +499,6 @@
 				<integer>24</integer>
 			</dict>
 		</dict>
-		<key>app/views/sidebars/_sidebar_create_zurb.html.erb</key>
-		<dict>
-			<key>caret</key>
-			<dict>
-				<key>column</key>
-				<integer>0</integer>
-				<key>line</key>
-				<integer>20</integer>
-			</dict>
-			<key>columnSelection</key>
-			<false/>
-			<key>firstVisibleColumn</key>
-			<integer>0</integer>
-			<key>firstVisibleLine</key>
-			<integer>0</integer>
-			<key>selectFrom</key>
-			<dict>
-				<key>column</key>
-				<integer>131</integer>
-				<key>line</key>
-				<integer>20</integer>
-			</dict>
-			<key>selectTo</key>
-			<dict>
-				<key>column</key>
-				<integer>0</integer>
-				<key>line</key>
-				<integer>20</integer>
-			</dict>
-		</dict>
-		<key>app/views/timetables/_form_zurb.html.erb</key>
-		<dict>
-			<key>caret</key>
-			<dict>
-				<key>column</key>
-				<integer>0</integer>
-				<key>line</key>
-				<integer>0</integer>
-			</dict>
-			<key>firstVisibleColumn</key>
-			<integer>0</integer>
-			<key>firstVisibleLine</key>
-			<integer>0</integer>
-		</dict>
-		<key>app/views/timetables/new_zurb.html.erb</key>
-		<dict>
-			<key>caret</key>
-			<dict>
-				<key>column</key>
-				<integer>0</integer>
-				<key>line</key>
-				<integer>5</integer>
-			</dict>
-			<key>firstVisibleColumn</key>
-			<integer>0</integer>
-			<key>firstVisibleLine</key>
-			<integer>0</integer>
-		</dict>
 		<key>app/views/user_sessions/new.html.erb</key>
 		<dict>
 			<key>caret</key>
@@ -417,20 +521,6 @@
 				<integer>21</integer>
 				<key>line</key>
 				<integer>31</integer>
-			</dict>
-			<key>firstVisibleColumn</key>
-			<integer>0</integer>
-			<key>firstVisibleLine</key>
-			<integer>0</integer>
-		</dict>
-		<key>app/views/venues/_tab_navigation_zurb.html.erb</key>
-		<dict>
-			<key>caret</key>
-			<dict>
-				<key>column</key>
-				<integer>20</integer>
-				<key>line</key>
-				<integer>6</integer>
 			</dict>
 			<key>firstVisibleColumn</key>
 			<integer>0</integer>
@@ -488,7 +578,7 @@
 				<key>column</key>
 				<integer>5</integer>
 				<key>line</key>
-				<integer>31</integer>
+				<integer>17</integer>
 			</dict>
 			<key>columnSelection</key>
 			<false/>
@@ -501,14 +591,44 @@
 				<key>column</key>
 				<integer>0</integer>
 				<key>line</key>
-				<integer>21</integer>
+				<integer>17</integer>
 			</dict>
 			<key>selectTo</key>
 			<dict>
 				<key>column</key>
 				<integer>5</integer>
 				<key>line</key>
-				<integer>31</integer>
+				<integer>17</integer>
+			</dict>
+		</dict>
+		<key>config/locales/en_time.yml</key>
+		<dict>
+			<key>caret</key>
+			<dict>
+				<key>column</key>
+				<integer>10</integer>
+				<key>line</key>
+				<integer>141</integer>
+			</dict>
+			<key>columnSelection</key>
+			<false/>
+			<key>firstVisibleColumn</key>
+			<integer>0</integer>
+			<key>firstVisibleLine</key>
+			<integer>118</integer>
+			<key>selectFrom</key>
+			<dict>
+				<key>column</key>
+				<integer>6</integer>
+				<key>line</key>
+				<integer>141</integer>
+			</dict>
+			<key>selectTo</key>
+			<dict>
+				<key>column</key>
+				<integer>14</integer>
+				<key>line</key>
+				<integer>141</integer>
 			</dict>
 		</dict>
 		<key>db/migrate/20120810131753_add_group_service_user_validation.rb</key>
@@ -587,22 +707,15 @@
 	<key>openDocuments</key>
 	<array>
 		<string>log/development.log</string>
-		<string>app/views/installations/_sidebar_zurb.html.erb</string>
-		<string>app/views/venues/index_zurb.html.erb</string>
-		<string>app/views/venues/_sidebar_zurb.html.erb</string>
-		<string>app/views/installations/_form_zurb.html.erb</string>
-		<string>app/views/schedules/edit.html.erb</string>
-		<string>app/views/installations/new.html.erb</string>
-		<string>app/views/venues/_tab_navigation_zurb.html.erb</string>
-		<string>app/views/venues/show_zurb.html.erb</string>
-		<string>app/views/installations/show_zurb.html.erb</string>
-		<string>app/views/installations/index_zurb.html.erb</string>
-		<string>app/views/timetables/new_zurb.html.erb</string>
-		<string>app/views/timetables/_form_zurb.html.erb</string>
-		<string>app/controllers/installations_controller.rb</string>
-		<string>app/views/sidebars/_sidebar_create_zurb.html.erb</string>
-		<string>app/views/sidebars/_sidebar_create_id_zurb.html.erb</string>
-		<string>app/views/shared/_footer_zurb.html.erb</string>
+		<string>app/views/reservations/show_zurb.html.erb</string>
+		<string>app/helpers/application_helper.rb</string>
+		<string>app/views/schedules/show_zurb.html.erb</string>
+		<string>app/views/schedules/team_roster_zurb.html.erb</string>
+		<string>app/views/schedules/_team_roster_change_schedule.html.erb</string>
+		<string>app/helpers/schedules_helper.rb</string>
+		<string>app/views/shared/_previous_next_message_zurb.html.erb</string>
+		<string>config/locales/en_time.yml</string>
+		<string>app/views/reservations/_form_zurb.html.erb</string>
 	</array>
 	<key>showFileHierarchyDrawer</key>
 	<true/>
