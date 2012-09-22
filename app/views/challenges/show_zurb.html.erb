@@ -20,7 +20,7 @@
 			<td>
 				<%= render_show_detail_zurb(:name, item_name_link(@challenge)) %>
 				<%= render_show_detail_zurb(:manager, item_list(@challenge.all_the_managers)) %>
-				<%= render_show_detail_zurb(:automatic_petition, (is_user_manager ? link_to(the_petition_label, set_group_auto_path(:id => @challenge)) : the_petition_label)) %>
+				<%= render_show_detail_zurb(:automatic_petition, (is_user_manager ? link_to(the_petition_label, set_auto_petition_challenge_path(:id => @challenge)) : the_petition_label)) if @challenge.payed_service %>  
 
 				<%= render_show_detail_zurb(:participants, t(:has_challenge_users, :count => @challenge.active_users.count)) %>
 				<%#= render_show_detail_zurb(:points_full, link_to(label_name(:points_full) , show_list_standings_path(:id => @challenge))) %>

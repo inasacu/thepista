@@ -1,0 +1,39 @@
+<% 
+	is_user_manager = (current_user.is_manager_of?(@installation))
+	is_venue_manager = current_user.is_manager_of?(@venue)
+%>
+
+
+<%= render 'shared/show_description_zurb', :item => @installation %>
+	
+	
+<div class="row">
+
+	<div class="twelve columns"> 
+		
+		<table>
+		<tbody>
+		<tr>
+		<td>
+			
+		<%= render_show_detail_zurb(:name, item_name_link(@installation)) %>
+		<%= render_show_detail_zurb(:manager, user_list(@group.all_the_managers)) %>
+
+		
+		</td>	
+		</tr>
+		</tbody>
+		</table>
+		
+	</div>
+</div>
+
+
+
+
+
+
+		<%= render_show_detail_zurb(:td, label_name(:marker), :class => "label" %>
+		<%= render_show_detail_zurb(:td, marker_link(@installation.marker), :class => get_the_action %>
+</tr>
+

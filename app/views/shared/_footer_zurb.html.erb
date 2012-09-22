@@ -1,7 +1,7 @@
 <!-- Das Footer -->
 
 <%
-	is_media = DISPLAY_SOCIAL_MEDIA and Rails.env.production?
+	is_media = Rails.env.production?
 %>
 
 <%= render 'utilities/facebook_script_zurb' if is_media %>

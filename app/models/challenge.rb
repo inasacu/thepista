@@ -14,6 +14,7 @@
 # t.datetime "updated_at"
 # t.boolean  "automatic_petition" 
 # t.string   "slug"
+# t.integer		"service_id"
 
 class Challenge < ActiveRecord::Base
 
@@ -138,6 +139,11 @@ class Challenge < ActiveRecord::Base
     end
     return items
   end
+
+	def challenge_payed_service
+		type_payed_service = [52, 53, 54]
+		return type_payed_service.include?(self.service_id)
+	end
 
   def format_description
     self.description.gsub!(/\r?\n/, "<br>") unless self.description.nil?

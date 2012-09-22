@@ -1,8 +1,8 @@
 class ChallengesController < ApplicationController
 	before_filter :require_user    
 	
-	before_filter :get_challenge, :only => [:challenge_list, :edit, :update, :set_automatic_petition]
-	before_filter :has_manager_access, :only => [:edit, :update, :set_automatic_petition, :set_challenge_subscription, :remove_challenge_subscription]
+	before_filter :get_challenge, :only => [:challenge_list, :edit, :update, :set_auto_petition_challenge]
+	before_filter :has_manager_access, :only => [:edit, :update, :set_auto_petition_challenge, :set_challenge_subscription, :remove_challenge_subscription]
 	before_filter	:get_user_challenge,	:only => [:set_challenge_subscription, :remove_challenge_subscription]
 
 	before_filter :get_cup, :only =>[:new]
@@ -65,7 +65,7 @@ class ChallengesController < ApplicationController
 		end
 	end 
 
-	def set_automatic_petition
+	def set_auto_petition_challenge
 		if @challenge.update_attribute("automatic_petition", !@challenge.automatic_petition)
 			@challenge.update_attribute("automatic_petition", @challenge.automatic_petition)  
 

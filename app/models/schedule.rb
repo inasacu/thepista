@@ -31,7 +31,12 @@
 class Schedule < ActiveRecord::Base
 
 	extend FriendlyId 
-	friendly_id :name, 			use: :slugged
+	# friendly_id :name, 							use: :slugged
+	friendly_id :name_slug, 					use: :slugged
+
+	def name_slug
+		"#{self.group.name} #{name}".gsub(" ", "_")
+	end
 
   has_many  :matches,  :conditions => "matches.archive = false", :order => "matches.group_score"
   has_many  :fees

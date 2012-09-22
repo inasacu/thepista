@@ -25,9 +25,13 @@
 class Installation < ActiveRecord::Base
 
 	extend FriendlyId 
-	friendly_id :name, 			use: :slugged
+	# friendly_id :name, 						use: 				:slugged
+	friendly_id :name_slug,				use:  			:slugged
 
-	# index{ name }
+	def name_slug
+		"#{self.venue.name} #{name}"
+	end
+
 
 	has_attached_file :photo, :styles => {:icon => "25x25>", :thumb  => "80x80>", :medium => "160x160>",  },
 	:storage => :s3,

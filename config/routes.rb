@@ -57,11 +57,11 @@ Thepista::Application.routes.draw do
 	match 'eventos/:id/actual_evento' => 'schedules#group_current', :as => :group_current
 	match 'eventos/:id/previo_evento' => 'schedules#group_previous', :as => :group_previous
 	
-  match 'equipos/:id/unirse_automaticamente' => 'groups#set_group_auto', :as => :set_group_auto
+  match 'equipos/:id/unirse_automaticamente' => 'groups#set_automatic_petition', :as => :set_automatic_petition
 	match 'equipos/:id/marcar_subscripcion/:venue' => 'groups#set_subscription', :as => :set_group_subscription
 	match 'equipos/:id/borrar_subscripcion/:venue' => 'groups#remove_subscription', :as => :remove_group_subscription
 
-  match 'retos_copa/:id/unirse_automaticamente' => 'challenges#set_challenge_auto',  :as => :set_challenge_auto
+  match 'retos_copa/:id/unirse_auto_reto' => 'challenges#set_auto_petition_challenge',  :as => :set_auto_petition_challenge
 	
 	match 'retos_copa/:id/marcar_reto_subscripcion/:challenge' => 'challenges#set_challenge_subscription', :as => :set_challenge_subscription
 	match 'retos_copa/:id/borrar_reto_subscripcion/:challenge' => 'challenges#remove_challenge_subscription', :as => :remove_challenge_subscription

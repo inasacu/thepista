@@ -194,8 +194,14 @@ class Group < ActiveRecord::Base
     self.marker.venue
   end
 
+	def payed_service
+		type_payed_service = [52, 53, 54]
+		return type_payed_service.include?(self.service_id)
+	end
+
   def self.latest_items(items)
-    find(:all, :select => "id, name, photo_file_name, updated_at as created_at", :conditions => ["created_at >= ? and archive = false", LAST_THREE_DAYS]).each do |item| 
+    find(:all, :conditions => ["created_at >= ? and archive = false", THREE_WEEKS_AGO]).each do |item|
+    # find(:all, :select => "id, name, photo_file_name, updated_at as created_at", :conditions => ["created_at >= ? and archive = false", LAST_THREE_DAYS]).each do |item| 
       items << item
     end
     return items 

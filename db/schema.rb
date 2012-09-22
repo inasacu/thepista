@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120917201434) do
+ActiveRecord::Schema.define(:version => 20120921151613) do
 
   create_table "announcements", :force => true do |t|
     t.text     "message"
@@ -382,6 +382,7 @@ ActiveRecord::Schema.define(:version => 20120917201434) do
     t.float    "lat",                                                        :default => 0.0
     t.float    "lng",                                                        :default => 0.0
     t.string   "slug"
+    t.string   "short_name"
   end
 
   add_index "markers", ["item_id", "item_type"], :name => "index_markers_on_item_id_and_item_type"
@@ -808,6 +809,7 @@ ActiveRecord::Schema.define(:version => 20120917201434) do
     t.datetime "day_light_starts_at"
     t.datetime "day_light_ends_at"
     t.string   "slug"
+    t.string   "short_name"
   end
 
   add_index "venues", ["marker_id"], :name => "index_venues_on_marker_id"

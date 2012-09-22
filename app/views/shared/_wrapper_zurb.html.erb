@@ -58,14 +58,21 @@
 		the_sidebar = nil if is_controller_action('cup_index')
 	
 	when 'group'
-		ignore_schedule = ['group_show', 'group_team_list']
-		new_item_sidebar = Group.new unless ignore_schedule.include?(get_controller_action)
+		ignore_option = ['group_show', 'group_team_list']
+		new_item_sidebar = Group.new unless ignore_option.include?(get_controller_action)
 
 	
 	when 'schedule'
-		ignore_schedule = ['schedule_show', 'schedule_team_roster', 'schedule_team_no_show', 'schedule_team_last_minute', 'schedule_team_unavailable']
-		new_item_sidebar = Schedule.new unless ignore_schedule.include?(get_controller_action)
-		
+		ignore_option = ['schedule_show', 'schedule_team_roster', 'schedule_team_no_show', 'schedule_team_last_minute', 'schedule_team_unavailable']
+		new_item_sidebar = Schedule.new unless ignore_option.include?(get_controller_action)
+	
+	when 'venue'	
+		if the_maximo
+			ignore_option = ['venue_show']
+			new_item_sidebar = Venue.new unless ignore_option.include?(get_controller_action)
+		else
+			the_sidebar = nil
+		end
 	end
 	
 	
@@ -102,6 +109,10 @@
 		@the_collection = @messages if @messages
 	end
 
+	if get_controller_action == 'venue_index'
+		@the_collection = @venues if @venues
+	end
+
 	the_controller_action = ['cast_index', 'challenge_challenge_list','cast_list', 'cast_list_guess_user', 'cast_list_gues']
 	if the_controller_action.include?(get_controller_action)
 		@the_collection = @casts if @casts
@@ -122,7 +133,10 @@
 	discard_disqus_display = ['schedule_new', 'schedule_edit', 'cast_edit', 'match_edit', 'invitation_new', 'challenge_new', 'challenge_edit']
 	
 	# case for displaying SIDEBAR 
-	ignore_sidebar = ['schedule_list', 'user_index', 'venue_index', 'invitation_new', 'challenge_new', 'challenge_create', 'message_index', 'message_show', 'message_new', 'game_index', 'standing_index', 'game_list','cast_list_gues','standing_show_all', 'home_about', 'home_terms_of_use', 'home_faq', 'standing_show', 'reservation_index', 'user_session_new']
+	ignore_sidebar = ['schedule_list', 'user_index', 'invitation_new', 'challenge_new', 'challenge_create', 'message_index', 'message_show', 'message_new', 
+					  'game_index', 'standing_index', 'game_list','cast_list_gues','standing_show_all', 'home_about', 'home_terms_of_use', 'home_faq', 'standing_show', 
+					  'reservation_index', 'user_session_new']
+					
 	the_sidebar = nil if ignore_sidebar.include?(get_controller_action)
 	
 	the_column_set = is_controller_action('reservation_index') ? "twelve columns" : nil
@@ -156,7 +170,7 @@
 
 	  	<div class="four columns">
 		<!-- SIDEBAR BEGIN -->
-		
+				
 			<% unless the_sidebar.nil? %>
 		
 				<%= set_title_class(the_sidebar_label) %>

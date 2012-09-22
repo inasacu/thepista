@@ -1,20 +1,59 @@
+<% if the_maximo %>
+	
+<%
+	is_venue_manager = @venue ? is_current_manager_of(@venue) : false
+	is_venue_member = @venue ? is_current_member_of(@venue) : false
+	is_new_venue = (get_controller_action =='venue_new' or get_controller_action == 'venue_create')
+	has_venue = @venue ? is_new_venue ? false : true : false
+		
+	the_label = label_name(:reservation)
+	
+	the_venue_name = ""
+	the_manager_label = ""
+	the_confirmation = ""	
+	
+	if has_venue
+		the_venue_name = h(@venue.name) 
+		the_manager_label = label_name(:options_for_manager)
+		the_confirmation = "#{ label_name(:destroy_venue) } #{the_venue_name}?"
+		
+		has_schedule_blank = @venue.installations.blank? 
+		has_user_petition = has_current_item_petition(@venue) 
+		the_confirmation = label_with_name(:do_leave_item, "#{@venue.name}?")
+	end
+%>
+
+
+	<% if has_venue %>
+
+
+	
+	<%= set_image_and_link(link_to(label_name(:installations_create), new_installation_path(:id => @venue)), 'installation') %>
+	<%= "<hr>".html_safe if @venue.installations.count > 0 %>
+
+
+	
+		<% @venue.installations.each do |installation| %>
+
+			<%= option_image_link('installation') %>&nbsp;&nbsp;<%= link_to "#{the_label} - #{installation.name}", reservations_path(:id => installation) %><br>
+		
+		<% end %>
+		
+		<hr/>
+		
+		
+		<%= set_form_edit_image_link(@venue, :venues_edit) %>
+		
+	<% end %>
+	
+<% end -%>
 
 
 
-<div class="row">
 
 
 
-<div class="twelve columns">
-	<p><%#= option_image_link('message') %>&nbsp;&nbsp;<%#= link_to(label_name(:send_message_to), new_message_path(:id => @venue.all_the_managers.first)) %></p>
-</div>
 
-</div>
 
-<%# content_for :sidebar, render(:partial => 'venues/sidebar_show') -%>
-<%# content_for :sidebar, render(:partial => 'sidebars/sidebar_show_reservations', :locals =>{:installations => @installations}) %>
 
-<%# content_for :sidebar, render(:partial => '/sidebars/sidebar_basic_legend', 
-					:locals => {:the_render => '/sidebars/sidebar_show_venue', 
-					:the_label => label_name('manager_option')}) if is_current_manager_of(@venue) %>
 

@@ -83,7 +83,10 @@ class HomeController < ApplicationController
 			current_user.groups.each {|group| Scorecard.latest_items(@all_items, group)} if DISPLAY_MAX_GAMES_PLAYED   
 		end
 
-		# User.latest_items(@all_items) if @all_items.count < MEDIUM_FEED_SIZE     
+		User.latest_items(@all_items) if @all_items.count < MEDIUM_FEED_SIZE
+		# Group.latest_items(@all_items) if @all_items.count < MEDIUM_FEED_SIZE   
+		
+		
 		# Group.latest_updates(@all_items) if @all_items.count < MEDIUM_FEED_SIZE     
 		# User.latest_updates(@all_items) if @all_items.count < MEDIUM_FEED_SIZE
 
@@ -107,9 +110,6 @@ class HomeController < ApplicationController
 
 		@all_schedule_items = @all_schedule_items.sort_by(&:created_at).reverse!    
 		@all_schedule_items[0..MEDIUM_FEED_SIZE].each {|item| @schedule_items << item }
-
-		# @all_comment_items = @all_comment_items.sort_by(&:created_at).reverse!    
-		# @all_comment_items[0..EXTENDED_FEED_SIZE].each {|item| @comment_items << item }
 
 		@all_match_items = @all_match_items.sort_by(&:created_at).reverse!    
 		@all_match_items[0..EXTENDED_FEED_SIZE].each {|item| @match_items << item }

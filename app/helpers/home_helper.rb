@@ -123,7 +123,7 @@ module HomeHelper
 
   		the_icon = user_avatar_image_link(teammate)
 
-  		the_label = "#{label_name(:changed_description)}"
+  		the_label = "#{label_name(:created_a_user)}"
 
   	when "Scorecard"
   		request_image = item_image_link_small(teammate.user)

@@ -1,0 +1,56 @@
+<%
+	the_label = label_name(:installations)
+	content_for(:title, the_label)
+	counter = 0
+%>
+
+<div class="block">
+
+	<%= get_secondary_navigation(@venue) %>
+
+	<div class="content">   
+
+		<h2 class="title"><%= the_label %></h2>
+
+		<div class="inner">
+
+			<% if object_counter(@installations) > 0 %>
+
+			<table class="table">
+
+				<tr> 
+					<%= content_tag :th, "&nbsp;", :class => "first" %>
+					<%= content_tag :th, label_name(:name), :class => "heading" %>
+					<%= content_tag :th, label_name(:venue), :class => "heading" %>
+					<%= content_tag :th, label_name(:time_zone), :class => "heading" %>
+					<%#= content_tag :th, label_name(:marker), :class => "heading" %>
+					<%= content_tag :th, "&nbsp;", :class => "last_index" %>
+				</tr>
+
+				<% @installations.each do |installation| -%>
+				<tr>
+					<%= view_installation_icon(installation) %>
+					<%= view_installation_name(installation) %>
+					<%= view_installation_venue(installation) %>
+					<%= view_installation_times(installation) %>
+					<%#= view_installation_marker(installation) %>			
+
+					<td class="last">
+						<span class="action" align="left">
+							<%= option_image_small_link('reservation') %>&nbsp;&nbsp;
+								<strong><%= link_to "#{label_name(:reservations)} #{label_name(:for)}<br/> #{h(installation.name)}", reservations_path(:id => installation) %></strong>
+						</span>
+					</td>
+
+				</tr>          
+				<% end -%>
+			</table>
+
+			<% end %>
+			<%= render :partial => 'shared/action_bar', :locals => { :collection => @installation } %>
+
+		</div>
+	</div>
+</div>
+	
+<%= render 'venues/sidebar_venue' %>

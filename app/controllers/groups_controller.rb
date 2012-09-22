@@ -107,6 +107,17 @@ class GroupsController < ApplicationController
 		redirect_back_or_default('/index')
 	end
 
+	def set_automatic_petition
+		if @group.update_attribute("automatic_petition", !@group.automatic_petition)
+			@group.update_attribute("automatic_petition", @group.automatic_petition)  
+
+			controller_successful_update
+			redirect_back_or_default('/index')
+		else
+			render :action => 'index'
+		end
+	end
+
 	private
 	def get_group
 		@group = Group.find(params[:id])

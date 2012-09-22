@@ -1,0 +1,58 @@
+
+<%= the_form.hidden_field :venue_id %>
+
+
+
+
+<%= set_form_label(the_form, :name) %>
+<%= set_form_text_field(the_form, :name, 'input-text') %><br />
+
+
+<%= set_form_label(the_form, :starts_at) %>
+<%= set_form_time_select(the_form, :starts_at) %><br /><br />
+
+
+<%= set_form_label(the_form, :ends_at) %>
+<%= set_form_time_select(the_form, :ends_at) %><br /><br />
+
+
+<%= set_form_label(the_form, :timeframe) %>
+<%= set_form_text_field(the_form, :timeframe, 'small input-text', true) %><br />
+
+
+<%= set_form_label(the_form, :sport) %>
+<%= set_form_select(the_form, :sport_id, Sport.sport_name, @installation.sport_id) %><br/><br />	
+
+
+
+<%= set_form_label(the_form, :description) %>
+<%= set_form_text_area(the_form, :description) %><br />
+
+
+<%= set_form_label(the_form, :conditions) %>
+<%= set_form_text_area(the_form, :conditions) %><br />
+
+
+<%= set_form_label(the_form, :photo) %>
+<%= set_form_file_field(the_form, :photo) %><br /><br />
+
+
+<%= set_form_label(the_form, :fee_per_pista) %>
+<%= set_form_text_field(the_form, :fee_per_pista, 'small input-text', true) %><br />
+
+
+<%= set_form_label(the_form, :fee_per_lighting) %>
+<%= set_form_text_field(the_form, :fee_per_lighting, 'small input-text', true) %><br />
+
+
+<%= set_form_label(the_form, :public) %>
+<%= set_form_checkbox(the_form, :public) %><br />
+
+
+<%= set_form_label(the_form, :lighting) %>
+<%= set_form_checkbox(the_form, :lighting) %><br />
+
+
+<%= set_form_label(the_form, :outdoor) %>
+<%= set_form_checkbox(the_form, :outdoor) %><br />
+

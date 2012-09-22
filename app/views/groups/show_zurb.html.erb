@@ -47,7 +47,7 @@
 		<%= render_show_detail_zurb(:city, @group.marker.city) %>
 
 		<%= render_show_detail_zurb(:automatic_petition, 
-		(is_user_manager ? link_to(the_automatic_petition, set_group_auto_path(:id => @group)) : the_automatic_petition)) %>
+		(is_user_manager ? link_to(the_automatic_petition, set_automatic_petition_path(:id => @group)) : the_automatic_petition)) if @group.payed_service %>  
 
 		<%= render_show_detail_zurb(:users, t(:has_group_users, :count => @group.users.count)) %>
 		<%= render_show_detail_zurb(:blank, t(:has_group_active_users, 

@@ -4,7 +4,7 @@
 
 	the_label = "" 
 	the_action = ['show','edit', 'team list', 'installation list', 'reservation list']
-	the_controller = ['forum', 'installation', 'reservation', 'fee', 'payment']
+	the_controller = ['installation', 'reservation', 'fee', 'payment']
 
 	content_for(:description, "#{h(@venue.name)},  #{h(@venue.description) }.  #{@venue.marker.name}, #{@venue.time_zone}") if @venue
 

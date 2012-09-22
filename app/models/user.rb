@@ -46,8 +46,13 @@
 class User < ActiveRecord::Base
 
 	extend FriendlyId 
-	friendly_id :name, 			use: :slugged
-      
+	# friendly_id :name, 					use: 				:slugged
+	friendly_id :name_slug,				use:  			:slugged 
+
+	def name_slug
+		return Base64.urlsafe_encode64("#{name} #{id}")	
+	end
+	
   acts_as_authentic do |c|
     login_field :email
     UserSession.find_by_login_method = 'find_by_email'
@@ -57,16 +62,6 @@ class User < ActiveRecord::Base
   # Validations
   validates_presence_of 			:email
   validates_length_of   			:name,            :within => NAME_RANGE_LENGTH
-	
-	# validates_presence_of 			:name, :slug
-	# validates_uniqueness_of 		:name, :slug
-	
-  # validates_inclusion_of   		:language,     		:in => ['en', 'es'],    :allow_nil => false, :default => 'es'
-  
-  # validates_format_of   :name,            :with =>  /^[A-Z a-z 0-9]*\z/
-  # validates_acceptance_of :terms_of_service
-  # validates_inclusion_of :gender, :in => ['male','female'], :allow_nil => true
-  # validates_format_of :email,:with => /^([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})$/i, :on => :create #, :message => "es invalido"
  
   
   # related to gem acl9
@@ -201,7 +196,7 @@ class User < ActiveRecord::Base
     end 
 
     def self.latest_items(items)
-      find(:all, :select => "id, name, photo_file_name, created_at", :conditions => ["created_at >= ? and archive = false", LAST_THREE_DAYS]).each do |item| 
+	    find(:all, :conditions => ["created_at >= ? and archive = false", THREE_WEEKS_AGO]).each do |item|
         items << item
       end
       return items 

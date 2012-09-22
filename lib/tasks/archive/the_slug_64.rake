@@ -14,13 +14,15 @@ task :the_slug_64 => :environment do |t|
 	# remove in production...
 	# select * from roles_users where user_id = 2001	and role_id in (	select id	from roles where name = 'manager' 	and authorizable_type = 'Group'	and authorizable_id = 14)
 
-	RolesUsers.create(:user_id => 2001, :role_id => 72608)
+	# RolesUsers.create(:user_id => 2001, :role_id => 72608)
   ##############################################################################################################################################################################
 
 
 	@host = Rails.env.production? ? 'haypista' : 'thepista' 
 	@host = ''
 		
+	# to regenerate use the below
+	Schedule.find_each(&:save)
 
 	# USER
 	the_models = User.all
