@@ -1,3 +1,4 @@
+<% @user_session = UserSession.new %>
 
 <div class="row">
 
@@ -24,20 +25,7 @@
 		</div>
 
 		
-		<% if get_controller_action == 'home_index' %>
-		
-			<% unless is_mobile_browser %>
-
-				<div class="row">
-					<div class="twelve columns">
-						<%= content_tag :h4, label_name(:modo) %><br>
-						<%= content_tag :h6, "<strong>#{app_name}</strong> #{label_name(:what_is_haypista_details)}".html_safe %>
-					</div>
-				</div>
-			
-			<% end %>
-
-		<% elsif get_controller_action == 'user_session_new' %>
+		<% if get_controller_action == 'home_index' or get_controller_action == 'user_session_new' %>
 
 			<div class="row">
 				<div class="twelve columns">
@@ -81,5 +69,17 @@
 	</div>
 	
 </div>
+
+<% unless is_mobile_browser %>
+
+<br>
+<hr/>
+<div class="row">
+	<div class="twelve columns">
+		<%= content_tag :h6, "<strong>#{app_name}</strong> #{label_name(:what_is_haypista_details)}".html_safe %>
+	</div>
+</div>
+
+<% end %>
 
 
