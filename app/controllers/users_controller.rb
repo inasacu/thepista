@@ -59,9 +59,6 @@ class UsersController < ApplicationController
 			return
 		end 
 		@user = current_user
-
-		# set_the_template('users/new')
-		render @the_template   
 	end
 
 	def create
