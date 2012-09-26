@@ -1,50 +1,41 @@
-
 <%
 	options = ""
 	LANGUAGES.each do |language|
 		options += "<option value='#{language}'>" + label_name(language) + "</option>"	
 	end
-	is_new_user = (is_action('rpx new') or is_action('signup'))
 	
-	display_gender = false
+	ignore_fields = ['user_omniauth_new', 'rpx_new', 'signup']
+	is_new_user = ignore_fields.include?(get_controller_action)
 %>
 
 <%= set_form_label(the_form, :name, '', true) %>
 <%= set_form_text_field(the_form, :name, 'large input-text', true) %><br />
 
-
 <%= set_form_label(the_form, :email, '', true) %>
 <%= set_form_text_field(the_form, :email, 'large input-text', true) %><br />
-
 
 <%= set_form_label(the_form, :phone) %>
 <%= set_form_text_field(the_form, :phone, 'large input-text', true) %><br />
 
-
-
-<%= set_form_label(the_form, :whatsapp) %>
-<%= set_form_checkbox(the_form, :whatsapp) %><br/>
-
-
 <%= set_form_label(the_form, :city) %>
 <%= the_form.select(:city_id, City.city_name, {:selected => @user.city_id, :include_blank => false}) %><br/><br/>
-
 
 <% unless is_new_user %>
 
 <%= set_form_label(the_form, :sport) %>
 <%= set_form_text_field(the_form, :sport, 'large input-text', true) %><br />
 
-
 <%= set_form_label(the_form, :photo, 'photo') %>
 <%= set_form_file_field(the_form, :photo) %><br/><br/>
 
+<%= set_form_label(the_form, :whatsapp) %>
+<%= set_form_checkbox(the_form, :whatsapp) %><br/>
+
+<%= set_form_label(the_form, :last_minute_notification) %>
+<%= set_form_checkbox(the_form, :last_minute_notification) %><br/>
 
 <%= set_form_label(the_form, :teammate_notification) %>
 <%= set_form_checkbox(the_form, :teammate_notification) %><br/>
-
-<%= set_form_label(the_form, :whatsapp) %>
-<%= set_form_checkbox(the_form, :whatsapp) %><br/>
 
 <%= set_form_label(the_form, :birth_at) %>
 <%= date_select :user, :birth_at, :start_year => (Time.zone.now.year.to_i - 70), :end_year => (Time.zone.now.year.to_i) %><br />

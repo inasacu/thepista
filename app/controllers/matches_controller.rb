@@ -59,6 +59,7 @@ class MatchesController < ApplicationController
 		@type = Type.find(params[:type])
 		played = (@type.id == 1 and !@match.group_score.nil? and !@match.invite_score.nil?)
 
+		send_last_minute_message = (current_user == @match.user and Time.zone.now + 1.days > @match.schedule.starts_at)
 
 		if @match.update_attributes(:type_id => @type.id, :played => played, :user_x_two => @user_x_two, :status_at => Time.zone.now)
 			Scorecard.delay.calculate_user_played_assigned_scorecard(@match.user, @match.schedule.group)
@@ -68,10 +69,18 @@ class MatchesController < ApplicationController
 				the_fee = Fee.find(:all, :conditions => ["debit_type = 'User' and debit_id = ? and item_type = 'Schedule' and item_id = ?", @match.user_id, @match.schedule_id])
 				the_fee.each {|fee| fee.type_id = @type.id; fee.save}
 			end
+			
 		end 
 
+		if send_last_minute_message
+			@schedule = @match.schedule
+			if (@schedule.starts_at - 1.day) >= Time.zone.now
+				@schedule.last_minute_reminder 
+			end
+		end	
+	
 		redirect_back_or_default('/index')
-	end 
+	end
 
 	def set_status_link
 		unless (@match.block_token == params[:block_token])

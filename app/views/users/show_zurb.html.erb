@@ -12,8 +12,14 @@
 	the_sport = ""
 	the_sport = @user.sport.strip.chomp(',') unless @user.sport.blank? or @user.sport.nil?
 	is_notice = get_controller_action == 'user_notice'
-	
+		
 	the_whatsapp_label = label_name(@user.whatsapp, 'value') 
+	the_last_minute_label = label_name(@user.last_minute_notification, 'value') 
+	the_teammmate_label = label_name(@user.teammate_notification, 'value') 
+		
+	the_whatsapp_link = (can_modify ? link_to(the_whatsapp_label, set_whatsapp_path(:id => @user)) : the_whatsapp_label)
+	the_last_minute_link = (can_modify ? link_to(the_last_minute_label, set_last_minute_notification_path(:id => @user)) : the_last_minute_label)
+	the_teammmate_link = (can_modify ? link_to(the_teammmate_label, set_teammate_notification_path(:id => @user)) : the_teammmate_label)
 %>
 
 
@@ -34,10 +40,10 @@
 	<%= render_show_detail_zurb(:email, @user.email) if @user == current_user %>
 	<%= render_show_detail_zurb("#{label_name(:phone)}  #{option_image_small_link('whatsapp') if @user.whatsapp}", phone_number_link(@user.phone), true) unless @user.phone.blank? %>	
 	
-	<%= render_show_detail_zurb(:whatsapp, "#{link_to(the_whatsapp_label, set_whatsapp_path(:id => @user))}".html_safe) %>	
+	<%= render_show_detail_zurb(:whatsapp, the_whatsapp_link) %>	
+	<%= render_show_detail_zurb(:last_minute_notification, the_last_minute_link) %>
+	<%= render_show_detail_zurb(:teammate_notification, the_teammmate_link) %>
 
-	<% the_label = h(label_name(@user.teammate_notification, 'value')) %>
-	<%= render_show_detail_zurb(:teammate_notification, (can_modify ? link_to(the_label, set_teammate_notification_path(:id => @user)) : the_label)) %>
 	
 	<br />
 	<%= render_show_detail_zurb(:sports, the_sport) %>

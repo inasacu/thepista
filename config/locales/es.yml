@@ -417,7 +417,7 @@ es:
         one:  "tiene 1 evento." 
         other: "tiene %{count} eventos."        
      event_details:  "(Escribe algun detalle del evento...)" 
-     event_participation:  Paticipación en eventos
+     event_participation:  Paticipación
      every:  cada 
      error_when_create_account: "Fallo al intentar crear tu cuenta, intentalo de nuevo."  
      excess:  Exceso
@@ -496,7 +496,8 @@ es:
      feedback: feedback   
      fees: Cargos   
      female_value: Femenina  
-     final: Final 
+     fill_in_fields: "Solo faltan unos campos para registrate en <STRONG>HayPista</STRONG>."
+     final: Final
      fire_from_item: Desapunta de   
      follow: Sigue 
      forum: Muro de 
@@ -831,7 +832,7 @@ es:
      last_game_played: Ultima jornada	 
      last_login_at: conecto la ultima vez   
      last_minute: Ultima Hora   
-     last_minute_notification:  Notificación de ultima hora
+     last_minute_notification:  Mensajes de ultima hora
      last_minute_notification_description:  "Permite que si un equipo necesita alguien a ultima hora, pueden contactar contigo"
      last_schedule_description: Ultimo evento    
      last_scorecard: Ultimos resultados  
@@ -858,10 +859,9 @@ es:
      location_group: Lugar donde juega el equipo
      location_sport: Lugar donde practicas tu deporte. 
      location_venue: Lugar del centro deportivo
-     login:  Entrar	 
-     log_in: Entrar   
-     logged_out: Se ha cerrado la sesión.   
-     login: Entrar   
+     login:  Entrar 
+     log_in: Entra   
+     logged_out: Se ha cerrado la sesión. 
      logout: Salir   
      look: Mira 
      Low: Bajo   
@@ -964,7 +964,7 @@ es:
      my_schedule: Mis eventos   
      my_scorecard: Mis clasificaciones   
      my_sport: Mis deportes   
-     my_teammate: Mis compañeros de equipo   
+     my_teammate: Mis compañeros   
      my_tournament: Mis torneos   
      my_type: Mi tipo     
      my_venue: Mis centros deportivos 
@@ -1099,7 +1099,10 @@ es:
      password_resets_create: Restablecer contraseña
      password_resets_new:  Restablecer contraseña  
      password_recover_instructions: Instrucciones para recupera tu clave!  
-     password_forgotten:  ¿Has olvidado tu contraseña?	
+     password_forgotten:  ¿Has olvidado tu contraseña?
+     password_service:  "¿No utilizas estos servicios?"
+     password_with:  con tu contraseña.
+     password_sign_in:  "<STRONG>Puedes entrar con una de estas cuentas:</STRONG>"
      confirmation_password: Contraseña confirmación     
      password_request_reset:  "Este e-mail es la respuesta a su solicitud para restablecer su contraseña."
      password_request_ignore:  "Si no ha realizado esta solicitud, simplemente ignore este mensaje."
@@ -1616,7 +1619,7 @@ es:
      url_group: Vincular a Equipo   
      use_at_discretion: Nueva opción para entrar.  Si tienes una cuenta entra con tu cuenta original.
      use_openid: O entra con OpenID 
-     use_login:  O Entra con tu cuenta de correo
+     use_login:  Entra con tu cuenta de correo
      user_private_profile:  Jugador tiene el perfil oculto.
      user_signup: O Registrate con tu cuenta de correo
      use_standard_login: utiliza el estándar de acceso de usuario / contraseña     
@@ -1801,7 +1804,7 @@ es:
      clashes_edit:  Resultados     
      clouds_show:  Etiquetas
      clouds_options:  Opciones          
-     entries_teammate: Mis compañeros de equipo
+     entries_teammate: Mis compañeros
      entries_my_wall: Mi muro
      entries_option:  Opciones 
      entries_show:  Opciones 
@@ -2004,7 +2007,7 @@ es:
      recaptcha_question:  Pregunta
      recaptcha_human_test:  Prueba Humana
      recaptcha_type_words:  Escribe las palabras o números separados por un espacio.     
-     rpx_login: Entra con tu cuenta...
+     rpx_login: Entra con uno de estos servicios...
      rpx_third_party_error:  "No se pueden recuperar los datos de terceras cuentas. Por favor, inténtalo de nuevo."
      rpx_association_email_msg: Hemos encontrado una cuenta existente que ya está utilizando la dirección de correo electrónico
      rpx_association_login_msg: Hemos encontrado una cuenta existente que ya está utilizando el nombre de usuario
@@ -2110,7 +2113,7 @@ es:
      user_options_tour: Opciones 
      users_rpx_new: Nuevo jugador
      users_rpx_create:  Nuevo jugador
-     users_teammate: Mis compañeros de equipo
+     users_teammate: Mis compañeros
      users_total: "Total"
      users_update:  Actualiza
      your:  Tu 

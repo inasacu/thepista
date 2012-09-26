@@ -487,6 +487,7 @@ en:
      feedback: feedback   
      fees: Charges   
      female_value: Female  
+     fill_in_fields: "Just a couple more steps to complete the registration in <STRONG>HayPista</STRONG>."
      final: Final  
      fire_from_item: Opt-out of   
      follow: Follow 
@@ -1088,8 +1089,11 @@ en:
      password_reset_instructions:  "Give us your mail account and we will send you instructions on how to reset your password."	
      password_resets_create: Reset password
      password_resets_new:  Reset password  
-     password_recover_instructions: Instructions to recover your password!  
-     password_forgotten:  Forgot your password?	
+     password_recover_instructions: Instructions to recover your password! 
+     password_forgotten:  Forgot your password?
+     password_service:  "Don't use these services?"
+     password_with:  with a password.
+     password_sign_in:  "<STRONG>You can sign in using:</STRONG>"
      confirmation_password: Password Confirmation     
      password_request_reset:  "This e-mail is the answer to your request to reset your password."
      password_request_ignore:  "If you have not made this request, simply ignore this message."
@@ -1604,7 +1608,7 @@ en:
      url_group: Link to Team   
      use_at_discretion: New option to enter. If you have a go with your original account.
      use_openid: Or use your OpenID 
-     use_login:  Or Login with your email address
+     use_login:  Login with your email address
      user_private_profile:  Player has private profile set.
      user_signup: Or Signup with your email address
      use_standard_login: access using a username and password     
@@ -1991,7 +1995,7 @@ en:
      recaptcha_question:  Question
      recaptcha_human_test:  Human Test
      recaptcha_type_words:  Write the two words or numbers you see separated by a space.     
-     rpx_login: Sign in using your account...
+     rpx_login: Sign in using one of these services...
      rpx_third_party_error:  "could not recover data from third party accounts, Please try again."
      rpx_association_email_msg: We found an existing account which is already using the e-mail address
      rpx_association_login_msg: We found an existing account which is already using the username

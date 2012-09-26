@@ -377,6 +377,15 @@ class Schedule < ActiveRecord::Base
     end
   end
 
+	def last_minute_reminder
+		manager_id = RolesUsers.find_item_manager(self.group).user_id
+		self.group.users.each do |user|
+			if user.last_minute_notification? 
+				create_notification_email(self, self, manager_id, user.id, true)
+			end
+		end
+	end
+
   def self.send_reminders
     schedules = Schedule.find(:all, 
                   :conditions => ["played = false and send_reminder_at is null and reminder = true and reminder_at >= ? and reminder_at <= ?", PAST_THREE_DAYS, Time.zone.now])
@@ -436,11 +445,9 @@ class Schedule < ActiveRecord::Base
 
       # scorecard = schedule.group.scorecards.first
       manager_id = RolesUsers.find_item_manager(schedule.group).user_id
-
       schedule.the_roster.each do |match|        
         create_notification_email(schedule, schedule, manager_id, match.user_id)
       end
-
       schedule.send_comment_at = Time.zone.now
       schedule.save!
 
