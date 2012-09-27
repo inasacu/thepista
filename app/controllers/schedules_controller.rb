@@ -125,8 +125,8 @@ class SchedulesController < ApplicationController
 
 			@schedule.season = Time.zone.now.year
 		end
-
-		@previous_schedule = Schedule.find(:first, :conditions => ["id = (select max(id) from schedules where group_id = ?) ", @group.id])    
+  
+		@previous_schedule = Schedule.find(:first, :conditions => ["schedules.group_id = ?", @group.id], :order => "schedules.starts_at DESC")    
 		unless @previous_schedule.nil?
 			@schedule.jornada = @previous_schedule.jornada + 1
 			@schedule.name = "#{I18n.t(:jornada)} #{@schedule.jornada}"
@@ -174,7 +174,8 @@ class SchedulesController < ApplicationController
 	end
 
 	def update
-		if @schedule.update_attributes(params[:schedule]) and @schedule.create_schedule_details
+		if @schedule.update_attributes(params[:schedule]) 
+			@schedule.delay.create_schedule_details
 			controller_successful_update
 			redirect_to @schedule
 		else

@@ -1,22 +1,15 @@
 <% 	
-	is_pre_match = true
+	# getting person who did the teams...
 	the_pre_match_teams = ""
-
-	if is_pre_match
-		the_roster = the_roster.sort_by{|roster| roster.updated_at}
-		the_last_roster = the_roster.first	if @schedule.played
-		the_last_roster = the_roster.last	unless @schedule.played
-
-		if the_last_roster.change_id.nil?
-			is_pre_match = false
-		else
-			the_user = User.find(the_last_roster.change_id)
-			the_time = the_last_roster.updated_at
-		end
+	the_pre_match_organizer = Match.find(:first, :conditions =>["schedule_id = ? and change_id is not null", @schedule], :order => "updated_at DESC")
+	
+	if the_pre_match_organizer
+		the_user = User.find(the_pre_match_organizer.change_id)
+		
+		the_pre_match_teams = "#{item_name_link(the_user)} #{label_name(:post_pre_match_teams)}, #{ago(the_pre_match_organizer.updated_at).downcase}." 
+		add_break_point = @schedule.played ? "" : "<br/>"
 	end
-
-	the_pre_match_teams = "#{item_name_link(the_user)} #{label_name(:post_pre_match_teams)}, #{ago(the_time).downcase}." if is_pre_match
-	add_break_point = @schedule.played ? "" : "<br/>"
+	
 %>
 
 <div class="row">
