@@ -76,9 +76,8 @@
 		is_display_title = false
 		@new_item = @message if is_new_item
 	
-	when 'user session'
-		the_tab_navigation = nil
-			
+	when 'user session', 'authentication'
+		the_tab_navigation = nil		
 	end	
 	
 	the_tab_navigation = 'challenges' if get_controller_action == 'standing_show_list'
@@ -101,24 +100,23 @@
 			
 				<%= render 'shared/notice_zurb', :notice => flash %>
 				
-			<% elsif is_new_user and !is_password_reset %>
+			<%# elsif is_new_user and !is_password_reset %>
 
-			<%= render 'shared/new_edit_multipart_zurb', :item => @item %>
+				<%#= content_tag :h3, link_to(app_name, root_url) %>
+				<!-- <hr/> -->
+				<!-- <br> -->
+
+				<%#= render 'shared/new_edit_multipart_zurb', :item => @item %>
 			
 			<% else %>
 			
-				<br />
-			
 				<%= content_tag :h3, link_to(app_name, root_url) %>
 				<%= content_tag :h6, label_name(:modo), :class => "subheader" %>
+				<hr/>
 				
-				<hr />
-				<br />
-				
-				<%= render 'home/details_zurb' unless is_password_reset %>
+				<%= render 'shared/access_details_zurb' unless is_password_reset %>				
 				<%= render 'password_resets/new_zurb' if is_password_reset %>
-				
-				<br />
+				<br>
 				
 			<% end %>
 			

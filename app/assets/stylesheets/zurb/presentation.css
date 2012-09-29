@@ -81,140 +81,44 @@ footer.row a:hover {
 #zurBar strong a.button { padding: 4px 10px; font-weight: bold; }
 
 
-/* -----------------------------------------
-   Orbit Demo CSS
------------------------------------------ */
+/* Requires globals.css */
+/* Normal Buttons ---------------------- */
 
-.orbit, .orbit-wrapper { width: 100% !important; }
+.button { width: auto; background: #2ba6cb; border: 1px solid #1e728c; -webkit-box-shadow: 0 1px 0 rgba(255, 255, 255, 0.5) inset; -moz-box-shadow: 0 1px 0 rgba(255, 255, 255, 0.5) inset; box-shadow: 0 1px 0 rgba(255, 255, 255, 0.5) inset; color: white; cursor: pointer; display: inline-block; font-family: "Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif; font-size: 14px; font-weight: bold; line-height: 1; margin: 0; outline: none; padding: 10px 20px 11px; position: relative; text-align: center; text-decoration: none; -webkit-transition: background-color 0.15s ease-in-out; -moz-transition: background-color 0.15s ease-in-out; -o-transition: background-color 0.15s ease-in-out; transition: background-color 0.15s ease-in-out; /* Hovers */ /* Sizes */ /* Colors */ /* Radii */ /* Layout */ /* Disabled ---------- */ }
+.button:hover { color: white; background-color: #2284a1; }
+.button:active { -webkit-box-shadow: 0 1px 0 rgba(0, 0, 0, 0.2) inset; -moz-box-shadow: 0 1px 0 rgba(0, 0, 0, 0.2) inset; box-shadow: 0 1px 0 rgba(0, 0, 0, 0.2) inset; }
+.button:focus { -webkit-box-shadow: 0 0 4px #2ba6cb, 0 1px 0 rgba(255, 255, 255, 0.5) inset; -moz-box-shadow: 0 0 4px #2ba6cb, 0 1px 0 rgba(255, 255, 255, 0.5) inset; box-shadow: 0 0 4px #2ba6cb, 0 1px 0 rgba(255, 255, 255, 0.5) inset; color: white; }
+.button.large { font-size: 17px; padding: 15px 30px 16px; }
+.button.medium { font-size: 14px; }
+.button.small_medium { font-size: 13px; }
+.button.small { font-size: 11px; padding: 7px 14px 8px; }
+.button.tiny { font-size: 10px; padding: 5px 10px 6px; }
+.button.expand { width: 100%; text-align: center; }
+.button.primary { background-color: #2ba6cb; border: 1px solid #1e728c; }
+.button.primary:hover { background-color: #2284a1; }
+.button.primary:focus { -webkit-box-shadow: 0 0 4px #2ba6cb, 0 1px 0 rgba(255, 255, 255, 0.5) inset; -moz-box-shadow: 0 0 4px #2ba6cb, 0 1px 0 rgba(255, 255, 255, 0.5) inset; box-shadow: 0 0 4px #2ba6cb, 0 1px 0 rgba(255, 255, 255, 0.5) inset; }
+.button.success { background-color: #5da423; border: 1px solid #396516; }
+.button.success:hover { background-color: #457a1a; }
+.button.success:focus { -webkit-box-shadow: 0 0 5px #5da423, 0 1px 0 rgba(255, 255, 255, 0.5) inset; -moz-box-shadow: 0 0 5px #5da423, 0 1px 0 rgba(255, 255, 255, 0.5) inset; box-shadow: 0 0 5px #5da423, 0 1px 0 rgba(255, 255, 255, 0.5) inset; }
+.button.alert { background-color: #c60f13; border: 1px solid #7f0a0c; }
+.button.alert:hover { background-color: #970b0e; }
+.button.alert:focus { -webkit-box-shadow: 0 0 4px #c60f13, 0 1px 0 rgba(255, 255, 255, 0.5) inset; -moz-box-shadow: 0 0 4px #c60f13, 0 1px 0 rgba(255, 255, 255, 0.5) inset; box-shadow: 0 0 4px #c60f13, 0 1px 0 rgba(255, 255, 255, 0.5) inset; }
+.button.secondary { background-color: #e9e9e9; color: #1d1d1d; border: 1px solid #c3c3c3; }
+.button.secondary:hover { background-color: #d0d0d0; }
+.button.secondary:focus { -webkit-box-shadow: 0 0 5px #e9e9e9, 0 1px 0 rgba(255, 255, 255, 0.5) inset; -moz-box-shadow: 0 0 5px #e9e9e9, 0 1px 0 rgba(255, 255, 255, 0.5) inset; box-shadow: 0 0 5px #e9e9e9, 0 1px 0 rgba(255, 255, 255, 0.5) inset; }
+.button.radius { -webkit-border-radius: 3px; -moz-border-radius: 3px; -ms-border-radius: 3px; -o-border-radius: 3px; border-radius: 3px; }
+.button.round { -webkit-border-radius: 1000px; -moz-border-radius: 1000px; -ms-border-radius: 1000px; -o-border-radius: 1000px; border-radius: 1000px; }
+.button.full-width { width: 100%; text-align: center; padding-left: 0px !important; padding-right: 0px !important; }
+.button.left-align { text-align: left; text-indent: 12px; }
+.button.disabled, .button[disabled] { opacity: 0.6; cursor: default; background: #2ba6cb; -webkit-box-shadow: none; -moz-box-shadow: none; box-shadow: none; }
+.button.disabled :hover, .button[disabled] :hover { background: #2ba6cb; }
+.button.disabled.success, .button[disabled].success { background-color: #5da423; }
+.button.disabled.success:hover, .button[disabled].success:hover { background-color: #5da423; }
+.button.disabled.alert, .button[disabled].alert { background-color: #c60f13; }
+.button.disabled.alert:hover, .button[disabled].alert:hover { background-color: #c60f13; }
+.button.disabled.secondary, .button[disabled].secondary { background-color: #e9e9e9; }
+.button.disabled.secondary:hover, .button[disabled].secondary:hover { background-color: #e9e9e9; }
 
-.orbit-bullets {
-    position: absolute;
-    z-index: 1000;
-    list-style: none;
-    bottom: -40px;
-    left: 50%;
-	margin-left: -50px;
-    padding: 0; }
-
-.orbit-bullets li {
-    float: left;
-    margin-left: 5px;
-    cursor: pointer;
-    color: #999;
-    text-indent: -9999px;
-    background: url(public/images/orbit-demo/orbit/bullets.jpg) no-repeat 4px 0;
-    width: 13px;
-    height: 12px;
-    overflow: hidden; }
-
-.orbit-bullets li.has-thumb {
-    background: none;
-    width: 100px;
-    height: 75px; }
-
-.orbit-bullets li.active {
-    color: #222;
-    background-position: -8px 0; }
-
-.orbit-bullets li.active.has-thumb {
-    background-position: 0 0;
-    border-top: 2px solid #000; }
-
-
-/* stuff for ZURB demo but not needed at all for orbit */
-
-#orbitDemo .content {
-	background: url(../assets/orbit-demo/coffee.jpg);
-}
-#orbitDemo .content h1 {
-	font-family: 'Helvetica', 'Arial', serif;
-	color: #2f260f; 
-	font-weight: bold !important;
-	text-transform: uppercase; 
-	text-shadow: 
-		1px 1px 0 #f8f0d1,
-		2px 2px 0 #f8f0d1,
-		3px 3px 0 #1a5774;
-	text-align: center; 
-	margin-top: 15%;
-}
-#orbitDemo .content h3 {
-	font-family: 'Helvetica', 'Arial', serif;
-	color: #7f6b37; 
-	font-weight: bold !important;
-	text-align: center; 
-}
-
-#orbitDemo { background: url(../assets/spinner.gif) no-repeat center center #000; height: 305px; margin-bottom: 20px; }
-#orbitDemo.orbit { height: auto; }
-#orbitDemo img, #orbitDemo div { display: none; }
-#orbitDemo.orbit img, #orbitDemo.orbit div { display: block; }
-
-@media handheld, only screen and (max-width: 767px) {
-
-	#orbitDemo { height: 165px; }
-	#orbitDemo.orbit { height: auto; }
-
-	dl.nice.tabs.mobile { margin-bottom: 0px; }
-	.nice.tabs.mobile dd a { padding: 12px 20px; }
-	
-	div.foundation-header h1 { font-size: 32px; font-size: 3.2rem; }
-}
-
-
-
-
-
-/* Font-Face */
-/*@font-face {
-font-family: 'Proxima';
-	src: url(../fonts/proximanova-regular-webfont.eot);
-	src: url('../fonts/proximanova-regular-webfont.eot?iefix') format('eot'),url(../fonts/proximanova-regular-webfont.woff) format('woff'),url(../fonts/proximanova-regular-webfont.ttf) format('truetype'),url('../fonts/proximanova-regular-webfont.svg#webfont2rpW2ohz') format('svg')
-}
-@font-face {
-	font-family: 'Proxima';
-	font-style: italic;
-	src: url(../fonts/proximanova-regitalic-webfont.eot);
-	src: url('../fonts/proximanova-regitalic-webfont.eot?iefix') format('eot'),url(../fonts/proximanova-regitalic-webfont.woff) format('woff'),url(../fonts/proximanova-regitalic-webfont.ttf) format('truetype'),url('../fonts/proximanova-regitalic-webfont.svg#webfont2rpW2ohz') format('svg')
-}
-@font-face {
-	font-family: 'Proxima';
-	font-weight: 300;
-	src: url(../fonts/proximanova-light-webfont.eot);
-	src: url('../fonts/proximanova-light-webfont.eot?iefix') format('eot'),url(../fonts/proximanova-light-webfont.woff) format('woff'),url(../fonts/proximanova-light-webfont.ttf) format('truetype'),url('../fonts/proximanova-light-webfont.svg#webfont2rpW2ohz') format('svg')
-}
-@font-face {
-	font-family: 'Proxima';
-	font-weight: 600;
-	src: url(../fonts/proximanova-semibold-webfont.eot);
-	src: url('../fonts/proximanova-semibold-webfont.eot?iefix') format('eot'),url(../fonts/proximanova-semibold-webfont.woff) format('woff'),url(../fonts/proximanova-semibold-webfont.ttf) format('truetype'),url('../fonts/proximanova-semibold-webfont.svg#webfont2rpW2ohz') format('svg')
-}
-@font-face {
-	font-family: 'Proxima';
-	font-weight: 600;
-	font-style: italic;
-	src: url(../fonts/proximanova-semibolditalic-webfont.eot);
-	src: url('../fonts/proximanova-semibolditalic-webfont.eot?iefix') format('eot'),url(../fonts/proximanova-semibolditalic-webfont.woff) format('woff'),url(../fonts/proximanova-semibolditalic-webfont.ttf) format('truetype'),url('../fonts/proximanova-semibolditalic-webfont.svg#webfont2rpW2ohz') format('svg')
-}
-@font-face {
-	font-family: 'Proxima';
-	font-weight: bold;
-	src: url(../fonts/proximanova-bold-webfont.eot);
-	src: url('../fonts/proximanova-bold-webfont.eot?iefix') format('eot'),url(../fonts/proximanova-bold-webfont.woff) format('woff'),url(../fonts/proximanova-bold-webfont.ttf) format('truetype'),url('../fonts/proximanova-bold-webfont.svg#webfont2rpW2ohz') format('svg')
-}
-@font-face {
-	font-family: 'Proxima';
-	font-weight: bold;
-	font-style: italic;
-	src: url(../fonts/proximanova-boldit-webfont.eot);
-	src: url('../fonts/proximanova-boldit-webfont.eot?iefix') format('eot'),url(../fonts/proximanova-boldit-webfont.woff) format('woff'),url(../fonts/proximanova-boldit-webfont.ttf) format('truetype'),url('../fonts/proximanova-boldit-webfont.svg#webfont2rpW2ohz') format('svg')
-}
-@font-face {
-	font-family: 'Proxima';
-	font-weight: 900;
-	src: url(../fonts/proximanova-extrabold-webfont.eot);
-	src: url('../fonts/proximanova-extrabold-webfont.eot?iefix') format('eot'),url(../fonts/proximanova-extrabold-webfont.woff) format('woff'),url(../fonts/proximanova-extrabold-webfont.ttf) format('truetype'),url('../fonts/proximanova-extrabold-webfont.svg#webfont2rpW2ohz') format('svg')
-}*/
 
 h1, h2, h3, h4, h5, h6 {
   font-family: "Proxima", "Helvetica Neue", "Helvetica", Arial, sans-serif; }

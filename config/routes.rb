@@ -1,23 +1,25 @@
 Thepista::Application.routes.draw do
 
-	root :to => "home#index" 
-	
+	root :to => "home#index" 	
 	match '/' => 'home#index'
 
-	match 'rpx_token_sessions' => 'user_sessions#rpx_create', :as => :rpx_token_sessions
 
+	match 'rpx_token_sessions' => 'user_sessions#rpx_create', :as => :rpx_token_sessions
 	match 'rpx_signup' => 'users#rpx_new', :as => :rpx_signup
 	match 'rpx_create' => 'users#rpx_create', :as => :rpx_create
-	match 'signup' => 'users#signup', :as => :signup
 
+	match 'omniauth_new' => 'users#omniauth_new', :as => :provider 
+	
+	match '/auth/:provider/callback' => 'authentications#create', :as => :callback
+	match '/auth/failure' => 'authentications#failure', :as => :failure
+	match '/auth/:provider' => 'authentications#blank', :as => :blank
+
+
+	match 'registrate' => 'users#signup', :as => :signup
 	match 'acceso_session' => 'user_sessions#new', :as => :login
 	match 'cierra_session' => 'user_sessions#destroy', :as => :logout
 
 	match 'configurar_idioma' => 'users#set_language', :as => :language
-
-	match 'remove_openid' => 'users#remove_openid', :as => :remove_openid
-	match 'my_openid' => 'users#third_party', :as => :my_openid
-
 	match 'jugadores_de_equipo' => 'groups#team_list', :as => :team_list
 
 	match 'jornada_deportiva_convocado' => 'schedules#team_roster', :as => :team_roster
@@ -50,22 +52,22 @@ Thepista::Application.routes.draw do
 	match 'jugadores/:id/habilitar_mensajes' => 'users#set_message_notification', :as => :set_message_notification	
 	match 'jugadores/:id/habilitar_ultima_hora' => 'users#set_last_minute_notification', :as => :set_last_minute_notification
 	match 'jugadores/:id/utilizo_whatsapp' => 'users#set_whatsapp', :as => :set_whatsapp
-	
+
 	match 'eventos/:id/marcar_como_publico' => 'schedules#set_public', :as => :set_public
 	match 'eventos/:id/habilitar_perfil_previo' => 'schedules#set_previous_profile', :as => :set_previous_profile
 	match 'eventos/:id/marcar_recordatorio' => 'schedules#set_reminder', :as => :set_reminder
 	match 'eventos/:id/actual_evento' => 'schedules#group_current', :as => :group_current
 	match 'eventos/:id/previo_evento' => 'schedules#group_previous', :as => :group_previous
-	
-  match 'equipos/:id/unirse_automaticamente' => 'groups#set_automatic_petition', :as => :set_automatic_petition
+
+	match 'equipos/:id/unirse_automaticamente' => 'groups#set_automatic_petition', :as => :set_automatic_petition
 	match 'equipos/:id/marcar_subscripcion/:venue' => 'groups#set_subscription', :as => :set_group_subscription
 	match 'equipos/:id/borrar_subscripcion/:venue' => 'groups#remove_subscription', :as => :remove_group_subscription
 
-  match 'retos_copa/:id/unirse_auto_reto' => 'challenges#set_auto_petition_challenge',  :as => :set_auto_petition_challenge
-	
+	match 'retos_copa/:id/unirse_auto_reto' => 'challenges#set_auto_petition_challenge',  :as => :set_auto_petition_challenge
+
 	match 'retos_copa/:id/marcar_reto_subscripcion/:challenge' => 'challenges#set_challenge_subscription', :as => :set_challenge_subscription
 	match 'retos_copa/:id/borrar_reto_subscripcion/:challenge' => 'challenges#remove_challenge_subscription', :as => :remove_challenge_subscription
-	
+
 	match 'jornadas/:id/cambio_equipo' => 'matches#set_team', :as => :match_team
 	match 'jornadas/:id/cambio_convocatoria/:type' => 'matches#set_status', :as => :match_status
 	match 'jornadas/:id/cambio_convocatoria/:type/:block_token' => 'matches#set_status_link', :as => :match_token
@@ -76,9 +78,9 @@ Thepista::Application.routes.draw do
 	match 'proximos_partidos' => 'home#upcoming', :as => :upcoming
 	match 'buqueda' => 'home#search', :as => :search
 	match 'comunicado' => 'home#advertisement', :as => :advertisement
-	   
-  match 'buscar_en_mapa' => 'markers#search_map', :as => :search
-  match 'address_map' => 'markers#address_map', :as => :address
+
+	match 'buscar_en_mapa' => 'markers#search_map', :as => :search
+	match 'address_map' => 'markers#address_map', :as => :address
 
 	match 'sobre' => 'home#about', :as => :about
 	match 'terminos' => 'home#terms_of_use', :as => :terms_of_use
@@ -93,49 +95,15 @@ Thepista::Application.routes.draw do
 
 	match 'encasillado/:id/fase_de_grupos' => 'standings#set_group_stage', :as => :set_group_stage
 
-  match 'horario/:id/replica/:current_id' => 'timetables#set_copy_timetable', :as => :set_copy_timetable
-  
-  match 'festivo/:venue_id/abierto/:block_token' => 'holidays#set_holiday_open', :as => :set_holiday_open
-  match 'festivo/:venue_id/cerrado/:block_token' => 'holidays#set_holiday_closed', :as => :set_holiday_closed
-  match 'festivo/:venue_id/nada/:block_token'=> 'holidays#set_holiday_none', :as => :set_holiday_none
-	
+	match 'horario/:id/replica/:current_id' => 'timetables#set_copy_timetable', :as => :set_copy_timetable
+
+	match 'festivo/:venue_id/abierto/:block_token' => 'holidays#set_holiday_open', :as => :set_holiday_open
+	match 'festivo/:venue_id/cerrado/:block_token' => 'holidays#set_holiday_closed', :as => :set_holiday_closed
+	match 'festivo/:venue_id/nada/:block_token'=> 'holidays#set_holiday_none', :as => :set_holiday_none
+
 	match 'escuadras/:id/borrar_escuadra/:cup' => 'escuadras#borrar_escuadra', :as => :borrar_escuadra
-	
-	
-	# rename basic controller actions
-	# scope :path_names => { :new => 'hacer', :create => 'introducir', :edit => 'modificar', :update => 'actualizar', :destroy => 'borrar', :list => 'listar' } do
-	# 	
-	# 	resources :user_sessions
-	# 	resources :users 
-	# 	resources :schedules 
-	# 	resources :groups
-	# 	resources :markers
-	# 	resources :scorecards 
-	# 	resources :matches
-	# 	resources :invitations
-	# 	resources :teammates
-	# 	resources :types
-	# 	resources :sports
-	# 	resources :roles
-	# 	resources :payments 
-	# 	resources :fees 
-	# 	resources :password_resets
-	# 	resources :messages 
-	# 	resources :standings 
-	# 	resources :connections
-	# 	resources :announcements 
-	# 	resources :cups 
-	# 	resources :games 
-	# 	resources :challenges 
-	# 	resources :casts 
-	# 	resources :escuadras
-	# 	resources :venues 
-	# 	resources :installations 
-	# 	resources :reservations 
-	# 	resources :purchases
-	# 	
-	# end
-	
+
+	resources :authentications
 	resources :user_sessions
 	resources :users do
 		collection do
@@ -172,8 +140,8 @@ Thepista::Application.routes.draw do
 	resources :types
 	resources :sports
 	resources :roles
-	
-	
+
+
 	resources :payments do
 		collection do
 			get :list
@@ -262,5 +230,5 @@ Thepista::Application.routes.draw do
 	end
 
 	match ':controller/:action.:format' => '#index'
-	
+
 end

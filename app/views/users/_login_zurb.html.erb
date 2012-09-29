@@ -1,43 +1,87 @@
 <%
 	the_signup = is_action('signup')
 	label_confirm = "#{field_label_name(:password_confirmation)}<br/>#{field_label_name(:password)}"
+	
+	
+	login_visible = ['home_index', 'user_session_new']
+	signup_visible = ['']
+	
+	@user_session = UserSession.new 
 %>
 
 
-<%= set_form_label(the_form, :email) %>
-<%= set_form_text_field(the_form, :email, 'oversize input-text', true) %><br />
+<% if login_visible.include?(get_controller_action) %>
 
-<%= set_form_label(the_form, :password) %>
-<%= set_form_password(the_form, :password, 'oversize input-text', true) %><br />
+	<br>
 
+	<div class="row">
+		<div class="twelve columns">
 
-<% if the_signup %>
+			<%= content_tag :h6, label_name(:use_login), :class => "subheader" %>
+			<hr />
 
-	<%= set_form_label(the_form, :password_confirmation) %>
-	<%= set_form_password(the_form, :password_confirmation, 'oversize input-text', true) %><br />
+			<%= form_for (@user_session), :html => {:class => 'form login'} do |the_form| %>
+			
+				<%= render "shared/error_messages", :target => @user_session %>
+			
+				<%= set_form_label(the_form, :email) %>
+				<%= set_form_text_field(the_form, :email, 'oversize input-text', true) %><br />
 
-	
-	<hr />
-	
-	<%= render 'utilities/recaptcha' %>
-
-	
-	<%#= submit_tag label_name(:signup), :class => "button" %>
-	<%#= set_form_button(item, 'signup') %>
-	
-<% else %>
-
-	<%= link_to(label_name(:password_forgotten), :controller => 'password_resets', :action => 'new') %><br />
-
-	<hr />
-	
-	<%#= submit_tag label_name(:login), :class => "button" %>
-	<%#= set_form_button(item, 'login') %>
-	<%#= set_form_button(@user, 'signup', 'medium white nice button radius') %>
+				<%= set_form_label(the_form, :password) %>
+				<%= set_form_password(the_form, :password, 'oversize input-text', true) %><br />
+				
+				<%= link_to(label_name(:password_forgotten), :controller => 'password_resets', :action => 'new') %><br />
+				<hr />
+				
+				
+				<%= set_form_button(@user_session, 'signup', 'small white nice button radius') %>
+						
+			<% end -%>
+			
+		</div>
+	</div>
 
 <% end %>
 
-<%= set_form_button(item, 'signup', 'small white nice button radius') %>
+
+<% if signup_visible.include?(get_controller_action) %>
+
+	<br>	
+
+	<div class="row">
+		<div class="twelve columns">
+
+			<%= content_tag :h6, label_name(:user_signup), :class => "subheader" %>
+			<hr />
+
+			<%= form_for (@user), :html => {:class => 'form login'} do |the_form| %>
+			
+				<%= render "shared/error_messages", :target => @user %>
+			
+				<%= set_form_label(the_form, :email) %>
+				<%= set_form_text_field(the_form, :email, 'oversize input-text', true) %><br />
+
+				<%= set_form_label(the_form, :password) %>
+				<%= set_form_password(the_form, :password, 'oversize input-text', true) %><br />
+				
+				<%= set_form_label(the_form, :password_confirmation) %>
+				<%= set_form_password(the_form, :password_confirmation, 'oversize input-text', true) %><br />
+				<hr />
+
+				<%= render 'utilities/recaptcha' %>
+				
+				
+				<%= set_form_button(@user, 'signup', 'small white nice button radius') %>
+					
+			<% end -%>
+			
+		</div>
+	</div>
+
+<% end -%>
+
+
+
 
 
 

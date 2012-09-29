@@ -1,46 +1,71 @@
 
 
-render :rpx_new
+
+
+https://www.facebook.com/dialog/pagetab?app_id=64553101275&display=popup&next=https://zurb.herokuapp.com/
 
 
 
-# Centro Deportivo Municipal La Elipa
-	@new_venue = Venue.new
-	@new_venue.name = 'Centro Deportivo Municipal La Elipa'
-	@new_venue.short_name = 'C.D.M. La Elipa'
-	@new_venue.starts_at = '2012-09-20 06:00:00'
-	@new_venue.ends_at = '2012-09-20 21:30:00'
-	@new_venue.marker_id = 48
-	@new_venue.description = 'Gestión por parte del Ayuntamiento de Madrid
-														Dirección: CALLE  ALCALDE GARRIDO JUARISTI, 28030  MADRID 
-														Barrio / Distrito:  MEDIA LEGUA / MORATALAZ
-														Teléfono: 914 303 511
+
+last_minute_notification
+
+
+* mandar mensaje cuando se modifican los equipos dentro de las 24 horas 
+* mandar mensaje cuando se cambia de convocatoria dentro de las 24 horas
+
+schedule.rb
+
+  def self.last_minute_reminder
+
+  manager_id = RolesUsers.find_item_manager(self.group).user_id
+	self.group.users.each do |user|
+		if user.last_minute_notification? 
+			create_notification_email(self, self, manager_id, user.id, true)
+		end
+	end
+	self.send_reminder_at = Time.zone.now
+	self.save!
+
+  end
+  
+  
+  
+  
+
+  
+matches_controller.rb
+
+
+	def set_status
+		unless current_user == @match.user or is_current_manager_of(@match.schedule.group) 
+			warning_unauthorized
+			redirect_to root_url
+			return
+		end
+
+		@type = Type.find(params[:type])
+		played = (@type.id == 1 and !@match.group_score.nil? and !@match.invite_score.nil?)
+
+		send_last_minute_message = (current_user == @match.user and Time.zone.now + 1.days > @match.schedule.starts_at)
+
+		if @match.update_attributes(:type_id => @type.id, :played => played, :user_x_two => @user_x_two, :status_at => Time.zone.now)
+			Scorecard.delay.calculate_user_played_assigned_scorecard(@match.user, @match.schedule.group)
+
+			if DISPLAY_FREMIUM_SERVICES
+				# set fee type_id to same as match type_id
+				the_fee = Fee.find(:all, :conditions => ["debit_type = 'User' and debit_id = ? and item_type = 'Schedule' and item_id = ?", @match.user_id, @match.schedule_id])
+				the_fee.each {|fee| fee.type_id = @type.id; fee.save}
+			end
+			
+		end 
+
+		# http://haypista.com/messages/new?schedule_id=ac_la_maso_jornada_3
+		if send_last_minute_message
+			@schedule = @match.schedule
+			if @schedule.send_reminder_at.nil? or @schedule.send_reminder_at < (Time.zone.now - 1.day)
+				@schedule.last_minute_reminder 
+			end
+		end	
 	
-														EQUIPAMIENTOS
-	
-														Unidades Deportivas al aire libre
-														Bolera Asturiana - Campo de Béisbol -  2 Campos de Fútbol (de césped artificial) - 2 Campos de Fútbol 7 (de césped artificial) - Campo de Sófbol - 2 Circuitos de Aeromodelismo (Radiocontrol de asfalto / radio control de tierra, con cubierta) - Piscina (vaso de 50 metros, vaso de recreo y vaso infantil) - 4 Pistas de Pádel - Pista Polideportiva - 10 Pistas de Tenis - 11 Tenis Mesa - Zona Nudista
-	
-														Unidades Deportivas Cubiertas
-														Frontón - Pabellón Polideportivo - 2 Salas multiusos (gimnasios) - Sala de Musculación'
-	@new_venue.save
-# Campo 1 A
-	@new_installation = Installation.new
-	@new_installation.name = 'Campo 1 A'
-	@new_installation.venue_id = @new_venue.id
-	@new_installation.marker_id = @new_venue.marker_id
-	@new_installation.sport_id = 2
-	@new_installation.starts_at = @new_venue.starts_at
-	@new_installation.ends_at = @new_venue.ends_at
-	@new_installation.timeframe = 1
-	@new_installation.fee_per_pista = 30.6
-	@new_installation.fee_per_lighting = 3.25
-	@new_installation.public = true
-	@new_installation.lighting = true
-	@new_installation.outdoor = true
-	@new_installation.description = 'Campo de Fútbol 11 - Cesped Artificial'
-	@new_installation.conditions = 'Requiere botas especificas para cesped Artificial'
-	@new_installation.save
-
-
-
+		redirect_back_or_default('/index')
+	end

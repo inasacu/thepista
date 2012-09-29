@@ -19,7 +19,8 @@ class UserSessionsController < ApplicationController
 		if @user_session.save
 			redirect_to root_url
 		else
-			render :action => :new
+			# render :action => :new
+			redirect_to root_url
 		end
 	end
 
@@ -65,7 +66,7 @@ class UserSessionsController < ApplicationController
 					session[:rpx_token] = params[:token]
 					redirect_to rpx_signup_path
 					return 
-					
+
 				else
 					# This OpenID has already "signed up" and been associated to a local user. They are already
 					# authenticated so just create their session for them.
@@ -74,7 +75,7 @@ class UserSessionsController < ApplicationController
 						UserSession.create(@user)
 						redirect_back_or_default root_url		
 						return
-						
+
 					else
 						flash[:error] = "Unable to find the user that your third-party account maps to. Please contact support@haypista.com for help."
 						respond_to do |format|

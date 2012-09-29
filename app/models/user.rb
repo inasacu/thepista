@@ -21,9 +21,9 @@
 # t.datetime "current_login_at"
 # t.string   "last_login_ip"
 # t.string   "current_login_ip"
-# t.boolean  "private_phone"                           
-# t.boolean  "private_profile"                         
-# t.string   "ger"
+# t.boolean  "private_phone"      -- recommend removal                          
+# t.boolean  "private_profile"    -- recommend removal                         
+# t.string   "gender"
 # t.datetime "birth_at"
 # t.boolean  "archive"                                 
 # t.datetime "created_at"
@@ -31,7 +31,7 @@
 # t.string   "perishable_token"                            
 # t.datetime "last_contacted_at"
 # t.boolean  "active"                                  
-# t.datetime "profile_at"
+# t.datetime "profile_at"    -- recommend removal 
 # t.string   "company"                  
 # t.boolean  "last_minute_notification"                
 # t.integer  "city_id"                                 
@@ -41,6 +41,7 @@
 # t.string   "linkedin_token"
 # t.string   "linkedin_secret"
 # t.string   "slug"
+# t.boolean	 "validation"
 # t.boolean	 "whatsapp"
 
 class User < ActiveRecord::Base
@@ -56,9 +57,13 @@ class User < ActiveRecord::Base
   acts_as_authentic do |c|
     login_field :email
     UserSession.find_by_login_method = 'find_by_email'
+  # end
+  # 
+  # acts_as_authentic do |c|
+    c.ignore_blank_passwords = true #ignoring passwords
+    c.validate_password_field = false #ignoring validations for password fields
   end
 
-  
   # Validations
   validates_presence_of 			:email
   validates_length_of   			:name,            :within => NAME_RANGE_LENGTH
@@ -83,6 +88,7 @@ class User < ActiveRecord::Base
     has_and_belongs_to_many   :groups,                :conditions => 'groups.archive = false',   :order => 'name'
     has_and_belongs_to_many   :challenges,            :conditions => 'challenges.archive = false',   :order => 'name'
     
+		has_many		:authentications
     has_many    :addresses
     has_many    :accounts
     has_many    :payments
@@ -126,11 +132,23 @@ class User < ActiveRecord::Base
       user.has_many :_received_messages, :foreign_key => "recipient_id", :conditions => "recipient_deleted_at IS NULL"
     end         
 
-		# before_validation 	:generate_slug, 				:on => :create
 		after_create				:signup_notification
-   
        
-    # method section   
+    # method section  
+		def apply_omniauth(omniauth)			
+			self.email = omniauth['info']['email'] if omniauth['info']['email']
+			self.name = omniauth['info']['name'] if omniauth['info']['name']
+			self.photo = omniauth['photo']['email'] if omniauth['info']['photo']
+			self.identity_url = omniauth['credentials']['token'] if omniauth['credentials']['token']
+		end
+
+	  def self.create_from_omniauth(omniauth)
+	    user = User.new(:username => omniauth['user_info']['name'].scan(/[a-zA-Z0-9_]/).to_s.downcase)
+	    user.save(false) #create the user without performing validations. This is because most of the fields are not set.
+	    user.reset_persistence_token! #set persistence_token else sessions will not be created
+	    user
+	  end
+	 
     def avatar
       self.photo.url
     end

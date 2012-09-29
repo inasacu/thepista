@@ -34,6 +34,20 @@ gem 'zurb-foundation'
 gem 'agent_orange'
 gem 'sitemap_generator'
 
+gem 'omniauth'
+gem 'omniauth-browserid'
+gem 'omniauth-twitter'
+# gem 'omniauth-facebook'
+# gem 'omniauth-linkedin'
+# gem 'omniauth-myspace'
+# gem 'omniauth-openid'
+
+# gem 'omniauth-windowslive',			:git => 'https://github.com/joel/omniauth-windowslive.git'
+# gem 'omniauth-yahoo',						:git => 'https://github.com/famoseagle/omniauth-yahoo.git'
+# gem 'omniauth-disqus',					:git => 'https://github.com/espinet/omniauth-disqus.git'
+
+
+
 # Gems used only for assets and not required
 # in production environments by default.
 group :assets do

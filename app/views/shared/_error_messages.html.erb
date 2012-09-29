@@ -1,7 +1,12 @@
 <%
 	the_error_total = "#{pluralize(target.errors.count, "error")} prohibited this record from being saved:"
 	the_error_total = "Correct the following errors and try again."
+	the_error_total = "<STRONG>#{the_error_total}</STRONG>"
 	is_display = false
+	
+	ignore_fields = ['user_omniauth_new', 'rpx_new', 'signup']
+	the_error_total = label_name(:fill_in_fields) if ignore_fields.include?(get_controller_action)	
+	display_details = false
 %>
 
 
@@ -28,9 +33,11 @@
 
 <% if target.errors.any? %>
 
-	<%= content_tag :h6, the_error_total, :class => "subheader" %>
+	<%= content_tag :h6, "#{the_error_total}".html_safe, :class => "subheader" %>
 	<hr>
 
+	<% if display_details %>
+	
 	<div class="row">		
 		<div class="row">
 			<div class="one column">
@@ -38,7 +45,6 @@
 
 			<div class="eleven columns end error">
 				<% target.errors.full_messages.each do |the_error| %>
-
 				<div class="form-field error"><label>* <%= the_error %></label>&nbsp;&nbsp;</div>		
 				<% end %>
 			</div>
@@ -46,6 +52,8 @@
 	</div>
 
 	<hr>
+	
+	<% end %>
 
 	<br>
 

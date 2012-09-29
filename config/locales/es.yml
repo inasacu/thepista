@@ -1071,6 +1071,12 @@ es:
      outdoor_description: (La pista esta al arie libre?)
      overview: descripción general 
      overview_title:  Resumen  
+     omniauth_add_service:  "<STRONG>Añade otro servicio con el que entrar</STRONG>:"
+     omniauth_browser_id_new:  "<STRONG>La mejor manera de acceder.</STRONG>"
+     omniauth_browser_id_button:  Accede ahora!
+     omniauth_provider_browser_id:  Mozilla Persona
+     omniauth_provider_twitter:  Twitter
+     omniauth_provider_facebook:  Facebook
      page_does_not_exist: La pagina que querias no exite.
      participate_challenge: Participa en el reto
      participate_challenge_afterwards: "Despues de registrate y ser aceptado, sigue este enlace para participa en el reto" 
@@ -1500,7 +1506,7 @@ es:
      t_zone: Horario   
      table_id: Codigo de tabla   
      table_type: Tipo de tabla  
-     teammate_notification:  Mensajes de Equipo
+     teammate_notification:  Mensajes de equipo
      teammate_notification_cluetip:  "Como manager de un equipo, puedes recibir las peticiones a tu equipo en tu cuenta de correo."
      technical_level_description: "(Del 1 al 5, pon el nivel físico que crees que tienes comparado con los de tu equipo...)"  
      terms: terminos   

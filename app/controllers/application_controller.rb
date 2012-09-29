@@ -6,7 +6,7 @@ class ApplicationController < ActionController::Base
 	before_filter :set_time_zone , :set_user_language, :set_the_template  
 	before_filter :set_browser_type #, :set_user_agent
 
-	layout 'zurb' 	unless DISPLAY_HAYPISTA_TEMPLATE
+	# layout 'zurb' 	unless DISPLAY_HAYPISTA_TEMPLATE
 
 	# this probably needs to go in the helper
 	def set_the_template(default_template='')
@@ -74,6 +74,21 @@ class ApplicationController < ActionController::Base
 	def controller_successful_update
 		flash[:success] = I18n.t(:successful_update)
 	end
+	
+	def controller_successful_provider(omniauth)
+		the_provider = "omniauth_provider_#{omniauth}"
+		the_provider = I18n.t(the_provider)
+		successful_provider = "Successfully added #{the_provider} authentication..."
+		flash[:notice] = successful_provider
+	end	
+
+	def controller_welcome_provider(omniauth)
+		the_provider = "omniauth_provider_#{omniauth}"
+		the_provider = I18n.t(the_provider)
+		successful_provider = "Welcome back #{the_provider} user..."
+		flash[:notice] = successful_provider
+	end
+
 
 	def object_counter(objects)
 		@counter = 0

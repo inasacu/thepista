@@ -1062,6 +1062,12 @@ en:
      outdoor_description: Is pista outdoors?
      overview: overview 
      overview_title:  Overview  
+     omniauth_add_service:  "<STRONG>Add another service to sign in with</STRONG>:"
+     omniauth_browser_id_new:  "<STRONG>A better way to sign in</STRONG>."
+     omniauth_browser_id_button:  Access now!
+     omniauth_provider_browser_id:  Mozilla Persona
+     omniauth_provider_twitter:  Twitter
+     omniauth_provider_facebook:  Facebook
      page_does_not_exist: The page you wanted does not exist.     
      participate_challenge: Participate in the challenge
      participate_challenge_afterwards: "After you signup, follow the link to signup for the challenge" 

@@ -1,0 +1,50 @@
+
+<div class="row">
+	<div class="twelve columns">
+	
+		<br>
+		<br>
+		
+		<%= content_tag :h6, label_name(:omniauth_browser_id_new), :class => "subheader" %>
+		<hr />
+		<br>
+
+	
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
+<script src="https://browserid.org/include.js" type="text/javascript"></script>
+<script type='text/javascript'>
+function loginViaEmail() {
+	navigator.id.get(function(assertion) {
+		if (assertion) {
+			$('input[name=assertion]').val(assertion);
+			$('#browser_id_form').submit();
+		} else {
+			window.location = "#{failure_path}"
+		}
+	});  
+}
+
+$(function() {
+	$('#browser_id_form button').click(function() {
+		loginViaEmail();
+		return false;
+	});
+});
+</script>
+
+	<%= image_tag('mozilla_persona.jpg') %>
+	<br>
+	<br>
+	
+    <form id='browser_id_form' action='/auth/browser_id/callback'>
+	
+	  
+      <input type='hidden' name='assertion'/>
+      <button type='submit' class='small_medium nice success button radius'><%= label_name(:omniauth_browser_id_button) %></button>
+
+    </form>
+
+
+
+	</div>
+</div>

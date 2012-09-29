@@ -625,15 +625,15 @@ module ApplicationHelper
 
 	end
 
-
 	def set_form_button_submit(item)
 		return "#{set_form_button(item)} #{label_name(:or)} #{set_form_cancel(item)}".html_safe
 	end
 
 	def set_form_button(item, the_label='', the_button='')
-		the_button_class = "button"
-		the_button_class = "small white nice button radius"
-		the_button_class = the_button unless the_button.blank?
+		# the_button_class = "success button"
+		# the_button_class = "small nice success button radius"
+		the_button_class = "small_medium nice success button radius"
+		# the_button_class = the_button unless the_button.blank?
 		return submit_tag(item.new_record? ? control_label('create') : control_label('edit'), :class => the_button_class) #unless the_label.blank?
 		return submit_tag(label_name(the_label), :class => the_button_class)
 	end 

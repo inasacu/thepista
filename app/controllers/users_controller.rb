@@ -7,8 +7,6 @@ class UsersController < ApplicationController
 	before_filter :get_user_self,       :only => [:set_private_phone, :set_private_profile,  :set_teammate_notification, :set_message_notification, :set_last_minute_notification, :set_whatsapp]
 	before_filter :get_user_group,      :only =>[:set_manager, :remove_manager, :set_sub_manager, :remove_sub_manager, :set_subscription, :remove_subscription, :set_moderator, :remove_moderator]
 
-	# before_filter :has_member_access,   :only => [:rate]
-
 	def index
 		unless the_maximo
 			redirect_to root_url 
@@ -24,6 +22,10 @@ class UsersController < ApplicationController
 
 	def show
 		store_location
+		
+		if current_user == @user
+			@authentications = current_user.authentications 
+		end
 
 		@client = ""
 		@profile = ""
@@ -59,6 +61,9 @@ class UsersController < ApplicationController
 			return
 		end 
 		@user = current_user
+
+		# set_the_template('users/new')
+		# render @the_template   
 	end
 
 	def create
@@ -81,30 +86,35 @@ class UsersController < ApplicationController
 			@user.password_confirmation = session[:identifier]
 		end
 
-
 		if @user.save
 			@user.email_to_name
 			@user.email_backup = @user.email
 			@user.save
+			
+			Authentication.create_from_omniauth(session[:omniauth], @user) if session[:omniauth]
+			
 		else
 			flash[:warning] = I18n.t(:password_email_conbination_issue)
 			redirect_to :signup
 			return
 		end 
 
+		session[:identifier] = nil if session[:identifier]
+		session[:omniauth] = nil if session[:omniauth]
+				
 		successful_create
 		redirect_to @user
 	end
 
 	def update
 		@user = current_user
-		
+
 		if @user.update_attributes(params[:user]) 
-      controller_successful_update
-      redirect_to @user
-    else
-      render :action => 'edit'
-    end		
+			controller_successful_update
+			redirect_to @user
+		else
+			render :action => 'edit'
+		end		
 	end
 
 	def petition
@@ -256,6 +266,17 @@ class UsersController < ApplicationController
 		end
 	end  
 
+	def omniauth_new
+		@user = User.new
+		if session[:omniauth]
+			@user.apply_omniauth(session[:omniauth])
+			@user.valid?
+		else
+			redirect_to :authentications_url
+		end
+
+	end
+
 	def rpx_new
 		if data = RPXNow.user_data(session[:rpx_token])
 
@@ -295,7 +316,6 @@ class UsersController < ApplicationController
 		@user.password_confirmation = session[:identifier]
 
 		if @user.save
-
 			UserMailer.send_email(@user).deliver
 
 			# Won't be needing these anymore.
@@ -370,3 +390,7 @@ class UsersController < ApplicationController
 	end
 
 end
+
+
+
+

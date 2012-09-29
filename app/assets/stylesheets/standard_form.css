@@ -18,7 +18,9 @@ input.smaller, textarea.small { width: 74px; } /* mod by haypista */
 
 /* ZURB bar */
 #zurBar {
-	background: #0f7d00;
+/*	background: #0f7d00;*/
+	background: #5da423;
+	
 	font-size: 10px;
 	
 /*	position: fixed;*/
