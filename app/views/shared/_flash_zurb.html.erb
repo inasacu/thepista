@@ -100,13 +100,17 @@
 			
 				<%= render 'shared/notice_zurb', :notice => flash %>
 				
-			<%# elsif is_new_user and !is_password_reset %>
+			<% elsif is_new_user and !is_password_reset %>
 
-				<%#= content_tag :h3, link_to(app_name, root_url) %>
-				<!-- <hr/> -->
-				<!-- <br> -->
+				<%= content_tag :h3, link_to(app_name, root_url) %>
+				<%= content_tag :h6, label_name(:modo), :class => "subheader" %>
+				<hr/>
+				<br>
+				
+				<%= content_tag :h6, label_name(:fill_in_fields), :class => "subheader" %>
+				<hr/>
 
-				<%#= render 'shared/new_edit_multipart_zurb', :item => @item %>
+				<%= render 'shared/new_edit_multipart_zurb', :item => @item %>
 			
 			<% else %>
 			

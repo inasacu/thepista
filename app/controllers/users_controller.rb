@@ -83,7 +83,7 @@ class UsersController < ApplicationController
 		if session[:identifier]
 			@user.identity_url = session[:identifier]
 			@user.password = session[:identifier]
-			@user.password_confirmation = session[:identifier]
+			# @user.password_confirmation = session[:identifier]
 		end
 
 		if @user.save

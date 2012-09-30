@@ -37,14 +37,6 @@ gem 'sitemap_generator'
 gem 'omniauth'
 gem 'omniauth-browserid'
 gem 'omniauth-twitter'
-# gem 'omniauth-facebook'
-# gem 'omniauth-linkedin'
-# gem 'omniauth-myspace'
-# gem 'omniauth-openid'
-
-# gem 'omniauth-windowslive',			:git => 'https://github.com/joel/omniauth-windowslive.git'
-# gem 'omniauth-yahoo',						:git => 'https://github.com/famoseagle/omniauth-yahoo.git'
-# gem 'omniauth-disqus',					:git => 'https://github.com/espinet/omniauth-disqus.git'
 
 
 
@@ -57,6 +49,15 @@ group :assets do
 end
 
 
+
+# gem 'omniauth-facebook'
+# gem 'omniauth-linkedin'
+# gem 'omniauth-myspace'
+# gem 'omniauth-openid'
+
+# gem 'omniauth-windowslive',			:git => 'https://github.com/joel/omniauth-windowslive.git'
+# gem 'omniauth-yahoo',						:git => 'https://github.com/famoseagle/omniauth-yahoo.git'
+# gem 'omniauth-disqus',					:git => 'https://github.com/espinet/omniauth-disqus.git'
 
 # gem "client_side_validations", "~> 3.1.4"
 # gem 'ayah_integration'

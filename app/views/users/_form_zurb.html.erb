@@ -4,7 +4,7 @@
 		options += "<option value='#{language}'>" + label_name(language) + "</option>"	
 	end
 	
-	ignore_fields = ['user_omniauth_new', 'rpx_new', 'user_signup']
+	ignore_fields = ['user_omniauth_new', 'rpx_new', 'user_signup', 'user_rpx_new']
 	is_new_user = ignore_fields.include?(get_controller_action)
 %>
 
