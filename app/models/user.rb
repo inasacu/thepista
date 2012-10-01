@@ -148,7 +148,11 @@ class User < ActiveRecord::Base
 	    user.reset_persistence_token! #set persistence_token else sessions will not be created
 	    user
 	  end
-	 
+	
+		def self.find_using_email(email)
+			find(:first, :conditions => ["lower(email) = ?", email])
+		end
+	
     def avatar
       self.photo.url
     end

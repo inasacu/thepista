@@ -26,7 +26,7 @@ class AuthenticationsController < ApplicationController
 		
 		else
 			# find user based on email 
-			@user_by_email = User.find_by_email(omniauth['info']['email']) if omniauth['info']['email']
+			@user_by_email = User.find_using_email((omniauth['info']['email']).downcase) if omniauth['info']['email']
 		
 			if @user_by_email
 				UserSession.create(@user_by_email)
