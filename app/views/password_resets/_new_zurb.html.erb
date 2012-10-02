@@ -32,7 +32,7 @@
 			<% end -%>
 
 
-		<% elsif  get_controller_action == 'password_reset_edit' %>
+		<% elsif  get_controller_action == 'password_reset_edit' or get_controller_action == 'password_reset_update' %>
 
 
 			<%= set_content_tag_safe(:h5, "<strong>#{label_name(:password_change)}</strong>") %>	

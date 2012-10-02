@@ -78,12 +78,19 @@ class UsersController < ApplicationController
 		end
 
 		@user.name = @user.email    
-		# @user.language = "es" if @user.language.nil?
+		@user.language = "es" if @user.language.nil?
 
 		if session[:identifier]
 			@user.identity_url = session[:identifier]
 			@user.password = session[:identifier]
-			# @user.password_confirmation = session[:identifier]
+			@user.password_confirmation = session[:identifier]
+		end
+
+		if session[:omniauth]
+			omniauth = session[:omniauth]
+			@user.identity_url = omniauth['provider']
+			@user.password = omniauth['provider']
+			@user.password_confirmation = omniauth['provider']
 		end
 
 		if @user.save

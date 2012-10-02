@@ -47,7 +47,6 @@
 class User < ActiveRecord::Base
 
 	extend FriendlyId 
-	# friendly_id :name, 					use: 				:slugged
 	friendly_id :name_slug,				use:  			:slugged 
 
 	def name_slug
@@ -57,11 +56,9 @@ class User < ActiveRecord::Base
   acts_as_authentic do |c|
     login_field :email
     UserSession.find_by_login_method = 'find_by_email'
-  # end
-  # 
-  # acts_as_authentic do |c|
-    c.ignore_blank_passwords = true #ignoring passwords
-    c.validate_password_field = false #ignoring validations for password fields
+
+    # c.ignore_blank_passwords = true #ignoring passwords
+    # c.validate_password_field = false #ignoring validations for password fields
   end
 
   # Validations

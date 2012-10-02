@@ -83,11 +83,14 @@
 	the_tab_navigation = 'challenges' if get_controller_action == 'standing_show_list'
 	the_tab_navigation = 'cups' if get_controller_action == 'cast_list_gues'
 	
-	password_reset_actions = ['password_reset_new', 'password_reset_edit']
+	password_reset_actions = ['password_reset_new', 'password_reset_edit', 'password_reset_update']
 	is_password_reset = password_reset_actions.include?(get_controller_action)
 	is_new_user = @user ? true : false
 	the_label = label_name(:users_rpx_new) 
 	@item = @user
+	
+	ignore_label_fill_in_fields = ['user_omniauth_new']
+	is_ignore_label_fill = ignore_label_fill_in_fields.include?(get_controller_action)
 %>
 
 <div class="row">
@@ -107,8 +110,10 @@
 				<hr/>
 				<br>
 				
-				<%= content_tag :h6, label_name(:fill_in_fields), :class => "subheader" %>
-				<hr/>
+				<% unless is_ignore_label_fill %>
+					<%= content_tag :h6, label_name(:fill_in_fields), :class => "subheader" %>
+					<hr/>
+				<%end %>
 
 				<%= render 'shared/new_edit_multipart_zurb', :item => @item %>
 			
@@ -118,8 +123,7 @@
 				<%= content_tag :h6, label_name(:modo), :class => "subheader" %>
 				<hr/>
 				
-				<%= render 'shared/access_details_zurb' unless is_password_reset %>				
-				<%= render 'password_resets/new_zurb' if is_password_reset %>
+				<%= render 'shared/access_details_zurb' unless is_password_reset %>	
 				<br>
 				
 			<% end %>
