@@ -51,8 +51,8 @@ class UsersController < ApplicationController
 			redirect_to root_url 
 			return
 		end
-		@user = User.new
-		return @the_template
+		# @user = User.new
+		# return @the_template
 	end
 
 	def edit

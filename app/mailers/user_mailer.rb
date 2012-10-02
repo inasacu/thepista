@@ -24,7 +24,9 @@ class UserMailer < ActionMailer::Base
 		@user 							= invitation.user
 		@invitation					= invitation		
 	  email_with_name 		= "#{invitation.user.name} <#{invitation.user.email}>"
-	
+		
+		I18n.locale = @user.language unless @user.language.blank?
+					
 		mail(:from => email_with_name, :to => invitation.email_addresses, :subject => @subject)
 	end
 	
@@ -32,6 +34,8 @@ class UserMailer < ActionMailer::Base
 		@user 							= user
     @subject    				= I18n.t(:account_activation)
 	  email_with_name 		= "#{user.name} <#{user.email}>"
+		
+		I18n.locale = @user.language unless @user.language.blank?
 	
 		mail(:to => email_with_name, :subject => @subject)
   end
@@ -41,6 +45,8 @@ class UserMailer < ActionMailer::Base
     @subject    				= I18n.t(:password_recover_instructions)
 		@token							= user.perishable_token  
 	  email_with_name 		= "#{user.name} <#{user.email}>"
+		
+		I18n.locale = @user.language unless @user.language.blank?
 	
 		mail(:to => email_with_name, :subject => @subject)
   end 
@@ -65,6 +71,9 @@ class UserMailer < ActionMailer::Base
 
 	  to_email_with_name 			= "#{recipient.name} <#{recipient.email}>"
 	  from_email_with_name 		= "#{sender.name} <#{sender.email}>"
+		
+		I18n.locale = @user.language unless @user.language.blank?
+		
 		mail(:to => to_email_with_name, :subject => @subject, :from => from_email_with_name)
   end 
     
@@ -88,6 +97,9 @@ class UserMailer < ActionMailer::Base
 
 	  to_email_with_name 			= "#{recipient.name} <#{recipient.email}>"
 	  from_email_with_name 		= "#{sender.name} <#{sender.email}>"
+		
+		I18n.locale = @user.language unless @user.language.blank?
+		
 		mail(:to => to_email_with_name, :subject => @subject, :from => from_email_with_name)
   end
   
@@ -112,6 +124,9 @@ class UserMailer < ActionMailer::Base
 
 	  to_email_with_name 			= "#{recipient.name} <#{recipient.email}>"
 	  from_email_with_name 		= "#{sender.name} <#{sender.email}>"
+				
+		I18n.locale = @user.language unless @user.language.blank?
+		
 		mail(:to => to_email_with_name, :subject => @subject, :from => from_email_with_name)
   end 
   
@@ -135,6 +150,9 @@ class UserMailer < ActionMailer::Base
 
 	  to_email_with_name 			= "#{recipient.name} <#{recipient.email}>"
 	  from_email_with_name 		= "#{sender.name} <#{sender.email}>"
+		
+		I18n.locale = @user.language unless @user.language.blank?
+		
 		mail(:to => to_email_with_name, :subject => @subject, :from => from_email_with_name)  
   end
 
@@ -158,6 +176,9 @@ class UserMailer < ActionMailer::Base
 
 	  to_email_with_name 			= "#{recipient.name} <#{recipient.email}>"
 	  from_email_with_name 		= "#{sender.name} <#{sender.email}>"
+		
+		I18n.locale = @user.language unless @user.language.blank?
+		
 		mail(:to => to_email_with_name, :subject => @subject, :from => from_email_with_name)
   end
 
@@ -183,6 +204,8 @@ class UserMailer < ActionMailer::Base
 		
 	  to_email_with_name 			= "#{message.recipient.name} <#{message.recipient.email}>"
 	  from_email_with_name 		= "#{message.sender.name} <#{message.sender.email}>"
+		
+		I18n.locale = @user.language unless @user.language.blank?
 	
 		mail(:to => to_email_with_name, :subject => @subject, :from => from_email_with_name)    
   end
