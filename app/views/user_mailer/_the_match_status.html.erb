@@ -1,15 +1,16 @@
 <%
 
 	the_labels = []
+	the_schedule_label = ''
 
 	if @schedule 
 		unless @schedule.played?
 			my_current_match = nil
 
 			@schedule.matches.each{|match| my_current_match = match if match.user_id == @recipient.id}		
-			the_schedule_label = "<STRONG>#{I18n.t(:your_roster_status) } #{( my_current_match.type_name).downcase}</STRONG>".html_safe
 
 			unless my_current_match.nil?
+				the_schedule_label = "<STRONG>#{I18n.t(:your_roster_status) } #{( my_current_match.type_name).downcase}</STRONG>".html_safe
 				match_types = Match.get_match_type
 
 				match_types.each do |type| 
