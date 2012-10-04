@@ -83,9 +83,9 @@ class Cast < ActiveRecord::Base
 		self.game.starts_at - 1.day
 	end
 
-	def self.latest_items(items, user)
-		self.where("archive = false and create_at != updated_at").each do |item|
-			item << item
+	def self.latest_items(items)
+		self.where("archive = false and created_at != updated_at").each do |item|
+			items << item
 		end
 		return items 
 	end

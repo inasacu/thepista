@@ -53,7 +53,7 @@ class Cup < ActiveRecord::Base
   validates_presence_of     :name
   validates_presence_of     :description
   validates_presence_of     :conditions
-  validates_presence_of     :time_zone
+  # validates_presence_of     :time_zone
   validates_presence_of     :sport_id
   
   validates_length_of       :name,            :within => NAME_RANGE_LENGTH

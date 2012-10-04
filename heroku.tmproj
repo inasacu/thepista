@@ -3,7 +3,7 @@
 <plist version="1.0">
 <dict>
 	<key>currentDocument</key>
-	<string>app/views/shared/_flash_zurb.html.erb</string>
+	<string>app/models/cast.rb</string>
 	<key>documents</key>
 	<array>
 		<dict>
@@ -102,7 +102,7 @@
 			<key>filename</key>
 			<string>Gemfile</string>
 			<key>lastUsed</key>
-			<date>2012-09-30T08:05:48Z</date>
+			<date>2012-10-04T19:27:28Z</date>
 		</dict>
 		<dict>
 			<key>filename</key>
@@ -157,19 +157,19 @@
 			<key>firstVisibleLine</key>
 			<integer>0</integer>
 		</dict>
-		<key>app/controllers/authentications_controller.rb</key>
+		<key>app/controllers/cups_controller.rb</key>
 		<dict>
 			<key>caret</key>
 			<dict>
 				<key>column</key>
-				<integer>108</integer>
+				<integer>34</integer>
 				<key>line</key>
-				<integer>28</integer>
+				<integer>32</integer>
 			</dict>
 			<key>firstVisibleColumn</key>
 			<integer>0</integer>
 			<key>firstVisibleLine</key>
-			<integer>7</integer>
+			<integer>0</integer>
 		</dict>
 		<key>app/controllers/installations_controller.rb</key>
 		<dict>
@@ -243,19 +243,89 @@
 				<integer>231</integer>
 			</dict>
 		</dict>
-		<key>app/models/user.rb</key>
+		<key>app/models/cast.rb</key>
 		<dict>
 			<key>caret</key>
 			<dict>
 				<key>column</key>
-				<integer>14</integer>
+				<integer>0</integer>
 				<key>line</key>
-				<integer>155</integer>
+				<integer>217</integer>
 			</dict>
 			<key>firstVisibleColumn</key>
 			<integer>0</integer>
 			<key>firstVisibleLine</key>
-			<integer>137</integer>
+			<integer>0</integer>
+		</dict>
+		<key>app/models/cup.rb</key>
+		<dict>
+			<key>caret</key>
+			<dict>
+				<key>column</key>
+				<integer>40</integer>
+				<key>line</key>
+				<integer>55</integer>
+			</dict>
+			<key>firstVisibleColumn</key>
+			<integer>0</integer>
+			<key>firstVisibleLine</key>
+			<integer>30</integer>
+		</dict>
+		<key>app/views/cups/edit.html.erb</key>
+		<dict>
+			<key>caret</key>
+			<dict>
+				<key>column</key>
+				<integer>3</integer>
+				<key>line</key>
+				<integer>0</integer>
+			</dict>
+			<key>firstVisibleColumn</key>
+			<integer>0</integer>
+			<key>firstVisibleLine</key>
+			<integer>0</integer>
+		</dict>
+		<key>app/views/cups/index.html.erb</key>
+		<dict>
+			<key>caret</key>
+			<dict>
+				<key>column</key>
+				<integer>17</integer>
+				<key>line</key>
+				<integer>11</integer>
+			</dict>
+			<key>firstVisibleColumn</key>
+			<integer>0</integer>
+			<key>firstVisibleLine</key>
+			<integer>11</integer>
+		</dict>
+		<key>app/views/cups/new.html.erb</key>
+		<dict>
+			<key>caret</key>
+			<dict>
+				<key>column</key>
+				<integer>3</integer>
+				<key>line</key>
+				<integer>0</integer>
+			</dict>
+			<key>firstVisibleColumn</key>
+			<integer>0</integer>
+			<key>firstVisibleLine</key>
+			<integer>0</integer>
+		</dict>
+		<key>app/views/cups/show.html.erb</key>
+		<dict>
+			<key>caret</key>
+			<dict>
+				<key>column</key>
+				<integer>28</integer>
+				<key>line</key>
+				<integer>20</integer>
+			</dict>
+			<key>firstVisibleColumn</key>
+			<integer>0</integer>
+			<key>firstVisibleLine</key>
+			<integer>6</integer>
 		</dict>
 		<key>app/views/home/_upcoming_schedule_zurb.html.erb</key>
 		<dict>
@@ -371,19 +441,19 @@
 				<integer>0</integer>
 			</dict>
 		</dict>
-		<key>app/views/shared/_flash_zurb.html.erb</key>
+		<key>app/views/shared/_error_messages.html.erb</key>
 		<dict>
 			<key>caret</key>
 			<dict>
 				<key>column</key>
-				<integer>6</integer>
+				<integer>76</integer>
 				<key>line</key>
-				<integer>109</integer>
+				<integer>11</integer>
 			</dict>
 			<key>firstVisibleColumn</key>
 			<integer>0</integer>
 			<key>firstVisibleLine</key>
-			<integer>83</integer>
+			<integer>17</integer>
 		</dict>
 		<key>app/views/shared/_footer_zurb.html.erb</key>
 		<dict>
@@ -442,20 +512,6 @@
 				<key>line</key>
 				<integer>24</integer>
 			</dict>
-		</dict>
-		<key>app/views/users/_login_zurb.html.erb</key>
-		<dict>
-			<key>caret</key>
-			<dict>
-				<key>column</key>
-				<integer>20</integer>
-				<key>line</key>
-				<integer>6</integer>
-			</dict>
-			<key>firstVisibleColumn</key>
-			<integer>0</integer>
-			<key>firstVisibleLine</key>
-			<integer>0</integer>
 		</dict>
 		<key>app/views/utilities/_facebook_script_zurb.html.erb</key>
 		<dict>
@@ -635,13 +691,18 @@
 	<key>openDocuments</key>
 	<array>
 		<string>log/development.log</string>
-		<string>app/views/shared/_flash_zurb.html.erb</string>
-		<string>app/controllers/authentications_controller.rb</string>
-		<string>app/models/user.rb</string>
+		<string>app/views/cups/new.html.erb</string>
+		<string>app/views/shared/_error_messages.html.erb</string>
+		<string>app/controllers/cups_controller.rb</string>
+		<string>app/models/cast.rb</string>
+		<string>app/models/cup.rb</string>
+		<string>app/views/cups/index.html.erb</string>
+		<string>app/views/cups/show.html.erb</string>
+		<string>app/views/cups/edit.html.erb</string>
 	</array>
 	<key>showFileHierarchyDrawer</key>
 	<true/>
 	<key>windowFrame</key>
-	<string>{{0, 0}, {1658, 778}}</string>
+	<string>{{10, 46}, {1015, 732}}</string>
 </dict>
 </plist>

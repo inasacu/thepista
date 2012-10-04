@@ -1,13 +1,17 @@
+<% 
+	@cup_escuadras = @cup.escuadras
+	@escuadras = Escuadra.find(:all, :conditions => ["item_type = 'Escuadra' and id not in (select escuadra_id from cups_escuadras where cup_id = ?)", @cup], :order => 'name')
+%>
 
 <%= hidden_field :cup, :id %>
 
 <%= set_form_label(the_form, :name) %>
 <%= set_form_text_field(the_form, :name, 'large input-text', true) %><br />
 
-
 <%= set_form_label(the_form, :photo, 'photo') %>
 <%= set_form_file_field(the_form, :photo) %><br/>
 
+<hr/>
+<br>
 
-<%#= render "messages/message_item_list_zurb", :recipients => escuadras %>
-
+<%= render "messages/message_item_list_zurb", :recipients => @escuadras %>

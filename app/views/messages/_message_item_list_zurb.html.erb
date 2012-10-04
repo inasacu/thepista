@@ -33,11 +33,12 @@
 					case the_class
 					when "Escuadra"										
 				%>											
-						<%= render "escuadras/item_single_zurb", :escuadra => recipient, :checked => false %>					
+						<%= render "escuadras/item_single_zurb", :escuadra => recipient %>
+						<br>					
 
 				<%	when "User" %>		
 
-					<%= render "messages/recipient_item_single_zurb", :recipient => recipient, :checked => checked, :convocados => convocados %>		
+						<%= render "messages/recipient_item_single_zurb", :recipient => recipient, :checked => checked, :convocados => convocados %>		
 
 				<%  else
 					end

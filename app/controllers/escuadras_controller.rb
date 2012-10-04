@@ -6,7 +6,6 @@ class EscuadrasController < ApplicationController
 		store_location
 		@cup = Cup.find(params[:id])
 		@escuadras = Escuadra.cup_escuadras(@cup, params[:page]) 
-		render @the_template
 	end
 
 	def show
@@ -19,7 +18,6 @@ class EscuadrasController < ApplicationController
 	def new
 		@escuadra = Escuadra.new
 		@cup = Cup.find(params[:id])  
-		render @the_template
 	end
 
 	def create
@@ -74,6 +72,7 @@ class EscuadrasController < ApplicationController
 		end
 	end
 
+	
 	def borrar_escuadra
 		@escuadra = Escuadra.find(params[:id])
 		@cup = Cup.find(params[:cup])	

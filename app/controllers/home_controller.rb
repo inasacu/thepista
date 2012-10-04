@@ -3,7 +3,6 @@ class HomeController < ApplicationController
 
 	before_filter :get_home,            :only => [:index]
 	before_filter :get_upcoming,        :only => [:index, :upcoming]
-	# before_filter :get_advertisement,   :only => [:advertisement, :upcoming]
 
 	def index
 		render @the_template
@@ -85,8 +84,6 @@ class HomeController < ApplicationController
 
 		User.latest_items(@all_items) if @all_items.count < MEDIUM_FEED_SIZE
 		# Group.latest_items(@all_items) if @all_items.count < MEDIUM_FEED_SIZE   
-		
-		
 		# Group.latest_updates(@all_items) if @all_items.count < MEDIUM_FEED_SIZE     
 		# User.latest_updates(@all_items) if @all_items.count < MEDIUM_FEED_SIZE
 
@@ -94,7 +91,6 @@ class HomeController < ApplicationController
 		Venue.latest_items(@all_items) if @all_items.count < MEDIUM_FEED_SIZE  						if DISPLAY_PROFESSIONAL_SERVICES
 		Reservation.latest_items(@all_items) if @all_items.count < MEDIUM_FEED_SIZE  			if DISPLAY_PROFESSIONAL_SERVICES
 
-		# if @all_items.count < MEDIUM_FEED_SIZE
 		has_values = false   
 		Cup.latest_items(@all_values, has_values)    
 		if @all_values.count > 0
@@ -102,8 +98,7 @@ class HomeController < ApplicationController
 			Challenge.latest_items(@all_items)  
 			Game.latest_items(@all_items)
 			Cast.latest_items(@all_items)
-		end      
-		# end    
+		end     
 
 		@all_items = @all_items.sort_by(&:created_at).reverse!    
 		@all_items[0..MEDIUM_FEED_SIZE].each {|item| @items << item }
