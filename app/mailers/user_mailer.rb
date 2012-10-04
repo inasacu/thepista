@@ -199,7 +199,8 @@ class UserMailer < ActionMailer::Base
     @message   					= message
   
     @subject          	= message.subject
-    @recipients       	= message.recipient.email
+		@recipients					= []
+    @recipients       	= message.recipient.email unless message.recipient.email
 		
 		
 	  to_email_with_name 			= "#{message.recipient.name} <#{message.recipient.email}>"
