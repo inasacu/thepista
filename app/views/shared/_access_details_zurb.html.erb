@@ -4,8 +4,8 @@
 	the_signup_link = "#{label_name(:password_service)} #{link_to(label_name(:signup), signup_path, :class => the_signup)}"
 	the_signup_link = "#{the_signup_link} #{label_name(:or)} #{link_to(label_name(:log_in), login_path, :class => the_login)} #{label_name(:password_with)}"
 	
-	rpx_now_visible = ['home_index']
-	browser_id_visible = ['user_session_new', 'user_signup']
+	rpx_now_visible = ['home_index','user_signup' ]
+	browser_id_visible = ['user_session_new']
 %>
 
 <br>
@@ -44,7 +44,7 @@
 
 
 		<%= render 'users/login_zurb' %>
-		<%= render 'utilities/omniauth' if get_controller_action == 'user_signup' %>
+		<%#= render 'utilities/omniauth' if get_controller_action == 'user_signup' %>
 
 	</div>
 
