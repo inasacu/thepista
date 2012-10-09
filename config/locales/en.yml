@@ -1616,7 +1616,7 @@ en:
      use_openid: Or use your OpenID 
      use_login:  Login with your email address
      user_private_profile:  Player has private profile set.
-     user_signup: Or Signup with your email address
+     user_signup: "Or <STRONG>Signup</STRONG> with your email address."
      use_standard_login: access using a username and password     
      user: Player   
      users: Players

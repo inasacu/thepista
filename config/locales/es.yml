@@ -1627,7 +1627,7 @@ es:
      use_openid: O entra con OpenID 
      use_login:  Entra con tu cuenta de correo
      user_private_profile:  Jugador tiene el perfil oculto.
-     user_signup: "O Registrate con tu correo en <STRONG>HayPista</STRONG>"
+     user_signup: "O <STRONG>Registrate</STRONG> con tu correo."
      use_standard_login: utiliza el estándar de acceso de usuario / contraseña     
      user: Jugador   
      users: Jugadores

@@ -3,7 +3,7 @@
 <plist version="1.0">
 <dict>
 	<key>currentDocument</key>
-	<string>log/development.log</string>
+	<string>app/assets/stylesheets/zurb/ui.css</string>
 	<key>documents</key>
 	<array>
 		<dict>
@@ -157,6 +157,20 @@
 			<key>firstVisibleLine</key>
 			<integer>0</integer>
 		</dict>
+		<key>app/assets/stylesheets/zurb/ui.css</key>
+		<dict>
+			<key>caret</key>
+			<dict>
+				<key>column</key>
+				<integer>0</integer>
+				<key>line</key>
+				<integer>0</integer>
+			</dict>
+			<key>firstVisibleColumn</key>
+			<integer>0</integer>
+			<key>firstVisibleLine</key>
+			<integer>9</integer>
+		</dict>
 		<key>app/controllers/installations_controller.rb</key>
 		<dict>
 			<key>caret</key>
@@ -299,20 +313,6 @@
 			<key>firstVisibleLine</key>
 			<integer>0</integer>
 		</dict>
-		<key>app/views/messages/_message_item_list_zurb.html.erb</key>
-		<dict>
-			<key>caret</key>
-			<dict>
-				<key>column</key>
-				<integer>69</integer>
-				<key>line</key>
-				<integer>35</integer>
-			</dict>
-			<key>firstVisibleColumn</key>
-			<integer>0</integer>
-			<key>firstVisibleLine</key>
-			<integer>8</integer>
-		</dict>
 		<key>app/views/reservations/show_zurb.html.erb</key>
 		<dict>
 			<key>caret</key>
@@ -321,20 +321,6 @@
 				<integer>53</integer>
 				<key>line</key>
 				<integer>30</integer>
-			</dict>
-			<key>firstVisibleColumn</key>
-			<integer>0</integer>
-			<key>firstVisibleLine</key>
-			<integer>0</integer>
-		</dict>
-		<key>app/views/schedules/_form_zurb.html.erb</key>
-		<dict>
-			<key>caret</key>
-			<dict>
-				<key>column</key>
-				<integer>0</integer>
-				<key>line</key>
-				<integer>31</integer>
 			</dict>
 			<key>firstVisibleColumn</key>
 			<integer>0</integer>
@@ -568,26 +554,10 @@
 				<key>line</key>
 				<integer>0</integer>
 			</dict>
-			<key>columnSelection</key>
-			<false/>
 			<key>firstVisibleColumn</key>
 			<integer>0</integer>
 			<key>firstVisibleLine</key>
 			<integer>0</integer>
-			<key>selectFrom</key>
-			<dict>
-				<key>column</key>
-				<integer>44</integer>
-				<key>line</key>
-				<integer>6</integer>
-			</dict>
-			<key>selectTo</key>
-			<dict>
-				<key>column</key>
-				<integer>0</integer>
-				<key>line</key>
-				<integer>0</integer>
-			</dict>
 		</dict>
 		<key>script/delayed_job</key>
 		<dict>
@@ -623,12 +593,11 @@
 	<key>openDocuments</key>
 	<array>
 		<string>log/development.log</string>
-		<string>app/views/messages/_message_item_list_zurb.html.erb</string>
-		<string>app/views/schedules/_form_zurb.html.erb</string>
+		<string>app/assets/stylesheets/zurb/ui.css</string>
 	</array>
 	<key>showFileHierarchyDrawer</key>
 	<true/>
 	<key>windowFrame</key>
-	<string>{{0, 46}, {1658, 1012}}</string>
+	<string>{{0, 0}, {1658, 778}}</string>
 </dict>
 </plist>
