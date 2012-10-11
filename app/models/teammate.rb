@@ -111,20 +111,20 @@ class Teammate < ActiveRecord::Base
     case item.class.to_s
     when "Group"
       GroupsUsers.leave_team(leave_user, item)  
-      Scorecard.set_archive_flag(leave_user, item, true)
+      Scorecard.delay.set_archive_flag(leave_user, item, true)
       Match.set_archive_flag(leave_user, item, true)
 
     when "Challenge"
       ChallengesUsers.leave_item(leave_user, item)
-      Standing.set_archive_flag(leave_user, item, true)
-      Cast.set_remove_cast(leave_user, item)   
-      Fee.set_archive_flag(leave_user, item, item, true) if DISPLAY_FREMIUM_SERVICES
+      Standing.delay.set_archive_flag(leave_user, item, true)
+      Cast.delay.set_remove_cast(leave_user, item)   
+      Fee.delay.set_archive_flag(leave_user, item, item, true) if DISPLAY_FREMIUM_SERVICES
 
     when "Cup"
       # TODO:  remove escuadra from cup
-      CupsEscuadras.leave_escuadra(escuadra, item) 
-      Standing.set_archive_flag(leave_user, item, true)
-      Fee.set_archive_flag(leave_user, item, item, true) if DISPLAY_FREMIUM_SERVICES
+      CupsEscuadras.delay.leave_escuadra(escuadra, item) 
+      Standing.delay.set_archive_flag(leave_user, item, true)
+      Fee.delay.set_archive_flag(leave_user, item, item, true) if DISPLAY_FREMIUM_SERVICES
 
     else
     end    

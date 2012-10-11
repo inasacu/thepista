@@ -3,7 +3,7 @@
 <plist version="1.0">
 <dict>
 	<key>currentDocument</key>
-	<string>app/views/shared/_access_details_zurb.html.erb</string>
+	<string>lib/tasks/unused_schedule.rake</string>
 	<key>documents</key>
 	<array>
 		<dict>
@@ -343,20 +343,6 @@
 				<integer>0</integer>
 			</dict>
 		</dict>
-		<key>app/views/shared/_access_details_zurb.html.erb</key>
-		<dict>
-			<key>caret</key>
-			<dict>
-				<key>column</key>
-				<integer>16</integer>
-				<key>line</key>
-				<integer>38</integer>
-			</dict>
-			<key>firstVisibleColumn</key>
-			<integer>0</integer>
-			<key>firstVisibleLine</key>
-			<integer>12</integer>
-		</dict>
 		<key>app/views/shared/_footer_zurb.html.erb</key>
 		<dict>
 			<key>caret</key>
@@ -631,6 +617,94 @@
 			<key>firstVisibleLine</key>
 			<integer>0</integer>
 		</dict>
+		<key>lib/tasks/archive/the_group_manager_add.rake</key>
+		<dict>
+			<key>caret</key>
+			<dict>
+				<key>column</key>
+				<integer>50</integer>
+				<key>line</key>
+				<integer>0</integer>
+			</dict>
+			<key>columnSelection</key>
+			<false/>
+			<key>firstVisibleColumn</key>
+			<integer>0</integer>
+			<key>firstVisibleLine</key>
+			<integer>0</integer>
+			<key>selectFrom</key>
+			<dict>
+				<key>column</key>
+				<integer>24</integer>
+				<key>line</key>
+				<integer>0</integer>
+			</dict>
+			<key>selectTo</key>
+			<dict>
+				<key>column</key>
+				<integer>50</integer>
+				<key>line</key>
+				<integer>0</integer>
+			</dict>
+		</dict>
+		<key>lib/tasks/archive/the_slug_64.rake</key>
+		<dict>
+			<key>caret</key>
+			<dict>
+				<key>column</key>
+				<integer>29</integer>
+				<key>line</key>
+				<integer>16</integer>
+			</dict>
+			<key>columnSelection</key>
+			<false/>
+			<key>firstVisibleColumn</key>
+			<integer>0</integer>
+			<key>firstVisibleLine</key>
+			<integer>0</integer>
+			<key>selectFrom</key>
+			<dict>
+				<key>column</key>
+				<integer>3</integer>
+				<key>line</key>
+				<integer>16</integer>
+			</dict>
+			<key>selectTo</key>
+			<dict>
+				<key>column</key>
+				<integer>29</integer>
+				<key>line</key>
+				<integer>16</integer>
+			</dict>
+		</dict>
+		<key>lib/tasks/scheduler.rake</key>
+		<dict>
+			<key>caret</key>
+			<dict>
+				<key>column</key>
+				<integer>19</integer>
+				<key>line</key>
+				<integer>51</integer>
+			</dict>
+			<key>firstVisibleColumn</key>
+			<integer>0</integer>
+			<key>firstVisibleLine</key>
+			<integer>6</integer>
+		</dict>
+		<key>lib/tasks/unused_schedule.rake</key>
+		<dict>
+			<key>caret</key>
+			<dict>
+				<key>column</key>
+				<integer>0</integer>
+				<key>line</key>
+				<integer>28</integer>
+			</dict>
+			<key>firstVisibleColumn</key>
+			<integer>0</integer>
+			<key>firstVisibleLine</key>
+			<integer>0</integer>
+		</dict>
 		<key>log/development.log</key>
 		<dict>
 			<key>caret</key>
@@ -643,7 +717,7 @@
 			<key>firstVisibleColumn</key>
 			<integer>0</integer>
 			<key>firstVisibleLine</key>
-			<integer>29</integer>
+			<integer>0</integer>
 		</dict>
 		<key>script/delayed_job</key>
 		<dict>
@@ -679,16 +753,14 @@
 	<key>openDocuments</key>
 	<array>
 		<string>log/development.log</string>
-		<string>app/views/shared/_access_details_zurb.html.erb</string>
-		<string>config/locales/es.yml</string>
-		<string>config/locales/en.yml</string>
-		<string>app/views/utilities/_browser_id.html.erb</string>
-		<string>app/views/users/_login_zurb.html.erb</string>
-		<string>app/views/utilities/_rpx_now.html.erb</string>
+		<string>lib/tasks/unused_schedule.rake</string>
+		<string>lib/tasks/scheduler.rake</string>
+		<string>lib/tasks/archive/the_slug_64.rake</string>
+		<string>lib/tasks/archive/the_group_manager_add.rake</string>
 	</array>
 	<key>showFileHierarchyDrawer</key>
 	<true/>
 	<key>windowFrame</key>
-	<string>{{0, 46}, {1658, 732}}</string>
+	<string>{{0, 46}, {1658, 1012}}</string>
 </dict>
 </plist>
