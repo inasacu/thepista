@@ -1,0 +1,9 @@
+<%# unless is_mobile_browser %>
+
+<%= is_mobile_browser ? "" : "<br><br>".html_safe %>
+<%#= content_tag :h3, link_to(app_name, root_url) %>
+<%= content_tag :h4, "#{t(:modo)}".html_safe, :class => "subheader" %>
+<hr/>
+<!-- <br> -->
+
+<%# end %>

@@ -51,9 +51,7 @@
 	<%= stylesheet_link_tag 'zurb/presentation' %>
 	<%= stylesheet_link_tag 'zurb/app' %>
 	<%= stylesheet_link_tag 'standard_form' %>
-
-
-
+	<%= stylesheet_link_tag 'mobile' if is_mobile_browser %>
 
 	<!--[if lt IE 9]>
 		<link rel="stylesheet" href="../../stylesheets/zurb/ie.css">

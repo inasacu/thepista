@@ -1,12 +1,34 @@
+
+<% if is_mobile_browser %>
 <div class="row">
-	<div class="twelve columns">
+<div class="twelve columns">
 
-		<br>
+<table>
+<tbody>
+<tr>
+<td>
 
-		<%= content_tag :h6, label_name(:rpx_login), :class => "subheader" %>
-		<hr />
+<% end %>
 
-		<%=raw RPXNow.embed_code(RPX_APP_NAME, rpx_token_sessions_url, :language => I18n.locale, :options => {:width => '400', :height => '240'})  if SHOW_RPX_NOW %>
+						<div class="row">
+							<div class="twelve columns">
 
-	</div>
+								<br>
+
+								<%= content_tag :h6, label_name(:rpx_login), :class => "subheader" %>
+								<hr />
+
+								<%=raw RPXNow.embed_code(RPX_APP_NAME, rpx_token_sessions_url, :language => I18n.locale, :options => {:width => '400', :height => '240'})  if SHOW_RPX_NOW %>
+
+							</div>
+						</div>
+
+<% if is_mobile_browser %>
+</td>
+</tr>
+</tbody>
+</table>
+
 </div>
+</div>
+<% end %>

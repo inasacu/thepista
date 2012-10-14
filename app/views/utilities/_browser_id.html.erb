@@ -1,12 +1,23 @@
+<% if is_mobile_browser %>
+<div class="row">
+<div class="twelve columns">
+
+<table>
+<tbody>
+<tr>
+<td>
+
+<% end %>
+
 
 <div class="row">
 	<div class="twelve columns">
 	
 		<br>
-		<br>
 		
 		<%= content_tag :h6, label_name(:omniauth_browser_id_new), :class => "subheader" %>
 		<hr />
+		<br>
 		<br>
 
 	
@@ -35,6 +46,8 @@ $(function() {
 	<%= image_tag('mozilla_persona.jpg') %>
 	<br>
 	<br>
+	<br>
+	<br>
 	
     <form id='browser_id_form' action='/auth/browser_id/callback'>
 	
@@ -48,3 +61,13 @@ $(function() {
 
 	</div>
 </div>
+
+<% if is_mobile_browser %>
+</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+<% end %>

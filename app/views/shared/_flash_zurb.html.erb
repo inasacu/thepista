@@ -105,24 +105,14 @@
 				
 			<% elsif is_new_user and !is_password_reset %>
 
-				<%= content_tag :h3, link_to(app_name, root_url) %>
-				<%= content_tag :h6, label_name(:modo), :class => "subheader" %>
-				<hr/>
-				<br>
-				
-				<% unless is_ignore_label_fill %>
-					<%= content_tag :h6, label_name(:fill_in_fields), :class => "subheader" %>
-					<hr/>
-				<%end %>
+				<%= render "shared/header_modo" %>
+				<%= render "shared/header_modo" unless is_ignore_label_fill %>					
 
 				<%= render 'shared/new_edit_multipart_zurb', :item => @item %>
 			
 			<% else %>
 			
-				<%= content_tag :h3, link_to(app_name, root_url) %>
-				<%= content_tag :h6, label_name(:modo), :class => "subheader" %>
-				<hr/>
-				
+				<%= render "shared/header_modo" %>
 				<%= render 'shared/access_details_zurb' unless is_password_reset %>	
 				<br>
 				
@@ -132,15 +122,10 @@
 		
 		<% if current_user %>
 
-			<dl class="nice tabs mobile do-not-hide-on-phones">
+			<dl class="nice tabs">
 				
-					
 				<% if @new_item.nil? %>
-				
-					<% unless the_tab_navigation.nil? %>					
-						<%= render "#{the_tab_navigation}/tab_navigation_zurb" %>
-					<% end %>
-					
+					<%= render "#{the_tab_navigation}/tab_navigation_zurb" unless the_tab_navigation.nil? %>	
 				<% else %>		
 						
 					<%= item_new(@new_item) %>

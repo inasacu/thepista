@@ -166,8 +166,29 @@
 
 <% if current_user %>
 
-	<% unless is_mobile_browser %>
 
+	<% if  is_mobile_browser %>
+	
+		<br>
+		<hr/>		
+		<br>
+	
+	<% end %>
+	
+	<% if is_mobile_browser %>
+	<div class="row">
+		<div class="one columns"></div>
+		<div class="eleven columns">
+
+		<table>
+		<tbody>
+		<tr>
+		<td>
+
+	<% end %>
+	
+	
+	
 	  	<div class="four columns">
 		<!-- SIDEBAR BEGIN -->
 				
@@ -190,7 +211,15 @@
 		<!-- SIDEBAR END -->
 	  	</div> 
 
-	<% end %>
+		<% if is_mobile_browser %>
+		</td>
+		</tr>
+		</tbody>
+		</table>
+		
+		</div>
+		</div>
+		<% end %>
 	
 
 <% end -%>
