@@ -3,7 +3,7 @@
 <plist version="1.0">
 <dict>
 	<key>currentDocument</key>
-	<string>app/views/shared/_header_zurb.html.erb</string>
+	<string>app/views/shared/_access_details_zurb.html.erb</string>
 	<key>documents</key>
 	<array>
 		<dict>
@@ -183,48 +183,6 @@
 			<key>firstVisibleLine</key>
 			<integer>0</integer>
 		</dict>
-		<key>app/assets/stylesheets/mobile.css</key>
-		<dict>
-			<key>caret</key>
-			<dict>
-				<key>column</key>
-				<integer>0</integer>
-				<key>line</key>
-				<integer>16</integer>
-			</dict>
-			<key>firstVisibleColumn</key>
-			<integer>0</integer>
-			<key>firstVisibleLine</key>
-			<integer>0</integer>
-		</dict>
-		<key>app/assets/stylesheets/standard_form.css</key>
-		<dict>
-			<key>caret</key>
-			<dict>
-				<key>column</key>
-				<integer>17</integer>
-				<key>line</key>
-				<integer>20</integer>
-			</dict>
-			<key>firstVisibleColumn</key>
-			<integer>0</integer>
-			<key>firstVisibleLine</key>
-			<integer>0</integer>
-		</dict>
-		<key>app/assets/stylesheets/zurb/presentation.css</key>
-		<dict>
-			<key>caret</key>
-			<dict>
-				<key>column</key>
-				<integer>17</integer>
-				<key>line</key>
-				<integer>63</integer>
-			</dict>
-			<key>firstVisibleColumn</key>
-			<integer>0</integer>
-			<key>firstVisibleLine</key>
-			<integer>34</integer>
-		</dict>
 		<key>app/controllers/installations_controller.rb</key>
 		<dict>
 			<key>caret</key>
@@ -367,36 +325,6 @@
 			<key>firstVisibleLine</key>
 			<integer>0</integer>
 		</dict>
-		<key>app/views/layouts/application.html.erb</key>
-		<dict>
-			<key>caret</key>
-			<dict>
-				<key>column</key>
-				<integer>33</integer>
-				<key>line</key>
-				<integer>51</integer>
-			</dict>
-			<key>columnSelection</key>
-			<false/>
-			<key>firstVisibleColumn</key>
-			<integer>0</integer>
-			<key>firstVisibleLine</key>
-			<integer>29</integer>
-			<key>selectFrom</key>
-			<dict>
-				<key>column</key>
-				<integer>31</integer>
-				<key>line</key>
-				<integer>51</integer>
-			</dict>
-			<key>selectTo</key>
-			<dict>
-				<key>column</key>
-				<integer>34</integer>
-				<key>line</key>
-				<integer>51</integer>
-			</dict>
-		</dict>
 		<key>app/views/reservations/show_zurb.html.erb</key>
 		<dict>
 			<key>caret</key>
@@ -455,6 +383,20 @@
 				<integer>0</integer>
 			</dict>
 		</dict>
+		<key>app/views/shared/_access_details_zurb.html.erb</key>
+		<dict>
+			<key>caret</key>
+			<dict>
+				<key>column</key>
+				<integer>0</integer>
+				<key>line</key>
+				<integer>37</integer>
+			</dict>
+			<key>firstVisibleColumn</key>
+			<integer>0</integer>
+			<key>firstVisibleLine</key>
+			<integer>5</integer>
+		</dict>
 		<key>app/views/shared/_footer_zurb.html.erb</key>
 		<dict>
 			<key>caret</key>
@@ -469,36 +411,6 @@
 			<key>firstVisibleLine</key>
 			<integer>0</integer>
 		</dict>
-		<key>app/views/shared/_header_zurb.html.erb</key>
-		<dict>
-			<key>caret</key>
-			<dict>
-				<key>column</key>
-				<integer>40</integer>
-				<key>line</key>
-				<integer>28</integer>
-			</dict>
-			<key>columnSelection</key>
-			<false/>
-			<key>firstVisibleColumn</key>
-			<integer>0</integer>
-			<key>firstVisibleLine</key>
-			<integer>0</integer>
-			<key>selectFrom</key>
-			<dict>
-				<key>column</key>
-				<integer>3</integer>
-				<key>line</key>
-				<integer>28</integer>
-			</dict>
-			<key>selectTo</key>
-			<dict>
-				<key>column</key>
-				<integer>40</integer>
-				<key>line</key>
-				<integer>28</integer>
-			</dict>
-		</dict>
 		<key>app/views/shared/_previous_next_message_zurb.html.erb</key>
 		<dict>
 			<key>caret</key>
@@ -512,6 +424,20 @@
 			<integer>0</integer>
 			<key>firstVisibleLine</key>
 			<integer>0</integer>
+		</dict>
+		<key>app/views/shared/_wrapper_zurb.html.erb</key>
+		<dict>
+			<key>caret</key>
+			<dict>
+				<key>column</key>
+				<integer>0</integer>
+				<key>line</key>
+				<integer>167</integer>
+			</dict>
+			<key>firstVisibleColumn</key>
+			<integer>0</integer>
+			<key>firstVisibleLine</key>
+			<integer>160</integer>
 		</dict>
 		<key>app/views/sidebars/_sidebar_create_id_zurb.html.erb</key>
 		<dict>
@@ -556,6 +482,36 @@
 			<integer>0</integer>
 			<key>firstVisibleLine</key>
 			<integer>0</integer>
+		</dict>
+		<key>app/views/utilities/_rpx_now.html.erb</key>
+		<dict>
+			<key>caret</key>
+			<dict>
+				<key>column</key>
+				<integer>0</integer>
+				<key>line</key>
+				<integer>12</integer>
+			</dict>
+			<key>columnSelection</key>
+			<false/>
+			<key>firstVisibleColumn</key>
+			<integer>0</integer>
+			<key>firstVisibleLine</key>
+			<integer>0</integer>
+			<key>selectFrom</key>
+			<dict>
+				<key>column</key>
+				<integer>12</integer>
+				<key>line</key>
+				<integer>23</integer>
+			</dict>
+			<key>selectTo</key>
+			<dict>
+				<key>column</key>
+				<integer>0</integer>
+				<key>line</key>
+				<integer>12</integer>
+			</dict>
 		</dict>
 		<key>app/views/venues/_sidebar_zurb.html.erb</key>
 		<dict>
@@ -659,6 +615,20 @@
 				<integer>141</integer>
 			</dict>
 		</dict>
+		<key>config/locales/es.yml</key>
+		<dict>
+			<key>caret</key>
+			<dict>
+				<key>column</key>
+				<integer>22</integer>
+				<key>line</key>
+				<integer>1074</integer>
+			</dict>
+			<key>firstVisibleColumn</key>
+			<integer>0</integer>
+			<key>firstVisibleLine</key>
+			<integer>1016</integer>
+		</dict>
 		<key>information/scratch_file.rb</key>
 		<dict>
 			<key>caret</key>
@@ -678,9 +648,9 @@
 			<key>caret</key>
 			<dict>
 				<key>column</key>
-				<integer>48</integer>
+				<integer>0</integer>
 				<key>line</key>
-				<integer>2</integer>
+				<integer>0</integer>
 			</dict>
 			<key>firstVisibleColumn</key>
 			<integer>0</integer>
@@ -721,11 +691,10 @@
 	<key>openDocuments</key>
 	<array>
 		<string>log/development.log</string>
-		<string>app/views/shared/_header_zurb.html.erb</string>
-		<string>app/views/layouts/application.html.erb</string>
-		<string>app/assets/stylesheets/mobile.css</string>
-		<string>app/assets/stylesheets/standard_form.css</string>
-		<string>app/assets/stylesheets/zurb/presentation.css</string>
+		<string>app/views/shared/_wrapper_zurb.html.erb</string>
+		<string>config/locales/es.yml</string>
+		<string>app/views/utilities/_rpx_now.html.erb</string>
+		<string>app/views/shared/_access_details_zurb.html.erb</string>
 	</array>
 	<key>showFileHierarchyDrawer</key>
 	<true/>
