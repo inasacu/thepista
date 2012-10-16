@@ -11,12 +11,23 @@
 	div_close = "</div>".html_safe
 %>
 
+
+<style type="text/css">
+	@font-face {
+	    font-family: "HayPista Font";
+	    src: url(<%= asset_path('ITCKrist.TTF') %>) format("truetype");
+	}
+	h1.haypistafont { 
+	    font-family: "HayPista Font", Verdana, Tahoma;
+	}
+</style>
+
 <div id="zurBar">
 
 	<div class="row">
 
 		<%= is_mobile_browser ? div_twelve_columns : div_three_columns %>
-			<%= content_tag(:h1, link_to(app_name, root_url)) %>
+			<%= content_tag(:h1, link_to(app_name, root_url), :class => "haypistafont") %>
 		<%= div_close %>
 
 
