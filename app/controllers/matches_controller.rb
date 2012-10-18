@@ -42,7 +42,8 @@ class MatchesController < ApplicationController
 			Match.save_matches(@match, params[:match][:match_attributes])
 			Match.update_match_details(@match, current_user)
 
-			controller_successful_update
+			# controller_successful_update
+			flash[:notice] = I18n.t(:update_match_scorecard)
 			redirect_to :controller => 'schedules', :action => 'show', :id => @match.schedule
 		else
 			render :action => 'edit'

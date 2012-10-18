@@ -1586,6 +1586,7 @@ en:
      update_marker: Update    
      update_match: Update   
      update_match_message:  "Hi,<br><br>Just a reminder to enter the results for the previous event.<br><br>" 
+     update_match_scorecard:  "The scorecard will be updated shortly..."
      update_message: Update    
      update_name: Update    
      update_note: Update    

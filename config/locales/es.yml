@@ -1596,7 +1596,8 @@ es:
      update_map: Actualiza    
      update_marker: Actualiza    
      update_match: Actualiza  
-     update_match_message:  "Hola,<br><br>Solo un recordatorio para que no te olvides de actualizar el resultado.<br><br>"  
+     update_match_message:  "Hola,<br><br>Solo un recordatorio para que no te olvides de actualizar el resultado.<br><br>"
+     update_match_scorecard:  "El resultado estara actulizado en brebes momentos..."
      update_message: Actualiza    
      update_name: Actualiza    
      update_note: Actualiza
