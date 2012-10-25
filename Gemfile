@@ -40,8 +40,8 @@ gem 'omniauth-twitter'
 gem 'omniauth-facebook'
 gem 'omniauth-linkedin'
 gem 'omniauth-google'
-gem 'omniauth-yahoo'
 
+# gem 'omniauth-yahoo'
 # gem 'omniauth-disqus',			:git => 'https://github.com/espinet/omniauth-disqus.git'
 # gem 'omniauth-windowslive',			:git => 'https://github.com/joel/omniauth-windowslive.git'
 
