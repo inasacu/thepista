@@ -37,8 +37,13 @@ gem 'sitemap_generator'
 gem 'omniauth'
 gem 'omniauth-browserid'
 gem 'omniauth-twitter'
+gem 'omniauth-facebook'
+gem 'omniauth-linkedin'
+gem 'omniauth-google'
+gem 'omniauth-yahoo'
 
-
+# gem 'omniauth-disqus',			:git => 'https://github.com/espinet/omniauth-disqus.git'
+# gem 'omniauth-windowslive',			:git => 'https://github.com/joel/omniauth-windowslive.git'
 
 # Gems used only for assets and not required
 # in production environments by default.
@@ -50,37 +55,20 @@ end
 
 
 
-# gem 'omniauth-facebook'
-# gem 'omniauth-linkedin'
-# gem 'omniauth-myspace'
-# gem 'omniauth-openid'
 
-# gem 'omniauth-windowslive',			:git => 'https://github.com/joel/omniauth-windowslive.git'
-# gem 'omniauth-yahoo',						:git => 'https://github.com/famoseagle/omniauth-yahoo.git'
-# gem 'omniauth-disqus',					:git => 'https://github.com/espinet/omniauth-disqus.git'
+
 
 # gem "client_side_validations", "~> 3.1.4"
 # gem 'ayah_integration'
-# gem 'acts-as-messageable'
-# gem 'ajaxful_rating', '>= 3.0.0.beta8'
 # gem 'ssl_requirement'
 # gem 'jquery_notify_bar'
-# gem 'trueskill'
 # gem 'rqrcode'
-# gem 'contacts'
-# gem 'disqus'
 # gem "gmaps4rails", "~> 1.4.8"
-# gem "url_shortener"
-# gem "ruby-openid"
 # gem "completeness-fu", "~> 0.6.0"
 # gem 'heroku_s3_backup'
-# gem 'open_id_authentication'
 # gem 'ym4r_gm'
 # gem 'ajaxful_rating_jquery'
 # gem 'kaminari'
-# gem 'openid'
-# gem 'ruby-openid'											, :require => 'openid'
-# gem 'linkedin'
 # gem 'jquery-ui'
 # gem 'rails_config'
 
