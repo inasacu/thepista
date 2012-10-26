@@ -46,12 +46,27 @@
 
 	<% end %>
 
+
+	<br>
+	
+	<%= content_tag :h6, label_name(:omniauth_browser_id_new), :class => "subheader" %>
+	<hr />
+	<br>	
+	
 	<a href="/auth/twitter" class="auth_provider"><%= image_tag "twitter_64.png", :size => "64x64", :alt => "Twitter" %>Twitter</a>	
 	<a href="/auth/facebook" class="auth_provider"><%= image_tag "facebook_64.png", :size => "64x64", :alt => "Facebook" %>Facebook</a>
 	<a href="/auth/linkedin" class="auth_provider"><%= image_tag "linkedin_64.png", :size => "64x64", :alt => "Linkedin" %>Linkedin</a>
 	<a href="/auth/google" class="auth_provider"><%= image_tag "google_64.png", :size => "64x64", :alt => "Google" %>Google</a>
-	<!-- <a href="/auth/yahoo" class="auth_provider"><%#= image_tag "yahoo_64.png", :size => "64x64", :alt => "Yahoo" %>Yahoo</a> -->
-	<!-- <a href="/auth/disqus" class="auth_provider"><%#= image_tag "disqus_64.png", :size => "64x64", :alt => "DISQUS" %>DISQUS</a> -->
+
+	
+	<%= render 'utilities/persona'%>
+	
+	<form id='browser_id_form' action='/auth/browser_id/callback'>
+		<input type='hidden' name='assertion'/>	
+		<button type="submit" style="border: 0; background: transparent">
+			<%= image_tag "persona.png", :size => "64x64", :alt => "PERSONA" %><br>Mozilla Persona
+		</button>	
+	</form>
 
 	</div>
 </div>
