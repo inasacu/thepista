@@ -18,13 +18,14 @@
 
 		<% if rpx_now_visible.include?(get_controller_action) %>	
 		<%= render 'utilities/omniauth' %>			
-		<%= render 'utilities/rpx_now' %>			
+		<%#= render 'utilities/rpx_now' %>			
 		<% end %>
 
 
 		<% if browser_id_visible.include?(get_controller_action) %>		
-		<%= render 'utilities/omniauth' %>
-		<%#= render 'utilities/browser_id' %>			
+		<%#= render 'utilities/omniauth' %>
+		<%#= render 'utilities/browser_id' %>		
+		<%= render 'utilities/rpx_now' %>			
 		<% end %>
 
 	</div>
