@@ -755,6 +755,18 @@ module ApplicationHelper
 		set_image_and_link(set_form_create_id(item, id, item_id, label),( image.blank? ? item.class.to_s.downcase.chomp : image))
 	end  
 
+	def set_form_create_label_id(item, id, item_id, label='')
+		the_item = item.class.to_s.downcase.chomp
+		the_path = "new_#{the_item}_url"
+		the_label = label.blank? ? I18n.t(:create) : label
+		link_to(the_label.html_safe, send(:"#{the_path}", :"#{id}" => item_id))
+	end
+
+	def set_form_create_id_label_link(item, id, item_id, label='',image='')
+		set_image_and_link(set_form_create_label_id(item, id, item_id, label),( image.blank? ? item.class.to_s.downcase.chomp : image))
+	end
+	
+	
 	def set_class_name_and_date(first_item, second_item)
 		the_span = content_tag('span', second_item.html_safe, :class => 'date')
 		# return content_tag('td', "#{first_item}<br />#{the_span}".html_safe, :class => 'name_and_date')

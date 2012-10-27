@@ -4,15 +4,14 @@
 
 	the_item_link = "#{request.env["HTTP_REFERER"]}"
 	disqus_developer = Rails.env == 'development' ? 1 : 0
-	# disqus_shortname = 'zurb'	  # for current test phase
 	disqus_shortname = 'haypista' # for future production 
 
-	the_label = ''
+	the_label = disqus_shortname
 	case the_item.class.to_s
 	when 'Schedule'
-		the_label = the_item.name
+		the_label = "#{the_label} - #{the_item.group.name} - #{the_item.name}"
 	when 'Group'
-		the_label = the_item.name
+		the_label = "#{the_label} - #{the_item.name}"
 	end
 
 	the_url_for = url_for(the_item)

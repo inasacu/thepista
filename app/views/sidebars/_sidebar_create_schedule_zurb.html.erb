@@ -1,0 +1,17 @@
+<%
+	@current_user_groups = current_user.groups
+	@current_manage_groups = []
+	@current_user_groups.each {|group| @current_manage_groups << group if is_current_manager_of(group)}
+	first_hr = true
+	last_hr = true	
+%>
+
+<% @current_manage_groups.each do |group| %>
+
+	<% "<hr/>" if first_hr ; first_hr = false %>
+	
+	<%= set_form_create_id_label_link(Schedule.new, :id, group, "#{label_name(:schedules_create)} - #{item_name_link(group)}") %>
+	
+	<% "<hr/>" if last_hr ; last_hr = false %>
+	
+<% end %>
