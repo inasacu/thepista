@@ -919,6 +919,30 @@ en:
      saturday_short:  Sat
      sunday:  Sunday
      sunday_short:  Sun
+     january:  January
+     january_short:  Jan
+     february:  February
+     february_short:  Feb
+     march:  March
+     march_short:  Mar
+     april:  April
+     april_short:  Apr
+     may:  May
+     may_short:  May
+     june:  June
+     june_short:  Jun
+     july:  July
+     july_short:  Jul
+     august:  August
+     august_short:  Aug
+     september:  September
+     september_short:  Sep
+     october:  October
+     october_short:  Oct
+     november:  November
+     november_short:  Nov
+     december:  December
+     december_short:  Dec
      moral:  Drive
      moral_difference:  "Interest<br/>Difference"
      more:  more       
@@ -2002,7 +2026,7 @@ en:
      recaptcha_question:  Question
      recaptcha_human_test:  Human Test
      recaptcha_type_words:  Write the two words or numbers you see separated by a space.     
-     rpx_login: Sign in using one of these services...
+     rpx_login: Sign in using one of these services...  (Gradual phase-out)
      rpx_third_party_error:  "could not recover data from third party accounts, Please try again."
      rpx_association_email_msg: We found an existing account which is already using the e-mail address
      rpx_association_login_msg: We found an existing account which is already using the username

@@ -928,6 +928,30 @@ es:
      saturday_short:  Sab
      sunday:  Domingo
      sunday_short:  Dom
+     january:  Enero
+     january_short:  Ene
+     february:  Febrero
+     february_short:  Feb
+     march:  Marzo
+     march_short:  Mar
+     april:  Abril
+     april_short:  Abr
+     may:  Mayo
+     may_short:  May
+     june:  Junio
+     june_short:  Jun
+     july:  Julio
+     july_short:  Jul
+     august:  Agosto
+     august_short:  Ago
+     september:  Septiembre
+     september_short:  Sep
+     october:  Octubre
+     october_short:  Oct
+     november:  Noviembre
+     november_short:  Nov
+     december:  Diciembre
+     december_short:  Dic
      moral:  Moral
      moral_difference:  "Diferencia<br/>Moral"     
      more:  mas
@@ -2014,7 +2038,7 @@ es:
      recaptcha_question:  Pregunta
      recaptcha_human_test:  Prueba Humana
      recaptcha_type_words:  Escribe las palabras o números separados por un espacio.     
-     rpx_login: Entra con uno de estos servicios...
+     rpx_login: Entra con uno de estos servicios... (Gradualmente se eliminará)
      rpx_third_party_error:  "No se pueden recuperar los datos de terceras cuentas. Por favor, inténtalo de nuevo."
      rpx_association_email_msg: Hemos encontrado una cuenta existente que ya está utilizando la dirección de correo electrónico
      rpx_association_login_msg: Hemos encontrado una cuenta existente que ya está utilizando el nombre de usuario
