@@ -30,8 +30,7 @@
 
 class Schedule < ActiveRecord::Base
 
-	extend FriendlyId 
-	# friendly_id :name, 							use: :slugged
+	extend FriendlyId
 	friendly_id :name_slug, 					use: :slugged
 
 	def name_slug
@@ -91,22 +90,52 @@ class Schedule < ActiveRecord::Base
   # validates_presence_of         :name
   # validates_length_of           :name,                         :within => NAME_RANGE_LENGTH
   # validates_format_of           :name,                         :with => /^[A-z 0-9 _.-]*$/ 
-  # 
-  # validates_presence_of         :fee_per_game,  :fee_per_pista, :player_limit,  :jornada
-  # validates_numericality_of     :fee_per_game,  :fee_per_pista, :player_limit,  :jornada
-  # 
+  
+  validates_presence_of         :fee_per_game,  :fee_per_pista, :player_limit,  :jornada
+  validates_numericality_of     :fee_per_game,  :fee_per_pista, :player_limit,  :jornada
+  
   # validates_numericality_of     :jornada,       :greater_than_or_equal_to => 0, :less_than_or_equal_to => 100
-  # validates_numericality_of     :player_limit,  :greater_than_or_equal_to => 0, :less_than_or_equal_to => 100
-  # 
-  # validates_presence_of         :starts_at,     :ends_at  
+
+  validates_numericality_of     :player_limit,  :greater_than_or_equal_to => 0, :less_than_or_equal_to => 100
+  validates_presence_of         :starts_at,     :ends_at  
+ 
+  validates_format_of :starts_at_time, :with => /\d{1,2}:\d{2}/
+  validates_format_of :ends_at_time, :with => /\d{1,2}:\d{2}/
 
   # variables to access	
   attr_accessible :name, :season, :jornada, :starts_at, :ends_at, :reminder_at, :reminder
   attr_accessible :fee_per_game, :fee_per_pista, :time_zone, :group_id, :sport_id, :marker_id, :player_limit
   attr_accessible :public, :archive, :schedule_and_name, :slug
+	attr_accessible	:starts_at_date, :starts_at_time, :ends_at_date, :ends_at_time
 
-  before_update       :set_time_to_utc 
+	attr_accessor 	:starts_at_date, :starts_at_time, :ends_at_date, :ends_at_time
+
+  before_update   :set_time_to_utc, :get_starts_at, :get_ends_at
   
+  # add some callbacks, after_initialize :get_starts_at # convert db format to accessors
+	before_create	:get_starts_at, :get_ends_at
+  before_validation :set_starts_at, :set_ends_at 
+
+	def get_starts_at
+		self.starts_at ||= Time.now  
+		self.starts_at_date ||= self.starts_at.to_date.to_s(:db) 
+		self.starts_at_time ||= "#{'%02d' % self.starts_at.hour}:#{'%02d' % self.starts_at.min}" 
+	end
+
+	def set_starts_at
+		self.starts_at = "#{self.starts_at_date} #{self.starts_at_time}:00" 
+	end
+
+	def get_ends_at
+		self.ends_at ||= Time.now  
+		self.ends_at_date ||= self.ends_at.to_date.to_s(:db) 
+		self.ends_at_time ||= "#{'%02d' % self.ends_at.hour}:#{'%02d' % self.ends_at.min}" 
+	end
+
+	def set_ends_at
+		self.ends_at = "#{self.ends_at_date} #{self.ends_at_time}:00" 
+	end
+
   # method section
 	def concept
 			self.name

@@ -1,71 +1,113 @@
+<script type="text/javascript">
+    var disqus_shortname = 'jtwang';
 
-
-
-
-https://www.facebook.com/dialog/pagetab?app_id=64553101275&display=popup&next=https://zurb.herokuapp.com/
-
-
-
-
-last_minute_notification
-
-
-* mandar mensaje cuando se modifican los equipos dentro de las 24 horas 
-* mandar mensaje cuando se cambia de convocatoria dentro de las 24 horas
-
-schedule.rb
-
-  def self.last_minute_reminder
-
-  manager_id = RolesUsers.find_item_manager(self.group).user_id
-	self.group.users.each do |user|
-		if user.last_minute_notification? 
-			create_notification_email(self, self, manager_id, user.id, true)
-		end
-	end
-	self.send_reminder_at = Time.zone.now
-	self.save!
-
-  end
-  
-  
-  
-  
-
-  
-matches_controller.rb
-
-
-	def set_status
-		unless current_user == @match.user or is_current_manager_of(@match.schedule.group) 
-			warning_unauthorized
-			redirect_to root_url
-			return
-		end
-
-		@type = Type.find(params[:type])
-		played = (@type.id == 1 and !@match.group_score.nil? and !@match.invite_score.nil?)
-
-		send_last_minute_message = (current_user == @match.user and Time.zone.now + 1.days > @match.schedule.starts_at)
-
-		if @match.update_attributes(:type_id => @type.id, :played => played, :user_x_two => @user_x_two, :status_at => Time.zone.now)
-			Scorecard.delay.calculate_user_played_assigned_scorecard(@match.user, @match.schedule.group)
-
-			if DISPLAY_FREMIUM_SERVICES
-				# set fee type_id to same as match type_id
-				the_fee = Fee.find(:all, :conditions => ["debit_type = 'User' and debit_id = ? and item_type = 'Schedule' and item_id = ?", @match.user_id, @match.schedule_id])
-				the_fee.each {|fee| fee.type_id = @type.id; fee.save}
-			end
-			
-		end 
-
-		# http://haypista.com/messages/new?schedule_id=ac_la_maso_jornada_3
-		if send_last_minute_message
-			@schedule = @match.schedule
-			if @schedule.send_reminder_at.nil? or @schedule.send_reminder_at < (Time.zone.now - 1.day)
-				@schedule.last_minute_reminder 
-			end
-		end	
+    var disqus_identifier = 'http://johntwang.com/blog/2011/09/13/remove-heroku-toolkit';
+    var disqus_url = 'http://johntwang.com/blog/2011/09/13/remove-heroku-toolkit/';
+	var disqus_title = 'Remove the Heroku Toolbelt';
 	
-		redirect_back_or_default('/index')
-	end
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = 'http://jtwang.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+
+<script type="text/javascript">
+
+	var disqus_shortname = 'haypista'; 
+	var disqus_title = ' HayPista - TEAMName Jornada 9'; 
+	var disqus_developer = 0; 
+	var disqus_identifier = 'http://haypista.com/schedules/ac_la_maso_jornada_9';
+	var disqus_url = 'http://haypista.com/schedules/ac_la_maso_jornada_9';				
+	var disqus_category_id = '1410371';
+
+	var disqus_config = function () { this.language = "es_ES"; };
+
+
+	/* * * DON'T EDIT BELOW THIS LINE * * */
+	(function() {
+		var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+		dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+		(document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+		})();
+
+</script>
+
+
+
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf8">
+    <title> Heroku | Page Not Found</title>
+
+
+    <meta name="viewport" content="width=device-width">
+
+    <link href="//s3.amazonaws.com/heroku-help/error-pages/images/favicon.ico" rel="icon" type="image/ico" />
+    <link href="//s3.amazonaws.com/heroku-help/error-pages/stylesheets/application.css" media="screen" rel="stylesheet" type="text/css" />
+
+    <script type="text/javascript" src="//use.typekit.net/lpc2yow.js"></script>
+    <script type="text/javascript">try{Typekit.load();}catch(e){}</script>
+  </head>
+
+  <body>
+    <div class="error-404 l-wrapper">
+      <h2>The page you were looking for does not exist.</h2>
+
+      <p>
+        You may have mistyped the address<br>
+        or the page has moved.
+      </p>
+    </div>
+  </body>
+</html>
+
+
+
+
+________________________________________________________________________________________________________________________________________________________________
+
+
+<link rel="stylesheet" href="http://code.jquery.com/ui/1.9.1/themes/base/jquery-ui.css" />
+<script src="http://code.jquery.com/jquery-1.8.2.js"></script>
+<script src="http://code.jquery.com/ui/1.9.1/jquery-ui.js"></script>
+<link rel="stylesheet" href="/resources/demos/style.css" />
+<script>
+$(function() {
+    // $( "#datepicker" ).datepicker();
+
+
+$( "#datepicker" ).datepicker({
+				
+			
+			// defaultDate: <%= "+#{Time.zone.now + @schedule.starts_at}" %>,
+			firstDay: 1,
+			// gotoCurrent: true,
+            showOtherMonths: true,
+            selectOtherMonths: true,
+			dayNamesMin: ["<%= t('sunday_short') %>", "<%= t('monday_short') %>", "<%= t('tuesday_short') %>", "<%= t('wednesday_short') %>", 
+						   "<%= t('thursday_short') %>", "<%= t('friday_short') %>", "<%= t('saturday_short') %>" ],
+						
+			// monthNames: ["<%= t('january') %>", "<%= t('february') %>", "<%= t('march') %>", "<%= t('april') %>", 
+			// 			 "<%= t('may') %>", "<%= t('june') %>", "<%= t('july') %>", "<%= t('august') %>",
+			// 			 "<%= t('september') %>", "<%= t('october') %>", "<%= t('november') %>", "<%= t('december') %>"],
+					            showOn: "button",
+            buttonImage: "/assets/icons/schedule.png",
+            buttonImageOnly: true,
+			dateFormat: "dd-mm-yy",
+			navigationAsDateFormat: true,
+			nextText: "Later" 
+			 // numberOfMonths: [ 1, 2 ]
+
+
+        });
+
+$(  "#datepicker"  ).datepicker( $.datepicker.regional[ "<%= I18n.locale %>" ] );
+
+});
+</script>
+
+
+

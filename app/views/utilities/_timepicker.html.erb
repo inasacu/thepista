@@ -1,0 +1,21 @@
+<!-- https://github.com/perifer/timePicker -->
+<!-- http://www.jakoblaegdsmand.com/blog/2012/05/simple-datetimepicker-in-rails -->
+
+<%= stylesheet_link_tag    "timePicker" %>
+<%= javascript_include_tag "jquery.timePicker" %>
+
+<script type="text/javascript">
+jQuery(function() {
+	$("#starts_at_timepicker").timePicker(
+		{ startTime: "07.00",  // Using string. Can take string or Date object.
+		separator:':',
+		step: 15}
+	);
+	$("#ends_at_timepicker").timePicker(
+		{ startTime: "07.00",  // Using string. Can take string or Date object.
+		separator:':',
+		step: 15}
+	);
+});
+</script>
+
