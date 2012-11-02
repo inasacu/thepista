@@ -174,7 +174,7 @@ class SchedulesController < ApplicationController
 
 	def edit
 		set_the_template('schedules/new')
-		render @the_template
+		# render @the_template
 	end
 
 	def update
