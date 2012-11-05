@@ -194,7 +194,7 @@ class Match < ActiveRecord::Base
   def self.update_match_details(the_match, user)
     @schedule = the_match.schedule    
     @schedule.played = (!the_match.group_score.nil? and !the_match.invite_score.nil?)
-    @schedule.save
+    @schedule.save!
     
     @schedule.matches.each do |match|
       match.group_score = the_match.group_score

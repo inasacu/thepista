@@ -1,0 +1,48 @@
+<link rel="stylesheet" href="http://code.jquery.com/ui/1.9.1/themes/base/jquery-ui.css" />
+<script src="http://code.jquery.com/jquery-1.8.2.js"></script>
+<script src="http://code.jquery.com/ui/1.9.1/jquery-ui.js"></script>
+
+<script>
+$(function() {
+
+	$( "#<%= the_datetime %>" ).datepicker({
+
+		firstDay: 1,
+		showOtherMonths: true,
+		selectOtherMonths: true,
+		dayNamesMin: ["<%= t('sunday_short') %>", 
+					  "<%= t('monday_short') %>", 
+					  "<%= t('tuesday_short') %>", 
+					  "<%= t('wednesday_short') %>", 
+					  "<%= t('thursday_short') %>", 
+					  "<%= t('friday_short') %>", 
+					  "<%= t('saturday_short') %>" ],
+
+		monthNames: ["<%= t('january') %>", "<%= t('february') %>", "<%= t('march') %>", "<%= t('april') %>", 
+					 "<%= t('may') %>", "<%= t('june') %>", "<%= t('july') %>", "<%= t('august') %>",
+					 "<%= t('september') %>", "<%= t('october') %>", "<%= t('november') %>", "<%= t('december') %>"],
+		dateFormat: "dd-mm-yy",
+		navigationAsDateFormat: true,
+		nextText: "Later" 
+		
+	});
+
+});
+</script>
+
+
+<%= stylesheet_link_tag    "timePicker" %>
+<%= javascript_include_tag "jquery.timePicker" %>
+
+<script type="text/javascript">
+jQuery(function() {
+	$("#<%= the_datetime %>_timepicker").timePicker(
+		{ startTime: "07.00",  // Using string. Can take string or Date object.
+		separator:':',
+		step: 15}
+	);
+});
+</script>
+
+
+

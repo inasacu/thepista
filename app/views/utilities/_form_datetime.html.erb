@@ -1,25 +1,31 @@
-
-
-
-
+<% 
+	case the_starts_at
+	when 'starts_at'
+		the_id = "starts_at_datepicker"
+	when 'ends_at'
+		the_id = "ends_at_datepicker"
+	when 'reminder_at'
+		the_id = "reminder_at_datepicker"
+	end
+%>
 
 <div class="row">
 	<div class="three columns">
-	<%= the_form.text_field the_date, :id => '<%= the_datetime %>_datepicker', 
-							:class => 'small input-text', 
-							:value => the_date_value %>
+		<%= the_form.text_field :starts_at_date, :id => the_id, :class => 'small input-text', :value => the_date_value if the_starts_at == 'starts_at' %>
+		<%= the_form.text_field :ends_at_date, :id => the_id, :class => 'small input-text', :value => the_date_value if the_starts_at == 'ends_at' %>
+		<%= the_form.text_field :reminder_at_date, :id => the_id, :class => 'small input-text', :value => the_date_value if the_starts_at == 'reminder_at' %>
 	</div>
-	
+
 	<div class="three columns">
-	<%= the_form.text_field the_time, :id => '<%= the_datetime %>_timepicker', 
-							:class => 'small input-text', 
-							:value => the_time_value %>
+		<%= the_form.text_field :starts_at_time, :id => the_id, :class => 'small input-text', :value => the_time_value if the_starts_at == 'starts_at' %>
+		<%= the_form.text_field :ends_at_time, :id => the_id, :class => 'small input-text', :value => the_time_value if the_starts_at == 'ends_at' %>
+		<%= the_form.text_field :reminder_at_time, :id => the_id, :class => 'small input-text', :value => the_time_value if the_starts_at == 'reminder_at' %>
 	</div>
-	
+
 	<div class="six columns">
 	</div>
-	
+
 </div>
 
 
-<%= render 'utilities/datetimepicker', :the_datetime => the_datetime %>
+<%= render 'utilities/datetimepicker', :the_datetime => the_id %>

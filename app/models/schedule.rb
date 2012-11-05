@@ -93,14 +93,12 @@ class Schedule < ActiveRecord::Base
   
   validates_presence_of         :fee_per_game,  :fee_per_pista, :player_limit,  :jornada
   validates_numericality_of     :fee_per_game,  :fee_per_pista, :player_limit,  :jornada
-  
-  # validates_numericality_of     :jornada,       :greater_than_or_equal_to => 0, :less_than_or_equal_to => 100
-
   validates_numericality_of     :player_limit,  :greater_than_or_equal_to => 0, :less_than_or_equal_to => 100
-  validates_presence_of         :starts_at,     :ends_at  
- 
-  validates_format_of :starts_at_time, :with => /\d{1,2}:\d{2}/
-  validates_format_of :ends_at_time, :with => /\d{1,2}:\d{2}/
+	
+  # validates_numericality_of     :jornada,       :greater_than_or_equal_to => 0, :less_than_or_equal_to => 100
+  # validates_presence_of         :starts_at,     :ends_at  
+  # validates_format_of :starts_at_time, :with => /\d{1,2}:\d{2}/
+  # validates_format_of :ends_at_time, :with => /\d{1,2}:\d{2}/
 
   # variables to access	
   attr_accessible :name, :season, :jornada, :starts_at, :ends_at, :reminder_at, :reminder
