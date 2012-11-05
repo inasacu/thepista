@@ -285,11 +285,13 @@ class Schedule < ActiveRecord::Base
   end
 
   def self.current_schedules(user, page = 1)
-    self.where("schedules.archive = false and starts_at >= ? and group_id in (select group_id from groups_users where user_id = ?)", Time.zone.now, user.id).page(page).order('starts_at, group_id')
+    self.select("schedules.*").joins("JOIN groups on groups.id = schedules.group_id").where("schedules.archive = false and starts_at >= ? and group_id in (select group_id from groups_users where user_id = ?)", 
+		Time.zone.now, user.id).page(page).order('groups.name, schedules.starts_at')
   end
 
   def self.previous_schedules(user, page = 1)
-    self.where("schedules.archive = false and starts_at < ? and group_id in (select group_id from groups_users where user_id = ?)", Time.zone.now, user.id).page(page).order('starts_at desc, group_id')
+    self.select("schedules.*").joins("JOIN groups on groups.id = schedules.group_id").where("schedules.archive = false and starts_at < ? and group_id in (select group_id from groups_users where user_id = ?)", 
+		Time.zone.now, user.id).page(page).order('groups.name, schedules.starts_at DESC')
   end
   
   def self.latest_items(items)
