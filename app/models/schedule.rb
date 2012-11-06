@@ -107,12 +107,11 @@ class Schedule < ActiveRecord::Base
 	attr_accessible	:starts_at_date, :starts_at_time, :ends_at_date, :ends_at_time
 
 	attr_accessor 	:starts_at_date, :starts_at_time, :ends_at_date, :ends_at_time
-
   before_update   :set_time_to_utc, :get_starts_at, :get_ends_at
   
   # add some callbacks, after_initialize :get_starts_at # convert db format to accessors
 	before_create	:get_starts_at, :get_ends_at
-  before_validation :set_starts_at, :set_ends_at 
+  before_validation :get_starts_at, :get_ends_at, :set_starts_at, :set_ends_at 
 
 	def get_starts_at
 		self.starts_at ||= Time.now  

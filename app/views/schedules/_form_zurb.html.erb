@@ -10,19 +10,56 @@
 <%= set_form_text_field(the_form, :name, 'input-text') %><br>
 
 
-
 <%= set_form_label(the_form, :starts_at) %>
-<%= render 'utilities/form_datetime', :the_form => the_form, 
+<%#= render 'utilities/form_datetime', :the_form => the_form, 
 			:the_starts_at => 'starts_at',
 			:the_date_value => @schedule.starts_at.strftime("%d-%m-%Y"),
 			:the_time_value => @schedule.starts_at.strftime("%H:%M") %>
-
+			
+			
+<div class="row">
+	<div class="three columns">
+	<%= the_form.text_field :starts_at_date, :id => 'starts_at_datepicker', 
+							:class => 'small input-text', 
+							:value => @schedule.starts_at.strftime("%d-%m-%Y") %>
+	</div>
+	
+	<div class="three columns">
+	<%= the_form.text_field :starts_at_time, :id => 'starts_at_timepicker', 
+							:class => 'small input-text', 
+							:value => @schedule.starts_at.strftime("%H:%M") %>
+	</div>
+	
+	<div class="six columns">
+	</div>
+	
+</div>
 
 <%= set_form_label(the_form, :ends_at) %>
-<%= render 'utilities/form_datetime', :the_form => the_form, 
+<%#= render 'utilities/form_datetime', :the_form => the_form, 
 			:the_starts_at => 'ends_at',
 			:the_date_value => @schedule.ends_at.strftime("%d-%m-%Y"),
 			:the_time_value => @schedule.ends_at.strftime("%H:%M") %>
+
+<div class="row">
+	<div class="three columns">
+	<%= the_form.text_field :ends_at_date, :id => 'ends_at_datepicker', 
+							:class => 'small input-text', 
+							:value => @schedule.ends_at.strftime("%d-%m-%Y") %> 
+	</div>
+
+	<div class="three columns">
+	<%= the_form.text_field :ends_at_time, :id => 'ends_at_timepicker', 
+							:class => 'small input-text', 
+							:value => @schedule.ends_at.strftime("%H:%M") %>
+							
+	</div>
+	
+	<div class="six columns">
+	</div>
+	
+</div>
+
 
 <br><br>
 
