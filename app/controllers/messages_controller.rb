@@ -3,7 +3,7 @@ class MessagesController < ApplicationController
 
 	def index
 		@user = User.find(current_user)
-		@messages = Message.select("distinct messages.*").where("messages.archive = false and ((messages.recipient_id = #{@user.id} and recipient_deleted_at IS NULL) or 
+		@messages = Message.select("distinct messages.*").where("messages.parent_id is not null and messages.archive = false and ((messages.recipient_id = #{@user.id} and recipient_deleted_at IS NULL) or 
 																															(messages.sender_id = #{@user.id} and sender_deleted_at IS NULL)  
 																															)").page(params[:page]).order('messages.parent_id, messages.created_at DESC')
 		render @the_template
