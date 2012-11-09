@@ -45,9 +45,9 @@ module SchedulesHelper
     # the_image = is_member ? schedule_image_link_small(schedule) : schedule_image_small(schedule)
 
     if schedule.game_played?
-      the_concept = is_member ? link_to(sanitize(limit_url_length(schedule.name)), schedule_path(:id => schedule)) : sanitize(limit_url_length(schedule.name))
+      the_concept = is_member ? link_to(sanitize(limit_url_length(schedule.name, 25)), schedule_path(:id => schedule)) : sanitize(limit_url_length(schedule.name))
     else
-      the_concept = is_member ? link_to(sanitize(limit_url_length(schedule.name)), team_roster_path(:id => schedule)) : sanitize(limit_url_length(schedule.name))
+      the_concept = is_member ? link_to(sanitize(limit_url_length(schedule.name, 25)), team_roster_path(:id => schedule)) : sanitize(limit_url_length(schedule.name))
 
       the_sport = "#{label_name(:rosters)}:  #{schedule.convocados.count}"
       the_missing = ", #{I18n.t(:missing)}:  #{schedule.player_limit.to_i - schedule.convocados.count}" if schedule.player_limit.to_i > schedule.convocados.count

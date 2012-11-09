@@ -245,9 +245,9 @@ module ApplicationHelper
 		return DateTime.strptime(the_datetime, '%Y%m%d %H:%M %z')
 	end
 
-	def limit_url_length(text)
+	def limit_url_length(text, the_limit=12)		
 		text = h(text)
-		text = "#{text.to_s.strip[0..12]}..." if text.to_s.length > 14
+		text = "#{text.to_s.strip[0..the_limit]}..." if text.to_s.length > the_limit+2
 		text = text.gsub(" ", "<wbr> ".html_safe)
 		text = text.split.collect {|i| i.capitalize}.join(' ')
 		return text
