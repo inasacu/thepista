@@ -1,3 +1,22 @@
+
+# set app offline
+$ heroku maintenance:on --app zurb
+Maintenance mode enabled.
+
+# restore database
+heroku pgbackups:restore HEROKU_POSTGRESQL_JADE b030 --app zurb
+
+# set app online
+$ heroku maintenance:off --app zurb
+Maintenance mode disabled.
+
+
+
+
+
+
+
+
 <script type="text/javascript">
     var disqus_shortname = 'jtwang';
 

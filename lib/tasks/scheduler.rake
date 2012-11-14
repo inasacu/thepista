@@ -28,7 +28,7 @@ end
 # heroku run rake send_after_comments --app thepista
 task :send_after_comments => :environment do
     puts "Sending after schedule COMMENT reminder notice... A:  #{Time.zone.now}"
-    Schedule.send_after_comments 
+    # Schedule.send_after_comments 
     puts "Sending after schedule COMMENT reminder notice... B:  #{Time.zone.now}"
 end
 

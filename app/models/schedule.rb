@@ -484,7 +484,7 @@ class Schedule < ActiveRecord::Base
   
   # after the event send for users see the scorecard if updated...
   def self.send_after_scorecards
-    schedules = Schedule.find(:all, :conditions => ["played = true and updated_at >= ? and updated_at <= ?", LAST_24_HOURS, Time.zone.now])
+    schedules = Schedule.find(:all, :conditions => ["played = true and send_result_at is null", YESTERDAY, Time.zone.now])
     schedules.each do |schedule|
 
       scorecard = schedule.group.scorecards.first
