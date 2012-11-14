@@ -433,7 +433,7 @@ class Schedule < ActiveRecord::Base
 
 	def self.send_created
 		schedules = Schedule.find(:all, 
-		:conditions => ["played = false and send_created_at is null and created_at >= ? and created_at <= ?", PAST_THREE_DAYS, Time.zone.now])
+		:conditions => ["played = false and send_created_at is null and created_at >= ? and created_at <= ?", YESTERDAY, Time.zone.now])
 
 		schedules.each do |schedule|
 			manager_id = RolesUsers.find_item_manager(schedule.group).user_id
@@ -449,7 +449,7 @@ class Schedule < ActiveRecord::Base
 	end
 
   def self.send_results
-    schedules = Schedule.find(:all, :conditions => ["starts_at >= ? and starts_at <= ? and send_result_at is null", PAST_THREE_DAYS, Time.zone.now])
+    schedules = Schedule.find(:all, :conditions => ["played = true and starts_at >= ? and starts_at <= ? and send_result_at is null", YESTERDAY, Time.zone.now], )
     schedules.each do |schedule|
 
       match = Match.find(:first, :conditions => ["type_id = 1 and schedule_id = ? and (group_score is null or invite_score is null)", schedule])
