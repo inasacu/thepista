@@ -41,6 +41,7 @@ class MatchesController < ApplicationController
 		if @match.save and params[:match][:match_attributes]
 			Match.save_matches(@match, params[:match][:match_attributes])
 			Match.update_match_details(@match, current_user)
+			Schedule.delay.send_after_scorecards 
 
 			# controller_successful_update
 			flash[:notice] = I18n.t(:update_match_scorecard)
