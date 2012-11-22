@@ -177,7 +177,8 @@ class Message < ActiveRecord::Base
 
   def send_receipt_reminder
     return if (sender == recipient or !self.item_type.nil?)
-    @send_mail ||= recipient.message_notification?   
+    # @send_mail ||= recipient.message_notification?
+    @send_mail ||= recipient.has_notification?
     return unless @send_mail
     UserMailer.delay.message_notification(self) 
   end

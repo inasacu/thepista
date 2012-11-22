@@ -302,6 +302,7 @@ class Scorecard < ActiveRecord::Base
      find(:all, :select => "scorecards.*, matches.type_id,  
                             (100 * scorecards.points / (scorecards.played * groups.points_for_win)) as coeficient,
                             scorecards.points * (scorecards.points / (scorecards.played * groups.points_for_win)) as coeficient_points,
+														(scorecards.points / (scorecards.played * groups.points_for_win) * 100) as coeficient_percent,
                             (100 * scorecards.played / #{played_games}) as coeficient_played",
                 :joins => "LEFT JOIN groups on groups.id = scorecards.group_id
                          LEFT JOIN users on users.id = scorecards.user_id 

@@ -601,7 +601,7 @@ en:
      games_title_stats: "Coefficient (Pts.)/(G.P.*#)"  
      games_won: GW   
      games_won_full: Games Won
-     games_won_avg: WA
+     games_won_avg: WA%
      games_won_avg_full: Winning Average
      games_points_avg: PA
      games_points_avg_full: Points Average

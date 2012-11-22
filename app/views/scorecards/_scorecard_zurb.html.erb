@@ -10,9 +10,11 @@
 
 	user_played = scorecard.type_id.to_i == 1 
 	user_subscription_link = subscription_image_link(scorecard.user, user_played ? "orange_#{user_played}" : "#{user_played}", I18n.t("game_played_#{user_played}"))
-	the_ranking_change = "#{image} #{ranking_change}"
+	# the_ranking_change = "#{image} #{ranking_change}"
+	the_ranking_change = "#{image}"
 	the_player_link = user_link_limit(scorecard.user)
-	the_coeficient_percent = (scorecard.points.to_f / (scorecard.played.to_f * scorecard.group.points_for_win) * 100)
+	# the_coeficient_percent = (scorecard.points.to_f / (scorecard.played.to_f * scorecard.group.points_for_win) * 100)
+	the_coeficient_percent = scorecard.coeficient_percent.to_i
 	
 	game_number = "#{scorecard.played}"
 	scorecard_coeficient_played = "#{sprintf('%0.00f', scorecard.coeficient_played)}%"
@@ -32,7 +34,6 @@
 	elsif the_coeficient_percent > 59
 		the_coeficient_percent_full = "<font color='green'>#{the_coeficient_percent_full}</font>"
 	end	
-		
 %>
 
 
@@ -43,11 +44,11 @@
 	<%= set_content_tag_safe(:td, the_ranking_change) %>
 	<%= set_content_tag_safe(:td, "#{scorecard.points.round}") %>
 	<%= set_content_tag_safe(:td, game_number) %>
-	<%= set_content_tag_safe(:td, "#{scorecard.played}") %>
+	<%= set_content_tag_safe(:td, "#{scorecard.played}") if DISPLAY_FREMIUM_SERVICES %>
 	<%= set_content_tag_safe(:td, "#{scorecard.wins}") %>
 	<%= set_content_tag_safe(:td, "#{scorecard.draws}") %>
 	<%= set_content_tag_safe(:td, "#{scorecard.losses}") %>
 	<%= set_content_tag_safe(:td, "#{scorecard.goals_scored}") %>
-	<%= set_content_tag_safe(:td, the_coeficient_percent_full) if DISPLAY_FREMIUM_SERVICES %>
+	<%= set_content_tag_safe(:td, the_coeficient_percent_full) %>
 	<%= set_content_tag_safe(:td, "#{scorecard.coeficient_points.to_f.round}") %>
 </tr>
