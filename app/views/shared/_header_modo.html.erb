@@ -1,9 +1,11 @@
-<%# unless is_mobile_browser %>
+<%
+	ignore_home = ['home_about', 'home_terms_of_use', 'home_faq', 'home_persona']
+%>
 
-<%= is_mobile_browser ? "" : "<br><br>".html_safe %>
-<%#= content_tag :h3, link_to(app_name, root_url) %>
-<%= content_tag :h4, "#{t(:modo)}".html_safe, :class => "subheader" %>
-<hr/>
-<!-- <br> -->
+<% unless ignore_home.include?(get_controller_action) %>	
 
-<%# end %>
+	<%= is_mobile_browser ? "" : "<br><br>".html_safe %>
+	<%= content_tag :h4, "#{t(:modo)}".html_safe, :class => "subheader" %>
+	<hr/>
+
+<% end %>

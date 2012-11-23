@@ -911,9 +911,9 @@ es:
      modified_phone: Modificada la opción de ocultar el telefono de   
      modified_profile: Modificada la opción de ocultar tu perfil de   
      modified_reliable: Modificada la fiabilidad del jugador para atender   
-     modo: "Practica más, organiza menos con <STRONG>HayPista</STRONG>."  
-     modo_key_title: "Practica deporte, no hay mejor sitio, organizar partidos, buscar gente para jugar, buscar centro deportivo para jugar.  Con Hay Pista puedes organizar partidos de empresa, ver tu jornada deportiva e incluso tu clasificacion en tu equipo. Tambien puedes ver quien esta convocado, quien esta en ultima hora o quien esta ausente para el partido."
-     modo_keywords: "hay pista, organizar partidos, gente para jugar, buscar centro deportivo jugar, partidos de empresa, ver jornada deportiva, clasificacion equipo, quien esta convocado, quien esta ultima hora, quien esta ausente"
+     modo: "Practica deportes y deja que <STRONG>HayPista</STRONG> ayude a organizarlo."  
+     modo_key_title: "HayPista te ayuda a organizacion eventos deportivos. Practica los mejores deportes y deja que HayPista de ayude a organizarlo. "
+     modo_keywords: "hay pista, eventos deportivos, organizacion de eventos deportivos, los mejores deportivos, futbol rapido, futbol 7, futbol siete, organizacion eventos deportivos, polideportivo, polideportivos madrid, polideportivo madrid"
      monday: Lunes 
      monday_short:  Lun
      tuesday:  Martes
@@ -1782,6 +1782,10 @@ es:
      terms_of_use: Terminos de Uso
      privacy_policy: Privacidad
      openid:  Acceso con tu cuenta
+     persona_services:  Servicios Persona
+     persona_services_list:  "Twitter, Facebook, LinkedIn, Google o Mozilla Persona"
+     persona_services_list_how:  "¿Como funciona el acceso a HayPista atravez de Twitter, Facebook, LinkedIn, Google o Mozilla Persona?"
+     persona_services_list_how_short:  "¿Como funcionan estos servicios?"
      follow_twitter:  Siguenos en Twitter
      follow_facebook:  Siguenos en Facebook
      follow_linkedin:  Siguenos en Linkedin

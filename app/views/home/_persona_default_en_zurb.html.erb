@@ -1,0 +1,66 @@
+<%
+	the_twitter_link = "#{link_to("Twitter", 'https://twitter.com/', :target => '_blank')}"
+	the_facebook_link = "#{link_to("Facebook", 'https://facebook.com/', :target => '_blank')}"
+	the_linkedin_link = "#{link_to("LinkedIn", 'http://linkedin.com/', :target => '_blank')}"
+	the_google_link = "#{link_to("Google", 'https://accounts.google.com', :target => '_blank')}"
+	the_persona_link = "#{link_to("Mozilla Persona", 'https://login.persona.org/about', :target => '_blank')}"
+	
+	
+	the_header_label_1 = "1. #{label_name(:persona_services_list_how)}"
+	the_label_1 = "You can use #{label_name(:persona_services_list)} to log into HayPista instead of using your HayPista username and password."
+	
+	the_header_label_2 = "2. How do I set up #{label_name(:persona_services_list)} login for HayPista"
+	the_label_2 = "On the login screen, click the “#{label_name(:persona_services_list)}” button. A screen will pop open asking for permission to let HayPista access your #{label_name(:persona_services_list)} information. Once you approve access for HayPista, you’ll need to enter your HayPista email so we can connect your accounts. You only have to do this step the first time you sign in with #{label_name(:persona_services_list)}. In the future, when you log in with #{label_name(:persona_services_list)} we’ll already know who you are."	
+
+	the_header_label_3 = "3. How does HayPista use my #{label_name(:persona_services_list)} info?"
+	the_label_3 = "We only use your #{label_name(:persona_services_list)} information to log you into HayPista.  We do not access any additional information."
+	
+
+	the_header_label_4 = "4. Does HayPista get access to my #{label_name(:persona_services_list)} username and password?"
+	the_label_4 = "No, that information remains private. We have no access to either your #{label_name(:persona_services_list)} username or password."
+
+	the_header_label_5 = "5. Why does HayPista ask for extended permissions?"
+	the_label_5 = "The first time  you connect to HayPista with Facebook we ask for permission to access certain pieces of your #{label_name(:persona_services_list)} information. It is up to you to decide whether to provide that information or not, and if  you choose not to provide it you can still use Facebook to log in. In the future, we will provide additional ways for you to share your HayPista information with Facebook, or use your #{label_name(:persona_services_list)} information to customize your HayPista experience, but we will never do this without your express permission. We hate to be surprised by unwanted information being posted to #{label_name(:persona_services_list)} by 3rd parties, and we won’t ever do that to you. We promise."
+
+	the_header_label_6 = "6. If I connect Facebook to HayPista, can I still use my regular HayPista username and password?"
+	the_label_6 = "Yes. #{label_name(:persona_services_list)} gives you an additional way to log into HayPista, but does not replace the standard method of signing in with your HayPista username and password.."
+
+	the_header_label_7 = "7. Can I unlink my Facebook account later?"
+	the_label_7 = "Yes, if you later decide that you prefer not to use Facebook to connect to HayPista, simply log in (with or without using #{label_name(:persona_services_list)}) and click on My Account. At the bottom of the screen, click on “Disable Facebook Login.”
+	."
+
+	the_header_label_8 = "What’s #{label_name(:persona_services_list)}?"
+	the_label_8 = "Learn more at #{the_twitter_link}, #{the_facebook_link}, #{the_linkedin_link}, #{the_google_link}, #{the_persona_link}".html_safe
+	
+%>
+
+<%= content_tag 'h6', the_header_label_1 %>
+<%= content_tag 'p', the_label_1 %>
+<hr/>
+
+<%= content_tag 'h6', the_header_label_2 %>
+<%= content_tag 'p', the_label_2 %>
+<hr/>
+
+<%= content_tag 'h6', the_header_label_3 %>
+<%= content_tag 'p', the_label_3 %>
+<hr/>
+
+<%= content_tag 'h6', the_header_label_4 %>
+<%= content_tag 'p', the_label_4 %>
+<hr/>
+
+<%= content_tag 'h6', the_header_label_5 %>
+<%= content_tag 'p', the_label_5 %>
+<hr/>
+
+<%= content_tag 'h6', the_header_label_6 %>
+<%= content_tag 'p', the_label_6 %>
+<hr/>
+
+<%= content_tag 'h6', the_header_label_7 %>
+<%= content_tag 'p', the_label_7 %>
+<hr/>
+
+<%= content_tag 'h6', the_header_label_8 %>
+<%= content_tag 'p', the_label_8 %>

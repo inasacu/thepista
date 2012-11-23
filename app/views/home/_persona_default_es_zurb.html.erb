@@ -1,0 +1,59 @@
+<%
+	the_twitter_link = "#{link_to("Twitter", 'https://twitter.com/', :target => '_blank')}"
+	the_facebook_link = "#{link_to("Facebook", 'https://facebook.com/', :target => '_blank')}"
+	the_linkedin_link = "#{link_to("LinkedIn", 'http://linkedin.com/', :target => '_blank')}"
+	the_google_link = "#{link_to("Google", 'https://accounts.google.com', :target => '_blank')}"
+	the_persona_link = "#{link_to("Mozilla Persona", 'https://login.persona.org/about', :target => '_blank')}"
+	
+	
+	the_header_label_1 = "1. #{label_name(:persona_services_list_how)}"
+	the_label_1 = "Con cualquier de estos servicios: #{label_name(:persona_services_list)}, puedes acceder sin la necesidad de tu usuario y contraseña de HayPista."
+	
+	the_header_label_2 = "2. ¿Como establezco #{label_name(:persona_services_list)} para el acceso a HayPista"
+	the_label_2 = "En inicio, pica sobre el boton de “#{label_name(:persona_services_list)}”. Una pantalla aparecerá pidiendo permiso para dejar a HayPista acceder a tus datos de #{label_name(:persona_services_list)}. 
+		Una vez que apruebes el acceso a tus datos, tendrás que introducir su nombre y cuenta de correo en HayPista para que podamos hacerte una cuenta. Sólo tienes que hacer este paso la primera vez que accedes a HayPista con #{label_name(:persona_services_list)}. En el futuro, cuando accedas a HayPista con #{label_name(:persona_services_list)} sabremos quien eres."	
+
+	the_header_label_3 = "3. ¿Que hace HayPista con los datos personales mios de #{label_name(:persona_services_list)}?"
+	the_label_3 = "Solo necesitamos tu cuenta de correo con #{label_name(:persona_services_list)} para darte acceso a HayPista.  No accedemos a ninguna otra información."
+	
+
+	the_header_label_4 = "4. ¿Tiene HayPista acceso a mi usuario y contraseña de #{label_name(:persona_services_list)}?"
+	the_label_4 = "No, la información se mantiene privada. HayPista no tiene acceso a tu usuario y contraseña de #{label_name(:persona_services_list)}."
+
+	the_header_label_5 = "5. ¿Porque HayPista solicita permisos de acceso?"
+	the_label_5 = "La primera vez que se conecte a HayPista con  #{label_name(:persona_services_list)} pedimos permiso para acceder a ciertas partes de su información. Depende de usted decidir si proporcionar esa información o no, y si usted elige no proporcionar mas información aparte del correo todavía puedes usar  #{label_name(:persona_services_list)} para acceder a HayPista."
+
+	the_header_label_6 = "6. ¿Si normalmente accedo a HayPista con #{label_name(:persona_services_list)}, puedo acceder a HayPista con mi usuario y contraseña?"
+	the_label_6 = "Si. #{label_name(:persona_services_list)} te permite acceder de otra forma distinta a HayPista, pero no remplaza el estándar de acceso con tu cuenta de HayPista usuario y contraseña."
+
+	the_header_label_7 = "¿Que son los servicios de #{label_name(:persona_services_list)}?"
+	the_label_7 = "Obten más información en #{the_twitter_link}, #{the_facebook_link}, #{the_linkedin_link}, #{the_google_link}, #{the_persona_link}".html_safe
+%>
+
+<%= content_tag 'h6', the_header_label_1 %>
+<%= content_tag 'p', the_label_1 %>
+<hr/>
+
+<%= content_tag 'h6', the_header_label_2 %>
+<%= content_tag 'p', the_label_2 %>
+<hr/>
+
+<%= content_tag 'h6', the_header_label_3 %>
+<%= content_tag 'p', the_label_3 %>
+<hr/>
+
+<%= content_tag 'h6', the_header_label_4 %>
+<%= content_tag 'p', the_label_4 %>
+<hr/>
+
+<%= content_tag 'h6', the_header_label_5 %>
+<%= content_tag 'p', the_label_5 %>
+<hr/>
+
+<%= content_tag 'h6', the_header_label_6 %>
+<%= content_tag 'p', the_label_6 %>
+<hr/>
+
+<%= content_tag 'h6', the_header_label_7 %>
+<%= content_tag 'p', the_label_7 %>
+

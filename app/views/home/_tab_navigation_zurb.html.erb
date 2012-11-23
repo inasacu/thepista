@@ -1,12 +1,17 @@
 <%
-	ignore_home = ['home_about', 'home_terms_of_use', 'home_faq']	
+	ignore_home = ['home_about', 'home_terms_of_use', 'home_faq', 'home_persona']
 	is_diplayable = ignore_home.include?(get_controller_action) ? false : true	
+		
+	counter = 0
+	@upcoming_schedules.each {|schedule| counter += 1}
+	has_schedules = (counter > 1) 
 %>
 
 <%= content_tag :dd, link_to(label_name(:home), '/', :class => get_active) if is_diplayable %>
 
-<%= content_tag :dd, link_to(label_name(:upcoming), upcoming_path, :class => get_active('home_upcoming')) if DISPLAY_FREMIUM_SERVICES %>
+<%= content_tag :dd, link_to(label_name(:upcoming), upcoming_path, :class => get_active('home_upcoming')) if has_schedules %>
 
 <%= content_tag :dd, link_to(label_name(:classifieds), advertisement_url, :class => get_active('home_advertisement')) if DISPLAY_FREMIUM_SERVICES %>
 
 <%= content_tag :dd, link_to(label_name(:search_result), '#', :class => get_active('home_search')) if DISPLAY_FREMIUM_SERVICES %>
+

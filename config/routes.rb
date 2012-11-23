@@ -86,8 +86,9 @@ Thepista::Application.routes.draw do
 	match 'terminos' => 'home#terms_of_use', :as => :terms_of_use
 	match 'privacidad' => 'home#privacy_policy', :as => :privacy_policy
 	match 'ayuda' => 'home#faq', :as => :faq
-	match 'openid' => 'home#openid', :as => :openid
+	# match 'openid' => 'home#openid', :as => :openid
 	match 'success' => 'home#success', :as => :success
+	match 'persona' => 'home#persona', :as => :persona
 
 	match '/ocultar_aviso' => 'javascripts#hide_announcements', :as => :hide_announcements
 

@@ -902,10 +902,10 @@ en:
      modified_phone: Edit option to hide email for    
      modified_profile: Edit option to hide profile for   
      modified_reliable: Edit reliability for    
-     modo: "Practice more, organize less with <STRONG>HayPista</STRONG>."  
-     modo_key_title: "Practica deporte, no hay mejor sitio, organizar partidos, buscar gente para jugar, buscar centro deportivo para jugar.  Con Hay Pista puedes organizar partidos de empresa, ver tu jornada deportiva e incluso tu clasificacion en tu equipo. Tambien puedes ver quien esta convocado, quien esta en ultima hora o quien esta ausente para el partido."
-     modo_keywords: "hay pista, organizar partidos, gente para jugar, buscar centro deportivo jugar, partidos de empresa, ver jornada deportiva, clasificacion equipo, quien esta convocado, quien esta ultima hora, quien esta ausente"
-     monday: Monday 
+     modo: "Practice sports and let <STRONG>HayPista</STRONG> help organize it."  
+     modo_key_title: "HayPista te ayuda a organizacion eventos deportivos. Practica los mejores deportes y deja que HayPista de ayude a organizarlo. "
+     modo_keywords: "hay pista, eventos deportivos, organizacion de eventos deportivos, los mejores deportivos, futbol rapido, futbol 7, futbol siete, organizacion eventos deportivos, polideportivo, polideportivos madrid, polideportivo madrid"
+     monday: Lunes
      monday_short:  Mon
      tuesday:  Tuesday
      tuesday_short:  Tue
@@ -1771,6 +1771,10 @@ en:
      terms_of_use: Terms of Use
      privacy_policy: Privacy Policy
      openid:  Login with your account
+     persona_services:  Persona Services
+     persona_services_list:  "Twitter, Facebook, LinkedIn, Google or Mozilla Persona"
+     persona_services_list_how:  "How does Twitter, Facebook, LinkedIn, Google or Mozilla Persona Services work?"
+     persona_services_list_how_short:  "How do these services work?"
      follow_twitter:  Follow us on Twitter
      follow_facebook:  Follow us on Facebook
      follow_linkedin:  Follow us on Linkedin

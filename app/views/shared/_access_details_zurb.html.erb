@@ -5,7 +5,8 @@
 	the_signup_link = "#{the_signup_link} #{label_name(:or)} #{link_to(label_name(:log_in), login_path, :class => the_login)} #{label_name(:password_with)}"
 	
 	rpx_now_visible = ['home_index','user_signup' ]
-	browser_id_visible = ['user_session_new']
+	browser_id_visible = ['user_session_new']	
+	ignore_home = ['home_about', 'home_terms_of_use', 'home_faq', 'home_persona']
 	
 	height_value = is_controller_action('user_signup') ? 360 : 300
 %>
@@ -16,16 +17,19 @@
 
 	<div class="six columns">
 
-		<% if rpx_now_visible.include?(get_controller_action) %>	
-		<%= render 'utilities/omniauth' %>
-		<%= render 'utilities/rpx_now' %>		
+		<% if rpx_now_visible.include?(get_controller_action) %>
+			
+			<%= render 'utilities/omniauth' %>
+			<%= render 'utilities/rpx_now' %>	
+			
 		<% end %>
 
 
 		<% if browser_id_visible.include?(get_controller_action) %>	
-		<%= render 'utilities/omniauth' %>
-		<%= render 'utilities/rpx_now' %>
-		<%#= render 'utilities/browser_id' %>		
+		
+			<%= render 'utilities/omniauth' %>
+			<%= render 'utilities/rpx_now' %>
+			<%#= render 'utilities/browser_id' %>		
 		
 		<% end %>
 
@@ -38,13 +42,15 @@
 		
 	<% else %>
 	
-	<div class="one columns">
-		<div class="row">
-			<div class="twelve columns">
-				<div style="width:1px;height:<%= height_value %>px;background-color:lightgray;float:left;"></div>
+		<% unless ignore_home.include?(get_controller_action) %>	
+			<div class="one columns">
+				<div class="row">
+					<div class="twelve columns">
+						<div style="width:1px;height:<%= height_value %>px;background-color:lightgray;float:left;"></div>
+					</div>
+				</div>
 			</div>
-		</div>
-	</div>
+		<% end %>
 	
 	<% end %>
 	
@@ -57,15 +63,17 @@
 
 
 
-<br>
-<hr/>
+<% unless ignore_home.include?(get_controller_action) %>	
 
-<div class="row">
-	<div class="twelve columns">
-		<%= content_tag :h6, "#{the_signup_link}".html_safe %>		
+	<br>
+	<hr/>
+
+	<div class="row">
+		<div class="twelve columns">
+			<%= content_tag :h6, "#{the_signup_link}".html_safe %>		
+		</div>
 	</div>
-</div>
 
-
+<% end %>
 
 

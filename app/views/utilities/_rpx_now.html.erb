@@ -10,20 +10,20 @@
 
 <% end %>
 
-						<div class="row">
-							<div class="twelve columns">
+<div class="row">
+	<div class="twelve columns">
 
-								<br>
-								<br>
-								<br>
-								
-								<%= content_tag :h6, label_name(:rpx_login), :class => "subheader" %>
-								<hr />
+		<br>
+		<!-- <br> -->
+		<!-- <br> -->
 
-								<%=raw RPXNow.embed_code(RPX_APP_NAME, rpx_token_sessions_url, :language => I18n.locale, :options => {:width => '400', :height => '240'})  if SHOW_RPX_NOW %>
+		<%= content_tag :h6, label_name(:rpx_login), :class => "subheader" %>
+		<hr />
 
-							</div>
-						</div>
+		<%=raw RPXNow.embed_code(RPX_APP_NAME, rpx_token_sessions_url, :language => I18n.locale, :options => {:width => '400', :height => '240'})  if SHOW_RPX_NOW %>
+
+	</div>
+</div>
 
 <% if is_mobile_browser %>
 </td>
