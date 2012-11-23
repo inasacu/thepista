@@ -16,16 +16,17 @@
 
 	<div class="six columns">
 
-		<% if rpx_now_visible.include?(get_controller_action) %>
+		<% if rpx_now_visible.include?(get_controller_action) %>	
+		<%= render 'utilities/omniauth' %>
 		<%= render 'utilities/rpx_now' %>		
-		<%= render 'utilities/omniauth' %>		
 		<% end %>
 
 
-		<% if browser_id_visible.include?(get_controller_action) %>
-		<%= render 'utilities/rpx_now' %>		
+		<% if browser_id_visible.include?(get_controller_action) %>	
 		<%= render 'utilities/omniauth' %>
+		<%= render 'utilities/rpx_now' %>
 		<%#= render 'utilities/browser_id' %>		
+		
 		<% end %>
 
 	</div>

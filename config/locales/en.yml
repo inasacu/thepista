@@ -2026,7 +2026,7 @@ en:
      recaptcha_question:  Question
      recaptcha_human_test:  Human Test
      recaptcha_type_words:  Write the two words or numbers you see separated by a space.     
-     rpx_login: Sign in using one of these services...  (Gradual phase-out)
+     rpx_login: Sign in using one of these services...  (<STRONG>Gradual phase-out</STRONG>)
      rpx_third_party_error:  "could not recover data from third party accounts, Please try again."
      rpx_association_email_msg: We found an existing account which is already using the e-mail address
      rpx_association_login_msg: We found an existing account which is already using the username

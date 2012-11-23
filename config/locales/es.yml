@@ -2038,7 +2038,7 @@ es:
      recaptcha_question:  Pregunta
      recaptcha_human_test:  Prueba Humana
      recaptcha_type_words:  Escribe las palabras o números separados por un espacio.     
-     rpx_login: Entra con uno de estos servicios... (Gradualmente se eliminará)
+     rpx_login: Entra con uno de estos servicios... (<STRONG>Gradualmente se eliminará</STRONG>)
      rpx_third_party_error:  "No se pueden recuperar los datos de terceras cuentas. Por favor, inténtalo de nuevo."
      rpx_association_email_msg: Hemos encontrado una cuenta existente que ya está utilizando la dirección de correo electrónico
      rpx_association_login_msg: Hemos encontrado una cuenta existente que ya está utilizando el nombre de usuario
