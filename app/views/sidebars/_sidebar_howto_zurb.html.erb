@@ -1,9 +1,9 @@
 <div class="row">
 <div class="twelve columns">
 
-	<%= set_image_and_link(option_link('group'), 'group') %>
-	<%= set_image_and_link(link_to(label_name(:create_join_group), list_groups_url), 'user_add') %>
-	<%= set_image_and_link(option_link('invitation'), 'invitation') %>
+	<%= set_image_and_link_h6(option_link('group'), 'group') %><br>
+	<%= set_image_and_link_h6(link_to(label_name(:create_join_group), list_groups_url), 'user_add') %><br>
+	<%= set_image_and_link_h6(option_link('invitation'), 'invitation') %><br>
 	
 	<%= render 'sidebars/sidebar_create_schedule_zurb'%>
 	

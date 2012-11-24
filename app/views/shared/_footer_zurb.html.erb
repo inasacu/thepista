@@ -1,7 +1,7 @@
 <!-- Das Footer -->
 
 <%
-	is_media = Rails.env.production?
+	is_media = Rails.env.production? ? (!is_mobile_browser) : (false)
 %>
 
 <%= render 'utilities/facebook_script_zurb' if is_media %>
@@ -59,35 +59,36 @@
 		</p>
 	</section>
 	
-	<section class="four columns">
+	<section class="five columns">
 		<h6><%= "#{label_name(:need_quick_help)}".html_safe %></h6>
 		<h6><%= "#{mail_to(CONTACT_RECIPIENT, label_name(:contact_us))}".html_safe %></h6>
 
 
 		<% if is_media %>
 
-		<ul class="block-grid three-up">
-			
-		<li>
-			<div class="fb-like" data-href="HayPista.com" data-send="false" 
-			data-layout="button_count" data-width="450" data-show-faces="false" 
-			data-action="recommend" data-font="lucida grande">
-			</div>
-		</li>
-		
+			<ul class="block-grid three-up">
+				
+					<br>
+				
+				<li>			
+					<%= render 'utilities/twitter_script_zurb' %>	
 
-		<li>
-			<iframe allowtransparency="true" frameborder="0" scrolling="no"
-			src="http://platform.twitter.com/widgets/follow_button.html?screen_name=haypista"
-			style="width:80px; height:20px;">
-			</iframe>
-		</li>
+					<br>
+					<br>
 
-		<li>
-			<g:plusone size="medium"></g:plusone>
-		</li>
+					<g:plusone size="medium"></g:plusone>
+
+					<br>
+					<br>
+
+					<div class="fb-like" data-href="HayPista.com" data-send="false" 
+					data-layout="button_count" data-width="450" data-show-faces="false" 
+					data-action="recommend" data-font="lucida grande">
+					</div>
+				
+			</li>
 			
-		</ul>
+			</ul>
 
 		<% end %>
 			

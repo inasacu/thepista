@@ -354,6 +354,14 @@ module ApplicationHelper
 		end
 	end
 
+		def set_image_and_link_h6(the_link, image_label=nil)
+			if DISPLAY_HAYPISTA_TEMPLATE
+				set_content_tag_safe(:h6, "#{image_label.nil? ? '' : option_image_link(image_label)}  #{the_link}", "")
+			else
+				set_content_tag_safe(:h6, "#{image_label.nil? ? '' : option_image_small_link(image_label)}  #{the_link}", "")
+			end
+		end
+
 	def set_image_and_link(the_link, image_label=nil)
 		if DISPLAY_HAYPISTA_TEMPLATE
 			set_content_tag_safe(:p, "#{image_label.nil? ? '' : option_image_link(image_label)}  #{the_link}", "")
