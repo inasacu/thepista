@@ -12,7 +12,7 @@ end
 # heroku run rake send_created --app thepista
 task :send_created => :environment do
 	puts "Sending schedule CREATED notice... A:  #{Time.zone.now}"
-	Schedule.send_created 
+	# Schedule.send_created 
 	puts "Sending schedule CREATED notice... B:  #{Time.zone.now}"
 end
 

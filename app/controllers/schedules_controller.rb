@@ -163,6 +163,8 @@ class SchedulesController < ApplicationController
 
 		if @schedule.save 
 			@schedule.create_schedule_details
+			Schedule.delay.send_created
+			
 			successful_create
 			redirect_to @schedule
 		else
@@ -173,7 +175,6 @@ class SchedulesController < ApplicationController
 
 	def edit
 		set_the_template('schedules/new')
-		# render @the_template
 	end
 
 	def update

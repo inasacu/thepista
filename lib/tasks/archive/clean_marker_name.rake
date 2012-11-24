@@ -1,4 +1,4 @@
-# to run:    rake clean_marker_name
+# heroku run rake clean_marker_name --app thepista
 
 desc "clean marker name to make smaller string"
 task :clean_marker_name => :environment do |t|
