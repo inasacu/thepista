@@ -22,9 +22,9 @@ Thepista::Application.routes.draw do
 	match 'configurar_idioma' => 'users#set_language', :as => :language
 	match 'jugadores_de_equipo' => 'groups#team_list', :as => :team_list
 
-	match 'jornada_deportiva_convocado' => 'schedules#team_roster', :as => :team_roster
-	match 'jornada_deportiva_ultima_hora' => 'schedules#team_last_minute', :as => :team_last_minute
-	match 'jornada_deportiva_ausente' => 'schedules#team_no_show', :as => :team_no_show
+	match 'evento_deportivo_convocado' => 'schedules#team_roster', :as => :team_roster
+	match 'evento_deportivo_ultima_hora' => 'schedules#team_last_minute', :as => :team_last_minute
+	match 'evento_deportivo_ausente' => 'schedules#team_no_show', :as => :team_no_show
 
 	match 'eventos_equipo' => 'schedules#schedule_list', :as => :schedule_list
 	match 'lista_marcadores' => 'markers#marker_list', :as => :marker_list
