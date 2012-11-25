@@ -75,7 +75,7 @@ Thepista::Application.routes.draw do
 	match 'mensajes/responder/:block_token' => 'messages#reply', :as => :reply_message
 	match 'mensajes/borrar/:block_token' => 'messages#trash', :as => :trash_message
 
-	match 'proximos_partidos' => 'home#upcoming', :as => :upcoming
+	match 'eventos_deportivos' => 'home#upcoming', :as => :upcoming
 	match 'buqueda' => 'home#search', :as => :search
 	match 'comunicado' => 'home#advertisement', :as => :advertisement
 

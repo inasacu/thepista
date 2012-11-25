@@ -1597,13 +1597,13 @@ es:
      unauthorized:  No autorizado.
      unavailable: No disponible
      unsuccessful_logged_in:  Nombre o clave son incorrectas 
-     upcoming: Próximos Eventos  
+     upcoming: Eventos Deportivos  
      upcoming_agenda:  Próximas agendas 
-     upcoming_game:  Próximo evento
-     upcoming_games:   Próximo evento
-     upcoming_schedule: Próximo evento  
-     upcoming_schedules: Próximos Eventos 
-     upcoming_meet: Próximo evento
+     upcoming_game:  Evento deportivo
+     upcoming_games:   Evento deportivo
+     upcoming_schedule: Evento deportivo  
+     upcoming_schedules: Eventos Deportivos 
+     upcoming_meet: Evento deportivo
      upcoming_meets: Próximos eventos de torneo 
      upcoming_no:  Ningun evento para mostrar   
      update: Actualiza   
@@ -1873,8 +1873,8 @@ es:
      home_information:  Información
      home_option:  Opciones
      home_round:  Fase
-     home_upcoming_schedule:  Próximos Eventos
-     home_upcoming:  Próximos Eventos
+     home_upcoming_schedule:  Eventos Deportivos
+     home_upcoming:  Eventos Deportivos
      payment_description:  Quien ha hecho el pago.
      payment_full:  Pago total
      payment_greater_than:  Pago superior

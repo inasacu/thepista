@@ -1586,13 +1586,13 @@ en:
      unauthorized:  Not Authorized.
      unavailable:  Unavailable
      unsuccessful_logged_in:  username or password are incorrect. 
-     upcoming: Upcoming Event
+     upcoming: Sporting Event
      upcoming_agenda:  Upcoming Agenda  
-     upcoming_game:  Upcoming Event   
-     upcoming_games:   Upcoming Events   
-     upcoming_schedule: Upcoming Event   
-     upcoming_schedules: Upcoming Events 
-     upcoming_meet: Upcoming Event 
+     upcoming_game:  Sporting Event   
+     upcoming_games:   Sporting Events   
+     upcoming_schedule: Sporting Event   
+     upcoming_schedules: Sporting Events 
+     upcoming_meet: Sporting Event 
      upcoming_meets: Upcoming Tournament Event 
      upcoming_no:  No events to display    
      update: Update   
@@ -1724,7 +1724,7 @@ en:
      your_sent_message: Your message has been sent   
      your_team_notification: Request for your team.   
      your_thoughts: What are you doing?   
-     my_upcoming: My Upcoming Event
+     my_upcoming: My Sporting Event
      zip: Postal Code
      user_create_notice:  Registration successful...
      user_update_notice: Update successful... 
@@ -1862,8 +1862,8 @@ en:
      home_information:  Information
      home_option:  Options
      home_round:  Round
-     home_upcoming_schedule:  Upcoming Events
-     home_upcoming:  Upcoming Events
+     home_upcoming_schedule:  Sporting Events
+     home_upcoming:  Sporting Events
      payment_description:  Payment Details.
      payment_full:  Payment Total Options
      payment_greater_than:  Payment Greater than
