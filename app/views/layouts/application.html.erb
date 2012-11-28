@@ -15,7 +15,7 @@
 	<meta name="Locality" content="Spain" />	
 	<meta name="Language" content="es" />
 	<meta name="title" content="<%= page_title %>.  <%= I18n.t(:modo_key_title) %>" />
-	<meta name="description" content="<%= I18n.t(:modo) %> <%= I18n.t(:modo_keywords) %>">		
+	<meta name="description" content="<%= I18n.t(:modo).gsub('<STRONG>','').gsub('</STRONG>','') %> <%= I18n.t(:modo_keywords) %>">		
 	<meta name="keywords" content="<%= I18n.t(:modo_keywords) %>"/> 
 
 	<meta name="vw96.objectype" content="Document" />
