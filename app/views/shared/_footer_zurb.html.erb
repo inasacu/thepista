@@ -1,7 +1,7 @@
 <!-- Das Footer -->
 
 <%
-	is_media = Rails.env.production? ? (!is_mobile_browser) : (false)
+	is_media = Rails.env.development? ? (!is_mobile_browser) : (false)
 %>
 
 <%= render 'utilities/facebook_script_zurb' if is_media %>
@@ -41,6 +41,12 @@
 			<%= link_to(label_name(:about), about_url) %><br/>
 			<%= link_to(label_name(:terms_of_use), terms_of_use_url) %>
 		</p>
+		
+		<% if is_media %>		
+			<br>
+			<%= render 'utilities/twitter_script_zurb' %>
+		<% end %>
+			
 	</section>
 
 	<section class="three columns">
@@ -50,6 +56,17 @@
 			<%= link_to(label_name(:faq), faq_url) %><br/>
 			<%= link_to(label_name(:persona_services), persona_url) %><br/>
 		</p>
+		
+		<% if is_media %>	
+			<div class="fb-like" data-href="HayPista.com" data-send="false" 
+			data-layout="button_count" data-width="450" data-show-faces="false" 
+			data-action="recommend" data-font="lucida grande">
+			</div>
+		<% end %>
+		
+
+		
+		
 	</section>
 
 	<section class="two columns">
@@ -57,51 +74,37 @@
 		<p>	
 			<%= "#{render :partial => '/shared/language_zurb'}".html_safe %>
 		</p>
+
+		<% if is_media %>		
+			<br>
+			<g:plusone size="medium"></g:plusone>
+		<% end %>
+	
+		
 	</section>
 	
 	<section class="five columns">
 		<h6><%= "#{label_name(:need_quick_help)}".html_safe %></h6>
 		<h6><%= "#{mail_to(CONTACT_RECIPIENT, label_name(:contact_us))}".html_safe %></h6>
-
+		
+		<p></p>
 
 		<% if is_media %>
-
-			<ul class="block-grid three-up">
-				
-					<br>
-				
-				<li>			
-					<%= render 'utilities/twitter_script_zurb' %>	
-
-					<br>
-					<br>
-
-					<g:plusone size="medium"></g:plusone>
-
-					<br>
-					<br>
-
-					<div class="fb-like" data-href="HayPista.com" data-send="false" 
-					data-layout="button_count" data-width="450" data-show-faces="false" 
-					data-action="recommend" data-font="lucida grande">
-					</div>
-					
-					<br>
-					<br>
-					
-					<%= render 'utilities/linkedin_script_zurb' %>
-				
-			</li>
-			
-			</ul>
-
+			<br>	
+			<br>
+			<%= render 'utilities/linkedin_script_zurb' %>
 		<% end %>
 			
 		</section>		
 
 		<div class="row">
 			<div class="three columns centered">
+				
+				<br>
+				<br>
+				
 				<h6><strong><%= app_name %> &copy; <%= Time.zone.now.year %>.</strong></h6>
+				
 			</div>
 		</div>
 		

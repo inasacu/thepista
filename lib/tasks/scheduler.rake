@@ -50,11 +50,12 @@ end
 
 # heroku run rake generate_daily_slugs --app thepista
 task :generate_daily_slugs => :environment do 
+	
 	puts "generate daily slugs... A:  #{Time.zone.now}"
-	Schedule.find_each(&:save)
-	User.find_each(&:save)
-	Marker.find_each(&:save)
-	Venue.find_each(&:save)
-	Installation.find_each(&:save)
+	
+	Schedule.find(:all, :conditions => ["played= false and created_at > ?", YESTERDAY]).each {|schedule| schedule.save }
+	User.find(:all, :conditions => ["archive = false and created_at > ?", YESTERDAY]).each {|user| user.save }
+	
 	puts "generate daily slugs... B:  #{Time.zone.now}"
+	
 end
