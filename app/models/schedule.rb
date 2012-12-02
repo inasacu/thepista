@@ -410,8 +410,8 @@ class Schedule < ActiveRecord::Base
 	def last_minute_reminder
 		manager_id = RolesUsers.find_item_manager(self.group).user_id
 		self.group.users.each do |user|
-			if user.last_minute_notification? 
-				create_notification_email(self, self, manager_id, user.id, true)
+			if user.has_last_minute_notification?
+				Schedule.delay.create_notification_email(self, self, manager_id, user.id, true)
 			end
 		end
 	end

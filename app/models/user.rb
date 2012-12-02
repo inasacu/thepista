@@ -182,6 +182,14 @@ class User < ActiveRecord::Base
 			self.archive ? (return false) : (return	self.message_notification?) 			
 		end
 		
+		def has_last_minute_notification? 
+			if DISPLAY_FREMIUM_SERVICES
+				self.archive ? (return false) : (return	self.last_minute_notification?) 	
+			else
+				return self.has_notification? 
+			end
+		end		
+		
     def email_to_name
       self.name = self.email[/[^@]+/]
       self.name.split(".").map {|n| n.capitalize }.join(" ")

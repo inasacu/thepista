@@ -31,11 +31,13 @@
 <%= set_form_label(the_form, :whatsapp) %>
 <%= set_form_checkbox(the_form, :whatsapp) %><br/>
 
-<%= set_form_label(the_form, :last_minute_notification) %>
-<%= set_form_checkbox(the_form, :last_minute_notification) %><br/>
-
 <%= set_form_label(the_form, :teammate_notification) %>
 <%= set_form_checkbox(the_form, :teammate_notification) %><br/>
+
+<% if DISPLAY_FREMIUM_SERVICES %>
+	<%= set_form_label(the_form, :last_minute_notification) %>
+	<%= set_form_checkbox(the_form, :last_minute_notification) %><br>
+<% end %>
 
 <%= set_form_label(the_form, :birth_at) %>
 <%= date_select :user, :birth_at, :start_year => (Time.zone.now.year.to_i - 70), :end_year => (Time.zone.now.year.to_i) %><br />

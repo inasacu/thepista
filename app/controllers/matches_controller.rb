@@ -61,7 +61,29 @@ class MatchesController < ApplicationController
 		@type = Type.find(params[:type])
 		played = (@type.id == 1 and !@match.group_score.nil? and !@match.invite_score.nil?)
 
-		send_last_minute_message = (current_user == @match.user and Time.zone.now + 1.days > @match.schedule.starts_at)
+		the_schedule = @match.schedule
+		player_limit = the_schedule.player_limit
+		total_players = the_schedule.the_roster_count		
+		has_player_limit = (total_players >= player_limit)
+		send_last_minute_message = (has_player_limit and NEXT_48_HOURS > the_schedule.starts_at and the_schedule.send_reminder_at.nil?)
+		
+		if send_last_minute_message
+			
+			type_change = [[1,2,-1], [1,3,-1]] 
+			type_change = [[1,2,-1], [1,3,-1], [2,1,1], [3,1,1]] if DISPLAY_FREMIUM_SERVICES
+			send_last_minute_message = false
+			
+			type_change.each do |a, b, change|
+				new_player_limit = total_players + change
+				send_last_minute_message = (@match.type_id == a and @type.id == b and player_limit < new_player_limit) ? true : send_last_minute_message
+			end
+			
+			if send_last_minute_message	
+				the_schedule.last_minute_reminder 
+				the_schedule.send_reminder_at = Time.zone.now
+				the_schedule.save
+			end
+		end
 
 		if @match.update_attributes(:type_id => @type.id, :played => played, :user_x_two => @user_x_two, :status_at => Time.zone.now)
 			Scorecard.delay.calculate_user_played_assigned_scorecard(@match.user, @match.schedule.group)
@@ -74,13 +96,6 @@ class MatchesController < ApplicationController
 			
 		end 
 
-		if send_last_minute_message
-			@schedule = @match.schedule
-			if (@schedule.starts_at - 1.day) >= Time.zone.now
-				@schedule.last_minute_reminder 
-			end
-		end	
-	
 		redirect_back_or_default('/index')
 	end
 
