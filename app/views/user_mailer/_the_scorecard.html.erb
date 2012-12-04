@@ -1,8 +1,6 @@
-<% 
-	# @archive ||= false 	
+<% 	
 	scorecards = false
 	collection.each {|card| scorecards = true }
-	# mailer = true
 %> 
 
 
@@ -26,8 +24,8 @@
 				<%= content_tag(:th, "&nbsp;".html_safe) %>
 				<%= content_tag(:th, I18n.t(:points), :align => 'center') %>
 				<%= content_tag(:th, "&nbsp;".html_safe) %>
-				<%= content_tag(:th, I18n.t(:games_played), :align => 'center') %>
-				<%= content_tag(:th, "&nbsp;".html_safe) %>
+				<%= content_tag(:th, I18n.t(:games_played), :align => 'center') if DISPLAY_FREMIUM_SERVICES %>
+				<%= content_tag(:th, "&nbsp;".html_safe) if DISPLAY_FREMIUM_SERVICES %>
 				<%= content_tag(:th, I18n.t(:games_won), :align => 'center') %>
 				<%= content_tag(:th, "&nbsp;".html_safe) %>
 				<%= content_tag(:th, I18n.t(:games_tied), :align => 'center') %>
@@ -36,8 +34,8 @@
 				<%= content_tag(:th, "&nbsp;".html_safe) %>
 				<%= content_tag(:th, I18n.t(:goals_scored), :align => 'center') %>
 				<%= content_tag(:th, "&nbsp;".html_safe) %>
-				<%= content_tag(:th, I18n.t(:games_won_avg), :align => 'center') if DISPLAY_FREMIUM_SERVICES %>
-				<%= content_tag(:th, "&nbsp;".html_safe) if DISPLAY_FREMIUM_SERVICES %>
+				<%= content_tag(:th, I18n.t(:games_won_avg), :align => 'center') %>
+				<%= content_tag(:th, "&nbsp;".html_safe) %>
 				<%= content_tag(:th, I18n.t(:games_points_avg), :align => 'center') %>
 
 			</tr>
@@ -55,7 +53,8 @@
 				the_name = (the_name.to_s.length > 14) ? "#{the_name.to_s.strip[0..12]}..." : the_name
 				the_player_link = "#{link_to(the_name, user_url(scorecard.user))}"
 
-				the_coeficient_percent = (scorecard.points.to_f / (scorecard.played.to_f * scorecard.group.points_for_win) * 100)
+				# the_coeficient_percent = (scorecard.points.to_f / (scorecard.played.to_f * scorecard.group.points_for_win) * 100)
+				the_coeficient_percent = scorecard.coeficient_percent.to_i
 
 				the_coeficient_percent_full = "#{sprintf( '%0.00f', the_coeficient_percent)}%"
 				if the_coeficient_percent.to_f < 40
@@ -77,8 +76,8 @@
 				<%= content_tag(:td, "&nbsp;".html_safe) %>
 				<%= content_tag(:td, "#{scorecard.points.round}".html_safe, :align => 'center') %>
 				<%= content_tag(:td, "&nbsp;".html_safe) %>
-				<%= content_tag(:td, "#{scorecard.played}".html_safe, :align => 'center') %>
-				<%= content_tag(:td, "&nbsp;".html_safe) %>
+				<%= content_tag(:td, "#{scorecard.played}".html_safe, :align => 'center') if DISPLAY_FREMIUM_SERVICES %>
+				<%= content_tag(:td, "&nbsp;".html_safe) if DISPLAY_FREMIUM_SERVICES %>
 				<%= content_tag(:td, "#{scorecard.wins}".html_safe, :align => 'center') %>
 				<%= content_tag(:td, "&nbsp;".html_safe) %>
 				<%= content_tag(:td, "#{scorecard.draws}".html_safe, :align => 'center') %>
@@ -87,8 +86,8 @@
 				<%= content_tag(:td, "&nbsp;".html_safe) %>
 				<%= content_tag(:td, "#{scorecard.goals_scored}".html_safe, :align => 'center') %>
 				<%= content_tag(:td, "&nbsp;".html_safe) %>
-				<%= content_tag(:td, "#{the_coeficient_percent_full}".html_safe, :align => 'center') if DISPLAY_FREMIUM_SERVICES %>
-				<%= content_tag(:td, "&nbsp;".html_safe) if DISPLAY_FREMIUM_SERVICES %>
+				<%= content_tag(:td, "#{the_coeficient_percent_full}".html_safe, :align => 'center') %>
+				<%= content_tag(:td, "&nbsp;".html_safe) %>
 				<%= content_tag(:td, "#{the_coeficient_points_full}".html_safe, :align => 'center') %>
 			</tr>
 			

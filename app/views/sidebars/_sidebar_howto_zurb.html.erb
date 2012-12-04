@@ -7,12 +7,12 @@
 	
 	<%= render 'sidebars/sidebar_create_schedule_zurb'%>
 	
-	<% if DISPLAY_FREMIUM_SERVICES %>
-		<%= set_image_and_link(link_to(label_name(:create_new_challenge), groups_url), 'classified') %>
-		<%= set_image_and_link(option_link('cup'), 'cup') %>
-		<%= set_image_and_link(link_to(label_name(:create_new_challenge), cups_url), 'challenge') %>
-		<%= set_image_and_link(link_to(label_name(:create_join_challenge), challenges_url), 'challenge_join') %>
-	<% end -%>
+	<%# if DISPLAY_FREMIUM_SERVICES %>
+	<%= set_image_and_link(link_to(label_name(:create_new_challenge), groups_url), 'classified') if DISPLAY_FREMIUM_SERVICES %>
+	<%= set_image_and_link(option_link('cup'), 'cup') %>
+	<%= set_image_and_link(link_to(label_name(:create_new_challenge), cups_url), 'challenge') if DISPLAY_FREMIUM_SERVICES %>
+	<%= set_image_and_link(link_to(label_name(:create_join_challenge), challenges_url), 'challenge_join') if DISPLAY_FREMIUM_SERVICES %>
+	<%# end -%>
 	
 </div>
 </div>

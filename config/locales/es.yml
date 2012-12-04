@@ -209,9 +209,9 @@ es:
      create_name: Nuevo nombre   
      create_note: Nueva nota
      create_new_auth:  Connecta tu cuenta de LinkedIn
-     create_new_challenge:  Haz un reto de una copa.
+     create_new_challenge:  Haz un reto de una torneo.
      create_new_classified:  Pon un anuncio de tu equipo
-     create_new_cup:  Organiza una copa
+     create_new_cup:  Organiza una torneo
      create_new_group:  Haz tu equipo
      create_new_marker:  Pon un centro deportivo en el mapa
      create_new_marker:  Busca donde jugar
@@ -231,7 +231,7 @@ es:
      created_a_available:  esta entre los que más partidos ha jugado
      created_a_challenge:  Ha creado el reto
      created_a_classified:  Ha puesto el anuncio
-     created_a_cup:  Ha creado la copa
+     created_a_cup:  Ha creado la torneo
      created_a_game:  Ha añadido el partido  
      created_a_group:  Ha creado el equipo
      created_a_match:  Ha actualizado el resultado
@@ -244,37 +244,37 @@ es:
      credit_amount_description:  Lo que recibes
      credit_total:  Pagos totales
      credits: Pagos
-     cup:  Copa  
-     cups:  Copas
-     cups_all:  Todas las copas
-     cups_create:  Nueva copa 
-     cups_destroy:  Borra copa
-     cups_edit:  Actualiza copa
-     cups_howto:  Crea tu copa en 7 pasos.
-     cups_howto_create:  Selecciona la opción de 'Nuevo copa'.
+     cup:  Torneo  
+     cups:  Torneos
+     cups_all:  Todas las torneos
+     cups_create:  Nueva torneo 
+     cups_destroy:  Borra torneo
+     cups_edit:  Actualiza torneo
+     cups_howto:  Crea tu torneo en 7 pasos.
+     cups_howto_create:  Selecciona la opción de 'Nuevo torneo'.
      cups_howto_event:  Selecciona la opción de 'Organiza un partido'.
      cups_howto_tab:  Selecciona la pestaña 
      cups_howto_fillin:  Rellena todos los campos y haz click en el boton 'Nuevo'.
      cups_howto_gameday:  Los proximos eventos salen en la pagina de inicio.
-     cups_howto_petition:  Acepta las peticiones de tus amigos para unirse a tu copa.
+     cups_howto_petition:  Acepta las peticiones de tus amigos para unirse a tu torneo.
      cups_howto_convocatoria:  "¡Los participantes estan listos para convocarse a los eventos!"
-     cups_howto_show:  Entra en los detalles de la copa.
-     cups_index:   Copas
+     cups_howto_show:  Entra en los detalles de la torneo.
+     cups_index:   Torneos
      cups_index_option: Opciones 
-     cups_invitations_create:  Invita a un amigo a esta copa
-     cups_join:  Unete a la copa
-     cups_list:  Anteriores Copas
-     cups_new:  Nueva copa
+     cups_invitations_create:  Invita a un amigo a esta torneo
+     cups_join:  Unete a la torneo
+     cups_list:  Anteriores Torneos
+     cups_new:  Nueva torneo
      cups_new_option: Opciones 
-     cups_no:  Ninguna copa para mostrar
-     cups_none:  Ninguna copa.
+     cups_no:  Ningun torneo para mostrar
+     cups_none:  Ningun torneo.
      cup_options:  Opciones
-     cups_options_without: "¿Qué opciones tienes ya que no estas apuntado a una copa?"
+     cups_options_without: "¿Qué opciones tienes ya que no estas apuntado a una torneo?"
      cups_option:  Opciones 
-     cups_show:  Mostrar copa
-     cups_to_join:   inscribirte a una copa 
-     cups_upcoming: Próximas Copas  
-     cups_update: Actualiza la copa
+     cups_show:  Mostrar torneo
+     cups_to_join:   inscribirte a una torneo 
+     cups_upcoming: Próximas Torneos  
+     cups_update: Actualiza la torneo
      current_accounts: Cuentas actuales   
      current_language: Español    
      current_time: La hora   
@@ -331,7 +331,7 @@ es:
      destroy: Borrar   
      destroy_address: Borra la dirección   
      destroy_announcement: Borra un anuncio 
-     destroy_cup:  Borra copa  
+     destroy_cup:  Borra torneo  
      destroy_credit: Borra un pago   
      destroy_debit: Borra un cargo   
      destroy_description: Borra un detalles   
@@ -726,13 +726,13 @@ es:
         one:  "Mostrando <span id='dsq-num-posts'>1</span> comentario" 
         other: "Mostrando <span id='dsq-num-posts'>%{count}</span> comentarios"
      has_cup_escuadras:
-        zero: "Esta copa no tiene equipos." 
-        one:  "Esta copa tiene 1 equipo." 
-        other: "Esta copa tiene %{count} equipos."
+        zero: "Esta torneo no tiene equipos." 
+        one:  "Esta torneo tiene 1 equipo." 
+        other: "Esta torneo tiene %{count} equipos."
      has_cup_games:
-        zero: "Esta copa no tiene eventos." 
-        one:  "Esta copa tiene 1 evento." 
-        other: "Esta copa tiene %{count} eventos."
+        zero: "Esta torneo no tiene eventos." 
+        one:  "Esta torneo tiene 1 evento." 
+        other: "Esta torneo tiene %{count} eventos."
      has_group_schedules:
         zero: "Este equipo no tiene eventos." 
         one:  "Este equipo tiene 1 evento." 
@@ -1038,7 +1038,7 @@ es:
      no_message: No tienes mensajes.   
      no_openid: No tienes cuentas associadas a tu OpenID.   
      no_payment: No tienes pagos 
-     no_photo_for_cup:  Esta copa no tiene foto
+     no_photo_for_cup:  Esta torneo no tiene foto
      no_photo_for_user: Este jugador no tiene foto
      no_photo_for_group: Este equipo no tiene foto
      no_photo_for_venue: Este lungar de encuentro no tiene foto         
@@ -1071,8 +1071,8 @@ es:
      notification: Notificación   
      notifications: Notificaciones
      office_hours:  Horarios   
-     official:  Copa Oficial
-     official_description:  Copa oficial
+     official:  Torneo Oficial
+     official_description:  Torneo oficial
      open: Abrir   
      opens_at:  Horario de Apertura
      openid_identifier: OpenID URL
@@ -1104,8 +1104,8 @@ es:
      page_does_not_exist: La pagina que querias no exite.
      participate_challenge: Participa en el reto
      participate_challenge_afterwards: "Despues de registrate y ser aceptado, sigue este enlace para participa en el reto" 
-     participate_cup:  Participa en la copa 
-     participate_cup_afterwards: "Despues de registrate, sigue este enlace para participa en la copa"       
+     participate_cup:  Participa en la torneo 
+     participate_cup_afterwards: "Despues de registrate, sigue este enlace para participa en la torneo"       
      participate_schedule: Participa en el evento
      participate_schedule_afterwards: "Finalmente, una vez aceptado en el equipo, sigue este enlace para participar en el evento"
      participate_group_afterwards: Despues de registrate sigue este enlace para unirte al equipo     
@@ -1321,8 +1321,8 @@ es:
      roles: Responsabilidades   
      roster: Convocado   
      rosters: Convocados   
-     round:  Fase de copa
-     rounds:  Fases de copas
+     round:  Fase de torneo
+     rounds:  Fases de torneos
      Saturday: Sabado
      save: Guardar   
      schedule: Evento   
@@ -1566,7 +1566,7 @@ es:
      to_join_group: unirte a un equipo   
      to_join_group_message: Petición para unirte a 
      to_join_item_message_sent: Petición para unirte a sido enviada.
-     to_join_cup: Unirte a una copa 
+     to_join_cup: Unirte a una torneo 
      to_leave_challenge_message: Petición para desapuntarte de
      to_leave_challenge_message_sent: Petición para desapuntarte a sido enviada.
      to_leave_group_message: Petición para desapuntarte de
@@ -1640,7 +1640,7 @@ es:
      updated: se ha actualizado correctamente.    
      updated_at:  Fecha de creación
      updated_a_challenge:  Ha actualizado el reto
-     updated_a_cup:  Ha actualizado la copa
+     updated_a_cup:  Ha actualizado la torneo
      updated_a_game:  Ha actualizado el partido  
      updated_a_group:  Ha actualizado el equipo
      updated_a_match:  Ha actualizado el resultado
@@ -2079,7 +2079,7 @@ es:
      rounds_search_to_join: Puedes buscar una fase al cual unierte. 
      rounds_show:  Mostrar fase 
      rounds_update: Actualiza la fase  
-     cups_name_description:  Nombre de la copa
+     cups_name_description:  Nombre de la torneo
      escuadras_name_description:  Nombre del equipo     
      rounds_name_description:  Nombre de la fase de torneo
      groups_name_description:  Nombre del equipo

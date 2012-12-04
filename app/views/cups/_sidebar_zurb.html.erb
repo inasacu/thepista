@@ -14,7 +14,7 @@
 	final_played = the_game.played unless (the_game.nil? or the_game.blank?)
 %>
 		<%#= set_image_and_link(link_to(label_name(:cups_create), new_cup_url), 'cup') %>
-		<%#= set_image_and_link(link_to(label_name(:challenges_create), new_challenge_path(:cup_id => @cup)), 'challenge') %>
+		<%= set_image_and_link(link_to(label_name(:challenges_create), new_challenge_path(:cup_id => @cup)), 'challenge') if is_official %>
 
 <% if is_current_manager_of(@cup) %>
 	
