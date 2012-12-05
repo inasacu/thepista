@@ -9,7 +9,7 @@
 	
 	<%# if DISPLAY_FREMIUM_SERVICES %>
 	<%= set_image_and_link(link_to(label_name(:create_new_challenge), groups_url), 'classified') if DISPLAY_FREMIUM_SERVICES %>
-	<%= set_image_and_link(option_link('cup'), 'cup') %>
+	<%= set_image_and_link(option_link('cup'), 'cup') if Rails.env.development? %>
 	<%= set_image_and_link(link_to(label_name(:create_new_challenge), cups_url), 'challenge') if DISPLAY_FREMIUM_SERVICES %>
 	<%= set_image_and_link(link_to(label_name(:create_join_challenge), challenges_url), 'challenge_join') if DISPLAY_FREMIUM_SERVICES %>
 	<%# end -%>
