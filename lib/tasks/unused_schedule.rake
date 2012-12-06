@@ -11,6 +11,12 @@ task :the_unused_schedule => :environment do |t|
   @schedules = Schedule.find(:all, :conditions => ["archive = false and played = false and starts_at < ?", Time.zone.now - 30.days])
   @schedules.each {|archive_file| the_archives << archive_file}
 
+  @rosters = Schedule.find(:all, :conditions => ["archive = false and played = false and starts_at < ?", Time.zone.now - 14.days])
+  @rosters.each do |match|
+		@schedules << match if (match.the_roster_count.to_f/match.player_limit.to_f*100) < 1
+	end
+	
+
   @archive = Match.find(:all, :conditions => ["archive = false and schedule_id in (?)", @schedules])
   @archive.each {|archive_file| the_archives << archive_file}
 	
