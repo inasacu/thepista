@@ -77,7 +77,7 @@ class UsersController < ApplicationController
 			end
 		end
 
-		@user.name = @user.email    
+		@user.name = @user.email if @user.name.nil?
 		@user.language = "es" if @user.language.nil?
 
 		if session[:identifier]
@@ -94,7 +94,7 @@ class UsersController < ApplicationController
 		end
 
 		if @user.save
-			@user.email_to_name
+			# @user.email_to_name if @user.email.include?('@')
 			@user.email_backup = @user.email
 			@user.save
 			
