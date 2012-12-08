@@ -9,7 +9,7 @@ en:
      accounts: Accounts 
      add_email: "Accept, Create your account"  
      add_to_group: Petition to join 
-     add_to_item: Request to join
+     add_to_item: Join
      add_to_tournament: Petition to join 
      address: Address   
      addresses: Addresses   
@@ -684,7 +684,7 @@ en:
      group_stage_single:  Single game in Group Stage.
      group_second_stage_single:  Single game elimination.
      group_final_stage_single:  Single game for the final.
-     group_round:  Knock-Out   
+     group_round:  Games   
      groups: Teams  
      groups_full:  Team details
      groups_howto:  Create your team in 9 steps.
@@ -1458,7 +1458,7 @@ en:
      escuadras_add:  Teams
      escuadras_all:  All teams
      escuadras_available:  All teams
-     escuadras_create:  New team 
+     escuadras_create:  "Add your Team!"
      escuadras_destroy:  Remove team
      escuadras_edit:  Update team
      escuadras_index:   Team
@@ -1677,7 +1677,8 @@ en:
      wall:  Wall
      Wednesday: Wednesday   
      welcome: Welcome a HayPista   
-     were_removed: have been removed  
+     were_removed: have been removed
+     with: with 
      what_is_important:  What is important 
      what_is_haypista:  What is HayPista?
      what_is_this:   What is this? 

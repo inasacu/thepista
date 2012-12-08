@@ -365,6 +365,21 @@ class User < ActiveRecord::Base
 		def sent_messages(params, page = 1)
 			_sent_messages.page(params)
 		end
+				
+		def get_current_manage_groups
+			current_user_groups = self.groups
+			current_manage_groups = []
+			current_user_groups.each {|group| current_manage_groups << group if (self.is_manager_of?(group))}
+			return current_manage_groups
+		end
+
+		def get_current_manage_challenges
+			current_user_challenges = self.challenges
+			current_manage_challenges = []
+			current_user_challenges.each {|challenge| current_manage_challenges << challenge if (is_manager_of(challenge))}
+			return current_manage_challenges
+		end
+			
 
     def find_user_in_conversation(parent_id, exclude_self = true)
       @recipients = []  

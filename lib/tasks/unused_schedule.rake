@@ -14,10 +14,14 @@ task :the_unused_schedule => :environment do |t|
 
   @rosters = Schedule.find(:all, :conditions => ["archive = false and played = false and starts_at < ?", Time.zone.now - 14.days])
   @rosters.each do |the_roster|
-		if (the_roster.the_roster_count.to_f/the_roster.player_limit.to_f*100) < 1
+	
+		puts "#{the_roster.id} - #{the_roster.the_roster_count.to_f/the_roster.player_limit.to_f*100}"
+		
+		if (the_roster.the_roster_count.to_f/the_roster.player_limit.to_f*100) < 10
 			the_rosters << the_roster 
 			the_archives << the_roster
 		end
+		
 	end
 	
 

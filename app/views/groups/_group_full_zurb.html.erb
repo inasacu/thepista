@@ -31,6 +31,8 @@
 										:count => object_counter(Scorecard.get_active_players(group)))}".html_safe
 	
 	the_manager_city = "#{the_manager_city}#{the_active_players}"
+	
+	show_join_option = (!is_member_group and !has_current_item_petition(group))
 -%>
 
 
@@ -41,22 +43,10 @@
 	<%= set_content_tag_safe(:td, the_scorecard_players_count) %>
 	
 	
-	
-
    <% if display_icons %>
    	<td>
 		<span class="action" align="left">
-			<% unless is_member_group %>
-		
-			<%
-				unless has_current_item_petition(group) 							
-			%> 
-				<%= option_image_small_link('user_add') %>&nbsp;&nbsp;<strong><%= join_item_link_to(current_user, group) %></strong><br/>
-			<% 	end 
-			   end
-			-%>
-			<%= option_image_small_link('message') %>&nbsp;&nbsp;<%= link_to(label_name(:send_message_to), new_message_path(:group_id => group)) %><br />
-
+			<%= set_image_and_link_h6(join_item_link_to(current_user, group), 'user_add') if show_join_option %>
 		</span>
    	</td>
    <% end -%>

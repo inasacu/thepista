@@ -209,9 +209,9 @@ es:
      create_name: Nuevo nombre   
      create_note: Nueva nota
      create_new_auth:  Connecta tu cuenta de LinkedIn
-     create_new_challenge:  Haz un reto de una torneo.
+     create_new_challenge:  Haz un reto de un torneo.
      create_new_classified:  Pon un anuncio de tu equipo
-     create_new_cup:  Organiza una torneo
+     create_new_cup:  "¡Organiza tu torneo!"
      create_new_group:  Haz tu equipo
      create_new_marker:  Pon un centro deportivo en el mapa
      create_new_marker:  Busca donde jugar
@@ -247,7 +247,7 @@ es:
      cup:  Torneo  
      cups:  Torneos
      cups_all:  Todas las torneos
-     cups_create:  Nueva torneo 
+     cups_create:  Nuevo torneo 
      cups_destroy:  Borra torneo
      cups_edit:  Actualiza torneo
      cups_howto:  Crea tu torneo en 7 pasos.
@@ -262,19 +262,19 @@ es:
      cups_index:   Torneos
      cups_index_option: Opciones 
      cups_invitations_create:  Invita a un amigo a esta torneo
-     cups_join:  Unete a la torneo
+     cups_join:  Unete a el torneo
      cups_list:  Anteriores Torneos
-     cups_new:  Nueva torneo
+     cups_new:  Nuevo torneo
      cups_new_option: Opciones 
      cups_no:  Ningun torneo para mostrar
      cups_none:  Ningun torneo.
      cup_options:  Opciones
-     cups_options_without: "¿Qué opciones tienes ya que no estas apuntado a una torneo?"
+     cups_options_without: "¿Qué opciones tienes ya que no estas apuntado a un torneo?"
      cups_option:  Opciones 
      cups_show:  Mostrar torneo
-     cups_to_join:   inscribirte a una torneo 
+     cups_to_join:   inscribirte a un torneo 
      cups_upcoming: Próximas Torneos  
-     cups_update: Actualiza la torneo
+     cups_update: Actualiza el torneo
      current_accounts: Cuentas actuales   
      current_language: Español    
      current_time: La hora   
@@ -693,7 +693,7 @@ es:
      group_stage_single:  En fase de grupos se juega a un partido.
      group_second_stage_single:  La eliminatoria se juega a un partido.
      group_final_stage_single:  La final se juega a un partido.
-     group_round:  Eliminatoria   
+     group_round:  Partidos   
      groups: Equipos
      groups_full:  Detalles de equipos 
      groups_howto:  Crea tu equipo en 9 pasos.
@@ -1469,7 +1469,7 @@ es:
      escuadras_add:  Equipos
      escuadras_all:  Todos los equipos
      escuadras_available:  Todos los equipos
-     escuadras_create:  Nuevo equipo 
+     escuadras_create: "¡Apunta tu Equipo!"
      escuadras_destroy:  Borra el equipo
      escuadras_edit:  Cambia el equipo
      escuadras_index:   Equipo
@@ -1566,7 +1566,7 @@ es:
      to_join_group: unirte a un equipo   
      to_join_group_message: Petición para unirte a 
      to_join_item_message_sent: Petición para unirte a sido enviada.
-     to_join_cup: Unirte a una torneo 
+     to_join_cup: Unirte a un torneo 
      to_leave_challenge_message: Petición para desapuntarte de
      to_leave_challenge_message_sent: Petición para desapuntarte a sido enviada.
      to_leave_group_message: Petición para desapuntarte de
@@ -1670,7 +1670,7 @@ es:
      venue: Centro Deportivo    
      Venue: Centro Deportivo
      venues: Centros
-     venues_create:    Nuevo centro deportivo
+     venues_create:    "¡Pon tu Centro Deportivo!"
      venues_index: Centros 
      venues_name_description:  Nombre del centro deportivo
      venues_edit:  Actualiza el centro deportivo
@@ -1688,7 +1688,8 @@ es:
      wall:  Muro
      Wednesday: Miercoles   
      welcome: Bienvenidos a HayPista   
-     were_removed: han sido eliminados  
+     were_removed: han sido eliminados
+     with: con 
      what_is_important:  Lo importante 
      what_is_haypista:  ¿Qué es HayPista?
      what_is_this:   ¿Qué es esto? 
@@ -1895,7 +1896,7 @@ es:
      group_options:  Opciones
      group_stage_set:  Actualiza el grupo
      group_stage_set_full:  Actualiza el grupo
-     groups_create:  Nuevo equipo 
+     groups_create:  "¡Pon tu Equipo!" 
      groups_destroy:  Borra el equipo
      groups_edit:  Cambia el equipo
      groups_index:   Equipos

@@ -2,16 +2,53 @@
 <%= set_form_label(the_form, :name) %>
 <%= set_form_text_field(the_form, :name, 'large input-text', true) %><br/>
 
+<%= set_form_label(the_form, :starts_at) %>
+<div class="row">
+	<div class="three columns">
+	<%= the_form.text_field :starts_at_date, :id => 'starts_at_datepicker', 
+							:class => 'small input-text', 
+							:value => @cup.starts_at.strftime("%d-%m-%Y") %>
+	</div>
+	
+	<div class="three columns">
+		<%= the_form.text_field :starts_at_time, :id => 'starts_at_timepicker', 
+								:class => 'small input-text', 
+								:value => @cup.starts_at.strftime("%H:%M") %>
+	</div>
+	
+	<div class="three columns"></div>
+	
+	<div class="three columns"></div>
+	
+</div>
+
+<%= set_form_label(the_form, :ends_at) %>
+<div class="row">
+	<div class="three columns">
+	<%= the_form.text_field :ends_at_date, :id => 'ends_at_datepicker', 
+							:class => 'small input-text', 
+							:value => @cup.ends_at.strftime("%d-%m-%Y") %>
+	</div>
+	
+	<div class="three columns">
+		<%= the_form.text_field :ends_at_time, :id => 'ends_at_timepicker', 
+								:class => 'small input-text', 
+								:value => @cup.ends_at.strftime("%H:%M") %>
+	</div>
+	
+	<div class="three columns">
+	</div>
+	
+	<div class="three columns"></div>
+	
+</div>
+
+
+<br>
+
 
 <%= set_form_label(the_form, :sport) %>
 <%= the_form.select(:sport_id, Sport.sport_name, {:selected => @cup.sport_id, :include_blank => true}) %><br />
-
-<%= set_form_label(the_form, :starts_at) %>
-<%= the_form.datetime_select :starts_at %><br /><br />
-
-
-<%= set_form_label(the_form, :ends_at) %>
-<%= the_form.datetime_select :ends_at %><br /><br />
 
 
 <%= set_form_label(the_form, :description) %>
@@ -61,3 +98,6 @@
 
 <% end %>
 
+
+<%= render 'utilities/datepicker' %>
+<%= render 'utilities/timepicker' %>

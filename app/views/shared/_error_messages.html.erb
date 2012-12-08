@@ -7,7 +7,7 @@
 	ignore_fields = ['user_omniauth_new', 'rpx_new', 'signup']
 	the_error_total = label_name(:fill_in_fields) if ignore_fields.include?(get_controller_action)	
 	
-	show_error_list = ['cup_new', 'cup_create']
+	show_error_list = ['cup_new', 'cup_create', 'game_new', 'game_create']
 	show_error_message_details = false
 	show_error_message_details = show_error_list.include?(get_controller_action)	
 %>

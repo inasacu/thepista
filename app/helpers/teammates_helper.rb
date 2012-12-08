@@ -9,9 +9,10 @@ module TeammatesHelper
     the_confirmation = "#{I18n.t(:fire_from_item)} #{h(item.name)} #{ I18n.t(:to) } #{h(user.name)}?"
   end
 
-  def join_item_link_to(user, item, extend_label=false)
+  def join_item_link_to(user, item, extend_label=false, unique_label=false)
     the_label = label_name(:add_to_item)
     the_label = "#{the_label} #{I18n.t(:to)} #{h(item.name)}" if extend_label
+    the_label = "#{the_label} #{I18n.t(:with)} #{h(user.name)}" if unique_label
     link_to(the_label, join_item_path(:id => item, :item => item.class.to_s, :teammate => user))
   end
 

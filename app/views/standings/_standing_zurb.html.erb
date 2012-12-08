@@ -27,7 +27,7 @@
 		end
 	end	
 	
-	subscription_image = "#{standing.ranking}. #{subscription_image} #{standing.group_stage_name if is_escuadra}"
+	subscription_image = "#{standing.ranking}. #{subscription_image} #{standing.group_stage_name if (is_escuadra and @cup.official)}"
 	
 	the_name = ""
  	if is_escuadra 

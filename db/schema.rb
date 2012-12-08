@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120923180225) do
+ActiveRecord::Schema.define(:version => 20121206190044) do
 
   create_table "announcements", :force => true do |t|
     t.text     "message"
@@ -164,6 +164,7 @@ ActiveRecord::Schema.define(:version => 20120923180225) do
     t.integer  "item_id"
     t.string   "item_type"
     t.string   "slug"
+    t.boolean  "official",           :default => false
   end
 
   add_index "escuadras", ["item_id"], :name => "index_escuadras_on_item_id"

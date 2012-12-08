@@ -36,8 +36,8 @@ unless (group_stage == standing.group_stage_name)
 	<thead>
 		<tr>             
 
-			<%= set_content_tag_safe(:th, is_escuadra ? label_name(:group_stage_name) : label_name(:ranking) ) %>
-			<%= set_content_tag_safe(:th, "&nbsp;") %>
+			<%= set_content_tag_safe(:th, (is_escuadra and @cup.official) ? label_name(:group_stage_name) : label_name(:ranking) ) %>
+			<%= set_content_tag_safe(:th, "&nbsp;#") %>
 			<%= set_content_tag_safe(:th, I18n.t(:name)) %>
 			<%= content_tag_safe(:th, label_name(:points), label_name(:points_full), 'center') %>
 

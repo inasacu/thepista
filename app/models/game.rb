@@ -66,13 +66,6 @@ class Game < ActiveRecord::Base
 	validates_numericality_of     :home_score,                      :greater_than_or_equal_to => 0,       :less_than_or_equal_to => 300,  :allow_nil => true
 	validates_numericality_of     :away_score,                      :greater_than_or_equal_to => 0,       :less_than_or_equal_to => 300,  :allow_nil => true
 
-	# validates_presence_of         :home_stage_name,                                                     :allow_nil => true
-	# validates_length_of           :home_stage_name,                 :is => 1,                           :allow_nil => true
-	# validates_format_of           :home_stage_name,                 :with => /^[-A-Z]+$/,               :allow_nil => true
-	# validates_presence_of         :away_stage_name,                                                     :allow_nil => true
-	# validates_length_of           :away_stage_name,                 :is => 1,                           :allow_nil => true
-	# validates_format_of           :away_stage_name,                 :with => /^[-A-Z]+$/,               :allow_nil => true
-
 	validates_numericality_of     :points_for_single,               :greater_than_or_equal_to => 0,       :less_than_or_equal_to => 100,  :allow_nil => true
 	validates_numericality_of     :points_for_double,               :greater_than_or_equal_to => 0,       :less_than_or_equal_to => 100,  :allow_nil => true
 	validates_numericality_of     :points_for_draw,                 :greater_than_or_equal_to => 0,       :less_than_or_equal_to => 100,  :allow_nil => true
@@ -80,17 +73,45 @@ class Game < ActiveRecord::Base
 	validates_numericality_of     :points_for_goal_total,           :greater_than_or_equal_to => 0,       :less_than_or_equal_to => 100,  :allow_nil => true
 	validates_numericality_of     :points_for_winner,               :greater_than_or_equal_to => 0,       :less_than_or_equal_to => 100,  :allow_nil => true
 
-	validates_presence_of         :starts_at, :ends_at, :reminder_at 
+	validates_presence_of         :starts_at, :ends_at#, :reminder_at 
 
 	# variables to access
 	attr_accessible :name, :starts_at, :ends_at, :reminder_at, :deadline_at
 	attr_accessible :points_for_single, :points_for_double, :points_for_draw, :points_for_goal_difference, :points_for_goal_total, :points_for_winner
 	attr_accessible :cup_id, :home_id, :away_id, :winner_id, :next_game_id, :jornada, :round, :type_name
 	attr_accessible :home_score, :away_score, :played, :home_ranking, :away_ranking, :home_stage_name, :away_stage_name, :slug
+	attr_accessible	:starts_at_date, :starts_at_time, :ends_at_date, :ends_at_time
 
 	before_update :set_game_winner
 	after_update  :calculate_standing
 	after_create 	:create_challenges_cast
+
+	attr_accessor 	:starts_at_date, :starts_at_time, :ends_at_date, :ends_at_time
+	before_update   :get_starts_at, :get_ends_at
+
+	# add some callbacks, after_initialize :get_starts_at # convert db format to accessors
+	before_create	:get_starts_at, :get_ends_at
+	before_validation :get_starts_at, :get_ends_at, :set_starts_at, :set_ends_at 
+
+	def get_starts_at
+		self.starts_at ||= Time.now  
+		self.starts_at_date ||= self.starts_at.to_date.to_s(:db) 
+		self.starts_at_time ||= "#{'%02d' % self.starts_at.hour}:#{'%02d' % self.starts_at.min}" 
+	end
+
+	def set_starts_at
+		self.starts_at = "#{self.starts_at_date} #{self.starts_at_time}:00" 
+	end
+
+	def get_ends_at
+		self.ends_at ||= Time.now  
+		self.ends_at_date ||= self.ends_at.to_date.to_s(:db) 
+		self.ends_at_time ||= "#{'%02d' % self.ends_at.hour}:#{'%02d' % self.ends_at.min}" 
+	end
+
+	def set_ends_at
+		self.ends_at = "#{self.ends_at_date} #{self.ends_at_time}:00" 
+	end
 
 	# method section 
 	def self.group_stage_games(cup, page = 1)
@@ -195,11 +216,14 @@ class Game < ActiveRecord::Base
 
 	private
 	def calculate_standing
-		Game.update_cast_details(self.cup)
-		Game.delay.set_final_stage(self.cup) if self.all_group_stage_played(self.cup)
+		if self.cup.official
+			Game.update_cast_details(self.cup) 
+			Game.delay.set_final_stage(self.cup) if self.all_group_stage_played(self.cup)
 
-		Standing.delay.cup_challenges_user_standing(self.cup) 
-		Standing.delay.update_cup_challenge_item_ranking(self.cup)
+			Standing.delay.cup_challenges_user_standing(self.cup)
+			Standing.delay.update_cup_challenge_item_ranking(self.cup)
+		end	
+		Standing.create_cup_escuadra_standing(self.cup)
 		Standing.delay.calculate_cup_standing(self.cup)
 	end
 
@@ -227,9 +251,11 @@ class Game < ActiveRecord::Base
 	end
 
 	def create_challenges_cast
-		self.cup.challenges.each do |challenge|
-			Cast.delay.create_challenge_cast(challenge) 
-			Fee.delay.create_user_challenge_fees(challenge) if DISPLAY_FREMIUM_SERVICES
+		if self.cup.official
+			self.cup.challenges.each do |challenge|
+				Cast.delay.create_challenge_cast(challenge) 
+				Fee.delay.create_user_challenge_fees(challenge) if DISPLAY_FREMIUM_SERVICES
+			end
 		end
 	end
 

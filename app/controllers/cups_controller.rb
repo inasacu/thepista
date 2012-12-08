@@ -5,9 +5,10 @@ class CupsController < ApplicationController
 	before_filter :get_current_cup, :only => [:index, :list]
 	before_filter :has_manager_access, :only => [:edit, :update, :destroy]
 
-	# def index
+	def index
 	#   render @the_template
-	# end
+	
+	end
 
 	def squad_list
 		@squads = @cup.squads.page(params[:page])
@@ -30,8 +31,6 @@ class CupsController < ApplicationController
 
 	def create
 		@cup = Cup.new(params[:cup])	
-		# @cup.time_zome = Time.zone.now
-
 		@user = current_user
 
 		if @cup.save  

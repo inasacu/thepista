@@ -12,13 +12,75 @@
 	the_standing = ""
 	the_standing = "#{link_to(label_name(:standing), standing_path(:id => cup))}" if object_counter(cup.standings) > 1 and !final_played
 	the_standing = "#{the_standing} #{link_to(label_name(:final) , list_games_path(:id => cup))}" if final_played
+
+	is_member_cup = false
+	cup.escuadras.each do |escuadra|
+		is_member_cup = is_current_member_of(escuadra) ? true : is_member_cup
+	end	
+	
+	@current_manage_groups = current_user.get_current_manage_groups
+	
+	
+	@has_escuadra_for_signup = false
+	unless cup.official
+		@current_manage_groups.each do |group| 
+			@first_escuadra = Escuadra.find(:first, :conditions => ["official = ? and item_id = ? and item_type='Group'", cup.official, group])
+			if @first_escuadra.nil?
+				@the_escuadras << group 
+				@has_escuadra_for_signup = true
+			end
+		end
+		@user = User.find(current_user)
+		@first_escuadra = Escuadra.find(:first, :conditions => ["official = ? and item_id = ? and item_type='User'", cup.official, @user])
+		if @first_escuadra.nil?	
+			@the_escuadras << @user 
+			@has_escuadra_for_signup = true
+		end
+	end	
+	
+	is_cup_manager = cup ? is_current_manager_of(cup) : false
+	is_cup_member = cup ? is_current_member_of(cup) : false
+	has_cup = cup ? true : false
+	
+	the_cup_name = ""	
+	the_manager_label = ""
+	the_confirmation = ""
+	
+	
+	if has_cup
+		the_cup_name = h(cup.name) 
+
+		the_manager_label = label_name(:options_for_manager)
+		the_confirmation = "#{ label_name(:destroy_cup) } #{the_cup_name}?"
+		
+		# has_schedule_blank = cup.schedules.blank? 
+		has_user_petition = current_user.has_item_petition?(current_user, cup)
+		the_confirmation = label_with_name(:do_leave_item, "#{cup.name}?")
+	end
+	
+	the_cup_sport = "#{item_name_link(cup)} <br/> 
+						#{content_tag(:span, cup.sport.name)}"
+	the_manager_city = "#{item_list(cup.all_the_managers)} <br/> #{I18n.t(:has_cup_escuadras, :count => object_counter(cup.escuadras))}"
+	the_scorecard_players_count = "#{link_to(label_name(:scorecard), standing_path(:id => cup))}"	
+	the_manager_city = "#{the_manager_city}"
 -%>
 
+
+
 <tr>
-	<%= set_content_tag_safe(:td, item_image_name_link_small(cup)) %>
-	<%= set_content_tag_safe(:td, "#{item_name_link(cup)}<br/>#{cup.sport.name}") %>
-	<%= set_content_tag_safe(:td, "&nbsp;") %>
-	<%= set_content_tag_safe(:td, the_cup_start) %>
-	<%= set_content_tag_safe(:td, the_standing) %>
-	<%= set_content_tag_safe(:td, "&nbsp;") %>
-</tr>
+	<%= set_content_tag_safe(:td, item_image_link_small(cup)) %>
+	<%= set_content_tag_safe(:td, the_cup_sport) %>
+ 
+	<%= set_content_tag_safe(:td, the_manager_city) %>
+	<%= set_content_tag_safe(:td, the_scorecard_players_count) %>
+	
+	
+   <% if display_icons %>
+   	<td>
+		<span class="action" align="left">
+			<%= set_image_and_link(link_to(label_name(:escuadras_create), new_escuadra_path(:id => cup)), 'group_add') if @has_escuadra_for_signup %>
+		</span>
+   	</td>
+   <% end -%>
+
+ </tr>

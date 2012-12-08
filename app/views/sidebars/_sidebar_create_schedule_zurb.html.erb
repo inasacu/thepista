@@ -1,7 +1,5 @@
 <%
-	@current_user_groups = current_user.groups
-	@current_manage_groups = []
-	@current_user_groups.each {|group| @current_manage_groups << group if is_current_manager_of(group)}
+	@current_manage_groups = current_user.get_current_manage_groups
 %>
 
 <% @current_manage_groups.each do |group| %>

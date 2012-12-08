@@ -24,7 +24,8 @@
 <% if show_third_place %>
 
 <tr>
-	<%= set_content_tag_safe(:td, "#{the_game_name} - ##{game.jornada}") %>
+	<%#= set_content_tag_safe(:td, "#{the_game_name} - ##{game.jornada}") %>
+	<%= set_content_tag_safe(:td, "#{the_game_name}") %>
 	<%= set_content_tag_safe(:td, no_team ? "" : escuadra_image_link_smaller(game.home)) %>
 
 

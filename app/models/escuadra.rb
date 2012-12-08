@@ -33,28 +33,18 @@ class Escuadra < ActiveRecord::Base
 
     
     
-    validates_attachment_content_type :photo, :content_type => ['image/jpeg', 'image/png', 'image/gif', 'image/jpg', 'image/pjpeg']
-    validates_attachment_size         :photo, :less_than => 5.megabytes
-     
-  # validations 
-  # validates_uniqueness_of   :name,    :case_sensitive => false
-  
-  validates_presence_of     :name
-  validates_presence_of     :description
-  
-  validates_length_of       :name,            :within => NAME_RANGE_LENGTH
-  validates_length_of       :description,     :within => DESCRIPTION_RANGE_LENGTH
-      
-  validates_format_of       :name,            :with => /^[A-z 0-9 _.-]*$/
+		validates_attachment_content_type :photo, :content_type => ['image/jpeg', 'image/png', 'image/gif', 'image/jpg', 'image/pjpeg']
+		validates_attachment_size         :photo, :less_than => 5.megabytes
 
-  has_and_belongs_to_many   :cups,          :conditions => 'cups.archive = false',   :order => 'name'
+		validates_presence_of     :name  
+		validates_length_of       :name,            :within => NAME_RANGE_LENGTH    
 
-  # variables to access
-  attr_accessible :name, :photo, :description, :slug
+		has_and_belongs_to_many   :cups,          :conditions => 'cups.archive = false',   :order => 'name'
+
+		# variables to access
+		attr_accessible :name, :photo, :description, :slug
   
-  
-   
-                   
+                     
                    
   # method section
   def avatar

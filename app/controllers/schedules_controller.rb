@@ -154,7 +154,9 @@ class SchedulesController < ApplicationController
 	end
 
 	def create
-		@schedule = Schedule.new(params[:schedule])    
+		@schedule = Schedule.new(params[:schedule])   		
+		@schedule.ends_at_date = @schedule.starts_at_date 
+		
 		unless is_current_manager_of(@schedule.group)
 			warning_unauthorized
 			redirect_back_or_default('/index')
