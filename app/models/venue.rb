@@ -126,6 +126,11 @@ class Venue < ActiveRecord::Base
     return items 
   end
 
+	def self.venue_name
+		return find(:all, :conditions => ["archive = false"], :order => "venues.name").collect {|p| [ p.name, p.id ] }
+	end
+	
+	
   def create_venue_details(user)
     user.has_role!(:manager, self)
     user.has_role!(:creator, self)

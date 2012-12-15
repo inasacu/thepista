@@ -25,6 +25,7 @@
 
 				<%= render_show_detail_zurb(:name, @cup.name) %>
 				<%#= render_show_detail_zurb(:official, label_name(@cup.official, 'value')) if is_maximo %>
+				<%= render_show_detail_zurb(:venues, item_name_link(@cup.venue)) %>
 				<%= render_show_detail_zurb(:sports, @cup.sport.name) %>
 				<%#= render_show_detail_zurb(:time_zone, @cup.time_zone) %>
 				<%= render_show_detail_zurb(:starts_at, nice_day_of_week(@cup.starts_at)) %>

@@ -1,3 +1,8 @@
+<%
+	is_cup_visible = !is_mobile_browser
+%>
+
+
 <div class="row">
 <div class="twelve columns">
 
@@ -7,12 +12,15 @@
 	
 	<%= render 'sidebars/sidebar_create_schedule_zurb'%>
 	
-	<%# if DISPLAY_FREMIUM_SERVICES %>
-	<%= set_image_and_link(link_to(label_name(:create_new_challenge), groups_url), 'classified') if DISPLAY_FREMIUM_SERVICES %>
-	<%= set_image_and_link(option_link('cup'), 'cup') if Rails.env.development? %>
-	<%= set_image_and_link(link_to(label_name(:create_new_challenge), cups_url), 'challenge') if DISPLAY_FREMIUM_SERVICES %>
-	<%= set_image_and_link(link_to(label_name(:create_join_challenge), challenges_url), 'challenge_join') if DISPLAY_FREMIUM_SERVICES %>
-	<%# end -%>
+	<% if DISPLAY_FREMIUM_SERVICES %>
+	<%= set_image_and_link(link_to(label_name(:create_new_challenge), groups_url), 'classified') %>
+	<%= set_image_and_link(link_to(label_name(:create_new_challenge), cups_url), 'challenge') %>
+	<%= set_image_and_link(link_to(label_name(:create_join_challenge), challenges_url), 'challenge_join') %>
+	<% end -%>
+	
+	<hr>
+	<%= set_image_and_link_h6(option_link('cup'), 'cup') if is_cup_visible %>
+	
 	
 </div>
 </div>

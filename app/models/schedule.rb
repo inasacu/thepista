@@ -507,6 +507,10 @@ class Schedule < ActiveRecord::Base
     the_subject = ""
     the_body = ""
 
+		@user = User.find(manager_id)
+		I18n.locale = @user.language unless @user.language.blank?
+
+
     case item.class.to_s
     when "Schedule"
       

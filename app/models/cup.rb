@@ -25,6 +25,7 @@
 # t.boolean  "official"            
 # t.boolean  "club"                
 # t.string   "slug"
+# t.integer  "venue_id"
 
 class Cup < ActiveRecord::Base
 
@@ -42,8 +43,6 @@ class Cup < ActiveRecord::Base
     :path => ":assets/cups/:id/:style.:extension",
     :default_url => IMAGE_GROUP_AVATAR  
 
-    
-    
     validates_attachment_content_type :photo, :content_type => ['image/jpeg', 'image/png', 'image/gif', 'image/jpg', 'image/pjpeg']
     validates_attachment_size         :photo, :less_than => 5.megabytes
 
@@ -53,8 +52,8 @@ class Cup < ActiveRecord::Base
   validates_presence_of     :name
   validates_presence_of     :description
   validates_presence_of     :conditions
-  # validates_presence_of     :time_zone
   validates_presence_of     :sport_id
+	validates_presence_of			:venue_id
   
   validates_length_of       :name,            :within => NAME_RANGE_LENGTH
   validates_length_of       :description,     :within => DESCRIPTION_RANGE_LENGTH
@@ -71,13 +70,14 @@ class Cup < ActiveRecord::Base
   attr_accessible :time_zone, :sport_id, :description, :conditions, :photo
   attr_accessible :starts_at, :ends_at, :deadline_at, :archive
   attr_accessible :group_stage_advance, :group_stage, :group_stage_single, :second_stage_single, :final_stage_single, :slug
-	attr_accessible	:starts_at_date, :starts_at_time, :ends_at_date, :ends_at_time
+	attr_accessible	:starts_at_date, :starts_at_time, :ends_at_date, :ends_at_time, :venue_id
 
   has_and_belongs_to_many :escuadras,     :join_table => "cups_escuadras",   :order => "name"
   has_many                :games
   has_many                :standings,     :order => "points DESC, ranking"
   has_many                :challenges, 		:conditions => "challenges.archive = false"
   belongs_to              :sport
+	belongs_to							:venue
   
   has_many :the_managers,
   :through => :manager_roles,

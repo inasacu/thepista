@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121206190044) do
+ActiveRecord::Schema.define(:version => 20121213224449) do
 
   create_table "announcements", :force => true do |t|
     t.text     "message"
@@ -121,6 +121,7 @@ ActiveRecord::Schema.define(:version => 20121206190044) do
     t.boolean  "official",            :default => false
     t.boolean  "club",                :default => true
     t.string   "slug"
+    t.integer  "venue_id",            :default => 1
   end
 
   add_index "cups", ["slug"], :name => "index_cups_on_slug", :unique => true
