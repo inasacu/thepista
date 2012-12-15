@@ -36,8 +36,7 @@
 								:value => @cup.ends_at.strftime("%H:%M") %>
 	</div>
 	
-	<div class="three columns">
-	</div>
+	<div class="three columns"></div>
 	
 	<div class="three columns"></div>
 	
@@ -49,10 +48,8 @@
 <%= set_form_label(the_form, :venue) %>
 <%= set_form_select(the_form, :venue_id, Venue.venue_name, @cup.venue_id) %><br/><br/>
 
-
 <%= set_form_label(the_form, :sport) %>
 <%= the_form.select(:sport_id, Sport.sport_name, {:selected => @cup.sport_id, :include_blank => true}) %><br/><br/>
-
 
 <%= set_form_label(the_form, :description) %>
 <%= set_form_text_area(the_form, :description, true) %><br/>
@@ -64,19 +61,17 @@
 <%= set_form_file_field(the_form, :photo) %><br/><br/>
 
 
-<%= set_form_label(the_form, :points_for_win) %>
-<%= set_form_text_field(the_form, :points_for_win, 'small input-text', true) %><br />
-
-
-<%= set_form_label(the_form, :points_for_draw) %>
-<%= set_form_text_field(the_form, :points_for_draw, 'small input-text', true) %><br />
-
-
-<%= set_form_label(the_form, :points_for_lose) %>
-<%= set_form_text_field(the_form, :points_for_lose, 'small input-text', true) %><br />
-
 
 <% if the_maximo %>
+
+	<%= set_form_label(the_form, :points_for_win) %>
+	<%= set_form_text_field(the_form, :points_for_win, 'small input-text', true) %><br />
+
+	<%= set_form_label(the_form, :points_for_draw) %>
+	<%= set_form_text_field(the_form, :points_for_draw, 'small input-text', true) %><br />
+
+	<%= set_form_label(the_form, :points_for_lose) %>
+	<%= set_form_text_field(the_form, :points_for_lose, 'small input-text', true) %><br />
 
 	<%= set_form_label(the_form, :official) %>
 	<%= set_form_checkbox(the_form, :official) %><br />

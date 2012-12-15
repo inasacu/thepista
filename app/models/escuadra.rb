@@ -61,7 +61,7 @@ class Escuadra < ActiveRecord::Base
   
   def join_escuadra(cup)
     CupsEscuadras.join_escuadra(self, cup)
-    Standing.create_cup_escuadra_standing(cup)  
+    Standing.delay.create_cup_escuadra_standing(cup)  
   end
   
   def self.cup_escuadras(cup, page = 1)
