@@ -7,7 +7,7 @@
 	has_team = current_user.groups.count > 0
 %>
 
-	<%= render 'home/upcoming_cup_zurb', :upcoming_cups => @upcoming_cups, :the_label => label_name(:upcoming)  unless @upcoming_cups.empty? %>
+
 	<%= render 'home/upcoming_game_zurb', :my_schedules => @upcoming_games, :the_label => the_label unless @upcoming_games.empty? %>
 	<%= render 'home/upcoming_schedule_zurb', :my_schedules => @my_schedules, :the_label => label_name(:my_upcoming) unless @my_schedules.empty? %>
 	
