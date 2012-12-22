@@ -345,19 +345,21 @@ class Schedule < ActiveRecord::Base
     find(:first, :conditions => ["group_id = ? and played = true", schedule.group_id], :order => "starts_at desc")    
   end
 
-  def self.previous(schedule, option=false)
-    if self.count(:conditions => ["id < ? and group_id = ?", schedule.id, schedule.group_id] ) > 0
-      return find(:first, :select => "id", :conditions => ["group_id = ? and starts_at < ?", schedule.group_id, schedule.starts_at], :order => "starts_at desc")
-    end
-    return schedule
-  end 
+	def self.previous(schedule, option=false)
+		if self.count(:conditions => ["id < ? and group_id = ?", schedule.id, schedule.group_id] ) > 0
+			# return find(:first, :select => "id", :conditions => ["group_id = ? and starts_at < ?", schedule.group_id, schedule.starts_at], :order => "starts_at desc")
+			return find(:first, :conditions => ["group_id = ? and starts_at < ?", schedule.group_id, schedule.starts_at], :order => "starts_at desc")
+		end
+		return schedule
+	end 
 
-  def self.next(schedule, option=false)
-    if self.count(:conditions => ["id > ? and group_id = ?", schedule.id, schedule.group_id]) > 0
-      return find(:first, :select => "id", :conditions => ["group_id = ? and starts_at > ?", schedule.group_id, schedule.starts_at], :order => "starts_at")
-    end
-    return schedule
-  end
+	def self.next(schedule, option=false)
+		if self.count(:conditions => ["id > ? and group_id = ?", schedule.id, schedule.group_id]) > 0
+			# return find(:first, :select => "id", :conditions => ["group_id = ? and starts_at > ?", schedule.group_id, schedule.starts_at], :order => "starts_at")
+			return find(:first, :conditions => ["group_id = ? and starts_at > ?", schedule.group_id, schedule.starts_at], :order => "starts_at")
+		end
+		return schedule
+	end
 
 	def self.upcoming_schedules(hide_time)
 		with_scope(:find => where(:starts_at => ONE_WEEK_FROM_TODAY, :played => false).order("starts_at")) do

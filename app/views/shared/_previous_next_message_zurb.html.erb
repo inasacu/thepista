@@ -1,35 +1,47 @@
-<% if DISPLAY_HEADER_0PTIONS 
+<%	
+	display_previous_next ||= false
 	
+	if display_previous_next 
+		
 	the_action = get_the_action.gsub(" ", "_")
 	the_next_link = ''
 	the_previous_link = ''
+	
+	the_previous_label = the_previous.name
+	the_next_label = the_next.name
+	
 
 	if is_controller("schedule")
 		case the_action
 		when"show"
-			the_next_link = link_to(label_name(:previous), schedule_path(the_previous)) 
-			the_previous_link = link_to(label_name(:next), schedule_path(the_next)) 
+			the_next_link = link_to(the_previous_label, schedule_path(the_previous)) 
+			the_previous_link = link_to(the_next_label, schedule_path(the_next)) 
 
 		when "team_roster" 
-			the_next_link = link_to(label_name(:previous), team_roster_path(:id => the_previous))
-			the_previous_link = link_to(label_name(:next), team_roster_path(:id => the_next))
+			the_next_link = link_to(the_previous_label, team_roster_path(:id => the_previous))
+			the_previous_link = link_to(the_next_label, team_roster_path(:id => the_next))
 
 		when "team_last_minute" 
-			the_next_link = link_to(label_name(:previous), team_last_minute_path(:id => the_previous))
-			the_previous_link = link_to(label_name(:next), team_last_minute_path(:id => the_next))
+			the_next_link = link_to(the_previous_label, team_last_minute_path(:id => the_previous))
+			the_previous_link = link_to(the_next_label, team_last_minute_path(:id => the_next))
 
 		when "team_no_show" 
-			the_next_link = link_to(label_name(:previous), team_no_show_path(:id => the_previous))
-			the_previous_link = link_to(label_name(:next), team_no_show_path(:id => the_next))
+			the_next_link = link_to(the_previous_label, team_no_show_path(:id => the_previous))
+			the_previous_link = link_to(the_next_label, team_no_show_path(:id => the_next))
 
 		when "team_unavailable" 
-			the_next_link = link_to(label_name(:previous), team_unavailable_path(:id => the_previous))
-			the_previous_link = link_to(label_name(:next), team_unavailable_path(:id => the_next))
+			the_next_link = link_to(the_previous_label, team_unavailable_path(:id => the_previous))
+			the_previous_link = link_to(the_next_label, team_unavailable_path(:id => the_next))
 
 		end
+
+		the_next_link = '' if @schedule == the_previous
+		the_previous_link = '' if @schedule == the_next
+
 	end
 %>
 
+<hr/>
 
 <div class="row">
 
@@ -51,8 +63,5 @@
 	</div>
 
 </div>
-
-<hr />
-<br />
 
 <% end %>

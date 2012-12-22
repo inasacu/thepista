@@ -44,11 +44,6 @@
 
 <%= render 'shared/show_description_zurb', :item => @schedule, :the_label => the_label %>
 
-<%= render "shared/previous_next_message_zurb", :schedule => @schedule, :the_previous => @the_previous, :the_next => @the_next -%>
-
-
-
-
 <table>
 	<tbody>
 		<tr>
@@ -103,3 +98,4 @@
 	</tbody>
 </table>
 
+<%= render "shared/previous_next_message_zurb", :schedule => @schedule, :the_previous => @the_previous, :the_next => @the_next, :display_previous_next => true %>

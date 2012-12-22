@@ -2,9 +2,6 @@
 	the_label = @schedule.name
 %>
 
-
-<%= render "shared/previous_next_message_zurb", :schedule => @schedule, :the_previous => @the_previous, :the_next => @the_next -%>
-
 <%= set_title_class(the_label, 'events') %>
 
 <%= render('schedules/team_roster_change_schedule', :the_start_at_label => the_start_at_label, :the_roster => @the_roster) %>
@@ -12,25 +9,21 @@
 <div class="row">
 	<div class="twelve columns">
 
-<% if @has_a_roster %>
+	<% if @has_a_roster %>
 		
-		<%= render 'schedules/team_roster_box_zurb', 
-				   	:previous_show => @previous, 
-					:next_show => @next, 
-					:schedule => @schedule, 
-					:the_roster => @the_roster, 
-					:match_type => @match_type %>
+			<%= render 'schedules/team_roster_box_zurb', 
+					   	:previous_show => @previous, 
+						:next_show => @next, 
+						:schedule => @schedule, 
+						:the_roster => @the_roster, 
+						:match_type => @match_type %>
 	
-<% end -%>
+	<% end -%>
+
+	<%= render "shared/previous_next_message_zurb", :schedule => @schedule, :the_previous => @the_previous, :the_next => @the_next, :display_previous_next => true %>
 
 	</div>
 </div>
-
-
-
-
-
-
 
 
 

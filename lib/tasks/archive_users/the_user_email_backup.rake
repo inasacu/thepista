@@ -7,8 +7,7 @@ task :the_user_email_backup => :environment do |t|
 
 	User.find(:all, :conditions => "email_backup is null").each do |user|
 		puts "#{user.name} - #{user.email}"
-
-		user.email_backup = 'babiayeah@hotmail.com'
+		user.email_backup = user.email
 		user.save!
 	end
 
