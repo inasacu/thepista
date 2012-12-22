@@ -1,4 +1,4 @@
-# to run:    heroku run rake the_unused_schedule --app thepista
+# to run:    heroku run rake the_unused_schedule --app zurb
 
 desc "remove all unused schedules and matches and update scorecards"
 task :the_unused_schedule => :environment do |t|

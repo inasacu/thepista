@@ -201,13 +201,13 @@ class Scorecard < ActiveRecord::Base
     # ranking
     unless previous_matches
       @scorecards = Scorecard.find(:all, :joins => "LEFT JOIN users on users.id = scorecards.user_id",
-                        :conditions =>["scorecards.group_id = ? and scorecards.user_id > 0 and scorecards.played > 0 and scorecards.archive = false", group.id], 
+                        :conditions =>["scorecards.group_id = ? and scorecards.user_id > 0 and scorecards.played > 0 and scorecards.archive = false and users.archive = false", group.id], 
                         :order => 'points desc, users.name')
       
     # previous ranking
     else
       @scorecards = Scorecard.find(:all, :joins => "LEFT JOIN users on users.id = scorecards.user_id",
-                      :conditions =>["scorecards.group_id = ? and scorecards.user_id > 0 and scorecards.played > 0 and scorecards.archive = false", group.id], 
+                      :conditions =>["scorecards.group_id = ? and scorecards.user_id > 0 and scorecards.played > 0 and scorecards.archive = false and users.archive = false", group.id], 
                       :order => 'scorecards.previous_points desc, users.name')
     end
 
@@ -308,7 +308,7 @@ class Scorecard < ActiveRecord::Base
                          LEFT JOIN users on users.id = scorecards.user_id 
                          LEFT JOIN matches on matches.user_id = scorecards.user_id",
                 :conditions => ["scorecards.group_id = ? and scorecards.user_id > 0 and scorecards.played > 0 and scorecards.archive = false 
-                               and matches.schedule_id = ? and matches.archive = false", group, the_schedules.first.id],
+                               and matches.schedule_id = ? and matches.archive = false and users.archive = false", group, the_schedules.first.id],
                 :order => the_sort)
     else
       return nil

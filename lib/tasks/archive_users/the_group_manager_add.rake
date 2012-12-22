@@ -1,4 +1,4 @@
-# to run:    heroku run rake the_group_manager_add -a thepista
+# to run:    rake the_group_manager_add 
 
 
 

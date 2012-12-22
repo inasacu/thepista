@@ -1,4 +1,4 @@
-# to run:    heroku run rake the_archive_dependent -a thepista
+# to run:    heroku run rake the_archive_dependent --app zurb
 
 desc "ARCHIVE dependent records to already archived"
 task :the_archive_dependent => :environment do |t|

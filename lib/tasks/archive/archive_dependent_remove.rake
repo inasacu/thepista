@@ -1,4 +1,4 @@
-# to run:    heroku run rake the_remove_archive_data -a thepista
+# to run:    heroku run rake the_remove_archive_data --app zurb
 
 desc "remove all archived files not needed"
 task :the_remove_archive_data => :environment do |t|
