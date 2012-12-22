@@ -53,7 +53,7 @@ class Match < ActiveRecord::Base
     find(:all, :select => "distinct matches.id, matches.user_id, matches.schedule_id, matches.type_id, types.name as type_name, matches.status_at as created_at", 
          :joins => "left join groups_users on groups_users.user_id = matches.user_id left join types on types.id = matches.type_id left join schedules on schedules.id = matches.schedule_id",    
          :conditions => ["schedules.played = false and groups_users.group_id in (?) and 
-              age(matches.status_at, matches.created_at) > '00:00:00' and matches.status_at != matches.created_at and matches.status_at >= ?", user.groups, YESTERDAY]).each do |item| 
+              age(matches.status_at, matches.created_at) > '00:00:00' and matches.status_at != matches.created_at and matches.status_at >= ? and schedules.starts_at >= ?", user.groups, YESTERDAY, YESTERDAY]).each do |item| 
       items << item
     end
     return items 
@@ -66,7 +66,7 @@ class Match < ActiveRecord::Base
          :conditions => ["schedules.archive = false and matches.type_id = 3 and schedules.played = true and groups_users.group_id in (?) and 
               age(matches.status_at, matches.created_at) > '00:00:00' and 
               matches.status_at != matches.created_at and matches.status_at >= schedules.starts_at - INTERVAL '1 days' 
-              and matches.status_at >= ?", user.groups, LAST_TWO_DAYS]).each do |item| 
+              and matches.status_at >= ?", user.groups, YESTERDAY]).each do |item| 
       items << item
     end
     return items 

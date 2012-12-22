@@ -5,7 +5,7 @@ desc "this job will take user original account and replace the id for a previous
 
 task :the_second_user_account => :environment do |t|
 
-	ActiveRecord::Base.establish_connection(RAILS_ENV.to_sym)
+	ActiveRecord::Base.establish_connection(Rails.env.to_sym)
 
   
 	first_user = 'julientondu@hotmail.com'

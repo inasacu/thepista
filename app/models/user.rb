@@ -83,7 +83,7 @@ class User < ActiveRecord::Base
     belongs_to          :city
     
     has_and_belongs_to_many   :groups,                :conditions => 'groups.archive = false',   :order => 'name'
-    has_and_belongs_to_many   :challenges,            :conditions => 'challenges.archive = false',   :order => 'name'
+    # has_and_belongs_to_many   :challenges,            :conditions => 'challenges.archive = false',   :order => 'name'    # DO NOT REMOVE - IMPORTANT FOR OFFICIAL CUPS
     
 		has_many		:authentications
     has_many    :addresses

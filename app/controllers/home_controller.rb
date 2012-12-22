@@ -57,8 +57,7 @@ class HomeController < ApplicationController
 			Match.last_minute_items(@all_match_items, current_user) if DISPLAY_LAST_MINUTE_CANCEL
 
 			Teammate.my_groups_petitions(@requested_teammates, current_user)
-			Teammate.my_challenges_petitions(@requested_teammates, current_user)   
-
+	
 			current_user.groups.each {|group| Scorecard.latest_items(@all_items, group)} if DISPLAY_MAX_GAMES_PLAYED   
 		end
 
@@ -75,9 +74,13 @@ class HomeController < ApplicationController
 		Cup.latest_items(@all_values, has_values)    
 		if @all_values.count > 0
 			Cup.latest_items(@all_items, has_values)
-			Challenge.latest_items(@all_items)  
 			Game.latest_items(@all_items)
-			Cast.latest_items(@all_items)
+			
+			# DO NOT REMOVE - IMPORTANT FOR OFFICIAL CUPS
+			#   Teammate.my_challenges_petitions(@requested_teammates, current_user)   
+			# 	Challenge.latest_items(@all_items)
+			# 	Cast.latest_items(@all_items)
+			
 		end     
 
 		@all_items = @all_items.sort_by(&:created_at).reverse!    
