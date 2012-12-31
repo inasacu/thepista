@@ -1,6 +1,7 @@
 <%
 	@current_manage_groups = current_user.get_current_manage_groups	
-	@current_manage_challenges = current_user.get_current_manage_challenges
+	# @current_manage_challenges = current_user.get_current_manage_challenges
+	@current_manage_challenges = nil
 %>
 
 <% if current_user == @user %>
@@ -36,7 +37,7 @@
 <% end %>
 
 
-<% @current_manage_challenges.each do |item| 
+<%# @current_manage_challenges.each do |item| 
 	
 		is_user_member = @user.is_member_of?(item)
 		is_user_manager = @user.is_manager_of?(item)		
@@ -46,16 +47,16 @@
 %>
 			<hr/>
 	
-			<%= set_image_and_link(join_item_link_to(@user, item, true), 'group_add') unless is_user_member %>
-			<%= set_image_and_link(leave_item_link_to(@user, item), 'group_remove') if is_user_member %>		
+			<%#= set_image_and_link(join_item_link_to(@user, item, true), 'group_add') unless is_user_member %>
+			<%#= set_image_and_link(leave_item_link_to(@user, item), 'group_remove') if is_user_member %>		
 	
-			<% if is_user_member %>
-			<%= set_image_and_link(set_role_add_challenge_subscription(@user, item), 'user_add') unless is_user_subscriber %>
-			<%= set_image_and_link(set_role_remove_challenge_subscription(@user, item), 'user_remove') if is_user_subscriber %>
-			<% end %>
+			<%# if is_user_member %>
+			<%#= set_image_and_link(set_role_add_challenge_subscription(@user, item), 'user_add') unless is_user_subscriber %>
+			<%#= set_image_and_link(set_role_remove_challenge_subscription(@user, item), 'user_remove') if is_user_subscriber %>
+			<%# end %>
 				
 <% 
-		end
-   end 
+		#end
+   #end 
 %>
 
