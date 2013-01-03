@@ -32,9 +32,12 @@ class CupsController < ApplicationController
 	def create
 		@cup = Cup.new(params[:cup])	
 		@user = current_user
-		@cup.points_for_win = @cup.sport.points_for_win
-		@cup.points_for_draw = @cup.sport.points_for_draw
-		@cup.points_for_lose = @cup.sport.points_for_lose
+		
+		if @cup.sport
+			@cup.points_for_win = @cup.sport.points_for_win
+			@cup.points_for_draw = @cup.sport.points_for_draw
+			@cup.points_for_lose = @cup.sport.points_for_lose
+		end
 
 		if @cup.save  
 			@cup.create_cup_details(current_user)
