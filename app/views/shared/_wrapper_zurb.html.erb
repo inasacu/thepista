@@ -75,6 +75,9 @@
 		end
 	end
 	
+	ignore_sidebar = ['new','create', 'edit', 'update']
+	the_sidebar = nil if ignore_sidebar.include?(get_the_action)
+	
 	
 	# case for pagination display
 	if get_controller_action == 'group_team_list'

@@ -118,7 +118,6 @@ class SchedulesController < ApplicationController
 			@schedule.fee_per_pista = 1
 			@schedule.fee_per_pista = @group.player_limit * @schedule.fee_per_game if @group.player_limit > 0
 
-			# @schedule.starts_at = Time.zone.now.change(:hour => 12, :min => 0, :sec => 0) + 7.days
 			@schedule.starts_at = Time.zone.now.change(:hour => 12, :min => 0, :sec => 0) + 1.days
 
 			@schedule.ends_at = @schedule.starts_at + 1.hour
@@ -129,6 +128,9 @@ class SchedulesController < ApplicationController
 
 		@previous_schedule = Schedule.find(:first, :conditions => ["schedules.group_id = ?", @group.id], :order => "schedules.starts_at DESC")    
 		unless @previous_schedule.nil?
+
+			is_current_date = @previous_schedule.starts_at + 1.days > Time.zone.now
+
 			@schedule.jornada = @previous_schedule.jornada + 1
 			@schedule.name = "#{I18n.t(:jornada)} #{@schedule.jornada}"
 
@@ -137,11 +139,13 @@ class SchedulesController < ApplicationController
 			@schedule.fee_per_pista = @previous_schedule.fee_per_pista
 			@schedule.player_limit = @previous_schedule.player_limit
 			@schedule.public = @previous_schedule.public
-			@schedule.starts_at = @previous_schedule.starts_at + 1.days
-			@schedule.ends_at = @previous_schedule.ends_at + 1.days
-			# @schedule.starts_at = @previous_schedule.starts_at + 7.days
-			# @schedule.ends_at = @previous_schedule.ends_at + 7.days
-			@schedule.reminder_at = @previous_schedule.starts_at + 4.days
+
+			if is_current_date
+				@schedule.starts_at = @previous_schedule.starts_at + 1.days
+				@schedule.ends_at = @previous_schedule.ends_at + 1.days 
+			end
+
+			@schedule.reminder_at = @previous_schedule.starts_at - 1.days
 
 			if @schedule.starts_at < Time.zone.now
 				@schedule.starts_at = @schedule.starts_at + 7.days
@@ -156,7 +160,7 @@ class SchedulesController < ApplicationController
 	def create
 		@schedule = Schedule.new(params[:schedule])   		
 		@schedule.ends_at_date = @schedule.starts_at_date 
-		
+
 		unless is_current_manager_of(@schedule.group)
 			warning_unauthorized
 			redirect_back_or_default('/index')
@@ -166,7 +170,7 @@ class SchedulesController < ApplicationController
 		if @schedule.save 
 			@schedule.create_schedule_details
 			Schedule.delay.send_created
-			
+
 			successful_create
 			redirect_to @schedule
 		else
