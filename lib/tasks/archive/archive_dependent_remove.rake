@@ -53,7 +53,7 @@ task :the_remove_archive_data => :environment do |t|
 	@archive.each {|archive_file| the_archives << archive_file}
 
 	the_archives.each do |the_archive|
-		puts "#{the_archive.id}  REMOVE #{the_archive.class.to_s} archived files removed (#{counter})"
+		puts " (#{counter}). #{the_archive.class.to_s}: #{the_archive.id} archived files REMOVED"
 		the_archive.destroy
 		counter += 1
 	end
