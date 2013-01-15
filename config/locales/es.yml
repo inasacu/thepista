@@ -806,8 +806,8 @@ es:
      inbox: Bandeja de entrada   
      information: Detalles   
      information_about: Detalles de   
-     infringe_false: Falta de asistencia
-     infringe_true: Falta de asistencia
+     infringe_false: Falta de asistencia.
+     infringe_true: Falta de asistencia.
      interest_description: (Escribe algo de lo que te interesa...)   
      invalid_action: Acción invalida   
      invalid_login: No válido de acceso o contraseña   
