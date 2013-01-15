@@ -81,13 +81,20 @@ the_roster.each do |match|
 	can_evaluate = current_user != the_user and the_roster.include?(current_user)
 	was_convocado =  match.type_id == 1	
 	
+	the_infringe_label = label_name(:infringe_true)
+	no_jugado_image = ""
+	if @the_roster_infringe.include?(match.user_id)
+		no_jugado_image = "#{no_jugado_image} #{image_tag('icons/star_purple_true.png', 
+							options={:title => the_infringe_label, :style => 'height: 15px; width: 15px;'})}" 
+	end
+		
 	the_match_status = ""
-	the_match_status = ago(match.status_at) #unless has_been_played
+	the_match_status = "#{ago(match.status_at)}" 
 	the_match_status = "#{the_match_status} <br /> ( #{label_name(:no_jugado)} )" if match.type_id == 4
 	
 	the_whatsapp_label = label_name(:whatsapp)
 	the_whatsapp_link = ""
-	the_whatsapp_link = "#{image_tag('icons/whatsapp.png', options={:title => the_whatsapp_label, :style => 'height: 18px; width: 18px;'})}" if (the_user.whatsapp and !the_user.phone.blank?)
+	the_whatsapp_link = "#{image_tag('icons/whatsapp.png', options={:title => the_whatsapp_label, :style => 'height: 15px; width: 15px;'})}" if (the_user.whatsapp and !the_user.phone.blank?)
 		
 	the_user_link = "#{user_link_limit(the_user)}  #{the_whatsapp_link}"
 	the_match_status = "#{the_match_status}"
@@ -97,15 +104,14 @@ the_roster.each do |match|
 	change_group_link = (is_member & display_team_link) ? link_to(match.team_name(@schedule), match_team_path(:id => match.id), :title => label_name(:change_group)) :  match.team_name(@schedule)
 	
 	is_different_user_manager = (current_user != the_user and is_manager)
-	subscription_image = "#{counter +=1}. #{subscription_image_link(the_user, is_subscriber, the_label)}"
-	
--%>
+	subscription_image = "#{counter +=1}. #{subscription_image_link(the_user, is_subscriber, the_label)} #{no_jugado_image} "
+%>
 
 <tr class='<%= second_team %>'>
 	<%= content_tag_safe(:td, image_link_smaller(the_user), '', '') %>
 	<%= content_tag_safe(:td, subscription_image, '','') %>
 	<%= content_tag_safe(:td, the_user_link, '','') %>
-	<%= content_tag_safe(:td, the_match_status, '','') %>
+	<%= content_tag_safe(:td, "#{the_match_status}", '','') %>
 	<%= content_tag_safe(:td, game_number, '','') %>
 	<%= content_tag_safe(:td, change_group_link, '','') unless has_been_played %>
 	<%= content_tag_safe(:td, was_convocado ? (group_score_link(@schedule, is_second_team)) : '', '','') if has_been_played %>	

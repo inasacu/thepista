@@ -796,7 +796,9 @@ en:
      in: in   
      inbox: Inbox   
      information: Information   
-     information_about: Information on 
+     information_about: Information on
+     infringe_false: Has Infringed
+     infringe_true: Has Infringed
      interest_description: (What about what interest you...)   
      invalid_action: Invalid Action   
      invalid_login: Invalid Login   

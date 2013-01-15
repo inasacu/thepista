@@ -160,6 +160,18 @@ class Schedule < ActiveRecord::Base
                 :conditions => ["matches.schedule_id = ? and matches.archive = false and matches.type_id = 1 and scorecards.archive = false and scorecards.group_id = ?", self.id, self.group_id],
                 :order => the_sort)
   end
+
+	def the_roster_infringe
+		the_match = Match.find(:all, :select => "distinct matches.user_id",
+							 						 :joins => "join schedules on schedules.id = matches.schedule_id
+																			join groups on groups.id = schedules.group_id",
+							 							:conditions => ["schedules.group_id = ? and matches.type_id != 1 and 
+																						 matches.status_at > schedules.starts_at	and 
+															 							 matches.created_at < schedules.starts_at", self.group_id])
+			the_infringe = []
+			the_match.each {|match| the_infringe << match.user_id}
+			return the_infringe
+		end
   
   def self.match_participation(group, users, schedules)
     find(:all, :select => "distinct schedules.*",  

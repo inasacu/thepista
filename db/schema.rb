@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121213224449) do
+ActiveRecord::Schema.define(:version => 20130115170525) do
 
   create_table "announcements", :force => true do |t|
     t.text     "message"
@@ -424,6 +424,7 @@ ActiveRecord::Schema.define(:version => 20121213224449) do
     t.integer  "game_number",                                                         :default => 0
     t.string   "block_token"
     t.integer  "change_id"
+    t.boolean  "infringe",                                                            :default => false
   end
 
   add_index "matches", ["group_id"], :name => "index_matches_on_group_id"

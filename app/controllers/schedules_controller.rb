@@ -64,7 +64,8 @@ class SchedulesController < ApplicationController
 		store_location
 		@has_a_roster = !(@schedule.convocados.empty?)
 		@the_roster = @schedule.the_roster_sort(sort_order(''))
-
+		@the_roster_infringe = @schedule.the_roster_infringe
+		
 		set_the_template('schedules/team_roster')
 		render @the_template 
 	end
@@ -77,6 +78,8 @@ class SchedulesController < ApplicationController
 		store_location
 		@has_a_roster = !(@schedule.last_minute.empty?)
 		@the_roster = @schedule.the_last_minute
+		@the_roster_infringe = @schedule.the_roster_infringe
+		
 		set_the_template('schedules/team_roster')
 		render @the_template 
 	end
@@ -85,6 +88,8 @@ class SchedulesController < ApplicationController
 		store_location
 		@has_a_roster = !(@schedule.no_shows.empty?)
 		@the_roster = @schedule.the_no_show
+		@the_roster_infringe = @schedule.the_roster_infringe
+		
 		set_the_template('schedules/team_roster')
 		render @the_template 
 	end
@@ -93,6 +98,8 @@ class SchedulesController < ApplicationController
 		store_location
 		@has_a_roster = !(@schedule.the_unavailable.empty?)
 		@the_roster = @schedule.the_unavailable
+		@the_roster_infringe = @schedule.the_roster_infringe
+		
 		set_the_template('schedules/team_roster')
 		render @the_template 
 	end
