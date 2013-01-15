@@ -16,7 +16,7 @@ gem "geokit-rails"
 gem 'texticle'
 gem 'delayed_job'
 gem 'hirefireapp'
-gem 'paperclip'#, '2.7.0'
+gem 'paperclip'
 gem 'composite_primary_keys'
 gem 'nokogiri'
 gem 'recaptcha'
