@@ -165,9 +165,10 @@ class Schedule < ActiveRecord::Base
 		the_match = Match.find(:all, :select => "distinct matches.user_id",
 							 						 :joins => "join schedules on schedules.id = matches.schedule_id
 																			join groups on groups.id = schedules.group_id",
-							 							:conditions => ["schedules.group_id = ? and matches.type_id != 1 and 
+							 							:conditions => ["schedules.group_id = ? and schedules.starts_at > ? and
+																	   				 matches.type_id != 1 and 
 																						 matches.status_at > schedules.starts_at	and 
-															 							 matches.created_at < schedules.starts_at", self.group_id])
+															 							 matches.created_at < schedules.starts_at", self.group_id, THREE_MONTHS_AGO])
 			the_infringe = []
 			the_match.each {|match| the_infringe << match.user_id}
 			return the_infringe
