@@ -86,7 +86,7 @@ module Thepista
 		# config.action_mailer.perform_deliveries = true
 		# config.action_mailer.raise_delivery_errors = true
 		
-		config.assets.initialize_on_precompile = false
+		# config.assets.initialize_on_precompile = false
 		
   end
 
