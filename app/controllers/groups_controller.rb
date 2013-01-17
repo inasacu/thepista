@@ -30,7 +30,7 @@ class GroupsController < ApplicationController
 		@group = Group.new
 		@group.marker = marker
 		@sports = Sport.find(:all)
-		render @the_template
+		# render @the_template
 	end
 
 	def create
@@ -53,7 +53,7 @@ class GroupsController < ApplicationController
 
 	def edit
 		set_the_template('groups/new')
-		render @the_template   
+		# render @the_template   
 	end
 
 	def update
