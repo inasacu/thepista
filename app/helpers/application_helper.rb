@@ -865,4 +865,10 @@ module ApplicationHelper
 		link_to text, "tel:#{number}"
 	end
 
+	def phone_user_link(user)
+		sets_of_numbers = user.phone.scan(/[0-9]+/)
+		number = "#{sets_of_numbers.join('-')}"
+		link_to user.name, "tel:#{number}"
+	end
+
 end

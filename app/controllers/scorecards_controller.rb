@@ -20,10 +20,6 @@ class ScorecardsController < ApplicationController
 		render @the_template
 	end  
 
-  def sort_order(default)
-    "#{(params[:c] || default.to_s).gsub(/[\s;'\"]/,'')} #{params[:d] == 'down' ? 'DESC' : 'ASC'}"
-  end
-
   def archive
     @group = Group.find(params[:id])
 

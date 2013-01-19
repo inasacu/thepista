@@ -80,9 +80,9 @@
 	
 	
 	# case for pagination display
-	if get_controller_action == 'group_team_list'
-		@the_collection = @users if @users
-	end
+	# if get_controller_action == 'group_team_list'
+	# 	@the_collection = @users if @users
+	# end
 
 	if get_controller_action == 'group_list' or get_controller_action == 'group_index'
 		@the_collection = @groups if @groups
@@ -90,10 +90,6 @@
 
 	if get_controller_action == 'schedule_list' or get_controller_action == 'schedule_index'
 		@the_collection = @schedules if @schedules
-	end
-
-	if get_controller_action == 'group_team_list'
-		@the_collection = @users if @users
 	end
 
 	if get_controller_action == 'cup_index'

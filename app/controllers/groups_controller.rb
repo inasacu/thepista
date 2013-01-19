@@ -15,8 +15,12 @@ class GroupsController < ApplicationController
 	end
 
 	def team_list
-		@users = @group.users.page(params[:page])
-		@total = @group.users.count
+		# @users = @group.users.page(params[:page])
+		@users = @group.users
+		@total = @group.users.count		
+		@the_roster_infringe = nil
+		@the_roster_infringe = @group.schedules.first.the_roster_infringe unless @group.schedules.empty?
+		@scorecards = Scorecard.users_group_scorecard(@group, sort_order(''))  		
 		render @the_template
 	end
 
@@ -30,7 +34,6 @@ class GroupsController < ApplicationController
 		@group = Group.new
 		@group.marker = marker
 		@sports = Sport.find(:all)
-		# render @the_template
 	end
 
 	def create
@@ -53,7 +56,6 @@ class GroupsController < ApplicationController
 
 	def edit
 		set_the_template('groups/new')
-		# render @the_template   
 	end
 
 	def update

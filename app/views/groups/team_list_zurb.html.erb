@@ -1,6 +1,7 @@
 <%
 	the_label = sanitize(@group.name)
 	the_total_label = I18n.t(:has_group_users, :count => @total)
+	counter = 0
 %>
 
 <div class="row">
@@ -9,46 +10,95 @@
 			<%= render('shared/index_total_header_zurb', :items => @users) %>
 
 
-<div class="row">
-	<div class="twelve columns"> 
+	<div class="row">
+		<div class="twelve columns"> 
 		
-		<table>
-		  	<thead>
-			<tr>             
-				<%= set_content_tag_safe(:th, "&nbsp;") %>
-				<%= set_content_tag_safe(:th, "#{label_name(:name)}<br />#{label_name(:last_game_played)}") %>
-				<%= set_content_tag_safe(:th, "#{label_name(:group)}<br />#{label_name(:city)}") %>
-				<%= set_content_tag_safe(:th, "&nbsp;") %>
-				<%#= set_content_tag_safe(:th, "&nbsp;") %>
-			</tr>
-			</thead>
+			<table>
+			  	<thead>
+				<tr>             
+					<%= set_content_tag_safe(:th, "&nbsp;") %>
+					<%= set_content_tag_safe(:th, label_name(:coeficient_points)) %>
+					<%= set_content_tag_safe(:th, label_name(:user)) %>
+					<%= set_content_tag_safe(:th, label_name(:groups)) %>
+					<%= set_content_tag_safe(:th, label_name(:participation)) %>
+				</tr>
+				</thead>
 			
-		<tbody>
+			<tbody>
 			
-			<% @users.each do |user| 
-				schedule = Schedule.last_schedule_played(user)
-				the_date = schedule.nil? ? '' : nice_full_date(schedule.starts_at)
-		    -%>
+				<% @users.each do |user| 
+					schedule = Schedule.last_schedule_played(user)
+					the_date = schedule.nil? ? '' : nice_full_date(schedule.starts_at)
+					has_phone = user.my_members?(current_user)	? (!user.phone.blank?) : (false)
+								
+					the_whatsapp_label = label_name(:whatsapp)
+					the_whatsapp_link = ""
+					the_whatsapp_link = "#{image_tag('icons/whatsapp.png', options={:title => the_whatsapp_label, :style => 'height: 15px; width: 15px;'})}" if (user.whatsapp and !user.phone.blank?)
+					the_user_link = "#{item_name_link(user)}  #{the_whatsapp_link}"
+					the_user_link = "#{phone_user_link(user)}  #{the_whatsapp_link}" if has_phone
+				
+					the_infringe_label = label_name(:infringe_true)
+					no_jugado_image = ""				
+					the_group_link = ""
+					subscription_image = ""	
+							
+					the_coeficient = 0.0
+					game_number = ""
+					user_scorecard_link = ""		
+				
+					if @scorecards
+						@scorecards.each do |scorecard|
+							if scorecard.user == user and scorecard.group == @group
+								the_coeficient = "#{sprintf('%0.00f', scorecard.coeficient_played)}%" 
+
+								if scorecard.coeficient_played.to_f < 20
+									game_number = "<font color='red'>#{the_coeficient}</font>" 
+								elsif scorecard.coeficient_played.to_f > 19 and scorecard.coeficient_played.to_f < 50
+									game_number = "<font color='orange'>#{the_coeficient}</font>"
+								elsif scorecard.coeficient_played.to_f > 49
+									game_number = "<font color='green'>#{the_coeficient}</font>"
+								end
+
+								user_played = scorecard.type_id.to_i == 1 
+								user_scorecard_link = subscription_image_link(user, user_played ? "orange_#{user_played}" : "#{user_played}", I18n.t("game_played_#{user_played}"))		
+							end			
+						end
+					end
+					
+					user.groups.each do |group|
+						if @group == group and !@the_roster_infringe.nil?
+							no_jugado_image = "#{no_jugado_image} #{image_tag('icons/star_purple_true.png', 
+												options={:title => the_infringe_label, :style => 'height: 15px; width: 15px;'})}" if @the_roster_infringe.include?(user.id)
+						end
+					
+						the_group_link     += " , " unless the_group_link.blank?
+						is_subscriber       = user.is_subscriber_of?(group)						
+						the_label           = label_name("subscription_#{is_subscriber}")
+						subscription_image  = "#{item_name_link(group)} #{subscription_image_link(user, is_subscriber, the_label)} #{no_jugado_image} "
+						the_group_link 	   += "#{subscription_image}"  
+					
+					end
+					the_group_link.chop.chop.chop
+				
+					the_counter_link = "#{counter +=1}. #{user_scorecard_link}"
+			    -%>
 		
-			<tr>
-				<%= set_content_tag_safe(:td, image_link_small(user)) %>					
-				<%= set_content_tag_safe(:td, "#{item_name_link(user)} <br/> #{content_tag(:span, the_date, :class =>'date')}", :class => 'name_and_date') %>
-				<%= set_content_tag_safe(:td, "#{(user.has_group? ? group_list(user.groups) : label_name('groups_none'))}<br/>#{user.city.name}" ) %>
-				<%= set_content_tag_safe(:td, "&nbsp;") %>
-				<%#= set_content_tag_safe(:td, "&nbsp;") %>
-			</tr>
+		
+				<tr>
+					<%= content_tag_safe(:td, image_link_smaller(user), '', '') %>
+					<%= content_tag_safe(:td, the_counter_link, '','') %>
+					<%= content_tag_safe(:td, the_user_link, '','') %>
+					<%= content_tag_safe(:td, the_group_link, '','') %>
+					<%= content_tag_safe(:td, game_number, '','') %>
+				</tr>
 			
-			<% end -%>
+				<% end -%>
 		
-		</tbody>
-		</table>
+			</tbody>
+			</table>
 		
+		</div>
 	</div>
-</div>
-
-<hr/>
-
-
 	  	
 
 </div>	

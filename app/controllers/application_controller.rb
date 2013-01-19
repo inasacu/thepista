@@ -89,12 +89,15 @@ class ApplicationController < ActionController::Base
 		flash[:notice] = successful_provider
 	end
 
-
 	def object_counter(objects)
 		@counter = 0
 		objects.each { |object|  @counter += 1 }
 		return @counter
 	end
+
+  def sort_order(default)
+    "#{(params[:c] || default.to_s).gsub(/[\s;'\"]/,'')} #{params[:d] == 'down' ? 'DESC' : 'ASC'}"
+  end
 
 	protected
 	def access_denied

@@ -70,10 +70,6 @@ class SchedulesController < ApplicationController
 		render @the_template 
 	end
 
-	def sort_order(default)
-		"#{(params[:c] || default.to_s).gsub(/[\s;'\"]/,'')} #{params[:d] == 'down' ? 'DESC' : 'ASC'}"
-	end
-
 	def team_last_minute
 		store_location
 		@has_a_roster = !(@schedule.last_minute.empty?)
