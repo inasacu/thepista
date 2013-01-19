@@ -4,25 +4,12 @@
 	subscription ||= false
 	checked ||= false
 	the_label ||= label_name(:users)
-
-	# if recipients
-	# 	the_class = recipients.first.class.to_s 
-	# 	case the_class
-	# 	when "Escuadra", "Group"									
-	# 		the_label = label_name(:escuadras_false)
-	# 	when "User"											
-	# 		the_label = label_name(:users)
-	# 	else
-	# 		the_label = label_name(:users)
-	# 	end
-	# end
 	
 	if escuadra
 		the_label = label_name(:escuadras_false)
 	else
 		the_label = label_name(:users)
 	end
-	
 
 	counter = 0
 %>

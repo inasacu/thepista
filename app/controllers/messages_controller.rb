@@ -28,7 +28,8 @@ class MessagesController < ApplicationController
 
 		elsif (params[:group_id])
 			@group = Group.find(params[:group_id])
-			@recipients = User.find_group_mates(@group)
+			@recipients = User.find_group_mates(@group)			
+			@the_scorecards = Scorecard.users_group_scorecard(@group, sort_order(''))
 
 			if params[:roster_id]
 				users = []
@@ -40,7 +41,8 @@ class MessagesController < ApplicationController
 			@schedule = Schedule.find(params[:schedule_id])
 			@group = @schedule.group
 			@recipients = User.squad_list(@schedule)   
-			  
+			@the_scorecards = Scorecard.users_group_scorecard(@group, sort_order(''))
+			
 			@message.body = @schedule.name
 			@message.subject = @schedule.name
 
@@ -57,6 +59,7 @@ class MessagesController < ApplicationController
 			@scorecard = Schedule.find(params[:scorecard_id])
 			@group = @scorecard.group
 			@recipients = User.find_group_mates(@group)   
+			@the_scorecards = Scorecard.users_group_scorecard(@group, sort_order(''))
 			  
 			@message.subject = "#{@group.name} - #{I18n.t(:send_scorecard_subject)}"
 

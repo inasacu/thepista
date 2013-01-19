@@ -1,14 +1,39 @@
 <% 
 	checked ? checkmark = 'checked' : checkmark = '' 
 	checkmark =  (convocados and recipient.type_id.to_i == 1) ? 'checked' : ''
+	
+	the_coeficient = 0.0
+	game_number = ""
+	user_scorecard_link = ""
+	the_played_label = label_name(:participation_full)
+		
+	if @the_scorecards and @group
+		@the_scorecards.each do |scorecard|
+			if scorecard.user == recipient and scorecard.group == @group
+				the_coeficient = "#{sprintf('%0.00f', scorecard.coeficient_played)}%" 
+
+				if scorecard.coeficient_played.to_f < 20
+					game_number = "<font color='red', title='#{the_played_label}'>#{the_coeficient}</font>" 
+				elsif scorecard.coeficient_played.to_f > 19 and scorecard.coeficient_played.to_f < 50
+					game_number = "<font color='orange', title='#{the_played_label}'>#{the_coeficient}</font>"
+				elsif scorecard.coeficient_played.to_f > 49
+					game_number = "<font color='green', title='#{the_played_label}'>#{the_coeficient}</font>"
+				end
+
+				user_played = scorecard.type_id.to_i == 1 
+				user_scorecard_link = subscription_image_link(recipient, user_played ? "orange_#{user_played}" : "#{user_played}", I18n.t("game_played_#{user_played}"))		
+			end			
+		end
+	end
+	
 	the_convocados = ""
 	the_convocados = "  -  #{label_name(recipient.types_name)}" if convocados
-	the_item_link = "#{item_image_link_smaller(recipient)}  #{item_name_link(recipient)} #{the_convocados}".html_safe
+	the_item_link = "#{item_image_link_smaller(recipient)}  #{user_scorecard_link}  #{item_name_link(recipient)} #{the_convocados}".html_safe
 %>
 
 <label>
 	<input type="checkbox" id="roster" name="recipient_ids[]" value="<%= recipient.id %>" <%= checkmark %> >	
-	<%= the_item_link %>
+	 <%= the_item_link %> <%= game_number.html_safe %>
 </label>
 
 

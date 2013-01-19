@@ -15,7 +15,6 @@ class GroupsController < ApplicationController
 	end
 
 	def team_list
-		# @users = @group.users.page(params[:page])
 		@users = @group.users
 		@total = @group.users.count		
 		@the_roster_infringe = nil
