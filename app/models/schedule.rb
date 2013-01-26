@@ -166,7 +166,7 @@ class Schedule < ActiveRecord::Base
 							 						 :joins => "join schedules on schedules.id = matches.schedule_id
 																			join groups on groups.id = schedules.group_id",
 							 							:conditions => ["schedules.group_id = ? and schedules.starts_at > ? and
-																	   				 matches.type_id != 1 and 
+																	   				 matches.type_id = 4 and 
 																						 matches.status_at > schedules.starts_at	and 
 															 							 matches.created_at < schedules.starts_at", self.group_id, THREE_MONTHS_AGO])
 			the_infringe = []

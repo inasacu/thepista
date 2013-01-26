@@ -9,11 +9,9 @@
 	ranking_change = " " if (scorecard.ranking == scorecard.previous_ranking or scorecard.previous_ranking == 0)
 
 	user_played = scorecard.type_id.to_i == 1 
-	user_subscription_link = subscription_image_link(scorecard.user, user_played ? "orange_#{user_played}" : "#{user_played}", I18n.t("game_played_#{user_played}"))
-	# the_ranking_change = "#{image} #{ranking_change}"
+	user_scorecard_link = subscription_image_link(scorecard.user, user_played ? "orange_#{user_played}" : "#{user_played}", I18n.t("game_played_#{user_played}"))
 	the_ranking_change = "#{image}"
 	the_player_link = user_link_limit(scorecard.user)
-	# the_coeficient_percent = (scorecard.points.to_f / (scorecard.played.to_f * scorecard.group.points_for_win) * 100)
 	the_coeficient_percent = scorecard.coeficient_percent.to_i
 	
 	game_number = "#{scorecard.played}"
@@ -38,7 +36,7 @@
 
 
 <tr>	
-	<%= set_content_tag_safe(:td, "#{scorecard.ranking}. #{user_subscription_link}") %>
+	<%= set_content_tag_safe(:td, "#{scorecard.ranking}. #{user_scorecard_link}") %>
 	<%= set_content_tag_safe(:td, "#{item_image_link_tiny(scorecard.user)}") %>
 	<%= set_content_tag_safe(:td, the_player_link) %>
 	<%= set_content_tag_safe(:td, the_ranking_change) %>
