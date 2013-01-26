@@ -18,8 +18,11 @@
 	<%= set_image_and_link(link_to(label_name(:create_join_challenge), challenges_url), 'challenge_join') %>
 	<% end -%>
 	
+	<% if is_cup_visible %>
 	<hr>
-	<%= set_image_and_link_h6(option_link('cup'), 'cup') if is_cup_visible %>
+	<%= set_image_and_link_h6(option_link('cup'), 'cup') %>
+	
+	<% end %>
 	
 	
 </div>
