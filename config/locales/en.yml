@@ -1310,6 +1310,8 @@ en:
      reservations_show:  Display reservation
      reservations_update: Update reservations
      restored_message: Message Restored   
+     reputation_false: Most likely to show.
+     reputation_true: Most likely to show.
      role: Role
      roles: Roles   
      roster: Squad   

@@ -172,7 +172,28 @@ class Schedule < ActiveRecord::Base
 			the_infringe = []
 			the_match.each {|match| the_infringe << match.user_id}
 			return the_infringe
-		end
+	end
+	
+	def the_roster_reputation(group)
+			the_match = Match.find_by_sql(["select matches.user_id, count(*) from (
+										select matches.schedule_id, schedules.player_limit, count(*), (count(*) * 100/ schedules.player_limit)  as player_percent
+										from schedules, matches
+										where schedules.group_id = ?
+										and schedules.id = matches.schedule_id
+										and matches.type_id = 1
+										group by matches.schedule_id, schedules.player_limit
+										having count(*) < player_limit ) match_limit, matches
+										where player_percent < ?
+										and match_limit.schedule_id = matches.schedule_id
+										and matches.type_id = 1 
+										group by matches.user_id
+										having count(*) > ?", group, REPUTATION_PERCENT, REPUTATION_GAME_MINIMUM])
+									
+		the_reputation = []
+		the_match.each {|match| the_reputation << match.user_id}
+		return the_reputation
+	end
+	
   
   def self.match_participation(group, users, schedules)
     find(:all, :select => "distinct schedules.*",  

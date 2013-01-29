@@ -79,10 +79,22 @@ the_roster.each do |match|
 	was_convocado =  match.type_id == 1	
 	
 	the_infringe_label = label_name(:infringe_true)
-	no_jugado_image = ""
-	if @the_roster_infringe.include?(match.user_id)
-		no_jugado_image = "#{no_jugado_image} #{image_tag('icons/star_purple_true.png', 
-							options={:title => the_infringe_label, :style => 'height: 15px; width: 15px;'})}" 
+	the_reputation_label = label_name(:reputation_true)
+	no_jugado_image = ""				
+	no_reputation_image = ""
+	
+	unless @schedule.played
+		if @the_roster_reputation.include?(match.user_id)
+			no_reputation_image = "#{image_tag('icons/star_green_true.png', 
+			options={:title => the_reputation_label, :style => 'height: 15px; width: 15px;'})}" 
+		end
+
+		no_jugado_image = "#{no_reputation_image} #{no_jugado_image}"
+
+		if @the_roster_infringe.include?(match.user_id)
+			no_jugado_image = "#{no_jugado_image} #{image_tag('icons/star_purple_true.png', 
+			options={:title => the_infringe_label, :style => 'height: 15px; width: 15px;'})}" 
+		end
 	end
 		
 	the_match_status = ""

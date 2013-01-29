@@ -1318,7 +1318,9 @@ es:
      reservations_search_to_join: Puedes buscar una reserva. 
      reservations_show:  Mostrar reserva
      reservations_update: Actualiza las reservas
-     restored_message: Mensaje restaurado   
+     restored_message: Mensaje restaurado 
+     reputation_false: Más probable que vaya.
+     reputation_true: Más probable que vaya.  
      role: Responsabilidad
      roles: Responsabilidades   
      roster: Convocado   
