@@ -181,6 +181,7 @@ class Schedule < ActiveRecord::Base
 										where schedules.group_id = ?
 										and schedules.id = matches.schedule_id
 										and matches.type_id = 1
+										and schedules.played = true
 										group by matches.schedule_id, schedules.player_limit
 										having count(*) < player_limit ) match_limit, matches
 										where player_percent < ?
