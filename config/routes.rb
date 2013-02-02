@@ -230,6 +230,8 @@ Thepista::Application.routes.draw do
 		resources :messages
 	end
 
+	resources :prospects
+	
 	match ':controller/:action.:format' => '#index'
 
 end

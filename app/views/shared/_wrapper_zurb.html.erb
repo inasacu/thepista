@@ -103,6 +103,10 @@
 	if get_controller_action == 'game_index'
 		@the_collection = @games if @games
 	end	
+
+	if get_controller_action == 'prospect_index'
+		@the_collection = @prospects if @prospects
+	end
 	
 	if get_controller_action == 'message_index'
 		@the_collection = @messages if @messages

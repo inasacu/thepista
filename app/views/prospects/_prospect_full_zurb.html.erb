@@ -1,0 +1,49 @@
+<tr>
+	
+   	<td>
+		<span class="action" align="left">			
+			<%= link_to(image_tag(prospect.image, options={:style => "height: 44px; width: 44px;"}), prospect.url, :target => "_blank")  %>
+		</span>
+   	</td>
+	
+	
+	
+	
+	<td>
+		
+		<%
+			the_name = "#{prospect.name}"
+			the_email = "no email"
+			the_phone = "no phone"
+			
+			the_email = prospect.email unless prospect.email.nil?
+			the_phone = prospect.phone unless prospect.phone.nil?
+			
+			
+			the_contact = "#{the_email} / #{the_phone} ..."
+			the_contact = "#{prospect.contact}" unless prospect.contact.nil?
+		%>	
+			
+		<%= set_content_tag_safe(:td, "#{link_to(the_name, prospect.url, :target => "_blank")}") %>
+		<%= set_content_tag_safe(:td, "#{link_to(the_contact, prospect.url_additional, :target => "_blank")}") %>
+		<%= set_content_tag_safe(:td, "#{link_to(label_name(:edit), edit_prospect_path(prospect))}") %>
+		<%= set_content_tag_safe(:td, "#{link_to(label_name(:show), prospect_path(prospect))}") %>
+		
+		<%#= set_content_tag_safe(:td, "#{prospect.email}") %>
+		<%#= set_content_tag_safe(:td, "#{prospect.phone}") %>
+		<%#= set_content_tag_safe(:td, "#{prospect.email_additional}") %>
+		<%#= set_content_tag_safe(:td, "#{prospect.url}") %>
+		<%#= set_content_tag_safe(:td, "#{prospect.url_additional}") %>
+		
+		<%#= set_content_tag_safe(:td, "#{prospect.installations}") %>
+		<%#= set_content_tag_safe(:td, "#{prospect.description}") %>
+		<%#= set_content_tag_safe(:td, "#{prospect.conditions}") %>
+		<%#= set_content_tag_safe(:td, "#{prospect.notes}") %>
+		
+		
+		<%#= set_content_tag_safe(:td, "#{prospect.letter_first}") %>
+		<%#= set_content_tag_safe(:td, "#{prospect.letter_second}") %>
+		<%#= set_content_tag_safe(:td, "#{prospect.response_first}") %>
+		<%#= set_content_tag_safe(:td, "#{prospect.response_second}") %>
+	</td>
+</tr>

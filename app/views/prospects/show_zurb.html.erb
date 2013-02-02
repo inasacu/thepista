@@ -1,0 +1,32 @@
+<%= render 'shared/show_description_zurb', :item => @prospect %>
+
+
+<table>
+	<tbody>
+		<tr>
+			<td>
+
+				<div class="two columns">
+					<%= link_to(image_tag(@prospect.image, options={:style => "height: 44px; width: 44px;"}), @prospect.url, :target => "_blank") %>
+				</div>
+
+				<div class="ten columns">
+
+					<%= render_show_detail_zurb(:name, link_to(@prospect.name, @prospect.url, :target => "_blank")) %>
+					<%= render_show_detail_zurb(:contact, link_to("#{@prospect.name} #{@prospect.contact}  - Official", @prospect.url_additional, :target => "_blank")) %>
+					<%= render_show_detail_zurb(:email, @prospect.email) %>
+					<%= render_show_detail_zurb(:email, @prospect.email_additional) %>
+					<%= render_show_detail_zurb(:phone, @prospect.phone) %>
+					<%= render_show_detail_zurb(:installations, @prospect.installations) %>
+					<%= render_show_detail_zurb(:description, @prospect.description) %>
+					<%= render_show_detail_zurb(:conditions, @prospect.conditions) %>
+					<%= render_show_detail_zurb(:notes, @prospect.notes) %>
+
+				</div>
+
+			</td>	
+		</tr>
+	</tbody>
+</table>
+
+

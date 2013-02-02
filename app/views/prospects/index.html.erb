@@ -1,0 +1,43 @@
+<%
+	the_label = label_name(:prospects)
+	content_for(:title, the_label)
+	has_items = (object_counter(@prospects) > 0)
+%>
+
+
+<% if has_items %>
+
+<%= render('shared/index_total_header_zurb', :items => @prospects) %>
+
+<div class="row">
+	<div class="twelve columns"> 
+
+		<table>
+			<thead>
+				<tr>             
+					<%= set_content_tag_safe(:th, "&nbsp;") %>
+					<%= set_content_tag_safe(:th, "&nbsp;") %>
+					<%= set_content_tag_safe(:th, "#{label_name(:name)}") %>
+					<%= set_content_tag_safe(:th, "#{label_name(:contact)}") %>
+					<%= set_content_tag_safe(:th, "&nbsp;") %>
+					<%= set_content_tag_safe(:th, "&nbsp;") %>
+				</tr>
+			</thead>
+
+			<tbody>
+
+				<% @prospects.each do |prospect| -%>		
+				<%= render 'prospects/prospect_full_zurb', :prospect => prospect %> 
+				<% end -%>
+
+			</tbody>
+		</table>
+
+	</div>
+</div>
+
+<% end %>
+
+
+<%= render 'shared/no_items_to_display' unless has_items %>
+

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130115170525) do
+ActiveRecord::Schema.define(:version => 20130201200228) do
 
   create_table "announcements", :force => true do |t|
     t.text     "message"
@@ -424,7 +424,6 @@ ActiveRecord::Schema.define(:version => 20130115170525) do
     t.integer  "game_number",                                                         :default => 0
     t.string   "block_token"
     t.integer  "change_id"
-    t.boolean  "infringe",                                                            :default => false
   end
 
   add_index "matches", ["group_id"], :name => "index_matches_on_group_id"
@@ -514,6 +513,27 @@ ActiveRecord::Schema.define(:version => 20130115170525) do
   add_index "payments", ["item_id", "item_type"], :name => "index_payments_on_item_id_and_item_type"
   add_index "payments", ["manager_id"], :name => "index_payments_on_manager_id"
   add_index "payments", ["slug"], :name => "index_payments_on_slug", :unique => true
+
+  create_table "prospects", :force => true do |t|
+    t.string   "name"
+    t.string   "contact"
+    t.string   "email"
+    t.string   "email_additional"
+    t.string   "phone"
+    t.string   "url"
+    t.string   "url_additional"
+    t.datetime "letter_first"
+    t.datetime "letter_second"
+    t.datetime "response_first"
+    t.datetime "response_second"
+    t.text     "notes"
+    t.datetime "created_at",       :null => false
+    t.datetime "updated_at",       :null => false
+    t.string   "image"
+    t.text     "installations"
+    t.text     "description"
+    t.text     "conditions"
+  end
 
   create_table "reservations", :force => true do |t|
     t.string   "name"
