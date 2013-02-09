@@ -38,7 +38,7 @@ class GroupsController < ApplicationController
 	def create
 		@group = Group.new(params[:group])	
 		@group.name_to_second_team
-		@group.name_to_description
+		# @group.name_to_description
 		@group.default_conditions
 		@group.sport_to_points_player_limit
 		@group.time_zone = current_user.time_zone if !current_user.time_zone.nil?

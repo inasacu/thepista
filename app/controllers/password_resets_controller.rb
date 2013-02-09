@@ -3,15 +3,21 @@ class PasswordResetsController < ApplicationController
   before_filter :load_user_using_perishable_token, :only => [:edit, :update]
   before_filter :require_no_user
 
+	def new
+		show_are_you_a_human
+	end
+
+	def edit
+		show_are_you_a_human
+	end
+	
 	def create
 		@user = User.find_by_email(params[:email])
 
-		if DISPLAY_RECAPTCHA 
-			unless verify_recaptcha   
-				recaptcha_failure
-				render :action => :new
-				return
-			end
+		unless has_are_you_a_human_passed   
+			recaptcha_failure
+			render :action => :new
+			return
 		end
 
 		if @user
@@ -30,12 +36,10 @@ class PasswordResetsController < ApplicationController
 		@user.password = params[:user][:password]
 		@user.password_confirmation = params[:user][:password_confirmation]
 
-		if DISPLAY_RECAPTCHA 
-			unless verify_recaptcha   
-				recaptcha_failure
-				render :action => :new
-				return
-			end
+		unless has_are_you_a_human_passed   
+			recaptcha_failure
+			render :action => :new
+			return
 		end
 
 		if @user.save

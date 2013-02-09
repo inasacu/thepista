@@ -9,6 +9,8 @@
 
 <%= render('shared/index_total_header_zurb', :items => @prospects) %>
 
+
+<%= "total: #{@prospects.count}" %>
 <div class="row">
 	<div class="twelve columns"> 
 
@@ -18,16 +20,19 @@
 					<%= set_content_tag_safe(:th, "&nbsp;") %>
 					<%= set_content_tag_safe(:th, "&nbsp;") %>
 					<%= set_content_tag_safe(:th, "#{label_name(:name)}") %>
-					<%= set_content_tag_safe(:th, "#{label_name(:contact)}") %>
 					<%= set_content_tag_safe(:th, "&nbsp;") %>
-					<%= set_content_tag_safe(:th, "&nbsp;") %>
+					<%#= set_content_tag_safe(:th, "&nbsp;") %>
 				</tr>
 			</thead>
 
 			<tbody>
 
-				<% @prospects.each do |prospect| -%>		
-				<%= render 'prospects/prospect_full_zurb', :prospect => prospect %> 
+				<% @prospects.each do |prospect| 
+					
+					is_visible = (prospect.email.nil? and prospect.phone.nil? and prospect.email_additional.nil?)
+					
+					%>		
+				<%= render 'prospects/prospect_full_zurb', :prospect => prospect if is_visible %> 
 				<% end -%>
 
 			</tbody>

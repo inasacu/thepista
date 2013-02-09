@@ -1,14 +1,14 @@
 
-<%= link_to(image_tag(@prospect.image, options={:style => "height: 44px; width: 44px;"}), @prospect.url, :target => "_blank")  %><br/>
-<%= link_to(@prospect.name, @prospect.url, :target => "_blank") %><br/>
+<%= link_to(image_tag(@prospect.image, options={:style => "height: 44px; width: 44px;"}), @prospect.url, :target => "_blank")  %><br/><br/>
+<%= link_to(@prospect.name, @prospect.url, :target => "_blank") %><br/><br/>
 <%= link_to("#{@prospect.name} #{@prospect.contact}  - Official", @prospect.url_additional, :target => "_blank") %><br/><br/>
 
 
-<%= set_form_label(the_form, :name) %>
-<%= set_form_text_field(the_form, :name, 'large input-text', true) %><br/>
+<%#= set_form_label(the_form, :name) %>
+<%#= set_form_text_field(the_form, :name, 'large input-text', true) %>
 
-<%= set_form_label(the_form, :contact) %>
-<%= set_form_text_field(the_form, :contact, 'large input-text', true) %><br/>
+<%#= set_form_label(the_form, :contact) %>
+<%#= set_form_text_field(the_form, :contact, 'large input-text', true) %>
 
 <%= set_form_label(the_form, :email) %>
 <%= set_form_text_field(the_form, :email, 'large input-text', true) %><br/>
@@ -16,22 +16,23 @@
 <%= set_form_label(the_form, :email) %>
 <%= set_form_text_field(the_form, :email_additional, 'large input-text', true) %><br/>
 
+
 <%= set_form_label(the_form, :phone) %>
-<%= set_form_text_field(the_form, :phone, 'large input-text', true) %><br/>
+<%= set_form_text_field(the_form, :phone, 'large input-text', true) %>
 
 
-<%= set_form_label(the_form, :installations) %>
-<%= set_form_text_area(the_form, :installations, true) %><br/>
+<%#= set_form_label(the_form, :installations) %>
+<%#= set_form_text_area(the_form, :installations, true) %>
 
-<%= set_form_label(the_form, :conditions) %>
-<%= set_form_text_area(the_form, :conditions, true) %><br/>
+<%#= set_form_label(the_form, :conditions) %>
+<%#= set_form_text_area(the_form, :conditions, true) %>
 
 
-<%= set_form_label(the_form, :description) %>
-<%= set_form_text_area(the_form, :description, true) %><br/>
+<%#= set_form_label(the_form, :description) %>
+<%#= set_form_text_area(the_form, :description, true) %>
 
-<%= set_form_label(the_form, :notes) %>
-<%= set_form_text_area(the_form, :notes, true) %><br/>
+<%#= set_form_label(the_form, :notes) %>
+<%#= set_form_text_area(the_form, :notes, true) %>
 
 
 

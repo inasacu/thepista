@@ -44,7 +44,7 @@ class Group < ActiveRecord::Base
 
   validates_presence_of     :name
   validates_presence_of     :second_team
-  validates_presence_of     :description
+  # validates_presence_of     :description
   validates_presence_of     :conditions
   validates_presence_of     :time_zone
   validates_presence_of     :sport_id
@@ -52,7 +52,7 @@ class Group < ActiveRecord::Base
 
   validates_length_of       :name,            :within => NAME_RANGE_LENGTH
   validates_length_of       :second_team,     :within => NAME_RANGE_LENGTH
-  validates_length_of       :description,     :within => DESCRIPTION_RANGE_LENGTH
+  # validates_length_of       :description,     :within => DESCRIPTION_RANGE_LENGTH
   validates_length_of       :conditions,      :within => DESCRIPTION_RANGE_LENGTH
 
   validates_format_of       :name,            :with => /^[A-z 0-9 _.-]*$/ 

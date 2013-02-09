@@ -1885,7 +1885,8 @@ en:
      payments_destroy:  Remove Payment
      payments_edit:  Edit Payment
      payments_option:  Options
-     payments_show:  Show Payment          
+     payments_show:  Show Payment  
+     prospects_edit:  Change de Account        
      group_options:  Options
      group_stage_set:  Group Stage Update
      group_stage_set_full:  Group Stage Update

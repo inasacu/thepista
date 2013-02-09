@@ -22,7 +22,7 @@ class UsersController < ApplicationController
 
 	def show
 		store_location
-		
+
 		if current_user == @user
 			@authentications = current_user.authentications 
 		end
@@ -51,8 +51,7 @@ class UsersController < ApplicationController
 			redirect_to root_url 
 			return
 		end
-		# @user = User.new
-		# return @the_template
+		show_are_you_a_human
 	end
 
 	def edit
@@ -60,21 +59,16 @@ class UsersController < ApplicationController
 			@user = User.find(params[:id])
 			return
 		end 
-		@user = current_user
-
-		# set_the_template('users/new')
-		# render @the_template   
+		@user = current_user  
 	end
 
 	def create
 		@user = User.new(params[:user])
 
-		if DISPLAY_RECAPTCHA 
-			unless verify_recaptcha   
-				recaptcha_failure
-				render :action => :new
-				return
-			end
+		unless has_are_you_a_human_passed   
+			recaptcha_failure
+			render :action => :new
+			return
 		end
 
 		@user.name = @user.email if @user.name.nil?
@@ -94,12 +88,12 @@ class UsersController < ApplicationController
 		end
 
 		if @user.save
-			# @user.email_to_name if @user.email.include?('@')
+			@user.email_to_name if @user.name.include?('@')
 			@user.email_backup = @user.email
 			@user.save
-			
+
 			Authentication.create_from_omniauth(session[:omniauth], @user) if session[:omniauth]
-			
+
 		else
 			flash[:warning] = I18n.t(:password_email_conbination_issue)
 			redirect_to :signup
@@ -108,7 +102,7 @@ class UsersController < ApplicationController
 
 		session[:identifier] = nil if session[:identifier]
 		session[:omniauth] = nil if session[:omniauth]
-				
+
 		successful_create
 		redirect_to @user
 	end

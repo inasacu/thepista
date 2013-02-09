@@ -44,19 +44,19 @@ task :pista_en_juego_com => :environment do |t|
 		@pistas.each {|sub_url| set_pagination_url(sub_url) }
 
 
-		# while !@is_last_url
-		# 	sub_url = @pistas.last
-		# 	@is_last_url = (@current_last_url == sub_url)                
-		# 	@current_last_url = sub_url
-		# 	set_pagination_url(sub_url) unless @is_last_url
-		# end
-		# 
-		# counter = 0
-		# @pistas.each do |pista|
-		# 	set_parse_each_url(pista)
-		# end
+		while !@is_last_url
+			sub_url = @pistas.last
+			@is_last_url = (@current_last_url == sub_url)                
+			@current_last_url = sub_url
+			set_pagination_url(sub_url) unless @is_last_url
+		end
 		
-
+		counter = 0
+		@pistas.each do |pista|
+			set_parse_each_url(pista)
+		end
+		
+		
 		@prospects = Prospect.find(:all)
 		@prospects.each do |prospect| 
 			image, url_additional = get_main_page_information(prospect.url)			
@@ -74,7 +74,7 @@ task :pista_en_juego_com => :environment do |t|
 			end			
 			
 		end
-			
+		
 
 	end
 	
@@ -108,28 +108,21 @@ task :pista_en_juego_com => :environment do |t|
 			name =  remove_html_information(item.css('h3 a strong'), 'strong')			
 			conditions = remove_html_information(item.css('span'), 'span')
 			installations =  remove_html_information(item.css('p'), 'p')
-			
-			# image = items.css('a img')
-			# puts "first image #{image}"
-			# image = image.attribute('src').to_s
-			# puts "second image #{image}"
 
 			@prospect = Prospect.find(:first, :conditions =>["url = ?", url])
 			if @prospect.nil? and !url.nil?				
 				the_prospect = Prospect.new				
 				the_prospect.name =  name
 				the_prospect.url = url
-				# the_prospect.image =  image
 				the_prospect.conditions = conditions
 				the_prospect.installations =  installations				
 				the_prospect.save
-				puts "record saved"
+				puts "record saved"				
 			end
 
 
 			name =  ""
 			url = ""
-			# image =  ""
 			conditions = ""
 			installations =  ""		
 		end

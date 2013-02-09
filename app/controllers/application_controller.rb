@@ -75,6 +75,22 @@ class ApplicationController < ActionController::Base
 		flash[:success] = I18n.t(:successful_update)
 	end
 	
+	def show_are_you_a_human
+		if DISPLAY_ARE_YOU_A_HUMAN
+			ayah = AYAH::Integration.new(ENV['PUBLISHER_KEY'], ENV['SCORING_KEY'])
+			@publisher_html = ayah.get_publisher_html
+		end
+	end
+	
+	def has_are_you_a_human_passed
+		if DISPLAY_ARE_YOU_A_HUMAN
+			session_secret = params['session_secret'] 
+			ayah = AYAH::Integration.new(ENV['PUBLISHER_KEY'], ENV['SCORING_KEY'])
+			ayah_passed = ayah.score_result(session_secret, request.remote_ip)
+			return ayah_passed 
+		end
+	end
+	
 	def controller_successful_provider(omniauth)
 		the_provider = "omniauth_provider_#{omniauth}"
 		the_provider = I18n.t(the_provider)

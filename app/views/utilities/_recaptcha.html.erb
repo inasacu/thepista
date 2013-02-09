@@ -1,20 +1,11 @@
-<% if DISPLAY_RECAPTCHA %>
+<% if DISPLAY_ARE_YOU_A_HUMAN %>
 
-<script>
-var RecaptchaOptions = {
-		lang : '<%= I18n.locale %>',
-	};
-</script>
+	<br/>
+	
+	<%= "#{@publisher_html}".html_safe %>
 
-<br />
-<br/>
-
-<%= label_name(:recaptcha_type_words) %>
-
-<br/>
-
-<%= recaptcha_tags %>
-
-<br />
+	<br/>
+	<br/>
+	<hr/>
 
 <% end %>

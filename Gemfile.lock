@@ -43,6 +43,9 @@ GEM
       json (~> 1.4)
       nokogiri (>= 1.4.4)
       uuidtools (~> 2.1)
+    ayah_integration (0.6.3)
+      json
+      rest-client
     builder (3.0.4)
     chunky_png (1.2.7)
     cocaine (0.4.2)
@@ -179,6 +182,8 @@ GEM
     rdoc (3.12)
       json (~> 1.4)
     recaptcha (0.3.4)
+    rest-client (1.6.7)
+      mime-types (>= 1.16)
     rpx_now (0.6.24)
       json_pure
     sass (3.2.5)
@@ -231,6 +236,7 @@ DEPENDENCIES
   authlogic
   authlogic-oid
   aws-sdk
+  ayah_integration
   coffee-rails (~> 3.2.1)
   composite_primary_keys
   delayed_job

@@ -3,7 +3,7 @@
 # @publisher_html = ayah.get_publisher_html
 # 
 # Handle the form submission and get score (pass/fail):
-# session_secret = params['session_secret'] # in this case, using Rails
+# session_secret = params['session_secret'] 
 # ayah = AYAH::Integration.new(PUBLISHER_KEY, SCORING_KEY)
 # ayah_passed = ayah.score_result(session_secret, CLIENT_IP)
 # 
@@ -18,3 +18,7 @@
 
 ENV['PUBLISHER_KEY'] = '39977ccc8a123d851cbbd10a305c891ac8ac310c'
 ENV['SCORING_KEY'] = 'd439d6aeba317f92c254c1de3dc8e7f65bf0edf8' 
+
+
+
+

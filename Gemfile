@@ -42,6 +42,12 @@ gem 'omniauth-facebook'
 gem 'omniauth-linkedin'
 gem 'omniauth-google'
 
+# gem 'mechanize'
+# gem 'anemone'
+# gem 'hpricot'
+
+gem 'ayah_integration'
+
 # gem 'omniauth-yahoo'
 # gem 'omniauth-disqus',			:git => 'https://github.com/espinet/omniauth-disqus.git'
 # gem 'omniauth-windowslive',			:git => 'https://github.com/joel/omniauth-windowslive.git'
@@ -55,12 +61,7 @@ group :assets do
 end
 
 
-
-
-
-
 # gem "client_side_validations", "~> 3.1.4"
-# gem 'ayah_integration'
 # gem 'ssl_requirement'
 # gem 'jquery_notify_bar'
 # gem 'rqrcode'

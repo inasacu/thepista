@@ -290,23 +290,29 @@ es:
      debit_total:  Cargos totales
      debit_to_group:  Deuda a tu equipo
      debits: Cargos 
-     default_group_conditions:  "Todos los jugadores tienen hasta 48 horas antes del partido para apuntarse.
+     default_group_conditions:  "Todos los jugadores tienen hasta 48 HORAS antes del partido para apuntarse.
 
-     A primera hora del dia del partido los Convocados son:
+	A primera hora del dia del partido los Convocados son:
 
-     1. Si hay más del limite de jugadores que son ABONADOS el que mas partidos ha jugado sera pasado a Ultima Hora.
+	1. Si hay más del limite de jugadores que son ABONADOS el que mas partidos ha jugado sera pasado a Suplente.
 
-     2. Si hay una mezcla de ABONADOS y NO ABONADOS el que tiene menos partidos como NO ABONADO pasara a Ultima Hora.
+	2. Si hay una mezcla de ABONADOS y NO ABONADOS el que tiene menos partidos como NO ABONADO pasara a Suplente.
 
-     3. Los jugadores ABONADOS que estén obligados a pasar a Ultima Hora y al final no jueguen, tendrán prioridad el siguiente partido.
+	3. Una vez que un jugador que ha pasado a suplente, se corre el turno al siguiente jugador con más partidos hasta completar la vuelta.
 
-     4. Cualquier jugador que se apunte dentro de las 48 horas antes del partido, sea ABONADO o NO ABONADO jugara en función de cuando se apunto.
+	4. Los jugadores ABONADOS que estén obligados a pasar a Suplente y al final no jueguen, tendrán prioridad el siguiente partido.
 
-     La idea es que se de preferencia a los ABONADOS, luego a los que se apunten antes.
+	5. Cualquier jugador que se apunte dentro de las 48 horas antes del partido, sea ABONADO o NO ABONADO jugara en función de cuando se apunto.
 
-     En el momento en que cambie el estado de un jugador, de Convocado a Ultima Hora o viceversa, el organizador mandara un correo para todos estéis informados.
+	La idea es que se de preferencia a los ABONADOS, luego a los que se apunten antes.
 
-     Por otro lado y por compañerismo, si os apuntáis y no podéis venir avisad con tiempo o contactar con alguien del equipo que os pueda sustituir."  
+	En el momento en que cambie el estado de un jugador, de Convocado a Suplente o viceversa, el organizador mandara un correo para todos estéis informados.
+
+	Por otro lado y por compañerismo, si os apuntáis y no podéis venir avisad con tiempo o contactar con alguna personal del equipo que os pueda sustituir.
+
+	Gracias.
+
+	El Equipo..."  
      default_reliable: Fiable   
      defense:  Defensa
      delete_activity: Borra tu actividad    
@@ -1896,7 +1902,8 @@ es:
      payments_destroy:  Borra el pago
      payments_edit:  Actualiza el pago
      payments_option:  Opciones 
-     payments_show:  Mostrar pago          
+     payments_show:  Mostrar pago
+     prospects_edit:  Cambia el Cuenta          
      group_options:  Opciones
      group_stage_set:  Actualiza el grupo
      group_stage_set_full:  Actualiza el grupo
