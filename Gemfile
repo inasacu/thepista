@@ -42,11 +42,11 @@ gem 'omniauth-facebook'
 gem 'omniauth-linkedin'
 gem 'omniauth-google'
 
-group :development do
-gem 'mechanize'
-gem 'anemone'
-gem 'hpricot'
-end
+# group :development do
+# gem 'mechanize'
+# gem 'anemone'
+# gem 'hpricot'
+# end
 
 gem 'ayah_integration'
 gem 'sentry-raven'
