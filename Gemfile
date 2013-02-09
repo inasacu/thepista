@@ -42,11 +42,15 @@ gem 'omniauth-facebook'
 gem 'omniauth-linkedin'
 gem 'omniauth-google'
 
-# gem 'mechanize'
-# gem 'anemone'
-# gem 'hpricot'
+group :development do
+gem 'mechanize'
+gem 'anemone'
+gem 'hpricot'
+end
 
 gem 'ayah_integration'
+gem 'sentry-raven'
+
 
 # gem 'omniauth-yahoo'
 # gem 'omniauth-disqus',			:git => 'https://github.com/espinet/omniauth-disqus.git'
@@ -59,6 +63,10 @@ group :assets do
   gem 'coffee-rails', '~> 3.2.1'
   gem 'uglifier', '>= 1.0.3'
 end
+
+
+
+
 
 
 # gem "client_side_validations", "~> 3.1.4"
