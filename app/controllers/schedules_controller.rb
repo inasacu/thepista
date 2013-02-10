@@ -3,7 +3,7 @@ class SchedulesController < ApplicationController
 
 	before_filter :get_schedule, :only => [:show, :rate, :edit, :update, :destroy, :set_public, :set_reminder, :team_roster, :team_last_minute, :team_no_show, :team_unavailable]
 	before_filter :get_current_schedule, :only => [:index, :list, :my_list]
-	before_filter :get_group, :only => [:new, :schedule_list, :group_current_list, :group_previous_list]
+	before_filter :get_group, :only => [:new, :schedule_list, :group_current, :group_previous]
 	before_filter :get_match_type, :only => [:team_roster, :team_last_minute, :team_no_show, :team_unavailable]
 	before_filter :has_manager_access, :only => [:edit, :update, :destroy, :set_public, :set_reminder]
 	before_filter :has_member_access, :only => [:show, :rate]
@@ -19,13 +19,13 @@ class SchedulesController < ApplicationController
 		render @the_template
 	end
 
-	def group_current_list
+	def group_current
 		@schedules = Schedule.group_current_schedules(@group, params[:page])
 		set_the_template('schedules/index')
 		render @the_template
 	end
 
-	def group_previous_list
+	def group_previous
 		@schedules = Schedule.group_previous_schedules(@group, params[:page])
 		set_the_template('schedules/index')
 		render @the_template
@@ -65,7 +65,8 @@ class SchedulesController < ApplicationController
 		@has_a_roster = !(@schedule.convocados.empty?)
 		@the_roster = @schedule.the_roster_sort(sort_order(''))
 		@the_roster_infringe = @schedule.the_roster_infringe
-		@the_roster_reputation = @schedule.the_roster_reputation(@group)
+		# @the_roster_reputation = @schedule.the_roster_reputation(@group)
+		@the_last_played = @schedule.the_roster_last_played
 		
 		set_the_template('schedules/team_roster')
 		render @the_template 
@@ -76,7 +77,8 @@ class SchedulesController < ApplicationController
 		@has_a_roster = !(@schedule.last_minute.empty?)
 		@the_roster = @schedule.the_last_minute
 		@the_roster_infringe = @schedule.the_roster_infringe
-		@the_roster_reputation = @schedule.the_roster_reputation(@group)
+		# @the_roster_reputation = @schedule.the_roster_reputation(@group)
+		@the_last_played = @schedule.the_roster_last_played
 		
 		set_the_template('schedules/team_roster')
 		render @the_template 
@@ -87,7 +89,8 @@ class SchedulesController < ApplicationController
 		@has_a_roster = !(@schedule.no_shows.empty?)
 		@the_roster = @schedule.the_no_show
 		@the_roster_infringe = @schedule.the_roster_infringe
-		@the_roster_reputation = @schedule.the_roster_reputation(@group)
+		# @the_roster_reputation = @schedule.the_roster_reputation(@group)
+		@the_last_played = @schedule.the_roster_last_played
 		
 		set_the_template('schedules/team_roster')
 		render @the_template 
@@ -98,7 +101,8 @@ class SchedulesController < ApplicationController
 		@has_a_roster = !(@schedule.the_unavailable.empty?)
 		@the_roster = @schedule.the_unavailable
 		@the_roster_infringe = @schedule.the_roster_infringe
-		@the_roster_reputation = @schedule.the_roster_reputation(@group)
+		# @the_roster_reputation = @schedule.the_roster_reputation(@group)
+		@the_last_played = @schedule.the_roster_last_played
 		
 		set_the_template('schedules/team_roster')
 		render @the_template 

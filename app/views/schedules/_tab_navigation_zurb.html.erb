@@ -16,8 +16,8 @@
 	unless the_action.include?(get_the_action) or the_controller.include?(get_the_controller)
 
 %>
-	<%= set_tab_navigation(link_to(label_name(:upcoming_schedules), schedules_url, :class => get_active('schedule_index'))) %>
-	<%= set_tab_navigation(link_to(label_name(:previous_schedules), list_schedules_path, :class => get_active('schedule_list'))) %>
+	<%= set_tab_navigation(link_to(label_name(:schedules), schedules_url, :class => get_active('schedule_index'))) %>
+	<%#= set_tab_navigation(link_to(label_name(:previous_schedules), list_schedules_path, :class => get_active('schedule_list'))) %>
 	
 <% 
 	else
@@ -25,8 +25,9 @@
 		if is_current_member_of(@schedule.group) or @schedule.public
 			the_label = label_name(:wall)
 %>
+			<%#= set_tab_navigation(item_name_link(@schedule.name, @schedule, {:class => get_first_active('schedule_show')}, 25)) %>
 			
-			<%= set_tab_navigation(item_name_link(@schedule.name, @schedule, {:class => get_first_active('schedule_show')}, 25)) %>
+			<%= set_tab_navigation(link_to(label_name(:schedules), schedules_url, :class => get_active('schedule_index'))) %>
 					
 			<% unless (@schedule.the_roster.empty?)		
 				the_active = get_active("#{get_the_controller}_team_roster")
@@ -46,12 +47,6 @@
 				<%= set_tab_navigation(link_to("#{label_name(:no_shows)} (#{@schedule.the_no_show_count})", team_no_show_path(:id => @schedule), :class => the_active)) %>
 			<% end %>
 			
-			
-			<%#= set_tab_navigation(link_to(label_name(:users) , team_list_path(:id => @schedule.group), :class => get_active('group_team_list'))) if single_schedule_group %>
-		
-			<%#= set_tab_navigation(group_link(@schedule.group, set_tab_navigation_active('group_show'))) if single_schedule_group %>
-			<%#= set_tab_navigation(link_to(label_name(:schedules), schedules_url, :class => get_active('schedule_index'))) %>
-	
 <%		end
 	end
 %>

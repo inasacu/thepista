@@ -195,6 +195,13 @@ class Schedule < ActiveRecord::Base
 		return the_reputation
 	end
 	
+	def the_roster_last_played
+			the_match = Match.find(:all, :select => "distinct matches.user_id",
+							 							:conditions => ["matches.schedule_id = ? and matches.archive = false and matches.type_id = 1", Schedule.previous(self)])
+			last_played = []
+			the_match.each {|match| last_played << match.user_id}
+			return last_played
+	end
   
   def self.match_participation(group, users, schedules)
     find(:all, :select => "distinct schedules.*",  
@@ -382,7 +389,6 @@ class Schedule < ActiveRecord::Base
 
 	def self.previous(schedule, option=false)
 		if self.count(:conditions => ["id < ? and group_id = ?", schedule.id, schedule.group_id] ) > 0
-			# return find(:first, :select => "id", :conditions => ["group_id = ? and starts_at < ?", schedule.group_id, schedule.starts_at], :order => "starts_at desc")
 			return find(:first, :conditions => ["group_id = ? and starts_at < ?", schedule.group_id, schedule.starts_at], :order => "starts_at desc")
 		end
 		return schedule
@@ -390,7 +396,6 @@ class Schedule < ActiveRecord::Base
 
 	def self.next(schedule, option=false)
 		if self.count(:conditions => ["id > ? and group_id = ?", schedule.id, schedule.group_id]) > 0
-			# return find(:first, :select => "id", :conditions => ["group_id = ? and starts_at > ?", schedule.group_id, schedule.starts_at], :order => "starts_at")
 			return find(:first, :conditions => ["group_id = ? and starts_at > ?", schedule.group_id, schedule.starts_at], :order => "starts_at")
 		end
 		return schedule

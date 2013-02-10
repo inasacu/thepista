@@ -10,6 +10,8 @@
 		add_break_point = @schedule.played ? "" : "<br/>"
 	end
 	
+	the_scorecard = "<br/>#{link_to(label_name(:scorecard), scorecard_path(:id => @schedule.group))}"
+	the_scorecard = "<br/><STRONG>#{label_name(:fee_per_game_short)}:</STRONG> #{number_to_currency(@schedule.fee_per_game)}" unless @schedule.played
 %>
 
 <div class="row">
@@ -17,7 +19,7 @@
 
 		<table>
 		<tr>			
-			<%= content_tag_safe :td, "#{item_name_link(@schedule.group)}  ( #{@schedule.sport.name} )<br/>#{link_to(label_name(:scorecard), scorecard_path(:id => @schedule.group))}" %>
+			<%= content_tag_safe :td, "#{item_name_link(@schedule.group)}  ( #{@schedule.sport.name} ) #{the_scorecard}" %>
 			<%= content_tag_safe :td, "#{the_start_at_label}#{add_break_point}#{the_pre_match_teams}" %>
 			<%= content_tag_safe :td, match_all_my_link(@schedule, current_user, false) unless @schedule.played %>
 		</tr>

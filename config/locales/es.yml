@@ -143,7 +143,7 @@ es:
      challenges_update: Actualiza tu reto
      change: Cambia    
      change_available: Cambia la disponibilidad de   
-     change_at:  Cambiado
+     change_at:  Apuntado
      change_at_full:  Ultima vez que se cambio el estado.
      change_message_notification: Cambio de recibida de correo de   
      change_email_configuration: Cambia tu configuración de mensajes.
@@ -280,6 +280,10 @@ es:
      current_time: La hora   
      current_time_zone: Zona del usuario   
      current_user: Usuario 
+     current_event: Evento
+     current_events: Eventos
+     current_schedule: Evento
+     current_schedules: Eventos
      dates:  Fechas  
      days_left:  Faltan
      deadline_at:  Fecha de cierre de inscripción 
@@ -1227,9 +1231,9 @@ es:
      previous_games:  Anteriores eventos
      previous_ranking: RP   
      previous_ranking_full: Ranking Previo
-     previous_schedule: Anterior evento   
-     previous_schedules: Anteriores eventos
-     previous_meet: Anterior evento 
+     previous_schedule: Anterior Evento   
+     previous_schedules: Anteriores Eventos
+     previous_meet: Anterior Evento 
      previous_meets: Anteriores eventos de torneo         
      previous_profile_set:  Obtener perfil de jornada
      previous_profile_set_full:  Obtener los perfiles de la jornada anterior.

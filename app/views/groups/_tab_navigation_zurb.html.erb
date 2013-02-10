@@ -14,12 +14,13 @@
 %>
 	<%= set_tab_navigation(link_to(label_name(:groups), groups_path, set_tab_navigation_active('group_index'))) unless @group %>
 	<%= set_tab_navigation(group_link(@group, set_tab_navigation_active('group_show'))) if is_single_group %>
-
 <% 	
 	if the_action.include?(get_the_action) or the_controller.include?(get_the_controller)
 		if is_current_member_of(@group) 
 %>		
 		<%= content_tag :dd, link_to(label_name(:users) , team_list_path(:id => @group), :class => get_active('group_team_list')) %>
+		<%= set_tab_navigation(link_to(label_name(:current_schedules), group_current_path(:id => @group), :class => get_active('schedule_group_current'))) %>
+		<%= set_tab_navigation(link_to(label_name(:previous_schedules), group_previous_path(:id => @group), :class => get_active('schedule_group_previou'))) %>
 		<%= content_tag :dd, link_to(label_name(:scorecard) , scorecard_path(:id => @group), :class => get_active('scorecard_show')) %>
 			
 		

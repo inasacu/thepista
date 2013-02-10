@@ -60,6 +60,8 @@
 		
 	when 'schedule'
 		@new_item = @schedule if is_new_item
+		the_tab_navigation = "schedules" if is_action('index') or is_action('list')
+		the_tab_navigation = "groups" if get_controller_action == 'schedule_group_previou' or get_controller_action == 'schedule_group_current'
 		
 	when 'venue'
 		@new_item = @venue if is_new_item

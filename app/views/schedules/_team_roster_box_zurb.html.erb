@@ -25,7 +25,7 @@
 			<%= content_tag_safe(:th, "&nbsp;") %>
 			<%= content_tag_safe(:th, label_name(:user)) %>
 			<%= content_tag_safe(:th, the_status) %>
-			<%= content_tag_safe(:th, label_name(:percentage_played)) %>
+			<%= content_tag_safe(:th, label_name(:participation)) %>
 			<%= content_tag_safe(:th, it_has_played) %>
 			<%= content_tag_safe(:th, "&nbsp;") if has_not_been_played_manager %>
 			
@@ -82,18 +82,31 @@ the_roster.each do |match|
 	the_reputation_label = label_name(:reputation_true)
 	no_jugado_image = ""				
 	no_reputation_image = ""
+	user_scorecard_link = ""
+	user_played = true
+	
 	
 	unless @schedule.played
-		if @the_roster_reputation.include?(match.user_id)
-			no_reputation_image = "#{image_tag('icons/star_green_true.png', 
-			options={:title => the_reputation_label, :style => 'height: 15px; width: 15px;'})}" 
+		if @the_last_played	
+			if @the_last_played.include?(match.user_id)
+				user_scorecard_link = subscription_image_link(the_user, "orange_#{user_played}", I18n.t("game_played_#{user_played}"))
+			end
+		end
+	
+		if @the_roster_reputation
+			if @the_roster_reputation.include?(match.user_id)
+				no_reputation_image = "#{image_tag('icons/star_green_true.png', 
+				options={:title => the_reputation_label, :style => 'height: 15px; width: 15px;'})}" 
+			end
 		end
 
 		no_jugado_image = "#{no_reputation_image} #{no_jugado_image}"
 
-		if @the_roster_infringe.include?(match.user_id)
-			no_jugado_image = "#{no_jugado_image} #{image_tag('icons/star_purple_true.png', 
-			options={:title => the_infringe_label, :style => 'height: 15px; width: 15px;'})}" 
+		if @the_roster_infringe
+			if @the_roster_infringe.include?(match.user_id)
+				no_jugado_image = "#{no_jugado_image} #{image_tag('icons/star_purple_true.png', 
+				options={:title => the_infringe_label, :style => 'height: 15px; width: 15px;'})}" 
+			end
 		end
 	end
 		
@@ -113,10 +126,10 @@ the_roster.each do |match|
 	change_group_link = (is_member & display_team_link) ? link_to(match.team_name(@schedule), match_team_path(:id => match.id), :title => label_name(:change_group)) :  match.team_name(@schedule)
 	
 	is_different_user_manager = (current_user != the_user and is_manager)
-	subscription_image = "#{counter +=1}. #{subscription_image_link(the_user, is_subscriber, the_label)} #{no_jugado_image} "
+	subscription_image = "#{counter +=1}. #{user_scorecard_link} #{subscription_image_link(the_user, is_subscriber, the_label)} #{no_jugado_image} "
 	
 	has_phone = the_user.my_members?(current_user)	? (!the_user.phone.blank?) : (false)
-	the_user_link = "#{phone_user_link(the_user)}  #{the_whatsapp_link}" if has_phone
+	the_user_link = "#{phone_user_link(the_user)}  #{the_whatsapp_link}" if has_phone	
 %>
 
 <tr class='<%= second_team %>'>
@@ -126,10 +139,8 @@ the_roster.each do |match|
 	<%= content_tag_safe(:td, "#{the_match_status}", '','') %>
 	<%= content_tag_safe(:td, game_number, '','') %>
 	<%= content_tag_safe(:td, change_group_link, '','') unless has_been_played %>
-	<%= content_tag_safe(:td, was_convocado ? (group_score_link(@schedule, is_second_team)) : '', '','') if has_been_played %>	
-	
+	<%= content_tag_safe(:td, was_convocado ? (group_score_link(@schedule, is_second_team)) : '', '','') if has_been_played %>		
 	<%= content_tag_safe(:td, is_different_user_manager ? (match_all_my_link(@schedule, the_user, true)) : '', '','') if has_not_been_played_manager %>
-	
 </tr>
 
 <% end %>
