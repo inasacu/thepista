@@ -5,69 +5,57 @@
 
 
 <% if is_edit %>
-
-<%= set_form_label(the_form, :second_team) %>
-<%= set_form_text_field(the_form, :second_team, 'large input-text', true) %><br/>
-
+	<%= set_form_label(the_form, :second_team) %>
+	<%= set_form_text_field(the_form, :second_team, 'large input-text', true) %><br/>
 <% end -%>
+
 
 <%= set_form_label(the_form, :sport) %>
 <%= set_form_select(the_form, :sport_id, Sport.sport_name, @group.sport_id) %><br/><br/>
 
-
 <%= set_form_label(the_form, :marker) %>
-<%= set_form_select(the_form, :marker_id, Marker.marker_name(current_user, @group.marker), @group.marker_id) %><br/><br/>
+<%= set_form_select(the_form, :marker_id, Marker.simple_marker_name, @group.marker_id) %><br/><br/>
 
 
 <% if is_edit %>	
 
-<% if @group.venue %>
+	<% if @group.venue %>
+		<%= set_form_label(the_form, :installation) %>
+		<%= the_form.select(:installation_id, Installation.installation_name(@group.venue), {:selected => @group.installation_id, :include_blank => true}) %><br/><br/>
+	<% end -%>
 
-<%#= set_form_label(the_form, :installation_id, "#{item_name_link(@group.venue)}<br/>#{label_name('installation')}") %>
-<%= set_form_label(the_form, :installation) %>
-<%= the_form.select(:installation_id, Installation.installation_name(@group.venue), {:selected => @group.installation_id, :include_blank => true}) %><br/><br/>
-
-<% end -%>
-
-
-<%#= set_form_label(the_form, :description) %>
-<%#= set_form_text_area(the_form, :description, true) %>
-
-<%= set_form_label(the_form, :conditions) %>
-<%= set_form_text_area(the_form, :conditions, true) %><br/>
+	<%= set_form_label(the_form, :conditions) %>
+	<%= set_form_text_area(the_form, :conditions, true) %><br/>
 
 <% end -%>
 
 
 <% if is_edit %>
 
-<%= set_form_label(the_form, :photo, 'photo') %>
-<%= set_form_file_field(the_form, :photo) %><br/>
+	<%= set_form_label(the_form, :photo, 'photo') %>
+	<%= set_form_file_field(the_form, :photo) %><br/>
 
-<%= set_form_label(the_form, :points_for_win) %>
-<%= set_form_text_field(the_form, :points_for_win, 'small input-text', true) %><br/>
+	<%= set_form_label(the_form, :points_for_win) %>
+	<%= set_form_text_field(the_form, :points_for_win, 'small input-text', true) %><br/>
 
+	<%= set_form_label(the_form, :points_for_draw) %>
+	<%= set_form_text_field(the_form, :points_for_draw, 'small input-text', true) %><br/>
 
-<%= set_form_label(the_form, :points_for_draw) %>
-<%= set_form_text_field(the_form, :points_for_draw, 'small input-text', true) %><br/>
+	<%= set_form_label(the_form, :points_for_lose) %>
+	<%= set_form_text_field(the_form, :points_for_lose, 'small input-text', true) %><br/>
 
-
-<%= set_form_label(the_form, :points_for_lose) %>
-<%= set_form_text_field(the_form, :points_for_lose, 'small input-text', true) %><br/>
-
-
-<%= set_form_label(the_form, :player_limit) %>
-<%= set_form_text_field(the_form, :player_limit, 'small input-text', true) %><br/>
+	<%= set_form_label(the_form, :player_limit) %>
+	<%= set_form_text_field(the_form, :player_limit, 'small input-text', true) %><br/>
 
 
-<% if DISPLAY_FREMIUM_SERVICES %>
-	<%= set_form_label(the_form, :automatic_petition) %>
-	<%= set_form_checkbox(the_form,  :automatic_petition) %><br/>
+	<% if DISPLAY_FREMIUM_SERVICES %>
+		<%= set_form_label(the_form, :automatic_petition) %>
+		<%= set_form_checkbox(the_form,  :automatic_petition) %><br/>
 	
-<% else %>
-	<%= the_form.hidden_field :automatic_petition %>
+	<% else %>
+		<%= the_form.hidden_field :automatic_petition %>
 	
-<% end %>
+	<% end %>
 
 <% end -%>
 
