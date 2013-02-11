@@ -65,12 +65,14 @@ class UsersController < ApplicationController
 	def create
 		@user = User.new(params[:user])
 
-		unless has_are_you_a_human_passed   
-			recaptcha_failure
-			redirect_to root_url
-			return
+		if session[:session_secret]
+			unless has_are_you_a_human_passed   
+				recaptcha_failure
+				redirect_to root_url
+				return
+			end
 		end
-
+	
 		@user.name = @user.email if @user.name.nil?
 		@user.language = "es" if @user.language.nil?
 
