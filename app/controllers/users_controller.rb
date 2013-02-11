@@ -67,7 +67,7 @@ class UsersController < ApplicationController
 
 		unless has_are_you_a_human_passed   
 			recaptcha_failure
-			render :action => :new
+			redirect_to root_url
 			return
 		end
 
