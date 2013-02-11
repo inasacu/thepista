@@ -49,7 +49,7 @@ gem 'omniauth-google'
 # end
 
 gem 'ayah_integration'
-gem 'sentry-raven'
+# gem 'sentry-raven'
 
 
 # gem 'omniauth-yahoo'
