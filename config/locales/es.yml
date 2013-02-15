@@ -923,7 +923,7 @@ es:
      modified_phone: Modificada la opción de ocultar el telefono de   
      modified_profile: Modificada la opción de ocultar tu perfil de   
      modified_reliable: Modificada la fiabilidad del jugador para atender   
-     modo: "Practica deportes y deja que <STRONG>HayPista</STRONG> ayude a organizarlo."  
+     modo: "Practica deportes y deja que <STRONG>HayPista</STRONG> te ayude a organizarlo."  
      modo_key_title: "HayPista te ayuda a organizar eventos deportivos. Practica deportes y deja que HayPista ayude a organizarlo. "
      modo_keywords: "hay pista, eventos deportivos, organizacion de eventos deportivos, los mejores deportivos, futbol rapido, futbol 7, futbol siete, organizacion eventos deportivos, polideportivo, polideportivos madrid, polideportivo madrid"
      monday: Lunes 
@@ -1108,7 +1108,7 @@ es:
      overview: descripción general 
      overview_title:  Resumen  
      omniauth_add_service:  "<STRONG>Añade otro servicio con el que entrar</STRONG>:"
-     omniauth_browser_id_new:  "BETA:  <STRONG>La mejor manera de acceder.</STRONG>"
+     omniauth_browser_id_new:  "<STRONG>La mejor manera de acceder.</STRONG>"
      omniauth_browser_id_button:  Accede ahora!
      omniauth_provider_browser_id:  Mozilla Persona
      omniauth_provider_twitter:  Twitter

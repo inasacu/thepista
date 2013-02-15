@@ -1093,7 +1093,7 @@ en:
      overview: overview 
      overview_title:  Overview  
      omniauth_add_service:  "<STRONG>Add another service to sign in with</STRONG>:"
-     omniauth_browser_id_new:  "BETA:  <STRONG>A better way to sign in</STRONG>."
+     omniauth_browser_id_new:  "<STRONG>A better way to sign in</STRONG>."
      omniauth_browser_id_button:  Access now!
      omniauth_provider_browser_id:  Mozilla Persona
      omniauth_provider_twitter:  Twitter
