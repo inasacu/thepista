@@ -69,8 +69,21 @@ module SchedulesHelper
       the_span = content_tag('span', nice_day_time_wo_year_exact(schedule.starts_at), :class => 'date') 
       the_score = "#{item_name_link(schedule.group)}&nbsp;&nbsp;#{schedule.home_score}&nbsp;&nbsp;-&nbsp;&nbsp;#{schedule.away_score}&nbsp;&nbsp;#{link_to(sanitize(schedule.group.second_team), group_path(schedule.group))}"
     else  
+	
       the_span = ""
-      the_span = content_tag('span', has_left(schedule.starts_at), :class => 'date') if Time.zone.now < schedule.starts_at
+			the_venue = ""
+			the_installation = ""
+			
+			if schedule.group.installation
+				the_installation = schedule.group.installation
+				the_venue = "#{schedule.group.venue.short_name}, #{the_installation.name}"
+				the_installation_link = "#{link_to(the_venue, reservations_path(:id => the_installation))}".html_safe
+			else
+				the_installation_link =  has_left(schedule.starts_at)
+			end
+			
+			the_span = content_tag('span', the_installation_link, :class => 'date') if Time.zone.now < schedule.starts_at
+			
       the_score = nice_day_time_wo_year_exact(schedule.starts_at)
     end
 		return set_content_tag_safe(:td, "#{the_score}<br />#{the_span}", 'name_and_date')
