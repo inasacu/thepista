@@ -6,7 +6,7 @@
 	
 	rpx_now_visible = ['home_index','user_signup' ]
 	browser_id_visible = ['user_session_new']	
-	ignore_home = ['home_about', 'home_terms_of_use', 'home_faq', 'home_persona']
+	# ignore_home = ['home_about', 'home_terms_of_use', 'home_faq', 'home_persona', 'home_feedback']
 	
 	height_value = is_controller_action('user_signup') ? 360 : 300
 %>
@@ -42,7 +42,7 @@
 		
 	<% else %>
 	
-		<% unless ignore_home.include?(get_controller_action) %>	
+		<% unless IGNORE_HOME.include?(get_controller_action) %>	
 			<div class="one columns">
 				<div class="row">
 					<div class="twelve columns">
@@ -63,7 +63,7 @@
 
 
 
-<% unless ignore_home.include?(get_controller_action) %>	
+<% unless IGNORE_HOME.include?(get_controller_action) %>	
 
 	<br>
 	<hr/>

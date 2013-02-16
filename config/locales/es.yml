@@ -503,7 +503,7 @@ es:
      fee_per_tour_short: "Precio del torneo"
      fee_per_tour: "¿Cuánto cuesta el torneo?"
      fee_per_tour_description: (Este es el precio del torneo...)  
-     feedback: feedback   
+     feedback: "Reacción"   
      fees: Cargos   
      female_value: Femenina  
      fill_in_fields: "Solo faltan unos campos para registrate en <STRONG>HayPista</STRONG>."

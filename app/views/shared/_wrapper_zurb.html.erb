@@ -137,8 +137,11 @@
 	
 	# case for displaying SIDEBAR 
 	ignore_sidebar = ['schedule_list', 'user_index', 'invitation_new', 'challenge_new', 'challenge_create', 'message_index', 'message_show', 'message_new', 
-					  'game_index', 'standing_index', 'game_list','cast_list_gues','standing_show_all', 'home_about', 'home_terms_of_use', 'home_faq', 'standing_show', 'home_persona',
+					  'game_index', 'standing_index', 'game_list','cast_list_gues','standing_show_all', 'standing_show', 
 					  'reservation_index', 'user_session_new', 'authentication_index', 'schedule_group_previou', 'schedule_group_current']
+					
+					
+	IGNORE_HOME.each { |the_ignore| ignore_sidebar << the_ignore }
 					
 	the_sidebar = nil if ignore_sidebar.include?(get_controller_action)
 	

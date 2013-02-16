@@ -1,8 +1,4 @@
-<%
-	ignore_home = ['home_about', 'home_terms_of_use', 'home_faq', 'home_persona']
-%>
-
-<% unless ignore_home.include?(get_controller_action) %>	
+<% unless IGNORE_HOME.include?(get_controller_action) %>	
 
 	<%= is_mobile_browser ? "" : "<br><br>".html_safe %>
 	<%= content_tag :h4, "#{t(:modo)}".html_safe, :class => "subheader" %>

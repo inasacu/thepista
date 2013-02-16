@@ -35,26 +35,31 @@ module SchedulesHelper
               schedule_image_link_small(schedule) : schedule_image_small(schedule))
   end
 
-  def view_schedule_name(schedule) 
+  def view_schedule_name(schedule, show_price=false) 
     is_member = (is_current_member_of(schedule.group) or schedule.public)
     
     the_sport = ""  
     the_missing = ""
     the_concept = ""
     the_image = ""
+		the_price = ""
+		the_prematch_player = ""
     # the_image = is_member ? schedule_image_link_small(schedule) : schedule_image_small(schedule)
 
     if schedule.game_played?
       the_concept = is_member ? link_to(sanitize(limit_url_length(schedule.name, 25)), schedule_path(:id => schedule)) : sanitize(limit_url_length(schedule.name))
+			the_price = "#{link_to(label_name(:scorecard), scorecard_path(:id => schedule.group))}"
     else
       the_concept = is_member ? link_to(sanitize(limit_url_length(schedule.name, 25)), team_roster_path(:id => schedule)) : sanitize(limit_url_length(schedule.name))
 
       the_sport = "#{label_name(:rosters)}:  #{schedule.convocados.count}"
       the_missing = ", #{I18n.t(:missing)}:  #{schedule.player_limit.to_i - schedule.convocados.count}" if schedule.player_limit.to_i > schedule.convocados.count
       the_missing = ", #{I18n.t(:excess)}:  #{schedule.convocados.count - schedule.player_limit.to_i}" if schedule.player_limit.to_i < schedule.convocados.count
+			the_price = "<br/><STRONG>#{label_name(:fee_per_game_short)}:</STRONG> #{number_to_currency(schedule.fee_per_game)}" if show_price
     end
-
-    the_span = set_content_tag_safe('span', "    #{the_sport} #{the_missing}", 'date')  
+		
+		
+    the_span = set_content_tag_safe('span', "    #{the_sport} #{the_missing} #{the_price}", 'date')  
 		return set_content_tag_safe('td', "#{the_image}  #{the_concept}<br />#{the_span}", 'name_and_date')
   end
 
