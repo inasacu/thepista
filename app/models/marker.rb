@@ -78,19 +78,19 @@ class Marker < ActiveRecord::Base
 
 	def self.marker_name(user, marker="Null")
 		if user.is_maximo?
-			return find(:all, :order => "markers.name").collect {|p| [ "#{p.name} (#{p.city})", p.id ] }
+			return find(:all, :conditions => "markers.archive = false",  :order => "markers.name").collect {|p| [ "#{p.name} (#{p.city})", p.id ] }
 		end
 		if user.city_id > 0 
 			find(:all, :select => "distinct markers.*", 
 			:conditions =>[ "markers.archive = false and (upper(markers.city) = upper(?) or markers.id = ?)", user.city.name, marker], 
 			:order => "markers.name").collect {|p| [ "#{p.name} (#{p.city})", p.id ] }
 		else
-			return find(:all, :order => "markers.name").collect {|p| [ "#{p.name} (#{p.city})", p.id ] }
+			return find(:all, :conditions => "markers.archive = false",  :order => "markers.name").collect {|p| [ "#{p.name} (#{p.city})", p.id ] }
 		end
 	end
 	
 	def self.simple_marker_name
-		find(:all, :order => "name").collect {|p| [ p.name, p.id ] }
+		find(:all, :conditions => "markers.archive = false", :order => "markers.name").collect {|p| [ p.name, p.id ] }
 	end
 
   def my_sports
