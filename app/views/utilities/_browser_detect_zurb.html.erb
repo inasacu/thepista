@@ -1,9 +1,14 @@
 
-get_controller_action:&nbsp;&nbsp;<%= get_controller_action %>
-<%= debug(params) %>
-<br /><br />
+get_controller_action:&nbsp;&nbsp;<STRONG><%= get_controller_action %></STRONG>
+
 
 <% if display %>
+
+<%= debug(params) %>
+<br />
+<br />
+
+
 <%= "#{t(:current_user) }:  #{current_user.name}" if current_user %><br/><td>
 <%= "#{t(:current_time_zone) }: #{Time.zone.name}" %><br/>
 <%= "#{t(:current_time) }: #{nice_day_of_week(Time.zone.now)}" %><br/>

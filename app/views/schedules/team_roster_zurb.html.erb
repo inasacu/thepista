@@ -1,6 +1,8 @@
 <% 
 	the_label, the_content, has_been_played, is_manager, is_squad, the_sport, the_missing, the_span, the_start_at_label = get_team_roster 
 	the_label = @schedule.name
+	
+	is_prematch_visible = is_action("team roster")
 %>
 
 <%= set_title_class(the_label, 'events') %>
@@ -33,8 +35,7 @@
 	<% end -%>
 	
 	
-	<%= render('schedules/team_roster_prematch_teams', :the_start_at_label => the_start_at_label, :the_roster => @the_roster) %>
-	
+	<%= render('schedules/team_roster_prematch_teams', :the_start_at_label => the_start_at_label, :the_roster => @the_roster) if is_prematch_visible %>
 	
 
 	<%= render "shared/previous_next_message_zurb", :schedule => @schedule, :the_previous => @the_previous, :the_next => @the_next, :display_previous_next => true %>

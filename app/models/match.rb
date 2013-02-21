@@ -39,7 +39,7 @@ class Match < ActiveRecord::Base
   # variables to access
 	attr_accessible :schedule_id, :user_id, :group_id, :invite_id, :group_score, :invite_score
 	attr_accessible :roster_position, :played, :one_x_two, :user_x_two, :type_id, :status_at, :block_token
-	attr_accessible :goals_scored, :archive, :slug, :change_id
+	attr_accessible :goals_scored, :archive, :slug, :change_id, :changed_at
 
 	# attr_accessible :matches_attributes
 	#   accepts_nested_attributes_for :matches
@@ -133,6 +133,9 @@ class Match < ActiveRecord::Base
                           "and type_id = 1 and archive = false"])
   end
 
+	def self.the_prematch_organizer(schedule)
+		find(:first, :conditions =>["schedule_id = ? and change_id is not null and changed_at is not null", schedule], :order => "changed_at DESC")
+	end
   
   def self.user_played(scorecard)
       find(:first, :select => "count(*) as total", 

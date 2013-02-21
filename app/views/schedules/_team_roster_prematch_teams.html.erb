@@ -1,12 +1,13 @@
 <% 	
 	# getting person who did the teams...
-	the_pre_match_teams = ""
-	the_pre_match_organizer = Match.find(:first, :conditions =>["schedule_id = ? and change_id is not null", @schedule], :order => "updated_at DESC")
+	the_prematch_teams = ""
+	# the_prematch_organizer = Match.find(:first, :conditions =>["schedule_id = ? and change_id is not null and changed_at is not null", @schedule], :order => "changed_at DESC")
+	the_prematch_organizer = Match.the_prematch_organizer(@schedule)
 	
-	if the_pre_match_organizer
-		the_user = User.find(the_pre_match_organizer.change_id)
+	if the_prematch_organizer
+		the_user = User.find(the_prematch_organizer.change_id)
 		
-		the_pre_match_teams = "#{item_name_link(the_user)} #{label_name(:post_pre_match_teams)}, #{ago(the_pre_match_organizer.updated_at).downcase}." 
+		the_prematch_teams = "#{item_name_link(the_user)} #{label_name(:post_pre_match_teams)}, #{ago(the_prematch_organizer.updated_at).downcase}." 
 		add_break_point = @schedule.played ? "" : "<br/>"
 	end
 	
@@ -15,16 +16,16 @@
 %>
 
 
-<% unless the_pre_match_teams.blank? %>
+<% unless the_prematch_teams.blank? %>
 	<div class="row">
 		<div class="twelve columns">
 
 			<table>
 			<tr>			
 				<%#= content_tag_safe :td, "#{item_name_link(@schedule.group)}  ( #{@schedule.sport.name} ) #{the_scorecard}" %>
-				<%#= content_tag_safe :td, "#{the_start_at_label}#{add_break_point}#{the_pre_match_teams}" %>
+				<%#= content_tag_safe :td, "#{the_start_at_label}#{add_break_point}#{the_prematch_teams}" %>
 				<%#= content_tag_safe :td, match_all_my_link(@schedule, current_user, false) unless @schedule.played %>
-				<%= content_tag_safe :td, "#{the_pre_match_teams}" %>
+				<%= content_tag_safe :td, "#{the_prematch_teams}" %>
 			</tr>
 			</table>
 		
