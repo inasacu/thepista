@@ -1,10 +1,22 @@
-<% the_label, the_content, has_been_played, is_manager, is_squad, the_sport, the_missing, the_span, the_start_at_label = get_team_roster 
+<% 
+	the_label, the_content, has_been_played, is_manager, is_squad, the_sport, the_missing, the_span, the_start_at_label = get_team_roster 
 	the_label = @schedule.name
 %>
 
 <%= set_title_class(the_label, 'events') %>
 
-<%= render('schedules/team_roster_change_schedule', :the_start_at_label => the_start_at_label, :the_roster => @the_roster) %>
+<div class="row">
+	<div class="twelve columns">
+		<table>
+			<tr>
+				<%= view_schedule_name(@schedule, true) %>
+				<%= view_schedule_group(@schedule) %>
+				<%= view_schedule_played(@schedule) %>
+				<%= view_schedule_rating(@schedule) %>
+			</tr>
+		</table>
+	</div>
+</div>
 
 <div class="row">
 	<div class="twelve columns">
@@ -19,13 +31,16 @@
 						:match_type => @match_type %>
 	
 	<% end -%>
+	
+	
+	<%= render('schedules/team_roster_prematch_teams', :the_start_at_label => the_start_at_label, :the_roster => @the_roster) %>
+	
+	
 
 	<%= render "shared/previous_next_message_zurb", :schedule => @schedule, :the_previous => @the_previous, :the_next => @the_next, :display_previous_next => true %>
 
 	</div>
 </div>
-
-
 
 
 

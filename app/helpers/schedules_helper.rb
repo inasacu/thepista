@@ -44,6 +44,8 @@ module SchedulesHelper
     the_image = ""
 		the_price = ""
 		the_prematch_player = ""
+		show_price = (Time.zone.now < schedule.starts_at) ? show_price : false
+		
     # the_image = is_member ? schedule_image_link_small(schedule) : schedule_image_small(schedule)
 
     if schedule.game_played?
