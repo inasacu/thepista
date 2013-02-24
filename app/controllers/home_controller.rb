@@ -52,6 +52,10 @@ class HomeController < ApplicationController
 
 		if current_user      
 			@my_schedules = Schedule.my_current_schedules(current_user)
+			
+			if @my_schedules.empty?
+				@my_schedules = Schedule.other_current_schedules(current_user)
+			end
 
 			Match.latest_items(@all_match_items, current_user)
 			Match.last_minute_items(@all_match_items, current_user) if DISPLAY_LAST_MINUTE_CANCEL

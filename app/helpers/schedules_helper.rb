@@ -140,7 +140,16 @@ module SchedulesHelper
         the_label = "#{I18n.t(:your_roster_status) } #{the_font_begin}#{(match.type_name).downcase}#{the_font_end}" if is_current_same_as(match.user)
       end
       
-      return set_content_tag_safe(:td, "#{the_label}<br/>#{match_all_my_link(schedule, current_user, false, true)}", "last_upcoming")
+			the_match_link = match_all_my_link(schedule, current_user, false, true)
+			
+			if the_match_link.blank?
+				the_group = schedule.group
+				is_member_group = the_group ? is_current_member_of(the_group) : false
+				show_join_option = (!is_member_group and !has_current_item_petition(the_group))
+				the_match_link = set_image_and_link_h6(join_item_link_to(current_user, the_group), 'user_add') if show_join_option
+			end
+		
+      return set_content_tag_safe(:td, "#{the_label}<br/>#{the_match_link}", "last_upcoming")
     end
   end
 

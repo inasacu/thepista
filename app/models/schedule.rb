@@ -327,6 +327,10 @@ class Schedule < ActiveRecord::Base
     self.find(:all, :conditions => ["schedules.archive = false and starts_at >= ? and group_id in (select group_id from groups_users where user_id = ?)", Time.zone.now, user.id],:order => 'starts_at, group_id', :limit => 1)
   end
 
+	def self.other_current_schedules(user)
+		self.find(:all, :conditions => ["schedules.archive = false and starts_at >= ? and group_id not in (select group_id from groups_users where user_id = ?)", Time.zone.now, user.id],:order => 'starts_at, group_id', :limit => 1)
+	end
+
   def self.current_schedules(user, page = 1)
     self.select("schedules.*").joins("JOIN groups on groups.id = schedules.group_id").where("schedules.archive = false and starts_at >= ? and group_id in (select group_id from groups_users where user_id = ?)", 
 		Time.zone.now, user.id).page(page).order('groups.name, schedules.starts_at')
