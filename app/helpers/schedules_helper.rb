@@ -54,9 +54,9 @@ module SchedulesHelper
     else
       the_concept = is_member ? link_to(sanitize(limit_url_length(schedule.name, 25)), team_roster_path(:id => schedule)) : sanitize(limit_url_length(schedule.name))
 
-      the_sport = "#{label_name(:rosters)}:  #{schedule.convocados.count}"
-      the_missing = ", #{I18n.t(:missing)}:  #{schedule.player_limit.to_i - schedule.convocados.count}" if schedule.player_limit.to_i > schedule.convocados.count
-      the_missing = ", #{I18n.t(:excess)}:  #{schedule.convocados.count - schedule.player_limit.to_i}" if schedule.player_limit.to_i < schedule.convocados.count
+      the_sport = "#{the_font_green(label_name(:rosters))}:  #{schedule.convocados.count}"
+      the_missing = ", #{the_font_yellow(I18n.t(:missing))}:  #{schedule.player_limit.to_i - schedule.convocados.count}" if schedule.player_limit.to_i > schedule.convocados.count
+      the_missing = ", #{the_font_red(I18n.t(:excess))}:  #{schedule.convocados.count - schedule.player_limit.to_i}" if schedule.player_limit.to_i < schedule.convocados.count
 			the_price = "<br/><STRONG>#{label_name(:fee_per_game_short)}:</STRONG> #{number_to_currency(schedule.fee_per_game)}" if show_price
     end
 		
@@ -99,16 +99,6 @@ module SchedulesHelper
   def view_schedule_marker(schedule)
     the_sport = ""
     the_missing = ""
-
-    # unless schedule.played?
-    #   the_sport = "#{label_name(:rosters)}:  #{schedule.convocados.count}"
-    #   the_missing = ", #{I18n.t(:missing)}:  #{schedule.player_limit.to_i - schedule.convocados.count}" if schedule.player_limit.to_i > schedule.convocados.count
-    #   the_missing = ", #{I18n.t(:excess)}:  #{schedule.convocados.count - schedule.player_limit.to_i}" if schedule.player_limit.to_i < schedule.convocados.count
-    # end
-
-    # the_span = content_tag('span', "#{the_sport} #{the_missing}".html_safe, :class => 'date')
-    # return content_tag(:td, "#{marker_link(schedule.group.marker)}<br />#{the_span}".html_safe, :class => 'name_and_date')
-
     the_span = set_content_tag_safe('span', "#{the_sport} #{the_missing}", 'date')
     return set_content_tag_safe(:td, "#{marker_link(schedule.group.marker)}<br />#{the_span}", 'name_and_date')
   end
@@ -125,19 +115,18 @@ module SchedulesHelper
       schedule.matches.each do |match| 
         the_font_begin =  ""
         the_font_end = ""
-
+				the_match_type_name_downcase = (match.type_name).downcase
+				the_font=""
+				
         case match.type_id
         when 1
-          the_font_begin = "<font color='#0f7d00'>"
-          the_font_end = "</font>"
+					the_font = the_font_green(the_match_type_name_downcase)
         when 2
-          the_font_begin = "<font color='#ff9933'>"
-          the_font_end = "</font>"
+					the_font = the_font_yellow(the_match_type_name_downcase)
         when 3
-          the_font_begin = "<font color='#ff3300'>"
-          the_font_end = "</font>"
+					the_font = the_font_red(the_match_type_name_downcase)
         end
-        the_label = "#{I18n.t(:your_roster_status) } #{the_font_begin}#{(match.type_name).downcase}#{the_font_end}" if is_current_same_as(match.user)
+        the_label = "#{I18n.t(:your_roster_status) } #{the_font}" if is_current_same_as(match.user)
       end
       
 			the_match_link = match_all_my_link(schedule, current_user, false, true)

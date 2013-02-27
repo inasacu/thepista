@@ -314,7 +314,7 @@ module ApplicationHelper
 
 	def page_title
 		unless @content_for_title
-				@content_for_title = Rails.env unless Rails.env.production?
+			@content_for_title = Rails.env unless Rails.env.production?
 		end
 		"HayPista" + ( " | " + @content_for_title if @content_for_title).to_s
 	end
@@ -354,13 +354,13 @@ module ApplicationHelper
 		end
 	end
 
-		def set_image_and_link_h6(the_link, image_label=nil)
-			if DISPLAY_HAYPISTA_TEMPLATE
-				set_content_tag_safe(:h6, "#{image_label.nil? ? '' : option_image_link(image_label)}  #{the_link}", "")
-			else
-				set_content_tag_safe(:h6, "#{image_label.nil? ? '' : option_image_small_link(image_label)}  #{the_link}", "")
-			end
+	def set_image_and_link_h6(the_link, image_label=nil)
+		if DISPLAY_HAYPISTA_TEMPLATE
+			set_content_tag_safe(:h6, "#{image_label.nil? ? '' : option_image_link(image_label)}  #{the_link}", "")
+		else
+			set_content_tag_safe(:h6, "#{image_label.nil? ? '' : option_image_small_link(image_label)}  #{the_link}", "")
 		end
+	end
 
 	def set_image_and_link(the_link, image_label=nil)
 		if DISPLAY_HAYPISTA_TEMPLATE
@@ -648,7 +648,7 @@ module ApplicationHelper
 
 	def set_form_cancel(item)
 		item = Venue.new if item.class.to_s.downcase.chomp == 'reservation'
-		
+
 		the_path = "#{item.class.to_s.downcase.chomp}s_path"
 		link_to(I18n.t(:cancel), send(:"#{the_path}"))    
 	end
@@ -773,8 +773,8 @@ module ApplicationHelper
 	def set_form_create_id_label_link(item, id, item_id, label='',image='')
 		set_image_and_link(set_form_create_label_id(item, id, item_id, label),( image.blank? ? item.class.to_s.downcase.chomp : image))
 	end
-	
-	
+
+
 	def set_class_name_and_date(first_item, second_item)
 		the_span = content_tag('span', second_item.html_safe, :class => 'date')
 		# return content_tag('td', "#{first_item}<br />#{the_span}".html_safe, :class => 'name_and_date')
@@ -865,7 +865,7 @@ module ApplicationHelper
 		link_to text, "tel:#{number}"
 	end
 
-	
+
 	def phone_user_link(user)
 		sets_of_numbers = user.phone.scan(/[0-9]+/)
 		number = "#{sets_of_numbers.join('-')}"
@@ -875,6 +875,18 @@ module ApplicationHelper
 		else
 			item_name_link(user)
 		end
+	end
+
+	def the_font_green(the_value)
+		return "<font color='#0f7d00'>#{the_value}</font>"
+	end
+
+	def the_font_yellow(the_value)
+		return "<font color='#ff9933'>#{the_value}</font>"
+	end
+
+	def the_font_red(the_value)
+		return "<font color='#ff3300'>#{the_value}</font>"
 	end
 
 end
