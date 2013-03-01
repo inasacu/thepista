@@ -197,3 +197,5 @@ MOBILE_BROWSERS = ["smartphone", "iphone",  "blackberry", "playbook", "windows p
 
 CONTACT_RECIPIENT = 'support@haypista.com'
 LANGUAGES = ['es', 'en']
+
+DEFAULT_AMAZON_S3_IMAGES_URL = "http://s3.amazonaws.com/thepista_produccion/the_images/"

@@ -1,27 +1,173 @@
-<div id="home">
-	
-	<div class="announce">
-		<%= content_tag 'h4', "#{label_name(:feedback)}" %>		
-	</div>
-	
-	<hr/>
-	<br/>
-	
-	<div class="features">
-		<%#= content_tag 'h5', label_name(:what_is_haypista) %>
-		<%#= content_tag 'p', "#{label_name(:haypista_pronunciation)} #{label_name(:what_is_haypista_details)}" %>
+<%= javascript_include_tag "lightbox" %>
+<%= stylesheet_link_tag    "lightbox" %>
 
-		<!-- <hr/> -->
+
+<script type="text/javascript">
+	$(function() {
+		$('#gallery a').lightBox();
+	});
+</script>
+
+<style type="text/css">
+	/* jQuery lightBox plugin - Gallery style */
+	#gallery {	}
+	#gallery ul { list-style: none; }
+	#gallery ul li { display: inline; }
+	#gallery ul img {	}
+	#gallery ul a:hover img {
+		color: #fff;
+	}
+	#gallery ul a:hover { color: #fff; }
+</style>
+
+
+
+
+
+<%
+	# 1. haypista-la-mejor-forma-de-acceder.png
+	# 2. haypista-eventos.png
+	# 3. haypista-evento-jornada-convocados.png
+	# 4. haypista-jornada-evento-comentarios.png
+	# 5. haypista-evento-resultados.png
+	# 6. haypista-evento-clasificacion.png
+
+	the_size = "580x280"
+
+	the_mejor_forma_de_acceder = "#{DEFAULT_AMAZON_S3_IMAGES_URL}haypista-la-mejor-forma-de-acceder.png"
+	the_eventos = "#{DEFAULT_AMAZON_S3_IMAGES_URL}haypista-eventos.png"
+	the_evento_jornada_convocados = "#{DEFAULT_AMAZON_S3_IMAGES_URL}haypista-evento-jornada-convocados.png"
+	the_jornada_evento_comentarios = "#{DEFAULT_AMAZON_S3_IMAGES_URL}haypista-jornada-evento-comentarios.png"
+	the_evento_resultados = "#{DEFAULT_AMAZON_S3_IMAGES_URL}haypista-evento-resultados.png"
+	the_evento_clasification = "#{DEFAULT_AMAZON_S3_IMAGES_URL}haypista-evento-clasificacion.png"
+
+%>
+
+
+<div class="row">
+	<div class="twelve columns">
+
+		<div class="announce">
+			<%= content_tag 'h4', "#{label_name(:feedback)}" %>		
+		</div>
+
+		<hr/>
+		<br/>
 		
-		<%#= content_tag 'h5', label_name(:faq_our_philosophy) %>
-		<%#= content_tag 'p', label_name(:faq_our_philosophy_description) %>		
-		
-		<!-- <hr/> -->
-		
-		<%#= content_tag 'h5', label_name(:faq_our_story) %>
-		<%#= content_tag 'p', "#{app_name} #{label_name(:faq_our_story_description)}" %>
-		
-		<!-- <hr/> -->
+		<div id="gallery">
+			<ul>
+				<li>
+
+					<div class="row">
+						<div class="six columns">				
+							<%= content_tag_safe(:h4, "login") %>
+							<%= "your own login, we dont keep but your email, we dont know your password or access any additional information" %>
+						</div>
+						<div class="six columns">
+				
+							<%= link_to( image_tag(the_mejor_forma_de_acceder, :size => the_size), the_mejor_forma_de_acceder ) %>
+				
+						</div>
+					</div>
+
+					<hr/>
+					<br>
+
+					<div class="row">
+
+						<div class="six columns">
+							<%= link_to( image_tag(the_eventos, :size => the_size), the_eventos, :class => "lightbox_trigger" ) %>
+						</div>
+
+						<div class="six columns">
+							<%= content_tag_safe(:h4, "display events") %>
+							<div class="row">
+								<div class="twelve columns">
+									<%= "displays all events in location, how many players are needed per event and option to sign up for game" %>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<hr/>
+					<br>
+
+
+					<div class="row">
+
+						<div class="six columns">
+							<%= link_to( image_tag(the_evento_jornada_convocados, :size => the_size), the_evento_jornada_convocados, :class => "lightbox_trigger" ) %>
+						</div>
+
+						<div class="six columns">
+							<%= content_tag_safe(:h4, "display specific event") %>
+							<div class="row">
+								<div class="twelve columns">
+									<%=  "once in specific event you can see who else is playing, % of season games played and allow to setup teams for game" %>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<hr/>
+					<br>
+
+
+
+					<div class="row">
+						<div class="six columns">
+							<%= link_to( image_tag(the_jornada_evento_comentarios, :size => the_size), the_jornada_evento_comentarios, :class => "lightbox_trigger" ) %>
+						</div>
+
+						<div class="six columns">
+							<%= content_tag_safe(:h4, "display comment section") %>
+							<div class="row">
+								<div class="twelve columns">
+									<%= "information related to leaving comments in the event section..." %>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<hr/>
+					<br>
+
+
+					<div class="row">
+						<div class="eight columns">				
+							<%= content_tag_safe(:h4, "after game enter score") %>
+							<%= "information related to adding the game result including goals..." %>
+						</div>
+						<div class="four columns">
+							<%= link_to( image_tag(the_evento_resultados, :size => the_size), the_evento_resultados, :class => "lightbox_trigger" ) %>
+						</div>
+					</div>
+
+					<hr/>
+					<br>
+
+					<div class="row">
+						<div class="eight columns">				
+							<%= content_tag_safe(:h4, "show scorecard") %>
+							<%= "after having played games, adding score for the game, the results are reflected in the scorecard..." %>
+						</div>
+						<div class="four columns">
+							<%= link_to( image_tag(the_evento_clasification, :size => the_size), the_evento_clasification, :class => "lightbox_trigger" ) %>
+						</div>
+					</div>
+
+					<hr/>
+					<br>
+			
+				</li>
+			</ul>
+		</div>
+			
+
 
 	</div>
 </div>
+
+
+
+

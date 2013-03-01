@@ -135,17 +135,21 @@
 	# case for discard displaying DISQUS
 	discard_disqus_display = ['schedule_new', 'schedule_edit', 'cast_edit', 'match_edit', 'invitation_new', 'challenge_new', 'challenge_edit', 'message_new']
 	
+	# display full screen or partial
+	the_twelve_columns = ['reservation_index']
+	
 	# case for displaying SIDEBAR 
 	ignore_sidebar = ['schedule_list', 'user_index', 'invitation_new', 'challenge_new', 'challenge_create', 'message_index', 'message_show', 'message_new', 
 					  'game_index', 'standing_index', 'game_list','cast_list_gues','standing_show_all', 'standing_show', 
 					  'reservation_index', 'user_session_new', 'authentication_index', 'schedule_group_previou', 'schedule_group_current']
 					
-					
-	IGNORE_HOME.each { |the_ignore| ignore_sidebar << the_ignore }
+	IGNORE_HOME.each  do |the_ignore| 
+		ignore_sidebar << the_ignore 
+		the_twelve_columns << the_ignore
+	end
 					
 	the_sidebar = nil if ignore_sidebar.include?(get_controller_action)
-	
-	the_column_set = is_controller_action('reservation_index') ? "twelve columns" : nil
+	the_column_set = the_twelve_columns.include?(get_controller_action) ? "twelve columns" : nil
 %>
 
 
