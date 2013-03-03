@@ -294,29 +294,19 @@ es:
      debit_total:  Cargos totales
      debit_to_group:  Deuda a tu equipo
      debits: Cargos 
-     default_group_conditions:  "Todos los jugadores tienen hasta 48 HORAS antes del partido para apuntarse.
+     default_group_conditions:  "Todos los jugadores pueden inscribirse hasta 48 horas antes del partido. A primera hora del día del partido los Convocados son: 
 
-	A primera hora del dia del partido los Convocados son:
+	1. Si se ha superado el número de jugadores ABONADOS, el que más partidos ha jugado será pasado a Suplente. 
 
-	1. Si hay más del limite de jugadores que son ABONADOS el que mas partidos ha jugado sera pasado a Suplente.
+	2. Si hay una mezcla de ABONADOS y NO ABONADOS, el que tiene menos partidos como NO ABONADO pasará a Suplente. 
 
-	2. Si hay una mezcla de ABONADOS y NO ABONADOS el que tiene menos partidos como NO ABONADO pasara a Suplente.
+	3. Una vez que un jugador ha pasado a suplente, se corre el turno al siguiente jugador con más partidos hasta completar una vuelta. 
 
-	3. Una vez que un jugador que ha pasado a suplente, se corre el turno al siguiente jugador con más partidos hasta completar la vuelta.
+	4. Los jugadores ABONADOS que estén obligados a pasara Suplente y al final no jueguen, tendrán prioridad en el siguiente partido. 
 
-	4. Los jugadores ABONADOS que estén obligados a pasar a Suplente y al final no jueguen, tendrán prioridad el siguiente partido.
+	5. Cualquier jugador que se apunte dentro de las 48 horas antes del partido, sea ABONADO o NO ABONADO, jugará en función de cuándo se apuntó. La idea es que se dé preferencia a los ABONADOS, luego a los que se apunten antes. 
 
-	5. Cualquier jugador que se apunte dentro de las 48 horas antes del partido, sea ABONADO o NO ABONADO jugara en función de cuando se apunto.
-
-	La idea es que se de preferencia a los ABONADOS, luego a los que se apunten antes.
-
-	En el momento en que cambie el estado de un jugador, de Convocado a Suplente o viceversa, el organizador mandara un correo para todos estéis informados.
-
-	Por otro lado y por compañerismo, si os apuntáis y no podéis venir avisad con tiempo o contactar con alguna personal del equipo que os pueda sustituir.
-
-	Gracias.
-
-	El Equipo..."  
+	En el momento en que cambie el estado de un jugador, de Convocado a Suplente o viceversa, el organizador mandará un correo para que todos estéis informados. Por otro lado y por compañerismo, si os apuntáis y no podéis venir, avisad con tiempo o contactad con alguien del equipo que os pueda sustituir."  
      default_reliable: Fiable   
      defense:  Defensa
      delete_activity: Borra tu actividad    
@@ -446,6 +436,7 @@ es:
      false_value: "No"
      f_value: "No"
      faq: Preguntas Frecuentes
+     faq_acceso_facil:  ¡Acceso Facil!
      faq_acceso_con_tu_cuenta:  Preguntas sobre como acceder a HayPista con tu cuenta
      faq_how_can_help:  "¿Cómo te puede ayudar HayPista?"
      faq_helps_organize:  "*  Te permite organizar equipos y eventos."
