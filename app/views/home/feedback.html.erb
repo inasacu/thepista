@@ -65,20 +65,18 @@
 		<ul>
 			<li>
 
-				<!-- <div class="row">
+				<div class="row">
 					<div class="six columns">				
-						<%#= content_tag_safe(:h4, label_name(:faq_acceso_facil)) %>
-						<%#= "Acceso facil para acceder a los servicios." %>
+						<%= content_tag_safe(:h4, label_name(:faq_acceso_facil)) %>
+						<%= "Acceso facil y seguro para acceder a los servicios." %>
 					</div>
 					<div class="six columns">
-			
-						<%#= link_to( image_tag(the_mejor_forma_de_acceder, :size => the_size), the_mejor_forma_de_acceder ) %>
-			
+						<%= link_to( image_tag(the_mejor_forma_de_acceder, :size => the_size), the_mejor_forma_de_acceder ) %>
 					</div>
 				</div>
 
 				<hr/>
-				<br> -->
+				<br>
 
 				<div class="row">
 					<div class="four columns">				
@@ -104,7 +102,6 @@
 				</div>
 				<hr/>
 				<br>
-				
 
 				<div class="row">
 					<div class="four columns">				
@@ -113,6 +110,18 @@
 					</div>
 					<div class="eight columns">
 						<%= link_to( image_tag(the_jornada_evento_comentarios, :size => the_size), the_jornada_evento_comentarios ) %>
+					</div>
+				</div>
+				<hr/>
+				<br>
+
+				<div class="row">
+					<div class="four columns">				
+						<%= content_tag_safe(:h4, "Apunta") %>
+						<%= "Apunta los resultados del ultimo partido." %>
+					</div>
+					<div class="eight columns">
+						<%= link_to( image_tag(the_evento_resultados, :size => the_size), the_evento_resultados ) %>
 					</div>
 				</div>
 				<hr/>

@@ -25,7 +25,7 @@
 			<%= content_tag_safe(:th, "&nbsp;") %>
 			<%= content_tag_safe(:th, label_name(:user)) %>
 			<%= content_tag_safe(:th, the_status) %>
-			<%= content_tag_safe(:th, label_name(:participation)) %>
+			<%= content_tag_safe(:th, sort_link(I18n.t(:participation), :coeficient_played), label_name(:participation_full), 'center') %>
 			<%= content_tag_safe(:th, it_has_played) %>
 			<%= content_tag_safe(:th, "&nbsp;") if has_not_been_played_manager %>
 			
