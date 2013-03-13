@@ -2,7 +2,7 @@ Thepista::Application.routes.draw do
 
 	root :to => "home#index" 	
 	match '/' => 'home#index'
-
+	match 'qr' => 'home#index'
 
 	match 'rpx_token_sessions' => 'user_sessions#rpx_create', :as => :rpx_token_sessions
 	match 'rpx_signup' => 'users#rpx_new', :as => :rpx_signup

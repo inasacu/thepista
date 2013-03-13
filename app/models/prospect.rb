@@ -20,12 +20,13 @@
 class Prospect < ActiveRecord::Base
 
 	# validations 
-	validates_uniqueness_of   :name,    :case_sensitive => false
-	validates_presence_of     :name
+	# validates_uniqueness_of   :name,    :case_sensitive => false
+	# validates_presence_of     :name
 
 	# variables to access
 	attr_accessible :name, :contact, :email, :email_additional, 	:phone, :url, :url_additional,:image,:installations
 	attr_accessible :description,:conditions,:notes,:letter_first,	:letter_second,:response_first,:response_second
+	attr_accessible :archive
 
 end
 

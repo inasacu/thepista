@@ -3,25 +3,9 @@ class ProspectsController < ApplicationController
 	before_filter 	:get_prospect, :only => [:edit, :update, :show]
 
 	def index
-
-
-		# and conditions not like '%Frontón%'
-		# and conditions not like '%Bádminton%'
-
-		@prospects = Prospect.where("name not like '%Tennis%' and name not like '%Tenis%' and name not like '%Padel%' and
-																 conditions not like '%Tenis%' and 
-		         										 conditions not like '%Padel%' and 
-																 conditions not like '%Squash%' and 
-																 conditions not like '%Baloncesto%' and
-																 conditions not like '%Balonmano%' and
-																 conditions not like '%Atletismo%' and
-																 conditions not like '%Golf%' and 
-																 conditions not like '%Hockey%' and
-																 conditions not like '%Voleibol%' and
-																 name not like '%Municipal%' and
+		@prospects = Prospect.where("archive = false and 
 																 email is null and 
-																 phone is null and 
-																 email_additional is null").page(params[:page]).order('prospects.created_at')
+												 				 email_additional is null").page(params[:page]).order('prospects.created_at')
 	end
 
 	def show

@@ -314,8 +314,9 @@ es:
      deny: Rechazo   
      deny_player: "DENIEGA"  
      description: Detalles
-     description_announcement: Detalles de la anuncio      
-     email_description: "Ej:  tu_cuenta@gmail.com"     
+     description_announcement: Detalles de la anuncio    
+     email_description: "Ej:  tu_cuenta@gmail.com"
+     email_additional: Segundo Correo 
      description_fee: Detalles de los cargos      
      description_group: Detalles del equipo   
      description_invitation: Detalles de la invitación  
@@ -1898,7 +1899,8 @@ es:
      payments_edit:  Actualiza el pago
      payments_option:  Opciones 
      payments_show:  Mostrar pago
-     prospects_edit:  Cambia el Cuenta          
+     prospects_edit:  Cambia el Cuenta
+     prospects_no:  Ningun Centro     
      group_options:  Opciones
      group_stage_set:  Actualiza el grupo
      group_stage_set_full:  Actualiza el grupo

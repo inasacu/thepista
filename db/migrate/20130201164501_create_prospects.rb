@@ -17,6 +17,7 @@ class CreateProspects < ActiveRecord::Migration
   # 			t.datetime		:letter_second
   # 			t.datetime		:response_first
   # 			t.datetime		:response_second
+	# 			t.boolean			:archive
   # 
   #     t.timestamps
   #   end

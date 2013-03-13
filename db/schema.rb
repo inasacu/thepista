@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130221213044) do
+ActiveRecord::Schema.define(:version => 20130310183226) do
 
   create_table "announcements", :force => true do |t|
     t.text     "message"
@@ -528,12 +528,13 @@ ActiveRecord::Schema.define(:version => 20130221213044) do
     t.datetime "response_first"
     t.datetime "response_second"
     t.text     "notes"
-    t.datetime "created_at",       :null => false
-    t.datetime "updated_at",       :null => false
+    t.datetime "created_at",                          :null => false
+    t.datetime "updated_at",                          :null => false
     t.string   "image"
     t.text     "installations"
     t.text     "description"
     t.text     "conditions"
+    t.boolean  "archive",          :default => false
   end
 
   create_table "reservations", :force => true do |t|
