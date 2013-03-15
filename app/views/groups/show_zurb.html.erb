@@ -38,7 +38,7 @@
 		<%  if is_venue_maximo %>
 		<%= render_show_detail_zurb(:venue, the_venue_link) %>
 		<% else %>
-		<%= render_show_detail_zurb(:marker, marker_link(@group.marker)) %>
+		<%= render_show_detail_zurb(:marker, @group.marker.name) %>
 		<% end %>
 		
 		<%= render_show_detail_zurb(:sports, @group.sport.name) %>
