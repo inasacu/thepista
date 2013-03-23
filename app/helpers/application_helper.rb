@@ -119,7 +119,7 @@ module ApplicationHelper
 	end
 
 	def ago(time_at)
-		return I18n.t(:ago, :count => time_ago_in_words(time_at).capitalize).html_safe
+		return "#{the_font_gray(I18n.t(:ago, :count => time_ago_in_words(time_at).capitalize))}".html_safe
 	end
 
 	def has_left(time_at)
@@ -887,6 +887,11 @@ module ApplicationHelper
 
 	def the_font_red(the_value)
 		return "<font color='#ff3300'>#{the_value}</font>"
+	end
+
+	def the_font_gray(the_value, the_size=false)
+		return "<font color='gray' size='1'>#{the_value}</font>" if the_size
+		return "<font color='gray'>#{the_value}</font>"
 	end
 
 end

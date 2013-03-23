@@ -136,7 +136,7 @@ the_roster.each do |match|
 	<%= content_tag_safe(:td, image_link_smaller(the_user), '', '') %>
 	<%= content_tag_safe(:td, subscription_image, '','') %>
 	<%= content_tag_safe(:td, the_user_link, '','') %>
-	<%= content_tag_safe(:td, "#{the_match_status}", '','') %>
+	<%= content_tag_safe(:td, "#{the_font_gray(the_match_status, true)}", '','') %>
 	<%= content_tag_safe(:td, game_number, '','') %>
 	<%= content_tag_safe(:td, change_group_link, '','') unless has_been_played %>
 	<%= content_tag_safe(:td, was_convocado ? (group_score_link(@schedule, is_second_team)) : '', '','') if has_been_played %>		
