@@ -1,5 +1,6 @@
 class HomeController < ApplicationController  
-	before_filter :require_user, :except => [:index, :about, :help, :welcome, :pricing, :about, :terms_of_use, :privacy_policy, :faq, :openid, :success, :blog, :persona, :feedback, :qr]
+	before_filter :require_user, :except => [:index, :about, :help, :welcome, :pricing, :about, :terms_of_use, :privacy_policy, :faq, 
+								:openid, :success, :blog, :persona, :feedback, :qr, :how_it_works]
 
 	before_filter :get_home,            :only => [:index]
 	before_filter :get_upcoming,        :only => [:index, :upcoming]

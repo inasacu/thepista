@@ -438,6 +438,7 @@ en:
      false_value: "No"
      f_value: "No"
      faq: FAQ
+     faq_acceso_facil:  Easy Access
      faq_acceso_con_tu_cuenta:  FAQ about access to HayPista with your account
      faq_how_can_help:  "How can HayPista help you?"
      faq_helps_organize:  "*  Helps you organize teams and events."
@@ -780,6 +781,7 @@ en:
      holidays_none: None Holiday
      holidays_open: Holiday Hours
      holidays_closed:  Holiday Closed
+     howitworks:  How It Works
      home: Home   
      home_group: Home Team       
      home_stage_name:  Group

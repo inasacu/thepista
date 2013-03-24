@@ -185,7 +185,7 @@ IMAGE_VENUE = 'icons/venue.png'
 
 # .sport.icon
 
-IGNORE_HOME = ['home_about', 'home_terms_of_use', 'home_faq', 'home_persona', 'home_feedback']
+IGNORE_HOME = ['home_about', 'home_terms_of_use', 'home_faq', 'home_persona', 'home_feedback', 'home_how_it_work']
 
 
 COMMON_YEAR_DAYS_IN_MONTH = [nil, 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]

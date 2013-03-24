@@ -89,6 +89,7 @@ Thepista::Application.routes.draw do
 	match 'success' => 'home#success', :as => :success
 	match 'persona' => 'home#persona', :as => :persona
 	match 'feedback' => 'home#feedback', :as => :feedback
+	match 'how_it_works' => 'home#how_it_works', :as => :how_it_works
 
 	match '/ocultar_aviso' => 'javascripts#hide_announcements', :as => :hide_announcements
 
