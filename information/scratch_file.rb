@@ -12,6 +12,22 @@ Maintenance mode disabled.
 
 
 
+# restore production database on local
+
+***   heroku pgbackups:url --app zurb
+
+***   heroku pgbackups --app zurb
+
+***   heroku pgbackups:url b072 --app zurb
+
+***   curl -o zurb29mar2013.dump "url_in_s3" 
+***   curl -o zurb29mar2013.dump "https://s3.amazonaws.com/hkpgbackups/app5730798@heroku.com/b072.dump?AWSAccessKeyId=AKIAIYZ2BP3RBVXEIZDA&Expires=1364583140&Signature=K0svlCRRIy1zUjV5rwC1Ao9Xzew%3D"
+
+***   pg_restore --verbose --clean --no-acl --no-owner -h localhost -U postgres -d desarrollo_thepista zurb29mar2013.dump
+
+
+
+
 
 
 

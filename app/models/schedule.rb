@@ -161,6 +161,19 @@ class Schedule < ActiveRecord::Base
                 :order => the_sort)
   end
 
+	def the_last_minute_infringe
+		the_match = Match.find(:all, :select => "distinct matches.user_id",
+							 						 :joins => "join schedules on schedules.id = matches.schedule_id
+																			join groups on groups.id = schedules.group_id",
+							 						 :conditions => ["schedules.group_id = ? and matches.type_id > 2 and
+																						 schedules.starts_at > ? and date_part('days', schedules.starts_at - matches.status_at) = 0 and
+															 							 matches.created_at < schedules.starts_at", self.group_id, NINE_MONTHS_AGO],
+													 :group => "matches.user_id", :having => "count(*) > 1")
+			the_infringe = []
+			the_match.each {|match| the_infringe << match.user_id}
+			return the_infringe
+	end
+	
 	def the_roster_infringe
 		the_match = Match.find(:all, :select => "distinct matches.user_id",
 							 						 :joins => "join schedules on schedules.id = matches.schedule_id
