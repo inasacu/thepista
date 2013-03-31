@@ -1,0 +1,163 @@
+<%= javascript_include_tag "lightbox" %>
+<%= stylesheet_link_tag    "lightbox" %>
+
+
+<script type="text/javascript">
+	$(function() {
+		$('#gallery a').lightBox();
+	});
+</script>
+
+<style type="text/css">
+	/* jQuery lightBox plugin - Gallery style */
+	#gallery {	}
+	#gallery ul { list-style: none; }
+	#gallery ul li { display: inline; }
+	#gallery ul img {	}
+	#gallery ul a:hover img {
+		color: #fff;
+	}
+	#gallery ul a:hover { color: #fff; }
+</style>
+
+
+
+
+
+<%	
+	
+	lauch_social_es = "Hacemos que tu portal sea <br/> MAS SOCIABLE"
+	lauch_social_en = "WE MAKE YOUR	SITE SOCIAL"
+	
+	launch_inovative_es = "HayPista está inovando la manera de organizar eventos deportivos entre amigos, permitiéndo decidir y conocer en cada momento, quién, cuándo y donde jugar."
+	launch_inovative_en = "HayPista is an innovative way to organize events with friends, allowing you to decide and track at any moment who, when and where to play."
+	
+	
+	launch_real_time_es = "HayPista es una aplicacion que en tiempo real, no solo ayuda a tu publico a organizarse y jugar, sino que también convierte tu sitio en un centro para comunicarse."
+	launch_real_time_en = "HayPista’s real-time apps get your audience organized and playing, it also turns your site into the hub for your community."
+	
+	launch_engage_es = "Utilice HayPista para atraer usuarios y encontrar a otros en la comunidad y permitir la práctica del deporte."
+	launch_engage_en = "Use HayPista to engage your users and find others within the community to practice sports."
+	
+	launch_watch_video_es = "Ver el video"
+	launch_watch_video_en = "Watch the video"
+	
+	launch_blow_es = "Esto te puede volar la mente..."
+	launch_blow_en = "This might just blow your mind..."
+	
+	launch_early_access_es = "¿Quieres tener acceso anticipado?"
+	launch_early_access_en = "Want early access?"
+		
+	launch_subject_es = "Tengo una gran vista!"
+	launch_subject_en = "I\'ve got a great view!"
+	
+	launch_email_body_es = "¡Quiero ser de los primeros en probarlo!"
+	launch_email_body_en = "I want to be first to try it out!"
+	
+	the_feedback_email = "#{mail_to(CONTACT_RECIPIENT, 'feedback@haypista.com', :subject => launch_subject_es, :encode => 'javascript', :body => launch_email_body_es, :target => '_blank')}".html_safe
+	
+	launch_request_message_es = "Mandanos un mensaje a #{the_feedback_email}. Encuanto podamos, te invitaremos a unirte a nuestras pruebas Beta."
+	launch_request_message_en = "Send a request message to #{the_feedback_email}. When we are ready, we&#39;ll invite you to join our Beta Test."
+%>
+
+
+
+
+
+
+
+<div class="row">
+	<div class="two columns"></div>
+	<div class="eight columns">
+		<div class="announce">
+			<%= content_tag 'h2', "#{lauch_social_es}".html_safe, :align => "center" %>		
+		</div>
+		<br/>
+		<br/>
+	</div>
+	<div class="two columns"></div>
+</div>
+
+
+
+<div class="row">
+	<div class="three columns"></div>
+	<div class="six columns">
+		<div class="announce">
+			<%= content_tag 'h6', "#{launch_inovative_es}", :align => "center" %><br/><br/>
+			<%= content_tag 'h6', "#{launch_real_time_es}", :align => "center" %><br/><br/>
+			<%= content_tag 'h6', "#{launch_engage_es}", :align => "center" %><br/><br/>		
+		</div>
+		<br/>
+		<br/>
+	</div>
+	<div class="three columns"></div>
+</div>
+
+
+<div class="row">
+	
+	
+	<div class="three columns">
+	</div>
+	
+	<div class="four columns">
+		
+		<div id="watchVimeoID">	
+				
+			<div class="myleft" onclick="kztv.show()">
+				<img class="img-rounded vimeo-link" src="../assets/icon-video.png"  />				
+			</div>
+			
+			<div class="myright" onclick="kztv.show()">
+				<%= content_tag 'h3', "#{launch_watch_video_es}" %>
+				<%= content_tag 'p', "#{launch_blow_es}" %>
+			</div>
+			
+			
+		</div>
+				
+	</div>
+	
+	<div class="four columns">
+		
+		<div class="offset1 span5" id="submitViewID" >
+			
+			<div class="myleft">
+				<img class="img-rounded" src="../assets/icon-killerview.png" />
+			</div>
+			
+			<div class="myright">
+				<%= content_tag 'h3', "#{launch_early_access_es}" %>	
+				<%= content_tag 'p', "#{launch_request_message_es}".html_safe %>
+			</div>
+			
+		</div>
+		
+	</div>
+	
+	<div class="two columns">
+	</div>
+	
+</div>
+
+<hr>
+<br/>
+
+
+<div class="row">
+
+	<div class="three columns">
+	</div>
+	
+	<div class="six columns">
+		<%= "#{youtube_embed('youtu.be/4Clhquh6Z9o', 450, 300)}".html_safe %>
+	</div>
+	
+	<div class="three columns">
+	</div>
+	
+</div>
+	
+	
+	

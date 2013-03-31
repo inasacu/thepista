@@ -3,25 +3,22 @@
 
 
 <script type="text/javascript">
-	$(function() {
-		$('#gallery a').lightBox();
-	});
+$(function() {
+	$('#gallery a').lightBox();
+});
 </script>
 
 <style type="text/css">
-	/* jQuery lightBox plugin - Gallery style */
-	#gallery {	}
-	#gallery ul { list-style: none; }
-	#gallery ul li { display: inline; }
-	#gallery ul img {	}
-	#gallery ul a:hover img {
-		color: #fff;
-	}
-	#gallery ul a:hover { color: #fff; }
+/* jQuery lightBox plugin - Gallery style */
+#gallery {	}
+#gallery ul { list-style: none; }
+#gallery ul li { display: inline; }
+#gallery ul img {	}
+#gallery ul a:hover img {
+	color: #fff;
+}
+#gallery ul a:hover { color: #fff; }
 </style>
-
-
-
 
 
 <%
@@ -40,7 +37,6 @@
 	the_jornada_evento_comentarios = "#{DEFAULT_AMAZON_S3_IMAGES_URL}haypista-jornada-evento-comentarios.png"
 	the_evento_resultados = "#{DEFAULT_AMAZON_S3_IMAGES_URL}haypista-evento-resultados.png"
 	the_evento_clasification = "#{DEFAULT_AMAZON_S3_IMAGES_URL}haypista-evento-clasificacion.png"
-
 %>
 
 
@@ -57,125 +53,90 @@
 
 		<hr/>
 		<br/>
-		
 
-		
-	
-	<div id="gallery">
-		<ul>
-			<li>
+		<div id="gallery">
+			<ul>
+				<li>
 
-				<div class="row">
-					<div class="six columns">				
-						<%= content_tag_safe(:h4, label_name(:faq_acceso_facil)) %>
-						<%= "Acceso facil y seguro para acceder a los servicios." %>
-					</div>
-					<div class="six columns">
-						<%= link_to( image_tag(the_mejor_forma_de_acceder, :size => the_size), the_mejor_forma_de_acceder ) %>
-					</div>
-				</div>
-
-				<hr/>
-				<br>
-
-				<div class="row">
-					<div class="four columns">				
-						<%= content_tag_safe(:h4, "Infórmate") %>
-						<%= "Infórmate de todos los eventos de tu equipo: cuáles serán los próximos encuentros y si vas a participar en ellos." %>
-					</div>
-					<div class="eight columns">
-						<%= link_to( image_tag(the_eventos, :size => the_size), the_eventos ) %>
-					</div>
-				</div>
-				<hr/>
-				<br>
-				
-
-				<div class="row">
-					<div class="four columns">				
-						<%= content_tag_safe(:h4, "Conoce") %>
-						<%=  "Conoce qué jugadores están convocados para un partido, y su nivel de participación. También sabrás si puedes contactar con él a través de whatsapp, para que podáis solucionar rápidamente imprevistos de última hora." %>
-					</div>
-					<div class="eight columns">
-						<%= link_to( image_tag(the_evento_jornada_convocados, :size => the_size), the_evento_jornada_convocados ) %>
-					</div>
-				</div>
-				<hr/>
-				<br>
-
-				<div class="row">
-					<div class="four columns">				
-						<%= content_tag_safe(:h4, "Comunicate") %>
-						<%= "Comunicate con tus compañeros de equipo: puedes avisar de incidencias y cambios de última hora, comentar el último encuentro o intercambiar opiniones sobre el próximo rival." %>
-					</div>
-					<div class="eight columns">
-						<%= link_to( image_tag(the_jornada_evento_comentarios, :size => the_size), the_jornada_evento_comentarios ) %>
-					</div>
-				</div>
-				<hr/>
-				<br>
-
-				<div class="row">
-					<div class="four columns">				
-						<%= content_tag_safe(:h4, "Apunta") %>
-						<%= "Apunta los resultados del ultimo partido." %>
-					</div>
-					<div class="eight columns">
-						<%= link_to( image_tag(the_evento_resultados, :size => the_size), the_evento_resultados ) %>
-					</div>
-				</div>
-				<hr/>
-				<br>
-
-				<div class="row">
-					<div class="four columns">				
-						<%= content_tag_safe(:h4, "Sigue") %>
-						<%= "Sigue los resultados de tu equipo, con el resultado individual de cada jugador." %>
-					</div>
-					<div class="eight columns">
-						<%= link_to( image_tag(the_evento_clasification, :size => the_size), the_evento_clasification, :class => "lightbox_trigger" ) %>
-					</div>
-				</div>
-
-				<hr/>
-				<br>
-		
-			</li>
-		</ul>
-	</div>
-		
-
-
-</div>
-</div>
-
-<div class="row">
-<div class="twelve columns">
-
-			<div class="row" >
-				<!-- <div id="watchVimeoID">		
-						<div class="myleft" onclick="kztv.show()">
-							<img class="img-rounded vimeo-link" src="http://www.koozoo.com/site/static/images/front_door/fd_icon-video.png"  />
+					<div class="row">
+						<div class="six columns">				
+							<%= content_tag_safe(:h4, label_name(:faq_acceso_facil)) %>
+							<%= "Acceso facil y seguro para acceder a los servicios." %>
 						</div>
-						<div class="myright" onclick="kztv.show()">
-								<h3>Watch the video</h1>
-								This might just blow your mind...
+						<div class="six columns">
+							<%= link_to( image_tag(the_mejor_forma_de_acceder, :size => the_size), the_mejor_forma_de_acceder ) %>
 						</div>
-				</div> -->
+					</div>
 
-	<!-- 		
-				Removing send your view for launch
-				<div class="offset1 span5" id="submitViewID" >
-						<div class="myleft">
-							<img class="img-rounded" src="http://www.koozoo.com/site/static/images/front_door/fd_icon-killerview.png" />
+					<hr/>
+					<br>
+
+					<div class="row">
+						<div class="four columns">				
+							<%= content_tag_safe(:h4, "Infórmate") %>
+							<%= "Infórmate de todos los eventos de tu equipo: cuáles serán los próximos encuentros y si vas a participar en ellos." %>
 						</div>
-						<div class="myright" onclick="location.href='mailto:views@koozoo.com?subject=I\'ve got a great view!'">
-								<h3>Want early access?</h1>								
-								Send a photo from your home or office window to views@koozoo.com. If we like it, we&#39;ll invite you to join our Beta Test.
+						<div class="eight columns">
+							<%= link_to( image_tag(the_eventos, :size => the_size), the_eventos ) %>
 						</div>
-				</div> -->
-			</div>
-				
+					</div>
+					<hr/>
+					<br>
+
+
+					<div class="row">
+						<div class="four columns">				
+							<%= content_tag_safe(:h4, "Conoce") %>
+							<%=  "Conoce qué jugadores están convocados para un partido, y su nivel de participación. También sabrás si puedes contactar con él a través de whatsapp, para que podáis solucionar rápidamente imprevistos de última hora." %>
+						</div>
+						<div class="eight columns">
+							<%= link_to( image_tag(the_evento_jornada_convocados, :size => the_size), the_evento_jornada_convocados ) %>
+						</div>
+					</div>
+					<hr/>
+					<br>
+
+					<div class="row">
+						<div class="four columns">				
+							<%= content_tag_safe(:h4, "Comunicate") %>
+							<%= "Comunicate con tus compañeros de equipo: puedes avisar de incidencias y cambios de última hora, comentar el último encuentro o intercambiar opiniones sobre el próximo rival." %>
+						</div>
+						<div class="eight columns">
+							<%= link_to( image_tag(the_jornada_evento_comentarios, :size => the_size), the_jornada_evento_comentarios ) %>
+						</div>
+					</div>
+					<hr/>
+					<br>
+
+					<div class="row">
+						<div class="four columns">				
+							<%= content_tag_safe(:h4, "Apunta") %>
+							<%= "Apunta los resultados del ultimo partido." %>
+						</div>
+						<div class="eight columns">
+							<%= link_to( image_tag(the_evento_resultados, :size => the_size), the_evento_resultados ) %>
+						</div>
+					</div>
+					<hr/>
+					<br>
+
+					<div class="row">
+						<div class="four columns">				
+							<%= content_tag_safe(:h4, "Sigue") %>
+							<%= "Sigue los resultados de tu equipo, con el resultado individual de cada jugador." %>
+						</div>
+						<div class="eight columns">
+							<%= link_to( image_tag(the_evento_clasification, :size => the_size), the_evento_clasification, :class => "lightbox_trigger" ) %>
+						</div>
+					</div>
+
+					<hr/>
+					<br>
+
+				</li>
+			</ul>
+		</div>
+
 	</div>
 </div>
 
