@@ -79,7 +79,9 @@ the_roster.each do |match|
 	was_convocado =  match.type_id == 1	
 	
 	the_infringe_label = label_name(:infringe_true)
+	the_last_minute_infringe_label = label_name(:infringe_last_minute_true)
 	the_reputation_label = label_name(:reputation_true)
+	
 	no_jugado_image = ""				
 	no_reputation_image = ""
 	user_scorecard_link = ""
@@ -106,6 +108,13 @@ the_roster.each do |match|
 			if @the_roster_infringe.include?(match.user_id)
 				no_jugado_image = "#{no_jugado_image} #{image_tag('icons/star_purple_true.png', 
 				options={:title => the_infringe_label, :style => 'height: 15px; width: 15px;'})}" 
+			end
+		end
+
+		if @the_roster_last_minute_infringe
+			if @the_roster_last_minute_infringe.include?(match.user_id)
+				no_jugado_image = "#{no_jugado_image} #{image_tag('icons/star_red_true.png', 
+				options={:title => the_last_minute_infringe_label, :style => 'height: 15px; width: 15px;'})}" 
 			end
 		end
 	end

@@ -805,11 +805,12 @@ en:
      information_about: Information on
      infringe_false: Has Infringed
      infringe_true: Has Infringed
+     infringe_last_minute_false: Most likely to last minute cancel.
+     infringe_last_minute_true: Most likely to last minute cancel.
      interest_description: (What about what interest you...)   
      invalid_action: Invalid Action   
      invalid_login: Invalid Login   
-     invitation: Invitation
-     Ï_to: You have an invitation to HayPista   
+     invitation: Invitation  
      invitation_to_group: Invite a friend to join the Team   
      invitation_to_schedule: Invite a friend   
      invitations: Connect with friends 

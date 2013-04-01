@@ -168,7 +168,7 @@ class Schedule < ActiveRecord::Base
 							 						 :conditions => ["schedules.group_id = ? and matches.type_id > 2 and
 																						 schedules.starts_at > ? and date_part('days', schedules.starts_at - matches.status_at) = 0 and
 															 							 matches.created_at < schedules.starts_at", self.group_id, NINE_MONTHS_AGO],
-													 :group => "matches.user_id", :having => "count(*) > 1")
+													 :group => "matches.user_id", :having => ["count(*) > ?", REPUTATION_LAST_MINUTE_INFRINGE])
 			the_infringe = []
 			the_match.each {|match| the_infringe << match.user_id}
 			return the_infringe
