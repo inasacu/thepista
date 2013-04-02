@@ -39,7 +39,10 @@ PAST_TWO_DAYS = Time.zone.now - 2.days
 LAST_24_HOURS = Time.zone.now - 1.day
 NEXT_24_HOURS = Time.zone.now + 1.day
 NEXT_48_HOURS = Time.zone.now + 2.days
-HOURS_BEFORE_GAME = Time.zone.now + 4.hours
+ONE_HOURS_BEFORE_GAME = Time.zone.now - 1.hours
+TWO_HOURS_BEFORE_GAME = Time.zone.now - 2.hours
+THREE_HOURS_BEFORE_GAME = Time.zone.now - 3.hours
+FOUR_HOURS_BEFORE_GAME = Time.zone.now -  4.hours
 
 TIME_ONE_DAY_AGO = 1.day.ago
 TIME_THREE_DAYS_AGO = 2.days.ago
@@ -197,6 +200,8 @@ MOBILE_BROWSERS = ["smartphone", "iphone",  "blackberry", "playbook", "windows p
 
 
 CONTACT_RECIPIENT = 'support@haypista.com'
+CONTACT_FEEDBACK = 'feedback@haypista.com'
+
 LANGUAGES = ['es', 'en']
 
 DEFAULT_AMAZON_S3_IMAGES_URL = "http://s3.amazonaws.com/thepista_produccion/the_images/"

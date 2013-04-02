@@ -44,7 +44,10 @@ the_roster.each do |match|
 	end
 
 	second_team = ""
+	second_team = "first_team"  if is_action('team roster')
 	second_team = "second_team" if is_second_team
+	
+	# second_team = "last_minute_team" if match.status_at > FOUR_HOURS_BEFORE_GAME
 
 	puntos = "puntos"
 	puntos = "second_team_puntos" if is_second_team
@@ -120,7 +123,7 @@ the_roster.each do |match|
 	end
 		
 	the_match_status = ""
-	the_match_status = "#{ago(match.status_at)}" 
+	the_match_status = "#{ago(match.status_at, (match.status_at > YESTERDAY))}" 
 	the_match_status = "#{the_match_status} <br /> ( #{label_name(:no_jugado)} )" if match.type_id == 4
 	
 	the_whatsapp_label = label_name(:whatsapp)
@@ -138,14 +141,16 @@ the_roster.each do |match|
 	subscription_image = "#{counter +=1}. #{user_scorecard_link} #{subscription_image_link(the_user, is_subscriber, the_label)} #{no_jugado_image} "
 	
 	has_phone = the_user.my_members?(current_user)	? (!the_user.phone.blank?) : (false)
-	the_user_link = "#{phone_user_link(the_user)}  #{the_whatsapp_link}" if has_phone	
+	the_user_link = "#{phone_user_link(the_user)}  #{the_whatsapp_link}" if has_phone
+	
+	the_status_at = (the_match_status)
 %>
 
 <tr class='<%= second_team %>'>
 	<%= content_tag_safe(:td, image_link_smaller(the_user), '', '') %>
 	<%= content_tag_safe(:td, subscription_image, '','') %>
 	<%= content_tag_safe(:td, the_user_link, '','') %>
-	<%= content_tag_safe(:td, "#{the_font_gray(the_match_status, true)}", '','') %>
+	<%= content_tag_safe(:td, the_status_at, '','') %>
 	<%= content_tag_safe(:td, game_number, '','') %>
 	<%= content_tag_safe(:td, change_group_link, '','') unless has_been_played %>
 	<%= content_tag_safe(:td, was_convocado ? (group_score_link(@schedule, is_second_team)) : '', '','') if has_been_played %>		

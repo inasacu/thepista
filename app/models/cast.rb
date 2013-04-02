@@ -115,7 +115,7 @@ class Cast < ActiveRecord::Base
 	end
 
 	def cast_before_game
-		(self.starts_at >= HOURS_BEFORE_GAME and self.game.home_score.nil? and self.game.away_score.nil?)
+		(self.starts_at >= FOUR_HOURS_BEFORE_GAME and self.game.home_score.nil? and self.game.away_score.nil?)
 	end
 
 	def self.update_cast_details(challenge)
