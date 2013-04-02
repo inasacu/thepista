@@ -43,6 +43,7 @@ ONE_HOURS_BEFORE_GAME = Time.zone.now - 1.hours
 TWO_HOURS_BEFORE_GAME = Time.zone.now - 2.hours
 THREE_HOURS_BEFORE_GAME = Time.zone.now - 3.hours
 FOUR_HOURS_BEFORE_GAME = Time.zone.now -  4.hours
+TWELVE_HOURS_BEFORE_GAME = Time.zone.now -  12.hours
 
 TIME_ONE_DAY_AGO = 1.day.ago
 TIME_THREE_DAYS_AGO = 2.days.ago
