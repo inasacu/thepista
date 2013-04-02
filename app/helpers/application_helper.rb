@@ -120,7 +120,7 @@ module ApplicationHelper
 
 	def ago(time_at, the_other_color=false)
 		return "#{the_font_orange(I18n.t(:ago, :count => time_ago_in_words(time_at).capitalize))}".html_safe if the_other_color
-		return "#{the_font_gray(I18n.t(:ago, :count => time_ago_in_words(time_at).capitalize))}".html_safe
+		return "#{the_font_gray(I18n.t(:ago, :count => time_ago_in_words(time_at).capitalize), true)}".html_safe
 	end
 
 	def has_left(time_at)

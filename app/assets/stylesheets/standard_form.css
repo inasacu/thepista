@@ -51,8 +51,6 @@ input.smaller, textarea.small { width: 74px; } /* mod by haypista */
 /*	--------------------------------------------------
 :: Tables
 -------------------------------------------------- */
-
-table tbody tr.last_minute_team { background: #FFF1A8; }
 table tbody tr.first_team { background: transparent; }
 table tbody tr.second_team { background: #E8E8E8; }
 
