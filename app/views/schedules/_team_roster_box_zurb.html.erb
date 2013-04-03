@@ -88,6 +88,7 @@ the_roster.each do |match|
 	user_scorecard_link = ""
 	user_played = true
 	
+	user_subscription_link = subscription_image_link(the_user, is_subscriber, the_label)
 	
 	unless @schedule.played
 		if @the_last_played	
@@ -140,7 +141,7 @@ the_roster.each do |match|
 	change_group_link = (is_member & display_team_link) ? link_to(match.team_name(@schedule), match_team_path(:id => match.id), :title => label_name(:change_group)) :  match.team_name(@schedule)
 	
 	is_different_user_manager = (current_user != the_user and is_manager)
-	subscription_image = "#{counter +=1}. #{user_scorecard_link} #{subscription_image_link(the_user, is_subscriber, the_label)} #{no_jugado_image} "
+	subscription_image = "#{counter +=1}.  #{user_subscription_link} #{user_scorecard_link} #{no_jugado_image} "
 	
 	has_phone = the_user.my_members?(current_user)	? (!the_user.phone.blank?) : (false)
 	the_user_link = "#{phone_user_link(the_user)}  #{the_whatsapp_link}" if has_phone
