@@ -118,8 +118,12 @@ module ApplicationHelper
 		return "#{get_the_controller}_#{get_the_action}".gsub(' ','_')
 	end
 
-	def ago(time_at, the_other_color=false)
-		return "#{the_font_orange(I18n.t(:ago, :count => time_ago_in_words(time_at).capitalize))}".html_safe if the_other_color
+	def ago(time_at, the_other_color=false, the_color="green")
+		if the_other_color
+			return "#{the_font_green(I18n.t(:ago, :count => time_ago_in_words(time_at).capitalize), true)}".html_safe if the_color == "green"
+			return "#{the_font_yellow(I18n.t(:ago, :count => time_ago_in_words(time_at).capitalize), true)}".html_safe if the_color == "yellow"
+			return "#{the_font_red(I18n.t(:ago, :count => time_ago_in_words(time_at).capitalize), true)}".html_safe if the_color == "red"
+		end
 		return "#{the_font_gray(I18n.t(:ago, :count => time_ago_in_words(time_at).capitalize), true)}".html_safe
 	end
 
@@ -878,19 +882,18 @@ module ApplicationHelper
 		end
 	end
 
-	def the_font_green(the_value)
+	def the_font_green(the_value, the_size=false)
+		return "<font color='#0f7d00' size='1'>#{the_value}</font>" if the_size
 		return "<font color='#0f7d00'>#{the_value}</font>"
 	end
 
-	def the_font_yellow(the_value)
+	def the_font_yellow(the_value, the_size=false)
+		return "<font color='#ff9933' size='1'>#{the_value}</font>" if the_size
 		return "<font color='#ff9933'>#{the_value}</font>"
 	end
 
-	def the_font_orange(the_value)
-		return "<font color='#FF6633' size='1'>#{the_value}</font>"
-	end
-
-	def the_font_red(the_value)
+	def the_font_red(the_value, the_size=false)
+		return "<font color='#ff3300' size='1'>#{the_value}</font>" if the_size
 		return "<font color='#ff3300'>#{the_value}</font>"
 	end
 
