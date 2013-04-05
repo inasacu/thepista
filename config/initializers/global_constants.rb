@@ -19,14 +19,18 @@ YESTERDAY_TO_TODAY = Time.zone.now - 1.day..Time.zone.now + 1.day
 
 NEXT_WEEK = Time.zone.now + 7.days
 LAST_WEEK = Time.zone.now - 7.days
+
 YESTERDAY = Time.zone.now - 1.day
+
 LAST_TWO_DAYS = Time.zone.now - 2.days
 LAST_THREE_DAYS = Time.zone.now - 3.days
 LAST_FOUR_DAYS = Time.zone.now - 4.days
 LAST_FIVE_DAYS = Time.zone.now - 5.days
 LAST_SIX_DAYS = Time.zone.now - 6.days
+
 TWO_WEEKS_AGO = Time.zone.now - 14.days
 THREE_WEEKS_AGO = Time.zone.now - 21.days
+
 ONE_MONTH_AGO = Time.zone.now - 30.days
 TWO_MONTHS_AGO = Time.zone.now - 60.days
 THREE_MONTHS_AGO = Time.zone.now - 90.days
@@ -34,16 +38,21 @@ FOUR_MONTHS_AGO = Time.zone.now - 120.days
 SIX_MONTHS_AGO = Time.zone.now - 180.days
 NINE_MONTHS_AGO = Time.zone.now - 270.days
 TWELVE_MONTHS_AGO = Time.zone.now - 365.days
+
 PAST_THREE_DAYS = Time.zone.now - 3.days
 PAST_TWO_DAYS = Time.zone.now - 2.days
+
 LAST_12_HOURS = Time.zone.now - 12.hours
 LAST_24_HOURS = Time.zone.now - 1.day
 NEXT_24_HOURS = Time.zone.now + 1.day
 NEXT_48_HOURS = Time.zone.now + 2.days
+
 ONE_HOURS_BEFORE_GAME = Time.zone.now - 1.hours
 TWO_HOURS_BEFORE_GAME = Time.zone.now - 2.hours
 THREE_HOURS_BEFORE_GAME = Time.zone.now - 3.hours
-FOUR_HOURS_BEFORE_GAME = Time.zone.now -  4.hours
+FOUR_HOURS_BEFORE_GAME = Time.zone.now - 4.hours
+FIVE_HOURS_BEFORE_GAME = Time.zone.now - 5.hours
+SIX_HOURS_BEFORE_GAME = Time.zone.now - 6.hours
 
 TIME_ONE_DAY_AGO = 1.day.ago
 TIME_THREE_DAYS_AGO = 2.days.ago

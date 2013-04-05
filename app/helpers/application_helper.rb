@@ -118,13 +118,13 @@ module ApplicationHelper
 		return "#{get_the_controller}_#{get_the_action}".gsub(' ','_')
 	end
 
-	def ago(time_at, the_other_color=false, the_color="green")
+	def ago(time_at, the_other_color=false, the_color="green", the_size=true)
 		if the_other_color
-			return "#{the_font_green(I18n.t(:ago, :count => time_ago_in_words(time_at).capitalize), true)}".html_safe if the_color == "green"
-			return "#{the_font_yellow(I18n.t(:ago, :count => time_ago_in_words(time_at).capitalize), true)}".html_safe if the_color == "yellow"
-			return "#{the_font_red(I18n.t(:ago, :count => time_ago_in_words(time_at).capitalize), true)}".html_safe if the_color == "red"
+			return "#{the_font_green(I18n.t(:ago, :count => time_ago_in_words(time_at).capitalize), the_size)}".html_safe if the_color == "green"
+			return "#{the_font_yellow(I18n.t(:ago, :count => time_ago_in_words(time_at).capitalize), the_size)}".html_safe if the_color == "yellow"
+			return "#{the_font_red(I18n.t(:ago, :count => time_ago_in_words(time_at).capitalize), the_size)}".html_safe if the_color == "red"
 		end
-		return "#{the_font_gray(I18n.t(:ago, :count => time_ago_in_words(time_at).capitalize), true)}".html_safe
+		return "#{the_font_gray(I18n.t(:ago, :count => time_ago_in_words(time_at).capitalize), the_size)}".html_safe
 	end
 
 	def has_left(time_at)
@@ -901,19 +901,19 @@ module ApplicationHelper
 		return "<font color='gray' size='1'>#{the_value}</font>" if the_size
 		return "<font color='gray'>#{the_value}</font>"
 	end
-	
+
 	# youtube_embed('youtu.be/jJrzIdDUfT4')
 	# => <iframe title="YouTube video player" width="640" height="390" src="http://www.youtube.com/embed/jJrzIdDUfT4" frameborder="0" allowfullscreen></iframe>
 	def youtube_embed(youtube_url, the_width=640, the_height=390)
-	  if youtube_url[/youtu\.be\/([^\?]*)/]
-	    youtube_id = $1
-	  else
-	    # Regex from # http://stackoverflow.com/questions/3452546/javascript-regex-how-to-get-youtube-video-id-from-url/4811367#4811367
-	    youtube_url[/^.*((v\/)|(embed\/)|(watch\?))\??v?=?([^\&\?]*).*/]
-	    youtube_id = $5
-	  end
+		if youtube_url[/youtu\.be\/([^\?]*)/]
+			youtube_id = $1
+		else
+			# Regex from # http://stackoverflow.com/questions/3452546/javascript-regex-how-to-get-youtube-video-id-from-url/4811367#4811367
+			youtube_url[/^.*((v\/)|(embed\/)|(watch\?))\??v?=?([^\&\?]*).*/]
+			youtube_id = $5
+		end
 
-	  %Q{<iframe title="YouTube video player" width="#{the_width}" height="#{the_height}" src="http://www.youtube.com/embed/#{ youtube_id }" frameborder="0" allowfullscreen></iframe>}
+		%Q{<iframe title="YouTube video player" width="#{the_width}" height="#{the_height}" src="http://www.youtube.com/embed/#{ youtube_id }" frameborder="0" allowfullscreen></iframe>}
 	end
 
 end

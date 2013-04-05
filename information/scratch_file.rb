@@ -1,4 +1,110 @@
 
+
+select a_user, b_user, team, count(*) as total
+from (
+		select distinct a.schedule_id, a.user_id as a_user, b.user_id as b_user, '1' team
+		from matches a, matches b 
+		where a.type_id = 1
+		and a.schedule_id = b.schedule_id
+		and a.type_id = b.type_id
+		and a.group_id = b.group_id
+		and a.user_id = 2001 
+		UNION ALL
+		select distinct a.schedule_id, a.user_id as a_user, b.user_id as b_user, '0'
+		from matches a, matches b 
+		where a.type_id = 1
+		and a.schedule_id = b.schedule_id
+		and a.type_id = b.type_id
+		and a.group_id != b.group_id
+		and a.user_id = 2001 
+) 
+as alias
+where a_user != b_user
+group by a_user, b_user, team
+order by b_user, team, total
+
+
+select an.name, bn.name, team, count(*) as total
+from
+(
+select distinct a.schedule_id, a.user_id as a_user, b.user_id as b_user, '1' team
+from matches a, matches b 
+where a.type_id = 1
+and a.schedule_id = b.schedule_id
+and a.type_id = b.type_id
+and a.group_id = b.group_id
+and a.user_id = 2001 
+UNION ALL
+select distinct a.schedule_id, a.user_id as a_user, b.user_id as b_user, '0'
+from matches a, matches b 
+where a.type_id = 1
+and a.schedule_id = b.schedule_id
+and a.type_id = b.type_id
+and a.group_id != b.group_id
+and a.user_id = 2001 
+) as alias, users an, users bn
+where a_user != b_user
+and a_user = an.id 
+and b_user = bn.id
+group by an.name, bn.name, team
+order by bn.name, team, total
+
+
+
+
+select an.name, bn.name, team, result, count(*) as total
+from
+(
+select distinct a.schedule_id, a.user_id as a_user, b.user_id as b_user, '1' team, 'W' result
+from matches a, matches b 
+where a.type_id = 1
+and a.schedule_id = b.schedule_id
+and a.type_id = b.type_id
+and a.group_id = b.group_id
+and a.group_score is not null
+and a.invite_score is not null
+and a.user_id = 2001 
+and a.one_x_two = a.user_x_two
+UNION ALL
+select distinct a.schedule_id, a.user_id as a_user, b.user_id as b_user, '1' team, 'L' result
+from matches a, matches b 
+where a.type_id = 1
+and a.schedule_id = b.schedule_id
+and a.type_id = b.type_id
+and a.group_id = b.group_id
+and a.group_score is not null
+and a.invite_score is not null
+and a.user_id = 2001 
+and a.one_x_two != a.user_x_two
+UNION ALL
+select distinct a.schedule_id, a.user_id as a_user, b.user_id as b_user, '1' team, 'W' result
+from matches a, matches b 
+where a.type_id = 1
+and a.schedule_id = b.schedule_id
+and a.type_id = b.type_id
+and a.group_id = b.group_id
+and a.group_score is not null
+and a.invite_score is not null
+and a.user_id = 2001 
+and a.one_x_two = 'x'
+) as alias, users an, users bn
+where a_user != b_user
+and a_user = an.id 
+and b_user = bn.id
+group by an.name, bn.name, team, result
+order by bn.name, team, result, total
+
+
+
+
+
+
+
+
+
+
+
+
 # set app offline
 $ heroku maintenance:on --app zurb
 Maintenance mode enabled.

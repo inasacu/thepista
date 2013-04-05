@@ -126,7 +126,7 @@ module SchedulesHelper
         when 3
 					the_font = the_font_red(the_match_type_name_downcase)
         end
-        the_label = "#{I18n.t(:your_roster_status) } #{the_font}" if is_current_same_as(match.user)
+        the_label = "<STRONG>#{I18n.t(:your_roster_status)}</STRONG> #{the_font}" if is_current_same_as(match.user)
       end
       
 			the_match_link = match_all_my_link(schedule, current_user, false, true)

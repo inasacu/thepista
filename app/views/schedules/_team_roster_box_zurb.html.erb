@@ -122,7 +122,7 @@ the_roster.each do |match|
 	end
 	
 	
-	is_status_change =  match.status_at > LAST_12_HOURS
+	is_status_change =  match.status_at > SIX_HOURS_BEFORE_GAME
 	is_status_change = is_status_change ? (match.status_at > match.created_at) : false
 	
 	the_status_at_color = ""
@@ -166,6 +166,11 @@ the_roster.each do |match|
 	<%= content_tag_safe(:td, change_group_link, '','') unless has_been_played %>
 	<%= content_tag_safe(:td, was_convocado ? (group_score_link(@schedule, is_second_team)) : '', '','') if has_been_played %>		
 	<%= content_tag_safe(:td, is_different_user_manager ? (match_all_my_link(@schedule, the_user, true)) : '', '','') if has_not_been_played_manager %>
+	
+	<hr/>
+	[<%= match.status_at %>]  [<%= SIX_HOURS_BEFORE_GAME %>]  [<%= match.status_at > SIX_HOURS_BEFORE_GAME %>]
+	<hr/>
+	
 </tr>
 
 <% end %>
