@@ -17,20 +17,20 @@
 	game_number = "#{scorecard.played}"
 	scorecard_coeficient_played = "#{sprintf('%0.00f', scorecard.coeficient_played)}%"
 	if scorecard.coeficient_played.to_f < 20
-		game_number = "<font color='red'>#{scorecard_coeficient_played}</font>" 
+		game_number = the_font_red(scorecard_coeficient_played)  
 	elsif scorecard.coeficient_played.to_f > 19 and scorecard.coeficient_played.to_f < 50
-		game_number = "<font color='orange'>#{scorecard_coeficient_played}</font>"
+		game_number = the_font_yellow(scorecard_coeficient_played)
 	elsif scorecard.coeficient_played.to_f > 49
-		game_number = "<font color='green'>#{scorecard_coeficient_played}</font>"
+		game_number = the_font_green(scorecard_coeficient_played)
 	end
 
 	the_coeficient_percent_full = "#{sprintf( '%0.00f', the_coeficient_percent)}%"
 	if the_coeficient_percent.to_f < 40
-		the_coeficient_percent_full = "<font color='red'>#{the_coeficient_percent_full}</font>"
+		the_coeficient_percent_full = the_font_red(the_coeficient_percent_full) 
 	elsif the_coeficient_percent > 39 and the_coeficient_percent < 60
-		the_coeficient_percent_full = "<font color='orange'>#{the_coeficient_percent_full}</font>"
+		the_coeficient_percent_full = the_font_yellow(the_coeficient_percent_full)  
 	elsif the_coeficient_percent > 59
-		the_coeficient_percent_full = "<font color='green'>#{the_coeficient_percent_full}</font>"
+		the_coeficient_percent_full = the_font_green(the_coeficient_percent_full) 
 	end	
 %>
 

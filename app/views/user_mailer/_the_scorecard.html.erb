@@ -53,16 +53,15 @@
 				the_name = (the_name.to_s.length > 14) ? "#{the_name.to_s.strip[0..12]}..." : the_name
 				the_player_link = "#{link_to(the_name, user_url(scorecard.user))}"
 
-				# the_coeficient_percent = (scorecard.points.to_f / (scorecard.played.to_f * scorecard.group.points_for_win) * 100)
 				the_coeficient_percent = scorecard.coeficient_percent.to_i
 
 				the_coeficient_percent_full = "#{sprintf( '%0.00f', the_coeficient_percent)}%"
 				if the_coeficient_percent.to_f < 40
-					the_coeficient_percent_full = "<font color='red'>#{the_coeficient_percent_full}</font>"
+					the_coeficient_percent_full = the_font_red(the_coeficient_percent_full) 
 				elsif the_coeficient_percent > 39 and the_coeficient_percent < 60
-					the_coeficient_percent_full = "<font color='orange'>#{the_coeficient_percent_full}</font>"
+					the_coeficient_percent_full = the_font_yellow(the_coeficient_percent_full) 
 				elsif the_coeficient_percent > 59
-					the_coeficient_percent_full = "<font color='green'>#{the_coeficient_percent_full}</font>"
+					the_coeficient_percent_full = the_font_green(the_coeficient_percent_full) 
 				end
 
 				the_coeficient_points_full = "#{sprintf( '%0.00f', scorecard.coeficient_points)}"

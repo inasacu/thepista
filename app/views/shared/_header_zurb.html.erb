@@ -27,7 +27,7 @@
 	<div class="row">
 
 		<%= is_mobile_browser ? div_twelve_columns : div_three_columns %>
-			<%= image_tag('haypista_logo.png', options={:style => 'height: 45px; width: 155px;', :align => 'left'}) %>			
+			<%= link_to(image_tag('haypista_logo.png', options={:style => 'height: 45px; width: 155px;', :align => 'left'}), root_url) %>			
 		<%= div_close %>
 
 
