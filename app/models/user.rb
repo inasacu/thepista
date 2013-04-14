@@ -430,24 +430,24 @@ class User < ActiveRecord::Base
 
 		def self.find_user_match_user_statistics(user)
 			find_by_sql(["
-				select second_user_id, first_user_win, same_team, count(*) as total
+				select users.name, second_user_id, first_user_win, same_team, count(*) as total
 				from (
-				select distinct a.schedule_id, a.user_id as first_user_id, b.user_id as second_user_id, 
-						(a.user_x_two = a.one_x_two) as first_user_win, (b.user_x_two = a.one_x_two) as second_user_win,
-						((a.user_x_two = a.one_x_two) = (b.user_x_two = a.one_x_two)) as same_team
-				from matches a, matches b 
-				where a.user_id = ? 
-				and a.type_id = 1 
-				and a.one_x_two != 'X'
-				and a.group_score is not null 
-				and a.invite_score is not null
-				and a.schedule_id = b.schedule_id
-				--and a.group_id = b.group_id
-				and a.type_id = b.type_id
-				and b.user_id != ?
-				) as user_stats
-				group by second_user_id, first_user_win, same_team
-				order by second_user_id, first_user_win DESC, same_team DESC
+					select distinct a.schedule_id, a.user_id as first_user_id, b.user_id as second_user_id, 
+							(a.user_x_two = a.one_x_two) as first_user_win, (b.user_x_two = a.one_x_two) as second_user_win,
+							((a.user_x_two = a.one_x_two) = (b.user_x_two = a.one_x_two)) as same_team
+					from matches a, matches b 
+					where a.user_id = ? 
+					and a.type_id = 1 
+					and a.one_x_two != 'X'
+					and a.group_score is not null 
+					and a.invite_score is not null
+					and a.schedule_id = b.schedule_id
+					and a.type_id = b.type_id
+					and b.user_id != ?
+				) as user_statistic, users
+				where user_statistic.second_user_id = users.id
+				group by users.name, second_user_id, first_user_win, same_team
+				order by users.name, second_user_id, first_user_win DESC, same_team DESC
 				", user.id, user.id])
 		end
 
