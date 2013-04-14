@@ -2,6 +2,7 @@
 
 <%
 	is_media = Rails.env.production? ? (!is_mobile_browser) : (false)
+	is_media = false
 %>
 
 <%= render 'utilities/facebook_script_zurb' if is_media %>
@@ -43,10 +44,10 @@
 			<%= link_to(label_name(:terms_of_use), terms_of_use_url) %>
 		</p>
 		
-		<% if is_media %>		
+		<%# if is_media %>		
 			<br>
 			<%= render 'utilities/twitter_script_zurb' %>
-		<% end %>
+		<%# end %>
 			
 	</section>
 
