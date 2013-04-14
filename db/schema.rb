@@ -158,12 +158,12 @@ ActiveRecord::Schema.define(:version => 20130407162528) do
     t.string   "language"
     t.integer  "venue_id"
     t.integer  "category_id"
-    t.integer  "play_id"
-    t.integer  "service_id"
+    t.integer  "play_id",     :default => 1
+    t.integer  "service_id",  :default => 1
     t.string   "api"
     t.string   "secret"
-    t.datetime "created_at",  :null => false
-    t.datetime "updated_at",  :null => false
+    t.datetime "created_at",                 :null => false
+    t.datetime "updated_at",                 :null => false
   end
 
   create_table "escuadras", :force => true do |t|
