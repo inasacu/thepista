@@ -610,6 +610,14 @@ en:
      games_won_avg_full: Winning Average
      games_points_avg: PA
      games_points_avg_full: Points Average
+     games_win_same_team: "V.S."
+     games_win_same_team_full: "Victory & Same Team"
+     games_win_different_team: "V.O."
+     games_win_different_team_full: "Victory & Opposing Team"
+     games_lost_same_team: "L.S."
+     games_lost_same_team_full: "Lost & Same Team"
+     games_lost_different_team: "L.O."
+     games_lost_different_team_full: "Lost & Opposing Team"
      gender: Gender   
      general_information:  General Information
      get_up_and_running:  Get up and running!

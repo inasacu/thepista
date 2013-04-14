@@ -428,6 +428,29 @@ class User < ActiveRecord::Base
             "order by users.name", group])
     end
 
+		def self.find_user_match_user_statistics(user)
+			find_by_sql(["
+				select second_user_id, first_user_win, same_team, count(*) as total
+				from (
+				select distinct a.schedule_id, a.user_id as first_user_id, b.user_id as second_user_id, 
+						(a.user_x_two = a.one_x_two) as first_user_win, (b.user_x_two = a.one_x_two) as second_user_win,
+						((a.user_x_two = a.one_x_two) = (b.user_x_two = a.one_x_two)) as same_team
+				from matches a, matches b 
+				where a.user_id = ? 
+				and a.type_id = 1 
+				and a.one_x_two != 'X'
+				and a.group_score is not null 
+				and a.invite_score is not null
+				and a.schedule_id = b.schedule_id
+				--and a.group_id = b.group_id
+				and a.type_id = b.type_id
+				and b.user_id != ?
+				) as user_stats
+				group by second_user_id, first_user_win, same_team
+				order by second_user_id, first_user_win DESC, same_team DESC
+				", user.id, user.id])
+		end
+
     def page_mates(page = 1)  
       mates = User.where("id in (select distinct user_id from groups_users where group_id in (?))", self.groups).page(page).order('name')
 
@@ -471,6 +494,7 @@ class User < ActiveRecord::Base
       UserMailer.password_reset_instructions(self).deliver
   	end
     
+
 		# def generate_slug
 		# 	self.slug = to_param rescue nil
 		# end

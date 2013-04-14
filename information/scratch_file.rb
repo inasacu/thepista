@@ -1,4 +1,35 @@
 
+select first_user_id, second_user_id, first_user_win, second_user_win, same_team, count(*) as total
+from (
+select schedule_id, first_user_id, second_user_id, first_user_team, winning_team, second_user_team, first_user_win, second_user_win, (first_user_win = second_user_win) as same_team
+from (
+select distinct a.schedule_id, a.user_id as first_user_id, b.user_id as second_user_id, a.user_x_two as first_user_team, a.one_x_two as winning_team, b.user_x_two as second_user_team, (a.user_x_two = a.one_x_two) as first_user_win, (b.user_x_two = a.one_x_two) as second_user_win
+from matches a, matches b 
+where a.user_id = 2001 and a.type_id = 1 and a.one_x_two != 'X'
+and a.group_score is not null and a.invite_score is not null
+and a.schedule_id = b.schedule_id
+and a.group_id = b.group_id
+and a.type_id = b.type_id
+and b.user_id != 2001
+UNION ALL
+select distinct a.schedule_id, a.user_id as first_user_id, b.user_id as second_user_id, a.user_x_two as first_user_team, a.one_x_two as winning_team, b.user_x_two as second_user_team, (a.user_x_two = a.one_x_two) as first_user_win, (b.user_x_two = a.one_x_two) as second_user_win
+from matches a, matches b 
+where a.user_id = 2001 and a.type_id = 1 and a.one_x_two != 'X'
+and a.group_score is not null and a.invite_score is not null
+and a.schedule_id = b.schedule_id
+and a.group_id != b.group_id
+and a.type_id = b.type_id
+and b.user_id != 2001
+) as user_match_statistics
+) as user_match_statistics_total
+group by first_user_id, second_user_id, first_user_win, second_user_win, same_team
+order by second_user_id, first_user_win desc, second_user_id
+
+
+
+
+
+
 
 select a_user, b_user, team, count(*) as total
 from (
@@ -95,6 +126,33 @@ group by an.name, bn.name, team, result
 order by bn.name, team, result, total
 
 
+reservations:
+
+index_zurb.html.erb
+calendar_zurb.html.erb
+calendar_fill_zurb.html.erb
+
+
+
+
+
+Host	ec2-107-20-195-105.compute-1.amazonaws.com
+Database	dblpmdpstnm8so
+User	cbtavkfcyrkbpa
+Port	5432
+Password	Hide 7z1UCISl1Zm6cjTGWGgoU1wnsI
+
+
+
+Host	ec2-107-20-195-105.compute-1.amazonaws.com
+Database	dblpmdpstnm8so
+User	cbtavkfcyrkbpa
+Port	5432
+Password	Hide 7z1UCISl1Zm6cjTGWGgoU1wnsI
+
+
+
+---------------
 
 
 

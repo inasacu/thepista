@@ -1,0 +1,127 @@
+<%
+
+	is_holiday = nil
+	the_day_starts_at = nil
+	the_day_ends_at = nil
+	the_time_frame = nil	
+
+	the_previous_date = @current_user_zone - 1.month
+	the_next_date = @current_user_zone + 1.month
+
+	@first_day = @current_user_zone.at_beginning_of_month
+	@last_day = @current_user_zone.at_end_of_month
+
+	@the_day_of_month = @first_day
+
+	the_real_nice_month_year = nice_month_year(Time.zone.now)
+	the_current_nice_month_year = nice_month_year(@current_user_zone)
+
+	the_previous_nice_month_year = nice_month_year(the_previous_date)
+	the_next_nice_month_year = nice_month_year(the_next_date)
+
+	the_previous_nice_month = nice_month_full(the_previous_date)
+	the_next_nice_month = nice_month_full(the_next_date)
+
+	the_current_day_number = @current_user_zone.day
+
+	the_first_day_of_month = 1
+
+	the_first_weekday_of_month = @current_user_zone.at_beginning_of_month.wday
+	the_first_weekday_of_month = DAYS_IN_A_WEEK if the_first_weekday_of_month == 0
+
+	blankdays_first_week = the_first_weekday_of_month - 1
+	@day_of_month_counter = the_first_day_of_month
+
+	first_week_blank_day_counter = blankdays_first_week
+
+
+	the_last_day_of_month = days_in_month(@current_user_zone.month)
+
+	the_last_weekday_of_month = @current_user_zone.at_end_of_month.wday
+	the_last_weekday_of_month = DAYS_IN_A_WEEK if the_last_weekday_of_month == 0
+
+	blank_days_last_week = DAYS_IN_A_WEEK - the_last_weekday_of_month
+	last_week_blank_day_counter = the_last_day_of_month - (DAYS_IN_A_WEEK - blank_days_last_week) + 1
+
+	is_same_day = false
+	is_last_blank_days = true
+
+
+	all_weekday_numbers = [1,2,3,4,5,6,7]
+	the_month = []
+	the_week = []
+
+	the_green_html = "<li class=\"green\"></li>"
+	the_blue_html = "<li class=\"blue\"></li>"
+	the_yellow_html = "<li class=\"yellow\"></li>"
+	the_none_html = "<li class=\"none\"></li>"
+	the_red_html = "<li class=\"red\"></li>"
+
+
+	# show like to previous and next month
+	the_previous_block = block_token = Base64::encode64(the_previous_date.to_i.to_s)
+	the_next_block = block_token = Base64::encode64(the_next_date.to_i.to_s)
+
+	the_previous_reservation_link = link_to(the_previous_nice_month_year, reservations_path(:id => @installation, :block_token => the_previous_block))
+	the_next_reservation_link = link_to(the_next_nice_month_year, reservations_path(:id => @installation, :block_token => the_next_block))
+
+
+	# first blank days of the month
+	blankdays_first_week.times.each do |x|
+		the_blankday_value = "&nbsp;"
+		the_week << get_the_blankday_html(the_blankday_value) 
+	end
+
+	is_same_schedule_date = false
+	is_same_month_year = (the_real_nice_month_year == the_current_nice_month_year)
+
+	# first week
+	(first_week_blank_day_counter...DAYS_IN_A_WEEK).each do |x|	
+
+		the_day_class, the_event_dot_color, the_event_open_color, the_week = 
+		get_the_event_html(@venue, @the_items, the_reservation_day_numbers, 
+		is_same_day, @day_of_month_counter, the_current_day_number, is_same_month_year, the_week)
+
+	end
+	the_month << the_week
+	the_week = [] 
+
+	# middle weeks	
+	while (@day_of_month_counter < last_week_blank_day_counter)
+
+		DAYS_IN_A_WEEK.times.each do |x|
+			is_less_than_day = (@day_of_month_counter < last_week_blank_day_counter)
+			the_day_class, the_event_dot_color, the_event_open_color, the_week = 
+			get_the_event_html(@venue, @the_items, the_reservation_day_numbers, 
+			is_same_day, @day_of_month_counter, the_current_day_number, is_same_month_year, the_week, is_less_than_day)
+
+		end
+
+		the_month << the_week
+		the_week = []
+
+	end	
+
+	@day_of_month_counter = last_week_blank_day_counter
+	# last week
+	(last_week_blank_day_counter..the_last_day_of_month).each do |x|	
+
+		the_day_class, the_event_dot_color, the_event_open_color, the_week = 
+		get_the_event_html(@venue, @the_items, the_reservation_day_numbers, 
+		is_same_day, @day_of_month_counter, the_current_day_number, is_same_month_year, the_week)
+
+
+	end
+
+	# last blank days of the month
+	blank_days_last_week.times.each do |x|
+		the_blankday_value = "&nbsp;"
+		the_week << get_the_blankday_html(the_blankday_value) 
+	end	
+	the_month << the_week
+%>
+
+
+<%= render 'reservation_calendar_zurb', 
+	:the_previous_reservation_link => the_previous_reservation_link, :the_next_reservation_link => the_next_reservation_link,
+	:the_current_nice_month_year => the_current_nice_month_year, :the_month => the_month %>

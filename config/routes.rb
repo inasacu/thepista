@@ -9,7 +9,7 @@ Thepista::Application.routes.draw do
 	match 'rpx_create' => 'users#rpx_create', :as => :rpx_create
 
 	match 'omniauth_new' => 'users#omniauth_new', :as => :provider 
-	
+
 	match '/auth/:provider/callback' => 'authentications#create', :as => :callback
 	match '/auth/failure' => 'authentications#failure', :as => :failure
 	match '/auth/:provider' => 'authentications#blank', :as => :blank
@@ -227,13 +227,19 @@ Thepista::Application.routes.draw do
 		end
 	end
 
+	resources :enchufados do
+		collection do
+			get :list
+		end
+	end
+
 	resources :purchases
 	resources :users do
 		resources :messages
 	end
 
 	resources :prospects
-	
+
 	match ':controller/:action.:format' => '#index'
 
 end

@@ -24,7 +24,6 @@
 	has_phone = @user.my_members?(current_user)	? (!@user.phone.blank?) : (false)	
 %>
 
-
 <table>
 	<tbody>
 		<tr>
@@ -90,18 +89,12 @@
 	</tbody>
 </table>
 
-<div class="row">
-	<div class="twelve columns">
-		<!-- <table>
-			<tbody>
-				<tr>
-					<td>
 
-						<%#= render 'utilities/omniauth' %>
 
-					</td>	
-				</tr>
-			</tbody>
-		</table> -->
+<% if @user_statistics %>
+	<div class="row">
+		<div class="twelve columns">
+			<%= render 'user_statistics' %>
+		</div>
 	</div>
-</div>
+<% end %>

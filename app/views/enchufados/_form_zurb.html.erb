@@ -1,0 +1,14 @@
+
+<%= the_form.hidden_field :installation_id %>
+<%= the_form.hidden_field :venue_id %>
+<%= the_form.hidden_field :block_token %>
+
+
+<%= render_show_detail_zurb(:name, @reservation.name) %>
+<%= render_show_detail_zurb(:venue, "#{@venue.name}, <strong>#{@installation.name}</strong>".html_safe) %>
+<%= render_show_detail_zurb(:starts_at, nice_day_of_week(@reservation.starts_at)) %>
+<%= render_show_detail_zurb(:ends_at, nice_day_of_week(@reservation.ends_at)) %>
+<%= render_show_detail_zurb(:fee_per_pista_short, number_to_currency(@reservation.fee_per_pista)) %>
+<%= render_show_detail_zurb(:fee_per_lighting_short, number_to_currency(@reservation.fee_per_lighting)) %>
+
+<hr/>

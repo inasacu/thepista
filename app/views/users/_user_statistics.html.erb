@@ -1,0 +1,34 @@
+<%  counter = 0 %>
+
+<table>
+
+	<thead>
+		<tr>
+			<%= content_tag_safe(:th, "&nbsp;") %>
+			<%= content_tag_safe(:th, "#") %>
+			<%= content_tag_safe(:th, label_name(:user)) %>
+			<%= content_tag_safe(:th, label_name(:games_win_same_team), label_name(:games_win_same_team_full), 'center') %>
+			<%= content_tag_safe(:th, label_name(:games_win_different_team), label_name(:games_win_different_team_full), 'center') %>
+			<%= content_tag_safe(:th, label_name(:games_lost_same_team), label_name(:games_lost_same_team_full), 'center') %>
+			<%= content_tag_safe(:th, label_name(:games_lost_different_team), label_name(:games_lost_different_team_full), 'center') %>		
+		</tr>
+	</thead>
+
+	<tbody>
+	
+	<% @user_hash_grid_statistics.each do |user_individual_statistic| %>
+	
+		<tr>			
+		<%= content_tag_safe(:td, image_link_smaller(user_individual_statistic['user_id'])) %>
+		<%= content_tag_safe(:td, "&nbsp;#{counter +=1}") %>
+		<%= content_tag_safe(:td, item_name_link(user_individual_statistic['user_id'])) %>
+		<%= content_tag_safe(:td, the_font_green(user_individual_statistic['TT'])) %>
+		<%= content_tag_safe(:td, the_font_green(user_individual_statistic['TF'])) %>
+		<%= content_tag_safe(:td, the_font_red(user_individual_statistic['FT'])) %>
+		<%= content_tag_safe(:td, the_font_red(user_individual_statistic['FF'])) %>
+		</tr>
+
+	<% end %>
+
+</tbody>
+</table>
