@@ -67,12 +67,12 @@ the_roster.each do |match|
 	game_number = "#{match.scorecard_played}"
 	the_coeficient = "#{sprintf('%0.00f', match.coeficient_played)}%" 
 	
-	if match.coeficient_played.to_f < 20
+	if match.coeficient_played.to_f < COEFICIENT_LOW
 		game_number = the_font_red(the_coeficient)
-	elsif match.coeficient_played.to_f > 19 and match.coeficient_played.to_f < 50
+	elsif match.coeficient_played.to_f > COEFICIENT_MEDIUM_LOW and match.coeficient_played.to_f < COEFFICIENT_FULL_MEDIUM_HIGH
 		game_number = the_font_yellow(the_coeficient)
-	elsif match.coeficient_played.to_f > 49
-		game_number = the_font_red(the_coeficient)
+	elsif match.coeficient_played.to_f > COEFFICIENT_FULL_HIGH
+		game_number = the_font_green(the_coeficient)
 	end	
 	
 	@roster = match	

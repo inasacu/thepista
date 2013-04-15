@@ -22,6 +22,8 @@
 	the_teammmate_link = (can_modify ? link_to(the_teammmate_label, set_teammate_notification_path(:id => @user)) : the_teammmate_label)
 	
 	has_phone = @user.my_members?(current_user)	? (!@user.phone.blank?) : (false)	
+	
+	has_statistics = @user_hash_grid_statistics.count > 1
 %>
 
 <table>
@@ -91,7 +93,13 @@
 
 
 
-<% if @user_statistics %>
+<% if has_statistics %>
+
+<br/>
+<%= content_tag :h5, label_name(:games_statistics) %>
+<hr />
+<%#= content_tag :h6, label_name(:games_statistics), :class => "subheader" %>
+
 	<div class="row">
 		<div class="twelve columns">
 			<%= render 'user_statistics' %>

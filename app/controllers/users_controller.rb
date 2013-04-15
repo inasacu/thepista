@@ -35,7 +35,6 @@ class UsersController < ApplicationController
 		@user_statistics.each {|the_statistic| all_users << the_statistic.second_user_id unless all_users.include?(the_statistic.second_user_id)}
 		@all_teammates = User.find(:all, :conditions => ["id in (?)", all_users])
 		
-		
 
 		@user_hash_grid_statistics = []
 		@user_hash_statistic  = {}
@@ -47,99 +46,25 @@ class UsersController < ApplicationController
 			
 			the_true_column = "#{the_statistic.first_user_win}#{the_statistic.same_team}".upcase
 			
-			if (the_statistic_user_id != the_statistic.second_user_id.to_i)
-				
+			if (the_statistic_user_id != the_statistic.second_user_id.to_i)				
 				@user_hash_grid_statistics << @user_hash_statistic if the_statistic_user_id > 0
 				@user_hash_statistic = {}
 				the_statistic_user_id = the_statistic.second_user_id.to_i
 				
 				@all_teammates.each {|teammate| @user_hash_statistic = {"user_id" => teammate}  if the_statistic.second_user_id.to_i == teammate.id.to_i}
-
-				# @user_hash_statistic = {"user_id" => the_statistic.second_user_id.to_i, "TT" => "", "TF" => "", "FT" => "", "FF" => ""}
 				
-				the_default_hash_values = {"TT" => "", "TF" => "", "FT" => "", "FF" => ""}
+				the_default_hash_values = {"TT" => "0", "TF" => "0", "FT" => "0", "FF" => "0"}
 				@user_hash_statistic.merge!(the_default_hash_values)
 				@user_hash_statistic.merge!({"#{the_true_column}" => the_statistic.total})
 
 			else
-
 				@user_hash_statistic.merge!({"#{the_true_column}" => the_statistic.total}) 
 
 			end
 								
 		end
 		
-		@user_hash_grid_statistics << @user_hash_statistic
-		
-		
-		##################################################################################
-		
-		
-		# @user_grid_statistics = []
-		# @user_individual_statistic = []
-		# the_statistic_user_id = 0
-		# counter_user_statistics = 0
-		# the_true_last_column = ""
-		# 
-		# @user_statistics.each do |the_statistic| 
-		# 	
-		# 	the_true_column = "#{the_statistic.first_user_win}#{the_statistic.same_team}".upcase
-		# 	
-		# 	
-		# 		if (the_statistic_user_id != the_statistic.second_user_id.to_i)
-		# 			
-		# 			if the_statistic_user_id > 0
-		# 				case the_true_last_column
-		# 				when "TT"
-		# 					@user_individual_statistic << {"TF" => 'LST'}
-		# 					@user_individual_statistic << {"FT" => 'LST'}
-		# 					@user_individual_statistic << {"FF" => 'LST'}
-		# 				when "TF"	
-		# 					@user_individual_statistic << {"FT" => 'LST'}
-		# 					@user_individual_statistic << {"FF" => 'LST'}
-		# 				when "FT"	
-		# 					@user_individual_statistic << {"FF" => 'LST'}
-		# 				end
-		# 					
-		# 				@user_grid_statistics << @user_individual_statistic
-		# 			# 	the_true_last_column = ""
-		# 			end
-		# 			
-		# 			@user_individual_statistic = []
-		# 			the_statistic_user_id = the_statistic.second_user_id.to_i
-		# 			# @all_teammates.each {|teammate| @user_individual_statistic << {"user_id" => teammate}  if the_statistic.second_user_id.to_i == teammate.id.to_i}
-		# 			@user_individual_statistic << {"user_id" => the_statistic.second_user_id.to_i}
-		# 			
-		# 			case the_true_column
-		# 			when "TT"
-		# 				@user_individual_statistic << {the_true_column => the_statistic.total}
-		# 			when "TF"
-		# 				@user_individual_statistic << {"TT" => 'FST'}
-		# 				@user_individual_statistic << {the_true_column => the_statistic.total}
-		# 			when "FT"
-		# 				@user_individual_statistic << {"TT" => 'FST'}
-		# 				@user_individual_statistic << {"TF" => 'FST'}
-		# 				@user_individual_statistic << {the_true_column => the_statistic.total}
-		# 			when "FF"
-		# 				@user_individual_statistic << {"TT" => 'FST'}
-		# 				@user_individual_statistic << {"TF" => 'FST'}
-		# 				@user_individual_statistic << {"FT" => 'FST'}
-		# 				@user_individual_statistic << {the_true_column => the_statistic.total}	
-		# 			end	
-		# 			
-		# 		else
-		# 			
-		# 			
-		# 			@user_individual_statistic << {the_true_column => the_statistic.total}  
-		# 			
-		# 		end
-		# 		
-		# 		the_true_last_column = the_true_column
-		# 						
-		# end
-		# 
-		# @user_grid_statistics << @user_individual_statistic
-		
+		@user_hash_grid_statistics << @user_hash_statistic	
 
 		render @the_template    
 	end

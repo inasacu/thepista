@@ -21,6 +21,8 @@
 # t.boolean  "automatic_petition" 
 # t.integer  "installation_id"
 # t.string   "slug"
+# t.integer  "item_id"
+# t.string   "item_type"
 
 class Group < ActiveRecord::Base
 

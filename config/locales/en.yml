@@ -610,6 +610,11 @@ en:
      games_won_avg_full: Winning Average
      games_points_avg: PA
      games_points_avg_full: Points Average
+     games_different_team: "O."
+     games_different_team_full: "Opposing Team"
+     games_statistics: "Statistics"
+     games_same_team: "S."
+     games_same_team_full: "Same Team"
      games_win_same_team: "V.S."
      games_win_same_team_full: "Victory & Same Team"
      games_win_different_team: "V.O."

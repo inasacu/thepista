@@ -11,13 +11,13 @@
 		@the_scorecards.each do |scorecard|
 			if scorecard.user == recipient and scorecard.group == @group
 				the_coeficient = "#{sprintf('%0.00f', scorecard.coeficient_played)}%" 
-
-				if scorecard.coeficient_played.to_f < 20
-					game_number = "<font color='red', title='#{the_played_label}'>#{the_coeficient}</font>" 
-				elsif scorecard.coeficient_played.to_f > 19 and scorecard.coeficient_played.to_f < 50
-					game_number = "<font color='orange', title='#{the_played_label}'>#{the_coeficient}</font>"
-				elsif scorecard.coeficient_played.to_f > 49
-					game_number = "<font color='green', title='#{the_played_label}'>#{the_coeficient}</font>"
+				
+				if scorecard.coeficient_played.to_f < COEFICIENT_LOW
+					game_number = the_font_red(the_coeficient)
+				elsif scorecard.coeficient_played.to_f > COEFICIENT_MEDIUM_LOW and scorecard.coeficient_played.to_f < COEFFICIENT_FULL_MEDIUM_HIGH
+					game_number = the_font_yellow(the_coeficient)
+				elsif scorecard.coeficient_played.to_f > COEFFICIENT_FULL_HIGH
+					game_number = the_font_green(the_coeficient)
 				end
 
 				user_played = scorecard.type_id.to_i == 1 

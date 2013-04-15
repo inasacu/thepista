@@ -616,6 +616,11 @@ es:
      games_won_avg_full: Promedio de Victorias  
      games_points_avg: PrP
      games_points_avg_full: Promedio de Puntos
+     games_different_team: "O."
+     games_different_team_full: "Equipo Opuesto"
+     games_statistics: "Estadísticas"
+     games_same_team: "M."
+     games_same_team_full: "Mismo Equipo"
      games_win_same_team: "V.M."
      games_win_same_team_full: "Victoria & Mismo Equipo"
      games_win_different_team: "V.O."
