@@ -46,7 +46,7 @@
 		
 		<%# if is_media %>		
 			<br>
-			<%= render 'utilities/twitter_script_zurb' %>
+			<h6><strong><%= app_name %> &copy; <%= Time.zone.now.year %>.</strong></h6>
 		<%# end %>
 			
 	</section>
@@ -65,55 +65,29 @@
 			data-action="recommend" data-font="lucida grande">
 			</div>
 		<% end %>
-		
-
-		
-		
 	</section>
 
 	<section class="two columns">
 		<h6><%= label_name(:language) %></h6>
-		<p>	
-			<%= "#{render :partial => '/shared/language_zurb'}".html_safe %>
-		</p>
+		<p><%= "#{render :partial => '/shared/language_zurb'}".html_safe %></p>
 
 		<% if is_media %>		
 			<br>
 			<g:plusone size="medium"></g:plusone>
 		<% end %>
-	
-		
 	</section>
 	
 	<section class="five columns">
 		<h6><%= "#{label_name(:need_quick_help)}".html_safe %></h6>
-		<h6><%= "#{mail_to(CONTACT_RECIPIENT, label_name(:contact_us))}".html_safe %></h6>
-		
-		<p></p>
+		<h6><%= "#{mail_to(CONTACT_RECIPIENT, label_name(:contact_us))}".html_safe %></h6><br/>
+		<p><%= render 'utilities/twitter_script_zurb' %></p>
 
-		<% if is_media %>
-			<br>	
-			<br>
-			<%= render 'utilities/linkedin_script_zurb' %>
-		<% end %>
-			
-		</section>		
+	</section>		
 
-		<div class="row">
-			<div class="three columns centered">
-				
-				<br>
-				<br>
-				
-				<h6><strong><%= app_name %> &copy; <%= Time.zone.now.year %>.</strong></h6>
-				
-			</div>
-		</div>
-		
-		<br/>	
 
 
 		<% if Rails.env.development? %>
+		<br>
 		<hr/>
 		<div class="row ">
 			<div class="three columns centered">

@@ -41,6 +41,18 @@ module GroupsHelper
 		return "#{the_home_group} ( #{schedule.home_score}  -  #{schedule.away_score} ) #{the_away_group}".html_safe
 	end    
 
+	def group_sport_list(groups)
+			list_of_sports = []
+			groups.each {|group| list_of_sports << group.sport.name unless list_of_sports.include?(group.sport.name)}
+			
+			the_sports = ""
+			list_of_sports.each do |sport|
+				the_sports += sport
+				the_sports += ", "      
+			end
+			return the_sports.chop.chop.html_safe	
+	end
+	
 	def group_list(objects)
 		return item_list(objects)
 	end
