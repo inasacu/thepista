@@ -95,7 +95,7 @@
 <% if has_statistics %>
 
 <br/>
-<%= content_tag :h5, label_name(:games_statistics) %>
+<%= content_tag :h5, "#{label_name(:games_statistics)} #{label_name(:from)} #{@user.name}" %>
 <hr />
 <%#= content_tag :h6, label_name(:games_statistics), :class => "subheader" %>
 
