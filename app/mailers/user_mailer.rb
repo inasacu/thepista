@@ -2,6 +2,7 @@ class UserMailer < ActionMailer::Base
 	default :from => "support@haypista.com"
 	
 	layout 'mailer_zurb' 
+	helper ApplicationHelper
 
 	def invitation(invitation)		
 		case invitation.item.class.to_s 

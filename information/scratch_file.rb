@@ -1,4 +1,790 @@
+ 
 
+def table_announcements 
+	message
+	starts_at
+	ends_at
+	created_at
+	updated_at
+end
+
+def table_authentications
+	user_id
+	provider
+	uid
+	created_at
+	updated_at
+end
+
+def table_casts
+	challenge_id
+	user_id
+	game_id
+	home_score
+	away_score
+	points 
+	created_at
+	updated_at
+	archive 
+	slug
+end
+
+
+
+def table_challenges
+	name
+	cup_id
+	starts_at
+	ends_at
+	reminder_at
+	fee_per_game 
+	time_zone
+	description
+	conditions
+	player_limit 
+	archive 
+	created_at
+	updated_at
+	automatic_petition
+	slug
+	service_id 
+end
+
+
+
+def table_challenges_users 
+	challenge_id
+	user_id
+	created_at
+	updated_at
+	archive 
+end
+
+
+
+def table_cities
+	name
+	state_id 
+	archive 
+	created_at
+	updated_at
+end
+
+def table_conversations
+	created_at
+	updated_at
+	archive 
+end
+
+def table_cups 
+	name
+	starts_at
+	ends_at
+	deadline_at
+	time_zone
+	sport_id
+	group_stage 
+	group_stage_single
+	second_stage_single
+	final_stage_single
+	group_stage_advance
+	points_for_win 
+	points_for_draw 
+	points_for_lose 
+	description
+	conditions
+	photo_file_name
+	photo_content_type
+	photo_file_size
+	photo_updated_at
+	archive 
+	created_at
+	updated_at
+	official 
+	club 
+	slug
+	venue_id 
+end
+
+
+
+def table_cups_escuadras 
+	cup_id
+	escuadra_id
+	created_at
+	updated_at
+	archive 
+end
+
+
+
+def table_delayed_jobs
+	priority 
+	attempts 
+	handler
+	last_error
+	run_at
+	locked_at
+	failed_at
+	locked_by
+	created_at
+	updated_at
+	queue
+end
+
+def table_enchufados
+	name
+	url
+	language
+	venue_id
+	category_id
+	play_id 
+	service_id
+	api
+	secret
+	created_at 
+	updated_at 
+end
+
+def table_escuadras 
+	name
+	description
+	photo_file_name
+	photo_content_type
+	photo_file_size
+	photo_updated_at
+	archive 
+	created_at
+	updated_at
+	item_id
+	item_type
+	slug
+	official 
+end
+
+
+
+def table_fees
+	name 
+	description
+	payed 
+	archive 
+	created_at
+	updated_at
+	debit_amount 
+	debit_id
+	debit_type
+	credit_id
+	credit_type
+	manager_id
+	item_type
+	item_id
+	type_id
+	season_player 
+	slug
+end
+
+
+
+def table_games
+	name
+	starts_at
+	ends_at
+	reminder_at
+	deadline_at
+	cup_id
+	home_id
+	away_id
+	winner_id
+	next_game_id
+	home_ranking
+	home_stage_name
+	away_ranking
+	away_stage_name
+	home_score
+	away_score
+	jornada 
+	round 
+	played 
+	type_name 
+	points_for_single 
+	points_for_double 
+	created_at
+	updated_at
+	points_for_draw 
+	points_for_goal_difference 
+	points_for_goal_total 
+	points_for_winner 
+	archive 
+	slug
+end
+
+
+
+def table_groups
+	name
+	second_team
+	gameday_at
+	points_for_win 
+	points_for_draw 
+	points_for_lose 
+	time_zone 
+	sport_id
+	marker_id
+	description
+	conditions
+	player_limit 
+	photo_file_name
+	photo_content_type
+	photo_file_size
+	photo_updated_at
+	archive 
+	created_at
+	updated_at
+	automatic_petition
+	installation_id
+	slug
+	service_id 
+	item_id
+	item_type
+end
+
+
+
+def table_groups_markers
+	group_id
+	marker_id
+	created_at
+	updated_at
+	archive 
+end
+
+
+
+def table_groups_roles 
+	group_id
+	role_id
+	created_at
+	updated_at
+	archive 
+end
+
+
+
+def table_groups_users 
+	group_id
+	user_id
+	created_at
+	updated_at
+	archive 
+end
+
+
+
+def table_holidays
+	name
+	venue_id
+	starts_at
+	ends_at
+	holiday_hour
+	archive 
+	created_at
+	updated_at
+	type_id
+end
+
+
+
+def table_installations
+	name
+	venue_id
+	sport_id
+	marker_id
+	starts_at
+	ends_at
+	timeframe 
+	fee_per_pista 
+	fee_per_lighting 
+	public 
+	lighting 
+	outdoor 
+	photo_file_name
+	photo_content_type
+	photo_file_size
+	photo_updated_at
+	description
+	conditions
+	archive 
+	created_at
+	updated_at
+	slug
+end
+
+
+
+def table_invitations
+	email_addresses
+	message
+	user_id
+	archive 
+	created_at
+	updated_at
+	item_id
+	item_type
+end
+
+
+def table_markers
+	name 
+	latitude 
+	longitude 
+	direction
+	image_url
+	url
+	contact 
+	email
+	phone 
+	address 
+	city 
+	region 
+	zip 
+	surface
+	facility
+	starts_at
+	ends_at
+	time_zone 
+	public 
+	activation 
+	description
+	icon 
+	shadow 
+	archive 
+	created_at
+	updated_at
+	item_id
+	item_type
+	lat 
+	lng 
+	slug
+	short_name
+end
+
+
+
+def table_matches
+	schedule_id
+	user_id
+	group_id
+	invite_id 
+	group_score
+	invite_score
+	goals_scored 
+	roster_position 
+	played 
+	one_x_two 
+	user_x_two 
+	type_id
+	status_at 
+	archive 
+	created_at
+	updated_at
+	rating_average_technical 
+	rating_average_physical 
+	initial_mean 
+	initial_deviation 
+	final_mean 
+	final_deviation 
+	game_number 
+	block_token
+	change_id
+	changed_at
+end
+
+
+
+def table_messages
+	subject 
+	body
+	parent_id
+	sender_id
+	recipient_id
+	conversation_id
+	reply_id
+	replied_at
+	sender_deleted_at
+	sender_read_at
+	recipient_deleted_at
+	recipient_read_at
+	replies 
+	reviews 
+	archive 
+	created_at
+	updated_at
+	item_id
+	item_type
+	received_messageable_id
+	received_messageable_type
+	sent_messageable_id
+	sent_messageable_type
+	opened 
+	recipient_delete 
+	sender_delete 
+	ancestry
+	recipient_permanent_delete 
+	sender_permanent_delete 
+end
+
+
+
+def table_open_id_authentication_associations
+	t.integer issued
+	t.integer lifetime
+	t.string handle
+	t.string assoc_type
+	t.binary server_url
+	t.binary secret
+end
+
+def table_open_id_authentication_nonces
+	t.integer timestamp
+	t.string server_url
+	t.string salt 
+end
+
+def table_payments
+	name 
+	debit_amount 
+	credit_amount 
+	description
+	archive 
+	created_at
+	updated_at
+	debit_id
+	debit_type
+	credit_id
+	credit_type
+	manager_id
+	fee_id
+	item_type
+	item_id
+	slug
+end
+
+
+
+def table_prospects
+	name
+	contact
+	email
+	email_additional
+	phone
+	url
+	url_additional
+	letter_first
+	letter_second
+	response_first
+	response_second
+	notes
+	created_at 
+	updated_at 
+	image
+	installations
+	description
+	conditions
+	archive 
+end
+
+def table_reservations
+	name
+	starts_at
+	ends_at
+	reminder_at
+	venue_id
+	installation_id
+	item_id
+	item_type
+	fee_per_pista 
+	fee_per_lighting
+	available 
+	reminder 
+	public 
+	description
+	block_token
+	archive 
+	created_at
+	updated_at
+	code
+	slug
+end
+
+
+def table_roles
+	name 
+	authorizable_type
+	authorizable_id
+	created_at
+	updated_at
+	archive 
+end
+
+
+
+def table_roles_users 
+	user_id
+	role_id
+	created_at
+	updated_at
+	archive 
+end
+
+
+def table_schedules
+	name
+	season
+	jornada
+	starts_at
+	ends_at
+	subscription_at
+	non_subscription_at
+	fee_per_game 
+	fee_per_pista 
+	remind_before 
+	repeat_every 
+	time_zone 
+	group_id
+	sport_id
+	marker_id
+	player_limit 
+	played 
+	public 
+	archive 
+	created_at
+	updated_at
+	reminder 
+	reminder_at
+	send_reminder_at
+	send_result_at
+	send_comment_at
+	slug
+	send_created_at
+end
+
+
+def table_scorecards
+	group_id
+	user_id
+	wins 
+	draws 
+	losses 
+	points 
+	ranking 
+	played 
+	assigned 
+	goals_for 
+	goals_against 
+	goals_scored 
+	previous_points 
+	previous_ranking 
+	previous_played 
+	payed 
+	archive 
+	created_at
+	updated_at
+	season_ends_at
+	field_goal_attempt
+	field_goal_made 
+	free_throw_attempt
+	free_throw_made 
+	three_point_attempt
+	three_point_made 
+	rebounds_defense 
+	rebounds_offense 
+	minutes_played 
+	assists 
+	steals 
+	blocks 
+	turnovers 
+	personal_fouls 
+	started 
+end
+
+
+
+def table_sessions
+	session_id
+	data
+	created_at
+	updated_at
+end
+
+
+
+def table_sports
+	name 
+	description
+	icon 
+	points_for_win 
+	points_for_lose 
+	points_for_draw 
+	created_at
+	updated_at
+	player_limit 
+end
+
+def table_standings
+	cup_id
+	challenge_id
+	item_id
+	item_type
+	group_stage_name
+	wins 
+	draws 
+	losses 
+	points 
+	played 
+	ranking 
+	goals_for 
+	goals_against 
+	archive 
+	created_at
+	updated_at
+	user_id
+end
+
+
+
+def table_states
+	name
+	archive 
+	created_at
+	updated_at
+end
+
+def table_teammates
+	user_id
+	group_id
+	manager_id
+	status 
+	accepted_at
+	teammate_code
+	created_at
+	updated_at
+	item_id
+	item_type
+	sub_item_id
+	sub_item_type
+	archive 
+end
+
+
+
+def table_timeTABLEs
+	day_of_week
+	installation_id
+	type_id
+	starts_at
+	ends_at
+	timeframe 
+	archive 
+	created_at
+	updated_at
+end
+
+
+
+def table_types
+	name 
+	table_type
+	table_id
+	created_at
+	updated_at
+end
+
+
+
+def table_users
+	name
+	email 
+	identity_url
+	language 
+	time_zone 
+	phone
+	login
+	teammate_notification 
+	message_notification 
+	photo_file_name
+	photo_content_type
+	photo_file_size
+	photo_updated_at
+	crypted_password
+	password_salt
+	persistence_token 
+	login_count 
+	last_request_at
+	last_login_at
+	current_login_at
+	last_login_ip
+	current_login_ip
+	private_phone 
+	private_profile 
+	description
+	gender
+	birth_at
+	archive 
+	created_at
+	updated_at
+	perishable_token 
+	last_contacted_at
+	active 
+	profile_at
+	company 
+	last_minute_notification 
+	city_id 
+	email_backup
+	sport
+	linkedin_url
+	linkedin_token
+	linkedin_secret
+	slug
+	validation 
+	whatsapp 
+end
+
+
+
+def table_venues
+	name
+	starts_at
+	ends_at
+	time_zone
+	marker_id
+	enable_comments 
+	public 
+	photo_file_name
+	photo_content_type
+	photo_file_size
+	photo_updated_at
+	description
+	archive 
+	created_at
+	updated_at
+	day_light_savings 
+	day_light_starts_at
+	day_light_ends_at
+	slug
+	short_name
+end
+
+
+
+
+
+
+
+
+
+
+----------------------------------
 select first_user_id, second_user_id, first_user_win, second_user_win, same_team, count(*) as total
 from (
 select schedule_id, first_user_id, second_user_id, first_user_team, winning_team, second_user_team, first_user_win, second_user_win, (first_user_win = second_user_win) as same_team
