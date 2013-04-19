@@ -12,22 +12,13 @@
 %>
 
 
-<style type="text/css">
-	@font-face {
-	    font-family: "HayPista Font";
-	    src: url(<%= asset_path('ITCKrist.TTF') %>) format("truetype");
-	}
-	h1.haypistafont { 
-	    font-family: "HayPista Font", Verdana, Tahoma;
-	}
-</style>
-
 <div id="zurBar">
 
 	<div class="row">
 
 		<%= is_mobile_browser ? div_twelve_columns : div_three_columns %>
-			<%= link_to(image_tag('haypista_logo.png', options={:style => 'height: 45px; width: 155px;', :align => 'left'}), root_url) %>			
+			<%= link_to(image_tag('haypista_logo.png', options={:style => 'height: 45px; width: 155px;', :align => 'left'}), root_url) unless is_mobile_browser %>
+			<%= link_to(image_tag('haypista_logo_green.png', options={:style => 'height: 45px; width: 155px;', :align => 'left'}), root_url) if is_mobile_browser %>		
 		<%= div_close %>
 
 
