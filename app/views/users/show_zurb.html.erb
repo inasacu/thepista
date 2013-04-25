@@ -23,7 +23,20 @@
 	
 	has_phone = @user.my_members?(current_user)	? (!@user.phone.blank?) : (false)	
 	
-	has_statistics = @user_hash_grid_statistics.count > 1
+	# has_statistics = @user_hash_grid_statistics.count > 1
+	
+	
+	has_enough_statistics = false
+
+	@user_hash_grid_statistics.each do |user_individual_statistic| 
+		the_true_true = user_individual_statistic['TT'].to_i
+		the_true_false = user_individual_statistic['TF'].to_i
+		the_false_true = user_individual_statistic['FT'].to_i
+		the_false_false = user_individual_statistic['FF'].to_i
+		has_enough_statistics = (the_true_true + the_false_true + the_true_false + the_false_false) > HAS_USER_STATISTICS unless has_enough_statistics
+	end 
+		
+	
 %>
 
 <table>
@@ -92,7 +105,7 @@
 
 
 
-<% if has_statistics %>
+<% if has_enough_statistics %>
 
 <br/>
 <%= content_tag :h5, "#{label_name(:games_statistics)} #{label_name(:from)} #{@user.name}" %>

@@ -28,7 +28,7 @@
 		the_false_true = user_individual_statistic['FT'].to_i
 		the_false_false = user_individual_statistic['FF'].to_i
 		
-		has_enough_statistics = (the_true_true + the_false_true + the_true_false + the_false_false) > 1
+		has_enough_statistics = (the_true_true + the_false_true + the_true_false + the_false_false) > HAS_USER_STATISTICS
 		
 		the_same_team_image = scorecard_image_link(IMAGE_SUBIR_CLASIFICACION) if (the_true_true > the_false_true)
 		the_same_team_image = scorecard_image_link(IMAGE_BAJAR_CLASIFICACION) if (the_true_true < the_false_true)  	
