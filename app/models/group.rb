@@ -46,7 +46,6 @@ class Group < ActiveRecord::Base
 
   validates_presence_of     :name
   validates_presence_of     :second_team
-  # validates_presence_of     :description
   validates_presence_of     :conditions
   validates_presence_of     :time_zone
   validates_presence_of     :sport_id
@@ -54,7 +53,6 @@ class Group < ActiveRecord::Base
 
   validates_length_of       :name,            :within => NAME_RANGE_LENGTH
   validates_length_of       :second_team,     :within => NAME_RANGE_LENGTH
-  # validates_length_of       :description,     :within => DESCRIPTION_RANGE_LENGTH
   validates_length_of       :conditions,      :within => DESCRIPTION_RANGE_LENGTH
 
   validates_format_of       :name,            :with => /^[A-z 0-9 _.-]*$/ 
@@ -66,8 +64,10 @@ class Group < ActiveRecord::Base
   validates_numericality_of :player_limit,    :greater_than_or_equal_to => 1, :less_than_or_equal_to => DUNBAR_NUMBER
 
   # variables to access
-  attr_accessible :name, :second_team, :gameday_at, :sport_id, :points_for_win, :points_for_draw, :points_for_lose, :player_limit, :automatic_petition
+  attr_accessible :name, :second_team, :gameday_at, :sport_id
+	attr_accessible :points_for_win, :points_for_draw, :points_for_lose, :player_limit, :automatic_petition
   attr_accessible :time_zone, :marker_id, :description, :conditions, :photo, :enable_comments, :installation_id, :slug
+	attr_accessible	:item_id, :item_type
 
   has_and_belongs_to_many :users,           :join_table => "groups_users", :conditions => "users.archive = false", :order => "name"
 
@@ -79,6 +79,7 @@ class Group < ActiveRecord::Base
   belongs_to    :sport   
   belongs_to    :marker 
   belongs_to    :installation
+	belongs_to    :item,          		:polymorphic => true
 
   has_many :the_managers,
   :through => :manager_roles,
@@ -106,6 +107,14 @@ class Group < ActiveRecord::Base
   acts_as_authorization_subject :association_name => :roles, :join_table_name => :groups_roles
 
   # method section
+	def self.get_site_groups(the_params)
+		self.where("groups.archive = false").page(the_params).order('groups.created_at DESC')
+	end
+	
+	def self.get_subplug_groups(the_params)
+		self.where("groups.archive = false and groups.item_type ='Subplug'").page(the_params).order('groups.created_at DESC')
+	end
+	
   def all_the_managers
     ids = []
     self.the_managers.each {|user| ids << user.user_id }

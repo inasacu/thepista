@@ -33,6 +33,8 @@
 			<% if current_user %>
 			<%= link_to(label_name(:groups), groups_url, :class => the_group) %>	
 			<%= link_to(label_name(:schedules), schedules_url, :class => the_schedule) if has_group %>
+			
+			<%= link_to(label_name(:enchufados), enchufados_url) if Rails.env.development? %>
 
 			<%= link_to(label_name(:reservations), venues_url, :class => the_venue) unless is_mobile_browser %>	
 			<%= link_to(label_name(:cups), cups_url, :class => the_cup) if !is_mobile_browser and is_cup_visible %>

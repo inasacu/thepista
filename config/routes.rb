@@ -232,6 +232,8 @@ Thepista::Application.routes.draw do
 			get :list
 		end
 	end
+	
+	resources :subplugs
 
 	resources :purchases
 	resources :users do

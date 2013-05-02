@@ -402,6 +402,29 @@ en:
      edit_type: Edit    
      edit_user: Edit    
      edit_venue: Edit    
+     enchufado:  Enchufado
+     enchufado_options:  Options
+     enchufado_stage_set:  Group Stage Update
+     enchufado_stage_set_full:  Group Stage Update
+     enchufados:   Enchufados
+     enchufados_create:  New Enchufado 
+     enchufados_destroy:  Remove Enchufado
+     enchufados_edit:  Edit Enchufado
+     enchufados_index:   Enchufados
+     enchufados_index_option: Options
+     enchufados_invitations_create:  Invite a friend to the Enchufado
+     enchufados_join:  Join an Enchufado
+     enchufados_list:  Rest of the Enchufados
+     enchufados_new:  New Enchufado
+     enchufados_new_option: Options
+     enchufados_no:  No Enchufados to diplay
+     enchufados_none:  No Enchufados.
+     enchufados_options_without: "What options do you have since you are not on an enchufado?"
+     enchufados_option:  Options
+     enchufados_search: Search for Enchufados
+     enchufados_search_to_join: Search for an enchufado to join. 
+     enchufados_show:  Show Enchufado
+     enchufados_update: Edit Enchufado
      email: Email   
      email_time_zone: Time Zone to send email before an event.  
      email_addresses: Email(s)
@@ -1477,6 +1500,27 @@ en:
      single_identity: allows you to have a global ID for many websites. You can get your OpenID URL   
      something_wrong: "Something went wrong, Sorry!"  
      something_wrong_explained: "Already registered this ruling. We'll Look as soon as possible."
+     subplug:  Link
+     subplug_options:  Options
+     subplugs:   Links
+     subplugs_create:  Add new Link 
+     subplugs_destroy:  Remove Link
+     subplugs_edit:  Edit Link
+     subplugs_index:   Links
+     subplugs_index_option: Options
+     subplugs_invitations_create:  Invite a friend to the Link
+     subplugs_join:  Join a Link
+     subplugs_list:  Rest of the Links
+     subplugs_new:  New Link
+     subplugs_new_option: Options
+     subplugs_no:  No Links to diplay
+     subplugs_none:  No Links.
+     subplugs_options_without: "What options do you have since you are not on a link?"
+     subplugs_option:  Options
+     subplugs_search: Search for Links
+     subplugs_search_to_join: Search for an link to join. 
+     subplugs_show:  Show Link
+     subplugs_update: Edit Link
      escuadra: Team
      escuadras: Teams
      escuadras_add:  Teams
@@ -1604,6 +1648,16 @@ en:
      Tuesday: Tuesday   
      type: Type   
      type_account: Type of Account 
+     type_anyone: Anyone
+     type_registered: Registered
+     type_verified: Verified
+     type_core: Core
+     type_fremium: Fremium
+     type_professional: Professional
+     type_haypista: HayPista
+     type_play: Play
+     type_service: Service
+     type_category: Category
      types: Types   
      ultima_hora: Reserve  
      unauthorized_user:  Player not authorized. 
@@ -1660,6 +1714,8 @@ en:
      updated_a_schedule: Ha updated the event 
      updated_a_user:  ha updated the perfil  
      upload:  Upload
+     url: Link
+     urls: Links
      url_group: Link to Team   
      use_at_discretion: New option to enter. If you have a go with your original account.
      use_openid: Or use your OpenID 
@@ -1906,7 +1962,9 @@ en:
      payments_edit:  Edit Payment
      payments_option:  Options
      payments_show:  Show Payment  
-     prospects_edit:  Change de Account        
+     prospects_edit:  Change de Account 
+     prospects_no:  No Prospects 
+     group_new:  Add a Team       
      group_options:  Options
      group_stage_set:  Group Stage Update
      group_stage_set_full:  Group Stage Update
@@ -1981,6 +2039,7 @@ en:
      other:  Other
      others:  Others
      schedule: Event   
+     schedule_create:  add an event
      schedule_description: (Write some detail about the team...)  
      schedules: Events
      schedules_archive_list:  Previous Season
@@ -2162,6 +2221,8 @@ en:
      users_teammate: My Teammates 
      users_total: "Total"
      users_update:  Update your profile
+     website:  Website
+     websites:  Websites
      your:  Your   
      true: "Yes"
      false: "No"

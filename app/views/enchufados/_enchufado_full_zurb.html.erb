@@ -1,0 +1,56 @@
+<%
+	is_enchufado_manager = is_current_manager_of(enchufado)  
+	the_enchufado_image = item_image_link_small(enchufado)
+	the_enchufado_link = item_name_link(enchufado)
+	
+	subplug_counter = enchufado.subplugs.count
+	counter = 0
+	four_or_seven_columns = is_enchufado_manager ? "four columns" : "seven columns" 
+%>
+
+<div class="row">
+	<div class="two columns">
+		<%= render_show_detail_zurb(:blank, "#{the_enchufado_image}".html_safe) %>
+	</div>
+
+	<div class="three columns">
+		<%= render_show_detail_zurb(:blank, "#{the_enchufado_link}".html_safe) %>
+	</div>
+	
+	<div class="<%= four_or_seven_columns %>">		
+	</div>
+	
+		
+	<% if is_enchufado_manager %>
+		<div class="three columns">
+				<%= set_form_create_id_image_link(Subplug.new, :enchufado_id, enchufado, :subplugs_create)  %>
+		</div>
+	<% end %>
+		
+</div>
+
+<!-- <hr/> -->
+<!-- <br/> -->
+
+
+<% enchufado.subplugs.each do |subplug| %>
+
+	<div class="row">
+		<div class="twelve columns">
+		
+		
+			<div class="row">
+
+				<%= render 'enchufados/subplug_full_zurb', :enchufado => enchufado, :subplug => subplug, :has_hr => ((counter +=1) < subplug_counter) %>
+
+			</div>
+
+			<br/>
+			<br/>
+			
+		</div>
+	</div>
+
+<% end %>
+
+

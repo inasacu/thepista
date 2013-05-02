@@ -119,6 +119,22 @@ task :the_slug_64 => :environment do |t|
 	# 	model.save!
 	# end
 
+
+	# ENCHUFADOS
+	the_models = Enchufado.all
+	the_models.each do |model|
+		model.slug = set_block_encode_decode(model)
+		model.save!
+	end
+	
+	# SUBPLUGS
+	the_models = Subplug.all
+	the_models.each do |model|
+		model.slug = set_block_encode_decode(model)
+		model.save!
+	end
+	
+	
 end
 
 def set_block_encode_decode(model)

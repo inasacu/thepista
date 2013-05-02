@@ -1,0 +1,44 @@
+<% 
+	# is_user_manager = (is_current_manager_of(@enchufado)) 
+	# is_member = is_current_member_of(@enchufado) 
+%>
+
+<%#= render 'shared/show_description_zurb', :item => @enchufado %>
+
+<%
+	the_label = label_name(:enchufados)
+	content_for(:title, the_label)
+	has_items = (object_counter(@enchufados) > 0)
+%>
+
+
+<% if has_items %>
+
+<%= render('shared/index_total_header_zurb', :items => @enchufados) %>
+
+<table>
+	<thead>
+		<tr>
+			<%= set_content_tag_safe(:th, "&nbsp;") %>
+			<%= set_content_tag_safe(:th, "#{label_name(:name)}") %>
+			<%= set_content_tag_safe(:th, "#{label_name(:urls)}") %>
+			<%= set_content_tag_safe(:th, "#{label_name(:groups)}") %>
+			<%#= set_content_tag_safe(:th, "&nbsp;") %>
+		</tr>
+	</thead>
+
+	<tbody>
+
+	<% @enchufados.each do |enchufado| %>	
+		<tr>		
+			<%= render 'enchufados/enchufado_full_zurb', :enchufado => enchufado, :display_icons => true %> 
+		</tr>
+	<% end %>
+
+	</tbody>
+</table>
+
+<% end %>
+
+
+<%= render 'shared/no_items_to_display' unless has_items %>

@@ -54,6 +54,13 @@
 	when 'cast'
 		the_tab_navigation = 'challenges'
 		
+	when 'enchufado'
+		the_title = the_controller
+		@new_item = @enchufado if is_new_item
+		
+	when 'subplug'
+		the_tab_navigation = "enchufados"
+		
 	when 'group'
 		the_title = the_controller
 		@new_item = @group if is_new_item

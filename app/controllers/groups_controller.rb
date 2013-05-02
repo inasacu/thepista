@@ -5,7 +5,13 @@ class GroupsController < ApplicationController
 	before_filter :has_manager_access, :only => [:edit, :update, :destroy, :set_automatic_petition]
 
 	def index
-		@groups = Group.where("groups.archive = false").page(params[:page]).order('groups.created_at DESC')
+		# @groups = Group.where("groups.archive = false").page(params[:page]).order('groups.created_at DESC')
+
+		if Rails.env.development?
+			@groups = Group.get_site_groups(params[:page]) 
+		else
+			@groups = Group.get_subplug_groups(params[:page])
+		end
 		render @the_template
 	end
 
@@ -28,17 +34,24 @@ class GroupsController < ApplicationController
 		render @the_template
 	end
 
-	def new    
-		marker = Marker.find(params[:marker_id]) if params[:marker_id]    
+	def new      
 		@group = Group.new
-		@group.marker = marker
+		@group.sport_id = 1
 		@sports = Sport.find(:all)
+
+		if params[:subplug_id]  
+			@subplug = Subplug.find(params[:subplug_id])
+			@group.item_id = @subplug.id
+			@group.item_type = 'Subplug'
+			@group.name = @subplug.name
+		end
+
 	end
 
 	def create
 		@group = Group.new(params[:group])	
+		
 		@group.name_to_second_team
-		# @group.name_to_description
 		@group.default_conditions
 		@group.sport_to_points_player_limit
 		@group.time_zone = current_user.time_zone if !current_user.time_zone.nil?
@@ -47,7 +60,13 @@ class GroupsController < ApplicationController
 
 		if @group.save and @group.create_group_details(current_user)
 			successful_create
-			redirect_to @group
+			
+			if @group.item_type == 'Subplug'
+					redirect_to enchufados_url
+					return
+			end
+			
+			redirect_to @group 
 		else
 			render :action => 'new'
 		end
@@ -123,7 +142,7 @@ class GroupsController < ApplicationController
 	def get_group
 		@group = Group.find(params[:id])
 	end
-	
+
 	def get_venue
 		@venue = Venue.find(params[:venue])
 	end

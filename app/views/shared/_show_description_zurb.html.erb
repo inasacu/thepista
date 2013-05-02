@@ -1,3 +1,5 @@
+<% if DISPLAY_HEADER_0PTIONS %>
+	
 <% 
 	the_label ||= ''
 	
@@ -17,8 +19,6 @@
 	end
 %>
 
-<% if DISPLAY_HEADER_0PTIONS %>
-
 <div class="row">
 	
 	<div class="twelve columns">
@@ -29,7 +29,7 @@
 			
 			<hr />
 			
-			<%#= content_tag_safe(:h6, sanitize(item.description.blank? ? control_label('description_no') : item.description), '', '', "subheader") %>
+			<%= content_tag_safe(:h6, sanitize(item.description.blank? ? control_label('description_no') : item.description), '', '', "subheader") %>
 			
 		</div>
 	</div>

@@ -400,7 +400,31 @@ es:
      edit_tournament: Actualiza   
      edit_type: Actualiza   
      edit_user: Actualiza   
-     edit_venue: Actualiza   
+     edit_venue: Actualiza
+     enchufado:   Enchufado
+     enchufado_options:  Opciones
+     enchufado_stage_set:  Actualiza el enchufado
+     enchufado_stage_set_full:  Actualiza el enchufado
+     enchufados:   Enchufados
+     enchufados_create:  "¡Hazte enchufado!" 
+     enchufados_destroy:  Borra el enchufado
+     enchufados_edit:  Cambia el enchufado
+     enchufados_index:   Enchufados
+     enchufados_index_option: Opciones 
+     enchufados_invitations_create:  Invita a un amigo al enchufado
+     enchufados_join:  Unete al enchufado
+     enchufados_list:  Resto de enchufado
+     enchufados_new:  Nuevo enchufado
+     enchufados_new_option: Opciones 
+     enchufados_no:  Ningun enchufado para mostrar
+     enchufados_none:  Ningun enchufado.
+     enchufados_options_without: "¿Qué opciones tienes ya que no tienes un enchufado?"
+     enchufados_options_without: "Parece que no tienes un enchufado, puedes hacer lo siguiente:"
+     enchufados_option:  Opciones 
+     enchufados_search: Busqueda de enchufados
+     enchufados_search_to_join: Puedes buscar un enchufado a quien unierte. 
+     enchufados_show:  Mostrar enchufado
+     enchufados_update: Cambia el enchufado
      email: Correo   
      email_time_zone: Horario para mandar correos antes de un encuentro.  
      email_addresses: "Correo(s)"
@@ -1486,6 +1510,28 @@ es:
      single_identity: te permite tener una iD global para muchas páginas web.  Puedes conseguir tu dirección uRL de OpenID en   
      something_wrong: "Lo sentimos!, algo ha ido mal."  
      something_wrong_explained: "Ya hemos registrado este fallo.  Lo miraremos lo antes posible."
+     subplug:   Enlace
+     subplug_options:  Opciones
+     subplugs:   Enlaze
+     subplugs_create:  "Pon un Enlace" 
+     subplugs_destroy:  Borra el enlace
+     subplugs_edit:  Cambia el enlace
+     subplugs_index:   Enlaces
+     subplugs_index_option: Opciones 
+     subplugs_invitations_create:  Invita a un amigo al enlace
+     subplugs_join:  Unete al enlace
+     subplugs_list:  Resto de enlace
+     subplugs_new:  Nuevo enlace
+     subplugs_new_option: Opciones 
+     subplugs_no:  Ningun enlace para mostrar
+     subplugs_none:  Ningun enlace.
+     subplugs_options_without: "¿Qué opciones tienes ya que no tienes un enlace?"
+     subplugs_options_without: "Parece que no tienes un enlace, puedes hacer lo siguiente:"
+     subplugs_option:  Opciones 
+     subplugs_search: Busqueda de enlaces
+     subplugs_search_to_join: Puedes buscar un enlace a quien unierte. 
+     subplugs_show:  Mostrar enlace
+     subplugs_update: Cambia el enlace
      escuadra: Equipo
      escuadras: Equipos
      escuadras_add:  Equipos
@@ -1612,7 +1658,17 @@ es:
      tu_punto_de_vista: tu punto de vista sobre el portal contactando con nosotros a traves de   
      Tuesday: Martes   
      type: Tipo   
-     type_account: Tipo de cuenta 
+     type_account: Tipo de cuenta
+     type_anyone: Cualquier
+     type_registered: Registrado
+     type_verified: Verificado
+     type_core: Core
+     type_fremium: Fremium
+     type_professional: Profesional
+     type_haypista: HayPista
+     type_play: Play
+     type_service: Servicio
+     type_category: Categoria
      types: Tipos   
      ultima_hora: Ultima Hora  
      unauthorized_user:  Jugador no autorizado 
@@ -1668,8 +1724,10 @@ es:
      updated_a_match:  Ha actualizado el resultado
      updated_a_schedule: Ha actualizado el evento 
      updated_a_user:  ha actualizado el perfil 
-     upload:  Subir
-     url_group: Vincular a Equipo   
+     upload:  Subir   
+     url: Enlace
+     urls: Enlaces
+     url_group: Vincular a Equipo
      use_at_discretion: Nueva opción para entrar.  Si tienes una cuenta entra con tu cuenta original.
      use_openid: O entra con OpenID 
      use_login:  Entra con tu cuenta de correo
@@ -1916,7 +1974,8 @@ es:
      payments_option:  Opciones 
      payments_show:  Mostrar pago
      prospects_edit:  Cambia el Cuenta
-     prospects_no:  Ningun Centro     
+     prospects_no:  Ningun Centro 
+     group_new:  Han un Equipo
      group_options:  Opciones
      group_stage_set:  Actualiza el grupo
      group_stage_set_full:  Actualiza el grupo
@@ -1992,6 +2051,7 @@ es:
      other:  Otro
      others:  Otros
      schedule: Evento   
+     schedule_create:  organiza un partido
      schedule_description: (Escribe algun detalle del equipo...)  
      schedules: Eventos
      schedules_archive_list:  Temporada anterior
@@ -2176,6 +2236,8 @@ es:
      users_teammate: Mis compañeros
      users_total: "Total"
      users_update:  Actualiza
+     website:  Portal
+     websites:  Portales
      your:  Tu 
      true: "Si"
      false: "No"

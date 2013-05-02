@@ -1,0 +1,2 @@
+module SubplugsHelper
+end
