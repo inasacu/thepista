@@ -37,7 +37,7 @@ class CreateSubplugs < ActiveRecord::Migration
 			t.boolean  	:archive,     		:default => false
 		end
 
-		change_column	:groups,		:marker_id,						:integer,				:default => 2
+		# change_column	:groups,		:marker_id,						:integer,				:default => 2
 		change_column	:groups,		:installation_id,			:integer,				:default => 999
 		
 	end
