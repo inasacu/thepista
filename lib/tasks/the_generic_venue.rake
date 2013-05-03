@@ -23,17 +23,17 @@ task :the_generic_venue => :environment do |t|
 	# values (999, 'Campo 1', 999, 1, 2, '2013-01-01 06:00:00', '2013-01-01 23:00:00', 1, 40, 5, 'Campo de Fútbol 7 - Cesped Artificial', 'Requiere botas especificas para cesped Artificial')
 
 
-	sql = "insert into venues (id, name, starts_at, ends_at, marker_id, description, short_name) 
-	values (999, 'Centro Deportivo Generico', '2013-01-01 06:00:00', '2013-01-01 23:00:00', 2, 'Centro Deportivo Generico', 'C.D.Generico')"
-	ActiveRecord::Base.connection.insert_sql sql
+	# sql = "insert into venues (id, name, starts_at, ends_at, marker_id, description, short_name) 
+	# values (999, 'Centro Deportivo Generico', '2013-01-01 06:00:00', '2013-01-01 23:00:00', 2, 'Centro Deportivo Generico', 'C.D.Generico')"
+	# ActiveRecord::Base.connection.insert_sql sql
 
 
 	@venue = Venue.find(999)
 	unless @venue.nil?
 
-		sql = "insert into installations (id, name, venue_id, sport_id, marker_id, starts_at, ends_at, timeframe, fee_per_pista, fee_per_lighting,  description, conditions)
-		values (999, 'Campo 1', 999, 1, 2, '2013-01-01 06:00:00', '2013-01-01 23:00:00', 1, 40, 5, 'Campo de Futbol 7 - Cesped Artificial', 'Requiere botas especificas para cesped Artificial')"
-		ActiveRecord::Base.connection.insert_sql sql
+		# sql = "insert into installations (id, name, venue_id, sport_id, marker_id, starts_at, ends_at, timeframe, fee_per_pista, fee_per_lighting,  description, conditions)
+		# values (999, 'Campo 1', 999, 1, 2, '2013-01-01 06:00:00', '2013-01-01 23:00:00', 1, 40, 5, 'Campo de Futbol 7 - Cesped Artificial', 'Requiere botas especificas para cesped Artificial')"
+		# ActiveRecord::Base.connection.insert_sql sql
 
 		@installation = Installation.find(999)
 
