@@ -268,7 +268,7 @@ ActiveRecord::Schema.define(:version => 20130426183103) do
     t.float    "points_for_lose",    :default => 0.0
     t.string   "time_zone",          :default => "UTC"
     t.integer  "sport_id"
-    t.integer  "marker_id",          :default => 2
+    t.integer  "marker_id"
     t.text     "description"
     t.text     "conditions"
     t.integer  "player_limit",       :default => 150
