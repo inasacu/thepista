@@ -112,7 +112,7 @@ class Group < ActiveRecord::Base
 	end
 	
 	def self.get_subplug_groups(the_params)
-		self.where("groups.archive = false and groups.item_type ='Subplug'").page(the_params).order('groups.created_at DESC')
+		self.where("groups.archive = false and groups.item_type is null").page(the_params).order('groups.created_at DESC')
 	end
 	
   def all_the_managers
@@ -211,15 +211,14 @@ class Group < ActiveRecord::Base
 	end
 
   def self.latest_items(items)
-    find(:all, :conditions => ["created_at >= ? and archive = false", LAST_WEEK]).each do |item|
-    # find(:all, :select => "id, name, photo_file_name, updated_at as created_at", :conditions => ["created_at >= ? and archive = false", LAST_THREE_DAYS]).each do |item| 
+    find(:all, :conditions => ["created_at >= ? and archive = false and item_type is null", LAST_WEEK]).each do |item|
       items << item
     end
     return items 
   end
 
   def self.latest_updates(items)
-    find(:all, :select => "id, name, photo_file_name, updated_at as created_at", :conditions => ["updated_at >= ? and archive = false", LAST_THREE_DAYS]).each do |item| 
+    find(:all, :select => "id, name, photo_file_name, updated_at as created_at", :conditions => ["updated_at >= ? and archive = false and item_type is null", LAST_THREE_DAYS]).each do |item| 
       items << item
     end
     return items 
