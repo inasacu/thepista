@@ -1,6 +1,5 @@
 <% 
 	has_group, the_cup, the_challenge, the_schedule, the_group, the_users, the_user, the_petition, the_home, the_login, the_signup, the_venue, the_message, the_controller_action , the_controller = get_header_navigation
-	# is_cup_visible = (Cup.has_official_cup? or the_maximo) and !is_mobile_browser
 	is_cup_visible = !is_mobile_browser
 	
 	# mobile options
@@ -10,7 +9,10 @@
 	div_twelve_columns = "<div class='twelve columns'>".html_safe
 	div_close = "</div>".html_safe
 	
-	is_enchufado_visible = (Rails.env.development? or current_user.id = 2001)
+	is_enchufado_visible =  Rails.env.development? 
+	if current_user
+		is_enchufado_visible =  current_user.id == 2001 ? true : is_enchufado_visible
+	end
 %>
 
 
