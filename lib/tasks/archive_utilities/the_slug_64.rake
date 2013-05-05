@@ -8,7 +8,7 @@
 desc "update all table slugs with name"
 task :the_slug_64 => :environment do |t|
 
-	ActiveRecord::Base.establish_connection(Rails.env.to_sym)
+	# ActiveRecord::Base.establish_connection(Rails.env.to_sym)
 
 	##############################################################################################################################################################################
 	# remove in production...
