@@ -3,10 +3,7 @@
 desc "identify all fields in table that are null"
 task :the_empty_columns => :environment do |t|
 
-	# ignore_field_names = ['id', 'archive', '_at', '_score', 'roster_position', 'played']
 	ignore_field_names = ['id']
-
-	ActiveRecord::Base.establish_connection(Rails.env.to_sym)
 
 	connection = ActiveRecord::Base.connection
 

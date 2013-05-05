@@ -3,9 +3,6 @@
 desc "restore marker name to make smaller string"
 task :restore_marker_name => :environment do |t|
 
-	ActiveRecord::Base.establish_connection(Rails.env.to_sym)
-	
-
 	the_replacement = "Centro Deportivo"
 	the_search = 'C.D.'
 	change_marker_name(the_search, the_replacement)

@@ -3,7 +3,7 @@
 desc "remove all unused schedules and matches and update scorecards"
 task :the_unused_schedule => :environment do |t|
 
-  ActiveRecord::Base.establish_connection(Rails.env.to_sym)
+  
 
 	the_archives = []
 	the_rosters = []

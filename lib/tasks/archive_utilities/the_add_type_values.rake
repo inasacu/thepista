@@ -3,9 +3,6 @@
 desc "add values to types..."
 task :the_add_type_values => :environment do |t|
 
-	ActiveRecord::Base.establish_connection(Rails.env.to_sym)
-
-	
 	# sql = "INSERT INTO types (id, name, table_type) values (51, 'Core', 'Group')"
 	# ActiveRecord::Base.connection.insert_sql sql
 	# 

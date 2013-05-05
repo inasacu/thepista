@@ -3,10 +3,6 @@
 desc "create a new veneu, installations and timetables"
 task :the_installation_timetable => :environment do |t|
 
-	ActiveRecord::Base.establish_connection(Rails.env.to_sym)
-
-
-	
 	# generate new slugs
 	Schedule.find_each(&:save)
 	User.find_each(&:save)

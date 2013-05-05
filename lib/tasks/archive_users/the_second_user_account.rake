@@ -5,31 +5,22 @@ desc "this job will take user original account and replace the id for a previous
 
 task :the_second_user_account => :environment do |t|
 
-	ActiveRecord::Base.establish_connection(Rails.env.to_sym)
-
-  
 	first_user = 'julientondu@hotmail.com'
 	second_user = 'julien.tisseau@chep.com'
-	
 	update_user_switch(first_user, second_user)
 	
   first_user = 'julien.tisseau@chep.com'
   second_user = 'ujman27@hotmail.com'
-	
 	update_user_switch(first_user, second_user)
-
 
 end
 
 
 def update_user_switch(first_user, second_user)
-  
-	
+ 
 	the_original_user = User.find(:first, :conditions => ["email = ?", first_user])
 	the_new_user = User.find(:first, :conditions => ["email = ?", second_user])
-	
 	the_max_user = User.find(:first, :conditions => "id = (select max(id) from users)")
-
 	is_user_available =  !the_original_user.nil? and !the_new_user and !the_max_user
 
 	if is_user_available

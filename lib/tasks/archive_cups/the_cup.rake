@@ -2,9 +2,7 @@
 
 desc "create games based on cup teams and groups..."
 task :the_cup => :environment do |t|
-  
-  ActiveRecord::Base.establish_connection(Rails.env.to_sym)
-  
+
   @cup = Cup.find(5)
   
   # # delete all games, rounds and standings in dbase

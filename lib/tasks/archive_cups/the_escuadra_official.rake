@@ -3,8 +3,6 @@
 desc "set currenct escuadras to official"
 task :the_escuadra_official => :environment do |t|
 
-	ActiveRecord::Base.establish_connection(Rails.env.to_sym)
-
 	# escuadras
 	@escuadras = Escuadra.find(:all, :conditions => "official = false and item_type = 'Escuadra'")
 	@escuadras.each do |escuadra|

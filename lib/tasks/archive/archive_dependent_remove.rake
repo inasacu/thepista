@@ -3,8 +3,6 @@
 desc "remove all archived files not needed"
 task :the_remove_archive_data => :environment do |t|
 
-	ActiveRecord::Base.establish_connection(Rails.env.to_sym)
-
 	the_archives = []
 	counter = 1
 

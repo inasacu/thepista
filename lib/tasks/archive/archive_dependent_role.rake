@@ -3,8 +3,6 @@
 desc "ARCHIVE dependent records to already archived"
 task :the_archive_role => :environment do |t|
 
-	ActiveRecord::Base.establish_connection(Rails.env.to_sym)
-
 	the_archives = []
 	counter = 0
 

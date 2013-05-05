@@ -3,7 +3,6 @@
 desc "set default for the euro2012 cup point system"
 task :the_euro2012_point_system => :environment do |t|
 
-	ActiveRecord::Base.establish_connection(Rails.env.to_sym)
 	counter = 0
 
 	# get current cup

@@ -3,8 +3,6 @@
 desc "ARCHIVE user matches, scorecard"
 task :the_archive_user_match => :environment do |t|
 
-	ActiveRecord::Base.establish_connection(Rails.env.to_sym)
-
 	the_archives = []
 
 	# USERS

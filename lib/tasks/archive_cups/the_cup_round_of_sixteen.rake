@@ -2,9 +2,7 @@
 
 desc "create games based on cup teams and groups..."
 task :the_cup_round_of_sixteen => :environment do |t|
-  
-  ActiveRecord::Base.establish_connection(Rails.env.to_sym)
-  
+
   @cup = Cup.find(5)
   
   # need to order teams that have qualified in ranking order since final stage game generator sets 1st w/ last team

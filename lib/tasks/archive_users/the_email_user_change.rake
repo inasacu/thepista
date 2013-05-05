@@ -3,8 +3,6 @@
 desc "changes a specific user email address for a new email address"
 task :the_email_user_change => :environment do |t|
 
-  ActiveRecord::Base.establish_connection(Rails.env.to_sym)
-
   User.find(:all, :conditions => " email = 'esther.freire@chep.com' ").each do |user|
     puts "#{user.name} - #{user.email}"
 
