@@ -1,7 +1,7 @@
 class CreateSubplugs < ActiveRecord::Migration
 	def change
 
-		drop_table	:subplugs
+		# drop_table	:subplugs
 		drop_table	:enchufados
 
 		create_table :subplugs do |t|
