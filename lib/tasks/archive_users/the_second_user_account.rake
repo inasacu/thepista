@@ -1,28 +1,25 @@
-# to run:  rake the_second_user_account
+# to run:  rake the_new_user_email_account
 
 desc "this rake job is to convert a user who has several accounts"
 desc "this job will take user original account and replace the id for a previous account created id"
 
-task :the_second_user_account => :environment do |t|
-
-	first_user = 'julientondu@hotmail.com'
-	second_user = 'julien.tisseau@chep.com'
-	update_user_switch(first_user, second_user)
+task :the_new_user_email_account => :environment do |t|
 	
-  first_user = 'julien.tisseau@chep.com'
-  second_user = 'ujman27@hotmail.com'
-	update_user_switch(first_user, second_user)
+  original_user_email = 'fvillaluenga@ap41.com'
+  new_user_email = 'felixvillaluenga@gmail.com'
+	update_user_switch(original_user_email, new_user_email)
 
 end
 
 
-def update_user_switch(first_user, second_user)
+def update_user_switch(original_user_email, new_user_email)
  
-	the_original_user = User.find(:first, :conditions => ["email = ?", first_user])
-	the_new_user = User.find(:first, :conditions => ["email = ?", second_user])
+	the_original_user = User.find(:first, :conditions => ["email = ?", original_user_email])
+	the_new_user = User.find(:first, :conditions => ["email = ?", new_user_email])
 	the_max_user = User.find(:first, :conditions => "id = (select max(id) from users)")
 	is_user_available =  !the_original_user.nil? and !the_new_user and !the_max_user
 
+	# changes in the user table
 	if is_user_available
 
 		the_original_id = the_original_user.id.to_i
@@ -38,14 +35,18 @@ def update_user_switch(first_user, second_user)
     result = ActiveRecord::Base.connection.update_sql( "update users set id=#{the_original_id} where id=#{the_new_id}" )
     result = ActiveRecord::Base.connection.update_sql( "update users set id=#{the_new_id} where id=#{the_max_plus_one_id}" )
 
-		the_original_change = User.find(:first, :conditions => ["email = ?", first_user])
-		the_new_change = User.find(:first, :conditions => ["email = ?", second_user])
+		the_original_change = User.find(:first, :conditions => ["email = ?", original_user_email])
+		the_new_change = User.find(:first, :conditions => ["email = ?", new_user_email])
 
 		puts " ------------------------ final changes  ------------------------ "
 		puts "#{the_original_change.id} - #{the_original_change.name} - #{the_original_change.email} => [#{the_original_id}]"
 		puts "#{the_new_change.id} - #{the_new_change.name} - #{the_new_change.email} => [#{the_new_id}]"
 
 	end
+	
+	# changes in the authentication table
+	# update authentications set user_id = 2909 where user_id = 3125
+		
 end
 
 
