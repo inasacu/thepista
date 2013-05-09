@@ -1,34 +1,39 @@
-# TABLE "games"
-# t.string   "name"
-# t.datetime "starts_at"
-# t.datetime "s_at"
-# t.datetime "reminder_at"
-# t.datetime "deadline_at"
-# t.integer  "cup_id"
-# t.integer  "home_id"
-# t.integer  "away_id"
-# t.integer  "winner_id"
-# t.integer  "next_game_id"
-# t.integer  "home_ranking"
-# t.string   "home_stage_name"
-# t.integer  "away_ranking"
-# t.string   "away_stage_name"
-# t.integer  "home_score"
-# t.integer  "away_score"
-# t.integer  "jornada"                                  
-# t.integer  "round"                                    
-# t.boolean  "played"                                   
-# t.string   "type_name"                  
-# t.integer  "points_for_single"                        
-# t.integer  "points_for_double"                        
-# t.datetime "created_at"
-# t.datetime "updated_at"
-# t.integer  "points_for_draw"                          
-# t.integer  "points_for_goal_difference"               
-# t.integer  "points_for_goal_total"                    
-# t.integer  "points_for_winner"                        
-# t.boolean  "archive"                                  
-# t.string   "slug"
+# == Schema Information
+#
+# Table name: games
+#
+#  id                         :integer          not null, primary key
+#  name                       :string(255)
+#  starts_at                  :datetime
+#  ends_at                    :datetime
+#  reminder_at                :datetime
+#  deadline_at                :datetime
+#  cup_id                     :integer
+#  home_id                    :integer
+#  away_id                    :integer
+#  winner_id                  :integer
+#  next_game_id               :integer
+#  home_ranking               :integer
+#  home_stage_name            :string(255)
+#  away_ranking               :integer
+#  away_stage_name            :string(255)
+#  home_score                 :integer
+#  away_score                 :integer
+#  jornada                    :integer          default(1)
+#  round                      :integer          default(1)
+#  played                     :boolean          default(FALSE)
+#  type_name                  :string(40)
+#  points_for_single          :integer          default(0)
+#  points_for_double          :integer          default(0)
+#  created_at                 :datetime
+#  updated_at                 :datetime
+#  points_for_draw            :integer          default(0)
+#  points_for_goal_difference :integer          default(0)
+#  points_for_goal_total      :integer          default(0)
+#  points_for_winner          :integer          default(0)
+#  archive                    :boolean          default(FALSE)
+#  slug                       :string(255)
+#
 
 class Game < ActiveRecord::Base
 

@@ -1,29 +1,35 @@
-# TABLE "matches"
-# t.integer  "schedule_id"
-# t.integer  "user_id"
-# t.integer  "group_id"
-# t.integer  "invite_id"                                                           
-# t.integer  "group_score"
-# t.integer  "invite_score"
-# t.integer  "goals_scored"                                                        
-# t.integer  "roster_position"                                                     
-# t.boolean  "played"                                                              
-# t.string   "one_x_two"                
-# t.string   "user_x_two"               
-# t.integer  "type_id"
-# t.datetime "status_at"                                                           
-# t.boolean  "archive"                                                             
-# t.datetime "created_at"
-# t.datetime "updated_at"                                                
-# t.decimal  "rating_average_technical"               
-# t.decimal  "rating_average_physical"                
-# t.float    "initial_mean"                                                        
-# t.float    "initial_deviation"                                                   
-# t.float    "final_mean"                                                          
-# t.float    "final_deviation"                                                     
-# t.integer  "game_number"                                                         
-# t.string   "block_token"
-# t.integer  "change_id"
+# == Schema Information
+#
+# Table name: matches
+#
+#  id                       :integer          not null, primary key
+#  schedule_id              :integer
+#  user_id                  :integer
+#  group_id                 :integer
+#  invite_id                :integer          default(0)
+#  group_score              :integer
+#  invite_score             :integer
+#  goals_scored             :integer          default(0)
+#  roster_position          :integer          default(0)
+#  played                   :boolean          default(FALSE)
+#  one_x_two                :string(1)
+#  user_x_two               :string(1)
+#  type_id                  :integer
+#  status_at                :datetime         default(2009-10-12 16:02:12 UTC)
+#  archive                  :boolean          default(FALSE)
+#  created_at               :datetime
+#  updated_at               :datetime
+#  rating_average_technical :decimal(6, 2)    default(0.0)
+#  rating_average_physical  :decimal(6, 2)    default(0.0)
+#  initial_mean             :float            default(0.0)
+#  initial_deviation        :float            default(0.0)
+#  final_mean               :float            default(0.0)
+#  final_deviation          :float            default(0.0)
+#  game_number              :integer          default(0)
+#  block_token              :string(255)
+#  change_id                :integer
+#  changed_at               :datetime
+#
 
 require "base64"
 

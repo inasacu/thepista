@@ -1,9 +1,14 @@
-# TABLE "groups_markers"
-# t.integer  "group_id"
-# t.integer  "marker_id"
-# t.datetime "created_at"
-# t.datetime "updated_at"
-# t.boolean  "archive"
+# == Schema Information
+#
+# Table name: groups_markers
+#
+#  id         :integer          not null, primary key
+#  group_id   :integer
+#  marker_id  :integer
+#  created_at :datetime
+#  updated_at :datetime
+#  archive    :boolean          default(FALSE)
+#
 
 class GroupsMarkers < ActiveRecord::Base
   

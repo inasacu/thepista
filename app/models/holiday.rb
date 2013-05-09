@@ -1,13 +1,18 @@
-# TABLE "holidays"
-# t.string   "name"
-# t.integer  "venue_id"
-# t.datetime "starts_at"
-# t.datetime "s_at"
-# t.boolean  "holiday_hour" 
-# t.boolean  "archive"      
-# t.datetime "created_at"
-# t.datetime "updated_at"
-# t.integer  "type_id"
+# == Schema Information
+#
+# Table name: holidays
+#
+#  id           :integer          not null, primary key
+#  name         :string(255)
+#  venue_id     :integer
+#  starts_at    :datetime
+#  ends_at      :datetime
+#  holiday_hour :boolean          default(TRUE)
+#  archive      :boolean          default(FALSE)
+#  created_at   :datetime
+#  updated_at   :datetime
+#  type_id      :integer
+#
 
 # insert into holidays (name, venue_id, starts_at, ends_at, holiday_hour) values('15 de Agosto', 1, '2012/08/14 22:00:00', '2012/08/15 21:59:59', false)
 

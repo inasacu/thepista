@@ -1,39 +1,44 @@
-# TABLE "scorecards"
-# t.integer  "group_id"
-# t.integer  "user_id"
-# t.integer  "wins"                
-# t.integer  "draws"               
-# t.integer  "losses"              
-# t.float    "points"              
-# t.integer  "ranking"             
-# t.integer  "played"              
-# t.integer  "assigned"            
-# t.integer  "goals_for"           
-# t.integer  "goals_against"       
-# t.integer  "goals_scored"        
-# t.integer  "previous_points"     
-# t.integer  "previous_ranking"    
-# t.integer  "previous_played"     
-# t.integer  "payed"               
-# t.boolean  "archive"             
-# t.datetime "created_at"
-# t.datetime "updated_at"
-# t.datetime "season_s_at"
-# t.integer  "field_goal_attempt"  
-# t.integer  "field_goal_made"     
-# t.integer  "free_throw_attempt"  
-# t.integer  "free_throw_made"     
-# t.integer  "three_point_attempt" 
-# t.integer  "three_point_made"    
-# t.integer  "rebounds_defense"    
-# t.integer  "rebounds_offense"    
-# t.integer  "minutes_played"      
-# t.integer  "assists"             
-# t.integer  "steals"              
-# t.integer  "blocks"              
-# t.integer  "turnovers"           
-# t.integer  "personal_fouls"      
-# t.integer  "started"
+# == Schema Information
+#
+# Table name: scorecards
+#
+#  id                  :integer          not null, primary key
+#  group_id            :integer
+#  user_id             :integer
+#  wins                :integer          default(0)
+#  draws               :integer          default(0)
+#  losses              :integer          default(0)
+#  points              :float            default(0.0)
+#  ranking             :integer          default(0)
+#  played              :integer          default(0)
+#  assigned            :integer          default(0)
+#  goals_for           :integer          default(0)
+#  goals_against       :integer          default(0)
+#  goals_scored        :integer          default(0)
+#  previous_points     :integer          default(0)
+#  previous_ranking    :integer          default(0)
+#  previous_played     :integer          default(0)
+#  payed               :integer          default(0)
+#  archive             :boolean          default(FALSE)
+#  created_at          :datetime
+#  updated_at          :datetime
+#  season_ends_at      :datetime
+#  field_goal_attempt  :integer          default(0)
+#  field_goal_made     :integer          default(0)
+#  free_throw_attempt  :integer          default(0)
+#  free_throw_made     :integer          default(0)
+#  three_point_attempt :integer          default(0)
+#  three_point_made    :integer          default(0)
+#  rebounds_defense    :integer          default(0)
+#  rebounds_offense    :integer          default(0)
+#  minutes_played      :integer          default(0)
+#  assists             :integer          default(0)
+#  steals              :integer          default(0)
+#  blocks              :integer          default(0)
+#  turnovers           :integer          default(0)
+#  personal_fouls      :integer          default(0)
+#  started             :integer          default(0)
+#
 
 class Scorecard < ActiveRecord::Base 
   

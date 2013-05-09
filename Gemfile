@@ -41,15 +41,8 @@ gem 'omniauth-facebook'
 gem 'omniauth-linkedin'
 gem 'omniauth-google'
 
-# group :development do
-# gem 'mechanize'
-# gem 'anemone'
-# gem 'hpricot'
-# end
 
 gem 'ayah_integration'
-# gem 'sentry-raven'
-
 
 # gem 'omniauth-yahoo'
 # gem 'omniauth-disqus',			:git => 'https://github.com/espinet/omniauth-disqus.git'
@@ -64,20 +57,14 @@ group :assets do
 end
 
 
+group :development do
+  gem "better_errors"
+	gem "bullet"
+	gem "meta_request"
+	gem 'annotate', ">=2.5.0"
+	# gem 'mechanize'
+	# gem 'anemone'
+	# gem 'hpricot'
+end
 
-
-
-
-# gem "client_side_validations", "~> 3.1.4"
-# gem 'ssl_requirement'
-# gem 'jquery_notify_bar'
-# gem 'rqrcode'
-# gem "gmaps4rails", "~> 1.4.8"
-# gem "completeness-fu", "~> 0.6.0"
-# gem 'heroku_s3_backup'
-# gem 'ym4r_gm'
-# gem 'ajaxful_rating_jquery'
-# gem 'kaminari'
-# gem 'jquery-ui'
-# gem 'rails_config'
 

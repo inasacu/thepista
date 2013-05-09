@@ -1,21 +1,26 @@
-# TABLE "standings"
-# t.integer  "cup_id"
-# t.integer  "challenge_id"
-# t.integer  "user_id"
-# t.integer  "item_id"
-# t.string   "item_type"
-# t.string   "group_stage_name"
-# t.integer  "wins"             
-# t.integer  "draws"            
-# t.integer  "losses"           
-# t.integer  "points"           
-# t.integer  "played"           
-# t.integer  "ranking"          
-# t.integer  "goals_for"        
-# t.integer  "goals_against"    
-# t.boolean  "archive"          
-# t.datetime "created_at"
-# t.datetime "updated_at"
+# == Schema Information
+#
+# Table name: standings
+#
+#  id               :integer          not null, primary key
+#  cup_id           :integer
+#  challenge_id     :integer
+#  item_id          :integer
+#  item_type        :string(255)
+#  group_stage_name :string(255)
+#  wins             :integer          default(0)
+#  draws            :integer          default(0)
+#  losses           :integer          default(0)
+#  points           :integer          default(0)
+#  played           :integer          default(0)
+#  ranking          :integer          default(0)
+#  goals_for        :integer          default(0)
+#  goals_against    :integer          default(0)
+#  archive          :boolean          default(FALSE)
+#  created_at       :datetime
+#  updated_at       :datetime
+#  user_id          :integer
+#
 
 class Standing < ActiveRecord::Base
 

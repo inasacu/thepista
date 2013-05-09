@@ -1,9 +1,14 @@
-# TABLE "types"
-# t.string   "name"       
-# t.string   "table_type" 
-# t.integer  "table_id"
-# t.datetime "created_at"
-# t.datetime "updated_at"
+# == Schema Information
+#
+# Table name: types
+#
+#  id         :integer          not null, primary key
+#  name       :string(40)
+#  table_type :string(40)
+#  table_id   :integer
+#  created_at :datetime
+#  updated_at :datetime
+#
 
 class Type < ActiveRecord::Base
 

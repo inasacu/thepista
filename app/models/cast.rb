@@ -1,14 +1,19 @@
-# TABLE "casts"
-# t.integer  "challenge_id"
-# t.integer  "user_id"
-# t.integer  "game_id"
-# t.integer  "home_score"
-# t.integer  "away_score"
-# t.integer  "points"       
-# t.datetime "created_at"
-# t.datetime "updated_at"
-# t.boolean  "archive"      
-# t.string   "slug"
+# == Schema Information
+#
+# Table name: casts
+#
+#  id           :integer          not null, primary key
+#  challenge_id :integer
+#  user_id      :integer
+#  game_id      :integer
+#  home_score   :integer
+#  away_score   :integer
+#  points       :integer          default(0)
+#  created_at   :datetime
+#  updated_at   :datetime
+#  archive      :boolean          default(FALSE)
+#  slug         :string(255)
+#
 
 class Cast < ActiveRecord::Base
 

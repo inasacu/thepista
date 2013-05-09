@@ -1,10 +1,13 @@
-# TABLE "cups_escuadras" 
-# t.integer  "cup_id"
-# t.integer  "escuadra_id"
-# t.datetime "created_at"
-# t.datetime "updated_at"
-# t.boolean  "archive"     
-
+# == Schema Information
+#
+# Table name: cups_escuadras
+#
+#  cup_id      :integer
+#  escuadra_id :integer
+#  created_at  :datetime
+#  updated_at  :datetime
+#  archive     :boolean          default(FALSE)
+#
 
 class CupsEscuadras < ActiveRecord::Base
 

@@ -1,21 +1,28 @@
-# TABLE "prospect"
-# t.string			:name
-# t.string			:contact
-# t.string			:email
-# t.string			:email_additional
-# t.string			:phone
-# t.string			:url
-# t.string			:url_additional
-# t.string			:image
-# t.text				:installations
-# t.text				:description
-# t.text				:conditions
-# t.text				:notes
-# t.datetime		:letter_first
-# t.datetime		:letter_second
-# t.datetime		:response_first
-# t.datetime		:response_second
-
+# == Schema Information
+#
+# Table name: prospects
+#
+#  id               :integer          not null, primary key
+#  name             :string(255)
+#  contact          :string(255)
+#  email            :string(255)
+#  email_additional :string(255)
+#  phone            :string(255)
+#  url              :string(255)
+#  url_additional   :string(255)
+#  letter_first     :datetime
+#  letter_second    :datetime
+#  response_first   :datetime
+#  response_second  :datetime
+#  notes            :text
+#  created_at       :datetime         not null
+#  updated_at       :datetime         not null
+#  image            :string(255)
+#  installations    :text
+#  description      :text
+#  conditions       :text
+#  archive          :boolean          default(FALSE)
+#
 
 class Prospect < ActiveRecord::Base
 

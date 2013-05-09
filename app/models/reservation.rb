@@ -1,23 +1,29 @@
-# TABLE "reservations"
-# t.string   "name"
-# t.datetime "starts_at"
-# t.datetime "ends_at"
-# t.datetime "reminder_at"
-# t.integer  "venue_id"
-# t.integer  "installation_id"
-# t.integer  "item_id"
-# t.string   "item_type"
-# t.float    "fee_per_pista"    
-# t.float    "fee_per_lighting" 
-# t.boolean  "available"        
-# t.boolean  "reminder"         
-# t.boolean  "public"           
-# t.text     "description"
-# t.string   "block_token"
-# t.boolean  "archive"          
-# t.datetime "created_at"
-# t.datetime "updated_at"
-# t.string   "code"
+# == Schema Information
+#
+# Table name: reservations
+#
+#  id               :integer          not null, primary key
+#  name             :string(255)
+#  starts_at        :datetime
+#  ends_at          :datetime
+#  reminder_at      :datetime
+#  venue_id         :integer
+#  installation_id  :integer
+#  item_id          :integer
+#  item_type        :string(255)
+#  fee_per_pista    :float            default(0.0)
+#  fee_per_lighting :float            default(0.0)
+#  available        :boolean          default(TRUE)
+#  reminder         :boolean          default(TRUE)
+#  public           :boolean          default(TRUE)
+#  description      :text
+#  block_token      :string(255)
+#  archive          :boolean          default(FALSE)
+#  created_at       :datetime
+#  updated_at       :datetime
+#  code             :string(255)
+#  slug             :string(255)
+#
 
 class Reservation < ActiveRecord::Base
 

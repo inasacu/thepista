@@ -1,9 +1,13 @@
-# TABLE "groups_roles" 
-# t.integer  "group_id"
-# t.integer  "role_id"
-# t.datetime "created_at"
-# t.datetime "updated_at"
-# t.boolean  "archive"
+# == Schema Information
+#
+# Table name: groups_roles
+#
+#  group_id   :integer
+#  role_id    :integer
+#  created_at :datetime
+#  updated_at :datetime
+#  archive    :boolean          default(FALSE)
+#
 
 class GroupsRoles < ActiveRecord::Base
 

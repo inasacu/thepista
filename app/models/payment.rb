@@ -1,20 +1,25 @@
-# TABLE "payments"
-# t.string   "name"          
-# t.float    "debit_amount"                 
-# t.float    "credit_amount"                
-# t.text     "description"
-# t.boolean  "archive"                      
-# t.datetime "created_at"
-# t.datetime "updated_at"
-# t.integer  "debit_id"
-# t.string   "debit_type"
-# t.integer  "credit_id"
-# t.string   "credit_type"
-# t.integer  "manager_id"
-# t.integer  "fee_id"
-# t.string   "item_type"
-# t.integer  "item_id"
-# t.string   "slug"
+# == Schema Information
+#
+# Table name: payments
+#
+#  id            :integer          not null, primary key
+#  name          :string(150)
+#  debit_amount  :float            default(0.0)
+#  credit_amount :float            default(0.0)
+#  description   :text
+#  archive       :boolean          default(FALSE)
+#  created_at    :datetime
+#  updated_at    :datetime
+#  debit_id      :integer
+#  debit_type    :string(255)
+#  credit_id     :integer
+#  credit_type   :string(255)
+#  manager_id    :integer
+#  fee_id        :integer
+#  item_type     :string(255)
+#  item_id       :integer
+#  slug          :string(255)
+#
 
 class Payment < ActiveRecord::Base
   	

@@ -1,32 +1,37 @@
-# TABLE "schedules"
-# t.string   "name"
-# t.string   "season"
-# t.integer  "jornada"
-# t.datetime "starts_at"
-# t.datetime "s_at"
-# t.datetime "subscription_at"
-# t.datetime "non_subscription_at"
-# t.float    "fee_per_game"        
-# t.float    "fee_per_pista"       
-# t.integer  "remind_before"       
-# t.integer  "repeat_every"        
-# t.string   "time_zone"           
-# t.integer  "group_id"
-# t.integer  "sport_id"
-# t.integer  "marker_id"
-# t.integer  "player_limit"        
-# t.boolean  "played"              
-# t.boolean  "public"              
-# t.boolean  "archive"             
-# t.datetime "created_at"
-# t.datetime "updated_at"
-# t.boolean  "reminder"            
-# t.datetime "reminder_at"
-# t.datetime "send_reminder_at"
-# t.datetime "send_result_at"
-# t.datetime "send_comment_at"
-# t.string   "slug"
-# t.datetime "send_created_at"
+# == Schema Information
+#
+# Table name: schedules
+#
+#  id                  :integer          not null, primary key
+#  name                :string(255)
+#  season              :string(255)
+#  jornada             :integer
+#  starts_at           :datetime
+#  ends_at             :datetime
+#  subscription_at     :datetime
+#  non_subscription_at :datetime
+#  fee_per_game        :float            default(0.0)
+#  fee_per_pista       :float            default(0.0)
+#  remind_before       :integer          default(2)
+#  repeat_every        :integer          default(7)
+#  time_zone           :string(255)      default("UTC")
+#  group_id            :integer
+#  sport_id            :integer
+#  marker_id           :integer
+#  player_limit        :integer          default(0)
+#  played              :boolean          default(FALSE)
+#  public              :boolean          default(TRUE)
+#  archive             :boolean          default(FALSE)
+#  created_at          :datetime
+#  updated_at          :datetime
+#  reminder            :boolean          default(TRUE)
+#  reminder_at         :datetime
+#  send_reminder_at    :datetime
+#  send_result_at      :datetime
+#  send_comment_at     :datetime
+#  slug                :string(255)
+#  send_created_at     :datetime
+#
 
 class Schedule < ActiveRecord::Base
 

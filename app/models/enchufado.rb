@@ -1,23 +1,27 @@
-# TABLE "enchufados"
-# t.string   "name"
-# t.string   "url"
-# t.string   "language"
-# t.boolean  "public"
-# t.integer  "venue_id"
-# t.integer  "category_id"
-# t.integer  "play_id"
-# t.integer  "service_id"
-# t.string   "api"
-# t.string   "secret"
-# t.string   "photo_file_name"
-# t.string   "photo_content_type"
-# t.integer  "photo_file_size"
-# t.datetime "photo_updated_at"
-# t.datetime "created_at"
-# t.datetime "updated_at"
-# t.string   "slug"
-# t.boolean  "archive"
-
+# == Schema Information
+#
+# Table name: enchufados
+#
+#  id                 :integer          not null, primary key
+#  name               :string(255)
+#  url                :string(255)
+#  language           :string(255)      default("es")
+#  public             :boolean          default(TRUE)
+#  venue_id           :integer
+#  category_id        :integer
+#  play_id            :integer          default(61)
+#  service_id         :integer          default(51)
+#  api                :string(255)
+#  secret             :string(255)
+#  photo_file_name    :string(255)
+#  photo_content_type :string(255)
+#  photo_file_size    :integer
+#  photo_updated_at   :datetime
+#  created_at         :datetime         not null
+#  updated_at         :datetime         not null
+#  slug               :string(255)
+#  archive            :boolean          default(FALSE)
+#
 
 class Enchufado < ActiveRecord::Base
 

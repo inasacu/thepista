@@ -1,9 +1,13 @@
-# TABLE "challenges_users" 
-# t.integer  "challenge_id"
-# t.integer  "user_id"
-# t.datetime "created_at"
-# t.datetime "updated_at"
-# t.boolean  "archive"
+# == Schema Information
+#
+# Table name: challenges_users
+#
+#  challenge_id :integer
+#  user_id      :integer
+#  created_at   :datetime
+#  updated_at   :datetime
+#  archive      :boolean          default(FALSE)
+#
 
 class ChallengesUsers < ActiveRecord::Base
 	set_primary_keys =:user_id, :challenge_id 

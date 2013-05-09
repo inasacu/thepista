@@ -1,9 +1,14 @@
-# TABLE "cities"
-# t.string   "name"
-# t.integer  "state_id"   
-# t.boolean  "archive"    
-# t.datetime "created_at"
-# t.datetime "updated_at"
+# == Schema Information
+#
+# Table name: cities
+#
+#  id         :integer          not null, primary key
+#  name       :string(255)
+#  state_id   :integer          default(1)
+#  archive    :boolean          default(FALSE)
+#  created_at :datetime
+#  updated_at :datetime
+#
 
 class City < ActiveRecord::Base
   

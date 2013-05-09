@@ -1,48 +1,54 @@
-# TABLE "users"
-# t.string   "name"
-# t.string   "email"                                       
-# t.string   "identity_url"
-# t.string   "language"                                
-# t.string   "time_zone"                               
-# t.string   "phone"
-# t.string   "login"
-# t.boolean  "teammate_notification"                   
-# t.boolean  "message_notification"                    
-# t.string   "photo_file_name"
-# t.string   "photo_content_type"
-# t.integer  "photo_file_size"
-# t.datetime "photo_updated_at"
-# t.string   "crypted_password"
-# t.string   "password_salt"
-# t.string   "persistence_token"                                          
-# t.integer  "login_count"                                  
-# t.datetime "last_request_at"
-# t.datetime "last_login_at"
-# t.datetime "current_login_at"
-# t.string   "last_login_ip"
-# t.string   "current_login_ip"
-# t.boolean  "private_phone"      -- recommend removal                          
-# t.boolean  "private_profile"    -- recommend removal                         
-# t.string   "gender"
-# t.datetime "birth_at"
-# t.boolean  "archive"                                 
-# t.datetime "created_at"
-# t.datetime "updated_at"
-# t.string   "perishable_token"                            
-# t.datetime "last_contacted_at"
-# t.boolean  "active"                                  
-# t.datetime "profile_at"    -- recommend removal 
-# t.string   "company"                  
-# t.boolean  "last_minute_notification"                
-# t.integer  "city_id"                                 
-# t.string   "email_backup"
-# t.string   "sport"
-# t.string   "linkedin_url"
-# t.string   "linkedin_token"
-# t.string   "linkedin_secret"
-# t.string   "slug"
-# t.boolean	 "validation"
-# t.boolean	 "whatsapp"
+# == Schema Information
+#
+# Table name: users
+#
+#  id                       :integer          not null, primary key
+#  name                     :string(255)
+#  email                    :string(255)      default(""), not null
+#  identity_url             :string(255)
+#  language                 :string(255)      default("es")
+#  time_zone                :string(255)      default("UTC")
+#  phone                    :string(255)
+#  login                    :string(255)
+#  teammate_notification    :boolean          default(TRUE)
+#  message_notification     :boolean          default(TRUE)
+#  photo_file_name          :string(255)
+#  photo_content_type       :string(255)
+#  photo_file_size          :integer
+#  photo_updated_at         :datetime
+#  crypted_password         :string(255)
+#  password_salt            :string(255)
+#  persistence_token        :string(255)      not null
+#  login_count              :integer          default(0), not null
+#  last_request_at          :datetime
+#  last_login_at            :datetime
+#  current_login_at         :datetime
+#  last_login_ip            :string(255)
+#  current_login_ip         :string(255)
+#  private_phone            :boolean          default(FALSE)
+#  private_profile          :boolean          default(FALSE)
+#  description              :text
+#  gender                   :string(255)
+#  birth_at                 :datetime
+#  archive                  :boolean          default(FALSE)
+#  created_at               :datetime
+#  updated_at               :datetime
+#  perishable_token         :string(255)      default(""), not null
+#  last_contacted_at        :datetime
+#  active                   :boolean          default(TRUE)
+#  profile_at               :datetime
+#  company                  :string(120)
+#  last_minute_notification :boolean          default(TRUE)
+#  city_id                  :integer          default(1)
+#  email_backup             :string(255)
+#  sport                    :string(255)
+#  linkedin_url             :string(255)
+#  linkedin_token           :string(255)
+#  linkedin_secret          :string(255)
+#  slug                     :string(255)
+#  validation               :boolean          default(FALSE)
+#  whatsapp                 :boolean          default(FALSE)
+#
 
 class User < ActiveRecord::Base
 

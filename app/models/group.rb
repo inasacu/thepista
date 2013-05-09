@@ -1,28 +1,34 @@
-# TABLE "groups"
-# t.string   "name"
-# t.string   "second_team"
-# t.datetime "gameday_at"
-# t.float    "points_for_win"     
-# t.float    "points_for_draw"    
-# t.float    "points_for_lose"    
-# t.string   "time_zone"          
-# t.integer  "sport_id"
-# t.integer  "marker_id"
-# t.text     "description"
-# t.text     "conditions"
-# t.integer  "player_limit"       
-# t.string   "photo_file_name"
-# t.string   "photo_content_type"
-# t.integer  "photo_file_size"
-# t.datetime "photo_updated_at"
-# t.boolean  "archive"            
-# t.datetime "created_at"
-# t.datetime "updated_at"
-# t.boolean  "automatic_petition" 
-# t.integer  "installation_id"
-# t.string   "slug"
-# t.integer  "item_id"
-# t.string   "item_type"
+# == Schema Information
+#
+# Table name: groups
+#
+#  id                 :integer          not null, primary key
+#  name               :string(255)
+#  second_team        :string(255)
+#  gameday_at         :datetime
+#  points_for_win     :float            default(1.0)
+#  points_for_draw    :float            default(0.0)
+#  points_for_lose    :float            default(0.0)
+#  time_zone          :string(255)      default("UTC")
+#  sport_id           :integer
+#  marker_id          :integer
+#  description        :text
+#  conditions         :text
+#  player_limit       :integer          default(150)
+#  photo_file_name    :string(255)
+#  photo_content_type :string(255)
+#  photo_file_size    :integer
+#  photo_updated_at   :datetime
+#  archive            :boolean          default(FALSE)
+#  created_at         :datetime
+#  updated_at         :datetime
+#  automatic_petition :boolean          default(TRUE)
+#  installation_id    :integer          default(999)
+#  slug               :string(255)
+#  service_id         :integer          default(51)
+#  item_id            :integer
+#  item_type          :string(255)
+#
 
 class Group < ActiveRecord::Base
 

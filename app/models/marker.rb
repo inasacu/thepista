@@ -1,36 +1,41 @@
-# TABLE "markers"
-# t.string   "name"                                         
-# t.decimal  "latitude"                   
-# t.decimal  "longitude"                  
-# t.string   "direction"
-# t.string   "image_url"
-# t.string   "url"
-# t.string   "contact"     
-# t.string   "email"
-# t.string   "phone"       
-# t.string   "address"                                                    
-# t.string   "city"                                                       
-# t.string   "region"                                        
-# t.string   "zip"                                           
-# t.string   "surface"
-# t.string   "facility"
-# t.datetime "starts_at"
-# t.datetime "s_at"
-# t.string   "time_zone"                                                  
-# t.boolean  "public"                                                     
-# t.boolean  "activation"                                                 
-# t.text     "description"
-# t.string   "icon"                                         
-# t.string   "shadow"                                       
-# t.boolean  "archive"                                                    
-# t.datetime "created_at"
-# t.datetime "updated_at"
-# t.integer  "item_id"
-# t.string   "item_type"
-# t.float    "lat"                                                        
-# t.float    "lng"                                                        
-# t.string   "slug"
-# t.string   "short_name"
+# == Schema Information
+#
+# Table name: markers
+#
+#  id          :integer          not null, primary key
+#  name        :string(150)      default("")
+#  latitude    :decimal(15, 10)
+#  longitude   :decimal(15, 10)
+#  direction   :string(255)
+#  image_url   :string(255)
+#  url         :string(255)
+#  contact     :string(150)
+#  email       :string(255)
+#  phone       :string(40)
+#  address     :string(255)      default("")
+#  city        :string(255)      default("")
+#  region      :string(40)       default("")
+#  zip         :string(40)       default("")
+#  surface     :string(255)
+#  facility    :string(255)
+#  starts_at   :datetime
+#  ends_at     :datetime
+#  time_zone   :string(255)      default("UTC")
+#  public      :boolean          default(TRUE)
+#  activation  :boolean          default(FALSE)
+#  description :text
+#  icon        :string(100)      default("")
+#  shadow      :string(100)      default("")
+#  archive     :boolean          default(FALSE)
+#  created_at  :datetime
+#  updated_at  :datetime
+#  item_id     :integer
+#  item_type   :string(255)
+#  lat         :float            default(0.0)
+#  lng         :float            default(0.0)
+#  slug        :string(255)
+#  short_name  :string(255)
+#
 
 class Marker < ActiveRecord::Base
 

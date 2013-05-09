@@ -1,13 +1,18 @@
-# TABLE "sports"
-# t.string   "name"            
-# t.text     "description"
-# t.string   "icon"            
-# t.float    "points_for_win"                
-# t.float    "points_for_lose"               
-# t.float    "points_for_draw"               
-# t.datetime "created_at"
-# t.datetime "updated_at"
-# t.integer  "player_limit"
+# == Schema Information
+#
+# Table name: sports
+#
+#  id              :integer          not null, primary key
+#  name            :string(50)
+#  description     :text
+#  icon            :string(40)
+#  points_for_win  :float            default(3.0)
+#  points_for_lose :float            default(0.0)
+#  points_for_draw :float            default(1.0)
+#  created_at      :datetime
+#  updated_at      :datetime
+#  player_limit    :integer          default(150)
+#
 
 class Sport < ActiveRecord::Base
 

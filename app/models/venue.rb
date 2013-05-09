@@ -1,24 +1,29 @@
-# TABLE "venues"
-# t.string   "name"
-# t.datetime "starts_at"
-# t.datetime "s_at"
-# t.string   "time_zone"
-# t.integer  "marker_id"
-# t.boolean  "enable_comments"     
-# t.boolean  "public"              
-# t.string   "photo_file_name"
-# t.string   "photo_content_type"
-# t.integer  "photo_file_size"
-# t.datetime "photo_updated_at"
-# t.text     "description"
-# t.boolean  "archive"             
-# t.datetime "created_at"
-# t.datetime "updated_at"
-# t.boolean  "day_light_savings"   
-# t.datetime "day_light_starts_at"
-# t.datetime "day_light_s_at"
-# t.string   "slug"
-# t.string   "short_name"
+# == Schema Information
+#
+# Table name: venues
+#
+#  id                  :integer          not null, primary key
+#  name                :string(255)
+#  starts_at           :datetime
+#  ends_at             :datetime
+#  time_zone           :string(255)
+#  marker_id           :integer
+#  enable_comments     :boolean          default(TRUE)
+#  public              :boolean          default(TRUE)
+#  photo_file_name     :string(255)
+#  photo_content_type  :string(255)
+#  photo_file_size     :integer
+#  photo_updated_at    :datetime
+#  description         :text
+#  archive             :boolean          default(FALSE)
+#  created_at          :datetime
+#  updated_at          :datetime
+#  day_light_savings   :boolean          default(TRUE)
+#  day_light_starts_at :datetime
+#  day_light_ends_at   :datetime
+#  slug                :string(255)
+#  short_name          :string(255)
+#
 
 class Venue < ActiveRecord::Base
 

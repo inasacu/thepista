@@ -1,9 +1,13 @@
-# TABLE "groups_users" 
-# t.integer  "group_id"
-# t.integer  "user_id"
-# t.datetime "created_at"
-# t.datetime "updated_at"
-# t.boolean  "archive"
+# == Schema Information
+#
+# Table name: groups_users
+#
+#  group_id   :integer
+#  user_id    :integer
+#  created_at :datetime
+#  updated_at :datetime
+#  archive    :boolean          default(FALSE)
+#
 
 class GroupsUsers < ActiveRecord::Base
 

@@ -1,10 +1,15 @@
-# TABLE "roles"
-# t.string   "name"              
-# t.string   "authorizable_type" 
-# t.integer  "authorizable_id"
-# t.datetime "created_at"
-# t.datetime "updated_at"
-# t.boolean  "archive"
+# == Schema Information
+#
+# Table name: roles
+#
+#  id                :integer          not null, primary key
+#  name              :string(40)
+#  authorizable_type :string(40)
+#  authorizable_id   :integer
+#  created_at        :datetime
+#  updated_at        :datetime
+#  archive           :boolean          default(FALSE)
+#
 
 class Role < ActiveRecord::Base
   

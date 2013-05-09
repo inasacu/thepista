@@ -1,20 +1,25 @@
-# TABLE "challenges"
-# t.string   "name"
-# t.integer  "cup_id"
-# t.datetime "starts_at"
-# t.datetime "s_at"
-# t.datetime "reminder_at"
-# t.float    "fee_per_game"       
-# t.string   "time_zone"
-# t.text     "description"
-# t.text     "conditions"
-# t.integer  "player_limit"       
-# t.boolean  "archive"            
-# t.datetime "created_at"
-# t.datetime "updated_at"
-# t.boolean  "automatic_petition" 
-# t.string   "slug"
-# t.integer		"service_id"
+# == Schema Information
+#
+# Table name: challenges
+#
+#  id                 :integer          not null, primary key
+#  name               :string(255)
+#  cup_id             :integer
+#  starts_at          :datetime
+#  ends_at            :datetime
+#  reminder_at        :datetime
+#  fee_per_game       :float            default(0.0)
+#  time_zone          :string(255)
+#  description        :text
+#  conditions         :text
+#  player_limit       :integer          default(99)
+#  archive            :boolean          default(FALSE)
+#  created_at         :datetime
+#  updated_at         :datetime
+#  automatic_petition :boolean          default(TRUE)
+#  slug               :string(255)
+#  service_id         :integer          default(51)
+#
 
 class Challenge < ActiveRecord::Base
 

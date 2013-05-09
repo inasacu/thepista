@@ -1,21 +1,26 @@
-# TABLE "fees"
-# t.string   "name"          
-# t.text     "description"
-# t.string   "payed"                       
-# t.boolean  "archive"                     
-# t.datetime "created_at"
-# t.datetime "updated_at"
-# t.float    "debit_amount"                
-# t.integer  "debit_id"
-# t.string   "debit_type"
-# t.integer  "credit_id"
-# t.string   "credit_type"
-# t.integer  "manager_id"
-# t.string   "item_type"
-# t.integer  "item_id"
-# t.integer  "type_id"
-# t.boolean  "season_player"               
-# t.string   "slug"
+# == Schema Information
+#
+# Table name: fees
+#
+#  id            :integer          not null, primary key
+#  name          :string(50)
+#  description   :text
+#  payed         :string(255)      default("No")
+#  archive       :boolean          default(FALSE)
+#  created_at    :datetime
+#  updated_at    :datetime
+#  debit_amount  :float            default(0.0)
+#  debit_id      :integer
+#  debit_type    :string(255)
+#  credit_id     :integer
+#  credit_type   :string(255)
+#  manager_id    :integer
+#  item_type     :string(255)
+#  item_id       :integer
+#  type_id       :integer
+#  season_player :boolean          default(FALSE)
+#  slug          :string(255)
+#
 
 class Fee < ActiveRecord::Base
 	

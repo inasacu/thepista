@@ -1,33 +1,38 @@
-# TABLE "messages"
-# t.string   "subject"                    
-# t.text     "body"
-# t.integer  "parent_id"
-# t.integer  "ser_id"
-# t.integer  "recipient_id"
-# t.integer  "conversation_id"
-# t.integer  "reply_id"
-# t.datetime "replied_at"
-# t.datetime "ser_deleted_at"
-# t.datetime "ser_read_at"
-# t.datetime "recipient_deleted_at"
-# t.datetime "recipient_read_at"
-# t.integer  "replies"                                   
-# t.integer  "reviews"                                   
-# t.boolean  "archive"                                   
-# t.datetime "created_at"
-# t.datetime "updated_at"
-# t.integer  "item_id"
-# t.string   "item_type"
-# t.integer  "received_messageable_id"
-# t.string   "received_messageable_type"
-# t.integer  "sent_messageable_id"
-# t.string   "sent_messageable_type"
-# t.boolean  "opened"                                    
-# t.boolean  "recipient_delete"                          
-# t.boolean  "ser_delete"                             
-# t.string   "ancestry"
-# t.boolean  "recipient_permanent_delete"                
-# t.boolean  "ser_permanent_delete"
+# == Schema Information
+#
+# Table name: messages
+#
+#  id                         :integer          not null, primary key
+#  subject                    :string(150)
+#  body                       :text
+#  parent_id                  :integer
+#  sender_id                  :integer
+#  recipient_id               :integer
+#  conversation_id            :integer
+#  reply_id                   :integer
+#  replied_at                 :datetime
+#  sender_deleted_at          :datetime
+#  sender_read_at             :datetime
+#  recipient_deleted_at       :datetime
+#  recipient_read_at          :datetime
+#  replies                    :integer          default(0)
+#  reviews                    :integer          default(0)
+#  archive                    :boolean          default(FALSE)
+#  created_at                 :datetime
+#  updated_at                 :datetime
+#  item_id                    :integer
+#  item_type                  :string(255)
+#  received_messageable_id    :integer
+#  received_messageable_type  :string(255)
+#  sent_messageable_id        :integer
+#  sent_messageable_type      :string(255)
+#  opened                     :boolean          default(FALSE)
+#  recipient_delete           :boolean          default(FALSE)
+#  sender_delete              :boolean          default(FALSE)
+#  ancestry                   :string(255)
+#  recipient_permanent_delete :boolean          default(FALSE)
+#  sender_permanent_delete    :boolean          default(FALSE)
+#
 
 class Message < ActiveRecord::Base
 

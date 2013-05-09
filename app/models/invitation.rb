@@ -1,12 +1,17 @@
-# TABLE "invitations"
-# t.string   "email_addresses"
-# t.text     "message"
-# t.integer  "user_id"
-# t.boolean  "archive"         
-# t.datetime "created_at"
-# t.datetime "updated_at"
-# t.integer  "item_id"
-# t.string   "item_type"
+# == Schema Information
+#
+# Table name: invitations
+#
+#  id              :integer          not null, primary key
+#  email_addresses :string(255)
+#  message         :text
+#  user_id         :integer
+#  archive         :boolean          default(FALSE)
+#  created_at      :datetime
+#  updated_at      :datetime
+#  item_id         :integer
+#  item_type       :string(255)
+#
 
 class Invitation < ActiveRecord::Base
 

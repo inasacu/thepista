@@ -1,17 +1,18 @@
-# TABLE "timetables"
-# t.string   "day_of_week"
-# t.integer  "installation_id"
-# t.integer  "type_id"
-# t.datetime "starts_at"
-# t.datetime "s_at"
-# t.float    "timeframe"       
-# t.boolean  "archive"         
-# t.datetime "created_at"
-# t.datetime "updated_at"
-
-# update timetables set starts_at = '2011-09-03 11:00:00', ends_at = '2011-09-03 13:00:00' where id in (43, 46, 49);
-# update timetables set starts_at = '2011-09-03 13:00:00', ends_at = '2011-09-03 19:00:00' where id in (44, 47, 50);
-
+# == Schema Information
+#
+# Table name: timetables
+#
+#  id              :integer          not null, primary key
+#  day_of_week     :string(255)
+#  installation_id :integer
+#  type_id         :integer
+#  starts_at       :datetime
+#  ends_at         :datetime
+#  timeframe       :float            default(1.0)
+#  archive         :boolean          default(FALSE)
+#  created_at      :datetime
+#  updated_at      :datetime
+#
 
 class Timetable < ActiveRecord::Base
 	belongs_to    :installation

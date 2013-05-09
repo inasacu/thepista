@@ -1,13 +1,19 @@
-# TABLE "subplugs"
-# t.string   "name"
-# t.integer  "enchufado_id"
-# t.integer  "play_id"
-# t.integer  "service_id"
-# t.string   "url"
-# t.string   "slug"
-# t.boolean  "archive"
-# t.datetime "created_at"
-# t.datetime "updated_at"
+# == Schema Information
+#
+# Table name: subplugs
+#
+#  id           :integer          not null, primary key
+#  name         :string(255)
+#  enchufado_id :integer
+#  venue_id     :integer          default(999)
+#  play_id      :integer          default(61)
+#  service_id   :integer          default(51)
+#  url          :string(255)
+#  slug         :string(255)
+#  archive      :boolean          default(FALSE)
+#  created_at   :datetime         not null
+#  updated_at   :datetime         not null
+#
 
 
 class Subplug < ActiveRecord::Base

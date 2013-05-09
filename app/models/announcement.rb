@@ -1,9 +1,14 @@
-# TABLE "announcements"
-# t.text     "message"
-# t.datetime "starts_at"
-# t.datetime "s_at"
-# t.datetime "created_at"
-# t.datetime "updated_at"
+# == Schema Information
+#
+# Table name: announcements
+#
+#  id         :integer          not null, primary key
+#  message    :text
+#  starts_at  :datetime
+#  ends_at    :datetime
+#  created_at :datetime
+#  updated_at :datetime
+#
 
 class Announcement < ActiveRecord::Base
   

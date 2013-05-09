@@ -1,31 +1,36 @@
-# TABLE "cups"
-# t.string   "name"
-# t.datetime "starts_at"
-# t.datetime "s_at"
-# t.datetime "deadline_at"
-# t.string   "time_zone"
-# t.integer  "sport_id"
-# t.boolean  "group_stage"         
-# t.boolean  "group_stage_single"  
-# t.boolean  "second_stage_single" 
-# t.boolean  "final_stage_single"  
-# t.integer  "group_stage_advance" 
-# t.integer  "points_for_win"      
-# t.integer  "points_for_draw"     
-# t.integer  "points_for_lose"     
-# t.text     "description"
-# t.text     "conditions"
-# t.string   "photo_file_name"
-# t.string   "photo_content_type"
-# t.integer  "photo_file_size"
-# t.datetime "photo_updated_at"
-# t.boolean  "archive"             
-# t.datetime "created_at"
-# t.datetime "updated_at"
-# t.boolean  "official"            
-# t.boolean  "club"                
-# t.string   "slug"
-# t.integer  "venue_id"
+# == Schema Information
+#
+# Table name: cups
+#
+#  id                  :integer          not null, primary key
+#  name                :string(255)
+#  starts_at           :datetime
+#  ends_at             :datetime
+#  deadline_at         :datetime
+#  time_zone           :string(255)
+#  sport_id            :integer
+#  group_stage         :boolean          default(TRUE)
+#  group_stage_single  :boolean          default(TRUE)
+#  second_stage_single :boolean          default(TRUE)
+#  final_stage_single  :boolean          default(TRUE)
+#  group_stage_advance :integer          default(16)
+#  points_for_win      :integer          default(3)
+#  points_for_draw     :integer          default(1)
+#  points_for_lose     :integer          default(0)
+#  description         :text
+#  conditions          :text
+#  photo_file_name     :string(255)
+#  photo_content_type  :string(255)
+#  photo_file_size     :integer
+#  photo_updated_at    :datetime
+#  archive             :boolean          default(FALSE)
+#  created_at          :datetime
+#  updated_at          :datetime
+#  official            :boolean          default(FALSE)
+#  club                :boolean          default(TRUE)
+#  slug                :string(255)
+#  venue_id            :integer          default(1)
+#
 
 class Cup < ActiveRecord::Base
 

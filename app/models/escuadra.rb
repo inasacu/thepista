@@ -1,16 +1,22 @@
-# TABLE "escuadras"
-# t.string   "name"
-# t.text     "description"
-# t.string   "photo_file_name"
-# t.string   "photo_content_type"
-# t.integer  "photo_file_size"
-# t.datetime "photo_updated_at"
-# t.boolean  "archive"            
-# t.datetime "created_at"
-# t.datetime "updated_at"
-# t.integer  "item_id"
-# t.string   "item_type"
-# t.string   "slug"
+# == Schema Information
+#
+# Table name: escuadras
+#
+#  id                 :integer          not null, primary key
+#  name               :string(255)
+#  description        :text
+#  photo_file_name    :string(255)
+#  photo_content_type :string(255)
+#  photo_file_size    :integer
+#  photo_updated_at   :datetime
+#  archive            :boolean          default(FALSE)
+#  created_at         :datetime
+#  updated_at         :datetime
+#  item_id            :integer
+#  item_type          :string(255)
+#  slug               :string(255)
+#  official           :boolean          default(FALSE)
+#
 
 class Escuadra < ActiveRecord::Base
 

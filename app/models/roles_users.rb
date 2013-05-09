@@ -1,9 +1,13 @@
-# TABLE "roles_users" 
-# t.integer  "user_id"
-# t.integer  "role_id"
-# t.datetime "created_at"
-# t.datetime "updated_at"
-# t.boolean  "archive"
+# == Schema Information
+#
+# Table name: roles_users
+#
+#  user_id    :integer
+#  role_id    :integer
+#  created_at :datetime
+#  updated_at :datetime
+#  archive    :boolean          default(FALSE)
+#
 
 class RolesUsers < ActiveRecord::Base
 
