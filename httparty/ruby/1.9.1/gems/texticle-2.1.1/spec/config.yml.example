@@ -1,4 +1,0 @@
-database: texticle
-username: <username>
-pool: 5
-timeout: 5000
