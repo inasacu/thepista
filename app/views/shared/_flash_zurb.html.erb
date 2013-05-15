@@ -124,9 +124,13 @@
 			
 			<% else %>
 				
-				<%#= render "shared/header_modo" %>
-				<%#= render 'shared/access_details_zurb' unless is_password_reset %>
-				<%= render 'shared/personal_login' unless is_password_reset %>
+				<% if is_action('signup') %>
+					<%= render 'shared/personal_login' unless is_password_reset %>
+				<% else %>
+					<%= render "shared/header_modo" %>
+					<%= render 'shared/access_details_zurb' unless is_password_reset %>
+				<% end %>
+	
 				<br>
 				
 			<% end %>
