@@ -40,7 +40,7 @@ gem 'omniauth-twitter'
 gem 'omniauth-facebook'
 gem 'omniauth-linkedin'
 gem 'omniauth-google'
-gem 'omniauth-windowslive',			:git => 'https://github.com/joel/omniauth-windowslive.git'
+gem 'omniauth-windowslive'#,			:git => 'https://github.com/joel/omniauth-windowslive.git'
 gem 'omniauth-yahoo'
 gem "binding_of_caller"
 

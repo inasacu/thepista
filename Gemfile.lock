@@ -1,11 +1,3 @@
-GIT
-  remote: https://github.com/joel/omniauth-windowslive.git
-  revision: 694641b8f67edd4007f4365ab723b0ff67470e1d
-  specs:
-    omniauth-windowslive (0.0.8.1)
-      multi_json (>= 1.0.3)
-      omniauth-oauth2 (~> 1.0)
-
 GEM
   remote: https://rubygems.org/
   specs:
@@ -172,6 +164,9 @@ GEM
     omniauth-twitter (0.0.14)
       multi_json (~> 1.3)
       omniauth-oauth (~> 1.0)
+    omniauth-windowslive (0.0.8.1)
+      multi_json (>= 1.0.3)
+      omniauth-oauth2 (~> 1.0)
     omniauth-yahoo (0.0.4)
       omniauth-oauth (~> 1.0)
     paperclip (3.4.0)
@@ -286,7 +281,7 @@ DEPENDENCIES
   omniauth-google
   omniauth-linkedin
   omniauth-twitter
-  omniauth-windowslive!
+  omniauth-windowslive
   omniauth-yahoo
   paperclip
   pg
