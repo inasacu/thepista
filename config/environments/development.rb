@@ -53,6 +53,6 @@ Thepista::Application.configure do
 end
 
 
-ENV['IRON_WORKER_TOKEN'] = 'rnGSf-X4vhYYhtlFoZoPxc676Ys'
-ENV['IRON_WORKER_PROJECT_ID'] = '4ef1b366066bce69d100080d'
+# ENV['IRON_WORKER_TOKEN'] = 'rnGSf-X4vhYYhtlFoZoPxc676Ys'
+# ENV['IRON_WORKER_PROJECT_ID'] = '4ef1b366066bce69d100080d'
 
