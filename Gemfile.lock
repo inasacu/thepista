@@ -1,3 +1,11 @@
+GIT
+  remote: https://github.com/joel/omniauth-windowslive.git
+  revision: 694641b8f67edd4007f4365ab723b0ff67470e1d
+  specs:
+    omniauth-windowslive (0.0.8.1)
+      multi_json (>= 1.0.3)
+      omniauth-oauth2 (~> 1.0)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -51,6 +59,8 @@ GEM
     better_errors (0.8.0)
       coderay (>= 1.0.0)
       erubis (>= 2.6.6)
+    binding_of_caller (0.7.1)
+      debug_inspector (>= 0.0.1)
     builder (3.0.4)
     bullet (4.6.0)
       uniform_notifier
@@ -72,6 +82,7 @@ GEM
     composite_primary_keys (5.0.10)
       activerecord (~> 3.2.0, >= 3.2.9)
     daemons (1.1.9)
+    debug_inspector (0.0.2)
     delayed_job (3.0.4)
       activesupport (~> 3.0)
     delayed_job_active_record (0.3.3)
@@ -161,6 +172,8 @@ GEM
     omniauth-twitter (0.0.14)
       multi_json (~> 1.3)
       omniauth-oauth (~> 1.0)
+    omniauth-yahoo (0.0.4)
+      omniauth-oauth (~> 1.0)
     paperclip (3.4.0)
       activemodel (>= 3.0.0)
       activerecord (>= 3.0.0)
@@ -196,7 +209,6 @@ GEM
     rake (10.0.4)
     rdoc (3.12)
       json (~> 1.4)
-    recaptcha (0.3.4)
     rest-client (1.6.7)
       mime-types (>= 1.16)
     rpx_now (0.6.24)
@@ -215,8 +227,6 @@ GEM
       multi_json (~> 1.0)
       rack (~> 1.0)
       tilt (~> 1.1, != 1.3.0)
-    texticle (2.1.1)
-      activerecord (~> 3.0)
     thin (1.5.0)
       daemons (>= 1.0.9)
       eventmachine (>= 0.12.6)
@@ -255,6 +265,7 @@ DEPENDENCIES
   aws-sdk
   ayah_integration
   better_errors
+  binding_of_caller
   bullet
   coffee-rails (~> 3.2.1)
   composite_primary_keys
@@ -269,21 +280,20 @@ DEPENDENCIES
   httparty (>= 0.8.1)
   jquery-rails
   meta_request
-  nokogiri
   omniauth
   omniauth-browserid
   omniauth-facebook
   omniauth-google
   omniauth-linkedin
   omniauth-twitter
+  omniauth-windowslive!
+  omniauth-yahoo
   paperclip
   pg
   rails (= 3.2.11)
-  recaptcha
   rpx_now
   sass-rails (~> 3.2.3)
   sitemap_generator
-  texticle
   thin
   typhoeus
   uglifier (>= 1.0.3)

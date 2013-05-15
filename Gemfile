@@ -1,5 +1,7 @@
 source 'https://rubygems.org'
 
+# ruby '1.9.3'
+
 gem 'rails', '3.2.11'
 gem "pg"
 gem 'thin'
@@ -13,13 +15,11 @@ gem 'hoptoad_notifier'
 gem 'rpx_now'
 gem "geokit"
 gem "geokit-rails"
-gem 'texticle'
+
 gem 'delayed_job'
 gem 'hirefireapp'
 gem 'paperclip'
 gem 'composite_primary_keys'
-gem 'nokogiri'
-gem 'recaptcha'
 
 gem 'jquery-rails'
 gem 'google_map'
@@ -40,13 +40,12 @@ gem 'omniauth-twitter'
 gem 'omniauth-facebook'
 gem 'omniauth-linkedin'
 gem 'omniauth-google'
-
+gem 'omniauth-windowslive',			:git => 'https://github.com/joel/omniauth-windowslive.git'
+gem 'omniauth-yahoo'
+gem "binding_of_caller"
 
 gem 'ayah_integration'
 
-# gem 'omniauth-yahoo'
-# gem 'omniauth-disqus',			:git => 'https://github.com/espinet/omniauth-disqus.git'
-# gem 'omniauth-windowslive',			:git => 'https://github.com/joel/omniauth-windowslive.git'
 
 # Gems used only for assets and not required
 # in production environments by default.
@@ -68,3 +67,7 @@ group :development do
 end
 
 
+
+# gem 'texticle'
+# gem 'nokogiri'
+# gem 'recaptcha'

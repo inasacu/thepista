@@ -1,7 +1,7 @@
 package configuration for libffi is not found
 have_header: checking for ffi.h... -------------------- no
 
-"gcc -o conftest -I/Users/padilla/.rvm/rubies/ruby-1.9.2-p290/include/ruby-1.9.1/x86_64-darwin11.3.0 -I/Users/padilla/.rvm/rubies/ruby-1.9.2-p290/include/ruby-1.9.1/ruby/backward -I/Users/padilla/.rvm/rubies/ruby-1.9.2-p290/include/ruby-1.9.1 -I. -I/Users/padilla/.rvm/usr/include -D_XOPEN_SOURCE -D_DARWIN_C_SOURCE    -O3 -ggdb -Wextra -Wno-unused-parameter -Wno-parentheses -Wpointer-arith -Wwrite-strings -Wno-missing-field-initializers -Wshorten-64-to-32 -Wno-long-long  -fno-common -pipe conftest.c  -L. -L/Users/padilla/.rvm/rubies/ruby-1.9.2-p290/lib -L/Users/padilla/.rvm/usr/lib -L.      -lruby.1.9.1-static  -lpthread -ldl -lobjc "
+"/usr/bin/gcc-4.2 -o conftest -I/Users/padilla/.rvm/rubies/ruby-1.9.3-p327/include/ruby-1.9.1/x86_64-darwin11.4.2 -I/Users/padilla/.rvm/rubies/ruby-1.9.3-p327/include/ruby-1.9.1/ruby/backward -I/Users/padilla/.rvm/rubies/ruby-1.9.3-p327/include/ruby-1.9.1 -I. -D_XOPEN_SOURCE -D_DARWIN_C_SOURCE   -I/Users/padilla/.rvm/usr/include  -O3 -ggdb -Wall -Wextra -Wno-unused-parameter -Wno-parentheses -Wno-long-long -Wno-missing-field-initializers -Wpointer-arith -Wwrite-strings -Wdeclaration-after-statement -Wshorten-64-to-32 -Wimplicit-function-declaration  -fno-common -pipe conftest.c  -L. -L/Users/padilla/.rvm/rubies/ruby-1.9.3-p327/lib -L/Users/padilla/.rvm/usr/lib -L. -L/usr/local/lib -L/Users/padilla/.rvm/usr/lib      -lruby.1.9.1  -lpthread -ldl -lobjc "
 checked program was:
 /* begin */
 1: #include "ruby.h"
@@ -9,7 +9,7 @@ checked program was:
 3: int main() {return 0;}
 /* end */
 
-"gcc -E -I/Users/padilla/.rvm/rubies/ruby-1.9.2-p290/include/ruby-1.9.1/x86_64-darwin11.3.0 -I/Users/padilla/.rvm/rubies/ruby-1.9.2-p290/include/ruby-1.9.1/ruby/backward -I/Users/padilla/.rvm/rubies/ruby-1.9.2-p290/include/ruby-1.9.1 -I. -I/Users/padilla/.rvm/usr/include -D_XOPEN_SOURCE -D_DARWIN_C_SOURCE    -O3 -ggdb -Wextra -Wno-unused-parameter -Wno-parentheses -Wpointer-arith -Wwrite-strings -Wno-missing-field-initializers -Wshorten-64-to-32 -Wno-long-long  -fno-common -pipe  conftest.c -o conftest.i"
+"/usr/bin/gcc-4.2 -E -I/Users/padilla/.rvm/rubies/ruby-1.9.3-p327/include/ruby-1.9.1/x86_64-darwin11.4.2 -I/Users/padilla/.rvm/rubies/ruby-1.9.3-p327/include/ruby-1.9.1/ruby/backward -I/Users/padilla/.rvm/rubies/ruby-1.9.3-p327/include/ruby-1.9.1 -I. -D_XOPEN_SOURCE -D_DARWIN_C_SOURCE   -I/Users/padilla/.rvm/usr/include  -O3 -ggdb -Wall -Wextra -Wno-unused-parameter -Wno-parentheses -Wno-long-long -Wno-missing-field-initializers -Wpointer-arith -Wwrite-strings -Wdeclaration-after-statement -Wshorten-64-to-32 -Wimplicit-function-declaration  -fno-common -pipe  conftest.c -o conftest.i"
 conftest.c:3:17: error: ffi.h: No such file or directory
 checked program was:
 /* begin */
@@ -22,7 +22,7 @@ checked program was:
 
 find_header: checking for ffi.h in /usr/local/include,/usr/include/ffi... -------------------- yes
 
-"gcc -E -I/Users/padilla/.rvm/rubies/ruby-1.9.2-p290/include/ruby-1.9.1/x86_64-darwin11.3.0 -I/Users/padilla/.rvm/rubies/ruby-1.9.2-p290/include/ruby-1.9.1/ruby/backward -I/Users/padilla/.rvm/rubies/ruby-1.9.2-p290/include/ruby-1.9.1 -I. -I/Users/padilla/.rvm/usr/include -D_XOPEN_SOURCE -D_DARWIN_C_SOURCE    -O3 -ggdb -Wextra -Wno-unused-parameter -Wno-parentheses -Wpointer-arith -Wwrite-strings -Wno-missing-field-initializers -Wshorten-64-to-32 -Wno-long-long  -fno-common -pipe  conftest.c -o conftest.i"
+"/usr/bin/gcc-4.2 -E -I/Users/padilla/.rvm/rubies/ruby-1.9.3-p327/include/ruby-1.9.1/x86_64-darwin11.4.2 -I/Users/padilla/.rvm/rubies/ruby-1.9.3-p327/include/ruby-1.9.1/ruby/backward -I/Users/padilla/.rvm/rubies/ruby-1.9.3-p327/include/ruby-1.9.1 -I. -D_XOPEN_SOURCE -D_DARWIN_C_SOURCE   -I/Users/padilla/.rvm/usr/include  -O3 -ggdb -Wall -Wextra -Wno-unused-parameter -Wno-parentheses -Wno-long-long -Wno-missing-field-initializers -Wpointer-arith -Wwrite-strings -Wdeclaration-after-statement -Wshorten-64-to-32 -Wimplicit-function-declaration  -fno-common -pipe  conftest.c -o conftest.i"
 conftest.c:3:17: error: ffi.h: No such file or directory
 checked program was:
 /* begin */
@@ -31,7 +31,7 @@ checked program was:
 3: #include <ffi.h>
 /* end */
 
-"gcc -E -I/Users/padilla/.rvm/rubies/ruby-1.9.2-p290/include/ruby-1.9.1/x86_64-darwin11.3.0 -I/Users/padilla/.rvm/rubies/ruby-1.9.2-p290/include/ruby-1.9.1/ruby/backward -I/Users/padilla/.rvm/rubies/ruby-1.9.2-p290/include/ruby-1.9.1 -I. -I/Users/padilla/.rvm/usr/include -D_XOPEN_SOURCE -D_DARWIN_C_SOURCE    -O3 -ggdb -Wextra -Wno-unused-parameter -Wno-parentheses -Wpointer-arith -Wwrite-strings -Wno-missing-field-initializers -Wshorten-64-to-32 -Wno-long-long  -fno-common -pipe -I/usr/local/include conftest.c -o conftest.i"
+"/usr/bin/gcc-4.2 -E -I/Users/padilla/.rvm/rubies/ruby-1.9.3-p327/include/ruby-1.9.1/x86_64-darwin11.4.2 -I/Users/padilla/.rvm/rubies/ruby-1.9.3-p327/include/ruby-1.9.1/ruby/backward -I/Users/padilla/.rvm/rubies/ruby-1.9.3-p327/include/ruby-1.9.1 -I. -D_XOPEN_SOURCE -D_DARWIN_C_SOURCE   -I/Users/padilla/.rvm/usr/include  -O3 -ggdb -Wall -Wextra -Wno-unused-parameter -Wno-parentheses -Wno-long-long -Wno-missing-field-initializers -Wpointer-arith -Wwrite-strings -Wdeclaration-after-statement -Wshorten-64-to-32 -Wimplicit-function-declaration  -fno-common -pipe -I/usr/local/include conftest.c -o conftest.i"
 conftest.c:3:17: error: ffi.h: No such file or directory
 checked program was:
 /* begin */
@@ -40,7 +40,7 @@ checked program was:
 3: #include <ffi.h>
 /* end */
 
-"gcc -E -I/Users/padilla/.rvm/rubies/ruby-1.9.2-p290/include/ruby-1.9.1/x86_64-darwin11.3.0 -I/Users/padilla/.rvm/rubies/ruby-1.9.2-p290/include/ruby-1.9.1/ruby/backward -I/Users/padilla/.rvm/rubies/ruby-1.9.2-p290/include/ruby-1.9.1 -I. -I/Users/padilla/.rvm/usr/include -D_XOPEN_SOURCE -D_DARWIN_C_SOURCE    -O3 -ggdb -Wextra -Wno-unused-parameter -Wno-parentheses -Wpointer-arith -Wwrite-strings -Wno-missing-field-initializers -Wshorten-64-to-32 -Wno-long-long  -fno-common -pipe -I/usr/include/ffi conftest.c -o conftest.i"
+"/usr/bin/gcc-4.2 -E -I/Users/padilla/.rvm/rubies/ruby-1.9.3-p327/include/ruby-1.9.1/x86_64-darwin11.4.2 -I/Users/padilla/.rvm/rubies/ruby-1.9.3-p327/include/ruby-1.9.1/ruby/backward -I/Users/padilla/.rvm/rubies/ruby-1.9.3-p327/include/ruby-1.9.1 -I. -D_XOPEN_SOURCE -D_DARWIN_C_SOURCE   -I/Users/padilla/.rvm/usr/include  -O3 -ggdb -Wall -Wextra -Wno-unused-parameter -Wno-parentheses -Wno-long-long -Wno-missing-field-initializers -Wpointer-arith -Wwrite-strings -Wdeclaration-after-statement -Wshorten-64-to-32 -Wimplicit-function-declaration  -fno-common -pipe -I/usr/include/ffi conftest.c -o conftest.i"
 checked program was:
 /* begin */
 1: #include "ruby.h"
@@ -52,7 +52,7 @@ checked program was:
 
 have_library: checking for ffi_call() in -lffi... -------------------- yes
 
-"gcc -o conftest -I/Users/padilla/.rvm/rubies/ruby-1.9.2-p290/include/ruby-1.9.1/x86_64-darwin11.3.0 -I/Users/padilla/.rvm/rubies/ruby-1.9.2-p290/include/ruby-1.9.1/ruby/backward -I/Users/padilla/.rvm/rubies/ruby-1.9.2-p290/include/ruby-1.9.1 -I. -I/usr/include/ffi -I/Users/padilla/.rvm/usr/include -D_XOPEN_SOURCE -D_DARWIN_C_SOURCE    -O3 -ggdb -Wextra -Wno-unused-parameter -Wno-parentheses -Wpointer-arith -Wwrite-strings -Wno-missing-field-initializers -Wshorten-64-to-32 -Wno-long-long  -fno-common -pipe conftest.c  -L. -L/Users/padilla/.rvm/rubies/ruby-1.9.2-p290/lib -L/Users/padilla/.rvm/usr/lib -L.      -lruby.1.9.1-static -lffi  -lpthread -ldl -lobjc "
+"/usr/bin/gcc-4.2 -o conftest -I/Users/padilla/.rvm/rubies/ruby-1.9.3-p327/include/ruby-1.9.1/x86_64-darwin11.4.2 -I/Users/padilla/.rvm/rubies/ruby-1.9.3-p327/include/ruby-1.9.1/ruby/backward -I/Users/padilla/.rvm/rubies/ruby-1.9.3-p327/include/ruby-1.9.1 -I. -I/usr/include/ffi -D_XOPEN_SOURCE -D_DARWIN_C_SOURCE   -I/Users/padilla/.rvm/usr/include  -O3 -ggdb -Wall -Wextra -Wno-unused-parameter -Wno-parentheses -Wno-long-long -Wno-missing-field-initializers -Wpointer-arith -Wwrite-strings -Wdeclaration-after-statement -Wshorten-64-to-32 -Wimplicit-function-declaration  -fno-common -pipe conftest.c  -L. -L/Users/padilla/.rvm/rubies/ruby-1.9.3-p327/lib -L/Users/padilla/.rvm/usr/lib -L. -L/usr/local/lib -L/Users/padilla/.rvm/usr/lib      -lruby.1.9.1 -lffi  -lpthread -ldl -lobjc "
 checked program was:
 /* begin */
 1: #include "ruby.h"
@@ -68,7 +68,7 @@ checked program was:
 
 have_func: checking for ffi_prep_closure()... -------------------- yes
 
-"gcc -o conftest -I/Users/padilla/.rvm/rubies/ruby-1.9.2-p290/include/ruby-1.9.1/x86_64-darwin11.3.0 -I/Users/padilla/.rvm/rubies/ruby-1.9.2-p290/include/ruby-1.9.1/ruby/backward -I/Users/padilla/.rvm/rubies/ruby-1.9.2-p290/include/ruby-1.9.1 -I. -I/usr/include/ffi -I/Users/padilla/.rvm/usr/include -D_XOPEN_SOURCE -D_DARWIN_C_SOURCE    -O3 -ggdb -Wextra -Wno-unused-parameter -Wno-parentheses -Wpointer-arith -Wwrite-strings -Wno-missing-field-initializers -Wshorten-64-to-32 -Wno-long-long  -fno-common -pipe conftest.c  -L. -L/Users/padilla/.rvm/rubies/ruby-1.9.2-p290/lib -L/Users/padilla/.rvm/usr/lib -L.     -lffi  -lruby.1.9.1-static -lffi  -lpthread -ldl -lobjc "
+"/usr/bin/gcc-4.2 -o conftest -I/Users/padilla/.rvm/rubies/ruby-1.9.3-p327/include/ruby-1.9.1/x86_64-darwin11.4.2 -I/Users/padilla/.rvm/rubies/ruby-1.9.3-p327/include/ruby-1.9.1/ruby/backward -I/Users/padilla/.rvm/rubies/ruby-1.9.3-p327/include/ruby-1.9.1 -I. -I/usr/include/ffi -D_XOPEN_SOURCE -D_DARWIN_C_SOURCE   -I/Users/padilla/.rvm/usr/include  -O3 -ggdb -Wall -Wextra -Wno-unused-parameter -Wno-parentheses -Wno-long-long -Wno-missing-field-initializers -Wpointer-arith -Wwrite-strings -Wdeclaration-after-statement -Wshorten-64-to-32 -Wimplicit-function-declaration  -fno-common -pipe conftest.c  -L. -L/Users/padilla/.rvm/rubies/ruby-1.9.3-p327/lib -L/Users/padilla/.rvm/usr/lib -L. -L/usr/local/lib -L/Users/padilla/.rvm/usr/lib     -lffi  -lruby.1.9.1 -lffi  -lpthread -ldl -lobjc "
 conftest.c: In function ‘t’:
 conftest.c:5: error: ‘ffi_prep_closure’ undeclared (first use in this function)
 conftest.c:5: error: (Each undeclared identifier is reported only once
@@ -82,7 +82,9 @@ checked program was:
 5: int t() { void ((*volatile p)()); p = (void ((*)()))ffi_prep_closure; return 0; }
 /* end */
 
-"gcc -o conftest -I/Users/padilla/.rvm/rubies/ruby-1.9.2-p290/include/ruby-1.9.1/x86_64-darwin11.3.0 -I/Users/padilla/.rvm/rubies/ruby-1.9.2-p290/include/ruby-1.9.1/ruby/backward -I/Users/padilla/.rvm/rubies/ruby-1.9.2-p290/include/ruby-1.9.1 -I. -I/usr/include/ffi -I/Users/padilla/.rvm/usr/include -D_XOPEN_SOURCE -D_DARWIN_C_SOURCE    -O3 -ggdb -Wextra -Wno-unused-parameter -Wno-parentheses -Wpointer-arith -Wwrite-strings -Wno-missing-field-initializers -Wshorten-64-to-32 -Wno-long-long  -fno-common -pipe conftest.c  -L. -L/Users/padilla/.rvm/rubies/ruby-1.9.2-p290/lib -L/Users/padilla/.rvm/usr/lib -L.     -lffi  -lruby.1.9.1-static -lffi  -lpthread -ldl -lobjc "
+"/usr/bin/gcc-4.2 -o conftest -I/Users/padilla/.rvm/rubies/ruby-1.9.3-p327/include/ruby-1.9.1/x86_64-darwin11.4.2 -I/Users/padilla/.rvm/rubies/ruby-1.9.3-p327/include/ruby-1.9.1/ruby/backward -I/Users/padilla/.rvm/rubies/ruby-1.9.3-p327/include/ruby-1.9.1 -I. -I/usr/include/ffi -D_XOPEN_SOURCE -D_DARWIN_C_SOURCE   -I/Users/padilla/.rvm/usr/include  -O3 -ggdb -Wall -Wextra -Wno-unused-parameter -Wno-parentheses -Wno-long-long -Wno-missing-field-initializers -Wpointer-arith -Wwrite-strings -Wdeclaration-after-statement -Wshorten-64-to-32 -Wimplicit-function-declaration  -fno-common -pipe conftest.c  -L. -L/Users/padilla/.rvm/rubies/ruby-1.9.3-p327/lib -L/Users/padilla/.rvm/usr/lib -L. -L/usr/local/lib -L/Users/padilla/.rvm/usr/lib     -lffi  -lruby.1.9.1 -lffi  -lpthread -ldl -lobjc "
+conftest.c: In function ‘t’:
+conftest.c:5: warning: implicit declaration of function ‘ffi_prep_closure’
 checked program was:
 /* begin */
 1: #include "ruby.h"
@@ -96,7 +98,7 @@ checked program was:
 
 have_func: checking for ffi_raw_call()... -------------------- no
 
-"gcc -o conftest -I/Users/padilla/.rvm/rubies/ruby-1.9.2-p290/include/ruby-1.9.1/x86_64-darwin11.3.0 -I/Users/padilla/.rvm/rubies/ruby-1.9.2-p290/include/ruby-1.9.1/ruby/backward -I/Users/padilla/.rvm/rubies/ruby-1.9.2-p290/include/ruby-1.9.1 -I. -I/usr/include/ffi -I/Users/padilla/.rvm/usr/include -D_XOPEN_SOURCE -D_DARWIN_C_SOURCE    -O3 -ggdb -Wextra -Wno-unused-parameter -Wno-parentheses -Wpointer-arith -Wwrite-strings -Wno-missing-field-initializers -Wshorten-64-to-32 -Wno-long-long  -fno-common -pipe conftest.c  -L. -L/Users/padilla/.rvm/rubies/ruby-1.9.2-p290/lib -L/Users/padilla/.rvm/usr/lib -L.     -lffi  -lruby.1.9.1-static -lffi  -lpthread -ldl -lobjc "
+"/usr/bin/gcc-4.2 -o conftest -I/Users/padilla/.rvm/rubies/ruby-1.9.3-p327/include/ruby-1.9.1/x86_64-darwin11.4.2 -I/Users/padilla/.rvm/rubies/ruby-1.9.3-p327/include/ruby-1.9.1/ruby/backward -I/Users/padilla/.rvm/rubies/ruby-1.9.3-p327/include/ruby-1.9.1 -I. -I/usr/include/ffi -D_XOPEN_SOURCE -D_DARWIN_C_SOURCE   -I/Users/padilla/.rvm/usr/include  -O3 -ggdb -Wall -Wextra -Wno-unused-parameter -Wno-parentheses -Wno-long-long -Wno-missing-field-initializers -Wpointer-arith -Wwrite-strings -Wdeclaration-after-statement -Wshorten-64-to-32 -Wimplicit-function-declaration  -fno-common -pipe conftest.c  -L. -L/Users/padilla/.rvm/rubies/ruby-1.9.3-p327/lib -L/Users/padilla/.rvm/usr/lib -L. -L/usr/local/lib -L/Users/padilla/.rvm/usr/lib     -lffi  -lruby.1.9.1 -lffi  -lpthread -ldl -lobjc "
 conftest.c: In function ‘t’:
 conftest.c:5: error: ‘ffi_raw_call’ undeclared (first use in this function)
 conftest.c:5: error: (Each undeclared identifier is reported only once
@@ -110,10 +112,12 @@ checked program was:
 5: int t() { void ((*volatile p)()); p = (void ((*)()))ffi_raw_call; return 0; }
 /* end */
 
-"gcc -o conftest -I/Users/padilla/.rvm/rubies/ruby-1.9.2-p290/include/ruby-1.9.1/x86_64-darwin11.3.0 -I/Users/padilla/.rvm/rubies/ruby-1.9.2-p290/include/ruby-1.9.1/ruby/backward -I/Users/padilla/.rvm/rubies/ruby-1.9.2-p290/include/ruby-1.9.1 -I. -I/usr/include/ffi -I/Users/padilla/.rvm/usr/include -D_XOPEN_SOURCE -D_DARWIN_C_SOURCE    -O3 -ggdb -Wextra -Wno-unused-parameter -Wno-parentheses -Wpointer-arith -Wwrite-strings -Wno-missing-field-initializers -Wshorten-64-to-32 -Wno-long-long  -fno-common -pipe conftest.c  -L. -L/Users/padilla/.rvm/rubies/ruby-1.9.2-p290/lib -L/Users/padilla/.rvm/usr/lib -L.     -lffi  -lruby.1.9.1-static -lffi  -lpthread -ldl -lobjc "
+"/usr/bin/gcc-4.2 -o conftest -I/Users/padilla/.rvm/rubies/ruby-1.9.3-p327/include/ruby-1.9.1/x86_64-darwin11.4.2 -I/Users/padilla/.rvm/rubies/ruby-1.9.3-p327/include/ruby-1.9.1/ruby/backward -I/Users/padilla/.rvm/rubies/ruby-1.9.3-p327/include/ruby-1.9.1 -I. -I/usr/include/ffi -D_XOPEN_SOURCE -D_DARWIN_C_SOURCE   -I/Users/padilla/.rvm/usr/include  -O3 -ggdb -Wall -Wextra -Wno-unused-parameter -Wno-parentheses -Wno-long-long -Wno-missing-field-initializers -Wpointer-arith -Wwrite-strings -Wdeclaration-after-statement -Wshorten-64-to-32 -Wimplicit-function-declaration  -fno-common -pipe conftest.c  -L. -L/Users/padilla/.rvm/rubies/ruby-1.9.3-p327/lib -L/Users/padilla/.rvm/usr/lib -L. -L/usr/local/lib -L/Users/padilla/.rvm/usr/lib     -lffi  -lruby.1.9.1 -lffi  -lpthread -ldl -lobjc "
+conftest.c: In function ‘t’:
+conftest.c:5: warning: implicit declaration of function ‘ffi_raw_call’
 Undefined symbols for architecture x86_64:
   "_ffi_raw_call", referenced from:
-      _t in ccMzAKvs.o
+      _t in ccHmoOcX.o
 ld: symbol(s) not found for architecture x86_64
 collect2: ld returned 1 exit status
 checked program was:
@@ -129,7 +133,7 @@ checked program was:
 
 have_func: checking for rb_thread_blocking_region()... -------------------- yes
 
-"gcc -o conftest -I/Users/padilla/.rvm/rubies/ruby-1.9.2-p290/include/ruby-1.9.1/x86_64-darwin11.3.0 -I/Users/padilla/.rvm/rubies/ruby-1.9.2-p290/include/ruby-1.9.1/ruby/backward -I/Users/padilla/.rvm/rubies/ruby-1.9.2-p290/include/ruby-1.9.1 -I. -I/usr/include/ffi -I/Users/padilla/.rvm/usr/include -D_XOPEN_SOURCE -D_DARWIN_C_SOURCE    -O3 -ggdb -Wextra -Wno-unused-parameter -Wno-parentheses -Wpointer-arith -Wwrite-strings -Wno-missing-field-initializers -Wshorten-64-to-32 -Wno-long-long  -fno-common -pipe conftest.c  -L. -L/Users/padilla/.rvm/rubies/ruby-1.9.2-p290/lib -L/Users/padilla/.rvm/usr/lib -L.     -lffi  -lruby.1.9.1-static -lffi  -lpthread -ldl -lobjc "
+"/usr/bin/gcc-4.2 -o conftest -I/Users/padilla/.rvm/rubies/ruby-1.9.3-p327/include/ruby-1.9.1/x86_64-darwin11.4.2 -I/Users/padilla/.rvm/rubies/ruby-1.9.3-p327/include/ruby-1.9.1/ruby/backward -I/Users/padilla/.rvm/rubies/ruby-1.9.3-p327/include/ruby-1.9.1 -I. -I/usr/include/ffi -D_XOPEN_SOURCE -D_DARWIN_C_SOURCE   -I/Users/padilla/.rvm/usr/include  -O3 -ggdb -Wall -Wextra -Wno-unused-parameter -Wno-parentheses -Wno-long-long -Wno-missing-field-initializers -Wpointer-arith -Wwrite-strings -Wdeclaration-after-statement -Wshorten-64-to-32 -Wimplicit-function-declaration  -fno-common -pipe conftest.c  -L. -L/Users/padilla/.rvm/rubies/ruby-1.9.3-p327/lib -L/Users/padilla/.rvm/usr/lib -L. -L/usr/local/lib -L/Users/padilla/.rvm/usr/lib     -lffi  -lruby.1.9.1 -lffi  -lpthread -ldl -lobjc "
 checked program was:
 /* begin */
 1: #include "ruby.h"
@@ -143,7 +147,7 @@ checked program was:
 
 have_func: checking for ruby_native_thread_p()... -------------------- yes
 
-"gcc -o conftest -I/Users/padilla/.rvm/rubies/ruby-1.9.2-p290/include/ruby-1.9.1/x86_64-darwin11.3.0 -I/Users/padilla/.rvm/rubies/ruby-1.9.2-p290/include/ruby-1.9.1/ruby/backward -I/Users/padilla/.rvm/rubies/ruby-1.9.2-p290/include/ruby-1.9.1 -I. -I/usr/include/ffi -I/Users/padilla/.rvm/usr/include -D_XOPEN_SOURCE -D_DARWIN_C_SOURCE    -O3 -ggdb -Wextra -Wno-unused-parameter -Wno-parentheses -Wpointer-arith -Wwrite-strings -Wno-missing-field-initializers -Wshorten-64-to-32 -Wno-long-long  -fno-common -pipe conftest.c  -L. -L/Users/padilla/.rvm/rubies/ruby-1.9.2-p290/lib -L/Users/padilla/.rvm/usr/lib -L.     -lffi  -lruby.1.9.1-static -lffi  -lpthread -ldl -lobjc "
+"/usr/bin/gcc-4.2 -o conftest -I/Users/padilla/.rvm/rubies/ruby-1.9.3-p327/include/ruby-1.9.1/x86_64-darwin11.4.2 -I/Users/padilla/.rvm/rubies/ruby-1.9.3-p327/include/ruby-1.9.1/ruby/backward -I/Users/padilla/.rvm/rubies/ruby-1.9.3-p327/include/ruby-1.9.1 -I. -I/usr/include/ffi -D_XOPEN_SOURCE -D_DARWIN_C_SOURCE   -I/Users/padilla/.rvm/usr/include  -O3 -ggdb -Wall -Wextra -Wno-unused-parameter -Wno-parentheses -Wno-long-long -Wno-missing-field-initializers -Wpointer-arith -Wwrite-strings -Wdeclaration-after-statement -Wshorten-64-to-32 -Wimplicit-function-declaration  -fno-common -pipe conftest.c  -L. -L/Users/padilla/.rvm/rubies/ruby-1.9.3-p327/lib -L/Users/padilla/.rvm/usr/lib -L. -L/usr/local/lib -L/Users/padilla/.rvm/usr/lib     -lffi  -lruby.1.9.1 -lffi  -lpthread -ldl -lobjc "
 checked program was:
 /* begin */
 1: #include "ruby.h"
@@ -157,7 +161,7 @@ checked program was:
 
 have_func: checking for rb_thread_call_with_gvl()... -------------------- yes
 
-"gcc -o conftest -I/Users/padilla/.rvm/rubies/ruby-1.9.2-p290/include/ruby-1.9.1/x86_64-darwin11.3.0 -I/Users/padilla/.rvm/rubies/ruby-1.9.2-p290/include/ruby-1.9.1/ruby/backward -I/Users/padilla/.rvm/rubies/ruby-1.9.2-p290/include/ruby-1.9.1 -I. -I/usr/include/ffi -I/Users/padilla/.rvm/usr/include -D_XOPEN_SOURCE -D_DARWIN_C_SOURCE    -O3 -ggdb -Wextra -Wno-unused-parameter -Wno-parentheses -Wpointer-arith -Wwrite-strings -Wno-missing-field-initializers -Wshorten-64-to-32 -Wno-long-long  -fno-common -pipe conftest.c  -L. -L/Users/padilla/.rvm/rubies/ruby-1.9.2-p290/lib -L/Users/padilla/.rvm/usr/lib -L.     -lffi  -lruby.1.9.1-static -lffi  -lpthread -ldl -lobjc "
+"/usr/bin/gcc-4.2 -o conftest -I/Users/padilla/.rvm/rubies/ruby-1.9.3-p327/include/ruby-1.9.1/x86_64-darwin11.4.2 -I/Users/padilla/.rvm/rubies/ruby-1.9.3-p327/include/ruby-1.9.1/ruby/backward -I/Users/padilla/.rvm/rubies/ruby-1.9.3-p327/include/ruby-1.9.1 -I. -I/usr/include/ffi -D_XOPEN_SOURCE -D_DARWIN_C_SOURCE   -I/Users/padilla/.rvm/usr/include  -O3 -ggdb -Wall -Wextra -Wno-unused-parameter -Wno-parentheses -Wno-long-long -Wno-missing-field-initializers -Wpointer-arith -Wwrite-strings -Wdeclaration-after-statement -Wshorten-64-to-32 -Wimplicit-function-declaration  -fno-common -pipe conftest.c  -L. -L/Users/padilla/.rvm/rubies/ruby-1.9.3-p327/lib -L/Users/padilla/.rvm/usr/lib -L. -L/usr/local/lib -L/Users/padilla/.rvm/usr/lib     -lffi  -lruby.1.9.1 -lffi  -lpthread -ldl -lobjc "
 conftest.c: In function ‘t’:
 conftest.c:5: error: ‘rb_thread_call_with_gvl’ undeclared (first use in this function)
 conftest.c:5: error: (Each undeclared identifier is reported only once
@@ -171,7 +175,9 @@ checked program was:
 5: int t() { void ((*volatile p)()); p = (void ((*)()))rb_thread_call_with_gvl; return 0; }
 /* end */
 
-"gcc -o conftest -I/Users/padilla/.rvm/rubies/ruby-1.9.2-p290/include/ruby-1.9.1/x86_64-darwin11.3.0 -I/Users/padilla/.rvm/rubies/ruby-1.9.2-p290/include/ruby-1.9.1/ruby/backward -I/Users/padilla/.rvm/rubies/ruby-1.9.2-p290/include/ruby-1.9.1 -I. -I/usr/include/ffi -I/Users/padilla/.rvm/usr/include -D_XOPEN_SOURCE -D_DARWIN_C_SOURCE    -O3 -ggdb -Wextra -Wno-unused-parameter -Wno-parentheses -Wpointer-arith -Wwrite-strings -Wno-missing-field-initializers -Wshorten-64-to-32 -Wno-long-long  -fno-common -pipe conftest.c  -L. -L/Users/padilla/.rvm/rubies/ruby-1.9.2-p290/lib -L/Users/padilla/.rvm/usr/lib -L.     -lffi  -lruby.1.9.1-static -lffi  -lpthread -ldl -lobjc "
+"/usr/bin/gcc-4.2 -o conftest -I/Users/padilla/.rvm/rubies/ruby-1.9.3-p327/include/ruby-1.9.1/x86_64-darwin11.4.2 -I/Users/padilla/.rvm/rubies/ruby-1.9.3-p327/include/ruby-1.9.1/ruby/backward -I/Users/padilla/.rvm/rubies/ruby-1.9.3-p327/include/ruby-1.9.1 -I. -I/usr/include/ffi -D_XOPEN_SOURCE -D_DARWIN_C_SOURCE   -I/Users/padilla/.rvm/usr/include  -O3 -ggdb -Wall -Wextra -Wno-unused-parameter -Wno-parentheses -Wno-long-long -Wno-missing-field-initializers -Wpointer-arith -Wwrite-strings -Wdeclaration-after-statement -Wshorten-64-to-32 -Wimplicit-function-declaration  -fno-common -pipe conftest.c  -L. -L/Users/padilla/.rvm/rubies/ruby-1.9.3-p327/lib -L/Users/padilla/.rvm/usr/lib -L. -L/usr/local/lib -L/Users/padilla/.rvm/usr/lib     -lffi  -lruby.1.9.1 -lffi  -lpthread -ldl -lobjc "
+conftest.c: In function ‘t’:
+conftest.c:5: warning: implicit declaration of function ‘rb_thread_call_with_gvl’
 checked program was:
 /* begin */
 1: #include "ruby.h"
@@ -185,7 +191,7 @@ checked program was:
 
 have_func: checking for ffi_prep_cif_var()... -------------------- no
 
-"gcc -o conftest -I/Users/padilla/.rvm/rubies/ruby-1.9.2-p290/include/ruby-1.9.1/x86_64-darwin11.3.0 -I/Users/padilla/.rvm/rubies/ruby-1.9.2-p290/include/ruby-1.9.1/ruby/backward -I/Users/padilla/.rvm/rubies/ruby-1.9.2-p290/include/ruby-1.9.1 -I. -I/usr/include/ffi -I/Users/padilla/.rvm/usr/include -D_XOPEN_SOURCE -D_DARWIN_C_SOURCE    -O3 -ggdb -Wextra -Wno-unused-parameter -Wno-parentheses -Wpointer-arith -Wwrite-strings -Wno-missing-field-initializers -Wshorten-64-to-32 -Wno-long-long  -fno-common -pipe conftest.c  -L. -L/Users/padilla/.rvm/rubies/ruby-1.9.2-p290/lib -L/Users/padilla/.rvm/usr/lib -L.     -lffi  -lruby.1.9.1-static -lffi  -lpthread -ldl -lobjc "
+"/usr/bin/gcc-4.2 -o conftest -I/Users/padilla/.rvm/rubies/ruby-1.9.3-p327/include/ruby-1.9.1/x86_64-darwin11.4.2 -I/Users/padilla/.rvm/rubies/ruby-1.9.3-p327/include/ruby-1.9.1/ruby/backward -I/Users/padilla/.rvm/rubies/ruby-1.9.3-p327/include/ruby-1.9.1 -I. -I/usr/include/ffi -D_XOPEN_SOURCE -D_DARWIN_C_SOURCE   -I/Users/padilla/.rvm/usr/include  -O3 -ggdb -Wall -Wextra -Wno-unused-parameter -Wno-parentheses -Wno-long-long -Wno-missing-field-initializers -Wpointer-arith -Wwrite-strings -Wdeclaration-after-statement -Wshorten-64-to-32 -Wimplicit-function-declaration  -fno-common -pipe conftest.c  -L. -L/Users/padilla/.rvm/rubies/ruby-1.9.3-p327/lib -L/Users/padilla/.rvm/usr/lib -L. -L/usr/local/lib -L/Users/padilla/.rvm/usr/lib     -lffi  -lruby.1.9.1 -lffi  -lpthread -ldl -lobjc "
 conftest.c: In function ‘t’:
 conftest.c:5: error: ‘ffi_prep_cif_var’ undeclared (first use in this function)
 conftest.c:5: error: (Each undeclared identifier is reported only once
@@ -199,10 +205,12 @@ checked program was:
 5: int t() { void ((*volatile p)()); p = (void ((*)()))ffi_prep_cif_var; return 0; }
 /* end */
 
-"gcc -o conftest -I/Users/padilla/.rvm/rubies/ruby-1.9.2-p290/include/ruby-1.9.1/x86_64-darwin11.3.0 -I/Users/padilla/.rvm/rubies/ruby-1.9.2-p290/include/ruby-1.9.1/ruby/backward -I/Users/padilla/.rvm/rubies/ruby-1.9.2-p290/include/ruby-1.9.1 -I. -I/usr/include/ffi -I/Users/padilla/.rvm/usr/include -D_XOPEN_SOURCE -D_DARWIN_C_SOURCE    -O3 -ggdb -Wextra -Wno-unused-parameter -Wno-parentheses -Wpointer-arith -Wwrite-strings -Wno-missing-field-initializers -Wshorten-64-to-32 -Wno-long-long  -fno-common -pipe conftest.c  -L. -L/Users/padilla/.rvm/rubies/ruby-1.9.2-p290/lib -L/Users/padilla/.rvm/usr/lib -L.     -lffi  -lruby.1.9.1-static -lffi  -lpthread -ldl -lobjc "
+"/usr/bin/gcc-4.2 -o conftest -I/Users/padilla/.rvm/rubies/ruby-1.9.3-p327/include/ruby-1.9.1/x86_64-darwin11.4.2 -I/Users/padilla/.rvm/rubies/ruby-1.9.3-p327/include/ruby-1.9.1/ruby/backward -I/Users/padilla/.rvm/rubies/ruby-1.9.3-p327/include/ruby-1.9.1 -I. -I/usr/include/ffi -D_XOPEN_SOURCE -D_DARWIN_C_SOURCE   -I/Users/padilla/.rvm/usr/include  -O3 -ggdb -Wall -Wextra -Wno-unused-parameter -Wno-parentheses -Wno-long-long -Wno-missing-field-initializers -Wpointer-arith -Wwrite-strings -Wdeclaration-after-statement -Wshorten-64-to-32 -Wimplicit-function-declaration  -fno-common -pipe conftest.c  -L. -L/Users/padilla/.rvm/rubies/ruby-1.9.3-p327/lib -L/Users/padilla/.rvm/usr/lib -L. -L/usr/local/lib -L/Users/padilla/.rvm/usr/lib     -lffi  -lruby.1.9.1 -lffi  -lpthread -ldl -lobjc "
+conftest.c: In function ‘t’:
+conftest.c:5: warning: implicit declaration of function ‘ffi_prep_cif_var’
 Undefined symbols for architecture x86_64:
   "_ffi_prep_cif_var", referenced from:
-      _t in ccYIr4HP.o
+      _t in ccNxZX44.o
 ld: symbol(s) not found for architecture x86_64
 collect2: ld returned 1 exit status
 checked program was:
@@ -215,4 +223,16 @@ checked program was:
 /* end */
 
 --------------------
+
+extconf.h is:
+/* begin */
+1: #ifndef EXTCONF_H
+2: #define EXTCONF_H
+3: #define HAVE_FFI_PREP_CLOSURE 1
+4: #define HAVE_RB_THREAD_BLOCKING_REGION 1
+5: #define HAVE_RUBY_NATIVE_THREAD_P 1
+6: #define HAVE_RB_THREAD_CALL_WITH_GVL 1
+7: #define RUBY_1_9 1
+8: #endif
+/* end */
 

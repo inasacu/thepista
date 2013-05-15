@@ -955,8 +955,9 @@ es:
      modified_phone: Modificada la opción de ocultar el telefono de   
      modified_profile: Modificada la opción de ocultar tu perfil de   
      modified_reliable: Modificada la fiabilidad del jugador para atender   
-     modo: "Practica deportes y deja que <STRONG>HayPista</STRONG> te ayude a organizarlo."  
-     modo_key_title: "HayPista te ayuda a organizar eventos deportivos. Practica deportes y deja que HayPista ayude a organizarlo. "
+     modo: "Practica deportes y deja que <STRONG>HayPista</STRONG> te ayude a organizarlo."
+     modo_wo_strong: "Practica deportes y deja que HayPista te ayude a organizarlo." 
+     modo_key_title: "HayPista te ayuda a organizar tus eventos deportivos. Practica deportes y deja que HayPista ayude a organizarlo. "
      modo_keywords: "hay pista, eventos deportivos, organizacion de eventos deportivos, los mejores deportivos, futbol rapido, futbol 7, futbol siete, organizacion eventos deportivos, polideportivo, polideportivos madrid, polideportivo madrid"
      monday: Lunes 
      monday_short:  Lun
@@ -1848,6 +1849,17 @@ es:
      last_login_at:  Ultima vez entrado
      last_request_at: Ultimo pedido
      login_count:  Veces entrado
+     login_provider_initial_session:  "Iniciar sesión <small>Elige la cuenta que quieres usar</small>"
+     login_provider_modo_google:  "Google Accounts administra usuarios y contraseñas para todas las aplicaciones de Google desde YouTube hasta iGoogle. Si usas GMail, ya tienes una."
+     login_provider_modo_facebook:  "Facebook es la mayor comunidad social de la web, con tantos usuarios como un país pequeño."
+     login_provider_modo_linkedin:  "Linkedin es la mayor comunidad orientada a negocios y contactos laborales. En ella no encontrarás a tu ex-pareja, aunque quizás sí a tu nuevo jefe."
+     login_provider_modo_windows: "Las cuentas de Microsoft Accounts son las que mueven los sitios web de Microsoft como Hotmail."
+     login_provider_modo_mozilla: "Mozilla! La mejor manera de acceder. "
+     login_provider_modo_twitter: "Twitter es donde todo ocurre en 140 caracteres."
+     login_provider_modo_yahoo: "Yahoo! tiene su propia ración de aplicaciones, desde Flickr a Yahoo! Mail."
+     login_provider_remember_me_2_weeks: "Recordarme durante dos semanas"
+     login_provider_signup_message: "<p>Usamos Internet tanto como tú. No creemos que sea necesario un nombre de usuario distinto para cada sitio web, ya que supondría arreglárselas con toneladas de contraseñas. <p>Para entrar a HayPista, simplemente haz clic en la cuenta que quieras usar. <STRONG>Durante el inicio de sesión, HayPista no tendrá acceso a tu contraseña en ningún momento.</STRONG>"
+     login_provider_agree_to: "Al hacer click en un proveedor se entiende que se aceptan los"
      current_login_at:  Actual fecha de entrada
      last_login_ip:  IP de ultima entrada
      current_login_ip:  IP actual     

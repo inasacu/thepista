@@ -123,9 +123,10 @@
 				<%= render 'shared/new_edit_multipart_zurb', :item => @item %>
 			
 			<% else %>
-			
-				<%= render "shared/header_modo" %>
-				<%= render 'shared/access_details_zurb' unless is_password_reset %>	
+				
+				<%#= render "shared/header_modo" %>
+				<%#= render 'shared/access_details_zurb' unless is_password_reset %>
+				<%= render 'shared/personal_login' unless is_password_reset %>
 				<br>
 				
 			<% end %>

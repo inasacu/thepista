@@ -948,7 +948,8 @@ en:
      modified_profile: Edit option to hide profile for   
      modified_reliable: Edit reliability for    
      modo: "Practice sports and let <STRONG>HayPista</STRONG> help organize it."  
-     modo_key_title: "HayPista te ayuda a organizar eventos deportivos. Practica deportes y deja que HayPista ayude a organizarlo. "
+     modo_wo_strong: "Practice sports and let HayPista help organize it."  
+     modo_key_title: "HayPista te ayuda a organizar tus eventos deportivos. Practica deportes y deja que HayPista ayude a organizarlo. "
      modo_keywords: "hay pista, eventos deportivos, organizacion de eventos deportivos, los mejores deportivos, futbol rapido, futbol 7, futbol siete, organizacion eventos deportivos, polideportivo, polideportivos madrid, polideportivo madrid"
      monday: Lunes
      monday_short:  Mon
@@ -1837,6 +1838,17 @@ en:
      last_login_at:  Last Login
      last_request_at: Last Request
      login_count:  Login Count
+     login_provider_initial_session:  "Sign in <small>Select the account that you want to use</small>"
+     login_provider_modo_google:  "Google Accounts stores user names and passwords for all Google Applications from YouTube to iGoogle. If you are using GMail, you already own one of these."
+     login_provider_modo_facebook:  "Facebook is the biggest social community in the web, with enough users to be a big country by itself."
+     login_provider_modo_linkedin:  "Linkedin is the biggest community oriented to making business and job contacts. You will not find your ex-girlfriend there, but may find your new boss."
+     login_provider_modo_windows: "Microsoft Accounts are used to power Microsoft websites like Hotmail."
+     login_provider_modo_mozilla: "Mozilla! A better way to sign in. "
+     login_provider_modo_twitter: "Twitter is where everything happens in 140 chars."
+     login_provider_modo_yahoo: "Yahoo! has its own share of applications from Flickr to Yahoo! Mail. "
+     login_provider_remember_me_2_weeks: "Remember me for two weeks"
+     login_provider_signup_message: "<p>We use the Internet as much as you do. We do not believe in separate user names for each website since that would mean messing with tons of passwords. <p>To sign into HayPista, just click on your existing account provider. <strong>During this sign-in process thePista will never see your password.</strong>"
+     login_provider_agree_to: "By clicking on a login provider you agree to our"	
      current_login_at:  Current Login Date
      last_login_ip:  Last Login IP
      current_login_ip:  Current IP     
