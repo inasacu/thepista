@@ -68,21 +68,3 @@ Thepista::Application.configure do
   # config.active_record.auto_explain_threshold_in_seconds = 0.5
 
 end
-
-
-
-
-
-# config.cache_classes = true
-# 
-# # Log error messages when you accidentally call methods on nil.
-# config.whiny_nils = true
-# 
-# # Show full error reports and disable caching
-# config.action_controller.consider_all_requests_local = true
-# config.action_controller.perform_caching             = false
-# config.action_view.cache_template_loading            = true
-# 
-# # Disable request forgery protection in test environment
-# config.action_controller.allow_forgery_protection    = false
-
