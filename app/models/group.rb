@@ -181,7 +181,8 @@ class Group < ActiveRecord::Base
       self.points_for_win = self.sport.points_for_win
       self.points_for_draw = self.sport.points_for_draw
       self.points_for_lose = self.sport.points_for_lose
-      self.player_limit = self.sport.player_limit    
+      self.player_limit = self.sport.player_limit   
+ 			self.marker_id = 2
     end
   end
 
