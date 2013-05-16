@@ -97,7 +97,6 @@
 .login-provider-a.mozilla{	border-color:#666; color:#666}
 .login-provider-a.mozilla:hover{	background-color:#666; color:#fff}
 
-
 </style>
 
 <% unless IGNORE_HOME.include?(get_controller_action) %>	
@@ -146,13 +145,8 @@
 								<span class="hide-text">Microsoft account</span>
 							</a>
 						</li>
-						<!-- <li class="login-provider-li">
-						<a href="auth/browser_id" class="login-provider-a mozilla social-icon" data-icon="m" title="<%#= label_name(:login_provider_modo_mozilla) %>">
-						<span class="hide-text">Mozilla Persona</span>
-						</a>
-						</li> -->
 						<li class="login-provider-li">
-						<a href="auth/yahoo" class="login-provider-a yahoo social-icon"	data-icon="y" title="<%#= label_name(:login_provider_modo_yahoo) %>">
+						<a href="auth/yahoo" class="login-provider-a yahoo social-icon"	data-icon="y" title="<%= label_name(:login_provider_modo_yahoo) %>">
 						<span class="hide-text">Yahoo!</span>
 						</a>
 						</li>
@@ -164,23 +158,31 @@
 		</div>	
 
 		<br>
-
-		<!-- <div class="row">
-			<div class="four columns">
-			</div>
-			<div class="six columns">
-				<p>
-					<input type="checkbox" name="_rm" checked>
-					<span><%#= label_name(:login_provider_remember_me_2_weeks) %></span>
-				</p>			
-			</div>
-			<div class="two columns">
-			</div>
-			<hr/>
-		</div>	 -->
+		
+		<%= content_tag :h4, "#{label_name(:or)} <STRONG>#{label_name(:log_in)}</STRONG> #{label_name(:with)}".html_safe, :class => "subheader" %>
 		
 		<hr/>
-		<br/>
+		
+
+		<div class="row">
+		<div class="one  columns"></div>
+			<div class="six columns">
+				
+				<p>
+					<%= render 'utilities/persona'%>
+					<form id='browser_id_form' action='/auth/browser_id/callback'>
+						<input type='hidden' name='assertion'/>	
+						<button type="submit" style="border: 0; background: transparent;">
+							<%= image_tag "persona.png", :size => "80x80", :alt => "PERSONA" %><br>Mozilla Persona
+						</button>	
+					</form>
+					<br>
+				</p>
+				
+			</div>
+			<div class="five columns"></div>
+			<hr/>
+		</div>	
 
 
 		<div class="row">

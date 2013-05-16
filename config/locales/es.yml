@@ -1849,7 +1849,7 @@ es:
      last_login_at:  Ultima vez entrado
      last_request_at: Ultimo pedido
      login_count:  Veces entrado
-     login_provider_initial_session:  "Iniciar sesión <small>Elige la cuenta que quieres usar</small>"
+     login_provider_initial_session:  "<STRONG>Iniciar sesión</STRONG> <small>Elige la cuenta que quieres usar</small>"
      login_provider_modo_google:  "Google Accounts administra usuarios y contraseñas para todas las aplicaciones de Google desde YouTube hasta iGoogle. Si usas GMail, ya tienes una."
      login_provider_modo_facebook:  "Facebook es la mayor comunidad social de la web, con tantos usuarios como un país pequeño."
      login_provider_modo_linkedin:  "Linkedin es la mayor comunidad orientada a negocios y contactos laborales. En ella no encontrarás a tu ex-pareja, aunque quizás sí a tu nuevo jefe."

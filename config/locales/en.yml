@@ -1838,7 +1838,7 @@ en:
      last_login_at:  Last Login
      last_request_at: Last Request
      login_count:  Login Count
-     login_provider_initial_session:  "Sign in <small>Select the account that you want to use</small>"
+     login_provider_initial_session:  "<STRONG>Sign in</STRONG> <small>Select the account that you want to use</small>"
      login_provider_modo_google:  "Google Accounts stores user names and passwords for all Google Applications from YouTube to iGoogle. If you are using GMail, you already own one of these."
      login_provider_modo_facebook:  "Facebook is the biggest social community in the web, with enough users to be a big country by itself."
      login_provider_modo_linkedin:  "Linkedin is the biggest community oriented to making business and job contacts. You will not find your ex-girlfriend there, but may find your new boss."
