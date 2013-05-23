@@ -1,0 +1,16 @@
+
+
+	document.write("<%= 
+		escape_javascript(content_tag(:iframe, '', 
+		:src => 'http://localhost:3000/widget/test_widget', 
+		:width => '800',
+		:height => '800',
+		:scrolling => 'no').html_safe) 
+		%>");
+
+	if(typeof(jQuery) == 'undefined'){
+	  document.write("<script type='text/javascript' src='http://ajax.googleapis.com/ajax/libs/jquery/1.4/jquery.min.js'></script>");
+	}
+
+
+

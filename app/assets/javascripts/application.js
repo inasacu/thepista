@@ -24,7 +24,14 @@ $(document).ready(function () {
     $("div[id$=_commentSystem]").css({ padding: ".5em" }).appear(function () {
         $.getScript("http://" + disqus_shortname + ".disqus.com/embed.js");
     });
+
+	
 });
+
+if(window.opener) {
+    window.opener.location.reload(true);
+    window.close()
+  }
 
 
 

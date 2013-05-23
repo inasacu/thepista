@@ -9,6 +9,8 @@
 
 <% end %>
 
+
+
 <div class="row">
 	<div class="twelve columns">
 
@@ -29,8 +31,9 @@
 
 			<div class="provider"><%= authentication.provider.titleize %></div>
 			<div class="uid"><%= authentication.uid %></div>
-
-			<%= link_to "X", authentication, :confirm => 'Are you sure you want to remove this authentication option?', :method => :delete, :class => "remove" %>
+			
+			<%=link_to "X", authentication, :class => "popup", :"data-width" => 600, :"data-height" => 400%>
+			
 
 		</div>
 
@@ -101,3 +104,17 @@
 </div>
 </div>
 <% end %>
+
+<script>
+function popupCenter(url, width, height, name) {
+  var left = (screen.width/2)-(width/2);
+  var top = (screen.height/2)-(height/2);
+  return window.open(url, name, "menubar=no,toolbar=no,status=no,width="+width+",height="+height+",toolbar=no,left="+left+",top="+top);
+}
+
+$("a").click(function(e) {
+  popupCenter($(this).attr("href"), $(this).attr("data-width"), $(this).attr("data-height"), "authPopup");
+  e.stopPropagation(); return false;
+});
+
+</script>
