@@ -85,7 +85,7 @@
 		<% else %>
 		
 			<%= content_tag(:li, link_to(label_name(:howitworks), how_it_works_path)) %>
-			<%= content_tag(:li, link_to(label_name(:login), login_path)) %>
+			<%#= content_tag(:li, link_to(label_name(:login), login_path)) %>
 			<%= content_tag(:li, link_to(label_name(:signup), signup_path)) if DISPLAY_REGISTER %>
 		
 		<% end -%>

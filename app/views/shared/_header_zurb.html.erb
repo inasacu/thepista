@@ -57,7 +57,7 @@
 
 			<% else %>
 			<%= link_to(label_name(:howitworks), how_it_works_path, :class => the_login) %>
-			<%= link_to(label_name(:login), login_path, :class => the_login) %>
+			<%#= link_to(label_name(:login), login_path, :class => the_login) %>
 			<%= link_to(label_name(:signup), signup_path, :class => the_signup) if DISPLAY_REGISTER %>
 			<% end -%>
 

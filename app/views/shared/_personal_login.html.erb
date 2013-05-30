@@ -1,3 +1,5 @@
+<% unless IGNORE_HOME.include?(get_controller_action) %>
+
 <style type="text/css">
 
 .hide-text{
@@ -98,15 +100,11 @@
 .login-provider-a.mozilla:hover{	background-color:#666; color:#fff}
 
 </style>
+	
 
-<% unless IGNORE_HOME.include?(get_controller_action) %>	
-
-	<%= is_mobile_browser ? "" : "<br><br>".html_safe %>
-	<%= content_tag :h3, "#{label_name(:login_provider_initial_session)}".html_safe, :class => "subheader" %>
-	<hr/>
-
-<% end %>
-
+<%= is_mobile_browser ? "" : "<br><br>".html_safe %>
+<%= content_tag :h3, "#{label_name(:login_provider_initial_session)}".html_safe, :class => "subheader" %>
+<hr/>
 
 
 
@@ -214,5 +212,8 @@
 
 </div>
 </div>
+
+<% end %>
+
 
 
