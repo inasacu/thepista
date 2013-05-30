@@ -16,7 +16,7 @@
 	end
 	
 	is_customer_visible =  Rails.env.development? 
-	is_inicio_visible = !Rails.env.development?
+	# is_inicio_visible = !Rails.env.development?
 %>
 
 
@@ -36,7 +36,7 @@
 
 		<strong class="right">
 
-			<%= link_to(label_name(:home), root_url, :class => the_home) if is_inicio_visible %>	
+			<%= link_to(label_name(:home), root_url, :class => the_home) %>	
 
 			<% if current_user %>
 			<%= link_to(label_name(:groups), groups_url, :class => the_group) %>	
