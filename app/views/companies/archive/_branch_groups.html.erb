@@ -1,0 +1,38 @@
+<%
+	has_items = (object_counter(branch.groups) > 0)
+%>
+
+<% if has_items %>
+	
+	<% branch.groups.each do |group| -%>	
+
+		<div class="six columns">
+
+			<div class="row">
+
+				<div class="twelve columns">
+					<%= set_content_tag_safe(:td, item_name_link(group)) %>
+				</div>
+
+			</div>
+
+		</div>	
+
+	<% end %>
+
+<% else %>		
+
+		<div class="six columns">
+
+			<div class="row">
+				<div class="twelve columns">
+					<%= set_content_tag_safe(:td, "&nbsp;") %>
+				</div>
+			</div>
+
+		</div>	
+
+
+<% end %>
+
+

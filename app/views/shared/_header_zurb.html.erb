@@ -1,6 +1,7 @@
 <% 
 	has_group, the_cup, the_challenge, the_schedule, the_group, the_users, the_user, the_petition, the_home, the_login, the_signup, the_venue, the_message, the_controller_action , the_controller = get_header_navigation
 	is_cup_visible = !is_mobile_browser
+	is_cup_visible = Rails.env.development? ? false : is_cup_visible
 	
 	# mobile options
 	div_row = "<div class='row'>".html_safe
@@ -13,6 +14,9 @@
 	if current_user
 		is_enchufado_visible =  current_user.id == 2001 ? true : is_enchufado_visible
 	end
+	
+	is_customer_visible =  Rails.env.development? 
+	is_inicio_visible = !Rails.env.development?
 %>
 
 
@@ -32,16 +36,20 @@
 
 		<strong class="right">
 
-			<%= link_to(label_name(:home), root_url, :class => the_home) %>	
+			<%= link_to(label_name(:home), root_url, :class => the_home) if is_inicio_visible %>	
 
 			<% if current_user %>
 			<%= link_to(label_name(:groups), groups_url, :class => the_group) %>	
 			<%= link_to(label_name(:schedules), schedules_url, :class => the_schedule) if has_group %>
 			
-			<%= link_to(label_name(:enchufados), enchufados_url) if is_enchufado_visible %>
+			
+			<%= link_to("* #{label_name(:customers)}*", customers_url) if is_customer_visible %>
+			<%= link_to("*#{label_name(:surveys)}*", surveys_url) if is_customer_visible %>
+			
+			<%= link_to("[#{label_name(:enchufados)}]", enchufados_url) if is_enchufado_visible %>
 
 			<%= link_to(label_name(:reservations), venues_url, :class => the_venue) unless is_mobile_browser %>	
-			<%= link_to(label_name(:cups), cups_url, :class => the_cup) if !is_mobile_browser and is_cup_visible %>
+			<%= link_to(label_name(:cups), cups_url, :class => the_cup) if is_cup_visible %>
 
 			<%= link_to(label_name(:messages), messages_url, :class => the_message) %>
 			<%= user_link(current_user.name, current_user, :class => the_user) %>

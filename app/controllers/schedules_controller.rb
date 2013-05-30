@@ -182,7 +182,7 @@ class SchedulesController < ApplicationController
 			return
 		end
 
-		if @schedule.save 
+		if @schedule.save and @schedule.create_schedule_roles(current_user)
 			@schedule.create_schedule_details
 			Schedule.delay.send_created
 

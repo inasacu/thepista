@@ -30,7 +30,7 @@ class GamesController < ApplicationController
 	def new
 		@game = Game.new
 
-		unless current_user.is_manager_of?(@cup)
+		unless is_current_manager_of(@cup)
 			warning_unauthorized
 			redirect_back_or_default('/index')
 			return
@@ -126,7 +126,7 @@ class GamesController < ApplicationController
 
 	def set_the_game_jornada
 
-		unless current_user.is_manager_of?(@cup)
+		unless is_current_manager_of(@cup)
 			warning_unauthorized
 			redirect_back_or_default('/index')
 			return

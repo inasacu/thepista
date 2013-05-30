@@ -1,6 +1,13 @@
 <% 
 	the_controller = item.class.to_s.downcase 
 	is_edit = is_action('edit') 
+	
+	case the_controller
+	when 'company'
+		the_controller = 'companie'
+	when 'branch'
+		the_controller = 'branche'
+	end
 %>
 
 <div class="row">

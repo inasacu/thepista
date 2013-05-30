@@ -1,0 +1,31 @@
+<%= render 'utilities/calendar_script' %>
+
+<%
+    the_label = label_name(:branches)
+	content_for(:title, the_label)
+
+	the_new_label = "#{the_label} (#{item_name_link(@branch)})"
+	left_label = ""
+	right_label = "#{item_name_link(@group)}<br/>#{nice_day_time_wo_year_exact(Time.zone.now)}".html_safe
+%>
+
+
+<div class="row">
+	<div class="twelve columns">
+		<table>
+			<tr>
+
+			<%	@branch.groups.each do |group| %>			
+				<td><%= link_to(group.name, branches_path(:id => group), set_tab_navigation_active('branch_index')) %></td>
+			<% end %>								
+
+			</tr>
+		</table>
+	</div>
+</div>
+
+<hr />
+<%= content_tag :h6, right_label, :class => "subheader" %>
+<hr />
+
+<%= render 'branches/calendar_zurb' %>

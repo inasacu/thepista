@@ -227,3 +227,6 @@ CONTACT_FEEDBACK = 'feedback@haypista.com'
 LANGUAGES = ['es', 'en']
 
 DEFAULT_AMAZON_S3_IMAGES_URL = "http://s3.amazonaws.com/thepista_produccion/the_images/"
+
+DEFAULT_GROUP_USERS = [1, 2, 3]
+

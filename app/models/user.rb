@@ -249,7 +249,7 @@ class User < ActiveRecord::Base
 							  :joins => "LEFT JOIN matches on matches.user_id = users.id 
 							             LEFT JOIN types on types.id = matches.type_id
 													 LEFT JOIN groups_users on groups_users.user_id = users.id", 
-                :conditions => ["users.archive = false and matches.schedule_id = ? and groups_users.group_id = ?", schedule, schedule.group], 
+                :conditions => ["users.archive = false and matches.schedule_id = ? and groups_users.group_id = ? and users.id not in (?)", schedule, schedule.group, DEFAULT_GROUP_USERS], 
 								:order => "matches.type_id, users.name")
     end
 

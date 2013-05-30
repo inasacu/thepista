@@ -74,6 +74,29 @@ es:
      blogs_option:  Opciones 
      body: Contenido 
      body_description:  Contenido  
+     branch:   Sucursal
+     branch_options:  Opciones
+     branches:   Sucursales
+     branches_create:  "Pon una Sucursal"
+     branchs_create:  "Pon una Sucursal"
+     branches_destroy:  Borra la Sucursal
+     branches_edit:  Cambia la Sucursal
+     branches_index:   Sucursales
+     branches_index_option: Opciones 
+     branches_invitations_create:  Invita a un amigo a la sucursal
+     branches_join:  Unete a la sucursal
+     branches_list:  Resto de sucursales
+     branches_new:  Nueva sucursal
+     branches_new_option: Opciones 
+     branches_no:  Ninguna sucursal para mostrar
+     branches_none:  Ninguna sucursal.
+     branches_options_without: "¿Qué opciones tienes ya que no tienes una sucursal?"
+     branches_options_without: "Parece que no tienes una sucursal, puedes hacer lo siguiente:"
+     branches_option:  Opciones 
+     branches_search: Busqueda de sucursales
+     branches_search_to_join: Puedes buscar una sucursal a quien unierte. 
+     branches_show:  Mostrar sucursal
+     branches_update: Cambia la Sucursal
      by: por     
      calendar_language: es    
      can_create_schedule: Añadir un evento   
@@ -182,6 +205,33 @@ es:
      comment_saved: Comentarios guardados!!!  
      company:  Empresa 
      company_description: Nombre de empresa
+     companies:   Empresa
+     company_options:  Opciones
+     company_stage_set:  Actualiza al empresa
+     company_stage_set_full:  Actualiza el branches
+     companies:   Empresas
+     companies_create:  "¡Hazte una empresa!"
+     companys_create:  "¡Hazte una empresa!"
+     companies_destroy:  Borra la empresa
+     companies_edit:  Cambia la empresa
+     companies_index:   Empresa
+     companies_index_option: Opciones 
+     companies_invitations_create:  Invita a un amigo al empresa
+     companies_join:  Unete a la empresa
+     companies_list:  Resto de empresas
+     companies_new:  Nueva empresa
+     companies_new_option: Opciones 
+     companies_no:  Ninguna empresa para mostrar
+     companys_no:  Ninguna empresa para mostrar
+     companies_none:  Ninguna empresa.
+     companys_none:  Ninguna empresa.
+     companies_options_without: "¿Qué opciones tienes ya que no tienes una empresa?"
+     companies_options_without: "Parece que no tienes una empresa, puedes hacer lo siguiente:"
+     companies_option:  Opciones 
+     companies_search: Busqueda de companies
+     companies_search_to_join: Puedes buscar una empresa a quien unierte. 
+     companies_show:  Mostrar empresa
+     companies_update: Cambia la empresa
      complete:  completo
      connect:  Conectar
      connect_to_your_linkedin:  Conecta tu cuenta de LinkedIn
@@ -284,6 +334,21 @@ es:
      current_events: Eventos
      current_schedule: Evento
      current_schedules: Eventos
+     customer:  Cliente
+     customers:  Clientes
+     customer_description:  Detalles del cliente
+     customer_delete: Borra este cliente
+     customer_deleted: Clientes borrados
+     customer_successful_create: Los clientes han sido creatos.
+     customers_concept_description:  Concepto del cliente
+     customers_destroy:  Borra el cliente
+     customers_edit:  Actualiza el cliente
+     customers_index:  Clientes
+     customers_new:  Nuevo cliente
+     customers_no:  Ningun cliente para mostrar
+     customers_option:  Opciones
+     customer_options: Opciones
+     customers_create:  Nuevo Cliente
      dates:  Fechas  
      days_left:  Faltan
      deadline_at:  Fecha de cierre de inscripción 
@@ -829,6 +894,7 @@ es:
      home_group: Equipo       
      home_stage_name:  Grupo
      home_ranking:  Ranking
+     hour:  Hora
      how_much_better:  "¿Cuánto mayor?"
      icon: Icono
      icon_name: Nombre del icono
@@ -1182,7 +1248,7 @@ es:
      password_request_reset:  "Este e-mail es la respuesta a su solicitud para restablecer su contraseña."
      password_request_ignore:  "Si no ha realizado esta solicitud, simplemente ignore este mensaje."
      password_request_made:  "En caso contrario haga clic en el siguiente enlace:"           
-     request_url_does_not_work:  "Si el enlace no funciona intenta copiarlo y pegarlo en tu navegador."
+     request_url_does_not_work:  "Si la Sucursal no funciona intenta copiarlo y pegarlo en tu navegador."
      request_url_issue:   "Si el probrebla persiste, contacta con nosotros."     
      passed_to:  Ha pasado a 
      payed:  Tasa pagada  
@@ -1514,25 +1580,25 @@ es:
      subplug:   Enlace
      subplug_options:  Opciones
      subplugs:   Enlaze
-     subplugs_create:  "Pon un Enlace" 
-     subplugs_destroy:  Borra el enlace
-     subplugs_edit:  Cambia el enlace
-     subplugs_index:   Enlaces
+     subplugs_create:  "Pon una Sucursal" 
+     subplugs_destroy:  Borra la Sucursal
+     subplugs_edit:  Cambia la Sucursal
+     subplugs_index:   Sucursales
      subplugs_index_option: Opciones 
-     subplugs_invitations_create:  Invita a un amigo al enlace
-     subplugs_join:  Unete al enlace
+     subplugs_invitations_create:  Invita a un amigo a la sucursal
+     subplugs_join:  Unete a la sucursal
      subplugs_list:  Resto de enlace
-     subplugs_new:  Nuevo enlace
+     subplugs_new:  Nueva sucursal
      subplugs_new_option: Opciones 
-     subplugs_no:  Ningun enlace para mostrar
-     subplugs_none:  Ningun enlace.
-     subplugs_options_without: "¿Qué opciones tienes ya que no tienes un enlace?"
-     subplugs_options_without: "Parece que no tienes un enlace, puedes hacer lo siguiente:"
+     subplugs_no:  Ninguna sucursal para mostrar
+     subplugs_none:  Ninguna sucursal.
+     subplugs_options_without: "¿Qué opciones tienes ya que no tienes una sucursal?"
+     subplugs_options_without: "Parece que no tienes una sucursal, puedes hacer lo siguiente:"
      subplugs_option:  Opciones 
      subplugs_search: Busqueda de enlaces
-     subplugs_search_to_join: Puedes buscar un enlace a quien unierte. 
+     subplugs_search_to_join: Puedes buscar una sucursal a quien unierte. 
      subplugs_show:  Mostrar enlace
-     subplugs_update: Cambia el enlace
+     subplugs_update: Cambia la Sucursal
      escuadra: Equipo
      escuadras: Equipos
      escuadras_add:  Equipos
@@ -1595,7 +1661,32 @@ es:
      successful_update:  Datos actualizados.
      successful_destroy:  Datos borrados.
      Sunday: Domingo	 
-     surface: Superficie   
+     surface: Superficie  
+     survey:  Encuesta
+     surveys:  Encuestas
+     survey_description:  Detalles de la encuenta
+     survey_delete: Borra este encuesta
+     survey_deleted: Encuestas borrados
+     survey_successful_create: Las encuentas han sido creatas.
+     surveys_concept_description:  Concepto de la encuenta
+     surveys_destroy:  Borra al encuenta
+     surveys_edit:  Actualiza la encuesta
+     surveys_index:  Encuestas
+     surveys_new:  Nueva Encuesta
+     surveys_no:  Ninguna encuesta para mostrar
+     surveys_option:  Opciones
+     survey_options: Opciones
+     surveys_create:  Nueva Encuesta 
+     surveys_ubicacion:  Ubicacion
+     surveys_superficie:  Superficie
+     surveys_expositor:  Expositor
+     surveys_duracion:  duracion
+     surveys_horario:  Horario
+     surveys_cursos:  Cursos
+     surveys_demonstracion:  Demonstracion
+     surveys_consurso:  Consurso
+     surveys_organizacion:  Organizacion
+     surveys_expectativa:  Expectativa
      t_zone: Horario   
      table_id: Codigo de tabla   
      table_type: Tipo de tabla  
@@ -1615,13 +1706,14 @@ es:
      Therapist: Terapeuta   
      thread_message: Mensaje(s)   
      Thursday: Jueves   
-     timeframe:  Cambio de turno
+     timeframe:  Duración 
      timeframe_description:  Cambio de turno
      timetable:  Horario
      timetables:  Horarios
      timetables_copy:  Copia un horario
      timetables_create:  Nuevo horario
      timetables_edit:  Modifica el horario
+     timetables_new:  Nuevo horario
      timetable_description:  Los horarios se utilizan para poner los horarios diarios de cada centro
      time_zone:  Horario
      time_zone_description:  Horario
@@ -1727,7 +1819,7 @@ es:
      updated_a_user:  ha actualizado el perfil 
      upload:  Subir   
      url: Enlace
-     urls: Enlaces
+     urls: Sucursales
      url_group: Vincular a Equipo
      use_at_discretion: Nueva opción para entrar.  Si tienes una cuenta entra con tu cuenta original.
      use_openid: O entra con OpenID 
@@ -1855,6 +1947,8 @@ es:
      login_provider_modo_linkedin:  "Linkedin es la mayor comunidad orientada a negocios y contactos laborales. En ella no encontrarás a tu ex-pareja, aunque quizás sí a tu nuevo jefe."
      login_provider_modo_windows: "Las cuentas de Microsoft Accounts son las que mueven los sitios web de Microsoft como Hotmail."
      login_provider_modo_mozilla: "Mozilla! La mejor manera de acceder. "
+     login_provider_modo_mozilla_simplificado: "Acceso simplificado, construido por una organización no lucrativa."
+     login_provider_modo_learn_more: "Más información&rarr;"
      login_provider_modo_twitter: "Twitter es donde todo ocurre en 140 caracteres."
      login_provider_modo_yahoo: "Yahoo! tiene su propia ración de aplicaciones, desde Flickr a Yahoo! Mail."
      login_provider_remember_me_2_weeks: "Recordarme durante dos semanas"

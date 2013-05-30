@@ -8,6 +8,7 @@
 <head>
 
 	<meta charset="utf-8" />
+	<!-- <meta http-equiv="X-UA-Compatible" content="IE=Edge">  -->
 	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 	<meta name="Generator" content="HayPista" />
 	<meta name="Origen" content="HayPista" />
@@ -22,11 +23,6 @@
 	<meta name="resource-type" content="Document" />
 	<meta name="distribution" content="all" />
 	<meta name="robots" content="all" />
-	<meta name="revisit-after" content="7 days" />
-	<meta name="google-site-verification" content="qyTyrJH8o08Ur15mr5hUYjVNyWcbfQatF3yar3Ry2ws" />
-	<meta name="google-site-verification" content="OJzCfMpdsascUFtDoxXJpZGEIsjXjKG1691P1FC5pIc" />
-	<meta name="google-site-verification" content="1g6w8-HZAtmmzxHohkPwZi4-NVowzOmABRRVCFF80M0" />
-	<meta name="google-site-verification" content="c0qcBwkk5nn7FRL7Rj8pNK4B-19obYZY684XdXsRkeI" />
 
 	<title><%= page_title %></title>
 
@@ -37,7 +33,7 @@
 	<%= favicon_link_tag %>
   
 
-	<%= stylesheet_link_tag    "application", :media => "all" %>
+	<%= stylesheet_link_tag  "application", :media => "all" %>
 	<%= javascript_include_tag "application" %>
 	<%= csrf_meta_tags %>
 
@@ -49,6 +45,7 @@
 	
 		
 	<!-- Included CSS Files -->
+	<%= stylesheet_link_tag 'docs' if Rails.env.development? and !is_mobile_browser %>
 	<%= stylesheet_link_tag 'zurb/grid' %>
 	<%= stylesheet_link_tag 'zurb/forms' %>
 	<%= stylesheet_link_tag 'zurb/presentation' %>
@@ -68,7 +65,9 @@
 
 <body id="-page" class="">
 
-	<%= render 'shared/header_zurb' %> 
+	<%= render 'shared/header' if Rails.env.development? and !is_mobile_browser %>
+	<%= render 'shared/header_zurb' if is_mobile_browser  %>
+	<%#= render 'shared/header_zurb' %>
 
 	<div class="container">
 		

@@ -11,7 +11,8 @@ class MatchesController < ApplicationController
 	def edit
 		@match = Match.find(params[:id])
 		@schedule = @match.schedule
-		@matches = @schedule.the_roster
+  	# @matches = @schedule.the_roster
+  	@matches = @schedule.the_roster_wo_default_user
 
 		unless is_current_manager_of(@schedule.group)
 			warning_unauthorized
@@ -42,7 +43,9 @@ class MatchesController < ApplicationController
 			Match.save_matches(@match, params[:match][:match_attributes])
 			Match.update_match_details(@match, current_user)
 			Schedule.delay.send_after_scorecards 
-
+			
+			Match.set_default_user_to_ausente(@match)
+			
 			# controller_successful_update
 			flash[:notice] = I18n.t(:update_match_scorecard)
 			redirect_to :controller => 'schedules', :action => 'show', :id => @match.schedule

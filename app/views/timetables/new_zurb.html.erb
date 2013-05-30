@@ -1,7 +1,11 @@
 <% 
-	the_label = "#{control_action_label} #{label_name(:for)} #{item_name_link(@installation)}" 
+	the_label = "#{control_action_label} #{label_name(:for)} #{item_name_link(@installation)}".html_safe if @installation
+	the_label = "#{control_action_label} #{label_name(:for)} #{item_name_link(@group)}".html_safe if @group
 	@item = @timetable
 %>
+
+<%= content_tag :h6, the_label, :class => "subheader" %>
+<hr/>
 
 <%= render 'shared/new_edit_multipart_zurb', :item => @item %>
 

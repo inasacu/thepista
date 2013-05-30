@@ -96,7 +96,12 @@ class Reservation < ActiveRecord::Base
 
 	def self.get_reservation_first_to_last_month(first_day, last_day, installation)
 		find(:all, :conditions => ["installation_id = ? and reservations.archive = false and reservations.starts_at >= ? and 
-			reservations.ends_at <= ?", installation, first_day, last_day], :order => 'starts_at')
+																reservations.ends_at <= ?", installation, first_day, last_day], :order => 'starts_at')
+	end
+	
+	def self.get_reservation_item_first_to_last_month(first_day, last_day, item)
+		find(:all, :conditions => ["reservations.archive = false and reservations.starts_at >= ? and 
+																reservations.ends_at <= ? and reservations.item_id = ? and reservations.item_type = ?", first_day, last_day, item.id, item.class.to_s.downcase.chomp], :order => 'starts_at')
 	end
 		
   private

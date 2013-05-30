@@ -34,7 +34,7 @@ class SubplugsController < ApplicationController
 		@enchufado = Enchufado.find(@subplug.enchufado_id)
 
     if @subplug.save 
-      flash[:notice] = I18n.t(:successful_create)
+      successful_create
       redirect_to enchufados_url
     else
       render :action => 'new'
@@ -48,7 +48,7 @@ class SubplugsController < ApplicationController
 
   def update
     if @subplug.update_attributes(params[:subplug])  
-      flash[:success] = I18n.t(:successful_update)
+      controller_successful_update
       redirect_to @enchufado
     else
       render :action => 'edit'
@@ -57,7 +57,7 @@ class SubplugsController < ApplicationController
 
   private
   def has_manager_access
-    unless current_user.is_manager_of?(@enchufado)
+    unless is_current_manager_of(@enchufado)
       flash[:warning] = I18n.t(:unauthorized)
       redirect_back_or_default('/index')
       return

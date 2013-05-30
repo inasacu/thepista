@@ -287,8 +287,7 @@ class Scorecard < ActiveRecord::Base
   
   # Return true if the user and group nil
   def self.user_group_exists?(user, group)
-    find(:first, 
-    :conditions => ["user_id = ? and group_id = ? and archive = ?", user.id, group.id, false]).nil?
+    find(:first, :conditions => ["user_id = ? and group_id = ? and archive = ?", user.id, group.id, false]).nil?
   end
   
   def self.archive?

@@ -34,17 +34,20 @@
 <div class="ten columns">
 			
 		<%= render_show_detail_zurb(:name, item_name_link(@group)) %>
-		<%= render_show_detail_zurb(:second_team, h(@group.second_team)) %>
-		<%= render_show_detail_zurb(:manager, item_list(@group.all_the_managers)) %>
+		<%= render_show_detail_zurb(:company, item_name_link(@group.get_company)) if @group.is_branch? %>
+		<%= render_show_detail_zurb(:branch, link_to(@group.get_branch.name, branch_url(:id => @group))) if @group.is_branch? %>
+		
+		<%= render_show_detail_zurb(:second_team, h(@group.second_team)) unless @group.is_branch? %>
+		<%= render_show_detail_zurb(:manager, item_list(@group.all_the_managers)) unless @group.is_branch? %>
 
 		<%  if is_venue_maximo %>
-		<%= render_show_detail_zurb(:venue, the_venue_link) %>
+		<%= render_show_detail_zurb(:venue, the_venue_link) unless @group.is_branch? %>
 		<% else %>
-		<%= render_show_detail_zurb(:marker, @group.marker.name) %>
+		<%= render_show_detail_zurb(:marker, @group.marker.name) unless @group.is_branch? %>
 		<% end %>
 		
 		<%= render_show_detail_zurb(:sports, @group.sport.name) %>
-		<%= render_show_detail_zurb(:scorecard, link_to(label_name(:scorecard), scorecard_path(:id => @group))) %>
+		<%= render_show_detail_zurb(:scorecard, link_to(label_name(:scorecard), scorecard_path(:id => @group))) unless @group.is_branch? %>
 		<%= render_show_detail_zurb(:game_day, nice_day_time(@group.schedules.first.starts_at)) unless @group.schedules.blank? %>
 		<%= render_show_detail_zurb(:city, @group.marker.city) %>
 
@@ -53,13 +56,30 @@
 
 		<%= render_show_detail_zurb(:users, t(:has_group_users, :count => @group.users.count)) %>
 		<%= render_show_detail_zurb(:blank, t(:has_group_active_users, 
-								:count => object_counter(Scorecard.get_active_players(@group)))) %>
+								:count => object_counter(Scorecard.get_active_players(@group)))) unless @group.is_branch? %>
 		
 		<%= render_show_detail_zurb(:schedules, t(:has_group_schedules, :count => @group.schedules.count)) unless @group.schedules.blank? %>
-		<%= render_show_detail_zurb(:points_for_win_all, "#{@group.points_for_win.to_i} / #{@group.points_for_draw.to_i} / #{@group.points_for_lose.to_i}") %>		
-		<%= render_show_detail_zurb(:player_limit, @group.player_limit) %>
-		<%= render_show_detail_zurb(:conditions, sanitize(@group.conditions)) %>	
-		<%= render_show_detail_zurb(:users_available, render('/shared/show_images_zurb', :collection => @group.users)) if is_member %>	
+		<%= render_show_detail_zurb(:points_for_win_all, "#{@group.points_for_win.to_i} / #{@group.points_for_draw.to_i} / #{@group.points_for_lose.to_i}") unless @group.is_branch? %>
+		<%= render_show_detail_zurb(:player_limit, @group.player_limit) unless @group.is_branch? %>
+		<%= render_show_detail_zurb(:conditions, sanitize(@group.conditions)) unless @group.is_branch? %>
+		<%= render_show_detail_zurb(:users_available, render('/shared/show_images_zurb', :collection => @group.users)) if is_member and !@group.is_branch? %>
+		
+		
+		<% if @group.is_branch? %> 
+			
+			<br/>
+			<hr/>
+			<%= content_tag :h6, "#{label_name(:timetables)}".html_safe, :class => "subheader" %> 
+			<% Timetable.item_timetable(@group).each do |timetable| %>
+				<hr/>
+				
+				<%= render_show_detail_zurb(:type, timetable.type.name) %>
+				<%= render_show_detail_zurb(:starts_at, timetable.starts_at) %>
+				<%= render_show_detail_zurb(:ends_at, timetable.ends_at) %>
+				<%= render_show_detail_zurb(:timeframe, "#{timetable.timeframe} #{label_name(:hour)}") %>
+					
+			<% end %>
+		<% end %>
 		
 </div>
 		

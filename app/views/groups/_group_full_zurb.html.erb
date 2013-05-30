@@ -10,6 +10,9 @@
 	the_manager_label = ""
 	the_confirmation = ""
 	the_scorecard_players_count = ""
+	the_company = group.get_company
+	
+	has_schedule = Schedule.has_schedule?(group)
 	
 	
 	if has_group
@@ -26,8 +29,12 @@
 	the_group_sport = "#{item_name_link(group)} <br/> 
 						#{content_tag(:span, group.marker.city, :class =>'date')} <br/> 
 						#{content_tag(:span, group.sport.name)}"
+						
 	the_manager_city = "#{item_list(group.all_the_managers)} <br/> #{I18n.t(:has_group_users, :count => object_counter(group.users))}"
-	the_scorecard_players_count = "#{link_to(label_name(:scorecard), scorecard_path(:id => group))}" if is_group_member
+	the_manager_city = "#{item_name_link(the_company)}"  if group.is_branch?
+	
+	the_scorecard_players_count = "#{link_to(label_name(:scorecard), scorecard_path(:id => group))}" if is_group_member and has_schedule
+	
 	the_active_players = "<br/>#{I18n.t(:has_group_active_users, 
 										:count => object_counter(Scorecard.get_active_players(group)))}".html_safe
 	
@@ -35,8 +42,7 @@
 	
 	show_join_option = (!is_member_group and !has_current_item_petition(group))
 -%>
-
-
+      
  <tr>  
 	<%= set_content_tag_safe(:td, item_image_link_small(group)) %>
 	<%= set_content_tag_safe(:td, the_group_sport) %>

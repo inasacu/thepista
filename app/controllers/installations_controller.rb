@@ -3,7 +3,7 @@ class InstallationsController < ApplicationController
 
   before_filter   :get_venue,           :only => [:new, :index]
   before_filter   :get_installation,    :only => [:show, :edit, :update]
-  before_filter   :has_manager_access,  :only => [:edit, :update]
+  before_filter   :has_manager_access,  :only => [:new, :create, :edit, :update]
 
   def index  
     store_location
@@ -62,7 +62,7 @@ class InstallationsController < ApplicationController
 		@installation.marker_id = @venue.marker_id
 
     if @installation.save 
-      flash[:notice] = I18n.t(:successful_create)
+      successful_create
       redirect_to @venue
     else
       render :action => 'new'
@@ -76,7 +76,7 @@ class InstallationsController < ApplicationController
 
   def update
     if @installation.update_attributes(params[:installation])  
-      flash[:success] = I18n.t(:successful_update)
+      controller_successful_update
       redirect_to @venue
     else
       render :action => 'edit'
@@ -87,7 +87,7 @@ class InstallationsController < ApplicationController
   #   @installation = Installation.find(params[:id])
   #   @venue = @installation.venue
   # 
-  #   unless current_user.is_manager_of?(@venue)
+  #   unless is_current_manager_of(@venue)
   #     flash[:warning] = I18n.t(:unauthorized)
   #     redirect_back_or_default('/index')
   #     return
@@ -100,7 +100,7 @@ class InstallationsController < ApplicationController
 
   private
   def has_manager_access
-    unless current_user.is_manager_of?(@venue)
+    unless is_current_manager_of(@venue)
       flash[:warning] = I18n.t(:unauthorized)
       redirect_back_or_default('/index')
       return

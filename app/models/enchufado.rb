@@ -63,6 +63,11 @@ class Enchufado < ActiveRecord::Base
 	# related to gem acl9
 	acts_as_authorization_subject :association_name => :roles, :join_table_name => :roles_enchufados
 
+  # method section
+	def self.get_site_enchufados(the_params)
+		self.where("enchufados.archive = false").page(the_params).order('enchufados.created_at DESC')
+	end
+	
 	def name_slug
 		return Base64.urlsafe_encode64("#{name} #{id}")	
 	end

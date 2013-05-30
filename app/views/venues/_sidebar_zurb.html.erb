@@ -26,13 +26,9 @@
 
 	<% if has_venue %>
 
-
-	
 	<%= set_image_and_link(link_to(label_name(:installations_create), new_installation_path(:id => @venue)), 'installation') %>
 	<%= "<hr>".html_safe if @venue.installations.count > 0 %>
 
-
-	
 		<% @venue.installations.each do |installation| %>
 
 			<%= option_image_link('installation') %>&nbsp;&nbsp;<%= link_to "#{the_label} - #{installation.name}", reservations_path(:id => installation) %><br>
@@ -40,7 +36,8 @@
 		<% end %>
 		
 		<hr/>
-		
+
+		<%= set_form_create_id_image_link(Timetable.new, :installation_id, @installation, :timetables_create) if is_venue_manager %>	
 		
 		<%= set_form_edit_image_link(@venue, :venues_edit) %>
 		

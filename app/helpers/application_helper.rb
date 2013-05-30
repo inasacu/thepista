@@ -655,6 +655,14 @@ module ApplicationHelper
 		item = Venue.new if item.class.to_s.downcase.chomp == 'reservation'
 
 		the_path = "#{item.class.to_s.downcase.chomp}s_path"
+		
+		case item.class.to_s.downcase.chomp
+		when 'company'
+			the_path = "companies_path"
+		when 'branch'
+			the_path = 'branches_path'
+		end
+		
 		link_to(I18n.t(:cancel), send(:"#{the_path}"))    
 	end
 

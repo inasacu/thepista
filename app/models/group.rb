@@ -117,7 +117,7 @@ class Group < ActiveRecord::Base
 		self.where("groups.archive = false").page(the_params).order('groups.created_at DESC')
 	end
 	
-	def self.get_subplug_groups(the_params)
+	def self.get_branch_groups(the_params)
 		self.where("groups.archive = false and groups.item_type is null").page(the_params).order('groups.created_at DESC')
 	end
 	
@@ -200,6 +200,18 @@ class Group < ActiveRecord::Base
     return [7].include?(self.sport_id)
   end
 
+	def is_branch?
+		return (self.item_type == 'Branch')
+	end
+
+	def get_branch
+		self.item if self.is_branch?
+	end
+	
+	def get_company
+		self.item.company if self.is_branch?
+	end
+
   def is_group_member_of?(item)
     self.has_role?('member', item)
   end	
@@ -237,14 +249,23 @@ class Group < ActiveRecord::Base
     return games_played
   end
 
-  def create_group_details(user)
-    user.has_role!(:manager, self)
-    user.has_role!(:creator, self)
-    user.has_role!(:member,  self)
+	def create_group_roles(user)
+		user.has_role!(:manager, self)
+		user.has_role!(:creator, self)
+		user.has_role!(:member,  self)
 
-    Scorecard.create_user_scorecard(user, self)    
-    GroupsUsers.join_team(user, self)
-  end
+		Scorecard.create_user_scorecard(user, self)    
+		GroupsUsers.join_team(user, self)
+
+		# add all default users to team
+		all_default_users = User.where('id in (?)', DEFAULT_GROUP_USERS)
+		all_default_users.each do |user|
+			user.has_role!(:member,  self)
+			Scorecard.create_user_scorecard(user, self)    
+			GroupsUsers.join_team(user, self)
+		end
+
+	end
 
   def format_description
     self.description.gsub!(/\r?\n/, "<br>") unless self.description.nil?
@@ -258,10 +279,6 @@ class Group < ActiveRecord::Base
   def create_group_marker
     GroupsMarkers.join_marker(self, self.marker)
   end
-
-  # def create_group_blog_details
-  #   @blog = Blog.create_item_blog(self)
-  # end
 
   def create_group_scorecard   
     Scorecard.create_group_scorecard(self)

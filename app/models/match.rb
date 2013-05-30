@@ -59,7 +59,8 @@ class Match < ActiveRecord::Base
     find(:all, :select => "distinct matches.id, matches.user_id, matches.schedule_id, matches.type_id, types.name as type_name, matches.status_at as created_at", 
          :joins => "left join groups_users on groups_users.user_id = matches.user_id left join types on types.id = matches.type_id left join schedules on schedules.id = matches.schedule_id",    
          :conditions => ["schedules.played = false and groups_users.group_id in (?) and 
-              age(matches.status_at, matches.created_at) > '00:00:00' and matches.status_at != matches.created_at and matches.status_at >= ? and schedules.starts_at >= ?", user.groups, YESTERDAY, YESTERDAY]).each do |item| 
+              age(matches.status_at, matches.created_at) > '00:00:00' and matches.status_at != matches.created_at and 
+							matches.status_at >= ? and schedules.starts_at >= ? and matches.user_id not in (?)", user.groups, YESTERDAY, YESTERDAY, DEFAULT_GROUP_USERS]).each do |item| 
       items << item
     end
     return items 
@@ -72,12 +73,12 @@ class Match < ActiveRecord::Base
          :conditions => ["schedules.archive = false and matches.type_id = 3 and schedules.played = true and groups_users.group_id in (?) and 
               age(matches.status_at, matches.created_at) > '00:00:00' and 
               matches.status_at != matches.created_at and matches.status_at >= schedules.starts_at - INTERVAL '1 days' 
-              and matches.status_at >= ?", user.groups, YESTERDAY]).each do |item| 
+              and matches.status_at >= ? and matches.user_id not in (?)", user.groups, YESTERDAY, DEFAULT_GROUP_USERS]).each do |item| 
       items << item
     end
     return items 
   end
-  
+	
   def self.last_games_played(user)
     find(:all, :select => "schedules.group_id",
          :joins => "left join schedules on schedules.id = matches.schedule_id",
@@ -254,6 +255,15 @@ class Match < ActiveRecord::Base
     end
   end
   
+	def self.set_default_user_to_ausente(match)
+	    the_matches = Match.where('schedule_id = ? and user_id in (?) and type_id != 3', match.schedule, DEFAULT_GROUP_USERS)
+	    the_matches.each do |the_match|
+	        the_match.status_at = the_match.schedule.starts_at - 2.days
+					the_match.type_id = 3
+	        the_match.save
+	    end
+	end
+	
   def self.set_default_skill(group)
     the_initial_standard_deviation = (InitialMean / K_FACTOR).to_f
     

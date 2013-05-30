@@ -5,12 +5,10 @@ class GroupsController < ApplicationController
 	before_filter :has_manager_access, :only => [:edit, :update, :destroy, :set_automatic_petition]
 
 	def index
-		# @groups = Group.where("groups.archive = false").page(params[:page]).order('groups.created_at DESC')
-
 		if Rails.env.development?
 			@groups = Group.get_site_groups(params[:page]) 
 		else
-			@groups = Group.get_subplug_groups(params[:page])
+			@groups = Group.get_branch_groups(params[:page])
 		end
 		render @the_template
 	end
@@ -31,6 +29,11 @@ class GroupsController < ApplicationController
 
 	def show
 		store_location 
+		
+		if @group.item_type == 'Branch'
+			@branch = Branch.find(@group.item_id)
+		end
+		
 		render @the_template
 	end
 
@@ -39,11 +42,11 @@ class GroupsController < ApplicationController
 		@group.sport_id = 1
 		@sports = Sport.find(:all)
 
-		if params[:subplug_id]  
-			@subplug = Subplug.find(params[:subplug_id])
-			@group.item_id = @subplug.id
-			@group.item_type = 'Subplug'
-			@group.name = @subplug.name
+		if params[:branch_id]  
+			@branch = Branch.find(params[:branch_id])
+			@group.item_id = @branch.id
+			@group.item_type = 'Branch'
+			@group.name = @branch.name
 		end
 
 	end
@@ -58,11 +61,11 @@ class GroupsController < ApplicationController
 
 		@user = current_user
 
-		if @group.save and @group.create_group_details(current_user)
+		if @group.save and @group.create_group_roles(current_user)
 			successful_create
 			
-			if @group.item_type == 'Subplug'
-					redirect_to enchufados_url
+			if @group.item_type == 'Branch'
+					redirect_to companies_url
 					return
 			end
 			

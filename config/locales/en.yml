@@ -74,6 +74,27 @@ en:
      blogs_option:  Options
      body: Body 
      body_description:  Content  
+     branch:  Branch
+     branch_options:  Options
+     branches:   Branches
+     branches_create:  Add new Branch 
+     branches_destroy:  Remove Branch
+     branches_edit:  Edit Branch
+     branches_index:   Branches
+     branches_index_option: Options
+     branches_invitations_create:  Invite a friend to the Branch
+     branches_join:  Join a Branch
+     branches_list:  Rest of the Branches
+     branches_new:  New Branch
+     branches_new_option: Options
+     branches_no:  No Branches to diplay
+     branches_none:  No Branches.
+     branches_options_without: "What options do you have since you are not on a Branch?"
+     branches_option:  Options
+     branches_search: Search for Branches
+     branches_search_to_join: Search for a Branch to join. 
+     branches_show:  Show Branch
+     branches_update: Edit Branch
      by: by     
      calendar_language: en      
      can_create_schedule: Create an Event   
@@ -180,6 +201,32 @@ en:
      comment_saved: Comments save!!!
      company:  Company
      company_description: Name of Company  
+     company:  Company
+     company_options:  Options
+     company_stage_set:  Group Stage Update
+     company_stage_set_full:  Group Stage Update
+     companies:   Companies
+     companies_create:  New Company
+     companys_create:  New Company
+     companies_destroy:  Remove Company
+     companies_edit:  Edit Company
+     companies_index:   Companies
+     companies_index_option: Options
+     companies_invitations_create:  Invite a friend to the Company
+     companies_join:  Join an Company
+     companies_list:  Rest of the Companies
+     companies_new:  New Company
+     companies_new_option: Options
+     companies_no:  No Company to display
+     companys_no:  No Company to display
+     companies_none:  No Companies.
+     companys_none:  No Companies.
+     companies_options_without: "What options do you have since you are not on an company?"
+     companies_option:  Options
+     companies_search: Search for Companies
+     companies_search_to_join: Search for an company to join. 
+     companies_show:  Show Company
+     companies_update: Edit Company
      complete:  complete 
      connect:  Connect
      connect_to_your_linkedin:  Connect your linkedIn Account
@@ -282,6 +329,21 @@ en:
      current_events: Events
      current_schedule: Event
      current_schedules: Events
+     customer:  Cliente
+     customers:  Clientes
+     customer_description:  Detalles del cliente
+     customer_delete: Borra este cliente
+     customer_deleted: Clientes borrados
+     customer_successful_create: Los clientes han sido creatos.
+     customers_concept_description:  Concepto del cliente
+     customers_destroy:  Borra el cliente
+     customers_edit:  Actualiza el cliente
+     customers_index:  Clientes
+     customers_new:  Nuevo cliente
+     customers_no:  Ningun cliente para mostrar
+     customers_option:  Opciones
+     customer_options: Opciones
+     customers_create:  Nuevo Cliente
      dates:  Dates  
      days_left:  Days Left
      deadline_at:  Subscription Deadline
@@ -402,11 +464,11 @@ en:
      edit_type: Edit    
      edit_user: Edit    
      edit_venue: Edit    
-     enchufado:  Enchufado
+     enchufado:  Company
      enchufado_options:  Options
      enchufado_stage_set:  Group Stage Update
      enchufado_stage_set_full:  Group Stage Update
-     enchufados:   Enchufados
+     enchufados:   Enchufado
      enchufados_create:  New Enchufado 
      enchufados_destroy:  Remove Enchufado
      enchufados_edit:  Edit Enchufado
@@ -417,12 +479,12 @@ en:
      enchufados_list:  Rest of the Enchufados
      enchufados_new:  New Enchufado
      enchufados_new_option: Options
-     enchufados_no:  No Enchufados to diplay
+     enchufados_no:  No Enchufado to display
      enchufados_none:  No Enchufados.
-     enchufados_options_without: "What options do you have since you are not on an enchufado?"
+     enchufados_options_without: "What options do you have since you are not on an Enchufado?"
      enchufados_option:  Options
      enchufados_search: Search for Enchufados
-     enchufados_search_to_join: Search for an enchufado to join. 
+     enchufados_search_to_join: Search for an Enchufado to join. 
      enchufados_show:  Show Enchufado
      enchufados_update: Edit Enchufado
      email: Email   
@@ -822,6 +884,7 @@ en:
      home_group: Home Team       
      home_stage_name:  Group
      home_ranking:  Ranking
+     hour:  Hour
      how_much_better:  "How much Better?"
      icon: Icon
      icon_name: Icon Name 
@@ -1501,27 +1564,6 @@ en:
      single_identity: allows you to have a global ID for many websites. You can get your OpenID URL   
      something_wrong: "Something went wrong, Sorry!"  
      something_wrong_explained: "Already registered this ruling. We'll Look as soon as possible."
-     subplug:  Link
-     subplug_options:  Options
-     subplugs:   Links
-     subplugs_create:  Add new Link 
-     subplugs_destroy:  Remove Link
-     subplugs_edit:  Edit Link
-     subplugs_index:   Links
-     subplugs_index_option: Options
-     subplugs_invitations_create:  Invite a friend to the Link
-     subplugs_join:  Join a Link
-     subplugs_list:  Rest of the Links
-     subplugs_new:  New Link
-     subplugs_new_option: Options
-     subplugs_no:  No Links to diplay
-     subplugs_none:  No Links.
-     subplugs_options_without: "What options do you have since you are not on a link?"
-     subplugs_option:  Options
-     subplugs_search: Search for Links
-     subplugs_search_to_join: Search for an link to join. 
-     subplugs_show:  Show Link
-     subplugs_update: Edit Link
      escuadra: Team
      escuadras: Teams
      escuadras_add:  Teams
@@ -1584,7 +1626,32 @@ en:
      successful_update:  Record updated.
      successful_destroy:  Record removed.
      Sunday: Sunday	 
-     surface: Surface        
+     surface: Surface 
+     survey:  Survey
+     surveys:  Surveys
+     survey_description:  Detalles de la survey
+     survey_delete: Borra este encuesta
+     survey_deleted: Surveys borrados
+     survey_successful_create: Las surveys han sido creatas.
+     surveys_concept_description:  Concepto de la survey
+     surveys_destroy:  Borra al survey
+     surveys_edit:  Actualiza la encuesta
+     surveys_index:  Surveys
+     surveys_new:  Nueva Survey
+     surveys_no:  Ninguna encuesta para mostrar
+     surveys_option:  Opciones
+     survey_options: Opciones
+     surveys_create:  Nueva Survey
+     surveys_ubicacion:  Ubicacion
+     surveys_superficie:  Superficie
+     surveys_expositor:  Expositor
+     surveys_duracion:  duracion
+     surveys_horario:  Horario
+     surveys_cursos:  Cursos
+     surveys_demonstracion:  Demonstracion
+     surveys_consurso:  Consurso
+     surveys_organizacion:  Organizacion
+     surveys_expectativa:  Expectativa       
      t_zone: Time Zone   
      table_id: Table ID   
      table_type: Table Type  
@@ -1611,6 +1678,7 @@ en:
      timetables_copy:  Copy Timetable
      timetables_create:  New Timetable
      timetables_edit:  Edit Timetable
+     timetables_new:  New Timetable
      timetable_description:  Timetables are used to set the specific dates and times a venue is open
      time_zone:  Time Zone
      time_zone_description:  Time Zone 
@@ -1844,6 +1912,8 @@ en:
      login_provider_modo_linkedin:  "Linkedin is the biggest community oriented to making business and job contacts. You will not find your ex-girlfriend there, but may find your new boss."
      login_provider_modo_windows: "Microsoft Accounts are used to power Microsoft websites like Hotmail."
      login_provider_modo_mozilla: "Mozilla! A better way to sign in. "
+     login_provider_modo_mozilla_simplificado: "Simplified sign-in, built by a non-profit."
+     login_provider_modo_learn_more: "Learn more&rarr;"
      login_provider_modo_twitter: "Twitter is where everything happens in 140 chars."
      login_provider_modo_yahoo: "Yahoo! has its own share of applications from Flickr to Yahoo! Mail. "
      login_provider_remember_me_2_weeks: "Remember me for two weeks"

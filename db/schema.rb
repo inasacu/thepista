@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130426183103) do
+ActiveRecord::Schema.define(:version => 20130521172705) do
 
   create_table "announcements", :force => true do |t|
     t.text     "message"
@@ -27,6 +27,31 @@ ActiveRecord::Schema.define(:version => 20130426183103) do
     t.string   "uid"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
+  end
+
+  create_table "branches", :force => true do |t|
+    t.string   "name"
+    t.integer  "company_id"
+    t.integer  "city_id",            :default => 1
+    t.integer  "venue_id"
+    t.integer  "service_id",         :default => 51
+    t.integer  "play_id",            :default => 61
+    t.datetime "starts_at"
+    t.datetime "ends_at"
+    t.float    "timeframe",          :default => 1.0
+    t.string   "url"
+    t.boolean  "public",             :default => true
+    t.string   "photo_file_name"
+    t.string   "photo_content_type"
+    t.integer  "photo_file_size"
+    t.datetime "photo_updated_at"
+    t.text     "description"
+    t.string   "api"
+    t.string   "secret"
+    t.string   "slug"
+    t.boolean  "archive",            :default => false
+    t.datetime "created_at",                            :null => false
+    t.datetime "updated_at",                            :null => false
   end
 
   create_table "casts", :force => true do |t|
@@ -88,6 +113,30 @@ ActiveRecord::Schema.define(:version => 20130426183103) do
     t.datetime "updated_at"
   end
 
+  create_table "companies", :force => true do |t|
+    t.string   "name"
+    t.integer  "city_id",            :default => 1
+    t.integer  "venue_id"
+    t.integer  "service_id",         :default => 51
+    t.integer  "play_id",            :default => 61
+    t.datetime "starts_at"
+    t.datetime "ends_at"
+    t.string   "url"
+    t.string   "language",           :default => "es"
+    t.boolean  "public",             :default => true
+    t.string   "photo_file_name"
+    t.string   "photo_content_type"
+    t.integer  "photo_file_size"
+    t.datetime "photo_updated_at"
+    t.text     "description"
+    t.string   "api"
+    t.string   "secret"
+    t.string   "slug"
+    t.boolean  "archive",            :default => false
+    t.datetime "created_at",                            :null => false
+    t.datetime "updated_at",                            :null => false
+  end
+
   create_table "conversations", :force => true do |t|
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -137,6 +186,16 @@ ActiveRecord::Schema.define(:version => 20130426183103) do
 
   add_index "cups_escuadras", ["cup_id"], :name => "index_cups_escuadras_on_cup_id"
   add_index "cups_escuadras", ["escuadra_id"], :name => "index_cups_escuadras_on_escuadra_id"
+
+  create_table "customers", :force => true do |t|
+    t.string   "name"
+    t.string   "email"
+    t.string   "phone"
+    t.integer  "city_id"
+    t.integer  "user_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
 
   create_table "delayed_jobs", :force => true do |t|
     t.integer  "priority",   :default => 0
@@ -755,6 +814,23 @@ ActiveRecord::Schema.define(:version => 20130426183103) do
     t.datetime "updated_at",                      :null => false
   end
 
+  create_table "surveys", :force => true do |t|
+    t.integer  "user_id",      :default => 0
+    t.integer  "ubicacion",    :default => 0
+    t.integer  "superficie",   :default => 0
+    t.integer  "expositor",    :default => 0
+    t.integer  "duracion",     :default => 0
+    t.integer  "horario",      :default => 0
+    t.integer  "cursos",       :default => 0
+    t.integer  "demostracion", :default => 0
+    t.integer  "concurso",     :default => 0
+    t.integer  "organizacion", :default => 0
+    t.integer  "expectativa",  :default => 0
+    t.text     "comentario"
+    t.datetime "created_at",                  :null => false
+    t.datetime "updated_at",                  :null => false
+  end
+
   create_table "teammates", :force => true do |t|
     t.integer  "user_id"
     t.integer  "group_id"
@@ -787,6 +863,8 @@ ActiveRecord::Schema.define(:version => 20130426183103) do
     t.boolean  "archive",         :default => false
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "item_id"
+    t.string   "item_type"
   end
 
   add_index "timetables", ["installation_id"], :name => "index_timetables_on_installation_id"

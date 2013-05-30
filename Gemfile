@@ -30,7 +30,7 @@ gem "friendly_id", "~> 4.0.1"
 gem 'typhoeus'
 gem 'delayed_job_active_record'
 
-gem 'zurb-foundation'
+# gem 'zurb-foundation'
 gem 'agent_orange'
 gem 'sitemap_generator'
 
@@ -53,14 +53,16 @@ group :assets do
   gem 'sass-rails',   '~> 3.2.3'
   gem 'coffee-rails', '~> 3.2.1'
   gem 'uglifier', '>= 1.0.3'
+  # Add Foundation Here
+  gem 'zurb-foundation', '~> 4.0.0'
 end
 
 
 group :development do
-  gem "better_errors"
-	gem "bullet"
-	gem "meta_request"
 	gem 'annotate', ">=2.5.0"
+  # gem "better_errors"
+	# gem "bullet"
+	# gem "meta_request"
 	# gem 'mechanize'
 	# gem 'anemone'
 	# gem 'hpricot'

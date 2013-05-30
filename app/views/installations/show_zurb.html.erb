@@ -17,7 +17,7 @@
 		<td>
 			
 		<%= render_show_detail_zurb(:name, item_name_link(@installation)) %>
-		<%= render_show_detail_zurb(:manager, user_list(@group.all_the_managers)) %>
+		<%#= render_show_detail_zurb(:manager, user_list(@group.all_the_managers)) %>
 
 		
 		</td>	
@@ -33,7 +33,7 @@
 
 
 
-		<%= render_show_detail_zurb(:td, label_name(:marker), :class => "label" %>
-		<%= render_show_detail_zurb(:td, marker_link(@installation.marker), :class => get_the_action %>
+		<%= render_show_detail_zurb(:td, label_name(:marker), :class => "label") %>
+		<%= render_show_detail_zurb(:td, marker_link(@installation.marker), :class => get_the_action) %>
 </tr>
 

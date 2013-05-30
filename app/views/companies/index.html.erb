@@ -1,0 +1,34 @@
+<%
+	the_label = label_name(:companies)
+	content_for(:title, the_label)
+	has_items = (object_counter(@companies) > 0)
+%>
+
+
+<% if has_items %>
+
+<%= render('shared/index_total_header_zurb', :items => @companies) %>
+
+<table>
+	<thead>
+		<tr>             
+			<%= set_content_tag_safe(:th, "&nbsp;") %>
+			<%= set_content_tag_safe(:th, "#{label_name(:name)}") %>
+			<%= set_content_tag_safe(:th, "#{label_name(:branches)}") %>
+			<%= set_content_tag_safe(:th, "&nbsp;") %>
+
+		</tr>
+	</thead>
+
+	<tbody>
+
+		<% @companies.each do |company| -%>		
+		<%= render 'companies/company_full_zurb', :company => company, :display_icons => true %> 
+		<% end -%>
+
+	</tbody>
+</table>
+
+<% end %>
+
+

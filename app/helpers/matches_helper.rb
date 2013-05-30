@@ -266,7 +266,8 @@ module MatchesHelper
 		away["players"] = 0
 
 		group = schedule.group
-		is_manager = is_current_manager_of(group)
+		is_manager = is_current_manager_of(schedule) ? true : is_current_manager_of(group)
+		# is_manager = is_current_manager_of(group) 
 		is_member = is_current_member_of(group)
 
 		is_squad = get_the_action.gsub(' ','_') == 'team_roster'
@@ -289,10 +290,10 @@ module MatchesHelper
 		show_right_evaluation = is_manager
 		show_right_evaluation = true if (!is_manager and has_been_played)
 
-		if DISPLAY_TRUESKILL
-			the_trueskill_label = get_cluetip(label_name(:true_skill_mean_initial), 'info', label_name('true_skill_mean_cluetip'))
-			the_trueskill_label_final = get_cluetip(label_name(:true_skill_mean_final), 'info', label_name('true_skill_mean_cluetip'))
-		end
+		# if DISPLAY_TRUESKILL
+		# 	the_trueskill_label = get_cluetip(label_name(:true_skill_mean_initial), 'info', label_name('true_skill_mean_cluetip'))
+		# 	the_trueskill_label_final = get_cluetip(label_name(:true_skill_mean_final), 'info', label_name('true_skill_mean_cluetip'))
+		# end
 
 		return roster_count, is_squad, has_been_played, show_right_evaluation, is_manager, is_member, home, away, group_games_played, schedule_number, 
 		group, has_been_played_squad, show_right_border, show_right_evaluation, show_deviation, show_mean

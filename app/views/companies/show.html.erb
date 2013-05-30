@@ -1,0 +1,51 @@
+<% 
+	is_user_manager = (is_current_manager_of(@company)) 
+	is_member = is_current_member_of(@company) 
+	first_branch = true
+%>
+
+<%#= render 'shared/show_description_zurb', :item => @company %>
+	
+
+<table>
+	<tbody>
+		<tr>
+			<td>
+
+				<div class="two columns">
+					<%= image_tag @company.photo %>
+				</div>
+
+				<div class="ten columns">
+
+					<%= render_show_detail_zurb(:company, item_name_link(@company)) %>
+					<%= render_show_detail_zurb(:city, @company.city.name) %>
+					<%= render_show_detail_zurb(:time_zone,  "#{nice_simple_time_at(@company.starts_at)} - #{nice_simple_time_at(@company.ends_at)}") %>
+					
+					<% @company.branches.each do |branch| 
+						the_label = first_branch ? 'branches' : 'blank'
+						the_branch_link = link_to(branch.name, branch_url(:id => branch))
+						first_branch = false
+						first_group = true
+					%>
+							<%= render_show_detail_zurb(the_label, branch.name) %>
+						
+						<% branch.groups.each do |group| 
+							the_label = first_group ? 'groups' : 'blank'
+							first_group = false
+							the_group_link = link_to(group.name, branch_url(:id => group))
+							first_branch = true
+						%>
+							<%= render_show_detail_zurb(the_label, the_group_link) %>
+							
+						<% end %>
+						
+					<% end %>
+
+				</div>		
+
+			</td>	
+		</tr>
+	</tbody>
+</table>
+

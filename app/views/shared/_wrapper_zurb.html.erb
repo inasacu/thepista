@@ -58,6 +58,15 @@
 		ignore_option = ['enchufado_show']
 		new_item_sidebar = Enchufado.new unless ignore_option.include?(get_controller_action)
 	
+	when 'company'
+		ignore_option = ['company_show']
+		new_item_sidebar = Company.new unless ignore_option.include?(get_controller_action)
+		the_sidebar = "companies"
+	
+	when 'branch'
+		# new_item_sidebar = Group.new 
+		the_sidebar = nil
+	
 	when 'group'
 		ignore_option = ['group_show', 'group_team_list']
 		new_item_sidebar = Group.new unless ignore_option.include?(get_controller_action)
@@ -73,6 +82,18 @@
 		else
 			the_sidebar = nil
 		end
+		
+		
+		
+	when 'customer'	
+		the_sidebar = "customers"
+		new_item_sidebar = Customer.new
+		
+	when 'survey'	
+		the_sidebar = "surveys"
+		new_item_sidebar = Survey.new
+		
+		
 	end
 	
 	ignore_sidebar = ['new','create', 'edit', 'update']

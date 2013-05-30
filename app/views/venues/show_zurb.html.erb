@@ -18,7 +18,7 @@
 
 				<div class="ten columns">
 
-					<%= render_show_detail_zurb(:name, item_name_link(@venue)) %>
+					<%= render_show_detail_zurb(:venue, item_name_link(@venue)) %>
 					<%= render_show_detail_zurb(:city, @venue.marker.city) %>
 					<%= render_show_detail_zurb(:time_zone,  "#{nice_simple_time_at(@venue.starts_at)} - #{nice_simple_time_at(@venue.ends_at)}") %>
 					
@@ -28,6 +28,7 @@
 						the_reservation_link = link_to(installation.name, reservations_path(:id => installation))
 						%>		
 						<%= render_show_detail_zurb(the_label, the_reservation_link) %>
+						<%= render_show_detail_zurb(:installations, item_name_link(installation)) if the_maximo %>
 
 					<% end %>
 

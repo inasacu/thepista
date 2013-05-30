@@ -1,23 +1,26 @@
 
-<%= f.hidden_field :installation_id %>
-<%= f.hidden_field :installation_id if @installation %>
+<% if @installation %>
+	<%= hidden_field :timetable, :installation_id %>
+<% end %>
+
+<% if @group %>
+	<%= hidden_field :timetable, :item_id %>
+	<%= hidden_field :timetable, :item_type %>
+<% end %>
 
 
 
-
-	<%= set_form_label(the_form, :type_id, :timetable) %>
-	<%= f.select(:type_id, Type.timetable_type, {:selected => @timetable.type_id, :include_blank => false}) %><br />
-
-
-	<%= set_form_label(the_form, :starts_at) %>
-	<%= set_form_time_select(the_form, :starts_at) %><br />
+<%= set_form_label(the_form, :type_id, :timetable) %>
+<%= set_form_select(the_form, :type_id, Type.timetable_type_weekdays, @timetable.type_id, false) %><br/><br/>
 
 
-	<%= set_form_label(the_form, :ends_at) %>
-	<%= set_form_time_select(the_form, :ends_at) %><br />
+<%= set_form_label(the_form, :starts_at) %>
+<%= set_form_time_select(the_form, :starts_at) %><br/><br/>
 
 
-	<%= set_form_label(the_form, :timeframe) %>
-	<%= set_form_text_field(the_form, :timeframe, 'small input-text') %><br />
+<%= set_form_label(the_form, :ends_at) %>
+<%= set_form_time_select(the_form, :ends_at) %><br/><br/>
 
 
+<%= set_form_label(the_form, :timeframe) %>
+<%= set_form_text_field(the_form, :timeframe, 'small input-text') %>

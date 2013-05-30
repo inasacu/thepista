@@ -4,7 +4,7 @@ class EnchufadosController < ApplicationController
 	before_filter :get_enchufado, :only => [:show, :edit, :update]
 
 	def index
-		@enchufados = Enchufado.where("enchufados.archive = false").page(params[:page]).order('enchufados.created_at DESC')
+		@enchufados = Enchufado.get_site_enchufados(params[:page]) 
 	end
 	
 	def show

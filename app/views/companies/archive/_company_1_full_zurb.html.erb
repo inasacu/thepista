@@ -1,0 +1,56 @@
+<%
+	is_company_manager = is_current_manager_of(company)  
+	the_company_image = item_image_link_small(company)
+	the_company_link = item_name_link(company)
+	
+	branch_counter = company.branches.count
+	counter = 0
+	four_or_seven_columns = is_company_manager ? "four columns" : "seven columns" 
+%>
+
+<div class="row">
+	<div class="two columns">
+		<%= render_show_detail_zurb(:blank, "#{the_company_image}".html_safe) %>
+	</div>
+
+	<div class="three columns">
+		<%= render_show_detail_zurb(:blank, "#{the_company_link}".html_safe) %>
+	</div>
+	
+	<div class="<%= four_or_seven_columns %>">		
+	</div>
+	
+		
+	<% if is_company_manager %>
+		<div class="three columns">
+				<%= set_form_create_id_image_link(Branch.new, :company_id, company, :branches_create)  %>
+		</div>
+	<% end %>
+		
+</div>
+
+<!-- <hr/> -->
+<!-- <br/> -->
+
+
+<% company.branches.each do |branch| %>
+
+	<div class="row">
+		<div class="twelve columns">
+		
+		
+			<div class="row">
+
+				<%= render 'companies/branch_full_zurb', :company => company, :branch => branch, :has_hr => ((counter +=1) < branch_counter) %>
+
+			</div>
+
+			<br/>
+			<br/>
+			
+		</div>
+	</div>
+
+<% end %>
+
+

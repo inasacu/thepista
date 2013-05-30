@@ -1,13 +1,15 @@
 class TimetablesController < ApplicationController
   before_filter :require_user
 
-  before_filter   :get_installation,    :only => [:new, :create]
-  before_filter   :get_timetable,       :only => [:edit, :update]
+  before_filter   :get_installation_or_group,    :only => [:new]
+  before_filter   :get_timetable,       					:only => [:edit, :update]
 
   def index  
-    store_location
-    @installations = Installation.current_installations(@venue, params[:page])
-    render @the_template
+    # store_location
+    # @installations = Installation.current_installations(@venue, params[:page])
+    # render @the_template
+ 		redirect_to :root
+		return
   end
 
   def show
@@ -15,29 +17,52 @@ class TimetablesController < ApplicationController
     render @the_template
   end
 
-  def new
-    @timetable = Timetable.new
-    @timetable.installation = @installation
-    @timetable.starts_at = @installation.starts_at
-    @timetable.ends_at = @installation.ends_at
-    @timetable.timeframe = @installation.timeframe
+	def new
+		@timetable = Timetable.new
 
-    @previous_timetable = Timetable.find(:first, :conditions => ["id = (select max(id) from timetables where installation_id = ?) ", @installation])    
-    unless @previous_timetable.nil?     
-      @timetable.type_id = @previous_timetable.type_id
-      @timetable.starts_at = @previous_timetable.starts_at
-      @timetable.ends_at = @previous_timetable.ends_at
-      @timetable.timeframe = @previous_timetable.timeframe
-    end
-    render @the_template
-  end
+		if @installation 
+			@timetable.installation = @installation
+			@timetable.starts_at = @installation.starts_at
+			@timetable.ends_at = @installation.ends_at
+			@timetable.timeframe = @installation.timeframe
+
+			@previous_timetable = Timetable.find(:first, :conditions => ["id = (select max(id) from timetables where installation_id = ?) ", @installation])    
+			unless @previous_timetable.nil?     
+				@timetable.type_id = @previous_timetable.type_id
+				@timetable.starts_at = @previous_timetable.starts_at
+				@timetable.ends_at = @previous_timetable.ends_at
+				@timetable.timeframe = @previous_timetable.timeframe
+			end
+		end
+
+		if @group 
+			@timetable.item_id = @group.id
+			@timetable.item_type = 'Group'
+			@timetable.starts_at = @group.item.starts_at
+			@timetable.ends_at = @group.item.ends_at
+			@timetable.timeframe = @group.item.timeframe
+
+			@previous_timetable = Timetable.find(:first, :conditions => ["id = (select max(id) from timetables where item_id = ? and item_type = 'Group') ", @group])    
+			unless @previous_timetable.nil?     
+				@timetable.type_id = @previous_timetable.type_id
+				@timetable.starts_at = @previous_timetable.starts_at
+				@timetable.ends_at = @previous_timetable.ends_at
+				@timetable.timeframe = @previous_timetable.timeframe
+			end
+		end
+
+		render @the_template
+	end
 
   def create
     @timetable = Timetable.new(params[:timetable])  
 
     if @timetable.save 
       successful_create
-      redirect_to @installation
+
+      redirect_to @timetable.installation and return unless @timetable.installation.nil?
+	    redirect_to @timetable.item and return unless @timetable.item_type.nil?
+
     else
       render :action => 'new'
     end
@@ -85,6 +110,8 @@ class TimetablesController < ApplicationController
 
   def get_timetable
     @timetable = Timetable.find(params[:id]) if params[:id]
+
+		
     @installation = @timetable.installation
     @venue = @installation.venue
 
@@ -95,17 +122,37 @@ class TimetablesController < ApplicationController
     end
   end
 
-  def get_installation
-    @installation = Installation.find(params[:id]) if params[:id]
-    @installation = Installation.find(params[:timetable][:installation_id]) if params[:timetable]
-    @venue = @installation.venue
+	def get_installation_or_group
 
-    unless is_current_manager_of(@venue)
-      warning_unauthorized
-      redirect_back_or_default('/index')
-      return
-    end
-  end
+		if params[:installation_id]
+			@installation = Installation.find(params[:installation_id]) 
+			@installation = Installation.find(params[:timetable][:installation_id]) if params[:timetable]
+			@venue = @installation.venue
+
+			unless is_current_manager_of(@venue)
+				warning_unauthorized
+				redirect_back_or_default('/index')
+				return
+			end
+		end
+
+		if params[:group_id]
+			@group = Group.find(params[:group_id]) 
+			# @group = Group.find(params[:timetable][:group_id]) if params[:timetable]
+
+			unless is_current_manager_of(@group)
+				warning_unauthorized
+				redirect_back_or_default('/index')
+				return
+			end
+		end
+
+		if !params[:installation_id] and !params[:group_id]
+			warning_unauthorized
+			redirect_back_or_default('/index')
+		end
+
+	end
 
 end
 

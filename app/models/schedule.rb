@@ -115,7 +115,7 @@ class Schedule < ActiveRecord::Base
   before_update   :set_time_to_utc, :get_starts_at, :get_ends_at
   
   # add some callbacks, after_initialize :get_starts_at # convert db format to accessors
-	before_create	:get_starts_at, :get_ends_at
+	before_create			:get_starts_at, :get_ends_at
   before_validation :get_starts_at, :get_ends_at, :set_starts_at, :set_ends_at 
 
 	def get_starts_at
@@ -264,6 +264,21 @@ class Schedule < ActiveRecord::Base
     :order => "matches.group_id desc, users.name")
   end
 
+	def the_roster_wo_default_user
+		the_schedules = Schedule.find(:all, :conditions => ["group_id = ? and played = true", self.group], :order => "starts_at desc")
+		played_games = 0
+		the_schedules.each {|schedule| played_games += 1 }
+
+		played_games = 1 if played_games == 0
+
+		Match.find(:all,    
+		:select => "matches.*, users.name as user_name, types.name as type_name, scorecards.id as scorecard_id, " +
+		"scorecards.played as scorecard_played, scorecards.ranking, scorecards.points, (100 * scorecards.played / #{played_games}) as coeficient_played",
+		:joins => "left join users on users.id = matches.user_id left join types on types.id = matches.type_id left join scorecards on scorecards.user_id = matches.user_id",
+		:conditions => ["matches.schedule_id = ? and matches.archive = false and matches.type_id = 1 and scorecards.archive = false and scorecards.group_id = ? and matches.user_id not in (?)", 
+					self.id, self.group_id, DEFAULT_GROUP_USERS],	:order => "matches.group_id desc, users.name")
+	end
+
   def the_last_minute
     the_schedules = Schedule.find(:all, :conditions => ["group_id = ? and played = true", self.group], :order => "starts_at desc")
     played_games = 0
@@ -332,6 +347,10 @@ class Schedule < ActiveRecord::Base
   def away_score
     return Match.find_score(self).invite_score
   end
+
+	def self.has_schedule?(group)
+			!find(:first, :conditions => ["group_id = ? and played = true", group]).nil?
+	end
   
   def self.group_current_schedules(group, page = 1)
     self.where("schedules.archive = false and starts_at >= ? and group_id = ?", Time.zone.now, group).page(page).order('starts_at')
@@ -382,11 +401,16 @@ class Schedule < ActiveRecord::Base
                :order => 'starts_at')
   end
   
-
 	def self.get_schedule_first_to_last_month (first_day, last_day, installation)
 		find(:all, :joins => "JOIN groups on groups.id = schedules.group_id",
 				:conditions => ["schedules.archive = false and schedules.starts_at >= ? and schedules.ends_at <= ? and 
 											  groups.archive = false and groups.installation_id = ?", first_day, last_day, installation], :order => 'starts_at')
+	end
+	
+	def self.get_schedule_item_first_to_last_month (first_day, last_day, item)
+		find(:all, :joins => "JOIN groups on groups.id = schedules.group_id",
+				:conditions => ["schedules.archive = false and schedules.starts_at >= ? and schedules.ends_at <= ? and 
+												groups.archive = false and groups.item_id = ? and groups.item_type = ?", first_day, last_day, item.id, item.class.to_s.downcase.chomp], :order => 'starts_at')
 	end
 				
 				
@@ -449,7 +473,13 @@ class Schedule < ActiveRecord::Base
     played == false
   end
 
-  # create fmatch details for schedule
+  def create_schedule_roles(user)
+    user.has_role!(:manager, self)
+    user.has_role!(:creator, self)
+    user.has_role!(:member,  self)
+  end
+
+  # create match details for schedule
 	def create_schedule_details
 		Match.create_schedule_match(self) 
 		if DISPLAY_FREMIUM_SERVICES  

@@ -1,0 +1,24 @@
+<%
+	the_branch_link = ""
+	company.branches.each do |branch|
+		the_branch_link = "#{the_branch_link} #{link_to(branch.name, companies_path(:id => company))} <br/>"
+	end
+%>
+
+<tr>  
+	<%= set_content_tag_safe(:td, item_image_link_small(company)) %>
+	<%= set_content_tag_safe(:td, "#{item_name_link(company)} <br/> #{nice_simple_time_at(company.starts_at)}  - #{nice_simple_time_at(company.ends_at)}", :class => 'name_and_date') %>
+	<%= set_content_tag_safe(:td, the_branch_link) %>
+
+   <% if display_icons %>
+   	<td>
+		<span class="action" align="left">
+			<%#= option_image_small_link('message') %>&nbsp;&nbsp;<%#= link_to(label_name(:send_message_to), new_message_path(:company_id => company)) %><br/>
+			<%#= option_image_small_link('reservation') %>&nbsp;&nbsp;
+				<strong>
+				<%#= link_to "#{label_name(:reservations)}".html_safe, company_path(company) %>
+				</strong>			
+		</span>
+   	</td>
+   <% end -%>
+</tr>

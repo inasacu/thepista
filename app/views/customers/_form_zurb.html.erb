@@ -1,0 +1,14 @@
+
+<%= the_form.hidden_field :user_id %>
+
+<%= set_form_label(the_form, :name, '', true) %>
+<%= set_form_text_field(the_form, :name, 'large input-text', true) %><br />
+
+<%= set_form_label(the_form, :phone) %>
+<%= set_form_text_field(the_form, :phone, 'large input-text', true) %><br />
+
+<%= set_form_label(the_form, :city) %>
+<%= the_form.select(:city_id, City.city_name, {:selected => @customer.city_id, :include_blank => false}) %><br/><br/>
+
+<%= set_form_label(the_form, :email, '', true) %>
+<%= set_form_text_field(the_form, :email, 'large input-text', true) %><br />

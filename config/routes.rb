@@ -235,12 +235,18 @@ Thepista::Application.routes.draw do
 	
 	resources :subplugs
 
-	resources :purchases
+	resources :timetables
+	
 	resources :users do
 		resources :messages
 	end
 
 	resources :prospects
+	resources :customers
+	resources :surveys
+	resources :companies
+	resources :branches
+	
 
 	match ':controller/:action.:format' => '#index'
 

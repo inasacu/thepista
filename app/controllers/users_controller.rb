@@ -1,11 +1,13 @@
 class UsersController < ApplicationController
 	before_filter :require_no_user,     :only => [:signup, :create, :rpx_new, :rpx_create, :rpx_associate]
-	before_filter :require_user,        :only => [:index, :list, :show, :notice, :edit, :update, :petition]     
+	before_filter :require_user,        :only => [:index, :list, :show, :notice, :edit, :update, :petition]  
+	
+	before_filter :get_default_user,		:only => [:show]   
 	before_filter :get_sports,          :only => [:new, :edit, :signup, :rpx_new]
 	before_filter :get_user_member,     :only => [:show, :notice] 
 	before_filter :get_user_manager,    :only => [:set_available]
 	before_filter :get_user_self,       :only => [:set_private_phone, :set_private_profile,  :set_teammate_notification, :set_message_notification, :set_last_minute_notification, :set_whatsapp]
-	before_filter :get_user_group,      :only =>[:set_manager, :remove_manager, :set_sub_manager, :remove_sub_manager, :set_subscription, :remove_subscription, :set_moderator, :remove_moderator]
+	before_filter :get_user_group,      :only => [:set_manager, :remove_manager, :set_sub_manager, :remove_sub_manager, :set_subscription, :remove_subscription, :set_moderator, :remove_moderator]
 
 	def index
 		unless the_maximo
@@ -30,29 +32,29 @@ class UsersController < ApplicationController
 		@client = ""
 		@profile = ""
 		@user_statistics = User.find_user_match_user_statistics(@user)
-		
+
 		all_users = []
 		@user_statistics.each {|the_statistic| all_users << the_statistic.second_user_id unless all_users.include?(the_statistic.second_user_id)}
 		@all_teammates = User.find(:all, :conditions => ["id in (?)", all_users])
-		
+
 
 		@user_hash_grid_statistics = []
 		@user_hash_statistic  = {}
 		the_statistic_user_id = 0
 		counter_user_statistics = 0
 		the_true_last_column = ""
-		
+
 		@user_statistics.each do |the_statistic| 
-			
+
 			the_true_column = "#{the_statistic.first_user_win}#{the_statistic.same_team}".upcase
-			
+
 			if (the_statistic_user_id != the_statistic.second_user_id.to_i)				
 				@user_hash_grid_statistics << @user_hash_statistic if the_statistic_user_id > 0
 				@user_hash_statistic = {}
 				the_statistic_user_id = the_statistic.second_user_id.to_i
-				
+
 				@all_teammates.each {|teammate| @user_hash_statistic = {"user_id" => teammate}  if the_statistic.second_user_id.to_i == teammate.id.to_i}
-				
+
 				the_default_hash_values = {"TT" => "0", "TF" => "0", "FT" => "0", "FF" => "0"}
 				@user_hash_statistic.merge!(the_default_hash_values)
 				@user_hash_statistic.merge!({"#{the_true_column}" => the_statistic.total})
@@ -61,9 +63,9 @@ class UsersController < ApplicationController
 				@user_hash_statistic.merge!({"#{the_true_column}" => the_statistic.total}) 
 
 			end
-								
+
 		end
-		
+
 		@user_hash_grid_statistics << @user_hash_statistic	
 
 		render @the_template    
@@ -108,7 +110,7 @@ class UsersController < ApplicationController
 				return
 			end
 		end
-	
+
 		@user.name = @user.email if @user.name.nil?
 		@user.language = "es" if @user.language.nil?
 
@@ -369,6 +371,15 @@ class UsersController < ApplicationController
 	end
 
 	private
+	# return if user is 
+	def get_default_user
+		@user = User.find(params[:id])
+		if DEFAULT_GROUP_USERS.include?(@user.id)
+			redirect_back_or_default('/index')
+			return
+		end
+	end
+	
 	def get_user
 		if params[:id] == 'current'
 			@user = User.find(current_user) if current_user
@@ -392,7 +403,7 @@ class UsersController < ApplicationController
 
 		if @user.private_profile and DISPLAY_PRIVATE_PROFILE
 			unless current_user.is_user_member_of?(@user)    
-				flash[:warning] = I18n.t(:user_private_profile)
+				warning_unauthorized
 				redirect_to root_url
 				return
 			end
@@ -411,7 +422,6 @@ class UsersController < ApplicationController
 
 	def get_user_group
 		get_user
-
 		@group = Group.find(params[:group])
 	end
 
@@ -429,7 +439,3 @@ class UsersController < ApplicationController
 	end
 
 end
-
-
-
-

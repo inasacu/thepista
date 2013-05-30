@@ -146,9 +146,9 @@
 							</a>
 						</li>
 						<li class="login-provider-li">
-						<a href="auth/yahoo" class="login-provider-a yahoo social-icon"	data-icon="y" title="<%= label_name(:login_provider_modo_yahoo) %>">
-						<span class="hide-text">Yahoo!</span>
-						</a>
+							<a href="auth/yahoo" class="login-provider-a yahoo social-icon"	data-icon="y" title="<%= label_name(:login_provider_modo_yahoo) %>">
+								<span class="hide-text">Yahoo!</span>
+							</a>
 						</li>
 					</ul>
 
@@ -160,30 +160,48 @@
 		<br>
 		
 		<%= content_tag :h4, "#{label_name(:or)} <STRONG>#{label_name(:log_in)}</STRONG> #{label_name(:with)}".html_safe, :class => "subheader" %>
-		
 		<hr/>
 		
 
 		<div class="row">
-		<div class="one  columns"></div>
-			<div class="six columns">
-				
+			<div class="one  columns"></div>
+			<div class="ten columns">				
 				<p>
-					<%= render 'utilities/persona'%>
+					<%= render 'utilities/persona'%>					
+
 					<form id='browser_id_form' action='/auth/browser_id/callback'>
-						<input type='hidden' name='assertion'/>	
-						<button type="submit" style="border: 0; background: transparent;">
-							<%= image_tag "persona.png", :size => "80x80", :alt => "PERSONA" %><br>Mozilla Persona
-						</button>	
+						<input type='hidden' name='assertion'/>
+						<button type='submit' class='large_medium nice success button radius'><%= label_name(:omniauth_provider_browser_id) %></button>
 					</form>
-					<br>
+				</p>
+			</div>
+			<div class="two columns"></div>
+		</div>
+		
+		<br/>
+		
+		<div class="row">
+			<div class="one  columns"></div>
+			<div class="ten columns">
+				<p>
+					<span><STRONG>Mozilla Persona. </STRONG> 
+						<%#= label_name(:login_provider_modo_mozilla_simplificado) %> 
+						<%= label_name(:login_provider_modo_mozilla) %>
+						<a href='https://login.persona.org/about' target='_blank'>
+							<%= label_name(:login_provider_modo_learn_more) %>
+							</a>
+					</span>
 				</p>
 				
+			</div>	
 			</div>
-			<div class="five columns"></div>
-			<hr/>
-		</div>	
+			<div class="two columns"></div>
+		</div>
 
+		<br/>
+		<br/>
+		<hr/>
+		
 
 		<div class="row">
 			<div class="six columns">
@@ -193,7 +211,6 @@
 				<p><%= label_name(:login_provider_agree_to) %> <%= link_to(label_name(:terms_of_use), terms_of_use_url, :target => '_blank') %>.
 			</div>
 		</div>
-
 
 </div>
 </div>

@@ -1,0 +1,27 @@
+<%
+	has_items = (object_counter(company.branches) > 0)
+%>
+
+<% if has_items %>
+
+	<% company.branches.each do |branch| -%>	
+
+		<div class="eight columns">
+
+			<div class="row">
+
+				<div class="six columns">
+					<%= set_content_tag_safe(:td, item_name_link(branch)) %>
+				</div>
+		
+		
+				<%= render 'companies/branch_groups', :company => company, :branch => branch %>
+			
+			</div>
+
+		</div>
+		
+
+	<% end %>
+	
+<% end %>

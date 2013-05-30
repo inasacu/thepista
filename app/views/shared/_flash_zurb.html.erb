@@ -4,6 +4,8 @@
 	the_title = nil
 	the_label_title = label_name("#{the_controller}s")
 	
+	
+	
 	is_new_item = (is_action('new') or is_action('create'))
 	@new_item = nil	
 	
@@ -61,6 +63,17 @@
 	when 'subplug'
 		the_tab_navigation = "enchufados"
 		
+	when 'company'
+		the_title = the_controller
+		@new_item = @company if is_new_item
+		the_tab_navigation = "companies"
+		the_label_title = label_name("companies")
+		
+	when 'branch'
+		the_tab_navigation = "companies"
+		# the_tab_navigation = "branches"
+		the_label_title = label_name("branches")
+		
 	when 'group'
 		the_title = the_controller
 		@new_item = @group if is_new_item
@@ -77,10 +90,10 @@
 		the_tab_navigation = "venues"
 		
 	when 'reservation'
-			the_tab_navigation = "venues"
+		the_tab_navigation = "venues"
 
 	when 'prospect'
-			the_tab_navigation = "prospects"
+		the_tab_navigation = "prospects"
 		
 	when 'message'
 		the_tab_navigation = 'messages'
@@ -88,7 +101,7 @@
 		is_display_title = false
 		@new_item = @message if is_new_item
 	
-	when 'user session', 'authentication', 'enchufado'
+	when 'user session', 'authentication', 'enchufado', 'timetable'
 		the_tab_navigation = nil		
 	end	
 	
@@ -124,7 +137,7 @@
 			
 			<% else %>
 				
-				<% if is_action('signup') %>
+				<% if is_action('signup') or !Rails.env.production? %>
 					<%= render 'shared/personal_login' unless is_password_reset %>
 				<% else %>
 					<%= render "shared/header_modo" %>

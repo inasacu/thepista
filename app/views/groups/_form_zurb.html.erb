@@ -1,5 +1,5 @@
 
-<% if @subplug %>
+<% if @branch %>
 	<%= hidden_field :group, :item_id %>
 	<%= hidden_field :group, :item_type %>
 <% end %>
@@ -15,39 +15,51 @@
 <% end -%>
 
 
-<%= set_form_label(the_form, :sport) %>
-<%= set_form_select(the_form, :sport_id, Sport.sport_name, @group.sport_id, false) %><br/><br/>
-
-
-<% if is_edit %>	
+<% if is_edit %>
 
 	<% if @group.venue %>
 		<%= set_form_label(the_form, :installation) %>
 		<%= the_form.select(:installation_id, Installation.installation_name(@group.venue), {:selected => @group.installation_id, :include_blank => true}) %><br/><br/>
 	<% end -%>
 
-	<%= set_form_label(the_form, :conditions) %>
-	<%= set_form_text_area(the_form, :conditions, true) %><br/>
+<% end %>
 
-<% end -%>
-
+<%= set_form_label(the_form, :sport) %>
+<%= set_form_select(the_form, :sport_id, Sport.sport_name, @group.sport_id, false) %><br/><br/>
 
 <% if is_edit %>
+	
+	<div class="row">
+	  <div class="large-4 columns">
 
-	<%= set_form_label(the_form, :photo, 'photo') %>
-	<%= set_form_file_field(the_form, :photo) %><br/>
+		<%= set_form_label(the_form, :points_for_win) %>
+		<%= set_form_text_field(the_form, :points_for_win, 'small input-text', true) %>
 
-	<%= set_form_label(the_form, :points_for_win) %>
-	<%= set_form_text_field(the_form, :points_for_win, 'small input-text', true) %><br/>
+	  </div>
+	  <div class="large-4 columns">
 
-	<%= set_form_label(the_form, :points_for_draw) %>
-	<%= set_form_text_field(the_form, :points_for_draw, 'small input-text', true) %><br/>
+		<%= set_form_label(the_form, :points_for_draw) %>
+		<%= set_form_text_field(the_form, :points_for_draw, 'small input-text', true) %>
+
+	  </div>
+
+	  <div class="large-4 columns">
 
 	<%= set_form_label(the_form, :points_for_lose) %>
-	<%= set_form_text_field(the_form, :points_for_lose, 'small input-text', true) %><br/>
+	<%= set_form_text_field(the_form, :points_for_lose, 'small input-text', true) %>
+
+	  </div>
+
+	</div>
 
 	<%= set_form_label(the_form, :player_limit) %>
-	<%= set_form_text_field(the_form, :player_limit, 'small input-text', true) %><br/>
+	<%= set_form_text_field(the_form, :player_limit, 'small input-text', true) %><br/><br/>
+	
+	
+
+	<%= set_form_label(the_form, :photo, 'photo') %>
+	<%= set_form_file_field(the_form, :photo) %><br/><br/>
+	
 
 
 	<% if DISPLAY_FREMIUM_SERVICES %>
@@ -60,6 +72,17 @@
 	<% end %>
 
 <% end -%>
+
+
+<% if is_edit %>	
+
+	<%= set_form_label(the_form, :conditions) %>
+	<%= set_form_text_area(the_form, :conditions, true) %><br/>
+
+<% end -%>
+
+
+
 
 
 
