@@ -19,7 +19,9 @@ class GroupsController < ApplicationController
 	end
 
 	def team_list
-		@users = @group.users
+		@users = []
+		@all_users = @group.users
+		@all_users.each {|user| @users << user unless DEFAULT_GROUP_USERS.include?(user.id)}
 		@total = @group.users.count		
 		@the_roster_infringe = nil
 		@the_roster_infringe = @group.schedules.first.the_roster_infringe unless @group.schedules.empty?
