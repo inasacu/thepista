@@ -1818,7 +1818,7 @@ en:
      venues_starts_at:  Start Time
      venues_ends_at:  End Time 
      verification_canceled: OpenID verification was cancelled.   
-     verification_failed: "The OpenID verification failed, Sorry!"   
+     verification_failed: "Sorry, Your authentication did not go through as expected..."   
      verification_setup: OpenID verification has to be updated.  
      view: View   
      visible_only_to_you_description: (Only you, can view this information...)   

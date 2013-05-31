@@ -36,9 +36,10 @@
 
 		<strong class="right">
 
-			<%= link_to(label_name(:home), root_url, :class => the_home) %>	
-
 			<% if current_user %>
+
+			<%= link_to(label_name(:home), root_url, :class => the_home) %>
+				
 			<%= link_to(label_name(:groups), groups_url, :class => the_group) %>	
 			<%= link_to(label_name(:schedules), schedules_url, :class => the_schedule) if has_group %>
 			
@@ -57,8 +58,8 @@
 
 			<% else %>
 			<%= link_to(label_name(:howitworks), how_it_works_path, :class => the_login) %>
-			<%#= link_to(label_name(:login), login_path, :class => the_login) %>
-			<%= link_to(label_name(:signup), signup_path, :class => the_signup) if DISPLAY_REGISTER %>
+			<%= link_to(label_name(:login), login_path, :class => the_login) %>
+			<%#= link_to(label_name(:signup), signup_path, :class => the_signup) if DISPLAY_REGISTER %>
 			<% end -%>
 
 		</strong>

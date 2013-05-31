@@ -522,7 +522,7 @@ es:
      installations_edit:  Modifica la Instalación 
      installations_name_description:  Nombre de la nueva instalación
      installations_new:  Nueva Instalación 
-     failed_login: Error de inicio de sesión  
+     failed_login: Error al Iniciar sesión
      false_value: "No"
      f_value: "No"
      faq: Preguntas Frecuentes
@@ -969,10 +969,10 @@ es:
      location_group: Lugar donde juega el equipo
      location_sport: Lugar donde practicas tu deporte. 
      location_venue: Lugar del centro deportivo
-     login:  Entrar 
+     login:  Iniciar sesión 
      log_in: Entra   
      logged_out: Se ha cerrado la sesión. 
-     logout: Salir   
+     logout: Cerrar sesión   
      look: Mira 
      Low: Bajo   
      male_value: Masculino        
@@ -1853,7 +1853,7 @@ es:
      venues_starts_at:  Hora de apertura
      venues_ends_at:  Hora de cierre
      verification_canceled: OpenID verificación fue cancelada.   
-     verification_failed: "Lo sentimos, the OpenID verificación ha fallado."   
+     verification_failed: "Lo sentimos, Tu autenticación no pasó el control como se esperaba..."  
      verification_setup: Verificación de OpenID tiene que ser actualizado.   
      view: Ver   
      visible_only_to_you_description: (Solo tu podras ver esta información...)   

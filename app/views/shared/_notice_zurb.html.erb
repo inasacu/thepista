@@ -2,7 +2,7 @@
 	is_beta_module = ['venue', 'installation', 'reservation']
 %>
 
-<% if current_user.id == 9999 %>
+<% if current_user and current_user.id == 9999 %>
 	<div class="alert-box"><%= @user_agent %></div>
 <% end %>
 

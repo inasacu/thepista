@@ -25,10 +25,10 @@
   
     <!-- Right Nav Section -->
     <ul class="right">
-
-		<%= content_tag(:li, link_to(label_name(:home), root_url)) %>	
 	
 		<% if current_user %>
+
+			<%= content_tag(:li, link_to(label_name(:home), root_url)) %>
 		
 			<% if has_group %>	
 			
@@ -85,8 +85,8 @@
 		<% else %>
 		
 			<%= content_tag(:li, link_to(label_name(:howitworks), how_it_works_path)) %>
-			<%#= content_tag(:li, link_to(label_name(:login), login_path)) %>
-			<%= content_tag(:li, link_to(label_name(:signup), signup_path)) if DISPLAY_REGISTER %>
+			<%= content_tag(:li, link_to(label_name(:login), login_path)) %>
+			<%#= content_tag(:li, link_to(label_name(:signup), signup_path)) if DISPLAY_REGISTER %>
 		
 		<% end -%>
 		

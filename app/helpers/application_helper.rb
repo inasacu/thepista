@@ -661,6 +661,8 @@ module ApplicationHelper
 			the_path = "companies_path"
 		when 'branch'
 			the_path = 'branches_path'
+		when 'user'
+			the_path = 'root_url'
 		end
 		
 		link_to(I18n.t(:cancel), send(:"#{the_path}"))    

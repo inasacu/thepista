@@ -12,6 +12,7 @@ Thepista::Application.routes.draw do
 
 	match '/auth/:provider/callback' => 'authentications#create', :as => :callback
 	match '/auth/failure' => 'authentications#failure', :as => :failure
+	match '/failure' => 'authentications#failure', :as => :post_failure
 	match '/auth/:provider' => 'authentications#blank', :as => :blank
 
 
