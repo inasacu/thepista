@@ -5,8 +5,10 @@ class WidgetController < ApplicationController
   end
   
   def home
-    @centreSchedules = Schedule.find(:all)
     
+    currentBranch = Branch.branch_from_url(request.env["HTTP_REFERER"]) 
+    @centreSchedules = Timetable.schedules_from_timetables(currentBranch)
+        
     render :layout => 'widget'
   end
   

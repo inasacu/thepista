@@ -59,6 +59,13 @@ class Branch < ActiveRecord::Base
 		user.has_role!(:manager, self)
 		user.has_role!(:creator, self)
 	end
+	
+	
+	# WIDGET PROJECT
+	
+	def self.branch_from_url(url)
+	  self.where("url=?", url).first
+	end
 
 end
 

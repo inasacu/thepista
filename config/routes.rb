@@ -6,8 +6,8 @@ Thepista::Application.routes.draw do
 	
 	# Enchufados widget
 	match "/widget/index", :to => 'widget#index'
-  match "/widget/", :controller=> 'widget', :action => 'index'
-  match "/widget/test_widget", :controller=> 'home', :action => 'index'
+  match "/widget/", :to => 'widget#index'
+  match "/widget/home", :to => 'widget#home'
   # ------------------------>
 
 	match 'rpx_token_sessions' => 'user_sessions#rpx_create', :as => :rpx_token_sessions

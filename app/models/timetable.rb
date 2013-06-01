@@ -73,7 +73,47 @@ class Timetable < ActiveRecord::Base
 	# def self.branch_min_max_timetable(company)
 	# 	self.where("branch.company_id = ?", company).select("min(timetables.starts_at) as starts_at, max(timetables.ends_at) as ends_at").joins("LEFT JOIN branches on branches.id = timetables.item_id").first()
 	# end  		
+	
+	# WIDGET PROJECT ----------------------------
+	
+	def self.branch_week_timetables(branch)
+	  self.joins("join groups on groups.id=timetables.item_id")
+        .where("groups.item_id=?", branch.id)
+	      #.where("timetables.starts_at=? and timetables.ends_at=?", Date.today, Date.today+7)
+	end
+  
+  def self.schedules_from_timetables(currentBranch)
+    
+    centreSchedules ||= []
+    currentWeekDay = Date.now.wday
+    
+    for i in 0..6 do
+      weekDaysArray[currentWeekDay]
+    end
+    
+    centreSchedules ||= []
+    
+    branchWeekTimetables = Timetable.branch_week_timetables(currentBranch)
+    branchWeekTimetables.each do |timetable|
+      
+      if timetable.item.class.to_s=='Group'
+        @group = timetable.item
+        
+        starts = timetable.starts_at
+        ends = starts + timetable.timeframe
 
+        schedule = Schedule.new
+        schedule.name = "#{@group.name} #{starts}"
+        
+        centreSchedules << schedule
+      end
+      
+    end
+    
+    return centreSchedules
+    
+  end
+  
 end
 
 

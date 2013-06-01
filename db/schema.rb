@@ -187,16 +187,6 @@ ActiveRecord::Schema.define(:version => 20130521172705) do
   add_index "cups_escuadras", ["cup_id"], :name => "index_cups_escuadras_on_cup_id"
   add_index "cups_escuadras", ["escuadra_id"], :name => "index_cups_escuadras_on_escuadra_id"
 
-  create_table "customers", :force => true do |t|
-    t.string   "name"
-    t.string   "email"
-    t.string   "phone"
-    t.integer  "city_id"
-    t.integer  "user_id"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
-  end
-
   create_table "delayed_jobs", :force => true do |t|
     t.integer  "priority",   :default => 0
     t.integer  "attempts",   :default => 0
@@ -327,7 +317,7 @@ ActiveRecord::Schema.define(:version => 20130521172705) do
     t.float    "points_for_lose",    :default => 0.0
     t.string   "time_zone",          :default => "UTC"
     t.integer  "sport_id"
-    t.integer  "marker_id"
+    t.integer  "marker_id",          :default => 2
     t.text     "description"
     t.text     "conditions"
     t.integer  "player_limit",       :default => 150
@@ -812,23 +802,6 @@ ActiveRecord::Schema.define(:version => 20130521172705) do
     t.boolean  "archive",      :default => false
     t.datetime "created_at",                      :null => false
     t.datetime "updated_at",                      :null => false
-  end
-
-  create_table "surveys", :force => true do |t|
-    t.integer  "user_id",      :default => 0
-    t.integer  "ubicacion",    :default => 0
-    t.integer  "superficie",   :default => 0
-    t.integer  "expositor",    :default => 0
-    t.integer  "duracion",     :default => 0
-    t.integer  "horario",      :default => 0
-    t.integer  "cursos",       :default => 0
-    t.integer  "demostracion", :default => 0
-    t.integer  "concurso",     :default => 0
-    t.integer  "organizacion", :default => 0
-    t.integer  "expectativa",  :default => 0
-    t.text     "comentario"
-    t.datetime "created_at",                  :null => false
-    t.datetime "updated_at",                  :null => false
   end
 
   create_table "teammates", :force => true do |t|
