@@ -7,7 +7,9 @@
 
 <div class="row">
 	<div class="twelve columns">
-
+		
+		<%if !@schedulesPerWeekDay.nil? and @schedulesPerWeekDay.any?%>
+		
 		<table>
 
 		<%@schedulesPerWeekDay.each do |index, weekdaySchedules|%>
@@ -33,5 +35,13 @@
 		<%end%>
 
 		</table>
+		
+		<%else%>
+		
+		<p>No hay eventos que mostrar</p>
+		
+		<%end%>
+		
+		
 	</div>
 </div>
