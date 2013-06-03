@@ -652,5 +652,42 @@ class Schedule < ActiveRecord::Base
       self.errors.add(:ends_at, I18n.t(:must_be_after_starts_at)) if self.ends_at <= self.starts_at 
     end
   end
+  
+  
+  # WIDGET PROJECT ----------------------------
+  
+  def self.week_schedules_from_timetables(currentBranch)
+    
+    currentWeekDay = Date.today.wday
+    weekDaysArray = Hash.new
+    
+    # Sets up an array of week days with their corresponding list of schedules
+    for i in 0..6 do
+      centreSchedules = Array.new
+      weekDaysArray[(Date.today+i).strftime("%A")] = centreSchedules
+    end
+    
+    # Obtains the timetables of the branch for the following 7 days
+    branchWeekTimetables = Timetable.branch_week_timetables(currentBranch)
+    
+    branchWeekTimetables.each do |timetable|
+      
+      if timetable.item.class.to_s=='Group'
+        @group = timetable.item
+        
+        starts = timetable.starts_at
+        ends = starts + timetable.timeframe
+
+        schedule = Schedule.new
+        schedule.name = "#{@group.name} #{starts}"
+        
+        weekDaysArray[starts.strftime("%A")] << schedule
+      end
+      
+    end
+    
+    return weekDaysArray
+    
+  end
 
 end

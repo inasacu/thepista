@@ -9,7 +9,7 @@ class WidgetController < ApplicationController
     currentBranch = Branch.branch_from_url(request.env["HTTP_REFERER"]) 
     
     if !currentBranch.nil?
-      @schedulesPerWeekDay = Timetable.week_schedules_from_timetables(currentBranch)
+      @schedulesPerWeekDay = Schedule.week_schedules_from_timetables(currentBranch)
     end
         
     render :layout => 'widget'
