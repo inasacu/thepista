@@ -82,18 +82,20 @@ class Timetable < ActiveRecord::Base
 	      #.where("timetables.starts_at=? and timetables.ends_at=?", Date.today, Date.today+7)
 	end
   
-  def self.schedules_from_timetables(currentBranch)
+  def self.week_schedules_from_timetables(currentBranch)
     
-    centreSchedules ||= []
-    currentWeekDay = Date.now.wday
+    currentWeekDay = Date.today.wday
+    weekDaysArray = Hash.new
     
+    # Sets up an array of week days with their corresponding list of schedules
     for i in 0..6 do
-      weekDaysArray[currentWeekDay]
+      centreSchedules = Array.new
+      weekDaysArray[(Date.today+i).strftime("%A")] = centreSchedules
     end
     
-    centreSchedules ||= []
+    # Obtains the timetables of the branch for the following 7 days
+    branchWeekTimetables = self.branch_week_timetables(currentBranch)
     
-    branchWeekTimetables = Timetable.branch_week_timetables(currentBranch)
     branchWeekTimetables.each do |timetable|
       
       if timetable.item.class.to_s=='Group'
@@ -105,12 +107,12 @@ class Timetable < ActiveRecord::Base
         schedule = Schedule.new
         schedule.name = "#{@group.name} #{starts}"
         
-        centreSchedules << schedule
+        weekDaysArray[starts.strftime("%A")] << schedule
       end
       
     end
     
-    return centreSchedules
+    return weekDaysArray
     
   end
   

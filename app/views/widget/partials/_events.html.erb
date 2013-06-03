@@ -1,13 +1,36 @@
+<style>
+/* This will go in a different css file as widget.js */
+.week_day_detail{
+	display:none;
+}
+</style>
+
 <div class="row">
 	<div class="twelve columns">
 
 		<table>
 
-			<%@centreSchedules.each do |schedule|%>
+		<%@schedulesPerWeekDay.each do |index, weekdaySchedules|%>
 			<tr>
-				<td><%=schedule.name%></td>
+				<td>
+					<%= "(#{weekdaySchedules.length}) #{index}"%>
+					<a href="#" class="toogle_day_view_link">toggle</a>
+				</td>
+			</tr>
+			
+			<%if weekdaySchedules.any?%>
+			<tr class="week_day_detail">
+				<td>
+					<%weekdaySchedules.each do |schedule|%>
+					<div>
+						<%=schedule.name%>
+					</div>
+					<%end%>
+				</td>
 			</tr>
 			<%end%>
+			
+		<%end%>
 
 		</table>
 	</div>
