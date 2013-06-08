@@ -200,12 +200,12 @@ module ApplicationHelper
 
 	# Sábado, 12 de Junio <strong>20:30</strong>
 	def nice_day_time_strong(time_at)
-		if Rails.env.development?
+		# if Rails.env.development?
 			the_time_label = "&nbsp;#{I18n.l(time_at, :format => :simple_time_at)}h&nbsp;".html_safe
 			return "#{content_tag('span', the_time_label, :class => 'round regular label')} - #{nice_day_date_wo_year(time_at)}".html_safe unless time_at.nil?
-		else
-			return "<strong>#{I18n.l(time_at, :format => :simple_time_at)}h</strong> - #{nice_day_date_wo_year(time_at)}".html_safe unless time_at.nil?
-		end
+		# else
+			# return "<strong>#{I18n.l(time_at, :format => :simple_time_at)}h</strong> - #{nice_day_date_wo_year(time_at)}".html_safe unless time_at.nil?
+		# end
 	end
 
 	# Sábado, 12 de Junio de 2010 a las 20:30
