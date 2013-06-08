@@ -700,6 +700,7 @@ ActiveRecord::Schema.define(:version => 20130521172705) do
     t.datetime "send_comment_at"
     t.string   "slug"
     t.datetime "send_created_at"
+    t.string   "block_token"
   end
 
   add_index "schedules", ["group_id"], :name => "index_schedules_on_group_id"

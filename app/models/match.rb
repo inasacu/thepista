@@ -254,7 +254,19 @@ class Match < ActiveRecord::Base
                    :type_id => type_id, :played => schedule.played, :block_token => block_token) if Match.schedule_user_exists?(schedule, user)
     end
   end
-  
+
+	# create a record in the match table for specific teammate and only for specific schedule 
+	def self.create_item_schedule_match(schedule, user)
+		type_id = 1         # set to convocado
+
+		# assign unique user id and start_date code for changing status through email
+		the_encode = "#{rand(36**8).to_s(36)}#{schedule.id}#{rand(36**8).to_s(36)}"
+		block_token  = Base64::encode64(the_encode)
+
+		self.create!(:status_at => Time.zone.now, :schedule_id => schedule.id, :group_id => schedule.group_id, :user_id => user.id,  
+		:type_id => type_id, :played => schedule.played, :block_token => block_token) if Match.schedule_user_exists?(schedule, user)
+	end
+
 	def self.set_default_user_to_ausente(match)
 	    the_matches = Match.where('schedule_id = ? and user_id in (?) and type_id != 3', match.schedule, DEFAULT_GROUP_USERS)
 	    the_matches.each do |the_match|

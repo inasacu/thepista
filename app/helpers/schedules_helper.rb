@@ -132,10 +132,20 @@ module SchedulesHelper
 			the_match_link = match_all_my_link(schedule, current_user, false, true)
 			
 			if the_match_link.blank?
-				the_group = schedule.group
-				is_member_group = the_group ? is_current_member_of(the_group) : false
-				show_join_option = (!is_member_group and !has_current_item_petition(the_group))
-				the_match_link = set_image_and_link_h6(join_item_link_to(current_user, the_group), 'user_add') if show_join_option
+
+				if current_user.is_member_of?(schedule.group)
+					@user = User.find(current_user)
+					
+					the_label = "#{I18n.t(:change_roster_status) } #{I18n.t(:convocado).downcase}"
+					the_match_link = link_to(the_label, new_schedule_url(:id => schedule.group, :block_token => schedule.block_token))
+					the_label = ""
+					
+				else
+					the_group = schedule.group
+					is_member_group = the_group ? is_current_member_of(the_group) : false
+					show_join_option = (!is_member_group and !has_current_item_petition(the_group))
+					the_match_link = set_image_and_link_h6(join_item_link_to(current_user, the_group), 'user_add') if show_join_option
+				end
 			end
 		
       return set_content_tag_safe(:td, "#{the_label}<br/>#{the_match_link}", "last_upcoming")

@@ -58,8 +58,6 @@
 				<li class="has-dropdown"><%= link_to("#{label_name(:companies)}", companies_url) if is_company_visible %>
 					<ul class="dropdown">
 						<li class="divider"></li>
-						<%= content_tag(:li, link_to("#{label_name(:enchufados)}", enchufados_url)) %>
-						<li class="divider"></li>
 						<%= content_tag(:li, link_to("#{label_name(:customers)}", customers_url)) %>	
 						<li class="divider"></li>
 						<%= content_tag(:li, link_to("#{label_name(:surveys)}", surveys_url)) %>

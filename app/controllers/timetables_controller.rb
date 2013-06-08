@@ -51,7 +51,7 @@ class TimetablesController < ApplicationController
 			end
 		end
 
-		render @the_template
+		# render @the_template
 	end
 
   def create

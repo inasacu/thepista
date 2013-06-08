@@ -92,32 +92,36 @@ class Schedule < ActiveRecord::Base
   belongs_to :invite_group,   :class_name => "Group",   :foreign_key => "invite_id"
 
   # validations  
-  # validates_presence_of         :name
-  # validates_length_of           :name,                         :within => NAME_RANGE_LENGTH
-  # validates_format_of           :name,                         :with => /^[A-z 0-9 _.-]*$/ 
+  validates_presence_of         :name
+  validates_length_of           :name,                         :within => NAME_RANGE_LENGTH
+  validates_format_of           :name,                         :with => /^[A-z 0-9 _.-]*$/ 
   
   validates_presence_of         :fee_per_game,  :fee_per_pista, :player_limit,  :jornada
   validates_numericality_of     :fee_per_game,  :fee_per_pista, :player_limit,  :jornada
   validates_numericality_of     :player_limit,  :greater_than_or_equal_to => 0, :less_than_or_equal_to => 100
 	
-  # validates_numericality_of     :jornada,       :greater_than_or_equal_to => 0, :less_than_or_equal_to => 100
-  # validates_presence_of         :starts_at,     :ends_at  
-  # validates_format_of :starts_at_time, :with => /\d{1,2}:\d{2}/
-  # validates_format_of :ends_at_time, :with => /\d{1,2}:\d{2}/
+  # validates_numericality_of     :jornada,       	:greater_than_or_equal_to => 0, :less_than_or_equal_to => 100
+  # validates_presence_of         :starts_at,     	:ends_at  
+  # validates_format_of 					:starts_at_time, 	:with => /\d{1,2}:\d{2}/
+  # validates_format_of 					:ends_at_time, 		:with => /\d{1,2}:\d{2}/
 
   # variables to access	
   attr_accessible :name, :season, :jornada, :starts_at, :ends_at, :reminder_at, :reminder
   attr_accessible :fee_per_game, :fee_per_pista, :time_zone, :group_id, :sport_id, :marker_id, :player_limit
-  attr_accessible :public, :archive, :schedule_and_name, :slug
+  attr_accessible :public, :archive, :schedule_and_name, :slug, :block_token
 	attr_accessible	:starts_at_date, :starts_at_time, :ends_at_date, :ends_at_time
 
 	attr_accessor 	:starts_at_date, :starts_at_time, :ends_at_date, :ends_at_time
+	attr_accessor 	:available, :item_id, :item_type, :group_name, :match_status_at, :match_schedule_id
+	attr_accessor   :match_group_id, :match_user_id, :match_type_id, :match_type_name, :match_played, :timeframe
+		
   before_update   :set_time_to_utc, :get_starts_at, :get_ends_at
   
   # add some callbacks, after_initialize :get_starts_at # convert db format to accessors
 	before_create			:get_starts_at, :get_ends_at
   before_validation :get_starts_at, :get_ends_at, :set_starts_at, :set_ends_at 
-
+	
+	
 	def get_starts_at
 		self.starts_at ||= Time.now  
 		self.starts_at_date ||= self.starts_at.to_date.to_s(:db) 
@@ -127,7 +131,7 @@ class Schedule < ActiveRecord::Base
 	def set_starts_at
 		self.starts_at = "#{self.starts_at_date} #{self.starts_at_time}:00" 
 	end
-
+	
 	def get_ends_at
 		self.ends_at ||= Time.now  
 		self.ends_at_date ||= self.ends_at.to_date.to_s(:db) 
@@ -146,6 +150,10 @@ class Schedule < ActiveRecord::Base
   def schedule_and_name
     "#{group.name} #{name}"
   end
+
+	def self.first_group_schedule(group)
+		find(:first, :conditions => ["schedules.group_id = ?", group.id], :order => "schedules.starts_at DESC")  
+	end
 
   def the_roster_sort(sort="")
     the_schedules = Schedule.find(:all, :conditions => ["group_id = ? and played = true", self.group], :order => "starts_at desc")
@@ -410,7 +418,7 @@ class Schedule < ActiveRecord::Base
 	def self.get_schedule_item_first_to_last_month (first_day, last_day, item)
 		find(:all, :joins => "JOIN groups on groups.id = schedules.group_id",
 				:conditions => ["schedules.archive = false and schedules.starts_at >= ? and schedules.ends_at <= ? and 
-												groups.archive = false and groups.item_id = ? and groups.item_type = ?", first_day, last_day, item.id, item.class.to_s.downcase.chomp], :order => 'starts_at')
+												groups.archive = false and groups.item_id = ? and groups.item_type = ?", first_day, last_day, item.id, item.class.to_s.chomp], :order => 'starts_at')
 	end
 				
 				

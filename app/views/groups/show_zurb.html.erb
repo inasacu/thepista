@@ -10,11 +10,9 @@
 		the_venue_link = item_name_link(@group.venue.name, reservations_path(:id => @group.installation)) if @group.installation
 	end
 	
-	
 	the_automatic_petition = h(label_name(@group.automatic_petition, 'value'))
 	the_confirmation = label_with_name('automatic_petition', "#{@group.name}?")
 	has_items = (object_counter(@group.schedules) > 0)
-	
 %>
 
 <%#= render 'shared/show_description_zurb', :item => @group %>
@@ -41,9 +39,9 @@
 		<%= render_show_detail_zurb(:manager, item_list(@group.all_the_managers)) unless @group.is_branch? %>
 
 		<%  if is_venue_maximo %>
-		<%= render_show_detail_zurb(:venue, the_venue_link) unless @group.is_branch? %>
+			<%= render_show_detail_zurb(:venue, the_venue_link) unless @group.is_branch? %>
 		<% else %>
-		<%= render_show_detail_zurb(:marker, @group.marker.name) unless @group.is_branch? %>
+			<%= render_show_detail_zurb(:marker, @group.marker.name) unless @group.is_branch? %>
 		<% end %>
 		
 		<%= render_show_detail_zurb(:sports, @group.sport.name) %>
@@ -70,13 +68,14 @@
 			<br/>
 			<hr/>
 			<%= content_tag :h6, "#{label_name(:timetables)}".html_safe, :class => "subheader" %> 
-			<% Timetable.item_timetable(@group).each do |timetable| %>
-				<hr/>
+			<% Timetable.item_timetable(@group).each do |timetable| 
 				
-				<%= render_show_detail_zurb(:type, timetable.type.name) %>
-				<%= render_show_detail_zurb(:starts_at, timetable.starts_at) %>
-				<%= render_show_detail_zurb(:ends_at, timetable.ends_at) %>
-				<%= render_show_detail_zurb(:timeframe, "#{timetable.timeframe} #{label_name(:hour)}") %>
+				the_timetable = "#{label_name(timetable.type.name)}, 
+								 #{nice_simple_time_at(timetable.starts_at)} - 
+								#{nice_simple_time_at(timetable.ends_at)}"
+				%>
+				
+				<%= render_show_detail_zurb(:blank, the_timetable) %>
 					
 			<% end %>
 		<% end %>

@@ -98,4 +98,8 @@
 	</tbody>
 </table>
 
-<%= render "shared/previous_next_message_zurb", :schedule => @schedule, :the_previous => @the_previous, :the_next => @the_next, :display_previous_next => true %>
+<%= render "shared/previous_next_message_zurb", 
+			:schedule => @schedule, 
+			:the_previous => @the_previous, 
+			:the_next => @the_next, 
+			:display_previous_next => !@group.is_branch?  %>

@@ -33,7 +33,7 @@ class GroupsController < ApplicationController
 	def show
 		store_location 
 		
-		if @group.item_type == 'Branch'
+		if @group.is_branch?
 			@branch = Branch.find(@group.item_id)
 		end
 		
@@ -67,7 +67,7 @@ class GroupsController < ApplicationController
 		if @group.save and @group.create_group_roles(current_user)
 			successful_create
 			
-			if @group.item_type == 'Branch'
+			if @group.is_branch?
 					redirect_to companies_url
 					return
 			end

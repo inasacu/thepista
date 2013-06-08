@@ -2,8 +2,6 @@ class CreateCompanies < ActiveRecord::Migration
   def change
 	
 		# rake db:migrate VERSION=20130518203222
-
-		# drop_table :companies
 		
     create_table :companies do |t|
 	    t.string   	:name

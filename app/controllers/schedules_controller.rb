@@ -113,14 +113,32 @@ class SchedulesController < ApplicationController
 	end
 
 	def new
-		unless is_current_manager_of(@group)
-			notice_to_create_group
-			redirect_to groups_url
-			return
+
+		if @group.is_branch?
+				block_token = Base64::decode64(params[:block_token].to_s).to_i
+				time_frame = 1.hour
+
+				@first_day = Time.zone.at(block_token)	
+				@last_day = @first_day + time_frame
+				@first_schedule = Schedule.get_schedule_item_first_to_last_month(@first_day, @last_day, @group.item)
+
+				if @first_schedule.count > 0
+					Match.create_item_schedule_match(@first_schedule.first, current_user)
+					redirect_to @first_schedule
+					return
+				end
+				
+		else
+			unless is_current_manager_of(@group)
+				notice_to_create_group
+				redirect_to groups_url
+				return
+			end
 		end
+
 		@schedule = Schedule.new
 
-		if @group
+		if @group 
 			@schedule.jornada = 1
 			@schedule.name = "#{I18n.t(:jornada)} #{@schedule.jornada}"
 			@schedule.group_id = @group.id
@@ -128,18 +146,15 @@ class SchedulesController < ApplicationController
 			@schedule.marker_id = @group.marker_id
 			@schedule.time_zone = @group.time_zone
 			@schedule.player_limit = @group.player_limit
-
 			@schedule.fee_per_game = 1
 			@schedule.fee_per_pista = 1
 			@schedule.fee_per_pista = @group.player_limit * @schedule.fee_per_game if @group.player_limit > 0
-
 			@schedule.starts_at = Time.zone.now.change(:hour => 12, :min => 0, :sec => 0) + 1.days
-
 			@schedule.ends_at = @schedule.starts_at + 1.hour
 			@schedule.reminder_at = @schedule.starts_at - 2.days
-
 			@schedule.season = Time.zone.now.year
 		end
+	
 
 		@previous_schedule = Schedule.find(:first, :conditions => ["schedules.group_id = ?", @group.id], :order => "schedules.starts_at DESC")    
 		unless @previous_schedule.nil?
@@ -169,22 +184,69 @@ class SchedulesController < ApplicationController
 			end
 
 		end
-		# render @the_template
+		
+		
+		if @group.is_branch?
+			block_token = Base64::decode64(params[:block_token].to_s).to_i
+			time_frame = 1.hour
+			
+			@schedule.jornada = 1 if @schedule.jornada.nil?
+			@schedule.name = "#{I18n.t(:jornada)} #{@schedule.jornada}"
+			@schedule.starts_at = Time.zone.at(block_token)	
+			@schedule.ends_at = @schedule.starts_at + time_frame 
+			@schedule.block_token = Base64::encode64(@schedule.starts_at.to_i.to_s)
+			@schedule.group_name = @group.name
+			@schedule.group_id = @group.id
+			@schedule.player_limit = @group.player_limit
+		end		
+		
 	end
 
 	def create
 		@schedule = Schedule.new(params[:schedule])   		
 		@schedule.ends_at_date = @schedule.starts_at_date 
+		@group = Group.find(@schedule.group_id)
+		
+		if @group.is_branch?			
+			
+				block_token = Base64::decode64(@schedule.block_token.to_s).to_i
+				time_frame = 1.hour
 
-		unless is_current_manager_of(@schedule.group)
-			warning_unauthorized
-			redirect_back_or_default('/index')
-			return
+				@schedule.name = "#{I18n.t(:jornada)} #{@schedule.jornada}"
+				@schedule.starts_at = Time.zone.at(block_token)	
+				@schedule.ends_at = @schedule.starts_at + time_frame 
+				@schedule.reminder_at = @schedule.starts_at - 2.days	
+				@schedule.available = (@schedule.starts_at > Time.zone.now + MINUTES_TO_RESERVATION )
+				@schedule.item_id = @group.id
+				@schedule.item_type = @group.class.to_s
+				@schedule.group_name = @group.name
+				@schedule.group_id = @group.id
+				@schedule.sport_id = @group.sport_id
+				@schedule.marker_id = @group.marker_id
+				@schedule.time_zone = @group.time_zone
+				@schedule.player_limit = @group.player_limit
+				@schedule.fee_per_game = 1
+				@schedule.fee_per_pista = 1
+				@schedule.fee_per_pista = @group.player_limit * @schedule.fee_per_game if @group.player_limit > 0
+				@schedule.reminder_at = @schedule.starts_at - 2.days
+				@schedule.season = Time.zone.now.year
+			
+		else
+			unless is_current_manager_of(@group)
+				warning_unauthorized
+				redirect_back_or_default('/index')
+				return
+			end
 		end
 
 		if @schedule.save and @schedule.create_schedule_roles(current_user)
-			@schedule.create_schedule_details
-			Schedule.delay.send_created
+
+			if @schedule.group.item_type == 'Branch'
+				Match.create_item_schedule_match(@schedule, current_user)
+			else
+				@schedule.create_schedule_details
+				Schedule.delay.send_created
+			end
 
 			successful_create
 			redirect_to @schedule

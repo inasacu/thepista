@@ -1,7 +1,7 @@
 module MatchesHelper
 
 	def match_roster_change_link(match, type, show_label=true, show_icon=true)    
-		the_schedule = match.schedule
+		# the_schedule = match.schedule
 		the_image = IMAGE_CONVOCADO
 
 		the_label = "#{I18n.t(:change_roster_status) } #{I18n.t(type.name).downcase}"

@@ -25,6 +25,11 @@ class Timetable < ActiveRecord::Base
 	validates_presence_of     :starts_at
 	validates_presence_of     :ends_at
 	validates_presence_of     :timeframe
+	validates_presence_of     :item_id
+	validates_presence_of			:item_type
+	
+	validates_uniqueness_of :item_id, :item_type, :scope => [:starts_at, :ends_at, :timeframe, :type_id]
+
 
 	# variables to access
 	attr_accessible :installation_id, :type_id, :starts_at, :ends_at, :timeframe, :item_id, :item_type
@@ -69,7 +74,7 @@ class Timetable < ActiveRecord::Base
 
 		self.where("timetables.archive = false and item_id = ? and item_type = ? and types.table_type = 'Timetable' and types.name =  ?", item.id, item.class.to_s, the_day_of_week).select("timetables.starts_at, timetables.ends_at, timetables.timeframe").joins("join types on types.id = timetables.type_id").order("timetables.type_id, timetables.starts_at")
 	end	
-
+	
 	# def self.branch_min_max_timetable(company)
 	# 	self.where("branch.company_id = ?", company).select("min(timetables.starts_at) as starts_at, max(timetables.ends_at) as ends_at").joins("LEFT JOIN branches on branches.id = timetables.item_id").first()
 	# end  		
