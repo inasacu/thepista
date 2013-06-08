@@ -6,9 +6,9 @@ class GroupsController < ApplicationController
 
 	def index
 		# if Rails.env.development?
-			# @groups = Group.get_site_groups(params[:page]) 
+			@groups = Group.get_site_groups(params[:page]) 
 		# else
-			@groups = Group.get_branch_groups(params[:page])
+			# @groups = Group.get_branch_groups(params[:page])
 		# end
 		render @the_template
 	end
