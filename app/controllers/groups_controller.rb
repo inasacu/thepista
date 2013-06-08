@@ -5,11 +5,11 @@ class GroupsController < ApplicationController
 	before_filter :has_manager_access, :only => [:edit, :update, :destroy, :set_automatic_petition]
 
 	def index
-		if Rails.env.development?
-			@groups = Group.get_site_groups(params[:page]) 
-		else
+		# if Rails.env.development?
+			# @groups = Group.get_site_groups(params[:page]) 
+		# else
 			@groups = Group.get_branch_groups(params[:page])
-		end
+		# end
 		render @the_template
 	end
 
