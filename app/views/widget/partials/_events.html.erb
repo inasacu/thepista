@@ -1,12 +1,12 @@
-<style>
-/* This will go in a different css file as widget.js */
-.week_day_detail{
-	display:none;
-}
-</style>
 
 <div class="row">
 	<div class="twelve columns">
+		
+		<%if current_user%>
+		<p>Esta loggeado <%=root_url%></p>
+		<%else%>
+		<p>NO Esta loggeado <%=root_url%></p>
+		<%end%>
 		
 		<%if !@schedulesPerWeekDay.nil? and @schedulesPerWeekDay.any?%>
 		
@@ -18,6 +18,7 @@
 					<%= "(#{weekdaySchedules.length}) #{index}"%>
 					<a href="#" class="toogle_day_view_link">toggle</a>
 				</td>
+				<td></td>
 			</tr>
 			
 			<%if weekdaySchedules.any?%>
@@ -29,6 +30,11 @@
 					</div>
 					<%end%>
 				</td>
+				
+				<td>
+					<a href="#" class="auth_popup">Apuntate</a>
+				</td>
+				
 			</tr>
 			<%end%>
 			
@@ -45,3 +51,10 @@
 		
 	</div>
 </div>
+
+<script>
+	if(window.opener) {
+	    window.opener.location.reload(true);
+	    window.close()
+	}
+</script>

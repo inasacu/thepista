@@ -8,6 +8,9 @@ Thepista::Application.routes.draw do
 	match "/widget/index", :to => 'widget#index'
   match "/widget/", :to => 'widget#index'
   match "/widget/home", :to => 'widget#home'
+  match "/widget/login/popup", :to => 'widget#login_check'
+  
+  match 'logout_widget' => 'user_sessions#destroy_widget', :as => :logout_widget
   # ------------------------>
 
 	match 'rpx_token_sessions' => 'user_sessions#rpx_create', :as => :rpx_token_sessions

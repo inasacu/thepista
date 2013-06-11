@@ -1,17 +1,19 @@
 class WidgetController < ApplicationController
   layout nil
   
+  helper WidgetHelper
+  
   def index
   end
   
   def home
     
-    currentBranch = Branch.branch_from_url(request.env["HTTP_REFERER"]) 
+    if !session[:current_branch]
+      session[:current_branch] = Branch.branch_from_url(request.env["HTTP_REFERER"]) 
+    end 
     
-    if !currentBranch.nil?
-      @schedulesPerWeekDay = Schedule.week_schedules_from_timetables(currentBranch)
-    end
-        
+    @schedulesPerWeekDay = Schedule.week_schedules_from_timetables(session[:current_branch])
+          
     render :layout => 'widget'
   end
   

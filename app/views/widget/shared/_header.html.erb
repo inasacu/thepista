@@ -11,7 +11,6 @@
 	div_close = "</div>".html_safe
 %>
 
-
 <div id="zurBar">
 
 	<div class="row">
@@ -21,7 +20,18 @@
 			<%= link_to(image_tag('haypista_logo_green.png', options={:style => 'height: 45px; width: 155px;', :align => 'left'}), root_url) if is_mobile_browser %>		
 		<%= div_close %>
 
-
+		<div class="personal_info">
+			<%if current_user%>
+			<p class="personal_info_text">
+				Bienvenido, <%=current_user.name%>
+				<br>
+				
+				<%=link_to("Cerrar sesión", logout_widget_path)%>
+			</p>
+			<%else%>
+			<a href="#" class="auth_popup">Inicia sesi&oacute;n</a>
+			<%end%>
+		</div>
 	</div>
 
 </div>

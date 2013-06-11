@@ -98,7 +98,17 @@ class UserSessionsController < ApplicationController
 	def destroy
 		@user_session = current_user_session
 		@user_session.destroy if @user_session
+		
 		redirect_to root_url
+		
+	end
+	
+	def destroy_widget
+		@user_session = current_user_session
+		@user_session.destroy if @user_session
+		
+		redirect_to "#{root_url}/#{WidgetHelper.root_url}"
+		
 	end
 
 end
