@@ -52,7 +52,7 @@
 	<div class="row">	
 		<div class="twelve columns">
 
-			<%= set_form_create_id_image_link(Schedule.new, :id, @group, :schedules_create) %>
+			<%= set_form_create_id_image_link(Schedule.new, :id, @group, :schedules_create) unless @group.is_branch? %>
 			
 			<%= set_form_edit_image_link(@group, :groups_edit) %>		
 		

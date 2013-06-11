@@ -230,6 +230,12 @@ class SchedulesController < ApplicationController
 				@schedule.fee_per_pista = @group.player_limit * @schedule.fee_per_game if @group.player_limit > 0
 				@schedule.reminder_at = @schedule.starts_at - 2.days
 				@schedule.season = Time.zone.now.year
+				
+				@previous_schedule = Schedule.find(:first, :conditions => ["schedules.group_id = ?", @group.id], :order => "schedules.starts_at DESC")    
+				unless @previous_schedule.nil?
+					@schedule.jornada = @previous_schedule.jornada + 1
+					@schedule.name = "#{I18n.t(:jornada)} #{@schedule.jornada}"
+				end
 			
 		else
 			unless is_current_manager_of(@group)
@@ -345,8 +351,14 @@ class SchedulesController < ApplicationController
 	def get_schedule
 		@schedule = Schedule.find(params[:id])
 		@group = @schedule.group
-		@the_previous = Schedule.previous(@schedule)
-		@the_next = Schedule.next(@schedule)    
+
+		@the_previous = nil 
+		@the_next = nil
+		unless @group.is_branch?
+			@the_previous = Schedule.previous(@schedule) 
+			@the_next = Schedule.next(@schedule)  
+		end  
+		
 	end
 
 	def get_current_schedule

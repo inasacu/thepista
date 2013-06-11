@@ -4,6 +4,6 @@
 
 <% @current_manage_groups.each do |group| %>
 	
-	<%= set_form_create_id_label_link(Schedule.new, :id, group, "#{label_name(:schedules_create)} - #{group.name}") %>
+	<%= set_form_create_id_label_link(Schedule.new, :id, group, "#{label_name(:schedules_create)} - #{group.name}") unless group.is_branch? %>
 	
 <% end %>

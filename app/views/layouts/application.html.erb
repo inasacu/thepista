@@ -38,23 +38,23 @@
 	<%= javascript_include_tag "application" %>
 	<%= csrf_meta_tags %>
 
-	<% if Rails.env.development? %>
-	
-	    <link rel="stylesheet" href="http://foundation.zurb.com/docs/assets/normalize.css" />
-	    <link rel="stylesheet" href="http://foundation.zurb.com/docs/assets/docs.css" />
-	    <script src="http://foundation.zurb.com/docs/assets/vendor/custom.modernizr.js"></script>
-
+	<% 
+		display_foundation_4 = false
+	%>
+	<% if display_foundation_4 %>
+			<link rel="stylesheet" href="http://foundation.zurb.com/docs/assets/normalize.css" />
+	    	<link rel="stylesheet" href="http://foundation.zurb.com/docs/assets/docs.css" />
+	    	<script src="http://foundation.zurb.com/docs/assets/vendor/custom.modernizr.js"></script>
 	<% end %>
 
-	<%#= stylesheet_link_tag "foundation" %>
+	<%= stylesheet_link_tag "foundation" %>
 	<%= javascript_include_tag "foundation" %>
 	
 	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js" type="text/javascript"></script>
-	<!-- <script src="https://browserid.org/include.js" type="text/javascript"></script> -->
 	
 		
 	<!-- Included CSS Files -->
-	<%= stylesheet_link_tag 'docs' if Rails.env.development? and !is_mobile_browser %>
+	<%= stylesheet_link_tag 'docs' if display_foundation_4 %>
 	<%= stylesheet_link_tag 'zurb/grid' %>
 	<%= stylesheet_link_tag 'zurb/forms' %>
 	<%= stylesheet_link_tag 'zurb/presentation' %>
@@ -74,8 +74,8 @@
 
 <body id="-page" class="">
 
-	<%= render 'shared/header' if Rails.env.development? and !is_mobile_browser %>
-	<%= render 'shared/header_zurb' unless Rails.env.development? and !is_mobile_browser %>
+	<%= render 'shared/header' if display_foundation_4 %>
+	<%= render 'shared/header_zurb' unless display_foundation_4 and !is_mobile_browser %>
 
 	<div class="container">
 		
@@ -85,8 +85,8 @@
 	</div>
 
 	
-	<%= render 'shared/footer_zurb'  unless Rails.env.development? %>
-	<%= render 'shared/footer' if Rails.env.development? and !is_mobile_browser %>
+	<%= render 'shared/footer_zurb'  unless display_foundation_4 %>
+	<%= render 'shared/footer' if display_foundation_4 and !is_mobile_browser %>
 	
 	<%= render :partial => 'utilities/google_analytics' %>
 	
