@@ -58,13 +58,6 @@ module FlashHelper
 		when 'cast'
 			the_tab_navigation = 'challenges'
 
-		when 'enchufado'
-			the_title = the_controller
-			@new_item = @enchufado if is_new_item
-
-		when 'subplug'
-			the_tab_navigation = "enchufados"
-
 		when 'company'
 			the_title = the_controller
 			@new_item = @company if is_new_item
@@ -103,7 +96,7 @@ module FlashHelper
 			is_display_title = false
 			@new_item = @message if is_new_item
 
-		when 'user session', 'authentication', 'enchufado', 'timetable'
+		when 'user session', 'authentication', 'timetable'
 			the_tab_navigation = nil		
 		end	
 

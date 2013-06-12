@@ -56,10 +56,6 @@ module WrappersHelper
 			new_item_sidebar = Cup.new	
 			the_sidebar = nil if is_controller_action('cup_index')
 
-		when 'enchufado'
-			ignore_option = ['enchufado_show']
-			new_item_sidebar = Enchufado.new unless ignore_option.include?(get_controller_action)
-
 		when 'company'
 			ignore_option = ['company_show']
 			new_item_sidebar = Company.new unless ignore_option.include?(get_controller_action)
@@ -137,11 +133,6 @@ module WrappersHelper
 		if the_controller_action.include?(get_controller_action)
 			@the_collection = @casts if @casts
 		end
-
-		if get_controller_action == 'enchufado_index'
-			@the_collection = @enchufados if @enchufados
-		end
-
 
 		# case for discard displaying DISQUS
 		discard_disqus_display = ['schedule_new', 'schedule_edit', 'cast_edit', 'match_edit', 'invitation_new', 'challenge_new', 'challenge_edit', 'message_new']
