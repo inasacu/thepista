@@ -1,0 +1,83 @@
+
+
+
+<div class="row">
+	<div class="twelve columns">
+
+	<% if @authentications %>
+
+	<% unless @authentications.empty? %>
+
+	<%= content_tag :h6, label_name(:rpx_login), :class => "subheader" %>
+	<hr />
+
+	<div class="authentications">
+
+		<% for authentication in @authentications %>
+
+		<div class="authentication">
+
+			<%= image_tag "#{authentication.provider}_32.png", :size => "32x32" %>
+
+			<div class="provider"><%= authentication.provider.titleize %></div>
+			<div class="uid"><%= authentication.uid %></div>
+			
+			<%=link_to "X", authentication, :class => "popup", :"data-width" => 600, :"data-height" => 400%>
+			
+
+		</div>
+
+		<% end %>
+
+
+	</div>
+
+	<% end %>
+
+	<br>
+	<br>
+	<br>
+	<br>
+	
+	<%= content_tag :h5	, "#{label_name(:omniauth_add_service)}".html_safe, :class => "subheader" %>
+	<hr />
+
+	<% elsif current_user %>
+
+	<%= content_tag :h5	, "<strong>Sign in through one of these services:</strong>".html_safe, :class => "subheader" %>
+	<hr />
+
+	<% end %>
+
+
+	<br>
+	
+	<%= content_tag :h6, label_name(:omniauth_browser_id_new), :class => "subheader" %>
+	<hr />
+	<br>	
+	
+	<a href="/auth/twitter" class="auth_provider"><%= image_tag "twitter_64.png", :size => "64x64", :alt => "Twitter" %>Twitter</a>	
+	<a href="/auth/facebook" class="auth_provider"><%= image_tag "facebook_64.png", :size => "64x64", :alt => "Facebook" %>Facebook</a>
+	<a href="/auth/linkedin" class="auth_provider"><%= image_tag "linkedin_64.png", :size => "64x64", :alt => "Linkedin" %>Linkedin</a>
+	<a href="/auth/google" class="auth_provider"><%= image_tag "google_64.png", :size => "64x64", :alt => "Google" %>Google</a>
+
+	
+	<%= render 'utilities/persona'%>
+	
+	<form id='browser_id_form' action='/auth/browser_id/callback'>
+		<input type='hidden' name='assertion'/>	
+		<button type="submit" style="border: 0; background: transparent">
+			<%= image_tag "persona.png", :size => "64x64", :alt => "PERSONA" %><br>Mozilla Persona
+		</button>	
+	</form>
+	
+	<br>
+	<%= content_tag :h7, link_to(label_name(:persona_services_list_how_short), persona_url), :class => "subheader" %>
+	
+	
+	<br>
+	<br>
+	<hr>
+	
+	</div>
+</div>

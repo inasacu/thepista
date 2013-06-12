@@ -1,0 +1,21 @@
+.container{
+	clear:both;
+}
+
+.personal_info{
+	color:#fff;
+	font-size:16px;
+	float:right;
+}
+.personal_info a{
+	color:#fff;
+	font-size:13px;
+	text-decoration:underline;
+}
+.personal_info_text{
+	text-align:right;
+}
+
+.week_day_detail{
+	display:none;
+}
