@@ -18,35 +18,57 @@
 					<%= "(#{weekdaySchedules.length}) #{index}"%>
 					<a href="#" class="toogle_day_view_link">toggle</a>
 				</td>
-				<td></td>
 			</tr>
 			
 			<%if weekdaySchedules.any?%>
 			<tr class="week_day_detail">
 				<td>
-					<%weekdaySchedules.each do |schedule|%>
-					<div>
-						<%=schedule.name%>
-					</div>
-					<%end%>
+					<table>
+						<tbody>
+							<%weekdaySchedules.each do |schedule|%>
+
+							<tr>
+								<td>
+									<%=link_to(sanitize(limit_url_length(schedule.name, 25)), team_roster_path(:id => schedule))%>
+									<br>
+									<%=set_content_tag_safe('span', "#{get_missing_detail(schedule)}", 'date')%>
+								</td>
+								
+								<td class="name_and_date">
+									<%=item_name_link(schedule.group)%>
+									<br>
+									<span class="date"><%=schedule.sport.name%></span>
+								</td>
+								
+								<td class="name_and_date">
+									<%=nice_day_time_wo_year_exact(schedule.starts_at)%>
+									<br>
+									<span class="date"><%=get_installation_link(schedule)%></span>
+								</td>
+								
+								<td>
+									<a href="#" class="auth_popup">Apuntate</a>
+								</td>
+								
+							</tr>
+
+							<%end # iterate over events of the day%>
+						</tbody>
+					</table>
 				</td>
-				
-				<td>
-					<a href="#" class="auth_popup">Apuntate</a>
-				</td>
-				
 			</tr>
-			<%end%>
+			<%end # if there is events for this day%>
 			
-		<%end%>
+		<%end # Iterates over map of events%>
 
 		</table>
+		
 		
 		<%else%>
 		
 		<p>No hay eventos que mostrar</p>
 		
-		<%end%>
+		<%end # if the map of events could be obtained%>
 		
 		
 	</div>

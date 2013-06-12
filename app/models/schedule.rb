@@ -667,6 +667,13 @@ class Schedule < ActiveRecord::Base
       weekDaysArray[(Date.today+i).strftime("%A")] = centreSchedules
     end
     
+    # Obtain real events created in the next 7 days
+    realEvents = self.where("starts_at between ? and ? ", Date.today, Date.today+7)
+    
+    realEvents.each do |realEvent|
+       weekDaysArray[realEvent.starts_at.strftime("%A")] << realEvent
+    end
+    
     # Obtains the timetables of the branch for the following 7 days
     branchWeekTimetables = Timetable.branch_week_timetables(currentBranch)
     

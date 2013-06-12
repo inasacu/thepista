@@ -254,6 +254,28 @@ module SchedulesHelper
     return the_label, the_content, has_been_played, is_manager, is_squad, the_sport, the_missing, the_span, the_start_at_label 
   end
   
+  # WIDGET --------------------
+  
+  def get_installation_link(schedule)
+  
+    if schedule.group.installation
+			the_installation = schedule.group.installation
+			the_venue = "#{schedule.group.venue.short_name}, #{the_installation.name}"
+			the_installation_link = "#{link_to(the_venue, reservations_path(:id => the_installation))}".html_safe
+		else
+			the_installation_link =  has_left(schedule.starts_at)
+		end
+		
+		return the_installation_link
+  end
+  
+  def get_missing_detail(schedule)
+    the_sport = "#{the_font_green(label_name(:rosters))}:  #{schedule.convocados.count}"
+    the_missing = ", #{the_font_yellow(I18n.t(:missing))}:  #{schedule.player_limit.to_i - schedule.convocados.count}" if schedule.player_limit.to_i > schedule.convocados.count
+    the_missing = ", #{the_font_red(I18n.t(:excess))}:  #{schedule.convocados.count - schedule.player_limit.to_i}" if schedule.player_limit.to_i < schedule.convocados.count 
+    return "#{the_sport}#{the_missing}"
+  end
+  
 end
 
 
