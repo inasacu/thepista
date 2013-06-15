@@ -62,8 +62,17 @@ class SchedulesController < ApplicationController
 
 	def team_roster
 		store_location
-		@has_a_roster = !(@schedule.convocados.empty?)
+				
+		@the_roster = nil
+		@has_a_roster = nil
+		@the_roster_infringe = nil
+		@the_roster_last_minute_infringe = nil
+		@the_last_played = nil
+		# @the_roster_reputation = nil
+		
+		# @has_a_roster = !(@schedule.convocados.empty?)
 		@the_roster = @schedule.the_roster_sort(sort_order(''))
+		@has_a_roster = !(@the_roster.empty?)
 		@the_roster_infringe = @schedule.the_roster_infringe
 		@the_roster_last_minute_infringe = @schedule.the_last_minute_infringe
 		@the_last_played = @schedule.the_roster_last_played

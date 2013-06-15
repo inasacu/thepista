@@ -111,11 +111,13 @@ module SchedulesHelper
     elsif Time.zone.now < schedule.starts_at
       the_label = ""
       
-      schedule.matches.each do |match| 
+      # schedule.matches.each do |match|
+      schedule.matches.find(:all, :include => [:user, :type]).each do |match| 
         the_font_begin =  ""
         the_font_end = ""
 				the_match_type_name_downcase = (match.type_name).downcase
 				the_font=""
+				is_same_user = is_current_same_as(match.user)
 				
         case match.type_id
         when 1
@@ -125,7 +127,7 @@ module SchedulesHelper
         when 3
 					the_font = the_font_red(the_match_type_name_downcase)
         end
-        the_label = "<STRONG>#{I18n.t(:your_roster_status)}</STRONG> #{the_font}" if is_current_same_as(match.user)
+        the_label = "<STRONG>#{I18n.t(:your_roster_status)}</STRONG> #{the_font}" if is_same_user
       end
       
 			the_match_link = match_all_my_link(schedule, current_user, false, true)

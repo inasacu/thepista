@@ -84,7 +84,7 @@ class Group < ActiveRecord::Base
  
   belongs_to    :sport   
   belongs_to    :marker 
-  belongs_to    :installation
+  belongs_to    :installation, 			:include => [ :venue ]
 	belongs_to    :item,          		:polymorphic => true
 
   has_many :the_managers,
@@ -114,11 +114,12 @@ class Group < ActiveRecord::Base
 
   # method section
 	def self.get_site_groups(the_params)
-		self.where("groups.archive = false").page(the_params).order('groups.created_at DESC')
+		self.where("groups.archive = false").page(the_params).order('groups.created_at DESC').includes(:item, :schedules, :marker, :sport, :the_managers, :users)
 	end
 	
 	def self.get_branch_groups(the_params)
-		self.where("groups.archive = false and groups.item_type is null").page(the_params).order('groups.created_at DESC')
+		self.where("groups.archive = false and 
+			groups.item_type is null").page(the_params).order('groups.created_at DESC').includes(:item, :schedules, :marker, :sport, :the_managers, :users)
 	end
 	
   def all_the_managers
@@ -221,7 +222,7 @@ class Group < ActiveRecord::Base
 	end
   
   def venue
-    self.marker.venue
+    self.installation.venue
   end
 
 	def payed_service
