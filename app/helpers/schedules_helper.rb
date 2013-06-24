@@ -256,6 +256,20 @@ module SchedulesHelper
   
   # WIDGET --------------------
   
+  def get_installation_name(schedule)
+  
+    if schedule.group.installation
+			the_installation = schedule.group.installation
+			the_venue = "#{schedule.group.venue.short_name}, #{the_installation.name}"
+			the_installation_link = the_venue
+			#the_installation_link = "#{link_to(the_venue, reservations_path(:id => the_installation))}".html_safe
+		else
+			the_installation_link =  has_left(schedule.starts_at)
+		end
+		
+		return the_installation_link
+  end
+  
   def get_installation_link(schedule)
   
     if schedule.group.installation

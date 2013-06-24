@@ -26,10 +26,11 @@
 				Bienvenido, <%=current_user.name%>
 				<br>
 				
-				<%=link_to("Cerrar sesión", logout_widget_path)%>
+				<%=link_to("Cerrar sesión", widget_logout_path)%>
 			</p>
 			<%else%>
-			<a href="#" class="auth_popup">Inicia sesi&oacute;n</a>
+			<a href="#" data-isevent="false" data-ismock="true" data-event="0" 
+			  class="auth_popup">Inicia sesi&oacute;n</a>
 			<%end%>
 		</div>
 	</div>

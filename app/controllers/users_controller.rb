@@ -102,7 +102,7 @@ class UsersController < ApplicationController
 
 	def create
 		@user = User.new(params[:user])
-
+		
 		if session[:session_secret]
 			unless has_are_you_a_human_passed   
 				recaptcha_failure
@@ -126,15 +126,35 @@ class UsersController < ApplicationController
 			@user.password = omniauth['provider']
 			@user.password_confirmation = omniauth['provider']
 		end
-
+		
 		if @user.save
 			@user.email_to_name if @user.name.include?('@')
 			@user.email_backup = @user.email
 			@user.save
 
 			Authentication.create_from_omniauth(session[:omniauth], @user) if session[:omniauth]
+			
+			if WidgetHelper.is_widget_signup_form(params[:form_type])
+			  
+			  # info for logic actions
+        isevent = request.env["widget.isevent"]
+        ismock = request.env["widget.ismock"]
+        eventid = request.env["widget.event"]
+        
+        #logic to add the user to a group and create event 
+        Schedule.takecareof_apuntate(current_user, isevent, ismock, eventid)
+        
+  		  redirect_to widget_home_url
+  		  return
+  		end
 
 		else
+		  
+		  if WidgetHelper.is_widget_signup_form(params[:form_type])
+  		  redirect_to widget_check_omniauth_url
+  		  return
+  		end
+		  
 			flash[:warning] = I18n.t(:password_email_conbination_issue)
 			redirect_to :signup
 			return
@@ -144,6 +164,7 @@ class UsersController < ApplicationController
 		session[:omniauth] = nil if session[:omniauth]
 
 		successful_create
+	
 		redirect_to @user
 	end
 

@@ -107,7 +107,7 @@ class UserSessionsController < ApplicationController
 		@user_session = current_user_session
 		@user_session.destroy if @user_session
 		
-		redirect_to "#{root_url}/#{WidgetHelper.root_url}"
+		redirect_to widget_home_url
 		
 	end
 

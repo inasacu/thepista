@@ -19,3 +19,8 @@
 .week_day_detail{
 	display:none;
 }
+
+table tbody tr.week_day_parent{
+	background:#f8f8f8;
+	border:#ccc 1px dashed;
+}

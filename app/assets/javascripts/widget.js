@@ -1,6 +1,3 @@
-if(typeof(jQuery) == 'undefined'){
-  document.write("<script type='text/javascript' src='http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js'></script>");
-}
 
 Widget = {};
 Widget.gui = (function(){
@@ -20,7 +17,10 @@ Widget.gui = (function(){
 		},
 		activateAuthPopupCenter: function(className, url, width, height) {
 		    $("a."+className).click(function(e) {
-			    popupCenter(url, width, height, "authPopup");
+				var ismock = $(this).attr('data-ismock');
+				var isevent = $(this).attr('data-isevent');
+				var eventid = $(this).attr('data-event');
+			    popupCenter(url+"?isevent="+isevent+"&ismock="+ismock+"&event="+eventid, width, height, "authPopup");
 			    e.stopPropagation(); 
 			    return false;
 		    });
@@ -32,7 +32,7 @@ Widget.gui = (function(){
 })();
 
 $(document).ready(function(){
-	Widget.gui.activateAuthPopupCenter('auth_popup', 'http://localhost:3000/widget/login/popup', 400, 400);
+	Widget.gui.activateAuthPopupCenter('auth_popup', 'http://localhost:3000/widget/login/popup', 550, 600);
 	Widget.gui.activateToogleWeekDetail('toogle_day_view_link', 'week_day_detail');
 });
 

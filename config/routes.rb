@@ -7,10 +7,12 @@ Thepista::Application.routes.draw do
 	# Enchufados widget
 	match "/widget/index", :to => 'widget#index'
   match "/widget/", :to => 'widget#index'
-  match "/widget/home", :to => 'widget#home'
+  match "/widget/home", :to => 'widget#home', :as => :widget_home
   match "/widget/login/popup", :to => 'widget#login_check'
+  match "/widget/signup", :to => 'widget#signup', :as => :widget_signup
   
-  match 'logout_widget' => 'user_sessions#destroy_widget', :as => :logout_widget
+  match "/widget/check_omniauth", :to => 'widget#check_omniauth', :as => :widget_check_omniauth
+  match '/widget/logout' => 'user_sessions#destroy_widget', :as => :widget_logout
   # ------------------------>
 
 	match 'rpx_token_sessions' => 'user_sessions#rpx_create', :as => :rpx_token_sessions

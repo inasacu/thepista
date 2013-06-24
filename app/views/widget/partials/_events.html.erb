@@ -1,19 +1,13 @@
 
-<div class="row">
+<div class="row" style="margin-top:30px">
 	<div class="twelve columns">
-		
-		<%if current_user%>
-		<p>Esta loggeado <%=root_url%></p>
-		<%else%>
-		<p>NO Esta loggeado <%=root_url%></p>
-		<%end%>
 		
 		<%if !@schedulesPerWeekDay.nil? and @schedulesPerWeekDay.any?%>
 		
 		<table>
 
 		<%@schedulesPerWeekDay.each do |index, weekdaySchedules|%>
-			<tr>
+			<tr class="week_day_parent">
 				<td>
 					<%= "(#{weekdaySchedules.length}) #{index}"%>
 					<a href="#" class="toogle_day_view_link">toggle</a>
@@ -29,13 +23,21 @@
 
 							<tr>
 								<td>
-									<%=link_to(sanitize(limit_url_length(schedule.name, 25)), team_roster_path(:id => schedule))%>
+									<%if schedule.ismock %>
+									
+									<%=schedule.name%>
+									
+									<%else%>
+									
+										<%=link_to(sanitize(limit_url_length(schedule.name, 25)), team_roster_path(:id => schedule))%>
+									<%end%>
+									
 									<br>
 									<%=set_content_tag_safe('span', "#{get_missing_detail(schedule)}", 'date')%>
 								</td>
 								
 								<td class="name_and_date">
-									<%=item_name_link(schedule.group)%>
+									<%=schedule.group.name%>
 									<br>
 									<span class="date"><%=schedule.sport.name%></span>
 								</td>
@@ -43,11 +45,20 @@
 								<td class="name_and_date">
 									<%=nice_day_time_wo_year_exact(schedule.starts_at)%>
 									<br>
-									<span class="date"><%=get_installation_link(schedule)%></span>
+									<span class="date"><%=get_installation_name(schedule)%></span>
 								</td>
 								
 								<td>
-									<a href="#" class="auth_popup">Apuntate</a>
+									<%if current_user%>
+									
+								   
+									
+									<%else%>
+									
+									<a href="#" data-ismock="<%=schedule.id.nil?%>" data-event="<%=schedule.id%>"
+									   data-isevent="true" class="auth_popup">Apuntate</a>
+									
+									<%end%>
 								</td>
 								
 							</tr>
@@ -68,15 +79,8 @@
 		
 		<p>No hay eventos que mostrar</p>
 		
-		<%end # if the map of events could be obtained%>
+		<%end # if the map of events could not be obtained%>
 		
 		
 	</div>
 </div>
-
-<script>
-	if(window.opener) {
-	    window.opener.location.reload(true);
-	    window.close()
-	}
-</script>

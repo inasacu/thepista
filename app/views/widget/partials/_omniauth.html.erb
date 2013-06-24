@@ -1,83 +1,181 @@
+<% unless IGNORE_HOME.include?(get_controller_action) %>
+
+<style type="text/css">
+
+.hide-text{
+	font:0/0 a;
+	color:transparent;
+	text-shadow:none;
+	background-color:transparent;
+	border:0
+}
+
+.img-rounded{
+	-webkit-border-radius:6px;
+	-moz-border-radius:6px;
+	border-radius:6px
+}
+
+.img-polaroid{
+	padding:4px;
+	background-color:#fff;
+	border:1px solid #ccc;
+	border:1px solid rgba(0,0,0,0.2);
+	-webkit-box-shadow:0 1px 3px rgba(0,0,0,0.1);
+	-moz-box-shadow:0 1px 3px rgba(0,0,0,0.1);
+	box-shadow:0 1px 3px rgba(0,0,0,0.1)
+}
+
+.img-circle{
+	-webkit-border-radius:500px;
+	-moz-border-radius:500px;
+	border-radius:500px
+}
 
 
+@font-face{
+	font-family:'social';
+	src:url(<%= asset_path 'social.eot' %>);
+	src:url(<%= asset_path 'social.eot' %>) format('embedded-opentype'),
+	url(<%= asset_path 'social.woff' %>) format('woff'),
+	url(<%= asset_path 'social.ttf' %>) format('truetype'),
+	url(<%= asset_path 'social.svg' %>) format('svg');
+	font-weight:normal;
+	font-style:normal
+}
+
+
+.social-icon:before{
+	font-family:social;
+	font-weight:normal;
+	content:attr(data-icon)
+}
+
+
+*{
+	-webkit-box-sizing:border-box;
+	-moz-box-sizing:border-box;
+	box-sizing:border-box
+}
+
+.login-providers{
+	margin:0 auto 10px;
+	max-width:770px;
+	list-style:none
+}
+
+.login-provider-li{
+	display:inline-block; margin:5px 5px 5px 0
+}
+
+.login-provider-a{
+	display:block; 
+	font-size:80px;
+	line-height:80px;
+	color:#333;
+	width:120px;
+	height:120px;
+	-webkit-border-radius:60px;
+	-moz-border-radius:60px;
+	border-radius:60px;
+	text-align:center;
+	border:10px solid #ccc
+}
+
+.login-provider-a:hover{	text-decoration:none}
+.login-provider-a:active{	opacity:.8; filter:alpha(opacity= 80)}
+.login-provider-a.google{	border-color:#bf2a1d; color:#bf2a1d}
+.login-provider-a.google:hover{	background-color:#bf2a1d; color:#fff}
+.login-provider-a.facebook{	border-color:#3b5997; color:#3b5997}
+.login-provider-a.facebook:hover{	background-color:#3b5997; color:#fff}
+.login-provider-a.microsoft{	border-color:#01a4ef; color:#01a4ef}
+.login-provider-a.microsoft:hover{	background-color:#01a4ef; color:#fff}
+.login-provider-a.linkedin{	border-color:#069; color:#069}
+.login-provider-a.linkedin:hover{	background-color:#069; color:#fff}
+.login-provider-a.yahoo{	border-color:#7b0099; color:#7b0099}
+.login-provider-a.yahoo:hover{	background-color:#7b0099; color:#fff}
+.login-provider-a.twitter{	border-color:#00aced; color:#00aced}
+.login-provider-a.twitter:hover{	background-color:#00aced; color:#fff}
+.login-provider-a.mozilla{	border-color:#666; color:#666}
+.login-provider-a.mozilla:hover{	background-color:#666; color:#fff}
+
+</style>
+	
+
+<%= is_mobile_browser ? "" : "<br><br>".html_safe %>
 
 <div class="row">
 	<div class="twelve columns">
 
-	<% if @authentications %>
 
-	<% unless @authentications.empty? %>
+		<div class="row">
+			<div class="twelve columns">
 
-	<%= content_tag :h6, label_name(:rpx_login), :class => "subheader" %>
-	<hr />
+				<nav>
 
-	<div class="authentications">
+					<ul class="login-providers" style="width:400px">
+						<li class="login-provider-li">
+							<a href="/auth/twitter?origin=widget" class="login-provider-a twitter social-icon" data-icon="t" title="<%= label_name(:login_provider_modo_twitter) %>">
+								<span class="hide-text">Twitter</span>
+							</a>
+						</li>
+						<li class="login-provider-li">
+							<a href="/auth/facebook?origin=widget" class="login-provider-a facebook social-icon" data-icon="f" title="<%= label_name(:login_provider_modo_facebook) %>">
+								<span class="hide-text">Facebook</span>
+							</a>
+						</li>
+						<li class="login-provider-li">
+							<a href="auth/linkedin?origin=widget" class="login-provider-a linkedin social-icon" data-icon="i" title="<%= label_name(:login_provider_modo_linkedin) %>">
+								<span class="hide-text">Linkedin</span>
+							</a>
+						</li>
+						<li class="login-provider-li">
+							<a href="/auth/google?origin=widget" class="login-provider-a google social-icon" data-icon="g" title="<%= label_name(:login_provider_modo_google) %>">
+								<span class="hide-text">Google</span>
+							</a>
+						</li>
+						<li class="login-provider-li">
+							<a href="/auth/windowslive?origin=widget" class="login-provider-a microsoft social-icon" data-icon="w" title="<%= label_name(:login_provider_modo_windows) %>">
+								<span class="hide-text">Microsoft account</span>
+							</a>
+						</li>
+						<li class="login-provider-li">
+							<a href="/auth/yahoo?origin=widget" class="login-provider-a yahoo social-icon"	data-icon="y" title="<%= label_name(:login_provider_modo_yahoo) %>">
+								<span class="hide-text">Yahoo!</span>
+							</a>
+						</li>
+					</ul>
 
-		<% for authentication in @authentications %>
+				</nav>
 
-		<div class="authentication">
+			</div>
+		</div>	
 
-			<%= image_tag "#{authentication.provider}_32.png", :size => "32x32" %>
+		<br>
+		
+		<%= content_tag :h4, "#{label_name(:or)} <STRONG>#{label_name(:log_in)}</STRONG> #{label_name(:with)}".html_safe, :class => "subheader" %>
+		<hr/>
+		
 
-			<div class="provider"><%= authentication.provider.titleize %></div>
-			<div class="uid"><%= authentication.uid %></div>
-			
-			<%=link_to "X", authentication, :class => "popup", :"data-width" => 600, :"data-height" => 400%>
-			
+		<div class="row">
+			<div class="one  columns"></div>
+			<div class="ten columns">				
+				<p>
+					<%= render 'utilities/persona'%>					
 
+					<form id='browser_id_form' action='/auth/browser_id/callback?origin=widget'>
+						<input type='hidden' name='assertion'/>
+						<button type='submit' class='large_medium nice success button radius'><%= label_name(:omniauth_provider_browser_id) %></button>
+					</form>
+				</p>
+			</div>
+			<div class="two columns"></div>
 		</div>
 
-		<% end %>
-
-
-	</div>
-
-	<% end %>
-
-	<br>
-	<br>
-	<br>
-	<br>
-	
-	<%= content_tag :h5	, "#{label_name(:omniauth_add_service)}".html_safe, :class => "subheader" %>
-	<hr />
-
-	<% elsif current_user %>
-
-	<%= content_tag :h5	, "<strong>Sign in through one of these services:</strong>".html_safe, :class => "subheader" %>
-	<hr />
-
-	<% end %>
-
-
-	<br>
-	
-	<%= content_tag :h6, label_name(:omniauth_browser_id_new), :class => "subheader" %>
-	<hr />
-	<br>	
-	
-	<a href="/auth/twitter" class="auth_provider"><%= image_tag "twitter_64.png", :size => "64x64", :alt => "Twitter" %>Twitter</a>	
-	<a href="/auth/facebook" class="auth_provider"><%= image_tag "facebook_64.png", :size => "64x64", :alt => "Facebook" %>Facebook</a>
-	<a href="/auth/linkedin" class="auth_provider"><%= image_tag "linkedin_64.png", :size => "64x64", :alt => "Linkedin" %>Linkedin</a>
-	<a href="/auth/google" class="auth_provider"><%= image_tag "google_64.png", :size => "64x64", :alt => "Google" %>Google</a>
-
-	
-	<%= render 'utilities/persona'%>
-	
-	<form id='browser_id_form' action='/auth/browser_id/callback'>
-		<input type='hidden' name='assertion'/>	
-		<button type="submit" style="border: 0; background: transparent">
-			<%= image_tag "persona.png", :size => "64x64", :alt => "PERSONA" %><br>Mozilla Persona
-		</button>	
-	</form>
-	
-	<br>
-	<%= content_tag :h7, link_to(label_name(:persona_services_list_how_short), persona_url), :class => "subheader" %>
-	
-	
-	<br>
-	<br>
-	<hr>
-	
-	</div>
 </div>
+</div>
+
+<% end %>
+
+
+

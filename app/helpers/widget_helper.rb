@@ -1,12 +1,16 @@
 module WidgetHelper
   
-  def self.root_url
-    return "widget/home"
+  def self.widget_is_origin(origin)
+    return origin=="widget"
   end
   
-  def self.session_destroy_type
-    return "widget"
+  def self.is_widget_signup_form(name=nil)
+    if !nil?
+      return name=="widget_signup_form"
+    else
+      return false
+    end
   end
-
+  
 end
 

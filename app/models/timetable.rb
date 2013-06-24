@@ -79,7 +79,7 @@ class Timetable < ActiveRecord::Base
 	def self.branch_week_timetables(branch)
 	  self.joins("join groups on groups.id=timetables.item_id")
         .where("groups.item_id=?", branch.id)
-	      .where("timetables.starts_at=? and timetables.ends_at=?", Date.today, Date.today+7)
+	      .where("timetables.starts_at between ? and ?", Date.today, Date.today+7)
 	end
   
 end

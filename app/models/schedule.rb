@@ -112,6 +112,7 @@ class Schedule < ActiveRecord::Base
 	attr_accessible	:starts_at_date, :starts_at_time, :ends_at_date, :ends_at_time
 
 	attr_accessor 	:starts_at_date, :starts_at_time, :ends_at_date, :ends_at_time
+  attr_accessor :ismock
   before_update   :set_time_to_utc, :get_starts_at, :get_ends_at
   
   # add some callbacks, after_initialize :get_starts_at # convert db format to accessors
@@ -680,20 +681,53 @@ class Schedule < ActiveRecord::Base
     branchWeekTimetables.each do |timetable|
       
       if timetable.item.class.to_s=='Group'
-        @group = timetable.item
+        timetableGroup = timetable.item
         
-        starts = timetable.starts_at
-        ends = starts + timetable.timeframe
+        mockScheduleStart = timetable.starts_at
+        timetableEnd = timetable.ends_at
+        
+        while mockScheduleStart.to_time < timetableEnd.to_time do
+          mockScheduleEnd = (mockScheduleStart.to_time + timetable.timeframe.hours).to_datetime
+          
+          logger.info "timetableend #{timetableEnd.to_time} start #{mockScheduleStart.to_time} end #{mockScheduleEnd.to_time}"
+          
+          schedule = Schedule.new
+          #schedule.name = "#{timetableGroup.name} #{mockScheduleStart.strftime('%m/%d/%Y')}"
+          schedule.name = "Jornada programada"
+          schedule.starts_at = mockScheduleStart
+          schedule.group = timetableGroup
+          schedule.ismock = true
 
-        schedule = Schedule.new
-        schedule.name = "#{@group.name} #{starts}"
+          weekDaysArray[mockScheduleStart.strftime("%A")] << schedule
+          
+          mockScheduleStart = Date.new
+          mockScheduleStart = mockScheduleEnd
+        end
         
-        weekDaysArray[starts.strftime("%A")] << schedule
       end
       
     end
     
     return weekDaysArray
+    
+  end
+  
+  def self.takecareof_apuntate(user, isevent, ismock, event)
+    
+    if isevent
+      if ismock
+        
+        # the event is created
+        
+        
+        # the user is added to the event as an administrator
+        
+      else
+         
+         # the user is added to the event
+          
+      end
+    end
     
   end
 

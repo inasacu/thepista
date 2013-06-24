@@ -1,0 +1,39 @@
+<div class="row">
+	<div class="twelve columns">  
+
+		<%= form_for(@user, :html => { :multipart => true, :class => 'nice'  }) do |the_form| %>
+
+			<%= render "shared/error_messages", :target => @user %>
+			
+			<%
+				options = ""
+				LANGUAGES.each do |language|
+					options += "<option value='#{language}'>" + label_name(language) + "</option>"	
+				end
+
+				ignore_fields = ['user_omniauth_new', 'rpx_new', 'user_signup', 'user_rpx_new']
+				is_new_user = ignore_fields.include?(get_controller_action)
+			%>
+
+			<%= set_form_label(the_form, :name, '', true) %>
+			<%= set_form_text_field(the_form, :name, 'large input-text', true) %><br />
+
+			<%= set_form_label(the_form, :email, '', true) %>
+			<%= set_form_text_field(the_form, :email, 'large input-text', true) %><br />
+
+			<%= set_form_label(the_form, :phone) %>
+			<%= set_form_text_field(the_form, :phone, 'large input-text', true) %><br />
+
+			<%= set_form_label(the_form, :city) %>
+			<%= the_form.select(:city_id, City.city_name, {:selected => @user.city_id, :include_blank => false}) %><br/><br/>
+			
+			<input type="hidden" name="form_type" value="widget_signup_form"/>
+			
+			<br/><br/>
+			<%= submit_tag("Sign up", :class=>"small_medium nice success button radius") %>
+
+		<% end -%>
+
+	</div>
+
+</div>

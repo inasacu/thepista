@@ -14,3 +14,10 @@
 	<%= render 'home/latest_activities_zurb', :the_label => the_label if has_activities %>
 
 <% end -%>
+
+<script>
+	if(window.opener) {
+	    window.opener.location.reload(true);
+	    window.close()
+	}
+</script>

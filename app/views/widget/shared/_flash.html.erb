@@ -1,0 +1,35 @@
+<%
+	
+	password_reset_actions = ['password_reset_new', 'password_reset_edit', 'password_reset_update']
+	is_password_reset = password_reset_actions.include?(get_controller_action)
+	is_new_user = @user ? true : false
+	the_label = label_name(:users_rpx_new) 
+	@item = @user
+	
+	ignore_label_fill_in_fields = ['user_omniauth_new']
+	is_ignore_label_fill = ignore_label_fill_in_fields.include?(get_controller_action)
+%>
+
+<div class="row">
+
+	<div class="twelve columns">		
+			
+			<% if current_user %>
+			
+				<%= render 'shared/notice_zurb', :notice => flash %>
+				<% logger.info "ENTRO AQUI 3"%>
+				
+			<% elsif is_new_user%>				
+				<% logger.info "ENTRO AQUI 1"%>
+				
+				<%= render 'shared/new_edit_multipart_zurb', :item => @item %>
+		
+			<%else%>
+				<% logger.info "ENTRO AQUI 2"%>
+			<% end %>
+			
+	</div>
+
+</div>
+
+
