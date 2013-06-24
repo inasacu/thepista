@@ -112,7 +112,7 @@ class Schedule < ActiveRecord::Base
 	attr_accessible	:starts_at_date, :starts_at_time, :ends_at_date, :ends_at_time
 
 	attr_accessor 	:starts_at_date, :starts_at_time, :ends_at_date, :ends_at_time
-  attr_accessor :ismock
+  attr_accessor :ismock, :block_token
 
 	attr_accessor 	:available, :item_id, :item_type, :group_name, :match_status_at, :match_schedule_id
 	attr_accessor   :match_group_id, :match_user_id, :match_type_id, :match_type_name, :match_played, :timeframe

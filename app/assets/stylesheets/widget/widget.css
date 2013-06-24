@@ -1,5 +1,20 @@
-.container{
+#-page{
+	height:400px;
+	padding:0;
+}
+
+div.container{
 	clear:both;
+	padding-bottom:0;
+}
+
+.fixed-msg-bottom{
+	background:#3f3f3f;
+	bottom:0;
+	color:#fff;
+	display:none;
+	position:fixed;
+	width:100%;
 }
 
 .personal_info{

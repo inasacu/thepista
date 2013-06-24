@@ -29,7 +29,8 @@
 									
 									<%else%>
 									
-										<%=link_to(sanitize(limit_url_length(schedule.name, 25)), team_roster_path(:id => schedule))%>
+									<%=link_to(sanitize(limit_url_length(schedule.name, 25)), team_roster_path(:id => schedule))%>
+									
 									<%end%>
 									
 									<br>
@@ -49,16 +50,7 @@
 								</td>
 								
 								<td>
-									<%if current_user%>
-									
-								   
-									
-									<%else%>
-									
-									<a href="#" data-ismock="<%=schedule.id.nil?%>" data-event="<%=schedule.id%>"
-									   data-isevent="true" class="auth_popup">Apuntate</a>
-									
-									<%end%>
+									<%= get_event_options(schedule) %>
 								</td>
 								
 							</tr>

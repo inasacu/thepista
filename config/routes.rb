@@ -11,6 +11,9 @@ Thepista::Application.routes.draw do
   match "/widget/login/popup", :to => 'widget#login_check'
   match "/widget/signup", :to => 'widget#signup', :as => :widget_signup
   
+  match "/widget/do_apuntate", :to => 'widget#do_apuntate', :as => :widget_do_apuntate
+  match "/widget/:userid/change_user_state/:newstate", :to => 'widget#change_user_state', :as => :widget_change_user_state
+  
   match "/widget/check_omniauth", :to => 'widget#check_omniauth', :as => :widget_check_omniauth
   match '/widget/logout' => 'user_sessions#destroy_widget', :as => :widget_logout
   # ------------------------>

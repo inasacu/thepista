@@ -54,4 +54,25 @@ class WidgetController < ApplicationController
     render :layout => 'widget'
   end
   
+  def do_apuntate
+    
+    event = Schedule.takecareof_apuntate(current_user, params[:isevent], params[:ismock], params[:event])
+    
+    if event
+      redirect_to event
+    else
+      redirect_to widget_home_url
+    end
+    
+  end
+  
+  def change_user_state
+    
+    userid = params[:userid]
+    newstate = params[:newstate]
+    
+    
+    
+  end
+  
 end
