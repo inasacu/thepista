@@ -17,19 +17,16 @@
 <%= set_form_label(the_form, :phone) %>
 <%= set_form_text_field(the_form, :phone, 'large input-text', true) %><br />
 
+<%= set_form_label(the_form, :whatsapp) %>
+<%= set_form_checkbox(the_form, :whatsapp) %><br/><br>
+
 <%= set_form_label(the_form, :city) %>
 <%= the_form.select(:city_id, City.city_name, {:selected => @user.city_id, :include_blank => false}) %><br/><br/>
 
 <% unless is_new_user %>
 
-<%#= set_form_label(the_form, :sport) %>
-<%#= set_form_text_field(the_form, :sport, 'large input-text', true) %>
-
 <%= set_form_label(the_form, :photo, 'photo') %>
 <%= set_form_file_field(the_form, :photo) %><br/><br/>
-
-<%= set_form_label(the_form, :whatsapp) %>
-<%= set_form_checkbox(the_form, :whatsapp) %><br/>
 
 <%= set_form_label(the_form, :teammate_notification) %>
 <%= set_form_checkbox(the_form, :teammate_notification) %><br/>

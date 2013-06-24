@@ -106,7 +106,7 @@ class AuthenticationsController < ApplicationController
 
 
 	def failure
-		flash[:notice] = "Sorry, You din't authorize"
+		flash[:notice] = I18n.t(:verification_failed)
 		redirect_to root_url
 	end
 

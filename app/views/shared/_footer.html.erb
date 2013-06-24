@@ -1,0 +1,41 @@
+<!-- 
+<footer class="row full-width">
+</footer> 
+-->
+
+<hr/>
+
+<div id="copyright">
+	<div class="row full-width">
+		<div class="large-4 columns">
+			<p><%= app_name %> &copy; <%= Time.zone.now.year %>.</p>
+		</div>
+		<div class="large-8 columns">
+
+			<ul class="inline-list right">
+
+				<%= content_tag(:li, link_to(label_name(:home), root_url)) %>
+				<%= content_tag(:li, "#{mail_to(CONTACT_RECIPIENT, label_name(:help))}".html_safe) %>
+				<%= content_tag(:li, "#{render :partial => '/shared/language_zurb'}".html_safe) %>
+				<%= content_tag(:li, link_to(label_name(:howitworks), how_it_works_url)) %>
+				<%= content_tag(:li, link_to(label_name(:terms_of_use), terms_of_use_url)) %>
+				<%= content_tag(:li, link_to(label_name(:faq), faq_url)) %>
+				<%= content_tag(:li, link_to(label_name(:persona_services), persona_url)) %>
+				<%= content_tag(:li, link_to(label_name(:about), about_url)) %>
+
+			</ul>
+
+		</div>
+	</div>
+</div>
+
+
+<% if Rails.env.development? %>
+<br>
+<hr/>
+<div class="row ">
+	<div class="three columns centered">
+		<%= render 'utilities/browser_detect_zurb' %>
+	</div>
+</div>		
+<% end %>

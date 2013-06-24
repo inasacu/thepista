@@ -38,7 +38,11 @@
 	<%= render('schedules/team_roster_prematch_teams', :the_start_at_label => the_start_at_label, :the_roster => @the_roster) if is_prematch_visible %>
 	
 
-	<%= render "shared/previous_next_message_zurb", :schedule => @schedule, :the_previous => @the_previous, :the_next => @the_next, :display_previous_next => true %>
+	<%= render "shared/previous_next_message_zurb", 
+				:schedule => @schedule, 
+				:the_previous => @the_previous, 
+				:the_next => @the_next, 
+				:display_previous_next => !@group.is_branch? %>
 
 	</div>
 </div>

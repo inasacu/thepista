@@ -5,11 +5,11 @@ class GroupsController < ApplicationController
 	before_filter :has_manager_access, :only => [:edit, :update, :destroy, :set_automatic_petition]
 
 	def index
-		if Rails.env.development?
+		# if Rails.env.development?
 			@groups = Group.get_site_groups(params[:page]) 
-		else
-			@groups = Group.get_branch_groups(params[:page])
-		end
+		# else
+			# @groups = Group.get_branch_groups(params[:page])
+		# end
 		render @the_template
 	end
 
@@ -22,7 +22,8 @@ class GroupsController < ApplicationController
 		@users = []
 		@all_users = @group.users
 		@all_users.each {|user| @users << user unless DEFAULT_GROUP_USERS.include?(user.id)}
-		@total = @group.users.count		
+		# @total = @group.users.count
+		@total = @users.count		
 		@the_roster_infringe = nil
 		@the_roster_infringe = @group.schedules.first.the_roster_infringe unless @group.schedules.empty?
 		@scorecards = Scorecard.users_group_scorecard(@group, sort_order(''))  		
@@ -32,7 +33,7 @@ class GroupsController < ApplicationController
 	def show
 		store_location 
 		
-		if @group.item_type == 'Branch'
+		if @group.is_branch?
 			@branch = Branch.find(@group.item_id)
 		end
 		
@@ -66,7 +67,7 @@ class GroupsController < ApplicationController
 		if @group.save and @group.create_group_roles(current_user)
 			successful_create
 			
-			if @group.item_type == 'Branch'
+			if @group.is_branch?
 					redirect_to companies_url
 					return
 			end

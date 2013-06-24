@@ -23,6 +23,7 @@ Thepista::Application.routes.draw do
 
 	match '/auth/:provider/callback' => 'authentications#create', :as => :callback
 	match '/auth/failure' => 'authentications#failure', :as => :failure
+	match '/failure' => 'authentications#failure', :as => :post_failure
 	match '/auth/:provider' => 'authentications#blank', :as => :blank
 
 
@@ -89,6 +90,7 @@ Thepista::Application.routes.draw do
 	match 'eventos_deportivos' => 'home#upcoming', :as => :upcoming
 	match 'buqueda' => 'home#search', :as => :search
 	match 'comunicado' => 'home#advertisement', :as => :advertisement
+	match 'widget' => 'home#widget', :as => :widget
 
 	match 'buscar_en_mapa' => 'markers#search_map', :as => :search
 	match 'address_map' => 'markers#address_map', :as => :address

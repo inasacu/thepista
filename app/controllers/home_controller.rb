@@ -8,6 +8,12 @@ class HomeController < ApplicationController
 	def privacy_policy
 		set_the_template('home/terms_of_use')
 	end
+	
+	def widget
+		layout = 'widget'
+		@centreSchedules = Schedule.find(:all, :conditions => ["played = false"])
+		render 'widget/home'
+	end
 
 	def search
 		@item_results = []

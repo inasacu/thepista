@@ -124,9 +124,10 @@
 
 		<div class="foundation-header">
 			
-			<% if current_user %>
 			
-				<%= render 'shared/notice_zurb', :notice => flash %>
+			<%= render 'shared/notice_zurb', :notice => flash %>
+				
+			<% if current_user %>
 				
 			<% elsif is_new_user and !is_password_reset %>
 

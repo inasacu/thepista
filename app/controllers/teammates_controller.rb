@@ -17,10 +17,15 @@ class TeammatesController < ApplicationController
     @manager = User.find(@role_user.user_id)
     @mate = User.find(params[:teammate])
     Teammate.create_teammate_pre_join_item(@mate, @manager, @item, @sub_item)
-    Teammate.delay.create_teammate_join_item(@manager, @mate, @item, @sub_item) if @item.automatic_petition
     
-    flash[:notice] = I18n.t(:to_join_item_message_sent)
-    redirect_to petition_url
+		if @item.is_branch? and @item.automatic_petition
+			Teammate.create_teammate_join_item(@manager, @mate, @item, @sub_item) 
+		else
+			Teammate.delay.create_teammate_join_item(@manager, @mate, @item, @sub_item)
+		end
+	
+    # flash[:notice] = I18n.t(:to_join_item_message_sent)
+		redirect_back_or_default('/index')
   end
 
   def leave_item

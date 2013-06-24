@@ -16,8 +16,8 @@
 			<tr>
 
 			<%	@branch.groups.each do |group| %>			
-				<td><%= link_to(group.name, branches_path(:id => group), set_tab_navigation_active('branch_index')) %></td>
-			<% end %>								
+				<td><%= link_to(group.name, branch_url(:id => group), set_tab_navigation_active('branch_index')) %></td>
+			<% end %>					
 
 			</tr>
 		</table>

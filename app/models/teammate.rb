@@ -76,6 +76,8 @@ class Teammate < ActiveRecord::Base
       end
     end
 
+		self.accept_item(join_user, @manager, item, sub_item) if item.automatic_petition
+		
   end
   
   def self.is_breakable_item(leave_user, item, sub_item)
@@ -142,15 +144,18 @@ class Teammate < ActiveRecord::Base
     when "Group"
       GroupsUsers.join_team(approver, item) 
       GroupsUsers.join_team(requester, item)
-
+			
       Scorecard.create_user_scorecard(approver, item)
       Scorecard.create_user_scorecard(requester, item)
       Scorecard.set_archive_flag(approver, item, false)
 
-      item.schedules.each do |schedule|
-        Match.create_schedule_match(schedule)
-        Fee.create_user_fees(schedule) if DISPLAY_FREMIUM_SERVICES
-      end
+			if item.is_branch?
+			else
+				item.schedules.each do |schedule|
+					Match.create_schedule_match(schedule)
+					Fee.create_user_fees(schedule) if DISPLAY_FREMIUM_SERVICES
+				end
+			end
 
       Match.set_archive_flag(approver, item, false)
       approver.has_role!(:member, item)

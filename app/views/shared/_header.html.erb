@@ -25,10 +25,10 @@
   
     <!-- Right Nav Section -->
     <ul class="right">
-
-		<%= content_tag(:li, link_to(label_name(:home), root_url)) %>	
 	
 		<% if current_user %>
+
+			<%= content_tag(:li, link_to(label_name(:home), root_url)) %>
 		
 			<% if has_group %>	
 			
@@ -58,8 +58,6 @@
 				<li class="has-dropdown"><%= link_to("#{label_name(:companies)}", companies_url) if is_company_visible %>
 					<ul class="dropdown">
 						<li class="divider"></li>
-						<%= content_tag(:li, link_to("#{label_name(:enchufados)}", enchufados_url)) %>
-						<li class="divider"></li>
 						<%= content_tag(:li, link_to("#{label_name(:customers)}", customers_url)) %>	
 						<li class="divider"></li>
 						<%= content_tag(:li, link_to("#{label_name(:surveys)}", surveys_url)) %>
@@ -85,8 +83,8 @@
 		<% else %>
 		
 			<%= content_tag(:li, link_to(label_name(:howitworks), how_it_works_path)) %>
-			<%#= content_tag(:li, link_to(label_name(:login), login_path)) %>
-			<%= content_tag(:li, link_to(label_name(:signup), signup_path)) if DISPLAY_REGISTER %>
+			<%= content_tag(:li, link_to(label_name(:login), login_path)) %>
+			<%#= content_tag(:li, link_to(label_name(:signup), signup_path)) if DISPLAY_REGISTER %>
 		
 		<% end -%>
 		

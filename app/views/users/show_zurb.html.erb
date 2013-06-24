@@ -21,7 +21,9 @@
 	the_last_minute_link = (can_modify ? link_to(the_last_minute_label, set_last_minute_notification_path(:id => @user)) : the_last_minute_label)
 	the_teammmate_link = (can_modify ? link_to(the_teammmate_label, set_teammate_notification_path(:id => @user)) : the_teammmate_label)
 	
-	has_phone = @user.my_members?(current_user)	? (!@user.phone.blank?) : (false)	
+	is_same_user = (@user == current_user)
+	
+	has_phone = is_same_user ? true : @user.my_members?(current_user) #? (!@user.phone.blank?) : (false)	
 	
 	# has_statistics = @user_hash_grid_statistics.count > 1
 	
@@ -53,10 +55,12 @@
 		<%#= render 'shared/show_description_zurb', :item => @user, :the_label => the_label %>
 	
 		<%= render_show_detail_zurb(:groups, (@user.has_group? ? "#{group_list(@user.groups)}".html_safe : "#{label_name('groups_none')}".html_safe)) %>
-		<%= render_show_detail_zurb(:sports, (@user.has_group? ? "#{group_sport_list(@user.groups)}".html_safe : "#{label_name('groups_none')}".html_safe)) %>
+		<%= render_show_detail_zurb(:sports, (@user.has_group? ? "#{group_sport_list(@user.groups)}".html_safe : "#{label_name('groups_none')}".html_safe)) if @user.has_group? %>
 		
-		<%= render_show_detail_zurb(:email, @user.email) if @user == current_user %>
-		<%= render_show_detail_zurb("#{label_name(:phone)}  #{option_image_small_link('whatsapp') if @user.whatsapp}", phone_number_link(@user.phone), true) if has_phone %>	
+		<%= render_show_detail_zurb(:email, @user.email) if is_same_user %>
+		<%= render_show_detail_zurb("#{label_name(:phone)}  #{option_image_small_link('whatsapp') if @user.whatsapp}", phone_number_link(@user.phone), true) if has_phone %>
+		
+		<%= render_show_detail_zurb(:email, @user.email) if is_same_user %>
 	
 		<%= render_show_detail_zurb(:whatsapp, the_whatsapp_link) if has_phone %>
 		<%= render_show_detail_zurb(:last_minute_notification, the_last_minute_link) if DISPLAY_FREMIUM_SERVICES %>

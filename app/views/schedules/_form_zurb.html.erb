@@ -6,6 +6,19 @@
 <%= the_form.hidden_field :jornada %>
 
 
+<% if @group.is_branch? %>
+<%= the_form.hidden_field :block_token %>
+
+<%= render_show_detail_zurb(:name, @schedule.name) %>
+<%= render_show_detail_zurb(:group, @schedule.group_name) %>
+<%= render_show_detail_zurb(:starts_at, nice_day_of_week(@schedule.starts_at)) %>
+<%= render_show_detail_zurb(:ends_at, nice_day_of_week(@schedule.ends_at)) %>
+<%= render_show_detail_zurb(:player_limit, @schedule.player_limit) %>
+
+<hr/>
+
+<% else %>
+
 <%= set_form_label(the_form, :name) %>
 <%= set_form_text_field(the_form, :name, 'input-text') %><br>
 
@@ -68,3 +81,5 @@
 
 <%= render 'utilities/datepicker' %>
 <%= render 'utilities/timepicker' %>
+
+<% end %>

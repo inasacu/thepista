@@ -2,11 +2,14 @@
 	the_controller = get_the_controller	
 	the_form_create = ""
 	schedules ||= false
+	is_visible_label = true
 
 	if schedules
 		if schedules = 0
 			the_controller = 'schedule'
 			the_form_create = set_form_create_id(Schedule.new, :id, @group, :schedule_create) if is_current_manager_of(@group)
+			
+			is_visible_label = @group.is_branch? ? false : is_visible_label
 		end
 	end
 
@@ -14,6 +17,7 @@
 	the_label += " #{the_form_create}".html_safe
 %>
 
-
-<hr />
-<%= content_tag :h6, the_label, :class => "subheader" %>
+<% if is_visible_label %>
+	<hr />
+	<%= content_tag :h6, the_label, :class => "subheader" %>
+<% end %>
