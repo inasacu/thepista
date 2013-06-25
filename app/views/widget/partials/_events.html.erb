@@ -29,7 +29,8 @@
 									
 									<%else%>
 									
-									<%=link_to(sanitize(limit_url_length(schedule.name, 25)), team_roster_path(:id => schedule))%>
+									<%=link_to(sanitize(limit_url_length(schedule.name, 25)), 
+									   widget_event_details_path(:event_id => schedule))%>
 									
 									<%end%>
 									

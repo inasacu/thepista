@@ -44,6 +44,7 @@ class Invitation < ActiveRecord::Base
   
   # variables to access
   # attr_accessible :email_addresses, :message, :user_id, :item_id, :item_type
+  attr_accessor :is_from_widget, :widget_host
     
   before_create :format_message
   after_save :send_invite_contact

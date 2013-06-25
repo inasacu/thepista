@@ -1,0 +1,47 @@
+<% 
+	the_label = "" 
+
+	if @schedule 
+		the_label = "#{label_name(:to)} #{item_name_link(@schedule)}" 
+	end
+
+	the_label = "#{control_action_label} #{the_label}"
+%>
+
+
+<h4 class="title" style="margin-top:20px">
+	Nueva invitaci&oacute;n a 
+	
+	<%=link_to(sanitize(limit_url_length(@schedule.name, 25)), 
+	   widget_event_details_path(:event_id => @schedule))%>
+</h4>
+<hr />
+
+<div class="row">
+	<div class="twelve columns">  
+		
+		<% if flash[:notice] %>
+		    <div class="notice"><%= flash[:notice] %></div>
+		 <% end %>
+
+		<%= form_for(@invitation, :html => { :multipart => true, :class => 'nice invitation-form'  }) do |the_form| %>
+
+			<%= render "shared/error_messages", :target => @invitation %>
+			
+			<input type="hidden" name="form_type" value="widget_form"/>
+			
+			<%= hidden_field :schedule, :id %>
+
+			<%= set_form_label(the_form, :email_addresses) %>
+			<%= set_form_text_area(the_form, :email_addresses, true) %><br />
+
+			<%= set_form_label(the_form, :message) %>
+			<%= set_form_text_area(the_form, :message, true) %><br />
+			
+			<%= submit_tag("Invita a tus amigos", :class=>"small_medium nice success button radius") %>
+			
+		<% end -%>
+
+	</div>
+
+</div>

@@ -698,7 +698,7 @@ class Schedule < ActiveRecord::Base
         while mockScheduleStart.to_time < timetableEnd.to_time do
           mockScheduleEnd = (mockScheduleStart.to_time + timetable.timeframe.hours).to_datetime
           
-          logger.info "timetableend #{timetableEnd.to_time} start #{mockScheduleStart.to_time} end #{mockScheduleEnd.to_time}"
+          #logger.info "timetableend #{timetableEnd.to_time} start #{mockScheduleStart.to_time} end #{mockScheduleEnd.to_time}"
           
           schedule = Schedule.new
           #schedule.name = "#{timetableGroup.name} #{mockScheduleStart.strftime('%m/%d/%Y')}"
@@ -734,6 +734,7 @@ class Schedule < ActiveRecord::Base
       else
          
          # the user is added to the event
+         
           
       end
     end

@@ -837,7 +837,7 @@ module ApplicationHelper
 	end
 
 	def is_current_manager_of(item)
-		current_user.is_manager_of?(item) or current_user.is_creator_of?(item)
+		!current_user.nil? and ( current_user.is_manager_of?(item) or current_user.is_creator_of?(item) )
 	end
 
 	def is_user_manager_of(item)
@@ -853,7 +853,7 @@ module ApplicationHelper
 	end
 
 	def is_current_member_of(item)
-		current_user.is_member_of?(item)
+		!current_user.nil? and current_user.is_member_of?(item)
 	end
 
 	def has_current_item_petition(item)

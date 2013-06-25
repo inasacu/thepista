@@ -8,14 +8,18 @@ Thepista::Application.routes.draw do
 	match "/widget/index", :to => 'widget#index'
   match "/widget/", :to => 'widget#index'
   match "/widget/home", :to => 'widget#home', :as => :widget_home
+  
   match "/widget/login/popup", :to => 'widget#login_check'
+  match "/widget/check_omniauth", :to => 'widget#check_omniauth', :as => :widget_check_omniauth
+  match '/widget/logout' => 'user_sessions#destroy_widget', :as => :widget_logout
   match "/widget/signup", :to => 'widget#signup', :as => :widget_signup
   
   match "/widget/do_apuntate", :to => 'widget#do_apuntate', :as => :widget_do_apuntate
-  match "/widget/:userid/change_user_state/:newstate", :to => 'widget#change_user_state', :as => :widget_change_user_state
+  match "/widget/:eventid/:userid/change_user_state/:newstate", :to => 'widget#change_user_state', :as => :widget_change_user_state
+  match "/widget/event/:event_id", :to => 'widget#event_details', :as => :widget_event_details
   
-  match "/widget/check_omniauth", :to => 'widget#check_omniauth', :as => :widget_check_omniauth
-  match '/widget/logout' => 'user_sessions#destroy_widget', :as => :widget_logout
+  match "/widget/event/:event_id/invitation", :to => 'widget#event_invitation', :as => :widget_event_invitation
+  
   # ------------------------>
 
 	match 'rpx_token_sessions' => 'user_sessions#rpx_create', :as => :rpx_token_sessions

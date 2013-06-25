@@ -150,7 +150,7 @@ class UsersController < ApplicationController
 
 		else
 		  
-		  if WidgetHelper.is_widget_signup_form(params[:form_type])
+		  if WidgetHelper.is_widget_form(params[:form_type])
   		  redirect_to widget_check_omniauth_url
   		  return
   		end

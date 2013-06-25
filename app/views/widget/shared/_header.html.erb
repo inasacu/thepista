@@ -16,8 +16,8 @@
 	<div class="row">
 
 		<%= is_mobile_browser ? div_twelve_columns : div_three_columns %>
-			<%= link_to(image_tag('haypista_logo.png', options={:style => 'height: 45px; width: 155px;', :align => 'left'}), root_url) unless is_mobile_browser %>
-			<%= link_to(image_tag('haypista_logo_green.png', options={:style => 'height: 45px; width: 155px;', :align => 'left'}), root_url) if is_mobile_browser %>		
+			<%= link_to(image_tag('haypista_logo.png', options={:style => 'height: 45px; width: 155px;', :align => 'left'}), widget_home_url) unless is_mobile_browser %>
+			<%= link_to(image_tag('haypista_logo_green.png', options={:style => 'height: 45px; width: 155px;', :align => 'left'}), widget_home_url) if is_mobile_browser %>		
 		<%= div_close %>
 
 		<div class="personal_info">

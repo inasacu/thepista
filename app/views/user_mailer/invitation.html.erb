@@ -37,7 +37,16 @@
 <%  if @schedule  
 		the_schedule_label = "#{@schedule.group.name} - #{@schedule.name}"
 %>
-<%= "#{link_to(the_schedule_label, schedule_url(@schedule))}".html_safe if @schedule %>
+
+<% if @is_from_widget %>
+
+	<%=link_to(the_schedule_label, "#{@widget_host}?invitation_to_event=true&event_id=#{@schedule.id}").html_safe %>
+
+<% else %>
+
+	<%="#{link_to(the_schedule_label, schedule_url(@schedule))}".html_safe if @schedule %>
+
+<% end # end is from widget%>
 <br>
 <br>
 <% end %>

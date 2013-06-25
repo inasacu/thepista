@@ -17,6 +17,10 @@ div.container{
 	width:100%;
 }
 
+.invitation-form textarea{
+	height:50px;
+}
+
 .personal_info{
 	color:#fff;
 	font-size:16px;

@@ -26,22 +26,22 @@ class InvitationsController < ApplicationController
     @invitation = Invitation.new(params[:invitation])
     @invitation.user = @user
 
-    unless params[:schedule][:id].blank? 
+    unless params[:schedule].nil? || params[:schedule][:id].blank? 
       @schedule = Schedule.find(params[:schedule][:id])
       @invitation.item = @schedule
     end
 
-    unless params[:group][:id].blank?
+    unless params[:group].nil? || params[:group][:id].blank?
       @group = Group.find(params[:group][:id])
       @invitation.item = @group
     end
 
-    unless params[:challenge][:id].blank?
+    unless params[:challenge].nil? || params[:challenge][:id].blank?
       @challenge = Challenge.find(params[:challenge][:id])
       @invitation.item = @challenge
     end
     
-    unless params[:cup][:id].blank?
+    unless params[:cup].nil? || params[:cup][:id].blank?
       @cup = Cup.find(params[:cup][:id])
       @invitation.item = @cup
     end
@@ -62,13 +62,20 @@ class InvitationsController < ApplicationController
         @the_invitation.item = @invitation.item
         @the_invitation.user = @invitation.user
         @the_invitation.email_addresses = email
+        @the_invitation.is_from_widget = WidgetHelper.is_widget_form(params[:form_type])
+        @the_invitation.widget_host = session[:current_branch].url        
         @the_invitation.save!
       }  
       # @invitation.destroy  
     
       flash[:notice] = I18n.t(:invitation_successful_create)
     end
-
+    
+    if WidgetHelper.is_widget_form(params[:form_type])
+		  redirect_to "/widget/event/#{@schedule.id}/invitation"
+		  return
+		end
+		
     redirect_to :action => 'new' 
 
     # end
