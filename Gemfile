@@ -59,6 +59,6 @@ group :development do
 	gem 'email_verifier'
 	gem 'email_veracity'
 	gem 'bullet'
-	gem 'query_reviewer'
+	# gem 'query_reviewer'
 end
 

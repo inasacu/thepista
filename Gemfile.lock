@@ -160,7 +160,6 @@ GEM
       mime-types
     pg (0.14.1)
     polyglot (0.3.3)
-    query_reviewer (0.1.8)
     rack (1.4.5)
     rack-cache (1.2)
       rack (>= 0.4)
@@ -262,7 +261,6 @@ DEPENDENCIES
   omniauth-yahoo
   paperclip
   pg
-  query_reviewer
   rails (= 3.2.13)
   rpx_now
   sass-rails (~> 3.2.3)
