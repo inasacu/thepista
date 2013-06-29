@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-gem 'rails', '3.2.11'
+gem 'rails', '3.2.13'
 gem "pg"
 gem 'thin'
 gem "authlogic"
@@ -19,7 +19,7 @@ gem 'hirefireapp'
 gem 'paperclip'
 gem 'composite_primary_keys'
 
-gem 'jquery-rails'
+gem 'jquery-rails', '2.3.0'
 gem 'google_map'
 gem 'acts_as_tree', '0.1.1'
 gem 'aws-sdk'
@@ -37,11 +37,8 @@ gem 'omniauth-twitter'
 gem 'omniauth-facebook'
 gem 'omniauth-linkedin'
 gem 'omniauth-google'
-gem 'omniauth-windowslive'#,			:git => 'https://github.com/joel/omniauth-windowslive.git'
+gem 'omniauth-windowslive'
 gem 'omniauth-yahoo'
-
-# gem "binding_of_caller"
-# gem 'ayah_integration'
 
 
 # Gems used only for assets and not required
