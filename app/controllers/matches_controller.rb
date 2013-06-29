@@ -100,6 +100,8 @@ class MatchesController < ApplicationController
 		end 
 
 		redirect_back_or_default('/index')
+		# redirect_to :root_url
+		return
 	end
 
 	def set_status_link
