@@ -59,10 +59,13 @@ module WrappersHelper
 		when 'company'
 			ignore_option = ['company_show']
 			new_item_sidebar = Company.new unless ignore_option.include?(get_controller_action)
-			the_sidebar = "companies"
+			the_sidebar = "companies" 
+			
+			if @company
+				the_sidebar = nil unless is_current_manager_of(@company) 
+			end					
 
 		when 'branch'
-			# new_item_sidebar = Group.new 
 			the_sidebar = 'groups'
 
 		when 'group'

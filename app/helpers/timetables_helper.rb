@@ -146,6 +146,7 @@ module TimetablesHelper
 						new_schedule.season = Time.zone.now.year
 						new_schedule.played = false
 						new_schedule.timeframe = time_frame
+						new_schedule.ismock = true
 						
 						
 						

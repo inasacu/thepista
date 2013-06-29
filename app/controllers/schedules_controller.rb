@@ -256,7 +256,7 @@ class SchedulesController < ApplicationController
 
 		if @schedule.save and @schedule.create_schedule_roles(current_user)
 
-			if @schedule.group.item_type == 'Branch'
+			if @schedule.group.is_branch?
 				Match.create_item_schedule_match(@schedule, current_user)
 			else
 				@schedule.create_schedule_details

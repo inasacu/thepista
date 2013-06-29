@@ -10,20 +10,15 @@
 
 <div class="row">
 	<div class="twelve columns">
-		<table>
-			<tr>
+
 				
 			<%	@venue.installations.each do |installation| %>			
-				<td><%= link_to(installation.name, reservations_path(:id => installation), set_tab_navigation_active('reservation_index')) %></td>
+				<%= link_to(installation.name, reservations_path(:id => installation), set_tab_navigation_active('reservation_index')) %>
 			<% end %>								
-					
-			</tr>
-		</table>
+
 	</div>
 </div>
 
-<hr />
-<%= content_tag :h6, right_label, :class => "subheader" %>
 <hr />
 
 <%= render 'reservations/calendar_zurb' %>

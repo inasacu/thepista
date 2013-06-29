@@ -1,6 +1,6 @@
 <%
 	is_company_manager = @company ? is_current_manager_of(@company) : false
-	is_company_member = @company ? is_current_member_of(@company) : false
+	# is_company_member = @company ? is_current_member_of(@company) : false
 	is_new_company = (get_controller_action =='company_new' or get_controller_action == 'company_create')
 	has_company = @company ? is_new_company ? false : true : false
 	has_branch = @brand ? true : false

@@ -3,7 +3,9 @@
 	the_group_link = ""
 
 	company.branches.each do |branch|
-		the_branch_link = "#{the_branch_link} #{link_to(branch.name, companies_path(:id => company))} <br/>"
+		# the_branch_link = "#{the_branch_link} #{link_to(branch.name, companies_path(:id => company))} <br/>"
+		
+		# the_branch_link += "#{branch.name} "
 
 		branch.groups.each do |group|
 			the_group_link = "#{the_group_link} #{link_to(group.name, branch_url(:id => group))} <br/>"
@@ -14,6 +16,6 @@
 <tr>  
 	<%= set_content_tag_safe(:td, item_image_link_small(company)) %>
 	<%= set_content_tag_safe(:td, "#{item_name_link(company)} <br/> #{nice_simple_time_at(company.starts_at)}  - #{nice_simple_time_at(company.ends_at)}", :class => 'name_and_date') %>
-	<%= set_content_tag_safe(:td, the_branch_link) %>
+	<%#= set_content_tag_safe(:td, the_branch_link) %>
 	<%= set_content_tag_safe(:td, the_group_link) %>
 </tr>

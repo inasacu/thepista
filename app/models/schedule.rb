@@ -114,7 +114,10 @@ class Schedule < ActiveRecord::Base
 	attr_accessor 	:starts_at_date, :starts_at_time, :ends_at_date, :ends_at_time
 	attr_accessor 	:available, :item_id, :item_type, :group_name, :match_status_at, :match_schedule_id
 	attr_accessor   :match_group_id, :match_user_id, :match_type_id, :match_type_name, :match_played, :timeframe
-		
+	attr_accessor		:ismock
+	
+	
+	
   before_update   :set_time_to_utc, :get_starts_at, :get_ends_at
   
   # add some callbacks, after_initialize :get_starts_at # convert db format to accessors

@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-gem 'rails', '3.2.13'
+gem 'rails', '3.2.11'
 gem "pg"
 gem 'thin'
 gem "authlogic"
@@ -39,9 +39,9 @@ gem 'omniauth-linkedin'
 gem 'omniauth-google'
 gem 'omniauth-windowslive'#,			:git => 'https://github.com/joel/omniauth-windowslive.git'
 gem 'omniauth-yahoo'
-gem "binding_of_caller"
 
-gem 'ayah_integration'
+# gem "binding_of_caller"
+# gem 'ayah_integration'
 
 
 # Gems used only for assets and not required
@@ -56,9 +56,9 @@ end
 
 group :development do
 	gem 'annotate', ">=2.5.0"
-	gem 'email_verifier'
-	gem 'email_veracity'
-	gem 'bullet'
+	# gem 'email_verifier'
+	# gem 'email_veracity'
+	# gem 'bullet'
 	# gem 'query_reviewer'
 end
 

@@ -1,5 +1,3 @@
-<%#= render 'utilities/calendar_script' %>
-
 <%
     the_label = label_name(:branches)
 	content_for(:title, the_label)
@@ -15,10 +13,9 @@
 	<div class="twelve columns">
 
 			<%	@branch.groups.each do |group| %>			
-				<td><%= link_to(group.name, branch_url(:id => group), set_tab_navigation_active('branch_index')) %></td>
+				<%= link_to(group.name, branch_url(:id => group), set_tab_navigation_active('branch_index')) %>
 			<% end %>					
 
-		<!-- <hr/> -->
 	</div>
 </div>
 

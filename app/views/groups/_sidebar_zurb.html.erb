@@ -18,6 +18,8 @@
 		has_user_petition = has_current_item_petition(@group) 
 		the_confirmation = label_with_name(:do_leave_item, "#{@group.name}?")
 	end
+	
+	is_scorecard_send = !@group.is_branch? and !@group.schedules.blank?
 %>
 
 <% unless has_group %>
@@ -29,7 +31,7 @@
 
 <% if has_group %>
 
-	<%= set_form_create_id_image_link(Message.new, :scorecard_id, @group.schedules.first, :send_scorecard, 'scorecard') unless @group.schedules.blank? %>
+	<%= set_form_create_id_image_link(Message.new, :scorecard_id, @group.schedules.first, :send_scorecard, 'scorecard') if is_scorecard_send  %>
 
 	<div class="row">
 		<div class="twelve columns">
