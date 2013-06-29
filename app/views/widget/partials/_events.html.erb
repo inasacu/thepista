@@ -2,24 +2,24 @@
 <div class="row" style="margin-top:30px">
 	<div class="twelve columns">
 		
-		<%if !@schedulesPerWeekDay.nil? and @schedulesPerWeekDay.any?%>
+		<%if !@schedules_per_weekday.nil? and @schedules_per_weekday.any?%>
 		
 		<table>
 
-		<%@schedulesPerWeekDay.each do |index, weekdaySchedules|%>
+		<%@schedules_per_weekday.each do |index, weekday_schedules|%>
 			<tr class="week_day_parent">
 				<td>
-					<%= "(#{weekdaySchedules.length}) #{index}"%>
+					<%= "(#{weekday_schedules.length}) #{index}"%>
 					<a href="#" class="toogle_day_view_link">toggle</a>
 				</td>
 			</tr>
 			
-			<%if weekdaySchedules.any?%>
+			<%if weekday_schedules.any?%>
 			<tr class="week_day_detail">
 				<td>
 					<table>
 						<tbody>
-							<%weekdaySchedules.each do |schedule|%>
+							<%weekday_schedules.each do |schedule|%>
 
 							<tr>
 								<td>

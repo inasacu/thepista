@@ -12,6 +12,14 @@ module WidgetHelper
     end
   end
   
+  def self.clean_session(session)
+    if !session.nil?
+      session["widgetpista.ismock"] = nil
+      session["widgetpista.eventid"] =  nil
+      session["widgetpista.source_timetable_id"] =  nil
+      session["widgetpista.pos_in_timetable"] = nil
+    end
+  end
   
   # instancia
   
@@ -24,70 +32,81 @@ module WidgetHelper
          if !schedule.id.nil?
            
            # checks if user is already part of the event and the group
-           userIsPartOfEvent = false
-           matchRecord = nil
+           user_ispart_ofevent = false
+           match_record = nil
            
            if current_user.is_member_of?(schedule.group)
              schedule.matches.each do |match| 
-                if is_current_same_as(match.user)
-                  matchRecord = match
-                  userIsPartOfevent = true
+                if match.user.id == current_user.id
+                  match_record = match
+                  user_ispart_ofevent = true
                   break
                 end 
               end
            end
            
-           if userIsPartOfEvent
+           if user_ispart_ofevent
               
               options = Hash.new
               options[:convocado] = {:desc => "Pasar a convocado", :status => 1} 
               options[:ultima] = {:desc => "Pasar a ultima hora", :status => 2} 
               options[:ausente] = {:desc => "Pasar a ausente", :status => 3} 
               
-              case matchRecord.type_id
+              case match_record.type_id
                 
               when 1 # convocado
-      					currentState = the_font_green((matchRecord.type_name).downcase)
+      					current_state = the_font_green((match_record.type_name).downcase)
       					option1 = options[:ultima]
       				  option2 = options[:ausente]
       				when 2 # ultima hora
-      					currentState = the_font_yellow((matchRecord.type_name).downcase)
+      					current_state = the_font_yellow((match_record.type_name).downcase)
       					option1 = options[:convocado]
       				  option2 = options[:ausente]
               when 3 # ausente
-      					currentState = the_font_red((matchRecord.type_name).downcase)
+      					current_state = the_font_red((match_record.type_name).downcase)
       				  option1 = options[:convocado]
       				  option2 = options[:ultima]
       				end
               
-              option1Link = link_to option1[:desc], 
+              option1_link = link_to option1[:desc], 
                             widget_change_user_state_path(:eventid => schedule.id, :userid => current_user.id, 
                             :newstate => option1[:status])
     					
-    					option2Link = link_to option2[:desc], 
+    					option2_link = link_to option2[:desc], 
                             widget_change_user_state_path(:eventid => schedule.id, :userid => current_user.id, 
                             :newstate => option2[:status])
     					
+    					# options for logged users inside of the group
               return "<STRONG>#{I18n.t(:your_roster_status)}</STRONG> 
-              #{currentState} <br> #{option1Link} <br> #{option2Link}".html_safe
+              #{current_state} <br> #{option1_link} <br> #{option2_link}".html_safe
               
            else
+             
+             # link for real events
              link_to( "Apuntate", {:controller => "widget", :action => "do_apuntate",
                :ismock => false, :event => schedule.id, :isevent => true} )
+               
            end
            
          else
+           
+           # link for mock events
            link_to( "Apuntate", {:controller => "widget", :action => "do_apuntate", 
-             :ismock => true, :event => schedule.id, :isevent => true} )
-         end
+             :ismock => true, :event => schedule.id, :isevent => true, 
+             :source_timetable_id => schedule.source_timetable_id, :pos_in_timetable => schedule.pos_in_timetable} )
+             
+         end # end if real event
          
    		 else
+   		   
+         # link for not logged users
+   			 link_to( "Apuntate", "#", :class => "auth_popup",  
+   			 :data => { :ismock => schedule.id.nil?, :event => schedule.id, :isevent => true, 
+   			   :source_timetable_id => schedule.source_timetable_id, :pos_in_timetable => schedule.pos_in_timetable} )
 
-   			link_to( "Apuntate", "#", :class => "auth_popup",  
-   			:data => { :ismock => schedule.id.nil?, :event => schedule.id, :isevent => true} )
-
-   		 end
-     end
+   		 end # end if logged user
+   		 
+     end # end if valid event
      
   end
   

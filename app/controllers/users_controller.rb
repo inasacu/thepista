@@ -140,9 +140,11 @@ class UsersController < ApplicationController
         isevent = request.env["widget.isevent"]
         ismock = request.env["widget.ismock"]
         eventid = request.env["widget.event"]
+        eventTimetableId = request.env["widgetpista.source_timetable_id"]
+        eventTimetablePos = request.env["widgetpista.pos_in_timetable"]
         
         #logic to add the user to a group and create event 
-        Schedule.takecareof_apuntate(current_user, isevent, ismock, eventid)
+        Schedule.takecareof_apuntate(current_user, isevent, ismock, eventid, eventTimetableId, eventTimetablePos)
         
   		  redirect_to widget_home_url
   		  return

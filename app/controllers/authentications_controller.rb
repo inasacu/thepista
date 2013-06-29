@@ -9,15 +9,18 @@ class AuthenticationsController < ApplicationController
 		# render :text => request.env["omniauth.auth"].to_yaml
     
     # gets if the widget is the origin
-    omniOrigin = request.env["omniauth.origin"]
+    omni_origin = request.env["omniauth.origin"]
     
     # decides according to origin of the auth request
-    if WidgetHelper.widget_is_origin(omniOrigin)
+    if WidgetHelper.widget_is_origin(omni_origin)
       
       # info for logic actions
-      isevent = request.env["widget.isevent"]
-      ismock = request.env["widget.ismock"]
-      eventid = request.env["widget.event"]
+      isevent = session["widgetpista.isevent"]
+      ismock = session["widgetpista.ismock"]
+      event_id = session["widgetpista.event"]
+      event_timetable_id = session["widgetpista.source_timetable_id"]
+      event_timetable_pos = session["widgetpista.pos_in_timetable"]
+      WidgetHelper.clean_session(session)
       
       # info for redirecting
       redirect_home = widget_home_url
@@ -26,8 +29,10 @@ class AuthenticationsController < ApplicationController
 		else
 		  
 		  isevent = false
-		  ismock = false
-		  eventid = 0
+		  ismock = true
+		  event_id = nil
+		  event_timetable_id = nil
+      event_timetable_pos = nil
 		  
 		  redirect_home = root_url
 		  redirect_signup = provider_url
@@ -40,18 +45,15 @@ class AuthenticationsController < ApplicationController
 		if authentication
 			# controller_welcome_provider(omniauth['provider'])
 			UserSession.create(authentication.user, true) 
-			
+						
 			# widget
-			Schedule.takecareof_apuntate(current_user, isevent, ismock, eventid)
+			Schedule.takecareof_apuntate(authentication.user, isevent, ismock, event_id, event_timetable_id, event_timetable_pos)
 			
 			redirect_to redirect_home
 			
 		elsif current_user
 			Authentication.create_from_omniauth(omniauth, current_user)
 			controller_successful_provider
-			
-			# widget
-			Schedule.takecareof_apuntate(current_user, isevent, ismock, eventid)
 			
 			redirect_to authentications_url			
 			return
@@ -65,8 +67,10 @@ class AuthenticationsController < ApplicationController
 				Authentication.create_from_omniauth(omniauth, @user_by_email)
 				# controller_successful_provider(omniauth['provider'])
 				
+				logger.info "EY #{current_user.inspect}"
+				
 				# widget
-  			Schedule.takecareof_apuntate(current_user, isevent, ismock, eventid)
+  			Schedule.takecareof_apuntate(current_user, isevent, ismock, event_id, event_timetable_id, event_timetable_pos)
 				
 				redirect_to redirect_home
 				
@@ -83,7 +87,7 @@ class AuthenticationsController < ApplicationController
 					# controller_successful_provider(omniauth['provider'])
 					
 					# widget
-    			Schedule.takecareof_apuntate(current_user, isevent, ismock, eventid)
+    			Schedule.takecareof_apuntate(current_user, isevent, ismock, event_id, event_timetable_id, event_timetable_pos)
 					
 					redirect_to redirect_home
 					

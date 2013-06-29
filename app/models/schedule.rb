@@ -112,7 +112,7 @@ class Schedule < ActiveRecord::Base
 	attr_accessible	:starts_at_date, :starts_at_time, :ends_at_date, :ends_at_time
 
 	attr_accessor 	:starts_at_date, :starts_at_time, :ends_at_date, :ends_at_time
-  attr_accessor :ismock, :block_token
+  attr_accessor :ismock, :source_timetable_id, :pos_in_timetable
 
 	attr_accessor 	:available, :item_id, :item_type, :group_name, :match_status_at, :match_schedule_id
 	attr_accessor   :match_group_id, :match_user_id, :match_type_id, :match_type_name, :match_played, :timeframe
@@ -694,6 +694,8 @@ class Schedule < ActiveRecord::Base
         
         mockScheduleStart = timetable.starts_at
         timetableEnd = timetable.ends_at
+        # to calculate the start and end with the timeframe
+        pos_in_timetable = 1
         
         while mockScheduleStart.to_time < timetableEnd.to_time do
           mockScheduleEnd = (mockScheduleStart.to_time + timetable.timeframe.hours).to_datetime
@@ -705,12 +707,17 @@ class Schedule < ActiveRecord::Base
           schedule.name = "Jornada programada"
           schedule.starts_at = mockScheduleStart
           schedule.group = timetableGroup
+          
           schedule.ismock = true
-
+          schedule.source_timetable_id = timetable.id
+          schedule.pos_in_timetable = pos_in_timetable
+          
           weekDaysArray[mockScheduleStart.strftime("%A")] << schedule
           
           mockScheduleStart = Date.new
           mockScheduleStart = mockScheduleEnd
+          
+          pos_in_timetable += 1
         end
         
       end
@@ -721,20 +728,47 @@ class Schedule < ActiveRecord::Base
     
   end
   
-  def self.takecareof_apuntate(user, isevent, ismock, event)
+  def self.takecareof_apuntate(user, isevent, ismock, event_id, event_timetable_id, event_timetable_pos)
     
     if isevent
+      
       if ismock
         
+        logger.info "ENTRO ACA #{user.inspect}"
+        
         # the event is created
+        source_timetable = Timetable.find(event_timetable_id)
+        schedule_start = (source_timetable.starts_at.to_time + (source_timetable.timeframe.hours*event_timetable_pos).hours).to_datetime
         
+        schedule = Schedule.new
+        #schedule.name = "#{timetableGroup.name} #{mockScheduleStart.strftime('%m/%d/%Y')}"
+        schedule.name = "Jornada programada"
+        schedule.starts_at = schedule_start
+        schedule.ends_at = (schedule_start.to_time + source_timetable.timeframe.hours).to_datetime 
+        schedule.group = source_timetable.item
         
-        # the user is added to the event as an administrator
+        # user is added to the group
+        Group.add_user_togroup(user, schedule.group)
+                
+        # event is created and the user is added to the event as an administrator
+        if schedule.save and schedule.create_schedule_roles(user)
+          
+          # the user is added to the event - add record into matches
+           # Match.create_item_schedule_match(schedule, user)
+          
+        else
+        end
         
       else
          
-         # the user is added to the event
+         #event is obtained
+         schedule = Schedule.find(event_id)
          
+         # user is added to the group
+         Group.add_user_togroup(user, schedule.group)
+         
+         # the user is added to the event - add record into matches
+         # Match.create_item_schedule_match(schedule, user)
           
       end
     end

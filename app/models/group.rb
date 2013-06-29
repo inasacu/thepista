@@ -283,5 +283,23 @@ class Group < ActiveRecord::Base
   def create_group_scorecard   
     Scorecard.create_group_scorecard(self)
   end
+  
+  
+  # WIDGET ----------------------------
+  
+  def self.add_user_togroup(user, group)
+    
+    if !user.is_member_of?(group)
+      # 
+      role_user = RolesUsers.find_item_manager(group)
+      manager = RolesUsers.find(role_user.user_id)
+      Teammate.create_teammate_pre_join_item(user, manager, group, nil)
+
+      # 
+      Teammate.create_teammate_join_item(manager, user, group, nil)
+    end
+    
+  end
+  
 end
 

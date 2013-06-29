@@ -18,7 +18,7 @@ class WidgetController < ApplicationController
       session[:current_branch] = Branch.branch_from_url(request.env["HTTP_REFERER"]) 
     end 
     
-    @schedulesPerWeekDay = Schedule.week_schedules_from_timetables(session[:current_branch])
+    @schedules_per_weekday = Schedule.week_schedules_from_timetables(session[:current_branch])
     render :layout => 'widget'
     
   end
@@ -38,18 +38,26 @@ class WidgetController < ApplicationController
     
   end
   
+  def ajaxtest
+    logger.info "AJAX TEST"
+    respond_to do |format|  
+        format.js  
+    end
+     
+  end
+  
   def login_check
     
-    request.env["widgetpista.isevent"] = params[:isevent]
+    session["widgetpista.isevent"] = params[:isevent]
     
-    if request.env["widgetpista.isevent"]
+    if session["widgetpista.isevent"]
       # if the login check was requested by the apuntate link
-      request.env["widgetpista.ismock"] = params[:ismock]
-      request.env["widgetpista.eventid"] =  params[:event]
+      session["widgetpista.ismock"] = params[:ismock]
+      session["widgetpista.eventid"] =  params[:event]
+      session["widgetpista.source_timetable_id"] =  params[:source_timetable_id]
+      session["widgetpista.pos_in_timetable"] =  params[:pos_in_timetable].to_i
     else
-      # login was requested by the regular login link
-      request.env["widgetpista.ismock"] = nil
-      request.env["widgetpista.eventid"] =  nil
+      WidgetHelper.clean_session(session)
     end
     
   end
@@ -108,16 +116,13 @@ class WidgetController < ApplicationController
   def check_redirect
     
     if !request.env["HTTP_REFERER"].nil?
-      refererUrl = URI.escape(request.env["HTTP_REFERER"])
+      referer_url = URI.escape(request.env["HTTP_REFERER"])
 
-      if !URI(refererUrl).query.nil?
-        paramsHash = CGI.parse(URI(request.env["HTTP_REFERER"]).query)
+      if !URI(referer_url).query.nil?
+        params_hash = CGI.parse(URI(request.env["HTTP_REFERER"]).query)
 
-        if paramsHash[:invitation_to_event] and paramsHash[:event_id]
-
-          logger.info "LOG #{paramsHash.inspect}"
-
-          redirect_to "/widget/event/#{paramsHash['event_id'][0]}"
+        if params_hash[:invitation_to_event] and params_hash[:event_id]
+          redirect_to "/widget/event/#{params_hash['event_id'][0]}"
           return
         end
       end

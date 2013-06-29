@@ -24,7 +24,13 @@ Widget.gui = (function(){
 				var ismock = $(this).attr('data-ismock');
 				var isevent = $(this).attr('data-isevent');
 				var eventid = $(this).attr('data-event');
-			    popupCenter(url+"?isevent="+isevent+"&ismock="+ismock+"&event="+eventid, width, height, "authPopup");
+				var sourceTimetableId = $(this).attr('data-source-timetable-id');
+				var posInTimetable = $(this).attr('data-pos-in-timetable');
+				
+				var iframeUrl = url+"?isevent="+isevent+"&ismock="+ismock+"&event="+eventid+
+				"&source_timetable_id="+sourceTimetableId+"&pos_in_timetable="+posInTimetable;
+				
+			    popupCenter(iframeUrl, width, height, "authPopup");
 			    e.stopPropagation(); 
 			    return false;
 		    });
