@@ -14,9 +14,8 @@
 		is_single_group = true
 		is_branch = @group.is_branch?
 		is_group_member = is_current_member_of(@group)
-		has_schedule = Schedule.has_schedule?(@group)
-		is_display_scorecard = is_group_member  
-		is_display_scorecard = has_schedule ? is_display_scorecard : false
+		has_schedule = Scorecard.has_played_schedule?(@group)
+		is_display_scorecard = has_schedule 
 		is_display_scorecard = !is_branch ? is_display_scorecard : false
 	end
 	content_for(:description, "#{@group.name} / #{@group.sport.name},  #{@group.description}.  #{@group.marker.name}, #{@group.time_zone}") if @group

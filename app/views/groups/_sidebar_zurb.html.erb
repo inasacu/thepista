@@ -19,7 +19,12 @@
 		the_confirmation = label_with_name(:do_leave_item, "#{@group.name}?")
 	end
 	
-	is_scorecard_send = !(@group.is_branch? and @group.schedules.blank?) if @group
+	is_scorecard_send = false
+	if @group
+		is_scorecard_send = !@group.is_branch?
+		is_scorecard_send = Scorecard.has_played_schedule?(@group) ? is_scorecard_send : false
+		is_scorecard_send = is_group_member ? is_scorecard_send : false
+	end
 %>
 
 <% unless has_group %>

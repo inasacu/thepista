@@ -359,9 +359,9 @@ class Schedule < ActiveRecord::Base
     return Match.find_score(self).invite_score
   end
 
-	def self.has_schedule?(group)
-			!find(:first, :conditions => ["group_id = ? and played = true", group]).nil?
-	end
+	# def self.has_schedule?(group)
+	# 		!find(:first, :conditions => ["group_id = ? and played = true", group]).nil?
+	# end
   
   def self.group_current_schedules(group, page = 1)
     self.where("schedules.archive = false and starts_at >= ? and group_id = ?", Time.zone.now, group).page(page).order('starts_at')

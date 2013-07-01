@@ -294,6 +294,10 @@ class Scorecard < ActiveRecord::Base
     return self.archive
   end
   
+	def self.has_played_schedule?(group)
+			!find(:first, :conditions => ["group_id = ? and played > 0", group]).nil?
+	end
+	
   def self.users_group_scorecard(group, sort="")
     the_schedules = Schedule.find(:all, :conditions => ["group_id = ? and played = true", group], :order => "starts_at desc")
     played_games = 0
