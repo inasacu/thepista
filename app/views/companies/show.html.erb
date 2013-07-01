@@ -18,25 +18,43 @@
 
 				<div class="ten columns">
 
-					<%= render_show_detail_zurb(:company, item_name_link(@company)) %>
+					<%= render_show_detail_zurb(:company, @company.name) %>
 					<%= render_show_detail_zurb(:city, @company.city.name) %>
-					<%= render_show_detail_zurb(:time_zone,  "#{nice_simple_time_at(@company.starts_at)} - #{nice_simple_time_at(@company.ends_at)}") %>
+					<%#= render_show_detail_zurb(:time_zone,  "#{nice_simple_time_at(@company.starts_at)} - #{nice_simple_time_at(@company.ends_at)}") %>
 					
 					<% @company.branches.each do |branch| 
-						the_label = first_branch ? 'branches' : 'blank'
+						the_label = first_branch ? 'branch' : 'blank'
 						the_branch_link = link_to(branch.name, branch_url(:id => branch))
 						first_branch = false
 						first_group = true
-					%>
+					%>	
+						<hr/>
 							<%= render_show_detail_zurb(the_label, branch.name) %>
 						
 						<% branch.groups.each do |group| 
-							the_label = first_group ? 'groups' : 'blank'
+							the_label = first_group ? 'group' : 'blank'
+							the_label = 'group' 
 							first_group = false
 							the_group_link = link_to(group.name, branch_url(:id => group))
 							first_branch = true
+							first_timetable = true
 						%>
+						
+							<%= "<hr/>".html_safe %>
 							<%= render_show_detail_zurb(the_label, the_group_link) %>
+							
+							<%#= content_tag(:h6, "#{label_name(:timetables)}".html_safe, :class => "subheader") %> 
+							
+							<% Timetable.item_timetable(group).each do |timetable| 
+								the_label = first_timetable ? 'timetable' : 'blank'
+
+								the_timetable = "#{label_name(timetable.type.name)}, #{nice_simple_time_at(timetable.starts_at)} - #{nice_simple_time_at(timetable.ends_at)}"
+								first_timetable = false
+							%>
+								<%= render_show_detail_zurb(the_label, the_timetable) %>
+							<% end %>
+							
+							<%= "<hr/>".html_safe if first_timetable %>
 							
 						<% end %>
 						

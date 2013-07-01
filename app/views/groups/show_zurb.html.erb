@@ -13,6 +13,7 @@
 	the_automatic_petition = h(label_name(@group.automatic_petition, 'value'))
 	the_confirmation = label_with_name('automatic_petition', "#{@group.name}?")
 	has_items = (object_counter(@group.schedules) > 0)
+	first_group = true
 %>
 
 <%#= render 'shared/show_description_zurb', :item => @group %>
@@ -31,7 +32,7 @@
 
 <div class="ten columns">
 			
-		<%= render_show_detail_zurb(:name, item_name_link(@group)) %>
+		<%= render_show_detail_zurb(:name, !@group.is_branch? ? item_name_link(@group) : @group.name) %>
 		<%= render_show_detail_zurb(:company, item_name_link(@group.get_company)) if @group.is_branch? %>
 		<%= render_show_detail_zurb(:branch, link_to(@group.get_branch.name, branch_url(:id => @group))) if @group.is_branch? %>
 		
@@ -47,12 +48,12 @@
 		<%= render_show_detail_zurb(:sports, @group.sport.name) %>
 		<%= render_show_detail_zurb(:scorecard, link_to(label_name(:scorecard), scorecard_path(:id => @group))) unless @group.is_branch? %>
 		<%= render_show_detail_zurb(:game_day, nice_day_time(@group.schedules.first.starts_at)) unless @group.schedules.blank? %>
-		<%= render_show_detail_zurb(:city, @group.marker.city) %>
+		<%= render_show_detail_zurb(:city, @group.marker.city) unless @group.is_branch? %>
 
 		<%= render_show_detail_zurb(:automatic_petition, 
 		(is_user_manager ? link_to(the_automatic_petition, set_automatic_petition_path(:id => @group)) : the_automatic_petition)) if @group.payed_service %>  
 
-		<%= render_show_detail_zurb(:users, t(:has_group_users, :count => @group.users.count)) %>
+		<%= render_show_detail_zurb(:users, t(:has_group_users, :count => @group.users.count)) unless @group.is_branch? %>
 		<%= render_show_detail_zurb(:blank, t(:has_group_active_users, 
 								:count => object_counter(Scorecard.get_active_players(@group)))) unless @group.is_branch? %>
 		
@@ -67,15 +68,16 @@
 			
 			<br/>
 			<hr/>
-			<%= content_tag :h6, "#{label_name(:timetables)}".html_safe, :class => "subheader" %> 
+			<%#= content_tag :h6, "#{label_name(:timetables)}".html_safe, :class => "subheader" %> 
 			<% Timetable.item_timetable(@group).each do |timetable| 
-				
+				the_label = first_group ? :timetables : :blank
 				the_timetable = "#{label_name(timetable.type.name)}, 
 								 #{nice_simple_time_at(timetable.starts_at)} - 
 								#{nice_simple_time_at(timetable.ends_at)}"
-				%>
+				first_group = false
+			%>
 				
-				<%= render_show_detail_zurb(:blank, the_timetable) %>
+				<%= render_show_detail_zurb(the_label, the_timetable) %>
 					
 			<% end %>
 		<% end %>

@@ -1,3 +1,7 @@
+<%
+	is_edit = @group.is_branch? ? false : is_edit
+%>
+
 
 <% if @branch %>
 	<%= hidden_field :group, :item_id %>

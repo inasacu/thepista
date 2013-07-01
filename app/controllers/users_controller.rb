@@ -313,7 +313,7 @@ class UsersController < ApplicationController
 			@user.apply_omniauth(session[:omniauth])
 			@user.valid?
 		else
-			redirect_to :authentications_url
+			redirect_to root_url
 		end
 
 	end
