@@ -771,15 +771,16 @@ module ApplicationHelper
 		set_image_and_link(set_form_edit(item, label), item.class.to_s.downcase.chomp)
 	end
 
-	def set_form_create_id(item, id, item_id, label='')
+	def set_form_create_id(item, id, item_id, label='', sub_label='')
 		the_item = item.class.to_s.downcase.chomp
 		the_path = "new_#{the_item}_url"
 		the_label = label.blank? ? I18n.t(:create) : I18n.t(label)
+		the_label = "#{the_label} #{sub_label}" unless sub_label.blank?
 		link_to(the_label.html_safe, send(:"#{the_path}", :"#{id}" => item_id))
 	end
 
-	def set_form_create_id_image_link(item, id, item_id, label='',image='')
-		set_image_and_link(set_form_create_id(item, id, item_id, label),( image.blank? ? item.class.to_s.downcase.chomp : image))
+	def set_form_create_id_image_link(item, id, item_id, label='',image='', sub_label='')
+		set_image_and_link(set_form_create_id(item, id, item_id, label, sub_label),( image.blank? ? item.class.to_s.downcase.chomp : image))
 	end  
 
 	def set_form_create_label_id(item, id, item_id, label='')

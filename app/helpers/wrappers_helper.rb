@@ -145,7 +145,7 @@ module WrappersHelper
 
 		# case for displaying SIDEBAR 
 		ignore_sidebar = ['schedule_list', 'user_index', 'invitation_new', 'challenge_new', 'challenge_create', 
-			'message_index', 'message_show', 'message_new', 'game_index', 'standing_index',
+			'message_show', 'message_new', 'game_index', 'standing_index',
 			'game_list','cast_list_gues','standing_show_all', 'standing_show', 'reservation_index', 
 			'user_session_new', 'authentication_index', 'schedule_group_previou', 'schedule_group_current']
 
