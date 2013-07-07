@@ -36,7 +36,8 @@ module SchedulesHelper
   end
 
   def view_schedule_name(schedule, show_price=false) 
-    is_member = (is_current_member_of(schedule.group) or schedule.public)
+    is_member_and_not_mock = (is_current_member_of(schedule.group) or schedule.public)
+		is_member_and_not_mock = schedule.ismock.nil? ? is_member_and_not_mock : !schedule.ismock
     
     the_sport = ""  
     the_missing = ""
@@ -46,13 +47,13 @@ module SchedulesHelper
 		the_prematch_player = ""
 		show_price = (Time.zone.now < schedule.starts_at) ? show_price : false
 		
-    # the_image = is_member ? schedule_image_link_small(schedule) : schedule_image_small(schedule)
+    # the_image = is_member_and_not_mock ? schedule_image_link_small(schedule) : schedule_image_small(schedule)
 
     if schedule.game_played?
-      the_concept = is_member ? link_to(sanitize(limit_url_length(schedule.name, 25)), schedule_path(:id => schedule)) : sanitize(limit_url_length(schedule.name))
+      the_concept = is_member_and_not_mock ? link_to(sanitize(limit_url_length(schedule.name, 25)), schedule_path(:id => schedule)) : sanitize(limit_url_length(schedule.name))
 			the_price = "#{link_to(label_name(:scorecard), scorecard_path(:id => schedule.group))}"
     else
-      the_concept = is_member ? link_to(sanitize(limit_url_length(schedule.name, 25)), team_roster_path(:id => schedule)) : sanitize(limit_url_length(schedule.name))
+      the_concept = is_member_and_not_mock ? link_to(sanitize(limit_url_length(schedule.name, 25)), team_roster_path(:id => schedule)) : sanitize(limit_url_length(schedule.name))
 
       the_sport = "#{the_font_green(label_name(:rosters))}:  #{schedule.convocados.count}"
       the_missing = ", #{the_font_yellow(I18n.t(:missing))}:  #{schedule.player_limit.to_i - schedule.convocados.count}" if schedule.player_limit.to_i > schedule.convocados.count
@@ -85,6 +86,7 @@ module SchedulesHelper
 				the_installation = schedule.group.installation
 				the_venue = "#{schedule.group.venue.short_name}, #{the_installation.name}"
 				the_installation_link = "#{link_to(the_venue, reservations_path(:id => the_installation))}".html_safe
+				the_installation_link = "#{the_venue}".html_safe if schedule.group.is_branch?
 			else
 				the_installation_link =  has_left(schedule.starts_at)
 			end
@@ -111,11 +113,13 @@ module SchedulesHelper
     elsif Time.zone.now < schedule.starts_at
       the_label = ""
       
-      schedule.matches.each do |match| 
+      # schedule.matches.each do |match|
+      schedule.matches.find(:all, :include => [:user, :type]).each do |match| 
         the_font_begin =  ""
         the_font_end = ""
 				the_match_type_name_downcase = (match.type_name).downcase
 				the_font=""
+				is_same_user = is_current_same_as(match.user)
 				
         case match.type_id
         when 1
@@ -125,7 +129,7 @@ module SchedulesHelper
         when 3
 					the_font = the_font_red(the_match_type_name_downcase)
         end
-        the_label = "<STRONG>#{I18n.t(:your_roster_status)}</STRONG> #{the_font}" if is_current_same_as(match.user)
+        the_label = "<STRONG>#{I18n.t(:your_roster_status)}</STRONG> #{the_font}" if is_same_user
       end
       
 			the_match_link = match_all_my_link(schedule, current_user, false, true)

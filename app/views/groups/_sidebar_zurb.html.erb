@@ -18,6 +18,13 @@
 		has_user_petition = has_current_item_petition(@group) 
 		the_confirmation = label_with_name(:do_leave_item, "#{@group.name}?")
 	end
+	
+	is_scorecard_send = false
+	if @group
+		is_scorecard_send = !@group.is_branch?
+		is_scorecard_send = Scorecard.has_played_schedule?(@group) ? is_scorecard_send : false
+		is_scorecard_send = is_group_member ? is_scorecard_send : false
+	end
 %>
 
 <% unless has_group %>
@@ -29,7 +36,7 @@
 
 <% if has_group %>
 
-	<%= set_form_create_id_image_link(Message.new, :scorecard_id, @group.schedules.first, :send_scorecard, 'scorecard') unless @group.schedules.blank? %>
+	<%= set_form_create_id_image_link(Message.new, :scorecard_id, @group.schedules.first, :send_scorecard, 'scorecard') if is_scorecard_send  %>
 
 	<div class="row">
 		<div class="twelve columns">
@@ -52,7 +59,7 @@
 	<div class="row">	
 		<div class="twelve columns">
 
-			<%= set_form_create_id_image_link(Schedule.new, :id, @group, :schedules_create) %>
+			<%= set_form_create_id_image_link(Schedule.new, :id, @group, :schedules_create) unless @group.is_branch? %>
 			
 			<%= set_form_edit_image_link(@group, :groups_edit) %>		
 		

@@ -7,29 +7,35 @@
 	the_controller = ['fee', 'payment', 'schedule']
 	
 	is_single_group = false
+	is_branch = false
+	is_display_scorecard = false
+	
 	if @group 
 		is_single_group = true
+		is_branch = @group.is_branch?
+		is_group_member = is_current_member_of(@group)
+		has_schedule = Scorecard.has_played_schedule?(@group)
+		is_display_scorecard = has_schedule 
+		is_display_scorecard = !is_branch ? is_display_scorecard : false
 	end
 	content_for(:description, "#{@group.name} / #{@group.sport.name},  #{@group.description}.  #{@group.marker.name}, #{@group.time_zone}") if @group
+	
+
+		
 %>
 	<%= set_tab_navigation(link_to(label_name(:groups), groups_path, set_tab_navigation_active('group_index'))) unless @group %>
 	<%= set_tab_navigation(group_link(@group, set_tab_navigation_active('group_show'))) if is_single_group %>
-<% 	
-	if the_action.include?(get_the_action) or the_controller.include?(get_the_controller)
-		# if is_current_member_of(@group) 
-%>		
-		<%= content_tag :dd, link_to(label_name(:users) , team_list_path(:id => @group), :class => get_active('group_team_list')) %>
+
+<% 	if the_action.include?(get_the_action) or the_controller.include?(get_the_controller) %>		
+
+
+		<%= content_tag :dd, link_to(label_name(:users) , team_list_path(:id => @group), :class => get_active('group_team_list')) unless is_branch %>
 		
-		<% if @group.is_branch? %>
-			<%= set_tab_navigation(link_to(label_name(:current_schedules), branch_url(:id => @group), :class => get_active('schedule_group_current'))) %>
-			
-		<% else %>
-			<%= set_tab_navigation(link_to(label_name(:current_schedules), group_current_path(:id => @group), :class => get_active('schedule_group_current'))) %>
-		<% end %>
-		<%= set_tab_navigation(link_to(label_name(:previous_schedules), group_previous_path(:id => @group), :class => get_active('schedule_group_previou'))) %>
-		<%= content_tag :dd, link_to(label_name(:scorecard) , scorecard_path(:id => @group), :class => get_active('scorecard_show')) %>
-			
-		
+		<%= set_tab_navigation(link_to(label_name(:current_schedules), branch_url(:id => @group), :class => get_active('schedule_group_current'))) if is_branch %>
+		<%= set_tab_navigation(link_to(label_name(:current_schedules), group_current_path(:id => @group), :class => get_active('schedule_group_current'))) unless is_branch %>
+		<%= set_tab_navigation(link_to(label_name(:previous_schedules), group_previous_path(:id => @group), :class => get_active('schedule_group_previou'))) unless is_branch %>
+		<%= content_tag :dd, link_to(label_name(:scorecard) , scorecard_path(:id => @group), :class => get_active('scorecard_show')) if is_display_scorecard %>
+				
 		<% if is_current_manager_of(@group) and DISPLAY_FREMIUM_SERVICES %>
 			<%= content_tag :dd, link_to(label_name(:fees) , list_fees_path(:id => @group), :class => get_active('fee_list')) %>
 			<%= content_tag :dd, link_to(label_name(:fees_due) , due_fees_path(:id => @group), :class => get_active('fee_due')) %>

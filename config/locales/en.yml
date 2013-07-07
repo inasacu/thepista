@@ -463,30 +463,7 @@ en:
      edit_tournament: Edit    
      edit_type: Edit    
      edit_user: Edit    
-     edit_venue: Edit    
-     enchufado:  Company
-     enchufado_options:  Options
-     enchufado_stage_set:  Group Stage Update
-     enchufado_stage_set_full:  Group Stage Update
-     enchufados:   Enchufado
-     enchufados_create:  New Enchufado 
-     enchufados_destroy:  Remove Enchufado
-     enchufados_edit:  Edit Enchufado
-     enchufados_index:   Enchufados
-     enchufados_index_option: Options
-     enchufados_invitations_create:  Invite a friend to the Enchufado
-     enchufados_join:  Join an Enchufado
-     enchufados_list:  Rest of the Enchufados
-     enchufados_new:  New Enchufado
-     enchufados_new_option: Options
-     enchufados_no:  No Enchufado to display
-     enchufados_none:  No Enchufados.
-     enchufados_options_without: "What options do you have since you are not on an Enchufado?"
-     enchufados_option:  Options
-     enchufados_search: Search for Enchufados
-     enchufados_search_to_join: Search for an Enchufado to join. 
-     enchufados_show:  Show Enchufado
-     enchufados_update: Edit Enchufado
+     edit_venue: Edit
      email: Email   
      email_time_zone: Time Zone to send email before an event.  
      email_addresses: Email(s)

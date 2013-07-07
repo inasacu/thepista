@@ -35,8 +35,8 @@ require "base64"
 
 class Match < ActiveRecord::Base
   
-  belongs_to      :user
-  belongs_to      :group
+  belongs_to      :user,				:conditions => "users.archive = false"
+  belongs_to      :group,				:conditions => "groups.archive = false"
   belongs_to      :schedule
   belongs_to      :convocado, 		:class_name => "User", :foreign_key => "user_id"  
 

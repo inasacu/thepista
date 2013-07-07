@@ -4,7 +4,6 @@ Total score (lower is better) = 3606
 1) IDENTICAL code found in :defn (mass*5 = 600)
   ./app/models/challenge.rb:73
   ./app/models/cup.rb:124
-  ./app/models/enchufado.rb:66
   ./app/models/group.rb:118
   ./app/models/venue.rb:73
 
@@ -31,7 +30,6 @@ Total score (lower is better) = 3606
   ./app/models/payment.rb:107
 
 6) Similar code found in :call (mass = 100)
-  ./app/models/enchufado.rb:27
   ./app/models/group.rb:32
   ./app/models/installation.rb:36
   ./app/models/venue.rb:28
@@ -163,7 +161,6 @@ Total score (lower is better) = 3606
   ./app/models/type.rb:41
 
 37) Similar code found in :defs (mass = 40)
-  ./app/models/enchufado.rb:94
   ./app/models/venue.rb:129
 
 38) Similar code found in :defs (mass = 40)

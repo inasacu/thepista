@@ -31,7 +31,7 @@ class Type < ActiveRecord::Base
 	end
 	
 	def self.timetable_type_weekdays
-		return find(:all, :conditions => ["table_type = 'Timetable'"], :order => "types.id").collect {|p| [ p.name, p.id ] }
+		return find(:all, :conditions => ["table_type = 'Timetable'"], :order => "types.id").collect {|p| [ I18n.t(p.name.downcase), p.id ] }
 	end
 	
 	def self.holiday_type

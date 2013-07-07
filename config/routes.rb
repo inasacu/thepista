@@ -249,14 +249,6 @@ Thepista::Application.routes.draw do
 		end
 	end
 
-	resources :enchufados do
-		collection do
-			get :list
-		end
-	end
-	
-	resources :subplugs
-
 	resources :timetables
 	
 	resources :users do

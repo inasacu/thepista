@@ -12,7 +12,7 @@
 	the_scorecard_players_count = ""
 	the_company = group.get_company
 	
-	has_schedule = Schedule.has_schedule?(group)
+	has_schedule = Scorecard.has_played_schedule?(group)
 	
 	
 	if has_group

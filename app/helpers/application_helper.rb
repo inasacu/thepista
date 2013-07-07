@@ -200,12 +200,12 @@ module ApplicationHelper
 
 	# Sábado, 12 de Junio <strong>20:30</strong>
 	def nice_day_time_strong(time_at)
-		if Rails.env.development?
+		# if Rails.env.development?
 			the_time_label = "&nbsp;#{I18n.l(time_at, :format => :simple_time_at)}h&nbsp;".html_safe
 			return "#{content_tag('span', the_time_label, :class => 'round regular label')} - #{nice_day_date_wo_year(time_at)}".html_safe unless time_at.nil?
-		else
-			return "<strong>#{I18n.l(time_at, :format => :simple_time_at)}h</strong> - #{nice_day_date_wo_year(time_at)}".html_safe unless time_at.nil?
-		end
+		# else
+			# return "<strong>#{I18n.l(time_at, :format => :simple_time_at)}h</strong> - #{nice_day_date_wo_year(time_at)}".html_safe unless time_at.nil?
+		# end
 	end
 
 	# Sábado, 12 de Junio de 2010 a las 20:30
@@ -771,15 +771,16 @@ module ApplicationHelper
 		set_image_and_link(set_form_edit(item, label), item.class.to_s.downcase.chomp)
 	end
 
-	def set_form_create_id(item, id, item_id, label='')
+	def set_form_create_id(item, id, item_id, label='', sub_label='')
 		the_item = item.class.to_s.downcase.chomp
 		the_path = "new_#{the_item}_url"
 		the_label = label.blank? ? I18n.t(:create) : I18n.t(label)
+		the_label = "#{the_label} #{sub_label}" unless sub_label.blank?
 		link_to(the_label.html_safe, send(:"#{the_path}", :"#{id}" => item_id))
 	end
 
-	def set_form_create_id_image_link(item, id, item_id, label='',image='')
-		set_image_and_link(set_form_create_id(item, id, item_id, label),( image.blank? ? item.class.to_s.downcase.chomp : image))
+	def set_form_create_id_image_link(item, id, item_id, label='',image='', sub_label='')
+		set_image_and_link(set_form_create_id(item, id, item_id, label, sub_label),( image.blank? ? item.class.to_s.downcase.chomp : image))
 	end  
 
 	def set_form_create_label_id(item, id, item_id, label='')

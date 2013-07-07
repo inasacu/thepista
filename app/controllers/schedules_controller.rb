@@ -62,8 +62,17 @@ class SchedulesController < ApplicationController
 
 	def team_roster
 		store_location
-		@has_a_roster = !(@schedule.convocados.empty?)
+				
+		@the_roster = nil
+		@has_a_roster = nil
+		@the_roster_infringe = nil
+		@the_roster_last_minute_infringe = nil
+		@the_last_played = nil
+		# @the_roster_reputation = nil
+		
+		# @has_a_roster = !(@schedule.convocados.empty?)
 		@the_roster = @schedule.the_roster_sort(sort_order(''))
+		@has_a_roster = !(@the_roster.empty?)
 		@the_roster_infringe = @schedule.the_roster_infringe
 		@the_roster_last_minute_infringe = @schedule.the_last_minute_infringe
 		@the_last_played = @schedule.the_roster_last_played
@@ -230,6 +239,12 @@ class SchedulesController < ApplicationController
 				@schedule.fee_per_pista = @group.player_limit * @schedule.fee_per_game if @group.player_limit > 0
 				@schedule.reminder_at = @schedule.starts_at - 2.days
 				@schedule.season = Time.zone.now.year
+				
+				@previous_schedule = Schedule.find(:first, :conditions => ["schedules.group_id = ?", @group.id], :order => "schedules.starts_at DESC")    
+				unless @previous_schedule.nil?
+					@schedule.jornada = @previous_schedule.jornada + 1
+					@schedule.name = "#{I18n.t(:jornada)} #{@schedule.jornada}"
+				end
 			
 		else
 			unless is_current_manager_of(@group)
@@ -241,7 +256,7 @@ class SchedulesController < ApplicationController
 
 		if @schedule.save and @schedule.create_schedule_roles(current_user)
 
-			if @schedule.group.item_type == 'Branch'
+			if @schedule.group.is_branch?
 				Match.create_item_schedule_match(@schedule, current_user)
 			else
 				@schedule.create_schedule_details
@@ -345,8 +360,14 @@ class SchedulesController < ApplicationController
 	def get_schedule
 		@schedule = Schedule.find(params[:id])
 		@group = @schedule.group
-		@the_previous = Schedule.previous(@schedule)
-		@the_next = Schedule.next(@schedule)    
+
+		@the_previous = nil 
+		@the_next = nil
+		unless @group.is_branch?
+			@the_previous = Schedule.previous(@schedule) 
+			@the_next = Schedule.next(@schedule)  
+		end  
+		
 	end
 
 	def get_current_schedule

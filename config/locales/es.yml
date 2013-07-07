@@ -466,30 +466,6 @@ es:
      edit_type: Actualiza   
      edit_user: Actualiza   
      edit_venue: Actualiza
-     enchufado:   Enchufado
-     enchufado_options:  Opciones
-     enchufado_stage_set:  Actualiza el enchufado
-     enchufado_stage_set_full:  Actualiza el enchufado
-     enchufados:   Enchufados
-     enchufados_create:  "¡Hazte enchufado!" 
-     enchufados_destroy:  Borra el enchufado
-     enchufados_edit:  Cambia el enchufado
-     enchufados_index:   Enchufados
-     enchufados_index_option: Opciones 
-     enchufados_invitations_create:  Invita a un amigo al enchufado
-     enchufados_join:  Unete al enchufado
-     enchufados_list:  Resto de enchufado
-     enchufados_new:  Nuevo enchufado
-     enchufados_new_option: Opciones 
-     enchufados_no:  Ningun enchufado para mostrar
-     enchufados_none:  Ningun enchufado.
-     enchufados_options_without: "¿Qué opciones tienes ya que no tienes un enchufado?"
-     enchufados_options_without: "Parece que no tienes un enchufado, puedes hacer lo siguiente:"
-     enchufados_option:  Opciones 
-     enchufados_search: Busqueda de enchufados
-     enchufados_search_to_join: Puedes buscar un enchufado a quien unierte. 
-     enchufados_show:  Mostrar enchufado
-     enchufados_update: Cambia el enchufado
      email: Correo   
      email_time_zone: Horario para mandar correos antes de un encuentro.  
      email_addresses: "Correo(s)"

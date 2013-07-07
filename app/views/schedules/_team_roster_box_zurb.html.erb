@@ -89,7 +89,7 @@ the_roster.each do |match|
 	user_played = true
 	user_subscription_link = ""
 	
-	user_subscription_link = subscription_image_link(the_user, is_subscriber, the_label) unless @group.is_branch?
+	user_subscription_link = subscription_image_link(the_user, is_subscriber, the_label) unless group.is_branch?
 	
 	unless @schedule.played
 		if @the_last_played	
