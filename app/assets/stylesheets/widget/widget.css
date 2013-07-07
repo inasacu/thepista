@@ -1,11 +1,71 @@
+
+#footer{
+	bottom:3px;
+	background:#fff;
+	clear: both;
+	border: 2px solid #e4e4e4;
+	border: 2px solid rgba(0,49,79,0.08);
+	border-top: 5px solid #e4e4e4;
+	border-top: 5px solid rgba(0,49,79,0.08);
+	padding: 20px 5px 10px 5px;
+}
+
+#footer ul{
+	display:block;
+}
+#footer ul li{
+	float: left;
+	margin: 0 24px 0 0;
+}
+#footer .logo {
+	float: right;
+	margin: 0;
+}
+
+
+
 #-page{
-	height:400px;
-	padding:0;
+	padding:0 10px;
+}
+
+#main-nav ul{
+	border-bottom: 2px solid #e4e4e4;
+	border-bottom: 2px solid rgba(0,49,79,0.08);
+	clear:both;
+	display:block;
+	height:40px;
+	padding-top:10px;
+}
+#main-nav ul li{
+	float:left;
+	margin-left:20px;
+	margin-bottom:0;
+	padding-bottom:9px;
+}
+#main-nav ul li a{
+	color:#a7adb1!important;
+	font-weight:bold;
+}
+#main-nav ul li a:hover{
+	color:#1977ca !important;
+	font-weight:bold;
+}
+#main-nav ul li.active{
+	border-bottom: 2px solid rgb(46, 159, 255);
+}
+#main-nav ul li.active a{
+	color:#363a3d!important;
 }
 
 div.container{
+	background:#ffffff;
+	border: 2px solid #e4e4e4;
+	border: 2px solid rgba(0,49,79,0.08);
 	clear:both;
-	padding-bottom:0;
+	height:300px;
+	padding:0 10px;
+	position:relative;
+	overflow-y:scroll;
 }
 
 .fixed-msg-bottom{
@@ -40,6 +100,6 @@ div.container{
 }
 
 table tbody tr.week_day_parent{
-	background:#f8f8f8;
+	background:#fff;
 	border:#ccc 1px dashed;
 }

@@ -1,0 +1,25 @@
+<div id="footer">
+        <ul>
+            <li class="logo">
+            	<h6><strong>HayPista © 2013.</strong></h6>
+            </li>
+            <li class="rss">
+				 <%if current_user%>
+					<i aria-hidden="true" class="icon-feed" title="in reply to"></i>
+					<span class="clip">Bienvenido, <%=current_user.name%></span>
+				<%else%>
+					<i aria-hidden="true" class="icon-feed" title="in reply to"></i>
+					<span class="clip">Ingresa para disfrutar de haypista</span>
+				<%end%>
+				
+			</li>
+            <li id="thread-subscribe-button" class="email"> 
+                <%if current_user%>
+					<%=link_to("Cerrar sesión", widget_logout_path)%>
+				<%else%>
+				<a href="#" data-isevent="false" data-ismock="true" data-event="0" 
+				  class="auth_popup">Inicia sesi&oacute;n</a>
+				<%end%>
+            </li>
+        </ul>
+    </div>

@@ -2,8 +2,17 @@
 <%= render :partial => "widget/partials/events", :locals => {:schedules_per_weekday => @schedulesPerWeekDay }%>
 
 <script>
-	if(window.opener) {
-	    window.opener.location.reload(true);
-	    window.close()
-	  }
+	<% if @event_to_redirect %>
+		if(window.opener) {
+		    window.opener.location = <%= widget_event_details_url :event_id => @event_to_redirect%>;
+			window.close();
+		}
+		
+	<% else %>
+		if(window.opener) {
+		    window.opener.location.reload(true);
+		    window.close();
+		}
+	<% end %>
+	
 </script>

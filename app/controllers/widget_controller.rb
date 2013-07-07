@@ -4,7 +4,7 @@ class WidgetController < ApplicationController
   # filters
   before_filter :get_schedule, :only => [:event_details]
   before_filter :check_redirect, :only => [:home]
-  
+    
   # add filter for checkin branch in session
   
   helper WidgetHelper
@@ -17,6 +17,10 @@ class WidgetController < ApplicationController
     if !session[:current_branch]
       session[:current_branch] = Branch.branch_from_url(request.env["HTTP_REFERER"]) 
     end 
+    
+    if params[:inside_redirect]
+      @event_to_redirect = params[:event_id]
+    end
     
     @schedules_per_weekday = Schedule.week_schedules_from_timetables(session[:current_branch])
     render :layout => 'widget'
@@ -48,16 +52,15 @@ class WidgetController < ApplicationController
   
   def login_check
     
-    session["widgetpista.isevent"] = params[:isevent]
+    WidgetHelper.clean_session(session)
     
-    if session["widgetpista.isevent"]
+    if params[:isevent] == "true"
       # if the login check was requested by the apuntate link
+      session["widgetpista.isevent"] = params[:isevent]
       session["widgetpista.ismock"] = params[:ismock]
       session["widgetpista.eventid"] =  params[:event]
       session["widgetpista.source_timetable_id"] =  params[:source_timetable_id]
-      session["widgetpista.pos_in_timetable"] =  params[:pos_in_timetable].to_i
-    else
-      WidgetHelper.clean_session(session)
+      session["widgetpista.event_starts_at"] =  Time.zone.at(Base64::decode64(params[:block_token].to_s).to_i)
     end
     
   end
@@ -68,10 +71,14 @@ class WidgetController < ApplicationController
   
   def do_apuntate
     
-    event = Schedule.takecareof_apuntate(current_user, params[:isevent], params[:ismock], params[:event])
+    if params[:block_token]
+      event_starts_at = Base64::decode64(params[:block_token].to_s).to_time
+    end
+          
+    event = Schedule.takecareof_apuntate(current_user, params[:isevent], params[:ismock], params[:event], params[:source_timetable_id], event_starts_at)
     
     if event
-      redirect_to event
+      redirect_to widget_event_details_url :event_id => event.id
     else
       redirect_to widget_home_url
     end
@@ -115,18 +122,18 @@ class WidgetController < ApplicationController
   
   def check_redirect
     
-    if !request.env["HTTP_REFERER"].nil?
-      referer_url = URI.escape(request.env["HTTP_REFERER"])
+      if !request.env["HTTP_REFERER"].nil?
+        referer_url = URI.escape(request.env["HTTP_REFERER"])
 
-      if !URI(referer_url).query.nil?
-        params_hash = CGI.parse(URI(request.env["HTTP_REFERER"]).query)
+        if !URI(referer_url).query.nil?
+          params_hash = CGI.parse(URI(request.env["HTTP_REFERER"]).query)
 
-        if params_hash[:invitation_to_event] and params_hash[:event_id]
-          redirect_to "/widget/event/#{params_hash['event_id'][0]}"
-          return
+          if params_hash[:invitation_to_event] and params_hash[:event_id]
+            redirect_to widget_event_details_url :event_id => params_hash['event_id'][0]
+            return
+          end
         end
       end
-    end
     
   end
   

@@ -366,7 +366,7 @@ class Schedule < ActiveRecord::Base
     self.where("schedules.archive = false and starts_at >= ? and group_id = ?", Time.zone.now, group).page(page).order('starts_at')
   end
 
-  def self.group_previous_schedules(group, page = 1)
+  def self.group_id(group, page = 1)
     self.where("schedules.archive = false and starts_at < ? and group_id = ?", Time.zone.now, group).page(page).order('starts_at DESC')
   end
   
@@ -694,14 +694,12 @@ class Schedule < ActiveRecord::Base
         
         mockScheduleStart = timetable.starts_at
         timetableEnd = timetable.ends_at
-        # to calculate the start and end with the timeframe
+        # to calculate the start and end with the timeframe - not used for now
         pos_in_timetable = 1
         
         while mockScheduleStart.to_time < timetableEnd.to_time do
           mockScheduleEnd = (mockScheduleStart.to_time + timetable.timeframe.hours).to_datetime
-          
-          #logger.info "timetableend #{timetableEnd.to_time} start #{mockScheduleStart.to_time} end #{mockScheduleEnd.to_time}"
-          
+                    
           schedule = Schedule.new
           #schedule.name = "#{timetableGroup.name} #{mockScheduleStart.strftime('%m/%d/%Y')}"
           schedule.name = "Jornada programada"
@@ -712,8 +710,23 @@ class Schedule < ActiveRecord::Base
           schedule.source_timetable_id = timetable.id
           schedule.pos_in_timetable = pos_in_timetable
           
-          weekDaysArray[mockScheduleStart.strftime("%A")] << schedule
+          # Current schedules in certain day - 
+          # Validates if there is a real event with the same datetime
+          alreadyIn = false
+          tempArray = weekDaysArray[mockScheduleStart.strftime("%A")]
           
+          tempArray.each do |tempSchedule|
+            if tempSchedule.starts_at == schedule.starts_at
+              alreadyIn = true
+              break
+            end
+          end
+          
+          if alreadyIn == false
+            weekDaysArray[mockScheduleStart.strftime("%A")] << schedule
+          end
+          
+          # start for the next event
           mockScheduleStart = Date.new
           mockScheduleStart = mockScheduleEnd
           
@@ -728,24 +741,44 @@ class Schedule < ActiveRecord::Base
     
   end
   
-  def self.takecareof_apuntate(user, isevent, ismock, event_id, event_timetable_id, event_timetable_pos)
-    
-    if isevent
-      
-      if ismock
+  def self.takecareof_apuntate(user, isevent, ismock, event_id, event_timetable_id, event_starts_at=nil)
         
-        logger.info "ENTRO ACA #{user.inspect}"
+    if !isevent.nil? and (isevent == "true")
+      
+      if !ismock.nil? and (ismock == "true")
         
         # the event is created
         source_timetable = Timetable.find(event_timetable_id)
-        schedule_start = (source_timetable.starts_at.to_time + (source_timetable.timeframe.hours*event_timetable_pos).hours).to_datetime
+        
+        # Group
+        group = source_timetable.item
+        
+        #schedule_start = (source_timetable.starts_at.to_time + (source_timetable.timeframe.hours*event_timetable_pos).hours).to_datetime
+        schedule_start = event_starts_at.to_datetime
         
         schedule = Schedule.new
-        #schedule.name = "#{timetableGroup.name} #{mockScheduleStart.strftime('%m/%d/%Y')}"
+        
         schedule.name = "Jornada programada"
-        schedule.starts_at = schedule_start
-        schedule.ends_at = (schedule_start.to_time + source_timetable.timeframe.hours).to_datetime 
-        schedule.group = source_timetable.item
+        schedule.jornada = 1
+        schedule.starts_at_date = schedule_start
+				schedule.starts_at = schedule_start
+				schedule.ends_at_date = schedule.starts_at_date + source_timetable.timeframe.hours
+				schedule.ends_at = schedule_start + source_timetable.timeframe.hours
+				schedule.reminder_at = schedule.starts_at - 2.days	
+				schedule.available = (schedule.starts_at > Time.zone.now + MINUTES_TO_RESERVATION )
+				schedule.item_id = group.id
+				schedule.item_type = group.class.to_s
+				schedule.group_name = group.name
+				schedule.group_id = group.id
+				schedule.sport_id = group.sport_id
+				schedule.marker_id = group.marker_id
+				schedule.time_zone = group.time_zone
+				schedule.player_limit = group.player_limit
+				schedule.fee_per_game = 1
+				schedule.fee_per_pista = 1
+				schedule.fee_per_pista = group.player_limit * schedule.fee_per_game if group.player_limit > 0
+				schedule.reminder_at = schedule.starts_at - 2.days
+				schedule.season = Time.zone.now.year
         
         # user is added to the group
         Group.add_user_togroup(user, schedule.group)
@@ -753,10 +786,16 @@ class Schedule < ActiveRecord::Base
         # event is created and the user is added to the event as an administrator
         if schedule.save and schedule.create_schedule_roles(user)
           
+          logger.info "ENTRO ACA SE CREO "
+          
           # the user is added to the event - add record into matches
-           # Match.create_item_schedule_match(schedule, user)
+          Match.create_item_schedule_match(schedule, user)
+          return schedule
           
         else
+          
+          return nil
+          
         end
         
       else
@@ -768,10 +807,15 @@ class Schedule < ActiveRecord::Base
          Group.add_user_togroup(user, schedule.group)
          
          # the user is added to the event - add record into matches
-         # Match.create_item_schedule_match(schedule, user)
+         Match.create_item_schedule_match(schedule, user)
           
-      end
-    end
+         return schedule
+         
+      end # end if is mock
+    else
+      logger.info "NO ES EVENTO"
+      return nil
+    end # end if is event
     
   end
 

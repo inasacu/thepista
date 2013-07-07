@@ -17,14 +17,16 @@ class AuthenticationsController < ApplicationController
       # info for logic actions
       isevent = session["widgetpista.isevent"]
       ismock = session["widgetpista.ismock"]
-      event_id = session["widgetpista.event"]
+      event_id = session["widgetpista.eventid"]
       event_timetable_id = session["widgetpista.source_timetable_id"]
-      event_timetable_pos = session["widgetpista.pos_in_timetable"]
+      event_starts_at = session["widgetpista.event_starts_at"]
       WidgetHelper.clean_session(session)
       
       # info for redirecting
       redirect_home = widget_home_url
-      redirect_signup = widget_check_omniauth_url
+      redirect_signup = widget_check_omniauth_url :isevent => isevent, :ismock => isevent, :event => event_id, 
+                                                  :event_timetable_id => event_timetable_id, 
+                                                  :block_token => Base64::encode64(event_starts_at.to_s)
       
 		else
 		  
@@ -36,8 +38,9 @@ class AuthenticationsController < ApplicationController
 		  
 		  redirect_home = root_url
 		  redirect_signup = provider_url
+		  
 		end
-    
+		    
 		omniauth = request.env["omniauth.auth"]
 		# successful_provider = "Successfully added #{omniauth['provider']} authentication"
 		authentication = Authentication.find_from_omniauth(omniauth)
@@ -47,9 +50,13 @@ class AuthenticationsController < ApplicationController
 			UserSession.create(authentication.user, true) 
 						
 			# widget
-			Schedule.takecareof_apuntate(authentication.user, isevent, ismock, event_id, event_timetable_id, event_timetable_pos)
+			event = Schedule.takecareof_apuntate(authentication.user, isevent, ismock, event_id, event_timetable_id, event_starts_at)
 			
-			redirect_to redirect_home
+			if event
+			  redirect_to widget_home_url :inside_redirect => true, :event_id => event
+			else
+			  redirect_to redirect_home
+			end
 			
 		elsif current_user
 			Authentication.create_from_omniauth(omniauth, current_user)
@@ -66,13 +73,14 @@ class AuthenticationsController < ApplicationController
 				UserSession.create(@user_by_email)
 				Authentication.create_from_omniauth(omniauth, @user_by_email)
 				# controller_successful_provider(omniauth['provider'])
-				
-				logger.info "EY #{current_user.inspect}"
-				
+								
 				# widget
-  			Schedule.takecareof_apuntate(current_user, isevent, ismock, event_id, event_timetable_id, event_timetable_pos)
-				
-				redirect_to redirect_home
+  			event = Schedule.takecareof_apuntate(current_user, isevent, ismock, event_id, event_timetable_id, event_starts_at)
+				if event
+				  redirect_to widget_home_url :inside_redirect => true, :event_id => event
+				else
+				  redirect_to redirect_home
+				end
 				
 				#redirect_back_or_default root_url
 				return
@@ -87,9 +95,13 @@ class AuthenticationsController < ApplicationController
 					# controller_successful_provider(omniauth['provider'])
 					
 					# widget
-    			Schedule.takecareof_apuntate(current_user, isevent, ismock, event_id, event_timetable_id, event_timetable_pos)
+    			event = Schedule.takecareof_apuntate(current_user, isevent, ismock, event_id, event_timetable_id, event_starts_at)
 					
-					redirect_to redirect_home
+					if event
+  				  redirect_to widget_home_url :inside_redirect => true, :event_id => event
+  				else
+  				  redirect_to redirect_home
+  				end
 					
 					#redirect_back_or_default root_url
 					return

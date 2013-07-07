@@ -34,7 +34,7 @@
   
 
 
-	<%= stylesheet_link_tag  "application", :media => "all" %>
+	<%= stylesheet_link_tag  "general/application", :media => "all" %>
 	<%= javascript_include_tag "application" %>
 	<%= csrf_meta_tags %>
 
@@ -54,13 +54,13 @@
 	
 		
 	<!-- Included CSS Files -->
-	<%= stylesheet_link_tag 'docs' if Rails.env.development? and !is_mobile_browser %>
-	<%= stylesheet_link_tag 'zurb/grid' %>
-	<%= stylesheet_link_tag 'zurb/forms' %>
-	<%= stylesheet_link_tag 'zurb/presentation' %>
-	<%= stylesheet_link_tag 'zurb/app' %>
-	<%= stylesheet_link_tag 'standard_form' %>
-	<%= stylesheet_link_tag 'mobile' if is_mobile_browser %>
+	<%= stylesheet_link_tag 'general/docs' if Rails.env.development? and !is_mobile_browser %>
+	<%= stylesheet_link_tag 'general/zurb/grid' %>
+	<%= stylesheet_link_tag 'general/zurb/forms' %>
+	<%= stylesheet_link_tag 'general/zurb/presentation' %>
+	<%= stylesheet_link_tag 'general/zurb/app' %>
+	<%= stylesheet_link_tag 'general/standard_form' %>
+	<%= stylesheet_link_tag 'general/mobile' if is_mobile_browser %>
 
 	<!--[if lt IE 9]>
 		<link rel="stylesheet" href="../../stylesheets/zurb/ie.css">

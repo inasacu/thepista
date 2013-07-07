@@ -25,10 +25,10 @@ Widget.gui = (function(){
 				var isevent = $(this).attr('data-isevent');
 				var eventid = $(this).attr('data-event');
 				var sourceTimetableId = $(this).attr('data-source-timetable-id');
-				var posInTimetable = $(this).attr('data-pos-in-timetable');
+				var blockToken = $(this).attr('data-block-token');
 				
 				var iframeUrl = url+"?isevent="+isevent+"&ismock="+ismock+"&event="+eventid+
-				"&source_timetable_id="+sourceTimetableId+"&pos_in_timetable="+posInTimetable;
+				"&source_timetable_id="+sourceTimetableId+"&block_token="+blockToken;
 				
 			    popupCenter(iframeUrl, width, height, "authPopup");
 			    e.stopPropagation(); 

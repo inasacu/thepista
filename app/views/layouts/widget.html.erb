@@ -38,7 +38,7 @@
 	<%= favicon_link_tag %>
   
 
-	<%= stylesheet_link_tag    "application", :media => "all" %>
+	<%= stylesheet_link_tag    "general/application", :media => "all" %>
 	<%= csrf_meta_tags %>
 	
 	<%= javascript_include_tag 'http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js' %>
@@ -71,8 +71,6 @@
 
 <body id="-page" class="">
 
-	<%= render 'widget/shared/header' %>
-
 	<div class="container">
 		<%= yield%>
 	</div>
@@ -80,6 +78,8 @@
 	<div class="fixed-msg-bottom">
 		<p>Mas información abajo</p>
 	</div>
+	
+	<%= render 'widget/shared/footer' %>
 	
 	<%= render :partial => 'utilities/google_analytics' %>
 	

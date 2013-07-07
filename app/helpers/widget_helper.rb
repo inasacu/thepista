@@ -14,10 +14,11 @@ module WidgetHelper
   
   def self.clean_session(session)
     if !session.nil?
-      session["widgetpista.ismock"] = nil
-      session["widgetpista.eventid"] =  nil
-      session["widgetpista.source_timetable_id"] =  nil
-      session["widgetpista.pos_in_timetable"] = nil
+      session.delete("widgetpista.isevent")
+      session.delete("widgetpista.ismock")
+      session.delete("widgetpista.eventid")
+      session.delete("widgetpista.source_timetable_id")
+      session.delete("widgetpista.event_starts_at")
     end
   end
   
@@ -93,7 +94,8 @@ module WidgetHelper
            # link for mock events
            link_to( "Apuntate", {:controller => "widget", :action => "do_apuntate", 
              :ismock => true, :event => schedule.id, :isevent => true, 
-             :source_timetable_id => schedule.source_timetable_id, :pos_in_timetable => schedule.pos_in_timetable} )
+             :source_timetable_id => schedule.source_timetable_id,
+             :block_token => Base64::encode64(schedule.starts_at.to_s)} )
              
          end # end if real event
          
@@ -102,7 +104,8 @@ module WidgetHelper
          # link for not logged users
    			 link_to( "Apuntate", "#", :class => "auth_popup",  
    			 :data => { :ismock => schedule.id.nil?, :event => schedule.id, :isevent => true, 
-   			   :source_timetable_id => schedule.source_timetable_id, :pos_in_timetable => schedule.pos_in_timetable} )
+   			   :source_timetable_id => schedule.source_timetable_id, 
+   			   :block_token => Base64::encode64(schedule.starts_at.to_s)} )
 
    		 end # end if logged user
    		 

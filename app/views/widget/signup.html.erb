@@ -1,3 +1,8 @@
+<style type="text/css">
+div.container{
+	height:500px;
+}
+</style>
 <div class="row">
 	<div class="twelve columns">  
 
@@ -27,7 +32,7 @@
 			<%= set_form_label(the_form, :city) %>
 			<%= the_form.select(:city_id, City.city_name, {:selected => @user.city_id, :include_blank => false}) %><br/><br/>
 			
-			<input type="hidden" name="form_type" value="widget_signup_form"/>
+			<input type="hidden" name="form_type" value="widget_form"/>
 			
 			<br/><br/>
 			<%= submit_tag("Sign up", :class=>"small_medium nice success button radius") %>

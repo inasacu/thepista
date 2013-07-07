@@ -134,19 +134,23 @@ class UsersController < ApplicationController
 
 			Authentication.create_from_omniauth(session[:omniauth], @user) if session[:omniauth]
 			
-			if WidgetHelper.is_widget_signup_form(params[:form_type])
+			if WidgetHelper.is_widget_form(params[:form_type])
 			  
 			  # info for logic actions
-        isevent = request.env["widget.isevent"]
-        ismock = request.env["widget.ismock"]
-        eventid = request.env["widget.event"]
-        eventTimetableId = request.env["widgetpista.source_timetable_id"]
-        eventTimetablePos = request.env["widgetpista.pos_in_timetable"]
+        isevent = params[:isevent]
+        ismock = params[:ismock]
+        event_id = params[:event]
+        event_timetable_id = params[:source_timetable_id]
+        event_starts_at = Time.zone.at(Base64::decode64(params[:block_token].to_s).to_i)
         
         #logic to add the user to a group and create event 
-        Schedule.takecareof_apuntate(current_user, isevent, ismock, eventid, eventTimetableId, eventTimetablePos)
+        event = Schedule.takecareof_apuntate(current_user, isevent, ismock, event_id, event_timetable_id, event_starts_at)
         
-  		  redirect_to widget_home_url
+        if event
+  		    redirect_to widget_event_details_url :event_id => event.id
+  		  else
+  		    redirect_to widget_home_url
+  		  end
   		  return
   		end
 

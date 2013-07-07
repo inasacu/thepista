@@ -10,7 +10,6 @@
 #
 
 class RolesUsers < ActiveRecord::Base
-
   set_primary_keys = :user_id, :role_id 
 
   # remove all roles_users not in roles

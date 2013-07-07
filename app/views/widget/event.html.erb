@@ -5,16 +5,23 @@
 	is_prematch_visible = is_action("team roster")
 %>
 
-<h4 class="title" style="margin-top:20px">  Opciones</h4>
-<hr>
-<p class="">
-	<img align="" alt="Invitation" src="/assets/icons/invitation-b2cfdc394e979727225e7f409c297186.png" style="height: 16px; width: 16px;"/>  
-	
-	<%=link_to "Invita a tus amigos a este evento", widget_event_invitation_path(:event_id => @schedule)%>
-</p>
-<hr>
 
-<h4 class="title">
+<div id="main-nav">
+	<ul>
+		<li>
+			<%=link_to("Inicio", widget_home_url)%>
+		</li>
+		<li class="active">
+			<%=link_to("Convocados", 
+			   widget_event_details_path(:event_id => @schedule))%>
+		</li>
+		<li>
+			<%=link_to "Invita a tus amigos a este evento", widget_event_invitation_path(:event_id => @schedule)%>
+		</li>
+	</ul>
+</div>
+
+<h4 class="title" style="clear:both">
 	<img align="" alt="Events" src="/assets/icons/events.png" style="height: 16px; width: 16px;">  
 	<%=@schedule.name%>
 </h4>
