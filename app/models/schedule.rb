@@ -87,7 +87,7 @@ class Schedule < ActiveRecord::Base
   :conditions =>  "matches.type_id in (1,2,3,4)",
   :order =>       :name
 
-  belongs_to :group, :include => [ :sport, :installation ]
+  belongs_to :group
   belongs_to :marker
   belongs_to :invite_group,   :class_name => "Group",   :foreign_key => "invite_id"
 
@@ -116,10 +116,7 @@ class Schedule < ActiveRecord::Base
 
 	attr_accessor 	:available, :item_id, :item_type, :group_name, :match_status_at, :match_schedule_id
 	attr_accessor   :match_group_id, :match_user_id, :match_type_id, :match_type_name, :match_played, :timeframe
-	attr_accessor		:ismock
-	
-	
-	
+		
   before_update   :set_time_to_utc, :get_starts_at, :get_ends_at
   
   # add some callbacks, after_initialize :get_starts_at # convert db format to accessors
@@ -169,14 +166,14 @@ class Schedule < ActiveRecord::Base
 
     the_sort = "matches.group_id DESC, users.name"
     the_sort = "#{sort}, #{the_sort}" if (sort != " ASC" and sort != " DESC" and !sort.blank? and !sort.empty?) 
-
-		Match.select("matches.*, users.name as user_name, types.name as type_name, scorecards.id as scorecard_id, 
-									scorecards.played as scorecard_played, scorecards.ranking, scorecards.points, 
-									(100 * scorecards.played / #{played_games}) as coeficient_played").joins("join users on users.id = matches.user_id 
-									join types on types.id = matches.type_id 
-									join scorecards on scorecards.user_id = matches.user_id").where("matches.schedule_id = ? and 
-									matches.archive = false and matches.type_id = 1 and scorecards.archive = false and 
-									scorecards.group_id = ?", self.id, self.group_id).order(the_sort)
+     Match.find(:all, :select => "matches.*, users.name as user_name, types.name as type_name, scorecards.id as scorecard_id, " +
+                                 "scorecards.played as scorecard_played, scorecards.ranking, scorecards.points, 
+                                 (100 * scorecards.played / #{played_games}) as coeficient_played",
+                :joins => "left join users on users.id = matches.user_id 
+													 left join types on types.id = matches.type_id 
+													 left join scorecards on scorecards.user_id = matches.user_id",
+                :conditions => ["matches.schedule_id = ? and matches.archive = false and matches.type_id = 1 and scorecards.archive = false and scorecards.group_id = ?", self.id, self.group_id],
+                :order => the_sort)
   end
 
 	def the_last_minute_infringe
@@ -361,9 +358,9 @@ class Schedule < ActiveRecord::Base
     return Match.find_score(self).invite_score
   end
 
-	# def self.has_schedule?(group)
-	# 		!find(:first, :conditions => ["group_id = ? and played = true", group]).nil?
-	# end
+	def self.has_schedule?(group)
+			!find(:first, :conditions => ["group_id = ? and played = true", group]).nil?
+	end
   
   def self.group_current_schedules(group, page = 1)
     self.where("schedules.archive = false and starts_at >= ? and group_id = ?", Time.zone.now, group).page(page).order('starts_at')
@@ -383,17 +380,16 @@ class Schedule < ActiveRecord::Base
 
   def self.current_schedules(user, page = 1)
     self.select("schedules.*").joins("JOIN groups on groups.id = schedules.group_id").where("schedules.archive = false and starts_at >= ? and group_id in (select group_id from groups_users where user_id = ?)", 
-		Time.zone.now, user.id).page(page).order('groups.name, schedules.starts_at').includes(:group)
+		Time.zone.now, user.id).page(page).order('groups.name, schedules.starts_at')
   end
 
   def self.previous_schedules(user, page = 1)
     self.select("schedules.*").joins("JOIN groups on groups.id = schedules.group_id").where("schedules.archive = false and starts_at < ? and group_id in (select group_id from groups_users where user_id = ?)", 
-		Time.zone.now, user.id).page(page).order('groups.name, schedules.starts_at DESC').includes(:group)
+		Time.zone.now, user.id).page(page).order('groups.name, schedules.starts_at DESC')
   end
   
   def self.latest_items(items)
-    find(:all, :joins => "JOIN groups on groups.id = schedules.group_id",
-							 :conditions => ["schedules.created_at >= ? and schedules.archive = false and groups.item_type != 'Branch'", LAST_THREE_DAYS]).each do |item| 
+    find(:all, :conditions => ["schedules.created_at >= ? and archive = false", LAST_THREE_DAYS]).each do |item| 
       items << item
     end
     return items 
@@ -462,7 +458,7 @@ class Schedule < ActiveRecord::Base
 	end
 
 	def self.upcoming_schedules(hide_time)
-		with_scope(:find => where(:starts_at => ONE_WEEK_FROM_TODAY, :played => false).order("starts_at").includes(:group)) do
+		with_scope(:find => where(:starts_at => ONE_WEEK_FROM_TODAY, :played => false).order("starts_at")) do
 			if hide_time.nil?
 				self.all()
 			else

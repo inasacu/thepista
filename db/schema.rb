@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130521172705) do
+ActiveRecord::Schema.define(:version => 20130612223236) do
 
   create_table "announcements", :force => true do |t|
     t.text     "message"
@@ -199,27 +199,6 @@ ActiveRecord::Schema.define(:version => 20130521172705) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "queue"
-  end
-
-  create_table "enchufados", :force => true do |t|
-    t.string   "name"
-    t.string   "url"
-    t.string   "language",           :default => "es"
-    t.boolean  "public",             :default => true
-    t.integer  "venue_id"
-    t.integer  "category_id"
-    t.integer  "play_id",            :default => 61
-    t.integer  "service_id",         :default => 51
-    t.string   "api"
-    t.string   "secret"
-    t.string   "photo_file_name"
-    t.string   "photo_content_type"
-    t.integer  "photo_file_size"
-    t.datetime "photo_updated_at"
-    t.datetime "created_at",                            :null => false
-    t.datetime "updated_at",                            :null => false
-    t.string   "slug"
-    t.boolean  "archive",            :default => false
   end
 
   create_table "escuadras", :force => true do |t|
@@ -789,19 +768,6 @@ ActiveRecord::Schema.define(:version => 20130521172705) do
     t.boolean  "archive",    :default => false
     t.datetime "created_at"
     t.datetime "updated_at"
-  end
-
-  create_table "subplugs", :force => true do |t|
-    t.string   "name"
-    t.integer  "enchufado_id"
-    t.integer  "venue_id",     :default => 999
-    t.integer  "play_id",      :default => 61
-    t.integer  "service_id",   :default => 51
-    t.string   "url"
-    t.string   "slug"
-    t.boolean  "archive",      :default => false
-    t.datetime "created_at",                      :null => false
-    t.datetime "updated_at",                      :null => false
   end
 
   create_table "teammates", :force => true do |t|
