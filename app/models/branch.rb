@@ -64,7 +64,8 @@ class Branch < ActiveRecord::Base
 	# WIDGET PROJECT
 	
 	def self.branch_from_url(url)
-	  self.where("url=?", url).first
+	  url = WidgetHelper.clean_branch_url(url)
+	  self.where("url like ?", "%#{url}%").first
 	end
 
 end

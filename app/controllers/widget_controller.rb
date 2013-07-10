@@ -10,19 +10,26 @@ class WidgetController < ApplicationController
   helper WidgetHelper
   
   def index
+    @local_url = ENV['THE_HOST']
   end
   
   def home
     
+    # Gets the current branch if not present in session
     if !session[:current_branch]
       session[:current_branch] = Branch.branch_from_url(request.env["HTTP_REFERER"]) 
     end 
     
+    # Gets the event to make redirection
     if params[:inside_redirect]
       @event_to_redirect = params[:event_id]
     end
     
-    @schedules_per_weekday = Schedule.week_schedules_from_timetables(session[:current_branch])
+    # Gets the schedules from the branch
+    if session[:current_branch]
+      @schedules_per_weekday = Schedule.week_schedules_from_timetables(session[:current_branch])
+    end
+    
     render :layout => 'widget'
     
   end
@@ -75,7 +82,8 @@ class WidgetController < ApplicationController
       event_starts_at = Base64::decode64(params[:block_token].to_s).to_time
     end
           
-    event = Schedule.takecareof_apuntate(current_user, params[:isevent], params[:ismock], params[:event], params[:source_timetable_id], event_starts_at)
+    event = Schedule.takecareof_apuntate(current_user, params[:isevent], params[:ismock], 
+                                        params[:event], params[:source_timetable_id], event_starts_at)
     
     if event
       redirect_to widget_event_details_url :event_id => event.id
