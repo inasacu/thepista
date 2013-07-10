@@ -2,7 +2,10 @@
 
 window.onload = function(){
 	document.getElementById('haypistawidget').innerHTML = "<%= 
-		escape_javascript(content_tag(:iframe, '', :src => "#{ENV['THE_HOST']}/widget/home", 
-		:width => '800', :height => '400', :style => 'border:none').html_safe) 
+		escape_javascript(content_tag(:iframe, '', 
+		:src => "#{ENV['THE_HOST']}/widget/home", 
+		:width => '800',
+		:height => '400',
+		:style => 'border:none').html_safe) 
 		%>";
 };

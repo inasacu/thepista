@@ -22,6 +22,18 @@ module WidgetHelper
     end
   end
   
+  def self.clean_branch_url(url)
+    
+    url.sub!("http://", "")
+    url.sub!("HTTP://", "")
+    url.sub!("www.", "")
+    url.sub!("WWW.", "")
+    url.chomp!("/")
+     
+    return url
+    
+  end
+  
   # instancia
   
   def get_event_options(schedule=nil)
