@@ -56,7 +56,7 @@ Widget.gui = (function(){
 })();
 
 $(document).ready(function(){
-	Widget.gui.activateAuthPopupCenter('auth_popup', 'http://localhost:3000/widget/login/popup', 550, 600);
+	Widget.gui.activateAuthPopupCenter('auth_popup', 'http:// <%= ENV['THE_HOST'] %>/widget/login/popup', 550, 600);
 	Widget.gui.activateToogleWeekDetail('toogle_day_view_link', 'week_day_detail');
 });
 
