@@ -31,9 +31,7 @@
 <div class="row">
 	<div class="twelve columns">  
 		
-		<% if flash[:notice] %>
-		    <div class="notice"><%= flash[:notice] %></div>
-		 <% end %>
+		<%= render 'widget/shared/flash_messages'%>
 
 		<%= form_for(@invitation, :html => { :multipart => true, :class => 'nice invitation-form'  }) do |the_form| %>
 

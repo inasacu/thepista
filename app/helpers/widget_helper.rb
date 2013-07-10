@@ -82,11 +82,11 @@ module WidgetHelper
       				end
               
               option1_link = link_to option1[:desc], 
-                            widget_change_user_state_path(:eventid => schedule.id, :userid => current_user.id, 
+                            widget_change_user_state_path(:matchid => match_record.id,
                             :newstate => option1[:status])
     					
     					option2_link = link_to option2[:desc], 
-                            widget_change_user_state_path(:eventid => schedule.id, :userid => current_user.id, 
+                            widget_change_user_state_path(:matchid => match_record.id, 
                             :newstate => option2[:status])
     					
     					# options for logged users inside of the group
