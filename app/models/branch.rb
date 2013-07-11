@@ -26,9 +26,10 @@ class Branch < ActiveRecord::Base
 
 	# validations  
 	validates_presence_of         :name, :company_id
-	validates_length_of           :name,                            :within => NAME_RANGE_LENGTH
-	validates 										:url, 												 		:format => URI::regexp(%w(http https))
-
+	validates_length_of           :name,                  :within => NAME_RANGE_LENGTH
+	validates 										:url, 									:format => URI::regexp(%w(http https))
+	validates_uniqueness_of       :url,            				:case_sensitive => false
+	
 	# variables to access
 	attr_accessible :name, :company_id, :city_id, :venue_id, :service_id, :play_id, :starts_at, :ends_at, :timeframe, :url, :public, :photo, :description, :slug, :archive
 
