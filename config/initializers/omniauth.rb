@@ -30,8 +30,12 @@ Rails.application.config.middleware.use OmniAuth::Builder do
 		provider 	:yahoo,				'dj0yJmk9QzEyNnZNWkp1QVk3JmQ9WVdrOVNYYzNUbTQyTXpJbWNHbzlNalExTkRVMU5qWXkmcz1jb25zdW1lcnNlY3JldCZ4PTcy', 'bb726da6dc7409d881c155c81b7437295e5529b2'
 		provider 	:linkedin,		'gb7lo5u6pmse', '9SYISnZCVF9nUd28'
 		
+		if ( ENV['THE_HOST'] == 'http://www.haypista.com')
+			provider 	:yahoo,			'dj0yJmk9cDFORVA5MDI3eHg3JmQ9WVdrOVEyNVBObU50TnpZbWNHbzlNVFEyT0RrME5UQTJNZy0tJnM9Y29uc3VtZXJzZWNyZXQmeD0wZQ--', '363e15a3679f0f7e42c4fd5e4ee2bf0b82d0321f'
+		end
+		
 	end
-
+		
 
 end
 
