@@ -52,8 +52,8 @@ class InvitationsController < ApplicationController
     
     @invitation.email_addresses = @invitation.email_addresses.to_s.strip[0..254] if @invitation.email_addresses.to_s.length > 254
 
-    if @invitation.save     
-      
+    #if @invitation.save     
+          
       # email_addresses = @invitation.email_addresses || ''
       emails = email_addresses.gsub(",", " ").split(" ").collect{|email| email.strip }.uniq
       emails.each{ |email|
@@ -63,13 +63,15 @@ class InvitationsController < ApplicationController
         @the_invitation.user = @invitation.user
         @the_invitation.email_addresses = email
         @the_invitation.is_from_widget = WidgetHelper.is_widget_form(params[:form_type])
-        @the_invitation.widget_host = session[:current_branch].url        
+        if session[:current_branch]
+          @the_invitation.widget_host = session[:current_branch].url 
+        end       
         @the_invitation.save!
       }  
       # @invitation.destroy  
     
       flash[:notice] = I18n.t(:invitation_successful_create)
-    end
+    #end
     
     if WidgetHelper.is_widget_form(params[:form_type])
 		  redirect_to "/widget/event/#{@schedule.id}/invitation"

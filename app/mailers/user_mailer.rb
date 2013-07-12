@@ -5,6 +5,7 @@ class UserMailer < ActionMailer::Base
 	helper ApplicationHelper
 
 	def invitation(invitation)	
+	  
 	  @is_from_widget = invitation.is_from_widget
 	  @widget_host = invitation.widget_host
 	  

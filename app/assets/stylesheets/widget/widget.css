@@ -62,10 +62,8 @@ div.container{
 	border: 2px solid #e4e4e4;
 	border: 2px solid rgba(0,49,79,0.08);
 	clear:both;
-	height:300px;
 	padding:0 10px;
 	position:relative;
-	overflow-y:scroll;
 }
 
 .fixed-msg-bottom{
