@@ -23,11 +23,9 @@
 	
 	is_same_user = (@user == current_user)
 	
-	has_phone = is_same_user ? true : @user.my_members?(current_user) #? (!@user.phone.blank?) : (false)	
+	has_phone = is_same_user ? true : @user.my_members?(current_user) ? (!@user.phone.blank?) : (false)	
 	
-	# has_statistics = @user_hash_grid_statistics.count > 1
-	
-	
+	# has_statistics = @user_hash_grid_statistics.count > 1	
 	has_enough_statistics = false
 
 	@user_hash_grid_statistics.each do |user_individual_statistic| 
