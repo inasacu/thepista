@@ -1,5 +1,7 @@
 require File.expand_path('../boot', __FILE__)  
+
 require "em/pure_ruby"
+require 'www_ditcher'
 
 # load app_config.yml   
 # require 'yaml'  
@@ -86,8 +88,9 @@ module Thepista
 		
 		# config.action_mailer.perform_deliveries = true
 		# config.action_mailer.raise_delivery_errors = true
-		
 		# config.assets.initialize_on_precompile = false
+		
+		config.middleware.use 'NoWWW'
 		
   end
 
