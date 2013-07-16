@@ -699,7 +699,7 @@ class Schedule < ActiveRecord::Base
     end
     
     # Obtain real events
-		real_events = get_schedules_branch(Time.zone.now, NEXT_WEEK, current_branch)
+		real_events = get_schedules_branch(Time.zone.now.at_beginning_of_day(), NEXT_WEEK.at_midnight, current_branch)
     
     real_events.each do |real|
        week_days_array[real.starts_at.strftime("%A")] << real
@@ -766,82 +766,6 @@ class Schedule < ActiveRecord::Base
     end
     
     return week_days_array
-    
-  end
-  
-  def self.week_schedules_from_timetables_temp(currentBranch)
-    
-    currentWeekDay = Date.today.wday
-    weekDaysArray = Hash.new
-    
-    # Sets up an array of week days with their corresponding list of schedules
-    for i in 0..6 do
-      centreSchedules = Array.new
-      weekDaysArray[(Date.today+i).strftime("%A")] = centreSchedules
-    end
-    
-    # Obtain real events created in the next 7 dschedulays    
-    realEvents = self.where("starts_at >= ? and starts_at <= ?", Time.zone.now, NEXT_WEEK)
-                      .joins("join groups on groups.id = schedules.group_id")
-    
-    realEvents.each do |realEvent|
-       weekDaysArray[realEvent.starts_at.strftime("%A")] << realEvent
-    end
-    
-    # Obtains the timetables of the branch for the following 7 days
-    branchWeekTimetables = Timetable.branch_week_timetables(currentBranch)
-    
-    branchWeekTimetables.each do |timetable|
-      
-      if timetable.item.class.to_s=='Group'
-        timetableGroup = timetable.item
-        
-        mockScheduleStart = timetable.starts_at
-        timetableEnd = timetable.ends_at
-        # to calculate the start and end with the timeframe - not used for now
-        pos_in_timetable = 1
-        
-        while mockScheduleStart.to_time < timetableEnd.to_time do
-          mockScheduleEnd = (mockScheduleStart.to_time + timetable.timeframe.hours).to_datetime
-                    
-          schedule = Schedule.new
-          #schedule.name = "#{timetableGroup.name} #{mockScheduleStart.strftime('%m/%d/%Y')}"
-          schedule.name = "Jornada programada"
-          schedule.starts_at = mockScheduleStart
-          schedule.group = timetableGroup
-          
-          schedule.ismock = true
-          schedule.source_timetable_id = timetable.id
-          schedule.pos_in_timetable = pos_in_timetable
-          
-          # Current schedules in certain day - 
-          # Validates if there is a real event with the same datetime
-          alreadyIn = false
-          tempArray = weekDaysArray[mockScheduleStart.strftime("%A")]
-          
-          tempArray.each do |tempSchedule|
-            if tempSchedule.starts_at == schedule.starts_at
-              alreadyIn = true
-              break
-            end
-          end
-          
-          if alreadyIn == false
-            weekDaysArray[mockScheduleStart.strftime("%A")] << schedule
-          end
-          
-          # start for the next event
-          mockScheduleStart = Date.new
-          mockScheduleStart = mockScheduleEnd
-          
-          pos_in_timetable += 1
-        end
-        
-      end
-      
-    end
-    
-    return weekDaysArray
     
   end
   
