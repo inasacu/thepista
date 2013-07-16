@@ -1,7 +1,7 @@
 require File.expand_path('../boot', __FILE__)  
 
 require "em/pure_ruby"
-require 'www_ditcher'
+require 'NoWww'
 
 # load app_config.yml   
 # require 'yaml'  
