@@ -705,63 +705,65 @@ class Schedule < ActiveRecord::Base
        week_days_array[real.starts_at.strftime("%A")] << real
     end
 		
-    current_branch.groups.each do |group|
-  			
-  			# get only timetable associated to specific day of the month and include if holiday
-    		branch_timetables = Timetable.widget_item_week_day(group, the_day_of_month, is_holiday)
-    		
-    		branch_timetables.each do |timetable|
-    		      		  
-          if timetable.item.class.to_s=='Group'
-            timetable_group = timetable.item
-            
-            mock_schedule_start = WidgetHelper.convert_to_datetime_zone(the_day_of_month, timetable.starts_at)
-    				timetable_end = WidgetHelper.convert_to_datetime_zone(the_day_of_month.midnight, timetable.ends_at)
-    				
-    				logger.info "hola start #{mock_schedule_start} end #{timetable_end}"
+		
+		# Obtaine timetables from all groups related to the branch
+    branch_timetables = Timetable.branch_week_timetables(current_branch)
+		
+		branch_timetables.each do |timetable|
+		      		  
+      if timetable.item.class.to_s=='Group'
+        timetable_group = timetable.item
+        
+        # Obtain week day from name of day
+        timetable_week_day = WidgetHelper.week_day_from_description(timetable.type.name)        
+        timetable_datetime = WidgetHelper.datetime_from_week_day(timetable_week_day)
+        
+        
+        # Obtain actual date from week day
+        mock_schedule_start = timetable_datetime.change({:hour => timetable.starts_at.hour , 
+                                                     :min => timetable.starts_at.min, 
+                                                     :sec => timetable.starts_at.sec})
+				timetable_end = timetable_datetime.change({:hour => timetable.ends_at.hour , 
+                                               :min => timetable.ends_at.min, 
+                                               :sec => timetable.ends_at.sec}) 
+				
+        while mock_schedule_start.to_time < timetable_end.to_time do
+          mock_schedule_end = (mock_schedule_start.to_time + timetable.timeframe.hours).to_datetime
 
-            #mock_schedule_start = timetable.starts_at
-            #timetable_end = timetable.ends_at
+          schedule = Schedule.new
+          #schedule.name = "#{timetableGroup.name} #{mockScheduleStart.strftime('%m/%d/%Y')}"
+          schedule.name = "Jornada programada"
+          schedule.starts_at = mock_schedule_start
+          schedule.group = timetable_group
 
-            while mock_schedule_start.to_time < timetable_end.to_time do
-              mock_schedule_end = (mock_schedule_start.to_time + timetable.timeframe.hours).to_datetime
+          schedule.ismock = true
+          schedule.source_timetable_id = timetable.id
 
-              schedule = Schedule.new
-              #schedule.name = "#{timetableGroup.name} #{mockScheduleStart.strftime('%m/%d/%Y')}"
-              schedule.name = "Jornada programada"
-              schedule.starts_at = mock_schedule_start
-              schedule.group = timetable_group
+          # Current schedules in certain day - 
+          # Validates if there is a real event with the same datetime
+          already_in = false
+          temp_array = week_days_array[mock_schedule_start.strftime("%A")]
 
-              schedule.ismock = true
-              schedule.source_timetable_id = timetable.id
-
-              # Current schedules in certain day - 
-              # Validates if there is a real event with the same datetime
-              already_in = false
-              temp_array = week_days_array[mock_schedule_start.strftime("%A")]
-
-              temp_array.each do |temp_schedule|
-                if temp_schedule.starts_at == schedule.starts_at
-                  already_in = true
-                  break
-                end
-              end
-
-              if already_in == false
-                week_days_array[mock_schedule_start.strftime("%A")] << schedule
-              end
-
-              # start for the next event
-              mock_schedule_start = Date.new
-              mock_schedule_start = mock_schedule_end
-
+          temp_array.each do |temp_schedule|
+            if temp_schedule.starts_at == schedule.starts_at
+              already_in = true
+              break
             end
-
           end
 
+          if already_in == false
+            week_days_array[mock_schedule_start.strftime("%A")] << schedule
+          end
+
+          # start for the next event
+          mock_schedule_start = Date.new
+          mock_schedule_start = mock_schedule_end
+
         end
-    		
-  	end
+
+      end
+
+    end
     
     return week_days_array
     

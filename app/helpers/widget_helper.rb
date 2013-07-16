@@ -33,10 +33,27 @@ module WidgetHelper
     return url
     
   end
-  
-  def self.convert_to_datetime_zone(the_date, the_time)
-		the_datetime = "#{the_date.strftime('%Y%m%d')} #{I18n.l(the_time, :format => :simple_time_zone_at)} "
-		return DateTime.strptime(the_datetime, '%Y%m%d %H:%M %z')
+	
+	# returns the date of the next week day
+	def self.datetime_from_week_day(wday)
+	  date_time = DateTime.parse(Time.zone.now.to_s)
+	  offset = 0
+	  
+	  # if is this week or next week
+	  if wday < date_time.wday
+	    offset = 1
+	  end
+	  
+	  return DateTime.commercial(date_time.year, offset + date_time.cweek, wday)
+	end
+	
+	def self.week_day_from_description(wday_description)
+	  week_days = Hash.new
+	  week_days = {"monday" => 1, "lunes" => 1, "tuesday" => 2, "martes" => 2,
+	            "wednesday" => 3, "miercoles" => 3, "thursday" => 4, "jueves" => 4,
+	            "friday" => 5, "viernes" => 5, "saturday" => 6, "sabado" => 6,
+	            "sunday" => 7, "domingo" => 7}
+	  return week_days[wday_description.downcase]
 	end
   
   # instancia
