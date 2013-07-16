@@ -34,6 +34,11 @@ module WidgetHelper
     
   end
   
+  def self.convert_to_datetime_zone(the_date, the_time)
+		the_datetime = "#{the_date.strftime('%Y%m%d')} #{I18n.l(the_time, :format => :simple_time_zone_at)} "
+		return DateTime.strptime(the_datetime, '%Y%m%d %H:%M %z')
+	end
+  
   # instancia
   
   def get_event_options(schedule=nil)

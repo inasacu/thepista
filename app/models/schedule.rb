@@ -666,6 +666,12 @@ class Schedule < ActiveRecord::Base
   
   # WIDGET PROJECT ----------------------------
   
+  def self.get_schedules_branch (first_day, last_day, item)
+		find(:all, :joins => "JOIN groups on groups.id = schedules.group_id",
+				:conditions => ["schedules.archive = false and schedules.starts_at >= ? and schedules.ends_at <= ? and 
+												groups.archive = false and groups.item_id = ? and groups.item_type = ?", first_day, last_day, item.id, item.class.to_s.chomp], :order => 'starts_at')
+	end
+  
   def self.week_schedules_from_timetables(current_branch)
     
     current_branch = Branch.find(current_branch.id)
@@ -693,7 +699,7 @@ class Schedule < ActiveRecord::Base
     end
     
     # Obtain real events
-		real_events = get_schedule_item_first_to_last_month(first_day, last_day, current_branch)
+		real_events = get_schedules_branch(Time.zone.now, NEXT_WEEK, current_branch)
     
     real_events.each do |real|
        week_days_array[real.starts_at.strftime("%A")] << real
@@ -702,15 +708,20 @@ class Schedule < ActiveRecord::Base
     current_branch.groups.each do |group|
   			
   			# get only timetable associated to specific day of the month and include if holiday
-    		branch_timetables = Timetable.item_week_day(group, the_day_of_month, is_holiday)
+    		branch_timetables = Timetable.widget_item_week_day(group, the_day_of_month, is_holiday)
     		
     		branch_timetables.each do |timetable|
-
+    		      		  
           if timetable.item.class.to_s=='Group'
             timetable_group = timetable.item
+            
+            mock_schedule_start = WidgetHelper.convert_to_datetime_zone(the_day_of_month, timetable.starts_at)
+    				timetable_end = WidgetHelper.convert_to_datetime_zone(the_day_of_month.midnight, timetable.ends_at)
+    				
+    				logger.info "hola start #{mock_schedule_start} end #{timetable_end}"
 
-            mock_schedule_start = timetable.starts_at
-            timetable_end = timetable.ends_at
+            #mock_schedule_start = timetable.starts_at
+            #timetable_end = timetable.ends_at
 
             while mock_schedule_start.to_time < timetable_end.to_time do
               mock_schedule_end = (mock_schedule_start.to_time + timetable.timeframe.hours).to_datetime

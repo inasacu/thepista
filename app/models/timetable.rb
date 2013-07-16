@@ -81,6 +81,13 @@ class Timetable < ActiveRecord::Base
 	
 	# WIDGET PROJECT ----------------------------
 	
+	def self.widget_item_week_day(item, current_day, is_holiday=false)
+		the_day_of_week = 'Holiday'
+		the_day_of_week = Date::DAYNAMES[current_day.wday] unless is_holiday
+
+		self.where("timetables.archive = false and item_id = ? and item_type = ? and types.table_type = 'Timetable' and types.name =  ?", item.id, item.class.to_s, the_day_of_week).joins("join types on types.id = timetables.type_id").order("timetables.type_id, timetables.starts_at")
+	end
+	
 	def self.branch_week_timetables(branch)
 	  dayTypes = Hash.new
 	  dayTypes = {:monday => 27, :status => 1}
