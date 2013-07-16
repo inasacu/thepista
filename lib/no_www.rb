@@ -20,7 +20,7 @@
 #   
 # end
 
-class NoWww
+class NoWWW
 
   def initialize(app)
     @app = app
