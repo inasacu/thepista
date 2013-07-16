@@ -1,12 +1,6 @@
 require File.expand_path('../boot', __FILE__)  
 
 require "em/pure_ruby"
-# require 'lib/www_ditcher'
-
-# load app_config.yml   
-# require 'yaml'  
-# APP_CONFIG = YAML.load(File.read(File.expand_path('../config.yml', __FILE__)))  
-
 require 'rails/all'
 
 if defined?(Bundler)
@@ -90,7 +84,7 @@ module Thepista
 		# config.action_mailer.raise_delivery_errors = true
 		# config.assets.initialize_on_precompile = false
 		
-		 # config.middleware.use "WwwDitcher"
+		 config.middleware.use "WwwDitcher"
 		
   end
 
