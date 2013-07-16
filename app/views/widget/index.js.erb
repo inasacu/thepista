@@ -9,11 +9,10 @@ if(typeof jQuery=='undefined') {
 
 window.onload = function(){
 	
-	
 	script = "<script>function receiveSize(e){if (e.origin === '<%=ENV['THE_HOST']%>')document.getElementById('haypistawidget').style.height = e.data + 'px';} window.addEventListener('message', receiveSize, false);<\/script>";
 		
 	$("#haypistawidget").append(script);
-		
+	
 	document.getElementById('haypistawidget').innerHTML = "<%= 
 		escape_javascript(content_tag(:iframe, '', 
 		:src => "#{ENV['THE_HOST']}/widget/home", 
@@ -23,4 +22,3 @@ window.onload = function(){
 		%>";
 		
 };
-

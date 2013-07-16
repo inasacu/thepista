@@ -112,7 +112,7 @@ class Schedule < ActiveRecord::Base
 	attr_accessible	:starts_at_date, :starts_at_time, :ends_at_date, :ends_at_time
 
 	attr_accessor 	:starts_at_date, :starts_at_time, :ends_at_date, :ends_at_time
-  attr_accessor :ismock, :source_timetable_id, :pos_in_timetable
+  attr_accessor :ismock, :source_timetable_id, :pos_in_timetable, :block_token
 
 	attr_accessor 	:available, :item_id, :item_type, :group_name, :match_status_at, :match_schedule_id
 	attr_accessor   :match_group_id, :match_user_id, :match_type_id, :match_type_name, :match_played, :timeframe
@@ -666,7 +666,97 @@ class Schedule < ActiveRecord::Base
   
   # WIDGET PROJECT ----------------------------
   
-  def self.week_schedules_from_timetables(currentBranch)
+  def self.week_schedules_from_timetables(current_branch)
+    
+    current_branch = Branch.find(current_branch.id)
+    
+    # Information about current day
+    current_user_zone = Time.zone.now
+    first_day = current_user_zone.at_beginning_of_month
+		last_day = current_user_zone.at_end_of_month
+		the_day_of_month = first_day
+		
+		# Obtain the holidays
+		the_holidays = Holiday.get_holiday_first_to_last_month(first_day, last_day)
+		the_holiday_day_numbers = []
+		the_holidays.each { |item| the_holiday_day_numbers << item.starts_at.day }
+		is_holiday = false
+		
+		# Set the hash
+		current_week_day = Date.today.wday
+    week_days_array = Hash.new
+    
+    # Sets up an array of week days with their corresponding list of schedules
+    for i in 0..6 do
+      centre_schedules = Array.new
+      week_days_array[(Date.today+i).strftime("%A")] = centre_schedules
+    end
+    
+    # Obtain real events
+		real_events = get_schedule_item_first_to_last_month(first_day, last_day, current_branch)
+    
+    real_events.each do |real|
+       week_days_array[real.starts_at.strftime("%A")] << real
+    end
+		
+    current_branch.groups.each do |group|
+  			
+  			# get only timetable associated to specific day of the month and include if holiday
+    		branch_timetables = Timetable.item_week_day(group, the_day_of_month, is_holiday)
+    		
+    		branch_timetables.each do |timetable|
+
+          if timetable.item.class.to_s=='Group'
+            timetable_group = timetable.item
+
+            mock_schedule_start = timetable.starts_at
+            timetable_end = timetable.ends_at
+
+            while mock_schedule_start.to_time < timetable_end.to_time do
+              mock_schedule_end = (mock_schedule_start.to_time + timetable.timeframe.hours).to_datetime
+
+              schedule = Schedule.new
+              #schedule.name = "#{timetableGroup.name} #{mockScheduleStart.strftime('%m/%d/%Y')}"
+              schedule.name = "Jornada programada"
+              schedule.starts_at = mock_schedule_start
+              schedule.group = timetable_group
+
+              schedule.ismock = true
+              schedule.source_timetable_id = timetable.id
+
+              # Current schedules in certain day - 
+              # Validates if there is a real event with the same datetime
+              already_in = false
+              temp_array = week_days_array[mock_schedule_start.strftime("%A")]
+
+              temp_array.each do |temp_schedule|
+                if temp_schedule.starts_at == schedule.starts_at
+                  already_in = true
+                  break
+                end
+              end
+
+              if already_in == false
+                week_days_array[mock_schedule_start.strftime("%A")] << schedule
+              end
+
+              # start for the next event
+              mock_schedule_start = Date.new
+              mock_schedule_start = mock_schedule_end
+
+            end
+
+          end
+
+        end
+    		
+  	end
+    
+    return week_days_array
+    
+  end
+  
+  def self.week_schedules_from_timetables_temp(currentBranch)
     
     currentWeekDay = Date.today.wday
     weekDaysArray = Hash.new
@@ -677,8 +767,9 @@ class Schedule < ActiveRecord::Base
       weekDaysArray[(Date.today+i).strftime("%A")] = centreSchedules
     end
     
-    # Obtain real events created in the next 7 days
-    realEvents = self.where("starts_at between ? and ? ", Date.today, Date.today+7)
+    # Obtain real events created in the next 7 dschedulays    
+    realEvents = self.where("starts_at >= ? and starts_at <= ?", Time.zone.now, NEXT_WEEK)
+                      .joins("join groups on groups.id = schedules.group_id")
     
     realEvents.each do |realEvent|
        weekDaysArray[realEvent.starts_at.strftime("%A")] << realEvent
