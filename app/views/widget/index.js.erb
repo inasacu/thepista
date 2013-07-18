@@ -10,7 +10,6 @@ if(typeof jQuery=='undefined') {
 window.onload = function(){
 	
 	script = "<script>function receiveSize(e){if (e.origin.indexOf('<%=ENV['THE_HOST']%>') == 0){document.getElementById('haypistawidget-iframe').style.height = e.data + 'px';}} window.addEventListener('message', receiveSize, false);<\/script>";
-		
 	$("#haypistawidget").append(script);
 	
 	document.getElementById('haypistawidget').innerHTML = "<%= 
