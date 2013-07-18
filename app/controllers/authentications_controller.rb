@@ -53,9 +53,10 @@ class AuthenticationsController < ApplicationController
 			event = Schedule.takecareof_apuntate(authentication.user, isevent, ismock, event_id, event_timetable_id, event_starts_at)
 			
 			if event
-			  redirect_to widget_home_url :inside_redirect => true, :event_id => event
-			else
+			  flash[:notice] = "Te has apuntado al evento"
 			  redirect_to redirect_home
+			else
+			  redirect_to widget_check_omniauth_url
 			end
 			
 		elsif current_user
@@ -68,18 +69,19 @@ class AuthenticationsController < ApplicationController
 		else
 			# find user based on email 
 			@user_by_email = User.find_using_email((omniauth['info']['email']).downcase) if omniauth['info']['email']
-		
+			  
 			if @user_by_email
 				UserSession.create(@user_by_email)
 				Authentication.create_from_omniauth(omniauth, @user_by_email)
 				# controller_successful_provider(omniauth['provider'])
 								
 				# widget
-  			event = Schedule.takecareof_apuntate(current_user, isevent, ismock, event_id, event_timetable_id, event_starts_at)
+  			event = Schedule.takecareof_apuntate(@user_by_email, isevent, ismock, event_id, event_timetable_id, event_starts_at)
 				if event
-				  redirect_to widget_home_url :inside_redirect => true, :event_id => event
-				else
+				  flash[:notice] = "Te has apuntado al evento"
 				  redirect_to redirect_home
+				else
+				  redirect_to widget_check_omniauth_url
 				end
 				
 				#redirect_back_or_default root_url
@@ -98,9 +100,10 @@ class AuthenticationsController < ApplicationController
     			event = Schedule.takecareof_apuntate(current_user, isevent, ismock, event_id, event_timetable_id, event_starts_at)
 					
 					if event
-  				  redirect_to widget_home_url :inside_redirect => true, :event_id => event
-  				else
+					  flash[:notice] = "Te has apuntado al evento"
   				  redirect_to redirect_home
+  				else
+  				  redirect_to widget_check_omniauth_url
   				end
 					
 					#redirect_back_or_default root_url

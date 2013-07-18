@@ -18,17 +18,26 @@ class WidgetController < ApplicationController
     
     # Gets the current branch if not present in session
     if !session[:current_branch]
-      session[:current_branch] = Branch.branch_from_url(request.env["HTTP_REFERER"]) 
+      if request.env["HTTP_REFERER"] != nil
+        session[:current_branch] = Branch.branch_from_url(request.env["HTTP_REFERER"]) 
+      else
+        session.delete(:current_branch)
+        render nothing: true
+        return
+      end
     end 
     
-    # Gets the event to make redirection
-    if params[:inside_redirect]
-      @event_to_redirect = params[:event_id]
-    end
-    
     # Gets the schedules from the branch
-    if session[:current_branch]
+    if session[:current_branch] != nil
       @schedules_per_weekday = Schedule.week_schedules_from_timetables(session[:current_branch])
+      
+      if @current_user
+        @my_schedules = Schedule.widget_my_current_schedules(current_user, session[:current_branch])
+      end
+    else
+      session.delete(:current_branch)
+      render nothing: true
+      return
     end
     
     render :layout => 'widget'
@@ -50,14 +59,6 @@ class WidgetController < ApplicationController
     
   end
   
-  def ajaxtest
-    logger.info "AJAX TEST"
-    respond_to do |format|  
-        format.js  
-    end
-     
-  end
-  
   def login_check
     
     WidgetHelper.clean_session(session)
@@ -68,7 +69,13 @@ class WidgetController < ApplicationController
       session["widgetpista.ismock"] = params[:ismock]
       session["widgetpista.eventid"] =  params[:event]
       session["widgetpista.source_timetable_id"] =  params[:source_timetable_id]
-      session["widgetpista.event_starts_at"] =  Time.zone.at(Base64::decode64(params[:block_token].to_s).to_i)
+      
+      if params[:block_token]
+        block_token = Base64::decode64(params[:block_token].to_s).to_i
+        session["widgetpista.event_starts_at"] =  Time.zone.at(block_token)
+      else
+      end
+      
     end
     
   end
@@ -91,15 +98,6 @@ class WidgetController < ApplicationController
     else
       redirect_to widget_home_url
     end
-    
-  end
-  
-  def change_user_state
-    
-    userid = params[:userid]
-    newstate = params[:newstate]
-    
-    # logic to change state of the user regarding the event
     
   end
   
@@ -128,16 +126,18 @@ class WidgetController < ApplicationController
   end
   
   def change_user_state
-		unless current_user == @match.user or is_current_manager_of(@match.schedule.group) 
+    
+    the_schedule = @match.schedule
+    
+		unless current_user == @match.user or is_current_manager_of(the_schedule.group) 
 			warning_unauthorized
-			redirect_to root_url
+			redirect_to widget_home_url
 			return
 		end
 
 		@type = Type.find(params[:newstate])
 		played = (@type.id == 1 and !@match.group_score.nil? and !@match.invite_score.nil?)
 
-		the_schedule = @match.schedule
 		player_limit = the_schedule.player_limit
 		total_players = the_schedule.the_roster_count		
 		has_player_limit = (total_players >= player_limit)
@@ -159,11 +159,13 @@ class WidgetController < ApplicationController
 				the_schedule.send_reminder_at = Time.zone.now
 				the_schedule.save
 			end
+			
 		end
 
 		if @match.update_attributes(:type_id => @type.id, :played => played, :user_x_two => @user_x_two, :status_at => Time.zone.now)
-			Scorecard.delay.calculate_user_played_assigned_scorecard(@match.user, @match.schedule.group)
-
+			# delay instruction was removed because was throwing stack too deep error
+			Scorecard.calculate_user_played_assigned_scorecard(@match.user, the_schedule.group)
+          
 			if DISPLAY_FREMIUM_SERVICES
 				# set fee type_id to same as match type_id
 				the_fee = Fee.find(:all, :conditions => ["debit_type = 'User' and debit_id = ? and item_type = 'Schedule' and item_id = ?", @match.user_id, @match.schedule_id])
@@ -174,7 +176,7 @@ class WidgetController < ApplicationController
     
     flash[:notice] = "Se ha cambiado tu estado en el evento"
     
-		redirect_to widget_event_details_url :event_id => @match.schedule.id
+		redirect_to widget_event_details_url :event_id => the_schedule.id
 		return
 	end
   
@@ -188,9 +190,11 @@ class WidgetController < ApplicationController
         if !URI(referer_url).query.nil?
           params_hash = CGI.parse(URI(request.env["HTTP_REFERER"]).query)
 
-          if params_hash[:invitation_to_event] and params_hash[:event_id]
-            redirect_to widget_event_details_url :event_id => params_hash['event_id'][0]
-            return
+          if !params_hash[:invitation_to_event].nil? and !params_hash[:event_id].nil?
+            if !params_hash[:event_id][0].nil?
+              redirect_to widget_event_details_url :event_id => params_hash['event_id'][0]
+              return
+            end
           end
         end
       end

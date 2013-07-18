@@ -139,7 +139,7 @@ module WidgetHelper
    			 link_to( "Apuntate", "#", :class => "auth_popup",  
    			 :data => { :ismock => schedule.id.nil?, :event => schedule.id, :isevent => true, 
    			   :source_timetable_id => schedule.source_timetable_id, 
-   			   :block_token => Base64::encode64(schedule.starts_at.to_s)} )
+   			   :block_token => Base64::encode64(schedule.starts_at.to_i.to_s)} )
 
    		 end # end if logged user
    		 

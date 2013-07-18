@@ -666,11 +666,22 @@ class Schedule < ActiveRecord::Base
   
   # WIDGET PROJECT ----------------------------
   
-  def self.get_schedules_branch (first_day, last_day, item)
+  def self.get_schedules_branch (first_day, last_day, branch)
 		find(:all, :joins => "JOIN groups on groups.id = schedules.group_id",
 				:conditions => ["schedules.archive = false and schedules.starts_at >= ? and schedules.ends_at <= ? and 
-												groups.archive = false and groups.item_id = ? and groups.item_type = ?", first_day, last_day, item.id, item.class.to_s.chomp], :order => 'starts_at')
+												groups.archive = false and groups.item_id = ? and groups.item_type = ?", 
+												first_day, last_day, branch.id, branch.class.to_s.chomp], :order => 'starts_at')
 	end
+	
+	def self.widget_my_current_schedules(user, branch)
+    
+    self.where("schedules.archive = false and starts_at >= ? 
+                and group_id in (select group_id from groups_users where user_id = ?)", Time.zone.now, user.id)
+        .order("starts_at, group_id")
+        .joins("join groups on schedules.group_id = groups.id")
+        .where("groups.item_type='Branch' and groups.item_id=?", branch.id)
+        
+  end
   
   def self.week_schedules_from_timetables(current_branch)
     

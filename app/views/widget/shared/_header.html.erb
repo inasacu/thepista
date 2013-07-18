@@ -26,7 +26,7 @@
 				Bienvenido, <%=current_user.name%>
 				<br>
 				
-				<%=link_to("Cerrar sesión", widget_logout_path)%>
+				<%=link_to("Cerrar sesión", widget_logout_path, :class => "resize_activator")%>
 			</p>
 			<%else%>
 			<a href="#" data-isevent="false" data-ismock="true" data-event="0" 

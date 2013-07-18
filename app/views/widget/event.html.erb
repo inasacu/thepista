@@ -15,9 +15,13 @@
 			<%=link_to("Convocados", 
 			   widget_event_details_path(:event_id => @schedule))%>
 		</li>
-		<li>
-			<%=link_to "Invita a tus amigos a este evento", widget_event_invitation_path(:event_id => @schedule)%>
-		</li>
+		
+		<%if @current_user%>
+			<li>
+				<%=link_to "Invita a tus amigos a este evento", widget_event_invitation_path(:event_id => @schedule)%>
+			</li>
+		<%end%>
+	
 	</ul>
 </div>
 
