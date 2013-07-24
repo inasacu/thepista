@@ -62,10 +62,12 @@ class InvitationsController < ApplicationController
         @the_invitation.item = @invitation.item
         @the_invitation.user = @invitation.user
         @the_invitation.email_addresses = email
+        
         @the_invitation.is_from_widget = WidgetHelper.is_widget_form(params[:form_type])
-        if session[:current_branch]
-          @the_invitation.widget_host = session[:current_branch].url 
-        end       
+        if !session[:current_branch].nil?
+          @the_invitation.widget_host = session[:current_branch_real_url]
+        end    
+           
         @the_invitation.save!
       }  
       # @invitation.destroy  

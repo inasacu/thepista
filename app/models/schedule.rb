@@ -824,9 +824,7 @@ class Schedule < ActiveRecord::Base
                 
         # event is created and the user is added to the event as an administrator
         if schedule.save and schedule.create_schedule_roles(user)
-          
-          logger.info "ENTRO ACA SE CREO "
-          
+                    
           # the user is added to the event - add record into matches
           Match.create_item_schedule_match(schedule, user)
           return schedule
@@ -852,7 +850,6 @@ class Schedule < ActiveRecord::Base
          
       end # end if is mock
     else
-      logger.info "NO ES EVENTO"
       return nil
     end # end if is event
     

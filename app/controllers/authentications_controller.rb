@@ -52,8 +52,7 @@ class AuthenticationsController < ApplicationController
 			# widget
 			event = Schedule.takecareof_apuntate(authentication.user, isevent, ismock, event_id, event_timetable_id, event_starts_at)
 			
-			if event
-			  flash[:notice] = "Te has apuntado al evento"
+			if !event.nil?
 			  redirect_to redirect_home
 			else
 			  redirect_to widget_check_omniauth_url
@@ -77,8 +76,7 @@ class AuthenticationsController < ApplicationController
 								
 				# widget
   			event = Schedule.takecareof_apuntate(@user_by_email, isevent, ismock, event_id, event_timetable_id, event_starts_at)
-				if event
-				  flash[:notice] = "Te has apuntado al evento"
+			  if !event.nil?
 				  redirect_to redirect_home
 				else
 				  redirect_to widget_check_omniauth_url
@@ -99,9 +97,8 @@ class AuthenticationsController < ApplicationController
 					# widget
     			event = Schedule.takecareof_apuntate(current_user, isevent, ismock, event_id, event_timetable_id, event_starts_at)
 					
-					if event
-					  flash[:notice] = "Te has apuntado al evento"
-  				  redirect_to redirect_home
+					if !event.nil?
+					  redirect_to redirect_home
   				else
   				  redirect_to widget_check_omniauth_url
   				end

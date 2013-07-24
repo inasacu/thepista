@@ -11,31 +11,36 @@ class WidgetController < ApplicationController
   helper WidgetHelper
   
   def index
-    @local_url = ENV['THE_HOST']
   end
   
   def home
     
     # Gets the current branch if not present in session
-    if !session[:current_branch]
-      if request.env["HTTP_REFERER"] != nil
+    if session[:current_branch].nil?
+      if !request.env["HTTP_REFERER"].nil?
         session[:current_branch] = Branch.branch_from_url(request.env["HTTP_REFERER"]) 
+        session[:current_branch_real_url] = request.env["HTTP_REFERER"]
       else
         session.delete(:current_branch)
         render nothing: true
         return
       end
     end 
+   
+    logger.info "paso #{session[:current_branch].url}"
     
     # Gets the schedules from the branch
-    if session[:current_branch] != nil
+    if !session[:current_branch].nil?
+      
       @schedules_per_weekday = Schedule.week_schedules_from_timetables(session[:current_branch])
       
       if @current_user
         @my_schedules = Schedule.widget_my_current_schedules(current_user, session[:current_branch])
       end
+      
     else
       session.delete(:current_branch)
+      session.delete(:current_branch_real_url)
       render nothing: true
       return
     end
