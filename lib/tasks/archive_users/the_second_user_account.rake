@@ -5,8 +5,8 @@ desc "this job will take user original account and replace the id for a previous
 
 task :the_new_user_email_account => :environment do |t|
 	
-  original_user_email = 'fvillaluenga@ap41.com'
-  new_user_email = 'felixvillaluenga@gmail.com'
+  original_user_email = 'Ludovic.zaccaron@hotmail.com'
+  new_user_email = 'zacco05@gmail.com'
 	update_user_switch(original_user_email, new_user_email)
 
 end
