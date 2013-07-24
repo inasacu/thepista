@@ -854,5 +854,71 @@ class Schedule < ActiveRecord::Base
     end # end if is event
     
   end
+  
+  def self.change_user_state(current_user, match_id, newstate)
+    
+    # get match
+    @match = Match.find(match_id)
+
+		# 1 == player is in team one
+		# x == game tied, doesnt matter where player is
+		# 2 == player is in team two      
+		@user_x_two = "1" if (@match.group_id.to_i > 0 and @match.invite_id.to_i == 0)
+		@user_x_two = "X" if (@match.group_score.to_i == @match.invite_score.to_i)
+		@user_x_two = "2" if (@match.group_id.to_i == 0 and @match.invite_id.to_i > 0)
+		
+		
+    
+    # change treatment
+    the_schedule = @match.schedule
+    
+		unless current_user == @match.user or is_current_manager_of(the_schedule.group) 
+			warning_unauthorized
+			redirect_to widget_home_url
+			return
+		end
+
+		@type = Type.find(newstate)
+		played = (@type.id == 1 and !@match.group_score.nil? and !@match.invite_score.nil?)
+
+		player_limit = the_schedule.player_limit
+		total_players = the_schedule.the_roster_count		
+		has_player_limit = (total_players >= player_limit)
+		send_last_minute_message = (has_player_limit and NEXT_48_HOURS > the_schedule.starts_at and the_schedule.send_reminder_at.nil?)
+		
+		if send_last_minute_message
+			
+			type_change = [[1,2,-1], [1,3,-1]] 
+			type_change = [[1,2,-1], [1,3,-1], [2,1,1], [3,1,1]] if DISPLAY_FREMIUM_SERVICES
+			send_last_minute_message = false
+			
+			type_change.each do |a, b, change|
+				new_player_limit = total_players + change
+				send_last_minute_message = (@match.type_id == a and @type.id == b and player_limit < new_player_limit) ? true : send_last_minute_message
+			end
+			
+			if send_last_minute_message	
+				the_schedule.last_minute_reminder 
+				the_schedule.send_reminder_at = Time.zone.now
+				the_schedule.save
+			end
+			
+		end
+
+		if @match.update_attributes(:type_id => @type.id, :played => played, :user_x_two => @user_x_two, :status_at => Time.zone.now)
+			# delay instruction was removed because was throwing stack too deep error
+			Scorecard.calculate_user_played_assigned_scorecard(@match.user, the_schedule.group)
+          
+			if DISPLAY_FREMIUM_SERVICES
+				# set fee type_id to same as match type_id
+				the_fee = Fee.find(:all, :conditions => ["debit_type = 'User' and debit_id = ? and item_type = 'Schedule' and item_id = ?", @match.user_id, @match.schedule_id])
+				the_fee.each {|fee| fee.type_id = @type.id; fee.save}
+			end
+			
+		end
+		
+		return the_schedule
+  
+  end
 
 end

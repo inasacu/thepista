@@ -4,7 +4,7 @@ class WidgetController < ApplicationController
   # filters
   before_filter :get_schedule, :only => [:event_details]
   before_filter :check_redirect, :only => [:home]
-  before_filter :get_match_and_user_x_two, :only => [:change_user_state]
+  #before_filter :get_match_and_user_x_two, :only => [:change_user_state]
     
   # add filter for checkin branch in session
   
@@ -26,9 +26,7 @@ class WidgetController < ApplicationController
         return
       end
     end 
-   
-    logger.info "paso #{session[:current_branch].url}"
-    
+       
     # Gets the schedules from the branch
     if !session[:current_branch].nil?
       
@@ -132,57 +130,24 @@ class WidgetController < ApplicationController
   
   def change_user_state
     
-    the_schedule = @match.schedule
+    begin
+      
+      the_schedule = Schedule.change_user_state(current_user, params[:matchid], params[:newstate])
+      
+      flash[:notice] = "Se ha cambiado tu estado en el evento"
+  		redirect_to widget_event_details_url :event_id => the_schedule.id
     
-		unless current_user == @match.user or is_current_manager_of(the_schedule.group) 
-			warning_unauthorized
-			redirect_to widget_home_url
-			return
-		end
-
-		@type = Type.find(params[:newstate])
-		played = (@type.id == 1 and !@match.group_score.nil? and !@match.invite_score.nil?)
-
-		player_limit = the_schedule.player_limit
-		total_players = the_schedule.the_roster_count		
-		has_player_limit = (total_players >= player_limit)
-		send_last_minute_message = (has_player_limit and NEXT_48_HOURS > the_schedule.starts_at and the_schedule.send_reminder_at.nil?)
-		
-		if send_last_minute_message
-			
-			type_change = [[1,2,-1], [1,3,-1]] 
-			type_change = [[1,2,-1], [1,3,-1], [2,1,1], [3,1,1]] if DISPLAY_FREMIUM_SERVICES
-			send_last_minute_message = false
-			
-			type_change.each do |a, b, change|
-				new_player_limit = total_players + change
-				send_last_minute_message = (@match.type_id == a and @type.id == b and player_limit < new_player_limit) ? true : send_last_minute_message
-			end
-			
-			if send_last_minute_message	
-				the_schedule.last_minute_reminder 
-				the_schedule.send_reminder_at = Time.zone.now
-				the_schedule.save
-			end
-			
-		end
-
-		if @match.update_attributes(:type_id => @type.id, :played => played, :user_x_two => @user_x_two, :status_at => Time.zone.now)
-			# delay instruction was removed because was throwing stack too deep error
-			Scorecard.delay.calculate_user_played_assigned_scorecard(@match.user, the_schedule.group)
-          
-			if DISPLAY_FREMIUM_SERVICES
-				# set fee type_id to same as match type_id
-				the_fee = Fee.find(:all, :conditions => ["debit_type = 'User' and debit_id = ? and item_type = 'Schedule' and item_id = ?", @match.user_id, @match.schedule_id])
-				the_fee.each {|fee| fee.type_id = @type.id; fee.save}
-			end
-			
-		end 
+    rescue => ex
+      
+      logger.error "Excepcion #{ex.message}"
+      
+      flash[:notice] = "Ha ocurrido un error al cambiar el estado"
+  		redirect_to widget_home_url
+  		
+    end
     
-    flash[:notice] = "Se ha cambiado tu estado en el evento"
-    
-		redirect_to widget_event_details_url :event_id => the_schedule.id
 		return
+		
 	end
   
   # getters and others ------------------->
