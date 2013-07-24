@@ -169,7 +169,7 @@ class WidgetController < ApplicationController
 
 		if @match.update_attributes(:type_id => @type.id, :played => played, :user_x_two => @user_x_two, :status_at => Time.zone.now)
 			# delay instruction was removed because was throwing stack too deep error
-			Scorecard.calculate_user_played_assigned_scorecard(@match.user, the_schedule.group)
+			Scorecard.delay.calculate_user_played_assigned_scorecard(@match.user, the_schedule.group)
           
 			if DISPLAY_FREMIUM_SERVICES
 				# set fee type_id to same as match type_id
