@@ -887,14 +887,18 @@ module ApplicationHelper
 
 
 	def phone_user_link(user)
-		sets_of_numbers = user.phone.scan(/[0-9]+/)
-		number = "#{sets_of_numbers.join('-')}"
+	  
+	  if user and user.phone
+	    sets_of_numbers = user.phone.scan(/[0-9]+/)
+  		number = "#{sets_of_numbers.join('-')}"
 
-		if is_mobile_browser
-			link_to user.name, "tel:#{number}"
-		else
-			item_name_link(user)
-		end
+  		if is_mobile_browser
+  			link_to user.name, "tel:#{number}"
+  		else
+  			item_name_link(user)
+  		end
+	  end
+
 	end
 
 	def the_font_green(the_value, the_size=false)
