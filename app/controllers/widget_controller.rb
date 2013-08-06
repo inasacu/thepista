@@ -4,7 +4,7 @@ class WidgetController < ApplicationController
   # filters
   before_filter :get_schedule, :only => [:event_details]
   before_filter :check_redirect, :only => [:home]
-  #before_filter :get_match_and_user_x_two, :only => [:change_user_state]
+  before_filter :get_match_and_user_x_two, :only => [:set_team]
     
   # add filter for checkin branch in session
   
@@ -34,6 +34,7 @@ class WidgetController < ApplicationController
       
       if @current_user
         @my_schedules = Schedule.widget_my_current_schedules(current_user, session[:current_branch])
+        logger.info "hola #{@my_schedules.length}"
       end
       
     else
@@ -76,7 +77,6 @@ class WidgetController < ApplicationController
       if params[:block_token]
         block_token = Base64::decode64(params[:block_token].to_s).to_i
         session["widgetpista.event_starts_at"] =  Time.zone.at(block_token)
-      else
       end
       
     end
@@ -90,13 +90,14 @@ class WidgetController < ApplicationController
   def do_apuntate
     
     if params[:block_token]
-      event_starts_at = Base64::decode64(params[:block_token].to_s).to_time
+      block_token = Base64::decode64(params[:block_token].to_s).to_i
+      event_starts_at = Time.zone.at(block_token)
     end
           
     event = Schedule.takecareof_apuntate(current_user, params[:isevent], params[:ismock], 
                                         params[:event], params[:source_timetable_id], event_starts_at)
     
-    if event
+    if !event.nil?
       redirect_to widget_event_details_url :event_id => event.id
     else
       redirect_to widget_home_url
@@ -134,9 +135,14 @@ class WidgetController < ApplicationController
       
       the_schedule = Schedule.change_user_state(current_user, params[:matchid], params[:newstate])
       
-      flash[:notice] = "Se ha cambiado tu estado en el evento"
-  		redirect_to widget_event_details_url :event_id => the_schedule.id
-    
+      if !the_schedule.nil?
+        flash[:notice] = "Se ha cambiado el estado del jugador en el evento"
+    		redirect_to widget_event_details_url :event_id => the_schedule.id
+      else
+        flash[:notice] = "Ha ocurrido un error al cambiar el estado"
+    		redirect_to widget_home_url
+      end
+      
     rescue => ex
       
       logger.error "Excepcion #{ex.message}"
@@ -148,6 +154,29 @@ class WidgetController < ApplicationController
     
 		return
 		
+	end
+	
+	def set_team 
+		unless is_current_member_of(@match.schedule.group)
+			warning_unauthorized
+			redirect_to widget_home_url
+			return
+		end
+		
+		@user = User.find(current_user)
+
+		played = (@match.type_id.to_i == 1 and !@match.group_score.nil? and !@match.invite_score.nil?)
+
+		if @match.update_attributes(:group_id => @match.invite_id, :invite_id => @match.group_id, 
+		          :played => played, :user_x_two => @user_x_two, :change_id => @user.id, 
+		          :changed_at => Time.zone.now)
+		          
+			Scorecard.calculate_user_played_assigned_scorecard(@match.user, @match.schedule.group)
+			
+		end
+		
+		redirect_to widget_event_details_url :event_id => @match.schedule.id
+    return
 	end
   
   # getters and others ------------------->

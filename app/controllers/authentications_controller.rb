@@ -50,13 +50,9 @@ class AuthenticationsController < ApplicationController
 			UserSession.create(authentication.user, true) 
 						
 			# widget
-			event = Schedule.takecareof_apuntate(authentication.user, isevent, ismock, event_id, event_timetable_id, event_starts_at)
+			Schedule.takecareof_apuntate(authentication.user, isevent, ismock, event_id, event_timetable_id, event_starts_at)
 			
-			if !event.nil?
-			  redirect_to redirect_home
-			else
-			  redirect_to widget_check_omniauth_url
-			end
+			redirect_to redirect_home
 			
 		elsif current_user
 			Authentication.create_from_omniauth(omniauth, current_user)
@@ -75,12 +71,9 @@ class AuthenticationsController < ApplicationController
 				# controller_successful_provider(omniauth['provider'])
 								
 				# widget
-  			event = Schedule.takecareof_apuntate(@user_by_email, isevent, ismock, event_id, event_timetable_id, event_starts_at)
-			  if !event.nil?
-				  redirect_to redirect_home
-				else
-				  redirect_to widget_check_omniauth_url
-				end
+  			Schedule.takecareof_apuntate(@user_by_email, isevent, ismock, event_id, event_timetable_id, event_starts_at)
+			  
+			  redirect_to redirect_home
 				
 				#redirect_back_or_default root_url
 				return
@@ -95,13 +88,9 @@ class AuthenticationsController < ApplicationController
 					# controller_successful_provider(omniauth['provider'])
 					
 					# widget
-    			event = Schedule.takecareof_apuntate(current_user, isevent, ismock, event_id, event_timetable_id, event_starts_at)
+    			Schedule.takecareof_apuntate(current_user, isevent, ismock, event_id, event_timetable_id, event_starts_at)
 					
-					if !event.nil?
-					  redirect_to redirect_home
-  				else
-  				  redirect_to widget_check_omniauth_url
-  				end
+					redirect_to redirect_home
 					
 					#redirect_back_or_default root_url
 					return

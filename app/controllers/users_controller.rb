@@ -128,6 +128,7 @@ class UsersController < ApplicationController
 		end
 		
 		if @user.save
+
 			@user.email_to_name if @user.name.include?('@')
 			@user.email_backup = @user.email
 			@user.save
@@ -137,33 +138,32 @@ class UsersController < ApplicationController
 			if WidgetHelper.is_widget_form(params[:form_type])
 			  
 			  # info for logic actions
-        isevent = params[:isevent]
-        ismock = params[:ismock]
-        event_id = params[:event]
-        event_timetable_id = params[:source_timetable_id]
-        event_starts_at = Time.zone.at(Base64::decode64(params[:block_token].to_s).to_i)
+        isevent = session["widgetpista.isevent"]
+        ismock = session["widgetpista.ismock"]
+        event_id = session["widgetpista.eventid"]
+        event_timetable_id = session["widgetpista.source_timetable_id"]
+        event_starts_at = session["widgetpista.event_starts_at"]
         
         #logic to add the user to a group and create event 
-        event = Schedule.takecareof_apuntate(current_user, isevent, ismock, event_id, event_timetable_id, event_starts_at)
+        Schedule.takecareof_apuntate(current_user, isevent, ismock, event_id, event_timetable_id, event_starts_at)
         
-        if event
-  		    redirect_to widget_event_details_url :event_id => event.id
-  		  else
-  		    redirect_to widget_home_url
-  		  end
+        redirect_to widget_home_url  		  
   		  return
+  		
   		end
 
 		else
 		  
 		  if WidgetHelper.is_widget_form(params[:form_type])
-  		  redirect_to widget_check_omniauth_url
+  		  redirect_to widget_signup_url
   		  return
   		end
 		  
 			flash[:warning] = I18n.t(:password_email_conbination_issue)
 			redirect_to :signup
+			
 			return
+		
 		end 
 
 		session[:identifier] = nil if session[:identifier]

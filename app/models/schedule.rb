@@ -729,7 +729,6 @@ class Schedule < ActiveRecord::Base
         timetable_week_day = WidgetHelper.week_day_from_description(timetable.type.name)        
         timetable_datetime = WidgetHelper.datetime_from_week_day(timetable_week_day)
         
-        
         # Obtain actual date from week day
         mock_schedule_start = timetable_datetime.change({:hour => timetable.starts_at.hour , 
                                                      :min => timetable.starts_at.min, 
@@ -737,14 +736,15 @@ class Schedule < ActiveRecord::Base
 				timetable_end = timetable_datetime.change({:hour => timetable.ends_at.hour , 
                                                :min => timetable.ends_at.min, 
                                                :sec => timetable.ends_at.sec}) 
-				
+        
         while mock_schedule_start.to_time < timetable_end.to_time do
           mock_schedule_end = (mock_schedule_start.to_time + timetable.timeframe.hours).to_datetime
 
           schedule = Schedule.new
           #schedule.name = "#{timetableGroup.name} #{mockScheduleStart.strftime('%m/%d/%Y')}"
           schedule.name = "Jornada programada"
-          schedule.starts_at = mock_schedule_start
+          #schedule.starts_at = mock_schedule_start.to_datetime
+          schedule.starts_at = I18n.l(mock_schedule_start, :format => :time_at)
           schedule.group = timetable_group
 
           schedule.ismock = true
@@ -867,14 +867,12 @@ class Schedule < ActiveRecord::Base
 		@user_x_two = "X" if (@match.group_score.to_i == @match.invite_score.to_i)
 		@user_x_two = "2" if (@match.group_id.to_i == 0 and @match.invite_id.to_i > 0)
 		
-		
     
     # change treatment
     the_schedule = @match.schedule
     
-		unless current_user == @match.user or is_current_manager_of(the_schedule.group) 
-			warning_unauthorized
-			redirect_to widget_home_url
+		unless current_user == @match.user or 
+		      (current_user.is_manager_of?(the_schedule) or current_user.is_manager_of?(the_schedule.group))
 			return
 		end
 

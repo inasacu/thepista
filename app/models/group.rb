@@ -296,8 +296,10 @@ class Group < ActiveRecord::Base
       role_user = RolesUsers.find_item_manager(group)
       manager = User.find(role_user.user_id)
       Teammate.create_teammate_pre_join_item(user, manager, group, nil)
+      
       # 
       Teammate.create_teammate_join_item(manager, user, group, nil)
+      
     end
     
   end

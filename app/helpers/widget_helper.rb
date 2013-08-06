@@ -39,11 +39,13 @@ module WidgetHelper
 	  date_time = DateTime.parse(Time.zone.now.to_s)
 	  offset = 0
 	  
+	  todayWday = (date_time.wday == 0) ? 7 : date_time.wday
+	  
 	  # if is this week or next week
 	  if wday < date_time.wday
 	    offset = 1
 	  end
-	  
+	  	  
 	  return DateTime.commercial(date_time.year, offset + date_time.cweek, wday)
 	end
 	
@@ -129,7 +131,7 @@ module WidgetHelper
            link_to( "Apuntate", {:controller => "widget", :action => "do_apuntate", 
              :ismock => true, :event => schedule.id, :isevent => true, 
              :source_timetable_id => schedule.source_timetable_id,
-             :block_token => Base64::encode64(schedule.starts_at.to_s)} )
+             :block_token => Base64::encode64(schedule.starts_at.to_i.to_s)} )
              
          end # end if real event
          
@@ -145,6 +147,41 @@ module WidgetHelper
    		 
      end # end if valid event
      
+  end
+  
+  def get_match_options(match)
+    
+    options = Hash.new
+    options[:convocado] = {:desc => "Pasar a convocado", :status => 1} 
+    options[:ultima] = {:desc => "Pasar a ultima hora", :status => 2} 
+    options[:ausente] = {:desc => "Pasar a ausente", :status => 3}
+    options[:nopresente] = {:desc => "Pasar a no presentado", :status => 4}
+    
+    the_options = ""
+    
+		if match.type_id != 1
+			the_options = "#{the_options} #{link_to( 
+			image_tag(IMAGE_CONVOCADO, :title => options[:convocado][:desc], :style => 'height: 16px; width: 16px;'), 
+      widget_change_user_state_path( :matchid => match.id, :newstate => options[:convocado][:status] ) ) }".html_safe
+    end
+		if match.type_id != 2
+			the_options = "#{the_options} #{link_to( 
+			image_tag(IMAGE_ULTIMA_HORA, :title => options[:ultima][:desc], :style => 'height: 16px; width: 16px;'), 
+      widget_change_user_state_path( :matchid => match.id, :newstate => options[:ultima][:status] ) ) }".html_safe
+		end
+		if match.type_id != 3
+			the_options = "#{the_options} #{link_to( 
+			image_tag(IMAGE_AUSENTE, :title => options[:ausente][:desc], :style => 'height: 16px; width: 16px;'), 
+      widget_change_user_state_path( :matchid => match.id, :newstate => options[:ausente][:status] ) ) }".html_safe
+		end
+		if match.type_id != 4
+			the_options = "#{the_options} #{link_to( 
+			image_tag(IMAGE_NO_DISPONIBLE, :title => options[:nopresente][:desc], :style => 'height: 16px; width: 16px;'), 
+      widget_change_user_state_path( :matchid => match.id, :newstate => options[:nopresente][:status] ) ) }".html_safe
+		end
+    
+    return the_options
+    
   end
   
 end

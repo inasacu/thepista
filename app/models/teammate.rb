@@ -139,12 +139,12 @@ class Teammate < ActiveRecord::Base
 
   def self.create_teammate_join_item(requester, approver, item, sub_item)
     self.accept_item(requester, approver, item, sub_item)
-
+    
     case item.class.to_s
     when "Group"
       GroupsUsers.join_team(approver, item) 
       GroupsUsers.join_team(requester, item)
-			
+      
       Scorecard.create_user_scorecard(approver, item)
       Scorecard.create_user_scorecard(requester, item)
       Scorecard.set_archive_flag(approver, item, false)
