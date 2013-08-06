@@ -683,6 +683,19 @@ class Schedule < ActiveRecord::Base
         
   end
   
+  def self.nice_simple_time_zone_at(time_at)
+		return I18n.l(time_at, :format => :simple_time_zone_at).html_safe unless time_at.nil?
+	end
+	
+	def self.nice_time_at(time_at)
+		return I18n.l(time_at, :format => :time_at).html_safe unless time_at.nil?
+	end
+  
+  def self.convert_to_datetime_zone(the_date, the_time)
+		the_datetime = "#{the_date.strftime('%Y%m%d')} #{self.nice_time_at(the_time)} "
+		return DateTime.strptime(the_datetime, '%Y%m%d %H:%M')
+	end
+  
   def self.week_schedules_from_timetables(current_branch)
     
     current_branch = Branch.find(current_branch.id)
@@ -741,12 +754,16 @@ class Schedule < ActiveRecord::Base
         
         while mock_schedule_start.to_time < timetable_end.to_time do
           mock_schedule_end = (mock_schedule_start.to_time + timetable.timeframe.hours).to_datetime
-
+          
           schedule = Schedule.new
           #schedule.name = "#{timetableGroup.name} #{mockScheduleStart.strftime('%m/%d/%Y')}"
           schedule.name = "Jornada programada"
-          #schedule.starts_at = mock_schedule_start.to_datetime
-          schedule.starts_at = I18n.l(mock_schedule_start, :format => :time_at)
+          #schedule.starts_at = self.convert_to_datetime_zone(mock_schedule_start.to_datetime, mock_schedule_start.to_time)
+          
+          schedule.starts_at = mock_schedule_start.to_datetime
+          schedule.starts_at = (schedule.starts_at.to_time - 2.hours).to_datetime
+          #logger.info "hola #{schedule.starts_at}"
+          
           schedule.group = timetable_group
 
           schedule.ismock = true
