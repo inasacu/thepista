@@ -759,10 +759,7 @@ class Schedule < ActiveRecord::Base
           #schedule.name = "#{timetableGroup.name} #{mockScheduleStart.strftime('%m/%d/%Y')}"
           schedule.name = "Jornada programada"
           #schedule.starts_at = self.convert_to_datetime_zone(mock_schedule_start.to_datetime, mock_schedule_start.to_time)
-          
-          schedule.starts_at = mock_schedule_start.to_datetime
-          schedule.starts_at = (schedule.starts_at.to_time - 2.hours).to_datetime
-          #logger.info "hola #{schedule.starts_at}"
+          schedule.starts_at = mock_schedule_start.in_time_zone
           
           schedule.group = timetable_group
 
