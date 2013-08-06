@@ -57,6 +57,13 @@ module WidgetHelper
 	            "sunday" => 7, "domingo" => 7}
 	  return week_days[wday_description.downcase]
 	end
+	
+	def self.week_day_name_from_number(wday_number)
+	  week_days = Hash.new
+	  week_days = {1 => "Lunes", 2 => "Martes", 3 => "Miercoles",
+	              4 => "Jueves", 5 => "Viernes", 6 => "Sabado", 7 => "Domingo", 0 => "Domingo"}
+	  return week_days[wday_number]
+	end
   
   # instancia
   

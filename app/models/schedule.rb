@@ -706,14 +706,16 @@ class Schedule < ActiveRecord::Base
     # Sets up an array of week days with their corresponding list of schedules
     for i in 0..6 do
       centre_schedules = Array.new
-      week_days_array[(Date.today+i).strftime("%A")] = centre_schedules
+      #week_days_array[(Date.today+i).strftime("%A")] = centre_schedules
+      week_days_array[(Date.today+i).wday] = centre_schedules
     end
     
     # Obtain real events
 		real_events = get_schedules_branch(Time.zone.now.at_beginning_of_day(), NEXT_WEEK.at_midnight, current_branch)
     
     real_events.each do |real|
-       week_days_array[real.starts_at.strftime("%A")] << real
+       #week_days_array[real.starts_at.strftime("%A")] << real
+       week_days_array[real.starts_at.wday] << real
     end
 		
 		
@@ -753,8 +755,9 @@ class Schedule < ActiveRecord::Base
           # Current schedules in certain day - 
           # Validates if there is a real event with the same datetime
           already_in = false
-          temp_array = week_days_array[mock_schedule_start.strftime("%A")]
-
+          #temp_array = week_days_array[mock_schedule_start.strftime("%A")]
+          temp_array = week_days_array[mock_schedule_start.wday]
+          
           temp_array.each do |temp_schedule|
             if temp_schedule.starts_at == schedule.starts_at
               already_in = true
@@ -763,7 +766,8 @@ class Schedule < ActiveRecord::Base
           end
 
           if already_in == false
-            week_days_array[mock_schedule_start.strftime("%A")] << schedule
+            #week_days_array[mock_schedule_start.strftime("%A")] << schedule
+            week_days_array[mock_schedule_start.wday] << schedule
           end
 
           # start for the next event
