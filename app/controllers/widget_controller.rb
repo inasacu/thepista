@@ -181,16 +181,16 @@ class WidgetController < ApplicationController
   # getters and others ------------------->
   
   def check_redirect
-    
+      
       if !request.env["HTTP_REFERER"].nil?
         referer_url = URI.escape(request.env["HTTP_REFERER"])
 
         if !URI(referer_url).query.nil?
           params_hash = CGI.parse(URI(request.env["HTTP_REFERER"]).query)
-
-          if !params_hash[:invitation_to_event].nil? and !params_hash[:event_id].nil?
-            if !params_hash[:event_id][0].nil?
-              redirect_to widget_event_details_url :event_id => params_hash['event_id'][0]
+          
+          if !params_hash["invitation_to_event"].nil? and !params_hash["event_id"].nil?
+            if !params_hash["event_id"][0].nil?
+              redirect_to widget_event_details_url :event_id => params_hash["event_id"][0]
               return
             end
           end
