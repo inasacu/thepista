@@ -85,7 +85,7 @@ class AuthenticationsController < ApplicationController
 					Authentication.create_from_omniauth(omniauth, user)
 					# controller_successful_provider(omniauth['provider'])
 					
-					# widget - this is when is a just signed up user
+					# widget
     			#Schedule.takecareof_apuntate(current_user, isevent, ismock, event_id, source_timetable_id, event_starts_at)
 					
 					redirect_to redirect_home

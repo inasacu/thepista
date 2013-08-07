@@ -126,7 +126,7 @@ class UsersController < ApplicationController
 			@user.password = omniauth['provider']
 			@user.password_confirmation = omniauth['provider']
 		end
-		
+				
 		if @user.save
 
 			@user.email_to_name if @user.name.include?('@')
@@ -148,7 +148,7 @@ class UsersController < ApplicationController
           event_starts_at =  Time.zone.at(block_token)
         end
         
-        #logic to add the user to a group and create event 
+        #logic to add the user to a group and create event - this is when is a just signed up user
         Schedule.takecareof_apuntate(@user, isevent, ismock, event_id, source_timetable_id, event_starts_at)
         
         redirect_to widget_home_url  		  
@@ -157,9 +157,11 @@ class UsersController < ApplicationController
   		end
 
 		else
-		  
+		  		  
 		  if WidgetHelper.is_widget_form(params[:form_type])
-  		  redirect_to widget_signup_url
+		    redirect_to widget_check_omniauth_url :isevent => params[:isevent], :ismock => params[:ismock],
+  		                                        :event => params[:event], :source_timetable_id => params[:source_timetable_id], 
+                                              :block_token => params[:block_token]
   		  return
   		end
 		  

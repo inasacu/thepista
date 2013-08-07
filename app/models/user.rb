@@ -60,8 +60,8 @@ class User < ActiveRecord::Base
 	end
 	
   acts_as_authentic do |c|
-    login_field :email
-    UserSession.find_by_login_method = 'find_by_email'
+    c.login_field :slug
+    c.validate_email_field = false
 
     # c.ignore_blank_passwords = true #ignoring passwords
     # c.validate_password_field = false #ignoring validations for password fields

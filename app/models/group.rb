@@ -299,6 +299,8 @@ class Group < ActiveRecord::Base
       
       # 
       Teammate.create_teammate_join_item(manager, user, group, nil)
+    
+    else
       
     end
     

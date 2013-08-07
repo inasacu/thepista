@@ -75,7 +75,7 @@ class Teammate < ActiveRecord::Base
         end
       end
     end
-
+    
 		self.accept_item(join_user, @manager, item, sub_item) if item.automatic_petition
 		
   end
@@ -147,7 +147,7 @@ class Teammate < ActiveRecord::Base
       
       Scorecard.create_user_scorecard(approver, item)
       Scorecard.create_user_scorecard(requester, item)
-      Scorecard.set_archive_flag(approver, item, false)
+      Scorecard.delay.set_archive_flag(approver, item, false)
 
 			if item.is_branch?
 			else
@@ -321,7 +321,7 @@ class Teammate < ActiveRecord::Base
   def self.accept_one_item(user, manager, item, sub_item, accepted_at)
     @role_user = RolesUsers.find_item_manager(item)
     @manager = User.find(@role_user.user_id)
-
+    
     if (@manager == user or @manager == manager)
       request = self.find_user_manager_item(user, manager, item, sub_item) 
       

@@ -787,9 +787,7 @@ class Schedule < ActiveRecord::Base
   end
   
   def self.takecareof_apuntate(user, isevent, ismock, event_id, source_timetable_id, event_starts_at=nil)
-    
-    logger.info "eyuser isevent #{isevent} ismock #{ismock} timetable #{source_timetable_id} starts #{event_starts_at}"
-        
+            
     if !isevent.nil? and (isevent == "true")
       
       if !ismock.nil? and (ismock == "true")
