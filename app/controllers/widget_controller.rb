@@ -34,7 +34,6 @@ class WidgetController < ApplicationController
       
       if @current_user
         @my_schedules = Schedule.widget_my_current_schedules(current_user, session[:current_branch])
-        logger.info "hola #{@my_schedules.length}"
       end
       
     else

@@ -683,19 +683,6 @@ class Schedule < ActiveRecord::Base
         
   end
   
-  def self.nice_simple_time_zone_at(time_at)
-		return I18n.l(time_at, :format => :simple_time_zone_at).html_safe unless time_at.nil?
-	end
-	
-	def self.nice_time_at(time_at)
-		return I18n.l(time_at, :format => :time_at).html_safe unless time_at.nil?
-	end
-  
-  def self.convert_to_datetime_zone(the_date, the_time)
-		the_datetime = "#{the_date.strftime('%Y%m%d')} #{self.nice_time_at(the_time)} "
-		return DateTime.strptime(the_datetime, '%Y%m%d %H:%M')
-	end
-  
   def self.week_schedules_from_timetables(current_branch)
     
     current_branch = Branch.find(current_branch.id)
@@ -714,25 +701,27 @@ class Schedule < ActiveRecord::Base
 		
 		# Set the hash
 		current_week_day = Date.today.wday
-    week_days_array = Hash.new
+    week_days_hash = Hash.new
     
     # Sets up an array of week days with their corresponding list of schedules
     for i in 0..6 do
       centre_schedules = Array.new
-      #week_days_array[(Date.today+i).strftime("%A")] = centre_schedules
-      week_days_array[(Date.today+i).wday] = centre_schedules
+      #week_days_hash[(Date.today+i).strftime("%A")] = centre_schedules
+      week_days_hash[(Date.today+i).wday] = {:date => DateTime.new, :schedules => centre_schedules}
     end
     
     # Obtain real events
 		real_events = get_schedules_branch(Time.zone.now.at_beginning_of_day(), NEXT_WEEK.at_midnight, current_branch)
     
     real_events.each do |real|
-       #week_days_array[real.starts_at.strftime("%A")] << real
-       week_days_array[real.starts_at.wday] << real
+       #week_days_hash[real.starts_at.strftime("%A")] << real
+       week_days_hash[real.starts_at.wday][:schedules] << real
+       week_days_hash[real.starts_at.wday][:date] = real.starts_at
+       week_days_hash[real.starts_at.wday][:date].change({:hour=>0, :min=>0, :sec=>0})
     end
 		
 		
-		# Obtaine timetables from all groups related to the branch
+		# Obtain timetables from all groups related to the branch
     branch_timetables = Timetable.branch_week_timetables(current_branch)
 		
 		branch_timetables.each do |timetable|
@@ -745,43 +734,41 @@ class Schedule < ActiveRecord::Base
         timetable_datetime = WidgetHelper.datetime_from_week_day(timetable_week_day)
         
         # Obtain actual date from week day
-        mock_schedule_start = timetable_datetime.change({:hour => timetable.starts_at.hour , 
-                                                     :min => timetable.starts_at.min, 
-                                                     :sec => timetable.starts_at.sec})
-				timetable_end = timetable_datetime.change({:hour => timetable.ends_at.hour , 
-                                               :min => timetable.ends_at.min, 
-                                               :sec => timetable.ends_at.sec}) 
+        mock_schedule_start = WidgetController.helpers.convert_to_datetime_zone(timetable_datetime, timetable.starts_at)
+        timetable_end = WidgetController.helpers.convert_to_datetime_zone(timetable_datetime.midnight, timetable.ends_at)
         
         while mock_schedule_start.to_time < timetable_end.to_time do
+          
           mock_schedule_end = (mock_schedule_start.to_time + timetable.timeframe.hours).to_datetime
           
           schedule = Schedule.new
           #schedule.name = "#{timetableGroup.name} #{mockScheduleStart.strftime('%m/%d/%Y')}"
           schedule.name = "Jornada programada"
-          #schedule.starts_at = self.convert_to_datetime_zone(mock_schedule_start.to_datetime, mock_schedule_start.to_time)
-          schedule.starts_at = mock_schedule_start.in_time_zone
-          
+          schedule.starts_at = mock_schedule_start
+          schedule.available = (schedule.starts_at > Time.zone.now + MINUTES_TO_RESERVATION )
           schedule.group = timetable_group
-
           schedule.ismock = true
           schedule.source_timetable_id = timetable.id
-
-          # Current schedules in certain day - 
-          # Validates if there is a real event with the same datetime
-          already_in = false
-          #temp_array = week_days_array[mock_schedule_start.strftime("%A")]
-          temp_array = week_days_array[mock_schedule_start.wday]
           
-          temp_array.each do |temp_schedule|
-            if temp_schedule.starts_at == schedule.starts_at
-              already_in = true
-              break
-            end
-          end
+          if schedule.available
+            # Current schedules in certain day - 
+            # Validates if there is a real event with the same datetime
+            already_in = false
+            #temp_array = week_days_hash[mock_schedule_start.strftime("%A")]
+            temp_array = week_days_hash[mock_schedule_start.wday][:schedules]
 
-          if already_in == false
-            #week_days_array[mock_schedule_start.strftime("%A")] << schedule
-            week_days_array[mock_schedule_start.wday] << schedule
+            temp_array.each do |temp_schedule|
+              if temp_schedule.starts_at == schedule.starts_at
+                already_in = true
+                break
+              end
+            end
+
+            if !already_in
+              #week_days_hash[mock_schedule_start.strftime("%A")] << schedule
+              week_days_hash[mock_schedule_start.wday][:schedules] << schedule
+              week_days_hash[schedule.starts_at.wday][:date] = schedule.starts_at.change({:hour=>0, :min=>0, :sec=>0})
+            end
           end
 
           # start for the next event
@@ -794,7 +781,8 @@ class Schedule < ActiveRecord::Base
 
     end
     
-    return week_days_array
+    week_days_hash.sort_by { |k, v| v[:date] }
+    return week_days_hash
     
   end
   
@@ -848,9 +836,7 @@ class Schedule < ActiveRecord::Base
           return schedule
           
         else
-          
           return nil
-          
         end
         
       else
