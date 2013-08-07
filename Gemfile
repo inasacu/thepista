@@ -17,7 +17,8 @@ gem "geokit"
 gem "geokit-rails"
 
 gem 'delayed_job'
-gem 'hirefireapp'
+gem "hirefire-resource"
+# gem "hirefireapp"
 gem 'paperclip'
 gem 'composite_primary_keys'
 
