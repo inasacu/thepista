@@ -151,11 +151,7 @@ class UsersController < ApplicationController
         #logic to add the user to a group and create event - this is when is a just signed up user
         event = Schedule.takecareof_apuntate(@user, isevent, ismock, event_id, source_timetable_id, event_starts_at)
         
-        if !event.nil?
-          redirect_to widget_event_details_url :event_id => event.id
-        else
-          redirect_to widget_home_url 
-        end 		  
+        redirect_to widget_home_url 		  
   		  return
   		
   		end
