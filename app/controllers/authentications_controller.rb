@@ -18,22 +18,22 @@ class AuthenticationsController < ApplicationController
       isevent = session["widgetpista.isevent"]
       ismock = session["widgetpista.ismock"]
       event_id = session["widgetpista.eventid"]
-      event_timetable_id = session["widgetpista.source_timetable_id"]
+      source_timetable_id = session["widgetpista.source_timetable_id"]
       event_starts_at = session["widgetpista.event_starts_at"]
       WidgetHelper.clean_session(session)
       
       # info for redirecting
       redirect_home = widget_home_url
-      redirect_signup = widget_check_omniauth_url :isevent => isevent, :ismock => isevent, :event => event_id, 
-                                                  :event_timetable_id => event_timetable_id, 
-                                                  :block_token => Base64::encode64(event_starts_at.to_s)
+      redirect_signup = widget_check_omniauth_url :isevent => isevent, :ismock => ismock, :event => event_id, 
+                                                  :source_timetable_id => source_timetable_id, 
+                                                  :block_token => Base64::encode64(event_starts_at.to_i.to_s)
       
 		else
 		  
 		  isevent = false
 		  ismock = true
 		  event_id = nil
-		  event_timetable_id = nil
+		  source_timetable_id = nil
       event_timetable_pos = nil
 		  
 		  redirect_home = root_url
@@ -50,7 +50,7 @@ class AuthenticationsController < ApplicationController
 			UserSession.create(authentication.user, true) 
 						
 			# widget
-			Schedule.takecareof_apuntate(authentication.user, isevent, ismock, event_id, event_timetable_id, event_starts_at)
+			Schedule.takecareof_apuntate(authentication.user, isevent, ismock, event_id, source_timetable_id, event_starts_at)
 			
 			redirect_to redirect_home
 			
@@ -71,11 +71,9 @@ class AuthenticationsController < ApplicationController
 				# controller_successful_provider(omniauth['provider'])
 								
 				# widget
-  			Schedule.takecareof_apuntate(@user_by_email, isevent, ismock, event_id, event_timetable_id, event_starts_at)
+  			Schedule.takecareof_apuntate(@user_by_email, isevent, ismock, event_id, source_timetable_id, event_starts_at)
 			  
-			  redirect_to redirect_home
-				
-				#redirect_back_or_default root_url
+			  redirect_to redirect_home				
 				return
 			
 			else				
@@ -87,12 +85,10 @@ class AuthenticationsController < ApplicationController
 					Authentication.create_from_omniauth(omniauth, user)
 					# controller_successful_provider(omniauth['provider'])
 					
-					# widget
-    			Schedule.takecareof_apuntate(current_user, isevent, ismock, event_id, event_timetable_id, event_starts_at)
+					# widget - this is when is a just signed up user
+    			#Schedule.takecareof_apuntate(current_user, isevent, ismock, event_id, source_timetable_id, event_starts_at)
 					
 					redirect_to redirect_home
-					
-					#redirect_back_or_default root_url
 					return
 					
 				else

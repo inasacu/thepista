@@ -40,7 +40,7 @@
 
 <% if @is_from_widget %>
 	
-	<%=link_to(the_schedule_label, "#{@widget_host}?invitation_to_event=true&event_id=#{@schedule.id}").html_safe %>
+	<%=link_to(the_schedule_label, "#{@widget_host}?invitation_to_event=true&event_id=#{@schedule.id}##{DIV_ID_WIDGET}").html_safe %>
 
 <% else %>
 

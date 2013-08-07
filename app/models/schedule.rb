@@ -786,14 +786,16 @@ class Schedule < ActiveRecord::Base
     
   end
   
-  def self.takecareof_apuntate(user, isevent, ismock, event_id, event_timetable_id, event_starts_at=nil)
+  def self.takecareof_apuntate(user, isevent, ismock, event_id, source_timetable_id, event_starts_at=nil)
+    
+    logger.info "eyuser isevent #{isevent} ismock #{ismock} timetable #{source_timetable_id} starts #{event_starts_at}"
         
     if !isevent.nil? and (isevent == "true")
       
       if !ismock.nil? and (ismock == "true")
         
         # the event is created
-        source_timetable = Timetable.find(event_timetable_id)
+        source_timetable = Timetable.find(source_timetable_id)
         
         # Group
         group = source_timetable.item

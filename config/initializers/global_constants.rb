@@ -1,5 +1,11 @@
 # GLOBAL VARIABLE
 
+# WIDGET
+
+DIV_ID_WIDGET = 'haypistawidget'
+
+# -------------
+
 HAYPISTA_FOUNDED_YEAR = '09 Sept 2008'
 
 NAME_RANGE_LENGTH = 3..75

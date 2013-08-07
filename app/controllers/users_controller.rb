@@ -138,14 +138,18 @@ class UsersController < ApplicationController
 			if WidgetHelper.is_widget_form(params[:form_type])
 			  
 			  # info for logic actions
-        isevent = session["widgetpista.isevent"]
-        ismock = session["widgetpista.ismock"]
-        event_id = session["widgetpista.eventid"]
-        event_timetable_id = session["widgetpista.source_timetable_id"]
-        event_starts_at = session["widgetpista.event_starts_at"]
+			  isevent = params[:isevent]
+        ismock = params[:ismock]
+        event_id =  params[:event]
+        source_timetable_id =  params[:source_timetable_id]
+
+        if params[:block_token]
+          block_token = Base64::decode64(params[:block_token].to_s).to_i
+          event_starts_at =  Time.zone.at(block_token)
+        end
         
         #logic to add the user to a group and create event 
-        Schedule.takecareof_apuntate(current_user, isevent, ismock, event_id, event_timetable_id, event_starts_at)
+        Schedule.takecareof_apuntate(@user, isevent, ismock, event_id, source_timetable_id, event_starts_at)
         
         redirect_to widget_home_url  		  
   		  return

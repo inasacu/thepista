@@ -52,6 +52,13 @@ class WidgetController < ApplicationController
     @user = User.new
 		if session[:omniauth]
 		  
+		  # info for logic actions
+			@isevent = params[:isevent]
+      @ismock = params[:ismock]
+      @event_id =  params[:event]
+      @source_timetable_id =  params[:source_timetable_id]
+      @block_token = params[:block_token]
+      
 			@user.apply_omniauth(session[:omniauth])
 			@user.valid?
 			render '/widget/signup', :layout => 'widget'
