@@ -1,0 +1,44 @@
+<br>
+
+<%= content_tag :h4, "#{label_name(:or)} <STRONG>#{label_name(:log_in)}</STRONG> #{label_name(:with)}".html_safe, :class => "subheader" %>
+<hr/>
+
+
+<div class="row">
+	<div class="one  columns"></div>
+	<div class="ten columns">				
+		<p>
+			<%= render 'utilities/persona'%>					
+
+			<form id='browser_id_form' action='/auth/browser_id/callback'>
+				<input type='hidden' name='assertion'/>
+				<button type='submit' class='large_medium nice success button radius'><%= label_name(:omniauth_provider_browser_id) %></button>
+			</form>
+		</p>
+	</div>
+	<div class="two columns"></div>
+</div>
+
+<br/>
+
+<div class="row">
+	<div class="one  columns"></div>
+	<div class="ten columns">
+		<p>
+			<span><STRONG>Mozilla Persona. </STRONG> 
+				<%#= label_name(:login_provider_modo_mozilla_simplificado) %> 
+				<%= label_name(:login_provider_modo_mozilla) %>
+				<a href='https://login.persona.org/about' target='_blank'>
+					<%= label_name(:login_provider_modo_learn_more) %>
+					</a>
+			</span>
+		</p>
+		
+	</div>	
+	</div>
+	<div class="two columns"></div>
+</div>
+
+<br/>
+<br/>
+<hr/>

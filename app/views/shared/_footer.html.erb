@@ -15,7 +15,7 @@
 			<ul class="inline-list right">
 
 				<%= content_tag(:li, link_to(label_name(:home), root_url)) %>
-				<%= content_tag(:li, "#{mail_to(CONTACT_RECIPIENT, label_name(:help))}".html_safe) %>
+				<%= content_tag(:li, "#{mail_to(CONTACT_RECIPIENT, label_name(:help), :target => '_blank')}".html_safe) %>
 				<%= content_tag(:li, "#{render :partial => '/shared/language_zurb'}".html_safe) %>
 				<%= content_tag(:li, link_to(label_name(:howitworks), how_it_works_url)) %>
 				<%= content_tag(:li, link_to(label_name(:terms_of_use), terms_of_use_url)) %>

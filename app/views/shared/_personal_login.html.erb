@@ -156,49 +156,10 @@
 		</div>	
 
 		<br>
-		
-		<%= content_tag :h4, "#{label_name(:or)} <STRONG>#{label_name(:log_in)}</STRONG> #{label_name(:with)}".html_safe, :class => "subheader" %>
-		<hr/>
-		
 
-		<div class="row">
-			<div class="one  columns"></div>
-			<div class="ten columns">				
-				<p>
-					<%= render 'utilities/persona'%>					
-
-					<form id='browser_id_form' action='/auth/browser_id/callback'>
-						<input type='hidden' name='assertion'/>
-						<button type='submit' class='large_medium nice success button radius'><%= label_name(:omniauth_provider_browser_id) %></button>
-					</form>
-				</p>
-			</div>
-			<div class="two columns"></div>
-		</div>
+		<%= render 'shared/browser_id' if DISPLAY_BROWSER_ID %>
 		
-		<br/>
-		
-		<div class="row">
-			<div class="one  columns"></div>
-			<div class="ten columns">
-				<p>
-					<span><STRONG>Mozilla Persona. </STRONG> 
-						<%#= label_name(:login_provider_modo_mozilla_simplificado) %> 
-						<%= label_name(:login_provider_modo_mozilla) %>
-						<a href='https://login.persona.org/about' target='_blank'>
-							<%= label_name(:login_provider_modo_learn_more) %>
-							</a>
-					</span>
-				</p>
-				
-			</div>	
-			</div>
-			<div class="two columns"></div>
-		</div>
-
-		<br/>
-		<br/>
-		<hr/>
+		<hr>
 		
 
 		<div class="row">
@@ -207,6 +168,7 @@
 			</div>
 			<div class="six columns">
 				<p><%= label_name(:login_provider_agree_to) %> <%= link_to(label_name(:terms_of_use), terms_of_use_url, :target => '_blank') %>.
+				<p><%= "#{mail_to(CONTACT_RECIPIENT, label_name(:contact_us), :target => '_blank')}".html_safe %></p>
 			</div>
 		</div>
 
