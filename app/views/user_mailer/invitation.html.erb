@@ -34,7 +34,7 @@
 <% end %>
 
 
-<%  if @schedule  
+<%  if !@schedule.nil?  
 		the_schedule_label = "#{@schedule.group.name} - #{@schedule.name}"
 %>
 

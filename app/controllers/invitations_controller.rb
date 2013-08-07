@@ -58,7 +58,7 @@ class InvitationsController < ApplicationController
       emails = email_addresses.gsub(",", " ").split(" ").collect{|email| email.strip }.uniq
       emails.each{ |email|
         @the_invitation = Invitation.new
-        @the_invitation.message = @invitation.message
+        @the_invitation.message = (@invitation.message.nil?) ? "No message" : @invitation.message
         @the_invitation.item = @invitation.item
         @the_invitation.user = @invitation.user
         @the_invitation.email_addresses = email
@@ -76,7 +76,7 @@ class InvitationsController < ApplicationController
     #end
     
     if WidgetHelper.is_widget_form(params[:form_type])
-		  redirect_to "/widget/event/#{@schedule.id}/invitation"
+		  redirect_to widget_event_invitation_url :event_id => @schedule.id
 		  return
 		end
 		
