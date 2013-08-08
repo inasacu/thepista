@@ -22,7 +22,7 @@
 
 		<section class="nine columns">
 			<h5><%= "#{label_name(:need_quick_help)}".html_safe %></h4>
-			<p><%= "#{mail_to(CONTACT_RECIPIENT, label_name(:contact_us))}".html_safe %></p>
+			<p><%= "#{mail_to(CONTACT_RECIPIENT, label_name(:contact_us), :target => '_blank')}".html_safe %></p>
 
 		</section>		
 
@@ -78,7 +78,7 @@
 	
 	<section class="five columns">
 		<h6><%= "#{label_name(:need_quick_help)}".html_safe %></h6>
-		<h6><%= "#{mail_to(CONTACT_RECIPIENT, label_name(:contact_us))}".html_safe %></h6><br/>
+		<h6><%= "#{mail_to(CONTACT_RECIPIENT, label_name(:contact_us), :target => '_blank')}".html_safe %></h6><br/>
 		<p><%= render 'utilities/twitter_script_zurb' %></p>
 
 	</section>		
