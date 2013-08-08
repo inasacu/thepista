@@ -8,20 +8,6 @@
 	the_label = "#{control_action_label} #{the_label}"
 %>
 
-
-<div id="main-nav">
-	<ul>
-		<li>
-			<%=link_to("Inicio", widget_home_url)%>
-		</li>
-		<li>
-			<%=link_to("Convocados", 
-			   widget_event_details_path(:event_id => @schedule))%>
-		</li>
-		<li class="active"><%=link_to "Invita a tus amigos a este evento", widget_event_invitation_path(:event_id => @schedule)%></li>
-	</ul>
-</div>
-
 <h4 class="title" style="margin-top:20px">	
 	<%=link_to(sanitize(limit_url_length(@schedule.name, 25)), 
 	   widget_event_details_path(:event_id => @schedule))%>
