@@ -306,11 +306,17 @@ class Teammate < ActiveRecord::Base
     end       
   end 
   
-  def send_manager_join_item
-    @send_mail ||= self.manager.teammate_notification?   
-    return unless @send_mail 
-    UserMailer.manager_join_item(self, self.manager, self.user).deliver if self.status == "pending"   
-  end
+	def send_manager_join_item
+		@send_mail ||= self.manager.teammate_notification?   
+
+		# case self.item.class.to_s
+		# when "Group"
+		# 	@send_mail = self.item.is_branch? ? false : @send_mail
+		# end
+
+		return unless @send_mail 
+		UserMailer.manager_join_item(self, self.manager, self.user).deliver if self.status == "pending"   
+	end
 
   def send_manager_leave_item
     @send_mail ||= self.manager.teammate_notification?   

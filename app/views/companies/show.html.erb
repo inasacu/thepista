@@ -20,6 +20,7 @@
 
 					<%= render_show_detail_zurb(:company, @company.name) %>
 					<%= render_show_detail_zurb(:city, @company.city.name) %>
+					<%= render_show_detail_zurb(:url, @company.url) %>
 					<%#= render_show_detail_zurb(:time_zone,  "#{nice_simple_time_at(@company.starts_at)} - #{nice_simple_time_at(@company.ends_at)}") %>
 					
 					<% @company.branches.each do |branch| 
@@ -29,7 +30,7 @@
 						first_group = true
 					%>	
 						<hr/>
-							<%= render_show_detail_zurb(the_label, branch.name) %>
+							<%= render_show_detail_zurb(the_label, branch.name) unless @company.public %>
 						
 						<% branch.groups.each do |group| 
 							the_label = first_group ? 'group' : 'blank'
@@ -40,7 +41,7 @@
 							first_timetable = true
 						%>
 						
-							<%= "<hr/>".html_safe %>
+							<%= "<hr/>".html_safe unless @company.public %>
 							<%= render_show_detail_zurb(the_label, the_group_link) %>
 							
 							<%#= content_tag(:h6, "#{label_name(:timetables)}".html_safe, :class => "subheader") %> 

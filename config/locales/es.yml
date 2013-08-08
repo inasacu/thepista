@@ -850,7 +850,7 @@ es:
          other:     "cada %{count} horas"
      has_not_been_sent: no ha sido mandado correctamente.  
      has_updated_scorecard: Ha actualizado el RESULTADO
-     whatsapp: Utilizo WhatsApp
+     whatsapp: Tienes cuenta de WhatsApp con este numero de telefono?
      have_an_account: Si tienes una cuenta     
      have_changed_language: Has cambiado el idioma
      haypista_howto:  Cosas que puedes hacer.
@@ -906,6 +906,7 @@ es:
      invite_other_friend: Invita a otro amigo   
      is_invalid: no es valido.   
      is_not_available: "No"  
+     join:  Apuntate...
      join_cup:  Únete a un reto
      join_group: Únete al equipo   
      join_group_message: Mensaje para unirte al equipo ha sido mandado correctamente.   
