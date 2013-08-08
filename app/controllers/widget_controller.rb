@@ -2,7 +2,7 @@ class WidgetController < ApplicationController
   layout nil
   
   # filters
-  before_filter :get_schedule, :only => [:event_details]
+  before_filter :get_schedule, :only => [:event_details, :event_details_noshow]
   before_filter :check_redirect, :only => [:home]
   before_filter :get_match_and_user_x_two, :only => [:set_team]
     
@@ -121,6 +121,18 @@ class WidgetController < ApplicationController
 		@the_last_played = @schedule.the_roster_last_played
     
     render "/widget/event", :layout => 'widget'
+  end
+  
+  def event_details_noshow
+    store_location
+		@has_a_roster = !(@schedule.no_shows.empty?)
+		@the_roster = @schedule.the_no_show
+		@the_roster_infringe = @schedule.the_roster_infringe
+		@the_roster_last_minute_infringe = @schedule.the_last_minute_infringe
+		@the_last_played = @schedule.the_roster_last_played
+		
+		set_the_template('schedules/team_roster')
+		render "/widget/event", :layout => 'widget'
   end
   
   def event_invitation

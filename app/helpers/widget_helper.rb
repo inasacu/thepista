@@ -194,6 +194,7 @@ module WidgetHelper
   def get_header_menu_li(schedule=nil)
     home_li = ""
 	  event_li = ""
+	  event_noshow_li = ""
 	  invitation_li = ""
 	  
     case self.controller.action_name
@@ -202,6 +203,8 @@ module WidgetHelper
   	  home_li = "#{content_tag(:li, link_to('Inicio', widget_home_url))}"
   	  event_li = "#{content_tag(:li, link_to("Convocados", 
   	                widget_event_details_path(:event_id => schedule)))}"
+  	  event_noshow_li = "#{content_tag(:li, link_to("Ausentes", 
+              	  widget_event_noshow_details_path(:event_id => schedule)))}"
   	  invitation_li = "#{content_tag(:li, link_to("Invita a tus amigos a este evento", 
   	                    widget_event_invitation_path(:event_id => schedule)), :class => 'active')}"
   	  
@@ -214,13 +217,27 @@ module WidgetHelper
   	  home_li = "#{content_tag(:li, link_to('Inicio', widget_home_url))}"
   	  event_li = "#{content_tag(:li, link_to("Convocados", 
   	                widget_event_details_path(:event_id => schedule)), :class => 'active')}"
+  	  event_noshow_li = "#{content_tag(:li, link_to("Ausentes", 
+                         widget_event_noshow_details_path(:event_id => schedule)))}"
+  	  if current_user
+  	    invitation_li = "#{content_tag(:li, link_to("Invita a tus amigos a este evento", 
+    	                    widget_event_invitation_path(:event_id => schedule)))}"
+  	  end
+  	  
+  	when 'event_details_noshow' # event details ausentes
+  	  
+  	  home_li = "#{content_tag(:li, link_to('Inicio', widget_home_url))}"
+  	  event_li = "#{content_tag(:li, link_to("Convocados", 
+  	                widget_event_details_path(:event_id => schedule)))}"
+  	  event_noshow_li = "#{content_tag(:li, link_to("Ausentes", 
+                         widget_event_noshow_details_path(:event_id => schedule)), :class => 'active')}"
   	  if current_user
   	    invitation_li = "#{content_tag(:li, link_to("Invita a tus amigos a este evento", 
     	                    widget_event_invitation_path(:event_id => schedule)))}"
   	  end
   	  
   	end
-  	return "#{home_li} #{event_li} #{invitation_li}".html_safe
+  	return "#{home_li} #{event_li} #{event_noshow_li} #{invitation_li}".html_safe
   end
   
 end

@@ -59,13 +59,13 @@
 						:schedule => @schedule, 
 						:the_roster => @the_roster, 
 						:match_type => @match_type %>
+	<% else %>
 	
+		<div class="foundation-header">
+			<div class="alert-box">No hay usuarios que mostrar</div>
+		</div>
+		
 	<% end -%>
-	
-	
-	<%= render('schedules/team_roster_prematch_teams', 
-		:the_start_at_label => the_start_at_label, 
-		:the_roster => @the_roster) if is_prematch_visible %>
 	
 
 	</div>
