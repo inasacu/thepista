@@ -5,28 +5,6 @@
 	is_prematch_visible = is_action("team roster")
 %>
 
-
-<div id="main-nav">
-	<ul>
-		<li>
-			<%=link_to("Inicio", widget_home_url)%>
-		</li>
-		<li class="active">
-			<%=link_to("Convocados", 
-			   widget_event_details_path(:event_id => @schedule))%>
-		</li>
-		
-		<%if @current_user%>
-			<li>
-				<%=link_to "Invita a tus amigos a este evento", widget_event_invitation_path(:event_id => @schedule)%>
-			</li>
-		<%end%>
-	
-	</ul>
-</div>
-
-<%= render 'widget/shared/flash_messages'%>
-
 <h4 class="title" style="clear:both">
 	<img align="" alt="Events" src="/assets/icons/events.png" style="height: 16px; width: 16px;">  
 	<%=@schedule.name%>

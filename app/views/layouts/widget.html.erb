@@ -71,13 +71,11 @@
 </head>
 
 <body id="-page" class="">
-
-	<div class="container">
-		<%= yield%>
-	</div>
 	
-	<div class="fixed-msg-bottom">
-		<p>Mas información abajo</p>
+	<%= render 'widget/shared/header' %>
+	
+	<div class="container">		
+		<%= yield%>
 	</div>
 	
 	<%= render 'widget/shared/footer' %>

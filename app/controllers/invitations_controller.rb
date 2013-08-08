@@ -52,28 +52,24 @@ class InvitationsController < ApplicationController
     
     @invitation.email_addresses = @invitation.email_addresses.to_s.strip[0..254] if @invitation.email_addresses.to_s.length > 254
 
-    #if @invitation.save     
           
-      # email_addresses = @invitation.email_addresses || ''
-      emails = email_addresses.gsub(",", " ").split(" ").collect{|email| email.strip }.uniq
-      emails.each{ |email|
-        @the_invitation = Invitation.new
-        @the_invitation.message = (@invitation.message.nil?) ? "No message" : @invitation.message
-        @the_invitation.item = @invitation.item
-        @the_invitation.user = @invitation.user
-        @the_invitation.email_addresses = email
-        
-        @the_invitation.is_from_widget = WidgetHelper.is_widget_form(params[:form_type])
-        if !session[:current_branch].nil?
-          @the_invitation.widget_host = session[:current_branch_real_url]
-        end    
-           
-        @the_invitation.save!
-      }  
-      # @invitation.destroy  
-    
-      flash[:notice] = I18n.t(:invitation_successful_create)
-    #end
+    emails = email_addresses.gsub(",", " ").split(" ").collect{|email| email.strip }.uniq
+    emails.each{ |email|
+      @the_invitation = Invitation.new
+      @the_invitation.message = (@invitation.message.nil?) ? "No message" : @invitation.message
+      @the_invitation.item = @invitation.item
+      @the_invitation.user = @invitation.user
+      @the_invitation.email_addresses = email
+      
+      @the_invitation.is_from_widget = WidgetHelper.is_widget_form(params[:form_type])
+      if !session[:current_branch].nil?
+        @the_invitation.widget_host = session[:current_branch_real_url]
+      end    
+         
+      @the_invitation.save!
+    }  
+  
+    flash[:notice] = I18n.t(:invitation_successful_create)
     
     if WidgetHelper.is_widget_form(params[:form_type])
 		  redirect_to widget_event_invitation_url :event_id => @schedule.id
@@ -81,9 +77,6 @@ class InvitationsController < ApplicationController
 		end
 		
     redirect_to :action => 'new' 
-
-    # end
-    # redirect_to invitations_url
   end  
 
 end

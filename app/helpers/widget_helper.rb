@@ -191,5 +191,37 @@ module WidgetHelper
     
   end
   
+  def get_header_menu_li(schedule=nil)
+    home_li = ""
+	  event_li = ""
+	  invitation_li = ""
+	  
+    case self.controller.action_name
+  	when 'event_invitation' # invitation
+  	  
+  	  home_li = "#{content_tag(:li, link_to('Inicio', widget_home_url))}"
+  	  event_li = "#{content_tag(:li, link_to("Convocados", 
+  	                widget_event_details_path(:event_id => schedule)))}"
+  	  invitation_li = "#{content_tag(:li, link_to("Invita a tus amigos a este evento", 
+  	                    widget_event_invitation_path(:event_id => schedule)), :class => 'active')}"
+  	  
+  	when 'home' # home
+  	  
+  	  home_li = "#{content_tag(:li, link_to('Inicio', widget_home_url), :class => 'active')}"
+  	  
+  	when 'event_details' # event details
+  	  
+  	  home_li = "#{content_tag(:li, link_to('Inicio', widget_home_url))}"
+  	  event_li = "#{content_tag(:li, link_to("Convocados", 
+  	                widget_event_details_path(:event_id => schedule)), :class => 'active')}"
+  	  if current_user
+  	    invitation_li = "#{content_tag(:li, link_to("Invita a tus amigos a este evento", 
+    	                    widget_event_invitation_path(:event_id => schedule)))}"
+  	  end
+  	  
+  	end
+  	return "#{home_li} #{event_li} #{invitation_li}".html_safe
+  end
+  
 end
 

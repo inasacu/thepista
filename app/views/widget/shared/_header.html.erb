@@ -1,44 +1,8 @@
-<% 
-	has_group, the_cup, the_challenge, the_schedule, the_group, the_users, the_user, the_petition, the_home, the_login, the_signup, the_venue, the_message, the_controller_action , the_controller = get_header_navigation
-	# is_cup_visible = (Cup.has_official_cup? or the_maximo) and !is_mobile_browser
-	is_cup_visible = !is_mobile_browser
-	
-	# mobile options
-	div_row = "<div class='row'>".html_safe
-	div_three_columns = "<div class='three columns'>".html_safe
-	div_nine_columns = "<div class='nine columns'>".html_safe
-	div_twelve_columns = "<div class='twelve columns'>".html_safe
-	div_close = "</div>".html_safe
-%>
 
-<div id="zurBar">
-
-	<div class="row">
-
-		<%= is_mobile_browser ? div_twelve_columns : div_three_columns %>
-			<%= link_to(image_tag('haypista_logo.png', options={:style => 'height: 45px; width: 155px;', :align => 'left'}), widget_home_url) unless is_mobile_browser %>
-			<%= link_to(image_tag('haypista_logo_green.png', options={:style => 'height: 45px; width: 155px;', :align => 'left'}), widget_home_url) if is_mobile_browser %>		
-		<%= div_close %>
-
-		<div class="personal_info">
-			<%if current_user%>
-			<p class="personal_info_text">
-				Bienvenido, <%=current_user.name%>
-				<br>
-				
-				<%=link_to("Cerrar sesión", widget_logout_path, :class => "resize_activator")%>
-			</p>
-			<%else%>
-			<a href="#" data-isevent="false" data-ismock="true" data-event="0" 
-			  class="auth_popup">Inicia sesi&oacute;n</a>
-			<%end%>
-		</div>
-		
-	</div>
-
+<div id="main-nav">
+	<ul>
+		<%= get_header_menu_li(@schedule) %>
+	</ul>
 </div>
 
-<br>
-<br>
-
-
+<%= render 'widget/shared/flash_messages'%>
