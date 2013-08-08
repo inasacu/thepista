@@ -112,7 +112,7 @@ class Schedule < ActiveRecord::Base
 	attr_accessible	:starts_at_date, :starts_at_time, :ends_at_date, :ends_at_time
 
 	attr_accessor 	:starts_at_date, :starts_at_time, :ends_at_date, :ends_at_time
-  attr_accessor :ismock, :source_timetable_id, :pos_in_timetable
+  attr_accessor :ismock, :source_timetable_id, :pos_in_timetable, :block_token
 
 	attr_accessor 	:available, :item_id, :item_type, :group_name, :match_status_at, :match_schedule_id
 	attr_accessor   :match_group_id, :match_user_id, :match_type_id, :match_type_name, :match_played, :timeframe
@@ -666,89 +666,134 @@ class Schedule < ActiveRecord::Base
   
   # WIDGET PROJECT ----------------------------
   
-  def self.week_schedules_from_timetables(currentBranch)
+  def self.get_schedules_branch (first_day, last_day, branch)
+		find(:all, :joins => "JOIN groups on groups.id = schedules.group_id",
+				:conditions => ["schedules.archive = false and schedules.starts_at >= ? and schedules.ends_at <= ? and 
+												groups.archive = false and groups.item_id = ? and groups.item_type = ?", 
+												first_day, last_day, branch.id, branch.class.to_s.chomp], :order => 'starts_at')
+	end
+	
+	def self.widget_my_current_schedules(user, branch)
     
-    currentWeekDay = Date.today.wday
-    weekDaysArray = Hash.new
+    self.where("schedules.archive = false and starts_at >= ? 
+                and group_id in (select group_id from groups_users where user_id = ?)", Time.zone.now, user.id)
+        .order("starts_at, group_id")
+        .joins("join groups on schedules.group_id = groups.id")
+        .where("groups.item_type='Branch' and groups.item_id=?", branch.id)
+        
+  end
+  
+  def self.week_schedules_from_timetables(current_branch)
+    
+    current_branch = Branch.find(current_branch.id)
+    
+    # Information about current day
+    current_user_zone = Time.zone.now
+    first_day = current_user_zone.at_beginning_of_month
+		last_day = current_user_zone.at_end_of_month
+		the_day_of_month = first_day
+		
+		# Obtain the holidays
+		the_holidays = Holiday.get_holiday_first_to_last_month(first_day, last_day)
+		the_holiday_day_numbers = []
+		the_holidays.each { |item| the_holiday_day_numbers << item.starts_at.day }
+		is_holiday = false
+		
+		# Set the hash
+		current_week_day = Date.today.wday
+    week_days_hash = Hash.new
     
     # Sets up an array of week days with their corresponding list of schedules
     for i in 0..6 do
-      centreSchedules = Array.new
-      weekDaysArray[(Date.today+i).strftime("%A")] = centreSchedules
+      centre_schedules = Array.new
+      #week_days_hash[(Date.today+i).strftime("%A")] = centre_schedules
+      week_days_hash[(Date.today+i).wday] = {:date => DateTime.new, :schedules => centre_schedules}
     end
     
-    # Obtain real events created in the next 7 days
-    realEvents = self.where("starts_at between ? and ? ", Date.today, Date.today+7)
+    # Obtain real events
+		real_events = get_schedules_branch(Time.zone.now.at_beginning_of_day(), NEXT_WEEK.at_midnight, current_branch)
     
-    realEvents.each do |realEvent|
-       weekDaysArray[realEvent.starts_at.strftime("%A")] << realEvent
+    real_events.each do |real|
+       #week_days_hash[real.starts_at.strftime("%A")] << real
+       week_days_hash[real.starts_at.wday][:schedules] << real
+       week_days_hash[real.starts_at.wday][:date] = real.starts_at
+       week_days_hash[real.starts_at.wday][:date].change({:hour=>0, :min=>0, :sec=>0})
     end
-    
-    # Obtains the timetables of the branch for the following 7 days
-    branchWeekTimetables = Timetable.branch_week_timetables(currentBranch)
-    
-    branchWeekTimetables.each do |timetable|
-      
+		
+		
+		# Obtain timetables from all groups related to the branch
+    branch_timetables = Timetable.branch_week_timetables(current_branch)
+		
+		branch_timetables.each do |timetable|
+		      		  
       if timetable.item.class.to_s=='Group'
-        timetableGroup = timetable.item
+        timetable_group = timetable.item
         
-        mockScheduleStart = timetable.starts_at
-        timetableEnd = timetable.ends_at
-        # to calculate the start and end with the timeframe - not used for now
-        pos_in_timetable = 1
+        # Obtain week day from name of day
+        timetable_week_day = WidgetHelper.week_day_from_description(timetable.type.name)        
+        timetable_datetime = WidgetHelper.datetime_from_week_day(timetable_week_day)
         
-        while mockScheduleStart.to_time < timetableEnd.to_time do
-          mockScheduleEnd = (mockScheduleStart.to_time + timetable.timeframe.hours).to_datetime
-                    
+        # Obtain actual date from week day
+        mock_schedule_start = WidgetController.helpers.convert_to_datetime_zone(timetable_datetime, timetable.starts_at)
+        timetable_end = WidgetController.helpers.convert_to_datetime_zone(timetable_datetime.midnight, timetable.ends_at)
+        
+        while mock_schedule_start.to_time < timetable_end.to_time do
+          
+          mock_schedule_end = (mock_schedule_start.to_time + timetable.timeframe.hours).to_datetime
+          
           schedule = Schedule.new
           #schedule.name = "#{timetableGroup.name} #{mockScheduleStart.strftime('%m/%d/%Y')}"
           schedule.name = "Jornada programada"
-          schedule.starts_at = mockScheduleStart
-          schedule.group = timetableGroup
-          
+          schedule.starts_at = mock_schedule_start
+          schedule.available = (schedule.starts_at > Time.zone.now + MINUTES_TO_RESERVATION )
+          schedule.group = timetable_group
           schedule.ismock = true
           schedule.source_timetable_id = timetable.id
-          schedule.pos_in_timetable = pos_in_timetable
           
-          # Current schedules in certain day - 
-          # Validates if there is a real event with the same datetime
-          alreadyIn = false
-          tempArray = weekDaysArray[mockScheduleStart.strftime("%A")]
-          
-          tempArray.each do |tempSchedule|
-            if tempSchedule.starts_at == schedule.starts_at
-              alreadyIn = true
-              break
+          if schedule.available
+            # Current schedules in certain day - 
+            # Validates if there is a real event with the same datetime
+            already_in = false
+            #temp_array = week_days_hash[mock_schedule_start.strftime("%A")]
+            temp_array = week_days_hash[mock_schedule_start.wday][:schedules]
+
+            temp_array.each do |temp_schedule|
+              if temp_schedule.starts_at == schedule.starts_at
+                already_in = true
+                break
+              end
+            end
+
+            if !already_in
+              #week_days_hash[mock_schedule_start.strftime("%A")] << schedule
+              week_days_hash[mock_schedule_start.wday][:schedules] << schedule
+              week_days_hash[schedule.starts_at.wday][:date] = schedule.starts_at.change({:hour=>0, :min=>0, :sec=>0})
             end
           end
-          
-          if alreadyIn == false
-            weekDaysArray[mockScheduleStart.strftime("%A")] << schedule
-          end
-          
+
           # start for the next event
-          mockScheduleStart = Date.new
-          mockScheduleStart = mockScheduleEnd
-          
-          pos_in_timetable += 1
+          mock_schedule_start = Date.new
+          mock_schedule_start = mock_schedule_end
+
         end
-        
+
       end
-      
+
     end
     
-    return weekDaysArray
+    week_days_hash.sort_by { |k, v| v[:date] }
+    return week_days_hash
     
   end
   
-  def self.takecareof_apuntate(user, isevent, ismock, event_id, event_timetable_id, event_starts_at=nil)
-        
+  def self.takecareof_apuntate(user, isevent, ismock, event_id, source_timetable_id, event_starts_at=nil)
+            
     if !isevent.nil? and (isevent == "true")
       
       if !ismock.nil? and (ismock == "true")
         
         # the event is created
-        source_timetable = Timetable.find(event_timetable_id)
+        source_timetable = Timetable.find(source_timetable_id)
         
         # Group
         group = source_timetable.item
@@ -785,17 +830,13 @@ class Schedule < ActiveRecord::Base
                 
         # event is created and the user is added to the event as an administrator
         if schedule.save and schedule.create_schedule_roles(user)
-          
-          logger.info "ENTRO ACA SE CREO "
-          
+                    
           # the user is added to the event - add record into matches
           Match.create_item_schedule_match(schedule, user)
           return schedule
           
         else
-          
           return nil
-          
         end
         
       else
@@ -813,10 +854,73 @@ class Schedule < ActiveRecord::Base
          
       end # end if is mock
     else
-      logger.info "NO ES EVENTO"
       return nil
     end # end if is event
     
+  end
+  
+  def self.change_user_state(current_user, match_id, newstate)
+    
+    # get match
+    @match = Match.find(match_id)
+
+		# 1 == player is in team one
+		# x == game tied, doesnt matter where player is
+		# 2 == player is in team two      
+		@user_x_two = "1" if (@match.group_id.to_i > 0 and @match.invite_id.to_i == 0)
+		@user_x_two = "X" if (@match.group_score.to_i == @match.invite_score.to_i)
+		@user_x_two = "2" if (@match.group_id.to_i == 0 and @match.invite_id.to_i > 0)
+		
+    
+    # change treatment
+    the_schedule = @match.schedule
+    
+		unless current_user == @match.user or 
+		      (current_user.is_manager_of?(the_schedule) or current_user.is_manager_of?(the_schedule.group))
+			return
+		end
+
+		@type = Type.find(newstate)
+		played = (@type.id == 1 and !@match.group_score.nil? and !@match.invite_score.nil?)
+
+		player_limit = the_schedule.player_limit
+		total_players = the_schedule.the_roster_count		
+		has_player_limit = (total_players >= player_limit)
+		send_last_minute_message = (has_player_limit and NEXT_48_HOURS > the_schedule.starts_at and the_schedule.send_reminder_at.nil?)
+		
+		if send_last_minute_message
+			
+			type_change = [[1,2,-1], [1,3,-1]] 
+			type_change = [[1,2,-1], [1,3,-1], [2,1,1], [3,1,1]] if DISPLAY_FREMIUM_SERVICES
+			send_last_minute_message = false
+			
+			type_change.each do |a, b, change|
+				new_player_limit = total_players + change
+				send_last_minute_message = (@match.type_id == a and @type.id == b and player_limit < new_player_limit) ? true : send_last_minute_message
+			end
+			
+			if send_last_minute_message	
+				the_schedule.last_minute_reminder 
+				the_schedule.send_reminder_at = Time.zone.now
+				the_schedule.save
+			end
+			
+		end
+
+		if @match.update_attributes(:type_id => @type.id, :played => played, :user_x_two => @user_x_two, :status_at => Time.zone.now)
+			# delay instruction was removed because was throwing stack too deep error
+			Scorecard.calculate_user_played_assigned_scorecard(@match.user, the_schedule.group)
+          
+			if DISPLAY_FREMIUM_SERVICES
+				# set fee type_id to same as match type_id
+				the_fee = Fee.find(:all, :conditions => ["debit_type = 'User' and debit_id = ? and item_type = 'Schedule' and item_id = ?", @match.user_id, @match.schedule_id])
+				the_fee.each {|fee| fee.type_id = @type.id; fee.save}
+			end
+			
+		end
+		
+		return the_schedule
+  
   end
 
 end

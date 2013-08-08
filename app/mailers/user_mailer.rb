@@ -5,9 +5,10 @@ class UserMailer < ActionMailer::Base
 	helper ApplicationHelper
 
 	def invitation(invitation)	
+	  
 	  @is_from_widget = invitation.is_from_widget
 	  @widget_host = invitation.widget_host
-	  
+	  	  
 		case invitation.item.class.to_s 
 		when "Group"
 			@subject					= "#{I18n.t(:groups_join)} #{invitation.item.name}"

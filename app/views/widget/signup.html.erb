@@ -33,6 +33,11 @@ div.container{
 			<%= the_form.select(:city_id, City.city_name, {:selected => @user.city_id, :include_blank => false}) %><br/><br/>
 			
 			<input type="hidden" name="form_type" value="widget_form"/>
+			<%= hidden_field_tag 'isevent', @isevent %>
+			<%= hidden_field_tag 'ismock', @ismock %>
+			<%= hidden_field_tag 'event', @event %>
+			<%= hidden_field_tag 'source_timetable_id', @source_timetable_id %>
+			<%= hidden_field_tag 'block_token', @block_token %>
 			
 			<br/><br/>
 			<%= submit_tag("Sign up", :class=>"small_medium nice success button radius") %>

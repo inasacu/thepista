@@ -4,30 +4,43 @@ class WidgetController < ApplicationController
   # filters
   before_filter :get_schedule, :only => [:event_details]
   before_filter :check_redirect, :only => [:home]
+  before_filter :get_match_and_user_x_two, :only => [:set_team]
     
   # add filter for checkin branch in session
   
   helper WidgetHelper
   
   def index
-    @local_url = ENV['THE_HOST']
   end
   
   def home
     
     # Gets the current branch if not present in session
-    if !session[:current_branch]
-      session[:current_branch] = Branch.branch_from_url(request.env["HTTP_REFERER"]) 
+    if session[:current_branch].nil?
+      if !request.env["HTTP_REFERER"].nil?
+        session[:current_branch] = Branch.branch_from_url(request.env["HTTP_REFERER"]) 
+        session[:current_branch_real_url] = request.env["HTTP_REFERER"]
+      else
+        session.delete(:current_branch)
+        render nothing: true
+        return
+      end
     end 
-    
-    # Gets the event to make redirection
-    if params[:inside_redirect]
-      @event_to_redirect = params[:event_id]
-    end
-    
+       
     # Gets the schedules from the branch
-    if session[:current_branch]
+    if !session[:current_branch].nil?
+      
       @schedules_per_weekday = Schedule.week_schedules_from_timetables(session[:current_branch])
+      
+      if @current_user
+        @my_schedules = Schedule.widget_my_current_schedules(current_user, session[:current_branch])
+      end
+      
+    else
+      session.delete(:current_branch)
+      session.delete(:current_branch_real_url)
+      render nothing: true
+      return
     end
     
     render :layout => 'widget'
@@ -39,6 +52,13 @@ class WidgetController < ApplicationController
     @user = User.new
 		if session[:omniauth]
 		  
+		  # info for logic actions
+			@isevent = params[:isevent]
+      @ismock = params[:ismock]
+      @event_id =  params[:event]
+      @source_timetable_id =  params[:source_timetable_id]
+      @block_token = params[:block_token]
+      
 			@user.apply_omniauth(session[:omniauth])
 			@user.valid?
 			render '/widget/signup', :layout => 'widget'
@@ -47,14 +67,6 @@ class WidgetController < ApplicationController
 		  redirect_to widget_home_url
 		end
     
-  end
-  
-  def ajaxtest
-    logger.info "AJAX TEST"
-    respond_to do |format|  
-        format.js  
-    end
-     
   end
   
   def login_check
@@ -67,7 +79,12 @@ class WidgetController < ApplicationController
       session["widgetpista.ismock"] = params[:ismock]
       session["widgetpista.eventid"] =  params[:event]
       session["widgetpista.source_timetable_id"] =  params[:source_timetable_id]
-      session["widgetpista.event_starts_at"] =  Time.zone.at(Base64::decode64(params[:block_token].to_s).to_i)
+      
+      if params[:block_token]
+        block_token = Base64::decode64(params[:block_token].to_s).to_i
+        session["widgetpista.event_starts_at"] =  Time.zone.at(block_token)
+      end
+      
     end
     
   end
@@ -79,26 +96,18 @@ class WidgetController < ApplicationController
   def do_apuntate
     
     if params[:block_token]
-      event_starts_at = Base64::decode64(params[:block_token].to_s).to_time
+      block_token = Base64::decode64(params[:block_token].to_s).to_i
+      event_starts_at = Time.zone.at(block_token)
     end
           
     event = Schedule.takecareof_apuntate(current_user, params[:isevent], params[:ismock], 
                                         params[:event], params[:source_timetable_id], event_starts_at)
     
-    if event
+    if !event.nil?
       redirect_to widget_event_details_url :event_id => event.id
     else
       redirect_to widget_home_url
     end
-    
-  end
-  
-  def change_user_state
-    
-    userid = params[:userid]
-    newstate = params[:newstate]
-    
-    # logic to change state of the user regarding the event
     
   end
   
@@ -126,19 +135,71 @@ class WidgetController < ApplicationController
     
   end
   
+  def change_user_state
+    
+    begin
+      
+      the_schedule = Schedule.change_user_state(current_user, params[:matchid], params[:newstate])
+      
+      if !the_schedule.nil?
+        flash[:notice] = "Se ha cambiado el estado del jugador en el evento"
+    		redirect_to widget_event_details_url :event_id => the_schedule.id
+      else
+        flash[:notice] = "Ha ocurrido un error al cambiar el estado"
+    		redirect_to widget_home_url
+      end
+      
+    rescue => ex
+      
+      logger.error "Excepcion #{ex.message}"
+      
+      flash[:notice] = "Ha ocurrido un error al cambiar el estado"
+  		redirect_to widget_home_url
+  		
+    end
+    
+		return
+		
+	end
+	
+	def set_team 
+		unless is_current_member_of(@match.schedule.group)
+			warning_unauthorized
+			redirect_to widget_home_url
+			return
+		end
+		
+		@user = User.find(current_user)
+
+		played = (@match.type_id.to_i == 1 and !@match.group_score.nil? and !@match.invite_score.nil?)
+
+		if @match.update_attributes(:group_id => @match.invite_id, :invite_id => @match.group_id, 
+		          :played => played, :user_x_two => @user_x_two, :change_id => @user.id, 
+		          :changed_at => Time.zone.now)
+		          
+			Scorecard.calculate_user_played_assigned_scorecard(@match.user, @match.schedule.group)
+			
+		end
+		
+		redirect_to widget_event_details_url :event_id => @match.schedule.id
+    return
+	end
+  
   # getters and others ------------------->
   
   def check_redirect
-    
+      
       if !request.env["HTTP_REFERER"].nil?
         referer_url = URI.escape(request.env["HTTP_REFERER"])
 
         if !URI(referer_url).query.nil?
           params_hash = CGI.parse(URI(request.env["HTTP_REFERER"]).query)
-
-          if params_hash[:invitation_to_event] and params_hash[:event_id]
-            redirect_to widget_event_details_url :event_id => params_hash['event_id'][0]
-            return
+          
+          if !params_hash["invitation_to_event"].nil? and !params_hash["event_id"].nil?
+            if !params_hash["event_id"][0].nil?
+              redirect_to widget_event_details_url :event_id => params_hash["event_id"][0]
+              return
+            end
           end
         end
       end
@@ -150,6 +211,17 @@ class WidgetController < ApplicationController
 		@group = @schedule.group
 		@the_previous = Schedule.previous(@schedule)
 		@the_next = Schedule.next(@schedule)    
+	end
+	
+	def get_match_and_user_x_two
+		@match = Match.find(params[:matchid])
+
+		# 1 == player is in team one
+		# x == game tied, doesnt matter where player is
+		# 2 == player is in team two      
+		@user_x_two = "1" if (@match.group_id.to_i > 0 and @match.invite_id.to_i == 0)
+		@user_x_two = "X" if (@match.group_score.to_i == @match.invite_score.to_i)
+		@user_x_two = "2" if (@match.group_id.to_i == 0 and @match.invite_id.to_i > 0)
 	end
   
 end

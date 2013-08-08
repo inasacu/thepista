@@ -49,7 +49,7 @@ class Scorecard < ActiveRecord::Base
     total_schedules_played = group.games_played
 
     if total_schedules_played.to_i > 1
-      previous_to_group_scorecard(group)  
+      previous_to_group_scorecard(group)
       update_group_user_ranking(group, true)
     end
 

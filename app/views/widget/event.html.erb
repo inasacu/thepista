@@ -15,11 +15,17 @@
 			<%=link_to("Convocados", 
 			   widget_event_details_path(:event_id => @schedule))%>
 		</li>
-		<li>
-			<%=link_to "Invita a tus amigos a este evento", widget_event_invitation_path(:event_id => @schedule)%>
-		</li>
+		
+		<%if @current_user%>
+			<li>
+				<%=link_to "Invita a tus amigos a este evento", widget_event_invitation_path(:event_id => @schedule)%>
+			</li>
+		<%end%>
+	
 	</ul>
 </div>
+
+<%= render 'widget/shared/flash_messages'%>
 
 <h4 class="title" style="clear:both">
 	<img align="" alt="Events" src="/assets/icons/events.png" style="height: 16px; width: 16px;">  
@@ -79,14 +85,10 @@
 	<% end -%>
 	
 	
-	<%= render('schedules/team_roster_prematch_teams', :the_start_at_label => the_start_at_label, :the_roster => @the_roster) if is_prematch_visible %>
+	<%= render('schedules/team_roster_prematch_teams', 
+		:the_start_at_label => the_start_at_label, 
+		:the_roster => @the_roster) if is_prematch_visible %>
 	
-
-	<%= render "shared/previous_next_message_zurb", 
-				:schedule => @schedule, 
-				:the_previous => @the_previous, 
-				:the_next => @the_next, 
-				:display_previous_next => !@group.is_branch? %>
 
 	</div>
 </div>

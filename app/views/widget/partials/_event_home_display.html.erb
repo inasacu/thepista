@@ -1,0 +1,34 @@
+<tr>
+	<td>
+		<%if schedule.ismock %>
+
+		<%=schedule.name%>
+
+		<%else%>
+
+		<%=link_to(sanitize(limit_url_length(schedule.name, 25)), 
+		   widget_event_details_path(:event_id => schedule))%>
+
+		<%end%>
+
+		<br>
+		<%=set_content_tag_safe('span', "#{get_missing_detail(schedule)}", 'date')%>
+	</td>
+
+	<td class="name_and_date">
+		<%=schedule.group.name%>
+		<br>
+		<span class="date"><%=schedule.sport.name%></span>
+	</td>
+
+	<td class="name_and_date">
+		<%=nice_day_time_wo_year_exact(schedule.starts_at)%>
+		<br>
+		<span class="date"><%=get_installation_name(schedule)%></span>
+	</td>
+
+	<td>
+		<%= get_event_options(schedule) %>
+	</td>
+
+</tr>

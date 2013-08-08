@@ -82,9 +82,16 @@ class Timetable < ActiveRecord::Base
 	# WIDGET PROJECT ----------------------------
 	
 	def self.branch_week_timetables(branch)
+		self.where("timetables.archive = false and timetables.item_type = 'Group'")
+		.joins("join groups on groups.id=timetables.item_id")
+		.where("groups.item_type='Branch' and groups.item_id=?", branch.id)
+	end
+	
+	def self.branch_week_timetables_old(branch)
+	  
 	  self.joins("join groups on groups.id=timetables.item_id")
         .where("groups.item_id=?", branch.id)
-	      .where("timetables.starts_at between ? and ?", Date.today, Date.today+7)
+	      .where("timetables.starts_at >= ? and timetables.starts_at <= ?", Time.zone.now, NEXT_WEEK)
 	end
   
 end

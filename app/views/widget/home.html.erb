@@ -1,18 +1,109 @@
 
-<%= render :partial => "widget/partials/events", :locals => {:schedules_per_weekday => @schedulesPerWeekDay }%>
-
-<script>
-	<% if @event_to_redirect %>
-		if(window.opener) {
-		    window.opener.location = <%= widget_event_details_url :event_id => @event_to_redirect%>;
-			window.close();
-		}
+<div class="row" style="margin-top:30px">
+	<div class="twelve columns">
 		
-	<% else %>
+		<%= render 'widget/shared/flash_messages'%>
+		
+		<%if @current_user%>
+		
+			<h4 class="title">	
+				Tus eventos
+			</h4>
+			
+			<%if !@my_schedules.nil? and @my_schedules.any?%>
+			
+			<table>
+			
+				<tr class="week_day_parent">
+					<td>
+						<%= "(#{@my_schedules.length}) Eventos"%>
+						<a href="#" class="toogle_day_view_link">Cambiar visibilidad</a>
+					</td>
+				</tr>
+				
+				<tr class="week_day_detail">
+					<td>
+						<table>
+							<tbody>
+								<%@my_schedules.each do |my_schedule|%>
+
+								<%= render :partial => "widget/partials/event_home_display", :locals => {:schedule => my_schedule} %>
+
+								<%end # Iterates over user events%>
+							</tbody>
+						</table>
+					</td>
+				</tr>
+			
+			</table>
+				
+			<%else%>
+
+				<div class="foundation-header">
+					<div class="alert-box">No estas apuntado a ning&uacute;n evento</div>
+				</div>
+
+			<%end # if the user has events%>
+			
+		<%end # if the user is logged in%>
+		
+		<h4 class="title">	
+			Próximos eventos
+		</h4>
+		
+		<%if !@schedules_per_weekday.nil? and @schedules_per_weekday.any?%>
+		
+		<table>
+
+		<%@schedules_per_weekday.each do |index, weekday_hash|%>
+			
+			<%if weekday_hash[:schedules].any?%>
+			
+			<tr class="week_day_parent">
+				<td>
+					<%= "(#{weekday_hash[:schedules].length}) #{WidgetHelper.week_day_name_from_number(index)}"%>
+					<a href="#" class="toogle_day_view_link">Cambiar visibilidad</a>
+				</td>
+			</tr>
+			
+			<tr class="week_day_detail">
+				<td>
+					<table>
+						<tbody>
+							<%weekday_hash[:schedules].each do |schedule|%>
+
+							<%= render :partial => "widget/partials/event_home_display", :locals => {:schedule => schedule} %>
+
+							<%end # iterate over events of the day%>
+						</tbody>
+					</table>
+				</td>
+			</tr>
+			<%end # if there is events for this day%>
+			
+		<%end # Iterates over map of events%>
+
+		</table>
+		
+		
+		<%else%>
+		
+			<div class="foundation-header">
+				<div class="alert-box">No hay eventos disponibles</div>
+			</div>
+		
+		<%end # if the map of events could not be obtained%>
+		
+		
+	</div>
+</div>
+
+
+	<script>
 		if(window.opener) {
 		    window.opener.location.reload(true);
 		    window.close();
 		}
-	<% end %>
+	</script>
 	
-</script>
+
