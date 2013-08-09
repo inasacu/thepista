@@ -19,7 +19,8 @@ Thepista::Application.routes.draw do
   match '/widget/:matchid/change_team' => 'widget#set_team', :as => :widget_set_team
   
   match "/widget/event/:event_id", :to => 'widget#event_details', :as => :widget_event_details
-  match "/widget/event/:event_id/noshow", :to => 'widget#event_details_noshow', :as => :widget_event_noshow_details
+  match "/widget/event/:event_id/noshow", :to => 'widget#event_details_noshow', :as => :widget_event_details_noshow
+  match "/widget/event/:event_id/noshow", :to => 'widget#event_details_lastminute', :as => :widget_event_details_lastminute
   
   match "/widget/event/:event_id/invitation", :to => 'widget#event_invitation', :as => :widget_event_invitation
   

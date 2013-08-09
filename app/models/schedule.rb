@@ -253,7 +253,7 @@ class Schedule < ActiveRecord::Base
     Match.count(:joins => "left join users on users.id = matches.user_id left join types on types.id = matches.type_id left join scorecards on scorecards.user_id = matches.user_id",
     :conditions => ["matches.schedule_id = ?  and matches.archive = false and matches.type_id in (3,4) and scorecards.archive = false and scorecards.group_id = ?", self.id, self.group_id])
   end
-
+  
   def the_unavailable_count
     Match.count(:joins => "left join users on users.id = matches.user_id left join types on types.id = matches.type_id left join scorecards on scorecards.user_id = matches.user_id",
     :conditions => ["matches.schedule_id = ?  and matches.archive = false and matches.type_id in (1,2,3,4) and scorecards.archive = false and scorecards.group_id = ?", self.id, self.group_id])
@@ -647,6 +647,17 @@ class Schedule < ActiveRecord::Base
     message.save!
 
   end
+  
+  
+  def get_status_count
+    count_hash = Hash.new
+    
+    count_hash = {:roster_count => self.the_roster_count, 
+    :no_show_count => self.the_no_show_count, 
+    :last_minute_count => self.the_last_minute_count}
+      
+    return count_hash
+  end
 
   private
 
@@ -927,5 +938,5 @@ class Schedule < ActiveRecord::Base
 		return the_schedule
   
   end
-
+  
 end

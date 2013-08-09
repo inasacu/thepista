@@ -191,53 +191,44 @@ module WidgetHelper
     
   end
   
-  def get_header_menu_li(schedule=nil)
+  def get_header_menu_li(schedule=nil, status_count_hash=nil)
     home_li = ""
 	  event_li = ""
 	  event_noshow_li = ""
 	  invitation_li = ""
 	  
-    case self.controller.action_name
-  	when 'event_invitation' # invitation
-  	  
-  	  home_li = "#{content_tag(:li, link_to('Inicio', widget_home_url))}"
-  	  event_li = "#{content_tag(:li, link_to("Convocados", 
-  	                widget_event_details_path(:event_id => schedule)))}"
-  	  event_noshow_li = "#{content_tag(:li, link_to("Ausentes", 
-              	  widget_event_noshow_details_path(:event_id => schedule)))}"
-  	  invitation_li = "#{content_tag(:li, link_to("Invita a tus amigos a este evento", 
-  	                    widget_event_invitation_path(:event_id => schedule)), :class => 'active')}"
-  	  
-  	when 'home' # home
-  	  
-  	  home_li = "#{content_tag(:li, link_to('Inicio', widget_home_url), :class => 'active')}"
-  	  
-  	when 'event_details' # event details
-  	  
-  	  home_li = "#{content_tag(:li, link_to('Inicio', widget_home_url))}"
-  	  event_li = "#{content_tag(:li, link_to("Convocados", 
-  	                widget_event_details_path(:event_id => schedule)), :class => 'active')}"
-  	  event_noshow_li = "#{content_tag(:li, link_to("Ausentes", 
-                         widget_event_noshow_details_path(:event_id => schedule)))}"
+	  menu_booleans = Hash.new
+	  menu_booleans = {:is_home => (self.controller.action_name == 'home'),
+	                   :is_event_default =>  (self.controller.action_name == 'event_details'),
+	                   :is_event_noshow =>  (self.controller.action_name == 'event_details_noshow'),
+	                   :is_event_lastminute =>  (self.controller.action_name == 'event_details_lastminute'),
+	                   :is_event_invitation =>  (self.controller.action_name == 'event_invitation')}
+	  
+	  home_li = "#{content_tag(:li, link_to('Inicio', widget_home_url), 
+	  :class => menu_booleans[:is_home] ? 'active' : '')}"
+	  
+	  if !schedule.nil? and !status_count_hash.nil?
+	    event_li = "#{content_tag(:li, link_to("Convocados (#{status_count_hash[:roster_count]})", 
+  	  widget_event_details_path(:event_id => schedule)), 
+  	  :class => menu_booleans[:is_event_default] ? 'active' : '')}" if status_count_hash[:roster_count]>0
+      
+  	  event_noshow_li = "#{content_tag(:li, link_to("Ausentes (#{status_count_hash[:no_show_count]})", 
+      widget_event_details_noshow_path(:event_id => schedule)),
+      :class => menu_booleans[:is_event_noshow] ? 'active' : '')}" if status_count_hash[:no_show_count]>0
+
+      event_last_minute_li = "#{content_tag(:li, link_to("Ultima hora (#{status_count_hash[:last_minute_count]})", 
+      widget_event_details_lastminute_path(:event_id => schedule)), 
+      :class => menu_booleans[:is_event_lastminute] ? 'active' : '')}" if status_count_hash[:last_minute_count]>0
+
   	  if current_user
   	    invitation_li = "#{content_tag(:li, link_to("Invita a tus amigos a este evento", 
-    	                    widget_event_invitation_path(:event_id => schedule)))}"
+    	  widget_event_invitation_path(:event_id => schedule)),
+    	  :class => menu_booleans[:is_event_invitation] ? 'active' : '')}"
   	  end
-  	  
-  	when 'event_details_noshow' # event details ausentes
-  	  
-  	  home_li = "#{content_tag(:li, link_to('Inicio', widget_home_url))}"
-  	  event_li = "#{content_tag(:li, link_to("Convocados", 
-  	                widget_event_details_path(:event_id => schedule)))}"
-  	  event_noshow_li = "#{content_tag(:li, link_to("Ausentes", 
-                         widget_event_noshow_details_path(:event_id => schedule)), :class => 'active')}"
-  	  if current_user
-  	    invitation_li = "#{content_tag(:li, link_to("Invita a tus amigos a este evento", 
-    	                    widget_event_invitation_path(:event_id => schedule)))}"
-  	  end
-  	  
-  	end
-  	return "#{home_li} #{event_li} #{event_noshow_li} #{invitation_li}".html_safe
+	  end
+	  
+  	return "#{home_li} #{event_li} #{event_noshow_li} #{event_last_minute_li} #{invitation_li}".html_safe
+  	
   end
   
 end

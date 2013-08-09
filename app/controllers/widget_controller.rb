@@ -119,6 +119,7 @@ class WidgetController < ApplicationController
 		@the_roster_infringe = @schedule.the_roster_infringe
 		@the_roster_last_minute_infringe = @schedule.the_last_minute_infringe
 		@the_last_played = @schedule.the_roster_last_played
+		@status_count_hash = @schedule.get_status_count
     
     render "/widget/event", :layout => 'widget'
   end
@@ -130,10 +131,24 @@ class WidgetController < ApplicationController
 		@the_roster_infringe = @schedule.the_roster_infringe
 		@the_roster_last_minute_infringe = @schedule.the_last_minute_infringe
 		@the_last_played = @schedule.the_roster_last_played
+		@status_count_hash = @schedule.get_status_count
 		
 		set_the_template('schedules/team_roster')
 		render "/widget/event", :layout => 'widget'
   end
+  
+  def event_details_lastminute
+		store_location
+		@has_a_roster = !(@schedule.last_minute.empty?)
+		@the_roster = @schedule.the_last_minute
+		@the_roster_infringe = @schedule.the_roster_infringe
+		@the_roster_last_minute_infringe = @schedule.the_last_minute_infringe
+		@the_last_played = @schedule.the_roster_last_played
+		@status_count_hash = @schedule.get_status_count
+		
+		set_the_template('schedules/team_roster')
+		render "/widget/event", :layout => 'widget'
+	end
   
   def event_invitation
     
@@ -141,6 +156,7 @@ class WidgetController < ApplicationController
 
     if (params[:event_id])
       @schedule = Schedule.find(params[:event_id])
+      @status_count_hash = @schedule.get_status_count
     end
 
     render "/widget/new_invitation", :layout => 'widget'
@@ -155,7 +171,16 @@ class WidgetController < ApplicationController
       
       if !the_schedule.nil?
         flash[:notice] = "Se ha cambiado el estado del jugador en el evento"
-    		redirect_to widget_event_details_url :event_id => the_schedule.id
+        
+        status_count_hash = the_schedule.get_status_count
+        
+        redirect_url = widget_event_details_lastminute_url :event_id => the_schedule.id if status_count_hash[:last_minute_count] > 0
+        
+        redirect_url = widget_event_details_noshow_url :event_id => the_schedule.id if status_count_hash[:no_show_count] > 0
+        
+        redirect_url = widget_event_details_url :event_id => the_schedule.id if status_count_hash[:roster_count] > 0
+        
+    		redirect_to redirect_url
       else
         flash[:notice] = "Ha ocurrido un error al cambiar el estado"
     		redirect_to widget_home_url
