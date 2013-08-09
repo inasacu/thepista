@@ -841,16 +841,21 @@ class Schedule < ActiveRecord::Base
         
       else
          
-         #event is obtained
-         schedule = Schedule.find(event_id)
+         if !event_id.nil?
+           #event is obtained
+            schedule = Schedule.find(event_id)
+
+            # user is added to the group
+            Group.add_user_togroup(user, schedule.group)
+
+            # the user is added to the event - add record into matches
+            Match.create_item_schedule_match(schedule, user)
+
+            return schedule
+         else
+           return nil
+         end
          
-         # user is added to the group
-         Group.add_user_togroup(user, schedule.group)
-         
-         # the user is added to the event - add record into matches
-         Match.create_item_schedule_match(schedule, user)
-          
-         return schedule
          
       end # end if is mock
     else

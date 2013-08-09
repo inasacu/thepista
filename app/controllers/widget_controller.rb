@@ -55,7 +55,7 @@ class WidgetController < ApplicationController
 		  # info for logic actions
 			@isevent = params[:isevent]
       @ismock = params[:ismock]
-      @event_id =  params[:event]
+      @event =  params[:event]
       @source_timetable_id =  params[:source_timetable_id]
       @block_token = params[:block_token]
       
