@@ -1,7 +1,8 @@
-# to run:    heroku run rake the_archive_dependent --app zurb
+# to run:    heroku run rake the_end_of_season_group_archive --app zurb
 
-desc "ARCHIVE dependent records to already archived"
-task :the_archive_dependent => :environment do |t|
+desc "ARCHIVE all records related to group then reset group archive to false"
+task :the_end_of_season_group_archive => :environment do |t|
+
 
 	# archive group 
 	the_archives = []
