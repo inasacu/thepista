@@ -40,7 +40,13 @@
 				var disqus_url = '<%= the_url_for %>';				
 				var disqus_category_id = '<%= disqus_category_id %>';
 			
-				var disqus_config = function () { this.language = "<%= disqus_language %>"; };
+				var disqus_config = function () { 
+					this.language = "<%= disqus_language %>"; 
+					this.callbacks.onReady = [function() {
+						Widget.gui.postSizeFunction();
+						//$("#dsq1").contents().find( "a[data-action='logout']" ).attr('href','holaquetal');
+					}];	
+				};
 			
 
 				/* * * DON'T EDIT BELOW THIS LINE * * */
