@@ -42,6 +42,8 @@ gem 'omniauth-google'
 gem 'omniauth-windowslive'
 gem 'omniauth-yahoo'
 
+gem 'pusher'
+
 
 # Gems used only for assets and not required
 # in production environments by default.
