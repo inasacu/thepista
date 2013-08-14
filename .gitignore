@@ -16,3 +16,5 @@
 heroku.tmproj
 /*.tmproj
 /heroku.tmproj
+.DS_Store
+app/.DS_Store
