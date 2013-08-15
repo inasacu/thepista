@@ -295,7 +295,7 @@ class Scorecard < ActiveRecord::Base
   end
   
 	def self.has_played_schedule?(group)
-			!find(:first, :conditions => ["group_id = ? and played > 0", group]).nil?
+			!find(:first, :joins => "JOIN schedules on scorecards.group_id = schedules.group_id", :conditions => ["schedules.played = true and scorecards.group_id = ? and scorecards.played > 0", group]).nil?
 	end
 	
   def self.users_group_scorecard(group, sort="")
