@@ -116,14 +116,13 @@ class Schedule < ActiveRecord::Base
 	attr_accessor   :match_group_id, :match_user_id, :match_type_id, :match_type_name, :match_played, :timeframe
 	attr_accessor		:ismock
 	
-	
-	
-  before_update   :set_time_to_utc, :get_starts_at, :get_ends_at
+  before_update   :get_starts_at, :get_ends_at, :validate
   
   # add some callbacks, after_initialize :get_starts_at # convert db format to accessors
-	before_create			:get_starts_at, :get_ends_at
+	before_create			:get_starts_at, :get_ends_at, :validate
   before_validation :get_starts_at, :get_ends_at, :set_starts_at, :set_ends_at 
 	
+	validates_time		:ends_at,			:after => :starts_at
 	
 	def get_starts_at
 		self.starts_at ||= Time.now  
@@ -652,17 +651,17 @@ class Schedule < ActiveRecord::Base
 
   private
 
-  def set_time_to_utc
-    # self.starts_at = self.starts_at.utc
-    # self.ends_at = self.ends_at.utc
-  end
+  # def set_time_to_utc
+  #   # self.starts_at = self.starts_at.utc
+  #   # self.ends_at = self.ends_at.utc
+  # end
 
-  def validate
-    if self.archive == false
-      self.errors.add(:reminder_at, I18n.t(:must_be_before_starts_at)) if self.reminder_at >= self.starts_at 
-      self.errors.add(:starts_at, I18n.t(:must_be_before_ends_at)) if self.starts_at >= self.ends_at
-      self.errors.add(:ends_at, I18n.t(:must_be_after_starts_at)) if self.ends_at <= self.starts_at 
-    end
-  end
+  # def validate
+  #   if self.archive == false
+  #     self.errors.add(:reminder_at, I18n.t(:must_be_before_starts_at)) if self.reminder_at >= self.starts_at 
+  #     self.errors.add(:starts_at, I18n.t(:must_be_before_ends_at)) if self.starts_at >= self.ends_at
+  #     self.errors.add(:ends_at, I18n.t(:must_be_after_starts_at)) if self.ends_at <= self.starts_at 
+  #   end
+  # end
 
 end

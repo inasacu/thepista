@@ -43,6 +43,8 @@ gem 'omniauth-google'
 gem 'omniauth-windowslive'
 gem 'omniauth-yahoo'
 
+gem 'validates_timeliness', '~> 3.0'
+
 # gem 'pusher'
 
 

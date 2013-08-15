@@ -90,7 +90,7 @@
 	
 	<%= render 'utilities/google_analytics' %>
 	<%#= render 'utilities/click_desk' %>
-	<%= render 'utilities/zopim' %>
+	<%= render 'utilities/zopim' if Rails.env.production? %>
 	
 	
 </body>

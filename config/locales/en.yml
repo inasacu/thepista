@@ -199,34 +199,34 @@ en:
      comment: Comment   
      comment_not_saved: Comments NOT saved!!!   
      comment_saved: Comments save!!!
-     company:  Company
-     company_description: Name of Company  
-     company:  Company
+     company:  Website
+     company_description: Name of Website  
+     company:  Website
      company_options:  Options
      company_stage_set:  Group Stage Update
      company_stage_set_full:  Group Stage Update
-     companies:   Companies
-     companies_create:  New Company
-     companys_create:  New Company
-     companies_destroy:  Remove Company
-     companies_edit:  Edit Company
-     companies_index:   Companies
+     companies:   Websites
+     companies_create:  New Website
+     companys_create:  New Website
+     companies_destroy:  Remove Website
+     companies_edit:  Edit Website
+     companies_index:   Websites
      companies_index_option: Options
-     companies_invitations_create:  Invite a friend to the Company
-     companies_join:  Join an Company
-     companies_list:  Rest of the Companies
-     companies_new:  New Company
+     companies_invitations_create:  Invite a friend to the Website
+     companies_join:  Join an Website
+     companies_list:  Rest of the Websites
+     companies_new:  New Website
      companies_new_option: Options
-     companies_no:  No Company to display
-     companys_no:  No Company to display
-     companies_none:  No Companies.
-     companys_none:  No Companies.
-     companies_options_without: "What options do you have since you are not on an company?"
+     companies_no:  No Website to display
+     companys_no:  No Website to display
+     companies_none:  No Websites.
+     companys_none:  No Websites.
+     companies_options_without: "What options do you have since you are not on an website?"
      companies_option:  Options
-     companies_search: Search for Companies
-     companies_search_to_join: Search for an company to join. 
-     companies_show:  Show Company
-     companies_update: Edit Company
+     companies_search: Search for Websites
+     companies_search_to_join: Search for an website to join. 
+     companies_show:  Show Website
+     companies_update: Edit Website
      complete:  complete 
      connect:  Connect
      connect_to_your_linkedin:  Connect your linkedIn Account
@@ -923,7 +923,7 @@ en:
      left_post_on_forum: Has left a COMMENT on   
      lighting:  Lighting
      lighting_description: (Is there lighting in the pista?) 
-     linkedin_headline:  Job Title at Company   
+     linkedin_headline:  Job Title at Website   
      linkedin_profile:  LinkedIn 
      linkedin_update_status:  is using HayPista.com to practice sports.
      list: List   

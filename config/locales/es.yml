@@ -203,35 +203,35 @@ es:
      comment: Comentario   
      comment_not_saved: Comentarios no guardados!!!   
      comment_saved: Comentarios guardados!!!  
-     company:  Empresa 
-     company_description: Nombre de empresa
-     companies:   Empresa
+     company:  Sitio Web 
+     company_description: Nombre de sitio web
+     companies:   Sitio Web
      company_options:  Opciones
-     company_stage_set:  Actualiza al empresa
+     company_stage_set:  Actualiza al sitio web
      company_stage_set_full:  Actualiza el branches
-     companies:   Empresas
-     companies_create:  "¡Hazte una empresa!"
-     companys_create:  "¡Hazte una empresa!"
-     companies_destroy:  Borra la empresa
-     companies_edit:  Cambia la empresa
-     companies_index:   Empresa
+     companies:   Sitios Web
+     companies_create:  "¡Hazte un sitio web!"
+     companys_create:  "¡Hazte un sitio web!"
+     companies_destroy:  Borra la sitio web
+     companies_edit:  Cambia la sitio web
+     companies_index:   Sitio Web
      companies_index_option: Opciones 
-     companies_invitations_create:  Invita a un amigo al empresa
-     companies_join:  Unete a la empresa
-     companies_list:  Resto de empresas
-     companies_new:  Nueva empresa
+     companies_invitations_create:  Invita a un amigo al sitio web
+     companies_join:  Unete a la sitio web
+     companies_list:  Resto de sitios web
+     companies_new:  Nueva sitio web
      companies_new_option: Opciones 
-     companies_no:  Ninguna empresa para mostrar
-     companys_no:  Ninguna empresa para mostrar
-     companies_none:  Ninguna empresa.
-     companys_none:  Ninguna empresa.
-     companies_options_without: "¿Qué opciones tienes ya que no tienes una empresa?"
-     companies_options_without: "Parece que no tienes una empresa, puedes hacer lo siguiente:"
+     companies_no:  Ningun sitio web para mostrar
+     companys_no:  Ningun sitio web para mostrar
+     companies_none:  Ningun sitio web.
+     companys_none:  Ningun sitio web.
+     companies_options_without: "¿Qué opciones tienes ya que no tienes un sitio web?"
+     companies_options_without: "Parece que no tienes un sitio web, puedes hacer lo siguiente:"
      companies_option:  Opciones 
      companies_search: Busqueda de companies
-     companies_search_to_join: Puedes buscar una empresa a quien unierte. 
-     companies_show:  Mostrar empresa
-     companies_update: Cambia la empresa
+     companies_search_to_join: Puedes buscar un sitio web a quien unierte. 
+     companies_show:  Mostrar sitio web
+     companies_update: Cambia la sitio web
      complete:  completo
      connect:  Conectar
      connect_to_your_linkedin:  Conecta tu cuenta de LinkedIn
@@ -934,7 +934,7 @@ es:
      left_post_on_forum: Ha dejado un COMENTARIO en 
      lighting:  Luces
      lighting_description: (Hay luces en la pista?) 
-     linkedin_headline:  Titulo en la empresa
+     linkedin_headline:  Titulo en la sitio web
      linkedin_profile:  LinkedIn
      linkedin_update_status:  esta utilizando http://haypista.com para practicar deportes.
      list: Listado   
