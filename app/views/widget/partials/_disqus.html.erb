@@ -42,11 +42,12 @@
 			
 				var disqus_config = function () { 
 					this.language = "<%= disqus_language %>"; 
+										
 					this.callbacks.onReady = [function() {
 						Widget.gui.postSizeFunction();
 					}];	
 					this.callbacks.onNewComment = [function() {
-					     Widget.gui.postSizeFunction();
+						Widget.gui.postSizeFunction(true);
 					}];
 				};
 			

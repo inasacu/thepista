@@ -5,6 +5,12 @@
 	is_prematch_visible = is_action("team roster")
 %>
 
+<% if @should_close_due_disqus %>
+<script>
+	window.close();
+</script>
+<% end %>
+
 <h4 class="title" style="clear:both">
 	<img align="" alt="Events" src="/assets/icons/events.png" style="height: 16px; width: 16px;">  
 	<%=@schedule.name%>
@@ -13,37 +19,7 @@
 <div class="row">
 	<div class="twelve columns">
 		<table>
-			<td>
-				<%if @schedule.ismock %>
-				
-				<%=@schedule.name%>
-				
-				<%else%>
-				
-				<%=link_to(sanitize(limit_url_length(@schedule.name, 25)), 
-				   widget_event_details_path(:event_id => @schedule))%>
-				
-				<%end%>
-				
-				<br>
-				<%=set_content_tag_safe('span', "#{get_missing_detail(@schedule)}", 'date')%>
-			</td>
-			
-			<td class="name_and_date">
-				<%=@schedule.group.name%>
-				<br>
-				<span class="date"><%=@schedule.sport.name%></span>
-			</td>
-			
-			<td class="name_and_date">
-				<%=nice_day_time_wo_year_exact(@schedule.starts_at)%>
-				<br>
-				<span class="date"><%=get_installation_name(@schedule)%></span>
-			</td>
-			
-			<td>
-				<%= get_event_options(@schedule) %>
-			</td>
+			<%= render :partial => "widget/partials/event_home_display", :locals => {:schedule => @schedule} %>
 		</table>
 	</div>
 </div>
@@ -72,5 +48,5 @@
 </div>
 
 <div class="row">
-	<%= render 'utilities/disqus_display', :the_item => @schedule if @schedule %>	
+	<%= render 'widget/partials/disqus', :the_item => @schedule if @schedule %>	
 </div>

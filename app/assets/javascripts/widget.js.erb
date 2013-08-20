@@ -13,11 +13,16 @@ Widget.gui = (function(){
 	  return window.open(url, name, "directories=no,titlebar=no,toolbar=no,location=no,status=no,menubar=no,scrollbars=no,resizable=no,width="+width+",height="+height+",toolbar=no,left="+left+",top="+top);
 	};
 	
-	var postSize = function(){
+	var postSize = function(isDisqusAfterMessage){
 		var target = parent.postMessage ? parent : (parent.document.postMessage ? parent.document : undefined);
 		if (typeof target != "undefined" && document.body.scrollHeight){
 			//target.postMessage(document.getElementById("-page").scrollHeight, "*");
-			target.postMessage($("#-page").height()+50, "*");
+			if(!isDisqusAfterMessage){
+				target.postMessage($("#-page").height()+50, "*");
+			}
+			else{
+				target.postMessage($("#-page").height()+100, "*");
+			}
 		}
 	};
 	
@@ -67,7 +72,7 @@ Widget.gui = (function(){
 			//	$('.'+linkClassArray[i]).bind("click", postSize);
 			//}
 			
-			$('a').bind("click", postSize);
+			$('body').bind("click", postSize);
 		},
 		postSizeFunction: postSize
 	};

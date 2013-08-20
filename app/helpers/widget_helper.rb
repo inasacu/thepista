@@ -42,7 +42,7 @@ module WidgetHelper
 	  todayWday = (date_time.wday == 0) ? 7 : date_time.wday
 	  
 	  # if is this week or next week
-	  if wday < date_time.wday
+	  if wday < todayWday
 	    offset = 1
 	  end
 	  	  
@@ -229,6 +229,26 @@ module WidgetHelper
 	  
   	return "#{home_li} #{event_li} #{event_noshow_li} #{event_last_minute_li} #{invitation_li}".html_safe
   	
+  end
+  
+  def event_home_link(schedule=nil)
+    
+    the_link = ""
+    
+    if !schedule.nil?
+      if !schedule.ismock
+        status_count_hash = schedule.get_status_count
+        redirect_url = widget_event_details_lastminute_url :event_id => schedule.id if status_count_hash[:last_minute_count] > 0
+        redirect_url = widget_event_details_noshow_url :event_id => schedule.id if status_count_hash[:no_show_count] > 0
+        redirect_url = widget_event_details_url :event_id => schedule.id if status_count_hash[:roster_count] > 0
+        the_link = "#{link_to(sanitize(limit_url_length(schedule.name, 25)), redirect_url)}" 
+      else
+        the_link = "#{schedule.name}" 
+      end
+      the_link = "#{the_link} <br> #{set_content_tag_safe('span', "#{get_missing_detail(schedule)}", 'date')}" 
+    end 
+    
+    return the_link.html_safe
   end
   
 end
