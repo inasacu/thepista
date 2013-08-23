@@ -22,6 +22,8 @@ gem "hirefire-resource"
 gem 'paperclip'
 gem 'composite_primary_keys'
 
+gem 'newrelic_rpm'
+
 gem 'jquery-rails', '2.3.0'
 gem 'google_map'
 gem 'acts_as_tree', '0.1.1'

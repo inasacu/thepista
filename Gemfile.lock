@@ -106,6 +106,7 @@ GEM
     multi_json (1.7.7)
     multi_xml (0.5.4)
     multipart-post (1.2.0)
+    newrelic_rpm (3.6.6.147)
     nokogiri (1.5.10)
     oauth (0.4.7)
     oauth2 (0.8.1)
@@ -237,6 +238,7 @@ DEPENDENCIES
   hoptoad_notifier
   httparty (>= 0.8.1)
   jquery-rails (= 2.3.0)
+  newrelic_rpm
   omniauth
   omniauth-browserid
   omniauth-facebook
