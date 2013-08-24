@@ -6,6 +6,11 @@
 	is_group_member = group ? is_current_member_of(group) : false
 	has_group = group ? true : false
 	
+	is_group_visible = true
+	is_group_visible = group.is_branch? ? current_user.is_manager_of?(group) : is_group_visible
+	
+	
+	the_active_players = ""
 	the_group_name = ""	
 	the_manager_label = ""
 	the_confirmation = ""
@@ -30,19 +35,20 @@
 						#{content_tag(:span, group.marker.city, :class =>'date')} <br/> 
 						#{content_tag(:span, group.sport.name)}"
 						
-	the_manager_city = "#{item_list(group.all_the_managers)} <br/> #{I18n.t(:has_group_users, :count => object_counter(group.users))}"
+	the_manager_city = "#{item_list(group.all_the_managers)} <br/> #{I18n.t(:has_group_users, :count => object_counter(group.users) - DEFAULT_GROUP_USERS.length)}"
 	the_manager_city = "#{item_name_link(the_company)}"  if group.is_branch?
 	
 	the_scorecard_players_count = "#{link_to(label_name(:scorecard), scorecard_path(:id => group))}" if is_group_member and has_schedule
 	
-	the_active_players = "<br/>#{I18n.t(:has_group_active_users, 
-										:count => object_counter(Scorecard.get_active_players(group)))}".html_safe
+	# the_active_players = "<br/>#{I18n.t(:has_group_active_users, :count => object_counter(Scorecard.get_active_players(group)))}".html_safe
 	
 	the_manager_city = "#{the_manager_city}#{the_active_players}"
 	
 	show_join_option = (!is_member_group and !has_current_item_petition(group))
 -%>
-      
+    
+<% if is_group_visible %>
+
  <tr>  
 	<%= set_content_tag_safe(:td, item_image_link_small(group)) %>
 	<%= set_content_tag_safe(:td, the_group_sport) %>
@@ -59,3 +65,5 @@
    <% end -%>
 
  </tr>
+
+<% end %>

@@ -13,6 +13,12 @@ task :the_end_of_season => :environment do
 	Rake::Task['reduce_team_sizes'].invoke
 	puts "end ARCHIVE all records in groups_users then delete... B:  #{Time.zone.now}"
 
+	desc "ARCHIVE all records in groups_users then delete"
+	puts "begin ARCHIVE all records in groups_users then delete... A:  #{Time.zone.now}"
+	Rake::Task['the_scorecard_group_user'].invoke
+	puts "end ARCHIVE all records in groups_users then delete... B:  #{Time.zone.now}"
+	
+
 	desc "ARCHIVE all records related to group then reset group archive to false"
 	puts "end of season group archive... A:  #{Time.zone.now}"
 	Rake::Task['the_end_of_season_group_archive'].invoke
