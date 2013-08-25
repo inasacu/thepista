@@ -36,26 +36,26 @@
 
 			<% if current_user %>
 
-			<%= link_to(label_name(:home), root_url, :class => the_home) %>
-				
-			<%= link_to(label_name(:groups), groups_url, :class => the_group) %>	
-			<%= link_to(label_name(:schedules), schedules_url, :class => the_schedule) if has_group %>
+				<%= link_to(label_name(:home), root_url, :class => the_home) %>
+				<%= link_to(label_name(:groups), groups_url, :class => the_group) %>	
+				<%= link_to(label_name(:schedules), schedules_url, :class => the_schedule) if has_group %>
 			
-			<%# if is_customer_visible %>
-				<%#= link_to("* #{label_name(:customers)}*", customers_url) %>
-				<%#= link_to("*#{label_name(:surveys)}*", surveys_url) %>
-			<%# end %>
+				<%# if is_customer_visible %>
+					<%#= link_to("* #{label_name(:customers)}*", customers_url) %>
+					<%#= link_to("*#{label_name(:surveys)}*", surveys_url) %>
+				<%# end %>
 			
-			<%= link_to(label_name(:reservations), venues_url, :class => the_venue) if is_venue_visible %>	
-			<%= link_to(label_name(:cups), cups_url, :class => the_cup) if is_cup_visible %>
-			<%= link_to("#{label_name(:companies)}", companies_url) if is_company_visible %>
-			<%= link_to(label_name(:messages), messages_url, :class => the_message) if has_group %>
-			<%= user_link(current_user.name, current_user, :class => the_user) %>
-			<%= link_to(label_name(:logout), logout_path) %>		
+				<%= link_to(label_name(:reservations), venues_url, :class => the_venue) if is_venue_visible %>	
+				<%= link_to(label_name(:cups), cups_url, :class => the_cup) if is_cup_visible %>
+				<%= link_to("#{label_name(:companies)}", companies_url) if is_company_visible %>
+				<%= link_to(label_name(:messages), messages_url, :class => the_message) if has_group %>
+				<%= user_link(current_user.name, current_user, :class => the_user) %>
+				<%= link_to(label_name(:logout), logout_path) %>		
 
-			<% else %>
-			<%= link_to(label_name(:howitworks), how_it_works_path, :class => the_login) %>
-			<%= link_to(label_name(:login), login_path, :class => the_login) %>
+			<% else %>	
+				<%= link_to(get_propercase("#{label_name(:for)} #{label_name(:companies)}"), for_websites_path, :class => the_login) %>
+				<%= link_to(label_name(:howitworks), how_it_works_path, :class => the_login) %>
+				<%= link_to(label_name(:login), login_path, :class => the_login) %>
 			<% end -%>
 
 		</strong>

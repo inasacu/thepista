@@ -18,6 +18,7 @@
 				<%= content_tag(:li, "#{mail_to(CONTACT_RECIPIENT, label_name(:help), :target => '_blank')}".html_safe) %>
 				<%= content_tag(:li, "#{render :partial => '/shared/language_zurb'}".html_safe) %>
 				<%= content_tag(:li, link_to(label_name(:howitworks), how_it_works_url)) %>
+				<%= content_tag(:li, link_to(get_propercase("#{label_name(:for)} #{label_name(:companies)}"), for_websites_path)) %>
 				<%= content_tag(:li, link_to(label_name(:terms_of_use), terms_of_use_url)) %>
 				<%= content_tag(:li, link_to(label_name(:faq), faq_url)) %>
 				<%= content_tag(:li, link_to(label_name(:persona_services), persona_url)) %>

@@ -44,7 +44,7 @@ $(function() {
 	<div class="twelve columns">
 
 		<div class="announce">
-			<%= content_tag 'h4', "#{label_name(:howitworks)}" %>		
+			<%= content_tag 'h4', "#{get_propercase("#{label_name(:for)} #{label_name(:companies)}")}" %>		
 		</div>
 
 		<hr/>
@@ -83,7 +83,7 @@ $(function() {
 					<div class="row">
 						<div class="four columns">				
 							<%= content_tag_safe(:h4, "Conoce") %>
-							<%=  "Conoce qué jugadores están convocados para un partido, y su nivel de participación. También sabrás si puedes contactar con él a través de whatsapp, para que podáis solucionar rápidamente imprevistos de última hora." %>
+							<%=  "" %>
 						</div>
 						<div class="eight columns">
 							<%= link_to( image_tag(the_evento_jornada_convocados, :size => the_size), the_evento_jornada_convocados ) %>
@@ -92,42 +92,7 @@ $(function() {
 					<hr/>
 					<br>
 
-					<div class="row">
-						<div class="four columns">				
-							<%= content_tag_safe(:h4, "Comunicate") %>
-							<%= "Comunicate con tus compañeros de equipo: puedes avisar de incidencias y cambios de última hora, comentar el último encuentro o intercambiar opiniones sobre el próximo rival." %>
-						</div>
-						<div class="eight columns">
-							<%= link_to( image_tag(the_jornada_evento_comentarios, :size => the_size), the_jornada_evento_comentarios ) %>
-						</div>
-					</div>
-					<hr/>
-					<br>
 
-					<div class="row">
-						<div class="four columns">				
-							<%= content_tag_safe(:h4, "Apunta") %>
-							<%= "Apunta los resultados del ultimo partido." %>
-						</div>
-						<div class="eight columns">
-							<%= link_to( image_tag(the_evento_resultados, :size => the_size), the_evento_resultados ) %>
-						</div>
-					</div>
-					<hr/>
-					<br>
-
-					<div class="row">
-						<div class="four columns">				
-							<%= content_tag_safe(:h4, "Sigue") %>
-							<%= "Sigue los resultados de tu equipo, con el resultado individual de cada jugador." %>
-						</div>
-						<div class="eight columns">
-							<%= link_to( image_tag(the_evento_clasification, :size => the_size), the_evento_clasification, :class => "lightbox_trigger" ) %>
-						</div>
-					</div>
-
-					<hr/>
-					<br>
 
 				</li>
 			</ul>
