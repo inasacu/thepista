@@ -211,8 +211,8 @@ es:
      company_stage_set:  Actualiza el sitio web
      company_stage_set_full:  Actualiza el branches
      companies:   Sitios Web
-     companies_create:  "Pon HayPista en su sitio web"
-     companys_create:  "Pon HayPista en su sitio web"
+     companies_create:  "Pon HayPista en tu sitio web"
+     companys_create:  "Pon HayPista en tu sitio web"
      companies_destroy:  Borra el sitio web
      companies_edit:  Cambia el sitio web
      companies_index:   Sitio Web
@@ -1849,7 +1849,7 @@ es:
      what_is_this:   ¿Qué es esto? 
      what_are_you_practicing: Comparte una actualización  
      whats_new: ¿Qué hay de nuevo en HayPista?   
-     widget_add_haypista: Pon HayPista a su sitio web
+     widget_add_haypista: Pon HayPista en su sitio web
      widget_each_page_haypista: "Este código debe ser insertado en cada página en la que desea mostrar el widget HayPista."
      widget_body: "Copia el siguiente codigo e insertalo en el código fuente HTML de tu sitio web entre las etiquetas <body>."
      widget_head: "Copia el siguiente codigo e insertalo en el código fuente HTML de tu sitio web entre las etiquetas <head>."
