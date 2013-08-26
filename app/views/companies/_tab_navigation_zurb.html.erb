@@ -15,19 +15,36 @@
 	end
 	
 	content_for(:description, "#{@company.name}") if @company
+	
+	the_branch = nil
 %>
 	<%= set_tab_navigation(link_to(label_name(:companies), companies_path, set_tab_navigation_active('company_index'))) unless @company %>
 	
 	<% if is_single_company %>
 		<%= set_tab_navigation(item_name_link(@company, set_tab_navigation_active('company_show'))) %>
+		<%= set_tab_navigation(link_to(label_name(:company_personalization), personalize_path(@company), set_tab_navigation_active('company_personalize'))) %>
+
 	
 		<% if @branch %>
-		<%	@branch.groups.each do |group| 
-			get_first_active = ""
-			get_first_active = "branch_show" if @group == group
-		%>
-			<%= set_tab_navigation(link_to(group.name, branch_url(:id => group), set_tab_navigation_active(get_first_active))) %>
-		<% end %>
+			<% @branch.groups.each do |group| 
+				get_first_active = ""
+				get_first_active = "branch_show" if @group == group
+			%>
+				<%= set_tab_navigation(link_to(group.name, branch_url(:id => group), set_tab_navigation_active(get_first_active))) %>
+			<% end %>
+		<% else %>
+		
+			<% @company.branches.each do |branch| %>
+			
+				<% branch.groups.each do |group| 
+					get_first_active = ""
+					get_first_active = "branch_show" if @group == group
+				%>
+					<%= set_tab_navigation(link_to(group.name, branch_url(:id => group), set_tab_navigation_active(get_first_active))) %>
+				<% end %>
+			
+			<% end %>
+		
 		<% end %>
 		
 	<% end %>

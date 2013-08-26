@@ -26,7 +26,7 @@
 	<% @company.branches.each do |branch| 
 		is_branch_manager = (current_user.is_manager_of?(branch))
 	%>
-		<%= set_form_create_id_label_link(Group.new, :branch_id, branch, "#{label_name(:group_new)} - #{branch.name}") %>
+		<%= set_form_create_id_label_link(Group.new, :branch_id, branch, "#{label_name(:group_new)} - #{branch.name}") if is_branch_manager %>
 	<% end %>
 	
 <% end -%>

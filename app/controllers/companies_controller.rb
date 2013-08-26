@@ -1,7 +1,7 @@
 class CompaniesController < ApplicationController
 	before_filter :require_user
 	
-	before_filter :get_company, :only => [:show, :edit, :update]
+	before_filter :get_company, :only => [:show, :edit, :update, :personalize]
 
 	def index
 		@companies = Company.get_site_companies(params[:page]) 

@@ -1,42 +1,102 @@
-<!-- 
-<footer class="row full-width">
-</footer> 
--->
+<%
+	is_media = Rails.env.production? ? (!is_mobile_browser) : (false)
+	is_media = false
+%>
+
+<%= render 'utilities/facebook_script_zurb' if is_media %>
+<%= render 'utilities/google_plus_script_zurb' if is_media %>
+
 
 <hr/>
 
 <div id="copyright">
 	<div class="row full-width">
-		<div class="large-4 columns">
-			<p><%= app_name %> &copy; <%= Time.zone.now.year %>.</p>
+		
+	
+	<% if is_mobile_browser %>
+
+		<section class="three columns">
+			<h5><%= label_name(:language) %></h4>
+			<p>	
+				<%= "#{render :partial => '/shared/language_zurb'}".html_safe %>
+			</p>
+		</section>
+
+
+		<section class="nine columns">
+			<h5><%= "#{label_name(:need_quick_help)}".html_safe %></h4>
+			<p><%= "#{mail_to(CONTACT_RECIPIENT, label_name(:contact_us), :target => '_blank')}".html_safe %></p>
+
+		</section>		
+
+		<section class="twelve columns">
+			<div class="three columns centered">
+				<h4><strong><%= app_name %> &copy; <%= Time.zone.now.year %>.</strong></h4>
+			</div>
 		</div>
-		<div class="large-8 columns">
+	
 
-			<ul class="inline-list right">
+	<% else %>
+	
+		<section class="two columns">
+			<p>		
+				<%= link_to(label_name(:about), about_url) %><br/>
+				<%= link_to(label_name(:howitworks), how_it_works_url) %><br/>
+				<%= link_to(get_propercase("#{label_name(:for)} #{label_name(:companies)}"), for_websites_path) %><br/>
+				<%= link_to(label_name(:terms_of_use), terms_of_use_url) %>
+			</p>
+		
+			<%# if is_media %>		
+				<br>
+				<h6><strong><%= app_name %> &copy; <%= Time.zone.now.year %>.</strong></h6>
+			<%# end %>
+			
+		</section>
 
-				<%= content_tag(:li, link_to(label_name(:home), root_url)) %>
-				<%= content_tag(:li, "#{mail_to(CONTACT_RECIPIENT, label_name(:help), :target => '_blank')}".html_safe) %>
-				<%= content_tag(:li, "#{render :partial => '/shared/language_zurb'}".html_safe) %>
-				<%= content_tag(:li, link_to(label_name(:howitworks), how_it_works_url)) %>
-				<%= content_tag(:li, link_to(get_propercase("#{label_name(:for)} #{label_name(:companies)}"), for_websites_path)) %>
-				<%= content_tag(:li, link_to(label_name(:terms_of_use), terms_of_use_url)) %>
-				<%= content_tag(:li, link_to(label_name(:faq), faq_url)) %>
-				<%= content_tag(:li, link_to(label_name(:persona_services), persona_url)) %>
-				<%= content_tag(:li, link_to(label_name(:about), about_url)) %>
+		<section class="three columns">
+			<p>	
+				<%= link_to(label_name(:faq), faq_url) %><br/>
+				<%= "<a target='_blank' href='http://haypista.tumblr.com' class=''>Blog</a>".html_safe %><br/>
+				<%= link_to(label_name(:persona_services), persona_url) %><br/>
+			</p>
+		
+			<% if is_media %>	
+				<div class="fb-like" data-href="HayPista.com" data-send="false" 
+				data-layout="button_count" data-width="450" data-show-faces="false" 
+				data-action="recommend" data-font="lucida grande">
+				</div>
+			<% end %>
+			
+		</section>
 
-			</ul>
+		<section class="two columns">
+			<h6><%= label_name(:language) %></h6>
+			<p><%= "#{render :partial => '/shared/language_zurb'}".html_safe %></p>
 
-		</div>
+			<% if is_media %>		
+				<br>
+				<g:plusone size="medium"></g:plusone>
+			<% end %>
+		</section>
+	
+		<section class="five columns">
+			<h6><%= "#{label_name(:need_quick_help)}".html_safe %></h6>
+			<h6><%= "#{mail_to(CONTACT_RECIPIENT, label_name(:contact_us), :target => '_blank')}".html_safe %></h6><br/>
+			<p><%= render 'utilities/twitter_script_zurb' %></p>
+		</section>		
+	
+	<% end %>
+		
 	</div>
 </div>
 
+<hr/>
 
 <% if Rails.env.development? %>
-<br>
-<hr/>
-<div class="row ">
-	<div class="three columns centered">
-		<%= render 'utilities/browser_detect_zurb' %>
-	</div>
-</div>		
+	<br>
+	<div class="row ">
+		<div class="three columns centered">
+			<%= render 'utilities/browser_detect_zurb' %>
+		</div>
+	</div>		
 <% end %>

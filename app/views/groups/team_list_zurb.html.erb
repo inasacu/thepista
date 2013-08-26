@@ -69,15 +69,16 @@
 						
 						unless group.is_branch?
 
-							if @group == group and !@the_roster_infringe.nil?
-								no_jugado_image = "#{no_jugado_image} #{image_tag('icons/star_purple_true.png', 
-								options={:title => the_infringe_label, :style => 'height: 15px; width: 15px;'})}" if @the_roster_infringe.include?(user.id)
-							end
+							# if @group == group and !@the_roster_infringe.nil?
+							# 	no_jugado_image = "#{no_jugado_image} #{image_tag('icons/star_purple_true.png', 
+							# 	options={:title => the_infringe_label, :style => 'height: 15px; width: 15px;'})}" if @the_roster_infringe.include?(user.id)
+							# end
 
 							the_group_link     += " , " unless the_group_link.blank?
 							is_subscriber       = user.is_subscriber_of?(group)						
 							the_label           = label_name("subscription_#{is_subscriber}")
-							subscription_image  = "#{item_name_link(group)} #{subscription_image_link(user, is_subscriber, the_label)} #{no_jugado_image} "
+							# subscription_image  = "#{item_name_link(group)} #{subscription_image_link(user, is_subscriber, the_label)} #{no_jugado_image} "
+							subscription_image  = "#{item_name_link(group)} "
 							the_group_link 	   += "#{subscription_image}"  
 
 						end

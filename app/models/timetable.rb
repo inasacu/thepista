@@ -28,7 +28,7 @@ class Timetable < ActiveRecord::Base
 	validates_presence_of     :item_id
 	validates_presence_of			:item_type
 	
-	validates_uniqueness_of 	:item_id, :item_type, :scope => [:starts_at, :ends_at, :timeframe, :type_id]
+	validates_uniqueness_of 	:item_id, :item_type, :scope => [:starts_at, :ends_at, :timeframe, :type_id, :item_id, :item_type]
 
 
 	# variables to access

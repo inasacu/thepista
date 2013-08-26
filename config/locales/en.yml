@@ -203,6 +203,7 @@ en:
      company_description: Name of Website  
      company:  Website
      company_options:  Options
+     company_personalization:  Personalization
      company_stage_set:  Group Stage Update
      company_stage_set_full:  Group Stage Update
      companies:   Websites
@@ -575,7 +576,7 @@ en:
      from: from 
      from_de:  for  
      from_up:  From
-     from_Ausente: Change to Reserve   
+     from_Ausente: Change to Last Minute   
      from_Convocado: Change to No-Show   
      from_message: from   
      from_payment: Payment from   
@@ -905,10 +906,11 @@ en:
      join_tournament: Join the Tournament   
      jornada:  Event
      jornada_description:  Event
+     jornada_programada:  Scheduled Day
      language: Language 
      last_game_played: Last Recent Game	 
      last_login_at: last login at   
-     last_minute: Reserve
+     last_minute: Last Minute
      last_minute_notification:  Last minute notice
      last_schedule_description: Recent event    
      last_scorecard: Recent Results   
@@ -1082,7 +1084,7 @@ en:
      get_an_openid: Get an OpenID with myOpenID.com  
      change_openid: Hide your OpenID accounts
      added_to_your_openid: added the account to your OpenID account
-     add_openid: Added an OpenID to your account              
+     add_openid: Added an OpenID to your account
      name: Name 
      name_account: Account Name   
      name_description: "(The Team name should start with a letter and contain no special characters, exceptions:  _ o . )"  
@@ -1332,7 +1334,8 @@ en:
      provider_not_supported: "provider is not supported, try another email address."   
      public:  Open to the Public
      public_description:  Select option if open to the public.
-     publish_in: Publish on HayPista     
+     publish_in: Publish on HayPista 
+     put: Add a    
      question_or_comment: Feedback?
      ranking: Ranking   
      ranking_full: Player Ranking    
@@ -1657,6 +1660,7 @@ en:
      timetables_create:  New Timetable
      timetables_edit:  Edit Timetable
      timetables_new:  New Timetable
+     timetables_no: No Timetable for your teams.
      timetable_description:  Timetables are used to set the specific dates and times a venue is open
      time_zone:  Time Zone
      time_zone_description:  Time Zone 
@@ -1706,7 +1710,7 @@ en:
      type_service: Service
      type_category: Category
      types: Types   
-     ultima_hora: Reserve  
+     ultima_hora: Last Minute  
      unauthorized_user:  Player not authorized. 
      unauthorized:  Not Authorized.
      unavailable:  Unavailable
@@ -1718,7 +1722,7 @@ en:
      upcoming_schedule: Sporting Event   
      upcoming_schedules: Sporting Events 
      upcoming_meet: Sporting Event 
-     upcoming_meets: Upcoming Tournament Event 
+     upcoming_meets: Upcoming Event 
      upcoming_no:  No events to display    
      update: Update   
      update_address: Update    
@@ -1761,7 +1765,7 @@ en:
      updated_a_schedule: Ha updated the event 
      updated_a_user:  ha updated the perfil  
      upload:  Upload
-     url: Link
+     url: Your website Link
      urls: Links
      url_group: Link to Team   
      use_at_discretion: New option to enter. If you have a go with your original account.
@@ -1799,7 +1803,7 @@ en:
      verification_failed: "Sorry, Your authentication did not go through as expected..."   
      verification_setup: OpenID verification has to be updated.  
      view: View   
-     visible_only_to_you_description: (Only you, can view this information...)   
+     visible_only_to_you_description: "(Only you, can view this information...) "  
      visit_group: Visiting Team      
      wall:  Wall
      Wednesday: Wednesday   
@@ -1810,12 +1814,22 @@ en:
      what_is_haypista:  What is HayPista?
      what_is_this:   What is this? 
      what_are_you_practicing: Share an update  
-     whats_new: What is new in HayPista?   
+     whats_new: What is new in HayPista?
+     widget_add_haypista: Add HayPista to Your Site
+     widget_each_page_haypista: "This code must be inserted into every page on which you wish to display the HayPista widget."
+     widget_body: "Copy the following script and insert it into your website's HTML source code between the <body> tags."
+     widget_head: "Copy the following script and insert it into your website's HTML source code between the <head> tags."
+     widget_javascript: Widget Customization
+     widget_passionate_haypista: "If you’re passionate about playing sports, HayPista helps you build a community of players."
+     widget_integration_haypista: "Once your added the widget to your site, your users will see all events."
+     widget_inicia_session_haypista: "When the user signs in, he or she will be able to sign-up for any event."
+     widget_event_option_haypista: "Users will have various options within an event:  squad, last minute, no-show, as well as leave comments."
      write_comment: Write a comment... 
      writes: writes
      wrote: wrote
      yes_openid: OpenID's associated to this account   
      you: You
+     your	: Your
      you_are_center_here: "Center here"
      you_are_create_group:  "Organize your team here"
      you_are_create_group_instruction:  Organize your team by selection location on map
@@ -2066,14 +2080,14 @@ en:
      meet_ausentes:  No No-Show to display
      meet_convocados:  No Squad to display
      meet_excess_player:  Too many Players on the Squad
-     meet_ultima_hora:   Noone on reserve to show
+     meet_ultima_hora:   Noone on last minute to show
      meet_no_disponible:  Noone on Unavailable to show     
      meets_tour_roster_false:  Noone on Squad to show
-     meets_tour_last_minute_false:   Noone on reserve to show
+     meets_tour_last_minute_false:   Noone on last minute to show
      meets_tour_no_show_false:  Noone on No-Show to display
      meets_tour_unavailable_true_false:  Noone on Unavailable to show
      meets_tour_roster_true:  Squad
-     meets_tour_last_minute_true:   Reserve
+     meets_tour_last_minute_true:   Last Minute
      meets_tour_no_show_true:  No-Shows
      meets_tour_unavailable_true:  Unavailable             
      message_delete: Delete this message
@@ -2125,16 +2139,16 @@ en:
      schedule_convocados:  Noone on Squad to display
      schedule_excess_player:  Too many players on squad
      schedule_excess_player_cluetip:  The player limit for this event has been reached.  Check the event details to view the maximum number of players allowed for this event.
-     schedule_ultima_hora:   Noone on reserve to display
+     schedule_ultima_hora:   Noone on last minute to display
      schedule_no_disponible:  Noone on unavailable to diplay
      schedule_rate: Rate the Event  
      schedule_rate_average: Rate Event Average   
      schedules_team_roster_false:  Noone on Squad to diplay
-     schedules_team_last_minute_false:   Noone on reserve to diplay
+     schedules_team_last_minute_false:   Noone on last minute to diplay
      schedules_team_no_show_false:  Noone on No-Shows to diplay
      schedules_team_unavailable_false:  Noone on Unavailable to diplay
      schedules_team_roster_true:  Squad
-     schedules_team_last_minute_true:   Reserve
+     schedules_team_last_minute_true:   Last Minute
      schedules_team_no_show_true:  No-Shows
      schedules_team_unavailable_true:  Unavailable
      scorecard_list:  Previous Scorecards

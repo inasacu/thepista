@@ -22,29 +22,31 @@ $(function() {
 
 
 <%
-	# 1. haypista-la-mejor-forma-de-acceder.png
-	# 2. haypista-eventos.png
-	# 3. haypista-evento-jornada-convocados.png
-	# 4. haypista-jornada-evento-comentarios.png
-	# 5. haypista-evento-resultados.png
-	# 6. haypista-evento-clasificacion.png
+	# 1. the_haypista_inicia_sesion_widget.png
+	# 2. the_haypista_sesion_widget.png
+	# 3. the_haypista_evento_convocado_widget.png
+	# 4. the_haypista_convocado_ultima_ausente_widget.png
 
-	the_size = "580x280"
-	the_size_la_mejor_forma = "580x105"
-
-	the_mejor_forma_de_acceder = "#{DEFAULT_AMAZON_S3_IMAGES_URL}haypista-la-mejor-forma-de-acceder.png"
-	the_eventos = "#{DEFAULT_AMAZON_S3_IMAGES_URL}haypista-eventos.png"
-	the_evento_jornada_convocados = "#{DEFAULT_AMAZON_S3_IMAGES_URL}haypista-evento-jornada-convocados.png"
-	the_jornada_evento_comentarios = "#{DEFAULT_AMAZON_S3_IMAGES_URL}haypista-jornada-evento-comentarios.png"
-	the_evento_resultados = "#{DEFAULT_AMAZON_S3_IMAGES_URL}haypista-evento-resultados.png"
-	the_evento_clasification = "#{DEFAULT_AMAZON_S3_IMAGES_URL}haypista-evento-clasificacion.png"
+	the_size = "580x320"
+	
+	the_haypista_inicia_sesion_widget = "#{DEFAULT_AMAZON_S3_IMAGES_URL}haypista_inicia_sesion_widget.png"
+	the_haypista_sesion_widget = "#{DEFAULT_AMAZON_S3_IMAGES_URL}haypista_sesion_widget.png"
+	the_haypista_evento_convocado_widget = "#{DEFAULT_AMAZON_S3_IMAGES_URL}haypista_evento_convocado_widget.png"
+	the_haypista_convocado_ultima_ausente_widget = "#{DEFAULT_AMAZON_S3_IMAGES_URL}haypista_convocado_ultima_ausente_widget.png"
+	
+	the_for_websites_label = get_propercase("#{label_name(:for)} #{label_name(:companies)}")
+	the_your_events_label = get_propercase("#{label_name(:your)} #{label_name(:schedules)}")
+	the_upcoming_events = label_name(:upcoming_meets)
+	the_jornada_programada = label_name(:jornada_programada)
 %>
 
 <div class="row">
 	<div class="twelve columns">
 
 		<div class="announce">
-			<%= content_tag 'h4', "#{get_propercase("#{label_name(:for)} #{label_name(:companies)}")}" %>		
+			<%= content_tag 'h4', the_for_websites_label %>	
+	        <%= content_tag 'h6', "#{label_name(:widget_passionate_haypista)}".html_safe %>
+		    <%= content_tag 'h6', "#{link_to("#{label_name(:widget_add_haypista)}", companies_url)}".html_safe %>
 		</div>
 
 		<hr/>
@@ -56,52 +58,52 @@ $(function() {
 
 					<div class="row">
 						<div class="four columns">				
-							<%= content_tag_safe(:h4, label_name(:faq_acceso_facil)) %>
-							<%= "Acceso facil y seguro para acceder a los servicios." %>
+							<div class="col-6 text-block">
+								<%= content_tag_safe(:h5, the_upcoming_events) %>
+								<%= label_name(:widget_integration_haypista) %>      
+					        </div>
 						</div>
 						<div class="eight columns">
-							<%= link_to( image_tag(the_mejor_forma_de_acceder, :size => the_size_la_mejor_forma), the_mejor_forma_de_acceder ) %>
+							<%= link_to( image_tag(the_haypista_inicia_sesion_widget, :size => the_size), the_haypista_inicia_sesion_widget ) %>
 						</div>
 					</div>
-
 					<hr/>
 					<br>
-
+					
 					<div class="row">
 						<div class="four columns">				
-							<%= content_tag_safe(:h4, "Infórmate") %>
-							<%= "Infórmate de todos los eventos de tu equipo: cuáles serán los próximos encuentros y si vas a participar en ellos." %>
+							<%= content_tag_safe(:h5, the_your_events_label) %>
+							<%= label_name(:widget_inicia_session_haypista) %>
 						</div>
 						<div class="eight columns">
-							<%= link_to( image_tag(the_eventos, :size => the_size), the_eventos ) %>
+							<%= link_to( image_tag(the_haypista_sesion_widget, :size => the_size), the_haypista_sesion_widget ) %>
 						</div>
 					</div>
 					<hr/>
 					<br>
-
-
+					
 					<div class="row">
-						<div class="four columns">				
-							<%= content_tag_safe(:h4, "Conoce") %>
-							<%=  "" %>
+						<div class="four columns">	
+							<%= content_tag_safe(:h5, the_jornada_programada) %>
+							<%= label_name(:widget_event_option_haypista) %>
 						</div>
 						<div class="eight columns">
-							<%= link_to( image_tag(the_evento_jornada_convocados, :size => the_size), the_evento_jornada_convocados ) %>
+							<%= link_to( image_tag(the_haypista_convocado_ultima_ausente_widget, :size => the_size), the_haypista_convocado_ultima_ausente_widget ) %>
 						</div>
 					</div>
 					<hr/>
 					<br>
-
-
 
 				</li>
 			</ul>
+		
 		</div>
-
+	
 	</div>
 </div>
 
-
+<%= content_tag 'h6', "#{link_to("#{label_name(:widget_add_haypista)}", companies_url)}".html_safe %>
+<%= set_form_create_image_link(Company.new) %>
 
 
 
