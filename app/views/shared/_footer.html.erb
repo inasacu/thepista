@@ -40,10 +40,11 @@
 	
 		<section class="two columns">
 			<p>		
-				<%= link_to(label_name(:about), about_url) %><br/>
+				<%= link_to(get_propercase("#{label_name(:for)} #{label_name(:companies)}"), for_websites_path) %><br/>	
 				<%= link_to(label_name(:howitworks), how_it_works_url) %><br/>
-				<%= link_to(get_propercase("#{label_name(:for)} #{label_name(:companies)}"), for_websites_path) %><br/>
+				<%= link_to(label_name(:about), about_url) %><br/>
 				<%= link_to(label_name(:terms_of_use), terms_of_use_url) %>
+
 			</p>
 		
 			<%# if is_media %>		

@@ -1191,6 +1191,8 @@ es:
      omniauth_provider_browser_id:  Mozilla Persona
      omniauth_provider_twitter:  Twitter
      omniauth_provider_facebook:  Facebook
+     only:  Solo
+     only_put:  Solo falta un
      page_does_not_exist: La pagina que querias no exite.
      participate_challenge: Participa en el reto
      participate_challenge_afterwards: "Despues de registrate y ser aceptado, sigue este enlace para participa en el reto" 

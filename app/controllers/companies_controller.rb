@@ -14,7 +14,7 @@ class CompaniesController < ApplicationController
 	def new
 		@company = Company.new
 		@group = Group.new
-		@timetable = Timetable.new
+		# @timetable = Timetable.new
 		
 		@company.url = "http://"
 		@group.sport_id = 1
@@ -56,6 +56,8 @@ class CompaniesController < ApplicationController
 
 				if @group.save and @group.create_group_roles(current_user)
 					successful_create
+					render :controller => 'timetables', :action => 'new', :id => @group.id
+					return
 				end
 
 			end

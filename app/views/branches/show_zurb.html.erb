@@ -4,4 +4,7 @@
 	the_items = get_branch_calendar_details
 %>
 
+<%= render 'companies/group_wo_timetable', :the_company => @branch.company %>
+
+
 <%= render 'home/upcoming_schedule_zurb', :my_schedules => the_items, :the_label => label_name(:upcoming_schedules) unless the_items.empty? %>

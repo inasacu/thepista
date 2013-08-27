@@ -44,9 +44,7 @@ $(function() {
 	<div class="twelve columns">
 
 		<div class="announce">
-			<%= content_tag 'h4', the_for_websites_label %>	
-	        <%= content_tag 'h6', "#{label_name(:widget_passionate_haypista)}".html_safe %>
-		    <%= content_tag 'h6', "#{link_to("#{label_name(:widget_add_haypista)}", companies_url)}".html_safe %>
+			<%= content_tag 'h4', the_for_websites_label %>	<%= label_name(:widget_passionate_haypista) %>
 		</div>
 
 		<hr/>
@@ -91,8 +89,6 @@ $(function() {
 							<%= link_to( image_tag(the_haypista_convocado_ultima_ausente_widget, :size => the_size), the_haypista_convocado_ultima_ausente_widget ) %>
 						</div>
 					</div>
-					<hr/>
-					<br>
 
 				</li>
 			</ul>
@@ -102,8 +98,11 @@ $(function() {
 	</div>
 </div>
 
-<%= content_tag 'h6', "#{link_to("#{label_name(:widget_add_haypista)}", companies_url)}".html_safe %>
-<%#= set_form_create_image_link(Company.new) %>
+
+<hr/>
+<%= content_tag 'h5', "#{link_to("#{label_name(:widget_add_haypista)}", companies_url)}".html_safe unless current_user %>
+<%= content_tag 'h5', "#{link_to("#{label_name(:widget_add_haypista)}", new_company_path)}".html_safe if current_user %>
+
 
 
 

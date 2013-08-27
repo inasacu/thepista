@@ -2,43 +2,9 @@
 	is_user_manager = (is_current_manager_of(@company)) 
 	is_member = is_current_member_of(@company) 
 	first_branch = true
-	
-	the_controller = get_the_controller	
-	
-	the_label = label_name("timetables_no")
-	the_label += " #{label_name(:put)} #{I18n.t(:create).downcase} #{label_name(:timetable).downcase} #{label_name(:for)} "
+%>	
 
-	the_first_team_link = true
-	the_team_link = ""
-
-	has_group_timetable = false
-	
-	@company.branches.each do |branch| 
-		is_group_branch_manager = (current_user.is_manager_of?(branch))
-		
-		if is_group_branch_manager 
-			branch.groups.each do |group|
-				has_group_timetable = Timetable.item_timetable(group).count > 0
-				
-				the_team_link += ", " unless the_first_team_link
-				unless has_group_timetable
-					the_first_team_link = false
-					the_team_link += "#{link_to(group.name, new_timetable_url(:group_id => group))} " 
-				end
-			end
-		end
-		
-	end
-%>
-
-
-<% unless the_first_team_link %>
-
-<hr/>
-<%= content_tag :h6, "#{the_label} #{the_team_link}".html_safe, :class => "subheader" %>
-<hr/>
-
-<% end %>
+<%= render 'companies/group_wo_timetable', :the_company => @company %>
 
 <table>
 	<tbody>

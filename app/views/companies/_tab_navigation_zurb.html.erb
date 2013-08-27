@@ -1,6 +1,8 @@
 <% 		
 	get_first_active ||=""
 	get_first_active = get_active("#{get_the_controller}_#{get_the_action}") if is_controller('company') and is_action('index') 
+
+	is_user_manager = false
 	
 	the_label = "" 
 	the_action = ['show','edit']
@@ -12,9 +14,10 @@
 	if @company 
 		is_company_member = is_current_member_of(@company)
 		is_single_company = true
+
+		content_for(:description, "#{@company.name}") 
+		is_user_manager = (is_current_manager_of(@company)) 
 	end
-	
-	content_for(:description, "#{@company.name}") if @company
 	
 	the_branch = nil
 %>
@@ -22,7 +25,7 @@
 	
 	<% if is_single_company %>
 		<%= set_tab_navigation(item_name_link(@company, set_tab_navigation_active('company_show'))) %>
-		<%= set_tab_navigation(link_to(label_name(:company_personalization), personalize_path(@company), set_tab_navigation_active('company_personalize'))) %>
+		<%= set_tab_navigation(link_to(label_name(:company_personalization), personalize_path(@company), set_tab_navigation_active('company_personalize'))) if is_user_manager %>
 
 	
 		<% if @branch %>

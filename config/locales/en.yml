@@ -1181,6 +1181,8 @@ en:
      omniauth_provider_browser_id:  Mozilla Persona
      omniauth_provider_twitter:  Twitter
      omniauth_provider_facebook:  Facebook
+     only:  Only
+     only_put:  You only need to 
      page_does_not_exist: The page you wanted does not exist.     
      participate_challenge: Participate in the challenge
      participate_challenge_afterwards: "After you signup, follow the link to signup for the challenge" 
