@@ -82,7 +82,7 @@ GEM
     google_map (0.0.4)
     hashie (2.0.5)
     hike (1.2.3)
-    hirefire-resource (0.1.2)
+    hirefireapp (0.2.0)
     hoptoad_notifier (2.4.11)
       activesupport
       builder
@@ -234,7 +234,7 @@ DEPENDENCIES
   geokit
   geokit-rails
   google_map
-  hirefire-resource
+  hirefireapp
   hoptoad_notifier
   httparty (>= 0.8.1)
   jquery-rails (= 2.3.0)
