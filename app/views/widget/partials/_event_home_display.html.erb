@@ -1,18 +1,6 @@
 <tr>
 	<td>
-		<%if schedule.ismock %>
-
-		<%=schedule.name%>
-
-		<%else%>
-
-		<%=link_to(sanitize(limit_url_length(schedule.name, 25)), 
-		   widget_event_details_path(:event_id => schedule))%>
-
-		<%end%>
-
-		<br>
-		<%=set_content_tag_safe('span', "#{get_missing_detail(schedule)}", 'date')%>
+		<%=event_home_link(schedule)%>
 	</td>
 
 	<td class="name_and_date">

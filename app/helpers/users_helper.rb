@@ -97,6 +97,7 @@ module UsersHelper
   end
 
   def petition_box(teammate)
+    
     has_sub_item = teammate.sub_item.nil?
 
     is_manager = false

@@ -253,7 +253,7 @@ class Schedule < ActiveRecord::Base
     Match.count(:joins => "left join users on users.id = matches.user_id left join types on types.id = matches.type_id left join scorecards on scorecards.user_id = matches.user_id",
     :conditions => ["matches.schedule_id = ?  and matches.archive = false and matches.type_id in (3,4) and scorecards.archive = false and scorecards.group_id = ?", self.id, self.group_id])
   end
-
+  
   def the_unavailable_count
     Match.count(:joins => "left join users on users.id = matches.user_id left join types on types.id = matches.type_id left join scorecards on scorecards.user_id = matches.user_id",
     :conditions => ["matches.schedule_id = ?  and matches.archive = false and matches.type_id in (1,2,3,4) and scorecards.archive = false and scorecards.group_id = ?", self.id, self.group_id])
@@ -647,6 +647,17 @@ class Schedule < ActiveRecord::Base
     message.save!
 
   end
+  
+  
+  def get_status_count
+    count_hash = Hash.new
+    
+    count_hash = {:roster_count => self.the_roster_count, 
+    :no_show_count => self.the_no_show_count, 
+    :last_minute_count => self.the_last_minute_count}
+      
+    return count_hash
+  end
 
   private
 
@@ -711,7 +722,8 @@ class Schedule < ActiveRecord::Base
     end
     
     # Obtain real events
-		real_events = get_schedules_branch(Time.zone.now.at_beginning_of_day(), NEXT_WEEK.at_midnight, current_branch)
+		end_date_real_events = (Time.zone.now + 8.days).at_beginning_of_day() - 1.minutes
+		real_events = get_schedules_branch(Time.zone.now.at_beginning_of_day(), end_date_real_events, current_branch)
     
     real_events.each do |real|
        #week_days_hash[real.starts_at.strftime("%A")] << real
@@ -723,7 +735,7 @@ class Schedule < ActiveRecord::Base
 		
 		# Obtain timetables from all groups related to the branch
     branch_timetables = Timetable.branch_week_timetables(current_branch)
-		
+    
 		branch_timetables.each do |timetable|
 		      		  
       if timetable.item.class.to_s=='Group'
@@ -738,7 +750,7 @@ class Schedule < ActiveRecord::Base
         timetable_end = WidgetController.helpers.convert_to_datetime_zone(timetable_datetime.midnight, timetable.ends_at)
         
         while mock_schedule_start.to_time < timetable_end.to_time do
-          
+                    
           mock_schedule_end = (mock_schedule_start.to_time + timetable.timeframe.hours).to_datetime
           
           schedule = Schedule.new
@@ -790,69 +802,79 @@ class Schedule < ActiveRecord::Base
             
     if !isevent.nil? and (isevent == "true")
       
-      if !ismock.nil? and (ismock == "true")
-        
-        # the event is created
-        source_timetable = Timetable.find(source_timetable_id)
-        
-        # Group
-        group = source_timetable.item
-        
-        #schedule_start = (source_timetable.starts_at.to_time + (source_timetable.timeframe.hours*event_timetable_pos).hours).to_datetime
-        schedule_start = event_starts_at.to_datetime
-        
-        schedule = Schedule.new
-        
-        schedule.name = "Jornada programada"
-        schedule.jornada = 1
-        schedule.starts_at_date = schedule_start
-				schedule.starts_at = schedule_start
-				schedule.ends_at_date = schedule.starts_at_date + source_timetable.timeframe.hours
-				schedule.ends_at = schedule_start + source_timetable.timeframe.hours
-				schedule.reminder_at = schedule.starts_at - 2.days	
-				schedule.available = (schedule.starts_at > Time.zone.now + MINUTES_TO_RESERVATION )
-				schedule.item_id = group.id
-				schedule.item_type = group.class.to_s
-				schedule.group_name = group.name
-				schedule.group_id = group.id
-				schedule.sport_id = group.sport_id
-				schedule.marker_id = group.marker_id
-				schedule.time_zone = group.time_zone
-				schedule.player_limit = group.player_limit
-				schedule.fee_per_game = 1
-				schedule.fee_per_pista = 1
-				schedule.fee_per_pista = group.player_limit * schedule.fee_per_game if group.player_limit > 0
-				schedule.reminder_at = schedule.starts_at - 2.days
-				schedule.season = Time.zone.now.year
-        
-        # user is added to the group
-        Group.add_user_togroup(user, schedule.group)
-                
-        # event is created and the user is added to the event as an administrator
-        if schedule.save and schedule.create_schedule_roles(user)
-                    
-          # the user is added to the event - add record into matches
-          Match.create_item_schedule_match(schedule, user)
-          return schedule
-          
+      Schedule.transaction do
+      
+        if !ismock.nil? and (ismock == "true")
+
+          # the event is created
+          source_timetable = Timetable.find(source_timetable_id)
+
+          # Group
+          group = source_timetable.item
+
+          #schedule_start = (source_timetable.starts_at.to_time + (source_timetable.timeframe.hours*event_timetable_pos).hours).to_datetime
+          schedule_start = event_starts_at.to_datetime
+
+          schedule = Schedule.new
+
+          schedule.name = "Jornada programada"
+          schedule.jornada = 1
+          schedule.starts_at_date = schedule_start
+  				schedule.starts_at = schedule_start
+  				schedule.ends_at_date = schedule.starts_at_date + source_timetable.timeframe.hours
+  				schedule.ends_at = schedule_start + source_timetable.timeframe.hours
+  				schedule.reminder_at = schedule.starts_at - 2.days	
+  				schedule.available = (schedule.starts_at > Time.zone.now + MINUTES_TO_RESERVATION )
+  				schedule.item_id = group.id
+  				schedule.item_type = group.class.to_s
+  				schedule.group_name = group.name
+  				schedule.group_id = group.id
+  				schedule.sport_id = group.sport_id
+  				schedule.marker_id = group.marker_id
+  				schedule.time_zone = group.time_zone
+  				schedule.player_limit = group.player_limit
+  				schedule.fee_per_game = 1
+  				schedule.fee_per_pista = 1
+  				schedule.fee_per_pista = group.player_limit * schedule.fee_per_game if group.player_limit > 0
+  				schedule.reminder_at = schedule.starts_at - 2.days
+  				schedule.season = Time.zone.now.year
+
+          # user is added to the group
+          Group.add_user_togroup(user, schedule.group)
+
+          # event is created and the user is added to the event as an administrator
+          if schedule.save and schedule.create_schedule_roles(user)
+
+            # the user is added to the event - add record into matches
+            Match.create_item_schedule_match(schedule, user)
+            return schedule
+
+          else
+            return nil
+          end
+
         else
-          return nil
-        end
-        
-      else
-         
-         #event is obtained
-         schedule = Schedule.find(event_id)
-         
-         # user is added to the group
-         Group.add_user_togroup(user, schedule.group)
-         
-         # the user is added to the event - add record into matches
-         Match.create_item_schedule_match(schedule, user)
-          
-         return schedule
-         
-      end # end if is mock
+
+           if !event_id.nil?
+             #event is obtained
+              schedule = Schedule.find(event_id)
+
+              # user is added to the group
+              Group.add_user_togroup(user, schedule.group)
+
+              # the user is added to the event - add record into matches
+              Match.create_item_schedule_match(schedule, user)
+
+              return schedule
+           else
+             return nil
+           end
+
+
+        end # end if is mock
+      
+      end # end transaction
+      
     else
       return nil
     end # end if is event
@@ -922,5 +944,5 @@ class Schedule < ActiveRecord::Base
 		return the_schedule
   
   end
-
+  
 end

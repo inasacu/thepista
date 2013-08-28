@@ -2,8 +2,9 @@ class WidgetController < ApplicationController
   layout nil
   
   # filters
-  before_filter :get_schedule, :only => [:event_details]
+  before_filter :get_schedule, :only => [:event_details, :event_details_noshow, :event_details_lastminute]
   before_filter :check_redirect, :only => [:home]
+  before_filter :check_disqus_logout, :only => [:event_details]
   before_filter :get_match_and_user_x_two, :only => [:set_team]
     
   # add filter for checkin branch in session
@@ -55,7 +56,7 @@ class WidgetController < ApplicationController
 		  # info for logic actions
 			@isevent = params[:isevent]
       @ismock = params[:ismock]
-      @event_id =  params[:event]
+      @event =  params[:event]
       @source_timetable_id =  params[:source_timetable_id]
       @block_token = params[:block_token]
       
@@ -119,9 +120,36 @@ class WidgetController < ApplicationController
 		@the_roster_infringe = @schedule.the_roster_infringe
 		@the_roster_last_minute_infringe = @schedule.the_last_minute_infringe
 		@the_last_played = @schedule.the_roster_last_played
+		@status_count_hash = @schedule.get_status_count
     
     render "/widget/event", :layout => 'widget'
   end
+  
+  def event_details_noshow
+    store_location
+		@has_a_roster = !(@schedule.no_shows.empty?)
+		@the_roster = @schedule.the_no_show
+		@the_roster_infringe = @schedule.the_roster_infringe
+		@the_roster_last_minute_infringe = @schedule.the_last_minute_infringe
+		@the_last_played = @schedule.the_roster_last_played
+		@status_count_hash = @schedule.get_status_count
+		
+		set_the_template('schedules/team_roster')
+		render "/widget/event", :layout => 'widget'
+  end
+  
+  def event_details_lastminute
+		store_location
+		@has_a_roster = !(@schedule.the_last_minute.empty?)
+		@the_roster = @schedule.the_last_minute
+		@the_roster_infringe = @schedule.the_roster_infringe
+		@the_roster_last_minute_infringe = @schedule.the_last_minute_infringe
+		@the_last_played = @schedule.the_roster_last_played
+		@status_count_hash = @schedule.get_status_count
+		
+		set_the_template('schedules/team_roster')
+		render "/widget/event", :layout => 'widget'
+	end
   
   def event_invitation
     
@@ -129,6 +157,7 @@ class WidgetController < ApplicationController
 
     if (params[:event_id])
       @schedule = Schedule.find(params[:event_id])
+      @status_count_hash = @schedule.get_status_count
     end
 
     render "/widget/new_invitation", :layout => 'widget'
@@ -143,7 +172,13 @@ class WidgetController < ApplicationController
       
       if !the_schedule.nil?
         flash[:notice] = "Se ha cambiado el estado del jugador en el evento"
-    		redirect_to widget_event_details_url :event_id => the_schedule.id
+        status_count_hash = the_schedule.get_status_count
+        
+        redirect_url = widget_event_details_lastminute_url :event_id => the_schedule.id if status_count_hash[:last_minute_count] > 0
+        redirect_url = widget_event_details_noshow_url :event_id => the_schedule.id if status_count_hash[:no_show_count] > 0
+        redirect_url = widget_event_details_url :event_id => the_schedule.id if status_count_hash[:roster_count] > 0
+                
+    		redirect_to redirect_url
       else
         flash[:notice] = "Ha ocurrido un error al cambiar el estado"
     		redirect_to widget_home_url
@@ -187,6 +222,32 @@ class WidgetController < ApplicationController
   
   # getters and others ------------------->
   
+  def check_branch
+    
+    if !request.env["HTTP_REFERER"].nil? and ( request.env["HTTP_REFERER"] != ENV['THE_HOST'] )
+      
+      if ( !session[:current_branch_real_url].nil? \
+        and (request.env["HTTP_REFERER"] != session[:current_branch_real_url]) ) \
+        or session[:current_branch_real_url].nil?
+        
+        new_valid_branch = Branch.branch_from_url(request.env["HTTP_REFERER"])
+
+        if new_valid_branch
+          session[:current_branch] = new_valid_branch
+          session[:current_branch_real_url] = request.env["HTTP_REFERER"]
+        else
+          session.delete(:current_branch)
+          session.delete(:current_branch_real_url)
+          render nothing: true
+          return
+        end # end if the new site is registered
+          
+      end # end if is a request from a new site
+      
+    end # end if null or comes from localhost
+    
+  end
+  
   def check_redirect
       
       if !request.env["HTTP_REFERER"].nil?
@@ -203,6 +264,15 @@ class WidgetController < ApplicationController
           end
         end
       end
+    
+  end
+  
+  def check_disqus_logout
+    
+    @should_close_due_disqus = false
+    if !request.env["HTTP_REFERER"].nil? and request.env["HTTP_REFERER"].include? "disqus.com"
+       @should_close_due_disqus = true
+    end
     
   end
   
