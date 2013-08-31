@@ -6,16 +6,20 @@
 		is_official = @cup.official 
 	end
 
-	ignore_option = ['venue_show', 'message_index', 'message_show', 'message_new']	
-	is_ignore_option = ignore_option.include?(get_controller_action)
+	ignore_invitation = ['venue_show', 'message_index', 'message_show', 'message_new']
+	is_ignore_invitation = ignore_invitation.include?(get_controller_action)
 	
-	discard_controller = ['cup', 'message']
-	is_a_dicard = discard_controller.include?(get_the_controller)
+	ignore_create_model_controller_action = ['company_show', 'company_personalize']
+	ignore_create_model_controller = ['cup', 'message']
+	
+	is_ignore_create_model = ignore_create_model_controller_action.include?(get_controller_action)
+	is_ignore_create_model = is_ignore_create_model ? is_ignore_create_model : ignore_create_model_controller.include?(get_the_controller)
+	
 %>
 
 
-<%= set_form_create_image_link(item) unless is_a_dicard %>
-<%= set_image_and_link(option_link('invitation'), 'invitation') unless is_ignore_option %>
+<%= set_form_create_image_link(item) unless is_ignore_create_model %>
+<%= set_image_and_link(option_link('invitation'), 'invitation') unless is_ignore_invitation %>
 
 
 <%= set_image_and_link(link_to(label_name(:challenges_create), new_challenge_path(:cup_id => @cup)), 'challenge') if is_official %>

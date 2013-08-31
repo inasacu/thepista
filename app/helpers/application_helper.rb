@@ -7,7 +7,11 @@ module ApplicationHelper
 	def app_name
 		"HayPista" 
 	end
-
+	
+	def get_propercase(text='')
+		return text.split(/(\W)/).map(&:capitalize).join
+	end
+	
 	# easy and clean link_to w/ <li>
 	def list_link_with_active(name, options = {}, html_options = {}, &block)
 		opts = {}

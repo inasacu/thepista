@@ -138,7 +138,7 @@ module WrappersHelper
 		end
 
 		# case for discard displaying DISQUS
-		discard_disqus_display = ['schedule_new', 'schedule_edit', 'cast_edit', 'match_edit', 'invitation_new', 'challenge_new', 'challenge_edit', 'message_new']
+		discard_disqus_display = ['group_new', 'group_edit', 'schedule_new', 'schedule_edit', 'cast_edit', 'match_edit', 'invitation_new', 'challenge_new', 'challenge_edit', 'message_new']
 
 		# display full screen or partial
 		the_twelve_columns = ['reservation_index']

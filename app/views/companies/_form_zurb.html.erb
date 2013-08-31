@@ -1,34 +1,20 @@
-
 <%= set_form_label(the_form, :name) %>
-<%= set_form_text_field(the_form, :name, 'large input-text', true) %><br />
-
-
-<%#= set_form_label(the_form, :starts_at) %>
-<%#= set_form_time_select(the_form, :starts_at) %>
-
-<%#= set_form_label(the_form, :ends_at) %>
-<%#= set_form_time_select(the_form, :ends_at) %>
+<%= set_form_text_field(the_form, :name, 'large input-text', true) %><br/>
 
 <%= set_form_label(the_form, :url) %>
-<%= set_form_text_field(the_form, :url, 'large input-text', true) %><br />
+<%= set_form_text_field(the_form, :url, 'large input-text', true) %><br/>
 
-<%= set_form_label(the_form, :venue) %>
-<%= set_form_select(the_form, :venue_id, Venue.venue_name, @company.venue_id, true) %><br/><br/>
+<%= set_form_label(the_form, :city) %>
+<%= the_form.select(:city_id, City.city_name, {:selected => @company.city_id, :include_blank => false}) %><br/><br/>
 
-<%#= set_form_label(the_form, :type_play) %>
-<%#= set_form_select(the_form, :play_id, Type.venue_type, @company.play_id, false) %>
+<% unless is_edit %>
 
-<%#= set_form_label(the_form, :type_service) %>
-<%#= set_form_select(the_form, :service_id, Type.group_type, @company.service_id, false) %>
+<fieldset>
+	<span><STRONG><%= label_name(:group) %></STRONG></span>
+	<hr/>
+	<%= fields_for(@group, :html => { :multipart => true, :class => 'nice'  }) do |the_fields| %>
+		<%= render "groups/form_zurb", :the_form => the_fields, :is_edit => is_edit %>
+	<% end %>
+</fieldset>
 
-<%= set_form_label(the_form, :description) %>
-<%= set_form_text_area(the_form, :description, true) %>
-
-<%#= set_form_label(the_form, :photo) %>
-<%#= set_form_file_field(the_form, :photo) %><br />
-
-
-
-<%#= set_form_label(the_form, :public) %>
-<%#= set_form_checkbox(the_form, :public) %>
-
+<% end %>

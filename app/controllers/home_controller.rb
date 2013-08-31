@@ -1,6 +1,6 @@
 class HomeController < ApplicationController  
 	before_filter :require_user, :except => [:index, :about, :help, :welcome, :pricing, :about, :terms_of_use, :privacy_policy, :faq, 
-								:openid, :success, :blog, :persona, :feedback, :qr, :how_it_works, :launch]
+								:openid, :success, :blog, :persona, :feedback, :qr, :how_it_works, :for_websites, :launch]
 
 	before_filter :get_home,            :only => [:index]
 	before_filter :get_upcoming,        :only => [:index, :upcoming]
@@ -26,13 +26,20 @@ class HomeController < ApplicationController
 
 	def get_upcoming 
 		store_location
-
+		
+		@upcoming =  false
 		@upcoming_schedules ||= Schedule.upcoming_schedules(session[:schedule_hide_time])
-		@upcoming_cups ||= Cup.upcoming_cups(session[:cup_hide_time])
-		@upcoming_games ||= Game.upcoming_games(session[:game_hide_time])
+		@upcoming_cups = nil
+		@upcoming_games = nil
 
-		@upcoming ||=  false
-		@upcoming = (!@upcoming_schedules.empty? or !@upcoming_cups.empty? or !@upcoming_games.empty?)
+		if DISPLAY_FREMIUM_SERVICES
+			@upcoming_cups = Cup.upcoming_cups(session[:cup_hide_time])
+			@upcoming_games = Game.upcoming_games(session[:game_hide_time])
+			@upcoming = (!@upcoming_schedules.empty? or !@upcoming_cups.empty? or !@upcoming_games.empty?)
+		end
+		
+		@upcoming = @upcoming_schedules.empty? ? @upcoming : false
+		
 	end
 
 	def get_home
@@ -77,17 +84,19 @@ class HomeController < ApplicationController
 		Reservation.latest_items(@all_items) if @all_items.count < MEDIUM_FEED_SIZE  			if DISPLAY_PROFESSIONAL_SERVICES
 
 		has_values = false   
-		Cup.latest_items(@all_values, has_values)    
-		if @all_values.count > 0
-			Cup.latest_items(@all_items, has_values)
-			Game.latest_items(@all_items)
-			
-			# DO NOT REMOVE - IMPORTANT FOR OFFICIAL CUPS
-			#   Teammate.my_challenges_petitions(@requested_teammates, current_user)   
-			# 	Challenge.latest_items(@all_items)
-			# 	Cast.latest_items(@all_items)
-			
-		end     
+		
+		if DISPLAY_FREMIUM_SERVICES
+			Cup.latest_items(@all_values, has_values)    
+			if @all_values.count > 0
+				Cup.latest_items(@all_items, has_values)
+				Game.latest_items(@all_items)
+
+				# DO NOT REMOVE - IMPORTANT FOR OFFICIAL CUPS
+				#   Teammate.my_challenges_petitions(@requested_teammates, current_user)   
+				# 	Challenge.latest_items(@all_items)
+				# 	Cast.latest_items(@all_items)
+			end   
+		end
 
 		@all_items = @all_items.sort_by(&:created_at).reverse!    
 		@all_items[0..MEDIUM_FEED_SIZE].each {|item| @items << item }

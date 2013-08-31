@@ -53,8 +53,8 @@
 		<%= render_show_detail_zurb(:automatic_petition, 
 		(is_user_manager ? link_to(the_automatic_petition, set_automatic_petition_path(:id => @group)) : the_automatic_petition)) if @group.payed_service %>  
 
-		<%= render_show_detail_zurb(:users, t(:has_group_users, :count => @group.users.count)) unless @group.is_branch? %>
-		<%= render_show_detail_zurb(:blank, t(:has_group_active_users, 
+		<%= render_show_detail_zurb(:users, t(:has_group_users, :count => @group.users.count - DEFAULT_GROUP_USERS.length)) unless @group.is_branch? %>
+		<%#= render_show_detail_zurb(:blank, t(:has_group_active_users, 
 								:count => object_counter(Scorecard.get_active_players(@group)))) unless @group.is_branch? %>
 		
 		<%= render_show_detail_zurb(:schedules, t(:has_group_schedules, :count => @group.schedules.count)) unless @group.schedules.blank? %>

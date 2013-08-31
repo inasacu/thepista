@@ -219,7 +219,7 @@ IMAGE_VENUE = 'icons/venue.png'
 
 # .sport.icon
 
-IGNORE_HOME = ['home_about', 'home_terms_of_use', 'home_faq', 'home_persona', 'home_feedback', 'home_how_it_work', 'home_launch']
+IGNORE_HOME = ['home_about', 'home_terms_of_use', 'home_faq', 'home_persona', 'home_feedback', 'home_how_it_work', 'home_launch', 'home_for_website']
 
 
 COMMON_YEAR_DAYS_IN_MONTH = [nil, 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]
@@ -237,4 +237,11 @@ LANGUAGES = ['es', 'en']
 DEFAULT_AMAZON_S3_IMAGES_URL = "http://s3.amazonaws.com/thepista_produccion/the_images/"
 
 DEFAULT_GROUP_USERS = [1, 2, 3]
+
+# PRICE RANGES
+PRICE_RANGE_UNDER_50 = 1...49
+PRICE_RANGE_UNDER_500 = 50...499
+PRICE_RANGE_UNDER_5000 = 500...4999
+PRICE_RANGE_OVER_5000 = 5000
+
 

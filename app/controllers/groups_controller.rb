@@ -50,6 +50,8 @@ class GroupsController < ApplicationController
 			@group.item_id = @branch.id
 			@group.item_type = 'Branch'
 			@group.name = @branch.name
+		else
+			@schedule = Schedule.new
 		end
 
 	end
@@ -72,7 +74,8 @@ class GroupsController < ApplicationController
 					return
 			end
 			
-			redirect_to @group 
+			# redirect_to @group 
+			redirect_to :controller => 'schedules', :action => 'new', :id => @group.id
 		else
 			render :action => 'new'
 		end

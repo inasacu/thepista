@@ -84,7 +84,7 @@ module Thepista
 		# config.action_mailer.raise_delivery_errors = true
 		# config.assets.initialize_on_precompile = false
 		
-		 config.middleware.use "WwwDitcher"
+		 # config.middleware.use "WwwDitcher"
 		
   end
 
