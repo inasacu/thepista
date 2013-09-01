@@ -2,10 +2,9 @@
 	is_user_manager = (is_current_manager_of(@company)) 
 	is_member = is_current_member_of(@company) 
 	first_branch = true
-%>
+%>	
 
-<%#= render 'shared/show_description_zurb', :item => @company %>
-	
+<%= render 'companies/group_wo_timetable', :the_company => @company %>
 
 <table>
 	<tbody>
@@ -67,4 +66,3 @@
 		</tr>
 	</tbody>
 </table>
-

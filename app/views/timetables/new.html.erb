@@ -1,6 +1,14 @@
 <% 
 	the_label = "#{control_action_label} #{label_name(:for)} #{item_name_link(@installation)}".html_safe if @installation
-	the_label = "#{control_action_label} #{label_name(:for)} #{item_name_link(@group)}".html_safe if @group
+
+	if @group
+		if @group.is_branch?
+			the_label = "#{control_action_label} #{label_name(:for)} #{link_to(@group.name, branch_url(:id => @group))}".html_safe 
+		else
+			the_label = "#{control_action_label} #{label_name(:for)} #{item_name_link(@group)}".html_safe 
+		end
+	end
+
 	@item = @timetable
 %>
 

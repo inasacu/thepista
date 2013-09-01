@@ -1,0 +1,56 @@
+<% 
+	# is_user_manager = (is_current_manager_of(@company)) 
+	# is_member = is_current_member_of(@company) 
+	first_branch = true
+
+	the_head = "<script type=\"text/javascript\" src=\"#{@company.url}/widget\"></script>"
+	the_body = "<div id=\"haypistawidget\"></div>"
+%>	
+
+<%= render 'companies/group_wo_timetable', :the_company => @company %>
+
+	
+<%= content_tag 'h4', label_name(:widget_javascript) %>
+<hr/>
+
+<div class="row">
+	<div class="twelve columns">
+
+		<br/>
+		<%= content_tag 'p', h("#{label_name(:widget_head)}") %>
+
+		<table>
+			<tbody>
+				<tr>
+					<td>
+						<%= h("<!-- HayPista Widget HEAD javascript -->") %><br/>
+						<%= the_head %><br/>
+						<%= h("<!-- HayPista Widget HEAD javascript-->") %>
+					</td>
+				</td>
+			</tbody>
+		</table>
+
+
+		<br/>
+		<%= content_tag 'p', h("#{label_name(:widget_body)}") %>
+
+		<table>
+			<tbody>
+				<tr>
+					<td>
+						<%= h("<!-- HayPista Widget BODY javascript -->") %><br/>
+						<%= the_body %><br/>
+						<%= h("<!-- HayPista Widget BODY javascript-->") %>
+
+					</td>
+				</td>
+			</tbody>
+		</table>
+
+		<br/>			
+		<%= content_tag 'p', "#{label_name(:widget_each_page_haypista)}" %>
+
+	</div>
+</div>
+

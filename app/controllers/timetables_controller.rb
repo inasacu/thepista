@@ -39,14 +39,14 @@ class TimetablesController < ApplicationController
 			@timetable.item_id = @group.id
 			@timetable.item_type = 'Group'
 			@timetable.starts_at = @group.item.starts_at
-			@timetable.ends_at = @group.item.ends_at
+			@timetable.ends_at = @group.item.starts_at + @group.item.timeframe.hours
 			@timetable.timeframe = @group.item.timeframe
 
 			@previous_timetable = Timetable.find(:first, :conditions => ["id = (select max(id) from timetables where item_id = ? and item_type = 'Group') ", @group])    
 			unless @previous_timetable.nil?     
 				@timetable.type_id = @previous_timetable.type_id
-				@timetable.starts_at = @previous_timetable.starts_at
-				@timetable.ends_at = @previous_timetable.ends_at
+				@timetable.starts_at = @previous_timetable.starts_at + @previous_timetable.timeframe.hours
+				@timetable.ends_at = @previous_timetable.ends_at + @previous_timetable.timeframe.hours
 				@timetable.timeframe = @previous_timetable.timeframe
 			end
 		end
@@ -56,6 +56,7 @@ class TimetablesController < ApplicationController
 
   def create
     @timetable = Timetable.new(params[:timetable])  
+		@group = Group.find(@timetable.item_id) if @timetable.item_type = 'Group' 
 
     if @timetable.save 
       successful_create

@@ -106,6 +106,7 @@ GEM
     multi_json (1.7.7)
     multi_xml (0.5.4)
     multipart-post (1.2.0)
+    newrelic_rpm (3.6.6.147)
     nokogiri (1.5.10)
     oauth (0.4.7)
     oauth2 (0.8.1)
@@ -196,6 +197,7 @@ GEM
       rack (>= 1.0.0)
     thor (0.18.1)
     tilt (1.4.1)
+    timeliness (0.3.7)
     treetop (1.4.14)
       polyglot
       polyglot (>= 0.3.1)
@@ -206,6 +208,8 @@ GEM
       execjs (>= 0.3.0)
       multi_json (~> 1.0, >= 1.0.2)
     uuidtools (2.1.4)
+    validates_timeliness (3.0.14)
+      timeliness (~> 0.3.6)
     will_paginate (3.0.4)
     zurb-foundation (4.0.9)
       sass (>= 3.2.0)
@@ -234,6 +238,7 @@ DEPENDENCIES
   hoptoad_notifier
   httparty (>= 0.8.1)
   jquery-rails (= 2.3.0)
+  newrelic_rpm
   omniauth
   omniauth-browserid
   omniauth-facebook
@@ -251,5 +256,6 @@ DEPENDENCIES
   thin
   typhoeus
   uglifier (>= 1.0.3)
+  validates_timeliness (~> 3.0)
   will_paginate
   zurb-foundation (~> 4.0.0)

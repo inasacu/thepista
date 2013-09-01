@@ -28,12 +28,43 @@ class Timetable < ActiveRecord::Base
 	validates_presence_of     :item_id
 	validates_presence_of			:item_type
 	
-	validates_uniqueness_of :item_id, :item_type, :scope => [:starts_at, :ends_at, :timeframe, :type_id]
+	validates_uniqueness_of 	:item_id, :item_type, :scope => [:starts_at, :ends_at, :timeframe, :type_id, :item_id, :item_type]
 
 
 	# variables to access
 	attr_accessible :installation_id, :type_id, :starts_at, :ends_at, :timeframe, :item_id, :item_type
+	attr_accessible	:starts_at_date, :starts_at_time, :ends_at_date, :ends_at_time
 
+	attr_accessor 	:starts_at_date, :starts_at_time, :ends_at_date, :ends_at_time
+	
+	before_update   :set_time_to_utc, :get_starts_at, :get_ends_at
+  
+  # add some callbacks, after_initialize :get_starts_at # convert db format to accessors
+	before_create			:get_starts_at, :get_ends_at
+  before_validation :get_starts_at, :get_ends_at, :set_starts_at, :set_ends_at 
+	
+	validates_time		:ends_at,			:after => :starts_at
+	
+	def get_starts_at
+		self.starts_at ||= Time.now  
+		self.starts_at_date ||= self.starts_at.to_date.to_s(:db) 
+		self.starts_at_time ||= "#{'%02d' % self.starts_at.hour}:#{'%02d' % self.starts_at.min}" 
+	end
+
+	def set_starts_at
+		self.starts_at = "#{self.starts_at_date} #{self.starts_at_time}:00" 
+	end
+	
+	def get_ends_at
+		self.ends_at ||= Time.now  
+		self.ends_at_date ||= self.ends_at.to_date.to_s(:db) 
+		self.ends_at_time ||= "#{'%02d' % self.ends_at.hour}:#{'%02d' % self.ends_at.min}" 
+	end
+
+	def set_ends_at
+		self.ends_at = "#{self.ends_at_date} #{self.ends_at_time}:00" 
+	end
+	
 	def day_of_week
 		I18n.t(self.type.name.capitalize)
 	end
@@ -77,7 +108,7 @@ class Timetable < ActiveRecord::Base
 	
 	# def self.branch_min_max_timetable(company)
 	# 	self.where("branch.company_id = ?", company).select("min(timetables.starts_at) as starts_at, max(timetables.ends_at) as ends_at").joins("LEFT JOIN branches on branches.id = timetables.item_id").first()
-	# end  		
+	# end  	
 	
 	# WIDGET PROJECT ----------------------------
 	
@@ -94,6 +125,13 @@ class Timetable < ActiveRecord::Base
 	      .where("timetables.starts_at >= ? and timetables.starts_at <= ?", Time.zone.now, NEXT_WEEK)
 	end
   
+  private
+
+  def set_time_to_utc
+    # self.starts_at = self.starts_at.utc
+    # self.ends_at = self.ends_at.utc
+  end
+
 end
 
 

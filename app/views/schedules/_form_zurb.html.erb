@@ -23,29 +23,57 @@
 <%= set_form_text_field(the_form, :name, 'input-text') %><br>
 
 
-<%= set_form_label(the_form, :starts_at) %>
 <div class="row">
 	<div class="three columns">
-	<%= the_form.text_field :starts_at_date, :id => 'starts_at_datepicker', 
+		<%= set_form_label(the_form, :starts_at) %>
+		<div class="row">
+			<div class="three columns">
+			<%= the_form.text_field :starts_at_date, :id => 'starts_at_datepicker', 
+									:class => 'small input-text', 
+									:value => @schedule.starts_at.strftime("%d-%m-%Y") %>
+			</div>
+		</div>
+	</div>
+
+	<div class="nine columns">
+		
+		<div class="row">
+			<div class="three columns">
+
+				<%= set_form_label(the_form, :starts_at) %>
+				<div class="row">
+					<div class="twelve columns">
+						<%= the_form.text_field :starts_at_time, :id => 'starts_at_timepicker', 
+						:class => 'small input-text', 
+						:value => @schedule.starts_at.strftime("%H:%M") %>
+					</div>
+				</div>
+				
+			</div>
+
+			<div class="one columns"></div>
+			
+				<div class="three columns">
+
+					<%= set_form_label(the_form, :ends_at) %>
+					<div class="row">
+						<div class="twelve columns">
+							<%= the_form.text_field :ends_at_time, :id => 'ends_at_timepicker', 
 							:class => 'small input-text', 
-							:value => @schedule.starts_at.strftime("%d-%m-%Y") %>
-	</div>
+							:value => @schedule.ends_at.strftime("%H:%M") %>
+						</div>
+					</div>
+
+				</div>
+				
+			
+			<div class="two columns"></div>
+		</div>
 	
-	<div class="three columns">
-		<%= the_form.text_field :starts_at_time, :id => 'starts_at_timepicker', 
-								:class => 'small input-text', 
-								:value => @schedule.starts_at.strftime("%H:%M") %>
 	</div>
-	
-	<div class="three columns">
-		<%= the_form.text_field :ends_at_time, :id => 'ends_at_timepicker', 
-								:class => 'small input-text', 
-								:value => @schedule.ends_at.strftime("%H:%M") %>
-	</div>
-	
-	<div class="three columns"></div>
 	
 </div>
+
 
 <br>
 

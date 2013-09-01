@@ -1,0 +1,108 @@
+<%= javascript_include_tag "lightbox" %>
+<%= stylesheet_link_tag    "lightbox" %>
+
+
+<script type="text/javascript">
+$(function() {
+	$('#gallery a').lightBox();
+});
+</script>
+
+<style type="text/css">
+/* jQuery lightBox plugin - Gallery style */
+#gallery {	}
+#gallery ul { list-style: none; }
+#gallery ul li { display: inline; }
+#gallery ul img {	}
+#gallery ul a:hover img {
+	color: #fff;
+}
+#gallery ul a:hover { color: #fff; }
+</style>
+
+
+<%
+	# 1. the_haypista_inicia_sesion_widget.png
+	# 2. the_haypista_sesion_widget.png
+	# 3. the_haypista_evento_convocado_widget.png
+	# 4. the_haypista_convocado_ultima_ausente_widget.png
+
+	the_size = "580x320"
+	
+	the_haypista_inicia_sesion_widget = "#{DEFAULT_AMAZON_S3_IMAGES_URL}haypista_inicia_sesion_widget.png"
+	the_haypista_sesion_widget = "#{DEFAULT_AMAZON_S3_IMAGES_URL}haypista_sesion_widget.png"
+	the_haypista_evento_convocado_widget = "#{DEFAULT_AMAZON_S3_IMAGES_URL}haypista_evento_convocado_widget.png"
+	the_haypista_convocado_ultima_ausente_widget = "#{DEFAULT_AMAZON_S3_IMAGES_URL}haypista_convocado_ultima_ausente_widget.png"
+	
+	the_for_websites_label = get_propercase("#{label_name(:for)} #{label_name(:companies)}")
+	the_your_events_label = get_propercase("#{label_name(:your)} #{label_name(:schedules)}")
+	the_upcoming_events = label_name(:upcoming_meets)
+	the_jornada_programada = label_name(:jornada_programada)
+%>
+
+<div class="row">
+	<div class="twelve columns">
+
+		<div class="announce">
+			<%= content_tag 'h4', the_for_websites_label %>	<%= label_name(:widget_passionate_haypista) %>
+		</div>
+
+		<hr/>
+		<br/>
+
+		<div id="gallery">
+			<ul>
+				<li>
+
+					<div class="row">
+						<div class="four columns">				
+							<div class="col-6 text-block">
+								<%= content_tag_safe(:h5, the_upcoming_events) %>
+								<%= label_name(:widget_integration_haypista) %>      
+					        </div>
+						</div>
+						<div class="eight columns">
+							<%= link_to( image_tag(the_haypista_inicia_sesion_widget, :size => the_size), the_haypista_inicia_sesion_widget ) %>
+						</div>
+					</div>
+					<hr/>
+					<br>
+					
+					<div class="row">
+						<div class="four columns">				
+							<%= content_tag_safe(:h5, the_your_events_label) %>
+							<%= label_name(:widget_inicia_session_haypista) %>
+						</div>
+						<div class="eight columns">
+							<%= link_to( image_tag(the_haypista_sesion_widget, :size => the_size), the_haypista_sesion_widget ) %>
+						</div>
+					</div>
+					<hr/>
+					<br>
+					
+					<div class="row">
+						<div class="four columns">	
+							<%= content_tag_safe(:h5, the_jornada_programada) %>
+							<%= label_name(:widget_event_option_haypista) %>
+						</div>
+						<div class="eight columns">
+							<%= link_to( image_tag(the_haypista_convocado_ultima_ausente_widget, :size => the_size), the_haypista_convocado_ultima_ausente_widget ) %>
+						</div>
+					</div>
+
+				</li>
+			</ul>
+		
+		</div>
+	
+	</div>
+</div>
+
+
+<hr/>
+<%= content_tag 'h5', "#{link_to("#{label_name(:widget_add_haypista)}", companies_url)}".html_safe unless current_user %>
+<%= content_tag 'h5', "#{link_to("#{label_name(:widget_add_haypista)}", new_company_path)}".html_safe if current_user %>
+
+
+
+

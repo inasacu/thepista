@@ -30,6 +30,7 @@ $(function() {
 	# 6. haypista-evento-clasificacion.png
 
 	the_size = "580x280"
+	the_size_la_mejor_forma = "580x105"
 
 	the_mejor_forma_de_acceder = "#{DEFAULT_AMAZON_S3_IMAGES_URL}haypista-la-mejor-forma-de-acceder.png"
 	the_eventos = "#{DEFAULT_AMAZON_S3_IMAGES_URL}haypista-eventos.png"
@@ -38,11 +39,6 @@ $(function() {
 	the_evento_resultados = "#{DEFAULT_AMAZON_S3_IMAGES_URL}haypista-evento-resultados.png"
 	the_evento_clasification = "#{DEFAULT_AMAZON_S3_IMAGES_URL}haypista-evento-clasificacion.png"
 %>
-
-
-
-
-
 
 <div class="row">
 	<div class="twelve columns">
@@ -59,12 +55,12 @@ $(function() {
 				<li>
 
 					<div class="row">
-						<div class="six columns">				
+						<div class="four columns">				
 							<%= content_tag_safe(:h4, label_name(:faq_acceso_facil)) %>
 							<%= "Acceso facil y seguro para acceder a los servicios." %>
 						</div>
-						<div class="six columns">
-							<%= link_to( image_tag(the_mejor_forma_de_acceder, :size => the_size), the_mejor_forma_de_acceder ) %>
+						<div class="eight columns">
+							<%= link_to( image_tag(the_mejor_forma_de_acceder, :size => the_size_la_mejor_forma), the_mejor_forma_de_acceder ) %>
 						</div>
 					</div>
 

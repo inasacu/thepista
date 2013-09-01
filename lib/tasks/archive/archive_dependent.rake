@@ -4,12 +4,11 @@ desc "ARCHIVE dependent records to already archived"
 task :the_archive_dependent => :environment do |t|
 
 	# archive group 
-	group_id = [20, 21, 22]  
 	the_archives = []
 
 	# GROUPS
-	@archive = Group.find(:all, :conditions => ["id in (?) and archive = false", group_id])
-	@archive.each {|archive_file| the_archives << archive_file}
+	archive = Group.where('archive = false and item_type is null')
+	archive.each {|archive_file| the_archives << archive_file}
 	the_archives = set_all_to_archive(the_archives)
 
 
@@ -18,25 +17,25 @@ task :the_archive_dependent => :environment do |t|
 	the_archive_true = Cup.find(:all, :conditions => "archive = true")
 
 	# CHALLENGES
-	@archive = Challenge.find(:all, :conditions => ["archive = false and cup_id in (?)", the_archive_true])
-	@archive.each {|archive_file| the_archives << archive_file}
+	archive = Challenge.find(:all, :conditions => ["archive = false and cup_id in (?)", the_archive_true])
+	archive.each {|archive_file| the_archives << archive_file}
 
-	@archive = Challenge.find(:all, :conditions => ["archive = false and cup_id not in (?)", the_archive_false])
-	@archive.each {|archive_file| the_archives << archive_file}
+	archive = Challenge.find(:all, :conditions => ["archive = false and cup_id not in (?)", the_archive_false])
+	archive.each {|archive_file| the_archives << archive_file}
 
 	# GAMES
-	@archive = Game.find(:all, :conditions => ["archive = false and cup_id in (?)", the_archive_true])
-	@archive.each {|archive_file| the_archives << archive_file}
+	archive = Game.find(:all, :conditions => ["archive = false and cup_id in (?)", the_archive_true])
+	archive.each {|archive_file| the_archives << archive_file}
 
-	@archive = Game.find(:all, :conditions => ["archive = false and cup_id not in (?)", the_archive_false])
-	@archive.each {|archive_file| the_archives << archive_file}
+	archive = Game.find(:all, :conditions => ["archive = false and cup_id not in (?)", the_archive_false])
+	archive.each {|archive_file| the_archives << archive_file}
 
 	# STANDINGS
-	@archive = Standing.find(:all, :conditions => ["archive = false and cup_id in (?)", the_archive_true])
-	@archive.each {|archive_file| the_archives << archive_file}
+	archive = Standing.find(:all, :conditions => ["archive = false and cup_id in (?)", the_archive_true])
+	archive.each {|archive_file| the_archives << archive_file}
 
-	@archive = Standing.find(:all, :conditions => ["archive = false and cup_id not in (?)", the_archive_false])
-	@archive.each {|archive_file| the_archives << archive_file}
+	archive = Standing.find(:all, :conditions => ["archive = false and cup_id not in (?)", the_archive_false])
+	archive.each {|archive_file| the_archives << archive_file}
 	the_archives = set_all_to_archive(the_archives)
 
 	# CHALLENGES 
@@ -44,72 +43,72 @@ task :the_archive_dependent => :environment do |t|
 	the_archive_true = Challenge.find(:all, :conditions => "archive = true")
 
 	# FEES
-	@archive = Fee.find(:all, :conditions => ["archive = false and item_id in (?) and item_type = 'Challenge'", the_archive_true])
-	@archive.each {|archive_file| the_archives << archive_file}
+	archive = Fee.find(:all, :conditions => ["archive = false and item_id in (?) and item_type = 'Challenge'", the_archive_true])
+	archive.each {|archive_file| the_archives << archive_file}
 
-	@archive = Fee.find(:all, :conditions => ["archive = false and item_id not in (?) and item_type = 'Challenge'", the_archive_false])
-	@archive.each {|archive_file| the_archives << archive_file}
+	archive = Fee.find(:all, :conditions => ["archive = false and item_id not in (?) and item_type = 'Challenge'", the_archive_false])
+	archive.each {|archive_file| the_archives << archive_file}
 
 	if (Challenge.find(:all).count < 1)
-		@archive = Fee.find(:all, :conditions => ["item_type = 'Challenge'", the_archive_false])
-		@archive.each {|archive_file| the_archives << archive_file}
+		archive = Fee.find(:all, :conditions => ["item_type = 'Challenge'", the_archive_false])
+		archive.each {|archive_file| the_archives << archive_file}
 	end
 
 	# PAYMENTS
-	@archive = Payment.find(:all, :conditions => ["archive = false and item_id in (?) and item_type = 'Challenge'", the_archive_true])
-	@archive.each {|archive_file| the_archives << archive_file}
+	archive = Payment.find(:all, :conditions => ["archive = false and item_id in (?) and item_type = 'Challenge'", the_archive_true])
+	archive.each {|archive_file| the_archives << archive_file}
 
-	@archive = Payment.find(:all, :conditions => ["archive = false and item_id not in (?) and item_type = 'Challenge'", the_archive_false])
-	@archive.each {|archive_file| the_archives << archive_file}
+	archive = Payment.find(:all, :conditions => ["archive = false and item_id not in (?) and item_type = 'Challenge'", the_archive_false])
+	archive.each {|archive_file| the_archives << archive_file}
 
 
 	# STANDINGS
-	@archive = Standing.find(:all, :conditions => ["archive = false and challenge_id in (?)", the_archive_true])
-	@archive.each {|archive_file| the_archives << archive_file}
+	archive = Standing.find(:all, :conditions => ["archive = false and challenge_id in (?)", the_archive_true])
+	archive.each {|archive_file| the_archives << archive_file}
 
-	@archive = Standing.find(:all, :conditions => ["archive = false and challenge_id not in (?)", the_archive_false])
-	@archive.each {|archive_file| the_archives << archive_file}
+	archive = Standing.find(:all, :conditions => ["archive = false and challenge_id not in (?)", the_archive_false])
+	archive.each {|archive_file| the_archives << archive_file}
 	the_archives = set_all_to_archive(the_archives)
 
 	# CASTS
 	the_archive_false = Challenge.find(:all, :conditions => "archive = false")
 	the_archive_true = Challenge.find(:all, :conditions => "archive = true")
 
-	@archive = Cast.find(:all, :conditions => ["archive = false and challenge_id in (?)", the_archive_true])
-	@archive.each {|archive_file| the_archives << archive_file}
+	archive = Cast.find(:all, :conditions => ["archive = false and challenge_id in (?)", the_archive_true])
+	archive.each {|archive_file| the_archives << archive_file}
 
-	@archive = Cast.find(:all, :conditions => ["archive = false and challenge_id not in (?)", the_archive_false])
-	@archive.each {|archive_file| the_archives << archive_file}
+	archive = Cast.find(:all, :conditions => ["archive = false and challenge_id not in (?)", the_archive_false])
+	archive.each {|archive_file| the_archives << archive_file}
 
-	@archive = Standing.find(:all, :conditions => "item_id is null and item_type is null")
-	@archive.each {|archive_file| the_archives << archive_file}
+	archive = Standing.find(:all, :conditions => "item_id is null and item_type is null")
+	archive.each {|archive_file| the_archives << archive_file}
 
 	# GROUPS
 	the_archive_false = Group.find(:all, :conditions => "archive = false")
 	the_archive_true = Group.find(:all, :conditions => "archive = true")
 
 	# FEES
-	@archive = Fee.find(:all, :conditions => ["archive = false and item_id in (?) and item_type = 'Group'", the_archive_true])
-	@archive.each {|archive_file| the_archives << archive_file}
+	archive = Fee.find(:all, :conditions => ["archive = false and item_id in (?) and item_type = 'Group'", the_archive_true])
+	archive.each {|archive_file| the_archives << archive_file}
 
-	@archive = Fee.find(:all, :conditions => ["archive = false and item_id not in (?) and item_type = 'Group'", the_archive_false])
-	@archive.each {|archive_file| the_archives << archive_file}
+	archive = Fee.find(:all, :conditions => ["archive = false and item_id not in (?) and item_type = 'Group'", the_archive_false])
+	archive.each {|archive_file| the_archives << archive_file}
 	the_archives = set_all_to_archive(the_archives)
 
 	# PAYMENT
-	@archive = Payment.find(:all, :conditions => ["archive = false and item_id in (?) and item_type = 'Group'", the_archive_true])
-	@archive.each {|archive_file| the_archives << archive_file}
+	archive = Payment.find(:all, :conditions => ["archive = false and item_id in (?) and item_type = 'Group'", the_archive_true])
+	archive.each {|archive_file| the_archives << archive_file}
 
-	@archive = Payment.find(:all, :conditions => ["archive = false and item_id not in (?) and item_type = 'Group'", the_archive_false])
-	@archive.each {|archive_file| the_archives << archive_file}
+	archive = Payment.find(:all, :conditions => ["archive = false and item_id not in (?) and item_type = 'Group'", the_archive_false])
+	archive.each {|archive_file| the_archives << archive_file}
 	the_archives = set_all_to_archive(the_archives)
 
 	# SCHEDULES
-	@archive = Schedule.find(:all, :conditions => ["archive = false and group_id in (?)", the_archive_true])
-	@archive.each {|archive_file| the_archives << archive_file}
+	archive = Schedule.find(:all, :conditions => ["archive = false and group_id in (?)", the_archive_true])
+	archive.each {|archive_file| the_archives << archive_file}
 
-	@archive = Schedule.find(:all, :conditions => ["archive = false and group_id not in (?)", the_archive_false])
-	@archive.each {|archive_file| the_archives << archive_file}
+	archive = Schedule.find(:all, :conditions => ["archive = false and group_id not in (?)", the_archive_false])
+	archive.each {|archive_file| the_archives << archive_file}
 	the_archives = set_all_to_archive(the_archives)
 
 
@@ -117,33 +116,39 @@ task :the_archive_dependent => :environment do |t|
 	the_archive_true = Schedule.find(:all, :conditions => "archive = true")
 
 	# MATCHES
-	@archive = Match.find(:all, :conditions => ["archive = false and schedule_id in (?)", the_archive_true])
-	@archive.each {|archive_file| the_archives << archive_file}
+	archive = Match.find(:all, :conditions => ["archive = false and schedule_id in (?)", the_archive_true])
+	archive.each {|archive_file| the_archives << archive_file}
 
-	@archive = Match.find(:all, :conditions => ["archive = false and schedule_id not in (?)", the_archive_false])
-	@archive.each {|archive_file| the_archives << archive_file}
+	archive = Match.find(:all, :conditions => ["archive = false and schedule_id not in (?)", the_archive_false])
+	archive.each {|archive_file| the_archives << archive_file}
 	the_archives = set_all_to_archive(the_archives)
 
 	# FEES
-	@archive = Fee.find(:all, :conditions => ["archive = false and item_id in (?) and item_type = 'Schedule'", the_archive_true])
-	@archive.each {|archive_file| the_archives << archive_file}
+	archive = Fee.find(:all, :conditions => ["archive = false and item_id in (?) and item_type = 'Schedule'", the_archive_true])
+	archive.each {|archive_file| the_archives << archive_file}
 
-	@archive = Fee.find(:all, :conditions => ["archive = false and item_id not in (?) and item_type = 'Schedule'", the_archive_false])
-	@archive.each {|archive_file| the_archives << archive_file}
+	archive = Fee.find(:all, :conditions => ["archive = false and item_id not in (?) and item_type = 'Schedule'", the_archive_false])
+	archive.each {|archive_file| the_archives << archive_file}
 	the_archives = set_all_to_archive(the_archives)
 
 	# PAYMENT
-	@archive = Payment.find(:all, :conditions => ["archive = false and item_id in (?) and item_type = 'Schedule'", the_archive_true])
-	@archive.each {|archive_file| the_archives << archive_file}
+	archive = Payment.find(:all, :conditions => ["archive = false and item_id in (?) and item_type = 'Schedule'", the_archive_true])
+	archive.each {|archive_file| the_archives << archive_file}
 
-	@archive = Payment.find(:all, :conditions => ["archive = false and item_id not in (?) and item_type = 'Schedule'", the_archive_false])
-	@archive.each {|archive_file| the_archives << archive_file}
+	archive = Payment.find(:all, :conditions => ["archive = false and item_id not in (?) and item_type = 'Schedule'", the_archive_false])
+	archive.each {|archive_file| the_archives << archive_file}
 	the_archives = set_all_to_archive(the_archives)
 
 	# MESSAGES
 	Message.archive_messages
 
-
+	# reset all archived groups to unarchive
+	unarchives = Group.where('archive = true and item_type is null')
+	unarchives.each do |unarchive|
+		unarchive.archive = false
+		unarchive.save!
+	end 
+	
 end
 
 

@@ -17,9 +17,14 @@ gem "geokit"
 gem "geokit-rails"
 
 gem 'delayed_job'
-gem 'hirefireapp'
+
+# gem "hirefire-resource"
+gem "hirefireapp"
+
 gem 'paperclip'
 gem 'composite_primary_keys'
+
+gem 'newrelic_rpm'
 
 gem 'jquery-rails', '2.3.0'
 gem 'google_map'
@@ -41,6 +46,10 @@ gem 'omniauth-linkedin'
 gem 'omniauth-google'
 gem 'omniauth-windowslive'
 gem 'omniauth-yahoo'
+
+gem 'validates_timeliness', '~> 3.0'
+
+# gem 'pusher'
 
 
 # Gems used only for assets and not required

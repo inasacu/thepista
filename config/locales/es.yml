@@ -203,35 +203,36 @@ es:
      comment: Comentario   
      comment_not_saved: Comentarios no guardados!!!   
      comment_saved: Comentarios guardados!!!  
-     company:  Empresa 
-     company_description: Nombre de empresa
-     companies:   Empresa
+     company:  Sitio Web 
+     company_description: Nombre del sitio web
+     companies:   Sitio Web
      company_options:  Opciones
-     company_stage_set:  Actualiza al empresa
+     company_personalization:  Personalización
+     company_stage_set:  Actualiza el sitio web
      company_stage_set_full:  Actualiza el branches
-     companies:   Empresas
-     companies_create:  "¡Hazte una empresa!"
-     companys_create:  "¡Hazte una empresa!"
-     companies_destroy:  Borra la empresa
-     companies_edit:  Cambia la empresa
-     companies_index:   Empresa
+     companies:   Sitios Web
+     companies_create:  "Pon HayPista en tu sitio web"
+     companys_create:  "Pon HayPista en tu sitio web"
+     companies_destroy:  Borra el sitio web
+     companies_edit:  Cambia el sitio web
+     companies_index:   Sitio Web
      companies_index_option: Opciones 
-     companies_invitations_create:  Invita a un amigo al empresa
-     companies_join:  Unete a la empresa
-     companies_list:  Resto de empresas
-     companies_new:  Nueva empresa
+     companies_invitations_create:  Invita a un amigo al sitio web
+     companies_join:  Unete al sitio web
+     companies_list:  Resto de sitios web
+     companies_new:  Nueva sitio web
      companies_new_option: Opciones 
-     companies_no:  Ninguna empresa para mostrar
-     companys_no:  Ninguna empresa para mostrar
-     companies_none:  Ninguna empresa.
-     companys_none:  Ninguna empresa.
-     companies_options_without: "¿Qué opciones tienes ya que no tienes una empresa?"
-     companies_options_without: "Parece que no tienes una empresa, puedes hacer lo siguiente:"
+     companies_no:  Ningun sitio web para mostrar
+     companys_no:  Ningun sitio web para mostrar
+     companies_none:  Ningun sitio web.
+     companys_none:  Ningun sitio web.
+     companies_options_without: "¿Qué opciones tienes ya que no tienes un sitio web?"
+     companies_options_without: "Parece que no tienes un sitio web, puedes hacer lo siguiente:"
      companies_option:  Opciones 
      companies_search: Busqueda de companies
-     companies_search_to_join: Puedes buscar una empresa a quien unierte. 
-     companies_show:  Mostrar empresa
-     companies_update: Cambia la empresa
+     companies_search_to_join: Puedes buscar un sitio web a quien unierte. 
+     companies_show:  Mostrar sitio web
+     companies_update: Cambia el sitio web
      complete:  completo
      connect:  Conectar
      connect_to_your_linkedin:  Conecta tu cuenta de LinkedIn
@@ -323,7 +324,7 @@ es:
      cups_option:  Opciones 
      cups_show:  Mostrar torneo
      cups_to_join:   inscribirte a un torneo 
-     cups_upcoming: Próximas Torneos  
+     cups_upcoming: Próximos Torneos  
      cups_update: Actualiza el torneo
      current_accounts: Cuentas actuales   
      current_language: Español    
@@ -915,6 +916,7 @@ es:
      join_tournament: Únete al torneo   
      jornada:  Jornada
      jornada_description:  Jornada
+     jornada_programada:  Jornada Programada
      language: Idioma 
      last_game_played: Ultima jornada	 
      last_login_at: conecto la ultima vez   
@@ -934,7 +936,7 @@ es:
      left_post_on_forum: Ha dejado un COMENTARIO en 
      lighting:  Luces
      lighting_description: (Hay luces en la pista?) 
-     linkedin_headline:  Titulo en la empresa
+     linkedin_headline:  Titulo del sitio web
      linkedin_profile:  LinkedIn
      linkedin_update_status:  esta utilizando http://haypista.com para practicar deportes.
      list: Listado   
@@ -1189,6 +1191,8 @@ es:
      omniauth_provider_browser_id:  Mozilla Persona
      omniauth_provider_twitter:  Twitter
      omniauth_provider_facebook:  Facebook
+     only:  Solo
+     only_put:  Solo falta un
      page_does_not_exist: La pagina que querias no exite.
      participate_challenge: Participa en el reto
      participate_challenge_afterwards: "Despues de registrate y ser aceptado, sigue este enlace para participa en el reto" 
@@ -1342,7 +1346,8 @@ es:
      provider_not_supported: "provider is not supported, try another email address."   
      public:  Abierto al publico
      public_description:  Selecciona opción si esta abierto al publico.
-     publish_in: Publica en HayPista   
+     publish_in: Publica en HayPista
+     put: Pon un 
      question_or_comment: Pregunta o comentario?
      ranking: Ranking   
      ranking_full: Posición del jugador en la clasificación   
@@ -1691,6 +1696,7 @@ es:
      timetables_create:  Nuevo horario
      timetables_edit:  Modifica el horario
      timetables_new:  Nuevo horario
+     timetables_no: Ningun horario para tus equipos. 
      timetable_description:  Los horarios se utilizan para poner los horarios diarios de cada centro
      time_zone:  Horario
      time_zone_description:  Horario
@@ -1752,7 +1758,7 @@ es:
      upcoming_schedule: Evento deportivo  
      upcoming_schedules: Eventos Deportivos 
      upcoming_meet: Evento deportivo
-     upcoming_meets: Próximos eventos de torneo 
+     upcoming_meets: Próximos eventos 
      upcoming_no:  Ningun evento para mostrar   
      update: Actualiza   
      update_address: Actualiza    
@@ -1795,7 +1801,7 @@ es:
      updated_a_schedule: Ha actualizado el evento 
      updated_a_user:  ha actualizado el perfil 
      upload:  Subir   
-     url: Enlace
+     url: Enlace de tu sitio web
      urls: Sucursales
      url_group: Vincular a Equipo
      use_at_discretion: Nueva opción para entrar.  Si tienes una cuenta entra con tu cuenta original.
@@ -1845,11 +1851,21 @@ es:
      what_is_this:   ¿Qué es esto? 
      what_are_you_practicing: Comparte una actualización  
      whats_new: ¿Qué hay de nuevo en HayPista?   
+     widget_add_haypista: Pon HayPista en tu sitio web
+     widget_each_page_haypista: "Este código debe ser insertado en cada página en la que desea mostrar el widget HayPista."
+     widget_body: "Copia el siguiente codigo e insertalo en el código fuente HTML de tu sitio web entre las etiquetas <body>."
+     widget_head: "Copia el siguiente codigo e insertalo en el código fuente HTML de tu sitio web entre las etiquetas <head>."
+     widget_javascript: Personalización del Widget
+     widget_passionate_haypista: "Si te apasionado prácticar el deportes, HayPista te ayuda a construir una comunidad de jugadores."
+     widget_integration_haypista: "Con el widget integrado en tu sitio web, tus usuarios veran todos los eventos."
+     widget_inicia_session_haypista: "Al iniciar la session el usuario podra apuntarse a cualquier evento."
+     widget_event_option_haypista: "El usuario tendra varias opciones por evento:  convocado, ultima hora o ausente, incluso podra dejar comentarios."
      write_comment: Escribe un comentario...   
      writes: escribe 
      wrote: ha escrito  
-     yes_openid: OpenIDs associados a esta cuenta   
-     you: Tu   
+     yes_openid: OpenIDs associados a esta cuenta 
+     you: Tu
+     your: Tus
      you_are_center_here: "Centra aquí"
      you_are_create_group:  "Organiza tu equipo aqui"
      you_are_create_group_instruction:  Organiza tu equipo picando el punto en el mapa
@@ -2321,7 +2337,6 @@ es:
      users_update:  Actualiza
      website:  Portal
      websites:  Portales
-     your:  Tu 
      true: "Si"
      false: "No"
      get_rolling:  "¡Pónte en marcha en cuestión de segundos!"

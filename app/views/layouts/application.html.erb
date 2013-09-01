@@ -84,11 +84,10 @@
 		<%= render 'shared/wrapper_zurb' %>	
 	</div>
 
+	<%= render 'shared/footer'  %>
 	
-	<%= render 'shared/footer_zurb'  unless display_foundation_4 %>
-	<%= render 'shared/footer' if display_foundation_4 and !is_mobile_browser %>
-	
-	<%= render :partial => 'utilities/google_analytics' %>
+	<%= render 'utilities/google_analytics' %>
+	<%= render 'utilities/zopim' if Rails.env.production? %>
 	
 </body>
 

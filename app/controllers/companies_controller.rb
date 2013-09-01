@@ -1,7 +1,7 @@
 class CompaniesController < ApplicationController
 	before_filter :require_user
 	
-	before_filter :get_company, :only => [:show, :edit, :update]
+	before_filter :get_company, :only => [:show, :edit, :update, :personalize]
 
 	def index
 		@companies = Company.get_site_companies(params[:page]) 
@@ -13,18 +13,25 @@ class CompaniesController < ApplicationController
 
 	def new
 		@company = Company.new
+		@group = Group.new
+		# @timetable = Timetable.new
+		
+		@company.url = "http://"
+		@group.sport_id = 1
 	end
 
 	def create
 		@company = Company.new(params[:company])
-    @company.starts_at = Time.zone.now.change(:hour => 8, :min => 0, :sec => 0)
-    @company.ends_at  = Time.zone.now.change(:hour => 23, :min => 0, :sec => 0)
-	
+		@company.starts_at = Time.zone.now.change(:hour => 8, :min => 0, :sec => 0)
+		@company.ends_at  = Time.zone.now.change(:hour => 23, :min => 0, :sec => 0)
+		@company.venue_id = 999
+		@company.description = I18n.t(:description)
+
 		@user = current_user
 
 		if @company.save and @company.create_company_details(current_user)
-			successful_create
-			
+			# successful_create
+
 			@branch = Branch.new
 			@branch.company_id = @company.id
 			@branch.name = @company.name
@@ -34,13 +41,29 @@ class CompaniesController < ApplicationController
 			@branch.starts_at = @company.starts_at
 			@branch.ends_at = @company.ends_at
 			@branch.url = @company.url
-			@branch.save
-			
-			@branch.create_branch_details(current_user)
-			
-			# redirect_to :companies
-			redirect_to	@company
-			
+
+			if @branch.save and @branch.create_branch_details(current_user)
+
+				@group = Group.new(params[:group])
+				@group.item = @branch
+				@group.name = @branch.name if @group.name.nil? 
+				@group.name_to_second_team
+				@group.default_conditions
+				@group.sport_to_points_player_limit
+				@group.time_zone = current_user.time_zone if !current_user.time_zone.nil?
+
+				@user = current_user
+
+				if @group.save and @group.create_group_roles(current_user)
+					successful_create
+					render :controller => 'timetables', :action => 'new', :id => @group.id
+					return
+				end
+
+			end
+
+			redirect_to	@group
+
 		else
 			render :action => 'new'
 		end
