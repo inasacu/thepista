@@ -514,9 +514,8 @@ es:
      faq_scorecard_statistics:  "*  Controlar las estadisticas de tu equipo"
      faq_sport_center_area:  "*  Ver los centros mas cercanos a donde tu juegas."
      faq_our_philosophy:  Nuestra Filosofía
-     faq_our_philosophy_description:  "Ayudarte a organizar partidos entre amigos, 
-     buscar un centro donde puedas jugar, 
-     encontrar a gente con los mismos intereses y sobretodo disfrutar el deporte."
+     faq_our_philosophy_description:  "Nosotros queremos hacer todo lo posible para ayudarte a organizar partidos, ayudarte a econtrar gente con quien jugar,  
+     buscar un sitio donde jugar, para que puedas disfrutar el deporte."
      faq_our_story:  Nuestra Historia
      faq_our_story_description:  "a salido de nuestra propia experiencia.  Llevamos años con un equipo de futbol, 
                                  jugando en varios campos y siempre con 										
@@ -1856,7 +1855,7 @@ es:
      widget_body: "Copia el siguiente codigo e insertalo en el código fuente HTML de tu sitio web entre las etiquetas <body>."
      widget_head: "Copia el siguiente codigo e insertalo en el código fuente HTML de tu sitio web entre las etiquetas <head>."
      widget_javascript: Personalización del Widget
-     widget_passionate_haypista: "Si te apasionado prácticar el deportes, HayPista te ayuda a construir una comunidad de jugadores."
+     widget_passionate_haypista: "Si te apasionado prácticar el deporte, HayPista te ayuda a construir una comunidad de jugadores."
      widget_integration_haypista: "Con el widget integrado en tu sitio web, tus usuarios veran todos los eventos."
      widget_inicia_session_haypista: "Al iniciar la session el usuario podra apuntarse a cualquier evento."
      widget_event_option_haypista: "El usuario tendra varias opciones por evento:  convocado, ultima hora o ausente, incluso podra dejar comentarios."
@@ -2346,7 +2345,7 @@ es:
      schedules_screen:  "Muestra la lista de los proximos eventos, e incluso anteriores eventos..."
      schedule_screen:  "Muestra los detalles del evento, un muro, lista de convocados, suplente y ausentes..."
      scorecards_screen:  "Los resultados de cada evento permite mantener la clasificación de tu equipo..."
-     what_is_haypista_details:  "te ayuda a buscar con quien jugar, organizar partidos, lugar donde jugar, y disfrutar del deporte."
+     what_is_haypista_details:  "te ayuda a organizar partidos, buscar gente con quien jugar y sitios donde jugar."
      how_does_haypista:  "¿Como funciona HayPista?"
      how_does_haypista_details:  "Simplemente crea un equipo, busca un centro deportivo, crea un evento, envía invitaciones a tus amigos y ya está. Asi de fácil."
      what_other_haypista: "¿Qué otras cosas hace HayPista?"

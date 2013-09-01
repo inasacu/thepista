@@ -512,10 +512,11 @@ en:
      faq_scorecard_statistics:  "*  Able to manage team scorecard and statistics."
      faq_sport_center_area:  "*  Able to see all sport centers located in the area."
      faq_our_philosophy:  Our Philosophy
-     faq_our_philosophy_description:  "We help organize eventes with friends, help find a sport center to play at, find players to play with and mostly important enjoy practicing sports."
+     faq_our_philosophy_description:  "We would like to help to organize games, help you find people to play with, 
+	 find a place to play so that you can enjoy playing sports."
      faq_our_story:  Our Story
-     faq_our_story_description:  "is based on our own experience.  We have been playing many years on a football team, 
-                                 playing in various fields and always finding some issue getting enough players to have an good match.  
+     faq_our_story_description:  "is based on our own experience.  For many years, we have been on a football team, 
+                                 playing in various fields and always finding issues getting enough players for a match.  
                                  We have always managed our team with an excel sheet, where we maintained all team members, 
                                  scheduled games, games played, payments, and scorecard.  
                                  We have always create huge emails to get word out to everyone about the next event and players 
@@ -2309,7 +2310,7 @@ en:
      schedules_screen:  "Shows all the upcoming events, as well as previous events..."
      schedule_screen:  "View all the details for the event, the wall, the squad, last minute and no-shows..."
      scorecards_screen:  "All match results allows to maintain a scorecard for your team..."
-     what_is_haypista_details:  "helps you organize matches, find where to play so that you can enjoy practicing sports."
+     what_is_haypista_details:  "helps you organize matches, find people to play with and place to play at."
      how_does_haypista:  "How does HayPista work?"
      how_does_haypista_details:  "Simply create a team, find a sports center, create an event, send invitations to your friends and you're done. That easy!"
      what_other_haypista: "What else can you do on HayPista?"
