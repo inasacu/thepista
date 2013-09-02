@@ -258,7 +258,7 @@ module ApplicationHelper
 		return DateTime.strptime(the_datetime, '%Y%m%d %H:%M %z')
 	end
 
-	def limit_url_length(text, the_limit=12)		
+	def limit_url_length(text, the_limit=USER_NAME_LENGTH)		
 		text = h(text)
 		text = "#{text.to_s.strip[0..the_limit]}..." if text.to_s.length > the_limit+2
 		text = text.gsub(" ", "<wbr> ".html_safe)
@@ -897,9 +897,9 @@ module ApplicationHelper
   		number = "#{sets_of_numbers.join('-')}"
 
   		if is_mobile_browser
-  			link_to user.name, "tel:#{number}"
+  			link_to limit_url_length(user.name), "tel:#{number}"
   		else
-  			item_name_link(user)
+  			user_link_limit(user)
   		end
 	  end
 
