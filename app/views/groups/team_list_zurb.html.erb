@@ -34,7 +34,7 @@
 					the_whatsapp_label = label_name(:whatsapp)
 					the_whatsapp_link = ""
 					the_whatsapp_link = "#{image_tag('icons/whatsapp.png', options={:title => the_whatsapp_label, :style => 'height: 15px; width: 15px;'})}" if (user.whatsapp and !user.phone.blank?)
-					the_user_link = "#{item_name_link(user)}  #{the_whatsapp_link}"
+					the_user_link = "#{user_link_limit(user)}  #{the_whatsapp_link}"
 					the_user_link = "#{phone_user_link(user)}  #{the_whatsapp_link}" if has_phone
 				
 					the_infringe_label = label_name(:infringe_true)

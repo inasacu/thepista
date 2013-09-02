@@ -190,7 +190,7 @@ module MatchesHelper
 		the_match = matches.first
 
 		request_image = item_image_link_small(the_match.user)
-		request_link = item_name_link(the_match.user)
+		request_link = user_link_limit(the_match.user)
 
 		first_icon = match_image_link(the_match)
 		the_icon = match_image_link(the_match, the_match.schedule.sport.icon)
@@ -209,8 +209,6 @@ module MatchesHelper
 
 		the_links = %(#{the_links.chop.chop})	
 		the_label = %(#{the_label} #{the_links})
-
-		# return request_image, first_icon, request_link, the_label, the_icon, item_group_link, the_match
 
 		the_color = "green"
 		case the_match.type_id
