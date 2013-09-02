@@ -5,16 +5,16 @@ development:
   encoding: unicode
   database: desarrollo_thepista
   pool: 5
-  username: johnny
-  #password: 72dae4
- # min_messages: warning
+  username: postgres
+  password: 72dae4
+  min_messages: warning
  
 test:
   adapter: postgresql
   encoding: unicode
   database: thepista_test
   pool: 5
-  username: johnny
+  username: thepista
   password:
 
 production:
@@ -22,5 +22,5 @@ production:
   encoding: unicode
   database: thepista_production
   pool: 5
-  username: johnny
+  username: thepista
   password:
