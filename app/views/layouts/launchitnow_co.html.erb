@@ -1,0 +1,39 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml"> 
+<head> 
+<!-- Title of The Page -->
+<title>Coming Soon</title> 
+
+<!-- FavIcon -->
+<link rel="image_src" href="favicon.ico" / > 
+
+<!-- Java Scripts -->
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+</head> 
+<body>
+<div id="container"></div>
+<script>  
+	(function() {  
+		function async_load() {  
+			var s = document.createElement('script');  
+			s.type = 'text/javascript'; 
+			s.async = true;  s.src = 'http://launchitnow.co/assets/app/loaddatas.js';  
+			var x = document.getElementsByTagName('script')[0];  
+			x.parentNode.insertBefore(s, x);  
+			
+			var c = document.createElement('link');
+			c.href = 'http://launchitnow.co/launchapp/resource/css/style-white-accounts.css';
+			c.type = 'text/css';
+			c.rel = 'stylesheet';
+			var y = document.getElementsByTagName('head')[0];
+			y.parentNode.insertBefore(c, y);  
+		}  
+		if (window.attachEvent) { 
+			window.attachEvent('onload', async_load); 
+		} 
+		else { 
+			window.addEventListener('load', async_load, false); 
+		}  
+	})();  
+</script>
+</body></html>

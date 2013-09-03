@@ -1,0 +1,318 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" >
+
+<meta name="viewport" content="width=905">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<meta charset="UTF-8">
+	<meta name="title" content="HayPista - Set up a &quot;Launching Soon&quot; page in minutes">
+	<meta name="description" content="Start Now and Launch Your Page in Minutes. Acquire, engage and grow your audience with powerful social sharing tools & analytics that drive user growth.">
+	<meta property="og:title" content="HayPista - Set up a &quot;Launching Soon&quot; page in minutes">
+	<meta property="og:type" content="company">
+	<meta property="og:site_name" content="HayPista">
+	<title>HayPista - Set up a "Launching Soon" page in minutes</title>
+	<link rel="shortcut icon" href="http://launchrock.co/img/favicon.ico">  
+	<link rel="profile" href="http://gmpg.org/xfn/11">
+	<link rel="alternate" type="application/rss+xml" title="HayPista » Feed" href="http://blog.launchrock.co/feed">
+	<link rel="index" title="HayPista" href="http://launchrock.com">
+	<link rel="canonical" href="http://launchrock.com/">
+	<link href="http://launchrock.co/css/mktg2.css" rel="stylesheet">
+	
+	<script src="http://launchrock.co/js/mktg2.js"></script>
+	
+	<script type="text/javascript">
+  	var analytics=analytics||[];analytics.load=function(e){var t=document.createElement("script");t.type="text/javascript",t.async=!0,t.src=("https:"===document.location.protocol?"https://":"http://")+"d2dq2ahtl5zl1z.cloudfront.net/analytics.js/v1/"+e+"/analytics.min.js";var n=document.getElementsByTagName("script")[0];n.parentNode.insertBefore(t,n);var r=function(e){return function(){analytics.push([e].concat(Array.prototype.slice.call(arguments,0)))}},i=["identify","track","trackLink","trackForm","trackClick","trackSubmit","pageview","ab","alias"];for(var s=0;s<i.length;s++)analytics[i[s]]=r(i[s])};
+    analytics.load("zs23autyiu");
+	</script>
+</head>
+
+<body>
+	
+	<div id="navContainer" class="navContainer">
+		<div id="navLogin" class="navWidgetContainer">
+			<div id="navWidget" class="navWidget">
+				<input type="text" id="navWidgetInput" class="navWidgetInput" placeholder="name@email.com">
+				<div class="navWidgetButton">GO</div>
+			</div>
+		</div>
+		<div id="navLogoLine"></div>
+		<div id="navLogo"></div>
+		<ul id="navLinkContainer_off">
+			
+			<!-- <li class="n-home">Home</li>
+			<li class="n-features">Features</li>
+			<li class="n-post-launch">Services</li>
+			<li class="n-apps">App Store</li>
+			<li class="n-success">Success Stories</li>
+			<li class="n-blog">Blog</li>
+			<li class="n-support">Support</li>
+			<li class="n-login">Login</li> -->
+			
+			<% unless current_user %>
+				<%= link_to(get_propercase("#{label_name(:for)} #{label_name(:companies)}"), for_websites_path, :class => '') %>
+				<%= link_to(label_name(:howitworks), how_it_works_path, :class => '') %>
+				<%= link_to(label_name(:login), login_path, :class => '') %>
+			<% end -%>
+			
+			
+		</ul>
+	</div>
+	<div class="top-login">
+		<%= link_to(label_name(:login), login_path, :class => '') %>
+	</div>
+	
+	
+	<!-- <div id="wrapper1" class="looseScroll">
+			<div id="wrapper1BG"></div>
+			<div id="w1topContainer">
+				<div id="w1logo">
+					<div id="w1tagline">A platform for launching new
+						<span id="w1taglineRandom">products.</span>
+					</div>
+				</div>
+				<div id="w1loginBanner">Hi, <span id="w1loginEmailAddress"></span><br>Please enter your account password.</div>
+				<div id="w1joinBanner">Hi, <span id="w1joinEmailAddress"></span><br>Please create a password.</div>
+				<div id="w1loginResetBanner">Hi, <span id="w1loginResetEmailAddress"></span><br>We've e-mailed you with a password reset.</div>
+				<div id="w1loginContainer">
+					<div id="w1loginJoinInstructions">
+						<div id="w1loginInstructions">Enter your e-mail to join!</div>
+						<div id="w1joinInstructions">Enter your e-mail to join!</div>
+						<div id="w1joinInstructions2">Password must be minimum of 8 characters</div>
+						<div id="w1joinError" style="display: none;"></div>
+					</div>
+					<div id="login" class="widgetContainer">
+						<div id="widget" class="widget">
+							<input type="text" id="widgetInput" class="widgetInput" placeholder="name@email.com">
+							<input type="password" id="widgetInput2" class="widgetInput" placeholder="enter password" style="display: none;">
+							<div class="widgetButton">GO</div>
+							<div id="w1progressIndicator"></div>
+						</div>
+					</div>
+					<div id="w1linkContainer">
+						
+					</div>
+				</div>
+			</div>
+			<div id="w1deviceContainer">
+				<div id="w1desktopSuperContainer" style="position: absolute; height: 100%; width: 100%; bottom: 0px;">
+					<div id="w1desktopContainer"></div>
+					<div id="w1desktopBG"></div>
+				</div>
+				<div id="w1phoneSuperContainer" style="position: absolute; height: 100%; width: 100%; bottom: 0px;">
+					<div id="w1phoneContainer"></div>
+					<div id="w1phoneBG"></div>
+				</div>
+				<div id="w1tabletSuperContainer" style="position: absolute; height: 100%; width: 100%; bottom: 0px;">
+					<div id="w1tabletContainer"></div>
+					<div id="w1tabletBG"></div>
+				</div>
+			</div>
+			
+		</div>
+		 -->
+		
+		
+	<div id="features" class="looseScroll">
+		
+		<div id="w2fade"></div>
+
+		<div id="w2layoutNav">
+			<div class="w2LeftArrow"></div>
+			<div class="w2RightArrow"></div>
+			<div class="w2layout w2layout1"></div>
+			<div class="w2layout w2layout2"></div>
+			<div class="w2layout w2layout3"></div>
+			<div class="w2layout w2layout4"></div>
+			<div class="w2layout w2layout5"></div>
+			<div class="w2layout w2layout6" style="margin-right: 0px"></div>
+		</div>
+		<div id="w2title">Collect interest and build an audience before you launch. </div>
+		<div id="w2description">Create an entire "coming soon" page from scratch or build a "sign-up" widget. </div>
+		
+		<div id="w2circles">
+			<div id="w2circle1" class="w2circle">
+				<div class="w2circleTitle">CREATE</div>
+				<div class="w2circleLineLeft w2circleLine1"></div>
+				<div class="w2circleLineRight w2circleLine1"></div>
+				<div class="w2circleDescription">Acquire, build and engage an audience eagerly awaiting your launch with the customizable "sign up" field.</div>	
+			</div>
+			<div id="w2circle2" class="w2circle">
+				<div class="w2circleTitle">SHARE</div>
+				<div class="w2circleLineLeft w2circleLine2"></div>
+				<div class="w2circleLineRight w2circleLine2"></div>
+				<div class="w2circleDescription">Broaden awareness and increase sign ups with powerful social sharing tools.</div>	
+			</div>
+			<div id="w2circle3" class="w2circle">
+				<div class="w2circleTitle">UNDERSTAND</div>
+				<div class="w2circleLineLeft w2circleLine3"></div>
+				<div class="w2circleLineRight w2circleLine3"></div>
+				<div class="w2circleDescription">Gain insight, understand your audience and drive growth.</div>	
+			</div>		
+			<div id="w2circle4" class="w2circle">
+				<div class="w2circleTitle">CONNECT</div>
+				<div class="w2circleLineLeft w2circleLine4"></div>
+				<div class="w2circleLineRight w2circleLine4"></div>
+				<div class="w2circleDescription">Use your list to engage your signups and stay connected.  Export it whenever you need.  No limits.  No cost.</div>	
+			</div>
+			<div id="w2circle5" class="w2circle">
+				<div class="w2circleTitle">CUSTOMIZE</div>
+				<div class="w2circleLineLeft w2circleLine5"></div>
+				<div class="w2circleLineRight w2circleLine5"></div>
+				<div class="w2circleDescription">Advanced users can customize their projects with our html / css / javascript editor.</div>	
+			</div>
+			<div id="w2circle6" class="w2circle">
+				<div class="w2circleTitle">LAUNCH</div>
+				<div class="w2circleLineLeft w2circleLine6"></div>
+				<div class="w2circleLineRight w2circleLine6"></div>
+				<div class="w2circleDescription">Register a new domain, use your own or claim a HayPista sub-domain.  It's always <em>free</em> to launch!</div>	
+			</div>	
+		</div>
+	</div>
+	
+	<div id="post-launch" class="lockScroll" style="height: 650px;">
+		<div class="centerContainer" style="margin: -330px 0px 0px -360px">
+			<div id="w3title">Build your business beyond launch with<br>HayPista <em>Services</em></div>
+			<div class="w3dots">...</div>
+			<div id="w3description">
+				Turning an idea into a successful business is hard.  We pulled together a network of <em>extraordinary talent</em>
+				providing the <strong><em>Creative, Development and Marketing Strategy</em></strong> you need to get off the ground.
+			</div>
+			<div id="w3services">
+				<div id="w3service1" class="w3service"><span class="w3service-desc">Branding &amp; Design</span></div>
+				<div id="w3service2" class="w3service"><span class="w3service-desc">Crowdfunding Strategy</span></div>
+				<div id="w3service3" class="w3service"><span class="w3service-desc">Explainer Video Production</span></div>
+				<div id="w3service4" class="w3service"><span class="w3service-desc">Website Design &amp; Development</span></div>
+				<div id="w3service5" class="w3service"><span class="w3service-desc">Mobile App Design &amp; Dev</span></div>
+				<div id="w3service6" class="w3service"><span class="w3service-desc">Advertising & User Acquisition</span></div>
+			</div>
+		</div>
+	</div>
+
+	<!-- <div id="app-store" class="lockScroll" style="height: 775px;">
+		<div class="centerContainer" style="margin-top: -390px">
+			<div id="w3title">Stay with us and grow your business with our <em>App Store</em></div>
+			<div class="w3dots">...</div>
+			<div id="w3description">
+        Access <strong><em>exclusive deals</em></strong> from our App Store partners with powerful applications, services and developer
+        tools you need to build your business.
+			</div>
+			<div id="w4apps">
+				<img src="http://launchrock.co/img/mktgAppStoreIcons.png" alt="App Store">
+			</div>
+		</div>
+	</div> -->
+	
+	<div id="developer-stories" class="lockScroll story carousel slide">
+		<div class="storyLeftArrow"></div>
+		<div class="storyRightArrow"></div>
+		<div class="centerContaidner">
+			<div class="carousel-inner">
+				
+				<div class="item active">
+					<div class="centerContainer">
+						<div id="w4title">Success Stories</div>
+						<div class="storyDots">...</div>
+						<div id="w4description">HayPista is more than a platform, it's a community of entrepreneurs, developers, marketers, and founders of all kinds, from all over the world that call themselves HayPistaers.</div>
+						<div id="w4logoContainer">
+							<div class="w4logo w4logo1"></div>
+							<div class="w4logo w4logo2"></div>
+							<div class="w4logo w4logo3"></div>
+							<div class="w4logo w4logo4"></div>
+							<div class="w4logo w4logo5"></div>
+							<div style="clear: both"></div>
+						</div>
+						<button type="button" class="btn" id='seemore'>See how these stellar companies used HayPista<div class="w4buttonImg"></div></button>
+					</div>
+				</div>
+				<div class="item">
+					<div class="eventodeportivo">
+						<div class="storyLogo w5logo"></div>
+						<div class="storySubTitle">EventoDeportivo.com goes viral.</div>
+						<div class="storyDots">...</div>
+						<div class="storyDescription"><span class="storyRedQuote">"</span>At EventoDeportivo we used HayPista to kick start StyleMint.com which resulted in amazing viral growth. Do we like HayPista? Well, we've used it every time we've launched a new property since, so what do you think? HayPista has been an instrumental piece of our user acquisition strategy by helping us capture and create interest for each property before it launches.<span class="storyRedQuote">"</span></div>
+						<div class="storySubDescription">Check out <a href="http://www.eventodeportivo.com" class="storyRedLink" target="_blank">eventodeportivo.com</a></div>
+					</div>
+				</div>
+				<div class="item">
+					<div class="koding">
+						<div class="storyLogo w6logo"></div>
+						<div class="storySubTitle">Koding focuses on product.</div>
+						<div class="storyDots">...</div>
+						<div class="storyDescription"><span class="storyRedQuote">"</span>HayPista is awesome! At Koding.com we chose HayPista for the same reason we didn’t stop making our own product to build Google Analytics. HayPista saved us valuable development time by powering our landing page with built-in social sharing and insights right out of the box. This allowed us to focus on building our product and running a hugely successful viral campaign.<span class="storyRedQuote">"</span></div>
+						<div class="storySubDescription">Check out <a href="http://koding.com" class="storyRedLink" target="_blank">koding.com</a></div>
+					</div>
+				</div>
+				<div class="item">
+					<div class="gotham">
+						<div class="storyLogo w7logo"></div>
+						<div class="storySubTitle">Gotham tees it up for Kickstarter.</div>
+						<div class="storyDots">...</div>
+						<div class="storyDescription"><span class="storyRedQuote">"</span>HayPista was a turbo booster for Gotham, giving us a base of users for our "bicycle defense" startup. Before launching our Kickstarter, we setup a landing page, experimented with different incentives, then shared it with our world.  Within a few weeks, we had hundreds of people signing up at bikegotham.com to learn about the mysterious "World's First Anti-Theft Bike Light."  Prominent bloggers tweeted about it, and it helped propel us beyond our funding goal. To launch a successful Kickstarter project, you need a core audience to start the snowball rolling.  HayPista gave us our core audience.<span class="storyRedQuote">"</span></div>
+						<div class="storySubDescription">Check out <a href="http://www.bikegotham.com/" class="storyRedLink" target="_blank">bikegotham.com</a></div>
+					</div>
+				</div>
+				<div class="item">
+					<div class="ness">
+						<div class="storyLogo w8logo"></div>
+						<div class="storySubTitle">Ness adapts to positive press.</div>
+						<div class="storyDots">...</div>
+						<div class="storyDescription"><span class="storyRedQuote">"</span>When we got positive press about Ness' impending launch, HayPista made it easy to collect e-mails from thousands of interested readers. Setup was a breeze; we loved that we were able to just put our page up and get right back to work putting the finishing touches on our product. Customization options allowed us the flexibility to craft a launch page that was true to Ness' brand.  HayPista's built-in metrics helped us gauge public response in the days leading up to launch, and afterwards, it was easy to send out the announcement that we were live in the App Store.<span class="storyRedQuote">"</span></div>
+						<div class="storySubDescription">Check out <a href="http://www.likeness.com/" class="storyRedLink" target="_blank">ness.com</a></div>
+					</div>
+				</div>
+				<div class="item">
+					<div class="fetch">
+						<div class="storyLogo w9logo"></div>
+						<div class="storySubTitle">Fetchnotes fetches an audience.</div>
+						<div class="storyDots">...</div>
+						<div class="storyDescription"><span class="storyRedQuote">"</span>At Fetchnotes our HayPista page gave us valuable pre-launch traction with over 3,000 interested users. We drove traffic to our page via blog and Twitter marketing and HayPista encouraged those people to spread the word with their social sharing tools. When it came time to send out beta invites, we were able to prioritize who our top early evangelists were and reward those that referred the most friends. HayPista is an awesome product that filled a need perfectly.<span class="storyRedQuote">"</span></div>
+						<div class="storySubDescription">Check out <a href="http://www.fetchnotes.com/" class="storyRedLink" target="_blank">fetchnotes.com</a></div>
+					</div>
+				</div>
+			</div>
+			<div class="storyNavContainer">
+				<div class="storyNav storyActive"></div>
+				<div class="storyNav"></div>
+				<div class="storyNav"></div>
+				<div class="storyNav"></div>
+				<div class="storyNav"></div>
+				<div style="clear: both"></div>
+			</div>
+		</div>
+	</div>
+	<!-- <div id="wrapper10" class="lockScroll story">
+		<div class="centerContainerBottom">
+			<div id="w10title">Over 8,000,000 signups. <span style="font-style: italic">We get users.</span></div>
+			<div id="w10title">
+				<span style="font-style: italic"><a href="http://launchrock.co/domains">Register a domain</a> <span class="or">or</span> </span>
+				<span style="font-style: italic"><a href="#">Start a launch</a></span>
+			</div>
+		</div>
+	</div> -->
+	<div class="footer">
+		<ul class="footerLinks clearfix">
+			<li>&copy; Copyright HayPista 2013</li>
+			<li>Contact:<br/><a href="mailto:hello@haypista.com">hello@haypista.com</a><br/>855-467-7532</li>
+			<li>Mailing Address:<br/>340 S Lemon Ave #3434<br/>Walnut, CA 91789<br/>USA</li>
+			<li>
+				<a href="http://blog.launchrock.co" target="_blank">Blog</a><br>
+				<a href="http://support.launchrock.co" target="_blank">Support</a><br>
+				<a href="http://discover.launchrock.com" target="_blank">Discover</a><br>
+				<a href="http://launchrock.co/terms">Terms &amp; Conditions</a><br>
+				<a href="http://launchrock.co/privacy">Privacy Policy</a><br>
+				<a href="http://app.launchrock.com" target="_blank">Legacy Login</a><br>
+			</li>
+		</ul>
+	</div>
+	
+	<div style="clear: both"></div>
+	
+
+
+</body>
+
+</html>
+
+<!-- Localized -->
