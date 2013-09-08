@@ -3,6 +3,11 @@ class UserMailer < ActionMailer::Base
 	
 	layout 'mailer_zurb' 
 	helper ApplicationHelper
+	
+	def registration_confirmation(user)
+			mail(:to => launch.email, :subject => "Registered with HayPista!")
+	end
+		
 
 	def invitation(invitation)	
 	  

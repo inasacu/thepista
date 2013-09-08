@@ -12,4 +12,4 @@
 	content_for(:description, "#{@prospect.name}") if @prospect
 %>
 	<%= set_tab_navigation(link_to(label_name(:venues), prospects_path, set_tab_navigation_active('prospect_index'))) unless @prospect %>
-	<%= set_tab_navigation(item_name_link(@prospect, set_tab_navigation_active('prospect_show'))) if is_single_prospect %>
+	<%#= set_tab_navigation(item_name_link(@prospect, set_tab_navigation_active('prospect_show'))) if is_single_prospect %>

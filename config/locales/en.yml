@@ -908,7 +908,7 @@ en:
      jornada:  Event
      jornada_description:  Event
      jornada_programada:  Scheduled Day
-     language: Language 
+     language: Language
      last_game_played: Last Recent Game	 
      last_login_at: last login at   
      last_minute: Last Minute
@@ -918,6 +918,13 @@ en:
      latest_activities:  Latest Activities
      latest_messages:  Latest Messages
      latitude: Latitude
+     launch_title: "HayPista - Play your favorite sport with people near you!"
+     launch_description: "Play your favorite sport with people in your area. 
+							 HayPista is the best way to meet people near you while having a great time!"
+     launch_h1: "Play your favorite sport with people near you!"
+     launch_h3: "Create and join sports groups to compete with athletes in your area!"
+     launch_thanks: "Thank you for signing up!"
+     launch_signup: "<b>Sign Up</b> for free to get notified before we launch!"
      longitude: longitude
      leave_comment: Leave a comment...   
      leave_group: Leave the Team   

@@ -927,6 +927,13 @@ es:
      latest_activities:  Últimas actividades
      latest_messages:  Últimos Mensajes
      latitude: Latitude
+     launch_title: "HayPista - Practica tu deporte favorito con gente en tu zona!"
+     launch_description: "Practica tu deporte favorito con gente en tu zone. 
+							 HayPista es la mejor manera de conocer a gente en tu zona mientras que pasas un buen momento!"
+     launch_h1: "Practica tu deporte favorito con gente en tu zone!"
+     launch_h3: "Haz y unite a grupos deportivos para competir con atletas en tu zona!"
+     launch_thanks: "Gracias por apuntarte!"
+     launch_signup: "<b>Apuntate</b> para que te notifiquemos antes del lanzarmiento!"
      longitude: longitude
      leave_comment: Deja un comentario...   
      leave_group: Desapuntate del equipo   

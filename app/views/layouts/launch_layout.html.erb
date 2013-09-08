@@ -51,16 +51,16 @@
 			<li class="n-login">Login</li> -->
 			
 			<% unless current_user %>
-				<%= link_to(get_propercase("#{label_name(:for)} #{label_name(:companies)}"), for_websites_path, :class => '') %>
-				<%= link_to(label_name(:howitworks), how_it_works_path, :class => '') %>
-				<%= link_to(label_name(:login), login_path, :class => '') %>
+				<%= link_to(get_propercase("#{label_name(:for)} #{label_name(:companies)}"), for_websites_path) %>
+				<%= link_to(label_name(:howitworks), how_it_works_path) %>
+				<%= link_to(label_name(:login), login_path) %>
 			<% end -%>
 			
 			
 		</ul>
 	</div>
 	<div class="top-login">
-		<%= link_to(label_name(:login), login_path, :class => '') %>
+		<%= link_to(label_name(:login), login_path) %>
 	</div>
 	
 	
@@ -211,7 +211,7 @@
 			<div class="carousel-inner">
 				
 				<div class="item active">
-					<div class="centerContainer">
+					<!-- <div class="centerContainer">
 						<div id="w4title">Success Stories</div>
 						<div class="storyDots">...</div>
 						<div id="w4description">HayPista is more than a platform, it's a community of entrepreneurs, developers, marketers, and founders of all kinds, from all over the world that call themselves HayPistaers.</div>
@@ -224,7 +224,7 @@
 							<div style="clear: both"></div>
 						</div>
 						<button type="button" class="btn" id='seemore'>See how these stellar companies used HayPista<div class="w4buttonImg"></div></button>
-					</div>
+					</div> -->
 				</div>
 				<div class="item">
 					<div class="eventodeportivo">
@@ -282,6 +282,7 @@
 			</div>
 		</div>
 	</div>
+	
 	<!-- <div id="wrapper10" class="lockScroll story">
 		<div class="centerContainerBottom">
 			<div id="w10title">Over 8,000,000 signups. <span style="font-style: italic">We get users.</span></div>
@@ -291,18 +292,23 @@
 			</div>
 		</div>
 	</div> -->
+	
 	<div class="footer">
 		<ul class="footerLinks clearfix">
-			<li>&copy; Copyright HayPista 2013</li>
-			<li>Contact:<br/><a href="mailto:hello@haypista.com">hello@haypista.com</a><br/>855-467-7532</li>
-			<li>Mailing Address:<br/>340 S Lemon Ave #3434<br/>Walnut, CA 91789<br/>USA</li>
+			<li><strong><%= app_name %> &copy; <%= Time.zone.now.year %>.</strong></li>
+			<li><%= "#{mail_to(CONTACT_RECIPIENT, label_name(:contact_us), :target => '_blank')}".html_safe %></li>
+			<!-- <li>Mailing Address:<br/>340 S Lemon Ave #3434<br/>Walnut, CA 91789<br/>USA</li> -->
 			<li>
-				<a href="http://blog.launchrock.co" target="_blank">Blog</a><br>
-				<a href="http://support.launchrock.co" target="_blank">Support</a><br>
-				<a href="http://discover.launchrock.com" target="_blank">Discover</a><br>
-				<a href="http://launchrock.co/terms">Terms &amp; Conditions</a><br>
-				<a href="http://launchrock.co/privacy">Privacy Policy</a><br>
-				<a href="http://app.launchrock.com" target="_blank">Legacy Login</a><br>
+				<%= link_to(get_propercase("#{label_name(:for)} #{label_name(:companies)}"), for_websites_path) %><br/>	
+				<%= link_to(label_name(:howitworks), how_it_works_url) %><br/>
+				<%= link_to(label_name(:about), about_url) %><br/>
+				<%= link_to(label_name(:terms_of_use), terms_of_use_url) %><br/>
+				
+				<!-- <a href="http://blog.launchrock.co" target="_blank">Blog</a><br> -->
+				<%= "#{mail_to(CONTACT_RECIPIENT, label_name(:contact_us), :target => '_blank')}".html_safe %><br>
+				<!-- <a href="http://discover.launchrock.com" target="_blank">Discover</a><br> -->
+				<!-- <a href="http://launchrock.co/privacy">Privacy Policy</a><br> -->
+				<!-- <a href="http://app.launchrock.com" target="_blank">Legacy Login</a><br> -->
 			</li>
 		</ul>
 	</div>

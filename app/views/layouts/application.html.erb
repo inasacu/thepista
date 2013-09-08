@@ -74,8 +74,8 @@
 
 <body id="-page" class="">
 
-	<%= render 'shared/header' if display_foundation_4 %>
-	<%= render 'shared/header_zurb' unless display_foundation_4 and !is_mobile_browser %>
+	<%#= render 'shared/header' if display_foundation_4 %>
+	<%= render 'shared/header_zurb' unless is_mobile_browser %>
 
 	<div class="container">
 		
