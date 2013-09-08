@@ -5,7 +5,7 @@ class HomeController < ApplicationController
 	before_filter :get_home,            :only => [:index]
 	before_filter :get_upcoming,        :only => [:index, :upcoming]
 	
-	layout :another_by_method
+	# layout :another_by_method
 	
 	def privacy_policy
 		set_the_template('home/terms_of_use')
