@@ -6,10 +6,6 @@ class HomeController < ApplicationController
 	before_filter :get_upcoming,        :only => [:index, :upcoming]
 	
 	layout :another_by_method
-
-	def index
-		@prospect = Prospect.new unless current_user
-	end
 	
 	def privacy_policy
 		set_the_template('home/terms_of_use')
@@ -32,11 +28,7 @@ class HomeController < ApplicationController
 
 	def another_by_method
 		if current_user.nil? and !is_mobile_browser
-			# "promotion_layout"
-			# 'launch_layout'
-			# 'launchitnow_co'
-			'chest_bumpp'
-			# 'launchrock'
+			'launch_layout'
 		else
 			"application"
 		end
