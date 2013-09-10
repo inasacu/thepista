@@ -45,7 +45,7 @@ module ApplicationHelper
 		return ""
 	end
 
-	# I18n.t library methods
+	# çn.t library methods
 	def field_label_name(value, text="")
 		text.insert(0, '_') unless text.blank?
 		return I18n.t(:"#{ value.to_s.humanize.downcase.gsub(' ','_') }#{ text }").html_safe
@@ -883,13 +883,13 @@ module ApplicationHelper
 	end
 
 	def phone_number_link(text)
-	  if text.nil?
+	  if !text.nil?
 	    sets_of_numbers = text.scan(/[0-9]+/)
   		# number = "+1-#{sets_of_numbers.join('-')}"
   		number = "#{sets_of_numbers.join('-')}"
   		link_to text, "tel:#{number}"
   	else
-  	  text = ""
+  	  text = "tel: #{I18n.t(:not_available)}"
 	  end
 	end
 

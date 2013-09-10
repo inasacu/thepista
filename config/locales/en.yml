@@ -1153,6 +1153,7 @@ en:
      not_signed_in: Not signed In    
      not_updated: was not updated correctly.   
      not_valid_openid: "This does not appear to be a valid OpenID, Sorry!"   
+     not_available: Not available
      note: Notes    
      notes: Notes  
      notice: NOTICE   

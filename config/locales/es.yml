@@ -1161,6 +1161,7 @@ es:
      not_signed_in: No has entrado    
      not_updated: no se ha actualizado correctamente.   
      not_valid_openid: "Lo sentimos, pero esto no parece ser un válido OpenID."   
+     not_available: No disponible
      note: Notas de    
      notes: Notas de  
      notice: NOTA   
