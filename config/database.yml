@@ -5,8 +5,7 @@ development:
   encoding: unicode
   database: desarrollo_thepista
   pool: 5
-  username: postgres
-  password: 72dae4
+  username: johnny
   min_messages: warning
  
 test:

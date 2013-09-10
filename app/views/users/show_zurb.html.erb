@@ -23,7 +23,7 @@
 	
 	is_same_user = (@user == current_user)
 	
-	has_phone = is_same_user ? true : @user.my_members?(current_user) ? (!@user.phone.blank?) : (false)	
+	has_phone = is_same_user ? true : @user.my_members?(current_user) ? (!@user.phone.blank? and !@user.phone.nil?) : (false)	
 	
 	# has_statistics = @user_hash_grid_statistics.count > 1	
 	has_enough_statistics = false
@@ -57,9 +57,7 @@
 		
 		<%= render_show_detail_zurb(:email, @user.email) if is_same_user %>
 		<%= render_show_detail_zurb("#{label_name(:phone)}  #{option_image_small_link('whatsapp') if @user.whatsapp}", phone_number_link(@user.phone), true) if has_phone %>
-		
-		<%= render_show_detail_zurb(:email, @user.email) if is_same_user %>
-	
+			
 		<%= render_show_detail_zurb(:whatsapp, the_whatsapp_link) if has_phone %>
 		<%= render_show_detail_zurb(:last_minute_notification, the_last_minute_link) if DISPLAY_FREMIUM_SERVICES %>
 		<%= render_show_detail_zurb(:teammate_notification, the_teammmate_link) %>
