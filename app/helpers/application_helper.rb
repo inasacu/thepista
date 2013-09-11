@@ -883,10 +883,14 @@ module ApplicationHelper
 	end
 
 	def phone_number_link(text)
-		sets_of_numbers = text.scan(/[0-9]+/)
-		# number = "+1-#{sets_of_numbers.join('-')}"
-		number = "#{sets_of_numbers.join('-')}"
-		link_to text, "tel:#{number}"
+		if text.nil?
+			text = "tel: #{I18n.t(:not_available)}"
+		else
+			sets_of_numbers = text.scan(/[0-9]+/)
+			# number = "+1-#{sets_of_numbers.join('-')}"
+			number = "#{sets_of_numbers.join('-')}"
+			link_to text, "tel:#{number}"
+		end
 	end
 
 	def phone_user_link(user)
