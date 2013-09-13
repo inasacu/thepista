@@ -368,9 +368,13 @@ class Schedule < ActiveRecord::Base
     self.where("schedules.archive = false and starts_at >= ? and group_id = ?", Time.zone.now, group).page(page).order('starts_at')
   end
 
-  def self.group_id(group, page = 1)
+  def self.group_previous_schedules(group, page = 1)
     self.where("schedules.archive = false and starts_at < ? and group_id = ?", Time.zone.now, group).page(page).order('starts_at DESC')
   end
+
+  # def self.group_id(group, page = 1)
+  #   self.where("schedules.archive = false and starts_at < ? and group_id = ?", Time.zone.now, group).page(page).order('starts_at DESC')
+  # end
   
   def self.my_current_schedules(user)
     self.find(:all, :conditions => ["schedules.archive = false and starts_at >= ? and group_id in (select group_id from groups_users where user_id = ?)", Time.zone.now, user.id],:order => 'starts_at, group_id', :limit => 1)
