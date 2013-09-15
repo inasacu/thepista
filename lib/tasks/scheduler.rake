@@ -53,8 +53,8 @@ task :generate_daily_slugs => :environment do
 	
 	puts "generate daily slugs... A:  #{Time.zone.now}"
 	
-	Schedule.find(:all, :conditions => ["played= false and created_at > ?", YESTERDAY]).each {|schedule| schedule.save }
-	User.find(:all, :conditions => ["archive = false and created_at > ?", YESTERDAY]).each {|user| user.save }
+	Schedule.find(:all, :conditions => ["created_at > ?", TIME_SIX_MONTHS_AGO]).each {|schedule| schedule.save }
+	User.find(:all, :conditions => ["archive = false and created_at > ?", TIME_SIX_MONTHS_AGO]).each {|user| user.save }
 	
 	puts "generate daily slugs... B:  #{Time.zone.now}"
 	

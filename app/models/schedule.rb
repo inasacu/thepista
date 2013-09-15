@@ -39,7 +39,7 @@ class Schedule < ActiveRecord::Base
 	friendly_id :name_slug, 					use: :slugged
 
 	def name_slug
-		"#{self.group.name} #{name}".gsub(" ", "_")
+		"#{self.group.name} #{name} #{Base64::encode64(starts_at.to_i.to_s)}".gsub(" ", "_")
 	end
 
   has_many  :matches,  :conditions => "matches.archive = false", :order => "matches.group_score"
