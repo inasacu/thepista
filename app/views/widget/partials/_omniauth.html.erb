@@ -154,24 +154,20 @@ div.container{
 		</div>	
 
 		<br>
+
+		<%= render 'shared/browser_id' if DISPLAY_BROWSER_ID %>
 		
-		<%= content_tag :h4, "#{label_name(:or)} <STRONG>#{label_name(:log_in)}</STRONG> #{label_name(:with)}".html_safe, :class => "subheader" %>
-		<hr/>
+		<hr>
 		
 
 		<div class="row">
-			<div class="one  columns"></div>
-			<div class="ten columns">				
-				<p>
-					<%= render 'utilities/persona'%>					
-
-					<form id='browser_id_form' action='/auth/browser_id/callback?origin=widget'>
-						<input type='hidden' name='assertion'/>
-						<button type='submit' class='large_medium nice success button radius'><%= label_name(:omniauth_provider_browser_id) %></button>
-					</form>
-				</p>
+			<div class="six columns">
+					<%= label_name(:login_provider_signup_message) %>
 			</div>
-			<div class="two columns"></div>
+			<div class="six columns">
+				<p><%= label_name(:login_provider_agree_to) %> <%= link_to(label_name(:terms_of_use), terms_of_use_url, :target => '_blank') %>.
+				<p><%= "#{mail_to(CONTACT_RECIPIENT, label_name(:contact_us), :target => '_blank')}".html_safe %></p>
+			</div>
 		</div>
 
 </div>
