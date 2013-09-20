@@ -45,7 +45,7 @@ module ApplicationHelper
 		return ""
 	end
 
-	# I18n.t library methods
+	# çn.t library methods
 	def field_label_name(value, text="")
 		text.insert(0, '_') unless text.blank?
 		return I18n.t(:"#{ value.to_s.humanize.downcase.gsub(' ','_') }#{ text }").html_safe

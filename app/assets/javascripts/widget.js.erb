@@ -1,17 +1,19 @@
 
+
 Widget = {};
 Widget.gui = (function(){
-	
+
 	var isLowerPartOfWindow = function(){
 		return ($(window).scrollTop() == $(document).height() - $(window).height());
 	};
-	
+
 	var popupCenter = function(url, width, height, name) {
 	  var left = (screen.width/2)-(width/2);
 	  var top = (screen.height/2)-(height/2);
-	
+
 	  return window.open(url, name, "directories=no,titlebar=no,toolbar=no,location=no,status=no,menubar=no,scrollbars=no,resizable=no,width="+width+",height="+height+",toolbar=no,left="+left+",top="+top);
 	};
+
 	
 	var postSize = function(isDisqusAfterMessage){
 		var target = parent.postMessage ? parent : (parent.document.postMessage ? parent.document : undefined);
@@ -25,7 +27,7 @@ Widget.gui = (function(){
 			}
 		}
 	};
-	
+
 	return {
 		activateToogleWeekDetail: function(className, hiddenClass){
 			$('.'+className).click(function(){
@@ -39,10 +41,10 @@ Widget.gui = (function(){
 				var eventid = $(this).attr('data-event');
 				var sourceTimetableId = $(this).attr('data-source-timetable-id');
 				var blockToken = $(this).attr('data-block-token');
-				
+
 				var iframeUrl = url+"?isevent="+isevent+"&ismock="+ismock+"&event="+eventid+
 				"&source_timetable_id="+sourceTimetableId+"&block_token="+blockToken;
-				
+
 			    popupCenter(iframeUrl, width, height, "authPopup");
 			    e.stopPropagation(); 
 			    return false;
@@ -55,7 +57,7 @@ Widget.gui = (function(){
 			$(window).resize(function() {
 			   console.log("resizing");
 			 });
-			
+
 			$(window).scroll(function(){
 				if(isLowerPartOfWindow()){
 					$('.'+className).hide();
@@ -67,14 +69,15 @@ Widget.gui = (function(){
 		},
 		handleIframeResize: function(linkClassArray){
 			window.addEventListener("load", postSize, false);
-			
+
 			//for (i = 0; i < linkClassArray.length; i++) {
 			//	$('.'+linkClassArray[i]).bind("click", postSize);
 			//}
-			
+	
 			$('body').bind("click", postSize);
 		},
 		postSizeFunction: postSize
+
 	};
 })();
 
@@ -82,9 +85,9 @@ $(document).ready(function(){
 	Widget.gui.activateAuthPopupCenter('auth_popup', '<%= ENV['THE_HOST'] %>/widget/login/popup', 550, 600);
 	Widget.gui.activateToogleWeekDetail('toogle_day_view_link', 'week_day_detail');
 	Widget.gui.handleIframeResize(['toogle_day_view_link', 'resize_activator']);
-	
+
 	$('.week_day_detail:first').show();
-	
+
 });
 
 

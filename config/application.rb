@@ -1,4 +1,5 @@
 require File.expand_path('../boot', __FILE__)  
+require "em/pure_ruby"
 
 require "em/pure_ruby"
 require 'rails/all'
