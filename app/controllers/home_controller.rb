@@ -4,7 +4,9 @@ class HomeController < ApplicationController
 
 	before_filter :get_home,            :only => [:index]
 	before_filter :get_upcoming,        :only => [:index, :upcoming]
-
+	
+	# layout :another_by_method
+	
 	def privacy_policy
 		set_the_template('home/terms_of_use')
 	end
@@ -24,6 +26,14 @@ class HomeController < ApplicationController
 
 	private
 
+	def another_by_method
+		if current_user.nil? and !is_mobile_browser
+			'launch_layout'
+		else
+			"application"
+		end
+	end
+	
 	def get_upcoming 
 		store_location
 		

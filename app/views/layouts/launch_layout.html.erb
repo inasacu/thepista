@@ -1,0 +1,298 @@
+<%	
+	I18n.locale = "es"
+	the_for_websites_label = get_propercase("#{label_name(:for)} #{label_name(:companies)}")		
+%>
+
+<!DOCTYPE HTML>
+<html>
+<head>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<meta name="Generator" content="HayPista" />
+	<meta name="Origen" content="HayPista" />
+	<meta name="Author" content="HayPista" />
+	<meta name="Locality" content="Spain" />	
+	<meta name="Language" content="es" />
+	<meta name="title" content="<%= page_title %>.  <%= I18n.t(:launch_title_es) %>" />
+	<meta name="description" content="<%= I18n.t(:launch_description_es) %>">		
+	<meta name="keywords" content="<%= I18n.t(:modo_keywords) %>"/> 
+
+	<meta name="vw96.objectype" content="Document" />
+	<meta name="resource-type" content="Document" />
+	<meta name="distribution" content="all" />
+	<meta name="robots" content="all" />
+	
+    <!-- Page Title -->
+    <title><%= label_name(:launch_title) %></title>
+
+	<link rel="image_src" href="http://haypista.com/images/haypista.png" />
+	<link rel="apple-touch-icon-precomposed" href="../../apple-touch-icon.png"/>
+	
+	<link rel="home" href="http://www.haypista.com">
+    
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:800,300,700,400' rel='stylesheet' type='text/css'>
+
+	<style type="text/css">
+	html, body, div, span, applet, object, iframe,
+	h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+	a, abbr, acronym, address, big, cite, code,
+	del, dfn, em, img, ins, kbd, q, s, samp,
+	small, strike, strong, sub, sup, tt, var,
+	b, u, i, center,
+	dl, dt, dd, ol, ul, li,
+	fieldset, form, label, legend,
+	table, caption, tbody, tfoot, thead, tr, th, td,
+	article, aside, canvas, details, embed, 
+	figure, figcaption, footer, header, hgroup, 
+	menu, nav, output, ruby, section, summary,
+	time, mark, audio, video {
+		margin: 0;
+		padding: 0;
+		border: 0;
+		font-size: 100%;
+		font: inherit;
+		vertical-align: baseline;
+	}
+	/* HTML5 display-role reset for older browsers */
+	article, aside, details, figcaption, figure, 
+	footer, header, hgroup, menu, nav, section {
+		display: block;
+	}
+	body {
+		line-height: 1;
+	}
+	ol, ul {
+		list-style: none;
+	}
+	blockquote, q {
+		quotes: none;
+	}
+	blockquote:before, blockquote:after,
+	q:before, q:after {
+		content: '';
+		content: none;
+	}
+	table {
+		border-collapse: collapse;
+		border-spacing: 0;
+	}
+
+
+	#content{
+		position: relative;
+		margin: 0 auto;
+		width: 960px;
+	}
+
+	/* bg */
+	body{
+		width:100%;
+		height:100%;
+		background: white url(../assets/launch_haypista_bg.jpg) no-repeat center center fixed;
+		-webkit-background-size:cover;
+		-moz-background-size:cover;
+		-o-background-size:cover;
+		background-size:cover;
+		z-index:-10;
+	}
+
+	#logo{
+		position: relative;
+		margin: 0 auto;
+		width: 225px;
+		margin-top: 74px;
+	}
+
+	#content{
+		margin-top: 74px;
+	}
+
+	form {
+	    width: 406px;
+	    margin: 0px auto;
+	    margin-top: 32px;
+	    background: #ffffff;
+	    height: 46px;
+	    border-radius: 22px;
+	    -moz-box-shadow: 0px 0px 0px 6px rgba(255, 255, 255, 0.4);
+	    -webkit-box-shadow: 0px 0px 0px 6px rgba(255, 255, 255, 0.4);
+	    box-shadow: 0px 0px 0px 6px rgba(255, 255, 255, 0.4);
+	}
+	#email {
+	    margin-left: 16px;
+	    margin-right: 16px;
+	    height: 36px;
+	    width: 240px;
+	    font-size: 1em;
+	    color: #202020;
+	    background: transparent;
+	    border: none;
+	}
+
+	#email:focus {
+	    outline: none;
+	}
+
+	.button {
+	    margin-top: 3px;
+	    background-color: #c3d753;
+	    background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #c3d753), color-stop(100%, #a7ba3f));
+	    background-image: -webkit-linear-gradient(top, #c3d753, #a7ba3f);
+	    background-image: -moz-linear-gradient(top, #c3d753, #a7ba3f);
+	    background-image: -ms-linear-gradient(top, #c3d753, #a7ba3f);
+	    background-image: -o-linear-gradient(top, #c3d753, #a7ba3f);
+	    background-image: linear-gradient(top, #c3d753, #a7ba3f);
+	    -moz-border-radius:20px;
+	    -webkit-border-radius:20px;
+	    border-radius:20px;
+	    border:1px solid #82922d;
+	    display:inline-block;
+	    color:#ffffff;
+	    font-family: Open Sans, sans-serif;
+	    font-size:1em;
+	    font-weight: 400;
+	    padding:8px 16px;
+	    text-decoration:none;
+	    text-shadow: 0px 1px 1px rgba(0, 0, 0, 0.5);
+	    width:125px;
+	    height:40px;
+	}
+
+	.button:hover {
+	    background-color: #daf159;
+	    background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #daf159), color-stop(100%, #a7ba3f));
+	    background-image: -webkit-linear-gradient(top, #daf159, #a7ba3f);
+	    background-image: -moz-linear-gradient(top, #daf159, #a7ba3f);
+	    background-image: -ms-linear-gradient(top, #daf159, #a7ba3f);
+	    background-image: -o-linear-gradient(top, #daf159, #a7ba3f);
+	    background-image: linear-gradient(top, #daf159, #a7ba3f);
+	}
+
+	.button:active {
+	    background-color: #c3d753;
+	    background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #a7ba3f), color-stop(100%, #c3d753));
+	    background-image: -webkit-linear-gradient(top, #a7ba3f, #c3d753);
+	    background-image: -moz-linear-gradient(top, #a7ba3f, #c3d753);
+	    background-image: -ms-linear-gradient(top, #a7ba3f, #c3d753);
+	    background-image: -o-linear-gradient(top, #a7ba3f, #c3d753);
+	    background-image: linear-gradient(top, #a7ba3f, #c3d753);
+	    -moz-box-shadow:inset 0px 1px 3px rgba(0, 0, 0, 0.7);
+	    -webkit-box-shadow:inset 0px 1px 3px rgba(0, 0, 0, 0.7);
+	    box-shadow:inset 0px 1px 3px rgba(0, 0, 0, 0.7);
+	}
+
+	.info, .share{
+		margin-top: 16px;
+	}
+
+	.social{
+	    margin: 0 auto;
+	    margin-top: 32px;
+	    padding-left: 20px;
+	    width: 224px;
+	}
+
+	/* Text Styles */
+	h1, h3, p { 
+		font-family: Open Sans, sans-serif; 
+		text-align: center;
+		color: #fff;
+	}
+
+	h1 { 
+		font-size: 2.4em;
+		font-weight: 700;
+
+		text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.3);
+	}
+	h3 { 
+		font-size: 1.7em;
+		font-weight: 300;
+		line-height: 2.4;
+		text-shadow: 0px 2px 2px rgba(0, 0, 0, 0.4);
+	}
+
+	p {
+		font-size: 1.2em;
+		font-weight: 300;
+		line-height: 2;
+		color: #fff;
+		text-shadow: 0px 2px 2px rgba(0, 0, 0, 0.4);
+	}
+
+	b {
+		font-size: 1.2em;
+		font-weight: 700;
+		text-shadow: 0px 2px 2px rgba(0, 0, 0, 0.4);
+	}
+</style>
+	
+</head>
+<body>
+
+
+<!-- START Main Menu -->
+<div id="logo">
+    <!-- Logo -->
+    <!-- <a href="#" class="logo"><%#= image_tag("launch_haypista_blanco.png", :size => "295x95", :alt => "HayPista") %></a> -->
+
+	<%= link_to(image_tag("launch_haypista_blanco.png", :size => "295x95", :alt => "HayPista"), login_path) %>
+</div>
+
+
+<!-- Content -->
+<div id="content">
+    
+	<h1 class="tagline"><%= I18n.t(:launch_h1) %></h1>
+    <h3 class="info"><%= I18n.t(:launch_h3) %></h3>
+    <br>
+    <div id="signUp">
+
+        <!-- <form accept-charset="UTF-8" action="/users" method="post"> -->
+            <!-- <input type="text" class="left" id="email" name="email" placeholder="Enter your email address" value=""> -->
+            <!-- <input type="submit" id="notify-me" class="button" value="Sign me up!"> -->
+	        <!-- <input type="text" class="left" id="email" name="email" placeholder="Pon tu cuenta de correo" value=""> -->
+	        <!-- <input type="submit" id="notify-me" class="button" value="Apuntame!">    -->
+        <!-- </form> -->
+		
+    </div>
+    <br>
+
+    <!-- <p class="hidden"><%#= I18n.t(:launch_thanks).html_safe %></p> -->
+    <!-- <p class="share"><%#= I18n.t(:launch_signup).html_safe %></p> -->
+    <p class="share"><b><%= the_for_websites_label %></b> <%= label_name(:widget_passionate_haypista) %></p>
+
+
+</div>
+
+<div class="social">
+
+</div>
+
+<!-- GoSquared Analytics -->
+<script type="text/javascript">
+  var GoSquared = {};
+  GoSquared.acct = "GSN-066954-X";
+  (function(w){
+    function gs(){
+      w._gstc_lt = +new Date;
+      var d = document, g = d.createElement("script");
+      g.type = "text/javascript";
+      g.src = "//d1l6p2sc9645hc.cloudfront.net/tracker.js";
+      var s = d.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(g, s);
+    }
+    w.addEventListener ?
+      w.addEventListener("load", gs, false) :
+      w.attachEvent("onload", gs);
+  })(window);
+</script>
+
+
+<!-- Google Analytics -->
+<%= render 'utilities/google_analytics' %>
+
+</body>
+</html>
+
+<!-- Localized -->

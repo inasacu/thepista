@@ -45,7 +45,7 @@ module ApplicationHelper
 		return ""
 	end
 
-	# I18n.t library methods
+	# çn.t library methods
 	def field_label_name(value, text="")
 		text.insert(0, '_') unless text.blank?
 		return I18n.t(:"#{ value.to_s.humanize.downcase.gsub(' ','_') }#{ text }").html_safe
@@ -883,26 +883,26 @@ module ApplicationHelper
 	end
 
 	def phone_number_link(text)
-		sets_of_numbers = text.scan(/[0-9]+/)
-		# number = "+1-#{sets_of_numbers.join('-')}"
-		number = "#{sets_of_numbers.join('-')}"
-		link_to text, "tel:#{number}"
+		if text.nil?
+			text = "tel: #{I18n.t(:not_available)}"
+		else
+			sets_of_numbers = text.scan(/[0-9]+/)
+			# number = "+1-#{sets_of_numbers.join('-')}"
+			number = "#{sets_of_numbers.join('-')}"
+			link_to text, "tel:#{number}"
+		end
 	end
 
-
 	def phone_user_link(user)
-	  
-	  if user and user.phone
-	    sets_of_numbers = user.phone.scan(/[0-9]+/)
-  		number = "#{sets_of_numbers.join('-')}"
-
-  		if is_mobile_browser
-  			link_to limit_url_length(user.name), "tel:#{number}"
-  		else
-  			user_link_limit(user)
-  		end
-	  end
-
+		if user and user.phone
+			sets_of_numbers = user.phone.scan(/[0-9]+/)
+			number = "#{sets_of_numbers.join('-')}"
+			if is_mobile_browser
+				link_to limit_url_length(user.name), "tel:#{number}"
+			else
+				user_link_limit(user)
+			end
+		end
 	end
 
 	def the_font_green(the_value, the_size=false)

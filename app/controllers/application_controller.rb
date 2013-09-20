@@ -31,6 +31,10 @@ class ApplicationController < ActionController::Base
 		@browser_type = detect_browser
 	end
 
+	def is_mobile_browser
+		@browser_type == "mobile"
+	end
+
 	def the_maximo
 		current_user.is_maximo? if current_user
 	end
