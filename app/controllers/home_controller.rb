@@ -17,12 +17,12 @@ class HomeController < ApplicationController
 		render 'widget/home'
 	end
 
-	def search
-		@item_results = []
-		@all_items =  Search.new(params[:search])
-		@all_items[0..LARGE_FEED_SIZE].each {|item| @item_results << item }
-		render @the_template   
-	end
+	# def search
+	# 	@item_results = []
+	# 	@all_items =  Search.new(params[:search])
+	# 	@all_items[0..LARGE_FEED_SIZE].each {|item| @item_results << item }
+	# 	render @the_template   
+	# end
 
 	private
 

@@ -93,17 +93,11 @@
 
 <hr/>
 
-
-<%= request.env["HTTP_REFERER"] %>
-
 <% if Rails.env.development? %>
-
-
 	<br>
 	<div class="row ">
 		<div class="three columns centered">
-			<%= render 'utilities/browser_detect_zurb' %><br/>
-			<%= request.env["HTTP_REFERER"] %>
+			<%= render 'utilities/browser_detect_zurb' %>
 		</div>
 	</div>		
 <% end %>

@@ -32,7 +32,7 @@
     
     <link href='http://fonts.googleapis.com/css?family=Open+Sans:800,300,700,400' rel='stylesheet' type='text/css'>
 
-	<style type="text/css">
+<style type="text/css">
 	html, body, div, span, applet, object, iframe,
 	h1, h2, h3, h4, h5, h6, p, blockquote, pre,
 	a, abbr, acronym, address, big, cite, code,
@@ -230,31 +230,26 @@
 </head>
 <body>
 
-
 <!-- START Main Menu -->
 <div id="logo">
     <!-- Logo -->
-    <!-- <a href="#" class="logo"><%#= image_tag("launch_haypista_blanco.png", :size => "295x95", :alt => "HayPista") %></a> -->
-
 	<%= link_to(image_tag("launch_haypista_blanco.png", :size => "295x95", :alt => "HayPista"), login_path) %>
 </div>
 
-
 <!-- Content -->
 <div id="content">
-    
+
 	<h1 class="tagline"><%= I18n.t(:launch_h1) %></h1>
     <h3 class="info"><%= I18n.t(:launch_h3) %></h3>
     <br>
-    <div id="signUp">
 
+    <div id="signUp">
         <!-- <form accept-charset="UTF-8" action="/users" method="post"> -->
             <!-- <input type="text" class="left" id="email" name="email" placeholder="Enter your email address" value=""> -->
             <!-- <input type="submit" id="notify-me" class="button" value="Sign me up!"> -->
 	        <!-- <input type="text" class="left" id="email" name="email" placeholder="Pon tu cuenta de correo" value=""> -->
 	        <!-- <input type="submit" id="notify-me" class="button" value="Apuntame!">    -->
         <!-- </form> -->
-		
     </div>
     <br>
 
@@ -262,12 +257,10 @@
     <!-- <p class="share"><%#= I18n.t(:launch_signup).html_safe %></p> -->
     <p class="share"><b><%= the_for_websites_label %></b> <%= label_name(:widget_passionate_haypista) %></p>
 
-
 </div>
 
-<div class="social">
-
-</div>
+<!-- <div class="social">
+</div> -->
 
 <!-- GoSquared Analytics -->
 <script type="text/javascript">
