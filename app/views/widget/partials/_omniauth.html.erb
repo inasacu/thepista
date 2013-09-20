@@ -154,21 +154,7 @@ div.container{
 		</div>	
 
 		<br>
-
 		<%= render 'shared/browser_id' if DISPLAY_BROWSER_ID %>
-		
-		<hr>
-		
-
-		<div class="row">
-			<div class="six columns">
-					<%= label_name(:login_provider_signup_message) %>
-			</div>
-			<div class="six columns">
-				<p><%= label_name(:login_provider_agree_to) %> <%= link_to(label_name(:terms_of_use), terms_of_use_url, :target => '_blank') %>.
-				<p><%= "#{mail_to(CONTACT_RECIPIENT, label_name(:contact_us), :target => '_blank')}".html_safe %></p>
-			</div>
-		</div>
 
 </div>
 </div>
