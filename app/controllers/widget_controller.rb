@@ -214,10 +214,15 @@ class WidgetController < ApplicationController
   # getters and others ------------------->
   
   def check_branch
-    
+        
     # If tried to access directly from browser
-    if request.env["HTTP_REFERER"].nil?
-      render nothing: true
+    if request.env["HTTP_REFERER"].nil? 
+      
+      if params[:from_omni_auth] == "1"
+        render :partial => "/widget/partials/close_reload_iframe"
+      else
+        render nothing: true
+      end
       return
     end
     
