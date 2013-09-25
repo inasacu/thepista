@@ -5,7 +5,6 @@ Thepista::Application.routes.draw do
 	match 'qr' => 'home#index'
 	
 	# Enchufados widget
-	match "/widget/index", :to => 'widget#index'
   match "/widget/", :to => 'widget#index'
   match "/widget/home", :to => 'widget#home', :as => :widget_home
   

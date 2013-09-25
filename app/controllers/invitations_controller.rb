@@ -63,7 +63,9 @@ class InvitationsController < ApplicationController
       
       @the_invitation.is_from_widget = WidgetHelper.is_widget_form(params[:form_type])
       if !session[:current_branch].nil?
-        @the_invitation.widget_host = session[:current_branch_real_url]
+        if @schedule
+          @the_invitation.widget_host = @schedule.group.item.url
+        end
       end    
          
       @the_invitation.save!

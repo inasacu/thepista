@@ -22,15 +22,35 @@ module WidgetHelper
     end
   end
   
-  def self.clean_branch_url(url)
+  def self.clean_branch_url_temp(url)
     
-    url.sub!("http://", "")
-    url.sub!("HTTP://", "")
-    url.sub!("www.", "")
-    url.sub!("WWW.", "")
-    url.chomp!("/")
+    if !url.nil?
+      url.sub!("http://", "")
+      url.sub!("HTTP://", "")
+      url.sub!("www.", "")
+      url.sub!("WWW.", "")
+      url.chomp!("/")
+    end
      
     return url
+    
+  end
+  
+  def self.clean_branch_url(url)
+    
+    if !url.nil?
+      parsed_url = URI.parse(url)
+      #new_url = parsed_url.scheme+"://"+parsed_url.host+parsed_url.path
+      if parsed_url.port and parsed_url.port != 80
+        new_url = parsed_url.host+":"+parsed_url.port.to_s()+parsed_url.path
+      else
+        new_url = parsed_url.host + parsed_url.path
+      end
+      
+      new_url.chomp!("/")
+    end
+     
+    return new_url
     
   end
 	
@@ -191,44 +211,53 @@ module WidgetHelper
     
   end
   
-  def get_header_menu_li(schedule=nil, status_count_hash=nil)
-    home_li = ""
-	  event_li = ""
-	  event_noshow_li = ""
-	  invitation_li = ""
-	  
-	  menu_booleans = Hash.new
-	  menu_booleans = {:is_home => (self.controller.action_name == 'home'),
-	                   :is_event_default =>  (self.controller.action_name == 'event_details'),
-	                   :is_event_noshow =>  (self.controller.action_name == 'event_details_noshow'),
-	                   :is_event_lastminute =>  (self.controller.action_name == 'event_details_lastminute'),
-	                   :is_event_invitation =>  (self.controller.action_name == 'event_invitation')}
-	  
-	  home_li = "#{content_tag(:li, link_to('Inicio', widget_home_url), 
-	  :class => menu_booleans[:is_home] ? 'active' : '')}"
-	  
-	  if !schedule.nil? and !status_count_hash.nil?
-	    event_li = "#{content_tag(:li, link_to("Convocados (#{status_count_hash[:roster_count]})", 
-  	  widget_event_details_path(:event_id => schedule)), 
-  	  :class => menu_booleans[:is_event_default] ? 'active' : '')}" if status_count_hash[:roster_count]>0
+  def get_header_menu_li(clean_root=nil, referrer=nil, schedule=nil, status_count_hash=nil)
+    
+      home_li = ""
+  	  event_li = ""
+  	  event_noshow_li = ""
+  	  invitation_li = ""
+
+  	  menu_booleans = Hash.new
+  	  menu_booleans = {:is_home => (self.controller.action_name == 'home'),
+  	                   :is_event_default =>  (self.controller.action_name == 'event_details'),
+  	                   :is_event_noshow =>  (self.controller.action_name == 'event_details_noshow'),
+  	                   :is_event_lastminute =>  (self.controller.action_name == 'event_details_lastminute'),
+  	                   :is_event_invitation =>  (self.controller.action_name == 'event_invitation')}
       
-  	  event_noshow_li = "#{content_tag(:li, link_to("Ausentes (#{status_count_hash[:no_show_count]})", 
-      widget_event_details_noshow_path(:event_id => schedule)),
-      :class => menu_booleans[:is_event_noshow] ? 'active' : '')}" if status_count_hash[:no_show_count]>0
+      
+      if !referrer.nil? and !(referrer.start_with?(clean_root))
+         home_li = "#{content_tag(:li, link_to('Inicio', widget_home_path(:branch => referrer)), 
+      	  :class => menu_booleans[:is_home] ? 'active' : '')}"
+      elsif  !schedule.nil?
+         home_li = "#{content_tag(:li, link_to('Inicio', widget_home_path(:prev_schedule => schedule.id)), 
+      	  :class => menu_booleans[:is_home] ? 'active' : '')}"
+      end 
+      
+  	  if !schedule.nil? and !status_count_hash.nil?
+  	    event_li = "#{content_tag(:li, link_to("Convocados (#{status_count_hash[:roster_count]})", 
+    	  widget_event_details_path(:event_id => schedule)), 
+    	  :class => menu_booleans[:is_event_default] ? 'active' : '')}" if status_count_hash[:roster_count]>0
 
-      event_last_minute_li = "#{content_tag(:li, link_to("Ultima hora (#{status_count_hash[:last_minute_count]})", 
-      widget_event_details_lastminute_path(:event_id => schedule)), 
-      :class => menu_booleans[:is_event_lastminute] ? 'active' : '')}" if status_count_hash[:last_minute_count]>0
+    	  event_noshow_li = "#{content_tag(:li, link_to("Ausentes (#{status_count_hash[:no_show_count]})", 
+        widget_event_details_noshow_path(:event_id => schedule)),
+        :class => menu_booleans[:is_event_noshow] ? 'active' : '')}" if status_count_hash[:no_show_count]>0
 
-  	  if current_user
-  	    invitation_li = "#{content_tag(:li, link_to("Invita a tus amigos a este evento", 
-    	  widget_event_invitation_path(:event_id => schedule)),
-    	  :class => menu_booleans[:is_event_invitation] ? 'active' : '')}"
+        event_last_minute_li = "#{content_tag(:li, link_to("Ultima hora (#{status_count_hash[:last_minute_count]})", 
+        widget_event_details_lastminute_path(:event_id => schedule)), 
+        :class => menu_booleans[:is_event_lastminute] ? 'active' : '')}" if status_count_hash[:last_minute_count]>0
+
+    	  if current_user
+    	    invitation_li = "#{content_tag(:li, link_to("Invita a tus amigos a este evento", 
+      	  widget_event_invitation_path(:event_id => schedule)),
+      	  :class => menu_booleans[:is_event_invitation] ? 'active' : '')}"
+    	  end
   	  end
-	  end
-	  
-  	return "#{home_li} #{event_li} #{event_noshow_li} #{event_last_minute_li} #{invitation_li}".html_safe
-  	
+
+    	return "#{home_li} #{event_li} #{event_noshow_li} #{event_last_minute_li} #{invitation_li}".html_safe
+    
+    
+    
   end
   
   def event_home_link(schedule=nil)

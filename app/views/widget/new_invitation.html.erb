@@ -17,8 +17,6 @@
 <div class="row">
 	<div class="twelve columns">  
 		
-		<%= render 'widget/shared/flash_messages'%>
-
 		<%= form_for(@invitation, :html => { :multipart => true, :class => 'nice invitation-form'  }) do |the_form| %>
 
 			<%= render "shared/error_messages", :target => @invitation %>
