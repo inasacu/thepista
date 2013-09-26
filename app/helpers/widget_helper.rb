@@ -14,6 +14,7 @@ module WidgetHelper
   
   def self.clean_session(session)
     if !session.nil?
+      session.delete("current_branch")
       session.delete("widgetpista.isevent")
       session.delete("widgetpista.ismock")
       session.delete("widgetpista.eventid")
@@ -227,7 +228,7 @@ module WidgetHelper
       
       
       if !referrer.nil? and !(referrer.start_with?(clean_root))
-         home_li = "#{content_tag(:li, link_to('Inicio', widget_home_path(:branch => referrer)), 
+         home_li = "#{content_tag(:li, link_to('Inicio', widget_home_path(:branch => referrer), :id => "homeLink"), 
       	  :class => menu_booleans[:is_home] ? 'active' : '')}"
       elsif  !schedule.nil?
          home_li = "#{content_tag(:li, link_to('Inicio', widget_home_path(:prev_schedule => schedule.id)), 

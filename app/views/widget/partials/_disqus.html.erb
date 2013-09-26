@@ -44,10 +44,10 @@
 					this.language = "<%= disqus_language %>"; 
 										
 					this.callbacks.onReady = [function() {
-						Widget.gui.postSizeFunction();
+						HayPistaWidget.gui.postSizeFunction();
 					}];	
 					this.callbacks.onNewComment = [function() {
-						Widget.gui.postSizeFunction(true);
+						HayPistaWidget.gui.postSizeFunction(true);
 					}];
 				};
 			

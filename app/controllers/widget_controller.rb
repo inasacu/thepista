@@ -30,7 +30,6 @@ class WidgetController < ApplicationController
     else
       session.delete(:current_branch)
       #session.delete(:current_branch_real_url)
-      session.delete(:original_referrer)
       render nothing: true
       return
     end
@@ -214,16 +213,18 @@ class WidgetController < ApplicationController
   # getters and others ------------------->
   
   def check_branch
-        
+    logger.info "BRANCH #{session[:current_branch]} REFERER #{request.env["HTTP_REFERER"]}"
+    
     # If tried to access directly from browser
     if request.env["HTTP_REFERER"].nil? 
       
       if params[:from_omni_auth] == "1"
         render :partial => "/widget/partials/close_reload_iframe"
-      else
+      elsif 
         render nothing: true
       end
       return
+      
     end
     
     # Clean versions of the urls
