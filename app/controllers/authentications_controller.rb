@@ -1,3 +1,4 @@
+
 class AuthenticationsController < ApplicationController
 	before_filter :require_user, :only => [:destroy]
 
@@ -23,7 +24,7 @@ class AuthenticationsController < ApplicationController
       WidgetHelper.clean_session(session)
       
       # info for redirecting
-      redirect_home = widget_home_url
+      redirect_home = widget_home_url :from_omni_auth => 1
       redirect_signup = widget_check_omniauth_url :isevent => isevent, :ismock => ismock, :event => event_id, 
                                                   :source_timetable_id => source_timetable_id, 
                                                   :block_token => Base64::encode64(event_starts_at.to_i.to_s)

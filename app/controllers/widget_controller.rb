@@ -2,33 +2,23 @@ class WidgetController < ApplicationController
   layout nil
   
   # filters
+  before_filter :check_branch
   before_filter :get_schedule, :only => [:event_details, :event_details_noshow, :event_details_lastminute]
   before_filter :check_redirect, :only => [:home]
   before_filter :check_disqus_logout, :only => [:event_details]
   before_filter :get_match_and_user_x_two, :only => [:set_team]
-    
-  # add filter for checkin branch in session
   
   helper WidgetHelper
   
   def index
+    respond_to do |format|
+      format.js
+    end
   end
   
   def home
-    
-    # Gets the current branch if not present in session
-    if session[:current_branch].nil?
-      if !request.env["HTTP_REFERER"].nil?
-        session[:current_branch] = Branch.branch_from_url(request.env["HTTP_REFERER"]) 
-        session[:current_branch_real_url] = request.env["HTTP_REFERER"]
-      else
-        session.delete(:current_branch)
-        render nothing: true
-        return
-      end
-    end 
        
-    # Gets the schedules from the branch
+    # Gets the schedules from the branch if new or changed site
     if !session[:current_branch].nil?
       
       @schedules_per_weekday = Schedule.week_schedules_from_timetables(session[:current_branch])
@@ -39,7 +29,7 @@ class WidgetController < ApplicationController
       
     else
       session.delete(:current_branch)
-      session.delete(:current_branch_real_url)
+      #session.delete(:current_branch_real_url)
       render nothing: true
       return
     end
@@ -223,28 +213,61 @@ class WidgetController < ApplicationController
   # getters and others ------------------->
   
   def check_branch
+    logger.info "BRANCH #{session[:current_branch]} REFERER #{request.env["HTTP_REFERER"]}"
     
-    if !request.env["HTTP_REFERER"].nil? and ( request.env["HTTP_REFERER"] != ENV['THE_HOST'] )
+    # If tried to access directly from browser
+    if request.env["HTTP_REFERER"].nil? 
       
-      if ( !session[:current_branch_real_url].nil? \
-        and (request.env["HTTP_REFERER"] != session[:current_branch_real_url]) ) \
-        or session[:current_branch_real_url].nil?
-        
-        new_valid_branch = Branch.branch_from_url(request.env["HTTP_REFERER"])
-
-        if new_valid_branch
-          session[:current_branch] = new_valid_branch
-          session[:current_branch_real_url] = request.env["HTTP_REFERER"]
+      if params[:from_omni_auth] == "1"
+        render :partial => "/widget/partials/close_reload_iframe"
+      elsif 
+        render nothing: true
+      end
+      return
+      
+    end
+    
+    # Clean versions of the urls
+    @clean_root_url = WidgetHelper.clean_branch_url(root_url)
+    @clean_referrer = WidgetHelper.clean_branch_url(request.env["HTTP_REFERER"])
+    if !session[:current_branch].nil?
+      clean_current_branch_url = WidgetHelper.clean_branch_url(session[:current_branch].url)
+    end
+    
+    # Gets the current branch if not present in session 
+    # or the website changed
+    # and request doesnt come from root_url
+    if ( session[:current_branch].nil? and !(@clean_referrer.start_with?(@clean_root_url)) ) \
+       or (!session[:current_branch].nil? \
+            and (@clean_referrer != clean_current_branch_url) \
+            and !(@clean_referrer.start_with?(@clean_root_url)) ) \
+       or !params[:branch].nil?
+                
+        if !params[:branch].nil?
+          session[:current_branch] = Branch.branch_from_url(params[:branch]) 
+          #session[:current_branch_real_url] = session[:current_branch].url
         else
-          session.delete(:current_branch)
-          session.delete(:current_branch_real_url)
-          render nothing: true
-          return
-        end # end if the new site is registered
-          
-      end # end if is a request from a new site
-      
-    end # end if null or comes from localhost
+          session[:current_branch] = Branch.branch_from_url(@clean_referrer) 
+          #session[:current_branch_real_url] = request.env["HTTP_REFERER"]
+        end
+        
+    end
+    
+    # If the param is sent it means that home button pressed
+    # and the param should continue being used as help to get branch
+    if params[:branch]
+      @clean_referrer = params[:branch]
+    end
+    
+    # If comming back to home from a schedule gets the branch
+    # from schedule group
+    if params[:prev_schedule]
+      schedule = Schedule.find(params[:prev_schedule])
+      session[:current_branch] = Branch.find(schedule.group.item.id)
+      #session[:current_branch_real_url] = session[:current_branch].url
+
+      @clean_referrer = WidgetHelper.clean_branch_url(session[:current_branch].url)
+    end
     
   end
   
@@ -280,7 +303,7 @@ class WidgetController < ApplicationController
 		@schedule = Schedule.find(params[:event_id])
 		@group = @schedule.group
 		@the_previous = Schedule.previous(@schedule)
-		@the_next = Schedule.next(@schedule)    
+		@the_next = Schedule.next(@schedule)   
 	end
 	
 	def get_match_and_user_x_two

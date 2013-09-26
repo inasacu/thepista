@@ -106,8 +106,13 @@ class UserSessionsController < ApplicationController
 	def destroy_widget
 		@user_session = current_user_session
 		@user_session.destroy if @user_session
+		WidgetHelper.clean_session(session)
 		
-		redirect_to widget_home_url
+		if params[:branch]
+		  redirect_to widget_home_url(:branch => params[:branch])
+		else
+		  redirect_to widget_home_url
+		end
 		
 	end
 
