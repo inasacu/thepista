@@ -109,7 +109,6 @@ div.container{
 <div class="row">
 	<div class="twelve columns">
 
-
 		<div class="row">
 			<div class="twelve columns">
 
@@ -153,28 +152,9 @@ div.container{
 			</div>
 		</div>	
 
-		<br>
-		
-		<%= content_tag :h4, "#{label_name(:or)} <STRONG>#{label_name(:log_in)}</STRONG> #{label_name(:with)}".html_safe, :class => "subheader" %>
-		<hr/>
-		
+		<%= render 'shared/browser_id' if DISPLAY_BROWSER_ID %>
 
-		<div class="row">
-			<div class="one  columns"></div>
-			<div class="ten columns">				
-				<p>
-					<%= render 'utilities/persona'%>					
-
-					<form id='browser_id_form' action='/auth/browser_id/callback?origin=widget'>
-						<input type='hidden' name='assertion'/>
-						<button type='submit' class='large_medium nice success button radius'><%= label_name(:omniauth_provider_browser_id) %></button>
-					</form>
-				</p>
-			</div>
-			<div class="two columns"></div>
-		</div>
-
-</div>
+	</div>
 </div>
 
 <% end %>

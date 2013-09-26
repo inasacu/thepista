@@ -56,7 +56,8 @@ class CompaniesController < ApplicationController
 
 				if @group.save and @group.create_group_roles(current_user)
 					successful_create
-					render :controller => 'timetables', :action => 'new', :id => @group.id
+					# render :controller => 'timetables', :action => 'new', :id => @group.id
+					redirect_to	@group
 					return
 				end
 

@@ -3,7 +3,7 @@
 	# is_member = is_current_member_of(@company) 
 	first_branch = true
 
-	the_head = "<script type=\"text/javascript\" src=\"#{@company.url}/widget\"></script>"
+	the_head = "<script type=\"text/javascript\" src=\"#{ENV['THE_HOST']}/widget\"></script>"
 	the_body = "<div id=\"haypistawidget\"></div>"
 %>	
 

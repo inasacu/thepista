@@ -5,7 +5,7 @@ class HomeController < ApplicationController
 	before_filter :get_home,            :only => [:index]
 	before_filter :get_upcoming,        :only => [:index, :upcoming]
 	
-	# layout :another_by_method
+	layout :another_by_method if LAUNCH_PAGE
 	
 	def privacy_policy
 		set_the_template('home/terms_of_use')
@@ -15,13 +15,6 @@ class HomeController < ApplicationController
 		layout = 'widget'
 		@centreSchedules = Schedule.find(:all, :conditions => ["played = false"])
 		render 'widget/home'
-	end
-
-	def search
-		@item_results = []
-		@all_items =  Search.new(params[:search])
-		@all_items[0..LARGE_FEED_SIZE].each {|item| @item_results << item }
-		render @the_template   
 	end
 
 	private

@@ -42,8 +42,6 @@
 	
 %>
 
-<%#= render 'shared/show_description_zurb', :item => @schedule, :the_label => the_label %>
-
 <table>
 	<tbody>
 		<tr>
@@ -59,8 +57,8 @@
 
 				<% if show_individual_score %>	
 
-				<%= render_show_detail_zurb("#{link_to(h(@schedule.home_group), @schedule.home_group)}".html_safe, "#{@the_home_score}".html_safe, true) %>
-				<%= render_show_detail_zurb("#{link_to(h(@schedule.away_group), @schedule.home_group)}".html_safe, "#{@the_away_score}".html_safe, true) %>		
+				<%= render_show_detail_zurb("#{link_to(h(@schedule.home_group), @schedule.group)}".html_safe, "#{@the_home_score}".html_safe, true) %>
+				<%= render_show_detail_zurb("#{link_to(h(@schedule.away_group), @schedule.group)}".html_safe, "#{@the_away_score}".html_safe, true) %>		
 
 				<% end %>
 

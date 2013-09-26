@@ -33,7 +33,6 @@
 	
 <% end %>
 
-
 <% if has_group %>
 
 	<%= set_form_create_id_image_link(Message.new, :scorecard_id, @group.schedules.first, :send_scorecard, 'scorecard') if is_scorecard_send  %>
@@ -42,10 +41,7 @@
 		<div class="twelve columns">
 	
 			<% unless is_group_member %>
-			
-				
-				<%= set_image_and_link(join_item_link_to(current_user, @group, true), 'user_add') if has_user_petition %>
-
+				<%= set_image_and_link(join_item_link_to(current_user, @group, true), 'user_add') unless has_user_petition %>
 			<% end %>
 	
 		</div>

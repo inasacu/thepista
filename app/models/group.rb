@@ -94,7 +94,7 @@ class Group < ActiveRecord::Base
   has_many  :manager_roles,
   :class_name => "Role", 
   :foreign_key => "authorizable_id", 
-  :conditions => ["roles.name = 'manager' and roles.authorizable_type = 'Group'"]
+  :conditions => ["roles.name in ('manager', 'creator') and roles.authorizable_type = 'Group'"]
 
   has_many :the_subscriptions,
   :through => :subscription_roles,
