@@ -377,25 +377,28 @@ class Schedule < ActiveRecord::Base
   # end
   
   def self.my_current_schedules(user)
-    self.find(:all, :conditions => ["schedules.archive = false and starts_at >= ? and group_id in (select group_id from groups_users where user_id = ?)", Time.zone.now, user.id],:order => 'starts_at, group_id', :limit => 1)
+    self.find(:all, :joins => "JOIN groups on schedules.group_id = groups.id",
+							:conditions => ["groups.item_type is null and schedules.archive = false and schedules.starts_at >= ? and schedules.group_id in (select group_id from groups_users where user_id = ?)", Time.zone.now, user.id],:order => 'starts_at, group_id', :limit => 1)
   end
 
 	def self.other_current_schedules(user)
-		self.find(:all, :conditions => ["schedules.archive = false and starts_at >= ? and group_id not in (select group_id from groups_users where user_id = ?)", Time.zone.now, user.id],:order => 'starts_at, group_id', :limit => 1)
+		self.find(:all, :joins => "JOIN groups on schedules.group_id = groups.id",
+							:conditions => ["groups.item_type is null and schedules.archive = false and schedules.starts_at >= ? and schedules.group_id not in (select group_id from groups_users where user_id = ?)", Time.zone.now, user.id],:order => 'starts_at, group_id', :limit => 1)
 	end
 
   def self.current_schedules(user, page = 1)
-    self.select("schedules.*").joins("JOIN groups on groups.id = schedules.group_id").where("schedules.archive = false and starts_at >= ? and group_id in (select group_id from groups_users where user_id = ?)", 
+    self.select("schedules.*").joins("JOIN groups on groups.id = schedules.group_id").where("groups.item_type is null and schedules.archive = false and schedules.starts_at >= ? and schedules.group_id in (select group_id from groups_users where user_id = ?)", 
 		Time.zone.now, user.id).page(page).order('groups.name, schedules.starts_at')
   end
 
   def self.previous_schedules(user, page = 1)
-    self.select("schedules.*").joins("JOIN groups on groups.id = schedules.group_id").where("schedules.archive = false and starts_at < ? and group_id in (select group_id from groups_users where user_id = ?)", 
+    self.select("schedules.*").joins("JOIN groups on groups.id = schedules.group_id").where("groups.item_type is null and schedules.archive = false and schedules.starts_at < ? and schedules.group_id in (select group_id from groups_users where user_id = ?)", 
 		Time.zone.now, user.id).page(page).order('groups.name, schedules.starts_at DESC')
   end
   
   def self.latest_items(items)
-    find(:all, :conditions => ["schedules.created_at >= ? and archive = false", LAST_THREE_DAYS]).each do |item| 
+    find(:all, :joins => "JOIN groups on schedules.group_id = groups.id", 
+				 :conditions => ["groups.item_type is null and schedules.created_at >= ? and schedules.archive = false", LAST_THREE_DAYS]).each do |item| 
       items << item
     end
     return items 
@@ -464,7 +467,7 @@ class Schedule < ActiveRecord::Base
 	end
 
 	def self.upcoming_schedules(hide_time)
-		with_scope(:find => where(:starts_at => ONE_WEEK_FROM_TODAY, :played => false).order("starts_at")) do
+		with_scope(:find => joins("JOIN groups on groups.id = schedules.group_id").where(:"groups.item_type" => nil, :"schedules.starts_at" => ONE_WEEK_FROM_TODAY, :"schedules.played" => false).order("starts_at")) do
 			if hide_time.nil?
 				self.all()
 			else
