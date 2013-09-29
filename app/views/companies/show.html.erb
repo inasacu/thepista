@@ -19,8 +19,7 @@
 
 					<%= render_show_detail_zurb(:company, @company.name) %>
 					<%= render_show_detail_zurb(:city, @company.city.name) %>
-					<%= render_show_detail_zurb(:url, @company.url) %>
-					<%#= render_show_detail_zurb(:time_zone,  "#{nice_simple_time_at(@company.starts_at)} - #{nice_simple_time_at(@company.ends_at)}") %>
+					<%= render_show_detail_zurb(:url, "#{link_to(@company.name, @company.url, :target => '_blank')}".html_safe) %>
 					
 					<% @company.branches.each do |branch| 
 						the_label = first_branch ? 'branch' : 'blank'
