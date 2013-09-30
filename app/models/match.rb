@@ -56,9 +56,13 @@ class Match < ActiveRecord::Base
   end
   
   def self.latest_items(items, user)
-    find(:all, :select => "distinct matches.id, matches.user_id, matches.schedule_id, matches.type_id, types.name as type_name, matches.status_at as created_at", 
-         :joins => "left join groups_users on groups_users.user_id = matches.user_id left join types on types.id = matches.type_id left join schedules on schedules.id = matches.schedule_id",    
-         :conditions => ["schedules.played = false and groups_users.group_id in (?) and 
+    find(:all, :select => "distinct matches.id, matches.user_id, matches.schedule_id, matches.type_id, 
+													 types.name as type_name, matches.status_at as created_at", 
+         :joins => "left join groups_users on groups_users.user_id = matches.user_id 
+										left join types on types.id = matches.type_id 
+										left join schedules on schedules.id = matches.schedule_id
+										left join groups on schedules.group_id = groups.id",    
+         :conditions => ["groups.item_type is null and schedules.played = false and groups_users.group_id in (?) and 
               age(matches.status_at, matches.created_at) > '00:00:00' and matches.status_at != matches.created_at and 
 							matches.status_at >= ? and schedules.starts_at >= ? and matches.user_id not in (?)", user.groups, YESTERDAY, YESTERDAY, DEFAULT_GROUP_USERS]).each do |item| 
       items << item
@@ -68,9 +72,13 @@ class Match < ActiveRecord::Base
 
   # users who set to ausente w/n 24 hours of match
   def self.last_minute_items(items, user)
-    find(:all, :select => "distinct matches.id, matches.user_id, matches.schedule_id, matches.type_id, types.name as type_name, matches.status_at as created_at", 
-         :joins => "left join groups_users on groups_users.user_id = matches.user_id left join types on types.id = matches.type_id left join schedules on schedules.id = matches.schedule_id",    
-         :conditions => ["schedules.archive = false and matches.type_id = 3 and schedules.played = true and groups_users.group_id in (?) and 
+    find(:all, :select => "distinct matches.id, matches.user_id, matches.schedule_id, matches.type_id, 
+													 types.name as type_name, matches.status_at as created_at", 
+         :joins => "left join groups_users on groups_users.user_id = matches.user_id 
+										left join types on types.id = matches.type_id 
+										left join schedules on schedules.id = matches.schedule_id
+										left join groups on schedules.group_id = groups.id",    
+         :conditions => ["groups.item_type is null and schedules.archive = false and matches.type_id = 3 and schedules.played = true and groups_users.group_id in (?) and 
               age(matches.status_at, matches.created_at) > '00:00:00' and 
               matches.status_at != matches.created_at and matches.status_at >= schedules.starts_at - INTERVAL '1 days' 
               and matches.status_at >= ? and matches.user_id not in (?)", user.groups, YESTERDAY, DEFAULT_GROUP_USERS]).each do |item| 
