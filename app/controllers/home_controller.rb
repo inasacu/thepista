@@ -27,7 +27,7 @@ class HomeController < ApplicationController
 		end
 	end
 	
-	def get_upcoming 
+	def get_upcoming
 		store_location
 		
 		@upcoming =  false
