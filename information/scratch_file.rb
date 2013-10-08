@@ -1,5 +1,17 @@
 "http://localhost:8888/thepista_client"
 
+DUPLICATE ACCOUNTS IN SCORECARD
+
+select id, group_id, user_id, ranking, played, archive
+from scorecards 
+where user_id in (
+	select user_id
+	from scorecards
+	where archive = false
+	group by group_id, user_id 
+	having count(*) > 1
+)
+order by group_id, user_id, ranking
 
 
 bullets
