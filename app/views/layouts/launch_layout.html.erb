@@ -284,31 +284,21 @@
 <!-- START Main Menu -->
 <div id="logo">
     <!-- Logo -->
-	<%= link_to(image_tag("launch_haypista_blanco.png", :size => "295x95", :alt => "HayPista"), login_path) %>
+	<%= link_to(image_tag("launch_haypista_blanco.png", :size => "225x60", :alt => "HayPista"), login_path) %>
 </div>
 
 <!-- Content -->
 <div id="content">
 
 	<h1 class="tagline"><%= I18n.t(:launch_h1) %></h1>
-    <h3 class="info"><%= I18n.t(:launch_h3) %></h3>
+    <!-- <h3 class="info"><%#= I18n.t(:launch_h3) %></h3> -->
     <br>
 
 	<div class="social">
-		<%= "#{youtube_embed('youtu.be/APMrtUd4WW8', 450, 300)}".html_safe %>
+		<%= "#{youtube_embed('youtu.be/eGjFETZdVDo', 450, 300)}".html_safe %>
 	</div>
 
-
-
-
     <div id="signUp">
-        <!-- <form accept-charset="UTF-8" action="/users" method="post"> -->
-            <!-- <input type="text" class="left" id="email" name="email" placeholder="Enter your email address" value=""> -->
-            <!-- <input type="submit" id="notify-me" class="button" value="Sign me up!"> -->
-	        <!-- <input type="text" class="left" id="email" name="email" placeholder="Pon tu cuenta de correo" value=""> -->
-	        <!-- <input type="submit" id="notify-me" class="button" value="Apuntame!">    -->
-        <!-- </form> -->
-
 		<%= render 'utilities/mailchimp' %>
     </div>
 
