@@ -1831,7 +1831,7 @@ en:
      widget_body: "Copy the following script and insert it into your website's HTML source code between the <body> tags."
      widget_head: "Copy the following script and insert it into your website's HTML source code between the <head> tags."
      widget_javascript: Widget Customization
-     widget_passionate_haypista: "If you’re passionate about playing sports, HayPista helps you build a community of players."
+     widget_passionate_haypista: "HayPista helps you build a community of players."
      widget_integration_haypista: "Once your added the widget to your site, your users will see all events."
      widget_inicia_session_haypista: "When the user signs in, he or she will be able to sign-up for any event."
      widget_event_option_haypista: "Users will have various options within an event:  squad, last minute, no-show, as well as leave comments."
