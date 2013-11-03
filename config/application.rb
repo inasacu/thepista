@@ -60,7 +60,7 @@ module Thepista
 
 
     # https://devcenter.heroku.com/articles/rails-asset-pipeline
-    config.assets.initialize_on_precompile = false
+    # config.assets.initialize_on_precompile = false
 
     # Enable the asset pipeline
     config.assets.enabled = true    
