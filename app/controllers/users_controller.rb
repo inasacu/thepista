@@ -19,7 +19,8 @@ class UsersController < ApplicationController
 	end
 
 	def list
-		redirect_to root_url      
+		# redirect_to root_url
+        @users = User.all_friends
 	end
 
 	def show

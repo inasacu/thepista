@@ -237,7 +237,11 @@ class User < ActiveRecord::Base
         items << item
       end
       return items 
-    end   
+    end      
+    
+    def self.all_friends
+      User.find(:all, :select => "distinct users.*", :conditions => ["users.archive = false and users.id not in (?)", DEFAULT_GROUP_USERS], :order => "users.name")
+    end
     
     def friends
       User.find(:all, :select => "distinct users.*", :joins => "LEFT JOIN groups_users on groups_users.user_id = users.id", 
