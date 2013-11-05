@@ -1,11 +1,48 @@
 
 class AuthenticationsController < ApplicationController
 	before_filter :require_user, :only => [:destroy]
+	before_filter :mobile_create, :only => [:create]
+	before_filter :mobile_failure, :only => [:failure]
 
 	def index
 		@authentications = current_user.authentications if current_user
 	end
-
+  
+  def mobile_create
+    # gets origin param of the omniauth request
+    omni_origin = request.env["omniauth.origin"]
+    
+    if omni_origin == "mobile"
+      omniauth = request.env["omniauth.auth"]
+  		authentication = Authentication.find_from_omniauth(omniauth)
+  		
+  		if authentication
+  		  cookies[:mobile_valid] = {:value => true}
+  		  cookies[:user_data] = {:value => authentication.user.as_json};
+  		else
+  		  # handle signup
+  		end
+  		
+  		# cookies.delete(:key, :domain => 'domain.com')
+  		
+  		render nothing: true
+      return
+    end
+    
+  end
+  
+  def mobile_failure
+    # gets origin param of the omniauth request
+    omni_origin = request.env["omniauth.origin"]
+    
+    if omni_origin == "mobile"
+  		  cookies.delete(:mobile_valid)
+  		  cookies.delete(:user_data)
+  		  render nothing: true
+        return
+    end
+  end
+  
 	def create
 		# render :text => request.env["omniauth.auth"].to_yaml
     
@@ -105,7 +142,6 @@ class AuthenticationsController < ApplicationController
 		
 		end
 	end
-
 
 	def failure
 		flash[:notice] = I18n.t(:verification_failed)

@@ -18,6 +18,10 @@ heroku.tmproj
 /heroku.tmproj
 .powenv
 
+.powrc
+.project
+.rvmrc
+.DS_Store
 .gitignore
 
 Gemfile
@@ -27,5 +31,3 @@ Gemfile
 Gemfile
 
 Gemfile
-
-.gitignore

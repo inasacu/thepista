@@ -24,6 +24,20 @@ Thepista::Application.routes.draw do
   match "/widget/event/:event_id/invitation", :to => 'widget#event_invitation', :as => :widget_event_invitation
   
   # ------------------------>
+  
+  # Mobile apps
+  
+  namespace :mobile do
+    resources :security do
+      collection do
+        #get "other_action/:id", :to => "security#other_action"
+      end
+    end
+  end
+  
+  
+  # ------------------------>
+  
 
 	match 'rpx_token_sessions' => 'user_sessions#rpx_create', :as => :rpx_token_sessions
 	match 'rpx_signup' => 'users#rpx_new', :as => :rpx_signup
