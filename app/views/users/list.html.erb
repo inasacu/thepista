@@ -7,7 +7,7 @@
 <div class="row">
 	<div class="twelve columns">
 	
-			<%= render('shared/index_total_header_zurb', :items => @users) %>
+			<%#= render('shared/index_total_header_zurb', :items => @users) %>
 
 
 	<div class="row">
@@ -20,6 +20,7 @@
 					<%= set_content_tag_safe(:th, label_name(:coeficient_points)) %>
 					<%= set_content_tag_safe(:th, label_name(:user)) %>
 					<%= set_content_tag_safe(:th, label_name(:groups)) %>
+					<%= set_content_tag_safe(:th, label_name(:sports)) %>
 				</tr>
 				</thead>
 			
@@ -28,56 +29,43 @@
 				<% @users.each do |user| 
 					schedule = Schedule.last_schedule_played(user)
 					the_date = schedule.nil? ? '' : nice_full_date(schedule.starts_at)
-					has_phone = user.my_members?(current_user)	? (!user.phone.blank?) : (false)
 								
-					# the_whatsapp_label = label_name(:whatsapp)
 					the_whatsapp_link = ""
-					# the_whatsapp_link = "#{image_tag('icons/whatsapp.png', options={:title => the_whatsapp_label, :style => 'height: 15px; width: 15px;'})}" if (user.whatsapp and !user.phone.blank?)
 					the_user_link = "#{user_link_limit(user)}  #{the_whatsapp_link}"
-					the_user_link = "#{phone_user_link(user)}  #{the_whatsapp_link}" if has_phone
 				
 					the_infringe_label = label_name(:infringe_true)
 					no_jugado_image = ""				
 					the_group_link = ""
+					the_sport_link = ""
 					subscription_image = ""	
 							
 					the_coeficient = 0.0
 					game_number = ""
-					user_scorecard_link = ""		
-				
-					if @scorecards
-						@scorecards.each do |scorecard|
-							if scorecard.user == user and scorecard.group == @group
-								the_coeficient = "#{sprintf('%0.00f', scorecard.coeficient_played)}%" 
-
-								if scorecard.coeficient_played.to_f < COEFICIENT_LOW
-									game_number = the_font_red(the_coeficient)
-								elsif scorecard.coeficient_played.to_f > COEFICIENT_MEDIUM_LOW and scorecard.coeficient_played.to_f < COEFFICIENT_FULL_MEDIUM_HIGH
-									game_number = the_font_yellow(the_coeficient)
-								elsif scorecard.coeficient_played.to_f > COEFFICIENT_FULL_HIGH
-									game_number = the_font_green(the_coeficient)
-								end
-
-								user_played = scorecard.type_id.to_i == 1 
-								user_scorecard_link = subscription_image_link(user, user_played ? "orange_#{user_played}" : "#{user_played}", I18n.t("game_played_#{user_played}"))		
-							end			
-						end
-					end
+					user_scorecard_link = ""
+					the_sport_list = []		
 					
 					user.groups.each do |group|
 						
 						unless group.is_branch?
 
 							the_group_link     += " , " unless the_group_link.blank?
-							is_subscriber       = user.is_subscriber_of?(group)						
-							the_label           = label_name("subscription_#{is_subscriber}")
+							is_subscriber       = user.is_subscriber_of?(group)					
 							subscription_image  = "#{item_name_link(group)} "
 							the_group_link 	   += "#{subscription_image}"  
-
+							
+							the_sport_list << group.sport.name 	unless the_sport_list.include?(group.sport.name)
+							
 						end
 					
 					end
 					the_group_link.chop.chop.chop
+					the_first = true
+					the_sport_list.each do |the_sport|
+						the_sport_link += the_sport
+						the_sport_link += " , " unless the_first
+						the_first = false
+					end
+					
 				
 					the_counter_link = "#{counter +=1}. #{user_scorecard_link}"
 			    -%>
@@ -88,6 +76,7 @@
 					<%= content_tag_safe(:td, the_counter_link, '','') %>
 					<%= content_tag_safe(:td, the_user_link, '','') %>
 					<%= content_tag_safe(:td, the_group_link, '','') %>
+					<%= content_tag_safe(:td, the_sport_link, '','') %>
 				</tr>
 			
 				<% end -%>
