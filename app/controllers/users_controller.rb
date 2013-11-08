@@ -407,6 +407,12 @@ class UsersController < ApplicationController
 	private
 	# return if user is 
 	def get_default_user
+	  
+	  if params[:id] == 'current'
+	    redirect_to root_url
+	    return
+    end
+    
 		@user = User.find(params[:id])
 		if DEFAULT_GROUP_USERS.include?(@user.id)
 			redirect_back_or_default('/index')
