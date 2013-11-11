@@ -1,0 +1,4 @@
+class Mobile::MobileUser
+  
+  
+end

@@ -88,6 +88,10 @@ module Thepista
 		# config.assets.initialize_on_precompile = false
 		
 		 config.middleware.use "WwwDitcher"
+		 
+		 # Mongoid loggind options
+		 Mongoid.logger.level = Logger::DEBUG
+     Moped.logger.level = Logger::DEBUG
 		
   end
 

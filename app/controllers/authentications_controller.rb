@@ -13,17 +13,33 @@ class AuthenticationsController < ApplicationController
     omni_origin = request.env["omniauth.origin"]
     
     if omni_origin == "mobile"
+      # remove cookies
+      cookies.delete(:mobile_valid)
+      cookies.delete(:user_data)
+      
+      # look for authentication based on oauth provider info
       omniauth = request.env["omniauth.auth"]
   		authentication = Authentication.find_from_omniauth(omniauth)
   		
   		if authentication
+  		  #handle regular authentication - user was already registered
+  		  mobile_token = Mobile::MobileToken.get_token(authentication.user.id, authentication.user.email, authentication.user.name)
+  		  
   		  cookies[:mobile_valid] = {:value => true}
-  		  cookies[:user_data] = {:value => authentication.user.as_json};
+  		  cookies[:user_data] = {:value => mobile_token.to_json}
   		else
-  		  # handle signup
+  		  # if not present in authentications start sign up process
+  		  signup_hash = Hash.new
+  		  signup_hash = {:should_signup => true, signup_hash, :email_provided => if omniauth['info']['email']}
+  		  
+  		  # Get token object with from info provided from oauth provider  
+  		  mock_mobile_token = Mobile::MobileToken.get_mock_token(omniauth)
+  		  
+  		  # wrap the cookies info needed for sign up request from mobile app
+  		  cookies[:mobile_valid] = {:value => true}  
+  		  cookies[:user_data] = {:value => mock_mobile_token.to_json}
+  		  cookies[:signup_data] = {:value => signup_hash.to_json}
   		end
-  		
-  		# cookies.delete(:key, :domain => 'domain.com')
   		
   		render nothing: true
       return
@@ -33,10 +49,12 @@ class AuthenticationsController < ApplicationController
   
   def mobile_failure
     # gets origin param of the omniauth request
-    omni_origin = request.env["omniauth.origin"]
+    omni_origin = params[:origin]
+    
+    logger.info "entro en mobile failure origin #{omni_origin}"
     
     if omni_origin == "mobile"
-  		  cookies.delete(:mobile_valid)
+  		  cookies[:mobile_valid] = {:value => false}
   		  cookies.delete(:user_data)
   		  render nothing: true
         return

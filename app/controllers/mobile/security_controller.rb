@@ -1,10 +1,9 @@
 class Mobile::SecurityController < ActionController::Base
-
+  
   def index
     # Render oauth page from the provider selected in the mobile app
     selected_oauth_provider = params[:oauth_provider]
-    user = Mobile::UserMobile.new
-    
+        
     case selected_oauth_provider
       when "1"
         provider_url = "auth/facebook"
