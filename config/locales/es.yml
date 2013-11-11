@@ -210,7 +210,6 @@ es:
      company_personalization:  Personalización
      company_stage_set:  Actualiza el sitio web
      company_stage_set_full:  Actualiza el branches
-     companies:   Sitios Web
      companies_create:  "Pon HayPista en tu sitio web"
      companys_create:  "Pon HayPista en tu sitio web"
      companies_destroy:  Borra el sitio web
@@ -1863,7 +1862,7 @@ es:
      widget_body: "Copia el siguiente codigo e insertalo en el código fuente HTML de tu sitio web entre las etiquetas <body>."
      widget_head: "Copia el siguiente codigo e insertalo en el código fuente HTML de tu sitio web entre las etiquetas <head>."
      widget_javascript: Personalización del Widget
-     widget_passionate_haypista: "Si te apasiona prácticar el deporte, HayPista te ayuda a construir una comunidad de jugadores."
+     widget_passionate_haypista: "HayPista te ayuda a construir una comunidad de jugadores."
      widget_integration_haypista: "Con el widget integrado en tu sitio web, tus usuarios veran todos los eventos."
      widget_inicia_session_haypista: "Al iniciar la session el usuario podra apuntarse a cualquier evento."
      widget_event_option_haypista: "El usuario tendra varias opciones por evento:  convocado, ultima hora o ausente, incluso podra dejar comentarios."

@@ -84,8 +84,6 @@ module WrappersHelper
 				the_sidebar = nil
 			end
 
-
-
 		when 'customer'	
 			the_sidebar = "customers"
 			new_item_sidebar = Customer.new
@@ -144,7 +142,7 @@ module WrappersHelper
 		the_twelve_columns = ['reservation_index']
 
 		# case for displaying SIDEBAR 
-		ignore_sidebar = ['schedule_list', 'user_index', 'invitation_new', 'challenge_new', 'challenge_create', 
+		ignore_sidebar = ['schedule_list', 'user_index', 'user_list', 'invitation_new', 'challenge_new', 'challenge_create', 
 			'message_show', 'message_new', 'game_index', 'standing_index',
 			'game_list','cast_list_gues','standing_show_all', 'standing_show', 'reservation_index', 
 			'user_session_new', 'authentication_index', 'schedule_group_previou', 'schedule_group_current']

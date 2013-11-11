@@ -1,0 +1,92 @@
+<%
+	# the_label = sanitize(@group.name)
+	the_total_label = I18n.t(:has_group_users, :count => @total)
+	counter = 0
+%>
+
+<div class="row">
+	<div class="twelve columns">
+	
+			<%#= render('shared/index_total_header_zurb', :items => @users) %>
+
+
+	<div class="row">
+		<div class="twelve columns"> 
+		
+			<table>
+			  	<thead>
+				<tr>             
+					<%= set_content_tag_safe(:th, "&nbsp;") %>
+					<%= set_content_tag_safe(:th, label_name(:coeficient_points)) %>
+					<%= set_content_tag_safe(:th, label_name(:user)) %>
+					<%= set_content_tag_safe(:th, label_name(:groups)) %>
+					<%= set_content_tag_safe(:th, label_name(:sports)) %>
+				</tr>
+				</thead>
+			
+			<tbody>
+			
+				<% @users.each do |user| 
+					schedule = Schedule.last_schedule_played(user)
+					the_date = schedule.nil? ? '' : nice_full_date(schedule.starts_at)
+								
+					the_whatsapp_link = ""
+					the_user_link = "#{user_link_limit(user)}  #{the_whatsapp_link}"
+				
+					the_infringe_label = label_name(:infringe_true)
+					no_jugado_image = ""				
+					the_group_link = ""
+					the_sport_link = ""
+					subscription_image = ""	
+							
+					the_coeficient = 0.0
+					game_number = ""
+					user_scorecard_link = ""
+					the_sport_list = []		
+					
+					user.groups.each do |group|
+						
+						unless group.is_branch?
+
+							the_group_link     += " , " unless the_group_link.blank?
+							is_subscriber       = user.is_subscriber_of?(group)					
+							subscription_image  = "#{item_name_link(group)} "
+							the_group_link 	   += "#{subscription_image}"  
+							
+							the_sport_list << group.sport.name 	unless the_sport_list.include?(group.sport.name)
+							
+						end
+					
+					end
+					the_group_link.chop.chop.chop
+					the_first = true
+					the_sport_list.each do |the_sport|
+						the_sport_link += the_sport
+						the_sport_link += " , " unless the_first
+						the_first = false
+					end
+					
+				
+					the_counter_link = "#{counter +=1}. #{user_scorecard_link}"
+			    -%>
+		
+		
+				<tr>
+					<%= content_tag_safe(:td, image_link_smaller(user), '', '') %>
+					<%= content_tag_safe(:td, the_counter_link, '','') %>
+					<%= content_tag_safe(:td, the_user_link, '','') %>
+					<%= content_tag_safe(:td, the_group_link, '','') %>
+					<%= content_tag_safe(:td, the_sport_link, '','') %>
+				</tr>
+			
+				<% end -%>
+		
+			</tbody>
+			</table>
+		
+		</div>
+	</div>
+	  	
+
+</div>	
+</div>

@@ -281,5 +281,7 @@ Thepista::Application.routes.draw do
 	
 
 	match ':controller/:action.:format' => '#index'
+	
+  match 'user_sessions/*user_sessions' => redirect('/acceso_session')
 
 end

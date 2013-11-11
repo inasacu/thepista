@@ -1,6 +1,6 @@
 <%	
 	I18n.locale = "es"
-	the_for_websites_label = get_propercase("#{label_name(:for)} #{label_name(:companies)}")		
+	the_for_websites_label = get_propercase("#{label_name(:for)} Empresas")		
 %>
 
 <!DOCTYPE HTML>
@@ -273,9 +273,11 @@
 <body>
 
 	<div id="navbar"> 
-		<div class="right">
+		<div class="left">
 			 <ul> 
-		     <li><%= link_to(label_name(:login), login_path) %></li>
+		     <li><%#= link_to(label_name(:login), login_path) %></li>
+			     <li><%= link_to("Prueba la Herramienta Gratis", login_path) %></li><br/>
+			     <li><%= link_to("Contacta con nosotros", login_path) %></li>
 			</ul>
 		</div>
 	</div>
@@ -284,42 +286,26 @@
 <!-- START Main Menu -->
 <div id="logo">
     <!-- Logo -->
-	<%= link_to(image_tag("launch_haypista_blanco.png", :size => "295x95", :alt => "HayPista"), login_path) %>
+	<%= link_to(image_tag("launch_haypista_blanco.png", :size => "225x60", :alt => "HayPista"), login_path) %>
+	<%#= link_to(image_tag("haypista_logo_green.png", :size => "225x60", :alt => "HayPista"), login_path) %>
 </div>
 
 <!-- Content -->
 <div id="content">
 
-	<h1 class="tagline"><%= I18n.t(:launch_h1) %></h1>
-    <h3 class="info"><%= I18n.t(:launch_h3) %></h3>
+<p class="share"><b><%= the_for_websites_label %></b> <%= label_name(:widget_passionate_haypista) %></p>
+
     <br>
 
 	<div class="social">
-		<%= "#{youtube_embed('youtu.be/APMrtUd4WW8', 450, 300)}".html_safe %>
+		<%#= "#{youtube_embed('youtu.be/eGjFETZdVDo', 450, 300)}".html_safe %>
 	</div>
 
-
-
-
     <div id="signUp">
-        <!-- <form accept-charset="UTF-8" action="/users" method="post"> -->
-            <!-- <input type="text" class="left" id="email" name="email" placeholder="Enter your email address" value=""> -->
-            <!-- <input type="submit" id="notify-me" class="button" value="Sign me up!"> -->
-	        <!-- <input type="text" class="left" id="email" name="email" placeholder="Pon tu cuenta de correo" value=""> -->
-	        <!-- <input type="submit" id="notify-me" class="button" value="Apuntame!">    -->
-        <!-- </form> -->
-
 		<%= render 'utilities/mailchimp' %>
     </div>
 
-
-    <!-- <p class="hidden"><%#= I18n.t(:launch_thanks).html_safe %></p> -->
-    <!-- <p class="share"><%#= I18n.t(:launch_signup).html_safe %></p> -->
-    <p class="share"><b><%= the_for_websites_label %></b> <%= label_name(:widget_passionate_haypista) %></p>
-
 </div>
-
-
 
 <!-- GoSquared Analytics -->
 <script type="text/javascript">
@@ -348,3 +334,6 @@
 </html>
 
 <!-- Localized -->
+
+
+
