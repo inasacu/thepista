@@ -222,6 +222,7 @@ IMAGE_VENUE = 'icons/venue.png'
 
 IGNORE_HOME = ['home_about', 'home_terms_of_use', 'home_faq', 'home_persona', 'home_feedback', 'home_how_it_work', 'home_launch', 'home_for_website']
 
+DISABLE_PROVIDER_EMAIL = ['google','facebook','linkedin','yahoo']
 
 COMMON_YEAR_DAYS_IN_MONTH = [nil, 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]
 MOBILE_BROWSERS = ["smartphone", "iphone",  "blackberry", "playbook", "windows phone", "android", "ipod", 
@@ -245,6 +246,6 @@ PRICE_RANGE_UNDER_500 = 50...499
 PRICE_RANGE_UNDER_5000 = 500...4999
 PRICE_RANGE_OVER_5000 = 5000
 
-LAUNCH_PAGE = true
+LAUNCH_PAGE = false
 
 DISPLAY_USER_STATISTICS = false

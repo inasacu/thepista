@@ -96,15 +96,15 @@ module FlashHelper
 			is_display_title = false
 			@new_item = @message if is_new_item
 
-		when 'user session', 'authentication', 'timetable'
+		when 'user session', 'authentication', 'timetable', 'activation'
 			the_tab_navigation = nil		
 		end	
 
 		the_tab_navigation = 'challenges' if get_controller_action == 'standing_show_list'
 		the_tab_navigation = 'cups' if get_controller_action == 'cast_list_gues'
 
-		password_reset_actions = ['password_reset_new', 'password_reset_edit', 'password_reset_update']
-		is_password_reset = password_reset_actions.include?(get_controller_action)
+		activation_actions = ['activation_new', 'activation_edit', 'activation_update']
+		is_activation = activation_actions.include?(get_controller_action)
 		is_new_user = @user ? true : false
 		the_label = label_name(:users_rpx_new) 
 		@item = @user
@@ -112,7 +112,7 @@ module FlashHelper
 		ignore_label_fill_in_fields = ['user_omniauth_new']
 		is_ignore_label_fill = ignore_label_fill_in_fields.include?(get_controller_action)
 
-		return is_new_user, is_password_reset, is_ignore_label_fill, @new_item, the_tab_navigation, the_label_title, is_display_title 
+		return is_new_user, is_activation, is_ignore_label_fill, @new_item, the_tab_navigation, the_label_title, is_display_title 
 	end
 	
 end 

@@ -31,6 +31,7 @@
 #  send_comment_at     :datetime
 #  slug                :string(255)
 #  send_created_at     :datetime
+#  block_token         :string(255)
 #
 
 class Schedule < ActiveRecord::Base

@@ -1,5 +1,5 @@
 <%	
-	is_new_user, is_password_reset, is_ignore_label_fill, @new_item, the_tab_navigation, the_label_title, is_display_title = get_flash_details
+	is_new_user, is_activation, is_ignore_label_fill, @new_item, the_tab_navigation, the_label_title, is_display_title = get_flash_details
 %>
 
 <div class="row">
@@ -10,15 +10,18 @@
 			
 			
 			<%= render 'shared/notice_zurb', :notice => flash %>
+			
 				
 			<% if current_user %>
 				
-			<% elsif is_new_user and !is_password_reset %>
+			<% elsif is_new_user and !is_activation %>
 
 				<%= render "shared/header_modo" %>
 				<%= render "shared/header_modo" unless is_ignore_label_fill %>					
 
 				<%= render 'shared/new_edit_multipart_zurb', :item => @item %>
+			
+			<% elsif is_activation %>
 			
 			<% else %>
 

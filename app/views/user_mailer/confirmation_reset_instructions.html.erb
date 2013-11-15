@@ -1,0 +1,13 @@
+<%= I18n.t(:hi_email_header) %>,
+<br>
+<br>
+
+<%= "#{I18n.t(:password_request_reset)} #{I18n.t(:password_request_ignore)} #{I18n.t(:password_request_made)} ".html_safe %>
+<br>
+<br>
+<br>
+<br>
+
+<%= "#{confirmation_url(@token)}".html_safe  %>
+<br>
+<br>

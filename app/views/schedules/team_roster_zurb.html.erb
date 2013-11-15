@@ -42,7 +42,7 @@
 				:schedule => @schedule, 
 				:the_previous => @the_previous, 
 				:the_next => @the_next, 
-				:display_previous_next => !@group.is_branch? %>
+				:display_previous_next => !@group.is_branch? unless @previous_schedule.nil? %>
 
 	</div>
 </div>

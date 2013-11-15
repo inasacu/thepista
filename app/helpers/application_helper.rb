@@ -681,9 +681,9 @@ module ApplicationHelper
 		return form.label :"#{field}", "#{label_name(form_label)}#{required ? '  *  ' : ''}"
 	end
 
-	def set_form_text_field(form, field, the_class, placeholder=false)
+	def set_form_text_field(form, field, the_class, placeholder=false, disable_field=false)
 		if placeholder
-			return form.text_field :"#{field}", :class => the_class, :placeholder => label_name(:"#{field}") 
+			return form.text_field :"#{field}", :class => the_class, :placeholder => label_name(:"#{field}"), :readonly => disable_field
 		else  
 			return form.text_field :"#{field}", :class => the_class
 		end

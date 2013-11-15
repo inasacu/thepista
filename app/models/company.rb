@@ -4,6 +4,12 @@
 #
 #  id                 :integer          not null, primary key
 #  name               :string(255)
+#  city_id            :integer          default(1)
+#  venue_id           :integer
+#  service_id         :integer          default(51)
+#  play_id            :integer          default(61)
+#  starts_at          :datetime
+#  ends_at            :datetime
 #  url                :string(255)
 #  language           :string(255)      default("es")
 #  public             :boolean          default(TRUE)
@@ -11,6 +17,7 @@
 #  photo_content_type :string(255)
 #  photo_file_size    :integer
 #  photo_updated_at   :datetime
+#  description        :text
 #  api                :string(255)
 #  secret             :string(255)
 #  slug               :string(255)

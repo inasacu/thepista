@@ -1,0 +1,33 @@
+<div class="row">
+
+	<div id="one columns">
+	</div>
+
+	<div class="ten columns">
+
+		<% if get_controller_action == 'activation_new' %>
+		
+			<% @user = User.new %>
+		
+			<%= set_content_tag_safe(:h5, "<strong>#{control_action_label}</strong>") %>		
+			<%= set_content_tag_safe(:p, label_name(:activation_reset_instructions)) %>
+			<hr />
+
+
+			<%= form_tag activations_path do %>
+
+			<%= label :email, label_name(:email) %>
+			<%= text_field_tag :email, nil, :class => 'oversize input-text' %>	    
+
+			<%= set_form_button(@user, 'signup', 'medium white nice button radius') %>
+
+			<% end -%>
+
+		<% end -%>
+
+	</div>
+
+	<div id="one columns">
+	</div>
+
+</div>

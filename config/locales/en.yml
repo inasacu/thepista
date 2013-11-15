@@ -1215,11 +1215,14 @@ en:
      password_issue:  "Sorry, we could not locate your account. If you have problems try copying and pasting the URL from your email account to the browser or restart the process of resetting the password."
      password_updated:    Your password has been reset.
      password_update_and_login: Update my password and login.
-     password_reset:  Reset password
-     password_reset_instructions:  "Give us your mail account and we will send you instructions on how to reset your password."	
-     password_resets_create: Reset password
-     password_resets_new:  Reset password  
-     password_recover_instructions: Instructions to recover your password! 
+     activation:  Reset Activation Code
+     activation_email_code:  "Please check your email for activation code..."
+     activation_reset_instructions:  "Give us your mail account and we will send you instructions on how to activate your access..."
+     activation_reset_activated:  "Thank you. Your account is now activated..."
+     activation_reset_not_activated:  "Sorry we don't have your email in our database..."
+     activations_create: Reset Activation Code
+     activations_new:  Reset Activation Code  
+     confirmation_recover_instructions: Instructions to recover your activation key! 
      password_forgotten:  Forgot your password?
      password_service:  "Don't use these services?"
      password_with:  with a password.

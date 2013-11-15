@@ -48,6 +48,7 @@
 #  slug                     :string(255)
 #  validation               :boolean          default(FALSE)
 #  whatsapp                 :boolean          default(FALSE)
+#  confirmation_token       :string(255)
 #
 
 class User < ActiveRecord::Base
@@ -136,6 +137,7 @@ class User < ActiveRecord::Base
     end         
 
 		after_create				:signup_notification
+		before_create       :set_confirmation_token
        
     # method section  
 		def apply_omniauth(omniauth)			
@@ -196,6 +198,11 @@ class User < ActiveRecord::Base
 			end
 		end		
 		
+		def confirmation
+     self.confirmation = true
+     self.confirmation_token = nil
+    end
+    
     def email_to_name
       self.name = self.email[/[^@]+/]
       self.name.split(".").map {|n| n.capitalize }.join(" ")
@@ -213,9 +220,9 @@ class User < ActiveRecord::Base
       return is_manager
     end
 
-		def self.find_rpx_user(identity, email)
-				find(:first, :conditions => ["identity_url = ? or email = ?", identity, email])
-    end
+    # def self.find_rpx_user(identity, email)
+    #     find(:first, :conditions => ["identity_url = ? or email = ?", identity, email])
+    #     end
 
     def self.contact_emails(email)
       User.find(:first, :conditions => ["email = ?", email])
@@ -499,21 +506,14 @@ class User < ActiveRecord::Base
       UserMailer.signup_notification(self).deliver
     end
     
-    def password_reset_instructions!  
-  		reset_perishable_token!  
-      UserMailer.password_reset_instructions(self).deliver
-  	end
+    def activation_reset_instructions!
+      set_confirmation_token
+      UserMailer.activation_reset_instructions(self).deliver
+    end
     
-
-		# def generate_slug
-		# 	self.slug = to_param rescue nil
-		# end
-
-		# def to_param
-		# 	name.to_s.parameterize
-		# 	the_encode = "#{self.name}#{self.id}"	
-		# 	block_encode =  Base64.urlsafe_encode64(the_encode)
-		# 	return block_encode
-		# end
+    def set_confirmation_token
+      the_encode = "#{rand(36**8).to_s(36)}#{self.email}#{rand(36**8).to_s(36)}"
+      self.confirmation_token  = Base64::encode64(the_encode)
+    end
 		
   end
