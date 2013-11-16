@@ -137,7 +137,7 @@ class User < ActiveRecord::Base
     end         
 
 		after_create				:signup_notification
-		before_create       :set_confirmation_token
+    # before_create       :set_confirmation_token
        
     # method section  
 		def apply_omniauth(omniauth)			
@@ -507,7 +507,6 @@ class User < ActiveRecord::Base
     end
     
     def activation_reset_instructions!
-      # set_confirmation_token
       UserMailer.activation_reset_instructions(self).deliver
     end
     

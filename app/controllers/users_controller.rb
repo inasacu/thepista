@@ -116,6 +116,8 @@ class UsersController < ApplicationController
       @is_disabled_field = DISABLE_PROVIDER_EMAIL.include?(@user.identity_url)
       if @is_disabled_field
         @user.confirmation
+      else
+        @user.set_confirmation_token
       end
       
       @user.email_to_name if @user.name.include?('@')
