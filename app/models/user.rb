@@ -507,7 +507,7 @@ class User < ActiveRecord::Base
     end
     
     def activation_reset_instructions!
-      self.set_confirmation_token
+      # set_confirmation_token
       UserMailer.activation_reset_instructions(self).deliver
     end
     

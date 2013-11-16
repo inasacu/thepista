@@ -5,6 +5,7 @@ class ActivationsController < ApplicationController
 		@user = User.find_by_email(params[:email])
 
 		if @user
+		  @user.set_confirmation_token
 			@user.activation_reset_instructions!
 			flash[:success] = I18n.t(:password_instructions)
 			redirect_to root_url
