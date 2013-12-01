@@ -556,4 +556,22 @@ class User < ActiveRecord::Base
 		# 	return block_encode
 		# end
 		
+		# MOBILE --------------------------
+		
+		def groups_events
+		  my_groups = self.groups
+		  events_hash = Hash.new
+		  my_groups.each do |group|
+		    inner_hash = Hash.new
+		    inner_hash[:info] = {:id => group.id, :name => group.name}
+		    inner_hash[:active_events] = group.active_events
+		    events_hash[group.id] = inner_hash
+		  end
+		  return events_hash
+		end
+		
+		def active_events
+		  self.matches.joins("join schedules on matches.schedule_id = schedules.id").where("schedules.starts_at >= ?", Time.zone.now)
+		end
+		
   end

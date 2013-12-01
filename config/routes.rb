@@ -33,6 +33,13 @@ Thepista::Application.routes.draw do
         #get "other_action/:id", :to => "security#other_action"
       end
     end
+    resources :user do
+      collection do
+        get "my_groups/:user_id", :to => "user#my_groups"
+        get "my_active_events/:user_id", :to => "user#my_active_events" 
+        get "my_groups_events/:user_id", :to => "user#my_groups_events"
+      end
+    end
   end
   
   

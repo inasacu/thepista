@@ -285,7 +285,7 @@ class Group < ActiveRecord::Base
     Scorecard.create_group_scorecard(self)
   end
   
-  
+  public
   # WIDGET ----------------------------
   
   def self.add_user_togroup(user, group)
@@ -304,6 +304,11 @@ class Group < ActiveRecord::Base
       
     end
     
+  end
+  
+  # MOBILE --------------------------
+  def active_events
+    self.schedules.where("starts_at >= ?", Time.zone.now)
   end
   
 end
