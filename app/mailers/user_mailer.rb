@@ -42,8 +42,7 @@ class UserMailer < ActionMailer::Base
 
   def signup_notification(user)
     @user 							= user
-    @subject    				= I18n.t(:account_activation)
-    # @confirmation_token              = user.confirmation_token
+    @subject    				= @user.confirmation_token.nil? ? I18n.t(:account_activation) : I18n.t(:account_created_short)
     email_with_name 		= "#{user.name} <#{user.email}>"
     I18n.locale = @user.language unless @user.language.blank?
     mail(:to => email_with_name, :subject => @subject)

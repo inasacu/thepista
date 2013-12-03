@@ -5,7 +5,8 @@ es:
      accept_player: "ACEPTA"   
      account: cuenta
      account_activation:  Tu cuenta en HayPista ya ha sido activada.
-     account_created:  Tu cuenta ha sido creada y activada.
+     account_created:  "Tu cuenta ha sido creada y requiere confirmación. Por favor, sigue el enlace para activar tu cuenta."
+     account_created_short:  "Tu cuenta ha sido creada y requiere confirmación."
      accounts: Cuentas   
      add_email: "Acepto, crea mi cuenta"     
      add_to_group: Unete al equipo  
@@ -1238,7 +1239,7 @@ es:
      password_request_reset:  "Este e-mail es la respuesta a su solicitud para restablecer su contraseña."
      password_request_ignore:  "Si no ha realizado esta solicitud, simplemente ignore este mensaje."
      password_request_made:  "En caso contrario haga clic en el siguiente enlace:"           
-     request_url_does_not_work:  "Si la Sucursal no funciona intenta copiarlo y pegarlo en tu navegador."
+     request_url_does_not_work:  "Si el enlace no funciona intenta copiarlo y pegarlo en tu navegador."
      request_url_issue:   "Si el probrebla persiste, contacta con nosotros."     
      passed_to:  Ha pasado a 
      payed:  Tasa pagada  

@@ -111,18 +111,21 @@ class UsersController < ApplicationController
       @user.password_confirmation = omniauth['provider']
     end
 
+    @is_disabled_field = DISABLE_PROVIDER_EMAIL.include?(@user.identity_url)
+    if @is_disabled_field
+      @user.confirmation
+    else
+      @user.set_confirmation_token
+    end
+    
+    @user.email_to_name if @user.name.include?('@')
+    @user.email_backup = @user.email
+    
     if @user.save
       
-      @is_disabled_field = DISABLE_PROVIDER_EMAIL.include?(@user.identity_url)
-      if @is_disabled_field
-        @user.confirmation
-      else
-        @user.set_confirmation_token
-      end
-      
-      @user.email_to_name if @user.name.include?('@')
-      @user.email_backup = @user.email      
-      @user.save
+      # @user.email_to_name if @user.name.include?('@')
+      # @user.email_backup = @user.email      
+      # @user.save
 
       Authentication.create_from_omniauth(session[:omniauth], @user) if session[:omniauth]
 

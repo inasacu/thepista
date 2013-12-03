@@ -5,7 +5,8 @@ en:
      accept_player: "ACCEPT"   
      account: account
      account_activation:  Your account in HayPista is now active.  
-     account_created:  Your account has been created and active.  
+     account_created:  "Your account has been created and requires activation.  Please follow the link to activation your account."
+     account_created_short:  "Your account has been created and requires activation."
      accounts: Accounts 
      add_email: "Accept, Create your account"  
      add_to_group: Petition to join 
