@@ -1225,7 +1225,7 @@ es:
      password_update_and_login: Actualizar mi Contraseña y Entra.
      activation:  Activar tu cuenta
      activation_email_code:  "Te hemos mandado un codigo para activar tu cuenta..."
-     activation_reset_instructions:  "Danos tu cuenta de correo y te mandamos las instrucciones para activar tu acceso..."
+     activation_reset:  "Danos tu cuenta de correo y te mandamos las instrucciones para activar tu acceso..."
      activation_reset_activated:  "Gracias. Tu cuenta ya esta activada..."
      activation_reset_not_activated:  "Lo sentimos pero no encontramos tu cuenta entre nuestros datos..."
      activations_create: Activar tu cuenta

@@ -1218,7 +1218,7 @@ en:
      password_update_and_login: Update my password and login.
      activation:  Reset Activation Code
      activation_email_code:  "Please check your email for activation code..."
-     activation_reset_instructions:  "Give us your mail account and we will send you instructions on how to activate your access..."
+     activation_reset:  "Give us your mail account and we will send you instructions on how to activate your access..."
      activation_reset_activated:  "Thank you. Your account is now activated..."
      activation_reset_not_activated:  "Sorry we don't have your email in our database..."
      activations_create: Reset Activation Code

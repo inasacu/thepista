@@ -47,6 +47,16 @@ class AuthenticationsController < ApplicationController
 		authentication = Authentication.find_from_omniauth(omniauth)
 		
 		if authentication
+		  
+      the_user = User.find(authentication.user)
+      if the_user.confirmation_token.nil?
+      else
+          the_user.activation_send
+          notice_activation_message
+          redirect_to root_url
+          return
+      end
+		  
 			# controller_welcome_provider(omniauth['provider'])
 			UserSession.create(authentication.user, true) 
 						
@@ -108,7 +118,7 @@ class AuthenticationsController < ApplicationController
 
 
 	def failure
-		flash[:notice] = I18n.t(:verification_failed)
+    # flash[:notice] = I18n.t(:verification_failed)
 		redirect_to root_url
 	end
 

@@ -48,11 +48,10 @@ class UserMailer < ActionMailer::Base
     mail(:to => email_with_name, :subject => @subject)
   end
 
-  def activation_reset_instructions(user)  
-    @user               = user
-    @subject            = I18n.t(:confirmation_recover_instructions)
-    @token              = user.confirmation_token  
-    email_with_name     = "#{user.name} <#{user.email}>"
+  def activation_reset(user)
+    @user 							= user
+    @subject    				= I18n.t(:account_created_short)
+    email_with_name 		= "#{user.name} <#{user.email}>"
     I18n.locale = @user.language unless @user.language.blank?
     mail(:to => email_with_name, :subject => @subject)
   end 

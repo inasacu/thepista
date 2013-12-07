@@ -6,7 +6,7 @@ class ActivationsController < ApplicationController
 
 		if @user
 		  @user.set_confirmation_token
-			@user.activation_reset_instructions!
+			@user.activation_reset!
 			flash[:success] = I18n.t(:password_instructions)
 			redirect_to root_url
 		else

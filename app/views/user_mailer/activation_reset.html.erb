@@ -1,0 +1,11 @@
+<%= I18n.t(:hi_email_header) %>,
+<br>
+<br>
+
+<%= I18n.t(:account_created) %>
+<br>
+<br>
+<%= "#{confirmation_token_url(@user.confirmation_token)}".html_safe %>
+
+
+<br>

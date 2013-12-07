@@ -506,8 +506,12 @@ class User < ActiveRecord::Base
       UserMailer.signup_notification(self).deliver
     end
     
-    def activation_reset_instructions!
-      UserMailer.activation_reset_instructions(self).deliver
+    def activation_reset!
+      UserMailer.activation_reset(self).deliver
+    end
+    
+    def activation_send
+      UserMailer.activation_reset(self).deliver
     end
     
     def set_confirmation_token
