@@ -50,9 +50,7 @@ class AuthenticationsController < ApplicationController
   def mobile_failure
     # gets origin param of the omniauth request
     omni_origin = params[:origin]
-    
-    logger.info "entro en mobile failure origin #{omni_origin}"
-    
+        
     if omni_origin == "mobile"
   		  cookies[:mobile_valid] = {:value => false}
   		  cookies.delete(:user_data)

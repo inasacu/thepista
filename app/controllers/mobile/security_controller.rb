@@ -19,9 +19,31 @@ class Mobile::SecurityController < ActionController::Base
     return
   end
   
-  def other_action
-    #redirect_to root_url
+  def check_active_token
+    #token = params[:token]
+    token = request.headers['HayPistaMobile-API-Key']
+    response = Mobile::MobileResponse.new
+    
+    if Mobile::MobileToken.check_token(token)
+    else
+      security_error_response
+    end
+  end
+  
+  def success_response(response_message=nil)
+    response = Mobile::MobileResponse.new
+    response.code = "00"
+    response.message = response_message
+    render json: response
     return
   end
-
+  
+  def security_error_response(response_message=nil)
+    response = Mobile::MobileResponse.new
+    response.code = "99"
+    response.message = response_message
+    render json: response
+    return
+  end
+  
 end

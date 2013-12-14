@@ -57,6 +57,10 @@ class Mobile::MobileToken
     return token
   end
   
+  def self.check_token(token)
+    self.where(token: token, active: 1).present?
+  end
+  
   # copied from user model
   def email_to_name
     self.name = self.email[/[^@]+/]
