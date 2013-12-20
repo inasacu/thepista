@@ -1,21 +1,6 @@
 "http://localhost:8888/thepista_client"
 
 
-       (See full trace by running task with --trace)
- !
- !     Precompiling assets failed.
- !
-
- !     Push rejected, failed to compile Ruby app
-
-To git@heroku.com:thepista.git
- ! [remote rejected] master -> master (pre-receive hook declined)
-error: failed to push some refs to 'git@heroku.com:thepista.git'
-Rauls-MacBook-Pro:thepista padilla$ heroku labs:enable user-env-compile -a thepista
-Enabling user-env-compile for thepista... done
-WARNING: This feature is experimental and may change or be removed without notice.
-For more information see: http://devcenter.heroku.com/articles/labs-user-env-compile
-Rauls-MacBook-Pro:thepista padilla$
 
 DUPLICATE ACCOUNTS IN SCORECARD
 
@@ -29,6 +14,18 @@ where user_id in (
 	having count(*) > 1
 )
 order by group_id, user_id, ranking
+
+select group_id, user_id from scorecards where archive = false and user_id is not null group by group_id, user_id having count(*) > 1;
+
+
+select id, group_id, user_id from scorecards where group_id = 20 and user_id = 3102 and id = 474 and archive = false;
+
+update scorecards set archive = true where group_id = 20 and user_id = 3102 and id = 474 ;
+
+select id, name, email from users where id = 3102;
+
+
+
 
 
 bullets
@@ -55,3 +52,9 @@ SELECT "installations".* FROM "installations" WHERE "installations"."id" = 2 LIM
 	jalopezo@bankinter.es
 	
 	
+	
+	delete from users where id > 3159;
+
+  delete from authentications where id > 93;
+  
+  

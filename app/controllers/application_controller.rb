@@ -79,21 +79,33 @@ class ApplicationController < ActionController::Base
 		flash[:success] = I18n.t(:successful_update)
 	end
 	
-	def show_are_you_a_human
-		if DISPLAY_ARE_YOU_A_HUMAN
-			# ayah = AYAH::Integration.new(ENV['PUBLISHER_KEY'], ENV['SCORING_KEY'])
-			# @publisher_html = ayah.get_publisher_html
-		end
+	def notice_activation_message
+		flash[:notice] = I18n.t(:activation_email_code)
+  end
+  
+  def reset_activation_message
+    flash[:notice] = I18n.t(:activation_reset_not_activated)
+  end
+  
+  def successful_activation_message
+		flash[:success] = I18n.t(:activation_reset_activated)
 	end
 	
-	def has_are_you_a_human_passed
-		if DISPLAY_ARE_YOU_A_HUMAN
-			# session_secret = params['session_secret'] 
-			# ayah = AYAH::Integration.new(ENV['PUBLISHER_KEY'], ENV['SCORING_KEY'])
-			# ayah_passed = ayah.score_result(session_secret, request.remote_ip)
-			# return ayah_passed 
-		end
-	end
+  # def show_are_you_a_human
+  #   if DISPLAY_ARE_YOU_A_HUMAN
+  #     # ayah = AYAH::Integration.new(ENV['PUBLISHER_KEY'], ENV['SCORING_KEY'])
+  #     # @publisher_html = ayah.get_publisher_html
+  #   end
+  # end
+	
+  # def has_are_you_a_human_passed
+  #   if DISPLAY_ARE_YOU_A_HUMAN
+  #     # session_secret = params['session_secret'] 
+  #     # ayah = AYAH::Integration.new(ENV['PUBLISHER_KEY'], ENV['SCORING_KEY'])
+  #     # ayah_passed = ayah.score_result(session_secret, request.remote_ip)
+  #     # return ayah_passed 
+  #   end
+  # end
 	
 	def controller_successful_provider(omniauth)
 		the_provider = "omniauth_provider_#{omniauth}"

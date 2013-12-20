@@ -5,7 +5,8 @@ es:
      accept_player: "ACEPTA"   
      account: cuenta
      account_activation:  Tu cuenta en HayPista ya ha sido activada.
-     account_created:  Tu cuenta ha sido creada y activada.
+     account_created:  "Tu cuenta ha sido creada y requiere confirmación. Por favor, sigue el enlace para activar tu cuenta."
+     account_created_short:  "Tu cuenta ha sido creada y requiere confirmación."
      accounts: Cuentas   
      add_email: "Acepto, crea mi cuenta"     
      add_to_group: Unete al equipo  
@@ -1222,11 +1223,14 @@ es:
      password_issue:  "Lo sentimos, pero no hemos podido localizar su cuenta.  Si tiene problemas intente copiar y pegar la URL desde tu cuenta de correo al navegador o reiniciar el proceso de restablecimiento la contraseña."
      password_updated:    Su contraseña ha sido actualizada.
      password_update_and_login: Actualizar mi Contraseña y Entra.
-     password_reset:  Restablecer contraseña
-     password_reset_instructions:  "Danos tu cuenta de correo y te mandamos las instrucciones para reestablecer tu contraseña."	
-     password_resets_create: Restablecer contraseña
-     password_resets_new:  Restablecer contraseña  
-     password_recover_instructions: Instrucciones para recupera tu clave!  
+     activation:  Activar tu cuenta
+     activation_email_code:  "Te hemos mandado un codigo para activar tu cuenta..."
+     activation_reset:  "Danos tu cuenta de correo y te mandamos las instrucciones para activar tu acceso..."
+     activation_reset_activated:  "Gracias. Tu cuenta ya esta activada..."
+     activation_reset_not_activated:  "Lo sentimos pero no encontramos tu cuenta entre nuestros datos..."
+     activations_create: Activar tu cuenta
+     activations_new:  Activar tu cuenta  
+     confirmation_recover_instructions: Instrucciones para reactivar tu cuenta!  
      password_forgotten:  ¿Has olvidado tu contraseña?
      password_service:  "¿No utilizas estos servicios?"
      password_with:  con tu contraseña.
@@ -1235,7 +1239,7 @@ es:
      password_request_reset:  "Este e-mail es la respuesta a su solicitud para restablecer su contraseña."
      password_request_ignore:  "Si no ha realizado esta solicitud, simplemente ignore este mensaje."
      password_request_made:  "En caso contrario haga clic en el siguiente enlace:"           
-     request_url_does_not_work:  "Si la Sucursal no funciona intenta copiarlo y pegarlo en tu navegador."
+     request_url_does_not_work:  "Si el enlace no funciona intenta copiarlo y pegarlo en tu navegador."
      request_url_issue:   "Si el probrebla persiste, contacta con nosotros."     
      passed_to:  Ha pasado a 
      payed:  Tasa pagada  

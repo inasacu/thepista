@@ -5,14 +5,21 @@
 	end
 	
 	ignore_fields = ['user_omniauth_new', 'rpx_new', 'user_signup', 'user_rpx_new']
+	
 	is_new_user = ignore_fields.include?(get_controller_action)
+	
+	unless current_user
+		is_disabled_field = DISABLE_PROVIDER_EMAIL.include?(session[:omniauth][:provider]) if session[:omniauth][:provider]
+	end
+	
+	is_disabled_field = true unless is_new_user
 %>
 
 <%= set_form_label(the_form, :name, '', true) %>
 <%= set_form_text_field(the_form, :name, 'large input-text', true) %><br />
 
 <%= set_form_label(the_form, :email, '', true) %>
-<%= set_form_text_field(the_form, :email, 'large input-text', true) %><br />
+<%= set_form_text_field(the_form, :email, 'large input-text', true, is_disabled_field) %><br />
 
 <%= set_form_label(the_form, :phone) %>
 <%= set_form_text_field(the_form, :phone, 'large input-text', true) %><br />
@@ -36,7 +43,7 @@
 	<%= set_form_checkbox(the_form, :last_minute_notification) %><br>
 <% end %>
 
-<%= set_form_label(the_form, :birth_at) %>
-<%= date_select :user, :birth_at, :start_year => (Time.zone.now.year.to_i - 70), :end_year => (Time.zone.now.year.to_i) %><br />
+<%#= set_form_label(the_form, :birth_at) %>
+<%#= date_select :user, :birth_at, :start_year => (Time.zone.now.year.to_i - 70), :end_year => (Time.zone.now.year.to_i) %><br />
 
 <% end %>

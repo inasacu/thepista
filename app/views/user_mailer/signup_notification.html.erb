@@ -2,10 +2,18 @@
 <br>
 <br>
 
-<%= I18n.t(:account_created) %>
-<br>
-<br>
+<% if @user.confirmation_token.nil? %>
 
-<%= I18n.t(:account_activation) %>
-<br>
+	<%= I18n.t(:account_activation) %>
+	<br>
+
+<% else %>
+
+	<%= I18n.t(:account_created) %>
+	<br>
+	<br>
+	<%= "#{confirmation_token_url(@user.confirmation_token)}".html_safe %>
+
+
+<% end %>
 <br>

@@ -5,14 +5,22 @@
 #  id                 :integer          not null, primary key
 #  name               :string(255)
 #  company_id         :integer
+#  city_id            :integer          default(1)
 #  venue_id           :integer
 #  service_id         :integer          default(51)
 #  play_id            :integer          default(61)
+#  starts_at          :datetime
+#  ends_at            :datetime
+#  timeframe          :float            default(1.0)
 #  url                :string(255)
+#  public             :boolean          default(TRUE)
 #  photo_file_name    :string(255)
 #  photo_content_type :string(255)
 #  photo_file_size    :integer
 #  photo_updated_at   :datetime
+#  description        :text
+#  api                :string(255)
+#  secret             :string(255)
 #  slug               :string(255)
 #  archive            :boolean          default(FALSE)
 #  created_at         :datetime         not null
