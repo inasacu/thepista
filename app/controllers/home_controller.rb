@@ -20,8 +20,8 @@ class HomeController < ApplicationController
 	private
 
 	def another_by_method
-		if current_user.nil? and !is_mobile_browser
-			'launch_layout'
+		if current_user.nil? and !is_mobile_browser and !cookies[:secureusertokens]
+      'launch_widget'
 		else
 			"application"
 		end

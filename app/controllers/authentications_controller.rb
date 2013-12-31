@@ -65,6 +65,9 @@ class AuthenticationsController < ApplicationController
 						
 			# widget
 			Schedule.takecareof_apuntate(authentication.user, isevent, ismock, event_id, source_timetable_id, event_starts_at)
+						
+      cookies[:secureusertokens] = { :value => Base64::encode64("#{the_user.email}#{the_user.id}#{Time.zone.now}"), :expires => 2.weeks.from_now }
+			# cookies.delete(:secureusertokens)
 			
 			redirect_to redirect_home
 			
@@ -108,8 +111,8 @@ class AuthenticationsController < ApplicationController
 				else
 				  
 					session[:omniauth] = omniauth.except('extra')
+          # cookies.delete(:secureusertokens)
 					redirect_to redirect_signup
-					
 					return
 					
 				end				

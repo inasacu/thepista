@@ -169,12 +169,15 @@ class UsersController < ApplicationController
     session[:omniauth] = nil if session[:omniauth]
 
     # successful_create
+    cookies[:secureusertokens] = { :value => Base64::encode64("#{@user.email}#{@user.id}#{Time.zone.now}"), :expires => 2.weeks.from_now }
+		# cookies.delete(:secureusertokens)
 
     if @is_disabled_field
       successful_activation_message
       redirect_to @user
       return
     else
+      cookies.delete(:secureusertokens)
       redirect_to :activate_session
       return
     end
