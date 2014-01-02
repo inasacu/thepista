@@ -232,7 +232,7 @@ MOBILE_BROWSERS = ["smartphone", "iphone",  "blackberry", "playbook", "windows p
 
 
 CONTACT_RECIPIENT = 'support@haypista.com'
-CONTACT_FEEDBACK = 'feedback@haypista.com'
+CONTACT_FEEDBACK = 'info@haypista.com'
 
 LANGUAGES = ['es', 'en']
 
