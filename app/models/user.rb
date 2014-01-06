@@ -567,14 +567,20 @@ class User < ActiveRecord::Base
 		  my_groups.each do |group|
 		    inner_hash = Hash.new
 		    inner_hash[:info] = {:id => group.id, :name => group.name}
-		    inner_hash[:active_events] = group.active_events
+		    
+		    active_schedules = group.active_schedules
+		    active_events = Mobile::Event.build_from_schedules(active_schedules)
+		    inner_hash[:active_events] = active_events
+		    
 		    events_hash[group.id] = inner_hash
 		  end
 		  return events_hash
 		end
 		
 		def active_events
-		  myEvents = Schedule.joins("join matches on matches.schedule_id = schedules.id").where("matches.user_id=? and schedules.starts_at >= ?", self.id, Time.zone.now)
+		  my_schedules = Schedule.joins("join matches on matches.schedule_id = schedules.id").where("matches.user_id=? and schedules.starts_at >= ?", self.id, Time.zone.now)
+		  my_events = Mobile::Event.build_from_schedules(my_schedules)
+		  return my_events
 		end
 		
   end

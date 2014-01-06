@@ -307,7 +307,7 @@ class Group < ActiveRecord::Base
   end
   
   # MOBILE --------------------------
-  def active_events
+  def active_schedules
     self.schedules.where("starts_at >= ?", Time.zone.now)
   end
   
