@@ -104,10 +104,13 @@ class AuthenticationsController < ApplicationController
       the_user = User.find(authentication.user)
       if the_user.confirmation_token.nil?
       else
+        the_user.set_confirmation_token
+        if the_user.save
           the_user.activation_send
           notice_activation_message
-          redirect_to root_url
-          return
+        end
+        redirect_to root_url
+        return
       end
 		  
 			# controller_welcome_provider(omniauth['provider'])
