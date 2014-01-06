@@ -96,6 +96,10 @@ module Thepista
 		 # Mongoid loggind options
 		 Mongoid.logger.level = Logger::DEBUG
      Moped.logger.level = Logger::DEBUG
+     
+     config.generators do |g|
+       g.orm :active_record
+     end
 		
   end
 
