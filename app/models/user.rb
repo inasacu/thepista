@@ -574,7 +574,7 @@ class User < ActiveRecord::Base
 		end
 		
 		def active_events
-		  self.matches.joins("join schedules on matches.schedule_id = schedules.id").where("schedules.starts_at >= ?", Time.zone.now)
+		  myEvents = Schedule.joins("join matches on matches.schedule_id = schedules.id").where("matches.user_id=? and schedules.starts_at >= ?", self.id, Time.zone.now)
 		end
 		
   end
