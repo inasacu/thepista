@@ -30,7 +30,7 @@ class AuthenticationsController < ApplicationController
   		else
   		  # if not present in authentications start sign up process
   		  signup_hash = Hash.new
-  		  signup_hash = {:should_signup => true, signup_hash, :email_provided => if omniauth['info']['email']}
+  		  signup_hash = {:should_signup => true, :email_provided => omniauth['info']['email']}
   		  
   		  # Get token object with from info provided from oauth provider  
   		  mock_mobile_token = Mobile::MobileToken.get_mock_token(omniauth)
