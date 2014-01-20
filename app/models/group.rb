@@ -111,6 +111,9 @@ class Group < ActiveRecord::Base
 
   # related to gem acl9
   acts_as_authorization_subject :association_name => :roles, :join_table_name => :groups_roles
+  
+  # MOBILE
+  has_and_belongs_to_many :users, :conditions => "groups_users.archive = false"
 
   # method section
 	def self.get_site_groups(the_params)
@@ -310,6 +313,27 @@ class Group < ActiveRecord::Base
   def active_schedules
     self.schedules.where("starts_at >= ?", Time.zone.now)
   end
+  
+  def self.starred
+    self.limit(5)
+  end
+  
+  def self.user_groups(user_id)
+    user = User.find(user_id)
+    groups = self.groups_info(user.groups)
+    return groups
+  end
+  
+  def self.groups_info(groups)
+    groups_array = Array.new
+	  groups.each do |group|
+	    group_hash = Hash.new
+      group_hash[:description] = group
+      group_hash[:size] = group.users.size
+      groups_array << group_hash
+    end
+    return groups_array
+  end 
   
 end
 

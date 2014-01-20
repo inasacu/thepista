@@ -145,6 +145,12 @@ class Venue < ActiveRecord::Base
   def format_description
     self.description.gsub!(/\r?\n/, "<br>") unless self.description.nil?
   end
+  
+  # MOBILE
+  
+  def self.starred
+    self.limit(5)
+  end
 
 private
   # def create_venue_blog_details

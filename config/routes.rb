@@ -35,9 +35,23 @@ Thepista::Application.routes.draw do
     end
     resources :user do
       collection do
-        get "my_groups/:user_id", :to => "user#my_groups"
-        get "my_active_events/:user_id", :to => "user#my_active_events" 
-        get "my_groups_events/:user_id", :to => "user#my_groups_events"
+      end
+    end
+    resources :event do
+      collection do
+        get "active_by_user/:user_id", :to => "event#active_events_by_user" 
+        get "active_by_user_groups/:user_id", :to => "event#active_events_by_user_groups"
+      end
+    end
+    resources :group do
+      collection do
+        get "by_user/:user_id", :to => "group#groups_by_user"
+        get "starred", :to => "group#starred_groups"
+      end
+    end
+    resources :venue do
+      collection do
+        get "starred", :to => "venue#starred_venues"
       end
     end
   end

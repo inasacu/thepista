@@ -952,5 +952,32 @@ class Schedule < ActiveRecord::Base
   
   end
   
+  # MOBILE
+  
+  def self.user_active_events(user_id)
+	  my_schedules = Schedule.joins("join matches on matches.schedule_id = schedules.id")
+	                .where("matches.user_id=? and matches.type_id in (?,?) and schedules.starts_at >= ?", 
+	                user_id, TYPE_CONVOCADO, TYPE_ULTIMAHORA, Time.zone.now)
+	                .order("schedules.starts_at ASC")
+	  my_events = Mobile::Event.build_from_schedules(my_schedules)
+	  return my_events
+	end
+	
+	def self.active_user_groups_events(user_id)
+	  user = User.find(user_id)
+	  my_groups = user.groups
+	  events_hash = Hash.new
+	  my_groups.each do |group|
+	    inner_hash = Hash.new
+	    inner_hash[:info] = {:id => group.id, :name => group.name}
+	    
+	    active_schedules = group.active_schedules
+	    active_events = Mobile::Event.build_from_schedules(active_schedules)
+	    inner_hash[:active_events] = active_events
+	    
+	    events_hash[group.id] = inner_hash
+	  end
+	  return events_hash
+	end
   
 end
