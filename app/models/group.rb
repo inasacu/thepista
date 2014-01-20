@@ -111,9 +111,6 @@ class Group < ActiveRecord::Base
 
   # related to gem acl9
   acts_as_authorization_subject :association_name => :roles, :join_table_name => :groups_roles
-  
-  # MOBILE
-  has_and_belongs_to_many :users, :conditions => "groups_users.archive = false"
 
   # method section
 	def self.get_site_groups(the_params)
@@ -315,7 +312,8 @@ class Group < ActiveRecord::Base
   end
   
   def self.starred
-    self.limit(5)
+    starred = self.groups_info(self.limit(5))
+    return starred
   end
   
   def self.user_groups(user_id)
