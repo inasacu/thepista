@@ -979,5 +979,15 @@ class Schedule < ActiveRecord::Base
 	  end
 	  return events_hash
 	end
+	
+	def self.get_by_id(event_id)
+	  begin
+	    schedule = self.find(event_id)
+	    event = Mobile::Event.new(schedule)
+	  rescue ActiveRecord::RecordNotFound
+	    event = nil
+	  end
+	  return event
+  end
   
 end
