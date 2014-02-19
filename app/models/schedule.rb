@@ -535,14 +535,26 @@ class Schedule < ActiveRecord::Base
                   :conditions => ["played = false and send_reminder_at is null and reminder = true and reminder_at >= ? and reminder_at <= ?", PAST_THREE_DAYS, Time.zone.now])
     
 		schedules.each do |schedule|
-			manager_id = RolesUsers.find_item_manager(schedule.group).user_id
-			schedule.group.users.each do |user|
-				if user.teammate_notification? 
-					create_notification_email(schedule, schedule, manager_id, user.id, true)
-				end
-			end
-			schedule.send_reminder_at = Time.zone.now
-			schedule.save!
+		
+			the_player_total = Match.find(:first, :select => "count(*) as total", 
+					:conditions => ["matches.schedule_id = ? and matches.type_id = 1", schedule.id])
+
+			if (the_player_total.total < schedule.player_limit) 
+	
+        manager_id = RolesUsers.find_item_manager(schedule.group).user_id
+        schedule.group.users.each do |user|
+        
+          if user.teammate_notification? 
+            create_notification_email(schedule, schedule, manager_id, user.id, true)
+          end
+          
+        end
+        
+        schedule.send_reminder_at = Time.zone.now
+        schedule.save!
+				
+			end 
+		
 		end
 
   end
