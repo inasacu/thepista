@@ -539,7 +539,7 @@ class Schedule < ActiveRecord::Base
 			the_player_total = Match.find(:first, :select => "count(*) as total", 
 					:conditions => ["matches.schedule_id = ? and matches.type_id = 1", schedule.id])
 
-			if (the_player_total.total < schedule.player_limit) 
+			if (the_player_total.total.to_i < schedule.player_limit) 
 	
         manager_id = RolesUsers.find_item_manager(schedule.group).user_id
         schedule.group.users.each do |user|
