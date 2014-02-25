@@ -25,7 +25,7 @@ class AuthenticationsController < ApplicationController
   		  #handle regular authentication - user was already registered
   		  mobile_token = Mobile::MobileToken.get_token(authentication.user.id, authentication.user.email, authentication.user.name)
   		  
-  		  cookies[:mobile_valid] = {:value => true}
+  		  cookies[:mobile_valid] = {:value => MOBILE_LOGIN_REGISTERED}
   		  cookies[:user_data] = {:value => mobile_token.to_json}
   		else
   		  # if not present in authentications start sign up process
@@ -36,7 +36,7 @@ class AuthenticationsController < ApplicationController
   		  mock_mobile_token = Mobile::MobileToken.get_mock_token(omniauth)
   		  
   		  # wrap the cookies info needed for sign up request from mobile app
-  		  cookies[:mobile_valid] = {:value => true}  
+  		  cookies[:mobile_valid] = {:value => MOBILE_LOGIN_SHOULD_SIGNUP}  
   		  cookies[:user_data] = {:value => mock_mobile_token.to_json}
   		  cookies[:signup_data] = {:value => signup_hash.to_json}
   		end
@@ -52,7 +52,7 @@ class AuthenticationsController < ApplicationController
     omni_origin = params[:origin]
         
     if omni_origin == "mobile"
-  		  cookies[:mobile_valid] = {:value => false}
+  		  cookies[:mobile_valid] = {:value => MOBILE_LOGIN_FAILURE}
   		  cookies.delete(:user_data)
   		  render nothing: true
         return

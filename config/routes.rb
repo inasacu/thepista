@@ -35,6 +35,7 @@ Thepista::Application.routes.draw do
     end
     resources :user do
       collection do
+      	post "register", :to => "user#user_registration"
       end
     end
     resources :event do
@@ -42,6 +43,7 @@ Thepista::Application.routes.draw do
         get "active_by_user/:user_id", :to => "event#active_events_by_user" 
         get "active_by_user_groups/:user_id", :to => "event#active_events_by_user_groups"
         get "by_id/:event_id", :to => "event#event_by_id"
+        get "user_data/:event_id/:user_id", :to => "event#get_user_event_data"
         post "change_user_state", :to => "event#change_user_event_state"
       end
     end
@@ -54,6 +56,11 @@ Thepista::Application.routes.draw do
     resources :venue do
       collection do
         get "starred", :to => "venue#starred_venues"
+      end
+    end
+    resources :util do
+      collection do
+        get "cities", :to => "util#get_cities"
       end
     end
   end

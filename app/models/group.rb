@@ -312,13 +312,25 @@ class Group < ActiveRecord::Base
   end
   
   def self.starred
-    starred = self.groups_info(self.limit(5))
+    begin
+      starred = self.groups_info(self.limit(5))
+    rescue Exception => exc
+      logger.error("Exception while getting starred groups #{exc.message}")
+      logger.error("#{exc.backtrace}")
+      starred = nil
+    end
     return starred
   end
   
   def self.user_groups(user_id)
-    user = User.find(user_id)
-    groups = self.groups_info(user.groups)
+    begin
+      user = User.find(user_id)
+      groups = self.groups_info(user.groups)
+    rescue Exception => exc
+      logger.error("Exception while getting user groups #{exc.message}")
+      logger.error("#{exc.backtrace}")
+      groups = nil
+    end
     return groups
   end
   

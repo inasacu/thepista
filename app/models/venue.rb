@@ -149,7 +149,12 @@ class Venue < ActiveRecord::Base
   # MOBILE
   
   def self.starred
-    self.limit(5)
+    begin
+      starred = self.limit(5)
+    rescue ActiveRecord::RecordNotFound
+      starred = nil
+    end
+    return starred
   end
 
 private

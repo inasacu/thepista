@@ -20,7 +20,6 @@ class Mobile::SecurityController < ActionController::Base
   end
   
   def check_active_token
-    #token = params[:token]
     token = request.headers['HayPistaMobile-API-Key']
     response = Mobile::MobileResponse.new
     

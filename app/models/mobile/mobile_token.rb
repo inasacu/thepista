@@ -47,14 +47,14 @@ class Mobile::MobileToken
     mobile_token.email = omniauth['info']['email'] if omniauth['info']['email']
     
 	  mobile_token.name = omniauth['info']['name'] if omniauth['info']['name']
-	  mobile_token.name = token.email if token.name.nil?
-    mobile_token.email_to_name if token.name.include?('@')
+	  mobile_token.name = mobile_token.email if mobile_token.name.nil?
+    mobile_token.email_to_name if mobile_token.name.include?('@')
     
     mobile_token.legacy_id = 0
     mobile_token.generated_time = DateTime.now
     mobile_token.active = 0
     
-    return token
+    return mobile_token
   end
   
   def self.check_token(token)

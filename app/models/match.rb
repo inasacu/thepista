@@ -443,7 +443,7 @@ class Match < ActiveRecord::Base
     find(:first, :conditions => ["schedule_id = ? and group_score is not null and invite_score is not null", schedule])
   end
   
-  def self.change_user_match_state(user_id, schedule_id, newstate)
+  def self.change_user_match_state(schedule_id, user_id, newstate)
     <<-DOC
       1;"convocado"
       2;"ultima_hora"
@@ -525,10 +525,25 @@ class Match < ActiveRecord::Base
           
       end
 	  rescue Exception => exc
+	    logger.error("Exception while changing user event state #{exc.message}")
+	    logger.error("#{exc.backtrace}")
 	    user_event_data = nil
-	    logger.error("Exception while changing user event state #{exc.backtrace}")
+	    return user_event_data
 	  end
     
+  end
+  
+  def self.get_user_match_data(schedule_id, user_id)
+    begin
+      match = Match.where("schedule_id=? and user_id=?", schedule_id, user_id).first
+      # wraps the match into EventUserData
+      user_event_data = Mobile::UserEventData.new(match)
+      return user_event_data
+    rescue Exception => exc
+      logger.error("Exception while getting match data #{exc.message}")
+      logger.error("#{exc.backtrace}")
+      return nil
+    end
   end
   
 end

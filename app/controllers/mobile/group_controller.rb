@@ -4,13 +4,21 @@ class Mobile::GroupController < Mobile::SecurityController
   
   def starred_groups
     starred = Group.starred
-    success_response(starred)
+    if !starred.nil?
+      success_response(starred)
+    else
+      error_response("Not possible to get the starred groups")
+    end
   end
   
   def groups_by_user
     user_id = params[:user_id]
     groups = Group.user_groups(user_id)
-    success_response(groups)
+    if !groups.nil?
+      success_response(groups)
+    else
+      error_response("Not possible to get the groups of the user")
+    end
   end
 
 end
