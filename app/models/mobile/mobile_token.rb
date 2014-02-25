@@ -43,7 +43,7 @@ class Mobile::MobileToken
   end
   
   def self.get_mock_token(omniauth)
-    mobile_token = self.new
+    mobile_token = Mobile::MobileToken.new
     mobile_token.email = omniauth['info']['email'] if omniauth['info']['email']
     
 	  mobile_token.name = omniauth['info']['name'] if omniauth['info']['name']
@@ -53,7 +53,7 @@ class Mobile::MobileToken
     mobile_token.legacy_id = 0
     mobile_token.generated_time = DateTime.now
     mobile_token.active = 0
-    
+
     return mobile_token
   end
   

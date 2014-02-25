@@ -4,7 +4,6 @@ class Mobile::UserController < Mobile::SecurityController
     # temporarily
     #new_user = User.user_registration(params)
     new_user = User.new
-    logger.info "TEST #{params.inspect}"
     if !new_user.nil?
       success_response(new_user)
     else
