@@ -11,4 +11,13 @@ class Mobile::UtilController < Mobile::SecurityController
     end
   end
 
+  def get_sports
+  	sports = Sport.get_all
+  	if !sports.nil?
+      success_response(sports)
+    else
+      error_response("Not possible to get the sports")
+    end
+  end
+
 end

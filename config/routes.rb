@@ -51,6 +51,7 @@ Thepista::Application.routes.draw do
       collection do
         get "by_user/:user_id", :to => "group#groups_by_user"
         get "starred", :to => "group#starred_groups"
+        post "create_new", :to => "group#create_group"
       end
     end
     resources :venue do
@@ -61,6 +62,7 @@ Thepista::Application.routes.draw do
     resources :util do
       collection do
         get "cities", :to => "util#get_cities"
+        get "sports", :to => "util#get_sports"
       end
     end
   end

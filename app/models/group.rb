@@ -344,6 +344,44 @@ class Group < ActiveRecord::Base
     end
     return groups_array
   end 
+
+  # MOBILE
+  def self.create_new(group_map=nil)
+    if group_map
+      new_group = Group.new
+      begin
+        Group.transaction do
+          # gets the user who is creating the group
+          user_id = group_map["group_creator"]
+          creator = User.find(user_id)
+
+          # sets group properties
+          new_group.name = group_map["group_name"]
+          new_group.sport_id = group_map["group_sport"]
+          new_group.name_to_second_team
+          new_group.default_conditions
+          new_group.sport_to_points_player_limit
+          new_group.time_zone = creator.time_zone if !creator.time_zone.nil?
+
+          # creates the group
+          new_group.save!
+
+          # creates roles for creator
+          new_group.create_group_roles(creator)
+
+        end # end transaction
+      rescue Exception => e
+        logger.error("Exception while creating group #{e.message}")
+        logger.error("#{e.backtrace}")
+        new_group = nil
+      end
+
+      return new_group
+    else
+      logger.debug "Null map for the group info"
+      return nil
+    end
+  end
   
 end
 

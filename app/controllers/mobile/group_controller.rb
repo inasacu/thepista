@@ -21,4 +21,14 @@ class Mobile::GroupController < Mobile::SecurityController
     end
   end
 
+  def create_group
+    # temporarily
+    new_group = Group.create_new(params)
+    if !new_group.nil?
+      success_response(new_group)
+    else
+      error_response("Not possible to create the group")
+    end
+  end
+
 end
