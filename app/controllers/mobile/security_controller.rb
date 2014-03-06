@@ -21,8 +21,7 @@ class Mobile::SecurityController < ActionController::Base
   
   def check_active_token
     token = request.headers['HayPistaMobile-API-Key']
-    response = Mobile::MobileResponse.new
-    
+        
     if Mobile::MobileToken.check_token(token)
     else
       security_error_response("Security error checking auth token")

@@ -337,10 +337,8 @@ class Group < ActiveRecord::Base
   def self.groups_info(groups)
     groups_array = Array.new
 	  groups.each do |group|
-	    group_hash = Hash.new
-      group_hash[:description] = group
-      group_hash[:size] = group.users.size
-      groups_array << group_hash
+      group_m = Mobile::GroupM.new(group)
+      groups_array << group_m
     end
     return groups_array
   end 
@@ -350,6 +348,7 @@ class Group < ActiveRecord::Base
     if group_map
       new_group = Group.new
       begin
+        new_group_mobile = nil
         Group.transaction do
           # gets the user who is creating the group
           user_id = group_map["group_creator"]
@@ -369,16 +368,56 @@ class Group < ActiveRecord::Base
           # creates roles for creator
           new_group.create_group_roles(creator)
 
+          new_group_mobile = Mobile::GroupM.new(new_group)
+
         end # end transaction
       rescue Exception => e
         logger.error("Exception while creating group #{e.message}")
         logger.error("#{e.backtrace}")
-        new_group = nil
+        new_group_mobile = nil
       end
 
-      return new_group
+      return new_group_mobile
     else
       logger.debug "Null map for the group info"
+      return nil
+    end
+  end
+
+  def self.add_member(group_id=nil, user_id=nil)
+    if group_id and user_id
+      add_response = nil
+      begin
+        Group.transaction do
+          # get user
+          new_member = User.find(user_id)
+
+          # get group
+          the_group = Group.find(group_id)
+
+          # add member role to user
+          new_member.has_role!(:member,  the_group)
+
+          # relate group with user 
+          GroupsUsers.join_team(new_member, the_group)
+
+          # update scorecards
+          Scorecard.create_user_scorecard(new_member, the_group)
+
+          # prepare response
+          the_group = Group.find(group_id)
+          add_response = Mobile::GroupM.new(the_group)
+
+        end # end transaction
+      rescue Exception => e
+        logger.error("Exception while adding member to group #{e.message}")
+        logger.error("#{e.backtrace}")
+        add_response = nil
+      end
+
+      return add_response
+    else
+      logger.debug "Null group id and user id"
       return nil
     end
   end

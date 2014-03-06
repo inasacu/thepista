@@ -52,6 +52,7 @@ Thepista::Application.routes.draw do
         get "by_user/:user_id", :to => "group#groups_by_user"
         get "starred", :to => "group#starred_groups"
         post "create_new", :to => "group#create_group"
+        post "add_member", :to => "group#add_member"
       end
     end
     resources :venue do

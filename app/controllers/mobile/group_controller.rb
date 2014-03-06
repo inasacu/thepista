@@ -31,4 +31,13 @@ class Mobile::GroupController < Mobile::SecurityController
     end
   end
 
+  def add_member
+    add_response = Group.add_member(params[:group_id], params[:user_id])
+    if !add_response.nil?
+      success_response(add_response)
+    else
+      error_response("Not possible to add member to group")
+    end
+  end
+
 end

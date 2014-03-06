@@ -26,39 +26,60 @@ class Mobile::MobileToken
   end
   
   def self.get_token(id, email, name)
-    # Deactivate previous tokens for this user
-    self.where(legacy_id: id).update_all(active: 0)
-    
-    # Get new token
-    new_token = self.create!(
-      legacy_id: id,
-      token: generate_token_string,
-      name: name,
-      email: email,
-      generated_time: DateTime.now,
-      active: 1
-    )
+    new_token = nil
+    begin
+      # Deactivate previous tokens for this user
+      self.where(legacy_id: id).update_all(active: 0)
+      
+      # Get new token
+      new_token = self.create!(
+        legacy_id: id,
+        token: generate_token_string,
+        name: name,
+        email: email,
+        generated_time: DateTime.now,
+        active: 1
+      )
+    rescue Exception => e
+      logger.error("Exception while getting token #{e.message}")
+      logger.error("#{e.backtrace}")
+      new_token = nil
+    end
     
     return new_token
   end
   
   def self.get_mock_token(omniauth)
-    mobile_token = Mobile::MobileToken.new
-    mobile_token.email = omniauth['info']['email'] if omniauth['info']['email']
-    
-	  mobile_token.name = omniauth['info']['name'] if omniauth['info']['name']
-	  mobile_token.name = mobile_token.email if mobile_token.name.nil?
-    mobile_token.email_to_name if mobile_token.name.include?('@')
-    
-    mobile_token.legacy_id = 0
-    mobile_token.generated_time = DateTime.now
-    mobile_token.active = 0
+    mobile_token = nil
+    begin
+      mobile_token = Mobile::MobileToken.new
+      mobile_token.email = omniauth['info']['email'] if omniauth['info']['email']
+      
+      mobile_token.name = omniauth['info']['name'] if omniauth['info']['name']
+      mobile_token.name = mobile_token.email if mobile_token.name.nil?
+      mobile_token.email_to_name if mobile_token.name.include?('@')
+      
+      mobile_token.legacy_id = 0
+      mobile_token.generated_time = DateTime.now
+      mobile_token.active = 0
+    rescue Exception => e
+      logger.error("Exception while getting mock token #{e.message}")
+      logger.error("#{e.backtrace}")
+      mobile_token = nil
+    end
 
     return mobile_token
   end
   
   def self.check_token(token)
-    self.where(token: token, active: 1).present?
+    begin
+      is_present = self.where(token: token, active: 1).present?
+      return is_present
+    rescue Exception => e
+      logger.error("Exception while checking mobile token #{e.message}")
+      logger.error("#{e.backtrace}")
+      return false
+    end
   end
   
   # copied from user model
