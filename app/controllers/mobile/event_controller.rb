@@ -51,4 +51,39 @@ class Mobile::EventController < Mobile::SecurityController
     end
   end
 
+  def get_info_related_to_user
+    event_id = params[:event_id]
+    user_id = params[:user_id]
+    user_event_data = Schedule.get_info_related_to_user(event_id, user_id)
+    if !user_event_data.nil?
+      success_response(user_event_data)
+    else
+      error_response("Not possible to get the event data")
+    end
+  end
+
+  def create_event
+    #temporarily
+    new_event = Schedule.create_new(params)
+    if !new_event.nil?
+      success_response(new_event)
+    else
+      error_response("Not possible to create event")
+    end
+  end
+
+  def event_search
+    start_date = params[:start_date]
+    end_date = params[:end_date]
+    start_time = params[:start_time]
+    venue = params[:venue]
+    city = params[:city]
+    event_list = Schedule.do_search(start_date, end_date, start_time, venue, city)
+    if !event_list.nil?
+      success_response(event_list)
+    else
+      error_response("Not possible to search events")
+    end
+  end
+
 end

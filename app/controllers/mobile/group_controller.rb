@@ -24,6 +24,7 @@ class Mobile::GroupController < Mobile::SecurityController
   def create_group
     # temporarily
     new_group = Group.create_new(params)
+    #new_group = Mobile::GroupM.new
     if !new_group.nil?
       success_response(new_group)
     else
@@ -37,6 +38,15 @@ class Mobile::GroupController < Mobile::SecurityController
       success_response(add_response)
     else
       error_response("Not possible to add member to group")
+    end
+  end
+
+  def get_info_related_to_user
+    group_user_info = Group.get_info_related_to_user(params[:group_id], params[:user_id])
+    if !group_user_info.nil?
+      success_response(group_user_info)
+    else
+      error_response("Not possible to get group info")
     end
   end
 

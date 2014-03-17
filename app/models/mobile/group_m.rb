@@ -2,7 +2,7 @@ class Mobile::GroupM
   
   attr_accessor :legacy_id, :name, :second_team, :sport_id, :sport_desc, :conditions, :number_of_members
   
-  def initialize(group)
+  def initialize(group=nil)
     if !group.nil?
       @legacy_id = group.id
       @name = group.name

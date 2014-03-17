@@ -44,12 +44,15 @@ Thepista::Application.routes.draw do
         get "active_by_user_groups/:user_id", :to => "event#active_events_by_user_groups"
         get "by_id/:event_id", :to => "event#event_by_id"
         get "user_data/:event_id/:user_id", :to => "event#get_user_event_data"
+        get "get_info/:event_id/:user_id", :to => "event#get_info_related_to_user"
         post "change_user_state", :to => "event#change_user_event_state"
+        post "create_new", :to => "event#create_event"
       end
     end
     resources :group do
       collection do
         get "by_user/:user_id", :to => "group#groups_by_user"
+        get "get_info/:group_id/:user_id", :to => "group#get_info_related_to_user"
         get "starred", :to => "group#starred_groups"
         post "create_new", :to => "group#create_group"
         post "add_member", :to => "group#add_member"

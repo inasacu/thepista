@@ -421,6 +421,39 @@ class Group < ActiveRecord::Base
       return nil
     end
   end
+
+  def self.get_info_related_to_user(group_id=nil, user_id=nil)
+    if group_id and user_id
+      group_info = nil
+      begin
+        Group.transaction do
+          the_group = Group.find(group_id)
+          the_user = User.find(user_id)
+
+          user_data = Hash.new
+          user_data[:user_id] = user_id
+          user_data[:is_member] = the_user.has_role?(:member,  the_group)
+          user_data[:is_creator] = the_user.has_role?(:creator,  the_group)
+          user_data[:is_manager] = the_user.has_role?(:manager,  the_group)
+
+          group_info = Hash.new
+          group_info[:group] = Mobile::GroupM.new(the_group)
+          group_info[:user_data] = user_data
+          
+
+        end # end transaction
+      rescue Exception => e
+        logger.error("Exception while getting group info #{e.message}")
+        logger.error("#{e.backtrace}")
+        group_info = nil
+      end
+
+      return group_info
+    else
+      logger.debug "Null group id and user id"
+      return nil
+    end
+  end
   
 end
 

@@ -1004,5 +1004,119 @@ class Schedule < ActiveRecord::Base
 	  end
 	  return event
   end
+
+  def self.create_new(event_map=nil)
+    if event_map
+      new_event = Schedule.new
+      begin
+        new_event_mobile = nil
+        Schedule.transaction do
+
+          the_group = Group.find(event_map[:event_group])
+          the_user = User.find(event_map[:user_id])
+
+          # gets start_date from milliseconds     
+          start_date = Time.at( event_map[:event_date].to_i / 1000 )
+          start_time = Time.at( event_map[:event_time].to_i / 1000 )
+          start_datetime = Time.new(start_date.year,start_date.month,start_date.mday,start_time.hour,start_time.min,start_time.sec) 
+
+          end_datetime = start_datetime + 1.hour
+          
+          new_event.name = event_map[:event_name]
+          new_event.jornada = 1
+          #new_event.starts_at_date = start_datetime
+          new_event.starts_at = start_datetime
+          #new_event.ends_at_date = end_datetime
+          new_event.ends_at = end_datetime
+          new_event.reminder_at = new_event.starts_at - 2.days  
+          new_event.available = (new_event.starts_at > Time.zone.now + MINUTES_TO_RESERVATION )
+          new_event.item_id = the_group.id
+          new_event.item_type = the_group.class.to_s
+          new_event.group_name = the_group.name
+          new_event.group_id = the_group.id
+          new_event.sport_id = the_group.sport_id
+          new_event.marker_id = the_group.marker_id
+          new_event.time_zone = the_group.time_zone
+          new_event.player_limit = the_group.player_limit
+          new_event.fee_per_game = 1
+          new_event.fee_per_pista = 1
+          new_event.fee_per_pista = the_group.player_limit * new_event.fee_per_game if the_group.player_limit > 0
+          new_event.season = Time.zone.now.year
+
+          # save event with exception if not
+          new_event.save!
+
+          # add the roles to creator user
+          new_event.create_schedule_roles(the_user)
+
+          # the user is added to the event - add record into matches
+          Match.create_item_schedule_match(new_event, the_user)
+
+          # build from just created schedule-event
+          new_event_mobile = Mobile::Event.new(new_event)
+
+        end # end transaction
+      rescue Exception => e
+        logger.error("Exception while creating event #{e.message}")
+        logger.error("#{e.backtrace}")
+        new_event_mobile = nil
+      end
+
+      return new_event_mobile
+    else
+      logger.debug "Null map for the event info"
+      return nil
+    end
+  end
+
+  def self.get_info_related_to_user(event_id=nil, user_id=nil)
+    if event_id and user_id
+      event_info = nil
+      begin
+        Schedule.transaction do
+          the_schedule = self.find(event_id)
+          the_event = self.get_by_id(event_id)
+          the_user = User.find(user_id)
+          user_status = Match.get_user_match_data(event_id, user_id)
+
+          user_data = Hash.new
+          user_data[:user_id] = the_user.id
+          user_data[:is_member] = the_user.has_role?(:member,  the_schedule)
+          user_data[:is_manager] = the_user.has_role?(:manager,  the_schedule)
+          user_data[:is_creator] = the_user.has_role?(:creator,  the_schedule)
+          user_data[:event_status] = user_status
+
+          event_info = Hash.new
+          event_info[:event] = the_event
+          event_info[:user_data] = user_data
+
+        end # end transaction
+      rescue Exception => e
+        logger.error("Exception while getting event info #{e.message}")
+        logger.error("#{e.backtrace}")
+        event_info = nil
+      end
+
+      return event_info
+    else
+      logger.debug "Null event id and user id"
+      return nil
+    end
+  end
+
+  def self.do_search(start_date=nil, end_date=nil, start_time=nil, venue=nil, city=nil)
+    event_list = nil
+    begin
+      event_list = Array.new()
+      
+    rescue Exception => e
+      logger.error("Exception while searchinv for events #{e.message}")
+      logger.error("#{e.backtrace}")
+      event_list = nil
+    end
+
+    return event_list
+    
+  end
   
 end
