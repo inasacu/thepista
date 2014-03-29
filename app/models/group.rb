@@ -145,6 +145,10 @@ class Group < ActiveRecord::Base
     self.all_the_managers.each {|user| counter += 1}
     return counter
   end
+  
+  def city
+    self.marker.city
+  end
 
   def avatar
     self.photo.url

@@ -845,7 +845,7 @@ en:
          other:     "every %{count} hours"
      has_not_been_sent: does not havet been sent correctly.   
      has_updated_scorecard: Has updated the SCORECARD with   
-     whatsapp: Do you use WhatsApp with this phone number?
+     whatsapp: Do you use WhatsApp?
      have_an_account: If you have an account  
      have_changed_language: Language has been changed
      haypista_howto:  Things you can do.

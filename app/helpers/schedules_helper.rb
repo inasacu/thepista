@@ -67,7 +67,7 @@ module SchedulesHelper
   end
 
   def view_schedule_group(schedule)
-    the_span = content_tag('span', schedule.sport.name, :class => 'date')
+    the_span = content_tag('span', "#{schedule.group.city}, #{schedule.sport.name}", :class => 'date')
     return set_content_tag_safe(:td, "#{item_name_link(schedule.group)}<br />#{the_span}", 'name_and_date')
   end
 

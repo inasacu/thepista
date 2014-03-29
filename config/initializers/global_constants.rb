@@ -196,6 +196,8 @@ POINTS_FOR_DRAW = 3
 POINTS_FOR_GOAL_DIFFERENCE = 2
 POINTS_FOR_GOAL_TOTAL = 1
 
+SCHEDULE_DISPLAY_LIMIT = 3
+
 # image default values
 IMAGE_CONVOCADO = 'icons/status_convocado.png'
 IMAGE_ULTIMA_HORA = 'icons/status_ultima_hora.png' 

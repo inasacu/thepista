@@ -63,6 +63,7 @@ class User < ActiveRecord::Base
   acts_as_authentic do |c|
     c.login_field :slug
     c.validate_email_field = false
+    c.crypto_provider = Authlogic::CryptoProviders::Sha512
 
     # c.ignore_blank_passwords = true #ignoring passwords
     # c.validate_password_field = false #ignoring validations for password fields

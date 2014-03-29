@@ -385,58 +385,6 @@ class UsersController < ApplicationController
 
   end
 
-  # def rpx_new
-  #   if data = RPXNow.user_data(session[:rpx_token])
-  # 
-  #     session[:identifier] = data[:identifier]
-  #     session[:name] = data[:name] || data[:displayName] || data[:nickName]
-  #     session[:email] = data[:verifiedEmail] || data[:email]
-  #     session[:login] = data[:verifiedEmail] || data[:email]
-  # 
-  #     @user = User.new
-  #     @user.name = session[:name]
-  #     @user.email = session[:email]
-  #     @user.identity_url = session[:identifier]
-  # 
-  #     the_user = User.find_rpx_user(data[:identifier], @user.email)
-  #     if the_user
-  #       @email = existing_user.nil? ?   email : existing_user.email
-  #       @user_session = UserSession.new(:email => @email)
-  #       if @user_session.save
-  #         redirect_to root_url
-  #         return
-  #       else
-  #         redirect_to root_url
-  #         return
-  #       end
-  #     end
-  # 
-  #   end
-  # end
-
-  # def rpx_create
-  #   @user = User.new(params[:user])
-  # 
-  #   @user.identity_url = session[:identifier]
-  #   @user.login = session[:login]
-  #   @user.active = true
-  #   @user.password = session[:identifier]
-  #   @user.password_confirmation = session[:identifier]
-  # 
-  #   if @user.save
-  #     UserMailer.send_email(@user).deliver
-  # 
-  #     # Won't be needing these anymore.
-  #     session[:rpx_identifier] = nil
-  #     session[:rpx_token] = nil
-  #   else
-  #     render :rpx_new 
-  #     return
-  #   end 
-  # 
-  #   redirect_to root_url
-  # end
-
   private
   
   def get_default_user
