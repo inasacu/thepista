@@ -3,7 +3,7 @@ class Mobile::UtilController < Mobile::SecurityController
   before_filter :check_active_token
   
   def get_cities
-    cities = City.get_all
+    cities = Mobile::UtilM.get_all_cities
     if !cities.nil?
       success_response(cities)
     else
@@ -12,7 +12,7 @@ class Mobile::UtilController < Mobile::SecurityController
   end
 
   def get_sports
-  	sports = Sport.get_all
+  	sports = Mobile::UtilM.get_all_sports
   	if !sports.nil?
       success_response(sports)
     else

@@ -63,6 +63,9 @@ class Marker < ActiveRecord::Base
   :through => :groups,
   :order => "name"
 
+  has_many :schedules,
+  :conditions => "schedules.archive = false"
+
   def self.all_markers
     find(:all, :select => "distinct markers.*", :joins => "left join groups on groups.marker_id = markers.id", 
     :conditions => "markers.archive = false", :limit => DISPLAY_MAP_POINTS)

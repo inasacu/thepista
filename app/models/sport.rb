@@ -35,13 +35,4 @@ class Sport < ActiveRecord::Base
 		self.select('name').order('name')
 	end
 
-	# MOBILE
-    def self.get_all
-      #Rails.cache.clear
-      sport_hash = Rails.cache.fetch("sports") do
-        self.select([:id, :name]).map { |c| {:id => c.id, :name => c.name} }
-      end
-      return sport_hash
-    end
-
 end

@@ -25,13 +25,4 @@ class City < ActiveRecord::Base
            :order => "cities.name").collect {|p| [ "#{p.city_name} #{'('+p.state_name.capitalize+')' if p.city_name != p.state_name}", p.id ] }
     end
 
-    # MOBILE
-    def self.get_all
-      #Rails.cache.clear
-      city_hash = Rails.cache.fetch("cities") do
-        self.select([:id, :name]).map { |c| {:id => c.id, :name => c.name} }
-      end
-      return city_hash
-    end
-
 end

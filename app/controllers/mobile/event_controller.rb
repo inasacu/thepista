@@ -4,7 +4,7 @@ class Mobile::EventController < Mobile::SecurityController
   
   def active_events_by_user
     user_id = params[:user_id]
-    events = Schedule.user_active_events(user_id)
+    events = Mobile::EventM.user_active_events(user_id)
     if !events.nil?
       success_response(events)
     else
@@ -14,7 +14,7 @@ class Mobile::EventController < Mobile::SecurityController
   
   def active_events_by_user_groups
     user_id = params[:user_id]
-    events = Schedule.active_user_groups_events(user_id)
+    events = Mobile::EventM.active_user_groups_events(user_id)
     if !events.nil?
       success_response(events)
     else
@@ -24,7 +24,7 @@ class Mobile::EventController < Mobile::SecurityController
   
   def event_by_id
     event_id = params[:event_id]
-    event = Schedule.get_by_id(event_id)
+    event = Mobile::EventM.get_by_id(event_id)
     success_response(event)
   end
   
@@ -54,7 +54,7 @@ class Mobile::EventController < Mobile::SecurityController
   def get_info_related_to_user
     event_id = params[:event_id]
     user_id = params[:user_id]
-    user_event_data = Schedule.get_info_related_to_user(event_id, user_id)
+    user_event_data = Mobile::EventM.get_info_related_to_user(event_id, user_id)
     if !user_event_data.nil?
       success_response(user_event_data)
     else
@@ -64,7 +64,7 @@ class Mobile::EventController < Mobile::SecurityController
 
   def create_event
     #temporarily
-    new_event = Schedule.create_new(params)
+    new_event = Mobile::EventM.create_new(params)
     if !new_event.nil?
       success_response(new_event)
     else
@@ -78,12 +78,29 @@ class Mobile::EventController < Mobile::SecurityController
     start_time = params[:start_time]
     venue = params[:venue]
     city = params[:city]
-    event_list = Schedule.do_search(start_date, end_date, start_time, venue, city)
+    event_list = Mobile::EventM.do_search(start_date, end_date, start_time, venue, city)
     if !event_list.nil?
       success_response(event_list)
     else
       error_response("Not possible to search events")
     end
+  end
+
+  def historical_of_events
+    offset_factor = params[:offset_factor]
+    user_id = params[:user_id]
+    event_list = Mobile::EventM.last_user_events(user_id, offset_factor)
+    if !event_list.nil?
+      success_response(event_list)
+    else
+      error_response("Not possible to get historical of events")
+    end
+  end
+
+  def change_user_event_team
+    event_id =  params[:event_id]
+    user_id = params[:user_id]
+
   end
 
 end

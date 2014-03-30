@@ -23,6 +23,8 @@ Thepista::Application.routes.draw do
   
   match "/widget/event/:event_id/invitation", :to => 'widget#event_invitation', :as => :widget_event_invitation
   
+
+
   # ------------------------>
   
   # Mobile apps
@@ -36,12 +38,15 @@ Thepista::Application.routes.draw do
     resources :user do
       collection do
       	post "register", :to => "user#user_registration"
+      	post "logout/:user_id", :to => "user#user_logout"
+      	get "account_info/:user_id", :to => "user#user_account_info"
       end
     end
     resources :event do
       collection do
         get "active_by_user/:user_id", :to => "event#active_events_by_user" 
         get "active_by_user_groups/:user_id", :to => "event#active_events_by_user_groups"
+        get "user_history/:user_id/:offset_factor", :to => "event#historical_of_events" 
         get "by_id/:event_id", :to => "event#event_by_id"
         get "user_data/:event_id/:user_id", :to => "event#get_user_event_data"
         get "get_info/:event_id/:user_id", :to => "event#get_info_related_to_user"
@@ -54,6 +59,8 @@ Thepista::Application.routes.draw do
         get "by_user/:user_id", :to => "group#groups_by_user"
         get "get_info/:group_id/:user_id", :to => "group#get_info_related_to_user"
         get "starred", :to => "group#starred_groups"
+        get "events/:group_id", :to => "group#group_events"
+        get "members/:group_id", :to => "group#group_members"
         post "create_new", :to => "group#create_group"
         post "add_member", :to => "group#add_member"
       end
@@ -61,6 +68,8 @@ Thepista::Application.routes.draw do
     resources :venue do
       collection do
         get "starred", :to => "venue#starred_venues"
+        get "events/:venue_id", :to => "venue#venue_events"
+        get "get_info/:venue_id", :to => "venue#get_info"
       end
     end
     resources :util do

@@ -81,6 +81,20 @@ class Mobile::MobileToken
       return false
     end
   end
+
+  def self.deactivate_token(user_id)
+    success = false
+    begin
+      # Deactivate previous tokens for this user
+      self.where(legacy_id: user_id).update_all(active: 0)
+      success = true
+    rescue Exception => e
+      logger.error("Exception while deactivating mobile token #{e.message}")
+      logger.error("#{e.backtrace}")
+      success = false
+    end
+    return success
+  end
   
   # copied from user model
   def email_to_name
