@@ -171,6 +171,9 @@ ActiveRecord::Schema.define(:version => 20140327201447) do
     t.boolean  "club",                :default => true
     t.string   "slug"
     t.integer  "venue_id",            :default => 1
+    t.boolean  "public",              :default => true
+    t.integer  "player_limit",        :default => 999
+    t.integer  "city_id",             :default => 1
   end
 
   add_index "cups", ["slug"], :name => "index_cups_on_slug", :unique => true

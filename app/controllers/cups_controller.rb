@@ -5,9 +5,7 @@ class CupsController < ApplicationController
 	before_filter :get_current_cup, :only => [:index, :list]
 	before_filter :has_manager_access, :only => [:edit, :update, :destroy]
 
-	def index
-	#   render @the_template
-	
+	def index	  
 	end
 
 	def squad_list
@@ -27,6 +25,8 @@ class CupsController < ApplicationController
 		@cup.starts_at = (@cup.deadline_at + 1.day) + 19.hours
 		@cup.ends_at = (@cup.deadline_at + 60.day) + 21.hours
 		@sports = Sport.all()  
+		@cup.venue_id = 999
+		@cup.sport_id = 1
 	end
 
 	def create

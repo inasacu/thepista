@@ -1,26 +1,22 @@
 <div class="row">
+
 	<div class="twelve columns">
+
+		<%= set_title_class(the_label, 'cup') %>
 
 		<table>
 
-		<% upcoming_cups.each do |cup| 
-			
-			the_challenge = ""
-
-			the_challenge = (cup.starts_at < Time.zone.now) ? link_to(label_name(:challenges_shows), challenges_url) : link_to(the_sport, challenges_url) if cup.official
-			
-			%>	
-		<tr>
-
-			<%= set_content_tag_safe(:td, item_image_name_link_small(cup), 'name_and_date') %>
-			<%= set_content_tag_safe(:td, "#{item_name_link(cup)} <br /> #{cup.sport.name}", 'name_and_date') %>
-			<%= set_content_tag_safe(:td, "#{nice_day_of_week(cup.starts_at)} <br /> #{has_left(cup.starts_at) if Time.zone.now < cup.starts_at}", 'name_and_date') %>
-			<%= set_content_tag_safe(:td, the_challenge, 'name_and_date') %>
-			<%= set_content_tag_safe(:td, "&nbsp;", 'name_and_date') %>
-
-		</tr>
-		<% end -%>
+			<% upcoming_cups.each do |cup| -%>		
+			<tr>
+				<%= view_cup_name(cup) %>
+				<%= view_cup_user(cup) %>
+				<%= view_cup_starts_at(cup) %>
+				<%= view_cup_rating(cup) %>
+			</tr>
+			<% end -%>
 
 		</table>
+
 	</div>
+
 </div>

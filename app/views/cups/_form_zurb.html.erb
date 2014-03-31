@@ -51,11 +51,14 @@
 <%= set_form_label(the_form, :sport) %>
 <%= the_form.select(:sport_id, Sport.sport_name, {:selected => @cup.sport_id, :include_blank => true}) %><br/><br/>
 
+<%= set_form_label(the_form, :city) %>
+<%= the_form.select(:city_id, City.city_name, {:selected => @cup.city_id, :include_blank => false}) %><br/><br/>
+
 <%= set_form_label(the_form, :description) %>
 <%= set_form_text_area(the_form, :description, true) %><br/>
 
-<%= set_form_label(the_form, :conditions) %>
-<%= set_form_text_area(the_form, :conditions, true) %><br/>
+<%#= set_form_label(the_form, :conditions) %>
+<%#= set_form_text_area(the_form, :conditions, true) %>
 
 
 

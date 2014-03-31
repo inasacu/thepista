@@ -54,7 +54,7 @@ module WrappersHelper
 
 		when 'cup'
 			new_item_sidebar = Cup.new	
-			the_sidebar = nil if is_controller_action('cup_index')
+			the_sidebar = 'cups' if is_controller_action('cup_index')
 
 		when 'company'
 			ignore_option = ['company_show']

@@ -21,22 +21,22 @@
 	@current_manage_groups = current_user.get_current_manage_groups
 	
 	
-	@has_escuadra_for_signup = false
-	unless cup.official
-		@current_manage_groups.each do |group| 
-			@first_escuadra = Escuadra.find(:first, :conditions => ["official = ? and item_id = ? and item_type='Group'", cup.official, group])
-			if @first_escuadra.nil?
-				@the_escuadras << group 
-				@has_escuadra_for_signup = true
-			end
-		end
-		@user = User.find(current_user)
-		@first_escuadra = Escuadra.find(:first, :conditions => ["official = ? and item_id = ? and item_type='User'", cup.official, @user])
-		if @first_escuadra.nil?	
-			@the_escuadras << @user 
-			@has_escuadra_for_signup = true
-		end
-	end	
+	# @has_escuadra_for_signup = false
+	# unless cup.official
+	# 	@current_manage_groups.each do |group| 
+	# 		@first_escuadra = Escuadra.find(:first, :conditions => ["official = ? and item_id = ? and item_type='Group'", cup.official, group])
+	# 		if @first_escuadra.nil?
+	# 			@the_escuadras << group 
+	# 			@has_escuadra_for_signup = true
+	# 		end
+	# 	end
+	# 	@user = User.find(current_user)
+	# 	@first_escuadra = Escuadra.find(:first, :conditions => ["official = ? and item_id = ? and item_type='User'", cup.official, @user])
+	# 	if @first_escuadra.nil?	
+	# 		@the_escuadras << @user 
+	# 		@has_escuadra_for_signup = true
+	# 	end
+	# end	
 	
 	is_cup_manager = cup ? is_current_manager_of(cup) : false
 	is_cup_member = cup ? is_current_member_of(cup) : false

@@ -56,13 +56,13 @@ class Cup < ActiveRecord::Base
   
   validates_presence_of     :name
   validates_presence_of     :description
-  validates_presence_of     :conditions
+  # validates_presence_of     :conditions
   validates_presence_of     :sport_id
 	validates_presence_of			:venue_id
   
   validates_length_of       :name,            :within => NAME_RANGE_LENGTH
   validates_length_of       :description,     :within => DESCRIPTION_RANGE_LENGTH
-  validates_length_of       :conditions,      :within => DESCRIPTION_RANGE_LENGTH
+  # validates_length_of       :conditions,      :within => DESCRIPTION_RANGE_LENGTH
       
   validates_format_of       :name,            :with => /^[A-z 0-9 _.-]*$/ 
     
@@ -75,7 +75,7 @@ class Cup < ActiveRecord::Base
   attr_accessible :time_zone, :sport_id, :description, :conditions, :photo
   attr_accessible :starts_at, :ends_at, :deadline_at, :archive
   attr_accessible :group_stage_advance, :group_stage, :group_stage_single, :second_stage_single, :final_stage_single, :slug
-	attr_accessible	:starts_at_date, :starts_at_time, :ends_at_date, :ends_at_time, :venue_id
+	attr_accessible	:starts_at_date, :starts_at_time, :ends_at_date, :ends_at_time, :venue_id, :city_id
 
   has_and_belongs_to_many :escuadras,     :join_table => "cups_escuadras",   :order => "name"
   has_many                :games
@@ -94,6 +94,7 @@ class Cup < ActiveRecord::Base
   :conditions => ["roles.name = 'manager' and roles.authorizable_type = 'Cup'"]
 
   belongs_to    :sport   
+  belongs_to    :city
 
   before_create :format_description, :format_conditions
   before_update :format_description, :format_conditions
@@ -139,7 +140,7 @@ class Cup < ActiveRecord::Base
   def avatar
     self.photo.url
   end
-
+  
   def thumbnail
     self.photo.url(:thumb)
   end

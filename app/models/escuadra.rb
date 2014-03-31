@@ -65,6 +65,40 @@ class Escuadra < ActiveRecord::Base
     self.photo.url
   end 
   
+  
+  def self.get_the_current_escuadras(cup)
+    find(:all, :conditions => ["archive = false and escuadras.id in 
+        (select escuadra_id from cups_escuadras where cups_escuadras.archive = false and cups_escuadras.cup_id = ?)", cup])
+	end
+	
+	def self.get_user_escuadras(escuadras, user, cup)
+    if find(:all, :conditions => ["escuadras.archive = false and escuadras.item_type = 'User' and 
+                                escuadras.item_id = ? and escuadras.id in 
+        (select escuadra_id from cups_escuadras where cups_escuadras.archive = false and cups_escuadras.cup_id = ?)", user, cup]).nil?
+          escuadras << user
+    end
+    return escuadras
+	end
+
+	def self.get_the_group_escuadras(group, cup)
+    find(:all, :conditions => ["escuadras.archive = false and escuadras.item_type = 'Group' and 
+                                escuadras.item_id = ? and escuadras.id in 
+        (select escuadra_id from cups_escuadras where cups_escuadras.archive = false and cups_escuadras.cup_id = ?)", group, cup])
+	end
+
+  def self.get_groups_escuadras(escuadras, groups, cup)
+    current_cup_escuadras = find(:all, :conditions => ["escuadras.archive = false and escuadras.item_type = 'Group' and 
+      escuadras.item_id in (?) and escuadras.id in 
+      (select escuadra_id from cups_escuadras where cups_escuadras.archive = false and cups_escuadras.cup_id = ?)", groups, cup])
+
+      groups.each do |group| 
+        is_item_available = false
+        current_cup_escuadras.each {|escuadra| is_item_available = (escuadra.item_type == 'Group' and escuadra.item == group) ? true : is_item_available }
+        escuadras << group unless is_item_available
+      end
+        return escuadras
+  end
+				
   def join_escuadra(cup)
     CupsEscuadras.join_escuadra(self, cup)
     Standing.delay.create_cup_escuadra_standing(cup)  
