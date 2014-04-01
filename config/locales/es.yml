@@ -1284,6 +1284,7 @@ es:
      physical_level_description: "(Del 1 al 5, pon el nivel físico que crees que tienes comparado con los de tu equipo...)" 
      player_limit:  Limite de jugadores
      player_limit_description:  Limite de jugadores 
+     player_limit_group:  Limite de equipos
      player_with: "Jugadores con"
      player_with_less_games: asistencias a eventos menos que el resto.
      points: Ptos.

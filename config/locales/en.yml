@@ -1277,6 +1277,7 @@ en:
      physical_level_description: "(From 1 to 5, put the physical level that you think you have compared to your team...)"  
      player_limit:  Player Limit
      player_limit_description:  Player limit
+     player_limit_group:  Team limit
      player_with: "Players with"
      player_with_less_games: has less assistance to events then the rest.
      points: Pts.
