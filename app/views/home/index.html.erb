@@ -7,7 +7,7 @@
 	has_team = current_user.groups.count > 0
 	
 	is_game_visible = DISPLAY_FREMIUM_SERVICES and !@upcoming_games.empty?
-	is_cup_visible = DISPLAY_FREMIUM_SERVICES and @has_cups
+	is_cup_visible = @all_values.count > 0 and DISPLAY_FREMIUM_SERVICES 
 	
 %>
 

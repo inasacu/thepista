@@ -172,7 +172,7 @@ ActiveRecord::Schema.define(:version => 20140327201447) do
     t.string   "slug"
     t.integer  "venue_id",            :default => 1
     t.boolean  "public",              :default => true
-    t.integer  "player_limit",        :default => 999
+    t.integer  "player_limit",        :default => 50
     t.integer  "city_id",             :default => 1
   end
 

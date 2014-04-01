@@ -72,14 +72,23 @@ class Escuadra < ActiveRecord::Base
 	end
 	
 	def self.get_user_escuadras(escuadras, user, cup)
-    if find(:all, :conditions => ["escuadras.archive = false and escuadras.item_type = 'User' and 
+    current_cup_escuadras = find(:all, :conditions => ["escuadras.archive = false and escuadras.item_type = 'User' and 
                                 escuadras.item_id = ? and escuadras.id in 
-        (select escuadra_id from cups_escuadras where cups_escuadras.archive = false and cups_escuadras.cup_id = ?)", user, cup]).nil?
+        (select escuadra_id from cups_escuadras where cups_escuadras.archive = false and cups_escuadras.cup_id = ?)", user, cup])
+    
+    if current_cup_escuadras.nil? or current_cup_escuadras.empty?
           escuadras << user
     end
     return escuadras
 	end
+	
 
+	def self.get_the_user_escuadras(user, cup)
+    find(:all, :conditions => ["escuadras.archive = false and escuadras.item_type = 'User' and 
+                                escuadras.item_id = ? and escuadras.id in 
+        (select escuadra_id from cups_escuadras where cups_escuadras.archive = false and cups_escuadras.cup_id = ?)", user, cup])
+	end
+	
 	def self.get_the_group_escuadras(group, cup)
     find(:all, :conditions => ["escuadras.archive = false and escuadras.item_type = 'Group' and 
                                 escuadras.item_id = ? and escuadras.id in 
