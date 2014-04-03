@@ -26,7 +26,8 @@ class Mobile::GroupM
       end
 
       if group.schedules
-        @number_of_events = group.schedules.count
+        @number_of_events = group.schedules.where("starts_at >= ?", Time.zone.now).count
+        #@number_of_events = group.schedules.count
       end
 
       @conditions = group.conditions
@@ -52,6 +53,7 @@ class Mobile::GroupM
     begin
       the_group = Group.find(group_id)
       schedules = the_group.schedules.where("starts_at >= ?", Time.zone.now)
+      #schedules = the_group.schedules
       events = Mobile::EventM.build_from_schedules(schedules)
     rescue Exception => exc
       Rails.logger.error("Exception while getting events from group #{exc.message}")

@@ -31,6 +31,15 @@ class Mobile::VenueM
 	    end
 	end
 
+	def self.build_from_markers(markers)
+	    venue_array = Array.new
+	    markers.each do |marker|
+	      venue = Mobile::VenueM.new(marker)
+	      venue_array << venue
+	    end
+	    return venue_array
+	  end 
+
 	def self.get_info(marker_id)
 		begin
 		  marker = Marker.find(marker_id)
@@ -45,11 +54,14 @@ class Mobile::VenueM
     
 	def self.starred
 		begin
-		  starred = Venue.limit(5)
-		rescue ActiveRecord::RecordNotFound
-		  starred = nil
+		  starred = Marker.limit(5)
+		  venues = Mobile::VenueM.build_from_markers(starred)
+		rescue Exception => exc
+		  Rails.logger.error("Exception while getting info starred venues #{exc.message}")
+		  Rails.logger.error("#{exc.backtrace}")
+		  venues = nil
 		end
-		return starred
+		return venues
 	end
 
 	def self.active_events(marker_id)

@@ -49,9 +49,14 @@ Thepista::Application.routes.draw do
         get "user_history/:user_id/:offset_factor", :to => "event#historical_of_events" 
         get "by_id/:event_id", :to => "event#event_by_id"
         get "user_data/:event_id/:user_id", :to => "event#get_user_event_data"
-        get "get_info/:event_id/:user_id", :to => "event#get_info_related_to_user"
+        get "get_info/:event_id/:user_id", :to => "event#get_event_info_related_to_user"
+        get "get_teams/:event_id", :to => "event#get_event_teams"
+        get "get_results/:event_id", :to => "event#get_event_results"
         post "change_user_state", :to => "event#change_user_event_state"
         post "create_new", :to => "event#create_event"
+        post "edit", :to => "event#edit_event"
+        post "update_event_results", :to => "event#update_event_results"
+        post "change_user_event_team", :to => "event#change_user_event_team"
       end
     end
     resources :group do
