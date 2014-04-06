@@ -1,7 +1,10 @@
 <%
 	the_class = escuadra.class.to_s 
-%>
+	is_first_in_group ||= true if the_class == 'Group'
+%>	
 
+<%= "<hr>".html_safe if is_first_in_group %>
+	
 <label>
 	<input type="checkbox" id="roster" name="<%=the_class.downcase%>_ids[]" value="<%= escuadra.id %>">
 	
@@ -11,7 +14,8 @@
 %>		
 	<%= item_image_link_smaller(escuadra) %>&nbsp;&nbsp;<%= escuadra_link(escuadra) %>
 
-<%	when "Group" %>		
+<%	when "Group" %>
+	
 	<%= item_image_link_smaller(escuadra) %>&nbsp;&nbsp;<%= group_link(escuadra) %>
 
 <%	when "User" %>		

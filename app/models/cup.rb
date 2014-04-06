@@ -36,20 +36,16 @@ class Cup < ActiveRecord::Base
 
 	extend FriendlyId 
 	friendly_id :name, 			use: :slugged
-                  
-  has_attached_file :photo,
-  :styles => {
-    :thumb  => "80x80#",
-    :medium => "160x160>",
-    },
-    :storage => :s3,
-    :s3_credentials => "#{Rails.root}/config/s3.yml",
-    :url => "/assets/cups/:id/:style.:extension",
-    :path => ":assets/cups/:id/:style.:extension",
-    :default_url => IMAGE_GROUP_AVATAR  
 
-    validates_attachment_content_type :photo, :content_type => ['image/jpeg', 'image/png', 'image/gif', 'image/jpg', 'image/pjpeg']
-    validates_attachment_size         :photo, :less_than => 5.megabytes
+  has_attached_file :photo, :styles => {:icon => "25x25>", :thumb  => "80x80>", :medium => "160x160>",  },
+  :storage => :s3,
+  :s3_credentials => "#{Rails.root}/config/s3.yml",
+  :url => "/assets/cups/:id/:style.:extension",
+  :path => ":assets/cups/:id/:style.:extension",
+  :default_url => IMAGE_GROUP_AVATAR  
+
+  validates_attachment_content_type :photo, :content_type => ['image/jpeg', 'image/png', 'image/gif', 'image/jpg', 'image/pjpeg']
+  validates_attachment_size         :photo, :less_than => 5.megabytes
 
   # validations 
   validates_uniqueness_of   :name,    :case_sensitive => false
@@ -73,7 +69,7 @@ class Cup < ActiveRecord::Base
   # variables to access
   attr_accessible :name, :points_for_win, :points_for_draw, :points_for_lose, :official, :club
   attr_accessible :time_zone, :sport_id, :description, :conditions, :photo
-  attr_accessible :starts_at, :ends_at, :deadline_at, :archive
+  attr_accessible :starts_at, :ends_at, :deadline_at, :archive, :player_limit
   attr_accessible :group_stage_advance, :group_stage, :group_stage_single, :second_stage_single, :final_stage_single, :slug
 	attr_accessible	:starts_at_date, :starts_at_time, :ends_at_date, :ends_at_time, :venue_id, :city_id
 
@@ -140,17 +136,17 @@ class Cup < ActiveRecord::Base
   def avatar
     self.photo.url
   end
-  
+
+  def mediam
+    self.photo.url(:medium)
+  end
+
   def thumbnail
     self.photo.url(:thumb)
   end
 
-  def icon      
+  def icon
     self.photo.url(:icon)
-  end 
-  
-  def medium
-    self.photo.url(:medium)
   end
   
   def has_game?

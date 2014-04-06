@@ -430,8 +430,9 @@ class User < ActiveRecord::Base
         "where users.id = groups_users.user_id " +
         "and groups_users.group_id in (?) " +
         "and groups_users.user_id != ? " +
-        "and users.archive = false " +
-        "order by name", user.groups, user.id])
+        "and users.archive = false 
+        and users.id not in (?)" +
+        "order by name", user.groups, user.id, DEFAULT_GROUP_USERS])
     end
 
     def self.find_group_mates(group)

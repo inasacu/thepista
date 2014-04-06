@@ -71,14 +71,27 @@ class Escuadra < ActiveRecord::Base
         (select escuadra_id from cups_escuadras where cups_escuadras.archive = false and cups_escuadras.cup_id = ?)", cup])
 	end
 	
-	def self.get_user_escuadras(escuadras, user, cup)
+	def self.get_users_escuadras(escuadras, users, cup)
     current_cup_escuadras = find(:all, :conditions => ["escuadras.archive = false and escuadras.item_type = 'User' and 
-                                escuadras.item_id = ? and escuadras.id in 
-        (select escuadra_id from cups_escuadras where cups_escuadras.archive = false and cups_escuadras.cup_id = ?)", user, cup])
+                                escuadras.item_id in (?) and escuadras.id in 
+        (select escuadra_id from cups_escuadras where cups_escuadras.archive = false and cups_escuadras.cup_id = ?)", users, cup])
     
-    if current_cup_escuadras.nil? or current_cup_escuadras.empty?
-          escuadras << user
-    end
+        if current_cup_escuadras.nil? or current_cup_escuadras.empty?
+          users.each do |user|
+            escuadras << user 
+          end
+        else
+          
+          the_escuadra_users = []
+          current_cup_escuadras.each do |current_cup_escuadra|
+            the_escuadra_users << current_cup_escuadra.item
+          end
+          
+          users.each do |user|
+            escuadras << user unless the_escuadra_users.include?(user)
+          end
+        end
+
     return escuadras
 	end
 	

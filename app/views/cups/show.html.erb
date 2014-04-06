@@ -12,31 +12,28 @@
 		<tr>
 			<td>
 
-<div class="two columns">
-	<%= image_tag @cup.photo %>
-</div>
+				<div class="two columns">
+					<%= image_tag @cup.photo %>
+				</div>
 
-<div class="ten columns">
+				<div class="ten columns">
 
-				<%= render_show_detail_zurb(:name, @cup.name) %>
-				<%= render_show_detail_zurb(:official, label_name(@cup.official, 'value')) if is_maximo %>
-				<%= render_show_detail_zurb(:venues, item_name_link(@cup.venue)) %>
-				<%= render_show_detail_zurb(:sports, @cup.sport.name) %>
-				<%= render_show_detail_zurb(:city, @cup.city.name) %>
-				<%= render_show_detail_zurb(:starts_at, nice_day_of_week(@cup.starts_at)) %>
-				<%= render_show_detail_zurb(:ends_at, nice_day_of_week(@cup.ends_at)) %>	
-				<%= render_show_detail_zurb(:escuadras, t(:has_cup_escuadras, :count => @cup.escuadras.count)) %>
-				<%= render_show_detail_zurb(:games, t(:has_cup_games, :count => @cup.games.count)) %>		
-				<%= render_show_detail_zurb(:player_limit_group, @cup.player_limit) %>
-				<%= render_show_detail_zurb(:group_stage_advance, @cup.group_stage_advance) if (@cup.group_stage_advance.to_i > 0) if is_maximo %>
-				<%= render_show_detail_zurb(:standing, link_to(label_name(:standing), standing_path(:id => @cup))) if @cup.has_standing %>
-				<%= render_show_detail_zurb(:description, @cup.description) %>	
-				<%= render_show_detail_zurb(:escuadras_available, render('/shared/show_images_zurb', :collection => @the_escuadras)) %>	
+					<%= render_show_detail_zurb(:name, @cup.name) %>
+					<%= render_show_detail_zurb(:official, label_name(@cup.official, 'value')) if is_maximo %>
+					<%= render_show_detail_zurb(:venues, item_name_link(@cup.venue)) %>
+					<%= render_show_detail_zurb(:sports, @cup.sport.name) %>
+					<%= render_show_detail_zurb(:city, @cup.city.name) %>
+					<%= render_show_detail_zurb(:starts_at, nice_day_of_week(@cup.starts_at)) %>
+					<%= render_show_detail_zurb(:ends_at, nice_day_of_week(@cup.ends_at)) %>	
+					<%= render_show_detail_zurb(:escuadras, t(:has_cup_escuadras, :count => @cup.escuadras.count)) %>
+					<%= render_show_detail_zurb(:games, t(:has_cup_games, :count => @cup.games.count)) %>		
+					<%= render_show_detail_zurb(:player_limit_group, @cup.player_limit) %>
+					<%= render_show_detail_zurb(:group_stage_advance, @cup.group_stage_advance) if (@cup.group_stage_advance.to_i > 0) if is_maximo %>
+					<%= render_show_detail_zurb(:standing, link_to(label_name(:standing), standing_path(:id => @cup))) if @cup.has_standing %>
+					<%= render_show_detail_zurb(:description, @cup.description) %>	
+					<%= render_show_detail_zurb(:escuadras_available, render('/shared/show_images_zurb', :collection => @the_escuadras)) %>	
 
-</div>
-
-
-
+				</div>
 
 			</td>	
 		</tr>

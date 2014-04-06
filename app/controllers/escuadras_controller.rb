@@ -25,20 +25,28 @@ class EscuadrasController < ApplicationController
     the_groups = []
 
     if @cup.official
-
       @escuadras = Escuadra.find(:all, :conditions => ["official = ? and item_type = 'Escuadra' and id not in (select escuadra_id from cups_escuadras where cup_id = ?)", @cup.official, @cup])
       @escuadras.each {|escuadra| @the_escuadras << escuadra}
-
     else	
 
       @has_escuadra_for_signup = false
       @user = User.find(current_user)
 
-      Escuadra.get_user_escuadras(@the_escuadras, @user, @cup)
+      the_groups = []
+      
+      @user.get_current_manage_groups.each do |group|
+        the_groups << group unless the_groups.include?(group)
+      end
 
-      the_groups  = @user.get_current_manage_groups
+      @user.groups.each do |group|
+        the_groups << group unless the_groups.include?(group)
+      end
+      
+      # the_users = []
+      the_users = User.find_all_by_mates(@user)
+            
+      Escuadra.get_users_escuadras(@the_escuadras, the_users, @cup)
       Escuadra.get_groups_escuadras(@the_escuadras, the_groups, @cup)
-
 			
       @the_escuadras.each {|escuadra| @has_escuadra_for_signup = true}
     end
