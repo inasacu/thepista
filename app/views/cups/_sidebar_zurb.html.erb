@@ -13,29 +13,27 @@
 	the_game = Game.final_game(@cup)
 	final_played = the_game.played unless (the_game.nil? or the_game.blank?)
 	
-	unless @cup.official
-		@has_escuadra_for_signup = false
-		@current_user_groups = current_user.groups
-		@current_manage_groups = []
-		@current_user_groups.each {|group| @current_manage_groups << group if is_current_manager_of(group)}
-	
-		@current_manage_groups.each do |group| 
-			@first_escuadra = Escuadra.find(:first, :conditions => ["official = ? and item_id = ? and item_type='Group'", @cup.official, group])
-			if @first_escuadra.nil?
-				@the_escuadras << group 
-				@has_escuadra_for_signup = true
-			end
-		end
-	
-		@user = User.find(current_user)
-		@first_escuadra = Escuadra.find(:first, :conditions => ["official = ? and item_id = ? and item_type='User'", @cup.official, @user])
-		if @first_escuadra.nil?			
-			@the_escuadras << @user 
-			@has_escuadra_for_signup = true
-		end
-	end
-	
-	
+	# unless @cup.official
+	# 	@has_escuadra_for_signup = false
+	# 	@current_user_groups = current_user.groups
+	# 	@current_manage_groups = []
+	# 	@current_user_groups.each {|group| @current_manage_groups << group if is_current_manager_of(group)}
+	# 
+	# 	@current_manage_groups.each do |group| 
+	# 		@first_escuadra = Escuadra.find(:first, :conditions => ["official = ? and item_id = ? and item_type='Group'", @cup.official, group])
+	# 		if @first_escuadra.nil?
+	# 			@escuadras << group 
+	# 			@has_escuadra_for_signup = true
+	# 		end
+	# 	end
+	# 
+	# 	@user = User.find(current_user)
+	# 	@first_escuadra = Escuadra.find(:first, :conditions => ["official = ? and item_id = ? and item_type='User'", @cup.official, @user])
+	# 	if @first_escuadra.nil?			
+	# 		@the_escuadras << @user 
+	# 		@has_escuadra_for_signup = true
+	# 	end
+	# end
 %>
 
 <%= set_image_and_link(link_to(label_name(:challenges_create), new_challenge_path(:cup_id => @cup)), 'challenge') if is_official %>

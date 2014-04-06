@@ -30,10 +30,7 @@
 			<tbody>
 
 				<% @escuadras.each do |escuadra| -%>		
-				<%= render 'escuadras/escuadra_full_zurb', 
-				:escuadra => escuadra, 
-				:final_played => final_played, 
-				:display_icons => true %> 
+				<%= render 'escuadras/escuadra_full_zurb', :escuadra => escuadra, :final_played => final_played, :display_icons => true %> 
 				<% end -%>
 
 			</tbody>

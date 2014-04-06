@@ -1,5 +1,5 @@
 <%
-	the_label = label_name(:escuadras_destroy)
+	the_label = label_name(:destroy)
 	the_confirmation = "#{ the_label }?"
 %>
 
@@ -22,8 +22,8 @@
 		<span class="action">
 			<% if is_current_manager_of(@cup) and !final_played %>
 			<span class="action">
-				<%= link_to(label_name(:escuadras_edit), edit_escuadra_path(escuadra)) %><br/>
-				<%= link_to(the_label , borrar_escuadra_path(:id => escuadra, :cup => @cup), :confirm => the_confirmation) %>
+				<%#= link_to(label_name(:escuadras_edit), edit_escuadra_path(escuadra)) %>
+				<%= link_to(the_label , borrar_escuadra_path(:id => escuadra, :cup => @cup)) %>
 			</span>
 			<% end -%>
 
