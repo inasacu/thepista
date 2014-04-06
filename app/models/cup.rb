@@ -52,13 +52,11 @@ class Cup < ActiveRecord::Base
   
   validates_presence_of     :name
   validates_presence_of     :description
-  # validates_presence_of     :conditions
   validates_presence_of     :sport_id
 	validates_presence_of			:venue_id
   
   validates_length_of       :name,            :within => NAME_RANGE_LENGTH
   validates_length_of       :description,     :within => DESCRIPTION_RANGE_LENGTH
-  # validates_length_of       :conditions,      :within => DESCRIPTION_RANGE_LENGTH
       
   validates_format_of       :name,            :with => /^[A-z 0-9 _.-]*$/ 
     
@@ -92,8 +90,8 @@ class Cup < ActiveRecord::Base
   belongs_to    :sport   
   belongs_to    :city
 
-  before_create :format_description, :format_conditions
-  before_update :format_description, :format_conditions
+  before_create :format_description #, :format_conditions
+  before_update :format_description #, :format_conditions
 
 	attr_accessor 	:starts_at_date, :starts_at_time, :ends_at_date, :ends_at_time
   before_update   :get_starts_at, :get_ends_at

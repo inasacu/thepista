@@ -45,10 +45,10 @@
 <br/>
 
 <%= set_form_label(the_form, :player_limit) %>
-<%= set_form_text_field(the_form, :player_limit, 'small input-text', true) %><br/>
+<%= set_form_text_field(the_form, :player_limit, 'small input-text', true) %><br/><br/>
 
-<%#= set_form_label(the_form, :photo, 'photo') %>
-<%#= set_form_file_field(the_form, :photo) %>
+<%= set_form_label(the_form, :photo, 'photo') %>
+<%= set_form_file_field(the_form, :photo) %><br/><br/>
 
 <%= set_form_label(the_form, :venue) %>
 <%= set_form_select(the_form, :venue_id, Venue.venue_name, @cup.venue_id) %><br/><br/>
