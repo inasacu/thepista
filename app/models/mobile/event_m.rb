@@ -1,12 +1,16 @@
 class Mobile::EventM
   
-  attr_accessor :legacy_id, :name, :start_date, :parsed_start_date, :group, 
-  :fee, :player_limit, :week_day, :month_day, :month, :year, :place, :people_info
+  attr_accessor :legacy_id, :name, :start_date, :start_datetime_millis, :end_datetime_millis,
+  :parsed_start_date, :group, :fee, :player_limit, :week_day, :month_day, :month, :year, :place, :people_info
   
   def initialize(schedule)
     if !schedule.nil?
       @legacy_id = schedule.id
       @name = schedule.name
+      # this is multiplied by 1000 for JS code to calculate properly the date and times
+      # in ruby code probably is better to multiply it by 1.000 to be calculated then with Time.at(millis)
+      @start_datetime_millis = schedule.starts_at.to_i * 1000
+      @end_datetime_millis = schedule.ends_at.to_i * 1000
       @start_date = schedule.starts_at.strftime "%d/%m/%Y"
       @start_time = schedule.starts_at.strftime "%H:%M"
       @end_date = schedule.ends_at.strftime "%d/%m/%Y"
@@ -128,9 +132,10 @@ class Mobile::EventM
           new_event.sport_id = the_group.sport_id
           new_event.marker_id = the_group.marker_id
           new_event.time_zone = the_group.time_zone
-          new_event.player_limit = the_group.player_limit
-          new_event.fee_per_game = event_map[:fee]
-          new_event.fee_per_pista = event_map[:fee]
+          #new_event.player_limit = the_group.player_limit
+          new_event.player_limit = event_map[:event_player_limit]
+          new_event.fee_per_game = event_map[:event_fee] ? event_map[:event_fee] : 1
+          new_event.fee_per_pista = event_map[:event_fee] ? event_map[:event_fee] : 1
           new_event.fee_per_pista = the_group.player_limit * new_event.fee_per_game if the_group.player_limit > 0
           new_event.season = Time.zone.now.year
 
