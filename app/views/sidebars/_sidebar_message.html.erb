@@ -1,16 +1,17 @@
-<%
-	if @challenge
-		if is_current_member_of(@challenge)
-%>
-			<%= set_form_create_id_image_link(Message.new, :challenge_id, @challenge, :send_message_to) %>		
-			<%= set_form_create_id_image_link(Invitation.new, :challenge_id, @challenge, :invitations_create_challenge) %>
-			<hr/>
-<% 		else %>			
-			<%= set_form_create_id_image_link(Message.new, :id, @challenge.all_the_managers.first, :send_message_to) %>
-			<hr/>
-<% 		end
-	end
-%>
+<%# if @user %>
+	<%#= set_form_create_id_image_link(Message.new, :id, @user, :send_message_to) if current_user != @user %>
+	<%# @user.groups.each do |group| %>
+		<%# unless group.is_branch? %>
+			<%#= set_form_create_id_image_link(Message.new, :group_id, group, :send_message_to, '', group.name) %>
+			<%#= set_form_create_id_image_link(Invitation.new, :group_id, group, :invitations_create_group, '', group.name) %>
+		<%# end %>
+	<%# end %>
+<%# end %>
+
+<% unless get_controller_action == 'home_index' %>
+	<%= set_form_create_id_image_link(Message.new, user_id, current_user, :send_message_to, '') %>
+	<hr/>
+<% end %>
 
 <%
 	if @group and !@schedule
@@ -26,14 +27,13 @@
 	end
 %>
 
-<%
+<%#
 	if @venue
 		if is_current_member_of(@venue)
 %>
-			<%= set_form_create_id_image_link(Message.new, :venue_id, @venue, :send_message_to) %>
-			<%= set_form_create_id_image_link(Invitation.new, :venue_id, @venue, :invitations_create_venue) %>
-			<hr/>
-<% 
+			<%#= set_form_create_id_image_link(Message.new, :venue_id, @venue, :send_message_to) %>
+			<%#= set_form_create_id_image_link(Invitation.new, :venue_id, @venue, :invitations_create_venue) %>
+<%# 
 		end
 	end
 %>
@@ -48,20 +48,23 @@
 			<%= set_form_create_id_image_link(Invitation.new, :schedule_id, @schedule, :invitations_create_schedule) unless has_schedule_blank %>
 			<hr/>
 <% 		else %>
-			<%= set_form_create_id_image_link(Message.new, :id, @group.all_the_managers.first, :send_message_to) %>
-			<hr/>
+			<%#= set_form_create_id_image_link(Message.new, :id, @group.all_the_managers.first, :send_message_to) %>
 <% 
 		end
 	end
 %>
 
-<% if @user %>
-	<%#= set_form_create_id_image_link(Message.new, :id, @user, :send_message_to) if current_user != @user %>
-	<% @user.groups.each do |group| %>
-		<% unless group.is_branch? %>
-			<%= set_form_create_id_image_link(Message.new, :group_id, group, :send_message_to, '', group.name) %>
-			<%= set_form_create_id_image_link(Invitation.new, :group_id, group, :invitations_create_group, '', group.name) %>
-		<% end %>
-	<% end %>
-<% end %>
 
+<%
+	if @challenge
+		if is_current_member_of(@challenge)
+%>
+			<%= set_form_create_id_image_link(Message.new, :challenge_id, @challenge, :send_message_to) %>		
+			<%= set_form_create_id_image_link(Invitation.new, :challenge_id, @challenge, :invitations_create_challenge) %>
+			<hr/>
+<% 		else %>			
+			<%= set_form_create_id_image_link(Message.new, :id, @challenge.all_the_managers.first, :send_message_to) %>
+			<hr/>
+<% 		end
+	end
+%>

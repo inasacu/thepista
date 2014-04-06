@@ -10,7 +10,7 @@ en:
      accounts: Accounts 
      add_email: "Accept, Create your account"  
      add_to_group: Petition to join 
-     add_to_item: Join
+     add_to_item: "</STRONG>Join!</STRONG>"
      add_to_tournament: Petition to join 
      address: Address   
      addresses: Addresses   
@@ -560,7 +560,7 @@ en:
      female_value: Female  
      fill_in_fields: "Just a couple more steps to complete the registration in <STRONG>HayPista</STRONG>."
      final: Final  
-     fire_from_item: Opt-out of   
+     fire_from_item: "<STRONG>Opt-out</STRONG>"   
      follow: Follow 
      forum: Wall for 
      forums_show:  Wall    
@@ -2211,14 +2211,14 @@ en:
      rpx_association_email_msg: We found an existing account which is already using the e-mail address
      rpx_association_login_msg: We found an existing account which is already using the username
      rpx_unable_to_associate: "Unable to associate the new account of third parties HayPista existing account because your email address or password are incorrect. "
-     role_add_moderator:  New Moderador
-     role_add_sub_manager:  New Sub-Manager
-     role_add_manager:  New Manager
-     role_add_subscription:  New Subscription
-     role_remove_moderator: Remove Moderator 
-     role_remove_sub_manager: Remove Sub-Manager
-     role_remove_manager: Remove Manager   
-     role_remove_subscription: Remove Subscription     
+     role_add_moderator:  "<STRONG>Moderador</STRONG>"
+     role_add_sub_manager:  "<STRONG>Sub-Manager</STRONG>"
+     role_add_manager:  "<STRONG>Manager</STRONG>"
+     role_add_subscription:  "</STRONG>Subscription</STRONG>"
+     role_remove_moderator: "<STRONG>Moderator</STRONG>" 
+     role_remove_sub_manager: "<STRONG>Sub-Manager</STRONG>"
+     role_remove_manager: "<STRONG>Manager</STRONG>"   
+     role_remove_subscription: "<STRONG>Subscription</STRONG>"     
      roles_index:   Roles
      roles_maximo_option:  Admin Access Only.
      roles_option:  Options

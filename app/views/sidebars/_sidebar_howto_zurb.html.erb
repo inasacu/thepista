@@ -11,7 +11,9 @@
 	<%= set_image_and_link_h6(link_to(label_name(:create_join_group), list_groups_url), 'user_add') %><br>
 	<%= set_image_and_link_h6(option_link('invitation'), 'invitation') %><br>
 	
-	<%= render 'sidebars/sidebar_create_schedule_zurb'%>
+	<%= set_form_create_id_label_link(Schedule.new, :id, Group.new, "#{label_name(:schedules_create)}") %>
+	
+	<%= render 'sidebars/sidebar_create_schedule_zurb' if DISPLAY_PROFESSIONAL_SERVICES %>
 	
 	<% if DISPLAY_PROFESSIONAL_SERVICES %>
 	<%= set_image_and_link(link_to(label_name(:create_new_challenge), groups_url), 'classified') %>

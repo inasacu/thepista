@@ -28,7 +28,8 @@ class MessagesController < ApplicationController
 
 		elsif (params[:group_id])
 			@group = Group.find(params[:group_id])
-			@recipients = User.find_group_mates(@group)			
+      @recipients = User.find_group_mates(@group) 
+      # @recipients = User.find_all_by_mates(current_user)    
 			@the_scorecards = Scorecard.users_group_scorecard(@group, sort_order(''))
 
 			if params[:roster_id]

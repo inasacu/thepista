@@ -10,7 +10,7 @@ es:
      accounts: Cuentas   
      add_email: "Acepto, crea mi cuenta"     
      add_to_group: Unete al equipo  
-     add_to_item: "¡Apúntate!"         
+     add_to_item: "<STRONG>¡Apúntate!</STRONG>"         
      add_to_tournament: Unete a 
      address: Dirección   
      addresses: Direcciones   
@@ -566,7 +566,7 @@ es:
      female_value: Femenina  
      fill_in_fields: "Solo faltan unos campos para registrate en <STRONG>HayPista</STRONG>."
      final: Final
-     fire_from_item: Desapunta de   
+     fire_from_item: "<STRONG>Desapunta</STRONG>"    
      follow: Sigue 
      forum: Muro de 
      forums_show:  Muro   
@@ -2244,13 +2244,13 @@ es:
      rpx_association_login_msg: Hemos encontrado una cuenta existente que ya está utilizando el nombre de usuario
      rpx_unable_to_associate: "No ha sido posible asociar la cuenta nueva de terceros a las existente de HayPista cuenta debido a que tu correo electrónico o la contraseña son incorrectas."
      role_add_moderator:  Nuevo moderador
-     role_add_sub_manager:  Nuevo sub-manager
-     role_add_manager:  Nuevo manager
-     role_add_subscription:  Nuevo abonado
+     role_add_sub_manager:  "<STRONG>sub-manager</STRONG>"
+     role_add_manager:  "<STRONG>Manager</STRONG>"
+     role_add_subscription:  "<STRONG>Abonado</STRONG>"
      role_remove_moderator: Borra moderador 
-     role_remove_sub_manager: Borra sub-manager
-     role_remove_manager: Borra manager   
-     role_remove_subscription: Borra abonado     
+     role_remove_sub_manager: "<STRONG>sub-manager</STRONG>"
+     role_remove_manager: "<STRONG>Manager</STRONG>"   
+     role_remove_subscription: "<STRONG>Abonado</STRONG>"     
      roles_index:   Responsabilidades
      roles_maximo_option:  Requiere organizador de administrador para ver mas opciones.
      roles_option:  Opciones 
