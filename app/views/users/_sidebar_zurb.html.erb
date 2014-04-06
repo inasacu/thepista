@@ -1,52 +1,68 @@
 <%
 	@current_manage_groups = current_user.get_current_manage_groups	
 	# @current_manage_challenges = current_user.get_current_manage_challenges
+	has_join_hr ||= false
+	has_role_hr ||= false
+	has_manage_hr ||= false
 %>
 
 <% if current_user == @user %>
 	<%= set_form_edit_image_link(@user) %>
 <% end %>
 
-
 <% @current_manage_groups.each do |group| 
-	
 	unless group.is_branch?
-		
 		is_user_member = @user.is_member_of?(group) 
-		is_user_manager = @user.is_manager_of?(group)
-		is_user_sub_manager = @user.is_sub_manager_of?(group) 
-		is_user_subscriber =  @user.is_subscriber_of?(group) 
 %>
-	
 		<%= set_image_and_link(join_item_link_to(@user, group, true), 'user_add') unless is_user_member %>
+		<% has_join_hr = true %>
 
+	<% end %>	
+<% end %>
+
+<%= "<hr/>".html_safe if has_join_hr %>
+
+<% @current_manage_groups.each do |group| 	
+	unless group.is_branch?		
+		is_user_member = @user.is_member_of?(group) 
+		is_user_subscriber =  @user.is_subscriber_of?(group)
+		is_user_manager = @user.is_manager_of?(group)
+%>
 		<% if is_user_member %>
 		<%= set_image_and_link(set_role_add_subscription(@user, group), 'user_add') unless is_user_subscriber %>
-		<% end %>
-		
-		<% if is_user_member %>
-			<%= set_image_and_link(set_role_add_manager(@user, group), 'group_add') unless is_user_manager %>
+		<% has_role_hr = true %>
 		<% end %>
 	<% end %>	
 <% end %>
 
+<%= "<hr/>".html_safe if has_role_hr %>
+
+<% @current_manage_groups.each do |group| 	
+	unless group.is_branch?		
+		is_user_member = @user.is_member_of?(group) 
+		is_user_subscriber =  @user.is_subscriber_of?(group)
+		is_user_manager = @user.is_manager_of?(group)
+%>		
+		<% if is_user_member %>
+			<%= set_image_and_link(set_role_add_manager(@user, group), 'group_add') unless is_user_manager %>
+			<% has_manage_hr = true %>
+		<% end %>
+	<% end %>	
+<% end %>
+
+<%= "<hr/>".html_safe if has_manage_hr %>
 
 <% @current_manage_groups.each do |group| 
-	
 	unless group.is_branch?
-		
 		is_user_member = @user.is_member_of?(group) 
 		is_user_manager = @user.is_manager_of?(group)
 		is_user_sub_manager = @user.is_sub_manager_of?(group) 
 		is_user_subscriber =  @user.is_subscriber_of?(group) 
 %>
-	
 		<%= set_image_and_link(leave_item_link_to(@user, group), 'group_remove') if is_user_member and !is_user_manager %>
-
 		<% if is_user_member %>
 		<%= set_image_and_link(set_role_remove_subscription(@user, group), 'user_remove') if is_user_subscriber %>
 		<% end %>
-		
 		<% if is_user_member %>
 			<%= set_image_and_link(set_role_remove_manager(@user, group), 'group_remove') if is_user_manager and @user != current_user %>
 		<% end %>

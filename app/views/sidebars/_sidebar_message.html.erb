@@ -9,7 +9,7 @@
 <%# end %>
 
 <% unless get_controller_action == 'home_index' %>
-	<%= set_form_create_id_image_link(Message.new, user_id, current_user, :send_message_to, '') %>
+	<%= set_form_create_id_image_link(Message.new, :user_id, current_user, :send_message_to, '') %>
 	<hr/>
 <% end %>
 
