@@ -1,17 +1,23 @@
 <%
-	is_official = @cup.official
+	is_official ||= false
 	final_played ||= false
-	the_game = Game.final_game(@cup)
-	final_played = the_game.played unless (the_game.nil? or the_game.blank?)
-	
-	the_cup = h(@cup.name)
-	the_label = label_with_name('create_game', @cup.name)
-	the_confirmation = "#{ label_name(:cups_destroy) } #{the_cup}" 
-	has_escuadras = (object_counter(@cup.escuadras) > 0)
-	
+	has_escuadras ||= false
 	final_played ||= false
-	the_game = Game.final_game(@cup)
-	final_played = the_game.played unless (the_game.nil? or the_game.blank?)
+	
+	if @cup
+		is_official = @cup.official 
+		the_game = Game.final_game(@cup)
+		final_played = the_game.played unless (the_game.nil? or the_game.blank?)
+
+		the_cup = h(@cup.name)
+		the_label = label_with_name('create_game', @cup.name)
+		the_confirmation = "#{ label_name(:cups_destroy) } #{the_cup}" 
+		has_escuadras = (object_counter(@cup.escuadras) > 0)
+
+		# final_played ||= false
+		the_game = Game.final_game(@cup)
+		final_played = the_game.played unless (the_game.nil? or the_game.blank?)
+	end
 	
 	# unless @cup.official
 	# 	@has_escuadra_for_signup = false
@@ -39,11 +45,9 @@
 <%= set_image_and_link(link_to(label_name(:challenges_create), new_challenge_path(:cup_id => @cup)), 'challenge') if is_official %>
 
 
-<% if is_current_manager_of(@cup) %>
-
+<% if @cup  and is_current_manager_of(@cup) %>
 	<%= set_image_and_link(link_to(label_name(:games_create), new_game_path(:id => @cup)), 'schedule') if has_escuadras and !final_played %>
 	<%= set_image_and_link(link_to(label_name(:cups_edit), edit_cup_path(@cup)), 'cup') %>
-
 <% end %>
 
 

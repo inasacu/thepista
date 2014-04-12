@@ -4,11 +4,9 @@ desc "this rake job is to convert a user who has several accounts"
 desc "this job will take user original account and replace the id for a previous account created id"
 
 task :the_new_user_email_account => :environment do |t|
-	
-  original_user_email = 'Ludovic.zaccaron@hotmail.com'
-  new_user_email = 'zacco05@gmail.com'
+  original_user_email = 'mjho70@hotmail.com'
+  new_user_email = 'mjho70@gmail.com'
 	update_user_switch(original_user_email, new_user_email)
-
 end
 
 
