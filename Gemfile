@@ -5,21 +5,21 @@ ruby '1.9.3'
 gem 'rails', '3.2.17'
 gem 'pg', '0.17.0'
 gem 'thin'
-gem "authlogic"
-gem "will_paginate"
-gem "authlogic-oid"
+gem 'authlogic', '3.4.0'
+gem 'will_paginate'
+gem 'authlogic-oid'
 gem 'httparty',	'>= 0.8.1'
-gem "acl9"                
+gem 'acl9'                
 gem 'acts_as_commentable'      
 gem 'hoptoad_notifier'
 
-gem "geokit"
-gem "geokit-rails"
+gem 'geokit'
+gem 'geokit-rails'
 
 gem 'delayed_job'
 
-# gem "hirefire-resource"
-gem "hirefireapp"
+# gem 'hirefire-resource'
+gem 'hirefireapp'
 
 gem 'paperclip'
 gem 'composite_primary_keys'
@@ -30,7 +30,7 @@ gem 'jquery-rails', '2.3.0'
 gem 'google_map'
 gem 'acts_as_tree', '0.1.1'
 gem 'aws-sdk'
-gem "friendly_id", "~> 4.0.1"
+gem 'friendly_id', '~> 4.0.1'
 
 gem 'typhoeus'
 gem 'delayed_job_active_record'
@@ -60,7 +60,7 @@ end
 
 
 group :development do
-	gem 'annotate', ">=2.5.0"
+	gem 'annotate', '>=2.5.0'
 	# gem 'email_verifier'
 	# gem 'email_veracity'
 	# gem 'bullet'
