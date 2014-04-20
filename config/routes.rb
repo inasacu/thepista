@@ -52,11 +52,13 @@ Thepista::Application.routes.draw do
         get "get_info/:event_id/:user_id", :to => "event#get_event_info_related_to_user"
         get "get_teams/:event_id", :to => "event#get_event_teams"
         get "get_results/:event_id", :to => "event#get_event_results"
+        get "forum/get_comments/:event_id", :to => "event#get_forum_comments"
         post "change_user_state", :to => "event#change_user_event_state"
         post "create_new", :to => "event#create_event"
         post "edit", :to => "event#edit_event"
         post "update_event_results", :to => "event#update_event_results"
         post "change_user_event_team", :to => "event#change_user_event_team"
+        post "forum/add_comment", :to => "event#add_forum_comment"
       end
     end
     resources :group do

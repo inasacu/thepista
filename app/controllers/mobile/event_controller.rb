@@ -150,4 +150,26 @@ class Mobile::EventController < Mobile::SecurityController
     end
   end  
 
+  def add_forum_comment
+    event_id = params[:event_id]
+    user_id = params[:user_id]
+    message = params[:message]
+    results_map = Mobile::EventM.add_forum_comment(event_id, user_id, message)
+    if results_map
+      success_response(results_map)
+    else
+      error_response("Not possible to add comment to event")
+    end
+  end  
+
+  def get_forum_comments
+    event_id = params[:event_id]
+    messages = Mobile::EventM.get_forum_comments(event_id)
+    if messages
+      success_response(messages)
+    else
+      error_response("Not possible to retreive event comments")
+    end
+  end
+
 end

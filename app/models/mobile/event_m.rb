@@ -423,16 +423,17 @@ class Mobile::EventM
     teams_map = nil
     begin
       teams_map = Hash.new
-      teams_map[:team1] = Array.new
-      teams_map[:team2] = Array.new
+      teams_map[:teams] = Hash.new
+      teams_map[:teams][:local] = Array.new
+      teams_map[:teams][:visitor] = Array.new
       schedule = Schedule.find(event_id)
 
       schedule.matches.each do |m|
         user = m.user
         if m.group_id !=0
-          teams_map[:team1] << Mobile::UserM.new(user)
+          teams_map[:teams][:local] << Mobile::UserM.new(user)
         else
-          teams_map[:team2] << Mobile::UserM.new(user)
+          teams_map[:teams][:visitor] << Mobile::UserM.new(user)
         end
       end
 
@@ -465,6 +466,49 @@ class Mobile::EventM
       results_map = nil
     end
     return results_map
+  end
+
+  def self.add_forum_comment(event_id=nil, user_id=nil, message=nil)
+    result = nil
+    begin
+
+      Schedule.transaction do
+
+        comment = EventComment.new
+        comment.schedule_id = event_id
+        comment.user_id = user_id
+        comment.message = message
+        comment.save!
+
+        result = Mobile::EventM.get_forum_comments(event_id)
+
+      end
+
+    rescue Exception => e
+      Rails.logger.error("Exception while adding comment to event #{e.message}")
+      Rails.logger.error("#{e.backtrace}")
+      result = nil
+    end
+    return result
+  end
+
+  def self.get_forum_comments(event_id)
+    results = nil
+    begin
+      results = Array.new
+      messages = EventComment.where("schedule_id=?",event_id).order("created_at DESC")
+
+      messages.each do |m|
+        results << {:id => m.id, :text => m.message, :date => m.created_at, 
+                    :commenter => {:id => m.user.id, :name => m.user.name}}
+      end
+
+    rescue Exception => e
+      Rails.logger.error("Exception while getting comments for event #{e.message}")
+      Rails.logger.error("#{e.backtrace}")
+      results = nil
+    end
+    return results
   end
 
   def self.update_score(event_id=nil, total_score=nil, individual_score=nil)
@@ -549,10 +593,9 @@ class Mobile::EventM
         result[:success] = true
         result[:is_second_team] = is_second_team
 
-        local_team = Array.new
-        visitor_team = Array.new
         # obtain list of matches with information about user, event, and team
-        result[:teams] = {:local => local_team, :visitor => visitor_team}
+        teams_map = Mobile::EventM.get_teams(event_id)
+        result[:teams] = teams_map[:teams]
 
       end
       
