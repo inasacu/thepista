@@ -285,7 +285,7 @@ class Group < ActiveRecord::Base
     Scorecard.create_group_scorecard(self)
   end
   
-  
+  public
   # WIDGET ----------------------------
   
   def self.add_user_togroup(user, group)

@@ -740,7 +740,6 @@ class Schedule < ActiveRecord::Base
        week_days_hash[real.starts_at.wday][:date].change({:hour=>0, :min=>0, :sec=>0})
     end
 		
-		
 		# Obtain timetables from all groups related to the branch
     branch_timetables = Timetable.branch_week_timetables(current_branch)
     
@@ -952,6 +951,5 @@ class Schedule < ActiveRecord::Base
 		return the_schedule
   
   end
-  
   
 end

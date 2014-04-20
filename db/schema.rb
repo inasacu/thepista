@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131109122441) do
+ActiveRecord::Schema.define(:version => 20140420194111) do
 
   create_table "announcements", :force => true do |t|
     t.text     "message"
@@ -220,6 +220,22 @@ ActiveRecord::Schema.define(:version => 20131109122441) do
   add_index "escuadras", ["item_id"], :name => "index_escuadras_on_item_id"
   add_index "escuadras", ["slug"], :name => "index_escuadras_on_slug", :unique => true
 
+  create_table "event_comments", :force => true do |t|
+    t.string   "message"
+    t.integer  "user_id"
+    t.integer  "schedule_id"
+    t.datetime "date"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+  end
+
+  create_table "events_comments", :id => false, :force => true do |t|
+    t.integer "id",          :null => false
+    t.text    "message"
+    t.integer "schedule_id"
+    t.integer "user_id"
+  end
+
   create_table "fees", :force => true do |t|
     t.string   "name",          :limit => 50
     t.text     "description"
@@ -296,7 +312,7 @@ ActiveRecord::Schema.define(:version => 20131109122441) do
     t.float    "points_for_lose",    :default => 0.0
     t.string   "time_zone",          :default => "UTC"
     t.integer  "sport_id"
-    t.integer  "marker_id"
+    t.integer  "marker_id",          :default => 2
     t.text     "description"
     t.text     "conditions"
     t.integer  "player_limit",       :default => 150
@@ -566,6 +582,28 @@ ActiveRecord::Schema.define(:version => 20131109122441) do
   add_index "payments", ["manager_id"], :name => "index_payments_on_manager_id"
   add_index "payments", ["slug"], :name => "index_payments_on_slug", :unique => true
 
+  create_table "prospects", :force => true do |t|
+    t.string   "name"
+    t.string   "contact"
+    t.string   "email"
+    t.string   "email_additional"
+    t.string   "phone"
+    t.string   "url"
+    t.string   "url_additional"
+    t.datetime "letter_first"
+    t.datetime "letter_second"
+    t.datetime "response_first"
+    t.datetime "response_second"
+    t.text     "notes"
+    t.datetime "created_at",                          :null => false
+    t.datetime "updated_at",                          :null => false
+    t.string   "image"
+    t.text     "installations"
+    t.text     "description"
+    t.text     "conditions"
+    t.boolean  "archive",          :default => false
+  end
+
   create_table "reservations", :force => true do |t|
     t.string   "name"
     t.datetime "starts_at"
@@ -647,7 +685,6 @@ ActiveRecord::Schema.define(:version => 20131109122441) do
     t.datetime "send_comment_at"
     t.string   "slug"
     t.datetime "send_created_at"
-    t.string   "block_token"
   end
 
   add_index "schedules", ["group_id"], :name => "index_schedules_on_group_id"

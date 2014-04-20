@@ -23,7 +23,73 @@ Thepista::Application.routes.draw do
   
   match "/widget/event/:event_id/invitation", :to => 'widget#event_invitation', :as => :widget_event_invitation
   
+
+
   # ------------------------>
+  
+  # Mobile apps
+  
+  namespace :mobile do
+    resources :security do
+      collection do
+        #get "other_action/:id", :to => "security#other_action"
+      end
+    end
+    resources :user do
+      collection do
+      	post "register", :to => "user#user_registration"
+      	post "logout/:user_id", :to => "user#user_logout"
+      	get "account_info/:user_id", :to => "user#user_account_info"
+      end
+    end
+    resources :event do
+      collection do
+        get "active_by_user/:user_id", :to => "event#active_events_by_user" 
+        get "active_by_user_groups/:user_id", :to => "event#active_events_by_user_groups"
+        get "user_history/:user_id/:offset_factor", :to => "event#historical_of_events" 
+        get "by_id/:event_id", :to => "event#event_by_id"
+        get "user_data/:event_id/:user_id", :to => "event#get_user_event_data"
+        get "get_info/:event_id/:user_id", :to => "event#get_event_info_related_to_user"
+        get "get_teams/:event_id", :to => "event#get_event_teams"
+        get "get_results/:event_id", :to => "event#get_event_results"
+        get "forum/get_comments/:event_id", :to => "event#get_forum_comments"
+        post "change_user_state", :to => "event#change_user_event_state"
+        post "create_new", :to => "event#create_event"
+        post "edit", :to => "event#edit_event"
+        post "update_event_results", :to => "event#update_event_results"
+        post "change_user_event_team", :to => "event#change_user_event_team"
+        post "forum/add_comment", :to => "event#add_forum_comment"
+      end
+    end
+    resources :group do
+      collection do
+        get "by_user/:user_id", :to => "group#groups_by_user"
+        get "get_info/:group_id/:user_id", :to => "group#get_info_related_to_user"
+        get "starred", :to => "group#starred_groups"
+        get "events/:group_id", :to => "group#group_events"
+        get "members/:group_id", :to => "group#group_members"
+        post "create_new", :to => "group#create_group"
+        post "add_member", :to => "group#add_member"
+      end
+    end
+    resources :venue do
+      collection do
+        get "starred", :to => "venue#starred_venues"
+        get "events/:venue_id", :to => "venue#venue_events"
+        get "get_info/:venue_id", :to => "venue#get_info"
+      end
+    end
+    resources :util do
+      collection do
+        get "cities", :to => "util#get_cities"
+        get "sports", :to => "util#get_sports"
+      end
+    end
+  end
+  
+  
+  # ------------------------>
+  
 
   # match 'rpx_token_sessions' => 'user_sessions#rpx_create', :as => :rpx_token_sessions
   # match 'rpx_signup' => 'users#rpx_new', :as => :rpx_signup
