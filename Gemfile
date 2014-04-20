@@ -2,7 +2,7 @@ source 'https://rubygems.org'
 
 ruby '1.9.3'
 
-gem 'rails', '3.2.15'
+gem 'rails', '3.2.17'
 gem 'pg', '0.17.0'
 gem 'thin'
 gem "authlogic"
@@ -12,8 +12,6 @@ gem 'httparty',	'>= 0.8.1'
 gem "acl9"                
 gem 'acts_as_commentable'      
 gem 'hoptoad_notifier'
-
-# gem 'rpx_now'
 
 gem "geokit"
 gem "geokit-rails"
@@ -54,7 +52,6 @@ gem 'validates_timeliness', '~> 3.0'
 # gem 'pusher'
 
 gem "mongoid", "~> 3.0.0"
-
 
 # Gems used only for assets and not required
 # in production environments by default.

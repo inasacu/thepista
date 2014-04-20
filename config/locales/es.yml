@@ -240,6 +240,7 @@ es:
      concept_description:  Concepto   
      contact: Contacto   
      contact_us: "contacta con nosotros &rarr;" 
+     contact_help: "Dinos, ¿en qué te podemos ayudar?"
      convocado: Convocado
      convocados: Convocados
      copy:  copia
@@ -850,7 +851,7 @@ es:
          other:     "cada %{count} horas"
      has_not_been_sent: no ha sido mandado correctamente.  
      has_updated_scorecard: Ha actualizado el RESULTADO
-     whatsapp: Tienes cuenta de WhatsApp con este numero de telefono?
+     whatsapp: Tienes cuenta de WhatsApp?
      have_an_account: Si tienes una cuenta     
      have_changed_language: Has cambiado el idioma
      haypista_howto:  Cosas que puedes hacer.

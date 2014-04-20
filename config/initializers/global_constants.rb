@@ -196,6 +196,8 @@ POINTS_FOR_DRAW = 3
 POINTS_FOR_GOAL_DIFFERENCE = 2
 POINTS_FOR_GOAL_TOTAL = 1
 
+SCHEDULE_DISPLAY_LIMIT = 3
+
 # image default values
 IMAGE_CONVOCADO = 'icons/status_convocado.png'
 IMAGE_ULTIMA_HORA = 'icons/status_ultima_hora.png' 
@@ -231,7 +233,8 @@ MOBILE_BROWSERS = ["smartphone", "iphone",  "blackberry", "playbook", "windows p
 									"mmp","symbian","midp","wap","vodafone","o2","pocket","kindle", "mobile","pda","psp","treo"]
 
 
-CONTACT_RECIPIENT = 'support@haypista.com'
+CONTACT_RECIPIENT = 'support@haypista.com?subject=Preguntas%20o%20Comentarios'
+CONTACT_RECIPIENT_SUBJECT = 'support@haypista.com?subject='
 CONTACT_FEEDBACK = 'info@haypista.com'
 
 LANGUAGES = ['es', 'en']

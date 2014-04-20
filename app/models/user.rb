@@ -61,11 +61,9 @@ class User < ActiveRecord::Base
 	end
 	
   acts_as_authentic do |c|
-    login_field :email
-    UserSession.find_by_login_method = 'find_by_email'
-    
-    #c.login_field :slug
-    #c.validate_email_field = false
+    c.login_field :slug
+    c.validate_email_field = false
+    c.crypto_provider = Authlogic::CryptoProviders::Sha512
 
     # c.ignore_blank_passwords = true #ignoring passwords
     # c.validate_password_field = false #ignoring validations for password fields
@@ -156,43 +154,6 @@ class User < ActiveRecord::Base
 	    user.reset_persistence_token! #set persistence_token else sessions will not be created
 	    user
 	  end
-	  
-	  def self.mobile_create(omniauth)
-	    # should change this for temporal signup
-	    # pendent email confirmation only for oauth providers that dont give email
-
-      omniauth = omniauth.except("extra")
-      user = nil
-
-      if !omniauth.nil?
-        begin
-          user = User.new
-          
-          # Attempt to fill with omniauth
-          user.email = omniauth['info']['email'] if omniauth['info']['email']
-    		  user.name = omniauth['info']['name'] if omniauth['info']['name']
-    		  user.photo = omniauth['info']['photo'] if omniauth['info']['photo']
-    		  # remember to ask raul about this
-    		  user.identity_url = omniauth['credentials']['token'] if omniauth['credentials']['token']
-    			user.password = omniauth['provider']
-    			user.password_confirmation = omniauth['provider']
-
-          # filling
-          user.name = user.email if user.name.nil?
-          user.email_to_name if user.name.include?('@')
-    		  user.language = "es" if user.language.nil?    		  
-    			user.email_backup = user.email
-
-    			user.save!
-        rescue => ex
-          user = nil
-          Rails.logger.info "Exception while trying to create user from omniauth #{ex.message}"
-        end
-        
-      end
-      
-      return user
-    end
 	
 		def self.find_using_email(email)
 			find(:first, :conditions => ["lower(email) = ?", email])

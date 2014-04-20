@@ -379,12 +379,15 @@ class Schedule < ActiveRecord::Base
   
   def self.my_current_schedules(user)
     self.find(:all, :joins => "JOIN groups on schedules.group_id = groups.id",
-							:conditions => ["groups.item_type is null and schedules.archive = false and schedules.starts_at >= ? and schedules.group_id in (select group_id from groups_users where user_id = ?)", Time.zone.now, user.id],:order => 'starts_at, group_id', :limit => 1)
+							:conditions => ["groups.item_type is null and schedules.archive = false and schedules.starts_at >= ? and 
+							  schedules.group_id in (select group_id from groups_users where user_id = ?)", Time.zone.now, user.id],:order => 'starts_at, group_id', :limit => SCHEDULE_DISPLAY_LIMIT-1)
   end
 
 	def self.other_current_schedules(user)
 		self.find(:all, :joins => "JOIN groups on schedules.group_id = groups.id",
-							:conditions => ["groups.item_type is null and schedules.archive = false and schedules.starts_at >= ? and schedules.group_id not in (select group_id from groups_users where user_id = ?)", Time.zone.now, user.id],:order => 'starts_at, group_id', :limit => 1)
+							:conditions => ["groups.item_type is null and schedules.archive = false and schedules.played = false and schedules.starts_at >= ? and 
+							  groups.id in (select groups.id from groups, markers where groups.archive = false and groups.marker_id = markers.id and markers.city = ?) and							  
+							  schedules.group_id not in (select group_id from groups_users where user_id = ?)", Time.zone.now, user.city.name, user.id],:order => 'starts_at, group_id', :limit => SCHEDULE_DISPLAY_LIMIT)
 	end
 
   def self.current_schedules(user, page = 1)
@@ -535,14 +538,26 @@ class Schedule < ActiveRecord::Base
                   :conditions => ["played = false and send_reminder_at is null and reminder = true and reminder_at >= ? and reminder_at <= ?", PAST_THREE_DAYS, Time.zone.now])
     
 		schedules.each do |schedule|
-			manager_id = RolesUsers.find_item_manager(schedule.group).user_id
-			schedule.group.users.each do |user|
-				if user.teammate_notification? 
-					create_notification_email(schedule, schedule, manager_id, user.id, true)
-				end
-			end
-			schedule.send_reminder_at = Time.zone.now
-			schedule.save!
+		
+			the_player_total = Match.find(:first, :select => "count(*) as total", 
+					:conditions => ["matches.schedule_id = ? and matches.type_id = 1", schedule.id])
+
+			if (the_player_total.total.to_i < schedule.player_limit) 
+	
+        manager_id = RolesUsers.find_item_manager(schedule.group).user_id
+        schedule.group.users.each do |user|
+        
+          if user.teammate_notification? 
+            create_notification_email(schedule, schedule, manager_id, user.id, true)
+          end
+          
+        end
+        
+        schedule.send_reminder_at = Time.zone.now
+        schedule.save!
+				
+			end 
+		
 		end
 
   end

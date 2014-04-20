@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140420194111) do
+ActiveRecord::Schema.define(:version => 20140327201447) do
 
   create_table "announcements", :force => true do |t|
     t.text     "message"
@@ -220,22 +220,6 @@ ActiveRecord::Schema.define(:version => 20140420194111) do
   add_index "escuadras", ["item_id"], :name => "index_escuadras_on_item_id"
   add_index "escuadras", ["slug"], :name => "index_escuadras_on_slug", :unique => true
 
-  create_table "event_comments", :force => true do |t|
-    t.string   "message"
-    t.integer  "user_id"
-    t.integer  "schedule_id"
-    t.datetime "date"
-    t.datetime "created_at",  :null => false
-    t.datetime "updated_at",  :null => false
-  end
-
-  create_table "events_comments", :id => false, :force => true do |t|
-    t.integer "id",          :null => false
-    t.text    "message"
-    t.integer "schedule_id"
-    t.integer "user_id"
-  end
-
   create_table "fees", :force => true do |t|
     t.string   "name",          :limit => 50
     t.text     "description"
@@ -307,28 +291,30 @@ ActiveRecord::Schema.define(:version => 20140420194111) do
     t.string   "name"
     t.string   "second_team"
     t.datetime "gameday_at"
-    t.float    "points_for_win",     :default => 1.0
-    t.float    "points_for_draw",    :default => 0.0
-    t.float    "points_for_lose",    :default => 0.0
-    t.string   "time_zone",          :default => "UTC"
+    t.float    "points_for_win",           :default => 1.0
+    t.float    "points_for_draw",          :default => 0.0
+    t.float    "points_for_lose",          :default => 0.0
+    t.string   "time_zone",                :default => "UTC"
     t.integer  "sport_id"
-    t.integer  "marker_id",          :default => 2
+    t.integer  "marker_id"
     t.text     "description"
     t.text     "conditions"
-    t.integer  "player_limit",       :default => 150
+    t.integer  "player_limit",             :default => 150
     t.string   "photo_file_name"
     t.string   "photo_content_type"
     t.integer  "photo_file_size"
     t.datetime "photo_updated_at"
-    t.boolean  "archive",            :default => false
+    t.boolean  "archive",                  :default => false
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.boolean  "automatic_petition", :default => true
-    t.integer  "installation_id",    :default => 999
+    t.boolean  "automatic_petition",       :default => true
+    t.integer  "installation_id",          :default => 999
     t.string   "slug"
-    t.integer  "service_id",         :default => 51
+    t.integer  "service_id",               :default => 51
     t.integer  "item_id"
     t.string   "item_type"
+    t.boolean  "automatic_schedule",       :default => false
+    t.integer  "automatic_schedule_limit", :default => 0
   end
 
   add_index "groups", ["marker_id"], :name => "index_groups_on_marker_id"
@@ -582,28 +568,6 @@ ActiveRecord::Schema.define(:version => 20140420194111) do
   add_index "payments", ["manager_id"], :name => "index_payments_on_manager_id"
   add_index "payments", ["slug"], :name => "index_payments_on_slug", :unique => true
 
-  create_table "prospects", :force => true do |t|
-    t.string   "name"
-    t.string   "contact"
-    t.string   "email"
-    t.string   "email_additional"
-    t.string   "phone"
-    t.string   "url"
-    t.string   "url_additional"
-    t.datetime "letter_first"
-    t.datetime "letter_second"
-    t.datetime "response_first"
-    t.datetime "response_second"
-    t.text     "notes"
-    t.datetime "created_at",                          :null => false
-    t.datetime "updated_at",                          :null => false
-    t.string   "image"
-    t.text     "installations"
-    t.text     "description"
-    t.text     "conditions"
-    t.boolean  "archive",          :default => false
-  end
-
   create_table "reservations", :force => true do |t|
     t.string   "name"
     t.datetime "starts_at"
@@ -685,6 +649,7 @@ ActiveRecord::Schema.define(:version => 20140420194111) do
     t.datetime "send_comment_at"
     t.string   "slug"
     t.datetime "send_created_at"
+    t.string   "block_token"
   end
 
   add_index "schedules", ["group_id"], :name => "index_schedules_on_group_id"
