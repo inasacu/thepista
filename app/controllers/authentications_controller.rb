@@ -1,11 +1,71 @@
 
 class AuthenticationsController < ApplicationController
 	before_filter :require_user, :only => [:destroy]
+	before_filter :mobile_create, :only => [:create]
+	before_filter :mobile_failure, :only => [:failure]
 
 	def index
 		@authentications = current_user.authentications if current_user
 	end
+  
+  def mobile_create
+    # gets origin param of the omniauth request
+    omni_origin = request.env["omniauth.origin"]
+    
+    if omni_origin == "mobile"
+		# remove cookies
+		cookies.delete(:mobile_valid)
+		cookies.delete(:user_data)
+		cookies.delete(:signup_data)
+		cookies.delete(:oauth_data)
+		
+		# look for authentication based on oauth provider info
+		omniauth = request.env["omniauth.auth"]
+		authentication = Authentication.find_from_omniauth(omniauth)
 
+		if authentication
+		  #handle regular authentication - user was already registered
+		  mobile_token = Mobile::MobileToken.get_token(authentication.user.id, authentication.user.email, authentication.user.name)
+		  
+		  cookies[:mobile_valid] = {:value => MOBILE_LOGIN_REGISTERED}
+		  cookies[:user_data] = {:value => mobile_token.to_json}
+		else
+		  # if not present in authentications start sign up process
+		  signup_hash = Hash.new
+		  signup_hash = {:should_signup => true, :email_provided => omniauth['info']['email']}
+
+		  # oauth data
+		  oauth_hash = Hash.new
+		  oauth_hash = {:uid => omniauth["uid"], :provider => omniauth["provider"]}
+		  
+		  # Get token object with from info provided from oauth provider  
+		  mock_mobile_token = Mobile::MobileToken.get_mock_token(omniauth)
+		  
+		  # wrap the cookies info needed for sign up request from mobile app
+		  cookies[:mobile_valid] = {:value => MOBILE_LOGIN_SHOULD_SIGNUP}  
+		  cookies[:user_data] = {:value => mock_mobile_token.to_json}
+		  cookies[:oauth_data] = {:value => oauth_hash.to_json}
+		  cookies[:signup_data] = {:value => signup_hash.to_json}
+		end
+  		
+  		render nothing: true
+      return
+    end
+    
+  end
+  
+  def mobile_failure
+    # gets origin param of the omniauth request
+    omni_origin = params[:origin]
+        
+    if omni_origin == "mobile"
+  		  cookies[:mobile_valid] = {:value => MOBILE_LOGIN_FAILURE}
+  		  cookies.delete(:user_data)
+  		  render nothing: true
+        return
+    end
+  end
+  
 	def create
 		# render :text => request.env["omniauth.auth"].to_yaml
     
@@ -121,7 +181,6 @@ class AuthenticationsController < ApplicationController
 		
 		end
 	end
-
 
 	def failure
     # flash[:notice] = I18n.t(:verification_failed)
