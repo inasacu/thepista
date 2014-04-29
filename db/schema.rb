@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140327201447) do
+ActiveRecord::Schema.define(:version => 20140429190518) do
 
   create_table "announcements", :force => true do |t|
     t.text     "message"
@@ -222,6 +222,15 @@ ActiveRecord::Schema.define(:version => 20140327201447) do
 
   add_index "escuadras", ["item_id"], :name => "index_escuadras_on_item_id"
   add_index "escuadras", ["slug"], :name => "index_escuadras_on_slug", :unique => true
+
+  create_table "event_comments", :force => true do |t|
+    t.string   "message"
+    t.integer  "user_id"
+    t.integer  "schedule_id"
+    t.datetime "date"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+  end
 
   create_table "fees", :force => true do |t|
     t.string   "name",          :limit => 50
@@ -645,7 +654,7 @@ ActiveRecord::Schema.define(:version => 20140327201447) do
     t.boolean  "archive",             :default => false
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.boolean  "reminder",            :default => true
+    t.boolean  "reminder",            :default => false
     t.datetime "reminder_at"
     t.datetime "send_reminder_at"
     t.datetime "send_result_at"
