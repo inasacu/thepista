@@ -175,7 +175,7 @@ class Schedule < ActiveRecord::Base
                 :joins => "left join users on users.id = matches.user_id 
 													 left join types on types.id = matches.type_id 
 													 left join scorecards on scorecards.user_id = matches.user_id",
-                :conditions => ["matches.schedule_id = ? and matches.archive = false and matches.type_id = 1 and scorecards.archive = false and scorecards.group_id = ?", self.id, self.group_id],
+                :conditions => ["users.archive = false and matches.schedule_id = ? and matches.archive = false and matches.type_id = 1 and scorecards.archive = false and scorecards.group_id = ?", self.id, self.group_id],
                 :order => the_sort)
   end
 
@@ -273,7 +273,7 @@ class Schedule < ActiveRecord::Base
     :select => "matches.*, users.name as user_name, types.name as type_name, scorecards.id as scorecard_id, " +
     "scorecards.played as scorecard_played, scorecards.ranking, scorecards.points, (100 * scorecards.played / #{played_games}) as coeficient_played",
     :joins => "left join users on users.id = matches.user_id left join types on types.id = matches.type_id left join scorecards on scorecards.user_id = matches.user_id",
-    :conditions => ["matches.schedule_id = ? and matches.archive = false and matches.type_id = 1 and scorecards.archive = false and scorecards.group_id = ?", self.id, self.group_id],
+    :conditions => ["users.archive = false and matches.schedule_id = ? and matches.archive = false and matches.type_id = 1 and scorecards.archive = false and scorecards.group_id = ?", self.id, self.group_id],
     :order => "matches.group_id desc, users.name")
   end
 
@@ -288,7 +288,7 @@ class Schedule < ActiveRecord::Base
 		:select => "matches.*, users.name as user_name, types.name as type_name, scorecards.id as scorecard_id, " +
 		"scorecards.played as scorecard_played, scorecards.ranking, scorecards.points, (100 * scorecards.played / #{played_games}) as coeficient_played",
 		:joins => "left join users on users.id = matches.user_id left join types on types.id = matches.type_id left join scorecards on scorecards.user_id = matches.user_id",
-		:conditions => ["matches.schedule_id = ? and matches.archive = false and matches.type_id = 1 and scorecards.archive = false and scorecards.group_id = ? and matches.user_id not in (?)", 
+		:conditions => ["users.archive = false and matches.schedule_id = ? and matches.archive = false and matches.type_id = 1 and scorecards.archive = false and scorecards.group_id = ? and matches.user_id not in (?)", 
 					self.id, self.group_id, DEFAULT_GROUP_USERS],	:order => "matches.group_id desc, users.name")
 	end
 
@@ -303,7 +303,7 @@ class Schedule < ActiveRecord::Base
     :select => "matches.*, users.name as user_name, types.name as type_name, scorecards.id as scorecard_id, " +
     "scorecards.played as scorecard_played, scorecards.ranking, scorecards.points, (100 * scorecards.played / #{played_games}) as coeficient_played",
     :joins => "left join users on users.id = matches.user_id left join types on types.id = matches.type_id left join scorecards on scorecards.user_id = matches.user_id",
-    :conditions => ["matches.schedule_id = ?  and matches.archive = false and matches.type_id = 2 and scorecards.archive = false and scorecards.group_id = ?", self.id, self.group_id],
+    :conditions => ["users.archive = false and matches.schedule_id = ?  and matches.archive = false and matches.type_id = 2 and scorecards.archive = false and scorecards.group_id = ?", self.id, self.group_id],
     :order => "matches.group_id desc, users.name")
   end
 
@@ -318,7 +318,7 @@ class Schedule < ActiveRecord::Base
     :select => "matches.*, users.name as user_name, types.name as type_name, scorecards.id as scorecard_id, " +
     "scorecards.played as scorecard_played, scorecards.ranking, scorecards.points, (100 * scorecards.played / #{played_games}) as coeficient_played",
     :joins => "left join users on users.id = matches.user_id left join types on types.id = matches.type_id left join scorecards on scorecards.user_id = matches.user_id",
-    :conditions => ["matches.schedule_id = ?  and matches.archive = false and matches.type_id in (3,4) and scorecards.archive = false and scorecards.group_id = ?", self.id, self.group_id],
+    :conditions => ["users.archive = false and matches.schedule_id = ?  and matches.archive = false and matches.type_id in (3,4) and scorecards.archive = false and scorecards.group_id = ?", self.id, self.group_id],
     :order => "matches.group_id desc, users.name")
   end
 
@@ -333,7 +333,7 @@ class Schedule < ActiveRecord::Base
     :select => "matches.*, users.name as user_name, types.name as type_name, scorecards.id as scorecard_id, " +
     "scorecards.played as scorecard_played, scorecards.ranking, scorecards.points, (100 * scorecards.played / #{played_games}) as coeficient_played",
     :joins => "left join users on users.id = matches.user_id left join types on types.id = matches.type_id left join scorecards on scorecards.user_id = matches.user_id",
-    :conditions => ["matches.schedule_id = ?  and matches.archive = false and matches.type_id in (1,2,3,4) and scorecards.archive = false and scorecards.group_id = ?", self.id, self.group_id],
+    :conditions => ["users.archive = false and matches.schedule_id = ?  and matches.archive = false and matches.type_id in (1,2,3,4) and scorecards.archive = false and scorecards.group_id = ?", self.id, self.group_id],
     :order => "matches.group_id desc, users.name")
   end
 
