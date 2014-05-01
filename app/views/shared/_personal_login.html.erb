@@ -118,36 +118,54 @@
 				<nav>
 
 					<ul class="login-providers">
+						
+						<% if TWITTER_LOGIN_OPTION %>
 						<li class="login-provider-li">
 							<a href="auth/twitter" class="login-provider-a twitter social-icon" data-icon="t" title="<%= label_name(:login_provider_modo_twitter) %>">
 								<span class="hide-text">Twitter</span>
 							</a>
 						</li>
+						<% end %>
+						
+						<% if FACEBOOK_LOGIN_OPTION %>
 						<li class="login-provider-li">
 							<a href="auth/facebook" class="login-provider-a facebook social-icon" data-icon="f" title="<%= label_name(:login_provider_modo_facebook) %>">
 								<span class="hide-text">Facebook</span>
 							</a>
 						</li>
+						<% end %>
+						
+						<% if LINKEDIN_LOGIN_OPTION %>
 						<li class="login-provider-li">
 							<a href="auth/linkedin" class="login-provider-a linkedin social-icon" data-icon="i" title="<%= label_name(:login_provider_modo_linkedin) %>">
 								<span class="hide-text">Linkedin</span>
 							</a>
 						</li>
+						<% end %>
+						
+						<% if GOOGLE_LOGIN_OPTION %>
 						<li class="login-provider-li">
 							<a href="auth/google" class="login-provider-a google social-icon" data-icon="g" title="<%= label_name(:login_provider_modo_google) %>">
 								<span class="hide-text">Google</span>
 							</a>
 						</li>
+						<% end %>
+						
+						<% if WINDOWS_LOGIN_OPTION %>
 						<li class="login-provider-li">
 							<a href="auth/windowslive" class="login-provider-a microsoft social-icon" data-icon="w" title="<%= label_name(:login_provider_modo_windows) %>">
 								<span class="hide-text">Microsoft account</span>
 							</a>
 						</li>
+						<% end %>
+						
+						<% if YAHOO_LOGIN_OPTION %>
 						<li class="login-provider-li">
-							<a href="auth/yahoo" class="login-provider-a yahoo social-icon"	data-icon="y" title="<%= label_name(:login_provider_modo_yahoo) %>">
+							<a href="auth/yahoo" class="login-provider-a yahoo social-icon"	data-icon="y" title="<%#= label_name(:login_provider_modo_yahoo) %>">
 								<span class="hide-text">Yahoo!</span>
 							</a>
 						</li>
+						<% end %>
 					</ul>
 
 				</nav>
