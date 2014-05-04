@@ -505,7 +505,7 @@ class Schedule < ActiveRecord::Base
   # create match details for schedule
 	def create_schedule_details
 		Match.create_schedule_match(self) 
-		if DISPLAY_FREMIUM_SERVICES  
+		if DISPLAY_PROFESSIONAL_SERVICES  
 			Fee.create_group_fees(self) 
 			Fee.create_user_fees(self) 
 		end
@@ -513,7 +513,7 @@ class Schedule < ActiveRecord::Base
 
   def create_join_user_schedule_details
     Match.create_schedule_match(self) 
-    Fee.create_user_fees(self) if DISPLAY_FREMIUM_SERVICES
+    Fee.create_user_fees(self) if DISPLAY_PROFESSIONAL_SERVICES
   end
   
   def update_profile_from_user
@@ -935,7 +935,7 @@ class Schedule < ActiveRecord::Base
 		if send_last_minute_message
 			
 			type_change = [[1,2,-1], [1,3,-1]] 
-			type_change = [[1,2,-1], [1,3,-1], [2,1,1], [3,1,1]] if DISPLAY_FREMIUM_SERVICES
+			type_change = [[1,2,-1], [1,3,-1], [2,1,1], [3,1,1]] if DISPLAY_PROFESSIONAL_SERVICES
 			send_last_minute_message = false
 			
 			type_change.each do |a, b, change|
@@ -955,7 +955,7 @@ class Schedule < ActiveRecord::Base
 			# delay instruction was removed because was throwing stack too deep error
 			Scorecard.calculate_user_played_assigned_scorecard(@match.user, the_schedule.group)
           
-			if DISPLAY_FREMIUM_SERVICES
+			if DISPLAY_PROFESSIONAL_SERVICES
 				# set fee type_id to same as match type_id
 				the_fee = Fee.find(:all, :conditions => ["debit_type = 'User' and debit_id = ? and item_type = 'Schedule' and item_id = ?", @match.user_id, @match.schedule_id])
 				the_fee.each {|fee| fee.type_id = @type.id; fee.save}
