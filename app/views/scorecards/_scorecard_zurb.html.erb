@@ -11,7 +11,7 @@
 	user_played = scorecard.type_id.to_i == 1 
 	user_scorecard_link = subscription_image_link(scorecard.user, user_played ? "orange_#{user_played}" : "#{user_played}", I18n.t("game_played_#{user_played}"))
 	the_ranking_change = "#{image}"
-	the_player_link = user_link_limit(scorecard.user)
+	the_player_link = "#{user_link_limit(scorecard.user)}"
 	the_coeficient_percent = scorecard.coeficient_percent.to_i
 	
 	game_number = "#{scorecard.played}"
