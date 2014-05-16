@@ -260,6 +260,8 @@ module ApplicationHelper
 
 	def limit_url_length(text, the_limit=USER_NAME_LENGTH)		
 		text = h(text)
+		text = text.split(" ")[0] if is_mobile_browser
+		
 		text = "#{text.to_s.strip[0..the_limit]}..." if text.to_s.length > the_limit+2
 		text = text.gsub(" ", "<wbr> ".html_safe)
 		text = text.split.collect {|i| i.capitalize}.join(' ')
