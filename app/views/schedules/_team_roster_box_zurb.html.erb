@@ -24,8 +24,8 @@
 			<%= content_tag_safe(:th, "&nbsp;") %>
 			<%= content_tag_safe(:th, "&nbsp;") %>
 			<%= content_tag_safe(:th, label_name(:user)) %>
-			<%= content_tag_safe(:th, the_status) %>
-			<%= content_tag_safe(:th, sort_link(I18n.t(:participation), :coeficient_played), label_name(:participation_full), 'center') %>
+			<%= content_tag_safe(:th, the_status) unless is_mobile_browser %>
+			<%= content_tag_safe(:th, sort_link(I18n.t(:participation), :coeficient_played), label_name(:participation_full), 'center') unless is_mobile_browser %>
 			<%= content_tag_safe(:th, it_has_played) %>
 			<%= content_tag_safe(:th, "&nbsp;") if has_not_been_played_manager %>
 			
@@ -155,8 +155,13 @@ the_roster.each do |match|
 	change_group_link = (is_member & display_team_link) ? link_to(match.team_name(@schedule), match_team_path(:id => match.id), :title => label_name(:change_group)) :  match.team_name(@schedule)
 	
 	is_different_user_manager = (current_user != the_user and is_manager)
-	subscription_image = "#{counter +=1}.  #{user_subscription_link} #{user_scorecard_link} #{no_jugado_image} "
 	
+	if is_mobile_browser
+		subscription_image = "#{counter +=1}."
+	else
+		subscription_image = "#{counter +=1}.  #{user_subscription_link} #{user_scorecard_link} #{no_jugado_image} "
+	end
+
 	has_phone = the_user.my_members?(current_user)	? (!the_user.phone.blank?) : (false)
 	the_user_link = "#{phone_user_link(the_user)}  #{the_whatsapp_link}" if has_phone
 %>
@@ -165,8 +170,8 @@ the_roster.each do |match|
 	<%= content_tag_safe(:td, image_link_smaller(the_user), '', '') %>
 	<%= content_tag_safe(:td, subscription_image, '','') %>
 	<%= content_tag_safe(:td, the_user_link, '','') %>
-	<%= content_tag_safe(:td, the_match_status, '','') %>
-	<%= content_tag_safe(:td, game_number, '','') %>
+	<%= content_tag_safe(:td, the_match_status, '','') unless is_mobile_browser %>
+	<%= content_tag_safe(:td, game_number, '','')  unless is_mobile_browser %>
 	<%= content_tag_safe(:td, change_group_link, '','') unless has_been_played %>
 	<%= content_tag_safe(:td, was_convocado ? (group_score_link(@schedule, is_second_team)) : '', '','') if has_been_played %>		
 	<%= content_tag_safe(:td, is_different_user_manager ? (match_all_my_link(@schedule, the_user, true)) : '', '','') if has_not_been_played_manager %>	
