@@ -72,7 +72,10 @@
 	<%= render 'shared/footer'  %>
 	
 	<%= render 'utilities/google_analytics' %>
-	<%= render 'utilities/zopim' if Rails.env.production? and !is_mobile_browser %>
+	<%#= render 'utilities/zopim' if Rails.env.production? and !is_mobile_browser %>
+	<%= render 'utilities/zopim' if DISPLAY_ZOPIM %>
+	
+	
 	
 </body>
 
