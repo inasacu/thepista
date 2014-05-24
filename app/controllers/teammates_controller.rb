@@ -21,7 +21,8 @@ class TeammatesController < ApplicationController
 		if @item.is_branch? and @item.automatic_petition
 			Teammate.create_teammate_join_item(@manager, @mate, @item, @sub_item) 
 		else
-			Teammate.delay.create_teammate_join_item(@manager, @mate, @item, @sub_item)
+  	  Teammate.delay.create_teammate_join_item(@manager, @mate, @item, @sub_item) if USE_DELAYED_JOBS
+    	Teammate.create_teammate_join_item(@manager, @mate, @item, @sub_item) unless USE_DELAYED_JOBS
 		end
 	
     # flash[:notice] = I18n.t(:to_join_item_message_sent)
@@ -39,7 +40,8 @@ class TeammatesController < ApplicationController
 
   def join_item_accept
     if @requester.requested_managers.include?(@approver)
-      Teammate.delay.create_teammate_join_item(@requester, @approver, @item, @sub_item)
+      Teammate.delay.create_teammate_join_item(@requester, @approver, @item, @sub_item) if USE_DELAYED_JOBS
+      Teammate.create_teammate_join_item(@requester, @approver, @item, @sub_item) unless USE_DELAYED_JOBS
       flash[:notice] = I18n.t(:petition_to_join_approved)
     end    
     redirect_to petition_url

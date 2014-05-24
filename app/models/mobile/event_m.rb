@@ -556,9 +556,11 @@ class Mobile::EventM
             schedule.played = (!local_score.nil? and !visitor_score.nil?)
             schedule.save!  
 
-            Scorecard.delay.calculate_group_scorecard(schedule.group)
-            Schedule.delay.send_after_scorecards 
-            Match.set_default_user_to_ausente(reference_match)
+            Scorecard.delay.calculate_group_scorecard(schedule.group) if USE_DELAYED_JOBS
+            Scorecard.calculate_group_scorecard(schedule.group) unless USE_DELAYED_JOBS
+            Schedule.delay.send_after_scorecards if USE_DELAYED_JOBS
+            Schedule.send_after_scorecards unless USE_DELAYED_JOBS
+            Match.set_default_user_to_ausente(reference_match) 
           end
 
           success = true

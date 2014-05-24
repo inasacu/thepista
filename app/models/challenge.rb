@@ -123,9 +123,16 @@ class Challenge < ActiveRecord::Base
     user.has_role!(:member,  self)
 
     ChallengesUsers.join_item(user, self)
-    Standing.delay.create_cup_challenge_standing(self)
-    Cast.delay.create_challenge_cast(self) 
-    Fee.delay.create_user_challenge_fees(self) if DISPLAY_FREMIUM_SERVICES
+    Standing.delay.create_cup_challenge_standing(self) if USE_DELAYED_JOBS
+    Standing.create_cup_challenge_standing(self) unless USE_DELAYED_JOBS
+    Cast.delay.create_challenge_cast(self) if USE_DELAYED_JOBS
+    Cast.create_challenge_cast(self) unless USE_DELAYED_JOBS
+    
+    if DISPLAY_PROFESSIONAL_SERVICES
+      Fee.delay.create_user_challenge_fees(self) if USE_DELAYED_JOBS
+      Fee.create_user_challenge_fees(self) unless USE_DELAYED_JOBS
+    end
+    
   end 
 
 	def self.get_challenge_list

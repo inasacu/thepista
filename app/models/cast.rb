@@ -197,11 +197,15 @@ class Cast < ActiveRecord::Base
 			cast.save!
 		end
 	end
-	def self.calculate_standing(cast)  
-		Cast.delay.update_cast_details(cast.challenge)   
-		Standing.delay.cup_challenges_user_standing(cast.challenge.cup) 
-		Standing.delay.update_cup_challenge_item_ranking(cast.challenge.cup)
-	end
+	
+  def self.calculate_standing(cast)  
+    Cast.delay.update_cast_details(cast.challenge) if USE_DELAYED_JOBS
+    Cast.update_cast_details(cast.challenge)  unless USE_DELAYED_JOBS
+    Standing.delay.cup_challenges_user_standing(cast.challenge.cup) if USE_DELAYED_JOBS  
+    Standing.cup_challenges_user_standing(cast.challenge.cup) unless USE_DELAYED_JOBS
+    Standing.delay.update_cup_challenge_item_ranking(cast.challenge.cup) if USE_DELAYED_JOBS
+    Standing.update_cup_challenge_item_ranking(cast.challenge.cup) unless USE_DELAYED_JOBS
+  end
 
 	# archive or unarchive a cast 
 	def self.set_remove_cast(user, challenge)

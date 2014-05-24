@@ -123,7 +123,8 @@ class Escuadra < ActiveRecord::Base
 				
   def join_escuadra(cup)
     CupsEscuadras.join_escuadra(self, cup)
-    Standing.delay.create_cup_escuadra_standing(cup)  
+    Standing.delay.create_cup_escuadra_standing(cup) if USE_DELAYED_JOBS
+    Standing.create_cup_escuadra_standing(cup) unless USE_DELAYED_JOBS
   end
   
   def self.cup_escuadras(cup, page = 1)

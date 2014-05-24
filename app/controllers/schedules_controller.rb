@@ -261,7 +261,10 @@ class SchedulesController < ApplicationController
 				Match.create_item_schedule_match(@schedule, current_user)
 			else
 				@schedule.create_schedule_details
-				Schedule.delay.send_created
+								
+        # Schedule.delay.send_created if USE_DELAYED_JOBS
+        # Schedule.send_created unless USE_DELAYED_JOBS
+				
 			end
 
 			successful_create
@@ -278,7 +281,8 @@ class SchedulesController < ApplicationController
 
 	def update
 		if @schedule.update_attributes(params[:schedule]) 
-			@schedule.delay.create_schedule_details
+			@schedule.delay.create_schedule_details if USE_DELAYED_JOBS
+  		@schedule.create_schedule_details unless USE_DELAYED_JOBS
 			controller_successful_update
 			redirect_to @schedule
 		else
@@ -293,7 +297,8 @@ class SchedulesController < ApplicationController
 			match.archive = false
 			match.save!
 		end
-		Scorecard.delay.calculate_group_scorecard(@schedule.group)
+  		Scorecard.delay.calculate_group_scorecard(@schedule.group) if USE_DELAYED_JOBS
+  		Scorecard.calculate_group_scorecard(@schedule.group) unless USE_DELAYED_JOBS
 		@schedule.destroy
 
 		flash[:notice] = I18n.t(:successful_destroy)

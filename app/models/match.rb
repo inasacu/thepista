@@ -206,7 +206,8 @@ class Match < ActiveRecord::Base
     @matches.each do |match|
       match.update_attribute(:archive, flag)
     end
-    Scorecard.delay.calculate_group_scorecard(group)
+      Scorecard.delay.calculate_group_scorecard(group) if USE_DELAYED_JOBS
+      Scorecard.calculate_group_scorecard(group) unless USE_DELAYED_JOBS
   end
   
   def self.update_match_details(the_match, user)
@@ -238,7 +239,8 @@ class Match < ActiveRecord::Base
 
       match.save!  
     end       
-    Scorecard.delay.calculate_group_scorecard(@schedule.group)
+      Scorecard.delay.calculate_group_scorecard(@schedule.group) if USE_DELAYED_JOBS
+      Scorecard.calculate_group_scorecard(@schedule.group) unless USE_DELAYED_JOBS
   end
 
   def self.save_matches(the_match, matches_attributes)

@@ -118,20 +118,33 @@ class Teammate < ActiveRecord::Base
     case item.class.to_s
     when "Group"
       GroupsUsers.leave_team(leave_user, item)  
-      Scorecard.delay.set_archive_flag(leave_user, item, true)
+      Scorecard.delay.set_archive_flag(leave_user, item, true) if USE_DELAYED_JOBS
+      Scorecard.set_archive_flag(leave_user, item, true) unless USE_DELAYED_JOBS
       Match.set_archive_flag(leave_user, item, true)
 
     when "Challenge"
       ChallengesUsers.leave_item(leave_user, item)
-      Standing.delay.set_archive_flag(leave_user, item, true)
-      Cast.delay.set_remove_cast(leave_user, item)   
-      Fee.delay.set_archive_flag(leave_user, item, item, true) if DISPLAY_FREMIUM_SERVICES
+      Standing.delay.set_archive_flag(leave_user, item, true) if USE_DELAYED_JOBS
+      Standing.set_archive_flag(leave_user, item, true) unless USE_DELAYED_JOBS
+      Cast.delay.set_remove_cast(leave_user, item) if USE_DELAYED_JOBS
+      Cast.set_remove_cast(leave_user, item) unless USE_DELAYED_JOBS
+      
+      if DISPLAY_PROFESSIONAL_SERVICES
+        Fee.delay.set_archive_flag(leave_user, item, item, true) if USE_DELAYED_JOBS
+        Fee.set_archive_flag(leave_user, item, item, true) unless USE_DELAYED_JOBS
+      end
 
     when "Cup"
       # TODO:  remove escuadra from cup
-      CupsEscuadras.delay.leave_escuadra(escuadra, item) 
-      Standing.delay.set_archive_flag(leave_user, item, true)
-      Fee.delay.set_archive_flag(leave_user, item, item, true) if DISPLAY_FREMIUM_SERVICES
+      CupsEscuadras.delay.leave_escuadra(escuadra, item) if USE_DELAYED_JOBS
+      CupsEscuadras.leave_escuadra(escuadra, item) unless USE_DELAYED_JOBS
+      Standing.delay.set_archive_flag(leave_user, item, true) if USE_DELAYED_JOBS
+      Standing.set_archive_flag(leave_user, item, true) unless USE_DELAYED_JOBS
+      
+      if DISPLAY_PROFESSIONAL_SERVICES
+        Fee.delay.set_archive_flag(leave_user, item, item, true) if USE_DELAYED_JOBS
+        Fee.set_archive_flag(leave_user, item, item, true) unless USE_DELAYED_JOBS
+      end
 
     else
     end    
@@ -147,7 +160,8 @@ class Teammate < ActiveRecord::Base
       
       Scorecard.create_user_scorecard(approver, item)
       Scorecard.create_user_scorecard(requester, item)
-      Scorecard.delay.set_archive_flag(approver, item, false)
+      Scorecard.delay.set_archive_flag(approver, item, false) if USE_DELAYED_JOBS
+      Scorecard.set_archive_flag(approver, item, false) unless USE_DELAYED_JOBS
 
 			if item.is_branch?
 			else
@@ -164,8 +178,8 @@ class Teammate < ActiveRecord::Base
       ChallengesUsers.join_item(approver, item) 
       ChallengesUsers.join_item(requester, item)
       Cast.create_challenge_cast(item) 
-      Fee.create_user_challenge_fees(item)     if DISPLAY_FREMIUM_SERVICES
-      Fee.set_archive_flag(requester, item, item, false)  if DISPLAY_FREMIUM_SERVICES
+      Fee.create_user_challenge_fees(item)     if DISPLAY_PROFESSIONAL_SERVICES
+      Fee.set_archive_flag(requester, item, item, false)  if DISPLAY_PROFESSIONAL_SERVICES
       Standing.create_cup_challenge_standing(item)
       Standing.set_archive_flag(requester, item, false)
       Cast.update_cast_details(item)         
