@@ -30,6 +30,9 @@
 #  club                :boolean          default(TRUE)
 #  slug                :string(255)
 #  venue_id            :integer          default(1)
+#  public              :boolean          default(TRUE)
+#  player_limit        :integer          default(50)
+#  city_id             :integer          default(1)
 #
 
 class Cup < ActiveRecord::Base

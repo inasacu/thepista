@@ -2,32 +2,34 @@
 #
 # Table name: groups
 #
-#  id                 :integer          not null, primary key
-#  name               :string(255)
-#  second_team        :string(255)
-#  gameday_at         :datetime
-#  points_for_win     :float            default(1.0)
-#  points_for_draw    :float            default(0.0)
-#  points_for_lose    :float            default(0.0)
-#  time_zone          :string(255)      default("UTC")
-#  sport_id           :integer
-#  marker_id          :integer
-#  description        :text
-#  conditions         :text
-#  player_limit       :integer          default(150)
-#  photo_file_name    :string(255)
-#  photo_content_type :string(255)
-#  photo_file_size    :integer
-#  photo_updated_at   :datetime
-#  archive            :boolean          default(FALSE)
-#  created_at         :datetime
-#  updated_at         :datetime
-#  automatic_petition :boolean          default(TRUE)
-#  installation_id    :integer          default(999)
-#  slug               :string(255)
-#  service_id         :integer          default(51)
-#  item_id            :integer
-#  item_type          :string(255)
+#  id                       :integer          not null, primary key
+#  name                     :string(255)
+#  second_team              :string(255)
+#  gameday_at               :datetime
+#  points_for_win           :float            default(1.0)
+#  points_for_draw          :float            default(0.0)
+#  points_for_lose          :float            default(0.0)
+#  time_zone                :string(255)      default("UTC")
+#  sport_id                 :integer
+#  marker_id                :integer
+#  description              :text
+#  conditions               :text
+#  player_limit             :integer          default(150)
+#  photo_file_name          :string(255)
+#  photo_content_type       :string(255)
+#  photo_file_size          :integer
+#  photo_updated_at         :datetime
+#  archive                  :boolean          default(FALSE)
+#  created_at               :datetime
+#  updated_at               :datetime
+#  automatic_petition       :boolean          default(TRUE)
+#  installation_id          :integer          default(999)
+#  slug                     :string(255)
+#  service_id               :integer          default(51)
+#  item_id                  :integer
+#  item_type                :string(255)
+#  automatic_schedule       :boolean          default(FALSE)
+#  automatic_schedule_limit :integer          default(0)
 #
 
 class Group < ActiveRecord::Base

@@ -24,7 +24,7 @@
 #  archive             :boolean          default(FALSE)
 #  created_at          :datetime
 #  updated_at          :datetime
-#  reminder            :boolean          default(TRUE)
+#  reminder            :boolean          default(FALSE)
 #  reminder_at         :datetime
 #  send_reminder_at    :datetime
 #  send_result_at      :datetime

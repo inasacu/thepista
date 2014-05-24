@@ -48,6 +48,7 @@
 #  slug                     :string(255)
 #  validation               :boolean          default(FALSE)
 #  whatsapp                 :boolean          default(FALSE)
+#  confirmation             :boolean          default(FALSE)
 #  confirmation_token       :string(255)
 #
 
