@@ -251,7 +251,7 @@ PRICE_RANGE_UNDER_5000 = 500...4999
 PRICE_RANGE_OVER_5000 = 5000
 
 # launch page display
-LAUNCH_PAGE = true
+LAUNCH_PAGE = false
 
 # use delayed jobs
 USE_DELAYED_JOBS = false
