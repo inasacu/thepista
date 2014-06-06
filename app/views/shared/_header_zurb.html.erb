@@ -6,7 +6,7 @@
 	is_cup_visible = Rails.env.development? ? false : is_cup_visible
 	is_cup_visible = DISPLAY_FREMIUM_SERVICES and !is_mobile_browser
 	is_venue_visible = DISPLAY_PROFESSIONAL_SERVICES and !is_mobile_browser
-	is_company_visible =  true
+	is_company_visible =  DISPLAY_FREMIUM_SERVICES and !is_mobile_browser
 	is_customer_visible =  Rails.env.development?
 	
 	# mobile options
