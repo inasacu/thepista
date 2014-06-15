@@ -264,10 +264,10 @@ class Scorecard < ActiveRecord::Base
   end
 
   # archive or unarchive a scorecard and recalculate group scorecards
-  def self.set_archive_flag(user, group, flag)
+  def self.set_archive_flag(user, group, flag, reset_scorecard=true)
     @scorecard = Scorecard.find(:first, :conditions => ["user_id = ? and group_id = ?", user.id, group.id])
     @scorecard.update_attribute(:archive, flag)
-    self.calculate_group_scorecard(group)
+    self.calculate_group_scorecard(group) if reset_scorecard
   end
 
   # record if group does not exist

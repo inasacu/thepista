@@ -78,6 +78,8 @@ the_roster.each do |match|
 		game_number = the_font_green(the_coeficient)
 	end	
 	
+	game_number = "" if DEFAULT_GROUP_USERS.include?(match.user_id)
+	
 	@roster = match	
 	can_evaluate = current_user != the_user and the_roster.include?(current_user)
 	was_convocado =  match.type_id == 1	
