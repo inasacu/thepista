@@ -267,7 +267,12 @@ class Scorecard < ActiveRecord::Base
   def self.set_archive_flag(user, group, flag, reset_scorecard=true)
     @scorecard = Scorecard.find(:first, :conditions => ["user_id = ? and group_id = ?", user.id, group.id])
     @scorecard.update_attribute(:archive, flag)
-    self.calculate_group_scorecard(group) if reset_scorecard
+    # self.calculate_group_scorecard(group) if reset_scorecard
+
+    if reset_scorecard
+      self.delay.calculate_group_scorecard(group) if USE_DELAYED_JOBS
+      self.calculate_group_scorecard(group) unless USE_DELAYED_JOBS
+    end
   end
 
   # record if group does not exist

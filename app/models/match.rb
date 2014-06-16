@@ -201,13 +201,15 @@ class Match < ActiveRecord::Base
   end
   
   
-  def self.set_archive_flag(user, group, flag)
+  def self.set_archive_flag(user, group, flag, reset_scorecard=true)
     @matches = Match.find(:all, :conditions => ["user_id = ? and (group_id = ? or invite_id = ?)", user.id, group.id, group.id])
     @matches.each do |match|
       match.update_attribute(:archive, flag)
     end
+    if reset_scorecard
       Scorecard.delay.calculate_group_scorecard(group) if USE_DELAYED_JOBS
       Scorecard.calculate_group_scorecard(group) unless USE_DELAYED_JOBS
+    end
   end
   
   def self.update_match_details(the_match, user)
