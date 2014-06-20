@@ -1,21 +1,24 @@
 # -*- encoding: utf-8 -*-
+# stub: oauth 0.4.7 ruby lib
 
 Gem::Specification.new do |s|
   s.name = "oauth"
   s.version = "0.4.7"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
+  s.require_paths = ["lib"]
   s.authors = ["Pelle Braendgaard", "Blaine Cook", "Larry Halff", "Jesse Clark", "Jon Crosby", "Seth Fitzsimmons", "Matt Sanford", "Aaron Quint"]
   s.date = "2012-09-04"
   s.description = "OAuth Core Ruby implementation"
   s.email = "oauth-ruby@googlegroups.com"
   s.executables = ["oauth"]
   s.extra_rdoc_files = ["LICENSE", "README.rdoc", "TODO"]
-  s.files = ["bin/oauth", "LICENSE", "README.rdoc", "TODO"]
-  s.require_paths = ["lib"]
+  s.files = ["LICENSE", "README.rdoc", "TODO", "bin/oauth"]
   s.rubyforge_project = "oauth"
-  s.rubygems_version = "1.8.16"
+  s.rubygems_version = "2.2.2"
   s.summary = "OAuth Core Ruby implementation"
+
+  s.installed_by_version = "2.2.2" if s.respond_to? :installed_by_version
 
   if s.respond_to? :specification_version then
     s.specification_version = 3

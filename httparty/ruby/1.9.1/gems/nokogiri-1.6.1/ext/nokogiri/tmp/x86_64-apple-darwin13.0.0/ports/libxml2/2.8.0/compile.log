@@ -661,8 +661,8 @@ runtest.c:2734:26: warning: illegal character encoding in string literal [-Winva
   CCLD   runxmlconf
   CC     testrecurse.o
   CCLD   testrecurse
-sed -e 's?\@XML_LIBDIR\@?-L/Users/padilla/Dropbox/Private/TheDevelopmentBox/thepista/httparty/ruby/1.9.1/gems/nokogiri-1.6.1/ports/x86_64-apple-darwin13.0.0/libxml2/2.8.0/lib?g' \
-	    -e 's?\@XML_INCLUDEDIR\@?-I/Users/padilla/Dropbox/Private/TheDevelopmentBox/thepista/httparty/ruby/1.9.1/gems/nokogiri-1.6.1/ports/x86_64-apple-darwin13.0.0/libxml2/2.8.0/include/libxml2?g' \
+sed -e 's?\@XML_LIBDIR\@?-L/Users/padilla/DropBox/Private/TheDevelopmentBox/thepista/httparty/ruby/1.9.1/gems/nokogiri-1.6.1/ports/x86_64-apple-darwin13.0.0/libxml2/2.8.0/lib?g' \
+	    -e 's?\@XML_INCLUDEDIR\@?-I/Users/padilla/DropBox/Private/TheDevelopmentBox/thepista/httparty/ruby/1.9.1/gems/nokogiri-1.6.1/ports/x86_64-apple-darwin13.0.0/libxml2/2.8.0/include/libxml2?g' \
 	    -e 's?\@VERSION\@?2.8.0?g' \
 	    -e 's?\@XML_LIBS\@?-lxml2 -lz -lpthread  -liconv -lm ?g' \
 	       < ./xml2Conf.sh.in > xml2Conf.tmp \

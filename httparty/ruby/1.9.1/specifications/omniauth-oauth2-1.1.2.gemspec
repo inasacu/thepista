@@ -6,15 +6,17 @@ Gem::Specification.new do |s|
   s.version = "1.1.2"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
+  s.require_paths = ["lib"]
   s.authors = ["Michael Bleigh", "Erik Michaels-Ober"]
   s.date = "2014-01-16"
   s.description = "An abstract OAuth2 strategy for OmniAuth."
   s.email = ["michael@intridea.com", "sferik@gmail.com"]
   s.homepage = "https://github.com/intridea/omniauth-oauth2"
   s.licenses = ["MIT"]
-  s.require_paths = ["lib"]
-  s.rubygems_version = "2.1.10"
+  s.rubygems_version = "2.2.2"
   s.summary = "An abstract OAuth2 strategy for OmniAuth."
+
+  s.installed_by_version = "2.2.2" if s.respond_to? :installed_by_version
 
   if s.respond_to? :specification_version then
     s.specification_version = 4

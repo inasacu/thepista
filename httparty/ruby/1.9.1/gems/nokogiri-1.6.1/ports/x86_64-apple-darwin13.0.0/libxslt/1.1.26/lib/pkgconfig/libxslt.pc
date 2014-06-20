@@ -1,4 +1,4 @@
-prefix=/Users/padilla/Dropbox/Private/TheDevelopmentBox/thepista/httparty/ruby/1.9.1/gems/nokogiri-1.6.1/ports/x86_64-apple-darwin13.0.0/libxslt/1.1.26
+prefix=/Users/padilla/DropBox/Private/TheDevelopmentBox/thepista/httparty/ruby/1.9.1/gems/nokogiri-1.6.1/ports/x86_64-apple-darwin13.0.0/libxslt/1.1.26
 exec_prefix=${prefix}
 libdir=${exec_prefix}/lib
 includedir=${prefix}/include
@@ -8,5 +8,5 @@ Name: libxslt
 Version: 1.1.26
 Description: XSLT library version 2.
 Requires: libxml-2.0
-Libs: -L${libdir} -lxslt  -L/Users/padilla/Dropbox/Private/TheDevelopmentBox/thepista/httparty/ruby/1.9.1/gems/nokogiri-1.6.1/ports/x86_64-apple-darwin13.0.0/libxml2/2.8.0/lib -lxml2 -lz -lpthread -liconv -lm 
+Libs: -L${libdir} -lxslt  -L/Users/padilla/DropBox/Private/TheDevelopmentBox/thepista/httparty/ruby/1.9.1/gems/nokogiri-1.6.1/ports/x86_64-apple-darwin13.0.0/libxml2/2.8.0/lib -lxml2 -lz -lpthread -liconv -lm 
 Cflags: -I${includedir}

@@ -1,10 +1,12 @@
 # -*- encoding: utf-8 -*-
+# stub: omniauth-google 1.0.2 ruby lib
 
 Gem::Specification.new do |s|
   s.name = "omniauth-google"
   s.version = "1.0.2"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
+  s.require_paths = ["lib"]
   s.authors = ["apps@yesware.com"]
   s.date = "2012-10-12"
   s.description = "A Google OAuth strategy for OmniAuth 1.0"
@@ -13,9 +15,10 @@ Gem::Specification.new do |s|
   s.files = ["LICENSE.txt", "README.md"]
   s.homepage = "http://github.com/Yesware/omniauth-google"
   s.licenses = ["MIT"]
-  s.require_paths = ["lib"]
-  s.rubygems_version = "1.8.16"
+  s.rubygems_version = "2.2.2"
   s.summary = "A Google OAuth strategy for OmniAuth 1.0"
+
+  s.installed_by_version = "2.2.2" if s.respond_to? :installed_by_version
 
   if s.respond_to? :specification_version then
     s.specification_version = 3

@@ -120,7 +120,7 @@ extern "C" {
 #ifndef WITH_MODULES
 #define WITH_MODULES
 #endif
-#define LIBXSLT_DEFAULT_PLUGINS_PATH() "/Users/padilla/Dropbox/Private/TheDevelopmentBox/thepista/httparty/ruby/1.9.1/gems/nokogiri-1.6.1/ports/x86_64-apple-darwin13.0.0/libxslt/1.1.26/lib/libxslt-plugins"
+#define LIBXSLT_DEFAULT_PLUGINS_PATH() "/Users/padilla/DropBox/Private/TheDevelopmentBox/thepista/httparty/ruby/1.9.1/gems/nokogiri-1.6.1/ports/x86_64-apple-darwin13.0.0/libxslt/1.1.26/lib/libxslt-plugins"
 #endif
 
 /**

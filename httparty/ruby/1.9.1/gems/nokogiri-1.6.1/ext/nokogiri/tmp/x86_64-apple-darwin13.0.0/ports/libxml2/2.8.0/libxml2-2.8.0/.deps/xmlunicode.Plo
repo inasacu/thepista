@@ -12,7 +12,7 @@ xmlunicode.lo: xmlunicode.c libxml.h config.h include/libxml/xmlversion.h \
   /usr/include/sys/_types/_errno_t.h /usr/include/strings.h \
   /usr/include/secure/_string.h include/libxml/xmlunicode.h \
   include/libxml/chvalid.h include/libxml/xmlstring.h \
-  /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../lib/clang/5.0/include/stdarg.h \
+  /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../lib/clang/5.1/include/stdarg.h \
   elfgcchack.h
 
 libxml.h:
@@ -73,6 +73,6 @@ include/libxml/chvalid.h:
 
 include/libxml/xmlstring.h:
 
-/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../lib/clang/5.0/include/stdarg.h:
+/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../lib/clang/5.1/include/stdarg.h:
 
 elfgcchack.h:

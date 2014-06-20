@@ -82,7 +82,7 @@ class HomeController < ApplicationController
 		# Group.latest_updates(@all_items) if @all_items.count < MEDIUM_FEED_SIZE     
 		# User.latest_updates(@all_items) if @all_items.count < MEDIUM_FEED_SIZE
 
-		Group.latest_items(@all_items) if @all_items.count < MEDIUM_FEED_SIZE
+		Group.latest_items(@all_items) if @all_items.count < MEDIUM_FEED_SIZE             if DISPLAY_FREMIUM_SERVICES
 		Venue.latest_items(@all_items) if @all_items.count < MEDIUM_FEED_SIZE  						if DISPLAY_PROFESSIONAL_SERVICES
 		Reservation.latest_items(@all_items) if @all_items.count < MEDIUM_FEED_SIZE  			if DISPLAY_PROFESSIONAL_SERVICES
 

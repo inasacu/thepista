@@ -12,11 +12,11 @@ ECHO = $(ECHO1:0=@echo)
 #### Start of system configuration section. ####
 
 srcdir = .
-topdir = /Users/padilla/.rvm/rubies/ruby-1.9.3-p448/include/ruby-1.9.1
-hdrdir = /Users/padilla/.rvm/rubies/ruby-1.9.3-p448/include/ruby-1.9.1
-arch_hdrdir = /Users/padilla/.rvm/rubies/ruby-1.9.3-p448/include/ruby-1.9.1/$(arch)
+topdir = /Users/padilla/.rvm/rubies/ruby-1.9.3-p545/include/ruby-1.9.1
+hdrdir = /Users/padilla/.rvm/rubies/ruby-1.9.3-p545/include/ruby-1.9.1
+arch_hdrdir = /Users/padilla/.rvm/rubies/ruby-1.9.3-p545/include/ruby-1.9.1/$(arch)
 VPATH = $(srcdir):$(arch_hdrdir)/ruby:$(hdrdir)/ruby
-prefix = $(DESTDIR)/Users/padilla/.rvm/rubies/ruby-1.9.3-p448
+prefix = $(DESTDIR)/Users/padilla/.rvm/rubies/ruby-1.9.3-p545
 rubylibprefix = $(libdir)/$(RUBY_BASE_NAME)
 exec_prefix = $(prefix)
 vendorhdrdir = $(rubyhdrdir)/vendor_ruby
@@ -46,14 +46,14 @@ sbindir = $(exec_prefix)/sbin
 bindir = $(exec_prefix)/bin
 rubylibdir = $(rubylibprefix)/$(ruby_version)
 archdir = $(rubylibdir)/$(arch)
-sitelibdir = $(DESTDIR)/Users/padilla/Dropbox/Private/TheDevelopmentBox/thepista/httparty/ruby/1.9.1/gems/nokogiri-1.6.1/ext/nokogiri/.gem.20131220-5456-1p5r6px
-sitearchdir = $(DESTDIR)/Users/padilla/Dropbox/Private/TheDevelopmentBox/thepista/httparty/ruby/1.9.1/gems/nokogiri-1.6.1/ext/nokogiri/.gem.20131220-5456-1p5r6px
+sitelibdir = $(DESTDIR)/Users/padilla/DropBox/Private/TheDevelopmentBox/thepista/httparty/ruby/1.9.1/gems/nokogiri-1.6.1/ext/nokogiri/.gem.20140620-12404-1b6bslz
+sitearchdir = $(DESTDIR)/Users/padilla/DropBox/Private/TheDevelopmentBox/thepista/httparty/ruby/1.9.1/gems/nokogiri-1.6.1/ext/nokogiri/.gem.20140620-12404-1b6bslz
 vendorlibdir = $(vendordir)/$(ruby_version)
 vendorarchdir = $(vendorlibdir)/$(sitearch)
 
 NULLCMD = :
 
-CC = /usr/local/Cellar/gcc46/4.6.4/bin/gcc-4.6
+CC = /usr/local/opt/gcc46/bin/gcc-4.6
 CXX = g++
 LIBRUBY = $(LIBRUBY_SO)
 LIBRUBY_A = lib$(RUBY_SO_NAME)-static.a
@@ -68,12 +68,12 @@ cflags   =  $(optflags) $(debugflags) $(warnflags)
 optflags = -O3
 debugflags = -ggdb
 warnflags = -Wall -Wextra -Wno-unused-parameter -Wno-parentheses -Wno-long-long -Wno-missing-field-initializers -Wpointer-arith -Wwrite-strings -Wdeclaration-after-statement -Wimplicit-function-declaration
-CFLAGS   = -fno-common $(cflags)  -fno-common -pipe  -g -DXP_UNIX -O3 -Wall -Wcast-qual -Wwrite-strings -Wconversion -Wmissing-noreturn -Winline -DNOKOGIRI_USE_PACKAGED_LIBRARIES -DNOKOGIRI_LIBXML2_PATH='"/Users/padilla/Dropbox/Private/TheDevelopmentBox/thepista/httparty/ruby/1.9.1/gems/nokogiri-1.6.1/ports/x86_64-apple-darwin13.0.0/libxml2/2.8.0"' -DNOKOGIRI_LIBXSLT_PATH='"/Users/padilla/Dropbox/Private/TheDevelopmentBox/thepista/httparty/ruby/1.9.1/gems/nokogiri-1.6.1/ports/x86_64-apple-darwin13.0.0/libxslt/1.1.26"' $(ARCH_FLAG)
+CFLAGS   = -fno-common $(cflags)  -fno-common -pipe  -g -DXP_UNIX -O3 -Wall -Wcast-qual -Wwrite-strings -Wconversion -Wmissing-noreturn -Winline -DNOKOGIRI_USE_PACKAGED_LIBRARIES -DNOKOGIRI_LIBXML2_PATH='"/Users/padilla/DropBox/Private/TheDevelopmentBox/thepista/httparty/ruby/1.9.1/gems/nokogiri-1.6.1/ports/x86_64-apple-darwin13.0.0/libxml2/2.8.0"' -DNOKOGIRI_LIBXSLT_PATH='"/Users/padilla/DropBox/Private/TheDevelopmentBox/thepista/httparty/ruby/1.9.1/gems/nokogiri-1.6.1/ports/x86_64-apple-darwin13.0.0/libxslt/1.1.26"' $(ARCH_FLAG)
 INCFLAGS = -I. -I$(arch_hdrdir) -I$(hdrdir)/ruby/backward -I$(hdrdir) -I$(srcdir)
 DEFS     = 
-CPPFLAGS = -DHAVE_XMLHASFEATURE -DHAVE_XMLFIRSTELEMENTCHILD -DHAVE_XMLRELAXNGSETPARSERSTRUCTUREDERRORS -DHAVE_XMLRELAXNGSETPARSERSTRUCTUREDERRORS -DHAVE_XMLRELAXNGSETVALIDSTRUCTUREDERRORS -DHAVE_XMLSCHEMASETVALIDSTRUCTUREDERRORS -DHAVE_XMLSCHEMASETPARSERSTRUCTUREDERRORS -I/Users/padilla/Dropbox/Private/TheDevelopmentBox/thepista/httparty/ruby/1.9.1/gems/nokogiri-1.6.1/ports/x86_64-apple-darwin13.0.0/libxml2/2.8.0/include/libxml2 -I/Users/padilla/Dropbox/Private/TheDevelopmentBox/thepista/httparty/ruby/1.9.1/gems/nokogiri-1.6.1/ports/x86_64-apple-darwin13.0.0/libxml2/2.8.0/include -I/Users/padilla/Dropbox/Private/TheDevelopmentBox/thepista/httparty/ruby/1.9.1/gems/nokogiri-1.6.1/ports/x86_64-apple-darwin13.0.0/libxslt/1.1.26/include -D_XOPEN_SOURCE -D_DARWIN_C_SOURCE $(DEFS) $(cppflags) -I/usr/local/opt/libyaml/include -I/usr/local/opt/readline/include -I/usr/local/opt/libksba/include -I/usr/local/opt/openssl/include
+CPPFLAGS = -DHAVE_XMLHASFEATURE -DHAVE_XMLFIRSTELEMENTCHILD -DHAVE_XMLRELAXNGSETPARSERSTRUCTUREDERRORS -DHAVE_XMLRELAXNGSETPARSERSTRUCTUREDERRORS -DHAVE_XMLRELAXNGSETVALIDSTRUCTUREDERRORS -DHAVE_XMLSCHEMASETVALIDSTRUCTUREDERRORS -DHAVE_XMLSCHEMASETPARSERSTRUCTUREDERRORS -I/Users/padilla/DropBox/Private/TheDevelopmentBox/thepista/httparty/ruby/1.9.1/gems/nokogiri-1.6.1/ports/x86_64-apple-darwin13.0.0/libxml2/2.8.0/include/libxml2 -I/Users/padilla/DropBox/Private/TheDevelopmentBox/thepista/httparty/ruby/1.9.1/gems/nokogiri-1.6.1/ports/x86_64-apple-darwin13.0.0/libxml2/2.8.0/include -I/Users/padilla/DropBox/Private/TheDevelopmentBox/thepista/httparty/ruby/1.9.1/gems/nokogiri-1.6.1/ports/x86_64-apple-darwin13.0.0/libxslt/1.1.26/include -D_XOPEN_SOURCE -D_DARWIN_C_SOURCE $(DEFS) $(cppflags) -I/usr/local/opt/libyaml/include -I/usr/local/opt/readline/include -I/usr/local/opt/libksba/include -I/usr/local/opt/openssl/include
 CXXFLAGS = $(CFLAGS) $(cxxflags)
-ldflags  = -L.  -L/usr/local/opt/libyaml/lib -L/usr/local/opt/readline/lib -L/usr/local/opt/libksba/lib -L/usr/local/opt/openssl/lib  -Wl,-rpath,/Users/padilla/Dropbox/Private/TheDevelopmentBox/thepista/httparty/ruby/1.9.1/gems/nokogiri-1.6.1/ports/x86_64-apple-darwin13.0.0/libxml2/2.8.0/lib -Wl,-rpath,/Users/padilla/Dropbox/Private/TheDevelopmentBox/thepista/httparty/ruby/1.9.1/gems/nokogiri-1.6.1/ports/x86_64-apple-darwin13.0.0/libxslt/1.1.26/lib
+ldflags  = -L.  -L/usr/local/opt/libyaml/lib -L/usr/local/opt/readline/lib -L/usr/local/opt/libksba/lib -L/usr/local/opt/openssl/lib  -Wl,-rpath,/Users/padilla/DropBox/Private/TheDevelopmentBox/thepista/httparty/ruby/1.9.1/gems/nokogiri-1.6.1/ports/x86_64-apple-darwin13.0.0/libxml2/2.8.0/lib -Wl,-rpath,/Users/padilla/DropBox/Private/TheDevelopmentBox/thepista/httparty/ruby/1.9.1/gems/nokogiri-1.6.1/ports/x86_64-apple-darwin13.0.0/libxslt/1.1.26/lib
 dldflags = -Wl,-undefined,dynamic_lookup -Wl,-multiply_defined,suppress -Wl,-flat_namespace -L/usr/local/opt/libyaml/lib -L/usr/local/opt/readline/lib -L/usr/local/opt/libksba/lib -L/usr/local/opt/openssl/lib  
 ARCH_FLAG = 
 DLDFLAGS = $(ldflags) $(dldflags) $(ARCH_FLAG)
@@ -85,10 +85,10 @@ EXEEXT =
 RUBY_BASE_NAME = ruby
 RUBY_INSTALL_NAME = ruby
 RUBY_SO_NAME = ruby.1.9.1
-arch = x86_64-darwin13.0.0
+arch = x86_64-darwin13.1.0
 sitearch = $(arch)
 ruby_version = 1.9.1
-ruby = /Users/padilla/.rvm/rubies/ruby-1.9.3-p448/bin/ruby
+ruby = /Users/padilla/.rvm/rubies/ruby-1.9.3-p545/bin/ruby
 RUBY = $(ruby)
 RM = rm -f
 RM_RF = $(RUBY) -run -e rm -- -rf
@@ -104,8 +104,8 @@ TOUCH = exit >
 
 preload = 
 
-libpath = . $(libdir) /Users/padilla/Dropbox/Private/TheDevelopmentBox/thepista/httparty/ruby/1.9.1/gems/nokogiri-1.6.1/ports/x86_64-apple-darwin13.0.0/libxml2/2.8.0/lib /Users/padilla/Dropbox/Private/TheDevelopmentBox/thepista/httparty/ruby/1.9.1/gems/nokogiri-1.6.1/ports/x86_64-apple-darwin13.0.0/libxslt/1.1.26/lib /usr/local/opt/libyaml/lib /usr/local/opt/readline/lib /usr/local/opt/libksba/lib /usr/local/opt/openssl/lib
-LIBPATH =  -L. -L$(libdir) -L/Users/padilla/Dropbox/Private/TheDevelopmentBox/thepista/httparty/ruby/1.9.1/gems/nokogiri-1.6.1/ports/x86_64-apple-darwin13.0.0/libxml2/2.8.0/lib -L/Users/padilla/Dropbox/Private/TheDevelopmentBox/thepista/httparty/ruby/1.9.1/gems/nokogiri-1.6.1/ports/x86_64-apple-darwin13.0.0/libxslt/1.1.26/lib -L/usr/local/opt/libyaml/lib -L/usr/local/opt/readline/lib -L/usr/local/opt/libksba/lib -L/usr/local/opt/openssl/lib
+libpath = . $(libdir) /Users/padilla/DropBox/Private/TheDevelopmentBox/thepista/httparty/ruby/1.9.1/gems/nokogiri-1.6.1/ports/x86_64-apple-darwin13.0.0/libxml2/2.8.0/lib /Users/padilla/DropBox/Private/TheDevelopmentBox/thepista/httparty/ruby/1.9.1/gems/nokogiri-1.6.1/ports/x86_64-apple-darwin13.0.0/libxslt/1.1.26/lib /usr/local/opt/libyaml/lib /usr/local/opt/readline/lib /usr/local/opt/libksba/lib /usr/local/opt/openssl/lib
+LIBPATH =  -L. -L$(libdir) -L/Users/padilla/DropBox/Private/TheDevelopmentBox/thepista/httparty/ruby/1.9.1/gems/nokogiri-1.6.1/ports/x86_64-apple-darwin13.0.0/libxml2/2.8.0/lib -L/Users/padilla/DropBox/Private/TheDevelopmentBox/thepista/httparty/ruby/1.9.1/gems/nokogiri-1.6.1/ports/x86_64-apple-darwin13.0.0/libxslt/1.1.26/lib -L/usr/local/opt/libyaml/lib -L/usr/local/opt/readline/lib -L/usr/local/opt/libksba/lib -L/usr/local/opt/openssl/lib
 DEFFILE = 
 
 CLEANFILES = mkmf.log
@@ -214,6 +214,7 @@ $(DLLIB): $(OBJS) Makefile
 	$(ECHO) linking shared-object nokogiri/$(DLLIB)
 	-$(Q)$(RM) $(@)
 	$(Q) $(LDSHARED) -o $@ $(OBJS) $(LIBPATH) $(DLDFLAGS) $(LOCAL_LIBS) $(LIBS)
+	$(Q) $(POSTLINK)
 
 
 

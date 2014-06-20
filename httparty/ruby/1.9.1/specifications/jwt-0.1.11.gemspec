@@ -6,6 +6,7 @@ Gem::Specification.new do |s|
   s.version = "0.1.11"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 1.2") if s.respond_to? :required_rubygems_version=
+  s.require_paths = ["lib"]
   s.authors = ["Jeff Lindsay"]
   s.date = "2014-01-17"
   s.description = "JSON Web Token implementation in Ruby"
@@ -15,10 +16,11 @@ Gem::Specification.new do |s|
   s.homepage = "http://github.com/progrium/ruby-jwt"
   s.licenses = ["MIT"]
   s.rdoc_options = ["--line-numbers", "--title", "Jwt", "--main", "README.md"]
-  s.require_paths = ["lib"]
   s.rubyforge_project = "jwt"
-  s.rubygems_version = "2.1.10"
+  s.rubygems_version = "2.2.2"
   s.summary = "JSON Web Token implementation in Ruby"
+
+  s.installed_by_version = "2.2.2" if s.respond_to? :installed_by_version
 
   if s.respond_to? :specification_version then
     s.specification_version = 3

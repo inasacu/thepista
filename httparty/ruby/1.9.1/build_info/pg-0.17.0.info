@@ -1,1 +1,1 @@
---with-pg-config=/Applications/Postgres.app/Contents/MacOS/bin/pg_config
+--with-pg-config=/usr/local/Cellar/postgresql/9.3.1/bin/psql

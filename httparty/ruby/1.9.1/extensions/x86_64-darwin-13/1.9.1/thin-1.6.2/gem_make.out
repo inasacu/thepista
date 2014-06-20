@@ -1,0 +1,22 @@
+/Users/padilla/.rvm/rubies/ruby-1.9.3-p545/bin/ruby extconf.rb 
+checking for main() in -lc... yes
+creating Makefile
+
+make  clean
+
+make
+compiling parser.c
+compiling thin.c
+thin.c: In function 'Thin_HttpParser_alloc':
+thin.c:242:3: warning: implicit declaration of function 'thin_http_parser_init' [-Wimplicit-function-declaration]
+thin.c: In function 'Thin_HttpParser_finish':
+thin.c:294:3: warning: implicit declaration of function 'thin_http_parser_finish' [-Wimplicit-function-declaration]
+thin.c:296:3: warning: implicit declaration of function 'thin_http_parser_is_finished' [-Wimplicit-function-declaration]
+thin.c: In function 'Thin_HttpParser_execute':
+thin.c:334:5: warning: implicit declaration of function 'thin_http_parser_execute' [-Wimplicit-function-declaration]
+thin.c:338:5: warning: implicit declaration of function 'thin_http_parser_has_error' [-Wimplicit-function-declaration]
+linking shared-object thin_parser.bundle
+
+make  install
+/usr/bin/install -c -m 0755 thin_parser.bundle /Users/padilla/DropBox/Private/TheDevelopmentBox/thepista/httparty/ruby/1.9.1/gems/thin-1.6.2/ext/thin_parser/.gem.20140620-12404-280r07
+installing default thin_parser libraries

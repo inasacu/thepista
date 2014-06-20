@@ -6,15 +6,17 @@ Gem::Specification.new do |s|
   s.version = "0.5.4"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
+  s.require_paths = ["lib"]
   s.authors = ["Jon Yurek"]
   s.date = "2014-03-28"
   s.description = "A small library for doing (command) lines"
   s.email = "jyurek@thoughtbot.com"
   s.homepage = "http://github.com/thoughtbot/cocaine"
   s.licenses = ["MIT"]
-  s.require_paths = ["lib"]
-  s.rubygems_version = "2.1.10"
+  s.rubygems_version = "2.2.2"
   s.summary = "A small library for doing (command) lines"
+
+  s.installed_by_version = "2.2.2" if s.respond_to? :installed_by_version
 
   if s.respond_to? :specification_version then
     s.specification_version = 4

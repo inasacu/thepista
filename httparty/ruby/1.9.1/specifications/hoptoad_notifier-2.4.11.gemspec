@@ -1,17 +1,20 @@
 # -*- encoding: utf-8 -*-
+# stub: hoptoad_notifier 2.4.11 ruby lib
 
 Gem::Specification.new do |s|
   s.name = "hoptoad_notifier"
   s.version = "2.4.11"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
+  s.require_paths = ["lib"]
   s.authors = ["thoughtbot, inc"]
   s.date = "2011-05-26"
   s.email = "support@hoptoadapp.com"
   s.homepage = "http://www.hoptoadapp.com"
-  s.require_paths = ["lib"]
-  s.rubygems_version = "1.8.16"
+  s.rubygems_version = "2.2.2"
   s.summary = "Send your application errors to our hosted service and reclaim your inbox."
+
+  s.installed_by_version = "2.2.2" if s.respond_to? :installed_by_version
 
   if s.respond_to? :specification_version then
     s.specification_version = 3

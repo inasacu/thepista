@@ -104,12 +104,6 @@ GEM
       treetop (~> 1.4.8)
     mime-types (1.25.1)
     mini_portile (0.5.3)
-    mongoid (3.0.23)
-      activemodel (~> 3.1)
-      moped (~> 1.2)
-      origin (~> 1.0)
-      tzinfo (~> 0.3.22)
-    moped (1.5.2)
     multi_json (1.10.1)
     multi_xml (0.5.5)
     multipart-post (2.0.0)
@@ -154,7 +148,6 @@ GEM
       omniauth-oauth2 (~> 1.0)
     omniauth-yahoo (0.0.5)
       omniauth-oauth (~> 1.0)
-    origin (1.1.0)
     paperclip (4.1.1)
       activemodel (>= 3.0.0)
       activesupport (>= 3.0.0)
@@ -246,7 +239,6 @@ DEPENDENCIES
   hoptoad_notifier
   httparty (>= 0.8.1)
   jquery-rails (= 2.3.0)
-  mongoid (~> 3.0.0)
   newrelic_rpm
   omniauth
   omniauth-browserid

@@ -34,7 +34,7 @@ testC14N.o: testC14N.c libxml.h config.h include/libxml/xmlversion.h \
   /usr/include/sys/_types/_sigaltstack.h \
   /usr/include/sys/_types/_ucontext.h \
   /usr/include/sys/_types/_pthread_attr_t.h /usr/include/sys/resource.h \
-  /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../lib/clang/5.0/include/stdint.h \
+  /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../lib/clang/5.1/include/stdint.h \
   /usr/include/stdint.h /usr/include/sys/_types/_int8_t.h \
   /usr/include/sys/_types/_int16_t.h /usr/include/sys/_types/_int32_t.h \
   /usr/include/sys/_types/_int64_t.h /usr/include/_types/_uint8_t.h \
@@ -49,7 +49,7 @@ testC14N.o: testC14N.c libxml.h config.h include/libxml/xmlversion.h \
   /usr/include/i386/types.h /usr/include/sys/_types/___offsetof.h \
   include/libxml/xmlmemory.h include/libxml/threads.h \
   include/libxml/globals.h include/libxml/parser.h \
-  /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../lib/clang/5.0/include/stdarg.h \
+  /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../lib/clang/5.1/include/stdarg.h \
   include/libxml/tree.h include/libxml/xmlstring.h \
   include/libxml/xmlregexp.h include/libxml/dict.h include/libxml/hash.h \
   include/libxml/valid.h include/libxml/xmlerror.h include/libxml/list.h \
@@ -193,7 +193,7 @@ include/libxml/xmlexports.h:
 
 /usr/include/sys/resource.h:
 
-/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../lib/clang/5.0/include/stdint.h:
+/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../lib/clang/5.1/include/stdint.h:
 
 /usr/include/stdint.h:
 
@@ -251,7 +251,7 @@ include/libxml/globals.h:
 
 include/libxml/parser.h:
 
-/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../lib/clang/5.0/include/stdarg.h:
+/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../lib/clang/5.1/include/stdarg.h:
 
 include/libxml/tree.h:
 

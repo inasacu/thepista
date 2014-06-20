@@ -185,7 +185,7 @@ func_exec_program ()
 
   if test -f "$progdir/$program"; then
     # Add our own library path to DYLD_LIBRARY_PATH
-    DYLD_LIBRARY_PATH="/Users/padilla/Dropbox/Private/TheDevelopmentBox/thepista/httparty/ruby/1.9.1/gems/nokogiri-1.6.1/ext/nokogiri/tmp/x86_64-apple-darwin13.0.0/ports/libxml2/2.8.0/libxml2-2.8.0/.libs:$DYLD_LIBRARY_PATH"
+    DYLD_LIBRARY_PATH="/Users/padilla/DropBox/Private/TheDevelopmentBox/thepista/httparty/ruby/1.9.1/gems/nokogiri-1.6.1/ext/nokogiri/tmp/x86_64-apple-darwin13.0.0/ports/libxml2/2.8.0/libxml2-2.8.0/.libs:$DYLD_LIBRARY_PATH"
 
     # Some systems cannot cope with colon-terminated DYLD_LIBRARY_PATH
     # The second colon is a workaround for a bug in BeOS R4 sed

@@ -12,11 +12,11 @@ ECHO = $(ECHO1:0=@echo)
 #### Start of system configuration section. ####
 
 srcdir = .
-topdir = /Users/padilla/.rvm/rubies/ruby-1.9.3-p448/include/ruby-1.9.1
-hdrdir = /Users/padilla/.rvm/rubies/ruby-1.9.3-p448/include/ruby-1.9.1
-arch_hdrdir = /Users/padilla/.rvm/rubies/ruby-1.9.3-p448/include/ruby-1.9.1/$(arch)
+topdir = /Users/padilla/.rvm/rubies/ruby-1.9.3-p545/include/ruby-1.9.1
+hdrdir = /Users/padilla/.rvm/rubies/ruby-1.9.3-p545/include/ruby-1.9.1
+arch_hdrdir = /Users/padilla/.rvm/rubies/ruby-1.9.3-p545/include/ruby-1.9.1/$(arch)
 VPATH = $(srcdir):$(arch_hdrdir)/ruby:$(hdrdir)/ruby
-prefix = $(DESTDIR)/Users/padilla/.rvm/rubies/ruby-1.9.3-p448
+prefix = $(DESTDIR)/Users/padilla/.rvm/rubies/ruby-1.9.3-p545
 rubylibprefix = $(libdir)/$(RUBY_BASE_NAME)
 exec_prefix = $(prefix)
 vendorhdrdir = $(rubyhdrdir)/vendor_ruby
@@ -46,14 +46,14 @@ sbindir = $(exec_prefix)/sbin
 bindir = $(exec_prefix)/bin
 rubylibdir = $(rubylibprefix)/$(ruby_version)
 archdir = $(rubylibdir)/$(arch)
-sitelibdir = $(DESTDIR)/Users/padilla/Dropbox/Private/TheDevelopmentBox/thepista/httparty/ruby/1.9.1/gems/json-1.8.1/ext/json/ext/parser/.gem.20131101-58051-64pf4n
-sitearchdir = $(DESTDIR)/Users/padilla/Dropbox/Private/TheDevelopmentBox/thepista/httparty/ruby/1.9.1/gems/json-1.8.1/ext/json/ext/parser/.gem.20131101-58051-64pf4n
+sitelibdir = $(DESTDIR)/Users/padilla/DropBox/Private/TheDevelopmentBox/thepista/httparty/ruby/1.9.1/gems/json-1.8.1/ext/json/ext/parser/.gem.20140620-12404-io8r7k
+sitearchdir = $(DESTDIR)/Users/padilla/DropBox/Private/TheDevelopmentBox/thepista/httparty/ruby/1.9.1/gems/json-1.8.1/ext/json/ext/parser/.gem.20140620-12404-io8r7k
 vendorlibdir = $(vendordir)/$(ruby_version)
 vendorarchdir = $(vendorlibdir)/$(sitearch)
 
 NULLCMD = :
 
-CC = /usr/local/Cellar/gcc46/4.6.4/bin/gcc-4.6
+CC = /usr/local/opt/gcc46/bin/gcc-4.6
 CXX = g++
 LIBRUBY = $(LIBRUBY_SO)
 LIBRUBY_A = lib$(RUBY_SO_NAME)-static.a
@@ -85,10 +85,10 @@ EXEEXT =
 RUBY_BASE_NAME = ruby
 RUBY_INSTALL_NAME = ruby
 RUBY_SO_NAME = ruby.1.9.1
-arch = x86_64-darwin13.0.0
+arch = x86_64-darwin13.1.0
 sitearch = $(arch)
 ruby_version = 1.9.1
-ruby = /Users/padilla/.rvm/rubies/ruby-1.9.3-p448/bin/ruby
+ruby = /Users/padilla/.rvm/rubies/ruby-1.9.3-p545/bin/ruby
 RUBY = $(ruby)
 RM = rm -f
 RM_RF = $(RUBY) -run -e rm -- -rf
@@ -214,6 +214,7 @@ $(DLLIB): $(OBJS) Makefile
 	$(ECHO) linking shared-object json/ext/$(DLLIB)
 	-$(Q)$(RM) $(@)
 	$(Q) $(LDSHARED) -o $@ $(OBJS) $(LIBPATH) $(DLDFLAGS) $(LOCAL_LIBS) $(LIBS)
+	$(Q) $(POSTLINK)
 
 
 

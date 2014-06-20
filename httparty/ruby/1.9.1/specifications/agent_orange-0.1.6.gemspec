@@ -1,10 +1,12 @@
 # -*- encoding: utf-8 -*-
+# stub: agent_orange 0.1.6 ruby lib
 
 Gem::Specification.new do |s|
   s.name = "agent_orange"
   s.version = "0.1.6"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
+  s.require_paths = ["lib"]
   s.authors = ["Kevin Elliott"]
   s.date = "2013-01-16"
   s.description = "Parse and process User Agents like a secret one"
@@ -12,10 +14,11 @@ Gem::Specification.new do |s|
   s.executables = ["agent_orange_example"]
   s.files = ["bin/agent_orange_example"]
   s.homepage = "http://github.com/kevinelliott/agent_orange"
-  s.require_paths = ["lib"]
   s.rubyforge_project = "agent_orange"
-  s.rubygems_version = "1.8.16"
+  s.rubygems_version = "2.2.2"
   s.summary = "Parse and process User Agents like a secret one"
+
+  s.installed_by_version = "2.2.2" if s.respond_to? :installed_by_version
 
   if s.respond_to? :specification_version then
     s.specification_version = 3

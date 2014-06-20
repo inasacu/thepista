@@ -58,7 +58,7 @@ runsuite.o: runsuite.c libxml.h config.h include/libxml/xmlversion.h \
   /usr/include/fcntl.h /usr/include/sys/fcntl.h \
   /usr/include/sys/_types/_o_sync.h /usr/include/sys/_types/_o_dsync.h \
   include/libxml/parser.h \
-  /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../lib/clang/5.0/include/stdarg.h \
+  /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../lib/clang/5.1/include/stdarg.h \
   include/libxml/tree.h include/libxml/xmlstring.h \
   include/libxml/xmlregexp.h include/libxml/dict.h include/libxml/hash.h \
   include/libxml/valid.h include/libxml/xmlerror.h include/libxml/list.h \
@@ -72,7 +72,7 @@ runsuite.o: runsuite.c libxml.h config.h include/libxml/xmlversion.h \
   /usr/include/mach/i386/_structs.h \
   /usr/include/sys/_types/_sigaltstack.h \
   /usr/include/sys/_types/_ucontext.h /usr/include/sys/resource.h \
-  /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../lib/clang/5.0/include/stdint.h \
+  /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../lib/clang/5.1/include/stdint.h \
   /usr/include/stdint.h /usr/include/_types/_uint8_t.h \
   /usr/include/_types/_uint16_t.h /usr/include/_types/_uint32_t.h \
   /usr/include/_types/_uint64_t.h /usr/include/_types/_intmax_t.h \
@@ -283,7 +283,7 @@ include/libxml/xmlexports.h:
 
 include/libxml/parser.h:
 
-/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../lib/clang/5.0/include/stdarg.h:
+/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../lib/clang/5.1/include/stdarg.h:
 
 include/libxml/tree.h:
 
@@ -339,7 +339,7 @@ include/libxml/SAX.h:
 
 /usr/include/sys/resource.h:
 
-/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../lib/clang/5.0/include/stdint.h:
+/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../lib/clang/5.1/include/stdint.h:
 
 /usr/include/stdint.h:
 

@@ -38,7 +38,7 @@ relink_command=""
 if test "$libtool_install_magic" = "%%%MAGIC variable%%%"; then
   # install mode needs the following variables:
   generated_by_libtool_version='2.2.6'
-  notinst_deplibs=' ../libxslt/libxslt.la ../libexslt/libexslt.la /Users/padilla/Dropbox/Private/TheDevelopmentBox/thepista/httparty/ruby/1.9.1/gems/nokogiri-1.6.1/ext/nokogiri/tmp/x86_64-apple-darwin13.0.0/ports/libxslt/1.1.26/libxslt-1.1.26/libxslt/libxslt.la'
+  notinst_deplibs=' ../libxslt/libxslt.la ../libexslt/libexslt.la /Users/padilla/DropBox/Private/TheDevelopmentBox/thepista/httparty/ruby/1.9.1/gems/nokogiri-1.6.1/ext/nokogiri/tmp/x86_64-apple-darwin13.0.0/ports/libxslt/1.1.26/libxslt-1.1.26/libxslt/libxslt.la'
 else
   # When we are sourced in execute mode, $file and $ECHO are already set.
   if test "$libtool_execute_magic" != "%%%MAGIC variable%%%"; then
@@ -104,7 +104,7 @@ else
 
   if test -f "$progdir/$program"; then
     # Add our own library path to DYLD_LIBRARY_PATH
-    DYLD_LIBRARY_PATH="/Users/padilla/Dropbox/Private/TheDevelopmentBox/thepista/httparty/ruby/1.9.1/gems/nokogiri-1.6.1/ext/nokogiri/tmp/x86_64-apple-darwin13.0.0/ports/libxslt/1.1.26/libxslt-1.1.26/libxslt/.libs:/Users/padilla/Dropbox/Private/TheDevelopmentBox/thepista/httparty/ruby/1.9.1/gems/nokogiri-1.6.1/ext/nokogiri/tmp/x86_64-apple-darwin13.0.0/ports/libxslt/1.1.26/libxslt-1.1.26/libexslt/.libs:$DYLD_LIBRARY_PATH"
+    DYLD_LIBRARY_PATH="/Users/padilla/DropBox/Private/TheDevelopmentBox/thepista/httparty/ruby/1.9.1/gems/nokogiri-1.6.1/ext/nokogiri/tmp/x86_64-apple-darwin13.0.0/ports/libxslt/1.1.26/libxslt-1.1.26/libxslt/.libs:/Users/padilla/DropBox/Private/TheDevelopmentBox/thepista/httparty/ruby/1.9.1/gems/nokogiri-1.6.1/ext/nokogiri/tmp/x86_64-apple-darwin13.0.0/ports/libxslt/1.1.26/libxslt-1.1.26/libexslt/.libs:$DYLD_LIBRARY_PATH"
 
     # Some systems cannot cope with colon-terminated DYLD_LIBRARY_PATH
     # The second colon is a workaround for a bug in BeOS R4 sed

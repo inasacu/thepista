@@ -6,6 +6,7 @@ Gem::Specification.new do |s|
   s.version = "0.12.1"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
+  s.require_paths = ["lib"]
   s.authors = ["oleg dashevskii"]
   s.date = "2010-11-02"
   s.description = "Role-based authorization system for Rails with a nice DSL for access control lists"
@@ -14,9 +15,10 @@ Gem::Specification.new do |s|
   s.files = ["README.textile", "TODO"]
   s.homepage = "http://github.com/be9/acl9"
   s.rdoc_options = ["--charset=UTF-8"]
-  s.require_paths = ["lib"]
-  s.rubygems_version = "2.1.10"
+  s.rubygems_version = "2.2.2"
   s.summary = "Yet another role-based authorization system for Rails"
+
+  s.installed_by_version = "2.2.2" if s.respond_to? :installed_by_version
 
   if s.respond_to? :specification_version then
     s.specification_version = 3

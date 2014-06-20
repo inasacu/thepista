@@ -1,22 +1,25 @@
 # -*- encoding: utf-8 -*-
+# stub: journey 1.0.4 ruby lib
 
 Gem::Specification.new do |s|
   s.name = "journey"
   s.version = "1.0.4"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
+  s.require_paths = ["lib"]
   s.authors = ["Aaron Patterson"]
   s.date = "2012-06-14"
   s.description = "Journey is a router.  It routes requests."
   s.email = ["aaron@tenderlovemaking.com"]
   s.extra_rdoc_files = ["Manifest.txt", "CHANGELOG.rdoc", "README.rdoc"]
-  s.files = ["Manifest.txt", "CHANGELOG.rdoc", "README.rdoc"]
+  s.files = ["CHANGELOG.rdoc", "Manifest.txt", "README.rdoc"]
   s.homepage = "http://github.com/rails/journey"
   s.rdoc_options = ["--main", "README.rdoc"]
-  s.require_paths = ["lib"]
   s.rubyforge_project = "journey"
-  s.rubygems_version = "1.8.16"
+  s.rubygems_version = "2.2.2"
   s.summary = "Journey is a router"
+
+  s.installed_by_version = "2.2.2" if s.respond_to? :installed_by_version
 
   if s.respond_to? :specification_version then
     s.specification_version = 3

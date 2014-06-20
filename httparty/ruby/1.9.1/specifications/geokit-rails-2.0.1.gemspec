@@ -6,14 +6,16 @@ Gem::Specification.new do |s|
   s.version = "2.0.1"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 1.3.6") if s.respond_to? :required_rubygems_version=
+  s.require_paths = ["lib"]
   s.authors = ["Michael Noack", "Andre Lewis", "Bill Eisenhauer", "Jeremy Lecour"]
   s.date = "2013-11-27"
   s.description = "Official Geokit plugin for Rails/ActiveRecord. Provides location-based goodness for your Rails app. Requires the Geokit gem."
   s.email = ["michael@noack.com.au", "andre@earthcode.com", "bill_eisenhauer@yahoo.com", "jeremy.lecour@gmail.com"]
   s.homepage = "http://github.com/geokit/geokit-rails"
-  s.require_paths = ["lib"]
-  s.rubygems_version = "2.1.10"
+  s.rubygems_version = "2.2.2"
   s.summary = "Integrate Geokit with Rails"
+
+  s.installed_by_version = "2.2.2" if s.respond_to? :installed_by_version
 
   if s.respond_to? :specification_version then
     s.specification_version = 4

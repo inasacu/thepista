@@ -1,18 +1,21 @@
 # -*- encoding: utf-8 -*-
+# stub: climate_control 0.0.3 ruby lib
 
 Gem::Specification.new do |s|
   s.name = "climate_control"
   s.version = "0.0.3"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
+  s.require_paths = ["lib"]
   s.authors = ["Joshua Clayton"]
   s.date = "2012-11-30"
   s.description = "Modify your ENV"
   s.email = ["joshua.clayton@gmail.com"]
   s.homepage = "https://github.com/thoughtbot/climate_control"
-  s.require_paths = ["lib"]
-  s.rubygems_version = "1.8.16"
+  s.rubygems_version = "2.2.2"
   s.summary = "Modify your ENV easily with ClimateControl"
+
+  s.installed_by_version = "2.2.2" if s.respond_to? :installed_by_version
 
   if s.respond_to? :specification_version then
     s.specification_version = 3

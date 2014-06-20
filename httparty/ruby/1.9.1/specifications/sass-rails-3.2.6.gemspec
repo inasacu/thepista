@@ -1,19 +1,22 @@
 # -*- encoding: utf-8 -*-
+# stub: sass-rails 3.2.6 ruby lib
 
 Gem::Specification.new do |s|
   s.name = "sass-rails"
   s.version = "3.2.6"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
+  s.require_paths = ["lib"]
   s.authors = ["wycats", "chriseppstein"]
   s.date = "2013-01-14"
   s.description = "Sass adapter for the Rails asset pipeline."
   s.email = ["wycats@gmail.com", "chris@eppsteins.net"]
   s.homepage = ""
-  s.require_paths = ["lib"]
   s.rubyforge_project = "sass-rails"
-  s.rubygems_version = "1.8.16"
+  s.rubygems_version = "2.2.2"
   s.summary = "Sass adapter for the Rails asset pipeline."
+
+  s.installed_by_version = "2.2.2" if s.respond_to? :installed_by_version
 
   if s.respond_to? :specification_version then
     s.specification_version = 4

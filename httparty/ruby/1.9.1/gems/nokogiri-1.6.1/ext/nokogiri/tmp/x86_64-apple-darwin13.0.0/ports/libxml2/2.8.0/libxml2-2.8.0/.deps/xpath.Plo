@@ -48,7 +48,7 @@ xpath.lo: xpath.c libxml.h config.h include/libxml/xmlversion.h \
   /usr/include/sys/_types/_pthread_key_t.h \
   /usr/include/sys/_types/_fsblkcnt_t.h \
   /usr/include/sys/_types/_fsfilcnt_t.h /usr/include/math.h \
-  /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../lib/clang/5.0/include/float.h \
+  /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../lib/clang/5.1/include/float.h \
   /usr/include/ctype.h /usr/include/runetype.h \
   /usr/include/sys/_types/_ct_rune_t.h /usr/include/sys/_types/_rune_t.h \
   /usr/include/sys/_types/_wchar_t.h /usr/include/sys/_types/_wint_t.h \
@@ -61,7 +61,7 @@ xpath.lo: xpath.c libxml.h config.h include/libxml/xmlversion.h \
   /usr/include/sys/_types/_sigset_t.h include/libxml/xmlmemory.h \
   include/libxml/threads.h include/libxml/globals.h \
   include/libxml/parser.h \
-  /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../lib/clang/5.0/include/stdarg.h \
+  /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../lib/clang/5.1/include/stdarg.h \
   include/libxml/tree.h include/libxml/xmlstring.h \
   include/libxml/xmlregexp.h include/libxml/dict.h include/libxml/hash.h \
   include/libxml/valid.h include/libxml/xmlerror.h include/libxml/list.h \
@@ -69,7 +69,7 @@ xpath.lo: xpath.c libxml.h config.h include/libxml/xmlversion.h \
   include/libxml/encoding.h /usr/include/iconv.h include/libxml/xmlIO.h \
   include/libxml/SAX.h /usr/include/stdlib.h /usr/include/sys/wait.h \
   /usr/include/sys/resource.h \
-  /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../lib/clang/5.0/include/stdint.h \
+  /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../lib/clang/5.1/include/stdint.h \
   /usr/include/stdint.h /usr/include/_types/_uint8_t.h \
   /usr/include/_types/_uint16_t.h /usr/include/_types/_uint32_t.h \
   /usr/include/_types/_uint64_t.h /usr/include/_types/_intmax_t.h \
@@ -80,7 +80,7 @@ xpath.lo: xpath.c libxml.h config.h include/libxml/xmlversion.h \
   include/libxml/chvalid.h include/libxml/xpointer.h \
   include/libxml/debugXML.h include/libxml/pattern.h trionan.c triodef.h \
   trionan.h \
-  /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../lib/clang/5.0/include/limits.h \
+  /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../lib/clang/5.1/include/limits.h \
   /usr/include/limits.h /usr/include/machine/limits.h \
   /usr/include/i386/limits.h /usr/include/i386/_limits.h \
   /usr/include/sys/syslimits.h /usr/include/assert.h elfgcchack.h
@@ -245,7 +245,7 @@ include/libxml/xmlexports.h:
 
 /usr/include/math.h:
 
-/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../lib/clang/5.0/include/float.h:
+/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../lib/clang/5.1/include/float.h:
 
 /usr/include/ctype.h:
 
@@ -287,7 +287,7 @@ include/libxml/globals.h:
 
 include/libxml/parser.h:
 
-/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../lib/clang/5.0/include/stdarg.h:
+/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../lib/clang/5.1/include/stdarg.h:
 
 include/libxml/tree.h:
 
@@ -323,7 +323,7 @@ include/libxml/SAX.h:
 
 /usr/include/sys/resource.h:
 
-/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../lib/clang/5.0/include/stdint.h:
+/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../lib/clang/5.1/include/stdint.h:
 
 /usr/include/stdint.h:
 
@@ -369,7 +369,7 @@ triodef.h:
 
 trionan.h:
 
-/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../lib/clang/5.0/include/limits.h:
+/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../lib/clang/5.1/include/limits.h:
 
 /usr/include/limits.h:
 

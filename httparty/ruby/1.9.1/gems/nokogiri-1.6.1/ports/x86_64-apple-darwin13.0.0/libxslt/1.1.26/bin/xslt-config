@@ -1,6 +1,6 @@
 #! /bin/sh
 
-prefix=/Users/padilla/Dropbox/Private/TheDevelopmentBox/thepista/httparty/ruby/1.9.1/gems/nokogiri-1.6.1/ports/x86_64-apple-darwin13.0.0/libxslt/1.1.26
+prefix=/Users/padilla/DropBox/Private/TheDevelopmentBox/thepista/httparty/ruby/1.9.1/gems/nokogiri-1.6.1/ports/x86_64-apple-darwin13.0.0/libxslt/1.1.26
 exec_prefix=${prefix}
 exec_prefix_set=no
 includedir=${prefix}/include
@@ -65,7 +65,7 @@ while test $# -gt 0; do
 	;;
 
     --plugins)
-	echo /Users/padilla/Dropbox/Private/TheDevelopmentBox/thepista/httparty/ruby/1.9.1/gems/nokogiri-1.6.1/ports/x86_64-apple-darwin13.0.0/libxslt/1.1.26/lib/libxslt-plugins
+	echo /Users/padilla/DropBox/Private/TheDevelopmentBox/thepista/httparty/ruby/1.9.1/gems/nokogiri-1.6.1/ports/x86_64-apple-darwin13.0.0/libxslt/1.1.26/lib/libxslt-plugins
 	exit 0
 	;;
 
@@ -89,11 +89,11 @@ while test $# -gt 0; do
     shift
 done
 
-the_libs="-L${libdir} -lxslt  -L/Users/padilla/Dropbox/Private/TheDevelopmentBox/thepista/httparty/ruby/1.9.1/gems/nokogiri-1.6.1/ports/x86_64-apple-darwin13.0.0/libxml2/2.8.0/lib -lxml2 -lz -lpthread -liconv -lm "
+the_libs="-L${libdir} -lxslt  -L/Users/padilla/DropBox/Private/TheDevelopmentBox/thepista/httparty/ruby/1.9.1/gems/nokogiri-1.6.1/ports/x86_64-apple-darwin13.0.0/libxml2/2.8.0/lib -lxml2 -lz -lpthread -liconv -lm "
 if test "$includedir" != "/usr/include"; then
-    the_flags="$the_flags -I$includedir `/Users/padilla/Dropbox/Private/TheDevelopmentBox/thepista/httparty/ruby/1.9.1/gems/nokogiri-1.6.1/ports/x86_64-apple-darwin13.0.0/libxml2/2.8.0/bin/xml2-config --cflags`"
+    the_flags="$the_flags -I$includedir `/Users/padilla/DropBox/Private/TheDevelopmentBox/thepista/httparty/ruby/1.9.1/gems/nokogiri-1.6.1/ports/x86_64-apple-darwin13.0.0/libxml2/2.8.0/bin/xml2-config --cflags`"
 else
-    the_flags="$the_flags `/Users/padilla/Dropbox/Private/TheDevelopmentBox/thepista/httparty/ruby/1.9.1/gems/nokogiri-1.6.1/ports/x86_64-apple-darwin13.0.0/libxml2/2.8.0/bin/xml2-config --cflags`"
+    the_flags="$the_flags `/Users/padilla/DropBox/Private/TheDevelopmentBox/thepista/httparty/ruby/1.9.1/gems/nokogiri-1.6.1/ports/x86_64-apple-darwin13.0.0/libxml2/2.8.0/bin/xml2-config --cflags`"
 fi
 
 if $cflags; then
