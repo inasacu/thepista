@@ -48,6 +48,7 @@ gem 'omniauth-windowslive'
 gem 'omniauth-yahoo'
 
 gem 'validates_timeliness', '~> 3.0'
+gem "mongoid", "~> 3.0.0"
 
 
 # Gems used only for assets and not required

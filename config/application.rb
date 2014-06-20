@@ -20,8 +20,8 @@ module Thepista
     # Custom directories with classes and modules you want to be autoloadable.
     # config.autoload_paths += %W(#{config.root}/extras)
 
-		# Custom directories with classes and modules you want to be autoloadable.  
-		config.autoload_paths += %W(#{Rails.root}/lib)
+    # Custom directories with classes and modules you want to be autoloadable.  
+    config.autoload_paths += %W(#{Rails.root}/lib)
 
     # Only load the plugins named here, in the order given (default is alphabetical).
     # :all can be used as a placeholder for all plugins not explicitly named.
@@ -43,9 +43,9 @@ module Thepista
 
     # Configure sensitive parameters which will be filtered from the log file.
     # config.filter_parameters += [:password]
-		config.filter_parameters << :password << :password_confirmation
+    config.filter_parameters << :password << :password_confirmation
 
-		config.time_zone = 'Madrid'
+    config.time_zone = 'Madrid'
 
     # Use SQL instead of Active Record's schema dumper when creating the database.
     # This is necessary if your schema can't be completely dumped by the schema dumper,
@@ -64,43 +64,43 @@ module Thepista
 
     # Enable the asset pipeline
     config.assets.enabled = true    
-    
+
     config.assets.precompile += ['widget/*.css']
 
     # Version of your assets, change this if you want to expire all your assets
     config.assets.version = '1.0'
 
-		# default email host
-		config.action_mailer.default_url_options = { :host => "haypista.com" }
-		config.action_mailer.default_url_options = { :host => 'thepista.dev' }  if Rails.env.development?
-		config.action_mailer.default_url_options = { :host => 'thepista-heroku.com' } if Rails.env.test? or Rails.env.staging?
-					
-		config.action_mailer.delivery_method = :smtp
-		config.action_mailer.smtp_settings = {
-			:address => "smtp.gmail.com",
-			:port => 587,
-			:domain => 'haypista.com',
-			:user_name => "support@haypista.com",
-			:password => "19ti79q42e",
-			:authentication => 'plain',
-		  :content_type   => "text/html",
-			:enable_starttls_auto => true
-		}
-		
-		# config.action_mailer.perform_deliveries = true
-		# config.action_mailer.raise_delivery_errors = true
-		# config.assets.initialize_on_precompile = false
-		
-		 config.middleware.use "WwwDitcher"
-		 
-		 # Mongoid loggind options
-     # Mongoid.logger.level = Logger::DEBUG
-     #      Moped.logger.level = Logger::DEBUG
-     #      
-     #      config.generators do |g|
-     #        g.orm :active_record
-     #      end
-		
+    # default email host
+    config.action_mailer.default_url_options = { :host => "haypista.com" }
+    config.action_mailer.default_url_options = { :host => 'thepista.dev' }  if Rails.env.development?
+    config.action_mailer.default_url_options = { :host => 'thepista-heroku.com' } if Rails.env.test? or Rails.env.staging?
+
+    config.action_mailer.delivery_method = :smtp
+    config.action_mailer.smtp_settings = {
+      :address => "smtp.gmail.com",
+      :port => 587,
+      :domain => 'haypista.com',
+      :user_name => "support@haypista.com",
+      :password => "19ti79q42e",
+      :authentication => 'plain',
+      :content_type   => "text/html",
+      :enable_starttls_auto => true
+    }
+
+    # config.action_mailer.perform_deliveries = true
+    # config.action_mailer.raise_delivery_errors = true
+    # config.assets.initialize_on_precompile = false
+
+    config.middleware.use "WwwDitcher"
+
+    # Mongoid loggind options
+    Mongoid.logger.level = Logger::DEBUG
+    Moped.logger.level = Logger::DEBUG
+
+    config.generators do |g|
+      g.orm :active_record
+    end
+
   end
 
 end
