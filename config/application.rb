@@ -90,6 +90,9 @@ module Thepista
     # config.action_mailer.perform_deliveries = true
     # config.action_mailer.raise_delivery_errors = true
     # config.assets.initialize_on_precompile = false
+    
+    # http://stackoverflow.com/questions/20361428/rails-i18n-validation-deprecation-warning
+    config.i18n.enforce_available_locales = true
 
     config.middleware.use "WwwDitcher"
 
