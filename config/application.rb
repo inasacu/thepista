@@ -92,7 +92,10 @@ module Thepista
     # config.assets.initialize_on_precompile = false
     
     # http://stackoverflow.com/questions/20361428/rails-i18n-validation-deprecation-warning
-    config.i18n.enforce_available_locales = true
+    # config.i18n.enforce_available_locales = true
+
+    # http://makandracards.com/makandra/20303-how-to-silence-i18n-enforce_available_locales-deprecation-warnings
+    I18n.enforce_available_locales = true
 
     config.middleware.use "WwwDitcher"
 
