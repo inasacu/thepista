@@ -50,10 +50,10 @@ module SchedulesHelper
     # the_image = is_member_and_not_mock ? schedule_image_link_small(schedule) : schedule_image_small(schedule)
 
     if schedule.game_played?
-      the_concept = is_member_and_not_mock ? link_to(sanitize(limit_url_length(schedule.name, 25)), schedule_path(:id => schedule)) : sanitize(limit_url_length(schedule.name))
+      the_concept = is_member_and_not_mock ? link_to(sanitize(limit_url_length(schedule.name, 25, true)), schedule_path(:id => schedule)) : sanitize(limit_url_length(schedule.name))
 			the_price = "#{link_to(label_name(:scorecard), scorecard_path(:id => schedule.group))}"
     else
-      the_concept = is_member_and_not_mock ? link_to(sanitize(limit_url_length(schedule.name, 25)), team_roster_path(:id => schedule)) : sanitize(limit_url_length(schedule.name))
+      the_concept = is_member_and_not_mock ? link_to(sanitize(limit_url_length(schedule.name, 25, true)), team_roster_path(:id => schedule)) : sanitize(limit_url_length(schedule.name))
 
       the_sport = "#{the_font_green(label_name(:rosters))}:  #{schedule.convocados.count}"
       the_missing = ", #{the_font_yellow(I18n.t(:missing))}:  #{schedule.player_limit.to_i - schedule.convocados.count}" if schedule.player_limit.to_i > schedule.convocados.count
