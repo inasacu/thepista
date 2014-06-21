@@ -50,6 +50,12 @@ gem 'omniauth-yahoo'
 gem 'validates_timeliness', '~> 3.0'
 gem "mongoid", "~> 3.0.0"
 
+# gems used only for production
+group :production do
+  gem 'rails_12factor'
+end
+
+
 
 # Gems used only for assets and not required
 # in production environments by default.
