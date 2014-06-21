@@ -11,9 +11,12 @@
 
 		<%= render 'shared/pagination_zurb', :collection => @the_collection if @the_collection %>
 		
-		<% unless discard_disqus_display.include?(get_controller_action) %>
-			<%= render 'utilities/disqus_display', :the_item => @schedule if @schedule %>
-			<%= render 'utilities/disqus_display', :the_item => @challenge if @challenge %>
+		
+		<% if DISPLAY_DISQUS %>
+			<% unless discard_disqus_display.include?(get_controller_action) %>
+				<%= render 'utilities/disqus_display', :the_item => @schedule if @schedule %>
+				<%= render 'utilities/disqus_display', :the_item => @challenge if @challenge %>
+			<% end %>
 		<% end %>
 		
 	</div>
