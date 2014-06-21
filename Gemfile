@@ -24,7 +24,7 @@ gem 'hirefireapp'
 gem 'paperclip'
 gem 'composite_primary_keys'
 
-gem 'newrelic_rpm'
+# gem 'newrelic_rpm'
 
 gem 'jquery-rails', '2.3.0'
 gem 'google_map'
