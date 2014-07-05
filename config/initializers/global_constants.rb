@@ -238,13 +238,13 @@ MOBILE_BROWSERS = ["smartphone", "iphone",  "blackberry", "playbook", "windows p
 									"mmp","symbian","midp","wap","vodafone","o2","pocket","kindle", "mobile","pda","psp","treo"]
 
 
-CONTACT_RECIPIENT = 'support@haypista.com?subject=Preguntas%20o%20Comentarios'
-CONTACT_RECIPIENT_SUBJECT = 'support@haypista.com?subject='
-CONTACT_FEEDBACK = 'info@haypista.com'
+CONTACT_RECIPIENT = ENV["CONTACT_RECIPIENT"]
+CONTACT_RECIPIENT_SUBJECT = ENV["CONTACT_RECIPIENT_SUBJECT"]
+CONTACT_FEEDBACK = ENV["CONTACT_FEEDBACK"]
 
 LANGUAGES = ['es', 'en']
 
-DEFAULT_AMAZON_S3_IMAGES_URL = "http://s3.amazonaws.com/thepista_produccion/the_images/"
+DEFAULT_AMAZON_S3_IMAGES_URL = ENV["DEFAULT_AMAZON_S3_IMAGES_URL"]
 DEFAULT_GROUP_USERS = [1, 2, 3]
 
 # PRICE RANGES

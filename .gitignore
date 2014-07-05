@@ -25,3 +25,7 @@ heroku.tmproj
 .gitignore
 
 Gemfile
+
+# Ignore application configuration
+/config/application.yml
+/config/database.yml

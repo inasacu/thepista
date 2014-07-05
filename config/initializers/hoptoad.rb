@@ -1,5 +1,5 @@
 HoptoadNotifier.configure do |config|
-  config.api_key = 'b63604603b22867dddb914f893ae2104'
+  config.api_key = ENV['HOPTOAD_NOTIFIER']
 end
 
-# ruby script/generate hoptoad --api-key b63604603b22867dddb914f893ae2104
+

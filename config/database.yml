@@ -10,18 +10,18 @@ development:
   password: 72dae4
   min_messages: warning
  
-test:
-  adapter: postgresql
-  encoding: unicode
-  database: thepista_test
-  pool: 5
-  username: thepista
-  password:
+# test:
+#   adapter: postgresql
+#   encoding: unicode
+#   database: thepista_test
+#   pool: 5
+#   username: thepista
+#   password:
 
-production:
-  adapter: postgresql
-  encoding: unicode
-  database: thepista_production
-  pool: 5
-  username: thepista
-  password:
+# production:
+#   adapter: postgresql
+#   encoding: unicode
+#   database: thepista_production
+#   pool: 5
+#   username: thepista
+#   password:

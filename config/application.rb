@@ -79,9 +79,9 @@ module Thepista
     config.action_mailer.smtp_settings = {
       :address => "smtp.gmail.com",
       :port => 587,
-      :domain => 'haypista.com',
-      :user_name => "support@haypista.com",
-      :password => "19ti79q42e",
+      :domain => ENV["DOMAIN"],
+      :user_name => ENV["EMAIL"],
+      :password => ENV["PASSWORD"],
       :authentication => 'plain',
       :content_type   => "text/html",
       :enable_starttls_auto => true
