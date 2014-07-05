@@ -36,7 +36,9 @@
 	<%= javascript_include_tag "application" %>
 	<%= csrf_meta_tags %>
 	
-	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js" type="text/javascript"></script>
+	<% if DISPLAY_ANALYTICS %>
+		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js" type="text/javascript"></script>
+	<% end %>
 		
 	<!-- Included CSS Files -->
 	<%= stylesheet_link_tag 'general/docs' if Rails.env.development? and !is_mobile_browser %>
@@ -66,16 +68,18 @@
 		
 		<%= render 'shared/internet_explorer' %>
 		<%= render 'shared/flash_zurb' %>
+		
 		<%= render 'shared/wrapper_zurb' %>	
 	</div>
 
-	<%= render 'shared/footer'  %>
+	<% unless is_mobile_browser %>
 	
-	<%= render 'utilities/google_analytics' %>
-	<%#= render 'utilities/zopim' if Rails.env.production? and !is_mobile_browser %>
-	<%= render 'utilities/zopim' if DISPLAY_ZOPIM %>
-	
-	
+		<%= render 'shared/footer'%>
+		<%= render 'utilities/google_analytics' if DISPLAY_ANALYTICS %>
+		<%= render 'utilities/zopim' if DISPLAY_ZOPIM %>
+		<%= render 'utilities/yo' if DISPLAY_YO %>
+		
+	<% end %>
 	
 </body>
 

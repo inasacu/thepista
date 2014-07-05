@@ -42,7 +42,7 @@
 				<%= link_to(label_name(:reservations), venues_url, :class => the_venue) if is_venue_visible %>	
 				<%= link_to(label_name(:cups), cups_url, :class => the_cup) if is_cup_visible %>
 				<%= link_to("#{label_name(:companies)}", companies_url) if is_company_visible %>
-				<%= link_to(label_name(:messages), messages_url, :class => the_message) if has_group %>
+				<%= link_to(label_name(:messages), messages_url, :class => the_message) if has_group and DISPLAY_MESSAGES %>
 				<%= user_link(current_user.name, current_user, :class => the_user) %>
 				<%= link_to(label_name(:logout), logout_path) %>		
 

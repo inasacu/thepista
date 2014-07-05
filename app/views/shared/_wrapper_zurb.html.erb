@@ -58,9 +58,9 @@
 				
 				<%= render 'sidebars/sidebar_create_zurb', :item => new_item_sidebar unless new_item_sidebar.nil? %>	
 			
-				<%= render 'sidebars/sidebar_message' %>
+				<%= render 'sidebars/sidebar_message' if DISPLAY_MESSAGES %>	
 				
-				<%= render "#{the_sidebar}/sidebar_zurb" %>	
+				<%= render "#{the_sidebar}/sidebar_zurb" %>
 		
 				<hr/>
 				<br/>		
