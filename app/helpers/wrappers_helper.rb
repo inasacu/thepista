@@ -29,7 +29,9 @@ module WrappersHelper
 			the_sidebar = "venues" if @venue
 
 		when 'scorecard'	
-			the_sidebar = "groups"	
+      the_sidebar = "groups"	
+      ignore_option = ['scorecard_show']
+      the_sidebar = nil if ignore_option.include?(get_controller_action)
 
 		when 'invitation'
 			the_sidebar = 'messages'	

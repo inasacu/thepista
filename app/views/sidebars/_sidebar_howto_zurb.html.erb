@@ -1,12 +1,12 @@
 <%
-	is_cup_visible = !is_mobile_browser
-	is_cup_visible = false
+	is_cup_visible = DISPLAY_FREMIUM_SERVICES 
 	the_subject = "#{CONTACT_RECIPIENT_SUBJECT}#{label_name(:contact_help)}"
 %>
 
 
 <div class="row">
 <div class="twelve columns">
+	
 	<%= set_image_and_link_h6(option_link('group'), 'group') %><br>
 	<%= set_image_and_link_h6(link_to(label_name(:create_join_group), list_groups_url), 'user_add') %><br>
 	<%= set_image_and_link_h6(option_link('invitation'), 'invitation') %><br>
@@ -21,16 +21,13 @@
 	<%= set_image_and_link(link_to(label_name(:create_join_challenge), challenges_url), 'challenge_join') %>
 	<% end -%>
 	
-	
-	<hr>
-	<%= set_image_and_link_h6("#{mail_to(the_subject, label_name(:contact_help), :target => '_blank')}", 'help') %>
+	<% if DISPLAY_FREMIUM_SERVICES %>
+		<hr>
+		<%= set_image_and_link_h6("#{mail_to(the_subject, label_name(:contact_help), :target => '_blank')}", 'help') %>
 
-	<% if is_cup_visible %>
-	<hr>
-	<%= set_image_and_link_h6(option_link('cup'), 'cup') %>
-	
+		<hr>
+		<%= set_image_and_link_h6(option_link('cup'), 'cup') %>
 	<% end %>
-	
 	
 </div>
 </div>
