@@ -73,6 +73,7 @@ module WrappersHelper
 		when 'group'
 			ignore_option = ['group_show', 'group_team_list']
 			new_item_sidebar = Group.new unless ignore_option.include?(get_controller_action)
+      the_sidebar = nil unless is_current_manager_of(@group) 
 
 		when 'schedule'
 			ignore_option = ['schedule_show', 'schedule_team_roster', 'schedule_team_no_show', 'schedule_team_last_minute', 'schedule_team_unavailable']

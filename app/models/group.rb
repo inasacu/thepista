@@ -115,7 +115,10 @@ class Group < ActiveRecord::Base
 
   # method section
 	def self.get_site_groups(the_params)
-		self.where("groups.archive = false").page(the_params).order('groups.created_at DESC').includes(:item, :schedules, :marker, :sport, :the_managers, :users)
+	  the_schedules = Schedule.find(:all, :select => 'distinct group_id', :conditions => ["played = true and starts_at >= ?", THREE_MONTHS_AGO])
+	  the_groups = []
+	  the_schedules.each {|schedule| the_groups << schedule.group_id}
+		self.where("groups.archive = false and id in (?)", the_groups).page(the_params).order('groups.created_at DESC').includes(:item, :schedules, :marker, :sport, :the_managers, :users)
 	end
 	
 	def self.get_branch_groups(the_params)

@@ -2090,7 +2090,7 @@ es:
      group_options:  Opciones
      group_stage_set:  Actualiza el grupo
      group_stage_set_full:  Actualiza el grupo
-     groups_create:  "¡Pon tu Equipo!" 
+     groups_create:  "Haz tu equipo" 
      groups_destroy:  Borra el equipo
      groups_edit:  Cambia el equipo
      groups_index:   Equipos
