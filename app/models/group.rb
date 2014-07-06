@@ -114,10 +114,11 @@ class Group < ActiveRecord::Base
   acts_as_authorization_subject :association_name => :roles, :join_table_name => :groups_roles
 
   # method section
-	def self.get_site_groups(the_params)
+	def self.get_site_groups(the_params, user)
 	  the_schedules = Schedule.find(:all, :select => 'distinct group_id', :conditions => ["played = true and starts_at >= ?", THREE_MONTHS_AGO])
 	  the_groups = []
 	  the_schedules.each {|schedule| the_groups << schedule.group_id}
+	  user.groups.each {|group| the_groups << group.id unless the_groups.include?(group.id)}
 		self.where("groups.archive = false and id in (?)", the_groups).page(the_params).order('groups.created_at DESC').includes(:item, :schedules, :marker, :sport, :the_managers, :users)
 	end
 	

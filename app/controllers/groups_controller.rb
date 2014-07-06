@@ -6,7 +6,7 @@ class GroupsController < ApplicationController
 
 	def index
 		# if Rails.env.development?
-			@groups = Group.get_site_groups(params[:page]) 
+			@groups = Group.get_site_groups(params[:page], current_user) 
 		# else
 			# @groups = Group.get_branch_groups(params[:page])
 		# end
