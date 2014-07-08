@@ -103,6 +103,7 @@ class MatchesController < ApplicationController
 			
 		end 
 
+    
 		redirect_back_or_default('/index')
 		# redirect_to :root_url
 		return
@@ -136,6 +137,43 @@ class MatchesController < ApplicationController
 		redirect_to root_url
 	end
 
+	def set_yo_convocado
+	  user = User.find(:first, :conditions => ["yo_username = ?", params[:username]])
+	  unless user
+	    redirect_to root_url
+	    return
+    end
+    
+    matches = Match.find(:all, :select => "matches.*",
+                          :joins => "left join schedules on schedules.id = matches.schedule_id",
+                          :conditions => ["matches.user_id = ? and schedules.starts_at > ? and schedules.ends_at < ? and 
+                                           schedules.played = false and schedules.archive = false and matches.archive = false", user, Time.zone.now, NEXT_SEVEN_DAYS])   
+	  unless matches
+	    redirect_to root_url
+	    return
+    end
+                          
+    type = Type.find(1)
+    matches.each do |match|
+      played = (type.id == 1 and !match.group_score.nil? and !match.invite_score.nil?)
+      
+      # 1 == player is in team one
+  		# x == game tied, doesnt matter where player is
+  		# 2 == player is in team two      
+  		user_x_two = "1" if (match.group_id.to_i > 0 and match.invite_id.to_i == 0)
+  		user_x_two = "X" if (match.group_score.to_i == match.invite_score.to_i)
+  		user_x_two = "2" if (match.group_id.to_i == 0 and match.invite_id.to_i > 0)
+  		
+      if match.update_attributes(:type_id => type.id, :played => played, :user_x_two => user_x_two, :status_at => Time.zone.now)
+        manager_id = RolesUsers.find_item_manager(match.schedule.group).user_id
+        Schedule.create_notification_email(match.schedule, match.schedule, manager_id, match.user_id, true) 
+        Scorecard.calculate_user_played_assigned_scorecard(match.user, match.schedule.group) 
+      end 
+    end
+    
+		redirect_to root_url
+	end
+	
 	def set_team 
 		unless is_current_member_of(@match.schedule.group)
 			warning_unauthorized

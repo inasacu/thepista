@@ -34,6 +34,14 @@ LAST_FOUR_DAYS = Time.zone.now - 4.days
 LAST_FIVE_DAYS = Time.zone.now - 5.days
 LAST_SIX_DAYS = Time.zone.now - 6.days
 
+NEXT_DAY = Time.zone.now + 1.day
+NEXT_TWO_DAYS = Time.zone.now + 2.days
+NEXT_THREE_DAYS = Time.zone.now + 3.days
+NEXT_FOUR_DAYS = Time.zone.now + 4.days
+NEXT_FIVE_DAYS = Time.zone.now + 5.days
+NEXT_SIX_DAYS = Time.zone.now + 6.days
+NEXT_SEVEN_DAYS = Time.zone.now + 7.days
+
 TWO_WEEKS_AGO = Time.zone.now - 14.days
 THREE_WEEKS_AGO = Time.zone.now - 21.days
 
@@ -169,7 +177,7 @@ DISPLAY_RECAPTCHA = false
 DISPLAY_ARE_YOU_A_HUMAN = false
 DISPLAY_ZOPIM = false
 DISPLAY_ANALYTICS = false
-DISPLAY_YO = false
+DISPLAY_YO = true
 DISPLAY_USER_STATISTICS = false
 DISPLAY_HEADER_0PTIONS = false
 DISPLAY_MESSAGES = false
@@ -246,6 +254,11 @@ LANGUAGES = ['es', 'en']
 
 DEFAULT_AMAZON_S3_IMAGES_URL = ENV["DEFAULT_AMAZON_S3_IMAGES_URL"]
 DEFAULT_GROUP_USERS = [1, 2, 3]
+
+
+# YO Request
+YO_REQUEST_URL = "http://api.justyo.co/yoall/"
+
 
 # PRICE RANGES
 PRICE_RANGE_UNDER_50 = 1...49

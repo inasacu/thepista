@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140429190518) do
+ActiveRecord::Schema.define(:version => 20140707205036) do
 
   create_table "announcements", :force => true do |t|
     t.text     "message"
@@ -860,6 +860,7 @@ ActiveRecord::Schema.define(:version => 20140429190518) do
     t.boolean  "whatsapp",                                :default => false
     t.boolean  "confirmation",                            :default => false
     t.string   "confirmation_token"
+    t.string   "yo_username"
   end
 
   add_index "users", ["email"], :name => "index_users_on_email"

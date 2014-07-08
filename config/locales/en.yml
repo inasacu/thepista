@@ -845,7 +845,7 @@ en:
          other:     "every %{count} hours"
      has_not_been_sent: does not havet been sent correctly.   
      has_updated_scorecard: Has updated the SCORECARD with   
-     whatsapp: Do you use WhatsApp?
+     whatsapp: Do you WhatsApp?
      have_an_account: If you have an account  
      have_changed_language: Language has been changed
      haypista_howto:  Things you can do.
@@ -1844,9 +1844,10 @@ en:
      write_comment: Write a comment... 
      writes: writes
      wrote: wrote
-     yes_openid: OpenID's associated to this account   
+     yes_openid: OpenID's associated to this account  
+     yo_username: Your YO app 
      you: You
-     your	: Your
+     your: Your
      you_are_center_here: "Center here"
      you_are_create_group:  "Organize your team here"
      you_are_create_group_instruction:  Organize your team by selection location on map

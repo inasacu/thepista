@@ -50,7 +50,7 @@
 #  whatsapp                 :boolean          default(FALSE)
 #  confirmation             :boolean          default(FALSE)
 #  confirmation_token       :string(255)
-#
+#  yo_username              :string(255)
 
 class User < ActiveRecord::Base
 

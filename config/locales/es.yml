@@ -851,7 +851,7 @@ es:
          other:     "cada %{count} horas"
      has_not_been_sent: no ha sido mandado correctamente.  
      has_updated_scorecard: Ha actualizado el RESULTADO
-     whatsapp: Tienes cuenta de WhatsApp?
+     whatsapp: Tienes WhatsApp?
      have_an_account: Si tienes una cuenta     
      have_changed_language: Has cambiado el idioma
      haypista_howto:  Cosas que puedes hacer.
@@ -1102,7 +1102,7 @@ es:
      change_openid: Ocultar tus cuentas de OpenID   
      added_to_your_openid: añadido a tu cuenta OpenID
      add_openid: Añadido un OpenID a tu cuenta   
-     name: Nombre 
+     name: Nombre
      name_account: Nombre de la cuenta  
      name_description: "(El nombre del equipo tiene que empezar con una leta, sin espacios e caracteres speciales excepto _ o . )"  
      name_sport: Nombre del deporte que practicas   
@@ -1876,6 +1876,7 @@ es:
      writes: escribe 
      wrote: ha escrito  
      yes_openid: OpenIDs associados a esta cuenta 
+     yo_username: Tienes YO app
      you: Tu
      your: Tus
      you_are_center_here: "Centra aquí"

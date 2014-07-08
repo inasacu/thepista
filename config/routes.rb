@@ -595,6 +595,8 @@ Thepista::Application.routes.draw do
 	match 'jornadas/:id/cambio_equipo' => 'matches#set_team', :as => :match_team
 	match 'jornadas/:id/cambio_convocatoria/:type' => 'matches#set_status', :as => :match_status
 	match 'jornadas/:id/cambio_convocatoria/:type/:block_token' => 'matches#set_status_link', :as => :match_token
+	
+	match 'yo/:username' => 'matches#set_yo_convocado', :as => :username
 
 	match 'mensajes/responder/:block_token' => 'messages#reply', :as => :reply_message
 	match 'mensajes/borrar/:block_token' => 'messages#trash', :as => :trash_message

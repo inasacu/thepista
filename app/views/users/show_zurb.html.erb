@@ -51,12 +51,15 @@
 
 	<div class="ten columns">
 	
+		
 		<%= render_show_detail_zurb(:groups, (@user.has_group? ? "#{group_list(@user.groups)}".html_safe : "#{label_name('groups_none')}".html_safe)) %>
 		<%= render_show_detail_zurb(:sports, (@user.has_group? ? "#{group_sport_list(@user.groups)}".html_safe : "#{label_name('groups_none')}".html_safe)) if @user.has_group? %>
 		
 		<%= render_show_detail_zurb(:email, @user.email) if is_same_user %>
+		
+		<%= render_show_detail_zurb(:yo_username, @user.yo_username) if is_same_user %>
+		
 		<%= render_show_detail_zurb("#{label_name(:phone)}  #{option_image_small_link('whatsapp') if @user.whatsapp}", phone_number_link(@user.phone), true) if has_phone %>
-			
 		<%= render_show_detail_zurb(:whatsapp, the_whatsapp_link) if has_phone %>
 		<%= render_show_detail_zurb(:last_minute_notification, the_last_minute_link) if DISPLAY_FREMIUM_SERVICES %>
 		<%= render_show_detail_zurb(:teammate_notification, the_teammmate_link) %>
