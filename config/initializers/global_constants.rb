@@ -34,7 +34,6 @@ LAST_FOUR_DAYS = Time.zone.now - 4.days
 LAST_FIVE_DAYS = Time.zone.now - 5.days
 LAST_SIX_DAYS = Time.zone.now - 6.days
 
-NEXT_DAY = Time.zone.now + 1.day
 NEXT_TWO_DAYS = Time.zone.now + 2.days
 NEXT_THREE_DAYS = Time.zone.now + 3.days
 NEXT_FOUR_DAYS = Time.zone.now + 4.days
@@ -257,7 +256,8 @@ DEFAULT_GROUP_USERS = [1, 2, 3]
 
 
 # YO Request
-YO_REQUEST_URL = "http://api.justyo.co/yoall/"
+YO_REQUEST_URL = "http://api.justyo.co/"
+YO_REQUEST_URL_ALL = "http://api.justyo.co/yoall/"
 
 
 # PRICE RANGES

@@ -8,57 +8,39 @@ require 'open-uri'
 
 # to run:    heroku run rake the_yo_request --app zurb
 
-desc "adding a yo request for today's event"
+desc "adding a yo request for events within the next 48 hours..."
 task :the_yo_request => :environment do |t|
 
-  puts "request 1"
-  params = {'api_token' => ENV["YO_API"], 'username' => 'HAYPISTA', 'trigger' => 'Hay Partido!', 'button' => 'Submit'}
-  the_request = Net::HTTP.post_form(URI.parse("#{YO_REQUEST_URL}"), params)
-  puts the_request.body
-  puts ""
-
-    
-  matches = Match.find(:all, :select => "matches.*",
-                          :joins => "left join schedules on schedules.id = matches.schedule_id",
-                          :joins => "left join users on users.id = matches.user_id",
-                          :conditions => ["users.yo_username is not null and matches.user_id = ? and schedules.starts_at > ? and schedules.ends_at < ? and 
-                                           schedules.played = false and schedules.archive = false and matches.archive = false", user, Time.zone.now, NEXT_SEVEN_DAYS])
-                                           
-                                           
-   matches.each do |match|
-     params = {'api_token' => ENV["YO_API"], 'username' => '#{match.user.yo_username}', 'trigger' => 'Hay Partido!', 'button' => 'Submit'}
-     the_request = Net::HTTP.post_form(URI.parse("#{YO_REQUEST_URL}"), params)
-     puts the_request.body
-     puts ""
-
-     match.schedule.send_reminder_at = Time.zone.now
-     match.schedule.save!
-   end 
-
- # end
-
-
-
-  # puts "request 2"
-  # url = URI.parse(YO_REQUEST_URL)
-  # req = Net::HTTP::Post.new(url.request_uri)
-  # req.set_form_data({'api_token' => ENV["YO_API"], 'username' => 'HAYPISTA', 'trigger' => 'Hay Partido!'})
-  # http = Net::HTTP.new(url.host, url.port)
-  # http.use_ssl = (url.scheme == "https")
-  # response = http.request(req)
-  # puts url
+  # puts "sample"
+  # params = {'api_token' => ENV["YO_API"], 'username' => 'HAYPISTA', 'button' => 'Submit'}
+  # the_request = Net::HTTP.post_form(URI.parse("#{YO_REQUEST_URL_ALL}"), params)
+  # puts the_request.body
   # puts ""
+  # 
   
-  # puts "request 3"
-  # url = URI.parse(YO_REQUEST_URL)
-  # req = Net::HTTP::Post.new(url.path)
-  # # req.form_data = data
-  # req.set_form_data({'api_token' => ENV["YO_API"], 'username' => 'HAYPISTA', 'trigger' => 'Hay Partido!'})
-  # # req.basic_auth url.user, url.password if url.user
-  # con = Net::HTTP.new(url.host, url.port)
-  # # con.use_ssl = true
-  # con.start {|http| http.request(req)}
-  # puts ""
+  matches = Match.find(:all, :select => "users.id, users.name, users.email, users.yo_username, matches.schedule_id, matches.type_id", 
+                             :joins => "JOIN schedules on schedules.id = matches.schedule_id JOIN users on users.id = matches.user_id",
+                             :conditions => ["users.yo_username is not null and users.archive is not null and
+                                              schedules.starts_at >= ? and schedules.ends_at <= ? and 
+                                              schedules.played = false and schedules.archive = false and 
+                                              schedules.send_reminder_at is null and matches.archive = false", Time.zone.now, NEXT_48_HOURS])
+  
+  counter = 0                                   
+  the_schedules = []                                    
+  matches.each do |match|
+    params = {'api_token' => ENV["YO_API"], 'username' => '#{match.yo_username}', 'trigger' => 'Hay Partido!', 'button' => 'Submit'}
+    the_request = Net::HTTP.post_form(URI.parse("#{YO_REQUEST_URL}"), params)
+    puts the_request.body
+  
+    puts "#{counter+=1}: #{match.yo_username}"
+    the_schedules << match.schedule_id unless the_schedules.include?(match.schedule_id)
+  end 
+   
+  # schedules = Schedule.find(:all, :select => "send_reminder_at", :conditions => ["id in (?)", the_schedules])
+  # schedules.each do |schedule|
+  #   schedule.send_reminder_at = Time.zone.now
+  #   schedule.save!
+  # end
   
 end
 

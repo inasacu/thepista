@@ -164,11 +164,14 @@ class MatchesController < ApplicationController
   		user_x_two = "X" if (match.group_score.to_i == match.invite_score.to_i)
   		user_x_two = "2" if (match.group_id.to_i == 0 and match.invite_id.to_i > 0)
   		
-      if match.update_attributes(:type_id => type.id, :played => played, :user_x_two => user_x_two, :status_at => Time.zone.now)
-        manager_id = RolesUsers.find_item_manager(match.schedule.group).user_id
-        Schedule.create_notification_email(match.schedule, match.schedule, manager_id, match.user_id, true) 
-        Scorecard.calculate_user_played_assigned_scorecard(match.user, match.schedule.group) 
-      end 
+      unless match.type_id != type
+        if match.update_attributes(:type_id => type.id, :played => played, :user_x_two => user_x_two, :status_at => Time.zone.now)
+          manager_id = RolesUsers.find_item_manager(match.schedule.group).user_id
+          Schedule.create_notification_email(match.schedule, match.schedule, manager_id, match.user_id, true) 
+          Scorecard.calculate_user_played_assigned_scorecard(match.user, match.schedule.group) 
+        end 
+      end
+    
     end
     
 		redirect_to root_url
