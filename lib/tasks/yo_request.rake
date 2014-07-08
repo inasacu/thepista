@@ -35,7 +35,7 @@ task :the_yo_request => :environment do |t|
      match.schedule.save!
    end 
 
- end
+ # end
 
 
 
