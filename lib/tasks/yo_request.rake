@@ -23,7 +23,7 @@ task :the_yo_request => :environment do |t|
                              :conditions => ["users.yo_username is not null and users.archive is not null and
                                               schedules.starts_at >= ? and schedules.ends_at <= ? and 
                                               schedules.played = false and schedules.archive = false and 
-                                              schedules.send_reminder_at is null and matches.archive = false", Time.zone.now, NEXT_48_HOURS])
+                                              schedules.send_reminder_at is null and matches.archive = false", Time.zone.now-7.days, NEXT_48_HOURS])
   
   counter = 0                                   
   the_schedules = []                                    
