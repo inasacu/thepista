@@ -13,6 +13,8 @@
 	<hr/>
 <% end %>
 
+
+<% if DISPLAY_MESSAGES %>
 <%
 	if @group and !@schedule
 		if is_current_member_of(@group)
@@ -27,16 +29,7 @@
 	end
 %>
 
-<%#
-	if @venue
-		if is_current_member_of(@venue)
-%>
-			<%#= set_form_create_id_image_link(Message.new, :venue_id, @venue, :send_message_to) %>
-			<%#= set_form_create_id_image_link(Invitation.new, :venue_id, @venue, :invitations_create_venue) %>
-<%# 
-		end
-	end
-%>
+
 
 <%
 	if @schedule
@@ -47,24 +40,10 @@
 			<%= set_form_create_id_image_link(Message.new, :group_id, @group, :send_message_to) %>
 			<%= set_form_create_id_image_link(Invitation.new, :schedule_id, @schedule, :invitations_create_schedule) unless has_schedule_blank %>
 			<hr/>
-<% 		else %>
-			<%#= set_form_create_id_image_link(Message.new, :id, @group.all_the_managers.first, :send_message_to) %>
 <% 
 		end
 	end
 %>
 
+<% end %>
 
-<%
-	if @challenge
-		if is_current_member_of(@challenge)
-%>
-			<%= set_form_create_id_image_link(Message.new, :challenge_id, @challenge, :send_message_to) %>		
-			<%= set_form_create_id_image_link(Invitation.new, :challenge_id, @challenge, :invitations_create_challenge) %>
-			<hr/>
-<% 		else %>			
-			<%= set_form_create_id_image_link(Message.new, :id, @challenge.all_the_managers.first, :send_message_to) %>
-			<hr/>
-<% 		end
-	end
-%>
