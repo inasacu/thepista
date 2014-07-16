@@ -1,16 +1,11 @@
-<%# if @user %>
-	<%#= set_form_create_id_image_link(Message.new, :id, @user, :send_message_to) if current_user != @user %>
-	<%# @user.groups.each do |group| %>
-		<%# unless group.is_branch? %>
-			<%#= set_form_create_id_image_link(Message.new, :group_id, group, :send_message_to, '', group.name) %>
-			<%#= set_form_create_id_image_link(Invitation.new, :group_id, group, :invitations_create_group, '', group.name) %>
-		<%# end %>
-	<%# end %>
-<%# end %>
 
 <% if is_controller('user') %>
-	<%= set_form_create_id_image_link(Message.new, :user_id, current_user, :send_message_to, '') %>
-	<hr/>
+	
+	<% if @user %>
+		<%= set_form_create_id_image_link(Message.new, :id, @user, :send_message_to) if current_user != @user %>
+		<hr/>
+	<% end %>
+	
 <% end %>
 
 

@@ -32,10 +32,10 @@ class UsersController < ApplicationController
 
     @client = ""
     @profile = ""
-    @user_statistics = User.find_user_match_user_statistics(@user)
+    @user_statistics = User.find_user_match_user_statistics(@user) if DISPLAY_USER_STATISTICS
 
     all_users = []
-    @user_statistics.each {|the_statistic| all_users << the_statistic.second_user_id unless all_users.include?(the_statistic.second_user_id)}
+    @user_statistics.each {|the_statistic| all_users << the_statistic.second_user_id unless all_users.include?(the_statistic.second_user_id)}  if DISPLAY_USER_STATISTICS
     @all_teammates = User.find(:all, :conditions => ["id in (?)", all_users])
 
 
@@ -45,28 +45,30 @@ class UsersController < ApplicationController
     counter_user_statistics = 0
     the_true_last_column = ""
 
-    @user_statistics.each do |the_statistic| 
+    if DISPLAY_USER_STATISTICS
+      @user_statistics.each do |the_statistic| 
 
-      the_true_column = "#{the_statistic.first_user_win}#{the_statistic.same_team}".upcase
+        the_true_column = "#{the_statistic.first_user_win}#{the_statistic.same_team}".upcase
 
-      if (the_statistic_user_id != the_statistic.second_user_id.to_i)				
-        @user_hash_grid_statistics << @user_hash_statistic if the_statistic_user_id > 0
-        @user_hash_statistic = {}
-        the_statistic_user_id = the_statistic.second_user_id.to_i
+        if (the_statistic_user_id != the_statistic.second_user_id.to_i)				
+          @user_hash_grid_statistics << @user_hash_statistic if the_statistic_user_id > 0
+          @user_hash_statistic = {}
+          the_statistic_user_id = the_statistic.second_user_id.to_i
 
-        @all_teammates.each {|teammate| @user_hash_statistic = {"user_id" => teammate}  if the_statistic.second_user_id.to_i == teammate.id.to_i}
+          @all_teammates.each {|teammate| @user_hash_statistic = {"user_id" => teammate}  if the_statistic.second_user_id.to_i == teammate.id.to_i}
 
-        the_default_hash_values = {"TT" => "0", "TF" => "0", "FT" => "0", "FF" => "0"}
-        @user_hash_statistic.merge!(the_default_hash_values)
-        @user_hash_statistic.merge!({"#{the_true_column}" => the_statistic.total})
+          the_default_hash_values = {"TT" => "0", "TF" => "0", "FT" => "0", "FF" => "0"}
+          @user_hash_statistic.merge!(the_default_hash_values)
+          @user_hash_statistic.merge!({"#{the_true_column}" => the_statistic.total})
 
-      else
-        @user_hash_statistic.merge!({"#{the_true_column}" => the_statistic.total}) 
+        else
+          @user_hash_statistic.merge!({"#{the_true_column}" => the_statistic.total}) 
 
-      end
+        end
 
     end
-
+    end
+  
     @user_hash_grid_statistics << @user_hash_statistic	
 
     render @the_template    
