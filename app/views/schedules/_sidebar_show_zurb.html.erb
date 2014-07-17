@@ -6,26 +6,19 @@
 	has_group = @group ? true : false
 
 	the_group_name = ""
-	# the_manager_label = ""
 	the_confirmation = ""
 	the_label ||= label_name(:options)
 
-	# is_manager_not_forum = (is_group_manager and !is_controller('forum'))
 	is_not_topic_not_played = (get_the_controller != 'topic' and !@schedule.played?)
 
 	if has_group
 		the_group_name = h(@group.name) 
-
-		# the_label = label_with_name('create_schedule', @group.name)
-		# the_manager_label = label_name(:options_for_manager)
-		# the_confirmation = "#{ label_name(:destroy_group) } #{the_group_name}?"
 
 		has_schedule_blank = @group.schedules.blank? 
 		has_user_petition = has_current_item_petition(@group) 
 		the_confirmation = label_with_name(:do_leave_item, "#{@group.name}?")
 		
 		the_confirmation = "#{ label_name(:destroy_schedule) } #{ label_name(:from) } #{@group.name}?" 
-		
 	end
 %>
 
@@ -46,7 +39,8 @@
 			<%= set_image_and_link(link_to(label_name(:send_pre_match), new_message_path(:schedule_id => @schedule)), 'schedule_send') unless has_been_played %>
 			<%= set_image_and_link(link_to(label_name(:send_scorecard), new_message_path(:scorecard_id => @schedule)), 'scorecard') if has_been_played %>
 			<%= set_form_create_id_image_link(Message.new, :scorecard_id, @group.schedules.first, :send_scorecard, 'scorecard') if !has_schedule_blank and DISPLAY_FREMIUM_SERVICES %>
-
+			<%= the_hr (!has_schedule_blank and DISPLAY_FREMIUM_SERVICES) %>
+			
 		<% elsif !is_group_manager %>	
 			<%= set_image_and_link(join_item_link_to(current_user, @group, true), 'user_add') if has_user_petition %>
 
@@ -55,7 +49,8 @@
 		
 		<% if is_group_manager %>
 		
-			<hr/>
+			<%= the_hr (!(!has_schedule_blank and DISPLAY_FREMIUM_SERVICES)) %>
+			
 			<%#= set_image_and_link(link_to(control_label('create'), new_schedule_path(:id => @schedule.group)), 'schedule_add') if is_group_manager %> 
 			
 			<%= render 'sidebars/sidebar_create_schedule_zurb'%>
@@ -68,8 +63,7 @@
 	</div>
 </div>
 
-<!-- <hr/>
-<br/> -->
+<%= the_hr (!(!has_schedule_blank and DISPLAY_FREMIUM_SERVICES)) %>
 
 <% end -%>
 

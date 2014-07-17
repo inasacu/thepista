@@ -15,6 +15,8 @@
 	
 	<%= render 'sidebars/sidebar_create_schedule_zurb' if DISPLAY_PROFESSIONAL_SERVICES %>
 	
+	<%= the_hr(!DISPLAY_FREMIUM_SERVICES) %>
+	
 	<% if DISPLAY_PROFESSIONAL_SERVICES %>
 	<%= set_image_and_link(link_to(label_name(:create_new_challenge), groups_url), 'classified') %>
 	<%= set_image_and_link(link_to(label_name(:create_new_challenge), cups_url), 'challenge') %>

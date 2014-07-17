@@ -50,18 +50,16 @@
 
 	<% if is_group_manager %>
 
-	<%= "<hr/>".html_safe if is_scorecard_send and DISPLAY_FREMIUM_SERVICES %>
-	
+		<%= the_hr (is_scorecard_send and DISPLAY_FREMIUM_SERVICES) %>
 
 	<div class="row">	
 		<div class="twelve columns">
 
 			<%= set_form_create_id_image_link(Schedule.new, :id, @group, :schedules_create) unless @group.is_branch? %>
-			
 			<%= set_form_edit_image_link(@group, :groups_edit) %>		
+			<%= the_hr (!@group.is_branch?) %>
 		
 			<%  if DISPLAY_FREMIUM_SERVICES %>
-		    
 			<%= set_form_create_id_image_link(Fee.new, :id, @group, :fee_user_for_group) %>		
 			<%= set_image_and_link(link_to(the_confirmation, group_path(@group), :method => :delete, :confirm => the_confirmation), 'group') if has_schedule_blank %>
 			<% end %>

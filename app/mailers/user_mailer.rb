@@ -188,7 +188,6 @@ class UserMailer < ActionMailer::Base
   end
 
   def message_notification(message)
-    # I18n.locale = message.sender.language
 
     case message.item.class.to_s 
     when "Group"

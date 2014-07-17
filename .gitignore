@@ -29,3 +29,5 @@ Gemfile
 # Ignore application configuration
 /config/application.yml
 /config/database.yml
+
+app/.DS_Store

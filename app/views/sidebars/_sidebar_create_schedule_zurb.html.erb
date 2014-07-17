@@ -1,11 +1,18 @@
 <%
 	@current_manage_groups = current_user.get_current_manage_groups
+	
+	should_display_hr = false
 %>
 
-<% @current_manage_groups.each do |group| %>
+<% @current_manage_groups.each do |group| 
 	
-	<%= set_form_create_id_label_link(Schedule.new, :id, group, "#{label_name(:schedules_create)} - #{group.name}") unless group.is_branch? %>
+	is_group_branch = group.is_branch?
+	should_display_hr = !is_group_branch
+%>
+	
+	<%= set_form_create_id_label_link(Schedule.new, :id, group, "#{label_name(:schedules_create)} - #{group.name}") unless is_group_branch %>
 	
 <% end %>
 
 
+<%= the_hr(should_display_hr)  %>

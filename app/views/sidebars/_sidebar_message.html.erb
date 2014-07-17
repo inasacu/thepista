@@ -1,44 +1,49 @@
+<%
+	should_display_hr = is_controller('user') or DISPLAY_MESSAGES
+%>
+
 
 <% if is_controller('user') %>
 	
 	<% if @user %>
 		<%= set_form_create_id_image_link(Message.new, :id, @user, :send_message_to) if current_user != @user %>
-		<hr/>
+		<%= the_hr(should_display_hr) %>
 	<% end %>
 	
 <% end %>
 
 
 <% if DISPLAY_MESSAGES %>
-<%
-	if @group and !@schedule
-		if is_current_member_of(@group)
-%>
-			<%= set_form_create_id_image_link(Message.new, :group_id, @group, :send_message_to) %>
-			<%= set_form_create_id_image_link(Invitation.new, :group_id, @group, :invitations_create_group) %>
-<% 		else %>
-			<%= set_form_create_id_image_link(Message.new, :id, @group.all_the_managers.first, :send_message_to) %>
-			<hr/>
-<% 
+
+	<%
+		if @group and !@schedule
+			if is_current_member_of(@group)
+	%>
+				<%= set_form_create_id_image_link(Message.new, :group_id, @group, :send_message_to) %>
+				<%= set_form_create_id_image_link(Invitation.new, :group_id, @group, :invitations_create_group) %>
+	<% 		else %>
+				<%= set_form_create_id_image_link(Message.new, :id, @group.all_the_managers.first, :send_message_to) %>
+				<%#= the_hr %>
+	<% 
+			end
 		end
-	end
-%>
+	%>
 
 
 
-<%
-	if @schedule
-		@group = @schedule.group
-		if is_current_member_of(@group)
-			has_schedule_blank = @group.schedules.blank? 
-%>
-			<%= set_form_create_id_image_link(Message.new, :group_id, @group, :send_message_to) %>
-			<%= set_form_create_id_image_link(Invitation.new, :schedule_id, @schedule, :invitations_create_schedule) unless has_schedule_blank %>
-			<hr/>
-<% 
+	<%
+		if @schedule
+			@group = @schedule.group
+			if is_current_member_of(@group)
+				has_schedule_blank = @group.schedules.blank? 
+	%>
+				<%= set_form_create_id_image_link(Message.new, :group_id, @group, :send_message_to) %>
+				<%= set_form_create_id_image_link(Invitation.new, :schedule_id, @schedule, :invitations_create_schedule) unless has_schedule_blank %>
+				<%#= the_hr %>
+	<% 
+			end
 		end
-	end
-%>
+	%>
 
 <% end %>
 

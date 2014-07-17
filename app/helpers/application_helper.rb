@@ -907,6 +907,10 @@ module ApplicationHelper
 		end
 	end
 
+  def the_hr(display=true)
+    return display ? "<hr/>".html_safe : "".html_safe
+  end
+  
 	def the_font_green(the_value, the_size=false)
 		return "<font color='#0f7d00' size='1'>#{the_value}</font>" if the_size
 		return "<font color='#0f7d00'>#{the_value}</font>"

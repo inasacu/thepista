@@ -208,7 +208,7 @@ class Match < ActiveRecord::Base
     end
     if reset_scorecard
       Scorecard.delay.calculate_group_scorecard(group) if USE_DELAYED_JOBS
-      Scorecard.calculate_group_scorecard(group) unless USE_DELAYED_JOBS
+      Scorecard.calculate_group_scorecard(group).deliver unless USE_DELAYED_JOBS
     end
   end
   
@@ -242,7 +242,7 @@ class Match < ActiveRecord::Base
       match.save!  
     end       
       Scorecard.delay.calculate_group_scorecard(@schedule.group) if USE_DELAYED_JOBS
-      Scorecard.calculate_group_scorecard(@schedule.group) unless USE_DELAYED_JOBS
+      Scorecard.calculate_group_scorecard(@schedule.group).deliver unless USE_DELAYED_JOBS
   end
 
   def self.save_matches(the_match, matches_attributes)

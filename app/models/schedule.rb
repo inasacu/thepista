@@ -529,7 +529,7 @@ class Schedule < ActiveRecord::Base
 		self.group.users.each do |user|
 			if user.has_last_minute_notification?
 				Schedule.delay.create_notification_email(self, self, manager_id, user.id, true) if USE_DELAYED_JOBS
-  			Schedule.create_notification_email(self, self, manager_id, user.id, true) unless USE_DELAYED_JOBS
+  			Schedule.create_notification_email(self, self, manager_id, user.id, true).deliver unless USE_DELAYED_JOBS
 			end
 		end
 	end

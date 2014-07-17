@@ -271,7 +271,7 @@ class Scorecard < ActiveRecord::Base
 
     if reset_scorecard
       self.delay.calculate_group_scorecard(group) if USE_DELAYED_JOBS
-      self.calculate_group_scorecard(group) unless USE_DELAYED_JOBS
+      self.calculate_group_scorecard(group).deliver unless USE_DELAYED_JOBS
     end
   end
 

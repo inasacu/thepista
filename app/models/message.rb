@@ -186,7 +186,7 @@ class Message < ActiveRecord::Base
     @send_mail ||= recipient.has_notification?
     return unless @send_mail
     UserMailer.delay.message_notification(self) if USE_DELAYED_JOBS
-    UserMailer.message_notification(self) unless USE_DELAYED_JOBS
+    UserMailer.message_notification(self).deliver unless USE_DELAYED_JOBS
   end
 
   def send_schedule_reminder
@@ -198,7 +198,7 @@ class Message < ActiveRecord::Base
     case self.item.class.to_s      
     when "Schedule", "Match", "Scorecard"
       UserMailer.delay.message_schedule(self) if USE_DELAYED_JOBS
-      UserMailer.message_schedule(self) unless USE_DELAYED_JOBS
+      UserMailer.message_schedule(self).deliver unless USE_DELAYED_JOBS
     else
       return
     end
