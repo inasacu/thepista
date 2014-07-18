@@ -91,7 +91,7 @@ module SchedulesHelper
 				the_installation_link =  has_left(schedule.starts_at)
 			end
 			
-			the_span = content_tag('span', the_installation_link, :class => 'date') if Time.zone.now < schedule.starts_at
+			the_span = content_tag('span', the_installation_link, :class => 'date') #if Time.zone.now < schedule.starts_at
       the_score = nice_day_time_wo_year_exact(schedule.starts_at)
     end
 		return set_content_tag_safe(:td, "#{the_score}<br />#{the_span}", 'name_and_date')

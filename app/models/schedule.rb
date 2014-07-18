@@ -380,7 +380,7 @@ class Schedule < ActiveRecord::Base
   def self.my_current_schedules(user)
     self.find(:all, :joins => "JOIN groups on schedules.group_id = groups.id",
 							:conditions => ["schedules.archive = false and schedules.starts_at >= ? and 
-							  schedules.group_id in (select group_id from groups_users where user_id = ?)", Time.zone.now, user.id],:order => 'starts_at, group_id', :limit => SCHEDULE_DISPLAY_LIMIT-1)
+							  schedules.group_id in (select group_id from groups_users where user_id = ?)", FOUR_HOURS_BEFORE_GAME, user.id],:order => 'starts_at, group_id', :limit => SCHEDULE_DISPLAY_LIMIT-1)
   end
 
 	def self.other_current_schedules(user)

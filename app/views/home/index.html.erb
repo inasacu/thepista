@@ -11,7 +11,7 @@
 	
 %>
 
-	<%= render 'home/upcoming_cup_zurb', :my_schedules => @upcoming_cups, :the_label => label_name(:cups_upcoming) if is_cup_visible %>
+	<%#= render 'home/upcoming_cup_zurb', :my_schedules => @upcoming_cups, :the_label => label_name(:cups_upcoming) if is_cup_visible %>
 	<%#= render 'home/upcoming_game_zurb', :my_schedules => @upcoming_games, :the_label => label_name(:games) if is_game_visible %>
 	
 	<%= render 'home/upcoming_schedule_zurb', :my_schedules => @my_schedules, :the_label => label_name(:upcoming_meets) unless @my_schedules.empty? %>
