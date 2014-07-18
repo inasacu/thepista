@@ -1,6 +1,20 @@
 desc "This task is called by the Heroku scheduler add-on"
 desc "cron job"
 
+desc "adding a yo request for events within the next 48 hours..."
+task :the_yo_request_schedule => :environment do |t|
+  uri = URI.parse("#{YO_REQUEST_URL_ALL}")
+  schedules = Schedule.find(:all, :conditions => ["schedules.starts_at >= ? and schedules.ends_at <= ? and 
+                                                    schedules.played = false and schedules.archive = false", Time.zone.now, NEXT_48_HOURS])
+
+    schedules.each do |schedule|
+      response = Net::HTTP.post_form(uri, {'api_token' => ENV["YO_API"]})
+      puts response.body
+    end
+end
+
+
+
 # heroku run rake send_reminders --app zurb
 task :send_reminders => :environment do
 	puts "Sending schedule REMINDER notice... A:  #{Time.zone.now}"
