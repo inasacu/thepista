@@ -298,7 +298,7 @@ class SchedulesController < ApplicationController
 			match.save!
 		end
   		Scorecard.delay.calculate_group_scorecard(@schedule.group) if USE_DELAYED_JOBS
-  		Scorecard.calculate_group_scorecard(@schedule.group).deliver unless USE_DELAYED_JOBS
+  		Scorecard.calculate_group_scorecard(@schedule.group) unless USE_DELAYED_JOBS
 		@schedule.destroy
 
 		flash[:notice] = I18n.t(:successful_destroy)

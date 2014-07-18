@@ -61,7 +61,7 @@ class CupsController < ApplicationController
 				(@original_cup.points_for_draw != @cup.points_for_draw)
 
 				Scorecard.delay.calculate_cup_scorecard(@cup) if USE_DELAYED_JOBS
-				Scorecard.calculate_cup_scorecard(@cup).deliver unless USE_DELAYED_JOBS 
+				Scorecard.calculate_cup_scorecard(@cup) unless USE_DELAYED_JOBS 
 			end
 
 			controller_successful_update

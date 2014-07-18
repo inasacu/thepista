@@ -124,13 +124,13 @@ class Challenge < ActiveRecord::Base
 
     ChallengesUsers.join_item(user, self)
     Standing.delay.create_cup_challenge_standing(self) if USE_DELAYED_JOBS
-    Standing.create_cup_challenge_standing(self).deliver unless USE_DELAYED_JOBS
+    Standing.create_cup_challenge_standing(self) unless USE_DELAYED_JOBS
     Cast.delay.create_challenge_cast(self) if USE_DELAYED_JOBS
-    Cast.create_challenge_cast(self).deliver unless USE_DELAYED_JOBS
+    Cast.create_challenge_cast(self) unless USE_DELAYED_JOBS
     
     if DISPLAY_PROFESSIONAL_SERVICES
       Fee.delay.create_user_challenge_fees(self) if USE_DELAYED_JOBS
-      Fee.create_user_challenge_fees(self).deliver unless USE_DELAYED_JOBS
+      Fee.create_user_challenge_fees(self) unless USE_DELAYED_JOBS
     end
     
   end 

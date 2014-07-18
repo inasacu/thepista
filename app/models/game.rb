@@ -224,29 +224,29 @@ class Game < ActiveRecord::Base
 		if self.cup.official
 			Game.update_cast_details(self.cup) 
 			Game.delay.set_final_stage(self.cup) if self.all_group_stage_played(self.cup) if USE_DELAYED_JOBS
-			Game.set_final_stage(self.cup) if self.all_group_stage_played(self.cup).deliver unless USE_DELAYED_JOBS
+			Game.set_final_stage(self.cup) if self.all_group_stage_played(self.cup) unless USE_DELAYED_JOBS
 
 			Standing.delay.cup_challenges_user_standing(self.cup) if USE_DELAYED_JOBS
-			Standing.cup_challenges_user_standing(self.cup).deliver unless USE_DELAYED_JOBS
+			Standing.cup_challenges_user_standing(self.cup) unless USE_DELAYED_JOBS
 			Standing.delay.update_cup_challenge_item_ranking(self.cup) if USE_DELAYED_JOBS
-			Standing.update_cup_challenge_item_ranking(self.cup).deliver unless USE_DELAYED_JOBS
+			Standing.update_cup_challenge_item_ranking(self.cup) unless USE_DELAYED_JOBS
 		end	
 		Standing.create_cup_escuadra_standing(self.cup)
 		Standing.delay.calculate_cup_standing(self.cup) if USE_DELAYED_JOBS
-		Standing.calculate_cup_standing(self.cup).deliver unless USE_DELAYED_JOBS
+		Standing.calculate_cup_standing(self.cup) unless USE_DELAYED_JOBS
 	end
 
 	def self.update_cast_details(cup)
 		@cast = nil
 		cup.challenges.each do |challenge|       
 		  Cast.delay.update_cast_details(challenge) if USE_DELAYED_JOBS
-  		Cast.update_cast_details(challenge).deliver unless USE_DELAYED_JOBS
+  		Cast.update_cast_details(challenge) unless USE_DELAYED_JOBS
 			@cast = challenge.casts.first if @cast == ''
 		end
 		
 		 unless (@cast == nil)
   		Cast.delay.calculate_standing(@cast) if USE_DELAYED_JOBS
-  		Cast.calculate_standing(@cast).deliver unless USE_DELAYED_JOBS
+  		Cast.calculate_standing(@cast) unless USE_DELAYED_JOBS
 		end
 	end
 
@@ -269,11 +269,11 @@ class Game < ActiveRecord::Base
 			self.cup.challenges.each do |challenge|
 			  
 				Cast.delay.create_challenge_cast(challenge) if USE_DELAYED_JOBS
-  			Cast.create_challenge_cast(challenge).deliver unless USE_DELAYED_JOBS
+  			Cast.create_challenge_cast(challenge) unless USE_DELAYED_JOBS
   				
   			if DISPLAY_PROFESSIONAL_SERVICES
 				  Fee.delay.create_user_challenge_fees(challenge) if USE_DELAYED_JOBS
-				  Fee.create_user_challenge_fees(challenge).deliver unless USE_DELAYED_JOBS
+				  Fee.create_user_challenge_fees(challenge) unless USE_DELAYED_JOBS
 			  end
 			  
 			end

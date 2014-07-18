@@ -94,7 +94,7 @@ class GroupsController < ApplicationController
 				(@original_group.points_for_draw != @group.points_for_draw)
 
 				Scorecard.delay.calculate_group_scorecard(@group) if USE_DELAYED_JOBS
-				Scorecard.calculate_group_scorecard(@group).deliver unless USE_DELAYED_JOBS
+				Scorecard.calculate_group_scorecard(@group) unless USE_DELAYED_JOBS
 			end
 
 			controller_successful_update

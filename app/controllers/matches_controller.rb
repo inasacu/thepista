@@ -93,7 +93,7 @@ class MatchesController < ApplicationController
 		if @match.update_attributes(:type_id => @type.id, :played => played, :user_x_two => @user_x_two, :status_at => Time.zone.now)
 		  
 			Scorecard.delay.calculate_user_played_assigned_scorecard(@match.user, @match.schedule.group) if USE_DELAYED_JOBS
-  		Scorecard.calculate_user_played_assigned_scorecard(@match.user, @match.schedule.group).deliver unless USE_DELAYED_JOBS
+  		Scorecard.calculate_user_played_assigned_scorecard(@match.user, @match.schedule.group) unless USE_DELAYED_JOBS
 
 			if DISPLAY_FREMIUM_SERVICES
 				# set fee type_id to same as match type_id
@@ -124,9 +124,9 @@ class MatchesController < ApplicationController
 			manager_id = RolesUsers.find_item_manager(@match.schedule.group).user_id
 			
 			Schedule.delay.create_notification_email(@match.schedule, @match.schedule, manager_id, @match.user_id, true) if USE_DELAYED_JOBS
-			Schedule.create_notification_email(@match.schedule, @match.schedule, manager_id, @match.user_id, true).deliver unless USE_DELAYED_JOBS     
+			Schedule.create_notification_email(@match.schedule, @match.schedule, manager_id, @match.user_id, true) unless USE_DELAYED_JOBS     
 			Scorecard.delay.calculate_user_played_assigned_scorecard(@match.user, @match.schedule.group) if USE_DELAYED_JOBS   
-			Scorecard.calculate_user_played_assigned_scorecard(@match.user, @match.schedule.group).deliver unless USE_DELAYED_JOBS
+			Scorecard.calculate_user_played_assigned_scorecard(@match.user, @match.schedule.group) unless USE_DELAYED_JOBS
 
 			if DISPLAY_FREMIUM_SERVICES
 				# set fee type_id to same as match type_id
