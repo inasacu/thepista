@@ -31,3 +31,4 @@ Gemfile
 /config/database.yml
 
 app/.DS_Store
+*.dump
