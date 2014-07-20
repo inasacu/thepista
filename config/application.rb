@@ -97,7 +97,7 @@ module Thepista
     # http://makandracards.com/makandra/20303-how-to-silence-i18n-enforce_available_locales-deprecation-warnings
     I18n.enforce_available_locales = true
 
-    config.middleware.use "WwwDitcher"
+    # config.middleware.use "WwwDitcher" 
 
     # Mongoid loggind options
     Mongoid.logger.level = Logger::DEBUG
