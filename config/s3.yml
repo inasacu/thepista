@@ -1,22 +1,24 @@
 development:
-  access_key_id: 1Z36VBYX179XC52VJWR2
-  secret_access_key: XB/iiMMjSyZM+bjG+l/8HxrAzGEPylcWu05Zd7/W
-  # bucket: thepista_desarrollo
-  bucket:  thepista_produccion
+  access_key_id: ENV["S3_ACCESS_KEY_ID"]
+  secret_access_key: ENV["S3_SECRET_ACCESS_KEY"]
+  bucket:  ENV["S3_BUCKET"]
 
 test:
-  access_key_id: 1Z36VBYX179XC52VJWR2
-  secret_access_key: XB/iiMMjSyZM+bjG+l/8HxrAzGEPylcWu05Zd7/W
-  # bucket: thepista_prueba
-  bucket:  thepista_produccion
+  access_key_id: ENV["S3_ACCESS_KEY_ID"]
+  secret_access_key: ENV["S3_SECRET_ACCESS_KEY"]
+  bucket:  ENV["S3_BUCKET"]
 
 staging:
-  access_key_id: 1Z36VBYX179XC52VJWR2
-  secret_access_key: XB/iiMMjSyZM+bjG+l/8HxrAzGEPylcWu05Zd7/W
-  # bucket: thepista_prueba
-  bucket:  thepista_produccion
+  access_key_id: ENV["S3_ACCESS_KEY_ID"]
+  secret_access_key: ENV["S3_SECRET_ACCESS_KEY"]
+  bucket:  ENV["S3_BUCKET"]
     
 production:
-  access_key_id: 1Z36VBYX179XC52VJWR2
-  secret_access_key: XB/iiMMjSyZM+bjG+l/8HxrAzGEPylcWu05Zd7/W
-  bucket: thepista_produccion
+  access_key_id: ENV["S3_ACCESS_KEY_ID"]
+  secret_access_key: ENV["S3_SECRET_ACCESS_KEY"]
+  bucket: ENV["S3_BUCKET"]
+  
+  access_key_id:      ENV["S3_ACCESS_KEY_ID"]
+  secret_access_key:  ENV["S3_SECRET_ACCESS_KEY"]
+  bucket:             ENV["S3_BUCKET"]
+  
