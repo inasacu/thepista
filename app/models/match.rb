@@ -67,6 +67,19 @@ class Match < ActiveRecord::Base
 							matches.status_at >= ? and schedules.starts_at >= ? and matches.user_id not in (?)", user.groups, YESTERDAY, YESTERDAY, DEFAULT_GROUP_USERS]).each do |item| 
       items << item
     end
+    
+    find(:all, :select => "distinct matches.id, matches.change_id as user_id, matches.schedule_id, types.id as type_id, 
+                  types.name as type_name, date_trunc('hour', matches.changed_at) as created_at", 
+         :joins => "left join groups_users on groups_users.user_id = matches.user_id 
+										left join types on types.id = '70'
+										left join schedules on schedules.id = matches.schedule_id
+										left join groups on schedules.group_id = groups.id",    
+         :conditions => ["matches.change_id is not null and matches.changed_at is not null and groups.item_type is null and schedules.played = false and groups_users.group_id in (?) and 
+              age(matches.changed_at, matches.created_at) > '00:00:00' and matches.status_at != matches.created_at and 
+							matches.changed_at >= ? and schedules.starts_at >= ? and matches.user_id not in (?)", user.groups, YESTERDAY, YESTERDAY, DEFAULT_GROUP_USERS]).each do |item| 
+      items << item unless items.include?(item)
+    end
+    
     return items 
   end
 

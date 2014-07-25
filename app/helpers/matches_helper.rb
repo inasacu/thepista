@@ -186,6 +186,7 @@ module MatchesHelper
 
 		first_icon = ""
 		the_icon = ""
+    the_links = ""
 
 		the_match = matches.first
 
@@ -196,23 +197,35 @@ module MatchesHelper
 		the_icon = match_image_link(the_match, the_match.schedule.sport.icon)
 
 		item_group_link = item_name_link(the_match.schedule.group)
-
 		is_member = is_current_member_of(the_match.schedule.group)
+    
+		
+    if the_match.type_id == 70
+      the_label = %(<STRONG>#{I18n.t(:post_pre_match_teams)}</STRONG> #{I18n.t(:in)}) 
+      
+      unique_matches = []
+      matches.each do |match|
+        unless unique_matches.include?(match.schedule.matches.first)
+          the_links = %( - #{the_links} #{is_member ? match_roster_link(match.schedule.matches.first) : sanitize(match.schedule.name)}, )
+          unique_matches << match.schedule.matches.first 
+        end
+      end
+      
+    else
+      the_label = %(#{I18n.t(:passed_to)} <STRONG>#{the_match.type_name}</STRONG> #{I18n.t(:in)}) 
 
+      matches.each do |match|
+        the_links = %(#{the_links} #{sanitize(match.schedule.name)}, )
+      end
 
-		the_label = %(#{I18n.t(:passed_to)} <STRONG>#{the_match.type_name}</STRONG> #{I18n.t(:in)})
-
-		the_links = ""	
-		matches.each do |match|
-			the_links = %(#{the_links} #{is_member ? match_roster_link(match) : sanitize(match.schedule.name)}, )
-		end
-
-		the_links = %(#{the_links.chop.chop})	
+    end
+  
+    the_links = %(#{the_links.chop.chop}) 
 		the_label = %(#{the_label} #{the_links})
 
 		the_color = "green"
 		case the_match.type_id
-		when 1
+		when 1, 70
 			the_color = "green"
 		when 2
 			the_color = "yellow"
