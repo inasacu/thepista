@@ -17,42 +17,30 @@ task :the_yo_request => :environment do |t|
                                                schedules.played = false and schedules.archive = false and 
                                                schedules.send_reminder_at is null and matches.archive = false", Time.zone.now, NEXT_48_HOURS])
    
-   counter = 0                                   
-   the_schedules = []                                    
-   matches.each do |match|
-     
-     # uri = URI.parse("#{YO_REQUEST_URL}")
-     # response = Net::HTTP.post_form(uri, {'api_token' => ENV["YO_API"], 'username' => '#{match.yo_username}'})
-     # puts response.body
-      puts "#{counter+=1}: #{match.yo_username}"
-     
-     the_schedules << match.schedule_id unless the_schedules.include?(match.schedule_id)
-   end 
+  counter = 0                                   
+  the_schedules = []                                    
+  matches.each do |match|
+
+    #   curl --data "api_token=YO_API9&username=yo_username" http://api.justyo.co/yo/
    
-   schedules = Schedule.find(:all, :select => "send_reminder_at", :conditions => ["id in (?)", the_schedules])
-   schedules.each do |schedule|
+    uri = URI.parse("#{YO_REQUEST_URL}")
+    response = Net::HTTP.post_form(uri, {'api_token' => ENV["YO_API"], 'username' => '#{match.yo_username}'})
+    puts response.body
+    puts "#{counter+=1}: #{match.yo_username}"
+    
+    the_schedules << match.schedule_id unless the_schedules.include?(match.schedule_id)
+  end 
+
+  
+  schedules = Schedule.find(:all, :select => "send_reminder_at", :conditions => ["id in (?)", the_schedules])
+  schedules.each do |schedule|
    
-     response = Net::HTTP.post_form(uri, {'api_token' => ENV["YO_API"]})
-     puts response.body
+    response = Net::HTTP.post_form(uri, {'api_token' => ENV["YO_API"]})
+    puts response.body
    
-     schedule.send_reminder_at = Time.zone.now
-     schedule.save!
-   end
-  
-  
-  # uri = URI.parse("#{YO_REQUEST_URL_ALL}")
-  # 
-  # # Shortcut
-  # response = Net::HTTP.post_form(uri, {'api_token' => ENV["YO_API"], 'username' => 'inasacu'})
-  # 
-  # # Full control
-  # # http = Net::HTTP.new(uri.host, uri.port)
-  # # request = Net::HTTP::Post.new(uri.request_uri)
-  # # request.set_form_data({'api_token' => ENV["YO_API"], 'username' => 'inasacu'})
-  # # response = http.request(request)
-  # puts response.body
-  
-  
-  
+    schedule.send_reminder_at = Time.zone.now
+    # schedule.save!
+  end
+
 end
 
