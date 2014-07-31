@@ -189,6 +189,14 @@ class MatchesController < ApplicationController
 		played = (@match.type_id.to_i == 1 and !@match.group_score.nil? and !@match.invite_score.nil?)
 
 		if @match.update_attributes(:group_id => @match.invite_id, :invite_id => @match.group_id, :played => played, :user_x_two => @user_x_two, :change_id => @user.id, :changed_at => Time.zone.now)
+			
+			the_matches = Match.find(:all, :conditions => ["schedule_id = ? and change_id != ?", @match.schedule_id, @user.id])
+			the_matches.each do |the_match|
+			  the_match.change_id = nil
+			  the_match.changed_at = nil
+			  the_match.save!
+			end
+			
 			Scorecard.calculate_user_played_assigned_scorecard(@match.user, @match.schedule.group)
 			controller_successful_update			
 		end
