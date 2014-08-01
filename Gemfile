@@ -2,7 +2,7 @@ source 'https://rubygems.org'
 
 ruby '1.9.3'
 
-gem 'rails', '3.2.18'
+gem 'rails', '3.2.19'
 gem 'pg', '0.17.0'
 gem 'thin'
 gem 'authlogic', '3.4.0'
