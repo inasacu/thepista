@@ -1,4 +1,8 @@
 <%
+	the_infringe_label = label_name(:infringe_true)
+	the_last_minute_infringe_label = label_name(:infringe_last_minute_true)
+	the_reputation_label = label_name(:reputation_true)
+
 	image = scorecard_image_link(IMAGE_BAJAR_CLASIFICACION) if (scorecard.ranking > scorecard.previous_ranking) 
 	image = scorecard_image_link(IMAGE_SUBIR_CLASIFICACION) if (scorecard.ranking < scorecard.previous_ranking)  		
 	image = scorecard_image_link(IMAGE_MANTENER_CLASIFICACION) if (scorecard.ranking == scorecard.previous_ranking) 
@@ -10,6 +14,27 @@
 
 	user_played = scorecard.type_id.to_i == 1 
 	user_scorecard_link = subscription_image_link(scorecard.user, user_played ? "orange_#{user_played}" : "#{user_played}", I18n.t("game_played_#{user_played}"))
+	
+	if @the_roster_reputation
+		if @the_roster_reputation.include?(scorecard.user_id)
+			no_reputation_image = "#{image_tag('icons/star_green_true.png', options={:title => the_reputation_label, :style => 'height: 15px; width: 15px;'})}" 
+		end
+	end
+
+	if @the_roster_infringe
+		if @the_roster_infringe.include?(scorecard.user_id)
+			no_jugado_image = "#{no_jugado_image} #{image_tag('icons/star_purple_true.png', options={:title => the_infringe_label, :style => 'height: 15px; width: 15px;'})}" 
+		end
+	end
+
+	if @the_roster_last_minute_infringe
+		if @the_roster_last_minute_infringe.include?(scorecard.user_id)
+			no_jugado_image = "#{no_jugado_image} #{image_tag('icons/star_red_true.png', options={:title => the_last_minute_infringe_label, :style => 'height: 15px; width: 15px;'})}" 
+		end
+	end
+		
+	user_scorecard_link += "#{no_reputation_image} #{no_jugado_image}".html_safe
+	
 	the_ranking_change = "#{image}"
 	the_player_link = "#{user_link_limit(scorecard.user)}"
 	the_coeficient_percent = scorecard.coeficient_percent.to_i
@@ -39,14 +64,16 @@
 	<%= set_content_tag_safe(:td, "#{scorecard.ranking}. #{user_scorecard_link}") %>
 	<%= set_content_tag_safe(:td, "#{item_image_link_tiny(scorecard.user)}") %>
 	<%= set_content_tag_safe(:td, the_player_link) %>
+	
 	<%= set_content_tag_safe(:td, the_ranking_change) %>
 	<%= set_content_tag_safe(:td, "#{scorecard.points.round}") %>
+	<%= set_content_tag_safe(:td, "#{scorecard.goals_scored}") %>
+	
 	<%= set_content_tag_safe(:td, game_number) %>
 	<%= set_content_tag_safe(:td, "#{scorecard.played}") if DISPLAY_FREMIUM_SERVICES %>
 	<%= set_content_tag_safe(:td, "#{scorecard.wins}") %>
 	<%= set_content_tag_safe(:td, "#{scorecard.draws}") %>
 	<%= set_content_tag_safe(:td, "#{scorecard.losses}") %>
-	<%= set_content_tag_safe(:td, "#{scorecard.goals_scored}") %>
-	<%= set_content_tag_safe(:td, the_coeficient_percent_full) %>
-	<%= set_content_tag_safe(:td, "#{scorecard.coeficient_points.to_f.round}") %>
+	<%#= set_content_tag_safe(:td, the_coeficient_percent_full) %>
+	<%#= set_content_tag_safe(:td, "#{scorecard.coeficient_points.to_f.round}") %>
 </tr>
