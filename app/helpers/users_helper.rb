@@ -34,8 +34,10 @@ module UsersHelper
   end	
 
   def subscription_image_link(user, is_subscriber=false, the_label="")
-    star_image = "icons/star_#{is_subscriber}.png"
-    link_to(image_tag(star_image, options={:title => the_label, :style => "height: 15px; width: 15px;"}), user_path(user))
+    if is_subscriber
+      star_image = "icons/star_#{is_subscriber}.png"
+      link_to(image_tag(star_image, options={:title => the_label, :style => "height: 15px; width: 15px;"}), user_path(user))
+    end
   end
 
   def user_avatar_image_link(user)

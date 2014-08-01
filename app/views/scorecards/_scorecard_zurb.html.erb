@@ -2,6 +2,10 @@
 	the_infringe_label = label_name(:infringe_true)
 	the_last_minute_infringe_label = label_name(:infringe_last_minute_true)
 	the_reputation_label = label_name(:reputation_true)
+	
+	no_reputation_image = ""
+	no_jugado_image = ""
+	user_scorecard_link = ""
 
 	image = scorecard_image_link(IMAGE_BAJAR_CLASIFICACION) if (scorecard.ranking > scorecard.previous_ranking) 
 	image = scorecard_image_link(IMAGE_SUBIR_CLASIFICACION) if (scorecard.ranking < scorecard.previous_ranking)  		
@@ -12,21 +16,25 @@
 	ranking_change = "+#{scorecard.previous_ranking - scorecard.ranking}" if (scorecard.ranking < scorecard.previous_ranking)  	
 	ranking_change = " " if (scorecard.ranking == scorecard.previous_ranking or scorecard.previous_ranking == 0)
 
-	user_played ||= false
-	user_played = (scorecard.type_id.to_i == 1 )
-	user_scorecard_link = subscription_image_link(scorecard.user, user_played ? "orange_#{user_played}" : "#{user_played}", I18n.t("game_played_#{user_played}"))
+	last_game_played ||= false
+	last_game_played = (scorecard.type_id.to_i == 1 )
+	is_subscriber = scorecard.user.is_subscriber_of?(scorecard.group)
+	the_subscriber_label =  label_name("subscription_#{is_subscriber}")
 	
-	if @the_roster_reputation
-		if @the_roster_reputation.include?(scorecard.user_id)
-			no_reputation_image = "#{image_tag('icons/star_green_true.png', options={:title => the_reputation_label, :style => 'height: 15px; width: 15px;'})}" 
-		end
-	end
+	user_subscription_link = subscription_image_link(scorecard.user, is_subscriber, the_subscriber_label)
+	user_scorecard_link = subscription_image_link(scorecard.user, last_game_played ? "orange_#{last_game_played}" : false, I18n.t("game_played_#{last_game_played}"))
+	
+	# if @the_roster_reputation
+	# 	if @the_roster_reputation.include?(scorecard.user_id)
+	# 		no_reputation_image = "#{image_tag('icons/star_green_true.png', options={:title => the_reputation_label, :style => 'height: 15px; width: 15px;'})}" 
+	# 	end
+	# end
 
-	if @the_roster_infringe
-		if @the_roster_infringe.include?(scorecard.user_id)
-			no_jugado_image = "#{no_jugado_image} #{image_tag('icons/star_purple_true.png', options={:title => the_infringe_label, :style => 'height: 15px; width: 15px;'})}" 
-		end
-	end
+	# if @the_roster_infringe
+	# 	if @the_roster_infringe.include?(scorecard.user_id)
+	# 		no_jugado_image = "#{no_jugado_image} #{image_tag('icons/star_purple_true.png', options={:title => the_infringe_label, :style => 'height: 15px; width: 15px;'})}" 
+	# 	end
+	# end
 
 	if @the_roster_last_minute_infringe
 		if @the_roster_last_minute_infringe.include?(scorecard.user_id)
@@ -34,7 +42,8 @@
 		end
 	end
 		
-	user_scorecard_link += "#{no_reputation_image} #{no_jugado_image}".html_safe
+		
+	user_scorecard_link = "#{user_subscription_link} #{no_reputation_image} #{user_scorecard_link} #{no_jugado_image}".html_safe
 	
 	the_ranking_change = "#{image}"
 	the_player_link = "#{user_link_limit(scorecard.user)}"
@@ -50,14 +59,16 @@
 		game_number = the_font_green(scorecard_coeficient_played)
 	end
 
-	the_coeficient_percent_full = "#{sprintf( '%0.00f', the_coeficient_percent)}%"
-	if the_coeficient_percent.to_f < COEFICIENT_FULL_LOW
-		the_coeficient_percent_full = the_font_red(the_coeficient_percent_full) 
-	elsif the_coeficient_percent > COEFICIENT_FULL_MEDIUM_LOW and the_coeficient_percent < COEFFICIENT_FULL_MEDIUM_HIGH
-		the_coeficient_percent_full = the_font_yellow(the_coeficient_percent_full)  
-	elsif the_coeficient_percent > COEFFICIENT_FULL_HIGH
-		the_coeficient_percent_full = the_font_green(the_coeficient_percent_full) 
-	end	
+	if DISPLAY_FREMIUM_SERVICES
+		the_coeficient_percent_full = "#{sprintf( '%0.00f', the_coeficient_percent)}%"
+		if the_coeficient_percent.to_f < COEFICIENT_FULL_LOW
+			the_coeficient_percent_full = the_font_red(the_coeficient_percent_full) 
+		elsif the_coeficient_percent > COEFICIENT_FULL_MEDIUM_LOW and the_coeficient_percent < COEFFICIENT_FULL_MEDIUM_HIGH
+			the_coeficient_percent_full = the_font_yellow(the_coeficient_percent_full)  
+		elsif the_coeficient_percent > COEFFICIENT_FULL_HIGH
+			the_coeficient_percent_full = the_font_green(the_coeficient_percent_full) 
+		end	
+	end
 %>
 
 
@@ -71,10 +82,11 @@
 	<%= set_content_tag_safe(:td, "#{scorecard.goals_scored}") %>
 	
 	<%= set_content_tag_safe(:td, game_number) %>
-	<%= set_content_tag_safe(:td, "#{scorecard.played}") if DISPLAY_FREMIUM_SERVICES %>
 	<%= set_content_tag_safe(:td, "#{scorecard.wins}") %>
 	<%= set_content_tag_safe(:td, "#{scorecard.draws}") %>
 	<%= set_content_tag_safe(:td, "#{scorecard.losses}") %>
-	<%#= set_content_tag_safe(:td, the_coeficient_percent_full) %>
-	<%#= set_content_tag_safe(:td, "#{scorecard.coeficient_points.to_f.round}") %>
+	
+	<%= set_content_tag_safe(:td, "#{scorecard.played}") if DISPLAY_FREMIUM_SERVICES %>
+	<%= set_content_tag_safe(:td, the_coeficient_percent_full) if DISPLAY_FREMIUM_SERVICES %>
+	<%= set_content_tag_safe(:td, "#{scorecard.coeficient_points.to_f.round}")if DISPLAY_FREMIUM_SERVICES %>
 </tr>

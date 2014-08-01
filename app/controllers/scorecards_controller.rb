@@ -18,7 +18,7 @@ class ScorecardsController < ApplicationController
 		@the_roster_infringe = @schedule.the_roster_infringe
 		@the_roster_last_minute_infringe = @schedule.the_last_minute_infringe
 		@the_last_played = @schedule.the_roster_last_played
-		@the_roster_reputation = @schedule.the_roster_reputation(@group)
+    # @the_roster_reputation = @schedule.the_roster_reputation(@group)
 		
 		
 		if @scorecards.nil?	
