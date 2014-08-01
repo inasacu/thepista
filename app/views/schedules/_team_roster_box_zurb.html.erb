@@ -158,7 +158,7 @@ the_roster.each do |match|
 	
 	is_different_user_manager = (current_user != the_user and is_manager)
 	
-	if is_mobile_browser
+	if is_mobile_browser or has_been_played
 		subscription_image = "#{counter +=1}."
 	else
 		subscription_image = "#{counter +=1}.  #{user_subscription_link} #{no_reputation_image} #{user_scorecard_link} #{no_jugado_image} "
