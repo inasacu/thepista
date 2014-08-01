@@ -12,7 +12,8 @@
 	ranking_change = "+#{scorecard.previous_ranking - scorecard.ranking}" if (scorecard.ranking < scorecard.previous_ranking)  	
 	ranking_change = " " if (scorecard.ranking == scorecard.previous_ranking or scorecard.previous_ranking == 0)
 
-	user_played = scorecard.type_id.to_i == 1 
+	user_played ||= false
+	user_played = (scorecard.type_id.to_i == 1 )
 	user_scorecard_link = subscription_image_link(scorecard.user, user_played ? "orange_#{user_played}" : "#{user_played}", I18n.t("game_played_#{user_played}"))
 	
 	if @the_roster_reputation
