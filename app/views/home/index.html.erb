@@ -9,12 +9,40 @@
 	is_game_visible = DISPLAY_FREMIUM_SERVICES and !@upcoming_games.empty?
 	is_cup_visible = @all_values.count > 0 and DISPLAY_FREMIUM_SERVICES 
 	
+	is_display_scorecard = false
+	if current_user
+		if current_user.groups.count == 1
+			the_group = current_user.groups.first
+			is_single_group = true
+			has_schedule = Scorecard.has_played_schedule?(the_group)
+			is_display_scorecard = has_schedule 
+		end
+	end
+	
 %>
 
-	<%#= render 'home/upcoming_cup_zurb', :my_schedules => @upcoming_cups, :the_label => label_name(:cups_upcoming) if is_cup_visible %>
-	<%#= render 'home/upcoming_game_zurb', :my_schedules => @upcoming_games, :the_label => label_name(:games) if is_game_visible %>
+	<%= render 'home/upcoming_cup_zurb', :my_schedules => @upcoming_cups, :the_label => label_name(:cups_upcoming) if is_cup_visible %>
+	<%= render 'home/upcoming_game_zurb', :my_schedules => @upcoming_games, :the_label => label_name(:games) if is_game_visible %>
 	
-	<%= render 'home/upcoming_schedule_zurb', :my_schedules => @my_schedules, :the_label => label_name(:upcoming_meets) unless @my_schedules.empty? %>
+	<% if @my_schedules.empty? and is_display_scorecard 
+			the_manager = the_group.all_the_managers.first
+		%>
+	
+		<div class="row">
+			<div class="twelve columns">
+				<br>
+				<% if the_manager == current_user %>
+					<%= set_content_tag_safe(:h6, "#{link_to(label_name(:schedules_create), Schedule.new, :id => the_group) } para que tu equipo pueda jugar.", "title") %>
+				<% else %>
+<%= set_content_tag_safe(:h6, "Mandale un mensaje a #{user_link(the_manager)} para que ponga un evento, <br><br>
+							mientras tanto mira la #{link_to(label_name(:scorecard), scorecard_path(:id => the_group))}.", "title") %>
+				<% end %>
+			</div>
+		</div>
+	
+	<% else %>
+		<%= render 'home/upcoming_schedule_zurb', :my_schedules => @my_schedules, :the_label => label_name(:upcoming_meets) unless @my_schedules.empty? %>
+	<% end %>
 	
 	<%= render 'home/latest_activities_zurb', :the_label => label_name(:latest_activities) if has_activities %>
 

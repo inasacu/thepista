@@ -14,6 +14,17 @@
 	div_nine_columns = "<div class='nine columns'>".html_safe
 	div_twelve_columns = "<div class='twelve columns'>".html_safe
 	div_close = "</div>".html_safe
+	
+	is_display_scorecard = false
+	if current_user
+		if current_user.groups.count == 1
+			the_group = current_user.groups.first
+			is_single_group = true
+			has_schedule = Scorecard.has_played_schedule?(the_group)
+			is_display_scorecard = has_schedule 
+		end
+	end
+	
 %>
 
 
@@ -38,6 +49,8 @@
 				<%= link_to(label_name(:home), root_url, :class => the_home) %>
 				<%= link_to(label_name(:groups), groups_url, :class => the_group) %>	
 				<%= link_to(label_name(:schedules), schedules_url, :class => the_schedule) if has_group %>
+				<%= link_to(label_name(:scorecard), scorecard_path(:id => the_group), :class => the_schedule) if is_display_scorecard %>
+				
 				<%= link_to(label_name(:reservations), venues_url, :class => the_venue) if DISPLAY_FREMIUM_SERVICES %>	
 				<%= link_to(label_name(:cups), cups_url, :class => the_cup) if DISPLAY_FREMIUM_SERVICES %>
 				<%= link_to("#{label_name(:companies)}", companies_url) if DISPLAY_FREMIUM_SERVICES %>

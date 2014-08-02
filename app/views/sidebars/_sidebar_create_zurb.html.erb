@@ -23,7 +23,6 @@
 
 
 <%= set_image_and_link(link_to(label_name(:challenges_create), new_challenge_path(:cup_id => @cup)), 'challenge') if is_official %>
-<%#= set_image_and_link(link_to(label_name(:escuadras_create), new_escuadra_path(:id => @cup)), 'group_add') unless @has_escuadra_for_signup %> 
 <%= set_image_and_link(link_to(label_name(:escuadras_create), new_escuadra_path(:id => @cup)), 'group_add') if @cup and is_official %>
 
 
