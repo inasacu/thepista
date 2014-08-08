@@ -2,42 +2,26 @@
 #
 # Table name: scorecards
 #
-#  id                  :integer          not null, primary key
-#  group_id            :integer
-#  user_id             :integer
-#  wins                :integer          default(0)
-#  draws               :integer          default(0)
-#  losses              :integer          default(0)
-#  points              :float            default(0.0)
-#  ranking             :integer          default(0)
-#  played              :integer          default(0)
-#  assigned            :integer          default(0)
-#  goals_for           :integer          default(0)
-#  goals_against       :integer          default(0)
-#  goals_scored        :integer          default(0)
-#  previous_points     :integer          default(0)
-#  previous_ranking    :integer          default(0)
-#  previous_played     :integer          default(0)
-#  payed               :integer          default(0)
-#  archive             :boolean          default(FALSE)
-#  created_at          :datetime
-#  updated_at          :datetime
-#  season_ends_at      :datetime
-#  field_goal_attempt  :integer          default(0)
-#  field_goal_made     :integer          default(0)
-#  free_throw_attempt  :integer          default(0)
-#  free_throw_made     :integer          default(0)
-#  three_point_attempt :integer          default(0)
-#  three_point_made    :integer          default(0)
-#  rebounds_defense    :integer          default(0)
-#  rebounds_offense    :integer          default(0)
-#  minutes_played      :integer          default(0)
-#  assists             :integer          default(0)
-#  steals              :integer          default(0)
-#  blocks              :integer          default(0)
-#  turnovers           :integer          default(0)
-#  personal_fouls      :integer          default(0)
-#  started             :integer          default(0)
+#  id               :integer          not null, primary key
+#  group_id         :integer
+#  user_id          :integer
+#  wins             :integer          default(0)
+#  draws            :integer          default(0)
+#  losses           :integer          default(0)
+#  points           :float            default(0.0)
+#  ranking          :integer          default(0)
+#  played           :integer          default(0)
+#  assigned         :integer          default(0)
+#  goals_for        :integer          default(0)
+#  goals_against    :integer          default(0)
+#  goals_scored     :integer          default(0)
+#  previous_points  :integer          default(0)
+#  previous_ranking :integer          default(0)
+#  previous_played  :integer          default(0)
+#  payed            :integer          default(0)
+#  archive          :boolean          default(FALSE)
+#  created_at       :datetime
+#  updated_at       :datetime
 #
 
 class Scorecard < ActiveRecord::Base 
@@ -71,7 +55,7 @@ class Scorecard < ActiveRecord::Base
           previous_matches = true
           
           # run for basket stats if team is basket
-          update_group_user_scorecard_basket(group, user, scorecard, @matches) if group.is_basket?
+          # update_group_user_scorecard_basket(group, user, scorecard, @matches) if group.is_basket?
         end
       end
   end
@@ -87,7 +71,7 @@ class Scorecard < ActiveRecord::Base
           previous_matches = true
           
           # run for basket stats if team is basket
-          update_group_user_scorecard_basket(group, user, scorecard, @matches) if group.is_basket?
+          # update_group_user_scorecard_basket(group, user, scorecard, @matches) if group.is_basket?
         end
       end
   end
@@ -161,43 +145,7 @@ class Scorecard < ActiveRecord::Base
     end
   end
   
-  def self.update_group_user_scorecard_basket(group, user, scorecard, matches)
 
-    # calculate scorecards for user in group basket 
-    # default variables  
-    field_goal_attempt, field_goal_made = 0, 0
-  	free_throw_attempt, free_throw_made = 0, 0
-  	three_point_attempt, three_point_made = 0, 0
-  	rebounds_defense, rebounds_offense = 0, 0, 0
-  	minutes_played, assists, steals = 0, 0, 0
-  	blocks, turnovers, personal_fouls, started = 0, 0, 0, 0
-
-    matches.each do |match|
-      field_goal_attempt += match.field_goal_attempt
-      field_goal_made += match.field_goal_made
-    	free_throw_attempt += match.free_throw_attempt
-    	free_throw_made += match.free_throw_made
-    	three_point_attempt += match.three_point_attempt
-    	three_point_made += match.three_point_made
-    	rebounds_defense += match.rebounds_defense
-    	rebounds_offense += match.rebounds_offense 
-    	minutes_played += match.minutes_played
-    	assists += match.assists
-    	steals += match.steals 
-    	blocks += match.blocks
-    	turnovers += match.turnovers
-    	personal_fouls += match.personal_fouls
-    	started += 1 if match.started      
-    end 
-    
-    # update scorecard with all calculations
-      scorecard.update_attributes(:field_goal_attempt => field_goal_attempt, :field_goal_made => field_goal_made,
-                	                :free_throw_attempt => free_throw_attempt, :free_throw_made => free_throw_made,
-                                	:three_point_attempt => three_point_attempt, :three_point_made => three_point_made, 
-                                	:rebounds_defense => rebounds_defense, :rebounds_offense => rebounds_offense, 
-                                	:minutes_played => minutes_played, :assists => assists, :steals => steals, :blocks => blocks, 
-                                	:turnovers => turnovers, :personal_fouls => personal_fouls, :started => started)
-  end
   
   def self.update_group_user_ranking(group, previous_matches=true)
     # default variables

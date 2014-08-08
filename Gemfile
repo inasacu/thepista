@@ -69,7 +69,7 @@ end
 
 
 group :development do
-	gem 'annotate', '>=2.5.0'
+	gem 'annotate', '>=2.5.0'    # annotate --exclude tests,fixtures,factories
 	# gem 'email_verifier'
 	# gem 'email_veracity'
 	# gem 'bullet'

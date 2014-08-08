@@ -1,9 +1,9 @@
-# to run:    rake the_group_manager_add 
+# to run:    rake myGroupManager 
 
 
 
 desc "add myself as manager to group_id = 14"
-task :the_group_manager_add => :environment do |t|
+task :myGroupManager => :environment do |t|
 
 	##############################################################################################################################################################################
 	# remove in production...

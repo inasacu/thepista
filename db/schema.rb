@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140707205036) do
+ActiveRecord::Schema.define(:version => 20140808154956) do
 
   create_table "announcements", :force => true do |t|
     t.text     "message"
@@ -672,39 +672,23 @@ ActiveRecord::Schema.define(:version => 20140707205036) do
   create_table "scorecards", :force => true do |t|
     t.integer  "group_id"
     t.integer  "user_id"
-    t.integer  "wins",                :default => 0
-    t.integer  "draws",               :default => 0
-    t.integer  "losses",              :default => 0
-    t.float    "points",              :default => 0.0
-    t.integer  "ranking",             :default => 0
-    t.integer  "played",              :default => 0
-    t.integer  "assigned",            :default => 0
-    t.integer  "goals_for",           :default => 0
-    t.integer  "goals_against",       :default => 0
-    t.integer  "goals_scored",        :default => 0
-    t.integer  "previous_points",     :default => 0
-    t.integer  "previous_ranking",    :default => 0
-    t.integer  "previous_played",     :default => 0
-    t.integer  "payed",               :default => 0
-    t.boolean  "archive",             :default => false
+    t.integer  "wins",             :default => 0
+    t.integer  "draws",            :default => 0
+    t.integer  "losses",           :default => 0
+    t.float    "points",           :default => 0.0
+    t.integer  "ranking",          :default => 0
+    t.integer  "played",           :default => 0
+    t.integer  "assigned",         :default => 0
+    t.integer  "goals_for",        :default => 0
+    t.integer  "goals_against",    :default => 0
+    t.integer  "goals_scored",     :default => 0
+    t.integer  "previous_points",  :default => 0
+    t.integer  "previous_ranking", :default => 0
+    t.integer  "previous_played",  :default => 0
+    t.integer  "payed",            :default => 0
+    t.boolean  "archive",          :default => false
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.datetime "season_ends_at"
-    t.integer  "field_goal_attempt",  :default => 0
-    t.integer  "field_goal_made",     :default => 0
-    t.integer  "free_throw_attempt",  :default => 0
-    t.integer  "free_throw_made",     :default => 0
-    t.integer  "three_point_attempt", :default => 0
-    t.integer  "three_point_made",    :default => 0
-    t.integer  "rebounds_defense",    :default => 0
-    t.integer  "rebounds_offense",    :default => 0
-    t.integer  "minutes_played",      :default => 0
-    t.integer  "assists",             :default => 0
-    t.integer  "steals",              :default => 0
-    t.integer  "blocks",              :default => 0
-    t.integer  "turnovers",           :default => 0
-    t.integer  "personal_fouls",      :default => 0
-    t.integer  "started",             :default => 0
   end
 
   add_index "scorecards", ["group_id"], :name => "index_scorecards_on_group_id"
