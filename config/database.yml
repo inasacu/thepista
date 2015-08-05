@@ -6,8 +6,8 @@ development:
   database: desarrollo_thepista
   host: localhost
   pool: 5
-  username: postgres
-  password: 72dae4
+  username: xxxxx
+  password: xxxxx
   min_messages: warning
  
 # test:
