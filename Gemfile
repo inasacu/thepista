@@ -26,7 +26,7 @@ gem 'composite_primary_keys'
 
 # gem 'newrelic_rpm'
 
-gem 'jquery-rails', '2.3.0'
+gem 'jquery-rails', '3.1.3'
 gem 'google_map'
 gem 'acts_as_tree', '0.1.1'
 gem 'aws-sdk'
